@@ -1,0 +1,25 @@
+Installation files of yeroth
+---------------------------
+
+1) The files 'com.yeroth-erp-3.0.client.conf' and 'com.yeroth-erp-3.0.server.conf'
+   have to be placed in the folder '/etc/dbus-1/system.d. 
+   The files shall be own by the 'root' user and have the following
+   rights: '-rw-r--r--'.
+
+2) Execute command: 
+   'gsettings set org.gnome.nautilus.preferences executable-text-activation ask',
+   so user could start yeroth by double-clicking 'yeroth-erp-3-0-standalone.sh'
+   from nautilus-browser.
+   
+   The file 'yeroth-erp-alert-3-0-initd.sh' has to be placed
+   in the folder '/etc/init.d' with the following rights '-rwxr-xr-x'.
+ 
+   After placing file 'yeroth-erp-alert-3-0-initd.sh' in folder '/etc/init.d',
+   you need to run the following command with root rigths: 
+   'update-rc.d yeroth-erp-alert-3-0-initd.sh defaults'.
+   
+   This will create all necessary files in the 'run level folders'
+   'rcN.d' (with 0 <= N <= 6).
+
+   To remove the links created for the file 'yeroth-erp-alert-3-0-initd.sh',
+   run 'update-rc.d yeroth-erp-alert-3-0-initd.sh remove'.

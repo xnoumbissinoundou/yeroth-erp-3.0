@@ -1,0 +1,66 @@
+\documentclass[1.75pt]{article} % use larger type; default would be 10pt
+\NeedsTeXFormat{LaTeX2e}
+\makeindex
+
+\RequirePackage[bitstream-charter,cal,expert]{mathdesign}
+\RequirePackage{charter}
+\RequirePackage{helvet}
+\RequirePackage{makeidx}
+\RequirePackage{latexsym}
+
+\usepackage[margin=0.2in]{geometry}
+
+\usepackage{xspace}
+\usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+
+\usepackage{amsmath}
+\usepackage{hyperref}
+\hypersetup{
+colorlinks,
+pagebackref,
+citecolor=medgreen,
+linkcolor=purplish,
+breaklinks,
+pdftex,
+bookmarks,
+plainpages=false,
+pdftitle={Receipt (small size) of yeroth for customer YEROTHCLIENT (YEROTHENTREPRISE)},
+pdfauthor={YEROTHENTREPRISE (YEROTHMAGASINIER)}
+}
+
+% format two pieces of text, one left aligned and one right aligned
+\newcommand{\headerrow}[2]
+{\begin{tabular*}{\linewidth}{l@{\extracolsep{\fill}}r}
+	#1 &
+	#2 \\
+\end{tabular*}}
+
+\setlength{\paperwidth}{2.97in}
+\setlength{\paperheight}{YEROTHFACTURESMALLPAPERHEIGHT}
+
+
+\begin{document}
+\newgeometry{left=0.1in,right=0.1in,top=0.1in,bottom=0.1in}
+\emph{YEROTHENTREPRISE} \\
+\emph{YEROTHACTIVITESENTREPRISE} \\
+\emph{Tax payer registration number: YEROTHCONTRIBUABLENR} \\
+\emph{Tel.: YEROTHTELEPHONE} \\
+\emph{PO Box: YEROTHBOITEPOSTALE YEROTHVILLE}
+
+\vspace*{0.2cm}
+
+\hrule
+
+\headerrow
+{}
+{YEROTHDATE}\\
+
+Receipt N.: YEROTHNUMEROSORTIETRANSFERT (YEROTHTYPEPAIEMENT)\\
+Time of sale: YEROTHHEUREVENTE\\
+Customer: YEROTHCLIENT\\
+Site of selling: YEROTHLOCALISATION_SORTIE\\
+Seller: YEROTHVENDEUR
+
+\vspace*{0.2cm}
+
+%\hrule

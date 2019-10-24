@@ -1,0 +1,1 @@
+create table alertes (id int primary key, stocks_id int, designation_alerte varchar(256), condition_alerte varchar(256), designation varchar(256), quantite int(11), date_debut date, date_fin date, destinataire varchar(256), nom_complet_destinataire varchar(256), message_alerte varchar(256), date_creation date, notifications int(11), alerte_resolue int(1));

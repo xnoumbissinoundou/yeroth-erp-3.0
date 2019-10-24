@@ -1,0 +1,2 @@
+yeroth-erp-3.0 for debian-stretch stops at commit: bc0276d058262e00be50e1f51e7ffb7111746731
+yeroth-erp-3.0 pour debian-stretch s'arrete au commit: bc0276d058262e00be50e1f51e7ffb7111746731

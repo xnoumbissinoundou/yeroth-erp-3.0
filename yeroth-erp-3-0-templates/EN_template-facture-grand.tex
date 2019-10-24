@@ -1,0 +1,107 @@
+\documentclass[11pt,YEROTHPAPERSPEC]{article} % use larger type; default would be 10pt
+\NeedsTeXFormat{LaTeX2e}
+\makeindex
+
+%---------------------------- PACKAGE INCLUSION -------------------------------
+% This group renders characters clearer and more precise
+
+\RequirePackage[bitstream-charter,cal,expert]{mathdesign}
+\RequirePackage{charter}
+\RequirePackage{helvet}
+\RequirePackage{makeidx}
+\RequirePackage{latexsym}
+
+\usepackage{geometry}
+\geometry{YEROTHPAPERSPEC,
+		  top=4.15em,
+		  left=5.5em,
+		  right=5.5em,
+		  bottom=3.39em
+		  }
+		  
+\usepackage{graphicx}
+\usepackage{xspace}
+\usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{listings} % for lstset definitions
+\usepackage{url}
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+\usepackage{epsfig}
+\usepackage{booktabs}
+
+\usepackage{amsmath}
+
+\usepackage{hyperref}
+\hypersetup{
+colorlinks,
+pagebackref,
+citecolor=medgreen,
+linkcolor=purplish,
+breaklinks,
+pdftex,
+bookmarks,
+plainpages=false,
+pdftitle={Receipt (big size) of yeroth for customer YEROTHCLIENT (YEROTHENTREPRISE)},
+pdfauthor={YEROTHENTREPRISE (YEROTHVENDEUR)}
+}
+
+% format two pieces of text, one left aligned and one right aligned
+\newcommand{\headerrow}[2]
+{\begin{tabular*}{\linewidth}{l@{\extracolsep{\fill}}r}
+	#1 &
+	#2 \\
+\end{tabular*}}
+
+\newcommand{\emphbold}[1]{\textbf{\emph{#1}}\xspace}
+
+
+\begin{document}
+
+\bigskip
+
+\headerrow
+	{\emphbold{YEROTHENTREPRISE}}
+	{\emph{\textbf{Tax payer registration number:} YEROTHCONTRIBUABLENR}}
+\headerrow
+	{\emphbold{YEROTHACTIVITESENTREPRISE}}
+	{\emph{\textbf{Bank account number:} YEROTHCOMPTEBANCAIRENR,}}
+\headerrow
+	{\emphbold{Email: YEROTHEMAIL}}
+	{\emph{YEROTHAGENCECOMPTEBANCAIRE}}
+\headerrow
+	{\emphbold{Tel.: YEROTHTELEPHONE}}
+	{}
+\headerrow
+	{\emphbold{PO Box: YEROTHBOITEPOSTALE YEROTHVILLE}}
+	{}
+	
+\hrule
+
+\headerrow
+	{}
+	{\textbf{YEROTHDATE}}
+
+\vspace*{0.9cm}
+
+\headerrow
+{}
+{\textbf{YEROTHCLIENT}}
+\headerrow
+{}
+{Representant's name: CLIENTYEROTHREPRESENTANT}
+\headerrow
+{}
+{PO Box: CLIENTYEROTHPOBOX CLIENTYEROTHCITY}
+\headerrow
+{}
+{Email: CLIENTYEROTHMAIL}
+\headerrow
+{}
+{Tel.: CLIENTYEROTHPHONE}
+
+\section*{\underline{Receipt N.:} YEROTHNUMEROSORTIETRANSFERT (YEROTHTYPEPAIEMENT)}
+\textbf{Time of sale:} YEROTHHEUREVENTE\\
+\textbf{Site of selling}: YEROTHLOCALISATION_SORTIE\\
+\textbf{Seller:} YEROTHVENDEUR
+
+\vspace{0.3cm} 

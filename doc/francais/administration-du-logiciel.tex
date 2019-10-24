@@ -1,0 +1,203 @@
+\chapter{L'Administration de \yeren}\label{chap:administration-logiciel}
+
+\utilisateurs: \lienadmin, \lienpatron.\\
+
+\chapintro{Ce chapitre d\'ecrit comment effectu\'e
+les t\^aches d'administration (ex: cr\'eer un
+nouveau compte pour un utilisateur, etc.).}
+
+\nxsection{Introduction}
+
+\begin{figure}[!htpb]
+\centering
+\includegraphics[scale=0.45]{images/yeren-fenetre-administrateur.png}
+\caption{La fen\^etre de l'administrateur.}
+\label{fig:fenetre-administrateur}
+\end{figure}
+
+La figure~\ref{fig:fenetre-administrateur} illustre la
+fen\^etre d'acceuil de l'administration de \yeren.
+
+On y arrive automatiquement lorsqu'on s'enregistre
+\`a \yeren avec un utilisateur du \role \admin.
+
+Avec un utilisateur du \role \patron, on clique sur le
+bouton \bouton{Administration} \`a partir de l'interface
+d'acceuil des utilisateurs du \role \patron 
+(voir figure~\ref{fig:yeren-fenetre-patron}).
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\nxsection{La connection \`a d'autres localisations}
+\index{connection \`a d'autres localisations}
+
+La figure~\ref{fig:yeren-admin-connection-autres-db}
+illustre l'interface graphique de connection \`a la
+base de donn\'ees d'une autre localisation;
+cette interface graphique est le $1^{\text{er}}$ onglet
+de la fen\^etre de l'administration.
+
+\begin{figure}[!htpb]
+	\centering
+	\includegraphics[scale=0.45]{images/yeren-admin-connection-autres-db.png}
+	\caption{l'interface graphique de connection de
+		\yeren \`a d'autres localisations.}\label{fig:yeren-admin-connection-autres-db}
+\end{figure}
+
+Voici la proc\'edure par laquelle l'utilisateur peut
+connecter son installation de \yeren \`a la base de donn\'ees
+d'autres localisations:
+\begin{enumerate}[1)]
+	\item choisir dans le champs de texte '\textbf{localisation}'
+		le nom de localisation \`a laquelle on souhaite
+		se connecter. Lorsque cela est fait, l'adresse IP
+		de la localisation choisie est automatiquement
+		affich\'ee dans le champs de texte '\textbf{adresse IP}'
+	
+	\item cliquer sur le bouton \bouton{connecter}.
+\end{enumerate}
+
+Si la connection est r\'eussie, le mot 
+'\textbf{\textcolor{forestgreen}{ONLINE}}' est affich\'e en
+couleur verte au dessus du bouton \bouton{connecter}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\nxsection{Les param\`etres g\'en\'eraux}
+\index{param\`etres g\'en\'eraux}
+
+La figure~\ref{fig:yeren-parametres} illustre l'interface
+graphique des param\`etres g\'en\'eraux de \yeren;
+cette interface graphique est le $4^{\text{\`eme}}$
+onglet de la fen\^etre de l'administration de \yeren.
+
+\begin{figure}[!htpb]
+	\centering
+	\includegraphics[scale=0.45]{images/yeroth-administration-parametres-generaux.png}
+	\caption{l'interface graphique de param\'etrage g\'en\'eral
+		de \yeren.}\label{fig:yeren-parametres}
+\end{figure}
+
+Les param\`etres g\'en\'eraux qui peuvent \^etre
+modifi\'es sont les suivants:
+\begin{enumerate}[1)]
+	\item le lecteur des fichiers PDF
+	\item le compilateur des fichiers '.tex'
+	\item le r\'epertoire des fichiers temporaraires
+	\item la taxe sur la valeur ajout\'e
+	\item la strat\'egie de vente/sortie des stocks (\cmup, \dpfdpo, \fifo, \lifo)
+		\begin{enumerate}[1)]
+			\item la s\'election de \cmup pr\'esente tous les
+				stocks pr\'esents dans la base de donn\'ees \index{\cmup}
+			\item la s\'election \dpfdpo pr\'esente tous les
+				stocks selon la strat\'egie ''\textbf{Date of Preemption,
+				First Date of Preemption Out}'' \index{\dpfdpo}				
+			\item la s\'election de \fifo pr\'esente tous les
+				stocks selon la start\'egie ''\textbf{First In, First Out}''
+				\index{\fifo}
+			\item la s\'election de \lifo pr\'esente tous les
+				stocks selon la strat\'egie ''\textbf{Last In, First Out}''
+				\index{\lifo}
+		\end{enumerate}
+	\item le format des fichiers de facturations
+	\item l'ann\'ee de d\'epart des rapports lors de la
+			g\'en\'eration des chiffres d'affaire.\\
+\end{enumerate}
+
+Les strat\'egies de gestion des stocks sont d\'ecrites
+dans la section~\ref{sec:strategies-gestion-stocks}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\nxsection{Les param\`etres du syst\`eme d'alertes}
+\index{param\`etres du syst\`eme d'alertes}
+
+La figure~\ref{fig:yeren-admin-alertes-config} illustre
+l'interface graphique des param\`etres du syst\`eme d'alertes
+de \yeren; cette interface graphique est le $5^{\text{\`eme}}$
+onglet de la fene\^etre de l'administration de \yeren.
+
+\begin{figure}[!htpb]
+	\centering
+	\includegraphics[scale=0.45]{images/yeren-admin-alertes-config.png}
+	\caption{l'interface graphique de param\'etrage du
+		syst\`eme d'alertes \yeren.}\label{fig:yeren-admin-alertes-config}
+\end{figure}
+
+Le syst\`eme d'alertes est d\'emarr\'e par d\'efaut lors du
+d\'emarrage de l'ordinateur. 
+
+Il faut d\'emarrer l'interface graphique de \yeren en tant
+qu'administrateur du syst\`eme d'exploitation afin de
+pouvoir stopper le syst\`eme d'alertes lorsqu'il a \'et\'e
+d\'emarr\'e lors du d\'emarrage de l'ordinateur.
+
+Les param\`etres du syst\`eme d'alertes qui peuvent \^etre
+modifi\'es sont les suivants:
+\begin{enumerate}[1)]
+	\item \textbf{alertes sur la p\'eriode (s)}: d\'efinit
+		l'intervalle de temps (en secondes) apr\`es lequel
+		\yeren visite la base de donn\'ees pour voir
+		s'il y'a de nouvelles alertes sur les p\'eriodes de temps
+		
+	\item \textbf{alertes sur la quantit\'e (s)}: d\'efinit
+		l'intervalle de temps (en secondes) apr\`es lequel
+		\yeren visite la base de donn\'ees pour voir
+		s'il y'a de nouvelles alertes sur les quantit\'es en stocks.\\
+\end{enumerate}
+
+Cette interface graphique permet aussi:
+\begin{enumerate}[1)]
+	\item de \textbf{d\'emarrer le syst\`eme d'alertes} en pressant
+		sur le bouton \bouton{d\'emarrer}. Lorsque le syst\`eme
+		d'alertes est en marche, le mot anglais
+		'\textbf{\textcolor{forestgreen}{ON}}' est
+		affich\'e en vert au dessus du boutton \bouton{d\'emarrer}.
+		
+	\item \textbf{d'arr\^eter le syst\`eme d'alertes} en pressant
+		sur le bouton \bouton{arr\^eter}. Lorsque le syst\`eme
+		d'alertes n'est pas en marche, le mot anglais
+		'\textbf{\textcolor{firebrickred}{OFF}}' est
+		affich\'e en couleur rouge au dessus du boutton \bouton{arr\^eter}.
+		
+		Cette action n\'ecessite que l'utilisateur est d\'emarr\'e
+		\yeren en tant qu'administrateur du syst\`eme d'exploitation.
+		
+	\item \textbf{d'actualiser le statut} dans lequel se trouve
+		le syst\`eme d'alertes en pressant sur le bouton
+		\bouton{rafra\^ichir le statut}.		
+\end{enumerate}
+%-----------------------------------------------------------
+
+\newpage
+\input{yeroth-administration/administration-alertes}
+\newpage
+
+%-----------------------------------------------------------
+
+\input{yeroth-administration/administration-categories}
+\newpage
+
+%-----------------------------------------------------------
+
+\input{yeroth-administration/administration-clients}
+\newpage
+
+%-----------------------------------------------------------
+
+\input{yeroth-administration/administration-fournisseurs}
+\newpage
+
+%-----------------------------------------------------------
+
+\input{yeroth-administration/administration-utilisateurs}
+\newpage
+
+%-----------------------------------------------------------
+
+\input{yeroth-administration/administration-localisations}
+
+%-----------------------------------------------------------

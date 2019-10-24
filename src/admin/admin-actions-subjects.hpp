@@ -1,0 +1,38 @@
+/*
+ * admin-actions-subjects.hpp
+ *
+ *  Created on: Nov 30, 2015
+ *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
+ *      Email:  xnoundou7@gmail.com
+ */
+
+#ifndef ADMIN_ACTIONS_SUBJECTS_HPP_
+#define ADMIN_ACTIONS_SUBJECTS_HPP_
+
+enum AdminAction
+{
+	ACTION_CREER 		= 0,
+	ACTION_LISTER 		= 1,
+	ACTION_MODIFIER		= 2,
+	ACTION_SUPPRIMER	= 3,
+	ACTION_EXPORTER		= 4,
+	ACTION_IMPORTER		= 5,
+	ACTION_EFFACER		= 6
+};
+
+enum AdminSujetAction
+{
+	SUJET_ACTION_ALERTE 			= 0,
+	SUJET_ACTION_BON_DE_COMMANDE 	= 1,
+	SUJET_ACTION_CATEGORIE 			= 2,
+	SUJET_ACTION_CLIENT 			= 3,
+	SUJET_ACTION_COMPTE_UTILISATEUR = 4,
+	SUJET_ACTION_FOURNISSEUR 		= 5,
+	SUJET_ACTION_LOCALISATION 		= 6,
+	SUJET_ACTION_DB 				= 7,
+	SUJET_ACTION_TABLEAU 			= 8,
+	SUJET_ACTION_DONNEES 			= 9
+};
+
+
+#endif /* ADMIN_ACTIONS_SUBJECTS_HPP_ */

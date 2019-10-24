@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=yeroth-erp-3.0-server
+Exec=/opt/yeroth-erp-3.0-server/bin/yeroth-erp-3.0-server.sh
+Icon=yeroth-erp-3-0
+Terminal=false
+Type=Application
+StartupNotify=true
+Hidden=false
+Categories=Utility;

@@ -1,0 +1,66 @@
+/*
+ * yeroth-erp-pointdevente-liststocks-window..hpp
+ *
+ *  Created on: Dec 5, 2016
+ *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
+ *      Email:  xnoundou7@gmail.com
+ */
+
+#ifndef SRC_YEROTH_STOCKS_HISTORIQUE_DU_STOCK_WINDOW_HPP_
+#define SRC_YEROTH_STOCKS_HISTORIQUE_DU_STOCK_WINDOW_HPP_
+
+#include "../../ui_yeroth-erp-historique-du-stock-window.h"
+
+#include "src/yeroth-erp-windows.hpp"
+#include "yeroth-erp-window-commons.hpp"
+
+
+
+class YerothHistoriqueDuStockWindow : public YerothWindowsCommons, private Ui_YerothHistoriqueDuStockWindow
+{
+	Q_OBJECT
+
+public:
+
+	YEROTH_CLASS_OPERATORS
+
+	YerothHistoriqueDuStockWindow();
+
+	inline ~YerothHistoriqueDuStockWindow()
+	{
+		delete _logger;
+	}
+
+	inline virtual QToolBar * getQMainWindowToolBar()
+	{
+		return 0;
+	}
+
+	void listHistoriqueDuStock(const QStringList &aMouvementStockList,
+							   const QString	 stockReference,
+							   const QString 	 stockID,
+							   const QString 	 stockDesignation);
+
+	void getStockHistoryListingTexTableString(QString &texTable_in_out,
+	       									  QStandardItemModel &tableStandardItemModel,
+											  QList<int> &columnsToIgnore,
+											  int fromRowIndex,
+											  int toRowIndex,
+											  bool lastPage);
+public slots:
+
+	virtual bool imprimer_document();
+
+private:
+
+
+    static const QString 		_WINDOW_TITLE;
+
+    QString						_currentStockID;
+    QString						_currentStockReference;
+    QString						_currentStockDesignation;
+
+    YerothLogger					*_logger;
+};
+
+#endif /* SRC_YEROTH_STOCKS_HISTORIQUE_DU_STOCK_WINDOW_HPP_ */

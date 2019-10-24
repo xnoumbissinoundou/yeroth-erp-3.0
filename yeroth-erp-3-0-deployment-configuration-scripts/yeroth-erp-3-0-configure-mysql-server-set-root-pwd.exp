@@ -1,0 +1,14 @@
+#!/usr/bin/expect
+# @author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
+
+spawn /usr/bin/mysql -u root
+
+send "USE mysql;\n"
+
+send "UPDATE user SET password=PASSWORD('admin1') WHERE user='root';\n"
+
+send "UPDATE user SET plugin='mysql_native_password';\n"
+
+send "exit\n"
+
+interact

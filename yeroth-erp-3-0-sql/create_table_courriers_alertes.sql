@@ -1,0 +1,1 @@
+create table courriers_alertes (id int primary key, id_alerte int(11), destinataire varchar(256), nom_complet_destinataire varchar(256), designation_alerte varchar(256), designation varchar(256), condition_alerte varchar(256), quantite int(11), date_debut date, date_fin date, message_alerte varchar(256), alerte_resolue int(1));

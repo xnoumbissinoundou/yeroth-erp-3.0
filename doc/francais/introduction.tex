@@ -1,0 +1,122 @@
+\chapter{Introduction}\label{chap:introduction}
+
+\yeren est un syst\`eme logiciel de gestion des
+stocks et de gestion des ventes. Il permet
+d'ex\'ecuter des mouvements de stocks, et de
+vendre des articles en stocks.
+
+Une entreprise doit poss\'eder au minimum d'un stock
+d'articles, d'un d\'ep\^ot ou d'une boutique pour utiliser
+\yeren de fa\c{c}on efficace.\\
+
+\begin{figure}[!htpb]
+	\centering
+	\includegraphics[scale=0.63]{images/architecture-enterprise-yeren.png}
+	\caption{Un mod\`ele d'architecture d'une entreprise}\label{fig:architecture-enterprise-yeren}
+\end{figure}
+
+La figure~\ref{fig:architecture-enterprise-yeren} illustre
+un mod\`ele g\'en\'erique d'entreprise o\`u les d\'ep\^ots
+et les boutiques de l'entreprise sont en communication.
+
+Les activit\'es principales de l'entreprise sont les suivantes:
+\begin{enumerate}[1)]
+	\item \emphbf{les sorties de stocks:} sortie d'articles
+		d'une unit\'e (boutique ou d\'ep\^ot) pour r\'eception par un client
+	\item \emphbf{les transferts de stocks:} mouvement d'articles
+		d'une unit\'e vers une autre unit\'e
+	\item \emphbf{les ventes d'articles:} un client ach\`ete
+		des articles qui lui sont ensuite remis.\\
+\end{enumerate}
+
+\yeren permet d'accomplir les t\^aches de gestion
+des stocks et de gestion des ventes suivantes:
+\begin{enumerate}[1)]
+	\item \myenumitem{cr\'eer des alertes sur des p\'eriodes de temps}	
+	\item \myenumitem{cr\'eer des alertes sur des quantit\'e en stocks}	
+	\item \myenumitem{entrer un stock}
+	\item \myenumitem{lister les stocks}
+	\item \myenumitem{modifier un stock}
+	\item \myenumitem{supprimer un stock}	
+	\item \myenumitem{rechercher des articles ou des stocks}
+	\item \myenumitem{transf\'erer des articles ou des stocks}	
+	\item \myenumitem{vendre des articles}	
+	\item \myenumitem{visualiser les \'etats de transactions d'articles
+		(sorties ou transferts de stocks)}
+	\item \myenumitem{visualiser les \'etats de ventes d'articles}.\\
+\end{enumerate}
+
+\newpage
+
+\section{Acc\`es au manuel de l'utilisateur}
+
+La figure~\ref{fig:fenetre-principale-utilisateur-non-enregistre}
+illustre la fen\^etre d'accueil de \yeren sans aucun utilisateur
+enregistr\'e.\\
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[scale=0.63]{images/yeren-fenetre-principale.png}
+\caption{La fen\^etre d'acceuil sans aucun utilisateur enregistr\'e.}
+\label{fig:fenetre-principale-utilisateur-non-enregistre}
+\end{figure}
+
+Il est requis qu'un utilisateur soit enregistr\'e
+dans \yeren afin d'avoir acc\`es au manuel de l'utilisateur.
+
+L'utilisateur de \yeren doit accomplir les op\'erations
+suivantes afin d'avoir acc\`es au manuel de l'utilisateur:
+\begin{enumerate}[1)]
+	\item \`a partir de la fen\^etre d'accueil
+		(voir figure~\ref{fig:fenetre-principale-utilisateur-non-enregistre}),
+		cliquez sur le menu d\'eroulant '\textbf{Aide}'
+	\item ensuite cliquez sur le lien '\textbf{Manuel de l'utilisateur (PDF)}'.
+\end{enumerate}
+
+\section{Structure de ce manuel de l'utilisateur}
+Ce manuel de  l'utilisateur de \yeren est structur\'e
+comme suit:
+
+\begin{itemize}[\mycheckmark{purplish}]
+	\item le chapitre~\ref{chap:utilisateurs} d\'ecrit
+	les utilisateurs de \yeren et leurs \roles. 
+	     
+	\item le chapitre~\ref{chap:gestion-stocks} explicite
+	les fonctionalit\'es de gestion des stocks
+	
+	\item le chapitre~\ref{chap:systeme-dalertes}
+	pr\'esente le syst\`eme d'alertes sur les stocks
+	
+	\item le chapitre~\ref{chap:vendre} d\'ecrit comment
+	conclure des ventes d'articles
+	
+	\item le chapitre~\ref{chap:sortir-articles} d\'ecrit
+	comment proc\'eder \`a des sorties et transferts de stocks
+	
+	\item le chapitre~\ref{chap:vente} explicite comment
+	rechercher et imprimer les \'etats de ventes d'articles
+	
+	\item le chapitre~\ref{chap:etats-des-sorties} explicite
+	comment rechercher et imprimer les \'etats de sorties ou
+	transferts d'articles
+	
+	\item le chapitre~\ref{chap:tableaux-de-bord} discute
+	de la recherche et de la g\'en\'eration des rapports
+	commerciaux de l'entreprise
+	
+	\item le chapitre~\ref{chap:informations-generales}
+	explique comment avoir acc\`es aux d\'etails de
+	l'utilisateur enregistr\'e, aux informations commerciales
+	de l'entreprise, et enfin \`a la version de \yeren que
+	l'on utilise
+	
+	\item le chapitre~\ref{chap:administration-logiciel}
+	traite de l'administration du logiciel
+
+	\item le chapitre~\ref{chap:problemes-connues}
+	discute des probl\`emes connues du syst\`eme--logiciel
+	
+	\item enfin, le chapitre~\ref{chap:conclusion} conclut
+	ce manuel d'utilisation.
+\end{itemize}
+

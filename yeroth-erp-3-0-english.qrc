@@ -1,0 +1,55 @@
+<RCC>
+  <qresource>
+
+    <file>yeroth-erp-3-0-main.qml</file>
+
+    <file>yeroth-erp-3-0-templates/EN_template-historique-dun-stock.tex</file>
+    <file>yeroth-erp-3-0-templates/EN_template-journal-des-paiements.tex</file>
+    <file>yeroth-erp-3-0-templates/EN_template-journal-des-ventes.tex</file>
+    <file>yeroth-erp-3-0-templates/EN_template-facture-grand.tex</file>
+    <file>yeroth-erp-3-0-templates/EN_template-facture-petit.tex</file>    
+    <file>yeroth-erp-3-0-templates/EN_template-sortie-des-stocks-grand.tex</file>
+    <file>yeroth-erp-3-0-templates/EN_template-sortie-des-stocks-petit.tex</file>           
+    <file>yeroth-erp-3-0-templates/EN_template-journal-transactions.tex</file>
+    <file>yeroth-erp-3-0-templates/EN_template-comptes-clients.tex</file> 
+    <file>yeroth-erp-3-0-templates/EN_template-marchandises.tex</file>    
+    <file>yeroth-erp-3-0-templates/EN_template-lister-achats.tex</file>    
+    <file>yeroth-erp-3-0-templates/EN_template-lister-stock.tex</file>    
+    <file>yeroth-erp-3-0-templates/EN_bar-diag.tex</file>
+    <file>yeroth-erp-3-0-templates/EN_pie-chart.tex</file>
+    <file>yeroth-erp-3-0-templates/EN_bar-chart.tex</file>
+    
+    <file>yeroth-erp-3-0-templates/1a.tex</file>
+    
+		<file>yeroth-erp-3-0-sql/create_table_entreprise_info.sql</file>
+		<file>yeroth-erp-3-0-sql/create_table_paiements.sql</file>
+    <file>yeroth-erp-3-0-sql/create_table_credit_card_issuing_company.sql</file>
+    <file>yeroth-erp-3-0-sql/create_table_init_configurations.sql</file>
+    <file>yeroth-erp-3-0-sql/create_table_configurations.sql</file>
+    <file>yeroth-erp-3-0-sql/create_table_roles.sql</file>
+    <file>yeroth-erp-3-0-sql/create_table_users.sql</file>
+    <file>yeroth-erp-3-0-sql/create_table_titres.sql</file>
+    <file>yeroth-erp-3-0-sql/create_table_achats.sql</file>
+    <file>yeroth-erp-3-0-sql/create_table_stocks.sql</file>
+    <file>yeroth-erp-3-0-sql/create_table_stocks_vendu.sql</file>
+    <file>yeroth-erp-3-0-sql/create_table_stocks_sorties.sql</file>
+    <file>yeroth-erp-3-0-sql/create_table_marchandises.sql</file>
+    <file>yeroth-erp-3-0-sql/create_table_localisations.sql</file>
+    <file>yeroth-erp-3-0-sql/create_table_categories.sql</file>
+    <file>yeroth-erp-3-0-sql/create_table_alertes.sql</file>
+    <file>yeroth-erp-3-0-sql/create_table_conditions_alertes.sql</file>
+    <file>yeroth-erp-3-0-sql/create_table_courriers_alertes.sql</file>
+    <file>yeroth-erp-3-0-sql/create_table_clients.sql</file>
+    <file>yeroth-erp-3-0-sql/create_table_fournisseurs.sql</file>
+    <file>yeroth-erp-3-0-sql/create_table_dbms.sql</file>
+    <file>yeroth-erp-3-0-sql/create_table_strategie_vente_sortie.sql</file>
+    
+		<file>yeroth-erp-3-0-images/folder-sort.svg.png</file>
+		<file>yeroth-erp-3-0-images/yeroth-erp-3.0-icon.png</file>
+    <file>yeroth-erp-3-0-images/yeroth-print-icon-software.svg.png</file>
+    <file>yeroth-erp-3-0-images/log-in.png</file>
+    <file>yeroth-erp-3-0-images/log-out.png</file>
+    <file>yeroth-erp-3-0-images/minus.png</file>
+    <file>yeroth-erp-3-0-images/question.png</file>
+  </qresource>
+</RCC>

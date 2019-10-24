@@ -1,0 +1,268 @@
+\documentclass[a4paper, 10pt]{article}
+
+\NeedsTeXFormat{LaTeX2e}
+
+%---------------------------- PACKAGE INCLUSION -------------------------------
+% This group renders characters clearer and more precise
+
+\RequirePackage[bitstream-charter,cal,expert]{mathdesign}
+\RequirePackage{latexsym}
+
+\usepackage{geometry} % to change the page dimensions
+\geometry{a4paper,
+		  %showframe=true,
+		  %margin=3em,
+		  %a4paper,
+		  %total={170mm,257mm},
+		  top=4.15em,
+		  left=3em,
+		  right=3em,
+		  bottom=3.39em
+		  }
+		  
+\usepackage[default]{cantarell}
+\usepackage{xspace}
+%\usepackage[french]{babel}
+\usepackage{paralist}
+\usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{listings} % for lstset definitions
+\usepackage{graphicx} % support the \includegraphics command and options
+
+\usepackage{verbatim}	
+
+\usepackage{alltt}				% support for verbatim text with font specification. e.g: \textbf
+\renewcommand{\ttdefault}{txtt}	   % support for verbatim text with font specification. e.g: \textbf
+
+\usepackage{epsfig}
+\usepackage{booktabs}
+
+\newcommand{\yerotherptroiszero}{\textbf{''Yeroth--erp--3.0''}\xspace}
+
+\newcommand{\texlive}{\texttt{Texlive}\xspace}
+
+\newcommand{\gdebi}{\texttt{gdebi}\xspace}
+
+\newcommand{\expect}{\texttt{expect}\xspace}
+
+\newcommand{\debian}{\texttt{Debian}\xspace}
+
+\newcommand{\bash}{\texttt{bash}\xspace}
+
+\newcommand{\qt}{\texttt{Qt}\xspace}
+
+\newcommand{\mariadbserver}{\texttt{mariadb--server}\xspace}
+
+\newcommand{\mariadbclient}{\texttt{mariadb--client}\xspace}
+
+\newcommand{\yerothrd}{\textsc{YEROTH~R\&D}\xspace}
+
+\newcommand{\yerotherp}{\textcolor{yerenColorBlue}{\sc YEROTH--ERP--$3.0$}\xspace}
+
+\newcommand{\erp}{ERP Software--System\xspace}
+
+\newcommand{\myfullacademicname}{Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)\xspace}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+	pagebackref,
+    citecolor=medgreen,
+    linkcolor=purplish,
+    breaklinks,
+    pdftex,
+    bookmarks,
+    plainpages=false,
+	pdftitle={Installation Guide for \erp \yerotherp by ''\myfullacademicname''},
+    pdfauthor={Xavier NOUMBISSI NOUNDOU}
+}
+
+\usepackage{url}
+
+\usepackage{xcolor}
+\definecolor{yerenColorOrange}{RGB}{242, 161, 0}   
+\definecolor{yerenColorBlue}{RGB}{77 , 93 , 254}
+\definecolor{yerenColorRed}{RGB}{254, 48 , 48}
+\definecolor{yerenColorGray}{RGB}{198, 198, 198}
+\definecolor{yerenColorDarkgray}{RGB}{60, 60 , 60}
+\definecolor{yerenColorIndigo}{RGB}{83, 0, 125}
+\definecolor{yerenColorGreen}{RGB}{2  , 160, 70}
+\definecolor{forestgreen}{RGB}{2,160,70}    
+\definecolor{mediumblue}{RGB}{7,43,205}    
+\definecolor{firebrickred}{RGB}{178,34,34}
+\definecolor{listingray}{gray}{0.9}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+\definecolor{darkgreen}{rgb}{0,0.35,0}
+\definecolor{medgreen}{rgb}{0,0.5,0}
+\definecolor{lightgreen}{rgb}{0.5,0.7,0.5}
+\definecolor{pmcolour}{rgb}{0.5,0.7,0.5}
+\definecolor{medgrey}{rgb}{0.6,0.6,0.6}
+\definecolor{purplish}{rgb}{0.4,0,0.6}
+\definecolor{brightred}{rgb}{1,0.2,0.2}
+
+\usepackage{pagecolor}
+
+\newcommand{\rootcommand}[1]{\textcolor{purplish}{#1\xspace}}
+
+\newcommand{\yeren}{\textsc{yeroth-erp-3.0}\xspace}
+
+\newcommand{\emphbf}[1]{\emph{\textbf{#1}}\xspace}
+\newcommand{\emphit}[1]{\emph{\textit{#1}}\xspace}
+\newcommand{\mycheckmark}[1]{\textcolor{#1}{$\checkmark$}\xspace}
+\newcommand{\mytimes}[1]{\textcolor{#1}{$\times$}\xspace}
+\newcommand{\boldsc}[1]{\textbf{\textsc{#1}}\xspace}
+
+
+\usepackage[T1]{fontenc}
+\newcommand{\changefont}[3]{
+\fontfamily{#1} \fontseries{#2} \fontshape{#3} \selectfont}
+\changefont{cmss}{m}{n}
+
+% Set font to avant-garde
+%\renewcommand*\rmdefault{pag}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\lhead{}
+\rhead{\yerothrd}
+\cfoot{\thepage}
+
+%Remove widows and orphants
+\clubpenalty = 10000
+\widowpenalty = 10000
+\displaywidowpenalty = 10000
+
+\begin{document}
+
+\pagenumbering{arabic}
+
+\title{
+\vspace{-1.65em}
+\textcolor{medgreen}{\textsc{Installation Guide\\
+										for \\
+									 \erp \\ \vspace{1em}
+									 \yerotherp}}
+									 \author{\myfullacademicname}
+}
+
+\date{} 
+\maketitle
+\thispagestyle{fancy}
+%\bigskip 
+%-------------------
+
+
+\vspace{0.25cm}
+
+\section{Installation Notes}
+
+Within this guide, all commands described
+in the following type setting:
+	\begin{alltt}
+		\rootcommand{command}
+	\end{alltt}
+are to be executed as ''super user'' (''root user'').
+
+\section{Prerequisite Software}
+
+\begin{table}[!htbp]
+\centering
+\begin{tabular}{l|r}
+\textbf{Software}	&
+\textbf{Versions}	\\ \hline
+\debian				&
+$10.0.0$ (buster)	\\ \hline
+\gdebi				&
+$0.9.5.7+nmu3$		\\ \hline
+\expect				&
+$5.45.4-2$			\\ \hline
+\mariadbserver		&
+$10.3$				\\ \hline
+\mariadbclient		&
+$10.3$				\\ \hline
+\qt					&
+$5.11.3$			\\ \hline	
+\texlive			&
+$2018.20190227-2$	\\
+\end{tabular}
+\caption{Prerequisite software for installation of
+	 \erp \yerotherptroiszero.}
+\label{tab:prerequisite-software}
+\end{table}
+
+\section{Files Required for Installation Procedure}
+
+\begin{table}[!htbp]
+\centering
+\begin{tabular}{|l|} \hline
+\textbf{Files}		\\ \hline
+yeroth-erp-3.0-standalone.deb							\\ \hline
+yeroth-erp-3-0-configure-mysql-server.sh				\\ \hline	
+yeroth-erp-3-0-configure-mysql-server-set-root-pwd.exp	\\ \hline	
+\end{tabular}
+\caption{Files required for installation of
+	 \erp \yerotherptroiszero.}
+\label{tab:prerequisite-software}
+\end{table}
+
+\section{Installation Procedure}
+
+Following steps have to be followed in order to have
+a well functioning installation of \yerotherptroiszero:
+
+\begin{enumerate} [1)]
+	\item install OS \debian--buster
+	\item install \gdebi and \expect software
+	\item install database software \mariadbserver and \mariadbclient
+	\item configure database software \mariadbserver
+	\item install \yerotherptroiszero (\qt and \texlive are automatically installed).
+\end{enumerate}
+
+\subsection{Installation of \gdebi and \expect}
+
+\begin{enumerate}[1)]
+	\item Open a ''bash--terminal''
+	\item type following command:
+		\begin{alltt}
+			\rootcommand{apt -y install gdebi expect}
+		\end{alltt}
+\end{enumerate} 
+
+\subsection{Installation of \mariadbserver and \mariadbclient}
+
+\begin{enumerate}[1)]
+	\item Open a ''bash--terminal''
+	\item type following command:
+		\begin{alltt}
+			\rootcommand{apt -y install mariadb-server mariadb-client}
+		\end{alltt}		
+\end{enumerate} 
+
+\subsection{Configuration of \mariadbserver}
+
+\begin{enumerate}[1)]
+	\item Edit provided file ''yeroth-erp-3-0-configure-mysql-server-set-root-pwd.exp''
+		and set \mariadbserver\ ''root'' password by replacing string 
+		''admin1'' with a new password
+	\item finally, run provided \bash file
+		''yeroth-erp-3-0-configure-mysql-server.sh''	
+\end{enumerate}
+
+\subsection{Installation of \qt, \texlive, and \yerotherptroiszero}
+
+\begin{enumerate}[1)]
+	\item Open a ''bash--terminal''
+
+	\item then type following command:
+		\begin{alltt}
+			\rootcommand{gdebi -n yeroth-erp-3.0-standalone.deb}
+		\end{alltt}
+
+	This command automatically installs \qt, and \texlive.
+		
+	\item type in \mariadbserver\ ''root'' (administrative)
+		password when prompted. This is required
+		for setting up  database ''yeroth\_erp\_3''.
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,55 @@
+#! /bin/sh
+# /etc/init.d/yeroth-erp-alert-3-0-initd.sh
+#
+
+### BEGIN INIT INFO
+# Provides: yeroth-erp-alert-3-0-initd.sh
+# Required-Start:    $local_fs $syslog $remote_fs networking mysql
+# Required-Stop:     $local_fs $syslog $remote_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Enable alert system of ''Yeroth-erp-3.0''
+### END INIT INFO
+
+export DISPLAY=:0.0
+
+killYerothERPAlertDaemon()
+{
+		pgrep -a yeroth-erp-aler \
+				| grep "${YEROTH_ERP_ALERT_3_0_HOME_FOLDER}"/bin/yeroth-erp-alert-3-0 \
+				| awk '//{print $1}' | xargs kill -9 > /dev/null 2>&1
+}
+
+[ -f /etc/environment ] && . /etc/environment
+
+# Carry out specific functions when asked to by the system
+case "$1" in
+  start)
+    echo "Starting script yeroth-erp-alert-3-0-initd.sh"
+    xvfb-run nice -n -12 "${YEROTH_ERP_ALERT_3_0_HOME_FOLDER}"/bin/yeroth-erp-alert-3-0 > /dev/null 2>&1 
+    ;;
+  stop)
+    echo "Stopping script yeroth-erp-alert-3-0-initd.sh"
+    killYerothERPAlertDaemon
+    ;;
+  restart)
+    echo "Restarting script yeroth-erp-alert-3-0-initd.sh"
+    killYerothERPAlertDaemon
+    xvfb-run nice -n -12 "${YEROTH_ERP_ALERT_3_0_HOME_FOLDER}"/bin/yeroth-erp-alert-3-0 > /dev/null 2>&1
+    ;;
+  force-reload)
+    echo "Force reload script yeroth-erp-alert-3-0-initd.sh"
+    killYerothERPAlertDaemon
+    xvfb-run nice -n -12 "${YEROTH_ERP_ALERT_3_0_HOME_FOLDER}"/bin/yeroth-erp-alert-3-0 > /dev/null 2>&1
+    ;;
+  status)
+    echo "Check status of script yeroth-erp-alert-3-0-initd.sh"
+    pgrep -a yeroth-erp-aler | grep "${YEROTH_ERP_ALERT_3_0_HOME_FOLDER}"/bin/yeroth-erp-alert-3-0 
+    ;;
+  *)
+    echo "Usage: /etc/init.d/yeroth-erp-alert-3-0-initd.sh {start|stop|restart|force-reload|status}"
+    exit 1
+    ;;
+esac
+
+exit 0

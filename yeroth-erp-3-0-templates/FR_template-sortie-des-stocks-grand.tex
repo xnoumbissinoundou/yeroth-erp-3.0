@@ -1,0 +1,107 @@
+\documentclass[11pt,YEROTHPAPERSPEC]{article} % use larger type; default would be 10pt
+\NeedsTeXFormat{LaTeX2e}
+\makeindex
+
+%---------------------------- PACKAGE INCLUSION -------------------------------
+% This group renders characters clearer and more precise
+
+\RequirePackage[bitstream-charter,cal,expert]{mathdesign}
+\RequirePackage{charter}
+\RequirePackage{helvet}
+\RequirePackage{makeidx}
+\RequirePackage{latexsym}
+
+\usepackage{geometry}
+\geometry{YEROTHPAPERSPEC,
+		  top=4.15em,
+		  left=5.5em,
+		  right=5.5em,
+		  bottom=3.39em
+		  }
+		  
+\usepackage{graphicx}
+\usepackage{xspace}
+\usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{listings} % for lstset definitions
+\usepackage{url}
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+\usepackage{epsfig}
+\usepackage{booktabs}
+
+\usepackage{amsmath}
+
+\usepackage{hyperref}
+\hypersetup{
+colorlinks,
+pagebackref,
+citecolor=medgreen,
+linkcolor=purplish,
+breaklinks,
+pdftex,
+bookmarks,
+plainpages=false,
+pdftitle={YEROTHSORTIETRANSFERT de stocks (grand format) de yeroth (YEROTHENTREPRISE)},
+pdfauthor={YEROTHENTREPRISE (YEROTHMAGASINIER)}
+}
+
+% format two pieces of text, one left aligned and one right aligned
+\newcommand{\headerrow}[2]
+{\begin{tabular*}{\linewidth}{l@{\extracolsep{\fill}}r}
+	#1 &
+	#2 \\
+\end{tabular*}}
+
+\newcommand{\emphbold}[1]{\textbf{\emph{#1}}\xspace}
+
+\begin{document}
+
+\bigskip
+
+\headerrow
+	{\emphbold{YEROTHENTREPRISE}}
+	{\emph{\textbf{Num\'ero de contribuable:} YEROTHCONTRIBUABLENR}}
+\headerrow
+	{\emphbold{YEROTHACTIVITESENTREPRISE}}
+	{\emph{\textbf{Num\'ero de compte bancaire:} YEROTHCOMPTEBANCAIRENR,}}
+\headerrow
+	{\emphbold{\'Email: YEROTHEMAIL}}
+	{\emph{YEROTHAGENCECOMPTEBANCAIRE}}
+\headerrow
+	{\emphbold{T\'el.: YEROTHTELEPHONE}}
+	{}
+\headerrow
+	{\emphbold{B.P.: YEROTHBOITEPOSTALE YEROTHVILLE}}
+	{}
+	
+\hrule
+
+\headerrow
+	{}
+	{\textbf{YEROTHDATE}} 
+
+\vspace*{0.9cm}
+
+\headerrow
+{}
+{\textbf{YEROTHCLIENT}}
+\headerrow
+{}
+{R\'ecepteur: YEROTHRECEPTEUR}
+\headerrow
+{}
+{B.P.: CLIENTYEROTHPOBOX CLIENTYEROTHCITY}
+\headerrow
+{}
+{\'Email: CLIENTYEROTHMAIL}
+\headerrow
+{}
+{T\'el.: CLIENTYEROTHPHONE}
+
+\section*{\underline{YEROTHSORTIETRANSFERT de stocks num\'ero: YEROTHNUMEROSORTIETRANSFERT}.}
+Heure de la sortie: YEROTHHEUREVENTE\\
+Boutique/D\'ep\^ot de sortie: YEROTHLOCALISATION_SORTIE\\
+Boutique/D\'ep\^ot d'entr\'ee: YEROTHLOCALISATION_ENTREE\\
+Magasinier: YEROTHMAGASINIER
+
+\vspace*{0.3cm}
