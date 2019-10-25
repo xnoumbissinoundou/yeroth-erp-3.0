@@ -2,14 +2,14 @@
  * yeroth-erp-admin-lister-window.cpp
  *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
  */
-#include"yeroth-erp-admin-lister-window.hpp"
-#include"src/yeroth-erp-windows.hpp"
-#include"src/admin/yeroth-erp-admin-search-form.hpp"
-#include<QtCore/QDebug>
-#include<QtWidgets/QDesktopWidget>
-#include<QtGui/QStandardItemModel>
-#include<QtSql/QSqlQuery>
-#include<QtSql/QSqlError>
+#include "yeroth-erp-admin-lister-window.hpp"
+#include "src/yeroth-erp-windows.hpp"
+#include "src/admin/yeroth-erp-admin-search-form.hpp"
+#include <QtCore/QDebug>
+#include <QtWidgets/QDesktopWidget>
+#include <QtGui/QStandardItemModel>
+#include <QtSql/QSqlQuery>
+#include <QtSql/QSqlError>
 
 YerothAdminListerWindow::YerothAdminListerWindow()
 :YerothPOSAdminWindowsCommons(QObject::tr("administration ~ lister")),
@@ -678,7 +678,9 @@ void YerothAdminListerWindow::supprimer()
 void YerothAdminListerWindow::supprimer_utilisateur()
 {
     _logger->log("supprimer_utilisateur");
+
     YerothSqlTableModel *usersTableModel = 0;
+
     if (_curSearchSqlTableModel
             && YerothUtils::isEqualCaseInsensitive(_allWindows->USERS, _curSearchSqlTableModel->sqlTableName()))
     {
@@ -688,36 +690,46 @@ void YerothAdminListerWindow::supprimer_utilisateur()
     {
         usersTableModel = &_allWindows->getSqlTableModel_users();
     }
+
     QSqlRecord record = usersTableModel->record(this->lastSelectedItemForModification());
+
     if (record.isEmpty() || record.isNull("nom_utilisateur"))
     {
         return;
     }
+
     QString prenom(GET_SQL_RECORD_DATA(record, "prenom"));
     QString nom(GET_SQL_RECORD_DATA(record, "nom"));
     QString id(GET_SQL_RECORD_DATA(record, "nom_utilisateur"));
-    prenom.append(" ").append(nom).append(" (").append(id).append(")");
-    QString msgConfirmation("Supprimer l'utilisateur '");
-    msgConfirmation.append(prenom).append("' ?");
+
+    prenom.append(QString(" %1 (%2)")
+    				.arg(nom,
+    					 id));
+
+    QString msgConfirmation(QString(QObject::trUtf8("Supprimer l'utilisateur '%1' ?'"))
+    							.arg(prenom));
+
     if (QMessageBox::Ok ==
-            YerothQMessageBox::question(this, "Yeroth-erp-3.0 ~ admin-lister-supprimer-utilisateur",
+            YerothQMessageBox::question(this, QObject::tr("admin-lister-supprimer-utilisateur"),
                                   FROM_UTF8_STRING(msgConfirmation), QMessageBox::Cancel, QMessageBox::Ok))
     {
         bool success = usersTableModel->removeRow(this->lastSelectedItemForModification());
         if (success)
         {
-            QString msg("L'utilisateur ");
-            msg.append(prenom).append(" a été supprimée de la base de données!");
-            YerothQMessageBox::information(this, tr("Yeroth-erp-3.0 ~ admin-lister-supprimer-utilisateur"),
+            QString msg(QString(QObject::trUtf8("L'utilisateur '%1' a été supprimée de la base de données !"))
+            				.arg(prenom));
+
+            YerothQMessageBox::information(this, QObject::tr("admin-lister-supprimer-utilisateur"),
                                      FROM_UTF8_STRING(msg), QMessageBox::Ok);
+
             this->self_reset_view(SUJET_ACTION_COMPTE_UTILISATEUR);
         }
         else
         {
-            QString msg("L'utilisateur ");
-            msg.append(prenom).append(" ").append(nom).
-            append(" n'a pas été supprimée de la base de données!");
-            YerothQMessageBox::information(this, tr("Yeroth-erp-3.0 ~ admin-lister-supprimer-utilisateur"),
+            QString msg(QString(QObject::trUtf8("L'utilisateur '%1 %2' n'a pas été supprimée de la base de données !"))
+            				.arg(prenom, nom));
+
+            YerothQMessageBox::information(this, QObject::tr("admin-lister-supprimer-utilisateur"),
                                      FROM_UTF8_STRING(msg), QMessageBox::Ok);
         }
     }
@@ -737,32 +749,42 @@ void YerothAdminListerWindow::supprimer_localisation()
     {
         localisationsTableModel = &_allWindows->getSqlTableModel_localisations();
     }
+
     QSqlRecord record = localisationsTableModel->record(this->lastSelectedItemForModification());
+
     if (record.isEmpty() || record.isNull("nom_localisation"))
     {
         return;
     }
+
     QString nom_localisation(GET_SQL_RECORD_DATA(record, "nom_localisation"));
-    QString msgConfirmation("Supprimer la localisation '");
-    msgConfirmation.append(nom_localisation).append("' ?");
+
+    QString msgConfirmation(QString(QObject::tr("Supprimer la localisation '%1' ?"))
+    							.arg(nom_localisation));
+
     if (QMessageBox::Ok ==
-            YerothQMessageBox::question(this, "Yeroth-erp-3.0 ~ admin-lister-supprimer-localisation",
+            YerothQMessageBox::question(this, QObject::tr("admin-lister-supprimer-localisation"),
                                   FROM_UTF8_STRING(msgConfirmation), QMessageBox::Cancel, QMessageBox::Ok))
     {
         bool success = localisationsTableModel->removeRow(this->lastSelectedItemForModification());
-        QString msg("La localisation '");
-        msg.append(nom_localisation);
+
+        QString msg(QString(QObject::tr("La localisation '%1"))
+        				.arg(nom_localisation));
+
         if (success)
         {
-            msg.append("' a été supprimée de la base de données!");
-            YerothQMessageBox::information(this, tr("Yeroth-erp-3.0 ~ admin-lister-supprimer-localisation"),
+            msg.append(QObject::trUtf8("' a été supprimée de la base de données!"));
+
+            YerothQMessageBox::information(this, QObject::tr("admin-lister-supprimer-localisation"),
                                      FROM_UTF8_STRING(msg), QMessageBox::Ok);
+
             this->self_reset_view(SUJET_ACTION_LOCALISATION);
         }
         else
         {
-            msg.append(" n'a pas été supprimée de la base de données!");
-            YerothQMessageBox::information(this, tr("Yeroth-erp-3.0 ~ admin-lister-supprimer-localisation"),
+            msg.append(QObject::trUtf8(" n'a pas été supprimée de la base de données!"));
+
+            YerothQMessageBox::information(this, QObject::tr("admin-lister-supprimer-localisation"),
                                      FROM_UTF8_STRING(msg), QMessageBox::Ok);
         }
     }
@@ -771,7 +793,9 @@ void YerothAdminListerWindow::supprimer_localisation()
 void YerothAdminListerWindow::supprimer_categorie()
 {
     _logger->log("supprimer_categorie");
+
     YerothSqlTableModel *categoriesTableModel = 0;
+
     if (_curSearchSqlTableModel
             && YerothUtils::isEqualCaseInsensitive(_allWindows->CATEGORIES, _curSearchSqlTableModel->sqlTableName()))
     {
@@ -781,32 +805,42 @@ void YerothAdminListerWindow::supprimer_categorie()
     {
         categoriesTableModel = &_allWindows->getSqlTableModel_categories();
     }
+
     QSqlRecord record = categoriesTableModel->record(this->lastSelectedItemForModification());
+
     if (record.isEmpty() || record.isNull(YerothDatabaseTableColumn::NOM_CATEGORIE))
     {
         return;
     }
+
     QString nom_categorie(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_CATEGORIE));
-    QString msgConfirmation("Supprimer la catégorie '");
-    msgConfirmation.append(nom_categorie).append("' ?");
+
+    QString msgConfirmation(QString(QObject::trUtf8("Supprimer la catégorie '%1' ?"))
+    							.arg(nom_categorie));
+
     if (QMessageBox::Ok ==
-            YerothQMessageBox::question(this, QObject::trUtf8("Yeroth-erp-3.0 ~ admin-lister-supprimer-catégorie"),
+            YerothQMessageBox::question(this, QObject::trUtf8("admin-lister-supprimer-catégorie"),
                                   FROM_UTF8_STRING(msgConfirmation), QMessageBox::Cancel, QMessageBox::Ok))
     {
         bool success = categoriesTableModel->removeRow(this->lastSelectedItemForModification());
-        QString msg("La catégorie '");
-        msg.append(nom_categorie);
+
+        QString msg(QString(QObject::trUtf8("La catégorie '%1"))
+        				.arg(nom_categorie));
+
         if (success)
         {
-            msg.append("' a été supprimée de la base de données!");
-            YerothQMessageBox::information(this, QObject::trUtf8("Yeroth-erp-3.0 ~ admin-lister-supprimer-catégorie"),
+            msg.append(QObject::trUtf8("' a été supprimée de la base de données !"));
+
+            YerothQMessageBox::information(this, QObject::trUtf8("admin-lister-supprimer-catégorie"),
                                      FROM_UTF8_STRING(msg), QMessageBox::Ok);
+
             this->self_reset_view(SUJET_ACTION_CATEGORIE);
         }
         else
         {
-            msg.append(" n'a pas été supprimée de la base de données!");
-            YerothQMessageBox::information(this, tr("Yeroth-erp-3.0 ~ admin-lister-supprimer-catégorie"), FROM_UTF8_STRING(msg),
+            msg.append(QObject::trUtf8(" n'a pas été supprimée de la base de données!"));
+
+            YerothQMessageBox::information(this, tr("admin-lister-supprimer-catégorie"), FROM_UTF8_STRING(msg),
                                      QMessageBox::Ok);
         }
     }
@@ -816,6 +850,7 @@ void YerothAdminListerWindow::supprimer_client()
 {
     _logger->log("supprimer_client");
     YerothSqlTableModel *clientsTableModel = 0;
+
     if (_curSearchSqlTableModel
             && YerothUtils::isEqualCaseInsensitive(_allWindows->CLIENTS, _curSearchSqlTableModel->sqlTableName()))
     {
@@ -825,34 +860,50 @@ void YerothAdminListerWindow::supprimer_client()
     {
         clientsTableModel = &_allWindows->getSqlTableModel_clients();
     }
-    //YerothSqlTableModel &clientsTableModel = _allWindows->getSqlTableModel_clients();
+
     QSqlRecord record = clientsTableModel->record(this->lastSelectedItemForModification());
+
     if (record.isEmpty() || record.isNull(YerothDatabaseTableColumn::NOM_ENTREPRISE))
     {
         return;
     }
+
     QString nom_entreprise(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE));
-    QString msgConfirmation("Supprimer le client '");
-    msgConfirmation.append(nom_entreprise).append("' ?");
+
+    QString msgConfirmation(QString(QObject::trUtf8("Supprimer le client '%1' ?"))
+    							.arg(nom_entreprise));
+
     if (QMessageBox::Ok ==
-            YerothQMessageBox::question(this, "Yeroth-erp-3.0 ~ admin-lister-supprimer-client", FROM_UTF8_STRING(msgConfirmation),
-                                  QMessageBox::Cancel, QMessageBox::Ok))
+            YerothQMessageBox::question(this,
+            							QObject::tr("admin-lister-supprimer-client"),
+            							msgConfirmation,
+										QMessageBox::Cancel,
+										QMessageBox::Ok))
     {
         bool success = clientsTableModel->removeRow(this->lastSelectedItemForModification());
-        QString msg("Le client '");
-        msg.append(nom_entreprise);
+
+        QString msg(QString(QObject::trUtf8("Le client '%1"))
+        				.arg(nom_entreprise));
+
         if (success)
         {
-            msg.append("' a été supprimée de la base de données!");
-            YerothQMessageBox::information(this, tr("Yeroth-erp-3.0 ~ admin-lister-supprimer-client"), FROM_UTF8_STRING(msg),
-                                     QMessageBox::Ok);
+            msg.append(QObject::trUtf8("' a été supprimée de la base de données!"));
+
+            YerothQMessageBox::information(this,
+            							   QObject::tr("admin-lister-supprimer-client"),
+            							   msg,
+										   QMessageBox::Ok);
+
             this->self_reset_view(SUJET_ACTION_CLIENT);
         }
         else
         {
-            msg.append(" n'a pas été supprimée de la base de données!");
-            YerothQMessageBox::information(this, tr("Yeroth-erp-3.0 ~ admin-lister-supprimer-client"), FROM_UTF8_STRING(msg),
-                                     QMessageBox::Ok);
+            msg.append(QObject::trUtf8(" n'a pas été supprimée de la base de données!"));
+
+            YerothQMessageBox::information(this,
+            							   QObject::tr("admin-lister-supprimer-client"),
+										   msg,
+										   QMessageBox::Ok);
         }
     }
 }
@@ -860,7 +911,9 @@ void YerothAdminListerWindow::supprimer_client()
 void YerothAdminListerWindow::supprimer_fournisseur()
 {
     _logger->log("supprimer_fournisseur");
+
     YerothSqlTableModel *fournisseursTableModel = 0;
+
     if (_curSearchSqlTableModel
             && YerothUtils::isEqualCaseInsensitive(_allWindows->FOURNISSEURS, _curSearchSqlTableModel->sqlTableName()))
     {
@@ -872,34 +925,51 @@ void YerothAdminListerWindow::supprimer_fournisseur()
         fournisseursTableModel = &_allWindows->getSqlTableModel_fournisseurs();
         //qDebug() << "++ _curSearchSqlTableModel is null ";
     }
+
     QSqlRecord record = fournisseursTableModel->record(this->lastSelectedItemForModification());
+
     if (record.isEmpty() || record.isNull(YerothDatabaseTableColumn::NOM_ENTREPRISE))
     {
         //_logger->log("record is empty or null");
         return;
     }
+
     QString nom_entreprise(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE));
-    QString msgConfirmation("Supprimer le fournisseur '");
-    msgConfirmation.append(nom_entreprise).append("' ?");
+
+    QString msgConfirmation(QString(QObject::tr("Supprimer le fournisseur '%1' ?"))
+    							.arg(nom_entreprise));
+
     if (QMessageBox::Ok ==
-            YerothQMessageBox::question(this, "Yeroth-erp-3.0 ~ admin-lister-supprimer-fournisseur",
-                                  FROM_UTF8_STRING(msgConfirmation), QMessageBox::Cancel, QMessageBox::Ok))
+            YerothQMessageBox::question(this,
+            							QObject::tr("admin-lister-supprimer-fournisseur"),
+                                  	  	msgConfirmation,
+										QMessageBox::Cancel,
+										QMessageBox::Ok))
     {
         bool success = fournisseursTableModel->removeRow(this->lastSelectedItemForModification());
-        QString msg("Le fournisseur '");
-        msg.append(nom_entreprise);
+
+        QString msg(QString(QObject::tr("Le fournisseur '%1"))
+        				.arg(nom_entreprise));
+
         if (success)
         {
-            msg.append("' a été supprimée de la base de données!");
-            YerothQMessageBox::information(this, tr("Yeroth-erp-3.0 ~ admin-lister-supprimer-fournisseur"),
-                                     FROM_UTF8_STRING(msg), QMessageBox::Ok);
+            msg.append(QObject::trUtf8("' a été supprimée de la base de données!"));
+
+            YerothQMessageBox::information(this,
+            							   QObject::tr("admin-lister-supprimer-fournisseur"),
+										   msg,
+										   QMessageBox::Ok);
+
             this->self_reset_view(SUJET_ACTION_FOURNISSEUR);
         }
         else
         {
-            msg.append(" n'a pas été supprimée de la base de données!");
-            YerothQMessageBox::information(this, tr("Yeroth-erp-3.0 ~ admin-lister-supprimer-fournisseur"),
-                                     FROM_UTF8_STRING(msg), QMessageBox::Ok);
+            msg.append(QObject::trUtf8(" n'a pas été supprimée de la base de données!"));
+
+            YerothQMessageBox::information(this,
+            							   QObject::tr("admin-lister-supprimer-fournisseur"),
+										   msg,
+										   QMessageBox::Ok);
         }
     }
 }
@@ -908,6 +978,7 @@ void YerothAdminListerWindow::supprimer_alerte()
 {
     _logger->log("supprimer_alerte");
     YerothSqlTableModel *alertesTableModel = 0;
+
     if (_curSearchSqlTableModel
             && YerothUtils::isEqualCaseInsensitive(_allWindows->ALERTES, _curSearchSqlTableModel->sqlTableName()))
     {
@@ -917,33 +988,48 @@ void YerothAdminListerWindow::supprimer_alerte()
     {
         alertesTableModel = &_allWindows->getSqlTableModel_alertes();
     }
+
     QSqlRecord record = alertesTableModel->record(this->lastSelectedItemForModification());
+
     if (record.isEmpty() || record.isNull(YerothDatabaseTableColumn::DESIGNATION_ALERTE))
     {
         return;
     }
+
     QString designation_alerte(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION_ALERTE));
-    QString msgConfirmation("Supprimer l'alerte '");
-    msgConfirmation.append(designation_alerte).append("' ?");
+
+    QString msgConfirmation(QString(QObject::tr("Supprimer l'alerte '%1' ?"))
+    							.arg(designation_alerte));
+
     if (QMessageBox::Ok ==
-            YerothQMessageBox::question(this, "Yeroth-erp-3.0 ~ admin-lister-supprimer-alerte", FROM_UTF8_STRING(msgConfirmation),
-                                  QMessageBox::Cancel, QMessageBox::Ok))
+            YerothQMessageBox::question(this,
+            							QObject::tr("admin-lister-supprimer-alerte"),
+										msgConfirmation,
+										QMessageBox::Cancel,
+										QMessageBox::Ok))
     {
         bool success = alertesTableModel->removeRow(this->lastSelectedItemForModification());
         QString msg("L'alerte '");
         msg.append(designation_alerte);
         if (success)
         {
-            msg.append("' a été supprimée de la base de données!");
-            YerothQMessageBox::information(this, tr("Yeroth-erp-3.0 ~ admin-lister-supprimer-alerte"), FROM_UTF8_STRING(msg),
-                                     QMessageBox::Ok);
+            msg.append(QObject::trUtf8("' a été supprimée de la base de données!"));
+
+            YerothQMessageBox::information(this,
+            							   QObject::tr("admin-lister-supprimer-alerte"),
+										   msg,
+										   QMessageBox::Ok);
+
             this->self_reset_view(SUJET_ACTION_ALERTE);
         }
         else
         {
-            msg.append(" n'a pas été supprimée de la base de données!");
-            YerothQMessageBox::information(this, tr("Yeroth-erp-3.0 ~ admin-lister-supprimer-alerte"), FROM_UTF8_STRING(msg),
-                                     QMessageBox::Ok);
+            msg.append(QObject::trUtf8(" n'a pas été supprimée de la base de données!"));
+
+            YerothQMessageBox::information(this,
+            							   QObject::tr("admin-lister-supprimer-alerte"),
+										   msg,
+										   QMessageBox::Ok);
         }
     }
 }

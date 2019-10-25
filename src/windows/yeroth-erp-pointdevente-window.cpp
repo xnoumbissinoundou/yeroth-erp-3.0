@@ -2488,13 +2488,6 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
                                             YerothDatabaseTableColumn::ID,
                                             stockRecordId));
                 YerothUtils::execQuery(removeRowQuery);
-
-                QString deleteAchatsRowQueryStr(QString("DELETE FROM %1 WHERE stocks_id = '%2';")
-                									.arg(_allWindows->ACHATS,
-                										 stockRecordId));
-
-                YerothUtils::execQuery(deleteAchatsRowQueryStr);
-
             }
 
             quantiteQueryStr.clear();
@@ -2782,13 +2775,6 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
                                             YerothDatabaseTableColumn::ID,
                                             stockRecordId));
                 YerothUtils::execQuery(removeRowQuery);
-
-                QString deleteAchatsRowQueryStr(QString("DELETE FROM %1 WHERE stocks_id = '%2';")
-                									.arg(_allWindows->ACHATS,
-                										 stockRecordId));
-
-                YerothUtils::execQuery(deleteAchatsRowQueryStr);
-
             }
 
             quantiteQueryStr.clear();
