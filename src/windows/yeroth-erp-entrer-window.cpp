@@ -779,45 +779,54 @@ bool YerothEntrerWindow::isStockItemInProductList()
 }
 
 
+bool YerothEntrerWindow::isProfitable()
+{
+	double prix_dachat = lineEdit_prix_dachat->text().toDouble();
+	double prix_vente = lineEdit_prix_vente->text().toDouble();
+
+	double profit = getMargeBeneficiaire(prix_vente, prix_dachat, _tva);
+
+	return (profit >= 0);
+}
+
+
 void YerothEntrerWindow::enregistrer_produit()
 {
     _logger->log("enregistrer_produit");
 
     if (check_fields())
     {
-        bool correctDatePeremption = true;
-
-        if (dateEdit_date_peremption->date() <= QDate::currentDate())
+        if (!isProfitable())
         {
-            QString warnMsg("La date de péremption n'est pas postdatée!\n\n"
-                            "Continuer avec l'enregistrement des données de l'article ?");
+            QString warnMsg(QObject::trUtf8("Le prix de vente doit être supérieure ou égal au prix d'achat!"));
 
             if (QMessageBox::Ok ==
-                    YerothQMessageBox::question(this, QObject::trUtf8("enregistrer un stock"),
-                                               FROM_UTF8_STRING(warnMsg), QMessageBox::Cancel, QMessageBox::Ok))
+                    YerothQMessageBox::warning(this, QObject::tr("pas profitable"), warnMsg))
             {
-                // nothing here
             }
             else
             {
-                /**
-                 * The user doesn't want to continue with the current
-                 * peremption date since it is not post-dated.
-                 */
-                correctDatePeremption = false;
             }
-        }
-        else
-        {
-            /**
-             * This empty 'else' case is necessary to avoid that
-             * the user gets twice the message.
-             */
+        	return ;
         }
 
-        if (!correctDatePeremption)
+        if (dateEdit_date_peremption->date() <= QDate::currentDate())
         {
-            return;
+            QString warnMsg(QObject::trUtf8("La date de péremption n'est pas postdatée!\n\n"
+                            				"Continuer avec l'enregistrement des données de l'article ?"));
+
+            if (QMessageBox::Ok ==
+                    YerothQMessageBox::question(this,
+                    							QObject::tr("enregistrer un stock"),
+                                                warnMsg,
+												QMessageBox::Cancel,
+											    QMessageBox::Ok))
+            {
+            }
+            else
+            {
+               return ;
+            }
         }
 
 YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
@@ -916,7 +925,7 @@ YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
 
         double prix_unitaire_ht = prix_vente - _tva;
 
-        double marge_beneficiaire = prix_unitaire_ht - prix_dachat;
+        double marge_beneficiaire = getMargeBeneficiaire(prix_vente, prix_dachat, _tva);
 
         achatRecord.setValue(YerothDatabaseTableColumn::MARGE_BENEFICIAIRE, marge_beneficiaire);
         achatRecord.setValue(YerothDatabaseTableColumn::PRIX_UNITAIRE, prix_unitaire_ht);
