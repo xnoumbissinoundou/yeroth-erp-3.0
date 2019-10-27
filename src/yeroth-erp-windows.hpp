@@ -30,7 +30,7 @@
 #include "src/windows/yeroth-erp-tableaux-de-bord-window.hpp"
 #include "src/windows/yeroth-erp-transactions-window.hpp"
 #include "src/windows/yeroth-erp-achats-detail-window.hpp"
-#include "src/windows/yeroth-erp-detail-window.hpp"
+#include "src/windows/yeroth-erp-stock-detail-window.hpp"
 #include "src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp"
 #include "src/windows/yeroth-erp-creer-nouveau-client-window.hpp"
 #include "src/windows/yeroth-erp-creer-nouveau-fournisseur-window.hpp"
@@ -81,7 +81,7 @@ class YerothPOSVenteMethodePaiementCarteCreditDialog;
 class YerothPOSVenteMethodePaiementComptantEntreeDialog;
 class YerothPOSVenteMethodePaiementDialog;
 class YerothAchatsDetailWindow;
-class YerothDetailWindow;
+class YerothStockDetailWindow;
 class YerothEntrerWindow;
 class YerothAdminWindow;
 class YerothAdminCreateWindow;
@@ -350,7 +350,7 @@ public:
 	YerothTransactionsWindow 							*_transactionsWindow;
 	YerothPointDeVenteWindow 							*_pdVenteWindow;
 	YerothAchatsDetailWindow 							*_achatsDetailWindow;
-	YerothDetailWindow 									*_detailWindow;
+	YerothStockDetailWindow 									*_detailWindow;
 	YerothEntrerWindow 									*_entrerWindow;
 	YerothPointDeVenteListStocksWindow					*_pdVenteListStocksWindow;
 	YerothPOSVenteMethodePaiementCarteCreditDialog		*_pdVenteMethodePaiementCarteCreditDialog;

@@ -688,8 +688,17 @@ void YerothTableauxDeBordWindow::derniersStats(QString fileName, QString fieldId
 
     _reportTexFileEndString.clear();
 
-    _reportTexFileEndString.append(YerothUtils::handleForeignAccents(QString("D\\'etails en %1:")
-                                       	   	   	   	   	   	   	   	   .arg(YerothERPConfig::currency)));
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+    _reportTexFileEndString.append(YerothUtils::handleForeignAccents(
+                                       QString("D\\'etails en %1:")
+                                       .arg(YerothERPConfig::currency)));
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+    _reportTexFileEndString.append(YerothUtils::handleForeignAccents(
+                                       QString("Details in %1:")
+                                       .arg(YerothERPConfig::currency)));
+#endif
 
     _reportTexFileEndString.prepend("\\textbf{").append("}\n");
 
@@ -1520,18 +1529,20 @@ void YerothTableauxDeBordWindow::analyseComparee()
     for( int k = moisDebut; k <= moisFin; ++k)
     {
         _reportTexFileEndString.append("\\item \\textbf{")
+
 #ifdef YEROTH_FRANCAIS_LANGUAGE
-        .append(YerothUtils::handleForeignAccents(YerothUtils::frenchLocale.monthName(k)))
+		.append(QString("%1}: ventes $\\rightarrow %2$, achats $\\rightarrow %3$\n")
+					.arg(YerothUtils::handleForeignAccents(YerothUtils::frenchLocale.monthName(k)),
+						 YerothUtils::handleForeignAccents(GET_CURRENCY_STRING_NUM(monthToVentesTotalAmount[k])),
+						 YerothUtils::handleForeignAccents(GET_CURRENCY_STRING_NUM(monthToAchatsTotalAmount[k]))));
 #endif
 
 #ifdef YEROTH_ENGLISH_LANGUAGE
-        .append(YerothUtils::handleForeignAccents(YerothUtils::englishLocale.monthName(k)))
+		.append(QString("%1}: sales $\\rightarrow %2$, buyings $\\rightarrow %3$\n")
+					.arg(YerothUtils::handleForeignAccents(YerothUtils::frenchLocale.monthName(k)),
+						 YerothUtils::handleForeignAccents(GET_CURRENCY_STRING_NUM(monthToVentesTotalAmount[k])),
+						 YerothUtils::handleForeignAccents(GET_CURRENCY_STRING_NUM(monthToAchatsTotalAmount[k]))));
 #endif
-        .append("}: ventes $\\rightarrow ")
-        .append(YerothUtils::handleForeignAccents(GET_CURRENCY_STRING_NUM(monthToVentesTotalAmount[k])))
-		.append("$ , achats $\\rightarrow ")
-		.append(YerothUtils::handleForeignAccents(GET_CURRENCY_STRING_NUM(monthToAchatsTotalAmount[k])))
-		.append("$\n");
     }
 
     _reportTexFileEndString.append("\\end{enumerate}\n");

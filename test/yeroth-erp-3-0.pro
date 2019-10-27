@@ -75,7 +75,7 @@ FORMS   = ui/yeroth-erp-main-window.ui \
 		  ui/yeroth-erp-inventaire-des-stocks-window.ui \
 		  ui/yeroth-erp-alertes-window.ui \
 		  ui/yeroth-erp-modifier-window.ui \
-		  ui/yeroth-erp-detail-window.ui \
+		  ui/yeroth-erp-stock-detail-window.ui \
 		  ui/yeroth-erp-search-form.ui \
 		  ui/yeroth-erp-changer-utilisateur-dialog.ui \
 		  ui/yeroth-erp-admin-search-form.ui \
@@ -133,7 +133,7 @@ HEADERS = src/yeroth-erp-windows.hpp \
 		  src/windows/yeroth-erp-sortir-window.hpp \
 		  src/windows/yeroth-erp-rapports-window.hpp \
 		  src/windows/yeroth-erp-transactions-window.hpp \
-		  src/windows/yeroth-erp-detail-window.hpp \
+		  src/windows/yeroth-erp-stock-detail-window.hpp \
 		  src/windows/yeroth-erp-ventes-window.hpp \
 		  src/windows/yeroth-erp-search-form.hpp \
 		  src/users/yeroth-erp-users.hpp \
@@ -203,7 +203,7 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/windows/yeroth-erp-sortir-window.cpp \
 		  src/windows/yeroth-erp-rapports-window.cpp \
 		  src/windows/yeroth-erp-transactions-window.cpp \
-		  src/windows/yeroth-erp-detail-window.cpp \
+		  src/windows/yeroth-erp-stock-detail-window.cpp \
 		  src/windows/yeroth-erp-ventes-window.cpp \
 		  src/windows/yeroth-erp-search-form.cpp \
 		  src/users/yeroth-erp-users.cpp \

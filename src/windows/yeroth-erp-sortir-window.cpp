@@ -10,7 +10,7 @@
 
 #include "src/process/yeroth-erp-process.hpp"
 
-#include "src/windows/yeroth-erp-detail-window.hpp"
+#include "src/windows/yeroth-erp-stock-detail-window.hpp"
 
 #include "src/widgets/table-view/yeroth-erp-table-view.hpp"
 

@@ -1,31 +1,27 @@
 /*
+ * yeroth-erp-stock-detail-window.cpp
+ *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
+ */
 
-   * yeroth-erp-detail-window.cpp
+#include "src/yeroth-erp-windows.hpp"
+#include "src/windows/yeroth-erp-stock-detail-window.hpp"
+#include "src/users/yeroth-erp-users.hpp"
+#include "src/utils/yeroth-erp-sqltable-model.hpp"
+#include <QtSql/QSqlRecord>
 
-   *
+const unsigned int YerothStockDetailWindow::INDEX_ZERO(0);
 
-   *  Created on: Oct 20, 2015
-
-   *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
-
-   *      Email:  xnoundou7@gmail.com
-
-   */
-#include"src/yeroth-erp-windows.hpp"
-#include"src/windows/yeroth-erp-detail-window.hpp"
-#include"src/users/yeroth-erp-users.hpp"
-#include"src/utils/yeroth-erp-sqltable-model.hpp"
-#include<QtSql/QSqlRecord>
-const unsigned int YerothDetailWindow::INDEX_ZERO(0);
-const QString YerothDetailWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2")).
+const QString YerothStockDetailWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2")).
         arg(YEROTH_ERP_WINDOW_TITLE,
             QObject::trUtf8("détails d'un stock")));
 
-YerothDetailWindow::YerothDetailWindow():YerothWindowsCommons(YerothDetailWindow::_WINDOW_TITLE),
+YerothStockDetailWindow::YerothStockDetailWindow():YerothWindowsCommons(YerothStockDetailWindow::_WINDOW_TITLE),
     _logger(new YerothLogger("YerothDetailWindow"))
 {
     setupUi(this);
+
     this->mySetupUi(this);
+
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
                                        "QMessageBox QLabel {color: rgb(%2);}").
                                arg(COLOUR_RGB_STRING_YEROTH_DARK_GRAY_60_60_60, COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
@@ -80,7 +76,7 @@ YerothDetailWindow::YerothDetailWindow():YerothWindowsCommons(YerothDetailWindow
     this->setupShortcuts();
 }
 
-void YerothDetailWindow::setupLineEdits()
+void YerothStockDetailWindow::setupLineEdits()
 {
 	lineEdit_localisation_produit->setEnabled(false);
     lineEdit_reference_produit->setEnabled(false);
@@ -97,7 +93,7 @@ void YerothDetailWindow::setupLineEdits()
     lineEdit_nom_entreprise_fournisseur->setEnabled(false);
 }
 
-void YerothDetailWindow::contextMenuEvent(QContextMenuEvent * event)
+void YerothStockDetailWindow::contextMenuEvent(QContextMenuEvent * event)
 {
     QMenu menu(this);
     menu.setPalette(toolBar_detailWindow->palette());
@@ -106,7 +102,7 @@ void YerothDetailWindow::contextMenuEvent(QContextMenuEvent * event)
     menu.exec(event->globalPos());
 }
 
-void YerothDetailWindow::definirPasDeRole()
+void YerothStockDetailWindow::definirPasDeRole()
 {
     _logger->log("definirPasDeRole");
 
@@ -127,7 +123,7 @@ void YerothDetailWindow::definirPasDeRole()
     pushButton_supprimer->disable(this);
 }
 
-void YerothDetailWindow::definirCaissier()
+void YerothStockDetailWindow::definirCaissier()
 {
     _logger->log("definirCaissier");
 
@@ -149,7 +145,7 @@ void YerothDetailWindow::definirCaissier()
     pushButton_supprimer->disable(this);
 }
 
-void YerothDetailWindow::definirManager()
+void YerothStockDetailWindow::definirManager()
 {
     _logger->log("definirManager");
 
@@ -181,7 +177,7 @@ void YerothDetailWindow::definirManager()
 }
 
 
-void YerothDetailWindow::definirVendeur()
+void YerothStockDetailWindow::definirVendeur()
 {
     _logger->log("definirVendeur");
 
@@ -213,7 +209,7 @@ void YerothDetailWindow::definirVendeur()
 }
 
 
-void YerothDetailWindow::definirGestionaireDesStocks()
+void YerothStockDetailWindow::definirGestionaireDesStocks()
 {
     _logger->log("definirGestionaireDesStocks");
 
@@ -244,7 +240,7 @@ void YerothDetailWindow::definirGestionaireDesStocks()
     pushButton_supprimer->enable(this, SLOT(supprimer_ce_stock()));
 }
 
-void YerothDetailWindow::definirMagasinier()
+void YerothStockDetailWindow::definirMagasinier()
 {
     _logger->log("definirMagasinier");
 
@@ -266,13 +262,13 @@ void YerothDetailWindow::definirMagasinier()
     pushButton_supprimer->disable(this);
 }
 
-void YerothDetailWindow::modifier_les_articles()
+void YerothStockDetailWindow::modifier_les_articles()
 {
     this->rendreInvisible();
     _allWindows->_modifierWindow->rendreVisible(_curStocksTableModel);
 }
 
-void YerothDetailWindow::rendreInvisible()
+void YerothStockDetailWindow::rendreInvisible()
 {
     lineEdit_reference_produit->clear();
     lineEdit_designation->clear();
@@ -289,7 +285,7 @@ void YerothDetailWindow::rendreInvisible()
     YerothWindowsCommons::rendreInvisible();
 }
 
-void YerothDetailWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
+void YerothStockDetailWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 {
     _curStocksTableModel = stocksTableModel;
     //qDebug() << "++ last selected row: " << _allWindows->getLastSelectedListerRow();
@@ -297,7 +293,7 @@ void YerothDetailWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
     this->setVisible(true);
 }
 
-void YerothDetailWindow::showItem()
+void YerothStockDetailWindow::showItem()
 {
     QSqlRecord record = _curStocksTableModel->record(_allWindows->getLastSelectedListerRow());
 
@@ -365,13 +361,13 @@ void YerothDetailWindow::showItem()
     }
 }
 
-void YerothDetailWindow::setupShortcuts()
+void YerothStockDetailWindow::setupShortcuts()
 {
     this->setupShortcutActionMessageDaide 	(*actionAppeler_aide);
     this->setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
 }
 
-void YerothDetailWindow::supprimer_ce_stock()
+void YerothStockDetailWindow::supprimer_ce_stock()
 {
     QSqlRecord record = _curStocksTableModel->record(_allWindows->getLastSelectedListerRow());
     QString msgSupprimer("Poursuivre avec la suppression de l'article \"");

@@ -1,5 +1,5 @@
 /*
- * yeroth-erp-detail-window.hpp
+ * yeroth-erp-stock-detail-window.hpp
  *
  *  Created on: Oct 18, 2015
  *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)

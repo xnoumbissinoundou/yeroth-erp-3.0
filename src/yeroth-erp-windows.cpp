@@ -270,7 +270,7 @@ void YerothERPWindows::createAllYerothPosUserWindows()
 #endif
 
     _achatsDetailWindow 			= new YerothAchatsDetailWindow;
-    _detailWindow 					= new YerothDetailWindow;
+    _detailWindow 					= new YerothStockDetailWindow;
     _modifierWindow 				= new YerothModifierWindow;
     _entrerWindow 					= new YerothEntrerWindow;
     _creerNouveauClientWindow 		= new YerothCreerNouveauClientWindow;

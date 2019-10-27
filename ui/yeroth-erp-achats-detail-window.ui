@@ -10789,13 +10789,9 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionChanger_utilisateur"/>
-   <addaction name="separator"/>
    <addaction name="actionDeconnecter_utilisateur"/>
-   <addaction name="separator"/>
    <addaction name="actionAppeler_aide"/>
-   <addaction name="separator"/>
    <addaction name="actionAlertes"/>
-   <addaction name="separator"/>
   </widget>
   <action name="actionA_propos">
    <property name="text">

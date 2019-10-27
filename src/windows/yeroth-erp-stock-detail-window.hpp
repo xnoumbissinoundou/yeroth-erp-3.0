@@ -1,15 +1,15 @@
 /*
- * yeroth-erp-detail-window.hpp
+ * yeroth-erp-stock-detail-window.hpp
  *
  *  Created on: Oct 18, 2015
  *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
  *      Email:  xnoundou7@gmail.com
  */
 
-# ifndef SRC_WINDOWS_YEROTH_DETAIL_WINDOW_HPP_
-# define SRC_WINDOWS_YEROTH_DETAIL_WINDOW_HPP_
+# ifndef SRC_WINDOWS_YEROTH_STOCK_DETAIL_WINDOW_HPP_
+# define SRC_WINDOWS_YEROTH_STOCK_DETAIL_WINDOW_HPP_
 
-# include "../../ui_yeroth-erp-detail-window.h"
+# include "../../ui_yeroth-erp-stock-detail-window.h"
 
 #include "src/utils/yeroth-erp-logger.hpp"
 
@@ -22,7 +22,7 @@ class YerothERPWindows;
 class YerothSqlTableModel;
 class YerothLogger;
 
-class YerothDetailWindow : public YerothWindowsCommons, private Ui_YerothDetailWindow
+class YerothStockDetailWindow : public YerothWindowsCommons, private Ui_YerothStockDetailWindow
 {
     Q_OBJECT
 
@@ -30,9 +30,9 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-	YerothDetailWindow();
+	YerothStockDetailWindow();
 
-	inline ~YerothDetailWindow()
+	inline ~YerothStockDetailWindow()
 	{
 		delete _logger;
 	}
@@ -99,4 +99,4 @@ private:
 };
 
 
-#endif /* SRC_WINDOWS_YEROTH_DETAIL_WINDOW_HPP_ */
+#endif /* SRC_WINDOWS_YEROTH_STOCK_DETAIL_WINDOW_HPP_ */

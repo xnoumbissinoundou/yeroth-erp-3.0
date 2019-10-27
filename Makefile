@@ -98,7 +98,7 @@ SOURCES       = src/yeroth-erp-3-0.cpp \
 		src/windows/yeroth-erp-sortir-window.cpp \
 		src/windows/yeroth-erp-tableaux-de-bord-window.cpp \
 		src/windows/yeroth-erp-transactions-window.cpp \
-		src/windows/yeroth-erp-detail-window.cpp \
+		src/windows/yeroth-erp-stock-detail-window.cpp \
 		src/windows/yeroth-erp-paiements-window.cpp \
 		src/windows/yeroth-erp-ventes-window.cpp \
 		src/windows/yeroth-erp-search-form.cpp \
@@ -176,7 +176,7 @@ SOURCES       = src/yeroth-erp-3-0.cpp \
 		moc/moc_yeroth-erp-sortir-window.cpp \
 		moc/moc_yeroth-erp-tableaux-de-bord-window.cpp \
 		moc/moc_yeroth-erp-transactions-window.cpp \
-		moc/moc_yeroth-erp-detail-window.cpp \
+		moc/moc_yeroth-erp-stock-detail-window.cpp \
 		moc/moc_yeroth-erp-paiements-window.cpp \
 		moc/moc_yeroth-erp-ventes-window.cpp \
 		moc/moc_yeroth-erp-test-vente-window.cpp \
@@ -255,7 +255,7 @@ OBJECTS       = obj/yeroth-erp-3-0.o \
 		obj/yeroth-erp-sortir-window.o \
 		obj/yeroth-erp-tableaux-de-bord-window.o \
 		obj/yeroth-erp-transactions-window.o \
-		obj/yeroth-erp-detail-window.o \
+		obj/yeroth-erp-stock-detail-window.o \
 		obj/yeroth-erp-paiements-window.o \
 		obj/yeroth-erp-ventes-window.o \
 		obj/yeroth-erp-search-form.o \
@@ -334,7 +334,7 @@ OBJECTS       = obj/yeroth-erp-3-0.o \
 		obj/moc_yeroth-erp-sortir-window.o \
 		obj/moc_yeroth-erp-tableaux-de-bord-window.o \
 		obj/moc_yeroth-erp-transactions-window.o \
-		obj/moc_yeroth-erp-detail-window.o \
+		obj/moc_yeroth-erp-stock-detail-window.o \
 		obj/moc_yeroth-erp-paiements-window.o \
 		obj/moc_yeroth-erp-ventes-window.o \
 		obj/moc_yeroth-erp-test-vente-window.o \
@@ -511,7 +511,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		src/windows/yeroth-erp-sortir-window.hpp \
 		src/windows/yeroth-erp-tableaux-de-bord-window.hpp \
 		src/windows/yeroth-erp-transactions-window.hpp \
-		src/windows/yeroth-erp-detail-window.hpp \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
 		src/windows/yeroth-erp-paiements-window.hpp \
 		src/windows/yeroth-erp-ventes-window.hpp \
 		src/windows/yeroth-erp-search-form.hpp \
@@ -600,7 +600,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		src/windows/yeroth-erp-sortir-window.cpp \
 		src/windows/yeroth-erp-tableaux-de-bord-window.cpp \
 		src/windows/yeroth-erp-transactions-window.cpp \
-		src/windows/yeroth-erp-detail-window.cpp \
+		src/windows/yeroth-erp-stock-detail-window.cpp \
 		src/windows/yeroth-erp-paiements-window.cpp \
 		src/windows/yeroth-erp-ventes-window.cpp \
 		src/windows/yeroth-erp-search-form.cpp \
@@ -650,7 +650,7 @@ TARGET        = bin/yeroth-erp-3-0
 first: all
 ####### Build rules
 
-$(TARGET): ui_yeroth-erp-main-window.h ui_yeroth-erp-clients-window.h ui_yeroth-erp-achats-detail-window.h ui_yeroth-erp-achats-window.h ui_yeroth-erp-paiements-window.h ui_yeroth-erp-ventes-window.h ui_yeroth-erp-pointdevente-window.h ui_yeroth-erp-pointdevente-methode-paiement-carte-credit-dialog.h ui_yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.h ui_yeroth-erp-pointdevente-methode-paiement-dialog.h ui_yeroth-erp-sortir-window.h ui_yeroth-erp-tableaux-de-bord-window.h ui_yeroth-erp-transactions-window.h ui_yeroth-erp-entrer-window.h ui_yeroth-erp-creer-nouveau-client-window.h ui_yeroth-erp-creer-nouveau-fournisseur-window.h ui_yeroth-erp-creer-nouvelle-categorie-window.h ui_yeroth-erp-marchandises-window.h ui_yeroth-erp-historique-du-stock-window.h ui_yeroth-erp-stocks-window.h ui_yeroth-erp-alertes-window.h ui_yeroth-erp-modifier-window.h ui_yeroth-erp-detail-window.h ui_yeroth-erp-search-form.h ui_yeroth-erp-changer-utilisateur-dialog.h ui_yeroth-erp-admin-search-form.h ui_yeroth-erp-admin-window.h ui_yeroth-erp-admin-create-window.h ui_yeroth-erp-admin-lister-window.h ui_yeroth-erp-admin-detail-window.h ui_yeroth-erp-admin-modifier-window.h ui_yeroth-erp-pointdevente-liststocks-window.h ui_yeroth-erp-sortir-liststocks-window.h $(OBJECTS)  
+$(TARGET): ui_yeroth-erp-main-window.h ui_yeroth-erp-clients-window.h ui_yeroth-erp-achats-detail-window.h ui_yeroth-erp-achats-window.h ui_yeroth-erp-paiements-window.h ui_yeroth-erp-ventes-window.h ui_yeroth-erp-pointdevente-window.h ui_yeroth-erp-pointdevente-methode-paiement-carte-credit-dialog.h ui_yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.h ui_yeroth-erp-pointdevente-methode-paiement-dialog.h ui_yeroth-erp-sortir-window.h ui_yeroth-erp-tableaux-de-bord-window.h ui_yeroth-erp-transactions-window.h ui_yeroth-erp-entrer-window.h ui_yeroth-erp-creer-nouveau-client-window.h ui_yeroth-erp-creer-nouveau-fournisseur-window.h ui_yeroth-erp-creer-nouvelle-categorie-window.h ui_yeroth-erp-marchandises-window.h ui_yeroth-erp-historique-du-stock-window.h ui_yeroth-erp-stocks-window.h ui_yeroth-erp-alertes-window.h ui_yeroth-erp-modifier-window.h ui_yeroth-erp-stock-detail-window.h ui_yeroth-erp-search-form.h ui_yeroth-erp-changer-utilisateur-dialog.h ui_yeroth-erp-admin-search-form.h ui_yeroth-erp-admin-window.h ui_yeroth-erp-admin-create-window.h ui_yeroth-erp-admin-lister-window.h ui_yeroth-erp-admin-detail-window.h ui_yeroth-erp-admin-modifier-window.h ui_yeroth-erp-pointdevente-liststocks-window.h ui_yeroth-erp-sortir-liststocks-window.h $(OBJECTS)  
 	@test -d bin/ || mkdir -p bin/
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
@@ -870,10 +870,10 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents src/yeroth-erp-windows.hpp src/include/yeroth-erp-3-0-definition-special-qt5.7-macro.hpp src/include/yeroth-erp-3-0-definition-colour-rgb.hpp src/include/yeroth-erp-3-0-definition-user-manual.hpp src/include/yeroth-erp-3-0-definition-file-folder.hpp src/include/yeroth-erp-3-0-definition-format-date-time.hpp src/include/yeroth-erp-3-0-definition-initial-focus-searchbar.hpp src/include/yeroth-erp-3-0-definition-month.hpp src/include/yeroth-erp-3-0-definition-shortcut.hpp src/include/yeroth-erp-3-0-software.text-configuration.hpp src/widgets/table-view/yeroth-erp-table-view.hpp src/widgets/table-view/yeroth-erp-paiements-table-view.hpp src/widgets/table-view/yeroth-erp-stocks-table-view.hpp src/widgets/table-view/yeroth-erp-ventes-table-view.hpp src/widgets/table-view/yeroth-erp-transactions-table-view.hpp src/widgets/table-view/yeroth-erp-clients-table-view.hpp src/widgets/table-view/yeroth-erp-achats-table-view.hpp src/widgets/table-view/yeroth-erp-marchandises-table-view.hpp src/widgets/yeroth-erp-qtable-widget-item.hpp src/widgets/yeroth-erp-line-edit.hpp src/widgets/yeroth-erp-qmessage-box.hpp src/widgets/yeroth-erp-push-button.hpp src/widgets/yeroth-erp-text-edit.hpp src/widgets/yeroth-erp-combo-box.hpp src/widgets/yeroth-erp-qstandard-item-model.hpp src/widgets/yeroth-erp-qstandard-item.hpp src/widgets/yeroth-erp-spinbox.hpp src/widgets/yeroth-erp-datetime-edit.hpp src/widgets/yeroth-erp-table-widget.hpp src/process/yeroth-erp-process-info.hpp src/process/yeroth-erp-process.hpp src/dialogs/yeroth-erp-dialog-commons.hpp src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp src/dialogs/yeroth-erp-pointdevente-methode-paiement-carte-credit-dialog.hpp src/dialogs/yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.hpp src/dialogs/yeroth-erp-pointdevente-methode-paiement-dialog.hpp src/windows/yeroth-erp-clients-window.hpp src/windows/yeroth-erp-window-commons.hpp src/windows/yeroth-erp-pointdevente-liststocks-window.hpp src/windows/yeroth-erp-sortir-liststocks-window.hpp src/windows/yeroth-erp-search-form.hpp src/windows/yeroth-erp-main-window.hpp src/windows/yeroth-erp-creer-nouveau-client-window.hpp src/windows/yeroth-erp-creer-nouveau-fournisseur-window.hpp src/windows/yeroth-erp-creer-nouvelle-categorie-window.hpp src/windows/yeroth-erp-marchandises-window.hpp src/windows/yeroth-erp-historique-du-stock-window.hpp src/windows/yeroth-erp-achats-detail-window.hpp src/windows/yeroth-erp-achats-window.hpp src/windows/yeroth-erp-stocks-window.hpp src/windows/yeroth-erp-alertes-window.hpp src/windows/yeroth-erp-modifier-window.hpp src/windows/yeroth-erp-entrer-window.hpp src/windows/yeroth-erp-pointdevente-window.hpp src/windows/yeroth-erp-sortir-window.hpp src/windows/yeroth-erp-tableaux-de-bord-window.hpp src/windows/yeroth-erp-transactions-window.hpp src/windows/yeroth-erp-detail-window.hpp src/windows/yeroth-erp-paiements-window.hpp src/windows/yeroth-erp-ventes-window.hpp src/windows/yeroth-erp-search-form.hpp src/windows/tests/yeroth-erp-test-vente-window.hpp src/users/yeroth-erp-users.hpp src/users/yeroth-erp-user-vendeur.hpp src/users/yeroth-erp-user-gestionaire-des-stocks.hpp src/users/yeroth-erp-user-manager.hpp src/users/yeroth-erp-user-magasinier.hpp src/users/yeroth-erp-user-caissier.hpp src/users/yeroth-erp-user-administrateur.hpp src/utils/credit-card/yeroth-erp-carte-credit-info.hpp src/utils/virtual-keyboard/yeroth-erp-key-emitter.hpp src/utils/yeroth-erp-sqltable-model.hpp src/utils/yeroth-erp-config.hpp src/utils/yeroth-erp-utils.hpp src/utils/yeroth-erp-database.hpp src/utils/yeroth-erp-logger.hpp src/utils/yeroth-erp-historique-stock.hpp src/utils/yeroth-erp-info-entreprise.hpp src/utils/yeroth-erp-article-vente-info.hpp src/utils/yeroth-erp-database-table-column.hpp src/utils/yeroth-erp-command-line-parser.hpp src/utils/yeroth-erp-style.hpp src/dbus/yeroth-erp-dbus-client.hpp src/dbus/yeroth-erp-dbus-client-adaptor.hpp src/dbus/yeroth-erp-dbus-server.hpp src/dbus/yeroth-erp-dbus-server-adaptor.hpp src/admin/yeroth-erp-admin-windows-commons.hpp src/admin/yeroth-erp-admin-window.hpp src/admin/yeroth-erp-admin-search-form.hpp src/admin/widgets/table-view/yeroth-erp-alert-table-view.hpp src/admin/widgets/table-view/yeroth-erp-site-table-view.hpp src/admin/widgets/table-view/yeroth-erp-customer-table-view.hpp src/admin/widgets/table-view/yeroth-erp-supplier-table-view.hpp src/admin/widgets/table-view/yeroth-erp-user-table-view.hpp src/admin/widgets/table-view/yeroth-erp-category-table-view.hpp src/admin/creer/yeroth-erp-admin-create-window.hpp src/admin/lister/yeroth-erp-admin-lister-window.hpp src/admin/detail/yeroth-erp-admin-detail-window.hpp src/admin/modifier/yeroth-erp-admin-modifier-window.hpp $(DISTDIR)/
+	$(COPY_FILE) --parents src/yeroth-erp-windows.hpp src/include/yeroth-erp-3-0-definition-special-qt5.7-macro.hpp src/include/yeroth-erp-3-0-definition-colour-rgb.hpp src/include/yeroth-erp-3-0-definition-user-manual.hpp src/include/yeroth-erp-3-0-definition-file-folder.hpp src/include/yeroth-erp-3-0-definition-format-date-time.hpp src/include/yeroth-erp-3-0-definition-initial-focus-searchbar.hpp src/include/yeroth-erp-3-0-definition-month.hpp src/include/yeroth-erp-3-0-definition-shortcut.hpp src/include/yeroth-erp-3-0-software.text-configuration.hpp src/widgets/table-view/yeroth-erp-table-view.hpp src/widgets/table-view/yeroth-erp-paiements-table-view.hpp src/widgets/table-view/yeroth-erp-stocks-table-view.hpp src/widgets/table-view/yeroth-erp-ventes-table-view.hpp src/widgets/table-view/yeroth-erp-transactions-table-view.hpp src/widgets/table-view/yeroth-erp-clients-table-view.hpp src/widgets/table-view/yeroth-erp-achats-table-view.hpp src/widgets/table-view/yeroth-erp-marchandises-table-view.hpp src/widgets/yeroth-erp-qtable-widget-item.hpp src/widgets/yeroth-erp-line-edit.hpp src/widgets/yeroth-erp-qmessage-box.hpp src/widgets/yeroth-erp-push-button.hpp src/widgets/yeroth-erp-text-edit.hpp src/widgets/yeroth-erp-combo-box.hpp src/widgets/yeroth-erp-qstandard-item-model.hpp src/widgets/yeroth-erp-qstandard-item.hpp src/widgets/yeroth-erp-spinbox.hpp src/widgets/yeroth-erp-datetime-edit.hpp src/widgets/yeroth-erp-table-widget.hpp src/process/yeroth-erp-process-info.hpp src/process/yeroth-erp-process.hpp src/dialogs/yeroth-erp-dialog-commons.hpp src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp src/dialogs/yeroth-erp-pointdevente-methode-paiement-carte-credit-dialog.hpp src/dialogs/yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.hpp src/dialogs/yeroth-erp-pointdevente-methode-paiement-dialog.hpp src/windows/yeroth-erp-clients-window.hpp src/windows/yeroth-erp-window-commons.hpp src/windows/yeroth-erp-pointdevente-liststocks-window.hpp src/windows/yeroth-erp-sortir-liststocks-window.hpp src/windows/yeroth-erp-search-form.hpp src/windows/yeroth-erp-main-window.hpp src/windows/yeroth-erp-creer-nouveau-client-window.hpp src/windows/yeroth-erp-creer-nouveau-fournisseur-window.hpp src/windows/yeroth-erp-creer-nouvelle-categorie-window.hpp src/windows/yeroth-erp-marchandises-window.hpp src/windows/yeroth-erp-historique-du-stock-window.hpp src/windows/yeroth-erp-achats-detail-window.hpp src/windows/yeroth-erp-achats-window.hpp src/windows/yeroth-erp-stocks-window.hpp src/windows/yeroth-erp-alertes-window.hpp src/windows/yeroth-erp-modifier-window.hpp src/windows/yeroth-erp-entrer-window.hpp src/windows/yeroth-erp-pointdevente-window.hpp src/windows/yeroth-erp-sortir-window.hpp src/windows/yeroth-erp-tableaux-de-bord-window.hpp src/windows/yeroth-erp-transactions-window.hpp src/windows/yeroth-erp-stock-detail-window.hpp src/windows/yeroth-erp-paiements-window.hpp src/windows/yeroth-erp-ventes-window.hpp src/windows/yeroth-erp-search-form.hpp src/windows/tests/yeroth-erp-test-vente-window.hpp src/users/yeroth-erp-users.hpp src/users/yeroth-erp-user-vendeur.hpp src/users/yeroth-erp-user-gestionaire-des-stocks.hpp src/users/yeroth-erp-user-manager.hpp src/users/yeroth-erp-user-magasinier.hpp src/users/yeroth-erp-user-caissier.hpp src/users/yeroth-erp-user-administrateur.hpp src/utils/credit-card/yeroth-erp-carte-credit-info.hpp src/utils/virtual-keyboard/yeroth-erp-key-emitter.hpp src/utils/yeroth-erp-sqltable-model.hpp src/utils/yeroth-erp-config.hpp src/utils/yeroth-erp-utils.hpp src/utils/yeroth-erp-database.hpp src/utils/yeroth-erp-logger.hpp src/utils/yeroth-erp-historique-stock.hpp src/utils/yeroth-erp-info-entreprise.hpp src/utils/yeroth-erp-article-vente-info.hpp src/utils/yeroth-erp-database-table-column.hpp src/utils/yeroth-erp-command-line-parser.hpp src/utils/yeroth-erp-style.hpp src/dbus/yeroth-erp-dbus-client.hpp src/dbus/yeroth-erp-dbus-client-adaptor.hpp src/dbus/yeroth-erp-dbus-server.hpp src/dbus/yeroth-erp-dbus-server-adaptor.hpp src/admin/yeroth-erp-admin-windows-commons.hpp src/admin/yeroth-erp-admin-window.hpp src/admin/yeroth-erp-admin-search-form.hpp src/admin/widgets/table-view/yeroth-erp-alert-table-view.hpp src/admin/widgets/table-view/yeroth-erp-site-table-view.hpp src/admin/widgets/table-view/yeroth-erp-customer-table-view.hpp src/admin/widgets/table-view/yeroth-erp-supplier-table-view.hpp src/admin/widgets/table-view/yeroth-erp-user-table-view.hpp src/admin/widgets/table-view/yeroth-erp-category-table-view.hpp src/admin/creer/yeroth-erp-admin-create-window.hpp src/admin/lister/yeroth-erp-admin-lister-window.hpp src/admin/detail/yeroth-erp-admin-detail-window.hpp src/admin/modifier/yeroth-erp-admin-modifier-window.hpp $(DISTDIR)/
 	$(COPY_FILE) --parents yeroth-erp-3-0.qrc $(DISTDIR)/
-	$(COPY_FILE) --parents src/yeroth-erp-3-0.cpp src/yeroth-erp-windows.cpp src/widgets/table-view/yeroth-erp-table-view.cpp src/widgets/table-view/yeroth-erp-paiements-table-view.cpp src/widgets/table-view/yeroth-erp-stocks-table-view.cpp src/widgets/table-view/yeroth-erp-ventes-table-view.cpp src/widgets/table-view/yeroth-erp-transactions-table-view.cpp src/widgets/table-view/yeroth-erp-clients-table-view.cpp src/widgets/table-view/yeroth-erp-achats-table-view.cpp src/widgets/table-view/yeroth-erp-marchandises-table-view.cpp src/widgets/yeroth-erp-qtable-widget-item.cpp src/widgets/yeroth-erp-line-edit.cpp src/widgets/yeroth-erp-push-button.cpp src/widgets/yeroth-erp-text-edit.cpp src/widgets/yeroth-erp-combo-box.cpp src/widgets/yeroth-erp-qmessage-box.cpp src/widgets/yeroth-erp-qstandard-item-model.cpp src/widgets/yeroth-erp-qstandard-item.cpp src/widgets/yeroth-erp-spinbox.cpp src/widgets/yeroth-erp-datetime-edit.cpp src/widgets/yeroth-erp-table-widget.cpp src/process/yeroth-erp-process-info.cpp src/process/yeroth-erp-process.cpp src/dialogs/yeroth-erp-dialog-commons.cpp src/dialogs/yeroth-erp-changer-utilisateur-dialog.cpp src/dialogs/yeroth-erp-pointdevente-methode-paiement-carte-credit-dialog.cpp src/dialogs/yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.cpp src/dialogs/yeroth-erp-pointdevente-methode-paiement-dialog.cpp src/windows/yeroth-erp-clients-window.cpp src/windows/yeroth-erp-window-commons.cpp src/windows/yeroth-erp-pointdevente-liststocks-window.cpp src/windows/yeroth-erp-sortir-liststocks-window.cpp src/windows/yeroth-erp-main-window.cpp src/windows/yeroth-erp-creer-nouveau-client-window.cpp src/windows/yeroth-erp-creer-nouveau-fournisseur-window.cpp src/windows/yeroth-erp-creer-nouvelle-categorie-window.cpp src/windows/yeroth-erp-marchandises-window.cpp src/windows/yeroth-erp-historique-du-stock-window.cpp src/windows/yeroth-erp-achats-detail-window.cpp src/windows/yeroth-erp-achats-window.cpp src/windows/yeroth-erp-stocks-window.cpp src/windows/yeroth-erp-alertes-window.cpp src/windows/yeroth-erp-modifier-window.cpp src/windows/yeroth-erp-entrer-window.cpp src/windows/yeroth-erp-pointdevente-window.cpp src/windows/yeroth-erp-sortir-window.cpp src/windows/yeroth-erp-tableaux-de-bord-window.cpp src/windows/yeroth-erp-transactions-window.cpp src/windows/yeroth-erp-detail-window.cpp src/windows/yeroth-erp-paiements-window.cpp src/windows/yeroth-erp-ventes-window.cpp src/windows/yeroth-erp-search-form.cpp src/windows/tests/yeroth-erp-test-vente-window.cpp src/users/yeroth-erp-users.cpp src/users/yeroth-erp-user-vendeur.cpp src/users/yeroth-erp-user-gestionaire-des-stocks.cpp src/users/yeroth-erp-user-manager.cpp src/users/yeroth-erp-user-magasinier.cpp src/users/yeroth-erp-user-caissier.cpp src/users/yeroth-erp-user-administrateur.cpp src/utils/credit-card/yeroth-erp-carte-credit-info.cpp src/utils/virtual-keyboard/yeroth-erp-key-emitter.cpp src/utils/yeroth-erp-sqltable-model.cpp src/utils/yeroth-erp-config.cpp src/utils/yeroth-erp-utils.cpp src/utils/yeroth-erp-database.cpp src/utils/yeroth-erp-logger.cpp src/utils/yeroth-erp-historique-stock.cpp src/utils/yeroth-erp-info-entreprise.cpp src/utils/yeroth-erp-article-vente-info.cpp src/utils/yeroth-erp-database-table-column.cpp src/utils/yeroth-erp-command-line-parser.cpp src/utils/yeroth-erp-style.cpp src/dbus/yeroth-erp-dbus-client.cpp src/dbus/yeroth-erp-dbus-server.cpp src/dbus/yeroth-erp-dbus-client-adaptor.cpp src/dbus/yeroth-erp-dbus-server-adaptor.cpp src/admin/yeroth-erp-admin-windows-commons.cpp src/admin/yeroth-erp-admin-window.cpp src/admin/yeroth-erp-admin-search-form.cpp src/admin/widgets/table-view/yeroth-erp-alert-table-view.cpp src/admin/widgets/table-view/yeroth-erp-site-table-view.cpp src/admin/widgets/table-view/yeroth-erp-customer-table-view.cpp src/admin/widgets/table-view/yeroth-erp-supplier-table-view.cpp src/admin/widgets/table-view/yeroth-erp-user-table-view.cpp src/admin/widgets/table-view/yeroth-erp-category-table-view.cpp src/admin/creer/yeroth-erp-admin-create-window.cpp src/admin/lister/yeroth-erp-admin-lister-window.cpp src/admin/detail/yeroth-erp-admin-detail-window.cpp src/admin/modifier/yeroth-erp-admin-modifier-window.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ui/yeroth-erp-main-window.ui ui/yeroth-erp-clients-window.ui ui/yeroth-erp-achats-detail-window.ui ui/yeroth-erp-achats-window.ui ui/yeroth-erp-paiements-window.ui ui/yeroth-erp-ventes-window.ui ui/yeroth-erp-pointdevente-window.ui ui/yeroth-erp-pointdevente-window.ui ui/yeroth-erp-pointdevente-methode-paiement-carte-credit-dialog.ui ui/yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.ui ui/yeroth-erp-pointdevente-methode-paiement-dialog.ui ui/yeroth-erp-sortir-window.ui ui/yeroth-erp-tableaux-de-bord-window.ui ui/yeroth-erp-transactions-window.ui ui/yeroth-erp-entrer-window.ui ui/yeroth-erp-creer-nouveau-client-window.ui ui/yeroth-erp-creer-nouveau-fournisseur-window.ui ui/yeroth-erp-creer-nouvelle-categorie-window.ui ui/yeroth-erp-marchandises-window.ui ui/yeroth-erp-historique-du-stock-window.ui ui/yeroth-erp-stocks-window.ui ui/yeroth-erp-alertes-window.ui ui/yeroth-erp-modifier-window.ui ui/yeroth-erp-detail-window.ui ui/yeroth-erp-search-form.ui ui/yeroth-erp-changer-utilisateur-dialog.ui ui/yeroth-erp-admin-search-form.ui ui/yeroth-erp-admin-window.ui ui/yeroth-erp-admin-create-window.ui ui/yeroth-erp-admin-lister-window.ui ui/yeroth-erp-admin-detail-window.ui ui/yeroth-erp-admin-modifier-window.ui ui/yeroth-erp-pointdevente-liststocks-window.ui ui/yeroth-erp-sortir-liststocks-window.ui $(DISTDIR)/
+	$(COPY_FILE) --parents src/yeroth-erp-3-0.cpp src/yeroth-erp-windows.cpp src/widgets/table-view/yeroth-erp-table-view.cpp src/widgets/table-view/yeroth-erp-paiements-table-view.cpp src/widgets/table-view/yeroth-erp-stocks-table-view.cpp src/widgets/table-view/yeroth-erp-ventes-table-view.cpp src/widgets/table-view/yeroth-erp-transactions-table-view.cpp src/widgets/table-view/yeroth-erp-clients-table-view.cpp src/widgets/table-view/yeroth-erp-achats-table-view.cpp src/widgets/table-view/yeroth-erp-marchandises-table-view.cpp src/widgets/yeroth-erp-qtable-widget-item.cpp src/widgets/yeroth-erp-line-edit.cpp src/widgets/yeroth-erp-push-button.cpp src/widgets/yeroth-erp-text-edit.cpp src/widgets/yeroth-erp-combo-box.cpp src/widgets/yeroth-erp-qmessage-box.cpp src/widgets/yeroth-erp-qstandard-item-model.cpp src/widgets/yeroth-erp-qstandard-item.cpp src/widgets/yeroth-erp-spinbox.cpp src/widgets/yeroth-erp-datetime-edit.cpp src/widgets/yeroth-erp-table-widget.cpp src/process/yeroth-erp-process-info.cpp src/process/yeroth-erp-process.cpp src/dialogs/yeroth-erp-dialog-commons.cpp src/dialogs/yeroth-erp-changer-utilisateur-dialog.cpp src/dialogs/yeroth-erp-pointdevente-methode-paiement-carte-credit-dialog.cpp src/dialogs/yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.cpp src/dialogs/yeroth-erp-pointdevente-methode-paiement-dialog.cpp src/windows/yeroth-erp-clients-window.cpp src/windows/yeroth-erp-window-commons.cpp src/windows/yeroth-erp-pointdevente-liststocks-window.cpp src/windows/yeroth-erp-sortir-liststocks-window.cpp src/windows/yeroth-erp-main-window.cpp src/windows/yeroth-erp-creer-nouveau-client-window.cpp src/windows/yeroth-erp-creer-nouveau-fournisseur-window.cpp src/windows/yeroth-erp-creer-nouvelle-categorie-window.cpp src/windows/yeroth-erp-marchandises-window.cpp src/windows/yeroth-erp-historique-du-stock-window.cpp src/windows/yeroth-erp-achats-detail-window.cpp src/windows/yeroth-erp-achats-window.cpp src/windows/yeroth-erp-stocks-window.cpp src/windows/yeroth-erp-alertes-window.cpp src/windows/yeroth-erp-modifier-window.cpp src/windows/yeroth-erp-entrer-window.cpp src/windows/yeroth-erp-pointdevente-window.cpp src/windows/yeroth-erp-sortir-window.cpp src/windows/yeroth-erp-tableaux-de-bord-window.cpp src/windows/yeroth-erp-transactions-window.cpp src/windows/yeroth-erp-stock-detail-window.cpp src/windows/yeroth-erp-paiements-window.cpp src/windows/yeroth-erp-ventes-window.cpp src/windows/yeroth-erp-search-form.cpp src/windows/tests/yeroth-erp-test-vente-window.cpp src/users/yeroth-erp-users.cpp src/users/yeroth-erp-user-vendeur.cpp src/users/yeroth-erp-user-gestionaire-des-stocks.cpp src/users/yeroth-erp-user-manager.cpp src/users/yeroth-erp-user-magasinier.cpp src/users/yeroth-erp-user-caissier.cpp src/users/yeroth-erp-user-administrateur.cpp src/utils/credit-card/yeroth-erp-carte-credit-info.cpp src/utils/virtual-keyboard/yeroth-erp-key-emitter.cpp src/utils/yeroth-erp-sqltable-model.cpp src/utils/yeroth-erp-config.cpp src/utils/yeroth-erp-utils.cpp src/utils/yeroth-erp-database.cpp src/utils/yeroth-erp-logger.cpp src/utils/yeroth-erp-historique-stock.cpp src/utils/yeroth-erp-info-entreprise.cpp src/utils/yeroth-erp-article-vente-info.cpp src/utils/yeroth-erp-database-table-column.cpp src/utils/yeroth-erp-command-line-parser.cpp src/utils/yeroth-erp-style.cpp src/dbus/yeroth-erp-dbus-client.cpp src/dbus/yeroth-erp-dbus-server.cpp src/dbus/yeroth-erp-dbus-client-adaptor.cpp src/dbus/yeroth-erp-dbus-server-adaptor.cpp src/admin/yeroth-erp-admin-windows-commons.cpp src/admin/yeroth-erp-admin-window.cpp src/admin/yeroth-erp-admin-search-form.cpp src/admin/widgets/table-view/yeroth-erp-alert-table-view.cpp src/admin/widgets/table-view/yeroth-erp-site-table-view.cpp src/admin/widgets/table-view/yeroth-erp-customer-table-view.cpp src/admin/widgets/table-view/yeroth-erp-supplier-table-view.cpp src/admin/widgets/table-view/yeroth-erp-user-table-view.cpp src/admin/widgets/table-view/yeroth-erp-category-table-view.cpp src/admin/creer/yeroth-erp-admin-create-window.cpp src/admin/lister/yeroth-erp-admin-lister-window.cpp src/admin/detail/yeroth-erp-admin-detail-window.cpp src/admin/modifier/yeroth-erp-admin-modifier-window.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ui/yeroth-erp-main-window.ui ui/yeroth-erp-clients-window.ui ui/yeroth-erp-achats-detail-window.ui ui/yeroth-erp-achats-window.ui ui/yeroth-erp-paiements-window.ui ui/yeroth-erp-ventes-window.ui ui/yeroth-erp-pointdevente-window.ui ui/yeroth-erp-pointdevente-window.ui ui/yeroth-erp-pointdevente-methode-paiement-carte-credit-dialog.ui ui/yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.ui ui/yeroth-erp-pointdevente-methode-paiement-dialog.ui ui/yeroth-erp-sortir-window.ui ui/yeroth-erp-tableaux-de-bord-window.ui ui/yeroth-erp-transactions-window.ui ui/yeroth-erp-entrer-window.ui ui/yeroth-erp-creer-nouveau-client-window.ui ui/yeroth-erp-creer-nouveau-fournisseur-window.ui ui/yeroth-erp-creer-nouvelle-categorie-window.ui ui/yeroth-erp-marchandises-window.ui ui/yeroth-erp-historique-du-stock-window.ui ui/yeroth-erp-stocks-window.ui ui/yeroth-erp-alertes-window.ui ui/yeroth-erp-modifier-window.ui ui/yeroth-erp-stock-detail-window.ui ui/yeroth-erp-search-form.ui ui/yeroth-erp-changer-utilisateur-dialog.ui ui/yeroth-erp-admin-search-form.ui ui/yeroth-erp-admin-window.ui ui/yeroth-erp-admin-create-window.ui ui/yeroth-erp-admin-lister-window.ui ui/yeroth-erp-admin-detail-window.ui ui/yeroth-erp-admin-modifier-window.ui ui/yeroth-erp-pointdevente-liststocks-window.ui ui/yeroth-erp-sortir-liststocks-window.ui $(DISTDIR)/
 	$(COPY_FILE) --parents yeroth-erp-3-0_english.ts $(DISTDIR)/
 
 
@@ -904,9 +904,9 @@ compiler_moc_predefs_clean:
 moc/moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 	g++ -pipe -dM -E -o moc/moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc/moc_yeroth-erp-table-view.cpp moc/moc_yeroth-erp-paiements-table-view.cpp moc/moc_yeroth-erp-stocks-table-view.cpp moc/moc_yeroth-erp-ventes-table-view.cpp moc/moc_yeroth-erp-transactions-table-view.cpp moc/moc_yeroth-erp-clients-table-view.cpp moc/moc_yeroth-erp-achats-table-view.cpp moc/moc_yeroth-erp-marchandises-table-view.cpp moc/moc_yeroth-erp-line-edit.cpp moc/moc_yeroth-erp-datetime-edit.cpp moc/moc_yeroth-erp-table-widget.cpp moc/moc_yeroth-erp-dialog-commons.cpp moc/moc_yeroth-erp-changer-utilisateur-dialog.cpp moc/moc_yeroth-erp-pointdevente-methode-paiement-carte-credit-dialog.cpp moc/moc_yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.cpp moc/moc_yeroth-erp-pointdevente-methode-paiement-dialog.cpp moc/moc_yeroth-erp-clients-window.cpp moc/moc_yeroth-erp-window-commons.cpp moc/moc_yeroth-erp-pointdevente-liststocks-window.cpp moc/moc_yeroth-erp-sortir-liststocks-window.cpp moc/moc_yeroth-erp-search-form.cpp moc/moc_yeroth-erp-main-window.cpp moc/moc_yeroth-erp-creer-nouveau-client-window.cpp moc/moc_yeroth-erp-creer-nouveau-fournisseur-window.cpp moc/moc_yeroth-erp-creer-nouvelle-categorie-window.cpp moc/moc_yeroth-erp-marchandises-window.cpp moc/moc_yeroth-erp-historique-du-stock-window.cpp moc/moc_yeroth-erp-achats-detail-window.cpp moc/moc_yeroth-erp-achats-window.cpp moc/moc_yeroth-erp-stocks-window.cpp moc/moc_yeroth-erp-alertes-window.cpp moc/moc_yeroth-erp-modifier-window.cpp moc/moc_yeroth-erp-entrer-window.cpp moc/moc_yeroth-erp-pointdevente-window.cpp moc/moc_yeroth-erp-sortir-window.cpp moc/moc_yeroth-erp-tableaux-de-bord-window.cpp moc/moc_yeroth-erp-transactions-window.cpp moc/moc_yeroth-erp-detail-window.cpp moc/moc_yeroth-erp-paiements-window.cpp moc/moc_yeroth-erp-ventes-window.cpp moc/moc_yeroth-erp-search-form.cpp moc/moc_yeroth-erp-test-vente-window.cpp moc/moc_yeroth-erp-users.cpp moc/moc_yeroth-erp-user-vendeur.cpp moc/moc_yeroth-erp-user-gestionaire-des-stocks.cpp moc/moc_yeroth-erp-user-manager.cpp moc/moc_yeroth-erp-user-magasinier.cpp moc/moc_yeroth-erp-user-caissier.cpp moc/moc_yeroth-erp-user-administrateur.cpp moc/moc_yeroth-erp-key-emitter.cpp moc/moc_yeroth-erp-utils.cpp moc/moc_yeroth-erp-dbus-client.cpp moc/moc_yeroth-erp-dbus-client-adaptor.cpp moc/moc_yeroth-erp-dbus-server.cpp moc/moc_yeroth-erp-dbus-server-adaptor.cpp moc/moc_yeroth-erp-admin-windows-commons.cpp moc/moc_yeroth-erp-admin-window.cpp moc/moc_yeroth-erp-admin-search-form.cpp moc/moc_yeroth-erp-alert-table-view.cpp moc/moc_yeroth-erp-site-table-view.cpp moc/moc_yeroth-erp-customer-table-view.cpp moc/moc_yeroth-erp-supplier-table-view.cpp moc/moc_yeroth-erp-user-table-view.cpp moc/moc_yeroth-erp-category-table-view.cpp moc/moc_yeroth-erp-admin-create-window.cpp moc/moc_yeroth-erp-admin-lister-window.cpp moc/moc_yeroth-erp-admin-detail-window.cpp moc/moc_yeroth-erp-admin-modifier-window.cpp
+compiler_moc_header_make_all: moc/moc_yeroth-erp-table-view.cpp moc/moc_yeroth-erp-paiements-table-view.cpp moc/moc_yeroth-erp-stocks-table-view.cpp moc/moc_yeroth-erp-ventes-table-view.cpp moc/moc_yeroth-erp-transactions-table-view.cpp moc/moc_yeroth-erp-clients-table-view.cpp moc/moc_yeroth-erp-achats-table-view.cpp moc/moc_yeroth-erp-marchandises-table-view.cpp moc/moc_yeroth-erp-line-edit.cpp moc/moc_yeroth-erp-datetime-edit.cpp moc/moc_yeroth-erp-table-widget.cpp moc/moc_yeroth-erp-dialog-commons.cpp moc/moc_yeroth-erp-changer-utilisateur-dialog.cpp moc/moc_yeroth-erp-pointdevente-methode-paiement-carte-credit-dialog.cpp moc/moc_yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.cpp moc/moc_yeroth-erp-pointdevente-methode-paiement-dialog.cpp moc/moc_yeroth-erp-clients-window.cpp moc/moc_yeroth-erp-window-commons.cpp moc/moc_yeroth-erp-pointdevente-liststocks-window.cpp moc/moc_yeroth-erp-sortir-liststocks-window.cpp moc/moc_yeroth-erp-search-form.cpp moc/moc_yeroth-erp-main-window.cpp moc/moc_yeroth-erp-creer-nouveau-client-window.cpp moc/moc_yeroth-erp-creer-nouveau-fournisseur-window.cpp moc/moc_yeroth-erp-creer-nouvelle-categorie-window.cpp moc/moc_yeroth-erp-marchandises-window.cpp moc/moc_yeroth-erp-historique-du-stock-window.cpp moc/moc_yeroth-erp-achats-detail-window.cpp moc/moc_yeroth-erp-achats-window.cpp moc/moc_yeroth-erp-stocks-window.cpp moc/moc_yeroth-erp-alertes-window.cpp moc/moc_yeroth-erp-modifier-window.cpp moc/moc_yeroth-erp-entrer-window.cpp moc/moc_yeroth-erp-pointdevente-window.cpp moc/moc_yeroth-erp-sortir-window.cpp moc/moc_yeroth-erp-tableaux-de-bord-window.cpp moc/moc_yeroth-erp-transactions-window.cpp moc/moc_yeroth-erp-stock-detail-window.cpp moc/moc_yeroth-erp-paiements-window.cpp moc/moc_yeroth-erp-ventes-window.cpp moc/moc_yeroth-erp-search-form.cpp moc/moc_yeroth-erp-test-vente-window.cpp moc/moc_yeroth-erp-users.cpp moc/moc_yeroth-erp-user-vendeur.cpp moc/moc_yeroth-erp-user-gestionaire-des-stocks.cpp moc/moc_yeroth-erp-user-manager.cpp moc/moc_yeroth-erp-user-magasinier.cpp moc/moc_yeroth-erp-user-caissier.cpp moc/moc_yeroth-erp-user-administrateur.cpp moc/moc_yeroth-erp-key-emitter.cpp moc/moc_yeroth-erp-utils.cpp moc/moc_yeroth-erp-dbus-client.cpp moc/moc_yeroth-erp-dbus-client-adaptor.cpp moc/moc_yeroth-erp-dbus-server.cpp moc/moc_yeroth-erp-dbus-server-adaptor.cpp moc/moc_yeroth-erp-admin-windows-commons.cpp moc/moc_yeroth-erp-admin-window.cpp moc/moc_yeroth-erp-admin-search-form.cpp moc/moc_yeroth-erp-alert-table-view.cpp moc/moc_yeroth-erp-site-table-view.cpp moc/moc_yeroth-erp-customer-table-view.cpp moc/moc_yeroth-erp-supplier-table-view.cpp moc/moc_yeroth-erp-user-table-view.cpp moc/moc_yeroth-erp-category-table-view.cpp moc/moc_yeroth-erp-admin-create-window.cpp moc/moc_yeroth-erp-admin-lister-window.cpp moc/moc_yeroth-erp-admin-detail-window.cpp moc/moc_yeroth-erp-admin-modifier-window.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc/moc_yeroth-erp-table-view.cpp moc/moc_yeroth-erp-paiements-table-view.cpp moc/moc_yeroth-erp-stocks-table-view.cpp moc/moc_yeroth-erp-ventes-table-view.cpp moc/moc_yeroth-erp-transactions-table-view.cpp moc/moc_yeroth-erp-clients-table-view.cpp moc/moc_yeroth-erp-achats-table-view.cpp moc/moc_yeroth-erp-marchandises-table-view.cpp moc/moc_yeroth-erp-line-edit.cpp moc/moc_yeroth-erp-datetime-edit.cpp moc/moc_yeroth-erp-table-widget.cpp moc/moc_yeroth-erp-dialog-commons.cpp moc/moc_yeroth-erp-changer-utilisateur-dialog.cpp moc/moc_yeroth-erp-pointdevente-methode-paiement-carte-credit-dialog.cpp moc/moc_yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.cpp moc/moc_yeroth-erp-pointdevente-methode-paiement-dialog.cpp moc/moc_yeroth-erp-clients-window.cpp moc/moc_yeroth-erp-window-commons.cpp moc/moc_yeroth-erp-pointdevente-liststocks-window.cpp moc/moc_yeroth-erp-sortir-liststocks-window.cpp moc/moc_yeroth-erp-search-form.cpp moc/moc_yeroth-erp-main-window.cpp moc/moc_yeroth-erp-creer-nouveau-client-window.cpp moc/moc_yeroth-erp-creer-nouveau-fournisseur-window.cpp moc/moc_yeroth-erp-creer-nouvelle-categorie-window.cpp moc/moc_yeroth-erp-marchandises-window.cpp moc/moc_yeroth-erp-historique-du-stock-window.cpp moc/moc_yeroth-erp-achats-detail-window.cpp moc/moc_yeroth-erp-achats-window.cpp moc/moc_yeroth-erp-stocks-window.cpp moc/moc_yeroth-erp-alertes-window.cpp moc/moc_yeroth-erp-modifier-window.cpp moc/moc_yeroth-erp-entrer-window.cpp moc/moc_yeroth-erp-pointdevente-window.cpp moc/moc_yeroth-erp-sortir-window.cpp moc/moc_yeroth-erp-tableaux-de-bord-window.cpp moc/moc_yeroth-erp-transactions-window.cpp moc/moc_yeroth-erp-detail-window.cpp moc/moc_yeroth-erp-paiements-window.cpp moc/moc_yeroth-erp-ventes-window.cpp moc/moc_yeroth-erp-search-form.cpp moc/moc_yeroth-erp-test-vente-window.cpp moc/moc_yeroth-erp-users.cpp moc/moc_yeroth-erp-user-vendeur.cpp moc/moc_yeroth-erp-user-gestionaire-des-stocks.cpp moc/moc_yeroth-erp-user-manager.cpp moc/moc_yeroth-erp-user-magasinier.cpp
+	-$(DEL_FILE) moc/moc_yeroth-erp-table-view.cpp moc/moc_yeroth-erp-paiements-table-view.cpp moc/moc_yeroth-erp-stocks-table-view.cpp moc/moc_yeroth-erp-ventes-table-view.cpp moc/moc_yeroth-erp-transactions-table-view.cpp moc/moc_yeroth-erp-clients-table-view.cpp moc/moc_yeroth-erp-achats-table-view.cpp moc/moc_yeroth-erp-marchandises-table-view.cpp moc/moc_yeroth-erp-line-edit.cpp moc/moc_yeroth-erp-datetime-edit.cpp moc/moc_yeroth-erp-table-widget.cpp moc/moc_yeroth-erp-dialog-commons.cpp moc/moc_yeroth-erp-changer-utilisateur-dialog.cpp moc/moc_yeroth-erp-pointdevente-methode-paiement-carte-credit-dialog.cpp moc/moc_yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.cpp moc/moc_yeroth-erp-pointdevente-methode-paiement-dialog.cpp moc/moc_yeroth-erp-clients-window.cpp moc/moc_yeroth-erp-window-commons.cpp moc/moc_yeroth-erp-pointdevente-liststocks-window.cpp moc/moc_yeroth-erp-sortir-liststocks-window.cpp moc/moc_yeroth-erp-search-form.cpp moc/moc_yeroth-erp-main-window.cpp moc/moc_yeroth-erp-creer-nouveau-client-window.cpp moc/moc_yeroth-erp-creer-nouveau-fournisseur-window.cpp moc/moc_yeroth-erp-creer-nouvelle-categorie-window.cpp moc/moc_yeroth-erp-marchandises-window.cpp moc/moc_yeroth-erp-historique-du-stock-window.cpp moc/moc_yeroth-erp-achats-detail-window.cpp moc/moc_yeroth-erp-achats-window.cpp moc/moc_yeroth-erp-stocks-window.cpp moc/moc_yeroth-erp-alertes-window.cpp moc/moc_yeroth-erp-modifier-window.cpp moc/moc_yeroth-erp-entrer-window.cpp moc/moc_yeroth-erp-pointdevente-window.cpp moc/moc_yeroth-erp-sortir-window.cpp moc/moc_yeroth-erp-tableaux-de-bord-window.cpp moc/moc_yeroth-erp-transactions-window.cpp moc/moc_yeroth-erp-stock-detail-window.cpp moc/moc_yeroth-erp-paiements-window.cpp moc/moc_yeroth-erp-ventes-window.cpp moc/moc_yeroth-erp-search-form.cpp moc/moc_yeroth-erp-test-vente-window.cpp moc/moc_yeroth-erp-users.cpp moc/moc_yeroth-erp-user-vendeur.cpp moc/moc_yeroth-erp-user-gestionaire-des-stocks.cpp moc/moc_yeroth-erp-user-manager.cpp moc/moc_yeroth-erp-user-magasinier.cpp
 	-$(DEL_FILE) moc/moc_yeroth-erp-user-caissier.cpp moc/moc_yeroth-erp-user-administrateur.cpp moc/moc_yeroth-erp-key-emitter.cpp moc/moc_yeroth-erp-utils.cpp moc/moc_yeroth-erp-dbus-client.cpp moc/moc_yeroth-erp-dbus-client-adaptor.cpp moc/moc_yeroth-erp-dbus-server.cpp moc/moc_yeroth-erp-dbus-server-adaptor.cpp moc/moc_yeroth-erp-admin-windows-commons.cpp moc/moc_yeroth-erp-admin-window.cpp moc/moc_yeroth-erp-admin-search-form.cpp moc/moc_yeroth-erp-alert-table-view.cpp moc/moc_yeroth-erp-site-table-view.cpp moc/moc_yeroth-erp-customer-table-view.cpp moc/moc_yeroth-erp-supplier-table-view.cpp moc/moc_yeroth-erp-user-table-view.cpp moc/moc_yeroth-erp-category-table-view.cpp moc/moc_yeroth-erp-admin-create-window.cpp moc/moc_yeroth-erp-admin-lister-window.cpp moc/moc_yeroth-erp-admin-detail-window.cpp moc/moc_yeroth-erp-admin-modifier-window.cpp
 moc/moc_yeroth-erp-table-view.cpp: src/include/yeroth-erp-3-0-software.text-configuration.hpp \
 		src/include/yeroth-erp-3-0-definition-special-qt5.7-macro.hpp \
@@ -1344,8 +1344,8 @@ moc/moc_yeroth-erp-pointdevente-liststocks-window.cpp: ui_yeroth-erp-pointdevent
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -1653,8 +1653,8 @@ moc/moc_yeroth-erp-historique-du-stock-window.cpp: ui_yeroth-erp-historique-du-s
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -2017,7 +2017,7 @@ moc/moc_yeroth-erp-transactions-window.cpp: ui_yeroth-erp-transactions-window.h 
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/yeroth/yeroth-erp-3.0/moc/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/yeroth/yeroth-erp-3.0 -I/usr/include/c++/8 -I/usr/include/x86_64-linux-gnu/c++/8 -I/usr/include/c++/8/backward -I/usr/lib/gcc/x86_64-linux-gnu/8/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include src/windows/yeroth-erp-transactions-window.hpp -o moc/moc_yeroth-erp-transactions-window.cpp
 
-moc/moc_yeroth-erp-detail-window.cpp: ui_yeroth-erp-detail-window.h \
+moc/moc_yeroth-erp-stock-detail-window.cpp: ui_yeroth-erp-stock-detail-window.h \
 		src/widgets/yeroth-erp-datetime-edit.hpp \
 		src/include/yeroth-erp-3-0-software.text-configuration.hpp \
 		src/include/yeroth-erp-3-0-definition-special-qt5.7-macro.hpp \
@@ -2041,10 +2041,10 @@ moc/moc_yeroth-erp-detail-window.cpp: ui_yeroth-erp-detail-window.h \
 		src/utils/yeroth-erp-logger.hpp \
 		src/windows/yeroth-erp-window-commons.hpp \
 		src/widgets/yeroth-erp-qmessage-box.hpp \
-		src/windows/yeroth-erp-detail-window.hpp \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
 		moc/moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/yeroth/yeroth-erp-3.0/moc/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/yeroth/yeroth-erp-3.0 -I/usr/include/c++/8 -I/usr/include/x86_64-linux-gnu/c++/8 -I/usr/include/c++/8/backward -I/usr/lib/gcc/x86_64-linux-gnu/8/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include src/windows/yeroth-erp-detail-window.hpp -o moc/moc_yeroth-erp-detail-window.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/yeroth/yeroth-erp-3.0/moc/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/yeroth/yeroth-erp-3.0 -I/usr/include/c++/8 -I/usr/include/x86_64-linux-gnu/c++/8 -I/usr/include/c++/8/backward -I/usr/lib/gcc/x86_64-linux-gnu/8/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/8/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include src/windows/yeroth-erp-stock-detail-window.hpp -o moc/moc_yeroth-erp-stock-detail-window.cpp
 
 moc/moc_yeroth-erp-paiements-window.cpp: ui_yeroth-erp-paiements-window.h \
 		src/widgets/table-view/yeroth-erp-paiements-table-view.hpp \
@@ -2481,8 +2481,8 @@ moc/moc_yeroth-erp-admin-window.cpp: ui_yeroth-erp-admin-window.h \
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -2819,22 +2819,22 @@ qrc_yeroth-erp-3-0.cpp: yeroth-erp-3-0.qrc \
 		yeroth-erp-3-0-images/yeroth-erp-3.0-icon.png \
 		yeroth-erp-3-0-images/folder-sort.svg.png \
 		yeroth-erp-3-0-images/minus.png \
-		yeroth-erp-3-0-templates/FR_template-journal-transactions.tex \
-		yeroth-erp-3-0-templates/FR_template-lister-stock.tex \
-		yeroth-erp-3-0-templates/FR_template-lister-achats.tex \
-		yeroth-erp-3-0-templates/FR_template-journal-des-paiements.tex \
+		yeroth-erp-3-0-templates/EN_template-facture-petit.tex \
+		yeroth-erp-3-0-templates/EN_template-lister-stock.tex \
+		yeroth-erp-3-0-templates/EN_template-facture-grand.tex \
+		yeroth-erp-3-0-templates/EN_template-historique-dun-stock.tex \
+		yeroth-erp-3-0-templates/EN_template-sortie-des-stocks-petit.tex \
+		yeroth-erp-3-0-templates/EN_template-comptes-clients.tex \
 		yeroth-erp-3-0-templates/1a.tex \
-		yeroth-erp-3-0-templates/FR_template-marchandises.tex \
-		yeroth-erp-3-0-templates/FR_pie-chart.tex \
-		yeroth-erp-3-0-templates/FR_bar-diag.tex \
-		yeroth-erp-3-0-templates/FR_template-facture-petit.tex \
-		yeroth-erp-3-0-templates/FR_template-sortie-des-stocks-petit.tex \
-		yeroth-erp-3-0-templates/FR_template-facture-grand.tex \
-		yeroth-erp-3-0-templates/FR_template-historique-dun-stock.tex \
-		yeroth-erp-3-0-templates/FR_template-sortie-des-stocks-grand.tex \
-		yeroth-erp-3-0-templates/FR_template-comptes-clients.tex \
-		yeroth-erp-3-0-templates/FR_template-journal-des-ventes.tex \
-		yeroth-erp-3-0-templates/FR_bar-chart.tex \
+		yeroth-erp-3-0-templates/EN_template-sortie-des-stocks-grand.tex \
+		yeroth-erp-3-0-templates/EN_template-marchandises.tex \
+		yeroth-erp-3-0-templates/EN_template-journal-transactions.tex \
+		yeroth-erp-3-0-templates/EN_bar-chart.tex \
+		yeroth-erp-3-0-templates/EN_template-lister-achats.tex \
+		yeroth-erp-3-0-templates/EN_template-journal-des-paiements.tex \
+		yeroth-erp-3-0-templates/EN_template-journal-des-ventes.tex \
+		yeroth-erp-3-0-templates/EN_bar-diag.tex \
+		yeroth-erp-3-0-templates/EN_pie-chart.tex \
 		yeroth-erp-3-0-sql/create_table_stocks_vendu.sql \
 		yeroth-erp-3-0-sql/create_table_configurations.sql \
 		yeroth-erp-3-0-sql/create_table_titres.sql \
@@ -2861,9 +2861,9 @@ qrc_yeroth-erp-3-0.cpp: yeroth-erp-3-0.qrc \
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_yeroth-erp-main-window.h ui_yeroth-erp-clients-window.h ui_yeroth-erp-achats-detail-window.h ui_yeroth-erp-achats-window.h ui_yeroth-erp-paiements-window.h ui_yeroth-erp-ventes-window.h ui_yeroth-erp-pointdevente-window.h ui_yeroth-erp-pointdevente-window.h ui_yeroth-erp-pointdevente-methode-paiement-carte-credit-dialog.h ui_yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.h ui_yeroth-erp-pointdevente-methode-paiement-dialog.h ui_yeroth-erp-sortir-window.h ui_yeroth-erp-tableaux-de-bord-window.h ui_yeroth-erp-transactions-window.h ui_yeroth-erp-entrer-window.h ui_yeroth-erp-creer-nouveau-client-window.h ui_yeroth-erp-creer-nouveau-fournisseur-window.h ui_yeroth-erp-creer-nouvelle-categorie-window.h ui_yeroth-erp-marchandises-window.h ui_yeroth-erp-historique-du-stock-window.h ui_yeroth-erp-stocks-window.h ui_yeroth-erp-alertes-window.h ui_yeroth-erp-modifier-window.h ui_yeroth-erp-detail-window.h ui_yeroth-erp-search-form.h ui_yeroth-erp-changer-utilisateur-dialog.h ui_yeroth-erp-admin-search-form.h ui_yeroth-erp-admin-window.h ui_yeroth-erp-admin-create-window.h ui_yeroth-erp-admin-lister-window.h ui_yeroth-erp-admin-detail-window.h ui_yeroth-erp-admin-modifier-window.h ui_yeroth-erp-pointdevente-liststocks-window.h ui_yeroth-erp-sortir-liststocks-window.h
+compiler_uic_make_all: ui_yeroth-erp-main-window.h ui_yeroth-erp-clients-window.h ui_yeroth-erp-achats-detail-window.h ui_yeroth-erp-achats-window.h ui_yeroth-erp-paiements-window.h ui_yeroth-erp-ventes-window.h ui_yeroth-erp-pointdevente-window.h ui_yeroth-erp-pointdevente-window.h ui_yeroth-erp-pointdevente-methode-paiement-carte-credit-dialog.h ui_yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.h ui_yeroth-erp-pointdevente-methode-paiement-dialog.h ui_yeroth-erp-sortir-window.h ui_yeroth-erp-tableaux-de-bord-window.h ui_yeroth-erp-transactions-window.h ui_yeroth-erp-entrer-window.h ui_yeroth-erp-creer-nouveau-client-window.h ui_yeroth-erp-creer-nouveau-fournisseur-window.h ui_yeroth-erp-creer-nouvelle-categorie-window.h ui_yeroth-erp-marchandises-window.h ui_yeroth-erp-historique-du-stock-window.h ui_yeroth-erp-stocks-window.h ui_yeroth-erp-alertes-window.h ui_yeroth-erp-modifier-window.h ui_yeroth-erp-stock-detail-window.h ui_yeroth-erp-search-form.h ui_yeroth-erp-changer-utilisateur-dialog.h ui_yeroth-erp-admin-search-form.h ui_yeroth-erp-admin-window.h ui_yeroth-erp-admin-create-window.h ui_yeroth-erp-admin-lister-window.h ui_yeroth-erp-admin-detail-window.h ui_yeroth-erp-admin-modifier-window.h ui_yeroth-erp-pointdevente-liststocks-window.h ui_yeroth-erp-sortir-liststocks-window.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_yeroth-erp-main-window.h ui_yeroth-erp-clients-window.h ui_yeroth-erp-achats-detail-window.h ui_yeroth-erp-achats-window.h ui_yeroth-erp-paiements-window.h ui_yeroth-erp-ventes-window.h ui_yeroth-erp-pointdevente-window.h ui_yeroth-erp-pointdevente-window.h ui_yeroth-erp-pointdevente-methode-paiement-carte-credit-dialog.h ui_yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.h ui_yeroth-erp-pointdevente-methode-paiement-dialog.h ui_yeroth-erp-sortir-window.h ui_yeroth-erp-tableaux-de-bord-window.h ui_yeroth-erp-transactions-window.h ui_yeroth-erp-entrer-window.h ui_yeroth-erp-creer-nouveau-client-window.h ui_yeroth-erp-creer-nouveau-fournisseur-window.h ui_yeroth-erp-creer-nouvelle-categorie-window.h ui_yeroth-erp-marchandises-window.h ui_yeroth-erp-historique-du-stock-window.h ui_yeroth-erp-stocks-window.h ui_yeroth-erp-alertes-window.h ui_yeroth-erp-modifier-window.h ui_yeroth-erp-detail-window.h ui_yeroth-erp-search-form.h ui_yeroth-erp-changer-utilisateur-dialog.h ui_yeroth-erp-admin-search-form.h ui_yeroth-erp-admin-window.h ui_yeroth-erp-admin-create-window.h ui_yeroth-erp-admin-lister-window.h ui_yeroth-erp-admin-detail-window.h ui_yeroth-erp-admin-modifier-window.h ui_yeroth-erp-pointdevente-liststocks-window.h ui_yeroth-erp-sortir-liststocks-window.h
+	-$(DEL_FILE) ui_yeroth-erp-main-window.h ui_yeroth-erp-clients-window.h ui_yeroth-erp-achats-detail-window.h ui_yeroth-erp-achats-window.h ui_yeroth-erp-paiements-window.h ui_yeroth-erp-ventes-window.h ui_yeroth-erp-pointdevente-window.h ui_yeroth-erp-pointdevente-window.h ui_yeroth-erp-pointdevente-methode-paiement-carte-credit-dialog.h ui_yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.h ui_yeroth-erp-pointdevente-methode-paiement-dialog.h ui_yeroth-erp-sortir-window.h ui_yeroth-erp-tableaux-de-bord-window.h ui_yeroth-erp-transactions-window.h ui_yeroth-erp-entrer-window.h ui_yeroth-erp-creer-nouveau-client-window.h ui_yeroth-erp-creer-nouveau-fournisseur-window.h ui_yeroth-erp-creer-nouvelle-categorie-window.h ui_yeroth-erp-marchandises-window.h ui_yeroth-erp-historique-du-stock-window.h ui_yeroth-erp-stocks-window.h ui_yeroth-erp-alertes-window.h ui_yeroth-erp-modifier-window.h ui_yeroth-erp-stock-detail-window.h ui_yeroth-erp-search-form.h ui_yeroth-erp-changer-utilisateur-dialog.h ui_yeroth-erp-admin-search-form.h ui_yeroth-erp-admin-window.h ui_yeroth-erp-admin-create-window.h ui_yeroth-erp-admin-lister-window.h ui_yeroth-erp-admin-detail-window.h ui_yeroth-erp-admin-modifier-window.h ui_yeroth-erp-pointdevente-liststocks-window.h ui_yeroth-erp-sortir-liststocks-window.h
 ui_yeroth-erp-main-window.h: ui/yeroth-erp-main-window.ui \
 		/usr/lib/qt5/bin/uic \
 		src/widgets/yeroth-erp-push-button.hpp \
@@ -4157,7 +4157,7 @@ ui_yeroth-erp-modifier-window.h: ui/yeroth-erp-modifier-window.ui \
 		src/utils/yeroth-erp-config.hpp
 	/usr/lib/qt5/bin/uic ui/yeroth-erp-modifier-window.ui -o ui_yeroth-erp-modifier-window.h
 
-ui_yeroth-erp-detail-window.h: ui/yeroth-erp-detail-window.ui \
+ui_yeroth-erp-stock-detail-window.h: ui/yeroth-erp-stock-detail-window.ui \
 		/usr/lib/qt5/bin/uic \
 		src/widgets/yeroth-erp-push-button.hpp \
 		src/widgets/yeroth-erp-line-edit.hpp \
@@ -4217,7 +4217,7 @@ ui_yeroth-erp-detail-window.h: ui/yeroth-erp-detail-window.ui \
 		src/widgets/yeroth-erp-qstandard-item-model.hpp \
 		src/utils/yeroth-erp-sqltable-model.hpp \
 		src/utils/yeroth-erp-config.hpp
-	/usr/lib/qt5/bin/uic ui/yeroth-erp-detail-window.ui -o ui_yeroth-erp-detail-window.h
+	/usr/lib/qt5/bin/uic ui/yeroth-erp-stock-detail-window.ui -o ui_yeroth-erp-stock-detail-window.h
 
 ui_yeroth-erp-search-form.h: ui/yeroth-erp-search-form.ui \
 		/usr/lib/qt5/bin/uic \
@@ -4809,8 +4809,8 @@ obj/yeroth-erp-3-0.o: src/yeroth-erp-3-0.cpp src/include/yeroth-erp-3-0-software
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -4928,8 +4928,8 @@ obj/yeroth-erp-windows.o: src/yeroth-erp-windows.cpp src/yeroth-erp-windows.hpp 
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -5051,8 +5051,8 @@ obj/yeroth-erp-table-view.o: src/widgets/table-view/yeroth-erp-table-view.cpp sr
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -5170,8 +5170,8 @@ obj/yeroth-erp-paiements-table-view.o: src/widgets/table-view/yeroth-erp-paiemen
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -5290,8 +5290,8 @@ obj/yeroth-erp-stocks-table-view.o: src/widgets/table-view/yeroth-erp-stocks-tab
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -5409,8 +5409,8 @@ obj/yeroth-erp-ventes-table-view.o: src/widgets/table-view/yeroth-erp-ventes-tab
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -5527,8 +5527,8 @@ obj/yeroth-erp-transactions-table-view.o: src/widgets/table-view/yeroth-erp-tran
 		ui_yeroth-erp-transactions-window.h \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -5647,8 +5647,8 @@ obj/yeroth-erp-clients-table-view.o: src/widgets/table-view/yeroth-erp-clients-t
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -5765,8 +5765,8 @@ obj/yeroth-erp-achats-table-view.o: src/widgets/table-view/yeroth-erp-achats-tab
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -5884,8 +5884,8 @@ obj/yeroth-erp-marchandises-table-view.o: src/widgets/table-view/yeroth-erp-marc
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -6117,8 +6117,8 @@ obj/yeroth-erp-qstandard-item-model.o: src/widgets/yeroth-erp-qstandard-item-mod
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -6267,8 +6267,8 @@ obj/yeroth-erp-datetime-edit.o: src/widgets/yeroth-erp-datetime-edit.cpp src/wid
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -6428,8 +6428,8 @@ obj/yeroth-erp-process.o: src/process/yeroth-erp-process.cpp src/process/yeroth-
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -6546,8 +6546,8 @@ obj/yeroth-erp-dialog-commons.o: src/dialogs/yeroth-erp-dialog-commons.cpp src/d
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -6663,8 +6663,8 @@ obj/yeroth-erp-changer-utilisateur-dialog.o: src/dialogs/yeroth-erp-changer-util
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -6786,8 +6786,8 @@ obj/yeroth-erp-pointdevente-methode-paiement-carte-credit-dialog.o: src/dialogs/
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -6903,8 +6903,8 @@ obj/yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.o: src/dialo
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -7020,8 +7020,8 @@ obj/yeroth-erp-pointdevente-methode-paiement-dialog.o: src/dialogs/yeroth-erp-po
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -7140,8 +7140,8 @@ obj/yeroth-erp-clients-window.o: src/windows/yeroth-erp-clients-window.cpp src/w
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -7258,8 +7258,8 @@ obj/yeroth-erp-window-commons.o: src/windows/yeroth-erp-window-commons.cpp src/w
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -7377,8 +7377,8 @@ obj/yeroth-erp-pointdevente-liststocks-window.o: src/windows/yeroth-erp-pointdev
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -7494,8 +7494,8 @@ obj/yeroth-erp-sortir-liststocks-window.o: src/windows/yeroth-erp-sortir-liststo
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -7608,8 +7608,8 @@ obj/yeroth-erp-main-window.o: src/windows/yeroth-erp-main-window.cpp src/windows
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -7731,8 +7731,8 @@ obj/yeroth-erp-creer-nouveau-client-window.o: src/windows/yeroth-erp-creer-nouve
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-fournisseur-window.hpp \
@@ -7848,8 +7848,8 @@ obj/yeroth-erp-creer-nouveau-fournisseur-window.o: src/windows/yeroth-erp-creer-
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -7965,8 +7965,8 @@ obj/yeroth-erp-creer-nouvelle-categorie-window.o: src/windows/yeroth-erp-creer-n
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -8083,8 +8083,8 @@ obj/yeroth-erp-marchandises-window.o: src/windows/yeroth-erp-marchandises-window
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -8199,8 +8199,8 @@ obj/yeroth-erp-historique-du-stock-window.o: src/windows/yeroth-erp-historique-d
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -8319,8 +8319,8 @@ obj/yeroth-erp-achats-detail-window.o: src/windows/yeroth-erp-achats-detail-wind
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -8439,8 +8439,8 @@ obj/yeroth-erp-achats-window.o: src/windows/yeroth-erp-achats-window.cpp src/win
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -8559,8 +8559,8 @@ obj/yeroth-erp-stocks-window.o: src/windows/yeroth-erp-stocks-window.cpp src/win
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -8678,8 +8678,8 @@ obj/yeroth-erp-alertes-window.o: src/windows/yeroth-erp-alertes-window.cpp src/w
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -8795,8 +8795,8 @@ obj/yeroth-erp-modifier-window.o: src/windows/yeroth-erp-modifier-window.cpp src
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -8910,8 +8910,8 @@ obj/yeroth-erp-entrer-window.o: src/windows/yeroth-erp-entrer-window.cpp src/win
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -9032,8 +9032,8 @@ obj/yeroth-erp-pointdevente-window.o: src/windows/yeroth-erp-pointdevente-window
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -9148,8 +9148,8 @@ obj/yeroth-erp-sortir-window.o: src/windows/yeroth-erp-sortir-window.cpp src/win
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -9267,8 +9267,8 @@ obj/yeroth-erp-tableaux-de-bord-window.o: src/windows/yeroth-erp-tableaux-de-bor
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -9384,8 +9384,8 @@ obj/yeroth-erp-transactions-window.o: src/windows/yeroth-erp-transactions-window
 		src/utils/yeroth-erp-database-table-column.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -9441,7 +9441,7 @@ obj/yeroth-erp-transactions-window.o: src/windows/yeroth-erp-transactions-window
 		src/process/yeroth-erp-process.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/yeroth-erp-transactions-window.o src/windows/yeroth-erp-transactions-window.cpp
 
-obj/yeroth-erp-detail-window.o: src/windows/yeroth-erp-detail-window.cpp src/yeroth-erp-windows.hpp \
+obj/yeroth-erp-stock-detail-window.o: src/windows/yeroth-erp-stock-detail-window.cpp src/yeroth-erp-windows.hpp \
 		src/dialogs/yeroth-erp-pointdevente-methode-paiement-carte-credit-dialog.hpp \
 		ui_yeroth-erp-pointdevente-methode-paiement-carte-credit-dialog.h \
 		src/widgets/yeroth-erp-combo-box.hpp \
@@ -9502,8 +9502,8 @@ obj/yeroth-erp-detail-window.o: src/windows/yeroth-erp-detail-window.cpp src/yer
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -9556,7 +9556,7 @@ obj/yeroth-erp-detail-window.o: src/windows/yeroth-erp-detail-window.cpp src/yer
 		ui_yeroth-erp-admin-modifier-window.h \
 		src/utils/yeroth-erp-info-entreprise.hpp \
 		src/utils/yeroth-erp-database.hpp
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/yeroth-erp-detail-window.o src/windows/yeroth-erp-detail-window.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/yeroth-erp-stock-detail-window.o src/windows/yeroth-erp-stock-detail-window.cpp
 
 obj/yeroth-erp-paiements-window.o: src/windows/yeroth-erp-paiements-window.cpp src/windows/yeroth-erp-paiements-window.hpp \
 		ui_yeroth-erp-paiements-window.h \
@@ -9620,8 +9620,8 @@ obj/yeroth-erp-paiements-window.o: src/windows/yeroth-erp-paiements-window.cpp s
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -9741,8 +9741,8 @@ obj/yeroth-erp-ventes-window.o: src/windows/yeroth-erp-ventes-window.cpp src/win
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -9855,8 +9855,8 @@ obj/yeroth-erp-search-form.o: src/windows/yeroth-erp-search-form.cpp src/windows
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -10005,8 +10005,8 @@ obj/yeroth-erp-users.o: src/users/yeroth-erp-users.cpp src/include/yeroth-erp-3-
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -10298,8 +10298,8 @@ obj/yeroth-erp-utils.o: src/utils/yeroth-erp-utils.cpp src/utils/yeroth-erp-util
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -10452,8 +10452,8 @@ obj/yeroth-erp-historique-stock.o: src/utils/yeroth-erp-historique-stock.cpp src
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -10570,8 +10570,8 @@ obj/yeroth-erp-info-entreprise.o: src/utils/yeroth-erp-info-entreprise.cpp src/u
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -10754,8 +10754,8 @@ obj/yeroth-erp-dbus-client.o: src/dbus/yeroth-erp-dbus-client.cpp src/dbus/yerot
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -10873,8 +10873,8 @@ obj/yeroth-erp-dbus-server.o: src/dbus/yeroth-erp-dbus-server.cpp src/dbus/yerot
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -10998,8 +10998,8 @@ obj/yeroth-erp-admin-windows-commons.o: src/admin/yeroth-erp-admin-windows-commo
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -11117,8 +11117,8 @@ obj/yeroth-erp-admin-window.o: src/admin/yeroth-erp-admin-window.cpp src/admin/y
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -11236,8 +11236,8 @@ obj/yeroth-erp-admin-search-form.o: src/admin/yeroth-erp-admin-search-form.cpp s
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -11353,8 +11353,8 @@ obj/yeroth-erp-alert-table-view.o: src/admin/widgets/table-view/yeroth-erp-alert
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -11471,8 +11471,8 @@ obj/yeroth-erp-site-table-view.o: src/admin/widgets/table-view/yeroth-erp-site-t
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -11589,8 +11589,8 @@ obj/yeroth-erp-customer-table-view.o: src/admin/widgets/table-view/yeroth-erp-cu
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -11707,8 +11707,8 @@ obj/yeroth-erp-supplier-table-view.o: src/admin/widgets/table-view/yeroth-erp-su
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -11825,8 +11825,8 @@ obj/yeroth-erp-user-table-view.o: src/admin/widgets/table-view/yeroth-erp-user-t
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -11943,8 +11943,8 @@ obj/yeroth-erp-category-table-view.o: src/admin/widgets/table-view/yeroth-erp-ca
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -12064,8 +12064,8 @@ obj/yeroth-erp-admin-create-window.o: src/admin/creer/yeroth-erp-admin-create-wi
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -12194,8 +12194,8 @@ obj/yeroth-erp-admin-lister-window.o: src/admin/lister/yeroth-erp-admin-lister-w
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -12307,8 +12307,8 @@ obj/yeroth-erp-admin-detail-window.o: src/admin/detail/yeroth-erp-admin-detail-w
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -12424,8 +12424,8 @@ obj/yeroth-erp-admin-modifier-window.o: src/admin/modifier/yeroth-erp-admin-modi
 		src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
 		src/windows/yeroth-erp-achats-detail-window.hpp \
 		ui_yeroth-erp-achats-detail-window.h \
-		src/windows/yeroth-erp-detail-window.hpp \
-		ui_yeroth-erp-detail-window.h \
+		src/windows/yeroth-erp-stock-detail-window.hpp \
+		ui_yeroth-erp-stock-detail-window.h \
 		src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		ui_yeroth-erp-changer-utilisateur-dialog.h \
 		src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
@@ -12592,8 +12592,8 @@ obj/moc_yeroth-erp-tableaux-de-bord-window.o: moc/moc_yeroth-erp-tableaux-de-bor
 obj/moc_yeroth-erp-transactions-window.o: moc/moc_yeroth-erp-transactions-window.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/moc_yeroth-erp-transactions-window.o moc/moc_yeroth-erp-transactions-window.cpp
 
-obj/moc_yeroth-erp-detail-window.o: moc/moc_yeroth-erp-detail-window.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/moc_yeroth-erp-detail-window.o moc/moc_yeroth-erp-detail-window.cpp
+obj/moc_yeroth-erp-stock-detail-window.o: moc/moc_yeroth-erp-stock-detail-window.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/moc_yeroth-erp-stock-detail-window.o moc/moc_yeroth-erp-stock-detail-window.cpp
 
 obj/moc_yeroth-erp-paiements-window.o: moc/moc_yeroth-erp-paiements-window.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/moc_yeroth-erp-paiements-window.o moc/moc_yeroth-erp-paiements-window.cpp
@@ -12785,8 +12785,8 @@ install_sources: first FORCE
 	-strip $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-tableaux-de-bord-window.cpp
 	-$(QINSTALL_PROGRAM) /home/yeroth/yeroth-erp-3.0/src/windows/yeroth-erp-transactions-window.cpp $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-transactions-window.cpp
 	-strip $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-transactions-window.cpp
-	-$(QINSTALL_PROGRAM) /home/yeroth/yeroth-erp-3.0/src/windows/yeroth-erp-detail-window.cpp $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-detail-window.cpp
-	-strip $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-detail-window.cpp
+	-$(QINSTALL_PROGRAM) /home/yeroth/yeroth-erp-3.0/src/windows/yeroth-erp-stock-detail-window.cpp $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-stock-detail-window.cpp
+	-strip $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-stock-detail-window.cpp
 	-$(QINSTALL) /home/yeroth/yeroth-erp-3.0/src/windows/yeroth-erp-paiements-window.cpp $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-paiements-window.cpp
 	-$(QINSTALL_PROGRAM) /home/yeroth/yeroth-erp-3.0/src/windows/yeroth-erp-ventes-window.cpp $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-ventes-window.cpp
 	-strip $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-ventes-window.cpp
@@ -12955,8 +12955,8 @@ install_sources: first FORCE
 	-strip $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-tableaux-de-bord-window.hpp
 	-$(QINSTALL_PROGRAM) /home/yeroth/yeroth-erp-3.0/src/windows/yeroth-erp-transactions-window.hpp $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-transactions-window.hpp
 	-strip $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-transactions-window.hpp
-	-$(QINSTALL_PROGRAM) /home/yeroth/yeroth-erp-3.0/src/windows/yeroth-erp-detail-window.hpp $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-detail-window.hpp
-	-strip $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-detail-window.hpp
+	-$(QINSTALL_PROGRAM) /home/yeroth/yeroth-erp-3.0/src/windows/yeroth-erp-stock-detail-window.hpp $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-stock-detail-window.hpp
+	-strip $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-stock-detail-window.hpp
 	-$(QINSTALL) /home/yeroth/yeroth-erp-3.0/src/windows/yeroth-erp-paiements-window.hpp $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-paiements-window.hpp
 	-$(QINSTALL_PROGRAM) /home/yeroth/yeroth-erp-3.0/src/windows/yeroth-erp-ventes-window.hpp $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-ventes-window.hpp
 	-strip $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-ventes-window.hpp
@@ -13055,7 +13055,7 @@ install_sources: first FORCE
 	-$(QINSTALL) /home/yeroth/yeroth-erp-3.0/ui/yeroth-erp-stocks-window.ui $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-stocks-window.ui
 	-$(QINSTALL) /home/yeroth/yeroth-erp-3.0/ui/yeroth-erp-alertes-window.ui $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-alertes-window.ui
 	-$(QINSTALL) /home/yeroth/yeroth-erp-3.0/ui/yeroth-erp-modifier-window.ui $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-modifier-window.ui
-	-$(QINSTALL) /home/yeroth/yeroth-erp-3.0/ui/yeroth-erp-detail-window.ui $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-detail-window.ui
+	-$(QINSTALL) /home/yeroth/yeroth-erp-3.0/ui/yeroth-erp-stock-detail-window.ui $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-stock-detail-window.ui
 	-$(QINSTALL) /home/yeroth/yeroth-erp-3.0/ui/yeroth-erp-search-form.ui $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-search-form.ui
 	-$(QINSTALL) /home/yeroth/yeroth-erp-3.0/ui/yeroth-erp-changer-utilisateur-dialog.ui $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-changer-utilisateur-dialog.ui
 	-$(QINSTALL) /home/yeroth/yeroth-erp-3.0/ui/yeroth-erp-admin-search-form.ui $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-admin-search-form.ui
@@ -13081,7 +13081,7 @@ uninstall_sources: FORCE
 	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-admin-search-form.ui
 	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-changer-utilisateur-dialog.ui
 	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-search-form.ui
-	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-detail-window.ui
+	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-stock-detail-window.ui
 	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-modifier-window.ui
 	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-alertes-window.ui
 	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-stocks-window.ui
@@ -13147,7 +13147,7 @@ uninstall_sources: FORCE
 	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-search-form.hpp
 	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-ventes-window.hpp
 	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-paiements-window.hpp
-	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-detail-window.hpp
+	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-stock-detail-window.hpp
 	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-transactions-window.hpp
 	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-tableaux-de-bord-window.hpp
 	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-sortir-window.hpp
@@ -13246,7 +13246,7 @@ uninstall_sources: FORCE
 	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-search-form.cpp
 	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-ventes-window.cpp
 	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-paiements-window.cpp
-	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-detail-window.cpp
+	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-stock-detail-window.cpp
 	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-transactions-window.cpp
 	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-tableaux-de-bord-window.cpp
 	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/yeroth/yeroth-erp-3.0/./yeroth-erp-sortir-window.cpp
