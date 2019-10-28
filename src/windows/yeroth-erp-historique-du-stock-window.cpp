@@ -202,8 +202,9 @@ bool YerothHistoriqueDuStockWindow::imprimer_document()
 
 	if (tableModelRowCount <= 0)
 	{
-		YerothQMessageBox::information(this, QObject::trUtf8("impression"),
-				FROM_UTF8_STRING(tr("Il n'y a pas de données à imprimer !")));
+		YerothQMessageBox::information(this,
+									   QObject::trUtf8("impression"),
+									   QObject::trUtf8("Il n'y a pas de données à imprimer !"));
 		return false;
 	}
 

@@ -3,7 +3,7 @@ bool YerothAdminCreateWindow::creer_categorie()
 {
     if (creer_categorie_check_fields())
     {
-        QString retMsg("La catégorie '");
+        QString retMsg(QObject::trUtf8("La catégorie '"));
 
         YerothSqlTableModel &categoriesTableModel = _allWindows->getSqlTableModel_categories();
 
@@ -23,11 +23,12 @@ bool YerothAdminCreateWindow::creer_categorie()
 
             //qDebug() << "++ duplicate categorie: " << duplicateCategorie;
 
-            retMsg.append(duplicateCategorie).append("' existe déjà !");
+            retMsg.append(QString(QObject::trUtf8("%1' existe déjà ! "))
+            				.arg(duplicateCategorie));
 
             YerothQMessageBox::warning(this,
                                  QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ créer ~ catégorie"),
-                                 FROM_UTF8_STRING(retMsg));
+                                 retMsg);
 
             categoriesTableModel.resetFilter();
 
@@ -45,19 +46,21 @@ bool YerothAdminCreateWindow::creer_categorie()
 
         if (!success)
         {
-            retMsg.append(lineEdit_creer_categorie_nom->text())
-            .append("' n'a pas pu être créer !");
+            retMsg.append(QString(QObject::trUtf8("%1' n'a pas pu être créer ! "))
+            				.arg(lineEdit_creer_categorie_nom->text()));
+
             YerothQMessageBox::warning(this,
                                  QObject::trUtf8("Yeroth-erp-3.0 ~ admin-créer-catégorie"),
-                                 FROM_UTF8_STRING(retMsg));
+                                 retMsg);
             return false;
         }
 
-        retMsg.append(lineEdit_creer_categorie_nom->text())
-        .append("' a été créer avec succès !");
+        retMsg.append(QString(QObject::trUtf8("%1' a été créer avec succès ! "))
+        				.arg(lineEdit_creer_categorie_nom->text()));
+
         YerothQMessageBox::information(this,
                                  QObject::trUtf8("Yeroth-erp-3.0 ~ admin-créer-catégorie"),
-                                 FROM_UTF8_STRING(retMsg));
+                                 retMsg);
 
         clear_categorie_all_fields();
         this->rendreInvisible();

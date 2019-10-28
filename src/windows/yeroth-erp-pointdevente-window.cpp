@@ -1662,7 +1662,7 @@ void YerothPointDeVenteWindow::ajouter_article(const QString & text)
                 QMessageBox::critical(this,
                                       QObject::trUtf8
                                       ("erreur"),
-                                      FROM_UTF8_STRING(criticalMsg), QMessageBox::Cancel, QMessageBox::Ok))
+                                      criticalMsg, QMessageBox::Cancel, QMessageBox::Ok))
         {
             return;
         }
@@ -1711,7 +1711,7 @@ void YerothPointDeVenteWindow::ajouter_article(const QModelIndex & modelIndex)
                 QMessageBox::critical(this,
                                       QObject::trUtf8
                                       ("erreur"),
-                                      FROM_UTF8_STRING(criticalMsg), QMessageBox::Cancel, QMessageBox::Ok))
+                                      criticalMsg, QMessageBox::Cancel, QMessageBox::Ok))
         {
             return;
         }
@@ -1761,7 +1761,7 @@ void YerothPointDeVenteWindow::ajouter_article_codebar(const QString & text)
                 QMessageBox::critical(this,
                                       QObject::trUtf8
                                       ("erreur"),
-                                      FROM_UTF8_STRING(criticalMsg), QMessageBox::Cancel, QMessageBox::Ok))
+                                      criticalMsg, QMessageBox::Cancel, QMessageBox::Ok))
         {
             return;
         }
@@ -1820,7 +1820,7 @@ void YerothPointDeVenteWindow::ajouter_article_codebar(const QModelIndex & model
                 QMessageBox::critical(this,
                                       QObject::trUtf8
                                       ("erreur"),
-                                      FROM_UTF8_STRING(criticalMsg), QMessageBox::Cancel, QMessageBox::Ok))
+                                      criticalMsg, QMessageBox::Cancel, QMessageBox::Ok))
         {
             return;
         }
@@ -2310,7 +2310,7 @@ unsigned int YerothPointDeVenteWindow::effectuer_check_out_carte_credit_carte_de
 					sMsg.append(QObject::trUtf8(" n'a pas pu être actualisée!\n" "Contacter 'YEROTH'"));
 				}
 
-				_logger->log("vendre", FROM_UTF8_STRING(sMsg));
+				_logger->log("vendre", sMsg);
 			}
 			else
 			{
@@ -2329,7 +2329,7 @@ unsigned int YerothPointDeVenteWindow::effectuer_check_out_carte_credit_carte_de
 			if (QMessageBox::Ok ==
 					YerothQMessageBox::information(this,
 							QObject::trUtf8("succès d'une vente"),
-							FROM_UTF8_STRING(vMsg)))
+							vMsg))
 			{
 				this->imprimer_facture(vente_id);
 			}
@@ -2520,7 +2520,7 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
 				sMsg.append(QObject::trUtf8(" n'a pas pu être actualisée!\n" "Contacter 'YEROTH'"));
 			}
 
-            _logger->log("vendre", FROM_UTF8_STRING(sMsg));
+            _logger->log("vendre", sMsg);
         }
 		else
 		{
@@ -2538,7 +2538,7 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
     if (QMessageBox::Ok ==
     		YerothQMessageBox::information(this,
     				QObject::trUtf8("succès d'une vente"),
-					FROM_UTF8_STRING(vMsg)))
+					vMsg))
     {
     	this->imprimer_facture(vente_id);
     }
@@ -2804,10 +2804,10 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
 			}
 			else
 			{
-				sMsg.append(QObject::trUtf8(" n'a pas pu être actualisée!\n" "Contacter 'YEROTH'"));
+				sMsg.append(QObject::trUtf8(" n'a pas pu être actualisée !\n" "Contacter 'YEROTH'"));
 			}
 
-            _logger->log("vendre", FROM_UTF8_STRING(sMsg));
+            _logger->log("vendre", sMsg);
         }
 		else
 		{
@@ -2819,15 +2819,13 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
 
     emit SELLING();
 
-    QString vMsg(QObject::trUtf8("La vente de '"));
-
-    vMsg.append(QString::number(_quantiteAVendre))
-        			.append(QObject::trUtf8("' articles a été éffectuée avec succès."));
+    QString vMsg(QString(QObject::trUtf8("La vente de '%1' articles a été éffectuée avec succès !"))
+    				.arg(QString::number(_quantiteAVendre)));
 
     if (QMessageBox::Ok ==
     		YerothQMessageBox::information(this,
     				QObject::trUtf8("succès d'une vente"),
-					FROM_UTF8_STRING(vMsg)))
+					vMsg))
     {
     	this->imprimer_facture(vente_id);
     }

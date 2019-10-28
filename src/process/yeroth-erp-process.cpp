@@ -85,11 +85,11 @@ bool YerothERPProcess::startYerothERPAlertProcess()
     {
     	msg.clear();
 
-        msg.append(QObject::trUtf8("Le système d'alerte \"yeroth-erp-alert-3-0\" est déjà en marche!"));
+        msg.append(QObject::trUtf8("Le système d'alerte \"yeroth-erp-alert-3-0\" est déjà en marche !"));
 
         YerothQMessageBox::information(YerothUtils::getAllWindows()->_adminWindow,
         							  QObject::trUtf8("démarrage du système d'alerte - yeroth-erp-alert-3-0"),
-                                      FROM_UTF8_STRING(msg));
+                                      msg);
     }
 
     return started;

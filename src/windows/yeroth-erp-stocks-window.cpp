@@ -244,7 +244,7 @@ void YerothStocksWindow::private_slot_afficher_historique_du_stock()
 	{
 	    YerothQMessageBox::information(this,
 	    		QObject::trUtf8("stocks - historique du stock"),
-				QObject::trUtf8("Il n'y a pas de stocks listes en ce moment!"));
+				QObject::trUtf8("Il n'y a pas de stocks listés en ce moment !"));
 	}
 
 }
@@ -293,7 +293,7 @@ bool YerothStocksWindow::filtrer_stocks()
 
 	if (stockTableColumnValue.isEmpty())
 	{
-		QString msg(QObject::trUtf8("Veuillez saisir une valeur numérique pour la recherche!"));
+		QString msg(QObject::trUtf8("Veuillez saisir une valeur numérique pour la recherche !"));
 
 		YerothQMessageBox::information(this,
 				QObject::trUtf8("filtrer"),
@@ -910,24 +910,24 @@ void YerothStocksWindow::supprimer_ce_stock()
             YerothUtils::execQuery(deleteAchatsRowQueryStr);
 
             msgSupprimer.clear();
-            msgSupprimer.append("Le stock '");
-            msgSupprimer.append(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
-            msgSupprimer.append("' a été supprimé.");
+
+            msgSupprimer.append(QString(QObject::trUtf8("Le stock '%1' a été supprimé !"))
+            						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION)));
+
             YerothQMessageBox::information(this,
-                                          QObject::trUtf8
-                                          ("suppression d'un stock"),
-                                          FROM_UTF8_STRING(msgSupprimer));
+                                          QObject::tr("suppression d'un stock"),
+                                          msgSupprimer);
         }
         else
         {
             msgSupprimer.clear();
-            msgSupprimer.append("Le stock \"");
-            msgSupprimer.append(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
-            msgSupprimer.append("\" ne pouvait pas être supprimé.");
+
+            msgSupprimer.append(QString(QObject::trUtf8("Le stock '%1' ne pouvait pas être supprimé !"))
+            						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION)));
+
             YerothQMessageBox::warning(this,
-                                      QObject::trUtf8
-                                      ("suppression d'un stock"),
-                                      FROM_UTF8_STRING(msgSupprimer));
+                                       QObject::trUtf8("suppression d'un stock"),
+                                       msgSupprimer);
         }
 
         this->afficherStocks(*_curStocksTableModel);
@@ -1128,7 +1128,7 @@ bool YerothStocksWindow::export_csv_file()
     {
         YerothQMessageBox::information(this,
                                       QObject::trUtf8("pas de données à exporter au format csv"),
-                                      QObject::trUtf8("Il n'y a pas de données à exporter au format csv!"));
+                                      QObject::trUtf8("Il n'y a pas de données à exporter au format csv !"));
         return false;
     }
 

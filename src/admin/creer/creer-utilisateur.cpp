@@ -4,7 +4,7 @@ bool YerothAdminCreateWindow::creer_utilisateur()
     //qDebug() << "YerothAdminCreateWindow::creer_utilisateur()";
     if (creer_utilisateur_check_fields())
     {
-        QString retMsg("Un compte utilisateur '");
+        QString retMsg(QObject::tr("Un compte utilisateur '"));
 
         YerothSqlTableModel &usersTableModel = _allWindows->getSqlTableModel_users();
 
@@ -26,13 +26,14 @@ bool YerothAdminCreateWindow::creer_utilisateur()
 
             //qDebug() << "++ duplicate utilisateur: " << duplicateUtilisateur;
 
-            retMsg.append(duplicateUtilisateur).append("' existe déjà !");
+            retMsg.append(QString(QObject::trUtf8("%1' existe déjà !"))
+            				.arg(duplicateUtilisateur));
 
             lineEdit_creer_utilisateur_id->setPalette(YerothUtils::YEROTH_RED_PALETTE);
 
             YerothQMessageBox::warning(this,
                                  QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ créer ~ utilisateur"),
-                                 FROM_UTF8_STRING(retMsg));
+                                 retMsg);
 
             usersTableModel.resetFilter();
 
@@ -45,9 +46,12 @@ bool YerothAdminCreateWindow::creer_utilisateur()
 
         if (YerothUtils::isEqualCaseInsensitive(mot_passe, lineEdit_creer_utilisateur_id->text()))
         {
-            QString msg("Choisissez un mot de passe different de votre id !");
-            YerothQMessageBox::warning(this, QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ créer ~ utilisateur"),
-                                 QObject::trUtf8(msg.toUtf8()), QMessageBox::Ok);
+            QString msg(QObject::trUtf8("Choisissez un mot de passe différent de votre id !"));
+
+            YerothQMessageBox::warning(this,
+            						   QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ créer ~ utilisateur"),
+									   msg,
+									   QMessageBox::Ok);
             return false;
         }
 
@@ -90,17 +94,19 @@ bool YerothAdminCreateWindow::creer_utilisateur()
 
         if (!success)
         {
-            retMsg.append("' n'a pas pu être créer!");
+            retMsg.append(QObject::trUtf8("' n'a pas pu être créer!"));
+
             YerothQMessageBox::warning(this,
                                  QObject::trUtf8("Yeroth-erp-3.0 - créer"),
-                                 FROM_UTF8_STRING(retMsg));
+                                 retMsg);
             return false;
         }
 
-        retMsg.append("' a été créer").append("!");
+        retMsg.append(QObject::trUtf8("' a été créer !"));
 
-        YerothQMessageBox::information(this, QObject::trUtf8("Yeroth-erp-3.0 - créer"),
-                                 FROM_UTF8_STRING(retMsg));
+        YerothQMessageBox::information(this,
+        							   QObject::trUtf8("Yeroth-erp-3.0 - créer"),
+                                 	   retMsg);
 
         this->clear_utilisateur_all_fields();
 
@@ -136,11 +142,15 @@ bool YerothAdminCreateWindow::creer_utilisateur_check_fields()
         if (lineEdit_creer_utilisateur_mot_passe_1->text() !=
                 lineEdit_creer_utilisateur_verification->text())
         {
-            QString msg("Les deux mot de passe sont différents!");
-            YerothQMessageBox::warning(this, QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ créer ~ utilisateur"),
-                                 FROM_UTF8_STRING(msg), QMessageBox::Ok);
+            QString msg(QObject::trUtf8("Les deux mot de passe sont différents !"));
+
+            YerothQMessageBox::warning(this,
+            						   QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ créer ~ utilisateur"),
+									   msg, QMessageBox::Ok);
+
             lineEdit_creer_utilisateur_mot_passe_1->setPalette(YerothUtils::YEROTH_RED_PALETTE);
             lineEdit_creer_utilisateur_verification->setPalette(YerothUtils::YEROTH_RED_PALETTE);
+
             return false;
         }
     }

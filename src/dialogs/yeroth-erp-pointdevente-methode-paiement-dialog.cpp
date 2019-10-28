@@ -1,3 +1,8 @@
+/*
+ * yeroth-erp-pointdevente-methode-paiement-dialog.cpp
+ *
+ *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
+ */
 
 #include"src/yeroth-erp-windows.hpp"
 

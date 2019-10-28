@@ -411,7 +411,7 @@ bool YerothMarchandisesWindow::filtrer()
 
 	if (stockTableColumnValue.isEmpty())
 	{
-		QString msg(QObject::trUtf8("Veuillez saisir une valeur numérique pour la recherche!"));
+		QString msg(QObject::trUtf8("Veuillez saisir une valeur numérique pour la recherche !"));
 
 		YerothQMessageBox::information(this,
 									  QObject::trUtf8("filtrer"),
@@ -767,25 +767,28 @@ void YerothMarchandisesWindow::supprimer_ce_stock()
         if (resRemoved && _curInventaireDesStocksTableModel->select())
         {
             msgSupprimer.clear();
-            msgSupprimer.append(QString(QObject::tr("Le stock '%1' a été supprimé."))
+
+            msgSupprimer.append(QString(QObject::trUtf8("Le stock '%1' a été supprimé."))
             						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION)));
 
             YerothQMessageBox::information(this,
                                           QObject::trUtf8("succès"),
-                                          FROM_UTF8_STRING(msgSupprimer));
+                                          msgSupprimer);
         }
         else
         {
             msgSupprimer.clear();
-            msgSupprimer.append("L'article \"");
-            msgSupprimer.append(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
-            msgSupprimer.append("\" ne pouvait pas être supprimé.");
+
+            msgSupprimer.append(QString(QObject::trUtf8("L'article \"%1\" ne pouvait pas être supprimé !"))
+            						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION)));
+
             YerothQMessageBox::warning(this,
-                                      QObject::trUtf8
-                                      ("échec"),
-                                      FROM_UTF8_STRING(msgSupprimer));
+                                       QObject::trUtf8("échec"),
+                                       msgSupprimer);
         }
+
         afficherMarchandises();
+
         updateLineEditDesignation();
     }
     else

@@ -2,7 +2,6 @@
  * yeroth-erp-Entrer un stock-window.cpp
  *
  *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
  */
 
 #include "yeroth-erp-entrer-window.hpp"
@@ -31,9 +30,14 @@ const QString YerothEntrerWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2
         arg(YEROTH_ERP_WINDOW_TITLE, QObject::trUtf8("entrer un stock")));
 
 
-YerothEntrerWindow::YerothEntrerWindow():YerothWindowsCommons(YerothEntrerWindow::_WINDOW_TITLE), _logger(new YerothLogger("YerothEntrerWindow")),
-    _stocks_id(0), _tva(0.0), _tvaCheckBoxPreviousState(false), _createNewCategorie(false),
-    _createNewFournisseur(false)
+YerothEntrerWindow::YerothEntrerWindow()
+:YerothWindowsCommons(YerothEntrerWindow::_WINDOW_TITLE),
+ _logger(new YerothLogger("YerothEntrerWindow")),
+ _stocks_id(0),
+ _tva(0.0),
+ _tvaCheckBoxPreviousState(false),
+ _createNewCategorie(false),
+ _createNewFournisseur(false)
 {
     setupUi(this);
 
@@ -41,7 +45,8 @@ YerothEntrerWindow::YerothEntrerWindow():YerothWindowsCommons(YerothEntrerWindow
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
                                        "QMessageBox QLabel {color: rgb(%2);}").
-                               arg(COLOUR_RGB_STRING_YEROTH_GRAY_78_78_78, COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
+                               arg(COLOUR_RGB_STRING_YEROTH_GRAY_78_78_78,
+                            	   COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
     setupLineEdits();
 
@@ -196,27 +201,24 @@ bool YerothEntrerWindow::creerNouveauFournisseur(const QString proposedFournisse
 		record.setValue(YerothDatabaseTableColumn::ID, _allWindows->getNextIdSqlTableModel_fournisseurs());
 		record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE, proposedFournisseurName);
 
-		QString retMsg(QObject::trUtf8("L'entreprise fournisseur '"));
-
-		retMsg.append(proposedFournisseurName);
+		QString retMsg(QString(QObject::trUtf8("L'entreprise fournisseur '%1"))
+							.arg(proposedFournisseurName));
 
 		bool success = fournisseurSqlTableModel.insertNewRecord(record);
 
 		if (!success)
 		{
-			retMsg.append(QObject::trUtf8("' n'a pas pu être créer!"));
+			retMsg.append(QObject::trUtf8("' n'a pas pu être créer !"));
 
-			YerothQMessageBox::warning(this, QObject::trUtf8("échec"),
-					FROM_UTF8_STRING(retMsg));
+			YerothQMessageBox::warning(this, QObject::trUtf8("échec"), retMsg);
 
 			return false;
 		}
 		else
 		{
-			retMsg.append(QObject::trUtf8("' a été créer avec succès!"));
+			retMsg.append(QObject::trUtf8("' a été créer avec succès !"));
 
-			YerothQMessageBox::information(this, QObject::trUtf8("succès"),
-					FROM_UTF8_STRING(retMsg));
+			YerothQMessageBox::information(this, QObject::trUtf8("succès"), retMsg);
 
 			return true;
 		}
@@ -252,27 +254,24 @@ bool YerothEntrerWindow::creerNouvelleCategorie(const QString proposedCategorieN
     	record.setValue(YerothDatabaseTableColumn::NOM_CATEGORIE, proposedCategorieName);
     	record.setValue(YerothDatabaseTableColumn::DESCRIPTION_CATEGORIE, "");
 
-    	QString retMsg(QObject::trUtf8("La catégorie '"));
-
-    	retMsg.append(proposedCategorieName);
+    	QString retMsg(QString(QObject::trUtf8("La catégorie '%1"))
+    						.arg(proposedCategorieName));
 
     	bool success = categorieSqlTableModel.insertNewRecord(record);
 
     	if (!success)
     	{
-    		retMsg.append(QObject::trUtf8("' n'a pas pu être créer!"));
+    		retMsg.append(QObject::trUtf8("' n'a pas pu être créer !"));
 
-    		YerothQMessageBox::warning(this, QObject::trUtf8("échec"),
-    				FROM_UTF8_STRING(retMsg));
+    		YerothQMessageBox::warning(this, QObject::trUtf8("échec"), retMsg);
 
     		return false;
     	}
     	else
     	{
-    		retMsg.append(QObject::trUtf8("' a été créer avec succès!"));
+    		retMsg.append(QObject::trUtf8("' a été créer avec succès !"));
 
-    		YerothQMessageBox::information(this, QObject::trUtf8("succès"),
-    				FROM_UTF8_STRING(retMsg));
+    		YerothQMessageBox::information(this, QObject::trUtf8("succès"), retMsg);
 
     		return true;
     	}
@@ -743,21 +742,24 @@ bool YerothEntrerWindow::insertStockItemInProductList()
     success = productListSqlTableModel.insertNewRecord(record);
 
 
-    QString retMsg("Le stock '");
-
-    retMsg.append(lineEdit_designation->text()).append("'");
+    QString retMsg(QString(QObject::tr("Le stock '%1'"))
+    					.arg(lineEdit_designation->text()));
 
     if (success)
     {
-        retMsg.append(" a été enregistré dans la liste des articles!");
-        YerothQMessageBox::information(this, QObject::trUtf8("enregistrement du stock dans la liste des marchandises"),
-        								FROM_UTF8_STRING(retMsg));
+        retMsg.append(QObject::trUtf8(" a été enregistré dans la liste des articles !"));
+
+        YerothQMessageBox::information(this,
+        							   QObject::trUtf8("enregistrement du stock dans la liste des marchandises"),
+        							   retMsg);
     }
     else
     {
-        retMsg.append(" n'a pas pu être enregistré dans la liste des produits!");
-        YerothQMessageBox::warning(this, QObject::trUtf8("échec de l'enregistrement du stock dans la liste des marchandises"),
-        							FROM_UTF8_STRING(retMsg));
+        retMsg.append(QObject::trUtf8(" n'a pas pu être enregistré dans la liste des produits !"));
+
+        YerothQMessageBox::warning(this,
+        						   QObject::trUtf8("échec de l'enregistrement du stock dans la liste des marchandises"),
+        						   retMsg);
     }
 
     return success;
@@ -798,7 +800,7 @@ void YerothEntrerWindow::enregistrer_produit()
     {
         if (!isProfitable())
         {
-            QString warnMsg(QObject::trUtf8("Le prix de vente doit être supérieure ou égal au prix d'achat!"));
+            QString warnMsg(QObject::trUtf8("Le prix de vente doit être supérieure ou égal au prix d'achat !"));
 
             if (QMessageBox::Ok ==
                     YerothQMessageBox::warning(this, QObject::tr("pas profitable"), warnMsg))
@@ -812,7 +814,7 @@ void YerothEntrerWindow::enregistrer_produit()
 
         if (dateEdit_date_peremption->date() <= QDate::currentDate())
         {
-            QString warnMsg(QObject::trUtf8("La date de péremption n'est pas postdatée!\n\n"
+            QString warnMsg(QObject::trUtf8("La date de péremption n'est pas postdatée !\n\n"
                             				"Continuer avec l'enregistrement des données de l'article ?"));
 
             if (QMessageBox::Ok ==
@@ -968,38 +970,48 @@ YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
 
 YEROTH_ERP_3_0_COMMIT_DATABASE_TRANSACTION;
 
-        QString achatRetMsg("L'achat du stock '");
-
-        achatRetMsg.append(lineEdit_designation->text()).append("'");
+        QString achatRetMsg(QString(QObject::tr("L'achat du stock '%1'"))
+        						.arg(lineEdit_designation->text()));
 
         if (achatSuccess)
         {
-        	achatRetMsg.append(" a été enregistré dans la base de données!");
-            YerothQMessageBox::information(this, QObject::trUtf8("enregistrement du stock avec succès"),
-                                          FROM_UTF8_STRING(achatRetMsg));
+        	achatRetMsg.append(QObject::trUtf8(" a été enregistré dans la base de données !"));
+
+            YerothQMessageBox::information(this,
+            							   QObject::trUtf8("enregistrement du stock avec succès"),
+                                           achatRetMsg);
         }
         else
         {
-        	achatRetMsg.append(" n'a pas pu être enregistré dans la base de données!");
-            YerothQMessageBox::warning(this, QObject::trUtf8("échec de l'enregistrement du stock"), FROM_UTF8_STRING(achatRetMsg));
+        	achatRetMsg.append(QObject::trUtf8(" n'a pas pu être enregistré dans la base de données !"));
+
+            YerothQMessageBox::warning(this,
+            						   QObject::trUtf8("échec de l'enregistrement du stock"),
+									   achatRetMsg);
         }
 
-        QString retMsg("Le stock '");
-
-        retMsg.append(lineEdit_designation->text()).append("'");
+        QString retMsg(QString(QObject::tr("Le stock '%1'"))
+        					.arg(lineEdit_designation->text()));
 
         if (success)
         {
-            retMsg.append(" a été enregistré dans la base de données!");
-            YerothQMessageBox::information(this, QObject::trUtf8("enregistrement du stock avec succès"),
-                                          FROM_UTF8_STRING(retMsg));
+            retMsg.append(QObject::trUtf8(" a été enregistré dans la base de données !"));
+
+            YerothQMessageBox::information(this,
+            							   QObject::trUtf8("enregistrement du stock avec succès"),
+                                           retMsg);
         }
         else
         {
-            retMsg.append(" n'a pas pu être enregistré dans la base de données!");
-            YerothQMessageBox::warning(this, QObject::trUtf8("échec de l'enregistrement du stock"), FROM_UTF8_STRING(retMsg));
+            retMsg.append(QObject::trUtf8(" n'a pas pu être enregistré dans la base de données !"));
+
+            YerothQMessageBox::warning(this,
+            						   QObject::trUtf8("échec de l'enregistrement du stock"),
+									   retMsg);
         }
-        this->rendreInvisible();
+
+        rendreInvisible();
+
         _allWindows->_stocksWindow->rendreVisible(_curStocksTableModel);
     }
     else

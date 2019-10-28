@@ -1,9 +1,7 @@
 /*
  * yeroth-erp-process-info.cpp
  *
- *  Created on: Apr 23, 2016
  *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
  */
 
 #include "yeroth-erp-process-info.hpp"

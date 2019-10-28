@@ -1,9 +1,7 @@
 /*
  * yeroth-erp-database.hpp
  *
- *  Created on: June 15, 2015
  *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
  */
 
 #ifndef SRC_UTILS_YEROTH_DATABASE_HPP_

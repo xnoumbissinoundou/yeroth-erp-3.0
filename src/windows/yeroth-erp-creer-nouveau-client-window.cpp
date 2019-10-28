@@ -1,27 +1,16 @@
 /*
+ * yeroth-erp-creer-nouveau-client-window.cpp
+ *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
+ */
 
-   * yeroth-erp-creer-nouveau-client-window.cpp
+#include "yeroth-erp-creer-nouveau-client-window.hpp"
 
-   *
-
-   *  Created on: Oct 10, 2015
-
-   *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
-
-   *      Email:  xnoundou7@gmail.com
-
-   */
-#include "yeroth-erp-creer-nouveau-client-window.hpp"/**
-
-* yeroth-erp-windows.hpp cannot be included in
-
-* the header file because it will caused circular
-
-* dependency that will lead to an unsuccessful
-
-* compilation.
-
-*/
+/**
+ * yeroth-erp-windows.hpp cannot be included in
+ * the header file because it will caused circular
+ * dependency that will lead to an unsuccessful
+ * compilation.
+ */
 
 #include "src/yeroth-erp-windows.hpp"
 
@@ -42,7 +31,9 @@ YerothCreerNouveauClientWindow::YerothCreerNouveauClientWindow():YerothWindowsCo
             YerothLogger("YerothCreerNouveauClientWindow"))
 {
     setupUi(this);
+
     this->mySetupUi(this);
+
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
                                        "QMessageBox QLabel {color: rgb(%2);}").
                                arg(COLOUR_RGB_STRING_YEROTH_GRAY_78_78_78, COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
@@ -50,6 +41,7 @@ YerothCreerNouveauClientWindow::YerothCreerNouveauClientWindow():YerothWindowsCo
     _logger->log("YerothCreerNouveauClientWindow");
 
     lineEdit_client_nom_entreprise->setFocus();
+
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
@@ -230,7 +222,8 @@ bool YerothCreerNouveauClientWindow::creer_client()
 {
     if (creer_client_check_fields())
     {
-        QString retMsg("Le client '");
+        QString retMsg(QString(QObject::trUtf8("Le client '%1"))
+        				.arg(lineEdit_client_nom_entreprise->text()));
 
         YerothSqlTableModel & clientsTableModel = _allWindows->getSqlTableModel_clients();
 
@@ -250,24 +243,21 @@ bool YerothCreerNouveauClientWindow::creer_client()
         record.setValue(YerothDatabaseTableColumn::NUMERO_CONTRIBUABLE, lineEdit_client_numero_contribuable->text());
         record.setValue(YerothDatabaseTableColumn::DESCRIPTION_CLIENT, textEdit_client_description->toPlainText());
 
-        retMsg.append(lineEdit_client_nom_entreprise->text());
-
         bool success = clientsTableModel.insertNewRecord(record);
 
         if (!success)
         {
-            retMsg.append(QObject::trUtf8("' n'a pas pu être créer!"));
+            retMsg.append(QObject::trUtf8("' n'a pas pu être créer !"));
 
-            YerothQMessageBox::warning(this, QObject::trUtf8("succès"),
-                                      FROM_UTF8_STRING(retMsg));
+            YerothQMessageBox::warning(this, QObject::trUtf8("succès"), retMsg);
 
             return false;
         }
 
-        retMsg.append(QObject::trUtf8("' a été créer avec succès!"));
+        retMsg.append(QObject::trUtf8("' a été créer avec succès !"));
 
-        YerothQMessageBox::information(this, QObject::trUtf8("échec"),
-                                      FROM_UTF8_STRING(retMsg));
+        YerothQMessageBox::information(this, QObject::trUtf8("échec"), retMsg);
+
         return true;
     }
     return false;
@@ -313,13 +303,10 @@ bool YerothCreerNouveauClientWindow::creer_client_check_fields()
 
         if (clientsTableModelRowCount > 0)
         {
-            QString retMsg(QObject::trUtf8("L'entreprise nommée '"));
+            QString retMsg(QString(QObject::trUtf8("L'entreprise nommée '%1' est déjà existante dans la base de données !"))
+            					.arg(lineEdit_client_nom_entreprise->text()));
 
-            retMsg.append(lineEdit_client_nom_entreprise->text())
-            	  .append(QObject::trUtf8("' est déjà existante dans la base de données!"));
-
-            YerothQMessageBox::warning(this, QObject::trUtf8("déjà existant"),
-                                      FROM_UTF8_STRING(retMsg));
+            YerothQMessageBox::warning(this, QObject::trUtf8("déjà existant"), retMsg);
 
             clientsTableModel.resetFilter();
 

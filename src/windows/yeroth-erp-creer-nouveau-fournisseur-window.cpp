@@ -1,17 +1,11 @@
 /*
+ * yeroth-erp-creer-nouveau-fournisseur-window.cpp
+ *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
+ */
 
-   * yeroth-erp-creer-nouveau-fournisseur-window.cpp
+#include"yeroth-erp-creer-nouveau-fournisseur-window.hpp"
 
-   *
-
-   *  Created on: Dec 16, 2016
-
-   *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
-
-   *      Email:  xnoundou7@gmail.com
-
-   */
-#include"yeroth-erp-creer-nouveau-fournisseur-window.hpp"/**
+/**
 
 #include "../utils/yeroth-erp-database-table-column.hpp"
 * yeroth-erp-windows.hpp cannot be included in
@@ -23,19 +17,24 @@
 * compilation.
 
 */
-#include"src/yeroth-erp-windows.hpp"
-#include"src/utils/yeroth-erp-sqltable-model.hpp"
-#include"src/utils/yeroth-erp-logger.hpp"
-#include"src/users/yeroth-erp-users.hpp"
-#include"yeroth-erp-search-form.hpp"
-const QString YerothCreerNouveauFournisseurWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2")).
-arg(YEROTH_ERP_WINDOW_TITLE,
-QObject::
-trUtf8("créer un nouveau fournisseur")));
 
-YerothCreerNouveauFournisseurWindow::YerothCreerNouveauFournisseurWindow():YerothWindowsCommons(YerothCreerNouveauFournisseurWindow::_WINDOW_TITLE),
-    _logger(new
-            YerothLogger("YerothCreerNouveauFournisseurWindow"))
+#include "src/yeroth-erp-windows.hpp"
+
+#include "src/utils/yeroth-erp-sqltable-model.hpp"
+
+#include "src/utils/yeroth-erp-logger.hpp"
+
+#include "src/users/yeroth-erp-users.hpp"
+
+#include "yeroth-erp-search-form.hpp"
+
+const QString YerothCreerNouveauFournisseurWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2"))
+																	.arg(YEROTH_ERP_WINDOW_TITLE,
+																		 QObject::trUtf8("créer un nouveau fournisseur")));
+
+YerothCreerNouveauFournisseurWindow::YerothCreerNouveauFournisseurWindow()
+:YerothWindowsCommons(YerothCreerNouveauFournisseurWindow::_WINDOW_TITLE),
+ _logger(new YerothLogger("YerothCreerNouveauFournisseurWindow"))
 {
     setupUi(this);
 
@@ -43,7 +42,8 @@ YerothCreerNouveauFournisseurWindow::YerothCreerNouveauFournisseurWindow():Yerot
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
                                        "QMessageBox QLabel {color: rgb(%2);}").
-                               arg(COLOUR_RGB_STRING_YEROTH_GRAY_78_78_78, COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
+                               arg(COLOUR_RGB_STRING_YEROTH_GRAY_78_78_78,
+                            	   COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
@@ -88,7 +88,8 @@ void YerothCreerNouveauFournisseurWindow::valider()
     {
         _allWindows->_entrerWindow->setCurrentFournisseurName(lineEdit_creer_fournisseur_nom->text());
         _allWindows->_entrerWindow->rendreVisible(_curStocksTableModel);
-        this->rendreInvisible();
+
+        rendreInvisible();
     }
 }
 
@@ -181,6 +182,7 @@ void YerothCreerNouveauFournisseurWindow::menu()
     _logger->log("menu");
     _allWindows->_mainWindow->rendreVisible(_curStocksTableModel);
     _allWindows->_entrerWindow->rendreInvisible();
+
     this->rendreInvisible();
 }
 
@@ -189,6 +191,7 @@ void YerothCreerNouveauFournisseurWindow::alertes()
     _logger->log("alertes");
     _allWindows->_listerAlertesWindow->rendreVisible(_curStocksTableModel);
     _allWindows->_entrerWindow->rendreInvisible();
+
     YerothWindowsCommons::rendreInvisible();
 }
 
@@ -197,6 +200,7 @@ void YerothCreerNouveauFournisseurWindow::ventes()
     _logger->log("caisse");
     _allWindows->_ventesWindow->rendreVisible(_curStocksTableModel);
     _allWindows->_entrerWindow->rendreInvisible();
+
     YerothWindowsCommons::rendreInvisible();
 }
 
@@ -225,7 +229,8 @@ bool YerothCreerNouveauFournisseurWindow::creer_fournisseur()
 {
     if (creer_fournisseur_check_fields())
     {
-        QString retMsg(QObject::trUtf8("Le fournisseur '"));
+        QString retMsg(QString(QObject::trUtf8("Le fournisseur '%1"))
+        					.arg(lineEdit_creer_fournisseur_nom->text()));
 
         YerothSqlTableModel & fournisseurTableModel = _allWindows->getSqlTableModel_fournisseurs();
 
@@ -235,24 +240,20 @@ bool YerothCreerNouveauFournisseurWindow::creer_fournisseur()
         record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE, lineEdit_creer_fournisseur_nom->text());
         record.setValue(YerothDatabaseTableColumn::DESCRIPTION_FOURNISSEUR, textEdit_creer_fournisseur_description->toPlainText());
 
-        retMsg.append(lineEdit_creer_fournisseur_nom->text());
-
         bool success = fournisseurTableModel.insertNewRecord(record);
 
         if (!success)
         {
-            retMsg.append(QObject::trUtf8("' n'a pas pu être créer!"));
+            retMsg.append(QObject::trUtf8("' n'a pas pu être créer !"));
 
-            YerothQMessageBox::warning(this, QObject::trUtf8("succès"),
-                                      FROM_UTF8_STRING(retMsg));
+            YerothQMessageBox::warning(this, QObject::trUtf8("succès"), retMsg);
 
             return false;
         }
 
-        retMsg.append(QObject::trUtf8("' a été créer avec succès!"));
+        retMsg.append(QObject::trUtf8("' a été créer avec succès !"));
 
-        YerothQMessageBox::information(this, QObject::trUtf8("échec"),
-                                      FROM_UTF8_STRING(retMsg));
+        YerothQMessageBox::information(this, QObject::trUtf8("échec"), retMsg);
 
         return true;
     }
@@ -273,13 +274,10 @@ bool YerothCreerNouveauFournisseurWindow::creer_fournisseur_check_fields()
                 Is_SearchQSqlTable(YerothDatabaseTableColumn::NOM_ENTREPRISE,
                                    lineEdit_creer_fournisseur_nom->text()) > 0)
         {
-            QString retMsg(QObject::trUtf8("Le fournisseur '"));
+            QString retMsg(QString(QObject::trUtf8("Le fournisseur '%1' est déjà existante dans la base de données !"))
+            					.arg(lineEdit_creer_fournisseur_nom->text()));
 
-            retMsg.append(lineEdit_creer_fournisseur_nom->text())
-            	  .append(QObject::trUtf8("' est déjà existante dans la base de données!"));
-
-            YerothQMessageBox::warning(this, QObject::trUtf8("fournisseur déjà existant"),
-                                      FROM_UTF8_STRING(retMsg));
+            YerothQMessageBox::warning(this, QObject::trUtf8("fournisseur déjà existant"), retMsg);
 
             fournisseurTableModel.resetFilter();
 

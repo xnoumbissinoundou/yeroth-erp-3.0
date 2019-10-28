@@ -2,7 +2,6 @@
  * yeroth-erp-creer-nouvelle-categorie-window.cpp
  *
  *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
  */
 
 #include "yeroth-erp-creer-nouvelle-categorie-window.hpp"
@@ -41,7 +40,8 @@ YerothCreerNouvelleCategorieWindow::YerothCreerNouvelleCategorieWindow():YerothW
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
                                        "QMessageBox QLabel {color: rgb(%2);}").
-                               arg(COLOUR_RGB_STRING_YEROTH_GRAY_78_78_78, COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
+                               arg(COLOUR_RGB_STRING_YEROTH_GRAY_78_78_78,
+                            	   COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
@@ -226,7 +226,8 @@ bool YerothCreerNouvelleCategorieWindow::creer_categorie()
 {
     if (creer_categorie_check_fields())
     {
-        QString retMsg(QObject::trUtf8("La catégorie '"));
+        QString retMsg(QString(QObject::trUtf8("La catégorie '%1"))
+        					.arg(lineEdit_creer_categorie_nom->text()));
 
         YerothSqlTableModel & categorieTableModel = _allWindows->getSqlTableModel_categories();
 
@@ -236,24 +237,20 @@ bool YerothCreerNouvelleCategorieWindow::creer_categorie()
         record.setValue(YerothDatabaseTableColumn::NOM_CATEGORIE, lineEdit_creer_categorie_nom->text());
         record.setValue(YerothDatabaseTableColumn::DESCRIPTION_CATEGORIE, textEdit_creer_categorie_description->toPlainText());
 
-        retMsg.append(lineEdit_creer_categorie_nom->text());
-
         bool success = categorieTableModel.insertNewRecord(record);
 
         if (!success)
         {
-            retMsg.append(QObject::trUtf8("' n'a pas pu être créer!"));
+            retMsg.append(QObject::trUtf8("' n'a pas pu être créer !"));
 
-            YerothQMessageBox::warning(this, QObject::trUtf8("échec"),
-                                      FROM_UTF8_STRING(retMsg));
+            YerothQMessageBox::warning(this, QObject::trUtf8("échec"), retMsg);
 
             return false;
         }
 
-        retMsg.append(QObject::trUtf8("' a été créer avec succès!"));
+        retMsg.append(QObject::trUtf8("' a été créer avec succès !"));
 
-        YerothQMessageBox::information(this, QObject::trUtf8("succès"),
-                                      FROM_UTF8_STRING(retMsg));
+        YerothQMessageBox::information(this, QObject::trUtf8("succès"), retMsg);
 
         return true;
     }
@@ -268,15 +265,13 @@ bool YerothCreerNouvelleCategorieWindow::creer_categorie_check_fields()
     {
         YerothSqlTableModel & categorieTableModel = _allWindows->getSqlTableModel_categories();
 
-        if (categorieTableModel.Is_SearchQSqlTable(QString(YerothDatabaseTableColumn::NOM_CATEGORIE), lineEdit_creer_categorie_nom->text()) > 0)
+        if (categorieTableModel.Is_SearchQSqlTable(QString(YerothDatabaseTableColumn::NOM_CATEGORIE),
+        												lineEdit_creer_categorie_nom->text()) > 0)
         {
-            QString retMsg("La catégorie '");
+            QString retMsg(QString(QObject::trUtf8("La catégorie '%1' est déjà existante dans la base de données !"))
+            				.arg(lineEdit_creer_categorie_nom->text()));
 
-            retMsg.append(lineEdit_creer_categorie_nom->text())
-            	  .append(QObject::trUtf8("' est déjà existante dans la base de données!"));
-
-            YerothQMessageBox::warning(this, QObject::trUtf8("déjà existant"),
-                                      FROM_UTF8_STRING(retMsg));
+            YerothQMessageBox::warning(this, QObject::trUtf8("déjà existant"), retMsg);
 
             categorieTableModel.resetFilter();
 

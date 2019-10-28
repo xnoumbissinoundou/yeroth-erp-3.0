@@ -1302,7 +1302,7 @@ void YerothTableauxDeBordWindow::analyseComparee()
         .append("'");
     }
 
-    QString AUCUN_FILTRE(QObject::tr("aucun filtre!"));
+    QString AUCUN_FILTRE(QObject::tr("aucun filtre !"));
 
     bool filtreActif = false;
 
@@ -1667,7 +1667,7 @@ void YerothTableauxDeBordWindow::analyseComparee()
 		if (textFromLineEditEvolutionSujets.isEmpty())
 		{
 			yerothFiltre.clear();
-			yerothFiltre.append(QObject::tr("aucun filtre!"));
+			yerothFiltre.append(QObject::tr("aucun filtre !"));
 		}
 	}
 	else
@@ -1845,7 +1845,7 @@ void YerothTableauxDeBordWindow::calculerChiffresDaffaireMois()
 
     bool filtreActif = false;
 
-    QString AUCUN_FILTRE(QObject::tr("aucun filtre!"));
+    QString AUCUN_FILTRE(QObject::tr("aucun filtre !"));
 
     QString yerothFiltre;
 
@@ -2151,7 +2151,7 @@ void YerothTableauxDeBordWindow::calculerChiffresDaffaireMois()
 		if (textFromLineEditEvolutionSujets.isEmpty())
 		{
 			yerothFiltre.clear();
-			yerothFiltre.append(QObject::tr("aucun filtre!"));
+			yerothFiltre.append(QObject::tr("aucun filtre !"));
 		}
 	}
 	else

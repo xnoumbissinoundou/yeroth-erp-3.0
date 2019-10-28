@@ -3,7 +3,7 @@ bool YerothAdminCreateWindow::creer_alerte()
 {
     if (creer_alerte_check_fields())
     {
-        QString retMsg("Une alerte au nom de '");
+        QString retMsg(QObject::tr("Une alerte au nom de '"));
 
         YerothSqlTableModel &alertesTableModel = _allWindows->getSqlTableModel_alertes();
 
@@ -23,11 +23,12 @@ bool YerothAdminCreateWindow::creer_alerte()
 
             //qDebug() << "++ duplicate alerte: " << duplicateAlerte;
 
-            retMsg.append(duplicateAlerte).append("' existe déjà !");
+            retMsg.append(QString(QObject::trUtf8("%1' existe déjà ! "))
+            				.arg(duplicateAlerte));
 
             YerothQMessageBox::warning(this,
                                  QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ créer ~ alerte"),
-                                 FROM_UTF8_STRING(retMsg));
+                                 retMsg);
 
             alertesTableModel.resetFilter();
 
@@ -84,18 +85,21 @@ bool YerothAdminCreateWindow::creer_alerte()
 
         if (!success)
         {
-            retMsg.append(lineEdit_creer_alerte_nom->text())
-            .append("' n'a pas pu être créer!");
+        	retMsg.append(QString(QObject::trUtf8("%1' n'a pas pu être créer !"))
+        					.arg(lineEdit_creer_alerte_nom->text()));
+
             YerothQMessageBox::warning(this,
                                  QObject::trUtf8("Yeroth-erp-3.0 - créer"),
-                                 FROM_UTF8_STRING(retMsg));
+                                 retMsg);
             return false;
         }
 
-        retMsg.append(lineEdit_creer_alerte_nom->text())
-        .append("' a été créer avec succès!");
-        YerothQMessageBox::information(this, QObject::trUtf8("Yeroth-erp-3.0 - créer"),
-                                 FROM_UTF8_STRING(retMsg));
+        retMsg.append(QString(QObject::trUtf8("%1' a été créer avec succès !"))
+    					.arg(lineEdit_creer_alerte_nom->text()));
+
+        YerothQMessageBox::information(this,
+        							   QObject::trUtf8("Yeroth-erp-3.0 - créer"),
+                                 	   retMsg);
 
         this->clear_alerte_all_fields();
         this->rendreInvisible();
@@ -133,15 +137,18 @@ bool YerothAdminCreateWindow::creer_alerte_check_fields()
     if (!radioButton_creer_alerte_quantite->isChecked() &&
             !radioButton_creer_alerte_periode_temps->isChecked())
     {
-        QString aMsg("Veuillez choisir comme paramètre de l'alerte ");
-        aMsg.append("soit la 'quantité', soit la 'période de temps'!");
+        QString aMsg(QObject::trUtf8("Veuillez choisir comme paramètre de l'alerte "
+        							 "soit la 'quantité', soit la 'période de temps' !"));
+
         YerothQMessageBox::information(this,
                                  QObject::trUtf8("Yeroth-erp-3.0 - créer ~ alerte"),
-                                 FROM_UTF8_STRING(aMsg));
+                                 aMsg);
+
         comboBox_creer_alerte_condition->checkField();
         lineEdit_creer_alerte_quantite->setPalette(YerothUtils::YEROTH_RED_PALETTE);
         dateEdit_creer_alerte_date_debut->setPalette(YerothUtils::YEROTH_RED_PALETTE);
         dateEdit_creer_alerte_date_fin->setPalette(YerothUtils::YEROTH_RED_PALETTE);
+
         return false;
     }
     else
@@ -163,10 +170,11 @@ bool YerothAdminCreateWindow::creer_alerte_check_fields()
             int q = lineEdit_creer_alerte_quantite->text().toInt();
             if (q < 0)
             {
-                QString qMsg("La quantité doit être positive!");
+                QString qMsg(QObject::trUtf8("La quantité doit être supérieure à 0 !"));
+
                 YerothQMessageBox::information(this,
                                          QObject::trUtf8("Yeroth-erp-3.0 - créer-alerte"),
-                                         FROM_UTF8_STRING(qMsg));
+                                         qMsg);
                 return false;
             }
         }
@@ -187,11 +195,11 @@ bool YerothAdminCreateWindow::creer_alerte_check_fields()
             dateEdit_creer_alerte_date_debut->setPalette(YerothUtils::YEROTH_RED_PALETTE);
             dateEdit_creer_alerte_date_fin->setPalette(YerothUtils::YEROTH_RED_PALETTE);
 
-            QString pMsg("Le paramètre 'début' de l'alerte ne doit pas être "
-                         "daté dans le passé !");
+            QString pMsg(QObject::trUtf8("Le paramètre 'début' de l'alerte ne doit pas être daté dans le passé !"));
+
             YerothQMessageBox::information(this,
                                      QObject::trUtf8("Yeroth-erp-3.0 - créer ~ alerte"),
-                                     FROM_UTF8_STRING(pMsg));
+                                     pMsg);
             return false;
         }
 
@@ -203,11 +211,11 @@ bool YerothAdminCreateWindow::creer_alerte_check_fields()
             dateEdit_creer_alerte_date_debut->setPalette(YerothUtils::YEROTH_RED_PALETTE);
             dateEdit_creer_alerte_date_fin->setPalette(YerothUtils::YEROTH_RED_PALETTE);
 
-            QString pMsg("Le paramètre 'début' de l'alerte doit être "
-                         "daté avant le paramètre 'fin'!");
+            QString pMsg(QObject::trUtf8("Le paramètre 'début' de l'alerte doit être daté avant le paramètre 'fin' !"));
+
             YerothQMessageBox::information(this,
                                      QObject::trUtf8("Yeroth-erp-3.0 - créer ~ alerte"),
-                                     FROM_UTF8_STRING(pMsg));
+                                     pMsg);
             return false;
         }
 

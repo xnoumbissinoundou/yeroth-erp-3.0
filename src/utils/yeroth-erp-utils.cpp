@@ -317,7 +317,7 @@ bool YerothUtils::startTransaction()
 
     	if (!couldStartDBTransaction)
 		{
-        	qDebug() << QString("Couldn't start a database transaction!");
+        	qDebug() << QString("Couldn't start a database transaction !");
         	qDebug() << _allWindows->getDatabase().lastError();
 		}
 
@@ -334,7 +334,7 @@ bool YerothUtils::commitTransaction()
 
     if (!couldCommitDBTransaction)
     {
-    	qDebug() << QString("Couldn't commit a database transaction!");
+    	qDebug() << QString("Couldn't commit a database transaction !");
     	qDebug() << _allWindows->getDatabase().lastError();
     }
 
@@ -1199,14 +1199,15 @@ bool YerothUtils::slot_connecter_localisation(QWidget &aWidget,
     if (addresseIP.isEmpty())
     {
         QString retMsg;
-        retMsg.append(QString("La localisation %1 n'a pas d'adresse IP enregistrée!")
+        retMsg.append(QString(QObject::trUtf8("La localisation %1 n'a pas d'adresse IP enregistrée !"))
                       .arg(localisation));
 
-        QString msg(QString("%1 - pas d'adresse IP!").arg(widgetTitle));
+        QString msg(QString(QObject::tr("%1 - pas d'adresse IP !"))
+        				.arg(widgetTitle));
 
         QMessageBox::information(&aWidget,
                                  "Connection par adresse IP",
-                                 FROM_UTF8_STRING(retMsg));
+                                 retMsg);
 
         return false;
     }
@@ -1215,13 +1216,13 @@ bool YerothUtils::slot_connecter_localisation(QWidget &aWidget,
         if ("127.0.0.1" == addresseIP)
         {
             QString retMsg;
-            retMsg.append(QString("La localisation ''%1'' est "
-                                  "déjà connectée par l'adresse loopback (127.0.0.1) !")
+            retMsg.append(QString(QObject::trUtf8("La localisation ''%1'' est "
+                                  "déjà connectée par l'adresse loopback (127.0.0.1) !"))
                           .arg(localisation));
 
             QMessageBox::information(&aWidget,
                                      "Connection par adresse IP",
-                                     FROM_UTF8_STRING(retMsg));
+                                     retMsg);
 
             return false;
         }
@@ -1243,29 +1244,25 @@ bool YerothUtils::slot_connecter_localisation(QWidget &aWidget,
 
         allWindows->reinitialiseSqlTableModels();
 
-        QString retMsg;
-        retMsg.append(QString("Connecter à la localisation %1 !").arg(localisation));
+        QString retMsg(QString(QObject::trUtf8("Connecter à la localisation %1 !"))
+        				.arg(localisation));
 
-        QString msg(QString("%1 - Connection à la localisation!").arg(widgetTitle));
+        QString msg(QString(QObject::trUtf8("%1 - Connection à la localisation !"))
+        				.arg(widgetTitle));
 
-        QMessageBox::information(&aWidget,
-                                 QObject::trUtf8(msg.toStdString().c_str()),
-                                 FROM_UTF8_STRING(retMsg));
+        QMessageBox::information(&aWidget, msg, retMsg);
 
         return true;
     }
     else
     {
-        QString retMsg;
-        retMsg.append(QString("Impossible de se connecter à la localisation %1 !")
+        QString retMsg(QString(QObject::trUtf8("Impossible de se connecter à la localisation %1 !"))
                       .arg(localisation));
 
-        QString msg(QString("%1 - Pas de connection à la localisation!")
+        QString msg(QString(QObject::trUtf8("%1 - Pas de connection à la localisation !"))
                     .arg(widgetTitle));
 
-        QMessageBox::information(&aWidget,
-                                 QObject::trUtf8(msg.toStdString().c_str()),
-                                 FROM_UTF8_STRING(retMsg));
+        QMessageBox::information(&aWidget, msg, retMsg);
 
         qDebug() << database.lastError();
 
@@ -1291,17 +1288,20 @@ bool YerothUtils::slot_deconnecter_localisation(YerothERPWindows *allWindows)
 
     if (!database.open())
     {
-        QString errMsg("Impossible de se connecter au serveur ");
-        errMsg.append(database.db_type()).append(" de base de données!\n"
-                "Contacter l'administrateur de yeroth\n\n"
-                "Cliquer sur 'Cancel' pour terminer yeroth");
-        QMessageBox::critical(0, "yeroth", FROM_UTF8_STRING(errMsg), QMessageBox::Cancel);
+        QString errMsg(QString(QObject::trUtf8("Impossible de se connecter au serveur '%1' "
+        									   "de base de données !\n"
+        									   "Contacter l'administrateur de yeroth\n\n"
+        									   "Cliquer sur 'Cancel' pour terminer %2"))
+        					.arg(database.db_type(),
+        						 YerothUtils::APPLICATION_NAME));
+
+        QMessageBox::critical(0, YerothUtils::APPLICATION_NAME, errMsg, QMessageBox::Cancel);
 
         qDebug() << database.lastError();
 
         return false;
         //logger.log("main",
-        //QString("Impossible de se connecter au serveur MYSQL: %1!").arg(db.lastError().text()));
+        //QString("Impossible de se connecter au serveur MYSQL: %1 !").arg(db.lastError().text()));
     }
     //else
     //{
@@ -2407,7 +2407,7 @@ bool YerothUtils::export_csv_file(YerothWindowsCommons &aCallingWindow,
     {
         YerothQMessageBox::information(&aCallingWindow,
                                       QObject::trUtf8("pas de données à exporter au format csv"),
-                                      QObject::trUtf8("Il n'y a pas de données à exporter au format csv!"));
+                                      QObject::trUtf8("Il n'y a pas de données à exporter au format csv !"));
         return false;
     }
 
@@ -2518,8 +2518,8 @@ QString YerothUtils::prindDocumentFromTableView(YerothWindowsCommons *aWindowCal
     if (tableModelRowCount <= 0)
     {
         YerothQMessageBox::information(aWindowCaller,
-                                      QObject::tr("impression"),
-                                      FROM_UTF8_STRING(tr("Il n'y a pas de données à imprimer!")));
+                                       QObject::tr("impression"),
+                                       QObject::trUtf8("Il n'y a pas de données à imprimer !"));
         return "";
     }
 

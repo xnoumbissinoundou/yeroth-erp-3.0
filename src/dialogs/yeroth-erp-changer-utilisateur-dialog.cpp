@@ -1,7 +1,6 @@
 /*
  * yeroth-erp-dialog-changer-utilisateur.cpp
  *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
  */
 
 #include "src/yeroth-erp-windows.hpp"
@@ -225,11 +224,11 @@ YerothPOSUser *YerothPOSChangerUtilisateurDialog::createUser(QSqlRecord & userRe
     {
 
 #ifdef YEROTH_CLIENT
-        QString retMsg(QObject::trUtf8("La version cliente de YEROTH ne vous donne pas accès à l'administration!"));
+        QString retMsg(QObject::trUtf8("La version cliente de YEROTH ne vous donne pas accès à l'administration !"));
 
         QMessageBox::information(this,
         						 QObject::trUtf8("pas d'accès à l'administration"),
-                                 FROM_UTF8_STRING(retMsg));
+                                 retMsg);
         return 0;
 #endif
 
@@ -265,16 +264,13 @@ void YerothPOSChangerUtilisateurDialog::checkCourriersAlertes()
     if (courriersAlertesTable.select() && alertsNr > 0)
     {
         QApplication::beep();
-        QString aMsg("Vous avez ");
-        QString alertsNr_s;
-        alertsNr_s.setNum(courriersAlertesTable.rowCount());
-        aMsg.append(alertsNr_s);
-        aMsg.append(" alertes non résolues!");
+
+        QString aMsg(QString(QObject::trUtf8("Vous avez '%1' alertes non résolues !"))
+        				.arg(QString::number(courriersAlertesTable.rowCount())));
 
         YerothQMessageBox::information(_allWindows->_listerAlertesWindow,
-                                      QObject::trUtf8
-                                      ("changer d'utilisateur - alertes"),
-									  FROM_UTF8_STRING(aMsg));
+                                      QObject::tr("changer d'utilisateur - alertes"),
+									   aMsg);
     }
 }
 

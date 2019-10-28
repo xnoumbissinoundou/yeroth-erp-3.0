@@ -1,16 +1,7 @@
 /*
-
-   * yeroth-erp-windows-commons.cpp
-
-   *
-
-   *  Created on: Mar 6, 2018
-
-   *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
-
-   *      Email:  xnoundou7@gmail.com
-
-   */
+ * yeroth-erp-windows-commons.cpp
+ *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
+ */
 #include "yeroth-erp-window-commons.hpp"
 
 #include "src/users/yeroth-erp-user-manager.hpp"
@@ -163,12 +154,12 @@ void YerothWindowsCommons::administration()
     _allWindows->_adminWindow->rendreVisible(_curStocksTableModel);
 }
 
+
 void YerothWindowsCommons::qui_suis_je()
 {
-    QString dialogBoxTitle;
-    dialogBoxTitle.append(QString("%2").arg("qui suis je ?"));
-    YerothQMessageBox::information(this, TR_UTF8_QSTRING(dialogBoxTitle), _allWindows->getUser()->toString());
+    YerothQMessageBox::information(this, QObject::tr("qui suis je ?"), _allWindows->getUser()->toString());
 }
+
 
 void YerothWindowsCommons::changer_utilisateur()
 {

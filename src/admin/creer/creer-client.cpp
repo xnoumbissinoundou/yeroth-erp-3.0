@@ -3,7 +3,7 @@ bool YerothAdminCreateWindow::creer_client()
 {
     if (creer_client_check_fields())
     {
-        QString retMsg("Le client '");
+        QString retMsg(QObject::tr("Le client '"));
 
         YerothSqlTableModel &clientsTableModel = _allWindows->getSqlTableModel_clients();
 
@@ -21,11 +21,12 @@ bool YerothAdminCreateWindow::creer_client()
 
             //qDebug() << "++ duplicate client: " << duplicateClient;
 
-            retMsg.append(duplicateClient).append("' existe déjà !");
+            retMsg.append(QString(QObject::trUtf8("%1' existe déjà !")
+            				.arg(duplicateClient)));
 
             YerothQMessageBox::warning(this,
                                  QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ créer ~ client"),
-                                 FROM_UTF8_STRING(retMsg));
+                                 retMsg);
 
             clientsTableModel.resetFilter();
 
@@ -77,17 +78,20 @@ bool YerothAdminCreateWindow::creer_client()
 
         if (!success)
         {
-            retMsg.append("' n'a pas pu être créer!");
+            retMsg.append(QObject::trUtf8("' n'a pas pu être créer !"));
+
             YerothQMessageBox::warning(this,
                                  QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ créer ~ client"),
-                                 FROM_UTF8_STRING(retMsg));
+                                 retMsg);
             return false;
         }
 
-        retMsg.append("' a été créer avec succès!");
+        retMsg.append(QObject::trUtf8("' a été créer avec succès !"));
+
         YerothQMessageBox::information(this,
                                  QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ créer ~ client"),
-                                 FROM_UTF8_STRING(retMsg));
+                                 retMsg);
+
         clear_client_all_fields();
 
         this->rendreInvisible();
@@ -116,12 +120,14 @@ bool YerothAdminCreateWindow::creer_client_check_fields()
     if (clientsTableModelRowCount > 0)
     {
         clientsTableModel.resetFilter();
-        QString retMsg("L'entreprise nommée '");
-        retMsg.append(lineEdit_creer_client_nom_entreprise->text())
-        .append("' est déjà existante dans la base de données!");
+
+        QString retMsg(QString(QObject::trUtf8("L'entreprise nommée '%1' est déjà "
+        									   "existante dans la base de données !"))
+        					.arg(lineEdit_creer_client_nom_entreprise->text()));
+
         YerothQMessageBox::warning(this,
                              QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ créer ~ client"),
-                             FROM_UTF8_STRING(retMsg));
+                             retMsg);
         return false;
     }
 

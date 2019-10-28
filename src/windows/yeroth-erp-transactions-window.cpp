@@ -1,16 +1,7 @@
 /*
-
-   * yeroth-erp-transactions-window.cpp
-
-   *
-
-   *  Created on: June 24, 2016
-
-   *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
-
-   *      Email:  xnoundou7@gmail.com
-
-   */
+ * yeroth-erp-transactions-window.cpp
+ *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
+ */
 #include "yeroth-erp-transactions-window.hpp"
 
 #include "src/yeroth-erp-windows.hpp"
@@ -318,7 +309,7 @@ bool YerothTransactionsWindow::export_csv_file()
     {
         YerothQMessageBox::information(this,
                                       QObject::trUtf8("pas de données à exporter au format csv"),
-                                      QObject::trUtf8("Il n'y a pas de données à exporter au format csv!"));
+                                      QObject::trUtf8("Il n'y a pas de données à exporter au format csv !"));
         return false;
     }
 
@@ -620,8 +611,9 @@ void YerothTransactionsWindow::imprimer_journal_transactions()
 
     if (tableModelRowCount <= 0)
     {
-        YerothQMessageBox::information(this, QObject::trUtf8("impression"),
-                                      FROM_UTF8_STRING(tr("Il n'y a pas de données à imprimer !")));
+        YerothQMessageBox::information(this,
+        							   QObject::trUtf8("impression"),
+									   QObject::trUtf8("Il n'y a pas de données à imprimer !"));
         return;
     }
 

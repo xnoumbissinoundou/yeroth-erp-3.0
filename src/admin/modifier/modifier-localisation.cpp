@@ -78,27 +78,30 @@ void YerothAdminModifierWindow::modifier_localisation()
 
         bool success = localisationsTableModel->updateRecord(lw->lastSelectedItemForModification(), record);
 
-        QString retMsg("Les données de la localisation '");
-        retMsg.append(lineEdit_modifier_localisation_nom->text())
-        .append("'");
+        QString retMsg(QString(QObject::trUtf8("Les données de la localisation '%1'"))
+        					.arg(lineEdit_modifier_localisation_nom->text()));
 
         if (success)
         {
-            retMsg.append(" ont été modifiées avec succès!");
+            retMsg.append(QObject::trUtf8(" ont été modifiées avec succès !"));
+
             YerothQMessageBox::information(this,
-                                     QObject::trUtf8("Yeroth-erp-3.0 ~ admin-modifier-localisation"),
-                                     FROM_UTF8_STRING(retMsg));
+                                     QObject::tr("Yeroth-erp-3.0 ~ admin-modifier-localisation"),
+                                     retMsg);
 
             _allWindows->_adminListerWindow->rendreVisible(SUJET_ACTION_LOCALISATION);
+
             this->rendreInvisible();
         }
         else
         {
             qDebug() << "\t[reason for failing] " << localisationsTableModel->lastError();
-            retMsg.append(" n'ont pas pu être modifiées !");
+
+            retMsg.append(QObject::trUtf8(" n'ont pas pu être modifiées !"));
+
             YerothQMessageBox::warning(this,
-                                 QObject::trUtf8("Yeroth-erp-3.0 ~ admin-modifier-localisation"),
-                                 FROM_UTF8_STRING(retMsg));
+                                 QObject::tr("Yeroth-erp-3.0 ~ admin-modifier-localisation"),
+                                 retMsg);
         }
     }
 }

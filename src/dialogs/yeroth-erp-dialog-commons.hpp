@@ -1,9 +1,7 @@
 /*
  * yeroth-erp-dialogs-commons.hpp
  *
- *  Created on: Mar 6, 2018
  *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
  */
 
 # ifndef YEROTH_ERP_DIALOGS_COMMONS_HPP_

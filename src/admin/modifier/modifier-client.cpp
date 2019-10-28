@@ -1,9 +1,7 @@
 /*
  * modifier-client.cpp
  *
- *  Created on: Feb 3, 2016
  *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
  */
 
 void YerothAdminModifierWindow::setupEditClient()
@@ -116,16 +114,16 @@ void YerothAdminModifierWindow::modifier_client()
 
         bool success = clientsTableModel->updateRecord(lw->lastSelectedItemForModification(), record);
 
-        QString retMsg("Les données du client '");
-        retMsg.append(lineEdit_modifier_client_nom_entreprise->text())
-        .append("'");
+        QString retMsg(QString(QObject::trUtf8("Les données du client '%1'"))
+        					.arg(lineEdit_modifier_client_nom_entreprise->text()));
 
         if (success)
         {
-            retMsg.append(" ont été modifiées avec succès!");
+            retMsg.append(QObject::trUtf8(" ont été modifiées avec succès !"));
+
             YerothQMessageBox::information(this,
-                                     QObject::trUtf8("Yeroth-erp-3.0 ~ admin-modifier-client"),
-                                     FROM_UTF8_STRING(retMsg));
+                                     QObject::tr("Yeroth-erp-3.0 ~ admin-modifier-client"),
+                                     retMsg);
 
             _allWindows->_adminListerWindow->rendreVisible(SUJET_ACTION_CLIENT);
             this->rendreInvisible();
@@ -133,10 +131,12 @@ void YerothAdminModifierWindow::modifier_client()
         else
         {
             qDebug() << "\t[reason for failing] " << clientsTableModel->lastError();
-            retMsg.append(" n'ont pas pu être modifiées !");
+
+            retMsg.append(QObject::trUtf8(" n'ont pas pu être modifiées !"));
+
             YerothQMessageBox::warning(this,
-                                 QObject::trUtf8("Yeroth-erp-3.0 ~ admin-modifier-client"),
-                                 FROM_UTF8_STRING(retMsg));
+                                 QObject::tr("Yeroth-erp-3.0 ~ admin-modifier-client"),
+                                 retMsg);
         }
     }
 }

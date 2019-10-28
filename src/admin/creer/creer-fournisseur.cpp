@@ -3,7 +3,7 @@ bool YerothAdminCreateWindow::creer_fournisseur()
 {
     if (creer_fournisseur_check_fields())
     {
-        QString retMsg("Le founisseur '");
+        QString retMsg(QObject::tr("Le founisseur '"));
 
         YerothSqlTableModel &fournisseursTableModel = _allWindows->getSqlTableModel_fournisseurs();
 
@@ -21,11 +21,12 @@ bool YerothAdminCreateWindow::creer_fournisseur()
 
             //qDebug() << "++ duplicate fournisseur: " << duplicateFournisseur;
 
-            retMsg.append(duplicateFournisseur).append("' existe déjà !");
+            retMsg.append(QString(QObject::trUtf8("%1' existe déjà !"))
+            				.arg(duplicateFournisseur));
 
             YerothQMessageBox::warning(this,
                                  QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ créer ~ fournisseur"),
-                                 FROM_UTF8_STRING(retMsg));
+                                retMsg);
 
             fournisseursTableModel.resetFilter();
 
@@ -55,17 +56,20 @@ bool YerothAdminCreateWindow::creer_fournisseur()
 
         if (!success)
         {
-            retMsg.append("' n'a pas pu être créer !");
+            retMsg.append(QObject::trUtf8("' n'a pas pu être créer !"));
+
             YerothQMessageBox::warning(this,
                                  QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ créer ~ fournisseur"),
-                                 FROM_UTF8_STRING(retMsg));
+                                 retMsg);
             return false;
         }
 
-        retMsg.append("' a été créer avec succès !");
+        retMsg.append(QObject::trUtf8("' a été créer avec succès !"));
+
         YerothQMessageBox::information(this,
                                  QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ créer ~ fournisseur"),
-                                 FROM_UTF8_STRING(retMsg));
+                                 retMsg);
+
         clear_fournisseur_all_fields();
 
         this->rendreInvisible();

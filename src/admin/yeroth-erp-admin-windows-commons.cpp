@@ -1,16 +1,7 @@
 /*
-
-   * yeroth-erp-admin-windows-commons.cpp
-
-   *
-
-   *  Created on: Mar 6, 2018
-
-   *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
-
-   *      Email:  xnoundou7@gmail.com
-
-   */
+ * yeroth-erp-admin-windows-commons.cpp
+ *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
+ */
 
 #include "src/admin/yeroth-erp-admin-windows-commons.hpp"
 
@@ -69,9 +60,7 @@ void YerothPOSAdminWindowsCommons::mySetupUi(QMainWindow * aWindow)
 
 void YerothPOSAdminWindowsCommons::qui_suis_je()
 {
-    QString dialogBoxTitle(YEROTH_ERP_WINDOW_TITLE);
-    dialogBoxTitle.append(QString(" - %1 - %2").arg(_windowName, "qui suis je ?"));
-    YerothQMessageBox::information(this, TR_UTF8_QSTRING(dialogBoxTitle), _allWindows->getUser()->toString());
+    YerothQMessageBox::information(this, QObject::tr("qui suis je ?"), _allWindows->getUser()->toString());
 }
 
 void YerothPOSAdminWindowsCommons::changer_utilisateur()

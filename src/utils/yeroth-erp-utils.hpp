@@ -666,12 +666,12 @@ private:
 
 #define YEROTH_QMESSAGE_BOX_QUELQUE_RESULTAT_FILTRE(THIS, NOMBRE, DIALOG_BOX_TITLE) \
 { QString msg(QObject::trUtf8("Il y'a eu")); \
-msg.append(QString(" %1 résultat à votre filtre!").arg(NOMBRE)); \
+msg.append(QString(" %1 résultat à votre filtre !").arg(NOMBRE)); \
 YerothQMessageBox::information(this, QObject::trUtf8(DIALOG_BOX_TITLE), msg); }
 
 
 #define YEROTH_QMESSAGE_BOX_AUCUN_RESULTAT_FILTRE(THIS, DIALOG_BOX_TITLE) \
-		{ QString msg(QObject::trUtf8("Il ny'a eu aucun résultat à votre filtre!")); \
+		{ QString msg(QObject::trUtf8("Il ny'a eu aucun résultat à votre filtre !")); \
 		YerothQMessageBox::information(THIS, QObject::trUtf8(DIALOG_BOX_TITLE), msg); }
 
 
@@ -684,11 +684,6 @@ YerothQMessageBox::information(this, QObject::trUtf8(DIALOG_BOX_TITLE), msg); }
 
 //Get the MD5 hash of value X
 # define MD5_HASH(X) YerothUtils::md5Hash(X)
-
-//Precondition: X is of type QString and has latin accents.
-# define FROM_UTF8_STRING(X) QObject::trUtf8(X.toStdString().c_str())
-
-# define TR_UTF8_QSTRING(X) QObject::trUtf8(X.toStdString().c_str())
 
 # define GENERATE_SQL_LIKE_STMT(COLUMN, SEARCH_STR) \
 	YerothUtils::generateSqlLike(COLUMN, SEARCH_STR)

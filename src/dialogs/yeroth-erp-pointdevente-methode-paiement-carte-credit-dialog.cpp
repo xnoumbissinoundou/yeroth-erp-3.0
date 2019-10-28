@@ -1,3 +1,8 @@
+/*
+ * yeroth-erp-pointdevente-methode-paiement-carte-credit-dialog.cpp
+ *
+ *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
+ */
 
 #include "yeroth-erp-pointdevente-methode-paiement-carte-credit-dialog.hpp"
 

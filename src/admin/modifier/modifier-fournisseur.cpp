@@ -68,27 +68,30 @@ void YerothAdminModifierWindow::modifier_fournisseur()
 
         bool success = fournisseursTableModel->updateRecord(lw->lastSelectedItemForModification(), record);
 
-        QString retMsg("Les données du fournisseur '");
-        retMsg.append(lineEdit_modifier_fournisseur_nom_entreprise->text())
-        .append("'");
+        QString retMsg(QString(QObject::trUtf8("Les données du fournisseur '%1'"))
+        					.arg(lineEdit_modifier_fournisseur_nom_entreprise->text()));
 
         if (success)
         {
-            retMsg.append(" ont été modifiées avec succès!");
+            retMsg.append(QObject::trUtf8(" ont été modifiées avec succès !"));
+
             YerothQMessageBox::information(this,
                                      QObject::trUtf8("Yeroth-erp-3.0 ~ admin-modifier-fournisseur"),
-                                     FROM_UTF8_STRING(retMsg));
+                                     retMsg);
 
             _allWindows->_adminListerWindow->rendreVisible(SUJET_ACTION_FOURNISSEUR);
+
             this->rendreInvisible();
         }
         else
         {
             qDebug() << "\t[reason for failing] " << fournisseursTableModel->lastError();
-            retMsg.append(" n'ont pas pu être modifiées !");
+
+            retMsg.append(QObject::trUtf8(" n'ont pas pu être modifiées !"));
+
             YerothQMessageBox::warning(this,
-                                 QObject::trUtf8("Yeroth-erp-3.0 ~ admin-modifier-fournisseur"),
-                                 FROM_UTF8_STRING(retMsg));
+                                 QObject::tr("Yeroth-erp-3.0 ~ admin-modifier-fournisseur"),
+                                 retMsg);
         }
     }
 }

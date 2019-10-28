@@ -383,18 +383,16 @@ void YerothMainWindow::help()
 		! currentUser->isPasDeRole())
 	{
 	    YerothQMessageBox::information(this, QObject::tr("aide"),
-	                                  FROM_UTF8_STRING(trUtf8
-	                                          ("1) Veuillez vous enregistrer en cliquant sur le premier icône!\n\n"
-	                                           "2) Déconnectez vous en cliquant sur le deuxième icône!\n\n"
-	                                           "3) Lorsque vous êtes enregistré, choisissez une opération "
-	                                           "à réaliser en cliquant " "sur le bouton correspondant!")));
+	    				QObject::trUtf8("1) Veuillez vous enregistrer en cliquant sur le premier icône !\n\n"
+	                                    "2) Déconnectez vous en cliquant sur le deuxième icône !\n\n"
+	                                    "3) Lorsque vous êtes enregistré, choisissez une opération "
+	                                    "à réaliser en cliquant " "sur le bouton correspondant !"));
 	}
 	else
 	{
 	    YerothQMessageBox::information(this, QObject::tr("aide"),
-	                                  FROM_UTF8_STRING(trUtf8
-	                                          ("1) Veuillez vous enregistrer en cliquant sur le premier icône!\n\n"
-	                                           "2) Recevez un message d'aide en cliquant sur le deuxieme icone!")));
+	    				QObject::trUtf8("1) Veuillez vous enregistrer en cliquant sur le premier icône !\n\n"
+	                                    "2) Recevez un message d'aide en cliquant sur le deuxieme icone !"));
 	}
 #else
     //YerothUserLAdministrateur *u = new YerothUserLAdministrateur(_allWindows);
@@ -406,7 +404,9 @@ void YerothMainWindow::help()
     u->set_nom_utilisateur("xavierp");
     u->set_localisation("Yaoundé");
     u->set_nom_complet("Xavier NOUMBISSI-NOUNDOU");
+
     _allWindows->setUser(u);
+
 #endif
 }
 

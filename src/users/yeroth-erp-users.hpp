@@ -1,15 +1,14 @@
 /*
  * yeroth-erp-user.hpp
  *
- *  Created on: Oct 22, 2015
  *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
  */
 
 #ifndef SRC_YEROTH_ERP_USERS_HPP_
 #define SRC_YEROTH_ERP_USERS_HPP_
 
 #include <QtCore/QString>
+
 #include <QtCore/QDate>
 
 #include <QtSql/QSqlRecord>

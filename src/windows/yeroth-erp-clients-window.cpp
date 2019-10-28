@@ -307,7 +307,7 @@ bool YerothERPClientsWindow::filtrer()
 
 	if (stockTableColumnValue.isEmpty())
 	{
-		QString msg(QObject::trUtf8("Veuillez saisir une valeur numérique pour la recherche!"));
+		QString msg(QObject::trUtf8("Veuillez saisir une valeur numérique pour la recherche !"));
 
 		YerothQMessageBox::information(this,
 									  QObject::trUtf8("filtrer"),

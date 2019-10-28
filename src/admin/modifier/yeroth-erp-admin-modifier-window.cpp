@@ -1,16 +1,8 @@
 /*
+ * yeroth-erp-admin-modifier-window.cpp
+ *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
+ */
 
-   * yeroth-erp-admin-modifier-window.cpp
-
-   *
-
-   *  Created on: Nov 27, 2015
-
-   *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
-
-   *      Email:  xnoundou7@gmail.com
-
-   */
 #include "yeroth-erp-admin-modifier-window.hpp"
 
 #include "src/yeroth-erp-windows.hpp"

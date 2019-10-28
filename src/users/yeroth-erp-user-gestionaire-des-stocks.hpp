@@ -1,9 +1,7 @@
 /*
  * yeroth-erp-user-gestionaire-des-stocks.hpp
  *
- *  Created on: Oct 23, 2015
  *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
  */
 
 #ifndef SRC_YEROTH_ERP_USER_GESTIONAIRE_DES_STOCKS_HPP_

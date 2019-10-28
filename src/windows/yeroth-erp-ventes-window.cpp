@@ -124,7 +124,7 @@ bool YerothVentesWindow::filtrer_ventes()
 
 	if (ventesTableColumnValue.isEmpty())
 	{
-		QString msg(QObject::trUtf8("Veuillez saisir une valeur numérique pour la recherche!"));
+		QString msg(QObject::trUtf8("Veuillez saisir une valeur numérique pour la recherche !"));
 
 		YerothQMessageBox::information(this,
 									   QObject::trUtf8("filtrer"),
@@ -517,7 +517,7 @@ bool YerothVentesWindow::export_csv_file()
     {
         YerothQMessageBox::information(this,
                                       QObject::trUtf8("pas de données à exporter au format csv"),
-                                      QObject::trUtf8("Il n'y a pas de données à exporter au format csv!"));
+                                      QObject::trUtf8("Il n'y a pas de données à exporter au format csv !"));
         return false;
     }
 
@@ -805,8 +805,8 @@ bool YerothVentesWindow::imprimer_document()
     if (tableModelRowCount <= 0)
     {
         YerothQMessageBox::information(this,
-                                      QObject::trUtf8("pas de données à imprimer"),
-                                      FROM_UTF8_STRING(tr("Il n'y a pas de données à imprimer !")));
+                                       QObject::trUtf8("pas de données à imprimer"),
+                                       QObject::trUtf8("Il n'y a pas de données à imprimer !"));
         return false;
     }
 

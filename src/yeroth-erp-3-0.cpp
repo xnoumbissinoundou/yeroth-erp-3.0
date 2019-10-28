@@ -462,12 +462,15 @@ int main(int argc, char *argv[])
             !YerothUtils::isEqualCaseInsensitive(YerothERPConfig::_db_ip_address,
                     YerothUtils::LOCALHOST))
     {
-        QString errMsg("Cette version de yeroth ne peut pas se connecter ");
-        errMsg.append("à un serveur MYSQL externe !\n\n"
-                      "Contacter Diplom-Informatiker Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)\n"
-                      "\t(xnoundou7@gmail.com)\n\n"
-                      "Cliquer sur 'Cancel' pour terminer yeroth-erp-3-0");
-        QMessageBox::critical(0, "yeroth", FROM_UTF8_STRING(errMsg), QMessageBox::Cancel);
+        QString errMsg(QString(QObject::trUtf8("Cette version de '%1' ne peut pas se connecter "
+        									   "à un serveur externe !\n\n"
+                      	  	  	  	  	  	   "Contacter un administrateur de l'application\n\n"
+                      	  	  	  	  	  	   "Cliquer sur 'Cancel' pour terminer '%2'"))
+        					.arg(YerothUtils::APPLICATION_NAME,
+        						 YerothUtils::APPLICATION_NAME));
+
+        QMessageBox::critical(0, YerothUtils::APPLICATION_NAME, errMsg, QMessageBox::Cancel);
+
         exit(1);
     }
 #endif
@@ -493,14 +496,19 @@ int main(int argc, char *argv[])
 
     if (!database.open())
     {
-        QString errMsg("Impossible de se connecter au serveur ");
-        errMsg.append(database.db_type()).append("!\n\n"
-                "Contacter l'administrateur de yeroth\n\n"
-                "Cliquer sur 'Cancel' pour terminer yeroth");
-        QMessageBox::critical(0, "yeroth", FROM_UTF8_STRING(errMsg), QMessageBox::Cancel);
+        QString errMsg(QString(QObject::trUtf8("Impossible de se connecter au serveur '%1' !\n\n"
+        									   "Contacter l'administrateur de '%2'\n\n"
+        		                			   "Cliquer sur 'Cancel' pour terminer '%3'"))
+        					.arg(database.db_type(),
+        						 YerothUtils::APPLICATION_NAME,
+								 YerothUtils::APPLICATION_NAME));
+
+        QMessageBox::critical(0, YerothUtils::APPLICATION_NAME, errMsg, QMessageBox::Cancel);
 
         logger.log("main",
-                   QString("Impossible de se connecter au serveur MYSQL: %1!").arg(database.lastError().text()));
+                   QString(QObject::tr("Impossible de se connecter au serveur '%1': %2 !"))
+				   	   .arg(database.db_type(),
+				   			database.lastError().text()));
 
         exit(0);
     }

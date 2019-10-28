@@ -3,8 +3,8 @@ bool YerothAdminCreateWindow::creer_localisation()
 {
     if (creer_localisation_check_fields())
     {
-        QString retMsg("La localisation '");
-        retMsg.append(lineEdit_creer_localisation_nom->text()).append("'");
+        QString retMsg(QString(QObject::tr("La localisation '%1'"))
+        				.arg(lineEdit_creer_localisation_nom->text()));
 
         YerothSqlTableModel &localisationsTableModel = _allWindows->getSqlTableModel_localisations();
 
@@ -22,11 +22,12 @@ bool YerothAdminCreateWindow::creer_localisation()
 
             //qDebug() << "++ duplicate localisation: " << duplicateLocalisation;
 
-            retMsg.append(duplicateLocalisation).append("' existe déjà !");
+            retMsg.append(QString(QObject::trUtf8("%1' existe déjà !"))
+            				.arg(duplicateLocalisation));
 
             YerothQMessageBox::warning(this,
                                  QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ créer ~ localisation"),
-                                 FROM_UTF8_STRING(retMsg));
+                                 retMsg);
 
             localisationsTableModel.resetFilter();
 
@@ -57,18 +58,19 @@ bool YerothAdminCreateWindow::creer_localisation()
 
         if (!success)
         {
-            retMsg.append("' n'a pas pu être créer !");
+            retMsg.append(QObject::trUtf8("' n'a pas pu être créer !"));
+
             YerothQMessageBox::warning(this,
                                  QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ créer ~ localisation"),
-                                 FROM_UTF8_STRING(retMsg));
+                                 retMsg);
             return false;
         }
 
-        retMsg.append(" a été créer avec succès !");
+        retMsg.append(QObject::trUtf8(" a été créer avec succès !"));
 
         YerothQMessageBox::information(this,
                                  QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ créer ~ localisation"),
-                                 FROM_UTF8_STRING(retMsg));
+                                 retMsg);
 
         clear_localisation_all_fields();
 

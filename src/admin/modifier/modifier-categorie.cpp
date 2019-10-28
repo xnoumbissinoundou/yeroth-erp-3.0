@@ -59,11 +59,12 @@ void YerothAdminModifierWindow::modifier_categorie_main()
     if (successCategorieTable)
     {
         //Handling of table "stocks"
-        QString stocksQuery("UPDATE ");
-        stocksQuery.append(_allWindows->STOCKS).append(" SET ")
-        .append("categorie='").append(newNomCategorie)
-        .append("'").append(" WHERE categorie='")
-        .append(oldNomCategorie).append("'");
+    	QString stocksQuery(QString("UPDATE %1 SET %2='%3' WHERE %4='%5'")
+    							.arg(_allWindows->STOCKS,
+    								 YerothDatabaseTableColumn::CATEGORIE,
+									 newNomCategorie,
+									 YerothDatabaseTableColumn::CATEGORIE,
+									 oldNomCategorie));
 
         YerothUtils::execQuery(stocksQuery, 0);
     }
@@ -71,11 +72,12 @@ void YerothAdminModifierWindow::modifier_categorie_main()
     if (successCategorieTable)
     {
         ////Handling of table "stocks_vendu"
-        QString stocksVenduQuery("UPDATE ");
-        stocksVenduQuery.append(_allWindows->STOCKS_VENDU).append(" SET ")
-        .append("categorie='").append(newNomCategorie)
-        .append("'").append(" WHERE categorie='")
-        .append(oldNomCategorie).append("'");
+    	QString stocksVenduQuery(QString("UPDATE %1 SET %2='%3' WHERE %4='%5'")
+    							.arg(_allWindows->STOCKS_VENDU,
+    								 YerothDatabaseTableColumn::CATEGORIE,
+									 newNomCategorie,
+									 YerothDatabaseTableColumn::CATEGORIE,
+									 oldNomCategorie));
 
         YerothUtils::execQuery(stocksVenduQuery, 0);
     }
@@ -83,11 +85,12 @@ void YerothAdminModifierWindow::modifier_categorie_main()
     if (successCategorieTable)
     {
         ////Handling of table "stocks_sorties"
-        QString stocksVenduQuery("UPDATE ");
-        stocksVenduQuery.append(_allWindows->STOCKS_SORTIES).append(" SET ")
-        .append("categorie='").append(newNomCategorie)
-        .append("'").append(" WHERE categorie='")
-        .append(oldNomCategorie).append("'");
+    	QString stocksVenduQuery(QString("UPDATE %1 SET %2='%3' WHERE %4='%5'")
+    							.arg(_allWindows->STOCKS_SORTIES,
+    								 YerothDatabaseTableColumn::CATEGORIE,
+									 newNomCategorie,
+									 YerothDatabaseTableColumn::CATEGORIE,
+									 oldNomCategorie));
 
         YerothUtils::execQuery(stocksVenduQuery, 0);
     }
@@ -95,25 +98,26 @@ void YerothAdminModifierWindow::modifier_categorie_main()
     if (successCategorieTable)
     {
         ////Handling of table "inventaire_des_stocks"
-        QString stocksVenduQuery("UPDATE ");
-        stocksVenduQuery.append(_allWindows->MARCHANDISES).append(" SET ")
-        .append("categorie='").append(newNomCategorie)
-        .append("'").append(" WHERE categorie='")
-        .append(oldNomCategorie).append("'");
+    	QString stocksVenduQuery(QString("UPDATE %1 SET %2='%3' WHERE %4='%5'")
+    							.arg(_allWindows->MARCHANDISES,
+    								 YerothDatabaseTableColumn::CATEGORIE,
+									 newNomCategorie,
+									 YerothDatabaseTableColumn::CATEGORIE,
+									 oldNomCategorie));
 
         YerothUtils::execQuery(stocksVenduQuery, 0);
     }
 
-    QString retMsg("Les données de la catégorie '");
-    retMsg.append(lineEdit_modifier_categorie_nom->text())
-    .append("'");
+    QString retMsg(QString(QObject::trUtf8("Les données de la catégorie '%1'"))
+    					.arg(lineEdit_modifier_categorie_nom->text()));
 
     if (successCategorieTable)
     {
-        retMsg.append(" ont été modifiées avec succès!");
+        retMsg.append(QObject::trUtf8(" ont été modifiées avec succès !"));
+
         YerothQMessageBox::information(this,
                                  QObject::trUtf8("Yeroth-erp-3.0 ~ admin-modifier-catégorie"),
-                                 FROM_UTF8_STRING(retMsg));
+                                 retMsg);
 
         _allWindows->_adminListerWindow->rendreVisible(SUJET_ACTION_CATEGORIE);
         this->rendreInvisible();
@@ -121,10 +125,10 @@ void YerothAdminModifierWindow::modifier_categorie_main()
     else
     {
         qDebug() << "\t[reason for failing] " << categoriesTableModel->lastError();
-        retMsg.append(" n'ont pas pu être modifiées !");
+        retMsg.append(QObject::trUtf8(" n'ont pas pu être modifiées !"));
         YerothQMessageBox::warning(this,
                              QObject::trUtf8("Yeroth-erp-3.0 ~ admin-modifier-catégorie"),
-                             FROM_UTF8_STRING(retMsg));
+                             retMsg);
     }
 }
 

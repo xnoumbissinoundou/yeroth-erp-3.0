@@ -1,16 +1,7 @@
 /*
-
-   * yeroth-erp-modifier-window.cpp
-
-   *
-
-   *  Created on: Oct 20, 2015
-
-   *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
-
-   *      Email:  xnoundou7@gmail.com
-
-   */
+ * yeroth-erp-modifier-window.cpp
+ *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
+ */
 
 
 #include "src/windows/yeroth-erp-modifier-window.hpp"
@@ -405,15 +396,18 @@ void YerothModifierWindow::actualiser_article()
     if (check_fields())
     {
         bool correctDatePeremption = true;
+
         if (dateEdit_date_peremption->date() <= QDate::currentDate())
         {
-            QString warnMsg("La date de péremption n'est pas postdatée!\n\n"
-                            "Continuer avec l'actualisation des données de l'article ?");
+            QString warnMsg(QObject::trUtf8("La date de péremption n'est pas postdatée !\n\n"
+                            "Continuer avec l'actualisation des données de l'article ?"));
+
             if (QMessageBox::Ok ==
                     YerothQMessageBox::question(this,
-                                               QObject::trUtf8
-                                               ("actualiser les détails d'un stock"),
-                                               FROM_UTF8_STRING(warnMsg), QMessageBox::Cancel, QMessageBox::Ok))
+                                               QObject::trUtf8("actualiser les détails d'un stock"),
+                                               warnMsg,
+											   QMessageBox::Cancel,
+											   QMessageBox::Ok))
             {
                 // nothing here
             }
@@ -433,12 +427,15 @@ void YerothModifierWindow::actualiser_article()
              * the user gets twice the message.
              */
         }
+
         if (!correctDatePeremption)
         {
             return;
         }
-        QString msgEnregistrer("Poursuivre avec la modification du stock '");
-        msgEnregistrer.append(lineEdit_designation->text()).append("' ?");
+
+        QString msgEnregistrer(QString(QObject::trUtf8("Poursuivre avec la modification du stock '%1' ?"))
+        						.arg(lineEdit_designation->text()));
+
         if (QMessageBox::Ok ==
                 YerothQMessageBox::question(this, _windowName, msgEnregistrer, QMessageBox::Cancel, QMessageBox::Ok))
         {
@@ -447,7 +444,9 @@ void YerothModifierWindow::actualiser_article()
             QSqlRecord record = _curStocksTableModel->record(_allWindows->getLastSelectedListerRow());
             //YerothSqlTableModel &stocksModificationsSqlTableModel = _allWindows->getSqlTableModel_stocks_modifications();
             //QSqlRecord  stocksModificationsRecord = stocksModificationsSqlTableModel.record();
+
             QString description_produit(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESCRIPTION_PRODUIT));
+
             if (!YerothUtils::isEqualCaseInsensitive(description_produit, textEdit_description->toPlainText()))
             {
                 record.setValue(YerothDatabaseTableColumn::DESCRIPTION_PRODUIT, textEdit_description->toPlainText());
@@ -492,19 +491,20 @@ void YerothModifierWindow::actualiser_article()
             sleep(0.5);
 
 
-            QString retMsg("Les détails du stock '");
-
-            retMsg.append(lineEdit_designation->text());
+            QString retMsg(QString(QObject::trUtf8("Les détails du stock '%1"))
+            					.arg(lineEdit_designation->text()));
 
             if (success)
             {
-                retMsg.append("' ont été actualisés avec succès!");
-                YerothQMessageBox::information(this, QObject::trUtf8("succès"), FROM_UTF8_STRING(retMsg));
+                retMsg.append(QObject::trUtf8("' ont été actualisés avec succès !"));
+
+                YerothQMessageBox::information(this, QObject::trUtf8("succès"), retMsg);
             }
             else
             {
-                retMsg.append("' n'ont pas pu être actualisés avec succès!");
-                YerothQMessageBox::warning(this, QObject::trUtf8("échec"), FROM_UTF8_STRING(retMsg));
+                retMsg.append(QObject::trUtf8("' n'ont pas pu être actualisés avec succès !"));
+
+                YerothQMessageBox::warning(this, QObject::trUtf8("échec"), retMsg);
             }
 
             _allWindows->_stocksWindow->rendreVisible(_curStocksTableModel);
@@ -599,7 +599,7 @@ void YerothModifierWindow::supprimer_image_stock()
             msgSupprimer.clear();
             msgSupprimer.append("L'image du stock \"");
             msgSupprimer.append(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
-            msgSupprimer.append("\" ne pouvait pas être supprimé!");
+            msgSupprimer.append("\" ne pouvait pas être supprimé !");
             YerothQMessageBox::information(this,
                                           QObject::trUtf8("échec de la suppression de l'image d'un stock"),
                                           msgSupprimer);

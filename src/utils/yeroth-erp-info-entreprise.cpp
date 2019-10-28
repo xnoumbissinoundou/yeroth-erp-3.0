@@ -1,9 +1,7 @@
 /*
  * yeroth-erp-info-entreprise.cpp
  *
- *  Created on: Feb 5, 2016
  *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
  */
 
 #include "yeroth-erp-info-entreprise.hpp"
@@ -77,5 +75,5 @@ QString YerothInfoEntreprise::toString()
     .append("11) Commercial activities: ").append(getSecteursActivites()).append("\n");
 #endif
 
-    return FROM_UTF8_STRING(result);
+    return result;
 }

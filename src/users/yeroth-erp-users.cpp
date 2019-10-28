@@ -1,19 +1,21 @@
 /*
  * yeroth-erp-users.cpp
  *
- *  Created on: Oct 23, 2015
  *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
  */
 
 #include <QtCore/QDate>
+
 #include <QtCore/QString>
 
 #include "src/include/yeroth-erp-3-0-software.text-configuration.hpp"
 
 #include "yeroth-erp-users.hpp"
+
 #include "src/yeroth-erp-windows.hpp"
+
 #include "src/utils/yeroth-erp-utils.hpp"
+
 #include "src/utils/yeroth-erp-sqltable-model.hpp"
 
 QString YerothPOSUser::getRole()

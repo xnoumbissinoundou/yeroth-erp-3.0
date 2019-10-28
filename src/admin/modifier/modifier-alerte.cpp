@@ -79,15 +79,16 @@ void YerothAdminModifierWindow::modifier_alerte()
 
         bool success = alertesTableModel->updateRecord(lw->lastSelectedItemForModification(), record);
 
-        QString retMsg("Le message de l'alerte '");
-        retMsg.append(lineEdit_modifier_alerte_designation_alerte->text()).append("' ");
+        QString retMsg(QString(QObject::trUtf8("Le message de l'alerte '%1' "))
+        					.arg(lineEdit_modifier_alerte_designation_alerte->text()));
 
         if (success)
         {
-            retMsg.append(" a été modifiées avec succès!");
+            retMsg.append(QObject::trUtf8("a été modifiées avec succès !"));
+
             YerothQMessageBox::information(this,
                                      QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ modifier ~ alerte"),
-                                     FROM_UTF8_STRING(retMsg));
+                                     retMsg);
 
             _allWindows->_adminListerWindow->rendreVisible(SUJET_ACTION_ALERTE);
             this->rendreInvisible();
@@ -95,10 +96,12 @@ void YerothAdminModifierWindow::modifier_alerte()
         else
         {
             qDebug() << "\t[reason for failing] " << alertesTableModel->lastError();
-            retMsg.append(" n'a pas pu être modifiées !");
+
+            retMsg.append(QObject::trUtf8(" n'a pas pu être modifiées !"));
+
             YerothQMessageBox::warning(this,
                                  QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ modifier ~ alerte"),
-                                 FROM_UTF8_STRING(retMsg));
+                                 retMsg);
         }
     }
 }

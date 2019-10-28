@@ -1,9 +1,7 @@
 /*
  * yeroth-erp-user-manager.hpp
  *
- *  Created on: Oct 23, 2015
  *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
  */
 
 #ifndef SRC_YEROTH_ERP_USER_MANAGER_HPP_

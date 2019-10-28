@@ -182,7 +182,7 @@ bool YerothAchatsWindow::filtrer_achats()
 
 	if (achatsTableColumnValue.isEmpty())
 	{
-		QString msg(QObject::trUtf8("Veuillez saisir une valeur numérique pour la recherche!"));
+		QString msg(QObject::trUtf8("Veuillez saisir une valeur numérique pour la recherche !"));
 
 		YerothQMessageBox::information(this,
 				QObject::trUtf8("filtrer"),

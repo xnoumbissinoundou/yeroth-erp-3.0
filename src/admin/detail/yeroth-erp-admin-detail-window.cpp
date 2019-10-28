@@ -1,22 +1,14 @@
 /*
+ * yeroth-erp-admin-detail-window.cpp
+ *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
+ */
 
-   * yeroth-erp-admin-detail-window.cpp
-
-   *
-
-   *  Created on: Dec 22, 2015
-
-   *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
-
-   *      Email:  xnoundou7@gmail.com
-
-   */
-#include"yeroth-erp-admin-detail-window.hpp"
-#include"src/yeroth-erp-windows.hpp"
-#include<QtCore/QDebug>
-#include<QtWidgets/QDesktopWidget>
-#include<QtSql/QSqlError>
-#include<QtSql/QSqlRecord>
+#include "yeroth-erp-admin-detail-window.hpp"
+#include "src/yeroth-erp-windows.hpp"
+#include <QtCore/QDebug>
+#include <QtWidgets/QDesktopWidget>
+#include <QtSql/QSqlError>
+#include <QtSql/QSqlRecord>
 
 YerothAdminDetailWindow::YerothAdminDetailWindow():YerothPOSAdminWindowsCommons(QObject::tr("administration ~ détail")),
     _logger(new YerothLogger("YerothAdminDetailWindow"))

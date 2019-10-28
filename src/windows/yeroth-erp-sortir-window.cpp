@@ -1,7 +1,6 @@
 /*
  * yeroth-erp-sortir-window.cpp
  *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
  */
 
 #include "yeroth-erp-sortir-window.hpp"
@@ -2002,10 +2001,9 @@ void YerothSortirWindow::sortir()
 
                 bool success2 = YerothUtils::execQuery(quantiteQueryStr, _logger);
 
-                QString sMsg(QObject::trUtf8("Le stock '"));
-                sMsg.append(articleVenteInfo->designation).append("'").append(QString(QObject::trUtf8(" (%1 pièce(s))")).
-                        arg(articleVenteInfo->
-                            quantite_a_vendre));
+                QString sMsg(QString(QObject::trUtf8("Le stock '%1' (%2 pièce(s))"))
+                				.arg(articleVenteInfo->designation,
+                					 articleVenteInfo->quantite_a_vendre));
 
                 if (success2)
                 {
@@ -2013,19 +2011,19 @@ void YerothSortirWindow::sortir()
                 }
                 else
                 {
-                    sMsg.append(QObject::trUtf8(" n'a pas pu être sorti!\n" "Contacter \"YEROTH\""));
+                    sMsg.append(QString(QObject::trUtf8(" n'a pas pu être sorti !\n" "Contacter l'administrateur de %1"))
+                    				.arg(YerothUtils::APPLICATION_NAME));
                 }
 
                 sortieSucces = success1 && success2;
 
-                _logger->log("sortir", FROM_UTF8_STRING(sMsg));
+                _logger->log("sortir", sMsg);
             }
         }
         if (sortieSucces)
         {
-            QString vMsg(QObject::trUtf8("La sortie de '"));
-            vMsg.append(QString::number(this->_quantiteVendue, 'f', 0))
-				.append(QObject::trUtf8("' articles a été effectuée avec succès."));
+            QString vMsg(QString(QObject::trUtf8("La sortie de '%1' articles a été effectuée avec succès !"))
+            				.arg(QString::number(this->_quantiteVendue, 'f', 0)));
 
             if (QMessageBox::Ok ==
                     YerothQMessageBox::information(this,
