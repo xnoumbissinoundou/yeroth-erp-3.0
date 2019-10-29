@@ -18894,6 +18894,9 @@ background-color: rgb(0, 0, 0); </string>
     </property>
     <addaction name="actionAdministration"/>
     <addaction name="separator"/>
+    <addaction name="actionSet_stock_item_name_as_standard_input"/>
+    <addaction name="actionSet_reference_as_standard_input"/>
+    <addaction name="separator"/>
     <addaction name="actionAlertes"/>
     <addaction name="separator"/>
     <addaction name="actionAfficherPDF"/>
@@ -19533,6 +19536,32 @@ background-color: rgb(0, 0, 0); </string>
    </property>
    <property name="toolTip">
     <string>Manuel de l'utilisateur (PDF)</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionSet_reference_as_standard_input">
+   <property name="text">
+    <string>Activer la réference du stock comme entrée standard</string>
+   </property>
+   <property name="toolTip">
+    <string>Activer la réference du stock comme entrée standard</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionSet_stock_item_name_as_standard_input">
+   <property name="text">
+    <string>Activer le nom du stock comme entrée standard</string>
+   </property>
+   <property name="toolTip">
+    <string>Activer le nom du stock comme entrée standard</string>
    </property>
    <property name="font">
     <font>

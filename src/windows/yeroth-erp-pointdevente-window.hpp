@@ -265,6 +265,10 @@ public slots:
 
 private slots:
 
+	void setBarcodeAsStandardInput();
+
+	void setStockItemNameAsStandardInput();
+
 	bool PROCESS_CREDIT_CARD_PAYMENT();
 
 	bool PRE__PROCESS_CREDIT_CARD_PAYMENT();

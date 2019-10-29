@@ -89,7 +89,7 @@ public slots:
 		YerothQMessageBox::information(this,
 						 QObject::trUtf8("aide"),
 						 QObject::trUtf8("1) Vous avez accès aux informations sur les paiements"
-								   	   	 " en utilisant le nom de l'entreprise. Ceci ce fait"
+								   	   	 " en utilisant le nom de l'entreprise. Ceci se fait"
 								   	   	 " dans le 1er champ de recherche de cette l'interface"
 								   	     " graphique!\n\n"
 								   	     "2) Vous pouvez filtrer les résultats de la recherche,"

@@ -185,6 +185,12 @@ YerothPointDeVenteWindow::YerothPointDeVenteWindow()
     connect(radioButton_article_detail_remise_pourcentage, SIGNAL(toggled(bool)), this,
             SLOT(activateLineEditRemisePourcentage(bool)));
 
+    connect(actionSet_reference_as_standard_input, SIGNAL(triggered()), this,
+            SLOT(setBarcodeAsStandardInput()));
+
+    connect(actionSet_stock_item_name_as_standard_input, SIGNAL(triggered()), this,
+            SLOT(setStockItemNameAsStandardInput()));
+
     this->setupShortcuts();
 }
 
@@ -230,6 +236,21 @@ void YerothPointDeVenteWindow::deleteArticleVenteInfos()
     }
     articleItemToVenteInfo.clear();
 }
+
+
+void YerothPointDeVenteWindow::setBarcodeAsStandardInput()
+{
+	_currentFocusSearchBar = lineEdit_recherche_article_codebar;
+	lineEdit_recherche_article_codebar->setFocus();
+}
+
+
+void YerothPointDeVenteWindow::setStockItemNameAsStandardInput()
+{
+	_currentFocusSearchBar = lineEdit_recherche_article;
+	lineEdit_recherche_article->setFocus();
+}
+
 
 void YerothPointDeVenteWindow::setupLineEdits()
 {
