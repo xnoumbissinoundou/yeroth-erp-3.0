@@ -2093,7 +2093,7 @@ Please contact an administrator</translation>
     <message>
         <location filename="src/admin/creer/creer-utilisateur.cpp" line="49"/>
         <source>Choisissez un mot de passe différent de votre id !</source>
-        <translation>Type in a password different from your username !</translation>
+        <translation>Type in a password different from your user name !</translation>
     </message>
     <message>
         <location filename="src/admin/creer/creer-utilisateur.cpp" line="100"/>
@@ -2448,7 +2448,7 @@ Contact Yeroth-erp-3.0 application administrator!</translation>
         <source>Votre nom d&apos;utilisateur ou bien votre mot de passe est incorrect !</source>
         <oldsource>Votre nom d&apos;utilisateur ou bien votre mot de passe est incorrect!
 </oldsource>
-        <translation>Username or password is incorrect!</translation>
+        <translation>User name or password is incorrect!</translation>
     </message>
     <message>
         <location filename="src/dialogs/yeroth-erp-changer-utilisateur-dialog.cpp" line="227"/>
@@ -6858,7 +6858,7 @@ Sale</translation>
         <location filename="ui/yeroth-erp-changer-utilisateur-dialog.ui" line="891"/>
         <source>nom d&apos;utilisateur</source>
         <oldsource>nom d&apos;utililisateur</oldsource>
-        <translation>username</translation>
+        <translation>user name</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-changer-utilisateur-dialog.ui" line="1315"/>
