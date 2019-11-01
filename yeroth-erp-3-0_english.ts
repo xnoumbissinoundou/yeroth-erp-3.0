@@ -952,14 +952,20 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
 2) Déconnectez vous en cliquant sur le deuxième icône !
 
 3) Lorsque vous êtes enregistré, choisissez une opération à réaliser en cliquant sur le bouton correspondant !</source>
-        <translation type="unfinished"></translation>
+        <translation>1) Sign in by pressing the first icon !
+
+2) Sign out by pressing the second icon !
+
+3) When you are signed in, select an operation to achieve by pressing the corresponding button !</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-main-window.cpp" line="394"/>
         <source>1) Veuillez vous enregistrer en cliquant sur le premier icône !
 
 2) Recevez un message d&apos;aide en cliquant sur le deuxieme icone !</source>
-        <translation type="unfinished"></translation>
+        <translation>1) Sign in by pressing the first icon !
+
+2) Get help message by pressing the second icon !</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="22"/>
@@ -1551,53 +1557,59 @@ Continue saving it to the database ?</translation>
         <translation>business dashboard</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1043"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="524"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="692"/>
+        <source>D\&apos;etails en %1:</source>
+        <translation>Details in %1:</translation>
+    </message>
+    <message>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1035"/>
         <source>rankings - pas de données !</source>
         <oldsource>Yeroth - rapports - rankings - pas de données !</oldsource>
         <translation>rankings - no data !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1197"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1389"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1770"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1930"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1189"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1381"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1762"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1922"/>
         <source>Fenêtre des rapports</source>
         <oldsource>Yeroth - Fenêtre des rapports</oldsource>
         <translation>Business dashboard window</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1305"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1670"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1848"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2154"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1297"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1662"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1840"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2146"/>
         <source>aucun filtre !</source>
         <translation>no filter !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1390"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1931"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1382"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1923"/>
         <source>Vous devez spécifier un paramètre dans le champs de texte &apos;nom&apos; !</source>
-        <translation>Please enter a string in field &apos;name&apos;!</translation>
+        <translation>Please enter a string in field &apos;name&apos; !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1423"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1415"/>
         <source>Yeroth-erp-3.0 - rapports - analyse comparée - pas de données !</source>
         <oldsource>Yeroth - rapports - analyse comparée - pas de données !</oldsource>
         <translation>Yeroth-erp-3.0 - business dashboard - compared analysis - no data !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1678"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1670"/>
         <source>[analyse compar\&apos;ee]</source>
         <translation>[compared analysis]</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1959"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1951"/>
         <source>Yeroth-erp-3.0 - rapports - évolution du chiffre d&apos;affaire - pas de données !</source>
         <oldsource>Yeroth - rapports - évolution du chiffre d&apos;affaire - pas de données !</oldsource>
         <translation>Yeroth-erp-3.0 - business dashboard - business turnover evolution - no data !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1039"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1031"/>
         <source>Il n&apos;y a pas de données correspondante à la requête !
 Vérifier que les dates de début et de fin sont correctes !</source>
         <oldsource>Il n&apos;y a pas de données correspondante à la requête !Vérifier que les dates de début et de fin sont correctes !</oldsource>
@@ -1605,8 +1617,8 @@ Vérifier que les dates de début et de fin sont correctes !</source>
 Please check that begin and end dates are correct!</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1198"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1771"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1190"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1763"/>
         <source>Le mois de &apos;début&apos; doit être antérieur au mois de &apos;fin&apos; !</source>
         <translation>The &apos;begin&apos; month must be anterior to the &apos;end&apos; month!</translation>
     </message>
@@ -2208,7 +2220,7 @@ Please contact an administrator</translation>
     <message>
         <location filename="src/admin/creer/creer-alerte.cpp" line="140"/>
         <source>Veuillez choisir comme paramètre de l&apos;alerte soit la &apos;quantité&apos;, soit la &apos;période de temps&apos; !</source>
-        <translation>Select either &apos;quantity&apos; or &apos;time frame&apos; as an alert parameter !</translation>
+        <translation>Select either &apos;stock quantity&apos; or &apos;time frame&apos; as an alert parameter !</translation>
     </message>
     <message>
         <location filename="src/admin/creer/creer-alerte.cpp" line="144"/>
@@ -2597,31 +2609,39 @@ Contact Yeroth-erp-3.0 application administrator!</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-paiements-window.hpp" line="91"/>
-        <source>1) Vous avez accès aux informations sur les paiements en utilisant le nom de l&apos;entreprise. Ceci se fait dans le 1er champ de recherche de cette l&apos;interface graphique!
+        <source>1) Vous avez accès aux informations sur les paiements en utilisant le nom de l&apos;entreprise. Ceci se fait dans le 1er champ de recherche de cette l&apos;interface graphique !
 
 2) Vous pouvez filtrer les résultats de la recherche, sur les informations de paiements, en paramétrant celle-ci avec des dates de &apos;Début&apos;, et de &apos;Fin&apos;.
 
- Vous pouvez filtrer les résultats de la recherche, en utilisant les paramètres que l&apos;on retrouve tout en bas de l&apos;interface graphique (example: numéro du bon de paiement, etc.)!</source>
-        <oldsource>1) Vous avez accès aux informations sur les paiements en utilisant le nom de l&apos;entreprise. Ceci ce fait dans le 1er champ de recherche de cette l&apos;interface graphique!
+ Vous pouvez filtrer les résultats de la recherche, en utilisant les paramètres que l&apos;on retrouve tout en bas de l&apos;interface graphique (example: numéro du bon de paiement, etc.) !</source>
+        <oldsource>1) Vous avez accès aux informations sur les paiements en utilisant le nom de l&apos;entreprise. Ceci se fait dans le 1er champ de recherche de cette l&apos;interface graphique!
 
 2) Vous pouvez filtrer les résultats de la recherche, sur les informations de paiements, en paramétrant celle-ci avec des dates de &apos;Début&apos;, et de &apos;Fin&apos;.
 
- Vous pouvez filtrer les résultats de la recherche, en utilisant les paramètres que l&apos;on retrouve tout en bas de l&apos;interface graphique (example: numéro du bon de paiement, etc.)!</oldsource>
-        <translation type="unfinished"></translation>
+ Vous pouvez filtrer les résultats de la recherche, en utilisant les paramètres que l&apos;on retrouve tout en bas de l&apos;interface graphique (example: numéro du bon de paiement, etc.) !</oldsource>
+        <translation>1) You access payment information by giving customer company name in the 1st search field !
+
+2) You could filter search results on payment information by specifying &apos;Begin&apos;, and &apos;End&apos; date.
+
+ You could also filter search results by giving values for filter parameters down this user interface (e.g.: payment receipt nr., etc.) !</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-ventes-window.hpp" line="93"/>
-        <source>1) Vous avez accès aux informations des ventes en utilisant la référence d&apos;un article. Ceci se fait dans le 1er champ de recherche de cette l&apos;interface graphique!
+        <source>1) Vous avez accès aux informations des ventes en utilisant la référence d&apos;un article. Ceci se fait dans le 1er champ de recherche de cette l&apos;interface graphique !
 
 2) Vous pouvez filtrer les résultats de la recherche, sur les informations de ventes, en paramétrant celle-ci avec des dates de &apos;Début&apos;, et de &apos;Fin&apos;.
 
- Vous pouvez filtrer les résultats de la recherche, en utilisant les paramètres que l&apos;on retrouve tout en bas de l&apos;interface graphique (example: nom du caissier, désignation de l&apos;article, etc.)!</source>
-        <oldsource>1) Vous avez accès aux informations des ventes en utilisant la référence d&apos;un article. Ceci ce fait dans le 1er champ de recherche de cette l&apos;interface graphique!
+ Vous pouvez filtrer les résultats de la recherche, en utilisant les paramètres que l&apos;on retrouve tout en bas de l&apos;interface graphique (example: nom du caissier, désignation de l&apos;article, etc.) !</source>
+        <oldsource>1) Vous avez accès aux informations des ventes en utilisant la référence d&apos;un article. Ceci se fait dans le 1er champ de recherche de cette l&apos;interface graphique!
 
 2) Vous pouvez filtrer les résultats de la recherche, sur les informations de ventes, en paramétrant celle-ci avec des dates de &apos;Début&apos;, et de &apos;Fin&apos;.
 
- Vous pouvez filtrer les résultats de la recherche, en utilisant les paramètres que l&apos;on retrouve tout en bas de l&apos;interface graphique (example: nom du caissier, désignation de l&apos;article, etc.)!</oldsource>
-        <translation type="unfinished"></translation>
+ Vous pouvez filtrer les résultats de la recherche, en utilisant les paramètres que l&apos;on retrouve tout en bas de l&apos;interface graphique (example: nom du caissier, désignation de l&apos;article, etc.) !</oldsource>
+        <translation>1) You access sales information by giving a stock reference in the 1st search field !
+
+2) You could filter search results on sales information by specifying &apos;Begin&apos;, and &apos;End&apos; date.
+
+ You could also filter search results by giving values for filter parameters down this user interface (e.g.: cashier&apos;s name, a stock designation, etc.) !</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-historique-stock.cpp" line="101"/>
@@ -8564,7 +8584,7 @@ Transférer</source>
         <location filename="ui/yeroth-erp-marchandises-window.ui" line="9309"/>
         <source>Réinitialiser les éléments de filtrage</source>
         <oldsource>Réinitialiser les éléments de fitrage</oldsource>
-        <translation>reset filter</translation>
+        <translation>Reset filter</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-marchandises-window.ui" line="9317"/>

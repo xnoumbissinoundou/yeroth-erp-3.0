@@ -91,14 +91,14 @@ public slots:
 						 QObject::trUtf8("1) Vous avez accès aux informations sur les paiements"
 								   	   	 " en utilisant le nom de l'entreprise. Ceci se fait"
 								   	   	 " dans le 1er champ de recherche de cette l'interface"
-								   	     " graphique!\n\n"
+								   	     " graphique !\n\n"
 								   	     "2) Vous pouvez filtrer les résultats de la recherche,"
 								   	   	 " sur les informations de paiements, en paramétrant"
 								 	 	 " celle-ci avec des dates de 'Début', et de 'Fin'.\n\n"
 								   	     " Vous pouvez filtrer les résultats de la recherche,"
 								 	 	 " en utilisant les paramètres que l'on retrouve"
 								   	     " tout en bas de l'interface graphique"
-								 	 	 " (example: numéro du bon de paiement, etc.)!"));
+								 	 	 " (example: numéro du bon de paiement, etc.) !"));
 	}
 
 	void readProcessData();

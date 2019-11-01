@@ -93,14 +93,14 @@ public slots:
 						 QObject::trUtf8("1) Vous avez accès aux informations des ventes"
 								   	   	 " en utilisant la référence d'un article. Ceci se fait"
 								   	   	 " dans le 1er champ de recherche de cette l'interface"
-								   	     " graphique!\n\n"
+								   	     " graphique !\n\n"
 								   	     "2) Vous pouvez filtrer les résultats de la recherche,"
 								   	   	 " sur les informations de ventes, en paramétrant"
 								 	 	 " celle-ci avec des dates de 'Début', et de 'Fin'.\n\n"
 								   	     " Vous pouvez filtrer les résultats de la recherche,"
 								 	 	 " en utilisant les paramètres que l'on retrouve"
 								   	     " tout en bas de l'interface graphique"
-								 	 	 " (example: nom du caissier, désignation de l'article, etc.)!"));
+								 	 	 " (example: nom du caissier, désignation de l'article, etc.) !"));
 	}
 
 	void readProcessData();

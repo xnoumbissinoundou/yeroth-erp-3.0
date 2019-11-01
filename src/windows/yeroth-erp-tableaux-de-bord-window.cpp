@@ -521,8 +521,8 @@ void YerothTableauxDeBordWindow::meilleursStats(QString fileName,
     _reportTexFileEndString.clear();
 
     _reportTexFileEndString.append(YerothUtils::handleForeignAccents(
-                                       QString("D\\'etails en %1:")
-                                       .arg(YerothERPConfig::currency)))
+                                       QString(QObject::trUtf8("D\\'etails en %1:"))
+                                       	   .arg(YerothERPConfig::currency)))
     					   .prepend("\\textbf{").append("}\n");
 
     _reportTexFileEndString.append("\\begin{enumerate}[1)]\n");
@@ -688,17 +688,9 @@ void YerothTableauxDeBordWindow::derniersStats(QString fileName, QString fieldId
 
     _reportTexFileEndString.clear();
 
-#ifdef YEROTH_FRANCAIS_LANGUAGE
     _reportTexFileEndString.append(YerothUtils::handleForeignAccents(
-                                       QString("D\\'etails en %1:")
-                                       .arg(YerothERPConfig::currency)));
-#endif
-
-#ifdef YEROTH_ENGLISH_LANGUAGE
-    _reportTexFileEndString.append(YerothUtils::handleForeignAccents(
-                                       QString("Details in %1:")
-                                       .arg(YerothERPConfig::currency)));
-#endif
+                                       QString(QObject::trUtf8("D\\'etails en %1:"))
+                                       	   .arg(YerothERPConfig::currency)));
 
     _reportTexFileEndString.prepend("\\textbf{").append("}\n");
 
