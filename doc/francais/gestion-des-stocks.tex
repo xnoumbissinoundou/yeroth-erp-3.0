@@ -1,7 +1,7 @@
 \chapter{La Gestion des Stocks}\label{chap:gestion-stocks}
 \index{la gestion des stocks}
 
-\utilisateurs: \liencaissier, \lienmagasinier, \lienpatron.\\
+\utilisateurs: \liencaissier, \lienmagasinier, \lienmanager.\\
 
 \chapintro{Ce chapitre d\'ecrit comment avoir acc\`es aux
 fonctionalit\'es de gestion des stocks et comment les utiliser.}
@@ -15,7 +15,7 @@ en fonction du r\^ole de l'utilisateur.\\
 \begin{table}[!htbp]
 \centering
 \begin{tabular}{lcccc}
-\textbf{T\^aches} 								& \patronb			& \gestionairedestocksb	& \magasinierb		& \caissierb 	 \\ \hline
+\textbf{T\^aches} 								& \managerb			& \gestionairedestocksb	& \magasinierb		& \caissierb 	 \\ \hline
 Entrer un stock 								& \mytimes{blue}	& \mytimes{blue}		& 					&  				 \\ \hline
 lister les stocks 								& \mytimes{blue}	& \mytimes{blue}		& \mytimes{blue}	& \mytimes{blue} \\ \hline
 modifier un stock 								& \mytimes{blue}	& \mytimes{blue}		& \mytimes{blue}	&  				 \\ \hline
@@ -35,7 +35,7 @@ acc\'eder aux informations de ventes 			& \mytimes{blue}	& 						& 					&
 \end{table}
 
 Les fonctionalit\'es de gestion des stocks sont accessible
-exclusivement aux \roles \magasinier, \caissier et \patron. Ces
+exclusivement aux \roles \magasinier, \caissier et \manager. Ces
 fonctionalit\'es sont les suivantes:
 \begin{enumerate}[1)]
 	\item afficher les d\'etails d'un stock
@@ -108,14 +108,14 @@ vendre ou \`a sortir:
 
 \yeren entretient les donn\'ees suivantes pour chaque stock:
 \begin{enumerate}[1)]
-	\item la cat\'egorie
-	\item la d\'esignation
-	\item la date de p\'eremption du stock \optionel
-	\item le fournisseur \optionel
+	\item la cat\'egorie \obligatoire
+	\item la d\'esignation \obligatoire
+	\item la date de p\'eremption du stock 
+	\item le fournisseur 
 	\item la localisation du stock
-	\item le montant de la TVA d'un article \optionel
-	\item le prix de vente d'un article
-	\item la quantit\'e intiale (nombre de lots, et quantit\'e par lot)
+	\item le montant de la TVA d'un article 
+	\item le prix de vente d'un article \obligatoire
+	\item la quantit\'e intiale (nombre de lots, et quantit\'e par lot) \obligatoire
 	\item la \reference
 	\item le stock minimum: si cette quantit\'e
 		est atteinte, alors le nombre de la colone 'Qt\'e total'
@@ -233,8 +233,8 @@ d'acceuil (figure~\ref{fig:yeren-fenetre-magasinier}):
 		cliquez sur le bouton \bouton{Stocks} de la de la fen\^etre d'acceuil.
 \end{itemize}
 
-\subsection{Lister les stocks avec le r\^ole \patron}
-Pour le \role \patron, il existe deux m\'ethodes pour
+\subsection{Lister les stocks avec le r\^ole \manager}
+Pour le \role \manager, il existe deux m\'ethodes pour
 lister les stocks dans \yeren \`a partir de la fen\^etre
 d'acceuil (figure~\ref{fig:yeren-fenetre-patron}): 
 
