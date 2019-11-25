@@ -5944,7 +5944,7 @@
          </rect>
         </property>
         <property name="text">
-         <string>id</string>
+         <string>nom d'utilisateur</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -10090,7 +10090,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>id</string>
+        <string>numéro unique</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
