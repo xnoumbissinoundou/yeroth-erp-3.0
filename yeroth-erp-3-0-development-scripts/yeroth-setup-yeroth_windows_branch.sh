@@ -1,6 +1,7 @@
 #!/bin/bash
 
 git rm *.pdf
+git rm -r yeroth-erp-3-0-development-scripts/yeroth-create-dpkg*
 git rm -r yeroth-erp-3-0-deb-file-repository
 git rm -r yeroth-erp-3.0-academic
 git rm -r yeroth-erp-3.0-standalone
