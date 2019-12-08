@@ -721,7 +721,7 @@ void YerothAdminWindow::read_configuration()
 
     lineEdit_repertoire_fichiers_temporaires->setText(YerothERPConfig::temporaryFilesDir);
 
-    lineEdit_tva_value->setText(QString::number((YerothERPConfig::tva_value * 100), 'f', 2));
+    lineEdit_tva_value->setText(YerothUtils::getTvaString());
 
     lineEdit_annee_depart_rapports_chiffre_affaire->setText(YerothERPConfig::annee_depart_rapports_chiffre_affaire_value);
 

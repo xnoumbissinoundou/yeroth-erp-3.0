@@ -740,7 +740,7 @@ Press m &apos;Cancel&apos; to exit %2</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-achats-detail-window.cpp" line="19"/>
-        <location filename="src/windows/yeroth-erp-achats-window.cpp" line="54"/>
+        <location filename="src/windows/yeroth-erp-achats-window.cpp" line="55"/>
         <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="28"/>
         <location filename="src/windows/yeroth-erp-clients-window.cpp" line="38"/>
         <location filename="src/windows/yeroth-erp-creer-nouveau-client-window.cpp" line="24"/>
@@ -825,11 +825,6 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="541"/>
         <source>suppression d&apos;une alerte</source>
         <translation>Alert deletion</translation>
-    </message>
-    <message>
-        <location filename="src/windows/yeroth-erp-achats-window.cpp" line="56"/>
-        <source>fiche des achats</source>
-        <translation>buyings list</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-achats-window.cpp" line="185"/>
@@ -3458,9 +3453,8 @@ Press &apos;Cancel&apos; to exit &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-admin-create-window.ui" line="5947"/>
-        <location filename="ui/yeroth-erp-admin-create-window.ui" line="10093"/>
-        <source>id</source>
-        <translation>id</translation>
+        <source>nom d&apos;utilisateur</source>
+        <translation>user name</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-admin-create-window.ui" line="5978"/>
@@ -3523,6 +3517,11 @@ Press &apos;Cancel&apos; to exit &apos;%3&apos;</translation>
         <location filename="ui/yeroth-erp-admin-create-window.ui" line="10065"/>
         <source>description du lieu</source>
         <translation>site business information</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-admin-create-window.ui" line="10093"/>
+        <source>numéro unique</source>
+        <translation>reference</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-admin-create-window.ui" line="10196"/>

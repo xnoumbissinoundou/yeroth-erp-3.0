@@ -2816,22 +2816,22 @@ qrc_yeroth-erp-3-0.cpp: yeroth-erp-3-0.qrc \
 		yeroth-erp-3-0-images/yeroth-erp-3.0-icon.png \
 		yeroth-erp-3-0-images/folder-sort.svg.png \
 		yeroth-erp-3-0-images/minus.png \
-		yeroth-erp-3-0-templates/FR_template-journal-transactions.tex \
-		yeroth-erp-3-0-templates/FR_template-lister-stock.tex \
-		yeroth-erp-3-0-templates/FR_template-lister-achats.tex \
-		yeroth-erp-3-0-templates/FR_template-journal-des-paiements.tex \
+		yeroth-erp-3-0-templates/EN_template-facture-petit.tex \
+		yeroth-erp-3-0-templates/EN_template-lister-stock.tex \
+		yeroth-erp-3-0-templates/EN_template-facture-grand.tex \
+		yeroth-erp-3-0-templates/EN_template-historique-dun-stock.tex \
+		yeroth-erp-3-0-templates/EN_template-sortie-des-stocks-petit.tex \
+		yeroth-erp-3-0-templates/EN_template-comptes-clients.tex \
 		yeroth-erp-3-0-templates/1a.tex \
-		yeroth-erp-3-0-templates/FR_template-marchandises.tex \
-		yeroth-erp-3-0-templates/FR_pie-chart.tex \
-		yeroth-erp-3-0-templates/FR_bar-diag.tex \
-		yeroth-erp-3-0-templates/FR_template-facture-petit.tex \
-		yeroth-erp-3-0-templates/FR_template-sortie-des-stocks-petit.tex \
-		yeroth-erp-3-0-templates/FR_template-facture-grand.tex \
-		yeroth-erp-3-0-templates/FR_template-historique-dun-stock.tex \
-		yeroth-erp-3-0-templates/FR_template-sortie-des-stocks-grand.tex \
-		yeroth-erp-3-0-templates/FR_template-comptes-clients.tex \
-		yeroth-erp-3-0-templates/FR_template-journal-des-ventes.tex \
-		yeroth-erp-3-0-templates/FR_bar-chart.tex \
+		yeroth-erp-3-0-templates/EN_template-sortie-des-stocks-grand.tex \
+		yeroth-erp-3-0-templates/EN_template-marchandises.tex \
+		yeroth-erp-3-0-templates/EN_template-journal-transactions.tex \
+		yeroth-erp-3-0-templates/EN_bar-chart.tex \
+		yeroth-erp-3-0-templates/EN_template-lister-achats.tex \
+		yeroth-erp-3-0-templates/EN_template-journal-des-paiements.tex \
+		yeroth-erp-3-0-templates/EN_template-journal-des-ventes.tex \
+		yeroth-erp-3-0-templates/EN_bar-diag.tex \
+		yeroth-erp-3-0-templates/EN_pie-chart.tex \
 		yeroth-erp-3-0-sql/create_table_stocks_vendu.sql \
 		yeroth-erp-3-0-sql/create_table_configurations.sql \
 		yeroth-erp-3-0-sql/create_table_titres.sql \

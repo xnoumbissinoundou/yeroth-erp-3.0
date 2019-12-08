@@ -1005,8 +1005,8 @@ void YerothVentesWindow::lister_les_elements_du_tableau(YerothSqlTableModel &sto
     double remise_total_fcfa = 0.0;
     double montant_total = 0.0;
     double montant_total_vente = 0.0;
-    double tva = 0.0;
-    double total_tva = 0.0;
+    double montant_tva = 0.0;
+    double total_montant_tva = 0.0;
 
     QSqlRecord aRecord;
     QString stockId;
@@ -1033,16 +1033,18 @@ void YerothVentesWindow::lister_les_elements_du_tableau(YerothSqlTableModel &sto
 
         remise_total_fcfa += remise_prix;
 
-        tva = GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::TVA).toDouble();
+        montant_tva = GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::MONTANT_TVA).toDouble();
 
-        total_tva += tva;
+        total_montant_tva += montant_tva;
 
         stockId = GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::STOCKS_ID);
     }
 
+    montant_total = montant_total - total_montant_tva;
+
     if (_allWindows->getUser()->isManager())
     {
-        lineEdit_ventes_tva->setText(GET_CURRENCY_STRING_NUM(total_tva));
+        lineEdit_ventes_tva->setText(GET_CURRENCY_STRING_NUM(total_montant_tva));
     }
     else
     {

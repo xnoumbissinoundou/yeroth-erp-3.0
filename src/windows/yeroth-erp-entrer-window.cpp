@@ -34,7 +34,7 @@ YerothEntrerWindow::YerothEntrerWindow()
 :YerothWindowsCommons(YerothEntrerWindow::_WINDOW_TITLE),
  _logger(new YerothLogger("YerothEntrerWindow")),
  _stocks_id(0),
- _tva(0.0),
+ _montantTva(0.0),
  _tvaCheckBoxPreviousState(false),
  _createNewCategorie(false),
  _createNewFournisseur(false)
@@ -460,15 +460,6 @@ bool YerothEntrerWindow::product_search_with_codebar()
         {
         	lineEdit_designation->setText(query.value(YerothDatabaseTableColumn::DESIGNATION).toString());
         	lineEdit_categorie_produit->setText(query.value(YerothDatabaseTableColumn::CATEGORIE).toString());
-            lineEdit_prix_vente->setText(query.value(YerothDatabaseTableColumn::PRIX_UNITAIRE).toString());
-
-            double montant_tva = query.value(YerothDatabaseTableColumn::MONTANT_TVA).toDouble();
-
-            if (montant_tva > 0)
-            {
-                checkBox_tva->setChecked(true);
-                handleTVACheckBox(true);
-            }
 
             return true;
         }
@@ -501,8 +492,8 @@ void YerothEntrerWindow::display_prix_vente()
     if (checkBox_tva->isChecked())
     {
         double prix_vente = lineEdit_prix_vente->text().toDouble();
-        _tva = prix_vente * YerothERPConfig::tva_value;
-        prix_vente = prix_vente + _tva;
+        _montantTva = prix_vente * YerothERPConfig::tva_value;
+        prix_vente = prix_vente + _montantTva;
         lineEdit_prix_vente->setText(QString::number(prix_vente, 'f', 2));
     }
 }
@@ -520,12 +511,12 @@ void YerothEntrerWindow::handleTVACheckBox(bool clicked)
         {
             _tvaCheckBoxPreviousState = false;
         }
-        _tva = prix_vente * YerothERPConfig::tva_value;
-        prix_vente = prix_vente + _tva;
+        _montantTva = prix_vente * YerothERPConfig::tva_value;
+        prix_vente = prix_vente + _montantTva;
     }
     else
     {
-        _tva = 0;
+        _montantTva = 0;
         if (true == _tvaCheckBoxPreviousState)
         {
             _tvaCheckBoxPreviousState = false;
@@ -644,7 +635,7 @@ void YerothEntrerWindow::clear_all_fields()
     label_image_produit->clear();
     label_image_produit->setAutoFillBackground(false);
     _lastEditedPrixVente.clear();
-    _tva = 0.0;
+    _montantTva = 0.0;
     checkBox_tva->setChecked(false);
     _tvaCheckBoxPreviousState = false;
     _createNewCategorie = false;
@@ -721,13 +712,13 @@ bool YerothEntrerWindow::insertStockItemInProductList()
 
     record.setValue(YerothDatabaseTableColumn::DESCRIPTION_PRODUIT, textEdit_description->toPlainText());
 
-    record.setValue(YerothDatabaseTableColumn::MONTANT_TVA, _tva);
+    record.setValue(YerothDatabaseTableColumn::MONTANT_TVA, _montantTva);
 
     double prix_vente = lineEdit_prix_vente->text().toDouble();
 
     record.setValue(YerothDatabaseTableColumn::PRIX_VENTE, prix_vente);
 
-    double prix_unitaire_ht = prix_vente - _tva;
+    double prix_unitaire_ht = prix_vente - _montantTva;
 
     record.setValue(YerothDatabaseTableColumn::PRIX_UNITAIRE, prix_unitaire_ht);
     //qDebug() << "++_tva: " << QString::number(_tva, 'f', 2);
@@ -786,7 +777,15 @@ bool YerothEntrerWindow::isProfitable()
 	double prix_dachat = lineEdit_prix_dachat->text().toDouble();
 	double prix_vente = lineEdit_prix_vente->text().toDouble();
 
-	double profit = getMargeBeneficiaire(prix_vente, prix_dachat, _tva);
+	double profit = getMargeBeneficiaire(prix_vente,
+										 prix_dachat,
+										 _montantTva);
+
+//	qDebug() << QString("++ prix_vente: %1, prix_dachat: %2, _montantTva: %3, profit: %4")
+//					.arg(QString::number(prix_vente),
+//						 QString::number(prix_dachat),
+//						 QString::number(_montantTva),
+//						 QString::number(profit));
 
 	return (profit >= 0);
 }
@@ -912,7 +911,7 @@ YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
         achatRecord.setValue(YerothDatabaseTableColumn::PRIX_DACHAT, prix_dachat);
         achatRecord.setValue(YerothDatabaseTableColumn::PRIX_VENTE, prix_vente);
         //qDebug() << "++_tva: " << QString::number(_tva, 'f', 2);
-        achatRecord.setValue(YerothDatabaseTableColumn::MONTANT_TVA, _tva);
+        achatRecord.setValue(YerothDatabaseTableColumn::MONTANT_TVA, _montantTva);
 
 
 
@@ -923,11 +922,11 @@ YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
         record.setValue(YerothDatabaseTableColumn::PRIX_DACHAT, prix_dachat);
         record.setValue(YerothDatabaseTableColumn::PRIX_VENTE, prix_vente);
         //qDebug() << "++_tva: " << QString::number(_tva, 'f', 2);
-        record.setValue(YerothDatabaseTableColumn::MONTANT_TVA, _tva);
+        record.setValue(YerothDatabaseTableColumn::MONTANT_TVA, _montantTva);
 
-        double prix_unitaire_ht = prix_vente - _tva;
+        double prix_unitaire_ht = prix_vente - _montantTva;
 
-        double marge_beneficiaire = getMargeBeneficiaire(prix_vente, prix_dachat, _tva);
+        double marge_beneficiaire = getMargeBeneficiaire(prix_vente, prix_dachat, _montantTva);
 
         achatRecord.setValue(YerothDatabaseTableColumn::MARGE_BENEFICIAIRE, marge_beneficiaire);
         achatRecord.setValue(YerothDatabaseTableColumn::PRIX_UNITAIRE, prix_unitaire_ht);

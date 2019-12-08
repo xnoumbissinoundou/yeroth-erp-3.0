@@ -110,9 +110,9 @@ public slots:
 
     inline double getMargeBeneficiaire(double prix_vente,
     								   double prix_dachat,
-									   double tva)
+									   double montantTva)
     {
-    	return (prix_vente - _tva - prix_dachat);
+    	return (prix_vente - QString::number(montantTva, 'f', 2).toDouble() - prix_dachat);
     }
 
     bool isProfitable();
@@ -179,7 +179,7 @@ private:
 
     unsigned 				_stocks_id;
 
-    double					_tva;
+    double					_montantTva;
 
     bool					_tvaCheckBoxPreviousState;
 
