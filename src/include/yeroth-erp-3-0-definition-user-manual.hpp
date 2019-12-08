@@ -8,7 +8,10 @@
 #ifndef _YEROTH_ERP_3_0_DEFINITION_USER_MANUAL_HPP_
 #define _YEROTH_ERP_3_0_DEFINITION_USER_MANUAL_HPP_
 
-#define FOLDER_YEROTH_ERP_3_0_USER_DOC 										"doc"
+#include "yeroth-erp-3-0-software.text-configuration.hpp"
+
+#define FOLDER_YEROTH_ERP_3_0_USER_DOC 										"../../usr/share/doc/yeroth-erp-" VERSION_WITH_DOT
+
 #define FOLDER_YEROTH_ERP_3_0_USER_DOC_EN 									FOLDER_YEROTH_ERP_3_0_USER_DOC"/english"
 #define FOLDER_YEROTH_ERP_3_0_USER_DOC_FR 									FOLDER_YEROTH_ERP_3_0_USER_DOC"/francais"
 
