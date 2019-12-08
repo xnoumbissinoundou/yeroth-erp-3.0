@@ -179,7 +179,7 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::MONTANT_A_REMBOURSER,	QObject::trUtf8("Montant à rembourser"));
 
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,	QObject::tr("Chiffre d'affaire"));
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,	QObject::tr("Total vente"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REMISE_PRIX,			QObject::tr("Remise prix"));
 

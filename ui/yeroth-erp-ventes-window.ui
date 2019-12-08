@@ -3454,7 +3454,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Chiffre d'affaire</string>
+       <string>Total vente</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
