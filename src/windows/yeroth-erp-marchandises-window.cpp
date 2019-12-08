@@ -169,9 +169,10 @@ double YerothMarchandisesWindow::getValeurDinventaireEnStock(QString categorie,
 {
 	double valeurMarchande = 0.0;
 
-	QString sqlSearchStocksTableQueryStr(QString("SELECT %1, %2 FROM %3 WHERE %4 = '%5' AND %6 = '%7'")
+	QString sqlSearchStocksTableQueryStr(QString("SELECT %1, (%2 - %3) FROM %4 WHERE %5 = '%6' AND %7 = '%8'")
 											.arg(YerothDatabaseTableColumn::QUANTITE_TOTAL,
-												YerothDatabaseTableColumn::PRIX_VENTE,
+												 YerothDatabaseTableColumn::PRIX_VENTE,
+												 YerothDatabaseTableColumn::MONTANT_TVA,
 												 _allWindows->STOCKS,
 	                                             YerothDatabaseTableColumn::CATEGORIE,
 												 categorie,
@@ -187,13 +188,13 @@ double YerothMarchandisesWindow::getValeurDinventaireEnStock(QString categorie,
 	if (querySize > 0)
 	{
 		double qteTotalEnStock = 0.0;
-		double prix_vente = 0.0;
+		double montant_dinventaire = 0.0;
 
 		while (sqlSearchStockTableQuery.next())
 		{
 			qteTotalEnStock = sqlSearchStockTableQuery.value(YerothDatabaseTableColumn::QUANTITE_TOTAL).toDouble();
-			prix_vente = sqlSearchStockTableQuery.value(YerothDatabaseTableColumn::PRIX_VENTE).toDouble();
-			valeurMarchande += (qteTotalEnStock * prix_vente);
+			montant_dinventaire = sqlSearchStockTableQuery.value(1).toDouble();
+			valeurMarchande += (qteTotalEnStock * montant_dinventaire);
 		}
 
 		QString updateValeurMarchandeQueryStr(QString("UPDATE %1 SET %2 = '%3' WHERE (%4 = '%5') AND (%6 = '%7')")
