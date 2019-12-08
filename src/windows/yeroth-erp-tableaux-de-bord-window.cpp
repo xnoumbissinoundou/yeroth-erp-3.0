@@ -454,9 +454,10 @@ void YerothTableauxDeBordWindow::meilleursStats(QString fileName,
 {
     _logger->log("meilleursStats");
 
-    QString strQuery(QString("SELECT %1, %2 FROM %3 WHERE %4 >= '%5' AND %6 <= '%7'")
+    QString strQuery(QString("SELECT %1, (%2 - %3) FROM %4 WHERE %5 >= '%6' AND %7 <= '%8'")
     					.arg(fieldId,
     						 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
+    						 YerothDatabaseTableColumn::MONTANT_TVA,
 							 _allWindows->STOCKS_VENDU,
 							 YerothDatabaseTableColumn::DATE_VENTE,
 							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_debut->date()),
@@ -600,9 +601,10 @@ void YerothTableauxDeBordWindow::derniersStats(QString fileName, QString fieldId
 {
     _logger->log("derniersStats");
 
-    QString strQuery(QString("SELECT %1, %2 FROM %3 WHERE %4 >= '%5' AND %6 <= '%7'")
+    QString strQuery(QString("SELECT %1, (%2 - %3) FROM %4 WHERE %5 >= '%6' AND %7 <= '%8'")
     					.arg(fieldId,
     						 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
+    						 YerothDatabaseTableColumn::MONTANT_TVA,
 							 _allWindows->STOCKS_VENDU,
 							 YerothDatabaseTableColumn::DATE_VENTE,
 							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_debut->date()),
@@ -1273,7 +1275,7 @@ void YerothTableauxDeBordWindow::analyseComparee()
     //						 QString::number(moisFin));
 
 
-    QString strQuery(QString("SELECT date_vente, montant_total_vente "));
+    QString strQuery(QString("SELECT date_vente, (montant_total_vente - montant_tva) "));
 
     strQuery.append("FROM ")
     		.append(_allWindows->STOCKS_VENDU)
@@ -1814,7 +1816,7 @@ void YerothTableauxDeBordWindow::calculerChiffresDaffaireMois()
 //    						 BOOL_TO_STRING(moisFinAjuster),
 //    						 QString::number(moisFin));
 
-    QString strQuery(QString("SELECT date_vente, montant_total_vente "));
+    QString strQuery(QString("SELECT date_vente, (montant_total_vente - montant_tva) "));
 
     strQuery.append("FROM ")
     		.append(_allWindows->STOCKS_VENDU)
