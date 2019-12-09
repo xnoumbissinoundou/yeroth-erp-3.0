@@ -169,7 +169,7 @@ double YerothMarchandisesWindow::getValeurDinventaireEnStock(QString categorie,
 {
 	double valeurMarchande = 0.0;
 
-	QString sqlSearchStocksTableQueryStr(QString("SELECT %1, (%2 - %3) FROM %4 WHERE %5 = '%6' AND %7 = '%8'")
+	QString sqlSearchStocksTableQueryStr(QString("SELECT %1, (round(%2, 2) - round(%3, 2)) FROM %4 WHERE %5 = '%6' AND %7 = '%8'")
 											.arg(YerothDatabaseTableColumn::QUANTITE_TOTAL,
 												 YerothDatabaseTableColumn::PRIX_VENTE,
 												 YerothDatabaseTableColumn::MONTANT_TVA,

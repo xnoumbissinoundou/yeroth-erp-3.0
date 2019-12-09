@@ -454,7 +454,7 @@ void YerothTableauxDeBordWindow::meilleursStats(QString fileName,
 {
     _logger->log("meilleursStats");
 
-    QString strQuery(QString("SELECT %1, (%2 - %3) FROM %4 WHERE %5 >= '%6' AND %7 <= '%8'")
+    QString strQuery(QString("SELECT %1, (round(%2, 2) - round(%3, 2)) FROM %4 WHERE %5 >= '%6' AND %7 <= '%8'")
     					.arg(fieldId,
     						 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
     						 YerothDatabaseTableColumn::MONTANT_TVA,
@@ -601,7 +601,7 @@ void YerothTableauxDeBordWindow::derniersStats(QString fileName, QString fieldId
 {
     _logger->log("derniersStats");
 
-    QString strQuery(QString("SELECT %1, (%2 - %3) FROM %4 WHERE %5 >= '%6' AND %7 <= '%8'")
+    QString strQuery(QString("SELECT %1, (round(%2, 2) - round(%3, 2)) FROM %4 WHERE %5 >= '%6' AND %7 <= '%8'")
     					.arg(fieldId,
     						 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
     						 YerothDatabaseTableColumn::MONTANT_TVA,
