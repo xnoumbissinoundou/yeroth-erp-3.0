@@ -1472,7 +1472,9 @@ void YerothSortirWindow::ajouter_article(const QString & text)
 
     int selectedTableRow = designationToTableRows[text];
 
-    _logger->log("ajouter_article(const QModelIndex &)", QString("model index: %1").arg(selectedTableRow));
+    _logger->log("ajouter_article(const QModelIndex &)",
+    		     QString("model index: %1")
+				 	 .arg(selectedTableRow));
 
 
     YerothTableView & articleTableView = *lineEdit_recherche_article->getMyTableView();
@@ -1502,9 +1504,10 @@ void YerothSortirWindow::ajouter_article(const QString & text)
     //triggers a call to YerothSortirWindow::handleQteChange
     int lastCurRow =
         tableWidget_articles->addArticle(selectedTableRow, codeBar, designation, categorie,
-                                         QString::number(prix_unitaire, 'f', 2), QString::number(montant_tva, 'f',
-                                                 2),
-                                         GET_CURRENCY_STRING_NUM(prix_vente), YerothTableWidget::QTE_1,
+                                         QString::number(prix_unitaire, 'f', 2),
+										 QString::number(montant_tva, 'f', 2),
+										 QString::number(prix_vente, 'f', 2),
+										 YerothTableWidget::QTE_1,
                                          qte_en_stock);
 
     if (lastCurRow > -1)
@@ -1551,14 +1554,16 @@ void YerothSortirWindow::ajouter_article(const QModelIndex & modelIndex)
 
     int lastCurRow =
         tableWidget_articles->addArticle(selectedTableRow, codeBar, designation, categorie,
-                                         QString::number(prix_unitaire, 'f', 2), QString::number(montant_tva, 'f',
-                                                 2),
-                                         GET_CURRENCY_STRING_NUM(prix_vente), YerothTableWidget::QTE_1,
+                                         QString::number(prix_unitaire, 'f', 2),
+										 QString::number(montant_tva, 'f', 2),
+										 QString::number(prix_vente, 'f', 2),
+										 YerothTableWidget::QTE_1,
                                          qte_en_stock);
     if (lastCurRow > -1)
     {
         tableWidget_articles->selectRow(lastCurRow);
     }
+
     setRechercheDesignationArticleFocus();
 }
 
@@ -1600,13 +1605,16 @@ void YerothSortirWindow::ajouter_article_codebar(const QString & text)
     //triggers a call to YerothSortirWindow::handleQteChange
     int lastCurRow =
         tableWidget_articles->addArticle(selectedTableRow, codeBar, designation, categorie,
-                                         QString::number(prix_unitaire, 'f', 2), QString::number(montant_tva, 'f', 2),
-                                         GET_CURRENCY_STRING_NUM(prix_vente), YerothTableWidget::QTE_1,
+                                         QString::number(prix_unitaire, 'f', 2),
+										 QString::number(montant_tva, 'f', 2),
+										 QString::number(prix_vente, 'f', 2),
+										 YerothTableWidget::QTE_1,
                                          qte_en_stock);
     if (lastCurRow > -1)
     {
         tableWidget_articles->selectRow(lastCurRow);
     }
+
     setRechercheCodebarArticleFocus();
 }
 
@@ -1643,8 +1651,10 @@ void YerothSortirWindow::ajouter_article_codebar(const QModelIndex & modelIndex)
     //triggers a call to YerothSortirWindow::handleQteChange
     int lastCurRow =
         tableWidget_articles->addArticle(selectedTableRow, codeBar, designation, categorie,
-                                         QString::number(prix_unitaire, 'f', 2), QString::number(montant_tva, 'f', 2),
-                                         GET_CURRENCY_STRING_NUM(prix_vente), YerothTableWidget::QTE_1,
+                                         QString::number(prix_unitaire, 'f', 2),
+										 QString::number(montant_tva, 'f', 2),
+										 QString::number(prix_vente, 'f', 2),
+										 YerothTableWidget::QTE_1,
                                          qte_en_stock);
     if (lastCurRow > -1)
     {
@@ -1663,7 +1673,9 @@ void YerothSortirWindow::ajouter_article_codebar(const QModelIndex & modelIndex)
 void YerothSortirWindow::actualiser_articles(int row, unsigned newItemQte)
 {
     _logger->log("actualiser_articles(int, unsigned)",
-                 QString("row: %1, quantite: %2").arg(QString::number(row), QString::number(newItemQte)));
+                 QString("row: %1, quantite: %2")
+				 	 .arg(QString::number(row),
+				 		  QString::number(newItemQte)));
 
     double quantiteVendue = 0.0;
     double sommeTotal = 0.0;
@@ -1704,7 +1716,7 @@ void YerothSortirWindow::actualiser_articles(int row, unsigned newItemQte)
                 goto myItemBreak;
             }
 
-            totalWidgetItem->setText(GET_CURRENCY_STRING_NUM(articleVenteInfo->prix_vente()));
+            totalWidgetItem->setText(QString::number(articleVenteInfo->prix_vente(), 'f', 2));
         }
 myItemBreak:
 
@@ -1722,26 +1734,28 @@ myItemBreak:
 }
 
 /**
-
-   * This method is called by 'YerothSortirWindow::handleQteChange'
-
-   */
-
+  * This method is called by 'YerothSortirWindow::handleQteChange'
+  */
 void YerothSortirWindow::actualiser_articles_codebar(int row, unsigned newItemQte)
 {
     _logger->log("actualiser_articles(int, unsigned)",
                  QString("row: %1, quantite: %2").arg(QString::number(row), QString::number(newItemQte)));
+
     _qteChangeCodeBar = true;
+
     double quantiteVendue = 0.0;
     double sommeTotal = 0.0;
     double tva = 0.0;
     double curTableWidgetItemQte = 1;
+
     QTableWidgetItem *curTableWidgetItem = 0;
+
     for (int k = 0; k < tableWidget_articles->rowCount(); ++k)
     {
         YerothSqlTableModel & articleSqlTableModel = *lineEdit_recherche_article_codebar->getMySqlTableModel();
         QSqlRecord record = articleSqlTableModel.record(tableWidget_articles->getSqlTableModelIndex(k));
         YerothArticleVenteInfo *articleVenteInfo = articleItemToVenteInfo.value(k);
+
         if (row != k)
         {
             curTableWidgetItem = tableWidget_articles->item(k, YerothTableWidget::QTE_COLUMN);
@@ -1751,28 +1765,36 @@ void YerothSortirWindow::actualiser_articles_codebar(int row, unsigned newItemQt
         {
             //To update the table values after modifying the quantity value of an item
             curTableWidgetItemQte = newItemQte;
+
             QTableWidgetItem *totalTvaWidgetItem =
                 tableWidget_articles->item(k, YerothTableWidget::TOTAL_TVA_COLUMN);
+
             QTableWidgetItem *totalWidgetItem = tableWidget_articles->item(k, YerothTableWidget::TOTAL_COLUMN);
+
             if (totalTvaWidgetItem)
             {
                 totalTvaWidgetItem->setText(articleVenteInfo->montantTva());
             }
+
             //We must always keep this goto break to avoid false updates
             if (!totalWidgetItem)
             {
                 goto myItemBreak;
             }
-            totalWidgetItem->setText(GET_CURRENCY_STRING_NUM(articleVenteInfo->prix_vente()));
+
+            totalWidgetItem->setText(QString::number(articleVenteInfo->prix_vente(), 'f', 2));
         }
+
 myItemBreak:
         quantiteVendue += curTableWidgetItemQte;
         tva += (curTableWidgetItemQte * articleVenteInfo->_montant_tva);
         sommeTotal += articleVenteInfo->prix_vente();
     }
+
     _quantiteVendue = quantiteVendue;
     _tva = tva;
     _sommeTotal = sommeTotal;
+
     this->update_lineedits_and_labels();
     this->tableWidget_articles->resizeColumnsToContents();
 }
@@ -1780,26 +1802,34 @@ myItemBreak:
 void YerothSortirWindow::actualiser_tableau_sortie()
 {
     int tableRowCount = tableWidget_articles->rowCount();
+
     _logger->log("actualiser_tableau_sortie", QString("tableRowCount: %1").arg(tableRowCount));
+
     double quantiteVendue = 0.0;
     double sommeTotal = 0.0;
     double tva = 0.0;
     double curTableWidgetItemQte = 1;
+
     QTableWidgetItem *curTableWidgetItem = 0;
+
     for (int k = 0; k < tableRowCount; ++k)
     {
         YerothSqlTableModel & articleSqlTableModel = *lineEdit_recherche_article->getMySqlTableModel();
         QSqlRecord record = articleSqlTableModel.record(tableWidget_articles->getSqlTableModelIndex(k));
         YerothArticleVenteInfo *articleVenteInfo = articleItemToVenteInfo.value(k);
+
         curTableWidgetItem = tableWidget_articles->item(k, YerothTableWidget::QTE_COLUMN);
         curTableWidgetItemQte = curTableWidgetItem->text().toDouble();
+
         quantiteVendue += curTableWidgetItemQte;
         tva += (curTableWidgetItemQte * articleVenteInfo->_montant_tva);
         sommeTotal += articleVenteInfo->prix_vente();
     }
+
     _quantiteVendue = quantiteVendue;
     _tva = tva;
     _sommeTotal = sommeTotal;
+
     this->update_lineedits_and_labels();
     this->tableWidget_articles->resizeColumnsToContents();
 }
@@ -1812,8 +1842,11 @@ void YerothSortirWindow::update_lineedits_and_labels()
 void YerothSortirWindow::enlever_article()
 {
     _logger->log("enlever_article");
+
     int tableWidgetRow = tableWidget_articles->currentRow();
+
     _logger->log("enlever_article", QString("row: %1").arg(tableWidgetRow));
+
     if (tableWidgetRow > -1)
     {
         tableWidget_articles->removeArticle(tableWidgetRow);
@@ -1822,9 +1855,12 @@ void YerothSortirWindow::enlever_article()
             articleItemToVenteInfo.remove(tableWidgetRow);
             delete article;
         }
+
         QMap < int, YerothArticleVenteInfo * >newArticleItemToVenteInfo;
         QMapIterator < int, YerothArticleVenteInfo * >i(articleItemToVenteInfo);
+
         int k = 0;
+
         while (i.hasNext())
         {
             i.next();
@@ -1833,8 +1869,10 @@ void YerothSortirWindow::enlever_article()
                            QString("key: %1, value: %2").arg(QString::number(k), i.value()->designation));
             ++k;
         }
+
         articleItemToVenteInfo.clear();
         articleItemToVenteInfo = newArticleItemToVenteInfo;
+
         actualiser_tableau_sortie();
         setRechercheLineEditFocus();
     }

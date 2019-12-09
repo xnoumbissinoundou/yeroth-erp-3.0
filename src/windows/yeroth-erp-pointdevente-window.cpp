@@ -1655,25 +1655,36 @@ bool YerothPointDeVenteWindow::article_exist(const QString codeBar, const QStrin
 void YerothPointDeVenteWindow::ajouter_article(const QString & text)
 {
     _qteChangeCodeBar = false;
+
     QMap < QString, int >designationToTableRows = lineEdit_recherche_article->getDesignationToTableRows();
     //qDebug() << "++ YerothPointDeVenteWindow::ajouter_article, text:" << text;
+
     int selectedTableRow = designationToTableRows[text];
+
     _logger->log("ajouter_article(const QModelIndex &)", QString("model index: %1").arg(selectedTableRow));
+
     YerothTableView & articleTableView = *lineEdit_recherche_article->getMyTableView();
     articleTableView.setLastSelectedRow(selectedTableRow);
+
     lineEdit_recherche_article->getMySqlTableModel()->select();
+
     QSqlRecord record = lineEdit_recherche_article->getMySqlTableModel()->record(selectedTableRow);
+
     QString codeBar(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE));
     QString designation(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
     QString categorie(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::CATEGORIE));
+
     if (article_exist(codeBar, designation))
     {
         return;
     }
+
     QString qte_en_stock(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::QUANTITE_TOTAL));
+
     double prix_vente = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::PRIX_VENTE).toDouble();
     double montant_tva = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::MONTANT_TVA).toDouble();
     double prix_unitaire = prix_vente - montant_tva;
+
     if (prix_unitaire <= 0)
     {
         QString criticalMsg(QString("Erreur de calcul du prix de"
@@ -1692,9 +1703,10 @@ void YerothPointDeVenteWindow::ajouter_article(const QString & text)
     //triggers a call to YerothPointDeVenteWindow::handleQteChange
     int lastCurRow =
         tableWidget_articles->addArticle(selectedTableRow, codeBar, designation, categorie,
-                                         QString::number(prix_unitaire, 'f', 2), QString::number(montant_tva, 'f',
-                                                 2),
-                                         GET_CURRENCY_STRING_NUM(prix_vente), YerothTableWidget::QTE_1,
+                                         QString::number(prix_unitaire, 'f', 2),
+										 QString::number(montant_tva, 'f', 2),
+										 QString::number(prix_vente, 'f', 2),
+										 YerothTableWidget::QTE_1,
                                          qte_en_stock);
     if (lastCurRow > -1)
     {
@@ -1706,28 +1718,39 @@ void YerothPointDeVenteWindow::ajouter_article(const QModelIndex & modelIndex)
 {
     //qDebug() << "++ test ajouter_article: " << modelIndex.row();
     _qteChangeCodeBar = false;
+
     int selectedTableRow = modelIndex.row();
+
     _logger->log("ajouter_article(const QModelIndex &)", QString("model index: %1").arg(selectedTableRow));
+
     YerothTableView & articleTableView = *lineEdit_recherche_article->getMyTableView();
     articleTableView.setLastSelectedRow(selectedTableRow);
+
     lineEdit_recherche_article->getMySqlTableModel()->select();
+
     QSqlRecord record = lineEdit_recherche_article->getMySqlTableModel()->record(selectedTableRow);
+
     QString codeBar(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE));
     QString designation(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
     QString categorie(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::CATEGORIE));
+
     if (article_exist(codeBar, designation))
     {
         return;
     }
+
     QString qte_en_stock(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::QUANTITE_TOTAL));
+
     double prix_vente = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::PRIX_VENTE).toDouble();
     double montant_tva = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::MONTANT_TVA).toDouble();
     double prix_unitaire = prix_vente - montant_tva;
+
     if (prix_unitaire <= 0)
     {
         QString criticalMsg(QString("Erreur de calcul du prix de"
-                                    " vente pour l'article %1!\n\n Contactez le développeur de yeroth!").
-                            arg(designation));
+                                    " vente pour l'article %1!\n\n Contactez le développeur de yeroth!")
+        						.arg(designation));
+
         if (QMessageBox::Ok ==
                 QMessageBox::critical(this,
                                       QObject::trUtf8
@@ -1741,9 +1764,10 @@ void YerothPointDeVenteWindow::ajouter_article(const QModelIndex & modelIndex)
     //triggers a call to YerothPointDeVenteWindow::handleQteChange
     int lastCurRow =
         tableWidget_articles->addArticle(selectedTableRow, codeBar, designation, categorie,
-                                         QString::number(prix_unitaire, 'f', 2), QString::number(montant_tva, 'f',
-                                                 2),
-                                         GET_CURRENCY_STRING_NUM(prix_vente), YerothTableWidget::QTE_1,
+                                         QString::number(prix_unitaire, 'f', 2),
+										 QString::number(montant_tva, 'f', 2),
+										 QString::number(prix_vente, 'f', 2),
+										 YerothTableWidget::QTE_1,
                                          qte_en_stock);
     if (lastCurRow > -1)
     {
@@ -1754,30 +1778,42 @@ void YerothPointDeVenteWindow::ajouter_article(const QModelIndex & modelIndex)
 void YerothPointDeVenteWindow::ajouter_article_codebar(const QString & text)
 {
     QMap < QString, int >codebarToTableRows = lineEdit_recherche_article_codebar->getCodebarToTableRows();
+
     int selectedTableRow = codebarToTableRows[text];
+
     _logger->log("ajouter_article_codebar(const QString &)", QString("model index: %1").arg(selectedTableRow));
     //qDebug() << "YerothPointDeVenteWindow::ajouter_article_codebar(const QString &), "
     // << QString::number(selectedTableRow);
+
     YerothTableView & articleTableView = *lineEdit_recherche_article_codebar->getMyTableView();
+
     articleTableView.setLastSelectedRow(selectedTableRow);
+
     lineEdit_recherche_article_codebar->getMySqlTableModel()->select();
+
     QSqlRecord record = lineEdit_recherche_article_codebar->getMySqlTableModel()->record(selectedTableRow);
+
     QString codeBar(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE));
     QString designation(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
     QString categorie(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::CATEGORIE));
+
     if (article_exist(codeBar, designation))
     {
         return;
     }
+
     QString qte_en_stock(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::QUANTITE_TOTAL));
+
     double prix_vente = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::PRIX_VENTE).toDouble();
     double montant_tva = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::MONTANT_TVA).toDouble();
     double prix_unitaire = prix_vente - montant_tva;
+
     if (prix_unitaire <= 0)
     {
         QString criticalMsg(QString("Erreur de calcul du prix de"
-                                    " vente pour l'article %1!\n\n Contactez le développeur de yeroth!").
-                            arg(designation));
+                                    " vente pour l'article %1!\n\n Contactez le développeur de yeroth!")
+                            	.arg(designation));
+
         if (QMessageBox::Ok ==
                 QMessageBox::critical(this,
                                       QObject::trUtf8
@@ -1791,9 +1827,10 @@ void YerothPointDeVenteWindow::ajouter_article_codebar(const QString & text)
     //triggers a call to YerothPointDeVenteWindow::handleQteChange
     int lastCurRow =
         tableWidget_articles->addArticle(selectedTableRow, codeBar, designation, categorie,
-                                         QString::number(prix_unitaire, 'f', 2), QString::number(montant_tva, 'f',
-                                                 2),
-                                         GET_CURRENCY_STRING_NUM(prix_vente), YerothTableWidget::QTE_1,
+                                         QString::number(prix_unitaire, 'f', 2),
+										 QString::number(montant_tva, 'f', 2),
+										 QString::number(prix_vente, 'f', 2),
+										 YerothTableWidget::QTE_1,
                                          qte_en_stock);
     if (lastCurRow > -1)
     {
@@ -1804,44 +1841,57 @@ void YerothPointDeVenteWindow::ajouter_article_codebar(const QString & text)
 void YerothPointDeVenteWindow::ajouter_article_codebar(const QModelIndex & modelIndex)
 {
     int selectedTableRow = modelIndex.row();
+
     _logger->log("ajouter_article_codebar(const QModelIndex &)",
                  QString("model index: %1").arg(selectedTableRow));
+
     YerothTableView & articleTableView = *(lineEdit_recherche_article_codebar->getMyTableView());
+
     articleTableView.setLastSelectedRow(selectedTableRow);
-    qDebug() << QString("model index %1, articleTableView.selected: %2 ").arg(QString::number(selectedTableRow),
-             QString::
-             number
-             (lineEdit_recherche_article_codebar->
-              getMySqlTableModel()->
-              easySelect()));
+
+    qDebug() << QString("model index %1, articleTableView.selected: %2 ")
+    				.arg(QString::number(selectedTableRow),
+    					 QString::number(lineEdit_recherche_article_codebar->getMySqlTableModel()->easySelect()));
+
     //lineEdit_recherche_article_codebar->getMySqlTableModel()->select();
     QSqlRecord record = lineEdit_recherche_article_codebar->getMySqlTableModel()->record(selectedTableRow);
+
     QString codeBar(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE));
     QString designation(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
     QString categorie(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::CATEGORIE));
-    qDebug() << QString("++ :ajouter_article_codebar, sqlTable: %1, selectedTableRow: %2, codeBar: %3").
-             arg(lineEdit_recherche_article_codebar->getMySqlTableModel()->sqlTableName(),
-                 QString::number(selectedTableRow), codeBar);
+
+    qDebug() << QString("++ :ajouter_article_codebar, sqlTable: %1, selectedTableRow: %2, codeBar: %3")
+    				.arg(lineEdit_recherche_article_codebar->getMySqlTableModel()->sqlTableName(),
+    					 QString::number(selectedTableRow), codeBar);
+
     if (article_exist(codeBar, designation))
     {
-        qDebug() << QString("++ codeBar: %1, designation: %2 before return.").arg(codeBar, designation);
+        qDebug() << QString("++ codeBar: %1, designation: %2 before return.")
+        				.arg(codeBar, designation);
         return;
     }
-    qDebug() << QString("++ codeBar: %1, designation: %2 after return.").arg(codeBar, designation);
+
+    qDebug() << QString("++ codeBar: %1, designation: %2 after return.")
+    				.arg(codeBar, designation);
+
     QString qte_en_stock(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::QUANTITE_TOTAL));
+
     double prix_vente = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::PRIX_VENTE).toDouble();
     double montant_tva = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::MONTANT_TVA).toDouble();
     double prix_unitaire = prix_vente - montant_tva;
+
     if (prix_unitaire <= 0)
     {
         QString criticalMsg(QString("Erreur de calcul du prix de"
-                                    " vente pour l'article %1!\n\n Contactez le développeur de yeroth!").
-                            arg(designation));
+                                    " vente pour l'article %1!\n\n Contactez le développeur de yeroth!")
+        						.arg(designation));
+
         if (QMessageBox::Ok ==
                 QMessageBox::critical(this,
-                                      QObject::trUtf8
-                                      ("erreur"),
-                                      criticalMsg, QMessageBox::Cancel, QMessageBox::Ok))
+                                      QObject::trUtf8("erreur"),
+                                      criticalMsg,
+									  QMessageBox::Cancel,
+									  QMessageBox::Ok))
         {
             return;
         }
@@ -1850,9 +1900,10 @@ void YerothPointDeVenteWindow::ajouter_article_codebar(const QModelIndex & model
     //triggers a call to YerothPointDeVenteWindow::handleQteChange
     int lastCurRow =
         tableWidget_articles->addArticle(selectedTableRow, codeBar, designation, categorie,
-                                         QString::number(prix_unitaire, 'f', 2), QString::number(montant_tva, 'f',
-                                                 2),
-                                         GET_CURRENCY_STRING_NUM(prix_vente), YerothTableWidget::QTE_1,
+                                         QString::number(prix_unitaire, 'f', 2),
+										 QString::number(montant_tva, 'f', 2),
+										 QString::number(prix_vente, 'f', 2),
+										 YerothTableWidget::QTE_1,
                                          qte_en_stock);
     if (lastCurRow > -1)
     {
@@ -1861,15 +1912,16 @@ void YerothPointDeVenteWindow::ajouter_article_codebar(const QModelIndex & model
 }
 
 /**
-
    * This method is called by 'YerothPointDeVenteWindow::handleQteChange'
-
    */
 
 void YerothPointDeVenteWindow::actualiser_articles_codebar(int row, unsigned newItemQte)
 {
     _logger->log("actualiser_articles(int, unsigned)",
-                 QString("row: %1, quantite: %2").arg(QString::number(row), QString::number(newItemQte)));
+                 QString("row: %1, quantite: %2")
+				 	 .arg(QString::number(row),
+				 			 QString::number(newItemQte)));
+
     _qteChangeCodeBar = true;
     double quantiteVendue = 0.0;
     double sommeTotal = 0.0;
@@ -1890,53 +1942,68 @@ void YerothPointDeVenteWindow::actualiser_articles_codebar(int row, unsigned new
         {
             //To update the table values after modifying the quantity value of an item
             curTableWidgetItemQte = newItemQte;
+
             QTableWidgetItem *totalTvaWidgetItem =
                 tableWidget_articles->item(k, YerothTableWidget::TOTAL_TVA_COLUMN);
+
             QTableWidgetItem *totalWidgetItem = tableWidget_articles->item(k, YerothTableWidget::TOTAL_COLUMN);
+
             if (totalTvaWidgetItem)
             {
                 totalTvaWidgetItem->setText(articleVenteInfo->montantTva());
             }
+
             //We must always keep this goto break to avoid false updates
             if (!totalWidgetItem)
             {
                 goto myItemBreak;
             }
+
             totalWidgetItem->setText(GET_CURRENCY_STRING_NUM(articleVenteInfo->prix_vente()));
         }
+
 myItemBreak:
         quantiteVendue += curTableWidgetItemQte;
         tva += (curTableWidgetItemQte * articleVenteInfo->_montant_tva);
         sommeTotal += articleVenteInfo->prix_vente();
     }
+
     _quantiteAVendre = quantiteVendue;
     _tva = tva;
     _sommeTotal = sommeTotal;
+
     double total = _sommeTotal - _tva;
+
     update_lineedits_and_labels(total);
+
     this->tableWidget_articles->resizeColumnsToContents();
 }
 
 /**
-
-   * This method is called by 'YerothPointDeVenteWindow::handleQteChange'
-
-   */
+  * This method is called by 'YerothPointDeVenteWindow::handleQteChange'
+  */
 
 void YerothPointDeVenteWindow::actualiser_articles(int row, unsigned newItemQte)
 {
     _logger->log("actualiser_articles(int, unsigned)",
-                 QString("row: %1, quantite: %2").arg(QString::number(row), QString::number(newItemQte)));
+                 QString("row: %1, quantite: %2")
+				 	 .arg(QString::number(row),
+				 		  QString::number(newItemQte)));
+
     double quantiteVendue = 0.0;
     double sommeTotal = 0.0;
     double tva = 0.0;
     double curTableWidgetItemQte = 1;
+
     QTableWidgetItem *curTableWidgetItem = 0;
+
     for (int k = 0; k < tableWidget_articles->rowCount(); ++k)
     {
         YerothSqlTableModel & articleSqlTableModel = *lineEdit_recherche_article->getMySqlTableModel();
         QSqlRecord record = articleSqlTableModel.record(tableWidget_articles->getSqlTableModelIndex(k));
+
         YerothArticleVenteInfo *articleVenteInfo = articleItemToVenteInfo.value(k);
+
         if (row != k)
         {
             curTableWidgetItem = tableWidget_articles->item(k, YerothTableWidget::QTE_COLUMN);
@@ -1946,58 +2013,83 @@ void YerothPointDeVenteWindow::actualiser_articles(int row, unsigned newItemQte)
         {
             //To update the table values after modifying the quantity value of an item
             curTableWidgetItemQte = newItemQte;
+
             QTableWidgetItem *totalTvaWidgetItem =
                 tableWidget_articles->item(k, YerothTableWidget::TOTAL_TVA_COLUMN);
+
             QTableWidgetItem *totalWidgetItem = tableWidget_articles->item(k, YerothTableWidget::TOTAL_COLUMN);
+
             if (totalTvaWidgetItem)
             {
                 totalTvaWidgetItem->setText(articleVenteInfo->montantTva());
             }
+
             //We must always keep this goto break to avoid false updates
             if (!totalWidgetItem)
             {
                 goto myItemBreak;
             }
-            totalWidgetItem->setText(GET_CURRENCY_STRING_NUM(articleVenteInfo->prix_vente()));
+
+            totalWidgetItem->setText(QString::number(articleVenteInfo->prix_vente(), 'f', 2));
         }
+
 myItemBreak:
         quantiteVendue += curTableWidgetItemQte;
         tva += (curTableWidgetItemQte * articleVenteInfo->_montant_tva);
         sommeTotal += articleVenteInfo->prix_vente();
     }
+
     _quantiteAVendre = quantiteVendue;
     _tva = tva;
     _sommeTotal = sommeTotal;
+
     double total = _sommeTotal - _tva;
+
     update_lineedits_and_labels(total);
+
     this->tableWidget_articles->resizeColumnsToContents();
 }
 
 void YerothPointDeVenteWindow::actualiser_tableau_vente()
 {
     int tableRowCount = tableWidget_articles->rowCount();
+
     _logger->log("actualiser_tableau_vente", QString("tableRowCount: %1").arg(tableRowCount));
+
     double quantiteVendue = 0.0;
     double sommeTotal = 0.0;
     double tva = 0.0;
     double curTableWidgetItemQte = 1;
+
     QTableWidgetItem *curTableWidgetItem = 0;
+
     for (int k = 0; k < tableRowCount; ++k)
     {
         YerothSqlTableModel & articleSqlTableModel = *lineEdit_recherche_article->getMySqlTableModel();
+
         QSqlRecord record = articleSqlTableModel.record(tableWidget_articles->getSqlTableModelIndex(k));
+
         YerothArticleVenteInfo *articleVenteInfo = articleItemToVenteInfo.value(k);
+
         curTableWidgetItem = tableWidget_articles->item(k, YerothTableWidget::QTE_COLUMN);
+
         curTableWidgetItemQte = curTableWidgetItem->text().toDouble();
+
         quantiteVendue += curTableWidgetItemQte;
+
         tva += (curTableWidgetItemQte * articleVenteInfo->_montant_tva);
+
         sommeTotal += articleVenteInfo->prix_vente();
     }
+
     _quantiteAVendre = quantiteVendue;
     _tva = tva;
     _sommeTotal = sommeTotal;
+
     double total = _sommeTotal - _tva;
+
     update_lineedits_and_labels(total);
+
     this->tableWidget_articles->resizeColumnsToContents();
 }
 
@@ -2056,6 +2148,7 @@ void YerothPointDeVenteWindow::update_lineedits_and_labels(double total)
     lineEdit_articles_total->setText(GET_CURRENCY_STRING_NUM(total));
     lineEdit_articles_somme_total->setText(GET_CURRENCY_STRING_NUM(_sommeTotal));
     label_total_ttc->setText(GET_CURRENCY_STRING_NUM(_sommeTotal));
+
     handleMontantRecu();
 }
 
