@@ -1,0 +1,9 @@
+COMPILING 'YEROTH-ERP-3.0'
+--------------------------
+
+1) STANDALONE CONFIGURATION
+   use 'bash' script yeroth-compile_yeroth-erp-3-0-standalone.sh
+
+2) CLIENT-SERVER CONFIGURATION
+   'client': use 'bash' script yeroth-compile_yeroth-erp-3-0-client.sh
+   'server': use 'bash' script yeroth-compile_yeroth-erp-3-0-server.sh

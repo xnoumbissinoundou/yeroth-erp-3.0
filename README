@@ -1,7 +1,19 @@
+YEROTH-ERP-3.0: THE BEST ERP SOFTWARE-SYSTEM In THE UNIVERSE !
+--------------------------------------------------------------
+
+@author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD).
+
+
+LICENSING
+---------
 yeroth-erp-3.0 est un logiciel libre et sujet a la license LGPL:
 GNU Lesser General Public License (http://www.gnu.org/copyleft/lesser.html).
 
 yeroth-erp-3.0 is a free software and licensed under LGPL:
 GNU Lesser General Public License (http://www.gnu.org/copyleft/lesser.html).
 
-@author: Xavier NOUMBISSI NOUNDOU.
+
+COMPILING
+---------
+Information on how to build 'Yeroth-erp-3.0'
+can be found in file 'COMPILING.txt'.
