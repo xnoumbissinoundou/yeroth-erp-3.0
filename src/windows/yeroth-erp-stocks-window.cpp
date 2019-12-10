@@ -493,7 +493,6 @@ void YerothStocksWindow::contextMenuEvent(QContextMenuEvent * event)
                 QMenu menu(this);
                 menu.setPalette(toolBar_stocksWindow->palette());
                 menu.addAction(actionAfficher_stock_au_detail);
-                menu.addAction(actionAfficher_les_stocks_perimes);
                 menu.addAction(actionAfficher_lhistorique_de_ce_stock);
                 menu.addAction(actionModifier_ce_stock);
                 menu.addAction(actionSupprimer_ce_stock);
@@ -518,7 +517,6 @@ void YerothStocksWindow::contextMenuEvent(QContextMenuEvent * event)
                  QMenu menu(this);
                  menu.setPalette(toolBar_stocksWindow->palette());
                  menu.addAction(actionAfficher_stock_au_detail);
-                 menu.addAction(actionAfficher_les_stocks_perimes);
                  menu.addAction(actionAfficher_lhistorique_de_ce_stock);
                  menu.addAction(actionModifier_ce_stock);
                  menu.addAction(actionSupprimer_ce_stock);
@@ -532,7 +530,6 @@ void YerothStocksWindow::contextMenuEvent(QContextMenuEvent * event)
                  QMenu menu(this);
                  menu.setPalette(toolBar_stocksWindow->palette());
                  menu.addAction(actionAfficher_stock_au_detail);
-                 menu.addAction(actionAfficher_les_stocks_perimes);
                  menu.exec(event->globalPos());
              }
          }

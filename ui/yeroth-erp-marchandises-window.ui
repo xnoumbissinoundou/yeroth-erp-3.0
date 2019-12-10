@@ -8612,6 +8612,7 @@ background-color: rgb(0, 0, 0); </string>
     <addaction name="actionAlertes"/>
     <addaction name="separator"/>
     <addaction name="actionAfficher_les_stocks_termines"/>
+    <addaction name="separator"/>
     <addaction name="actionExporter_au_format_csv"/>
     <addaction name="separator"/>
     <addaction name="actionRechercher"/>
@@ -9105,7 +9106,9 @@ background-color: rgb(0, 0, 0); </string>
     <string>Entrer un stock</string>
    </property>
    <property name="font">
-    <font/>
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
   </action>
   <action name="actionFermeture">
@@ -9113,7 +9116,9 @@ background-color: rgb(0, 0, 0); </string>
     <string>Fermeture</string>
    </property>
    <property name="font">
-    <font/>
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
   </action>
   <action name="actionMenu_Principal">
@@ -9124,7 +9129,9 @@ background-color: rgb(0, 0, 0); </string>
     <string>Menu principal</string>
    </property>
    <property name="font">
-    <font/>
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
   </action>
   <action name="actionAfficherPDF">
@@ -9187,7 +9194,9 @@ background-color: rgb(0, 0, 0); </string>
     <string>Supprimer cette marchandise</string>
    </property>
    <property name="font">
-    <font/>
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
   </action>
   <action name="actionAfficher_stock_au_detail">
@@ -9198,7 +9207,9 @@ background-color: rgb(0, 0, 0); </string>
     <string>Afficher les détails de cette marchandise</string>
    </property>
    <property name="font">
-    <font/>
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
   </action>
   <action name="actionAlertes">
@@ -9239,7 +9250,9 @@ background-color: rgb(0, 0, 0); </string>
     <string>Rechercher un article</string>
    </property>
    <property name="font">
-    <font/>
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
   </action>
   <action name="actionReinitialiserRecherche">
@@ -9247,7 +9260,9 @@ background-color: rgb(0, 0, 0); </string>
     <string>Réinitialiser la recherche</string>
    </property>
    <property name="font">
-    <font/>
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
   </action>
   <action name="actionAdministration">
@@ -9255,7 +9270,9 @@ background-color: rgb(0, 0, 0); </string>
     <string>Administration</string>
    </property>
    <property name="font">
-    <font/>
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
   </action>
   <action name="actionInformationEntreprise">
@@ -9274,7 +9291,9 @@ background-color: rgb(0, 0, 0); </string>
     <string>Qui suis je ?</string>
    </property>
    <property name="font">
-    <font/>
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
   </action>
   <action name="actionSortir">
@@ -9282,7 +9301,9 @@ background-color: rgb(0, 0, 0); </string>
     <string>Sortir des articles</string>
    </property>
    <property name="font">
-    <font/>
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
   </action>
   <action name="actionVendre">
@@ -9293,7 +9314,9 @@ background-color: rgb(0, 0, 0); </string>
     <string>Vendre des articles</string>
    </property>
    <property name="font">
-    <font/>
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
   </action>
   <action name="actionExporter_au_format_csv">
@@ -9301,7 +9324,9 @@ background-color: rgb(0, 0, 0); </string>
     <string>Exporter au format csv</string>
    </property>
    <property name="font">
-    <font/>
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
   </action>
   <action name="actionReinitialiserElementsDeFiltrage">
@@ -9309,7 +9334,9 @@ background-color: rgb(0, 0, 0); </string>
     <string>Réinitialiser les éléments de filtrage</string>
    </property>
    <property name="font">
-    <font/>
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
   </action>
   <action name="actionAfficher_les_stocks_termines">
@@ -9317,7 +9344,9 @@ background-color: rgb(0, 0, 0); </string>
     <string>Afficher la liste des stocks terminés</string>
    </property>
    <property name="font">
-    <font/>
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
   </action>
  </widget>
