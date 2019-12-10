@@ -127,6 +127,17 @@ else
 	${CP} yeroth-erp-3-0-deployment-configuration-scripts/yeroth-erp-3-0-qsqlite3.properties "${YEROTH_ERP_3_0_PROPERTIES_FILE_DIR}/yeroth-erp-3-0.properties"
 fi
 
+YEROTH_ERP_3_0_POSTRM_STR="#!/bin/bash
+sed -i '/YEROTH_ERP_3_0_HOME_FOLDER/d' /etc/environment
+sed -i '/YEROTH_ERP_3_0_PROPERTIES_CONFIGURATION_FOLDER/d' /etc/environment
+sed -i '/YEROTH_ERP_ALERT_3_0_HOME_FOLDER/d' /etc/environment
+"
+
+echo -e "${YEROTH_ERP_3_0_POSTRM_STR}$(cat ${TARGET_INSTALLATION_DIR}/DEBIAN/postrm)" > ${TARGET_INSTALLATION_DIR}/DEBIAN/postrm
+
+chmod 755 ${TARGET_INSTALLATION_DIR}/DEBIAN/postrm
+
+
 if [ ! "$qsqlite3Flag" ]; then
 		YEROTH_ERP_3_0_POSTINST_STR="#!/bin/bash
 echo -e \"export YEROTH_ERP_3_0_HOME_FOLDER=/opt/${YEROTH_ERP_3_0_BINARY_NAME}\" >> /etc/environment
