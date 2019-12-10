@@ -1260,7 +1260,7 @@ Continue with update of the stock ?</translation>
     <message>
         <location filename="src/admin/yeroth-erp-admin-search-form.cpp" line="102"/>
         <source>nom de l&apos;utilisateur</source>
-        <translation>user id</translation>
+        <translation>user name</translation>
     </message>
     <message>
         <location filename="src/admin/yeroth-erp-admin-search-form.cpp" line="110"/>
