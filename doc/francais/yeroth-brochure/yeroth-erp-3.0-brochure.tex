@@ -22,7 +22,6 @@
 		  
 \usepackage[default]{cantarell}
 \usepackage{xspace}
-%\usepackage[french]{babel}
 \usepackage{paralist}
 \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
 \usepackage{listings} % for lstset definitions
@@ -42,7 +41,7 @@
 
 \newcommand{\yerenpos}{\textcolor{yerenColorBlue}{\sc YEROTH--ERP--$3.0$}\xspace}
 
-\newcommand{\myfullacademicname}{Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)\xspace}
+\newcommand{\myfullacademicname}{Xavier NOUMBISSI NOUNDOU,~Dipl.--Inf.,~Ph.D.~(ABD)\xspace}
 
 \usepackage{hyperref}
 \hypersetup{
@@ -133,7 +132,12 @@
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \renewcommand{\headrulewidth}{0pt}
-\lhead{derni\`ere modification: --~18 Octobre 2019~--}
+
+%% I am not using babel for this
+%% document because it displays
+%% really bad the content
+
+\lhead{derni\`ere modification: --~\date{$10$~D\'ecembre~$2019$}~--}
 \rhead{}
 \cfoot{\thepage}
 
