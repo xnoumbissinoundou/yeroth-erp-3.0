@@ -113,6 +113,7 @@ mkdir "${TARGET_INSTALLATION_DIR}/DEBIAN"
 if [ ! "$qsqlite3Flag" ]; then
 	${CP} DEBIAN/control "${TARGET_INSTALLATION_DIR}/DEBIAN/control"
 	${CP} DEBIAN/postinst "${TARGET_INSTALLATION_DIR}/DEBIAN/postinst"
+	${CP} DEBIAN/postrm "${TARGET_INSTALLATION_DIR}/DEBIAN/postrm"
 else
 	${CP} DEBIAN/control_academic "${TARGET_INSTALLATION_DIR}/DEBIAN/control"
 fi
