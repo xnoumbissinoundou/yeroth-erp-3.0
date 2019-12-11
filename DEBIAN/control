@@ -2,7 +2,7 @@
 Architecture: all
 Maintainer: jeovahnissi.jesus.christ@gmail.com (Diplom-Informatiker Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD))
 Priority: optional
-Version: 3.0
+Version: 3.0-1
 Description: Yeroth-erp-3.0 is the best ERP software-system in the universe!
 Section: Utility
 Pre-Depends: cups,

@@ -673,7 +673,7 @@ QString YerothPointDeVenteWindow::imprimer_facture_grand(int vente_id)
     }
     else
     {
-        factureTexDocument.replace("YEROTHNUMEROSORTIETRANSFERT", "PROFORMA");
+        factureTexDocument.replace("YEROTHNUMEROSORTIETRANSFERT", QObject::tr("EXEMPLE (*NON VALIDE*)"));
     }
 
     if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::RECEIPT_FORMAT_GRAND_A4PAPER,
@@ -862,7 +862,7 @@ QString YerothPointDeVenteWindow::imprimer_facture_petit(int vente_id)
     }
     else
     {
-        factureTexDocument.replace("YEROTHNUMEROSORTIETRANSFERT", "PROFORMA");
+        factureTexDocument.replace("YEROTHNUMEROSORTIETRANSFERT", QObject::tr("EXEMPLE (*NON VALIDE*)"));
     }
 
     //_logger->debug("imprimer_facture_petit",

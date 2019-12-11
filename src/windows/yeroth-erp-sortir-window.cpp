@@ -500,7 +500,7 @@ QString YerothSortirWindow::imprimer_facture_grand(int sortie_id)
     }
     else
     {
-        factureTexDocument.replace("YEROTHNUMEROSORTIETRANSFERT", "PROFORMA");
+        factureTexDocument.replace("YEROTHNUMEROSORTIETRANSFERT", QObject::tr("EXEMPLE (*NON VALIDE*)"));
     }
 
 
@@ -655,7 +655,7 @@ QString YerothSortirWindow::imprimer_facture_petit(int sortie_id)
     }
     else
     {
-        factureTexDocument.replace("YEROTHNUMEROSORTIETRANSFERT", "PROFORMA");
+        factureTexDocument.replace("YEROTHNUMEROSORTIETRANSFERT", QObject::tr("EXEMPLE (*NON VALIDE*)"));
     }
 
     //_logger->debug("imprimer_facture_petit",

@@ -100,7 +100,7 @@ public slots:
 								   	     " Vous pouvez filtrer les résultats de la recherche,"
 								 	 	 " en utilisant les paramètres que l'on retrouve"
 								   	     " tout en bas de l'interface graphique"
-								 	 	 " (example: nom du caissier, désignation de l'article, etc.) !"));
+								 	 	 " (exemple: nom du caissier, désignation de l'article, etc.) !"));
 	}
 
 	void readProcessData();

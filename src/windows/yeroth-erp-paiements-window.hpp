@@ -98,7 +98,7 @@ public slots:
 								   	     " Vous pouvez filtrer les résultats de la recherche,"
 								 	 	 " en utilisant les paramètres que l'on retrouve"
 								   	     " tout en bas de l'interface graphique"
-								 	 	 " (example: numéro du bon de paiement, etc.) !"));
+								 	 	 " (exemple: numéro du bon de paiement, etc.) !"));
 	}
 
 	void readProcessData();
