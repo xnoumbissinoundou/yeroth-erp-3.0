@@ -162,8 +162,6 @@ YerothPointDeVenteWindow::YerothPointDeVenteWindow()
 
     connect(tableWidget_articles, SIGNAL(addedYerothTableWidget()), this, SLOT(handleAddedArticle()));
 
-    connect(tableWidget_articles, SIGNAL(emptiedYerothTableWidget()), this, SLOT(handleEmptiedArticle()));
-
     connect(tableWidget_articles, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), this,
             SLOT(afficher_vente_detail(QTableWidgetItem *)));
 
@@ -1012,15 +1010,6 @@ void YerothPointDeVenteWindow::handleAddedArticle()
     tabWidget_vente->setTabEnabled(AfficherVenteAuDetail, true);
 }
 
-void YerothPointDeVenteWindow::handleEmptiedArticle()
-{
-    //_logger->debug("handleRemovedArticle()");
-    //qDebug() << QString("handleEmptiedArticle()");
-    if (0 <= tableWidget_articles->rowCount())
-    {
-        tabWidget_vente->setTabEnabled(AfficherVenteAuDetail, false);
-    }
-}
 
 void YerothPointDeVenteWindow::handleCurrentChanged(int index)
 {
@@ -1193,12 +1182,14 @@ void YerothPointDeVenteWindow::rendreVisible(YerothSqlTableModel * stocksTableMo
 {
     _logger->log("rendreVisible");
 
+    radioButton_article_detail_remise_prix->setText(QString(QObject::trUtf8("remise (%1)"))
+    													.arg(YerothERPConfig::currency));
+
     lineEdit_articles_imprimante->setText(YerothERPConfig::printer);
 
     label_articles_tva->setText(YerothUtils::getTVALabelStringWithPercent());
 
     _curStocksTableModel = stocksTableModel;
-    _curStocksTableModel->yerothSetSort(YerothTableView::DESIGNATION_COLUMN, Qt::AscendingOrder);
 
     this->setupLineEditsQCompleters();
 

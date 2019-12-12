@@ -96,7 +96,7 @@ YerothSortirWindow::YerothSortirWindow():YerothWindowsCommons(YerothSortirWindow
             SLOT(handleQteChange(QTableWidgetItem *)));
     connect(tabWidget_sorties, SIGNAL(currentChanged(int)), this, SLOT(handleCurrentChanged(int)));
     connect(tableWidget_articles, SIGNAL(addedYerothTableWidget()), this, SLOT(handleAddedArticle()));
-    connect(tableWidget_articles, SIGNAL(emptiedYerothTableWidget()), this, SLOT(handleEmptiedArticle()));
+
     connect(tableWidget_articles, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), this,
             SLOT(afficher_sortie_detail(QTableWidgetItem *)));
     /* Signals-slots connection for the second tab 'Article au détail' */
@@ -868,14 +868,6 @@ void YerothSortirWindow::handleAddedArticle()
     tabWidget_sorties->setTabEnabled(AfficherSortieAuDetail, true);
 }
 
-void YerothSortirWindow::handleEmptiedArticle()
-{
-    //_logger->debug("handleRemovedArticle()");
-    if (0 <= tableWidget_articles->rowCount())
-    {
-        tabWidget_sorties->setTabEnabled(AfficherSortieAuDetail, false);
-    }
-}
 
 void YerothSortirWindow::handleCurrentChanged(int index)
 {

@@ -79,8 +79,6 @@ void YerothTableWidget::myClear()
     _curRow = 0;
 
     this->setRowCount(0);
-
-    emit emptiedYerothTableWidget();
 }
 
 int YerothTableWidget::addArticleAfter(YerothArticleVenteInfo &articleVenteInfo)
