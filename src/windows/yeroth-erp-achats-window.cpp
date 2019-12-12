@@ -571,13 +571,13 @@ void YerothAchatsWindow::afficherAchats(YerothSqlTableModel &achatSqlTableModel)
     tableView_achats->lister_les_elements_du_tableau(achatSqlTableModel);
 
     tableView_achats->hideColumn(1);
+    tableView_achats->hideColumn(3);
     tableView_achats->hideColumn(5);
     tableView_achats->hideColumn(8);
     tableView_achats->hideColumn(11);
     tableView_achats->hideColumn(12);
     tableView_achats->hideColumn(14);
     tableView_achats->hideColumn(16);
-    tableView_achats->hideColumn(17);
     tableView_achats->hideColumn(18);
     tableView_achats->hideColumn(19);
     tableView_achats->hideColumn(21);
@@ -717,17 +717,18 @@ bool YerothAchatsWindow::imprimer_document()
 
     if (0 != aCurrentUser && aCurrentUser->isManager())
     {
-    	tableColumnsToIgnore << 0 << 1 << 5
-        					 << 8 << 12 << 14
-							 << 15 << 16 << 17
+    	tableColumnsToIgnore << 0 << 1 << 3
+    						 << 5 << 8 << 12
+							 << 14 << 15 << 16
 							 << 18 << 19 << 21;
     }
     else
     {
-    	tableColumnsToIgnore << 0 << 1 << 5
-        					 << 8 << 11 << 12
-							 << 14 << 15 << 16
-							 << 17 << 18 << 19 << 21;
+    	tableColumnsToIgnore << 0 << 1 << 3
+    						 << 5 << 8 << 11
+							 << 12 << 14 << 15
+							 << 16 << 18 << 19
+							 << 21;
     }
 
     QString pdfBuyingsFileName;
