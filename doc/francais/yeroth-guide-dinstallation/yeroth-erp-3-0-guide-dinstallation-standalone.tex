@@ -72,7 +72,7 @@
     pdftex,
     bookmarks,
     plainpages=false,
-	pdftitle={Guide d'installation pour le \erp \yerotherp par: ''\myfullacademicname''},
+	pdftitle={Guide d'installation pour le \erp \yerotherp (standalone) par: ''\myfullacademicname''},
     pdfauthor={Xavier NOUMBISSI NOUNDOU}
 }
 
@@ -101,7 +101,10 @@
 
 \usepackage{pagecolor}
 
-\newcommand{\rootcommand}[1]{\textcolor{purplish}{#1\xspace}}
+\newcommand{\rootcommand}[1]{
+\begin{center}
+\textcolor{purplish}{#1\xspace}
+\end{center}}
 
 \newcommand{\yeren}{\textsc{yeroth-erp-3.0}\xspace}
 
@@ -142,7 +145,8 @@
 \textcolor{medgreen}{\textsc{Guide d'installation \\
 										pour le \\
 									 \erp \\ \vspace{1em}
-									 \yerotherp}}
+									 \yerotherp \\ 
+									 \textcolor{yerenColorBlue}{(standalone)} }}
 									 \author{\myfullacademicname}
 }
 
@@ -272,6 +276,15 @@ sans probl\`emes:
 		Ceci est requis pour l'installation de la base
 		de donn\'ees ''yeroth\_erp\_3''.
 \end{enumerate}
+
+
+\section{Messages D'erreurs Pendant Le Processus D'installation}
+
+
+\subsection{Durant L'installation}
+
+
+\subsection{Apr\`es L'installation}
 
 
 \end{document}

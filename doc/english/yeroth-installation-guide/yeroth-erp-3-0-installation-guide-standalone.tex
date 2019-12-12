@@ -72,7 +72,7 @@
     pdftex,
     bookmarks,
     plainpages=false,
-	pdftitle={Installation Guide for \erp \yerotherp by ''\myfullacademicname''},
+	pdftitle={Installation Guide for \erp \yerotherp (standalone) by ''\myfullacademicname''},
     pdfauthor={Xavier NOUMBISSI NOUNDOU}
 }
 
@@ -101,9 +101,10 @@
 
 \usepackage{pagecolor}
 
-\newcommand{\rootcommand}[1]{\textcolor{purplish}{#1\xspace}}
-
-\newcommand{\yeren}{\textsc{yeroth-erp-3.0}\xspace}
+\newcommand{\rootcommand}[1]{
+\begin{center}
+\textcolor{purplish}{#1\xspace}
+\end{center}}
 
 \newcommand{\emphbf}[1]{\emph{\textbf{#1}}\xspace}
 \newcommand{\emphit}[1]{\emph{\textit{#1}}\xspace}
@@ -142,7 +143,8 @@
 \textcolor{medgreen}{\textsc{Installation Guide\\
 										for \\
 									 \erp \\ \vspace{1em}
-									 \yerotherp}}
+									 \yerotherp \\ 
+									 \textcolor{yerenColorBlue}{(standalone)} }}
 									 \author{\myfullacademicname}
 }
 
