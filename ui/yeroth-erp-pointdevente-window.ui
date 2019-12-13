@@ -7455,7 +7455,7 @@ border: 1px solid rgb(60, 60, 60);
 background-color: rgb(0, 0, 0); </string>
       </property>
       <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
      <widget class="QLabel" name="label_montant_a_rembourser">
