@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-marchandises-window.hpp
  *
- *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
+ *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
 #ifndef YEROTH_ERP_INVENTAIRE_DES_STOCKS_WINDOW_HPP_

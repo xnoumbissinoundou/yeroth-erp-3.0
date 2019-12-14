@@ -1,9 +1,7 @@
 /*
  * yeroth-erp-datetime-edit.hpp
  *
- *  Created on: Mar 16, 2016
- *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
+ *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
 #ifndef SRC_WIDGETS_YEROTH_DATETIME_EDIT_HPP_

@@ -1,9 +1,7 @@
 /*
  * admin-actions-subjects.hpp
  *
- *  Created on: Nov 30, 2015
- *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
+ *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
 #ifndef ADMIN_ACTIONS_SUBJECTS_HPP_

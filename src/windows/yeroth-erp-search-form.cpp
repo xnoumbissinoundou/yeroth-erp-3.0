@@ -4,11 +4,9 @@
 
    *
 
-   *  Created on: Oct 21, 2015
 
-   *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
+   *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
 
-   *      Email:  xnoundou7@gmail.com
 
    */
 #include"yeroth-erp-search-form.hpp"

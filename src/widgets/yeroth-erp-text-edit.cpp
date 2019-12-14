@@ -1,9 +1,7 @@
 /*
  * yeroth-erp-text-edit.cpp
  *
- *  Created on: Oct 30, 2015
- *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
+ *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
 #include "yeroth-erp-text-edit.hpp"

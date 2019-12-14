@@ -1,9 +1,7 @@
 /*
  * yeroth-erp-logger.hpp
  *
- *  Created on: Feb 4, 2016
- *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
+ *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
 #ifndef SRC_YEROTH_LOGGER_HPP_

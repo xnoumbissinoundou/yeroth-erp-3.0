@@ -1,9 +1,7 @@
 /*
  * yeroth-erp-admin-modifier-window.hpp
  *
- *  Created on: Dec 19, 2015
- *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
+ *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
 # ifndef YEROTH_ADMIN_MODIFIER_WINDOW_HPP_

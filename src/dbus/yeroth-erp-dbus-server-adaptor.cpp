@@ -1,9 +1,7 @@
 /*
  * yeroth-erp-dbus-server-adaptor.cpp
  *
- *  Created on: July 2, 2017
- *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
+ *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
 #include "yeroth-erp-dbus-server-adaptor.hpp"

@@ -1,9 +1,7 @@
 /*
  * yeroth-erp-info-entreprise.hpp
  *
- *  Created on: Feb 5, 2016
- *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
+ *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
 #ifndef YEROTH_INFO_ENTREPRISE_HPP_

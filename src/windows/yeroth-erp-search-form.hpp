@@ -1,9 +1,7 @@
 /*
  * yeroth-erp-search-form.hpp
  *
- *  Created on: Oct 21, 2015
- *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD) (Ph.D. (ABD))
- *      Email:  xnoundou7@gmail.com
+ *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD) (Ph.D. (ABD))
  */
 
 #ifndef SRC_YEROTH_SEARCH_FORM_HPP_

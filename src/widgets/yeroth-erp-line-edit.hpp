@@ -1,9 +1,7 @@
 /*
  * yeroth-erp-line-edit.hpp
  *
- *  Created on: Oct 26, 2015
- *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
+ *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
 #ifndef SRC_WIDGETS_YEROTH_LINE_EDIT_HPP_

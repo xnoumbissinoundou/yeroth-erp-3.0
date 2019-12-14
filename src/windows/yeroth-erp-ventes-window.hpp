@@ -1,9 +1,7 @@
 /*
  * yeroth-erp-ventes-window.hpp
  *
- *  Created on: Dec 29, 2015
- *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
+ *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
 #ifndef SRC_YEROTH_CAISSE_WINDOW_HPP_

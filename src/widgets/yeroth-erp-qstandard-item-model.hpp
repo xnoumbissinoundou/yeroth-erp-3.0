@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-qstandard-item-model.hpp
  *
- * 		Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
+ * 		Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
 #ifndef YEROTH_ERP_QSTANDARD_ITEM_MODEL_HPP_

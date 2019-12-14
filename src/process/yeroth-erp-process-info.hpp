@@ -1,8 +1,7 @@
 /*
  * yeroth-erp-process-info.hpp
  *
- *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
+ *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
 #ifndef SRC_UTILS_YEROTH_PROCESS_INFO_HPP_

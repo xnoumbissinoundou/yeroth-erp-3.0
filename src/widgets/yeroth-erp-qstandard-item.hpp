@@ -1,9 +1,7 @@
 /*
  * yeroth-erp-qstandard-item.hpp
  *
- *  Created on: Jan 6, 2018
- *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
+ *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
 #ifndef YEROTH_QSTANDARD_ITEM_HPP_

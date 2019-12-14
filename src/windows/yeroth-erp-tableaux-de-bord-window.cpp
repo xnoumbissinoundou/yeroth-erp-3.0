@@ -1,9 +1,7 @@
 /*
  * yeroth-erp-tableaux-de-bord-window.cpp
  *
- *  Created on: June 26, 2016
- *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
+ *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 #include "yeroth-erp-tableaux-de-bord-window.hpp"
 

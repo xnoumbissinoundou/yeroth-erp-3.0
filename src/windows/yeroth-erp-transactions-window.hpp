@@ -1,9 +1,7 @@
 /*
  * yeroth-erp-transactions-window.hpp
  *
- *  Created on: June 24, 2016
- *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
+ *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
 #ifndef YEROTH_TRANSACTIONS_WINDOW_HPP_

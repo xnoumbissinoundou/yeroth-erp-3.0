@@ -1,9 +1,7 @@
 /*
  * yeroth-erp-qtable-widget-item.cpp
  *
- *  Created on: Jan 24, 2018
- *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
+ *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
 #include "yeroth-erp-qtable-widget-item.hpp"

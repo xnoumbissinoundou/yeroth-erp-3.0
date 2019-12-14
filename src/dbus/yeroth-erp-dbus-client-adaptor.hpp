@@ -1,9 +1,7 @@
 /*
  * yeroth-erp-dbus-client-adaptor.hpp
  *
- *  Created on: June 27, 2017
- *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
+ *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
 #ifndef SRC_DBUS_YEROTH_DBUS_CLIENT_ADAPTOR_HPP_

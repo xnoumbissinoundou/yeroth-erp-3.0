@@ -1,9 +1,7 @@
 /*
  * yeroth-erp-push-button.hpp
  *
- *  Created on: Oct 27, 2015
- *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
+ *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
 #ifndef SRC_WIDGETS_YEROTH_PUSH_BUTTON_HPP_

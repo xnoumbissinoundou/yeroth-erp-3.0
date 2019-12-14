@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-achats-detail-window.cpp
  *
- *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
+ *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
 #include "src/yeroth-erp-windows.hpp"

@@ -1,9 +1,7 @@
 /*
  * yeroth-erp-creer-nouveau-client-window.hpp
  *
- *  Created on: March 12, 2016
- *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
+ *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
 #ifndef SRC_YEROTH_CREER_NOUVEAU_CLIENT_WINDOW_HPP_

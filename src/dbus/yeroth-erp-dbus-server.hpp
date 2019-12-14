@@ -1,9 +1,7 @@
 /*
  * yeroth-erp-dbus-server.hpp
  *
- *  Created on: June 21, 2017
- *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
+ *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
 #ifndef SRC_DBUS_YEROTH_DBUS_SERVER_HPP_

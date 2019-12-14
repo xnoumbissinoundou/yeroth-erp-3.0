@@ -1,9 +1,7 @@
 /*
  * yeroth-erp-sqltable-model.hpp
  *
- *  Created on: Dec 5, 2015
- *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
+ *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
 #ifndef YEROTH_SQLTABLE_MODEL_HPP_

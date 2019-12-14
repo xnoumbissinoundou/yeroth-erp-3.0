@@ -1,8 +1,7 @@
 /*
  * yeroth-erp-credit-card-info.cpp
  *
- *   Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *   Email:  xnoundou7@gmail.com
+ *   Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
 

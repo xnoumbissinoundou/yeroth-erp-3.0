@@ -1,9 +1,7 @@
 /*
  * yeroth-erp-3-0-definition-format-date-time.hpp
  *
- *  Created on: Oct 7, 2015
- *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      E-mail:  xnoundou7@gmail.com
+ *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
 # ifndef _YEROTH_ERP_3_0_DEFINITION_FORMAT_DATE_TIME_HPP_

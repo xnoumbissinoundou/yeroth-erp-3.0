@@ -1,9 +1,7 @@
 /*
  * yeroth-erp-spinbox.cpp
  *
- *  Created on: Dec 1, 2015
- *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
+ *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
 #include "yeroth-erp-spinbox.hpp"

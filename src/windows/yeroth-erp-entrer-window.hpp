@@ -1,9 +1,7 @@
 /*
  * yeroth-erp-entrer-window.hpp
  *
- *  Created on: Oct 20, 2015
- *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
+ *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
 # ifndef YEROTH_ENTRER_WINDOW_HPP_

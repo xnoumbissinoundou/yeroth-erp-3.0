@@ -1,9 +1,7 @@
 /*
  * yeroth-erp-article-vente-info.hpp
  *
- *  Created on: Apr 23, 2016
- *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
+ *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
 #ifndef SRC_UTILS_YEROTH_ARTICLE_VENTE_INFO_HPP_

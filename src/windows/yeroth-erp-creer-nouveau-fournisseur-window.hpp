@@ -1,9 +1,7 @@
 /*
  * yeroth-erp-creer-nouveau-fournisseur-window.hpp
  *
- *  Created on: Dec 16, 2016
- *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
+ *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
 # ifndef SRC_YEROTH_NOUVEAU_FOURNISSEUR_WINDOW_HPP_

@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-site-table-view.hpp
  *
- * Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
+ * Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
 #ifndef SRC_YEROTH_ADMIN_SITE_TABLE_VIEW_HPP_

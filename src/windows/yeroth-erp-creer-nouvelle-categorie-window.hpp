@@ -1,9 +1,7 @@
 /*
  * yeroth-erp-creer-nouvelle-categorie-window.hpp
  *
- *  Created on: May 7, 2016
- *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
+ *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
 #ifndef SRC_YEROTH_NOUVELLE_CATEGORIE_WINDOW_HPP_

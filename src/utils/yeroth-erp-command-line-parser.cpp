@@ -1,9 +1,7 @@
 /*
  * yeroth-erp-command-line-parser.cpp
  *
- *  Created on: January 22, 2018
- *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
+ *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
 #include "yeroth-erp-command-line-parser.hpp"

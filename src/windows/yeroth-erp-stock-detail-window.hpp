@@ -1,9 +1,7 @@
 /*
  * yeroth-erp-stock-detail-window.hpp
  *
- *  Created on: Oct 18, 2015
- *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
+ *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
 # ifndef SRC_WINDOWS_YEROTH_STOCK_DETAIL_WINDOW_HPP_

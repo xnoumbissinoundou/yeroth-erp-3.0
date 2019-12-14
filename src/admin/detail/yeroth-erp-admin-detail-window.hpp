@@ -1,9 +1,7 @@
 /*
  * yeroth-erp-admin-detail-window.hpp
  *
- *  Created on: Dec 22, 2015
- *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
+ *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
 #ifndef YEROTH_ADMIN_DETAIL_WINDOW_HPP_

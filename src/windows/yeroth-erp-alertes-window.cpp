@@ -4,11 +4,9 @@
 
    *
 
-   *  Created on: Jan 1, 2016
 
-   *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
+   *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
 
-   *      Email:  xnoundou7@gmail.com
 
    */
 #include "src/windows/yeroth-erp-alertes-window.hpp"

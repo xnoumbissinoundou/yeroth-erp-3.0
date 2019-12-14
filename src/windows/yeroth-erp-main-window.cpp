@@ -1,9 +1,7 @@
 /*
  * yeroth-erp-main-window.cpp
  *
- *  Created on: Oct 10, 2015
- *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
+ *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
 #include "yeroth-erp-main-window.hpp"

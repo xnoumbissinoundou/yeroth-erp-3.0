@@ -1,9 +1,7 @@
 /*
  * yeroth-erp-sortir-liststocks-window.hpp
  *
- *  Created on: Feb. 11, 2016
- *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
+ *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
 # ifndef SRC_WINDOWS_YEROTH_SORTIR_LISTSTOCKS_WINDOW_HPP_

@@ -1,9 +1,7 @@
 /*
  * yeroth-erp-qmessage-box.cpp
  *
- *  Created on: Mar 17, 2018
- *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
- *      Email:  xnoundou7@gmail.com
+ *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
 #include "src/widgets/yeroth-erp-qmessage-box.hpp"
