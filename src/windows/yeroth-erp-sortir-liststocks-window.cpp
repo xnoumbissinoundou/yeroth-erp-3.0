@@ -73,6 +73,7 @@ void YerothSortirListStocksWindow::listStocks(YerothSqlTableModel & aSqlTableMod
     tableView_list_stocks->hideColumn(18);
     tableView_list_stocks->hideColumn(19);
     tableView_list_stocks->hideColumn(20);
+    tableView_list_stocks->hideColumn(21);
 
     setWindowTitle(YerothUtils::getWindowTitleWithStrategy(this));
 
