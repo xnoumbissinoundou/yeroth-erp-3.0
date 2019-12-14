@@ -507,7 +507,7 @@ bool YerothVentesWindow::export_csv_file()
 
     columnsToIgnore << 0 << 2 << 3 << 6
     				<< 10 << 15 << 17 << 18
-					<< 19 << 20 << 21 << 22;
+					<< 19 << 20 << 21 << 22 << 23;
 
     int tableModelRowCount = tableModel->rowCount();
     int tableModelColumnCount = tableModel->columnCount();
@@ -538,34 +538,11 @@ bool YerothVentesWindow::export_csv_file()
         if (0 != anItem)
         {
             anItemText = anItem->text().trimmed();
-
-
-#ifdef YEROTH_FRANCAIS_LANGUAGE
-
-            if (YerothUtils::isEqualCaseInsensitive(anItemText, "Total TTC"))
-            {
-                anItemText.clear();
-                anItemText.append("Chiffre d'affaire");
-            }
-
-#endif
-
-#ifdef YEROTH_ENGLISH_LANGUAGE
-
-            if (YerothUtils::isEqualCaseInsensitive(anItemText, "Total (ATC)"))
-            {
-                anItemText.clear();
-                anItemText.append("Business turnover");
-            }
-
-#endif
-
             csvFileContent.append( QString("\"%1\", ").arg(anItemText) );
         }
     }
 
-    csvFileContent.remove(csvFileContent.size() - 2, 2)
-    .append("\n");
+    csvFileContent.remove(csvFileContent.size() - 2, 2).append("\n");
 
     for (unsigned int j = 0; j < tableModelRowCount; ++j)
     {
@@ -586,8 +563,7 @@ bool YerothVentesWindow::export_csv_file()
             }
         }
 
-        csvFileContent.remove(csvFileContent.size() - 2, 2)
-        .append("\n");
+        csvFileContent.remove(csvFileContent.size() - 2, 2).append("\n");
     }
 
 
@@ -610,8 +586,8 @@ bool YerothVentesWindow::export_csv_file()
 #endif
 
     yerothTableauCaisseCSVFileName = QFileDialog::getSaveFileName(this, "Saisir le nom du fichier '.csv'",
-                                    yerothTableauCaisseCSVFileName,
-                                    QObject::trUtf8("Fichiers des informations de ventes \"*.csv\" (*.csv)"));
+                                    							  yerothTableauCaisseCSVFileName,
+																  QObject::trUtf8("Fichiers des informations de ventes \"*.csv\" (*.csv)"));
 
     yerothTableauCaisseCSVFileName.append(".csv");
 
