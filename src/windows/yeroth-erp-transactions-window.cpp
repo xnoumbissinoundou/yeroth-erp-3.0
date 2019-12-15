@@ -70,6 +70,7 @@ YerothTransactionsWindow::YerothTransactionsWindow()
     connect(actionAlertes, SIGNAL(triggered()), this, SLOT(alertes()));
     connect(actionInformationEntreprise, SIGNAL(triggered()), this, SLOT(infosEntreprise()));
     connect(actionQui_suis_je, SIGNAL(triggered()), this, SLOT(qui_suis_je()));
+    connect(actionAdministration, SIGNAL(triggered()), this, SLOT(administration()));
 
 #ifdef YEROTH_SERVER
     connect(actionAdministration, SIGNAL(triggered()), this, SLOT(administration()));

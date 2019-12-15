@@ -151,7 +151,7 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::QUANTITE_VENDUE,	QObject::trUtf8("Qté"));
 
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::QUANTITE_TOTAL,	QObject::trUtf8("Qté total"));
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::QUANTITE_TOTAL,	QObject::trUtf8("Qté totale"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::QUANTITE_SORTIE,	QObject::trUtf8("Qté sortie"));
 
