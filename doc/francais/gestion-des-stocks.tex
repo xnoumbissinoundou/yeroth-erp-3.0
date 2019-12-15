@@ -1,53 +1,43 @@
 \chapter{La Gestion des Stocks}\label{chap:gestion-stocks}
 \index{la gestion des stocks}
 
-\utilisateurs: \liencaissier, \lienmagasinier, \lienmanager.\\
+\utilisateurs: \liencaissier, \liengestionnairedesstocks,
+			   \lienmagasinier, \lienmanager, \lienvendeur.\\
 
 \chapintro{Ce chapitre d\'ecrit comment avoir acc\`es aux
 fonctionalit\'es de gestion des stocks et comment les utiliser.}
 
 \nxsection{Introduction}
 
-Les t\^aches de gestion des stocks et de gestion des
-ventes sont illustr\'ees dans le Tableau~\ref{tab:taches-fonctions},
-en fonction du r\^ole de l'utilisateur.\\
+Les t\^aches de gestion des stocks sont illustr\'ees
+dans le Tableau~\ref{tab:taches-fonctions}, en fonction
+du r\^ole de l'utilisateur.\\
 
 \begin{table}[!htbp]
 \centering
-\begin{tabular}{lcccc}
-\textbf{T\^aches} 								& \managerb			& \gestionairedestocksb	& \magasinierb		& \caissierb 	 \\ \hline
-Entrer un stock 								& \mytimes{blue}	& \mytimes{blue}		& 					&  				 \\ \hline
-lister les stocks 								& \mytimes{blue}	& \mytimes{blue}		& \mytimes{blue}	& \mytimes{blue} \\ \hline
-modifier un stock 								& \mytimes{blue}	& \mytimes{blue}		& \mytimes{blue}	&  				 \\ \hline
-transf\'erer des stocks 						& \mytimes{blue}	& \mytimes{blue}		& \mytimes{blue}	&  				 \\ \hline
-sortir des stocks								& \mytimes{blue}	& \mytimes{blue}		& \mytimes{blue}	&  				 \\ \hline
-modifier la strat\'egie 						& \mytimes{blue}	& \mytimes{blue}		& 					&	 			 \\ 
-de gestion des stocks (ex.: \fifo, etc.) 		& 					& 						& 					&  				 \\ \hline
-vendre des marchandises 						& \mytimes{blue}	& 						& 					& \mytimes{blue} \\ \hline
-acc\'eder aux informations sur 		 			& 					&						& 					&  				 \\
-les mouvements des stocks 	   		 			& \mytimes{blue}	& \mytimes{blue}		& \mytimes{blue}  	&				 \\ \hline
-acc\'eder aux informations de ventes 			& \mytimes{blue}	& 						& 					&			 
+\begin{tabular}{lccccc}
+\textbf{T\^aches} 							& \managerb		 & \vendeurb	 		&	\gestionairedestocksb	& \magasinierb		& \caissierb 		\\ \hline
+acc\'eder aux  	& 				 &				 		&				 			& 					&  				 	\\ 
+mouvements des stocks 	   		 			& \mytimes{blue} & 				 		&\mytimes{blue}				& \mytimes{blue}  	& \\ \hline
+afficher les d\'etails d'un stock 			& \mytimes{blue} & 	\mytimes{blue} 		& \mytimes{blue}			& \mytimes{blue}	&  				 	\\ \hline
+afficher l'historique d'un stock 			& \mytimes{blue} & 	\mytimes{blue} 		& \mytimes{blue}			& 					&		\\ \hline
+entrer un stock 							& \mytimes{blue} & 				 		& \mytimes{blue}			& 					&  				 	\\ \hline
+lister les stocks 							& \mytimes{blue} &\mytimes{blue} 		& \mytimes{blue}			& \mytimes{blue}	& \mytimes{blue} 	\\ \hline
+modifier la strat\'egie 					&  				 & 				 		& 							& 					&	 				\\ 
+de gestion des stocks  						& \mytimes{blue} & \mytimespartial{blue}& \mytimespartial{blue}		& 					&  				 	\\ 
+(ex.: \fifo, etc.)							&				 &				 		&							&					&					\\ \hline
+modifier un stock 							& \mytimes{blue} & 				 		& \mytimes{blue}			& 					&  				 	\\ \hline
+
+supprimer un stock 							& \mytimes{blue} & 				 		& 							&					&  					\\ \hline
+
+transf\'erer des stocks 					& \mytimes{blue} & 				 		& \mytimes{blue}			& \mytimes{blue}	&  				 	\\ \hline
+sortir des stocks							& \mytimes{blue} & 				 		& \mytimes{blue}			& \mytimes{blue}	&  				 	\\
 \end{tabular}
 \caption{Tableau des t\^aches et des r\^oles associ\'es
-\`a la gestion des stocks}\label{tab:taches-fonctions}
+\`a la gestion des stocks}
+\label{tab:taches-fonctions}
 \index{t\^aches de gestion des stocks}
-\index{t\^aches de gestion des ventes}
 \end{table}
-
-Les fonctionalit\'es de gestion des stocks sont accessible
-exclusivement aux \roles \magasinier, \caissier et \manager. Ces
-fonctionalit\'es sont les suivantes:
-\begin{enumerate}[1)]
-	\item afficher les d\'etails d'un stock
-	\item entrer un stock 
-	\item lister les stocks
-	\item modifier les d\'etails d'un stock
-	\item rechercher un stock (ou un article)
-	\item supprimer un stock
-	\item visualiser les articles p\'erim\'es	
-	\item visualiser les articles dont le stock minimum est atteint
-	\item visualiser les stocks \`a z\'ero (termin\'es).
-\end{enumerate}
 
 \nxsection{Les strat\'egies de gestion des stocks}\label{sec:strategies-gestion-stocks}
 \index{strat\'egies de gestion des stocks}
@@ -64,46 +54,57 @@ vendre ou \`a sortir:
 	\item \cmup: Cours Moyen, Unit\'e Pond\'er\'ee.
 	
 		La strat\'egie \cmup affiche tous les 
-		stocks \`a vendre ou \`a sortir (Cours
+		stocks de \facon (Cours
 		Moyen, Unit\'e Pond\'er\'ee).\\
 		
 	\item \dpfdpo: Date of Expiration First, Date of Expiration Out.
 	
 		La strat\'egie \dpfdpo affiche les
 		stocks \`a vendre ou \`a sortir selon
-		le principe: seul les diff\'erents
-		stocks (ou articles) avec les dates
-		de p\'eremption les plus proches sont affich\'es.\\
+		le principe: les stocks avec des dates
+		de p\'eremption les plus proches sont 
+		les premiers \`a sortir.\\
 		
 	\item \fifo: First In, First Out. 
 	
 		La strat\'egie \fifo affiche les stocks
 		\`a vendre ou \`a sortir selon le principe
-		''\textbf{First In, First Out}''.
-		Les diff\'erents stocks sont list\'es
-		selon la date d'entr\'ee en stock:
-		les stocks les plus anciens sont d'abord affich\'es.\\
+		''\textbf{First In, First Out}'':
+		Les stocks avec des dates d'entr\'ee en stock
+		plus anciennes sont les premiers \`a sortir.\\
 		
 	\item \lifo: Last In, First Out.
 	
 		La strat\'egie \lifo affiche les stocks
 		\`a vendre ou \`a sortir selon le principe
-		''\textbf{Last In, First Out}''. Les diff\'erents 
-		stocks sont list\'es selon la date
-		d'entr\'ee en stock: les stocks les plus
-		r\'ecents sont d'abord affich\'es.\\
+		''\textbf{Last In, First Out}'': 
+		Les stocks avec des dates d'entr\'ee en stock
+		plus r\'ecentes sont les premiers \`a sortir.\\
 \end{enumerate}
 \index{\cmup}
 \index{\dpfdpo}
 \index{\fifo}
 \index{\lifo}
 
+La strat\'egie de gestion des stocks se modifie
+comme suit:
+
+\begin{itemize}[\mycheckmark{purplish}]
+	\item de \facon permanente dans
+		la section 'administration' de \yerenpos.
+
+	\item de \facon temporaire (\`a des fins de
+		visualitation de l'ordre des sorties de
+		stocks) dans la \fenetre 
+		\textbf{'fiche des stocks'} de \yerenpos.
+\end{itemize}
+
 %\newpage
 
 %-----------------------------------------------------------
 
-\nxsection{Entrer un (nouveau) stock}
-\index{entrer un (nouveau) stock}
+\nxsection{Entrer un nouveau stock}
+\index{entrer un nouveau stock}
 \index{stock minimum}
 
 \yeren entretient les donn\'ees suivantes pour chaque stock:
@@ -117,8 +118,9 @@ vendre ou \`a sortir:
 	\item le prix de vente d'un article \obligatoire
 	\item la quantit\'e intiale (nombre de lots, et quantit\'e par lot) \obligatoire
 	\item la \reference
+	\item la \reference du re\c{c}u d'achat
 	\item le stock minimum: si cette quantit\'e
-		est atteinte, alors le nombre de la colone 'Qt\'e total'
+		est atteinte, alors le nombre de la colone 'Qt\'e totale'
 		du stock est affich\'e en rouge.\\
 \end{enumerate}
 

@@ -75,9 +75,11 @@
 
 \newcommand{\yerenlabs}{\textsc{Yeroth--R\&D}\xspace}
 
+\newcommand{\yerotherpalerttroiszero}{\textcolor{yerenColorBlue}{\sc YEROTH--ERP--ALERT--$3.0$}\xspace}
+
 \newcommand{\yerenpos}{\textcolor{yerenColorBlue}{\sc YEROTH--ERP--$3.0$}\xspace}
 
-\newcommand{\myfullacademicname}{Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)\xspace}
+\newcommand{\myfullacademicname}{Xavier NOUMBISSI NOUNDOU, Dipl.--Inf., Ph.D. (ABD)\xspace}
 
 \usepackage{hyperref}
 \hypersetup{
@@ -89,8 +91,7 @@
     pdftex,
     bookmarks,
     plainpages=false,
-	pdftitle={Manuel de l'Utilisateur ''Manager'' de YEROTH--ERP (version $3.0$)
-				par \myfullacademicname},
+	pdftitle={Manuel de l'Utilisateur ''Manager'' de \yerenpos par \myfullacademicname},
     pdfauthor={Xavier NOUMBISSI NOUNDOU}
 }
 
@@ -106,6 +107,7 @@
 \newcommand{\emphit}[1]{\emph{\textit{#1}}\xspace}
 \newcommand{\mycheckmark}[1]{\textcolor{#1}{$\checkmark$}\xspace}
 \newcommand{\mytimes}[1]{\textcolor{#1}{$\times$}\xspace}
+\newcommand{\mytimespartial}[1]{\textcolor{#1}{partiel}\xspace}
 \newcommand{\boldsc}[1]{\textbf{\textsc{#1}}\xspace}
 
 \newcommand{\myenumitem}[1]{\emph{#1}\xspace}
@@ -136,6 +138,7 @@
 
 \newcommand{\managerb}{\emph{\textbf{Manager}}\xspace}
 \newcommand{\gestionairedestocksb}{\emph{\textbf{GestionaireDeStocks}}\xspace}
+\newcommand{\vendeurb}{\emph{\textbf{Vendeur}}\xspace}
 \newcommand{\caissierb}{\emph{\textbf{Caissier}}\xspace}
 \newcommand{\administrateurb}{\emph{\textbf{Administrateur}}\xspace}
 \newcommand{\magasinierb}{\emph{\textbf{Magasinier}}\xspace}
@@ -143,13 +146,18 @@
 \newcommand{\utilisateurs}
 	{\textcolor{blue}{\textbf{\emph{R\^oles ayant acc\`es \`a la fonctionalit\'e}}}\xspace}
 
+\newcommand{\facon}{fa\c{c}on\xspace}
+
 \newcommand{\obligatoire}{\textcolor{firebrickred}{\textbf{\emph{[obligatoire]}}}\xspace}
 
-\newcommand{\lienmagasinier}{\magasinier~\ref{sec:utilisateurs-lemagasinier}\xspace}
-\newcommand{\liencaissier}{\caissier~\ref{sec:utilisateurs-lecaissier}\xspace}
 \newcommand{\lienadmin}{\admin~\ref{sec:utilisateurs-ladministrateur}\xspace}
-\newcommand{\lienvendeur}{\vendeur~\ref{sec:utilisateurs-vendeur}\xspace}
+\newcommand{\liencaissier}{\caissier~\ref{sec:utilisateurs-lecaissier}\xspace}
+\newcommand{\liengestionnairedesstocks}{\gestionairedestocks~\ref{sec:utilisateurs-gestionairedestocks}\xspace}
+\newcommand{\lienmagasinier}{\magasinier~\ref{sec:utilisateurs-lemagasinier}\xspace}
 \newcommand{\lienmanager}{\manager~\ref{sec:utilisateurs-lepatron}\xspace}
+\newcommand{\lienvendeur}{\vendeur~\ref{sec:utilisateurs-vendeur}\xspace}
+
+
 \newcommand{\yerenfield}[1]{\textbf{\emph{#1}}\xspace}
 \newcommand{\procparagraph}[1]
 	{\paragraph{ \mycheckmark{forestgreen} \emph{\textcolor{forestgreen}{#1}}}}
