@@ -303,9 +303,10 @@ void YerothMainWindow::definirAdministrateur()
 void YerothMainWindow::definirMagasinier()
 {
     _logger->log("definirMagasinier");
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPaiements, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchats, false);
@@ -326,7 +327,7 @@ void YerothMainWindow::definirMagasinier()
     pushButton_rapports->disable(this);
     pushButton_caisse->disable(this);
     pushButton_vendre->disable(this);
-    pushButton_entrer->enable(this, SLOT(entrer()));
+    pushButton_entrer->disable(this);
     pushButton_afficher_stocks->enable(this, SLOT(afficherStocks()));
     pushButton_sortir->enable(this, SLOT(sortir()));
     pushButton_transactions->enable(this, SLOT(transactions()));
