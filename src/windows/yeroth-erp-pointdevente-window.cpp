@@ -113,6 +113,7 @@ YerothPointDeVenteWindow::YerothPointDeVenteWindow()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
     pushButton_minus->enable(this, SLOT(enlever_article()));
+
     // Menu actions
     connect(actionChanger_utilisateur, SIGNAL(triggered()), this, SLOT(changer_utilisateur()));
     connect(actionAppeler_aide, SIGNAL(triggered()), this, SLOT(help()));
@@ -135,7 +136,8 @@ YerothPointDeVenteWindow::YerothPointDeVenteWindow()
     connect(actionAnnuler, SIGNAL(triggered()), this, SLOT(annuler()));
     connect(actionVendre, SIGNAL(triggered()), this, SLOT(choisir_methode_paiment()));
 
-    connect(this, SIGNAL(SELLING()), _allWindows->_pdVenteMethodePaiementCarteCreditDialog, SLOT(reset_all_fields()));
+    connect(this, SIGNAL(SELLING()),
+    		_allWindows->_pdVenteMethodePaiementCarteCreditDialog, SLOT(reset_all_fields()));
 
     connect(_allWindows->_pdVenteMethodePaiementCarteCreditDialog,
     			SIGNAL(SIGNAL_CREDIT_CARD_INFO_ALL_PROCESSED()),
@@ -293,18 +295,10 @@ void YerothPointDeVenteWindow::setupLineEdits()
     lineEdit_article_detail_remise_pourcentage->setEnabled(false);
 }
 
+
 void YerothPointDeVenteWindow::setupLineEditsQCompleters()
 {
-	YerothPOSUser *user = _allWindows->getUser();
-
-	if (user && user->isManager())
-	{
-		lineEdit_articles_nom_client->setupMyStaticQCompleter(_allWindows->CLIENTS, YerothDatabaseTableColumn::NOM_ENTREPRISE, true);
-	}
-	else
-	{
-		lineEdit_articles_nom_client->setupMyStaticQCompleter(_allWindows->CLIENTS, YerothDatabaseTableColumn::NOM_ENTREPRISE);
-	}
+	lineEdit_articles_nom_client->setupMyStaticQCompleter(_allWindows->CLIENTS, YerothDatabaseTableColumn::NOM_ENTREPRISE, true);
 }
 
 

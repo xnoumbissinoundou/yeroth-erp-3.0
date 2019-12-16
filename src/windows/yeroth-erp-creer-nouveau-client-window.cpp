@@ -234,6 +234,7 @@ bool YerothCreerNouveauClientWindow::creer_client()
         record.setValue(YerothDatabaseTableColumn::NOM_REPRESENTANT, lineEdit_client_nom_representant->text());
         record.setValue(YerothDatabaseTableColumn::QUARTIER, lineEdit_client_quartier->text());
         record.setValue(YerothDatabaseTableColumn::VILLE, lineEdit_client_ville->text());
+        record.setValue(YerothDatabaseTableColumn::PROVINCE_ETAT, lineEdit_client_province_etat->text());
         record.setValue(YerothDatabaseTableColumn::PAYS, lineEdit_client_pays->text());
         record.setValue(YerothDatabaseTableColumn::BOITE_POSTALE, lineEdit_client_boite_postale->text());
         record.setValue(YerothDatabaseTableColumn::SIEGE_SOCIAL, lineEdit_client_siege_social->text());
