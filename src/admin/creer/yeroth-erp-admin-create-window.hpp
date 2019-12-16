@@ -64,6 +64,8 @@ public slots:
 
 	bool creer_alerte();
 
+	bool creer_remise();
+
 	bool creer_client();
 
 	bool creer_fournisseur();
@@ -98,6 +100,8 @@ private:
 
     void populateLocalisationComboBoxes();
 
+    void populateRemiseComboBoxes();
+
     void clear_utilisateur_all_fields();
 
     void clear_categorie_all_fields();
@@ -107,6 +111,8 @@ private:
     void clear_client_all_fields();
 
     void clear_alerte_all_fields();
+
+    void clear_remise_all_fields();
 
     void clear_fournisseur_all_fields();
 
@@ -121,6 +127,8 @@ private:
     bool creer_fournisseur_check_fields();
 
     bool creer_alerte_check_fields();
+
+    bool creer_remise_check_fields();
 
     YerothLogger		*_logger;
 };

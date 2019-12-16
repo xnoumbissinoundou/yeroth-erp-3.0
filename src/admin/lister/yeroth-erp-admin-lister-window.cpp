@@ -19,6 +19,7 @@ YerothAdminListerWindow::YerothAdminListerWindow()
  _userCurrentlyFiltered(false),
  _supplierCurrentlyFiltered(false),
  _siteCurrentlyFiltered(false),
+ _discountCurrentlyFiltered(false),
  _pushButton_admin_rechercher_font(0),
  _logger(new YerothLogger("YerothAdminListerWindow")),
  _adminSearchForm(0),
@@ -206,6 +207,13 @@ void YerothAdminListerWindow::rendreVisible(unsigned selectedSujetAction)
     	}
         break;
 
+    case SUJET_ACTION_REMISE:
+    	if (false == isDiscountCurrentlyFiltered())
+    	{
+    		lister_remise();
+    	}
+        break;
+
     case SUJET_ACTION_BON_DE_COMMANDE:
         break;
 
@@ -241,6 +249,8 @@ void YerothAdminListerWindow::reinitialiser()
     lister_fournisseur();
 
     lister_alerte();
+
+    lister_remise();
 
     setCurSearchSqlTableModel(0);
 
@@ -476,6 +486,33 @@ void YerothAdminListerWindow::lister_alerte(YerothSqlTableModel * aSqlTableModel
     tableView_lister_alerte->selectRow(this->_lastItemSelectedForModification);
 }
 
+
+void YerothAdminListerWindow::lister_remise(YerothSqlTableModel * aSqlTableModel)
+{
+    /*if (aSqlTableModel
+            && YerothUtils::isEqualCaseInsensitive(_allWindows->REMISES, aSqlTableModel->sqlTableName()))
+    {
+        tableView_lister_remise->lister_les_elements_du_tableau(*aSqlTableModel);
+        _curSearchSqlTableModel = aSqlTableModel;
+    }
+    else
+    {
+    	setAlertCurrentlyFiltered(false);
+        tableView_lister_remise->lister_les_elements_du_tableau(_allWindows->getSqlTableModel_remises());
+    }
+    tableView_lister_remise->hideColumn(0);
+    tableView_lister_remise->hideColumn(1);
+    tableView_lister_remise->hideColumn(8);
+    tableView_lister_remise->hideColumn(10);*/
+
+    _lastItemSelectedForModification = 0;
+
+    set_admin_rechercher_font();
+
+    tableView_lister_alerte->selectRow(this->_lastItemSelectedForModification);
+}
+
+
 void YerothAdminListerWindow::creer()
 {
     _allWindows->_adminCreateWindow->rendreVisible(tabWidget_lister->currentIndex());
@@ -567,6 +604,13 @@ void YerothAdminListerWindow::modifier()
         if (tableView_lister_alerte->rowCount() > 0)
         {
             _allWindows->_adminModifierWindow->rendreVisible(SUJET_ACTION_ALERTE);
+            this->rendreInvisible();
+        }
+        break;
+    case SUJET_ACTION_REMISE:
+        if (tableView_lister_remise->rowCount() > 0)
+        {
+            _allWindows->_adminModifierWindow->rendreVisible(SUJET_ACTION_REMISE);
             this->rendreInvisible();
         }
         break;

@@ -163,6 +163,7 @@ private:
 	static const QString CLIENT;
 	static const QString FOURNISSEUR;
 	static const QString ALERTE;
+	static const QString REMISE;
 	static const QString BON_DE_COMMANDE;
 	static const QString DB;
 	static const QString TABLEAU;

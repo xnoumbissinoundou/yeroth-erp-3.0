@@ -34,6 +34,7 @@
 # define FILE_YEROTH_ERP_3_0_SQL_TABLE_STOCKS_DE_SECURITE 				FOLDER_YEROTH_ERP_3_0_SQL"/create_table_marchandises.sql"
 # define FILE_YEROTH_ERP_3_0_SQL_TABLE_STOCKS_SORTIES 						FOLDER_YEROTH_ERP_3_0_SQL"/create_table_stocks_sorties.sql"
 # define FILE_YEROTH_ERP_3_0_SQL_TABLE_ALERTES 										FOLDER_YEROTH_ERP_3_0_SQL"/create_table_alertes.sql"
+# define FILE_YEROTH_ERP_3_0_SQL_TABLE_REMISES 										FOLDER_YEROTH_ERP_3_0_SQL"/create_table_remises.sql"
 # define FILE_YEROTH_ERP_3_0_SQL_TABLE_CONDITIONS_ALERTES 				FOLDER_YEROTH_ERP_3_0_SQL"/create_table_conditions_alertes.sql"
 # define FILE_YEROTH_ERP_3_0_SQL_TABLE_COURRIERS_ALERTES 					FOLDER_YEROTH_ERP_3_0_SQL"/create_table_courriers_alertes.sql"
 # define FILE_YEROTH_ERP_3_0_SQL_TABLE_CLIENTS 										FOLDER_YEROTH_ERP_3_0_SQL"/create_table_clients.sql"

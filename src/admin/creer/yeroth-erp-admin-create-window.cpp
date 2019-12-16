@@ -1,57 +1,76 @@
 /*
-
-   * yeroth-erp-admin-create-window.cpp
-
-   *
-
-
-   *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
+ * yeroth-erp-admin-create-window.cpp
+ *
+ *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
+ */
 
 
-   */
-#include"yeroth-erp-admin-create-window.hpp"
-#include"src/yeroth-erp-windows.hpp"
-#include<QtCore/QDebug>
-#include<QtWidgets/QDesktopWidget>
-#include<QtSql/QSqlError>
-#include<QtSql/QSqlRecord>
-#include<QtSql/QSqlQuery>
+#include "yeroth-erp-admin-create-window.hpp"
 
-YerothAdminCreateWindow::YerothAdminCreateWindow():YerothPOSAdminWindowsCommons(QObject::trUtf8("administration ~ créer")),
-    _logger(new YerothLogger("YerothAdminCreateWindow"))
+#include "src/yeroth-erp-windows.hpp"
+
+
+#include <QtCore/QDebug>
+
+#include <QtWidgets/QDesktopWidget>
+
+#include <QtSql/QSqlError>
+
+#include <QtSql/QSqlRecord>
+
+#include <QtSql/QSqlQuery>
+
+
+YerothAdminCreateWindow::YerothAdminCreateWindow()
+:YerothPOSAdminWindowsCommons(QObject::trUtf8("administration ~ créer")),
+ _logger(new YerothLogger("YerothAdminCreateWindow"))
 {
     setupUi(this);
 
-    this->mySetupUi(this);
+    mySetupUi(this);
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
-                                       "QMessageBox QLabel {color: rgb(%2);}").
-                               arg(COLOUR_RGB_STRING_YEROTH_DARK_GREEN_47_67_67, COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
+                                       "QMessageBox QLabel {color: rgb(%2);}")
+                                    .arg(COLOUR_RGB_STRING_YEROTH_DARK_GREEN_47_67_67,
+                                    	 COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
-    this->setupLineEdits();
-    this->setupDateTimeEdits();
+    setupLineEdits();
+    setupDateTimeEdits();
+
     YEROTH_ERP_ADMIN_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
+
     YEROTH_ERP_ADMIN_WRAPPER_QACTION_SET_ENABLED(actionRetournerMenuPrincipal, false);
+
     pushButton_menu->enable(this, SLOT(menu()));
+
     pushButton_creer_utilisateur_annuler->enable(this, SLOT(annuler()));
     pushButton_creer_localisation_annuler->enable(this, SLOT(annuler()));
     pushButton_creer_categorie_annuler->enable(this, SLOT(annuler()));
     pushButton_creer_alerte_annuler->enable(this, SLOT(annuler()));
     pushButton_creer_client_annuler->enable(this, SLOT(annuler()));
     pushButton_creer_fournisseur_annuler->enable(this, SLOT(annuler()));
+    pushButton_creer_remise_annuler->enable(this, SLOT(annuler()));
+
+
     pushButton_creer_utilisateur_valider->enable(this, SLOT(creer_utilisateur()));
     pushButton_creer_localisation_valider->enable(this, SLOT(creer_localisation()));
     pushButton_creer_categorie_valider->enable(this, SLOT(creer_categorie()));
     pushButton_creer_alerte_valider->enable(this, SLOT(creer_alerte()));
     pushButton_creer_client_valider->enable(this, SLOT(creer_client()));
     pushButton_creer_fournisseur_valider->enable(this, SLOT(creer_fournisseur()));
+    pushButton_creer_remise_valider->enable(this, SLOT(creer_remise()));
+
+
     pushButton_lister->enable(this, SLOT(lister()));
     pushButton_modifier->enable(this, SLOT(lister()));
     pushButton_supprimer->enable(this, SLOT(lister()));
+
+
     connect(actionStocks, SIGNAL(triggered()), this, SLOT(lister()));
     connect(actionMenu, SIGNAL(triggered()), this, SLOT(menu()));
     connect(actionModifier, SIGNAL(triggered()), this, SLOT(lister()));
     connect(actionSupprimer, SIGNAL(triggered()), this, SLOT(lister()));
+
     /** Menu actions */
     connect(actionChanger_utilisateur, SIGNAL(triggered()), this, SLOT(changer_utilisateur()));
     connect(actionDeconnecter_utilisateur, SIGNAL(triggered()), this, SLOT(deconnecter_utilisateur()));
@@ -60,10 +79,14 @@ YerothAdminCreateWindow::YerothAdminCreateWindow():YerothPOSAdminWindowsCommons(
     connect(actionA_propos, SIGNAL(triggered()), this, SLOT(apropos()));
     connect(actionRetournerMenuPrincipal, SIGNAL(triggered()), this, SLOT(retour_menu_principal()));
     connect(actionQui_suis_je, SIGNAL(triggered()), this, SLOT(qui_suis_je()));
+
     connect(radioButton_creer_alerte_quantite, SIGNAL(clicked(bool)), this, SLOT(radioButtons_quantite()));
+
     connect(radioButton_creer_alerte_periode_temps, SIGNAL(clicked(bool)), this,
             SLOT(radioButtons_periode_temps()));
+
     connect(tabWidget_creer, SIGNAL(currentChanged(int)), this, SLOT(handleCurrentChanged()));
+
     connect(tabWidget_creer, SIGNAL(currentChanged(int)), this, SLOT(handleCurrentChanged()));
 }
 
@@ -113,17 +136,27 @@ void YerothAdminCreateWindow::setupDateTimeEdits()
 
 void YerothAdminCreateWindow::rendreVisible(unsigned selectedSujetAction)
 {
-    this->tabWidget_creer->setCurrentIndex(selectedSujetAction);
-    this->clear_utilisateur_all_fields();
-    this->clear_categorie_all_fields();
-    this->clear_client_all_fields();
-    this->clear_localisation_all_fields();
-    this->clear_fournisseur_all_fields();
-    this->clear_alerte_all_fields();
+	tabWidget_creer->setCurrentIndex(selectedSujetAction);
+
+    clear_utilisateur_all_fields();
+
+    clear_categorie_all_fields();
+
+    clear_client_all_fields();
+
+    clear_localisation_all_fields();
+
+    clear_fournisseur_all_fields();
+
+    clear_alerte_all_fields();
+
+    clear_remise_all_fields();
+
     lineEdit_creer_alerte_designation->setupMyStaticQCompleter(_allWindows->STOCKS, YerothDatabaseTableColumn::DESIGNATION);
     lineEdit_creer_alerte_destinataire->setupMyStaticQCompleter(_allWindows->USERS, "nom_utilisateur");
     lineEdit_creer_utilisateur_localisation->setEnabled(false);
     lineEdit_creer_utilisateur_localisation->setText(_allWindows->getInfoEntreprise().getLocalisation());
+
     populateUtilisateurComboBoxes();
     populateAlerteComboBoxes();
     populateLocalisationComboBoxes();
@@ -247,13 +280,22 @@ void YerothAdminCreateWindow::lister()
 
 void YerothAdminCreateWindow::annuler()
 {
-    this->clear_utilisateur_all_fields();
-    this->clear_categorie_all_fields();
-    this->clear_localisation_all_fields();
-    this->clear_client_all_fields();
-    this->clear_fournisseur_all_fields();
-    this->clear_alerte_all_fields();
+    clear_utilisateur_all_fields();
+
+    clear_categorie_all_fields();
+
+    clear_localisation_all_fields();
+
+    clear_client_all_fields();
+
+    clear_fournisseur_all_fields();
+
+    clear_alerte_all_fields();
+
+    clear_remise_all_fields();
+
     _allWindows->_adminWindow->rendreVisible();
+
     this->rendreInvisible();
 }
 
@@ -288,13 +330,23 @@ void YerothAdminCreateWindow::radioButtons_periode_temps()
 void YerothAdminCreateWindow::handleCurrentChanged()
 {
     this->clear_utilisateur_all_fields();
+
     this->clear_localisation_all_fields();
+
     this->clear_categorie_all_fields();
+
     this->clear_client_all_fields();
+
     this->clear_fournisseur_all_fields();
+
     this->clear_alerte_all_fields();
+
+    this->clear_remise_all_fields();
+
     populateUtilisateurComboBoxes();
+
     populateAlerteComboBoxes();
+
     populateLocalisationComboBoxes();
 }
 
@@ -306,9 +358,17 @@ void YerothAdminCreateWindow::hideEvent(QHideEvent * hideEvent)
     dateEdit_creer_alerte_date_fin->reset();
 }
 
-#include"creer-utilisateur.cpp"
-#include"creer-localisation.cpp"
-#include"creer-categorie.cpp"
-#include"creer-client.cpp"
-#include"creer-fournisseur.cpp"
-#include"creer-alerte.cpp"
+#include "creer-utilisateur.cpp"
+
+#include "creer-localisation.cpp"
+
+#include "creer-categorie.cpp"
+
+#include "creer-client.cpp"
+
+#include "creer-fournisseur.cpp"
+
+#include "creer-alerte.cpp"
+
+#include "creer-remise.cpp"
+

@@ -139,6 +139,8 @@ public:
 
 	YerothSqlTableModel &getSqlTableModel_alertes();
 
+	YerothSqlTableModel &getSqlTableModel_remises();
+
 	YerothSqlTableModel &getSqlTableModel_conditions_alertes();
 
 	YerothSqlTableModel &getSqlTableModel_courriers_alertes();
@@ -318,6 +320,7 @@ public:
 	static const QString CLIENTS;
 	static const QString FOURNISSEURS;
 	static const QString ALERTES;
+	static const QString REMISES;
 	static const QString ACHATS;
 	static const QString STOCKS;
 	static const QString STOCKS_VENDU;
@@ -377,6 +380,7 @@ private:
 	YerothSqlTableModel 	*_tableModel_clients;
 	YerothSqlTableModel 	*_tableModel_fournisseurs;
 	YerothSqlTableModel 	*_tableModel_alertes;
+	YerothSqlTableModel 	*_tableModel_remises;
 	YerothSqlTableModel 	*_tableModel_conditions_alertes;
 	YerothSqlTableModel 	*_tableModel_courriers_alertes;
 	YerothSqlTableModel 	*_tableModel_achats;

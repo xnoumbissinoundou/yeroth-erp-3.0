@@ -63,6 +63,8 @@ public:
 
     void setupEditAlerte();
 
+    void setupEditRemise();
+
     void setupEditBonDecommande();
 
 public slots:
@@ -82,6 +84,8 @@ public slots:
 	void modifier_categorie();
 
 	void modifier_alerte();
+
+	void modifier_remise();
 
 	void modifier_client();
 
@@ -123,6 +127,8 @@ private:
 
 	void retourListerAlerte();
 
+	void retourListerRemise();
+
     void clear_utilisateur_all_fields();
 
     void clear_categorie_all_fields();
@@ -135,6 +141,8 @@ private:
 
     void clear_alerte_all_fields();
 
+    void clear_remise_all_fields();
+
     bool modifier_utilisateur_check_fields();
 
     bool modifier_categorie_check_fields();
@@ -146,6 +154,8 @@ private:
     bool modifier_fournisseur_check_fields();
 
     bool modifier_alerte_check_fields(QString previousAlertText);
+
+    bool modifier_remise_check_fields(QString previousDiscountText);
 
     YerothLogger			*_logger;
     YerothSqlTableModel 	*_curSearchSqlTableModel;

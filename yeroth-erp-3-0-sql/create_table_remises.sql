@@ -1,0 +1,1 @@
+create table remises (id int primary key, stocks_id int, designation_remise varchar(256), designation varchar(256), date_debut date, date_fin date, notes_remise varchar(256), date_creation date, notifications int(11));

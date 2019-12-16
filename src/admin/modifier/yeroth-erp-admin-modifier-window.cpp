@@ -130,6 +130,7 @@ void YerothAdminModifierWindow::rendreVisible(enum AdminSujetAction selectedSuje
     this->clear_client_all_fields();
     this->clear_fournisseur_all_fields();
     this->clear_alerte_all_fields();
+    this->clear_remise_all_fields();
 
     switch (selectedSujetAction)
     {
@@ -162,6 +163,11 @@ void YerothAdminModifierWindow::rendreVisible(enum AdminSujetAction selectedSuje
         tabWidget_modifier->setCurrentIndex(SUJET_ACTION_ALERTE);
         this->enableOtherTabs(SUJET_ACTION_ALERTE, false);
         this->setupEditAlerte();
+        break;
+    case SUJET_ACTION_REMISE:
+        tabWidget_modifier->setCurrentIndex(SUJET_ACTION_REMISE);
+        this->enableOtherTabs(SUJET_ACTION_REMISE, false);
+        this->setupEditRemise();
         break;
     case SUJET_ACTION_BON_DE_COMMANDE:
         tabWidget_modifier->setCurrentIndex(SUJET_ACTION_BON_DE_COMMANDE);
@@ -209,6 +215,14 @@ void YerothAdminModifierWindow::retourListerAlerte()
     this->rendreInvisible();
 }
 
+
+void YerothAdminModifierWindow::retourListerRemise()
+{
+    _allWindows->_adminListerWindow->rendreVisible(SUJET_ACTION_REMISE);
+    this->rendreInvisible();
+}
+
+
 void YerothAdminModifierWindow::annuler()
 {
     switch (tabWidget_modifier->currentIndex())
@@ -236,6 +250,10 @@ void YerothAdminModifierWindow::annuler()
     case SUJET_ACTION_ALERTE:
         clear_alerte_all_fields();
         retourListerAlerte();
+        break;
+    case SUJET_ACTION_REMISE:
+        clear_remise_all_fields();
+        retourListerRemise();
         break;
     case SUJET_ACTION_BON_DE_COMMANDE:
         break;
@@ -281,8 +299,15 @@ void YerothAdminModifierWindow::radioButtons_periode_temps()
 }
 
 #include"modifier-utilisateur.cpp"
+
 #include"modifier-localisation.cpp"
+
 #include"modifier-categorie.cpp"
+
 #include"modifier-client.cpp"
+
 #include"modifier-fournisseur.cpp"
+
 #include"modifier-alerte.cpp"
+
+#include"modifier-remise.cpp"

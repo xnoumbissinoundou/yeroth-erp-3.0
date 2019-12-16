@@ -54,6 +54,8 @@ const QString YerothERPWindows::YerothERPWindows::FOURNISSEURS					("fournisseur
 
 const QString YerothERPWindows::YerothERPWindows::ALERTES							("alertes");
 
+const QString YerothERPWindows::YerothERPWindows::REMISES							("remises");
+
 const QString YerothERPWindows::CREDIT_CARD_ISSUING_COMPANY		("credit_card_issuing_company");
 
 const QString YerothERPWindows::YerothERPWindows::CONDITIONS_ALERTES				("conditions_alertes");
@@ -119,6 +121,7 @@ YerothERPWindows::YerothERPWindows(QDesktopWidget *desktopWidget)
      _tableModel_categories(0),
      _tableModel_fournisseurs(0),
      _tableModel_alertes(0),
+	 _tableModel_remises(0),
      _tableModel_conditions_alertes(0),
      _tableModel_courriers_alertes(0),
 	 _tableModel_achats(0),
@@ -158,6 +161,7 @@ YerothERPWindows::YerothERPWindows(QDesktopWidget *desktopWidget)
     _tableModel_clients						= new YerothSqlTableModel(YerothERPWindows::CLIENTS);
     _tableModel_fournisseurs 				= new YerothSqlTableModel(YerothERPWindows::FOURNISSEURS);
     _tableModel_alertes 					= new YerothSqlTableModel(YerothERPWindows::ALERTES);
+    _tableModel_remises 					= new YerothSqlTableModel(YerothERPWindows::REMISES);
     _tableModel_conditions_alertes 			= new YerothSqlTableModel(YerothERPWindows::CONDITIONS_ALERTES);
     _tableModel_courriers_alertes 			= new YerothSqlTableModel(YerothERPWindows::COURRIERS_ALERTES);
     _tableModel_achats 						= new YerothSqlTableModel(YerothERPWindows::ACHATS);
@@ -299,6 +303,7 @@ void YerothERPWindows::reinitialiseSqlTableModels()
     delete _tableModel_categories;
     delete _tableModel_fournisseurs;
     delete _tableModel_alertes;
+    delete _tableModel_remises;
     delete _tableModel_conditions_alertes;
     delete _tableModel_courriers_alertes;
     delete _tableModel_stocks;
@@ -318,6 +323,7 @@ void YerothERPWindows::reinitialiseSqlTableModels()
     _tableModel_clients						= new YerothSqlTableModel(YerothERPWindows::CLIENTS);
     _tableModel_fournisseurs 				= new YerothSqlTableModel(YerothERPWindows::FOURNISSEURS);
     _tableModel_alertes 					= new YerothSqlTableModel(YerothERPWindows::ALERTES);
+    _tableModel_remises 					= new YerothSqlTableModel(YerothERPWindows::REMISES);
     _tableModel_conditions_alertes 			= new YerothSqlTableModel(YerothERPWindows::CONDITIONS_ALERTES);
     _tableModel_courriers_alertes 			= new YerothSqlTableModel(YerothERPWindows::COURRIERS_ALERTES);
     _tableModel_achats 						= new YerothSqlTableModel(YerothERPWindows::ACHATS);
@@ -630,6 +636,14 @@ YerothSqlTableModel &YerothERPWindows::getSqlTableModel_alertes()
     _tableModel_alertes->resetFilter();
     return *_tableModel_alertes;
 }
+
+
+YerothSqlTableModel &YerothERPWindows::getSqlTableModel_remises()
+{
+    _tableModel_remises->resetFilter();
+    return *_tableModel_remises;
+}
+
 
 YerothSqlTableModel &YerothERPWindows::getSqlTableModel_conditions_alertes()
 {

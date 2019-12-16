@@ -79,6 +79,8 @@ public slots:
 
 	void lister_alerte(YerothSqlTableModel *aSqlTableModel = 0);
 
+	void lister_remise(YerothSqlTableModel *aSqlTableModel = 0);
+
 	void afficher_au_detail();
 
     void afficher_detail_utilisateur();
@@ -155,6 +157,11 @@ public slots:
 		return _userCurrentlyFiltered;
 	}
 
+	inline bool isDiscountCurrentlyFiltered() const
+	{
+		return _discountCurrentlyFiltered;
+	}
+
 	void setAlertCurrentlyFiltered(bool alertCurrentlyFiltered);
 
 	void setCategoryCurrentlyFiltered(bool categoryCurrentlyFiltered);
@@ -180,6 +187,8 @@ private:
     bool 					_supplierCurrentlyFiltered;
 
     bool 					_siteCurrentlyFiltered;
+
+    bool 					_discountCurrentlyFiltered;
 
     QFont					*_pushButton_admin_rechercher_font;
 

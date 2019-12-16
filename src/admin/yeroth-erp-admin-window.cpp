@@ -35,6 +35,7 @@
 const QString YerothAdminWindow::EXPORTER(QObject::trUtf8("exporter"));
 const QString YerothAdminWindow::IMPORTER(QObject::trUtf8("importer"));
 const QString YerothAdminWindow::EFFACER(QObject::trUtf8("effacer"));
+
 const QString YerothAdminWindow::DB(QObject::trUtf8("base de données"));
 const QString YerothAdminWindow::TABLEAU(QObject::trUtf8("tableau"));
 const QString YerothAdminWindow::DONNEES(QObject::trUtf8("données"));
@@ -44,6 +45,7 @@ const QString YerothAdminWindow::CREER(QObject::trUtf8(ACTION_ADMIN_OPERATIONS_C
 const QString YerothAdminWindow::LISTER(QObject::trUtf8(ACTION_ADMIN_OPERATIONS_LIST_FR));
 const QString YerothAdminWindow::MODIFIER(QObject::trUtf8(ACTION_ADMIN_OPERATIONS_MODIFY_FR));
 const QString YerothAdminWindow::SUPPRIMER(QObject::trUtf8(ACTION_ADMIN_OPERATIONS_DELETE_FR));
+
 const QString YerothAdminWindow::COMPTE_UTILISATEUR(QObject::trUtf8(SUBJECT_ADMIN_OPERATIONS_USER_ACCOUNT_FR));
 const QString YerothAdminWindow::LOCALISATION(QObject::trUtf8(SUBJECT_ADMIN_OPERATIONS_SITE_FR));
 const QString YerothAdminWindow::CATEGORIE(QObject::trUtf8(SUBJECT_ADMIN_OPERATIONS_CATEGORY_FR));
@@ -51,12 +53,14 @@ const QString YerothAdminWindow::CLIENT(QObject::trUtf8(SUBJECT_ADMIN_OPERATIONS
 const QString YerothAdminWindow::FOURNISSEUR(QObject::trUtf8(SUBJECT_ADMIN_OPERATIONS_SUPPLIER_FR));
 const QString YerothAdminWindow::ALERTE(QObject::trUtf8(SUBJECT_ADMIN_OPERATIONS_ALERT_FR));
 const QString YerothAdminWindow::BON_DE_COMMANDE(QObject::trUtf8(SUBJECT_ADMIN_OPERATIONS_COMMAND_SHEET_FR));
+const QString YerothAdminWindow::REMISE(QObject::trUtf8(SUBJECT_ADMIN_OPERATIONS_DISCOUNT_FR));
 
 #elif YEROTH_ENGLISH_LANGUAGE
 const QString YerothAdminWindow::CREER(QObject::tr(ACTION_ADMIN_OPERATIONS_CREATE_EN));
 const QString YerothAdminWindow::LISTER(QObject::tr(ACTION_ADMIN_OPERATIONS_LIST_EN));
 const QString YerothAdminWindow::MODIFIER(QObject::tr(ACTION_ADMIN_OPERATIONS_MODIFY_EN));
 const QString YerothAdminWindow::SUPPRIMER(QObject::tr(ACTION_ADMIN_OPERATIONS_DELETE_EN));
+
 const QString YerothAdminWindow::COMPTE_UTILISATEUR(QObject::tr(SUBJECT_ADMIN_OPERATIONS_USER_ACCOUNT_EN));
 const QString YerothAdminWindow::LOCALISATION(QObject::tr(SUBJECT_ADMIN_OPERATIONS_SITE_EN));
 const QString YerothAdminWindow::CATEGORIE(QObject::tr(SUBJECT_ADMIN_OPERATIONS_CATEGORY_EN));
@@ -64,6 +68,7 @@ const QString YerothAdminWindow::CLIENT(QObject::tr(SUBJECT_ADMIN_OPERATIONS_CUS
 const QString YerothAdminWindow::FOURNISSEUR(QObject::tr(SUBJECT_ADMIN_OPERATIONS_SUPPLIER_EN));
 const QString YerothAdminWindow::ALERTE(QObject::tr(SUBJECT_ADMIN_OPERATIONS_ALERT_EN));
 const QString YerothAdminWindow::BON_DE_COMMANDE(QObject::tr(SUBJECT_ADMIN_OPERATIONS_COMMAND_SHEET_EN));
+const QString YerothAdminWindow::REMISE(QObject::tr(SUBJECT_ADMIN_OPERATIONS_DISCOUNT_EN));
 #endif
 
 YerothAdminWindow::YerothAdminWindow()
@@ -115,6 +120,8 @@ YerothAdminWindow::YerothAdminWindow()
     _sujetActionsToConst->insert(FOURNISSEUR, SUJET_ACTION_FOURNISSEUR);
     _sujetActionsToConst->insert(CLIENT, SUJET_ACTION_CLIENT);
     _sujetActionsToConst->insert(LOCALISATION, SUJET_ACTION_LOCALISATION);
+    _sujetActionsToConst->insert(REMISE, SUJET_ACTION_REMISE);
+
     _sujetActionsToConst->insert(DB, SUJET_ACTION_DB);
     _sujetActionsToConst->insert(TABLEAU, SUJET_ACTION_TABLEAU);
     _sujetActionsToConst->insert(DONNEES, SUJET_ACTION_DONNEES);
@@ -126,17 +133,22 @@ YerothAdminWindow::YerothAdminWindow()
     comboBox_sujets_actions->addItem(FOURNISSEUR);
     comboBox_sujets_actions->addItem(COMPTE_UTILISATEUR);
     comboBox_sujets_actions->addItem(LOCALISATION);
+    comboBox_sujets_actions->addItem(REMISE);
+
     comboBox_sujets_maintain->addItem(DB);
     comboBox_sujets_maintain->addItem(TABLEAU);
     comboBox_sujets_maintain->addItem(DONNEES);
+
     comboBox_strategie_vente_sortie->addItem(YerothERPConfig::STRATEGIE_VENTE_SORTIE_ALL);
     comboBox_strategie_vente_sortie->addItem(YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO);
     comboBox_strategie_vente_sortie->addItem(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO);
     comboBox_strategie_vente_sortie->addItem(YerothERPConfig::STRATEGIE_VENTE_SORTIE_LIFO);
+
     comboBox_actions->addItem(CREER);
     comboBox_actions->addItem(LISTER);
     comboBox_actions->addItem(MODIFIER);
     comboBox_actions->addItem(SUPPRIMER);
+
     comboBox_actions_maintain->addItem(EXPORTER);
     comboBox_actions_maintain->addItem(IMPORTER);
     comboBox_actions_maintain->addItem(EFFACER);
@@ -201,8 +213,11 @@ YerothAdminWindow::YerothAdminWindow()
     connect(actionA_propos, SIGNAL(triggered()), this, SLOT(apropos()));
     connect(actionRetournerMenuPrincipal, SIGNAL(triggered()), this, SLOT(retour_menu_principal()));
     connect(actionQui_suis_je, SIGNAL(triggered()), this, SLOT(qui_suis_je()));
+
     connect(comboBox_sujets_actions, SIGNAL(activated(int)), this, SLOT(gerer_choix_action()));
+
     connect(lineEdit_localisation, SIGNAL(editingFinished()), this, SLOT(set_localisation_adresse_ip_text()));
+
     connect(tabWidget_administration, SIGNAL(currentChanged(int)), this, SLOT(handleTabChanged(int)));
 }
 
@@ -470,6 +485,9 @@ void YerothAdminWindow::action_creer()
     case SUJET_ACTION_ALERTE:
         creer(SUJET_ACTION_ALERTE);
         break;
+    case SUJET_ACTION_REMISE:
+        creer(SUJET_ACTION_REMISE);
+        break;
     case SUJET_ACTION_BON_DE_COMMANDE:
         creer(SUJET_ACTION_BON_DE_COMMANDE);
         break;
@@ -501,6 +519,9 @@ void YerothAdminWindow::action_lister()
     case SUJET_ACTION_ALERTE:
         lister(SUJET_ACTION_ALERTE);
         break;
+    case SUJET_ACTION_REMISE:
+        lister(SUJET_ACTION_REMISE);
+        break;
     case SUJET_ACTION_BON_DE_COMMANDE:
         lister(SUJET_ACTION_BON_DE_COMMANDE);
         break;
@@ -528,6 +549,9 @@ void YerothAdminWindow::action_modifier()
         break;
     case SUJET_ACTION_FOURNISSEUR:
         modifier(SUJET_ACTION_FOURNISSEUR);
+        break;
+    case SUJET_ACTION_REMISE:
+        modifier(SUJET_ACTION_REMISE);
         break;
     case SUJET_ACTION_ALERTE:
         modifier(SUJET_ACTION_ALERTE);
@@ -562,6 +586,9 @@ void YerothAdminWindow::action_supprimer()
         break;
     case SUJET_ACTION_ALERTE:
         modifier(SUJET_ACTION_ALERTE);
+        break;
+    case SUJET_ACTION_REMISE:
+        modifier(SUJET_ACTION_REMISE);
         break;
     case SUJET_ACTION_BON_DE_COMMANDE:
         modifier(SUJET_ACTION_BON_DE_COMMANDE);

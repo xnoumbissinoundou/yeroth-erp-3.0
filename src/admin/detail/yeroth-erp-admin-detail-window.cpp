@@ -203,7 +203,7 @@ void YerothAdminDetailWindow::rendreInvisible()
 void YerothAdminDetailWindow::enableOtherTabs(enum AdminSujetAction curAction, bool enabled)
 {
     tabWidget_detail->setTabEnabled(curAction, !enabled);
-    for (int k = 0; k <= 6; ++k)
+    for (int k = 0; k <= 7; ++k)
     {
         if (k != curAction)
         {
