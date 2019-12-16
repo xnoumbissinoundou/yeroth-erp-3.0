@@ -2,6 +2,8 @@
 
 \NeedsTeXFormat{LaTeX2e}
 
+\makeindex
+
 %---------------------------- PACKAGE INCLUSION -------------------------------
 % This group renders characters clearer and more precise
 
@@ -36,8 +38,6 @@
 \usepackage{epsfig}
 \usepackage{booktabs}
 
-\newcommand{\yerotherptroiszero}{\textbf{''Yeroth--erp--3.0''}\xspace}
-
 \newcommand{\texlive}{\texttt{Texlive}\xspace}
 
 \newcommand{\gdebi}{\texttt{gdebi}\xspace}
@@ -55,6 +55,8 @@
 \newcommand{\mariadbclient}{\texttt{mariadb--client}\xspace}
 
 \newcommand{\yerothrd}{\textsc{YEROTH~R\&D}\xspace}
+
+\newcommand{\yerotherptroiszero}{\textcolor{yerenColorBlue}{\sc YEROTH--ERP--$3.0$}\xspace}
 
 \newcommand{\yerotherp}{\textcolor{yerenColorBlue}{\sc YEROTH--ERP--$3.0$}\xspace}
 
@@ -154,6 +156,14 @@
 %\bigskip 
 %-------------------
 
+\vspace{-0.5em}
+
+% TABLE OF CONTENTS
+\phantomsection
+\addcontentsline{toc}{section}{\contentsname}
+\begingroup
+\tableofcontents
+\endgroup
 
 \vspace{0.25cm}
 
@@ -188,8 +198,7 @@ $5.11.3$			\\ \hline
 \texlive			&
 $2018.20190227-2$	\\
 \end{tabular}
-\caption{Prerequisite software for installation of
-	 \erp \yerotherptroiszero.}
+\caption{Prerequisite software for installation of \yerotherptroiszero.}
 \label{tab:prerequisite-software}
 \end{table}
 
@@ -203,8 +212,7 @@ yeroth-erp-3.0-standalone.deb							\\ \hline
 yeroth-erp-3-0-configure-mysql-server.sh				\\ \hline	
 yeroth-erp-3-0-configure-mysql-server-set-root-pwd.exp	\\ \hline	
 \end{tabular}
-\caption{Files required for installation of
-	 \erp \yerotherptroiszero.}
+\caption{Files required for installation of \yerotherptroiszero.}
 \label{tab:prerequisite-software}
 \end{table}
 
@@ -251,7 +259,7 @@ a well functioning installation of \yerotherptroiszero:
 		''yeroth-erp-3-0-configure-mysql-server.sh''	
 \end{enumerate}
 
-\subsection{Installation of \qt, \texlive, and \yerotherptroiszero}
+\subsection{Installation of \qt, \texlive, and of \yerotherptroiszero}
 
 \begin{enumerate}[1)]
 	\item Open a ''bash--terminal''
