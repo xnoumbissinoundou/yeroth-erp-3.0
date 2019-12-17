@@ -877,11 +877,14 @@ QString YerothUtils::generateSqlIsNotEmpty(QString sqlTableColumn)
     return result;
 }
 
-void YerothUtils::addFiltre(YerothLineEdit *aLineEdit, QString &yerothFiltre_in_out)
+void YerothUtils::addFiltre(YerothLineEdit *aLineEdit,
+							QString filterName,
+							QString &yerothFiltre_in_out)
 {
     if (aLineEdit && !aLineEdit->text().isEmpty())
     {
-        yerothFiltre_in_out.append(aLineEdit->text())
+        yerothFiltre_in_out.append(QString("%1: %2")
+        								.arg(filterName, aLineEdit->text()))
         .append(", ");
     }
 }

@@ -138,7 +138,9 @@ public:
 
 	static QString boolToString(bool b);
 
-	static void addFiltre(YerothLineEdit *aLineEdit, QString &yerothFiltre_in_out);
+	static void addFiltre(YerothLineEdit *aLineEdit,
+						  QString filterName,
+						  QString &yerothFiltre_in_out);
 
 	static void populateComboBox(QComboBox 		&aComboBox,
 								 const QString 	&tableName,
@@ -664,7 +666,7 @@ private:
 
 #define YEROTH_QMESSAGE_BOX_QUELQUE_RESULTAT_FILTRE(THIS, NOMBRE, DIALOG_BOX_TITLE) \
 { QString msg(QObject::trUtf8("Il y'a eu")); \
-msg.append(QString(" %1 résultat à votre filtre !").arg(NOMBRE)); \
+msg.append(QString(QObject::trUtf8(" %1 résultat(s) à votre filtre !")).arg(NOMBRE)); \
 YerothQMessageBox::information(this, QObject::trUtf8(DIALOG_BOX_TITLE), msg); }
 
 

@@ -726,11 +726,11 @@ void YerothTransactionsWindow::imprimer_journal_transactions()
 
     QString yerothFiltres;
 
-    YerothUtils::addFiltre(lineEdit_transactions_nom_magasinier, 	yerothFiltres);
-    YerothUtils::addFiltre(lineEdit_transactions_designation, 		yerothFiltres);
-    YerothUtils::addFiltre(lineEdit_transactions_nom_categorie, 		yerothFiltres);
-    YerothUtils::addFiltre(lineEdit_transactions_numero_bon, 		yerothFiltres);
-    YerothUtils::addFiltre(lineEdit_transactions_nom_recepteur, 		yerothFiltres);
+    YerothUtils::addFiltre(lineEdit_transactions_nom_magasinier, QObject::trUtf8("magasinier"), yerothFiltres);
+    YerothUtils::addFiltre(lineEdit_transactions_designation, QObject::trUtf8("désignation"), yerothFiltres);
+    YerothUtils::addFiltre(lineEdit_transactions_nom_categorie, QObject::trUtf8("catégorie"), yerothFiltres);
+    YerothUtils::addFiltre(lineEdit_transactions_numero_bon, QObject::trUtf8("numéro de bon"), yerothFiltres);
+    YerothUtils::addFiltre(lineEdit_transactions_nom_recepteur, QObject::trUtf8("récepteur"), yerothFiltres);
 
     int lastIndexOfComa = yerothFiltres.lastIndexOf(",");
 

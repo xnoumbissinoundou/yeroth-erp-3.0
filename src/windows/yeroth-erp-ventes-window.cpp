@@ -858,12 +858,12 @@ bool YerothVentesWindow::imprimer_document()
 
     QString yerothFiltres;
 
-    YerothUtils::addFiltre(lineEdit_ventes_nom_caissier, yerothFiltres);
-    YerothUtils::addFiltre(lineEdit_ventes_designation, yerothFiltres);
-    YerothUtils::addFiltre(lineEdit_ventes_categorie_produit, yerothFiltres);
-    YerothUtils::addFiltre(lineEdit_ventes_nom_entreprise_fournisseur, yerothFiltres);
-    YerothUtils::addFiltre(lineEdit_ventes_nom_entreprise_client, yerothFiltres);
-    YerothUtils::addFiltre(lineEdit_ventes_vente_id, yerothFiltres);
+    YerothUtils::addFiltre(lineEdit_ventes_nom_caissier, QObject::trUtf8("caissier"), yerothFiltres);
+    YerothUtils::addFiltre(lineEdit_ventes_designation, QObject::trUtf8("désignation"), yerothFiltres);
+    YerothUtils::addFiltre(lineEdit_ventes_categorie_produit, QObject::trUtf8("catégorie"), yerothFiltres);
+    YerothUtils::addFiltre(lineEdit_ventes_nom_entreprise_fournisseur, QObject::trUtf8("fournisseur"), yerothFiltres);
+    YerothUtils::addFiltre(lineEdit_ventes_nom_entreprise_client, QObject::trUtf8("client"), yerothFiltres);
+    YerothUtils::addFiltre(lineEdit_ventes_vente_id, QObject::trUtf8("Nr. reçu"), yerothFiltres);
 
     int lastIndexOfComa = yerothFiltres.lastIndexOf(",");
 

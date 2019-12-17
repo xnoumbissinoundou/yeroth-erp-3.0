@@ -711,10 +711,10 @@ bool YerothPaiementsWindow::imprimer_document()
 
     QString yerothFiltres;
 
-    YerothUtils::addFiltre(lineEdit_paiements_nom_encaisseur, yerothFiltres);
-    YerothUtils::addFiltre(lineEdit_paiements_nom_entreprise, yerothFiltres);
-    YerothUtils::addFiltre(lineEdit_paiements_nom_payeur, yerothFiltres);
-    YerothUtils::addFiltre(lineEdit_paiements_numero_bon_paiement, yerothFiltres);
+    YerothUtils::addFiltre(lineEdit_paiements_nom_encaisseur, QObject::trUtf8("encaisseur"), yerothFiltres);
+    YerothUtils::addFiltre(lineEdit_paiements_nom_entreprise, QObject::trUtf8("entreprise"), yerothFiltres);
+    YerothUtils::addFiltre(lineEdit_paiements_nom_payeur, QObject::trUtf8("payeur"), yerothFiltres);
+    YerothUtils::addFiltre(lineEdit_paiements_numero_bon_paiement, QObject::trUtf8("Nr. bon"), yerothFiltres);
 
     int lastIndexOfComa = yerothFiltres.lastIndexOf(",");
 
