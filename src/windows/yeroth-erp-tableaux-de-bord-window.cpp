@@ -179,7 +179,11 @@ YerothTableauxDeBordWindow::YerothTableauxDeBordWindow()
     connect( actionAdministration, SIGNAL(triggered()), this, SLOT(administration()) );
 #endif
 
-    //connect(this, SIGNAL(startPdf(int)), this, SLOT(advanceProgressBar(int)));
+
+    connect(tabWidget_rapports, SIGNAL(currentChanged(int)), this, SLOT(handleTabChanged(int)));
+
+    handleTabChanged(SUJET_ACTION_BUSINESS_TURNOVER_PROGRESS);
+
 
     setupShortcuts();
 }
@@ -188,6 +192,25 @@ YerothTableauxDeBordWindow::~YerothTableauxDeBordWindow ()
 {
     delete _logger;
 }
+
+
+void YerothTableauxDeBordWindow::handleTabChanged(int index)
+{
+	actionGenererPDF->disconnect();
+	actionReinitialiserRecherche->disconnect();
+
+    if (index == SUJET_ACTION_BUSINESS_TURNOVER_PROGRESS)
+    {
+    	connect( actionGenererPDF, SIGNAL(triggered()), this, SLOT(actionTabOne()) );
+    	connect( actionReinitialiserRecherche, SIGNAL(triggered()), this, SLOT(reinitialiser_chiffre_affaire()) );
+    }
+    else if (index == SUJET_ACTION_BUSINESS_TURNOVER_COMPARISON)
+    {
+    	connect( actionGenererPDF, SIGNAL(triggered()), this, SLOT(generer()) );
+    	connect( actionReinitialiserRecherche, SIGNAL(triggered()), this, SLOT(reinitialiser()) );
+    }
+}
+
 
 void YerothTableauxDeBordWindow::setupDateTimeEditsTabTwo()
 {
@@ -1948,7 +1971,7 @@ void YerothTableauxDeBordWindow::calculerChiffresDaffaireMois()
     {
 
         YerothQMessageBox::information(this,
-                                      QObject::trUtf8("Yeroth-erp-3.0 - rapports - évolution du chiffre d'affaire - pas de données !"),
+                                      QObject::trUtf8("évolution du chiffre d'affaire - pas de données !"),
                                       QObject::trUtf8(("Il n'y a pas de données correspondante à la requête !\n"
                                               	  	   "Vérifier que les dates de début et de fin, "
                                               	  	   "ainsi que l'année sont correctes !")));

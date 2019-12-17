@@ -9084,11 +9084,11 @@ background-color: rgb(0, 0, 0); </string>
     <addaction name="separator"/>
     <addaction name="actionAfficher_stock_au_detail"/>
     <addaction name="actionAfficher_lhistorique_de_ce_stock"/>
-    <addaction name="actionInventaireDesStocks"/>
     <addaction name="actionModifier_ce_stock"/>
     <addaction name="actionSupprimer_ce_stock"/>
     <addaction name="separator"/>
     <addaction name="actionEntrer"/>
+    <addaction name="actionInventaireDesStocks"/>
     <addaction name="actionSortir"/>
     <addaction name="actionVendre"/>
     <addaction name="separator"/>

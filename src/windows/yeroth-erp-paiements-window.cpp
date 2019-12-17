@@ -888,7 +888,13 @@ void YerothPaiementsWindow::rendreVisible(YerothSqlTableModel * stocksTableModel
 
 void YerothPaiementsWindow::afficher_paiements_detail()
 {
+	if (tableView_paiements->rowCount() <= 0)
+	{
+		return ;
+	}
+
     int lastSelectedPaiementsRow = tableView_paiements->lastSelectedRow();
+
     //_logger->log("afficher_paiements_detail]", QString("row: %1").arg(lastSelectedPaiementsRow));
     QSqlRecord record = _curPaiementsTableModel->record(lastSelectedPaiementsRow);
 
@@ -901,9 +907,11 @@ void YerothPaiementsWindow::afficher_paiements_detail()
 
 
     double aDoubleValue = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::COMPTE_CLIENT).toDouble();
+
     lineEdit_details_de_paiement_compte_client->setText(GET_CURRENCY_STRING_NUM(aDoubleValue));
 
     aDoubleValue = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::MONTANT_PAYE).toDouble();
+
     lineEdit_details_de_paiement_montant_paye->setText(GET_CURRENCY_STRING_NUM(aDoubleValue));
 
     dateEdit_details_de_paiement_date_paiement->setDate(GET_DATE_FROM_STRING(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DATE_PAIEMENT)));

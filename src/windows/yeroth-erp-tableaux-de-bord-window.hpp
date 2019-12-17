@@ -153,7 +153,18 @@ protected:
 
     virtual void setupShortcuts();
 
+
+private slots:
+
+	void handleTabChanged(int index);
+
 private:
+
+    enum TabIndexes
+    {
+    	SUJET_ACTION_BUSINESS_TURNOVER_PROGRESS 	= 0,
+		SUJET_ACTION_BUSINESS_TURNOVER_COMPARISON	= 1
+    };
 
     void setupDateTimeEditsTabTwo();
 

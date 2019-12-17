@@ -22401,9 +22401,11 @@ background-color: rgb(0, 0, 0); </string>
     <addaction name="actionChanger_utilisateur"/>
     <addaction name="actionDeconnecter_utilisateur"/>
     <addaction name="separator"/>
-    <addaction name="actionAnnuler"/>
     <addaction name="actionStocks"/>
+    <addaction name="separator"/>
+    <addaction name="actionAnnuler"/>
     <addaction name="actionSortir"/>
+    <addaction name="separator"/>
     <addaction name="actionVendre"/>
     <addaction name="separator"/>
     <addaction name="actionMenu"/>

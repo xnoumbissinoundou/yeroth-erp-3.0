@@ -13633,7 +13633,6 @@ background-color: rgb(198, 198, 198);</string>
     <addaction name="actionAnnuler"/>
     <addaction name="actionEnregisterStock"/>
     <addaction name="separator"/>
-    <addaction name="actionEntrer"/>
     <addaction name="actionStocks"/>
     <addaction name="actionSortir"/>
     <addaction name="actionVendre"/>
@@ -14540,21 +14539,6 @@ background-color: rgb(198, 198, 198);</string>
      <pointsize>10</pointsize>
      <weight>75</weight>
      <bold>true</bold>
-    </font>
-   </property>
-  </action>
-  <action name="actionEntrer">
-   <property name="text">
-    <string>Entrer un stock</string>
-   </property>
-   <property name="toolTip">
-    <string>Entrer un stock</string>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
     </font>
    </property>
   </action>

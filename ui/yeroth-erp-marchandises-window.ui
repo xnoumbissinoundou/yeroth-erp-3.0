@@ -8177,7 +8177,6 @@ background-color: rgb(0, 0, 0); </string>
     <addaction name="actionChanger_utilisateur"/>
     <addaction name="actionDeconnecter_utilisateur"/>
     <addaction name="separator"/>
-    <addaction name="actionAfficher_stock_au_detail"/>
     <addaction name="actionSupprimer_ce_stock"/>
     <addaction name="separator"/>
     <addaction name="actionEntrer"/>
@@ -9192,19 +9191,6 @@ background-color: rgb(0, 0, 0); </string>
    </property>
    <property name="toolTip">
     <string>Supprimer cette marchandise</string>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
-  </action>
-  <action name="actionAfficher_stock_au_detail">
-   <property name="text">
-    <string>Afficher les détails de cette marchandise</string>
-   </property>
-   <property name="toolTip">
-    <string>Afficher les détails de cette marchandise</string>
    </property>
    <property name="font">
     <font>

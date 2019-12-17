@@ -1087,7 +1087,13 @@ void YerothVentesWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 
 void YerothVentesWindow::afficher_vente_detail()
 {
+	if (tableView_ventes->rowCount() <= 0)
+	{
+		return ;
+	}
+
     int lastSelectedVentesRow = tableView_ventes->lastSelectedRow();
+
     //_logger->log("afficher_vente_detail]", QString("row: %1").arg(lastSelectedVentesRow));
     QSqlRecord record = _curStocksVenduTableModel->record(lastSelectedVentesRow);
 
