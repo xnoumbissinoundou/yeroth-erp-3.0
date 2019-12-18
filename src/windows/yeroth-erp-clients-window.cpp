@@ -200,8 +200,8 @@ void YerothERPClientsWindow::afficher_au_detail(const QModelIndex & modelIndex)
     {
     	//qDebug() << "++ test" << modelIndex.row();
         _allWindows->_clientsDetailWindow->rendreVisible(getLastListerSelectedRow(),
-        												_curStocksTableModel,
-														_curClientsTableModel);
+        												 _curClientsTableModel,
+														 _curStocksTableModel);
 
         rendreInvisible();
     }
