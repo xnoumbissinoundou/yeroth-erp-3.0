@@ -85,6 +85,7 @@ YerothClientsDetailWindow::YerothClientsDetailWindow()
 
 void YerothClientsDetailWindow::setupLineEdits()
 {
+	lineEdit_clients_details_reference_client->setEnabled(false);
 	lineEdit_clients_details_nom_entreprise->setEnabled(false);
 	lineEdit_clients_details_nom_representant->setEnabled(false);
 	lineEdit_clients_details_quartier->setEnabled(false);
@@ -247,6 +248,7 @@ void YerothClientsDetailWindow::modifier_les_articles()
 
 void YerothClientsDetailWindow::rendreInvisible()
 {
+	lineEdit_clients_details_reference_client->clear();
 	lineEdit_clients_details_nom_entreprise->clear();
 	lineEdit_clients_details_nom_representant->clear();
 	lineEdit_clients_details_quartier->clear();
@@ -288,6 +290,8 @@ void YerothClientsDetailWindow::rendreVisible(int lastSelectedRow,
 void YerothClientsDetailWindow::showClientDetail(int lastSelectedRow)
 {
 	QSqlRecord record = _curClientTableModel->record(lastSelectedRow);
+
+	lineEdit_clients_details_reference_client->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE_CLIENT));
 
 	lineEdit_clients_details_nom_entreprise->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE));
 

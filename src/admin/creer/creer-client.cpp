@@ -38,11 +38,12 @@ bool YerothAdminCreateWindow::creer_client()
         QSqlRecord record = clientsTableModel.record();
 
         record.setValue(YerothDatabaseTableColumn::ID, _allWindows->getNextIdSqlTableModel_clients());
+        record.setValue(YerothDatabaseTableColumn::REFERENCE_CLIENT, lineEdit_creer_client_reference_client->text());
         record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE, lineEdit_creer_client_nom_entreprise->text());
         record.setValue(YerothDatabaseTableColumn::NOM_REPRESENTANT, lineEdit_creer_client_nom_representant->text());
         record.setValue(YerothDatabaseTableColumn::QUARTIER, lineEdit_creer_client_quartier->text());
         record.setValue(YerothDatabaseTableColumn::VILLE, lineEdit_creer_client_ville->text());
-        record.setValue("province_etat", lineEdit_creer_client_province_etat->text());
+        record.setValue(YerothDatabaseTableColumn::PROVINCE_ETAT, lineEdit_creer_client_province_etat->text());
         record.setValue(YerothDatabaseTableColumn::PAYS, lineEdit_creer_client_pays->text());
         record.setValue(YerothDatabaseTableColumn::BOITE_POSTALE, lineEdit_creer_client_boite_postale->text());
         record.setValue(YerothDatabaseTableColumn::SIEGE_SOCIAL, lineEdit_creer_client_siege_social->text());
@@ -141,7 +142,8 @@ bool YerothAdminCreateWindow::creer_client_check_fields()
 
 void YerothAdminCreateWindow::clear_client_all_fields()
 {
-    lineEdit_creer_client_nom_entreprise->clearField();
+	lineEdit_creer_client_reference_client->clearField();
+	lineEdit_creer_client_nom_entreprise->clearField();
     lineEdit_creer_client_nom_representant->clearField();
     lineEdit_creer_client_quartier->clear();
     lineEdit_creer_client_ville->clear();

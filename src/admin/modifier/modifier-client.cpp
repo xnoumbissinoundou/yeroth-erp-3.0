@@ -7,6 +7,7 @@
 void YerothAdminModifierWindow::setupEditClient()
 {
     YerothAdminListerWindow *lw = _allWindows->_adminListerWindow;
+
     YerothSqlTableModel *clientsTableModel = lw->getCurSearchSqlTableModel();
 
     if (!clientsTableModel)
@@ -22,6 +23,7 @@ void YerothAdminModifierWindow::setupEditClient()
 
     QSqlRecord record = clientsTableModel->record(lw->lastSelectedItemForModification());
 
+    lineEdit_modifier_client_reference_client->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE_CLIENT));
     lineEdit_modifier_client_nom_entreprise->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE));
     lineEdit_modifier_client_nom_representant->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_REPRESENTANT));
     lineEdit_modifier_client_quartier->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::QUARTIER));
@@ -87,7 +89,9 @@ void YerothAdminModifierWindow::modifier_client()
 
         QSqlRecord record = clientsTableModel->record(lw->lastSelectedItemForModification());
 
-        record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE, lineEdit_modifier_client_nom_entreprise->text());
+
+		record.setValue(YerothDatabaseTableColumn::REFERENCE_CLIENT, lineEdit_modifier_client_reference_client->text());
+		record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE, lineEdit_modifier_client_nom_entreprise->text());
         record.setValue(YerothDatabaseTableColumn::NOM_REPRESENTANT, lineEdit_modifier_client_nom_representant->text());
         record.setValue(YerothDatabaseTableColumn::QUARTIER, lineEdit_modifier_client_quartier->text());
         record.setValue(YerothDatabaseTableColumn::VILLE, lineEdit_modifier_client_ville->text());
@@ -153,6 +157,7 @@ bool YerothAdminModifierWindow::modifier_client_check_fields()
 
 void YerothAdminModifierWindow::clear_client_all_fields()
 {
+	lineEdit_modifier_client_reference_client->clearField();
     lineEdit_modifier_client_nom_entreprise->clearField();
     lineEdit_modifier_client_nom_representant->clearField();
     lineEdit_modifier_client_quartier->clear();

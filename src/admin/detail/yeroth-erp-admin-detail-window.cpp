@@ -77,6 +77,7 @@ void YerothAdminDetailWindow::setupLineEdits()
     lineEdit_detail_utilisateur_numero_telephone_2->setEnabled(false);
     lineEdit_detail_utilisateur_id->setEnabled(false);
     lineEdit_detail_utilisateur_mot_passe->setEnabled(false);
+    lineEdit_detail_client_reference_client->setEnabled(false);
     lineEdit_detail_client_nom_entreprise->setEnabled(false);
     lineEdit_detail_client_nom_representant->setEnabled(false);
     lineEdit_detail_client_quartier->setEnabled(false);
@@ -313,6 +314,7 @@ void YerothAdminDetailWindow::rendreVisibleClient(int sqlTableRow)
     tabWidget_detail->setCurrentIndex(SUJET_ACTION_CLIENT);
 
     YerothAdminListerWindow *lw = _allWindows->_adminListerWindow;
+
     YerothSqlTableModel *clientsTableModel = lw->getCurSearchSqlTableModel();
 
     if (!clientsTableModel)
@@ -327,6 +329,7 @@ void YerothAdminDetailWindow::rendreVisibleClient(int sqlTableRow)
 
     QSqlRecord record = clientsTableModel->record(sqlTableRow);
 
+    lineEdit_detail_client_reference_client->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE_CLIENT));
     lineEdit_detail_client_nom_entreprise->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE));
     lineEdit_detail_client_nom_representant->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_REPRESENTANT));
     lineEdit_detail_client_quartier->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::QUARTIER));
