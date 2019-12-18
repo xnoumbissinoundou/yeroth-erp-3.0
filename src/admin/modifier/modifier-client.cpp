@@ -1,4 +1,4 @@
-/*
+/**
  * modifier-client.cpp
  *
  *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
@@ -47,7 +47,7 @@ void YerothAdminModifierWindow::setupEditClient()
 
     	    double dette_maximale_compte_client = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT).toDouble();
 
-    	    lineEdit_modifier_client_dette_maximale_compte_client->setText(GET_DOUBLE_STRING(dette_maximale_compte_client));
+    	    lineEdit_modifier_client_dette_maximale_compte_client->setText(QString::number(dette_maximale_compte_client));
     	}
     	else
     	{
@@ -91,7 +91,7 @@ void YerothAdminModifierWindow::modifier_client()
         record.setValue(YerothDatabaseTableColumn::NOM_REPRESENTANT, lineEdit_modifier_client_nom_representant->text());
         record.setValue(YerothDatabaseTableColumn::QUARTIER, lineEdit_modifier_client_quartier->text());
         record.setValue(YerothDatabaseTableColumn::VILLE, lineEdit_modifier_client_ville->text());
-        record.setValue("province_etat", lineEdit_modifier_client_province_etat->text());
+        record.setValue(YerothDatabaseTableColumn::PROVINCE_ETAT, lineEdit_modifier_client_province_etat->text());
         record.setValue(YerothDatabaseTableColumn::PAYS, lineEdit_modifier_client_pays->text());
         record.setValue(YerothDatabaseTableColumn::SIEGE_SOCIAL, lineEdit_modifier_client_siege_social->text());
         record.setValue(YerothDatabaseTableColumn::BOITE_POSTALE, lineEdit_modifier_client_boite_postale->text());
@@ -106,7 +106,8 @@ void YerothAdminModifierWindow::modifier_client()
 
         	if (0 != aUser && aUser->isManager())
         	{
-        		record.setValue(YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT, lineEdit_modifier_client_dette_maximale_compte_client->text());
+        		record.setValue(YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT,
+        							lineEdit_modifier_client_dette_maximale_compte_client->text().toDouble());
         	}
         }
 

@@ -288,6 +288,40 @@ void YerothClientsDetailWindow::rendreVisible(int lastSelectedRow,
 void YerothClientsDetailWindow::showClientDetail(int lastSelectedRow)
 {
 	QSqlRecord record = _curClientTableModel->record(lastSelectedRow);
+
+	lineEdit_clients_details_nom_entreprise->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE));
+
+	lineEdit_clients_details_nom_representant->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_REPRESENTANT));
+
+	lineEdit_clients_details_quartier->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::QUARTIER));
+
+	lineEdit_clients_details_ville->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::VILLE));
+
+	lineEdit_clients_details_province_etat->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::PROVINCE_ETAT));
+
+	lineEdit_clients_details_pays->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::PAYS));
+
+	lineEdit_clients_details_boite_postale->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::BOITE_POSTALE));
+
+	lineEdit_clients_details_siege_social->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::SIEGE_SOCIAL));
+
+	lineEdit_clients_details_email->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::EMAIL));
+
+	lineEdit_clients_details_numero_telephone_1->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NUMERO_TELEPHONE_1));
+
+	lineEdit_clients_details_numero_telephone_2->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NUMERO_TELEPHONE_2));
+
+	lineEdit_clients_details_numero_contribuable->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NUMERO_CONTRIBUABLE));
+
+	double dette_maximale = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT).toDouble();
+
+	lineEdit_clients_details_dette_maximale->setText(GET_CURRENCY_STRING_NUM(dette_maximale));
+
+	double compte_client = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::COMPTE_CLIENT).toDouble();
+
+	lineEdit_clients_details_compte_client->setText(GET_CURRENCY_STRING_NUM(compte_client));
+
+	textEdit_client_details_description_du_client->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESCRIPTION_CLIENT));
 }
 
 void YerothClientsDetailWindow::setupShortcuts()
