@@ -57,6 +57,7 @@ MOC_DIR  = moc
 OBJECTS_DIR = obj
 
 FORMS   = ui/yeroth-erp-main-window.ui \
+			ui/yeroth-erp-clients-detail-window.ui \
 			ui/yeroth-erp-clients-window.ui \
 			ui/yeroth-erp-achats-detail-window.ui \
 			ui/yeroth-erp-achats-window.ui \
@@ -127,6 +128,7 @@ HEADERS = src/yeroth-erp-windows.hpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-carte-credit-dialog.hpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.hpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-dialog.hpp \
+		  src/windows/yeroth-erp-clients-detail-window.hpp \
 		  src/windows/yeroth-erp-clients-window.hpp \
 		  src/windows/yeroth-erp-window-commons.hpp \
 		  src/windows/yeroth-erp-pointdevente-liststocks-window.hpp \
@@ -219,6 +221,7 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-carte-credit-dialog.cpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.cpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-dialog.cpp \
+		  src/windows/yeroth-erp-clients-detail-window.cpp \
 		  src/windows/yeroth-erp-clients-window.cpp \
 		  src/windows/yeroth-erp-window-commons.cpp \
 		  src/windows/yeroth-erp-pointdevente-liststocks-window.cpp \

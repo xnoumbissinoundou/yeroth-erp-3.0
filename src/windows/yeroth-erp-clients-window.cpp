@@ -44,7 +44,11 @@ YerothERPClientsWindow::YerothERPClientsWindow()
  _logger(new YerothLogger("YerothERPComptesClientsWindow")),
  _currentlyFiltered(false),
  _lastSelectedRow(0),
- _clientStockTableModel(&_allWindows->getSqlTableModel_clients())
+ _pushButton_filtrer_font(0),
+ _action_RechercherFont(0),
+ _searchClientsWidget(0),
+ _curClientsTableModel(0),
+ _searchClientsTableModel(0)
 {
     setupUi(this);
 
@@ -55,6 +59,10 @@ YerothERPClientsWindow::YerothERPClientsWindow()
 
     _logger->log("YerothInventaireDesStocksWindow");
 
+    _curClientsTableModel = &_allWindows->getSqlTableModel_clients();
+
+    _searchClientsWidget = new YerothSearchForm(_allWindows, *this, &_allWindows->getSqlTableModel_clients());
+
     setupLineEdits();
 
     setupLineEditsQCompleters();
@@ -62,6 +70,8 @@ YerothERPClientsWindow::YerothERPClientsWindow()
     populateClientsComboBoxes();
 
     _pushButton_filtrer_font = new QFont(pushButton_filtrer->font());
+
+    _action_RechercherFont = new QFont(actionRechercher->font());
 
     tableView_clients->setTableName(&YerothERPWindows::CLIENTS);
 
@@ -104,6 +114,8 @@ YerothERPClientsWindow::YerothERPClientsWindow()
     connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_document()));
     connect(actionA_propos, SIGNAL(triggered()), this, SLOT(apropos()));
     connect(actionAlertes, SIGNAL(triggered()), this, SLOT(alertes()));
+    connect(actionRechercher, SIGNAL(triggered()), this, SLOT(rechercher()));
+    connect(actionReinitialiserRecherche, SIGNAL(triggered()), this, SLOT(reinitialiser_recherche()));
     connect(actionReinitialiserElementsDeFiltrage, SIGNAL(triggered()), this, SLOT(reinitialiser_elements_filtrage()));
     connect(actionInformationEntreprise, SIGNAL(triggered()), this, SLOT(infosEntreprise()));
     connect(actionQui_suis_je, SIGNAL(triggered()), this, SLOT(qui_suis_je()));
@@ -118,13 +130,30 @@ YerothERPClientsWindow::YerothERPClientsWindow()
 
 #endif
 
+	connect(actionAfficher_client_au_detail, SIGNAL(triggered()),
+			this, SLOT(afficher_au_detail()));
+
+    connect(tableView_clients, SIGNAL(signal_lister(YerothSqlTableModel &)),
+    		this, SLOT(set_rechercher_font()));
+
+    connect(tableView_clients, SIGNAL(doubleClicked(const QModelIndex &)), this,
+            SLOT(afficher_au_detail(const QModelIndex &)));
+
     setupShortcuts();
 }
 
 YerothERPClientsWindow::~YerothERPClientsWindow()
 {
-	delete _pushButton_filtrer_font;
+    delete _action_RechercherFont;
+    delete _searchClientsWidget;
+    delete _pushButton_filtrer_font;
     delete _logger;
+}
+
+
+void YerothERPClientsWindow::hideEvent(QHideEvent * hideEvent)
+{
+	_searchClientsWidget->rendreInvisible();
 }
 
 
@@ -133,6 +162,54 @@ void YerothERPClientsWindow::setupShortcuts()
     setupShortcutActionMessageDaide 	(*actionAppeler_aide);
     setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
     setupShortcutActionAfficherPDF		(*actionAfficherPDF);
+
+    actionRechercher->setShortcut(YerothUtils::RECHERCHER_QKEYSEQUENCE);
+
+    actionReinitialiserRecherche->setShortcut(YerothUtils::REINITIALISER_RECHERCHE_QKEYSEQUENCE);
+}
+
+
+void YerothERPClientsWindow::afficher_au_detail()
+{
+    _logger->log("afficher_au_detail");
+
+    if (this->getLastListerSelectedRow() > -1 && _curClientsTableModel->rowCount() > 0)
+    {
+        _allWindows->_clientsDetailWindow->rendreVisible(getLastListerSelectedRow(),
+        												_curStocksTableModel,
+														_curClientsTableModel);
+        this->rendreInvisible();
+    }
+    else
+    {
+        YerothQMessageBox::warning(this, QObject::trUtf8("détails d'un compte client"),
+                                  QObject::trUtf8("Sélectionnez un compte client à afficher les détails."));
+    }
+}
+
+
+void YerothERPClientsWindow::afficher_au_detail(const QModelIndex & modelIndex)
+{
+    _logger->log("afficher_au_detail(const QModelIndex &)");
+
+    setLastListerSelectedRow(modelIndex.row());
+
+    tableView_clients->selectRow(getLastListerSelectedRow());
+
+    if (getLastListerSelectedRow() > -1 && _curClientsTableModel->rowCount() > 0)
+    {
+    	//qDebug() << "++ test" << modelIndex.row();
+        _allWindows->_clientsDetailWindow->rendreVisible(getLastListerSelectedRow(),
+        												_curStocksTableModel,
+														_curClientsTableModel);
+
+        rendreInvisible();
+    }
+    else
+    {
+        YerothQMessageBox::warning(this, QObject::trUtf8("détails d'un stock"),
+                                  QObject::trUtf8("Sélectionnez un stock à afficher les détails."));
+    }
 }
 
 
@@ -332,15 +409,15 @@ bool YerothERPClientsWindow::filtrer()
 	//qDebug() << QString("filterString: %1")
 	//				.arg(filterString);
 
-	_clientStockTableModel->yerothSetFilter(filterString);
+	_curClientsTableModel->yerothSetFilter(filterString);
 
-	int resultRows = _clientStockTableModel->easySelect();
+	int resultRows = _curClientsTableModel->easySelect();
 
 	if (resultRows >= 0)
 	{
 		setCurrentlyFiltered(true);
 
-		afficherClients(*_clientStockTableModel);
+		afficherClients(*_curClientsTableModel);
 
 		YEROTH_QMESSAGE_BOX_QUELQUE_RESULTAT_FILTRE(this, resultRows, "clients - filtrer");
 
@@ -352,6 +429,51 @@ bool YerothERPClientsWindow::filtrer()
 	}
 
 	return false;
+}
+
+void YerothERPClientsWindow::reinitialiser_elements_filtrage()
+{
+    _logger->log("reinitialiser_elements_filtrage");
+
+    lineEdit_resultat_filtre->clear();
+
+    setCurrentlyFiltered(false);
+
+    reinitialiser_recherche();
+}
+
+
+void YerothERPClientsWindow::reinitialiser_recherche()
+{
+    _logger->log("reinitialiser_recherche");
+
+    lineEdit_recherche_nom_entreprise->clear();
+
+    lineEdit_resultat_filtre->clear();
+
+    setCurrentlyFiltered(false);
+
+    _searchClientsWidget->reinitialiser();
+
+    setSearchFormSqlTableModel(0);
+
+    set_rechercher_font();
+}
+
+
+void YerothERPClientsWindow::set_rechercher_font()
+{
+    //_logger->log("set_rechercher_font");
+    if (0 != _searchClientsTableModel)
+    {
+        _action_RechercherFont->setUnderline(true);
+    }
+    else
+    {
+        _action_RechercherFont->setUnderline(false);
+    }
+
+    actionRechercher->setFont(*_action_RechercherFont);
 }
 
 
@@ -429,13 +551,21 @@ void YerothERPClientsWindow::rendreVisible(YerothSqlTableModel * stocksTableMode
 {
     _logger->log("rendreVisible");
 
-    _curStocksTableModel = stocksTableModel;
-
     setupLineEdits();
 
     setupLineEditsQCompleters();
 
-	afficherClients();
+    _curStocksTableModel = stocksTableModel;
+
+    if (! isCurrentlyFiltered())
+    {
+        if (0 == _searchClientsTableModel)
+        {
+            _searchClientsWidget->setSqlTableModel(&_allWindows->getSqlTableModel_clients());
+        }
+    }
+
+	afficherClients(*_curClientsTableModel);
 
     lineEdit_recherche_nom_entreprise->setFocus();
 
@@ -661,37 +791,21 @@ void YerothERPClientsWindow::afficher_nom_entreprise_selectioner(const QString &
 
     //qDebug() << QString("filter: %1").arg(filter);
 
-    _clientStockTableModel->yerothSetFilter(filter);
+    _curClientsTableModel->yerothSetFilter(filter);
 
-    if (_clientStockTableModel->easySelect() > 0)
+    if (_curClientsTableModel->easySelect() > 0)
     {
-        afficherClients(*_clientStockTableModel);
+        afficherClients(*_curClientsTableModel);
+        setSearchFormSqlTableModel(_curClientsTableModel);
+        set_rechercher_font();
     }
-}
-
-
-void YerothERPClientsWindow::reinitialiser_elements_filtrage()
-{
-    _logger->log("reinitialiser_elements_filtrage");
-
-    lineEdit_resultat_filtre->clear();
-
-    setCurrentlyFiltered(false);
-
-    _clientStockTableModel->resetFilter();
-
-    afficherClients(*_clientStockTableModel);
-}
-
-
-void YerothERPClientsWindow::afficherClients()
-{
-	afficherClients(_allWindows->getSqlTableModel_clients());
 }
 
 
 void YerothERPClientsWindow::afficherClients(YerothSqlTableModel &clientSqlTableModel)
 {
+	_searchClientsWidget->rendreInvisible();
+
     tableView_clients->lister_les_elements_du_tableau(clientSqlTableModel);
 
     tableView_clients->hideColumn(0);
@@ -728,6 +842,12 @@ void YerothERPClientsWindow::afficherClients(YerothSqlTableModel &clientSqlTable
     lineEdit_debit_total->setText(GET_CURRENCY_STRING_NUM(totalCredit));
 
     tableView_clients->selectRow(tableView_clients->lastSelectedRow());
+}
+
+
+void YerothERPClientsWindow::afficherClients()
+{
+	afficherClients(_allWindows->getSqlTableModel_clients());
 }
 
 

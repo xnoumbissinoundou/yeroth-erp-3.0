@@ -9,13 +9,16 @@
 
 #include "../../ui_yeroth-erp-clients-window.h"
 
+#include "src/windows/yeroth-erp-search-form.hpp"
+
+#include "yeroth-erp-window-commons.hpp"
+
+
 #include <QtCore/QDebug>
 
 #include <QtWidgets/QMessageBox>
 
 #include <QtGui/QContextMenuEvent>
-
-#include "yeroth-erp-window-commons.hpp"
 
 
 class QStandardItemModel;
@@ -108,13 +111,10 @@ public slots:
 
 	virtual bool imprimer_document();
 
-    virtual void afficherClients(YerothSqlTableModel &clientSqlTableModel);
-
-    void afficherClients();
-
-    void afficher_nom_entreprise_selectioner(const QString &nomEntreprise);
-
-    void reinitialiser_elements_filtrage();
+	inline void setSearchFormSqlTableModel(YerothSqlTableModel *searchFormSqlTableModel)
+    {
+    	_searchClientsTableModel = searchFormSqlTableModel;
+    }
 
     inline int getLastListerSelectedRow()
     {
@@ -126,11 +126,23 @@ public slots:
     	tableView_clients->setLastSelectedRow(row);
     }
 
+    virtual void afficherClients(YerothSqlTableModel &clientSqlTableModel);
+
+    void afficherClients();
+
+    void afficher_nom_entreprise_selectioner(const QString &nomEntreprise);
+
 protected:
+
+    virtual void hideEvent(QHideEvent * hideEvent);
 
     virtual void setupShortcuts();
 
 private slots:
+
+	void afficher_au_detail();
+
+	void afficher_au_detail(const QModelIndex & modelIndex);
 
 	void updateLineEditRechercheNomEntreprise();
 
@@ -139,6 +151,17 @@ private slots:
   	bool putCashIntoCustomerAccount();
 
 	bool filtrer();
+
+    inline void rechercher()
+    {
+    	_searchClientsWidget->rendreVisible();
+    }
+
+    void reinitialiser_elements_filtrage();
+
+    void reinitialiser_recherche();
+
+	void set_rechercher_font();
 
 private:
 
@@ -161,7 +184,13 @@ private:
 
     QFont 					*_pushButton_filtrer_font;
 
-    YerothSqlTableModel 	*_clientStockTableModel;
+    QFont 					*_action_RechercherFont;
+
+    YerothSearchForm 		*_searchClientsWidget;
+
+    YerothSqlTableModel 	*_curClientsTableModel;
+
+    YerothSqlTableModel 	*_searchClientsTableModel;
 };
 
 #endif /* SRC_WINDOWS_YEROTH_ERP_CLIENTS_WINDOW_HPP_ */

@@ -10056,6 +10056,8 @@ background-color: rgb(0, 0, 0); </string>
     <addaction name="separator"/>
     <addaction name="actionExporter_au_format_csv"/>
     <addaction name="separator"/>
+    <addaction name="actionRechercher"/>
+    <addaction name="actionReinitialiserRecherche"/>
     <addaction name="actionReinitialiserElementsDeFiltrage"/>
     <addaction name="separator"/>
     <addaction name="actionAfficherPDF"/>
@@ -10758,6 +10760,51 @@ background-color: rgb(0, 0, 0); </string>
    <property name="font">
     <font>
      <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionAfficher_client_au_detail">
+   <property name="text">
+    <string>Afficher les détails d'un client</string>
+   </property>
+   <property name="toolTip">
+    <string>Afficher les détails d'un client</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+  </action>
+  <action name="actionRechercher">
+   <property name="text">
+    <string>Rechercher un compte client</string>
+   </property>
+   <property name="toolTip">
+    <string>Rechercher un compte client</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+  </action>
+  <action name="actionReinitialiserRecherche">
+   <property name="text">
+    <string>Réinitialiser la recherche</string>
+   </property>
+   <property name="toolTip">
+    <string>réinitialiser la recherche</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
     </font>
    </property>
   </action>

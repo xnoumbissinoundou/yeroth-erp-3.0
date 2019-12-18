@@ -1,30 +1,40 @@
 /*
+ * yeroth-erp-search-form.cpp
+ *
+ *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
+ */
 
-   * yeroth-erp-search-form.cpp
+#include "yeroth-erp-search-form.hpp"
 
-   *
+#include "src/yeroth-erp-windows.hpp"
+
+#include "src/utils/yeroth-erp-utils.hpp"
+
+#include "src/utils/yeroth-erp-sqltable-model.hpp"
+
+#include "src/utils/yeroth-erp-logger.hpp"
+
+#include <QtWidgets/QLabel>
+
+#include <QtWidgets/QFormLayout>
+
+#include <QtWidgets/QDesktopWidget>
+
+#include <QtWidgets/QCompleter>
+
+#include <QtSql/QSqlError>
+
+#include <QtCore/QDebug>
+
+#include <QtCore/QRegExp>
+
+#include <QtCore/QStringList>
 
 
-   *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
-
-
-   */
-#include"yeroth-erp-search-form.hpp"
-#include"src/yeroth-erp-windows.hpp"
-#include"src/utils/yeroth-erp-utils.hpp"
-#include"src/utils/yeroth-erp-sqltable-model.hpp"
-#include"src/utils/yeroth-erp-logger.hpp"
-#include<QtWidgets/QLabel>
-#include<QtWidgets/QFormLayout>
-#include<QtWidgets/QDesktopWidget>
-#include<QtWidgets/QCompleter>
-#include<QtSql/QSqlError>
-#include<QtCore/QDebug>
-#include<QtCore/QRegExp>
-#include<QtCore/QStringList>
 class YerothUtils;
 const QString YerothSearchForm::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2")).
         arg(YEROTH_ERP_WINDOW_TITLE, QObject::trUtf8("rechercher")));
+
 
 YerothSearchForm::YerothSearchForm(YerothERPWindows * allWindows,
 								   YerothWindowsCommons &aCallingWindow,
@@ -87,6 +97,15 @@ void YerothSearchForm::setupLineEditsQCompleters()
         lineEdit_recherche_2->setupMyStaticQCompleter(_allWindows->STOCKS, YerothDatabaseTableColumn::DESIGNATION, false);
         lineEdit_recherche_3->setupMyStaticQCompleter(_allWindows->STOCKS, YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR, false);
     }
+    else if (YerothUtils::isEqualCaseInsensitive(_allWindows->CLIENTS, _sqlTable->sqlTableName()))
+    {
+        label_recherche_1->setText(QObject::trUtf8("Référence client:"));
+        label_recherche_2->setText(QObject::trUtf8("Nom de l'entreprise:"));
+        label_recherche_3->setText(QObject::trUtf8("Nom du représentant:"));
+        lineEdit_recherche_1->setupMyStaticQCompleter(_allWindows->CLIENTS, YerothDatabaseTableColumn::REFERENCE_CLIENT, false);
+        lineEdit_recherche_2->setupMyStaticQCompleter(_allWindows->CLIENTS, YerothDatabaseTableColumn::NOM_ENTREPRISE, false);
+        lineEdit_recherche_3->setupMyStaticQCompleter(_allWindows->CLIENTS, YerothDatabaseTableColumn::NOM_REPRESENTANT, false);
+    }
     else if (YerothUtils::isEqualCaseInsensitive(_allWindows->MARCHANDISES, _sqlTable->sqlTableName()))
     {
         label_recherche_1->setText(QObject::trUtf8("Catégorie du stock:"));
@@ -94,7 +113,7 @@ void YerothSearchForm::setupLineEditsQCompleters()
         label_recherche_3->setText(QObject::trUtf8("Gestionaire de stocks:"));
         lineEdit_recherche_1->setupMyStaticQCompleter(_allWindows->MARCHANDISES, YerothDatabaseTableColumn::CATEGORIE, false);
         lineEdit_recherche_2->setupMyStaticQCompleter(_allWindows->MARCHANDISES, YerothDatabaseTableColumn::DESIGNATION, false);
-        lineEdit_recherche_3->setupMyStaticQCompleter(_allWindows->MARCHANDISES, "stock_manager", false);
+        lineEdit_recherche_3->setupMyStaticQCompleter(_allWindows->MARCHANDISES, YerothDatabaseTableColumn::STOCK_MANAGER, false);
     }
 }
 
@@ -132,17 +151,25 @@ void YerothSearchForm::clear_all_fields()
 void YerothSearchForm::reinitialiser()
 {
     _logger->log("reinitialiser");
+
     _searchFilter->clear();
+
     lineEdit_terme_recherche->clear();
+
     lineEdit_recherche_1->clear();
     lineEdit_recherche_2->clear();
     lineEdit_recherche_3->clear();
+
     _lastStringRecherche1.clear();
     _lastStringRecherche2.clear();
     _lastStringRecherche3.clear();
+
     _sqlTable->resetFilter();
+
     this->setupLineEditsQCompleters();
+
     pushButton_ok->click();
+
     if (_allWindows->STOCKS == _sqlTable->sqlTableName())
     {
         _allWindows->_stocksWindow->setSearchFormSqlTableModel(0);
@@ -160,6 +187,7 @@ void YerothSearchForm::reinitialiser()
 void YerothSearchForm::performSearch()
 {
     _logger->log("performSearch");
+
     if (0 == _sqlTable)
     {
         QMessageBox::warning(this,
@@ -169,6 +197,7 @@ void YerothSearchForm::performSearch()
     }
 
     _sqlTable->resetFilter();
+
     _searchFilter->clear();
 
     QString searchTerm(lineEdit_terme_recherche->text());
@@ -188,46 +217,82 @@ void YerothSearchForm::performSearch()
             if (YerothUtils::isEqualCaseInsensitive(_allWindows->STOCKS, _sqlTable->sqlTableName()) ||
             	YerothUtils::isEqualCaseInsensitive(_allWindows->ACHATS, _sqlTable->sqlTableName())   )
             {
-                _searchFilter->append("(").append(GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::DESIGNATION, partSearchTerm)).
-                append(" OR ").append(GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::CATEGORIE, partSearchTerm)).append(" OR ").
-                append(GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::DESCRIPTION_PRODUIT, partSearchTerm)).append(")");
+                _searchFilter->append(QString("(%1 OR %2 OR %3)")
+                						.arg(GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::DESIGNATION, partSearchTerm),
+                							 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::CATEGORIE, partSearchTerm),
+											 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::DESCRIPTION_PRODUIT, partSearchTerm)));
             }
-            else if (YerothUtils::
-                     isEqualCaseInsensitive(_allWindows->MARCHANDISES, _sqlTable->sqlTableName()))
+            else if (YerothUtils::isEqualCaseInsensitive(_allWindows->CLIENTS, _sqlTable->sqlTableName()))
             {
-                _searchFilter->append("(").append(GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::DESIGNATION, partSearchTerm)).
-                append(" OR ").append(GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::CATEGORIE, partSearchTerm)).append(" OR ").
-                append(GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::DESCRIPTION_PRODUIT, partSearchTerm)).append(" OR ").
-                append(GENERATE_SQL_LIKE_STMT("stock_manager", partSearchTerm)).append(")");
+                _searchFilter->append(QString("(%1 OR %2 OR %3 OR %4 OR %5 OR %6 OR %7 OR %8)")
+                						.arg(GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::NOM_ENTREPRISE, partSearchTerm),
+                							 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::NOM_REPRESENTANT, partSearchTerm),
+											 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::REFERENCE_CLIENT, partSearchTerm),
+                							 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::DESCRIPTION_CLIENT, partSearchTerm),
+                							 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::QUARTIER, partSearchTerm),
+											 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::VILLE, partSearchTerm),
+                							 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::PROVINCE_ETAT, partSearchTerm),
+											 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::SIEGE_SOCIAL, partSearchTerm)));
             }
+            else if (YerothUtils::isEqualCaseInsensitive(_allWindows->MARCHANDISES, _sqlTable->sqlTableName()))
+            {
+                _searchFilter->append(QString("(%1 OR %2 OR %3 OR %4)")
+                						.arg(GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::DESIGNATION, partSearchTerm),
+                							 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::CATEGORIE, partSearchTerm),
+											 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::DESCRIPTION_PRODUIT, partSearchTerm),
+											 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::STOCK_MANAGER, partSearchTerm)));
+            }
+
             if (k != lastIdx)
             {
                 _searchFilter->append(" AND ");
             }
         }
     }
+
     QString categorie(lineEdit_recherche_1->text());
+
     if (!categorie.isEmpty())
     {
         if (!_searchFilter->isEmpty())
         {
             _searchFilter->append(" AND ");
         }
-        _searchFilter->append(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::CATEGORIE, categorie));
+
+        if (!YerothUtils::isEqualCaseInsensitive(_allWindows->CLIENTS, _sqlTable->sqlTableName()))
+        {
+        	_searchFilter->append(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::CATEGORIE, categorie));
+        }
+        else
+        {
+        	_searchFilter->append(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::REFERENCE_CLIENT, categorie));
+        }
     }
+
     QString designation(lineEdit_recherche_2->text());
+
     if (!designation.isEmpty())
     {
         if (!_searchFilter->isEmpty())
         {
             _searchFilter->append(" AND ");
         }
-        _searchFilter->append(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::DESIGNATION, designation));
+
+        if (!YerothUtils::isEqualCaseInsensitive(_allWindows->CLIENTS, _sqlTable->sqlTableName()))
+        {
+        	_searchFilter->append(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::DESIGNATION, designation));
+        }
+        else
+        {
+        	_searchFilter->append(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::NOM_ENTREPRISE, designation));
+        }
     }
+
     if (YerothUtils::isEqualCaseInsensitive(_allWindows->STOCKS, _sqlTable->sqlTableName()) ||
     	YerothUtils::isEqualCaseInsensitive(_allWindows->ACHATS, _sqlTable->sqlTableName())   )
     {
         QString fournisseur(lineEdit_recherche_3->text());
+
         if (!fournisseur.isEmpty())
         {
             if (!_searchFilter->isEmpty())
@@ -235,6 +300,18 @@ void YerothSearchForm::performSearch()
                 _searchFilter->append(" AND ");
             }
             _searchFilter->append(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR, fournisseur));
+        }
+    }
+    else if (YerothUtils::isEqualCaseInsensitive(_allWindows->CLIENTS, _sqlTable->sqlTableName()))
+    {
+        QString nom_representant(lineEdit_recherche_3->text());
+        if (!nom_representant.isEmpty())
+        {
+            if (!_searchFilter->isEmpty())
+            {
+                _searchFilter->append(" AND ");
+            }
+            _searchFilter->append(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::NOM_REPRESENTANT, nom_representant));
         }
     }
     else if (YerothUtils::isEqualCaseInsensitive(_allWindows->MARCHANDISES, _sqlTable->sqlTableName()))
@@ -246,11 +323,14 @@ void YerothSearchForm::performSearch()
             {
                 _searchFilter->append(" AND ");
             }
-            _searchFilter->append(GENERATE_SQL_IS_STMT("stock_manager", nom_recepteur));
+            _searchFilter->append(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::STOCK_MANAGER, nom_recepteur));
         }
     }
+
     _sqlTable->yerothSetFilter(*_searchFilter);
+
     _logger->log("performSearch", QString("search filter: %1").arg(*_searchFilter));
+
     if (_sqlTable->select())
     {
         if (YerothUtils::isEqualCaseInsensitive(_allWindows->STOCKS, _sqlTable->sqlTableName()))
@@ -265,8 +345,13 @@ void YerothSearchForm::performSearch()
             _allWindows->_achatsWindow->setSearchFormSqlTableModel(_sqlTable);
             _allWindows->_achatsWindow->afficherAchats(*_sqlTable);
         }
-        else if (YerothUtils::
-                 isEqualCaseInsensitive(_allWindows->MARCHANDISES, _sqlTable->sqlTableName()))
+        else if (YerothUtils::isEqualCaseInsensitive(_allWindows->CLIENTS, _sqlTable->sqlTableName()))
+        {
+            _allWindows->_clientWindow->setLastListerSelectedRow(0);
+            _allWindows->_clientWindow->setSearchFormSqlTableModel(_sqlTable);
+            _allWindows->_clientWindow->afficherClients(*_sqlTable);
+        }
+        else if (YerothUtils::isEqualCaseInsensitive(_allWindows->MARCHANDISES, _sqlTable->sqlTableName()))
         {
             _allWindows->_marchandisesWindow->setLastListerSelectedRow(0);
             _allWindows->_marchandisesWindow->setSearchFormSqlTableModel(_sqlTable);
@@ -277,5 +362,6 @@ void YerothSearchForm::performSearch()
     {
         _logger->log("performSearch", QString("reason for failing: %1").arg(_sqlTable->lastError().text()));
     }
-    this->rendreInvisible();
+
+    rendreInvisible();
 }
