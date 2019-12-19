@@ -32,7 +32,8 @@ YerothClientsDetailWindow::YerothClientsDetailWindow()
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
                                        "QMessageBox QLabel {color: rgb(%2);}").
-                               arg(COLOUR_RGB_STRING_YEROTH_DARK_GRAY_60_60_60, COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
+                               arg(COLOUR_RGB_STRING_YEROTH_YELLOW_254_254_0,
+                            	   COLOUR_RGB_STRING_YEROTH_BLACK_0_0_0);
 
     setupLineEdits();
 
