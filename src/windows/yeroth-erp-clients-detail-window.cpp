@@ -60,6 +60,7 @@ YerothClientsDetailWindow::YerothClientsDetailWindow()
     connect(actionAppeler_aide, SIGNAL(triggered()), this, SLOT(help()));
     connect(actionDeconnecter_utilisateur, SIGNAL(triggered()), this, SLOT(deconnecter_utilisateur()));
     connect(actionMenu, SIGNAL(triggered()), this, SLOT(menu()));
+    connect(actionAfficher_les_clients, SIGNAL(triggered()), this, SLOT(clients()));
     connect(actionAfficher_les_paiements, SIGNAL(triggered()), this, SLOT(paiements()));
     connect(actionAfficher_les_transactions, SIGNAL(triggered()), this, SLOT(transactions()));
     connect(actionAfficher_les_ventes, SIGNAL(triggered()), this, SLOT(ventes()));

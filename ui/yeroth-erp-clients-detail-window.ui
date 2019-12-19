@@ -11225,6 +11225,7 @@
     <addaction name="actionChanger_utilisateur"/>
     <addaction name="actionDeconnecter_utilisateur"/>
     <addaction name="separator"/>
+    <addaction name="actionAfficher_les_clients"/>
     <addaction name="actionAfficher_les_paiements"/>
     <addaction name="actionAfficher_les_transactions"/>
     <addaction name="actionAfficher_les_ventes"/>
@@ -12275,6 +12276,11 @@
   <action name="actionAfficher_les_transactions">
    <property name="text">
     <string>Afficher les transactions</string>
+   </property>
+  </action>
+  <action name="actionAfficher_les_clients">
+   <property name="text">
+    <string>Afficher les clients</string>
    </property>
   </action>
  </widget>
