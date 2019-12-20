@@ -951,13 +951,13 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <translation>customer account details</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="347"/>
+        <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="348"/>
         <location filename="src/windows/yeroth-erp-stock-detail-window.cpp" line="379"/>
         <source>suppression d&apos;un article</source>
         <translation>deletion of a stock item</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="358"/>
+        <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="359"/>
         <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="546"/>
         <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="592"/>
         <location filename="src/windows/yeroth-erp-stock-detail-window.cpp" line="390"/>
@@ -5586,7 +5586,7 @@ alert message</translation>
         <location filename="ui/yeroth-erp-alertes-window.ui" line="10523"/>
         <source>Marquer résolue une alerte</source>
         <oldsource>Marquer résolue une alerte</oldsource>
-        <translation>set alert 
+        <translation>Set alert 
 message as resolved</translation>
     </message>
     <message>
