@@ -2,6 +2,16 @@
 
 USAGE="$(basename $0) [-e] <-v [qsqlite3 | standalone | academic | client | server]>"
 
+
+function chown_and_grp_for_lintian ()
+{
+		FILE_OR_FOLDER="$1"
+
+		sudo chown -R root "${FILE_OR_FOLDER}"
+		sudo chgrp -R root "${FILE_OR_FOLDER}"
+}
+
+
 # We don't want to have temporary files "*.bak"
 # within our '.deb' packages
 find . -name "*.bak" -delete
@@ -129,6 +139,7 @@ else
 fi
 
 YEROTH_ERP_3_0_POSTRM_STR="#!/bin/bash
+set -e
 sed -i '/YEROTH_ERP_3_0_HOME_FOLDER/d' /etc/environment
 sed -i '/YEROTH_ERP_3_0_PROPERTIES_CONFIGURATION_FOLDER/d' /etc/environment
 sed -i '/YEROTH_ERP_ALERT_3_0_HOME_FOLDER/d' /etc/environment
@@ -141,6 +152,7 @@ chmod 755 ${TARGET_INSTALLATION_DIR}/DEBIAN/postrm
 
 if [ ! "$qsqlite3Flag" ]; then
 		YEROTH_ERP_3_0_POSTINST_STR="#!/bin/bash
+set -e
 echo -e \"export YEROTH_ERP_3_0_HOME_FOLDER=/opt/${YEROTH_ERP_3_0_BINARY_NAME}\" >> /etc/environment
 echo -e \"export YEROTH_ERP_3_0_PROPERTIES_CONFIGURATION_FOLDER=/opt/${YEROTH_ERP_3_0_BINARY_NAME}\" >> /etc/environment
 echo -e \"export YEROTH_ERP_ALERT_3_0_HOME_FOLDER=/opt/yeroth-erp-alert-3-0\" >> /etc/environment
@@ -156,6 +168,7 @@ mysql_ret_code=\"\$?\"
 exit 0"
 else
 		YEROTH_ERP_3_0_POSTINST_STR="#!/bin/bash
+set -e
 echo -e \"export YEROTH_ERP_3_0_HOME_FOLDER=/opt/${YEROTH_ERP_3_0_BINARY_NAME}\" >> /etc/environment
 echo -e \"export YEROTH_ERP_3_0_PROPERTIES_CONFIGURATION_FOLDER=/opt/${YEROTH_ERP_3_0_BINARY_NAME}\" >> /etc/environment
 echo -e \"export YEROTH_ERP_ALERT_3_0_HOME_FOLDER=/opt/yeroth-erp-alert-3-0\" >> /etc/environment"
@@ -236,5 +249,17 @@ ${CP} ${DESKTOP_FILE_YEROTH_ERP_3_0} ${TARGET_INSTALLATION_DIR_USR_SHARE_APPLICA
 ${CP} ${LOGO_YEROTH_ERP_3_0} ${TARGET_INSTALLATION_DIR_USR_SHARE_PIXMAPS}
 
 rm -f ${YEROTH_ERP_3_0_DEB_FILE_NAME}
+
+TARGET_INSTALLATION_DIR_DEBIAN="${TARGET_INSTALLATION_DIR}/DEBIAN"
+
+TARGET_INSTALLATION_DIR_OPT="${TARGET_INSTALLATION_DIR}/opt"
+
+TARGET_INSTALLATION_DIR_USR="${TARGET_INSTALLATION_DIR}/usr"
+
+chown_and_grp_for_lintian "${TARGET_INSTALLATION_DIR_DEBIAN}"
+
+chown_and_grp_for_lintian "${TARGET_INSTALLATION_DIR_OPT}"
+
+chown_and_grp_for_lintian "${TARGET_INSTALLATION_DIR_USR}"
 
 dpkg-deb --verbose --build ${YEROTH_ERP_3_0_BINARY_NAME}
