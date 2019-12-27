@@ -87,6 +87,8 @@ QString YerothUtils::_logFileName("");
 
 QString YerothUtils::_1a_tex("");
 
+QString YerothUtils::template_fiche_client_tex("");
+
 QString YerothUtils::FR_template_historique_dun_stock_tex("");
 
 QString YerothUtils::EN_template_historique_dun_stock_tex("");
@@ -2609,6 +2611,15 @@ QString YerothUtils::prindDocumentFromTableView(YerothWindowsCommons *aWindowCal
     YerothUtils::writeStringToQFilewithUTF8Encoding(tmpLatexFile, texDocument);
 
     return YerothERPProcess::compileLatex(yerothPrefixFileName);
+}
+
+
+void YerothUtils::getLatexCustomerData(QString &texDocumentString_in_out,
+									   QString &printString)
+{
+    texDocumentString_in_out.append(YerothUtils::template_fiche_client_tex);
+    texDocumentString_in_out.append(printString).append("\n");
+    texDocumentString_in_out.append("\\end{document}");
 }
 
 

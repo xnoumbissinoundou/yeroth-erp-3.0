@@ -87,6 +87,19 @@ void readTexTemplateFiles(YerothLogger &logger)
 {
     logger.log("main", "readTexTemplateFiles");
 
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+
+    QFile fileCustomerDataTemplate(FILE_YEROTH_ERP_3_0_TEMPLATE_CUSTOMER_DATA_FR);
+    yeroth_read_file(fileCustomerDataTemplate, YerothUtils::template_fiche_client_tex);
+
+#else //YEROTH_ENGLISH_LANGUAGE
+
+    QFile fileCustomerDataENTemplate(FILE_YEROTH_ERP_3_0_TEMPLATE_CUSTOMER_DATA_EN );
+    yeroth_read_file(fileCustomerDataENTemplate, YerothUtils::template_fiche_client_tex);
+
+#endif
+
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
     QFile barDiagTemplate(FILE_YEROTH_ERP_3_0_TEMPLATE_BAR_DIAG_FR);

@@ -3518,7 +3518,7 @@
       <enum>Qt::LeftToRight</enum>
      </property>
      <property name="text">
-      <string>nom du réprésentant</string>
+      <string>nom du représentant</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -11655,8 +11655,8 @@
     </property>
     <addaction name="separator"/>
     <addaction name="actionAdministration"/>
-    <addaction name="actionAlertes"/>
     <addaction name="separator"/>
+    <addaction name="actionAlertes"/>
     <addaction name="separator"/>
     <addaction name="actionQui_suis_je"/>
    </widget>

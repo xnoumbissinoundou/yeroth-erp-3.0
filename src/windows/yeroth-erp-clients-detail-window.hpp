@@ -62,6 +62,8 @@ public:
 
 public slots:
 
+	virtual bool imprimer_document();
+
     virtual void modifier_les_articles();
 
     void supprimer_ce_stock();
@@ -90,6 +92,8 @@ private:
     void showClientDetail(int lastSelectedRow);
 
     void checkCourrierAlerts();
+
+	static void getLatexCustomerData(QString &texDocumentString_in_out);
 
     static const QString 	_WINDOW_TITLE;
 

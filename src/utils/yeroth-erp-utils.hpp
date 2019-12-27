@@ -111,6 +111,12 @@ public:
 
 	//static bool imprimer_document(QWidget *widget);
 
+	inline static QString get_latex_bold_text(QString text)
+	{
+		return QString("\\textbf{%1}")
+					.arg(text);
+	}
+
 	static QString get_text_sql_escaped(const QVariant &qv);
 
 	static QString get_text(const QVariant &qv);
@@ -316,6 +322,9 @@ public:
 										   void (*getLatexTemplateDocumentString)(QString &texDocumentString_in_out_OUT,
 												   	   	   	   	   	   	   	   	  QString &printString_in_out_OUT),
 										   QString latexFileNamePrefix);
+
+    static void getLatexCustomerData(QString &texDocumentString_in_out,
+			   	   	   	   	   	     QString &printString);
 
 	static void getSortieDesStocksFRTexDocumentString(QString &texDocumentString_in_out,
 								  	 	 	 	 	   QString &printString);
@@ -570,6 +579,8 @@ public:
 	static const QLocale englishLocale;
 
 	static QString _1a_tex;
+
+	static QString template_fiche_client_tex;
 
 	static QString FR_template_historique_dun_stock_tex;
 

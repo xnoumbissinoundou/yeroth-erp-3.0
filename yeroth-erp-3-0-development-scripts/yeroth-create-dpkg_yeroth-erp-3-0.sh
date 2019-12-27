@@ -139,7 +139,6 @@ else
 fi
 
 YEROTH_ERP_3_0_POSTRM_STR="#!/bin/bash
-set -e
 sed -i '/YEROTH_ERP_3_0_HOME_FOLDER/d' /etc/environment
 sed -i '/YEROTH_ERP_3_0_PROPERTIES_CONFIGURATION_FOLDER/d' /etc/environment
 sed -i '/YEROTH_ERP_ALERT_3_0_HOME_FOLDER/d' /etc/environment
@@ -152,7 +151,6 @@ chmod 755 ${TARGET_INSTALLATION_DIR}/DEBIAN/postrm
 
 if [ ! "$qsqlite3Flag" ]; then
 		YEROTH_ERP_3_0_POSTINST_STR="#!/bin/bash
-set -e
 echo -e \"export YEROTH_ERP_3_0_HOME_FOLDER=/opt/${YEROTH_ERP_3_0_BINARY_NAME}\" >> /etc/environment
 echo -e \"export YEROTH_ERP_3_0_PROPERTIES_CONFIGURATION_FOLDER=/opt/${YEROTH_ERP_3_0_BINARY_NAME}\" >> /etc/environment
 echo -e \"export YEROTH_ERP_ALERT_3_0_HOME_FOLDER=/opt/yeroth-erp-alert-3-0\" >> /etc/environment
@@ -168,7 +166,6 @@ mysql_ret_code=\"\$?\"
 exit 0"
 else
 		YEROTH_ERP_3_0_POSTINST_STR="#!/bin/bash
-set -e
 echo -e \"export YEROTH_ERP_3_0_HOME_FOLDER=/opt/${YEROTH_ERP_3_0_BINARY_NAME}\" >> /etc/environment
 echo -e \"export YEROTH_ERP_3_0_PROPERTIES_CONFIGURATION_FOLDER=/opt/${YEROTH_ERP_3_0_BINARY_NAME}\" >> /etc/environment
 echo -e \"export YEROTH_ERP_ALERT_3_0_HOME_FOLDER=/opt/yeroth-erp-alert-3-0\" >> /etc/environment"

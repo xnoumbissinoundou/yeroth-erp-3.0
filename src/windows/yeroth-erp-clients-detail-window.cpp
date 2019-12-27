@@ -7,6 +7,8 @@
 
 #include "src/yeroth-erp-windows.hpp"
 
+#include "src/process/yeroth-erp-process.hpp"
+
 #include "src/users/yeroth-erp-users.hpp"
 
 #include "src/utils/yeroth-erp-sqltable-model.hpp"
@@ -61,6 +63,7 @@ YerothClientsDetailWindow::YerothClientsDetailWindow()
     connect(actionAppeler_aide, SIGNAL(triggered()), this, SLOT(help()));
     connect(actionDeconnecter_utilisateur, SIGNAL(triggered()), this, SLOT(deconnecter_utilisateur()));
     connect(actionMenu, SIGNAL(triggered()), this, SLOT(menu()));
+    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_document()));
     connect(actionAfficher_les_clients, SIGNAL(triggered()), this, SLOT(clients()));
     connect(actionAfficher_les_paiements, SIGNAL(triggered()), this, SLOT(paiements()));
     connect(actionAfficher_les_transactions, SIGNAL(triggered()), this, SLOT(transactions()));
@@ -151,6 +154,8 @@ void YerothClientsDetailWindow::definirManager()
 {
     _logger->log("definirManager");
 
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_les_paiements, true);
@@ -242,6 +247,125 @@ void YerothClientsDetailWindow::definirMagasinier()
 }
 
 
+bool YerothClientsDetailWindow::imprimer_document()
+{
+    _logger->log("imprimer_document");
+
+    QString latexFileNamePrefix("yeroth-erp-fiche-client");
+
+    QList<int> tableColumnsToIgnore;
+
+    YerothPOSUser *aCurrentUser = _allWindows->getUser();
+
+    QString customerDataLatexString;
+
+    QString texDocument;
+
+    YerothUtils::getLatexCustomerData(texDocument, customerDataLatexString);
+
+    QString data;
+
+    data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Référence client: ")));
+    data.append(QString("%1\\\\").arg(lineEdit_clients_details_reference_client->text()));
+
+    data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Nom de l'entreprise: ")));
+    data.append(QString("%1\\\\").arg(lineEdit_clients_details_nom_entreprise->text()));
+
+    data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Nom du Représentant: ")));
+    data.append(QString("%1\\\\").arg(lineEdit_clients_details_nom_representant->text()));
+
+    data.append(YerothUtils::get_latex_bold_text(QObject::tr("Quartier: ")));
+    data.append(QString("%1\\\\").arg(lineEdit_clients_details_quartier->text()));
+
+    data.append(YerothUtils::get_latex_bold_text(QObject::tr("Ville: ")));
+    data.append(QString("%1\\\\").arg(lineEdit_clients_details_ville->text()));
+
+    data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Province / État: ")));
+    data.append(QString("%1\\\\").arg(lineEdit_clients_details_province_etat->text()));
+
+    data.append(YerothUtils::get_latex_bold_text(QObject::tr("Pays: ")));
+    data.append(QString("%1\\\\").arg(lineEdit_clients_details_pays->text()));
+
+    data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Boîte postale: ")));
+    data.append(QString("%1\\\\").arg(lineEdit_clients_details_boite_postale->text()));
+
+    data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Siège social: ")));
+    data.append(QString("%1\\\\").arg(lineEdit_clients_details_siege_social->text()));
+
+    data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Émail: ")));
+    data.append(QString("%1\\\\").arg(lineEdit_clients_details_email->text()));
+
+    data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Numéro de téléphone 1: ")));
+    data.append(QString("%1\\\\").arg(lineEdit_clients_details_numero_telephone_1->text()));
+
+    data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Numéro de téléphone 2: ")));
+    data.append(QString("%1\\\\").arg(lineEdit_clients_details_numero_telephone_2->text()));
+
+    data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Numéro de contribuable: ")));
+    data.append(QString("%1\\\\").arg(lineEdit_clients_details_numero_contribuable->text()));
+
+    data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Dette maximale: ")));
+    data.append(QString("%1\\\\").arg(lineEdit_clients_details_dette_maximale->text()));
+
+    data.append(YerothUtils::get_latex_bold_text(QObject::tr("Compte client: ")));
+    data.append(QString("%1\\\\").arg(lineEdit_clients_details_compte_client->text()));
+
+    data.append("\n\n\\vspace{0.3cm}\n\n");
+
+    data.append(QString("%1").arg(YerothUtils::get_latex_bold_text(QObject::tr("DESCRIPTION CLIENT:"))));
+    data.append("\n\n\\vspace{0.3cm}\n\n");
+
+    data.append(QString("%1\\\\").arg(textEdit_client_details_description_du_client->toPlainText()));
+
+    texDocument.replace("CONTENU", data);
+
+    YerothInfoEntreprise & infoEntreprise = YerothUtils::getAllWindows()->getInfoEntreprise();
+
+    QString fileDate(YerothUtils::handleForeignAccents(infoEntreprise.getVilleTex()));
+
+    YerothUtils::getCurrentLocaleDate(fileDate);
+
+    texDocument.replace("YEROTHPAPERSPEC", "a4paper");
+
+    texDocument.replace("YEROTHCLIENT", QString("%1").arg(lineEdit_clients_details_nom_entreprise->text()));
+    texDocument.replace("YEROTHENTREPRISE", infoEntreprise.getNomCommercialTex());
+    texDocument.replace("YEROTHACTIVITESENTREPRISE", infoEntreprise.getSecteursActivitesTex());
+    texDocument.replace("YEROTHBOITEPOSTALE", infoEntreprise.getBoitePostal());
+    texDocument.replace("YEROTHVILLE", infoEntreprise.getVilleTex());
+    texDocument.replace("YEROTHPAYS", infoEntreprise.getPaysTex());
+    texDocument.replace("YEROTHEMAIL", infoEntreprise.getEmailTex());
+    texDocument.replace("YEROTHTELEPHONE", infoEntreprise.getTelephone());
+    texDocument.replace("YEROTHDATE", fileDate);
+    texDocument.replace("YEROTHNOMUTILISATEUR", _allWindows->getUser()->nom_completTex());
+    texDocument.replace("YEROTHHEUREDIMPRESSION", CURRENT_TIME);
+    texDocument.replace("YEROTHCOMPTEBANCAIRENR", infoEntreprise.getNumeroCompteBancaire());
+    texDocument.replace("YEROTHCONTRIBUABLENR", infoEntreprise.getNumeroDeContribuable());
+    texDocument.replace("YEROTHAGENCECOMPTEBANCAIRE", infoEntreprise.getAgenceCompteBancaireTex());
+
+    QString yerothPrefixFileName;
+
+    yerothPrefixFileName.append(YerothUtils::getUniquePrefixFileInTemporaryFilesDir(latexFileNamePrefix));
+
+	//qDebug() << "++\n" << texDocument;
+
+    QFile tmpLatexFile(QString("%1tex")
+    					.arg(yerothPrefixFileName));
+
+    YerothUtils::writeStringToQFilewithUTF8Encoding(tmpLatexFile, texDocument);
+
+    QString pdfCustomerDataFileName(YerothERPProcess::compileLatex(yerothPrefixFileName));
+
+    if (pdfCustomerDataFileName.isEmpty())
+    {
+    	return false;
+    }
+
+    YerothERPProcess::startPdfViewerProcess(pdfCustomerDataFileName);
+
+    return true;
+}
+
+
 void YerothClientsDetailWindow::modifier_les_articles()
 {
     this->rendreInvisible();
@@ -329,6 +453,7 @@ void YerothClientsDetailWindow::showClientDetail(int lastSelectedRow)
 
 	textEdit_client_details_description_du_client->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESCRIPTION_CLIENT));
 }
+
 
 void YerothClientsDetailWindow::setupShortcuts()
 {
