@@ -54,7 +54,8 @@ YerothEntrerWindow::YerothEntrerWindow()
 
     setupDateTimeEdits();
 
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
+	YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMarchandises, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
@@ -64,7 +65,6 @@ YerothEntrerWindow::YerothEntrerWindow()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAnnuler, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEnregisterStock, false);
 
-    pushButton_autogenerer_codebar->disable(this);
     pushButton_afficher_stocks->disable(this);
     pushButton_menu_principal->disable(this);
     pushButton_sortir->disable(this);
@@ -75,6 +75,7 @@ YerothEntrerWindow::YerothEntrerWindow()
     connect(actionAppeler_aide, SIGNAL(triggered()), this, SLOT(help()));
     connect(actionDeconnecter_utilisateur, SIGNAL(triggered()), this, SLOT(deconnecter_utilisateur()));
     connect(actionMenu_Principal, SIGNAL(triggered()), this, SLOT(menu()));
+    connect(actionMarchandises, SIGNAL(triggered()), this, SLOT(afficherMarchandises()));
     connect(actionStocks, SIGNAL(triggered()), this, SLOT(afficherStocks()));
     connect(actionSortir, SIGNAL(triggered()), this, SLOT(sortir()));
     connect(actionAnnuler, SIGNAL(triggered()), this, SLOT(menu()));
@@ -168,11 +169,6 @@ void YerothEntrerWindow::setupShortcuts()
 {
     this->setupShortcutActionMessageDaide 	(*actionAppeler_aide);
     this->setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
-}
-
-
-void YerothEntrerWindow::autogenerer_codebar()
-{
 }
 
 
@@ -298,7 +294,7 @@ void YerothEntrerWindow::definirPasDeRole()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEnregisterStock, false);
 
-    pushButton_autogenerer_codebar->disable(this);
+    pushButton_marchandises->disable(this);
     pushButton_afficher_stocks->disable(this);
     pushButton_sortir->disable(this);
     pushButton_annuler->disable(this);
@@ -312,6 +308,7 @@ void YerothEntrerWindow::definirCaissier()
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMarchandises, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
@@ -321,7 +318,7 @@ void YerothEntrerWindow::definirCaissier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEnregisterStock, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
-    pushButton_autogenerer_codebar->disable(this);
+    pushButton_marchandises->disable(this);
     pushButton_afficher_stocks->disable(this);
     pushButton_menu_principal->disable(this);
     pushButton_sortir->disable(this);
@@ -334,6 +331,7 @@ void YerothEntrerWindow::definirManager()
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMarchandises, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, true);
@@ -348,7 +346,7 @@ void YerothEntrerWindow::definirManager()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAnnuler, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEnregisterStock, true);
 
-    pushButton_autogenerer_codebar->enable(this, SLOT(autogenerer_codebar()));
+    pushButton_marchandises->enable(this, SLOT(afficherMarchandises()));
     pushButton_afficher_stocks->enable(this, SLOT(afficherStocks()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_sortir->enable(this, SLOT(sortir()));
@@ -363,6 +361,7 @@ void YerothEntrerWindow::definirVendeur()
     _logger->log("definirVendeur");
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMarchandises, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
@@ -371,7 +370,7 @@ void YerothEntrerWindow::definirVendeur()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEnregisterStock, false);
 
-    pushButton_autogenerer_codebar->disable(this);
+    pushButton_marchandises->disable(this);
     pushButton_afficher_stocks->disable(this);
     pushButton_sortir->disable(this);
     pushButton_annuler->disable(this);
@@ -386,6 +385,7 @@ void YerothEntrerWindow::definirGestionaireDesStocks()
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMarchandises, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
@@ -400,7 +400,7 @@ void YerothEntrerWindow::definirGestionaireDesStocks()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAnnuler, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEnregisterStock, true);
 
-    pushButton_autogenerer_codebar->enable(this, SLOT(autogenerer_codebar()));
+    pushButton_marchandises->enable(this, SLOT(afficherMarchandises()));
     pushButton_afficher_stocks->enable(this, SLOT(afficherStocks()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_sortir->enable(this, SLOT(sortir()));
@@ -416,6 +416,7 @@ void YerothEntrerWindow::definirMagasinier()
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMarchandises, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
@@ -425,7 +426,7 @@ void YerothEntrerWindow::definirMagasinier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEnregisterStock, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
-    pushButton_autogenerer_codebar->enable(this, SLOT(autogenerer_codebar()));
+    pushButton_marchandises->enable(this, SLOT(afficherMarchandises()));
     pushButton_afficher_stocks->enable(this, SLOT(afficherStocks()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_sortir->enable(this, SLOT(sortir()));

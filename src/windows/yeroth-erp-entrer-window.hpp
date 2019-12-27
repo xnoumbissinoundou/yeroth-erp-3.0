@@ -100,8 +100,6 @@ public slots:
 
     void selectionner_image_produit();
 
-    void autogenerer_codebar();
-
     bool creerNouveauFournisseur(const QString proposedFourisseurName);
 
     bool creerNouvelleCategorie(const QString proposedCategorieName);

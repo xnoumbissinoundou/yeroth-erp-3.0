@@ -40,6 +40,8 @@ public:
 		return toolBar_detailWindow;
 	}
 
+	void definirPasDeRole();
+
     void definirCaissier();
 
     void definirManager();
@@ -49,8 +51,6 @@ public:
     virtual void definirGestionaireDesStocks();
 
     void definirMagasinier();
-
-    void definirPasDeRole();
 
     void rendreInvisible();
 

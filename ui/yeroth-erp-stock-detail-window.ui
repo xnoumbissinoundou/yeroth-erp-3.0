@@ -10355,14 +10355,14 @@
     <addaction name="actionDeconnecter_utilisateur"/>
     <addaction name="separator"/>
     <addaction name="actionEntrer"/>
+    <addaction name="actionInventaireDesStocks"/>
     <addaction name="actionStocks"/>
     <addaction name="actionModifier"/>
-    <addaction name="actionSortir"/>
     <addaction name="actionSupprimer"/>
+    <addaction name="separator"/>
     <addaction name="separator"/>
     <addaction name="actionMenu"/>
     <addaction name="separator"/>
-    <addaction name="actionVendre"/>
     <addaction name="separator"/>
     <addaction name="actionFermeture"/>
    </widget>
@@ -11496,9 +11496,12 @@
     </font>
    </property>
   </action>
-  <action name="actionSortir">
+  <action name="actionInventaireDesStocks">
    <property name="text">
-    <string>Sortir des articles</string>
+    <string>Afficher les marchandises</string>
+   </property>
+   <property name="toolTip">
+    <string>Afficher les marchandises</string>
    </property>
    <property name="font">
     <font>
