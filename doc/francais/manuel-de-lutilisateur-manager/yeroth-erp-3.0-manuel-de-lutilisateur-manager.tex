@@ -194,13 +194,10 @@
 
 %--------------------------------------------------------------------------------
 
-\usepackage[T1]{fontenc}
-\newcommand{\changefont}[3]{
-\fontfamily{#1} \fontseries{#2} \fontshape{#3} \selectfont}
-\changefont{cmss}{m}{n}
-
 % Set font to avant-garde
 %\renewcommand*\rmdefault{pag}
+
+\usepackage[T1]{fontenc}
 
 %Remove widows and orphants
 \clubpenalty = 10000
@@ -212,7 +209,9 @@
 \title{\textcolor{medgreen}{\textsc{Syst\`eme--Logiciel ERP
 		\\ \vspace*{1.5cm}(\yeren)\\}
 		\vspace*{3cm}
-	Guide de l'Utilisateur\\ \vspace{1em} << Manager >>}}
+	Guide de l'Utilisateur\\ \vspace{1em} << Manager >> \\
+	\vspace*{0.1cm}}
+	{\small Version du --~\today~--}}
 
 \begin{titlepage}
 \maketitle
