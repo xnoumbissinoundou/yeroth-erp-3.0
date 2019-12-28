@@ -5465,8 +5465,9 @@ Press &apos;Cancel&apos; to exit &apos;%3&apos;</translation>
     <message>
         <location filename="ui/yeroth-erp-admin-window.ui" line="30379"/>
         <location filename="ui/yeroth-erp-admin-window.ui" line="30382"/>
-        <source>Manuel de l&apos;utilisateur (PDF)</source>
-        <translation>User manual (PDF)</translation>
+        <source>Guide de l&apos;utilisateur (PDF)</source>
+        <oldsource>Manuel de l&apos;utilisateur (PDF)</oldsource>
+        <translation>User guide (PDF)</translation>
     </message>
 </context>
 <context>
@@ -7046,9 +7047,9 @@ Transférer</source>
     <message>
         <location filename="ui/yeroth-erp-main-window.ui" line="8222"/>
         <location filename="ui/yeroth-erp-main-window.ui" line="8225"/>
-        <source>Manuel de l&apos;utilisateur (PDF)</source>
+        <source>Guide de l&apos;utilisateur (PDF)</source>
         <oldsource>Manuel de l&apos;utilisateur (PDF)</oldsource>
-        <translation>User manual (PDF)</translation>
+        <translation>User guide (PDF)</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-main-window.ui" line="8237"/>

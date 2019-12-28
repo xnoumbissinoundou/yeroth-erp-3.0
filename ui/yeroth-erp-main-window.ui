@@ -6685,7 +6685,7 @@ Vente</string>
     </property>
     <addaction name="actionInformationEntreprise"/>
     <addaction name="separator"/>
-    <addaction name="actionManuelUtilisateur"/>
+    <addaction name="actionGuideUtilisateur"/>
     <addaction name="actionAppeler_aide"/>
     <addaction name="separator"/>
     <addaction name="actionA_propos"/>
@@ -8217,12 +8217,12 @@ Vente</string>
     </font>
    </property>
   </action>
-  <action name="actionManuelUtilisateur">
+  <action name="actionGuideUtilisateur">
    <property name="text">
-    <string>Manuel de l'utilisateur (PDF)</string>
+    <string>Guide de l'utilisateur (PDF)</string>
    </property>
    <property name="toolTip">
-    <string>Manuel de l'utilisateur (PDF)</string>
+    <string>Guide de l'utilisateur (PDF)</string>
    </property>
    <property name="font">
     <font>

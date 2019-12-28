@@ -18023,7 +18023,7 @@ background-color: rgb(0, 0, 0); </string>
     </property>
     <addaction name="actionInformationEntreprise"/>
     <addaction name="separator"/>
-    <addaction name="actionManuelUtilisateur"/>
+    <addaction name="actionGuideUtilisateur"/>
     <addaction name="separator"/>
     <addaction name="actionAppeler_aide"/>
     <addaction name="separator"/>
@@ -19530,7 +19530,7 @@ background-color: rgb(0, 0, 0); </string>
     </font>
    </property>
   </action>
-  <action name="actionManuelUtilisateur">
+  <action name="actionGuideUtilisateur">
    <property name="text">
     <string>Manuel de l'utilisateur (PDF)</string>
    </property>
