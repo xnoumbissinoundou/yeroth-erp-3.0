@@ -387,8 +387,9 @@ Press m &apos;Cancel&apos; to exit %2</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="268"/>
-        <source>Agence compte bancaire</source>
-        <translation>Bank account branch</translation>
+        <source>Agence bancaire</source>
+        <oldsource>Agence compte bancaire</oldsource>
+        <translation>Bank branch</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="270"/>
@@ -403,17 +404,14 @@ Press m &apos;Cancel&apos; to exit %2</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="274"/>
-        <source>Nom représentant</source>
-        <translation>Representant name</translation>
-    </message>
-    <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="276"/>
-        <source>Entreprise client</source>
-        <translation>Client</translation>
+        <source>Représentant</source>
+        <oldsource>Nom représentant</oldsource>
+        <translation>Representant</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="278"/>
-        <source>Entreprise fournisseur</source>
+        <source>Fournisseur</source>
+        <oldsource>Entreprise fournisseur</oldsource>
         <translation>Supplier</translation>
     </message>
     <message>
@@ -628,6 +626,11 @@ Press m &apos;Cancel&apos; to exit %2</translation>
         <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="264"/>
         <source>Nom entreprise</source>
         <translation>Company name</translation>
+    </message>
+    <message>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="276"/>
+        <source>Client</source>
+        <translation>Customer</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="280"/>

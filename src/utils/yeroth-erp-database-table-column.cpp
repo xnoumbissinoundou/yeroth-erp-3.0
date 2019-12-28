@@ -265,17 +265,17 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NUMERO_DE_COMPTE_BANCAIRE,	QObject::trUtf8("Numéro compte bancaire"));
 
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::AGENCE_DE_COMPTE_BANCAIRE,	QObject::tr("Agence compte bancaire"));
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::AGENCE_DE_COMPTE_BANCAIRE,	QObject::tr("Agence bancaire"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::SECTEURS_DACTIVITES,	QObject::trUtf8("Secteurs d'activités"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NUMERO_CONTRIBUABLE,	QObject::trUtf8("Numéro contribuable"));
 
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NOM_REPRESENTANT,		QObject::trUtf8("Nom représentant"));
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NOM_REPRESENTANT,		QObject::trUtf8("Représentant"));
 
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT,	QObject::tr("Entreprise client"));
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT,	QObject::tr("Client"));
 
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR,	QObject::tr("Entreprise fournisseur"));
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR,	QObject::tr("Fournisseur"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::DESCRIPTION_CLIENT,	QObject::tr("Description client"));
 
