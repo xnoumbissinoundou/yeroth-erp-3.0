@@ -173,7 +173,7 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::TVA,				QObject::tr("TVA"));
 
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::MARGE_BENEFICIAIRE,		QObject::trUtf8("Marge bénéficiaire"));
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::MARGE_BENEFICIAIRE,		QObject::trUtf8("Bénéfice"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::MONTANT_RECU,		QObject::trUtf8("Montant reçu"));
 

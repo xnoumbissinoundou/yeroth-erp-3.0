@@ -473,7 +473,8 @@ Press m &apos;Cancel&apos; to exit %2</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="176"/>
-        <source>Marge bénéficiaire</source>
+        <source>Bénéfice</source>
+        <oldsource>Marge bénéficiaire</oldsource>
         <translation>Profit</translation>
     </message>
     <message>
