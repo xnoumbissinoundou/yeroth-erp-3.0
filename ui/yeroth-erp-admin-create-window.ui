@@ -11743,28 +11743,12 @@
          </date>
         </property>
        </widget>
-       <widget class="QRadioButton" name="radioButton_creer_alerte_periode_temps_3">
-        <property name="geometry">
-         <rect>
-          <x>139</x>
-          <y>18</y>
-          <width>16</width>
-          <height>26</height>
-         </rect>
-        </property>
-        <property name="layoutDirection">
-         <enum>Qt::RightToLeft</enum>
-        </property>
-        <property name="text">
-         <string>RadioButton</string>
-        </property>
-       </widget>
        <widget class="QLabel" name="label_creer_alerte_date_debut_3">
         <property name="geometry">
          <rect>
           <x>16</x>
           <y>20</y>
-          <width>120</width>
+          <width>137</width>
           <height>21</height>
          </rect>
         </property>
