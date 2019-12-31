@@ -24,7 +24,6 @@
 		  
 \usepackage[default]{cantarell}
 \usepackage{xspace}
-\usepackage[french]{babel}
 \usepackage{paralist}
 \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
 \usepackage{listings} % for lstset definitions
@@ -124,12 +123,13 @@
 % Set font to avant-garde
 %\renewcommand*\rmdefault{pag}
 
+\usepackage[french]{babel}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \renewcommand{\headrulewidth}{0pt}
 \lhead{}
 \rhead{}
-\lfoot{{\small Version du --~\date{$16$~D\'ecembre~$2019$}~--}}
+\rfoot{{\small version du --~\today~--}}
 \cfoot{\thepage}
 
 %Remove widows and orphants
