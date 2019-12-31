@@ -297,7 +297,7 @@ void YerothVentesWindow::setupLineEdits()
 
 void YerothVentesWindow::setupLineEditsQCompleters()
 {
-    lineEdit_ventes_recherche->setupMyStaticQCompleter(_allWindows->STOCKS_VENDU, YerothDatabaseTableColumn::REFERENCE);
+    lineEdit_ventes_recherche->setupMyStaticQCompleter(_allWindows->STOCKS_VENDU, YerothDatabaseTableColumn::REFERENCE, false, false);
     lineEdit_ventes_nom_caissier->setupMyStaticQCompleter(_allWindows->STOCKS_VENDU, YerothDatabaseTableColumn::NOM_CAISSIER);
     lineEdit_ventes_designation->setupMyStaticQCompleter(_allWindows->STOCKS_VENDU, YerothDatabaseTableColumn::DESIGNATION);
     lineEdit_ventes_categorie_produit->setupMyStaticQCompleter(_allWindows->STOCKS_VENDU, YerothDatabaseTableColumn::CATEGORIE);

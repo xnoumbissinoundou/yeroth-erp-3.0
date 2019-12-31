@@ -443,8 +443,6 @@ void YerothLineEdit::setupMyQCompleterCodebarALL(QString sqlTableName)
     _searchQCompleter->setCompletionMode(QCompleter::PopupCompletion);
 
     setCompleter(_searchQCompleter);
-
-    connect( this, SIGNAL(returnPressed()), this, SLOT(clearQCompleterText()) );
 }
 
 void YerothLineEdit::setupMyQCompleterCodebarDEF_DEO(QString sqlTableName)
@@ -482,8 +480,6 @@ void YerothLineEdit::setupMyQCompleterCodebarDEF_DEO(QString sqlTableName)
     _searchQCompleter->setCompletionMode(QCompleter::PopupCompletion);
 
     setCompleter(_searchQCompleter);
-
-    connect( this, SIGNAL(returnPressed()), this, SLOT(clearQCompleterText()) );
 }
 
 void YerothLineEdit::setupMyQCompleterCodebarFIFO(QString sqlTableName)
@@ -521,8 +517,6 @@ void YerothLineEdit::setupMyQCompleterCodebarFIFO(QString sqlTableName)
     _searchQCompleter->setCompletionMode(QCompleter::PopupCompletion);
 
     setCompleter(_searchQCompleter);
-
-    connect( this, SIGNAL(returnPressed()), this, SLOT(clearQCompleterText()) );
 }
 
 void YerothLineEdit::setupMyQCompleterCodebarLIFO(QString sqlTableName)
@@ -560,8 +554,6 @@ void YerothLineEdit::setupMyQCompleterCodebarLIFO(QString sqlTableName)
     _searchQCompleter->setCompletionMode(QCompleter::PopupCompletion);
 
     setCompleter(_searchQCompleter);
-
-    connect( this, SIGNAL(returnPressed()), this, SLOT(clearQCompleterText()) );
 }
 
 void YerothLineEdit::refreshCodebarCompleterList(QString strategy)

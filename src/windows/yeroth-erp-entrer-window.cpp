@@ -149,7 +149,8 @@ void YerothEntrerWindow::setupLineEditsQCompleters()
 
     lineEdit_reference_produit->setupMyStaticQCompleter(_allWindows->MARCHANDISES,
     												   YerothDatabaseTableColumn::REFERENCE,
-													   true);
+													   false,
+													   false);
 
     if (user && user->isManager())
     {
