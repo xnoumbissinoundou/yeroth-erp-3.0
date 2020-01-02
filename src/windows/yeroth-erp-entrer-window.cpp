@@ -1,5 +1,5 @@
 /*
- * yeroth-erp-Entrer un stock-window.cpp
+ * yeroth-erp-entrer-window.cpp
  *
  *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
