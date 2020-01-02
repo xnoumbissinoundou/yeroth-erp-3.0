@@ -8059,6 +8059,9 @@ background-color: rgb(198, 198, 198);</string>
       <string notr="true">border: 1px solid rgb(60, 60, 60);
 background-color: rgb(198, 198, 198);</string>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
      <property name="minimum">
       <number>1</number>
      </property>
@@ -9032,6 +9035,9 @@ background-color: rgb(198, 198, 198);</string>
      <property name="styleSheet">
       <string notr="true">border: 1px solid rgb(60, 60, 60);
 background-color: rgb(198, 198, 198);</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
      <property name="displayFormat">
       <string>dd/MM/yyyy</string>
