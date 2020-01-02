@@ -47,7 +47,6 @@ YerothAdminCreateWindow::YerothAdminCreateWindow()
     pushButton_creer_localisation_annuler->enable(this, SLOT(annuler()));
     pushButton_creer_categorie_annuler->enable(this, SLOT(annuler()));
     pushButton_creer_alerte_annuler->enable(this, SLOT(annuler()));
-    pushButton_creer_client_annuler->enable(this, SLOT(annuler()));
     pushButton_creer_fournisseur_annuler->enable(this, SLOT(annuler()));
     pushButton_creer_remise_annuler->enable(this, SLOT(annuler()));
 
@@ -56,7 +55,6 @@ YerothAdminCreateWindow::YerothAdminCreateWindow()
     pushButton_creer_localisation_valider->enable(this, SLOT(creer_localisation()));
     pushButton_creer_categorie_valider->enable(this, SLOT(creer_categorie()));
     pushButton_creer_alerte_valider->enable(this, SLOT(creer_alerte()));
-    pushButton_creer_client_valider->enable(this, SLOT(creer_client()));
     pushButton_creer_fournisseur_valider->enable(this, SLOT(creer_fournisseur()));
     pushButton_creer_remise_valider->enable(this, SLOT(creer_remise()));
 
@@ -118,7 +116,7 @@ void YerothAdminCreateWindow::setupLineEdits()
     lineEdit_creer_utilisateur_verification->setEchoMode(QLineEdit::Password);
     lineEdit_creer_alerte_designation->setupMyStaticQCompleter(_allWindows->STOCKS, YerothDatabaseTableColumn::DESIGNATION);
     lineEdit_creer_alerte_destinataire->setupMyStaticQCompleter(_allWindows->USERS, "nom_utilisateur");
-    lineEdit_creer_client_dette_maximale_compte_client->setValidator(&YerothUtils::DoubleValidator);
+
     connect(lineEdit_creer_alerte_destinataire, SIGNAL(textChanged(const QString &)), this,
             SLOT(showDestinataireNomComplet(const QString &)));
     connect(lineEdit_creer_alerte_designation, SIGNAL(textChanged(const QString &)), this,
@@ -142,8 +140,6 @@ void YerothAdminCreateWindow::rendreVisible(unsigned selectedSujetAction)
 
     clear_categorie_all_fields();
 
-    clear_client_all_fields();
-
     clear_localisation_all_fields();
 
     clear_fournisseur_all_fields();
@@ -160,24 +156,6 @@ void YerothAdminCreateWindow::rendreVisible(unsigned selectedSujetAction)
     populateUtilisateurComboBoxes();
     populateAlerteComboBoxes();
     populateLocalisationComboBoxes();
-
-    YerothPOSUser *aUser = YerothUtils::getAllWindows()->getUser();
-
-    if (0 != YerothUtils::getAllWindows())
-    {
-    	if (0 != aUser && aUser->isManager())
-    	{
-    		label_admin_create_dette_maximale_compte_client->setVisible(true);
-    		lineEdit_creer_client_dette_maximale_compte_client->setVisible(true);
-    		lineEdit_creer_client_dette_maximale_compte_client->setEnabled(true);
-    	}
-    	else
-    	{
-    		label_admin_create_dette_maximale_compte_client->setVisible(false);
-    		lineEdit_creer_client_dette_maximale_compte_client->setVisible(false);
-    		lineEdit_creer_client_dette_maximale_compte_client->setEnabled(false);
-    	}
-    }
 
     this->setVisible(true);
 }
@@ -286,8 +264,6 @@ void YerothAdminCreateWindow::annuler()
 
     clear_localisation_all_fields();
 
-    clear_client_all_fields();
-
     clear_fournisseur_all_fields();
 
     clear_alerte_all_fields();
@@ -329,19 +305,17 @@ void YerothAdminCreateWindow::radioButtons_periode_temps()
 
 void YerothAdminCreateWindow::handleCurrentChanged()
 {
-    this->clear_utilisateur_all_fields();
+    clear_utilisateur_all_fields();
 
-    this->clear_localisation_all_fields();
+    clear_localisation_all_fields();
 
-    this->clear_categorie_all_fields();
+    clear_categorie_all_fields();
 
-    this->clear_client_all_fields();
+    clear_fournisseur_all_fields();
 
-    this->clear_fournisseur_all_fields();
+    clear_alerte_all_fields();
 
-    this->clear_alerte_all_fields();
-
-    this->clear_remise_all_fields();
+    clear_remise_all_fields();
 
     populateUtilisateurComboBoxes();
 
@@ -363,8 +337,6 @@ void YerothAdminCreateWindow::hideEvent(QHideEvent * hideEvent)
 #include "creer-localisation.cpp"
 
 #include "creer-categorie.cpp"
-
-#include "creer-client.cpp"
 
 #include "creer-fournisseur.cpp"
 

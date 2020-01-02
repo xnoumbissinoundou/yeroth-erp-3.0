@@ -66,8 +66,6 @@ public slots:
 
 	bool creer_remise();
 
-	bool creer_client();
-
 	bool creer_fournisseur();
 
 	void radioButtons_quantite();
@@ -108,8 +106,6 @@ private:
 
     void clear_localisation_all_fields();
 
-    void clear_client_all_fields();
-
     void clear_alerte_all_fields();
 
     void clear_remise_all_fields();
@@ -121,8 +117,6 @@ private:
     bool creer_categorie_check_fields();
 
     bool creer_localisation_check_fields();
-
-    bool creer_client_check_fields();
 
     bool creer_fournisseur_check_fields();
 

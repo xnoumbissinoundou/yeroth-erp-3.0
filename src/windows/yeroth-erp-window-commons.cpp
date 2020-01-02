@@ -118,6 +118,14 @@ void YerothWindowsCommons::transactions()
     this->rendreInvisible();
 }
 
+
+void YerothWindowsCommons::creerCompteClient()
+{
+	this->rendreInvisible();
+    _allWindows->_creerCompteClientWindow->rendreVisible(_curStocksTableModel);
+}
+
+
 void YerothWindowsCommons::entrer()
 {
 	this->rendreInvisible();

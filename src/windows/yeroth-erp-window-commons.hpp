@@ -129,6 +129,8 @@ public slots:
 
 	virtual void transactions();
 
+	virtual void creerCompteClient();
+
 	virtual void entrer();
 
 	virtual void paiements();
