@@ -378,8 +378,8 @@ bool YerothCreerCompteClientWindow::check_fields()
 void YerothCreerCompteClientWindow::clear_all_fields()
 {
 	lineEdit_compte_client_reference_client->clear();
-	lineEdit_compte_client_nom_de_lentreprise->clear();
-	lineEdit_compte_client_nom_du_representant->clear();
+	lineEdit_compte_client_nom_de_lentreprise->clearField();
+	lineEdit_compte_client_nom_du_representant->clearField();
     lineEdit_compte_client_quartier->clear();
     lineEdit_compte_client_ville->clear();
     lineEdit_compte_client_province_etat->clear();
