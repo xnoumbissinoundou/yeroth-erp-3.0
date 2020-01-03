@@ -95,6 +95,7 @@ YerothAchatsWindow::YerothAchatsWindow()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVentes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
@@ -318,18 +319,6 @@ void YerothAchatsWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 
     lineEdit_recherche_designation->setFocus();
 
-    YerothPOSUser *aUser = _allWindows->getUser();
-
-    if (0 != aUser)
-    {
-    	if (false == aUser->isManager())
-		{
-			_curAchatSqlTableModel->setFilter(QString("%1 = '%2'")
-												.arg(YerothDatabaseTableColumn::ENREGISTREUR_STOCK,
-													 aUser->nom_complet()));
-		}
-    }
-
     afficherAchats(*_curAchatSqlTableModel);
 
     setVisible(true);
@@ -352,6 +341,7 @@ void YerothAchatsWindow::definirCaissier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVentes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
@@ -374,6 +364,7 @@ void YerothAchatsWindow::definirManager()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVentes, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, true);
 
 #ifdef YEROTH_CLIENT
@@ -402,6 +393,7 @@ void YerothAchatsWindow::definirVendeur()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVentes, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
 #ifdef YEROTH_CLIENT
@@ -430,6 +422,7 @@ void YerothAchatsWindow::definirGestionaireDesStocks()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVentes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
 #ifdef YEROTH_CLIENT
@@ -445,7 +438,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_stocks->enable(this, SLOT(afficherStocks()));
-    pushButton_ventes->enable(this, SLOT(ventes()));
+    pushButton_ventes->disable(this);
 }
 
 void YerothAchatsWindow::definirMagasinier()
@@ -457,6 +450,7 @@ void YerothAchatsWindow::definirMagasinier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVentes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
     pushButton_achats_filtrer->enable(this, SLOT(filtrer_achats()));
@@ -466,7 +460,7 @@ void YerothAchatsWindow::definirMagasinier()
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_stocks->disable(this);
-    pushButton_ventes->enable(this, SLOT(ventes()));
+    pushButton_ventes->disable(this);
 }
 
 void YerothAchatsWindow::definirPasDeRole()
@@ -476,6 +470,7 @@ void YerothAchatsWindow::definirPasDeRole()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVentes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
