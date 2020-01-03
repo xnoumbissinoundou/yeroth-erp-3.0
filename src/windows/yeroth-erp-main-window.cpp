@@ -75,7 +75,7 @@ YerothMainWindow::YerothMainWindow()
     pushButton_sortir->disable(this);
     pushButton_rapports->disable(this);
     pushButton_transactions->disable(this);
-    pushButton_caisse->disable(this);
+    pushButton_ventes->disable(this);
     pushButton_vendre->disable(this);
 
     connect(actionChanger_utilisateur, SIGNAL(triggered()), this, SLOT(changer_utilisateur()));
@@ -135,7 +135,7 @@ void YerothMainWindow::definirCaissier()
     pushButton_sortir->disable(this);
     pushButton_rapports->disable(this);
     pushButton_transactions->disable(this);
-    pushButton_caisse->enable(this, SLOT(ventes()));
+    pushButton_ventes->enable(this, SLOT(ventes()));
     pushButton_vendre->enable(this, SLOT(vendre()));
 
     label_display_yeroth->setVisible(false);
@@ -179,7 +179,7 @@ void YerothMainWindow::definirManager()
     pushButton_sortir->enable(this, SLOT(sortir()));
     pushButton_rapports->enable(this, SLOT(tableaux_de_bords()));
     pushButton_transactions->enable(this, SLOT(transactions()));
-    pushButton_caisse->enable(this, SLOT(ventes()));
+    pushButton_ventes->enable(this, SLOT(ventes()));
     pushButton_vendre->enable(this, SLOT(vendre()));
 
     label_display_yeroth->setVisible(false);
@@ -224,7 +224,7 @@ void YerothMainWindow::definirVendeur()
     pushButton_sortir->disable(this);
     pushButton_rapports->disable(this);
     pushButton_transactions->disable(this);
-    pushButton_caisse->enable(this, SLOT(ventes()));
+    pushButton_ventes->enable(this, SLOT(ventes()));
     pushButton_vendre->enable(this, SLOT(vendre()));
 
     label_display_yeroth->setVisible(false);
@@ -325,7 +325,7 @@ void YerothMainWindow::definirMagasinier()
     pushButton_achats->disable(this);
     pushButton_afficher_inventaire_des_stocks->disable(this);
     pushButton_rapports->disable(this);
-    pushButton_caisse->disable(this);
+    pushButton_ventes->disable(this);
     pushButton_vendre->disable(this);
     pushButton_entrer->disable(this);
     pushButton_afficher_stocks->enable(this, SLOT(afficherStocks()));
@@ -364,7 +364,7 @@ void YerothMainWindow::definirPasDeRole()
     pushButton_sortir->disable(this);
     pushButton_rapports->disable(this);
     pushButton_transactions->disable(this);
-    pushButton_caisse->disable(this);
+    pushButton_ventes->disable(this);
     pushButton_vendre->disable(this);
 
     label_display_yeroth->setVisible(true);

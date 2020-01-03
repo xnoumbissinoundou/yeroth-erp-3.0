@@ -63,11 +63,11 @@ void YerothSortirListStocksWindow::listStocks(YerothSqlTableModel & aSqlTableMod
 
     tableView_list_stocks->hideColumn(4);
     tableView_list_stocks->hideColumn(9);
+    tableView_list_stocks->hideColumn(10);
     tableView_list_stocks->hideColumn(11);
     tableView_list_stocks->hideColumn(12);
     tableView_list_stocks->hideColumn(13);
     tableView_list_stocks->hideColumn(14);
-    tableView_list_stocks->hideColumn(15);
     tableView_list_stocks->hideColumn(16);
     tableView_list_stocks->hideColumn(17);
     tableView_list_stocks->hideColumn(18);

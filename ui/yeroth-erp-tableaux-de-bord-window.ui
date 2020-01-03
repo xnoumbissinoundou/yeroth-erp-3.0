@@ -8590,6 +8590,11 @@ background-color: rgb(0, 0, 0); </string>
       </property>
      </widget>
     </widget>
+    <widget class="QWidget" name="tab_3">
+     <attribute name="title">
+      <string>bilan comptable</string>
+     </attribute>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar_rapportsWindow">

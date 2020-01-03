@@ -2673,7 +2673,7 @@ ou
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="YerothPushButton" name="pushButton_caisse">
+   <widget class="YerothPushButton" name="pushButton_ventes">
     <property name="enabled">
      <bool>true</bool>
     </property>
@@ -8290,7 +8290,7 @@ Vente</string>
   <tabstop>pushButton_alertes</tabstop>
   <tabstop>pushButton_achats</tabstop>
   <tabstop>pushButton_entrer</tabstop>
-  <tabstop>pushButton_caisse</tabstop>
+  <tabstop>pushButton_ventes</tabstop>
   <tabstop>pushButton_clients</tabstop>
   <tabstop>pushButton_afficher_stocks</tabstop>
   <tabstop>pushButton_afficher_inventaire_des_stocks</tabstop>
