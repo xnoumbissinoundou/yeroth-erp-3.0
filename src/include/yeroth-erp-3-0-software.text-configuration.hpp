@@ -46,9 +46,6 @@
 # define SUBJECT_ADMIN_OPERATIONS_COMMAND_SHEET_EN			"a command sheet"
 # define SUBJECT_ADMIN_OPERATIONS_COMMAND_SHEET_FR			"un bon de commande"
 
-# define SUBJECT_ADMIN_OPERATIONS_CUSTOMER_ACCOUNT_EN			"a customer account"
-# define SUBJECT_ADMIN_OPERATIONS_CUSTOMER_ACCOUNT_FR			"un compte client"
-
 # define SUBJECT_ADMIN_OPERATIONS_SUPPLIER_EN				"a supplier"
 # define SUBJECT_ADMIN_OPERATIONS_SUPPLIER_FR				"un fournisseur"
 

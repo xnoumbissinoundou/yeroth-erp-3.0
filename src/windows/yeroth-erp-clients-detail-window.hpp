@@ -64,10 +64,6 @@ public slots:
 
 	virtual bool imprimer_document();
 
-    virtual void modifier_les_articles();
-
-    void supprimer_ce_stock();
-
 	inline virtual void apropos()
 	{
 		YerothWindowsCommons::apropos(this);
@@ -84,6 +80,12 @@ public slots:
 protected:
 
     virtual void setupShortcuts();
+
+private slots:
+
+	void modifierCompteClient();
+
+	void supprimerCompteClient();
 
 private:
 

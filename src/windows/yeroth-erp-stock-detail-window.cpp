@@ -379,14 +379,13 @@ void YerothStockDetailWindow::setupShortcuts()
 void YerothStockDetailWindow::supprimer_ce_stock()
 {
     QSqlRecord record = _curStocksTableModel->record(_allWindows->getLastSelectedListerRow());
-    QString msgSupprimer("Poursuivre avec la suppression de l'article \"");
-    msgSupprimer.append(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
-    msgSupprimer.append("\" ?");
+    QString msgSupprimer(QString(QObject::trUtf8("Poursuivre avec la suppression de l'article '%1' ?"))
+    						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION)));
+
     if (QMessageBox::Ok ==
             YerothQMessageBox::question(this,
-                                       QObject::trUtf8
-                                       ("suppression d'un article"), msgSupprimer,
-                                       QMessageBox::Cancel, QMessageBox::Ok))
+                                        QObject::tr("suppression d'un article"), msgSupprimer,
+                                        QMessageBox::Cancel, QMessageBox::Ok))
     {
         bool resRemoved = _curStocksTableModel->removeRow(_allWindows->getLastSelectedListerRow());
         //qDebug() << "YerothModifierWindow::supprimer_ce_stock() " << resRemoved;
@@ -394,20 +393,22 @@ void YerothStockDetailWindow::supprimer_ce_stock()
         if (resRemoved)
         {
             msgSupprimer.clear();
-            msgSupprimer.append("Le stock \"");
-            msgSupprimer.append(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
-            msgSupprimer.append(QObject::trUtf8("\" a été supprimé."));
-            YerothQMessageBox::information(this, "suppression d'un stock avec succès",
-                                          msgSupprimer);
+            msgSupprimer.append(QString(QObject::trUtf8("Le stock '%1' a été supprimé !"))
+            						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION)));
+
+            YerothQMessageBox::information(this,
+            							   QObject::trUtf8("suppression d'un stock avec succès"),
+                                           msgSupprimer);
         }
         else
         {
             msgSupprimer.clear();
-            msgSupprimer.append("Le stock \"");
-            msgSupprimer.append(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
-            msgSupprimer.append("\" ne pouvait pas être supprimé.");
-            YerothQMessageBox::information(this, "échec de la suppression d'un stock",
-                                          msgSupprimer);
+            msgSupprimer.append(QString(QObject::trUtf8("Le stock '%1' ne pouvait pas être supprimé !"))
+            						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION)));
+
+            YerothQMessageBox::information(this,
+            							   QObject::trUtf8("échec de la suppression d'un stock"),
+                                           msgSupprimer);
         }
     }
     else

@@ -57,8 +57,6 @@ public:
 
     void setupEditCategorie();
 
-    void setupEditClient();
-
     void setupEditFournisseur();
 
     void setupEditAlerte();
@@ -86,8 +84,6 @@ public slots:
 	void modifier_alerte();
 
 	void modifier_remise();
-
-	void modifier_client();
 
 	void modifier_fournisseur();
 
@@ -121,8 +117,6 @@ private:
 
 	void retourListerCategorie();
 
-	void retourListerClient();
-
 	void retourListerFournisseur();
 
 	void retourListerAlerte();
@@ -134,8 +128,6 @@ private:
     void clear_categorie_all_fields();
 
     void clear_localisation_all_fields();
-
-    void clear_client_all_fields();
 
     void clear_fournisseur_all_fields();
 

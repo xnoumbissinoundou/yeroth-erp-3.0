@@ -73,8 +73,6 @@ public slots:
 
 	void lister_categorie(YerothSqlTableModel *aSqlTableModel = 0);
 
-	void lister_client(YerothSqlTableModel *aSqlTableModel = 0);
-
 	void lister_fournisseur(YerothSqlTableModel *aSqlTableModel = 0);
 
 	void lister_alerte(YerothSqlTableModel *aSqlTableModel = 0);
@@ -89,8 +87,6 @@ public slots:
 
     void afficher_detail_categorie();
 
-    void afficher_detail_client();
-
     void afficher_detail_fournisseur();
 
     void afficher_detail_alerte();
@@ -102,8 +98,6 @@ public slots:
     void supprimer_localisation();
 
     void supprimer_categorie();
-
-    void supprimer_client();
 
     void supprimer_fournisseur();
 
@@ -137,11 +131,6 @@ public slots:
 		return _categoryCurrentlyFiltered;
 	}
 
-	inline bool isCustomerCurrentlyFiltered() const
-	{
-		return _customerCurrentlyFiltered;
-	}
-
 	inline bool isSiteCurrentlyFiltered() const
 	{
 		return _siteCurrentlyFiltered;
@@ -166,8 +155,6 @@ public slots:
 
 	void setCategoryCurrentlyFiltered(bool categoryCurrentlyFiltered);
 
-	void setCustomerCurrentlyFiltered(bool customerCurrentlyFiltered);
-
 	void setSiteCurrentlyFiltered(bool siteCurrentlyFiltered);
 
 	void setSupplierCurrentlyFiltered(bool supplierCurrentlyFiltered);
@@ -179,8 +166,6 @@ private:
     bool 					_alertCurrentlyFiltered;
 
     bool 					_categoryCurrentlyFiltered;
-
-    bool 					_customerCurrentlyFiltered;
 
     bool 					_userCurrentlyFiltered;
 

@@ -15,7 +15,6 @@ YerothAdminListerWindow::YerothAdminListerWindow()
 :YerothPOSAdminWindowsCommons(QObject::tr("administration ~ lister")),
  _alertCurrentlyFiltered(false),
  _categoryCurrentlyFiltered(false),
- _customerCurrentlyFiltered(false),
  _userCurrentlyFiltered(false),
  _supplierCurrentlyFiltered(false),
  _siteCurrentlyFiltered(false),
@@ -45,7 +44,6 @@ YerothAdminListerWindow::YerothAdminListerWindow()
     tableView_lister_utilisateur->setTableName(&YerothERPWindows::USERS);
     tableView_lister_localisation->setTableName(&YerothERPWindows::LOCALISATIONS);
     tableView_lister_categorie->setTableName(&YerothERPWindows::CATEGORIES);
-    tableView_lister_client->setTableName(&YerothERPWindows::CLIENTS);
     tableView_lister_fournisseur->setTableName(&YerothERPWindows::FOURNISSEURS);
     tableView_lister_alerte->setTableName(&YerothERPWindows::ALERTES);
 
@@ -86,9 +84,6 @@ YerothAdminListerWindow::YerothAdminListerWindow()
     connect(tableView_lister_categorie, SIGNAL(clicked(QModelIndex)), this,
             SLOT(handleItemModification(QModelIndex)));
 
-    connect(tableView_lister_client, SIGNAL(clicked(QModelIndex)), this,
-            SLOT(handleItemModification(QModelIndex)));
-
     connect(tableView_lister_fournisseur, SIGNAL(clicked(QModelIndex)), this,
             SLOT(handleItemModification(QModelIndex)));
 
@@ -103,9 +98,6 @@ YerothAdminListerWindow::YerothAdminListerWindow()
 
     connect(tableView_lister_categorie, SIGNAL(doubleClicked(const QModelIndex &)), this,
             SLOT(afficher_detail_categorie()));
-
-    connect(tableView_lister_client, SIGNAL(doubleClicked(const QModelIndex &)), this,
-            SLOT(afficher_detail_client()));
 
     connect(tableView_lister_fournisseur, SIGNAL(doubleClicked(const QModelIndex &)), this,
             SLOT(afficher_detail_fournisseur()));
@@ -157,8 +149,8 @@ void YerothAdminListerWindow::definirManager()
 
 void YerothAdminListerWindow::self_reset_view(int currentIndex)
 {
-    this->rendreInvisible();
-    this->rendreVisible(currentIndex);
+    rendreInvisible();
+    rendreVisible(currentIndex);
 }
 
 void YerothAdminListerWindow::rendreVisible(unsigned selectedSujetAction)
@@ -183,13 +175,6 @@ void YerothAdminListerWindow::rendreVisible(unsigned selectedSujetAction)
     	if (false == isCategoryCurrentlyFiltered())
     	{
     		lister_categorie();
-    	}
-        break;
-
-    case SUJET_ACTION_CLIENT:
-    	if (false == isCustomerCurrentlyFiltered())
-    	{
-    		lister_client();
     	}
         break;
 
@@ -244,8 +229,6 @@ void YerothAdminListerWindow::reinitialiser()
 
     lister_categorie();
 
-    lister_client();
-
     lister_fournisseur();
 
     lister_alerte();
@@ -272,10 +255,6 @@ void YerothAdminListerWindow::set_admin_rechercher_font()
 
     case SUJET_ACTION_CATEGORIE:
     	MACRO_SET_ADMIN_RECHERCHER_FONT(_categoryCurrentlyFiltered)
-        break;
-
-    case SUJET_ACTION_CLIENT:
-    	MACRO_SET_ADMIN_RECHERCHER_FONT(_customerCurrentlyFiltered)
         break;
 
     case SUJET_ACTION_FOURNISSEUR:
@@ -401,36 +380,6 @@ void YerothAdminListerWindow::lister_categorie(YerothSqlTableModel * aSqlTableMo
     tableView_lister_categorie->selectRow(_lastItemSelectedForModification);
 }
 
-void YerothAdminListerWindow::lister_client(YerothSqlTableModel * aSqlTableModel)
-{
-    int toSelectRow = 0;
-    if (aSqlTableModel
-            && YerothUtils::isEqualCaseInsensitive(_allWindows->CLIENTS, aSqlTableModel->sqlTableName()))
-    {
-        tableView_lister_client->lister_les_elements_du_tableau(*aSqlTableModel);
-        _curSearchSqlTableModel = aSqlTableModel;
-    }
-    else
-    {
-    	setCustomerCurrentlyFiltered(false);
-        tableView_lister_client->lister_les_elements_du_tableau(_allWindows->getSqlTableModel_clients());
-    }
-    tableView_lister_client->hideColumn(0);
-    tableView_lister_client->hideColumn(4);
-    tableView_lister_client->hideColumn(10);
-    tableView_lister_client->hideColumn(11);
-    tableView_lister_client->hideColumn(12);
-    tableView_lister_client->hideColumn(13);
-    tableView_lister_client->hideColumn(14);
-    tableView_lister_client->hideColumn(15);
-    tableView_lister_client->hideColumn(16);
-
-    _lastItemSelectedForModification = toSelectRow;
-
-    set_admin_rechercher_font();
-
-    tableView_lister_client->selectRow(this->_lastItemSelectedForModification);
-}
 
 void YerothAdminListerWindow::lister_fournisseur(YerothSqlTableModel * aSqlTableModel)
 {
@@ -536,10 +485,6 @@ void YerothAdminListerWindow::setCategoryCurrentlyFiltered(bool categoryCurrentl
 	_categoryCurrentlyFiltered = categoryCurrentlyFiltered;
 }
 
-void YerothAdminListerWindow::setCustomerCurrentlyFiltered(bool customerCurrentlyFiltered)
-{
-	_customerCurrentlyFiltered = customerCurrentlyFiltered;
-}
 
 void YerothAdminListerWindow::setSiteCurrentlyFiltered(bool siteCurrentlyFiltered)
 {
@@ -586,13 +531,6 @@ void YerothAdminListerWindow::modifier()
             this->rendreInvisible();
         }
         break;
-    case SUJET_ACTION_CLIENT:
-        if (tableView_lister_client->rowCount() > 0)
-        {
-            _allWindows->_adminModifierWindow->rendreVisible(SUJET_ACTION_CLIENT);
-            this->rendreInvisible();
-        }
-        break;
     case SUJET_ACTION_FOURNISSEUR:
         if (tableView_lister_fournisseur->rowCount() > 0)
         {
@@ -636,9 +574,6 @@ void YerothAdminListerWindow::afficher_au_detail()
     case SUJET_ACTION_CATEGORIE:
         afficher_detail_categorie();
         break;
-    case SUJET_ACTION_CLIENT:
-        afficher_detail_client();
-        break;
     case SUJET_ACTION_FOURNISSEUR:
         afficher_detail_fournisseur();
         break;
@@ -672,11 +607,6 @@ void YerothAdminListerWindow::afficher_detail_categorie()
     this->rendreInvisible();
 }
 
-void YerothAdminListerWindow::afficher_detail_client()
-{
-    _allWindows->_adminDetailWindow->rendreVisibleClient(this->lastSelectedItemForModification());
-    this->rendreInvisible();
-}
 
 void YerothAdminListerWindow::afficher_detail_fournisseur()
 {
@@ -702,9 +632,6 @@ void YerothAdminListerWindow::supprimer()
         break;
     case SUJET_ACTION_CATEGORIE:
         supprimer_categorie();
-        break;
-    case SUJET_ACTION_CLIENT:
-        supprimer_client();
         break;
     case SUJET_ACTION_FOURNISSEUR:
         supprimer_fournisseur();
@@ -890,67 +817,6 @@ void YerothAdminListerWindow::supprimer_categorie()
     }
 }
 
-void YerothAdminListerWindow::supprimer_client()
-{
-    _logger->log("supprimer_client");
-    YerothSqlTableModel *clientsTableModel = 0;
-
-    if (_curSearchSqlTableModel
-            && YerothUtils::isEqualCaseInsensitive(_allWindows->CLIENTS, _curSearchSqlTableModel->sqlTableName()))
-    {
-        clientsTableModel = _curSearchSqlTableModel;
-    }
-    else
-    {
-        clientsTableModel = &_allWindows->getSqlTableModel_clients();
-    }
-
-    QSqlRecord record = clientsTableModel->record(this->lastSelectedItemForModification());
-
-    if (record.isEmpty() || record.isNull(YerothDatabaseTableColumn::NOM_ENTREPRISE))
-    {
-        return;
-    }
-
-    QString nom_entreprise(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE));
-
-    QString msgConfirmation(QString(QObject::trUtf8("Supprimer le client '%1' ?"))
-    							.arg(nom_entreprise));
-
-    if (QMessageBox::Ok ==
-            YerothQMessageBox::question(this,
-            							QObject::tr("admin-lister-supprimer-client"),
-            							msgConfirmation,
-										QMessageBox::Cancel,
-										QMessageBox::Ok))
-    {
-        bool success = clientsTableModel->removeRow(this->lastSelectedItemForModification());
-
-        QString msg(QString(QObject::trUtf8("Le client '%1"))
-        				.arg(nom_entreprise));
-
-        if (success)
-        {
-            msg.append(QObject::trUtf8("' a été supprimée de la base de données !"));
-
-            YerothQMessageBox::information(this,
-            							   QObject::tr("admin-lister-supprimer-client"),
-            							   msg,
-										   QMessageBox::Ok);
-
-            this->self_reset_view(SUJET_ACTION_CLIENT);
-        }
-        else
-        {
-            msg.append(QObject::trUtf8(" n'a pas été supprimée de la base de données !"));
-
-            YerothQMessageBox::information(this,
-            							   QObject::tr("admin-lister-supprimer-client"),
-										   msg,
-										   QMessageBox::Ok);
-        }
-    }
-}
 
 void YerothAdminListerWindow::supprimer_fournisseur()
 {

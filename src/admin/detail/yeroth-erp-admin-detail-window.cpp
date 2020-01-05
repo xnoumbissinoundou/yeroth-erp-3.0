@@ -26,7 +26,6 @@ YerothAdminDetailWindow::YerothAdminDetailWindow():YerothPOSAdminWindowsCommons(
 
     dateEdit_detail_utilisateur_date_naissance->setEnabled(false);
     dateEdit_detail_localisation_date_ouverture->setEnabled(false);
-    textEdit_detail_client_description->setEnabled(false);
     textEdit_detail_fournisseur_description->setEnabled(false);
     textEdit_detail_categorie_description->setEnabled(false);
     textEdit_detail_localisation_description_lieu->setEnabled(false);
@@ -51,7 +50,6 @@ YerothAdminDetailWindow::YerothAdminDetailWindow():YerothPOSAdminWindowsCommons(
     pushButton_detail_localisation_retour->enable(this, SLOT(retourListerLocalisation()));
     pushButton_detail_categorie_retour->enable(this, SLOT(retourListerCategorie()));
     pushButton_detail_alerte_retour->enable(this, SLOT(retourListerAlerte()));
-    pushButton_detail_client_retour->enable(this, SLOT(retourListerClient()));
     pushButton_detail_fournisseur_retour->enable(this, SLOT(retourListerFournisseur()));
     /** Menu actions */
     connect(actionChanger_utilisateur, SIGNAL(triggered()), this, SLOT(changer_utilisateur()));
@@ -77,19 +75,6 @@ void YerothAdminDetailWindow::setupLineEdits()
     lineEdit_detail_utilisateur_numero_telephone_2->setEnabled(false);
     lineEdit_detail_utilisateur_id->setEnabled(false);
     lineEdit_detail_utilisateur_mot_passe->setEnabled(false);
-    lineEdit_detail_client_reference_client->setEnabled(false);
-    lineEdit_detail_client_nom_entreprise->setEnabled(false);
-    lineEdit_detail_client_nom_representant->setEnabled(false);
-    lineEdit_detail_client_quartier->setEnabled(false);
-    lineEdit_detail_client_ville->setEnabled(false);
-    lineEdit_detail_client_province_etat->setEnabled(false);
-    lineEdit_detail_client_pays->setEnabled(false);
-    lineEdit_detail_client_boite_postale->setEnabled(false);
-    lineEdit_detail_client_siege_social->setEnabled(false);
-    lineEdit_detail_client_email->setEnabled(false);
-    lineEdit_detail_client_numero_telephone_1->setEnabled(false);
-    lineEdit_detail_client_numero_telephone_2->setEnabled(false);
-    lineEdit_detail_client_numero_contribuable->setEnabled(false);
     lineEdit_detail_fournisseur_nom_entreprise->setEnabled(false);
     lineEdit_detail_fournisseur_nom_representant->setEnabled(false);
     lineEdit_detail_fournisseur_quartier->setEnabled(false);
@@ -116,7 +101,6 @@ void YerothAdminDetailWindow::setupLineEdits()
     lineEdit_detail_localisation_numero_telephone_2->setEnabled(false);
     lineEdit_detail_alerte_designation_article->setEnabled(false);
     lineEdit_detail_alerte_quantite->setEnabled(false);
-    lineEdit_detail_client_dette_maximale_compte_client->setEnabled(false);
 }
 
 void YerothAdminDetailWindow::definirPasDeRole()
@@ -165,9 +149,6 @@ void YerothAdminDetailWindow::modifier()
         break;
     case SUJET_ACTION_CATEGORIE:
         _allWindows->_adminModifierWindow->rendreVisible(SUJET_ACTION_CATEGORIE);
-        break;
-    case SUJET_ACTION_CLIENT:
-        _allWindows->_adminModifierWindow->rendreVisible(SUJET_ACTION_CLIENT);
         break;
     case SUJET_ACTION_FOURNISSEUR:
         _allWindows->_adminModifierWindow->rendreVisible(SUJET_ACTION_FOURNISSEUR);
@@ -309,71 +290,6 @@ void YerothAdminDetailWindow::rendreVisibleCategorie(int sqlTableRow)
     this->setVisible(true);
 }
 
-void YerothAdminDetailWindow::rendreVisibleClient(int sqlTableRow)
-{
-    tabWidget_detail->setCurrentIndex(SUJET_ACTION_CLIENT);
-
-    YerothAdminListerWindow *lw = _allWindows->_adminListerWindow;
-
-    YerothSqlTableModel *clientsTableModel = lw->getCurSearchSqlTableModel();
-
-    if (!clientsTableModel)
-    {
-        clientsTableModel = &_allWindows->getSqlTableModel_clients();
-    }
-    else if (clientsTableModel
-             && !YerothUtils::isEqualCaseInsensitive(clientsTableModel->sqlTableName(), _allWindows->CLIENTS))
-    {
-        clientsTableModel = &_allWindows->getSqlTableModel_clients();
-    }
-
-    QSqlRecord record = clientsTableModel->record(sqlTableRow);
-
-    lineEdit_detail_client_reference_client->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE_CLIENT));
-    lineEdit_detail_client_nom_entreprise->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE));
-    lineEdit_detail_client_nom_representant->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_REPRESENTANT));
-    lineEdit_detail_client_quartier->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::QUARTIER));
-    lineEdit_detail_client_ville->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::VILLE));
-    lineEdit_detail_client_province_etat->setText(GET_SQL_RECORD_DATA(record, "province_etat"));
-    lineEdit_detail_client_pays->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::PAYS));
-    lineEdit_detail_client_boite_postale->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::BOITE_POSTALE));
-    lineEdit_detail_client_siege_social->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::SIEGE_SOCIAL));
-    lineEdit_detail_client_email->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::EMAIL));
-    lineEdit_detail_client_numero_telephone_1->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NUMERO_TELEPHONE_1));
-    lineEdit_detail_client_numero_telephone_2->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NUMERO_TELEPHONE_2));
-    lineEdit_detail_client_numero_contribuable->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NUMERO_CONTRIBUABLE));
-
-    YerothPOSUser *aUser = YerothUtils::getAllWindows()->getUser();
-
-    if (0 != YerothUtils::getAllWindows())
-    {
-    	if (0 != aUser && aUser->isManager())
-    	{
-        	label_admin_detail_client_dette_maximale_compte_client->setVisible(true);
-    		lineEdit_detail_client_dette_maximale_compte_client->setVisible(true);
-
-    	    double dette_maximale_compte_client = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT).toDouble();
-
-    	    lineEdit_detail_client_dette_maximale_compte_client->setText(GET_DOUBLE_STRING(dette_maximale_compte_client));
-    	}
-    	else
-    	{
-    		label_admin_detail_client_dette_maximale_compte_client->setVisible(false);
-    		lineEdit_detail_client_dette_maximale_compte_client->setVisible(false);
-    	}
-    }
-    else
-    {
-    	label_admin_detail_client_dette_maximale_compte_client->setVisible(false);
-		lineEdit_detail_client_dette_maximale_compte_client->setVisible(false);
-    }
-
-    textEdit_detail_client_description->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESCRIPTION_CLIENT));
-
-    enableOtherTabs(SUJET_ACTION_CLIENT, false);
-
-    setVisible(true);
-}
 
 void YerothAdminDetailWindow::rendreVisibleFournisseur(int sqlTableRow)
 {
@@ -475,11 +391,6 @@ void YerothAdminDetailWindow::retourListerCategorie()
     this->rendreInvisible();
 }
 
-void YerothAdminDetailWindow::retourListerClient()
-{
-    _allWindows->_adminListerWindow->rendreVisible(SUJET_ACTION_CLIENT);
-    this->rendreInvisible();
-}
 
 void YerothAdminDetailWindow::retourListerFournisseur()
 {

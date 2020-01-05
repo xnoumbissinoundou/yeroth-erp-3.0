@@ -142,6 +142,8 @@ protected:
 
 private slots:
 
+	void supprimerCompteClient();
+
 	void afficher_au_detail();
 
 	void afficher_au_detail(const QModelIndex & modelIndex);

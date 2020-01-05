@@ -751,12 +751,12 @@ void YerothMarchandisesWindow::supprimer_ce_stock()
 
     QSqlRecord record = _curInventaireDesStocksTableModel->record(rowToRemove);
 
-    QString msgSupprimer(QString(QObject::tr("Poursuivre avec la suppression de l'article \"%1\" ?"))
+    QString msgSupprimer(QString(QObject::trUtf8("Poursuivre avec la suppression de la marchandise '%1' ?"))
     						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION)));
 
     if (QMessageBox::Ok ==
             YerothQMessageBox::question(this,
-                                       QObject::tr("suppression d'un inventaire de stock"),
+                                       QObject::tr("suppression d'une marchandise"),
                                        msgSupprimer,
 									   QMessageBox::Cancel,
 									   QMessageBox::Ok))

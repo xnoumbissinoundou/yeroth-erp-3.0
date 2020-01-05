@@ -37,13 +37,11 @@ _savePassword(false)
     pushButton_modifier_localisation_annuler->enable(this, SLOT(annuler()));
     pushButton_modifier_categorie_annuler->enable(this, SLOT(annuler()));
     pushButton_modifier_alerte_annuler->enable(this, SLOT(annuler()));
-    pushButton_modifier_client_annuler->enable(this, SLOT(annuler()));
     pushButton_modifier_fournisseur_annuler->enable(this, SLOT(annuler()));
     pushButton_modifier_utilisateur_valider->enable(this, SLOT(modifier_utilisateur()));
     pushButton_modifier_localisation_valider->enable(this, SLOT(modifier_localisation()));
     pushButton_modifier_categorie_valider->enable(this, SLOT(modifier_categorie()));
     pushButton_modifier_alerte_valider->enable(this, SLOT(modifier_alerte()));
-    pushButton_modifier_client_valider->enable(this, SLOT(modifier_client()));
     pushButton_modifier_fournisseur_valider->enable(this, SLOT(modifier_fournisseur()));
 
     pushButton_creer->enable(this, SLOT(creer()));
@@ -100,20 +98,21 @@ void YerothAdminModifierWindow::setupLineEdits()
 
 void YerothAdminModifierWindow::rendreInvisible()
 {
-    this->clear_utilisateur_all_fields();
-    this->clear_categorie_all_fields();
-    this->clear_localisation_all_fields();
-    this->clear_client_all_fields();
-    this->clear_fournisseur_all_fields();
-    this->clear_alerte_all_fields();
+    clear_utilisateur_all_fields();
+    clear_categorie_all_fields();
+    clear_localisation_all_fields();
+    clear_fournisseur_all_fields();
+    clear_alerte_all_fields();
+
     _savePassword = false;
+
     YerothPOSAdminWindowsCommons::rendreInvisible();
 }
 
 void YerothAdminModifierWindow::enableOtherTabs(enum AdminSujetAction curAction, bool enabled)
 {
     tabWidget_modifier->setTabEnabled(curAction, !enabled);
-    for (int k = 0; k <= 6; ++k)
+    for (int k = 0; k <= SUJET_ACTION_LOCALISATION; ++k)
     {
         if (k != curAction)
         {
@@ -127,7 +126,6 @@ void YerothAdminModifierWindow::rendreVisible(enum AdminSujetAction selectedSuje
     this->clear_utilisateur_all_fields();
     this->clear_categorie_all_fields();
     this->clear_localisation_all_fields();
-    this->clear_client_all_fields();
     this->clear_fournisseur_all_fields();
     this->clear_alerte_all_fields();
     this->clear_remise_all_fields();
@@ -148,11 +146,6 @@ void YerothAdminModifierWindow::rendreVisible(enum AdminSujetAction selectedSuje
         tabWidget_modifier->setCurrentIndex(SUJET_ACTION_CATEGORIE);
         this->enableOtherTabs(SUJET_ACTION_CATEGORIE, false);
         this->setupEditCategorie();
-        break;
-    case SUJET_ACTION_CLIENT:
-        tabWidget_modifier->setCurrentIndex(SUJET_ACTION_CLIENT);
-        this->enableOtherTabs(SUJET_ACTION_CLIENT, false);
-        this->setupEditClient();
         break;
     case SUJET_ACTION_FOURNISSEUR:
         tabWidget_modifier->setCurrentIndex(SUJET_ACTION_FOURNISSEUR);
@@ -197,11 +190,6 @@ void YerothAdminModifierWindow::retourListerCategorie()
     this->rendreInvisible();
 }
 
-void YerothAdminModifierWindow::retourListerClient()
-{
-    _allWindows->_adminListerWindow->rendreVisible(SUJET_ACTION_CLIENT);
-    this->rendreInvisible();
-}
 
 void YerothAdminModifierWindow::retourListerFournisseur()
 {
@@ -238,10 +226,6 @@ void YerothAdminModifierWindow::annuler()
     case SUJET_ACTION_CATEGORIE:
         clear_categorie_all_fields();
         retourListerCategorie();
-        break;
-    case SUJET_ACTION_CLIENT:
-        clear_client_all_fields();
-        retourListerClient();
         break;
     case SUJET_ACTION_FOURNISSEUR:
         clear_fournisseur_all_fields();
@@ -303,8 +287,6 @@ void YerothAdminModifierWindow::radioButtons_periode_temps()
 #include"modifier-localisation.cpp"
 
 #include"modifier-categorie.cpp"
-
-#include"modifier-client.cpp"
 
 #include"modifier-fournisseur.cpp"
 

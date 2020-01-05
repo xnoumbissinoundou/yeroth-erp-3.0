@@ -89,14 +89,6 @@ void YerothAdminSearchForm::setupLineEditsQCompleters(int tabWidjetListerIdx)
         _curSqlTableModel = &_allWindows->getSqlTableModel_categories();
         break;
 
-    case SUJET_ACTION_CLIENT:
-
-        lineEdit_terme_recherche->enableForSearch(QObject::trUtf8("nom de l'entreprise cliente"));
-        lineEdit_terme_recherche->setupMyStaticQCompleter(_allWindows->CLIENTS, YerothDatabaseTableColumn::NOM_ENTREPRISE, false, false);
-        _curSujetAction = SUJET_ACTION_CLIENT;
-        _curSqlTableModel = &_allWindows->getSqlTableModel_clients();
-        break;
-
     case SUJET_ACTION_COMPTE_UTILISATEUR:
 
         lineEdit_terme_recherche->enableForSearch(QObject::trUtf8("nom de l'utilisateur"));
@@ -163,9 +155,6 @@ void YerothAdminSearchForm::rechercher(const QString & itemName)
     case SUJET_ACTION_CATEGORIE:
         filter = GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::NOM_CATEGORIE, searchString);
         break;
-    case SUJET_ACTION_CLIENT:
-        filter = GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::NOM_ENTREPRISE, searchString);
-        break;
     case SUJET_ACTION_COMPTE_UTILISATEUR:
         filter = GENERATE_SQL_IS_STMT("nom_complet", searchString);
         break;
@@ -201,11 +190,6 @@ void YerothAdminSearchForm::rechercher(const QString & itemName)
             case SUJET_ACTION_CATEGORIE:
             	_allWindows->_adminListerWindow->setCategoryCurrentlyFiltered(true);
                 _allWindows->_adminListerWindow->lister_categorie(_curSqlTableModel);
-                break;
-
-            case SUJET_ACTION_CLIENT:
-            	_allWindows->_adminListerWindow->setCustomerCurrentlyFiltered(true);
-                _allWindows->_adminListerWindow->lister_client(_curSqlTableModel);
                 break;
 
             case SUJET_ACTION_COMPTE_UTILISATEUR:

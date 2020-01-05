@@ -160,7 +160,6 @@ private:
 	static const QString COMPTE_UTILISATEUR;
 	static const QString LOCALISATION;
 	static const QString CATEGORIE;
-	static const QString CLIENT;
 	static const QString FOURNISSEUR;
 	static const QString ALERTE;
 	static const QString REMISE;

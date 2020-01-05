@@ -50,8 +50,6 @@ public:
 
     void rendreVisibleCategorie(int sqlTableRow);
 
-    void rendreVisibleClient(int sqlTableRow);
-
     void rendreVisibleFournisseur(int sqlTableRow);
 
     void rendreVisibleAlerte(int sqlTableRow);
@@ -73,8 +71,6 @@ public slots:
     void retourListerLocalisation();
 
     void retourListerCategorie();
-
-    void retourListerClient();
 
     void retourListerFournisseur();
 

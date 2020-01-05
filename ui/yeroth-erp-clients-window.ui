@@ -2180,7 +2180,7 @@ Compte client</string>
      <string>Menu</string>
     </property>
    </widget>
-   <widget class="YerothPushButton" name="pushButton_marchandises">
+   <widget class="YerothPushButton" name="pushButton_supprimer">
     <property name="geometry">
      <rect>
       <x>527</x>
@@ -2204,45 +2204,45 @@ Compte client</string>
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>48</green>
-          <blue>48</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Light">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>176</green>
-          <blue>176</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Midlight">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>112</green>
-          <blue>112</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Dark">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>127</red>
-          <green>24</green>
-          <blue>24</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Mid">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>170</red>
-          <green>32</green>
-          <blue>32</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
@@ -2276,18 +2276,18 @@ Compte client</string>
        <colorrole role="Base">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>255</green>
-          <blue>255</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Window">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>48</green>
-          <blue>48</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
@@ -2303,9 +2303,9 @@ Compte client</string>
        <colorrole role="AlternateBase">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>151</green>
-          <blue>151</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
@@ -2341,45 +2341,45 @@ Compte client</string>
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>48</green>
-          <blue>48</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Light">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>176</green>
-          <blue>176</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Midlight">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>112</green>
-          <blue>112</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Dark">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>127</red>
-          <green>24</green>
-          <blue>24</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Mid">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>170</red>
-          <green>32</green>
-          <blue>32</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
@@ -2413,18 +2413,18 @@ Compte client</string>
        <colorrole role="Base">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>255</green>
-          <blue>255</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Window">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>48</green>
-          <blue>48</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
@@ -2440,9 +2440,9 @@ Compte client</string>
        <colorrole role="AlternateBase">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>151</green>
-          <blue>151</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
@@ -2469,63 +2469,63 @@ Compte client</string>
        <colorrole role="WindowText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>127</red>
-          <green>24</green>
-          <blue>24</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>48</green>
-          <blue>48</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Light">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>176</green>
-          <blue>176</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Midlight">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>112</green>
-          <blue>112</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Dark">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>127</red>
-          <green>24</green>
-          <blue>24</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Mid">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>170</red>
-          <green>32</green>
-          <blue>32</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Text">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>127</red>
-          <green>24</green>
-          <blue>24</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
@@ -2541,27 +2541,27 @@ Compte client</string>
        <colorrole role="ButtonText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>127</red>
-          <green>24</green>
-          <blue>24</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Base">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>48</green>
-          <blue>48</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Window">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>48</green>
-          <blue>48</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
@@ -2577,9 +2577,9 @@ Compte client</string>
        <colorrole role="AlternateBase">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>48</green>
-          <blue>48</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
@@ -2612,7 +2612,7 @@ Compte client</string>
      </font>
     </property>
     <property name="text">
-     <string>Marchandises</string>
+     <string>Supprimer</string>
     </property>
    </widget>
    <widget class="YerothLineEdit" name="lineEdit_nom_entreprise">
@@ -9622,13 +9622,10 @@ background-color: rgb(0, 0, 0); </string>
     <addaction name="actionDeconnecter_utilisateur"/>
     <addaction name="separator"/>
     <addaction name="actionCreerCompteClient"/>
+    <addaction name="actionSupprimerCompteClient"/>
     <addaction name="separator"/>
     <addaction name="actionAchats"/>
-    <addaction name="actionMarchandises"/>
-    <addaction name="separator"/>
     <addaction name="actionPaiements"/>
-    <addaction name="separator"/>
-    <addaction name="actionVentes"/>
     <addaction name="separator"/>
     <addaction name="actionMenu_Principal"/>
     <addaction name="separator"/>
@@ -10629,21 +10626,6 @@ background-color: rgb(0, 0, 0); </string>
     </font>
    </property>
   </action>
-  <action name="actionVentes">
-   <property name="text">
-    <string>Ventes</string>
-   </property>
-   <property name="toolTip">
-    <string>Ventes</string>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-    </font>
-   </property>
-  </action>
   <action name="actionAdministration">
    <property name="text">
     <string>Administration</string>
@@ -10680,19 +10662,6 @@ background-color: rgb(0, 0, 0); </string>
      <pointsize>10</pointsize>
      <weight>50</weight>
      <bold>false</bold>
-    </font>
-   </property>
-  </action>
-  <action name="actionMarchandises">
-   <property name="text">
-    <string>Lister les marchandises</string>
-   </property>
-   <property name="toolTip">
-    <string>Lister les marchandises</string>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
     </font>
    </property>
   </action>
@@ -10813,6 +10782,19 @@ background-color: rgb(0, 0, 0); </string>
      <pointsize>10</pointsize>
      <weight>50</weight>
      <bold>false</bold>
+    </font>
+   </property>
+  </action>
+  <action name="actionSupprimerCompteClient">
+   <property name="text">
+    <string>Supprimer un compte client</string>
+   </property>
+   <property name="toolTip">
+    <string>Supprimer un compte client</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
     </font>
    </property>
   </action>

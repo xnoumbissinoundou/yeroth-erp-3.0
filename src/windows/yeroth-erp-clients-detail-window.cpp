@@ -44,8 +44,8 @@ YerothClientsDetailWindow::YerothClientsDetailWindow()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_les_paiements, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_les_transactions, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_les_ventes, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierCompteClient, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
@@ -54,8 +54,8 @@ YerothClientsDetailWindow::YerothClientsDetailWindow()
     pushButton_clients->disable(this);
     pushButton_paiements->disable(this);
     pushButton_menu->disable(this);
-    pushButton_transactions->disable(this);
-    pushButton_ventes->disable(this);
+    pushButton_modifier->disable(this);
+    pushButton_supprimer->disable(this);
     pushButton_retour->disable(this);
 
     /** Menu actions */
@@ -66,8 +66,8 @@ YerothClientsDetailWindow::YerothClientsDetailWindow()
     connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_document()));
     connect(actionAfficher_les_clients, SIGNAL(triggered()), this, SLOT(clients()));
     connect(actionAfficher_les_paiements, SIGNAL(triggered()), this, SLOT(paiements()));
-    connect(actionAfficher_les_transactions, SIGNAL(triggered()), this, SLOT(transactions()));
-    connect(actionAfficher_les_ventes, SIGNAL(triggered()), this, SLOT(ventes()));
+    connect(actionModifierCompteClient, SIGNAL(triggered()), this, SLOT(modifierCompteClient()));
+    connect(actionSupprimerCompteClient, SIGNAL(triggered()), this, SLOT(supprimerCompteClient()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
     connect(actionA_propos, SIGNAL(triggered()), this, SLOT(apropos()));
     connect(actionAlertes, SIGNAL(triggered()), this, SLOT(alertes()));
@@ -87,6 +87,55 @@ YerothClientsDetailWindow::YerothClientsDetailWindow()
 
     setupShortcuts();
 }
+
+
+void YerothClientsDetailWindow::modifierCompteClient()
+{
+
+}
+
+
+void YerothClientsDetailWindow::supprimerCompteClient()
+{
+    QSqlRecord record = _curClientTableModel->record(_clientLastSelectedRow);
+
+    QString msgSupprimer(QString(QObject::trUtf8("Poursuivre avec la suppression du compte client '%1 ?'"))
+    						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE)));
+
+    if (QMessageBox::Ok ==
+            YerothQMessageBox::question(this,
+                                       QObject::tr("suppression d'un compte client"), msgSupprimer,
+                                       QMessageBox::Cancel, QMessageBox::Ok))
+    {
+        bool resRemoved = _curClientTableModel->removeRow(_allWindows->getLastSelectedListerRow());
+        //qDebug() << "YerothModifierWindow::supprimer_ce_stock() " << resRemoved;
+        clients();
+        if (resRemoved)
+        {
+            msgSupprimer.clear();
+            msgSupprimer.append(QString(QObject::trUtf8("Le compte client '%1' a été supprimé !"))
+            						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE)));
+
+            YerothQMessageBox::information(this,
+            							   QObject::trUtf8("suppression d'un compte client avec succès"),
+                                           msgSupprimer);
+        }
+        else
+        {
+            msgSupprimer.clear();
+            msgSupprimer.append(QString(QObject::trUtf8("Le compte client '%1' ne pouvait pas être supprimé !"))
+            						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE)));
+
+            YerothQMessageBox::information(this,
+            							   QObject::trUtf8("échec de la suppression d'un compte client"),
+                                           msgSupprimer);
+        }
+    }
+    else
+    {
+    }
+}
+
 
 void YerothClientsDetailWindow::setupLineEdits()
 {
@@ -115,8 +164,8 @@ void YerothClientsDetailWindow::definirPasDeRole()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_les_paiements, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_les_transactions, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_les_ventes, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierCompteClient, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
@@ -124,8 +173,8 @@ void YerothClientsDetailWindow::definirPasDeRole()
     pushButton_clients->disable(this);
     pushButton_paiements->disable(this);
     pushButton_menu->disable(this);
-    pushButton_transactions->disable(this);
-    pushButton_ventes->disable(this);
+    pushButton_modifier->disable(this);
+    pushButton_supprimer->disable(this);
     pushButton_retour->disable(this);
 }
 
@@ -136,8 +185,8 @@ void YerothClientsDetailWindow::definirCaissier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_les_paiements, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_les_transactions, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_les_ventes, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierCompteClient, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
@@ -145,8 +194,8 @@ void YerothClientsDetailWindow::definirCaissier()
     pushButton_clients->disable(this);
     pushButton_paiements->disable(this);
     pushButton_menu->disable(this);
-    pushButton_transactions->disable(this);
-    pushButton_ventes->disable(this);
+    pushButton_modifier->disable(this);
+    pushButton_supprimer->disable(this);
     pushButton_retour->disable(this);
 }
 
@@ -159,16 +208,16 @@ void YerothClientsDetailWindow::definirManager()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_les_paiements, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_les_transactions, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_les_ventes, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierCompteClient, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
     pushButton_clients->enable(this, SLOT(clients()));
     pushButton_paiements->enable(this, SLOT(paiements()));
     pushButton_menu->enable(this, SLOT(menu()));
-    pushButton_transactions->enable(this, SLOT(transactions()));
-    pushButton_ventes->enable(this, SLOT(ventes()));
+    pushButton_modifier->enable(this, SLOT(modifierCompteClient()));
+    pushButton_supprimer->enable(this, SLOT(supprimerCompteClient()));
 
     pushButton_retour->enable(this, SLOT(clients()));
 
@@ -190,16 +239,16 @@ void YerothClientsDetailWindow::definirVendeur()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_les_paiements, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_les_transactions, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_les_ventes, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierCompteClient, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
     pushButton_clients->disable(this);
     pushButton_paiements->disable(this);
     pushButton_menu->disable(this);
-    pushButton_transactions->disable(this);
-    pushButton_ventes->disable(this);
+    pushButton_modifier->enable(this, SLOT(modifierCompteClient()));
+    pushButton_supprimer->enable(this, SLOT(supprimerCompteClient()));
     pushButton_retour->disable(this);
 }
 
@@ -212,16 +261,16 @@ void YerothClientsDetailWindow::definirGestionaireDesStocks()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_les_paiements, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_les_transactions, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_les_ventes, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierCompteClient, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
     pushButton_clients->disable(this);
     pushButton_paiements->disable(this);
     pushButton_menu->disable(this);
-    pushButton_transactions->disable(this);
-    pushButton_ventes->disable(this);
+    pushButton_modifier->disable(this);
+    pushButton_supprimer->disable(this);
     pushButton_retour->disable(this);
 }
 
@@ -233,16 +282,16 @@ void YerothClientsDetailWindow::definirMagasinier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_les_paiements, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_les_transactions, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_les_ventes, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierCompteClient, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
     pushButton_clients->disable(this);
     pushButton_paiements->disable(this);
     pushButton_menu->disable(this);
-    pushButton_transactions->disable(this);
-    pushButton_ventes->disable(this);
+    pushButton_modifier->disable(this);
+    pushButton_supprimer->disable(this);
     pushButton_retour->disable(this);
 }
 
@@ -366,12 +415,6 @@ bool YerothClientsDetailWindow::imprimer_document()
 }
 
 
-void YerothClientsDetailWindow::modifier_les_articles()
-{
-    this->rendreInvisible();
-    _allWindows->_modifierWindow->rendreVisible(_curStocksTableModel);
-}
-
 void YerothClientsDetailWindow::rendreInvisible()
 {
 	lineEdit_clients_details_reference_client->clear();
@@ -461,41 +504,3 @@ void YerothClientsDetailWindow::setupShortcuts()
     setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
 }
 
-void YerothClientsDetailWindow::supprimer_ce_stock()
-{
-    QSqlRecord record = _curStocksTableModel->record(_allWindows->getLastSelectedListerRow());
-    QString msgSupprimer("Poursuivre avec la suppression de l'article \"");
-    msgSupprimer.append(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
-    msgSupprimer.append("\" ?");
-    if (QMessageBox::Ok ==
-            YerothQMessageBox::question(this,
-                                       QObject::trUtf8
-                                       ("suppression d'un article"), msgSupprimer,
-                                       QMessageBox::Cancel, QMessageBox::Ok))
-    {
-        bool resRemoved = _curStocksTableModel->removeRow(_allWindows->getLastSelectedListerRow());
-        //qDebug() << "YerothModifierWindow::supprimer_ce_stock() " << resRemoved;
-        afficherStocks();
-        if (resRemoved)
-        {
-            msgSupprimer.clear();
-            msgSupprimer.append("Le stock \"");
-            msgSupprimer.append(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
-            msgSupprimer.append(QObject::trUtf8("\" a été supprimé."));
-            YerothQMessageBox::information(this, "suppression d'un stock avec succès",
-                                          msgSupprimer);
-        }
-        else
-        {
-            msgSupprimer.clear();
-            msgSupprimer.append("Le stock \"");
-            msgSupprimer.append(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
-            msgSupprimer.append("\" ne pouvait pas être supprimé.");
-            YerothQMessageBox::information(this, "échec de la suppression d'un stock",
-                                          msgSupprimer);
-        }
-    }
-    else
-    {
-    }
-}
