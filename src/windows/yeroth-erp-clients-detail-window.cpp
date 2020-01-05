@@ -99,7 +99,7 @@ void YerothClientsDetailWindow::supprimerCompteClient()
 {
     QSqlRecord record = _curClientTableModel->record(_clientLastSelectedRow);
 
-    QString msgSupprimer(QString(QObject::trUtf8("Poursuivre avec la suppression du compte client '%1 ?'"))
+    QString msgSupprimer(QString(QObject::trUtf8("Poursuivre avec la suppression du compte client '%1' ?"))
     						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE)));
 
     if (QMessageBox::Ok ==
