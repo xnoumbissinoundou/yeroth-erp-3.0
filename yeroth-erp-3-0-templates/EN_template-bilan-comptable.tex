@@ -107,8 +107,8 @@
 \hrule
 \textbf{Financial Income}
 \begin{enumerate}[1)]
-	\item Ventes: .......YEROTHBILANCOMPTABLEVENTESDEVISE
-	\item Versements clients: .......YEROTHBILANCOMPTABLEVERSEMENTSCLIENTSDEVISE\\
+	\item Customer payments: .......YEROTHBILANCOMPTABLEVERSEMENTSCLIENTSDEVISE
+	\item Sales: .......YEROTHBILANCOMPTABLEVENTESDEVISE\\
 \end{enumerate}
 
 
@@ -121,10 +121,14 @@
 
 
 \vspace{1cm}
-\hrule
-\textbf{Balance}
-\begin{enumerate}[1)]
-	\item Amount: .......YEROTHBILANCOMPTABLEBALANCEDEVISE\\
-\end{enumerate}
+
+\begin{table}[!htbp]
+\centering
+\begin{tabular}{c|r}
+\textbf{Balance}  			&  YEROTHBILANCOMPTABLEBALANCEDEVISE  			\\ \hline
+\textbf{Business turnover}  &  YEROTHBILANCOMPTABLEBENEFICEDEVISE  			\\ \hline
+\textbf{Profit}  			&  YEROTHBILANCOMPTABLECHIFFREDAFFAIREDEVISE  	\\ 
+\end{tabular}
+\end{table}
 
 \end{document}
