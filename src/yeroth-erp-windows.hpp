@@ -34,6 +34,7 @@
 #include "src/windows/yeroth-erp-stock-detail-window.hpp"
 #include "src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp"
 #include "src/windows/yeroth-erp-creer-compte-client-window.hpp"
+#include "src/windows/yeroth-erp-modifier-compte-client-window.hpp"
 #include "src/windows/yeroth-erp-creer-nouveau-client-window.hpp"
 #include "src/windows/yeroth-erp-creer-nouveau-fournisseur-window.hpp"
 #include "src/windows/yeroth-erp-creer-nouvelle-categorie-window.hpp"
@@ -67,6 +68,7 @@ class YerothPaiementsWindow;
 class YerothHistoriqueDuStockWindow;
 class YerothPOSChangerUtilisateurDialog;
 class YerothCreerCompteClientWindow;
+class YerothModifierCompteClientWindow;
 class YerothCreerNouveauClientWindow;
 class YerothCreerNouveauFournisseurWindow;
 class YerothCreerNouvelleCategorieWindow;
@@ -343,6 +345,7 @@ public:
 	YerothPOSChangerUtilisateurDialog 					*_changerUtilisateurDialog;
 	YerothHistoriqueDuStockWindow						*_historiqueDuStockWindow;
 	YerothCreerCompteClientWindow 						*_creerCompteClientWindow;
+	YerothModifierCompteClientWindow 					*_modifierCompteClientWindow;
 	YerothCreerNouveauClientWindow 						*_creerNouveauClientWindow;
 	YerothCreerNouveauFournisseurWindow 				*_creerNouveauFournisseurWindow;
 	YerothCreerNouvelleCategorieWindow 					*_creerNouvelleCategorieWindow;

@@ -142,6 +142,8 @@ protected:
 
 private slots:
 
+	void modifierCompteClient();
+
 	void supprimerCompteClient();
 
 	void afficher_au_detail();

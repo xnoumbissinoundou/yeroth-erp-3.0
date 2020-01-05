@@ -99,11 +99,11 @@ private:
 
     static const QString 	_WINDOW_TITLE;
 
-    int 					_clientLastSelectedRow;
+    YerothLogger			*_logger;
 
     YerothSqlTableModel 	*_curClientTableModel;
 
-    YerothLogger			*_logger;
+    int 					_clientLastSelectedRow;
 
     static const unsigned int INDEX_ZERO;
 };

@@ -91,7 +91,11 @@ YerothClientsDetailWindow::YerothClientsDetailWindow()
 
 void YerothClientsDetailWindow::modifierCompteClient()
 {
+    rendreInvisible();
 
+    _allWindows->_modifierCompteClientWindow->rendreVisible(_clientLastSelectedRow,
+    												 	 	_curClientTableModel,
+															_curStocksTableModel);
 }
 
 
