@@ -1507,17 +1507,17 @@ void YerothTableauxDeBordWindow::bilanComptable()
 
     texDocument.replace("YEROTHBILANCOMPTABLEFIN", bilanComptableDateFin);
 
-    texDocument.replace("YEROTHBILANCOMPTABLEVENTESDEVISE", GET_CURRENCY_STRING_NUM(montant_total_vente));
+    texDocument.replace("YEROTHBILANCOMPTABLEVENTESDEVISE", GET_CURRENCY_STRING_NUM_FOR_LATEX(montant_total_vente));
 
-    texDocument.replace("YEROTHBILANCOMPTABLEVERSEMENTSCLIENTSDEVISE", GET_CURRENCY_STRING_NUM(montant_total_versements));
+    texDocument.replace("YEROTHBILANCOMPTABLEVERSEMENTSCLIENTSDEVISE", GET_CURRENCY_STRING_NUM_FOR_LATEX(montant_total_versements));
 
-    QString montantTotaleDetteClientelleDeviseLatexStr(GET_CURRENCY_STRING_NUM(montant_total_dette_clientelle));
+    QString montantTotaleDetteClientelleDeviseLatexStr(GET_CURRENCY_STRING_NUM_FOR_LATEX(montant_total_dette_clientelle));
 
     texDocument.replace("YEROTHBILANCOMPTABLEDETTECLIENTELLEDEVISE", montantTotaleDetteClientelleDeviseLatexStr);
 
-    texDocument.replace("YEROTHBILANCOMPTABLEACHATSDEVISE", GET_CURRENCY_STRING_NUM(montant_total_achat));
+    texDocument.replace("YEROTHBILANCOMPTABLEACHATSDEVISE", GET_CURRENCY_STRING_NUM_FOR_LATEX(montant_total_achat));
 
-    QString balanceDeviseLatexStr(GET_CURRENCY_STRING_NUM(balance));
+    QString balanceDeviseLatexStr(GET_CURRENCY_STRING_NUM_FOR_LATEX(balance));
     if (balance > 0)
     {
     	balanceDeviseLatexStr = YerothUtils::colorLatexTextInput("yerothColorGreen", balanceDeviseLatexStr);
@@ -1529,9 +1529,9 @@ void YerothTableauxDeBordWindow::bilanComptable()
 
     texDocument.replace("YEROTHBILANCOMPTABLEBALANCEDEVISE", balanceDeviseLatexStr);
 
-    texDocument.replace("YEROTHBILANCOMPTABLEBENEFICEDEVISE", GET_CURRENCY_STRING_NUM(benefice));
+    texDocument.replace("YEROTHBILANCOMPTABLEBENEFICEDEVISE", GET_CURRENCY_STRING_NUM_FOR_LATEX(benefice));
 
-    texDocument.replace("YEROTHBILANCOMPTABLECHIFFREDAFFAIREDEVISE", GET_CURRENCY_STRING_NUM(chiffre_daffaire));
+    texDocument.replace("YEROTHBILANCOMPTABLECHIFFREDAFFAIREDEVISE", GET_CURRENCY_STRING_NUM_FOR_LATEX(chiffre_daffaire));
 
     texDocument.replace("YEROTHPAPERSPEC", "a4paper");
     texDocument.replace("YEROTHENTREPRISE", infoEntreprise.getNomCommercialTex());

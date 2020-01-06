@@ -747,8 +747,10 @@ YerothQMessageBox::information(this, QObject::trUtf8(DIALOG_BOX_TITLE), msg); }
 
 # ifdef YEROTH_FRANCAIS_LANGUAGE
 	# define GET_NUM_STRING(NUM) YerothUtils::frenchLocale.toString(NUM)
-	# define GET_DOUBLE_STRING(NUM) YerothUtils::frenchLocale.toString(NUM, 'f', 2)
+
+# define GET_DOUBLE_STRING(NUM) YerothUtils::frenchLocale.toString(NUM, 'f', 2)
 	# define GET_DOUBLE_STRING_P(NUM, P) YerothUtils::frenchLocale.toString(NUM, 'f', P)
+
 	# define GET_CURRENCY_STRING_NUM(NUM) YerothUtils::frenchLocale.toString(NUM, 'f', 2).append(" ").append(YerothERPConfig::currency)
 	# define GET_CURRENCY_STRING_NUM_P(NUM, P) YerothUtils::frenchLocale.toString(NUM, 'f', P).append(" ").append(YerothERPConfig::currency)
 
@@ -757,12 +759,16 @@ YerothQMessageBox::information(this, QObject::trUtf8(DIALOG_BOX_TITLE), msg); }
 
 # ifdef YEROTH_ENGLISH_LANGUAGE
 	# define GET_NUM_STRING(NUM) YerothUtils::englishLocale.toString(NUM)
+
 	# define GET_DOUBLE_STRING(NUM) YerothUtils::englishLocale.toString(NUM, 'f', 2)
 	# define GET_DOUBLE_STRING_P(NUM, P) YerothUtils::englishLocale.toString(NUM, 'f', P)
+
 	# define GET_CURRENCY_STRING_NUM(NUM) YerothUtils::englishLocale.toString(NUM, 'f', 2).append(" ").append(YerothERPConfig::currency)
 	# define GET_CURRENCY_STRING_NUM_P(NUM, P) YerothUtils::englishLocale.toString(NUM, 'f', P).append(" ").append(YerothERPConfig::currency)
 
 	# define GET_MONTH_NAME_LOCALIZED(M) YerothUtils::englishLocale.monthName(M)
 # endif
+
+# define GET_CURRENCY_STRING_NUM_FOR_LATEX(NUM) YerothUtils::handleForeignAccents(GET_CURRENCY_STRING_NUM(NUM))
 
 # endif /* SRC_YEROTH_UTILS_HPP_ */
