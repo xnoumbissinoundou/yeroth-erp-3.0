@@ -41,18 +41,14 @@ YerothModifierCompteClientWindow::YerothModifierCompteClientWindow()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionActualiserCompteClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPaiements, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVentes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
     pushButton_clients->disable(this);
-    pushButton_paiements->disable(this);
     pushButton_menu->disable(this);
     pushButton_supprimer->disable(this);
-    pushButton_ventes->disable(this);
     pushButton_annuler->disable(this);
     pushButton_actualiser->disable(this);
 
@@ -65,8 +61,6 @@ YerothModifierCompteClientWindow::YerothModifierCompteClientWindow()
     connect(actionActualiserCompteClient, SIGNAL(triggered()), this, SLOT(actualiserCompteClient()));
     connect(actionSupprimerCompteClient, SIGNAL(triggered()), this, SLOT(supprimerCompteClient()));
     connect(actionClients, SIGNAL(triggered()), this, SLOT(entrer()));
-    connect(actionPaiements, SIGNAL(triggered()), this, SLOT(afficherStocks()));
-    connect(actionVentes, SIGNAL(triggered()), this, SLOT(ventes()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
     connect(actionA_propos, SIGNAL(triggered()), this, SLOT(apropos()));
     connect(actionAlertes, SIGNAL(triggered()), this, SLOT(alertes()));
@@ -118,8 +112,6 @@ void YerothModifierCompteClientWindow::definirPasDeRole()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionActualiserCompteClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPaiements, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVentes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
@@ -130,10 +122,8 @@ void YerothModifierCompteClientWindow::definirPasDeRole()
 #endif
 
     pushButton_clients->disable(this);
-    pushButton_paiements->disable(this);
     pushButton_menu->disable(this);
     pushButton_supprimer->disable(this);
-    pushButton_ventes->disable(this);
     pushButton_annuler->disable(this);
     pushButton_actualiser->disable(this);
 }
@@ -147,8 +137,6 @@ void YerothModifierCompteClientWindow::definirCaissier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionActualiserCompteClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPaiements, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVentes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
@@ -159,10 +147,8 @@ void YerothModifierCompteClientWindow::definirCaissier()
 #endif
 
     pushButton_clients->disable(this);
-    pushButton_paiements->disable(this);
     pushButton_menu->disable(this);
     pushButton_supprimer->disable(this);
-    pushButton_ventes->disable(this);
     pushButton_annuler->disable(this);
     pushButton_actualiser->disable(this);
 }
@@ -176,8 +162,6 @@ void YerothModifierCompteClientWindow::definirManager()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionActualiserCompteClient, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPaiements, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVentes, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, true);
@@ -192,10 +176,8 @@ void YerothModifierCompteClientWindow::definirManager()
 #endif
 
     pushButton_clients->enable(this, SLOT(clients()));
-    pushButton_paiements->enable(this, SLOT(paiements()));
     pushButton_menu->enable(this, SLOT(menu()));
     pushButton_supprimer->enable(this, SLOT(supprimerCompteClient()));
-    pushButton_ventes->enable(this, SLOT(ventes()));
     pushButton_annuler->enable(this, SLOT(clients()));
     pushButton_actualiser->enable(this, SLOT(actualiserCompteClient()));
 }
@@ -210,8 +192,6 @@ void YerothModifierCompteClientWindow::definirVendeur()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionActualiserCompteClient, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPaiements, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVentes, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, true);
@@ -226,10 +206,8 @@ void YerothModifierCompteClientWindow::definirVendeur()
 #endif
 
     pushButton_clients->enable(this, SLOT(clients()));
-    pushButton_paiements->enable(this, SLOT(paiements()));
     pushButton_menu->enable(this, SLOT(menu()));
     pushButton_supprimer->enable(this, SLOT(supprimerCompteClient()));
-    pushButton_ventes->enable(this, SLOT(ventes()));
     pushButton_annuler->enable(this, SLOT(clients()));
     pushButton_actualiser->enable(this, SLOT(actualiserCompteClient()));
 }
@@ -244,8 +222,6 @@ void YerothModifierCompteClientWindow::definirGestionaireDesStocks()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionActualiserCompteClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPaiements, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVentes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
@@ -256,10 +232,8 @@ void YerothModifierCompteClientWindow::definirGestionaireDesStocks()
 #endif
 
     pushButton_clients->disable(this);
-    pushButton_paiements->disable(this);
     pushButton_menu->disable(this);
     pushButton_supprimer->disable(this);
-    pushButton_ventes->disable(this);
     pushButton_annuler->disable(this);
     pushButton_actualiser->disable(this);
 }
@@ -273,8 +247,6 @@ void YerothModifierCompteClientWindow::definirMagasinier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionActualiserCompteClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPaiements, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVentes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
@@ -285,10 +257,8 @@ void YerothModifierCompteClientWindow::definirMagasinier()
 #endif
 
     pushButton_clients->disable(this);
-    pushButton_paiements->disable(this);
     pushButton_menu->disable(this);
     pushButton_supprimer->disable(this);
-    pushButton_ventes->disable(this);
     pushButton_annuler->disable(this);
     pushButton_actualiser->disable(this);
 }

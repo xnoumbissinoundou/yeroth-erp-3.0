@@ -43,7 +43,8 @@ YerothClientsDetailWindow::YerothClientsDetailWindow()
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_les_paiements, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierCompteClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
@@ -52,7 +53,6 @@ YerothClientsDetailWindow::YerothClientsDetailWindow()
 
 
     pushButton_clients->disable(this);
-    pushButton_paiements->disable(this);
     pushButton_menu->disable(this);
     pushButton_modifier->disable(this);
     pushButton_supprimer->disable(this);
@@ -64,8 +64,7 @@ YerothClientsDetailWindow::YerothClientsDetailWindow()
     connect(actionDeconnecter_utilisateur, SIGNAL(triggered()), this, SLOT(deconnecter_utilisateur()));
     connect(actionMenu, SIGNAL(triggered()), this, SLOT(menu()));
     connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_document()));
-    connect(actionAfficher_les_clients, SIGNAL(triggered()), this, SLOT(clients()));
-    connect(actionAfficher_les_paiements, SIGNAL(triggered()), this, SLOT(paiements()));
+    connect(actionClients, SIGNAL(triggered()), this, SLOT(clients()));
     connect(actionModifierCompteClient, SIGNAL(triggered()), this, SLOT(modifierCompteClient()));
     connect(actionSupprimerCompteClient, SIGNAL(triggered()), this, SLOT(supprimerCompteClient()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
@@ -167,7 +166,8 @@ void YerothClientsDetailWindow::definirPasDeRole()
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_les_paiements, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierCompteClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
@@ -175,7 +175,6 @@ void YerothClientsDetailWindow::definirPasDeRole()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
     pushButton_clients->disable(this);
-    pushButton_paiements->disable(this);
     pushButton_menu->disable(this);
     pushButton_modifier->disable(this);
     pushButton_supprimer->disable(this);
@@ -188,7 +187,8 @@ void YerothClientsDetailWindow::definirCaissier()
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_les_paiements, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierCompteClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
@@ -196,7 +196,6 @@ void YerothClientsDetailWindow::definirCaissier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
     pushButton_clients->disable(this);
-    pushButton_paiements->disable(this);
     pushButton_menu->disable(this);
     pushButton_modifier->disable(this);
     pushButton_supprimer->disable(this);
@@ -208,17 +207,16 @@ void YerothClientsDetailWindow::definirManager()
     _logger->log("definirManager");
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_les_paiements, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierCompteClient, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
     pushButton_clients->enable(this, SLOT(clients()));
-    pushButton_paiements->enable(this, SLOT(paiements()));
     pushButton_menu->enable(this, SLOT(menu()));
     pushButton_modifier->enable(this, SLOT(modifierCompteClient()));
     pushButton_supprimer->enable(this, SLOT(supprimerCompteClient()));
@@ -242,14 +240,14 @@ void YerothClientsDetailWindow::definirVendeur()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_les_paiements, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierCompteClient, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
     pushButton_clients->disable(this);
-    pushButton_paiements->disable(this);
     pushButton_menu->disable(this);
     pushButton_modifier->enable(this, SLOT(modifierCompteClient()));
     pushButton_supprimer->enable(this, SLOT(supprimerCompteClient()));
@@ -264,14 +262,14 @@ void YerothClientsDetailWindow::definirGestionaireDesStocks()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_les_paiements, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierCompteClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
     pushButton_clients->disable(this);
-    pushButton_paiements->disable(this);
     pushButton_menu->disable(this);
     pushButton_modifier->disable(this);
     pushButton_supprimer->disable(this);
@@ -285,14 +283,14 @@ void YerothClientsDetailWindow::definirMagasinier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_les_paiements, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierCompteClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
     pushButton_clients->disable(this);
-    pushButton_paiements->disable(this);
     pushButton_menu->disable(this);
     pushButton_modifier->disable(this);
     pushButton_supprimer->disable(this);
