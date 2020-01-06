@@ -17,6 +17,8 @@
 
 #include <unistd.h>
 
+#include <QtCore/QtMath>
+
 #include <QtCore/QPair>
 
 #include <QtSql/QSqlQuery>
@@ -1276,6 +1278,33 @@ void YerothTableauxDeBordWindow::bilanComptable()
 
 	QSqlQuery query;
 
+    QString strDetteClientelleQuery(QString("SELECT %1 FROM %2 WHERE %3 < '0'")
+    									.arg(YerothDatabaseTableColumn::COMPTE_CLIENT,
+    										 _allWindows->CLIENTS,
+											 YerothDatabaseTableColumn::COMPTE_CLIENT));
+
+//    qDebug() << QString("++ strAchatsQuery: %1")
+//    				.arg(strAchatsQuery);
+
+	int detteClientelleSize = YerothUtils::execQuery(query, strDetteClientelleQuery, _logger);
+
+	double dette_clientelle = 0.0;
+
+	double montant_total_dette_clientelle = 0.0;
+
+    for( int k = 0; k < detteClientelleSize && query.next(); ++k)
+    {
+    	dette_clientelle = query.value(0).toDouble();
+
+    	montant_total_dette_clientelle = montant_total_dette_clientelle + dette_clientelle;
+    }
+
+//    qDebug() << QString("++ detteClientelleSize: %1, montant_total_dette_clientelle: %2")
+//    				.arg(QString::number(detteClientelleSize),
+//    					 QString::number(montant_total_dette_clientelle, 'f', 2));
+
+    query.clear();
+
     QString strAchatsQuery(QString("SELECT %1, %2 FROM %3 WHERE %4 >= '%5' AND %6 <= '%7'")
     							.arg(YerothDatabaseTableColumn::PRIX_DACHAT,
     								 YerothDatabaseTableColumn::QUANTITE_TOTAL,
@@ -1401,7 +1430,6 @@ void YerothTableauxDeBordWindow::bilanComptable()
     double benefice = 0.0;
     double chiffre_daffaire = 0.0;
 
-
     QMapIterator<int, double> it(stocksidToqtevendue);
 
     int querySize = -1;
@@ -1431,7 +1459,7 @@ void YerothTableauxDeBordWindow::bilanComptable()
 
     chiffre_daffaire = montant_total_vente + montant_total_versements;
 
-    balance = chiffre_daffaire - montant_total_achat;
+    balance = chiffre_daffaire - montant_total_achat - qFabs(montant_total_dette_clientelle);
 
 
 //    qDebug() << QString("++ benefice: %1, chiffre_daffaire: %2, balance: %3")
@@ -1483,9 +1511,23 @@ void YerothTableauxDeBordWindow::bilanComptable()
 
     texDocument.replace("YEROTHBILANCOMPTABLEVERSEMENTSCLIENTSDEVISE", GET_CURRENCY_STRING_NUM(montant_total_versements));
 
+    QString montantTotaleDetteClientelleDeviseLatexStr(GET_CURRENCY_STRING_NUM(montant_total_dette_clientelle));
+
+    texDocument.replace("YEROTHBILANCOMPTABLEDETTECLIENTELLEDEVISE", montantTotaleDetteClientelleDeviseLatexStr);
+
     texDocument.replace("YEROTHBILANCOMPTABLEACHATSDEVISE", GET_CURRENCY_STRING_NUM(montant_total_achat));
 
-    texDocument.replace("YEROTHBILANCOMPTABLEBALANCEDEVISE", GET_CURRENCY_STRING_NUM(balance));
+    QString balanceDeviseLatexStr(GET_CURRENCY_STRING_NUM(balance));
+    if (balance > 0)
+    {
+    	balanceDeviseLatexStr = YerothUtils::colorLatexTextInput("yerothColorGreen", balanceDeviseLatexStr);
+    }
+    else
+    {
+    	balanceDeviseLatexStr = YerothUtils::colorLatexTextInput("yerothColorRed", balanceDeviseLatexStr);
+    }
+
+    texDocument.replace("YEROTHBILANCOMPTABLEBALANCEDEVISE", balanceDeviseLatexStr);
 
     texDocument.replace("YEROTHBILANCOMPTABLEBENEFICEDEVISE", GET_CURRENCY_STRING_NUM(benefice));
 

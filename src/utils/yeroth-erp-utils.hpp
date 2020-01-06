@@ -230,6 +230,9 @@ public:
 									const QString 	&tableName,
 									const char 		*fieldName);
 
+	static QString colorLatexTextInput(const QString colorSpec,
+			 	 	 	 	 	 	   const QString latexString_in);
+
 	static QString handleForeignAccents(const QString &texText_in_out);
 
 	static void cleanUpTexTableLastString(QString &texTable_in_out);

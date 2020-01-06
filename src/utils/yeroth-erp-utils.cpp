@@ -1318,6 +1318,16 @@ bool YerothUtils::slot_deconnecter_localisation(YerothERPWindows *allWindows)
     //}
 }
 
+
+QString YerothUtils::colorLatexTextInput(const QString colorSpec,
+										 const QString latexString_in)
+{
+	return QString(QString("\\textcolor{%1}{%2}")
+						.arg(colorSpec,
+							 latexString_in));
+}
+
+
 QString YerothUtils::handleForeignAccents(const QString &texText_in)
 {
     QString tempText(texText_in);
