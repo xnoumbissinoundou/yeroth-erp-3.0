@@ -9,6 +9,8 @@
 
 #include "src/users/yeroth-erp-users.hpp"
 
+#include "src/process/yeroth-erp-process.hpp"
+
 #include "src/utils/yeroth-erp-logger.hpp"
 #include "src/utils/yeroth-erp-config.hpp"
 #include "src/utils/yeroth-erp-utils.hpp"
@@ -16,8 +18,6 @@
 #include <unistd.h>
 
 #include <QtCore/QPair>
-
-#include <QtCore/QProcess>
 
 #include <QtSql/QSqlQuery>
 #include <QtSql/QSqlError>
@@ -49,10 +49,12 @@
 #endif
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
+		const QString YerothTableauxDeBordWindow::OPERATION_GENERER_BILAN_COMPTABLE("générer le bilan comptable");
 		const QString YerothTableauxDeBordWindow::OPERATION_GENERER_CHIFFRE_DAFFAIRE("générer le chiffre d'affaire");
 #endif
 
 #ifdef YEROTH_ENGLISH_LANGUAGE
+		const QString YerothTableauxDeBordWindow::OPERATION_GENERER_BILAN_COMPTABLE("generate financial accounting report");
 		const QString YerothTableauxDeBordWindow::OPERATION_GENERER_CHIFFRE_DAFFAIRE("generate the business turnover");
 #endif
 
@@ -152,6 +154,8 @@ YerothTableauxDeBordWindow::YerothTableauxDeBordWindow()
     setupTabOne();
 
     setupTabTwo();
+
+    setupTabThree();
 
     // Menu actions
     connect( actionChanger_utilisateur, SIGNAL( triggered() ), this, SLOT( changer_utilisateur() ) );
@@ -265,6 +269,7 @@ void YerothTableauxDeBordWindow::setupTabOne()
     comboBox_mois_fin_chiffre_affaire->addItem(YerothTableauxDeBordWindow::MOIS_12);
 }
 
+
 void YerothTableauxDeBordWindow::setupTabTwo()
 {
     comboBox_operations->addItem(YerothTableauxDeBordWindow::OPERATION_GENERER);
@@ -290,6 +295,13 @@ void YerothTableauxDeBordWindow::setupTabTwo()
     comboBox_type_graphes->addItem(YerothTableauxDeBordWindow::GRAPHE_BAR_CHART);
     comboBox_type_graphes->addItem(YerothTableauxDeBordWindow::GRAPHE_PIE_CHART);
 }
+
+
+void YerothTableauxDeBordWindow::setupTabThree()
+{
+	comboBox_bilan_comptable_operation->addItem(YerothTableauxDeBordWindow::OPERATION_GENERER_BILAN_COMPTABLE);
+}
+
 
 void YerothTableauxDeBordWindow::rendreVisible(YerothSqlTableModel *stocksTableModel)
 {
@@ -1297,9 +1309,9 @@ void YerothTableauxDeBordWindow::bilanComptable()
     	montant_total_achat = montant_total_achat + total_achat;
     }
 
-    qDebug() << QString("++ achatQuerySize: %1, montant_total_achat: %2")
-    				.arg(QString::number(achatQuerySize),
-    					 QString::number(montant_total_achat, 'f', 2));
+//    qDebug() << QString("++ achatQuerySize: %1, montant_total_achat: %2")
+//    				.arg(QString::number(achatQuerySize),
+//    					 QString::number(montant_total_achat, 'f', 2));
 
     query.clear();
 
@@ -1349,9 +1361,9 @@ void YerothTableauxDeBordWindow::bilanComptable()
     	montant_total_vente = montant_total_vente + total_vente;
     }
 
-    qDebug() << QString("++ ventesQuerySize: %1, montant_total_vente: %2")
-    				.arg(QString::number(ventesQuerySize),
-    					 QString::number(montant_total_vente, 'f', 2));
+//    qDebug() << QString("++ ventesQuerySize: %1, montant_total_vente: %2")
+//    				.arg(QString::number(ventesQuerySize),
+//    					 QString::number(montant_total_vente, 'f', 2));
 
     query.clear();
 
@@ -1379,9 +1391,9 @@ void YerothTableauxDeBordWindow::bilanComptable()
     	montant_total_versements = montant_total_versements + montant_paye;
     }
 
-    qDebug() << QString("++ versementsQuerySize: %1, montant_total_versements: %2")
-    				.arg(QString::number(versementsQuerySize),
-    					 QString::number(montant_total_versements, 'f', 2));
+//    qDebug() << QString("++ versementsQuerySize: %1, montant_total_versements: %2")
+//    				.arg(QString::number(versementsQuerySize),
+//    					 QString::number(montant_total_versements, 'f', 2));
 
     query.clear();
 
@@ -1422,83 +1434,97 @@ void YerothTableauxDeBordWindow::bilanComptable()
     balance = chiffre_daffaire - montant_total_achat;
 
 
-    qDebug() << QString("++ benefice: %1, chiffre_daffaire: %2, balance: %3")
-    				.arg(QString::number(benefice, 'f', 2),
-    					 QString::number(chiffre_daffaire, 'f', 2),
-    					 QString::number(balance, 'f', 2));
+//    qDebug() << QString("++ benefice: %1, chiffre_daffaire: %2, balance: %3")
+//    				.arg(QString::number(benefice, 'f', 2),
+//    					 QString::number(chiffre_daffaire, 'f', 2),
+//    					 QString::number(balance, 'f', 2));
 
-    /*
-    QProcess aProcess;
+    QString latexFileNamePrefix("yeroth-erp-bilan-comptable");
 
-    aProcess.setWorkingDirectory(YerothERPConfig::temporaryFilesDir);
+#ifdef YEROTH_ENGLISH_LANGUAGE
+    latexFileNamePrefix.clear();
+    latexFileNamePrefix.append("yeroth-erp-financial-accounting-report");
+#endif
 
     QString texDocument;
-    texDocument.append(YerothUtils::_1a_tex);
 
-    texDocument.replace("YEROTHBARPERGROUP", "\\barspergroup{2}");
-    texDocument.replace("YEROTHBARITEMS", 				barItems);
-    texDocument.replace("YEROTHTICKS", 					QString::number(TICKS));
+    YerothUtils::getLatexFinancialAccountingReportData(texDocument);
+
+    YerothInfoEntreprise & infoEntreprise = YerothUtils::getAllWindows()->getInfoEntreprise();
+
+    QString fileDate(YerothUtils::handleForeignAccents(infoEntreprise.getVilleTex()));
+
+    YerothUtils::getCurrentLocaleDate(fileDate);
+
+    QString bilanComptableDateDebut;
+    QString bilanComptableDateFin;
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
-    texDocument.replace("YEROTHLEGENDANALYSECOMPAREE", 	"\\diagLegenditem{Ratio des achats du mois.}{purplish}");
-    texDocument.replace("YEROTHDIAGRAMMETITRE", 		"Ratio du chiffre d'affaire du mois.");
-    texDocument.replace("YEROTHNIVEAUCHIFFREAFFAIRE", 	"Niveau du chiffre d'affaire");
+    bilanComptableDateDebut = QString("'%1'")
+                    .arg(YerothUtils::handleForeignAccents(YerothUtils::frenchLocale.toString(dateEdit_bilan_comptable_debut->date())));
+
+    bilanComptableDateFin = QString("'%1'")
+                  .arg(YerothUtils::handleForeignAccents(YerothUtils::frenchLocale.toString(dateEdit_bilan_comptable_fin->date())));
 #endif
 
 #ifdef YEROTH_ENGLISH_LANGUAGE
-    texDocument.replace("YEROTHLEGENDANALYSECOMPAREE", 	"\\diagLegenditem{Ratio of the monthly buyings.}{purplish}");
-    texDocument.replace("YEROTHDIAGRAMMETITRE", 		"Ratio of the monthly income.");
-    texDocument.replace("YEROTHNIVEAUCHIFFREAFFAIRE", 	"Income Level");
+    bilanComptableDateDebut = QString("'%1'")
+                    .arg(YerothUtils::handleForeignAccents(YerothUtils::englishLocale.toString(dateEdit_bilan_comptable_debut->date())));
+
+    bilanComptableDateFin = QString("'%1'")
+                  .arg(YerothUtils::handleForeignAccents(YerothUtils::englishLocale.toString(dateEdit_bilan_comptable_fin->date())));
 #endif
 
-    QString fileName1(YerothERPConfig::temporaryFilesDir + "/1a.tex");
+    texDocument.replace("YEROTHBILANCOMPTABLEDEBUT", bilanComptableDateDebut);
 
-    QFile tmpFile1(fileName1);
+    texDocument.replace("YEROTHBILANCOMPTABLEFIN", bilanComptableDateFin);
 
-    if (tmpFile1.open(QFile::WriteOnly))
+    texDocument.replace("YEROTHBILANCOMPTABLEVENTESDEVISE", GET_CURRENCY_STRING_NUM(montant_total_vente));
+
+    texDocument.replace("YEROTHBILANCOMPTABLEVERSEMENTSCLIENTSDEVISE", GET_CURRENCY_STRING_NUM(montant_total_versements));
+
+    texDocument.replace("YEROTHBILANCOMPTABLEACHATSDEVISE", GET_CURRENCY_STRING_NUM(montant_total_achat));
+
+    texDocument.replace("YEROTHBILANCOMPTABLEBALANCEDEVISE", GET_CURRENCY_STRING_NUM(balance));
+
+    texDocument.replace("YEROTHBILANCOMPTABLEBENEFICEDEVISE", GET_CURRENCY_STRING_NUM(benefice));
+
+    texDocument.replace("YEROTHBILANCOMPTABLECHIFFREDAFFAIREDEVISE", GET_CURRENCY_STRING_NUM(chiffre_daffaire));
+
+    texDocument.replace("YEROTHPAPERSPEC", "a4paper");
+    texDocument.replace("YEROTHENTREPRISE", infoEntreprise.getNomCommercialTex());
+    texDocument.replace("YEROTHACTIVITESENTREPRISE", infoEntreprise.getSecteursActivitesTex());
+    texDocument.replace("YEROTHBOITEPOSTALE", infoEntreprise.getBoitePostal());
+    texDocument.replace("YEROTHVILLE", infoEntreprise.getVilleTex());
+    texDocument.replace("YEROTHPAYS", infoEntreprise.getPaysTex());
+    texDocument.replace("YEROTHEMAIL", infoEntreprise.getEmailTex());
+    texDocument.replace("YEROTHTELEPHONE", infoEntreprise.getTelephone());
+    texDocument.replace("YEROTHDATE", fileDate);
+    texDocument.replace("YEROTHNOMUTILISATEUR", _allWindows->getUser()->nom_completTex());
+    texDocument.replace("YEROTHHEUREDIMPRESSION", CURRENT_TIME);
+    texDocument.replace("YEROTHCOMPTEBANCAIRENR", infoEntreprise.getNumeroCompteBancaire());
+    texDocument.replace("YEROTHCONTRIBUABLENR", infoEntreprise.getNumeroDeContribuable());
+    texDocument.replace("YEROTHAGENCECOMPTEBANCAIRE", infoEntreprise.getAgenceCompteBancaireTex());
+
+    QString yerothPrefixFileName;
+
+    yerothPrefixFileName.append(YerothUtils::getUniquePrefixFileInTemporaryFilesDir(latexFileNamePrefix));
+
+	//qDebug() << "++\n" << texDocument;
+
+    QFile tmpLatexFile(QString("%1tex")
+    					.arg(yerothPrefixFileName));
+
+    YerothUtils::writeStringToQFilewithUTF8Encoding(tmpLatexFile, texDocument);
+
+    QString pdfCustomerDataFileName(YerothERPProcess::compileLatex(yerothPrefixFileName));
+
+    if (pdfCustomerDataFileName.isEmpty())
     {
-        tmpFile1.write(texDocument.toUtf8());
+    	return ;
     }
-    tmpFile1.close();
 
-    YerothInfoEntreprise &infoEntreprise = _allWindows->getInfoEntreprise();
-
-    QString texDocument2;
-
-#ifdef YEROTH_FRANCAIS_LANGUAGE
-    texDocument2.append(YerothUtils::FR_bar_diag_tex);
-#endif
-
-#ifdef YEROTH_ENGLISH_LANGUAGE
-    texDocument2.append(YerothUtils::EN_bar_diag_tex);
-#endif
-
-
-    QString factureDate(YerothUtils::handleForeignAccents(infoEntreprise.getVilleTex()));
-    YerothUtils::getCurrentLocaleDate(factureDate);
-
-    texDocument2.replace("YEROTHPAPERSPEC", "a4paper");
-    texDocument2.replace("YEROTHCHIFFREAFFAIREDATEDEBUT",longDateDebut);
-    texDocument2.replace("YEROTHCHIFFREAFFAIREDATEFIN", 	longDateFin);
-    texDocument2.replace("YEROTHCHARTFIN", 				_reportTexFileEndString);
-    texDocument2.replace("YEROTHENTREPRISE", 			infoEntreprise.getNomCommercialTex());
-    texDocument2.replace("YEROTHACTIVITESENTREPRISE", 	infoEntreprise.getSecteursActivitesTex());
-    texDocument2.replace("YEROTHBOITEPOSTALE", 			infoEntreprise.getBoitePostal());
-    texDocument2.replace("YEROTHVILLE", 					infoEntreprise.getVilleTex());
-    texDocument2.replace("YEROTHPAYS", 					infoEntreprise.getPaysTex());
-    texDocument2.replace("YEROTHEMAIL", 					infoEntreprise.getEmailTex());
-    texDocument2.replace("YEROTHTELEPHONE", 				infoEntreprise.getTelephone());
-    texDocument2.replace("YEROTHDATE", 					factureDate);
-    texDocument2.replace("YEROTHNOMUTILISATEUR",			_allWindows->getUser()->nom_completTex());
-    texDocument2.replace("YEROTHHEUREDIMPRESSION",		CURRENT_TIME);
-    texDocument2.replace("YEROTHCOMPTEBANCAIRENR", 		infoEntreprise.getNumeroCompteBancaire());
-    texDocument2.replace("YEROTHCONTRIBUABLENR", 		infoEntreprise.getNumeroDeContribuable());
-    texDocument2.replace("YEROTHAGENCECOMPTEBANCAIRE",	infoEntreprise.getAgenceCompteBancaireTex());
-
-    //qDebug() << "++ test: " << texDocument2;
-
-    YerothUtils::handleForeignAccents(texDocument2);
-*/
+    YerothERPProcess::startPdfViewerProcess(pdfCustomerDataFileName);
 }
 
 

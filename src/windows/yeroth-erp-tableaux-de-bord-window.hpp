@@ -53,6 +53,8 @@ public:
 
     void setupTabTwo();
 
+    void setupTabThree();
+
     virtual void rendreVisible(YerothSqlTableModel *stocksTableModel);
 
 public slots:
@@ -194,6 +196,7 @@ private:
 
 	static const QString OPERATION_GENERER;
 	static const QString OPERATION_GENERER_CHIFFRE_DAFFAIRE;
+	static const QString OPERATION_GENERER_BILAN_COMPTABLE;
 
 	static const QString QUANTITE_2;
 	static const QString QUANTITE_3;

@@ -90,6 +90,18 @@ void readTexTemplateFiles(YerothLogger &logger)
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
+    QFile fileFinancialAccountingReportDataTemplate(FILE_YEROTH_ERP_3_0_TEMPLATE_FINANCIAL_ACCOUNTING_REPORT_DATA_FR);
+    yeroth_read_file(fileFinancialAccountingReportDataTemplate, YerothUtils::template_bilan_comptable_tex);
+
+#else //YEROTH_ENGLISH_LANGUAGE
+
+    QFile fileFinancialAccountingReportDataENTemplate(FILE_YEROTH_ERP_3_0_TEMPLATE_FINANCIAL_ACCOUNTING_REPORT_DATA_EN);
+    yeroth_read_file(fileFinancialAccountingReportDataENTemplate, YerothUtils::template_bilan_comptable_tex);
+
+#endif
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+
     QFile fileCustomerDataTemplate(FILE_YEROTH_ERP_3_0_TEMPLATE_CUSTOMER_DATA_FR);
     yeroth_read_file(fileCustomerDataTemplate, YerothUtils::template_fiche_client_tex);
 

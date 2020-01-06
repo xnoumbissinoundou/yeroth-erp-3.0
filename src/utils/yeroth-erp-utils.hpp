@@ -323,8 +323,12 @@ public:
 												   	   	   	   	   	   	   	   	  QString &printString_in_out_OUT),
 										   QString latexFileNamePrefix);
 
-    static void getLatexCustomerData(QString &texDocumentString_in_out,
-			   	   	   	   	   	     QString &printString);
+    inline static void getLatexFinancialAccountingReportData(QString &texDocumentString_in_out)
+    {
+        texDocumentString_in_out.append(YerothUtils::template_bilan_comptable_tex);
+    }
+
+    static void getLatexCustomerData(QString &texDocumentString_in_out);
 
 	static void getSortieDesStocksFRTexDocumentString(QString &texDocumentString_in_out,
 								  	 	 	 	 	   QString &printString);
@@ -579,6 +583,8 @@ public:
 	static const QLocale englishLocale;
 
 	static QString _1a_tex;
+
+	static QString template_bilan_comptable_tex;
 
 	static QString template_fiche_client_tex;
 

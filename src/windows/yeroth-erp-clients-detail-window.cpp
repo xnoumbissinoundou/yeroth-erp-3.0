@@ -304,15 +304,14 @@ bool YerothClientsDetailWindow::imprimer_document()
 
     QString latexFileNamePrefix("yeroth-erp-fiche-client");
 
-    QList<int> tableColumnsToIgnore;
-
-    YerothPOSUser *aCurrentUser = _allWindows->getUser();
-
-    QString customerDataLatexString;
+#ifdef YEROTH_ENGLISH_LANGUAGE
+    latexFileNamePrefix.clear();
+    latexFileNamePrefix.append("yeroth-erp-customer-account-file");
+#endif
 
     QString texDocument;
 
-    YerothUtils::getLatexCustomerData(texDocument, customerDataLatexString);
+    YerothUtils::getLatexCustomerData(texDocument);
 
     QString data;
 
