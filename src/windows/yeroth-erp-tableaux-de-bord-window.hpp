@@ -75,6 +75,8 @@ public slots:
 
     void reinitialiser_chiffre_affaire();
 
+    void reinitialiser_bilan_comptable();
+
     inline void setFilter()
     {
         _curStocksVenduTableModel->yerothSetFilter(_searchFilter);
@@ -143,6 +145,8 @@ public slots:
 
     void changeLineEditEvolutionObjetsTextSetup(const QString &comboBoxEvolutionObjetsCurrentText);
 
+    void bilanComptable();
+
     void analyseComparee();
 
     void calculerChiffresDaffaireMois();
@@ -167,6 +171,8 @@ private:
     };
 
     void setupDateTimeEditsTabTwo();
+
+    void setupDateTimeEditsTabThree();
 
     class YerothStatsItem
 	{

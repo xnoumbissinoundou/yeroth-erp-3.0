@@ -120,7 +120,9 @@ YerothTableauxDeBordWindow::YerothTableauxDeBordWindow()
                                .arg(COLOUR_RGB_STRING_YEROTH_INDIGO_83_0_125,
                                     COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
-    this->setupDateTimeEditsTabTwo();
+    setupDateTimeEditsTabTwo();
+
+    setupDateTimeEditsTabThree();
 
     actionDeconnecter_utilisateur->setEnabled(false);
     actionAlertes->setEnabled(false);
@@ -217,6 +219,14 @@ void YerothTableauxDeBordWindow::setupDateTimeEditsTabTwo()
     dateEdit_rapports_debut->setStartDate(GET_CURRENT_DATE);
     dateEdit_rapports_fin->setStartDate(GET_CURRENT_DATE);
 }
+
+
+void YerothTableauxDeBordWindow::setupDateTimeEditsTabThree()
+{
+	dateEdit_bilan_comptable_debut->setStartDate(GET_CURRENT_DATE);
+	dateEdit_bilan_comptable_fin->setStartDate(GET_CURRENT_DATE);
+}
+
 
 void YerothTableauxDeBordWindow::setupTabOne()
 {
@@ -330,6 +340,11 @@ void YerothTableauxDeBordWindow::definirCaissier()
 
     pushButton_reinitialiser->disable(this);
     pushButton_generer->disable(this);
+
+    /** Tab Three *************************************/
+
+    pushButton_bilan_comptable_reinitialiser->disable(this);
+    pushButton_bilan_comptable_generer->disable(this);
 }
 
 void YerothTableauxDeBordWindow::definirManager()
@@ -352,6 +367,11 @@ void YerothTableauxDeBordWindow::definirManager()
 
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser()));
     pushButton_generer->enable(this, SLOT(generer()));
+
+    /** Tab Three *************************************/
+
+    pushButton_bilan_comptable_reinitialiser->enable(this, SLOT(reinitialiser_bilan_comptable()));
+    pushButton_bilan_comptable_generer->enable(this, SLOT(bilanComptable()));
 }
 
 
@@ -374,6 +394,11 @@ void YerothTableauxDeBordWindow::definirVendeur()
 
     pushButton_chiffre_affaire_generer->disable(this);
     pushButton_chiffre_affaire_reinitialiser->disable(this);
+
+    /** Tab Three *************************************/
+
+    pushButton_bilan_comptable_reinitialiser->disable(this);
+    pushButton_bilan_comptable_generer->disable(this);
 }
 
 
@@ -397,6 +422,11 @@ void YerothTableauxDeBordWindow::definirGestionaireDesStocks()
 
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser()));
     pushButton_generer->enable(this, SLOT(generer()));
+
+    /** Tab Three *************************************/
+
+    pushButton_bilan_comptable_reinitialiser->disable(this);
+    pushButton_bilan_comptable_generer->disable(this);
 }
 
 
@@ -419,6 +449,11 @@ void YerothTableauxDeBordWindow::definirMagasinier()
 
     pushButton_reinitialiser->disable(this);
     pushButton_generer->disable(this);
+
+    /** Tab Three *************************************/
+
+    pushButton_bilan_comptable_reinitialiser->disable(this);
+    pushButton_bilan_comptable_generer->disable(this);
 }
 
 void YerothTableauxDeBordWindow::definirPasDeRole()
@@ -440,6 +475,11 @@ void YerothTableauxDeBordWindow::definirPasDeRole()
 
     pushButton_chiffre_affaire_generer->disable(this);
     pushButton_chiffre_affaire_reinitialiser->disable(this);
+
+    /** Tab Three *************************************/
+
+    pushButton_bilan_comptable_reinitialiser->disable(this);
+    pushButton_bilan_comptable_generer->disable(this);
 }
 
 void YerothTableauxDeBordWindow::reinitialiser()
@@ -466,6 +506,15 @@ void YerothTableauxDeBordWindow::reinitialiser_chiffre_affaire()
     comboBox_mois_debut_chiffre_affaire->setCurrentIndex(0);
     comboBox_mois_fin_chiffre_affaire->setCurrentIndex(0);
     comboBox_annee_chiffre_affaire->setCurrentIndex(0);
+}
+
+
+void YerothTableauxDeBordWindow::reinitialiser_bilan_comptable()
+{
+    _logger->log("reinitialiser_bilan_comptable");
+
+    dateEdit_bilan_comptable_debut->reset();
+    dateEdit_bilan_comptable_fin->reset();
 }
 
 
@@ -1202,6 +1251,257 @@ void YerothTableauxDeBordWindow::changeLineEditEvolutionObjetsTextSetup(const QS
 }
 
 
+void YerothTableauxDeBordWindow::bilanComptable()
+{
+    _logger->log("bilanComptable");
+
+    if (dateEdit_bilan_comptable_debut->date() > dateEdit_bilan_comptable_fin->date())
+    {
+        YerothQMessageBox::warning(this, QObject::tr("bilan comptable"),
+                                  QObject::trUtf8("La date de 'début' doit être"
+                                          " antérieur à la date de 'fin' !"));
+    }
+
+	QSqlQuery query;
+
+    QString strAchatsQuery(QString("SELECT %1, %2 FROM %3 WHERE %4 >= '%5' AND %6 <= '%7'")
+    							.arg(YerothDatabaseTableColumn::PRIX_DACHAT,
+    								 YerothDatabaseTableColumn::QUANTITE_TOTAL,
+									 _allWindows->ACHATS,
+									 YerothDatabaseTableColumn::DATE_ENTREE,
+									 DATE_TO_DB_FORMAT_STRING(dateEdit_bilan_comptable_debut->date()),
+									 YerothDatabaseTableColumn::DATE_ENTREE,
+									 DATE_TO_DB_FORMAT_STRING(dateEdit_bilan_comptable_fin->date())));
+
+//    qDebug() << QString("++ strAchatsQuery: %1")
+//    				.arg(strAchatsQuery);
+
+	int achatQuerySize = YerothUtils::execQuery(query, strAchatsQuery, _logger);
+
+	double montant_total_achat = 0.0;
+
+	double total_achat = 0.0;
+
+	double prix_dachat = 0.0;
+
+	double qte_total = 0.0;
+
+    for( int k = 0; k < achatQuerySize && query.next(); ++k)
+    {
+    	prix_dachat = query.value(0).toDouble();
+
+    	qte_total = query.value(1).toDouble();
+
+    	total_achat = qte_total * prix_dachat;
+
+    	montant_total_achat = montant_total_achat + total_achat;
+    }
+
+    qDebug() << QString("++ achatQuerySize: %1, montant_total_achat: %2")
+    				.arg(QString::number(achatQuerySize),
+    					 QString::number(montant_total_achat, 'f', 2));
+
+    query.clear();
+
+    QString strVentesQuery(QString("SELECT %1, %2, %3 FROM %4 WHERE %5 >= '%6' AND %7 <= '%8'")
+    							.arg(YerothDatabaseTableColumn::STOCKS_ID,
+    								 YerothDatabaseTableColumn::QUANTITE_VENDUE,
+    								 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
+    								 _allWindows->STOCKS_VENDU,
+									 YerothDatabaseTableColumn::DATE_VENTE,
+									 DATE_TO_DB_FORMAT_STRING(dateEdit_bilan_comptable_debut->date()),
+									 YerothDatabaseTableColumn::DATE_VENTE,
+									 DATE_TO_DB_FORMAT_STRING(dateEdit_bilan_comptable_fin->date())));
+
+//    qDebug() << QString("++ strVentesQuery: %1")
+//    				.arg(strVentesQuery);
+
+	int ventesQuerySize = YerothUtils::execQuery(query, strVentesQuery, _logger);
+
+	int stocks_id = -1;
+
+	QMap<int, double> stocksidToqtevendue;
+
+	double qte_vendue = 0.0;
+
+	double total_vente = 0.0;
+
+    double montant_total_vente = 0.0;
+
+    for( int k = 0; k < ventesQuerySize && query.next(); ++k)
+    {
+    	stocks_id = query.value(0).toDouble();
+
+    	qte_vendue = query.value(1).toDouble();
+
+    	total_vente = query.value(2).toDouble();
+
+    	if (stocksidToqtevendue.contains(stocks_id))
+    	{
+    		double curQteVendue = stocksidToqtevendue.value(stocks_id);
+    		stocksidToqtevendue.insert(stocks_id, (curQteVendue + qte_vendue));
+    	}
+    	else
+    	{
+    		stocksidToqtevendue.insert(stocks_id, qte_vendue);
+    	}
+
+    	montant_total_vente = montant_total_vente + total_vente;
+    }
+
+    qDebug() << QString("++ ventesQuerySize: %1, montant_total_vente: %2")
+    				.arg(QString::number(ventesQuerySize),
+    					 QString::number(montant_total_vente, 'f', 2));
+
+    query.clear();
+
+    QString strVersementsQuery(QString("SELECT %1 FROM %2 WHERE %3 >= '%4' AND %5 <= '%6'")
+    							.arg(YerothDatabaseTableColumn::MONTANT_PAYE,
+    								 _allWindows->PAIEMENTS,
+									 YerothDatabaseTableColumn::DATE_PAIEMENT,
+									 DATE_TO_DB_FORMAT_STRING(dateEdit_bilan_comptable_debut->date()),
+									 YerothDatabaseTableColumn::DATE_PAIEMENT,
+									 DATE_TO_DB_FORMAT_STRING(dateEdit_bilan_comptable_fin->date())));
+
+//    qDebug() << QString("++ strVersementsQuery: %1")
+//    				.arg(strVersementsQuery);
+
+	int versementsQuerySize = YerothUtils::execQuery(query, strVersementsQuery, _logger);
+
+	double montant_paye = 0.0;
+
+    double montant_total_versements = 0.0;
+
+    for( int k = 0; k < versementsQuerySize && query.next(); ++k)
+    {
+    	montant_paye = query.value(0).toDouble();
+
+    	montant_total_versements = montant_total_versements + montant_paye;
+    }
+
+    qDebug() << QString("++ versementsQuerySize: %1, montant_total_versements: %2")
+    				.arg(QString::number(versementsQuerySize),
+    					 QString::number(montant_total_versements, 'f', 2));
+
+    query.clear();
+
+    double balance = 0.0;
+    double benefice = 0.0;
+    double chiffre_daffaire = 0.0;
+
+
+    QMapIterator<int, double> it(stocksidToqtevendue);
+
+    int querySize = -1;
+    QString strQuery;
+
+    while (it.hasNext())
+    {
+    	it.next();
+
+        int stocks_id = it.key();
+        double qte_vendue = it.value();
+
+        strQuery = QString("SELECT %1 FROM %2 WHERE %3 = '%4'")
+        				.arg(YerothDatabaseTableColumn::MARGE_BENEFICIAIRE,
+        					 _allWindows->ACHATS,
+    						 YerothDatabaseTableColumn::STOCKS_ID,
+							 QString::number(stocks_id));
+
+    	int querySize = YerothUtils::execQuery(query, strQuery, _logger);
+
+    	if (querySize > 0 && query.next())
+    	{
+    		double marge_beneficiaire = query.value(0).toDouble();
+    		benefice = benefice + (qte_vendue * marge_beneficiaire);
+    	}
+    }
+
+    chiffre_daffaire = montant_total_vente + montant_total_versements;
+
+    balance = chiffre_daffaire - montant_total_achat;
+
+
+    qDebug() << QString("++ benefice: %1, chiffre_daffaire: %2, balance: %3")
+    				.arg(QString::number(benefice, 'f', 2),
+    					 QString::number(chiffre_daffaire, 'f', 2),
+    					 QString::number(balance, 'f', 2));
+
+    /*
+    QProcess aProcess;
+
+    aProcess.setWorkingDirectory(YerothERPConfig::temporaryFilesDir);
+
+    QString texDocument;
+    texDocument.append(YerothUtils::_1a_tex);
+
+    texDocument.replace("YEROTHBARPERGROUP", "\\barspergroup{2}");
+    texDocument.replace("YEROTHBARITEMS", 				barItems);
+    texDocument.replace("YEROTHTICKS", 					QString::number(TICKS));
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+    texDocument.replace("YEROTHLEGENDANALYSECOMPAREE", 	"\\diagLegenditem{Ratio des achats du mois.}{purplish}");
+    texDocument.replace("YEROTHDIAGRAMMETITRE", 		"Ratio du chiffre d'affaire du mois.");
+    texDocument.replace("YEROTHNIVEAUCHIFFREAFFAIRE", 	"Niveau du chiffre d'affaire");
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+    texDocument.replace("YEROTHLEGENDANALYSECOMPAREE", 	"\\diagLegenditem{Ratio of the monthly buyings.}{purplish}");
+    texDocument.replace("YEROTHDIAGRAMMETITRE", 		"Ratio of the monthly income.");
+    texDocument.replace("YEROTHNIVEAUCHIFFREAFFAIRE", 	"Income Level");
+#endif
+
+    QString fileName1(YerothERPConfig::temporaryFilesDir + "/1a.tex");
+
+    QFile tmpFile1(fileName1);
+
+    if (tmpFile1.open(QFile::WriteOnly))
+    {
+        tmpFile1.write(texDocument.toUtf8());
+    }
+    tmpFile1.close();
+
+    YerothInfoEntreprise &infoEntreprise = _allWindows->getInfoEntreprise();
+
+    QString texDocument2;
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+    texDocument2.append(YerothUtils::FR_bar_diag_tex);
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+    texDocument2.append(YerothUtils::EN_bar_diag_tex);
+#endif
+
+
+    QString factureDate(YerothUtils::handleForeignAccents(infoEntreprise.getVilleTex()));
+    YerothUtils::getCurrentLocaleDate(factureDate);
+
+    texDocument2.replace("YEROTHPAPERSPEC", "a4paper");
+    texDocument2.replace("YEROTHCHIFFREAFFAIREDATEDEBUT",longDateDebut);
+    texDocument2.replace("YEROTHCHIFFREAFFAIREDATEFIN", 	longDateFin);
+    texDocument2.replace("YEROTHCHARTFIN", 				_reportTexFileEndString);
+    texDocument2.replace("YEROTHENTREPRISE", 			infoEntreprise.getNomCommercialTex());
+    texDocument2.replace("YEROTHACTIVITESENTREPRISE", 	infoEntreprise.getSecteursActivitesTex());
+    texDocument2.replace("YEROTHBOITEPOSTALE", 			infoEntreprise.getBoitePostal());
+    texDocument2.replace("YEROTHVILLE", 					infoEntreprise.getVilleTex());
+    texDocument2.replace("YEROTHPAYS", 					infoEntreprise.getPaysTex());
+    texDocument2.replace("YEROTHEMAIL", 					infoEntreprise.getEmailTex());
+    texDocument2.replace("YEROTHTELEPHONE", 				infoEntreprise.getTelephone());
+    texDocument2.replace("YEROTHDATE", 					factureDate);
+    texDocument2.replace("YEROTHNOMUTILISATEUR",			_allWindows->getUser()->nom_completTex());
+    texDocument2.replace("YEROTHHEUREDIMPRESSION",		CURRENT_TIME);
+    texDocument2.replace("YEROTHCOMPTEBANCAIRENR", 		infoEntreprise.getNumeroCompteBancaire());
+    texDocument2.replace("YEROTHCONTRIBUABLENR", 		infoEntreprise.getNumeroDeContribuable());
+    texDocument2.replace("YEROTHAGENCECOMPTEBANCAIRE",	infoEntreprise.getAgenceCompteBancaireTex());
+
+    //qDebug() << "++ test: " << texDocument2;
+
+    YerothUtils::handleForeignAccents(texDocument2);
+*/
+}
+
+
 void YerothTableauxDeBordWindow::analyseComparee()
 {
     _logger->log("analyseComparee");
@@ -1209,7 +1509,7 @@ void YerothTableauxDeBordWindow::analyseComparee()
     if (comboBox_mois_debut_chiffre_affaire->currentIndex() >
             comboBox_mois_fin_chiffre_affaire->currentIndex())
     {
-        YerothQMessageBox::warning(this, QObject::trUtf8("Fenêtre des rapports"),
+        YerothQMessageBox::warning(this, QObject::trUtf8("analyse comparée"),
                                   QObject::trUtf8("Le mois de 'début' doit être"
                                           " antérieur au mois de 'fin' !"));
     }
@@ -1782,7 +2082,7 @@ void YerothTableauxDeBordWindow::calculerChiffresDaffaireMois()
     if (comboBox_mois_debut_chiffre_affaire->currentIndex() >
             comboBox_mois_fin_chiffre_affaire->currentIndex())
     {
-        YerothQMessageBox::warning(this, QObject::trUtf8("Fenêtre des rapports"),
+        YerothQMessageBox::warning(this, QObject::trUtf8("évolution du chiffre d'affaire"),
                                   QObject::trUtf8("Le mois de 'début' doit être"
                                           " antérieur au mois de 'fin' !"));
     }
