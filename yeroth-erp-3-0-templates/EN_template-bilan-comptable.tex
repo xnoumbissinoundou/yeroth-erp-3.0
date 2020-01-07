@@ -110,32 +110,36 @@
 
 \vspace{0.3cm}
 
-\vspace{2cm}
-\hrule
-\textbf{Financial Income}
-\begin{enumerate}[1)]
-	\item Customer payments: ....... YEROTHBILANCOMPTABLEVERSEMENTSCLIENTSDEVISE
-	\item Sales: ....... YEROTHBILANCOMPTABLEVENTESDEVISE\\
-\end{enumerate}
+\vspace{1cm}
+\textbf{INCOME}
+\begin{table}[!htbp]
+\begin{tabular}{lrr}
+sales  				&  YEROTHBILANCOMPTABLEVENTESDEVISE  			& [S]\\ 
+customer payments  	&  YEROTHBILANCOMPTABLEVERSEMENTSCLIENTSDEVISE  & [C]\\ \hline
+\textbf{Total income}  		&  YEROTHBILANCOMPTABLETOTALENTREESDEVISE & [TI] \\	 
+\end{tabular}
+\end{table}
 
 
 \vspace{1cm}
-\hrule
-\textbf{Expenses}
-\begin{enumerate}[1)]
-	\item Customer debt: ....... YEROTHBILANCOMPTABLEDETTECLIENTELLEDEVISE
-	\item Stock buyings: ....... YEROTHBILANCOMPTABLEACHATSDEVISE\\
-\end{enumerate}
+\textbf{EXPENSES}
+\begin{table}[!htbp]
+\begin{tabular}{lrr}
+stock buyings  	&  YEROTHBILANCOMPTABLEACHATSDEVISE  			& [B]\\ 
+customer debt  		&  YEROTHBILANCOMPTABLEDETTECLIENTELLEDEVISE &  	\\ \hline
+\textbf{Total expenses}  		&  YEROTHBILANCOMPTABLETOTALSORTIESDEVISE & [TE] \\
+\end{tabular}
+\end{table}
 
 
 \vspace{1cm}
 
 \begin{table}[!htbp]
 \centering
-\begin{tabular}{c|r}
-\textbf{Balance}  			&  YEROTHBILANCOMPTABLEBALANCEDEVISE  			\\ \hline
-\textbf{Business turnover}  &  YEROTHBILANCOMPTABLEBENEFICEDEVISE  			\\ \hline
-\textbf{Profit}  			&  YEROTHBILANCOMPTABLECHIFFREDAFFAIREDEVISE  	\\ 
+\begin{tabular}{lrr}
+\textbf{Profit on sales}  &  YEROTHBILANCOMPTABLEBENEFICEDEVISE &  \\ \hline
+\textbf{Balance}  			&  YEROTHBILANCOMPTABLEBALANCEDEVISE  & [TI -- TE]\\ \hline
+\textbf{Business turnover}  &  YEROTHBILANCOMPTABLECHIFFREDAFFAIREDEVISE  & [B + TI]\\ 
 \end{tabular}
 \end{table}
 

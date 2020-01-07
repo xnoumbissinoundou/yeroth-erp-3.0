@@ -748,7 +748,7 @@ YerothQMessageBox::information(this, QObject::trUtf8(DIALOG_BOX_TITLE), msg); }
 # ifdef YEROTH_FRANCAIS_LANGUAGE
 	# define GET_NUM_STRING(NUM) YerothUtils::frenchLocale.toString(NUM)
 
-# define GET_DOUBLE_STRING(NUM) YerothUtils::frenchLocale.toString(NUM, 'f', 2)
+	# define GET_DOUBLE_STRING(NUM) YerothUtils::frenchLocale.toString(NUM, 'f', 2)
 	# define GET_DOUBLE_STRING_P(NUM, P) YerothUtils::frenchLocale.toString(NUM, 'f', P)
 
 	# define GET_CURRENCY_STRING_NUM(NUM) YerothUtils::frenchLocale.toString(NUM, 'f', 2).append(" ").append(YerothERPConfig::currency)

@@ -111,32 +111,36 @@
 
 \vspace{0.3cm}
 
-\vspace{2cm}
-\hrule
-\textbf{Entr\'ees}
-\begin{enumerate}[1)]
-	\item Ventes: ....... YEROTHBILANCOMPTABLEVENTESDEVISE
-	\item Versements clients: ....... YEROTHBILANCOMPTABLEVERSEMENTSCLIENTSDEVISE\\
-\end{enumerate}
+\vspace{1cm}
+\textbf{ENTR\'EES}
+\begin{table}[!htbp]
+\begin{tabular}{lrr}
+ventes  				&  YEROTHBILANCOMPTABLEVENTESDEVISE  			& [V]\\ 
+versements clients  	&  YEROTHBILANCOMPTABLEVERSEMENTSCLIENTSDEVISE  & [C]\\ \hline
+\textbf{Total entr\'ees}  		&  YEROTHBILANCOMPTABLETOTALENTREESDEVISE & [TE] 		\\ 
+\end{tabular}
+\end{table}
 
 
 \vspace{1cm}
-\hrule
-\textbf{Sorties}
-\begin{enumerate}[1)]
-	\item Achats d'articles: ....... YEROTHBILANCOMPTABLEACHATSDEVISE
-	\item Dette clientelle: ....... YEROTHBILANCOMPTABLEDETTECLIENTELLEDEVISE\\
-\end{enumerate}
+\textbf{SORTIES}
+\begin{table}[!htbp]
+\begin{tabular}{lrr}
+achats d'articles  	&  YEROTHBILANCOMPTABLEACHATSDEVISE  			& [A]\\ 
+dette clientelle  		&  YEROTHBILANCOMPTABLEDETTECLIENTELLEDEVISE & [D] 	\\ \hline
+\textbf{Total sorties}  		&  YEROTHBILANCOMPTABLETOTALSORTIESDEVISE & [TS] 		\\ 
+\end{tabular}
+\end{table}
 
 
 \vspace{1cm}
 
 \begin{table}[!htbp]
 \centering
-\begin{tabular}{c|r}
-\textbf{Balance}  			&  YEROTHBILANCOMPTABLEBALANCEDEVISE  \\ \hline
-\textbf{B\'en\'efice}  		&  YEROTHBILANCOMPTABLEBENEFICEDEVISE  \\ \hline
-\textbf{Chiffre d'affaire}  &  YEROTHBILANCOMPTABLECHIFFREDAFFAIREDEVISE  \\ 
+\begin{tabular}{lrr}
+\textbf{B\'en\'efice sur les ventes \'effectu\'ees}  &  YEROTHBILANCOMPTABLEBENEFICEDEVISE &  \\ \hline
+\textbf{Balance}  			&  YEROTHBILANCOMPTABLEBALANCEDEVISE  & [TE -- TS]\\ \hline
+\textbf{Chiffre d'affaire}  &  YEROTHBILANCOMPTABLECHIFFREDAFFAIREDEVISE  & [A + TE]\\ 
 \end{tabular}
 \end{table}
 

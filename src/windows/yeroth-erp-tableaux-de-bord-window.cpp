@@ -1299,6 +1299,8 @@ void YerothTableauxDeBordWindow::bilanComptable()
     	montant_total_dette_clientelle = montant_total_dette_clientelle + dette_clientelle;
     }
 
+    montant_total_dette_clientelle = qFabs(montant_total_dette_clientelle);
+
 //    qDebug() << QString("++ detteClientelleSize: %1, montant_total_dette_clientelle: %2")
 //    				.arg(QString::number(detteClientelleSize),
 //    					 QString::number(montant_total_dette_clientelle, 'f', 2));
@@ -1426,8 +1428,12 @@ void YerothTableauxDeBordWindow::bilanComptable()
 
     query.clear();
 
+    double total_entrees = montant_total_vente + montant_total_versements;
+
+    double total_sorties = montant_total_achat + montant_total_dette_clientelle;
+
     double balance = 0.0;
-    double benefice = 0.0;
+    double benefice_sur_vente_effectuees = 0.0;
     double chiffre_daffaire = 0.0;
 
     QMapIterator<int, double> it(stocksidToqtevendue);
@@ -1453,14 +1459,20 @@ void YerothTableauxDeBordWindow::bilanComptable()
     	if (querySize > 0 && query.next())
     	{
     		double marge_beneficiaire = query.value(0).toDouble();
-    		benefice = benefice + (qte_vendue * marge_beneficiaire);
+    		benefice_sur_vente_effectuees = benefice_sur_vente_effectuees + (qte_vendue * marge_beneficiaire);
     	}
     }
 
-    chiffre_daffaire = montant_total_vente + montant_total_versements;
+    benefice_sur_vente_effectuees = benefice_sur_vente_effectuees - montant_total_dette_clientelle;
 
-    balance = chiffre_daffaire - montant_total_achat - qFabs(montant_total_dette_clientelle);
+    if (benefice_sur_vente_effectuees <= 0)
+    {
+    	benefice_sur_vente_effectuees = 0;
+    }
 
+    chiffre_daffaire = montant_total_achat + montant_total_vente + montant_total_versements;
+
+    balance = montant_total_vente + montant_total_versements - montant_total_achat - montant_total_dette_clientelle;
 
 //    qDebug() << QString("++ benefice: %1, chiffre_daffaire: %2, balance: %3")
 //    				.arg(QString::number(benefice, 'f', 2),
@@ -1511,11 +1523,13 @@ void YerothTableauxDeBordWindow::bilanComptable()
 
     texDocument.replace("YEROTHBILANCOMPTABLEVERSEMENTSCLIENTSDEVISE", GET_CURRENCY_STRING_NUM_FOR_LATEX(montant_total_versements));
 
-    QString montantTotaleDetteClientelleDeviseLatexStr(GET_CURRENCY_STRING_NUM_FOR_LATEX(montant_total_dette_clientelle));
+    texDocument.replace("YEROTHBILANCOMPTABLETOTALENTREESDEVISE", GET_CURRENCY_STRING_NUM_FOR_LATEX(total_entrees));
 
-    texDocument.replace("YEROTHBILANCOMPTABLEDETTECLIENTELLEDEVISE", montantTotaleDetteClientelleDeviseLatexStr);
+    texDocument.replace("YEROTHBILANCOMPTABLEDETTECLIENTELLEDEVISE", GET_CURRENCY_STRING_NUM_FOR_LATEX(montant_total_dette_clientelle));
 
     texDocument.replace("YEROTHBILANCOMPTABLEACHATSDEVISE", GET_CURRENCY_STRING_NUM_FOR_LATEX(montant_total_achat));
+
+    texDocument.replace("YEROTHBILANCOMPTABLETOTALSORTIESDEVISE", GET_CURRENCY_STRING_NUM_FOR_LATEX(total_sorties));
 
     QString balanceDeviseLatexStr(GET_CURRENCY_STRING_NUM_FOR_LATEX(balance));
     if (balance > 0)
@@ -1529,7 +1543,7 @@ void YerothTableauxDeBordWindow::bilanComptable()
 
     texDocument.replace("YEROTHBILANCOMPTABLEBALANCEDEVISE", balanceDeviseLatexStr);
 
-    texDocument.replace("YEROTHBILANCOMPTABLEBENEFICEDEVISE", GET_CURRENCY_STRING_NUM_FOR_LATEX(benefice));
+    texDocument.replace("YEROTHBILANCOMPTABLEBENEFICEDEVISE", GET_CURRENCY_STRING_NUM_FOR_LATEX(benefice_sur_vente_effectuees));
 
     texDocument.replace("YEROTHBILANCOMPTABLECHIFFREDAFFAIREDEVISE", GET_CURRENCY_STRING_NUM_FOR_LATEX(chiffre_daffaire));
 
