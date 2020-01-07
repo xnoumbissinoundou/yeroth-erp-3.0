@@ -933,7 +933,7 @@ void YerothPointDeVenteWindow::annuler()
         lineEdit_articles_quantite_a_vendre->clear();
         lineEdit_articles_tva->setText(GET_CURRENCY_STRING_NUM(0.0));
         lineEdit_articles_nom_client->clear();
-        lineEdit_articles_montant_a_rembourser->clear();
+        lineEdit_articles_montant_a_rembourser->setText(GET_CURRENCY_STRING_NUM(0.0));
 
         tableWidget_articles->resizeColumnsToContents();
 
