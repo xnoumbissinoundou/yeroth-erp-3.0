@@ -121,6 +121,8 @@
 \newcommand{\uwaterloo}{
 	\company{University of Waterloo}~\footnote{\url{http://www.uwaterloo.ca}}\xspace}
 
+\newcommand{\mariadbmysql}{\emph{MariaDB (MySQL)}\xspace}
+
 \usepackage[T1]{fontenc}
 \newcommand{\changefont}[3]{
 \fontfamily{#1} \fontseries{#2} \fontshape{#3} \selectfont}
@@ -138,7 +140,7 @@
 %% really bad the content
 
 \rhead{}
-\rfoot{{\small Version du --~\date{$31$~D\'ecembre~$2019$}~--}}
+\rfoot{{\small Version du --~\date{$7$~Janvier~$2020$}~--}}
 \cfoot{\thepage}
 
 %Remove widows and orphants
@@ -211,8 +213,10 @@ acc\'eder aux  		 						& 				 &				 		&				 			& 					&  				 	\\
 mouvements des stocks 	   		 			& \mycheckmark{blue} & 				 		&\mycheckmark{blue}				& \mycheckmark{blue}  	&				 	\\ \hline
 gestion des achats 							& \mycheckmark{blue} &\mytimespartial{blue} &\mycheckmark{blue}				& 					&  				 	\\ \hline
 gestion des clients 						& \mycheckmark{blue} &\mytimespartial{blue} &							& 					&  				 	\\ \hline
+tableaux de bords 		& \mycheckmark{blue}	& 	&					& 					& 	\\ \hline
 acc\'eder aux informations					&				 &						&							&					&					\\
 sur les ventes 								& \mycheckmark{blue} &\mytimespartial{blue} &							&					&					\\
+
 \end{tabular}
 \caption{Tableau des t\^aches et des r\^oles associ\'es
 \`a la gestion des stocks, des achats, des clients, et des ventes}\label{tachesEtFonctions}
@@ -295,19 +299,18 @@ yaourt 'tr\`esbon' pendant une p\'eriode de 2 semaines.
 \vspace{-1.1em}
 \section{Le syst\`eme de gestion de base--de--donn\'ees}
 \vspace{-0.3em}
-\emph{MariaDB (MySQL)} est utilis\'e comme syst\`eme de gestion
-de base de donn\'ees. \emph{MariaDB} est tr\`es stable,
+\mariadbmysql est utilis\'e comme syst\`eme de gestion
+de base de donn\'ees. \mariadbmysql est tr\`es stable,
 performant, et gratuit.
 
 \vspace{-1.1em}
 \section{Le r\^ole \administrateur}\label{tachesadmin}
 \vspace{-0.3em}
-Parmi les t\^aches centrales du r\^ole \administrateur,
-nous avons: \\
+Les t\^aches principales, entre autres, du r\^ole
+\administrateur, sont les suivantes: \\
 \{\emph{cr\'eer, modifier, lister, supprimer}\} $\longrightarrow$
 \hspace{0.09cm} \{une alerte, une cat\'egorie de produit,
-un compte client, un compte utilisateur, un compte
-fournisseur, une localisation\}.
+un compte utilisateur, un compte fournisseur, une localisation\}.
 
 \vspace{-1em}
 \section{Conclusion}
@@ -322,7 +325,6 @@ fournisseur, une localisation\}.
 La Figure~\ref{fig:fenetre-de-vente} illustre la
 fen\^etre pour faire les ventes d'articles.
 
-\yeren ne fait pas de comptabilit\'e. \yeren est
-disponible dans les langues Anglais et Fran\c{c}ais. 
+\yeren est disponible dans les langues Anglais et Fran\c{c}ais. 
 
 \end{document}
