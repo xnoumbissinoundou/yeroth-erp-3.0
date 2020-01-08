@@ -1471,7 +1471,7 @@ void YerothTableauxDeBordWindow::bilanComptable()
     	benefice_sur_vente_effectuees = 0;
     }
 
-    chiffre_daffaire = montant_total_vente + montant_total_versements;
+    chiffre_daffaire = montant_total_vente;
 
     balance = chiffre_daffaire - montant_total_achat - montant_total_dette_clientelle;
 
