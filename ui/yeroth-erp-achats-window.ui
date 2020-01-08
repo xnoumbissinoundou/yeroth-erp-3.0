@@ -9070,13 +9070,20 @@ background-color: rgb(0, 0, 0);</string>
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>tableView_achats</tabstop>
-  <tabstop>pushButton_rechercher</tabstop>
-  <tabstop>pushButton_ventes</tabstop>
-  <tabstop>pushButton_entrer</tabstop>
-  <tabstop>pushButton_afficher</tabstop>
-  <tabstop>pushButton_menu_principal</tabstop>
+  <tabstop>lineEdit_recherche_designation</tabstop>
+  <tabstop>lineEdit_element_achats_resultat</tabstop>
+  <tabstop>comboBox_element_achats_condition</tabstop>
+  <tabstop>comboBox_element_achats</tabstop>
+  <tabstop>pushButton_achats_filtrer</tabstop>
+  <tabstop>pushButton_achats_reinitialiser_filtre</tabstop>
   <tabstop>pushButton_reinitialiser</tabstop>
+  <tabstop>pushButton_rechercher</tabstop>
+  <tabstop>pushButton_afficher</tabstop>
+  <tabstop>pushButton_entrer</tabstop>
+  <tabstop>pushButton_menu_principal</tabstop>
+  <tabstop>pushButton_stocks</tabstop>
+  <tabstop>pushButton_ventes</tabstop>
+  <tabstop>tableView_achats</tabstop>
  </tabstops>
  <resources>
   <include location="../yeroth-erp-3-0.qrc"/>

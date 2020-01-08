@@ -12748,14 +12748,22 @@
   <tabstop>lineEdit_compte_client_nom_de_lentreprise</tabstop>
   <tabstop>lineEdit_compte_client_nom_du_representant</tabstop>
   <tabstop>lineEdit_compte_client_quartier</tabstop>
+  <tabstop>lineEdit_compte_client_ville</tabstop>
+  <tabstop>lineEdit_compte_client_province_etat</tabstop>
   <tabstop>lineEdit_compte_client_pays</tabstop>
   <tabstop>lineEdit_compte_client_boite_postale</tabstop>
   <tabstop>lineEdit_compte_client_siege_social</tabstop>
   <tabstop>lineEdit_compte_client_email</tabstop>
+  <tabstop>lineEdit_compte_client_numero_telephone_1</tabstop>
   <tabstop>lineEdit_compte_client_numero_telephone_2</tabstop>
-  <tabstop>pushButton_enregistrer</tabstop>
+  <tabstop>lineEdit_compte_client_numero_de_contribuable</tabstop>
+  <tabstop>lineEdit_compte_client_dette_maximale</tabstop>
+  <tabstop>textEdit_creer_compte_client_description_client</tabstop>
+  <tabstop>pushButton_achats</tabstop>
+  <tabstop>pushButton_annuler</tabstop>
   <tabstop>pushButton_menu_principal</tabstop>
   <tabstop>pushButton_clients</tabstop>
+  <tabstop>pushButton_enregistrer</tabstop>
  </tabstops>
  <resources>
   <include location="../yeroth-erp-3-0.qrc"/>

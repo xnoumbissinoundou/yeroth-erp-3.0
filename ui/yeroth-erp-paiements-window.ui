@@ -19134,20 +19134,27 @@ background-color: rgb(0, 0, 0); </string>
   <tabstop>dateEdit_paiements_fin</tabstop>
   <tabstop>lineEdit_paiements_numero_bon_paiement</tabstop>
   <tabstop>lineEdit_paiements_nom_entreprise</tabstop>
-  <tabstop>pushButton_reinitialiser</tabstop>
-  <tabstop>lineEdit_paiements_total</tabstop>
+  <tabstop>lineEdit_paiements_nom_payeur</tabstop>
+  <tabstop>lineEdit_paiements_nom_encaisseur</tabstop>
+  <tabstop>comboBox_paiements_element_de_paiements</tabstop>
+  <tabstop>comboBox_paiements_element_de_paiements_condition</tabstop>
+  <tabstop>lineEdit_paiements_element_de_paiements_resultat</tabstop>
+  <tabstop>pushButton_paiements_reinitialiser_filtre</tabstop>
+  <tabstop>pushButton_paiements_filtrer</tabstop>
   <tabstop>lineEdit_paiements_nombre_paiements</tabstop>
+  <tabstop>lineEdit_paiements_total</tabstop>
+  <tabstop>pushButton_reinitialiser</tabstop>
   <tabstop>tableView_paiements</tabstop>
   <tabstop>tabWidget_historique_paiements</tabstop>
-  <tabstop>lineEdit_details_de_paiement_numero_du_bon_de_paiement</tabstop>
-  <tabstop>lineEdit_details_de_paiement_nom_de_lentreprise</tabstop>
-  <tabstop>lineEdit_details_de_paiement_compte_client</tabstop>
-  <tabstop>lineEdit_details_de_paiement_montant_paye</tabstop>
-  <tabstop>lineEdit_details_de_paiement_heure_de_paiement</tabstop>
-  <tabstop>lineEdit_details_de_paiement_nom_du_payeur</tabstop>
-  <tabstop>lineEdit_details_de_paiement_nom_de_lencaisseur</tabstop>
   <tabstop>dateEdit_details_de_paiement_date_paiement</tabstop>
   <tabstop>pushButton_retour_paiements</tabstop>
+  <tabstop>lineEdit_details_de_paiement_montant_paye</tabstop>
+  <tabstop>lineEdit_details_de_paiement_compte_client</tabstop>
+  <tabstop>lineEdit_details_de_paiement_numero_du_bon_de_paiement</tabstop>
+  <tabstop>lineEdit_details_de_paiement_nom_de_lentreprise</tabstop>
+  <tabstop>lineEdit_details_de_paiement_nom_du_payeur</tabstop>
+  <tabstop>lineEdit_details_de_paiement_heure_de_paiement</tabstop>
+  <tabstop>lineEdit_details_de_paiement_nom_de_lencaisseur</tabstop>
  </tabstops>
  <resources>
   <include location="../yeroth-erp-3-0.qrc"/>

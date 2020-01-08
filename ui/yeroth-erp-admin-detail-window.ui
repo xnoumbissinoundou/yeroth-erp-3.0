@@ -14465,14 +14465,14 @@ background-color: rgb(47, 67, 67);</string>
    <header>src/widgets/yeroth-erp-line-edit.hpp</header>
   </customwidget>
   <customwidget>
-   <class>YerothDateTimeEdit</class>
-   <extends>QDateEdit</extends>
-   <header>src/widgets/yeroth-erp-datetime-edit.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>YerothComboBox</class>
    <extends>QComboBox</extends>
    <header>src/widgets/yeroth-erp-combo-box.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>YerothDateTimeEdit</class>
+   <extends>QDateEdit</extends>
+   <header>src/widgets/yeroth-erp-datetime-edit.hpp</header>
   </customwidget>
   <customwidget>
    <class>YerothTextEdit</class>
@@ -14486,63 +14486,83 @@ background-color: rgb(47, 67, 67);</string>
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>pushButton_lister</tabstop>
-  <tabstop>pushButton_creer</tabstop>
-  <tabstop>pushButton_menu</tabstop>
-  <tabstop>pushButton_modifier</tabstop>
-  <tabstop>pushButton_supprimer</tabstop>
-  <tabstop>tabWidget_detail</tabstop>
   <tabstop>lineEdit_detail_alerte_designation_article</tabstop>
   <tabstop>lineEdit_detail_alerte_designation_alerte</tabstop>
   <tabstop>lineEdit_detail_alerte_id_destinataire</tabstop>
+  <tabstop>radioButton_detail_alerte_quantite</tabstop>
   <tabstop>comboBox_detail_alerte_condition</tabstop>
   <tabstop>lineEdit_detail_alerte_quantite</tabstop>
+  <tabstop>radioButton_detail_alerte_date_periode_temps</tabstop>
   <tabstop>dateEdit_detail_alerte_date_debut</tabstop>
   <tabstop>dateEdit_detail_alerte_date_fin</tabstop>
   <tabstop>lineEdit_detail_alerte_nom_destinataire</tabstop>
-  <tabstop>textEdit_detail_alerte_message</tabstop>
   <tabstop>pushButton_detail_alerte_retour</tabstop>
+  <tabstop>textEdit_detail_alerte_message</tabstop>
   <tabstop>lineEdit_detail_categorie_nom</tabstop>
-  <tabstop>textEdit_detail_categorie_description</tabstop>
   <tabstop>pushButton_detail_categorie_retour</tabstop>
+  <tabstop>textEdit_detail_categorie_description</tabstop>
   <tabstop>lineEdit_detail_utilisateur_prenom</tabstop>
   <tabstop>lineEdit_detail_utilisateur_nom</tabstop>
   <tabstop>comboBox_detail_utilisateur_titre</tabstop>
   <tabstop>lineEdit_detail_utilisateur_lieu_naissance</tabstop>
   <tabstop>dateEdit_detail_utilisateur_date_naissance</tabstop>
+  <tabstop>lineEdit_detail_utilisateur_ville</tabstop>
+  <tabstop>lineEdit_detail_utilisateur_province_etat</tabstop>
+  <tabstop>lineEdit_detail_utilisateur_pays</tabstop>
+  <tabstop>lineEdit_detail_utilisateur_boite_postale</tabstop>
   <tabstop>lineEdit_detail_utilisateur_email</tabstop>
   <tabstop>lineEdit_detail_utilisateur_numero_telephone_1</tabstop>
   <tabstop>lineEdit_detail_utilisateur_numero_telephone_2</tabstop>
   <tabstop>lineEdit_detail_utilisateur_id</tabstop>
   <tabstop>lineEdit_detail_utilisateur_mot_passe</tabstop>
   <tabstop>comboBox_detail_utilisateur_role</tabstop>
+  <tabstop>lineEdit_detail_utilisateur_localisation</tabstop>
   <tabstop>pushButton_detail_utilisateur_retour</tabstop>
   <tabstop>lineEdit_detail_fournisseur_nom_entreprise</tabstop>
   <tabstop>lineEdit_detail_fournisseur_nom_representant</tabstop>
   <tabstop>lineEdit_detail_fournisseur_quartier</tabstop>
   <tabstop>lineEdit_detail_fournisseur_ville</tabstop>
+  <tabstop>lineEdit_detail_fournisseur_province_etat</tabstop>
   <tabstop>lineEdit_detail_fournisseur_pays</tabstop>
+  <tabstop>lineEdit_detail_fournisseur_boite_postale</tabstop>
   <tabstop>lineEdit_detail_fournisseur_siege_social</tabstop>
   <tabstop>lineEdit_detail_fournisseur_email</tabstop>
   <tabstop>lineEdit_detail_fournisseur_numero_telephone_1</tabstop>
   <tabstop>lineEdit_detail_fournisseur_numero_telephone_2</tabstop>
   <tabstop>lineEdit_detail_fournisseur_numero_contribuable</tabstop>
-  <tabstop>textEdit_detail_fournisseur_description</tabstop>
   <tabstop>pushButton_detail_fournisseur_retour</tabstop>
+  <tabstop>textEdit_detail_fournisseur_description</tabstop>
   <tabstop>lineEdit_detail_localisation_adresse_ip</tabstop>
   <tabstop>lineEdit_detail_localisation_nom</tabstop>
   <tabstop>lineEdit_detail_localisation_numero_unique</tabstop>
   <tabstop>lineEdit_detail_localisation_quartier</tabstop>
   <tabstop>lineEdit_detail_localisation_ville</tabstop>
+  <tabstop>lineEdit_detail_localisation_province_etat</tabstop>
   <tabstop>lineEdit_detail_localisation_pays</tabstop>
+  <tabstop>lineEdit_detail_localisation_boite_postale</tabstop>
   <tabstop>dateEdit_detail_localisation_date_ouverture</tabstop>
   <tabstop>lineEdit_detail_localisation_email</tabstop>
   <tabstop>lineEdit_detail_localisation_numero_telephone_1</tabstop>
   <tabstop>lineEdit_detail_localisation_numero_telephone_2</tabstop>
-  <tabstop>textEdit_detail_localisation_description_lieu</tabstop>
+  <tabstop>lineEdit_detail_localisation_base_donnees</tabstop>
   <tabstop>pushButton_detail_localisation_retour</tabstop>
-  <tabstop>radioButton_detail_alerte_date_periode_temps</tabstop>
-  <tabstop>radioButton_detail_alerte_quantite</tabstop>
+  <tabstop>textEdit_detail_localisation_description_lieu</tabstop>
+  <tabstop>lineEdit_creer_alerte_designation_3</tabstop>
+  <tabstop>lineEdit_creer_alerte_nom_3</tabstop>
+  <tabstop>spinBox_remise_pourcentage</tabstop>
+  <tabstop>dateEdit_creer_alerte_date_debut_3</tabstop>
+  <tabstop>dateEdit_creer_alerte_date_fin_3</tabstop>
+  <tabstop>lineEdit_creer_alerte_quantite_en_stock_3</tabstop>
+  <tabstop>lineEdit_creer_alerte_date_peremption_3</tabstop>
+  <tabstop>pushButton_creer_alerte_annuler_3</tabstop>
+  <tabstop>pushButton_creer_alerte_valider_3</tabstop>
+  <tabstop>textEdit_creer_alerte_message_3</tabstop>
+  <tabstop>pushButton_lister</tabstop>
+  <tabstop>pushButton_creer</tabstop>
+  <tabstop>pushButton_menu</tabstop>
+  <tabstop>pushButton_modifier</tabstop>
+  <tabstop>pushButton_supprimer</tabstop>
+  <tabstop>tabWidget_detail</tabstop>
  </tabstops>
  <resources>
   <include location="../yeroth-erp-3-0.qrc"/>

@@ -23538,31 +23538,31 @@ background-color: rgb(0, 0, 0); </string>
    <header>src/widgets/yeroth-erp-line-edit.hpp</header>
   </customwidget>
   <customwidget>
-   <class>YerothTableWidget</class>
-   <extends>QTableWidget</extends>
-   <header>src/widgets/yeroth-erp-table-widget.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>YerothTextEdit</class>
    <extends>QTextEdit</extends>
    <header>src/widgets/yeroth-erp-text-edit.hpp</header>
   </customwidget>
+  <customwidget>
+   <class>YerothTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>src/widgets/yeroth-erp-table-widget.hpp</header>
+  </customwidget>
  </customwidgets>
  <tabstops>
   <tabstop>lineEdit_recherche_article</tabstop>
-  <tabstop>lineEdit_articles_nom_magasinier</tabstop>
+  <tabstop>lineEdit_recherche_article_codebar</tabstop>
+  <tabstop>pushButton_minus</tabstop>
   <tabstop>lineEdit_articles_transfert</tabstop>
   <tabstop>lineEdit_articles_nom_client</tabstop>
   <tabstop>lineEdit_articles_nom_recepteur</tabstop>
-  <tabstop>textEdit_articles_notes</tabstop>
-  <tabstop>pushButton_sortir</tabstop>
-  <tabstop>pushButton_annuler</tabstop>
-  <tabstop>pushButton_minus</tabstop>
-  <tabstop>lineEdit_article_detail_quantite_a_vendre</tabstop>
-  <tabstop>lineEdit_article_detail_remise_prix</tabstop>
-  <tabstop>lineEdit_article_detail_remise_pourcentage</tabstop>
-  <tabstop>lineEdit_article_detail_tva</tabstop>
+  <tabstop>lineEdit_articles_nom_magasinier</tabstop>
+  <tabstop>lineEdit_articles_imprimante</tabstop>
   <tabstop>lineEdit_articles_quantite_a_transferer</tabstop>
+  <tabstop>pushButton_annuler</tabstop>
+  <tabstop>pushButton_sortir</tabstop>
+  <tabstop>textEdit_articles_notes</tabstop>
+  <tabstop>tableWidget_articles</tabstop>
+  <tabstop>tabWidget_sorties</tabstop>
   <tabstop>lineEdit_article_detail_reference_produit</tabstop>
   <tabstop>lineEdit_article_detail_designation</tabstop>
   <tabstop>lineEdit_article_detail_nom_client</tabstop>
@@ -23577,10 +23577,11 @@ background-color: rgb(0, 0, 0); </string>
   <tabstop>checkBox_tva</tabstop>
   <tabstop>lineEdit_article_detail_prix_unitaire</tabstop>
   <tabstop>lineEdit_article_detail_quantite_en_stock</tabstop>
-  <tabstop>lineEdit_recherche_article_codebar</tabstop>
-  <tabstop>tabWidget_sorties</tabstop>
+  <tabstop>lineEdit_article_detail_remise_pourcentage</tabstop>
+  <tabstop>lineEdit_article_detail_quantite_a_vendre</tabstop>
   <tabstop>lineEdit_article_detail_nom_recepteur</tabstop>
-  <tabstop>tableWidget_articles</tabstop>
+  <tabstop>lineEdit_article_detail_tva</tabstop>
+  <tabstop>lineEdit_article_detail_remise_prix</tabstop>
  </tabstops>
  <resources>
   <include location="../yeroth-erp-3-0.qrc"/>

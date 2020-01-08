@@ -14180,14 +14180,14 @@
    <header>src/widgets/yeroth-erp-line-edit.hpp</header>
   </customwidget>
   <customwidget>
-   <class>YerothDateTimeEdit</class>
-   <extends>QDateEdit</extends>
-   <header>src/widgets/yeroth-erp-datetime-edit.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>YerothComboBox</class>
    <extends>QComboBox</extends>
    <header>src/widgets/yeroth-erp-combo-box.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>YerothDateTimeEdit</class>
+   <extends>QDateEdit</extends>
+   <header>src/widgets/yeroth-erp-datetime-edit.hpp</header>
   </customwidget>
   <customwidget>
    <class>YerothTextEdit</class>
@@ -14205,13 +14205,13 @@
   <tabstop>radioButton_modifier_alerte_periode_temps</tabstop>
   <tabstop>dateEdit_modifier_alerte_date_debut</tabstop>
   <tabstop>dateEdit_modifier_alerte_date_fin</tabstop>
-  <tabstop>pushButton_modifier_alerte_valider</tabstop>
-  <tabstop>pushButton_modifier_alerte_annuler</tabstop>
-  <tabstop>textEdit_modifier_alerte_message</tabstop>
   <tabstop>lineEdit_modifier_alerte_nom_destinataire</tabstop>
+  <tabstop>pushButton_modifier_alerte_annuler</tabstop>
+  <tabstop>pushButton_modifier_alerte_valider</tabstop>
+  <tabstop>textEdit_modifier_alerte_message</tabstop>
   <tabstop>lineEdit_modifier_categorie_nom</tabstop>
-  <tabstop>pushButton_modifier_categorie_valider</tabstop>
   <tabstop>pushButton_modifier_categorie_annuler</tabstop>
+  <tabstop>pushButton_modifier_categorie_valider</tabstop>
   <tabstop>textEdit_modifier_categorie_description</tabstop>
   <tabstop>lineEdit_modifier_utilisateur_prenom</tabstop>
   <tabstop>lineEdit_modifier_utilisateur_nom</tabstop>
@@ -14219,6 +14219,7 @@
   <tabstop>lineEdit_modifier_utilisateur_lieu_naissance</tabstop>
   <tabstop>dateEdit_modifier_utilisateur_date_naissance</tabstop>
   <tabstop>lineEdit_modifier_utilisateur_ville</tabstop>
+  <tabstop>lineEdit_modifier_utilisateur_province_etat</tabstop>
   <tabstop>lineEdit_modifier_utilisateur_pays</tabstop>
   <tabstop>lineEdit_modifier_utilisateur_boite_postale</tabstop>
   <tabstop>lineEdit_modifier_utilisateur_email</tabstop>
@@ -14229,12 +14230,13 @@
   <tabstop>lineEdit_modifier_utilisateur_mot_passe_2</tabstop>
   <tabstop>comboBox_modifier_utilisateur_role</tabstop>
   <tabstop>lineEdit_modifier_utilisateur_localisation</tabstop>
-  <tabstop>pushButton_modifier_utilisateur_valider</tabstop>
   <tabstop>pushButton_modifier_utilisateur_annuler</tabstop>
+  <tabstop>pushButton_modifier_utilisateur_valider</tabstop>
   <tabstop>lineEdit_modifier_fournisseur_nom_entreprise</tabstop>
   <tabstop>lineEdit_modifier_fournisseur_nom_representant</tabstop>
   <tabstop>lineEdit_modifier_fournisseur_quartier</tabstop>
   <tabstop>lineEdit_modifier_fournisseur_ville</tabstop>
+  <tabstop>lineEdit_modifier_fournisseur_province_etat</tabstop>
   <tabstop>lineEdit_modifier_fournisseur_pays</tabstop>
   <tabstop>lineEdit_modifier_fournisseur_boite_postale</tabstop>
   <tabstop>lineEdit_modifier_fournisseur_siege_social</tabstop>
@@ -14242,14 +14244,15 @@
   <tabstop>lineEdit_modifier_fournisseur_numero_telephone_1</tabstop>
   <tabstop>lineEdit_modifier_fournisseur_numero_telephone_2</tabstop>
   <tabstop>lineEdit_modifier_fournisseur_numero_contribuable</tabstop>
-  <tabstop>pushButton_modifier_fournisseur_valider</tabstop>
   <tabstop>pushButton_modifier_fournisseur_annuler</tabstop>
+  <tabstop>pushButton_modifier_fournisseur_valider</tabstop>
   <tabstop>textEdit_modifier_fournisseur_description</tabstop>
   <tabstop>lineEdit_modifier_localisation_adresse_ip</tabstop>
   <tabstop>lineEdit_modifier_localisation_nom</tabstop>
   <tabstop>lineEdit_modifier_localisation_numero_unique</tabstop>
   <tabstop>lineEdit_modifier_localisation_quartier</tabstop>
   <tabstop>lineEdit_modifier_localisation_ville</tabstop>
+  <tabstop>lineEdit_modifier_localisation_province_etat</tabstop>
   <tabstop>lineEdit_modifier_localisation_pays</tabstop>
   <tabstop>lineEdit_modifier_localisation_boite_postale</tabstop>
   <tabstop>dateEdit_modifier_localisation_date_ouverture</tabstop>
@@ -14257,15 +14260,15 @@
   <tabstop>lineEdit_modifier_localisation_numero_telephone_1</tabstop>
   <tabstop>lineEdit_modifier_localisation_numero_telephone_2</tabstop>
   <tabstop>comboBox_modifier_localisation_base_donnees</tabstop>
-  <tabstop>pushButton_modifier_localisation_valider</tabstop>
   <tabstop>pushButton_modifier_localisation_annuler</tabstop>
+  <tabstop>pushButton_modifier_localisation_valider</tabstop>
   <tabstop>textEdit_modifier_localisation_description_lieu</tabstop>
-  <tabstop>pushButton_lister</tabstop>
-  <tabstop>pushButton_supprimer</tabstop>
-  <tabstop>pushButton_menu</tabstop>
-  <tabstop>tabWidget_modifier</tabstop>
   <tabstop>pushButton_creer</tabstop>
+  <tabstop>pushButton_lister</tabstop>
+  <tabstop>pushButton_menu</tabstop>
   <tabstop>pushButton_modifier</tabstop>
+  <tabstop>pushButton_supprimer</tabstop>
+  <tabstop>tabWidget_modifier</tabstop>
  </tabstops>
  <resources>
   <include location="../yeroth-erp-3-0.qrc"/>

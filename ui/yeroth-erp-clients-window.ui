@@ -10839,10 +10839,23 @@ background-color: rgb(0, 0, 0); </string>
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>pushButton_supprimer</tabstop>
-  <tabstop>pushButton_creer_compte_client</tabstop>
+  <tabstop>lineEdit_recherche_nom_entreprise</tabstop>
+  <tabstop>lineEdit_nom_payeur</tabstop>
+  <tabstop>lineEdit_nom_entreprise</tabstop>
+  <tabstop>lineEdit_versement_comptant</tabstop>
+  <tabstop>pushButton_payer</tabstop>
+  <tabstop>lineEdit_resultat_filtre</tabstop>
+  <tabstop>comboBox_condition</tabstop>
+  <tabstop>comboBox_element</tabstop>
+  <tabstop>pushButton_filtrer</tabstop>
+  <tabstop>pushButton_reinitialiser_filtre</tabstop>
+  <tabstop>lineEdit_debit_total</tabstop>
   <tabstop>pushButton_achats</tabstop>
+  <tabstop>pushButton_creer_compte_client</tabstop>
   <tabstop>pushButton_menu_principal</tabstop>
+  <tabstop>pushButton_modifier</tabstop>
+  <tabstop>pushButton_supprimer</tabstop>
+  <tabstop>tableView_clients</tabstop>
  </tabstops>
  <resources>
   <include location="../yeroth-erp-3-0.qrc"/>

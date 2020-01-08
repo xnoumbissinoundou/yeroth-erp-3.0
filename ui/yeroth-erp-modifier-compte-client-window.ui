@@ -11918,14 +11918,26 @@
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>pushButton_actualiser</tabstop>
-  <tabstop>pushButton_menu</tabstop>
-  <tabstop>pushButton_annuler</tabstop>
-  <tabstop>pushButton_supprimer</tabstop>
+  <tabstop>lineEdit_modifier_compteclient_reference_client</tabstop>
   <tabstop>lineEdit_modifier_compteclient_nom_entreprise</tabstop>
   <tabstop>lineEdit_modifier_compteclient_nom_representant</tabstop>
+  <tabstop>lineEdit_modifier_compteclient_quartier</tabstop>
+  <tabstop>lineEdit_modifier_compteclient_ville</tabstop>
+  <tabstop>lineEdit_modifier_compteclient_province_etat</tabstop>
   <tabstop>lineEdit_modifier_compteclient_pays</tabstop>
+  <tabstop>lineEdit_modifier_compteclient_boite_postale</tabstop>
+  <tabstop>lineEdit_modifier_compteclient_siege_social</tabstop>
   <tabstop>lineEdit_modifier_compteclient_email</tabstop>
+  <tabstop>lineEdit_modifier_compteclient_numero_telephone_1</tabstop>
+  <tabstop>lineEdit_modifier_compteclient_numero_telephone_2</tabstop>
+  <tabstop>lineEdit_modifier_compteclient_numero_contribuable</tabstop>
+  <tabstop>lineEdit_modifier_compteclient_dette_maximale</tabstop>
+  <tabstop>pushButton_actualiser</tabstop>
+  <tabstop>pushButton_annuler</tabstop>
+  <tabstop>pushButton_menu</tabstop>
+  <tabstop>pushButton_clients</tabstop>
+  <tabstop>pushButton_supprimer</tabstop>
+  <tabstop>textEdit_modifier_compteclient_description_du_client</tabstop>
  </tabstops>
  <resources>
   <include location="../yeroth-erp-3-0.qrc"/>

@@ -10367,14 +10367,23 @@ background-color: rgb(0, 0, 0); </string>
  </customwidgets>
  <tabstops>
   <tabstop>lineEdit_recherche_reference</tabstop>
-  <tabstop>tableView_stocks</tabstop>
+  <tabstop>comboBox_strategie_de_stocks</tabstop>
+  <tabstop>lineEdit_localisation</tabstop>
+  <tabstop>pushButton_deconnecter_localisation</tabstop>
+  <tabstop>pushButton_connecter_localisation</tabstop>
+  <tabstop>comboBox_stocks_element_de_stock</tabstop>
+  <tabstop>comboBox_stocks_element_de_stock_condition</tabstop>
+  <tabstop>lineEdit_stocks_element_de_stock_resultat</tabstop>
+  <tabstop>pushButton_stocks_reinitialiser_filtre</tabstop>
+  <tabstop>pushButton_stocks_filtrer</tabstop>
+  <tabstop>pushButton_reinitialiser</tabstop>
   <tabstop>pushButton_rechercher</tabstop>
+  <tabstop>pushButton_afficher</tabstop>
+  <tabstop>pushButton_entrer</tabstop>
+  <tabstop>pushButton_menu_principal</tabstop>
   <tabstop>pushButton_inventaire_des_stocks</tabstop>
   <tabstop>pushButton_sortir</tabstop>
-  <tabstop>pushButton_entrer</tabstop>
-  <tabstop>pushButton_afficher</tabstop>
-  <tabstop>pushButton_menu_principal</tabstop>
-  <tabstop>pushButton_reinitialiser</tabstop>
+  <tabstop>tableView_stocks</tabstop>
  </tabstops>
  <resources>
   <include location="../yeroth-erp-3-0.qrc"/>

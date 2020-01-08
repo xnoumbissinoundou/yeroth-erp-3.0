@@ -13589,16 +13589,25 @@ background-color: rgb(255, 255, 255);</string>
   <tabstop>lineEdit_designation</tabstop>
   <tabstop>lineEdit_nom_entreprise_fournisseur</tabstop>
   <tabstop>lineEdit_categorie_produit</tabstop>
+  <tabstop>spinBox_lots_entrant</tabstop>
   <tabstop>lineEdit_quantite_par_lot</tabstop>
   <tabstop>lineEdit_prix_dachat</tabstop>
   <tabstop>lineEdit_prix_vente</tabstop>
+  <tabstop>dateEdit_date_peremption</tabstop>
   <tabstop>lineEdit_localisation_produit</tabstop>
-  <tabstop>pushButton_sortir</tabstop>
-  <tabstop>pushButton_menu_principal</tabstop>
-  <tabstop>checkBox_tva</tabstop>
-  <tabstop>pushButton_afficher_stocks</tabstop>
+  <tabstop>lineEdit_stock_minimum</tabstop>
+  <tabstop>lineEdit_reference_recu_dachat</tabstop>
+  <tabstop>lineEdit_quantite_total</tabstop>
+  <tabstop>lineEdit_tva</tabstop>
+  <tabstop>pushButton_annuler</tabstop>
+  <tabstop>pushButton_selectionner_image</tabstop>
   <tabstop>pushButton_enregistrer_produit</tabstop>
   <tabstop>pushButton_marchandises</tabstop>
+  <tabstop>pushButton_menu_principal</tabstop>
+  <tabstop>pushButton_afficher_stocks</tabstop>
+  <tabstop>pushButton_sortir</tabstop>
+  <tabstop>checkBox_tva</tabstop>
+  <tabstop>textEdit_description</tabstop>
  </tabstops>
  <resources>
   <include location="../yeroth-erp-3-0.qrc"/>

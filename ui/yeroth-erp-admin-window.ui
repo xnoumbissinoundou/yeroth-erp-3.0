@@ -30419,49 +30419,64 @@
   <tabstop>lineEdit_this_localisation</tabstop>
   <tabstop>lineEdit_localisation</tabstop>
   <tabstop>lineEdit_localisation_adresse_ip</tabstop>
+  <tabstop>pushButton_connecter_localisation</tabstop>
+  <tabstop>pushButton_deconnecter_localisation</tabstop>
   <tabstop>comboBox_actions_maintain</tabstop>
   <tabstop>comboBox_sujets_maintain</tabstop>
   <tabstop>radioButton_creer_alerte_periode_temps</tabstop>
   <tabstop>dateEdit_maintenance_date_debut</tabstop>
   <tabstop>dateEdit_maintenance_date_fin</tabstop>
+  <tabstop>pushButton_creer_alerte_annuler</tabstop>
+  <tabstop>pushButton_maintenance_valider</tabstop>
   <tabstop>comboBox_actions</tabstop>
   <tabstop>comboBox_sujets_actions</tabstop>
+  <tabstop>pushButton_operation_go</tabstop>
+  <tabstop>pushButton_choose_pdfReader</tabstop>
   <tabstop>lineEdit_pdfReader</tabstop>
+  <tabstop>pushButton_choose_repertoire_systeme_latex</tabstop>
   <tabstop>lineEdit_repertoire_systeme_latex</tabstop>
+  <tabstop>pushButton_choose_repertoire_fichiers_temporaires</tabstop>
   <tabstop>lineEdit_repertoire_fichiers_temporaires</tabstop>
   <tabstop>lineEdit_tva_value</tabstop>
   <tabstop>lineEdit_annee_depart_rapports_chiffre_affaire</tabstop>
   <tabstop>lineEdit_devise</tabstop>
   <tabstop>comboBox_type_de_facture</tabstop>
-  <tabstop>lineEdit_fichier_systeme_imprimante_thermique</tabstop>
   <tabstop>comboBox_impression_sur</tabstop>
   <tabstop>checkBox_activer_registre_de_caisse</tabstop>
   <tabstop>comboBox_format_de_facture</tabstop>
   <tabstop>comboBox_strategie_vente_sortie</tabstop>
+  <tabstop>pushButton_choose_fichier_systeme_imprimante_thermique</tabstop>
+  <tabstop>lineEdit_fichier_systeme_imprimante_thermique</tabstop>
+  <tabstop>pushButton_parametres_reinitialiser</tabstop>
+  <tabstop>pushButton_parametres_enregistrer</tabstop>
   <tabstop>lineEdit_alert_period_time_interval</tabstop>
   <tabstop>lineEdit_alert_quantity_time_interval</tabstop>
-  <tabstop>pushButton_parametres_enregistrer</tabstop>
   <tabstop>pushButton_demarrer_alert_daemon</tabstop>
   <tabstop>pushButton_stopper_alert_daemon</tabstop>
   <tabstop>pushButton_rafraichir_statut_alert_daemon</tabstop>
   <tabstop>pushButton_alertes_reinitialiser</tabstop>
   <tabstop>pushButton_alertes_enregistrer</tabstop>
-  <tabstop>pushButton_maintenance_valider</tabstop>
-  <tabstop>pushButton_supprimer</tabstop>
+  <tabstop>lineEdit_entreprise_denomination_de_lentreprise</tabstop>
+  <tabstop>lineEdit_entreprise_siege_social</tabstop>
+  <tabstop>lineEdit_entreprise_localisation</tabstop>
+  <tabstop>lineEdit_entreprise_boite_postale</tabstop>
+  <tabstop>lineEdit_entreprise_adresse</tabstop>
+  <tabstop>lineEdit_entreprise_ville</tabstop>
+  <tabstop>lineEdit_entreprise_pays</tabstop>
+  <tabstop>lineEdit_entreprise_email</tabstop>
+  <tabstop>lineEdit_entreprise_telephone</tabstop>
+  <tabstop>lineEdit_entreprise_numero_de_contribuable</tabstop>
+  <tabstop>lineEdit_entreprise_secteurs_dactivites</tabstop>
+  <tabstop>lineEdit_entreprise_agence_de_compte_bancaire</tabstop>
+  <tabstop>lineEdit_entreprise_secteurs_numero_de_compte_bancaire</tabstop>
+  <tabstop>pushButton_entreprise_reinitialiser</tabstop>
+  <tabstop>pushButton_entreprise_enregistrer</tabstop>
   <tabstop>pushButton_creer</tabstop>
-  <tabstop>pushButton_deconnecter_localisation</tabstop>
-  <tabstop>pushButton_operation_go</tabstop>
-  <tabstop>pushButton_menu_go</tabstop>
-  <tabstop>pushButton_choose_repertoire_systeme_latex</tabstop>
-  <tabstop>pushButton_choose_repertoire_fichiers_temporaires</tabstop>
-  <tabstop>pushButton_connecter_localisation</tabstop>
-  <tabstop>tabWidget_administration</tabstop>
   <tabstop>pushButton_lister</tabstop>
-  <tabstop>pushButton_choose_pdfReader</tabstop>
-  <tabstop>pushButton_creer_alerte_annuler</tabstop>
-  <tabstop>pushButton_parametres_reinitialiser</tabstop>
+  <tabstop>pushButton_menu_go</tabstop>
   <tabstop>pushButton_modifier</tabstop>
-  <tabstop>pushButton_choose_fichier_systeme_imprimante_thermique</tabstop>
+  <tabstop>pushButton_supprimer</tabstop>
+  <tabstop>tabWidget_administration</tabstop>
  </tabstops>
  <resources>
   <include location="../yeroth-erp-3-0.qrc"/>

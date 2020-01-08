@@ -13191,20 +13191,27 @@ background-color: rgb(0, 0, 0); </string>
    <header>src/widgets/yeroth-erp-line-edit.hpp</header>
   </customwidget>
   <customwidget>
-   <class>YerothDateTimeEdit</class>
-   <extends>QDateEdit</extends>
-   <header>src/widgets/yeroth-erp-datetime-edit.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>YerothComboBox</class>
    <extends>QComboBox</extends>
    <header>src/widgets/yeroth-erp-combo-box.hpp</header>
   </customwidget>
+  <customwidget>
+   <class>YerothDateTimeEdit</class>
+   <extends>QDateEdit</extends>
+   <header>src/widgets/yeroth-erp-datetime-edit.hpp</header>
+  </customwidget>
  </customwidgets>
  <tabstops>
+  <tabstop>tabWidget_rapports</tabstop>
   <tabstop>comboBox_operations_chiffre</tabstop>
-  <tabstop>pushButton_chiffre_affaire_generer</tabstop>
+  <tabstop>comboBox_evolution_objets</tabstop>
+  <tabstop>lineEdit_evolution_objets_value</tabstop>
+  <tabstop>comboBox_mois_debut_chiffre_affaire</tabstop>
+  <tabstop>comboBox_mois_fin_chiffre_affaire</tabstop>
+  <tabstop>comboBox_annee_chiffre_affaire</tabstop>
+  <tabstop>checkBox_analyse_comparee</tabstop>
   <tabstop>pushButton_chiffre_affaire_reinitialiser</tabstop>
+  <tabstop>pushButton_chiffre_affaire_generer</tabstop>
   <tabstop>comboBox_operations</tabstop>
   <tabstop>comboBox_quantite</tabstop>
   <tabstop>comboBox_objets</tabstop>
@@ -13212,9 +13219,13 @@ background-color: rgb(0, 0, 0); </string>
   <tabstop>dateEdit_rapports_debut</tabstop>
   <tabstop>dateEdit_rapports_fin</tabstop>
   <tabstop>comboBox_type_graphes</tabstop>
-  <tabstop>pushButton_generer</tabstop>
   <tabstop>pushButton_reinitialiser</tabstop>
-  <tabstop>tabWidget_rapports</tabstop>
+  <tabstop>pushButton_generer</tabstop>
+  <tabstop>comboBox_bilan_comptable_operation</tabstop>
+  <tabstop>dateEdit_bilan_comptable_debut</tabstop>
+  <tabstop>dateEdit_bilan_comptable_fin</tabstop>
+  <tabstop>pushButton_bilan_comptable_reinitialiser</tabstop>
+  <tabstop>pushButton_bilan_comptable_generer</tabstop>
  </tabstops>
  <resources>
   <include location="../yeroth-erp-3-0.qrc"/>

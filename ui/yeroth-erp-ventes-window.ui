@@ -29571,24 +29571,24 @@ background-color: rgb(0, 0, 0); </string>
   <tabstop>lineEdit_ventes_recherche</tabstop>
   <tabstop>dateEdit_ventes_debut</tabstop>
   <tabstop>dateEdit_ventes_fin</tabstop>
+  <tabstop>lineEdit_ventes_nom_caissier</tabstop>
+  <tabstop>lineEdit_ventes_nom_entreprise_fournisseur</tabstop>
   <tabstop>lineEdit_ventes_designation</tabstop>
   <tabstop>lineEdit_ventes_categorie_produit</tabstop>
+  <tabstop>lineEdit_ventes_nom_entreprise_client</tabstop>
   <tabstop>lineEdit_ventes_vente_id</tabstop>
+  <tabstop>lineEdit_ventes_element_de_vente_resultat</tabstop>
+  <tabstop>comboBox_ventes_element_de_vente_condition</tabstop>
+  <tabstop>comboBox_ventes_element_de_vente</tabstop>
+  <tabstop>pushButton_ventes_filtrer</tabstop>
+  <tabstop>pushButton_ventes_reinitialiser_filtre</tabstop>
   <tabstop>pushButton_reinitialiser</tabstop>
   <tabstop>lineEdit_ventes_tva</tabstop>
   <tabstop>lineEdit_ventes_quantite_vendue</tabstop>
-  <tabstop>tableView_ventes</tabstop>
-  <tabstop>tabWidget_ventes</tabstop>
+  <tabstop>lineEdit_ventes_remise_totale_currency</tabstop>
   <tabstop>lineEdit_ventes_recette_totale</tabstop>
-  <tabstop>lineEdit_reference_produit</tabstop>
-  <tabstop>lineEdit_designation</tabstop>
-  <tabstop>lineEdit_quantite_vendue</tabstop>
-  <tabstop>lineEdit_vente_detail_prix_unitaire</tabstop>
-  <tabstop>lineEdit_remise_prix</tabstop>
-  <tabstop>lineEdit_remise_pourcentage</tabstop>
-  <tabstop>lineEdit_tva</tabstop>
-  <tabstop>lineEdit_vente_detail_montant_total</tabstop>
-  <tabstop>lineEdit_nom_client</tabstop>
+  <tabstop>tabWidget_ventes</tabstop>
+  <tabstop>tableView_ventes</tabstop>
   <tabstop>lineEdit_nom_entreprise_fournisseur</tabstop>
   <tabstop>lineEdit_categorie</tabstop>
   <tabstop>dateEdit_vente_detail_date_vente</tabstop>
@@ -29597,7 +29597,16 @@ background-color: rgb(0, 0, 0); </string>
   <tabstop>lineEdit_localisation</tabstop>
   <tabstop>pushButton_retour_ventes</tabstop>
   <tabstop>lineEdit_vente_detail_heure_vente</tabstop>
-  <tabstop>lineEdit_ventes_remise_totale_currency</tabstop>
+  <tabstop>lineEdit_remise_pourcentage</tabstop>
+  <tabstop>lineEdit_remise_prix</tabstop>
+  <tabstop>lineEdit_vente_detail_prix_unitaire</tabstop>
+  <tabstop>lineEdit_vente_detail_montant_total</tabstop>
+  <tabstop>lineEdit_quantite_vendue</tabstop>
+  <tabstop>lineEdit_designation</tabstop>
+  <tabstop>lineEdit_tva</tabstop>
+  <tabstop>lineEdit_reference_produit</tabstop>
+  <tabstop>lineEdit_nom_client</tabstop>
+  <tabstop>lineEdit_nom_caissier</tabstop>
  </tabstops>
  <resources>
   <include location="../yeroth-erp-3-0.qrc"/>

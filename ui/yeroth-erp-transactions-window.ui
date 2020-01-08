@@ -5815,7 +5815,7 @@ background-color: rgb(0, 0, 0); </string>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <property name="locale">
@@ -7767,7 +7767,6 @@ background-color: rgb(0, 0, 0); </string>
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>tableView_sorties_articles</tabstop>
   <tabstop>dateEdit_transactions_debut</tabstop>
   <tabstop>dateEdit_transactions_fin</tabstop>
   <tabstop>lineEdit_transactions_nom_magasinier</tabstop>
@@ -7775,7 +7774,9 @@ background-color: rgb(0, 0, 0); </string>
   <tabstop>lineEdit_transactions_nom_categorie</tabstop>
   <tabstop>lineEdit_transactions_numero_bon</tabstop>
   <tabstop>lineEdit_transactions_nom_recepteur</tabstop>
+  <tabstop>lineEdit_transactions_quantite_sortie</tabstop>
   <tabstop>pushButton_reinitialiser</tabstop>
+  <tabstop>tableView_sorties_articles</tabstop>
   <tabstop>tabWidget_transactions</tabstop>
   <tabstop>tableView_transferts_articles</tabstop>
  </tabstops>

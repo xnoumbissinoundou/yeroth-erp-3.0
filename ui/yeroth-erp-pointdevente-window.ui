@@ -19591,21 +19591,21 @@ background-color: rgb(0, 0, 0); </string>
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>lineEdit_recherche_article_codebar</tabstop>
   <tabstop>lineEdit_recherche_article</tabstop>
-  <tabstop>pushButton_vendre</tabstop>
-  <tabstop>lineEdit_articles_somme_total</tabstop>
-  <tabstop>tabWidget_vente</tabstop>
-  <tabstop>lineEdit_articles_nom_caissier</tabstop>
-  <tabstop>tableWidget_articles</tabstop>
-  <tabstop>lineEdit_articles_quantite_a_vendre</tabstop>
-  <tabstop>lineEdit_articles_tva</tabstop>
-  <tabstop>lineEdit_articles_total</tabstop>
+  <tabstop>lineEdit_recherche_article_codebar</tabstop>
   <tabstop>pushButton_minus</tabstop>
-  <tabstop>lineEdit_article_detail_reference_produit</tabstop>
-  <tabstop>lineEdit_article_detail_designation</tabstop>
-  <tabstop>lineEdit_article_detail_prix_unitaire</tabstop>
-  <tabstop>lineEdit_article_detail_remise_prix</tabstop>
+  <tabstop>lineEdit_articles_nom_caissier</tabstop>
+  <tabstop>lineEdit_articles_imprimante</tabstop>
+  <tabstop>lineEdit_articles_nom_client</tabstop>
+  <tabstop>lineEdit_articles_montant_a_rembourser</tabstop>
+  <tabstop>lineEdit_articles_quantite_a_vendre</tabstop>
+  <tabstop>lineEdit_articles_total</tabstop>
+  <tabstop>lineEdit_articles_tva</tabstop>
+  <tabstop>lineEdit_articles_somme_total</tabstop>
+  <tabstop>pushButton_annuler</tabstop>
+  <tabstop>pushButton_vendre</tabstop>
+  <tabstop>tabWidget_vente</tabstop>
+  <tabstop>tableWidget_articles</tabstop>
   <tabstop>lineEdit_article_detail_remise_pourcentage</tabstop>
   <tabstop>lineEdit_article_detail_tva</tabstop>
   <tabstop>lineEdit_article_detail_nom_client</tabstop>
@@ -19620,8 +19620,10 @@ background-color: rgb(0, 0, 0); </string>
   <tabstop>checkBox_tva</tabstop>
   <tabstop>lineEdit_article_detail_quantite_a_vendre</tabstop>
   <tabstop>lineEdit_article_detail_quantite_en_stock</tabstop>
-  <tabstop>lineEdit_articles_nom_client</tabstop>
-  <tabstop>pushButton_annuler</tabstop>
+  <tabstop>lineEdit_article_detail_remise_prix</tabstop>
+  <tabstop>lineEdit_article_detail_prix_unitaire</tabstop>
+  <tabstop>lineEdit_article_detail_reference_produit</tabstop>
+  <tabstop>lineEdit_article_detail_designation</tabstop>
  </tabstops>
  <resources>
   <include location="../yeroth-erp-3-0.qrc"/>
