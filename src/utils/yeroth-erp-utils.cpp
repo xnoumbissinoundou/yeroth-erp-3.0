@@ -1145,19 +1145,11 @@ void YerothUtils::infosEntreprise(YerothPOSAdminWindowsCommons &aYerothPOSAdminQ
 }
 
 void YerothUtils::infosEntreprise(YerothWindowsCommons &aYerothPOSQMainWindow,
-                                 const QString infos)
+                                  const QString infos)
 {
-#ifdef YEROTH_FRANCAIS_LANGUAGE
     YerothQMessageBox::information(&aYerothPOSQMainWindow,
-                                  QString("Informations sur l'entreprise"),
+                                  QObject::trUtf8("Informations sur l'entreprise"),
                                   infos);
-#endif
-
-#ifdef YEROTH_ENGLISH_LANGUAGE
-    YerothQMessageBox::information(&aYerothPOSQMainWindow,
-                                  QString("Information about the company"),
-                                  infos);
-#endif
 }
 
 void YerothUtils::getCurrentLocaleDate(QString &date)
