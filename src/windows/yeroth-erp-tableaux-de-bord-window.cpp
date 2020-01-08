@@ -124,9 +124,9 @@ YerothTableauxDeBordWindow::YerothTableauxDeBordWindow()
                                .arg(COLOUR_RGB_STRING_YEROTH_INDIGO_83_0_125,
                                     COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
-    setupDateTimeEditsTabTwo();
+    setupDateTimeEdits_COMPARAISON_DES_CHIFFRES_DAFFAIRES();
 
-    setupDateTimeEditsTabThree();
+    setupDateTimeEdits_BILAN_COMPTABLE();
 
     actionDeconnecter_utilisateur->setEnabled(false);
     actionAlertes->setEnabled(false);
@@ -153,11 +153,11 @@ YerothTableauxDeBordWindow::YerothTableauxDeBordWindow()
     _moisToNombre[MOIS_11] = 11;
     _moisToNombre[MOIS_12] = 12;
 
-    setupTabOne();
+    setupTab_EVOLUTION_DU_CHIFFRE_DAFFAIRE();
 
-    setupTabTwo();
+    setupTab_COMPARAISON_DES_CHIFFRES_DAFFAIRES();
 
-    setupTabThree();
+    setupTab_BILAN_COMPTABLE();
 
     // Menu actions
     connect( actionChanger_utilisateur, SIGNAL( triggered() ), this, SLOT( changer_utilisateur() ) );
@@ -209,7 +209,7 @@ void YerothTableauxDeBordWindow::handleTabChanged(int index)
 
     if (index == SUJET_ACTION_BUSINESS_TURNOVER_PROGRESS)
     {
-    	connect( actionGenererPDF, SIGNAL(triggered()), this, SLOT(actionTabOne()) );
+    	connect( actionGenererPDF, SIGNAL(triggered()), this, SLOT(choisirEvolutionDuChiffreDaffaire()) );
     	connect( actionReinitialiserRecherche, SIGNAL(triggered()), this, SLOT(reinitialiser_chiffre_affaire()) );
     }
     else if (index == SUJET_ACTION_BUSINESS_TURNOVER_COMPARISON)
@@ -220,21 +220,21 @@ void YerothTableauxDeBordWindow::handleTabChanged(int index)
 }
 
 
-void YerothTableauxDeBordWindow::setupDateTimeEditsTabTwo()
+void YerothTableauxDeBordWindow::setupDateTimeEdits_COMPARAISON_DES_CHIFFRES_DAFFAIRES()
 {
     dateEdit_rapports_debut->setStartDate(GET_CURRENT_DATE);
     dateEdit_rapports_fin->setStartDate(GET_CURRENT_DATE);
 }
 
 
-void YerothTableauxDeBordWindow::setupDateTimeEditsTabThree()
+void YerothTableauxDeBordWindow::setupDateTimeEdits_BILAN_COMPTABLE()
 {
 	dateEdit_bilan_comptable_debut->setStartDate(GET_CURRENT_DATE);
 	dateEdit_bilan_comptable_fin->setStartDate(GET_CURRENT_DATE);
 }
 
 
-void YerothTableauxDeBordWindow::setupTabOne()
+void YerothTableauxDeBordWindow::setupTab_EVOLUTION_DU_CHIFFRE_DAFFAIRE()
 {
     comboBox_operations_chiffre->addItem(YerothTableauxDeBordWindow::OPERATION_GENERER_CHIFFRE_DAFFAIRE);
 
@@ -272,7 +272,7 @@ void YerothTableauxDeBordWindow::setupTabOne()
 }
 
 
-void YerothTableauxDeBordWindow::setupTabTwo()
+void YerothTableauxDeBordWindow::setupTab_COMPARAISON_DES_CHIFFRES_DAFFAIRES()
 {
     comboBox_operations->addItem(YerothTableauxDeBordWindow::OPERATION_GENERER);
 
@@ -299,7 +299,7 @@ void YerothTableauxDeBordWindow::setupTabTwo()
 }
 
 
-void YerothTableauxDeBordWindow::setupTabThree()
+void YerothTableauxDeBordWindow::setupTab_BILAN_COMPTABLE()
 {
 	comboBox_bilan_comptable_operation->addItem(YerothTableauxDeBordWindow::OPERATION_GENERER_BILAN_COMPTABLE);
 }
@@ -374,7 +374,7 @@ void YerothTableauxDeBordWindow::definirManager()
 
     /** Tab One *************************************/
 
-    pushButton_chiffre_affaire_generer->enable(this, SLOT( actionTabOne() ));
+    pushButton_chiffre_affaire_generer->enable(this, SLOT( choisirEvolutionDuChiffreDaffaire() ));
     pushButton_chiffre_affaire_reinitialiser->enable(this, SLOT( reinitialiser_chiffre_affaire() ));
 
     /** Tab Two *************************************/
@@ -1346,10 +1346,11 @@ void YerothTableauxDeBordWindow::bilanComptable()
 
     query.clear();
 
-    QString strVentesQuery(QString("SELECT %1, %2, %3 FROM %4 WHERE %5 >= '%6' AND %7 <= '%8'")
+    QString strVentesQuery(QString("SELECT %1, %2, (%3 - %4) FROM %5 WHERE %6 >= '%7' AND %8 <= '%9'")
     							.arg(YerothDatabaseTableColumn::STOCKS_ID,
     								 YerothDatabaseTableColumn::QUANTITE_VENDUE,
     								 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
+									 YerothDatabaseTableColumn::MONTANT_TVA,
     								 _allWindows->STOCKS_VENDU,
 									 YerothDatabaseTableColumn::DATE_VENTE,
 									 DATE_TO_DB_FORMAT_STRING(dateEdit_bilan_comptable_debut->date()),
@@ -1470,9 +1471,9 @@ void YerothTableauxDeBordWindow::bilanComptable()
     	benefice_sur_vente_effectuees = 0;
     }
 
-    chiffre_daffaire = montant_total_achat + montant_total_vente + montant_total_versements;
+    chiffre_daffaire = montant_total_vente + montant_total_versements;
 
-    balance = montant_total_vente + montant_total_versements - montant_total_achat - montant_total_dette_clientelle;
+    balance = chiffre_daffaire - montant_total_achat - montant_total_dette_clientelle;
 
 //    qDebug() << QString("++ benefice: %1, chiffre_daffaire: %2, balance: %3")
 //    				.arg(QString::number(benefice, 'f', 2),
@@ -2642,7 +2643,7 @@ void YerothTableauxDeBordWindow::calculerChiffresDaffaireMois()
 }
 
 
-void YerothTableauxDeBordWindow::actionTabOne()
+void YerothTableauxDeBordWindow::choisirEvolutionDuChiffreDaffaire()
 {
 	if (checkBox_analyse_comparee->isChecked())
 	{

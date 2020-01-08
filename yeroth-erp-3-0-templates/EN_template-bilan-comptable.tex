@@ -114,8 +114,8 @@
 \textbf{INCOME}
 \begin{table}[!htbp]
 \begin{tabular}{lrr}
-sales  				&  YEROTHBILANCOMPTABLEVENTESDEVISE  			& \\ 
-customer payments  	&  YEROTHBILANCOMPTABLEVERSEMENTSCLIENTSDEVISE  & \\ \hline
+sales  				&  YEROTHBILANCOMPTABLEVENTESDEVISE  			& [S] \\ 
+customer account in--payments  	&  YEROTHBILANCOMPTABLEVERSEMENTSCLIENTSDEVISE  & \\ \hline
 \textbf{Total income}  		&  YEROTHBILANCOMPTABLETOTALENTREESDEVISE & [TI] \\	 
 \end{tabular}
 \end{table}
@@ -125,9 +125,9 @@ customer payments  	&  YEROTHBILANCOMPTABLEVERSEMENTSCLIENTSDEVISE  & \\ \hline
 \textbf{EXPENSES}
 \begin{table}[!htbp]
 \begin{tabular}{lrr}
-stock buyings  	&  YEROTHBILANCOMPTABLEACHATSDEVISE  			& [B]\\ 
-customer debt  		&  YEROTHBILANCOMPTABLEDETTECLIENTELLEDEVISE &  	\\ \hline
-\textbf{Total expenses}  		&  YEROTHBILANCOMPTABLETOTALSORTIESDEVISE & [TE] \\
+stock buyings  				&  YEROTHBILANCOMPTABLEACHATSDEVISE  			& \\ 
+customer account debt\footnotemark  		&  YEROTHBILANCOMPTABLEDETTECLIENTELLEDEVISE &  	\\ \hline
+\textbf{Total expenses}  	&  YEROTHBILANCOMPTABLETOTALSORTIESDEVISE & [TE] \\
 \end{tabular}
 \end{table}
 
@@ -139,8 +139,9 @@ customer debt  		&  YEROTHBILANCOMPTABLEDETTECLIENTELLEDEVISE &  	\\ \hline
 \begin{tabular}{lrr}
 \textbf{Profit on sales}  &  YEROTHBILANCOMPTABLEBENEFICEDEVISE &  \\ \hline
 \textbf{Balance}  			&  YEROTHBILANCOMPTABLEBALANCEDEVISE  & [TI -- TE]\\ \hline
-\textbf{Business turnover}  &  YEROTHBILANCOMPTABLECHIFFREDAFFAIREDEVISE  & [B + TI]\\ 
+\textbf{Business turnover}  &  YEROTHBILANCOMPTABLECHIFFREDAFFAIREDEVISE  & [S]\\ 
 \end{tabular}
 \end{table}
 
+\footnotetext{All time included.}
 \end{document}

@@ -49,11 +49,11 @@ public:
 
     virtual void definirPasDeRole();
 
-    void setupTabOne();
+    void setupTab_EVOLUTION_DU_CHIFFRE_DAFFAIRE();
 
-    void setupTabTwo();
+    void setupTab_COMPARAISON_DES_CHIFFRES_DAFFAIRES();
 
-    void setupTabThree();
+    void setupTab_BILAN_COMPTABLE();
 
     virtual void rendreVisible(YerothSqlTableModel *stocksTableModel);
 
@@ -153,7 +153,7 @@ public slots:
 
     void calculerChiffresDaffaireMois();
 
-    void actionTabOne();
+    void choisirEvolutionDuChiffreDaffaire();
 
 protected:
 
@@ -172,9 +172,9 @@ private:
 		SUJET_ACTION_BUSINESS_TURNOVER_COMPARISON	= 1
     };
 
-    void setupDateTimeEditsTabTwo();
+    void setupDateTimeEdits_COMPARAISON_DES_CHIFFRES_DAFFAIRES();
 
-    void setupDateTimeEditsTabThree();
+    void setupDateTimeEdits_BILAN_COMPTABLE();
 
     class YerothStatsItem
 	{

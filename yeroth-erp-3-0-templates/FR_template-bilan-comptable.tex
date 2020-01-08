@@ -115,19 +115,19 @@
 \textbf{ENTR\'EES}
 \begin{table}[!htbp]
 \begin{tabular}{lrr}
-ventes  				&  YEROTHBILANCOMPTABLEVENTESDEVISE  			& \\ 
-versements clients  	&  YEROTHBILANCOMPTABLEVERSEMENTSCLIENTSDEVISE  & \\ \hline
+ventes  						&  YEROTHBILANCOMPTABLEVENTESDEVISE  			& [V] \\ 
+versements aux comptes clients  &  YEROTHBILANCOMPTABLEVERSEMENTSCLIENTSDEVISE  & \\ \hline
 \textbf{Total entr\'ees}  		&  YEROTHBILANCOMPTABLETOTALENTREESDEVISE & [TE] 		\\ 
 \end{tabular}
 \end{table}
 
 
-\vspace{1cm}
+\vspace{0.5cm}
 \textbf{SORTIES}
 \begin{table}[!htbp]
 \begin{tabular}{lrr}
-achats d'articles  	&  YEROTHBILANCOMPTABLEACHATSDEVISE  			& [A] \\ 
-dette clientelle  		&  YEROTHBILANCOMPTABLEDETTECLIENTELLEDEVISE &  	\\ \hline
+achats d'articles  				&  YEROTHBILANCOMPTABLEACHATSDEVISE  			& \\ 
+dette aux comptes clients\footnotemark  		&  YEROTHBILANCOMPTABLEDETTECLIENTELLEDEVISE &  	\\ \hline
 \textbf{Total sorties}  		&  YEROTHBILANCOMPTABLETOTALSORTIESDEVISE & [TS] 		\\ 
 \end{tabular}
 \end{table}
@@ -140,8 +140,9 @@ dette clientelle  		&  YEROTHBILANCOMPTABLEDETTECLIENTELLEDEVISE &  	\\ \hline
 \begin{tabular}{lrr}
 \textbf{B\'en\'efice sur les ventes \'effectu\'ees}  &  YEROTHBILANCOMPTABLEBENEFICEDEVISE &  \\ \hline
 \textbf{Balance}  			&  YEROTHBILANCOMPTABLEBALANCEDEVISE  & [TE -- TS]\\ \hline
-\textbf{Chiffre d'affaire}  &  YEROTHBILANCOMPTABLECHIFFREDAFFAIREDEVISE  & [A + TE]\\ 
+\textbf{Chiffre d'affaire}  &  YEROTHBILANCOMPTABLECHIFFREDAFFAIREDEVISE  & [V]\\ 
 \end{tabular}
 \end{table}
 
+\footnotetext{Tout temps compris.}
 \end{document}
