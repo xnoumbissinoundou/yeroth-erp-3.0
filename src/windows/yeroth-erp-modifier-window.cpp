@@ -33,8 +33,9 @@ YerothModifierWindow::YerothModifierWindow()
     this->mySetupUi(this);
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
-                                       "QMessageBox QLabel {color: rgb(%2);}").
-                               arg(COLOUR_RGB_STRING_YEROTH_DARK_GRAY_60_60_60, COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
+                                       "QMessageBox QLabel {color: rgb(%2);}")
+                                    .arg(COLOUR_RGB_STRING_YEROTH_ORANGE_243_162_0,
+                                    		COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
     this->setupLineEdits();
     this->setupDateTimeEdits();

@@ -69,10 +69,12 @@ YerothStocksWindow::YerothStocksWindow()
 {
     setupUi(this);
 
-    this->mySetupUi(this);
+    mySetupUi(this);
 
-    QMESSAGE_BOX_STYLE_SHEET =
-        QString("QMessageBox {background-color: rgb(%1);}").arg(COLOUR_RGB_STRING_YEROTH_ORANGE_243_162_0);
+    QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
+                                       "QMessageBox QLabel {color: rgb(%2);}")
+                                    .arg(COLOUR_RGB_STRING_YEROTH_ORANGE_243_162_0,
+                                    		COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
     _logger->log("YerothStocksWindow");
 

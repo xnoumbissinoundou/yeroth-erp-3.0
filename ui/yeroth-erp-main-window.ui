@@ -7560,6 +7560,8 @@ Vente</string>
     </property>
     <addaction name="actionAdministration"/>
     <addaction name="separator"/>
+    <addaction name="actionAlertes"/>
+    <addaction name="separator"/>
     <addaction name="actionQui_suis_je"/>
    </widget>
    <addaction name="menuMain"/>
