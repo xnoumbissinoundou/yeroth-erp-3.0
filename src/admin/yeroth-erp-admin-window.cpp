@@ -392,20 +392,20 @@ void YerothAdminWindow::modifier(enum AdminSujetAction selectedSujetAction)
 
 void YerothAdminWindow::enableAllOperationsTabPushButtons()
 {
-    pushButton_creer->setEnabled(true);
-    pushButton_lister->setEnabled(true);
-    pushButton_menu_go->setEnabled(true);
-    pushButton_modifier->setEnabled(true);
-    pushButton_supprimer->setEnabled(true);
+    pushButton_menu_go->enable(this, SLOT(gerer_choix_action()));
+    pushButton_creer->enable(this, SLOT(action_creer()));
+    pushButton_lister->enable(this, SLOT(action_lister()));
+    pushButton_modifier->enable(this, SLOT(action_modifier()));
+    pushButton_supprimer->enable(this, SLOT(action_lister()));
 }
 
 void YerothAdminWindow::disableAllOperationsTabPushButtons()
 {
-    pushButton_creer->setEnabled(false);
-    pushButton_lister->setEnabled(false);
-    pushButton_menu_go->setEnabled(false);
-    pushButton_modifier->setEnabled(false);
-    pushButton_supprimer->setEnabled(false);
+	pushButton_menu_go->disable(this);
+    pushButton_creer->disable(this);
+    pushButton_lister->disable(this);
+    pushButton_modifier->disable(this);
+    pushButton_supprimer->disable(this);
 }
 
 void YerothAdminWindow::setCurrentAdminWindowTitle(enum YerothAdminWindowTabPositionsTypes tabPosition)
