@@ -6508,7 +6508,7 @@
     <property name="geometry">
      <rect>
       <x>162</x>
-      <y>20</y>
+      <y>19</y>
       <width>111</width>
       <height>61</height>
      </rect>
@@ -6944,7 +6944,7 @@ au détail</string>
     <property name="geometry">
      <rect>
       <x>527</x>
-      <y>20</y>
+      <y>19</y>
       <width>111</width>
       <height>61</height>
      </rect>
@@ -7383,7 +7383,7 @@ résolue</string>
     <property name="geometry">
      <rect>
       <x>11</x>
-      <y>20</y>
+      <y>19</y>
       <width>111</width>
       <height>61</height>
      </rect>
@@ -7822,7 +7822,7 @@ les alertes</string>
     <property name="geometry">
      <rect>
       <x>677</x>
-      <y>20</y>
+      <y>19</y>
       <width>111</width>
       <height>61</height>
      </rect>
@@ -8258,7 +8258,7 @@ une alerte</string>
     <property name="geometry">
      <rect>
       <x>315</x>
-      <y>20</y>
+      <y>19</y>
       <width>171</width>
       <height>61</height>
      </rect>
@@ -10658,14 +10658,14 @@ une alerte</string>
    </slots>
   </customwidget>
   <customwidget>
-   <class>YerothTableView</class>
-   <extends>QTableView</extends>
-   <header>src/widgets/table-view/yeroth-erp-table-view.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>YerothLineEdit</class>
    <extends>QLineEdit</extends>
    <header>src/widgets/yeroth-erp-line-edit.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>YerothTextEdit</class>
+   <extends>QTextEdit</extends>
+   <header>src/widgets/yeroth-erp-text-edit.hpp</header>
   </customwidget>
   <customwidget>
    <class>YerothComboBox</class>
@@ -10673,9 +10673,9 @@ une alerte</string>
    <header>src/widgets/yeroth-erp-combo-box.hpp</header>
   </customwidget>
   <customwidget>
-   <class>YerothTextEdit</class>
-   <extends>QTextEdit</extends>
-   <header>src/widgets/yeroth-erp-text-edit.hpp</header>
+   <class>YerothTableView</class>
+   <extends>QTableView</extends>
+   <header>src/widgets/table-view/yeroth-erp-table-view.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

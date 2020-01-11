@@ -260,7 +260,7 @@ void YerothPointDeVenteWindow::setupLineEdits()
 
     lineEdit_recherche_article_codebar->enableForSearch(QObject::trUtf8("référence [ focus avec F11 ]"));
 
-    lineEdit_article_detail_nom_client->enableForSearch(QObject::trUtf8("nom du client"));
+    lineEdit_articles_nom_client->enableForSearch(QObject::trUtf8("nom du client"));
 
     lineEdit_articles_imprimante->setText(YerothERPConfig::printer);
     lineEdit_articles_imprimante->setReadOnly(true);
@@ -350,6 +350,7 @@ void YerothPointDeVenteWindow::hideEvent(QHideEvent * event)
 	_allWindows->_pdVenteMethodePaiementComptantEntreeDialog->rendreInvisible();
     _allWindows->_pdVenteListStocksWindow->close();
 }
+
 
 void YerothPointDeVenteWindow::setupShortcuts()
 {
@@ -939,6 +940,8 @@ void YerothPointDeVenteWindow::annuler()
 
         deleteArticleVenteInfos();
 
+        handleTabViews();
+
         setRechercheLineEditFocus();
 
         YerothQMessageBox::information(this, QObject::trUtf8("annulation de la vente"),
@@ -1047,6 +1050,8 @@ void YerothPointDeVenteWindow::cleanUpAfterVente()
     lineEdit_recherche_article_codebar->myClear();
 
     tabWidget_vente->setCurrentIndex(TableauDesVentes);
+
+    handleTabViews();
 
     _allWindows->_pdVenteMethodePaiementComptantEntreeDialog->clearLineEditValue();
 
@@ -1172,6 +1177,16 @@ void YerothPointDeVenteWindow::rendreInvisible()
     YerothWindowsCommons::rendreInvisible();
 }
 
+
+void YerothPointDeVenteWindow::handleTabViews()
+{
+    if (0 == tableWidget_articles->rowCount())
+    {
+        tabWidget_vente->setTabEnabled(AfficherVenteAuDetail, false);
+    }
+}
+
+
 void YerothPointDeVenteWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 {
     _logger->log("rendreVisible");
@@ -1243,10 +1258,7 @@ void YerothPointDeVenteWindow::rendreVisible(YerothSqlTableModel * stocksTableMo
                 SLOT(ajouter_article_codebar(const QString &)));
     }
 
-    if (0 == tableWidget_articles->rowCount())
-    {
-        tabWidget_vente->setTabEnabled(AfficherVenteAuDetail, false);
-    }
+    handleTabViews();
 
     setRechercheLineEditFocus();
 

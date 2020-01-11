@@ -441,7 +441,7 @@
     <property name="geometry">
      <rect>
       <x>11</x>
-      <y>20</y>
+      <y>14</y>
       <width>111</width>
       <height>61</height>
      </rect>
@@ -876,7 +876,7 @@
     <property name="geometry">
      <rect>
       <x>166</x>
-      <y>20</y>
+      <y>14</y>
       <width>111</width>
       <height>61</height>
      </rect>
@@ -1312,7 +1312,7 @@
     <property name="geometry">
      <rect>
       <x>527</x>
-      <y>20</y>
+      <y>14</y>
       <width>111</width>
       <height>61</height>
      </rect>
@@ -1747,7 +1747,7 @@
     <property name="geometry">
      <rect>
       <x>677</x>
-      <y>20</y>
+      <y>14</y>
       <width>111</width>
       <height>61</height>
      </rect>
@@ -2652,7 +2652,7 @@ Transférer</string>
     <property name="geometry">
      <rect>
       <x>318</x>
-      <y>20</y>
+      <y>14</y>
       <width>171</width>
       <height>61</height>
      </rect>

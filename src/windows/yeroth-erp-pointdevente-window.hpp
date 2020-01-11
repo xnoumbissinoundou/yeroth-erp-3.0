@@ -37,7 +37,7 @@ public:
 
 	YerothPointDeVenteWindow();
 
-    ~YerothPointDeVenteWindow ();
+    virtual ~YerothPointDeVenteWindow();
 
 	inline bool paiement_par_carte_credit_carte_debit()
 	{
@@ -93,6 +93,8 @@ public:
     virtual void definirPasDeRole();
 
     virtual void rendreInvisible();
+
+    void handleTabViews();
 
     virtual void rendreVisible(YerothSqlTableModel *stocksTableModel);
 
