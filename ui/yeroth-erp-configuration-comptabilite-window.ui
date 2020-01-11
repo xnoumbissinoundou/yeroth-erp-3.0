@@ -892,7 +892,7 @@
       <property name="title">
        <string>Données du compte</string>
       </property>
-      <widget class="QLabel" name="label_creer_localisation_nom">
+      <widget class="QLabel" name="label_creer_un_compte_numero_du_compte">
        <property name="geometry">
         <rect>
          <x>16</x>
@@ -902,61 +902,13 @@
         </rect>
        </property>
        <property name="text">
-        <string>nom</string>
+        <string>numéro du compte</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="label_creer_localisation_quartier">
-       <property name="geometry">
-        <rect>
-         <x>16</x>
-         <y>120</y>
-         <width>153</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>quartier</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_lieu_naissance_2">
-       <property name="geometry">
-        <rect>
-         <x>16</x>
-         <y>150</y>
-         <width>153</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>ville</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_numero_telephone_2">
-       <property name="geometry">
-        <rect>
-         <x>16</x>
-         <y>270</y>
-         <width>153</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>date d'ouverture</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="YerothLineEdit" name="lineEdit_creer_localisation_nom">
+      <widget class="YerothLineEdit" name="lineEdit_creer_un_compte_numero_du_compte">
        <property name="geometry">
         <rect>
          <x>173</x>
@@ -973,74 +925,7 @@
         </font>
        </property>
       </widget>
-      <widget class="YerothLineEdit" name="lineEdit_creer_localisation_quartier">
-       <property name="geometry">
-        <rect>
-         <x>173</x>
-         <y>120</y>
-         <width>205</width>
-         <height>25</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-      </widget>
-      <widget class="YerothLineEdit" name="lineEdit_creer_localisation_ville">
-       <property name="geometry">
-        <rect>
-         <x>173</x>
-         <y>150</y>
-         <width>205</width>
-         <height>25</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-      </widget>
-      <widget class="YerothLineEdit" name="lineEdit_creer_localisation_pays">
-       <property name="geometry">
-        <rect>
-         <x>173</x>
-         <y>210</y>
-         <width>205</width>
-         <height>25</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_date_naissance_2">
-       <property name="geometry">
-        <rect>
-         <x>16</x>
-         <y>210</y>
-         <width>153</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>pays</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="YerothPushButton" name="pushButton_creer_localisation_annuler">
+      <widget class="YerothPushButton" name="pushButton_annuler">
        <property name="geometry">
         <rect>
          <x>400</x>
@@ -1474,7 +1359,7 @@
         <string>Annuler</string>
        </property>
       </widget>
-      <widget class="YerothPushButton" name="pushButton_creer_localisation_valider">
+      <widget class="YerothPushButton" name="pushButton_enregistrer">
        <property name="geometry">
         <rect>
          <x>586</x>
@@ -1908,73 +1793,7 @@
         <string>Enregistrer</string>
        </property>
       </widget>
-      <widget class="YerothLineEdit" name="lineEdit_creer_localisation_numero_telephone_1">
-       <property name="geometry">
-        <rect>
-         <x>564</x>
-         <y>30</y>
-         <width>205</width>
-         <height>25</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_numero_telephone_3">
-       <property name="geometry">
-        <rect>
-         <x>400</x>
-         <y>32</y>
-         <width>153</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>numéro de téléphone 1</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_numero_telephone_4">
-       <property name="geometry">
-        <rect>
-         <x>400</x>
-         <y>62</y>
-         <width>153</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>numéro de téléphone 2</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="YerothLineEdit" name="lineEdit_creer_localisation_numero_telephone_2">
-       <property name="geometry">
-        <rect>
-         <x>564</x>
-         <y>60</y>
-         <width>205</width>
-         <height>25</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-      </widget>
-      <widget class="QGroupBox" name="groupBox_7">
+      <widget class="QGroupBox" name="groupBox_creer_un_compte_description_du_compte">
        <property name="geometry">
         <rect>
          <x>400</x>
@@ -1991,9 +1810,9 @@
         </font>
        </property>
        <property name="title">
-        <string>description du lieu</string>
+        <string>description du compte</string>
        </property>
-       <widget class="YerothTextEdit" name="textEdit_creer_localisation_description_lieu">
+       <widget class="YerothTextEdit" name="textEdit_creer_un_compte_description_du_compte">
         <property name="geometry">
          <rect>
           <x>2</x>
@@ -2009,93 +1828,7 @@
         </property>
        </widget>
       </widget>
-      <widget class="QLabel" name="label_creer_localisation_numero_unique">
-       <property name="geometry">
-        <rect>
-         <x>16</x>
-         <y>90</y>
-         <width>153</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>numéro unique</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="YerothLineEdit" name="lineEdit_creer_localisation_numero_unique">
-       <property name="geometry">
-        <rect>
-         <x>173</x>
-         <y>90</y>
-         <width>205</width>
-         <height>25</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-      </widget>
-      <widget class="YerothDateTimeEdit" name="dateEdit_creer_localisation_date_ouverture">
-       <property name="geometry">
-        <rect>
-         <x>173</x>
-         <y>270</y>
-         <width>205</width>
-         <height>25</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="displayFormat">
-        <string>dd/MM/yyyy</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_creer_localisation_email">
-       <property name="geometry">
-        <rect>
-         <x>16</x>
-         <y>300</y>
-         <width>153</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>émail @</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="YerothLineEdit" name="lineEdit_creer_localisation_email">
-       <property name="geometry">
-        <rect>
-         <x>173</x>
-         <y>300</y>
-         <width>205</width>
-         <height>25</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-      </widget>
-      <widget class="YerothLineEdit" name="lineEdit_creer_localisation_adresse_ip">
+      <widget class="YerothLineEdit" name="lineEdit_creer_un_compte_designation_du_compte">
        <property name="geometry">
         <rect>
          <x>173</x>
@@ -2112,7 +1845,7 @@
         </font>
        </property>
       </widget>
-      <widget class="QLabel" name="label_creer_localisation_adresse_ip">
+      <widget class="QLabel" name="label_creer_un_compte_designation_du_compte">
        <property name="geometry">
         <rect>
          <x>16</x>
@@ -2122,102 +1855,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>adresse IP</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_creer_localisation_base_donnees">
-       <property name="geometry">
-        <rect>
-         <x>400</x>
-         <y>92</y>
-         <width>153</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>base de données</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="YerothComboBox" name="comboBox_creer_localisation_base_donnees">
-       <property name="geometry">
-        <rect>
-         <x>564</x>
-         <y>90</y>
-         <width>205</width>
-         <height>25</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_creer_localisation_boite_postale">
-       <property name="geometry">
-        <rect>
-         <x>16</x>
-         <y>240</y>
-         <width>153</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>boîte postale</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="YerothLineEdit" name="lineEdit_creer_localisation_boite_postale">
-       <property name="geometry">
-        <rect>
-         <x>173</x>
-         <y>240</y>
-         <width>205</width>
-         <height>25</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-      </widget>
-      <widget class="YerothLineEdit" name="lineEdit_creer_localisation_province_etat">
-       <property name="geometry">
-        <rect>
-         <x>173</x>
-         <y>180</y>
-         <width>205</width>
-         <height>25</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_creer_localisation_province_etat">
-       <property name="geometry">
-        <rect>
-         <x>16</x>
-         <y>180</y>
-         <width>153</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>province / état</string>
+        <string>désignation du compte</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -10143,16 +9781,6 @@ background-color: rgb(0, 0, 0); </string>
    <class>YerothLineEdit</class>
    <extends>QLineEdit</extends>
    <header>src/widgets/yeroth-erp-line-edit.hpp</header>
-  </customwidget>
-  <customwidget>
-   <class>YerothComboBox</class>
-   <extends>QComboBox</extends>
-   <header>src/widgets/yeroth-erp-combo-box.hpp</header>
-  </customwidget>
-  <customwidget>
-   <class>YerothDateTimeEdit</class>
-   <extends>QDateEdit</extends>
-   <header>src/widgets/yeroth-erp-datetime-edit.hpp</header>
   </customwidget>
   <customwidget>
    <class>YerothTextEdit</class>
