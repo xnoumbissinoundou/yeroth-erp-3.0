@@ -260,8 +260,6 @@ void YerothPointDeVenteWindow::setupLineEdits()
 
     lineEdit_recherche_article_codebar->enableForSearch(QObject::trUtf8("référence [ focus avec F11 ]"));
 
-    lineEdit_articles_nom_client->enableForSearch(QObject::trUtf8("nom du client"));
-
     lineEdit_articles_imprimante->setText(YerothERPConfig::printer);
     lineEdit_articles_imprimante->setReadOnly(true);
 
