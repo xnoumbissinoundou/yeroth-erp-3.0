@@ -35,7 +35,7 @@ public:
 
 	YerothSortirWindow();
 
-    ~YerothSortirWindow();
+    virtual ~YerothSortirWindow();
 
     inline virtual QToolBar * getQMainWindowToolBar()
     {
@@ -59,6 +59,8 @@ public:
     void cleanUpAfterVente();
 
     virtual void rendreInvisible();
+
+    void handleTabViews();
 
     virtual void rendreVisible(YerothSqlTableModel *stocksTableModel);
 

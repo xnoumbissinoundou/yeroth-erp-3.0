@@ -843,8 +843,13 @@ void YerothSortirWindow::annuler()
     if (tableWidget_articles->rowCount() > 0)
     {
         clear_all_fields();
+
         deleteArticleVenteInfos();
+
         setRechercheLineEditFocus();
+
+        handleTabViews();
+
         YerothQMessageBox::information(this, QObject::trUtf8("annulation de sortie"),
                                       QObject::trUtf8("Vous avez annulé la sortie !"), QMessageBox::Ok);
     }
@@ -906,6 +911,8 @@ void YerothSortirWindow::cleanUpAfterVente()
     lineEdit_recherche_article_codebar->myClear();
 
     tabWidget_sorties->setCurrentIndex(TableauDesSorties);
+
+    handleTabViews();
 
     lineEdit_articles_quantite_a_transferer->clear();
     lineEdit_articles_transfert->clear();
@@ -991,6 +998,16 @@ void YerothSortirWindow::rendreInvisible()
     YerothWindowsCommons::rendreInvisible();
 }
 
+
+void YerothSortirWindow::handleTabViews()
+{
+    if (0 == tableWidget_articles->rowCount())
+    {
+        tabWidget_sorties->setTabEnabled(AfficherSortieAuDetail, false);
+    }
+}
+
+
 void YerothSortirWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 {
     _logger->log("rendreVisible");
@@ -1059,10 +1076,7 @@ void YerothSortirWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 
     lineEdit_articles_transfert->setupMyStaticQCompleter(_allWindows->LOCALISATIONS, "nom_localisation");
 
-    if (0 == tableWidget_articles->rowCount())
-    {
-        tabWidget_sorties->setTabEnabled(AfficherSortieAuDetail, false);
-    }
+    handleTabViews();
 
     setRechercheLineEditFocus();
 
