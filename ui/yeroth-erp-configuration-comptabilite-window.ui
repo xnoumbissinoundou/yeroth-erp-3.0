@@ -962,7 +962,7 @@
          <x>173</x>
          <y>60</y>
          <width>205</width>
-         <height>21</height>
+         <height>25</height>
         </rect>
        </property>
        <property name="font">
@@ -979,7 +979,7 @@
          <x>173</x>
          <y>120</y>
          <width>205</width>
-         <height>21</height>
+         <height>25</height>
         </rect>
        </property>
        <property name="font">
@@ -996,7 +996,7 @@
          <x>173</x>
          <y>150</y>
          <width>205</width>
-         <height>21</height>
+         <height>25</height>
         </rect>
        </property>
        <property name="font">
@@ -1013,7 +1013,7 @@
          <x>173</x>
          <y>210</y>
          <width>205</width>
-         <height>21</height>
+         <height>25</height>
         </rect>
        </property>
        <property name="font">
@@ -1914,7 +1914,7 @@
          <x>564</x>
          <y>30</y>
          <width>205</width>
-         <height>21</height>
+         <height>25</height>
         </rect>
        </property>
        <property name="font">
@@ -1963,7 +1963,7 @@
          <x>564</x>
          <y>60</y>
          <width>205</width>
-         <height>21</height>
+         <height>25</height>
         </rect>
        </property>
        <property name="font">
@@ -2031,7 +2031,7 @@
          <x>173</x>
          <y>90</y>
          <width>205</width>
-         <height>21</height>
+         <height>25</height>
         </rect>
        </property>
        <property name="font">
@@ -2048,7 +2048,7 @@
          <x>173</x>
          <y>270</y>
          <width>205</width>
-         <height>21</height>
+         <height>25</height>
         </rect>
        </property>
        <property name="font">
@@ -2084,7 +2084,7 @@
          <x>173</x>
          <y>300</y>
          <width>205</width>
-         <height>21</height>
+         <height>25</height>
         </rect>
        </property>
        <property name="font">
@@ -2101,7 +2101,7 @@
          <x>173</x>
          <y>30</y>
          <width>205</width>
-         <height>21</height>
+         <height>25</height>
         </rect>
        </property>
        <property name="font">
@@ -2150,7 +2150,7 @@
          <x>564</x>
          <y>90</y>
          <width>205</width>
-         <height>21</height>
+         <height>25</height>
         </rect>
        </property>
        <property name="font">
@@ -2181,7 +2181,7 @@
          <x>173</x>
          <y>240</y>
          <width>205</width>
-         <height>21</height>
+         <height>25</height>
         </rect>
        </property>
        <property name="font">
@@ -2198,7 +2198,7 @@
          <x>173</x>
          <y>180</y>
          <width>205</width>
-         <height>21</height>
+         <height>25</height>
         </rect>
        </property>
        <property name="font">
