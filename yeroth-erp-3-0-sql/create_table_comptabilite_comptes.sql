@@ -1,1 +1,1 @@
-create table comptabilite_comptes (id int primary key, designation_compte_comptabilite varchar(256) NOT NULL, numero_compte_comptabilite varchar(256) NOT NULL, description_compte_comptabilite varchar(256));
+create table comptabilite_comptes (id int auto_increment primary key, designation_compte_comptabilite varchar(256) NOT NULL, numero_compte_comptabilite varchar(256) NOT NULL, description_compte_comptabilite varchar(256));

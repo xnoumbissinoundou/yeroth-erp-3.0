@@ -924,6 +924,9 @@
          <bold>false</bold>
         </font>
        </property>
+       <property name="styleSheet">
+        <string notr="true">border: 1px solid rgb(60, 60, 60);</string>
+       </property>
       </widget>
       <widget class="YerothPushButton" name="pushButton_annuler">
        <property name="geometry">
@@ -1826,6 +1829,9 @@
           <pointsize>10</pointsize>
          </font>
         </property>
+        <property name="styleSheet">
+         <string notr="true">border: 1px solid rgb(60, 60, 60);</string>
+        </property>
        </widget>
       </widget>
       <widget class="YerothLineEdit" name="lineEdit_creer_un_compte_designation_du_compte">
@@ -1843,6 +1849,9 @@
          <weight>50</weight>
          <bold>false</bold>
         </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border: 1px solid rgb(60, 60, 60);</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_creer_un_compte_designation_du_compte">
@@ -8175,7 +8184,6 @@ background-color: rgb(0, 0, 0); </string>
     </property>
     <addaction name="actionInformationEntreprise"/>
     <addaction name="separator"/>
-    <addaction name="actionGuideUtilisateur"/>
     <addaction name="actionAppeler_aide"/>
     <addaction name="separator"/>
     <addaction name="actionA_propos"/>
@@ -8608,15 +8616,10 @@ background-color: rgb(0, 0, 0); </string>
     <addaction name="actionChanger_utilisateur"/>
     <addaction name="actionDeconnecter_utilisateur"/>
     <addaction name="separator"/>
-    <addaction name="actionEntrer"/>
-    <addaction name="actionAchats"/>
-    <addaction name="actionClients"/>
-    <addaction name="actionPaiements"/>
-    <addaction name="actionStocks"/>
-    <addaction name="actionInventaireDesStocks"/>
-    <addaction name="actionSortir"/>
-    <addaction name="separator"/>
-    <addaction name="actionVendre"/>
+    <addaction name="actionCreerUnCompteComptabilite"/>
+    <addaction name="actionListerDesComptesComptabilite"/>
+    <addaction name="actionModifierUnCompteComptabilite"/>
+    <addaction name="actionSupprimerUnCompteComptabilite"/>
     <addaction name="separator"/>
     <addaction name="actionFermeture"/>
     <addaction name="separator"/>
@@ -9499,6 +9502,7 @@ background-color: rgb(0, 0, 0); </string>
    <addaction name="actionChanger_utilisateur"/>
    <addaction name="actionDeconnecter_utilisateur"/>
    <addaction name="actionAppeler_aide"/>
+   <addaction name="actionAlertes"/>
   </widget>
   <action name="actionA_propos">
    <property name="text">
@@ -9525,63 +9529,6 @@ background-color: rgb(0, 0, 0); </string>
      <pointsize>10</pointsize>
      <weight>75</weight>
      <bold>true</bold>
-    </font>
-   </property>
-  </action>
-  <action name="actionEntrer">
-   <property name="text">
-    <string>Entrer un stock</string>
-   </property>
-   <property name="toolTip">
-    <string>Entrer un stock</string>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-    </font>
-   </property>
-  </action>
-  <action name="actionInventaireDesStocks">
-   <property name="text">
-    <string>Lister les marchandises</string>
-   </property>
-   <property name="toolTip">
-    <string>Lister les marchandises</string>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-    </font>
-   </property>
-  </action>
-  <action name="actionStocks">
-   <property name="text">
-    <string>Lister les stocks</string>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-    </font>
-   </property>
-  </action>
-  <action name="actionVendre">
-   <property name="text">
-    <string>Vendre des articles</string>
-   </property>
-   <property name="toolTip">
-    <string>Vendre des articles</string>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
     </font>
    </property>
   </action>
@@ -9644,18 +9591,6 @@ background-color: rgb(0, 0, 0); </string>
    <property name="font">
     <font>
      <pointsize>10</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-    </font>
-   </property>
-  </action>
-  <action name="actionVente">
-   <property name="text">
-    <string>Ventes</string>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>
@@ -9697,69 +9632,51 @@ background-color: rgb(0, 0, 0); </string>
     </font>
    </property>
   </action>
-  <action name="actionSortir">
+  <action name="actionCreerUnCompteComptabilite">
    <property name="text">
-    <string>Sortir des articles</string>
+    <string>Créer un compte</string>
+   </property>
+   <property name="toolTip">
+    <string>Créer un compte</string>
    </property>
    <property name="font">
     <font>
      <pointsize>10</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
     </font>
    </property>
   </action>
-  <action name="actionGuideUtilisateur">
+  <action name="actionListerDesComptesComptabilite">
    <property name="text">
-    <string>Guide de l'utilisateur (PDF)</string>
+    <string>Lister des comptes comptables</string>
    </property>
    <property name="toolTip">
-    <string>Guide de l'utilisateur (PDF)</string>
+    <string>Lister des comptes comptables</string>
    </property>
    <property name="font">
     <font>
      <pointsize>10</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
     </font>
    </property>
   </action>
-  <action name="actionClients">
+  <action name="actionModifierUnCompteComptabilite">
    <property name="text">
-    <string>Lister les clients</string>
+    <string>Modifier un compte comptable</string>
    </property>
    <property name="toolTip">
-    <string>Lister les clients</string>
+    <string>Modifier un compte comptable</string>
    </property>
    <property name="font">
     <font>
      <pointsize>10</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
     </font>
    </property>
   </action>
-  <action name="actionPaiements">
+  <action name="actionSupprimerUnCompteComptabilite">
    <property name="text">
-    <string>Lister les paiements</string>
+    <string>Supprimer un compte comptable</string>
    </property>
    <property name="toolTip">
-    <string>Lister les paiements</string>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-    </font>
-   </property>
-  </action>
-  <action name="actionAchats">
-   <property name="text">
-    <string>Lister les achats</string>
-   </property>
-   <property name="toolTip">
-    <string>Lister les achats</string>
+    <string>Supprimer un compte comptable</string>
    </property>
    <property name="font">
     <font>
