@@ -9090,7 +9090,6 @@ background-color: rgb(0, 0, 0); </string>
     <addaction name="actionEntrer"/>
     <addaction name="actionInventaireDesStocks"/>
     <addaction name="actionSortir"/>
-    <addaction name="actionVendre"/>
     <addaction name="separator"/>
     <addaction name="actionMenu_Principal"/>
     <addaction name="separator"/>
@@ -10171,21 +10170,6 @@ background-color: rgb(0, 0, 0); </string>
     </font>
    </property>
   </action>
-  <action name="actionVente">
-   <property name="text">
-    <string>Caisse</string>
-   </property>
-   <property name="toolTip">
-    <string>Caisse</string>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-  </action>
   <action name="actionRechercher">
    <property name="text">
     <string>Rechercher un stock</string>
@@ -10255,21 +10239,6 @@ background-color: rgb(0, 0, 0); </string>
   <action name="actionSortir">
    <property name="text">
     <string>Sortir des articles</string>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-    </font>
-   </property>
-  </action>
-  <action name="actionVendre">
-   <property name="text">
-    <string>Vendre des articles</string>
-   </property>
-   <property name="toolTip">
-    <string>Vendre des articles</string>
    </property>
    <property name="font">
     <font>
