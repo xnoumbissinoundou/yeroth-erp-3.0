@@ -1307,7 +1307,7 @@
      <string>Actualiser</string>
     </property>
    </widget>
-   <widget class="YerothPushButton" name="pushButton_stocks">
+   <widget class="YerothPushButton" name="pushButton_annuler">
     <property name="geometry">
      <rect>
       <x>527</x>
@@ -1331,8 +1331,8 @@
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>243</red>
-          <green>162</green>
+          <red>0</red>
+          <green>0</green>
           <blue>0</blue>
          </color>
         </brush>
@@ -1340,26 +1340,26 @@
        <colorrole role="Light">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>207</green>
-          <blue>109</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Midlight">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>249</red>
-          <green>184</green>
-          <blue>54</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Dark">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>121</red>
-          <green>81</green>
+          <red>0</red>
+          <green>0</green>
           <blue>0</blue>
          </color>
         </brush>
@@ -1367,8 +1367,8 @@
        <colorrole role="Mid">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>162</red>
-          <green>108</green>
+          <red>0</red>
+          <green>0</green>
           <blue>0</blue>
          </color>
         </brush>
@@ -1403,17 +1403,17 @@
        <colorrole role="Base">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>255</green>
-          <blue>255</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Window">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>243</red>
-          <green>162</green>
+          <red>0</red>
+          <green>0</green>
           <blue>0</blue>
          </color>
         </brush>
@@ -1430,9 +1430,9 @@
        <colorrole role="AlternateBase">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>249</red>
-          <green>208</green>
-          <blue>127</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
@@ -1468,8 +1468,8 @@
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>243</red>
-          <green>162</green>
+          <red>0</red>
+          <green>0</green>
           <blue>0</blue>
          </color>
         </brush>
@@ -1477,26 +1477,26 @@
        <colorrole role="Light">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>207</green>
-          <blue>109</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Midlight">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>249</red>
-          <green>184</green>
-          <blue>54</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Dark">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>121</red>
-          <green>81</green>
+          <red>0</red>
+          <green>0</green>
           <blue>0</blue>
          </color>
         </brush>
@@ -1504,8 +1504,8 @@
        <colorrole role="Mid">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>162</red>
-          <green>108</green>
+          <red>0</red>
+          <green>0</green>
           <blue>0</blue>
          </color>
         </brush>
@@ -1540,17 +1540,17 @@
        <colorrole role="Base">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>255</green>
-          <blue>255</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Window">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>243</red>
-          <green>162</green>
+          <red>0</red>
+          <green>0</green>
           <blue>0</blue>
          </color>
         </brush>
@@ -1567,9 +1567,9 @@
        <colorrole role="AlternateBase">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>249</red>
-          <green>208</green>
-          <blue>127</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
@@ -1596,8 +1596,8 @@
        <colorrole role="WindowText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>121</red>
-          <green>81</green>
+          <red>0</red>
+          <green>0</green>
           <blue>0</blue>
          </color>
         </brush>
@@ -1605,8 +1605,8 @@
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>243</red>
-          <green>162</green>
+          <red>0</red>
+          <green>0</green>
           <blue>0</blue>
          </color>
         </brush>
@@ -1614,26 +1614,26 @@
        <colorrole role="Light">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>207</green>
-          <blue>109</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Midlight">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>249</red>
-          <green>184</green>
-          <blue>54</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Dark">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>121</red>
-          <green>81</green>
+          <red>0</red>
+          <green>0</green>
           <blue>0</blue>
          </color>
         </brush>
@@ -1641,8 +1641,8 @@
        <colorrole role="Mid">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>162</red>
-          <green>108</green>
+          <red>0</red>
+          <green>0</green>
           <blue>0</blue>
          </color>
         </brush>
@@ -1650,8 +1650,8 @@
        <colorrole role="Text">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>121</red>
-          <green>81</green>
+          <red>0</red>
+          <green>0</green>
           <blue>0</blue>
          </color>
         </brush>
@@ -1668,8 +1668,8 @@
        <colorrole role="ButtonText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>121</red>
-          <green>81</green>
+          <red>0</red>
+          <green>0</green>
           <blue>0</blue>
          </color>
         </brush>
@@ -1677,8 +1677,8 @@
        <colorrole role="Base">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>243</red>
-          <green>162</green>
+          <red>0</red>
+          <green>0</green>
           <blue>0</blue>
          </color>
         </brush>
@@ -1686,8 +1686,8 @@
        <colorrole role="Window">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>243</red>
-          <green>162</green>
+          <red>0</red>
+          <green>0</green>
           <blue>0</blue>
          </color>
         </brush>
@@ -1704,8 +1704,8 @@
        <colorrole role="AlternateBase">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>243</red>
-          <green>162</green>
+          <red>0</red>
+          <green>0</green>
           <blue>0</blue>
          </color>
         </brush>
@@ -1739,7 +1739,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Stocks</string>
+     <string>Annuler</string>
     </property>
    </widget>
    <widget class="YerothPushButton" name="pushButton_supprimer">
@@ -5050,7 +5050,7 @@
       </property>
      </widget>
     </widget>
-    <widget class="YerothPushButton" name="pushButton_annuler">
+    <widget class="YerothPushButton" name="pushButton_supprimer_limage_du_stock">
      <property name="geometry">
       <rect>
        <x>405</x>
@@ -5482,7 +5482,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Annuler</string>
+      <string>Supprimer l'image de ce stock</string>
      </property>
     </widget>
     <widget class="YerothPushButton" name="pushButton_selectionner_image">
@@ -12483,13 +12483,10 @@
     <addaction name="actionDeconnecter_utilisateur"/>
     <addaction name="separator"/>
     <addaction name="actionActualiser"/>
+    <addaction name="actionAnnuler"/>
     <addaction name="actionSupprimer"/>
-    <addaction name="actionSupprimerImage"/>
     <addaction name="separator"/>
     <addaction name="actionEntrer"/>
-    <addaction name="actionStocks"/>
-    <addaction name="actionSortir"/>
-    <addaction name="actionVendre"/>
     <addaction name="separator"/>
     <addaction name="actionMenu"/>
     <addaction name="separator"/>
@@ -13372,8 +13369,9 @@
    </property>
    <property name="font">
     <font>
-     <weight>75</weight>
-     <bold>true</bold>
+     <pointsize>10</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
     </font>
    </property>
   </action>
@@ -13401,19 +13399,9 @@
    </property>
    <property name="font">
     <font>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-  </action>
-  <action name="actionStocks">
-   <property name="text">
-    <string>Afficher les stocks</string>
-   </property>
-   <property name="font">
-    <font>
-     <weight>75</weight>
-     <bold>true</bold>
+     <pointsize>10</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
     </font>
    </property>
   </action>
@@ -13431,28 +13419,15 @@
     </font>
    </property>
   </action>
-  <action name="actionSortir">
-   <property name="text">
-    <string>Sortir des articles</string>
-   </property>
-   <property name="toolTip">
-    <string>Sortir des articles</string>
-   </property>
-   <property name="font">
-    <font>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-  </action>
   <action name="actionFermeture">
    <property name="text">
     <string>Fermeture</string>
    </property>
    <property name="font">
     <font>
-     <weight>75</weight>
-     <bold>true</bold>
+     <pointsize>10</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
     </font>
    </property>
   </action>
@@ -13465,8 +13440,9 @@
    </property>
    <property name="font">
     <font>
-     <weight>75</weight>
-     <bold>true</bold>
+     <pointsize>10</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
     </font>
    </property>
   </action>
@@ -13520,20 +13496,6 @@
     </font>
    </property>
   </action>
-  <action name="actionVente">
-   <property name="text">
-    <string>Ventes</string>
-   </property>
-   <property name="toolTip">
-    <string>Caisse</string>
-   </property>
-   <property name="font">
-    <font>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-  </action>
   <action name="actionSupprimer">
    <property name="text">
     <string>Supprimer ce stock</string>
@@ -13543,8 +13505,9 @@
    </property>
    <property name="font">
     <font>
-     <weight>75</weight>
-     <bold>true</bold>
+     <pointsize>10</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
     </font>
    </property>
   </action>
@@ -13557,8 +13520,9 @@
    </property>
    <property name="font">
     <font>
-     <weight>75</weight>
-     <bold>true</bold>
+     <pointsize>10</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
     </font>
    </property>
   </action>
@@ -13568,8 +13532,9 @@
    </property>
    <property name="font">
     <font>
-     <weight>75</weight>
-     <bold>true</bold>
+     <pointsize>10</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
     </font>
    </property>
   </action>
@@ -13579,8 +13544,9 @@
    </property>
    <property name="font">
     <font>
-     <weight>75</weight>
-     <bold>true</bold>
+     <pointsize>10</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
     </font>
    </property>
   </action>
@@ -13590,8 +13556,9 @@
    </property>
    <property name="font">
     <font>
-     <weight>75</weight>
-     <bold>true</bold>
+     <pointsize>10</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
     </font>
    </property>
   </action>
@@ -13604,22 +13571,22 @@
    </property>
    <property name="font">
     <font>
-     <weight>75</weight>
-     <bold>true</bold>
+     <pointsize>10</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
     </font>
    </property>
   </action>
-  <action name="actionVendre">
+  <action name="actionAnnuler">
    <property name="text">
-    <string>Vendre des articles</string>
+    <string>Annuler la modification de ce stock</string>
    </property>
    <property name="toolTip">
-    <string>Vendre des articles</string>
+    <string>Annuler la modification de ce stock</string>
    </property>
    <property name="font">
     <font>
-     <weight>75</weight>
-     <bold>true</bold>
+     <pointsize>10</pointsize>
     </font>
    </property>
   </action>
@@ -13669,12 +13636,12 @@
   <tabstop>lineEdit_reference_recu_dachat</tabstop>
   <tabstop>lineEdit_quantite_restante</tabstop>
   <tabstop>lineEdit_tva</tabstop>
-  <tabstop>pushButton_annuler</tabstop>
+  <tabstop>pushButton_supprimer_limage_du_stock</tabstop>
   <tabstop>pushButton_selectionner_image</tabstop>
   <tabstop>pushButton_entrer</tabstop>
   <tabstop>pushButton_enregistrer</tabstop>
   <tabstop>pushButton_menu_principal</tabstop>
-  <tabstop>pushButton_stocks</tabstop>
+  <tabstop>pushButton_annuler</tabstop>
   <tabstop>pushButton_supprimer</tabstop>
   <tabstop>textEdit_description</tabstop>
   <tabstop>checkBox_tva</tabstop>

@@ -30,7 +30,7 @@ YerothModifierWindow::YerothModifierWindow()
 {
     setupUi(this);
 
-    this->mySetupUi(this);
+    mySetupUi(this);
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
                                        "QMessageBox QLabel {color: rgb(%2);}")
@@ -43,22 +43,20 @@ YerothModifierWindow::YerothModifierWindow()
     spinBox_lots->setEnabled(false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionActualiser, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAnnuler, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
     pushButton_entrer->disable(this);
-    pushButton_stocks->disable(this);
     pushButton_menu_principal->disable(this);
     pushButton_supprimer->disable(this);
     pushButton_enregistrer->disable(this);
     pushButton_annuler->disable(this);
+    pushButton_supprimer_limage_du_stock->disable(this);
     pushButton_selectionner_image->disable(this);
 
     connect(lineEdit_quantite_par_lot, SIGNAL(textChanged(const QString &)), this,
@@ -76,14 +74,12 @@ YerothModifierWindow::YerothModifierWindow()
     connect(actionMenu, SIGNAL(triggered()), this, SLOT(menu()));
     connect(actionActualiser, SIGNAL(triggered()), this, SLOT(actualiser_article()));
     connect(actionEntrer, SIGNAL(triggered()), this, SLOT(entrer()));
-    connect(actionStocks, SIGNAL(triggered()), this, SLOT(afficherStocks()));
+    connect(actionAnnuler, SIGNAL(triggered()), this, SLOT(afficherStocks()));
     connect(actionSupprimer, SIGNAL(triggered()), this, SLOT(supprimer_ce_stock()));
     connect(actionSupprimerImage, SIGNAL(triggered()), this, SLOT(supprimer_image_stock()));
-    connect(actionSortir, SIGNAL(triggered()), this, SLOT(sortir()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
     connect(actionA_propos, SIGNAL(triggered()), this, SLOT(apropos()));
     connect(actionAlertes, SIGNAL(triggered()), this, SLOT(alertes()));
-    connect(actionVendre, SIGNAL(triggered()), this, SLOT(vendre()));
     connect(actionInformationEntreprise, SIGNAL(triggered()), this, SLOT(infosEntreprise()));
     connect(actionQui_suis_je, SIGNAL(triggered()), this, SLOT(qui_suis_je()));
 
@@ -125,20 +121,12 @@ void YerothModifierWindow::setupLineEdits()
 }
 
 
-void YerothModifierWindow::contextMenuEvent(QContextMenuEvent * event)
-{
-    QMenu menu(this);
-    menu.setPalette(toolBar_modifierWindow->palette());
-    menu.addAction(actionActualiser);
-    menu.addAction(actionSupprimerImage);
-    menu.exec(event->globalPos());
-}
-
 void YerothModifierWindow::deconnecter_utilisateur()
 {
     this->clear_all_fields();
     YerothWindowsCommons::deconnecter_utilisateur();
 }
+
 
 void YerothModifierWindow::definirPasDeRole()
 {
@@ -146,22 +134,19 @@ void YerothModifierWindow::definirPasDeRole()
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionActualiser, false);
-
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAnnuler, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
     pushButton_entrer->disable(this);
-    pushButton_stocks->disable(this);
     pushButton_annuler->disable(this);
     pushButton_supprimer->disable(this);
     pushButton_enregistrer->disable(this);
+    pushButton_supprimer_limage_du_stock->disable(this);
     pushButton_selectionner_image->disable(this);
 }
 
@@ -173,14 +158,12 @@ void YerothModifierWindow::definirCaissier()
 
     actionMenu->setDisabled(false);
 
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAnnuler, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionActualiser, false);
 
     actionEntrer->setDisabled(true);
-    actionStocks->setDisabled(false);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, true);
 
     actionModifier->setDisabled(true);
 
@@ -188,10 +171,10 @@ void YerothModifierWindow::definirCaissier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
     pushButton_entrer->disable(this);
-    pushButton_stocks->enable(this, SLOT(afficherStocks()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_supprimer->disable(this);
     pushButton_enregistrer->disable(this);
+    pushButton_supprimer_limage_du_stock->disable(this);
     pushButton_selectionner_image->disable(this);
 }
 
@@ -203,11 +186,9 @@ void YerothModifierWindow::definirManager()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionActualiser, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAnnuler, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, true);
 
@@ -218,11 +199,11 @@ void YerothModifierWindow::definirManager()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
     pushButton_entrer->enable(this, SLOT(entrer()));
-    pushButton_stocks->enable(this, SLOT(afficherStocks()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_annuler->enable(this, SLOT(afficherStocks()));
     pushButton_supprimer->enable(this, SLOT(supprimer_ce_stock()));
     pushButton_enregistrer->enable(this, SLOT(actualiser_article()));
+    pushButton_supprimer_limage_du_stock->enable(this, SLOT(supprimer_image_stock()));
     pushButton_selectionner_image->enable(this, SLOT(selectionner_image_produit()));
 }
 
@@ -235,20 +216,19 @@ void YerothModifierWindow::definirVendeur()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionActualiser, false);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, false);
+
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAnnuler, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
     pushButton_entrer->disable(this);
-    pushButton_stocks->disable(this);
     pushButton_annuler->disable(this);
     pushButton_supprimer->disable(this);
     pushButton_enregistrer->disable(this);
+    pushButton_supprimer_limage_du_stock->disable(this);
     pushButton_selectionner_image->disable(this);
 }
 
@@ -261,11 +241,9 @@ void YerothModifierWindow::definirGestionaireDesStocks()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionActualiser, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAnnuler, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
@@ -276,11 +254,12 @@ void YerothModifierWindow::definirGestionaireDesStocks()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
     pushButton_entrer->enable(this, SLOT(entrer()));
-    pushButton_stocks->enable(this, SLOT(afficherStocks()));
+
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_annuler->enable(this, SLOT(afficherStocks()));
     pushButton_supprimer->enable(this, SLOT(supprimer_ce_stock()));
     pushButton_enregistrer->enable(this, SLOT(actualiser_article()));
+    pushButton_supprimer_limage_du_stock->enable(this, SLOT(supprimer_image_stock()));
     pushButton_selectionner_image->enable(this, SLOT(selectionner_image_produit()));
 }
 
@@ -292,16 +271,15 @@ void YerothModifierWindow::definirMagasinier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionActualiser, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, false);
+
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAnnuler, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
     pushButton_entrer->disable(this);
-    pushButton_stocks->disable(this);
+    pushButton_supprimer_limage_du_stock->disable(this);
     pushButton_menu_principal->disable(this);
     pushButton_annuler->disable(this);
     pushButton_supprimer->disable(this);
