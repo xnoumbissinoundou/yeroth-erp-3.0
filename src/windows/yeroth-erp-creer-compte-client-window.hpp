@@ -78,7 +78,7 @@ private slots:
 
 private:
 
-	bool customerAccountExist();
+	bool customerAccountAlreadyExist();
 
 	bool check_fields();
 

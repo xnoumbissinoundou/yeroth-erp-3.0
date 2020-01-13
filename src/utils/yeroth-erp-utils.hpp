@@ -467,6 +467,21 @@ public:
 		return _logFileName;
 	}
 
+	static bool checkIfCustomerAccountAlreadyExist_NOMENTREPRISE(YerothWindowsCommons &aCallingWindow,
+																 YerothSqlTableModel &aClientTableModel,
+																 YerothLineEdit &aYerothLineEdit_nom_entreprise,
+																 int aCurrentClientDetailDBID = -2);
+
+	static bool checkIfCustomerAccountAlreadyExist_REFERENCE_REGISTRE_DU_COMMERCE(YerothWindowsCommons &aCallingWindow,
+																				  YerothSqlTableModel &aClientTableModel,
+																				  YerothLineEdit &aYerothLineEdit_reference_registre_du_commerce,
+																				  int aCurrentClientDetailDBID = -2);
+
+	static bool checkIfCustomerAccountAlreadyExist_REFERENCECLIENT(YerothWindowsCommons &aCallingWindow,
+																   YerothSqlTableModel &aClientTableModel,
+																   YerothLineEdit &aYerothLineEdit_reference_client,
+																   int aCurrentClientDetailDBID = -2);
+
 	static void yerothSetWidgetColor(QWidget *aWidget);
 
 	static const QString IMPRIMANTE_PDF;

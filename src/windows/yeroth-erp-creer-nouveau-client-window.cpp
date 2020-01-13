@@ -253,6 +253,7 @@ bool YerothCreerNouveauClientWindow::creer_client()
         record.setValue(YerothDatabaseTableColumn::EMAIL, lineEdit_client_email->text());
         record.setValue(YerothDatabaseTableColumn::NUMERO_TELEPHONE_1, lineEdit_client_numero_telephone_1->text());
         record.setValue(YerothDatabaseTableColumn::NUMERO_TELEPHONE_2, lineEdit_client_numero_telephone_2->text());
+        record.setValue(YerothDatabaseTableColumn::REFERENCE_REGISTRE_DU_COMMERCE, lineEdit_client_reference_registre_du_commerce->text());
         record.setValue(YerothDatabaseTableColumn::NUMERO_CONTRIBUABLE, lineEdit_client_numero_contribuable->text());
         record.setValue(YerothDatabaseTableColumn::DESCRIPTION_CLIENT, textEdit_client_description->toPlainText());
 
@@ -289,6 +290,7 @@ void YerothCreerNouveauClientWindow::clear_client_all_fields()
     lineEdit_client_email->clear();
     lineEdit_client_numero_telephone_1->clear();
     lineEdit_client_numero_telephone_2->clear();
+    lineEdit_client_reference_registre_du_commerce->clear();
     lineEdit_client_numero_contribuable->clear();
     textEdit_client_description->clear();
 }
@@ -327,6 +329,34 @@ bool YerothCreerNouveauClientWindow::customerAccountExist()
 			return true;
 		}
 
+		clientsTableModel.resetFilter();
+	}
+
+	// ** check if customer account with same trade registry number exist
+	if (!lineEdit_client_reference_registre_du_commerce->isEmpty())
+	{
+		QString reference_du_registre_du_commerce_filter(QString("LOWER(%1) = LOWER('%2')")
+															.arg(YerothDatabaseTableColumn::REFERENCE_REGISTRE_DU_COMMERCE,
+																 lineEdit_client_reference_registre_du_commerce->text()));
+
+		clientsTableModel.yerothSetFilter(reference_du_registre_du_commerce_filter);
+
+		int clientsTableModelRowCount = clientsTableModel.rowCount();
+
+		if (clientsTableModelRowCount > 0)
+		{
+			clientsTableModel.resetFilter();
+
+			QString retMsg(QString(QObject::trUtf8("Une entreprise avec la référence régistre du commerce '%1' existe déjà "
+												   "dans la base de données !"))
+								.arg(lineEdit_client_reference_registre_du_commerce->text()));
+
+			YerothQMessageBox::warning(this,
+					QObject::trUtf8("compte client déjà existant"),
+					retMsg);
+
+			return true;
+		}
 		clientsTableModel.resetFilter();
 	}
 

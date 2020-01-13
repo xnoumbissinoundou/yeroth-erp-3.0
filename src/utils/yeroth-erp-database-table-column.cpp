@@ -89,6 +89,7 @@ const QString YerothDatabaseTableColumn::NOM_ENTREPRISE					("nom_entreprise");
 const QString YerothDatabaseTableColumn::NUMERO_DE_COMPTE_BANCAIRE		("numero_de_compte_bancaire");
 const QString YerothDatabaseTableColumn::AGENCE_DE_COMPTE_BANCAIRE		("agence_de_compte_bancaire");
 const QString YerothDatabaseTableColumn::SECTEURS_DACTIVITES			("secteurs_dactivites");
+const QString YerothDatabaseTableColumn::REFERENCE_REGISTRE_DU_COMMERCE	("reference_registre_du_commerce");
 const QString YerothDatabaseTableColumn::NUMERO_CONTRIBUABLE			("numero_contribuable");
 const QString YerothDatabaseTableColumn::NOM_REPRESENTANT				("nom_representant");
 const QString YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT			("nom_entreprise_client");
@@ -268,6 +269,8 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::AGENCE_DE_COMPTE_BANCAIRE,	QObject::tr("Agence bancaire"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::SECTEURS_DACTIVITES,	QObject::trUtf8("Secteurs d'activités"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REFERENCE_REGISTRE_DU_COMMERCE,	QObject::trUtf8("Régistre de commerce"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NUMERO_CONTRIBUABLE,	QObject::trUtf8("Numéro contribuable"));
 

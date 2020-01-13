@@ -304,68 +304,35 @@ void YerothCreerCompteClientWindow::definirMagasinier()
 }
 
 
-bool YerothCreerCompteClientWindow::customerAccountExist()
+bool YerothCreerCompteClientWindow::customerAccountAlreadyExist()
 {
+	bool result = false;
+
 	YerothSqlTableModel &clientsTableModel = _allWindows->getSqlTableModel_clients();
 
-	{ // ** check if customer account with same name exist
-		QString nom_entreprise_filter(QString("LOWER(%1) = LOWER('%2')")
-				.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
-						lineEdit_compte_client_nom_de_lentreprise->text()));
+	// ** check if customer account with same name exist
+	bool resultNomEntreprise =
+				YerothUtils::checkIfCustomerAccountAlreadyExist_NOMENTREPRISE(*this, clientsTableModel,
+																		*lineEdit_compte_client_nom_de_lentreprise);
 
-//		qDebug() << QString("++ nom_entreprise_filter: %1")
-//						.arg(nom_entreprise_filter);
+	result = result || resultNomEntreprise;
 
-		clientsTableModel.yerothSetFilter(nom_entreprise_filter);
+	// ** check if customer account with same trade registry number exist
+	bool resultReferenceRegistreDuCommerce =
+			YerothUtils::checkIfCustomerAccountAlreadyExist_REFERENCE_REGISTRE_DU_COMMERCE(*this, clientsTableModel,
+																	*lineEdit_compte_client_reference_du_registre_du_commerce);
 
-		int clientsTableModelRowCount = clientsTableModel.rowCount();
+	result = result || resultReferenceRegistreDuCommerce;
 
-		if (clientsTableModelRowCount > 0)
-		{
-			clientsTableModel.resetFilter();
-
-			QString retMsg(QString(QObject::trUtf8("Une entreprise nommée '%1' existe déjà "
-												   "dans la base de données !"))
-					.arg(lineEdit_compte_client_nom_de_lentreprise->text()));
-
-			YerothQMessageBox::warning(this,
-					QObject::trUtf8("compte client déjà existant"),
-					retMsg);
-			return true;
-		}
-
-		clientsTableModel.resetFilter();
-	}
 
 	// ** check if customer account with same reference exist
-	if (! lineEdit_compte_client_reference_client->isEmpty())
-	{
-		QString reference_client_filter(QString("LOWER(%1) = LOWER('%2')")
-											.arg(YerothDatabaseTableColumn::REFERENCE_CLIENT,
-												 lineEdit_compte_client_reference_client->text()));
+	bool resultReferenceClient =
+			YerothUtils::checkIfCustomerAccountAlreadyExist_REFERENCECLIENT(*this, clientsTableModel,
+																	*lineEdit_compte_client_reference_client);
 
-		clientsTableModel.yerothSetFilter(reference_client_filter);
+	result = result || resultReferenceClient;
 
-		int clientsTableModelRowCount = clientsTableModel.rowCount();
-
-		if (clientsTableModelRowCount > 0)
-		{
-			clientsTableModel.resetFilter();
-
-			QString retMsg(QString(QObject::trUtf8("Une entreprise avec la référence '%1' existe déjà "
-												   "dans la base de données !"))
-								.arg(lineEdit_compte_client_reference_client->text()));
-
-			YerothQMessageBox::warning(this,
-					QObject::trUtf8("compte client déjà existant"),
-					retMsg);
-
-			return true;
-		}
-		clientsTableModel.resetFilter();
-	}
-
-	return false;
+	return result;
 }
 
 
@@ -397,6 +364,7 @@ void YerothCreerCompteClientWindow::clear_all_fields()
     lineEdit_compte_client_email->clear();
     lineEdit_compte_client_numero_telephone_1->clear();
     lineEdit_compte_client_numero_telephone_2->clear();
+    lineEdit_compte_client_reference_du_registre_du_commerce->clear();
     lineEdit_compte_client_numero_de_contribuable->clear();
     lineEdit_compte_client_dette_maximale->clear();
     textEdit_creer_compte_client_description_client->clear();
@@ -440,7 +408,7 @@ bool YerothCreerCompteClientWindow::creerEnregistrerCompteClient()
 {
     if (check_fields())
     {
-        if (customerAccountExist())
+        if (customerAccountAlreadyExist())
         {
         	return false;
         }
@@ -464,6 +432,7 @@ bool YerothCreerCompteClientWindow::creerEnregistrerCompteClient()
         record.setValue(YerothDatabaseTableColumn::EMAIL, lineEdit_compte_client_email->text());
         record.setValue(YerothDatabaseTableColumn::NUMERO_TELEPHONE_1, lineEdit_compte_client_numero_telephone_1->text());
         record.setValue(YerothDatabaseTableColumn::NUMERO_TELEPHONE_2, lineEdit_compte_client_numero_telephone_2->text());
+        record.setValue(YerothDatabaseTableColumn::REFERENCE_REGISTRE_DU_COMMERCE, lineEdit_compte_client_reference_du_registre_du_commerce->text());
         record.setValue(YerothDatabaseTableColumn::NUMERO_CONTRIBUABLE, lineEdit_compte_client_numero_de_contribuable->text());
         record.setValue(YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT, lineEdit_compte_client_dette_maximale->text());
 

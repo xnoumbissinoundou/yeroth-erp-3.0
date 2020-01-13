@@ -179,6 +179,8 @@ public:
 
 	static const QString NUMERO_CONTRIBUABLE;
 
+	static const QString REFERENCE_REGISTRE_DU_COMMERCE;
+
 	static const QString NOM_REPRESENTANT;
 
 	static const QString NOM_ENTREPRISE_CLIENT;

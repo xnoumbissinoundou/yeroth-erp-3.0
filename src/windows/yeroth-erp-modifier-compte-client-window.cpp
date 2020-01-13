@@ -22,7 +22,8 @@ const QString YerothModifierCompteClientWindow::_WINDOW_TITLE(QString(QObject::t
 
 YerothModifierCompteClientWindow::YerothModifierCompteClientWindow()
 :YerothWindowsCommons(YerothModifierCompteClientWindow::_WINDOW_TITLE),
- _logger(new YerothLogger("YerothModifierCompteClientWindow"))
+ _logger(new YerothLogger("YerothModifierCompteClientWindow")),
+ _curClientDetailDBID(-2)
 {
     setupUi(this);
 
@@ -293,36 +294,46 @@ void YerothModifierCompteClientWindow::clear_all_fields()
 }
 
 
+bool YerothModifierCompteClientWindow::customerAccountAlreadyExist()
+{
+	bool result = false;
+
+	// ** check if customer account with same name exist
+	bool resultNomEntreprise =
+				YerothUtils::checkIfCustomerAccountAlreadyExist_NOMENTREPRISE(*this, *_curClientTableModel,
+																		*lineEdit_modifier_compteclient_nom_entreprise,
+																		_curClientDetailDBID);
+
+	result = result || resultNomEntreprise;
+
+	// ** check if customer account with same trade registry number exist
+	bool resultReferenceRegistreDuCommerce =
+			YerothUtils::checkIfCustomerAccountAlreadyExist_REFERENCE_REGISTRE_DU_COMMERCE(*this, *_curClientTableModel,
+																	*lineEdit_modifier_compteclient_reference_registre_du_commerce,
+																	_curClientDetailDBID);
+
+	result = result || resultReferenceRegistreDuCommerce;
+
+	// ** check if customer account with same reference exist
+	bool resultReferenceClient =
+			YerothUtils::checkIfCustomerAccountAlreadyExist_REFERENCECLIENT(*this, *_curClientTableModel,
+																	*lineEdit_modifier_compteclient_reference_client,
+																	_curClientDetailDBID);
+
+	result = result || resultReferenceClient;
+
+
+	return result;
+}
+
+
 void YerothModifierCompteClientWindow::actualiserCompteClient()
 {
     if (modifier_client_check_fields())
     {
-    	// ** check if customer account with same reference exist
-    	if (! lineEdit_modifier_compteclient_reference_client->isEmpty())
+    	if (customerAccountAlreadyExist())
     	{
-    		QString reference_client_filter(QString("LOWER(%1) = LOWER('%2')")
-    											.arg(YerothDatabaseTableColumn::REFERENCE_CLIENT,
-    													lineEdit_modifier_compteclient_reference_client->text()));
-
-    		_curClientTableModel->yerothSetFilter(reference_client_filter);
-
-    		int clientsTableModelRowCount = _curClientTableModel->rowCount();
-
-    		if (clientsTableModelRowCount > 0)
-    		{
-    			_curClientTableModel->resetFilter();
-
-    			QString retMsg(QString(QObject::trUtf8("Une entreprise avec la référence '%1' existe déjà "
-    												   "dans la base de données !"))
-    								.arg(lineEdit_modifier_compteclient_reference_client->text()));
-
-    			YerothQMessageBox::warning(this,
-    					QObject::trUtf8("compte client déjà existant"),
-    					retMsg);
-
-    			return ;
-    		}
-    		_curClientTableModel->resetFilter();
+    		return ;
     	}
 
         QSqlRecord record = _curClientTableModel->record(_clientLastSelectedRow);
@@ -442,6 +453,8 @@ void YerothModifierCompteClientWindow::rendreVisible(int lastSelectedRow,
 void YerothModifierCompteClientWindow::showClientDetail()
 {
     QSqlRecord record = _curClientTableModel->record(_clientLastSelectedRow);
+
+    _curClientDetailDBID = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ID).toInt();
 
 	lineEdit_modifier_compteclient_reference_client->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE_CLIENT));
 

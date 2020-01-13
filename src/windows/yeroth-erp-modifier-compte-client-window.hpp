@@ -79,6 +79,8 @@ protected:
 
 private slots:
 
+	bool customerAccountAlreadyExist();
+
 	void actualiserCompteClient();
 
     void supprimerCompteClient();
@@ -100,6 +102,8 @@ private:
     YerothSqlTableModel 		*_curClientTableModel;
 
     int 						_clientLastSelectedRow;
+
+    int							_curClientDetailDBID;
 };
 
 

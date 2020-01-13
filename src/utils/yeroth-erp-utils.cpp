@@ -1008,6 +1008,191 @@ void YerothUtils::getColumnListString(QStringList &columnStringList,
     }
 }
 
+
+bool YerothUtils::checkIfCustomerAccountAlreadyExist_NOMENTREPRISE(YerothWindowsCommons &aCallingWindow,
+																   YerothSqlTableModel &aClientTableModel,
+															 	   YerothLineEdit &aYerothLineEdit_nom_entreprise,
+																   int aCurrentClientDetailDBID /* = -2*/)
+{
+	// ** check if customer account with same name exist
+	QString nom_entreprise_filter(QString("LOWER(%1) = LOWER('%2')")
+									.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
+										 aYerothLineEdit_nom_entreprise.text()));
+
+	//		qDebug() << QString("++ nom_entreprise_filter: %1")
+	//						.arg(nom_entreprise_filter);
+
+	aClientTableModel.yerothSetFilter(nom_entreprise_filter);
+
+	int clientsTableModelRowCount = aClientTableModel.rowCount();
+
+	if (clientsTableModelRowCount > 0)
+	{
+		if (-2 != aCurrentClientDetailDBID)
+		{
+			for (int k = 0; k < clientsTableModelRowCount; ++k)
+			{
+
+				QSqlRecord clientRecord = aClientTableModel.record(k);
+				int clientRecordDBID(GET_SQL_RECORD_DATA(clientRecord, YerothDatabaseTableColumn::ID).toInt());
+
+				if (aCurrentClientDetailDBID != clientRecordDBID)
+				{
+					aClientTableModel.resetFilter();
+
+					QString retMsg(QString(QObject::trUtf8("Une entreprise nommée '%1' existe déjà "
+							"dans la base de données !"))
+							.arg(aYerothLineEdit_nom_entreprise.text()));
+
+					YerothQMessageBox::warning(&aCallingWindow,
+							QObject::trUtf8("compte client déjà existant"),
+							retMsg);
+					return true;
+				}
+			}
+		}
+		else
+		{
+			QString retMsg(QString(QObject::trUtf8("Une entreprise nommée '%1' existe déjà "
+					"dans la base de données !"))
+					.arg(aYerothLineEdit_nom_entreprise.text()));
+
+			YerothQMessageBox::warning(&aCallingWindow,
+					QObject::trUtf8("compte client déjà existant"),
+					retMsg);
+
+			return true;
+		}
+	}
+
+	aClientTableModel.resetFilter();
+
+	return false;
+}
+
+
+bool YerothUtils::checkIfCustomerAccountAlreadyExist_REFERENCE_REGISTRE_DU_COMMERCE(YerothWindowsCommons &aCallingWindow,
+																					YerothSqlTableModel &aClientTableModel,
+																				    YerothLineEdit &aYerothLineEdit_reference_registre_du_commerce,
+																					int aCurrentClientDetailDBID /* = -2*/)
+{
+	// ** check if customer account with same trade registry number exist
+	if (! aYerothLineEdit_reference_registre_du_commerce.isEmpty())
+	{
+		QString reference_du_registre_du_commerce_filter(QString("LOWER(%1) = LOWER('%2')")
+															.arg(YerothDatabaseTableColumn::REFERENCE_REGISTRE_DU_COMMERCE,
+																 aYerothLineEdit_reference_registre_du_commerce.text()));
+
+		aClientTableModel.yerothSetFilter(reference_du_registre_du_commerce_filter);
+
+		int clientsTableModelRowCount = aClientTableModel.rowCount();
+
+		if (clientsTableModelRowCount > 0)
+		{
+			if (-2 != aCurrentClientDetailDBID)
+			{
+				for (int k = 0; k < clientsTableModelRowCount; ++k)
+				{
+					QSqlRecord clientRecord = aClientTableModel.record(k);
+					int clientRecordDBID(GET_SQL_RECORD_DATA(clientRecord, YerothDatabaseTableColumn::ID).toInt());
+
+					if (aCurrentClientDetailDBID != clientRecordDBID)
+					{
+						aClientTableModel.resetFilter();
+
+						QString retMsg(QString(QObject::trUtf8("Une entreprise avec la référence régistre du commerce '%1' existe déjà "
+								"dans la base de données !"))
+								.arg(aYerothLineEdit_reference_registre_du_commerce.text()));
+
+						YerothQMessageBox::warning(&aCallingWindow,
+								QObject::trUtf8("compte client déjà existant"),
+								retMsg);
+
+						return true;
+					}
+				}
+			}
+			else
+			{
+				QString retMsg(QString(QObject::trUtf8("Une entreprise avec la référence régistre du commerce '%1' existe déjà "
+						"dans la base de données !"))
+						.arg(aYerothLineEdit_reference_registre_du_commerce.text()));
+
+				YerothQMessageBox::warning(&aCallingWindow,
+						QObject::trUtf8("compte client déjà existant"),
+						retMsg);
+
+				return true;
+			}
+		}
+		aClientTableModel.resetFilter();
+	}
+
+	return false;
+}
+
+
+bool YerothUtils::checkIfCustomerAccountAlreadyExist_REFERENCECLIENT(YerothWindowsCommons &aCallingWindow,
+																	 YerothSqlTableModel &aClientTableModel,
+																	 YerothLineEdit &aYerothLineEdit_reference_client,
+																	 int aCurrentClientDetailDBID /* = -2*/)
+{
+	// ** check if customer account with same reference exist
+	if (! aYerothLineEdit_reference_client.isEmpty())
+	{
+		QString reference_client_filter(QString("LOWER(%1) = LOWER('%2')")
+											.arg(YerothDatabaseTableColumn::REFERENCE_CLIENT,
+													aYerothLineEdit_reference_client.text()));
+
+		aClientTableModel.yerothSetFilter(reference_client_filter);
+
+		int clientsTableModelRowCount = aClientTableModel.rowCount();
+
+		if (clientsTableModelRowCount > 0)
+		{
+			if (-2 != aCurrentClientDetailDBID)
+			{
+				for (int k = 0; k < clientsTableModelRowCount; ++k)
+				{
+					QSqlRecord clientRecord = aClientTableModel.record(k);
+					int clientRecordDBID(GET_SQL_RECORD_DATA(clientRecord, YerothDatabaseTableColumn::ID).toInt());
+
+					if (aCurrentClientDetailDBID != clientRecordDBID)
+					{
+						aClientTableModel.resetFilter();
+
+						QString retMsg(QString(QObject::trUtf8("Une entreprise avec la référence '%1' existe déjà "
+								"dans la base de données !"))
+								.arg(aYerothLineEdit_reference_client.text()));
+
+						YerothQMessageBox::warning(&aCallingWindow,
+								QObject::trUtf8("compte client déjà existant"),
+								retMsg);
+
+						return true;
+					}
+				}
+			}
+			else
+			{
+				QString retMsg(QString(QObject::trUtf8("Une entreprise avec la référence '%1' existe déjà "
+						"dans la base de données !"))
+						.arg(aYerothLineEdit_reference_client.text()));
+
+				YerothQMessageBox::warning(&aCallingWindow,
+						QObject::trUtf8("compte client déjà existant"),
+						retMsg);
+
+				return true;
+			}
+		}
+		aClientTableModel.resetFilter();
+	}
+
+	return false;
+}
+
+
 void YerothUtils::yerothSetWidgetColor(QWidget *aWidget)
 {
     if (!aWidget)
