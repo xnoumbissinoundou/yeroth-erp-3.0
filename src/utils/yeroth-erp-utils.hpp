@@ -470,19 +470,21 @@ public:
 	static bool checkIfCustomerAccountAlreadyExist_NOMENTREPRISE(YerothWindowsCommons &aCallingWindow,
 																 YerothSqlTableModel &aClientTableModel,
 																 YerothLineEdit &aYerothLineEdit_nom_entreprise,
-																 int aCurrentClientDetailDBID = -2);
+																 int aCurrentClientDetailDBID = YerothUtils::CURRENT_CLIENT_DB_ID_UNDEFINED);
 
 	static bool checkIfCustomerAccountAlreadyExist_REFERENCE_REGISTRE_DU_COMMERCE(YerothWindowsCommons &aCallingWindow,
 																				  YerothSqlTableModel &aClientTableModel,
 																				  YerothLineEdit &aYerothLineEdit_reference_registre_du_commerce,
-																				  int aCurrentClientDetailDBID = -2);
+																				  int aCurrentClientDetailDBID = YerothUtils::CURRENT_CLIENT_DB_ID_UNDEFINED);
 
 	static bool checkIfCustomerAccountAlreadyExist_REFERENCECLIENT(YerothWindowsCommons &aCallingWindow,
 																   YerothSqlTableModel &aClientTableModel,
 																   YerothLineEdit &aYerothLineEdit_reference_client,
-																   int aCurrentClientDetailDBID = -2);
+																   int aCurrentClientDetailDBID = YerothUtils::CURRENT_CLIENT_DB_ID_UNDEFINED);
 
 	static void yerothSetWidgetColor(QWidget *aWidget);
+
+	static const unsigned int CURRENT_CLIENT_DB_ID_UNDEFINED;
 
 	static const QString IMPRIMANTE_PDF;
 

@@ -165,6 +165,8 @@ const QKeySequence YerothUtils::REINITIALISER_QUI_SUI_JE_QKEYSEQUENCE(QObject::t
 
 const QKeySequence YerothUtils::LISTER_STOCKS_QKEYSEQUENCE(QObject::tr(SHORTCUT_LIST_STOCKS));
 
+const unsigned int YerothUtils::CURRENT_CLIENT_DB_ID_UNDEFINED(-2);
+
 const QString YerothUtils::IMPRIMANTE_PDF("pdf");
 
 const QString YerothUtils::IMPRIMANTE_EPSON_TM_T20ii("epson TM-T20ii");
@@ -1012,7 +1014,7 @@ void YerothUtils::getColumnListString(QStringList &columnStringList,
 bool YerothUtils::checkIfCustomerAccountAlreadyExist_NOMENTREPRISE(YerothWindowsCommons &aCallingWindow,
 																   YerothSqlTableModel &aClientTableModel,
 															 	   YerothLineEdit &aYerothLineEdit_nom_entreprise,
-																   int aCurrentClientDetailDBID /* = -2*/)
+																   int aCurrentClientDetailDBID /* = YerothUtils::CURRENT_CLIENT_DB_ID_UNDEFINED*/)
 {
 	// ** check if customer account with same name exist
 	QString nom_entreprise_filter(QString("LOWER(%1) = LOWER('%2')")
@@ -1028,7 +1030,7 @@ bool YerothUtils::checkIfCustomerAccountAlreadyExist_NOMENTREPRISE(YerothWindows
 
 	if (clientsTableModelRowCount > 0)
 	{
-		if (-2 != aCurrentClientDetailDBID)
+		if (YerothUtils::CURRENT_CLIENT_DB_ID_UNDEFINED != aCurrentClientDetailDBID)
 		{
 			for (int k = 0; k < clientsTableModelRowCount; ++k)
 			{
@@ -1074,7 +1076,7 @@ bool YerothUtils::checkIfCustomerAccountAlreadyExist_NOMENTREPRISE(YerothWindows
 bool YerothUtils::checkIfCustomerAccountAlreadyExist_REFERENCE_REGISTRE_DU_COMMERCE(YerothWindowsCommons &aCallingWindow,
 																					YerothSqlTableModel &aClientTableModel,
 																				    YerothLineEdit &aYerothLineEdit_reference_registre_du_commerce,
-																					int aCurrentClientDetailDBID /* = -2*/)
+																					int aCurrentClientDetailDBID /* = YerothUtils::CURRENT_CLIENT_DB_ID_UNDEFINED*/)
 {
 	// ** check if customer account with same trade registry number exist
 	if (! aYerothLineEdit_reference_registre_du_commerce.isEmpty())
@@ -1089,7 +1091,7 @@ bool YerothUtils::checkIfCustomerAccountAlreadyExist_REFERENCE_REGISTRE_DU_COMME
 
 		if (clientsTableModelRowCount > 0)
 		{
-			if (-2 != aCurrentClientDetailDBID)
+			if (YerothUtils::CURRENT_CLIENT_DB_ID_UNDEFINED != aCurrentClientDetailDBID)
 			{
 				for (int k = 0; k < clientsTableModelRowCount; ++k)
 				{
@@ -1135,7 +1137,7 @@ bool YerothUtils::checkIfCustomerAccountAlreadyExist_REFERENCE_REGISTRE_DU_COMME
 bool YerothUtils::checkIfCustomerAccountAlreadyExist_REFERENCECLIENT(YerothWindowsCommons &aCallingWindow,
 																	 YerothSqlTableModel &aClientTableModel,
 																	 YerothLineEdit &aYerothLineEdit_reference_client,
-																	 int aCurrentClientDetailDBID /* = -2*/)
+																	 int aCurrentClientDetailDBID /* = YerothUtils::CURRENT_CLIENT_DB_ID_UNDEFINED*/)
 {
 	// ** check if customer account with same reference exist
 	if (! aYerothLineEdit_reference_client.isEmpty())
@@ -1150,7 +1152,7 @@ bool YerothUtils::checkIfCustomerAccountAlreadyExist_REFERENCECLIENT(YerothWindo
 
 		if (clientsTableModelRowCount > 0)
 		{
-			if (-2 != aCurrentClientDetailDBID)
+			if (YerothUtils::CURRENT_CLIENT_DB_ID_UNDEFINED != aCurrentClientDetailDBID)
 			{
 				for (int k = 0; k < clientsTableModelRowCount; ++k)
 				{
