@@ -297,6 +297,34 @@ void YerothModifierCompteClientWindow::actualiserCompteClient()
 {
     if (modifier_client_check_fields())
     {
+    	// ** check if customer account with same reference exist
+    	if (! lineEdit_modifier_compteclient_reference_client->isEmpty())
+    	{
+    		QString reference_client_filter(QString("LOWER(%1) = LOWER('%2')")
+    											.arg(YerothDatabaseTableColumn::REFERENCE_CLIENT,
+    													lineEdit_modifier_compteclient_reference_client->text()));
+
+    		_curClientTableModel->yerothSetFilter(reference_client_filter);
+
+    		int clientsTableModelRowCount = _curClientTableModel->rowCount();
+
+    		if (clientsTableModelRowCount > 0)
+    		{
+    			_curClientTableModel->resetFilter();
+
+    			QString retMsg(QString(QObject::trUtf8("Une entreprise avec la référence '%1' existe déjà "
+    												   "dans la base de données !"))
+    								.arg(lineEdit_modifier_compteclient_reference_client->text()));
+
+    			YerothQMessageBox::warning(this,
+    					QObject::trUtf8("compte client déjà existant"),
+    					retMsg);
+
+    			return ;
+    		}
+    		_curClientTableModel->resetFilter();
+    	}
+
         QSqlRecord record = _curClientTableModel->record(_clientLastSelectedRow);
 
 		record.setValue(YerothDatabaseTableColumn::REFERENCE_CLIENT, lineEdit_modifier_compteclient_reference_client->text());

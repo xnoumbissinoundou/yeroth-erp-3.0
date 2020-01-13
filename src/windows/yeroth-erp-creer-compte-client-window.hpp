@@ -78,7 +78,9 @@ private slots:
 
 private:
 
-    bool check_fields();
+	bool customerAccountExist();
+
+	bool check_fields();
 
     void clear_all_fields();
 

@@ -90,6 +90,8 @@ protected:
 
     bool creer_client();
 
+    bool customerAccountExist();
+
     bool creer_client_check_fields();
 
     void clear_client_all_fields();

@@ -35,8 +35,9 @@ YerothCreerNouveauClientWindow::YerothCreerNouveauClientWindow():YerothWindowsCo
     this->mySetupUi(this);
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
-                                       "QMessageBox QLabel {color: rgb(%2);}").
-                               arg(COLOUR_RGB_STRING_YEROTH_GRAY_78_78_78, COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
+                                       "QMessageBox QLabel {color: rgb(%2);}")
+                                    .arg(COLOUR_RGB_STRING_YEROTH_YELLOW_254_254_0,
+                                    	 COLOUR_RGB_STRING_YEROTH_BLACK_0_0_0);
 
     _logger->log("YerothCreerNouveauClientWindow");
 
@@ -200,8 +201,13 @@ void YerothCreerNouveauClientWindow::ventes()
 void YerothCreerNouveauClientWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 {
     _logger->log("rendreVisible(YerothSqlTableModel *)");
+
     _curStocksTableModel = stocksTableModel;
+
+    creer_client_check_fields();
+
     lineEdit_client_nom_entreprise->setFocus();
+
     this->setVisible(true);
 }
 
@@ -220,8 +226,13 @@ void YerothCreerNouveauClientWindow::administration()
 
 bool YerothCreerNouveauClientWindow::creer_client()
 {
-    if (creer_client_check_fields())
-    {
+	if (creer_client_check_fields())
+	{
+        if (customerAccountExist())
+        {
+        	return false;
+        }
+
         QString retMsg(QString(QObject::trUtf8("Le client '%1"))
         				.arg(lineEdit_client_nom_entreprise->text()));
 
@@ -230,6 +241,7 @@ bool YerothCreerNouveauClientWindow::creer_client()
         QSqlRecord record = clientsTableModel.record();
 
         record.setValue(YerothDatabaseTableColumn::ID, _allWindows->getNextIdSqlTableModel_clients());
+        record.setValue(YerothDatabaseTableColumn::REFERENCE_CLIENT, lineEdit_client_reference_client->text());
         record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE, lineEdit_client_nom_entreprise->text());
         record.setValue(YerothDatabaseTableColumn::NOM_REPRESENTANT, lineEdit_client_nom_representant->text());
         record.setValue(YerothDatabaseTableColumn::QUARTIER, lineEdit_client_quartier->text());
@@ -266,6 +278,7 @@ bool YerothCreerNouveauClientWindow::creer_client()
 
 void YerothCreerNouveauClientWindow::clear_client_all_fields()
 {
+	lineEdit_client_reference_client->clear();
     lineEdit_client_nom_entreprise->clearField();
     lineEdit_client_nom_representant->clearField();
     lineEdit_client_quartier->clear();
@@ -286,35 +299,72 @@ void YerothCreerNouveauClientWindow::setupShortcuts()
     this->setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
 }
 
+
+bool YerothCreerNouveauClientWindow::customerAccountExist()
+{
+	YerothSqlTableModel &clientsTableModel = _allWindows->getSqlTableModel_clients();
+
+	{ // ** check if customer account with same name exist
+		QString nom_entreprise_filter(QString("LOWER(%1) = LOWER('%2')")
+				.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
+						lineEdit_client_nom_entreprise->text()));
+
+		clientsTableModel.yerothSetFilter(nom_entreprise_filter);
+
+		int clientsTableModelRowCount = clientsTableModel.rowCount();
+
+		if (clientsTableModelRowCount > 0)
+		{
+			clientsTableModel.resetFilter();
+
+			QString retMsg(QString(QObject::trUtf8("Une entreprise nommée '%1' existe déjà "
+												   "dans la base de données !"))
+					.arg(lineEdit_client_nom_entreprise->text()));
+
+			YerothQMessageBox::warning(this,
+					QObject::trUtf8("compte client déjà existant"),
+					retMsg);
+			return true;
+		}
+
+		clientsTableModel.resetFilter();
+	}
+
+	// ** check if customer account with same reference exist
+	if (!lineEdit_client_reference_client->isEmpty())
+	{
+		QString reference_client_filter(QString("LOWER(%1) = LOWER('%2')")
+											.arg(YerothDatabaseTableColumn::REFERENCE_CLIENT,
+												 lineEdit_client_reference_client->text()));
+
+		clientsTableModel.yerothSetFilter(reference_client_filter);
+
+		int clientsTableModelRowCount = clientsTableModel.rowCount();
+
+		if (clientsTableModelRowCount > 0)
+		{
+			clientsTableModel.resetFilter();
+
+			QString retMsg(QString(QObject::trUtf8("Une entreprise avec la référence '%1' existe déjà "
+												   "dans la base de données !"))
+								.arg(lineEdit_client_reference_client->text()));
+
+			YerothQMessageBox::warning(this,
+					QObject::trUtf8("compte client déjà existant"),
+					retMsg);
+
+			return true;
+		}
+		clientsTableModel.resetFilter();
+	}
+
+	return false;
+}
+
+
 bool YerothCreerNouveauClientWindow::creer_client_check_fields()
 {
     bool nom_entreprise = lineEdit_client_nom_entreprise->checkField();
-
-    if (nom_entreprise)
-    {
-        YerothSqlTableModel & clientsTableModel = _allWindows->getSqlTableModel_clients();
-
-        QString nom_entreprise_filter("nom_entreprise = '");
-
-        nom_entreprise_filter.append(lineEdit_client_nom_entreprise->text()).append("'");
-
-        clientsTableModel.yerothSetFilter(nom_entreprise_filter);
-
-        int clientsTableModelRowCount = clientsTableModel.rowCount();
-
-        if (clientsTableModelRowCount > 0)
-        {
-            QString retMsg(QString(QObject::trUtf8("L'entreprise nommée '%1' est déjà existante dans la base de données !"))
-            					.arg(lineEdit_client_nom_entreprise->text()));
-
-            YerothQMessageBox::warning(this, QObject::trUtf8("déjà existant"), retMsg);
-
-            clientsTableModel.resetFilter();
-
-            return false;
-        }
-        clientsTableModel.resetFilter();
-    }
 
     bool nom_representant = lineEdit_client_nom_representant->checkField();
 

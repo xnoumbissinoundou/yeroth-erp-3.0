@@ -304,38 +304,76 @@ void YerothCreerCompteClientWindow::definirMagasinier()
 }
 
 
+bool YerothCreerCompteClientWindow::customerAccountExist()
+{
+	YerothSqlTableModel &clientsTableModel = _allWindows->getSqlTableModel_clients();
+
+	{ // ** check if customer account with same name exist
+		QString nom_entreprise_filter(QString("LOWER(%1) = LOWER('%2')")
+				.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
+						lineEdit_compte_client_nom_de_lentreprise->text()));
+
+//		qDebug() << QString("++ nom_entreprise_filter: %1")
+//						.arg(nom_entreprise_filter);
+
+		clientsTableModel.yerothSetFilter(nom_entreprise_filter);
+
+		int clientsTableModelRowCount = clientsTableModel.rowCount();
+
+		if (clientsTableModelRowCount > 0)
+		{
+			clientsTableModel.resetFilter();
+
+			QString retMsg(QString(QObject::trUtf8("Une entreprise nommée '%1' existe déjà "
+												   "dans la base de données !"))
+					.arg(lineEdit_compte_client_nom_de_lentreprise->text()));
+
+			YerothQMessageBox::warning(this,
+					QObject::trUtf8("compte client déjà existant"),
+					retMsg);
+			return true;
+		}
+
+		clientsTableModel.resetFilter();
+	}
+
+	// ** check if customer account with same reference exist
+	if (! lineEdit_compte_client_reference_client->isEmpty())
+	{
+		QString reference_client_filter(QString("LOWER(%1) = LOWER('%2')")
+											.arg(YerothDatabaseTableColumn::REFERENCE_CLIENT,
+												 lineEdit_compte_client_reference_client->text()));
+
+		clientsTableModel.yerothSetFilter(reference_client_filter);
+
+		int clientsTableModelRowCount = clientsTableModel.rowCount();
+
+		if (clientsTableModelRowCount > 0)
+		{
+			clientsTableModel.resetFilter();
+
+			QString retMsg(QString(QObject::trUtf8("Une entreprise avec la référence '%1' existe déjà "
+												   "dans la base de données !"))
+								.arg(lineEdit_compte_client_reference_client->text()));
+
+			YerothQMessageBox::warning(this,
+					QObject::trUtf8("compte client déjà existant"),
+					retMsg);
+
+			return true;
+		}
+		clientsTableModel.resetFilter();
+	}
+
+	return false;
+}
+
+
 bool YerothCreerCompteClientWindow::check_fields()
 {
     bool result;
 
     bool nom_entreprise = lineEdit_compte_client_nom_de_lentreprise->checkField();
-
-    YerothSqlTableModel &clientsTableModel = _allWindows->getSqlTableModel_clients();
-
-    QString nom_entreprise_filter("nom_entreprise = '");
-
-    nom_entreprise_filter.append(lineEdit_compte_client_nom_de_lentreprise->text())
-    					 .append("'");
-
-    clientsTableModel.yerothSetFilter(nom_entreprise_filter);
-
-    int clientsTableModelRowCount = clientsTableModel.rowCount();
-
-    if (clientsTableModelRowCount > 0)
-    {
-        clientsTableModel.resetFilter();
-
-        QString retMsg(QString(QObject::trUtf8("L'entreprise nommée '%1' est déjà "
-        									   "existante dans la base de données !"))
-        					.arg(lineEdit_compte_client_nom_de_lentreprise->text()));
-
-        YerothQMessageBox::warning(this,
-                             QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ créer ~ client"),
-                             retMsg);
-        return false;
-    }
-
-    clientsTableModel.resetFilter();
 
     bool nom_representant = lineEdit_compte_client_nom_du_representant->checkField();
 
@@ -392,6 +430,8 @@ void YerothCreerCompteClientWindow::rendreVisible(YerothSqlTableModel * stocksTa
     	}
     }
 
+    check_fields();
+
     this->setVisible(true);
 }
 
@@ -400,37 +440,14 @@ bool YerothCreerCompteClientWindow::creerEnregistrerCompteClient()
 {
     if (check_fields())
     {
+        if (customerAccountExist())
+        {
+        	return false;
+        }
+
         QString retMsg(QObject::tr("Le client '"));
 
         YerothSqlTableModel &clientsTableModel = _allWindows->getSqlTableModel_clients();
-
-        clientsTableModel.yerothSetFilter(QString("LOWER(nom_entreprise) = LOWER('%1')")
-                                    			.arg(lineEdit_compte_client_nom_de_lentreprise->text()));
-
-        //qDebug() << "++ filter: " << clientsTableModel.filter();
-
-        int clientsTableModelRowCount = clientsTableModel.easySelect();
-
-        if (clientsTableModelRowCount > 0)
-        {
-            QSqlRecord record = clientsTableModel.record(0);
-            QString duplicateClient(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE));
-
-            //qDebug() << "++ duplicate client: " << duplicateClient;
-
-            retMsg.append(QString(QObject::trUtf8("%1' existe déjà !")
-            				.arg(duplicateClient)));
-
-            YerothQMessageBox::warning(this,
-                                 QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ créer ~ client"),
-                                 retMsg);
-
-            clientsTableModel.resetFilter();
-
-            return false;
-        }
-
-        clientsTableModel.resetFilter();
 
         QSqlRecord record = clientsTableModel.record();
 
