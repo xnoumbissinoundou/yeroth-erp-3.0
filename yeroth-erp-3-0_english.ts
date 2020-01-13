@@ -977,20 +977,20 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="105"/>
-        <location filename="src/windows/yeroth-erp-modifier-compte-client-window.cpp" line="393"/>
+        <location filename="src/windows/yeroth-erp-modifier-compte-client-window.cpp" line="395"/>
         <source>Poursuivre avec la suppression du compte client &apos;%1&apos; ?</source>
         <translation>Continue with deletion of customer account &apos;%1&apos; ?</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="110"/>
         <location filename="src/windows/yeroth-erp-clients-window.cpp" line="231"/>
-        <location filename="src/windows/yeroth-erp-modifier-compte-client-window.cpp" line="397"/>
+        <location filename="src/windows/yeroth-erp-modifier-compte-client-window.cpp" line="399"/>
         <source>suppression d&apos;un compte client</source>
         <translation>deletion of a customer account</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="119"/>
-        <location filename="src/windows/yeroth-erp-modifier-compte-client-window.cpp" line="407"/>
+        <location filename="src/windows/yeroth-erp-modifier-compte-client-window.cpp" line="409"/>
         <source>Le compte client &apos;%1&apos; a été supprimé !</source>
         <translation>Customer account &apos;%1&apos; has been deleted !</translation>
     </message>
@@ -1010,82 +1010,87 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <translation>customer account couldn&apos;t be deleted</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="318"/>
+        <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="319"/>
         <source>Référence client: </source>
         <translation>Customer ref.: </translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="321"/>
+        <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="322"/>
         <source>Nom de l&apos;entreprise: </source>
         <translation>Company name: </translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="324"/>
+        <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="325"/>
         <source>Nom du Représentant: </source>
         <translation>Representant name: </translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="327"/>
+        <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="328"/>
         <source>Quartier: </source>
         <translation>Location: </translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="330"/>
+        <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="331"/>
         <source>Ville: </source>
         <translation>City: </translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="333"/>
+        <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="334"/>
         <source>Province / État: </source>
         <translation>Province / State: </translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="336"/>
+        <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="337"/>
         <source>Pays: </source>
         <translation>Country: </translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="339"/>
+        <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="340"/>
         <source>Boîte postale: </source>
         <translation>Postal code (or P.O. box): </translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="342"/>
+        <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="343"/>
         <source>Siège social: </source>
         <translation>Headquarters: </translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="345"/>
+        <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="346"/>
         <source>Émail: </source>
         <translation>E-mail: </translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="348"/>
+        <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="349"/>
         <source>Numéro de téléphone 1: </source>
         <translation>Phone number (1): </translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="351"/>
+        <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="352"/>
         <source>Numéro de téléphone 2: </source>
         <translation>Phone number (2): </translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="354"/>
+        <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="355"/>
         <source>Numéro de contribuable: </source>
         <translation>Tax payer identification nr: </translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="357"/>
+        <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="358"/>
+        <source>RCCN N\textsuperscript{\underline{o}}: </source>
+        <translation>RCCN N\textsuperscript{\underline{o}}: </translation>
+    </message>
+    <message>
+        <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="361"/>
         <source>Dette maximale: </source>
         <translation>Maximal debt: </translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="360"/>
+        <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="364"/>
         <source>Compte client: </source>
         <translation>Customer account: </translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="365"/>
+        <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="369"/>
         <source>DESCRIPTION CLIENT:</source>
         <translation>CUSTOMER BUSINESS INFORMATION:</translation>
     </message>
@@ -2061,28 +2066,28 @@ Please contact an administrator of %1</translation>
         <translation>Inventory stock &apos;%1&apos; has been deleted !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-compte-client-window.cpp" line="362"/>
+        <location filename="src/windows/yeroth-erp-modifier-compte-client-window.cpp" line="364"/>
         <source>Les données du compte client &apos;%1&apos;</source>
         <translation>Data for customer account &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-compte-client-window.cpp" line="370"/>
+        <location filename="src/windows/yeroth-erp-modifier-compte-client-window.cpp" line="372"/>
         <source>modification d&apos;un compte client - succès</source>
         <translation>customer account modification - success</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-compte-client-window.cpp" line="382"/>
+        <location filename="src/windows/yeroth-erp-modifier-compte-client-window.cpp" line="384"/>
         <source>modification d&apos;un compte client - échec</source>
         <translation>customer account modification - failure</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-compte-client-window.cpp" line="410"/>
+        <location filename="src/windows/yeroth-erp-modifier-compte-client-window.cpp" line="412"/>
         <location filename="src/windows/yeroth-erp-stock-detail-window.cpp" line="390"/>
         <source>suppression d&apos;un stock avec succès</source>
         <translation>stock was successfully deleted</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-compte-client-window.cpp" line="417"/>
+        <location filename="src/windows/yeroth-erp-modifier-compte-client-window.cpp" line="419"/>
         <source>Le compte client &apos;&apos; ne pouvait pas être supprimé !</source>
         <translation>Customer account &apos;&apos; couldn&apos;t be deleted !</translation>
     </message>
@@ -2590,7 +2595,7 @@ Press &apos;Cancel&apos; if you wish to stop this process!</translation>
         <location filename="src/admin/modifier/modifier-localisation.cpp" line="86"/>
         <location filename="src/admin/modifier/modifier-categorie.cpp" line="116"/>
         <location filename="src/admin/modifier/modifier-fournisseur.cpp" line="76"/>
-        <location filename="src/windows/yeroth-erp-modifier-compte-client-window.cpp" line="367"/>
+        <location filename="src/windows/yeroth-erp-modifier-compte-client-window.cpp" line="369"/>
         <source> ont été modifiées avec succès !</source>
         <oldsource> ont été modifiées avec succès!</oldsource>
         <translation> have been successfully modified!</translation>
@@ -2607,7 +2612,7 @@ Press &apos;Cancel&apos; if you wish to stop this process!</translation>
         <location filename="src/admin/modifier/modifier-localisation.cpp" line="100"/>
         <location filename="src/admin/modifier/modifier-categorie.cpp" line="128"/>
         <location filename="src/admin/modifier/modifier-fournisseur.cpp" line="90"/>
-        <location filename="src/windows/yeroth-erp-modifier-compte-client-window.cpp" line="379"/>
+        <location filename="src/windows/yeroth-erp-modifier-compte-client-window.cpp" line="381"/>
         <source> n&apos;ont pas pu être modifiées !</source>
         <translation> couldn&apos;t be modified!</translation>
     </message>
@@ -5845,12 +5850,6 @@ alert messages</translation>
         <location filename="ui/yeroth-erp-clients-detail-window.ui" line="7792"/>
         <source>référence</source>
         <translation>reference</translation>
-    </message>
-    <message>
-        <location filename="ui/yeroth-erp-clients-detail-window.ui" line="8261"/>
-        <location filename="ui/yeroth-erp-clients-detail-window.ui" line="8727"/>
-        <source>border: 1px solid rgb(60, 60, 60);</source>
-        <translation></translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-clients-detail-window.ui" line="10557"/>

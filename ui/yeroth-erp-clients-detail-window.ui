@@ -3089,7 +3089,7 @@
       <bool>false</bool>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 1px solid rgb(60, 60, 60);</string>
+      <string notr="true"/>
      </property>
     </widget>
     <widget class="QLabel" name="label_client_details_quartier">
@@ -3573,7 +3573,7 @@
       <bool>false</bool>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 1px solid rgb(60, 60, 60);</string>
+      <string notr="true"/>
      </property>
      <property name="readOnly">
       <bool>false</bool>
@@ -4105,7 +4105,7 @@
       <bool>false</bool>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 1px solid rgb(60, 60, 60);</string>
+      <string notr="true"/>
      </property>
      <property name="readOnly">
       <bool>false</bool>
@@ -4544,7 +4544,7 @@
       <bool>false</bool>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 1px solid rgb(60, 60, 60);</string>
+      <string notr="true"/>
      </property>
     </widget>
     <widget class="YerothLineEdit" name="lineEdit_clients_details_ville">
@@ -4980,7 +4980,7 @@
       <bool>false</bool>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 1px solid rgb(60, 60, 60);</string>
+      <string notr="true"/>
      </property>
     </widget>
     <widget class="YerothLineEdit" name="lineEdit_clients_details_numero_telephone_2">
@@ -5419,7 +5419,7 @@
       <bool>false</bool>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 1px solid rgb(60, 60, 60);</string>
+      <string notr="true"/>
      </property>
     </widget>
     <widget class="QLabel" name="label_client_details_numero_telephone_1">
@@ -5926,7 +5926,7 @@
       <bool>false</bool>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 1px solid rgb(60, 60, 60);</string>
+      <string notr="true"/>
      </property>
     </widget>
     <widget class="QLabel" name="label_client_details_numero_contribuable">
@@ -6385,7 +6385,7 @@
       <bool>false</bool>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 1px solid rgb(60, 60, 60);</string>
+      <string notr="true"/>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -6850,7 +6850,7 @@
       <bool>false</bool>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 1px solid rgb(60, 60, 60);</string>
+      <string notr="true"/>
      </property>
     </widget>
     <widget class="QGroupBox" name="groupBox_client_details_description_du_client">
@@ -7305,7 +7305,7 @@
        <bool>false</bool>
       </property>
       <property name="styleSheet">
-       <string notr="true">border: 1px solid rgb(60, 60, 60);</string>
+       <string notr="true"/>
       </property>
      </widget>
     </widget>
@@ -7765,7 +7765,7 @@
       <bool>false</bool>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 1px solid rgb(60, 60, 60);</string>
+      <string notr="true"/>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -8258,7 +8258,7 @@
       <bool>false</bool>
      </property>
      <property name="styleSheet">
-      <string>border: 1px solid rgb(60, 60, 60);</string>
+      <string/>
      </property>
     </widget>
     <widget class="YerothLineEdit" name="lineEdit_clients_details_nom_entreprise">
@@ -8724,7 +8724,7 @@
       <bool>false</bool>
      </property>
      <property name="styleSheet">
-      <string>border: 1px solid rgb(60, 60, 60);</string>
+      <string notr="true"/>
      </property>
     </widget>
     <widget class="YerothLineEdit" name="lineEdit_clients_details_boite_postale">
@@ -9160,7 +9160,7 @@
       <bool>false</bool>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 1px solid rgb(60, 60, 60);</string>
+      <string notr="true"/>
      </property>
      <property name="readOnly">
       <bool>false</bool>
@@ -9599,7 +9599,7 @@
       <bool>false</bool>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 1px solid rgb(60, 60, 60);</string>
+      <string notr="true"/>
      </property>
      <property name="readOnly">
       <bool>false</bool>
@@ -10038,7 +10038,7 @@
       <bool>false</bool>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 1px solid rgb(60, 60, 60);</string>
+      <string notr="true"/>
      </property>
      <property name="readOnly">
       <bool>false</bool>
@@ -10531,7 +10531,7 @@
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 1px solid rgb(60, 60, 60);</string>
+      <string notr="true"/>
      </property>
     </widget>
     <widget class="QLabel" name="label_client_details_reference_registre_du_commerce">

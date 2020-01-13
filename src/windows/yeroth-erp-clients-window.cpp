@@ -913,6 +913,7 @@ void YerothERPClientsWindow::afficherClients(YerothSqlTableModel &clientSqlTable
     tableView_clients->hideColumn(12);
     tableView_clients->hideColumn(13);
     tableView_clients->hideColumn(14);
+    tableView_clients->hideColumn(15);
 
     int rowCount = clientSqlTableModel.rowCount();
 

@@ -277,6 +277,7 @@ bool YerothModifierCompteClientWindow::modifier_client_check_fields()
 
 void YerothModifierCompteClientWindow::clear_all_fields()
 {
+	lineEdit_modifier_compteclient_reference_registre_du_commerce->clear();
 	lineEdit_modifier_compteclient_reference_client->clear();
 	lineEdit_modifier_compteclient_nom_entreprise->clearField();
 	lineEdit_modifier_compteclient_nom_representant->clearField();
@@ -339,6 +340,7 @@ void YerothModifierCompteClientWindow::actualiserCompteClient()
         QSqlRecord record = _curClientTableModel->record(_clientLastSelectedRow);
 
 		record.setValue(YerothDatabaseTableColumn::REFERENCE_CLIENT, lineEdit_modifier_compteclient_reference_client->text());
+		record.setValue(YerothDatabaseTableColumn::REFERENCE_REGISTRE_DU_COMMERCE, lineEdit_modifier_compteclient_reference_registre_du_commerce->text());
 		record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE, lineEdit_modifier_compteclient_nom_entreprise->text());
         record.setValue(YerothDatabaseTableColumn::NOM_REPRESENTANT, lineEdit_modifier_compteclient_nom_representant->text());
         record.setValue(YerothDatabaseTableColumn::QUARTIER, lineEdit_modifier_compteclient_quartier->text());
@@ -457,6 +459,8 @@ void YerothModifierCompteClientWindow::showClientDetail()
     _curClientDetailDBID = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ID).toInt();
 
 	lineEdit_modifier_compteclient_reference_client->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE_CLIENT));
+
+	lineEdit_modifier_compteclient_reference_registre_du_commerce->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE_REGISTRE_DU_COMMERCE));
 
 	lineEdit_modifier_compteclient_nom_entreprise->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE));
 

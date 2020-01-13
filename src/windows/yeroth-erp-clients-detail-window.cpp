@@ -142,6 +142,7 @@ void YerothClientsDetailWindow::supprimerCompteClient()
 
 void YerothClientsDetailWindow::setupLineEdits()
 {
+	lineEdit_clients_details_reference_registre_du_commerce->setEnabled(false);
 	lineEdit_clients_details_reference_client->setEnabled(false);
 	lineEdit_clients_details_nom_entreprise->setEnabled(false);
 	lineEdit_clients_details_nom_representant->setEnabled(false);
@@ -316,49 +317,52 @@ bool YerothClientsDetailWindow::imprimer_document()
     QString data;
 
     data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Référence client: ")));
-    data.append(QString("%1\\\\").arg(lineEdit_clients_details_reference_client->text()));
+    data.append(QString("%1\\\\\n").arg(lineEdit_clients_details_reference_client->text()));
 
     data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Nom de l'entreprise: ")));
-    data.append(QString("%1\\\\").arg(lineEdit_clients_details_nom_entreprise->text()));
+    data.append(QString("%1\\\\\n").arg(lineEdit_clients_details_nom_entreprise->text()));
 
     data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Nom du Représentant: ")));
-    data.append(QString("%1\\\\").arg(lineEdit_clients_details_nom_representant->text()));
+    data.append(QString("%1\\\\\n").arg(lineEdit_clients_details_nom_representant->text()));
 
     data.append(YerothUtils::get_latex_bold_text(QObject::tr("Quartier: ")));
-    data.append(QString("%1\\\\").arg(lineEdit_clients_details_quartier->text()));
+    data.append(QString("%1\\\\\n").arg(lineEdit_clients_details_quartier->text()));
 
     data.append(YerothUtils::get_latex_bold_text(QObject::tr("Ville: ")));
-    data.append(QString("%1\\\\").arg(lineEdit_clients_details_ville->text()));
+    data.append(QString("%1\\\\\n").arg(lineEdit_clients_details_ville->text()));
 
     data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Province / État: ")));
-    data.append(QString("%1\\\\").arg(lineEdit_clients_details_province_etat->text()));
+    data.append(QString("%1\\\\\n").arg(lineEdit_clients_details_province_etat->text()));
 
     data.append(YerothUtils::get_latex_bold_text(QObject::tr("Pays: ")));
-    data.append(QString("%1\\\\").arg(lineEdit_clients_details_pays->text()));
+    data.append(QString("%1\\\\\n").arg(lineEdit_clients_details_pays->text()));
 
     data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Boîte postale: ")));
-    data.append(QString("%1\\\\").arg(lineEdit_clients_details_boite_postale->text()));
+    data.append(QString("%1\\\\\n").arg(lineEdit_clients_details_boite_postale->text()));
 
     data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Siège social: ")));
-    data.append(QString("%1\\\\").arg(lineEdit_clients_details_siege_social->text()));
+    data.append(QString("%1\\\\\n").arg(lineEdit_clients_details_siege_social->text()));
 
     data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Émail: ")));
-    data.append(QString("%1\\\\").arg(lineEdit_clients_details_email->text()));
+    data.append(QString("%1\\\\\n").arg(lineEdit_clients_details_email->text()));
 
     data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Numéro de téléphone 1: ")));
-    data.append(QString("%1\\\\").arg(lineEdit_clients_details_numero_telephone_1->text()));
+    data.append(QString("%1\\\\\n").arg(lineEdit_clients_details_numero_telephone_1->text()));
 
     data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Numéro de téléphone 2: ")));
-    data.append(QString("%1\\\\").arg(lineEdit_clients_details_numero_telephone_2->text()));
+    data.append(QString("%1\\\\\n").arg(lineEdit_clients_details_numero_telephone_2->text()));
 
     data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Numéro de contribuable: ")));
-    data.append(QString("%1\\\\").arg(lineEdit_clients_details_numero_contribuable->text()));
+    data.append(QString("%1\\\\\n").arg(lineEdit_clients_details_numero_contribuable->text()));
+
+    data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("RCCN N\\textsuperscript{\\underline{o}}: ")));
+    data.append(QString("%1\\\\\n").arg(lineEdit_clients_details_reference_registre_du_commerce->text()));
 
     data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Dette maximale: ")));
-    data.append(QString("%1\\\\").arg(lineEdit_clients_details_dette_maximale->text()));
+    data.append(QString("%1\\\\\n").arg(lineEdit_clients_details_dette_maximale->text()));
 
     data.append(YerothUtils::get_latex_bold_text(QObject::tr("Compte client: ")));
-    data.append(QString("%1\\\\").arg(lineEdit_clients_details_compte_client->text()));
+    data.append(QString("%1\\\\\n").arg(lineEdit_clients_details_compte_client->text()));
 
     data.append("\n\n\\vspace{0.3cm}\n\n");
 
@@ -418,6 +422,7 @@ bool YerothClientsDetailWindow::imprimer_document()
 
 void YerothClientsDetailWindow::rendreInvisible()
 {
+	lineEdit_clients_details_reference_registre_du_commerce->clear();
 	lineEdit_clients_details_reference_client->clear();
 	lineEdit_clients_details_nom_entreprise->clear();
 	lineEdit_clients_details_nom_representant->clear();
@@ -462,6 +467,8 @@ void YerothClientsDetailWindow::showClientDetail(int lastSelectedRow)
 	QSqlRecord record = _curClientTableModel->record(lastSelectedRow);
 
 	lineEdit_clients_details_reference_client->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE_CLIENT));
+
+	lineEdit_clients_details_reference_registre_du_commerce->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE_REGISTRE_DU_COMMERCE));
 
 	lineEdit_clients_details_nom_entreprise->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE));
 
