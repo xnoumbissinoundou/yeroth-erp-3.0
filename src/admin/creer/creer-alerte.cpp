@@ -1,4 +1,3 @@
-
 bool YerothAdminCreateWindow::creer_alerte()
 {
     if (creer_alerte_check_fields())
@@ -121,6 +120,62 @@ void YerothAdminCreateWindow::populateAlerteComboBoxes()
     YerothUtils::populateComboBox(*comboBox_creer_alerte_condition,
                                  _allWindows->CONDITIONS_ALERTES, YerothDatabaseTableColumn::CONDITION_ALERTE);
 }
+
+
+void YerothAdminCreateWindow::creer_alerte_check_fields_entry()
+{
+    bool alerte_nom = lineEdit_creer_alerte_nom->checkField();
+    bool produit = lineEdit_creer_alerte_designation->checkField();
+    bool message = textEdit_creer_alerte_message->checkField();
+    bool destinataire = lineEdit_creer_alerte_destinataire->checkField();
+
+    if (!radioButton_creer_alerte_quantite->isChecked() &&
+            !radioButton_creer_alerte_periode_temps->isChecked())
+    {
+        comboBox_creer_alerte_condition->checkField();
+        lineEdit_creer_alerte_quantite->setPalette(YerothUtils::YEROTH_RED_PALETTE);
+        dateEdit_creer_alerte_date_debut->setPalette(YerothUtils::YEROTH_RED_PALETTE);
+        dateEdit_creer_alerte_date_fin->setPalette(YerothUtils::YEROTH_RED_PALETTE);
+    }
+    else
+    {
+        comboBox_creer_alerte_condition->checkField();
+        lineEdit_creer_alerte_quantite->setPalette(YerothUtils::YEROTH_WHITE_PALETTE);
+        dateEdit_creer_alerte_date_debut->setPalette(YerothUtils::YEROTH_WHITE_PALETTE);
+        dateEdit_creer_alerte_date_fin->setPalette(YerothUtils::YEROTH_WHITE_PALETTE);
+    }
+
+    if (radioButton_creer_alerte_quantite->isChecked())
+    {
+        dateEdit_creer_alerte_date_debut->setPalette(YerothUtils::YEROTH_WHITE_PALETTE);
+        dateEdit_creer_alerte_date_fin->setPalette(YerothUtils::YEROTH_WHITE_PALETTE);
+
+        bool quantite = lineEdit_creer_alerte_quantite->checkField();
+
+        bool condition = comboBox_creer_alerte_condition->checkField();
+    }
+    else if (radioButton_creer_alerte_periode_temps->isChecked())
+    {
+        comboBox_creer_alerte_condition->setPalette(YerothUtils::YEROTH_WHITE_PALETTE);
+        lineEdit_creer_alerte_quantite->setPalette(YerothUtils::YEROTH_WHITE_PALETTE);
+
+        if (dateEdit_creer_alerte_date_debut->date() < QDate::currentDate())
+        {
+            dateEdit_creer_alerte_date_debut->setPalette(YerothUtils::YEROTH_RED_PALETTE);
+            dateEdit_creer_alerte_date_fin->setPalette(YerothUtils::YEROTH_RED_PALETTE);
+        }
+
+        bool periode =
+            (dateEdit_creer_alerte_date_debut->date() <= dateEdit_creer_alerte_date_fin->date());
+
+        if (!periode)
+        {
+            dateEdit_creer_alerte_date_debut->setPalette(YerothUtils::YEROTH_RED_PALETTE);
+            dateEdit_creer_alerte_date_fin->setPalette(YerothUtils::YEROTH_RED_PALETTE);
+        }
+    }
+}
+
 
 bool YerothAdminCreateWindow::creer_alerte_check_fields()
 {

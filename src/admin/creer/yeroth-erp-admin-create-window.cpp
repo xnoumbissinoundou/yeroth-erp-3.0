@@ -154,8 +154,22 @@ void YerothAdminCreateWindow::rendreVisible(unsigned selectedSujetAction)
     lineEdit_creer_utilisateur_localisation->setText(_allWindows->getInfoEntreprise().getLocalisation());
 
     populateUtilisateurComboBoxes();
+
     populateAlerteComboBoxes();
+
     populateLocalisationComboBoxes();
+
+    creer_utilisateur_check_fields_entry();
+
+    creer_categorie_check_fields();
+
+    creer_localisation_check_fields();
+
+    creer_fournisseur_check_fields();
+
+    creer_categorie_check_fields();
+
+    creer_alerte_check_fields_entry();
 
     this->setVisible(true);
 }
@@ -322,6 +336,18 @@ void YerothAdminCreateWindow::handleCurrentChanged()
     populateAlerteComboBoxes();
 
     populateLocalisationComboBoxes();
+
+    creer_utilisateur_check_fields_entry();
+
+    creer_categorie_check_fields();
+
+    creer_localisation_check_fields();
+
+    creer_fournisseur_check_fields();
+
+    creer_categorie_check_fields();
+
+    creer_alerte_check_fields_entry();
 }
 
 void YerothAdminCreateWindow::hideEvent(QHideEvent * hideEvent)

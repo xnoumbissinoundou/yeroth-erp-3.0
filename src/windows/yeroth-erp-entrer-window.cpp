@@ -590,8 +590,6 @@ void YerothEntrerWindow::handleFournisseurName(const QString &)
 
 bool YerothEntrerWindow::check_fields()
 {
-    bool result;
-
     bool designation = lineEdit_designation->checkField();
 
     bool quantite = lineEdit_quantite_par_lot->checkField();
@@ -600,19 +598,7 @@ bool YerothEntrerWindow::check_fields()
 
     bool categorie_produit = lineEdit_categorie_produit->checkField();
 
-    result = designation && categorie_produit && prix_vente && quantite;
-
-    if (!result)
-    {
-        if (QMessageBox::Ok ==
-            	YerothQMessageBox::warning(this, "enregistrer",
-                                           tr("Remplisser tous les champs obligatoires !")))
-        {
-        }
-        else
-        {
-        }
-    }
+    bool result = designation && categorie_produit && prix_vente && quantite;
 
     return result;
 }
@@ -690,6 +676,8 @@ void YerothEntrerWindow::rendreVisible(YerothSqlTableModel * stocksTableModel, b
     {
         lineEdit_reference_produit->setFocus();
     }
+
+    check_fields();
 
     this->setVisible(true);
 }
@@ -796,6 +784,22 @@ bool YerothEntrerWindow::isProfitable()
 void YerothEntrerWindow::enregistrer_produit()
 {
     _logger->log("enregistrer_produit");
+
+    bool result_check_field = check_fields();
+
+    if (!result_check_field)
+    {
+        if (QMessageBox::Ok ==
+            	YerothQMessageBox::warning(this, "enregistrer",
+                                           tr("Remplisser tous les champs obligatoires !")))
+        {
+        }
+        else
+        {
+        }
+
+        return ;
+    }
 
     if (check_fields())
     {

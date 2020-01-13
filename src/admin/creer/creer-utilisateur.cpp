@@ -125,6 +125,31 @@ void YerothAdminCreateWindow::populateUtilisateurComboBoxes()
     POPULATE_COMBOBOX(comboBox_creer_utilisateur_role, "roles", "nom_role");
 }
 
+
+void YerothAdminCreateWindow::creer_utilisateur_check_fields_entry()
+{
+    bool nom = lineEdit_creer_utilisateur_nom->checkField();
+    bool prenom = lineEdit_creer_utilisateur_prenom->checkField();
+    bool titre = comboBox_creer_utilisateur_titre->checkField();
+    bool user_id = lineEdit_creer_utilisateur_id->checkField();
+    bool mot_passe_1 = lineEdit_creer_utilisateur_mot_passe_1->checkField();
+    bool verification_mot_de_passe = lineEdit_creer_utilisateur_verification->checkField();
+    bool role = comboBox_creer_utilisateur_role->checkField();
+
+    //qDebug() << "++ verification_mot_de_passe" << BOOL_TO_STRING(verification_mot_de_passe);
+
+    if (mot_passe_1 && verification_mot_de_passe)
+    {
+        if (lineEdit_creer_utilisateur_mot_passe_1->text() !=
+                lineEdit_creer_utilisateur_verification->text())
+        {
+            lineEdit_creer_utilisateur_mot_passe_1->setPalette(YerothUtils::YEROTH_RED_PALETTE);
+            lineEdit_creer_utilisateur_verification->setPalette(YerothUtils::YEROTH_RED_PALETTE);
+        }
+    }
+}
+
+
 bool YerothAdminCreateWindow::creer_utilisateur_check_fields()
 {
     bool nom = lineEdit_creer_utilisateur_nom->checkField();

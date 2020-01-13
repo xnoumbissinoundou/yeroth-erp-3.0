@@ -124,6 +124,11 @@ private:
 
     bool creer_remise_check_fields();
 
+
+    void creer_utilisateur_check_fields_entry();
+
+    void creer_alerte_check_fields_entry();
+
     YerothLogger		*_logger;
 };
 
