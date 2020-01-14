@@ -578,8 +578,6 @@ public:
 
 	static const unsigned int FACTURE_PETIT_NOM_ARTICLE_MAX_CHARS;
 
-	static const unsigned int STRING_MAX_CHARS;
-
 	static const QString EGAL;
 
 	static const QString INFERIEUR_OU_EGAL;

@@ -715,13 +715,13 @@ void YerothVentesWindow::getJournalDesVentesTexTableString(QString & texTable_in
 
                  * Any string shall have a length smaller than
 
-                 * YerothUtils::STRING_MAX_CHARS
+                 * YerothERPConfig::max_string_display_length
 
                  */
                 QString itemText(item->text());
-                if (itemText.length() > YerothUtils::STRING_MAX_CHARS)
+                if (itemText.length() > YerothERPConfig::max_string_display_length)
                 {
-                    itemText.truncate(YerothUtils::STRING_MAX_CHARS);
+                    itemText.truncate(YerothERPConfig::max_string_display_length);
                     itemText.append(".");
                 }
                 YerothUtils::handleTexTableItemText(tableStandardItemModel.columnCount(), texTable_in_out, k,

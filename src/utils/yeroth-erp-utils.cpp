@@ -300,8 +300,6 @@ const unsigned int YerothUtils::FACTURE_GRAND_STRING_MAX_CHARS(12);
 
 const unsigned int YerothUtils::FACTURE_PETIT_NOM_ARTICLE_MAX_CHARS(12);
 
-const unsigned int YerothUtils::STRING_MAX_CHARS(12);
-
 const QChar YerothUtils::SLASH_CHAR('/');
 
 const QRegExp YerothUtils::PasswordRegExp("");

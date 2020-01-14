@@ -228,6 +228,7 @@ void YerothAdminWindow::setupValidators()
 {
     lineEdit_alert_period_time_interval->setValidator(&YerothUtils::IntValidator);
     lineEdit_alert_quantity_time_interval->setValidator(&YerothUtils::IntValidator);
+    lineEdit_longueur_maximale_string->setValidator(&YerothUtils::IntValidator);
     lineEdit_annee_depart_rapports_chiffre_affaire->setValidator(&YerothUtils::IntValidator);
 }
 
@@ -729,6 +730,8 @@ void YerothAdminWindow::read_configuration()
 
     lineEdit_alert_quantity_time_interval->setText(QString::number(YerothERPConfig::alert_quantity_time_interval));
 
+    lineEdit_longueur_maximale_string->setText(QString::number(YerothERPConfig::max_string_display_length));
+
     lineEdit_repertoire_fichiers_temporaires->setText(YerothERPConfig::temporaryFilesDir);
 
     lineEdit_tva_value->setText(YerothUtils::getTvaString());
@@ -902,6 +905,7 @@ void YerothAdminWindow::read_alert_system_init_configuration()
     QString salesStrategyValue(GET_SQL_RECORD_DATA(initConfigurationRecord, "valeur_configuration"));
 
     lineEdit_alert_period_time_interval->setText(alertPeriodTimeIntervalValue);
+
     lineEdit_alert_quantity_time_interval->setText(alertQuantityTimeIntervalValue);
 }
 
@@ -914,6 +918,9 @@ void YerothAdminWindow::read_app_parameters_init_configuration()
 
     initConfigurationRecord = initConfigurationsTableModel.record(YerothERPConfig::CONFIG_THERMAL_PRINTER_DEVICE_FILE_FULL_PATH);
     QString thermalPrinterDeviceFileFullPathValue(GET_SQL_RECORD_DATA(initConfigurationRecord, "valeur_configuration"));
+
+    initConfigurationRecord = initConfigurationsTableModel.record(YerothERPConfig::CONFIG_MAX_STRING_DISPLAY_LENGTH);
+    QString maxStringLengthValue(GET_SQL_RECORD_DATA(initConfigurationRecord, "valeur_configuration"));
 
     initConfigurationRecord = initConfigurationsTableModel.record(YerothERPConfig::CONFIG_LATEX_SYSTEM_ROOT_FOLDER);
     QString latexSystemRootFolderValue(GET_SQL_RECORD_DATA(initConfigurationRecord, "valeur_configuration"));
@@ -989,6 +996,8 @@ void YerothAdminWindow::read_app_parameters_init_configuration()
     lineEdit_devise->setText(currencyValue);
 
     lineEdit_pdfReader->setText(pdfReaderValue);
+
+    lineEdit_longueur_maximale_string->setText(maxStringLengthValue);
 
     lineEdit_fichier_systeme_imprimante_thermique->setText(thermalPrinterDeviceFileFullPathValue);
 
@@ -1232,6 +1241,20 @@ void YerothAdminWindow::enregistrer_app_parameters_configuration()
             if (success)
             {
                 YerothERPConfig::pathToLatexSystemRootFolder = lineEdit_repertoire_systeme_latex->text();
+            }
+        }
+
+        if (lineEdit_longueur_maximale_string->checkField())
+        {
+            configurationsRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_MAX_STRING_DISPLAY_LENGTH);
+            configurationsRecord.setValue("valeur_configuration", lineEdit_longueur_maximale_string->text());
+
+            bool success =
+                configurationsTableModel.updateRecord(YerothERPConfig::CONFIG_MAX_STRING_DISPLAY_LENGTH, configurationsRecord);
+
+            if (success)
+            {
+            	YerothERPConfig::max_string_display_length = lineEdit_longueur_maximale_string->text().toUInt();
             }
         }
 

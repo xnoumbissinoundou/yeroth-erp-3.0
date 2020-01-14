@@ -123,7 +123,10 @@ bool YerothDBusClient::slot_refresh_app_parameters()
         YerothSqlTableModel &configurationsTableModel =
             _allWindows->getSqlTableModel_configurations();
 
-        QSqlRecord configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_PDF_READER);
+        QSqlRecord configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_MAX_STRING_DISPLAY_LENGTH);
+        QString maxStringLengthValue(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
+
+        configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_PDF_READER);
         QString pdfReaderValue(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
 
         configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_THERMAL_PRINTER_DEVICE_FILE_FULL_PATH);
@@ -153,12 +156,14 @@ bool YerothDBusClient::slot_refresh_app_parameters()
         configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_SALES_STRATEGY);
         QString salesStrategyValue(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
 
+
         YerothERPConfig::pathToPdfReader = pdfReaderValue;
         YerothERPConfig::pathToThermalPrinterDeviceFile = thermalPrinterDeviceFileFullPathValue;
         YerothERPConfig::pathToLatexSystemRootFolder = latexSystemRootFolderValue;
         YerothERPConfig::receiptFormat= typeOfFacturationValue;
         YerothERPConfig::alert_period_time_interval = alertPeriodTimeIntervalValue.toUInt();
         YerothERPConfig::alert_quantity_time_interval = alertQuantityTimeIntervalValue.toUInt();
+        YerothERPConfig::max_string_display_length = maxStringLengthValue.toUInt();
         YerothERPConfig::tva_value = tvaValue.toDouble();
         YerothERPConfig::annee_depart_rapports_chiffre_affaire_value = anneeDepartRapportsChiffreDaffaireValue;
         YerothERPConfig::salesStrategy = salesStrategyValue;

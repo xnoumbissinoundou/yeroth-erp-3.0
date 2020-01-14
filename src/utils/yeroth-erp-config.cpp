@@ -60,6 +60,8 @@ unsigned int YerothERPConfig::alert_period_time_interval(0);
 
 unsigned int YerothERPConfig::alert_quantity_time_interval(0);
 
+unsigned int YerothERPConfig::max_string_display_length(12);
+
 double YerothERPConfig::tva_value(19.25/100.0);
 
 QString YerothERPConfig::annee_depart_rapports_chiffre_affaire_value("2017");
@@ -119,4 +121,7 @@ const unsigned int YerothERPConfig::CONFIG_OPEN_CASH_DRAWER (10);
 const unsigned int YerothERPConfig::CONFIG_LATEX_SYSTEM_ROOT_FOLDER (11);
 
 const unsigned int YerothERPConfig::CONFIG_THERMAL_PRINTER_DEVICE_FILE_FULL_PATH (12);
+
+const unsigned int YerothERPConfig::CONFIG_MAX_STRING_DISPLAY_LENGTH (13);
+
 

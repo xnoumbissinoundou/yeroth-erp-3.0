@@ -306,6 +306,9 @@ void read_yeroth_configuration(YerothLogger &logger, YerothERPWindows &allWindow
     QSqlRecord configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_PDF_READER);
     QString pdfReaderValue(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
 
+    configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_MAX_STRING_DISPLAY_LENGTH);
+    QString maxStringLengthValue(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
+
     configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_THERMAL_PRINTER_DEVICE_FILE_FULL_PATH);
     QString thermalPrinterDeviceFileFullPathValue(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
 
@@ -368,6 +371,7 @@ void read_yeroth_configuration(YerothLogger &logger, YerothERPWindows &allWindow
     YerothERPConfig::pathToLatexSystemRootFolder = latexSystemRootFolderValue;
     YerothERPConfig::alert_period_time_interval = alertPeriodTimeIntervalValue.toUInt();
     YerothERPConfig::alert_quantity_time_interval = alertQuantityTimeIntervalValue.toUInt();
+    YerothERPConfig::max_string_display_length = maxStringLengthValue.toUInt();
     YerothERPConfig::tva_value = (tvaValue.toDouble() / 100.0);
     YerothERPConfig::annee_depart_rapports_chiffre_affaire_value = anneeDepartRapportsChiffreDaffaireValue;
     YerothERPConfig::salesStrategy = salesStrategyValue;

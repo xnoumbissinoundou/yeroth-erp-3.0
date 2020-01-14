@@ -73,6 +73,8 @@ public:
 
 	static unsigned int alert_quantity_time_interval;
 
+	static unsigned int max_string_display_length;
+
 	static double tva_value;
 
 	static QString annee_depart_rapports_chiffre_affaire_value;
@@ -126,6 +128,8 @@ public:
 	static const unsigned int CONFIG_LATEX_SYSTEM_ROOT_FOLDER;
 
 	static const unsigned int CONFIG_THERMAL_PRINTER_DEVICE_FILE_FULL_PATH;
+
+	static const unsigned int CONFIG_MAX_STRING_DISPLAY_LENGTH;
 
 	//static const SALES_STRATEGY getSalesStrategy(QString salesStrategyValue);
 

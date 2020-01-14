@@ -138,9 +138,9 @@ void YerothERPAchatsTableView::lister_les_elements_du_tableau(YerothSqlTableMode
 					if (YerothERPAchatsTableView::REFERENCE_COLUMN != k 			||
 						YerothERPAchatsTableView::REFERENCE_RECU_DACHAT_COLUMN != k)
 					{
-						if (tmpQvString.length() > YerothUtils::STRING_MAX_CHARS)
+						if (tmpQvString.length() > YerothERPConfig::max_string_display_length)
 						{
-							tmpQvString.truncate(YerothUtils::STRING_MAX_CHARS);
+							tmpQvString.truncate(YerothERPConfig::max_string_display_length);
 							tmpQvString.append(".");
 						}
 					}

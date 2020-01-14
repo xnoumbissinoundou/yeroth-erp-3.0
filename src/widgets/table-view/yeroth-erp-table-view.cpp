@@ -327,9 +327,9 @@ void YerothTableView::lister(YerothSqlTableModel &tableModel,
                 	tmpQvString.append(qv.toString());
                 	if (YerothTableView::REFERENCE_COLUMN != k)
                 	{
-                		if (true == truncateString && tmpQvString.length() > YerothUtils::STRING_MAX_CHARS)
+                		if (true == truncateString && tmpQvString.length() > YerothERPConfig::max_string_display_length)
                 		{
-                			tmpQvString.truncate(YerothUtils::STRING_MAX_CHARS);
+                			tmpQvString.truncate(YerothERPConfig::max_string_display_length);
                 			tmpQvString.append(".");
                 		}
                 	}
@@ -451,9 +451,9 @@ void YerothTableView::lister_ALL(YerothSqlTableModel &tableModel,
                 	tmpQvString.append(qv.toString());
                 	if (YerothTableView::REFERENCE_COLUMN != k)
                 	{
-                		if (tmpQvString.length() > YerothUtils::STRING_MAX_CHARS)
+                		if (tmpQvString.length() > YerothERPConfig::max_string_display_length)
                 		{
-                			tmpQvString.truncate(YerothUtils::STRING_MAX_CHARS);
+                			tmpQvString.truncate(YerothERPConfig::max_string_display_length);
                 			tmpQvString.append(".");
                 		}
                 	}
@@ -700,9 +700,9 @@ void YerothTableView::lister_FIFO(YerothSqlTableModel &tableModel,
                 	tmpQvString.append(qv.toString());
                 	if (YerothTableView::REFERENCE_COLUMN != k)
                 	{
-                		if (tmpQvString.length() > YerothUtils::STRING_MAX_CHARS)
+                		if (tmpQvString.length() > YerothERPConfig::max_string_display_length)
                 		{
-                			tmpQvString.truncate(YerothUtils::STRING_MAX_CHARS);
+                			tmpQvString.truncate(YerothERPConfig::max_string_display_length);
                 			tmpQvString.append(".");
                 		}
                 	}
@@ -1111,9 +1111,9 @@ void YerothTableView::lister_LIFO(YerothSqlTableModel &tableModel,
                 	tmpQvString.append(qv.toString());
                 	if (YerothTableView::REFERENCE_COLUMN != k)
                 	{
-                		if (tmpQvString.length() > YerothUtils::STRING_MAX_CHARS)
+                		if (tmpQvString.length() > YerothERPConfig::max_string_display_length)
                 		{
-                			tmpQvString.truncate(YerothUtils::STRING_MAX_CHARS);
+                			tmpQvString.truncate(YerothERPConfig::max_string_display_length);
                 			tmpQvString.append(".");
                 		}
                 	}
@@ -1558,9 +1558,9 @@ void YerothTableView::lister_DEF_DEO(YerothSqlTableModel &tableModel,
                 	tmpQvString.append(qv.toString());
                 	if (YerothTableView::REFERENCE_COLUMN != k)
                 	{
-                		if (tmpQvString.length() > YerothUtils::STRING_MAX_CHARS)
+                		if (tmpQvString.length() > YerothERPConfig::max_string_display_length)
                 		{
-                			tmpQvString.truncate(YerothUtils::STRING_MAX_CHARS);
+                			tmpQvString.truncate(YerothERPConfig::max_string_display_length);
                 			tmpQvString.append(".");
                 		}
                 	}
