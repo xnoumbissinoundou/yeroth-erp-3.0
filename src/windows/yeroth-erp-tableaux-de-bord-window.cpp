@@ -1346,12 +1346,12 @@ void YerothTableauxDeBordWindow::bilanComptable()
 
     query.clear();
 
-    QString strVentesQuery(QString("SELECT %1, %2, (%3 - %4) FROM %5 WHERE %6 >= '%7' AND %8 <= '%9'")
+    QString strVentesQuery(QString("SELECT %1, %2, %3, (%4 - %5) FROM stocks_vendu WHERE %6 >= '%7' AND %8 <= '%9'")
     							.arg(YerothDatabaseTableColumn::STOCKS_ID,
     								 YerothDatabaseTableColumn::QUANTITE_VENDUE,
+									 YerothDatabaseTableColumn::REMISE_PRIX,
     								 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
 									 YerothDatabaseTableColumn::MONTANT_TVA,
-    								 _allWindows->STOCKS_VENDU,
 									 YerothDatabaseTableColumn::DATE_VENTE,
 									 DATE_TO_DB_FORMAT_STRING(dateEdit_bilan_comptable_debut->date()),
 									 YerothDatabaseTableColumn::DATE_VENTE,
@@ -1364,9 +1364,11 @@ void YerothTableauxDeBordWindow::bilanComptable()
 
 	int stocks_id = -1;
 
-	QMap<int, double> stocksidToqtevendue;
+	QMap<int, StockQteVendueEtRemiseTotalSurVente *> stocksidToqtevendue;
 
 	double qte_vendue = 0.0;
+
+	double remise_prix_vente = 0.0;
 
 	double total_vente = 0.0;
 
@@ -1378,16 +1380,27 @@ void YerothTableauxDeBordWindow::bilanComptable()
 
     	qte_vendue = query.value(1).toDouble();
 
-    	total_vente = query.value(2).toDouble();
+    	remise_prix_vente = query.value(2).toDouble();
+
+    	total_vente = query.value(3).toDouble();
 
     	if (stocksidToqtevendue.contains(stocks_id))
     	{
-    		double curQteVendue = stocksidToqtevendue.value(stocks_id);
-    		stocksidToqtevendue.insert(stocks_id, (curQteVendue + qte_vendue));
+    		StockQteVendueEtRemiseTotalSurVente *curValue = stocksidToqtevendue.value(stocks_id);
+
+    		curValue->_qteVendue = curValue->_qteVendue + qte_vendue;
+    		curValue->_remiseTotalSurVentes = curValue->_remiseTotalSurVentes + remise_prix_vente;
+
+    		stocksidToqtevendue.insert(stocks_id, curValue);
     	}
     	else
     	{
-    		stocksidToqtevendue.insert(stocks_id, qte_vendue);
+    		StockQteVendueEtRemiseTotalSurVente *curValue = new StockQteVendueEtRemiseTotalSurVente;
+
+    		curValue->_qteVendue = qte_vendue;
+    		curValue->_remiseTotalSurVentes = remise_prix_vente;
+
+    		stocksidToqtevendue.insert(stocks_id, curValue);
     	}
 
     	montant_total_vente = montant_total_vente + total_vente;
@@ -1437,7 +1450,7 @@ void YerothTableauxDeBordWindow::bilanComptable()
     double benefice_sur_vente_effectuees = 0.0;
     double chiffre_daffaire = 0.0;
 
-    QMapIterator<int, double> it(stocksidToqtevendue);
+    QMapIterator<int, StockQteVendueEtRemiseTotalSurVente *> it(stocksidToqtevendue);
 
     int querySize = -1;
     QString strQuery;
@@ -1447,7 +1460,7 @@ void YerothTableauxDeBordWindow::bilanComptable()
     	it.next();
 
         int stocks_id = it.key();
-        double qte_vendue = it.value();
+        StockQteVendueEtRemiseTotalSurVente *curValue = it.value();
 
         strQuery = QString("SELECT %1 FROM %2 WHERE %3 = '%4'")
         				.arg(YerothDatabaseTableColumn::MARGE_BENEFICIAIRE,
@@ -1460,7 +1473,15 @@ void YerothTableauxDeBordWindow::bilanComptable()
     	if (querySize > 0 && query.next())
     	{
     		double marge_beneficiaire = query.value(0).toDouble();
-    		benefice_sur_vente_effectuees = benefice_sur_vente_effectuees + (qte_vendue * marge_beneficiaire);
+
+    		benefice_sur_vente_effectuees = benefice_sur_vente_effectuees + (curValue->_qteVendue * marge_beneficiaire);
+
+    		benefice_sur_vente_effectuees = benefice_sur_vente_effectuees - curValue->_remiseTotalSurVentes;
+    	}
+
+    	if (0 != curValue)
+    	{
+    		delete curValue;
     	}
     }
 

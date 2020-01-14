@@ -166,6 +166,24 @@ private slots:
 
 private:
 
+    class StockQteVendueEtRemiseTotalSurVente
+    {
+    public:
+    	inline StockQteVendueEtRemiseTotalSurVente()
+    	:_qteVendue(0),
+		 _remiseTotalSurVentes(0)
+    	{}
+
+    	inline StockQteVendueEtRemiseTotalSurVente(double qteVendue, double remiseTotalSurVentes)
+    	:_qteVendue(qteVendue),
+		 _remiseTotalSurVentes(remiseTotalSurVentes)
+    	{
+    	}
+
+    	double _qteVendue;
+    	double _remiseTotalSurVentes;
+    };
+
     enum TabIndexes
     {
     	SUJET_ACTION_BUSINESS_TURNOVER_PROGRESS 	= 0,
