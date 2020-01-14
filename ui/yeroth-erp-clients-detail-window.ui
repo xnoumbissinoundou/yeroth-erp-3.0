@@ -12309,6 +12309,8 @@
     <addaction name="separator"/>
     <addaction name="actionAlertes"/>
     <addaction name="separator"/>
+    <addaction name="actionAfficherPDF"/>
+    <addaction name="separator"/>
     <addaction name="actionQui_suis_je"/>
    </widget>
    <addaction name="menu_detailWindow"/>
@@ -12911,6 +12913,8 @@
    <property name="font">
     <font>
      <pointsize>10</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
     </font>
    </property>
   </action>

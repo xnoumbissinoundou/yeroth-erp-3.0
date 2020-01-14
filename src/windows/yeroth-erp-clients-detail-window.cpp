@@ -510,5 +510,6 @@ void YerothClientsDetailWindow::setupShortcuts()
 {
     setupShortcutActionMessageDaide 	(*actionAppeler_aide);
     setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
+    setupShortcutActionAfficherPDF		(*actionAfficherPDF);
 }
 
