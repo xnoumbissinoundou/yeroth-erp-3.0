@@ -98,7 +98,7 @@ QString YerothHistoriqueStock::get_type_mouvement_stock_string(const QString & a
 
 	if ("1" == aStockHistory)
 	{
-		return QObject::tr("ENTREE");
+		return QObject::tr("ENTRÉE");
 	}
 	else if ("2" == aStockHistory)
 	{

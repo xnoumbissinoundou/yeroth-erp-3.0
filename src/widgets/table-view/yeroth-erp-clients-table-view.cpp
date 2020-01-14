@@ -33,6 +33,9 @@
 #include <QtSql/QSqlError>
 
 
+const int YerothERPClientsTableView::REFERENCE_CLIENT_COLUMN = 1;
+
+
 YerothERPClientsTableView::YerothERPClientsTableView()
 :YerothTableView()
 {
@@ -65,6 +68,7 @@ void YerothERPClientsTableView::lister_les_elements_du_tableau(YerothSqlTableMod
 
 	YerothUtils::createTableModelHeaders(tableModel, *_stdItemModel, *_tableModelHeaders);
 
+	QString tmpQvString;
 	QStandardItem *anItem = 0;
 	QVariant qv;
 
@@ -122,7 +126,19 @@ void YerothERPClientsTableView::lister_les_elements_du_tableau(YerothSqlTableMod
 					break;
 
 				case QVariant::String:
-					anItem = new YerothQStandardItem(qv.toString());
+					tmpQvString.clear();
+					tmpQvString.append(qv.toString());
+
+					if (YerothERPClientsTableView::REFERENCE_CLIENT_COLUMN != k)
+					{
+						if (tmpQvString.length() > YerothUtils::STRING_MAX_CHARS)
+						{
+							tmpQvString.truncate(YerothUtils::STRING_MAX_CHARS);
+							tmpQvString.append(".");
+						}
+					}
+
+					anItem = new YerothQStandardItem(tmpQvString);
 					_stdItemModel->setItem(i, k, anItem);
 					break;
 

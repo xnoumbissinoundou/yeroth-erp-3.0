@@ -35,11 +35,14 @@
 #include <QtSql/QSqlError>
 
 
-const int YerothERPStocksTableView::REFERENCE_COLUMN = 1;
 
-const int YerothERPStocksTableView::DATE_PREEMPTION_COLUMN = 13;
+const int YerothERPStocksTableView::REFERENCE_RECU_DACHAT_COLUMN(20);
 
-const int YerothERPStocksTableView::QUANTITE_TOTAL_COLUMN = 8;
+const int YerothERPStocksTableView::REFERENCE_COLUMN(1);
+
+const int YerothERPStocksTableView::DATE_PREEMPTION_COLUMN(13);
+
+const int YerothERPStocksTableView::QUANTITE_TOTAL_COLUMN(8);
 
 
 YerothERPStocksTableView::YerothERPStocksTableView()
@@ -149,7 +152,9 @@ void YerothERPStocksTableView::lister_les_elements_du_tableau(YerothSqlTableMode
                 case QVariant::String:
                 	tmpQvString.clear();
                 	tmpQvString.append(qv.toString());
-                	if (YerothERPStocksTableView::REFERENCE_COLUMN != k)
+
+                	if (YerothERPStocksTableView::REFERENCE_COLUMN != k 			||
+                		YerothERPStocksTableView::REFERENCE_RECU_DACHAT_COLUMN != k)
                 	{
                 		if (tmpQvString.length() > YerothUtils::STRING_MAX_CHARS)
                 		{
@@ -157,6 +162,7 @@ void YerothERPStocksTableView::lister_les_elements_du_tableau(YerothSqlTableMode
                 			tmpQvString.append(".");
                 		}
                 	}
+
                     anItem = new YerothQStandardItem(tmpQvString);
                     _stdItemModel->setItem(i, k, anItem);
                     break;

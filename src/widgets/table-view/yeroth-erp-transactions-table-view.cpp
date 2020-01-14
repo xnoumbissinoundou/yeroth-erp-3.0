@@ -35,7 +35,7 @@
 #include <QtSql/QSqlError>
 
 
-const int YerothERPTransactionsTableView::REFERENCE_COLUMN = 8;
+const int YerothERPTransactionsTableView::REFERENCE_COLUMN(8);
 
 
 YerothERPTransactionsTableView::YerothERPTransactionsTableView()

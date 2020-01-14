@@ -35,6 +35,9 @@ public:
 	virtual ~YerothERPClientsTableView();
 
 	virtual void lister_les_elements_du_tableau(YerothSqlTableModel &clientSqlTableModel);
+
+
+	static const int REFERENCE_CLIENT_COLUMN;
 };
 
 

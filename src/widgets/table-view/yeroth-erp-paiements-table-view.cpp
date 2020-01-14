@@ -34,9 +34,6 @@
 #include <QtSql/QSqlError>
 
 
-const int YerothERPPaiementsTableView::ID_COLUMN = 0;
-
-
 YerothERPPaiementsTableView::YerothERPPaiementsTableView()
 :YerothTableView()
 {
@@ -123,15 +120,14 @@ void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableM
                 case QVariant::String:
                 	tmpQvString.clear();
                 	tmpQvString.append(qv.toString());
-                	if (YerothERPPaiementsTableView::ID_COLUMN != k)
+
+                	if (tmpQvString.length() > YerothUtils::STRING_MAX_CHARS)
                 	{
-                		if (tmpQvString.length() > YerothUtils::STRING_MAX_CHARS)
-                		{
-                			tmpQvString.truncate(YerothUtils::STRING_MAX_CHARS);
-                			tmpQvString.append(".");
-                		}
+                		tmpQvString.truncate(YerothUtils::STRING_MAX_CHARS);
+                		tmpQvString.append(".");
                 	}
-                    anItem = new YerothQStandardItem(tmpQvString);
+
+                	anItem = new YerothQStandardItem(tmpQvString);
                     _stdItemModel->setItem(i, k, anItem);
                     break;
 

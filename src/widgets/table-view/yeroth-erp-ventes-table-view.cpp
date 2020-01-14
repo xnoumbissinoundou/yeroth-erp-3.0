@@ -35,7 +35,9 @@
 #include <QtSql/QSqlError>
 
 
-const int YerothERPVentesTableView::REFERENCE_COLUMN = 7;
+const int YerothERPVentesTableView::REFERENCE_COLUMN(7);
+
+const int YerothERPVentesTableView::TYPE_DE_VENTE_COLUMN(23);
 
 
 YerothERPVentesTableView::YerothERPVentesTableView()
@@ -124,7 +126,9 @@ void YerothERPVentesTableView::lister_les_elements_du_tableau(YerothSqlTableMode
                 case QVariant::String:
                 	tmpQvString.clear();
                 	tmpQvString.append(qv.toString());
-                	if (YerothERPVentesTableView::REFERENCE_COLUMN != k)
+
+                	if (YerothERPVentesTableView::REFERENCE_COLUMN != k 	||
+                		YerothERPVentesTableView::TYPE_DE_VENTE_COLUMN != k)
                 	{
                 		if (tmpQvString.length() > YerothUtils::STRING_MAX_CHARS)
                 		{
@@ -132,7 +136,8 @@ void YerothERPVentesTableView::lister_les_elements_du_tableau(YerothSqlTableMode
                 			tmpQvString.append(".");
                 		}
                 	}
-                    anItem = new YerothQStandardItem(tmpQvString);
+
+                	anItem = new YerothQStandardItem(tmpQvString);
                     _stdItemModel->setItem(i, k, anItem);
                     break;
 

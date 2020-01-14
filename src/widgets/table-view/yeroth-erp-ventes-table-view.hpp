@@ -38,6 +38,8 @@ public:
 
 
 	static const int REFERENCE_COLUMN;
+
+	static const int TYPE_DE_VENTE_COLUMN;
 };
 
 

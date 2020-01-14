@@ -37,6 +37,8 @@ public:
 	virtual void lister_les_elements_du_tableau(YerothSqlTableModel &tableModel_in_out);
 
 
+	static const int REFERENCE_RECU_DACHAT_COLUMN;
+
 	static const int REFERENCE_COLUMN;
 
     static const int DATE_PREEMPTION_COLUMN;

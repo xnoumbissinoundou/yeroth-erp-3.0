@@ -35,6 +35,13 @@
 #include <QtSql/QSqlError>
 
 
+
+const int YerothERPAchatsTableView::REFERENCE_COLUMN(3);
+
+const int YerothERPAchatsTableView::REFERENCE_RECU_DACHAT_COLUMN(6);
+
+
+
 YerothERPAchatsTableView::YerothERPAchatsTableView()
 :YerothTableView()
 {
@@ -127,7 +134,9 @@ void YerothERPAchatsTableView::lister_les_elements_du_tableau(YerothSqlTableMode
 				case QVariant::String:
 					tmpQvString.clear();
 					tmpQvString.append(qv.toString());
-					if (3 != k)
+
+					if (YerothERPAchatsTableView::REFERENCE_COLUMN != k 			||
+						YerothERPAchatsTableView::REFERENCE_RECU_DACHAT_COLUMN != k)
 					{
 						if (tmpQvString.length() > YerothUtils::STRING_MAX_CHARS)
 						{
@@ -135,6 +144,7 @@ void YerothERPAchatsTableView::lister_les_elements_du_tableau(YerothSqlTableMode
 							tmpQvString.append(".");
 						}
 					}
+
 					anItem = new YerothQStandardItem(tmpQvString);
 					_stdItemModel->setItem(i, k, anItem);
 					break;
