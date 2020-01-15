@@ -1370,6 +1370,8 @@ void YerothTableauxDeBordWindow::bilanComptable()
 
 	double remise_prix_vente = 0.0;
 
+	double total_remise = 0.0;
+
 	double total_vente = 0.0;
 
     double montant_total_vente = 0.0;
@@ -1382,6 +1384,8 @@ void YerothTableauxDeBordWindow::bilanComptable()
 
     	remise_prix_vente = query.value(2).toDouble();
 
+    	total_remise = qte_vendue * remise_prix_vente;
+
     	total_vente = query.value(3).toDouble();
 
     	if (stocksidToqtevendue.contains(stocks_id))
@@ -1389,7 +1393,7 @@ void YerothTableauxDeBordWindow::bilanComptable()
     		StockQteVendueEtRemiseTotalSurVente *curValue = stocksidToqtevendue.value(stocks_id);
 
     		curValue->_qteVendue = curValue->_qteVendue + qte_vendue;
-    		curValue->_remiseTotalSurVentes = curValue->_remiseTotalSurVentes + remise_prix_vente;
+    		curValue->_remiseTotalSurVentes = curValue->_remiseTotalSurVentes + total_remise;
 
     		stocksidToqtevendue.insert(stocks_id, curValue);
     	}
@@ -1398,7 +1402,7 @@ void YerothTableauxDeBordWindow::bilanComptable()
     		StockQteVendueEtRemiseTotalSurVente *curValue = new StockQteVendueEtRemiseTotalSurVente;
 
     		curValue->_qteVendue = qte_vendue;
-    		curValue->_remiseTotalSurVentes = remise_prix_vente;
+    		curValue->_remiseTotalSurVentes = curValue->_remiseTotalSurVentes + total_remise;
 
     		stocksidToqtevendue.insert(stocks_id, curValue);
     	}
@@ -1479,10 +1483,7 @@ void YerothTableauxDeBordWindow::bilanComptable()
     		benefice_sur_vente_effectuees = benefice_sur_vente_effectuees - curValue->_remiseTotalSurVentes;
     	}
 
-    	if (0 != curValue)
-    	{
-    		delete curValue;
-    	}
+    	delete curValue;
     }
 
     benefice_sur_vente_effectuees = benefice_sur_vente_effectuees - montant_total_dette_clientelle;

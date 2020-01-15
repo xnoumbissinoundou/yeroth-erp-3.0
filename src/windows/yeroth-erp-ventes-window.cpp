@@ -957,6 +957,7 @@ void YerothVentesWindow::handleCurrentChanged(int index)
 void YerothVentesWindow::lister_les_elements_du_tableau(YerothSqlTableModel &stocksVenduTableModel)
 {
     tableView_ventes->lister_les_elements_du_tableau(stocksVenduTableModel);
+
     tableView_ventes->hideColumn(0);
     tableView_ventes->hideColumn(2);
     tableView_ventes->hideColumn(3);
@@ -1007,7 +1008,7 @@ void YerothVentesWindow::lister_les_elements_du_tableau(YerothSqlTableModel &sto
 
         remise_prix = GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::REMISE_PRIX).toDouble();
 
-        remise_total_fcfa += remise_prix;
+        remise_total_fcfa += (quantite_vendue * remise_prix);
 
         montant_tva = GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::MONTANT_TVA).toDouble();
 
