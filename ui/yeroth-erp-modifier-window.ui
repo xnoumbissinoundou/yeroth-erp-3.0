@@ -441,7 +441,7 @@
     <property name="geometry">
      <rect>
       <x>11</x>
-      <y>19</y>
+      <y>20</y>
       <width>111</width>
       <height>61</height>
      </rect>
@@ -876,7 +876,7 @@
     <property name="geometry">
      <rect>
       <x>166</x>
-      <y>19</y>
+      <y>20</y>
       <width>111</width>
       <height>61</height>
      </rect>
@@ -1311,7 +1311,7 @@
     <property name="geometry">
      <rect>
       <x>527</x>
-      <y>19</y>
+      <y>20</y>
       <width>111</width>
       <height>61</height>
      </rect>
@@ -1746,7 +1746,7 @@
     <property name="geometry">
      <rect>
       <x>677</x>
-      <y>19</y>
+      <y>20</y>
       <width>111</width>
       <height>61</height>
      </rect>
@@ -2181,7 +2181,7 @@
     <property name="geometry">
      <rect>
       <x>318</x>
-      <y>19</y>
+      <y>20</y>
       <width>171</width>
       <height>61</height>
      </rect>
@@ -5482,7 +5482,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Supprimer l'image de ce stock</string>
+      <string>supprimer l'image de ce stock</string>
      </property>
     </widget>
     <widget class="YerothPushButton" name="pushButton_selectionner_image">
@@ -5920,7 +5920,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Sélectionner une image</string>
+      <string>sélectionner une image</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_stock_minimum">
@@ -12484,6 +12484,7 @@
     <addaction name="separator"/>
     <addaction name="actionActualiser"/>
     <addaction name="actionAnnuler"/>
+    <addaction name="actionSupprimerImage"/>
     <addaction name="actionSupprimer"/>
     <addaction name="separator"/>
     <addaction name="actionEntrer"/>

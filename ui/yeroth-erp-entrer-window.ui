@@ -440,7 +440,7 @@
    <locale language="French" country="France"/>
   </property>
   <widget class="QWidget" name="centralwidget_entrerWindow">
-   <widget class="YerothPushButton" name="pushButton_enregistrer_produit">
+   <widget class="YerothPushButton" name="pushButton_annuler">
     <property name="geometry">
      <rect>
       <x>11</x>
@@ -873,7 +873,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Enregistrer</string>
+     <string>Annuler</string>
     </property>
    </widget>
    <widget class="YerothPushButton" name="pushButton_afficher_stocks">
@@ -9604,7 +9604,7 @@ Transférer</string>
       <string notr="true">border: 1px solid rgb(60, 60, 60);</string>
      </property>
     </widget>
-    <widget class="YerothPushButton" name="pushButton_annuler">
+    <widget class="YerothPushButton" name="pushButton_supprimer_limage_du_stock">
      <property name="geometry">
       <rect>
        <x>406</x>
@@ -10039,7 +10039,7 @@ Transférer</string>
       <string>Poursuivre avec la vente</string>
      </property>
      <property name="text">
-      <string>annuler</string>
+      <string>supprimer l'image de ce stock</string>
      </property>
     </widget>
     <widget class="YerothPushButton" name="pushButton_selectionner_image">
@@ -11092,10 +11092,7 @@ background-color: rgb(255, 255, 255);</string>
      </property>
     </widget>
    </widget>
-   <widget class="YerothPushButton" name="pushButton_marchandises">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
+   <widget class="YerothPushButton" name="pushButton_enregistrer_produit">
     <property name="geometry">
      <rect>
       <x>166</x>
@@ -11119,45 +11116,45 @@ background-color: rgb(255, 255, 255);</string>
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>48</green>
-          <blue>48</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Light">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>176</green>
-          <blue>176</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Midlight">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>112</green>
-          <blue>112</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Dark">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>127</red>
-          <green>24</green>
-          <blue>24</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Mid">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>170</red>
-          <green>32</green>
-          <blue>32</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
@@ -11191,18 +11188,18 @@ background-color: rgb(255, 255, 255);</string>
        <colorrole role="Base">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>255</green>
-          <blue>255</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Window">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>48</green>
-          <blue>48</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
@@ -11218,9 +11215,9 @@ background-color: rgb(255, 255, 255);</string>
        <colorrole role="AlternateBase">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>151</green>
-          <blue>151</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
@@ -11256,45 +11253,45 @@ background-color: rgb(255, 255, 255);</string>
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>48</green>
-          <blue>48</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Light">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>176</green>
-          <blue>176</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Midlight">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>112</green>
-          <blue>112</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Dark">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>127</red>
-          <green>24</green>
-          <blue>24</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Mid">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>170</red>
-          <green>32</green>
-          <blue>32</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
@@ -11328,18 +11325,18 @@ background-color: rgb(255, 255, 255);</string>
        <colorrole role="Base">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>255</green>
-          <blue>255</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Window">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>48</green>
-          <blue>48</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
@@ -11355,9 +11352,9 @@ background-color: rgb(255, 255, 255);</string>
        <colorrole role="AlternateBase">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>151</green>
-          <blue>151</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
@@ -11384,63 +11381,63 @@ background-color: rgb(255, 255, 255);</string>
        <colorrole role="WindowText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>127</red>
-          <green>24</green>
-          <blue>24</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>48</green>
-          <blue>48</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Light">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>176</green>
-          <blue>176</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Midlight">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>112</green>
-          <blue>112</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Dark">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>127</red>
-          <green>24</green>
-          <blue>24</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Mid">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>170</red>
-          <green>32</green>
-          <blue>32</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Text">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>127</red>
-          <green>24</green>
-          <blue>24</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
@@ -11456,27 +11453,27 @@ background-color: rgb(255, 255, 255);</string>
        <colorrole role="ButtonText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>127</red>
-          <green>24</green>
-          <blue>24</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Base">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>48</green>
-          <blue>48</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Window">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>48</green>
-          <blue>48</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
@@ -11492,9 +11489,9 @@ background-color: rgb(255, 255, 255);</string>
        <colorrole role="AlternateBase">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>48</green>
-          <blue>48</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
@@ -11528,7 +11525,7 @@ background-color: rgb(255, 255, 255);</string>
      </font>
     </property>
     <property name="text">
-     <string>Marchandises</string>
+     <string>Enregistrer</string>
     </property>
    </widget>
   </widget>
@@ -12410,11 +12407,10 @@ background-color: rgb(255, 255, 255);</string>
     <addaction name="separator"/>
     <addaction name="actionAnnuler"/>
     <addaction name="actionEnregisterStock"/>
+    <addaction name="actionSupprimerImage"/>
     <addaction name="separator"/>
-    <addaction name="actionMarchandises"/>
     <addaction name="actionStocks"/>
     <addaction name="actionSortir"/>
-    <addaction name="actionVendre"/>
     <addaction name="separator"/>
     <addaction name="actionMenu_Principal"/>
     <addaction name="separator"/>
@@ -13333,21 +13329,6 @@ background-color: rgb(255, 255, 255);</string>
     </font>
    </property>
   </action>
-  <action name="actionVendre">
-   <property name="text">
-    <string>Vendre des articles</string>
-   </property>
-   <property name="toolTip">
-    <string>Vendre des articles</string>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-    </font>
-   </property>
-  </action>
   <action name="actionFermeture">
    <property name="text">
     <string>Fermeture</string>
@@ -13428,29 +13409,18 @@ background-color: rgb(255, 255, 255);</string>
     </font>
    </property>
   </action>
-  <action name="actionVente">
+  <action name="actionSupprimerImage">
    <property name="text">
-    <string>Ventes</string>
+    <string>Supprimer l'image de ce stock</string>
    </property>
    <property name="toolTip">
-    <string>Caisse</string>
+    <string>Supprimer l'image de ce stock</string>
    </property>
    <property name="font">
     <font>
      <pointsize>10</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-  </action>
-  <action name="actionSupprimerImage">
-   <property name="text">
-    <string>Supprimer l'image de l'article</string>
-   </property>
-   <property name="font">
-    <font>
-     <weight>75</weight>
-     <bold>true</bold>
+     <weight>50</weight>
+     <bold>false</bold>
     </font>
    </property>
   </action>
@@ -13538,21 +13508,6 @@ background-color: rgb(255, 255, 255);</string>
     </font>
    </property>
   </action>
-  <action name="actionMarchandises">
-   <property name="text">
-    <string>Afficher les marchandises</string>
-   </property>
-   <property name="toolTip">
-    <string>Afficher les marchandises</string>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-    </font>
-   </property>
-  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -13599,10 +13554,9 @@ background-color: rgb(255, 255, 255);</string>
   <tabstop>lineEdit_reference_recu_dachat</tabstop>
   <tabstop>lineEdit_quantite_total</tabstop>
   <tabstop>lineEdit_tva</tabstop>
-  <tabstop>pushButton_annuler</tabstop>
+  <tabstop>pushButton_supprimer_limage_du_stock</tabstop>
   <tabstop>pushButton_selectionner_image</tabstop>
-  <tabstop>pushButton_enregistrer_produit</tabstop>
-  <tabstop>pushButton_marchandises</tabstop>
+  <tabstop>pushButton_annuler</tabstop>
   <tabstop>pushButton_menu_principal</tabstop>
   <tabstop>pushButton_afficher_stocks</tabstop>
   <tabstop>pushButton_sortir</tabstop>

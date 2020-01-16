@@ -98,7 +98,12 @@ public slots:
 
     void deconnecter_utilisateur();
 
-    void selectionner_image_produit();
+    void supprimer_image_stock();
+
+    inline void selectionner_image_produit()
+    {
+        YerothUtils::selectionner_image(this, *label_image_produit);
+    }
 
     bool creerNouveauFournisseur(const QString proposedFourisseurName);
 
