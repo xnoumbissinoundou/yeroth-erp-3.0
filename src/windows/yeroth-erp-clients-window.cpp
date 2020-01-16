@@ -78,18 +78,17 @@ YerothERPClientsWindow::YerothERPClientsWindow()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchats, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCreerCompteClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierCompteClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPaiements, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherDetailsClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     pushButton_payer->disable(this);
 
-    pushButton_achats->disable(this);
+    pushButton_afficher->disable(this);
     pushButton_menu_principal->disable(this);
     pushButton_creer_compte_client->disable(this);
     pushButton_modifier->disable(this);
@@ -106,9 +105,8 @@ YerothERPClientsWindow::YerothERPClientsWindow()
     connect(actionCreerCompteClient, SIGNAL(triggered()), this, SLOT(creerCompteClient()));
     connect(actionModifierCompteClient, SIGNAL(triggered()), this, SLOT(modifierCompteClient()));
     connect(actionSupprimerCompteClient, SIGNAL(triggered()), this, SLOT(supprimerCompteClient()));
-    connect(actionPaiements, SIGNAL(triggered()), this, SLOT(paiements()));
+    connect(actionAfficherDetailsClient, SIGNAL(triggered()), this, SLOT(afficher_au_detail()));
     connect(actionExporter_au_format_csv, SIGNAL(triggered()), this, SLOT(export_csv_file()));
-    connect(actionAchats, SIGNAL(triggered()), this, SLOT(achats()));
     connect(actionMenu_Principal, SIGNAL(triggered()), this, SLOT(menu()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
     connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_document()));
@@ -155,7 +153,7 @@ void YerothERPClientsWindow::contextMenuEvent(QContextMenuEvent * event)
 {
 	QMenu menu(this);
 	menu.setPalette(toolBar_clientsWindow->palette());
-	menu.addAction(actionCreerCompteClient);
+	menu.addAction(actionAfficherDetailsClient);
 	menu.addAction(actionModifierCompteClient);
 	menu.addAction(actionSupprimerCompteClient);
 	menu.exec(event->globalPos());
@@ -266,17 +264,21 @@ void YerothERPClientsWindow::afficher_au_detail()
 {
     _logger->log("afficher_au_detail");
 
-    if (this->getLastListerSelectedRow() > -1 && _curClientsTableModel->rowCount() > 0)
+    tableView_clients->selectRow(getLastListerSelectedRow());
+
+    if (getLastListerSelectedRow() > -1 && _curClientsTableModel->rowCount() > 0)
     {
+    	//qDebug() << "++ test" << modelIndex.row();
         _allWindows->_clientsDetailWindow->rendreVisible(getLastListerSelectedRow(),
-        												_curStocksTableModel,
-														_curClientsTableModel);
-        this->rendreInvisible();
+        												 _curClientsTableModel,
+														 _curStocksTableModel);
+
+        rendreInvisible();
     }
     else
     {
         YerothQMessageBox::warning(this, QObject::trUtf8("détails d'un compte client"),
-                                  QObject::trUtf8("Sélectionnez un compte client à afficher les détails."));
+                                  QObject::trUtf8("Sélectionnez un compte client à afficher les détails !"));
     }
 }
 
@@ -300,8 +302,8 @@ void YerothERPClientsWindow::afficher_au_detail(const QModelIndex & modelIndex)
     }
     else
     {
-        YerothQMessageBox::warning(this, QObject::trUtf8("détails d'un stock"),
-                                  QObject::trUtf8("Sélectionnez un stock à afficher les détails."));
+        YerothQMessageBox::warning(this, QObject::trUtf8("détails d'un compte client"),
+                                  QObject::trUtf8("Sélectionnez un compte client à afficher les détails !"));
     }
 }
 
@@ -690,8 +692,7 @@ void YerothERPClientsWindow::definirCaissier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPaiements, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchats, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherDetailsClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCreerCompteClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierCompteClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, false);
@@ -701,7 +702,7 @@ void YerothERPClientsWindow::definirCaissier()
 
     pushButton_payer->disable(this);
 
-    pushButton_achats->disable(this);
+    pushButton_afficher->disable(this);
     pushButton_menu_principal->disable(this);
     pushButton_creer_compte_client->disable(this);
     pushButton_modifier->disable(this);
@@ -719,8 +720,7 @@ void YerothERPClientsWindow::definirManager()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPaiements, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchats, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherDetailsClient, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCreerCompteClient, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierCompteClient, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, true);
@@ -736,7 +736,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     pushButton_payer->enable(this, SLOT(putCashIntoCustomerAccount()));
 
-    pushButton_achats->enable(this, SLOT(achats()));
+    pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_creer_compte_client->enable(this, SLOT(creerCompteClient()));
     pushButton_modifier->enable(this, SLOT(modifierCompteClient()));
@@ -754,8 +754,7 @@ void YerothERPClientsWindow::definirVendeur()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPaiements, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchats, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherDetailsClient, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCreerCompteClient, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierCompteClient, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, true);
@@ -771,7 +770,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     pushButton_payer->enable(this, SLOT(putCashIntoCustomerAccount()));
 
-    pushButton_achats->enable(this, SLOT(achats()));
+    pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_creer_compte_client->enable(this, SLOT(creerCompteClient()));
     pushButton_modifier->enable(this, SLOT(modifierCompteClient()));
@@ -789,8 +788,7 @@ void YerothERPClientsWindow::definirGestionaireDesStocks()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPaiements, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchats, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherDetailsClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCreerCompteClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierCompteClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, false);
@@ -806,7 +804,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     pushButton_payer->disable(this);
 
-    pushButton_achats->disable(this);
+    pushButton_afficher->disable(this);
     pushButton_menu_principal->disable(this);
     pushButton_creer_compte_client->disable(this);
     pushButton_modifier->disable(this);
@@ -824,8 +822,7 @@ void YerothERPClientsWindow::definirMagasinier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPaiements, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchats, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherDetailsClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCreerCompteClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierCompteClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, false);
@@ -835,7 +832,7 @@ void YerothERPClientsWindow::definirMagasinier()
 
     pushButton_payer->disable(this);
 
-    pushButton_achats->disable(this);
+    pushButton_afficher->disable(this);
     pushButton_menu_principal->disable(this);
     pushButton_creer_compte_client->disable(this);
     pushButton_modifier->disable(this);
@@ -853,8 +850,7 @@ void YerothERPClientsWindow::definirPasDeRole()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPaiements, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchats, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherDetailsClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCreerCompteClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierCompteClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, false);
@@ -864,7 +860,7 @@ void YerothERPClientsWindow::definirPasDeRole()
 
     pushButton_payer->disable(this);
 
-    pushButton_achats->disable(this);
+    pushButton_afficher->disable(this);
     pushButton_menu_principal->disable(this);
     pushButton_creer_compte_client->disable(this);
     pushButton_modifier->disable(this);

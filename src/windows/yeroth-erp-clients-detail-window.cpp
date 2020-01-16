@@ -355,7 +355,7 @@ bool YerothClientsDetailWindow::imprimer_document()
     data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Numéro de contribuable: ")));
     data.append(QString("%1\\\\\n").arg(lineEdit_clients_details_numero_contribuable->text()));
 
-    data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("RCCN N\\textsuperscript{o}: ")));
+    data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("RCCM N\\textsuperscript{o}: ")));
     data.append(QString("%1\\\\\n").arg(lineEdit_clients_details_reference_registre_du_commerce->text()));
 
     data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Dette maximale: ")));
@@ -456,6 +456,7 @@ void YerothClientsDetailWindow::rendreVisible(int lastSelectedRow,
 	_curClientTableModel = clientTableModel;
 
     //qDebug() << "++ last selected row: " << _allWindows->getLastSelectedListerRow();
+
     showClientDetail(lastSelectedRow);
 
     setVisible(true);
