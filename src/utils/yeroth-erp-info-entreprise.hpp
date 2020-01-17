@@ -62,9 +62,14 @@ public:
 		_telephone = telephone;
 	}
 
-	inline void setNumeroChambreDeCommerce(QString numero_contribuable)
+	inline void setNumeroChambreContribuable(QString numero_contribuable)
 	{
 		_numero_contribuable = numero_contribuable;
+	}
+
+	inline void setReferenceRegistreChambreDuCommerce(QString reference_registre_chambre_du_commerce)
+	{
+		_reference_registre_chambre_du_commerce = reference_registre_chambre_du_commerce;
 	}
 
 	inline void setNumeroCompteBancaire(QString numero_comptebancaire)
@@ -152,6 +157,11 @@ public:
 		return _numero_contribuable;
 	}
 
+	inline QString getReferenceRegistreDuCommerce() const
+	{
+		return _reference_registre_chambre_du_commerce;
+	}
+
 	inline QString getNumeroCompteBancaire() const
 	{
 		return _numero_comptebancaire;
@@ -192,6 +202,7 @@ private:
 	QString _secteurs_activites;
 	QString _agence_comptebancaire;
 	QString _numero_comptebancaire;
+	QString _reference_registre_chambre_du_commerce;
 };
 
 

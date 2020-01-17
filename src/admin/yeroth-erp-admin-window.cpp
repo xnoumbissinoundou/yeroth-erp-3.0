@@ -884,6 +884,9 @@ void YerothAdminWindow::read_entreprise_info_database_table(bool initalizationVa
 
 		lineEdit_entreprise_secteurs_numero_de_compte_bancaire->setText(
 			QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 13) ));
+
+		lineEdit_entreprise_reference_registre_du_commerce->setText(
+			QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 14) ));
 	}
 }
 
@@ -1082,6 +1085,7 @@ void YerothAdminWindow::enregistrer_entreprise_info_database_table()
 		aNewEntrepriseInfoRecord.setValue(YerothDatabaseTableColumn::SECTEURS_DACTIVITES, lineEdit_entreprise_secteurs_dactivites->text());
 		aNewEntrepriseInfoRecord.setValue(YerothDatabaseTableColumn::AGENCE_DE_COMPTE_BANCAIRE, lineEdit_entreprise_agence_de_compte_bancaire->text());
 		aNewEntrepriseInfoRecord.setValue(YerothDatabaseTableColumn::NUMERO_DE_COMPTE_BANCAIRE, lineEdit_entreprise_secteurs_numero_de_compte_bancaire->text());
+		aNewEntrepriseInfoRecord.setValue(YerothDatabaseTableColumn::REFERENCE_REGISTRE_DU_COMMERCE, lineEdit_entreprise_reference_registre_du_commerce->text());
 
 		bool recordUpdated = entreprise_info_TableModel.updateRecord(1, aNewEntrepriseInfoRecord);
 

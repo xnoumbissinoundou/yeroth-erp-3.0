@@ -38,6 +38,8 @@ void YerothInfoEntreprise::updateInfoEntrepriseFromDB()
 		_secteurs_activites 		= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 11) );
 		_agence_comptebancaire 		= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 12) );
 		_numero_comptebancaire		= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 13) );
+		_reference_registre_chambre_du_commerce
+									= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 14) );
 	}
 }
 
@@ -57,8 +59,9 @@ QString YerothInfoEntreprise::toString()
     .append("7) Pays: ").append(getPays()).append("\n")
     .append("8) Émail: ").append(getEmail()).append("\n")
     .append("9) Téléphone: ").append(getTelephone()).append("\n")
-    .append("10) Numéro de contribuable: ").append(getNumeroDeContribuable()).append("\n")
-    .append("11) Secteurs d'activités: ").append(getSecteursActivites()).append("\n");
+	.append("10) RCCM N.: ").append(getReferenceRegistreDuCommerce()).append("\n")
+	.append("11) Numéro de contribuable: ").append(getNumeroDeContribuable()).append("\n")
+    .append("12) Secteurs d'activités: ").append(getSecteursActivites()).append("\n");
 #endif
 
 #ifdef YEROTH_ENGLISH_LANGUAGE
@@ -71,8 +74,9 @@ QString YerothInfoEntreprise::toString()
     .append("7) Country: ").append(getPays()).append("\n")
     .append("8) Email: ").append(getEmail()).append("\n")
     .append("9) Phone: ").append(getTelephone()).append("\n")
-    .append("10) Company registration number: ").append(getNumeroDeContribuable()).append("\n")
-    .append("11) Commercial activities: ").append(getSecteursActivites()).append("\n");
+	.append("10) RCCM N.: ").append(getReferenceRegistreDuCommerce()).append("\n")
+	.append("11) Company tax registration number: ").append(getNumeroDeContribuable()).append("\n")
+    .append("12) Commercial activities: ").append(getSecteursActivites()).append("\n");
 #endif
 
     return result;
