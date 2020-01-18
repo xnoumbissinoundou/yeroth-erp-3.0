@@ -57,6 +57,7 @@ MOC_DIR  = moc
 OBJECTS_DIR = obj
 
 FORMS   = ui/yeroth-erp-main-window.ui \
+			ui/yeroth-erp-configuration-comptabilite-window.ui \
 			ui/yeroth-erp-modifier-compte-client-window.ui \
 			ui/yeroth-erp-creer-compte-client-window.ui \
 			ui/yeroth-erp-clients-detail-window.ui \
@@ -130,6 +131,7 @@ HEADERS = src/yeroth-erp-windows.hpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-carte-credit-dialog.hpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.hpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-dialog.hpp \
+			src/windows/yeroth-erp-configuration-comptabilite-window.hpp \
 			src/windows/yeroth-erp-modifier-compte-client-window.hpp \
 			src/windows/yeroth-erp-creer-compte-client-window.hpp \
 		  src/windows/yeroth-erp-clients-detail-window.hpp \
@@ -225,6 +227,7 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-carte-credit-dialog.cpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.cpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-dialog.cpp \
+			src/windows/yeroth-erp-configuration-comptabilite-window.cpp \
 			src/windows/yeroth-erp-modifier-compte-client-window.cpp \
 			src/windows/yeroth-erp-creer-compte-client-window.cpp \
 		  src/windows/yeroth-erp-clients-detail-window.cpp \

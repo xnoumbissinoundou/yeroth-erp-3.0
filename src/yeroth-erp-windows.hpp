@@ -41,6 +41,7 @@
 #include "src/windows/yeroth-erp-achats-window.hpp"
 #include "src/windows/yeroth-erp-stocks-window.hpp"
 #include "src/windows/yeroth-erp-marchandises-window.hpp"
+#include "src/windows/yeroth-erp-configuration-comptabilite-window.hpp"
 #include "src/windows/yeroth-erp-alertes-window.hpp"
 #include "src/windows/yeroth-erp-ventes-window.hpp"
 #include "src/windows/yeroth-erp-modifier-window.hpp"
@@ -75,6 +76,7 @@ class YerothCreerNouvelleCategorieWindow;
 class YerothAchatsWindow;
 class YerothStocksWindow;
 class YerothMarchandisesWindow;
+class YerothConfigurationComptabiliteWindow;
 class YerothAlertesWindow;
 class YerothVentesWindow;
 class YerothModifierWindow;
@@ -352,6 +354,7 @@ public:
 	YerothAchatsWindow 									*_achatsWindow;
 	YerothStocksWindow 									*_stocksWindow;
 	YerothMarchandisesWindow 							*_marchandisesWindow;
+	YerothConfigurationComptabiliteWindow				*_configurationComptabiliteWindow;
 	YerothAlertesWindow									*_listerAlertesWindow;
 	YerothPaiementsWindow								*_historiquePaiementsWindow;
 	YerothVentesWindow									*_ventesWindow;
@@ -370,6 +373,7 @@ public:
 	YerothPOSVenteMethodePaiementDialog					*_pdVenteMethodePaiementDialog;
 	YerothERPClientsWindow								*_clientWindow;
 	YerothSortirListStocksWindow						*_sortirListStocksWindow;
+	YerothConfigurationComptabiliteWindow 				*_configurationComptableWindow;
 	YerothAdminWindow 									*_adminWindow;
 	YerothAdminCreateWindow 							*_adminCreateWindow;
 	YerothAdminListerWindow 							*_adminListerWindow;

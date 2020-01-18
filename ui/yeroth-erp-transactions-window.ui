@@ -6689,7 +6689,6 @@ background-color: rgb(0, 0, 0); </string>
     <addaction name="separator"/>
     <addaction name="actionMenu"/>
     <addaction name="separator"/>
-    <addaction name="separator"/>
     <addaction name="actionFermeture"/>
    </widget>
    <widget class="QMenu" name="menuOutils">

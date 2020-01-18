@@ -7125,7 +7125,6 @@ Vente</string>
     <addaction name="actionStocks"/>
     <addaction name="actionInventaireDesStocks"/>
     <addaction name="actionSortir"/>
-    <addaction name="separator"/>
     <addaction name="actionVendre"/>
     <addaction name="separator"/>
     <addaction name="actionFermeture"/>
@@ -7559,6 +7558,8 @@ Vente</string>
      <string>Outils</string>
     </property>
     <addaction name="actionAdministration"/>
+    <addaction name="separator"/>
+    <addaction name="actionComptabilite"/>
     <addaction name="separator"/>
     <addaction name="actionAlertes"/>
     <addaction name="separator"/>
@@ -8107,11 +8108,6 @@ Vente</string>
     </font>
    </property>
   </action>
-  <action name="actionMenu_Principal">
-   <property name="text">
-    <string>Menu Principal</string>
-   </property>
-  </action>
   <action name="actionDeconnecter_utilisateur">
    <property name="icon">
     <iconset resource="../yeroth-erp-3-0.qrc">
@@ -8275,6 +8271,14 @@ Vente</string>
     <font>
      <pointsize>10</pointsize>
     </font>
+   </property>
+  </action>
+  <action name="actionComptabilite">
+   <property name="text">
+    <string>Comptabilité</string>
+   </property>
+   <property name="toolTip">
+    <string>Comptabilité</string>
    </property>
   </action>
  </widget>

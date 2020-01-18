@@ -156,6 +156,14 @@ void YerothWindowsCommons::menu()
     _allWindows->_mainWindow->rendreVisible(_curStocksTableModel);
 }
 
+
+void YerothWindowsCommons::comptabilite()
+{
+    this->rendreInvisible();
+    _allWindows->_configurationComptabiliteWindow->rendreVisible(_curStocksTableModel);
+}
+
+
 void YerothWindowsCommons::administration()
 {
     this->rendreInvisible();

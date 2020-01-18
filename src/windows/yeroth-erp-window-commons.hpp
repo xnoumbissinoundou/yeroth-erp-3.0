@@ -141,6 +141,8 @@ public slots:
 
 	virtual void menu();
 
+	virtual void comptabilite();
+
 	virtual void administration();
 
 	virtual void qui_suis_je();

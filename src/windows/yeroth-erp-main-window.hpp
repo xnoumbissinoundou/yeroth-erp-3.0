@@ -24,7 +24,6 @@ class YerothSqlTableModel;
 class YerothLogger;
 class YerothUtils;
 class YerothWindowsCommons;
-class YerothMainWindowUserMagasinier;
 class YerothPOSUser;
 
 class YerothMainWindow : public YerothWindowsCommons, public Ui_YerothMainWindow
