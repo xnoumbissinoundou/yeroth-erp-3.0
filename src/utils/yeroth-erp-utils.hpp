@@ -292,13 +292,6 @@ public:
 											   int toRowIndex,
 											   bool lastPage);
 
-	static void getStocksListingTexTableString(QString &texTable_in_out,
-											   QStandardItemModel &tableStandardItemModel,
-											   QList<int> &columnsToIgnore,
-											   int fromRowIndex,
-											   int toRowIndex,
-											   bool lastPage);
-
 	/**
 	 * This method is in common used by classes YerothPointDeVenteWindow and
 	 * YerothSortirWindow.
@@ -397,12 +390,6 @@ public:
 												  QString &printString);
 
 	static void getAchatsListingENTexDocumentString(QString &texDocumentString_in_out,
-												    QString &printString);
-
-	static void getStocksListingFRTexDocumentString(QString &texDocumentString_in_out,
-												  QString &printString);
-
-	static void getStocksListingENTexDocumentString(QString &texDocumentString_in_out,
 												    QString &printString);
 
 	static QString getFileNameWithCurrentTime(const QString fileName);
@@ -642,9 +629,7 @@ public:
 
 	static QString EN_template_lister_achats_tex;
 
-	static QString FR_template_lister_stock_tex;
-
-	static QString EN_template_lister_stock_tex;
+	static QString template_lister_stock_tex;
 
 	static QString FR_template_facture_grand_tex;
 

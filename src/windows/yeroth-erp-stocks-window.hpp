@@ -87,6 +87,16 @@ public slots:
 
 	bool export_csv_file();
 
+	static void getStocksListingTexDocumentString(QString &texDocumentString_in_out,
+												  QString &printString);
+
+	static void getStocksListingTexTableString(QString &texTable_in_out,
+											   QStandardItemModel &tableStandardItemModel,
+											   QList<int> &columnsToIgnore,
+											   int fromRowIndex,
+											   int toRowIndex,
+											   bool lastPage);
+
 	virtual bool imprimer_document();
 
     virtual void entrer();
@@ -187,6 +197,12 @@ private:
     void setComboBoxStrategieDeStocks();
 
     void setupLineEdits();
+
+    static unsigned int PDF_LISTING_COLUMN_REFERENCE;
+
+    static unsigned int PDF_LISTING_COLUMN_DESIGNATION;
+
+    static unsigned int PDF_LISTING_COLUMN_CATEGORIE;
 
     static const QString 	_WINDOW_TITLE;
 

@@ -259,12 +259,12 @@ void readTexTemplateFiles(YerothLogger &logger)
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
     QFile fileStockDeSecuriteFr(FILE_YEROTH_ERP_3_0_TEMPLATE_FICHE_STOCKS_FR);
-    yeroth_read_file(fileStockDeSecuriteFr, YerothUtils::FR_template_lister_stock_tex);
+    yeroth_read_file(fileStockDeSecuriteFr, YerothUtils::template_lister_stock_tex);
 
 #else //YEROTH_ENGLISH_LANGUAGE
 
     QFile fileStockDeSecuriteEn(FILE_YEROTH_ERP_3_0_TEMPLATE_FICHE_STOCKS_EN);
-    yeroth_read_file(fileStockDeSecuriteEn, YerothUtils::EN_template_lister_stock_tex);
+    yeroth_read_file(fileStockDeSecuriteEn, YerothUtils::template_lister_stock_tex);
 
 #endif
 

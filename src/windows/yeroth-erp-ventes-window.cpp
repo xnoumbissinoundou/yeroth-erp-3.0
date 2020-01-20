@@ -655,7 +655,7 @@ void YerothVentesWindow::getJournalDesVentesTexTableString(QString & texTable_in
     /** We add a column named ''id'' for numbering the rows
 
      * in the Tex table. */
-    texTable_in_out.append("\\textbf{id} & ");
+    texTable_in_out.append("\\textbf{n\\textsuperscript{o}} & ");
 
     for (int k = 0; k < tableColumnCount; ++k)
     {
