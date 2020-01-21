@@ -1497,7 +1497,7 @@ void YerothTableauxDeBordWindow::bilanComptable()
 
     chiffre_daffaire = montant_total_vente;
 
-    balance = chiffre_daffaire - montant_total_achat - montant_total_dette_clientelle;
+    balance = total_entrees - total_sorties;
 
 //    qDebug() << QString("++ benefice: %1, chiffre_daffaire: %2, balance: %3")
 //    				.arg(QString::number(benefice, 'f', 2),

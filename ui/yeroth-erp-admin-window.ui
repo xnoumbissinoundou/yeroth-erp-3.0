@@ -31379,8 +31379,8 @@
  </customwidgets>
  <tabstops>
   <tabstop>lineEdit_this_localisation</tabstop>
-  <tabstop>lineEdit_localisation</tabstop>
   <tabstop>lineEdit_localisation_adresse_ip</tabstop>
+  <tabstop>lineEdit_localisation</tabstop>
   <tabstop>pushButton_connecter_localisation</tabstop>
   <tabstop>pushButton_deconnecter_localisation</tabstop>
   <tabstop>comboBox_actions_maintain</tabstop>
@@ -31392,7 +31392,6 @@
   <tabstop>pushButton_maintenance_valider</tabstop>
   <tabstop>comboBox_actions</tabstop>
   <tabstop>comboBox_sujets_actions</tabstop>
-  <tabstop>pushButton_operation_go</tabstop>
   <tabstop>pushButton_choose_pdfReader</tabstop>
   <tabstop>lineEdit_pdfReader</tabstop>
   <tabstop>pushButton_choose_repertoire_systeme_latex</tabstop>
@@ -31409,6 +31408,7 @@
   <tabstop>comboBox_strategie_vente_sortie</tabstop>
   <tabstop>pushButton_choose_fichier_systeme_imprimante_thermique</tabstop>
   <tabstop>lineEdit_fichier_systeme_imprimante_thermique</tabstop>
+  <tabstop>lineEdit_longueur_maximale_string</tabstop>
   <tabstop>pushButton_parametres_reinitialiser</tabstop>
   <tabstop>pushButton_parametres_enregistrer</tabstop>
   <tabstop>lineEdit_alert_period_time_interval</tabstop>
@@ -31428,6 +31428,7 @@
   <tabstop>lineEdit_entreprise_email</tabstop>
   <tabstop>lineEdit_entreprise_telephone</tabstop>
   <tabstop>lineEdit_entreprise_numero_de_contribuable</tabstop>
+  <tabstop>lineEdit_entreprise_reference_registre_du_commerce</tabstop>
   <tabstop>lineEdit_entreprise_secteurs_dactivites</tabstop>
   <tabstop>lineEdit_entreprise_agence_de_compte_bancaire</tabstop>
   <tabstop>lineEdit_entreprise_secteurs_numero_de_compte_bancaire</tabstop>
@@ -31439,6 +31440,7 @@
   <tabstop>pushButton_modifier</tabstop>
   <tabstop>pushButton_supprimer</tabstop>
   <tabstop>tabWidget_administration</tabstop>
+  <tabstop>pushButton_operation_go</tabstop>
  </tabstops>
  <resources>
   <include location="../yeroth-erp-3-0.qrc"/>

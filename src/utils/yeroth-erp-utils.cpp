@@ -271,22 +271,22 @@ const QString YerothUtils::MAGELAN_SERVER		("com.yeroth.server");
 const QString YerothUtils::MAGELAN_SERVER_OBJECT ("/");
 
 #ifdef YEROTH_SERVER
-const QString YerothUtils::APROPOS_MSG(QObject::trUtf8("YEROTH-ERP-3.0 SERVER (22 Septembre 2019)\n\n par \n\n (c) Diplom-Informatiker Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)."));
+const QString YerothUtils::APROPOS_MSG(QObject::trUtf8("YEROTH-ERP-3.0 SERVER (22 Janvier 2020)\n\n par \n\n (c) Diplom-Informatiker Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)."));
 const QString YerothUtils::APPLICATION_NAME(QObject::trUtf8("YEROTH-ERP-3.0 SERVER"));
 #endif
 
 #ifdef YEROTH_CLIENT
-const QString YerothUtils::APROPOS_MSG(QObject::trUtf8("YEROTH-ERP-3.0 CLIENT (22 Septembre 2019)\n\n par \n\n (c) Diplom-Informatiker Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)."));
+const QString YerothUtils::APROPOS_MSG(QObject::trUtf8("YEROTH-ERP-3.0 CLIENT (22 Janvier 2020)\n\n par \n\n (c) Diplom-Informatiker Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)."));
 const QString YerothUtils::APPLICATION_NAME(QObject::trUtf8("YEROTH-ERP-3.0 CLIENT"));
 #endif
 
 #ifdef YEROTH_STANDALONE
-const QString YerothUtils::APROPOS_MSG(QObject::trUtf8("YEROTH-ERP-3.0 STANDALONE (22 Septembre 2019)\n\n par \n\n (c) Diplom-Informatiker Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)."));
+const QString YerothUtils::APROPOS_MSG(QObject::trUtf8("YEROTH-ERP-3.0 STANDALONE (22 Janvier 2020)\n\n par \n\n (c) Diplom-Informatiker Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)."));
 const QString YerothUtils::APPLICATION_NAME(QObject::trUtf8("YEROTH-ERP-3.0 STANDALONE"));
 #endif
 
 #ifdef YEROTH_ACADEMIC_EVALUATION_VERSION
-const QString YerothUtils::APROPOS_MSG(QObject::trUtf8("YEROTH-ERP-3.0 ACADEMIC EVALUATION VERSION (22 Septembre 2019)\n\n par \n\n (c) Diplom-Informatiker Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)."));
+const QString YerothUtils::APROPOS_MSG(QObject::trUtf8("YEROTH-ERP-3.0 ACADEMIC EVALUATION VERSION (22 Janvier 2020)\n\n par \n\n (c) Diplom-Informatiker Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)."));
 const QString YerothUtils::APPLICATION_NAME(QObject::trUtf8("YEROTH-ERP-3.0 ACADEMIC EVALUATION VERSION"));
 #endif
 
