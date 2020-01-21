@@ -1053,6 +1053,8 @@ void YerothPointDeVenteWindow::cleanUpAfterVente()
 
     _allWindows->_pdVenteMethodePaiementComptantEntreeDialog->clearLineEditValue();
 
+    _typeDeVente.clear();
+
     lineEdit_articles_montant_a_rembourser->setText(GET_CURRENCY_STRING_NUM(0.0));
     lineEdit_articles_tva->setText(GET_CURRENCY_STRING_NUM(0.0));
     lineEdit_articles_total->setText(GET_CURRENCY_STRING_NUM(0.0));
