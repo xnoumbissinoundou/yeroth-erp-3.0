@@ -280,7 +280,7 @@ Press m &apos;Cancel&apos; to exit %2</translation>
     <message>
         <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="137"/>
         <source>Référence</source>
-        <translation>Barcode</translation>
+        <translation>Reference</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="145"/>
@@ -2012,7 +2012,7 @@ Please contact an administrator of %1</translation>
     <message>
         <location filename="src/windows/yeroth-erp-sortir-window.hpp" line="210"/>
         <source>Choisissez les articles à sortir en utilisant leur reference à la première barre de recherche, ou bien leur désignation à la deuxième barre de recherche !</source>
-        <translation>Select the stock items you wish to transfer using their barcode within the first search bar, or, using their name within the second search bar!</translation>
+        <translation>Select the stock items you wish to transfer using their reference within the first search bar, or, using their name within the second search bar!</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="62"/>
@@ -2023,7 +2023,7 @@ Please contact an administrator of %1</translation>
         <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="259"/>
         <source>référence</source>
         <oldsource>reference</oldsource>
-        <translation>barcode</translation>
+        <translation>reference</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-utils.hpp" line="416"/>
@@ -2215,7 +2215,7 @@ Please contact an administrator of %1</translation>
         <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="196"/>
         <source>référence [ focus avec F11 ]</source>
         <oldsource>reference [ focus avec F11 ]</oldsource>
-        <translation>barcode [focus with F11]</translation>
+        <translation>reference [focus with F11]</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="259"/>
@@ -2407,7 +2407,7 @@ Please contact an administrator</translation>
     <message>
         <location filename="src/windows/yeroth-erp-pointdevente-window.hpp" line="259"/>
         <source>Choisissez les articles à vendre en utilisant leur reference à la première barre de recherche, ou bien leur désignation à la deuxième barre de recherche !</source>
-        <translation>Select the stock items you wish to &quot;check out&quot; using their barcode within the first search bar, or, using their name within the second search bar!</translation>
+        <translation>Select the stock items you wish to &quot;check out&quot; using their reference within the first search bar, or, using their name within the second search bar!</translation>
     </message>
     <message>
         <location filename="src/admin/creer/creer-utilisateur.cpp" line="7"/>
@@ -7795,7 +7795,7 @@ Sale</translation>
     <message>
         <location filename="ui/yeroth-erp-modifier-window.ui" line="3531"/>
         <source>reference de l&apos;article</source>
-        <translation>item barcode</translation>
+        <translation>item reference</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-modifier-window.ui" line="3557"/>
@@ -9026,7 +9026,7 @@ Sale</translation>
     <message>
         <location filename="ui/yeroth-erp-sortir-window.ui" line="3862"/>
         <source>Référence</source>
-        <translation>Barcode</translation>
+        <translation>Reference</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-sortir-window.ui" line="3872"/>
