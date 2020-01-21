@@ -35,6 +35,14 @@
 #include <QtWidgets/QCompleter>
 
 
+
+unsigned int YerothMarchandisesWindow::PDF_LISTING_COLUMN_REFERENCE(1);
+
+unsigned int YerothMarchandisesWindow::PDF_LISTING_COLUMN_DESIGNATION(2);
+
+unsigned int YerothMarchandisesWindow::PDF_LISTING_COLUMN_CATEGORIE(3);
+
+
 double YerothMarchandisesWindow::_totalValeurDinventaire(0.0);
 
 
@@ -885,6 +893,139 @@ bool YerothMarchandisesWindow::export_csv_file()
 }
 
 
+void YerothMarchandisesWindow::getInventoryStocksListingTexTableString(QString &texTable_in_out,
+        															   QStandardItemModel &tableStandardItemModel,
+																	   QList<int> &columnsToIgnore,
+																	   int fromRowIndex,
+																	   int toRowIndex,
+																	   bool lastPage)
+{
+    texTable_in_out.append("\\begin{table*}[!htbp]").append("\n")
+    .append("\\centering").append("\n")
+    .append("\\begin{tabular}")
+    .append("{|");
+
+    int texTableColumnCount = tableStandardItemModel.columnCount() + 1;
+
+    texTable_in_out.append("c|");
+
+    //Tex table header
+    for (int k = 0; k < texTableColumnCount; ++k)
+    {
+        if (columnsToIgnore.contains(k))
+        {
+            continue;
+        }
+
+        if (k == YerothMarchandisesWindow::PDF_LISTING_COLUMN_DESIGNATION ||
+        	k == YerothMarchandisesWindow::PDF_LISTING_COLUMN_CATEGORIE)
+        {
+        	texTable_in_out.append("l|");
+        }
+        else if (k == YerothMarchandisesWindow::PDF_LISTING_COLUMN_REFERENCE)
+        {
+        	texTable_in_out.append("c|");
+        }
+        else
+        {
+        	texTable_in_out.append("r|");
+        }
+    }
+
+    texTable_in_out.append("} \\hline").append("\n");
+
+    /** We add a column named 'id' for numbering the rows
+     * in the Tex table. */
+    unsigned int id = 1;
+    texTable_in_out.append("\\textbf{n\\textsuperscript{o}} & ");
+
+    QStandardItem *item;
+
+    for (int k = 0; k < texTableColumnCount; ++k)
+    {
+        if (columnsToIgnore.contains(k))
+        {
+            continue;
+        }
+
+        item = tableStandardItemModel.horizontalHeaderItem(k);
+        if (item)
+        {
+            QString itemText(item->text().prepend("\\textbf{").append("}"));
+            YerothUtils::handleTexTableItemText(tableStandardItemModel.columnCount(),
+                                   	   	   	    texTable_in_out,
+												k,
+												itemText);
+        }
+    }
+    /** Closing Tex table header */
+    YerothUtils::cleanUpTexTableLastString(texTable_in_out);
+
+    texTable_in_out.append("\\hline\n");
+
+
+    for (int j = 0; j < tableStandardItemModel.rowCount(); ++j)
+    {
+        texTable_in_out.append(QString::number(id));
+        texTable_in_out.append(" &");
+        ++id;
+
+        for (int k = 0; k < tableStandardItemModel.columnCount(); ++k)
+        {
+            if (columnsToIgnore.contains(k))
+            {
+                continue;
+            }
+
+            item = tableStandardItemModel.item(j, k);
+            if (item)
+            {
+                QString itemText(item->text());
+                YerothUtils::handleFactureTexTableItemText(tableStandardItemModel.columnCount(),
+                                              	  	  	   texTable_in_out,
+														   k,
+														   itemText);
+            }
+            else
+            {
+                if (k < tableStandardItemModel.columnCount() - 1)
+                {
+                    texTable_in_out.append("\"\"").append(" &");
+                }
+                else
+                {
+                    texTable_in_out.append("\"\"").append("\\hline\n");
+                }
+            }
+        }
+
+        texTable_in_out = texTable_in_out.trimmed();
+
+        YerothUtils::cleanUpTexTableLastString(texTable_in_out);
+
+        texTable_in_out.append("\\hline\n");
+    }
+
+    //Removes the empty character "" from Latex output
+    texTable_in_out.replace("\"\"", "");
+
+    texTable_in_out.append("\\end{tabular}").append("\n")
+    .append("\\end{table*}").append("\n");
+
+    //qDebug() << "++ texTable_in_out in getStocksListingTexTableString: " << texTable_in_out;
+}
+
+
+void YerothMarchandisesWindow::getMarchandisesTexDocumentString(QString &texDocumentString_in_out,
+        										   	   	   	    QString &printString)
+{
+    texDocumentString_in_out.clear();
+    texDocumentString_in_out.append(YerothUtils::template_marchandises_tex);
+    texDocumentString_in_out.append(printString).append("\n");
+    texDocumentString_in_out.append("\\end{document}");
+}
+
+
 bool YerothMarchandisesWindow::imprimer_document()
 {
     _logger->log("imprimer_document");
@@ -904,8 +1045,8 @@ bool YerothMarchandisesWindow::imprimer_document()
     pdfMerchandiseFileName = YerothUtils::prindDocumentFromTableView(this,
     														   *tableView_marchandises,
 															   tableColumnsToIgnore,
-															   &YerothUtils::getInventoryStocksListingTexTableString,
-															   &YerothUtils::getMarchandisesFRTexDocumentString,
+															   &YerothMarchandisesWindow::getInventoryStocksListingTexTableString,
+															   &YerothMarchandisesWindow::getMarchandisesTexDocumentString,
 															   latexFileNamePrefix);
 #endif
 
@@ -916,8 +1057,8 @@ bool YerothMarchandisesWindow::imprimer_document()
     pdfMerchandiseFileName = YerothUtils::prindDocumentFromTableView(this,
     														   *tableView_marchandises,
 															   tableColumnsToIgnore,
-															   &YerothUtils::getInventoryStocksListingTexTableString,
-															   &YerothUtils::getMarchandisesENTexDocumentString,
+															   &YerothMarchandisesWindow::getInventoryStocksListingTexTableString,
+															   &YerothMarchandisesWindow::getMarchandisesTexDocumentString,
 															   latexFileNamePrefix);
 #endif
 

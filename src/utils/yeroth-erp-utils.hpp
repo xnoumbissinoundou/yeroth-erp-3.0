@@ -278,13 +278,6 @@ public:
 													   int toRowIndex,
 													   bool lastPage);
 
-	static void getInventoryStocksListingTexTableString(QString &texTable_in_out,
-											   	   	    QStandardItemModel &tableStandardItemModel,
-														QList<int> &columnsToIgnore,
-														int fromRowIndex,
-														int toRowIndex,
-														bool lastPage);
-
 	static void getAchatsListingTexTableString(QString &texTable_in_out,
 	        								   QStandardItemModel &tableStandardItemModel,
 											   QList<int> &columnsToIgnore,
@@ -379,12 +372,6 @@ public:
 
 	static void getComptesClientsENTexDocumentString(QString &texDocumentString_in_out,
 			   	   	   	   	   	   	   	   	   	   	 QString &printString);
-
-	static void getMarchandisesFRTexDocumentString(QString &texDocumentString_in_out,
-			   	   	   	   	   	   	   	   	   	   	   	   	 QString &printString);
-
-	static void getMarchandisesENTexDocumentString(QString &texDocumentString_in_out,
-			   	   	   	   	   	   	   	   	   	   	QString &printString);
 
 	static void getAchatsListingFRTexDocumentString(QString &texDocumentString_in_out,
 												  QString &printString);
@@ -621,9 +608,7 @@ public:
 
 	static QString EN_template_comptes_clients_tex;
 
-	static QString FR_template_marchandises_tex;
-
-	static QString EN_template_marchandises_tex;
+	static QString template_marchandises_tex;
 
 	static QString FR_template_lister_achats_tex;
 

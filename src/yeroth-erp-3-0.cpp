@@ -235,12 +235,12 @@ void readTexTemplateFiles(YerothLogger &logger)
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
     QFile fileStockListingFr(FILE_YEROTH_ERP_3_0_TEMPLATE_MARCHANDISES_FR);
-    yeroth_read_file(fileStockListingFr, YerothUtils::FR_template_marchandises_tex);
+    yeroth_read_file(fileStockListingFr, YerothUtils::template_marchandises_tex);
 
 #else //YEROTH_ENGLISH_LANGUAGE
 
     QFile fileStockListingEn(FILE_YEROTH_ERP_3_0_TEMPLATE_MARCHANDISES_EN);
-    yeroth_read_file(fileStockListingEn, YerothUtils::EN_template_marchandises_tex);
+    yeroth_read_file(fileStockListingEn, YerothUtils::template_marchandises_tex);
 
 #endif
 

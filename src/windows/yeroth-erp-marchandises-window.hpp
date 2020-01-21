@@ -84,6 +84,16 @@ public slots:
 
 	bool export_csv_file();
 
+	static void getInventoryStocksListingTexTableString(QString &texTable_in_out,
+											   	   	    QStandardItemModel &tableStandardItemModel,
+														QList<int> &columnsToIgnore,
+														int fromRowIndex,
+														int toRowIndex,
+														bool lastPage);
+
+	static void getMarchandisesTexDocumentString(QString &texDocumentString_in_out,
+			   	   	   	   	   	   	   	   	   	 QString &printString);
+
 	virtual bool imprimer_document();
 
     virtual void afficherMarchandises(YerothSqlTableModel &aYerothSqlTableModel);
@@ -160,6 +170,11 @@ private:
 
     void setupLineEdits();
 
+    static unsigned int PDF_LISTING_COLUMN_REFERENCE;
+
+    static unsigned int PDF_LISTING_COLUMN_DESIGNATION;
+
+    static unsigned int PDF_LISTING_COLUMN_CATEGORIE;
 
     static double 			_totalValeurDinventaire;
 
