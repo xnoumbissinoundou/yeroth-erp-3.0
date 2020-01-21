@@ -223,12 +223,12 @@ void readTexTemplateFiles(YerothLogger &logger)
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
     QFile fileCustomerAccountListingFr(FILE_YEROTH_ERP_3_0_TEMPLATE_COMPTES_CLIENTS_FR);
-    yeroth_read_file(fileCustomerAccountListingFr, YerothUtils::FR_template_comptes_clients_tex);
+    yeroth_read_file(fileCustomerAccountListingFr, YerothUtils::template_comptes_clients_tex);
 
 #else //YEROTH_ENGLISH_LANGUAGE
 
     QFile fileCustomerAccountListingEn(FILE_YEROTH_ERP_3_0_TEMPLATE_COMPTES_CLIENTS_EN);
-    yeroth_read_file(fileCustomerAccountListingEn, YerothUtils::EN_template_comptes_clients_tex);
+    yeroth_read_file(fileCustomerAccountListingEn, YerothUtils::template_comptes_clients_tex);
 
 #endif
 

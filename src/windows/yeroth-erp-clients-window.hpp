@@ -109,6 +109,16 @@ public slots:
 
 	bool export_csv_file();
 
+	static void getComptesClientsListingTexTableString(QString &texTable_in_out,
+	        								   	   	   QStandardItemModel &tableStandardItemModel,
+													   QList<int> &columnsToIgnore,
+													   int fromRowIndex,
+													   int toRowIndex,
+													   bool lastPage);
+
+	static void getComptesClientsTexDocumentString(QString &texDocumentString_in_out,
+			   	   	   	   	   	   	   	   	   	   QString &printString);
+
 	virtual bool imprimer_document();
 
 	inline void setSearchFormSqlTableModel(YerothSqlTableModel *searchFormSqlTableModel)
@@ -179,6 +189,11 @@ private:
 
     void setupLineEditsQCompleters();
 
+    static unsigned int PDF_LISTING_COLUMN_REFERENCE_CLIENT;
+
+    static unsigned int PDF_LISTING_COLUMN_NOM_ENTREPRISE;
+
+    static unsigned int PDF_LISTING_COLUMN_NOM_REPRESENTANT;
 
     static const QString 	_WINDOW_TITLE;
 

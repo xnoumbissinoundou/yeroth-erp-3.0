@@ -1392,18 +1392,12 @@ bool YerothStocksWindow::imprimer_document()
 #ifdef YEROTH_FRANCAIS_LANGUAGE
     latexFileNamePrefix.clear();
     latexFileNamePrefix.append("yeroth-erp-fichier-stocks");
-
-    pdfStockFileName = YerothUtils::prindDocumentFromTableView(this,
-    														   *tableView_stocks,
-															   tableColumnsToIgnore,
-															   &YerothStocksWindow::getStocksListingTexTableString,
-															   &YerothStocksWindow::getStocksListingTexDocumentString,
-															   latexFileNamePrefix);
 #endif
 
 #ifdef YEROTH_ENGLISH_LANGUAGE
     latexFileNamePrefix.clear();
     latexFileNamePrefix.append("yeroth-erp-stocks-listing");
+#endif
 
     pdfStockFileName = YerothUtils::prindDocumentFromTableView(this,
     														   *tableView_stocks,
@@ -1411,7 +1405,6 @@ bool YerothStocksWindow::imprimer_document()
 															   &YerothStocksWindow::getStocksListingTexTableString,
 															   &YerothStocksWindow::getStocksListingTexDocumentString,
 															   latexFileNamePrefix);
-#endif
 
     if (pdfStockFileName.isEmpty())
     {

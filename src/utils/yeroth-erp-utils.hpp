@@ -271,13 +271,6 @@ public:
 											  double montantRecuDuCient = 0.0,
 											  double montantARembourserAuClient = 0.0);
 
-	static void getComptesClientsListingTexTableString(QString &texTable_in_out,
-	        								   	   	   QStandardItemModel &tableStandardItemModel,
-													   QList<int> &columnsToIgnore,
-													   int fromRowIndex,
-													   int toRowIndex,
-													   bool lastPage);
-
 	static void getAchatsListingTexTableString(QString &texTable_in_out,
 	        								   QStandardItemModel &tableStandardItemModel,
 											   QList<int> &columnsToIgnore,
@@ -367,10 +360,7 @@ public:
 	static void getFactureSmallENTexDocumentString(QString &texDocumentString_in_out,
 												   QString &printString);
 
-	static void getComptesClientsFRTexDocumentString(QString &texDocumentString_in_out,
-			   	   	   	   	   	   	   	   	   	   	 QString &printString);
-
-	static void getComptesClientsENTexDocumentString(QString &texDocumentString_in_out,
+	static void getComptesClientsTexDocumentString(QString &texDocumentString_in_out,
 			   	   	   	   	   	   	   	   	   	   	 QString &printString);
 
 	static void getAchatsListingFRTexDocumentString(QString &texDocumentString_in_out,
@@ -604,9 +594,7 @@ public:
 
 	static QString EN_template_sortie_des_stocks_petit_tex;
 
-	static QString FR_template_comptes_clients_tex;
-
-	static QString EN_template_comptes_clients_tex;
+	static QString template_comptes_clients_tex;
 
 	static QString template_marchandises_tex;
 

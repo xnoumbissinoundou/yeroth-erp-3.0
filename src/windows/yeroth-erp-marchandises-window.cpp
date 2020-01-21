@@ -1041,26 +1041,19 @@ bool YerothMarchandisesWindow::imprimer_document()
 #ifdef YEROTH_FRANCAIS_LANGUAGE
     latexFileNamePrefix.clear();
     latexFileNamePrefix.append("yeroth-erp-marchandises");
-
-    pdfMerchandiseFileName = YerothUtils::prindDocumentFromTableView(this,
-    														   *tableView_marchandises,
-															   tableColumnsToIgnore,
-															   &YerothMarchandisesWindow::getInventoryStocksListingTexTableString,
-															   &YerothMarchandisesWindow::getMarchandisesTexDocumentString,
-															   latexFileNamePrefix);
 #endif
 
 #ifdef YEROTH_ENGLISH_LANGUAGE
     latexFileNamePrefix.clear();
     latexFileNamePrefix.append("yeroth-erp-merchandises");
+#endif
 
     pdfMerchandiseFileName = YerothUtils::prindDocumentFromTableView(this,
-    														   *tableView_marchandises,
-															   tableColumnsToIgnore,
-															   &YerothMarchandisesWindow::getInventoryStocksListingTexTableString,
-															   &YerothMarchandisesWindow::getMarchandisesTexDocumentString,
-															   latexFileNamePrefix);
-#endif
+    														   	     *tableView_marchandises,
+																	 tableColumnsToIgnore,
+																	 &YerothMarchandisesWindow::getInventoryStocksListingTexTableString,
+																	 &YerothMarchandisesWindow::getMarchandisesTexDocumentString,
+																	 latexFileNamePrefix);
 
     if (pdfMerchandiseFileName.isEmpty())
     {
