@@ -247,12 +247,12 @@ void readTexTemplateFiles(YerothLogger &logger)
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
     QFile fileListeAchatsFr(FILE_YEROTH_ERP_3_0_TEMPLATE_LISTE_ACHATS_FR);
-    yeroth_read_file(fileListeAchatsFr, YerothUtils::FR_template_lister_achats_tex);
+    yeroth_read_file(fileListeAchatsFr, YerothUtils::template_lister_achats_tex);
 
 #else //YEROTH_ENGLISH_LANGUAGE
 
     QFile fileListeAchatsEn(FILE_YEROTH_ERP_3_0_TEMPLATE_LISTE_ACHATS_EN);
-    yeroth_read_file(fileListeAchatsEn, YerothUtils::EN_template_lister_achats_tex);
+    yeroth_read_file(fileListeAchatsEn, YerothUtils::template_lister_achats_tex);
 
 #endif
 

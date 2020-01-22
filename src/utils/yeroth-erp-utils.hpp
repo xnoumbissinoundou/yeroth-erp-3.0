@@ -271,13 +271,6 @@ public:
 											  double montantRecuDuCient = 0.0,
 											  double montantARembourserAuClient = 0.0);
 
-	static void getAchatsListingTexTableString(QString &texTable_in_out,
-	        								   QStandardItemModel &tableStandardItemModel,
-											   QList<int> &columnsToIgnore,
-											   int fromRowIndex,
-											   int toRowIndex,
-											   bool lastPage);
-
 	/**
 	 * This method is in common used by classes YerothPointDeVenteWindow and
 	 * YerothSortirWindow.
@@ -362,12 +355,6 @@ public:
 
 	static void getComptesClientsTexDocumentString(QString &texDocumentString_in_out,
 			   	   	   	   	   	   	   	   	   	   	 QString &printString);
-
-	static void getAchatsListingFRTexDocumentString(QString &texDocumentString_in_out,
-												  QString &printString);
-
-	static void getAchatsListingENTexDocumentString(QString &texDocumentString_in_out,
-												    QString &printString);
 
 	static QString getFileNameWithCurrentTime(const QString fileName);
 
@@ -598,9 +585,7 @@ public:
 
 	static QString template_marchandises_tex;
 
-	static QString FR_template_lister_achats_tex;
-
-	static QString EN_template_lister_achats_tex;
+	static QString template_lister_achats_tex;
 
 	static QString template_lister_stock_tex;
 

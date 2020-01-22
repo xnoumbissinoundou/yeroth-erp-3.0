@@ -82,6 +82,16 @@ public slots:
 
 	bool export_csv_file();
 
+	static void getAchatsListingTexDocumentString(QString &texDocumentString_in_out,
+												  QString &printString);
+
+	static void getAchatsListingTexTableString(QString &texTable_in_out,
+	        								   QStandardItemModel &tableStandardItemModel,
+											   QList<int> &columnsToIgnore,
+											   int fromRowIndex,
+											   int toRowIndex,
+											   bool lastPage);
+
 	virtual bool imprimer_document();
 
     virtual void afficherAchats(YerothSqlTableModel &achatSqlTableModel);
@@ -144,6 +154,14 @@ private:
 
     	updateLineEditDesignation();
     }
+
+    static unsigned int PDF_LISTING_COLUMN_STOCKS_ID;
+
+    static unsigned int PDF_LISTING_COLUMN_REFERENCE;
+
+    static unsigned int PDF_LISTING_COLUMN_DESIGNATION;
+
+    static unsigned int PDF_LISTING_COLUMN_CATEGORIE;
 
     static const QString 	_WINDOW_TITLE;
 
