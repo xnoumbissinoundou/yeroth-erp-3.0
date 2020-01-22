@@ -682,13 +682,8 @@ bool YerothPaiementsWindow::imprimer_document()
 
     YerothUtils::getCurrentLocaleDate(factureDate);
 
-#ifdef YEROTH_FRANCAIS_LANGUAGE
-    YerothUtils::getTexLandscapePaymentsFRDocumentString(texDocument, texTable);
-#endif
 
-#ifdef YEROTH_ENGLISH_LANGUAGE
-    YerothUtils::getTexLandscapePaymentsENDocumentString(texDocument, texTable);
-#endif
+    YerothUtils::getTexLandscapePaymentsDocumentString(texDocument, texTable);
 
 
     texDocument.replace("YEROTHPAPERSPEC", "a4paper");

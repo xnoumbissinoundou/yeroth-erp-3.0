@@ -91,17 +91,11 @@ QString YerothUtils::template_bilan_comptable_tex("");
 
 QString YerothUtils::template_fiche_client_tex("");
 
-QString YerothUtils::FR_template_historique_dun_stock_tex("");
+QString YerothUtils::template_historique_dun_stock_tex("");
 
-QString YerothUtils::EN_template_historique_dun_stock_tex("");
+QString YerothUtils::template_journal_des_paiements_tex("");
 
-QString YerothUtils::FR_template_journal_des_paiements_tex("");
-
-QString YerothUtils::EN_template_journal_des_paiements_tex("");
-
-QString YerothUtils::FR_template_journal_des_ventes_tex("");
-
-QString YerothUtils::EN_template_journal_des_ventes_tex("");
+QString YerothUtils::template_journal_des_ventes_tex("");
 
 QString YerothUtils::FR_template_journal_des_transactions_tex("");
 
@@ -1981,40 +1975,21 @@ void YerothUtils::refreshSalesStrategy(YerothSqlTableModel &curStocksTableModel,
 }
 
 
-void YerothUtils::getLatexStockHistoryFR(QString &texDocumentString_in_out,
-									   	 QString &printString)
+void YerothUtils::getLatexStockHistory(QString &texDocumentString_in_out,
+									   QString &printString)
 {
     texDocumentString_in_out.clear();
-    texDocumentString_in_out.append(FR_template_historique_dun_stock_tex);
+    texDocumentString_in_out.append(template_historique_dun_stock_tex);
     texDocumentString_in_out.append(printString).append("\n");
     texDocumentString_in_out.append("\\end{document}");
 }
 
 
-void YerothUtils::getLatexStockHistoryEN(QString &texDocumentString_in_out,
-        								 QString &printString)
+void YerothUtils::getTexLandscapePaymentsDocumentString(QString &texDocumentString_in_out,
+														QString &printString)
 {
     texDocumentString_in_out.clear();
-    texDocumentString_in_out.append(EN_template_historique_dun_stock_tex);
-    texDocumentString_in_out.append(printString).append("\n");
-    texDocumentString_in_out.append("\\end{document}");
-}
-
-
-void YerothUtils::getTexLandscapePaymentsFRDocumentString(QString &texDocumentString_in_out,
-														  QString &printString)
-{
-    texDocumentString_in_out.clear();
-    texDocumentString_in_out.append(FR_template_journal_des_paiements_tex);
-    texDocumentString_in_out.append(printString).append("\n");
-    texDocumentString_in_out.append("\\end{document}");
-}
-
-void YerothUtils::getTexLandscapePaymentsENDocumentString(QString &texDocumentString_in_out,
-        												  QString &printString)
-{
-    texDocumentString_in_out.clear();
-    texDocumentString_in_out.append(EN_template_journal_des_paiements_tex);
+    texDocumentString_in_out.append(template_journal_des_paiements_tex);
     texDocumentString_in_out.append(printString).append("\n");
     texDocumentString_in_out.append("\\end{document}");
 }
@@ -2024,19 +1999,11 @@ void YerothUtils::getTexLandscapeSellingDocumentString(QString &texDocumentStrin
         QString &printString)
 {
     texDocumentString_in_out.clear();
-    texDocumentString_in_out.append(FR_template_journal_des_ventes_tex);
+    texDocumentString_in_out.append(template_journal_des_ventes_tex);
     texDocumentString_in_out.append(printString).append("\n");
     texDocumentString_in_out.append("\\end{document}");
 }
 
-void YerothUtils::getTexLandscapeENDocumentString(QString &texDocumentString_in_out,
-        QString &printString)
-{
-    texDocumentString_in_out.clear();
-    texDocumentString_in_out.append(EN_template_journal_des_ventes_tex);
-    texDocumentString_in_out.append(printString).append("\n");
-    texDocumentString_in_out.append("\\end{document}");
-}
 
 void YerothUtils::getTexLandscapeFROutgoingDocumentString(QString &texDocumentString_in_out,
         QString &printString)

@@ -175,36 +175,36 @@ void readTexTemplateFiles(YerothLogger &logger)
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
     QFile fileStockHistory(FILE_YEROTH_ERP_3_0_TEMPLATE_HISTORIQUE_DUN_STOCK_FR);
-    yeroth_read_file(fileStockHistory, YerothUtils::FR_template_historique_dun_stock_tex);
+    yeroth_read_file(fileStockHistory, YerothUtils::template_historique_dun_stock_tex);
 
 #else //YEROTH_ENGLISH_LANGUAGE
 
     QFile fileStockHistoryEN(FILE_YEROTH_ERP_3_0_TEMPLATE_HISTORIQUE_DUN_STOCK_EN);
-    yeroth_read_file(fileStockHistoryEN, YerothUtils::EN_template_historique_dun_stock_tex);
+    yeroth_read_file(fileStockHistoryEN, YerothUtils::template_historique_dun_stock_tex);
 
 #endif
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
     QFile filePayments(FILE_YEROTH_ERP_3_0_TEMPLATE_LISTING_PAYMENTS_FR);
-    yeroth_read_file(filePayments, YerothUtils::FR_template_journal_des_paiements_tex);
+    yeroth_read_file(filePayments, YerothUtils::template_journal_des_paiements_tex);
 
 #else //YEROTH_ENGLISH_LANGUAGE
 
     QFile filePaymentsEn(FILE_YEROTH_ERP_3_0_TEMPLATE_LISTING_PAYMENTS_EN);
-    yeroth_read_file(filePaymentsEn, YerothUtils::EN_template_journal_des_paiements_tex);
+    yeroth_read_file(filePaymentsEn, YerothUtils::template_journal_des_paiements_tex);
 
 #endif
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
     QFile fileLandscape(FILE_YEROTH_ERP_3_0_TEMPLATE_LISTING_SALES_FR);
-    yeroth_read_file(fileLandscape, YerothUtils::FR_template_journal_des_ventes_tex);
+    yeroth_read_file(fileLandscape, YerothUtils::template_journal_des_ventes_tex);
 
 #else //YEROTH_ENGLISH_LANGUAGE
 
     QFile fileLandscapeEn(FILE_YEROTH_ERP_3_0_TEMPLATE_LISTING_SALES_EN);
-    yeroth_read_file(fileLandscapeEn, YerothUtils::EN_template_journal_des_ventes_tex);
+    yeroth_read_file(fileLandscapeEn, YerothUtils::template_journal_des_ventes_tex);
 
 #endif
 

@@ -829,13 +829,8 @@ bool YerothVentesWindow::imprimer_document()
     QString factureDate(YerothUtils::handleForeignAccents(infoEntreprise.getVilleTex()));
     YerothUtils::getCurrentLocaleDate(factureDate);
 
-#ifdef YEROTH_FRANCAIS_LANGUAGE
-    YerothUtils::getTexLandscapeSellingDocumentString(texDocument, texTable);
-#endif
 
-#ifdef YEROTH_ENGLISH_LANGUAGE
-    YerothUtils::getTexLandscapeENDocumentString(texDocument, texTable);
-#endif
+    YerothUtils::getTexLandscapeSellingDocumentString(texDocument, texTable);
 
 
     texDocument.replace("YEROTHPAPERSPEC", "a4paper");

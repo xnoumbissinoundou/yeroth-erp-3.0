@@ -317,23 +317,14 @@ public:
 	static void getSortieDesStocksSmallENTexDocumentString(QString &texDocumentString_in_out,
 												   	       QString &printString);
 
-	static void getLatexStockHistoryFR(QString &texDocumentString_in_out,
-									   QString &printString);
+	static void getLatexStockHistory(QString &texDocumentString_in_out,
+									 QString &printString);
 
-	static void getLatexStockHistoryEN(QString &texDocumentString_in_out,
-	        						   QString &printString);
-
-	static void getTexLandscapePaymentsFRDocumentString(QString &texDocumentString_in_out,
-														QString &printString);
-
-	static void getTexLandscapePaymentsENDocumentString(QString &texDocumentString_in_out,
-	        											QString &printString);
+	static void getTexLandscapePaymentsDocumentString(QString &texDocumentString_in_out,
+													  QString &printString);
 
 	static void getTexLandscapeSellingDocumentString(QString &texDocumentString_in_out,
-								  	 	 	  QString &printString);
-
-	static void getTexLandscapeENDocumentString(QString &texDocumentString_in_out,
-								  	 	 	    QString &printString);
+								  	 	 	  	  	 QString &printString);
 
 	static void getTexLandscapeFROutgoingDocumentString(QString &texDocumentString_in_out,
 													  QString &printString);
@@ -557,17 +548,11 @@ public:
 
 	static QString template_fiche_client_tex;
 
-	static QString FR_template_historique_dun_stock_tex;
+	static QString template_historique_dun_stock_tex;
 
-	static QString EN_template_historique_dun_stock_tex;
+	static QString template_journal_des_paiements_tex;
 
-	static QString FR_template_journal_des_paiements_tex;
-
-	static QString EN_template_journal_des_paiements_tex;
-
-	static QString FR_template_journal_des_ventes_tex;
-
-	static QString EN_template_journal_des_ventes_tex;
+	static QString template_journal_des_ventes_tex;
 
 	static QString FR_template_journal_des_transactions_tex;
 
