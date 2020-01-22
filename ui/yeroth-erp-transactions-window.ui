@@ -2682,9 +2682,9 @@
    <widget class="QLabel" name="label_transactions_quantite_vendue_2">
     <property name="geometry">
      <rect>
-      <x>483</x>
+      <x>443</x>
       <y>366</y>
-      <width>111</width>
+      <width>151</width>
       <height>21</height>
      </rect>
     </property>
