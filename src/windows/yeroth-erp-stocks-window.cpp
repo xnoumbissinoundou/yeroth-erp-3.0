@@ -1290,12 +1290,19 @@ bool YerothStocksWindow::export_csv_file()
         return false;
     }
 
-    QList < int >columnsToIgnore;
+    QList<int> columnsToIgnore;
 
-    columnsToIgnore << 0 << 4 << 9
-                    << 11 << 14 << 15
-					<< 16 << 17 << 18
-					<< 20;
+    QMapIterator<QString, int> it(_toSelectDBFieldNameStrToDBColumnIndex);
+
+    while (it.hasNext())
+    {
+    	it.next();
+
+    	if (!_visibleDBFieldColumnStrList.contains(it.key()))
+    	{
+    		columnsToIgnore.append(it.value());
+    	}
+    }
 
     int tableModelRowCount = tableModel->rowCount();
     int tableModelColumnCount = tableModel->columnCount();
@@ -1431,7 +1438,7 @@ void YerothStocksWindow::getStocksListingTexTableString(QString &texTable_in_out
     texTable_in_out.append("c|");
 
     //Tex table header
-    for (int k = 1; k < texTableColumnCount; ++k)
+    for (int k = 0; k < texTableColumnCount; ++k)
     {
         if (columnsToIgnore.contains(k))
         {
@@ -1548,11 +1555,17 @@ bool YerothStocksWindow::imprimer_document()
 
     QList<int> tableColumnsToIgnore;
 
-    tableColumnsToIgnore << 0 << 4 << 9
-                    	 << 10 << 11 << 15
-						 << 14 << 15 << 16
-						 << 17 << 18 << 19
-						 << 20 << 21;
+    QMapIterator<QString, int> it(_toSelectDBFieldNameStrToDBColumnIndex);
+
+    while (it.hasNext())
+    {
+    	it.next();
+
+    	if (!_visibleDBFieldColumnStrList.contains(it.key()))
+    	{
+    		tableColumnsToIgnore.append(it.value());
+    	}
+    }
 
     QString pdfStockFileName;
 
