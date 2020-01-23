@@ -67,6 +67,10 @@ YerothERPClientsWindow::YerothERPClientsWindow()
 
     _logger->log("YerothInventaireDesStocksWindow");
 
+    setupSelectDBFields(_allWindows->CLIENTS);
+
+    reinitialiser_champs_db_visibles();
+
     _curClientsTableModel = &_allWindows->getSqlTableModel_clients();
 
     _searchClientsWidget = new YerothSearchForm(_allWindows, *this, &_allWindows->getSqlTableModel_clients());
@@ -107,6 +111,10 @@ YerothERPClientsWindow::YerothERPClientsWindow()
 
 
     //Menu actions
+    connect(actionReinitialiserChampsDBVisible, SIGNAL(triggered()), this, SLOT(slot_reinitialiser_champs_db_visibles()));
+
+    connect(actionChampsDBVisible, SIGNAL(triggered()), this, SLOT(selectionner_champs_db_visibles()));
+
     connect(actionChanger_utilisateur, SIGNAL(triggered()), this, SLOT(changer_utilisateur()));
     connect(actionAppeler_aide, SIGNAL(triggered()), this, SLOT(help()));
     connect(actionDeconnecter_utilisateur, SIGNAL(triggered()), this, SLOT(deconnecter_utilisateur()));
@@ -154,6 +162,26 @@ YerothERPClientsWindow::~YerothERPClientsWindow()
     delete _searchClientsWidget;
     delete _pushButton_filtrer_font;
     delete _logger;
+}
+
+
+void YerothERPClientsWindow::slot_reinitialiser_champs_db_visibles()
+{
+	reinitialiser_champs_db_visibles();
+	afficherClients();
+}
+
+
+void YerothERPClientsWindow::reinitialiser_champs_db_visibles()
+{
+	_visibleDBFieldColumnStrList.clear();
+
+    _visibleDBFieldColumnStrList
+    		<< YerothDatabaseTableColumn::REFERENCE_CLIENT
+			<< YerothDatabaseTableColumn::NOM_ENTREPRISE
+			<< YerothDatabaseTableColumn::NOM_REPRESENTANT
+			<< YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT
+			<< YerothDatabaseTableColumn::COMPTE_CLIENT;
 }
 
 
@@ -905,19 +933,7 @@ void YerothERPClientsWindow::afficherClients(YerothSqlTableModel &clientSqlTable
 
     tableView_clients->lister_les_elements_du_tableau(clientSqlTableModel);
 
-    tableView_clients->hideColumn(0);
-    tableView_clients->hideColumn(4);
-    tableView_clients->hideColumn(5);
-    tableView_clients->hideColumn(6);
-    tableView_clients->hideColumn(7);
-    tableView_clients->hideColumn(8);
-    tableView_clients->hideColumn(9);
-    tableView_clients->hideColumn(10);
-    tableView_clients->hideColumn(11);
-    tableView_clients->hideColumn(12);
-    tableView_clients->hideColumn(13);
-    tableView_clients->hideColumn(14);
-    tableView_clients->hideColumn(15);
+    tableView_show_or_hide_columns(*tableView_clients);
 
     int rowCount = clientSqlTableModel.rowCount();
 
@@ -938,8 +954,6 @@ void YerothERPClientsWindow::afficherClients(YerothSqlTableModel &clientSqlTable
     }
 
     lineEdit_debit_total->setText(GET_CURRENCY_STRING_NUM(totalCredit));
-
-    tableView_clients->selectRow(tableView_clients->lastSelectedRow());
 }
 
 
@@ -957,10 +971,7 @@ bool YerothERPClientsWindow::export_csv_file()
 
 	QList<int> tableColumnsToIgnore;
 
-    tableColumnsToIgnore << 0 << 4 << 5 << 6
-    					 << 7 << 8 << 9 << 10
-						 << 11 << 12 << 13 << 14
-						 << 15;
+	fill_table_columns_to_ignore(tableColumnsToIgnore);
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 	success = YerothUtils::export_csv_file(*this,
@@ -1134,10 +1145,7 @@ bool YerothERPClientsWindow::imprimer_document()
 
     QList<int> tableColumnsToIgnore;
 
-    tableColumnsToIgnore << 0 << 4 << 5 << 6
-    					 << 7 << 8 << 9 << 10
-						 << 11 << 12 << 13 << 14
-						 << 15;
+    fill_table_columns_to_ignore(tableColumnsToIgnore);
 
     QString pdfStockFileName;
 

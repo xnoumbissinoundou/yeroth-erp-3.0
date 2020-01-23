@@ -142,7 +142,13 @@ public slots:
 
     void afficher_nom_entreprise_selectioner(const QString &nomEntreprise);
 
+protected slots:
+
+    virtual void slot_reinitialiser_champs_db_visibles();
+
 protected:
+
+    virtual void reinitialiser_champs_db_visibles();
 
     void contextMenuEvent(QContextMenuEvent *event);
 
