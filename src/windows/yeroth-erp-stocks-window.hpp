@@ -159,8 +159,6 @@ public slots:
 
 private slots:
 
-	virtual void slot_reinitialiser_champs_db_visibles();
-
 	void private_slot_afficher_historique_du_stock();
 
 	bool filtrer_stocks_perimes_seulement();
@@ -172,15 +170,19 @@ private slots:
 		lineEdit_recherche_reference->setFocus();
 	}
 
+protected slots:
+
+	virtual void slot_reinitialiser_champs_db_visibles();
+
 protected:
+
+	virtual void reinitialiser_champs_db_visibles();
 
     void contextMenuEvent(QContextMenuEvent *event);
 
     virtual void hideEvent(QHideEvent * hideEvent);
 
     virtual void setupShortcuts();
-
-    virtual void reinitialiser_champs_db_visibles();
 
 private:
 

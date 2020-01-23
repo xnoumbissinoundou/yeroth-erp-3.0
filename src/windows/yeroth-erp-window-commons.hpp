@@ -184,6 +184,14 @@ public slots:
 
 protected slots:
 
+	/**
+	 * Ce 'slot' est suppose reinitialiser les chanps
+	 * du tableau de la base de donnees et, enfin,
+	 * actualiser la nouvelle vue du tableau.
+	 *
+	 * Exemple d'implementation standard dans la classe
+	 * 'YerothStocksWindow'.
+	 */
 	inline virtual void slot_reinitialiser_champs_db_visibles()
 	{
 		reinitialiser_champs_db_visibles();

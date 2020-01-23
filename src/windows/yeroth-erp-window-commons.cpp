@@ -226,7 +226,7 @@ void YerothWindowsCommons::selectionner_champs_db_visibles()
 
 	_selectExportDBQDialog->setFixedSize(205, dialogBoxHeight);
 
-	_selectExportDBQDialog->showAsModalDialogWithParent(*_allWindows->_stocksWindow);
+	_selectExportDBQDialog->showAsModalDialogWithParent(*this);
 }
 
 

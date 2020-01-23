@@ -249,13 +249,6 @@ bool YerothStocksWindow::SQL_TABLE_STOCKS_VENDU_EMPTY()
 }
 
 
-void YerothStocksWindow::slot_reinitialiser_champs_db_visibles()
-{
-	reinitialiser_champs_db_visibles();
-	afficherStocks();
-}
-
-
 void YerothStocksWindow::private_slot_afficher_historique_du_stock()
 {
 	//qDebug() << QString("YerothStocksWindow | private_slot_afficher_historique_du_stock");
@@ -387,21 +380,10 @@ bool YerothStocksWindow::filtrer_stocks()
 }
 
 
-void YerothStocksWindow::reinitialiser_champs_db_visibles()
+void YerothStocksWindow::slot_reinitialiser_champs_db_visibles()
 {
-	_visibleDBFieldColumnStrList.clear();
-
-    _visibleDBFieldColumnStrList
-    		<< YerothDatabaseTableColumn::ID
-			<< YerothDatabaseTableColumn::REFERENCE
-			<< YerothDatabaseTableColumn::DESIGNATION
-			<< YerothDatabaseTableColumn::CATEGORIE
-			<< YerothDatabaseTableColumn::PRIX_UNITAIRE
-			<< YerothDatabaseTableColumn::TVA
-			<< YerothDatabaseTableColumn::PRIX_VENTE
-			<< YerothDatabaseTableColumn::QUANTITE_TOTAL
-			<< YerothDatabaseTableColumn::DATE_ENTREE
-			<< YerothDatabaseTableColumn::DATE_PEREMPTION;
+	reinitialiser_champs_db_visibles();
+	afficherStocks();
 }
 
 
@@ -539,6 +521,24 @@ void YerothStocksWindow::setupShortcuts()
     actionRechercher->setShortcut(YerothUtils::RECHERCHER_QKEYSEQUENCE);
 
     actionReinitialiserRecherche->setShortcut(YerothUtils::REINITIALISER_RECHERCHE_QKEYSEQUENCE);
+}
+
+
+void YerothStocksWindow::reinitialiser_champs_db_visibles()
+{
+	_visibleDBFieldColumnStrList.clear();
+
+    _visibleDBFieldColumnStrList
+    		<< YerothDatabaseTableColumn::ID
+			<< YerothDatabaseTableColumn::REFERENCE
+			<< YerothDatabaseTableColumn::DESIGNATION
+			<< YerothDatabaseTableColumn::CATEGORIE
+			<< YerothDatabaseTableColumn::PRIX_UNITAIRE
+			<< YerothDatabaseTableColumn::TVA
+			<< YerothDatabaseTableColumn::PRIX_VENTE
+			<< YerothDatabaseTableColumn::QUANTITE_TOTAL
+			<< YerothDatabaseTableColumn::DATE_ENTREE
+			<< YerothDatabaseTableColumn::DATE_PEREMPTION;
 }
 
 
