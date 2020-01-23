@@ -9518,10 +9518,10 @@ background-color: rgb(0, 0, 0); </string>
     <addaction name="separator"/>
     <addaction name="actionAlertes"/>
     <addaction name="separator"/>
-    <addaction name="actionAfficher_les_stocks_perimes"/>
-    <addaction name="separator"/>
     <addaction name="actionReinitialiserChampsDBVisible"/>
     <addaction name="actionChampsDBVisible"/>
+    <addaction name="separator"/>
+    <addaction name="actionAfficher_les_stocks_perimes"/>
     <addaction name="separator"/>
     <addaction name="actionExporter_au_format_csv"/>
     <addaction name="separator"/>

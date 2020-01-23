@@ -22,8 +22,6 @@
 #include "yeroth-erp-window-commons.hpp"
 
 
-class YerothSelectDBQCheckBox;
-class YerothERPGenericSelectDBFieldDialog;
 class YerothPOSDialogCommons;
 class QStandardItemModel;
 class QContextMenuEvent;
@@ -82,8 +80,6 @@ public slots:
 	{
 		YerothWindowsCommons::apropos(this);
 	}
-
-	void setupSelectDBFields();
 
 	inline virtual void help()
 	{
@@ -163,9 +159,7 @@ public slots:
 
 private slots:
 
-	void slot_reinitialiser_champs_db_visibles();
-
-	void selectionner_champs_db_visibles();
+	virtual void slot_reinitialiser_champs_db_visibles();
 
 	void private_slot_afficher_historique_du_stock();
 
@@ -186,9 +180,10 @@ protected:
 
     virtual void setupShortcuts();
 
+    virtual void reinitialiser_champs_db_visibles();
+
 private:
 
-	void reinitialiser_champs_db_visibles();
 
     typedef enum enum_comboBoxStrategyIndex
 	{
@@ -217,15 +212,9 @@ private:
 
     static const QString 	_WINDOW_TITLE;
 
-    QStringList				_visibleDBFieldColumnStrList;
 
-    QVector<YerothSelectDBQCheckBox *> _visibleQCheckboxs;
-
-    QMap<QString, int>		_toSelectDBFieldNameStrToDBColumnIndex;
 
     YerothLogger			*_logger;
-
-    YerothERPGenericSelectDBFieldDialog  *_selectExportDBQDialog;
 
     QStringList				_historiqueStock;
 

@@ -4,11 +4,19 @@
  */
 #include "yeroth-erp-window-commons.hpp"
 
+
+#include "src/widgets/yeroth-erp-select-db-qcheckbox.hpp"
+
+#include "src/dialogs/yeroth-erp-generic-select-db-field-dialog.hpp"
+
 #include "src/users/yeroth-erp-user-manager.hpp"
 
 #include "src/yeroth-erp-windows.hpp"
 
 #include "src/users/yeroth-erp-users.hpp"
+
+
+#include <QtSql/QSqlQuery>
 
 #include <QtCore/QProcess>
 
@@ -168,6 +176,106 @@ void YerothWindowsCommons::administration()
 {
     this->rendreInvisible();
     _allWindows->_adminWindow->rendreVisible(_curStocksTableModel);
+}
+
+
+void YerothWindowsCommons::selectionner_champs_db_visibles()
+{
+	unsigned int toSelectDBFieldNameStrSize = _toSelectDBFieldNameStrToDBColumnIndex.size();
+
+	if (_visibleDBFieldColumnStrList.size() >= 0)
+	{
+		_visibleQCheckboxs.clear();
+		_visibleQCheckboxs.resize(_visibleDBFieldColumnStrList.size());
+	}
+
+	unsigned int dialogBoxHeight = (toSelectDBFieldNameStrSize * 30);
+
+	unsigned int checkBox_X = 7;
+	unsigned int checkBox_Y = 3;
+
+	YerothSelectDBQCheckBox *aQCheckBox = 0;
+
+	for(unsigned int k = 0; k < toSelectDBFieldNameStrSize; ++k)
+	{
+		if (k > 0)
+		{
+			checkBox_Y = checkBox_Y + 30;
+		}
+
+		aQCheckBox = new YerothSelectDBQCheckBox(_selectExportDBQDialog, &_visibleDBFieldColumnStrList);
+
+		QString dbFieldName(_toSelectDBFieldNameStrToDBColumnIndex.key(k));
+
+		aQCheckBox->setObjectName(dbFieldName);
+
+		aQCheckBox->setGeometry(QRect(checkBox_X, checkBox_Y, 200, 25));
+
+		aQCheckBox->setText(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(dbFieldName));
+
+		if (_visibleDBFieldColumnStrList.contains(dbFieldName))
+		{
+			aQCheckBox->setChecked(true);
+		}
+
+		connect(aQCheckBox, SIGNAL(clicked(bool)),
+				aQCheckBox, SLOT(handle_visible_db_field_checkBox(bool)));
+
+		_visibleQCheckboxs.append(aQCheckBox);
+	}
+
+	_selectExportDBQDialog->setFixedSize(205, dialogBoxHeight);
+
+	_selectExportDBQDialog->showAsModalDialogWithParent(*_allWindows->_stocksWindow);
+}
+
+
+void YerothWindowsCommons::setupSelectDBFields(QString aSqlTableName)
+{
+	_selectExportDBQDialog = new YerothERPGenericSelectDBFieldDialog(_allWindows, this);
+
+	if ( 0!= getQMainWindowToolBar())
+	{
+		_selectExportDBQDialog->setPalette(getQMainWindowToolBar()->palette());
+	}
+
+	_selectExportDBQDialog->setStyleSheet(qMessageBoxStyleSheet());
+
+	QString strShowColumnQuery(QString("SHOW COLUMNS FROM %1")
+									.arg(aSqlTableName));
+
+	QSqlQuery query;
+
+	int querySize = YerothUtils::execQuery(query, strShowColumnQuery);
+
+//	qDebug() << QString("++ size: %1")
+//					.arg(QString::number(querySize));
+
+	unsigned int columnIdx = -1;
+
+	unsigned int vectorSize = 0;
+
+	for( unsigned int k = 0; k < querySize && query.next(); ++k)
+	{
+		QString type(query.value(1).toString());
+
+		columnIdx = columnIdx + 1;
+
+		if (type.contains("int(") 		||
+			type.contains("double") 	||
+			type.contains("date") 		||
+			type.contains("blob") 		||
+			type.contains("varchar("))
+		{
+			QString fieldName(query.value(0).toString());
+
+			if (!fieldName.isEmpty())
+			{
+				_toSelectDBFieldNameStrToDBColumnIndex.insert(fieldName, columnIdx);
+//				qDebug() << "++ str: " <<  query.value(0).toString();
+			}
+		}
+	}
 }
 
 

@@ -19,7 +19,11 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMessageBox>
 
+
+class YerothSelectDBQCheckBox;
+class YerothERPGenericSelectDBFieldDialog;
 class YerothERPWindows;
+
 
 class YerothWindowsCommons : public QMainWindow
 {
@@ -30,7 +34,8 @@ public:
 	YEROTH_CLASS_OPERATORS
 
 	inline YerothWindowsCommons(QString windowName)
-	:_curStocksTableModel(0),
+	:_selectExportDBQDialog(0),
+	 _curStocksTableModel(0),
 	 _windowName(windowName)
 	{
 		QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}")
@@ -150,6 +155,8 @@ public slots:
 
 	virtual void administration();
 
+	virtual void setupSelectDBFields(QString aSqlTableName);
+
 	virtual void qui_suis_je();
 
 	inline virtual bool imprimer_document()
@@ -175,7 +182,20 @@ public slots:
 
     inline virtual void help(){}
 
+protected slots:
+
+	inline virtual void slot_reinitialiser_champs_db_visibles()
+	{
+		reinitialiser_champs_db_visibles();
+	}
+
+	virtual void selectionner_champs_db_visibles();
+
 protected:
+
+	inline virtual void reinitialiser_champs_db_visibles()
+	{
+	}
 
 	void mySetupUi(QMainWindow *aWindow);
 
@@ -195,6 +215,16 @@ protected:
     {
     	anAction.setShortcut(YerothUtils::REINITIALISER_QUI_SUI_JE_QKEYSEQUENCE);
     }
+
+
+    QMap<QString, int>					_toSelectDBFieldNameStrToDBColumnIndex;
+
+    QStringList							_visibleDBFieldColumnStrList;
+
+    QVector<YerothSelectDBQCheckBox *> 	_visibleQCheckboxs;
+
+    YerothERPGenericSelectDBFieldDialog  *_selectExportDBQDialog;
+
 
     static YerothERPWindows		*_allWindows;
 

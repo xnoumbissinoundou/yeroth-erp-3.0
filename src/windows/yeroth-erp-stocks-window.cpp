@@ -20,10 +20,6 @@
 
 #include "src/utils/yeroth-erp-config.hpp"
 
-#include "src/widgets/yeroth-erp-select-db-qcheckbox.hpp"
-
-#include "src/dialogs/yeroth-erp-generic-select-db-field-dialog.hpp"
-
 #include "src/windows/yeroth-erp-search-form.hpp"
 
 #include "src/utils/yeroth-erp-database-table-column.hpp"
@@ -71,7 +67,6 @@ QObject::trUtf8("fiche des stocks")));
 YerothStocksWindow::YerothStocksWindow()
     :YerothWindowsCommons(YerothStocksWindow::_WINDOW_TITLE),
      _logger(new YerothLogger("YerothStocksWindow")),
-	 _selectExportDBQDialog(0),
 	 _currentlyFiltered(false),
 	 _actionRechercheArticleCodebar(0),
      _aProcess(0),
@@ -92,7 +87,7 @@ YerothStocksWindow::YerothStocksWindow()
 
     _logger->log("YerothStocksWindow");
 
-    setupSelectDBFields();
+    setupSelectDBFields(_allWindows->STOCKS);
 
     reinitialiser_champs_db_visibles();
 
@@ -258,57 +253,6 @@ void YerothStocksWindow::slot_reinitialiser_champs_db_visibles()
 {
 	reinitialiser_champs_db_visibles();
 	afficherStocks();
-}
-
-
-void YerothStocksWindow::selectionner_champs_db_visibles()
-{
-	unsigned int toSelectDBFieldNameStrSize = _toSelectDBFieldNameStrToDBColumnIndex.size();
-
-	if (_visibleDBFieldColumnStrList.size() >= 0)
-	{
-		_visibleQCheckboxs.clear();
-		_visibleQCheckboxs.resize(_visibleDBFieldColumnStrList.size());
-	}
-
-	unsigned int dialogBoxHeight = (toSelectDBFieldNameStrSize * 30);
-
-	unsigned int checkBox_X = 7;
-	unsigned int checkBox_Y = 3;
-
-	YerothSelectDBQCheckBox *aQCheckBox = 0;
-
-	for(unsigned int k = 0; k < toSelectDBFieldNameStrSize; ++k)
-	{
-		if (k > 0)
-		{
-			checkBox_Y = checkBox_Y + 30;
-		}
-
-		aQCheckBox = new YerothSelectDBQCheckBox(_selectExportDBQDialog, &_visibleDBFieldColumnStrList);
-
-		QString dbFieldName(_toSelectDBFieldNameStrToDBColumnIndex.key(k));
-
-		aQCheckBox->setObjectName(dbFieldName);
-
-		aQCheckBox->setGeometry(QRect(checkBox_X, checkBox_Y, 200, 25));
-
-		aQCheckBox->setText(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(dbFieldName));
-
-		if (_visibleDBFieldColumnStrList.contains(dbFieldName))
-		{
-			aQCheckBox->setChecked(true);
-		}
-
-		connect(aQCheckBox, SIGNAL(clicked(bool)),
-				aQCheckBox, SLOT(handle_visible_db_field_checkBox(bool)));
-
-		_visibleQCheckboxs.append(aQCheckBox);
-	}
-
-	_selectExportDBQDialog->setFixedSize(205, dialogBoxHeight);
-
-	_selectExportDBQDialog->showAsModalDialogWithParent(*_allWindows->_stocksWindow);
 }
 
 
@@ -702,52 +646,6 @@ void YerothStocksWindow::rendreInvisible()
 {
     lineEdit_recherche_reference->clear();
     YerothWindowsCommons::rendreInvisible();
-}
-
-
-void YerothStocksWindow::setupSelectDBFields()
-{
-	_selectExportDBQDialog = new YerothERPGenericSelectDBFieldDialog(_allWindows, this);
-
-	_selectExportDBQDialog->setPalette(getQMainWindowToolBar()->palette());
-
-	_selectExportDBQDialog->setStyleSheet(qMessageBoxStyleSheet());
-
-	QString strShowColumnQuery(QString("SHOW COLUMNS FROM %1")
-									.arg(_allWindows->STOCKS));
-
-	QSqlQuery query;
-
-	int querySize = YerothUtils::execQuery(query, strShowColumnQuery, _logger);
-
-//	qDebug() << QString("++ size: %1")
-//					.arg(QString::number(querySize));
-
-	unsigned int columnIdx = -1;
-
-	unsigned int vectorSize = 0;
-
-	for( unsigned int k = 0; k < querySize && query.next(); ++k)
-	{
-		QString type(query.value(1).toString());
-
-		columnIdx = columnIdx + 1;
-
-		if (type.contains("int(") 		||
-			type.contains("double") 	||
-			type.contains("date") 		||
-			type.contains("blob") 		||
-			type.contains("varchar("))
-		{
-			QString fieldName(query.value(0).toString());
-
-			if (!fieldName.isEmpty())
-			{
-				_toSelectDBFieldNameStrToDBColumnIndex.insert(fieldName, columnIdx);
-//				qDebug() << "++ str: " <<  query.value(0).toString();
-			}
-		}
-	}
 }
 
 
