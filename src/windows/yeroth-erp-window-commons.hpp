@@ -184,6 +184,8 @@ public slots:
 
 protected slots:
 
+	virtual void tableView_show_or_hide_columns(YerothTableView &tableView_in_out);
+
 	/**
 	 * Ce 'slot' est suppose reinitialiser les chanps
 	 * du tableau de la base de donnees et, enfin,
@@ -200,6 +202,8 @@ protected slots:
 	virtual void selectionner_champs_db_visibles();
 
 protected:
+
+	virtual void fill_table_columns_to_ignore(QList<int> &tableColumnsToIgnore_in_out);
 
 	inline virtual void reinitialiser_champs_db_visibles()
 	{

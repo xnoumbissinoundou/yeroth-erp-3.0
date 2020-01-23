@@ -66,6 +66,10 @@ YerothVentesWindow::YerothVentesWindow()
     QMESSAGE_BOX_STYLE_SHEET =
         QString("QMessageBox {background-color: rgb(%1);}").arg(COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
+    setupSelectDBFields(_allWindows->STOCKS_VENDU);
+
+    reinitialiser_champs_db_visibles();
+
     label_ventes_tva->setText(QString(QObject::tr("TVA (%1)")).arg(YerothERPConfig::currency));
     label_remise_devise->setText(QString(QObject::tr("remise (%1)")).arg(YerothERPConfig::currency));
 
@@ -89,6 +93,10 @@ YerothVentesWindow::YerothVentesWindow()
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
     pushButton_retour_ventes->enable(this, SLOT(retourVentes()));
 
+
+    connect(actionReinitialiserChampsDBVisible, SIGNAL(triggered()), this, SLOT(slot_reinitialiser_champs_db_visibles()));
+
+    connect(actionChampsDBVisible, SIGNAL(triggered()), this, SLOT(selectionner_champs_db_visibles()));
 
     connect(actionChanger_utilisateur, SIGNAL(triggered()), this, SLOT(changer_utilisateur()));
     connect(actionAppeler_aide, SIGNAL(triggered()), this, SLOT(help()));
@@ -313,6 +321,33 @@ void YerothVentesWindow::setupShortcuts()
     this->setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
 }
 
+
+void YerothVentesWindow::slot_reinitialiser_champs_db_visibles()
+{
+	reinitialiser_champs_db_visibles();
+	rechercher();
+}
+
+
+void YerothVentesWindow::reinitialiser_champs_db_visibles()
+{
+	_visibleDBFieldColumnStrList.clear();
+
+    _visibleDBFieldColumnStrList
+    		<< YerothDatabaseTableColumn::VENTE_ID
+			<< YerothDatabaseTableColumn::DATE_VENTE
+			<< YerothDatabaseTableColumn::HEURE_VENTE
+			<< YerothDatabaseTableColumn::REFERENCE
+			<< YerothDatabaseTableColumn::CATEGORIE
+			<< YerothDatabaseTableColumn::DESIGNATION
+			<< YerothDatabaseTableColumn::PRIX_UNITAIRE
+			<< YerothDatabaseTableColumn::QUANTITE_VENDUE
+			<< YerothDatabaseTableColumn::MONTANT_TVA
+			<< YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE
+			<< YerothDatabaseTableColumn::NOM_UTILISATEUR_CAISSIER;
+}
+
+
 void YerothVentesWindow::contextMenuEvent(QContextMenuEvent * event)
 {
     if (tableView_ventes->rowCount() > 0)
@@ -503,11 +538,9 @@ bool YerothVentesWindow::export_csv_file()
         return false;
     }
 
-    QList < int >columnsToIgnore;
+    QList<int> columnsToIgnore;
 
-    columnsToIgnore << 0 << 2 << 3 << 6
-    				<< 10 << 15 << 17 << 18
-					<< 19 << 20 << 21 << 22 << 23;
+    fill_table_columns_to_ignore(columnsToIgnore);
 
     int tableModelRowCount = tableModel->rowCount();
     int tableModelColumnCount = tableModel->columnCount();
@@ -689,7 +722,7 @@ void YerothVentesWindow::getJournalDesVentesTexTableString(QString & texTable_in
     //qDebug() << "++ fromRowIndex: " << fromRowIndex;
     //qDebug() << "++ toRowIndex: " << toRowIndex;
     /* Variable to print the row's number in the output file */
-    int rowToPrintSums = toRowIndex - 1;
+
     static int b = 1;
     if (0 == fromRowIndex)
     {
@@ -742,19 +775,6 @@ void YerothVentesWindow::getJournalDesVentesTexTableString(QString & texTable_in
         YerothUtils::cleanUpTexTableLastString(texTable_in_out);
         texTable_in_out.append("\\\\ \\hline \n");
         //qDebug() << "++ lastPage: " << lastPage << ". check j: " << j << ", rowToPrintSums: " << rowToPrintSums;
-        if (lastPage && j == rowToPrintSums)
-        {
-            QString quantiteVendueStr(YerothUtils::handleForeignAccents(lineEdit_ventes_quantite_vendue->text()));
-            QString totalTtcStr(YerothUtils::handleForeignAccents(lineEdit_ventes_recette_totale->text()));
-            QString remiseTotalStr(YerothUtils::handleForeignAccents(lineEdit_ventes_remise_totale_currency->text()));
-            QString totalTvaStr(YerothUtils::handleForeignAccents(lineEdit_ventes_tva->text()));
-
-            texTable_in_out.append("\\multicolumn{").append(QString::number(6)).append("}").append("{|c|}")
-            			   .append("{}").append(" & ").append(QString("\\textbf{%1}").arg(quantiteVendueStr)).append(" & ")
-						   .append(QString("\\textbf{%1}").arg(totalTvaStr)).append(" & ").append(QString("\\textbf{%1}")
-								   .arg(remiseTotalStr)).
-            append(" & ").append(QString("\\textbf{%1}").arg(totalTtcStr)).append("\\\\ \\hline \n");
-        }
     }
     //Removes the string "" from Latex output
     texTable_in_out.replace("\"\"", "");
@@ -769,12 +789,9 @@ bool YerothVentesWindow::imprimer_document()
 
     QStandardItemModel *tableModel = tableView_ventes->getStandardItemModel();
 
-    QList < int >columnsToIgnore;
+    QList <int> columnsToIgnore;
 
-    columnsToIgnore << 0 << 2 << 3 << 5
-    				<< 6 << 7 << 10	<< 15
-					<< 17 << 18 << 19 << 20
-					<< 21 << 22 << 23;
+    fill_table_columns_to_ignore(columnsToIgnore);
 
     int tableModelRowCount = tableModel->rowCount();
 
@@ -953,21 +970,7 @@ void YerothVentesWindow::lister_les_elements_du_tableau(YerothSqlTableModel &sto
 {
     tableView_ventes->lister_les_elements_du_tableau(stocksVenduTableModel);
 
-    tableView_ventes->hideColumn(0);
-    tableView_ventes->hideColumn(2);
-    tableView_ventes->hideColumn(3);
-    tableView_ventes->hideColumn(6);
-    tableView_ventes->hideColumn(10);
-    tableView_ventes->hideColumn(14);
-    tableView_ventes->hideColumn(15);
-    tableView_ventes->hideColumn(17);
-    tableView_ventes->hideColumn(18);
-    tableView_ventes->hideColumn(19);
-    tableView_ventes->hideColumn(20);
-    tableView_ventes->hideColumn(21);
-    tableView_ventes->hideColumn(23);
-
-    tableView_ventes->selectRow(tableView_ventes->lastSelectedRow());
+    tableView_show_or_hide_columns(*tableView_ventes);
 
     int curStocksVenduTableModelRowCount = _curStocksVenduTableModel->easySelect();
 

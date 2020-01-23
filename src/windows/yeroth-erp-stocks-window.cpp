@@ -1106,28 +1106,7 @@ void YerothStocksWindow::afficherStocks(YerothSqlTableModel & sqlTableModel,
         tableView_stocks->lister_les_elements_du_tableau(*_curStocksTableModel);
     }
 
-    QString fieldColumn;
-
-    QMapIterator<QString, int> it(_toSelectDBFieldNameStrToDBColumnIndex);
-
-    while (it.hasNext())
-    {
-    	it.next();
-
-    	fieldColumn.clear();
-    	fieldColumn.append(it.key());
-
-    	if (_visibleDBFieldColumnStrList.contains(fieldColumn))
-    	{
-    		tableView_stocks->showColumn(it.value());
-    	}
-    	else
-    	{
-    		tableView_stocks->hideColumn(it.value());
-    	}
-    }
-
-    tableView_stocks->selectRow(tableView_stocks->lastSelectedRow());
+    tableView_show_or_hide_columns(*tableView_stocks);
 
     setWindowTitle(YerothUtils::getWindowTitleWithStrategy(this, localVisibleStrategy));
 }
@@ -1190,17 +1169,7 @@ bool YerothStocksWindow::export_csv_file()
 
     QList<int> columnsToIgnore;
 
-    QMapIterator<QString, int> it(_toSelectDBFieldNameStrToDBColumnIndex);
-
-    while (it.hasNext())
-    {
-    	it.next();
-
-    	if (!_visibleDBFieldColumnStrList.contains(it.key()))
-    	{
-    		columnsToIgnore.append(it.value());
-    	}
-    }
+    fill_table_columns_to_ignore(columnsToIgnore);
 
     int tableModelRowCount = tableModel->rowCount();
     int tableModelColumnCount = tableModel->columnCount();
@@ -1453,17 +1422,7 @@ bool YerothStocksWindow::imprimer_document()
 
     QList<int> tableColumnsToIgnore;
 
-    QMapIterator<QString, int> it(_toSelectDBFieldNameStrToDBColumnIndex);
-
-    while (it.hasNext())
-    {
-    	it.next();
-
-    	if (!_visibleDBFieldColumnStrList.contains(it.key()))
-    	{
-    		tableColumnsToIgnore.append(it.value());
-    	}
-    }
+    fill_table_columns_to_ignore(tableColumnsToIgnore);
 
     QString pdfStockFileName;
 

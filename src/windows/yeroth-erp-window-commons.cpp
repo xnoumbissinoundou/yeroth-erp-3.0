@@ -179,6 +179,33 @@ void YerothWindowsCommons::administration()
 }
 
 
+void YerothWindowsCommons::tableView_show_or_hide_columns(YerothTableView &tableView_in_out)
+{
+    QMapIterator<QString, int> it(_toSelectDBFieldNameStrToDBColumnIndex);
+
+    QString fieldColumn;
+
+    while (it.hasNext())
+    {
+    	it.next();
+
+    	fieldColumn.clear();
+    	fieldColumn.append(it.key());
+
+    	if (_visibleDBFieldColumnStrList.contains(fieldColumn))
+    	{
+    		tableView_in_out.showColumn(it.value());
+    	}
+    	else
+    	{
+    		tableView_in_out.hideColumn(it.value());
+    	}
+    }
+
+    tableView_in_out.selectRow(tableView_in_out.lastSelectedRow());
+}
+
+
 void YerothWindowsCommons::selectionner_champs_db_visibles()
 {
 	unsigned int toSelectDBFieldNameStrSize = _toSelectDBFieldNameStrToDBColumnIndex.size();
@@ -230,6 +257,22 @@ void YerothWindowsCommons::selectionner_champs_db_visibles()
 }
 
 
+void YerothWindowsCommons::fill_table_columns_to_ignore(QList<int> &tableColumnsToIgnore_in_out)
+{
+    QMapIterator<QString, int> it(_toSelectDBFieldNameStrToDBColumnIndex);
+
+    while (it.hasNext())
+    {
+    	it.next();
+
+    	if (!_visibleDBFieldColumnStrList.contains(it.key()))
+    	{
+    		tableColumnsToIgnore_in_out.append(it.value());
+    	}
+    }
+}
+
+
 void YerothWindowsCommons::setupSelectDBFields(QString aSqlTableName)
 {
 	_selectExportDBQDialog = new YerothERPGenericSelectDBFieldDialog(_allWindows, this);
@@ -263,6 +306,7 @@ void YerothWindowsCommons::setupSelectDBFields(QString aSqlTableName)
 
 		if (type.contains("int(") 		||
 			type.contains("double") 	||
+			type.contains("time") 		||
 			type.contains("date") 		||
 			type.contains("blob") 		||
 			type.contains("varchar("))

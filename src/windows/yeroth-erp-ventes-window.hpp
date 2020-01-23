@@ -161,7 +161,13 @@ public slots:
 
     void resetFilter(YerothSqlTableModel *stocksVenduTableModel);
 
+protected slots:
+
+    	virtual void slot_reinitialiser_champs_db_visibles();
+
 protected:
+
+	virtual void reinitialiser_champs_db_visibles();
 
     void contextMenuEvent(QContextMenuEvent *event);
 
