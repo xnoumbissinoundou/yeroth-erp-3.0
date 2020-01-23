@@ -13,12 +13,18 @@
 
 #include <QtCore/QDebug>
 
+#include <QtCore/QVector>
+
 #include <QtWidgets/QMessageBox>
 
 #include <QtGui/QContextMenuEvent>
 
 #include "yeroth-erp-window-commons.hpp"
 
+
+class YerothSelectDBQCheckBox;
+class YerothERPGenericSelectDBFieldDialog;
+class YerothPOSDialogCommons;
 class QStandardItemModel;
 class QContextMenuEvent;
 class QProcess;
@@ -76,6 +82,8 @@ public slots:
 	{
 		YerothWindowsCommons::apropos(this);
 	}
+
+	void setupSelectDBFields();
 
 	inline virtual void help()
 	{
@@ -151,12 +159,13 @@ public slots:
 
     void updateLineEditRechercherCodeBar();
 
-    inline bool SQL_TABLE_STOCKS_VENDU_EMPTY()
-    {
-    	return (0 == YerothUtils::execQuery("SELECT * FROM stocks_vendu"));
-    }
+    bool SQL_TABLE_STOCKS_VENDU_EMPTY();
 
 private slots:
+
+	void slot_reinitialiser_champs_db_visibles();
+
+	void selectionner_champs_db_visibles();
 
 	void private_slot_afficher_historique_du_stock();
 
@@ -178,6 +187,8 @@ protected:
     virtual void setupShortcuts();
 
 private:
+
+	void reinitialiser_champs_db_visibles();
 
     typedef enum enum_comboBoxStrategyIndex
 	{
@@ -206,7 +217,15 @@ private:
 
     static const QString 	_WINDOW_TITLE;
 
-    YerothLogger				*_logger;
+    QStringList				_visibleDBFieldColumnStrList;
+
+    QVector<YerothSelectDBQCheckBox *> _visibleQCheckboxs;
+
+    QMap<QString, int>		_toSelectDBFieldNameStrToDBColumnIndex;
+
+    YerothLogger			*_logger;
+
+    YerothERPGenericSelectDBFieldDialog  *_selectExportDBQDialog;
 
     QStringList				_historiqueStock;
 
@@ -224,7 +243,7 @@ private:
 
     YerothSearchForm 		*_searchStocksWidget;
 
-    YerothSqlTableModel 		*_searchStocksTableModel;
+    YerothSqlTableModel 	*_searchStocksTableModel;
 };
 
 #endif /* YEROTH_ERP_STOCKS_WINDOW_HPP_ */

@@ -75,6 +75,11 @@ public:
 		_allWindows = allWindows;
 	}
 
+	inline YerothSqlTableModel * getCurStocksTableModel()
+	{
+		return _curStocksTableModel;
+	}
+
     virtual void definirCaissier(){}
 
     virtual void definirManager(){}

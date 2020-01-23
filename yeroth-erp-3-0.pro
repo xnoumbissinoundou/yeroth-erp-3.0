@@ -123,10 +123,12 @@ HEADERS = src/yeroth-erp-windows.hpp \
 		  src/widgets/yeroth-erp-qstandard-item.hpp \
 		  src/widgets/yeroth-erp-spinbox.hpp \
 		  src/widgets/yeroth-erp-datetime-edit.hpp \
+		  src/widgets/yeroth-erp-select-db-qcheckbox.hpp \
 		  src/widgets/yeroth-erp-table-widget.hpp \
 		  src/process/yeroth-erp-process-info.hpp \
 		  src/process/yeroth-erp-process.hpp \
 		  src/dialogs/yeroth-erp-dialog-commons.hpp \
+		  src/dialogs/yeroth-erp-generic-select-db-field-dialog.hpp \
 		  src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-carte-credit-dialog.hpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.hpp \
@@ -219,10 +221,12 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/widgets/yeroth-erp-qstandard-item.cpp \		  
 		  src/widgets/yeroth-erp-spinbox.cpp \
 		  src/widgets/yeroth-erp-datetime-edit.cpp \
+		  src/widgets/yeroth-erp-select-db-qcheckbox.cpp \
 		  src/widgets/yeroth-erp-table-widget.cpp \
 		  src/process/yeroth-erp-process-info.cpp \
 		  src/process/yeroth-erp-process.cpp \
 		  src/dialogs/yeroth-erp-dialog-commons.cpp \
+		  src/dialogs/yeroth-erp-generic-select-db-field-dialog.cpp \
 		  src/dialogs/yeroth-erp-changer-utilisateur-dialog.cpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-carte-credit-dialog.cpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.cpp \

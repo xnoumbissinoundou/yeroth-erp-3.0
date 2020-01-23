@@ -190,6 +190,8 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::LOCALISATION_STOCK,	QObject::tr("Localisation stock"));
 
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::QUANTITE_PAR_LOT,	QObject::tr("Qté par lot"));
+
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::LOTS_ENTRANT,		QObject::tr("Lots entrant"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::IMAGE_PRODUIT,	QObject::tr("Image produit"));

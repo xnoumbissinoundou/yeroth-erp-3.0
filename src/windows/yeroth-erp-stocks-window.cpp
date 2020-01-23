@@ -20,6 +20,10 @@
 
 #include "src/utils/yeroth-erp-config.hpp"
 
+#include "src/widgets/yeroth-erp-select-db-qcheckbox.hpp"
+
+#include "src/dialogs/yeroth-erp-generic-select-db-field-dialog.hpp"
+
 #include "src/windows/yeroth-erp-search-form.hpp"
 
 #include "src/utils/yeroth-erp-database-table-column.hpp"
@@ -35,11 +39,14 @@
 
 #include <QtCore/qmath.h>
 
+#include <QtWidgets/QCheckBox>
+
 #include <QtWidgets/QFileDialog>
 
 #include <QtWidgets/QCompleter>
 
 #include <unistd.h>
+#include "../dialogs/yeroth-erp-generic-select-db-field-dialog.hpp"
 
 
 
@@ -64,6 +71,7 @@ QObject::trUtf8("fiche des stocks")));
 YerothStocksWindow::YerothStocksWindow()
     :YerothWindowsCommons(YerothStocksWindow::_WINDOW_TITLE),
      _logger(new YerothLogger("YerothStocksWindow")),
+	 _selectExportDBQDialog(0),
 	 _currentlyFiltered(false),
 	 _actionRechercheArticleCodebar(0),
      _aProcess(0),
@@ -83,6 +91,10 @@ YerothStocksWindow::YerothStocksWindow()
                                     		COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
     _logger->log("YerothStocksWindow");
+
+    setupSelectDBFields();
+
+    reinitialiser_champs_db_visibles();
 
     _searchStocksWidget = new YerothSearchForm(_allWindows, *this, &_allWindows->getSqlTableModel_stocks());
 
@@ -129,6 +141,11 @@ YerothStocksWindow::YerothStocksWindow()
     connect(actionInventaireDesStocks, SIGNAL(triggered()), this, SLOT(afficherMarchandises()));
     connect(actionSortir, SIGNAL(triggered()), this, SLOT(sortir()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
+
+    connect(actionReinitialiserChampsDBVisible, SIGNAL(triggered()), this, SLOT(slot_reinitialiser_champs_db_visibles()));
+
+    connect(actionChampsDBVisible, SIGNAL(triggered()), this, SLOT(selectionner_champs_db_visibles()));
+
     connect(actionExporter_au_format_csv, SIGNAL(triggered()), this, SLOT(export_csv_file()));
 
     connect(actionAfficher_lhistorique_de_ce_stock, SIGNAL(triggered()),
@@ -175,6 +192,15 @@ connect(actionAdministration, SIGNAL(triggered()), this, SLOT(administration()))
 
 YerothStocksWindow::~YerothStocksWindow()
 {
+	if (0 != _selectExportDBQDialog)
+	{
+		_selectExportDBQDialog->close();
+
+		delete _selectExportDBQDialog;
+	}
+
+	_visibleQCheckboxs.clear();
+
 	delete _actionRechercheArticleCodebar;
     delete _action_RechercherFont;
     delete _pushButton_RechercherFont;
@@ -218,6 +244,71 @@ void YerothStocksWindow::updateLineEditRechercherCodeBar()
 
     connect(lineEdit_recherche_reference->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
             SLOT(afficher_stock_selectioner_bar_code(const QString &)));
+}
+
+
+bool YerothStocksWindow::SQL_TABLE_STOCKS_VENDU_EMPTY()
+{
+	return (0 == YerothUtils::execQuery(QString("SELECT * FROM %1")
+											.arg(_allWindows->STOCKS_VENDU)));
+}
+
+
+void YerothStocksWindow::slot_reinitialiser_champs_db_visibles()
+{
+	reinitialiser_champs_db_visibles();
+	afficherStocks();
+}
+
+
+void YerothStocksWindow::selectionner_champs_db_visibles()
+{
+	unsigned int toSelectDBFieldNameStrSize = _toSelectDBFieldNameStrToDBColumnIndex.size();
+
+	if (_visibleDBFieldColumnStrList.size() >= 0)
+	{
+		_visibleQCheckboxs.clear();
+		_visibleQCheckboxs.resize(_visibleDBFieldColumnStrList.size());
+	}
+
+	unsigned int dialogBoxHeight = (toSelectDBFieldNameStrSize * 30);
+
+	unsigned int checkBox_X = 7;
+	unsigned int checkBox_Y = 3;
+
+	YerothSelectDBQCheckBox *aQCheckBox = 0;
+
+	for(unsigned int k = 0; k < toSelectDBFieldNameStrSize; ++k)
+	{
+		if (k > 0)
+		{
+			checkBox_Y = checkBox_Y + 30;
+		}
+
+		aQCheckBox = new YerothSelectDBQCheckBox(_selectExportDBQDialog, &_visibleDBFieldColumnStrList);
+
+		QString dbFieldName(_toSelectDBFieldNameStrToDBColumnIndex.key(k));
+
+		aQCheckBox->setObjectName(dbFieldName);
+
+		aQCheckBox->setGeometry(QRect(checkBox_X, checkBox_Y, 200, 25));
+
+		aQCheckBox->setText(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(dbFieldName));
+
+		if (_visibleDBFieldColumnStrList.contains(dbFieldName))
+		{
+			aQCheckBox->setChecked(true);
+		}
+
+		connect(aQCheckBox, SIGNAL(clicked(bool)),
+				aQCheckBox, SLOT(handle_visible_db_field_checkBox(bool)));
+
+		_visibleQCheckboxs.append(aQCheckBox);
+	}
+
+	_selectExportDBQDialog->setFixedSize(205, dialogBoxHeight);
+
+	_selectExportDBQDialog->showAsModalDialogWithParent(*_allWindows->_stocksWindow);
 }
 
 
@@ -349,6 +440,24 @@ bool YerothStocksWindow::filtrer_stocks()
 	set_filtrer_font();
 
 	return false;
+}
+
+
+void YerothStocksWindow::reinitialiser_champs_db_visibles()
+{
+	_visibleDBFieldColumnStrList.clear();
+
+    _visibleDBFieldColumnStrList
+    		<< YerothDatabaseTableColumn::ID
+			<< YerothDatabaseTableColumn::REFERENCE
+			<< YerothDatabaseTableColumn::DESIGNATION
+			<< YerothDatabaseTableColumn::CATEGORIE
+			<< YerothDatabaseTableColumn::PRIX_UNITAIRE
+			<< YerothDatabaseTableColumn::TVA
+			<< YerothDatabaseTableColumn::PRIX_VENTE
+			<< YerothDatabaseTableColumn::QUANTITE_TOTAL
+			<< YerothDatabaseTableColumn::DATE_ENTREE
+			<< YerothDatabaseTableColumn::DATE_PEREMPTION;
 }
 
 
@@ -547,6 +656,9 @@ void YerothStocksWindow::contextMenuEvent(QContextMenuEvent * event)
 void YerothStocksWindow::hideEvent(QHideEvent * hideEvent)
 {
 	_searchStocksWidget->rendreInvisible();
+
+	_selectExportDBQDialog->close();
+
 	_allWindows->_historiqueDuStockWindow->close();
 }
 
@@ -591,6 +703,53 @@ void YerothStocksWindow::rendreInvisible()
     lineEdit_recherche_reference->clear();
     YerothWindowsCommons::rendreInvisible();
 }
+
+
+void YerothStocksWindow::setupSelectDBFields()
+{
+	_selectExportDBQDialog = new YerothERPGenericSelectDBFieldDialog(_allWindows, this);
+
+	_selectExportDBQDialog->setPalette(getQMainWindowToolBar()->palette());
+
+	_selectExportDBQDialog->setStyleSheet(qMessageBoxStyleSheet());
+
+	QString strShowColumnQuery(QString("SHOW COLUMNS FROM %1")
+									.arg(_allWindows->STOCKS));
+
+	QSqlQuery query;
+
+	int querySize = YerothUtils::execQuery(query, strShowColumnQuery, _logger);
+
+//	qDebug() << QString("++ size: %1")
+//					.arg(QString::number(querySize));
+
+	unsigned int columnIdx = -1;
+
+	unsigned int vectorSize = 0;
+
+	for( unsigned int k = 0; k < querySize && query.next(); ++k)
+	{
+		QString type(query.value(1).toString());
+
+		columnIdx = columnIdx + 1;
+
+		if (type.contains("int(") 		||
+			type.contains("double") 	||
+			type.contains("date") 		||
+			type.contains("blob") 		||
+			type.contains("varchar("))
+		{
+			QString fieldName(query.value(0).toString());
+
+			if (!fieldName.isEmpty())
+			{
+				_toSelectDBFieldNameStrToDBColumnIndex.insert(fieldName, columnIdx);
+//				qDebug() << "++ str: " <<  query.value(0).toString();
+			}
+		}
+	}
+}
+
 
 void YerothStocksWindow::definirCaissier()
 {
@@ -1049,18 +1208,26 @@ void YerothStocksWindow::afficherStocks(YerothSqlTableModel & sqlTableModel,
         tableView_stocks->lister_les_elements_du_tableau(*_curStocksTableModel);
     }
 
-    tableView_stocks->hideColumn(4);
-    tableView_stocks->hideColumn(9);
-    tableView_stocks->hideColumn(10);
-    tableView_stocks->hideColumn(11);
-    tableView_stocks->hideColumn(14);
-    tableView_stocks->hideColumn(15);
-    tableView_stocks->hideColumn(16);
-    tableView_stocks->hideColumn(17);
-    tableView_stocks->hideColumn(18);
-    tableView_stocks->hideColumn(19);
-    tableView_stocks->hideColumn(20);
-    tableView_stocks->hideColumn(21);
+    QString fieldColumn;
+
+    QMapIterator<QString, int> it(_toSelectDBFieldNameStrToDBColumnIndex);
+
+    while (it.hasNext())
+    {
+    	it.next();
+
+    	fieldColumn.clear();
+    	fieldColumn.append(it.key());
+
+    	if (_visibleDBFieldColumnStrList.contains(fieldColumn))
+    	{
+    		tableView_stocks->showColumn(it.value());
+    	}
+    	else
+    	{
+    		tableView_stocks->hideColumn(it.value());
+    	}
+    }
 
     tableView_stocks->selectRow(tableView_stocks->lastSelectedRow());
 
