@@ -179,6 +179,42 @@ void YerothWindowsCommons::administration()
 }
 
 
+void YerothWindowsCommons::setupSelectDBFields(QString aSqlTableName)
+{
+	_selectExportDBQDialog = new YerothERPGenericSelectDBFieldDialog(_allWindows, this);
+
+	if ( 0!= getQMainWindowToolBar())
+	{
+		_selectExportDBQDialog->setPalette(getQMainWindowToolBar()->palette());
+	}
+
+	_selectExportDBQDialog->setStyleSheet(qMessageBoxStyleSheet());
+
+	QString strShowColumnQuery(QString("SHOW COLUMNS FROM %1")
+									.arg(aSqlTableName));
+
+	QSqlQuery query;
+
+	int querySize = YerothUtils::execQuery(query, strShowColumnQuery);
+
+//	qDebug() << QString("++ size: %1")
+//					.arg(QString::number(querySize));
+
+	unsigned int columnIdx = -1;
+
+	for( unsigned int k = 0; k < querySize && query.next(); ++k)
+	{
+		QString fieldName(query.value(0).toString());
+
+		QString type(query.value(1).toString());
+
+		columnIdx = columnIdx + 1;
+
+		_toSelectDBFieldNameStrToDBColumnIndex.insert(fieldName, columnIdx);
+	}
+}
+
+
 void YerothWindowsCommons::tableView_show_or_hide_columns(YerothTableView &tableView_in_out)
 {
     QMapIterator<QString, int> it(_toSelectDBFieldNameStrToDBColumnIndex);
@@ -270,56 +306,6 @@ void YerothWindowsCommons::fill_table_columns_to_ignore(QList<int> &tableColumns
     		tableColumnsToIgnore_in_out.append(it.value());
     	}
     }
-}
-
-
-void YerothWindowsCommons::setupSelectDBFields(QString aSqlTableName)
-{
-	_selectExportDBQDialog = new YerothERPGenericSelectDBFieldDialog(_allWindows, this);
-
-	if ( 0!= getQMainWindowToolBar())
-	{
-		_selectExportDBQDialog->setPalette(getQMainWindowToolBar()->palette());
-	}
-
-	_selectExportDBQDialog->setStyleSheet(qMessageBoxStyleSheet());
-
-	QString strShowColumnQuery(QString("SHOW COLUMNS FROM %1")
-									.arg(aSqlTableName));
-
-	QSqlQuery query;
-
-	int querySize = YerothUtils::execQuery(query, strShowColumnQuery);
-
-//	qDebug() << QString("++ size: %1")
-//					.arg(QString::number(querySize));
-
-	unsigned int columnIdx = -1;
-
-	unsigned int vectorSize = 0;
-
-	for( unsigned int k = 0; k < querySize && query.next(); ++k)
-	{
-		QString type(query.value(1).toString());
-
-		columnIdx = columnIdx + 1;
-
-		if (type.contains("int(") 		||
-			type.contains("double") 	||
-			type.contains("time") 		||
-			type.contains("date") 		||
-			type.contains("blob") 		||
-			type.contains("varchar("))
-		{
-			QString fieldName(query.value(0).toString());
-
-			if (!fieldName.isEmpty())
-			{
-				_toSelectDBFieldNameStrToDBColumnIndex.insert(fieldName, columnIdx);
-//				qDebug() << "++ str: " <<  query.value(0).toString();
-			}
-		}
-	}
 }
 
 
