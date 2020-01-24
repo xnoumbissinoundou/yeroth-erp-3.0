@@ -297,11 +297,20 @@ void YerothWindowsCommons::fill_table_columns_to_ignore(QList<int> &tableColumns
 {
     QMapIterator<QString, int> it(_toSelectDBFieldNameStrToDBColumnIndex);
 
+    QString curFieldColumn;
+
     while (it.hasNext())
     {
     	it.next();
 
-    	if (!_visibleDBFieldColumnStrList.contains(it.key()))
+    	curFieldColumn = it.key();
+
+    	if (curFieldColumn.isEmpty())
+    	{
+    		continue;
+    	}
+
+    	if (!_visibleDBFieldColumnStrList.contains(curFieldColumn))
     	{
     		tableColumnsToIgnore_in_out.append(it.value());
     	}

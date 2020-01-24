@@ -685,7 +685,7 @@ void YerothVentesWindow::getJournalDesVentesTexTableString(QString & texTable_in
     QStandardItem *item;
 
     int tableColumnCount = 1 + tableStandardItemModel.columnCount();
-    /** We add a column named ''id'' for numbering the rows
+    /** We add a column named ''n0'' for numbering the rows
 
      * in the Tex table. */
     texTable_in_out.append("\\textbf{n\\textsuperscript{o}} & ");
@@ -710,7 +710,7 @@ void YerothVentesWindow::getJournalDesVentesTexTableString(QString & texTable_in
 
             itemText.prepend("\\textbf{").append("}");
 
-            YerothUtils::handleTexTableItemText(tableStandardItemModel.columnCount(),
+            YerothUtils::handleTexTableItemText(tableColumnCount,
                                                texTable_in_out,
                                                k,
                                                itemText);
@@ -745,11 +745,8 @@ void YerothVentesWindow::getJournalDesVentesTexTableString(QString & texTable_in
             if (item)
             {
                 /**
-
                  * Any string shall have a length smaller than
-
                  * YerothERPConfig::max_string_display_length
-
                  */
                 QString itemText(item->text());
                 if (itemText.length() > YerothERPConfig::max_string_display_length)
@@ -757,8 +754,10 @@ void YerothVentesWindow::getJournalDesVentesTexTableString(QString & texTable_in
                     itemText.truncate(YerothERPConfig::max_string_display_length);
                     itemText.append(".");
                 }
-                YerothUtils::handleTexTableItemText(tableStandardItemModel.columnCount(), texTable_in_out, k,
-                                                   itemText);
+                YerothUtils::handleTexTableItemText(tableColumnCount,
+                									texTable_in_out,
+													k,
+                                                    itemText);
             }
             else
             {

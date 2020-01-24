@@ -318,6 +318,8 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::DATE_CREATION	,		QObject::trUtf8("Date de création"));
 
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::TYPE_DE_VENTE,		QObject::tr("Type vente"));
+
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NOTIFICATIONS,		QObject::tr("Notifications"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::ALERTE_RESOLUE,		QObject::trUtf8("Alerte résolue"));

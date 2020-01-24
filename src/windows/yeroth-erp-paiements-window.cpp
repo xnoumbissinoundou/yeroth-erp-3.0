@@ -67,6 +67,10 @@ YerothPaiementsWindow::YerothPaiementsWindow()
     QMESSAGE_BOX_STYLE_SHEET =
         QString("QMessageBox {background-color: rgb(%1);}").arg(COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
+    setupSelectDBFields(_allWindows->PAIEMENTS);
+
+    reinitialiser_champs_db_visibles();
+
     populateComboBoxes();
 
     setupLineEdits();
@@ -87,6 +91,10 @@ YerothPaiementsWindow::YerothPaiementsWindow()
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
     pushButton_retour_paiements->enable(this, SLOT(retourPaiements()));
 
+
+    connect(actionReinitialiserChampsDBVisible, SIGNAL(triggered()), this, SLOT(slot_reinitialiser_champs_db_visibles()));
+
+    connect(actionChampsDBVisible, SIGNAL(triggered()), this, SLOT(selectionner_champs_db_visibles()));
 
     connect(actionChanger_utilisateur, SIGNAL(triggered()), this, SLOT(changer_utilisateur()));
     connect(actionAppeler_aide, SIGNAL(triggered()), this, SLOT(help()));
@@ -288,6 +296,29 @@ void YerothPaiementsWindow::setupShortcuts()
     this->setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
 }
 
+
+void YerothPaiementsWindow::slot_reinitialiser_champs_db_visibles()
+{
+	reinitialiser_champs_db_visibles();
+	rechercher();
+}
+
+
+void YerothPaiementsWindow::reinitialiser_champs_db_visibles()
+{
+	_visibleDBFieldColumnStrList.clear();
+
+    _visibleDBFieldColumnStrList
+    		<< YerothDatabaseTableColumn::DATE_PAIEMENT
+			<< YerothDatabaseTableColumn::HEURE_PAIEMENT
+			<< YerothDatabaseTableColumn::NOM_ENTREPRISE
+			<< YerothDatabaseTableColumn::NOM_PAYEUR
+			<< YerothDatabaseTableColumn::NOM_ENCAISSEUR
+			<< YerothDatabaseTableColumn::MONTANT_PAYE
+			<< YerothDatabaseTableColumn::COMPTE_CLIENT;
+}
+
+
 void YerothPaiementsWindow::contextMenuEvent(QContextMenuEvent * event)
 {
     if (tableView_paiements->rowCount() > 0)
@@ -459,7 +490,7 @@ bool YerothPaiementsWindow::export_csv_file()
 
 	QList<int> tableColumnsToIgnore;
 
-    tableColumnsToIgnore << 0;
+	fill_table_columns_to_ignore(tableColumnsToIgnore);
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 	success = YerothUtils::export_csv_file(*this,
@@ -506,7 +537,7 @@ void YerothPaiementsWindow::getJournalDesPaiementsTexTableString(QString & texTa
     //qDebug() << "++ texTableColumnCount: " << texTableColumnCount;
     //Tex table header
 
-    /** We center the id column*/
+    /** We center the n0 column*/
 
     texTable_in_out.append("c|");
 
@@ -521,10 +552,12 @@ void YerothPaiementsWindow::getJournalDesPaiementsTexTableString(QString & texTa
     QStandardItem *item;
 
     int tableColumnCount = 1 + tableStandardItemModel.columnCount();
-    /** We add a column named ''id'' for numbering the rows
+    /** We add a column named ''n0'' for numbering the rows
 
      * in the Tex table. */
     texTable_in_out.append("\\textbf{n\\textsuperscript{o}} & ");
+
+   //unsigned int tableRealColumnCount = tableColumnCount - columnsToIgnore.size();
 
     for (int k = 0; k < tableColumnCount; ++k)
     {
@@ -539,7 +572,7 @@ void YerothPaiementsWindow::getJournalDesPaiementsTexTableString(QString & texTa
         {
             QString itemText(item->text());
 
-            YerothUtils::handleTexTableItemText(tableStandardItemModel.columnCount(),
+            YerothUtils::handleTexTableItemText(tableColumnCount,
                                                texTable_in_out,
                                                k,
                                                itemText);
@@ -548,12 +581,11 @@ void YerothPaiementsWindow::getJournalDesPaiementsTexTableString(QString & texTa
 
     YerothUtils::cleanUpTexTableLastString(texTable_in_out);
 
-    texTable_in_out.append("\\hline \n");
+    texTable_in_out.append("\\\\ \\hline \n");
 
     //Tex table body
 
-    /* Variable to print the row's number in the output file */
-    int rowToPrintSums = toRowIndex - 1;
+
     static int b = 1;
     if (0 == fromRowIndex)
     {
@@ -585,8 +617,9 @@ void YerothPaiementsWindow::getJournalDesPaiementsTexTableString(QString & texTa
                     itemText.truncate(YerothERPConfig::max_string_display_length);
                     itemText.append(".");
                 }
-                YerothUtils::handleTexTableItemText(tableStandardItemModel.columnCount(),
-                									texTable_in_out, k,
+                YerothUtils::handleTexTableItemText(tableColumnCount,
+                									texTable_in_out,
+													k,
                                                     itemText);
             }
             else
@@ -602,17 +635,9 @@ void YerothPaiementsWindow::getJournalDesPaiementsTexTableString(QString & texTa
             }
         }
         YerothUtils::cleanUpTexTableLastString(texTable_in_out);
-        texTable_in_out.append("\\hline \n");
-        //qDebug() << "++ lastPage: " << lastPage << ". check j: " << j << ", rowToPrintSums: " << rowToPrintSums;
-        if (lastPage && j == rowToPrintSums)
-        {
-            QString totalPaiementStr(YerothUtils::handleForeignAccents(lineEdit_paiements_total->text()));
-
-            texTable_in_out.append(QString("\\multicolumn{%1}{|c|}{} & \\textbf{%2} & \\\\ \\hline \n")
-            						.arg(QString::number(6),
-            							 totalPaiementStr));
-        }
+        texTable_in_out.append("\\\\ \\hline \n");
     }
+
     //Removes string "" from Latex output
     texTable_in_out.replace("\"\"", "");
     texTable_in_out.append("\\end{tabular}\n\\end{table*}\n");
@@ -628,7 +653,7 @@ bool YerothPaiementsWindow::imprimer_document()
 
     QList<int> columnsToIgnore;
 
-    columnsToIgnore << 0;
+    fill_table_columns_to_ignore(columnsToIgnore);
 
     int tableModelRowCount = tableModel->rowCount();
 
@@ -801,8 +826,6 @@ void YerothPaiementsWindow::lister_les_elements_du_tableau(YerothSqlTableModel &
 {
     tableView_paiements->lister_les_elements_du_tableau(historiquePaiementsTableModel);
 
-    tableView_paiements->selectRow(tableView_paiements->lastSelectedRow());
-
     int curPaiementsTableModelRowCount = _curPaiementsTableModel->easySelect();
 
     if (curPaiementsTableModelRowCount < 0)
@@ -838,7 +861,7 @@ void YerothPaiementsWindow::lister_les_elements_du_tableau(YerothSqlTableModel &
         tabWidget_historique_paiements->setTabEnabled(AfficherPaiementAuDetail, false);
     }
 
-    tableView_paiements->hideColumn(0);
+    tableView_show_or_hide_columns(*tableView_paiements);
 
     tableView_paiements->resizeColumnsToContents();
 }

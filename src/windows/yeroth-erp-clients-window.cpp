@@ -1060,17 +1060,17 @@ void YerothERPClientsWindow::getComptesClientsListingTexTableString(QString &tex
         if (item)
         {
             QString itemText(item->text().prepend("\\textbf{").append("}"));
-            YerothUtils::handleTexTableItemText(tableStandardItemModel.columnCount(),
-                                   texTable_in_out,
-                                   k,
-                                   itemText);
+            YerothUtils::handleTexTableItemText(texTableColumnCount + 1,
+                                   	   	   	    texTable_in_out,
+												k,
+												itemText);
         }
     }
 
     /** Closing Tex table header */
     YerothUtils::cleanUpTexTableLastString(texTable_in_out);
 
-    texTable_in_out.append(" \\hline");
+    texTable_in_out.append("\\\\ \\hline");
 
     //qDebug() << QString("++ fromRowIndex: %1, toRowIndex: %2")
     //			.arg(QString::number(fromRowIndex), QString::number(toRowIndex));
@@ -1092,7 +1092,7 @@ void YerothERPClientsWindow::getComptesClientsListingTexTableString(QString &tex
             if (item)
             {
                 QString itemText(item->text());
-                YerothUtils::handleComptesClientsTexTableItemText(tableStandardItemModel.columnCount(),
+                YerothUtils::handleComptesClientsTexTableItemText(texTableColumnCount,
                                               	  	  	  	  	  texTable_in_out,
 																  k,
 																  itemText);
@@ -1114,7 +1114,7 @@ void YerothERPClientsWindow::getComptesClientsListingTexTableString(QString &tex
 
         YerothUtils::cleanUpTexTableLastString(texTable_in_out);
 
-        texTable_in_out.append("\\hline");
+        texTable_in_out.append("\\\\ \\hline");
     }
 
     //Removes the empty character "" from Latex output

@@ -1300,12 +1300,10 @@ void YerothStocksWindow::getStocksListingTexTableString(QString &texTable_in_out
 				   .append("\\begin{tabular}")
 				   .append("{|");
 
-    int texTableColumnCount = tableStandardItemModel.columnCount() + 1;
-
     texTable_in_out.append("c|");
 
     //Tex table header
-    for (int k = 0; k < texTableColumnCount; ++k)
+    for (int k = 0; k < tableStandardItemModel.columnCount(); ++k)
     {
         if (columnsToIgnore.contains(k))
         {
@@ -1329,14 +1327,19 @@ void YerothStocksWindow::getStocksListingTexTableString(QString &texTable_in_out
 
     texTable_in_out.append("} \\hline").append("\n");
 
-    /** We add a column named 'id' for numbering the rows
+//    qDebug() << QString("++ test: %1").arg(QString::number(tableColumnCount));
+
+    /** We add a column named 'n0' for numbering the rows
      * in the Tex table. */
     unsigned int id = fromRowIndex + 1;
+
     texTable_in_out.append("\\textbf{n\\textsuperscript{o}} & ");
 
     QStandardItem *item;
 
-    for (int k = 0; k < texTableColumnCount; ++k)
+    int tableColumnCount = 1 + tableStandardItemModel.columnCount();
+
+    for (int k = 0; k < tableColumnCount; ++k)
     {
         if (columnsToIgnore.contains(k))
         {
@@ -1348,7 +1351,7 @@ void YerothStocksWindow::getStocksListingTexTableString(QString &texTable_in_out
         if (item)
         {
             QString itemText(item->text().prepend("\\textbf{").append("}"));
-            YerothUtils::handleTexTableItemText(tableStandardItemModel.columnCount(),
+            YerothUtils::handleTexTableItemText(tableColumnCount + 1,
                                    	   	   	   	texTable_in_out,
 												k,
 												itemText);
@@ -1379,7 +1382,7 @@ void YerothStocksWindow::getStocksListingTexTableString(QString &texTable_in_out
             if (item)
             {
                 QString itemText(item->text());
-                YerothUtils::handleFactureTexTableItemText(tableStandardItemModel.columnCount(),
+                YerothUtils::handleFactureTexTableItemText(tableColumnCount,
                                               	  	  	   texTable_in_out,
 														   k,
 														   itemText);
