@@ -1622,7 +1622,7 @@ Continue with update of the stock ?</translation>
     <message>
         <location filename="src/windows/yeroth-erp-creer-compte-client-window.cpp" line="416"/>
         <source>Le client &apos;</source>
-        <translation>Customer &apos;%1</translation>
+        <translation>Customer &apos;</translation>
     </message>
     <message>
         <location filename="src/admin/creer/creer-fournisseur.cpp" line="67"/>
