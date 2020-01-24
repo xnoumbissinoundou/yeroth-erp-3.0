@@ -1020,7 +1020,7 @@ void YerothERPClientsWindow::getComptesClientsListingTexTableString(QString &tex
     texTable_in_out.append("c|");
 
     //Tex table header
-    for (int k = 0; k < texTableColumnCount; ++k)
+    for (int k = 0; k < tableStandardItemModel.columnCount(); ++k)
     {
         if (columnsToIgnore.contains(k))
         {
@@ -1048,7 +1048,7 @@ void YerothERPClientsWindow::getComptesClientsListingTexTableString(QString &tex
 
     QStandardItem *item;
 
-    for (int k = 0; k < texTableColumnCount; ++k)
+    for (int k = 0; k < tableStandardItemModel.columnCount(); ++k)
     {
         if (columnsToIgnore.contains(k))
         {

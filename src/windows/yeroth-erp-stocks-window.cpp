@@ -534,7 +534,7 @@ void YerothStocksWindow::reinitialiser_champs_db_visibles()
 			<< YerothDatabaseTableColumn::DESIGNATION
 			<< YerothDatabaseTableColumn::CATEGORIE
 			<< YerothDatabaseTableColumn::PRIX_UNITAIRE
-			<< YerothDatabaseTableColumn::TVA
+			<< YerothDatabaseTableColumn::MONTANT_TVA
 			<< YerothDatabaseTableColumn::PRIX_VENTE
 			<< YerothDatabaseTableColumn::QUANTITE_TOTAL
 			<< YerothDatabaseTableColumn::DATE_ENTREE
@@ -1339,7 +1339,7 @@ void YerothStocksWindow::getStocksListingTexTableString(QString &texTable_in_out
 
     int tableColumnCount = 1 + tableStandardItemModel.columnCount();
 
-    for (int k = 0; k < tableColumnCount; ++k)
+    for (int k = 0; k < tableStandardItemModel.columnCount(); ++k)
     {
         if (columnsToIgnore.contains(k))
         {
@@ -1351,7 +1351,7 @@ void YerothStocksWindow::getStocksListingTexTableString(QString &texTable_in_out
         if (item)
         {
             QString itemText(item->text().prepend("\\textbf{").append("}"));
-            YerothUtils::handleTexTableItemText(tableColumnCount + 1,
+            YerothUtils::handleTexTableItemText(tableColumnCount,
                                    	   	   	   	texTable_in_out,
 												k,
 												itemText);

@@ -557,9 +557,7 @@ void YerothPaiementsWindow::getJournalDesPaiementsTexTableString(QString & texTa
      * in the Tex table. */
     texTable_in_out.append("\\textbf{n\\textsuperscript{o}} & ");
 
-   //unsigned int tableRealColumnCount = tableColumnCount - columnsToIgnore.size();
-
-    for (int k = 0; k < tableColumnCount; ++k)
+    for (int k = 0; k < tableStandardItemModel.columnCount(); ++k)
     {
         if (columnsToIgnore.contains(k))
         {

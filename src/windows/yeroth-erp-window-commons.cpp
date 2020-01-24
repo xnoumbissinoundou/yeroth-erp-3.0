@@ -252,8 +252,6 @@ void YerothWindowsCommons::selectionner_champs_db_visibles()
 		_visibleQCheckboxs.resize(_visibleDBFieldColumnStrList.size());
 	}
 
-	unsigned int dialogBoxHeight = (toSelectDBFieldNameStrSize * 30);
-
 	unsigned int checkBox_X = 7;
 	unsigned int checkBox_Y = 3;
 
@@ -286,6 +284,8 @@ void YerothWindowsCommons::selectionner_champs_db_visibles()
 
 		_visibleQCheckboxs.append(aQCheckBox);
 	}
+
+	unsigned int dialogBoxHeight = (toSelectDBFieldNameStrSize * 30);
 
 	_selectExportDBQDialog->setFixedSize(205, dialogBoxHeight);
 

@@ -690,7 +690,7 @@ void YerothVentesWindow::getJournalDesVentesTexTableString(QString & texTable_in
      * in the Tex table. */
     texTable_in_out.append("\\textbf{n\\textsuperscript{o}} & ");
 
-    for (int k = 0; k < tableColumnCount; ++k)
+    for (int k = 0; k < tableStandardItemModel.columnCount(); ++k)
     {
         if (columnsToIgnore.contains(k))
         {
