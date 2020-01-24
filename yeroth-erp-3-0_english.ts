@@ -3081,8 +3081,9 @@ Press &apos;Cancel&apos; to exit &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-window-commons.cpp" line="320"/>
-        <source>(%1 colones de base de données)</source>
-        <translation>(%1 database columns)</translation>
+        <source>(&apos;%1&apos; colones de base de données)</source>
+        <oldsource>(%1 colones de base de données)</oldsource>
+        <translation>(&apos;%1&apos; database columns)</translation>
     </message>
 </context>
 <context>

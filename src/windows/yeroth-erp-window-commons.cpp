@@ -317,7 +317,7 @@ void YerothWindowsCommons::selectionner_champs_db_visibles()
 		_visibleQCheckboxs.append(aQCheckBox);
 	}
 
-	_selectExportDBQDialog->setWindowTitle(QString(QObject::trUtf8("(%1 colones de base de données)"))
+	_selectExportDBQDialog->setWindowTitle(QString(QObject::trUtf8("('%1' colones de base de données)"))
 												.arg(QString::number(toSelectDBFieldNameStrSize)));
 
 	_selectExportDBQDialog->setFixedSize(getDialogBox_LONGUEUR(toSelectDBFieldNameStrSize), 255);
