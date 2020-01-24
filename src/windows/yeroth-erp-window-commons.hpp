@@ -199,6 +199,12 @@ protected slots:
 		reinitialiser_champs_db_visibles();
 	}
 
+	static int getDialogBox_LONGUEUR(unsigned int n);
+
+	static int getDialogBox_Yn_coordinate(unsigned int n);
+
+	static int getDialogBox_Xn_coordinate(unsigned int n);
+
 	virtual void selectionner_champs_db_visibles();
 
 protected:

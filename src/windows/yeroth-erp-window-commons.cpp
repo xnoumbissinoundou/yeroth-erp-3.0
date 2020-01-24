@@ -18,6 +18,8 @@
 
 #include <QtSql/QSqlQuery>
 
+#include <QtCore/QtMath>
+
 #include <QtCore/QProcess>
 
 #include <QtCore/QObject>
@@ -242,6 +244,40 @@ void YerothWindowsCommons::tableView_show_or_hide_columns(YerothTableView &table
 }
 
 
+int YerothWindowsCommons::getDialogBox_LONGUEUR(unsigned int n)
+{
+	static unsigned int delta = 218;
+
+	int result = qCeil(n/8.0);
+
+	return (result * delta);
+}
+
+
+int YerothWindowsCommons::getDialogBox_Yn_coordinate(unsigned int n)
+{
+	#define N 8
+
+	static unsigned int y[N] = {7, 37, 67, 97, 127, 157, 187, 217};
+
+	unsigned int modyn = (n%N);
+
+	return y[modyn];
+}
+
+
+int YerothWindowsCommons::getDialogBox_Xn_coordinate(unsigned int n)
+{
+	static unsigned int w = 200;
+
+	static unsigned int X_0 = 7;
+
+	int result = qFloor(n/8);
+
+	return (X_0 + (result * w));
+}
+
+
 void YerothWindowsCommons::selectionner_champs_db_visibles()
 {
 	unsigned int toSelectDBFieldNameStrSize = _toSelectDBFieldNameStrToDBColumnIndex.size();
@@ -252,17 +288,10 @@ void YerothWindowsCommons::selectionner_champs_db_visibles()
 		_visibleQCheckboxs.resize(_visibleDBFieldColumnStrList.size());
 	}
 
-	unsigned int checkBox_X = 7;
-	unsigned int checkBox_Y = 3;
-
 	YerothSelectDBQCheckBox *aQCheckBox = 0;
 
 	for(unsigned int k = 0; k < toSelectDBFieldNameStrSize; ++k)
 	{
-		if (k > 0)
-		{
-			checkBox_Y = checkBox_Y + 30;
-		}
 
 		aQCheckBox = new YerothSelectDBQCheckBox(_selectExportDBQDialog, &_visibleDBFieldColumnStrList);
 
@@ -270,7 +299,10 @@ void YerothWindowsCommons::selectionner_champs_db_visibles()
 
 		aQCheckBox->setObjectName(dbFieldName);
 
-		aQCheckBox->setGeometry(QRect(checkBox_X, checkBox_Y, 200, 25));
+		aQCheckBox->setGeometry(QRect(getDialogBox_Xn_coordinate(k),
+									  getDialogBox_Yn_coordinate(k),
+									  200,
+									  25));
 
 		aQCheckBox->setText(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(dbFieldName));
 
@@ -285,9 +317,10 @@ void YerothWindowsCommons::selectionner_champs_db_visibles()
 		_visibleQCheckboxs.append(aQCheckBox);
 	}
 
-	unsigned int dialogBoxHeight = (toSelectDBFieldNameStrSize * 30);
+	_selectExportDBQDialog->setWindowTitle(QString(QObject::trUtf8("(%1 colones de base de données)"))
+												.arg(QString::number(toSelectDBFieldNameStrSize)));
 
-	_selectExportDBQDialog->setFixedSize(205, dialogBoxHeight);
+	_selectExportDBQDialog->setFixedSize(getDialogBox_LONGUEUR(toSelectDBFieldNameStrSize), 255);
 
 	_selectExportDBQDialog->showAsModalDialogWithParent(*this);
 }
