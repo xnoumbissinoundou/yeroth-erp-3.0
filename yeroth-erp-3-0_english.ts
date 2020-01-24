@@ -1505,22 +1505,22 @@ Continue with update of the stock ?</translation>
         <translation>receiver name</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="734"/>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="732"/>
         <source>encaisseur</source>
         <translation>cash receiver</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="735"/>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="733"/>
         <source>entreprise</source>
         <translation>company</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="736"/>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="734"/>
         <source>payeur</source>
         <translation>payer</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="737"/>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="735"/>
         <source>Nr. bon</source>
         <translation>Rec. Nr.</translation>
     </message>
@@ -1559,7 +1559,7 @@ Continue with update of the stock ?</translation>
         <translation>Files with sales information data &quot;.csv&quot; (*.csv)</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="663"/>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="661"/>
         <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="800"/>
         <source>pas de données à imprimer</source>
         <translation>there are no data to print-out</translation>
@@ -2158,7 +2158,7 @@ Please contact an administrator of %1</translation>
     <message>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="2202"/>
         <location filename="src/windows/yeroth-erp-historique-du-stock-window.cpp" line="207"/>
-        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="664"/>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="662"/>
         <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="632"/>
         <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="813"/>
         <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="468"/>
@@ -3035,7 +3035,7 @@ Contact Yeroth-erp-3.0 application administrator!</translation>
     </message>
     <message>
         <location filename="src/admin/yeroth-erp-admin-windows-commons.cpp" line="63"/>
-        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="323"/>
+        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="356"/>
         <source>qui suis je ?</source>
         <translation>who am I ?</translation>
     </message>
@@ -3078,6 +3078,11 @@ Press &apos;Cancel&apos; to exit &apos;%3&apos;</translation>
         <location filename="src/windows/yeroth-erp-configuration-comptabilite-window.cpp" line="34"/>
         <source>fenêtre du comptable</source>
         <translation>financial accounting window</translation>
+    </message>
+    <message>
+        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="320"/>
+        <source>(%1 colones de base de données)</source>
+        <translation>(%1 database columns)</translation>
     </message>
 </context>
 <context>
