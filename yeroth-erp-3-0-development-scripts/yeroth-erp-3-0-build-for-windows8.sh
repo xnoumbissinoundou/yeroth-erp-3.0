@@ -4,8 +4,6 @@
 
 SCRIPT_NAME="$(basename "$0")"
 
-git clone https://github.com/xnoumbissinoundou/yeroth-erp-3.0
-
 cd "${YEROTH_ERP_3_0_HOME_FOLDER}"
 
 git checkout -b windows8
