@@ -1,6 +1,6 @@
 #!/bin/bash
 # @authors: Jean-Pierre KAMGAIN, BSc
-# 	    Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
+# 	        Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
 
 SCRIPT_NAME="$(basename "$0")"
 
