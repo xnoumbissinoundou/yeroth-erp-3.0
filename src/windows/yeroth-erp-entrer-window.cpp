@@ -48,6 +48,8 @@ YerothEntrerWindow::YerothEntrerWindow()
                                arg(COLOUR_RGB_STRING_YEROTH_GRAY_78_78_78,
                             	   COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
+    checkBox_achat->setChecked(true);
+
     setupLineEdits();
 
     setupLineEditsQCompleters();
@@ -621,6 +623,7 @@ void YerothEntrerWindow::clear_all_fields()
     label_image_produit->setAutoFillBackground(false);
     _lastEditedPrixVente.clear();
     _montantTva = 0.0;
+    checkBox_achat->setChecked(true);
     checkBox_tva->setChecked(false);
     _tvaCheckBoxPreviousState = false;
     _createNewCategorie = false;
@@ -859,22 +862,27 @@ YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
 
         YerothSqlTableModel & achatSqlTableModel = _allWindows->getSqlTableModel_achats();
 
-        QSqlRecord achatRecord = achatSqlTableModel.record();
+        QSqlRecord achatRecord;
 
         QSqlRecord record = _curStocksTableModel->record();
 
-        int achat_id_to_save = YerothUtils::getNextIdFromTable(_allWindows->ACHATS);
-
         int stock_id_to_save = YerothUtils::getNextIdFromTable(_allWindows->STOCKS);
 
-        achatRecord.setValue(YerothDatabaseTableColumn::ID, achat_id_to_save);
-        achatRecord.setValue(YerothDatabaseTableColumn::STOCKS_ID, stock_id_to_save);
-        achatRecord.setValue(YerothDatabaseTableColumn::REFERENCE, lineEdit_reference_produit->text());
-        achatRecord.setValue(YerothDatabaseTableColumn::DESIGNATION, lineEdit_designation->text());
-        achatRecord.setValue(YerothDatabaseTableColumn::CATEGORIE, proposedCategorieName);
-        achatRecord.setValue(YerothDatabaseTableColumn::DESCRIPTION_PRODUIT, textEdit_description->toPlainText());
-        achatRecord.setValue(YerothDatabaseTableColumn::LOTS_ENTRANT, spinBox_lots_entrant->value());
-        achatRecord.setValue(YerothDatabaseTableColumn::QUANTITE_PAR_LOT, lineEdit_quantite_par_lot->text().toDouble());
+        if (checkBox_achat->isChecked())
+        {
+        	achatRecord = achatSqlTableModel.record();
+
+        	int achat_id_to_save = YerothUtils::getNextIdFromTable(_allWindows->ACHATS);
+
+        	achatRecord.setValue(YerothDatabaseTableColumn::ID, achat_id_to_save);
+        	achatRecord.setValue(YerothDatabaseTableColumn::STOCKS_ID, stock_id_to_save);
+        	achatRecord.setValue(YerothDatabaseTableColumn::REFERENCE, lineEdit_reference_produit->text());
+        	achatRecord.setValue(YerothDatabaseTableColumn::DESIGNATION, lineEdit_designation->text());
+        	achatRecord.setValue(YerothDatabaseTableColumn::CATEGORIE, proposedCategorieName);
+        	achatRecord.setValue(YerothDatabaseTableColumn::DESCRIPTION_PRODUIT, textEdit_description->toPlainText());
+        	achatRecord.setValue(YerothDatabaseTableColumn::LOTS_ENTRANT, spinBox_lots_entrant->value());
+        	achatRecord.setValue(YerothDatabaseTableColumn::QUANTITE_PAR_LOT, lineEdit_quantite_par_lot->text().toDouble());
+        }
 
         record.setValue(YerothDatabaseTableColumn::ID, stock_id_to_save);
         record.setValue(YerothDatabaseTableColumn::REFERENCE, lineEdit_reference_produit->text());
@@ -907,15 +915,17 @@ YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
         	utilisateurCourrantNomComplet.append(aUser->nom_complet());
         }
 
-        achatRecord.setValue(YerothDatabaseTableColumn::ENREGISTREUR_STOCK, utilisateurCourrantNomComplet);
-        achatRecord.setValue(YerothDatabaseTableColumn::QUANTITE_TOTAL, quantite_total);
-        achatRecord.setValue(YerothDatabaseTableColumn::STOCK_MINIMUM, stock_minimum);
-        achatRecord.setValue(YerothDatabaseTableColumn::REFERENCE_RECU_DACHAT, reference_recu_dachat);
-        achatRecord.setValue(YerothDatabaseTableColumn::PRIX_DACHAT, prix_dachat);
-        achatRecord.setValue(YerothDatabaseTableColumn::PRIX_VENTE, prix_vente);
-        //qDebug() << "++_tva: " << QString::number(_tva, 'f', 2);
-        achatRecord.setValue(YerothDatabaseTableColumn::MONTANT_TVA, _montantTva);
-
+        if (checkBox_achat->isChecked())
+        {
+        	achatRecord.setValue(YerothDatabaseTableColumn::ENREGISTREUR_STOCK, utilisateurCourrantNomComplet);
+        	achatRecord.setValue(YerothDatabaseTableColumn::QUANTITE_TOTAL, quantite_total);
+        	achatRecord.setValue(YerothDatabaseTableColumn::STOCK_MINIMUM, stock_minimum);
+        	achatRecord.setValue(YerothDatabaseTableColumn::REFERENCE_RECU_DACHAT, reference_recu_dachat);
+        	achatRecord.setValue(YerothDatabaseTableColumn::PRIX_DACHAT, prix_dachat);
+        	achatRecord.setValue(YerothDatabaseTableColumn::PRIX_VENTE, prix_vente);
+        	//qDebug() << "++_tva: " << QString::number(_tva, 'f', 2);
+        	achatRecord.setValue(YerothDatabaseTableColumn::MONTANT_TVA, _montantTva);
+        }
 
 
         record.setValue(YerothDatabaseTableColumn::ENREGISTREUR_STOCK, utilisateurCourrantNomComplet);
@@ -931,13 +941,16 @@ YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
 
         double marge_beneficiaire = getMargeBeneficiaire(prix_vente, prix_dachat, _montantTva);
 
-        achatRecord.setValue(YerothDatabaseTableColumn::MARGE_BENEFICIAIRE, marge_beneficiaire);
-        achatRecord.setValue(YerothDatabaseTableColumn::PRIX_UNITAIRE, prix_unitaire_ht);
-        achatRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR, proposedFournisseurName);
-        achatRecord.setValue(YerothDatabaseTableColumn::LOCALISATION, _allWindows->getInfoEntreprise().getLocalisation());
-        achatRecord.setValue(YerothDatabaseTableColumn::LOCALISATION_STOCK, lineEdit_localisation_produit->text());
-        achatRecord.setValue(YerothDatabaseTableColumn::DATE_ENTREE, GET_CURRENT_DATE);
-        achatRecord.setValue(YerothDatabaseTableColumn::DATE_PEREMPTION, dateEdit_date_peremption->date());
+        if (checkBox_achat->isChecked())
+        {
+        	achatRecord.setValue(YerothDatabaseTableColumn::MARGE_BENEFICIAIRE, marge_beneficiaire);
+        	achatRecord.setValue(YerothDatabaseTableColumn::PRIX_UNITAIRE, prix_unitaire_ht);
+        	achatRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR, proposedFournisseurName);
+        	achatRecord.setValue(YerothDatabaseTableColumn::LOCALISATION, _allWindows->getInfoEntreprise().getLocalisation());
+        	achatRecord.setValue(YerothDatabaseTableColumn::LOCALISATION_STOCK, lineEdit_localisation_produit->text());
+        	achatRecord.setValue(YerothDatabaseTableColumn::DATE_ENTREE, GET_CURRENT_DATE);
+        	achatRecord.setValue(YerothDatabaseTableColumn::DATE_PEREMPTION, dateEdit_date_peremption->date());
+        }
 
         record.setValue(YerothDatabaseTableColumn::PRIX_UNITAIRE, prix_unitaire_ht);
         record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR, proposedFournisseurName);
@@ -966,7 +979,12 @@ YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
             record.setValue(YerothDatabaseTableColumn::IMAGE_PRODUIT, bytes);
         }
 
-        bool achatSuccess = achatSqlTableModel.insertNewRecord(achatRecord);
+        bool achatSuccess = false;
+
+        if (checkBox_achat->isChecked())
+        {
+        	achatSuccess = achatSqlTableModel.insertNewRecord(achatRecord);
+        }
 
         bool success = _curStocksTableModel->insertNewRecord(record);
 
@@ -975,22 +993,27 @@ YEROTH_ERP_3_0_COMMIT_DATABASE_TRANSACTION;
         QString achatRetMsg(QString(QObject::tr("L'achat du stock '%1'"))
         						.arg(lineEdit_designation->text()));
 
-        if (achatSuccess)
-        {
-        	achatRetMsg.append(QObject::trUtf8(" a été enregistré dans la base de données !"));
 
-            YerothQMessageBox::information(this,
-            							   QObject::trUtf8("enregistrement du stock avec succès"),
-                                           achatRetMsg);
-        }
-        else
+        if (checkBox_achat->isChecked())
         {
-        	achatRetMsg.append(QObject::trUtf8(" n'a pas pu être enregistré dans la base de données !"));
+            if (achatSuccess)
+            {
+            	achatRetMsg.append(QObject::trUtf8(" a été enregistré dans la base de données !"));
 
-            YerothQMessageBox::warning(this,
-            						   QObject::trUtf8("échec de l'enregistrement du stock"),
-									   achatRetMsg);
+                YerothQMessageBox::information(this,
+                							   QObject::trUtf8("enregistrement du stock avec succès"),
+                                               achatRetMsg);
+            }
+            else
+            {
+            	achatRetMsg.append(QObject::trUtf8(" n'a pas pu être enregistré dans la base de données !"));
+
+                YerothQMessageBox::warning(this,
+                						   QObject::trUtf8("échec de l'enregistrement du stock"),
+    									   achatRetMsg);
+            }
         }
+
 
         QString retMsg(QString(QObject::tr("Le stock '%1'"))
         					.arg(lineEdit_designation->text()));
