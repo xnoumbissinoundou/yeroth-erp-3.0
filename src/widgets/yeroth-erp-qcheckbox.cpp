@@ -21,10 +21,12 @@ void YerothERPQCheckBox::setReadOnly(bool isReadOnly)
 {
 	if (isReadOnly)
 	{
-		setAttribute(Qt::WA_TransparentForMouseEvents);
+		setAttribute(Qt::WA_TransparentForMouseEvents, true);
 		setFocusPolicy(Qt::NoFocus);
 	}
 	else
 	{
+		setAttribute(Qt::WA_TransparentForMouseEvents, false);
+		setFocusPolicy(Qt::StrongFocus);
 	}
 }

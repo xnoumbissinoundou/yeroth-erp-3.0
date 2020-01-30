@@ -872,7 +872,7 @@
      <string>Entrer un stock</string>
     </property>
    </widget>
-   <widget class="YerothPushButton" name="pushButton_modifier">
+   <widget class="YerothPushButton" name="pushButton_retour">
     <property name="geometry">
      <rect>
       <x>527</x>
@@ -1304,10 +1304,10 @@
      </font>
     </property>
     <property name="text">
-     <string>Modifier</string>
+     <string>Retour</string>
     </property>
    </widget>
-   <widget class="YerothPushButton" name="pushButton_retour">
+   <widget class="YerothPushButton" name="pushButton_modifier">
     <property name="geometry">
      <rect>
       <x>166</x>
@@ -1739,7 +1739,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Retour</string>
+     <string>Modifier</string>
     </property>
    </widget>
    <widget class="YerothPushButton" name="pushButton_supprimer">
@@ -11478,9 +11478,9 @@
   <tabstop>lineEdit_stock_minimum</tabstop>
   <tabstop>lineEdit_reference_recu_dachat</tabstop>
   <tabstop>pushButton_entrer</tabstop>
-  <tabstop>pushButton_retour</tabstop>
-  <tabstop>pushButton_menu</tabstop>
   <tabstop>pushButton_modifier</tabstop>
+  <tabstop>pushButton_menu</tabstop>
+  <tabstop>pushButton_retour</tabstop>
   <tabstop>pushButton_supprimer</tabstop>
   <tabstop>textEdit_description</tabstop>
  </tabstops>
