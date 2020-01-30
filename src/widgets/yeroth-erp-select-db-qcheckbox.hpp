@@ -8,13 +8,10 @@
 #define SRC_WIDGETS_YEROTH_SELECT_DB_QCHECKBOX_HPP_
 
 
-#include "src/utils/yeroth-erp-utils.hpp"
+#include "src/widgets/yeroth-erp-qcheckbox.hpp"
 
 
-#include <QtWidgets/QCheckBox>
-
-
-class YerothSelectDBQCheckBox : public QCheckBox
+class YerothSelectDBQCheckBox : public YerothERPQCheckBox
 {
 	Q_OBJECT
 

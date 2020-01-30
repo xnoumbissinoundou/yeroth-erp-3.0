@@ -123,6 +123,7 @@ HEADERS = src/yeroth-erp-windows.hpp \
 		  src/widgets/yeroth-erp-qstandard-item.hpp \
 		  src/widgets/yeroth-erp-spinbox.hpp \
 		  src/widgets/yeroth-erp-datetime-edit.hpp \
+		  src/widgets/yeroth-erp-qcheckbox.hpp \
 		  src/widgets/yeroth-erp-select-db-qcheckbox.hpp \
 		  src/widgets/yeroth-erp-table-widget.hpp \
 		  src/process/yeroth-erp-process-info.hpp \
@@ -221,6 +222,7 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/widgets/yeroth-erp-qstandard-item.cpp \		  
 		  src/widgets/yeroth-erp-spinbox.cpp \
 		  src/widgets/yeroth-erp-datetime-edit.cpp \
+		  src/widgets/yeroth-erp-qcheckbox.cpp \
 		  src/widgets/yeroth-erp-select-db-qcheckbox.cpp \
 		  src/widgets/yeroth-erp-table-widget.cpp \
 		  src/process/yeroth-erp-process-info.cpp \
