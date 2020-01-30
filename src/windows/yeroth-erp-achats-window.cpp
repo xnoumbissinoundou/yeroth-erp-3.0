@@ -312,7 +312,6 @@ void YerothAchatsWindow::reinitialiser_champs_db_visibles()
 
 	_visibleDBFieldColumnStrList
 		<< YerothDatabaseTableColumn::ID
-		<< YerothDatabaseTableColumn::STOCKS_ID
 		<< YerothDatabaseTableColumn::DESIGNATION
 		<< YerothDatabaseTableColumn::CATEGORIE
 		<< YerothDatabaseTableColumn::REFERENCE_RECU_DACHAT
@@ -321,7 +320,6 @@ void YerothAchatsWindow::reinitialiser_champs_db_visibles()
 		<< YerothDatabaseTableColumn::PRIX_VENTE
 		<< YerothDatabaseTableColumn::MARGE_BENEFICIAIRE
 		<< YerothDatabaseTableColumn::DATE_ENTREE
-		<< YerothDatabaseTableColumn::LOCALISATION_STOCK
 		<< YerothDatabaseTableColumn::QUANTITE_TOTAL;
 
 }
