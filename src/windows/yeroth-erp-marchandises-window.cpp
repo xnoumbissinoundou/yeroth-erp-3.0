@@ -43,9 +43,6 @@ unsigned int YerothMarchandisesWindow::PDF_LISTING_COLUMN_DESIGNATION(2);
 unsigned int YerothMarchandisesWindow::PDF_LISTING_COLUMN_CATEGORIE(3);
 
 
-double YerothMarchandisesWindow::_totalValeurDinventaire(0.0);
-
-
 const QString YerothMarchandisesWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2")).
         arg(YEROTH_ERP_WINDOW_TITLE,
             QObject::trUtf8("Marchandises")));
@@ -835,8 +832,6 @@ void YerothMarchandisesWindow::afficherMarchandises(YerothSqlTableModel &aYeroth
     _searchMarchandisesWidget->rendreInvisible();
 
     tableView_marchandises->lister_les_elements_du_tableau(aYerothSqlTableModel);
-
-    lineEdit_marchandises_valeur_dinventaire_total->setText(GET_CURRENCY_STRING_NUM(_totalValeurDinventaire));
 
     tableView_marchandises->hideColumn(4);
     tableView_marchandises->hideColumn(7);

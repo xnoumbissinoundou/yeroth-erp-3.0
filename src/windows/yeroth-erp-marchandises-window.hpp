@@ -132,11 +132,6 @@ public slots:
 
     void updateLineEditDesignation();
 
-    inline static void updateTotalValeurDinventaire(double totalValeurDinventaire)
-    {
-    	_totalValeurDinventaire = totalValeurDinventaire;
-    }
-
     static double getValeurDinventaireEnStock(QString categorie, QString designation);
 
     static double getQuantiteTotalEnStock(QString categorie, QString designation);
@@ -175,8 +170,6 @@ private:
     static unsigned int PDF_LISTING_COLUMN_DESIGNATION;
 
     static unsigned int PDF_LISTING_COLUMN_CATEGORIE;
-
-    static double 			_totalValeurDinventaire;
 
     static const QString 	_WINDOW_TITLE;
 

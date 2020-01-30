@@ -85,8 +85,6 @@ void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTab
 
     YerothUtils::createTableModelHeaders(tableModel, *_stdItemModel, *_tableModelHeaders);
 
-    double totalValeurDinventaire = 0.0;
-
 	QString tmpQvString;
     QStandardItem *anItem = 0;
     QVariant qv;
@@ -234,14 +232,11 @@ void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTab
                 				YerothMarchandisesWindow::getValeurDinventaireEnStock(categorieStr,
                 						designationStr);
                 		anItem->setText(GET_DOUBLE_STRING(valeurDinventaireEnStock));
-
-                		totalValeurDinventaire = totalValeurDinventaire + valeurDinventaireEnStock;
                 	}
 
                 } //if (0 != item)
             }
         }
-        YerothMarchandisesWindow::updateTotalValeurDinventaire(totalValeurDinventaire);
     }
 
     this->resizeColumnsToContents();
