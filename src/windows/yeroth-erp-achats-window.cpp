@@ -86,6 +86,10 @@ YerothAchatsWindow::YerothAchatsWindow()
 
     _logger->log("YerothAchatsWindow");
 
+    setupSelectDBFields(_allWindows->ACHATS);
+
+    reinitialiser_champs_db_visibles();
+
     _curAchatSqlTableModel = &_allWindows->getSqlTableModel_achats();
 
     _searchAchatsWidget = new YerothSearchForm(_allWindows, *this, &_allWindows->getSqlTableModel_achats());
@@ -116,6 +120,10 @@ YerothAchatsWindow::YerothAchatsWindow()
     pushButton_ventes->disable(this);
     pushButton_rechercher->enable(this, SLOT(rechercher()));
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
+
+    connect(actionReinitialiserChampsDBVisible, SIGNAL(triggered()), this, SLOT(slot_reinitialiser_champs_db_visibles()));
+
+    connect(actionChampsDBVisible, SIGNAL(triggered()), this, SLOT(selectionner_champs_db_visibles()));
 
     //Menu actions
     connect(actionChanger_utilisateur, SIGNAL(triggered()), this, SLOT(changer_utilisateur()));
@@ -291,6 +299,34 @@ void YerothAchatsWindow::setupShortcuts()
 }
 
 
+void YerothAchatsWindow::slot_reinitialiser_champs_db_visibles()
+{
+	reinitialiser_champs_db_visibles();
+	afficherAchats(*_curAchatSqlTableModel);
+}
+
+
+void YerothAchatsWindow::reinitialiser_champs_db_visibles()
+{
+	_visibleDBFieldColumnStrList.clear();
+
+	_visibleDBFieldColumnStrList
+		<< YerothDatabaseTableColumn::ID
+		<< YerothDatabaseTableColumn::STOCKS_ID
+		<< YerothDatabaseTableColumn::DESIGNATION
+		<< YerothDatabaseTableColumn::CATEGORIE
+		<< YerothDatabaseTableColumn::REFERENCE_RECU_DACHAT
+		<< YerothDatabaseTableColumn::PRIX_DACHAT
+		<< YerothDatabaseTableColumn::MONTANT_TVA
+		<< YerothDatabaseTableColumn::PRIX_VENTE
+		<< YerothDatabaseTableColumn::MARGE_BENEFICIAIRE
+		<< YerothDatabaseTableColumn::DATE_ENTREE
+		<< YerothDatabaseTableColumn::LOCALISATION_STOCK
+		<< YerothDatabaseTableColumn::QUANTITE_TOTAL;
+
+}
+
+
 void YerothAchatsWindow::contextMenuEvent(QContextMenuEvent * event)
 {
     if (tableView_achats->rowCount() > 0)
@@ -327,6 +363,16 @@ void YerothAchatsWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
     }
 
     lineEdit_recherche_designation->setFocus();
+
+    YerothPOSUser *aCurrentUser = _allWindows->getUser();
+
+    if (0 != aCurrentUser && !aCurrentUser->isManager())
+    {
+        if (_visibleDBFieldColumnStrList.contains(YerothDatabaseTableColumn::MARGE_BENEFICIAIRE))
+        {
+        	_visibleDBFieldColumnStrList.removeAll(YerothDatabaseTableColumn::MARGE_BENEFICIAIRE);
+        }
+    }
 
     afficherAchats(*_curAchatSqlTableModel);
 
@@ -574,36 +620,7 @@ void YerothAchatsWindow::afficherAchats(YerothSqlTableModel &achatSqlTableModel)
 
     tableView_achats->lister_les_elements_du_tableau(achatSqlTableModel);
 
-    tableView_achats->hideColumn(3);
-    tableView_achats->hideColumn(5);
-    tableView_achats->hideColumn(8);
-    tableView_achats->hideColumn(11);
-    tableView_achats->hideColumn(12);
-    tableView_achats->hideColumn(14);
-    tableView_achats->hideColumn(16);
-    tableView_achats->hideColumn(17);
-    tableView_achats->hideColumn(18);
-    tableView_achats->hideColumn(19);
-    tableView_achats->hideColumn(21);
-
-
-    YerothPOSUser * currentUser = _allWindows->getUser();
-
-    if (0 != currentUser)
-    {
-    	if (currentUser->isManager())
-    	{
-    		//La colone affichant la marge beneficiare
-    		//est affichee uniquement pour le ''Manager''
-    		tableView_achats->showColumn(11);
-    	}
-    	else
-    	{
-    		tableView_achats->hideColumn(11);
-    	}
-    }
-
-    tableView_achats->selectRow(tableView_achats->lastSelectedRow());
+    tableView_show_or_hide_columns(*tableView_achats);
 }
 
 
@@ -673,22 +690,7 @@ bool YerothAchatsWindow::export_csv_file()
 
 	QList<int> tableColumnsToIgnore;
 
-    YerothPOSUser *aCurrentUser = _allWindows->getUser();
-
-    if (0 != aCurrentUser && aCurrentUser->isManager())
-    {
-    	tableColumnsToIgnore << 0 << 5 << 8
-    						 << 12 << 14 << 15
-							 << 16 << 17 << 18
-							 << 19;
-    }
-    else
-    {
-    	tableColumnsToIgnore << 0 << 5 << 8
-    						 << 11 << 12 << 14
-							 << 15 << 16 << 17
-							 << 18 << 19;
-    }
+	fill_table_columns_to_ignore(tableColumnsToIgnore);
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 	success = YerothUtils::export_csv_file(*this,
@@ -865,23 +867,7 @@ bool YerothAchatsWindow::imprimer_document()
 
     QList<int> tableColumnsToIgnore;
 
-    YerothPOSUser *aCurrentUser = _allWindows->getUser();
-
-    if (0 != aCurrentUser && aCurrentUser->isManager())
-    {
-    	tableColumnsToIgnore << 0 << 3 << 5
-    						 << 8 << 12 << 14
-							 << 15 << 16 << 17
-							 << 18 << 19 << 21;
-    }
-    else
-    {
-    	tableColumnsToIgnore << 0 << 3 << 5
-    						 << 8 << 11 << 12
-							 << 14 << 15 << 16
-							 << 17 << 18 << 19
-							 << 21;
-    }
+    fill_table_columns_to_ignore(tableColumnsToIgnore);
 
     QString pdfBuyingsFileName;
 

@@ -132,17 +132,23 @@ public slots:
 
     void updateLineEditDesignation();
 
-private slots:
+protected slots:
 
-	bool filtrer_achats();
+		virtual void slot_reinitialiser_champs_db_visibles();
 
 protected:
+
+	virtual void reinitialiser_champs_db_visibles();
 
 	void contextMenuEvent(QContextMenuEvent *event);
 
     virtual void hideEvent(QHideEvent * hideEvent);
 
     virtual void setupShortcuts();
+
+private slots:
+
+    bool filtrer_achats();
 
 private:
 
