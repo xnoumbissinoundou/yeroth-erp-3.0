@@ -549,16 +549,27 @@ void YerothModifierWindow::supprimer_ce_stock()
 void YerothModifierWindow::supprimer_image_stock()
 {
     QSqlRecord record = _curStocksTableModel->record(_allWindows->getLastSelectedListerRow());
+
     QVariant image_produit(record.value(YerothDatabaseTableColumn::IMAGE_PRODUIT));
+
     if (image_produit.toByteArray().isEmpty())
     {
-        QString msg("Le stock '");
-        msg.append(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION)).append("' n'a pas d'image !");
+        QString msg(QString(QObject::trUtf8("Le stock '%1' n'a pas d'image enregistrée !"))
+        				.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION)));
+
         YerothQMessageBox::information(this, QObject::trUtf8("suppression de l'image d'un stock"),
                                       msg);
+
+        label_image_produit->clear();
+        label_image_produit->setAutoFillBackground(false);
+
         return;
     }
+
+
+
     QString msgSupprimer("Poursuivre avec la suppression de l'image du stock \"");
+
     msgSupprimer.append(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
     msgSupprimer.append("\" ?");
     if (QMessageBox::Ok ==

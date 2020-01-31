@@ -890,7 +890,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
     <message>
         <location filename="src/windows/yeroth-erp-achats-window.cpp" line="203"/>
         <location filename="src/windows/yeroth-erp-clients-window.cpp" line="518"/>
-        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="444"/>
+        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="448"/>
         <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="133"/>
         <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="323"/>
         <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="135"/>
@@ -901,7 +901,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
     <message>
         <location filename="src/windows/yeroth-erp-achats-window.cpp" line="206"/>
         <location filename="src/windows/yeroth-erp-clients-window.cpp" line="521"/>
-        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="447"/>
+        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="451"/>
         <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="136"/>
         <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="326"/>
         <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="138"/>
@@ -914,18 +914,18 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <translation>Merchandise</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="783"/>
+        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="787"/>
         <source>Poursuivre avec la suppression de la marchandise &apos;%1&apos; ?</source>
         <oldsource>Poursuivre avec la suppression de l&apos;article &quot;%1&quot; ?</oldsource>
         <translation>Continue with deletion of merchandise &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="801"/>
+        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="805"/>
         <source>Le stock &apos;%1&apos; a été supprimé.</source>
         <translation>Inventory stock &apos;%1&apos; has been deleted!</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="812"/>
+        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="816"/>
         <source>L&apos;article &quot;%1&quot; ne pouvait pas être supprimé !</source>
         <translation>Article &quot;%1&quot; couldn&apos;t be deleted !</translation>
     </message>
@@ -935,7 +935,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <translation>Continue with deletion of this article &quot;</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="788"/>
+        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="792"/>
         <source>suppression d&apos;une marchandise</source>
         <oldsource>suppression d&apos;un inventaire de stock</oldsource>
         <translation>deletion of a merchandise</translation>
@@ -1132,7 +1132,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="532"/>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="578"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="589"/>
         <source>&quot; a été supprimé.</source>
         <translation>&quot; has been deleted.</translation>
     </message>
@@ -1206,17 +1206,22 @@ Continue with update of the stock ?</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="557"/>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="565"/>
+        <source>Le stock &apos;%1&apos; n&apos;a pas d&apos;image enregistrée !</source>
+        <translation>Inventory stock &apos;%1&apos; doesn&apos;t have a saved image !</translation>
+    </message>
+    <message>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="560"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="576"/>
         <source>suppression de l&apos;image d&apos;un stock</source>
         <translation>delete stock item image</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="580"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="591"/>
         <source>suppression de l&apos;image du stock avec succès</source>
         <translation>stock image was successfully deleted</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="590"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="601"/>
         <source>échec de la suppression de l&apos;image d&apos;un stock</source>
         <translation>stock item image couldn&apos;t successfully de deleted</translation>
     </message>
@@ -1443,7 +1448,7 @@ Continue with update of the stock ?</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-achats-window.cpp" line="188"/>
-        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="167"/>
+        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="171"/>
         <location filename="src/windows/yeroth-erp-transactions-window.cpp" line="122"/>
         <location filename="src/windows/yeroth-erp-transactions-window.cpp" line="730"/>
         <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="269"/>
@@ -1581,7 +1586,7 @@ Continue with update of the stock ?</translation>
         <location filename="src/windows/yeroth-erp-creer-nouvelle-categorie-window.cpp" line="245"/>
         <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="219"/>
         <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="272"/>
-        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="805"/>
+        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="809"/>
         <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="487"/>
         <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2074"/>
         <source>succès</source>
@@ -1643,7 +1648,7 @@ Continue with update of the stock ?</translation>
         <location filename="src/windows/yeroth-erp-creer-nouvelle-categorie-window.cpp" line="238"/>
         <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="211"/>
         <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="264"/>
-        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="816"/>
+        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="820"/>
         <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="493"/>
         <source>échec</source>
         <translation>failed</translation>
