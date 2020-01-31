@@ -833,6 +833,8 @@ void YerothMarchandisesWindow::afficherMarchandises(YerothSqlTableModel &aYeroth
 
     tableView_marchandises->lister_les_elements_du_tableau(aYerothSqlTableModel);
 
+    tableView_marchandises->hideColumn(0);
+    tableView_marchandises->hideColumn(1);
     tableView_marchandises->hideColumn(4);
     tableView_marchandises->hideColumn(7);
     tableView_marchandises->selectRow(tableView_marchandises->lastSelectedRow());

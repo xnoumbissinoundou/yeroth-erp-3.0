@@ -529,7 +529,6 @@ void YerothStocksWindow::reinitialiser_champs_db_visibles()
 	_visibleDBFieldColumnStrList.clear();
 
     _visibleDBFieldColumnStrList
-    		<< YerothDatabaseTableColumn::ID
 			<< YerothDatabaseTableColumn::REFERENCE
 			<< YerothDatabaseTableColumn::DESIGNATION
 			<< YerothDatabaseTableColumn::CATEGORIE

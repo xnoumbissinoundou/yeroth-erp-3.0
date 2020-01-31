@@ -334,17 +334,15 @@ void YerothVentesWindow::reinitialiser_champs_db_visibles()
 	_visibleDBFieldColumnStrList.clear();
 
     _visibleDBFieldColumnStrList
-    		<< YerothDatabaseTableColumn::VENTE_ID
 			<< YerothDatabaseTableColumn::DATE_VENTE
 			<< YerothDatabaseTableColumn::HEURE_VENTE
-			<< YerothDatabaseTableColumn::REFERENCE
 			<< YerothDatabaseTableColumn::CATEGORIE
 			<< YerothDatabaseTableColumn::DESIGNATION
 			<< YerothDatabaseTableColumn::PRIX_UNITAIRE
 			<< YerothDatabaseTableColumn::QUANTITE_VENDUE
 			<< YerothDatabaseTableColumn::MONTANT_TVA
 			<< YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE
-			<< YerothDatabaseTableColumn::NOM_UTILISATEUR_CAISSIER;
+			<< YerothDatabaseTableColumn::NOM_CAISSIER;
 }
 
 

@@ -311,10 +311,8 @@ void YerothAchatsWindow::reinitialiser_champs_db_visibles()
 	_visibleDBFieldColumnStrList.clear();
 
 	_visibleDBFieldColumnStrList
-		<< YerothDatabaseTableColumn::ID
 		<< YerothDatabaseTableColumn::DESIGNATION
 		<< YerothDatabaseTableColumn::CATEGORIE
-		<< YerothDatabaseTableColumn::REFERENCE_RECU_DACHAT
 		<< YerothDatabaseTableColumn::PRIX_DACHAT
 		<< YerothDatabaseTableColumn::MONTANT_TVA
 		<< YerothDatabaseTableColumn::PRIX_VENTE

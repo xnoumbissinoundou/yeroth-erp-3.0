@@ -177,11 +177,11 @@ void YerothERPClientsWindow::reinitialiser_champs_db_visibles()
 	_visibleDBFieldColumnStrList.clear();
 
     _visibleDBFieldColumnStrList
-    		<< YerothDatabaseTableColumn::REFERENCE_CLIENT
 			<< YerothDatabaseTableColumn::NOM_ENTREPRISE
-			<< YerothDatabaseTableColumn::NOM_REPRESENTANT
-			<< YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT
-			<< YerothDatabaseTableColumn::COMPTE_CLIENT;
+			<< YerothDatabaseTableColumn::VILLE
+			<< YerothDatabaseTableColumn::EMAIL
+			<< YerothDatabaseTableColumn::NUMERO_TELEPHONE_1
+			<< YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT;
 }
 
 

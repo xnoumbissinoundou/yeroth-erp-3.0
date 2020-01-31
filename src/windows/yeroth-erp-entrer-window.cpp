@@ -1090,4 +1090,29 @@ void YerothEntrerWindow::showItem()
     {
         label_image_produit->setAutoFillBackground(false);
     }
+
+    QString recordID = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ID);
+
+    QString strAchatsQuery(QString("SELECT %1 FROM %2 WHERE %3 = '%4'")
+    							.arg(YerothDatabaseTableColumn::ID,
+    								 _allWindows->ACHATS,
+    								 YerothDatabaseTableColumn::STOCKS_ID,
+									 recordID));
+
+    QSqlQuery query;
+
+    int achatQuerySize = YerothUtils::execQuery(query, strAchatsQuery, _logger);
+
+//    qDebug() << QString("++ strAchatsQuery: %1, querySize: %2")
+//    				.arg(strAchatsQuery,
+//    					 QString::number(achatQuerySize));
+
+    if (1 == achatQuerySize)
+    {
+    	checkBox_achat->setChecked(true);
+    }
+    else
+    {
+    	checkBox_achat->setChecked(false);
+    }
 }
