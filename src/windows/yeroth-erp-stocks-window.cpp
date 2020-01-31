@@ -187,15 +187,6 @@ connect(actionAdministration, SIGNAL(triggered()), this, SLOT(administration()))
 
 YerothStocksWindow::~YerothStocksWindow()
 {
-	if (0 != _selectExportDBQDialog)
-	{
-		_selectExportDBQDialog->close();
-
-		delete _selectExportDBQDialog;
-	}
-
-	_visibleQCheckboxs.clear();
-
 	delete _actionRechercheArticleCodebar;
     delete _action_RechercherFont;
     delete _pushButton_RechercherFont;

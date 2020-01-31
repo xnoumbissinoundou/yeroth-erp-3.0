@@ -42,7 +42,7 @@ public:
 									.arg(COLOUR_RGB_STRING_YEROTH_ORANGE_243_162_0);
 	}
 
-	inline ~YerothWindowsCommons(){}
+	virtual ~YerothWindowsCommons();
 
 	inline virtual void YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(QAction *anAction,
 													   	   	  bool aBooleanValue)

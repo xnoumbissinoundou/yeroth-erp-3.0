@@ -30,6 +30,27 @@ YerothERPWindows *YerothWindowsCommons::_allWindows(0);
 
 QPoint *YerothWindowsCommons::_centerPosition(new QPoint);
 
+
+
+
+YerothWindowsCommons::~YerothWindowsCommons()
+{
+	if (0 != _selectExportDBQDialog)
+	{
+		_selectExportDBQDialog->close();
+
+		delete _selectExportDBQDialog;
+	}
+
+	_toSelectDBFieldNameStrToDBColumnIndex.clear();
+
+	_visibleDBFieldColumnStrList.clear();
+
+	_visibleQCheckboxs.clear();
+
+}
+
+
 void YerothWindowsCommons::mySetupUi(QMainWindow * aWindow)
 {
     aWindow->setFixedSize(aWindow->width(), aWindow->height());

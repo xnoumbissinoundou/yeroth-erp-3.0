@@ -68,6 +68,10 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
 
     _logger->log("YerothInventaireDesStocksWindow");
 
+    setupSelectDBFields(_allWindows->MARCHANDISES);
+
+    reinitialiser_champs_db_visibles();
+
     _searchMarchandisesWidget = new YerothSearchForm(_allWindows, *this, _curInventaireDesStocksTableModel);
 
     setupLineEdits();
@@ -100,6 +104,10 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
     pushButton_sortir->disable(this);
     pushButton_rechercher->enable(this, SLOT(rechercher()));
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
+
+    connect(actionReinitialiserChampsDBVisible, SIGNAL(triggered()), this, SLOT(slot_reinitialiser_champs_db_visibles()));
+
+    connect(actionChampsDBVisible, SIGNAL(triggered()), this, SLOT(selectionner_champs_db_visibles()));
 
     //Menu actions
     connect(actionChanger_utilisateur, SIGNAL(triggered()), this, SLOT(changer_utilisateur()));
@@ -275,6 +283,26 @@ double YerothMarchandisesWindow::getQuantiteTotalEnStock(const QModelIndex &aQMo
 	}
 
 	return qteTotalEnStock;
+}
+
+
+void YerothMarchandisesWindow::slot_reinitialiser_champs_db_visibles()
+{
+	reinitialiser_champs_db_visibles();
+
+	afficherMarchandises();
+}
+
+
+void YerothMarchandisesWindow::reinitialiser_champs_db_visibles()
+{
+	_visibleDBFieldColumnStrList.clear();
+
+    _visibleDBFieldColumnStrList
+		<< YerothDatabaseTableColumn::DESIGNATION
+		<< YerothDatabaseTableColumn::CATEGORIE
+		<< YerothDatabaseTableColumn::QUANTITE_TOTAL
+		<< YerothDatabaseTableColumn::VALEUR_DIVENTAIRE;
 }
 
 
@@ -833,11 +861,7 @@ void YerothMarchandisesWindow::afficherMarchandises(YerothSqlTableModel &aYeroth
 
     tableView_marchandises->lister_les_elements_du_tableau(aYerothSqlTableModel);
 
-    tableView_marchandises->hideColumn(0);
-    tableView_marchandises->hideColumn(1);
-    tableView_marchandises->hideColumn(4);
-    tableView_marchandises->hideColumn(7);
-    tableView_marchandises->selectRow(tableView_marchandises->lastSelectedRow());
+    tableView_show_or_hide_columns(*tableView_marchandises);
 }
 
 
@@ -868,7 +892,8 @@ bool YerothMarchandisesWindow::export_csv_file()
 	bool success = false;
 
 	QList<int> tableColumnsToIgnore;
-    tableColumnsToIgnore << 0 << 4 << 7;
+
+	fill_table_columns_to_ignore(tableColumnsToIgnore);
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 	success = YerothUtils::export_csv_file(*this,
@@ -902,12 +927,10 @@ void YerothMarchandisesWindow::getInventoryStocksListingTexTableString(QString &
     .append("\\begin{tabular}")
     .append("{|");
 
-    int texTableColumnCount = tableStandardItemModel.columnCount() + 1;
-
     texTable_in_out.append("c|");
 
     //Tex table header
-    for (int k = 0; k < texTableColumnCount; ++k)
+    for (int k = 0; k < tableStandardItemModel.columnCount(); ++k)
     {
         if (columnsToIgnore.contains(k))
         {
@@ -933,12 +956,15 @@ void YerothMarchandisesWindow::getInventoryStocksListingTexTableString(QString &
 
     /** We add a column named 'id' for numbering the rows
      * in the Tex table. */
-    unsigned int id = 1;
+    unsigned int id = fromRowIndex + 1;
+
     texTable_in_out.append("\\textbf{n\\textsuperscript{o}} & ");
 
     QStandardItem *item;
 
-    for (int k = 0; k < texTableColumnCount; ++k)
+    int tableColumnCount = 1 + tableStandardItemModel.columnCount();
+
+    for (int k = 0; k < tableStandardItemModel.columnCount(); ++k)
     {
         if (columnsToIgnore.contains(k))
         {
@@ -949,7 +975,7 @@ void YerothMarchandisesWindow::getInventoryStocksListingTexTableString(QString &
         if (item)
         {
             QString itemText(item->text().prepend("\\textbf{").append("}"));
-            YerothUtils::handleTexTableItemText(tableStandardItemModel.columnCount(),
+            YerothUtils::handleTexTableItemText(tableColumnCount,
                                    	   	   	    texTable_in_out,
 												k,
 												itemText);
@@ -958,10 +984,10 @@ void YerothMarchandisesWindow::getInventoryStocksListingTexTableString(QString &
     /** Closing Tex table header */
     YerothUtils::cleanUpTexTableLastString(texTable_in_out);
 
-    texTable_in_out.append("\\hline\n");
+    texTable_in_out.append("\\\\ \\hline\n");
 
 
-    for (int j = 0; j < tableStandardItemModel.rowCount(); ++j)
+    for (int j = fromRowIndex; j < toRowIndex; ++j)
     {
         texTable_in_out.append(QString::number(id));
         texTable_in_out.append(" &");
@@ -978,7 +1004,7 @@ void YerothMarchandisesWindow::getInventoryStocksListingTexTableString(QString &
             if (item)
             {
                 QString itemText(item->text());
-                YerothUtils::handleFactureTexTableItemText(tableStandardItemModel.columnCount(),
+                YerothUtils::handleFactureTexTableItemText(tableColumnCount,
                                               	  	  	   texTable_in_out,
 														   k,
 														   itemText);
@@ -991,7 +1017,7 @@ void YerothMarchandisesWindow::getInventoryStocksListingTexTableString(QString &
                 }
                 else
                 {
-                    texTable_in_out.append("\"\"").append("\\hline\n");
+                    texTable_in_out.append("\"\"").append("\\\\ \\hline\n");
                 }
             }
         }
@@ -1000,7 +1026,7 @@ void YerothMarchandisesWindow::getInventoryStocksListingTexTableString(QString &
 
         YerothUtils::cleanUpTexTableLastString(texTable_in_out);
 
-        texTable_in_out.append("\\hline\n");
+        texTable_in_out.append("\\\\ \\hline\n");
     }
 
     //Removes the empty character "" from Latex output
@@ -1031,7 +1057,7 @@ bool YerothMarchandisesWindow::imprimer_document()
 
     QList<int> tableColumnsToIgnore;
 
-    tableColumnsToIgnore << 0 << 4;
+    fill_table_columns_to_ignore(tableColumnsToIgnore);
 
     QString pdfMerchandiseFileName;
 
