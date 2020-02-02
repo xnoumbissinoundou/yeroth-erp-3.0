@@ -7216,7 +7216,7 @@ Transférer</source>
     <message>
         <location filename="ui/yeroth-erp-entrer-window.ui" line="11532"/>
         <source>achat</source>
-        <translation>buying</translation>
+        <translation>buyings</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-entrer-window.ui" line="12413"/>
