@@ -63,7 +63,7 @@ public slots:
 		YerothQMessageBox::information(this,
 						 QObject::trUtf8("aide"),
 						 QObject::trUtf8("Remplisser le formulaire, et ensuite cliquer "
-										 "sur enregistrer!"));
+										 "sur enregistrer !"));
 	}
 
     void deconnecter_utilisateur();

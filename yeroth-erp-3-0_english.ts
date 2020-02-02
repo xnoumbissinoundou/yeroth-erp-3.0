@@ -1804,8 +1804,9 @@ Continue saving it to the database ?</translation>
     <message>
         <location filename="src/windows/yeroth-erp-creer-compte-client-window.hpp" line="65"/>
         <location filename="src/windows/yeroth-erp-entrer-window.hpp" line="66"/>
-        <source>Remplisser le formulaire, et ensuite cliquer sur enregistrer!</source>
-        <translation>Fill out the form, and, then, press the &apos;save&apos; button!</translation>
+        <source>Remplisser le formulaire, et ensuite cliquer sur enregistrer !</source>
+        <oldsource>Remplisser le formulaire, et ensuite cliquer sur enregistrer!</oldsource>
+        <translation>Fill out the form, and then press the &apos;save&apos; button !</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-clients-window.hpp" line="106"/>
