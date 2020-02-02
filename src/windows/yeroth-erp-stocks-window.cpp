@@ -348,7 +348,7 @@ bool YerothStocksWindow::filtrer_stocks()
 
 	int resultRows = _curStocksTableModel->easySelect();
 
-	if (resultRows > 0)
+	if (resultRows >= 0)
 	{
 		setCurrentlyFiltered(true);
 
