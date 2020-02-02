@@ -50,6 +50,11 @@ public:
 		anAction->setVisible(aBooleanValue);
 	}
 
+	inline QList<int> &getDBFieldNamesToPrintLeftAligned()
+	{
+		return _DBFieldNamesToPrintLeftAligned;
+	}
+
 	inline virtual QToolBar * getQMainWindowToolBar()
 	{
 		return 0;
@@ -238,6 +243,8 @@ protected:
     QMap<QString, int>					_toSelectDBFieldNameStrToDBColumnIndex;
 
     QStringList							_visibleDBFieldColumnStrList;
+
+    QList<int>							_DBFieldNamesToPrintLeftAligned;
 
     QVector<YerothSelectDBQCheckBox *> 	_visibleQCheckboxs;
 

@@ -50,6 +50,7 @@
 const QString YerothPaiementsWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2")).
         arg(YEROTH_ERP_WINDOW_TITLE, QObject::trUtf8("paiements")));
 
+
 YerothPaiementsWindow::YerothPaiementsWindow()
 :YerothWindowsCommons(YerothPaiementsWindow::_WINDOW_TITLE),
  _logger(new YerothLogger("YerothPaiementsWindow")),
@@ -513,7 +514,9 @@ bool YerothPaiementsWindow::export_csv_file()
 
 void YerothPaiementsWindow::getJournalDesPaiementsTexTableString(QString & texTable_in_out,
         												  QStandardItemModel & tableStandardItemModel,
-														  QList < int >&columnsToIgnore, int fromRowIndex,
+														  QList<int> &dbFieldNameOfTypeString,
+														  QList<int> &columnsToIgnore,
+														  int fromRowIndex,
 														  int toRowIndex, bool lastPage)
 {
     if (lastPage && toRowIndex > 20)
@@ -533,17 +536,28 @@ void YerothPaiementsWindow::getJournalDesPaiementsTexTableString(QString & texTa
 				   .append("\\begin{tabular}")
 				   .append("{|");
 
-    int texTableColumnCount = tableStandardItemModel.columnCount() - columnsToIgnore.size();
-    //qDebug() << "++ texTableColumnCount: " << texTableColumnCount;
     //Tex table header
 
     /** We center the n0 column*/
 
     texTable_in_out.append("c|");
 
-    for (int k = 0; k < texTableColumnCount; ++k)
+    //Tex table header
+    for (int k = 0; k < tableStandardItemModel.columnCount(); ++k)
     {
-        texTable_in_out.append("r|");
+        if (columnsToIgnore.contains(k))
+        {
+            continue;
+        }
+
+        if (dbFieldNameOfTypeString.contains(k))
+        {
+        	texTable_in_out.append("l|");
+        }
+        else
+        {
+        	texTable_in_out.append("r|");
+        }
     }
 
     texTable_in_out.append("} \\hline \n");
@@ -671,9 +685,13 @@ bool YerothPaiementsWindow::imprimer_document()
 
     int pageNumber = qCeil(tableModelRowCount / MAX_TABLE_ROW_COUNT);
 
-    this->getJournalDesPaiementsTexTableString(texTable, *tableModel, columnsToIgnore, 0,
-                                            (20 >= tableModelRowCount) ? tableModelRowCount : 20,
-                                            tableModelRowCount <= 20);
+    this->getJournalDesPaiementsTexTableString(texTable,
+    										   *tableModel,
+											   this->_DBFieldNamesToPrintLeftAligned,
+											   columnsToIgnore,
+											   0,
+											   (20 >= tableModelRowCount) ? tableModelRowCount : 20,
+											   tableModelRowCount <= 20);
 
     if (tableModelRowCount >= 20)
     {
@@ -682,12 +700,15 @@ bool YerothPaiementsWindow::imprimer_document()
         int k = 1;
         do
         {
-            this->getJournalDesPaiementsTexTableString(texTable, *tableModel, columnsToIgnore,
-                                                    (fromRowIndex >=
+            this->getJournalDesPaiementsTexTableString(texTable,
+            										   *tableModel,
+													   this->_DBFieldNamesToPrintLeftAligned,
+													   columnsToIgnore,
+                                                       (fromRowIndex >=
                                                             tableModelRowCount) ? tableModelRowCount : fromRowIndex,
-                                                    (toRowIndex >=
+                                                       (toRowIndex >=
                                                             tableModelRowCount) ? (tableModelRowCount + 1) : toRowIndex,
-                                                    k == pageNumber);
+                                                       k == pageNumber);
             texTable.append(QString("\\newpage \n"));
             fromRowIndex = toRowIndex;
             toRowIndex =

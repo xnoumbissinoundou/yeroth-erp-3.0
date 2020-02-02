@@ -111,6 +111,7 @@ public slots:
 	 */
 	void getJournalDesVentesTexTableString(QString &texTable_in_out,
 			  	  	  	   	   	   	   	   QStandardItemModel &tableStandardItemModel,
+										   QList<int> &dbFieldNameOfTypeString,
 										   QList<int> &columnsToIgnore,
 										   int fromRowIndex,
 										   int toRowIndex,

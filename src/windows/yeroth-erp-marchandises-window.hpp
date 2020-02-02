@@ -86,6 +86,7 @@ public slots:
 
 	static void getInventoryStocksListingTexTableString(QString &texTable_in_out,
 											   	   	    QStandardItemModel &tableStandardItemModel,
+														QList<int> &dbFieldNameOfTypeString,
 														QList<int> &columnsToIgnore,
 														int fromRowIndex,
 														int toRowIndex,
@@ -170,12 +171,6 @@ private:
     void setupLineEditsQCompleters();
 
     void setupLineEdits();
-
-    static unsigned int PDF_LISTING_COLUMN_REFERENCE;
-
-    static unsigned int PDF_LISTING_COLUMN_DESIGNATION;
-
-    static unsigned int PDF_LISTING_COLUMN_CATEGORIE;
 
     static const QString 	_WINDOW_TITLE;
 

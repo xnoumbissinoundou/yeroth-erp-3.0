@@ -2185,6 +2185,7 @@ QString YerothUtils::prindDocumentFromTableView(YerothWindowsCommons *aWindowCal
 											 QList<int> &tableColumnsToIgnore,
 											 void (*functionPointerToGetTableViewLatexString)(QString &texTable_in_out_OUT,
 											   	   	   	   	   	   	   	   	   	   	    	  QStandardItemModel &tableStandardItemModel_OUT,
+																							  QList<int> &dbFieldNameOfTypeString_OUT,
 																							  QList<int> &columnsToIgnore_OUT,
 																							  int fromRowIndex_OUT,
 																							  int toRowIndex_OUT,
@@ -2220,9 +2221,13 @@ QString YerothUtils::prindDocumentFromTableView(YerothWindowsCommons *aWindowCal
     //qDebug() << QString("number of pages to print: %1").arg(pageNumber);
     //_logger->log("imprimer_document",
     //                  QString("number of pages to print: %1").arg(pageNumber));
-    functionPointerToGetTableViewLatexString(texTable, *tableModel, tableColumnsToIgnore, 0,
-            								(20 >= tableModelRowCount) ? tableModelRowCount : 20,
-            								tableModelRowCount <= 20);
+    functionPointerToGetTableViewLatexString(texTable,
+    										 *tableModel,
+											 aWindowCaller->getDBFieldNamesToPrintLeftAligned(),
+											 tableColumnsToIgnore,
+											 0,
+            								 (20 >= tableModelRowCount) ? tableModelRowCount : 20,
+            								 tableModelRowCount <= 20);
 
     if (tableModelRowCount >= 20)
     {
@@ -2236,10 +2241,14 @@ QString YerothUtils::prindDocumentFromTableView(YerothWindowsCommons *aWindowCal
         {
             //qDebug() << QString("## fromRowIndex: %1, toRowIndex: %2")
             //          .arg(QString::number(fromRowIndex), QString::number(toRowIndex));
-        	functionPointerToGetTableViewLatexString(texTable, *tableModel, tableColumnsToIgnore,
+        	functionPointerToGetTableViewLatexString(texTable,
+        											 *tableModel,
+													 aWindowCaller->getDBFieldNamesToPrintLeftAligned(),
+													 tableColumnsToIgnore,
                     							     (fromRowIndex >= tableModelRowCount) ? tableModelRowCount : fromRowIndex,
 													 (toRowIndex >= tableModelRowCount) ? (tableModelRowCount + 1) : toRowIndex,
 													 k == pageNumber);
+
             texTable.append(QString("\\newpage \n"));
             fromRowIndex = toRowIndex;
             toRowIndex =

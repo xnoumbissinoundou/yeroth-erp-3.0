@@ -635,9 +635,12 @@ bool YerothVentesWindow::export_csv_file()
 }
 
 void YerothVentesWindow::getJournalDesVentesTexTableString(QString & texTable_in_out,
-        												  QStandardItemModel & tableStandardItemModel,
-														  QList < int >&columnsToIgnore, int fromRowIndex,
-														  int toRowIndex, bool lastPage)
+        												   QStandardItemModel & tableStandardItemModel,
+														   QList<int> &dbFieldNameOfTypeString,
+														   QList<int> &columnsToIgnore,
+														   int fromRowIndex,
+														   int toRowIndex,
+														   bool lastPage)
 {
     if (lastPage && toRowIndex > 20)
     {
@@ -656,27 +659,30 @@ void YerothVentesWindow::getJournalDesVentesTexTableString(QString & texTable_in
 				   .append("\\begin{tabular}")
 				   .append("{|");
 
-    int texTableColumnCount = tableStandardItemModel.columnCount() - columnsToIgnore.size();
-    //qDebug() << "++ texTableColumnCount: " << texTableColumnCount;
     //Tex table header
 
     /** We center the id column*/
 
     texTable_in_out.append("c|");
 
-    for (int k = 0; k < 3; ++k)
+    //Tex table header
+    for (int k = 0; k < tableStandardItemModel.columnCount(); ++k)
     {
-        texTable_in_out.append("l|");
+        if (columnsToIgnore.contains(k))
+        {
+            continue;
+        }
+
+        if (dbFieldNameOfTypeString.contains(k))
+        {
+        	texTable_in_out.append("l|");
+        }
+        else
+        {
+        	texTable_in_out.append("r|");
+        }
     }
 
-    //we center the field 'Qte'
-
-    texTable_in_out.append("c|");
-
-    for (int k = 4; k < texTableColumnCount; ++k)
-    {
-        texTable_in_out.append("r|");
-    }
     texTable_in_out.append("} \\hline \n");
     //qDebug() << "++ texTable caisse: " << texTable_in_out;
 
@@ -811,7 +817,11 @@ bool YerothVentesWindow::imprimer_document()
     //_logger->log("imprimer_document",
     //                  QString("number of pages to print: %1").arg(pageNumber));
 
-    this->getJournalDesVentesTexTableString(texTable, *tableModel, columnsToIgnore, 0,
+    this->getJournalDesVentesTexTableString(texTable,
+    										*tableModel,
+											this->_DBFieldNamesToPrintLeftAligned,
+											columnsToIgnore,
+											0,
                                             (20 >= tableModelRowCount) ? tableModelRowCount : 20,
                                             tableModelRowCount <= 20);
     //qDebug() << "++ texTable: " << texTable;
@@ -824,7 +834,10 @@ bool YerothVentesWindow::imprimer_document()
         {
             //qDebug() << QString("## fromRowIndex: %1, toRowIndex: %2")
             //          .arg(QString::number(fromRowIndex), QString::number(toRowIndex));
-            this->getJournalDesVentesTexTableString(texTable, *tableModel, columnsToIgnore,
+            this->getJournalDesVentesTexTableString(texTable,
+            										*tableModel,
+													this->_DBFieldNamesToPrintLeftAligned,
+													columnsToIgnore,
                                                     (fromRowIndex >=
                                                             tableModelRowCount) ? tableModelRowCount : fromRowIndex,
                                                     (toRowIndex >=

@@ -720,6 +720,7 @@ void YerothAchatsWindow::getAchatsListingTexDocumentString(QString &texDocumentS
 
 void YerothAchatsWindow::getAchatsListingTexTableString(QString &texTable_in_out,
         										 	 	QStandardItemModel &tableStandardItemModel,
+														QList<int> &dbFieldNameOfTypeString,
 														QList<int> &columnsToIgnore,
 														int fromRowIndex,
 														int toRowIndex,

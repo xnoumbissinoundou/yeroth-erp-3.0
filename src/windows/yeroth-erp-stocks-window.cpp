@@ -54,12 +54,6 @@
  */
 
 
-unsigned int YerothStocksWindow::PDF_LISTING_COLUMN_REFERENCE(1);
-
-unsigned int YerothStocksWindow::PDF_LISTING_COLUMN_DESIGNATION(2);
-
-unsigned int YerothStocksWindow::PDF_LISTING_COLUMN_CATEGORIE(3);
-
 const QString YerothStocksWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2")).
 arg(YEROTH_ERP_WINDOW_TITLE,
 QObject::trUtf8("fiche des stocks")));
@@ -1270,6 +1264,7 @@ void YerothStocksWindow::getStocksListingTexDocumentString(QString &texDocumentS
 
 void YerothStocksWindow::getStocksListingTexTableString(QString &texTable_in_out,
         												QStandardItemModel &tableStandardItemModel,
+														QList<int> &dbFieldNameOfTypeString,
 														QList<int> &columnsToIgnore,
 														int fromRowIndex,
 														int toRowIndex,
@@ -1300,14 +1295,9 @@ void YerothStocksWindow::getStocksListingTexTableString(QString &texTable_in_out
             continue;
         }
 
-        if (k == YerothStocksWindow::PDF_LISTING_COLUMN_DESIGNATION ||
-        	k == YerothStocksWindow::PDF_LISTING_COLUMN_CATEGORIE)
+        if (dbFieldNameOfTypeString.contains(k))
         {
         	texTable_in_out.append("l|");
-        }
-        else if (k == YerothStocksWindow::PDF_LISTING_COLUMN_REFERENCE)
-        {
-        	texTable_in_out.append("c|");
         }
         else
         {

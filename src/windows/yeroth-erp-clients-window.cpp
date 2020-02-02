@@ -35,14 +35,6 @@
 #include <QtWidgets/QCompleter>
 
 
-
-unsigned int YerothERPClientsWindow::PDF_LISTING_COLUMN_REFERENCE_CLIENT(1);
-
-unsigned int YerothERPClientsWindow::PDF_LISTING_COLUMN_NOM_ENTREPRISE(2);
-
-unsigned int YerothERPClientsWindow::PDF_LISTING_COLUMN_NOM_REPRESENTANT(3);
-
-
 const QString YerothERPClientsWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2")).
         arg(YEROTH_ERP_WINDOW_TITLE,
             QObject::trUtf8("comptes clients")));
@@ -995,6 +987,7 @@ bool YerothERPClientsWindow::export_csv_file()
 
 void YerothERPClientsWindow::getComptesClientsListingTexTableString(QString &texTable_in_out,
         										 	 	 	 	 	QStandardItemModel &tableStandardItemModel,
+																	QList<int> &dbFieldNameOfTypeString,
 																	QList<int> &columnsToIgnore,
 																	int fromRowIndex,
 																	int toRowIndex,
@@ -1027,9 +1020,7 @@ void YerothERPClientsWindow::getComptesClientsListingTexTableString(QString &tex
             continue;
         }
 
-        if (k == YerothERPClientsWindow::PDF_LISTING_COLUMN_REFERENCE_CLIENT ||
-        	k == YerothERPClientsWindow::PDF_LISTING_COLUMN_NOM_ENTREPRISE   ||
-			k == YerothERPClientsWindow::PDF_LISTING_COLUMN_NOM_REPRESENTANT )
+        if (dbFieldNameOfTypeString.contains(k))
         {
         	texTable_in_out.append("l|");
         }

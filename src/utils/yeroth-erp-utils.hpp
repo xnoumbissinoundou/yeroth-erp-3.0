@@ -290,6 +290,7 @@ public:
     									   QList<int> &tableColumnsToIgnore,
 										   void (*functionPointerToGetTableViewLatexString)(QString &texTable_in_out_OUT,
 												   	   	   	   	   	   	   	   	   	   	    QStandardItemModel &tableStandardItemModel_OUT,
+																							QList<int> &dbFieldNameOfTypeString_OUT,
 																							QList<int> &columnsToIgnore_OUT,
 																							int fromRowIndex_OUT,
 																							int toRowIndex_OUT,

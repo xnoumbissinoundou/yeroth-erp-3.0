@@ -87,6 +87,7 @@ public slots:
 
 	static void getAchatsListingTexTableString(QString &texTable_in_out,
 	        								   QStandardItemModel &tableStandardItemModel,
+											   QList<int> &dbFieldNameOfTypeString,
 											   QList<int> &columnsToIgnore,
 											   int fromRowIndex,
 											   int toRowIndex,

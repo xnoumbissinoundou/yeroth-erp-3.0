@@ -96,6 +96,7 @@ public slots:
 
 	static void getStocksListingTexTableString(QString &texTable_in_out,
 											   QStandardItemModel &tableStandardItemModel,
+											   QList<int> &dbFieldNameOfTypeString,
 											   QList<int> &columnsToIgnore,
 											   int fromRowIndex,
 											   int toRowIndex,
@@ -205,12 +206,6 @@ private:
     void setComboBoxStrategieDeStocks();
 
     void setupLineEdits();
-
-    static unsigned int PDF_LISTING_COLUMN_REFERENCE;
-
-    static unsigned int PDF_LISTING_COLUMN_DESIGNATION;
-
-    static unsigned int PDF_LISTING_COLUMN_CATEGORIE;
 
     static const QString 	_WINDOW_TITLE;
 

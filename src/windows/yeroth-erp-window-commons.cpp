@@ -42,6 +42,8 @@ YerothWindowsCommons::~YerothWindowsCommons()
 		delete _selectExportDBQDialog;
 	}
 
+	_DBFieldNamesToPrintLeftAligned.clear();
+
 	_toSelectDBFieldNameStrToDBColumnIndex.clear();
 
 	_visibleDBFieldColumnStrList.clear();
@@ -232,6 +234,13 @@ void YerothWindowsCommons::setupSelectDBFields(QString aSqlTableName)
 		QString type(query.value(1).toString());
 
 		columnIdx = columnIdx + 1;
+
+		if (type.contains("char") ||
+			type.contains("time") ||
+			type.contains("date") )
+		{
+			_DBFieldNamesToPrintLeftAligned.append(columnIdx);
+		}
 
 		_toSelectDBFieldNameStrToDBColumnIndex.insert(fieldName, columnIdx);
 	}

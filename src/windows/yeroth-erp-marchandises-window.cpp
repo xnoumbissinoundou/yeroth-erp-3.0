@@ -35,17 +35,10 @@
 #include <QtWidgets/QCompleter>
 
 
-
-unsigned int YerothMarchandisesWindow::PDF_LISTING_COLUMN_REFERENCE(1);
-
-unsigned int YerothMarchandisesWindow::PDF_LISTING_COLUMN_DESIGNATION(2);
-
-unsigned int YerothMarchandisesWindow::PDF_LISTING_COLUMN_CATEGORIE(3);
-
-
 const QString YerothMarchandisesWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2")).
         arg(YEROTH_ERP_WINDOW_TITLE,
             QObject::trUtf8("Marchandises")));
+
 
 YerothMarchandisesWindow::YerothMarchandisesWindow()
 :YerothWindowsCommons(YerothMarchandisesWindow::_WINDOW_TITLE),
@@ -917,6 +910,7 @@ bool YerothMarchandisesWindow::export_csv_file()
 
 void YerothMarchandisesWindow::getInventoryStocksListingTexTableString(QString &texTable_in_out,
         															   QStandardItemModel &tableStandardItemModel,
+																	   QList<int> &dbFieldNameOfTypeString,
 																	   QList<int> &columnsToIgnore,
 																	   int fromRowIndex,
 																	   int toRowIndex,
@@ -937,14 +931,9 @@ void YerothMarchandisesWindow::getInventoryStocksListingTexTableString(QString &
             continue;
         }
 
-        if (k == YerothMarchandisesWindow::PDF_LISTING_COLUMN_DESIGNATION ||
-        	k == YerothMarchandisesWindow::PDF_LISTING_COLUMN_CATEGORIE)
+        if (dbFieldNameOfTypeString.contains(k))
         {
         	texTable_in_out.append("l|");
-        }
-        else if (k == YerothMarchandisesWindow::PDF_LISTING_COLUMN_REFERENCE)
-        {
-        	texTable_in_out.append("c|");
         }
         else
         {
