@@ -746,22 +746,16 @@ void YerothAchatsWindow::getAchatsListingTexTableString(QString &texTable_in_out
     texTable_in_out.append("c|");
 
     //Tex table header
-    for (int k = 0; k < texTableColumnCount; ++k)
+    for (int k = 0; k < tableStandardItemModel.columnCount(); ++k)
     {
         if (columnsToIgnore.contains(k))
         {
             continue;
         }
 
-        if (k == YerothAchatsWindow::PDF_LISTING_COLUMN_STOCKS_ID 	||
-        	k == YerothAchatsWindow::PDF_LISTING_COLUMN_DESIGNATION ||
-        	k == YerothAchatsWindow::PDF_LISTING_COLUMN_CATEGORIE)
+        if (dbFieldNameOfTypeString.contains(k))
         {
         	texTable_in_out.append("l|");
-        }
-        else if (k == YerothAchatsWindow::PDF_LISTING_COLUMN_REFERENCE)
-        {
-        	texTable_in_out.append("c|");
         }
         else
         {
@@ -778,7 +772,7 @@ void YerothAchatsWindow::getAchatsListingTexTableString(QString &texTable_in_out
 
     QStandardItem *item;
 
-    for (int k = 0; k < texTableColumnCount; ++k)
+    for (int k = 0; k < tableStandardItemModel.columnCount(); ++k)
     {
         if (columnsToIgnore.contains(k))
         {
@@ -790,7 +784,7 @@ void YerothAchatsWindow::getAchatsListingTexTableString(QString &texTable_in_out
         if (item)
         {
             QString itemText(item->text().prepend("\\textbf{").append("}"));
-            YerothUtils::handleTexTableItemText(tableStandardItemModel.columnCount(),
+            YerothUtils::handleTexTableItemText(texTableColumnCount,
                                    texTable_in_out,
                                    k,
                                    itemText);
@@ -821,7 +815,7 @@ void YerothAchatsWindow::getAchatsListingTexTableString(QString &texTable_in_out
             if (item)
             {
                 QString itemText(item->text());
-                YerothUtils::handleAchatsTexTableItemText(tableStandardItemModel.columnCount(),
+                YerothUtils::handleAchatsTexTableItemText(texTableColumnCount,
                                               	  	  	  texTable_in_out,
 														  k,
 														  itemText);
