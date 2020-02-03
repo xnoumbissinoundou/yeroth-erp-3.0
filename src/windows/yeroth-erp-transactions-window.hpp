@@ -70,11 +70,12 @@ public slots:
 	bool export_csv_file();
 
 	void getJournalDesTransactionsTexTableString(QString &texTable_in_out,
-			  	  	  	   	   	   	   	    QStandardItemModel &tableStandardItemModel,
-										    QList<int> &columnsToIgnore,
-										    int fromRowIndex,
-										    int toRowIndex,
-										    bool lastPage);
+			  	  	  	   	   	   	   	    	 QStandardItemModel &tableStandardItemModel,
+												 QList<int> &dbFieldNameOfTypeString,
+												 QList<int> &columnsToIgnore,
+												 int fromRowIndex,
+												 int toRowIndex,
+												 bool lastPage);
 
     void imprimer_journal_transactions();
 
@@ -90,7 +91,13 @@ public slots:
 
     void reinitialiser_recherche();
 
+protected slots:
+
+    virtual void slot_reinitialiser_champs_db_visibles();
+
 protected:
+
+	virtual void reinitialiser_champs_db_visibles();
 
     virtual void setupShortcuts();
 

@@ -49,6 +49,10 @@ YerothTransactionsWindow::YerothTransactionsWindow()
                                        "QMessageBox QLabel {color: rgb(%2);}").
                                arg(COLOUR_RGB_STRING_YEROTH_BLUE_77_93_254, COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
+    setupSelectDBFields(_allWindows->STOCKS_SORTIES);
+
+    reinitialiser_champs_db_visibles();
+
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
 
     setupLineEdits();
@@ -56,6 +60,10 @@ YerothTransactionsWindow::YerothTransactionsWindow()
     setupLineEditsQCompleters();
 
     setupDateTimeEdits();
+
+    connect(actionReinitialiserChampsDBVisible, SIGNAL(triggered()), this, SLOT(slot_reinitialiser_champs_db_visibles()));
+
+    connect(actionChampsDBVisible, SIGNAL(triggered()), this, SLOT(selectionner_champs_db_visibles()));
 
     // Menu actions
     connect(actionChanger_utilisateur, SIGNAL(triggered()), this, SLOT(changer_utilisateur()));
@@ -84,6 +92,31 @@ YerothTransactionsWindow::YerothTransactionsWindow()
 
     setupShortcuts();
 }
+
+
+void YerothTransactionsWindow::slot_reinitialiser_champs_db_visibles()
+{
+	reinitialiser_champs_db_visibles();
+	rechercher();
+}
+
+
+void YerothTransactionsWindow::reinitialiser_champs_db_visibles()
+{
+	_visibleDBFieldColumnStrList.clear();
+
+    _visibleDBFieldColumnStrList
+			<< YerothDatabaseTableColumn::DATE_SORTIE
+			<< YerothDatabaseTableColumn::HEURE_SORTIE
+			<< YerothDatabaseTableColumn::REFERENCE
+			<< YerothDatabaseTableColumn::DESIGNATION
+			<< YerothDatabaseTableColumn::CATEGORIE
+			<< YerothDatabaseTableColumn::QUANTITE_SORTIE
+			<< YerothDatabaseTableColumn::LOCALISATION_ENTREE
+			<< YerothDatabaseTableColumn::LOCALISATION_SORTIE
+			<< YerothDatabaseTableColumn::NOM_RECEPTEUR;
+}
+
 
 void YerothTransactionsWindow::setupShortcuts()
 {
@@ -162,7 +195,7 @@ void YerothTransactionsWindow::setupDateTimeEdits()
 
 void YerothTransactionsWindow::handleTabChanged(int index)
 {
-    rechercher();
+	slot_reinitialiser_champs_db_visibles();
 }
 
 void YerothTransactionsWindow::definirCaissier()
@@ -280,27 +313,9 @@ bool YerothTransactionsWindow::export_csv_file()
         return false;
     }
 
-    QList < int >columnsToIgnore;
+    QList<int> columnsToIgnore;
 
-    if (currentYerothTableView == tableView_sorties_articles)
-    {
-
-        columnsToIgnore << 0 << 1 << 2
-                        << 3 << 4 << 5
-                        << 8 << 12 << 13
-						<< 14 << 15 << 17
-						<< 19 << 21;
-    }
-    else if (currentYerothTableView == tableView_transferts_articles)
-    {
-        columnsToIgnore << 0 << 4 << 9
-                        << 10 << 11 << 13
-                        << 14 << 15 << 16
-						<< 19 << 21;
-
-        return false;
-    }
-
+    fill_table_columns_to_ignore(columnsToIgnore);
 
     int tableModelRowCount = tableModel->rowCount();
     int tableModelColumnCount = tableModel->columnCount();
@@ -337,7 +352,7 @@ bool YerothTransactionsWindow::export_csv_file()
     }
 
     csvFileContent.remove(csvFileContent.size() - 2, 2)
-    .append("\n");
+    			  .append("\n");
 
     for (unsigned int j = 0; j < tableModelRowCount; ++j)
     {
@@ -399,11 +414,13 @@ bool YerothTransactionsWindow::export_csv_file()
 }
 
 
-void YerothTransactionsWindow::getJournalDesTransactionsTexTableString(QString & texTable_in_out,
-        															  QStandardItemModel & tableStandardItemModel,
-																	  QList < int >&columnsToIgnore,
-																	  int fromRowIndex, int toRowIndex,
-																	  bool lastPage)
+void YerothTransactionsWindow::getJournalDesTransactionsTexTableString(QString &texTable_in_out,
+        															   QStandardItemModel &tableStandardItemModel,
+																	   QList<int> &dbFieldNameOfTypeString,
+																	   QList<int> &columnsToIgnore,
+																	   int fromRowIndex,
+																	   int toRowIndex,
+																	   bool lastPage)
 {
     if (lastPage && toRowIndex > 20)
     {
@@ -422,18 +439,24 @@ void YerothTransactionsWindow::getJournalDesTransactionsTexTableString(QString &
 				   .append("\\begin{tabular}")
 				   .append("{|");
 
-    int texTableColumnCount = tableStandardItemModel.columnCount() - columnsToIgnore.size();
-    //qDebug() << "++ texTableColumnCount: " << texTableColumnCount;
+    texTable_in_out.append("c|");
+
     //Tex table header
-    for (int k = 0; k < 9; ++k)
+    for (int k = 0; k < tableStandardItemModel.columnCount(); ++k)
     {
-        texTable_in_out.append("r|");
-    }
-    //we align right the field 'quantie_sortie'
-    texTable_in_out.append("r|");
-    for (int k = 9; k < texTableColumnCount; ++k)
-    {
-        texTable_in_out.append("r|");
+        if (columnsToIgnore.contains(k))
+        {
+            continue;
+        }
+
+        if (dbFieldNameOfTypeString.contains(k))
+        {
+        	texTable_in_out.append("l|");
+        }
+        else
+        {
+        	texTable_in_out.append("r|");
+        }
     }
 
     texTable_in_out.append("} \\hline \n");
@@ -441,7 +464,8 @@ void YerothTransactionsWindow::getJournalDesTransactionsTexTableString(QString &
 
     QStandardItem *item;
 
-    int tableColumnCount = 1 + tableStandardItemModel.columnCount();
+    int tableColumnCount = tableStandardItemModel.columnCount() + 1;
+
     /** We add a column named ''id'' for numbering the rows
 
        * in the Tex table. */
@@ -461,7 +485,7 @@ void YerothTransactionsWindow::getJournalDesTransactionsTexTableString(QString &
             QString itemText(item->text().prepend("\\textbf{")
             							 .append("}"));
 
-            YerothUtils::handleTexTableItemText(tableStandardItemModel.columnCount(),
+            YerothUtils::handleTexTableItemText(tableColumnCount,
             								   texTable_in_out,
 											   k,
                                                itemText);
@@ -507,24 +531,27 @@ void YerothTransactionsWindow::getJournalDesTransactionsTexTableString(QString &
             {
                 continue;
             }
+
             item = tableStandardItemModel.item(j, k);
+
             if (item)
             {
                 /**
-
-                           * Any string shall have a length smaller than
-
-                           * YerothERPConfig::max_string_display_length
-
-                           */
+                 * Any string shall have a length smaller than
+                 * YerothERPConfig::max_string_display_length
+                 */
                 QString itemText(item->text());
+
                 if (itemText.length() > YerothERPConfig::max_string_display_length)
                 {
                     itemText.truncate(YerothERPConfig::max_string_display_length);
                     itemText.append(".");
                 }
-                YerothUtils::handleTexTableItemText(tableStandardItemModel.columnCount(), texTable_in_out, k,
-                                                   itemText);
+
+                YerothUtils::handleTexTableItemText(tableColumnCount,
+                									texTable_in_out,
+													k,
+                                                    itemText);
             }
             else
             {
@@ -540,35 +567,6 @@ void YerothTransactionsWindow::getJournalDesTransactionsTexTableString(QString &
         }
         YerothUtils::cleanUpTexTableLastString(texTable_in_out);
         texTable_in_out.append("\\\\ \\hline \n");
-        //qDebug() << "++ lastPage: " << lastPage << ". check j: " << j << ", rowToPrintSums: " << rowToPrintSums;
-        if (lastPage && j == rowToPrintSums)
-        {
-            double quantiteSortie = lineEdit_transactions_quantite_sortie->text().toDouble();
-
-            QString quantiteSortieStr(GET_DOUBLE_STRING(quantiteSortie));
-
-            if (SUJET_ACTION_SORTIES_STOCKS == tabWidget_transactions->currentIndex())
-            {
-            	texTable_in_out.append("\\multicolumn{").append(QString::number(6)).append("}")
-                					   .append("{|c|}")
-									   .append("{}")
-									   .append(" & ")
-									   .append(QString("\\textbf{%1}").arg(quantiteSortieStr))
-									   .append(" & ")
-									   .append("\\multicolumn{").append(QString::number(2)).append("}").append("{|c|}")
-									   .append("{}")
-									   .append("\\\\ \\hline \n");
-            }
-            else if (SUJET_ACTION_TRANSFERTS_STOCKS == tabWidget_transactions->currentIndex())
-            {
-            	texTable_in_out.append("\\multicolumn{").append(QString::number(6)).append("}").append("{|c|}")
-                				.append("{}").append(" & ")
-								.append(QString("\\textbf{%1}").arg(quantiteSortieStr))
-								.append(" & ")
-								.append("\\multicolumn{").append(QString::number(3)).append("}").append("{|c|}")
-								.append("{}").append("\\\\ \\hline \n");
-            }
-        }
     }
 
     //Removes the string "" from Latex output
@@ -586,27 +584,20 @@ void YerothTransactionsWindow::imprimer_journal_transactions()
 
     QStandardItemModel *tableModel = 0;
 
-    QList < int >columnsToIgnore;
+    QList<int> columnsToIgnore;
+
+    fill_table_columns_to_ignore(columnsToIgnore);
+
 
     if (SUJET_ACTION_SORTIES_STOCKS == tabWidget_transactions->currentIndex())
     {
         tableModel = tableView_sorties_articles->getStandardItemModel();
-
-        columnsToIgnore << 0 << 1 << 2
-        				<< 3 << 4 << 5
-						<< 12 << 13 << 14
-						<< 15 << 16 << 17
-						<< 19 << 21;
     }
     else if (SUJET_ACTION_TRANSFERTS_STOCKS == tabWidget_transactions->currentIndex())
     {
         tableModel = tableView_transferts_articles->getStandardItemModel();
-
-        columnsToIgnore << 0 << 1 << 2
-        				<< 3 << 4 << 5
-						<< 12 << 13 << 14
-						<< 15 << 18 << 19 << 21;
     }
+
 
     int tableModelRowCount = tableModel->rowCount();
 
@@ -631,9 +622,13 @@ void YerothTransactionsWindow::imprimer_journal_transactions()
     //qDebug() << QString("number of pages to print: %1").arg(pageNumber);
     //_logger->log("imprimer_document",
     //                  QString("number of pages to print: %1").arg(pageNumber));
-    this->getJournalDesTransactionsTexTableString(texTable, *tableModel, columnsToIgnore, 0,
-            (20 >= tableModelRowCount) ? tableModelRowCount : 20,
-            tableModelRowCount <= 20);
+    this->getJournalDesTransactionsTexTableString(texTable,
+    											  *tableModel,
+												  this->getDBFieldNamesToPrintLeftAligned(),
+												  columnsToIgnore,
+												  0,
+												  (20 >= tableModelRowCount) ? tableModelRowCount : 20,
+												  tableModelRowCount <= 20);
 
     //qDebug() << "++ texTable: " << texTable;
     if (tableModelRowCount >= 20)
@@ -648,14 +643,13 @@ void YerothTransactionsWindow::imprimer_journal_transactions()
         {
             //qDebug() << QString("## fromRowIndex: %1, toRowIndex: %2")
             //  .arg(QString::number(fromRowIndex), QString::number(toRowIndex));
-            this->getJournalDesTransactionsTexTableString(texTable, *tableModel, columnsToIgnore,
-                    (fromRowIndex >=
-                     tableModelRowCount) ? tableModelRowCount :
-                    fromRowIndex,
-                    (toRowIndex >=
-                     tableModelRowCount) ? (tableModelRowCount +
-                                            1) : toRowIndex,
-                    k == pageNumber);
+            this->getJournalDesTransactionsTexTableString(texTable,
+            											  *tableModel,
+														  this->getDBFieldNamesToPrintLeftAligned(),
+														  columnsToIgnore,
+														  (fromRowIndex >= tableModelRowCount) ? tableModelRowCount : fromRowIndex,
+														  (toRowIndex >= tableModelRowCount) ? (tableModelRowCount + 1) : toRowIndex,
+														  k == pageNumber);
             texTable.append(QString("\\newpage \n"));
 
             fromRowIndex = toRowIndex;
@@ -856,7 +850,9 @@ void YerothTransactionsWindow::rechercher()
 void YerothTransactionsWindow::lister_les_elements_du_tableau(QString aSearchFilter)
 {
     _logger->log("lister_les_elements_du_tableau");
+
     _searchFilter = aSearchFilter;
+
     if (_searchFilter.isEmpty())
     {
         _searchFilter.append(QString(" date_sortie >= '%1' AND date_sortie <= '%2'").
@@ -869,10 +865,12 @@ void YerothTransactionsWindow::lister_les_elements_du_tableau(QString aSearchFil
                              arg(DATE_TO_DB_FORMAT_STRING(dateEdit_transactions_debut->date()),
                                  DATE_TO_DB_FORMAT_STRING(dateEdit_transactions_fin->date())));
     }
+
     if (0 == _curTransactionsTableModel)
     {
         _curTransactionsTableModel = &_allWindows->getSqlTableModel_stocks_sorties();
     }
+
     if (SUJET_ACTION_SORTIES_STOCKS == tabWidget_transactions->currentIndex())
     {
         _searchFilter.append(" AND localisation_entree = ''");
@@ -881,46 +879,44 @@ void YerothTransactionsWindow::lister_les_elements_du_tableau(QString aSearchFil
     {
         _searchFilter.append(" AND localisation_entree != ''");
     }
+
     _curTransactionsTableModel->yerothSetFilter(_searchFilter);
+
     _logger->log("lister_les_elements_du_tableau", _searchFilter);
+
     //qDebug() << "++ lister_les_elements_du_tableau, aSearchFilter: " << _curTransactionsTableModel->filter();
+
+    tableView_sorties_articles->lister_les_elements_du_tableau(*_curTransactionsTableModel);
+
 
     if (SUJET_ACTION_SORTIES_STOCKS == tabWidget_transactions->currentIndex())
     {
+        if (_visibleDBFieldColumnStrList.contains(YerothDatabaseTableColumn::LOCALISATION_ENTREE))
+        {
+        	_visibleDBFieldColumnStrList.removeAll(YerothDatabaseTableColumn::LOCALISATION_ENTREE);
+        }
+
         tableView_sorties_articles->lister_les_elements_du_tableau(*_curTransactionsTableModel);
-        tableView_sorties_articles->hideColumn(0);
-        tableView_sorties_articles->hideColumn(1);
-        tableView_sorties_articles->hideColumn(2);
-        tableView_sorties_articles->hideColumn(3);
-        tableView_sorties_articles->hideColumn(4);
-        tableView_sorties_articles->hideColumn(5);
-        tableView_sorties_articles->hideColumn(12);
-        tableView_sorties_articles->hideColumn(13);
-        tableView_sorties_articles->hideColumn(14);
-        tableView_sorties_articles->hideColumn(15);
-        tableView_sorties_articles->hideColumn(17);
-        tableView_sorties_articles->hideColumn(19);
-        tableView_sorties_articles->hideColumn(21);
+
+        tableView_show_or_hide_columns(*tableView_sorties_articles);
     }
     else if (SUJET_ACTION_TRANSFERTS_STOCKS == tabWidget_transactions->currentIndex())
     {
+        if (!_visibleDBFieldColumnStrList.contains(YerothDatabaseTableColumn::LOCALISATION_ENTREE))
+        {
+        	_visibleDBFieldColumnStrList.append(YerothDatabaseTableColumn::LOCALISATION_ENTREE);
+        }
+
         tableView_transferts_articles->lister_les_elements_du_tableau(*_curTransactionsTableModel);
-        tableView_transferts_articles->hideColumn(0);
-        tableView_transferts_articles->hideColumn(1);
-        tableView_transferts_articles->hideColumn(2);
-        tableView_transferts_articles->hideColumn(3);
-        tableView_transferts_articles->hideColumn(4);
-        tableView_transferts_articles->hideColumn(5);
-        tableView_transferts_articles->hideColumn(12);
-        tableView_transferts_articles->hideColumn(13);
-        tableView_transferts_articles->hideColumn(14);
-        tableView_transferts_articles->hideColumn(15);
-        tableView_transferts_articles->hideColumn(19);
-        tableView_transferts_articles->hideColumn(21);
+
+        tableView_show_or_hide_columns(*tableView_transferts_articles);
     }
+
     int quantite_sortie = 0;
     int quantite_sortie_total = 0;
+
     int curTransactionsTableModelRowCount = _curTransactionsTableModel->easySelect();
+
     QSqlRecord aRecord;
     for (int j = 0; j < curTransactionsTableModelRowCount; ++j)
     {
@@ -928,6 +924,7 @@ void YerothTransactionsWindow::lister_les_elements_du_tableau(QString aSearchFil
         quantite_sortie = GET_SQL_RECORD_DATA(aRecord, "quantite_sortie").toDouble();
         quantite_sortie_total += quantite_sortie;
     }
+
     lineEdit_transactions_quantite_sortie->setText(QString::number(quantite_sortie_total, 'f', 2));
 }
 

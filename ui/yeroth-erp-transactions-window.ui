@@ -7122,6 +7122,9 @@ background-color: rgb(0, 0, 0); </string>
     <addaction name="separator"/>
     <addaction name="actionAlertes"/>
     <addaction name="separator"/>
+    <addaction name="actionReinitialiserChampsDBVisible"/>
+    <addaction name="actionChampsDBVisible"/>
+    <addaction name="separator"/>
     <addaction name="actionExporter_au_format_csv"/>
     <addaction name="separator"/>
     <addaction name="actionReinitialiserRecherche"/>
@@ -7732,6 +7735,32 @@ background-color: rgb(0, 0, 0); </string>
   <action name="actionExporter_au_format_csv">
    <property name="text">
     <string>Exporter au format csv</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionChampsDBVisible">
+   <property name="text">
+    <string>Sélectionner les  champs (base de données) visible</string>
+   </property>
+   <property name="toolTip">
+    <string>Sélectionner les  champs (base de données) visible</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionReinitialiserChampsDBVisible">
+   <property name="text">
+    <string>Réinitialiser les  champs (base de données) visible</string>
+   </property>
+   <property name="toolTip">
+    <string>Réinitialiser les  champs (base de données) visible</string>
    </property>
    <property name="font">
     <font>
