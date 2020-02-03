@@ -385,7 +385,7 @@ Press m &apos;Cancel&apos; to exit %2</translation>
     <message>
         <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="261"/>
         <source>Sortie ID</source>
-        <translation>Reference (outgoing)</translation>
+        <translation>Outgoing ID</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="133"/>
