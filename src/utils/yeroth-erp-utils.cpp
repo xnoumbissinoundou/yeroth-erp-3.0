@@ -2085,7 +2085,8 @@ bool YerothUtils::export_csv_file(YerothWindowsCommons &aCallingWindow,
     int tableModelColumnCount = tableModel->columnCount();
 
     if (tableModelRowCount    <= 0  ||
-        tableModelColumnCount <= 0)
+        tableModelColumnCount <= 0  ||
+		tableModelColumnCount <= databaseTableColumnsToIgnore.count())
     {
         YerothQMessageBox::information(&aCallingWindow,
                                       QObject::trUtf8("pas de données à exporter au format csv"),
@@ -2198,7 +2199,8 @@ QString YerothUtils::prindDocumentFromTableView(YerothWindowsCommons *aWindowCal
 
     int tableModelRowCount = tableModel->rowCount();
 
-    if (tableModelRowCount <= 0)
+    if (tableModelRowCount <= 0  ||
+    	tableModel->columnCount() <= tableColumnsToIgnore.count())
     {
         YerothQMessageBox::information(aWindowCaller,
                                        QObject::tr("impression"),
