@@ -195,7 +195,7 @@ void YerothTransactionsWindow::setupDateTimeEdits()
 
 void YerothTransactionsWindow::handleTabChanged(int index)
 {
-	slot_reinitialiser_champs_db_visibles();
+	rechercher();
 }
 
 void YerothTransactionsWindow::definirCaissier()
@@ -286,6 +286,8 @@ bool YerothTransactionsWindow::export_csv_file()
 {
     _logger->log("export_csv_file");
 
+    bool success = false;
+
     int currentTableViewCurrentIndex = -1;
 
     currentTableViewCurrentIndex = tabWidget_transactions->currentIndex();
@@ -303,114 +305,40 @@ bool YerothTransactionsWindow::export_csv_file()
     else
     {
     	//TODO: insert QDialog message box here
-    	return false;
+    	return success;
     }
 
     QStandardItemModel *tableModel = tableView_sorties_articles->getStandardItemModel();
 
     if (0 == tableModel)
     {
-        return false;
-    }
-
-    QList<int> columnsToIgnore;
-
-    fill_table_columns_to_ignore(columnsToIgnore);
-
-    int tableModelRowCount = tableModel->rowCount();
-    int tableModelColumnCount = tableModel->columnCount();
-
-    if (tableModelRowCount    <= 0  ||
-            tableModelColumnCount <= 0)
-    {
         YerothQMessageBox::information(this,
                                       QObject::trUtf8("pas de données à exporter au format csv"),
                                       QObject::trUtf8("Il n'y a pas de données à exporter au format csv !"));
-        return false;
+        return success;
     }
 
-    QString csvFileContent;
+	QList<int> tableColumnsToIgnore;
 
-    QStandardItem * anItem = 0;
-    QString anItemText;
-
-    for (int k = 0; k < tableModelColumnCount; ++k)
-    {
-        if (columnsToIgnore.contains(k))
-        {
-            continue;
-        }
-
-        anItem = tableModel->horizontalHeaderItem(k);
-
-        if (0 != anItem)
-        {
-            anItemText = anItem->text();
-
-            csvFileContent.append( QString("\"%1\", ").arg(anItemText) );
-        }
-    }
-
-    csvFileContent.remove(csvFileContent.size() - 2, 2)
-    			  .append("\n");
-
-    for (unsigned int j = 0; j < tableModelRowCount; ++j)
-    {
-        for (unsigned int k = 0; k < tableModelColumnCount; ++k)
-        {
-            if (columnsToIgnore.contains(k))
-            {
-                continue;
-            }
-
-            anItem = tableModel->item(j, k);
-
-            if (0 != anItem)
-            {
-                anItemText = anItem->text();
-
-                csvFileContent.append( QString("\"%1\", ").arg(anItemText) );
-            }
-        }
-
-        csvFileContent.remove(csvFileContent.size() - 2, 2)
-        .append("\n");
-    }
-
-    QString yerothStocksListingCSVFileName(YerothERPConfig::temporaryFilesDir);
-
-    yerothStocksListingCSVFileName.append("/");
+	fill_table_columns_to_ignore(tableColumnsToIgnore);
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
-
-    yerothStocksListingCSVFileName.append("yeroth-erp-fichier-stock-sortie-format-csv");
-    yerothStocksListingCSVFileName = FILE_NAME_USERID_CURRENT_TIME(yerothStocksListingCSVFileName);
-
+	success = YerothUtils::export_csv_file(*this,
+										   *currentYerothTableView,
+										   tableColumnsToIgnore,
+										   "yeroth-erp-fichier-stock-sortie-format-csv",
+										   "fiche des comptes clients");
 #endif
 
 #ifdef YEROTH_ENGLISH_LANGUAGE
-
-    yerothStocksListingCSVFileName.append("yeroth-erp-stock-transfert-csv-format");
-    yerothStocksListingCSVFileName = FILE_NAME_USERID_CURRENT_TIME(yerothStocksListingCSVFileName);
-
+	success = YerothUtils::export_csv_file(*this,
+										   *currentYerothTableView,
+										   tableColumnsToIgnore,
+										   "yeroth-erp-stock-transfert-csv-format",
+										   "customer account listing file");
 #endif
 
-    yerothStocksListingCSVFileName = QFileDialog::getSaveFileName(this, "Saisir le nom du fichier '.csv'",
-                                 yerothStocksListingCSVFileName,
-                                 QObject::trUtf8("Fichiers des stocks \"*.csv\" (*.csv)"));
-
-    yerothStocksListingCSVFileName.append(".csv");
-
-    QFile tmpFile(yerothStocksListingCSVFileName);
-
-    if (tmpFile.open(QFile::WriteOnly))
-    {
-        tmpFile.write(csvFileContent.toUtf8());
-    }
-
-    tmpFile.close();
-
-    return true;
+	return success;
 }
 
 
@@ -921,6 +849,7 @@ void YerothTransactionsWindow::lister_les_elements_du_tableau(QString aSearchFil
     for (int j = 0; j < curTransactionsTableModelRowCount; ++j)
     {
         aRecord = _curTransactionsTableModel->record(j);
+
         quantite_sortie = GET_SQL_RECORD_DATA(aRecord, "quantite_sortie").toDouble();
         quantite_sortie_total += quantite_sortie;
     }
