@@ -9402,7 +9402,7 @@
       <property name="title">
        <string>Données de la remise</string>
       </property>
-      <widget class="QLabel" name="label_creer_alerte_produit_3">
+      <widget class="QLabel" name="label_creer_remise_produit">
        <property name="geometry">
         <rect>
          <x>16</x>
@@ -9418,7 +9418,7 @@
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
       </widget>
-      <widget class="YerothLineEdit" name="lineEdit_creer_alerte_designation_3">
+      <widget class="YerothLineEdit" name="lineEdit_creer_remise_designation">
        <property name="geometry">
         <rect>
          <x>173</x>
@@ -10331,7 +10331,7 @@
        <property name="title">
         <string>période de temps</string>
        </property>
-       <widget class="YerothDateTimeEdit" name="dateEdit_creer_alerte_date_fin_3">
+       <widget class="YerothDateTimeEdit" name="dateEdit_creer_remise_date_fin">
         <property name="geometry">
          <rect>
           <x>157</x>
@@ -10356,7 +10356,7 @@
          </date>
         </property>
        </widget>
-       <widget class="YerothDateTimeEdit" name="dateEdit_creer_alerte_date_debut_3">
+       <widget class="YerothDateTimeEdit" name="dateEdit_creer_remise_date_debut">
         <property name="geometry">
          <rect>
           <x>157</x>
@@ -10414,7 +10414,7 @@
         </property>
        </widget>
       </widget>
-      <widget class="QLabel" name="label_creer_alerte_destinataire_3">
+      <widget class="QLabel" name="label_creer_remise_destinataire">
        <property name="geometry">
         <rect>
          <x>16</x>
@@ -10449,7 +10449,7 @@
        <property name="title">
         <string>notes sur la remise</string>
        </property>
-       <widget class="YerothTextEdit" name="textEdit_creer_alerte_message_3">
+       <widget class="YerothTextEdit" name="textEdit_creer_remise_message">
         <property name="geometry">
          <rect>
           <x>2</x>
@@ -10465,7 +10465,7 @@
         </property>
        </widget>
       </widget>
-      <widget class="YerothLineEdit" name="lineEdit_creer_alerte_nom_3">
+      <widget class="YerothLineEdit" name="lineEdit_creer_remise_nom">
        <property name="geometry">
         <rect>
          <x>173</x>
@@ -10482,7 +10482,7 @@
         </font>
        </property>
       </widget>
-      <widget class="YerothLineEdit" name="lineEdit_creer_alerte_quantite_en_stock_3">
+      <widget class="YerothLineEdit" name="lineEdit_creer_remise_quantite_en_stock">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -10502,7 +10502,7 @@
         </font>
        </property>
       </widget>
-      <widget class="QLabel" name="label_creer_alerte_quantite_en_stock_3">
+      <widget class="QLabel" name="label_creer_remise_quantite_en_stock">
        <property name="geometry">
         <rect>
          <x>400</x>
@@ -10518,7 +10518,7 @@
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="label_creer_alerte_date_peremption_3">
+      <widget class="QLabel" name="label_creer_remise_date_peremption">
        <property name="geometry">
         <rect>
          <x>400</x>
@@ -10534,7 +10534,7 @@
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
       </widget>
-      <widget class="YerothLineEdit" name="lineEdit_creer_alerte_date_peremption_3">
+      <widget class="YerothLineEdit" name="lineEdit_creer_remise_date_peremption">
        <property name="enabled">
         <bool>false</bool>
        </property>

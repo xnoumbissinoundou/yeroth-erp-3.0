@@ -250,7 +250,7 @@ bool YerothAdminCreateWindow::creer_alerte_check_fields()
             dateEdit_creer_alerte_date_debut->setPalette(YerothUtils::YEROTH_RED_PALETTE);
             dateEdit_creer_alerte_date_fin->setPalette(YerothUtils::YEROTH_RED_PALETTE);
 
-            QString pMsg(QObject::trUtf8("Le paramètre 'début' de l'alerte ne doit pas être daté dans le passé !"));
+            QString pMsg(QObject::trUtf8("Le paramètre 'début' de l'alerte ne doit pas être dans le passé !"));
 
             YerothQMessageBox::information(this,
                                      QObject::trUtf8("Yeroth-erp-3.0 - créer ~ alerte"),
@@ -266,7 +266,7 @@ bool YerothAdminCreateWindow::creer_alerte_check_fields()
             dateEdit_creer_alerte_date_debut->setPalette(YerothUtils::YEROTH_RED_PALETTE);
             dateEdit_creer_alerte_date_fin->setPalette(YerothUtils::YEROTH_RED_PALETTE);
 
-            QString pMsg(QObject::trUtf8("Le paramètre 'début' de l'alerte doit être daté avant le paramètre 'fin' !"));
+            QString pMsg(QObject::trUtf8("Le paramètre 'début' de l'alerte doit être avant le paramètre 'fin' !"));
 
             YerothQMessageBox::information(this,
                                      QObject::trUtf8("Yeroth-erp-3.0 - créer ~ alerte"),
@@ -281,14 +281,18 @@ bool YerothAdminCreateWindow::creer_alerte_check_fields()
     return check;
 }
 
+
 void YerothAdminCreateWindow::clear_alerte_all_fields()
 {
     lineEdit_creer_alerte_nom->clearField();
     lineEdit_creer_alerte_quantite->clearField();
     lineEdit_creer_alerte_designation->clearField();
     lineEdit_creer_alerte_destinataire->clearField();
+
+    lineEdit_creer_alerte_stock_minimum->clear();
     lineEdit_creer_alerte_nom_destinataire->clear();
     lineEdit_creer_alerte_quantite_en_stock->clear();
+    lineEdit_creer_alerte_date_peremption->clear();
 
     textEdit_creer_alerte_message->clearField();
 

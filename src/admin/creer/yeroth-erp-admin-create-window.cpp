@@ -119,7 +119,11 @@ void YerothAdminCreateWindow::setupLineEdits()
 
     connect(lineEdit_creer_alerte_destinataire, SIGNAL(textChanged(const QString &)), this,
             SLOT(showDestinataireNomComplet(const QString &)));
+
     connect(lineEdit_creer_alerte_designation, SIGNAL(textChanged(const QString &)), this,
+            SLOT(showProduitInfo(const QString &)));
+
+    connect(lineEdit_creer_remise_designation, SIGNAL(textChanged(const QString &)), this,
             SLOT(showProduitInfo(const QString &)));
 }
 
@@ -130,6 +134,9 @@ void YerothAdminCreateWindow::setupDateTimeEdits()
 
     dateEdit_creer_alerte_date_debut->setStartDate(GET_CURRENT_DATE);
     dateEdit_creer_alerte_date_fin->setStartDate(GET_CURRENT_DATE);
+
+    dateEdit_creer_remise_date_debut->setStartDate(GET_CURRENT_DATE);
+    dateEdit_creer_remise_date_fin->setStartDate(GET_CURRENT_DATE);
 }
 
 void YerothAdminCreateWindow::rendreVisible(unsigned selectedSujetAction)
@@ -149,11 +156,18 @@ void YerothAdminCreateWindow::rendreVisible(unsigned selectedSujetAction)
     clear_remise_all_fields();
 
     lineEdit_creer_alerte_designation->setupMyStaticQCompleter(_allWindows->STOCKS, YerothDatabaseTableColumn::DESIGNATION);
+
     lineEdit_creer_alerte_destinataire->setupMyStaticQCompleter(_allWindows->USERS, "nom_utilisateur");
+
+    lineEdit_creer_remise_designation->setupMyStaticQCompleter(_allWindows->STOCKS, YerothDatabaseTableColumn::DESIGNATION);
+
     lineEdit_creer_utilisateur_localisation->setEnabled(false);
+
     lineEdit_creer_utilisateur_localisation->setText(_allWindows->getInfoEntreprise().getLocalisation());
 
     populateUtilisateurComboBoxes();
+
+    populateRemiseComboBoxes();
 
     populateAlerteComboBoxes();
 
@@ -171,6 +185,8 @@ void YerothAdminCreateWindow::rendreVisible(unsigned selectedSujetAction)
 
     creer_alerte_check_fields_entry();
 
+    creer_remise_check_fields_entry();
+
     this->setVisible(true);
 }
 
@@ -187,13 +203,21 @@ void YerothAdminCreateWindow::showDestinataireNomComplet(const QString & destina
 {
     _logger->log("showDestinataireNomComplet(const QString &)",
                  QString("destinataireId: %1").arg(destinataireId));
-    QString strQuery("SELECT nom_complet FROM ");
-    strQuery.append(_allWindows->USERS).append(" WHERE nom_utilisateur = '").append(destinataireId).append("'");
+
+    QString strQuery(QString("SELECT %1 FROM %2 WHERE %3 = '%4'")
+    					.arg(YerothDatabaseTableColumn::NOM_COMPLET,
+    						_allWindows->USERS,
+    						 YerothDatabaseTableColumn::NOM_UTILISATEUR,
+							 destinataireId));
+
     QSqlQuery query(strQuery);
+
     QSqlRecord rec = query.record();
+
     if (query.last())
     {
         QString destinataireId_nom_complet(query.value(0).toString());
+
         lineEdit_creer_alerte_nom_destinataire->setText(destinataireId_nom_complet);
     }
 }
@@ -201,50 +225,84 @@ void YerothAdminCreateWindow::showDestinataireNomComplet(const QString & destina
 void YerothAdminCreateWindow::showProduitInfo(const QString & nomProduit)
 {
     _logger->log("showProduitInfo(const QString &)", QString("designation: %1").arg(nomProduit));
-    QString sqlNomProduit(YerothUtils::prepareSqlStr(nomProduit));
-    QString strQuery("SELECT quantite_total FROM ");
 
-    strQuery.append(_allWindows->STOCKS)
-    .append(" WHERE designation = '")
-    .append(sqlNomProduit).append("'");
+    double stock_minimum = 0.0;
+
+    double quantite_en_stock = 0.0;
+
+    QString sqlNomProduit(YerothUtils::prepareSqlStr(nomProduit));
+
+    QString strQuery(QString("SELECT %1 FROM %2 WHERE %3 = '%4'")
+    					.arg(YerothDatabaseTableColumn::QUANTITE_TOTAL,
+    						_allWindows->STOCKS,
+    						 YerothDatabaseTableColumn::DESIGNATION,
+							 sqlNomProduit));
 
     QSqlQuery query(strQuery);
     QSqlRecord rec = query.record();
-    double quantite_en_stock = 0.0;
+
     while (query.next())
     {
         quantite_en_stock += query.value(0).toDouble();
     }
-    lineEdit_creer_alerte_quantite_en_stock->setText(QString::number(quantite_en_stock, 'f', 0));
+
     query.clear();
-    strQuery = "SELECT stock_minimum FROM ";
-    strQuery.append(_allWindows->STOCKS)
-    .append(" WHERE designation = '")
-    .append(sqlNomProduit).append("'");
+
+    strQuery = QString("SELECT %1 FROM %2 WHERE %3 = '%4'")
+    					.arg(YerothDatabaseTableColumn::STOCK_MINIMUM,
+    						_allWindows->STOCKS,
+    						 YerothDatabaseTableColumn::DESIGNATION,
+							 sqlNomProduit);
+
     if (query.exec(strQuery))
     {
         rec = query.record();
-        double stock_minimum = 0.0;
+
         if (query.next())
         {
             stock_minimum = query.value(0).toDouble();
         }
-        lineEdit_creer_alerte_stock_minimum->setText(QString::number(stock_minimum, 'f', 0));
     }
+
+    switch (tabWidget_creer->currentIndex())
+    {
+    case SUJET_ACTION_ALERTE:
+    	lineEdit_creer_alerte_quantite_en_stock->setText(QString::number(quantite_en_stock, 'f', 0));
+    	lineEdit_creer_alerte_stock_minimum->setText(QString::number(stock_minimum, 'f', 0));
+        break;
+
+    case SUJET_ACTION_REMISE:
+    	lineEdit_creer_remise_quantite_en_stock->setText(QString::number(quantite_en_stock, 'f', 0));
+        break;
+
+    default:
+        break;
+    }
+
     showDatePeremption(nomProduit);
 }
 
 void YerothAdminCreateWindow::showDatePeremption(const QString & nomProduit)
 {
     _logger->log("showDatePeremption", QString("designation: %1").arg(nomProduit));
+
     QString sqlNomProduit(YerothUtils::prepareSqlStr(nomProduit));
-    QString strQuery("SELECT date_peremption FROM ");
-    strQuery.append(_allWindows->STOCKS).append(" WHERE designation = '").append(sqlNomProduit).append("'");
+
+    QString strQuery(QString("SELECT %1 FROM %2 WHERE %3 = '%4'")
+    					.arg(YerothDatabaseTableColumn::DATE_PEREMPTION,
+    						_allWindows->STOCKS,
+    						 YerothDatabaseTableColumn::DESIGNATION,
+							 sqlNomProduit));
+
     QSqlQuery query(strQuery);
+
     QSqlRecord rec = query.record();
+
     QDate date_peremption;
     QDate date_peremption_tmp;
+
     unsigned c = 0;
+
     while (query.next())
     {
         date_peremption_tmp = query.value(0).toDate();
@@ -261,7 +319,20 @@ void YerothAdminCreateWindow::showDatePeremption(const QString & nomProduit)
             }
         }
     }
-    lineEdit_creer_alerte_date_peremption->setText(date_peremption.toString(YerothUtils::DATE_FORMAT));
+
+    switch (tabWidget_creer->currentIndex())
+    {
+    case SUJET_ACTION_ALERTE:
+    	lineEdit_creer_alerte_date_peremption->setText(date_peremption.toString(YerothUtils::DATE_FORMAT));
+        break;
+
+    case SUJET_ACTION_REMISE:
+    	lineEdit_creer_remise_date_peremption->setText(date_peremption.toString(YerothUtils::DATE_FORMAT));
+        break;
+
+    default:
+        break;
+    }
 }
 
 void YerothAdminCreateWindow::lister()
@@ -348,6 +419,8 @@ void YerothAdminCreateWindow::handleCurrentChanged()
     creer_categorie_check_fields();
 
     creer_alerte_check_fields_entry();
+
+    creer_remise_check_fields_entry();
 }
 
 void YerothAdminCreateWindow::hideEvent(QHideEvent * hideEvent)
@@ -356,6 +429,8 @@ void YerothAdminCreateWindow::hideEvent(QHideEvent * hideEvent)
     dateEdit_creer_localisation_date_ouverture->reset();
     dateEdit_creer_alerte_date_debut->reset();
     dateEdit_creer_alerte_date_fin->reset();
+    dateEdit_creer_remise_date_debut->reset();
+    dateEdit_creer_remise_date_fin->reset();
 }
 
 #include "creer-utilisateur.cpp"
