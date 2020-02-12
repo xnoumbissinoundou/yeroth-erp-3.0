@@ -89,6 +89,8 @@ public slots:
 
     void afficher_detail_fournisseur();
 
+    void afficher_detail_remise();
+
     void afficher_detail_alerte();
 
     void supprimer();
@@ -100,6 +102,8 @@ public slots:
     void supprimer_categorie();
 
     void supprimer_fournisseur();
+
+    void supprimer_remise();
 
     void supprimer_alerte();
 
@@ -150,6 +154,8 @@ public slots:
 	{
 		return _discountCurrentlyFiltered;
 	}
+
+	void setDiscountCurrentlyFiltered(bool alertCurrentlyFiltered);
 
 	void setAlertCurrentlyFiltered(bool alertCurrentlyFiltered);
 

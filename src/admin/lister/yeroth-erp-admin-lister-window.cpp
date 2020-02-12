@@ -45,6 +45,7 @@ YerothAdminListerWindow::YerothAdminListerWindow()
     tableView_lister_localisation->setTableName(&YerothERPWindows::LOCALISATIONS);
     tableView_lister_categorie->setTableName(&YerothERPWindows::CATEGORIES);
     tableView_lister_fournisseur->setTableName(&YerothERPWindows::FOURNISSEURS);
+    tableView_lister_remise->setTableName(&YerothERPWindows::REMISES);
     tableView_lister_alerte->setTableName(&YerothERPWindows::ALERTES);
 
     pushButton_menu->enable(this, SLOT(menu()));
@@ -101,6 +102,9 @@ YerothAdminListerWindow::YerothAdminListerWindow()
 
     connect(tableView_lister_fournisseur, SIGNAL(doubleClicked(const QModelIndex &)), this,
             SLOT(afficher_detail_fournisseur()));
+
+    connect(tableView_lister_remise, SIGNAL(doubleClicked(const QModelIndex &)), this,
+            SLOT(afficher_detail_remise()));
 
     connect(tableView_lister_alerte, SIGNAL(doubleClicked(const QModelIndex &)), this,
             SLOT(afficher_detail_alerte()));
@@ -259,6 +263,10 @@ void YerothAdminListerWindow::set_admin_rechercher_font()
 
     case SUJET_ACTION_FOURNISSEUR:
     	MACRO_SET_ADMIN_RECHERCHER_FONT(_supplierCurrentlyFiltered)
+        break;
+
+    case SUJET_ACTION_REMISE:
+    	MACRO_SET_ADMIN_RECHERCHER_FONT(_alertCurrentlyFiltered)
         break;
 
     case SUJET_ACTION_ALERTE:
@@ -438,7 +446,7 @@ void YerothAdminListerWindow::lister_alerte(YerothSqlTableModel * aSqlTableModel
 
 void YerothAdminListerWindow::lister_remise(YerothSqlTableModel * aSqlTableModel)
 {
-    /*if (aSqlTableModel
+    if (aSqlTableModel
             && YerothUtils::isEqualCaseInsensitive(_allWindows->REMISES, aSqlTableModel->sqlTableName()))
     {
         tableView_lister_remise->lister_les_elements_du_tableau(*aSqlTableModel);
@@ -446,19 +454,21 @@ void YerothAdminListerWindow::lister_remise(YerothSqlTableModel * aSqlTableModel
     }
     else
     {
-    	setAlertCurrentlyFiltered(false);
+    	setDiscountCurrentlyFiltered(false);
         tableView_lister_remise->lister_les_elements_du_tableau(_allWindows->getSqlTableModel_remises());
     }
+
     tableView_lister_remise->hideColumn(0);
     tableView_lister_remise->hideColumn(1);
+    tableView_lister_remise->hideColumn(7);
     tableView_lister_remise->hideColumn(8);
-    tableView_lister_remise->hideColumn(10);*/
+    tableView_lister_remise->hideColumn(10);
 
     _lastItemSelectedForModification = 0;
 
     set_admin_rechercher_font();
 
-    tableView_lister_alerte->selectRow(this->_lastItemSelectedForModification);
+    tableView_lister_remise->selectRow(this->_lastItemSelectedForModification);
 }
 
 
@@ -475,10 +485,17 @@ void YerothAdminListerWindow::handleItemModification(const QModelIndex & index)
 }
 
 
+void YerothAdminListerWindow::setDiscountCurrentlyFiltered(bool discountCurrentlyFiltered)
+{
+	_discountCurrentlyFiltered = discountCurrentlyFiltered;
+}
+
+
 void YerothAdminListerWindow::setAlertCurrentlyFiltered(bool alertCurrentlyFiltered)
 {
 	_alertCurrentlyFiltered = alertCurrentlyFiltered;
 }
+
 
 void YerothAdminListerWindow::setCategoryCurrentlyFiltered(bool categoryCurrentlyFiltered)
 {
@@ -491,10 +508,12 @@ void YerothAdminListerWindow::setSiteCurrentlyFiltered(bool siteCurrentlyFiltere
 	_siteCurrentlyFiltered = siteCurrentlyFiltered;
 }
 
+
 void YerothAdminListerWindow::setSupplierCurrentlyFiltered(bool supplierCurrentlyFiltered)
 {
 	_supplierCurrentlyFiltered = supplierCurrentlyFiltered;
 }
+
 
 void YerothAdminListerWindow::setUserCurrentlyFiltered(bool userCurrentlyFiltered)
 {
@@ -577,6 +596,9 @@ void YerothAdminListerWindow::afficher_au_detail()
     case SUJET_ACTION_FOURNISSEUR:
         afficher_detail_fournisseur();
         break;
+    case SUJET_ACTION_REMISE:
+        afficher_detail_remise();
+        break;
     case SUJET_ACTION_ALERTE:
         afficher_detail_alerte();
         break;
@@ -614,6 +636,12 @@ void YerothAdminListerWindow::afficher_detail_fournisseur()
     this->rendreInvisible();
 }
 
+void YerothAdminListerWindow::afficher_detail_remise()
+{
+    _allWindows->_adminDetailWindow->rendreVisibleRemise(this->lastSelectedItemForModification());
+    this->rendreInvisible();
+}
+
 void YerothAdminListerWindow::afficher_detail_alerte()
 {
     _allWindows->_adminDetailWindow->rendreVisibleAlerte(this->lastSelectedItemForModification());
@@ -635,6 +663,9 @@ void YerothAdminListerWindow::supprimer()
         break;
     case SUJET_ACTION_FOURNISSEUR:
         supprimer_fournisseur();
+        break;
+    case SUJET_ACTION_REMISE:
+        supprimer_remise();
         break;
     case SUJET_ACTION_ALERTE:
         supprimer_alerte();
@@ -883,6 +914,13 @@ void YerothAdminListerWindow::supprimer_fournisseur()
         }
     }
 }
+
+
+void YerothAdminListerWindow::supprimer_remise()
+{
+
+}
+
 
 void YerothAdminListerWindow::supprimer_alerte()
 {

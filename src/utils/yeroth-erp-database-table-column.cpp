@@ -59,6 +59,7 @@ const QString YerothDatabaseTableColumn::NOM_MAGASINIER					("nom_magasinier");
 const QString YerothDatabaseTableColumn::NOM_UTILISATEUR_MAGASINIER		("nom_utilisateur_magasinier");
 const QString YerothDatabaseTableColumn::NOM_UTILISATEUR_CAISSIER		("nom_utilisateur_caissier");
 const QString YerothDatabaseTableColumn::NOM_CAISSIER					("nom_caissier");
+const QString YerothDatabaseTableColumn::NOM_COMPLET_CREATEUR_REMISE_ALERTE	("nom_complet_createur_remise_alerte");
 const QString YerothDatabaseTableColumn::NOM_COMPLET					("nom_complet");
 const QString YerothDatabaseTableColumn::NOM_LOCALISATION				("nom_localisation");
 const QString YerothDatabaseTableColumn::VALEUR_DIVENTAIRE				("valeur_dinventaire");
@@ -95,6 +96,7 @@ const QString YerothDatabaseTableColumn::NOM_REPRESENTANT				("nom_representant"
 const QString YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT			("nom_entreprise_client");
 const QString YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR		("nom_entreprise_fournisseur");
 const QString YerothDatabaseTableColumn::DESCRIPTION_CLIENT				("description_client");
+const QString YerothDatabaseTableColumn::DESIGNATION_REMISE				("designation_remise");
 const QString YerothDatabaseTableColumn::DESIGNATION_ALERTE				("designation_alerte");
 const QString YerothDatabaseTableColumn::CONDITION_ALERTE				("condition_alerte");
 const QString YerothDatabaseTableColumn::NOM_ENCAISSEUR					("nom_encaisseur");
@@ -110,10 +112,12 @@ const QString YerothDatabaseTableColumn::HEURE_VENTE					("heure_vente");
 const QString YerothDatabaseTableColumn::HEURE_SORTIE					("heure_sortie");
 const QString YerothDatabaseTableColumn::DESTINATAIRE					("destinataire");
 const QString YerothDatabaseTableColumn::NOM_COMPLET_DESTINATAIRE		("nom_complet_destinataire");
+const QString YerothDatabaseTableColumn::REMISE_NOTES					("remise_notes");
 const QString YerothDatabaseTableColumn::MESSAGE_ALERTE					("message_alerte");
 const QString YerothDatabaseTableColumn::DATE_CREATION					("date_creation");
 const QString YerothDatabaseTableColumn::TYPE_DE_VENTE					("type_de_vente");
 const QString YerothDatabaseTableColumn::NOTIFICATIONS					("notifications");
+const QString YerothDatabaseTableColumn::REMISE_RESOLUE					("remise_resolue");
 const QString YerothDatabaseTableColumn::ALERTE_RESOLUE					("alerte_resolue");
 const QString YerothDatabaseTableColumn::LOCALISATION_SORTIE			("localisation_sortie");
 const QString YerothDatabaseTableColumn::LOCALISATION_ENTREE			("localisation_entree");
@@ -214,6 +218,8 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NOM_CAISSIER,			QObject::tr("Nom caissier"));
 
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NOM_COMPLET_CREATEUR_REMISE_ALERTE,		QObject::trUtf8("Créateur"));
+
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NOM_COMPLET,			QObject::tr("Nom complet"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NOM_LOCALISATION,	QObject::tr("Nom"));
@@ -284,6 +290,8 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::DESCRIPTION_CLIENT,	QObject::tr("Description client"));
 
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::DESIGNATION_REMISE,	QObject::trUtf8("Désignation remise"));
+
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::DESIGNATION_ALERTE,	QObject::trUtf8("Désignation alerte"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::CONDITION_ALERTE,		QObject::tr("Condition alerte"));
@@ -314,6 +322,8 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NOM_COMPLET_DESTINATAIRE,	QObject::tr("Nom complet destinataire"));
 
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REMISE_NOTES,		QObject::tr("Notes"));
+
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::MESSAGE_ALERTE,		QObject::tr("Message d'alerte"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::DATE_CREATION	,		QObject::trUtf8("Date de création"));
@@ -321,6 +331,8 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::TYPE_DE_VENTE,		QObject::tr("Type vente"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NOTIFICATIONS,		QObject::tr("Notifications"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REMISE_RESOLUE,		QObject::trUtf8("Remise résolue"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::ALERTE_RESOLUE,		QObject::trUtf8("Alerte résolue"));
 

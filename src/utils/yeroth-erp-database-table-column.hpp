@@ -117,6 +117,8 @@ public:
 
 	static const QString NOM_CAISSIER;
 
+	static const QString NOM_COMPLET_CREATEUR_REMISE_ALERTE;
+
 	static const QString NOM_COMPLET;
 
 	static const QString NOM_LOCALISATION;
@@ -189,6 +191,8 @@ public:
 
 	static const QString DESCRIPTION_CLIENT;
 
+	static const QString DESIGNATION_REMISE;
+
 	static const QString DESIGNATION_ALERTE;
 
 	static const QString CONDITION_ALERTE;
@@ -219,6 +223,8 @@ public:
 
 	static const QString NOM_COMPLET_DESTINATAIRE;
 
+	static const QString REMISE_NOTES;
+
 	static const QString MESSAGE_ALERTE;
 
 	static const QString DATE_CREATION;
@@ -226,6 +232,8 @@ public:
 	static const QString TYPE_DE_VENTE;
 
 	static const QString NOTIFICATIONS;
+
+	static const QString REMISE_RESOLUE;
 
 	static const QString ALERTE_RESOLUE;
 

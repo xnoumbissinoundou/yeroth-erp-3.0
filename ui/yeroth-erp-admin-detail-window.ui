@@ -8733,7 +8733,7 @@
       <property name="title">
        <string>Données de la remise</string>
       </property>
-      <widget class="QLabel" name="label_creer_alerte_produit_3">
+      <widget class="QLabel" name="label_detail_remise_designation_article">
        <property name="geometry">
         <rect>
          <x>16</x>
@@ -8749,7 +8749,7 @@
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
       </widget>
-      <widget class="YerothLineEdit" name="lineEdit_creer_alerte_designation_3">
+      <widget class="YerothLineEdit" name="lineEdit_detail_remise_designation_article">
        <property name="geometry">
         <rect>
          <x>173</x>
@@ -9634,7 +9634,7 @@
         <string>Enregistrer</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_creer_remise_nom">
+      <widget class="QLabel" name="label_detail_remise_nom">
        <property name="geometry">
         <rect>
          <x>16</x>
@@ -9650,7 +9650,7 @@
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
       </widget>
-      <widget class="QGroupBox" name="groupBox_creer_alerte_periode_temps_3">
+      <widget class="QGroupBox" name="groupBox_detail_remise_periode_temps">
        <property name="geometry">
         <rect>
          <x>16</x>
@@ -9662,7 +9662,7 @@
        <property name="title">
         <string>période de temps</string>
        </property>
-       <widget class="YerothDateTimeEdit" name="dateEdit_creer_alerte_date_fin_3">
+       <widget class="YerothDateTimeEdit" name="dateEdit_detail_remise_date_fin">
         <property name="geometry">
          <rect>
           <x>157</x>
@@ -9687,7 +9687,7 @@
          </date>
         </property>
        </widget>
-       <widget class="YerothDateTimeEdit" name="dateEdit_creer_alerte_date_debut_3">
+       <widget class="YerothDateTimeEdit" name="dateEdit_detail_remise_date_debut">
         <property name="geometry">
          <rect>
           <x>157</x>
@@ -9712,7 +9712,7 @@
          </date>
         </property>
        </widget>
-       <widget class="QLabel" name="label_creer_alerte_date_debut_3">
+       <widget class="QLabel" name="label_detail_remise_date_debut">
         <property name="geometry">
          <rect>
           <x>16</x>
@@ -9728,7 +9728,7 @@
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
-       <widget class="QLabel" name="label_creer_alerte_date_fin_3">
+       <widget class="QLabel" name="label_detail_remise_date_fin">
         <property name="geometry">
          <rect>
           <x>16</x>
@@ -9745,7 +9745,7 @@
         </property>
        </widget>
       </widget>
-      <widget class="QLabel" name="label_creer_alerte_destinataire_3">
+      <widget class="QLabel" name="label_detail_remise_pourcentage">
        <property name="geometry">
         <rect>
          <x>16</x>
@@ -9780,7 +9780,7 @@
        <property name="title">
         <string>notes sur la remise</string>
        </property>
-       <widget class="YerothTextEdit" name="textEdit_creer_alerte_message_3">
+       <widget class="YerothTextEdit" name="textEdit_detail_remise_message">
         <property name="geometry">
          <rect>
           <x>2</x>
@@ -9796,7 +9796,7 @@
         </property>
        </widget>
       </widget>
-      <widget class="YerothLineEdit" name="lineEdit_creer_alerte_nom_3">
+      <widget class="YerothLineEdit" name="lineEdit_detail_remise_nom">
        <property name="geometry">
         <rect>
          <x>173</x>
@@ -9813,7 +9813,7 @@
         </font>
        </property>
       </widget>
-      <widget class="YerothLineEdit" name="lineEdit_creer_alerte_quantite_en_stock_3">
+      <widget class="YerothLineEdit" name="lineEdit_detail_remise_quantite_en_stock">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -9833,7 +9833,7 @@
         </font>
        </property>
       </widget>
-      <widget class="QLabel" name="label_creer_alerte_quantite_en_stock_3">
+      <widget class="QLabel" name="label_detail_remise_quantite_en_stock">
        <property name="geometry">
         <rect>
          <x>400</x>
@@ -9849,7 +9849,7 @@
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
       </widget>
-      <widget class="QLabel" name="label_creer_alerte_date_peremption_3">
+      <widget class="QLabel" name="label_detail_remise_date_peremption">
        <property name="geometry">
         <rect>
          <x>400</x>
@@ -9865,7 +9865,7 @@
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
       </widget>
-      <widget class="YerothLineEdit" name="lineEdit_creer_alerte_date_peremption_3">
+      <widget class="YerothLineEdit" name="lineEdit_detail_remise_date_peremption">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -9885,7 +9885,7 @@
         </font>
        </property>
       </widget>
-      <widget class="YerothSpinBox" name="spinBox_remise_pourcentage">
+      <widget class="YerothSpinBox" name="spinBox_detail_remise_pourcentage">
        <property name="geometry">
         <rect>
          <x>173</x>
@@ -10350,6 +10350,39 @@ background-color: rgb(47, 67, 67);</string>
        </property>
        <property name="minimum">
         <number>1</number>
+       </property>
+      </widget>
+      <widget class="YerothLineEdit" name="lineEdit_detail_remise_montant">
+       <property name="geometry">
+        <rect>
+         <x>173</x>
+         <y>120</y>
+         <width>205</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_detail_remise_montant">
+       <property name="geometry">
+        <rect>
+         <x>16</x>
+         <y>120</y>
+         <width>153</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>montant de la remise</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
       </widget>
      </widget>
@@ -14465,11 +14498,6 @@ background-color: rgb(47, 67, 67);</string>
    <header>src/widgets/yeroth-erp-line-edit.hpp</header>
   </customwidget>
   <customwidget>
-   <class>YerothComboBox</class>
-   <extends>QComboBox</extends>
-   <header>src/widgets/yeroth-erp-combo-box.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>YerothDateTimeEdit</class>
    <extends>QDateEdit</extends>
    <header>src/widgets/yeroth-erp-datetime-edit.hpp</header>
@@ -14478,6 +14506,11 @@ background-color: rgb(47, 67, 67);</string>
    <class>YerothTextEdit</class>
    <extends>QTextEdit</extends>
    <header>src/widgets/yeroth-erp-text-edit.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>YerothComboBox</class>
+   <extends>QComboBox</extends>
+   <header>src/widgets/yeroth-erp-combo-box.hpp</header>
   </customwidget>
   <customwidget>
    <class>YerothSpinBox</class>
@@ -14547,16 +14580,16 @@ background-color: rgb(47, 67, 67);</string>
   <tabstop>lineEdit_detail_localisation_base_donnees</tabstop>
   <tabstop>pushButton_detail_localisation_retour</tabstop>
   <tabstop>textEdit_detail_localisation_description_lieu</tabstop>
-  <tabstop>lineEdit_creer_alerte_designation_3</tabstop>
-  <tabstop>lineEdit_creer_alerte_nom_3</tabstop>
-  <tabstop>spinBox_remise_pourcentage</tabstop>
-  <tabstop>dateEdit_creer_alerte_date_debut_3</tabstop>
-  <tabstop>dateEdit_creer_alerte_date_fin_3</tabstop>
-  <tabstop>lineEdit_creer_alerte_quantite_en_stock_3</tabstop>
-  <tabstop>lineEdit_creer_alerte_date_peremption_3</tabstop>
+  <tabstop>lineEdit_detail_remise_designation_article</tabstop>
+  <tabstop>lineEdit_detail_remise_nom</tabstop>
+  <tabstop>spinBox_detail_remise_pourcentage</tabstop>
+  <tabstop>dateEdit_detail_remise_date_debut</tabstop>
+  <tabstop>dateEdit_detail_remise_date_fin</tabstop>
+  <tabstop>lineEdit_detail_remise_quantite_en_stock</tabstop>
+  <tabstop>lineEdit_detail_remise_date_peremption</tabstop>
   <tabstop>pushButton_creer_alerte_annuler_3</tabstop>
   <tabstop>pushButton_creer_alerte_valider_3</tabstop>
-  <tabstop>textEdit_creer_alerte_message_3</tabstop>
+  <tabstop>textEdit_detail_remise_message</tabstop>
   <tabstop>pushButton_lister</tabstop>
   <tabstop>pushButton_creer</tabstop>
   <tabstop>pushButton_menu</tabstop>

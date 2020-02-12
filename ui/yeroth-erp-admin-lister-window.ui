@@ -8493,6 +8493,14 @@
   </customwidget>
  </customwidgets>
  <tabstops>
+  <tabstop>tableView_lister_alerte</tabstop>
+  <tabstop>pushButton_admin_rechercher</tabstop>
+  <tabstop>pushButton_admin_reinitialiser</tabstop>
+  <tabstop>tableView_lister_categorie</tabstop>
+  <tabstop>tableView_lister_utilisateur</tabstop>
+  <tabstop>tableView_lister_fournisseur</tabstop>
+  <tabstop>tableView_lister_localisation</tabstop>
+  <tabstop>tableView_lister_remise</tabstop>
   <tabstop>pushButton_afficher</tabstop>
   <tabstop>pushButton_creer</tabstop>
   <tabstop>pushButton_menu</tabstop>

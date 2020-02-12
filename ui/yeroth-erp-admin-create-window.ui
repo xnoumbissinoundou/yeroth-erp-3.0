@@ -9402,7 +9402,7 @@
       <property name="title">
        <string>Données de la remise</string>
       </property>
-      <widget class="QLabel" name="label_creer_remise_produit">
+      <widget class="QLabel" name="label_creer_remise_designation_article">
        <property name="geometry">
         <rect>
          <x>16</x>
@@ -9418,7 +9418,7 @@
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
       </widget>
-      <widget class="YerothLineEdit" name="lineEdit_creer_remise_designation">
+      <widget class="YerothLineEdit" name="lineEdit_creer_remise_designation_article">
        <property name="geometry">
         <rect>
          <x>173</x>
@@ -11019,6 +11019,39 @@ background-color: rgb(255, 255, 255);</string>
        </property>
        <property name="minimum">
         <number>1</number>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_creer_remise_montant">
+       <property name="geometry">
+        <rect>
+         <x>16</x>
+         <y>120</y>
+         <width>153</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>montant de la remise</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="YerothLineEdit" name="lineEdit_creer_remise_montant">
+       <property name="geometry">
+        <rect>
+         <x>173</x>
+         <y>120</y>
+         <width>205</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
        </property>
       </widget>
      </widget>
@@ -15189,6 +15222,10 @@ background-color: rgb(255, 255, 255);</string>
   <tabstop>pushButton_creer_alerte_valider</tabstop>
   <tabstop>pushButton_creer_alerte_annuler</tabstop>
   <tabstop>textEdit_creer_alerte_message</tabstop>
+  <tabstop>lineEdit_creer_alerte_quantite_en_stock</tabstop>
+  <tabstop>lineEdit_creer_alerte_stock_minimum</tabstop>
+  <tabstop>lineEdit_creer_alerte_date_peremption</tabstop>
+  <tabstop>lineEdit_creer_alerte_nom_destinataire</tabstop>
   <tabstop>lineEdit_creer_categorie_nom</tabstop>
   <tabstop>pushButton_creer_categorie_valider</tabstop>
   <tabstop>pushButton_creer_categorie_annuler</tabstop>
@@ -15199,6 +15236,7 @@ background-color: rgb(255, 255, 255);</string>
   <tabstop>lineEdit_creer_utilisateur_lieu_naissance</tabstop>
   <tabstop>dateEdit_creer_utilisateur_date_naissance</tabstop>
   <tabstop>lineEdit_creer_utilisateur_ville</tabstop>
+  <tabstop>lineEdit_creer_utilisateur_province_etat</tabstop>
   <tabstop>lineEdit_creer_utilisateur_pays</tabstop>
   <tabstop>lineEdit_creer_utilisateur_boite_postale</tabstop>
   <tabstop>lineEdit_creer_utilisateur_email</tabstop>
@@ -15215,6 +15253,7 @@ background-color: rgb(255, 255, 255);</string>
   <tabstop>lineEdit_creer_fournisseur_nom_representant</tabstop>
   <tabstop>lineEdit_creer_fournisseur_quartier</tabstop>
   <tabstop>lineEdit_creer_fournisseur_ville</tabstop>
+  <tabstop>lineEdit_creer_fournisseur_province_etat</tabstop>
   <tabstop>lineEdit_creer_fournisseur_pays</tabstop>
   <tabstop>lineEdit_creer_fournisseur_boite_postale</tabstop>
   <tabstop>lineEdit_creer_fournisseur_siege_social</tabstop>
@@ -15230,6 +15269,7 @@ background-color: rgb(255, 255, 255);</string>
   <tabstop>lineEdit_creer_localisation_numero_unique</tabstop>
   <tabstop>lineEdit_creer_localisation_quartier</tabstop>
   <tabstop>lineEdit_creer_localisation_ville</tabstop>
+  <tabstop>lineEdit_creer_localisation_province_etat</tabstop>
   <tabstop>lineEdit_creer_localisation_pays</tabstop>
   <tabstop>lineEdit_creer_localisation_boite_postale</tabstop>
   <tabstop>dateEdit_creer_localisation_date_ouverture</tabstop>
@@ -15240,16 +15280,23 @@ background-color: rgb(255, 255, 255);</string>
   <tabstop>pushButton_creer_localisation_valider</tabstop>
   <tabstop>pushButton_creer_localisation_annuler</tabstop>
   <tabstop>textEdit_creer_localisation_description_lieu</tabstop>
+  <tabstop>lineEdit_creer_remise_designation_article</tabstop>
+  <tabstop>lineEdit_creer_remise_nom</tabstop>
+  <tabstop>spinBox_remise_pourcentage</tabstop>
+  <tabstop>lineEdit_creer_remise_montant</tabstop>
+  <tabstop>dateEdit_creer_remise_date_debut</tabstop>
+  <tabstop>dateEdit_creer_remise_date_fin</tabstop>
+  <tabstop>lineEdit_creer_remise_quantite_en_stock</tabstop>
+  <tabstop>lineEdit_creer_remise_date_peremption</tabstop>
+  <tabstop>pushButton_creer_remise_valider</tabstop>
+  <tabstop>pushButton_creer_remise_annuler</tabstop>
+  <tabstop>textEdit_creer_remise_message</tabstop>
   <tabstop>pushButton_creer</tabstop>
   <tabstop>pushButton_lister</tabstop>
   <tabstop>pushButton_menu</tabstop>
   <tabstop>pushButton_modifier</tabstop>
   <tabstop>pushButton_supprimer</tabstop>
   <tabstop>tabWidget_creer</tabstop>
-  <tabstop>lineEdit_creer_alerte_stock_minimum</tabstop>
-  <tabstop>lineEdit_creer_alerte_date_peremption</tabstop>
-  <tabstop>lineEdit_creer_alerte_nom_destinataire</tabstop>
-  <tabstop>lineEdit_creer_alerte_quantite_en_stock</tabstop>
  </tabstops>
  <resources>
   <include location="../yeroth-erp-3-0.qrc"/>

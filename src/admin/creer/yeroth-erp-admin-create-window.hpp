@@ -62,9 +62,9 @@ public slots:
 
 	bool creer_categorie();
 
-	bool creer_alerte();
-
 	bool creer_remise();
+
+	bool creer_alerte();
 
 	bool creer_fournisseur();
 
@@ -123,7 +123,6 @@ private:
     bool creer_alerte_check_fields();
 
     bool creer_remise_check_fields();
-
 
     void creer_utilisateur_check_fields_entry();
 

@@ -316,9 +316,12 @@ void YerothAdminWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
         label_OFFLINE->setVisible(true);
     }
 
+    _allWindows->_adminListerWindow->lister_remise(&_allWindows->getSqlTableModel_remises());
+    _allWindows->_adminListerWindow->lister_alerte(&_allWindows->getSqlTableModel_alertes());
     _allWindows->_adminListerWindow->lister_categorie(&_allWindows->getSqlTableModel_categories());
     _allWindows->_adminListerWindow->lister_utilisateur(&_allWindows->getSqlTableModel_users());
     _allWindows->_adminListerWindow->lister_fournisseur(&_allWindows->getSqlTableModel_fournisseurs());
+    _allWindows->_adminListerWindow->lister_localisation(&_allWindows->getSqlTableModel_localisations());
 
     handleTabChanged(tabWidget_administration->currentIndex());
 

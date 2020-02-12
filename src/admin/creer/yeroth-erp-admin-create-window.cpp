@@ -111,6 +111,9 @@ void YerothAdminCreateWindow::definirManager()
 
 void YerothAdminCreateWindow::setupLineEdits()
 {
+	lineEdit_creer_remise_montant->setEnabled(false);
+
+	lineEdit_creer_remise_montant->setValidator(&YerothUtils::DoubleValidator);
     lineEdit_creer_alerte_quantite->setValidator(&YerothUtils::IntValidator);
     lineEdit_creer_utilisateur_mot_passe_1->setEchoMode(QLineEdit::Password);
     lineEdit_creer_utilisateur_verification->setEchoMode(QLineEdit::Password);
@@ -123,7 +126,7 @@ void YerothAdminCreateWindow::setupLineEdits()
     connect(lineEdit_creer_alerte_designation, SIGNAL(textChanged(const QString &)), this,
             SLOT(showProduitInfo(const QString &)));
 
-    connect(lineEdit_creer_remise_designation, SIGNAL(textChanged(const QString &)), this,
+    connect(lineEdit_creer_remise_designation_article, SIGNAL(textChanged(const QString &)), this,
             SLOT(showProduitInfo(const QString &)));
 }
 
@@ -159,7 +162,7 @@ void YerothAdminCreateWindow::rendreVisible(unsigned selectedSujetAction)
 
     lineEdit_creer_alerte_destinataire->setupMyStaticQCompleter(_allWindows->USERS, "nom_utilisateur");
 
-    lineEdit_creer_remise_designation->setupMyStaticQCompleter(_allWindows->STOCKS, YerothDatabaseTableColumn::DESIGNATION);
+    lineEdit_creer_remise_designation_article->setupMyStaticQCompleter(_allWindows->STOCKS, YerothDatabaseTableColumn::DESIGNATION);
 
     lineEdit_creer_utilisateur_localisation->setEnabled(false);
 

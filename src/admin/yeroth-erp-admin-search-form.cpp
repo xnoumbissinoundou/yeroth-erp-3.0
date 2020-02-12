@@ -115,6 +115,15 @@ void YerothAdminSearchForm::setupLineEditsQCompleters(int tabWidjetListerIdx)
         _curSqlTableModel = &_allWindows->getSqlTableModel_localisations();
         break;
 
+    case SUJET_ACTION_REMISE:
+
+        lineEdit_terme_recherche->enableForSearch(QObject::trUtf8("désignation de la remise"));
+        lineEdit_terme_recherche->setupMyStaticQCompleter(_allWindows->REMISES, YerothDatabaseTableColumn::DESIGNATION_REMISE, false,
+                false);
+        _curSujetAction = SUJET_ACTION_REMISE;
+        _curSqlTableModel = &_allWindows->getSqlTableModel_remises();
+        break;
+
     default:
         break;
     }

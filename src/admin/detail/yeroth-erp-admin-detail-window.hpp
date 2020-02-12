@@ -52,6 +52,8 @@ public:
 
     void rendreVisibleFournisseur(int sqlTableRow);
 
+    void rendreVisibleRemise(int sqlTableRow);
+
     void rendreVisibleAlerte(int sqlTableRow);
 
     virtual void rendreInvisible();

@@ -324,6 +324,57 @@ void YerothAdminDetailWindow::rendreVisibleFournisseur(int sqlTableRow)
     this->setVisible(true);
 }
 
+
+void YerothAdminDetailWindow::rendreVisibleRemise(int sqlTableRow)
+{
+//    this->tabWidget_detail->setCurrentIndex(SUJET_ACTION_ALERTE);
+//    YerothAdminListerWindow *lw = _allWindows->_adminListerWindow;
+//    YerothSqlTableModel *alertesTableModel = lw->getCurSearchSqlTableModel();
+//    if (!alertesTableModel)
+//    {
+//        alertesTableModel = &_allWindows->getSqlTableModel_alertes();
+//    }
+//    else if (alertesTableModel
+//             && !YerothUtils::isEqualCaseInsensitive(alertesTableModel->sqlTableName(), _allWindows->ALERTES))
+//    {
+//        alertesTableModel = &_allWindows->getSqlTableModel_alertes();
+//    }
+//    QSqlRecord record = alertesTableModel->record(sqlTableRow);
+//
+//    lineEdit_detail_alerte_designation_alerte->setEnabled(false);
+//    lineEdit_detail_alerte_designation_alerte->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION_ALERTE));
+//
+//    lineEdit_detail_alerte_id_destinataire->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESTINATAIRE));
+//    lineEdit_detail_alerte_id_destinataire->setEnabled(false);
+//
+//    lineEdit_detail_alerte_nom_destinataire->setEnabled(false);
+//    lineEdit_detail_alerte_nom_destinataire->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_COMPLET_DESTINATAIRE));
+//
+//    lineEdit_detail_alerte_designation_article->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
+//    lineEdit_detail_alerte_designation_article->setEnabled(false);
+//
+//    comboBox_detail_alerte_condition->addItem(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::CONDITION_ALERTE));
+//
+//    int quantite = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::QUANTITE).toInt();
+//    if (quantite > -1)
+//    {
+//        radioButton_detail_alerte_quantite->setChecked(true);
+//        lineEdit_detail_alerte_quantite->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::QUANTITE));
+//    }
+//    else
+//    {
+//        radioButton_detail_alerte_date_periode_temps->setChecked(true);
+//        QString date_debut(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DATE_DEBUT));
+//        dateEdit_detail_alerte_date_debut->setDate(GET_DATE_FROM_STRING(date_debut));
+//        QString date_fin(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DATE_FIN));
+//        dateEdit_detail_alerte_date_fin->setDate(GET_DATE_FROM_STRING(date_fin));
+//    }
+//    textEdit_detail_alerte_message->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::MESSAGE_ALERTE));
+    this->enableOtherTabs(SUJET_ACTION_REMISE, false);
+    this->setVisible(true);
+}
+
+
 void YerothAdminDetailWindow::rendreVisibleAlerte(int sqlTableRow)
 {
     this->tabWidget_detail->setCurrentIndex(SUJET_ACTION_ALERTE);
