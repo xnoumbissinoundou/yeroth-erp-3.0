@@ -46,16 +46,19 @@ YerothAlertesWindow::YerothAlertesWindow():YerothWindowsCommons(YerothAlertesWin
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
 
-    this->setupLineEdits();
+    setupLineEdits();
+
+    textEdit_alerte_message->setEnabled(false);
+
+    dateEdit_alertes_date_debut->setYerothEnabled(false);
+    dateEdit_alertes_date_fin->setYerothEnabled(false);
+
+    radioButton_alertes_periode_temps->setEnabled(false);
+    radioButton_alertes_quantite->setEnabled(false);
 
     tabWidget_alertes->setTabEnabled(AfficherAlerteAuDetail, false);
 
     pushButton_retour_alertes->enable(this, SLOT(retourAlertes()));
-    textEdit_alerte_message->setEnabled(false);
-    dateEdit_alertes_date_debut->setEnabled(false);
-    dateEdit_alertes_date_fin->setEnabled(false);
-    radioButton_alertes_periode_temps->setEnabled(false);
-    radioButton_alertes_quantite->setEnabled(false);
 
     connect(tabWidget_alertes, SIGNAL(currentChanged(int)), this, SLOT(handleCurrentChanged(int)));
     connect(tableView_lister_alertes, SIGNAL(doubleClicked(const QModelIndex &)), this, SLOT(afficher()));
@@ -96,6 +99,9 @@ void YerothAlertesWindow::setupLineEdits()
     lineEdit_alertes_nom->setEnabled(false);
     lineEdit_alertes_quantite->setEnabled(false);
     lineEdit_alertes_resolue->setEnabled(false);
+    lineEdit_alertes_designation->setEnabled(false);
+    lineEdit_alertes_destinataire->setEnabled(false);
+    lineEdit_alertes_nom_destinataire->setEnabled(false);
 }
 
 void YerothAlertesWindow::deconnecter_utilisateur()
