@@ -1818,7 +1818,7 @@
        <property name="title">
         <string>période de temps</string>
        </property>
-       <widget class="QDateEdit" name="dateEdit_detail_alerte_date_fin">
+       <widget class="YerothDateTimeEdit" name="dateEdit_detail_alerte_date_fin">
         <property name="geometry">
          <rect>
           <x>157</x>
@@ -1843,7 +1843,7 @@
          </date>
         </property>
        </widget>
-       <widget class="QDateEdit" name="dateEdit_detail_alerte_date_debut">
+       <widget class="YerothDateTimeEdit" name="dateEdit_detail_alerte_date_debut">
         <property name="geometry">
          <rect>
           <x>157</x>
@@ -8766,13 +8766,225 @@
         </font>
        </property>
       </widget>
-      <widget class="YerothPushButton" name="pushButton_creer_alerte_annuler_3">
+      <widget class="QLabel" name="label_detail_remise_nom">
+       <property name="geometry">
+        <rect>
+         <x>16</x>
+         <y>60</y>
+         <width>153</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>désignation de la remise</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_detail_remise_periode_temps">
+       <property name="geometry">
+        <rect>
+         <x>16</x>
+         <y>201</y>
+         <width>365</width>
+         <height>78</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>période de temps</string>
+       </property>
+       <widget class="YerothDateTimeEdit" name="dateEdit_detail_remise_date_fin">
+        <property name="geometry">
+         <rect>
+          <x>157</x>
+          <y>46</y>
+          <width>205</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="displayFormat">
+         <string>dd/MM/yyyy</string>
+        </property>
+        <property name="date">
+         <date>
+          <year>2016</year>
+          <month>1</month>
+          <day>1</day>
+         </date>
+        </property>
+       </widget>
+       <widget class="YerothDateTimeEdit" name="dateEdit_detail_remise_date_debut">
+        <property name="geometry">
+         <rect>
+          <x>157</x>
+          <y>16</y>
+          <width>205</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="displayFormat">
+         <string>dd/MM/yyyy</string>
+        </property>
+        <property name="date">
+         <date>
+          <year>2016</year>
+          <month>1</month>
+          <day>1</day>
+         </date>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_detail_remise_date_debut">
+        <property name="geometry">
+         <rect>
+          <x>16</x>
+          <y>20</y>
+          <width>137</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>début</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_detail_remise_date_fin">
+        <property name="geometry">
+         <rect>
+          <x>16</x>
+          <y>47</y>
+          <width>137</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>fin</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QLabel" name="label_detail_remise_pourcentage">
+       <property name="geometry">
+        <rect>
+         <x>16</x>
+         <y>90</y>
+         <width>153</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>pourcentage de la remise</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_22">
        <property name="geometry">
         <rect>
          <x>400</x>
-         <y>325</y>
-         <width>183</width>
-         <height>31</height>
+         <y>153</y>
+         <width>371</width>
+         <height>173</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <weight>50</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="title">
+        <string>notes sur la remise</string>
+       </property>
+       <widget class="YerothTextEdit" name="textEdit_detail_remise_message">
+        <property name="geometry">
+         <rect>
+          <x>2</x>
+          <y>22</y>
+          <width>368</width>
+          <height>147</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+       </widget>
+      </widget>
+      <widget class="YerothLineEdit" name="lineEdit_detail_remise_nom">
+       <property name="geometry">
+        <rect>
+         <x>173</x>
+         <y>60</y>
+         <width>205</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+      </widget>
+      <widget class="YerothLineEdit" name="lineEdit_detail_remise_montant">
+       <property name="geometry">
+        <rect>
+         <x>173</x>
+         <y>120</y>
+         <width>205</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_detail_remise_montant">
+       <property name="geometry">
+        <rect>
+         <x>16</x>
+         <y>120</y>
+         <width>153</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>montant de la remise</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="YerothSpinBox" name="spinBox_detail_remise_pourcentage">
+       <property name="geometry">
+        <rect>
+         <x>173</x>
+         <y>90</y>
+         <width>205</width>
+         <height>25</height>
         </rect>
        </property>
        <property name="palette">
@@ -8781,63 +8993,63 @@
           <colorrole role="WindowText">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>255</red>
-             <green>255</green>
-             <blue>255</blue>
+             <red>0</red>
+             <green>0</green>
+             <blue>0</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Button">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>47</red>
-             <green>67</green>
-             <blue>67</blue>
+             <red>255</red>
+             <green>255</green>
+             <blue>255</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Light">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>70</red>
-             <green>100</green>
-             <blue>100</blue>
+             <red>255</red>
+             <green>255</green>
+             <blue>255</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Midlight">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>58</red>
-             <green>83</green>
-             <blue>83</blue>
+             <red>255</red>
+             <green>255</green>
+             <blue>255</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Dark">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>23</red>
-             <green>33</green>
-             <blue>33</blue>
+             <red>127</red>
+             <green>127</green>
+             <blue>127</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Mid">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>31</red>
-             <green>44</green>
-             <blue>44</blue>
+             <red>170</red>
+             <green>170</green>
+             <blue>170</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Text">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>255</red>
-             <green>255</green>
-             <blue>255</blue>
+             <red>0</red>
+             <green>0</green>
+             <blue>0</blue>
             </color>
            </brush>
           </colorrole>
@@ -8853,27 +9065,27 @@
           <colorrole role="ButtonText">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>255</red>
-             <green>255</green>
-             <blue>255</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="Base">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
              <red>0</red>
              <green>0</green>
              <blue>0</blue>
             </color>
            </brush>
           </colorrole>
+          <colorrole role="Base">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>255</red>
+             <green>255</green>
+             <blue>255</blue>
+            </color>
+           </brush>
+          </colorrole>
           <colorrole role="Window">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>47</red>
-             <green>67</green>
-             <blue>67</blue>
+             <red>255</red>
+             <green>255</green>
+             <blue>255</blue>
             </color>
            </brush>
           </colorrole>
@@ -8886,12 +9098,21 @@
             </color>
            </brush>
           </colorrole>
+          <colorrole role="HighlightedText">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>2</red>
+             <green>160</green>
+             <blue>70</blue>
+            </color>
+           </brush>
+          </colorrole>
           <colorrole role="AlternateBase">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>23</red>
-             <green>33</green>
-             <blue>33</blue>
+             <red>255</red>
+             <green>255</green>
+             <blue>255</blue>
             </color>
            </brush>
           </colorrole>
@@ -8918,63 +9139,63 @@
           <colorrole role="WindowText">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>255</red>
-             <green>255</green>
-             <blue>255</blue>
+             <red>0</red>
+             <green>0</green>
+             <blue>0</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Button">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>47</red>
-             <green>67</green>
-             <blue>67</blue>
+             <red>255</red>
+             <green>255</green>
+             <blue>255</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Light">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>70</red>
-             <green>100</green>
-             <blue>100</blue>
+             <red>255</red>
+             <green>255</green>
+             <blue>255</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Midlight">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>58</red>
-             <green>83</green>
-             <blue>83</blue>
+             <red>255</red>
+             <green>255</green>
+             <blue>255</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Dark">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>23</red>
-             <green>33</green>
-             <blue>33</blue>
+             <red>127</red>
+             <green>127</green>
+             <blue>127</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Mid">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>31</red>
-             <green>44</green>
-             <blue>44</blue>
+             <red>170</red>
+             <green>170</green>
+             <blue>170</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Text">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>255</red>
-             <green>255</green>
-             <blue>255</blue>
+             <red>0</red>
+             <green>0</green>
+             <blue>0</blue>
             </color>
            </brush>
           </colorrole>
@@ -8990,27 +9211,27 @@
           <colorrole role="ButtonText">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>255</red>
-             <green>255</green>
-             <blue>255</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="Base">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
              <red>0</red>
              <green>0</green>
              <blue>0</blue>
             </color>
            </brush>
           </colorrole>
+          <colorrole role="Base">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>255</red>
+             <green>255</green>
+             <blue>255</blue>
+            </color>
+           </brush>
+          </colorrole>
           <colorrole role="Window">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>47</red>
-             <green>67</green>
-             <blue>67</blue>
+             <red>255</red>
+             <green>255</green>
+             <blue>255</blue>
             </color>
            </brush>
           </colorrole>
@@ -9023,12 +9244,21 @@
             </color>
            </brush>
           </colorrole>
+          <colorrole role="HighlightedText">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>2</red>
+             <green>160</green>
+             <blue>70</blue>
+            </color>
+           </brush>
+          </colorrole>
           <colorrole role="AlternateBase">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>23</red>
-             <green>33</green>
-             <blue>33</blue>
+             <red>255</red>
+             <green>255</green>
+             <blue>255</blue>
             </color>
            </brush>
           </colorrole>
@@ -9055,63 +9285,63 @@
           <colorrole role="WindowText">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>23</red>
-             <green>33</green>
-             <blue>33</blue>
+             <red>127</red>
+             <green>127</green>
+             <blue>127</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Button">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>47</red>
-             <green>67</green>
-             <blue>67</blue>
+             <red>255</red>
+             <green>255</green>
+             <blue>255</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Light">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>70</red>
-             <green>100</green>
-             <blue>100</blue>
+             <red>255</red>
+             <green>255</green>
+             <blue>255</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Midlight">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>58</red>
-             <green>83</green>
-             <blue>83</blue>
+             <red>255</red>
+             <green>255</green>
+             <blue>255</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Dark">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>23</red>
-             <green>33</green>
-             <blue>33</blue>
+             <red>127</red>
+             <green>127</green>
+             <blue>127</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Mid">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>31</red>
-             <green>44</green>
-             <blue>44</blue>
+             <red>170</red>
+             <green>170</green>
+             <blue>170</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Text">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>23</red>
-             <green>33</green>
-             <blue>33</blue>
+             <red>127</red>
+             <green>127</green>
+             <blue>127</blue>
             </color>
            </brush>
           </colorrole>
@@ -9127,27 +9357,27 @@
           <colorrole role="ButtonText">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>23</red>
-             <green>33</green>
-             <blue>33</blue>
+             <red>127</red>
+             <green>127</green>
+             <blue>127</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Base">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>47</red>
-             <green>67</green>
-             <blue>67</blue>
+             <red>255</red>
+             <green>255</green>
+             <blue>255</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Window">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>47</red>
-             <green>67</green>
-             <blue>67</blue>
+             <red>255</red>
+             <green>255</green>
+             <blue>255</blue>
             </color>
            </brush>
           </colorrole>
@@ -9160,12 +9390,21 @@
             </color>
            </brush>
           </colorrole>
+          <colorrole role="HighlightedText">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>2</red>
+             <green>160</green>
+             <blue>70</blue>
+            </color>
+           </brush>
+          </colorrole>
           <colorrole role="AlternateBase">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>47</red>
-             <green>67</green>
-             <blue>67</blue>
+             <red>255</red>
+             <green>255</green>
+             <blue>255</blue>
             </color>
            </brush>
           </colorrole>
@@ -9192,15 +9431,21 @@
        </property>
        <property name="font">
         <font>
-         <weight>50</weight>
-         <bold>false</bold>
+         <pointsize>10</pointsize>
         </font>
        </property>
-       <property name="text">
-        <string>Annuler</string>
+       <property name="styleSheet">
+        <string notr="true">border: 1px solid rgb(60, 60, 60);
+background-color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="minimum">
+        <number>1</number>
        </property>
       </widget>
-      <widget class="YerothPushButton" name="pushButton_creer_alerte_valider_3">
+      <widget class="YerothPushButton" name="pushButton_detail_remise_retour">
        <property name="geometry">
         <rect>
          <x>586</x>
@@ -9631,758 +9876,7 @@
         </font>
        </property>
        <property name="text">
-        <string>Enregistrer</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_detail_remise_nom">
-       <property name="geometry">
-        <rect>
-         <x>16</x>
-         <y>60</y>
-         <width>153</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>désignation de la remise</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QGroupBox" name="groupBox_detail_remise_periode_temps">
-       <property name="geometry">
-        <rect>
-         <x>16</x>
-         <y>201</y>
-         <width>365</width>
-         <height>78</height>
-        </rect>
-       </property>
-       <property name="title">
-        <string>période de temps</string>
-       </property>
-       <widget class="YerothDateTimeEdit" name="dateEdit_detail_remise_date_fin">
-        <property name="geometry">
-         <rect>
-          <x>157</x>
-          <y>46</y>
-          <width>205</width>
-          <height>25</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
-        <property name="displayFormat">
-         <string>dd/MM/yyyy</string>
-        </property>
-        <property name="date">
-         <date>
-          <year>2016</year>
-          <month>1</month>
-          <day>1</day>
-         </date>
-        </property>
-       </widget>
-       <widget class="YerothDateTimeEdit" name="dateEdit_detail_remise_date_debut">
-        <property name="geometry">
-         <rect>
-          <x>157</x>
-          <y>16</y>
-          <width>205</width>
-          <height>25</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
-        <property name="displayFormat">
-         <string>dd/MM/yyyy</string>
-        </property>
-        <property name="date">
-         <date>
-          <year>2016</year>
-          <month>1</month>
-          <day>1</day>
-         </date>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_detail_remise_date_debut">
-        <property name="geometry">
-         <rect>
-          <x>16</x>
-          <y>20</y>
-          <width>137</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>début</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_detail_remise_date_fin">
-        <property name="geometry">
-         <rect>
-          <x>16</x>
-          <y>47</y>
-          <width>137</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>fin</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QLabel" name="label_detail_remise_pourcentage">
-       <property name="geometry">
-        <rect>
-         <x>16</x>
-         <y>90</y>
-         <width>153</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>pourcentage de la remise</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QGroupBox" name="groupBox_22">
-       <property name="geometry">
-        <rect>
-         <x>400</x>
-         <y>153</y>
-         <width>371</width>
-         <height>173</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <weight>50</weight>
-         <italic>false</italic>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="title">
-        <string>notes sur la remise</string>
-       </property>
-       <widget class="YerothTextEdit" name="textEdit_detail_remise_message">
-        <property name="geometry">
-         <rect>
-          <x>2</x>
-          <y>22</y>
-          <width>368</width>
-          <height>147</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
-       </widget>
-      </widget>
-      <widget class="YerothLineEdit" name="lineEdit_detail_remise_nom">
-       <property name="geometry">
-        <rect>
-         <x>173</x>
-         <y>60</y>
-         <width>205</width>
-         <height>25</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-      </widget>
-      <widget class="YerothLineEdit" name="lineEdit_detail_remise_quantite_en_stock">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="geometry">
-        <rect>
-         <x>564</x>
-         <y>30</y>
-         <width>205</width>
-         <height>25</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_detail_remise_quantite_en_stock">
-       <property name="geometry">
-        <rect>
-         <x>400</x>
-         <y>32</y>
-         <width>160</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>quantité en stock</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_detail_remise_date_peremption">
-       <property name="geometry">
-        <rect>
-         <x>400</x>
-         <y>60</y>
-         <width>160</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>date de péremption</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="YerothLineEdit" name="lineEdit_detail_remise_date_peremption">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="geometry">
-        <rect>
-         <x>564</x>
-         <y>60</y>
-         <width>205</width>
-         <height>25</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-      </widget>
-      <widget class="YerothSpinBox" name="spinBox_detail_remise_pourcentage">
-       <property name="geometry">
-        <rect>
-         <x>173</x>
-         <y>90</y>
-         <width>205</width>
-         <height>25</height>
-        </rect>
-       </property>
-       <property name="palette">
-        <palette>
-         <active>
-          <colorrole role="WindowText">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>255</red>
-             <green>255</green>
-             <blue>255</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="Button">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>47</red>
-             <green>67</green>
-             <blue>67</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="Light">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>255</red>
-             <green>255</green>
-             <blue>255</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="Midlight">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>255</red>
-             <green>255</green>
-             <blue>255</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="Dark">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>127</red>
-             <green>127</green>
-             <blue>127</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="Mid">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>170</red>
-             <green>170</green>
-             <blue>170</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="Text">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>255</red>
-             <green>255</green>
-             <blue>255</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="BrightText">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>255</red>
-             <green>255</green>
-             <blue>255</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="ButtonText">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>255</red>
-             <green>255</green>
-             <blue>255</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="Base">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>47</red>
-             <green>67</green>
-             <blue>67</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="Window">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>47</red>
-             <green>67</green>
-             <blue>67</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="Shadow">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>0</red>
-             <green>0</green>
-             <blue>0</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="HighlightedText">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>2</red>
-             <green>160</green>
-             <blue>70</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="AlternateBase">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>255</red>
-             <green>255</green>
-             <blue>255</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="ToolTipBase">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>255</red>
-             <green>255</green>
-             <blue>220</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="ToolTipText">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>0</red>
-             <green>0</green>
-             <blue>0</blue>
-            </color>
-           </brush>
-          </colorrole>
-         </active>
-         <inactive>
-          <colorrole role="WindowText">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>255</red>
-             <green>255</green>
-             <blue>255</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="Button">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>47</red>
-             <green>67</green>
-             <blue>67</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="Light">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>255</red>
-             <green>255</green>
-             <blue>255</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="Midlight">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>255</red>
-             <green>255</green>
-             <blue>255</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="Dark">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>127</red>
-             <green>127</green>
-             <blue>127</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="Mid">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>170</red>
-             <green>170</green>
-             <blue>170</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="Text">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>255</red>
-             <green>255</green>
-             <blue>255</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="BrightText">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>255</red>
-             <green>255</green>
-             <blue>255</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="ButtonText">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>255</red>
-             <green>255</green>
-             <blue>255</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="Base">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>47</red>
-             <green>67</green>
-             <blue>67</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="Window">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>47</red>
-             <green>67</green>
-             <blue>67</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="Shadow">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>0</red>
-             <green>0</green>
-             <blue>0</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="HighlightedText">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>2</red>
-             <green>160</green>
-             <blue>70</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="AlternateBase">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>255</red>
-             <green>255</green>
-             <blue>255</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="ToolTipBase">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>255</red>
-             <green>255</green>
-             <blue>220</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="ToolTipText">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>0</red>
-             <green>0</green>
-             <blue>0</blue>
-            </color>
-           </brush>
-          </colorrole>
-         </inactive>
-         <disabled>
-          <colorrole role="WindowText">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>127</red>
-             <green>127</green>
-             <blue>127</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="Button">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>47</red>
-             <green>67</green>
-             <blue>67</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="Light">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>255</red>
-             <green>255</green>
-             <blue>255</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="Midlight">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>255</red>
-             <green>255</green>
-             <blue>255</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="Dark">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>127</red>
-             <green>127</green>
-             <blue>127</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="Mid">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>170</red>
-             <green>170</green>
-             <blue>170</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="Text">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>127</red>
-             <green>127</green>
-             <blue>127</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="BrightText">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>255</red>
-             <green>255</green>
-             <blue>255</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="ButtonText">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>127</red>
-             <green>127</green>
-             <blue>127</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="Base">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>47</red>
-             <green>67</green>
-             <blue>67</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="Window">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>47</red>
-             <green>67</green>
-             <blue>67</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="Shadow">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>0</red>
-             <green>0</green>
-             <blue>0</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="HighlightedText">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>2</red>
-             <green>160</green>
-             <blue>70</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="AlternateBase">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>255</red>
-             <green>255</green>
-             <blue>255</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="ToolTipBase">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>255</red>
-             <green>255</green>
-             <blue>220</blue>
-            </color>
-           </brush>
-          </colorrole>
-          <colorrole role="ToolTipText">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>0</red>
-             <green>0</green>
-             <blue>0</blue>
-            </color>
-           </brush>
-          </colorrole>
-         </disabled>
-        </palette>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">border: 1px solid rgb(60, 60, 60);
-background-color: rgb(47, 67, 67);</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-       <property name="minimum">
-        <number>1</number>
-       </property>
-      </widget>
-      <widget class="YerothLineEdit" name="lineEdit_detail_remise_montant">
-       <property name="geometry">
-        <rect>
-         <x>173</x>
-         <y>120</y>
-         <width>205</width>
-         <height>25</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_detail_remise_montant">
-       <property name="geometry">
-        <rect>
-         <x>16</x>
-         <y>120</y>
-         <width>153</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>montant de la remise</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        <string>Retour</string>
        </property>
       </widget>
      </widget>
@@ -14582,13 +14076,8 @@ background-color: rgb(47, 67, 67);</string>
   <tabstop>textEdit_detail_localisation_description_lieu</tabstop>
   <tabstop>lineEdit_detail_remise_designation_article</tabstop>
   <tabstop>lineEdit_detail_remise_nom</tabstop>
-  <tabstop>spinBox_detail_remise_pourcentage</tabstop>
   <tabstop>dateEdit_detail_remise_date_debut</tabstop>
   <tabstop>dateEdit_detail_remise_date_fin</tabstop>
-  <tabstop>lineEdit_detail_remise_quantite_en_stock</tabstop>
-  <tabstop>lineEdit_detail_remise_date_peremption</tabstop>
-  <tabstop>pushButton_creer_alerte_annuler_3</tabstop>
-  <tabstop>pushButton_creer_alerte_valider_3</tabstop>
   <tabstop>textEdit_detail_remise_message</tabstop>
   <tabstop>pushButton_lister</tabstop>
   <tabstop>pushButton_creer</tabstop>

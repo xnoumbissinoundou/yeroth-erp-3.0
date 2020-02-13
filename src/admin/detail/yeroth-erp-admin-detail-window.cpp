@@ -32,8 +32,10 @@ YerothAdminDetailWindow::YerothAdminDetailWindow():YerothPOSAdminWindowsCommons(
     textEdit_detail_alerte_message->setEnabled(false);
     radioButton_detail_alerte_date_periode_temps->setEnabled(false);
     radioButton_detail_alerte_quantite->setEnabled(false);
-    dateEdit_detail_alerte_date_debut->setEnabled(false);
-    dateEdit_detail_alerte_date_fin->setEnabled(false);
+
+    dateEdit_detail_alerte_date_debut->setYerothEnabled(false);
+    dateEdit_detail_alerte_date_fin->setYerothEnabled(false);
+
     YEROTH_ERP_ADMIN_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
     YEROTH_ERP_ADMIN_WRAPPER_QACTION_SET_ENABLED(actionRetournerMenuPrincipal, false);
     pushButton_creer->enable(this, SLOT(creer()));
@@ -327,49 +329,48 @@ void YerothAdminDetailWindow::rendreVisibleFournisseur(int sqlTableRow)
 
 void YerothAdminDetailWindow::rendreVisibleRemise(int sqlTableRow)
 {
-//    this->tabWidget_detail->setCurrentIndex(SUJET_ACTION_ALERTE);
-//    YerothAdminListerWindow *lw = _allWindows->_adminListerWindow;
-//    YerothSqlTableModel *alertesTableModel = lw->getCurSearchSqlTableModel();
-//    if (!alertesTableModel)
-//    {
-//        alertesTableModel = &_allWindows->getSqlTableModel_alertes();
-//    }
-//    else if (alertesTableModel
-//             && !YerothUtils::isEqualCaseInsensitive(alertesTableModel->sqlTableName(), _allWindows->ALERTES))
-//    {
-//        alertesTableModel = &_allWindows->getSqlTableModel_alertes();
-//    }
-//    QSqlRecord record = alertesTableModel->record(sqlTableRow);
-//
-//    lineEdit_detail_alerte_designation_alerte->setEnabled(false);
-//    lineEdit_detail_alerte_designation_alerte->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION_ALERTE));
-//
-//    lineEdit_detail_alerte_id_destinataire->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESTINATAIRE));
-//    lineEdit_detail_alerte_id_destinataire->setEnabled(false);
-//
-//    lineEdit_detail_alerte_nom_destinataire->setEnabled(false);
-//    lineEdit_detail_alerte_nom_destinataire->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_COMPLET_DESTINATAIRE));
-//
-//    lineEdit_detail_alerte_designation_article->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
-//    lineEdit_detail_alerte_designation_article->setEnabled(false);
-//
-//    comboBox_detail_alerte_condition->addItem(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::CONDITION_ALERTE));
-//
-//    int quantite = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::QUANTITE).toInt();
-//    if (quantite > -1)
-//    {
-//        radioButton_detail_alerte_quantite->setChecked(true);
-//        lineEdit_detail_alerte_quantite->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::QUANTITE));
-//    }
-//    else
-//    {
-//        radioButton_detail_alerte_date_periode_temps->setChecked(true);
-//        QString date_debut(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DATE_DEBUT));
-//        dateEdit_detail_alerte_date_debut->setDate(GET_DATE_FROM_STRING(date_debut));
-//        QString date_fin(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DATE_FIN));
-//        dateEdit_detail_alerte_date_fin->setDate(GET_DATE_FROM_STRING(date_fin));
-//    }
-//    textEdit_detail_alerte_message->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::MESSAGE_ALERTE));
+    this->tabWidget_detail->setCurrentIndex(SUJET_ACTION_REMISE);
+
+    YerothAdminListerWindow *lw = _allWindows->_adminListerWindow;
+
+    YerothSqlTableModel *remiseTableModel = lw->getCurSearchSqlTableModel();
+
+    if (!remiseTableModel)
+    {
+        remiseTableModel = &_allWindows->getSqlTableModel_remises();
+    }
+    else if (remiseTableModel &&
+    		 !YerothUtils::isEqualCaseInsensitive(remiseTableModel->sqlTableName(), _allWindows->REMISES))
+    {
+        remiseTableModel = &_allWindows->getSqlTableModel_remises();
+    }
+
+    QSqlRecord record = remiseTableModel->record(sqlTableRow);
+
+    lineEdit_detail_remise_nom->setEnabled(false);
+    lineEdit_detail_remise_designation_article->setEnabled(false);
+    lineEdit_detail_remise_montant->setEnabled(false);
+
+    spinBox_detail_remise_pourcentage->setEnabled(false);
+
+    dateEdit_detail_remise_date_debut->setYerothEnabled(false);
+    dateEdit_detail_remise_date_fin->setYerothEnabled(false);
+
+    textEdit_detail_remise_message->setEnabled(false);
+
+    lineEdit_detail_remise_nom->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION_REMISE));
+    lineEdit_detail_remise_designation_article->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
+
+    spinBox_detail_remise_pourcentage->setValue(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REMISE_POURCENTAGE).toDouble());
+
+    QString date_debut(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DATE_DEBUT));
+    dateEdit_detail_remise_date_debut->setDate(GET_DATE_FROM_STRING(date_debut));
+
+    QString date_fin(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DATE_FIN));
+    dateEdit_detail_remise_date_fin->setDate(GET_DATE_FROM_STRING(date_fin));
+
+    textEdit_detail_remise_message->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REMISE_NOTES));
+
     this->enableOtherTabs(SUJET_ACTION_REMISE, false);
     this->setVisible(true);
 }
@@ -378,30 +379,35 @@ void YerothAdminDetailWindow::rendreVisibleRemise(int sqlTableRow)
 void YerothAdminDetailWindow::rendreVisibleAlerte(int sqlTableRow)
 {
     this->tabWidget_detail->setCurrentIndex(SUJET_ACTION_ALERTE);
+
     YerothAdminListerWindow *lw = _allWindows->_adminListerWindow;
+
     YerothSqlTableModel *alertesTableModel = lw->getCurSearchSqlTableModel();
+
     if (!alertesTableModel)
     {
         alertesTableModel = &_allWindows->getSqlTableModel_alertes();
     }
-    else if (alertesTableModel
-             && !YerothUtils::isEqualCaseInsensitive(alertesTableModel->sqlTableName(), _allWindows->ALERTES))
+    else if (alertesTableModel &&
+    		 !YerothUtils::isEqualCaseInsensitive(alertesTableModel->sqlTableName(), _allWindows->ALERTES))
     {
         alertesTableModel = &_allWindows->getSqlTableModel_alertes();
     }
+
     QSqlRecord record = alertesTableModel->record(sqlTableRow);
 
     lineEdit_detail_alerte_designation_alerte->setEnabled(false);
+    lineEdit_detail_alerte_id_destinataire->setEnabled(false);
+    lineEdit_detail_alerte_nom_destinataire->setEnabled(false);
+    lineEdit_detail_alerte_designation_article->setEnabled(false);
+
     lineEdit_detail_alerte_designation_alerte->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION_ALERTE));
 
     lineEdit_detail_alerte_id_destinataire->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESTINATAIRE));
-    lineEdit_detail_alerte_id_destinataire->setEnabled(false);
 
-    lineEdit_detail_alerte_nom_destinataire->setEnabled(false);
     lineEdit_detail_alerte_nom_destinataire->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_COMPLET_DESTINATAIRE));
 
     lineEdit_detail_alerte_designation_article->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
-    lineEdit_detail_alerte_designation_article->setEnabled(false);
 
     comboBox_detail_alerte_condition->addItem(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::CONDITION_ALERTE));
 
@@ -419,7 +425,9 @@ void YerothAdminDetailWindow::rendreVisibleAlerte(int sqlTableRow)
         QString date_fin(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DATE_FIN));
         dateEdit_detail_alerte_date_fin->setDate(GET_DATE_FROM_STRING(date_fin));
     }
+
     textEdit_detail_alerte_message->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::MESSAGE_ALERTE));
+
     this->enableOtherTabs(SUJET_ACTION_ALERTE, false);
     this->setVisible(true);
 }
