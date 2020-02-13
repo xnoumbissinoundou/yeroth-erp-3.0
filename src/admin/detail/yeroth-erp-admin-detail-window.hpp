@@ -76,6 +76,8 @@ public slots:
 
     void retourListerFournisseur();
 
+    void retourListerRemise();
+
     void retourListerAlerte();
 
 private:

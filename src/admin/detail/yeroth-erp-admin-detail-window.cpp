@@ -51,6 +51,7 @@ YerothAdminDetailWindow::YerothAdminDetailWindow():YerothPOSAdminWindowsCommons(
     pushButton_detail_utilisateur_retour->enable(this, SLOT(retourListerCompteUtilisateur()));
     pushButton_detail_localisation_retour->enable(this, SLOT(retourListerLocalisation()));
     pushButton_detail_categorie_retour->enable(this, SLOT(retourListerCategorie()));
+    pushButton_detail_remise_retour->enable(this, SLOT(retourListerRemise()));
     pushButton_detail_alerte_retour->enable(this, SLOT(retourListerAlerte()));
     pushButton_detail_fournisseur_retour->enable(this, SLOT(retourListerFournisseur()));
     /** Menu actions */
@@ -454,6 +455,12 @@ void YerothAdminDetailWindow::retourListerCategorie()
 void YerothAdminDetailWindow::retourListerFournisseur()
 {
     _allWindows->_adminListerWindow->rendreVisible(SUJET_ACTION_FOURNISSEUR);
+    this->rendreInvisible();
+}
+
+void YerothAdminDetailWindow::retourListerRemise()
+{
+    _allWindows->_adminListerWindow->rendreVisible(SUJET_ACTION_REMISE);
     this->rendreInvisible();
 }
 
