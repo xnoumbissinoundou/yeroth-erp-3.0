@@ -156,6 +156,9 @@ void YerothAdminDetailWindow::modifier()
     case SUJET_ACTION_FOURNISSEUR:
         _allWindows->_adminModifierWindow->rendreVisible(SUJET_ACTION_FOURNISSEUR);
         break;
+    case SUJET_ACTION_REMISE:
+        _allWindows->_adminModifierWindow->rendreVisible(SUJET_ACTION_REMISE);
+        break;
     case SUJET_ACTION_ALERTE:
         _allWindows->_adminModifierWindow->rendreVisible(SUJET_ACTION_ALERTE);
         break;
