@@ -1,5 +1,4 @@
 
-DEFINES += ${YEROTH_QT_TEST_LIB_OPTIONS}
 DEFINES += ${YEROTH_VIRTUAL_KEYBOARD_OPTIONS}
 DEFINES += ${YEROTH_LANGUAGE}
 DEFINES += ${YEROTH_DEBUG_LOG}
@@ -13,10 +12,6 @@ DEFINES += ${YEROTH_VERSION}
 CONFIG += qt 
 CONFIG += moc 
 
-contains(DEFINES, YEROTH_ERP_3_0_TEST) {
-	CONFIG += testcase
-}
-
 contains(DEFINES, YEROTH_ERP_3_0_TOUCH_SCREEN) {
   CONFIG += disable-desktop
 }
@@ -25,7 +20,6 @@ contains(DEFINES, YEROTH_ERP_3_0_TOUCH_SCREEN) {
 
 CONFIG -= import_plugins
 
-#QT += testlib
 QT += widgets
 QT += sql
 QT += network
@@ -163,7 +157,6 @@ HEADERS = src/yeroth-erp-windows.hpp \
 		  src/windows/yeroth-erp-paiements-window.hpp \
 		  src/windows/yeroth-erp-ventes-window.hpp \
 		  src/windows/yeroth-erp-search-form.hpp \
-		  src/windows/tests/yeroth-erp-test-vente-window.hpp \
 		  src/users/yeroth-erp-users.hpp \
 		  src/users/yeroth-erp-user-vendeur.hpp \		  
 		  src/users/yeroth-erp-user-gestionaire-des-stocks.hpp \		  
@@ -261,7 +254,6 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/windows/yeroth-erp-paiements-window.cpp \
 		  src/windows/yeroth-erp-ventes-window.cpp \
 		  src/windows/yeroth-erp-search-form.cpp \
-		  src/windows/tests/yeroth-erp-test-vente-window.cpp \
 		  src/users/yeroth-erp-users.cpp \
 		  src/users/yeroth-erp-user-vendeur.cpp \		  
 		  src/users/yeroth-erp-user-gestionaire-des-stocks.cpp \

@@ -18,11 +18,7 @@
 #include "src/windows/yeroth-erp-main-window.hpp"
 #include "src/windows/yeroth-erp-entrer-window.hpp"
 
-#ifndef YEROTH_ERP_3_0_TEST
-	#include "src/windows/yeroth-erp-pointdevente-window.hpp"
-#else
-	#include "src/windows/tests/yeroth-erp-test-vente-window.hpp"
-#endif
+#include "src/windows/yeroth-erp-pointdevente-window.hpp"
 
 #include "windows/yeroth-erp-paiements-window.hpp"
 #include "src/windows/yeroth-erp-historique-du-stock-window.hpp"

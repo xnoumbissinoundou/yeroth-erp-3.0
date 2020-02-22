@@ -6,8 +6,6 @@
 
 #include "yeroth-erp-pointdevente-window.hpp"
 
-#include "src/windows/tests/yeroth-erp-test-vente-window.hpp"
-
 #include "src/include/yeroth-erp-3-0-software.text-configuration.hpp"
 
 #include "src/process/yeroth-erp-process.hpp"
@@ -33,6 +31,8 @@
 #include "src/utils/yeroth-erp-sqltable-model.hpp"
 
 #include "src/users/yeroth-erp-users.hpp"
+
+#include <QtCore/QtMath>
 
 #include <QtCore/QThread>
 

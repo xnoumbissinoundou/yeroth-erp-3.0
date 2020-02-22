@@ -10,8 +10,6 @@ USAGE="
        Usage: $(basename $0)
 	[-h] : help
 	[-s] : simulate 'yeroth-erp-3.0' compilation
-	[-t] : compile 'yeroth-erp-3.0' with QT Test library activated
-					for unit tests
 	[-l] : compile 'yeroth-erp-3.0' to use with virtual keyboard
 	[-c] : continue previous stopped compilation
 	[-g] : compiles 'yeroth-erp-3.0' with debug information
@@ -27,7 +25,6 @@ USAGE="
 
 NUMBER_OF_JOBS=4
 
-qtTestLibFlag=
 virtualKeyboardFlag=
 simulationFlag=
 jobsFlag=
@@ -37,7 +34,7 @@ yerothVersionFlag=
 continueFlag=
 
 
-while getopts 'tlhsgv:fecj:' OPTION
+while getopts 'lhsgv:fecj:' OPTION
 do
   case $OPTION in
 
@@ -48,10 +45,6 @@ do
 		s)	simulationFlag=1
       	simulationVal="$OPTARG"
         echo "simulation activée."
-		;;
-
-		t)	qtTestLibFlag=1
-        echo "QT testlib incluse."
 		;;
 
     l)	virtualKeyboardFlag=1
@@ -131,12 +124,6 @@ if [ ! $languageFlag ]; then
   languageVal="YEROTH_FRANCAIS_LANGUAGE"
 fi
 
-if [ $qtTestLibFlag ]; then
-    qtTestLibVal="YEROTH_ERP_3_0_TEST"
-	else
-    qtTestLibVal="NO_YEROTH_ERP_3_0_TEST"
-fi
-
 if [ $virtualKeyboardFlag ]; then
     virtualKeyboardVal="YEROTH_ERP_3_0_TOUCH_SCREEN"
 	else
@@ -145,9 +132,9 @@ fi
 
 if [ $simulationFlag ]; then
   if [ $continueFlag ]; then
-    echo "make -j$jobsVal YEROTH_QT_TEST_LIB_OPTIONS=$qtTestLibVal YEROTH_VIRTUAL_KEYBOARD_OPTIONS=$virtualKeyboardVal YEROTH_DEBUG_LOG=$debugVal YEROTH_VERSION=$yerothVersionVal YEROTH_LANGUAGE=$languageVal ${YEROTH_VIRTUAL_KEYBOARD_OPTIONS}"
+    echo "make -j$jobsVal YEROTH_VIRTUAL_KEYBOARD_OPTIONS=$virtualKeyboardVal YEROTH_DEBUG_LOG=$debugVal YEROTH_VERSION=$yerothVersionVal YEROTH_LANGUAGE=$languageVal ${YEROTH_VIRTUAL_KEYBOARD_OPTIONS}"
   else 
-    echo "make clean && make -j$jobsVal YEROTH_QT_TEST_LIB_OPTIONS=$qtTestLibVal YEROTH_VIRTUAL_KEYBOARD_OPTIONS=$virtualKeyboardVal YEROTH_DEBUG_LOG=$debugVal YEROTH_VERSION=$yerothVersionVal YEROTH_LANGUAGE=$languageVal"
+    echo "make clean && make -j$jobsVal YEROTH_VIRTUAL_KEYBOARD_OPTIONS=$virtualKeyboardVal YEROTH_DEBUG_LOG=$debugVal YEROTH_VERSION=$yerothVersionVal YEROTH_LANGUAGE=$languageVal"
   fi
   exit 3
 fi
@@ -162,7 +149,6 @@ qmake
 
 if [ $continueFlag ]; then
 	make -j$jobsVal \
-				YEROTH_QT_TEST_LIB_OPTIONS=$qtTestLibVal \
 				YEROTH_VIRTUAL_KEYBOARD_OPTIONS=$virtualKeyboardVal \
 				YEROTH_DEBUG_LOG=$debugVal \
 				YEROTH_VERSION=$yerothVersionVal \
@@ -170,7 +156,6 @@ if [ $continueFlag ]; then
 else
 	make clean && \
 	make -j$jobsVal \
-				YEROTH_QT_TEST_LIB_OPTIONS=$qtTestLibVal \
 				YEROTH_VIRTUAL_KEYBOARD_OPTIONS=$virtualKeyboardVal \
 				YEROTH_DEBUG_LOG=$debugVal \
 				YEROTH_VERSION=$yerothVersionVal \
