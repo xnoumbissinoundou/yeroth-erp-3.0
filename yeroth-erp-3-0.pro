@@ -25,7 +25,7 @@ contains(DEFINES, YEROTH_ERP_3_0_TOUCH_SCREEN) {
 
 CONFIG -= import_plugins
 
-QT += testlib
+#QT += testlib
 QT += widgets
 QT += sql
 QT += network
