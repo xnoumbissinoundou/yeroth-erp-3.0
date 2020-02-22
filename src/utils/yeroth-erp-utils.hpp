@@ -427,6 +427,8 @@ public:
 
 	static void yerothSetWidgetColor(QWidget *aWidget);
 
+	static const QString YEROTH_QT_STYLE_CDE;
+
 	static const unsigned int CURRENT_CLIENT_DB_ID_UNDEFINED;
 
 	static const QString IMPRIMANTE_PDF;

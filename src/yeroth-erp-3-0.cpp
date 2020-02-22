@@ -506,6 +506,8 @@ int main(int argc, char *argv[])
 
     YerothERPWindows allWindows(qApp->desktop());
 
+    QApplication::setStyle(QStyleFactory::create(YerothUtils::YEROTH_QT_STYLE_CDE));
+
     YerothUtils::setAllWindows(&allWindows);
 
     allWindows.createAllYerothPosUserWindows();
