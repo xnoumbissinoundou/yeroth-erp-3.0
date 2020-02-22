@@ -1,5 +1,5 @@
 
-RCC_ICONS = yeroth-erp-3-0-icon.ico
+RC_ICONS = yeroth-erp-3-0-icon.ico
 
 DEFINES += ${YEROTH_VIRTUAL_KEYBOARD_OPTIONS}
 DEFINES += ${YEROTH_LANGUAGE}
