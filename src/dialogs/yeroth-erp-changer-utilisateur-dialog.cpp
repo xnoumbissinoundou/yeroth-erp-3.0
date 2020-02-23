@@ -237,16 +237,17 @@ YerothPOSUser *YerothPOSChangerUtilisateurDialog::createUser(QSqlRecord & userRe
 
     if (0 != user)
     {
-    	user->set_nom_utilisateur(GET_SQL_RECORD_DATA(userRecord, "nom_utilisateur"));
-    	user->set_prenom(GET_SQL_RECORD_DATA(userRecord, "prenom"));
-    	user->set_nom(GET_SQL_RECORD_DATA(userRecord, "nom"));
-    	user->set_lieu_naissance(GET_SQL_RECORD_DATA(userRecord, "lieu_naissance"));
-    	user->set_date_naissance(GET_SQL_RECORD_DATA(userRecord, "date_naissance"));
-    	user->set_localisation(GET_SQL_RECORD_DATA(userRecord, "localisation"));
+    	user->set_nom_utilisateur(GET_SQL_RECORD_DATA(userRecord, YerothDatabaseTableColumn::NOM_UTILISATEUR));
+    	user->set_prenom(GET_SQL_RECORD_DATA(userRecord, YerothDatabaseTableColumn::PRENOM));
+    	user->set_nom(GET_SQL_RECORD_DATA(userRecord, YerothDatabaseTableColumn::NOM));
+    	user->set_lieu_naissance(GET_SQL_RECORD_DATA(userRecord, YerothDatabaseTableColumn::LIEU_NAISSANCE));
+    	user->set_date_naissance(GET_SQL_RECORD_DATA(userRecord, YerothDatabaseTableColumn::DATE_NAISSANCE));
+    	user->set_localisation(GET_SQL_RECORD_DATA(userRecord, YerothDatabaseTableColumn::LOCALISATION));
     	user->set_email(GET_SQL_RECORD_DATA(userRecord, YerothDatabaseTableColumn::EMAIL));
     	user->set_numero_telephone_1(GET_SQL_RECORD_DATA(userRecord, YerothDatabaseTableColumn::NUMERO_TELEPHONE_1));
     	user->set_numero_telephone_2(GET_SQL_RECORD_DATA(userRecord, YerothDatabaseTableColumn::NUMERO_TELEPHONE_2));
-    	user->set_titre(GET_SQL_RECORD_DATA(userRecord, "titre"));
+    	user->set_titre(GET_SQL_RECORD_DATA(userRecord, YerothDatabaseTableColumn::TITRE));
+
     	user->set_nom_complet(user->prenom().append(" ").append(user->nom()));
     }
 
