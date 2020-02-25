@@ -58,6 +58,11 @@ public:
 
 	void setEnabled(bool enabled);
 
+	inline QString textForLatex() const
+	{
+		return YerothUtils::handleForeignAccents(QLineEdit::text().trimmed());
+	}
+
 	inline QString text() const
 	{
 		return QLineEdit::text().trimmed();
