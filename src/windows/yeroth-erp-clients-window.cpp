@@ -173,7 +173,8 @@ void YerothERPClientsWindow::reinitialiser_champs_db_visibles()
 			<< YerothDatabaseTableColumn::VILLE
 			<< YerothDatabaseTableColumn::EMAIL
 			<< YerothDatabaseTableColumn::NUMERO_TELEPHONE_1
-			<< YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT;
+			<< YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT
+			<< YerothDatabaseTableColumn::COMPTE_CLIENT;
 }
 
 

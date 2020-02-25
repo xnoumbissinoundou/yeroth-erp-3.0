@@ -339,6 +339,28 @@ void YerothModifierCompteClientWindow::actualiserCompteClient()
 
         QSqlRecord record = _curClientTableModel->record(_clientLastSelectedRow);
 
+        bool currentClientRefChanged = false;
+        bool currentCompanyNameChanged = false;
+
+        QString oldClientRef(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE_CLIENT));
+        QString oldCompanyName(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE));
+
+//        qDebug() << QString("++ oldClientRef: %1, client ref: %2")
+//        				.arg(oldClientRef, lineEdit_modifier_compteclient_reference_client->text());
+//
+//        qDebug() << QString("++ oldCompanyName: %1, company name: %2")
+//        				.arg(oldCompanyName, lineEdit_modifier_compteclient_nom_entreprise->text());
+
+        if (! YerothUtils::isEqualCaseInsensitive(oldClientRef, lineEdit_modifier_compteclient_reference_client->text()))
+        {
+        	currentClientRefChanged = true;
+        }
+
+        if (! YerothUtils::isEqualCaseInsensitive(oldCompanyName, lineEdit_modifier_compteclient_nom_entreprise->text()))
+        {
+        	currentCompanyNameChanged = true;
+        }
+
 		record.setValue(YerothDatabaseTableColumn::REFERENCE_CLIENT, lineEdit_modifier_compteclient_reference_client->text());
 		record.setValue(YerothDatabaseTableColumn::REFERENCE_REGISTRE_DU_COMMERCE, lineEdit_modifier_compteclient_reference_registre_du_commerce->text());
 		record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE, lineEdit_modifier_compteclient_nom_entreprise->text());
@@ -359,7 +381,38 @@ void YerothModifierCompteClientWindow::actualiserCompteClient()
 
         record.setValue(YerothDatabaseTableColumn::DESCRIPTION_CLIENT, textEdit_modifier_compteclient_description_du_client->toPlainText());
 
+
         bool success = _curClientTableModel->updateRecord(_clientLastSelectedRow, record);
+
+        if (success)
+        {
+        	//Handling of table "stocks_vendu"
+        	if(currentCompanyNameChanged)
+        	{
+            	QString stocksVenduCompanyNameQuery(QString("UPDATE %1 SET %2='%3' WHERE %4='%5'")
+            							.arg(_allWindows->STOCKS_VENDU,
+            								 YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT,
+											 lineEdit_modifier_compteclient_nom_entreprise->text(),
+											 YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT,
+											 oldCompanyName));
+
+                YerothUtils::execQuery(stocksVenduCompanyNameQuery, 0);
+        	}
+
+        	//Handling of table "paiements"
+        	if(currentCompanyNameChanged)
+        	{
+            	QString paiementsCompanyNameQuery(QString("UPDATE %1 SET %2='%3' WHERE %4='%5'")
+            							.arg(_allWindows->PAIEMENTS,
+            								 YerothDatabaseTableColumn::NOM_ENTREPRISE,
+											 lineEdit_modifier_compteclient_nom_entreprise->text(),
+											 YerothDatabaseTableColumn::NOM_ENTREPRISE,
+											 oldCompanyName));
+
+                YerothUtils::execQuery(paiementsCompanyNameQuery, 0);
+        	}
+        }
+
 
         QString retMsg(QString(QObject::trUtf8("Les données du compte client '%1'"))
         					.arg(lineEdit_modifier_compteclient_nom_entreprise->text()));
