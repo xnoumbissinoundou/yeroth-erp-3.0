@@ -261,14 +261,13 @@ void YerothPaiementsWindow::setupLineEdits()
 
     lineEdit_paiements_nom_encaisseur->enableForSearch(QObject::tr("nom de l'encaisseur (l'encaisseuse)"));
     lineEdit_paiements_nom_entreprise->enableForSearch(QObject::tr("nom de l'entreprise"));
-    lineEdit_paiements_nom_payeur->enableForSearch(QObject::tr("nom du payeur"));
     lineEdit_paiements_numero_bon_paiement->enableForSearch(QObject::trUtf8("numéro du bon de paiement"));
 
     lineEdit_details_de_paiement_numero_du_bon_de_paiement->setEnabled(false);
     lineEdit_details_de_paiement_nom_de_lentreprise->setEnabled(false);
-    lineEdit_details_de_paiement_nom_du_payeur->setEnabled(false);
     lineEdit_details_de_paiement_nom_de_lencaisseur->setEnabled(false);
     lineEdit_details_de_paiement_compte_client->setEnabled(false);
+    lineEdit_details_de_paiement_typedepaiement->setEnabled(false);
     lineEdit_details_de_paiement_montant_paye->setEnabled(false);
     lineEdit_details_de_paiement_heure_de_paiement->setEnabled(false);
 
@@ -277,7 +276,6 @@ void YerothPaiementsWindow::setupLineEdits()
     connect(lineEdit_paiements_recherche, SIGNAL(textChanged(const QString &)), this, SLOT(paiementsRecherche()));
     connect(lineEdit_paiements_nom_encaisseur, SIGNAL(textChanged(const QString &)), this, SLOT(rechercher()));
     connect(lineEdit_paiements_nom_entreprise, SIGNAL(textChanged(const QString &)), this, SLOT(rechercher()));
-    connect(lineEdit_paiements_nom_payeur, SIGNAL(textChanged(const QString &)), this, SLOT(rechercher()));
     connect(lineEdit_paiements_numero_bon_paiement, SIGNAL(textChanged(const QString &)), this, SLOT(rechercher()));
 }
 
@@ -286,7 +284,6 @@ void YerothPaiementsWindow::setupLineEditsQCompleters()
     lineEdit_paiements_recherche->setupMyStaticQCompleter(_allWindows->PAIEMENTS, YerothDatabaseTableColumn::NOM_ENTREPRISE);
     lineEdit_paiements_nom_encaisseur->setupMyStaticQCompleter(_allWindows->PAIEMENTS, YerothDatabaseTableColumn::NOM_ENCAISSEUR);
     lineEdit_paiements_nom_entreprise->setupMyStaticQCompleter(_allWindows->PAIEMENTS, YerothDatabaseTableColumn::NOM_ENTREPRISE);
-    lineEdit_paiements_nom_payeur->setupMyStaticQCompleter(_allWindows->PAIEMENTS, YerothDatabaseTableColumn::NOM_PAYEUR);
     lineEdit_paiements_numero_bon_paiement->setupMyStaticQCompleter(_allWindows->PAIEMENTS, YerothDatabaseTableColumn::ID);
 }
 
@@ -313,7 +310,6 @@ void YerothPaiementsWindow::reinitialiser_champs_db_visibles()
     		<< YerothDatabaseTableColumn::DATE_PAIEMENT
 			<< YerothDatabaseTableColumn::HEURE_PAIEMENT
 			<< YerothDatabaseTableColumn::NOM_ENTREPRISE
-			<< YerothDatabaseTableColumn::NOM_PAYEUR
 			<< YerothDatabaseTableColumn::NOM_ENCAISSEUR
 			<< YerothDatabaseTableColumn::MONTANT_PAYE
 			<< YerothDatabaseTableColumn::COMPTE_CLIENT;
@@ -335,7 +331,6 @@ void YerothPaiementsWindow::clear_all_fields()
 {
     lineEdit_details_de_paiement_numero_du_bon_de_paiement->clearField();
     lineEdit_details_de_paiement_nom_de_lentreprise->clearField();
-    lineEdit_details_de_paiement_nom_du_payeur->clearField();
     lineEdit_details_de_paiement_nom_de_lencaisseur->clearField();
     lineEdit_details_de_paiement_compte_client->clearField();
     lineEdit_details_de_paiement_montant_paye->clearField();
@@ -752,7 +747,6 @@ bool YerothPaiementsWindow::imprimer_document()
 
     YerothUtils::addFiltre(lineEdit_paiements_nom_encaisseur, QObject::trUtf8("encaisseur"), yerothFiltres);
     YerothUtils::addFiltre(lineEdit_paiements_nom_entreprise, QObject::trUtf8("entreprise"), yerothFiltres);
-    YerothUtils::addFiltre(lineEdit_paiements_nom_payeur, QObject::trUtf8("payeur"), yerothFiltres);
     YerothUtils::addFiltre(lineEdit_paiements_numero_bon_paiement, QObject::trUtf8("Nr. bon"), yerothFiltres);
 
     int lastIndexOfComa = yerothFiltres.lastIndexOf(",");
@@ -805,7 +799,6 @@ void YerothPaiementsWindow::resetFilter(YerothSqlTableModel * historiquePaiement
 
     lineEdit_paiements_nom_encaisseur->myClear();
     lineEdit_paiements_nom_entreprise->myClear();
-    lineEdit_paiements_nom_payeur->myClear();
     lineEdit_paiements_numero_bon_paiement->myClear();
 
     dateEdit_paiements_debut->reset();
@@ -901,7 +894,6 @@ void YerothPaiementsWindow::rendreVisible(YerothSqlTableModel * stocksTableModel
     lineEdit_paiements_numero_bon_paiement->setEnabled(true);
     lineEdit_paiements_nom_entreprise->setEnabled(true);
     lineEdit_paiements_nom_encaisseur->setEnabled(true);
-    lineEdit_paiements_nom_payeur->setEnabled(true);
 
     YerothPOSUser *aUser = _allWindows->getUser();
 
@@ -937,11 +929,11 @@ void YerothPaiementsWindow::afficher_paiements_detail()
 
     lineEdit_details_de_paiement_numero_du_bon_de_paiement->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ID));
     lineEdit_details_de_paiement_nom_de_lentreprise->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE));
-    lineEdit_details_de_paiement_nom_du_payeur->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_PAYEUR));
     lineEdit_details_de_paiement_nom_de_lencaisseur->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENCAISSEUR));
 
     lineEdit_details_de_paiement_heure_de_paiement->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::HEURE_PAIEMENT));
 
+    lineEdit_details_de_paiement_typedepaiement->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::TYPE_DE_PAIEMENT));
 
     double aDoubleValue = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::COMPTE_CLIENT).toDouble();
 
@@ -998,7 +990,6 @@ void YerothPaiementsWindow::rechercher(bool clearPaiementsRecherche)
         lineEdit_paiements_recherche->clear();
         lineEdit_paiements_nom_encaisseur->clear();
         lineEdit_paiements_nom_entreprise->clear();
-        lineEdit_paiements_nom_payeur->clear();
         lineEdit_paiements_numero_bon_paiement->clear();
     }
 
@@ -1025,17 +1016,6 @@ void YerothPaiementsWindow::rechercher(bool clearPaiementsRecherche)
                 _searchFilter.append(" AND ");
             }
             _searchFilter.append(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::NOM_ENTREPRISE, nom_entreprise));
-        }
-
-
-        QString nom_payeur(lineEdit_paiements_nom_payeur->text());
-        if (!nom_payeur.isEmpty())
-        {
-            if (!_searchFilter.isEmpty())
-            {
-                _searchFilter.append(" AND ");
-            }
-            _searchFilter.append(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::NOM_PAYEUR, nom_payeur));
         }
 
         QString numero_du_bon_de_paiement(lineEdit_paiements_numero_bon_paiement->text());

@@ -45,7 +45,7 @@ public:
 
 	QString nom_entreprise;
 	QString nom_encaisseur;
-	QString nom_payeur;
+	QString type_de_paiement;
 	QDate date_paiement;
 
 	double compte_client;

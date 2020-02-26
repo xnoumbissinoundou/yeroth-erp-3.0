@@ -70,6 +70,7 @@ const QString YerothDatabaseTableColumn::MOT_PASSE						("mot_passe");
 const QString YerothDatabaseTableColumn::TITRE							("titre");
 const QString YerothDatabaseTableColumn::APPELATION_TITRE				("appelation_titre");
 const QString YerothDatabaseTableColumn::ROLE							("role");
+const QString YerothDatabaseTableColumn::NOM_ROLE						("nom_role");
 const QString YerothDatabaseTableColumn::EMAIL							("email");
 const QString YerothDatabaseTableColumn::REFERENCE_CLIENT				("reference_client");
 const QString YerothDatabaseTableColumn::NUMERO_TELEPHONE_1				("numero_telephone_1");
@@ -100,7 +101,6 @@ const QString YerothDatabaseTableColumn::DESIGNATION_REMISE				("designation_rem
 const QString YerothDatabaseTableColumn::DESIGNATION_ALERTE				("designation_alerte");
 const QString YerothDatabaseTableColumn::CONDITION_ALERTE				("condition_alerte");
 const QString YerothDatabaseTableColumn::NOM_ENCAISSEUR					("nom_encaisseur");
-const QString YerothDatabaseTableColumn::NOM_PAYEUR						("nom_payeur");
 const QString YerothDatabaseTableColumn::DATE_PAIEMENT					("date_paiement");
 const QString YerothDatabaseTableColumn::MONTANT_PAYE					("montant_paye");
 const QString YerothDatabaseTableColumn::DATE_VENTE						("date_vente");
@@ -115,6 +115,7 @@ const QString YerothDatabaseTableColumn::NOM_COMPLET_DESTINATAIRE		("nom_complet
 const QString YerothDatabaseTableColumn::REMISE_NOTES					("remise_notes");
 const QString YerothDatabaseTableColumn::MESSAGE_ALERTE					("message_alerte");
 const QString YerothDatabaseTableColumn::DATE_CREATION					("date_creation");
+const QString YerothDatabaseTableColumn::TYPE_DE_PAIEMENT				("type_de_paiement");
 const QString YerothDatabaseTableColumn::TYPE_DE_VENTE					("type_de_vente");
 const QString YerothDatabaseTableColumn::NOTIFICATIONS					("notifications");
 const QString YerothDatabaseTableColumn::REMISE_RESOLUE					("remise_resolue");
@@ -236,9 +237,11 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::TITRE,				QObject::tr("Titre"));
 
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::APPELATION_TITRE,		QObject::tr("Titre appelation"));
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::APPELATION_TITRE,	QObject::tr("Titre appelation"));
 
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::ROLE,					QObject::trUtf8("rôle"));
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::ROLE,				QObject::trUtf8("rôle"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NOM_ROLE,			QObject::trUtf8("rôle"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::EMAIL,				QObject::trUtf8("Émail"));
 
@@ -298,8 +301,6 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NOM_ENCAISSEUR,			QObject::tr("Encaisseur"));
 
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NOM_PAYEUR,				QObject::tr("Payeur"));
-
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::DATE_PAIEMENT,			QObject::tr("Date paiement"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::MONTANT_PAYE,			QObject::trUtf8("Montant payé"));
@@ -327,6 +328,8 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::MESSAGE_ALERTE,		QObject::tr("Message d'alerte"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::DATE_CREATION	,		QObject::trUtf8("Date de création"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::TYPE_DE_PAIEMENT,		QObject::tr("Type paiement"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::TYPE_DE_VENTE,		QObject::tr("Type vente"));
 

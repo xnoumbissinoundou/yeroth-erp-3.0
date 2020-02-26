@@ -2499,13 +2499,7 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
 
         QSqlRecord record = stocksVenduTableModel.record();
 
-#ifdef YEROTH_FRANCAIS_LANGUAGE
-        _typeDeVente = "comptant";
-#endif
-
-#ifdef YEROTH_ENGLISH_LANGUAGE
-        _typeDeVente = "cash";
-#endif
+        _typeDeVente = QObject::tr("comptant");
 
         int stock_id_to_save = YerothUtils::getNextIdFromTable(_allWindows->STOCKS_VENDU);
 
@@ -2783,13 +2777,7 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
 
         QSqlRecord record = stocksVenduTableModel.record();
 
-#ifdef YEROTH_FRANCAIS_LANGUAGE
-        _typeDeVente = "compte_client";
-#endif
-
-#ifdef YEROTH_ENGLISH_LANGUAGE
-        _typeDeVente = "customer_account";
-#endif
+        _typeDeVente = QObject::tr("compte client");
 
         int stock_id_to_save = YerothUtils::getNextIdFromTable(_allWindows->STOCKS_VENDU);
 

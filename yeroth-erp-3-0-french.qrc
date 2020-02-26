@@ -25,6 +25,7 @@
     
 		<file>yeroth-erp-3-0-sql/create_table_comptabilite_comptes.sql</file>
 		<file>yeroth-erp-3-0-sql/create_table_entreprise_info.sql</file>
+		<file>yeroth-erp-3-0-sql/create_table_typedepaiement.sql</file>
 		<file>yeroth-erp-3-0-sql/create_table_paiements.sql</file>
     <file>yeroth-erp-3-0-sql/create_table_credit_card_issuing_company.sql</file>
     <file>yeroth-erp-3-0-sql/create_table_init_configurations.sql</file>

@@ -139,6 +139,8 @@ public:
 
 	static const QString ROLE;
 
+	static const QString NOM_ROLE;
+
 	static const QString EMAIL;
 
 	static const QString REFERENCE_CLIENT;
@@ -199,8 +201,6 @@ public:
 
 	static const QString NOM_ENCAISSEUR;
 
-	static const QString NOM_PAYEUR;
-
 	static const QString DATE_PAIEMENT;
 
 	static const QString MONTANT_PAYE;
@@ -228,6 +228,8 @@ public:
 	static const QString MESSAGE_ALERTE;
 
 	static const QString DATE_CREATION;
+
+	static const QString TYPE_DE_PAIEMENT;
 
 	static const QString TYPE_DE_VENTE;
 

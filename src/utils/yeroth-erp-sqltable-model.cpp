@@ -199,8 +199,10 @@ bool YerothSqlTableModel::insertNewRecord(QSqlRecord &record, QMainWindow *paren
 
     if (!success)
     {
-        QString retMsg(QObject::trUtf8("Une erreur (base de données) est survenue pendant l'insertion de l'article vendu !\n"
-        							   "Contactez l'administrateur de Yeroth-erp-3.0 !"));
+        QString retMsg(QString(QObject::trUtf8("Une erreur (base de données) est survenue pendant l'insertion dans le tableau %1 !\n")
+        									.arg(sqlTableName())));
+
+        retMsg.append("Contactez l'administrateur de Yeroth-erp-3.0 !");
 
         if (0 != parent)
         {

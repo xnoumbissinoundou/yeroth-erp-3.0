@@ -85,6 +85,8 @@ const QString YerothERPWindows::YerothERPWindows::CONFIGURATIONS					("configura
 
 const QString YerothERPWindows::YerothERPWindows::INIT_CONFIGURATIONS				("init_configurations");
 
+const QString YerothERPWindows::TYPE_DE_PAIEMENT				("type_de_paiement");
+
 const QString YerothERPWindows::ROLES							("roles");
 
 const QString YerothERPWindows::DBMS							("dbms");

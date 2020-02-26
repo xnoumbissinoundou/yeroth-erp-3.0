@@ -121,8 +121,8 @@ void YerothAdminCreateWindow::populateUtilisateurComboBoxes()
 {
     _logger->log("populateUtilisateurComboBoxes");
 
-    POPULATE_COMBOBOX(comboBox_creer_utilisateur_titre, "titres", "appelation_titre");
-    POPULATE_COMBOBOX(comboBox_creer_utilisateur_role, "roles", "nom_role");
+    POPULATE_COMBOBOX(comboBox_creer_utilisateur_titre, _allWindows->TITRES, YerothDatabaseTableColumn::APPELATION_TITRE);
+    POPULATE_COMBOBOX(comboBox_creer_utilisateur_role, _allWindows->ROLES, YerothDatabaseTableColumn::NOM_ROLE);
 }
 
 

@@ -359,13 +359,13 @@ bool YerothERPClientsWindow::createHistoryPaymentForCustomerAccount(HistoryPayme
 
 	QSqlRecord record = historiquePaiementsTableModel.record();
 
-	record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE, 				paymentInfo.nom_entreprise);
-	record.setValue(YerothDatabaseTableColumn::NOM_ENCAISSEUR, 				paymentInfo.nom_encaisseur);
-	record.setValue(YerothDatabaseTableColumn::NOM_PAYEUR, 					paymentInfo.nom_payeur);
-	record.setValue(YerothDatabaseTableColumn::DATE_PAIEMENT, 				paymentInfo.date_paiement);
-	record.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT, 				paymentInfo.compte_client);
-	record.setValue(YerothDatabaseTableColumn::MONTANT_PAYE, 				paymentInfo.montant_paye);
-	record.setValue(YerothDatabaseTableColumn::HEURE_PAIEMENT, 				CURRENT_TIME);
+	record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE, 		paymentInfo.nom_entreprise);
+	record.setValue(YerothDatabaseTableColumn::NOM_ENCAISSEUR, 		paymentInfo.nom_encaisseur);
+	record.setValue(YerothDatabaseTableColumn::DATE_PAIEMENT, 		paymentInfo.date_paiement);
+	record.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT, 		paymentInfo.compte_client);
+	record.setValue(YerothDatabaseTableColumn::TYPE_DE_PAIEMENT, 	paymentInfo.type_de_paiement);
+	record.setValue(YerothDatabaseTableColumn::MONTANT_PAYE, 		paymentInfo.montant_paye);
+	record.setValue(YerothDatabaseTableColumn::HEURE_PAIEMENT, 		CURRENT_TIME);
 
 	bool success = historiquePaiementsTableModel.insertNewRecord(record, this);
 
@@ -375,15 +375,6 @@ bool YerothERPClientsWindow::createHistoryPaymentForCustomerAccount(HistoryPayme
 
 bool YerothERPClientsWindow::putCashIntoCustomerAccount()
 {
-	if (lineEdit_nom_payeur->text().isEmpty())
-	{
-		YerothQMessageBox::information(this,
-									   QObject::trUtf8("nom du payeur"),
-									   QObject::trUtf8("Veuillez entrer le nom du payeur !"));
-
-		return false;
-	}
-
 	if (lineEdit_nom_entreprise->text().isEmpty())
 	{
 		YerothQMessageBox::information(this,
@@ -393,7 +384,7 @@ bool YerothERPClientsWindow::putCashIntoCustomerAccount()
 		return false;
 	}
 
-	if (lineEdit_versement_comptant->text().isEmpty())
+	if (lineEdit_montant_a_payer->text().isEmpty())
 	{
 		YerothQMessageBox::information(this,
 									   QObject::trUtf8("montant à verser"),
@@ -423,7 +414,7 @@ bool YerothERPClientsWindow::putCashIntoCustomerAccount()
 
     	compte_client = GET_SQL_RECORD_DATA(clientsRecord, YerothDatabaseTableColumn::COMPTE_CLIENT).toDouble();
 
-    	double cashPaymentAmount = lineEdit_versement_comptant->text().toDouble();
+    	double cashPaymentAmount = lineEdit_montant_a_payer->text().toDouble();
 
     	compte_client = compte_client + cashPaymentAmount;
 
@@ -448,9 +439,9 @@ bool YerothERPClientsWindow::putCashIntoCustomerAccount()
     		paymentInfo.nom_encaisseur = currentUser->nom_complet();
     	}
 
-    	paymentInfo.nom_entreprise = lineEdit_nom_entreprise->text();
+    	paymentInfo.type_de_paiement = comboBox_clients_type_de_paiement->currentText();
 
-    	paymentInfo.nom_payeur = lineEdit_nom_payeur->text();
+    	paymentInfo.nom_entreprise = lineEdit_nom_entreprise->text();
 
     	paymentInfo.date_paiement = GET_CURRENT_DATE;
 
@@ -476,13 +467,12 @@ bool YerothERPClientsWindow::putCashIntoCustomerAccount()
     if (true == success)
     {
     	QString msg(QString(QObject::trUtf8("%1 (%2) a été ajouté au compte client %3"))
-    					.arg(lineEdit_versement_comptant->text(),
+    					.arg(lineEdit_montant_a_payer->text(),
     						 YerothERPConfig::currency,
 							 lineEdit_nom_entreprise->text()));
 
-    	lineEdit_nom_payeur->clear();
     	lineEdit_nom_entreprise->clear();
-    	lineEdit_versement_comptant->clear();
+    	lineEdit_montant_a_payer->clear();
 
     	afficherClients();
 
@@ -491,7 +481,7 @@ bool YerothERPClientsWindow::putCashIntoCustomerAccount()
     else
     {
     	QString msg(QString(QObject::trUtf8("Erreur lors du paiement '%1 (%2)' pour le compte client '%3'"))
-    					.arg(lineEdit_versement_comptant->text(),
+    					.arg(lineEdit_montant_a_payer->text(),
     						 YerothERPConfig::currency,
 							 lineEdit_nom_entreprise->text()));
 
@@ -622,6 +612,10 @@ void YerothERPClientsWindow::populateClientsComboBoxes()
 {
     _logger->log("populateClientsComboBoxes");
 
+    POPULATE_COMBOBOX(comboBox_clients_type_de_paiement,
+    				  _allWindows->TYPE_DE_PAIEMENT,
+					  YerothDatabaseTableColumn::TYPE_DE_PAIEMENT);
+
 	QStringList aQStringList;
 
 	aQStringList.append(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(YerothDatabaseTableColumn::COMPTE_CLIENT));
@@ -648,10 +642,9 @@ void YerothERPClientsWindow::populateClientsComboBoxes()
 
 void YerothERPClientsWindow::setupLineEdits()
 {
-	lineEdit_nom_payeur->setPlaceholderText(QObject::tr("nom du payeur"));
+	lineEdit_montant_a_payer->setPlaceholderText(QObject::tr("montant à payer"));
 
-	lineEdit_versement_comptant->setPlaceholderText(QObject::tr("montant à payer"));
-	lineEdit_versement_comptant->setValidator(&YerothUtils::DoubleValidator);
+	lineEdit_montant_a_payer->setValidator(&YerothUtils::DoubleValidator);
 
 	lineEdit_resultat_filtre->setValidator(&YerothUtils::DoubleValidator);
 
@@ -662,6 +655,7 @@ void YerothERPClientsWindow::setupLineEdits()
 void YerothERPClientsWindow::setupLineEditsQCompleters()
 {
 	lineEdit_nom_entreprise->enableForSearch(QObject::trUtf8("nom de l'entreprise"));
+
 	lineEdit_nom_entreprise->setupMyStaticQCompleter(_allWindows->CLIENTS,
 															YerothDatabaseTableColumn::NOM_ENTREPRISE,
 															false,
@@ -699,8 +693,7 @@ void YerothERPClientsWindow::rendreVisible(YerothSqlTableModel * stocksTableMode
 
 void YerothERPClientsWindow::rendreInvisible()
 {
-	lineEdit_nom_payeur->clear();
-	lineEdit_versement_comptant->clear();
+	lineEdit_montant_a_payer->clear();
     lineEdit_recherche_nom_entreprise->clear();
     YerothWindowsCommons::rendreInvisible();
 }

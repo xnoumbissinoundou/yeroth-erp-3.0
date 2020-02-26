@@ -11441,7 +11441,7 @@ background-color: rgb(0, 0, 0); </string>
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="label_details_de_paiement_nom_du_payeur">
+     <widget class="QLabel" name="label_details_de_paiement_typedepaiement">
       <property name="geometry">
        <rect>
         <x>7</x>
@@ -11876,7 +11876,7 @@ background-color: rgb(0, 0, 0); </string>
        <enum>Qt::LeftToRight</enum>
       </property>
       <property name="text">
-       <string>nom du payeur</string>
+       <string>type de paiement</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -15401,7 +15401,7 @@ background-color: rgb(0, 0, 0); </string>
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="YerothLineEdit" name="lineEdit_details_de_paiement_nom_du_payeur">
+     <widget class="YerothLineEdit" name="lineEdit_details_de_paiement_typedepaiement">
       <property name="geometry">
        <rect>
         <x>185</x>
@@ -19181,7 +19181,7 @@ background-color: rgb(0, 0, 0); </string>
   <tabstop>lineEdit_details_de_paiement_compte_client</tabstop>
   <tabstop>lineEdit_details_de_paiement_numero_du_bon_de_paiement</tabstop>
   <tabstop>lineEdit_details_de_paiement_nom_de_lentreprise</tabstop>
-  <tabstop>lineEdit_details_de_paiement_nom_du_payeur</tabstop>
+  <tabstop>lineEdit_details_de_paiement_typedepaiement</tabstop>
   <tabstop>lineEdit_details_de_paiement_heure_de_paiement</tabstop>
   <tabstop>lineEdit_details_de_paiement_nom_de_lencaisseur</tabstop>
  </tabstops>
