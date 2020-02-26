@@ -136,6 +136,9 @@ YerothERPClientsWindow::YerothERPClientsWindow()
 
 #endif
 
+    connect(actionConsulterTransactionsClient, SIGNAL(triggered()),
+    		this, SLOT(private_slot_afficher_les_transactions_dun_client()));
+
 	connect(actionAfficher_client_au_detail, SIGNAL(triggered()),
 			this, SLOT(afficher_au_detail()));
 
@@ -183,6 +186,7 @@ void YerothERPClientsWindow::contextMenuEvent(QContextMenuEvent * event)
 	QMenu menu(this);
 	menu.setPalette(toolBar_clientsWindow->palette());
 	menu.addAction(actionAfficherDetailsClient);
+	menu.addAction(actionConsulterTransactionsClient);
 	menu.addAction(actionModifierCompteClient);
 	menu.addAction(actionSupprimerCompteClient);
 	menu.exec(event->globalPos());
@@ -204,6 +208,77 @@ void YerothERPClientsWindow::setupShortcuts()
     actionRechercher->setShortcut(YerothUtils::RECHERCHER_QKEYSEQUENCE);
 
     actionReinitialiserRecherche->setShortcut(YerothUtils::REINITIALISER_RECHERCHE_QKEYSEQUENCE);
+}
+
+
+void YerothERPClientsWindow::private_slot_afficher_les_transactions_dun_client()
+{
+	int lastSelectedRow = getLastListerSelectedRow();
+
+	//qDebug() << QString("lastSelectedRow: %1")
+	//				.arg(QString::number(lastSelectedRow));
+
+	if (0 != _curClientsTableModel && _curClientsTableModel->rowCount() > 0 && lastSelectedRow > -1)
+	{
+	    QSqlRecord record = _curClientsTableModel->record(lastSelectedRow);
+
+//	    int stockId = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ID).toInt();
+
+	    QString clientCompanyName(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE));
+
+//	    YerothHistoriqueStock::listHistoriqueDuStock(historiqueStockSelectionne,
+//	    											 stockReference,
+//													 QString::number(stockId),
+//													 stockDesignation);
+
+
+	    QString clientTransactionsPaiementsQueryStr(QString("select %1, %2 as 'Date de paiement', %3 as Heure, %4 as 'Montant transaction', %5 as 'Type de paiement' from %6")
+	    											.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
+	    												 YerothDatabaseTableColumn::DATE_PAIEMENT,
+														 YerothDatabaseTableColumn::HEURE_PAIEMENT,
+														 YerothDatabaseTableColumn::MONTANT_PAYE,
+														 YerothDatabaseTableColumn::TYPE_DE_PAIEMENT,
+														 _allWindows->PAIEMENTS));
+
+	    QString clientTransactionsStockVenduQueryStr(QString("select %1, %2 as 'Date de paiement', %3 as Heure, %4 as 'Montant transaction', %5 as 'Type de paiement' from %6")
+	    											.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT,
+	    												 YerothDatabaseTableColumn::DATE_VENTE,
+														 YerothDatabaseTableColumn::HEURE_VENTE,
+														 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
+														 YerothDatabaseTableColumn::TYPE_DE_VENTE,
+														 _allWindows->STOCKS_VENDU));
+
+	    QString clientTransactionsUnionQueryStr(QString("SELECT * FROM (%1 UNION %2 ORDER BY Heure desc) AS U WHERE U.%3 = '%4'")
+	    										.arg(clientTransactionsPaiementsQueryStr,
+	    											 clientTransactionsStockVenduQueryStr,
+													 YerothDatabaseTableColumn::NOM_ENTREPRISE,
+													 clientCompanyName));
+
+	    qDebug() << QString("++ clientTransactionsUnionQueryStr: %1")
+	    				.arg(clientTransactionsUnionQueryStr);
+
+		QSqlQuery sqlClientTransactionsUnionQuery;
+
+		int querySize = YerothUtils::execQuery(sqlClientTransactionsUnionQuery, clientTransactionsUnionQueryStr);
+
+		qDebug() << QString("++ querySize: %1")
+						.arg(QString::number(querySize));
+
+		//querySize shall be equal to 0 if product is in 'marchandises' database table.
+		if (querySize > 0)
+		{
+			while (sqlClientTransactionsUnionQuery.next())
+			{
+
+			}
+		}
+	}
+	else
+	{
+	    YerothQMessageBox::information(this,
+	    		QObject::trUtf8("comptes clients - transactions d'un client"),
+				QObject::trUtf8("l n'y a pas de transactions de ce client à lister !"));
+	}
 }
 
 

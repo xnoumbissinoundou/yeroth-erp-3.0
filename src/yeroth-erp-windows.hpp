@@ -20,7 +20,8 @@
 
 #include "src/windows/yeroth-erp-pointdevente-window.hpp"
 
-#include "windows/yeroth-erp-paiements-window.hpp"
+#include "src/windows/yeroth-erp-paiements-window.hpp"
+#include "src/windows/yeroth-erp-tableau-des-transactions-du-client-window.hpp"
 #include "src/windows/yeroth-erp-historique-du-stock-window.hpp"
 #include "src/windows/yeroth-erp-sortir-window.hpp"
 #include "src/windows/yeroth-erp-tableaux-de-bord-window.hpp"
@@ -62,6 +63,7 @@
 class YerothSqlTableModel;
 class YerothMainWindow;
 class YerothPaiementsWindow;
+class YerothTableauDesTransactionsDuClientWindow;
 class YerothHistoriqueDuStockWindow;
 class YerothPOSChangerUtilisateurDialog;
 class YerothCreerCompteClientWindow;
@@ -342,6 +344,7 @@ public:
 	YerothMainWindow 									*_mainWindow;
 
 	YerothPOSChangerUtilisateurDialog 					*_changerUtilisateurDialog;
+	YerothTableauDesTransactionsDuClientWindow			*_transactionsDunClientWindow;
 	YerothHistoriqueDuStockWindow						*_historiqueDuStockWindow;
 	YerothCreerCompteClientWindow 						*_creerCompteClientWindow;
 	YerothModifierCompteClientWindow 					*_modifierCompteClientWindow;

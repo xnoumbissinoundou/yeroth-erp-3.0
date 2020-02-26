@@ -1,5 +1,5 @@
 /*
- * yeroth-erp-pointdevente-liststocks-window.cpp
+ * yeroth-erp-historique-du-stock-window.cpp
  *
  *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */

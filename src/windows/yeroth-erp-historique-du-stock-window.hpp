@@ -10,7 +10,8 @@
 #include "../../ui_yeroth-erp-historique-du-stock-window.h"
 
 #include "src/yeroth-erp-windows.hpp"
-#include "yeroth-erp-window-commons.hpp"
+
+#include "src/windows/yeroth-erp-window-commons.hpp"
 
 
 
@@ -31,7 +32,7 @@ public:
 
 	inline virtual QToolBar * getQMainWindowToolBar()
 	{
-		return 0;
+		return toolBar_historiqueDunStock;
 	}
 
 	void listHistoriqueDuStock(const QStringList &aMouvementStockList,

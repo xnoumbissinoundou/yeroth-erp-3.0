@@ -109,6 +109,8 @@ QString YerothUtils::FR_template_sortie_des_stocks_petit_tex("");
 
 QString YerothUtils::EN_template_sortie_des_stocks_petit_tex("");
 
+QString YerothUtils::template_transactions_dun_client_tex("");
+
 QString YerothUtils::template_comptes_clients_tex("");
 
 QString YerothUtils::template_marchandises_tex("");

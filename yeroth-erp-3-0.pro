@@ -75,6 +75,7 @@ FORMS   = ui/yeroth-erp-main-window.ui \
 		  ui/yeroth-erp-creer-nouveau-fournisseur-window.ui \
 		  ui/yeroth-erp-creer-nouvelle-categorie-window.ui \
 		  ui/yeroth-erp-marchandises-window.ui \
+			ui/yeroth-erp-tableau-des-transactions-du-client-window.ui \
 			ui/yeroth-erp-historique-du-stock-window.ui \
 			ui/yeroth-erp-stocks-window.ui \
 		  ui/yeroth-erp-alertes-window.ui \
@@ -144,7 +145,8 @@ HEADERS = src/yeroth-erp-windows.hpp \
 		  src/windows/yeroth-erp-creer-nouveau-fournisseur-window.hpp \
 		  src/windows/yeroth-erp-creer-nouvelle-categorie-window.hpp \
 		  src/windows/yeroth-erp-marchandises-window.hpp \
-		  src/windows/yeroth-erp-historique-du-stock-window.hpp \
+		  src/windows/yeroth-erp-tableau-des-transactions-du-client-window.hpp \
+			src/windows/yeroth-erp-historique-du-stock-window.hpp \
 		  src/windows/yeroth-erp-achats-detail-window.hpp \
 		  src/windows/yeroth-erp-achats-window.hpp \
 		  src/windows/yeroth-erp-stocks-window.hpp \
@@ -241,7 +243,8 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/windows/yeroth-erp-creer-nouveau-fournisseur-window.cpp \
 		  src/windows/yeroth-erp-creer-nouvelle-categorie-window.cpp \
 		  src/windows/yeroth-erp-marchandises-window.cpp \
-		  src/windows/yeroth-erp-historique-du-stock-window.cpp \
+			src/windows/yeroth-erp-tableau-des-transactions-du-client-window.cpp \
+			src/windows/yeroth-erp-historique-du-stock-window.cpp \
 		  src/windows/yeroth-erp-achats-detail-window.cpp \
 		  src/windows/yeroth-erp-achats-window.cpp \
 		  src/windows/yeroth-erp-stocks-window.cpp \

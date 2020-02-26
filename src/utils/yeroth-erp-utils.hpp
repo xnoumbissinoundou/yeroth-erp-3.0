@@ -569,6 +569,8 @@ public:
 
 	static QString EN_template_sortie_des_stocks_petit_tex;
 
+	static QString template_transactions_dun_client_tex;
+
 	static QString template_comptes_clients_tex;
 
 	static QString template_marchandises_tex;

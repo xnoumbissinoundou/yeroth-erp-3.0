@@ -222,6 +222,18 @@ void readTexTemplateFiles(YerothLogger &logger)
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
+    QFile fileCustomerTransactionListingFr(FILE_YEROTH_ERP_3_0_TEMPLATE_TRANSACTIONS_DUN_CLIENT_FR);
+    yeroth_read_file(fileCustomerTransactionListingFr, YerothUtils::template_transactions_dun_client_tex);
+
+#else //YEROTH_ENGLISH_LANGUAGE
+
+    QFile fileCustomerTransactionListingEn(FILE_YEROTH_ERP_3_0_TEMPLATE_TRANSACTIONS_DUN_CLIENT_EN);
+    yeroth_read_file(fileCustomerTransactionListingEn, YerothUtils::template_transactions_dun_client_tex);
+
+#endif
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+
     QFile fileCustomerAccountListingFr(FILE_YEROTH_ERP_3_0_TEMPLATE_COMPTES_CLIENTS_FR);
     yeroth_read_file(fileCustomerAccountListingFr, YerothUtils::template_comptes_clients_tex);
 

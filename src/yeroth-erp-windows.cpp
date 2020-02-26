@@ -93,6 +93,7 @@ const QString YerothERPWindows::DBMS							("dbms");
 
 YerothERPWindows::YerothERPWindows(QDesktopWidget *desktopWidget)
     :_mainWindow(0),
+	 _transactionsDunClientWindow(0),
 	 _historiqueDuStockWindow(0),
      _changerUtilisateurDialog(0),
 	 _creerCompteClientWindow(0),
@@ -227,6 +228,7 @@ YerothERPWindows::~YerothERPWindows()
     delete _ventesWindow;
     delete _pdVenteListStocksWindow;
     delete _historiqueDuStockWindow;
+    delete _transactionsDunClientWindow;
     delete _clientWindow;
     delete _sortirListStocksWindow;
 
@@ -273,6 +275,7 @@ void YerothERPWindows::createAllYerothPosUserWindows()
     _adminDetailWindow 				= new YerothAdminDetailWindow;
     _adminModifierWindow			= new YerothAdminModifierWindow;
 
+    _transactionsDunClientWindow	= new YerothTableauDesTransactionsDuClientWindow;
     _historiqueDuStockWindow		= new YerothHistoriqueDuStockWindow;
     _sortirWindow 					= new YerothSortirWindow;
     _statistiquesWindow				= new YerothTableauxDeBordWindow;
@@ -606,6 +609,7 @@ void YerothERPWindows::definirPasDeRole()
 void YerothERPWindows::hideAllWindows()
 {
     _sortirWindow->rendreInvisible();
+    _transactionsDunClientWindow->rendreInvisible();
     _historiqueDuStockWindow->rendreInvisible();
     _statistiquesWindow->rendreInvisible();
     _transactionsWindow->rendreInvisible();

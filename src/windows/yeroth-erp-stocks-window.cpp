@@ -243,7 +243,7 @@ void YerothStocksWindow::private_slot_afficher_historique_du_stock()
 	//qDebug() << QString("lastSelectedRow: %1")
 	//				.arg(QString::number(lastSelectedRow));
 
-	if (0 != _curStocksTableModel &&_curStocksTableModel->rowCount() > 0 && lastSelectedRow > -1)
+	if (0 != _curStocksTableModel && _curStocksTableModel->rowCount() > 0 && lastSelectedRow > -1)
 	{
 	    QSqlRecord record = _curStocksTableModel->record(lastSelectedRow);
 
@@ -265,9 +265,8 @@ void YerothStocksWindow::private_slot_afficher_historique_du_stock()
 	{
 	    YerothQMessageBox::information(this,
 	    		QObject::trUtf8("stocks - historique du stock"),
-				QObject::trUtf8("Il n'y a pas de stocks listés en ce moment !"));
+				QObject::trUtf8("Il n'y a pas de stocks listés !"));
 	}
-
 }
 
 
