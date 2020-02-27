@@ -270,6 +270,8 @@ void YerothPaiementsWindow::setupLineEdits()
 
     lineEdit_details_de_paiement_numero_du_bon_de_paiement->setEnabled(false);
     lineEdit_details_de_paiement_nom_de_lentreprise->setEnabled(false);
+    lineEdit_details_de_paiement_engagement->setEnabled(false);
+    lineEdit_details_de_paiement_typedepaiement->setEnabled(false);
     lineEdit_details_de_paiement_nom_de_lencaisseur->setEnabled(false);
     lineEdit_details_de_paiement_compte_client->setEnabled(false);
     lineEdit_details_de_paiement_montant_paye->setEnabled(false);
@@ -338,6 +340,7 @@ void YerothPaiementsWindow::clear_all_fields()
 {
     lineEdit_details_de_paiement_numero_du_bon_de_paiement->clearField();
     lineEdit_details_de_paiement_nom_de_lentreprise->clearField();
+    lineEdit_details_de_paiement_engagement->clearField();
     lineEdit_details_de_paiement_typedepaiement->clearField();
     lineEdit_details_de_paiement_nom_de_lencaisseur->clearField();
     lineEdit_details_de_paiement_compte_client->clearField();
@@ -805,7 +808,7 @@ void YerothPaiementsWindow::resetFilter(YerothSqlTableModel * historiquePaiement
 
     lineEdit_paiements_recherche->myClear();
 
-    comboBox_paiements_type_de_paiement->setCurrentIndex(0);
+    comboBox_paiements_type_de_paiement->resetYerothComboBox();
 
     lineEdit_paiements_nom_encaisseur->myClear();
     lineEdit_paiements_nom_entreprise->myClear();
@@ -944,6 +947,8 @@ void YerothPaiementsWindow::afficher_paiements_detail()
 
     lineEdit_details_de_paiement_heure_de_paiement->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::HEURE_PAIEMENT));
 
+    lineEdit_details_de_paiement_engagement->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ENGAGEMENT));
+
     lineEdit_details_de_paiement_typedepaiement->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::TYPE_DE_PAIEMENT));
 
     double aDoubleValue = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::COMPTE_CLIENT).toDouble();
@@ -998,7 +1003,7 @@ void YerothPaiementsWindow::rechercher(bool clearPaiementsRecherche)
 
     if (clearPaiementsRecherche)
     {
-    	comboBox_paiements_type_de_paiement->setCurrentIndex(0);
+    	comboBox_paiements_type_de_paiement->resetYerothComboBox();
 
         lineEdit_paiements_recherche->clear();
         lineEdit_paiements_engagement->clear();

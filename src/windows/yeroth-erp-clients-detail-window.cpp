@@ -56,7 +56,7 @@ YerothClientsDetailWindow::YerothClientsDetailWindow()
     pushButton_menu->disable(this);
     pushButton_modifier->disable(this);
     pushButton_supprimer->disable(this);
-    pushButton_retour->disable(this);
+    pushButton_payer_au_compteclient->disable(this);
 
     /** Menu actions */
     connect(actionChanger_utilisateur, SIGNAL(triggered()), this, SLOT(changer_utilisateur()));
@@ -85,6 +85,16 @@ YerothClientsDetailWindow::YerothClientsDetailWindow()
 #endif
 
     setupShortcuts();
+}
+
+
+void YerothClientsDetailWindow::private_payer_au_compteclient()
+{
+	rendreInvisible();
+
+	_allWindows->_payerAuCompteclientWindow->rendreVisible(_clientLastSelectedRow,
+														   _curClientTableModel,
+														   _curStocksTableModel);
 }
 
 
@@ -179,7 +189,7 @@ void YerothClientsDetailWindow::definirPasDeRole()
     pushButton_menu->disable(this);
     pushButton_modifier->disable(this);
     pushButton_supprimer->disable(this);
-    pushButton_retour->disable(this);
+    pushButton_payer_au_compteclient->disable(this);
 }
 
 void YerothClientsDetailWindow::definirCaissier()
@@ -200,7 +210,7 @@ void YerothClientsDetailWindow::definirCaissier()
     pushButton_menu->disable(this);
     pushButton_modifier->disable(this);
     pushButton_supprimer->disable(this);
-    pushButton_retour->disable(this);
+    pushButton_payer_au_compteclient->disable(this);
 }
 
 void YerothClientsDetailWindow::definirManager()
@@ -222,7 +232,7 @@ void YerothClientsDetailWindow::definirManager()
     pushButton_modifier->enable(this, SLOT(modifierCompteClient()));
     pushButton_supprimer->enable(this, SLOT(supprimerCompteClient()));
 
-    pushButton_retour->enable(this, SLOT(clients()));
+    pushButton_payer_au_compteclient->enable(this, SLOT(private_payer_au_compteclient()));
 
 #ifdef YEROTH_SERVER
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, true);
@@ -252,7 +262,7 @@ void YerothClientsDetailWindow::definirVendeur()
     pushButton_menu->disable(this);
     pushButton_modifier->enable(this, SLOT(modifierCompteClient()));
     pushButton_supprimer->enable(this, SLOT(supprimerCompteClient()));
-    pushButton_retour->disable(this);
+    pushButton_payer_au_compteclient->enable(this, SLOT(payer_au_compteclient()));
 }
 
 
@@ -274,7 +284,7 @@ void YerothClientsDetailWindow::definirGestionaireDesStocks()
     pushButton_menu->disable(this);
     pushButton_modifier->disable(this);
     pushButton_supprimer->disable(this);
-    pushButton_retour->disable(this);
+    pushButton_payer_au_compteclient->disable(this);
 }
 
 void YerothClientsDetailWindow::definirMagasinier()
@@ -295,7 +305,7 @@ void YerothClientsDetailWindow::definirMagasinier()
     pushButton_menu->disable(this);
     pushButton_modifier->disable(this);
     pushButton_supprimer->disable(this);
-    pushButton_retour->disable(this);
+    pushButton_payer_au_compteclient->disable(this);
 }
 
 

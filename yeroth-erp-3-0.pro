@@ -55,6 +55,7 @@ OBJECTS_DIR = obj
 FORMS   = ui/yeroth-erp-main-window.ui \
 			ui/yeroth-erp-configuration-comptabilite-window.ui \
 			ui/yeroth-erp-modifier-compte-client-window.ui \
+			ui/yeroth-erp-payer-compte-client-window.ui \
 			ui/yeroth-erp-creer-compte-client-window.ui \
 			ui/yeroth-erp-clients-detail-window.ui \
 			ui/yeroth-erp-clients-window.ui \
@@ -102,7 +103,8 @@ HEADERS = src/yeroth-erp-windows.hpp \
 		  src/include/yeroth-erp-3-0-definition-month.hpp \
 		  src/include/yeroth-erp-3-0-definition-shortcut.hpp \
 		  src/include/yeroth-erp-3-0-software.text-configuration.hpp \
-	  	src/widgets/table-view/yeroth-erp-table-view.hpp \
+	  	src/widgets/yeroth-erp-qtabwidget.hpp \
+			src/widgets/table-view/yeroth-erp-table-view.hpp \
 		  src/widgets/table-view/yeroth-erp-paiements-table-view.hpp \
 		  src/widgets/table-view/yeroth-erp-stocks-table-view.hpp \
 		  src/widgets/table-view/yeroth-erp-ventes-table-view.hpp \
@@ -133,6 +135,7 @@ HEADERS = src/yeroth-erp-windows.hpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-dialog.hpp \
 			src/windows/yeroth-erp-configuration-comptabilite-window.hpp \
 			src/windows/yeroth-erp-modifier-compte-client-window.hpp \
+			src/windows/yeroth-erp-payer-compte-client-window.hpp \
 			src/windows/yeroth-erp-creer-compte-client-window.hpp \
 		  src/windows/yeroth-erp-clients-detail-window.hpp \
 		  src/windows/yeroth-erp-clients-window.hpp \
@@ -201,7 +204,8 @@ HEADERS = src/yeroth-erp-windows.hpp \
  
 SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/yeroth-erp-windows.cpp \
-		  src/widgets/table-view/yeroth-erp-table-view.cpp \
+		  src/widgets/yeroth-erp-qtabwidget.cpp \
+			src/widgets/table-view/yeroth-erp-table-view.cpp \
 		  src/widgets/table-view/yeroth-erp-paiements-table-view.cpp \
 		  src/widgets/table-view/yeroth-erp-stocks-table-view.cpp \
 			src/widgets/table-view/yeroth-erp-ventes-table-view.cpp \
@@ -232,6 +236,7 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-dialog.cpp \
 			src/windows/yeroth-erp-configuration-comptabilite-window.cpp \
 			src/windows/yeroth-erp-modifier-compte-client-window.cpp \
+			src/windows/yeroth-erp-payer-compte-client-window.cpp \
 			src/windows/yeroth-erp-creer-compte-client-window.cpp \
 		  src/windows/yeroth-erp-clients-detail-window.cpp \
 		  src/windows/yeroth-erp-clients-window.cpp \

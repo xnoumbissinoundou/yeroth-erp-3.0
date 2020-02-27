@@ -749,7 +749,7 @@ void YerothAdminWindow::read_configuration()
 
     if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::salesStrategy, YerothERPConfig::STRATEGIE_VENTE_SORTIE_ALL))
     {
-        comboBox_strategie_vente_sortie->setCurrentIndex(0);
+        comboBox_strategie_vente_sortie->resetYerothComboBox();
     }
     else if (YerothUtils::
              isEqualCaseInsensitive(YerothERPConfig::salesStrategy, YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO))

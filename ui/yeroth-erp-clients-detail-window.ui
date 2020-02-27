@@ -10561,7 +10561,7 @@
      </property>
     </widget>
    </widget>
-   <widget class="YerothPushButton" name="pushButton_retour">
+   <widget class="YerothPushButton" name="pushButton_payer_au_compteclient">
     <property name="enabled">
      <bool>true</bool>
     </property>
@@ -10997,7 +10997,9 @@
      </font>
     </property>
     <property name="text">
-     <string>Retour</string>
+     <string>Payer 
+ Au 
+ Compte Client</string>
     </property>
     <property name="autoDefault">
      <bool>false</bool>
@@ -12982,7 +12984,7 @@
   <tabstop>pushButton_clients</tabstop>
   <tabstop>pushButton_modifier</tabstop>
   <tabstop>pushButton_menu</tabstop>
-  <tabstop>pushButton_retour</tabstop>
+  <tabstop>pushButton_payer_au_compteclient</tabstop>
   <tabstop>pushButton_supprimer</tabstop>
   <tabstop>textEdit_client_details_description_du_client</tabstop>
  </tabstops>

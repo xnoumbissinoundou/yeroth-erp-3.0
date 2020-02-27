@@ -122,6 +122,7 @@ YerothERPWindows::YerothERPWindows(QDesktopWidget *desktopWidget)
 	 _pdVenteMethodePaiementComptantEntreeDialog(0),
 	 _pdVenteMethodePaiementDialog(0),
 	 _clientWindow(0),
+	 _payerAuCompteclientWindow(0),
      _sortirListStocksWindow(0),
      _adminWindow(0),
      _adminCreateWindow(0),
@@ -230,6 +231,7 @@ YerothERPWindows::~YerothERPWindows()
     delete _historiqueDuStockWindow;
     delete _transactionsDunClientWindow;
     delete _clientWindow;
+    delete _payerAuCompteclientWindow;
     delete _sortirListStocksWindow;
 
     delete _adminWindow;
@@ -314,7 +316,8 @@ void YerothERPWindows::createAllYerothPosUserWindows()
     _historiquePaiementsWindow		= new YerothPaiementsWindow;
     _ventesWindow					= new YerothVentesWindow;
     _pdVenteListStocksWindow		= new YerothPointDeVenteListStocksWindow;
-    _clientWindow			= new YerothERPClientsWindow;
+    _clientWindow					= new YerothERPClientsWindow;
+    _payerAuCompteclientWindow		= new YerothPayerCompteClientWindow;
     _sortirListStocksWindow			= new YerothSortirListStocksWindow;
 
     this->move(*_mainWindow);
@@ -437,6 +440,7 @@ void YerothERPWindows::definirMagasinier()
     _historiquePaiementsWindow->definirMagasinier();
     _ventesWindow->definirMagasinier();
     _clientWindow->definirMagasinier();
+    _payerAuCompteclientWindow->definirMagasinier();
 }
 
 void YerothERPWindows::definirCaissier()
@@ -464,6 +468,7 @@ void YerothERPWindows::definirCaissier()
     _historiquePaiementsWindow->definirCaissier();
     _ventesWindow->definirCaissier();
     _clientWindow->definirCaissier();
+    _payerAuCompteclientWindow->definirCaissier();
 }
 
 void YerothERPWindows::definirManager()
@@ -491,6 +496,7 @@ void YerothERPWindows::definirManager()
     _historiquePaiementsWindow->definirManager();
     _ventesWindow->definirManager();
     _clientWindow->definirManager();
+    _payerAuCompteclientWindow->definirManager();
 
     _adminWindow->definirManager();
     _adminCreateWindow->definirManager();
@@ -525,6 +531,7 @@ void YerothERPWindows::definirVendeur()
     _historiquePaiementsWindow->definirVendeur();
     _ventesWindow->definirVendeur();
     _clientWindow->definirVendeur();
+    _payerAuCompteclientWindow->definirVendeur();
 
     _adminWindow->definirVendeur();
     _adminCreateWindow->definirVendeur();
@@ -559,6 +566,7 @@ void YerothERPWindows::definirGestionaireDesStocks()
     _historiquePaiementsWindow->definirGestionaireDesStocks();
     _ventesWindow->definirGestionaireDesStocks();
     _clientWindow->definirGestionaireDesStocks();
+    _payerAuCompteclientWindow->definirGestionaireDesStocks();
 
     _adminWindow->definirGestionaireDesStocks();
     _adminCreateWindow->definirGestionaireDesStocks();
@@ -598,6 +606,7 @@ void YerothERPWindows::definirPasDeRole()
     _historiquePaiementsWindow->definirPasDeRole();
     _ventesWindow->definirPasDeRole();
     _clientWindow->definirPasDeRole();
+    _payerAuCompteclientWindow->definirPasDeRole();
 
     _adminWindow->definirPasDeRole();
     _adminCreateWindow->definirPasDeRole();
@@ -635,6 +644,7 @@ void YerothERPWindows::hideAllWindows()
     _historiquePaiementsWindow->rendreInvisible();
     _ventesWindow->rendreInvisible();
     _clientWindow->rendreInvisible();
+    _payerAuCompteclientWindow->rendreInvisible();
     _modifierWindow->rendreInvisible();
     _entrerWindow->rendreInvisible();
     _adminWindow->rendreInvisible();

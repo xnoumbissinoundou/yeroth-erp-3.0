@@ -500,10 +500,10 @@ void YerothTableauxDeBordWindow::reinitialiser()
 {
     _logger->log("reinitialiser");
 
-    comboBox_quantite->setCurrentIndex(0);
-    comboBox_objets->setCurrentIndex(0);
-    comboBox_qualite->setCurrentIndex(0);
-    comboBox_type_graphes->setCurrentIndex(0);
+    comboBox_quantite->resetYerothComboBox();
+    comboBox_objets->resetYerothComboBox();
+    comboBox_qualite->resetYerothComboBox();
+    comboBox_type_graphes->resetYerothComboBox();
 
     dateEdit_rapports_debut->reset();
     dateEdit_rapports_fin->reset();
@@ -515,11 +515,11 @@ void YerothTableauxDeBordWindow::reinitialiser_chiffre_affaire()
 
     lineEdit_evolution_objets_value->myClear();
 
-    comboBox_operations_chiffre->setCurrentIndex(0);
+    comboBox_operations_chiffre->resetYerothComboBox();
 
-    comboBox_mois_debut_chiffre_affaire->setCurrentIndex(0);
-    comboBox_mois_fin_chiffre_affaire->setCurrentIndex(0);
-    comboBox_annee_chiffre_affaire->setCurrentIndex(0);
+    comboBox_mois_debut_chiffre_affaire->resetYerothComboBox();
+    comboBox_mois_fin_chiffre_affaire->resetYerothComboBox();
+    comboBox_annee_chiffre_affaire->resetYerothComboBox();
 }
 
 

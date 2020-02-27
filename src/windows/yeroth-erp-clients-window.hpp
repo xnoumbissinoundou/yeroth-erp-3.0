@@ -27,32 +27,6 @@ class QProcess;
 
 class YerothSqlTableModel;
 
-class HistoryPaymentInfo
-{
-public:
-
-	YEROTH_CLASS_OPERATORS
-
-	inline HistoryPaymentInfo()
-	:compte_client(0.0),
-	 montant_paye(0.0)
-	{
-	}
-
-	inline ~HistoryPaymentInfo()
-	{
-	}
-
-	QString nom_entreprise;
-	QString nom_encaisseur;
-	QString type_de_paiement;
-	QString engagement;
-	QDate date_paiement;
-
-	double compte_client;
-	double montant_paye;
-};
-
 class YerothERPClientsWindow : public YerothWindowsCommons, private Ui_YerothERPClientsWindow
 {
     Q_OBJECT
@@ -160,6 +134,8 @@ protected:
 
 private slots:
 
+	void private_payer_au_compteclient();
+
 	void private_slot_afficher_les_transactions_dun_client();
 
 	void modifierCompteClient();
@@ -171,10 +147,6 @@ private slots:
 	void afficher_au_detail(const QModelIndex & modelIndex);
 
 	void updateLineEditRechercheNomEntreprise();
-
-	bool createHistoryPaymentForCustomerAccount(HistoryPaymentInfo &paymentInfo);
-
-  	bool putCashIntoCustomerAccount();
 
 	bool filtrer();
 
@@ -197,7 +169,11 @@ private:
 
     void setupLineEdits();
 
-    void setupLineEditsQCompleters();
+    inline void setupLineEditsQCompleters()
+    {
+    	updateLineEditRechercheNomEntreprise();
+    }
+
 
     static const QString 	_WINDOW_TITLE;
 

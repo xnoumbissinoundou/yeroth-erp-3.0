@@ -28,6 +28,11 @@ public:
 
 	void clearField();
 
+	inline void resetYerothComboBox()
+	{
+		this->setCurrentIndex(0);
+	}
+
 	inline QString currentText() const
 	{
 		return QComboBox::currentText().trimmed();

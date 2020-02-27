@@ -438,7 +438,7 @@
    <locale language="French" country="France"/>
   </property>
   <widget class="QWidget" name="centralwidget_alertesWindow">
-   <widget class="QTabWidget" name="tabWidget_alertes">
+   <widget class="YerothQTabWidget" name="tabWidget_alertes">
     <property name="geometry">
      <rect>
       <x>11</x>
@@ -9838,6 +9838,12 @@ une alerte</string>
    <class>YerothDateTimeEdit</class>
    <extends>QDateEdit</extends>
    <header>src/widgets/yeroth-erp-datetime-edit.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>YerothQTabWidget</class>
+   <extends>QTabWidget</extends>
+   <header>src/widgets/yeroth-erp-qtabwidget.hpp</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <tabstops>

@@ -44,6 +44,7 @@
 #include "src/windows/yeroth-erp-modifier-window.hpp"
 #include "src/windows/yeroth-erp-pointdevente-liststocks-window.hpp"
 #include "src/windows/yeroth-erp-clients-window.hpp"
+#include "src/windows/yeroth-erp-payer-compte-client-window.hpp"
 #include "src/windows/yeroth-erp-sortir-liststocks-window.hpp"
 
 #include "src/admin/yeroth-erp-admin-window.hpp"
@@ -99,6 +100,7 @@ class YerothInfoEntreprise;
 class YerothLogger;
 class YerothDatabase;
 class YerothPointDeVenteListStocksWindow;
+class YerothPayerCompteClientWindow;
 class YerothERPClientsWindow;
 class YerothSortirListStocksWindow;
 class YerothUtils;
@@ -372,6 +374,7 @@ public:
 	YerothPOSVenteMethodePaiementComptantEntreeDialog	*_pdVenteMethodePaiementComptantEntreeDialog;
 	YerothPOSVenteMethodePaiementDialog					*_pdVenteMethodePaiementDialog;
 	YerothERPClientsWindow								*_clientWindow;
+	YerothPayerCompteClientWindow						*_payerAuCompteclientWindow;
 	YerothSortirListStocksWindow						*_sortirListStocksWindow;
 	YerothConfigurationComptabiliteWindow 				*_configurationComptableWindow;
 	YerothAdminWindow 									*_adminWindow;

@@ -573,7 +573,7 @@ void YerothAlertesWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 {
     _curStocksTableModel = stocksTableModel;
 
-    tabWidget_alertes->setCurrentIndex(0);
+    tabWidget_alertes->resetYerothQTabWidget();
 
     this->lister_alertes();
 

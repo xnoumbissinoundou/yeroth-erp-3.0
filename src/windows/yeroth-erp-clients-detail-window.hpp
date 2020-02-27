@@ -83,6 +83,8 @@ protected:
 
 private slots:
 
+	void private_payer_au_compteclient();
+
 	void modifierCompteClient();
 
 	void supprimerCompteClient();
