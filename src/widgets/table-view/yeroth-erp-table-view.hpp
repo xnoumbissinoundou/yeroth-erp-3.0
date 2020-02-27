@@ -44,6 +44,8 @@ public:
 	{
 	}
 
+	void lister_les_transactions_dun_client(QSqlQuery &sqlClientTransactionsUnionQuery);
+
 	void lister_lhistorique_du_stock(const QStringList &aMouvementStockList);
 
 	void lister(YerothSqlTableModel &sqlTableModel,

@@ -11091,7 +11091,7 @@ background-color: rgb(255, 255, 255);</string>
       <number>1</number>
      </property>
     </widget>
-    <widget class="QCheckBox" name="checkBox_achat">
+    <widget class="QCheckBox" name="checkBox_service">
      <property name="geometry">
       <rect>
        <x>293</x>
@@ -11529,7 +11529,7 @@ background-color: rgb(255, 255, 255);</string>
       <enum>Qt::RightToLeft</enum>
      </property>
      <property name="text">
-      <string>achat</string>
+      <string>service</string>
      </property>
     </widget>
    </widget>

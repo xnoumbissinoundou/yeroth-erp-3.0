@@ -14,6 +14,7 @@
 QMap<QString, QString> YerothDatabaseTableColumn::_tableColumnToUserViewString;
 
 const QString YerothDatabaseTableColumn::ID								("id");
+const QString YerothDatabaseTableColumn::ENGAGEMENT						("engagement");
 const QString YerothDatabaseTableColumn::HISTORIQUE_STOCK				("historique_stock");
 const QString YerothDatabaseTableColumn::CLIENTS_ID						("clients_id");
 const QString YerothDatabaseTableColumn::VENTE_ID						("vente_id");
@@ -132,6 +133,8 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REMISE_PRIX, 	QString("Remise (%1)").arg(YerothERPConfig::currency));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::ID, 				QObject::tr("ID"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::ENGAGEMENT, 		QObject::tr("Engagement"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::HISTORIQUE_STOCK,	QObject::tr("Historique stock"));
 

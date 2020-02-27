@@ -35,10 +35,7 @@ public:
 		return toolBar_tableauDesTransactionDuClient;
 	}
 
-	void listerTransactionsDunClient(const QStringList &aMouvementStockList,
-							   const QString	 stockReference,
-							   const QString 	 stockID,
-							   const QString 	 stockDesignation);
+	void listerTransactionsDunClient(QSqlQuery &sqlClientTransactionsUnionQuery);
 
 	static void getTransactionsDunClientTexTableString(QString &texTable_in_out,
 	       									    	   QStandardItemModel &tableStandardItemModel,

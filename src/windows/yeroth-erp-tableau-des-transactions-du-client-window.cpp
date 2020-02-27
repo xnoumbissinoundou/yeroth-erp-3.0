@@ -16,7 +16,7 @@
 
 const QString YerothTableauDesTransactionsDuClientWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2")).
         arg(YEROTH_ERP_WINDOW_TITLE,
-            QObject::trUtf8("historique du stock")));
+            QObject::trUtf8("transactions financières d'un client")));
 
 
 YerothTableauDesTransactionsDuClientWindow::YerothTableauDesTransactionsDuClientWindow()
@@ -31,54 +31,43 @@ YerothTableauDesTransactionsDuClientWindow::YerothTableauDesTransactionsDuClient
 }
 
 
-void YerothTableauDesTransactionsDuClientWindow::listerTransactionsDunClient(const QStringList &aMouvementStockList,
-														  const QString	    stockReference,
-														  const QString 	stockID,
-														  const QString 	stockDesignation)
+void YerothTableauDesTransactionsDuClientWindow::listerTransactionsDunClient(QSqlQuery &sqlClientTransactionsUnionQuery)
 {
-//	QString curTitle(windowTitle());
-//
-//	_currentStockID = stockID;
-//
-//	_currentStockReference = stockReference;
-//
-//	_currentStockDesignation = stockDesignation;
-//
-//	//qDebug() << QString("curTitle: %1")
-//	//				.arg(curTitle);
-//
-//	static QString preambleTitle(QString("%1 - %2 -")
-//									.arg(YEROTH_ERP_WINDOW_TITLE,
-//										 "historique du stock"));
-//
-//	static bool first_time_inside = true;
-//
-//	static int preambleTitleLength = preambleTitle.length();
-//
-//	if (!first_time_inside)
-//	{
-//		int len = curTitle.length() - preambleTitleLength;
-//
-//		preambleTitle.remove(preambleTitleLength, len);
-//
-//		//qDebug() << QString("preambleTitle: %1")
-//		//				.arg(preambleTitle);
-//	}
-//	else
-//	{
-//		first_time_inside = false;
-//	}
-//
-//	preambleTitle.append(QString(" ID (%1), stock \"%2\"")
-//						.arg(stockID, stockDesignation));
-//
-//	setWindowTitle(preambleTitle);
-//
-//	tableView_historique_du_stock->lister_lhistorique_du_stock(aMouvementStockList);
-//
-//	tableView_historique_du_stock->hideColumn(3);
-//
-//	show();
+	QString curTitle(windowTitle());
+
+	static QString preambleTitle(QString("%1 - %2")
+									.arg(YEROTH_ERP_WINDOW_TITLE,
+										 "transactions d'un client"));
+
+	static bool first_time_inside = true;
+
+	static int preambleTitleLength = preambleTitle.length();
+
+	if (!first_time_inside)
+	{
+		int len = curTitle.length() - preambleTitleLength;
+
+		preambleTitle.remove(preambleTitleLength, len);
+
+		//qDebug() << QString("preambleTitle: %1")
+		//				.arg(preambleTitle);
+	}
+	else
+	{
+		first_time_inside = false;
+	}
+
+//	preambleTitle.append(QString(" client (%1)")
+//						.arg(stockID));
+
+	setWindowTitle(preambleTitle);
+
+	tableView_tableau_des_transactions_du_client
+			->lister_les_transactions_dun_client(sqlClientTransactionsUnionQuery);
+
+	tableView_tableau_des_transactions_du_client->resizeColumnsToContents();
+
+	show();
 }
 
 
@@ -105,14 +94,7 @@ void YerothTableauDesTransactionsDuClientWindow::getTransactionsDunClientTexTabl
             continue;
         }
 
-        if (dbFieldNameOfTypeString.contains(k))
-        {
-        	texTable_in_out.append("l|");
-        }
-        else
-        {
-        	texTable_in_out.append("r|");
-        }
+        texTable_in_out.append("c|");
     }
 
     texTable_in_out.append("} \\hline").append("\n");

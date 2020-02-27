@@ -182,6 +182,88 @@ void YerothTableView::dataChanged(const QModelIndex &index,
 }
 
 
+void YerothTableView::lister_les_transactions_dun_client(QSqlQuery &sqlClientTransactionsUnionQuery)
+{
+    QString companyNameHdr(QObject::tr("Entreprise"));
+    QString paymentDateHdr(QObject::tr("Date de paiement"));
+    QString timeHdr(QObject::tr("Temps"));
+    QString transactionAmountHdr(QObject::trUtf8("Montant transaction"));
+    QString paymentTypeHdr(QObject::trUtf8("Type paiement"));
+    QString reasonHdr(QObject::trUtf8("Justification"));
+
+    _tableModelHeaders->clear();
+
+    _tableModelHeaders->append(companyNameHdr);
+    _tableModelHeaders->append(paymentDateHdr);
+    _tableModelHeaders->append(timeHdr);
+    _tableModelHeaders->append(transactionAmountHdr);
+    _tableModelHeaders->append(paymentTypeHdr);
+    _tableModelHeaders->append(reasonHdr);
+
+
+    int querySize = sqlClientTransactionsUnionQuery.size();
+
+	_stdItemModel->yerothPOSClear();
+
+    _stdItemModel->setColumnCount(_tableModelHeaders->size());
+
+    _stdItemModel->setRowCount(querySize);
+
+    //Nous mettons les noms des colones
+    for(int k = 0; k < _tableModelHeaders->size(); ++k)
+    {
+    	_stdItemModel->setHeaderData(k, Qt::Horizontal, _tableModelHeaders->at(k));
+    }
+
+    YerothQStandardItem *aYerothQStandardItem = 0;
+
+	if (querySize > 0)
+	{
+		for (int i = 0; i < querySize; ++i)
+		{
+			if (sqlClientTransactionsUnionQuery.next())
+			{
+				QVariant qv;
+
+				for (int j = 0; j < _stdItemModel->columnCount(); ++j)
+				{
+					qv = sqlClientTransactionsUnionQuery.value(j);
+
+					switch (qv.type())
+					{
+					case QVariant::Double:
+						aYerothQStandardItem = new YerothQStandardItem(GET_DOUBLE_STRING(qv.toDouble()));
+						_stdItemModel->setItem(i, j, aYerothQStandardItem);
+						break;
+
+					case QVariant::String:
+						aYerothQStandardItem = new YerothQStandardItem(qv.toString());
+						_stdItemModel->setItem(i, j, aYerothQStandardItem);
+						break;
+
+					case QVariant::Date:
+						aYerothQStandardItem = new YerothQStandardItem(DATE_TO_STRING(qv.toDate()));
+						_stdItemModel->setItem(i, j, aYerothQStandardItem);
+						break;
+
+					case QVariant::Time:
+						aYerothQStandardItem = new YerothQStandardItem(TIME_TO_STRING(qv.toTime()));
+						_stdItemModel->setItem(i, j, aYerothQStandardItem);
+						break;
+
+					default:
+						//qDebug() << "YerothTableView:::lister(): undecoded QVariant -> " << qv.type();
+						break;
+					}
+
+					_stdItemModel->setItem(i, j, aYerothQStandardItem);
+				}
+			}
+		}
+	}
+}
+
+
 void YerothTableView::lister_lhistorique_du_stock(const QStringList &aMouvementStockList)
 {
 	//qDebug() << QString("YerothTableView::lister_lhistorique_du_stock(const QStringList &)");

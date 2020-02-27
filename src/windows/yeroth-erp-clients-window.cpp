@@ -175,9 +175,7 @@ void YerothERPClientsWindow::reinitialiser_champs_db_visibles()
 			<< YerothDatabaseTableColumn::NOM_ENTREPRISE
 			<< YerothDatabaseTableColumn::VILLE
 			<< YerothDatabaseTableColumn::EMAIL
-			<< YerothDatabaseTableColumn::NUMERO_TELEPHONE_1
-			<< YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT
-			<< YerothDatabaseTableColumn::COMPTE_CLIENT;
+			<< YerothDatabaseTableColumn::NUMERO_TELEPHONE_1;
 }
 
 
@@ -196,6 +194,8 @@ void YerothERPClientsWindow::contextMenuEvent(QContextMenuEvent * event)
 void YerothERPClientsWindow::hideEvent(QHideEvent * hideEvent)
 {
 	_searchClientsWidget->rendreInvisible();
+
+	_allWindows->_transactionsDunClientWindow->close();
 }
 
 
@@ -232,52 +232,48 @@ void YerothERPClientsWindow::private_slot_afficher_les_transactions_dun_client()
 //													 stockDesignation);
 
 
-	    QString clientTransactionsPaiementsQueryStr(QString("select %1, %2 as 'Date de paiement', %3 as Heure, %4 as 'Montant transaction', %5 as 'Type de paiement' from %6")
+	    QString clientTransactionsPaiementsQueryStr(QString("select %1, %2 as 'Date de paiement', %3 as Heure, %4 as 'Montant transaction', %5 as 'Type de paiement', %6 as 'Raison'  from %7")
 	    											.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
 	    												 YerothDatabaseTableColumn::DATE_PAIEMENT,
 														 YerothDatabaseTableColumn::HEURE_PAIEMENT,
 														 YerothDatabaseTableColumn::MONTANT_PAYE,
 														 YerothDatabaseTableColumn::TYPE_DE_PAIEMENT,
+														 YerothDatabaseTableColumn::ENGAGEMENT,
 														 _allWindows->PAIEMENTS));
 
-	    QString clientTransactionsStockVenduQueryStr(QString("select %1, %2 as 'Date de paiement', %3 as Heure, %4 as 'Montant transaction', %5 as 'Type de paiement' from %6")
+	    QString clientTransactionsStockVenduQueryStr(QString("select %1, %2 as 'Date de paiement', %3 as Heure, %4 as 'Montant transaction', %5 as 'Type de paiement', %6 as 'Raison' from %7")
 	    											.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT,
 	    												 YerothDatabaseTableColumn::DATE_VENTE,
 														 YerothDatabaseTableColumn::HEURE_VENTE,
 														 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
 														 YerothDatabaseTableColumn::TYPE_DE_VENTE,
+														 YerothDatabaseTableColumn::DESIGNATION,
 														 _allWindows->STOCKS_VENDU));
 
-	    QString clientTransactionsUnionQueryStr(QString("SELECT * FROM (%1 UNION %2 ORDER BY Heure desc) AS U WHERE U.%3 = '%4'")
+	    QString clientTransactionsUnionQueryStr(QString("SELECT * FROM (%1 UNION %2 ORDER BY Heure ASC) AS U WHERE U.%3 = '%4'")
 	    										.arg(clientTransactionsPaiementsQueryStr,
 	    											 clientTransactionsStockVenduQueryStr,
 													 YerothDatabaseTableColumn::NOM_ENTREPRISE,
 													 clientCompanyName));
 
-	    qDebug() << QString("++ clientTransactionsUnionQueryStr: %1")
-	    				.arg(clientTransactionsUnionQueryStr);
+//	    qDebug() << QString("++ clientTransactionsUnionQueryStr: %1")
+//	    				.arg(clientTransactionsUnionQueryStr);
 
 		QSqlQuery sqlClientTransactionsUnionQuery;
 
 		int querySize = YerothUtils::execQuery(sqlClientTransactionsUnionQuery, clientTransactionsUnionQueryStr);
 
-		qDebug() << QString("++ querySize: %1")
-						.arg(QString::number(querySize));
+//		qDebug() << QString("++ querySize: %1")
+//						.arg(QString::number(querySize));
 
-		//querySize shall be equal to 0 if product is in 'marchandises' database table.
-		if (querySize > 0)
-		{
-			while (sqlClientTransactionsUnionQuery.next())
-			{
-
-			}
-		}
+		YerothUtils::getAllWindows()->_transactionsDunClientWindow
+				->listerTransactionsDunClient(sqlClientTransactionsUnionQuery);
 	}
 	else
 	{
 	    YerothQMessageBox::information(this,
 	    		QObject::trUtf8("comptes clients - transactions d'un client"),
-				QObject::trUtf8("l n'y a pas de transactions de ce client à lister !"));
+				QObject::trUtf8("Il n'y a pas de transactions de ce client à lister !"));
 	}
 }
 
@@ -439,6 +435,7 @@ bool YerothERPClientsWindow::createHistoryPaymentForCustomerAccount(HistoryPayme
 	record.setValue(YerothDatabaseTableColumn::DATE_PAIEMENT, 		paymentInfo.date_paiement);
 	record.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT, 		paymentInfo.compte_client);
 	record.setValue(YerothDatabaseTableColumn::TYPE_DE_PAIEMENT, 	paymentInfo.type_de_paiement);
+	record.setValue(YerothDatabaseTableColumn::ENGAGEMENT, 			paymentInfo.engagement);
 	record.setValue(YerothDatabaseTableColumn::MONTANT_PAYE, 		paymentInfo.montant_paye);
 	record.setValue(YerothDatabaseTableColumn::HEURE_PAIEMENT, 		CURRENT_TIME);
 
@@ -479,7 +476,7 @@ bool YerothERPClientsWindow::putCashIntoCustomerAccount()
 
     bool success = false;
 
-		double compte_client = 0.0;
+	double compte_client = 0.0;
 
     int clientsTableModelRowCount = clientsTableModel.easySelect();
 
@@ -513,6 +510,8 @@ bool YerothERPClientsWindow::putCashIntoCustomerAccount()
     	{
     		paymentInfo.nom_encaisseur = currentUser->nom_complet();
     	}
+
+    	paymentInfo.engagement = lineEdit_comptes_clients_engagement->text();
 
     	paymentInfo.type_de_paiement = comboBox_clients_type_de_paiement->currentText();
 
@@ -732,9 +731,16 @@ void YerothERPClientsWindow::setupLineEditsQCompleters()
 	lineEdit_nom_entreprise->enableForSearch(QObject::trUtf8("nom de l'entreprise"));
 
 	lineEdit_nom_entreprise->setupMyStaticQCompleter(_allWindows->CLIENTS,
-															YerothDatabaseTableColumn::NOM_ENTREPRISE,
-															false,
-															true);
+													 YerothDatabaseTableColumn::NOM_ENTREPRISE,
+													 false,
+													 true);
+
+	lineEdit_comptes_clients_engagement->enableForSearch(QObject::tr("engagement"));
+
+	lineEdit_comptes_clients_engagement->setupMyStaticQCompleter(_allWindows->STOCKS,
+													 	 	 	 YerothDatabaseTableColumn::DESIGNATION,
+																 false,
+																 true);
 
 	updateLineEditRechercheNomEntreprise();
 }
@@ -995,26 +1001,6 @@ void YerothERPClientsWindow::afficherClients(YerothSqlTableModel &clientSqlTable
     tableView_clients->lister_les_elements_du_tableau(clientSqlTableModel);
 
     tableView_show_or_hide_columns(*tableView_clients);
-
-    int rowCount = clientSqlTableModel.rowCount();
-
-    double totalCredit = 0.0;
-    double curCompteClient = 0.0;
-    QSqlRecord aQSqlRecord;
-
-    for (int k = 0; k < rowCount; ++k)
-    {
-    	aQSqlRecord = clientSqlTableModel.record(k);
-
-    	curCompteClient = GET_SQL_RECORD_DATA(aQSqlRecord, YerothDatabaseTableColumn::COMPTE_CLIENT).toDouble();
-
-    	if (curCompteClient < 0)
-    	{
-    		totalCredit += curCompteClient;
-    	}
-    }
-
-    lineEdit_debit_total->setText(GET_CURRENCY_STRING_NUM(totalCredit));
 }
 
 

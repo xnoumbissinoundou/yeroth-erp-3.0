@@ -2499,7 +2499,7 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
 
         QSqlRecord record = stocksVenduTableModel.record();
 
-        _typeDeVente = QObject::tr("comptant");
+        _typeDeVente = QObject::tr("achat - comptant");
 
         int stock_id_to_save = YerothUtils::getNextIdFromTable(_allWindows->STOCKS_VENDU);
 
@@ -2777,7 +2777,7 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
 
         QSqlRecord record = stocksVenduTableModel.record();
 
-        _typeDeVente = QObject::tr("compte client");
+        _typeDeVente = QObject::tr("achat - compte client");
 
         int stock_id_to_save = YerothUtils::getNextIdFromTable(_allWindows->STOCKS_VENDU);
 
