@@ -2247,10 +2247,21 @@ void YerothPointDeVenteWindow::choisir_methode_paiment()
         	double dette_maximale_compte_client = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT).toDouble();
         	double compte_client = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::COMPTE_CLIENT).toDouble();
 
-        	double dette_compte_client_disponible = dette_maximale_compte_client - qFabs(compte_client);
+        	double dette_compte_client_disponible = 0.0;
 
-        	if (dette_compte_client_disponible >= total_prix_vente ||
-        		compte_client >= total_prix_vente)
+        	if (compte_client >= 0)
+        	{
+        		dette_compte_client_disponible = dette_maximale_compte_client + compte_client;
+        	}
+        	else
+        	{
+        		dette_compte_client_disponible = dette_maximale_compte_client - qFabs(compte_client);
+        	}
+
+//        	qDebug() << QString("++ dette_compte_client_disponible: %1")
+//        					.arg(QString::number(dette_compte_client_disponible));
+
+        	if (dette_compte_client_disponible >= total_prix_vente)
         	{
         		_allWindows->_pdVenteMethodePaiementDialog->setPushbuttonCompteClientEnabled(true);
         	}

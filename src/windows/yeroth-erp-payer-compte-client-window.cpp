@@ -297,6 +297,9 @@ bool YerothPayerCompteClientWindow::putCashIntoCustomerAccount()
 		lineEdit_etablissement_bancaire->clear();
 
 		comboBox_clients_typedepaiement->resetYerothComboBox();
+
+
+		updateLineEdits();
     }
     else
     {
@@ -351,6 +354,32 @@ void YerothPayerCompteClientWindow::setupLineEditsQCompleters()
 }
 
 
+void YerothPayerCompteClientWindow::updateLineEdits()
+{
+	if (_curClientTableModel->select())
+	{
+		QSqlRecord aQSqlRecord = _curClientTableModel->record(_clientLastSelectedRow);
+
+		double compteClient = GET_SQL_RECORD_DATA(aQSqlRecord, YerothDatabaseTableColumn::COMPTE_CLIENT).toDouble();
+
+		lineEdit_comptes_clients_valeur_compte_client->setText(GET_CURRENCY_STRING_NUM(compteClient));
+
+		double detteMaximale = GET_SQL_RECORD_DATA(aQSqlRecord, YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT).toDouble();
+
+		lineEdit_comptes_clients_valeur_dette_maximale->setText(GET_CURRENCY_STRING_NUM(detteMaximale));
+
+		lineEdit_comptes_clients_reference_registre_du_commerce
+		->setText(GET_SQL_RECORD_DATA(aQSqlRecord, YerothDatabaseTableColumn::REFERENCE_REGISTRE_DU_COMMERCE));
+
+		lineEdit_comptes_clients_numero_du_contribuable
+		->setText(GET_SQL_RECORD_DATA(aQSqlRecord, YerothDatabaseTableColumn::NUMERO_CONTRIBUABLE));
+
+		lineEdit_comptes_clients_siege_social
+		->setText(GET_SQL_RECORD_DATA(aQSqlRecord, YerothDatabaseTableColumn::SIEGE_SOCIAL));
+	}
+}
+
+
 void YerothPayerCompteClientWindow::rendreVisible(int lastSelectedRow,
 		   	   	   	   	   	   	   	   	   	      YerothSqlTableModel *clientTableModel,
 												  YerothSqlTableModel *stocksTableModel)
@@ -372,22 +401,7 @@ void YerothPayerCompteClientWindow::rendreVisible(int lastSelectedRow,
     lineEdit_comptes_clients_designation_de_lentreprise->setText(_curCompanyName);
 
 
-    double compteClient = GET_SQL_RECORD_DATA(aQSqlRecord, YerothDatabaseTableColumn::COMPTE_CLIENT).toDouble();
-
-    lineEdit_comptes_clients_valeur_compte_client->setText(GET_CURRENCY_STRING_NUM(compteClient));
-
-    double detteMaximale = GET_SQL_RECORD_DATA(aQSqlRecord, YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT).toDouble();
-
-    lineEdit_comptes_clients_valeur_dette_maximale->setText(GET_CURRENCY_STRING_NUM(detteMaximale));
-
-    lineEdit_comptes_clients_reference_registre_du_commerce
-			->setText(GET_SQL_RECORD_DATA(aQSqlRecord, YerothDatabaseTableColumn::REFERENCE_REGISTRE_DU_COMMERCE));
-
-    lineEdit_comptes_clients_numero_du_contribuable
-			->setText(GET_SQL_RECORD_DATA(aQSqlRecord, YerothDatabaseTableColumn::NUMERO_CONTRIBUABLE));
-
-    lineEdit_comptes_clients_siege_social
-			->setText(GET_SQL_RECORD_DATA(aQSqlRecord, YerothDatabaseTableColumn::SIEGE_SOCIAL));
+    updateLineEdits();
 
 	setVisible(true);
 }

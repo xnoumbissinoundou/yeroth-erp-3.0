@@ -81,6 +81,8 @@ public:
 
     virtual void definirPasDeRole();
 
+    void updateLineEdits();
+
     void rendreVisible(int lastSelectedRow,
     				   YerothSqlTableModel *clientTableModel,
 					   YerothSqlTableModel *stocksTableModel);
