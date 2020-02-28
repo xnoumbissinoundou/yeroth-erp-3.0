@@ -655,12 +655,12 @@ QString YerothPointDeVenteWindow::imprimer_facture_grand(int vente_id)
     YerothUtils::getFactureENTexDocumentString(factureTexDocument, factureTexTable);
 #endif
 
-    factureTexDocument.replace("YEROTHTYPEPAIEMENT", YerothUtils::handleForeignAccents(_typeDeVente));
+    factureTexDocument.replace("YEROTHTYPEPAIEMENT", YerothUtils::LATEX_IN_OUT_handleForeignAccents(_typeDeVente));
 
     if (-1 != vente_id)
     {
         factureTexDocument.replace("YEROTHNUMEROSORTIETRANSFERT",
-                                   YerothUtils::handleForeignAccents(GET_NUM_STRING(vente_id)));
+                                   YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_NUM_STRING(vente_id)));
     }
     else
     {
@@ -688,14 +688,14 @@ QString YerothPointDeVenteWindow::imprimer_facture_grand(int vente_id)
     factureTexDocument.replace("YEROTHCONTRIBUABLENR", infoEntreprise.getNumeroDeContribuable());
     factureTexDocument.replace("YEROTHAGENCECOMPTEBANCAIRE", infoEntreprise.getAgenceCompteBancaireTex());
     factureTexDocument.replace("YEROTHSOMME",
-                               YerothUtils::handleForeignAccents(GET_CURRENCY_STRING_NUM(_sommeTotal)));
+                               YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_CURRENCY_STRING_NUM(_sommeTotal)));
 
     QString nomClient(lineEdit_articles_nom_client->text());
 
     if (nomClient.isEmpty())
     {
         nomClient.append("Client \"DIVERS\"");
-        factureTexDocument.replace("YEROTHCLIENT", YerothUtils::handleForeignAccents(nomClient));
+        factureTexDocument.replace("YEROTHCLIENT", YerothUtils::LATEX_IN_OUT_handleForeignAccents(nomClient));
         factureTexDocument.replace("CLIENTYEROTHREPRESENTANT", "");
         factureTexDocument.replace("CLIENTYEROTHCITY", "");
         factureTexDocument.replace("CLIENTYEROTHPOBOX", "");
@@ -707,7 +707,7 @@ QString YerothPointDeVenteWindow::imprimer_facture_grand(int vente_id)
         YerothSqlTableModel & clientTableModel = _allWindows->getSqlTableModel_clients();
 
         clientTableModel.yerothSetFilter(QString("nom_entreprise = '%1'").arg(nomClient));
-        factureTexDocument.replace("YEROTHCLIENT", YerothUtils::handleForeignAccents(nomClient));
+        factureTexDocument.replace("YEROTHCLIENT", YerothUtils::LATEX_IN_OUT_handleForeignAccents(nomClient));
 
         if (clientTableModel.easySelect() > 0)
         {
@@ -727,7 +727,7 @@ QString YerothPointDeVenteWindow::imprimer_facture_grand(int vente_id)
             if (!clientRepresentant.isEmpty())
             {
                 factureTexDocument.replace("CLIENTYEROTHREPRESENTANT",
-                                           YerothUtils::handleForeignAccents(clientRepresentant));
+                                           YerothUtils::LATEX_IN_OUT_handleForeignAccents(clientRepresentant));
             }
             else
             {
@@ -736,7 +736,7 @@ QString YerothPointDeVenteWindow::imprimer_facture_grand(int vente_id)
 
             if (!clientVille.isEmpty())
             {
-                factureTexDocument.replace("CLIENTYEROTHCITY", YerothUtils::handleForeignAccents(clientVille));
+                factureTexDocument.replace("CLIENTYEROTHCITY", YerothUtils::LATEX_IN_OUT_handleForeignAccents(clientVille));
             }
             else
             {
@@ -745,7 +745,7 @@ QString YerothPointDeVenteWindow::imprimer_facture_grand(int vente_id)
 
             if (!clientPOBox.isEmpty())
             {
-                factureTexDocument.replace("CLIENTYEROTHPOBOX", YerothUtils::handleForeignAccents(clientPOBox));
+                factureTexDocument.replace("CLIENTYEROTHPOBOX", YerothUtils::LATEX_IN_OUT_handleForeignAccents(clientPOBox));
             }
             else
             {
@@ -754,7 +754,7 @@ QString YerothPointDeVenteWindow::imprimer_facture_grand(int vente_id)
 
             if (!clientEmail.isEmpty())
             {
-                factureTexDocument.replace("CLIENTYEROTHMAIL", YerothUtils::handleForeignAccents(clientEmail));
+                factureTexDocument.replace("CLIENTYEROTHMAIL", YerothUtils::LATEX_IN_OUT_handleForeignAccents(clientEmail));
             }
             else
             {
@@ -763,7 +763,7 @@ QString YerothPointDeVenteWindow::imprimer_facture_grand(int vente_id)
 
             if (!clientTel.isEmpty())
             {
-                factureTexDocument.replace("CLIENTYEROTHPHONE", YerothUtils::handleForeignAccents(clientTel));
+                factureTexDocument.replace("CLIENTYEROTHPHONE", YerothUtils::LATEX_IN_OUT_handleForeignAccents(clientTel));
             }
             else
             {
@@ -849,7 +849,7 @@ QString YerothPointDeVenteWindow::imprimer_facture_petit(int vente_id)
     if (-1 != vente_id)
     {
         factureTexDocument.replace("YEROTHNUMEROSORTIETRANSFERT",
-                                   YerothUtils::handleForeignAccents(GET_NUM_STRING(vente_id)));
+                                   YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_NUM_STRING(vente_id)));
     }
     else
     {
@@ -870,7 +870,7 @@ QString YerothPointDeVenteWindow::imprimer_facture_petit(int vente_id)
     QString minPaperHeight(QString("%1in").arg(QString::number(factureInchSize, 'f', 2)));
     //qDebug() << "\t++minPaperHeight: " << minPaperHeight;
 
-	factureTexDocument.replace("YEROTHTYPEPAIEMENT", YerothUtils::handleForeignAccents(_typeDeVente));
+	factureTexDocument.replace("YEROTHTYPEPAIEMENT", YerothUtils::LATEX_IN_OUT_handleForeignAccents(_typeDeVente));
     factureTexDocument.replace("YEROTHFACTURESMALLPAPERHEIGHT", minPaperHeight);
     factureTexDocument.replace("YEROTHENTREPRISE", infoEntreprise.getNomCommercialTex());
     factureTexDocument.replace("YEROTHACTIVITESENTREPRISE", infoEntreprise.getSecteursActivitesTex());
@@ -891,7 +891,7 @@ QString YerothPointDeVenteWindow::imprimer_facture_petit(int vente_id)
         nomClient.append("\"DIVERS\"");
     }
 
-    factureTexDocument.replace("YEROTHCLIENT", YerothUtils::handleForeignAccents(nomClient));
+    factureTexDocument.replace("YEROTHCLIENT", YerothUtils::LATEX_IN_OUT_handleForeignAccents(nomClient));
 
     //qDebug() << "++\n" << factureTexDocument;
 

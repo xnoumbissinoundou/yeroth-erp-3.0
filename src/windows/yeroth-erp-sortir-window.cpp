@@ -496,7 +496,7 @@ QString YerothSortirWindow::imprimer_facture_grand(int sortie_id)
     if (-1 != sortie_id)
     {
         factureTexDocument.replace("YEROTHNUMEROSORTIETRANSFERT",
-                                   YerothUtils::handleForeignAccents(GET_NUM_STRING(sortie_id)));
+                                   YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_NUM_STRING(sortie_id)));
     }
     else
     {
@@ -504,7 +504,7 @@ QString YerothSortirWindow::imprimer_facture_grand(int sortie_id)
     }
 
 
-    QString destinationTex(YerothUtils::handleForeignAccents(lineEdit_articles_transfert->text()));
+    QString destinationTex(YerothUtils::LATEX_IN_OUT_handleForeignAccents(lineEdit_articles_transfert->text()));
 
     if (YerothUtils::
             isEqualCaseInsensitive(YerothERPConfig::RECEIPT_FORMAT_GRAND_A4PAPER, YerothERPConfig::receiptFormat))
@@ -526,12 +526,12 @@ QString YerothSortirWindow::imprimer_facture_grand(int sortie_id)
     factureTexDocument.replace("YEROTHDATE", factureDate);
     factureTexDocument.replace("YEROTHHEUREVENTE", CURRENT_TIME);
     factureTexDocument.replace("YEROTHMAGASINIER", yerothUser->nom_completTex());
-    factureTexDocument.replace("YEROTHRECEPTEUR", YerothUtils::handleForeignAccents(recepteur));
+    factureTexDocument.replace("YEROTHRECEPTEUR", YerothUtils::LATEX_IN_OUT_handleForeignAccents(recepteur));
     factureTexDocument.replace("YEROTHCOMPTEBANCAIRENR", infoEntreprise.getNumeroCompteBancaire());
     factureTexDocument.replace("YEROTHCONTRIBUABLENR", infoEntreprise.getNumeroDeContribuable());
     factureTexDocument.replace("YEROTHAGENCECOMPTEBANCAIRE", infoEntreprise.getAgenceCompteBancaireTex());
     factureTexDocument.replace("YEROTHSOMME",
-                               YerothUtils::handleForeignAccents(GET_CURRENCY_STRING_NUM(_sommeTotal)));
+                               YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_CURRENCY_STRING_NUM(_sommeTotal)));
 
     QString nom_client(lineEdit_articles_nom_client->text());
 
@@ -549,7 +549,7 @@ QString YerothSortirWindow::imprimer_facture_grand(int sortie_id)
         else
         {
             nom_client = "Client \"DIVERS\"";
-            factureTexDocument.replace("YEROTHCLIENT", YerothUtils::handleForeignAccents(nom_client));
+            factureTexDocument.replace("YEROTHCLIENT", YerothUtils::LATEX_IN_OUT_handleForeignAccents(nom_client));
             factureTexDocument.replace("CLIENTYEROTHPOBOX", "");
             factureTexDocument.replace("CLIENTYEROTHCITY", "");
             factureTexDocument.replace("CLIENTYEROTHMAIL", "");
@@ -651,7 +651,7 @@ QString YerothSortirWindow::imprimer_facture_petit(int sortie_id)
     if (-1 != sortie_id)
     {
         factureTexDocument.replace("YEROTHNUMEROSORTIETRANSFERT",
-                                   YerothUtils::handleForeignAccents(GET_NUM_STRING(sortie_id)));
+                                   YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_NUM_STRING(sortie_id)));
     }
     else
     {
@@ -674,7 +674,7 @@ QString YerothSortirWindow::imprimer_facture_petit(int sortie_id)
 
     factureTexDocument.replace("YEROTHFACTURESMALLPAPERHEIGHT", minPaperHeight);
 
-    QString destinationTex(YerothUtils::handleForeignAccents(lineEdit_articles_transfert->text()));
+    QString destinationTex(YerothUtils::LATEX_IN_OUT_handleForeignAccents(lineEdit_articles_transfert->text()));
 
     factureTexDocument.replace("YEROTHENTREPRISE", infoEntreprise.getNomCommercialTex());
     factureTexDocument.replace("YEROTHACTIVITESENTREPRISE", infoEntreprise.getSecteursActivitesTex());
@@ -704,7 +704,7 @@ QString YerothSortirWindow::imprimer_facture_petit(int sortie_id)
         else
         {
             nom_client.append("Client \"DIVERS\"");
-            factureTexDocument.replace("YEROTHCLIENT", YerothUtils::handleForeignAccents(nom_client));
+            factureTexDocument.replace("YEROTHCLIENT", YerothUtils::LATEX_IN_OUT_handleForeignAccents(nom_client));
             factureTexDocument.replace("CLIENTYEROTHPOBOX", "");
             factureTexDocument.replace("CLIENTYEROTHCITY", "");
             factureTexDocument.replace("CLIENTYEROTHMAIL", "");
@@ -768,7 +768,7 @@ void YerothSortirWindow::handle_info_succursale(QString & factureTexDocument, co
     YerothSqlTableModel & localisationTableModel = _allWindows->getSqlTableModel_localisations();
     localisationTableModel.yerothSetFilter(QString("nom_localisation = '%1'").arg(nom_succursale));
     //qDebug() << "++ nom_succursale: " << nom_succursale;
-    factureTexDocument.replace("YEROTHCLIENT", YerothUtils::handleForeignAccents(succursale));
+    factureTexDocument.replace("YEROTHCLIENT", YerothUtils::LATEX_IN_OUT_handleForeignAccents(succursale));
     if (localisationTableModel.easySelect() > 0)
     {
         QSqlRecord record = localisationTableModel.record(0);
@@ -781,19 +781,19 @@ void YerothSortirWindow::handle_info_succursale(QString & factureTexDocument, co
             clientTel.append(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NUMERO_TELEPHONE_2));
         }
         if (!clientVille.isEmpty())
-            factureTexDocument.replace("CLIENTYEROTHCITY", YerothUtils::handleForeignAccents(clientVille));
+            factureTexDocument.replace("CLIENTYEROTHCITY", YerothUtils::LATEX_IN_OUT_handleForeignAccents(clientVille));
         else
             factureTexDocument.replace("CLIENTYEROTHCITY", "");
         if (!clientPOBox.isEmpty())
-            factureTexDocument.replace("CLIENTYEROTHPOBOX", YerothUtils::handleForeignAccents(clientPOBox));
+            factureTexDocument.replace("CLIENTYEROTHPOBOX", YerothUtils::LATEX_IN_OUT_handleForeignAccents(clientPOBox));
         else
             factureTexDocument.replace("CLIENTYEROTHPOBOX", "N/a");
         if (!clientEmail.isEmpty())
-            factureTexDocument.replace("CLIENTYEROTHMAIL", YerothUtils::handleForeignAccents(clientEmail));
+            factureTexDocument.replace("CLIENTYEROTHMAIL", YerothUtils::LATEX_IN_OUT_handleForeignAccents(clientEmail));
         else
             factureTexDocument.replace("CLIENTYEROTHMAIL", "");
         if (!clientTel.isEmpty())
-            factureTexDocument.replace("CLIENTYEROTHPHONE", YerothUtils::handleForeignAccents(clientTel));
+            factureTexDocument.replace("CLIENTYEROTHPHONE", YerothUtils::LATEX_IN_OUT_handleForeignAccents(clientTel));
         else
             factureTexDocument.replace("CLIENTYEROTHPHONE", "");
     }
@@ -805,7 +805,7 @@ void YerothSortirWindow::handle_info_client(QString & factureTexDocument, const 
     YerothSqlTableModel & clientTableModel = _allWindows->getSqlTableModel_clients();
     clientTableModel.yerothSetFilter(QString("nom_entreprise = '%1'").arg(nom_client));
     //qDebug() << "++ nom_client: " << nom_client;
-    factureTexDocument.replace("YEROTHCLIENT", YerothUtils::handleForeignAccents(nom_client));
+    factureTexDocument.replace("YEROTHCLIENT", YerothUtils::LATEX_IN_OUT_handleForeignAccents(nom_client));
     if (clientTableModel.easySelect() > 0)
     {
         QSqlRecord record = clientTableModel.record(0);
@@ -818,19 +818,19 @@ void YerothSortirWindow::handle_info_client(QString & factureTexDocument, const 
             clientTel.append(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NUMERO_TELEPHONE_2));
         }
         if (!clientVille.isEmpty())
-            factureTexDocument.replace("CLIENTYEROTHCITY", YerothUtils::handleForeignAccents(clientVille));
+            factureTexDocument.replace("CLIENTYEROTHCITY", YerothUtils::LATEX_IN_OUT_handleForeignAccents(clientVille));
         else
             factureTexDocument.replace("CLIENTYEROTHCITY", "");
         if (!clientPOBox.isEmpty())
-            factureTexDocument.replace("CLIENTYEROTHPOBOX", YerothUtils::handleForeignAccents(clientPOBox));
+            factureTexDocument.replace("CLIENTYEROTHPOBOX", YerothUtils::LATEX_IN_OUT_handleForeignAccents(clientPOBox));
         else
             factureTexDocument.replace("CLIENTYEROTHPOBOX", "N/a");
         if (!clientEmail.isEmpty())
-            factureTexDocument.replace("CLIENTYEROTHMAIL", YerothUtils::handleForeignAccents(clientEmail));
+            factureTexDocument.replace("CLIENTYEROTHMAIL", YerothUtils::LATEX_IN_OUT_handleForeignAccents(clientEmail));
         else
             factureTexDocument.replace("CLIENTYEROTHMAIL", "");
         if (!clientTel.isEmpty())
-            factureTexDocument.replace("CLIENTYEROTHPHONE", YerothUtils::handleForeignAccents(clientTel));
+            factureTexDocument.replace("CLIENTYEROTHPHONE", YerothUtils::LATEX_IN_OUT_handleForeignAccents(clientTel));
         else
             factureTexDocument.replace("CLIENTYEROTHPHONE", "");
     }

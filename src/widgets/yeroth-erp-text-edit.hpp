@@ -41,7 +41,7 @@ public:
 
 	inline QString toPlainTextForLatex() const
 	{
-		return YerothUtils::handleForeignAccents(QTextEdit::toPlainText().trimmed());
+		return YerothUtils::LATEX_IN_OUT_handleForeignAccents(QTextEdit::toPlainText().trimmed());
 	}
 
 	inline QString toPlainText() const

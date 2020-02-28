@@ -60,7 +60,7 @@ public:
 
 	inline QString textForLatex() const
 	{
-		return YerothUtils::handleForeignAccents(QLineEdit::text().trimmed());
+		return YerothUtils::LATEX_IN_OUT_handleForeignAccents(QLineEdit::text().trimmed());
 	}
 
 	inline QString text() const

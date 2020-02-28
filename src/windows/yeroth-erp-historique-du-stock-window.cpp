@@ -259,7 +259,7 @@ bool YerothHistoriqueDuStockWindow::imprimer_document()
 
 	QString texDocument;
 
-	QString factureDate(YerothUtils::handleForeignAccents(infoEntreprise.getVilleTex()));
+	QString factureDate(YerothUtils::LATEX_IN_OUT_handleForeignAccents(infoEntreprise.getVilleTex()));
 
 	YerothUtils::getCurrentLocaleDate(factureDate);
 

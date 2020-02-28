@@ -385,7 +385,7 @@ bool YerothClientsDetailWindow::imprimer_document()
 
     YerothInfoEntreprise & infoEntreprise = YerothUtils::getAllWindows()->getInfoEntreprise();
 
-    QString fileDate(YerothUtils::handleForeignAccents(infoEntreprise.getVilleTex()));
+    QString fileDate(YerothUtils::LATEX_IN_OUT_handleForeignAccents(infoEntreprise.getVilleTex()));
 
     YerothUtils::getCurrentLocaleDate(fileDate);
 

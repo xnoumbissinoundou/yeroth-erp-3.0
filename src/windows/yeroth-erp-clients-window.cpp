@@ -262,12 +262,13 @@ void YerothERPClientsWindow::private_slot_afficher_les_transactions_dun_client()
 														 YerothDatabaseTableColumn::ENGAGEMENT,
 														 _allWindows->PAIEMENTS));
 
-	    QString clientTransactionsStockVenduQueryStr(QString("select %1, %2 as 'Date de paiement', %3 as Heure, %4 as 'Montant transaction', %5 as 'Type de paiement', %6 as 'Raison' from %7")
+	    QString clientTransactionsStockVenduQueryStr(QString("select %1, %2 as 'Date de paiement', %3 as Heure, %4 as 'Montant transaction', %5 as 'Type de paiement', concat(%6,':',%7) as 'Raison' from %8")
 	    											.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT,
 	    												 YerothDatabaseTableColumn::DATE_VENTE,
 														 YerothDatabaseTableColumn::HEURE_VENTE,
 														 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
 														 YerothDatabaseTableColumn::TYPE_DE_VENTE,
+														 YerothDatabaseTableColumn::CATEGORIE,
 														 YerothDatabaseTableColumn::DESIGNATION,
 														 _allWindows->STOCKS_VENDU));
 
@@ -288,7 +289,8 @@ void YerothERPClientsWindow::private_slot_afficher_les_transactions_dun_client()
 //						.arg(QString::number(querySize));
 
 		YerothUtils::getAllWindows()->_transactionsDunClientWindow
-				->listerTransactionsDunClient(sqlClientTransactionsUnionQuery);
+				->listerTransactionsDunClient(clientCompanyName,
+											  sqlClientTransactionsUnionQuery);
 	}
 	else
 	{

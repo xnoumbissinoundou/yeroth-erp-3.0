@@ -1333,7 +1333,7 @@ void YerothUtils::getCurrentLocaleDate(QString &date)
     date.append(", le ")
     .append(YerothUtils::frenchLocale.toString(GET_CURRENT_DATE));
     //qDebug() << "++ before date: " << date << " (" << date.indexOf(QString::fromUtf8("û")) << ")";
-    date = YerothUtils::handleForeignAccents(date);
+    date = YerothUtils::LATEX_IN_OUT_handleForeignAccents(date);
     //qDebug() << "++ after date: " << date << " (" << date.indexOf(QString::fromUtf8("û")) << ")";
 #endif
 
@@ -1343,7 +1343,7 @@ void YerothUtils::getCurrentLocaleDate(QString &date)
     d.replace(firstCommaIndex, 1, " ");
     date.append(", ")
     .append(d);
-    date = YerothUtils::handleForeignAccents(date);
+    date = YerothUtils::LATEX_IN_OUT_handleForeignAccents(date);
 #endif
 }
 
@@ -1495,7 +1495,7 @@ QString YerothUtils::colorLatexTextInput(const QString colorSpec,
 }
 
 
-QString YerothUtils::handleForeignAccents(const QString &texText_in)
+QString YerothUtils::LATEX_IN_OUT_handleForeignAccents(const QString &texText_in)
 {
     QString tempText(texText_in);
     tempText = tempText.isEmpty() ? "\"\"" : tempText.replace("_", "\\_").replace(EMPTY_SPACE_REGEXP, "\\ ");
@@ -1549,7 +1549,7 @@ void YerothUtils::handleComptesClientsTexTableItemText(int texTableColumnCount,
 
     if (!itemText.isEmpty())
     {
-        resultItemText = handleForeignAccents(resultItemText);
+        resultItemText = LATEX_IN_OUT_handleForeignAccents(resultItemText);
 
         texTable_in_out.append(resultItemText);
     }
@@ -1574,7 +1574,7 @@ void YerothUtils::handleAchatsTexTableItemText(int texTableColumnCount,
 
     if (!itemText.isEmpty())
     {
-        resultItemText = handleForeignAccents(resultItemText);
+        resultItemText = LATEX_IN_OUT_handleForeignAccents(resultItemText);
 
         texTable_in_out.append(resultItemText);
     }
@@ -1599,7 +1599,7 @@ void YerothUtils::handleFactureTexTableItemText(int texTableColumnCount,
 
     if (!itemText.isEmpty())
     {
-        resultItemText = handleForeignAccents(resultItemText);
+        resultItemText = LATEX_IN_OUT_handleForeignAccents(resultItemText);
 
         texTable_in_out.append(resultItemText);
     }
@@ -1619,7 +1619,7 @@ void YerothUtils::handleTexTableItemText(int texTableColumnCount,
                                         int itemTextColumnPosition,
                                         QString &itemText)
 {
-    QString resultItemText(handleForeignAccents(itemText));
+    QString resultItemText(LATEX_IN_OUT_handleForeignAccents(itemText));
 
     if (!resultItemText.isEmpty())
     {
@@ -1781,13 +1781,13 @@ void YerothUtils::getFactureTexTableString(QString &texTable_in_out,
         texTable_in_out.append("\\hline").append("\n");
     }
 
-    QString quantiteVendueStr(handleForeignAccents(GET_NUM_STRING(quantiteVendue)));
+    QString quantiteVendueStr(LATEX_IN_OUT_handleForeignAccents(GET_NUM_STRING(quantiteVendue)));
     quantiteVendueStr.prepend("\\textbf{").append("}");
 
-    QString totalTVAStr(handleForeignAccents(GET_DOUBLE_STRING(totalTVA)));
+    QString totalTVAStr(LATEX_IN_OUT_handleForeignAccents(GET_DOUBLE_STRING(totalTVA)));
     totalTVAStr.prepend("\\textbf{").append("}");
 
-    QString sommeTotalStr(handleForeignAccents(GET_CURRENCY_STRING_NUM(sommeTotal)));
+    QString sommeTotalStr(LATEX_IN_OUT_handleForeignAccents(GET_CURRENCY_STRING_NUM(sommeTotal)));
     sommeTotalStr.prepend("\\textbf{").append("}");
 
     QString totalStr;
@@ -1888,35 +1888,35 @@ void YerothUtils::getFactureSmallTexTableString(QString &texTable_in_out,
 
             texTable_in_out.append(QString("%1. %2 & $x%3$ & %4 \\\\ \n")
                                    .arg(QString::number(k+1),
-                                        YerothUtils::handleForeignAccents(articleName),
+                                        YerothUtils::LATEX_IN_OUT_handleForeignAccents(articleName),
                                         articleQteItem->text(),
-                                        YerothUtils::handleForeignAccents(totalTtcItem->text())));
+                                        YerothUtils::LATEX_IN_OUT_handleForeignAccents(totalTtcItem->text())));
         }
     }
 
     //We now add the sum
-    QString sommeTotalStr(YerothUtils::handleForeignAccents(GET_CURRENCY_STRING_NUM(sommeTotal)));
+    QString sommeTotalStr(YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_CURRENCY_STRING_NUM(sommeTotal)));
 
     texTable_in_out.append(QString("\\hline\n & $%1$ & %2 \\\\ \n")
                            .arg(QString::number(quantiteVendue), sommeTotalStr));
 
     texTable_in_out.append(QString(" & & \\\\ \n"));
 
-    QString totalTVAStr(YerothUtils::handleForeignAccents(GET_CURRENCY_STRING_NUM(totalTVA)));
+    QString totalTVAStr(YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_CURRENCY_STRING_NUM(totalTVA)));
 
-    QString montantRecuDuClientStr(YerothUtils::handleForeignAccents(GET_CURRENCY_STRING_NUM(montantRecuDuCient)));
+    QString montantRecuDuClientStr(YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_CURRENCY_STRING_NUM(montantRecuDuCient)));
 
     QString montantARembourserAuClientStr;
 
     if (montantARembourserAuClient >= 0)
     {
     	montantARembourserAuClientStr =
-    			YerothUtils::handleForeignAccents(GET_CURRENCY_STRING_NUM(montantARembourserAuClient));
+    			YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_CURRENCY_STRING_NUM(montantARembourserAuClient));
     }
     else
     {
     	montantARembourserAuClientStr =
-    			YerothUtils::handleForeignAccents(GET_CURRENCY_STRING_NUM(0.0));
+    			YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_CURRENCY_STRING_NUM(0.0));
     }
 
 
@@ -2197,7 +2197,8 @@ QString YerothUtils::prindDocumentFromTableView(YerothWindowsCommons *aWindowCal
 																							  bool lastPage_OUT),
 									          void (*getLatexTemplateDocumentString)(QString &texDocumentString_in_out_OUT,
 											   	   	   	   	   	   	   	   	         QString &printString_in_out_OUT),
-									          QString latexFileNamePrefix)
+									          QString latexFileNamePrefix,
+											  QMap<QString, QString> *documentSpecificElements /* = 0 */)
 {
     QStandardItemModel *tableModel = aTableView.getStandardItemModel();
 
@@ -2271,9 +2272,22 @@ QString YerothUtils::prindDocumentFromTableView(YerothWindowsCommons *aWindowCal
 
     getLatexTemplateDocumentString(texDocument, texTable);
 
-    QString factureDate(YerothUtils::handleForeignAccents(infoEntreprise.getVilleTex()));
+    QString factureDate(YerothUtils::LATEX_IN_OUT_handleForeignAccents(infoEntreprise.getVilleTex()));
 
     YerothUtils::getCurrentLocaleDate(factureDate);
+
+    {
+    	if ( 0 != documentSpecificElements )
+    	{
+    		QMapIterator<QString, QString> itDocumentSpecificElements(*documentSpecificElements);
+
+    		while (itDocumentSpecificElements.hasNext())
+    		{
+    			itDocumentSpecificElements.next();
+    			texDocument.replace(itDocumentSpecificElements.key(), itDocumentSpecificElements.value());
+    		}
+    	}
+    }
 
     texDocument.replace("YEROTHPAPERSPEC", "a4paper");
 

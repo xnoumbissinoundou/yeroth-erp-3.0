@@ -594,7 +594,7 @@ void YerothTransactionsWindow::imprimer_journal_transactions()
 
     QString texDocument;
 
-    QString factureDate(YerothUtils::handleForeignAccents(infoEntreprise.getVilleTex()));
+    QString factureDate(YerothUtils::LATEX_IN_OUT_handleForeignAccents(infoEntreprise.getVilleTex()));
 
     YerothUtils::getCurrentLocaleDate(factureDate);
 
@@ -658,7 +658,7 @@ void YerothTransactionsWindow::imprimer_journal_transactions()
 
     yerothFiltres.remove(lastIndexOfComa, yerothFiltres.length());
 
-    texDocument.replace("YEROTHFILTRES", YerothUtils::handleForeignAccents(yerothFiltres));
+    texDocument.replace("YEROTHFILTRES", YerothUtils::LATEX_IN_OUT_handleForeignAccents(yerothFiltres));
 
     QString yerothTableauTransactionsFileName;
 

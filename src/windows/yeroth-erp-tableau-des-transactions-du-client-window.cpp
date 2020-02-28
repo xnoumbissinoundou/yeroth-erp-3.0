@@ -20,8 +20,7 @@ const QString YerothTableauDesTransactionsDuClientWindow::_WINDOW_TITLE(QString(
 
 
 YerothTableauDesTransactionsDuClientWindow::YerothTableauDesTransactionsDuClientWindow()
-:YerothWindowsCommons(YerothTableauDesTransactionsDuClientWindow::_WINDOW_TITLE),
- _logger(new YerothLogger("YerothTableauDesTransactionsDuClientWindow"))
+:YerothWindowsCommons(YerothTableauDesTransactionsDuClientWindow::_WINDOW_TITLE)
 {
     setupUi(this);
 
@@ -31,8 +30,11 @@ YerothTableauDesTransactionsDuClientWindow::YerothTableauDesTransactionsDuClient
 }
 
 
-void YerothTableauDesTransactionsDuClientWindow::listerTransactionsDunClient(QSqlQuery &sqlClientTransactionsUnionQuery)
+void YerothTableauDesTransactionsDuClientWindow::listerTransactionsDunClient(QString clientCompanyName,
+																			 QSqlQuery &sqlClientTransactionsUnionQuery)
 {
+	_clientCompanyName = clientCompanyName;
+
 	QString curTitle(windowTitle());
 
 	static QString preambleTitle(QString("%1 - %2")
@@ -184,8 +186,6 @@ void YerothTableauDesTransactionsDuClientWindow::getTransactionsDunClientTexDocu
 
 bool YerothTableauDesTransactionsDuClientWindow::imprimer_document()
 {
-	_logger->log("imprimer_document");
-
 	QString latexFileNamePrefix("yeroth-erp-tableau-des-transactions-dun-client");
 
     QList<int> tableColumnsToIgnore;
@@ -204,12 +204,20 @@ bool YerothTableauDesTransactionsDuClientWindow::imprimer_document()
     latexFileNamePrefix.append("yeroth-erp-customer-transaction-table");
 #endif
 
+    QMap<QString, QString> documentSpecificElements;
+
+    documentSpecificElements.insert("YEROTHCLIENT", YerothUtils::LATEX_IN_OUT_handleForeignAccents(_clientCompanyName));
+    documentSpecificElements.insert("YEROTHVENTESFIN", SET_DATE_TO_STRING(GET_CURRENT_DATE));
+    documentSpecificElements.insert("YEROTHVENTESDEBUT", SET_DATE_TO_STRING(GET_CURRENT_DATE));
+
+
     pdfStockFileName = YerothUtils::prindDocumentFromTableView(this,
     														   *tableView_tableau_des_transactions_du_client,
 															   tableColumnsToIgnore,
 															   &YerothTableauDesTransactionsDuClientWindow::getTransactionsDunClientTexTableString,
 															   &YerothTableauDesTransactionsDuClientWindow::getTransactionsDunClientTexDocumentString,
-															   latexFileNamePrefix);
+															   latexFileNamePrefix,
+															   &documentSpecificElements);
 
     if (pdfStockFileName.isEmpty())
     {

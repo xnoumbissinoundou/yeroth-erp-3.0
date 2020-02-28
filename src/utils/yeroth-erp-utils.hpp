@@ -233,7 +233,7 @@ public:
 	static QString colorLatexTextInput(const QString colorSpec,
 			 	 	 	 	 	 	   const QString latexString_in);
 
-	static QString handleForeignAccents(const QString &texText_in_out);
+	static QString LATEX_IN_OUT_handleForeignAccents(const QString &texText_in_out);
 
 	static void cleanUpTexTableLastString(QString &texTable_in_out);
 
@@ -297,7 +297,8 @@ public:
 																							bool lastPage_OUT),
 										   void (*getLatexTemplateDocumentString)(QString &texDocumentString_in_out_OUT,
 												   	   	   	   	   	   	   	   	  QString &printString_in_out_OUT),
-										   QString latexFileNamePrefix);
+										   QString latexFileNamePrefix,
+										   QMap<QString, QString> *documentSpecificElements = 0);
 
     inline static void getLatexFinancialAccountingReportData(QString &texDocumentString_in_out)
     {
@@ -717,6 +718,6 @@ YerothQMessageBox::information(this, QObject::trUtf8(DIALOG_BOX_TITLE), msg); }
 	# define GET_MONTH_NAME_LOCALIZED(M) YerothUtils::englishLocale.monthName(M)
 # endif
 
-# define GET_CURRENCY_STRING_NUM_FOR_LATEX(NUM) YerothUtils::handleForeignAccents(GET_CURRENCY_STRING_NUM(NUM))
+# define GET_CURRENCY_STRING_NUM_FOR_LATEX(NUM) YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_CURRENCY_STRING_NUM(NUM))
 
 # endif /* SRC_YEROTH_UTILS_HPP_ */

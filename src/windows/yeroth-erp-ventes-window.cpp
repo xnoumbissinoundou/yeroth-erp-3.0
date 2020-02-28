@@ -772,7 +772,7 @@ bool YerothVentesWindow::imprimer_document()
     }
     YerothInfoEntreprise & infoEntreprise = _allWindows->getInfoEntreprise();
     QString texDocument;
-    QString factureDate(YerothUtils::handleForeignAccents(infoEntreprise.getVilleTex()));
+    QString factureDate(YerothUtils::LATEX_IN_OUT_handleForeignAccents(infoEntreprise.getVilleTex()));
     YerothUtils::getCurrentLocaleDate(factureDate);
 
 
@@ -810,7 +810,7 @@ bool YerothVentesWindow::imprimer_document()
 
     yerothFiltres.remove(lastIndexOfComa, yerothFiltres.length());
 
-    texDocument.replace("YEROTHFILTRES", YerothUtils::handleForeignAccents(yerothFiltres));
+    texDocument.replace("YEROTHFILTRES", YerothUtils::LATEX_IN_OUT_handleForeignAccents(yerothFiltres));
 
     //qDebug() << "++ temp file dir: " << YerothConfig::temporaryFilesDir;
     //qDebug() << "++ texDocument: \n" << texDocument << "\n++++++++";

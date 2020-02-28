@@ -88,7 +88,7 @@ public:
 
 	inline QString nom_completTex()
 	{
-		return YerothUtils::handleForeignAccents(_nom_complet);
+		return YerothUtils::LATEX_IN_OUT_handleForeignAccents(_nom_complet);
 	}
 
 	inline QString localisation()

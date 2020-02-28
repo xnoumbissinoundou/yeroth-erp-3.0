@@ -89,7 +89,7 @@ public:
 
 	inline QString getNomCommercialTex() const
 	{
-		return YerothUtils::handleForeignAccents(_nom_commercial);
+		return YerothUtils::LATEX_IN_OUT_handleForeignAccents(_nom_commercial);
 	}
 
 	inline QString getLocalisation() const
@@ -99,7 +99,7 @@ public:
 
 	inline QString getLocalisationTex() const
 	{
-		return YerothUtils::handleForeignAccents(_localisation);
+		return YerothUtils::LATEX_IN_OUT_handleForeignAccents(_localisation);
 	}
 
 	inline QString getSiegeSocial() const
@@ -124,7 +124,7 @@ public:
 
 	inline QString getVilleTex() const
 	{
-		return YerothUtils::handleForeignAccents(_ville);
+		return YerothUtils::LATEX_IN_OUT_handleForeignAccents(_ville);
 	}
 
 	inline QString getPays() const
@@ -134,7 +134,7 @@ public:
 
 	inline QString getPaysTex() const
 	{
-		return YerothUtils::handleForeignAccents(_pays);
+		return YerothUtils::LATEX_IN_OUT_handleForeignAccents(_pays);
 	}
 
 	inline QString getEmail() const
@@ -144,7 +144,7 @@ public:
 
 	inline QString getEmailTex() const
 	{
-		return YerothUtils::handleForeignAccents(_email);
+		return YerothUtils::LATEX_IN_OUT_handleForeignAccents(_email);
 	}
 
 	inline QString getTelephone() const
@@ -174,7 +174,7 @@ public:
 
 	inline QString getAgenceCompteBancaireTex() const
 	{
-		return YerothUtils::handleForeignAccents(_agence_comptebancaire);
+		return YerothUtils::LATEX_IN_OUT_handleForeignAccents(_agence_comptebancaire);
 	}
 
 	inline QString getSecteursActivites() const
@@ -184,7 +184,7 @@ public:
 
 	inline QString getSecteursActivitesTex() const
 	{
-		return YerothUtils::handleForeignAccents(_secteurs_activites);
+		return YerothUtils::LATEX_IN_OUT_handleForeignAccents(_secteurs_activites);
 	}
 
 private:

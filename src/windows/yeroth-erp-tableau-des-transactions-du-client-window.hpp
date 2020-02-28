@@ -25,17 +25,15 @@ public:
 
 	YerothTableauDesTransactionsDuClientWindow();
 
-	inline ~YerothTableauDesTransactionsDuClientWindow()
-	{
-		delete _logger;
-	}
+	inline ~YerothTableauDesTransactionsDuClientWindow(){}
 
 	inline virtual QToolBar * getQMainWindowToolBar()
 	{
 		return toolBar_tableauDesTransactionDuClient;
 	}
 
-	void listerTransactionsDunClient(QSqlQuery &sqlClientTransactionsUnionQuery);
+	void listerTransactionsDunClient(QString clientCompanyName,
+									 QSqlQuery &sqlClientTransactionsUnionQuery);
 
 	static void getTransactionsDunClientTexTableString(QString &texTable_in_out,
 	       									    	   QStandardItemModel &tableStandardItemModel,
@@ -56,11 +54,7 @@ private:
 
     static const QString 		_WINDOW_TITLE;
 
-    QString						_currentStockID;
-    QString						_currentStockReference;
-    QString						_currentStockDesignation;
-
-    YerothLogger					*_logger;
+    QString						_clientCompanyName;
 };
 
 #endif /* SRC_YEROTH_COMPTES_CLIENTS_TRANSACTIONS_DUN_CLIENT_WINDOW_HPP_ */
