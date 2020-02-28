@@ -226,7 +226,7 @@ void YerothERPClientsWindow::private_payer_au_compteclient()
     }
     else
     {
-        YerothQMessageBox::warning(this, QObject::trUtf8("payer un compte client"),
+        YerothQMessageBox::warning(this, QObject::trUtf8("payer à un compte client"),
                                   QObject::trUtf8("Sélectionnez un compte client afin d'effectuer un paiement !"));
     }
 }
@@ -414,12 +414,11 @@ void YerothERPClientsWindow::afficher_au_detail(const QModelIndex & modelIndex)
 
     if (getLastListerSelectedRow() > -1 && _curClientsTableModel->rowCount() > 0)
     {
-    	//qDebug() << "++ test" << modelIndex.row();
+    	rendreInvisible();
+
         _allWindows->_clientsDetailWindow->rendreVisible(getLastListerSelectedRow(),
         												 _curClientsTableModel,
 														 _curStocksTableModel);
-
-        rendreInvisible();
     }
     else
     {

@@ -44,6 +44,7 @@ public:
 	QString nom_entreprise;
 	QString nom_encaisseur;
 	QString type_de_paiement;
+	QString notes;
 	QString engagement;
 	QDate date_paiement;
 
@@ -104,6 +105,8 @@ public slots:
 	static void getPayerAuCompteClientTexDocumentString(QString &texDocumentString_in_out,
 			   	   	   	   	   	   	   	   	   	   	    QString &printString);
 private slots:
+
+	void afficher_detail_client();
 
 	bool createHistoryPaymentForCustomerAccount(HistoryPaymentInfo &paymentInfo);
 

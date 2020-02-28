@@ -78,8 +78,8 @@ public slots:
 	{
 		YerothQMessageBox::information(this,
 							 QObject::trUtf8("aide"),
-							 QObject::trUtf8("Sélectionner un stock dans le tableau des stocks, ensuite cliquer "
-											 "sur l'opération que vous souhaitez réaliser !"));
+							 QObject::trUtf8("Sélectionner un compte client dans le tableau "
+											 "des comptes clients, ensuite cliquer sur l'opération que vous souhaitez réaliser !"));
 	}
 
 	bool export_csv_file();

@@ -39,7 +39,7 @@ YerothClientsDetailWindow::YerothClientsDetailWindow()
 
     setupLineEdits();
 
-    textEdit_client_details_description_du_client->setEnabled(false);
+    textEdit_client_details_description_du_client->setYerothEnabled(false);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);

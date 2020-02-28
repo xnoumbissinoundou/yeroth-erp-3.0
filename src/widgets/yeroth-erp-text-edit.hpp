@@ -37,7 +37,7 @@ public:
 
 	void clearField();
 
-	void setEnabled(bool enabled);
+	void setYerothEnabled(bool enabled);
 
 	inline QString toPlainTextForLatex() const
 	{

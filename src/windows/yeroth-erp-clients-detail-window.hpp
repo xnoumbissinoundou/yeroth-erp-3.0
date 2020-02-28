@@ -73,8 +73,8 @@ public slots:
 	{
 		YerothQMessageBox::information(this,
 						 QObject::trUtf8("aide"),
-						 QObject::trUtf8("Vous pouvez retourner à la page précédente en "
-										 "cliquant sur 'Retour'!"));
+						 QObject::trUtf8("Vous pouvez modifier les détails de ce compte client "
+										 "en cliquant sur 'Modifier' !"));
 	}
 
 protected:

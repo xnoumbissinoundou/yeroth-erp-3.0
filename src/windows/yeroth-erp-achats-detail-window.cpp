@@ -84,7 +84,7 @@ void YerothAchatsDetailWindow::setupLineEdits()
     lineEdit_prix_dachat->setEnabled(false);
     lineEdit_prix_unitaire->setEnabled(false);
     lineEdit_prix_vente->setEnabled(false);
-    textEdit_description->setEnabled(false);
+    textEdit_description->setYerothEnabled(false);
     lineEdit_quantite_initiale->setEnabled(false);
     lineEdit_stock_minimum->setEnabled(false);
     lineEdit_categorie_produit->setEnabled(false);

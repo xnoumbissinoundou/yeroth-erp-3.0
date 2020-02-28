@@ -48,7 +48,7 @@ YerothEntrerWindow::YerothEntrerWindow()
                                arg(COLOUR_RGB_STRING_YEROTH_GRAY_78_78_78,
                             	   COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
-    checkBox_service->setChecked(false);
+    checkBox_achat->setChecked(true);
 
     setupLineEdits();
 
@@ -623,7 +623,7 @@ void YerothEntrerWindow::clear_all_fields()
     label_image_produit->setAutoFillBackground(false);
     _lastEditedPrixVente.clear();
     _montantTva = 0.0;
-    checkBox_service->setChecked(false);
+    checkBox_achat->setChecked(true);
     checkBox_tva->setChecked(false);
     _tvaCheckBoxPreviousState = false;
     _createNewCategorie = false;
@@ -868,7 +868,7 @@ YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
 
         int stock_id_to_save = YerothUtils::getNextIdFromTable(_allWindows->STOCKS);
 
-        if (! checkBox_service->isChecked())
+        if (checkBox_achat->isChecked())
         {
         	achatRecord = achatSqlTableModel.record();
 
@@ -915,7 +915,7 @@ YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
         	utilisateurCourrantNomComplet.append(aUser->nom_complet());
         }
 
-        if (! checkBox_service->isChecked())
+        if (checkBox_achat->isChecked())
         {
         	achatRecord.setValue(YerothDatabaseTableColumn::ENREGISTREUR_STOCK, utilisateurCourrantNomComplet);
         	achatRecord.setValue(YerothDatabaseTableColumn::QUANTITE_TOTAL, quantite_total);
@@ -941,7 +941,7 @@ YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
 
         double marge_beneficiaire = getMargeBeneficiaire(prix_vente, prix_dachat, _montantTva);
 
-        if (! checkBox_service->isChecked())
+        if (checkBox_achat->isChecked())
         {
         	achatRecord.setValue(YerothDatabaseTableColumn::MARGE_BENEFICIAIRE, marge_beneficiaire);
         	achatRecord.setValue(YerothDatabaseTableColumn::PRIX_UNITAIRE, prix_unitaire_ht);
@@ -981,7 +981,7 @@ YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
 
         bool achatSuccess = false;
 
-        if (! checkBox_service->isChecked())
+        if (checkBox_achat->isChecked())
         {
         	achatSuccess = achatSqlTableModel.insertNewRecord(achatRecord);
         }
@@ -994,7 +994,7 @@ YEROTH_ERP_3_0_COMMIT_DATABASE_TRANSACTION;
         						.arg(lineEdit_designation->text()));
 
 
-        if (! checkBox_service->isChecked())
+        if (checkBox_achat->isChecked())
         {
             if (achatSuccess)
             {
@@ -1109,10 +1109,10 @@ void YerothEntrerWindow::showItem()
 
     if (1 == achatQuerySize)
     {
-    	checkBox_service->setChecked(false);
+    	checkBox_achat->setChecked(true);
     }
     else
     {
-    	checkBox_service->setChecked(true);
+    	checkBox_achat->setChecked(false);
     }
 }

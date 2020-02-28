@@ -78,7 +78,7 @@ void YerothTextEdit::clearField()
 }
 
 
-void YerothTextEdit::setEnabled(bool enabled)
+void YerothTextEdit::setYerothEnabled(bool enabled)
 {
     QTextEdit::setEnabled(enabled);
 

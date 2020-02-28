@@ -26,10 +26,10 @@ YerothAdminDetailWindow::YerothAdminDetailWindow():YerothPOSAdminWindowsCommons(
 
     dateEdit_detail_utilisateur_date_naissance->setEnabled(false);
     dateEdit_detail_localisation_date_ouverture->setEnabled(false);
-    textEdit_detail_fournisseur_description->setEnabled(false);
-    textEdit_detail_categorie_description->setEnabled(false);
-    textEdit_detail_localisation_description_lieu->setEnabled(false);
-    textEdit_detail_alerte_message->setEnabled(false);
+    textEdit_detail_fournisseur_description->setYerothEnabled(false);
+    textEdit_detail_categorie_description->setYerothEnabled(false);
+    textEdit_detail_localisation_description_lieu->setYerothEnabled(false);
+    textEdit_detail_alerte_message->setYerothEnabled(false);
     radioButton_detail_alerte_date_periode_temps->setEnabled(false);
     radioButton_detail_alerte_quantite->setEnabled(false);
 
@@ -360,7 +360,7 @@ void YerothAdminDetailWindow::rendreVisibleRemise(int sqlTableRow)
     dateEdit_detail_remise_date_debut->setYerothEnabled(false);
     dateEdit_detail_remise_date_fin->setYerothEnabled(false);
 
-    textEdit_detail_remise_message->setEnabled(false);
+    textEdit_detail_remise_message->setYerothEnabled(false);
 
     lineEdit_detail_remise_nom->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION_REMISE));
     lineEdit_detail_remise_designation_article->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));

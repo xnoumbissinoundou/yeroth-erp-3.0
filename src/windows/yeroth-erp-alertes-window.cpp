@@ -48,7 +48,7 @@ YerothAlertesWindow::YerothAlertesWindow():YerothWindowsCommons(YerothAlertesWin
 
     setupLineEdits();
 
-    textEdit_alerte_message->setEnabled(false);
+    textEdit_alerte_message->setYerothEnabled(false);
 
     dateEdit_alertes_date_debut->setYerothEnabled(false);
     dateEdit_alertes_date_fin->setYerothEnabled(false);

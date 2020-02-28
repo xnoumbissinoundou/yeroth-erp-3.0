@@ -72,6 +72,8 @@ YerothPaiementsWindow::YerothPaiementsWindow()
 
     reinitialiser_champs_db_visibles();
 
+    textEdit_description->setYerothEnabled(false);
+
     populateComboBoxes();
 
     setupLineEdits();
@@ -338,6 +340,8 @@ void YerothPaiementsWindow::contextMenuEvent(QContextMenuEvent * event)
 
 void YerothPaiementsWindow::clear_all_fields()
 {
+	textEdit_description->clear();
+
     lineEdit_details_de_paiement_numero_du_bon_de_paiement->clearField();
     lineEdit_details_de_paiement_nom_de_lentreprise->clearField();
     lineEdit_details_de_paiement_engagement->clearField();
@@ -940,6 +944,8 @@ void YerothPaiementsWindow::afficher_paiements_detail()
 
     //_logger->log("afficher_paiements_detail]", QString("row: %1").arg(lastSelectedPaiementsRow));
     QSqlRecord record = _curPaiementsTableModel->record(lastSelectedPaiementsRow);
+
+    textEdit_description->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOTES));
 
     lineEdit_details_de_paiement_numero_du_bon_de_paiement->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ID));
     lineEdit_details_de_paiement_nom_de_lentreprise->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE));
