@@ -86,13 +86,13 @@ public slots:
 		lineEdit_articles_transfert->clear();
 	}
 
-	QString afficher_facture_pdf(int vente_id = -1);
+	QString afficher_facture_pdf(QString referenceRecuSORTIE = QString(""));
 
-	QString imprimer_facture(int vente_id = -1);
+	QString imprimer_facture(QString referenceRecuSORTIE = QString(""));
 
-	QString imprimer_facture_grand(int vente_id = -1);
+	QString imprimer_facture_grand(QString referenceRecuSortieGRAND = QString(""));
 
-	QString imprimer_facture_petit(int vente_id = -1);
+	QString imprimer_facture_petit(QString referenceRecuSortiePETIT = QString(""));
 
 	void handle_info_succursale(QString &factureTexDocument,
 								const QString nom_succursale);

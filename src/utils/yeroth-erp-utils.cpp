@@ -139,6 +139,10 @@ QString YerothUtils::EN_bar_chart_tex("");
 
 QString YerothUtils::EN_bar_diag_tex("");
 
+const QString YerothUtils::PREFIX_RECU_VENDU("VEN-");
+
+const QString YerothUtils::PREFIX_RECU_SORTIE("SOR-");
+
 const QKeySequence YerothUtils::MESSAGE_DAIDE_QKEYSEQUENCE(QObject::tr(SHORTCUT_USER_TIP));
 
 const QKeySequence YerothUtils::IMPRIMER_QKEYSEQUENCE(QObject::tr(SHORTCUT_PRINT));
@@ -980,6 +984,21 @@ void YerothUtils::populateComboBoxMissing(QComboBox &aComboBox,
     curItems.clear();
 }
 
+
+QString YerothUtils::GET_REFERENCE_RECU_SUFFIX(QString prefix,
+											   QString fixedNumber)
+{
+	QString resultString(prefix);
+
+	QString referenceRecuSuffix(QString("%1-%2")
+										.arg(QDate::currentDate().toString("yyyy-MM-dd"),
+											 fixedNumber));
+	resultString.append(referenceRecuSuffix);
+
+	return resultString;
+}
+
+
 void YerothUtils::getColumnListString(QStringList &columnStringList,
                                      const QString &tableName,
                                      const char *fieldName)
@@ -1340,6 +1359,25 @@ void YerothUtils::infosEntreprise(YerothWindowsCommons &aYerothPOSQMainWindow,
                                   QObject::trUtf8("Informations sur l'entreprise"),
                                   infos);
 }
+
+
+void YerothUtils::getCurrentSimplifiedDate(QString &date)
+{
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+    date.append(QString(", Le %1 à %2")
+    				.arg(QDate::currentDate().toString("dd-MM-yyyy"),
+    					 CURRENT_TIME));
+    date = YerothUtils::LATEX_IN_OUT_handleForeignAccents(date);
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+    date.append(QString(", The %1 at %2")
+    				.arg(QDate::currentDate().toString("dd-MM-yyyy"),
+    					 CURRENT_TIME));
+    date = YerothUtils::LATEX_IN_OUT_handleForeignAccents(date);
+#endif
+}
+
 
 void YerothUtils::getCurrentLocaleDate(QString &date)
 {

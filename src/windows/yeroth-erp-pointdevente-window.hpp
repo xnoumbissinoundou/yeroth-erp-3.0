@@ -114,13 +114,13 @@ public slots:
 			actionAfficherPDF->setEnabled(true);
 		}
 
-		QString afficher_facture_pdf(int vente_id = -1);
+		QString afficher_facture_pdf(QString referenceRecu = QString(""));
 
-		QString imprimer_facture(int vente_id = -1);
+		QString imprimer_facture(QString referenceRecu = QString(""));
 
-		QString imprimer_facture_grand(int vente_id = -1);
+		QString imprimer_facture_grand(QString referenceRecuGRAND = QString(""));
 
-		QString imprimer_facture_petit(int vente_id = -1);
+		QString imprimer_facture_petit(QString referenceRecuPETIT = QString(""));
 
 		void handleAddedArticle();
 

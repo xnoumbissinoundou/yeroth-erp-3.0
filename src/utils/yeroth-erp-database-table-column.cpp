@@ -18,6 +18,8 @@ const QString YerothDatabaseTableColumn::ENGAGEMENT						("engagement");
 const QString YerothDatabaseTableColumn::HISTORIQUE_STOCK				("historique_stock");
 const QString YerothDatabaseTableColumn::CLIENTS_ID						("clients_id");
 const QString YerothDatabaseTableColumn::VENTE_ID						("vente_id");
+const QString YerothDatabaseTableColumn::REFERENCE_RECU_VENDU			("reference_recu_vendu");
+const QString YerothDatabaseTableColumn::REFERENCE_RECU_SORTIE			("reference_recu_sortie");
 const QString YerothDatabaseTableColumn::ENREGISTREUR_STOCK				("enregistreur_stock");
 const QString YerothDatabaseTableColumn::REFERENCE						("reference");
 const QString YerothDatabaseTableColumn::COMPTE_CLIENT					("compte_client");
@@ -138,7 +140,13 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::HISTORIQUE_STOCK,	QObject::tr("Historique stock"));
 
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::VENTE_ID,			QObject::tr("Nr. Fac."));
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::CLIENTS_ID,			QObject::tr("ID client"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::VENTE_ID,			QObject::tr("ID vente"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REFERENCE_RECU_VENDU,QObject::trUtf8("Reçu"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REFERENCE_RECU_SORTIE,QObject::trUtf8("Bon"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::ENREGISTREUR_STOCK,			QObject::tr("Gestionnaire stock"));
 

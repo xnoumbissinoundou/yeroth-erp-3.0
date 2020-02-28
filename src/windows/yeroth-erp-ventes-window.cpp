@@ -270,7 +270,7 @@ void YerothVentesWindow::setupLineEdits()
     lineEdit_ventes_categorie_produit->enableForSearch(QObject::trUtf8("nom de la catégorie d'articles"));
     lineEdit_ventes_nom_entreprise_fournisseur->enableForSearch(QObject::trUtf8("nom de l'entreprise fournisseur"));
     lineEdit_ventes_nom_entreprise_client->enableForSearch(QObject::trUtf8("nom de l'entreprise cliente"));
-    lineEdit_ventes_vente_id->enableForSearch(QObject::trUtf8("numéro de facture"));
+    lineEdit_ventes_reference_recu_vendu->enableForSearch(QObject::trUtf8("référence reçu de vente"));
 
     lineEdit_type_de_vente->setEnabled(false);
     lineEdit_nom_client->setEnabled(false);
@@ -300,7 +300,7 @@ void YerothVentesWindow::setupLineEdits()
     connect(lineEdit_ventes_categorie_produit, SIGNAL(textChanged(const QString &)), this, SLOT(rechercher()));
     connect(lineEdit_ventes_nom_entreprise_fournisseur, SIGNAL(textChanged(const QString &)), this, SLOT(rechercher()));
     connect(lineEdit_ventes_nom_entreprise_client, SIGNAL(textChanged(const QString &)), this, SLOT(rechercher()));
-    connect(lineEdit_ventes_vente_id, SIGNAL(textChanged(const QString &)), this, SLOT(rechercher()));
+    connect(lineEdit_ventes_reference_recu_vendu, SIGNAL(textChanged(const QString &)), this, SLOT(rechercher()));
 }
 
 void YerothVentesWindow::setupLineEditsQCompleters()
@@ -311,7 +311,7 @@ void YerothVentesWindow::setupLineEditsQCompleters()
     lineEdit_ventes_categorie_produit->setupMyStaticQCompleter(_allWindows->STOCKS_VENDU, YerothDatabaseTableColumn::CATEGORIE);
     lineEdit_ventes_nom_entreprise_fournisseur->setupMyStaticQCompleter(_allWindows->STOCKS_VENDU, YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR);
     lineEdit_ventes_nom_entreprise_client->setupMyStaticQCompleter(_allWindows->STOCKS_VENDU, YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT);
-    lineEdit_ventes_vente_id->setupMyStaticQCompleter(_allWindows->STOCKS_VENDU, YerothDatabaseTableColumn::VENTE_ID);
+    lineEdit_ventes_reference_recu_vendu->setupMyStaticQCompleter(_allWindows->STOCKS_VENDU, YerothDatabaseTableColumn::REFERENCE_RECU_VENDU);
 }
 
 void YerothVentesWindow::setupShortcuts()
@@ -804,7 +804,7 @@ bool YerothVentesWindow::imprimer_document()
     YerothUtils::addFiltre(lineEdit_ventes_categorie_produit, QObject::trUtf8("catégorie"), yerothFiltres);
     YerothUtils::addFiltre(lineEdit_ventes_nom_entreprise_fournisseur, QObject::trUtf8("fournisseur"), yerothFiltres);
     YerothUtils::addFiltre(lineEdit_ventes_nom_entreprise_client, QObject::trUtf8("client"), yerothFiltres);
-    YerothUtils::addFiltre(lineEdit_ventes_vente_id, QObject::trUtf8("Nr. reçu"), yerothFiltres);
+    YerothUtils::addFiltre(lineEdit_ventes_reference_recu_vendu, QObject::trUtf8("Nr. reçu"), yerothFiltres);
 
     int lastIndexOfComa = yerothFiltres.lastIndexOf(",");
 
@@ -860,7 +860,7 @@ void YerothVentesWindow::resetFilter(YerothSqlTableModel * stocksVenduTableModel
     lineEdit_ventes_categorie_produit->myClear();
     lineEdit_ventes_nom_entreprise_fournisseur->myClear();
     lineEdit_ventes_nom_entreprise_client->myClear();
-    lineEdit_ventes_vente_id->myClear();
+    lineEdit_ventes_reference_recu_vendu->myClear();
 
     dateEdit_ventes_debut->reset();
     dateEdit_ventes_fin->reset();
@@ -986,7 +986,7 @@ void YerothVentesWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
     label_ventes_tva->setText(QString(QObject::tr("TVA (%1)")).arg(YerothERPConfig::currency));
     label_remise_devise->setText(QString(QObject::tr("remise (%1)")).arg(YerothERPConfig::currency));
 
-    lineEdit_ventes_vente_id->setEnabled(true);
+    lineEdit_ventes_reference_recu_vendu->setEnabled(true);
     lineEdit_ventes_categorie_produit->setEnabled(true);
     lineEdit_ventes_designation->setEnabled(true);
     lineEdit_ventes_nom_caissier->setEnabled(true);
@@ -1123,7 +1123,7 @@ void YerothVentesWindow::rechercher(bool clearVentesRecherche)
         lineEdit_ventes_categorie_produit->clear();
         lineEdit_ventes_nom_entreprise_fournisseur->clear();
         lineEdit_ventes_nom_entreprise_client->clear();
-        lineEdit_ventes_vente_id->clear();
+        lineEdit_ventes_reference_recu_vendu->clear();
     }
 
     QString codebar(lineEdit_ventes_recherche->text());
@@ -1189,7 +1189,7 @@ void YerothVentesWindow::rechercher(bool clearVentesRecherche)
             _searchFilter.append(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT, nom_entreprise_client));
         }
 
-        QString vente_id(lineEdit_ventes_vente_id->text());
+        QString vente_id(lineEdit_ventes_reference_recu_vendu->text());
 
         if (!vente_id.isEmpty())
         {

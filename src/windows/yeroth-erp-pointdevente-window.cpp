@@ -514,17 +514,17 @@ void YerothPointDeVenteWindow::definirPasDeRole()
 }
 
 
-QString YerothPointDeVenteWindow::afficher_facture_pdf(int vente_id)
+QString YerothPointDeVenteWindow::afficher_facture_pdf(QString referenceRecu /* = QString("") */)
 {
 	QString pdfReceiptFileName;
 
     if (YerothERPConfig::RECEIPT_FORMAT_PETIT == YerothERPConfig::receiptFormat)
     {
-    	pdfReceiptFileName.append(imprimer_facture_petit(vente_id));
+    	pdfReceiptFileName.append(imprimer_facture_petit(referenceRecu));
     }
     else
     {
-    	pdfReceiptFileName.append(imprimer_facture_grand(vente_id));
+    	pdfReceiptFileName.append(imprimer_facture_grand(referenceRecu));
     }
 
     if (! pdfReceiptFileName.isEmpty())
@@ -536,13 +536,13 @@ QString YerothPointDeVenteWindow::afficher_facture_pdf(int vente_id)
 }
 
 
-QString YerothPointDeVenteWindow::imprimer_facture(int vente_id)
+QString YerothPointDeVenteWindow::imprimer_facture(QString referenceRecu)
 {
 	QString pdfReceiptFileName;
 
     if (YerothERPConfig::RECEIPT_FORMAT_PETIT == YerothERPConfig::receiptFormat)
     {
-    	pdfReceiptFileName.append(imprimer_facture_petit(vente_id));
+    	pdfReceiptFileName.append(imprimer_facture_petit(referenceRecu));
 
     	if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::printer, YerothUtils::IMPRIMANTE_PDF))
     	{
@@ -551,7 +551,7 @@ QString YerothPointDeVenteWindow::imprimer_facture(int vente_id)
     }
     else
     {
-    	pdfReceiptFileName.append(imprimer_facture_grand(vente_id));
+    	pdfReceiptFileName.append(imprimer_facture_grand(referenceRecu));
 
     	return YerothERPProcess::startPdfViewerProcess(pdfReceiptFileName);
     }
@@ -620,7 +620,7 @@ QString YerothPointDeVenteWindow::imprimer_facture(int vente_id)
 }
 
 
-QString YerothPointDeVenteWindow::imprimer_facture_grand(int vente_id)
+QString YerothPointDeVenteWindow::imprimer_facture_grand(QString referenceRecuGRAND /* = QString("") */)
 {
     _logger->log("imprimer_facture_grand");
 
@@ -657,14 +657,14 @@ QString YerothPointDeVenteWindow::imprimer_facture_grand(int vente_id)
 
     factureTexDocument.replace("YEROTHTYPEPAIEMENT", YerothUtils::LATEX_IN_OUT_handleForeignAccents(_typeDeVente));
 
-    if (-1 != vente_id)
+    if (referenceRecuGRAND.isEmpty())
     {
-        factureTexDocument.replace("YEROTHNUMEROSORTIETRANSFERT",
-                                   YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_NUM_STRING(vente_id)));
+    	factureTexDocument.replace("YEROTHNUMEROSORTIETRANSFERT", QObject::tr("EXEMPLE (*NON VALIDE*)"));
     }
     else
     {
-        factureTexDocument.replace("YEROTHNUMEROSORTIETRANSFERT", QObject::tr("EXEMPLE (*NON VALIDE*)"));
+        factureTexDocument.replace("YEROTHNUMEROSORTIETRANSFERT",
+                                   YerothUtils::LATEX_IN_OUT_handleForeignAccents(referenceRecuGRAND));
     }
 
     if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::RECEIPT_FORMAT_GRAND_A4PAPER,
@@ -801,7 +801,7 @@ QString YerothPointDeVenteWindow::imprimer_facture_grand(int vente_id)
     return YerothERPProcess::compileLatex(prefixFileName);
 }
 
-QString YerothPointDeVenteWindow::imprimer_facture_petit(int vente_id)
+QString YerothPointDeVenteWindow::imprimer_facture_petit(QString referenceRecuPETIT /* = QString("") */)
 {
     _logger->log("imprimer_facture_petit");
 
@@ -822,7 +822,7 @@ QString YerothPointDeVenteWindow::imprimer_facture_petit(int vente_id)
 
     QString factureDate(infoEntreprise.getVilleTex());
 
-	YerothUtils::getCurrentLocaleDate(factureDate);
+	YerothUtils::getCurrentSimplifiedDate(factureDate);
 
 	YerothUtils::getFactureSmallTexTableString(factureTexTable,
 											  *tableWidget_articles,
@@ -846,14 +846,14 @@ QString YerothPointDeVenteWindow::imprimer_facture_petit(int vente_id)
 
 #endif
 
-    if (-1 != vente_id)
+    if (referenceRecuPETIT.isEmpty())
     {
-        factureTexDocument.replace("YEROTHNUMEROSORTIETRANSFERT",
-                                   YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_NUM_STRING(vente_id)));
+    	factureTexDocument.replace("YEROTHNUMEROSORTIETRANSFERT", QObject::tr("EXEMPLE (*NON VALIDE*)"));
     }
     else
     {
-        factureTexDocument.replace("YEROTHNUMEROSORTIETRANSFERT", QObject::tr("EXEMPLE (*NON VALIDE*)"));
+        factureTexDocument.replace("YEROTHNUMEROSORTIETRANSFERT",
+                                   YerothUtils::LATEX_IN_OUT_handleForeignAccents(referenceRecuPETIT));
     }
 
     //_logger->debug("imprimer_facture_petit",
@@ -870,7 +870,7 @@ QString YerothPointDeVenteWindow::imprimer_facture_petit(int vente_id)
     QString minPaperHeight(QString("%1in").arg(QString::number(factureInchSize, 'f', 2)));
     //qDebug() << "\t++minPaperHeight: " << minPaperHeight;
 
-	factureTexDocument.replace("YEROTHTYPEPAIEMENT", YerothUtils::LATEX_IN_OUT_handleForeignAccents(_typeDeVente));
+	factureTexDocument.replace("YEROTHPAIEMENT", YerothUtils::LATEX_IN_OUT_handleForeignAccents(_typeDeVente));
     factureTexDocument.replace("YEROTHFACTURESMALLPAPERHEIGHT", minPaperHeight);
     factureTexDocument.replace("YEROTHENTREPRISE", infoEntreprise.getNomCommercialTex());
     factureTexDocument.replace("YEROTHACTIVITESENTREPRISE", infoEntreprise.getSecteursActivitesTex());
@@ -881,7 +881,6 @@ QString YerothPointDeVenteWindow::imprimer_facture_petit(int vente_id)
     factureTexDocument.replace("YEROTHEMAIL", infoEntreprise.getEmailTex());
     factureTexDocument.replace("YEROTHTELEPHONE", infoEntreprise.getTelephone());
     factureTexDocument.replace("YEROTHDATE", factureDate);
-    factureTexDocument.replace("YEROTHHEUREVENTE", CURRENT_TIME);
     factureTexDocument.replace("YEROTHVENDEUR", yerothUser->nom_completTex());
 
     QString nomClient(lineEdit_articles_nom_client->text());
@@ -2309,6 +2308,8 @@ unsigned int YerothPointDeVenteWindow::effectuer_check_out_carte_credit_carte_de
 
 		int vente_id = YerothUtils::getNextVentesIdFromTable("stocks_vendu");
 
+		QString referenceRecuVenduCarte(YerothUtils::GET_REFERENCE_RECU_VENDU(QString::number(vente_id)));
+
 		for (int j = 0; j < tableWidget_articles->itemCount(); ++j)
 		{
 			YerothArticleVenteInfo *articleVenteInfo = articleItemToVenteInfo.value(j);
@@ -2337,6 +2338,9 @@ unsigned int YerothPointDeVenteWindow::effectuer_check_out_carte_credit_carte_de
 
 			record.setValue(YerothDatabaseTableColumn::ID, YerothUtils::getNextIdFromTable(_allWindows->STOCKS_VENDU));
 			record.setValue(YerothDatabaseTableColumn::VENTE_ID, vente_id);
+
+			record.setValue(YerothDatabaseTableColumn::REFERENCE_RECU_VENDU, referenceRecuVenduCarte);
+
 			record.setValue(YerothDatabaseTableColumn::REFERENCE, articleVenteInfo->reference);
 			record.setValue(YerothDatabaseTableColumn::DESIGNATION, articleVenteInfo->designation);
 
@@ -2453,7 +2457,7 @@ unsigned int YerothPointDeVenteWindow::effectuer_check_out_carte_credit_carte_de
 							QObject::trUtf8("succès d'une vente"),
 							vMsg))
 			{
-				this->imprimer_facture(vente_id);
+				this->imprimer_facture(referenceRecuVenduCarte);
 			}
 		}
 
@@ -2477,6 +2481,8 @@ unsigned int YerothPointDeVenteWindow::effectuer_check_out_carte_credit_carte_de
 void YerothPointDeVenteWindow::executer_la_vente_comptant()
 {
     int vente_id = YerothUtils::getNextVentesIdFromTable("stocks_vendu");
+
+    QString referenceRecuVendu(YerothUtils::GET_REFERENCE_RECU_VENDU(QString::number(vente_id)));
 
     for (int j = 0; j < tableWidget_articles->itemCount(); ++j)
     {
@@ -2510,7 +2516,7 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
 
         QSqlRecord record = stocksVenduTableModel.record();
 
-        _typeDeVente = QObject::tr("achat - comptant");
+        _typeDeVente = QObject::tr("achat-comptant");
 
         int stock_id_to_save = YerothUtils::getNextIdFromTable(_allWindows->STOCKS_VENDU);
 
@@ -2519,6 +2525,7 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
         record.setValue(YerothDatabaseTableColumn::TYPE_DE_VENTE, _typeDeVente);
 
         record.setValue(YerothDatabaseTableColumn::VENTE_ID, vente_id);
+        record.setValue(YerothDatabaseTableColumn::REFERENCE_RECU_VENDU, referenceRecuVendu);
         record.setValue(YerothDatabaseTableColumn::REFERENCE, articleVenteInfo->reference);
         record.setValue(YerothDatabaseTableColumn::DESIGNATION, articleVenteInfo->designation);
 
@@ -2656,7 +2663,7 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
     				QObject::trUtf8("succès d'une vente"),
 					vMsg))
     {
-    	this->imprimer_facture(vente_id);
+    	this->imprimer_facture(referenceRecuVendu);
     }
 }
 
@@ -2732,6 +2739,8 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
 {
     int vente_id = YerothUtils::getNextVentesIdFromTable("stocks_vendu");
 
+    QString referenceRecuVenduCompteClient(YerothUtils::GET_REFERENCE_RECU_VENDU(QString::number(vente_id)));
+
     double total_prix_vente = 0.0;
 
     for (int j = 0; j < tableWidget_articles->itemCount(); ++j)
@@ -2766,7 +2775,7 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
 
         QSqlRecord record = stocksVenduTableModel.record();
 
-        _typeDeVente = QObject::tr("achat - compte client");
+        _typeDeVente = QObject::tr("achat-compte client");
 
         int stock_id_to_save = YerothUtils::getNextIdFromTable(_allWindows->STOCKS_VENDU);
 
@@ -2775,6 +2784,7 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
         record.setValue(YerothDatabaseTableColumn::TYPE_DE_VENTE, _typeDeVente);
 
         record.setValue(YerothDatabaseTableColumn::VENTE_ID, vente_id);
+        record.setValue(YerothDatabaseTableColumn::REFERENCE_RECU_VENDU, referenceRecuVenduCompteClient);
         record.setValue(YerothDatabaseTableColumn::REFERENCE, articleVenteInfo->reference);
         record.setValue(YerothDatabaseTableColumn::DESIGNATION, articleVenteInfo->designation);
 
@@ -2923,7 +2933,7 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
     				QObject::trUtf8("succès d'une vente"),
 					vMsg))
     {
-    	this->imprimer_facture(vente_id);
+    	this->imprimer_facture(referenceRecuVenduCompteClient);
     }
 }
 

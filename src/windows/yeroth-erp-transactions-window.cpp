@@ -154,13 +154,13 @@ void YerothTransactionsWindow::setupLineEdits()
     lineEdit_transactions_nom_magasinier->enableForSearch(QObject::trUtf8("nom du magasinier"));
     lineEdit_transactions_designation->enableForSearch(QObject::trUtf8("désignation"));
     lineEdit_transactions_nom_categorie->enableForSearch(QObject::trUtf8("nom de la catégorie d'articles"));
-    lineEdit_transactions_numero_bon->enableForSearch(QObject::trUtf8("numéro de facture"));
+    lineEdit_transactions_reference_recu_sortie->enableForSearch(QObject::trUtf8("référence reçu de sortie"));
     lineEdit_transactions_nom_recepteur->enableForSearch(QObject::trUtf8("nom du récepteur d'articles"));
 
     connect(lineEdit_transactions_nom_magasinier, SIGNAL(textChanged(const QString &)), this, SLOT(rechercher()));
     connect(lineEdit_transactions_designation, SIGNAL(textChanged(const QString &)), this, SLOT(rechercher()));
     connect(lineEdit_transactions_nom_categorie, SIGNAL(textChanged(const QString &)), this, SLOT(rechercher()));
-    connect(lineEdit_transactions_numero_bon, SIGNAL(textChanged(const QString &)), this, SLOT(rechercher()));
+    connect(lineEdit_transactions_reference_recu_sortie, SIGNAL(textChanged(const QString &)), this, SLOT(rechercher()));
     connect(lineEdit_transactions_nom_recepteur, SIGNAL(textChanged(const QString &)), this, SLOT(rechercher()));
 }
 
@@ -175,8 +175,8 @@ void YerothTransactionsWindow::setupLineEditsQCompleters()
     lineEdit_transactions_nom_categorie->
 		setupMyStaticQCompleter(_allWindows->STOCKS_SORTIES, YerothDatabaseTableColumn::CATEGORIE);
 
-    lineEdit_transactions_numero_bon->
-		setupMyStaticQCompleter(_allWindows->STOCKS_SORTIES, YerothDatabaseTableColumn::SORTIE_ID);
+    lineEdit_transactions_reference_recu_sortie->
+		setupMyStaticQCompleter(_allWindows->STOCKS_SORTIES, YerothDatabaseTableColumn::REFERENCE_RECU_SORTIE);
 
     lineEdit_transactions_nom_recepteur->
 		setupMyStaticQCompleter(_allWindows->STOCKS_SORTIES, YerothDatabaseTableColumn::NOM_RECEPTEUR);
@@ -651,7 +651,7 @@ void YerothTransactionsWindow::imprimer_journal_transactions()
     YerothUtils::addFiltre(lineEdit_transactions_nom_magasinier, QObject::trUtf8("magasinier"), yerothFiltres);
     YerothUtils::addFiltre(lineEdit_transactions_designation, QObject::trUtf8("désignation"), yerothFiltres);
     YerothUtils::addFiltre(lineEdit_transactions_nom_categorie, QObject::trUtf8("catégorie"), yerothFiltres);
-    YerothUtils::addFiltre(lineEdit_transactions_numero_bon, QObject::trUtf8("numéro de bon"), yerothFiltres);
+    YerothUtils::addFiltre(lineEdit_transactions_reference_recu_sortie, QObject::trUtf8("numéro de bon"), yerothFiltres);
     YerothUtils::addFiltre(lineEdit_transactions_nom_recepteur, QObject::trUtf8("récepteur"), yerothFiltres);
 
     int lastIndexOfComa = yerothFiltres.lastIndexOf(",");
@@ -735,7 +735,7 @@ void YerothTransactionsWindow::rechercher()
         _searchFilter.append(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::CATEGORIE, nom_categorie));
     }
 
-    QString numero_du_bon(lineEdit_transactions_numero_bon->text());
+    QString numero_du_bon(lineEdit_transactions_reference_recu_sortie->text());
 
     if (!numero_du_bon.isEmpty())
     {
@@ -873,7 +873,7 @@ void YerothTransactionsWindow::resetFilter()
     lineEdit_transactions_nom_magasinier->clear();
     lineEdit_transactions_designation->clear();
     lineEdit_transactions_nom_categorie->clear();
-    lineEdit_transactions_numero_bon->clear();
+    lineEdit_transactions_reference_recu_sortie->clear();
     lineEdit_transactions_nom_recepteur->clear();
 
     if (_allWindows->getUser()->isManager() || _allWindows->getUser()->isMagasinier())

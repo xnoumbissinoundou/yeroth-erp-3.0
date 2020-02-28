@@ -35,6 +35,10 @@ public:
 
 	static const QString VENTE_ID;
 
+	static const QString REFERENCE_RECU_VENDU;
+
+	static const QString REFERENCE_RECU_SORTIE;
+
 	static const QString ENREGISTREUR_STOCK;
 
 	static const QString REFERENCE;

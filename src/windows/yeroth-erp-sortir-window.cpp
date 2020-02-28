@@ -362,17 +362,17 @@ void YerothSortirWindow::definirPasDeRole()
 }
 
 
-QString YerothSortirWindow::afficher_facture_pdf(int sortie_id)
+QString YerothSortirWindow::afficher_facture_pdf(QString referenceRecuSORTIE /* = QString("") */)
 {
 	QString pdfReceiptFileName;
 
     if (YerothERPConfig::RECEIPT_FORMAT_PETIT == YerothERPConfig::receiptFormat)
     {
-    	pdfReceiptFileName.append(imprimer_facture_petit(sortie_id));
+    	pdfReceiptFileName.append(imprimer_facture_petit(referenceRecuSORTIE));
     }
     else
     {
-    	pdfReceiptFileName.append(imprimer_facture_grand(sortie_id));
+    	pdfReceiptFileName.append(imprimer_facture_grand(referenceRecuSORTIE));
     }
 
     if (! pdfReceiptFileName.isEmpty())
@@ -383,13 +383,13 @@ QString YerothSortirWindow::afficher_facture_pdf(int sortie_id)
     return "";
 }
 
-QString YerothSortirWindow::imprimer_facture(int sortie_id)
+QString YerothSortirWindow::imprimer_facture(QString referenceRecuSORTIE /* = QString("") */)
 {
 	QString pdfReceiptFileName;
 
     if (YerothERPConfig::RECEIPT_FORMAT_PETIT == YerothERPConfig::receiptFormat)
     {
-    	pdfReceiptFileName.append(imprimer_facture_petit(sortie_id));
+    	pdfReceiptFileName.append(imprimer_facture_petit(referenceRecuSORTIE));
 
     	if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::printer, YerothUtils::IMPRIMANTE_PDF))
     	{
@@ -398,7 +398,7 @@ QString YerothSortirWindow::imprimer_facture(int sortie_id)
     }
     else
     {
-    	pdfReceiptFileName.append(imprimer_facture_grand(sortie_id));
+    	pdfReceiptFileName.append(imprimer_facture_grand(referenceRecuSORTIE));
 
     	return YerothERPProcess::startPdfViewerProcess(pdfReceiptFileName);
     }
@@ -454,7 +454,7 @@ QString YerothSortirWindow::imprimer_facture(int sortie_id)
 }
 
 
-QString YerothSortirWindow::imprimer_facture_grand(int sortie_id)
+QString YerothSortirWindow::imprimer_facture_grand(QString referenceRecuSortieGRAND /* = QString("") */)
 {
 
 	_logger->log("imprimer_facture_grand");
@@ -493,14 +493,14 @@ QString YerothSortirWindow::imprimer_facture_grand(int sortie_id)
     YerothUtils::getSortieDesStocksENTexDocumentString(factureTexDocument, factureTexTable);
 #endif
 
-    if (-1 != sortie_id)
+    if (referenceRecuSortieGRAND.isEmpty())
     {
-        factureTexDocument.replace("YEROTHNUMEROSORTIETRANSFERT",
-                                   YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_NUM_STRING(sortie_id)));
+    	factureTexDocument.replace("YEROTHNUMEROSORTIETRANSFERT", QObject::tr("EXEMPLE (*NON VALIDE*)"));
     }
     else
     {
-        factureTexDocument.replace("YEROTHNUMEROSORTIETRANSFERT", QObject::tr("EXEMPLE (*NON VALIDE*)"));
+        factureTexDocument.replace("YEROTHNUMEROSORTIETRANSFERT",
+                                   YerothUtils::LATEX_IN_OUT_handleForeignAccents(referenceRecuSortieGRAND));
     }
 
 
@@ -607,7 +607,7 @@ QString YerothSortirWindow::imprimer_facture_grand(int sortie_id)
     return YerothERPProcess::compileLatex(prefixFileName);
 }
 
-QString YerothSortirWindow::imprimer_facture_petit(int sortie_id)
+QString YerothSortirWindow::imprimer_facture_petit(QString referenceRecuSortiePETIT /* = QString("") */)
 {
     _logger->log("imprimer_facture_petit");
 
@@ -629,7 +629,7 @@ QString YerothSortirWindow::imprimer_facture_petit(int sortie_id)
 
     QString factureDate(infoEntreprise.getVilleTex());
 
-    YerothUtils::getCurrentLocaleDate(factureDate);
+    YerothUtils::getCurrentSimplifiedDate(factureDate);
 
     YerothUtils::getFactureSmallTexTableString(factureTexTable, *tableWidget_articles, _quantiteVendue, _tva,
             _sommeTotal);
@@ -648,14 +648,14 @@ QString YerothSortirWindow::imprimer_facture_petit(int sortie_id)
 
 #endif
 
-    if (-1 != sortie_id)
+    if (referenceRecuSortiePETIT.isEmpty())
     {
-        factureTexDocument.replace("YEROTHNUMEROSORTIETRANSFERT",
-                                   YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_NUM_STRING(sortie_id)));
+    	factureTexDocument.replace("YEROTHNUMEROSORTIETRANSFERT", QObject::tr("EXEMPLE (*NON VALIDE*)"));
     }
     else
     {
-        factureTexDocument.replace("YEROTHNUMEROSORTIETRANSFERT", QObject::tr("EXEMPLE (*NON VALIDE*)"));
+        factureTexDocument.replace("YEROTHNUMEROSORTIETRANSFERT",
+                                   YerothUtils::LATEX_IN_OUT_handleForeignAccents(referenceRecuSortiePETIT));
     }
 
     //_logger->debug("imprimer_facture_petit",
@@ -1917,6 +1917,8 @@ void YerothSortirWindow::sortir()
 
     	int sortie_id = YerothUtils::getNextSortiesIdFromTable("stocks_sorties");
 
+    	QString referenceRecuSortie(YerothUtils::GET_REFERENCE_RECU_SORTIE(QString::number(sortie_id)));
+
         for (int j = 0; j < tableWidget_articles->itemCount(); ++j)
         {
             YerothArticleVenteInfo *articleVenteInfo = articleItemToVenteInfo.value(j);
@@ -1957,7 +1959,11 @@ void YerothSortirWindow::sortir()
             record.setValue(YerothDatabaseTableColumn::ID, stock_id_to_save);
 
             record.setValue(YerothDatabaseTableColumn::SORTIE_ID, sortie_id);
+
+            record.setValue(YerothDatabaseTableColumn::REFERENCE_RECU_SORTIE, referenceRecuSortie);
+
             record.setValue(YerothDatabaseTableColumn::REFERENCE, articleVenteInfo->reference);
+
             record.setValue(YerothDatabaseTableColumn::DESIGNATION, articleVenteInfo->designation);
             record.setValue(YerothDatabaseTableColumn::DATE_PEREMPTION,
                             GET_SQL_RECORD_DATA(stockRecord, YerothDatabaseTableColumn::DATE_PEREMPTION));
@@ -2074,7 +2080,7 @@ void YerothSortirWindow::sortir()
                     							  QObject::trUtf8("succès"),
                                                   vMsg))
             {
-                this->imprimer_facture(sortie_id);
+                this->imprimer_facture(referenceRecuSortie);
             }
         }
 

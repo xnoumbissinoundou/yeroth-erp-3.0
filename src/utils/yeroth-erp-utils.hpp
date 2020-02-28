@@ -228,6 +228,19 @@ public:
 		return YerothUtils::generateSqlIsEmpty(QString(sqlTableColumn));
 	}
 
+	inline static QString GET_REFERENCE_RECU_SORTIE(QString fixedNumber)
+	{
+		return  YerothUtils::GET_REFERENCE_RECU_SUFFIX(YerothUtils::PREFIX_RECU_SORTIE, fixedNumber);
+	}
+
+	inline static QString GET_REFERENCE_RECU_VENDU(QString fixedNumber)
+	{
+		return  YerothUtils::GET_REFERENCE_RECU_SUFFIX(YerothUtils::PREFIX_RECU_VENDU, fixedNumber);
+	}
+
+	static QString GET_REFERENCE_RECU_SUFFIX(QString prefix,
+											 QString fixedNumber);
+
 	static void getColumnListString(QStringList 	&columnStringList,
 									const QString 	&tableName,
 									const char 		*fieldName);
@@ -380,6 +393,8 @@ public:
 
 	static void infosEntreprise(YerothWindowsCommons &aYerothPOSQMainWindow,
 								const QString infos);
+
+	static void getCurrentSimplifiedDate(QString &date);
 
 	static void getCurrentLocaleDate(QString &date);
 
@@ -601,6 +616,10 @@ public:
 	static QString EN_bar_chart_tex;
 
 	static QString EN_bar_diag_tex;
+
+	static const QString PREFIX_RECU_VENDU;
+
+	static const QString PREFIX_RECU_SORTIE;
 
 	static const QKeySequence MESSAGE_DAIDE_QKEYSEQUENCE;
 
