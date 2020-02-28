@@ -12,4 +12,4 @@ insert into init_configurations (id, nom_configuration, description_configuratio
 insert into init_configurations (id, nom_configuration, description_configuration, valeur_configuration) values (10, 'CONFIG_OPEN_CASH_DRAWER', 'Open cash drawer', '0');
 insert into init_configurations (id, nom_configuration, description_configuration, valeur_configuration) values (11, 'CONFIG_LATEX_SYSTEM_ROOT_FOLDER', "Chemin jusqu'au répertoire du système Latex", "/usr/bin");
 insert into init_configurations (id, nom_configuration, description_configuration, valeur_configuration) values (12, 'CONFIG_THERMAL_PRINTER_DEVICE_FILE_FULL_PATH', "Chemin jusqu'au fichier système représentant l'imprimante thermique", "/dev/usb/lp0");
-insert into init_configurations (id, nom_configuration, description_configuration, valeur_configuration) values (13, 'CONFIG_MAX_STRING_DISPLAY_LENGTH', "taille maximale d'affichage des strings", "18");
+insert into init_configurations (id, nom_configuration, description_configuration, valeur_configuration) values (13, 'CONFIG_MAX_STRING_DISPLAY_LENGTH', "taille maximale d'affichage des strings", "22");

@@ -60,7 +60,7 @@ unsigned int YerothERPConfig::alert_period_time_interval(0);
 
 unsigned int YerothERPConfig::alert_quantity_time_interval(0);
 
-unsigned int YerothERPConfig::max_string_display_length(12);
+unsigned int YerothERPConfig::max_string_display_length(22);
 
 double YerothERPConfig::tva_value(19.25/100.0);
 

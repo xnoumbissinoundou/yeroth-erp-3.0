@@ -113,8 +113,7 @@ void YerothTransactionsWindow::reinitialiser_champs_db_visibles()
 			<< YerothDatabaseTableColumn::CATEGORIE
 			<< YerothDatabaseTableColumn::QUANTITE_SORTIE
 			<< YerothDatabaseTableColumn::LOCALISATION_ENTREE
-			<< YerothDatabaseTableColumn::LOCALISATION_SORTIE
-			<< YerothDatabaseTableColumn::NOM_RECEPTEUR;
+			<< YerothDatabaseTableColumn::LOCALISATION_SORTIE;
 }
 
 
