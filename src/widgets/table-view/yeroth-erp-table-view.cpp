@@ -185,18 +185,20 @@ void YerothTableView::dataChanged(const QModelIndex &index,
 void YerothTableView::lister_les_transactions_dun_client(QSqlQuery &sqlClientTransactionsUnionQuery)
 {
     QString companyNameHdr(QObject::tr("Entreprise"));
-    QString paymentDateHdr(QObject::tr("Date de paiement"));
-    QString timeHdr(QObject::tr("Temps"));
-    QString transactionAmountHdr(QObject::trUtf8("Montant transaction"));
+    QString dateHdr(QObject::tr("Date"));
+    QString timeHdr(QObject::tr("Heure"));
+    QString transactionAmountHdr(QObject::tr("Montant total"));
+    QString customerAccountValueAfterHdr(QObject::trUtf8("Compte client (après)"));
     QString paymentTypeHdr(QObject::trUtf8("Type paiement"));
     QString reasonHdr(QObject::trUtf8("Justification"));
 
     _tableModelHeaders->clear();
 
     _tableModelHeaders->append(companyNameHdr);
-    _tableModelHeaders->append(paymentDateHdr);
+    _tableModelHeaders->append(dateHdr);
     _tableModelHeaders->append(timeHdr);
     _tableModelHeaders->append(transactionAmountHdr);
+    _tableModelHeaders->append(customerAccountValueAfterHdr);
     _tableModelHeaders->append(paymentTypeHdr);
     _tableModelHeaders->append(reasonHdr);
 
@@ -232,12 +234,25 @@ void YerothTableView::lister_les_transactions_dun_client(QSqlQuery &sqlClientTra
 					switch (qv.type())
 					{
 					case QVariant::Double:
-						aYerothQStandardItem = new YerothQStandardItem(GET_DOUBLE_STRING(qv.toDouble()));
+						/*
+						 * Le montant de la transaction est un 'double'.
+						 * Dans ce cas de figure, utiliser le chaine de
+						 * caractere "N/A" au cas ou il est 'NULL' !
+						 */
+						if (qv.isNull())
+						{
+							aYerothQStandardItem = new YerothQStandardItem("N/A");
+						}
+						else
+						{
+							aYerothQStandardItem = new YerothQStandardItem(GET_DOUBLE_STRING(qv.toDouble()));
+						}
+
 						_stdItemModel->setItem(i, j, aYerothQStandardItem);
 						break;
 
 					case QVariant::String:
-						aYerothQStandardItem = new YerothQStandardItem(qv.toString());
+						aYerothQStandardItem = new YerothQStandardItem(YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(qv.toString()));
 						_stdItemModel->setItem(i, j, aYerothQStandardItem);
 						break;
 
@@ -269,7 +284,7 @@ void YerothTableView::lister_lhistorique_du_stock(const QStringList &aMouvementS
 	//qDebug() << QString("YerothTableView::lister_lhistorique_du_stock(const QStringList &)");
 
     QString dateHdr(QObject::tr("Date"));
-    QString timeHdr(QObject::tr("Temps"));
+    QString timeHdr(QObject::tr("Heure"));
     QString idHdr(QObject::tr("ID du stock"));
     QString operationHdr(QObject::trUtf8("Type d'opération"));
     QString qteInitialeHdr(QObject::trUtf8("Qté initiale en stock"));
@@ -300,6 +315,8 @@ void YerothTableView::lister_lhistorique_du_stock(const QStringList &aMouvementS
     	_stdItemModel->setHeaderData(k, Qt::Horizontal, _tableModelHeaders->at(k));
     }
 
+    QString strOut;
+
     QStringList anEntry;
 
 	QString unMouvementDeStock;
@@ -325,7 +342,8 @@ void YerothTableView::lister_lhistorique_du_stock(const QStringList &aMouvementS
 			}
 			else
 			{
-				anItem = new YerothQStandardItem(anEntry.at(j));
+				strOut = YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(anEntry.at(j));
+				anItem = new YerothQStandardItem(strOut);
 			}
 
 			_stdItemModel->setItem(i, j, anItem);

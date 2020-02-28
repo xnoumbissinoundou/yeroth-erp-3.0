@@ -69,6 +69,8 @@ public:
 
 	inline ~YerothUtils(){}
 
+	static QString YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(QString aString_IN);
+
 	static bool startTransaction();
 
 	static bool commitTransaction();

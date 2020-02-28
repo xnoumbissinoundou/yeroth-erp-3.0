@@ -229,7 +229,7 @@ public slots:
 
 		unsigned int effectuer_check_out_comptant();
 
-		void updateCompteClient(double total_prix_vente);
+		void updateCompteClient(double nouveau_compte_client);
 
 		void executer_la_vente_compte_client();
 

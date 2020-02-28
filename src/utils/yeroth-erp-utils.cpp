@@ -301,6 +301,20 @@ const QDoubleValidator YerothUtils::DoubleValidator(0, 444444444, 2);
 const QRegExpValidator YerothUtils::PasswordValidator(PasswordRegExp);
 
 
+QString YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(QString aString_IN)
+{
+	QString aString_OUT(aString_IN);
+
+	if (aString_OUT.length() > YerothERPConfig::max_string_display_length)
+	{
+		aString_OUT.truncate(YerothERPConfig::max_string_display_length);
+		aString_OUT.append(".");
+	}
+
+	return aString_OUT;
+}
+
+
 bool YerothUtils::startTransaction()
 {
     QSqlDriver *driver = _allWindows->getDatabase().driver();

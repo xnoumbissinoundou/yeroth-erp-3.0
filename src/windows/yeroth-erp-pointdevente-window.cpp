@@ -2713,36 +2713,14 @@ YEROTH_ERP_3_0_COMMIT_DATABASE_TRANSACTION;
 }
 
 
-void YerothPointDeVenteWindow::updateCompteClient(double total_prix_vente)
+void YerothPointDeVenteWindow::updateCompteClient(double nouveau_compte_client)
 {
-    YerothSqlTableModel & clientsTableModel = _allWindows->getSqlTableModel_clients();
-
-    QString clientFilter;
-    clientFilter.append(QString("%1 = '%2'")
-    						.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
-    							 lineEdit_articles_nom_client->text()));
-
-    clientsTableModel.yerothSetFilter(clientFilter);
-
-    double compte_client = 0.0;
-    double dette_maximale_compte_client = 0.0;
-
-    int clientsTableModelRowCount = clientsTableModel.easySelect();
-    if (clientsTableModelRowCount > 0)
-    {
-        QSqlRecord clientsRecord = clientsTableModel.record(0);
-        dette_maximale_compte_client = GET_SQL_RECORD_DATA(clientsRecord, YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT).toDouble();
-        compte_client = GET_SQL_RECORD_DATA(clientsRecord, YerothDatabaseTableColumn::COMPTE_CLIENT).toDouble();
-        compte_client = compte_client - total_prix_vente;
-        clientsTableModel.resetFilter();
-    }
-
 	QString queryStr;
 
 	queryStr.append(QString("UPDATE %1  SET %2 = '%3' WHERE %6 = '%7'")
                             .arg(_allWindows->CLIENTS,
                                  YerothDatabaseTableColumn::COMPTE_CLIENT,
-                                 QString::number(compte_client),
+                                 QString::number(nouveau_compte_client),
 								 YerothDatabaseTableColumn::NOM_ENTREPRISE,
 								 lineEdit_articles_nom_client->text()));
 
@@ -2858,10 +2836,20 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
         if (clientsTableModelRowCount > 0)
         {
             QSqlRecord clientsRecord = clientsTableModel.record(0);
+
             QString clients_id(GET_SQL_RECORD_DATA(clientsRecord, YerothDatabaseTableColumn::ID));
+
+            double compteClient = GET_SQL_RECORD_DATA(clientsRecord, YerothDatabaseTableColumn::COMPTE_CLIENT).toDouble();
+
+            double nouveau_compte_client = compteClient - total_prix_vente;
+
+            record.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT, nouveau_compte_client);
             record.setValue(YerothDatabaseTableColumn::CLIENTS_ID, clients_id);
             record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT, lineEdit_articles_nom_client->text());
+
             clientsTableModel.resetFilter();
+
+            updateCompteClient(nouveau_compte_client);
         }
         else
         {
@@ -2924,8 +2912,6 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
 			//TODO MESSAGE D'ERREUR DANS LE FICHIER DE LOGS
 		}
     }
-
-    updateCompteClient(total_prix_vente);
 
     emit SELLING();
 
