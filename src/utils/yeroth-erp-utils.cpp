@@ -990,8 +990,9 @@ QString YerothUtils::GET_REFERENCE_RECU_SUFFIX(QString prefix,
 {
 	QString resultString(prefix);
 
-	QString referenceRecuSuffix(QString("%1-%2")
-										.arg(QDate::currentDate().toString("yyyy-MM-dd"),
+	QString referenceRecuSuffix(QString("%1-%2-%3")
+										.arg(QDate::currentDate().toString("yyyyMMdd"),
+										     QTime::currentTime().toString("hhmmss"),
 											 fixedNumber));
 	resultString.append(referenceRecuSuffix);
 

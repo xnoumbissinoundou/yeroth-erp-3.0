@@ -673,6 +673,7 @@ QString YerothPointDeVenteWindow::imprimer_facture_grand(QString referenceRecuGR
         factureTexDocument.replace("YEROTHPAPERSPEC", "a4paper");
     }
 
+    factureTexDocument.replace("YEROTHPAIEMENT", YerothUtils::LATEX_IN_OUT_handleForeignAccents(_typeDeVente));
     factureTexDocument.replace("YEROTHENTREPRISE", infoEntreprise.getNomCommercialTex());
     factureTexDocument.replace("YEROTHACTIVITESENTREPRISE", infoEntreprise.getSecteursActivitesTex());
     factureTexDocument.replace("YEROTHBOITEPOSTALE", infoEntreprise.getBoitePostal());
@@ -2775,7 +2776,7 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
 
         QSqlRecord record = stocksVenduTableModel.record();
 
-        _typeDeVente = QObject::tr("achat-compte client");
+        _typeDeVente = QObject::tr("achat-compte-client");
 
         int stock_id_to_save = YerothUtils::getNextIdFromTable(_allWindows->STOCKS_VENDU);
 
