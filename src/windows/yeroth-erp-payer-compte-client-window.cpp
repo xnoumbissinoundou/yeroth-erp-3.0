@@ -70,6 +70,7 @@ YerothPayerCompteClientWindow::YerothPayerCompteClientWindow()
     pushButton_annuler->disable(this);
     pushButton_menu_principal->disable(this);
 
+
     //Menu actions
     connect(actionChanger_utilisateur, SIGNAL(triggered()), this, SLOT(changer_utilisateur()));
     connect(actionDeconnecter_utilisateur, SIGNAL(triggered()), this, SLOT(deconnecter_utilisateur()));
@@ -82,76 +83,10 @@ YerothPayerCompteClientWindow::YerothPayerCompteClientWindow()
     connect(actionQui_suis_je, SIGNAL(triggered()), this, SLOT(qui_suis_je()));
 }
 
+
 YerothPayerCompteClientWindow::~YerothPayerCompteClientWindow()
 {
 }
-
-
-//void YerothPayerCompteClientWindow::private_slot_afficher_les_transactions_dun_client()
-//{
-//	int lastSelectedRow = getLastListerSelectedRow();
-//
-//	//qDebug() << QString("lastSelectedRow: %1")
-//	//				.arg(QString::number(lastSelectedRow));
-//
-//	if (0 != _curClientsTableModel && _curClientsTableModel->rowCount() > 0 && lastSelectedRow > -1)
-//	{
-//	    QSqlRecord record = _curClientsTableModel->record(lastSelectedRow);
-//
-////	    int stockId = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ID).toInt();
-//
-//	    QString clientCompanyName(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE));
-//
-////	    YerothHistoriqueStock::listHistoriqueDuStock(historiqueStockSelectionne,
-////	    											 stockReference,
-////													 QString::number(stockId),
-////													 stockDesignation);
-//
-//
-//	    QString clientTransactionsPaiementsQueryStr(QString("select %1, %2 as 'Date de paiement', %3 as Heure, %4 as 'Montant transaction', %5 as 'Type de paiement', %6 as 'Raison'  from %7")
-//	    											.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
-//	    												 YerothDatabaseTableColumn::DATE_PAIEMENT,
-//														 YerothDatabaseTableColumn::HEURE_PAIEMENT,
-//														 YerothDatabaseTableColumn::MONTANT_PAYE,
-//														 YerothDatabaseTableColumn::TYPE_DE_PAIEMENT,
-//														 YerothDatabaseTableColumn::ENGAGEMENT,
-//														 _allWindows->PAIEMENTS));
-//
-//	    QString clientTransactionsStockVenduQueryStr(QString("select %1, %2 as 'Date de paiement', %3 as Heure, %4 as 'Montant transaction', %5 as 'Type de paiement', %6 as 'Raison' from %7")
-//	    											.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT,
-//	    												 YerothDatabaseTableColumn::DATE_VENTE,
-//														 YerothDatabaseTableColumn::HEURE_VENTE,
-//														 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
-//														 YerothDatabaseTableColumn::TYPE_DE_VENTE,
-//														 YerothDatabaseTableColumn::DESIGNATION,
-//														 _allWindows->STOCKS_VENDU));
-//
-//	    QString clientTransactionsUnionQueryStr(QString("SELECT * FROM (%1 UNION %2 ORDER BY Heure ASC) AS U WHERE U.%3 = '%4'")
-//	    										.arg(clientTransactionsPaiementsQueryStr,
-//	    											 clientTransactionsStockVenduQueryStr,
-//													 YerothDatabaseTableColumn::NOM_ENTREPRISE,
-//													 clientCompanyName));
-//
-////	    qDebug() << QString("++ clientTransactionsUnionQueryStr: %1")
-////	    				.arg(clientTransactionsUnionQueryStr);
-//
-//		QSqlQuery sqlClientTransactionsUnionQuery;
-//
-//		int querySize = YerothUtils::execQuery(sqlClientTransactionsUnionQuery, clientTransactionsUnionQueryStr);
-//
-////		qDebug() << QString("++ querySize: %1")
-////						.arg(QString::number(querySize));
-//
-//		YerothUtils::getAllWindows()->_transactionsDunClientWindow
-//				->listerTransactionsDunClient(sqlClientTransactionsUnionQuery);
-//	}
-//	else
-//	{
-//	    YerothQMessageBox::information(this,
-//	    		QObject::trUtf8("comptes clients - transactions d'un client"),
-//				QObject::trUtf8("Il n'y a pas de transactions de ce client à lister !"));
-//	}
-//}
 
 
 void YerothPayerCompteClientWindow::afficher_detail_client()
@@ -315,14 +250,6 @@ bool YerothPayerCompteClientWindow::putCashIntoCustomerAccount()
 }
 
 
-void YerothPayerCompteClientWindow::populatePayerAuCompteClientsComboBoxes()
-{
-    POPULATE_COMBOBOX(comboBox_clients_typedepaiement,
-    				  _allWindows->TYPE_DE_PAIEMENT,
-					  YerothDatabaseTableColumn::TYPE_DE_PAIEMENT);
-}
-
-
 void YerothPayerCompteClientWindow::setupLineEdits()
 {
 	lineEdit_comptes_clients_designation_de_lentreprise->setEnabled(false);
@@ -348,9 +275,17 @@ void YerothPayerCompteClientWindow::setupLineEditsQCompleters()
 	lineEdit_comptes_clients_engagement->enableForSearch(QObject::tr("engagement"));
 
 	lineEdit_comptes_clients_engagement->setupMyStaticQCompleter(_allWindows->STOCKS,
-													 	 	 	 YerothDatabaseTableColumn::DESIGNATION,
+														 	 	 YerothDatabaseTableColumn::DESIGNATION,
 																 false,
 																 true);
+}
+
+
+void YerothPayerCompteClientWindow::populatePayerAuCompteClientsComboBoxes()
+{
+    POPULATE_COMBOBOX(comboBox_clients_typedepaiement,
+    				  _allWindows->TYPE_DE_PAIEMENT,
+					  YerothDatabaseTableColumn::TYPE_DE_PAIEMENT);
 }
 
 

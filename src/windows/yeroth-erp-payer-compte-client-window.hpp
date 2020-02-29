@@ -121,11 +121,11 @@ private slots:
 
 private:
 
-  	void populatePayerAuCompteClientsComboBoxes();
-
     void setupLineEdits();
 
     void setupLineEditsQCompleters();
+
+  	void populatePayerAuCompteClientsComboBoxes();
 
     static const QString 	_WINDOW_TITLE;
 

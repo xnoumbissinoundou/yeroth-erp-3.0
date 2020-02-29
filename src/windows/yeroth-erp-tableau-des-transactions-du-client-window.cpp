@@ -26,6 +26,10 @@ YerothTableauDesTransactionsDuClientWindow::YerothTableauDesTransactionsDuClient
 
     this->mySetupUi(this);
 
+    QMESSAGE_BOX_STYLE_SHEET =
+        QString("QMessageBox {background-color: rgb(%1);}")
+			.arg(COLOUR_RGB_STRING_YEROTH_YELLOW_254_254_0);
+
     connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_document()));
 }
 
@@ -68,6 +72,11 @@ void YerothTableauDesTransactionsDuClientWindow::listerTransactionsDunClient(QSt
 			->lister_les_transactions_dun_client(sqlClientTransactionsUnionQuery);
 
 	tableView_tableau_des_transactions_du_client->resizeColumnsToContents();
+
+	if (tableView_tableau_des_transactions_du_client->rowCount() > 0)
+	{
+		tableView_tableau_des_transactions_du_client->selectRow(0);
+	}
 
 	show();
 }

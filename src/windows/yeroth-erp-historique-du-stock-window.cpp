@@ -29,6 +29,11 @@ YerothHistoriqueDuStockWindow::YerothHistoriqueDuStockWindow()
 
     this->mySetupUi(this);
 
+    QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
+                                       "QMessageBox QLabel {color: rgb(%2);}")
+                                    .arg(COLOUR_RGB_STRING_YEROTH_ORANGE_243_162_0,
+                                    		COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
+
     connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_document()));
 }
 
@@ -79,6 +84,13 @@ void YerothHistoriqueDuStockWindow::listHistoriqueDuStock(const QStringList &aMo
 	tableView_historique_du_stock->lister_lhistorique_du_stock(aMouvementStockList);
 
 	tableView_historique_du_stock->hideColumn(3);
+
+	tableView_historique_du_stock->resizeColumnsToContents();
+
+	if (tableView_historique_du_stock->rowCount() > 0)
+	{
+		tableView_historique_du_stock->selectRow(0);
+	}
 
 	show();
 }
