@@ -492,30 +492,6 @@ int main(int argc, char *argv[])
 
     YerothDatabase database;
 
-    /*
-     * Only the 'client' version of yeroth can be configured
-     * to use a remote database.
-     */
-#ifndef YEROTH_CLIENT
-    //YEROTH_SERVER, YEROTH_STANDALONE, YEROTH_ACADEMIC_EVALUATION_VERSION
-    if (!YerothUtils::isEqualCaseInsensitive(YerothERPConfig::_db_ip_address,
-                                            YerothUtils::LOCALHOST_IP_ADDRESS) &&
-            !YerothUtils::isEqualCaseInsensitive(YerothERPConfig::_db_ip_address,
-                    YerothUtils::LOCALHOST))
-    {
-        QString errMsg(QString(QObject::trUtf8("Cette version de '%1' ne peut pas se connecter "
-        									   "à un serveur externe !\n\n"
-                      	  	  	  	  	  	   "Contacter un administrateur de l'application\n\n"
-                      	  	  	  	  	  	   "Cliquer sur 'Cancel' pour terminer '%2'"))
-        					.arg(YerothUtils::APPLICATION_NAME,
-        						 YerothUtils::APPLICATION_NAME));
-
-        QMessageBox::critical(0, YerothUtils::APPLICATION_NAME, errMsg, QMessageBox::Cancel);
-
-        exit(1);
-    }
-#endif
-
     YerothERPWindows allWindows(qApp->desktop());
 
     QApplication::setStyle(QStyleFactory::create(YerothUtils::YEROTH_QT_STYLE_CDE));
@@ -547,6 +523,8 @@ int main(int argc, char *argv[])
 								 YerothUtils::APPLICATION_NAME));
 
         QMessageBox::critical(0, YerothUtils::APPLICATION_NAME, errMsg, QMessageBox::Cancel);
+
+//        qDebug() << QString("++ test: %1").arg(database.toString());
 
         logger.log("main",
                    QString(QObject::tr("Impossible de se connecter au serveur '%1': %2 !"))
