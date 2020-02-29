@@ -149,28 +149,10 @@ echo -e "${YEROTH_ERP_3_0_POSTRM_STR}$(cat ${TARGET_INSTALLATION_DIR}/DEBIAN/pos
 chmod 755 ${TARGET_INSTALLATION_DIR}/DEBIAN/postrm
 
 
-if [ ! "$qsqlite3Flag" ]; then
-		YEROTH_ERP_3_0_POSTINST_STR="#!/bin/bash
-echo -e \"export YEROTH_ERP_3_0_HOME_FOLDER=/opt/${YEROTH_ERP_3_0_BINARY_NAME}\" >> /etc/environment
-echo -e \"export YEROTH_ERP_3_0_PROPERTIES_CONFIGURATION_FOLDER=/opt/${YEROTH_ERP_3_0_BINARY_NAME}\" >> /etc/environment
-echo -e \"export YEROTH_ERP_ALERT_3_0_HOME_FOLDER=/opt/yeroth-erp-alert-3-0\" >> /etc/environment
-MAINDB=\"yeroth_erp_3\"
-USER_NAME=\"yeroth_erp_3\"
-PASSWDDB=\"1234567\"
-echo \"Enter MariaDB administrative password YEROTH-ERP-3.0 database and user!\"
-mysql -uroot -p -e \"CREATE DATABASE \${MAINDB} CHARACTER SET = 'utf8'; \
-CREATE USER \${USER_NAME}@'%' IDENTIFIED BY '\${PASSWDDB}'; \
-GRANT ALL PRIVILEGES ON *.* TO '\${USER_NAME}'@'%'; \
-FLUSH PRIVILEGES;\"
-mysql_ret_code=\"\$?\"
-exit 0"
-else
-		YEROTH_ERP_3_0_POSTINST_STR="#!/bin/bash
+YEROTH_ERP_3_0_POSTINST_STR="#!/bin/bash
 echo -e \"export YEROTH_ERP_3_0_HOME_FOLDER=/opt/${YEROTH_ERP_3_0_BINARY_NAME}\" >> /etc/environment
 echo -e \"export YEROTH_ERP_3_0_PROPERTIES_CONFIGURATION_FOLDER=/opt/${YEROTH_ERP_3_0_BINARY_NAME}\" >> /etc/environment
 echo -e \"export YEROTH_ERP_ALERT_3_0_HOME_FOLDER=/opt/yeroth-erp-alert-3-0\" >> /etc/environment"
-fi
-
 
 echo -e "${YEROTH_ERP_3_0_POSTINST_STR}$(cat ${TARGET_INSTALLATION_DIR}/DEBIAN/postinst)" > ${TARGET_INSTALLATION_DIR}/DEBIAN/postinst
 
