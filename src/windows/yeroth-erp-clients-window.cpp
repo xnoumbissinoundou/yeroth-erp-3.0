@@ -276,16 +276,15 @@ void YerothERPClientsWindow::private_slot_afficher_les_transactions_dun_client()
 	    													 "%4 as 'Total transaction', "
 	    													 "%5 as 'Compte client (apres)', "
 	    													 "%6 as 'Type de paiement', "
-	    													 "concat(%7,':',%8) as 'Raison', "
-	    													 "CONCAT(date_vente,' ',heure_vente) as 'Temps' from %9")
+	    													 "%7 as 'Raison', "
+	    													 "CONCAT(date_vente,' ',heure_vente) as 'Temps' from %8")
 	    											.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT,
 	    												 YerothDatabaseTableColumn::DATE_VENTE,
 														 YerothDatabaseTableColumn::HEURE_VENTE,
 														 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
 														 YerothDatabaseTableColumn::COMPTE_CLIENT,
 														 YerothDatabaseTableColumn::TYPE_DE_VENTE,
-														 YerothDatabaseTableColumn::CATEGORIE,
-														 YerothDatabaseTableColumn::DESIGNATION,
+														 YerothDatabaseTableColumn::REFERENCE_RECU_VENDU,
 														 _allWindows->STOCKS_VENDU));
 
 	    QString clientTransactionsUnionQueryStr(QString("SELECT * FROM (%1 UNION %2 ORDER BY Temps ASC) AS U WHERE U.%3 = '%4'")

@@ -274,8 +274,8 @@ void YerothPayerCompteClientWindow::setupLineEditsQCompleters()
 
 	lineEdit_comptes_clients_engagement->enableForSearch(QObject::tr("engagement"));
 
-	lineEdit_comptes_clients_engagement->setupMyStaticQCompleter(_allWindows->STOCKS,
-														 	 	 YerothDatabaseTableColumn::DESIGNATION,
+	lineEdit_comptes_clients_engagement->setupMyStaticQCompleter(_allWindows->STOCKS_VENDU,
+														 	 	 YerothDatabaseTableColumn::REFERENCE_RECU_VENDU,
 																 false,
 																 true);
 }
