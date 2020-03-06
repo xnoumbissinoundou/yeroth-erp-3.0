@@ -164,7 +164,7 @@ void YerothConfigurationComptabiliteWindow::deconnecter_utilisateur()
 
 	if (0 != currentUser)
 	{
-		currentUser->setRole(PasDeRole);
+		currentUser->setRole(YerothUtils::ROLE_INDEFINI);
 	}
 }
 

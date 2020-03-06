@@ -216,22 +216,32 @@ void YerothAdminDetailWindow::rendreVisibleCompteUtilisateur(int sqlTableRow)
     }
     //YerothSqlTableModel &usersSqlTableRecord = _allWindows->getSqlTableModel_users();
     QSqlRecord record = usersSqlTableModel->record(sqlTableRow);
-    lineEdit_detail_utilisateur_prenom->setText(GET_SQL_RECORD_DATA(record, "prenom"));
-    lineEdit_detail_utilisateur_nom->setText(GET_SQL_RECORD_DATA(record, "nom"));
-    comboBox_detail_utilisateur_titre->addItem(GET_SQL_RECORD_DATA(record, "titre"));
-    lineEdit_detail_utilisateur_lieu_naissance->setText(GET_SQL_RECORD_DATA(record, "lieu_naissance"));
+    lineEdit_detail_utilisateur_prenom->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::PRENOM));
+    lineEdit_detail_utilisateur_nom->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM));
+
+    comboBox_detail_utilisateur_titre
+		->addItem(YerothUtils::_titreToUserViewString.value(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::TITRE).toInt()));
+
+    lineEdit_detail_utilisateur_lieu_naissance->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::LIEU_NAISSANCE));
+
     dateEdit_detail_utilisateur_date_naissance->
-    setDate(GET_DATE_FROM_STRING(GET_SQL_RECORD_DATA(record, "date_naissance")));
+    	setDate(GET_DATE_FROM_STRING(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DATE_NAISSANCE)));
+
     lineEdit_detail_utilisateur_email->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::EMAIL));
     lineEdit_detail_utilisateur_pays->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::PAYS));
     lineEdit_detail_utilisateur_ville->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::VILLE));
-    lineEdit_detail_utilisateur_province_etat->setText(GET_SQL_RECORD_DATA(record, "province_etat"));
+    lineEdit_detail_utilisateur_province_etat->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::PROVINCE_ETAT));
     lineEdit_detail_utilisateur_boite_postale->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::BOITE_POSTALE));
     lineEdit_detail_utilisateur_numero_telephone_1->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NUMERO_TELEPHONE_1));
     lineEdit_detail_utilisateur_numero_telephone_2->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NUMERO_TELEPHONE_2));
-    comboBox_detail_utilisateur_role->addItem(GET_SQL_RECORD_DATA(record, "role"));
-    lineEdit_detail_utilisateur_id->setText(GET_SQL_RECORD_DATA(record, "nom_utilisateur"));
+
+    comboBox_detail_utilisateur_role->
+		addItem(YerothUtils::_roleToUserViewString.value(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ROLE).toInt()));
+
+    lineEdit_detail_utilisateur_id->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_UTILISATEUR));
+
     lineEdit_detail_utilisateur_mot_passe->setText("****");
+
     lineEdit_detail_utilisateur_localisation->setEnabled(false);
     lineEdit_detail_utilisateur_localisation->setText(_allWindows->getInfoEntreprise().getLocalisation());
     this->enableOtherTabs(SUJET_ACTION_COMPTE_UTILISATEUR, false);

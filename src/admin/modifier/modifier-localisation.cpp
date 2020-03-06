@@ -34,10 +34,9 @@ void YerothAdminModifierWindow::setupEditLocalisation()
     lineEdit_modifier_localisation_numero_telephone_1->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NUMERO_TELEPHONE_1));
     lineEdit_modifier_localisation_numero_telephone_2->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NUMERO_TELEPHONE_2));
 
-    POPULATE_COMBOBOX_MISSING(comboBox_modifier_localisation_base_donnees,
-                              GET_SQL_RECORD_DATA(record, "dbms"),
-                              _allWindows->DBMS,
-                              "nom_dbms");
+    comboBox_modifier_localisation_base_donnees->populateComboBoxMissingRawString("nom_dbms",
+    																			  _allWindows->DBMS,
+																				  GET_SQL_RECORD_DATA(record, "dbms"));
 
     textEdit_modifier_localisation_description_lieu->setText(GET_SQL_RECORD_DATA(record, "description_lieu"));
 }

@@ -189,6 +189,11 @@ YerothERPWindows::YerothERPWindows(QDesktopWidget *desktopWidget)
     _tableModel_configurations 				= new YerothSqlTableModel(YerothERPWindows::CONFIGURATIONS);
     _tableModel_init_configurations 		= new YerothSqlTableModel(YerothERPWindows::INIT_CONFIGURATIONS);
 
+    /*
+     * This is to initialize constants useful for 'INTERNATIONALIZATION'.
+     */
+    YerothUtils yerothUtilsDummy;
+
 #ifdef YEROTH_SERVER
     _dbusServer = new YerothDBusServer(this);
 #endif
@@ -372,27 +377,27 @@ void YerothERPWindows::setUser(YerothPOSUser *user)
     switch(_user->role())
     {
 
-    case RoleAdministrateur:
+    case YerothUtils::ROLE_ADMINISTRATEUR:
         this->definirAdministrateur();
         break;
 
-    case RoleManager:
+    case YerothUtils::ROLE_MANAGER:
         this->definirManager();
         break;
 
-    case RoleVendeur:
+    case YerothUtils::ROLE_VENDEUR:
         this->definirVendeur();
         break;
 
-    case RoleGestionaireDesStocks:
+    case YerothUtils::ROLE_GESTIONAIREDESSTOCKS:
         this->definirGestionaireDesStocks();
         break;
 
-    case RoleMagasinier:
+    case YerothUtils::ROLE_MAGASINIER:
         this->definirMagasinier();
         break;
 
-    case RoleCaissier:
+    case YerothUtils::ROLE_CAISSIER:
         this->definirCaissier();
         break;
 

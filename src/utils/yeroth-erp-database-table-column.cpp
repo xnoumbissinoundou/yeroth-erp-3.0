@@ -132,7 +132,7 @@ const QString YerothDatabaseTableColumn::LOCALISATION_ENTREE_ID			("localisation
 
 YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 {
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REMISE_PRIX, 	QString("Remise (%1)").arg(YerothERPConfig::currency));
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REMISE_PRIX, 	QString(QObject::trUtf8("Remise (%1)")).arg(YerothERPConfig::currency));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::ID, 				QObject::tr("ID"));
 
@@ -150,7 +150,7 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::ENREGISTREUR_STOCK,			QObject::tr("Gestionnaire stock"));
 
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REFERENCE,			QObject::tr("Référence"));
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REFERENCE,			QObject::trUtf8("Référence"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::COMPTE_CLIENT,			QObject::tr("Compte client"));
 

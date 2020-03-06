@@ -13,6 +13,8 @@
 
 #include "src/utils/yeroth-erp-config.hpp"
 
+#include "src/widgets/yeroth-erp-combo-box.hpp"
+
 #include <QtCore/QRegExp>
 #include <QtCore/QCryptographicHash>
 #include <QtCore/QLocale>
@@ -26,7 +28,6 @@
 #include <QtGui/QDoubleValidator>
 
 #include <QtWidgets/QToolBar>
-#include <QtWidgets/QComboBox>
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QStyleFactory>
 #include <QtWidgets/QStyle>
@@ -35,6 +36,7 @@
 
 class YerothLogger;
 
+class YerothComboBox;
 class YerothQMessageBox;
 class QSqlTableModel;
 class QStandardItemModel;
@@ -65,7 +67,7 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-	inline YerothUtils(){}
+	YerothUtils();
 
 	inline ~YerothUtils(){}
 
@@ -150,41 +152,11 @@ public:
 						  QString filterName,
 						  QString &yerothFiltre_in_out);
 
-	static void populateComboBox(QComboBox 		&aComboBox,
-								 const QString 	&tableName,
-								 const char 	*fieldName);
+	static int getComboBoxDatabaseQueryValue(const QString comboBoxStringValue,
+								  	  	     QMap<int, QString> *toViewStringMAP);
 
-	inline static void populateComboBox(QComboBox 	&aComboBox,
-								 	 	const char 	*tableName,
-								 	 	const char 	*fieldName)
-	{
-		populateComboBox(aComboBox, QString(tableName), fieldName);
-	}
-
-
-	inline static void populateComboBox(QComboBox &aComboBox,
-	                                    const QString &tableName,
-										const QString	&fieldName)
-	{
-		populateComboBox(aComboBox,
-		                 tableName,
-		                 fieldName.toStdString().c_str());
-	}
-
-
-	static void populateComboBoxMissing(QComboBox 		&aComboBox,
-										const QString 	&aContent,
-								 	 	const QString 	&tableName,
-								 	 	const char 		*fieldName);
-
-	inline static void populateComboBoxMissing(QComboBox 	&aComboBox,
-											   const char 	*aContent,
-								 	 		   const char 	*tableName,
-								 	 		   const char 	*fieldName)
-	{
-		populateComboBoxMissing(aComboBox, QString(aContent),
-							    QString(tableName), fieldName);
-	}
+	static int getComboBoxDatabaseQueryValue(const QString comboBoxStringValue,
+								  	  	  	 QMap<int, QString> &toViewStringMAP);
 
 	inline static QByteArray md5Hash(QString data)
 	{
@@ -617,6 +589,49 @@ public:
 
 	static QString EN_bar_diag_tex;
 
+
+	enum TITRE
+	{
+		TITRE_DR = 100,
+		TITRE_ME = 120,
+		TITRE_MLLE = 140,
+		TITRE_MME = 160,
+		TITRE_MR = 180,
+		TITRE_PR = 200,
+		TITRE_PROF = 220,
+		TITRE_INDEFINI = 240
+	};
+
+
+	enum USER_ROLE
+	{
+		ROLE_ADMINISTRATEUR = 25,
+		ROLE_MANAGER = 35,
+		ROLE_GESTIONAIREDESSTOCKS = 45,
+		ROLE_MAGASINIER = 55,
+		ROLE_CAISSIER = 65,
+		ROLE_VENDEUR = 75,
+		ROLE_INDEFINI = 85
+	};
+
+
+	enum TYPEDEPAIEMENT
+	{
+		VERSEMENT_COMPTANT = 10,
+		VERSEMENT_CHEQUE = 20,
+		VERSEMENT_TELEPHONE = 30,
+		VERSEMENT_BANCAIRE = 40,
+		VERSEMENT_VIREMENT_BANCAIRE = 50,
+		VERSEMENT_INDEFINI = 60
+	};
+
+	static QMap<int, QString> _titreToUserViewString;
+
+	static QMap<int, QString> _roleToUserViewString;
+
+	static QMap<int, QString> _typedepaiementToUserViewString;
+
+
 	static const QString PREFIX_RECU_VENDU;
 
 	static const QString PREFIX_RECU_SORTIE;
@@ -687,6 +702,7 @@ YerothQMessageBox::information(this, QObject::trUtf8(DIALOG_BOX_TITLE), msg); }
 # define GENERATE_SQL_IS_EMPTY(COLUMN) \
 	YerothUtils::generateSqlIsEmpty(COLUMN)
 
+
 #define YEROTH_ERP_3_0_START_DATABASE_TRANSACTION YerothUtils::startTransaction()
 
 #define YEROTH_ERP_3_0_COMMIT_DATABASE_TRANSACTION YerothUtils::commitTransaction()
@@ -711,9 +727,6 @@ YerothQMessageBox::information(this, QObject::trUtf8(DIALOG_BOX_TITLE), msg); }
 
 # define SET_DATE_TO_STRING(D) D.toString(YerothUtils::DATE_FORMAT)
 
-# define POPULATE_COMBOBOX(C, T, F)  YerothUtils::populateComboBox(*C, T, F)
-
-# define POPULATE_COMBOBOX_MISSING(C, ACONTENT, TABLENAME, FIELD)  YerothUtils::populateComboBoxMissing(*C, ACONTENT, TABLENAME, FIELD)
 
 # ifdef YEROTH_FRANCAIS_LANGUAGE
 	# define GET_NUM_STRING(NUM) YerothUtils::frenchLocale.toString(NUM)

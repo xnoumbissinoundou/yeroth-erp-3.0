@@ -20,7 +20,7 @@ public:
 	inline YerothERPUserVendeur(YerothERPWindows *allWindows)
 	:YerothPOSUser(allWindows)
 	{
-		_role = RoleVendeur;
+		_role = YerothUtils::ROLE_VENDEUR;
 	}
 
 	inline virtual ~YerothERPUserVendeur(){}

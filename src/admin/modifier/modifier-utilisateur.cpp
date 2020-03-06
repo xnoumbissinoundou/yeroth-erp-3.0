@@ -35,15 +35,9 @@ void YerothAdminModifierWindow::setupEditCompteUtilisateur()
     lineEdit_modifier_utilisateur_numero_telephone_1->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NUMERO_TELEPHONE_1));
     lineEdit_modifier_utilisateur_numero_telephone_2->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NUMERO_TELEPHONE_2));
 
-    POPULATE_COMBOBOX_MISSING(comboBox_modifier_utilisateur_titre,
-                              GET_SQL_RECORD_DATA(record, "titre"),
-                              _allWindows->TITRES,
-                              "appelation_titre");
+    comboBox_modifier_utilisateur_titre->populateComboBoxMissing(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::TITRE).toInt());
 
-    POPULATE_COMBOBOX_MISSING(comboBox_modifier_utilisateur_role,
-                              GET_SQL_RECORD_DATA(record, "role"),
-                              _allWindows->ROLES,
-                              "nom_role");
+	comboBox_modifier_utilisateur_role->populateComboBoxMissing(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ROLE).toInt());
 
     lineEdit_modifier_utilisateur_localisation->
     setText(_allWindows->getInfoEntreprise().getLocalisation());
@@ -82,17 +76,21 @@ void YerothAdminModifierWindow::modifier_utilisateur_main()
 
         record.setValue("prenom", lineEdit_modifier_utilisateur_prenom->text());
         record.setValue("nom", lineEdit_modifier_utilisateur_nom->text());
-        record.setValue("titre", comboBox_modifier_utilisateur_titre->currentText());
-        record.setValue("lieu_naissance", lineEdit_modifier_utilisateur_lieu_naissance->text());
-        record.setValue("date_naissance", dateEdit_modifier_utilisateur_date_naissance->date());
+
+        comboBox_modifier_utilisateur_titre->saveCurrentValueToDatabase(YerothDatabaseTableColumn::TITRE, record);
+
+        record.setValue(YerothDatabaseTableColumn::LIEU_NAISSANCE, lineEdit_modifier_utilisateur_lieu_naissance->text());
+        record.setValue(YerothDatabaseTableColumn::DATE_NAISSANCE, dateEdit_modifier_utilisateur_date_naissance->date());
         record.setValue(YerothDatabaseTableColumn::VILLE, lineEdit_modifier_utilisateur_ville->text());
-        record.setValue("province_etat", lineEdit_modifier_utilisateur_province_etat->text());
+        record.setValue(YerothDatabaseTableColumn::PROVINCE_ETAT, lineEdit_modifier_utilisateur_province_etat->text());
         record.setValue(YerothDatabaseTableColumn::PAYS, lineEdit_modifier_utilisateur_pays->text());
         record.setValue(YerothDatabaseTableColumn::BOITE_POSTALE, lineEdit_modifier_utilisateur_boite_postale->text());
         record.setValue(YerothDatabaseTableColumn::EMAIL, lineEdit_modifier_utilisateur_email->text());
         record.setValue(YerothDatabaseTableColumn::NUMERO_TELEPHONE_1, lineEdit_modifier_utilisateur_numero_telephone_1->text());
         record.setValue(YerothDatabaseTableColumn::NUMERO_TELEPHONE_2, lineEdit_modifier_utilisateur_numero_telephone_2->text());
-        record.setValue("role", comboBox_modifier_utilisateur_role->currentText());
+
+        comboBox_modifier_utilisateur_role->saveCurrentValueToDatabase(YerothDatabaseTableColumn::ROLE, record);
+
         record.setValue("localisation", lineEdit_modifier_utilisateur_localisation->text());
 
         QString nom_complet(lineEdit_modifier_utilisateur_prenom->text());

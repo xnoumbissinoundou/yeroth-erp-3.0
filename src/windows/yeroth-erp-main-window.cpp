@@ -382,7 +382,7 @@ void YerothMainWindow::definirPasDeRole()
 
 void YerothMainWindow::help()
 {
-//#define YEROTH_DEVEL_TARGET
+#define YEROTH_DEVEL_TARGET
 
 #ifndef YEROTH_DEVEL_TARGET
 	YerothPOSUser * currentUser = _allWindows->getUser();
@@ -427,7 +427,7 @@ void YerothMainWindow::deconnecter_utilisateur()
 
 	if (0 != currentUser)
 	{
-		currentUser->setRole(PasDeRole);
+		currentUser->setRole(YerothUtils::ROLE_INDEFINI);
 	}
 }
 

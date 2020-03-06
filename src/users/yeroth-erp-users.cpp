@@ -22,80 +22,39 @@ QString YerothPOSUser::getRole()
 {
     QString role;
 
-#ifdef YEROTH_FRANCAIS_LANGUAGE
-
     switch(_role)
     {
-    case RoleAdministrateur:
-        role.append(QObject::trUtf8(ROLE_FRANCAIS_UI_NAME_YEROTH_ERP_3_0_ADMINISTRATEUR));
+    case YerothUtils::ROLE_ADMINISTRATEUR:
+        role.append(YerothUtils::_roleToUserViewString.value(YerothUtils::ROLE_ADMINISTRATEUR));
         break;
 
-    case RoleManager:
-        role.append(QObject::trUtf8(ROLE_FRANCAIS_UI_NAME_YEROTH_ERP_3_0_MANAGER));
+    case YerothUtils::ROLE_MANAGER:
+        role.append(YerothUtils::_roleToUserViewString.value(YerothUtils::ROLE_MANAGER));
         break;
 
-    case RoleMagasinier:
-        role.append(QObject::trUtf8(ROLE_FRANCAIS_UI_NAME_YEROTH_ERP_3_0_MAGASINIER));
+    case YerothUtils::ROLE_MAGASINIER:
+        role.append(YerothUtils::_roleToUserViewString.value(YerothUtils::ROLE_MAGASINIER));
         break;
 
-    case RoleVendeur:
-        role.append(QObject::trUtf8(ROLE_FRANCAIS_UI_NAME_YEROTH_ERP_3_0_VENDEUR));
+    case YerothUtils::ROLE_VENDEUR:
+        role.append(YerothUtils::_roleToUserViewString.value(YerothUtils::ROLE_VENDEUR));
         break;
 
-    case RoleGestionaireDesStocks:
-        role.append(QObject::trUtf8(ROLE_FRANCAIS_UI_NAME_YEROTH_ERP_3_0_GESTIONAIRE_DES_STOCKS));
+    case YerothUtils::ROLE_GESTIONAIREDESSTOCKS:
+        role.append(YerothUtils::_roleToUserViewString.value(YerothUtils::ROLE_GESTIONAIREDESSTOCKS));
         break;
 
-    case RoleCaissier:
-        role.append(QObject::trUtf8(ROLE_FRANCAIS_UI_NAME_YEROTH_ERP_3_0_CAISSIER));
+    case YerothUtils::ROLE_CAISSIER:
+        role.append(YerothUtils::_roleToUserViewString.value(YerothUtils::ROLE_CAISSIER));
         break;
 
-    case PasDeRole:
-        role.append(QObject::trUtf8(ROLE_FRANCAIS_UI_NAME_YEROTH_ERP_3_0_INDEFINI));
+    case YerothUtils::ROLE_INDEFINI:
+        role.append(YerothUtils::_roleToUserViewString.value(YerothUtils::ROLE_INDEFINI));
         break;
 
     default:
         break;
     }
-
-#elif YEROTH_ENGLISH_LANGUAGE
-
-    switch(_role)
-    {
-    case RoleAdministrateur:
-        role.append(QObject::trUtf8(ROLE_ENGLISH_UI_NAME_YEROTH_ERP_3_0_ADMINISTRATOR));
-        break;
-
-    case RoleManager:
-        role.append(QObject::trUtf8(ROLE_ENGLISH_UI_NAME_YEROTH_ERP_3_0_MANAGER));
-        break;
-
-    case RoleMagasinier:
-        role.append(QObject::trUtf8(ROLE_ENGLISH_UI_NAME_YEROTH_ERP_3_0_STORE_KEEPER));
-        break;
-
-    case RoleVendeur:
-        role.append(QObject::trUtf8(ROLE_ENGLISH_UI_NAME_YEROTH_ERP_3_0_SELLER));
-        break;
-
-    case RoleGestionaireDesStocks:
-        role.append(QObject::trUtf8(ROLE_ENGLISH_UI_NAME_YEROTH_ERP_3_0_INVENTORY_STOCK_MANAGER));
-        break;
-
-    case RoleCaissier:
-        role.append(QObject::trUtf8(ROLE_ENGLISH_UI_NAME_YEROTH_ERP_3_0_CASHIER));
-        break;
-
-    case PasDeRole:
-        role.append(QObject::trUtf8(ROLE_ENGLISH_UI_NAME_YEROTH_ERP_3_0_UNDEFINED));
-        break;
-
-    default:
-        break;
-    }
-
-#endif
-
 
     return role;
 }

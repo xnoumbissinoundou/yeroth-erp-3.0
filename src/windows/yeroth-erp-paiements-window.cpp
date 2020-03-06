@@ -230,9 +230,11 @@ void YerothPaiementsWindow::populateComboBoxes()
 {
 	_logger->log("populateComboBoxes");
 
-    POPULATE_COMBOBOX(comboBox_paiements_type_de_paiement,
-    				  _allWindows->TYPE_DE_PAIEMENT,
-					  YerothDatabaseTableColumn::TYPE_DE_PAIEMENT);
+	comboBox_paiements_type_de_paiement->setupPopulateNOTRawString(_allWindows->TYPE_DE_PAIEMENT,
+																   YerothDatabaseTableColumn::TYPE_DE_PAIEMENT,
+																   &YerothUtils::_typedepaiementToUserViewString);
+
+	comboBox_paiements_type_de_paiement->populateComboBoxWithViewStringActivated();
 
 	QStringList aQStringList;
 
@@ -322,8 +324,7 @@ void YerothPaiementsWindow::reinitialiser_champs_db_visibles()
 			<< YerothDatabaseTableColumn::HEURE_PAIEMENT
 			<< YerothDatabaseTableColumn::NOM_ENTREPRISE
 			<< YerothDatabaseTableColumn::MONTANT_PAYE
-			<< YerothDatabaseTableColumn::COMPTE_CLIENT
-			<< YerothDatabaseTableColumn::TYPE_DE_PAIEMENT;
+			<< YerothDatabaseTableColumn::COMPTE_CLIENT;
 }
 
 
@@ -955,7 +956,9 @@ void YerothPaiementsWindow::afficher_paiements_detail()
 
     lineEdit_details_de_paiement_engagement->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ENGAGEMENT));
 
-    lineEdit_details_de_paiement_typedepaiement->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::TYPE_DE_PAIEMENT));
+    int typeDePaiementIntValue = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::TYPE_DE_PAIEMENT).toInt();
+
+    lineEdit_details_de_paiement_typedepaiement->setText(YerothUtils::_typedepaiementToUserViewString.value(typeDePaiementIntValue));
 
     double aDoubleValue = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::COMPTE_CLIENT).toDouble();
 
@@ -1056,15 +1059,16 @@ void YerothPaiementsWindow::rechercher(bool clearPaiementsRecherche)
             _searchFilter.append(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::NOM_ENTREPRISE, nom_entreprise));
         }
 
-		QString typedepaiement(comboBox_paiements_type_de_paiement->currentText());
+        int typedepaiement = YerothUtils::getComboBoxDatabaseQueryValue(comboBox_paiements_type_de_paiement->currentText(),
+        																YerothUtils::_typedepaiementToUserViewString);
 
-        if (!typedepaiement.isEmpty())
+        if (YerothUtils::VERSEMENT_INDEFINI != typedepaiement)
         {
             if (!_searchFilter.isEmpty())
             {
                 _searchFilter.append(" AND ");
             }
-            _searchFilter.append(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::TYPE_DE_PAIEMENT, typedepaiement));
+            _searchFilter.append(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::TYPE_DE_PAIEMENT, QString::number(typedepaiement)));
         }
 
         QString numero_du_bon_de_paiement(lineEdit_paiements_numero_bon_paiement->text());

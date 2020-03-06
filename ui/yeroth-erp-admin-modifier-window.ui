@@ -6021,7 +6021,7 @@
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
       </widget>
-      <widget class="QComboBox" name="comboBox_modifier_utilisateur_titre">
+      <widget class="YerothComboBox" name="comboBox_modifier_utilisateur_titre">
        <property name="geometry">
         <rect>
          <x>173</x>

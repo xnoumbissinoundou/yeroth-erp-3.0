@@ -7,11 +7,16 @@
 #ifndef YEROTH_COMBO_BOX_HPP_
 #define YEROTH_COMBO_BOX_HPP_
 
-#include <QtWidgets/QComboBox>
 
 #include "src/utils/yeroth-erp-utils.hpp"
 
+#include <QtWidgets/QComboBox>
+
+#include <QtSql/QSqlRecord>
+
+
 class YerothUtils;
+class QSqlRecord;
 
 class YerothComboBox : public QComboBox
 {
@@ -23,6 +28,30 @@ public:
 	YerothComboBox(QWidget *parent);
 
 	inline ~YerothComboBox(){}
+
+	void setupPopulateNOTRawString(QString aDBTableViewStringName,
+								   QString aDBFieldColumn,
+								   QMap<int, QString> *pointerToUserViewStringMAP);
+
+	inline const QString& getDbFieldColumn() const
+	{
+		return _dbFieldColumn;
+	}
+
+	inline const QString& getDbTableViewStringName() const
+	{
+		return _dbTableViewStringName;
+	}
+
+	inline QMap<int, QString> *getPointerToUserViewStringMap()
+	{
+		return _pointerToUserViewStringMAP;
+	}
+
+	inline bool isPopulateRaw()
+	{
+		return _populateRawString;
+	}
 
 	bool checkField();
 
@@ -40,7 +69,51 @@ public:
 
 	void setYerothEnabled(bool enabled);
 
+	inline void saveRawCurrentValueToDatabase(const QString &aDBFieldColumn,
+											  QSqlRecord &aQSqlRecordToSAVE)
+	{
+		aQSqlRecordToSAVE.setValue(aDBFieldColumn, currentText());
+	}
+
+	void saveCurrentValueToDatabase(const QString &aDBFieldColumn,
+									QSqlRecord &aQSqlRecordToSAVE);
+
+	inline void setDBField(QString aDBFieldColumn)
+	{
+		_dbFieldColumn = aDBFieldColumn;
+	}
+
+	inline void setPointerToUserViewStringMAP(QMap<int, QString> *pointerToUserViewStringMAP)
+	{
+		_pointerToUserViewStringMAP = pointerToUserViewStringMAP;
+	}
+
+	bool populateComboBoxRawString(QString aDBTableViewStringName,
+								   QString aDBFieldColumn);
+
+	bool populateComboBoxMissingRawString(const QString aDBFieldColumn,
+										  const QString aDBTableViewString,
+										  const QString aContentSTRINGValue);
+
+	bool populateComboBoxWithViewStringActivated();
+
+	bool populateComboBoxMissing(const int aContentINTValue);
+
+
 private:
+
+	inline void setPopulateRaw(bool populateRawString)
+	{
+		_populateRawString = populateRawString;
+	}
+
+	bool _populateRawString;
+
+	QString _dbTableViewStringName;
+
+	QString _dbFieldColumn;
+
+	QMap<int, QString> *_pointerToUserViewStringMAP;
 
 	QPalette _originalPaletteBeforeMissingInformation;
 };

@@ -35,6 +35,7 @@ YerothAdminCreateWindow::YerothAdminCreateWindow()
                                     	 COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
     setupLineEdits();
+
     setupDateTimeEdits();
 
     YEROTH_ERP_ADMIN_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);

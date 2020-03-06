@@ -53,7 +53,7 @@ protected:
 private:
 
 	YerothPOSUser *createUser(QSqlRecord &userRecord,
-							    QString &role);
+							  int role);
 
 	void checkCourriersAlertes();
 

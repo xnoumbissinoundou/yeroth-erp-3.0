@@ -20,7 +20,7 @@ public:
 	inline YerothPOSUserMagasinier(YerothERPWindows *allWindows)
 	:YerothPOSUser(allWindows)
 	{
-		_role = RoleMagasinier;
+		_role = YerothUtils::ROLE_MAGASINIER;
 	}
 
 	inline virtual ~YerothPOSUserMagasinier(){}

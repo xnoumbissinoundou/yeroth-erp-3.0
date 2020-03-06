@@ -66,7 +66,8 @@ bool YerothAdminCreateWindow::creer_alerte()
         if (radioButton_creer_alerte_quantite->isChecked())
         {
             record.setValue(YerothDatabaseTableColumn::QUANTITE, quantite);
-            record.setValue(YerothDatabaseTableColumn::CONDITION_ALERTE, comboBox_creer_alerte_condition->currentText());
+            comboBox_creer_alerte_condition->saveRawCurrentValueToDatabase(YerothDatabaseTableColumn::CONDITION_ALERTE,
+            															   record);
         }
         else if (radioButton_creer_alerte_periode_temps->isChecked())
         {
@@ -117,8 +118,8 @@ void YerothAdminCreateWindow::populateAlerteComboBoxes()
 {
     _logger->log("populateAlerteComboBoxes");
 
-    YerothUtils::populateComboBox(*comboBox_creer_alerte_condition,
-                                 _allWindows->CONDITIONS_ALERTES, YerothDatabaseTableColumn::CONDITION_ALERTE);
+    comboBox_creer_alerte_condition->populateComboBoxRawString(_allWindows->CONDITIONS_ALERTES,
+    														   YerothDatabaseTableColumn::CONDITION_ALERTE);
 }
 
 

@@ -313,6 +313,7 @@ void YerothAdminListerWindow::lister_utilisateur(YerothSqlTableModel * aSqlTable
     tableView_lister_utilisateur->hideColumn(1);
     tableView_lister_utilisateur->hideColumn(2);
     tableView_lister_utilisateur->hideColumn(5);
+    tableView_lister_utilisateur->hideColumn(6);
     tableView_lister_utilisateur->hideColumn(7);
     tableView_lister_utilisateur->hideColumn(10);
     tableView_lister_utilisateur->hideColumn(11);

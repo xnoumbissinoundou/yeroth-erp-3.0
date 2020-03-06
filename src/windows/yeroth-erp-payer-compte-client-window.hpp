@@ -32,7 +32,8 @@ public:
 	YEROTH_CLASS_OPERATORS
 
 	inline HistoryPaymentInfo()
-	:compte_client(0.0),
+	:type_de_paiement(0),
+	 compte_client(0.0),
 	 montant_paye(0.0)
 	{
 	}
@@ -43,7 +44,7 @@ public:
 
 	QString nom_entreprise;
 	QString nom_encaisseur;
-	QString type_de_paiement;
+	int type_de_paiement;
 	QString notes;
 	QString engagement;
 	QDate date_paiement;

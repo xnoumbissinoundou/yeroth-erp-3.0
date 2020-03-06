@@ -20,7 +20,7 @@ public:
 	inline YerothPOSUserManager(YerothERPWindows *allWindows)
 	:YerothPOSUser(allWindows)
 	{
-		_role = RoleManager;
+		_role = YerothUtils::ROLE_MANAGER;
 	}
 
 	inline virtual ~YerothPOSUserManager(){}

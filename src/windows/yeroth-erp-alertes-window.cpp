@@ -298,7 +298,7 @@ void YerothAlertesWindow::lister_alertes()
 
      * Les utilisateurs 'Manager' et 'Administrateur' ont accès
 
-     * à toutes les alertes. 'RoleMagasinier' et 'RoleCaissier' eux ont
+     * à toutes les alertes. 'YerothUtils::ROLE_MAGASINIER' et 'YerothUtils::ROLE_CAISSIER' eux ont
 
      * juste accès aux alertes qui leurs sont destinées.
 

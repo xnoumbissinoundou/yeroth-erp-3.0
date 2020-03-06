@@ -114,7 +114,7 @@ void YerothPOSChangerUtilisateurDialog::valider()
                 return;
             }
 
-            QString role = GET_SQL_RECORD_DATA(userRecord, "role");
+            int role = GET_SQL_RECORD_DATA(userRecord, YerothDatabaseTableColumn::ROLE).toInt();
 
             YerothPOSUser *user = createUser(userRecord, role);
 
@@ -142,35 +142,35 @@ void YerothPOSChangerUtilisateurDialog::valider()
 
             _allWindows->setUser(user);
 
-            if (YerothUtils::isEqualCaseInsensitive(ROLE_YEROTH_ERP_3_0_ADMINISTRATEUR, role))
+            if (YerothUtils::ROLE_ADMINISTRATEUR == role)
             {
             	_allWindows->_mainWindow->rendreInvisible();
                 _allWindows->_mainWindow->definirAdministrateur();
             }
-            else if (YerothUtils::isEqualCaseInsensitive(ROLE_YEROTH_ERP_3_0_CAISSIER, role))
+            else if (YerothUtils::ROLE_CAISSIER == role)
             {
                 _allWindows->_mainWindow->rendreInvisible();
                 _allWindows->_ventesWindow->resetFilter(&_allWindows->getSqlTableModel_stocks_vendu());
                 _allWindows->_pdVenteWindow->rendreVisible(&_allWindows->getSqlTableModel_stocks());
             }
-            else if (YerothUtils::isEqualCaseInsensitive(ROLE_YEROTH_ERP_3_0_MAGASINIER, role))
+            else if (YerothUtils::ROLE_MAGASINIER == role)
             {
                 _allWindows->_mainWindow->rendreVisible(&_allWindows->getSqlTableModel_stocks());
             }
-            else if (YerothUtils::isEqualCaseInsensitive(ROLE_YEROTH_ERP_3_0_VENDEUR, role))
+            else if (YerothUtils::ROLE_VENDEUR == role)
             {
                 _allWindows->_mainWindow->rendreVisible(&_allWindows->getSqlTableModel_stocks());
             }
-            else if (YerothUtils::isEqualCaseInsensitive(ROLE_YEROTH_ERP_3_0_GESTIONAIRE_DES_STOCKS, role))
+            else if (YerothUtils::ROLE_GESTIONAIREDESSTOCKS == role)
             {
                 _allWindows->_mainWindow->rendreVisible(&_allWindows->getSqlTableModel_stocks());
             }
-            else		//RoleManager
+            else		//YerothUtils::ROLE_MANAGER
             {
-                //qDebug() << "++ RoleManager";
+                //qDebug() << "++ YerothUtils::ROLE_MANAGER";
                 //qDebug() << "++ _allWindows->_caisseWindow: " << _allWindows->_caisseWindow;
                 _allWindows->_ventesWindow->resetFilter(&_allWindows->getSqlTableModel_stocks_vendu());
-                //qDebug() << "++ RoleManager, _allWindows->_caisseWindow->resetFilter()";
+                //qDebug() << "++ YerothUtils::ROLE_MANAGER, _allWindows->_caisseWindow->resetFilter()";
                 _allWindows->_mainWindow->rendreVisible(&_allWindows->getSqlTableModel_stocks());
             }
 
@@ -196,31 +196,32 @@ void YerothPOSChangerUtilisateurDialog::valider()
     }
 }
 
-YerothPOSUser *YerothPOSChangerUtilisateurDialog::createUser(QSqlRecord & userRecord, QString & role)
+YerothPOSUser *YerothPOSChangerUtilisateurDialog::createUser(QSqlRecord & userRecord,
+															 int role)
 {
     YerothPOSUser *user = 0;
 
-    if (YerothUtils::isEqualCaseSensitive(ROLE_YEROTH_ERP_3_0_MANAGER, role))
+    if (YerothUtils::ROLE_MANAGER == role)
     {
         user = new YerothPOSUserManager(_allWindows);
     }
-    if (YerothUtils::isEqualCaseSensitive(ROLE_YEROTH_ERP_3_0_VENDEUR, role))
+    if (YerothUtils::ROLE_VENDEUR == role)
     {
         user = new YerothERPUserVendeur(_allWindows);
     }
-    if (YerothUtils::isEqualCaseSensitive(ROLE_YEROTH_ERP_3_0_GESTIONAIRE_DES_STOCKS, role))
+    if (YerothUtils::ROLE_GESTIONAIREDESSTOCKS == role)
     {
         user = new YerothPOSUserGestionaireDesStocks(_allWindows);
     }
-    else if (YerothUtils::isEqualCaseSensitive(ROLE_YEROTH_ERP_3_0_MAGASINIER, role))
+    else if (YerothUtils::ROLE_MAGASINIER == role)
     {
         user = new YerothPOSUserMagasinier(_allWindows);
     }
-    else if (YerothUtils::isEqualCaseSensitive(ROLE_YEROTH_ERP_3_0_CAISSIER, role))
+    else if (YerothUtils::ROLE_CAISSIER == role)
     {
         user = new YerothPOSUserCaissier(_allWindows);
     }
-    else if (YerothUtils::isEqualCaseSensitive(ROLE_YEROTH_ERP_3_0_ADMINISTRATEUR, role))
+    else if (YerothUtils::ROLE_ADMINISTRATEUR == role)
     {
 
 #ifdef YEROTH_CLIENT
@@ -246,7 +247,8 @@ YerothPOSUser *YerothPOSChangerUtilisateurDialog::createUser(QSqlRecord & userRe
     	user->set_email(GET_SQL_RECORD_DATA(userRecord, YerothDatabaseTableColumn::EMAIL));
     	user->set_numero_telephone_1(GET_SQL_RECORD_DATA(userRecord, YerothDatabaseTableColumn::NUMERO_TELEPHONE_1));
     	user->set_numero_telephone_2(GET_SQL_RECORD_DATA(userRecord, YerothDatabaseTableColumn::NUMERO_TELEPHONE_2));
-    	user->set_titre(GET_SQL_RECORD_DATA(userRecord, YerothDatabaseTableColumn::TITRE));
+
+    	user->set_titre(YerothUtils::_titreToUserViewString.value(GET_SQL_RECORD_DATA(userRecord, YerothDatabaseTableColumn::TITRE).toInt()));
 
     	user->set_nom_complet(user->prenom().append(" ").append(user->nom()));
     }

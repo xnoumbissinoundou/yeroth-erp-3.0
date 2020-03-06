@@ -20,7 +20,7 @@ public:
 	inline YerothPOSUserCaissier(YerothERPWindows *allWindows)
 	:YerothPOSUser(allWindows)
 	{
-		_role = RoleCaissier;
+		_role = YerothUtils::ROLE_CAISSIER;
 	}
 
 	inline virtual ~YerothPOSUserCaissier(){}

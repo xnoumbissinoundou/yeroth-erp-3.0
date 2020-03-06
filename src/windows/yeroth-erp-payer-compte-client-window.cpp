@@ -191,7 +191,8 @@ bool YerothPayerCompteClientWindow::putCashIntoCustomerAccount()
 
     	paymentInfo.engagement = lineEdit_comptes_clients_engagement->text();
 
-    	paymentInfo.type_de_paiement = comboBox_clients_typedepaiement->currentText();
+    	paymentInfo.type_de_paiement = YerothUtils::getComboBoxDatabaseQueryValue(comboBox_clients_typedepaiement->currentText(),
+    																 	 	 	  YerothUtils::_typedepaiementToUserViewString);
 
     	paymentInfo.nom_entreprise = _curCompanyName;
 
@@ -283,9 +284,11 @@ void YerothPayerCompteClientWindow::setupLineEditsQCompleters()
 
 void YerothPayerCompteClientWindow::populatePayerAuCompteClientsComboBoxes()
 {
-    POPULATE_COMBOBOX(comboBox_clients_typedepaiement,
-    				  _allWindows->TYPE_DE_PAIEMENT,
-					  YerothDatabaseTableColumn::TYPE_DE_PAIEMENT);
+	comboBox_clients_typedepaiement->setupPopulateNOTRawString(_allWindows->TYPE_DE_PAIEMENT,
+    															YerothDatabaseTableColumn::TYPE_DE_PAIEMENT,
+																&YerothUtils::_typedepaiementToUserViewString);
+
+	comboBox_clients_typedepaiement->populateComboBoxWithViewStringActivated();
 }
 
 

@@ -302,7 +302,11 @@ void YerothAchatsWindow::setupShortcuts()
 void YerothAchatsWindow::slot_reinitialiser_champs_db_visibles()
 {
 	reinitialiser_champs_db_visibles();
-	rechercher();
+
+	if (0 != _curAchatSqlTableModel)
+	{
+		afficherAchats(*_curAchatSqlTableModel);
+	}
 }
 
 

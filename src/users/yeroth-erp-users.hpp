@@ -18,17 +18,6 @@
 class QString;
 class QDate;
 
-enum Role
-{
-	RoleAdministrateur			= 10000,
-	RoleManager,
-	RoleVendeur,
-	RoleGestionaireDesStocks,
-	RoleMagasinier,
-	RoleCaissier,
-	PasDeRole
-};
-
 class YerothERPWindows;
 class YerothSqlTableModel;
 
@@ -48,18 +37,18 @@ public:
 	YEROTH_CLASS_OPERATORS
 
 	inline YerothPOSUser(YerothERPWindows *allWindows)
-	:_role(PasDeRole),
+	:_role(YerothUtils::ROLE_INDEFINI),
 	 _allWindows(allWindows)
 	{
 	}
 
 	inline virtual ~YerothPOSUser(){}
 
-	enum Role role(){ return _role; }
+	enum YerothUtils::USER_ROLE role(){ return _role; }
 
 	QString toString();
 
-	inline void setRole(enum Role aRole)
+	inline void setRole(enum YerothUtils::USER_ROLE aRole)
 	{
 		_role = aRole;
 	}
@@ -183,42 +172,42 @@ public:
 
 	inline virtual bool isPasDeRole()
 	{
-		return _role == PasDeRole;
+		return _role == YerothUtils::ROLE_INDEFINI;
 	}
 
 	inline virtual bool isAdmin()
 	{
-		return _role == RoleAdministrateur;
+		return _role == YerothUtils::ROLE_ADMINISTRATEUR;
 	}
 
 	inline virtual bool isManager()
 	{
-		return _role == RoleManager;
+		return _role == YerothUtils::ROLE_MANAGER;
 	}
 
 	inline virtual bool isVendeur()
 	{
-		return _role == RoleVendeur;
+		return _role == YerothUtils::ROLE_VENDEUR;
 	}
 
 	inline virtual bool isMagasinier()
 	{
-		return _role == RoleMagasinier;
+		return _role == YerothUtils::ROLE_MAGASINIER;
 	}
 
 	inline virtual bool isGestionaireDesStocks()
 	{
-		return _role == RoleGestionaireDesStocks;
+		return _role == YerothUtils::ROLE_GESTIONAIREDESSTOCKS;
 	}
 
 	inline virtual bool isCaissier()
 	{
-		return _role == RoleCaissier;
+		return _role == YerothUtils::ROLE_CAISSIER;
 	}
 
 protected:
 
-	enum Role _role;
+	enum YerothUtils::USER_ROLE _role;
 
 	QString _prenom;
 	QString _nom;

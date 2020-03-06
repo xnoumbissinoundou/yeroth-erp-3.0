@@ -139,6 +139,25 @@ QString YerothUtils::EN_bar_chart_tex("");
 
 QString YerothUtils::EN_bar_diag_tex("");
 
+
+/*
+ * All valid key values must be >= 0.
+ */
+QMap<int, QString> YerothUtils::_titreToUserViewString;
+
+
+/*
+ * All valid key values must be >= 0.
+ */
+QMap<int, QString> YerothUtils::_roleToUserViewString;
+
+
+/*
+ * All valid key values must be >= 0.
+ */
+QMap<int, QString> YerothUtils::_typedepaiementToUserViewString;
+
+
 const QString YerothUtils::PREFIX_RECU_VENDU("VEN-");
 
 const QString YerothUtils::PREFIX_RECU_SORTIE("SOR-");
@@ -303,6 +322,73 @@ const QRegExp YerothUtils::EMPTY_SPACE_REGEXP("\\s");
 const QIntValidator YerothUtils::IntValidator(0, 444444444);
 const QDoubleValidator YerothUtils::DoubleValidator(0, 444444444, 2);
 const QRegExpValidator YerothUtils::PasswordValidator(PasswordRegExp);
+
+
+
+YerothUtils::YerothUtils()
+{
+    YerothUtils::_titreToUserViewString.insert(YerothUtils::TITRE_DR,
+			QObject::tr("Dr."));
+
+    YerothUtils::_titreToUserViewString.insert(YerothUtils::TITRE_ME,
+			QObject::tr("Me."));
+
+    YerothUtils::_titreToUserViewString.insert(YerothUtils::TITRE_MLLE,
+			QObject::tr("Mlle"));
+
+    YerothUtils::_titreToUserViewString.insert(YerothUtils::TITRE_MME,
+			QObject::tr("Mme"));
+
+    YerothUtils::_titreToUserViewString.insert(YerothUtils::TITRE_MR,
+			QObject::tr("Mr."));
+
+    YerothUtils::_titreToUserViewString.insert(YerothUtils::TITRE_PR,
+			QObject::tr("Pr."));
+
+    YerothUtils::_titreToUserViewString.insert(YerothUtils::TITRE_PROF,
+			QObject::tr("Prof."));
+
+
+    YerothUtils::_roleToUserViewString.insert(YerothUtils::ROLE_ADMINISTRATEUR,
+			QObject::tr("administrateur"));
+
+    YerothUtils::_roleToUserViewString.insert(YerothUtils::ROLE_MANAGER,
+			QObject::tr("manager"));
+
+    YerothUtils::_roleToUserViewString.insert(YerothUtils::ROLE_GESTIONAIREDESSTOCKS,
+			QObject::tr("gestionaire des stocks"));
+
+    YerothUtils::_roleToUserViewString.insert(YerothUtils::ROLE_MAGASINIER,
+			QObject::tr("magasinier"));
+
+    YerothUtils::_roleToUserViewString.insert(YerothUtils::ROLE_CAISSIER,
+			QObject::tr("caissier"));
+
+    YerothUtils::_roleToUserViewString.insert(YerothUtils::ROLE_VENDEUR,
+			QObject::tr("vendeur"));
+
+    YerothUtils::_roleToUserViewString.insert(YerothUtils::ROLE_INDEFINI,
+			QObject::tr("indéfini"));
+
+
+    YerothUtils::_typedepaiementToUserViewString.insert(YerothUtils::VERSEMENT_COMPTANT,
+			QObject::trUtf8("versement (comptant)"));
+
+    YerothUtils::_typedepaiementToUserViewString.insert(YerothUtils::VERSEMENT_CHEQUE,
+			QObject::trUtf8("versement (cheque)"));
+
+    YerothUtils::_typedepaiementToUserViewString.insert(YerothUtils::VERSEMENT_TELEPHONE,
+			QObject::trUtf8("versement (téléphone)"));
+
+    YerothUtils::_typedepaiementToUserViewString.insert(YerothUtils::VERSEMENT_BANCAIRE,
+			QObject::trUtf8("versement (bancaire)"));
+
+    YerothUtils::_typedepaiementToUserViewString.insert(YerothUtils::VERSEMENT_VIREMENT_BANCAIRE,
+			QObject::trUtf8("versement (virement bancaire)"));
+
+    YerothUtils::_typedepaiementToUserViewString.insert(YerothUtils::VERSEMENT_INDEFINI,
+			QObject::trUtf8("indéfini"));
+}
 
 
 QString YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(QString aString_IN)
@@ -901,87 +987,39 @@ void YerothUtils::addFiltre(YerothLineEdit *aLineEdit,
     }
 }
 
-void YerothUtils::populateComboBox(QComboBox &aComboBox,
-                                  const QString &tableName,
-                                  const char *fieldName)
+
+int YerothUtils::getComboBoxDatabaseQueryValue(const QString comboBoxStringValue,
+							  	  			   QMap<int, QString> *toViewStringMAP)
 {
-    static QStringList curItems;
+	if (0 != toViewStringMAP)
+	{
+		return YerothUtils::getComboBoxDatabaseQueryValue(comboBoxStringValue,
+												   	   	  *toViewStringMAP);
+	}
 
-    aComboBox.clear();
-
-    QString strQuery("select ");
-    strQuery.append(fieldName).append(" from ")
-    .append(tableName).append(" order by `").append(fieldName).append("` asc");
-
-    //qDebug() << "++ query: " << strQuery;
-    QSqlQuery query;
-    query.prepare(strQuery);
-    bool success = query.exec();
-    //qDebug() << "[" << success << "]" << query.executedQuery();
-
-    if (success)
-    {
-        QSqlRecord rec = query.record();
-
-        curItems.append("");
-        while (query.next())
-        {
-            QString currentItem(query.value(0).toString());
-
-            if (!curItems.contains(currentItem))
-            {
-                curItems.append(currentItem);
-            }
-        }
-    }
-
-    aComboBox.addItems(curItems);
-    curItems.clear();
+	return -1;
 }
 
 
-/*
- * This is used when the argument 'aContent' must be the first
- * element of the combo box when modifying an existing set
- * of combo box elements.
- */
-void YerothUtils::populateComboBoxMissing(QComboBox &aComboBox,
-        const QString &aContent,
-        const QString &tableName,
-        const char *fieldName)
+int YerothUtils::getComboBoxDatabaseQueryValue(const QString comboBoxStringValue,
+							  	  			   QMap<int, QString> &toViewStringMAP)
 {
-    static QStringList curItems;
+	int databaseQueryValue = -1;
 
-    QString strQuery("select ");
-    strQuery.append(fieldName).append(" from ")
-    .append(tableName).append(" order by `").append(fieldName).append("` asc");
+    QMapIterator<int, QString> it(toViewStringMAP);
 
-    QSqlQuery query;
-    query.prepare(strQuery);
-    bool success = query.exec();
-    //qDebug() << "[" << success << "]" << query.executedQuery();
-
-    if (success)
+    while (it.hasNext())
     {
-        QSqlRecord rec = query.record();
+        it.next();
+        databaseQueryValue = it.key();
 
-        QString content;
-        curItems.append(aContent);
-
-        while (query.next())
+        if (YerothUtils::isEqualCaseInsensitive(comboBoxStringValue, it.value()))
         {
-            content = query.value(0).toString();
-
-            if (content != aContent)
-            {
-                curItems.append(content);
-            }
+        	return databaseQueryValue;
         }
     }
 
-    aComboBox.addItems(curItems);
-
-    curItems.clear();
+    return databaseQueryValue;
 }
 
 

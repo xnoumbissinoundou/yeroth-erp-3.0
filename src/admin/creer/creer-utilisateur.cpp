@@ -58,26 +58,30 @@ bool YerothAdminCreateWindow::creer_utilisateur()
         QSqlRecord record = usersTableModel.record();
 
         record.setValue(YerothDatabaseTableColumn::ID, _allWindows->getNextIdSqlTableModel_users());
-        record.setValue("prenom", lineEdit_creer_utilisateur_prenom->text());
-        record.setValue("nom", lineEdit_creer_utilisateur_nom->text());
-        record.setValue("titre", comboBox_creer_utilisateur_titre->currentText());
-        record.setValue("lieu_naissance", lineEdit_creer_utilisateur_lieu_naissance->text());
-        record.setValue("date_naissance", dateEdit_creer_utilisateur_date_naissance->date());
+        record.setValue(YerothDatabaseTableColumn::PRENOM, lineEdit_creer_utilisateur_prenom->text());
+        record.setValue(YerothDatabaseTableColumn::NOM, lineEdit_creer_utilisateur_nom->text());
+
+        comboBox_creer_utilisateur_titre->saveCurrentValueToDatabase(YerothDatabaseTableColumn::TITRE, record);
+
+        record.setValue(YerothDatabaseTableColumn::LIEU_NAISSANCE, lineEdit_creer_utilisateur_lieu_naissance->text());
+        record.setValue(YerothDatabaseTableColumn::DATE_NAISSANCE, dateEdit_creer_utilisateur_date_naissance->date());
         record.setValue(YerothDatabaseTableColumn::EMAIL, lineEdit_creer_utilisateur_email->text());
         record.setValue(YerothDatabaseTableColumn::PAYS, lineEdit_creer_utilisateur_pays->text());
         record.setValue(YerothDatabaseTableColumn::VILLE, lineEdit_creer_utilisateur_ville->text());
-        record.setValue("province_etat", lineEdit_creer_utilisateur_province_etat->text());
+        record.setValue(YerothDatabaseTableColumn::PROVINCE_ETAT, lineEdit_creer_utilisateur_province_etat->text());
         record.setValue(YerothDatabaseTableColumn::BOITE_POSTALE, lineEdit_creer_utilisateur_boite_postale->text());
         record.setValue(YerothDatabaseTableColumn::NUMERO_TELEPHONE_1, lineEdit_creer_utilisateur_numero_telephone_1->text());
         record.setValue(YerothDatabaseTableColumn::NUMERO_TELEPHONE_2, lineEdit_creer_utilisateur_numero_telephone_2->text());
-        record.setValue("role", comboBox_creer_utilisateur_role->currentText());
-        record.setValue("localisation", _allWindows->getInfoEntreprise().getLocalisation());
-        record.setValue("nom_utilisateur", nom_utilisateur);
+
+        comboBox_creer_utilisateur_role->saveCurrentValueToDatabase(YerothDatabaseTableColumn::ROLE, record);
+
+        record.setValue(YerothDatabaseTableColumn::LOCALISATION, _allWindows->getInfoEntreprise().getLocalisation());
+        record.setValue(YerothDatabaseTableColumn::NOM_UTILISATEUR, nom_utilisateur);
 
         QString nom_complet(lineEdit_creer_utilisateur_prenom->text());
         nom_complet.append(" ").append(lineEdit_creer_utilisateur_nom->text());
 
-        record.setValue("nom_complet", nom_complet);
+        record.setValue(YerothDatabaseTableColumn::NOM_COMPLET, nom_complet);
 
         mot_passe.append(nom_utilisateur);
 
@@ -85,10 +89,10 @@ bool YerothAdminCreateWindow::creer_utilisateur()
 
         record.setValue("mot_passe", md5Hash_mot_passe);
 
-        retMsg.append(nom_utilisateur)
-        .append("' pour '")
-        .append(lineEdit_creer_utilisateur_prenom->text()).append(" ")
-        .append(lineEdit_creer_utilisateur_nom->text());
+        retMsg.append(QString(QObject::tr("%1' pour '%2 %3"))
+        				.arg(nom_utilisateur,
+        					 lineEdit_creer_utilisateur_prenom->text(),
+							 lineEdit_creer_utilisateur_nom->text()));
 
         bool success = usersTableModel.insertNewRecord(record);
 
@@ -121,8 +125,17 @@ void YerothAdminCreateWindow::populateUtilisateurComboBoxes()
 {
     _logger->log("populateUtilisateurComboBoxes");
 
-    POPULATE_COMBOBOX(comboBox_creer_utilisateur_titre, _allWindows->TITRES, YerothDatabaseTableColumn::APPELATION_TITRE);
-    POPULATE_COMBOBOX(comboBox_creer_utilisateur_role, _allWindows->ROLES, YerothDatabaseTableColumn::NOM_ROLE);
+    comboBox_creer_utilisateur_titre->setupPopulateNOTRawString(_allWindows->TITRES,
+    															YerothDatabaseTableColumn::APPELATION_TITRE,
+																&YerothUtils::_titreToUserViewString);
+
+    comboBox_creer_utilisateur_role->setupPopulateNOTRawString(_allWindows->ROLES,
+    															YerothDatabaseTableColumn::NOM_ROLE,
+																&YerothUtils::_roleToUserViewString);
+
+    comboBox_creer_utilisateur_titre->populateComboBoxWithViewStringActivated();
+
+    comboBox_creer_utilisateur_role->populateComboBoxWithViewStringActivated();
 }
 
 
