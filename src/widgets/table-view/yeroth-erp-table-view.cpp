@@ -189,6 +189,7 @@ void YerothTableView::lister_les_transactions_dun_client(QSqlQuery &sqlClientTra
     QString timeHdr(QObject::tr("Heure"));
     QString transactionAmountHdr(QObject::tr("Montant total"));
     QString customerAccountValueAfterHdr(QObject::trUtf8("Compte client (après)"));
+    QString paymentModeHdr(QObject::tr("Type de paiement"));
     QString reasonHdr(QObject::trUtf8("Justification"));
 
     _tableModelHeaders->clear();
@@ -198,6 +199,7 @@ void YerothTableView::lister_les_transactions_dun_client(QSqlQuery &sqlClientTra
     _tableModelHeaders->append(timeHdr);
     _tableModelHeaders->append(transactionAmountHdr);
     _tableModelHeaders->append(customerAccountValueAfterHdr);
+    _tableModelHeaders->append(paymentModeHdr);
     _tableModelHeaders->append(reasonHdr);
 
 
@@ -250,8 +252,18 @@ void YerothTableView::lister_les_transactions_dun_client(QSqlQuery &sqlClientTra
 						break;
 
 					case QVariant::String:
-						aYerothQStandardItem = new YerothQStandardItem(YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(qv.toString()));
-						_stdItemModel->setItem(i, j, aYerothQStandardItem);
+						if (5 == j)
+						{
+							int keyValue = qv.toString().toInt();
+							QString stringValue(YerothUtils::_typedepaiementToUserViewString.value(keyValue));
+							aYerothQStandardItem = new YerothQStandardItem(YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(stringValue));
+							_stdItemModel->setItem(i, j, aYerothQStandardItem);
+						}
+						else
+						{
+							aYerothQStandardItem = new YerothQStandardItem(YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(qv.toString()));
+							_stdItemModel->setItem(i, j, aYerothQStandardItem);
+						}
 						break;
 
 					case QVariant::Date:
