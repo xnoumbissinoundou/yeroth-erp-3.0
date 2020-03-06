@@ -1682,20 +1682,20 @@ void YerothPointDeVenteWindow::ajouter_article(const QString & text)
     double montant_tva = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::MONTANT_TVA).toDouble();
     double prix_unitaire = prix_vente - montant_tva;
 
-    if (prix_unitaire <= 0)
+    if (prix_unitaire < 0)
     {
-        QString criticalMsg(QString("Erreur de calcul du prix de"
-                                    " vente pour l'article %1!\n\n Contactez le développeur de yeroth!").
-                            arg(designation));
+        QString warningMsg(QString(QObject::trUtf8("Prix de vente inférieur à zéro pour l'article '%1' !"))
+        						.arg(designation));
+
         if (QMessageBox::Ok ==
-                QMessageBox::critical(this,
-                                      QObject::trUtf8
-                                      ("erreur"),
-                                      criticalMsg, QMessageBox::Cancel, QMessageBox::Ok))
+        		YerothQMessageBox::warning(this,
+        								   QObject::trUtf8("prix de vente d'un article"),
+										   warningMsg))
         {
-            return;
+        	return;
         }
     }
+
     //Each call to YerothTableWidget::setItem in method 'YerothTableWidget::addArticle'
     //triggers a call to YerothPointDeVenteWindow::handleQteChange
     int lastCurRow =
@@ -1742,19 +1742,17 @@ void YerothPointDeVenteWindow::ajouter_article(const QModelIndex & modelIndex)
     double montant_tva = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::MONTANT_TVA).toDouble();
     double prix_unitaire = prix_vente - montant_tva;
 
-    if (prix_unitaire <= 0)
+    if (prix_unitaire < 0)
     {
-        QString criticalMsg(QString("Erreur de calcul du prix de"
-                                    " vente pour l'article %1!\n\n Contactez le développeur de yeroth!")
+        QString warningMsg(QString(QObject::trUtf8("Prix de vente inférieur à zéro pour l'article '%1' !"))
         						.arg(designation));
 
         if (QMessageBox::Ok ==
-                QMessageBox::critical(this,
-                                      QObject::trUtf8
-                                      ("erreur"),
-                                      criticalMsg, QMessageBox::Cancel, QMessageBox::Ok))
+        		YerothQMessageBox::warning(this,
+        								   QObject::trUtf8("prix de vente d'un article"),
+										   warningMsg))
         {
-            return;
+        	return;
         }
     }
     //Each call to YerothTableWidget::setItem in method 'YerothTableWidget::addArticle'
@@ -1805,19 +1803,17 @@ void YerothPointDeVenteWindow::ajouter_article_codebar(const QString & text)
     double montant_tva = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::MONTANT_TVA).toDouble();
     double prix_unitaire = prix_vente - montant_tva;
 
-    if (prix_unitaire <= 0)
+    if (prix_unitaire < 0)
     {
-        QString criticalMsg(QString("Erreur de calcul du prix de"
-                                    " vente pour l'article %1!\n\n Contactez le développeur de yeroth!")
-                            	.arg(designation));
+        QString warningMsg(QString(QObject::trUtf8("Prix de vente inférieur à zéro pour l'article '%1' !"))
+        						.arg(designation));
 
         if (QMessageBox::Ok ==
-                QMessageBox::critical(this,
-                                      QObject::trUtf8
-                                      ("erreur"),
-                                      criticalMsg, QMessageBox::Cancel, QMessageBox::Ok))
+        		YerothQMessageBox::warning(this,
+        								   QObject::trUtf8("prix de vente d'un article"),
+										   warningMsg))
         {
-            return;
+        	return;
         }
     }
     //Each call to YerothTableWidget::setItem in method 'YerothTableWidget::addArticle'
@@ -1877,20 +1873,17 @@ void YerothPointDeVenteWindow::ajouter_article_codebar(const QModelIndex & model
     double montant_tva = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::MONTANT_TVA).toDouble();
     double prix_unitaire = prix_vente - montant_tva;
 
-    if (prix_unitaire <= 0)
+    if (prix_unitaire < 0)
     {
-        QString criticalMsg(QString("Erreur de calcul du prix de"
-                                    " vente pour l'article %1!\n\n Contactez le développeur de yeroth!")
+        QString warningMsg(QString(QObject::trUtf8("Prix de vente inférieur à zéro pour l'article '%1' !"))
         						.arg(designation));
 
         if (QMessageBox::Ok ==
-                QMessageBox::critical(this,
-                                      QObject::trUtf8("erreur"),
-                                      criticalMsg,
-									  QMessageBox::Cancel,
-									  QMessageBox::Ok))
+        		YerothQMessageBox::warning(this,
+        								   QObject::trUtf8("prix de vente d'un article"),
+										   warningMsg))
         {
-            return;
+        	return;
         }
     }
     //Each call to YerothTableWidget::setItem in method 'YerothTableWidget::addArticle'
