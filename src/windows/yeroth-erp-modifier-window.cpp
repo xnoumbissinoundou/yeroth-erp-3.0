@@ -377,10 +377,28 @@ void YerothModifierWindow::handleTVACheckBox(bool clicked)
     lineEdit_prix_vente->setText(QString::number(prix_vente, 'f', 2));
 }
 
+
 void YerothModifierWindow::actualiser_article()
 {
     if (check_fields())
     {
+    	double prix_vente = lineEdit_prix_vente->text().toDouble();
+    	double prix_dachat = lineEdit_prix_dachat->text().toDouble();
+
+        if (!YerothUtils::isProfitable(prix_vente, prix_dachat, _montantTva))
+        {
+            QString warnMsg(QObject::trUtf8("Le prix de vente doit être supérieure ou égal au prix d'achat !"));
+
+            if (QMessageBox::Ok ==
+                    YerothQMessageBox::warning(this, QObject::tr("pas profitable"), warnMsg))
+            {
+            }
+            else
+            {
+            }
+        	return ;
+        }
+
         bool correctDatePeremption = true;
 
         if (dateEdit_date_peremption->date() <= QDate::currentDate())
@@ -441,19 +459,13 @@ void YerothModifierWindow::actualiser_article()
             record.setValue(YerothDatabaseTableColumn::LOCALISATION_STOCK, lineEdit_localisation_produit->text());
             record.setValue(YerothDatabaseTableColumn::MONTANT_TVA, _montantTva);
 
-            YerothPOSUser *currentUser = YerothUtils::getAllWindows()->getUser();
+            double prix_unitaire_ht = prix_vente - _montantTva;
 
-            if (0 != currentUser)
-            {
-            	if (currentUser->isManager() ||
-            		currentUser->isGestionaireDesStocks())
-            	{
-            		record.setValue(YerothDatabaseTableColumn::REFERENCE_RECU_DACHAT, lineEdit_reference_recu_dachat->text());
-            		record.setValue(YerothDatabaseTableColumn::PRIX_DACHAT, lineEdit_prix_dachat->text().toDouble());
-            	}
-            }
+            record.setValue(YerothDatabaseTableColumn::PRIX_UNITAIRE, prix_unitaire_ht);
 
-            record.setValue(YerothDatabaseTableColumn::PRIX_VENTE, lineEdit_prix_vente->text().toDouble());
+            record.setValue(YerothDatabaseTableColumn::PRIX_DACHAT, prix_dachat);
+
+            record.setValue(YerothDatabaseTableColumn::PRIX_VENTE, prix_vente);
 
             record.setValue(YerothDatabaseTableColumn::STOCK_MINIMUM, lineEdit_stock_minimum->text().toDouble());
 
@@ -482,6 +494,33 @@ void YerothModifierWindow::actualiser_article()
 
             if (success)
             {
+                //Handling of table "achats"
+            	QString achatsQuery(QString("UPDATE %1 SET %2='%3', %4='%5', %6='%7' WHERE %8='%9'")
+            							.arg(_allWindows->ACHATS,
+            								 YerothDatabaseTableColumn::PRIX_VENTE,
+											 lineEdit_prix_vente->text(),
+            								 YerothDatabaseTableColumn::PRIX_DACHAT,
+											 lineEdit_prix_dachat->text(),
+            								 YerothDatabaseTableColumn::PRIX_UNITAIRE,
+											 QString::number(prix_unitaire_ht),
+        									 YerothDatabaseTableColumn::STOCKS_ID,
+											 GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ID)));
+
+                YerothUtils::execQuery(achatsQuery, 0);
+
+                achatsQuery.clear();
+
+                double marge_beneficiaire = YerothUtils::getMargeBeneficiaire(prix_vente, prix_dachat, _montantTva);
+
+            	achatsQuery.append(QString("UPDATE %1 SET %2='%3' WHERE %4='%5'")
+            							.arg(_allWindows->ACHATS,
+            								 YerothDatabaseTableColumn::MARGE_BENEFICIAIRE,
+											 QString::number(marge_beneficiaire),
+        									 YerothDatabaseTableColumn::STOCKS_ID,
+											 GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ID)));
+
+                YerothUtils::execQuery(achatsQuery, 0);
+
                 retMsg.append(QObject::trUtf8("' ont été actualisés avec succès !"));
 
                 YerothQMessageBox::information(this, QObject::trUtf8("succès"), retMsg);

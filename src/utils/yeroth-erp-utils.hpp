@@ -71,6 +71,20 @@ public:
 
 	static QString YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(QString aString_IN);
 
+    inline static double getMargeBeneficiaire(double prix_vente,
+    								   	   	  double prix_dachat,
+											  double montantTva)
+    {
+    	return (prix_vente - QString::number(montantTva, 'f', 2).toDouble() - prix_dachat);
+    }
+
+    inline static bool isProfitable(double prix_vente,
+	   	   	  				 	    double prix_dachat,
+								    double montantTva)
+    {
+    	return YerothUtils::getMargeBeneficiaire(prix_vente, prix_dachat, montantTva) >= 0;
+    }
+
 	static bool startTransaction();
 
 	static bool commitTransaction();
