@@ -762,25 +762,6 @@ bool YerothEntrerWindow::isStockItemInProductList()
 }
 
 
-bool YerothEntrerWindow::isProfitable()
-{
-	double prix_dachat = lineEdit_prix_dachat->text().toDouble();
-	double prix_vente = lineEdit_prix_vente->text().toDouble();
-
-	double profit = getMargeBeneficiaire(prix_vente,
-										 prix_dachat,
-										 _montantTva);
-
-//	qDebug() << QString("++ prix_vente: %1, prix_dachat: %2, _montantTva: %3, profit: %4")
-//					.arg(QString::number(prix_vente),
-//						 QString::number(prix_dachat),
-//						 QString::number(_montantTva),
-//						 QString::number(profit));
-
-	return (profit >= 0);
-}
-
-
 void YerothEntrerWindow::enregistrer_produit()
 {
     _logger->log("enregistrer_produit");
@@ -803,7 +784,9 @@ void YerothEntrerWindow::enregistrer_produit()
 
     if (check_fields())
     {
-        if (!isProfitable())
+        if (!YerothUtils::isProfitable(lineEdit_prix_vente->text().toDouble(),
+        		     	  	  	  	  lineEdit_prix_dachat->text().toDouble(),
+									  _montantTva))
         {
             QString warnMsg(QObject::trUtf8("Le prix de vente doit être supérieure ou égal au prix d'achat !"));
 
@@ -939,7 +922,7 @@ YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
 
         double prix_unitaire_ht = prix_vente - _montantTva;
 
-        double marge_beneficiaire = getMargeBeneficiaire(prix_vente, prix_dachat, _montantTva);
+        double marge_beneficiaire = YerothUtils::getMargeBeneficiaire(prix_vente, prix_dachat, _montantTva);
 
         if (checkBox_achat->isChecked())
         {

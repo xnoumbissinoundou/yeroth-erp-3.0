@@ -109,15 +109,6 @@ public slots:
 
     bool creerNouvelleCategorie(const QString proposedCategorieName);
 
-    inline double getMargeBeneficiaire(double prix_vente,
-    								   double prix_dachat,
-									   double montantTva)
-    {
-    	return (prix_vente - QString::number(montantTva, 'f', 2).toDouble() - prix_dachat);
-    }
-
-    bool isProfitable();
-
     void enregistrer_produit();
 
 	inline void setCurrentCategorieName(QString curCategorieName)
