@@ -81,14 +81,10 @@ public:
 						   bool truncateString = true);
 
 	void setupMyStaticQCompleter(QString sqlTableName,
-								 const char *fieldName,
-								 bool enableNewCreation = false,
-								 bool returnPressedSignalActivated = true);
-
-	void setupMyStaticQCompleter(QString sqlTableName,
 								 QString fieldName,
 								 bool enableNewCreation = false,
-								 bool returnPressedSignalActivated = true);
+								 bool returnPressedSignalActivated = true,
+								 QString aQSqlConditionStr = YerothUtils::EMPTY_STRING);
 
 	void setupMyQCompleterALL(QString sqlTableName);
 

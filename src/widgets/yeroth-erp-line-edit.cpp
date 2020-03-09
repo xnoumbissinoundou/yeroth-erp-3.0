@@ -206,13 +206,15 @@ void YerothLineEdit::setupMyQCompleter(QString sqlTableName,
 
 
 void YerothLineEdit::setupMyStaticQCompleter(QString sqlTableName,
-        									const char *fieldName,
-											bool enableNewCreation /* = false */,
-											bool returnPressedSignalActivated /* = true */)
+        									 const QString fieldName,
+											 bool enableNewCreation /* = false */,
+											 bool returnPressedSignalActivated /* = true */,
+											 QString aQSqlConditionStr /* = YerothUtils::EMPTY_STRING */)
 {
     YerothUtils::getColumnListString(_currentStaticStringList,
-                                    sqlTableName,
-                                    fieldName);
+                                     sqlTableName,
+                                     fieldName,
+									 aQSqlConditionStr);
 
     if (0 != _searchQCompleter)
     {
@@ -260,18 +262,6 @@ void YerothLineEdit::setupMyStaticQCompleter(QString sqlTableName,
     {
         connect( this, SIGNAL(returnPressed()), this, SLOT(clearQCompleterText()) );
     }
-}
-
-
-void YerothLineEdit::setupMyStaticQCompleter(QString sqlTableName,
-        									QString fieldName,
-											bool enableNewCreation,
-											bool returnPressedSignalActivated)
-{
-	setupMyStaticQCompleter(sqlTableName,
-							fieldName.toStdString().c_str(),
-							enableNewCreation,
-							returnPressedSignalActivated);
 }
 
 
