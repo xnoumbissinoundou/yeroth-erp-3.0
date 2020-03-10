@@ -275,10 +275,14 @@ void YerothPayerCompteClientWindow::setupLineEditsQCompleters()
 
 	lineEdit_comptes_clients_engagement->enableForSearch(QObject::tr("engagement"));
 
+	QString aConditionStr(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::TYPE_DE_VENTE, QObject::tr("achat-compte-client")));
+
+
 	lineEdit_comptes_clients_engagement->setupMyStaticQCompleter(_allWindows->STOCKS_VENDU,
 														 	 	 YerothDatabaseTableColumn::REFERENCE,
 																 false,
-																 true);
+																 true,
+																 aConditionStr);
 }
 
 

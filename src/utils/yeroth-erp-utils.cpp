@@ -313,6 +313,8 @@ const unsigned int YerothUtils::FACTURE_GRAND_STRING_MAX_CHARS(12);
 
 const unsigned int YerothUtils::FACTURE_PETIT_NOM_ARTICLE_MAX_CHARS(12);
 
+const QString YerothUtils::EMPTY_STRING("");
+
 const QChar YerothUtils::SLASH_CHAR('/');
 
 const QRegExp YerothUtils::PasswordRegExp("");
@@ -1039,14 +1041,26 @@ QString YerothUtils::GET_REFERENCE_RECU_SUFFIX(QString prefix,
 
 
 void YerothUtils::getColumnListString(QStringList &columnStringList,
-                                     const QString &tableName,
-                                     const char *fieldName)
+                                      const QString tableName,
+                                      const QString fieldName,
+									  const QString conditionStr /* = YerothUtils::EMPTY_STRING */)
 {
     columnStringList.clear();
 
-    QString strQuery("select ");
-    strQuery.append(fieldName).append(" from ")
-    .append(tableName).append(" order by `").append(fieldName).append("` asc");
+    QString strQuery(QString("SELECT %1 FROM %2 ORDER BY `%3` ASC")
+        				.arg(fieldName,
+        					 tableName,
+							 fieldName));
+
+    if (!conditionStr.isEmpty())
+    {
+    	strQuery = QString("SELECT %1 FROM %2 WHERE %3 ORDER BY `%4` ASC")
+                				.arg(fieldName,
+                					 tableName,
+									 conditionStr,
+        							 fieldName);
+    }
+
     //qDebug() << "++ query: " << strQuery;
     QSqlQuery query;
     query.prepare(strQuery);

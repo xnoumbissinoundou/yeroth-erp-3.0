@@ -284,7 +284,7 @@ void YerothERPClientsWindow::private_slot_afficher_les_transactions_dun_client()
 														 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
 														 YerothDatabaseTableColumn::COMPTE_CLIENT,
 														 YerothDatabaseTableColumn::TYPE_DE_VENTE,
-														 YerothDatabaseTableColumn::REFERENCE_RECU_VENDU,
+														 YerothDatabaseTableColumn::REFERENCE,
 														 _allWindows->STOCKS_VENDU));
 
 	    QString clientTransactionsUnionQueryStr(QString("SELECT * FROM (%1 UNION %2 ORDER BY Temps ASC) AS U WHERE U.%3 = '%4'")

@@ -227,9 +227,10 @@ public:
 	static QString GET_REFERENCE_RECU_SUFFIX(QString prefix,
 											 QString fixedNumber);
 
-	static void getColumnListString(QStringList 	&columnStringList,
-									const QString 	&tableName,
-									const char 		*fieldName);
+	static void getColumnListString(QStringList   &columnStringList,
+									const QString tableName,
+									const QString fieldName,
+									const QString conditionStr = YerothUtils::EMPTY_STRING);
 
 	static QString colorLatexTextInput(const QString colorSpec,
 			 	 	 	 	 	 	   const QString latexString_in);
@@ -532,6 +533,8 @@ public:
 	static const QString INFERIEUR_OU_EGAL;
 
 	static const QString SUPERIEUR;
+
+	static const QString EMPTY_STRING;
 
 	static const QChar SLASH_CHAR;
 
