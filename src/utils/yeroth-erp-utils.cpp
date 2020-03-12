@@ -1565,12 +1565,12 @@ QString YerothUtils::colorLatexTextInput(const QString colorSpec,
 QString YerothUtils::LATEX_IN_OUT_handleForeignAccents(const QString &texText_in)
 {
     QString tempText(texText_in);
-    tempText = tempText.isEmpty() ? "\"\"" : tempText.replace("_", "\\_").replace(EMPTY_SPACE_REGEXP, "\\ ");
+    tempText = tempText.isEmpty() ? "\"\"" : tempText.replace(EMPTY_SPACE_REGEXP, "\\ ");
 
-    tempText.replace(QString::fromUtf8("%"), "\\%");
-
-    tempText.replace(QString::fromUtf8("&"), "\\&");
-    tempText.replace(QString::fromUtf8("$"), "\\$");
+    tempText.replace("_", "\\_");
+    tempText.replace("%", "\\%");
+    tempText.replace("&", "\\&");
+    tempText.replace("$", "\\$");
 
 	tempText.replace(QString::fromUtf8("ç"), "\\c{c}");
 
