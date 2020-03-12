@@ -295,8 +295,8 @@ bool YerothHistoriqueDuStockWindow::imprimer_document()
 	texDocument.replace("YEROTHCONTRIBUABLENR", infoEntreprise.getNumeroDeContribuable());
 	texDocument.replace("YEROTHAGENCECOMPTEBANCAIRE", infoEntreprise.getAgenceCompteBancaireTex());
 
-	texDocument.replace("YEROTHSTOCKHISTORYREFERENCE", _currentStockReference);
-	texDocument.replace("YEROTHSTOCKHISTORYDESIGNATION", _currentStockDesignation);
+	texDocument.replace("YEROTHSTOCKHISTORYREFERENCE", YerothUtils::LATEX_IN_OUT_handleForeignAccents(_currentStockReference));
+	texDocument.replace("YEROTHSTOCKHISTORYDESIGNATION", YerothUtils::LATEX_IN_OUT_handleForeignAccents(_currentStockDesignation));
 	texDocument.replace("YEROTHSTOCKHISTORYSTOCKID", _currentStockID);
 
 	QString yerothstockHistoryFileName;
