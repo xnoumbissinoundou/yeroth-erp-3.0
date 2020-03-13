@@ -557,9 +557,9 @@ void YerothMarchandisesWindow::rendreVisible(YerothSqlTableModel * stocksTableMo
 
     lineEdit_recherche_designation->setFocus();
 
-	afficherMarchandises();
-
 	setVisible(true);
+
+	afficherMarchandises();
 }
 
 

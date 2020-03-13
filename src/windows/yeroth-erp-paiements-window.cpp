@@ -70,6 +70,12 @@ YerothPaiementsWindow::YerothPaiementsWindow()
 
     setupSelectDBFields(_allWindows->PAIEMENTS);
 
+    {
+    	int columnIndexTypeDePaiement = _toSelectDBFieldNameStrToDBColumnIndex.value(YerothDatabaseTableColumn::TYPE_DE_PAIEMENT);
+
+    	_DBFieldNamesToPrintLeftAligned.append(columnIndexTypeDePaiement);
+    }
+
     reinitialiser_champs_db_visibles();
 
     textEdit_description->setYerothEnabled(false);
@@ -324,6 +330,7 @@ void YerothPaiementsWindow::reinitialiser_champs_db_visibles()
 			<< YerothDatabaseTableColumn::HEURE_PAIEMENT
 			<< YerothDatabaseTableColumn::NOM_ENTREPRISE
 			<< YerothDatabaseTableColumn::MONTANT_PAYE
+			<< YerothDatabaseTableColumn::TYPE_DE_PAIEMENT
 			<< YerothDatabaseTableColumn::COMPTE_CLIENT;
 }
 

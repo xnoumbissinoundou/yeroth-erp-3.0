@@ -664,12 +664,15 @@ void YerothEntrerWindow::rendreVisible(YerothSqlTableModel * stocksTableModel, b
             lineEdit_nom_entreprise_fournisseur->clear();
         }
     }
-    this->setupLineEditsQCompleters();
+
+    setupLineEditsQCompleters();
+
     lineEdit_tva->setText(YerothUtils::getTvaStringWithPercent());
+
     if (aShowItem)
     {
-        this->clear_all_fields();
-        this->showItem();
+        clear_all_fields();
+        showItem();
         lineEdit_reference_produit->clearFocus();
     }
     else
@@ -679,7 +682,7 @@ void YerothEntrerWindow::rendreVisible(YerothSqlTableModel * stocksTableModel, b
 
     check_fields();
 
-    this->setVisible(true);
+    setVisible(true);
 }
 
 

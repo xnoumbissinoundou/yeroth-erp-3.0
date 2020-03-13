@@ -633,11 +633,11 @@ void YerothERPClientsWindow::rendreVisible(YerothSqlTableModel * stocksTableMode
         }
     }
 
+	setVisible(true);
+
 	afficherClients(*_curClientsTableModel);
 
     lineEdit_recherche_nom_entreprise->setFocus();
-
-	setVisible(true);
 }
 
 

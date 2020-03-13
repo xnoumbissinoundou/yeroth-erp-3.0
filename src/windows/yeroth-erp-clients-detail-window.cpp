@@ -467,9 +467,9 @@ void YerothClientsDetailWindow::rendreVisible(int lastSelectedRow,
 
     //qDebug() << "++ last selected row: " << _allWindows->getLastSelectedListerRow();
 
-    showClientDetail(lastSelectedRow);
+	setVisible(true);
 
-    setVisible(true);
+    showClientDetail(lastSelectedRow);
 }
 
 

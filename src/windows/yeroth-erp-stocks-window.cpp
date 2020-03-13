@@ -611,9 +611,9 @@ void YerothStocksWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 
     setComboBoxStrategieDeStocks();
 
-    afficherStocks();
-
     setVisible(true);
+
+    afficherStocks();
 
     if (YerothERPConfig::_distantSiteConnected)
     {

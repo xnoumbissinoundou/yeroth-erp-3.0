@@ -266,10 +266,10 @@ void YerothAchatsDetailWindow::rendreVisible(int lastSelectedRow,
 
 	_curAchatStocksTableModel = achatStocksTableModel;
 
+    setVisible(true);
+
     //qDebug() << "++ last selected row: " << _allWindows->getLastSelectedListerRow();
     this->showItem(lastSelectedRow);
-
-    this->setVisible(true);
 }
 
 

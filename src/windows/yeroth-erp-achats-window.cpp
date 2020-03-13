@@ -374,9 +374,9 @@ void YerothAchatsWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
         }
     }
 
-    afficherAchats(*_curAchatSqlTableModel);
-
     setVisible(true);
+
+    afficherAchats(*_curAchatSqlTableModel);
 }
 
 

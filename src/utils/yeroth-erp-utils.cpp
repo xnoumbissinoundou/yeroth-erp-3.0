@@ -924,16 +924,27 @@ QString YerothUtils::boolToString(bool b)
     return result;
 }
 
-void YerothUtils::createTableModelHeaders(QSqlTableModel &tableModel,
-        QStandardItemModel &stdItemModel,
-        QStringList &tableModelHeaders)
+void YerothUtils::createTableModelHeaders(QSqlTableModel 		&tableModel,
+        								  QStandardItemModel 	&stdItemModel,
+										  QStringList 			&tableModelHeaders,
+										  QStringList			*tableModelRawHeaders_IN_OUT /* = 0 */)
 {
+    if (0 != tableModelRawHeaders_IN_OUT)
+    {
+    	tableModelRawHeaders_IN_OUT->clear();
+    }
+
     tableModelHeaders.clear();
 
     //Nous mettons les noms des colones
     for (unsigned k = 0; k < tableModel.columnCount(); ++k)
     {
         QString strHdr(tableModel.record(0).fieldName(k));
+
+        if (0 != tableModelRawHeaders_IN_OUT)
+        {
+        	tableModelRawHeaders_IN_OUT->append(strHdr);
+        }
 
         strHdr = YerothDatabaseTableColumn::_tableColumnToUserViewString.value(strHdr);
 

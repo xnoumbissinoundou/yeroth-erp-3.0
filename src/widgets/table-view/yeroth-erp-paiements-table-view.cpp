@@ -64,8 +64,14 @@ void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableM
     _stdItemModel->setRowCount(rows);
     _stdItemModel->setColumnCount(columns);
 
-    YerothUtils::createTableModelHeaders(tableModel_in_out, *_stdItemModel, *_tableModelHeaders);
+    QStringList	tableModelRawHeaders;
 
+    YerothUtils::createTableModelHeaders(tableModel_in_out,
+    									 *_stdItemModel,
+										 *_tableModelHeaders,
+										 &tableModelRawHeaders);
+
+    QString curHdr;
     QString tmpQvString;
     QStandardItem *anItem = 0;
     QVariant qv;
@@ -93,7 +99,17 @@ void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableM
                     break;
 
                 case QVariant::Int:
-                    anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
+                	curHdr = tableModelRawHeaders.at(k);
+
+                	if (YerothUtils::isEqualCaseInsensitive(curHdr, YerothDatabaseTableColumn::TYPE_DE_PAIEMENT))
+                	{
+                		anItem = new YerothQStandardItem(YerothUtils::_typedepaiementToUserViewString.value(qv.toInt()));
+                	}
+                	else
+                	{
+                		anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
+                	}
+
                     _stdItemModel->setItem(i, k, anItem);
                     break;
 

@@ -575,9 +575,9 @@ void YerothAlertesWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 
     tabWidget_alertes->resetYerothQTabWidget();
 
-    this->lister_alertes();
+    setVisible(true);
 
-    this->setVisible(true);
+    lister_alertes();
 }
 
 void YerothAlertesWindow::rendreInvisible()

@@ -140,9 +140,9 @@ void YerothTransactionsWindow::rendreVisible(YerothSqlTableModel * stocksTableMo
 
     setupLineEditsQCompleters();
 
-    rechercher();
+    setVisible(true);
 
-    this->setVisible(true);
+    rechercher();
 }
 
 void YerothTransactionsWindow::setupLineEdits()
