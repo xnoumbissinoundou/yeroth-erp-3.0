@@ -141,10 +141,6 @@ public:
 
 	static int getNextIdFromTable(const QString &tableName);
 
-	static int getNextVentesIdFromTable(const QString &tableName);
-
-	static int getNextSortiesIdFromTable(const QString &tableName);
-
 	static void selectionner_image(QWidget *parent, QLabel &label_image);
 
 	static void loadPixmapFromDB(QLabel 	&label_image,
@@ -534,6 +530,10 @@ public:
 	static const QString INFERIEUR_OU_EGAL;
 
 	static const QString SUPERIEUR;
+
+	static const QString MYSQL_TRUE_LITERAL;
+
+	static const QString MYSQL_FALSE_LITERAL;
 
 	static const QString EMPTY_STRING;
 

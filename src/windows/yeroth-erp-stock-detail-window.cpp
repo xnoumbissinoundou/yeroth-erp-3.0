@@ -36,6 +36,9 @@ YerothStockDetailWindow::YerothStockDetailWindow():YerothWindowsCommons(YerothSt
                                     .arg(COLOUR_RGB_STRING_YEROTH_ORANGE_243_162_0,
                                     		COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
+
+    checkBox_service->setReadOnly(true);
+
     checkBox_achat->setReadOnly(true);
 
     this->setupLineEdits();
@@ -282,8 +285,40 @@ void YerothStockDetailWindow::rendreVisible(YerothSqlTableModel * stocksTableMod
 {
     _curStocksTableModel = stocksTableModel;
     //qDebug() << "++ last selected row: " << _allWindows->getLastSelectedListerRow();
-    this->showItem();
-    this->setVisible(true);
+
+    showItem();
+
+    setVisible(true);
+}
+
+
+void YerothStockDetailWindow::setStockSpecificWidgetVisible(bool visible)
+{
+	if (visible)
+	{
+		lineEdit_quantite_restante->setFixedWidth(104);
+	}
+	else
+	{
+		lineEdit_quantite_restante->setFixedWidth(205);
+	}
+
+	label_reference_recu_dachat->setVisible(visible);
+	lineEdit_reference_recu_dachat->setVisible(visible);
+
+	label_stock_minimum->setVisible(visible);
+	lineEdit_stock_minimum->setVisible(visible);
+
+	label_localisation_du_stock->setVisible(visible);
+	lineEdit_localisation_produit->setVisible(visible);
+
+	dateEdit_date_peremption->setVisible(visible);
+	label_date_peremption->setVisible(visible);
+
+	label_prix_dachat->setVisible(visible);
+	lineEdit_prix_dachat->setVisible(visible);
+
+	checkBox_achat->setVisible(visible);
 }
 
 
@@ -291,10 +326,28 @@ void YerothStockDetailWindow::showItem()
 {
     QSqlRecord record = _curStocksTableModel->record(_allWindows->getLastSelectedListerRow());
 
+    bool is_service = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::IS_SERVICE).toInt();
+
+    checkBox_service->setChecked(is_service);
+
+	if (is_service)
+	{
+	    setStockSpecificWidgetVisible(false);
+
+	    label_fournisseur->setText(QObject::tr("client"));
+	    lineEdit_nom_entreprise_fournisseur->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT));
+	}
+	else
+	{
+		setStockSpecificWidgetVisible(true);
+
+		label_fournisseur->setText(QObject::tr("fournisseur"));
+		lineEdit_nom_entreprise_fournisseur->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR));
+	}
+
     lineEdit_reference_produit->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE));
     lineEdit_designation->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
     lineEdit_categorie_produit->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::CATEGORIE));
-    lineEdit_nom_entreprise_fournisseur->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR));
 
     double prix_unitaire = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::PRIX_UNITAIRE).toDouble();
 
@@ -328,20 +381,20 @@ void YerothStockDetailWindow::showItem()
 
     double quantite_restante = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::QUANTITE_TOTAL).toDouble();
 
-    lineEdit_quantite_restante->setText(GET_DOUBLE_STRING_P(quantite_restante, 0));
+    lineEdit_quantite_restante->setText(GET_DOUBLE_STRING_P(quantite_restante, 2));
 
     double quantite_minimale_en_stock = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::STOCK_MINIMUM).toDouble();
 
-    lineEdit_stock_minimum->setText(GET_DOUBLE_STRING_P(quantite_minimale_en_stock, 0));
+    lineEdit_stock_minimum->setText(GET_DOUBLE_STRING_P(quantite_minimale_en_stock, 2));
     dateEdit_date_peremption->setDate(GET_DATE_FROM_STRING(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DATE_PEREMPTION)));
 
-    int lots_entrant = GET_SQL_RECORD_DATA(record, "lots_entrant").toInt();
+    double lots_entrant = GET_SQL_RECORD_DATA(record, "lots_entrant").toDouble();
 
     double quantite_par_lot = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::QUANTITE_PAR_LOT).toDouble();
 
     double quantite_initiale = lots_entrant * quantite_par_lot;
 
-    lineEdit_quantite_initiale->setText(GET_DOUBLE_STRING_P(quantite_initiale, 0));
+    lineEdit_quantite_initiale->setText(GET_DOUBLE_STRING_P(quantite_initiale, 2));
 
     QVariant img(record.value(YerothDatabaseTableColumn::IMAGE_PRODUIT));
 

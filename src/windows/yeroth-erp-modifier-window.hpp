@@ -56,7 +56,7 @@ public slots:
 
     void display_quantite_restante(const QString &quantite_par_lot);
 
-    void display_quantite_restante_by_spinbox(int lots);
+    void display_quantite_restante_by_spinbox(double lots);
 
     inline void edited_prix_vente(const QString & newPrixVente)
     {
@@ -76,8 +76,6 @@ public slots:
     	YerothUtils::selectionner_image(this, *label_image_produit);
     }
 
-    void actualiser_article();
-
     virtual void deconnecter_utilisateur();
 
 	inline virtual void apropos()
@@ -89,7 +87,7 @@ public slots:
 	{
 		YerothQMessageBox::information(this,
 						 QObject::trUtf8("aide"),
-						 QObject::trUtf8("Modifier les informations sur le stock, "
+						 QObject::trUtf8("Modifier les informations sur le stock (service), "
 										 "et ensuite cliquer sur le bouton 'actualiser'!"));
 	}
 
@@ -97,7 +95,15 @@ protected:
 
     virtual void setupShortcuts();
 
+private slots:
+
+	void actualiser_service_ou_stock();
+
 private:
+
+	void actualiser_service();
+
+	void actualiser_stock();
 
     void setupLineEdits();
 
@@ -109,6 +115,8 @@ private:
     bool check_fields();
 
     void clear_all_fields();
+
+    void setStockSpecificWidgetVisible(bool visible);
 
     void showItem();
 

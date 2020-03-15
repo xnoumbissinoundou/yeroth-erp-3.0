@@ -2300,9 +2300,9 @@ unsigned int YerothPointDeVenteWindow::effectuer_check_out_carte_credit_carte_de
 
 		bool paiementParCarteDeCredit_CarteDebit_Success = PROCESS_CREDIT_CARD_PAYMENT();
 
-		int vente_id = YerothUtils::getNextVentesIdFromTable("stocks_vendu");
+		int stocksVenduID = _allWindows->getNextIdSqlTableModel_stocks_vendu();
 
-		QString referenceRecuVenduCarte(YerothUtils::GET_REFERENCE_RECU_VENDU(QString::number(vente_id)));
+		QString referenceRecuVenduCarte(YerothUtils::GET_REFERENCE_RECU_VENDU(QString::number(stocksVenduID)));
 
 		for (int j = 0; j < tableWidget_articles->itemCount(); ++j)
 		{
@@ -2330,8 +2330,9 @@ unsigned int YerothPointDeVenteWindow::effectuer_check_out_carte_credit_carte_de
 
 			QSqlRecord record = stocksVenduTableModel.record();
 
-			record.setValue(YerothDatabaseTableColumn::ID, YerothUtils::getNextIdFromTable(_allWindows->STOCKS_VENDU));
-			record.setValue(YerothDatabaseTableColumn::VENTE_ID, vente_id);
+			record.setValue(YerothDatabaseTableColumn::ID, stocksVenduID);
+
+			record.setValue(YerothDatabaseTableColumn::IS_SERVICE, YerothUtils::MYSQL_FALSE_LITERAL);
 
 			record.setValue(YerothDatabaseTableColumn::REFERENCE_RECU_VENDU, referenceRecuVenduCarte);
 
@@ -2474,9 +2475,9 @@ unsigned int YerothPointDeVenteWindow::effectuer_check_out_carte_credit_carte_de
 
 void YerothPointDeVenteWindow::executer_la_vente_comptant()
 {
-    int vente_id = YerothUtils::getNextVentesIdFromTable("stocks_vendu");
+    int stocksVenduID = _allWindows->getNextIdSqlTableModel_stocks_vendu();
 
-    QString referenceRecuVendu(YerothUtils::GET_REFERENCE_RECU_VENDU(QString::number(vente_id)));
+    QString referenceRecuVendu(YerothUtils::GET_REFERENCE_RECU_VENDU(QString::number(stocksVenduID)));
 
     for (int j = 0; j < tableWidget_articles->itemCount(); ++j)
     {
@@ -2485,6 +2486,7 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
         QSqlRecord stockRecord = _curStocksTableModel->record(articleVenteInfo->sqlTableModelIndex);
 
         QString stockRecordId = GET_SQL_RECORD_DATA(stockRecord, YerothDatabaseTableColumn::ID);
+
         QString quantiteQueryStr("SELECT quantite_total FROM ");
         quantiteQueryStr.append(_allWindows->STOCKS).append(" WHERE id = '").append(stockRecordId).
         append("'");
@@ -2512,13 +2514,12 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
 
         _typeDeVente = QObject::tr("achat-comptant");
 
-        int stock_id_to_save = YerothUtils::getNextIdFromTable(_allWindows->STOCKS_VENDU);
-
-        record.setValue(YerothDatabaseTableColumn::ID, stock_id_to_save);
+        record.setValue(YerothDatabaseTableColumn::ID, stocksVenduID);
 
         record.setValue(YerothDatabaseTableColumn::TYPE_DE_VENTE, _typeDeVente);
 
-        record.setValue(YerothDatabaseTableColumn::VENTE_ID, vente_id);
+        record.setValue(YerothDatabaseTableColumn::IS_SERVICE, YerothUtils::MYSQL_FALSE_LITERAL);
+
         record.setValue(YerothDatabaseTableColumn::REFERENCE_RECU_VENDU, referenceRecuVendu);
         record.setValue(YerothDatabaseTableColumn::REFERENCE, articleVenteInfo->reference);
         record.setValue(YerothDatabaseTableColumn::DESIGNATION, articleVenteInfo->designation);
@@ -2556,7 +2557,7 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
 
         QString historiqueStockVendu(YerothHistoriqueStock::creer_mouvement_stock
         			(VENTE,
-        			 stock_id_to_save,
+        			 stocksVenduID,
 					 GET_CURRENT_DATE,
 					 quantite_actuelle,
 					 articleVenteInfo->quantite_a_vendre,
@@ -2718,7 +2719,7 @@ void YerothPointDeVenteWindow::updateCompteClient(double nouveau_compte_client)
 {
 	QString queryStr;
 
-	queryStr.append(QString("UPDATE %1  SET %2 = '%3' WHERE %6 = '%7'")
+	queryStr.append(QString("UPDATE %1 SET %2 = '%3' WHERE %4 = '%5'")
                             .arg(_allWindows->CLIENTS,
                                  YerothDatabaseTableColumn::COMPTE_CLIENT,
                                  QString::number(nouveau_compte_client),
@@ -2731,9 +2732,9 @@ void YerothPointDeVenteWindow::updateCompteClient(double nouveau_compte_client)
 
 void YerothPointDeVenteWindow::executer_la_vente_compte_client()
 {
-    int vente_id = YerothUtils::getNextVentesIdFromTable("stocks_vendu");
+    int stocksVenduID = _allWindows->getNextIdSqlTableModel_stocks_vendu();
 
-    QString referenceRecuVenduCompteClient(YerothUtils::GET_REFERENCE_RECU_VENDU(QString::number(vente_id)));
+    QString referenceRecuVenduCompteClient(YerothUtils::GET_REFERENCE_RECU_VENDU(QString::number(stocksVenduID)));
 
     double total_prix_vente = 0.0;
 
@@ -2744,9 +2745,11 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
         QSqlRecord stockRecord = _curStocksTableModel->record(articleVenteInfo->sqlTableModelIndex);
 
         QString stockRecordId = GET_SQL_RECORD_DATA(stockRecord, YerothDatabaseTableColumn::ID);
-        QString quantiteQueryStr("SELECT quantite_total FROM ");
-        quantiteQueryStr.append(_allWindows->STOCKS).append(" WHERE id = '").append(stockRecordId).
-        append("'");
+
+        QString quantiteQueryStr(QString("SELECT %1 FROM %2 WHERE id = '%3'")
+        							.arg(YerothDatabaseTableColumn::QUANTITE_TOTAL,
+        								 _allWindows->STOCKS,
+										 stockRecordId));
 
         QSqlQuery quantiteQuery;
 
@@ -2771,13 +2774,13 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
 
         _typeDeVente = QObject::tr("achat-compte-client");
 
-        int stock_id_to_save = YerothUtils::getNextIdFromTable(_allWindows->STOCKS_VENDU);
 
-        record.setValue(YerothDatabaseTableColumn::ID, stock_id_to_save);
+        record.setValue(YerothDatabaseTableColumn::ID, stocksVenduID);
 
         record.setValue(YerothDatabaseTableColumn::TYPE_DE_VENTE, _typeDeVente);
 
-        record.setValue(YerothDatabaseTableColumn::VENTE_ID, vente_id);
+        record.setValue(YerothDatabaseTableColumn::IS_SERVICE, YerothUtils::MYSQL_FALSE_LITERAL);
+
         record.setValue(YerothDatabaseTableColumn::REFERENCE_RECU_VENDU, referenceRecuVenduCompteClient);
         record.setValue(YerothDatabaseTableColumn::REFERENCE, articleVenteInfo->reference);
         record.setValue(YerothDatabaseTableColumn::DESIGNATION, articleVenteInfo->designation);
@@ -2818,14 +2821,15 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
 
         QString historiqueStockVendu(YerothHistoriqueStock::creer_mouvement_stock
         			(VENTE,
-        			 stock_id_to_save,
+        			 stocksVenduID,
 					 GET_CURRENT_DATE,
 					 quantite_actuelle,
 					 articleVenteInfo->quantite_a_vendre,
 					 nouvelle_quantite));
 
-        historiqueStock.append(YerothHistoriqueStock::SEPARATION_EXTERNE)
-        			   .append(historiqueStockVendu);
+        historiqueStock.append(QString("%1%2")
+        							.arg(YerothHistoriqueStock::SEPARATION_EXTERNE,
+        								 historiqueStockVendu));
 
         //qDebug() << QString("++ test: %1")
          //       		.arg(historiqueStock);

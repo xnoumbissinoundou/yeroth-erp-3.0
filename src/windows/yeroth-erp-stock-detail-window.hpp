@@ -85,6 +85,8 @@ private:
 
     void setupLineEdits();
 
+    void setStockSpecificWidgetVisible(bool visible);
+
     void showItem();
 
     void checkCourrierAlerts();

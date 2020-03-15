@@ -211,7 +211,7 @@ bool YerothSqlTableModel::insertNewRecord(QSqlRecord &record, QMainWindow *paren
                                  retMsg);
         }
 
-        //qDebug() << QString("reason for failing: %1").arg(lastError().text());
+        qDebug() << QString("reason for failing: %1").arg(lastError().text());
 
         _logger->log("insertNewRecord", QString("reason for failing: %1").arg(lastError().text()));
     }

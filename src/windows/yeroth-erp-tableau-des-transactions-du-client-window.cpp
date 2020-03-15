@@ -43,7 +43,7 @@ void YerothTableauDesTransactionsDuClientWindow::listerTransactionsDunClient(QSt
 
 	static QString preambleTitle(QString("%1 - %2")
 									.arg(YEROTH_ERP_WINDOW_TITLE,
-										 "transactions d'un client"));
+										 QObject::tr("transactions d'un client")));
 
 	static bool first_time_inside = true;
 

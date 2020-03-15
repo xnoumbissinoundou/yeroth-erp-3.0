@@ -171,7 +171,7 @@ bool YerothPayerCompteClientWindow::putCashIntoCustomerAccount()
 
     	QString queryStr;
 
-    	queryStr.append(QString("UPDATE %1  SET %2 = '%3' WHERE %6 = '%7'")
+    	queryStr.append(QString("UPDATE %1  SET %2 = '%3' WHERE %4 = '%5'")
     			.arg(_allWindows->CLIENTS,
     					YerothDatabaseTableColumn::COMPTE_CLIENT,
 						QString::number(compte_client),
@@ -275,7 +275,8 @@ void YerothPayerCompteClientWindow::setupLineEditsQCompleters()
 
 	lineEdit_comptes_clients_engagement->enableForSearch(QObject::tr("engagement"));
 
-	QString aConditionStr(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::TYPE_DE_VENTE, QObject::tr("achat-compte-client")));
+	QString aConditionStr(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::TYPE_DE_VENTE,
+			              QObject::tr("achat-compte-client")));
 
 
 	lineEdit_comptes_clients_engagement->setupMyStaticQCompleter(_allWindows->STOCKS_VENDU,

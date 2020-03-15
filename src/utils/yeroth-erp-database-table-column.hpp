@@ -25,6 +25,8 @@ public:
 	{
 	}
 
+	static const QString IS_SERVICE;
+
 	static const QString ID;
 
 	static const QString ENGAGEMENT;
@@ -32,8 +34,6 @@ public:
 	static const QString HISTORIQUE_STOCK;
 
 	static const QString CLIENTS_ID;
-
-	static const QString VENTE_ID;
 
 	static const QString REFERENCE_RECU_VENDU;
 
@@ -170,8 +170,6 @@ public:
 	static const QString ADRESSE;
 
 	static const QString BOITE_POSTALE;
-
-	static const QString SORTIE_ID;
 
 	static const QString STATUT_RESOLU;
 

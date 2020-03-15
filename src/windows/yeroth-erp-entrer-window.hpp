@@ -7,19 +7,38 @@
 # ifndef YEROTH_ENTRER_WINDOW_HPP_
 # define YEROTH_ENTRER_WINDOW_HPP_
 
+
 # include "../../ui_yeroth-erp-entrer-window.h"
 
+
 # include <QtWidgets/QMessageBox>
+
+
 #include "yeroth-erp-window-commons.hpp"
+
 
 class YerothERPWindows;
 class YerothSqlTableModel;
+class ServiceClientInfo;
+
 
 class YerothEntrerWindow : public YerothWindowsCommons, private Ui_YerothEntrerWindow
 {
     Q_OBJECT
 
 public:
+
+	class ServiceClientInfo
+	{
+	public:
+    	int clientID;
+    	double nouveau_compte_client;
+
+    	QString reference;
+    	QString designation;
+    	QString nom_categorie;
+    	QString nom_entreprise_client;
+	};
 
 	YEROTH_CLASS_OPERATORS
 
@@ -71,7 +90,7 @@ public slots:
 
     void display_quantite_total(const QString &quantite_par_lot);
 
-    void display_quantite_total_by_spinbox(int lots);
+    void display_quantite_total_by_spinbox(double lots);
 
     inline void edited_prix_vente(const QString & newPrixVente)
     {
@@ -80,7 +99,11 @@ public slots:
 
     void display_prix_vente();
 
-    void handleTVACheckBox(bool);
+    void setStockSpecificWidgetVisible(bool visible);
+
+    void handleServiceCheckBox(bool clicked);
+
+    void handleTVACheckBox(bool clicked);
 
     void handleCategorieName(const QString &text);
 
@@ -105,9 +128,17 @@ public slots:
         YerothUtils::selectionner_image(this, *label_image_produit);
     }
 
+    bool creerNouveauClient(const QString proposedCustomerName);
+
     bool creerNouveauFournisseur(const QString proposedFourisseurName);
 
     bool creerNouvelleCategorie(const QString proposedCategorieName);
+
+    bool handle_stocks_vendu_table(int stockID,
+    							   ServiceClientInfo &aServiceInfo,
+								   double montant_total_vente);
+
+    bool handle_clients_table(int stockID, double montant_total_vente);
 
     void enregistrer_produit();
 
@@ -148,6 +179,8 @@ private:
 
     void showItem();
 
+    bool check_fields_service();
+
     bool check_fields();
 
     void clear_all_fields();
@@ -168,6 +201,8 @@ private:
     static const QString 	_WINDOW_TITLE;
 
     YerothLogger				*_logger;
+
+    ServiceClientInfo		*_currentServiceInfo;
 
     unsigned 				_stocks_id;
 

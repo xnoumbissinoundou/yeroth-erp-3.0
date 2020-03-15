@@ -221,6 +221,8 @@ void YerothTableView::lister_les_transactions_dun_client(QSqlQuery &sqlClientTra
 
 	if (querySize > 0)
 	{
+		QString stringKeyValue;
+
 		for (int i = 0; i < querySize; ++i)
 		{
 			if (sqlClientTransactionsUnionQuery.next())
@@ -254,9 +256,16 @@ void YerothTableView::lister_les_transactions_dun_client(QSqlQuery &sqlClientTra
 					case QVariant::String:
 						if (5 == j)
 						{
-							int keyValue = qv.toString().toInt();
-							QString stringValue(YerothUtils::_typedepaiementToUserViewString.value(keyValue));
-							aYerothQStandardItem = new YerothQStandardItem(YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(stringValue));
+							stringKeyValue = qv.toString();
+
+							int keyValue = stringKeyValue.toInt();
+
+							if (0 < keyValue)
+							{
+								stringKeyValue = YerothUtils::_typedepaiementToUserViewString.value(keyValue);
+							}
+
+							aYerothQStandardItem = new YerothQStandardItem(YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(stringKeyValue));
 							_stdItemModel->setItem(i, j, aYerothQStandardItem);
 						}
 						else

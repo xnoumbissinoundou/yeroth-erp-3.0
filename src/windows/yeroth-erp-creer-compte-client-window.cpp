@@ -434,6 +434,7 @@ bool YerothCreerCompteClientWindow::creerEnregistrerCompteClient()
         record.setValue(YerothDatabaseTableColumn::NUMERO_TELEPHONE_2, lineEdit_compte_client_numero_telephone_2->text());
         record.setValue(YerothDatabaseTableColumn::REFERENCE_REGISTRE_DU_COMMERCE, lineEdit_compte_client_reference_du_registre_du_commerce->text());
         record.setValue(YerothDatabaseTableColumn::NUMERO_CONTRIBUABLE, lineEdit_compte_client_numero_de_contribuable->text());
+		record.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT, 0.0);
         record.setValue(YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT, lineEdit_compte_client_dette_maximale->text());
 
         YerothPOSUser *aUser = YerothUtils::getAllWindows()->getUser();

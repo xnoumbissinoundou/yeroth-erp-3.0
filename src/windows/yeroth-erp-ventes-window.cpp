@@ -1189,15 +1189,15 @@ void YerothVentesWindow::rechercher(bool clearVentesRecherche)
             _searchFilter.append(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT, nom_entreprise_client));
         }
 
-        QString vente_id(lineEdit_ventes_reference_recu_vendu->text());
+        QString reference_recu_vendu(lineEdit_ventes_reference_recu_vendu->text());
 
-        if (!vente_id.isEmpty())
+        if (!reference_recu_vendu.isEmpty())
         {
             if (!_searchFilter.isEmpty())
             {
                 _searchFilter.append(" AND ");
             }
-            _searchFilter.append(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::VENTE_ID, vente_id));
+            _searchFilter.append(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::REFERENCE_RECU_VENDU, reference_recu_vendu));
         }
 
         if (!_searchFilter.isEmpty())

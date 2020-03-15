@@ -106,7 +106,7 @@ public slots:
 
     virtual void entrer();
 
-    void afficherStocks(YerothSqlTableModel &sqlTableModel, QString localVisibleStrategy  = "");
+    void afficherStocks(YerothSqlTableModel &sqlTableModel, QString localVisibleStrategy  = YerothUtils::EMPTY_STRING);
 
     virtual void afficherStocks();
 
@@ -159,6 +159,8 @@ public slots:
     bool SQL_TABLE_STOCKS_VENDU_EMPTY();
 
 private slots:
+
+	void handleServiceCheckBox(bool clicked);
 
 	void private_slot_afficher_historique_du_stock();
 

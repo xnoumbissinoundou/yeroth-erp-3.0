@@ -158,6 +158,8 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 connect(actionAdministration, SIGNAL(triggered()), this, SLOT(administration()));
 #endif
 
+	connect(checkBox_services, SIGNAL(clicked(bool)), this, SLOT(handleServiceCheckBox(bool)));
+
     connect(actionAfficher_stock_au_detail, SIGNAL(triggered()),
     		this, SLOT(afficher_au_detail()));
 
@@ -231,6 +233,27 @@ bool YerothStocksWindow::SQL_TABLE_STOCKS_VENDU_EMPTY()
 {
 	return (0 == YerothUtils::execQuery(QString("SELECT * FROM %1")
 											.arg(_allWindows->STOCKS_VENDU)));
+}
+
+
+void YerothStocksWindow::handleServiceCheckBox(bool clicked)
+{
+	if (clicked && checkBox_services->isChecked())
+	{
+    	_curStocksTableModel->yerothSetFilter(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
+    										  YerothUtils::MYSQL_TRUE_LITERAL));
+    	comboBox_strategie_de_stocks->setEnabled(false);
+    }
+    else
+    {
+    	_curStocksTableModel->yerothSetFilter(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
+    										  YerothUtils::MYSQL_FALSE_LITERAL));
+    	comboBox_strategie_de_stocks->setEnabled(true);
+	}
+
+	_curStocksTableModel->easySelect();
+
+	afficherStocks();
 }
 
 
@@ -598,6 +621,11 @@ void YerothStocksWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 
     _curStocksTableModel = stocksTableModel;
 
+    if (!checkBox_services->isChecked())
+    {
+    	setComboBoxStrategieDeStocks();
+    }
+
     if (! isCurrentlyFiltered())
     {
         if (0 == _searchStocksTableModel)
@@ -609,9 +637,24 @@ void YerothStocksWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 
     lineEdit_recherche_reference->setFocus();
 
-    setComboBoxStrategieDeStocks();
-
     setVisible(true);
+
+    if (checkBox_services->isChecked())
+    {
+    	_curStocksTableModel->yerothSetFilter(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
+    										  YerothUtils::MYSQL_TRUE_LITERAL));
+
+    	comboBox_strategie_de_stocks->setEnabled(false);
+    }
+    else
+    {
+    	_curStocksTableModel->yerothSetFilter(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
+    										  YerothUtils::MYSQL_FALSE_LITERAL));
+
+    	comboBox_strategie_de_stocks->setEnabled(true);
+    }
+
+    _curStocksTableModel->easySelect();
 
     afficherStocks();
 
@@ -830,6 +873,7 @@ void YerothStocksWindow::definirPasDeRole()
     pushButton_deconnecter_localisation->disable(this);
 }
 
+
 void YerothStocksWindow::afficher_au_detail()
 {
     _logger->log("afficher_au_detail");
@@ -935,15 +979,30 @@ void YerothStocksWindow::supprimer_ce_stock()
 
     QSqlRecord record = _curStocksTableModel->record(rowToRemove);
 
-    QString msgSupprimer(QObject::tr("Poursuivre avec la suppression de l'article \""));
+    QString msgSupprimer;
 
-    msgSupprimer.append(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
-    msgSupprimer.append("\" ?");
+    QString serviceOuArticle;
+
+    bool is_service = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::IS_SERVICE).toInt();
+
+    if (is_service)
+    {
+    	serviceOuArticle = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE);
+        msgSupprimer.append(QString(QObject::trUtf8("Poursuivre avec la suppression du service '%1' ?"))
+        						.arg(serviceOuArticle));
+    }
+    else
+    {
+    	serviceOuArticle = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION);
+
+        msgSupprimer.append(QString(QObject::trUtf8("Poursuivre avec la suppression du stock '%1' ?"))
+        						.arg(serviceOuArticle));
+    }
 
     if (QMessageBox::Ok ==
             YerothQMessageBox::question(this,
                                        QObject::trUtf8
-                                       ("suppression d'un stock"), msgSupprimer,
+                                       ("suppression d'un stock (service)"), msgSupprimer,
                                        QMessageBox::Cancel, QMessageBox::Ok))
     {
 		_logger->debug("supprimer_ce_stock", QString("rowToRemove: %1").arg(rowToRemove));
@@ -953,35 +1012,39 @@ void YerothStocksWindow::supprimer_ce_stock()
 
         if (resRemoved && _curStocksTableModel->select())
         {
-            QString deleteAchatsRowQueryStr(QString("DELETE FROM %1 WHERE stocks_id = '%2';")
-            									.arg(_allWindows->ACHATS,
-            										 GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ID)));
+        	if (!is_service)
+        	{
+        		QString deleteAchatsRowQueryStr(QString("DELETE FROM %1 WHERE stocks_id = '%2';")
+        											.arg(_allWindows->ACHATS,
+        												 GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ID)));
 
-            YerothUtils::execQuery(deleteAchatsRowQueryStr);
+        		YerothUtils::execQuery(deleteAchatsRowQueryStr);
+        	}
 
             msgSupprimer.clear();
 
-            msgSupprimer.append(QString(QObject::trUtf8("Le stock '%1' a été supprimé !"))
-            						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION)));
+            msgSupprimer.append(QString(QObject::trUtf8("Le stock (service) '%1' a été supprimé !"))
+            						.arg(serviceOuArticle));
 
             YerothQMessageBox::information(this,
-                                          QObject::tr("suppression d'un stock"),
+                                          QObject::tr("suppression d'un stock (service)"),
                                           msgSupprimer);
         }
         else
         {
             msgSupprimer.clear();
 
-            msgSupprimer.append(QString(QObject::trUtf8("Le stock '%1' ne pouvait pas être supprimé !"))
-            						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION)));
+            msgSupprimer.append(QString(QObject::trUtf8("Le stock (service) '%1' ne pouvait pas être supprimé !"))
+            						.arg(serviceOuArticle));
 
             YerothQMessageBox::warning(this,
-                                       QObject::trUtf8("suppression d'un stock"),
+                                       QObject::trUtf8("suppression d'un stock (service)"),
                                        msgSupprimer);
         }
 
-        this->afficherStocks(*_curStocksTableModel);
-        this->updateLineEditRechercherCodeBar();
+        afficherStocks(*_curStocksTableModel);
+
+        updateLineEditRechercherCodeBar();
     }
     else
     {
@@ -1052,7 +1115,7 @@ void YerothStocksWindow::modifier_les_articles()
 
 
 void YerothStocksWindow::afficherStocks(YerothSqlTableModel & sqlTableModel,
-									   QString localVisibleStrategy	/* = "" */)
+									    QString localVisibleStrategy	/* = YerothUtils::EMPTY_STRING */)
 {
     //_logger->log("afficherStocks(YerothSqlTableModel &)");
 
@@ -1066,6 +1129,7 @@ void YerothStocksWindow::afficherStocks(YerothSqlTableModel & sqlTableModel,
     {
         currentStockListingStrategy = YerothERPConfig::salesStrategy;
     }
+
     if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO, currentStockListingStrategy))
     {
     	tableView_stocks->setSortingEnabled(false);

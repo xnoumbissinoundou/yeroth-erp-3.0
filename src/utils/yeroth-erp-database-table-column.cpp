@@ -13,11 +13,12 @@
 
 QMap<QString, QString> YerothDatabaseTableColumn::_tableColumnToUserViewString;
 
+
+const QString YerothDatabaseTableColumn::IS_SERVICE						("is_service");
 const QString YerothDatabaseTableColumn::ID								("id");
 const QString YerothDatabaseTableColumn::ENGAGEMENT						("engagement");
 const QString YerothDatabaseTableColumn::HISTORIQUE_STOCK				("historique_stock");
 const QString YerothDatabaseTableColumn::CLIENTS_ID						("clients_id");
-const QString YerothDatabaseTableColumn::VENTE_ID						("vente_id");
 const QString YerothDatabaseTableColumn::REFERENCE_RECU_VENDU			("reference_recu_vendu");
 const QString YerothDatabaseTableColumn::REFERENCE_RECU_SORTIE			("reference_recu_sortie");
 const QString YerothDatabaseTableColumn::ENREGISTREUR_STOCK				("enregistreur_stock");
@@ -86,7 +87,6 @@ const QString YerothDatabaseTableColumn::PROVINCE_ETAT					("province_etat");
 const QString YerothDatabaseTableColumn::PAYS							("pays");
 const QString YerothDatabaseTableColumn::ADRESSE						("adresse");
 const QString YerothDatabaseTableColumn::BOITE_POSTALE					("boite_postale");
-const QString YerothDatabaseTableColumn::SORTIE_ID						("sortie_id");
 const QString YerothDatabaseTableColumn::STATUT_RESOLU					("statut_resolu");
 const QString YerothDatabaseTableColumn::SIEGE_SOCIAL					("siege_social");
 const QString YerothDatabaseTableColumn::NOTES							("notes");
@@ -134,6 +134,8 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 {
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REMISE_PRIX, 	QString(QObject::trUtf8("Remise (%1)")).arg(YerothERPConfig::currency));
 
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::IS_SERVICE, 		QObject::tr("Service"));
+
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::ID, 				QObject::tr("ID"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::ENGAGEMENT, 		QObject::tr("Engagement"));
@@ -141,8 +143,6 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::HISTORIQUE_STOCK,	QObject::tr("Historique stock"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::CLIENTS_ID,			QObject::tr("ID client"));
-
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::VENTE_ID,			QObject::tr("ID vente"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REFERENCE_RECU_VENDU,QObject::trUtf8("Reçu"));
 
@@ -277,8 +277,6 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::ADRESSE,				QObject::tr("Adresse"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::BOITE_POSTALE,		QObject::trUtf8("Boîte postale"));
-
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::SORTIE_ID,			QObject::tr("Sortie ID"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::SIEGE_SOCIAL,			QObject::trUtf8("Siège social"));
 

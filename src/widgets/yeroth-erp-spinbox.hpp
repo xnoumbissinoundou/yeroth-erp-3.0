@@ -9,20 +9,22 @@
 
 #include "src/include/yeroth-erp-3-0-software.text-configuration.hpp"
 
-#include <QtWidgets/QSpinBox>
+
+#include <QtWidgets/QDoubleSpinBox>
+
 
 #include "src/utils/yeroth-erp-utils.hpp"
 
 class YerothUtils;
 
-class YerothSpinBox : public QSpinBox
+class YerothSpinBox : public QDoubleSpinBox
 {
 public:
 
 	YEROTH_CLASS_OPERATORS
 
 	inline YerothSpinBox(QWidget *parent = 0)
-	:QSpinBox(parent)
+	:QDoubleSpinBox(parent)
 	{
 		YerothUtils::yerothSetWidgetColor(this);
 	}

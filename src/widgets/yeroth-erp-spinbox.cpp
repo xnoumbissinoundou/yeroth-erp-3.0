@@ -4,18 +4,20 @@
  *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
+
 #include "yeroth-erp-spinbox.hpp"
+
 
 void YerothSpinBox::setEnabled(bool enabled)
 {
 	_originalPaletteBeforeMissingInformation = palette();
 
-    QSpinBox::setEnabled(enabled);
+	QDoubleSpinBox::setEnabled(enabled);
 }
 
 bool YerothSpinBox::checkField()
 {
-    if (0 == this->value())
+    if (0 == value())
     {
         setPalette(YerothUtils::YEROTH_RED_PALETTE);
 
@@ -29,13 +31,13 @@ bool YerothSpinBox::checkField()
 
 void YerothSpinBox::clearField()
 {
-    this->clear();
+    clear();
 
     setPalette(_originalPaletteBeforeMissingInformation);
 }
 
 void YerothSpinBox::displayValue(double intValue)
 {
-    this->setValue(intValue);
-    this->setEnabled(false);
+    setValue(intValue);
+    setEnabled(false);
 }

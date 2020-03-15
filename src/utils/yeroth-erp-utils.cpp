@@ -313,6 +313,10 @@ const unsigned int YerothUtils::FACTURE_GRAND_STRING_MAX_CHARS(12);
 
 const unsigned int YerothUtils::FACTURE_PETIT_NOM_ARTICLE_MAX_CHARS(12);
 
+const QString YerothUtils::MYSQL_TRUE_LITERAL("1");
+
+const QString YerothUtils::MYSQL_FALSE_LITERAL("0");
+
 const QString YerothUtils::EMPTY_STRING("");
 
 const QChar YerothUtils::SLASH_CHAR('/');
@@ -710,45 +714,6 @@ int YerothUtils::getNextIdFromTable(const QString &tableName)
     return 0;
 }
 
-int YerothUtils::getNextVentesIdFromTable(const QString &tableName)
-{
-    //qDebug() << "[YerothUtils::getLastIdFromTable()] : next id from table '" << tableName << "'";
-    QString strQuery("SELECT vente_id FROM ");
-    strQuery.append(tableName);
-
-    QSqlQuery query(strQuery);
-    QSqlRecord rec = query.record();
-
-    if (query.last())
-    {
-        int lastId = query.value(0).toInt();
-        ++lastId;
-        //qDebug() << "\t next vente_id 1: " << lastId;
-        return lastId;
-    }
-
-    return 0;
-}
-
-int YerothUtils::getNextSortiesIdFromTable(const QString &tableName)
-{
-    //qDebug() << "[YerothUtils::getLastIdFromTable()] : next id from table '" << tableName << "'";
-    QString strQuery("SELECT sortie_id FROM ");
-    strQuery.append(tableName);
-
-    QSqlQuery query(strQuery);
-    QSqlRecord rec = query.record();
-
-    if (query.last())
-    {
-        int lastId = query.value(0).toInt();
-        ++lastId;
-        //qDebug() << "\t next sortie_id 1: " << lastId;
-        return lastId;
-    }
-
-    return 0;
-}
 
 void YerothUtils::loadPixmapFromDB(QLabel &label_image,
                                   QVariant imageVariant,

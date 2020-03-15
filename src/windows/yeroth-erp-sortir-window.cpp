@@ -1915,9 +1915,9 @@ void YerothSortirWindow::sortir()
     {
         YerothUtils::startTransaction();
 
-    	int sortie_id = YerothUtils::getNextSortiesIdFromTable("stocks_sorties");
+    	int stocksSortieID = _allWindows->getNextIdSqlTableModel_stocks_sorties();
 
-    	QString referenceRecuSortie(YerothUtils::GET_REFERENCE_RECU_SORTIE(QString::number(sortie_id)));
+    	QString referenceRecuSortie(YerothUtils::GET_REFERENCE_RECU_SORTIE(QString::number(stocksSortieID)));
 
         for (int j = 0; j < tableWidget_articles->itemCount(); ++j)
         {
@@ -1954,11 +1954,7 @@ void YerothSortirWindow::sortir()
 
             QSqlRecord record = stocksSortiesTableModel.record();
 
-            int stock_id_to_save = YerothUtils::getNextIdFromTable(_allWindows->STOCKS_SORTIES);
-
-            record.setValue(YerothDatabaseTableColumn::ID, stock_id_to_save);
-
-            record.setValue(YerothDatabaseTableColumn::SORTIE_ID, sortie_id);
+            record.setValue(YerothDatabaseTableColumn::ID, stocksSortieID);
 
             record.setValue(YerothDatabaseTableColumn::REFERENCE_RECU_SORTIE, referenceRecuSortie);
 
@@ -1998,7 +1994,7 @@ void YerothSortirWindow::sortir()
             {
             	historiqueStockSortie_transfert.append(YerothHistoriqueStock::creer_mouvement_stock
                 			(SORTIE,
-                			 stock_id_to_save,
+                			 stocksSortieID,
 							 GET_CURRENT_DATE,
 							 quantite_actuelle,
 							 articleVenteInfo->quantite_a_vendre,
@@ -2008,7 +2004,7 @@ void YerothSortirWindow::sortir()
             {
                 historiqueStockSortie_transfert.append(YerothHistoriqueStock::creer_mouvement_stock
                 			(TRANSFERT,
-                			 stock_id_to_save,
+                			 stocksSortieID,
 							 GET_CURRENT_DATE,
 							 quantite_actuelle,
 							 articleVenteInfo->quantite_a_vendre,
