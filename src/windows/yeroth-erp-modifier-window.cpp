@@ -815,16 +815,22 @@ void YerothModifierWindow::showItem()
 
 	if (checkBox_service->isChecked())
 	{
+		lineEdit_prix_vente->setEnabled(false);
+
 	    setStockSpecificWidgetVisible(false);
 
 	    label_fournisseur->setText(QObject::tr("client"));
+
 	    lineEdit_nom_entreprise_fournisseur->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT));
 	}
 	else
 	{
+		lineEdit_prix_vente->setEnabled(true);
+
 		setStockSpecificWidgetVisible(true);
 
 		label_fournisseur->setText(QObject::tr("fournisseur"));
+
 	    lineEdit_nom_entreprise_fournisseur->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR));
 	}
 
