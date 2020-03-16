@@ -1915,9 +1915,11 @@ void YerothSortirWindow::sortir()
     {
         YerothUtils::startTransaction();
 
-    	int stocksSortieID = _allWindows->getNextIdSqlTableModel_stocks_sorties();
+    	int IDforReceipt = _allWindows->getNextIdSqlTableModel_stocks_sorties();
 
-    	QString referenceRecuSortie(YerothUtils::GET_REFERENCE_RECU_SORTIE(QString::number(stocksSortieID)));
+    	QString referenceRecuSortie(YerothUtils::GET_REFERENCE_RECU_SORTIE(QString::number(IDforReceipt)));
+
+    	int stocksSortieID = -1;
 
         for (int j = 0; j < tableWidget_articles->itemCount(); ++j)
         {
@@ -1954,6 +1956,8 @@ void YerothSortirWindow::sortir()
 
             QSqlRecord record = stocksSortiesTableModel.record();
 
+            stocksSortieID = _allWindows->getNextIdSqlTableModel_stocks_sorties();
+
             record.setValue(YerothDatabaseTableColumn::ID, stocksSortieID);
 
             record.setValue(YerothDatabaseTableColumn::REFERENCE_RECU_SORTIE, referenceRecuSortie);
@@ -1984,6 +1988,7 @@ void YerothSortirWindow::sortir()
             record.setValue(YerothDatabaseTableColumn::DATE_SORTIE, GET_CURRENT_DATE);
             record.setValue(YerothDatabaseTableColumn::HEURE_SORTIE, CURRENT_TIME);
             record.setValue(YerothDatabaseTableColumn::NOTES, textEdit_articles_notes->toPlainText());
+            record.setValue(YerothDatabaseTableColumn::IS_SERVICE, GET_SQL_RECORD_DATA(stockRecord, YerothDatabaseTableColumn::IS_SERVICE));
             record.setValue(YerothDatabaseTableColumn::STOCKS_ID, GET_SQL_RECORD_DATA(stockRecord, YerothDatabaseTableColumn::ID));
 
             double nouvelle_quantite = quantite_actuelle - articleVenteInfo->quantite_a_vendre;

@@ -2300,9 +2300,11 @@ unsigned int YerothPointDeVenteWindow::effectuer_check_out_carte_credit_carte_de
 
 		bool paiementParCarteDeCredit_CarteDebit_Success = PROCESS_CREDIT_CARD_PAYMENT();
 
-		int stocksVenduID = _allWindows->getNextIdSqlTableModel_stocks_vendu();
+	    int IDforReceipt = _allWindows->getNextIdSqlTableModel_stocks_vendu();
 
-		QString referenceRecuVenduCarte(YerothUtils::GET_REFERENCE_RECU_VENDU(QString::number(stocksVenduID)));
+	    QString referenceRecuVenduCarte(YerothUtils::GET_REFERENCE_RECU_VENDU(QString::number(IDforReceipt)));
+
+	    int stocksVenduID = -1;
 
 		for (int j = 0; j < tableWidget_articles->itemCount(); ++j)
 		{
@@ -2330,9 +2332,12 @@ unsigned int YerothPointDeVenteWindow::effectuer_check_out_carte_credit_carte_de
 
 			QSqlRecord record = stocksVenduTableModel.record();
 
+			stocksVenduID = _allWindows->getNextIdSqlTableModel_stocks_vendu();
+
 			record.setValue(YerothDatabaseTableColumn::ID, stocksVenduID);
 
-			record.setValue(YerothDatabaseTableColumn::IS_SERVICE, YerothUtils::MYSQL_FALSE_LITERAL);
+	        record.setValue(YerothDatabaseTableColumn::IS_SERVICE,
+	        					GET_SQL_RECORD_DATA(stockRecord, YerothDatabaseTableColumn::IS_SERVICE));
 
 			record.setValue(YerothDatabaseTableColumn::REFERENCE_RECU_VENDU, referenceRecuVenduCarte);
 
@@ -2475,9 +2480,11 @@ unsigned int YerothPointDeVenteWindow::effectuer_check_out_carte_credit_carte_de
 
 void YerothPointDeVenteWindow::executer_la_vente_comptant()
 {
-    int stocksVenduID = _allWindows->getNextIdSqlTableModel_stocks_vendu();
+    int IDforReceipt = _allWindows->getNextIdSqlTableModel_stocks_vendu();
 
-    QString referenceRecuVendu(YerothUtils::GET_REFERENCE_RECU_VENDU(QString::number(stocksVenduID)));
+    QString referenceRecuVendu(YerothUtils::GET_REFERENCE_RECU_VENDU(QString::number(IDforReceipt)));
+
+    int stocksVenduID = -1;
 
     for (int j = 0; j < tableWidget_articles->itemCount(); ++j)
     {
@@ -2514,11 +2521,14 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
 
         _typeDeVente = QObject::tr("achat-comptant");
 
+        stocksVenduID = _allWindows->getNextIdSqlTableModel_stocks_vendu();
+
         record.setValue(YerothDatabaseTableColumn::ID, stocksVenduID);
 
         record.setValue(YerothDatabaseTableColumn::TYPE_DE_VENTE, _typeDeVente);
 
-        record.setValue(YerothDatabaseTableColumn::IS_SERVICE, YerothUtils::MYSQL_FALSE_LITERAL);
+        record.setValue(YerothDatabaseTableColumn::IS_SERVICE,
+        					GET_SQL_RECORD_DATA(stockRecord, YerothDatabaseTableColumn::IS_SERVICE));
 
         record.setValue(YerothDatabaseTableColumn::REFERENCE_RECU_VENDU, referenceRecuVendu);
         record.setValue(YerothDatabaseTableColumn::REFERENCE, articleVenteInfo->reference);
@@ -2732,9 +2742,11 @@ void YerothPointDeVenteWindow::updateCompteClient(double nouveau_compte_client)
 
 void YerothPointDeVenteWindow::executer_la_vente_compte_client()
 {
-    int stocksVenduID = _allWindows->getNextIdSqlTableModel_stocks_vendu();
+    int IDforReceipt = _allWindows->getNextIdSqlTableModel_stocks_vendu();
 
-    QString referenceRecuVenduCompteClient(YerothUtils::GET_REFERENCE_RECU_VENDU(QString::number(stocksVenduID)));
+    QString referenceRecuVenduCompteClient(YerothUtils::GET_REFERENCE_RECU_VENDU(QString::number(IDforReceipt)));
+
+    int stocksVenduID = -1;
 
     double total_prix_vente = 0.0;
 
@@ -2774,12 +2786,14 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
 
         _typeDeVente = QObject::tr("achat-compte-client");
 
+        stocksVenduID = _allWindows->getNextIdSqlTableModel_stocks_vendu();
 
         record.setValue(YerothDatabaseTableColumn::ID, stocksVenduID);
 
         record.setValue(YerothDatabaseTableColumn::TYPE_DE_VENTE, _typeDeVente);
 
-        record.setValue(YerothDatabaseTableColumn::IS_SERVICE, YerothUtils::MYSQL_FALSE_LITERAL);
+        record.setValue(YerothDatabaseTableColumn::IS_SERVICE,
+        					GET_SQL_RECORD_DATA(stockRecord, YerothDatabaseTableColumn::IS_SERVICE));
 
         record.setValue(YerothDatabaseTableColumn::REFERENCE_RECU_VENDU, referenceRecuVenduCompteClient);
         record.setValue(YerothDatabaseTableColumn::REFERENCE, articleVenteInfo->reference);
