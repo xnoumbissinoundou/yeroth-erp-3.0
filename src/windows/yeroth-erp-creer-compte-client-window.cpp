@@ -342,9 +342,7 @@ bool YerothCreerCompteClientWindow::check_fields()
 
     bool nom_entreprise = lineEdit_compte_client_nom_de_lentreprise->checkField();
 
-    bool nom_representant = lineEdit_compte_client_nom_du_representant->checkField();
-
-    result = nom_entreprise && nom_representant;
+    result = nom_entreprise;
 
     return result;
 }

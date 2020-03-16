@@ -181,7 +181,7 @@ private:
 
     bool check_fields_service();
 
-    bool check_fields();
+    bool check_fields(bool withClearAllServiceMandatoryFields = false);
 
     void clear_all_fields();
 

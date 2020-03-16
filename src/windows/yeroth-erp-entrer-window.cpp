@@ -614,7 +614,7 @@ void YerothEntrerWindow::handleServiceCheckBox(bool clicked)
 	}
 	else
 	{
-		check_fields();
+		check_fields(true);
 
 		setStockSpecificWidgetVisible(true);
 
@@ -740,15 +740,14 @@ bool YerothEntrerWindow::check_fields_service()
 }
 
 
-bool YerothEntrerWindow::check_fields()
+bool YerothEntrerWindow::check_fields(bool withClearAllServiceMandatoryFields /*  = false */)
 {
-	/*
-	 * une entreprise fournisseur et un reference
-	 * de stock ne sont pas obligatoires.
-	 */
-	lineEdit_nom_entreprise_fournisseur->clearField();
+	if (withClearAllServiceMandatoryFields)
+	{
+		lineEdit_nom_entreprise_fournisseur->clearField();
 
-	lineEdit_reference_produit->clearField();
+		lineEdit_reference_produit->clearField();
+	}
 
     bool designation = lineEdit_designation->checkField();
 
@@ -834,15 +833,11 @@ void YerothEntrerWindow::rendreVisible(YerothSqlTableModel * stocksTableModel, b
 
     lineEdit_tva->setText(YerothUtils::getTvaStringWithPercent());
 
+
     if (aShowItem)
     {
-        clear_all_fields();
-        showItem();
-        lineEdit_reference_produit->clearFocus();
-    }
-    else
-    {
-        lineEdit_reference_produit->setFocus();
+    	checkBox_service->setChecked(false);
+    	checkBox_service->clicked();
     }
 
     if (checkBox_service->isChecked())
@@ -851,7 +846,22 @@ void YerothEntrerWindow::rendreVisible(YerothSqlTableModel * stocksTableModel, b
     }
     else
     {
-    	check_fields();
+        if (aShowItem)
+        {
+            clear_all_fields();
+
+            check_fields(true);
+
+            showItem();
+
+            lineEdit_reference_produit->clearFocus();
+        }
+        else
+        {
+        	check_fields(true);
+
+            lineEdit_reference_produit->setFocus();
+        }
     }
 
     setVisible(true);
@@ -1448,6 +1458,7 @@ void YerothEntrerWindow::showItem()
     QSqlRecord record = _curStocksTableModel->record(_allWindows->getLastSelectedListerRow());
 
     lineEdit_reference_produit->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE));
+
     lineEdit_designation->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
     textEdit_description->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESCRIPTION_PRODUIT));
 
