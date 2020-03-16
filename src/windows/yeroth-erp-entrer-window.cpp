@@ -1063,7 +1063,7 @@ bool YerothEntrerWindow::handle_stocks_vendu_table(int stockID,
         								 historiqueStockVendu));
 
         record.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT, aServiceInfo.nouveau_compte_client);
-        record.setValue(YerothDatabaseTableColumn::CLIENTS_ID, aServiceInfo.clientID);
+        record.setValue(YerothDatabaseTableColumn::CLIENTS_ID, aServiceInfo.ID_client);
         record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT, aServiceInfo.nom_entreprise_client);
 
         bool success1 = stocksVenduTableModel.insertNewRecord(record, this);
@@ -1120,7 +1120,7 @@ bool YerothEntrerWindow::handle_clients_table(int stockID, double montant_total_
 
 		bool success_clients = clientsTableModel.updateRecord(0, clientsRecord);
 
-    	aServiceClientInfo.clientID = GET_SQL_RECORD_DATA(clientsRecord, YerothDatabaseTableColumn::ID).toInt();
+    	aServiceClientInfo.ID_client = GET_SQL_RECORD_DATA(clientsRecord, YerothDatabaseTableColumn::ID).toInt();
 
     	aServiceClientInfo.reference = lineEdit_reference_produit->text();
     	aServiceClientInfo.designation = lineEdit_designation->text();

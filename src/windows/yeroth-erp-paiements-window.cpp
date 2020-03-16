@@ -934,11 +934,11 @@ void YerothPaiementsWindow::rendreVisible(YerothSqlTableModel * stocksTableModel
     	lineEdit_paiements_nom_encaisseur->setEnabled(true);
     }
 
+    setVisible(true);
+
     rechercher();
 
     lineEdit_paiements_recherche->setFocus();
-
-    setVisible(true);
 }
 
 void YerothPaiementsWindow::afficher_paiements_detail()

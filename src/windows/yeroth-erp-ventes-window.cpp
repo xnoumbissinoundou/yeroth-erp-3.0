@@ -1006,11 +1006,11 @@ void YerothVentesWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
     	lineEdit_ventes_nom_caissier->setEnabled(true);
     }
 
+    setVisible(true);
+
     rechercher();
 
     lineEdit_ventes_recherche->setFocus();
-
-    this->setVisible(true);
 }
 
 void YerothVentesWindow::afficher_vente_detail()

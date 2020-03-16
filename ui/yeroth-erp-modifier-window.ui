@@ -5026,7 +5026,7 @@
       </font>
      </property>
      <property name="title">
-      <string>Image de l'article</string>
+      <string>Image du stock (service)</string>
      </property>
      <widget class="QLabel" name="label_image_produit">
       <property name="geometry">

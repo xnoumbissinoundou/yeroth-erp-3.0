@@ -31,7 +31,7 @@ public:
 	class ServiceClientInfo
 	{
 	public:
-    	int clientID;
+    	int ID_client;
     	double nouveau_compte_client;
 
     	QString reference;
