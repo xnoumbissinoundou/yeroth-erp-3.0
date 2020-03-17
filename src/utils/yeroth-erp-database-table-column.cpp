@@ -16,7 +16,6 @@ QMap<QString, QString> YerothDatabaseTableColumn::_tableColumnToUserViewString;
 
 const QString YerothDatabaseTableColumn::IS_SERVICE						("is_service");
 const QString YerothDatabaseTableColumn::ID								("id");
-const QString YerothDatabaseTableColumn::ENGAGEMENT						("engagement");
 const QString YerothDatabaseTableColumn::HISTORIQUE_STOCK				("historique_stock");
 const QString YerothDatabaseTableColumn::CLIENTS_ID						("clients_id");
 const QString YerothDatabaseTableColumn::REFERENCE_RECU_VENDU			("reference_recu_vendu");
@@ -137,8 +136,6 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::IS_SERVICE, 		QObject::tr("Service"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::ID, 				QObject::tr("ID"));
-
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::ENGAGEMENT, 		QObject::tr("Engagement"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::HISTORIQUE_STOCK,	QObject::tr("Historique stock"));
 

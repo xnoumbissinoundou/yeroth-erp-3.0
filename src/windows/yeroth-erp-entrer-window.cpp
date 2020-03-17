@@ -159,6 +159,15 @@ void YerothEntrerWindow::setupLineEditsQCompleters()
         lineEdit_nom_entreprise_fournisseur->setupMyStaticQCompleter(_allWindows->CLIENTS,
         															 YerothDatabaseTableColumn::NOM_ENTREPRISE,
 																	 true);
+
+    	QString aConditionStr(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
+    						  YerothUtils::MYSQL_TRUE_LITERAL));
+
+    	lineEdit_reference_produit->setupMyStaticQCompleter(_allWindows->MARCHANDISES,
+    														YerothDatabaseTableColumn::REFERENCE,
+    														false,
+    														true,
+    														aConditionStr);
 	}
 	else
 	{
@@ -168,13 +177,19 @@ void YerothEntrerWindow::setupLineEditsQCompleters()
         															 YerothDatabaseTableColumn::NOM_ENTREPRISE,
 																	 true);
 
-	    lineEdit_reference_produit->setupMyStaticQCompleter(_allWindows->MARCHANDISES,
-	    												   YerothDatabaseTableColumn::REFERENCE,
-														   false,
-														   false);
+    	QString aConditionStr(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
+    						  YerothUtils::MYSQL_FALSE_LITERAL));
+
+    	lineEdit_reference_produit->setupMyStaticQCompleter(_allWindows->MARCHANDISES,
+    														YerothDatabaseTableColumn::REFERENCE,
+    														false,
+    														true,
+    														aConditionStr);
 	}
 
-	lineEdit_categorie_produit->setupMyStaticQCompleter(_allWindows->CATEGORIES, YerothDatabaseTableColumn::NOM_CATEGORIE, true);
+	lineEdit_categorie_produit->setupMyStaticQCompleter(_allWindows->CATEGORIES,
+														YerothDatabaseTableColumn::NOM_CATEGORIE,
+														true);
 }
 
 
@@ -879,6 +894,15 @@ bool YerothEntrerWindow::insertStockItemInProductList()
     record.setValue(YerothDatabaseTableColumn::ID,
                     YerothUtils::getNextIdFromTable(_allWindows->MARCHANDISES));
 
+    if (checkBox_service->isChecked())
+    {
+    	record.setValue(YerothDatabaseTableColumn::IS_SERVICE, YerothUtils::MYSQL_TRUE_LITERAL);
+    }
+    else
+    {
+    	record.setValue(YerothDatabaseTableColumn::IS_SERVICE, YerothUtils::MYSQL_FALSE_LITERAL);
+    }
+
     record.setValue(YerothDatabaseTableColumn::REFERENCE, lineEdit_reference_produit->text());
 
     record.setValue(YerothDatabaseTableColumn::DESIGNATION, lineEdit_designation->text());
@@ -933,6 +957,8 @@ bool YerothEntrerWindow::insertStockItemInProductList()
 
 bool YerothEntrerWindow::isStockItemInProductList()
 {
+	bool result = false;
+
     YerothSqlTableModel & productListSqlTableModel = _allWindows->getSqlTableModel_marchandises();
 
     int designationRowCount =
@@ -943,7 +969,20 @@ bool YerothEntrerWindow::isStockItemInProductList()
         productListSqlTableModel.Is_SearchQSqlTable(YerothDatabaseTableColumn::CATEGORIE,
                 lineEdit_categorie_produit->text());
 
-    return (designationRowCount > 0) && (categorieRowCount > 0);
+    if (checkBox_service->isChecked())
+    {
+        int referenceRowCount =
+            productListSqlTableModel.Is_SearchQSqlTable(YerothDatabaseTableColumn::REFERENCE,
+            		lineEdit_reference_produit->text());
+
+    	result = (referenceRowCount > 0) && (designationRowCount > 0) && (categorieRowCount > 0);
+    }
+    else
+    {
+    	result = (designationRowCount > 0) && (categorieRowCount > 0);
+    }
+
+    return result;
 }
 
 
@@ -1209,7 +1248,7 @@ void YerothEntrerWindow::enregistrer_produit()
 
     YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
 
-    if (!checkBox_service->isChecked() && !isStockItemInProductList())
+    if (!isStockItemInProductList())
     {
     	insertStockItemInProductList();
     }

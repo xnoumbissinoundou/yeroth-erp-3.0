@@ -160,8 +160,6 @@ public slots:
 
 private slots:
 
-	void handleServiceCheckBox(bool clicked);
-
 	void private_slot_afficher_historique_du_stock();
 
 	bool filtrer_stocks_perimes_seulement();

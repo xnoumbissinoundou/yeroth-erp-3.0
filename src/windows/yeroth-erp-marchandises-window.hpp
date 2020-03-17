@@ -158,6 +158,8 @@ protected:
 
 private slots:
 
+	void handleServicesCheckBox(bool clicked);
+
 	bool filtrer_empty_product_stock();
 
 	bool filtrer();

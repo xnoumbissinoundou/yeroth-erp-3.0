@@ -46,7 +46,7 @@ public:
 	QString nom_encaisseur;
 	int type_de_paiement;
 	QString notes;
-	QString engagement;
+	QString reference;
 	QDate date_paiement;
 
 	double compte_client;
@@ -63,7 +63,9 @@ public:
 
     YerothPayerCompteClientWindow();
 
-    virtual ~YerothPayerCompteClientWindow();
+	inline virtual ~YerothPayerCompteClientWindow()
+	{
+	}
 
     inline virtual QToolBar * getQMainWindowToolBar()
     {
@@ -109,6 +111,8 @@ public slots:
 			   	   	   	   	   	   	   	   	   	   	    QString &printString);
 private slots:
 
+	void handleReferenceEngagementChange(const QString &referenceEngagement);
+
 	void afficher_detail_client();
 
 	bool createHistoryPaymentForCustomerAccount(HistoryPaymentInfo &paymentInfo);
@@ -133,6 +137,8 @@ private:
     YerothSqlTableModel 	*_curClientTableModel;
 
     QString					_curCompanyName;
+
+    double					_curReferenceEngagementResteAPayer;
 
     int 					_clientLastSelectedRow;
 };

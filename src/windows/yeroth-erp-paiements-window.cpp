@@ -300,7 +300,7 @@ void YerothPaiementsWindow::setupLineEdits()
 void YerothPaiementsWindow::setupLineEditsQCompleters()
 {
     lineEdit_paiements_recherche->setupMyStaticQCompleter(_allWindows->PAIEMENTS, YerothDatabaseTableColumn::NOM_ENTREPRISE);
-    lineEdit_paiements_engagement->setupMyStaticQCompleter(_allWindows->PAIEMENTS, YerothDatabaseTableColumn::ENGAGEMENT);
+    lineEdit_paiements_engagement->setupMyStaticQCompleter(_allWindows->PAIEMENTS, YerothDatabaseTableColumn::REFERENCE);
     lineEdit_paiements_nom_encaisseur->setupMyStaticQCompleter(_allWindows->PAIEMENTS, YerothDatabaseTableColumn::NOM_ENCAISSEUR);
     lineEdit_paiements_nom_entreprise->setupMyStaticQCompleter(_allWindows->PAIEMENTS, YerothDatabaseTableColumn::NOM_ENTREPRISE);
     lineEdit_paiements_numero_bon_paiement->setupMyStaticQCompleter(_allWindows->PAIEMENTS, YerothDatabaseTableColumn::ID);
@@ -331,7 +331,8 @@ void YerothPaiementsWindow::reinitialiser_champs_db_visibles()
 			<< YerothDatabaseTableColumn::NOM_ENTREPRISE
 			<< YerothDatabaseTableColumn::MONTANT_PAYE
 			<< YerothDatabaseTableColumn::TYPE_DE_PAIEMENT
-			<< YerothDatabaseTableColumn::COMPTE_CLIENT;
+			<< YerothDatabaseTableColumn::COMPTE_CLIENT
+			<< YerothDatabaseTableColumn::REFERENCE;
 }
 
 
@@ -961,7 +962,7 @@ void YerothPaiementsWindow::afficher_paiements_detail()
 
     lineEdit_details_de_paiement_heure_de_paiement->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::HEURE_PAIEMENT));
 
-    lineEdit_details_de_paiement_engagement->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ENGAGEMENT));
+    lineEdit_details_de_paiement_engagement->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE));
 
     int typeDePaiementIntValue = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::TYPE_DE_PAIEMENT).toInt();
 
@@ -1040,7 +1041,7 @@ void YerothPaiementsWindow::rechercher(bool clearPaiementsRecherche)
             {
                 _searchFilter.append(" AND ");
             }
-            _searchFilter.append(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::ENGAGEMENT, engagement));
+            _searchFilter.append(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::REFERENCE, engagement));
         }
 
         QString nom_encaisseur(lineEdit_paiements_nom_encaisseur->text());

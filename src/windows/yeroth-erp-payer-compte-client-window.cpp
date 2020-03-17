@@ -40,7 +40,8 @@ const QString YerothPayerCompteClientWindow::_WINDOW_TITLE(QString(QObject::trUt
             QObject::trUtf8("payer au compte client")));
 
 YerothPayerCompteClientWindow::YerothPayerCompteClientWindow()
-:YerothWindowsCommons(YerothPayerCompteClientWindow::_WINDOW_TITLE)
+:YerothWindowsCommons(YerothPayerCompteClientWindow::_WINDOW_TITLE),
+ _curReferenceEngagementResteAPayer(0.0)
 {
     setupUi(this);
 
@@ -79,13 +80,85 @@ YerothPayerCompteClientWindow::YerothPayerCompteClientWindow()
     connect(actionPayerAuCompteClient, SIGNAL(triggered()), this, SLOT(putCashIntoCustomerAccount()));
     connect(actionMenu_Principal, SIGNAL(triggered()), this, SLOT(menu()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
-
     connect(actionQui_suis_je, SIGNAL(triggered()), this, SLOT(qui_suis_je()));
 }
 
 
-YerothPayerCompteClientWindow::~YerothPayerCompteClientWindow()
+void YerothPayerCompteClientWindow::handleReferenceEngagementChange(const QString &referenceEngagement)
 {
+	QString aConditionStr;
+
+	double montantTotalPayeEngament = 0.0;
+
+	double montantTotalVenteEngagement = 0.0;
+
+	{
+		YerothSqlTableModel &paiementsSqlTableModel = _allWindows->getSqlTableModel_paiements();
+
+		aConditionStr = QString("%1 = '%2' AND %3 = '%4'")
+							.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
+								 lineEdit_comptes_clients_designation_de_lentreprise->text(),
+								 YerothDatabaseTableColumn::REFERENCE,
+								 referenceEngagement);
+
+		paiementsSqlTableModel.yerothSetFilter(aConditionStr);
+
+		int rows = paiementsSqlTableModel.easySelect();
+
+		QSqlRecord aPaiementRecord;
+
+		double curMontantPaye = 0.0;
+
+		for (int k = 0; k < rows; ++k)
+		{
+			aPaiementRecord.clear();
+
+			aPaiementRecord = paiementsSqlTableModel.record(k);
+
+			curMontantPaye =
+					GET_SQL_RECORD_DATA(aPaiementRecord, YerothDatabaseTableColumn::MONTANT_PAYE).toDouble();
+
+			montantTotalPayeEngament = montantTotalPayeEngament + curMontantPaye;
+		}
+
+		paiementsSqlTableModel.resetFilter();
+	}
+
+	{
+		YerothSqlTableModel &stocksVenduSqlTableModel = _allWindows->getSqlTableModel_stocks_vendu();
+
+		aConditionStr = QString("%1 = '%2' AND %3 = '%4'")
+								.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT,
+									 lineEdit_comptes_clients_designation_de_lentreprise->text(),
+									 YerothDatabaseTableColumn::REFERENCE,
+									 referenceEngagement);
+
+		stocksVenduSqlTableModel.yerothSetFilter(aConditionStr);
+
+		int rows = stocksVenduSqlTableModel.easySelect();
+
+		if (0 < rows)
+		{
+			int firstRecord = 0;
+
+			QSqlRecord aStocksVenduRecord = stocksVenduSqlTableModel.record(firstRecord);
+
+			montantTotalVenteEngagement =
+				GET_SQL_RECORD_DATA(aStocksVenduRecord, YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE).toDouble();
+		}
+	}
+
+	if (montantTotalVenteEngagement >= montantTotalPayeEngament)
+	{
+		_curReferenceEngagementResteAPayer = montantTotalVenteEngagement - montantTotalPayeEngament;
+	}
+	else
+	{
+		_curReferenceEngagementResteAPayer = 0.0;
+	}
+
+	lineEdit_comptes_clients_engagement_reste_a_payer->
+			setText(GET_CURRENCY_STRING_NUM(_curReferenceEngagementResteAPayer));
 }
 
 
@@ -111,7 +184,7 @@ bool YerothPayerCompteClientWindow::createHistoryPaymentForCustomerAccount(Histo
 	record.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT, 		paymentInfo.compte_client);
 	record.setValue(YerothDatabaseTableColumn::TYPE_DE_PAIEMENT, 	paymentInfo.type_de_paiement);
 	record.setValue(YerothDatabaseTableColumn::NOTES, 				paymentInfo.notes);
-	record.setValue(YerothDatabaseTableColumn::ENGAGEMENT, 			paymentInfo.engagement);
+	record.setValue(YerothDatabaseTableColumn::REFERENCE, 			paymentInfo.reference);
 	record.setValue(YerothDatabaseTableColumn::MONTANT_PAYE, 		paymentInfo.montant_paye);
 	record.setValue(YerothDatabaseTableColumn::HEURE_PAIEMENT, 		CURRENT_TIME);
 
@@ -123,6 +196,15 @@ bool YerothPayerCompteClientWindow::createHistoryPaymentForCustomerAccount(Histo
 
 bool YerothPayerCompteClientWindow::putCashIntoCustomerAccount()
 {
+	if (lineEdit_comptes_clients_engagement->text().isEmpty())
+	{
+		YerothQMessageBox::information(this,
+									   QObject::trUtf8("référence"),
+									   QObject::trUtf8("Veuillez entrer un engagement (référence) !"));
+
+		return false;
+	}
+
 	if (lineEdit_montant_a_payer->text().isEmpty())
 	{
 		YerothQMessageBox::information(this,
@@ -189,7 +271,7 @@ bool YerothPayerCompteClientWindow::putCashIntoCustomerAccount()
 
     	paymentInfo.notes = textEdit_description->toPlainText();
 
-    	paymentInfo.engagement = lineEdit_comptes_clients_engagement->text();
+    	paymentInfo.reference = lineEdit_comptes_clients_engagement->text();
 
     	paymentInfo.type_de_paiement = YerothUtils::getComboBoxDatabaseQueryValue(comboBox_clients_typedepaiement->currentText(),
     																 	 	 	  YerothUtils::_typedepaiementToUserViewString);
@@ -228,12 +310,13 @@ bool YerothPayerCompteClientWindow::putCashIntoCustomerAccount()
 
 		textEdit_description->clear();
 
+		lineEdit_comptes_clients_engagement_reste_a_payer->clear();
+
 		lineEdit_comptes_clients_engagement->clear();
 		lineEdit_montant_a_payer->clear();
 		lineEdit_etablissement_bancaire->clear();
 
 		comboBox_clients_typedepaiement->resetYerothComboBox();
-
 
 		updateLineEdits();
     }
@@ -253,6 +336,8 @@ bool YerothPayerCompteClientWindow::putCashIntoCustomerAccount()
 
 void YerothPayerCompteClientWindow::setupLineEdits()
 {
+	lineEdit_comptes_clients_engagement_reste_a_payer->setEnabled(false);
+
 	lineEdit_comptes_clients_designation_de_lentreprise->setEnabled(false);
 
     lineEdit_comptes_clients_valeur_compte_client->setEnabled(false);
@@ -343,10 +428,14 @@ void YerothPayerCompteClientWindow::rendreVisible(int lastSelectedRow,
 
     lineEdit_comptes_clients_designation_de_lentreprise->setText(_curCompanyName);
 
+	setVisible(true);
 
     updateLineEdits();
 
-	setVisible(true);
+    connect(lineEdit_comptes_clients_engagement,
+    		SIGNAL(textChanged(const QString &)),
+    		this,
+            SLOT(handleReferenceEngagementChange(const QString &)));
 }
 
 
@@ -355,6 +444,8 @@ void YerothPayerCompteClientWindow::rendreInvisible()
 	_curCompanyName.clear();
 
 	textEdit_description->clear();
+
+	lineEdit_comptes_clients_engagement_reste_a_payer->clear();
 
 	lineEdit_comptes_clients_engagement->clear();
 	lineEdit_montant_a_payer->clear();

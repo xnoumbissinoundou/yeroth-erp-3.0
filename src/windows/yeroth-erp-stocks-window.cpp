@@ -158,8 +158,6 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 connect(actionAdministration, SIGNAL(triggered()), this, SLOT(administration()));
 #endif
 
-	connect(checkBox_services, SIGNAL(clicked(bool)), this, SLOT(handleServiceCheckBox(bool)));
-
     connect(actionAfficher_stock_au_detail, SIGNAL(triggered()),
     		this, SLOT(afficher_au_detail()));
 
@@ -233,27 +231,6 @@ bool YerothStocksWindow::SQL_TABLE_STOCKS_VENDU_EMPTY()
 {
 	return (0 == YerothUtils::execQuery(QString("SELECT * FROM %1")
 											.arg(_allWindows->STOCKS_VENDU)));
-}
-
-
-void YerothStocksWindow::handleServiceCheckBox(bool clicked)
-{
-	if (clicked && checkBox_services->isChecked())
-	{
-    	_curStocksTableModel->yerothSetFilter(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
-    										  YerothUtils::MYSQL_TRUE_LITERAL));
-    	comboBox_strategie_de_stocks->setEnabled(false);
-    }
-    else
-    {
-    	_curStocksTableModel->yerothSetFilter(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
-    										  YerothUtils::MYSQL_FALSE_LITERAL));
-    	comboBox_strategie_de_stocks->setEnabled(true);
-	}
-
-	_curStocksTableModel->easySelect();
-
-	afficherStocks();
 }
 
 
@@ -621,11 +598,6 @@ void YerothStocksWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 
     _curStocksTableModel = stocksTableModel;
 
-    if (!checkBox_services->isChecked())
-    {
-    	setComboBoxStrategieDeStocks();
-    }
-
     if (! isCurrentlyFiltered())
     {
         if (0 == _searchStocksTableModel)
@@ -638,21 +610,6 @@ void YerothStocksWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
     lineEdit_recherche_reference->setFocus();
 
     setVisible(true);
-
-    if (checkBox_services->isChecked())
-    {
-    	_curStocksTableModel->yerothSetFilter(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
-    										  YerothUtils::MYSQL_TRUE_LITERAL));
-
-    	comboBox_strategie_de_stocks->setEnabled(false);
-    }
-    else
-    {
-    	_curStocksTableModel->yerothSetFilter(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
-    										  YerothUtils::MYSQL_FALSE_LITERAL));
-
-    	comboBox_strategie_de_stocks->setEnabled(true);
-    }
 
     _curStocksTableModel->easySelect();
 

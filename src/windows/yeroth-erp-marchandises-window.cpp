@@ -132,6 +132,8 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
 
 #endif
 
+    connect(checkBox_services, SIGNAL(clicked(bool)), this, SLOT(handleServicesCheckBox(bool)));
+
     connect(actionSupprimer_ce_stock, SIGNAL(triggered()), this, SLOT(supprimer_ce_stock()));
 
     connect(tableView_marchandises, SIGNAL(signal_lister(YerothSqlTableModel &)), this,
@@ -295,6 +297,7 @@ void YerothMarchandisesWindow::reinitialiser_champs_db_visibles()
 		<< YerothDatabaseTableColumn::DESIGNATION
 		<< YerothDatabaseTableColumn::CATEGORIE
 		<< YerothDatabaseTableColumn::QUANTITE_TOTAL
+		<< YerothDatabaseTableColumn::REFERENCE
 		<< YerothDatabaseTableColumn::VALEUR_DIVENTAIRE;
 }
 
@@ -330,6 +333,25 @@ void YerothMarchandisesWindow::setupShortcuts()
     actionAfficher_les_stocks_termines->setShortcut(YerothUtils::AFFICHER_LES_STOCKS_TERMINES_QKEYSEQUENCE);
     actionRechercher->setShortcut(YerothUtils::RECHERCHER_QKEYSEQUENCE);
     actionReinitialiserRecherche->setShortcut(YerothUtils::REINITIALISER_RECHERCHE_QKEYSEQUENCE);
+}
+
+
+void YerothMarchandisesWindow::handleServicesCheckBox(bool clicked)
+{
+	if (clicked && checkBox_services->isChecked())
+	{
+		_curInventaireDesStocksTableModel->yerothSetFilter(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
+    										  	  	  	   YerothUtils::MYSQL_TRUE_LITERAL));
+    }
+    else
+    {
+    	_curInventaireDesStocksTableModel->yerothSetFilter(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
+    										  	  	  	   YerothUtils::MYSQL_FALSE_LITERAL));
+	}
+
+	_curInventaireDesStocksTableModel->easySelect();
+
+	afficherMarchandises();
 }
 
 
@@ -558,6 +580,17 @@ void YerothMarchandisesWindow::rendreVisible(YerothSqlTableModel * stocksTableMo
     lineEdit_recherche_designation->setFocus();
 
 	setVisible(true);
+
+	if (checkBox_services->isChecked())
+	{
+		_curInventaireDesStocksTableModel->yerothSetFilter(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
+    										  	  	  	   YerothUtils::MYSQL_TRUE_LITERAL));
+    }
+    else
+    {
+    	_curInventaireDesStocksTableModel->yerothSetFilter(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
+    										  	  	  	   YerothUtils::MYSQL_FALSE_LITERAL));
+	}
 
 	afficherMarchandises();
 }

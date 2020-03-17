@@ -341,6 +341,8 @@ void YerothVentesWindow::reinitialiser_champs_db_visibles()
 			<< YerothDatabaseTableColumn::PRIX_UNITAIRE
 			<< YerothDatabaseTableColumn::QUANTITE_VENDUE
 			<< YerothDatabaseTableColumn::MONTANT_TVA
+			<< YerothDatabaseTableColumn::REFERENCE
+			<< YerothDatabaseTableColumn::TYPE_DE_VENTE
 			<< YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE;
 }
 

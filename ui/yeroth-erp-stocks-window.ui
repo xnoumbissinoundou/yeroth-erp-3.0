@@ -8217,22 +8217,6 @@ background-color: rgb(0, 0, 0); </string>
      <string>réinitialiser filtre</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox_services">
-    <property name="geometry">
-     <rect>
-      <x>11</x>
-      <y>437</y>
-      <width>87</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="layoutDirection">
-     <enum>Qt::RightToLeft</enum>
-    </property>
-    <property name="text">
-     <string>services</string>
-    </property>
-   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar_listerWindow">
    <property name="geometry">

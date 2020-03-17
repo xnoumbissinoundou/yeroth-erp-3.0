@@ -1,1 +1,1 @@
-create table marchandises  (id int primary key, reference varchar(256), designation varchar(256) NOT NULL, categorie varchar(256) NOT NULL, description_produit varchar(256), quantite_total double, valeur_dinventaire double);
+create table marchandises  (id int primary key, reference varchar(256), designation varchar(256) NOT NULL, categorie varchar(256) NOT NULL, description_produit varchar(256), quantite_total double, valeur_dinventaire double, is_service boolean NOT NULL);

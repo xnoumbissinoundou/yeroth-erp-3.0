@@ -267,7 +267,7 @@ void YerothERPClientsWindow::private_slot_afficher_les_transactions_dun_client()
 														 YerothDatabaseTableColumn::MONTANT_PAYE,
 														 YerothDatabaseTableColumn::COMPTE_CLIENT,
 														 YerothDatabaseTableColumn::TYPE_DE_PAIEMENT,
-														 YerothDatabaseTableColumn::ENGAGEMENT,
+														 YerothDatabaseTableColumn::REFERENCE,
 														 _allWindows->PAIEMENTS));
 
 	    QString clientTransactionsStockVenduQueryStr(QString("select %1, "
