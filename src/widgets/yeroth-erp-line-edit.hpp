@@ -54,6 +54,8 @@ public:
 
 	void setYerothERPQLineEditDisplayFormat();
 
+	void clearQCompleter();
+
 	void clearField();
 
 	void setEnabled(bool enabled);

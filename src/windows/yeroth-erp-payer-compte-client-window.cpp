@@ -250,15 +250,76 @@ bool YerothPayerCompteClientWindow::putCashIntoCustomerAccount()
 
     	clientsTableModel.resetFilter();
 
+    	QString msg;
+
+    	if (cashPaymentAmount > _curReferenceEngagementResteAPayer)
+    	{
+    		msg.clear();
+    	    msg.append(QString(QObject::trUtf8("Poursuivre avec le paiement de %1"
+    	    									" ? (montant supérieur à la dette restante !)"))
+    	    				.arg(GET_CURRENCY_STRING_NUM(cashPaymentAmount)));
+
+    	    if (QMessageBox::Cancel ==
+    	            YerothQMessageBox::question(this, QObject::trUtf8("montant supérieur"),
+    	    									msg,
+    											QMessageBox::Cancel,
+    											QMessageBox::Ok))
+    	    {
+    	    	YerothQMessageBox::information(this, QObject::trUtf8("annulation du paiement"),
+    	    								    QObject::trUtf8("Vous avez annulé le paiement d'un "
+    	    								    				"montant supérieur à la dette restante !"),
+												QMessageBox::Ok);
+
+    	    	return false;
+    	    }
+    	    else
+    	    {
+    	    }
+    	}
+    	else
+    	{
+    		msg.clear();
+    		msg.append(QString(QObject::trUtf8("Poursuivre avec le paiement de %1 ?"))
+    	    				.arg(GET_CURRENCY_STRING_NUM(cashPaymentAmount)));
+
+    	    if (QMessageBox::Cancel ==
+    	            YerothQMessageBox::question(this, QObject::trUtf8("paiement"),
+    	    									msg,
+    											QMessageBox::Cancel,
+    											QMessageBox::Ok))
+    	    {
+    	    	YerothQMessageBox::information(this, QObject::trUtf8("annulation du paiement"),
+    	    								    QObject::trUtf8("Vous avez annulé le paiement en cours !"),
+												QMessageBox::Ok);
+
+    	    	return false;
+    	    }
+    	    else
+    	    {
+    	    }
+    	}
+
+
+    	double dette_maximale_compte_client =
+    			GET_SQL_RECORD_DATA(clientsRecord, YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT).toDouble();
+
+    	double nouvelle_dette_maximale_compte_client = dette_maximale_compte_client - cashPaymentAmount;
+
+    	if (nouvelle_dette_maximale_compte_client < 0)
+    	{
+    		nouvelle_dette_maximale_compte_client = 0.0;
+    	}
 
     	QString queryStr;
 
-    	queryStr.append(QString("UPDATE %1  SET %2 = '%3' WHERE %4 = '%5'")
-    			.arg(_allWindows->CLIENTS,
-    					YerothDatabaseTableColumn::COMPTE_CLIENT,
-						QString::number(compte_client),
-						YerothDatabaseTableColumn::NOM_ENTREPRISE,
-    					_curCompanyName));
+    	queryStr.append(QString("UPDATE %1 SET %2 = '%3', %4 = '%5' WHERE %6 = '%7'")
+    						.arg(_allWindows->CLIENTS,
+    							 YerothDatabaseTableColumn::COMPTE_CLIENT,
+								 QString::number(compte_client),
+								 YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT,
+								 QString::number(nouvelle_dette_maximale_compte_client),
+								 YerothDatabaseTableColumn::NOM_ENTREPRISE,
+								 _curCompanyName));
 
     	HistoryPaymentInfo paymentInfo;
 

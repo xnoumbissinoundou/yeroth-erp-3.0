@@ -154,14 +154,21 @@ void YerothEntrerWindow::setupLineEditsQCompleters()
 
 	if (checkBox_service->isChecked())
 	{
+    	QString aConditionStr(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
+    						  YerothUtils::MYSQL_TRUE_LITERAL));
+
+		lineEdit_designation->setupMyStaticQCompleter(_allWindows->MARCHANDISES,
+													  YerothDatabaseTableColumn::DESIGNATION,
+													  false,
+													  true,
+													  aConditionStr);
+
+
 	    label_fournisseur->setText(QObject::tr("client"));
 
         lineEdit_nom_entreprise_fournisseur->setupMyStaticQCompleter(_allWindows->CLIENTS,
         															 YerothDatabaseTableColumn::NOM_ENTREPRISE,
 																	 true);
-
-    	QString aConditionStr(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
-    						  YerothUtils::MYSQL_TRUE_LITERAL));
 
     	lineEdit_reference_produit->setupMyStaticQCompleter(_allWindows->MARCHANDISES,
     														YerothDatabaseTableColumn::REFERENCE,
@@ -171,6 +178,8 @@ void YerothEntrerWindow::setupLineEditsQCompleters()
 	}
 	else
 	{
+		lineEdit_designation->clear();
+
 		label_fournisseur->setText(QObject::tr("fournisseur"));
 
         lineEdit_nom_entreprise_fournisseur->setupMyStaticQCompleter(_allWindows->FOURNISSEURS,
@@ -621,6 +630,15 @@ void YerothEntrerWindow::handleServiceCheckBox(bool clicked)
 
 	    setStockSpecificWidgetVisible(false);
 
+    	QString aConditionStr(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
+    						  YerothUtils::MYSQL_TRUE_LITERAL));
+
+		lineEdit_designation->setupMyStaticQCompleter(_allWindows->MARCHANDISES,
+													  YerothDatabaseTableColumn::DESIGNATION,
+													  false,
+													  true,
+													  aConditionStr);
+
 	    label_fournisseur->setText(QObject::tr("client"));
 
         lineEdit_nom_entreprise_fournisseur->setupMyStaticQCompleter(_allWindows->CLIENTS,
@@ -629,6 +647,8 @@ void YerothEntrerWindow::handleServiceCheckBox(bool clicked)
 	}
 	else
 	{
+		lineEdit_designation->clearQCompleter();
+
 		check_fields(true);
 
 		setStockSpecificWidgetVisible(true);

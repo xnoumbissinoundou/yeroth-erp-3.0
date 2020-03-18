@@ -136,6 +136,19 @@ void YerothLineEdit::setYerothERPQLineEditDisplayFormat()
 }
 
 
+void YerothLineEdit::clearQCompleter()
+{
+	clearQCompleterText();
+
+	if (0 != _searchQCompleter)
+	{
+		delete _searchQCompleter;
+
+		_searchQCompleter = 0;
+	}
+}
+
+
 void YerothLineEdit::clearField()
 {
     QLineEdit::clear();
