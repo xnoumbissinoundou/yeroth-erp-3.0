@@ -136,9 +136,16 @@ public slots:
 
     bool handle_stocks_vendu_table(int stockID,
     							   ServiceClientInfo &aServiceInfo,
-								   double montant_total_vente);
+								   double montant_total_vente,
+								   double nouveau_compte_client);
 
     bool handle_clients_table(int stockID, double montant_total_vente);
+
+    inline bool hasBuying()
+    {
+    	return checkBox_achat->isChecked() &&
+    		   !lineEdit_prix_dachat->text().isEmpty();
+    }
 
     void enregistrer_produit();
 
@@ -167,9 +174,18 @@ public slots:
     	return _curFournisseurName;
     }
 
+    inline void handleAchatCheckBox(int aState)
+    {
+    	check_fields_mandatory_buying();
+    }
+
 protected:
 
     virtual void setupShortcuts();
+
+private slots:
+
+	bool check_fields_mandatory_buying();
 
 private:
 

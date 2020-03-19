@@ -88,77 +88,33 @@ void YerothPayerCompteClientWindow::handleReferenceEngagementChange(const QStrin
 {
 	QString aConditionStr;
 
-	double montantTotalPayeEngament = 0.0;
 
-	double montantTotalVenteEngagement = 0.0;
+	YerothSqlTableModel &stocksVenduSqlTableModel = _allWindows->getSqlTableModel_stocks_vendu();
 
+	aConditionStr = QString("%1 = '%2' AND %3 = '%4'")
+						.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT,
+							 lineEdit_comptes_clients_designation_de_lentreprise->text(),
+							 YerothDatabaseTableColumn::REFERENCE,
+							 referenceEngagement);
+
+	stocksVenduSqlTableModel.yerothSetFilter(aConditionStr);
+
+	int rows = stocksVenduSqlTableModel.easySelect();
+
+	if (0 < rows)
 	{
-		YerothSqlTableModel &paiementsSqlTableModel = _allWindows->getSqlTableModel_paiements();
+		int firstRecord = 0;
 
-		aConditionStr = QString("%1 = '%2' AND %3 = '%4'")
-							.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
-								 lineEdit_comptes_clients_designation_de_lentreprise->text(),
-								 YerothDatabaseTableColumn::REFERENCE,
-								 referenceEngagement);
+		QSqlRecord aStocksVenduRecord = stocksVenduSqlTableModel.record(firstRecord);
 
-		paiementsSqlTableModel.yerothSetFilter(aConditionStr);
-
-		int rows = paiementsSqlTableModel.easySelect();
-
-		QSqlRecord aPaiementRecord;
-
-		double curMontantPaye = 0.0;
-
-		for (int k = 0; k < rows; ++k)
-		{
-			aPaiementRecord.clear();
-
-			aPaiementRecord = paiementsSqlTableModel.record(k);
-
-			curMontantPaye =
-					GET_SQL_RECORD_DATA(aPaiementRecord, YerothDatabaseTableColumn::MONTANT_PAYE).toDouble();
-
-			montantTotalPayeEngament = montantTotalPayeEngament + curMontantPaye;
-		}
-
-		paiementsSqlTableModel.resetFilter();
+		_curReferenceEngagementResteAPayer =
+				GET_SQL_RECORD_DATA(aStocksVenduRecord, YerothDatabaseTableColumn::MONTANT_A_REMBOURSER).toDouble();
 	}
 
-	{
-		YerothSqlTableModel &stocksVenduSqlTableModel = _allWindows->getSqlTableModel_stocks_vendu();
-
-		aConditionStr = QString("%1 = '%2' AND %3 = '%4'")
-								.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT,
-									 lineEdit_comptes_clients_designation_de_lentreprise->text(),
-									 YerothDatabaseTableColumn::REFERENCE,
-									 referenceEngagement);
-
-		stocksVenduSqlTableModel.yerothSetFilter(aConditionStr);
-
-		int rows = stocksVenduSqlTableModel.easySelect();
-
-		if (0 < rows)
-		{
-			int firstRecord = 0;
-
-			QSqlRecord aStocksVenduRecord = stocksVenduSqlTableModel.record(firstRecord);
-
-			montantTotalVenteEngagement =
-				GET_SQL_RECORD_DATA(aStocksVenduRecord, YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE).toDouble();
-		}
-	}
-
-	if (montantTotalVenteEngagement >= montantTotalPayeEngament)
-	{
-		_curReferenceEngagementResteAPayer = montantTotalVenteEngagement - montantTotalPayeEngament;
-	}
-	else
-	{
-		_curReferenceEngagementResteAPayer = 0.0;
-	}
+	stocksVenduSqlTableModel.resetFilter();
 
 	lineEdit_comptes_clients_engagement_reste_a_payer->
-			setText(GET_CURRENCY_STRING_NUM(_curReferenceEngagementResteAPayer));
+		setText(GET_CURRENCY_STRING_NUM(_curReferenceEngagementResteAPayer));
 }
 
 
@@ -172,11 +128,66 @@ void YerothPayerCompteClientWindow::afficher_detail_client()
 }
 
 
-bool YerothPayerCompteClientWindow::createHistoryPaymentForCustomerAccount(HistoryPaymentInfo &paymentInfo)
+void YerothPayerCompteClientWindow::updateStocksVeduTable(PaymentInfo &paymentInfo)
 {
-	YerothSqlTableModel & historiquePaiementsTableModel = _allWindows->getSqlTableModel_paiements();
+	YerothSqlTableModel & stocksVenduTableModel = _allWindows->getSqlTableModel_stocks_vendu();
 
-	QSqlRecord record = historiquePaiementsTableModel.record();
+	QString stocksVenduFilter(QString("%1 = '%2' AND %3 = '%4' ")
+								.arg(YerothDatabaseTableColumn::REFERENCE,
+									 paymentInfo.reference,
+									 YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT,
+									 paymentInfo.nom_entreprise));
+
+	stocksVenduTableModel.yerothSetFilter(stocksVenduFilter);
+
+	int rowCount = stocksVenduTableModel.easySelect();
+
+	if (rowCount > 0)
+	{
+		double montantPaye = paymentInfo.montant_paye;
+
+		YerothUtils::startTransaction();
+
+		QSqlRecord stocksVenduRecord = stocksVenduTableModel.record(0);
+
+		double montantARembourser =
+				GET_SQL_RECORD_DATA(stocksVenduRecord, YerothDatabaseTableColumn::MONTANT_A_REMBOURSER).toDouble();
+
+		double nouveau_montant_a_rembourser = montantARembourser - montantPaye;
+
+		if (nouveau_montant_a_rembourser <= 0)
+		{
+			nouveau_montant_a_rembourser = 0.0;
+		}
+
+		stocksVenduRecord.setValue(YerothDatabaseTableColumn::MONTANT_A_REMBOURSER,
+								   QString::number(nouveau_montant_a_rembourser));
+
+		stocksVenduTableModel.updateRecord(0, stocksVenduRecord);
+
+		stocksVenduTableModel.resetFilter();
+
+		if (0 == nouveau_montant_a_rembourser)
+		{
+			//handle marchandise table
+			QString deleteFromMarchandisesQuery(QString("DELETE FROM %1 WHERE %2 = '%3'")
+													.arg(_allWindows->MARCHANDISES,
+														 YerothDatabaseTableColumn::REFERENCE,
+														 paymentInfo.reference));
+
+			YerothUtils::execQuery(deleteFromMarchandisesQuery);
+		}
+
+		YerothUtils::commitTransaction();
+	}
+}
+
+
+bool YerothPayerCompteClientWindow::createPaymentForCustomerAccount(PaymentInfo &paymentInfo)
+{
+	YerothSqlTableModel & paiementsTableModel = _allWindows->getSqlTableModel_paiements();
+
+	QSqlRecord record = paiementsTableModel.record();
 
 	record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE, 		paymentInfo.nom_entreprise);
 	record.setValue(YerothDatabaseTableColumn::NOM_ENCAISSEUR, 		paymentInfo.nom_encaisseur);
@@ -188,7 +199,12 @@ bool YerothPayerCompteClientWindow::createHistoryPaymentForCustomerAccount(Histo
 	record.setValue(YerothDatabaseTableColumn::MONTANT_PAYE, 		paymentInfo.montant_paye);
 	record.setValue(YerothDatabaseTableColumn::HEURE_PAIEMENT, 		CURRENT_TIME);
 
-	bool success = historiquePaiementsTableModel.insertNewRecord(record, this);
+	bool success = paiementsTableModel.insertNewRecord(record, this);
+
+	if (success)
+	{
+		updateStocksVeduTable(paymentInfo);
+	}
 
 	return success;
 }
@@ -321,7 +337,7 @@ bool YerothPayerCompteClientWindow::putCashIntoCustomerAccount()
 								 YerothDatabaseTableColumn::NOM_ENTREPRISE,
 								 _curCompanyName));
 
-    	HistoryPaymentInfo paymentInfo;
+    	PaymentInfo paymentInfo;
 
     	YerothPOSUser *currentUser = _allWindows->getUser();
 
@@ -348,7 +364,7 @@ bool YerothPayerCompteClientWindow::putCashIntoCustomerAccount()
 
     	success = YerothUtils::execQuery(queryStr);
 
-    	success = success && createHistoryPaymentForCustomerAccount(paymentInfo);
+    	success = success && createPaymentForCustomerAccount(paymentInfo);
 
     	YerothUtils::commitTransaction();
     }
@@ -378,6 +394,8 @@ bool YerothPayerCompteClientWindow::putCashIntoCustomerAccount()
 		lineEdit_etablissement_bancaire->clear();
 
 		comboBox_clients_typedepaiement->resetYerothComboBox();
+
+		setupLineEditsQCompleters();
 
 		updateLineEdits();
     }
@@ -424,6 +442,8 @@ void YerothPayerCompteClientWindow::setupLineEditsQCompleters()
 	QString aConditionStr(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::TYPE_DE_VENTE,
 			              QObject::tr("achat-compte-client")));
 
+	aConditionStr.append(QString(" AND %1 > '0'")
+							.arg(YerothDatabaseTableColumn::MONTANT_A_REMBOURSER));
 
 	lineEdit_comptes_clients_engagement->setupMyStaticQCompleter(_allWindows->STOCKS_VENDU,
 														 	 	 YerothDatabaseTableColumn::REFERENCE,
@@ -445,6 +465,8 @@ void YerothPayerCompteClientWindow::populatePayerAuCompteClientsComboBoxes()
 
 void YerothPayerCompteClientWindow::updateLineEdits()
 {
+	lineEdit_comptes_clients_engagement_reste_a_payer->clear();
+
 	if (_curClientTableModel->select())
 	{
 		QSqlRecord aQSqlRecord = _curClientTableModel->record(_clientLastSelectedRow);

@@ -63,6 +63,11 @@ public:
 
     virtual void definirPasDeRole();
 
+    inline void setCheckBoxServices(bool checked)
+    {
+    	checkBox_services->setChecked(checked);
+    }
+
     virtual void rendreVisible(YerothSqlTableModel *stocksTableModel);
 
     virtual void rendreInvisible();

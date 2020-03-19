@@ -25,37 +25,39 @@ class QProcess;
 
 class YerothSqlTableModel;
 
-class HistoryPaymentInfo
-{
-public:
 
-	YEROTH_CLASS_OPERATORS
-
-	inline HistoryPaymentInfo()
-	:type_de_paiement(0),
-	 compte_client(0.0),
-	 montant_paye(0.0)
-	{
-	}
-
-	inline ~HistoryPaymentInfo()
-	{
-	}
-
-	QString nom_entreprise;
-	QString nom_encaisseur;
-	int type_de_paiement;
-	QString notes;
-	QString reference;
-	QDate date_paiement;
-
-	double compte_client;
-	double montant_paye;
-};
 
 class YerothPayerCompteClientWindow : public YerothWindowsCommons, private Ui_YerothPayerCompteClientWindow
 {
     Q_OBJECT
+
+	class PaymentInfo
+	{
+	public:
+
+		YEROTH_CLASS_OPERATORS
+
+		inline PaymentInfo()
+		:type_de_paiement(0),
+		 compte_client(0.0),
+		 montant_paye(0.0)
+		{
+		}
+
+		inline ~PaymentInfo()
+		{
+		}
+
+		QString nom_entreprise;
+		QString nom_encaisseur;
+		int type_de_paiement;
+		QString notes;
+		QString reference;
+		QDate date_paiement;
+
+		double compte_client;
+		double montant_paye;
+	};
 
 public:
 
@@ -115,7 +117,9 @@ private slots:
 
 	void afficher_detail_client();
 
-	bool createHistoryPaymentForCustomerAccount(HistoryPaymentInfo &paymentInfo);
+	void updateStocksVeduTable(PaymentInfo &paymentInfo);
+
+	bool createPaymentForCustomerAccount(PaymentInfo &paymentInfo);
 
 	inline void annuler_paiement_au_compteclient()
 	{

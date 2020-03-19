@@ -6511,7 +6511,7 @@ background-color: rgb(0, 0, 0); </string>
      <string>réinitialiser filtre</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox_services">
+   <widget class="YerothERPQCheckBox" name="checkBox_services">
     <property name="geometry">
      <rect>
       <x>700</x>
@@ -8603,6 +8603,11 @@ background-color: rgb(0, 0, 0); </string>
    <class>YerothERPMarchandisesTableView</class>
    <extends>QTableView</extends>
    <header>src/widgets/table-view/yeroth-erp-marchandises-table-view.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>YerothERPQCheckBox</class>
+   <extends>QCheckBox</extends>
+   <header>src/widgets/yeroth-erp-qcheckbox.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>
