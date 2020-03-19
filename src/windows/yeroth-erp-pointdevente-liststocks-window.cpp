@@ -64,6 +64,7 @@ void YerothPointDeVenteListStocksWindow::listStocks(YerothSqlTableModel & aSqlTa
         tableView_list_stocks->lister_DEF_DEO(aSqlTableModel, designationToTableRows_in_out);
     }
 
+    tableView_list_stocks->hideColumn(0);
     tableView_list_stocks->hideColumn(4);
     tableView_list_stocks->hideColumn(9);
     tableView_list_stocks->hideColumn(10);
@@ -77,6 +78,8 @@ void YerothPointDeVenteListStocksWindow::listStocks(YerothSqlTableModel & aSqlTa
     tableView_list_stocks->hideColumn(19);
     tableView_list_stocks->hideColumn(20);
     tableView_list_stocks->hideColumn(21);
+    tableView_list_stocks->hideColumn(22);
+    tableView_list_stocks->hideColumn(23);
 
     setWindowTitle(YerothUtils::getWindowTitleWithStrategy(this));
 

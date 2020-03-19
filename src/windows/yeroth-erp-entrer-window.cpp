@@ -1174,6 +1174,11 @@ bool YerothEntrerWindow::handle_clients_table(int stockID, double montant_total_
 
 		detteMaximale = detteMaximale + montant_total_vente;
 
+		if (compteClient >= montant_total_vente)
+		{
+			detteMaximale = 0.0;
+		}
+
 		clientsRecord.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT, nouveau_compte_client);
 		clientsRecord.setValue(YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT, detteMaximale);
 
@@ -1508,7 +1513,7 @@ void YerothEntrerWindow::enregistrer_produit()
 
     rendreInvisible();
 
-    _allWindows->_stocksWindow->rendreVisible(_curStocksTableModel);
+    _allWindows->_marchandisesWindow->rendreVisible(_curStocksTableModel);
 }
 
 
