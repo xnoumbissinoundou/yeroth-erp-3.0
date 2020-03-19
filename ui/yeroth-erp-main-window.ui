@@ -4009,7 +4009,7 @@ bords</string>
     <property name="text">
      <string>Entrer
 un
-stock</string>
+stock (service)</string>
     </property>
     <property name="autoDefault">
      <bool>false</bool>

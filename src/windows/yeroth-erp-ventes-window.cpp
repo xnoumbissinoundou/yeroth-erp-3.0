@@ -235,8 +235,6 @@ void YerothVentesWindow::populateComboBoxes()
 
 	aQStringList.append(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE));
 
-	aQStringList.append(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(YerothDatabaseTableColumn::PRIX_VENTE));
-
 	aQStringList.append(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(YerothDatabaseTableColumn::PRIX_UNITAIRE));
 
 	aQStringList.append(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(YerothDatabaseTableColumn::QUANTITE_VENDUE));
@@ -342,7 +340,6 @@ void YerothVentesWindow::reinitialiser_champs_db_visibles()
 			<< YerothDatabaseTableColumn::DESIGNATION
 			<< YerothDatabaseTableColumn::PRIX_UNITAIRE
 			<< YerothDatabaseTableColumn::QUANTITE_VENDUE
-			<< YerothDatabaseTableColumn::MONTANT_TVA
 			<< YerothDatabaseTableColumn::REFERENCE
 			<< YerothDatabaseTableColumn::TYPE_DE_VENTE
 			<< YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE;

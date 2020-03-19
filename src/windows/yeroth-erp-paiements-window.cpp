@@ -823,6 +823,7 @@ void YerothPaiementsWindow::resetFilter(YerothSqlTableModel * historiquePaiement
 
     comboBox_paiements_type_de_paiement->resetYerothComboBox();
 
+    lineEdit_paiements_engagement->myClear();
     lineEdit_paiements_nom_encaisseur->myClear();
     lineEdit_paiements_nom_entreprise->myClear();
     lineEdit_paiements_numero_bon_paiement->myClear();

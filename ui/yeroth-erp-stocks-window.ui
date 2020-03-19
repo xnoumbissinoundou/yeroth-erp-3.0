@@ -1305,7 +1305,9 @@
      </font>
     </property>
     <property name="text">
-     <string>Entrer un stock</string>
+     <string>Entrer 
+un 
+stock (service)</string>
     </property>
    </widget>
    <widget class="YerothPushButton" name="pushButton_inventaire_des_stocks">

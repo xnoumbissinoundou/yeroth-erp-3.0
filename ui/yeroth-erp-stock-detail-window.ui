@@ -869,7 +869,9 @@
      </font>
     </property>
     <property name="text">
-     <string>Entrer un stock</string>
+     <string>Entrer 
+un 
+stock (service)</string>
     </property>
    </widget>
    <widget class="YerothPushButton" name="pushButton_retour">
@@ -11889,6 +11891,11 @@
    <header>src/widgets/yeroth-erp-line-edit.hpp</header>
   </customwidget>
   <customwidget>
+   <class>YerothERPQCheckBox</class>
+   <extends>QCheckBox</extends>
+   <header>src/widgets/yeroth-erp-qcheckbox.hpp</header>
+  </customwidget>
+  <customwidget>
    <class>YerothDateTimeEdit</class>
    <extends>QDateEdit</extends>
    <header>src/widgets/yeroth-erp-datetime-edit.hpp</header>
@@ -11897,11 +11904,6 @@
    <class>YerothTextEdit</class>
    <extends>QTextEdit</extends>
    <header>src/widgets/yeroth-erp-text-edit.hpp</header>
-  </customwidget>
-  <customwidget>
-   <class>YerothERPQCheckBox</class>
-   <extends>QCheckBox</extends>
-   <header>src/widgets/yeroth-erp-qcheckbox.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

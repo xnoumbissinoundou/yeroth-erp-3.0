@@ -434,7 +434,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>Yeroth-erp-3.0 - entrer un stock</string>
+   <string>Yeroth-erp-3.0 - entrer un stock (service)</string>
   </property>
   <property name="locale">
    <locale language="French" country="France"/>

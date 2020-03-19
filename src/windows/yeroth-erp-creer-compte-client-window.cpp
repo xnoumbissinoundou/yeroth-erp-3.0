@@ -95,6 +95,7 @@ void YerothCreerCompteClientWindow::deconnecter_utilisateur()
 
 void YerothCreerCompteClientWindow::setupLineEdits()
 {
+	lineEdit_compte_client_dette_maximale->setEnabled(false);
     lineEdit_compte_client_dette_maximale->setValidator(&YerothUtils::DoubleValidator);
 }
 
@@ -386,13 +387,11 @@ void YerothCreerCompteClientWindow::rendreVisible(YerothSqlTableModel * stocksTa
     	{
     		label_compte_client_dette_maximale->setVisible(true);
     		lineEdit_compte_client_dette_maximale->setVisible(true);
-    		lineEdit_compte_client_dette_maximale->setEnabled(true);
     	}
     	else
     	{
     		label_compte_client_dette_maximale->setVisible(false);
     		lineEdit_compte_client_dette_maximale->setVisible(false);
-    		lineEdit_compte_client_dette_maximale->setEnabled(false);
     	}
     }
 
@@ -433,26 +432,7 @@ bool YerothCreerCompteClientWindow::creerEnregistrerCompteClient()
         record.setValue(YerothDatabaseTableColumn::REFERENCE_REGISTRE_DU_COMMERCE, lineEdit_compte_client_reference_du_registre_du_commerce->text());
         record.setValue(YerothDatabaseTableColumn::NUMERO_CONTRIBUABLE, lineEdit_compte_client_numero_de_contribuable->text());
 		record.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT, 0.0);
-        record.setValue(YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT, lineEdit_compte_client_dette_maximale->text());
-
-        YerothPOSUser *aUser = YerothUtils::getAllWindows()->getUser();
-
-        if (0 != YerothUtils::getAllWindows())
-        {
-        	if (0 != aUser && aUser->isManager())
-        	{
-        		record.setValue(YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT,
-        						lineEdit_compte_client_dette_maximale->text().toDouble());
-        	}
-        	else
-        	{
-        		record.setValue(YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT, 0.0);
-        	}
-        }
-        else
-        {
-        	record.setValue(YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT, 0.0);
-        }
+		record.setValue(YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT, 0.0);
 
         record.setValue(YerothDatabaseTableColumn::DESCRIPTION_CLIENT, textEdit_creer_compte_client_description_client->toPlainText());
 
