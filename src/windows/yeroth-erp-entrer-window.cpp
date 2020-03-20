@@ -827,7 +827,6 @@ void YerothEntrerWindow::clear_all_fields()
     label_image_produit->setAutoFillBackground(false);
     _lastEditedPrixVente.clear();
     _montantTva = 0.0;
-    checkBox_achat->setChecked(true);
     checkBox_tva->setChecked(false);
     _tvaCheckBoxPreviousState = false;
     _createNewCategorie = false;
