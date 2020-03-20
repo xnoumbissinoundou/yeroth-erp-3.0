@@ -19989,10 +19989,10 @@ background-color: rgb(0, 0, 0); </string>
   </action>
   <action name="actionSet_stock_item_name_as_standard_input">
    <property name="text">
-    <string>Activer le nom du stock comme entrée standard</string>
+    <string>Activer la désignation du stock comme entrée standard</string>
    </property>
    <property name="toolTip">
-    <string>Activer le nom du stock comme entrée standard</string>
+    <string>Activer la désignation du stock comme entrée standard</string>
    </property>
    <property name="font">
     <font>
