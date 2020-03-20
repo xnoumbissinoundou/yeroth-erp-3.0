@@ -974,9 +974,15 @@ bool YerothEntrerWindow::insertStockItemInProductList()
 
     success = productListSqlTableModel.insertNewRecord(record);
 
+    QString stockOuService(lineEdit_designation->text());
 
-    QString retMsg(QString(QObject::tr("Le stock '%1'"))
-    					.arg(lineEdit_designation->text()));
+    if (checkBox_service->isChecked())
+    {
+    	stockOuService = lineEdit_reference_produit->text();
+    }
+
+    QString retMsg(QString(QObject::tr("Le stock (service) '%1'"))
+    					.arg(stockOuService));
 
     if (success)
     {
@@ -1042,7 +1048,7 @@ bool YerothEntrerWindow::handle_stocks_vendu_table(int stockID,
 
 	QString stocksTableFilter = QString("%1 = '%2'")
 	            					.arg(YerothDatabaseTableColumn::ID,
-	            					     stockID);
+	            							QString::number(stockID));
 
 	stocksTableModel.yerothSetFilter(stocksTableFilter);
 
@@ -1176,11 +1182,18 @@ bool YerothEntrerWindow::handle_stocks_vendu_table(int stockID,
     		if (0 == montant_a_rembourser)
     		{
     			//copy row from 'stocksVendu' to 'services_completes'
-    			QString copyRowQuery(QString("INSERT INTO %1 SELECT d.* FROM %2 d WHERE %3 = '%4'")
-    									.arg(_allWindows->SERVICES_COMPLETES,
+    			QString copyRowQuery(QString("DROP TABLE IF EXISTS TempData;"
+    										 "CREATE TEMPORARY TABLE TempData LIKE %1;"
+    										 "INSERT INTO TempData SELECT * FROM %2 WHERE id = '%3';"
+    										 "ALTER TABLE TempData CHANGE COLUMN `id` `id` INT(11) NULL, DROP PRIMARY KEY;"
+    										 "UPDATE TempData SET id = %4;"
+    										 "INSERT INTO %5 SELECT * FROM TempData;"
+    										 "DROP TABLE IF EXISTS TempData;")
+    									.arg(_allWindows->STOCKS_VENDU,
     										 _allWindows->STOCKS_VENDU,
-    										 YerothDatabaseTableColumn::ID,
-											 QString::number(stocksVenduID)));
+											 QString::number(stocksVenduID),
+											 QString::number(_allWindows->getNextIdSqlTableModel_services_completes()),
+											 _allWindows->SERVICES_COMPLETES));
 
     			if (YerothUtils::execQuery(copyRowQuery))
     			{

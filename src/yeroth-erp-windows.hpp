@@ -257,6 +257,11 @@ public:
 		return YerothUtils::getNextIdFromTable(this->STOCKS);
 	}
 
+	inline int getNextIdSqlTableModel_services_completes()
+	{
+		return YerothUtils::getNextIdFromTable(this->SERVICES_COMPLETES);
+	}
+
 	inline int getNextIdSqlTableModel_stocks_vendu()
 	{
 		return YerothUtils::getNextIdFromTable(this->STOCKS_VENDU);

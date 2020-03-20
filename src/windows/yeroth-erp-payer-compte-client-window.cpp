@@ -90,7 +90,6 @@ void YerothPayerCompteClientWindow::handleReferenceChange(const QString &referen
 {
 	QString aConditionStr;
 
-
 	YerothSqlTableModel &stocksVenduSqlTableModel = _allWindows->getSqlTableModel_stocks_vendu();
 
 	aConditionStr = QString("%1 = '%2' AND %3 = '%4'")
@@ -178,11 +177,18 @@ void YerothPayerCompteClientWindow::updateStocksVeduTable(PaymentInfo &paymentIn
 			QString stocksVenduID(GET_SQL_RECORD_DATA(stocksVenduRecord, YerothDatabaseTableColumn::ID));
 
 			//copy row from 'stocksVendu' to 'services_completes'
-			QString copyRowQuery(QString("INSERT INTO %1 SELECT d.* FROM %2 d WHERE %3 = '%4'")
-									.arg(_allWindows->SERVICES_COMPLETES,
+			QString copyRowQuery(QString("DROP TABLE IF EXISTS TempData;"
+										 "CREATE TEMPORARY TABLE TempData LIKE %1;"
+										 "INSERT INTO TempData SELECT * FROM %2 WHERE id = '%3';"
+										 "ALTER TABLE TempData CHANGE COLUMN `id` `id` INT(11) NULL, DROP PRIMARY KEY;"
+										 "UPDATE TempData SET id = %4;"
+										 "INSERT INTO %5 SELECT * FROM TempData;"
+										 "DROP TABLE IF EXISTS TempData;")
+									.arg(_allWindows->STOCKS_VENDU,
 										 _allWindows->STOCKS_VENDU,
-										 YerothDatabaseTableColumn::ID,
-										 stocksVenduID));
+										 stocksVenduID,
+										 QString::number(_allWindows->getNextIdSqlTableModel_services_completes()),
+										 _allWindows->SERVICES_COMPLETES));
 
 			if (YerothUtils::execQuery(copyRowQuery))
 			{
@@ -468,6 +474,8 @@ void YerothPayerCompteClientWindow::setupLineEdits()
 	lineEdit_montant_a_payer->setPlaceholderText(QObject::trUtf8("montant à payer"));
 
 	lineEdit_montant_a_payer->setValidator(&YerothUtils::DoubleValidator);
+
+	lineEdit_comptes_clients_designation_de_lentreprise->setText(_curCompanyName);
 }
 
 
@@ -480,8 +488,10 @@ void YerothPayerCompteClientWindow::setupLineEditsQCompleters()
 	QString aConditionStr(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::TYPE_DE_VENTE,
 			              QObject::tr("achat-compte-client")));
 
-	aConditionStr.append(QString(" AND %1 > '0'")
-							.arg(YerothDatabaseTableColumn::MONTANT_A_REMBOURSER));
+	aConditionStr.append(QString(" AND %1 = '%2' AND %3 > '0'")
+							.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT,
+								 _curCompanyName,
+								 YerothDatabaseTableColumn::MONTANT_A_REMBOURSER));
 
 	lineEdit_comptes_clients_reference->setupMyStaticQCompleter(_allWindows->STOCKS_VENDU,
 														 	 	 YerothDatabaseTableColumn::REFERENCE,
@@ -533,10 +543,6 @@ void YerothPayerCompteClientWindow::rendreVisible(int lastSelectedRow,
 		   	   	   	   	   	   	   	   	   	      YerothSqlTableModel *clientTableModel,
 												  YerothSqlTableModel *stocksTableModel)
 {
-    setupLineEdits();
-
-    setupLineEditsQCompleters();
-
 	_clientLastSelectedRow = lastSelectedRow;
 
 	_curClientTableModel = clientTableModel;
@@ -547,7 +553,9 @@ void YerothPayerCompteClientWindow::rendreVisible(int lastSelectedRow,
 
     _curCompanyName = GET_SQL_RECORD_DATA(aQSqlRecord, YerothDatabaseTableColumn::NOM_ENTREPRISE);
 
-    lineEdit_comptes_clients_designation_de_lentreprise->setText(_curCompanyName);
+    setupLineEdits();
+
+    setupLineEditsQCompleters();
 
 	setVisible(true);
 
