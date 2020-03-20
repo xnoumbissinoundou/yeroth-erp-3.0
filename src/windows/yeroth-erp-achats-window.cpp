@@ -553,7 +553,7 @@ void YerothAchatsWindow::afficher_au_detail()
     }
     else
     {
-        YerothQMessageBox::warning(this, QObject::trUtf8("détails d'un stock"),
+        YerothQMessageBox::information(this, QObject::trUtf8("détails d'un stock"),
                                   QObject::trUtf8("Sélectionnez un stock à afficher les détails."));
     }
 }
