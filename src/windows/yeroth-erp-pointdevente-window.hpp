@@ -164,12 +164,7 @@ public slots:
 
 		void ajouter_article(const QString &text);
 
-		//This is only used to add articles from yeroth-erp-pointdevente-liststocks-window
-		void ajouter_article(const QModelIndex& modelIndex);
-
 		void ajouter_article_codebar(const QString &text);
-
-		void ajouter_article_codebar(const QModelIndex &modelIndex);
 
 	    void actualiser_articles(int row, unsigned newItemQte);
 
@@ -263,6 +258,8 @@ public slots:
 
 private slots:
 
+	void handleBarCodeScannerCheckBox(int state);
+
 	void setBarcodeAsStandardInput();
 
 	void setStockItemNameAsStandardInput();
@@ -284,6 +281,15 @@ private:
     	TableauDesVentes = 0,
     	AfficherVenteAuDetail
     };
+
+	void connect_manual_selection_of_article_item();
+
+	void connect_barcode_reader_selection_of_article_item();
+
+	inline bool isBarCodeReaderSelectionOfArticleItem()
+	{
+		return checkBox_lecteur_de_code_barres->isChecked();
+	}
 
     void setupLineEdits();
 

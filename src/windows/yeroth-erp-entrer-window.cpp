@@ -1175,13 +1175,32 @@ bool YerothEntrerWindow::handle_stocks_vendu_table(int stockID,
 
     		if (0 == montant_a_rembourser)
     		{
-    			//handle marchandise table
-    			removeRowQuery = QString("DELETE FROM %1 WHERE %2 = '%3'")
-    								.arg(_allWindows->MARCHANDISES,
-    									 YerothDatabaseTableColumn::REFERENCE,
-										 aServiceInfo.reference);
+    			//copy row from 'stocksVendu' to 'services_completes'
+    			QString copyRowQuery(QString("INSERT INTO %1 SELECT d.* FROM %2 d WHERE %3 = '%4'")
+    									.arg(_allWindows->SERVICES_COMPLETES,
+    										 _allWindows->STOCKS_VENDU,
+    										 YerothDatabaseTableColumn::ID,
+											 QString::number(stocksVenduID)));
 
-    			YerothUtils::execQuery(removeRowQuery);
+    			if (YerothUtils::execQuery(copyRowQuery))
+    			{
+        			//handle stocksVendu table
+        			QString removeStocksVenduRowQuery(QString("DELETE FROM %1 WHERE %2 = '%3'")
+        												.arg(_allWindows->STOCKS_VENDU,
+        													 YerothDatabaseTableColumn::REFERENCE,
+															 aServiceInfo.reference));
+
+        			if (YerothUtils::execQuery(removeStocksVenduRowQuery))
+        			{
+        				//handle marchandise table
+        				QString removeMarchandisesRowQuery(QString("DELETE FROM %1 WHERE %2 = '%3'")
+        													 .arg(_allWindows->MARCHANDISES,
+        														  YerothDatabaseTableColumn::REFERENCE,
+																  aServiceInfo.reference));
+
+        				YerothUtils::execQuery(removeMarchandisesRowQuery);
+        			}
+    			}
     		}
 
         	return true;
@@ -1383,11 +1402,16 @@ void YerothEntrerWindow::enregistrer_produit()
 
     int stock_id_to_save = _allWindows->getNextIdSqlTableModel_stocks();
 
+    if (checkBox_service->isChecked())
+    {
+    	stock_id_to_save = _allWindows->getNextIdSqlTableModel_stocks_vendu();
+    }
+
     if (!checkBox_service->isChecked() && hasBuying())
     {
     	achatRecord = achatSqlTableModel.record();
 
-    	int achat_id_to_save = YerothUtils::getNextIdFromTable(_allWindows->ACHATS);
+    	int achat_id_to_save = _allWindows->getNextIdSqlTableModel_achats();
 
     	achatRecord.setValue(YerothDatabaseTableColumn::ID, achat_id_to_save);
     	achatRecord.setValue(YerothDatabaseTableColumn::STOCKS_ID, stock_id_to_save);

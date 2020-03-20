@@ -8730,7 +8730,7 @@ background-color: rgb(0, 0, 0); </string>
        <enum>Qt::LogicalMoveStyle</enum>
       </property>
      </widget>
-     <widget class="YerothLineEdit" name="lineEdit_paiements_engagement">
+     <widget class="YerothLineEdit" name="lineEdit_paiements_reference">
       <property name="geometry">
        <rect>
         <x>236</x>
@@ -17939,7 +17939,7 @@ background-color: rgb(0, 0, 0); </string>
        <string>Retour</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_details_de_paiement_engagement">
+     <widget class="QLabel" name="label_details_de_paiement_reference">
       <property name="geometry">
        <rect>
         <x>7</x>
@@ -18374,13 +18374,13 @@ background-color: rgb(0, 0, 0); </string>
        <enum>Qt::LeftToRight</enum>
       </property>
       <property name="text">
-       <string>engagement</string>
+       <string>référence</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="YerothLineEdit" name="lineEdit_details_de_paiement_engagement">
+     <widget class="YerothLineEdit" name="lineEdit_details_de_paiement_reference">
       <property name="geometry">
        <rect>
         <x>185</x>
@@ -21305,7 +21305,7 @@ background-color: rgb(0, 0, 0); </string>
   <tabstop>dateEdit_paiements_fin</tabstop>
   <tabstop>lineEdit_paiements_numero_bon_paiement</tabstop>
   <tabstop>lineEdit_paiements_nom_entreprise</tabstop>
-  <tabstop>lineEdit_paiements_engagement</tabstop>
+  <tabstop>lineEdit_paiements_reference</tabstop>
   <tabstop>comboBox_paiements_element_de_paiements</tabstop>
   <tabstop>comboBox_paiements_element_de_paiements_condition</tabstop>
   <tabstop>lineEdit_paiements_element_de_paiements_resultat</tabstop>

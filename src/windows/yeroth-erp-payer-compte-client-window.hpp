@@ -113,7 +113,7 @@ public slots:
 			   	   	   	   	   	   	   	   	   	   	    QString &printString);
 private slots:
 
-	void handleReferenceEngagementChange(const QString &referenceEngagement);
+	void handleReferenceChange(const QString &referenceEngagement);
 
 	void afficher_detail_client();
 
@@ -121,10 +121,7 @@ private slots:
 
 	bool createPaymentForCustomerAccount(PaymentInfo &paymentInfo);
 
-	inline void annuler_paiement_au_compteclient()
-	{
-		clients();
-	}
+	void reinitialiser_donnees_de_paiement_au_compteclient();
 
   	bool putCashIntoCustomerAccount();
 

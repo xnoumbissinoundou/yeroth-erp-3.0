@@ -270,6 +270,23 @@ void YerothERPClientsWindow::private_slot_afficher_les_transactions_dun_client()
 														 YerothDatabaseTableColumn::REFERENCE,
 														 _allWindows->PAIEMENTS));
 
+	    QString clientTransactionsServicesCompletesQueryStr(QString("select %1, "
+	    													 "%2 as 'Date transaction', "
+	    													 "%3 as 'Heure transaction', "
+	    													 "%4 as 'Total transaction', "
+	    													 "%5 as 'Compte client (apres)', "
+	    													 "%6 as 'Type de paiement', "
+	    			    									 "%7 as 'Raison', "
+	    			    									 "CONCAT(date_vente,' ',heure_vente) as 'Temps' from %8")
+	    											.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT,
+	    												 YerothDatabaseTableColumn::DATE_VENTE,
+														 YerothDatabaseTableColumn::HEURE_VENTE,
+														 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
+														 YerothDatabaseTableColumn::COMPTE_CLIENT,
+														 YerothDatabaseTableColumn::TYPE_DE_VENTE,
+														 YerothDatabaseTableColumn::REFERENCE,
+														 _allWindows->SERVICES_COMPLETES));
+
 	    QString clientTransactionsStockVenduQueryStr(QString("select %1, "
 	    													 "%2 as 'Date transaction', "
 	    													 "%3 as 'Heure transaction', "
@@ -287,9 +304,10 @@ void YerothERPClientsWindow::private_slot_afficher_les_transactions_dun_client()
 														 YerothDatabaseTableColumn::REFERENCE,
 														 _allWindows->STOCKS_VENDU));
 
-	    QString clientTransactionsUnionQueryStr(QString("SELECT * FROM (%1 UNION %2 ORDER BY Temps ASC) AS U WHERE U.%3 = '%4'")
+	    QString clientTransactionsUnionQueryStr(QString("SELECT * FROM (%1 UNION %2 UNION %3 ORDER BY Temps ASC) AS U WHERE U.%4 = '%5'")
 	    										.arg(clientTransactionsPaiementsQueryStr,
-	    											 clientTransactionsStockVenduQueryStr,
+	    											 clientTransactionsServicesCompletesQueryStr,
+													 clientTransactionsStockVenduQueryStr,
 													 YerothDatabaseTableColumn::NOM_ENTREPRISE,
 													 clientCompanyName));
 

@@ -99,6 +99,8 @@ YerothPointDeVenteWindow::YerothPointDeVenteWindow()
 
     setRechercheLineEditFocus();
 
+    checkBox_lecteur_de_code_barres->setChecked(true);
+
     setupLineEdits();
 
     setupLineEditsQCompleters();
@@ -166,6 +168,9 @@ YerothPointDeVenteWindow::YerothPointDeVenteWindow()
 
     connect(tableWidget_articles, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), this,
             SLOT(afficher_vente_detail(QTableWidgetItem *)));
+
+    connect(checkBox_lecteur_de_code_barres, SIGNAL(stateChanged(int)),
+    		this, SLOT(handleBarCodeScannerCheckBox(int)));
 
     /* Signals-slots connection for the second tab 'Article au détail' */
     connect(checkBox_tva, SIGNAL(clicked(bool)), this, SLOT(handleTVACheckBox(bool)));
@@ -238,6 +243,19 @@ void YerothPointDeVenteWindow::deleteArticleVenteInfos()
 }
 
 
+void YerothPointDeVenteWindow::handleBarCodeScannerCheckBox(int state)
+{
+	if (checkBox_lecteur_de_code_barres->isChecked())
+	{
+		connect_barcode_reader_selection_of_article_item();
+	}
+	else
+	{
+		connect_manual_selection_of_article_item();
+	}
+}
+
+
 void YerothPointDeVenteWindow::setBarcodeAsStandardInput()
 {
 	_currentFocusSearchBar = lineEdit_recherche_article_codebar;
@@ -249,6 +267,92 @@ void YerothPointDeVenteWindow::setStockItemNameAsStandardInput()
 {
 	_currentFocusSearchBar = lineEdit_recherche_article;
 	lineEdit_recherche_article->setFocus();
+}
+
+
+void YerothPointDeVenteWindow::connect_manual_selection_of_article_item()
+{
+	disconnect(lineEdit_recherche_article, 0, this, 0);
+	disconnect(lineEdit_recherche_article_codebar, 0, this, 0);
+
+    if (YerothUtils::
+            isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO, YerothERPConfig::salesStrategy))
+    {
+        connect(lineEdit_recherche_article->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
+                SLOT(ajouter_article(const QString &)));
+
+        connect(lineEdit_recherche_article_codebar->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
+                SLOT(ajouter_article_codebar(const QString &)));
+    }
+    else if (YerothUtils::
+             isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO, YerothERPConfig::salesStrategy))
+    {
+        connect(lineEdit_recherche_article->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
+                SLOT(ajouter_article(const QString &)));
+
+        connect(lineEdit_recherche_article_codebar->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
+                SLOT(ajouter_article_codebar(const QString &)));
+    }
+    else if (YerothUtils::
+             isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_LIFO, YerothERPConfig::salesStrategy))
+    {
+        connect(lineEdit_recherche_article->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
+                SLOT(ajouter_article(const QString &)));
+
+        connect(lineEdit_recherche_article_codebar->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
+                SLOT(ajouter_article_codebar(const QString &)));
+    }
+    else			//CMUP == YerothConfig::salesStrategy
+    {
+        connect(lineEdit_recherche_article->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
+                SLOT(ajouter_article(const QString &)));
+
+        connect(lineEdit_recherche_article_codebar->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
+                SLOT(ajouter_article_codebar(const QString &)));
+    }
+}
+
+
+void YerothPointDeVenteWindow::connect_barcode_reader_selection_of_article_item()
+{
+	disconnect(lineEdit_recherche_article, 0, this, 0);
+	disconnect(lineEdit_recherche_article_codebar, 0, this, 0);
+
+    if (YerothUtils::
+            isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO, YerothERPConfig::salesStrategy))
+    {
+        connect(lineEdit_recherche_article->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
+                SLOT(ajouter_article(const QString &)));
+
+        connect(lineEdit_recherche_article_codebar, SIGNAL(textChanged(const QString &)), this,
+                SLOT(ajouter_article_codebar(const QString &)));
+    }
+    else if (YerothUtils::
+             isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO, YerothERPConfig::salesStrategy))
+    {
+        connect(lineEdit_recherche_article->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
+                SLOT(ajouter_article(const QString &)));
+
+        connect(lineEdit_recherche_article_codebar, SIGNAL(textChanged(const QString &)), this,
+                SLOT(ajouter_article_codebar(const QString &)));
+    }
+    else if (YerothUtils::
+             isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_LIFO, YerothERPConfig::salesStrategy))
+    {
+        connect(lineEdit_recherche_article->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
+                SLOT(ajouter_article(const QString &)));
+
+        connect(lineEdit_recherche_article_codebar, SIGNAL(textChanged(const QString &)), this,
+                SLOT(ajouter_article_codebar(const QString &)));
+    }
+    else			//CMUP == YerothConfig::salesStrategy
+    {
+        connect(lineEdit_recherche_article->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
+                SLOT(ajouter_article(const QString &)));
+
+        connect(lineEdit_recherche_article_codebar, SIGNAL(textChanged(const QString &)), this,
+                SLOT(ajouter_article_codebar(const QString &)));
+    }
 }
 
 
@@ -1083,40 +1187,13 @@ void YerothPointDeVenteWindow::cleanUpAfterVente()
                                      lineEdit_recherche_article,
                                      lineEdit_recherche_article_codebar);
 
-    if (YerothUtils::
-            isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO, YerothERPConfig::salesStrategy))
+    if (isBarCodeReaderSelectionOfArticleItem())
     {
-        connect(lineEdit_recherche_article->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
-                SLOT(ajouter_article(const QString &)));
-
-        connect(lineEdit_recherche_article_codebar->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
-                SLOT(ajouter_article_codebar(const QString &)));
+    	connect_barcode_reader_selection_of_article_item();
     }
-    else if (YerothUtils::
-             isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO, YerothERPConfig::salesStrategy))
+    else
     {
-        connect(lineEdit_recherche_article->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
-                SLOT(ajouter_article(const QString &)));
-
-        connect(lineEdit_recherche_article_codebar->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
-                SLOT(ajouter_article_codebar(const QString &)));
-    }
-    else if (YerothUtils::
-             isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_LIFO, YerothERPConfig::salesStrategy))
-    {
-        connect(lineEdit_recherche_article->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
-                SLOT(ajouter_article(const QString &)));
-
-        connect(lineEdit_recherche_article_codebar->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
-                SLOT(ajouter_article_codebar(const QString &)));
-    }
-    else			//CMUP == YerothConfig::salesStrategy
-    {
-        connect(lineEdit_recherche_article->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
-                SLOT(ajouter_article(const QString &)));
-
-        connect(lineEdit_recherche_article_codebar->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
-                SLOT(ajouter_article_codebar(const QString &)));
+    	connect_manual_selection_of_article_item();
     }
 
     setRechercheLineEditFocus();
@@ -1222,40 +1299,13 @@ void YerothPointDeVenteWindow::rendreVisible(YerothSqlTableModel * stocksTableMo
     								 lineEdit_recherche_article,
                                      lineEdit_recherche_article_codebar);
 
-    if (YerothUtils::
-            isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO, YerothERPConfig::salesStrategy))
+    if (isBarCodeReaderSelectionOfArticleItem())
     {
-        connect(lineEdit_recherche_article->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
-                SLOT(ajouter_article(const QString &)));
-
-        connect(lineEdit_recherche_article_codebar->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
-                SLOT(ajouter_article_codebar(const QString &)));
+    	connect_barcode_reader_selection_of_article_item();
     }
-    else if (YerothUtils::
-             isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO, YerothERPConfig::salesStrategy))
+    else
     {
-        connect(lineEdit_recherche_article->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
-                SLOT(ajouter_article(const QString &)));
-
-        connect(lineEdit_recherche_article_codebar->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
-                SLOT(ajouter_article_codebar(const QString &)));
-    }
-    else if (YerothUtils::
-             isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_LIFO, YerothERPConfig::salesStrategy))
-    {
-        connect(lineEdit_recherche_article->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
-                SLOT(ajouter_article(const QString &)));
-
-        connect(lineEdit_recherche_article_codebar->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
-                SLOT(ajouter_article_codebar(const QString &)));
-    }
-    else			//CMUP == YerothConfig::salesStrategy
-    {
-        connect(lineEdit_recherche_article->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
-                SLOT(ajouter_article(const QString &)));
-
-        connect(lineEdit_recherche_article_codebar->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
-                SLOT(ajouter_article_codebar(const QString &)));
+    	connect_manual_selection_of_article_item();
     }
 
     handleTabViews();
@@ -1277,6 +1327,7 @@ void YerothPointDeVenteWindow::rendreVisible(YerothSqlTableModel * stocksTableMo
     this->setVisible(true);
 }
 
+
 void YerothPointDeVenteWindow::activateLineEditRemisePrix(bool toggled)
 {
     if (toggled)
@@ -1288,6 +1339,7 @@ void YerothPointDeVenteWindow::activateLineEditRemisePrix(bool toggled)
         lineEdit_article_detail_remise_prix->setEnabled(false);
     }
 }
+
 
 void YerothPointDeVenteWindow::activateLineEditRemisePourcentage(bool toggled)
 {
@@ -1382,11 +1434,13 @@ void YerothPointDeVenteWindow::actualiser_montant_remise()
     actualiser_toutes_valeurs();
 }
 
+
 void YerothPointDeVenteWindow::resetCheckboxTVA()
 {
     _tvaCheckBoxPreviousState = false;
     checkBox_tva->setChecked(false);
 }
+
 
 void YerothPointDeVenteWindow::handleTVACheckBox(bool clicked)
 {
@@ -1626,6 +1680,7 @@ void YerothPointDeVenteWindow::handleQteChange(QTableWidgetItem * itemChanged)
     setRechercheLineEditFocus();
 }
 
+
 bool YerothPointDeVenteWindow::article_exist(const QString codeBar, const QString designation)
 {
     QTableWidgetItem *anItem = 0;
@@ -1656,7 +1711,12 @@ void YerothPointDeVenteWindow::ajouter_article(const QString & text)
     QMap < QString, int >designationToTableRows = lineEdit_recherche_article->getDesignationToTableRows();
     //qDebug() << "++ YerothPointDeVenteWindow::ajouter_article, text:" << text;
 
-    int selectedTableRow = designationToTableRows[text];
+    if (!designationToTableRows.contains(text))
+    {
+    	return ;
+    }
+
+    int selectedTableRow = designationToTableRows.value(text);
 
     _logger->log("ajouter_article(const QModelIndex &)", QString("model index: %1").arg(selectedTableRow));
 
@@ -1711,70 +1771,17 @@ void YerothPointDeVenteWindow::ajouter_article(const QString & text)
     }
 }
 
-void YerothPointDeVenteWindow::ajouter_article(const QModelIndex & modelIndex)
-{
-    //qDebug() << "++ test ajouter_article: " << modelIndex.row();
-    _qteChangeCodeBar = false;
-
-    int selectedTableRow = modelIndex.row();
-
-    _logger->log("ajouter_article(const QModelIndex &)", QString("model index: %1").arg(selectedTableRow));
-
-    YerothTableView & articleTableView = *lineEdit_recherche_article->getMyTableView();
-    articleTableView.setLastSelectedRow(selectedTableRow);
-
-    lineEdit_recherche_article->getMySqlTableModel()->select();
-
-    QSqlRecord record = lineEdit_recherche_article->getMySqlTableModel()->record(selectedTableRow);
-
-    QString codeBar(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE));
-    QString designation(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
-    QString categorie(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::CATEGORIE));
-
-    if (article_exist(codeBar, designation))
-    {
-        return;
-    }
-
-    QString qte_en_stock(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::QUANTITE_TOTAL));
-
-    double prix_vente = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::PRIX_VENTE).toDouble();
-    double montant_tva = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::MONTANT_TVA).toDouble();
-    double prix_unitaire = prix_vente - montant_tva;
-
-    if (prix_unitaire < 0)
-    {
-        QString warningMsg(QString(QObject::trUtf8("Prix de vente inférieur à zéro pour l'article '%1' !"))
-        						.arg(designation));
-
-        if (QMessageBox::Ok ==
-        		YerothQMessageBox::warning(this,
-        								   QObject::trUtf8("prix de vente d'un article"),
-										   warningMsg))
-        {
-        	return;
-        }
-    }
-    //Each call to YerothTableWidget::setItem in method 'YerothTableWidget::addArticle'
-    //triggers a call to YerothPointDeVenteWindow::handleQteChange
-    int lastCurRow =
-        tableWidget_articles->addArticle(selectedTableRow, codeBar, designation, categorie,
-                                         QString::number(prix_unitaire, 'f', 2),
-										 QString::number(montant_tva, 'f', 2),
-										 QString::number(prix_vente, 'f', 2),
-										 YerothTableWidget::QTE_1,
-                                         qte_en_stock);
-    if (lastCurRow > -1)
-    {
-        tableWidget_articles->selectRow(lastCurRow);
-    }
-}
 
 void YerothPointDeVenteWindow::ajouter_article_codebar(const QString & text)
 {
-    QMap < QString, int >codebarToTableRows = lineEdit_recherche_article_codebar->getCodebarToTableRows();
+    QMap<QString, int> codebarToTableRows = lineEdit_recherche_article_codebar->getCodebarToTableRows();
 
-    int selectedTableRow = codebarToTableRows[text];
+    if (!codebarToTableRows.contains(text))
+    {
+    	return ;
+    }
+
+    int selectedTableRow = codebarToTableRows.value(text);
 
     _logger->log("ajouter_article_codebar(const QString &)", QString("model index: %1").arg(selectedTableRow));
     //qDebug() << "YerothPointDeVenteWindow::ajouter_article_codebar(const QString &), "
@@ -1831,75 +1838,6 @@ void YerothPointDeVenteWindow::ajouter_article_codebar(const QString & text)
     }
 }
 
-void YerothPointDeVenteWindow::ajouter_article_codebar(const QModelIndex & modelIndex)
-{
-    int selectedTableRow = modelIndex.row();
-
-    _logger->log("ajouter_article_codebar(const QModelIndex &)",
-                 QString("model index: %1").arg(selectedTableRow));
-
-    YerothTableView & articleTableView = *(lineEdit_recherche_article_codebar->getMyTableView());
-
-    articleTableView.setLastSelectedRow(selectedTableRow);
-
-    qDebug() << QString("model index %1, articleTableView.selected: %2 ")
-    				.arg(QString::number(selectedTableRow),
-    					 QString::number(lineEdit_recherche_article_codebar->getMySqlTableModel()->easySelect()));
-
-    //lineEdit_recherche_article_codebar->getMySqlTableModel()->select();
-    QSqlRecord record = lineEdit_recherche_article_codebar->getMySqlTableModel()->record(selectedTableRow);
-
-    QString codeBar(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE));
-    QString designation(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
-    QString categorie(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::CATEGORIE));
-
-    qDebug() << QString("++ :ajouter_article_codebar, sqlTable: %1, selectedTableRow: %2, codeBar: %3")
-    				.arg(lineEdit_recherche_article_codebar->getMySqlTableModel()->sqlTableName(),
-    					 QString::number(selectedTableRow), codeBar);
-
-    if (article_exist(codeBar, designation))
-    {
-        qDebug() << QString("++ codeBar: %1, designation: %2 before return.")
-        				.arg(codeBar, designation);
-        return;
-    }
-
-    qDebug() << QString("++ codeBar: %1, designation: %2 after return.")
-    				.arg(codeBar, designation);
-
-    QString qte_en_stock(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::QUANTITE_TOTAL));
-
-    double prix_vente = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::PRIX_VENTE).toDouble();
-    double montant_tva = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::MONTANT_TVA).toDouble();
-    double prix_unitaire = prix_vente - montant_tva;
-
-    if (prix_unitaire < 0)
-    {
-        QString warningMsg(QString(QObject::trUtf8("Prix de vente inférieur à zéro pour l'article '%1' !"))
-        						.arg(designation));
-
-        if (QMessageBox::Ok ==
-        		YerothQMessageBox::warning(this,
-        								   QObject::trUtf8("prix de vente d'un article"),
-										   warningMsg))
-        {
-        	return;
-        }
-    }
-    //Each call to YerothTableWidget::setItem in method 'YerothTableWidget::addArticle'
-    //triggers a call to YerothPointDeVenteWindow::handleQteChange
-    int lastCurRow =
-        tableWidget_articles->addArticle(selectedTableRow, codeBar, designation, categorie,
-                                         QString::number(prix_unitaire, 'f', 2),
-										 QString::number(montant_tva, 'f', 2),
-										 QString::number(prix_vente, 'f', 2),
-										 YerothTableWidget::QTE_1,
-                                         qte_en_stock);
-    if (lastCurRow > -1)
-    {
-        tableWidget_articles->selectRow(lastCurRow);
-    }
-}
 
 /**
    * This method is called by 'YerothPointDeVenteWindow::handleQteChange'

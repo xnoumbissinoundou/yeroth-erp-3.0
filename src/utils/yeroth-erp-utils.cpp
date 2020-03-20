@@ -697,8 +697,9 @@ int YerothUtils::execQuery(QSqlQuery &query, YerothLogger *logger)
 int YerothUtils::getNextIdFromTable(const QString &tableName)
 {
     //qDebug() << "[YerothUtils::getLastIdFromTable()] : next id from table '" << tableName << "'";
-    QString strQuery("SELECT id FROM ");
-    strQuery.append(tableName);
+    QString strQuery(QString("SELECT %1 FROM %2")
+    					.arg(YerothDatabaseTableColumn::ID,
+    						 tableName));
 
     QSqlQuery query(strQuery);
     QSqlRecord rec = query.record();

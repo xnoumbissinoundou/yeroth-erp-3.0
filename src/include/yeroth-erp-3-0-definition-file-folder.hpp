@@ -31,6 +31,7 @@
 # define FILE_YEROTH_ERP_3_0_SQL_TABLE_LOCALISATIONS 							FOLDER_YEROTH_ERP_3_0_SQL"/create_table_localisations.sql"
 # define FILE_YEROTH_ERP_3_0_SQL_TABLE_ACHATS 										FOLDER_YEROTH_ERP_3_0_SQL"/create_table_achats.sql"
 # define FILE_YEROTH_ERP_3_0_SQL_TABLE_STOCKS 										FOLDER_YEROTH_ERP_3_0_SQL"/create_table_stocks.sql"
+# define FILE_YEROTH_ERP_3_0_SQL_TABLE_SERVICES_COMPLETES 				FOLDER_YEROTH_ERP_3_0_SQL"/create_table_services_completes.sql"
 # define FILE_YEROTH_ERP_3_0_SQL_TABLE_MARCHANDISES 							FOLDER_YEROTH_ERP_3_0_SQL"/create_table_stocks_vendu.sql"
 # define FILE_YEROTH_ERP_3_0_SQL_TABLE_STOCKS_DE_SECURITE 				FOLDER_YEROTH_ERP_3_0_SQL"/create_table_marchandises.sql"
 # define FILE_YEROTH_ERP_3_0_SQL_TABLE_STOCKS_SORTIES 						FOLDER_YEROTH_ERP_3_0_SQL"/create_table_stocks_sorties.sql"

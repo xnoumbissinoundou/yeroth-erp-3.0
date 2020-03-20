@@ -161,6 +161,8 @@ public:
 
 	YerothSqlTableModel &getSqlTableModel_stocks();
 
+	YerothSqlTableModel &getSqlTableModel_services_completes();
+
 	YerothSqlTableModel &getSqlTableModel_marchandises();
 
 	YerothSqlTableModel &getSqlTableModel_stocks_vendu();
@@ -331,6 +333,7 @@ public:
 	static const QString REMISES;
 	static const QString ACHATS;
 	static const QString STOCKS;
+	static const QString SERVICES_COMPLETES;
 	static const QString STOCKS_VENDU;
 	static const QString STOCKS_SORTIES;
 	static const QString MARCHANDISES;
@@ -401,6 +404,7 @@ private:
 	YerothSqlTableModel 	*_tableModel_courriers_alertes;
 	YerothSqlTableModel 	*_tableModel_achats;
 	YerothSqlTableModel 	*_tableModel_stocks;
+	YerothSqlTableModel 	*_tableModel_services_completes;
 	YerothSqlTableModel 	*_tableModel_marchandises;
 	YerothSqlTableModel 	*_tableModel_stocks_vendu;
 	YerothSqlTableModel 	*_tableModel_stocks_sorties;

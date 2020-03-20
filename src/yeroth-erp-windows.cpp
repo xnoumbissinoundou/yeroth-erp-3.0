@@ -75,6 +75,8 @@ const QString YerothERPWindows::YerothERPWindows::ACHATS							("achats");
 
 const QString YerothERPWindows::YerothERPWindows::STOCKS							("stocks");
 
+const QString YerothERPWindows::YerothERPWindows::SERVICES_COMPLETES				("services_completes");
+
 const QString YerothERPWindows::YerothERPWindows::STOCKS_VENDU					("stocks_vendu");
 
 const QString YerothERPWindows::YerothERPWindows::STOCKS_SORTIES					("stocks_sorties");
@@ -143,6 +145,7 @@ YerothERPWindows::YerothERPWindows(QDesktopWidget *desktopWidget)
      _tableModel_courriers_alertes(0),
 	 _tableModel_achats(0),
      _tableModel_stocks(0),
+	 _tableModel_services_completes(0),
      _tableModel_stocks_vendu(0),
      _tableModel_stocks_sorties(0),
      _tableModel_marchandises(0),
@@ -183,6 +186,7 @@ YerothERPWindows::YerothERPWindows(QDesktopWidget *desktopWidget)
     _tableModel_courriers_alertes 			= new YerothSqlTableModel(YerothERPWindows::COURRIERS_ALERTES);
     _tableModel_achats 						= new YerothSqlTableModel(YerothERPWindows::ACHATS);
     _tableModel_stocks 						= new YerothSqlTableModel(YerothERPWindows::STOCKS);
+    _tableModel_services_completes 			= new YerothSqlTableModel(YerothERPWindows::SERVICES_COMPLETES);
     _tableModel_stocks_vendu 				= new YerothSqlTableModel(YerothERPWindows::STOCKS_VENDU);
     _tableModel_stocks_sorties				= new YerothSqlTableModel(YerothERPWindows::STOCKS_SORTIES);
     _tableModel_marchandises 				= new YerothSqlTableModel(YerothERPWindows::MARCHANDISES);
@@ -344,6 +348,7 @@ void YerothERPWindows::reinitialiseSqlTableModels()
     delete _tableModel_stocks;
     delete _tableModel_achats;
     delete _tableModel_marchandises;
+    delete _tableModel_services_completes;
     delete _tableModel_stocks_vendu;
     delete _tableModel_stocks_sorties;
     delete _tableModel_configurations;
@@ -363,6 +368,7 @@ void YerothERPWindows::reinitialiseSqlTableModels()
     _tableModel_courriers_alertes 			= new YerothSqlTableModel(YerothERPWindows::COURRIERS_ALERTES);
     _tableModel_achats 						= new YerothSqlTableModel(YerothERPWindows::ACHATS);
     _tableModel_stocks 						= new YerothSqlTableModel(YerothERPWindows::STOCKS);
+    _tableModel_services_completes			= new YerothSqlTableModel(YerothERPWindows::SERVICES_COMPLETES);
     _tableModel_marchandises				= new YerothSqlTableModel(YerothERPWindows::MARCHANDISES);
     _tableModel_stocks_vendu 				= new YerothSqlTableModel(YerothERPWindows::STOCKS_VENDU);
     _tableModel_stocks_sorties 				= new YerothSqlTableModel(YerothERPWindows::STOCKS_SORTIES);
@@ -753,6 +759,14 @@ YerothSqlTableModel &YerothERPWindows::getSqlTableModel_stocks()
     _tableModel_stocks->resetFilter();
     return *_tableModel_stocks;
 }
+
+
+YerothSqlTableModel &YerothERPWindows::getSqlTableModel_services_completes()
+{
+	_tableModel_services_completes->resetFilter();
+    return *_tableModel_services_completes;
+}
+
 
 YerothSqlTableModel &YerothERPWindows::getSqlTableModel_marchandises()
 {
