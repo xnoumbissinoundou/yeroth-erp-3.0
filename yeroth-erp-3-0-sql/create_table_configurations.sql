@@ -5,7 +5,7 @@ insert into configurations (id, nom_configuration, description_configuration, va
 insert into configurations (id, nom_configuration, description_configuration, valeur_configuration) values (3, "ALERT_QUANTITY_TIME_INTERVAL", "Intervalle de temps de vérification du daemon pour les alertes sur la quantité de stock", "10");
 insert into configurations (id, nom_configuration, description_configuration, valeur_configuration) values (4, "CONFIG_TEMPORARY_FILES_DIR", "Répertoire des alertes fichiers temporaires", "/tmp");
 insert into configurations (id, nom_configuration, description_configuration, valeur_configuration) values (5, "CONFIG_TVA_VALUE", "Valeur de la TVA", "19.25");
-insert into configurations (id, nom_configuration, description_configuration, valeur_configuration) values (6, "CONFIG_ANNEE_DEPART_RAPPORTS_CHIFFRE_AFFAIRE", "Année de départ (rapports - chiffre d'affaire)", "2019");
+insert into configurations (id, nom_configuration, description_configuration, valeur_configuration) values (6, "CONFIG_ANNEE_DEPART_RAPPORTS_CHIFFRE_AFFAIRE", "Année de départ (rapports - chiffre d'affaire)", "2020");
 insert into configurations (id, nom_configuration, description_configuration, valeur_configuration) values (7, "CONFIG_SALES_STRATEGY", "Configuration de la stratégie de vente/sortie", "CMUP");
 insert into configurations (id, nom_configuration, description_configuration, valeur_configuration) values (8, "CONFIG_PRINTER", "Configuration de l'imprimante à utiliser", "pdf");
 insert into configurations (id, nom_configuration, description_configuration, valeur_configuration) values (9, 'CONFIG_CURRENCY', 'Configuration de la devise', '$');

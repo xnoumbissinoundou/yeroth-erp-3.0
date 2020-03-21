@@ -937,6 +937,9 @@ void YerothAdminWindow::read_app_parameters_init_configuration()
     initConfigurationRecord = initConfigurationsTableModel.record(YerothERPConfig::CONFIG_TVA_VALUE);
     QString tvaValue(GET_SQL_RECORD_DATA(initConfigurationRecord, "valeur_configuration"));
 
+    initConfigurationRecord = initConfigurationsTableModel.record(YerothERPConfig::CONFIG_ANNEE_DEPART_RAPPORTS_CHIFFRE_AFFAIRE);
+    QString anneeDepartTableauxDeBords(GET_SQL_RECORD_DATA(initConfigurationRecord, "valeur_configuration"));
+
     initConfigurationRecord = initConfigurationsTableModel.record(YerothERPConfig::CONFIG_SALES_STRATEGY);
     QString salesStrategyValue(GET_SQL_RECORD_DATA(initConfigurationRecord, "valeur_configuration"));
 
@@ -1012,6 +1015,8 @@ void YerothAdminWindow::read_app_parameters_init_configuration()
     lineEdit_repertoire_fichiers_temporaires->setText(temporaryFilesDirValue);
 
     lineEdit_tva_value->setText(tvaValue);
+
+    lineEdit_annee_depart_rapports_chiffre_affaire->setText(anneeDepartTableauxDeBords);
 
     {
         comboBox_strategie_vente_sortie->clear();

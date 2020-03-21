@@ -64,7 +64,7 @@ unsigned int YerothERPConfig::max_string_display_length(22);
 
 double YerothERPConfig::tva_value(19.25/100.0);
 
-QString YerothERPConfig::annee_depart_rapports_chiffre_affaire_value("2017");
+QString YerothERPConfig::annee_depart_rapports_chiffre_affaire_value("2020");
 
 QString YerothERPConfig::temporaryFilesDir("/home/yeroth");
 
