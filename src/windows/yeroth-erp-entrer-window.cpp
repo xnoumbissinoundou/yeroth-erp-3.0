@@ -105,7 +105,7 @@ YerothEntrerWindow::YerothEntrerWindow()
     connect(doubleSpinBox_lots_entrant, SIGNAL(valueChanged(double)),
     		this, SLOT(display_quantite_total_by_spinbox(double)));
 
-    connect(checkBox_service, SIGNAL(clicked(bool)), this, SLOT(handleServiceCheckBox(bool)));
+    connect(checkBox_service, SIGNAL(stateChanged(int)), this, SLOT(handleServiceCheckBox(int)));
 
     connect(checkBox_achat, SIGNAL(stateChanged(int)), this, SLOT(handleAchatCheckBox(int)));
 
@@ -623,13 +623,15 @@ void YerothEntrerWindow::setStockSpecificWidgetVisible(bool visible)
 }
 
 
-void YerothEntrerWindow::handleServiceCheckBox(bool clicked)
+void YerothEntrerWindow::handleServiceCheckBox(int state)
 {
-	if (clicked && checkBox_service->isChecked())
+	if (checkBox_service->isChecked())
 	{
 	    check_fields_service();
 
 	    setStockSpecificWidgetVisible(false);
+
+	    doubleSpinBox_lots_entrant->setDecimals(2);
 
     	QString aConditionStr(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
     						  YerothUtils::MYSQL_TRUE_LITERAL));
@@ -653,6 +655,8 @@ void YerothEntrerWindow::handleServiceCheckBox(bool clicked)
 		check_fields(true);
 
 		setStockSpecificWidgetVisible(true);
+
+		doubleSpinBox_lots_entrant->setDecimals(0);
 
 		label_fournisseur->setText(QObject::tr("fournisseur"));
 
@@ -868,6 +872,17 @@ void YerothEntrerWindow::rendreVisible(YerothSqlTableModel * stocksTableModel, b
             lineEdit_nom_entreprise_fournisseur->clear();
         }
     }
+
+
+    if (checkBox_service->isChecked())
+    {
+    	doubleSpinBox_lots_entrant->setDecimals(2);
+    }
+    else
+    {
+    	doubleSpinBox_lots_entrant->setDecimals(0);
+    }
+
 
     setupLineEditsQCompleters();
 
