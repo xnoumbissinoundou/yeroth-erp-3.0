@@ -32,7 +32,7 @@ YerothCreerNouveauClientWindow::YerothCreerNouveauClientWindow():YerothWindowsCo
 {
     setupUi(this);
 
-    this->mySetupUi(this);
+    mySetupUi(this);
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
                                        "QMessageBox QLabel {color: rgb(%2);}")
@@ -179,7 +179,7 @@ void YerothCreerNouveauClientWindow::menu()
     _logger->log("menu");
     _allWindows->_mainWindow->rendreVisible(_curStocksTableModel);
     _allWindows->_pdVenteWindow->rendreInvisible();
-    this->rendreInvisible();
+    rendreInvisible();
 }
 
 void YerothCreerNouveauClientWindow::alertes()
@@ -187,7 +187,7 @@ void YerothCreerNouveauClientWindow::alertes()
     _logger->log("alertes");
     _allWindows->_listerAlertesWindow->rendreVisible(_curStocksTableModel);
     _allWindows->_pdVenteWindow->rendreInvisible();
-    this->rendreInvisible();
+    rendreInvisible();
 }
 
 void YerothCreerNouveauClientWindow::ventes()
@@ -195,7 +195,7 @@ void YerothCreerNouveauClientWindow::ventes()
     _logger->log("caisse");
     _allWindows->_ventesWindow->rendreVisible(_curStocksTableModel);
     _allWindows->_pdVenteWindow->rendreInvisible();
-    this->rendreInvisible();
+    rendreInvisible();
 }
 
 void YerothCreerNouveauClientWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
@@ -208,7 +208,7 @@ void YerothCreerNouveauClientWindow::rendreVisible(YerothSqlTableModel * stocksT
 
     lineEdit_client_nom_entreprise->setFocus();
 
-    this->setVisible(true);
+    setVisible(true);
 }
 
 void YerothCreerNouveauClientWindow::rendreInvisible()
@@ -221,7 +221,7 @@ void YerothCreerNouveauClientWindow::administration()
 {
     _allWindows->_adminWindow->rendreVisible(_curStocksTableModel);
     _allWindows->_pdVenteWindow->rendreInvisible();
-    this->rendreInvisible();
+    rendreInvisible();
 }
 
 bool YerothCreerNouveauClientWindow::creer_client()
@@ -297,8 +297,8 @@ void YerothCreerNouveauClientWindow::clear_client_all_fields()
 
 void YerothCreerNouveauClientWindow::setupShortcuts()
 {
-    this->setupShortcutActionMessageDaide 	(*actionAppeler_aide);
-    this->setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
+    setupShortcutActionMessageDaide 	(*actionAppeler_aide);
+    setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
 }
 
 
@@ -396,7 +396,5 @@ bool YerothCreerNouveauClientWindow::creer_client_check_fields()
 {
     bool nom_entreprise = lineEdit_client_nom_entreprise->checkField();
 
-    bool nom_representant = lineEdit_client_nom_representant->checkField();
-
-    return nom_entreprise && nom_representant;
+    return nom_entreprise;
 }

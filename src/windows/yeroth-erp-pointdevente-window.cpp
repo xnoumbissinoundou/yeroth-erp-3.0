@@ -99,7 +99,7 @@ YerothPointDeVenteWindow::YerothPointDeVenteWindow()
 
     setRechercheLineEditFocus();
 
-    checkBox_lecteur_de_code_barres->setChecked(true);
+    checkBox_lecteur_de_code_barres->setChecked(false);
 
     setupLineEdits();
 
