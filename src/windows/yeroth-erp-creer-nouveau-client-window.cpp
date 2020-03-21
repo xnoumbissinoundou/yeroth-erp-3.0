@@ -256,6 +256,8 @@ bool YerothCreerNouveauClientWindow::creer_client()
         record.setValue(YerothDatabaseTableColumn::REFERENCE_REGISTRE_DU_COMMERCE, lineEdit_client_reference_registre_du_commerce->text());
         record.setValue(YerothDatabaseTableColumn::NUMERO_CONTRIBUABLE, lineEdit_client_numero_contribuable->text());
         record.setValue(YerothDatabaseTableColumn::DESCRIPTION_CLIENT, textEdit_client_description->toPlainText());
+        record.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT, 0.0);
+        record.setValue(YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT, 0.0);
 
         bool success = clientsTableModel.insertNewRecord(record);
 
@@ -263,14 +265,14 @@ bool YerothCreerNouveauClientWindow::creer_client()
         {
             retMsg.append(QObject::trUtf8("' n'a pas pu être créer !"));
 
-            YerothQMessageBox::warning(this, QObject::trUtf8("succès"), retMsg);
+            YerothQMessageBox::warning(this, QObject::trUtf8("échec"), retMsg);
 
             return false;
         }
 
         retMsg.append(QObject::trUtf8("' a été créer avec succès !"));
 
-        YerothQMessageBox::information(this, QObject::trUtf8("échec"), retMsg);
+        YerothQMessageBox::information(this, QObject::trUtf8("succès"), retMsg);
 
         return true;
     }

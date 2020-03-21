@@ -1553,7 +1553,7 @@ void YerothEntrerWindow::enregistrer_produit()
     	achatSuccess = achatSqlTableModel.insertNewRecord(achatRecord);
     }
 
-    bool success = _curStocksTableModel->insertNewRecord(record);
+    bool successInsertStock = _curStocksTableModel->insertNewRecord(record);
 
     QString achatRetMsg(QString(QObject::tr("L'achat du stock '%1'"))
     		.arg(lineEdit_designation->text()));
@@ -1592,11 +1592,14 @@ void YerothEntrerWindow::enregistrer_produit()
         				.arg(lineEdit_designation->text()));
     }
 
-    if (success)
+    if (successInsertStock && checkBox_service->isChecked())
     {
     	//handle 'clients' table
     	handle_clients_table(stock_id_to_save, montant_total_vente);
+    }
 
+    if (successInsertStock)
+    {
     	retMsg.append(QObject::trUtf8(" a été enregistré dans la base de données !"));
 
     	YerothQMessageBox::information(this,
