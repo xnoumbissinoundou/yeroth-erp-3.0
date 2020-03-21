@@ -985,7 +985,7 @@ bool YerothEntrerWindow::insertStockItemInProductList()
 
     if (success)
     {
-        retMsg.append(QObject::trUtf8(" a été enregistré dans la liste des articles !"));
+        retMsg.append(QObject::trUtf8(" a été enregistré dans la liste des marchandises !"));
 
         YerothQMessageBox::information(this,
         							   QObject::trUtf8("enregistrement du stock dans la liste des marchandises"),
@@ -1341,7 +1341,7 @@ void YerothEntrerWindow::enregistrer_produit()
     	dateEdit_date_peremption->date() <= QDate::currentDate())
     {
     	QString warnMsg(QObject::trUtf8("La date de péremption n'est pas postdatée !\n\n"
-    			"Continuer avec l'enregistrement des données de l'article ?"));
+    			"Continuer avec l'enregistrement des données du stock (service) ?"));
 
     	if (QMessageBox::Ok ==
     			YerothQMessageBox::question(this,
@@ -1566,7 +1566,7 @@ void YerothEntrerWindow::enregistrer_produit()
     		achatRetMsg.append(QObject::trUtf8(" a été enregistré dans la base de données !"));
 
     		YerothQMessageBox::information(this,
-    				QObject::trUtf8("enregistrement du stock avec succès"),
+    				QObject::trUtf8("enregistrement du stock (service) avec succès"),
 					achatRetMsg);
     	}
     	else
@@ -1574,7 +1574,7 @@ void YerothEntrerWindow::enregistrer_produit()
     		achatRetMsg.append(QObject::trUtf8(" n'a pas pu être enregistré dans la base de données !"));
 
     		YerothQMessageBox::warning(this,
-    				QObject::trUtf8("échec de l'enregistrement du stock"),
+    				QObject::trUtf8("échec de l'enregistrement du stock (service)"),
 					achatRetMsg);
     	}
     }
@@ -1603,7 +1603,7 @@ void YerothEntrerWindow::enregistrer_produit()
     	retMsg.append(QObject::trUtf8(" a été enregistré dans la base de données !"));
 
     	YerothQMessageBox::information(this,
-    			QObject::trUtf8("enregistrement du stock avec succès"),
+    			QObject::trUtf8("enregistrement du stock (service) avec succès"),
 				retMsg);
     }
     else

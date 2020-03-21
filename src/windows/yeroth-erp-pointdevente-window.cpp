@@ -2493,8 +2493,7 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
         record.setValue(YerothDatabaseTableColumn::DATE_VENTE, GET_CURRENT_DATE);
         record.setValue(YerothDatabaseTableColumn::HEURE_VENTE, CURRENT_TIME);
 
-        record.setValue(YerothDatabaseTableColumn::STOCKS_ID,
-        		GET_SQL_RECORD_DATA(stockRecord, YerothDatabaseTableColumn::ID));
+        record.setValue(YerothDatabaseTableColumn::STOCKS_ID, stockRecordId);
 
         record.setValue(YerothDatabaseTableColumn::MONTANT_RECU, _montantRecu);
 
@@ -2557,7 +2556,7 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
             }
 
             quantiteQueryStr.clear();
-            quantiteQueryStr.append(QString("UPDATE %1  SET %2 = '%3', %4 = '%5' WHERE %6 = '%7'")
+            quantiteQueryStr.append(QString("UPDATE %1 SET %2 = '%3', %4 = '%5' WHERE %6 = '%7'")
                                     .arg(_allWindows->STOCKS,
                                          YerothDatabaseTableColumn::QUANTITE_TOTAL,
                                          QString::number(nouvelle_quantite),
