@@ -176,6 +176,8 @@ protected:
 
 private slots:
 
+	bool annuler_cette_vente();
+
 	bool filtrer_ventes();
 
 private:

@@ -122,7 +122,178 @@ YerothVentesWindow::YerothVentesWindow()
     connect(tableView_ventes, SIGNAL(doubleClicked(const QModelIndex &)), this, SLOT(afficher_vente_detail()));
     connect(tableView_ventes, SIGNAL(activated(const QModelIndex &)), this, SLOT(afficher_vente_detail()));
 
+    connect(annulerCetteVente, SIGNAL(triggered()), this, SLOT(annuler_cette_vente()));
+
     this->setupShortcuts();
+}
+
+
+bool YerothVentesWindow::annuler_cette_vente()
+{
+	if (lineEdit_ventes_reference_recu_vendu->isEmpty())
+	{
+		QString msg(QObject::trUtf8("Veuillez saisir la référence du 'reçu de vente' à annuler !"));
+
+		YerothQMessageBox::information(this,
+									   QObject::tr("annuler une vente"),
+									   msg);
+
+		return false;
+	}
+
+	YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
+
+	bool successReinsertStock = false;
+
+	double curStocksVenduQuantiteVendue = 0.0;
+	double curStockNouvelleQuantiteTotal = 0.0;
+	double curStockQuantiteTotal = 0.0;
+
+	QSqlRecord curStockRecord;
+	QString curStockTableFilter;
+
+	QString curStocksVenduID;
+	QString curStocksVendu_stocksID;
+	QString curStocksVenduDesignation;
+	QString curStocksVenduCategorie;
+
+	QSqlRecord curStocksVenduRecord;
+
+	int ventesTableViewRowCount = tableView_ventes->rowCount();
+
+	for (int k = 0; k < ventesTableViewRowCount; ++k)
+	{
+		curStocksVenduRecord.clear();
+
+		curStocksVenduRecord = _curStocksVenduTableModel->record(k);
+
+		curStocksVenduID =
+				GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::ID);
+
+		curStocksVendu_stocksID =
+				GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::STOCKS_ID);
+
+		curStocksVenduDesignation =
+				GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::DESIGNATION);
+
+		curStocksVenduCategorie =
+				GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::CATEGORIE);
+
+		qDebug() << QString("++ curStocksVendu. designation: %1, categorie: %2")
+						.arg(curStocksVenduDesignation,
+							 curStocksVenduCategorie);
+
+		//Je verifie deja si le stock est encore existant
+		//dans la base de donnees
+		YerothSqlTableModel &curStockTableModel = _allWindows->getSqlTableModel_stocks();
+
+		curStockTableFilter = QString("%1 = '%2'")
+								.arg(YerothDatabaseTableColumn::ID,
+									 curStocksVendu_stocksID);
+
+		curStockTableModel.yerothSetFilter(curStockTableFilter);
+
+		int curStocksTableRowCount = curStockTableModel.easySelect();
+
+		curStocksVenduQuantiteVendue =
+				GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::QUANTITE_VENDUE).toDouble();
+
+		if (1 == curStocksTableRowCount)
+		{
+			curStockRecord = curStockTableModel.record(0);
+
+			curStockQuantiteTotal =
+					GET_SQL_RECORD_DATA(curStockRecord, YerothDatabaseTableColumn::QUANTITE_TOTAL).toDouble();
+
+			curStockNouvelleQuantiteTotal = curStockQuantiteTotal + curStocksVenduQuantiteVendue;
+
+			 qDebug() << QString("++ (1) a rembourser au client: %1")
+					    				.arg(GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE));
+
+			curStockRecord.setValue(YerothDatabaseTableColumn::QUANTITE_TOTAL, curStockNouvelleQuantiteTotal);
+
+			successReinsertStock = curStockTableModel.updateRecord(0, curStockRecord);
+		}
+		else
+		{
+			curStockRecord = curStockTableModel.record();
+
+			curStockRecord.setValue(YerothDatabaseTableColumn::ID, curStocksVendu_stocksID);
+
+		    curStockRecord.setValue(YerothDatabaseTableColumn::HISTORIQUE_STOCK,
+		    		GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::HISTORIQUE_STOCK));
+
+		    curStockRecord.setValue(YerothDatabaseTableColumn::REFERENCE,
+		    		GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::REFERENCE));
+
+		    curStockRecord.setValue(YerothDatabaseTableColumn::DESIGNATION, curStocksVenduDesignation);
+
+		    curStockRecord.setValue(YerothDatabaseTableColumn::CATEGORIE, curStocksVenduCategorie);
+
+		    curStockRecord.setValue(YerothDatabaseTableColumn::QUANTITE_TOTAL, curStocksVenduQuantiteVendue);
+
+		    qDebug() << QString("++ a rembourser au client: %1")
+		    				.arg(GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE));
+
+		    double quantite_total = curStocksVenduQuantiteVendue;
+
+		    double montant_total_tva =
+		    		GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::MONTANT_TVA).toDouble();
+
+		    double montant_tva_unitaire = montant_total_tva / quantite_total;
+
+		    double prix_unitaire =
+		    		GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::PRIX_UNITAIRE).toDouble();
+
+		    double prix_vente = prix_unitaire + montant_tva_unitaire;
+
+		    curStockRecord.setValue(YerothDatabaseTableColumn::PRIX_UNITAIRE, prix_unitaire);
+
+		    curStockRecord.setValue(YerothDatabaseTableColumn::PRIX_VENTE, prix_vente);
+
+		    curStockRecord.setValue(YerothDatabaseTableColumn::MONTANT_TVA, montant_tva_unitaire);
+
+		    curStockRecord.setValue(YerothDatabaseTableColumn::IS_SERVICE,
+		    		YerothUtils::MYSQL_FALSE_LITERAL);
+
+		    QString curStocksVenduDatePeremption =
+		    		GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::DATE_PEREMPTION);
+
+		    QDate formatee(GET_DATE_FROM_STRING(curStocksVenduDatePeremption));
+
+		    curStockRecord.setValue(YerothDatabaseTableColumn::DATE_PEREMPTION, DATE_TO_DB_FORMAT_STRING(formatee));
+
+		    curStockRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR,
+		    		GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR));
+
+		    curStockRecord.setValue(YerothDatabaseTableColumn::LOCALISATION,
+		    		GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::LOCALISATION));
+
+		    curStockRecord.setValue(YerothDatabaseTableColumn::LOTS_ENTRANT, 1);
+
+		    curStockRecord.setValue(YerothDatabaseTableColumn::QUANTITE_PAR_LOT, quantite_total);
+
+		    curStockRecord.setValue(YerothDatabaseTableColumn::DATE_ENTREE, GET_CURRENT_DATE);
+
+		    successReinsertStock = curStockTableModel.insertNewRecord(curStockRecord);
+		}
+
+		curStockTableModel.resetFilter();
+
+		if (successReinsertStock)
+		{
+			QString removeRowQuery(QString("DELETE FROM %1 WHERE %2 = '%3'")
+					.arg(_allWindows->STOCKS_VENDU,
+							YerothDatabaseTableColumn::ID,
+							curStocksVenduID));
+
+			successReinsertStock = successReinsertStock && YerothUtils::execQuery(removeRowQuery);
+		}
+	}
+
+	YEROTH_ERP_3_0_COMMIT_DATABASE_TRANSACTION;
+
+	return successReinsertStock;
 }
 
 

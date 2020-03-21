@@ -2218,199 +2218,9 @@ void YerothPointDeVenteWindow::choisir_methode_paiment()
 }
 
 
+//TODO
 unsigned int YerothPointDeVenteWindow::effectuer_check_out_carte_credit_carte_debit()
 {
-	_logger->log("vendre");
-
-	QString msgVente(QObject::trUtf8("Poursuivre avec la vente de "));
-
-	msgVente.append(QString::number(this->_quantiteAVendre, 'f', 0));
-	msgVente.append(QObject::trUtf8(" articles (carte de crédit / débit) ?"));
-
-	if (QMessageBox::Ok ==
-			YerothQMessageBox::question(this, QObject::trUtf8("vendre"),
-					msgVente,
-					QMessageBox::Cancel,
-					QMessageBox::Ok))
-	{
-
-		YerothUtils::startTransaction();
-
-		bool paiementParCarteDeCredit_CarteDebit_Success = PROCESS_CREDIT_CARD_PAYMENT();
-
-	    int IDforReceipt = _allWindows->getNextIdSqlTableModel_stocks_vendu();
-
-	    QString referenceRecuVenduCarte(YerothUtils::GET_REFERENCE_RECU_VENDU(QString::number(IDforReceipt)));
-
-	    int stocksVenduID = -1;
-
-		for (int j = 0; j < tableWidget_articles->itemCount(); ++j)
-		{
-			YerothArticleVenteInfo *articleVenteInfo = articleItemToVenteInfo.value(j);
-
-			QSqlRecord stockRecord = _curStocksTableModel->record(articleVenteInfo->sqlTableModelIndex);
-
-			QString stockRecordId = GET_SQL_RECORD_DATA(stockRecord, YerothDatabaseTableColumn::ID);
-			QString quantiteQueryStr("SELECT quantite_total FROM ");
-			quantiteQueryStr.append(_allWindows->STOCKS).append(" WHERE id = '").append(stockRecordId).
-					append("'");
-
-			QSqlQuery quantiteQuery;
-
-			double quantite_actuelle = 0.0;
-
-			int querySize = YerothUtils::execQuery(quantiteQuery, quantiteQueryStr, _logger);
-
-			if (querySize > 0 && quantiteQuery.next())
-			{
-				quantite_actuelle = quantiteQuery.value(0).toDouble();
-			}
-
-			YerothSqlTableModel & stocksVenduTableModel = _allWindows->getSqlTableModel_stocks_vendu();
-
-			QSqlRecord record = stocksVenduTableModel.record();
-
-			stocksVenduID = _allWindows->getNextIdSqlTableModel_stocks_vendu();
-
-			record.setValue(YerothDatabaseTableColumn::ID, stocksVenduID);
-
-	        record.setValue(YerothDatabaseTableColumn::IS_SERVICE,
-	        					GET_SQL_RECORD_DATA(stockRecord, YerothDatabaseTableColumn::IS_SERVICE));
-
-			record.setValue(YerothDatabaseTableColumn::REFERENCE_RECU_VENDU, referenceRecuVenduCarte);
-
-			record.setValue(YerothDatabaseTableColumn::REFERENCE, articleVenteInfo->reference);
-			record.setValue(YerothDatabaseTableColumn::DESIGNATION, articleVenteInfo->designation);
-
-			record.setValue(YerothDatabaseTableColumn::DATE_PEREMPTION,
-					GET_SQL_RECORD_DATA(stockRecord, YerothDatabaseTableColumn::DATE_PEREMPTION));
-
-			record.setValue(YerothDatabaseTableColumn::CATEGORIE, articleVenteInfo->categorie);
-			record.setValue(YerothDatabaseTableColumn::QUANTITE_VENDUE, articleVenteInfo->quantite_a_vendre);
-			record.setValue(YerothDatabaseTableColumn::PRIX_UNITAIRE, articleVenteInfo->prix_unitaire);
-			record.setValue(YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE, articleVenteInfo->prix_vente());
-			record.setValue(YerothDatabaseTableColumn::REMISE_PRIX, articleVenteInfo->remise_prix);
-			record.setValue(YerothDatabaseTableColumn::REMISE_POURCENTAGE, articleVenteInfo->remise_pourcentage);
-			record.setValue(YerothDatabaseTableColumn::MONTANT_TVA, articleVenteInfo->montant_tva());
-			record.setValue(YerothDatabaseTableColumn::LOCALISATION, GET_SQL_RECORD_DATA(stockRecord, YerothDatabaseTableColumn::LOCALISATION));
-			record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR,
-					GET_SQL_RECORD_DATA(stockRecord, YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR));
-
-			YerothPOSUser *user = _allWindows->getUser();
-
-			record.setValue(YerothDatabaseTableColumn::NOM_CAISSIER, user->nom_complet());
-			record.setValue(YerothDatabaseTableColumn::NOM_UTILISATEUR_CAISSIER, user->nom_utilisateur());
-			record.setValue(YerothDatabaseTableColumn::DATE_VENTE, GET_CURRENT_DATE);
-			record.setValue("heure_vente", CURRENT_TIME);
-			record.setValue(YerothDatabaseTableColumn::STOCKS_ID, GET_SQL_RECORD_DATA(stockRecord, YerothDatabaseTableColumn::ID));
-			record.setValue("montant_recu", _montantRecu);
-			record.setValue("montant_a_rembourser", lineEdit_articles_montant_a_rembourser->text().toDouble());
-
-			YerothSqlTableModel & clientsTableModel = _allWindows->getSqlTableModel_clients();
-
-			QString clientFilter;
-			clientFilter.append("nom_entreprise = '").append(lineEdit_articles_nom_client->text()).append("'");
-			clientsTableModel.yerothSetFilter(clientFilter);
-
-			int clientsTableModelRowCount = clientsTableModel.easySelect();
-			if (clientsTableModelRowCount > 0)
-			{
-				QSqlRecord clientsRecord = clientsTableModel.record(0);
-				QString clients_id(GET_SQL_RECORD_DATA(clientsRecord, YerothDatabaseTableColumn::ID));
-				record.setValue(YerothDatabaseTableColumn::CLIENTS_ID, clients_id);
-				record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT, lineEdit_articles_nom_client->text());
-				clientsTableModel.resetFilter();
-			}
-			else
-			{
-				record.setValue(YerothDatabaseTableColumn::CLIENTS_ID, -1);
-				record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT, "DIVERS");
-			}
-
-			bool success1 = stocksVenduTableModel.insertNewRecord(record, this);
-
-			if (success1)
-			{
-				double nouvelle_quantite = quantite_actuelle - articleVenteInfo->quantite_a_vendre;
-
-				if (nouvelle_quantite < 0)
-				{
-					nouvelle_quantite = 0;
-				}
-
-				stockRecord.setValue(YerothDatabaseTableColumn::QUANTITE_TOTAL, nouvelle_quantite);
-
-				if (0 == nouvelle_quantite)
-				{
-					QString removeRowQuery(QString("DELETE FROM %1 WHERE %2 = '%3'")
-							.arg(_allWindows->STOCKS,
-									YerothDatabaseTableColumn::ID,
-									stockRecordId));
-					YerothUtils::execQuery(removeRowQuery);
-				}
-
-				quantiteQueryStr.clear();
-				quantiteQueryStr.append(QString("UPDATE %1 SET %2 = %3 WHERE %4 = '%5'")
-						.arg(_allWindows->STOCKS,
-								YerothDatabaseTableColumn::QUANTITE_TOTAL,
-								QString::number(nouvelle_quantite),
-								YerothDatabaseTableColumn::ID,
-								stockRecordId));
-
-				bool success2 = YerothUtils::execQuery(quantiteQueryStr, _logger);
-
-				QString sMsg(QObject::trUtf8("La quantité en stock de l'article '"));
-
-				sMsg.append(articleVenteInfo->designation).append("'")
-                    		.append(QString(QObject::trUtf8(" (%1 pièce(s))"))
-                    				.arg(articleVenteInfo->quantite_a_vendre));
-
-				if (success2)
-				{
-					sMsg.append(QObject::trUtf8(" a été actualisée avec succès."));
-				}
-				else
-				{
-					sMsg.append(QObject::trUtf8(" n'a pas pu être actualisée!\n" "Contacter 'YEROTH'"));
-				}
-
-				_logger->log("vendre", sMsg);
-			}
-			else
-			{
-				//TODO MESSAGE D'ERREUR DANS LE FICHIER DE LOGS
-			}
-		}
-		if (paiementParCarteDeCredit_CarteDebit_Success)
-		{
-			emit SELLING();
-
-			QString vMsg(QObject::trUtf8("La vente de '"));
-
-			vMsg.append(QString::number(_quantiteAVendre))
-            			.append(QObject::trUtf8("' articles a été éffectuée avec succès."));
-
-			if (QMessageBox::Ok ==
-					YerothQMessageBox::information(this,
-							QObject::trUtf8("succès d'une vente"),
-							vMsg))
-			{
-				this->imprimer_facture(referenceRecuVenduCarte);
-			}
-		}
-
-		YerothUtils::commitTransaction();
-
-		this->cleanUpAfterVente();
-
-	}
-	else
-	{
-		YerothQMessageBox::information(this, QObject::trUtf8("annulation d'une vente"),
-				QObject::trUtf8("Vous avez annulé la vente !"), QMessageBox::Ok);
-	}
-
-	tableWidget_articles->resizeColumnsToContents();
 
 	return 0;
 }
@@ -2455,49 +2265,49 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
 
         YerothSqlTableModel & stocksVenduTableModel = _allWindows->getSqlTableModel_stocks_vendu();
 
-        QSqlRecord record = stocksVenduTableModel.record();
+        QSqlRecord stocksVenduRecord = stocksVenduTableModel.record();
 
         _typeDeVente = QObject::tr("achat-comptant");
 
         stocksVenduID = _allWindows->getNextIdSqlTableModel_stocks_vendu();
 
-        record.setValue(YerothDatabaseTableColumn::ID, stocksVenduID);
+        stocksVenduRecord.setValue(YerothDatabaseTableColumn::ID, stocksVenduID);
 
-        record.setValue(YerothDatabaseTableColumn::TYPE_DE_VENTE, _typeDeVente);
+        stocksVenduRecord.setValue(YerothDatabaseTableColumn::TYPE_DE_VENTE, _typeDeVente);
 
-        record.setValue(YerothDatabaseTableColumn::IS_SERVICE,
+        stocksVenduRecord.setValue(YerothDatabaseTableColumn::IS_SERVICE,
         					GET_SQL_RECORD_DATA(stockRecord, YerothDatabaseTableColumn::IS_SERVICE));
 
-        record.setValue(YerothDatabaseTableColumn::REFERENCE_RECU_VENDU, referenceRecuVendu);
-        record.setValue(YerothDatabaseTableColumn::REFERENCE, articleVenteInfo->reference);
-        record.setValue(YerothDatabaseTableColumn::DESIGNATION, articleVenteInfo->designation);
+        stocksVenduRecord.setValue(YerothDatabaseTableColumn::REFERENCE_RECU_VENDU, referenceRecuVendu);
+        stocksVenduRecord.setValue(YerothDatabaseTableColumn::REFERENCE, articleVenteInfo->reference);
+        stocksVenduRecord.setValue(YerothDatabaseTableColumn::DESIGNATION, articleVenteInfo->designation);
 
-        record.setValue(YerothDatabaseTableColumn::DATE_PEREMPTION,
+        stocksVenduRecord.setValue(YerothDatabaseTableColumn::DATE_PEREMPTION,
                         GET_SQL_RECORD_DATA(stockRecord, YerothDatabaseTableColumn::DATE_PEREMPTION));
 
-        record.setValue(YerothDatabaseTableColumn::CATEGORIE, articleVenteInfo->categorie);
-        record.setValue(YerothDatabaseTableColumn::QUANTITE_VENDUE, articleVenteInfo->quantite_a_vendre);
-        record.setValue(YerothDatabaseTableColumn::PRIX_UNITAIRE, articleVenteInfo->prix_unitaire);
-        record.setValue(YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE, articleVenteInfo->prix_vente());
-        record.setValue(YerothDatabaseTableColumn::REMISE_PRIX, articleVenteInfo->remise_prix);
-        record.setValue(YerothDatabaseTableColumn::REMISE_POURCENTAGE, articleVenteInfo->remise_pourcentage);
-        record.setValue(YerothDatabaseTableColumn::MONTANT_TVA, articleVenteInfo->montant_tva());
-        record.setValue(YerothDatabaseTableColumn::LOCALISATION, GET_SQL_RECORD_DATA(stockRecord, YerothDatabaseTableColumn::LOCALISATION));
-        record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR,
+        stocksVenduRecord.setValue(YerothDatabaseTableColumn::CATEGORIE, articleVenteInfo->categorie);
+        stocksVenduRecord.setValue(YerothDatabaseTableColumn::QUANTITE_VENDUE, articleVenteInfo->quantite_a_vendre);
+        stocksVenduRecord.setValue(YerothDatabaseTableColumn::PRIX_UNITAIRE, articleVenteInfo->prix_unitaire);
+        stocksVenduRecord.setValue(YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE, articleVenteInfo->prix_vente());
+        stocksVenduRecord.setValue(YerothDatabaseTableColumn::REMISE_PRIX, articleVenteInfo->remise_prix);
+        stocksVenduRecord.setValue(YerothDatabaseTableColumn::REMISE_POURCENTAGE, articleVenteInfo->remise_pourcentage);
+        stocksVenduRecord.setValue(YerothDatabaseTableColumn::MONTANT_TVA, articleVenteInfo->montant_tva());
+        stocksVenduRecord.setValue(YerothDatabaseTableColumn::LOCALISATION, GET_SQL_RECORD_DATA(stockRecord, YerothDatabaseTableColumn::LOCALISATION));
+        stocksVenduRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR,
                         GET_SQL_RECORD_DATA(stockRecord, YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR));
 
         YerothPOSUser *user = _allWindows->getUser();
 
-        record.setValue(YerothDatabaseTableColumn::NOM_CAISSIER, user->nom_complet());
-        record.setValue(YerothDatabaseTableColumn::NOM_UTILISATEUR_CAISSIER, user->nom_utilisateur());
-        record.setValue(YerothDatabaseTableColumn::DATE_VENTE, GET_CURRENT_DATE);
-        record.setValue(YerothDatabaseTableColumn::HEURE_VENTE, CURRENT_TIME);
+        stocksVenduRecord.setValue(YerothDatabaseTableColumn::NOM_CAISSIER, user->nom_complet());
+        stocksVenduRecord.setValue(YerothDatabaseTableColumn::NOM_UTILISATEUR_CAISSIER, user->nom_utilisateur());
+        stocksVenduRecord.setValue(YerothDatabaseTableColumn::DATE_VENTE, GET_CURRENT_DATE);
+        stocksVenduRecord.setValue(YerothDatabaseTableColumn::HEURE_VENTE, CURRENT_TIME);
 
-        record.setValue(YerothDatabaseTableColumn::STOCKS_ID, stockRecordId);
+        stocksVenduRecord.setValue(YerothDatabaseTableColumn::STOCKS_ID, stockRecordId);
 
-        record.setValue(YerothDatabaseTableColumn::MONTANT_RECU, _montantRecu);
+        stocksVenduRecord.setValue(YerothDatabaseTableColumn::MONTANT_RECU, _montantRecu);
 
-        record.setValue(YerothDatabaseTableColumn::MONTANT_A_REMBOURSER,
+        stocksVenduRecord.setValue(YerothDatabaseTableColumn::MONTANT_A_REMBOURSER,
         		lineEdit_articles_montant_a_rembourser->text().toDouble());
 
         double nouvelle_quantite = quantite_actuelle - articleVenteInfo->quantite_a_vendre;
@@ -2513,6 +2323,8 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
         historiqueStock.append(YerothHistoriqueStock::SEPARATION_EXTERNE)
         			   .append(historiqueStockVendu);
 
+        stocksVenduRecord.setValue(YerothDatabaseTableColumn::HISTORIQUE_STOCK, historiqueStock);
+
         //qDebug() << QString("++ test: %1")
          //       		.arg(historiqueStock);
 
@@ -2523,21 +2335,25 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
         clientsTableModel.yerothSetFilter(clientFilter);
 
         int clientsTableModelRowCount = clientsTableModel.easySelect();
+
         if (clientsTableModelRowCount > 0)
         {
             QSqlRecord clientsRecord = clientsTableModel.record(0);
+
             QString clients_id(GET_SQL_RECORD_DATA(clientsRecord, YerothDatabaseTableColumn::ID));
-            record.setValue(YerothDatabaseTableColumn::CLIENTS_ID, clients_id);
-            record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT, lineEdit_articles_nom_client->text());
+
+            stocksVenduRecord.setValue(YerothDatabaseTableColumn::CLIENTS_ID, clients_id);
+            stocksVenduRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT, lineEdit_articles_nom_client->text());
+
             clientsTableModel.resetFilter();
         }
         else
         {
-            record.setValue(YerothDatabaseTableColumn::CLIENTS_ID, -1);
-            record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT, "DIVERS");
+            stocksVenduRecord.setValue(YerothDatabaseTableColumn::CLIENTS_ID, -1);
+            stocksVenduRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT, "DIVERS");
         }
 
-        bool success1 = stocksVenduTableModel.insertNewRecord(record, this);
+        bool success1 = stocksVenduTableModel.insertNewRecord(stocksVenduRecord, this);
 
         if (success1)
         {
@@ -2719,53 +2535,53 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
 
         YerothSqlTableModel & stocksVenduTableModel = _allWindows->getSqlTableModel_stocks_vendu();
 
-        QSqlRecord record = stocksVenduTableModel.record();
+        QSqlRecord stocksVenduCompteClientRecord = stocksVenduTableModel.record();
 
         _typeDeVente = QObject::tr("achat-compte-client");
 
         stocksVenduID = _allWindows->getNextIdSqlTableModel_stocks_vendu();
 
-        record.setValue(YerothDatabaseTableColumn::ID, stocksVenduID);
+        stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::ID, stocksVenduID);
 
-        record.setValue(YerothDatabaseTableColumn::TYPE_DE_VENTE, _typeDeVente);
+        stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::TYPE_DE_VENTE, _typeDeVente);
 
-        record.setValue(YerothDatabaseTableColumn::IS_SERVICE,
+        stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::IS_SERVICE,
         					GET_SQL_RECORD_DATA(stockRecord, YerothDatabaseTableColumn::IS_SERVICE));
 
-        record.setValue(YerothDatabaseTableColumn::REFERENCE_RECU_VENDU, referenceRecuVenduCompteClient);
-        record.setValue(YerothDatabaseTableColumn::REFERENCE, articleVenteInfo->reference);
-        record.setValue(YerothDatabaseTableColumn::DESIGNATION, articleVenteInfo->designation);
+        stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::REFERENCE_RECU_VENDU, referenceRecuVenduCompteClient);
+        stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::REFERENCE, articleVenteInfo->reference);
+        stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::DESIGNATION, articleVenteInfo->designation);
 
-        record.setValue(YerothDatabaseTableColumn::DATE_PEREMPTION,
+        stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::DATE_PEREMPTION,
                         GET_SQL_RECORD_DATA(stockRecord, YerothDatabaseTableColumn::DATE_PEREMPTION));
 
-        record.setValue(YerothDatabaseTableColumn::CATEGORIE, articleVenteInfo->categorie);
-        record.setValue(YerothDatabaseTableColumn::QUANTITE_VENDUE, articleVenteInfo->quantite_a_vendre);
-        record.setValue(YerothDatabaseTableColumn::PRIX_UNITAIRE, articleVenteInfo->prix_unitaire);
+        stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::CATEGORIE, articleVenteInfo->categorie);
+        stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::QUANTITE_VENDUE, articleVenteInfo->quantite_a_vendre);
+        stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::PRIX_UNITAIRE, articleVenteInfo->prix_unitaire);
 
         total_prix_vente += articleVenteInfo->prix_vente();
 
-        record.setValue(YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE, articleVenteInfo->prix_vente());
-        record.setValue(YerothDatabaseTableColumn::REMISE_PRIX, articleVenteInfo->remise_prix);
-        record.setValue(YerothDatabaseTableColumn::REMISE_POURCENTAGE, articleVenteInfo->remise_pourcentage);
-        record.setValue(YerothDatabaseTableColumn::MONTANT_TVA, articleVenteInfo->montant_tva());
-        record.setValue(YerothDatabaseTableColumn::LOCALISATION, GET_SQL_RECORD_DATA(stockRecord, YerothDatabaseTableColumn::LOCALISATION));
-        record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR,
+        stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE, articleVenteInfo->prix_vente());
+        stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::REMISE_PRIX, articleVenteInfo->remise_prix);
+        stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::REMISE_POURCENTAGE, articleVenteInfo->remise_pourcentage);
+        stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::MONTANT_TVA, articleVenteInfo->montant_tva());
+        stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::LOCALISATION, GET_SQL_RECORD_DATA(stockRecord, YerothDatabaseTableColumn::LOCALISATION));
+        stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR,
                         GET_SQL_RECORD_DATA(stockRecord, YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR));
 
         YerothPOSUser *user = _allWindows->getUser();
 
-        record.setValue(YerothDatabaseTableColumn::NOM_CAISSIER, user->nom_complet());
-        record.setValue(YerothDatabaseTableColumn::NOM_UTILISATEUR_CAISSIER, user->nom_utilisateur());
-        record.setValue(YerothDatabaseTableColumn::DATE_VENTE, GET_CURRENT_DATE);
-        record.setValue(YerothDatabaseTableColumn::HEURE_VENTE, CURRENT_TIME);
+        stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::NOM_CAISSIER, user->nom_complet());
+        stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::NOM_UTILISATEUR_CAISSIER, user->nom_utilisateur());
+        stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::DATE_VENTE, GET_CURRENT_DATE);
+        stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::HEURE_VENTE, CURRENT_TIME);
 
-        record.setValue(YerothDatabaseTableColumn::STOCKS_ID,
+        stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::STOCKS_ID,
         		GET_SQL_RECORD_DATA(stockRecord, YerothDatabaseTableColumn::ID));
 
-        record.setValue(YerothDatabaseTableColumn::MONTANT_RECU, _montantRecu);
+        stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::MONTANT_RECU, _montantRecu);
 
-        record.setValue(YerothDatabaseTableColumn::MONTANT_A_REMBOURSER,
+        stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::MONTANT_A_REMBOURSER,
         		lineEdit_articles_montant_a_rembourser->text().toDouble());
 
         double nouvelle_quantite = quantite_actuelle - articleVenteInfo->quantite_a_vendre;
@@ -2781,6 +2597,8 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
         historiqueStock.append(QString("%1%2")
         							.arg(YerothHistoriqueStock::SEPARATION_EXTERNE,
         								 historiqueStockVendu));
+
+        stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::HISTORIQUE_STOCK, historiqueStock);
 
         //qDebug() << QString("++ test: %1")
          //       		.arg(historiqueStock);
@@ -2802,9 +2620,9 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
 
             double nouveau_compte_client = compteClient - total_prix_vente;
 
-            record.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT, nouveau_compte_client);
-            record.setValue(YerothDatabaseTableColumn::CLIENTS_ID, clients_id);
-            record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT, lineEdit_articles_nom_client->text());
+            stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT, nouveau_compte_client);
+            stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::CLIENTS_ID, clients_id);
+            stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT, lineEdit_articles_nom_client->text());
 
             clientsTableModel.resetFilter();
 
@@ -2812,11 +2630,11 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
         }
         else
         {
-            record.setValue(YerothDatabaseTableColumn::CLIENTS_ID, -1);
-            record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT, "DIVERS");
+            stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::CLIENTS_ID, -1);
+            stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT, "DIVERS");
         }
 
-        bool success1 = stocksVenduTableModel.insertNewRecord(record, this);
+        bool success1 = stocksVenduTableModel.insertNewRecord(stocksVenduCompteClientRecord, this);
 
         if (success1)
         {

@@ -1953,42 +1953,42 @@ void YerothSortirWindow::sortir()
 
             YerothSqlTableModel & stocksSortiesTableModel = _allWindows->getSqlTableModel_stocks_sorties();
 
-            QSqlRecord record = stocksSortiesTableModel.record();
+            QSqlRecord stocksSortiesRecord = stocksSortiesTableModel.record();
 
             stocksSortieID = _allWindows->getNextIdSqlTableModel_stocks_sorties();
 
-            record.setValue(YerothDatabaseTableColumn::ID, stocksSortieID);
+            stocksSortiesRecord.setValue(YerothDatabaseTableColumn::ID, stocksSortieID);
 
-            record.setValue(YerothDatabaseTableColumn::REFERENCE_RECU_SORTIE, referenceRecuSortie);
+            stocksSortiesRecord.setValue(YerothDatabaseTableColumn::REFERENCE_RECU_SORTIE, referenceRecuSortie);
 
-            record.setValue(YerothDatabaseTableColumn::REFERENCE, articleVenteInfo->reference);
+            stocksSortiesRecord.setValue(YerothDatabaseTableColumn::REFERENCE, articleVenteInfo->reference);
 
-            record.setValue(YerothDatabaseTableColumn::DESIGNATION, articleVenteInfo->designation);
-            record.setValue(YerothDatabaseTableColumn::DATE_PEREMPTION,
+            stocksSortiesRecord.setValue(YerothDatabaseTableColumn::DESIGNATION, articleVenteInfo->designation);
+            stocksSortiesRecord.setValue(YerothDatabaseTableColumn::DATE_PEREMPTION,
                             GET_SQL_RECORD_DATA(stockRecord, YerothDatabaseTableColumn::DATE_PEREMPTION));
 
-            record.setValue(YerothDatabaseTableColumn::CATEGORIE, articleVenteInfo->categorie);
-            record.setValue(YerothDatabaseTableColumn::QUANTITE_SORTIE, articleVenteInfo->quantite_a_vendre);
-            record.setValue(YerothDatabaseTableColumn::PRIX_UNITAIRE, articleVenteInfo->prix_unitaire);
-            record.setValue(YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE, articleVenteInfo->prix_vente());
-            record.setValue(YerothDatabaseTableColumn::MONTANT_TVA, articleVenteInfo->montant_tva());
-            record.setValue(YerothDatabaseTableColumn::LOCALISATION_SORTIE, GET_SQL_RECORD_DATA(stockRecord, "localisation"));
-            record.setValue(YerothDatabaseTableColumn::LOCALISATION_ENTREE, lineEdit_articles_transfert->text());
-            record.setValue("destination", GET_SQL_RECORD_DATA(stockRecord, "destination"));
-            record.setValue(YerothDatabaseTableColumn::NOM_RECEPTEUR, lineEdit_articles_nom_recepteur->text());
+            stocksSortiesRecord.setValue(YerothDatabaseTableColumn::CATEGORIE, articleVenteInfo->categorie);
+            stocksSortiesRecord.setValue(YerothDatabaseTableColumn::QUANTITE_SORTIE, articleVenteInfo->quantite_a_vendre);
+            stocksSortiesRecord.setValue(YerothDatabaseTableColumn::PRIX_UNITAIRE, articleVenteInfo->prix_unitaire);
+            stocksSortiesRecord.setValue(YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE, articleVenteInfo->prix_vente());
+            stocksSortiesRecord.setValue(YerothDatabaseTableColumn::MONTANT_TVA, articleVenteInfo->montant_tva());
+            stocksSortiesRecord.setValue(YerothDatabaseTableColumn::LOCALISATION_SORTIE, GET_SQL_RECORD_DATA(stockRecord, "localisation"));
+            stocksSortiesRecord.setValue(YerothDatabaseTableColumn::LOCALISATION_ENTREE, lineEdit_articles_transfert->text());
+            stocksSortiesRecord.setValue("destination", GET_SQL_RECORD_DATA(stockRecord, "destination"));
+            stocksSortiesRecord.setValue(YerothDatabaseTableColumn::NOM_RECEPTEUR, lineEdit_articles_nom_recepteur->text());
 
-            record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR,
+            stocksSortiesRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR,
                             GET_SQL_RECORD_DATA(stockRecord, YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR));
 
             YerothPOSUser *user = _allWindows->getUser();
 
-            record.setValue(YerothDatabaseTableColumn::NOM_MAGASINIER, user->nom_complet());
-            record.setValue(YerothDatabaseTableColumn::NOM_UTILISATEUR_MAGASINIER, user->nom_utilisateur());
-            record.setValue(YerothDatabaseTableColumn::DATE_SORTIE, GET_CURRENT_DATE);
-            record.setValue(YerothDatabaseTableColumn::HEURE_SORTIE, CURRENT_TIME);
-            record.setValue(YerothDatabaseTableColumn::NOTES, textEdit_articles_notes->toPlainText());
-            record.setValue(YerothDatabaseTableColumn::IS_SERVICE, GET_SQL_RECORD_DATA(stockRecord, YerothDatabaseTableColumn::IS_SERVICE));
-            record.setValue(YerothDatabaseTableColumn::STOCKS_ID, GET_SQL_RECORD_DATA(stockRecord, YerothDatabaseTableColumn::ID));
+            stocksSortiesRecord.setValue(YerothDatabaseTableColumn::NOM_MAGASINIER, user->nom_complet());
+            stocksSortiesRecord.setValue(YerothDatabaseTableColumn::NOM_UTILISATEUR_MAGASINIER, user->nom_utilisateur());
+            stocksSortiesRecord.setValue(YerothDatabaseTableColumn::DATE_SORTIE, GET_CURRENT_DATE);
+            stocksSortiesRecord.setValue(YerothDatabaseTableColumn::HEURE_SORTIE, CURRENT_TIME);
+            stocksSortiesRecord.setValue(YerothDatabaseTableColumn::NOTES, textEdit_articles_notes->toPlainText());
+            stocksSortiesRecord.setValue(YerothDatabaseTableColumn::IS_SERVICE, GET_SQL_RECORD_DATA(stockRecord, YerothDatabaseTableColumn::IS_SERVICE));
+            stocksSortiesRecord.setValue(YerothDatabaseTableColumn::STOCKS_ID, GET_SQL_RECORD_DATA(stockRecord, YerothDatabaseTableColumn::ID));
 
             double nouvelle_quantite = quantite_actuelle - articleVenteInfo->quantite_a_vendre;
 
@@ -2018,10 +2018,12 @@ void YerothSortirWindow::sortir()
             historiqueStock.append(YerothHistoriqueStock::SEPARATION_EXTERNE)
             			   .append(historiqueStockSortie_transfert);
 
+            stocksSortiesRecord.setValue(YerothDatabaseTableColumn::HISTORIQUE_STOCK, historiqueStock);
+
             //qDebug() << QString("++ historiqueStock: %1")
             //        		.arg(historiqueStock);
 
-            bool success1 = stocksSortiesTableModel.insertNewRecord(record, this);
+            bool success1 = stocksSortiesTableModel.insertNewRecord(stocksSortiesRecord, this);
 
             if (success1)
             {
