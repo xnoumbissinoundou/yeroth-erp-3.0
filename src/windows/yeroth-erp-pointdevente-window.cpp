@@ -2242,9 +2242,11 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
 
         QString stockRecordId = GET_SQL_RECORD_DATA(stockRecord, YerothDatabaseTableColumn::ID);
 
-        QString quantiteQueryStr("SELECT quantite_total FROM ");
-        quantiteQueryStr.append(_allWindows->STOCKS).append(" WHERE id = '").append(stockRecordId).
-        append("'");
+        QString quantiteQueryStr(QString("SELECT %1 FROM %2 WHERE %3 = '%4'")
+        							.arg(YerothDatabaseTableColumn::QUANTITE_TOTAL,
+        								 _allWindows->STOCKS,
+										 YerothDatabaseTableColumn::ID,
+										 stockRecordId));
 
         QSqlQuery quantiteQuery;
 
@@ -2330,8 +2332,10 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
 
         YerothSqlTableModel & clientsTableModel = _allWindows->getSqlTableModel_clients();
 
-        QString clientFilter;
-        clientFilter.append("nom_entreprise = '").append(lineEdit_articles_nom_client->text()).append("'");
+        QString clientFilter(QString("%1 = '%2'")
+        						.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
+        							 lineEdit_articles_nom_client->text()));
+
         clientsTableModel.yerothSetFilter(clientFilter);
 
         int clientsTableModelRowCount = clientsTableModel.easySelect();
@@ -2421,7 +2425,7 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
     				QObject::trUtf8("succès d'une vente"),
 					vMsg))
     {
-    	this->imprimer_facture(referenceRecuVendu);
+    	imprimer_facture(referenceRecuVendu);
     }
 }
 
@@ -2511,9 +2515,10 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
 
         QString stockRecordId = GET_SQL_RECORD_DATA(stockRecord, YerothDatabaseTableColumn::ID);
 
-        QString quantiteQueryStr(QString("SELECT %1 FROM %2 WHERE id = '%3'")
+        QString quantiteQueryStr(QString("SELECT %1 FROM %2 WHERE %3 = '%4'")
         							.arg(YerothDatabaseTableColumn::QUANTITE_TOTAL,
         								 _allWindows->STOCKS,
+										 YerothDatabaseTableColumn::ID,
 										 stockRecordId));
 
         QSqlQuery quantiteQuery;
@@ -2605,8 +2610,9 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
 
         YerothSqlTableModel & clientsTableModel = _allWindows->getSqlTableModel_clients();
 
-        QString clientFilter;
-        clientFilter.append("nom_entreprise = '").append(lineEdit_articles_nom_client->text()).append("'");
+        QString clientFilter(QString("%1 = '%2'")
+        						.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
+        							 lineEdit_articles_nom_client->text()));
         clientsTableModel.yerothSetFilter(clientFilter);
 
         int clientsTableModelRowCount = clientsTableModel.easySelect();
@@ -2700,7 +2706,7 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
     				QObject::trUtf8("succès d'une vente"),
 					vMsg))
     {
-    	this->imprimer_facture(referenceRecuVenduCompteClient);
+    	imprimer_facture(referenceRecuVenduCompteClient);
     }
 }
 
