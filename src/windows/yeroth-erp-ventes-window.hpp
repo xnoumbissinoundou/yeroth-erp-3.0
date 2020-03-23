@@ -137,6 +137,8 @@ public slots:
 
     virtual void deconnecter_utilisateur();
 
+    void refineYerothLineEdits();
+
     void rechercher(bool clearVentesRecherche = false);
 
     inline void venteRecherche()
@@ -196,7 +198,7 @@ private:
 
     void setupDateTimeEdits();
 
-    inline void setFilter()
+    inline void setYerothVentesFilter()
     {
         _curStocksVenduTableModel->yerothSetFilter(_searchFilter);
     }
@@ -212,6 +214,8 @@ private:
     bool					_currentlyFiltered;
 
     QFont 					*_pushButton_ventes_filtrer_font;
+
+    QString 				_ventesDateFilter;
 
     QString					_searchFilter;
 

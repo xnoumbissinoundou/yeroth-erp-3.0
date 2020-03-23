@@ -88,6 +88,17 @@ public:
 								 bool returnPressedSignalActivated = true,
 								 QString aQSqlConditionStr = YerothUtils::EMPTY_STRING);
 
+	inline void setupMyStaticQCompleter(QString sqlTableName,
+								 	 	QString fieldName,
+										QString aQSqlConditionStr)
+	{
+		setupMyStaticQCompleter(sqlTableName,
+								fieldName,
+								false,
+								true,
+								aQSqlConditionStr);
+	}
+
 	void setupMyQCompleterALL(QString sqlTableName);
 
 	void setupMyQCompleterDEF_DEO(QString sqlTableName);

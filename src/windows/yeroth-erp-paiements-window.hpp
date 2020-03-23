@@ -137,6 +137,8 @@ public slots:
 
     virtual void deconnecter_utilisateur();
 
+    void refineYerothLineEdits();
+
     void rechercher(bool clearPaiementsRecherche = false);
 
     inline void paiementsRecherche()
@@ -194,7 +196,7 @@ private:
 
     void setupDateTimeEdits();
 
-    inline void setFilter()
+    inline void setYerothPaiementsFilter()
     {
         _curPaiementsTableModel->yerothSetFilter(_searchFilter);
     }
@@ -210,6 +212,8 @@ private:
     bool					_currentlyFiltered;
 
     QFont 					*_pushButton_paiements_filtrer_font;
+
+    QString					_paiementsDateFilter;
 
     QString					_searchFilter;
 

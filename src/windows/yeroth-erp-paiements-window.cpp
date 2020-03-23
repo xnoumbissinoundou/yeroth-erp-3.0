@@ -58,7 +58,8 @@ YerothPaiementsWindow::YerothPaiementsWindow()
  _currentTabView(0),
  _currentlyFiltered(false),
  _pushButton_paiements_filtrer_font(0),
- _searchFilter(""),
+ _paiementsDateFilter(YerothUtils::EMPTY_STRING),
+ _searchFilter(YerothUtils::EMPTY_STRING),
  _curPaiementsTableModel(&_allWindows->getSqlTableModel_paiements())
 {
     setupUi(this);
@@ -155,15 +156,9 @@ bool YerothPaiementsWindow::filtrer_paiements()
 	QString REAL_DB_ID_NAME_paiementsTableColumnProperty(
 			YerothDatabaseTableColumn::_tableColumnToUserViewString.key(paiementsTableColumnProperty));
 
-	QString filterString;
-
-	filterString.append(QString("(%1 >= '%2') AND (%1 <= '%3')")
-							.arg(YerothDatabaseTableColumn::DATE_PAIEMENT,
-								 DATE_TO_DB_FORMAT_STRING(dateEdit_paiements_debut->date()),
-								 DATE_TO_DB_FORMAT_STRING(dateEdit_paiements_fin->date())));
-
-	filterString.append(QString(" AND (%1 %2 %3)")
-							.arg(REAL_DB_ID_NAME_paiementsTableColumnProperty,
+	QString filterString(QString("%1 AND (%2 %3 %4)")
+							.arg(_paiementsDateFilter,
+								 REAL_DB_ID_NAME_paiementsTableColumnProperty,
 								 mathOperator,
 								 paiementsTableColumnValue));
 
@@ -299,11 +294,30 @@ void YerothPaiementsWindow::setupLineEdits()
 
 void YerothPaiementsWindow::setupLineEditsQCompleters()
 {
-    lineEdit_paiements_recherche->setupMyStaticQCompleter(_allWindows->PAIEMENTS, YerothDatabaseTableColumn::NOM_ENTREPRISE);
-    lineEdit_paiements_reference->setupMyStaticQCompleter(_allWindows->PAIEMENTS, YerothDatabaseTableColumn::REFERENCE);
-    lineEdit_paiements_nom_encaisseur->setupMyStaticQCompleter(_allWindows->PAIEMENTS, YerothDatabaseTableColumn::NOM_ENCAISSEUR);
-    lineEdit_paiements_nom_entreprise->setupMyStaticQCompleter(_allWindows->PAIEMENTS, YerothDatabaseTableColumn::NOM_ENTREPRISE);
-    lineEdit_paiements_numero_bon_paiement->setupMyStaticQCompleter(_allWindows->PAIEMENTS, YerothDatabaseTableColumn::ID);
+    lineEdit_paiements_recherche->
+		setupMyStaticQCompleter(_allWindows->PAIEMENTS,
+								YerothDatabaseTableColumn::NOM_ENTREPRISE,
+								_paiementsDateFilter);
+
+    lineEdit_paiements_reference->
+		setupMyStaticQCompleter(_allWindows->PAIEMENTS,
+								YerothDatabaseTableColumn::REFERENCE,
+								_paiementsDateFilter);
+
+    lineEdit_paiements_nom_encaisseur->
+		setupMyStaticQCompleter(_allWindows->PAIEMENTS,
+								YerothDatabaseTableColumn::NOM_ENCAISSEUR,
+								_paiementsDateFilter);
+
+    lineEdit_paiements_nom_entreprise->
+		setupMyStaticQCompleter(_allWindows->PAIEMENTS,
+								YerothDatabaseTableColumn::NOM_ENTREPRISE,
+								_paiementsDateFilter);
+
+    lineEdit_paiements_numero_bon_paiement->
+		setupMyStaticQCompleter(_allWindows->PAIEMENTS,
+								YerothDatabaseTableColumn::ID,
+								_paiementsDateFilter);
 }
 
 void YerothPaiementsWindow::setupShortcuts()
@@ -369,8 +383,23 @@ void YerothPaiementsWindow::setupDateTimeEdits()
 
     dateEdit_paiements_fin->setStartDate(GET_CURRENT_DATE);
 
-    connect(dateEdit_paiements_debut, SIGNAL(dateChanged(const QDate &)), this, SLOT(rechercher()));
-    connect(dateEdit_paiements_fin, SIGNAL(dateChanged(const QDate &)), this, SLOT(rechercher()));
+    _paiementsDateFilter.clear();
+
+	_paiementsDateFilter.append(QString(" ( %1 >= '%2' AND %3 <= '%4' ) ")
+    								.arg(YerothDatabaseTableColumn::DATE_PAIEMENT,
+    									 DATE_TO_DB_FORMAT_STRING(dateEdit_paiements_debut->date()),
+										 YerothDatabaseTableColumn::DATE_PAIEMENT,
+										 DATE_TO_DB_FORMAT_STRING(dateEdit_paiements_fin->date())));
+
+    connect(dateEdit_paiements_debut,
+    		SIGNAL(dateChanged(const QDate &)),
+			this,
+			SLOT(refineYerothLineEdits()));
+
+    connect(dateEdit_paiements_fin,
+    		SIGNAL(dateChanged(const QDate &)),
+			this,
+			SLOT(refineYerothLineEdits()));
 }
 
 
@@ -914,7 +943,7 @@ void YerothPaiementsWindow::rendreVisible(YerothSqlTableModel * stocksTableModel
 
     _curPaiementsTableModel = &_allWindows->getSqlTableModel_paiements();
 
-    this->setupLineEditsQCompleters();
+    setupLineEditsQCompleters();
 
     tabWidget_historique_paiements->setCurrentIndex(TableauDesPaiements);
 
@@ -1009,6 +1038,22 @@ void YerothPaiementsWindow::reinitialiser_recherche()
 }
 
 
+void YerothPaiementsWindow::refineYerothLineEdits()
+{
+	_paiementsDateFilter.clear();
+
+	_paiementsDateFilter.append(QString(" ( %1 >= '%2' AND %3 <= '%4' ) ")
+    								.arg(YerothDatabaseTableColumn::DATE_PAIEMENT,
+    									 DATE_TO_DB_FORMAT_STRING(dateEdit_paiements_debut->date()),
+										 YerothDatabaseTableColumn::DATE_PAIEMENT,
+										 DATE_TO_DB_FORMAT_STRING(dateEdit_paiements_fin->date())));
+
+	setupLineEditsQCompleters();
+
+	rechercher();
+}
+
+
 void YerothPaiementsWindow::rechercher(bool clearPaiementsRecherche)
 {
     //_logger->log("rechercher");
@@ -1029,6 +1074,8 @@ void YerothPaiementsWindow::rechercher(bool clearPaiementsRecherche)
         lineEdit_paiements_nom_entreprise->clear();
         lineEdit_paiements_numero_bon_paiement->clear();
     }
+
+    _searchFilter.append(_paiementsDateFilter);
 
     QString nomEntreprise(lineEdit_paiements_recherche->text());
 
@@ -1090,32 +1137,20 @@ void YerothPaiementsWindow::rechercher(bool clearPaiementsRecherche)
             }
             _searchFilter.append(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::ID, numero_du_bon_de_paiement));
         }
-
-        if (!_searchFilter.isEmpty())
-        {
-            _searchFilter.append(" AND ");
-        }
-
-        _searchFilter.append(QString("%1 >= '%2'")
-        						.arg(YerothDatabaseTableColumn::DATE_PAIEMENT,
-        							 DATE_TO_DB_FORMAT_STRING(dateEdit_paiements_debut->date())));
-
-        _searchFilter.append(QString(" AND %1 <= '%2'")
-        						.arg(YerothDatabaseTableColumn::DATE_PAIEMENT,
-        								DATE_TO_DB_FORMAT_STRING(dateEdit_paiements_fin->date())));
     }
     else
     {
         QString searchNomEntreprise(lineEdit_paiements_recherche->text());
 
-        _searchFilter.append(QString("%1 LIKE '%2%'")
-        						.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
-        							 searchNomEntreprise));
+        if (!_searchFilter.isEmpty())
+        {
+            _searchFilter.append(QString(" AND (%1 LIKE '%2')")
+            						.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
+            								searchNomEntreprise));
+        }
     }
 
-    setFilter();
-
-    _logger->log("rechercher", QString("search filter: %1").arg(_searchFilter));
+    setYerothPaiementsFilter();
 
     if (_curPaiementsTableModel->easySelect() > 0)
     {
