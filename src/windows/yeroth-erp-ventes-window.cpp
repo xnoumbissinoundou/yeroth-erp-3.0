@@ -146,6 +146,20 @@ bool YerothVentesWindow::annuler_cette_vente()
 		return false;
 	}
 
+    msg = QString(QObject::trUtf8("Poursuivre avec l'annulation de "
+    							  "la vente avec la référence 'reçu de vente "
+    							  "%1' ?"))
+    		.arg(curVenteReferenceRecuVendu);
+
+    if (QMessageBox::Cancel ==
+            YerothQMessageBox::question(this, QObject::trUtf8("poursuivre l'annulation de la vente"),
+    										 msg,
+											 QMessageBox::Cancel,
+											 QMessageBox::Ok))
+    {
+    	return false;
+    }
+
 	YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
 
 	double curMontantARembourserAuClient = 0.0;
@@ -216,9 +230,6 @@ bool YerothVentesWindow::annuler_cette_vente()
 
 			curMontantARembourserAuClient +=
 					    		GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE).toDouble();
-
-			 qDebug() << QString("++ (1) a rembourser au client: %1")
-					    	.arg(QString::number(curMontantARembourserAuClient));
 
 			curStockRecord.setValue(YerothDatabaseTableColumn::QUANTITE_TOTAL, curStockNouvelleQuantiteTotal);
 
@@ -308,7 +319,7 @@ bool YerothVentesWindow::annuler_cette_vente()
 
 	if (successReinsertStock)
 	{
-		msg = QString(QObject::trUtf8("La vente (avec référence '%1') a été "
+		msg = QString(QObject::trUtf8("La vente (avec référence 'reçu de vente %1') a été "
 									  "annulée avec succès !\n\n"
 									  "(Montant à rembourser au client (comptant): '%2' !)"))
 				.arg(curVenteReferenceRecuVendu,
