@@ -131,7 +131,7 @@ public slots:
 
 	virtual bool imprimer_document();
 
-	void handleCurrentChanged(int index);
+	void handleCurrentTabChanged(int index);
 
 	void retourVentes();
 
@@ -177,6 +177,8 @@ protected:
     virtual void setupShortcuts();
 
 private slots:
+
+	void modifier_visibilite_annuler_cette_vente();
 
 	bool annuler_cette_vente();
 

@@ -119,13 +119,47 @@ YerothVentesWindow::YerothVentesWindow()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 #endif
 
-    connect(tabWidget_ventes, SIGNAL(currentChanged(int)), this, SLOT(handleCurrentChanged(int)));
+    connect(tabWidget_ventes, SIGNAL(currentChanged(int)), this, SLOT(handleCurrentTabChanged(int)));
+
     connect(tableView_ventes, SIGNAL(doubleClicked(const QModelIndex &)), this, SLOT(afficher_vente_detail()));
+
     connect(tableView_ventes, SIGNAL(activated(const QModelIndex &)), this, SLOT(afficher_vente_detail()));
 
-    connect(annulerCetteVente, SIGNAL(triggered()), this, SLOT(annuler_cette_vente()));
+    connect(tableView_ventes->getStandardItemModel(),
+    		SIGNAL(rowsRemoved(const QModelIndex &, int, int)),
+			this,
+			SLOT(modifier_visibilite_annuler_cette_vente()));
+
+    connect(tableView_ventes->getStandardItemModel(),
+    		SIGNAL(rowsInserted(const QModelIndex &, int, int)),
+			this,
+			SLOT(modifier_visibilite_annuler_cette_vente()));
+
+    actionAnnulerCetteVente->setVisible(false);
+
+    connect(actionAnnulerCetteVente, SIGNAL(triggered()), this, SLOT(annuler_cette_vente()));
 
     this->setupShortcuts();
+}
+
+
+void YerothVentesWindow::modifier_visibilite_annuler_cette_vente()
+{
+	if (AfficherVenteAuDetail == tabWidget_ventes->currentIndex())
+	{
+		actionAnnulerCetteVente->setVisible(false);
+	}
+	else
+	{
+		if (tableView_ventes->rowCount() > 0)
+		{
+			actionAnnulerCetteVente->setVisible(true);
+		}
+		else
+		{
+			actionAnnulerCetteVente->setVisible(false);
+		}
+	}
 }
 
 
@@ -133,9 +167,11 @@ bool YerothVentesWindow::annuler_cette_vente()
 {
 	QString msg;
 
+	int ventesTableViewRowCount = tableView_ventes->rowCount();
+
 	QString curVenteReferenceRecuVendu(lineEdit_ventes_reference_recu_vendu->text());
 
-	if (curVenteReferenceRecuVendu.isEmpty())
+	if (curVenteReferenceRecuVendu.isEmpty() || ventesTableViewRowCount <= 0)
 	{
 		msg = QObject::trUtf8("Veuillez saisir la référence du 'reçu de vente' à annuler !");
 
@@ -180,8 +216,6 @@ bool YerothVentesWindow::annuler_cette_vente()
 
 	QSqlRecord curStocksVenduRecord;
 
-	int ventesTableViewRowCount = tableView_ventes->rowCount();
-
 	for (int k = 0; k < ventesTableViewRowCount; ++k)
 	{
 		curStocksVenduRecord.clear();
@@ -199,10 +233,6 @@ bool YerothVentesWindow::annuler_cette_vente()
 
 		curStocksVenduCategorie =
 				GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::CATEGORIE);
-
-		qDebug() << QString("++ curStocksVendu. designation: %1, categorie: %2")
-						.arg(curStocksVenduDesignation,
-							 curStocksVenduCategorie);
 
 		//Je verifie deja si le stock est encore existant
 		//dans la base de donnees
@@ -500,6 +530,7 @@ void YerothVentesWindow::setupLineEdits()
     lineEdit_localisation->setEnabled(false);
     lineEdit_quantite_vendue->setEnabled(false);
     lineEdit_vente_detail_heure_vente->setEnabled(false);
+    lineEdit_ventes_detail_reference_recu_de_vente->setEnabled(false);
     lineEdit_vente_detail_prix_unitaire->setEnabled(false);
 
     lineEdit_ventes_recherche->setFocus();
@@ -594,6 +625,7 @@ void YerothVentesWindow::contextMenuEvent(QContextMenuEvent * event)
     if (tableView_ventes->rowCount() > 0)
     {
         QMenu menu(this);
+        menu.addAction(actionAnnulerCetteVente);
         menu.addAction(actionAfficherVenteDetail);
         menu.setPalette(YerothUtils::YEROTH_WHITE_PALETTE);
         menu.exec(event->globalPos());
@@ -614,6 +646,7 @@ void YerothVentesWindow::clear_all_fields()
     lineEdit_nom_caissier->clearField();
     lineEdit_localisation->clearField();
     lineEdit_quantite_vendue->clearField();
+    lineEdit_ventes_detail_reference_recu_de_vente->clearField();
     lineEdit_vente_detail_heure_vente->clearField();
     lineEdit_vente_detail_prix_unitaire->clearField();
     lineEdit_ventes_tva->clearField();
@@ -1130,7 +1163,7 @@ void YerothVentesWindow::retourVentes()
 }
 
 
-void YerothVentesWindow::handleCurrentChanged(int index)
+void YerothVentesWindow::handleCurrentTabChanged(int index)
 {
     //_logger->log("handleCurrentChanged(int)",
     //                  QString("handleCurrentChanged]. index: %1").arg(index));
@@ -1148,6 +1181,8 @@ void YerothVentesWindow::handleCurrentChanged(int index)
     default:
         break;
     }
+
+	modifier_visibilite_annuler_cette_vente();
 }
 
 
@@ -1303,6 +1338,9 @@ void YerothVentesWindow::afficher_vente_detail()
     dateEdit_vente_detail_date_vente->setDate(GET_DATE_FROM_STRING(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DATE_VENTE)));
 
     lineEdit_vente_detail_heure_vente->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::HEURE_VENTE));
+
+    lineEdit_ventes_detail_reference_recu_de_vente->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE_RECU_VENDU));
+
     lineEdit_nom_caissier->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_CAISSIER));
     lineEdit_localisation->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::LOCALISATION));
 
