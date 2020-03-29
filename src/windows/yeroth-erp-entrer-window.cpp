@@ -1018,10 +1018,8 @@ bool YerothEntrerWindow::insertStockItemInProductList()
     return success;
 }
 
-bool YerothEntrerWindow::isStockItemInProductList()
+enum service_stock_already_exist_type YerothEntrerWindow::isStockItemInProductList()
 {
-	bool result = false;
-
     YerothSqlTableModel & productListSqlTableModel = _allWindows->getSqlTableModel_marchandises();
 
     if (checkBox_service->isChecked())
@@ -1030,7 +1028,12 @@ bool YerothEntrerWindow::isStockItemInProductList()
             productListSqlTableModel.Is_SearchQSqlTable(YerothDatabaseTableColumn::REFERENCE,
             		lineEdit_reference_produit->text());
 
-    	return (referenceRowCount > 0);
+    	bool serviceStockReferenceExist = (referenceRowCount > 0);
+
+    	if (serviceStockReferenceExist)
+    	{
+    		return SERVICE_REFERENCE_EXISTS;
+    	}
     }
 
     int designationRowCount =
@@ -1041,9 +1044,14 @@ bool YerothEntrerWindow::isStockItemInProductList()
         productListSqlTableModel.Is_SearchQSqlTable(YerothDatabaseTableColumn::CATEGORIE,
                 lineEdit_categorie_produit->text());
 
-    result = (designationRowCount > 0) && (categorieRowCount > 0);
+    bool result = (designationRowCount > 0) && (categorieRowCount > 0);
 
-    return result;
+    if (result)
+    {
+    	return SERVICE_STOCK_DESIGNATION_AND_CATEGORIE_EXIST;
+    }
+
+    return SERVICE_STOCK_UNDEFINED;
 }
 
 
@@ -1295,10 +1303,15 @@ bool YerothEntrerWindow::handle_clients_table(int stockID, double montant_total_
 		clientsTableModel.resetFilter();
 
     	//handle 'stocks_vendu' table
-    	bool success_stocksVendu = handle_stocks_vendu_table(stockID,
-    							  	  	  	  	  	  	  	 aServiceClientInfo,
-															 montant_total_vente,
-															 nouveau_compte_client);
+    	bool success_stocksVendu = false;
+
+    	if (success_clients)
+    	{
+    		success_stocksVendu = handle_stocks_vendu_table(stockID,
+    								  	  	  	  	  	    aServiceClientInfo,
+															montant_total_vente,
+															nouveau_compte_client);
+    	}
 
 		return success_stocksVendu && true;
 	}
@@ -1374,7 +1387,9 @@ void YerothEntrerWindow::enregistrer_produit()
 
     YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
 
-    if (!isStockItemInProductList())
+    service_stock_already_exist_type serviceStockExists = isStockItemInProductList();
+
+    if (SERVICE_STOCK_UNDEFINED == serviceStockExists)
     {
     	insertStockItemInProductList();
     }
@@ -1382,10 +1397,24 @@ void YerothEntrerWindow::enregistrer_produit()
     {
     	if (checkBox_service->isChecked())
     	{
+    		if (SERVICE_REFERENCE_EXISTS == serviceStockExists)
+    		{
+    			YerothQMessageBox::information(this,
+    										   QObject::trUtf8("aide"),
+											   QString(QObject::trUtf8("Un service (stock) avec la référence '%1' existe déjà !")
+    						 	 	 	 	 	 	.arg(lineEdit_reference_produit->text())));
+    			return;
+    		}
+    	}
+
+    	if (SERVICE_STOCK_DESIGNATION_AND_CATEGORIE_EXIST == serviceStockExists)
+    	{
     		YerothQMessageBox::information(this,
     						 QObject::trUtf8("aide"),
-    						 QString(QObject::trUtf8("Un service avec la référence '%1' existe déjà !")
-    						 	 .arg(lineEdit_reference_produit->text())));
+    						 QString(QObject::trUtf8("Un service (ou stock) avec la désignation '%1' "
+    								 	 	 	 	 "et la catégorie '%2') existe déjà !")
+    						 	 .arg(lineEdit_designation->text(),
+									  lineEdit_categorie_produit->text())));
     		return;
     	}
     }
@@ -1428,11 +1457,6 @@ void YerothEntrerWindow::enregistrer_produit()
     QSqlRecord record = _curStocksTableModel->record();
 
     int stock_id_to_save = _allWindows->getNextIdSqlTableModel_stocks();
-
-    if (checkBox_service->isChecked())
-    {
-    	stock_id_to_save = _allWindows->getNextIdSqlTableModel_stocks_vendu();
-    }
 
     if (!checkBox_service->isChecked() && hasBuying())
     {
@@ -1546,7 +1570,7 @@ void YerothEntrerWindow::enregistrer_produit()
     				stock_id_to_save,
 					GET_CURRENT_DATE,
 					quantite_total,
-					0,
+					quantite_total,
 					quantite_total));
 
     //qDebug() << QString("++ test: %1")

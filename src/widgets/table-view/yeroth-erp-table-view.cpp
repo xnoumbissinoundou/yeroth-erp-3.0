@@ -307,7 +307,7 @@ void YerothTableView::lister_lhistorique_du_stock(const QStringList &aMouvementS
     QString idHdr(QObject::tr("ID du stock"));
     QString operationHdr(QObject::trUtf8("Type d'opération"));
     QString qteInitialeHdr(QObject::trUtf8("Qté initiale en stock"));
-    QString qteRetireeHdr(QObject::trUtf8("Qté retirée"));
+    QString qteRetireeHdr(QObject::trUtf8("Qté en mouvement"));
     QString qteRestanteHdr(QObject::trUtf8("Qté restante en stock"));
 
     _tableModelHeaders->clear();
@@ -338,6 +338,8 @@ void YerothTableView::lister_lhistorique_du_stock(const QStringList &aMouvementS
 
     QStringList anEntry;
 
+    QString curTypeMouvementStock;
+
 	QString unMouvementDeStock;
 
     YerothQStandardItem *anItem = 0;
@@ -354,10 +356,26 @@ void YerothTableView::lister_lhistorique_du_stock(const QStringList &aMouvementS
 		{
 			//qDebug() << "++ 1: " << anEntry.at(j);
 
-			if (j == 2)
+			if (2 == j)
 			{
-				anItem = new YerothQStandardItem(
-						YerothHistoriqueStock::get_type_mouvement_stock_string(anEntry.at(j)));
+				curTypeMouvementStock = YerothHistoriqueStock::get_type_mouvement_stock_string(anEntry.at(j));
+
+				anItem = new YerothQStandardItem(curTypeMouvementStock);
+			}
+			else if (5 == j)
+			{
+				if (QObject::tr("RETOUR VENTE") == curTypeMouvementStock ||
+					QObject::tr("ENTRÉE") == curTypeMouvementStock)
+				{
+					//5 is corresponds to 'RETOUR'.
+					strOut = YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING("(+) " + anEntry.at(j));
+				}
+				else
+				{
+					strOut = YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING("(-) " + anEntry.at(j));
+				}
+
+				anItem = new YerothQStandardItem(strOut);
 			}
 			else
 			{

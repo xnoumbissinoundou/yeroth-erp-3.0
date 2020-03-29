@@ -5,9 +5,11 @@
    */
 #include "yeroth-erp-ventes-window.hpp"
 
-#include  "src/process/yeroth-erp-process.hpp"
+#include "src/process/yeroth-erp-process.hpp"
 
 #include "src/yeroth-erp-windows.hpp"
+
+#include "src/utils/yeroth-erp-historique-stock.hpp"
 
 #include "src/windows/yeroth-erp-stock-detail-window.hpp"
 
@@ -19,11 +21,12 @@
 
 #include "src/utils/yeroth-erp-utils.hpp"
 
+
 #include <QtSql/QSqlQuery>
 
 #include <QtSql/QSqlError>
 
-#include  <QtWidgets/QFileDialog>
+#include <QtWidgets/QFileDialog>
 
 #include <QtWidgets/QCompleter>
 
@@ -42,6 +45,7 @@
 #include <QtCore/QProcess>
 
 #include <QtCore/QProcessEnvironment>
+
 
 #include <unistd.h>
 
@@ -217,6 +221,9 @@ bool YerothVentesWindow::annuler_cette_vente()
 	QSqlRecord curStockRecord;
 	QString curStockTableFilter;
 
+    QString curHistoriqueStock;
+    QString curHistoriqueStockRetour;
+
 	QString curStocksVenduID;
 	QString curStocksVendu_stocksID;
 	QString curStocksVenduDesignation;
@@ -283,6 +290,22 @@ bool YerothVentesWindow::annuler_cette_vente()
 
 			curStockRecord.setValue(YerothDatabaseTableColumn::QUANTITE_TOTAL, curStockNouvelleQuantiteTotal);
 
+			curHistoriqueStock =
+	        		GET_SQL_RECORD_DATA(curStockRecord, YerothDatabaseTableColumn::HISTORIQUE_STOCK);
+
+	        curHistoriqueStockRetour = YerothHistoriqueStock::creer_mouvement_stock
+	        			(RETOUR_VENTE,
+	        			 curStockRecord.value(YerothDatabaseTableColumn::ID).toInt(),
+						 GET_CURRENT_DATE,
+						 curStockQuantiteTotal,
+						 curStocksVenduQuantiteVendue,
+						 curStockNouvelleQuantiteTotal);
+
+	        curHistoriqueStock.append(YerothHistoriqueStock::SEPARATION_EXTERNE)
+	        			   .append(curHistoriqueStockRetour);
+
+	        curStockRecord.setValue(YerothDatabaseTableColumn::HISTORIQUE_STOCK, curHistoriqueStock);
+
 			successReinsertStock = curStockTableModel.updateRecord(0, curStockRecord);
 		}
 		else
@@ -348,6 +371,22 @@ bool YerothVentesWindow::annuler_cette_vente()
 		    curStockRecord.setValue(YerothDatabaseTableColumn::QUANTITE_PAR_LOT, quantite_total);
 
 		    curStockRecord.setValue(YerothDatabaseTableColumn::DATE_ENTREE, GET_CURRENT_DATE);
+
+			curHistoriqueStock =
+	        		GET_SQL_RECORD_DATA(curStockRecord, YerothDatabaseTableColumn::HISTORIQUE_STOCK);
+
+	        curHistoriqueStockRetour = YerothHistoriqueStock::creer_mouvement_stock
+	        			(RETOUR_VENTE,
+	        			 curStocksVendu_stocksID.toInt(),
+						 GET_CURRENT_DATE,
+						 0.0,
+						 curStocksVenduQuantiteVendue,
+						 curStocksVenduQuantiteVendue);
+
+	        curHistoriqueStock.append(YerothHistoriqueStock::SEPARATION_EXTERNE)
+	        			   .append(curHistoriqueStockRetour);
+
+	        curStockRecord.setValue(YerothDatabaseTableColumn::HISTORIQUE_STOCK, curHistoriqueStock);
 
 		    successReinsertStock = curStockTableModel.insertNewRecord(curStockRecord);
 		}

@@ -118,7 +118,16 @@ void YerothHistoriqueDuStockWindow::getStockHistoryListingTexTableString(QString
             continue;
         }
 
-        texTable_in_out.append("c|");
+        if (4 == k ||
+		    5 == k ||
+			6 == k)
+        {
+        	texTable_in_out.append("r|");
+        }
+        else
+        {
+        	texTable_in_out.append("c|");
+        }
     }
 
     texTable_in_out.append("} \\hline").append("\n");

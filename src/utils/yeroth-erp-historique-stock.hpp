@@ -18,11 +18,12 @@ class YerothUtils;
 
 enum TypeMouvementStock
 {
-	INDEFINI = 		0,
-	ENTREE = 		1,
-	VENTE   = 		2,
-	SORTIE	= 		3,
-	TRANSFERT = 	4
+	INDEFINI 		= 	0,
+	ENTREE	 		= 	1,
+	VENTE    		= 	2,
+	SORTIE	  		= 	3,
+	TRANSFERT 		= 	4,
+	RETOUR_VENTE	= 	5
 };
 
 class YerothHistoriqueStock
@@ -55,7 +56,7 @@ public:
 										 int   	operationId,
 										 QDate 	date,
 										 double qte_initiale_en_stock,
-										 double qte_retiree,
+										 double qte_en_mouvement,
 										 double qte_restante);
 
 	static QString get_type_mouvement_stock_string(const QString &aStockHistory);

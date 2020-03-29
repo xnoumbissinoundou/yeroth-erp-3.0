@@ -30,6 +30,7 @@ YerothHistoriqueStock::YerothHistoriqueStock()
 	_qstringToTypeMouvement.insert("2", VENTE);
 	_qstringToTypeMouvement.insert("3", SORTIE);
 	_qstringToTypeMouvement.insert("4", TRANSFERT);
+	_qstringToTypeMouvement.insert("5", RETOUR_VENTE);
 }
 
 
@@ -73,7 +74,7 @@ QString YerothHistoriqueStock::creer_mouvement_stock(enum TypeMouvementStock aTy
 													int  	mouvementId,
 													QDate 	date,
 													double 	qte_initiale_en_stock,
-													double 	qte_retiree,
+													double 	qte_en_mouvement,
 													double 	qte_restante)
 {
 	unsigned int typeMouvement = (unsigned int) aTypeMouvementStock;
@@ -84,7 +85,7 @@ QString YerothHistoriqueStock::creer_mouvement_stock(enum TypeMouvementStock aTy
 							 QString::number(typeMouvement),
 							 QString::number(mouvementId),
 							 GET_DOUBLE_STRING(qte_initiale_en_stock),
-							 GET_DOUBLE_STRING(qte_retiree),
+							 GET_DOUBLE_STRING(qte_en_mouvement),
 							 GET_DOUBLE_STRING(qte_restante));
 
 	return result;
@@ -111,6 +112,10 @@ QString YerothHistoriqueStock::get_type_mouvement_stock_string(const QString & a
 	else if ("4" == aStockHistory)
 	{
 		return QObject::tr("TRANSFERT");
+	}
+	else if ("5" == aStockHistory)
+	{
+		return QObject::tr("RETOUR VENTE");
 	}
 	else
 	{

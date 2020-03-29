@@ -22,6 +22,14 @@ class YerothSqlTableModel;
 class ServiceClientInfo;
 
 
+enum service_stock_already_exist_type
+{
+	SERVICE_REFERENCE_EXISTS 						= 0,
+	SERVICE_STOCK_DESIGNATION_AND_CATEGORIE_EXIST 	= 1,
+	SERVICE_STOCK_UNDEFINED							= 2
+};
+
+
 class YerothEntrerWindow : public YerothWindowsCommons, private Ui_YerothEntrerWindow
 {
     Q_OBJECT
@@ -191,7 +199,7 @@ private:
 
     bool insertStockItemInProductList();
 
-    bool isStockItemInProductList();
+    enum service_stock_already_exist_type isStockItemInProductList();
 
     void showItem();
 
