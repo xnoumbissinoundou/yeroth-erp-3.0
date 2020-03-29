@@ -186,6 +186,9 @@ private slots:
 
 private:
 
+    bool handleCompteClient(QString client_id,
+							double curMontantARembourserAuClient);
+
 	void set_filtrer_font();
 
 	void setCurrentlyFiltered(bool currentlyFiltered);
