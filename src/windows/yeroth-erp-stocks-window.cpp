@@ -256,8 +256,8 @@ void YerothStocksWindow::private_slot_afficher_historique_du_stock()
 
 	    QString stockDesignation(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
 
-	    qDebug() << QString("++ historiqueStockSelectionne: %1")
-	    				.arg(historiqueStockSelectionne);
+//	    qDebug() << QString("++ historiqueStockSelectionne: %1")
+//	    				.arg(historiqueStockSelectionne);
 
 	    YerothHistoriqueStock::listHistoriqueDuStock(historiqueStockSelectionne,
 	    											 stockReference,

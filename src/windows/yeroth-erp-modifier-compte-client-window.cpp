@@ -269,10 +269,8 @@ void YerothModifierCompteClientWindow::definirMagasinier()
 bool YerothModifierCompteClientWindow::modifier_client_check_fields()
 {
     bool nom_entreprise = lineEdit_modifier_compteclient_nom_entreprise->checkField();
-    bool nom_representant = lineEdit_modifier_compteclient_nom_representant->checkField();
 
-    return nom_entreprise &&
-           nom_representant;
+    return nom_entreprise;
 }
 
 
