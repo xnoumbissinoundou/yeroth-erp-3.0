@@ -312,29 +312,32 @@ bool YerothPayerCompteClientWindow::putCashIntoCustomerAccount()
 
     	QString msg;
 
+    	if (cashPaymentAmount <= 0)
+    	{
+    		msg.clear();
+    		msg.append(QString(QObject::trUtf8("Le montant donné doit être supérieur "
+    										   "à %1 !"))
+    					 .arg(GET_CURRENCY_STRING_NUM(cashPaymentAmount)));
+
+    		YerothQMessageBox::information(this, QObject::trUtf8("annulation du paiement"),
+    									   msg,
+										   QMessageBox::Ok);
+
+    		return false;
+    	}
+
     	if (cashPaymentAmount > _curReferenceEngagementResteAPayer)
     	{
     		msg.clear();
-    	    msg.append(QString(QObject::trUtf8("Poursuivre avec le paiement de %1"
-    	    									" ? (montant supérieur à la dette restante !)"))
-    	    				.arg(GET_CURRENCY_STRING_NUM(cashPaymentAmount)));
+    		msg.append(QString(QObject::trUtf8("Le montant donné (%1) ne doit pas être supérieur "
+    										   "à la dette restante !"))
+    					 .arg(GET_CURRENCY_STRING_NUM(cashPaymentAmount)));
 
-    	    if (QMessageBox::Cancel ==
-    	            YerothQMessageBox::question(this, QObject::trUtf8("montant supérieur"),
-    	    									msg,
-    											QMessageBox::Cancel,
-    											QMessageBox::Ok))
-    	    {
-    	    	YerothQMessageBox::information(this, QObject::trUtf8("annulation du paiement"),
-    	    								    QObject::trUtf8("Vous avez annulé le paiement d'un "
-    	    								    				"montant supérieur à la dette restante !"),
-												QMessageBox::Ok);
+    		YerothQMessageBox::information(this, QObject::trUtf8("annulation du paiement"),
+    									   msg,
+										   QMessageBox::Ok);
 
-    	    	return false;
-    	    }
-    	    else
-    	    {
-    	    }
+    		return false;
     	}
     	else
     	{
@@ -503,11 +506,11 @@ void YerothPayerCompteClientWindow::setupLineEditsQCompleters()
 
 void YerothPayerCompteClientWindow::populatePayerAuCompteClientsComboBoxes()
 {
-	comboBox_clients_typedepaiement->setupPopulateNOTRawString(_allWindows->TYPE_DE_PAIEMENT,
+	comboBox_clients_typedepaiement->setupPopulateNORawString(_allWindows->TYPE_DE_PAIEMENT,
     															YerothDatabaseTableColumn::TYPE_DE_PAIEMENT,
 																&YerothUtils::_typedepaiementToUserViewString);
 
-	comboBox_clients_typedepaiement->populateComboBoxWithViewStringActivated();
+	comboBox_clients_typedepaiement->populateComboBoxWithout(YerothUtils::VERSEMENT_ACHAT_ANNULE);
 }
 
 

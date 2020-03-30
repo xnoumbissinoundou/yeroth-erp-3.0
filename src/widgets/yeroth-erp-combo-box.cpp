@@ -30,7 +30,7 @@ YerothComboBox::YerothComboBox(QWidget *parent)
 }
 
 
-void YerothComboBox::setupPopulateNOTRawString(QString aDBTableViewStringName,
+void YerothComboBox::setupPopulateNORawString(QString aDBTableViewStringName,
 		   	   	   	   	   	   	   	   	   	   QString aDBFieldColumn,
 											   QMap<int, QString> *pointerToUserViewStringMAP)
 {
@@ -120,7 +120,7 @@ bool YerothComboBox::populateComboBoxRawString(QString aDBTableViewStringName,
     {
         QSqlRecord rec = query.record();
 
-        curItems.append("");
+        curItems.append(YerothUtils::EMPTY_STRING);
 
         while (query.next())
         {
@@ -199,7 +199,7 @@ bool YerothComboBox::populateComboBoxMissingRawString(const QString aDBFieldColu
  * element of the combo box when modifying an existing set
  * of combo box elements.
  */
-bool YerothComboBox::populateComboBoxWithViewStringActivated()
+bool YerothComboBox::populateComboBox()
 {
 	if (isPopulateRaw())
 	{
@@ -223,7 +223,7 @@ bool YerothComboBox::populateComboBoxWithViewStringActivated()
     {
         QSqlRecord rec = query.record();
 
-        curItems.append("");
+        curItems.append(YerothUtils::EMPTY_STRING);
 
         while (query.next())
         {
@@ -295,3 +295,51 @@ bool YerothComboBox::populateComboBoxMissing(const int aContentINTValue)
 }
 
 
+/*
+ * This is used when the argument 'aContent' must not be
+ * present in the combo box.
+ */
+bool YerothComboBox::populateComboBoxWithout(const int aContentINTValue)
+{
+	if (isPopulateRaw())
+	{
+		return false;
+	}
+
+    static QStringList curItems;
+
+    QString strQuery(QString("select %1 from %2")
+    					.arg(_dbFieldColumn, _dbTableViewStringName));
+
+    QSqlQuery query;
+    query.prepare(strQuery);
+    bool success = query.exec();
+    //qDebug() << "[" << success << "]" << query.executedQuery();
+
+    if (success)
+    {
+        QSqlRecord rec = query.record();
+
+        QString aContent(_pointerToUserViewStringMAP->value(aContentINTValue));
+
+        curItems.append(YerothUtils::EMPTY_STRING);
+
+        QString content;
+
+        while (query.next())
+        {
+            content = _pointerToUserViewStringMAP->value(query.value(0).toInt());
+
+            if (content != aContent)
+            {
+                curItems.append(content);
+            }
+        }
+    }
+
+    addItems(curItems);
+
+    curItems.clear();
+
+    return true;
+}

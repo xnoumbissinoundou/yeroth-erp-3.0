@@ -29,7 +29,7 @@ public:
 
 	inline ~YerothComboBox(){}
 
-	void setupPopulateNOTRawString(QString aDBTableViewStringName,
+	void setupPopulateNORawString(QString aDBTableViewStringName,
 								   QString aDBFieldColumn,
 								   QMap<int, QString> *pointerToUserViewStringMAP);
 
@@ -95,9 +95,11 @@ public:
 										  const QString aDBTableViewString,
 										  const QString aContentSTRINGValue);
 
-	bool populateComboBoxWithViewStringActivated();
+	bool populateComboBox();
 
 	bool populateComboBoxMissing(const int aContentINTValue);
+
+	bool populateComboBoxWithout(const int aContentINTValue);
 
 
 private:

@@ -231,11 +231,11 @@ void YerothPaiementsWindow::populateComboBoxes()
 {
 	_logger->log("populateComboBoxes");
 
-	comboBox_paiements_type_de_paiement->setupPopulateNOTRawString(_allWindows->TYPE_DE_PAIEMENT,
+	comboBox_paiements_type_de_paiement->setupPopulateNORawString(_allWindows->TYPE_DE_PAIEMENT,
 																   YerothDatabaseTableColumn::TYPE_DE_PAIEMENT,
 																   &YerothUtils::_typedepaiementToUserViewString);
 
-	comboBox_paiements_type_de_paiement->populateComboBoxWithViewStringActivated();
+	comboBox_paiements_type_de_paiement->populateComboBox();
 
 	QStringList aQStringList;
 

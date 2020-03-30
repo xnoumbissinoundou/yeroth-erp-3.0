@@ -27,11 +27,11 @@ _savePassword(false)
                                        "QMessageBox QLabel {color: rgb(%2);}").
                                arg(COLOUR_RGB_STRING_YEROTH_DARK_GREEN_47_67_67, COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
-    comboBox_modifier_utilisateur_titre->setupPopulateNOTRawString(_allWindows->TITRES,
+    comboBox_modifier_utilisateur_titre->setupPopulateNORawString(_allWindows->TITRES,
     															   YerothDatabaseTableColumn::APPELATION_TITRE,
 																   &YerothUtils::_titreToUserViewString);
 
-    comboBox_modifier_utilisateur_role->setupPopulateNOTRawString(_allWindows->ROLES,
+    comboBox_modifier_utilisateur_role->setupPopulateNORawString(_allWindows->ROLES,
     															  YerothDatabaseTableColumn::NOM_ROLE,
 																  &YerothUtils::_roleToUserViewString);
 

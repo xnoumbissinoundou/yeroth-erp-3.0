@@ -392,6 +392,9 @@ YerothUtils::YerothUtils()
     YerothUtils::_typedepaiementToUserViewString.insert(YerothUtils::VERSEMENT_VIREMENT_BANCAIRE,
 			QObject::trUtf8("versement (virement bancaire)"));
 
+    YerothUtils::_typedepaiementToUserViewString.insert(YerothUtils::VERSEMENT_ACHAT_ANNULE,
+			QObject::trUtf8("versement (retour achat (annulé))"));
+
     YerothUtils::_typedepaiementToUserViewString.insert(YerothUtils::VERSEMENT_INDEFINI,
 			QObject::trUtf8("indéfini"));
 }
