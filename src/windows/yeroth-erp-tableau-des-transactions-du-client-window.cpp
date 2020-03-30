@@ -105,7 +105,15 @@ void YerothTableauDesTransactionsDuClientWindow::getTransactionsDunClientTexTabl
             continue;
         }
 
-        texTable_in_out.append("c|");
+        if (3 == k ||
+		    4 == k )
+        {
+        	texTable_in_out.append("r|");
+        }
+        else
+        {
+        	texTable_in_out.append("c|");
+        }
     }
 
     texTable_in_out.append("} \\hline").append("\n");
