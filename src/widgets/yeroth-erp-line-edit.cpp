@@ -47,7 +47,7 @@ void YerothLineEdit::disableForSearch()
 {
     _forSearch = false;
 
-    setPlaceholderText("");
+    setPlaceholderText(YerothUtils::EMPTY_STRING);
 }
 
 bool YerothLineEdit::checkField(const QPalette *aPalette /* = 0 */)
@@ -56,7 +56,7 @@ bool YerothLineEdit::checkField(const QPalette *aPalette /* = 0 */)
     {
     	_wasMissingRequiredText = true;
 
-    	setText("");
+    	setText(YerothUtils::EMPTY_STRING);
 
     	setPlaceholderText(QObject::trUtf8("[* champ de texte obligatoire]"));
 
@@ -310,6 +310,7 @@ void YerothLineEdit::setupMyQCompleterALL(QString sqlTableName)
     connect( this, SIGNAL(returnPressed()), this, SLOT(clearQCompleterText()) );
 }
 
+
 void YerothLineEdit::setupMyQCompleterDEF_DEO(QString sqlTableName)
 {
     _sqlTableModelView = new YerothTableView;
@@ -448,6 +449,7 @@ void YerothLineEdit::setupMyQCompleterCodebarALL(QString sqlTableName)
     setCompleter(_searchQCompleter);
 }
 
+
 void YerothLineEdit::setupMyQCompleterCodebarDEF_DEO(QString sqlTableName)
 {
     _sqlTableModelView = new YerothTableView;
@@ -484,6 +486,7 @@ void YerothLineEdit::setupMyQCompleterCodebarDEF_DEO(QString sqlTableName)
 
     setCompleter(_searchQCompleter);
 }
+
 
 void YerothLineEdit::setupMyQCompleterCodebarFIFO(QString sqlTableName)
 {
@@ -522,6 +525,7 @@ void YerothLineEdit::setupMyQCompleterCodebarFIFO(QString sqlTableName)
     setCompleter(_searchQCompleter);
 }
 
+
 void YerothLineEdit::setupMyQCompleterCodebarLIFO(QString sqlTableName)
 {
     _sqlTableModelView = new YerothTableView;
@@ -559,6 +563,7 @@ void YerothLineEdit::setupMyQCompleterCodebarLIFO(QString sqlTableName)
     setCompleter(_searchQCompleter);
 }
 
+
 void YerothLineEdit::refreshCodebarCompleterList(QString strategy)
 {
     //qDebug() << "++ test refresh: " << _sqlTableModelView;
@@ -585,6 +590,7 @@ void YerothLineEdit::refreshCodebarCompleterList(QString strategy)
         _sqlTableModelView->lister_codebar_DEF_DEO(*_sqlTableModel, _designationToTableRows);
     }
 }
+
 
 void YerothLineEdit::refreshCompleterList(QString strategy)
 {
