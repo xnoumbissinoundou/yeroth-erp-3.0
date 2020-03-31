@@ -202,74 +202,79 @@ public:
 		return *_desktopWidget;
 	}
 
-	inline int getNextIdSqlTableModel_users()
+	static inline int getNextIdSqlTableModel_users()
 	{
-		return YerothUtils::getNextIdFromTable(this->USERS);
+		return YerothERPWindows::getNextIdFromTable(YerothERPWindows::USERS);
 	}
 
-	inline int getNextIdSqlTableModel_titres()
+	static inline int getNextIdSqlTableModel_titres()
 	{
-		return YerothUtils::getNextIdFromTable(this->TITRES);
+		return YerothERPWindows::getNextIdFromTable(YerothERPWindows::TITRES);
 	}
 
-	inline int getNextIdSqlTableModel_localisations()
+	static inline int getNextIdSqlTableModel_localisations()
 	{
-		return YerothUtils::getNextIdFromTable(this->LOCALISATIONS);
+		return YerothERPWindows::getNextIdFromTable(YerothERPWindows::LOCALISATIONS);
 	}
 
-	inline int getNextIdSqlTableModel_categories()
+	static inline int getNextIdSqlTableModel_categories()
 	{
-		return YerothUtils::getNextIdFromTable(this->CATEGORIES);
+		return YerothERPWindows::getNextIdFromTable(YerothERPWindows::CATEGORIES);
 	}
 
-	inline int getNextIdSqlTableModel_alertes()
+	static inline int getNextIdSqlTableModel_alertes()
 	{
-		return YerothUtils::getNextIdFromTable(this->ALERTES);
+		return YerothERPWindows::getNextIdFromTable(YerothERPWindows::ALERTES);
 	}
 
-	inline int getNextIdSqlTableModel_conditions_alertes()
+	static inline int getNextIdSqlTableModel_conditions_alertes()
 	{
-		return YerothUtils::getNextIdFromTable(this->CONDITIONS_ALERTES);
+		return YerothERPWindows::getNextIdFromTable(YerothERPWindows::CONDITIONS_ALERTES);
 	}
 
-	inline int getNextIdSqlTableModel_courriers_alertes()
+	static inline int getNextIdSqlTableModel_courriers_alertes()
 	{
-		return YerothUtils::getNextIdFromTable(this->COURRIERS_ALERTES);
+		return YerothERPWindows::getNextIdFromTable(YerothERPWindows::COURRIERS_ALERTES);
 	}
 
-	inline int getNextIdSqlTableModel_clients()
+	static inline int getNextIdSqlTableModel_clients()
 	{
-		return YerothUtils::getNextIdFromTable(this->CLIENTS);
+		return YerothERPWindows::getNextIdFromTable(YerothERPWindows::CLIENTS);
 	}
 
-	inline int getNextIdSqlTableModel_fournisseurs()
+	static inline int getNextIdSqlTableModel_fournisseurs()
 	{
-		return YerothUtils::getNextIdFromTable(this->FOURNISSEURS);
+		return YerothERPWindows::getNextIdFromTable(YerothERPWindows::FOURNISSEURS);
 	}
 
-	inline int getNextIdSqlTableModel_achats()
+	static inline int getNextIdSqlTableModel_achats()
 	{
-		return YerothUtils::getNextIdFromTable(this->ACHATS);
+		return YerothERPWindows::getNextIdFromTable(YerothERPWindows::ACHATS);
 	}
 
-	inline int getNextIdSqlTableModel_stocks()
+	static inline int getNextIdSqlTableModel_marchandises()
 	{
-		return YerothUtils::getNextIdFromTable(this->STOCKS);
+		return YerothERPWindows::getNextIdFromTable(YerothERPWindows::MARCHANDISES);
 	}
 
-	inline int getNextIdSqlTableModel_services_completes()
+	static inline int getNextIdSqlTableModel_stocks()
 	{
-		return YerothUtils::getNextIdFromTable(this->SERVICES_COMPLETES);
+		return YerothERPWindows::MAX_ID_MYSQL_FOR_STOCKS();
 	}
 
-	inline int getNextIdSqlTableModel_stocks_vendu()
+	static inline int getNextIdSqlTableModel_services_completes()
 	{
-		return YerothUtils::getNextIdFromTable(this->STOCKS_VENDU);
+		return YerothERPWindows::getNextIdFromTable(YerothERPWindows::SERVICES_COMPLETES);
 	}
 
-	inline int getNextIdSqlTableModel_stocks_sorties()
+	static inline int getNextIdSqlTableModel_stocks_vendu()
 	{
-		return YerothUtils::getNextIdFromTable(this->STOCKS_SORTIES);
+		return YerothERPWindows::getNextIdFromTable(YerothERPWindows::STOCKS_VENDU);
+	}
+
+	static inline int getNextIdSqlTableModel_stocks_sorties()
+	{
+		return YerothERPWindows::getNextIdFromTable(YerothERPWindows::STOCKS_SORTIES);
 	}
 
 	inline void setCurrentPosition(QPoint *currentPosition)
@@ -392,6 +397,10 @@ public:
 	YerothAdminModifierWindow							*_adminModifierWindow;
 
 private:
+
+	static int MAX_ID_MYSQL_FOR_STOCKS();
+
+	static int getNextIdFromTable(const QString &tableName);
 
 	YerothDatabase 			*_database;
 

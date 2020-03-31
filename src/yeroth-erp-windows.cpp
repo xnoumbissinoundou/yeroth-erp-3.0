@@ -42,6 +42,8 @@
 
 #include <QtSql/QSqlDriver>
 
+#include <QtSql/QSqlQuery>
+
 #include <QtWidgets/QDesktopWidget>
 
 
@@ -823,4 +825,60 @@ bool YerothERPWindows::move(QMainWindow &aWindow)
 
     //qDebug() << "no move: ";
     return false;
+}
+
+
+int YerothERPWindows::MAX_ID_MYSQL_FOR_STOCKS()
+{
+	int max_id = 0;
+
+	QString MAX_ID_QUERY_FOR_STOCKS(QString("SELECT IFNULL(MAX(id), 0)"
+						  " FROM"
+						  " ("
+						  " SELECT id FROM %1"
+						  " UNION ALL"
+						  " SELECT %2 as id FROM %3"
+						  " UNION ALL"
+						  " SELECT %4 as id FROM %5"
+						  " ) a")
+					.arg(STOCKS,
+						 YerothDatabaseTableColumn::STOCKS_ID,
+						 STOCKS_VENDU,
+						 YerothDatabaseTableColumn::STOCKS_ID,
+						 SERVICES_COMPLETES));
+
+	QSqlQuery aQuery;
+
+    int querySize = YerothUtils::execQuery(aQuery, MAX_ID_QUERY_FOR_STOCKS);
+
+    if (querySize > 0 && aQuery.next())
+    {
+    	max_id = aQuery.value(0).toInt();
+
+    	max_id += 1;
+    }
+
+    return max_id;
+}
+
+
+int YerothERPWindows::getNextIdFromTable(const QString &tableName)
+{
+    //qDebug() << "[YerothUtils::getLastIdFromTable()] : next id from table '" << tableName << "'";
+    QString strQuery(QString("SELECT %1 FROM %2")
+    					.arg(YerothDatabaseTableColumn::ID,
+    						 tableName));
+
+    QSqlQuery query(strQuery);
+    QSqlRecord rec = query.record();
+
+    if (query.last())
+    {
+        int lastId = query.value(0).toInt();
+        ++lastId;
+        //qDebug() << "\t next id 1: " << lastId;
+        return lastId;
+    }
+
+    return 0;
 }

@@ -697,27 +697,6 @@ int YerothUtils::execQuery(QSqlQuery &query, YerothLogger *logger)
     return query.size();
 }
 
-int YerothUtils::getNextIdFromTable(const QString &tableName)
-{
-    //qDebug() << "[YerothUtils::getLastIdFromTable()] : next id from table '" << tableName << "'";
-    QString strQuery(QString("SELECT %1 FROM %2")
-    					.arg(YerothDatabaseTableColumn::ID,
-    						 tableName));
-
-    QSqlQuery query(strQuery);
-    QSqlRecord rec = query.record();
-
-    if (query.last())
-    {
-        int lastId = query.value(0).toInt();
-        ++lastId;
-        //qDebug() << "\t next id 1: " << lastId;
-        return lastId;
-    }
-
-    return 0;
-}
-
 
 void YerothUtils::loadPixmapFromDB(QLabel &label_image,
                                   QVariant imageVariant,

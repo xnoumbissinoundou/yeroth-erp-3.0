@@ -406,6 +406,13 @@ void YerothMainWindow::help()
     //YerothUserLAdministrateur *u = new YerothUserLAdministrateur(_allWindows);
     //YerothUserLeCaissier *u = new YerothUserLeCaissier(_allWindows);
     //YerothUserLeMagasinier *u = new YerothUserLeMagasinier(_allWindows);
+
+	YerothERPConfig::tva_value = 7.25/100.0;
+
+	YerothERPConfig::currency = "FCFA";
+
+	YerothERPConfig::printer = YerothUtils::IMPRIMANTE_EPSON_TM_T20ii;
+
     YerothPOSUserManager *u = new YerothPOSUserManager(_allWindows);
     u->set_prenom("Xavier");
     u->set_nom("NOUMBISSI NOUNDOU");

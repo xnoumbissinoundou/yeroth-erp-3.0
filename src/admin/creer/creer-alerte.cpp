@@ -53,7 +53,7 @@ bool YerothAdminCreateWindow::creer_alerte()
 
         QSqlRecord stocksRecord = stocksTableModel.record(0);
 
-        record.setValue(YerothDatabaseTableColumn::ID, _allWindows->getNextIdSqlTableModel_alertes());
+        record.setValue(YerothDatabaseTableColumn::ID, YerothERPWindows::getNextIdSqlTableModel_alertes());
         record.setValue(YerothDatabaseTableColumn::DESIGNATION_ALERTE, lineEdit_creer_alerte_nom->text());
         record.setValue(YerothDatabaseTableColumn::DESTINATAIRE, lineEdit_creer_alerte_destinataire->text());
         record.setValue(YerothDatabaseTableColumn::NOM_COMPLET_DESTINATAIRE, lineEdit_creer_alerte_nom_destinataire->text());

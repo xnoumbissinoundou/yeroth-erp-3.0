@@ -23,9 +23,6 @@
 
 #include <QtSql/QSqlQuery>
 
-#include <QtSql/QSqlIndex>
-
-
 
 const unsigned int YerothEntrerWindow::MAX_STOCKS(7);
 
@@ -233,7 +230,7 @@ bool YerothEntrerWindow::creerNouveauClient(const QString proposedCustomerName)
 
 		QSqlRecord record = customerSqlTableModel.record();
 
-		record.setValue(YerothDatabaseTableColumn::ID, _allWindows->getNextIdSqlTableModel_clients());
+		record.setValue(YerothDatabaseTableColumn::ID, YerothERPWindows::getNextIdSqlTableModel_clients());
 		record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE, proposedCustomerName);
 		record.setValue(YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT, 0.0);
 		record.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT, 0.0);
@@ -288,7 +285,7 @@ bool YerothEntrerWindow::creerNouveauFournisseur(const QString proposedFournisse
 
 		QSqlRecord record = fournisseurSqlTableModel.record();
 
-		record.setValue(YerothDatabaseTableColumn::ID, _allWindows->getNextIdSqlTableModel_fournisseurs());
+		record.setValue(YerothDatabaseTableColumn::ID, YerothERPWindows::getNextIdSqlTableModel_fournisseurs());
 		record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE, proposedFournisseurName);
 
 		QString retMsg(QString(QObject::trUtf8("L'entreprise fournisseur '%1"))
@@ -341,7 +338,7 @@ bool YerothEntrerWindow::creerNouvelleCategorie(const QString proposedCategorieN
 
     	QSqlRecord record = categorieSqlTableModel.record();
 
-    	record.setValue(YerothDatabaseTableColumn::ID, _allWindows->getNextIdSqlTableModel_categories());
+    	record.setValue(YerothDatabaseTableColumn::ID, YerothERPWindows::getNextIdSqlTableModel_categories());
     	record.setValue(YerothDatabaseTableColumn::NOM_CATEGORIE, proposedCategorieName);
     	record.setValue(YerothDatabaseTableColumn::DESCRIPTION_CATEGORIE, "");
 
@@ -949,7 +946,7 @@ bool YerothEntrerWindow::insertStockItemInProductList()
     QSqlRecord record = productListSqlTableModel.record();
 
     record.setValue(YerothDatabaseTableColumn::ID,
-                    YerothUtils::getNextIdFromTable(_allWindows->MARCHANDISES));
+                    YerothERPWindows::getNextIdSqlTableModel_marchandises());
 
     if (checkBox_service->isChecked())
     {
@@ -1062,7 +1059,7 @@ bool YerothEntrerWindow::handle_stocks_vendu_table(int stockID,
 {
 	QString clientName = lineEdit_nom_entreprise_fournisseur->text();
 
-    int stocksVenduID = _allWindows->getNextIdSqlTableModel_stocks_vendu();
+    int stocksVenduID = YerothERPWindows::getNextIdSqlTableModel_stocks_vendu();
 
     QString referenceRecuVenduCompteClient(YerothUtils::GET_REFERENCE_RECU_VENDU(QString::number(stocksVenduID)));
 
@@ -1214,7 +1211,7 @@ bool YerothEntrerWindow::handle_stocks_vendu_table(int stockID,
     									.arg(_allWindows->STOCKS_VENDU,
     										 _allWindows->STOCKS_VENDU,
 											 QString::number(stocksVenduID),
-											 QString::number(_allWindows->getNextIdSqlTableModel_services_completes()),
+											 QString::number(YerothERPWindows::getNextIdSqlTableModel_services_completes()),
 											 _allWindows->SERVICES_COMPLETES));
 
     			if (YerothUtils::execQuery(copyRowQuery))
@@ -1400,22 +1397,23 @@ void YerothEntrerWindow::enregistrer_produit()
     		if (SERVICE_REFERENCE_EXISTS == serviceStockExists)
     		{
     			YerothQMessageBox::information(this,
-    										   QObject::trUtf8("aide"),
-											   QString(QObject::trUtf8("Un service (stock) avec la référence '%1' existe déjà !")
-    						 	 	 	 	 	 	.arg(lineEdit_reference_produit->text())));
+    					QObject::trUtf8("aide"),
+						QString(QObject::trUtf8("Un service (stock) avec la référence '%1' existe déjà !")
+    						.arg(lineEdit_reference_produit->text())));
     			return;
     		}
-    	}
 
-    	if (SERVICE_STOCK_DESIGNATION_AND_CATEGORIE_EXIST == serviceStockExists)
-    	{
-    		YerothQMessageBox::information(this,
-    						 QObject::trUtf8("aide"),
-    						 QString(QObject::trUtf8("Un service (ou stock) avec la désignation '%1' "
-    								 	 	 	 	 "et la catégorie '%2') existe déjà !")
-    						 	 .arg(lineEdit_designation->text(),
-									  lineEdit_categorie_produit->text())));
-    		return;
+
+    		if (SERVICE_STOCK_DESIGNATION_AND_CATEGORIE_EXIST == serviceStockExists)
+    		{
+    			YerothQMessageBox::information(this,
+    					QObject::trUtf8("aide"),
+						QString(QObject::trUtf8("Un service (ou stock) avec la désignation '%1' "
+								"et la catégorie '%2') existe déjà !")
+    						.arg(lineEdit_designation->text(),
+    							 lineEdit_categorie_produit->text())));
+    			return;
+    		}
     	}
     }
 
@@ -1456,13 +1454,13 @@ void YerothEntrerWindow::enregistrer_produit()
 
     QSqlRecord record = _curStocksTableModel->record();
 
-    int stock_id_to_save = _allWindows->getNextIdSqlTableModel_stocks();
+    int stock_id_to_save = YerothERPWindows::getNextIdSqlTableModel_stocks();
 
     if (!checkBox_service->isChecked() && hasBuying())
     {
     	achatRecord = achatSqlTableModel.record();
 
-    	int achat_id_to_save = _allWindows->getNextIdSqlTableModel_achats();
+    	int achat_id_to_save = YerothERPWindows::getNextIdSqlTableModel_achats();
 
     	achatRecord.setValue(YerothDatabaseTableColumn::ID, achat_id_to_save);
     	achatRecord.setValue(YerothDatabaseTableColumn::STOCKS_ID, stock_id_to_save);

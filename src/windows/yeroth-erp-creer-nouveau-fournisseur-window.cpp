@@ -236,7 +236,7 @@ bool YerothCreerNouveauFournisseurWindow::creer_fournisseur()
 
         QSqlRecord record = fournisseurTableModel.record();
 
-        record.setValue(YerothDatabaseTableColumn::ID, _allWindows->getNextIdSqlTableModel_fournisseurs());
+        record.setValue(YerothDatabaseTableColumn::ID, YerothERPWindows::getNextIdSqlTableModel_fournisseurs());
         record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE, lineEdit_creer_fournisseur_nom->text());
         record.setValue(YerothDatabaseTableColumn::DESCRIPTION_FOURNISSEUR, textEdit_creer_fournisseur_description->toPlainText());
 

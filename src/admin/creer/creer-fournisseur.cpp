@@ -37,7 +37,7 @@ bool YerothAdminCreateWindow::creer_fournisseur()
 
         QSqlRecord record = fournisseursTableModel.record();
 
-        record.setValue(YerothDatabaseTableColumn::ID, _allWindows->getNextIdSqlTableModel_fournisseurs());
+        record.setValue(YerothDatabaseTableColumn::ID, YerothERPWindows::getNextIdSqlTableModel_fournisseurs());
         record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE, lineEdit_creer_fournisseur_nom_entreprise->text());
         record.setValue(YerothDatabaseTableColumn::NOM_REPRESENTANT, lineEdit_creer_fournisseur_nom_representant->text());
         record.setValue(YerothDatabaseTableColumn::QUARTIER, lineEdit_creer_fournisseur_quartier->text());

@@ -394,7 +394,15 @@ void YerothStockDetailWindow::showItem()
 
     double quantite_initiale = lots_entrant * quantite_par_lot;
 
-    lineEdit_quantite_initiale->setText(GET_DOUBLE_STRING_P(quantite_initiale, 2));
+    if (quantite_initiale < quantite_restante)
+    {
+    	//Cas d'un stock vendu et returne en stock
+    	lineEdit_quantite_initiale->setText(GET_DOUBLE_STRING_P(quantite_restante, 2));
+    }
+    else
+    {
+    	lineEdit_quantite_initiale->setText(GET_DOUBLE_STRING_P(quantite_initiale, 2));
+    }
 
     QVariant img(record.value(YerothDatabaseTableColumn::IMAGE_PRODUIT));
 

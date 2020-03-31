@@ -187,7 +187,7 @@ void YerothPayerCompteClientWindow::updateStocksVeduTable(PaymentInfo &paymentIn
 									.arg(_allWindows->STOCKS_VENDU,
 										 _allWindows->STOCKS_VENDU,
 										 stocksVenduID,
-										 QString::number(_allWindows->getNextIdSqlTableModel_services_completes()),
+										 QString::number(YerothERPWindows::getNextIdSqlTableModel_services_completes()),
 										 _allWindows->SERVICES_COMPLETES));
 
 			if (YerothUtils::execQuery(copyRowQuery))

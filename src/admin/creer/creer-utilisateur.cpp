@@ -57,7 +57,7 @@ bool YerothAdminCreateWindow::creer_utilisateur()
 
         QSqlRecord record = usersTableModel.record();
 
-        record.setValue(YerothDatabaseTableColumn::ID, _allWindows->getNextIdSqlTableModel_users());
+        record.setValue(YerothDatabaseTableColumn::ID, YerothERPWindows::getNextIdSqlTableModel_users());
         record.setValue(YerothDatabaseTableColumn::PRENOM, lineEdit_creer_utilisateur_prenom->text());
         record.setValue(YerothDatabaseTableColumn::NOM, lineEdit_creer_utilisateur_nom->text());
 

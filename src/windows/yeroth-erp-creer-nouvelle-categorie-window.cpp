@@ -225,7 +225,7 @@ bool YerothCreerNouvelleCategorieWindow::creer_categorie()
 
         QSqlRecord record = categorieTableModel.record();
 
-        record.setValue(YerothDatabaseTableColumn::ID, _allWindows->getNextIdSqlTableModel_categories());
+        record.setValue(YerothDatabaseTableColumn::ID, YerothERPWindows::getNextIdSqlTableModel_categories());
         record.setValue(YerothDatabaseTableColumn::NOM_CATEGORIE, lineEdit_creer_categorie_nom->text());
         record.setValue(YerothDatabaseTableColumn::DESCRIPTION_CATEGORIE, textEdit_creer_categorie_description->toPlainText());
 

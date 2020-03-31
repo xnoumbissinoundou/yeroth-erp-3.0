@@ -139,8 +139,6 @@ public:
 
 	static QString get_text(const QVariant &qv);
 
-	static int getNextIdFromTable(const QString &tableName);
-
 	static void selectionner_image(QWidget *parent, QLabel &label_image);
 
 	static void loadPixmapFromDB(QLabel 	&label_image,

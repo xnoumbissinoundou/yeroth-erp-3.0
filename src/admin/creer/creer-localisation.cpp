@@ -38,7 +38,7 @@ bool YerothAdminCreateWindow::creer_localisation()
 
         QSqlRecord record = localisationsTableModel.record();
 
-        record.setValue(YerothDatabaseTableColumn::ID, _allWindows->getNextIdSqlTableModel_localisations());
+        record.setValue(YerothDatabaseTableColumn::ID, YerothERPWindows::getNextIdSqlTableModel_localisations());
         record.setValue("numero_unique", lineEdit_creer_localisation_numero_unique->text());
         record.setValue("adresse_ip", lineEdit_creer_localisation_adresse_ip->text());
         record.setValue("nom_localisation", lineEdit_creer_localisation_nom->text());

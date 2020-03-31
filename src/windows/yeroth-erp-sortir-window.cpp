@@ -1914,7 +1914,7 @@ void YerothSortirWindow::sortir()
     {
         YerothUtils::startTransaction();
 
-    	int IDforReceipt = _allWindows->getNextIdSqlTableModel_stocks_sorties();
+    	int IDforReceipt = YerothERPWindows::getNextIdSqlTableModel_stocks_sorties();
 
     	QString referenceRecuSortie(YerothUtils::GET_REFERENCE_RECU_SORTIE(QString::number(IDforReceipt)));
 
@@ -1955,7 +1955,7 @@ void YerothSortirWindow::sortir()
 
             QSqlRecord stocksSortiesRecord = stocksSortiesTableModel.record();
 
-            stocksSortieID = _allWindows->getNextIdSqlTableModel_stocks_sorties();
+            stocksSortieID = YerothERPWindows::getNextIdSqlTableModel_stocks_sorties();
 
             stocksSortiesRecord.setValue(YerothDatabaseTableColumn::ID, stocksSortieID);
 

@@ -2228,7 +2228,7 @@ unsigned int YerothPointDeVenteWindow::effectuer_check_out_carte_credit_carte_de
 
 void YerothPointDeVenteWindow::executer_la_vente_comptant()
 {
-    int IDforReceipt = _allWindows->getNextIdSqlTableModel_stocks_vendu();
+    int IDforReceipt = YerothERPWindows::getNextIdSqlTableModel_stocks_vendu();
 
     QString referenceRecuVendu(YerothUtils::GET_REFERENCE_RECU_VENDU(QString::number(IDforReceipt)));
 
@@ -2271,7 +2271,7 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
 
         _typeDeVente = QObject::tr("achat-comptant");
 
-        stocksVenduID = _allWindows->getNextIdSqlTableModel_stocks_vendu();
+        stocksVenduID = YerothERPWindows::getNextIdSqlTableModel_stocks_vendu();
 
         stocksVenduRecord.setValue(YerothDatabaseTableColumn::ID, stocksVenduID);
 
@@ -2499,7 +2499,7 @@ void YerothPointDeVenteWindow::updateCompteClient(double nouveau_compte_client)
 
 void YerothPointDeVenteWindow::executer_la_vente_compte_client()
 {
-    int IDforReceipt = _allWindows->getNextIdSqlTableModel_stocks_vendu();
+    int IDforReceipt = YerothERPWindows::getNextIdSqlTableModel_stocks_vendu();
 
     QString referenceRecuVenduCompteClient(YerothUtils::GET_REFERENCE_RECU_VENDU(QString::number(IDforReceipt)));
 
@@ -2544,7 +2544,7 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
 
         _typeDeVente = QObject::tr("achat-compte-client");
 
-        stocksVenduID = _allWindows->getNextIdSqlTableModel_stocks_vendu();
+        stocksVenduID = YerothERPWindows::getNextIdSqlTableModel_stocks_vendu();
 
         stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::ID, stocksVenduID);
 

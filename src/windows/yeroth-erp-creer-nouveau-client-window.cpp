@@ -240,7 +240,7 @@ bool YerothCreerNouveauClientWindow::creer_client()
 
         QSqlRecord record = clientsTableModel.record();
 
-        record.setValue(YerothDatabaseTableColumn::ID, _allWindows->getNextIdSqlTableModel_clients());
+        record.setValue(YerothDatabaseTableColumn::ID, YerothERPWindows::getNextIdSqlTableModel_clients());
         record.setValue(YerothDatabaseTableColumn::REFERENCE_CLIENT, lineEdit_client_reference_client->text());
         record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE, lineEdit_client_nom_entreprise->text());
         record.setValue(YerothDatabaseTableColumn::NOM_REPRESENTANT, lineEdit_client_nom_representant->text());
