@@ -828,7 +828,7 @@ bool YerothERPWindows::move(QMainWindow &aWindow)
 }
 
 
-int YerothERPWindows::MAX_ID_MYSQL_FOR_STOCKS()
+int YerothERPWindows::NEXT_TABLE_ID_MYSQL_FOR_STOCKS()
 {
 	int max_id = 0;
 

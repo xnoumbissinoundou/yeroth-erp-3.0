@@ -259,7 +259,7 @@ public:
 
 	static inline int getNextIdSqlTableModel_stocks()
 	{
-		return YerothERPWindows::MAX_ID_MYSQL_FOR_STOCKS();
+		return YerothERPWindows::NEXT_TABLE_ID_MYSQL_FOR_STOCKS();
 	}
 
 	static inline int getNextIdSqlTableModel_services_completes()
@@ -398,7 +398,7 @@ public:
 
 private:
 
-	static int MAX_ID_MYSQL_FOR_STOCKS();
+	static int NEXT_TABLE_ID_MYSQL_FOR_STOCKS();
 
 	static int getNextIdFromTable(const QString &tableName);
 
