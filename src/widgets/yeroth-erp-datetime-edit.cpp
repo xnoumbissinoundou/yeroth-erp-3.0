@@ -42,10 +42,12 @@ void YerothDateTimeEdit::setYerothERPDateTimeEditDisplayFormat()
 {
 	if (isReadOnly())
 	{
+		setAlignment(Qt::AlignCenter);
 		setPalette(YerothUtils::YEROTH_BLACK_PALETTE);
 	}
 	else
 	{
+		setAlignment(Qt::AlignLeft);
 		setPalette(YerothUtils::YEROTH_WHITE_PALETTE);
 	}
 }
