@@ -262,7 +262,7 @@ void YerothClientsDetailWindow::definirVendeur()
     pushButton_menu->disable(this);
     pushButton_modifier->enable(this, SLOT(modifierCompteClient()));
     pushButton_supprimer->enable(this, SLOT(supprimerCompteClient()));
-    pushButton_payer_au_compteclient->enable(this, SLOT(payer_au_compteclient()));
+    pushButton_payer_au_compteclient->enable(this, SLOT(private_payer_au_compteclient()));
 }
 
 
