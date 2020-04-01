@@ -100,7 +100,7 @@ YerothVentesWindow::YerothVentesWindow()
 
     pushButton_retour_details->disable(this);
 
-    pushButton_retour_vente->disable(this);
+    pushButton_retour_annuler->disable(this);
 
     pushButton_annuler_vente->disable(this);
 
@@ -1232,7 +1232,7 @@ void YerothVentesWindow::definirCaissier()
 
     pushButton_retour_details->disable(this);
 
-    pushButton_retour_vente->disable(this);
+    pushButton_retour_annuler->disable(this);
 
     pushButton_annuler_vente->disable(this);
 }
@@ -1270,7 +1270,7 @@ void YerothVentesWindow::definirManager()
 
     pushButton_retour_details->enable(this, SLOT(retourVentes()));
 
-    pushButton_retour_vente->enable(this, SLOT(retourVentes()));
+    pushButton_retour_annuler->enable(this, SLOT(retourVentes()));
 
     pushButton_annuler_vente->enable(this, SLOT(annuler_cette_vente()));
 }
@@ -1303,7 +1303,7 @@ void YerothVentesWindow::definirVendeur()
 
     pushButton_retour_details->enable(this, SLOT(retourVentes()));
 
-    pushButton_retour_vente->disable(this);
+    pushButton_retour_annuler->disable(this);
 
     pushButton_annuler_vente->disable(this);
 }
@@ -1336,7 +1336,7 @@ void YerothVentesWindow::definirGestionaireDesStocks()
 
     pushButton_retour_details->disable(this);
 
-    pushButton_retour_vente->disable(this);
+    pushButton_retour_annuler->disable(this);
 
     pushButton_annuler_vente->disable(this);
 }
@@ -1362,7 +1362,7 @@ void YerothVentesWindow::definirMagasinier()
 
     pushButton_retour_details->disable(this);
 
-    pushButton_retour_vente->disable(this);
+    pushButton_retour_annuler->disable(this);
 
     pushButton_annuler_vente->disable(this);
 }
@@ -1388,7 +1388,7 @@ void YerothVentesWindow::definirPasDeRole()
 
     pushButton_retour_details->disable(this);
 
-    pushButton_retour_vente->disable(this);
+    pushButton_retour_annuler->disable(this);
 
     pushButton_annuler_vente->disable(this);
 }
