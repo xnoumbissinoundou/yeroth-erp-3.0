@@ -1921,6 +1921,21 @@ void YerothVentesWindow::afficher_retour_vente()
     //_logger->log("afficher_vente_detail]", QString("row: %1").arg(lastSelectedVentesRow));
     QSqlRecord record = _curStocksVenduTableModel->record(lastSelectedVentesRow);
 
+    bool isService =  GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::IS_SERVICE).toInt();
+
+    if (isService)
+    {
+    	QString msg(QObject::trUtf8("Cette fonctionnalité n'est pas disponible pour les 'services' !"));
+
+    		YerothQMessageBox::information(this,
+    									   QObject::trUtf8("fonctionnalité pas disponible"),
+    									   msg);
+
+    	tabWidget_ventes->setCurrentIndex(TableauDesVentes);
+
+    	return ;
+    }
+
     lineEdit_retour_vente_reference_produit->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE));
     lineEdit_retour_vente_designation->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
     lineEdit_retour_vente_nom_entreprise_fournisseur->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR));
