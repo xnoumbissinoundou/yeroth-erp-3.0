@@ -55,9 +55,9 @@ const QString YerothVentesWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2
 
 YerothVentesWindow::YerothVentesWindow()
 :YerothWindowsCommons(YerothVentesWindow::_WINDOW_TITLE),
+ _retourVenteTabWidget(0),
  _logger(new YerothLogger("YerothVentesWindow")),
  _aProcess(0),
- _currentTabView(0),
  _currentlyFiltered(false),
  _pushButton_ventes_filtrer_font(0),
  _ventesDateFilter(YerothUtils::EMPTY_STRING),
@@ -71,12 +71,13 @@ YerothVentesWindow::YerothVentesWindow()
     QMESSAGE_BOX_STYLE_SHEET =
         QString("QMessageBox {background-color: rgb(%1);}").arg(COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
+    _retourVenteTabWidgetTitle = tabWidget_ventes->tabText(RetourDuneVente);
+
+    _retourVenteTabWidget = tabWidget_ventes->widget(RetourDuneVente);
+
     setupSelectDBFields(_allWindows->STOCKS_VENDU);
 
     reinitialiser_champs_db_visibles();
-
-    label_ventes_tva->setText(QString(QObject::tr("TVA (%1)")).arg(YerothERPConfig::currency));
-    label_remise_devise->setText(QString(QObject::tr("remise (%1)")).arg(YerothERPConfig::currency));
 
     populateComboBoxes();
 
@@ -95,8 +96,13 @@ YerothVentesWindow::YerothVentesWindow()
     pushButton_ventes_filtrer->disable(this);
     pushButton_ventes_reinitialiser_filtre->disable(this);
 
-    pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
-    pushButton_retour_ventes->enable(this, SLOT(retourVentes()));
+    pushButton_reinitialiser->disable(this);
+
+    pushButton_retour_details->disable(this);
+
+    pushButton_retour_vente->disable(this);
+
+    pushButton_annuler_vente->disable(this);
 
 
     connect(actionReinitialiserChampsDBVisible, SIGNAL(triggered()), this, SLOT(slot_reinitialiser_champs_db_visibles()));
@@ -149,11 +155,7 @@ YerothVentesWindow::YerothVentesWindow()
 
 void YerothVentesWindow::modifier_visibilite_annuler_cette_vente()
 {
-	if (AfficherVenteAuDetail == tabWidget_ventes->currentIndex())
-	{
-		actionAnnulerCetteVente->setVisible(false);
-	}
-	else
+	if (RetourDuneVente == tabWidget_ventes->currentIndex())
 	{
 		if (tableView_ventes->rowCount() > 0)
 		{
@@ -164,43 +166,91 @@ void YerothVentesWindow::modifier_visibilite_annuler_cette_vente()
 			actionAnnulerCetteVente->setVisible(false);
 		}
 	}
+	else
+	{
+		actionAnnulerCetteVente->setVisible(false);
+	}
 }
 
 
 bool YerothVentesWindow::annuler_cette_vente()
 {
-	QString msg;
-
 	int ventesTableViewRowCount = tableView_ventes->rowCount();
 
-	QString curVenteReferenceRecuVendu(lineEdit_ventes_reference_recu_vendu->text());
-
-	if (curVenteReferenceRecuVendu.isEmpty() || ventesTableViewRowCount <= 0)
+	if (ventesTableViewRowCount <= 0)
 	{
-		msg = QObject::trUtf8("Veuillez saisir la référence du 'reçu de vente' à annuler !");
+		return false;
+	}
+
+	QString msg;
+
+	if (lineEdit_retour_vente_quantite_a_retourner->text().isEmpty())
+	{
+		msg = QObject::trUtf8("Veuillez saisir la quantité d'articles à retourner !");
 
 		YerothQMessageBox::information(this,
-									   QObject::tr("annuler une vente"),
+									   QObject::trUtf8("saisir la quantité d'articles à retourner"),
 									   msg);
 
 		return false;
 	}
 
-    msg = QString(QObject::trUtf8("Poursuivre avec l'annulation de "
-    							  "la vente avec la référence 'reçu de vente "
-    							  "%1' ?"))
-    		.arg(curVenteReferenceRecuVendu);
+	double quantite_a_retourner = lineEdit_retour_vente_quantite_a_retourner->text().toInt();
 
-    if (QMessageBox::Cancel ==
-            YerothQMessageBox::question(this, QObject::trUtf8("poursuivre l'annulation de la vente"),
-    										 msg,
-											 QMessageBox::Cancel,
-											 QMessageBox::Ok))
-    {
-    	return false;
-    }
+	if (quantite_a_retourner <= 0.0)
+	{
+		msg = QObject::trUtf8("La quantité d'articles à retourner doit être supérieur zéro !");
 
-	YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
+		YerothQMessageBox::information(this,
+									   QObject::trUtf8("quantité d'articles à retourner"),
+									   msg);
+
+		return false;
+	}
+
+    int lastSelectedVentesRow = tableView_ventes->lastSelectedRow();
+
+    YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
+
+    //_logger->log("afficher_vente_detail]", QString("row: %1").arg(lastSelectedVentesRow));
+    QSqlRecord curStocksVenduRecord = _curStocksVenduTableModel->record(lastSelectedVentesRow);
+
+	double curStocksVenduQuantiteVendue = 0.0;
+
+	curStocksVenduQuantiteVendue =
+			GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::QUANTITE_VENDUE).toDouble();
+
+	if (quantite_a_retourner > curStocksVenduQuantiteVendue)
+	{
+		msg = QObject::trUtf8("La quantité d'articles à retourner doit être "
+							  "inférieur ou égale à la quantité d'articles qui a été vendu !");
+
+		YerothQMessageBox::information(this,
+									   QObject::trUtf8("quantité d'articles à retourner"),
+									   msg);
+
+		return false;
+	}
+
+
+	QString curVenteReferenceRecuVendu(GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::REFERENCE_RECU_VENDU));
+
+	QString curStocksVenduDesignation(GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::DESIGNATION));
+
+	msg = QString(QObject::trUtf8("Poursuivre avec l'annulation de "
+								  "la vente avec la désignation '%1', et "
+								  "avec la référence 'reçu de vente %2' ?"))
+	    	.arg(curStocksVenduDesignation,
+	    		 curVenteReferenceRecuVendu);
+
+	if (QMessageBox::Cancel ==
+			YerothQMessageBox::question(this, QObject::trUtf8("poursuivre l'annulation de la vente"),
+					msg,
+					QMessageBox::Cancel,
+					QMessageBox::Ok))
+	{
+		return false;
+	}
 
 	QString typeDeVente(QObject::tr("achat-comptant"));
 
@@ -208,211 +258,227 @@ bool YerothVentesWindow::annuler_cette_vente()
 
 	int clients_id = -1;
 
+	double curMontantTotalVente = 0.0;
+
 	double curMontantARembourserAuClient = 0.0;
 
 	bool rembourserAuCompteClient = false;
 
 	bool successReinsertStock = false;
 
-	double curStocksVenduQuantiteVendue = 0.0;
 	double curStockNouvelleQuantiteTotal = 0.0;
 	double curStockQuantiteTotal = 0.0;
 
 	QSqlRecord curStockRecord;
 	QString curStockTableFilter;
 
-    QString curHistoriqueStock;
-    QString curHistoriqueStockRetour;
+	QString curHistoriqueStock;
+	QString curHistoriqueStockRetour;
 
 	QString curStocksVenduID;
 	QString curStocksVendu_stocksID;
-	QString curStocksVenduDesignation;
 	QString curStocksVenduCategorie;
 
-	QSqlRecord curStocksVenduRecord;
+	curStocksVenduID =
+			GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::ID);
 
-	for (int k = 0; k < ventesTableViewRowCount; ++k)
+	curStocksVendu_stocksID =
+			GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::STOCKS_ID);
+
+	curStocksVenduCategorie =
+			GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::CATEGORIE);
+
+	//Je verifie deja si le stock est encore existant
+	//dans la base de donnees
+	YerothSqlTableModel &curStockTableModel = _allWindows->getSqlTableModel_stocks();
+
+	curStockTableFilter = QString("%1 = '%2'")
+										.arg(YerothDatabaseTableColumn::ID,
+												curStocksVendu_stocksID);
+
+	curStockTableModel.yerothSetFilter(curStockTableFilter);
+
+	int curStocksTableRowCount = curStockTableModel.easySelect();
+
+	curNomDuClient =
+			GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT);
+
+	clients_id =
+			GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::CLIENTS_ID).toInt();
+
+	typeDeVente =
+			GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::TYPE_DE_VENTE);
+
+	if (1 == curStocksTableRowCount)
 	{
-		curStocksVenduRecord.clear();
+		curStockRecord = curStockTableModel.record(0);
 
-		curStocksVenduRecord = _curStocksVenduTableModel->record(k);
+		curStockQuantiteTotal =
+				GET_SQL_RECORD_DATA(curStockRecord, YerothDatabaseTableColumn::QUANTITE_TOTAL).toDouble();
 
-		curStocksVenduID =
-				GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::ID);
+		curStockNouvelleQuantiteTotal = curStockQuantiteTotal + quantite_a_retourner;
 
-		curStocksVendu_stocksID =
-				GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::STOCKS_ID);
+		curMontantTotalVente =
+				GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE).toDouble();
 
-		curStocksVenduDesignation =
-				GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::DESIGNATION);
+		curStockRecord.setValue(YerothDatabaseTableColumn::QUANTITE_TOTAL, curStockNouvelleQuantiteTotal);
 
-		curStocksVenduCategorie =
-				GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::CATEGORIE);
+		curHistoriqueStock =
+				GET_SQL_RECORD_DATA(curStockRecord, YerothDatabaseTableColumn::HISTORIQUE_STOCK);
 
-		//Je verifie deja si le stock est encore existant
-		//dans la base de donnees
-		YerothSqlTableModel &curStockTableModel = _allWindows->getSqlTableModel_stocks();
+		curHistoriqueStockRetour = YerothHistoriqueStock::creer_mouvement_stock
+				(RETOUR_VENTE,
+						curStockRecord.value(YerothDatabaseTableColumn::ID).toInt(),
+						GET_CURRENT_DATE,
+						curStockQuantiteTotal,
+						quantite_a_retourner,
+						curStockNouvelleQuantiteTotal);
 
-		curStockTableFilter = QString("%1 = '%2'")
-								.arg(YerothDatabaseTableColumn::ID,
-									 curStocksVendu_stocksID);
+		curHistoriqueStock.append(YerothHistoriqueStock::SEPARATION_EXTERNE)
+	        					   .append(curHistoriqueStockRetour);
 
-		curStockTableModel.yerothSetFilter(curStockTableFilter);
+		curStockRecord.setValue(YerothDatabaseTableColumn::HISTORIQUE_STOCK, curHistoriqueStock);
 
-		int curStocksTableRowCount = curStockTableModel.easySelect();
+		successReinsertStock = curStockTableModel.updateRecord(0, curStockRecord);
+	}
+	else
+	{
+		curStockRecord = curStockTableModel.record();
 
-		if (0 == k)
+		curStockRecord.setValue(YerothDatabaseTableColumn::ID, curStocksVendu_stocksID);
+
+		curStockRecord.setValue(YerothDatabaseTableColumn::HISTORIQUE_STOCK,
+				GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::HISTORIQUE_STOCK));
+
+		curStockRecord.setValue(YerothDatabaseTableColumn::REFERENCE,
+				GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::REFERENCE));
+
+		curStockRecord.setValue(YerothDatabaseTableColumn::DESIGNATION, curStocksVenduDesignation);
+
+		curStockRecord.setValue(YerothDatabaseTableColumn::CATEGORIE, curStocksVenduCategorie);
+
+		curStockRecord.setValue(YerothDatabaseTableColumn::QUANTITE_TOTAL, curStocksVenduQuantiteVendue);
+
+		curMontantTotalVente =
+				GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE).toDouble();
+
+		//		    qDebug() << QString("++ a rembourser au client: %1")
+		//		    				.arg(QString::number(curMontantARembourserAuClient));
+
+		double quantite_total = curStocksVenduQuantiteVendue;
+
+		double montant_total_tva =
+				GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::MONTANT_TVA).toDouble();
+
+		double montant_tva_unitaire = montant_total_tva / quantite_total;
+
+		double prix_unitaire =
+				GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::PRIX_UNITAIRE).toDouble();
+
+		double prix_vente = prix_unitaire + montant_tva_unitaire;
+
+		curStockRecord.setValue(YerothDatabaseTableColumn::PRIX_UNITAIRE, prix_unitaire);
+
+		curStockRecord.setValue(YerothDatabaseTableColumn::PRIX_VENTE, prix_vente);
+
+		curStockRecord.setValue(YerothDatabaseTableColumn::MONTANT_TVA, montant_tva_unitaire);
+
+		curStockRecord.setValue(YerothDatabaseTableColumn::IS_SERVICE,
+				YerothUtils::MYSQL_FALSE_LITERAL);
+
+		QString curStocksVenduDatePeremption =
+				GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::DATE_PEREMPTION);
+
+		QDate formatee(GET_DATE_FROM_STRING(curStocksVenduDatePeremption));
+
+		curStockRecord.setValue(YerothDatabaseTableColumn::DATE_PEREMPTION, DATE_TO_DB_FORMAT_STRING(formatee));
+
+		curStockRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR,
+				GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR));
+
+		curStockRecord.setValue(YerothDatabaseTableColumn::LOCALISATION,
+				GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::LOCALISATION));
+
+		curStockRecord.setValue(YerothDatabaseTableColumn::LOTS_ENTRANT, 1);
+
+		curStockRecord.setValue(YerothDatabaseTableColumn::QUANTITE_PAR_LOT, quantite_total);
+
+		curStockRecord.setValue(YerothDatabaseTableColumn::DATE_ENTREE, GET_CURRENT_DATE);
+
+		curHistoriqueStock =
+				GET_SQL_RECORD_DATA(curStockRecord, YerothDatabaseTableColumn::HISTORIQUE_STOCK);
+
+		curHistoriqueStockRetour = YerothHistoriqueStock::creer_mouvement_stock
+				(RETOUR_VENTE,
+						curStocksVendu_stocksID.toInt(),
+						GET_CURRENT_DATE,
+						0.0,
+						curStocksVenduQuantiteVendue,
+						curStocksVenduQuantiteVendue);
+
+		curHistoriqueStock.append(YerothHistoriqueStock::SEPARATION_EXTERNE)
+	        					   .append(curHistoriqueStockRetour);
+
+		curStockRecord.setValue(YerothDatabaseTableColumn::HISTORIQUE_STOCK, curHistoriqueStock);
+
+		successReinsertStock = curStockTableModel.insertNewRecord(curStockRecord);
+	}
+
+	curStockTableModel.resetFilter();
+
+	if (successReinsertStock)
+	{
+		double curStocksVenduNouvelleQteVendue = curStocksVenduQuantiteVendue - quantite_a_retourner;
+
+		if (0 != curStocksVenduNouvelleQteVendue)
 		{
-			curNomDuClient =
-					GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT);
+			curMontantARembourserAuClient =
+					quantite_a_retourner * (curMontantTotalVente / curStocksVenduQuantiteVendue);
 
-			clients_id =
-					GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::CLIENTS_ID).toInt();
+			double curStocksVenduNouveauMontantTotalVente = curMontantTotalVente - curMontantARembourserAuClient;
 
-			typeDeVente =
-					GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::TYPE_DE_VENTE);
-		}
+			double curStocksVenduMontantTVA =
+					GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::MONTANT_TVA).toDouble();
 
-		curStocksVenduQuantiteVendue =
-				GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::QUANTITE_VENDUE).toDouble();
+			double curStocksVenduNouveauMontantTVA =
+					curStocksVenduNouvelleQteVendue * (curStocksVenduMontantTVA / curStocksVenduQuantiteVendue);
 
-		if (1 == curStocksTableRowCount)
-		{
-			curStockRecord = curStockTableModel.record(0);
+//			qDebug() << QString("++ curStocksVenduNouveauMontantTotalVente: %1, "
+//								"curStocksVenduMontantTVA: %2, "
+//								"curStocksVenduNouveauMontantTVA: %3, "
+//								"curMontantARembourserAuClient: %4")
+//							.arg(QString::number(curStocksVenduNouveauMontantTotalVente),
+//								 QString::number(curStocksVenduMontantTVA),
+//								 QString::number(curStocksVenduNouveauMontantTVA),
+//								 QString::number(curMontantARembourserAuClient));
 
-			curStockQuantiteTotal =
-					GET_SQL_RECORD_DATA(curStockRecord, YerothDatabaseTableColumn::QUANTITE_TOTAL).toDouble();
+			curStocksVenduRecord.setValue(YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE, curStocksVenduNouveauMontantTotalVente);
 
-			curStockNouvelleQuantiteTotal = curStockQuantiteTotal + curStocksVenduQuantiteVendue;
+			curStocksVenduRecord.setValue(YerothDatabaseTableColumn::QUANTITE_VENDUE, curStocksVenduNouvelleQteVendue);
 
-			curMontantARembourserAuClient +=
-					    		GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE).toDouble();
+			curStocksVenduRecord.setValue(YerothDatabaseTableColumn::MONTANT_TVA, curStocksVenduNouveauMontantTVA);
 
-			curStockRecord.setValue(YerothDatabaseTableColumn::QUANTITE_TOTAL, curStockNouvelleQuantiteTotal);
-
-			curHistoriqueStock =
-	        		GET_SQL_RECORD_DATA(curStockRecord, YerothDatabaseTableColumn::HISTORIQUE_STOCK);
-
-	        curHistoriqueStockRetour = YerothHistoriqueStock::creer_mouvement_stock
-	        			(RETOUR_VENTE,
-	        			 curStockRecord.value(YerothDatabaseTableColumn::ID).toInt(),
-						 GET_CURRENT_DATE,
-						 curStockQuantiteTotal,
-						 curStocksVenduQuantiteVendue,
-						 curStockNouvelleQuantiteTotal);
-
-	        curHistoriqueStock.append(YerothHistoriqueStock::SEPARATION_EXTERNE)
-	        			   .append(curHistoriqueStockRetour);
-
-	        curStockRecord.setValue(YerothDatabaseTableColumn::HISTORIQUE_STOCK, curHistoriqueStock);
-
-			successReinsertStock = curStockTableModel.updateRecord(0, curStockRecord);
+			_curStocksVenduTableModel->updateRecord(lastSelectedVentesRow, curStocksVenduRecord);
 		}
 		else
 		{
-			curStockRecord = curStockTableModel.record();
+			curMontantARembourserAuClient = curMontantTotalVente;
 
-			curStockRecord.setValue(YerothDatabaseTableColumn::ID, curStocksVendu_stocksID);
-
-		    curStockRecord.setValue(YerothDatabaseTableColumn::HISTORIQUE_STOCK,
-		    		GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::HISTORIQUE_STOCK));
-
-		    curStockRecord.setValue(YerothDatabaseTableColumn::REFERENCE,
-		    		GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::REFERENCE));
-
-		    curStockRecord.setValue(YerothDatabaseTableColumn::DESIGNATION, curStocksVenduDesignation);
-
-		    curStockRecord.setValue(YerothDatabaseTableColumn::CATEGORIE, curStocksVenduCategorie);
-
-		    curStockRecord.setValue(YerothDatabaseTableColumn::QUANTITE_TOTAL, curStocksVenduQuantiteVendue);
-
-		    curMontantARembourserAuClient +=
-		    		GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE).toDouble();
-
-//		    qDebug() << QString("++ a rembourser au client: %1")
-//		    				.arg(QString::number(curMontantARembourserAuClient));
-
-		    double quantite_total = curStocksVenduQuantiteVendue;
-
-		    double montant_total_tva =
-		    		GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::MONTANT_TVA).toDouble();
-
-		    double montant_tva_unitaire = montant_total_tva / quantite_total;
-
-		    double prix_unitaire =
-		    		GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::PRIX_UNITAIRE).toDouble();
-
-		    double prix_vente = prix_unitaire + montant_tva_unitaire;
-
-		    curStockRecord.setValue(YerothDatabaseTableColumn::PRIX_UNITAIRE, prix_unitaire);
-
-		    curStockRecord.setValue(YerothDatabaseTableColumn::PRIX_VENTE, prix_vente);
-
-		    curStockRecord.setValue(YerothDatabaseTableColumn::MONTANT_TVA, montant_tva_unitaire);
-
-		    curStockRecord.setValue(YerothDatabaseTableColumn::IS_SERVICE,
-		    		YerothUtils::MYSQL_FALSE_LITERAL);
-
-		    QString curStocksVenduDatePeremption =
-		    		GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::DATE_PEREMPTION);
-
-		    QDate formatee(GET_DATE_FROM_STRING(curStocksVenduDatePeremption));
-
-		    curStockRecord.setValue(YerothDatabaseTableColumn::DATE_PEREMPTION, DATE_TO_DB_FORMAT_STRING(formatee));
-
-		    curStockRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR,
-		    		GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR));
-
-		    curStockRecord.setValue(YerothDatabaseTableColumn::LOCALISATION,
-		    		GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::LOCALISATION));
-
-		    curStockRecord.setValue(YerothDatabaseTableColumn::LOTS_ENTRANT, 1);
-
-		    curStockRecord.setValue(YerothDatabaseTableColumn::QUANTITE_PAR_LOT, quantite_total);
-
-		    curStockRecord.setValue(YerothDatabaseTableColumn::DATE_ENTREE, GET_CURRENT_DATE);
-
-			curHistoriqueStock =
-	        		GET_SQL_RECORD_DATA(curStockRecord, YerothDatabaseTableColumn::HISTORIQUE_STOCK);
-
-	        curHistoriqueStockRetour = YerothHistoriqueStock::creer_mouvement_stock
-	        			(RETOUR_VENTE,
-	        			 curStocksVendu_stocksID.toInt(),
-						 GET_CURRENT_DATE,
-						 0.0,
-						 curStocksVenduQuantiteVendue,
-						 curStocksVenduQuantiteVendue);
-
-	        curHistoriqueStock.append(YerothHistoriqueStock::SEPARATION_EXTERNE)
-	        			   .append(curHistoriqueStockRetour);
-
-	        curStockRecord.setValue(YerothDatabaseTableColumn::HISTORIQUE_STOCK, curHistoriqueStock);
-
-		    successReinsertStock = curStockTableModel.insertNewRecord(curStockRecord);
-		}
-
-		curStockTableModel.resetFilter();
-
-		if (successReinsertStock)
-		{
 			QString removeRowQuery(QString("DELETE FROM %1 WHERE %2 = '%3'")
 					.arg(_allWindows->STOCKS_VENDU,
 							YerothDatabaseTableColumn::ID,
 							curStocksVenduID));
 
 			bool successRemoveRowQuery = YerothUtils::execQuery(removeRowQuery);
-
-			if (successRemoveRowQuery &&
-				-1 != clients_id 	  &&
-				YerothUtils::isEqualCaseInsensitive(QObject::tr("achat-compte-client"), typeDeVente))
-			{
-				rembourserAuCompteClient = handleCompteClient(QString::number(clients_id),
-															  curMontantARembourserAuClient);
-			}
-
-			successReinsertStock = successReinsertStock && successRemoveRowQuery;
 		}
-	} //for
+
+		if (-1 != clients_id 	  &&
+			YerothUtils::isEqualCaseInsensitive(QObject::tr("achat-compte-client"), typeDeVente))
+		{
+			rembourserAuCompteClient = handleCompteClient(QString::number(clients_id),
+														  curMontantARembourserAuClient);
+		}
+	}
 
 	YEROTH_ERP_3_0_COMMIT_DATABASE_TRANSACTION;
 
@@ -436,11 +502,15 @@ bool YerothVentesWindow::annuler_cette_vente()
 							 GET_CURRENCY_STRING_NUM(curMontantARembourserAuClient));
 		}
 
-		reinitialiser_recherche();
-
 		YerothQMessageBox::information(this,
 									   QObject::trUtf8("succès"),
 									   msg);
+
+		tabWidget_ventes->setCurrentIndex(TableauDesVentes);
+
+		lineEdit_retour_vente_quantite_a_retourner->clear();
+
+		reinitialiser_recherche();
 	}
 	else
 	{
@@ -455,6 +525,296 @@ bool YerothVentesWindow::annuler_cette_vente()
 
 	return successReinsertStock;
 }
+
+
+//bool annuler_cette_vente_2()
+//{
+//	QString msg;
+//
+//	int ventesTableViewRowCount = tableView_ventes->rowCount();
+//
+//	QString curVenteReferenceRecuVendu(lineEdit_ventes_reference_recu_vendu->text());
+//
+//	if (curVenteReferenceRecuVendu.isEmpty() || ventesTableViewRowCount <= 0)
+//	{
+//		msg = QObject::trUtf8("Veuillez saisir la référence du 'reçu de vente' à annuler !");
+//
+//		YerothQMessageBox::information(this,
+//									   QObject::tr("annuler une vente"),
+//									   msg);
+//
+//		return false;
+//	}
+//
+//    msg = QString(QObject::trUtf8("Poursuivre avec l'annulation de "
+//    							  "la vente avec la référence 'reçu de vente "
+//    							  "%1' ?"))
+//    		.arg(curVenteReferenceRecuVendu);
+//
+//    if (QMessageBox::Cancel ==
+//            YerothQMessageBox::question(this, QObject::trUtf8("poursuivre l'annulation de la vente"),
+//    										 msg,
+//											 QMessageBox::Cancel,
+//											 QMessageBox::Ok))
+//    {
+//    	return false;
+//    }
+//
+//	YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
+//
+//	QString typeDeVente(QObject::tr("achat-comptant"));
+//
+//	QString curNomDuClient;
+//
+//	int clients_id = -1;
+//
+//	double curMontantARembourserAuClient = 0.0;
+//
+//	bool rembourserAuCompteClient = false;
+//
+//	bool successReinsertStock = false;
+//
+//	double curStocksVenduQuantiteVendue = 0.0;
+//	double curStockNouvelleQuantiteTotal = 0.0;
+//	double curStockQuantiteTotal = 0.0;
+//
+//	QSqlRecord curStockRecord;
+//	QString curStockTableFilter;
+//
+//    QString curHistoriqueStock;
+//    QString curHistoriqueStockRetour;
+//
+//	QString curStocksVenduID;
+//	QString curStocksVendu_stocksID;
+//	QString curStocksVenduDesignation;
+//	QString curStocksVenduCategorie;
+//
+//	QSqlRecord curStocksVenduRecord;
+//
+//	for (int k = 0; k < ventesTableViewRowCount; ++k)
+//	{
+//		curStocksVenduRecord.clear();
+//
+//		curStocksVenduRecord = _curStocksVenduTableModel->record(k);
+//
+//		curStocksVenduID =
+//				GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::ID);
+//
+//		curStocksVendu_stocksID =
+//				GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::STOCKS_ID);
+//
+//		curStocksVenduDesignation =
+//				GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::DESIGNATION);
+//
+//		curStocksVenduCategorie =
+//				GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::CATEGORIE);
+//
+//		//Je verifie deja si le stock est encore existant
+//		//dans la base de donnees
+//		YerothSqlTableModel &curStockTableModel = _allWindows->getSqlTableModel_stocks();
+//
+//		curStockTableFilter = QString("%1 = '%2'")
+//								.arg(YerothDatabaseTableColumn::ID,
+//									 curStocksVendu_stocksID);
+//
+//		curStockTableModel.yerothSetFilter(curStockTableFilter);
+//
+//		int curStocksTableRowCount = curStockTableModel.easySelect();
+//
+//		if (0 == k)
+//		{
+//			curNomDuClient =
+//					GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT);
+//
+//			clients_id =
+//					GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::CLIENTS_ID).toInt();
+//
+//			typeDeVente =
+//					GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::TYPE_DE_VENTE);
+//		}
+//
+//		curStocksVenduQuantiteVendue =
+//				GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::QUANTITE_VENDUE).toDouble();
+//
+//		if (1 == curStocksTableRowCount)
+//		{
+//			curStockRecord = curStockTableModel.record(0);
+//
+//			curStockQuantiteTotal =
+//					GET_SQL_RECORD_DATA(curStockRecord, YerothDatabaseTableColumn::QUANTITE_TOTAL).toDouble();
+//
+//			curStockNouvelleQuantiteTotal = curStockQuantiteTotal + curStocksVenduQuantiteVendue;
+//
+//			curMontantARembourserAuClient +=
+//					    		GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE).toDouble();
+//
+//			curStockRecord.setValue(YerothDatabaseTableColumn::QUANTITE_TOTAL, curStockNouvelleQuantiteTotal);
+//
+//			curHistoriqueStock =
+//	        		GET_SQL_RECORD_DATA(curStockRecord, YerothDatabaseTableColumn::HISTORIQUE_STOCK);
+//
+//	        curHistoriqueStockRetour = YerothHistoriqueStock::creer_mouvement_stock
+//	        			(RETOUR_VENTE,
+//	        			 curStockRecord.value(YerothDatabaseTableColumn::ID).toInt(),
+//						 GET_CURRENT_DATE,
+//						 curStockQuantiteTotal,
+//						 curStocksVenduQuantiteVendue,
+//						 curStockNouvelleQuantiteTotal);
+//
+//	        curHistoriqueStock.append(YerothHistoriqueStock::SEPARATION_EXTERNE)
+//	        			   .append(curHistoriqueStockRetour);
+//
+//	        curStockRecord.setValue(YerothDatabaseTableColumn::HISTORIQUE_STOCK, curHistoriqueStock);
+//
+//			successReinsertStock = curStockTableModel.updateRecord(0, curStockRecord);
+//		}
+//		else
+//		{
+//			curStockRecord = curStockTableModel.record();
+//
+//			curStockRecord.setValue(YerothDatabaseTableColumn::ID, curStocksVendu_stocksID);
+//
+//		    curStockRecord.setValue(YerothDatabaseTableColumn::HISTORIQUE_STOCK,
+//		    		GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::HISTORIQUE_STOCK));
+//
+//		    curStockRecord.setValue(YerothDatabaseTableColumn::REFERENCE,
+//		    		GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::REFERENCE));
+//
+//		    curStockRecord.setValue(YerothDatabaseTableColumn::DESIGNATION, curStocksVenduDesignation);
+//
+//		    curStockRecord.setValue(YerothDatabaseTableColumn::CATEGORIE, curStocksVenduCategorie);
+//
+//		    curStockRecord.setValue(YerothDatabaseTableColumn::QUANTITE_TOTAL, curStocksVenduQuantiteVendue);
+//
+//		    curMontantARembourserAuClient +=
+//		    		GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE).toDouble();
+//
+////		    qDebug() << QString("++ a rembourser au client: %1")
+////		    				.arg(QString::number(curMontantARembourserAuClient));
+//
+//		    double quantite_total = curStocksVenduQuantiteVendue;
+//
+//		    double montant_total_tva =
+//		    		GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::MONTANT_TVA).toDouble();
+//
+//		    double montant_tva_unitaire = montant_total_tva / quantite_total;
+//
+//		    double prix_unitaire =
+//		    		GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::PRIX_UNITAIRE).toDouble();
+//
+//		    double prix_vente = prix_unitaire + montant_tva_unitaire;
+//
+//		    curStockRecord.setValue(YerothDatabaseTableColumn::PRIX_UNITAIRE, prix_unitaire);
+//
+//		    curStockRecord.setValue(YerothDatabaseTableColumn::PRIX_VENTE, prix_vente);
+//
+//		    curStockRecord.setValue(YerothDatabaseTableColumn::MONTANT_TVA, montant_tva_unitaire);
+//
+//		    curStockRecord.setValue(YerothDatabaseTableColumn::IS_SERVICE,
+//		    		YerothUtils::MYSQL_FALSE_LITERAL);
+//
+//		    QString curStocksVenduDatePeremption =
+//		    		GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::DATE_PEREMPTION);
+//
+//		    QDate formatee(GET_DATE_FROM_STRING(curStocksVenduDatePeremption));
+//
+//		    curStockRecord.setValue(YerothDatabaseTableColumn::DATE_PEREMPTION, DATE_TO_DB_FORMAT_STRING(formatee));
+//
+//		    curStockRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR,
+//		    		GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR));
+//
+//		    curStockRecord.setValue(YerothDatabaseTableColumn::LOCALISATION,
+//		    		GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::LOCALISATION));
+//
+//		    curStockRecord.setValue(YerothDatabaseTableColumn::LOTS_ENTRANT, 1);
+//
+//		    curStockRecord.setValue(YerothDatabaseTableColumn::QUANTITE_PAR_LOT, quantite_total);
+//
+//		    curStockRecord.setValue(YerothDatabaseTableColumn::DATE_ENTREE, GET_CURRENT_DATE);
+//
+//			curHistoriqueStock =
+//	        		GET_SQL_RECORD_DATA(curStockRecord, YerothDatabaseTableColumn::HISTORIQUE_STOCK);
+//
+//	        curHistoriqueStockRetour = YerothHistoriqueStock::creer_mouvement_stock
+//	        			(RETOUR_VENTE,
+//	        			 curStocksVendu_stocksID.toInt(),
+//						 GET_CURRENT_DATE,
+//						 0.0,
+//						 curStocksVenduQuantiteVendue,
+//						 curStocksVenduQuantiteVendue);
+//
+//	        curHistoriqueStock.append(YerothHistoriqueStock::SEPARATION_EXTERNE)
+//	        			   .append(curHistoriqueStockRetour);
+//
+//	        curStockRecord.setValue(YerothDatabaseTableColumn::HISTORIQUE_STOCK, curHistoriqueStock);
+//
+//		    successReinsertStock = curStockTableModel.insertNewRecord(curStockRecord);
+//		}
+//
+//		curStockTableModel.resetFilter();
+//
+//		if (successReinsertStock)
+//		{
+//			QString removeRowQuery(QString("DELETE FROM %1 WHERE %2 = '%3'")
+//					.arg(_allWindows->STOCKS_VENDU,
+//							YerothDatabaseTableColumn::ID,
+//							curStocksVenduID));
+//
+//			bool successRemoveRowQuery = YerothUtils::execQuery(removeRowQuery);
+//
+//			if (successRemoveRowQuery &&
+//				-1 != clients_id 	  &&
+//				YerothUtils::isEqualCaseInsensitive(QObject::tr("achat-compte-client"), typeDeVente))
+//			{
+//				rembourserAuCompteClient = handleCompteClient(QString::number(clients_id),
+//															  curMontantARembourserAuClient);
+//			}
+//
+//			successReinsertStock = successReinsertStock && successRemoveRowQuery;
+//		}
+//	} //for
+//
+//	YEROTH_ERP_3_0_COMMIT_DATABASE_TRANSACTION;
+//
+//	if (successReinsertStock)
+//	{
+//		if (rembourserAuCompteClient)
+//		{
+//			msg = QString(QObject::trUtf8("La vente (avec référence 'reçu de vente %1') a été "
+//										  "annulée avec succès !\n\n"
+//					"(Montant crédité au compte du client '%2': '%3' !)"))
+//						.arg(curVenteReferenceRecuVendu,
+//							 curNomDuClient,
+//							 GET_CURRENCY_STRING_NUM(curMontantARembourserAuClient));
+//		}
+//		else
+//		{
+//			msg = QString(QObject::trUtf8("La vente (avec référence 'reçu de vente %1') a été "
+//										  "annulée avec succès !\n\n"
+//										  "(Montant à rembourser au client (comptant): '%2' !)"))
+//						.arg(curVenteReferenceRecuVendu,
+//							 GET_CURRENCY_STRING_NUM(curMontantARembourserAuClient));
+//		}
+//
+//		reinitialiser_recherche();
+//
+//		YerothQMessageBox::information(this,
+//									   QObject::trUtf8("succès"),
+//									   msg);
+//	}
+//	else
+//	{
+//		msg = QString(QObject::trUtf8("Échec de l'annulation de la vente "
+//									  "(avec référence '%1') !"))
+//				.arg(curVenteReferenceRecuVendu);
+//
+//		YerothQMessageBox::information(this,
+//									   QObject::trUtf8("échec"),
+//									   msg);
+//	}
+//
+//	return successReinsertStock;
+//}
 
 
 bool YerothVentesWindow::filtrer_ventes()
@@ -629,22 +989,42 @@ void YerothVentesWindow::setupLineEdits()
     lineEdit_ventes_nom_entreprise_client->enableForSearch(QObject::trUtf8("nom de l'entreprise cliente"));
     lineEdit_ventes_reference_recu_vendu->enableForSearch(QObject::trUtf8("référence reçu de vente"));
 
-    lineEdit_type_de_vente->setEnabled(false);
-    lineEdit_nom_client->setEnabled(false);
-    lineEdit_reference_produit->setEnabled(false);
-    lineEdit_designation->setEnabled(false);
-    lineEdit_nom_entreprise_fournisseur->setEnabled(false);
-    lineEdit_categorie->setEnabled(false);
-    lineEdit_remise_prix->setEnabled(false);
-    lineEdit_remise_pourcentage->setEnabled(false);
-    lineEdit_tva->setEnabled(false);
-    lineEdit_vente_detail_montant_total->setEnabled(false);
-    lineEdit_nom_caissier->setEnabled(false);
-    lineEdit_localisation->setEnabled(false);
-    lineEdit_quantite_vendue->setEnabled(false);
-    lineEdit_vente_detail_heure_vente->setEnabled(false);
-    lineEdit_ventes_detail_reference_recu_de_vente->setEnabled(false);
-    lineEdit_vente_detail_prix_unitaire->setEnabled(false);
+    lineEdit_details_type_de_vente->setEnabled(false);
+    lineEdit_details_nom_client->setEnabled(false);
+    lineEdit_details_reference_produit->setEnabled(false);
+    lineEdit_details_designation->setEnabled(false);
+    lineEdit_details_nom_entreprise_fournisseur->setEnabled(false);
+    lineEdit_details_categorie->setEnabled(false);
+    lineEdit_details_remise_prix->setEnabled(false);
+    lineEdit_details_remise_pourcentage->setEnabled(false);
+    lineEdit_details_tva->setEnabled(false);
+    lineEdit_details_montant_total->setEnabled(false);
+    lineEdit_details_nom_caissier->setEnabled(false);
+    lineEdit_details_localisation->setEnabled(false);
+    lineEdit_details_quantite_vendue->setEnabled(false);
+    lineEdit_details_heure_vente->setEnabled(false);
+    lineEdit_details_reference_recu_de_vente->setEnabled(false);
+    lineEdit_details_prix_unitaire->setEnabled(false);
+
+    lineEdit_retour_vente_quantite_a_retourner->setValidator(&YerothUtils::DoubleValidator);
+
+    lineEdit_retour_vente_type_de_vente->setEnabled(false);
+    lineEdit_retour_vente_nom_client->setEnabled(false);
+    lineEdit_retour_vente_reference_produit->setEnabled(false);
+    lineEdit_retour_vente_designation->setEnabled(false);
+    lineEdit_retour_vente_nom_entreprise_fournisseur->setEnabled(false);
+    lineEdit_retour_vente_categorie->setEnabled(false);
+    lineEdit_retour_vente_remise_prix->setEnabled(false);
+    lineEdit_retour_vente_remise_pourcentage->setEnabled(false);
+    lineEdit_retour_vente_tva->setEnabled(false);
+    lineEdit_retour_vente_montant_total->setEnabled(false);
+    lineEdit_retour_vente_nom_caissier->setEnabled(false);
+    lineEdit_retour_vente_localisation->setEnabled(false);
+    lineEdit_retour_vente_quantite_vendue->setEnabled(false);
+    lineEdit_retour_vente_quantite_a_retourner->setEnabled(true);
+    lineEdit_retour_vente_heure_vente->setEnabled(false);
+    lineEdit_retour_vente_reference_recu_de_vente->setEnabled(false);
+    lineEdit_retour_vente_prix_unitaire->setEnabled(false);
 
     lineEdit_ventes_recherche->setFocus();
 
@@ -706,6 +1086,8 @@ void YerothVentesWindow::setupShortcuts()
     setupShortcutActionMessageDaide 	(*actionAppeler_aide);
     setupShortcutActionAfficherPDF		(*actionAfficherPDF);
     setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
+
+    actionAnnulerCetteVente->setShortcut(Qt::Key_F2);
 }
 
 
@@ -738,7 +1120,6 @@ void YerothVentesWindow::contextMenuEvent(QContextMenuEvent * event)
     if (tableView_ventes->rowCount() > 0)
     {
         QMenu menu(this);
-        menu.addAction(actionAnnulerCetteVente);
         menu.addAction(actionAfficherVenteDetail);
         menu.setPalette(YerothUtils::YEROTH_WHITE_PALETTE);
         menu.exec(event->globalPos());
@@ -747,21 +1128,41 @@ void YerothVentesWindow::contextMenuEvent(QContextMenuEvent * event)
 
 void YerothVentesWindow::clear_all_fields()
 {
-    lineEdit_nom_client->clearField();
-    lineEdit_reference_produit->clearField();
-    lineEdit_designation->clearField();
-    lineEdit_nom_entreprise_fournisseur->clearField();
-    lineEdit_categorie->clearField();
-    lineEdit_remise_prix->clearField();
-    lineEdit_remise_pourcentage->clearField();
-    lineEdit_tva->clearField();
-    lineEdit_vente_detail_montant_total->clearField();
-    lineEdit_nom_caissier->clearField();
-    lineEdit_localisation->clearField();
-    lineEdit_quantite_vendue->clearField();
-    lineEdit_ventes_detail_reference_recu_de_vente->clearField();
-    lineEdit_vente_detail_heure_vente->clearField();
-    lineEdit_vente_detail_prix_unitaire->clearField();
+    lineEdit_details_nom_client->clearField();
+    lineEdit_details_reference_produit->clearField();
+    lineEdit_details_designation->clearField();
+    lineEdit_details_nom_entreprise_fournisseur->clearField();
+    lineEdit_details_categorie->clearField();
+    lineEdit_details_remise_prix->clearField();
+    lineEdit_details_remise_pourcentage->clearField();
+    lineEdit_details_tva->clearField();
+    lineEdit_details_montant_total->clearField();
+    lineEdit_details_nom_caissier->clearField();
+    lineEdit_details_localisation->clearField();
+    lineEdit_details_quantite_vendue->clearField();
+    lineEdit_details_reference_recu_de_vente->clearField();
+    lineEdit_details_heure_vente->clearField();
+    lineEdit_details_prix_unitaire->clearField();
+
+
+    lineEdit_retour_vente_quantite_a_retourner->clear();
+
+    lineEdit_retour_vente_nom_client->clearField();
+    lineEdit_retour_vente_reference_produit->clearField();
+    lineEdit_retour_vente_designation->clearField();
+    lineEdit_retour_vente_nom_entreprise_fournisseur->clearField();
+    lineEdit_retour_vente_categorie->clearField();
+    lineEdit_retour_vente_remise_prix->clearField();
+    lineEdit_retour_vente_remise_pourcentage->clearField();
+    lineEdit_retour_vente_tva->clearField();
+    lineEdit_retour_vente_montant_total->clearField();
+    lineEdit_retour_vente_nom_caissier->clearField();
+    lineEdit_retour_vente_localisation->clearField();
+    lineEdit_retour_vente_quantite_vendue->clearField();
+    lineEdit_retour_vente_reference_recu_de_vente->clearField();
+    lineEdit_retour_vente_heure_vente->clearField();
+    lineEdit_retour_vente_prix_unitaire->clearField();
+
     lineEdit_ventes_tva->clearField();
     lineEdit_ventes_remise_totale_currency->clearField();
     lineEdit_ventes_recette_totale->clearField();
@@ -771,9 +1172,13 @@ void YerothVentesWindow::clear_all_fields()
 
 void YerothVentesWindow::setupDateTimeEdits()
 {
-	dateEdit_vente_detail_date_vente->setYerothEnabled(false);
+	dateEdit_details_date_vente->setYerothEnabled(false);
 
-	dateEdit_vente_detail_date_peremption->setYerothEnabled(false);
+	dateEdit_details_date_peremption->setYerothEnabled(false);
+
+	dateEdit_retour_vente_date_vente->setYerothEnabled(false);
+
+	dateEdit_retour_vente_date_peremption->setYerothEnabled(false);
 
     dateEdit_ventes_debut->setStartDate(GET_CURRENT_DATE);
 
@@ -801,7 +1206,7 @@ void YerothVentesWindow::setupDateTimeEdits()
 
 void YerothVentesWindow::deconnecter_utilisateur()
 {
-    this->clear_all_fields();
+    clear_all_fields();
     YerothWindowsCommons::deconnecter_utilisateur();
 }
 
@@ -817,8 +1222,19 @@ void YerothVentesWindow::definirCaissier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
+    tabWidget_ventes->removeTab(RetourDuneVente);
+
     pushButton_ventes_filtrer->disable(this);
+
     pushButton_ventes_reinitialiser_filtre->disable(this);
+
+    pushButton_reinitialiser->disable(this);
+
+    pushButton_retour_details->disable(this);
+
+    pushButton_retour_vente->disable(this);
+
+    pushButton_annuler_vente->disable(this);
 }
 
 void YerothVentesWindow::definirManager()
@@ -838,8 +1254,25 @@ void YerothVentesWindow::definirManager()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
+    if (tabWidget_ventes->count() < 3)
+    {
+    	tabWidget_ventes->insertTab(RetourDuneVente,
+    								_retourVenteTabWidget,
+									_retourVenteTabWidgetTitle);
+    }
+
+
     pushButton_ventes_filtrer->enable(this, SLOT(filtrer_ventes()));
+
     pushButton_ventes_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
+
+    pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
+
+    pushButton_retour_details->enable(this, SLOT(retourVentes()));
+
+    pushButton_retour_vente->enable(this, SLOT(retourVentes()));
+
+    pushButton_annuler_vente->enable(this, SLOT(annuler_cette_vente()));
 }
 
 
@@ -860,8 +1293,19 @@ void YerothVentesWindow::definirVendeur()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
+    tabWidget_ventes->removeTab(RetourDuneVente);
+
     pushButton_ventes_filtrer->enable(this, SLOT(filtrer_ventes()));
+
     pushButton_ventes_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
+
+    pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
+
+    pushButton_retour_details->enable(this, SLOT(retourVentes()));
+
+    pushButton_retour_vente->disable(this);
+
+    pushButton_annuler_vente->disable(this);
 }
 
 
@@ -882,8 +1326,19 @@ void YerothVentesWindow::definirGestionaireDesStocks()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
+    tabWidget_ventes->removeTab(RetourDuneVente);
+
     pushButton_ventes_filtrer->disable(this);
+
     pushButton_ventes_reinitialiser_filtre->disable(this);
+
+    pushButton_reinitialiser->disable(this);
+
+    pushButton_retour_details->disable(this);
+
+    pushButton_retour_vente->disable(this);
+
+    pushButton_annuler_vente->disable(this);
 }
 
 void YerothVentesWindow::definirMagasinier()
@@ -897,8 +1352,19 @@ void YerothVentesWindow::definirMagasinier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
+    tabWidget_ventes->removeTab(RetourDuneVente);
+
     pushButton_ventes_filtrer->disable(this);
+
     pushButton_ventes_reinitialiser_filtre->disable(this);
+
+    pushButton_reinitialiser->disable(this);
+
+    pushButton_retour_details->disable(this);
+
+    pushButton_retour_vente->disable(this);
+
+    pushButton_annuler_vente->disable(this);
 }
 
 void YerothVentesWindow::definirPasDeRole()
@@ -912,8 +1378,19 @@ void YerothVentesWindow::definirPasDeRole()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
+    tabWidget_ventes->removeTab(RetourDuneVente);
+
     pushButton_ventes_filtrer->disable(this);
+
     pushButton_ventes_reinitialiser_filtre->disable(this);
+
+    pushButton_reinitialiser->disable(this);
+
+    pushButton_retour_details->disable(this);
+
+    pushButton_retour_vente->disable(this);
+
+    pushButton_annuler_vente->disable(this);
 }
 
 void YerothVentesWindow::readProcessData()
@@ -1269,10 +1746,18 @@ void YerothVentesWindow::resetFilter(YerothSqlTableModel * stocksVenduTableModel
 }
 
 
-void YerothVentesWindow::retourVentes()
+void YerothVentesWindow::handleTabEnabled()
 {
-    _currentTabView = TableauDesVentes;
-    tabWidget_ventes->setCurrentIndex(TableauDesVentes);
+    if (tableView_ventes->rowCount() > 0)
+    {
+    	tabWidget_ventes->setTabEnabled(RetourDuneVente, true);
+        tabWidget_ventes->setTabEnabled(AfficherVenteAuDetail, true);
+    }
+    else
+    {
+    	tabWidget_ventes->setTabEnabled(RetourDuneVente, false);
+        tabWidget_ventes->setTabEnabled(AfficherVenteAuDetail, false);
+    }
 }
 
 
@@ -1280,17 +1765,26 @@ void YerothVentesWindow::handleCurrentTabChanged(int index)
 {
     //_logger->log("handleCurrentChanged(int)",
     //                  QString("handleCurrentChanged]. index: %1").arg(index));
-    _currentTabView = index;
+
     switch (index)
     {
     case TableauDesVentes:
         lister_les_elements_du_tableau();
         enableImprimer();
         break;
+
     case AfficherVenteAuDetail:
         afficher_vente_detail();
         disableImprimer();
         break;
+
+    case RetourDuneVente:
+    	lineEdit_retour_vente_quantite_a_retourner->setFocus();
+
+    	afficher_retour_vente();
+        disableImprimer();
+        break;
+
     default:
         break;
     }
@@ -1361,14 +1855,7 @@ void YerothVentesWindow::lister_les_elements_du_tableau(YerothSqlTableModel &sto
     lineEdit_ventes_quantite_vendue->setText(GET_DOUBLE_STRING(quantite_vendue_total));
     lineEdit_ventes_recette_totale->setText(GET_CURRENCY_STRING_NUM(montant_total));
 
-    if (tableView_ventes->rowCount() > 0)
-    {
-        tabWidget_ventes->setTabEnabled(AfficherVenteAuDetail, true);
-    }
-    else
-    {
-        tabWidget_ventes->setTabEnabled(AfficherVenteAuDetail, false);
-    }
+    handleTabEnabled();
 
     tableView_ventes->resizeColumnsToContents();
 }
@@ -1386,9 +1873,13 @@ void YerothVentesWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 
     tabWidget_ventes->setCurrentIndex(TableauDesVentes);
 
-
     label_ventes_tva->setText(QString(QObject::tr("TVA (%1)")).arg(YerothERPConfig::currency));
-    label_remise_devise->setText(QString(QObject::tr("remise (%1)")).arg(YerothERPConfig::currency));
+
+    label_details_tva->setText(QString(QObject::tr("TVA (%1)")).arg(YerothERPConfig::currency));
+
+    label_details_remise_prix->setText(QString(QObject::tr("remise (%1)")).arg(YerothERPConfig::currency));
+
+    label_retour_vente_remise_prix->setText(QString(QObject::tr("remise (%1)")).arg(YerothERPConfig::currency));
 
     lineEdit_ventes_reference_recu_vendu->setEnabled(true);
     lineEdit_ventes_categorie_produit->setEnabled(true);
@@ -1417,7 +1908,8 @@ void YerothVentesWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
     lineEdit_ventes_recherche->setFocus();
 }
 
-void YerothVentesWindow::afficher_vente_detail()
+
+void YerothVentesWindow::afficher_retour_vente()
 {
 	if (tableView_ventes->rowCount() <= 0)
 	{
@@ -1429,33 +1921,33 @@ void YerothVentesWindow::afficher_vente_detail()
     //_logger->log("afficher_vente_detail]", QString("row: %1").arg(lastSelectedVentesRow));
     QSqlRecord record = _curStocksVenduTableModel->record(lastSelectedVentesRow);
 
-    lineEdit_reference_produit->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE));
-    lineEdit_designation->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
-    lineEdit_nom_entreprise_fournisseur->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR));
-    lineEdit_categorie->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::CATEGORIE));
+    lineEdit_retour_vente_reference_produit->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE));
+    lineEdit_retour_vente_designation->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
+    lineEdit_retour_vente_nom_entreprise_fournisseur->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR));
+    lineEdit_retour_vente_categorie->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::CATEGORIE));
 
     double quantite_vendue = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::QUANTITE_VENDUE).toDouble();
 
-    lineEdit_quantite_vendue->setText(GET_NUM_STRING(quantite_vendue));
-    lineEdit_vente_detail_prix_unitaire->setText(GET_CURRENCY_STRING_NUM(GET_SQL_RECORD_DATA(record, "prix_unitaire").toDouble()));
-    lineEdit_remise_prix->setText(GET_CURRENCY_STRING_NUM(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REMISE_PRIX).toDouble()));
+    lineEdit_retour_vente_quantite_vendue->setText(GET_NUM_STRING(quantite_vendue));
+    lineEdit_retour_vente_prix_unitaire->setText(GET_CURRENCY_STRING_NUM(GET_SQL_RECORD_DATA(record, "prix_unitaire").toDouble()));
+    lineEdit_retour_vente_remise_prix->setText(GET_CURRENCY_STRING_NUM(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REMISE_PRIX).toDouble()));
 
     QString remise_pourcentage(QString("%1 %")
     								.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REMISE_POURCENTAGE)));
 
-    lineEdit_remise_pourcentage->setText(remise_pourcentage);
-    lineEdit_tva->setText(GET_CURRENCY_STRING_NUM(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::TVA).toDouble()));
-    lineEdit_vente_detail_montant_total->setText(GET_CURRENCY_STRING_NUM(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE).toDouble()));
+    lineEdit_retour_vente_remise_pourcentage->setText(remise_pourcentage);
+    lineEdit_retour_vente_tva->setText(GET_CURRENCY_STRING_NUM(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::MONTANT_TVA).toDouble()));
+    lineEdit_retour_vente_montant_total->setText(GET_CURRENCY_STRING_NUM(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE).toDouble()));
 
-    dateEdit_vente_detail_date_peremption->setDate(GET_DATE_FROM_STRING(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DATE_PEREMPTION)));
-    dateEdit_vente_detail_date_vente->setDate(GET_DATE_FROM_STRING(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DATE_VENTE)));
+    dateEdit_retour_vente_date_peremption->setDate(GET_DATE_FROM_STRING(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DATE_PEREMPTION)));
+    dateEdit_retour_vente_date_vente->setDate(GET_DATE_FROM_STRING(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DATE_VENTE)));
 
-    lineEdit_vente_detail_heure_vente->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::HEURE_VENTE));
+    lineEdit_retour_vente_heure_vente->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::HEURE_VENTE));
 
-    lineEdit_ventes_detail_reference_recu_de_vente->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE_RECU_VENDU));
+    lineEdit_retour_vente_reference_recu_de_vente->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE_RECU_VENDU));
 
-    lineEdit_nom_caissier->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_CAISSIER));
-    lineEdit_localisation->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::LOCALISATION));
+    lineEdit_retour_vente_nom_caissier->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_CAISSIER));
+    lineEdit_retour_vente_localisation->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::LOCALISATION));
 
     YerothSqlTableModel & clientsTableModel = _allWindows->getSqlTableModel_clients();
 
@@ -1472,15 +1964,84 @@ void YerothVentesWindow::afficher_vente_detail()
     if (clientsTableModelRowCount > 0)
     {
         QSqlRecord clientsRecord = clientsTableModel.record(0);
-        lineEdit_nom_client->setText(GET_SQL_RECORD_DATA(clientsRecord, YerothDatabaseTableColumn::NOM_ENTREPRISE));
+        lineEdit_retour_vente_nom_client->setText(GET_SQL_RECORD_DATA(clientsRecord, YerothDatabaseTableColumn::NOM_ENTREPRISE));
     }
     else
     {
-        lineEdit_nom_client->setText("");
+        lineEdit_retour_vente_nom_client->setText("");
     }
 
-    lineEdit_nom_client->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT));
-    lineEdit_type_de_vente->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::TYPE_DE_VENTE));
+    lineEdit_retour_vente_nom_client->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT));
+    lineEdit_retour_vente_type_de_vente->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::TYPE_DE_VENTE));
+
+    tabWidget_ventes->setCurrentIndex(RetourDuneVente);
+}
+
+
+void YerothVentesWindow::afficher_vente_detail()
+{
+	if (tableView_ventes->rowCount() <= 0)
+	{
+		return ;
+	}
+
+    int lastSelectedVentesRow = tableView_ventes->lastSelectedRow();
+
+    //_logger->log("afficher_vente_detail]", QString("row: %1").arg(lastSelectedVentesRow));
+    QSqlRecord record = _curStocksVenduTableModel->record(lastSelectedVentesRow);
+
+    lineEdit_details_reference_produit->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE));
+    lineEdit_details_designation->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
+    lineEdit_details_nom_entreprise_fournisseur->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR));
+    lineEdit_details_categorie->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::CATEGORIE));
+
+    double quantite_vendue = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::QUANTITE_VENDUE).toDouble();
+
+    lineEdit_details_quantite_vendue->setText(GET_NUM_STRING(quantite_vendue));
+    lineEdit_details_prix_unitaire->setText(GET_CURRENCY_STRING_NUM(GET_SQL_RECORD_DATA(record, "prix_unitaire").toDouble()));
+    lineEdit_details_remise_prix->setText(GET_CURRENCY_STRING_NUM(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REMISE_PRIX).toDouble()));
+
+    QString remise_pourcentage(QString("%1 %")
+    								.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REMISE_POURCENTAGE)));
+
+    lineEdit_details_remise_pourcentage->setText(remise_pourcentage);
+    lineEdit_details_tva->setText(GET_CURRENCY_STRING_NUM(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::MONTANT_TVA).toDouble()));
+    lineEdit_details_montant_total->setText(GET_CURRENCY_STRING_NUM(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE).toDouble()));
+
+    dateEdit_details_date_peremption->setDate(GET_DATE_FROM_STRING(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DATE_PEREMPTION)));
+    dateEdit_details_date_vente->setDate(GET_DATE_FROM_STRING(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DATE_VENTE)));
+
+    lineEdit_details_heure_vente->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::HEURE_VENTE));
+
+    lineEdit_details_reference_recu_de_vente->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE_RECU_VENDU));
+
+    lineEdit_details_nom_caissier->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_CAISSIER));
+    lineEdit_details_localisation->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::LOCALISATION));
+
+    YerothSqlTableModel & clientsTableModel = _allWindows->getSqlTableModel_clients();
+
+    QString clientsIdFilter;
+
+    clientsIdFilter.append(QString("%1 = '%2'")
+    						 .arg(YerothDatabaseTableColumn::ID,
+    							  GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::CLIENTS_ID)));
+
+    clientsTableModel.yerothSetFilter(clientsIdFilter);
+
+    int clientsTableModelRowCount = clientsTableModel.easySelect();
+
+    if (clientsTableModelRowCount > 0)
+    {
+        QSqlRecord clientsRecord = clientsTableModel.record(0);
+        lineEdit_details_nom_client->setText(GET_SQL_RECORD_DATA(clientsRecord, YerothDatabaseTableColumn::NOM_ENTREPRISE));
+    }
+    else
+    {
+        lineEdit_details_nom_client->setText("");
+    }
+
+    lineEdit_details_nom_client->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT));
+    lineEdit_details_type_de_vente->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::TYPE_DE_VENTE));
 
     tabWidget_ventes->setCurrentIndex(AfficherVenteAuDetail);
 }

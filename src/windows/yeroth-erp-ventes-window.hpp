@@ -32,7 +32,8 @@ class YerothVentesWindow : public YerothWindowsCommons, private Ui_YerothVentesW
 	enum TabIndex
 	{
 		TableauDesVentes = 0,
-		AfficherVenteAuDetail
+		AfficherVenteAuDetail,
+		RetourDuneVente
 	};
 
 public:
@@ -131,9 +132,14 @@ public slots:
 
 	virtual bool imprimer_document();
 
+	void handleTabEnabled();
+
 	void handleCurrentTabChanged(int index);
 
-	void retourVentes();
+	inline void retourVentes()
+	{
+	    tabWidget_ventes->setCurrentIndex(TableauDesVentes);
+	}
 
     virtual void deconnecter_utilisateur();
 
@@ -149,6 +155,8 @@ public slots:
     void reinitialiser_elements_filtrage();
 
     void reinitialiser_recherche();
+
+    void afficher_retour_vente();
 
     void afficher_vente_detail();
 
@@ -210,11 +218,13 @@ private:
 
     static const QString 	_WINDOW_TITLE;
 
-    YerothLogger				*_logger;
+    QString 				_retourVenteTabWidgetTitle;
+
+    QWidget 				*_retourVenteTabWidget;
+
+    YerothLogger			*_logger;
 
     QProcess 				*_aProcess;
-
-    int 				 	_currentTabView;
 
     bool					_currentlyFiltered;
 
