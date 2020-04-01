@@ -906,7 +906,6 @@ void YerothEntrerWindow::rendreVisible(YerothSqlTableModel * stocksTableModel, b
     if (aShowItem)
     {
     	checkBox_service->setChecked(false);
-    	checkBox_service->clicked();
     }
 
     if (checkBox_service->isChecked())

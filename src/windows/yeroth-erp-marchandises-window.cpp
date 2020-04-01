@@ -69,6 +69,8 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
 
     setupLineEdits();
 
+    setupLineEditsQCompleters();
+
     populateInventaireDesStocksComboBoxes();
 
     _pushButton_filtrer_font = new QFont(pushButton_filtrer->font());
@@ -132,11 +134,13 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
 
 #endif
 
-    connect(checkBox_services, SIGNAL(clicked(bool)), this, SLOT(handleServicesCheckBox(bool)));
+    connect(checkBox_services, SIGNAL(stateChanged(int)), this, SLOT(handle_services_checkBox(int)));
 
     connect(actionSupprimer_ce_stock, SIGNAL(triggered()), this, SLOT(supprimer_ce_stock()));
 
-    connect(tableView_marchandises, SIGNAL(signal_lister(YerothSqlTableModel &)), this,
+    connect(tableView_marchandises,
+    		SIGNAL(signal_lister(YerothSqlTableModel &)),
+			this,
             SLOT(set_rechercher_font()));
 
     setupShortcuts();
@@ -157,18 +161,6 @@ void YerothMarchandisesWindow::setSearchFormSqlTableModel(YerothSqlTableModel *s
 	setCurrentlyFiltered(false);
 
 	_searchMarchandisesTableModel = searchFormSqlTableModel;
-}
-
-
-
-void YerothMarchandisesWindow::updateLineEditDesignation()
-{
-    lineEdit_recherche_designation->enableForSearch(QObject::trUtf8("désignation"));
-
-    lineEdit_recherche_designation->setupMyQCompleterALL(_allWindows->MARCHANDISES);
-
-    connect(lineEdit_recherche_designation->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
-            SLOT(afficher_stock_selectioner(const QString &)));
 }
 
 
@@ -336,9 +328,9 @@ void YerothMarchandisesWindow::setupShortcuts()
 }
 
 
-void YerothMarchandisesWindow::handleServicesCheckBox(bool clicked)
+void YerothMarchandisesWindow::handle_services_checkBox(int state)
 {
-	if (clicked && checkBox_services->isChecked())
+	if (checkBox_services->isChecked())
 	{
 		_curInventaireDesStocksTableModel->yerothSetFilter(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
     										  	  	  	   YerothUtils::MYSQL_TRUE_LITERAL));
@@ -351,7 +343,16 @@ void YerothMarchandisesWindow::handleServicesCheckBox(bool clicked)
 
 	_curInventaireDesStocksTableModel->easySelect();
 
+	lineEdit_recherche_designation->clear();
+
+	if (-1 != state)
+	{
+		reinitialiser_elements_filtrage();
+	}
+
 	afficherMarchandises();
+
+	setupLineEditsQCompleters();
 }
 
 
@@ -556,11 +557,35 @@ void YerothMarchandisesWindow::populateInventaireDesStocksComboBoxes()
 }
 
 
-void YerothMarchandisesWindow::setupLineEdits()
+void YerothMarchandisesWindow::setupLineEditsQCompleters()
 {
-	lineEdit_marchandises_element_de_stock_resultat->setValidator(&YerothUtils::DoubleValidator);
+    lineEdit_recherche_designation->enableForSearch(QObject::trUtf8("désignation"));
 
-	updateLineEditDesignation();
+    if (checkBox_services->isChecked())
+    {
+    	QString aConditionStr(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE, "1"));
+
+        lineEdit_recherche_designation->setupMyStaticQCompleter(_allWindows->MARCHANDISES,
+        														YerothDatabaseTableColumn::DESIGNATION,
+																false,
+																true,
+																aConditionStr);
+    }
+    else
+    {
+    	QString aConditionStr(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE, "0"));
+
+        lineEdit_recherche_designation->setupMyStaticQCompleter(_allWindows->MARCHANDISES,
+        														YerothDatabaseTableColumn::DESIGNATION,
+																false,
+																true,
+																aConditionStr);
+    }
+
+    connect(lineEdit_recherche_designation->getMyQCompleter(),
+    		SIGNAL(activated(const QString &)),
+			this,
+            SLOT(afficher_stock_selectioner(const QString &)));
 }
 
 
@@ -593,6 +618,8 @@ void YerothMarchandisesWindow::rendreVisible(YerothSqlTableModel * stocksTableMo
 	}
 
 	afficherMarchandises();
+
+	setupLineEditsQCompleters();
 }
 
 
@@ -849,7 +876,7 @@ void YerothMarchandisesWindow::supprimer_ce_stock()
 
         afficherMarchandises();
 
-        updateLineEditDesignation();
+        setupLineEditsQCompleters();
     }
     else
     {
@@ -878,6 +905,10 @@ void YerothMarchandisesWindow::reinitialiser_recherche()
     setSearchFormSqlTableModel(0);
 
     setCurrentlyFiltered(false);
+
+    lineEdit_recherche_designation->clear();
+
+    handle_services_checkBox(-1);
 }
 
 

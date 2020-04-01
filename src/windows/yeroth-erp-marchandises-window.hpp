@@ -136,8 +136,6 @@ public slots:
 
     void setSearchFormSqlTableModel(YerothSqlTableModel *searchFormSqlTableModel);
 
-    void updateLineEditDesignation();
-
     static double getValeurDinventaireEnStock(QString categorie, QString designation);
 
     static double getQuantiteTotalEnStock(QString categorie, QString designation);
@@ -163,7 +161,7 @@ protected:
 
 private slots:
 
-	void handleServicesCheckBox(bool clicked);
+	void handle_services_checkBox(int state);
 
 	bool filtrer_empty_product_stock();
 
@@ -177,7 +175,10 @@ private:
 
     void setupLineEditsQCompleters();
 
-    void setupLineEdits();
+    inline void setupLineEdits()
+    {
+    	lineEdit_marchandises_element_de_stock_resultat->setValidator(&YerothUtils::DoubleValidator);
+    }
 
     static const QString 	_WINDOW_TITLE;
 
