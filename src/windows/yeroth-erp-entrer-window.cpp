@@ -1567,7 +1567,7 @@ void YerothEntrerWindow::enregistrer_produit()
     		YerothHistoriqueStock::creer_mouvement_stock(ENTREE,
     				stock_id_to_save,
 					GET_CURRENT_DATE,
-					quantite_total,
+					0.0,
 					quantite_total,
 					quantite_total));
 
