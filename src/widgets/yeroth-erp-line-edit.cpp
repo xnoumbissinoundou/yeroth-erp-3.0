@@ -108,12 +108,7 @@ void YerothLineEdit::setYerothERPQLineEditDisplayFormat()
 {
     if (isReadOnly())
     {
-        bool isLeftAligned = ( (Qt::AlignLeft | alignment()) == 1 );
-
-        if ( isLeftAligned )
-        {
-            setAlignment(Qt::AlignHCenter);
-        }
+    	setAlignment(Qt::AlignHCenter);
     }
     else
     {
@@ -166,7 +161,7 @@ void YerothLineEdit::clearField()
 }
 
 
-void YerothLineEdit::setEnabled(bool enabled)
+void YerothLineEdit::setYerothEnabled(bool enabled)
 {
     QLineEdit::setReadOnly(!enabled);
 

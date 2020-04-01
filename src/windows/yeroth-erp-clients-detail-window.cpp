@@ -152,22 +152,22 @@ void YerothClientsDetailWindow::supprimerCompteClient()
 
 void YerothClientsDetailWindow::setupLineEdits()
 {
-	lineEdit_clients_details_reference_registre_du_commerce->setEnabled(false);
-	lineEdit_clients_details_reference_client->setEnabled(false);
-	lineEdit_clients_details_nom_entreprise->setEnabled(false);
-	lineEdit_clients_details_nom_representant->setEnabled(false);
-	lineEdit_clients_details_quartier->setEnabled(false);
-	lineEdit_clients_details_ville->setEnabled(false);
-	lineEdit_clients_details_province_etat->setEnabled(false);
-	lineEdit_clients_details_pays->setEnabled(false);
-	lineEdit_clients_details_boite_postale->setEnabled(false);
-	lineEdit_clients_details_siege_social->setEnabled(false);
-	lineEdit_clients_details_email->setEnabled(false);
-	lineEdit_clients_details_numero_telephone_1->setEnabled(false);
-	lineEdit_clients_details_numero_telephone_2->setEnabled(false);
-	lineEdit_clients_details_numero_contribuable->setEnabled(false);
-	lineEdit_clients_details_dette_maximale->setEnabled(false);
-	lineEdit_clients_details_compte_client->setEnabled(false);
+	lineEdit_clients_details_reference_registre_du_commerce->setYerothEnabled(false);
+	lineEdit_clients_details_reference_client->setYerothEnabled(false);
+	lineEdit_clients_details_nom_entreprise->setYerothEnabled(false);
+	lineEdit_clients_details_nom_representant->setYerothEnabled(false);
+	lineEdit_clients_details_quartier->setYerothEnabled(false);
+	lineEdit_clients_details_ville->setYerothEnabled(false);
+	lineEdit_clients_details_province_etat->setYerothEnabled(false);
+	lineEdit_clients_details_pays->setYerothEnabled(false);
+	lineEdit_clients_details_boite_postale->setYerothEnabled(false);
+	lineEdit_clients_details_siege_social->setYerothEnabled(false);
+	lineEdit_clients_details_email->setYerothEnabled(false);
+	lineEdit_clients_details_numero_telephone_1->setYerothEnabled(false);
+	lineEdit_clients_details_numero_telephone_2->setYerothEnabled(false);
+	lineEdit_clients_details_numero_contribuable->setYerothEnabled(false);
+	lineEdit_clients_details_dette_maximale->setYerothEnabled(false);
+	lineEdit_clients_details_compte_client->setYerothEnabled(false);
 }
 
 

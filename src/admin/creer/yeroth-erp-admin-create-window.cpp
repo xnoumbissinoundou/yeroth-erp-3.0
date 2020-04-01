@@ -112,7 +112,7 @@ void YerothAdminCreateWindow::definirManager()
 
 void YerothAdminCreateWindow::setupLineEdits()
 {
-	lineEdit_creer_remise_montant->setEnabled(false);
+	lineEdit_creer_remise_montant->setYerothEnabled(false);
 
 	lineEdit_creer_remise_montant->setValidator(&YerothUtils::DoubleValidator);
     lineEdit_creer_alerte_quantite->setValidator(&YerothUtils::IntValidator);
@@ -165,7 +165,7 @@ void YerothAdminCreateWindow::rendreVisible(unsigned selectedSujetAction)
 
     lineEdit_creer_remise_designation_article->setupMyStaticQCompleter(_allWindows->STOCKS, YerothDatabaseTableColumn::DESIGNATION);
 
-    lineEdit_creer_utilisateur_localisation->setEnabled(false);
+    lineEdit_creer_utilisateur_localisation->setYerothEnabled(false);
 
     lineEdit_creer_utilisateur_localisation->setText(_allWindows->getInfoEntreprise().getLocalisation());
 
@@ -370,7 +370,7 @@ void YerothAdminCreateWindow::radioButtons_quantite()
 	dateEdit_creer_alerte_date_debut->setYerothEnabled(false);
 
 	comboBox_creer_alerte_condition->setEnabled(true);
-	lineEdit_creer_alerte_quantite->setEnabled(true);
+	lineEdit_creer_alerte_quantite->setYerothEnabled(true);
 
     if (radioButton_creer_alerte_periode_temps->isChecked())
     {
@@ -384,7 +384,7 @@ void YerothAdminCreateWindow::radioButtons_periode_temps()
 	dateEdit_creer_alerte_date_debut->setYerothEnabled(true);
 
 	comboBox_creer_alerte_condition->setEnabled(false);
-	lineEdit_creer_alerte_quantite->setEnabled(false);
+	lineEdit_creer_alerte_quantite->setYerothEnabled(false);
 
     if (radioButton_creer_alerte_quantite->isChecked())
     {

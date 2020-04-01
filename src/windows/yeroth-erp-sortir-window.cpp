@@ -330,19 +330,19 @@ void YerothSortirWindow::setupLineEdits()
     lineEdit_articles_imprimante->setText(YerothERPConfig::printer);
     lineEdit_articles_imprimante->setReadOnly(true);
 
-    lineEdit_article_detail_nom_client->setEnabled(false);
-    lineEdit_article_detail_reference_produit->setEnabled(false);
-    lineEdit_article_detail_designation->setEnabled(false);
-    lineEdit_article_detail_nom_entreprise_fournisseur->setEnabled(false);
-    lineEdit_article_detail_categorie->setEnabled(false);
-    lineEdit_article_detail_prix_unitaire->setEnabled(false);
-    lineEdit_article_detail_tva->setEnabled(false);
-    lineEdit_article_detail_destination->setEnabled(false);
-    lineEdit_article_detail_nom_magasinier->setEnabled(false);
-    lineEdit_article_detail_nom_recepteur->setEnabled(false);
-    lineEdit_article_detail_quantite_en_stock->setEnabled(false);
-    lineEdit_articles_nom_magasinier->setEnabled(false);
-    lineEdit_articles_quantite_a_transferer->setEnabled(false);
+    lineEdit_article_detail_nom_client->setYerothEnabled(false);
+    lineEdit_article_detail_reference_produit->setYerothEnabled(false);
+    lineEdit_article_detail_designation->setYerothEnabled(false);
+    lineEdit_article_detail_nom_entreprise_fournisseur->setYerothEnabled(false);
+    lineEdit_article_detail_categorie->setYerothEnabled(false);
+    lineEdit_article_detail_prix_unitaire->setYerothEnabled(false);
+    lineEdit_article_detail_tva->setYerothEnabled(false);
+    lineEdit_article_detail_destination->setYerothEnabled(false);
+    lineEdit_article_detail_nom_magasinier->setYerothEnabled(false);
+    lineEdit_article_detail_nom_recepteur->setYerothEnabled(false);
+    lineEdit_article_detail_quantite_en_stock->setYerothEnabled(false);
+    lineEdit_articles_nom_magasinier->setYerothEnabled(false);
+    lineEdit_articles_quantite_a_transferer->setYerothEnabled(false);
     lineEdit_articles_quantite_a_transferer->setText(GET_DOUBLE_STRING(0.0));
     //qDebug() << "++ YerothSortirWindow::setupLineEdits(): " << YerothConfig::salesStrategy;
     connect(lineEdit_articles_transfert, SIGNAL(textChanged(const QString &)), this, SLOT(handleClient()));
@@ -350,8 +350,8 @@ void YerothSortirWindow::setupLineEdits()
     lineEdit_article_detail_quantite_a_vendre->setValidator(&YerothUtils::DoubleValidator);
     lineEdit_article_detail_remise_prix->setValidator(&YerothUtils::DoubleValidator);
     lineEdit_article_detail_remise_pourcentage->setValidator(&YerothUtils::DoubleValidator);
-    lineEdit_article_detail_remise_prix->setEnabled(false);
-    lineEdit_article_detail_remise_pourcentage->setEnabled(false);
+    lineEdit_article_detail_remise_prix->setYerothEnabled(false);
+    lineEdit_article_detail_remise_pourcentage->setYerothEnabled(false);
 }
 
 void YerothSortirWindow::hideEvent(QHideEvent * hideEvent)
@@ -1203,11 +1203,11 @@ void YerothSortirWindow::activateLineEditRemisePrix(bool toggled)
 {
     if (toggled)
     {
-        lineEdit_article_detail_remise_prix->setEnabled(true);
+        lineEdit_article_detail_remise_prix->setYerothEnabled(true);
     }
     else
     {
-        lineEdit_article_detail_remise_prix->setEnabled(false);
+        lineEdit_article_detail_remise_prix->setYerothEnabled(false);
     }
 }
 
@@ -1215,11 +1215,11 @@ void YerothSortirWindow::activateLineEditRemisePourcentage(bool toggled)
 {
     if (toggled)
     {
-        lineEdit_article_detail_remise_pourcentage->setEnabled(true);
+        lineEdit_article_detail_remise_pourcentage->setYerothEnabled(true);
     }
     else
     {
-        lineEdit_article_detail_remise_pourcentage->setEnabled(false);
+        lineEdit_article_detail_remise_pourcentage->setYerothEnabled(false);
     }
 }
 

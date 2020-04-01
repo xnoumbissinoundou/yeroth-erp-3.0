@@ -462,17 +462,17 @@ bool YerothPayerCompteClientWindow::putCashIntoCustomerAccount()
 
 void YerothPayerCompteClientWindow::setupLineEdits()
 {
-	lineEdit_comptes_clients_reference_reste_a_payer->setEnabled(false);
+	lineEdit_comptes_clients_reference_reste_a_payer->setYerothEnabled(false);
 
-	lineEdit_comptes_clients_designation_de_lentreprise->setEnabled(false);
+	lineEdit_comptes_clients_designation_de_lentreprise->setYerothEnabled(false);
 
-    lineEdit_comptes_clients_valeur_compte_client->setEnabled(false);
+    lineEdit_comptes_clients_valeur_compte_client->setYerothEnabled(false);
 
-	lineEdit_comptes_clients_valeur_dette_maximale->setEnabled(false);
+	lineEdit_comptes_clients_valeur_dette_maximale->setYerothEnabled(false);
 
-	lineEdit_comptes_clients_reference_registre_du_commerce->setEnabled(false);
+	lineEdit_comptes_clients_reference_registre_du_commerce->setYerothEnabled(false);
 
-	lineEdit_comptes_clients_siege_social->setEnabled(false);
+	lineEdit_comptes_clients_siege_social->setYerothEnabled(false);
 
 	lineEdit_montant_a_payer->setPlaceholderText(QObject::trUtf8("montant à payer"));
 

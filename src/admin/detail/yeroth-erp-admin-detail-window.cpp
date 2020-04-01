@@ -66,44 +66,44 @@ YerothAdminDetailWindow::YerothAdminDetailWindow():YerothPOSAdminWindowsCommons(
 
 void YerothAdminDetailWindow::setupLineEdits()
 {
-    lineEdit_detail_utilisateur_prenom->setEnabled(false);
-    lineEdit_detail_utilisateur_nom->setEnabled(false);
-    lineEdit_detail_utilisateur_lieu_naissance->setEnabled(false);
-    lineEdit_detail_utilisateur_email->setEnabled(false);
-    lineEdit_detail_utilisateur_ville->setEnabled(false);
-    lineEdit_detail_utilisateur_province_etat->setEnabled(false);
-    lineEdit_detail_utilisateur_pays->setEnabled(false);
-    lineEdit_detail_utilisateur_boite_postale->setEnabled(false);
-    lineEdit_detail_utilisateur_numero_telephone_1->setEnabled(false);
-    lineEdit_detail_utilisateur_numero_telephone_2->setEnabled(false);
-    lineEdit_detail_utilisateur_id->setEnabled(false);
-    lineEdit_detail_utilisateur_mot_passe->setEnabled(false);
-    lineEdit_detail_fournisseur_nom_entreprise->setEnabled(false);
-    lineEdit_detail_fournisseur_nom_representant->setEnabled(false);
-    lineEdit_detail_fournisseur_quartier->setEnabled(false);
-    lineEdit_detail_fournisseur_ville->setEnabled(false);
-    lineEdit_detail_fournisseur_province_etat->setEnabled(false);
-    lineEdit_detail_fournisseur_pays->setEnabled(false);
-    lineEdit_detail_fournisseur_boite_postale->setEnabled(false);
-    lineEdit_detail_fournisseur_siege_social->setEnabled(false);
-    lineEdit_detail_fournisseur_email->setEnabled(false);
-    lineEdit_detail_fournisseur_numero_telephone_1->setEnabled(false);
-    lineEdit_detail_fournisseur_numero_telephone_2->setEnabled(false);
-    lineEdit_detail_fournisseur_numero_contribuable->setEnabled(false);
-    lineEdit_detail_categorie_nom->setEnabled(false);
-    lineEdit_detail_localisation_adresse_ip->setEnabled(false);
-    lineEdit_detail_localisation_nom->setEnabled(false);
-    lineEdit_detail_localisation_numero_unique->setEnabled(false);
-    lineEdit_detail_localisation_quartier->setEnabled(false);
-    lineEdit_detail_localisation_ville->setEnabled(false);
-    lineEdit_detail_localisation_province_etat->setEnabled(false);
-    lineEdit_detail_localisation_pays->setEnabled(false);
-    lineEdit_detail_localisation_boite_postale->setEnabled(false);
-    lineEdit_detail_localisation_email->setEnabled(false);
-    lineEdit_detail_localisation_numero_telephone_1->setEnabled(false);
-    lineEdit_detail_localisation_numero_telephone_2->setEnabled(false);
-    lineEdit_detail_alerte_designation_article->setEnabled(false);
-    lineEdit_detail_alerte_quantite->setEnabled(false);
+    lineEdit_detail_utilisateur_prenom->setYerothEnabled(false);
+    lineEdit_detail_utilisateur_nom->setYerothEnabled(false);
+    lineEdit_detail_utilisateur_lieu_naissance->setYerothEnabled(false);
+    lineEdit_detail_utilisateur_email->setYerothEnabled(false);
+    lineEdit_detail_utilisateur_ville->setYerothEnabled(false);
+    lineEdit_detail_utilisateur_province_etat->setYerothEnabled(false);
+    lineEdit_detail_utilisateur_pays->setYerothEnabled(false);
+    lineEdit_detail_utilisateur_boite_postale->setYerothEnabled(false);
+    lineEdit_detail_utilisateur_numero_telephone_1->setYerothEnabled(false);
+    lineEdit_detail_utilisateur_numero_telephone_2->setYerothEnabled(false);
+    lineEdit_detail_utilisateur_id->setYerothEnabled(false);
+    lineEdit_detail_utilisateur_mot_passe->setYerothEnabled(false);
+    lineEdit_detail_fournisseur_nom_entreprise->setYerothEnabled(false);
+    lineEdit_detail_fournisseur_nom_representant->setYerothEnabled(false);
+    lineEdit_detail_fournisseur_quartier->setYerothEnabled(false);
+    lineEdit_detail_fournisseur_ville->setYerothEnabled(false);
+    lineEdit_detail_fournisseur_province_etat->setYerothEnabled(false);
+    lineEdit_detail_fournisseur_pays->setYerothEnabled(false);
+    lineEdit_detail_fournisseur_boite_postale->setYerothEnabled(false);
+    lineEdit_detail_fournisseur_siege_social->setYerothEnabled(false);
+    lineEdit_detail_fournisseur_email->setYerothEnabled(false);
+    lineEdit_detail_fournisseur_numero_telephone_1->setYerothEnabled(false);
+    lineEdit_detail_fournisseur_numero_telephone_2->setYerothEnabled(false);
+    lineEdit_detail_fournisseur_numero_contribuable->setYerothEnabled(false);
+    lineEdit_detail_categorie_nom->setYerothEnabled(false);
+    lineEdit_detail_localisation_adresse_ip->setYerothEnabled(false);
+    lineEdit_detail_localisation_nom->setYerothEnabled(false);
+    lineEdit_detail_localisation_numero_unique->setYerothEnabled(false);
+    lineEdit_detail_localisation_quartier->setYerothEnabled(false);
+    lineEdit_detail_localisation_ville->setYerothEnabled(false);
+    lineEdit_detail_localisation_province_etat->setYerothEnabled(false);
+    lineEdit_detail_localisation_pays->setYerothEnabled(false);
+    lineEdit_detail_localisation_boite_postale->setYerothEnabled(false);
+    lineEdit_detail_localisation_email->setYerothEnabled(false);
+    lineEdit_detail_localisation_numero_telephone_1->setYerothEnabled(false);
+    lineEdit_detail_localisation_numero_telephone_2->setYerothEnabled(false);
+    lineEdit_detail_alerte_designation_article->setYerothEnabled(false);
+    lineEdit_detail_alerte_quantite->setYerothEnabled(false);
 }
 
 void YerothAdminDetailWindow::definirPasDeRole()
@@ -242,7 +242,7 @@ void YerothAdminDetailWindow::rendreVisibleCompteUtilisateur(int sqlTableRow)
 
     lineEdit_detail_utilisateur_mot_passe->setText("****");
 
-    lineEdit_detail_utilisateur_localisation->setEnabled(false);
+    lineEdit_detail_utilisateur_localisation->setYerothEnabled(false);
     lineEdit_detail_utilisateur_localisation->setText(_allWindows->getInfoEntreprise().getLocalisation());
     this->enableOtherTabs(SUJET_ACTION_COMPTE_UTILISATEUR, false);
     this->setVisible(true);
@@ -361,9 +361,9 @@ void YerothAdminDetailWindow::rendreVisibleRemise(int sqlTableRow)
 
     QSqlRecord record = remiseTableModel->record(sqlTableRow);
 
-    lineEdit_detail_remise_nom->setEnabled(false);
-    lineEdit_detail_remise_designation_article->setEnabled(false);
-    lineEdit_detail_remise_montant->setEnabled(false);
+    lineEdit_detail_remise_nom->setYerothEnabled(false);
+    lineEdit_detail_remise_designation_article->setYerothEnabled(false);
+    lineEdit_detail_remise_montant->setYerothEnabled(false);
 
     spinBox_detail_remise_pourcentage->setEnabled(false);
 
@@ -410,10 +410,10 @@ void YerothAdminDetailWindow::rendreVisibleAlerte(int sqlTableRow)
 
     QSqlRecord record = alertesTableModel->record(sqlTableRow);
 
-    lineEdit_detail_alerte_designation_alerte->setEnabled(false);
-    lineEdit_detail_alerte_id_destinataire->setEnabled(false);
-    lineEdit_detail_alerte_nom_destinataire->setEnabled(false);
-    lineEdit_detail_alerte_designation_article->setEnabled(false);
+    lineEdit_detail_alerte_designation_alerte->setYerothEnabled(false);
+    lineEdit_detail_alerte_id_destinataire->setYerothEnabled(false);
+    lineEdit_detail_alerte_nom_destinataire->setYerothEnabled(false);
+    lineEdit_detail_alerte_designation_article->setYerothEnabled(false);
 
     lineEdit_detail_alerte_designation_alerte->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION_ALERTE));
 

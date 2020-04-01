@@ -102,9 +102,9 @@ YerothEntrerWindow::YerothEntrerWindow()
     connect(doubleSpinBox_lots_entrant, SIGNAL(valueChanged(double)),
     		this, SLOT(display_quantite_total_by_spinbox(double)));
 
-    connect(checkBox_service, SIGNAL(stateChanged(int)), this, SLOT(handleServiceCheckBox(int)));
+    connect(checkBox_service, SIGNAL(stateChanged(int)), this, SLOT(handle_service_checkBox(int)));
 
-    connect(checkBox_achat, SIGNAL(stateChanged(int)), this, SLOT(handleAchatCheckBox(int)));
+    connect(checkBox_achat, SIGNAL(stateChanged(int)), this, SLOT(handle_achat_checkBox(int)));
 
     connect(checkBox_tva, SIGNAL(clicked(bool)), this, SLOT(handleTVACheckBox(bool)));
 
@@ -141,8 +141,8 @@ void YerothEntrerWindow::deconnecter_utilisateur()
 
 void YerothEntrerWindow::setupLineEdits()
 {
-    lineEdit_quantite_total->setEnabled(false);
-    lineEdit_tva->setEnabled(false);
+    lineEdit_quantite_total->setYerothEnabled(false);
+    lineEdit_tva->setYerothEnabled(false);
     lineEdit_tva->setText(YerothUtils::getTvaStringWithPercent());
     lineEdit_quantite_total->setValidator(&YerothUtils::DoubleValidator);
     lineEdit_quantite_par_lot->setValidator(&YerothUtils::IntValidator);
@@ -620,15 +620,19 @@ void YerothEntrerWindow::setStockSpecificWidgetVisible(bool visible)
 }
 
 
-void YerothEntrerWindow::handleServiceCheckBox(int state)
+void YerothEntrerWindow::handle_service_checkBox(int state)
 {
 	if (checkBox_service->isChecked())
 	{
-	    check_fields_service();
-
 	    setStockSpecificWidgetVisible(false);
 
+	    lineEdit_quantite_par_lot->setText("1");
+
+    	lineEdit_quantite_par_lot->setYerothEnabled(false);
+
 	    doubleSpinBox_lots_entrant->setDecimals(2);
+
+	    check_fields_service();
 
     	QString aConditionStr(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
     						  YerothUtils::MYSQL_TRUE_LITERAL));
@@ -649,11 +653,15 @@ void YerothEntrerWindow::handleServiceCheckBox(int state)
 	{
 		lineEdit_designation->clearQCompleter();
 
-		check_fields(true);
-
 		setStockSpecificWidgetVisible(true);
 
+		lineEdit_quantite_par_lot->clear();
+
+    	lineEdit_quantite_par_lot->setYerothEnabled(true);
+
 		doubleSpinBox_lots_entrant->setDecimals(0);
+
+		check_fields(true);
 
 		label_fournisseur->setText(QObject::tr("fournisseur"));
 
@@ -857,6 +865,7 @@ void YerothEntrerWindow::rendreVisible(YerothSqlTableModel * stocksTableModel, b
             lineEdit_categorie_produit->clear();
         }
     }
+
     if (_createNewFournisseur)
     {
         if (!_curFournisseurName.isEmpty())
@@ -873,10 +882,18 @@ void YerothEntrerWindow::rendreVisible(YerothSqlTableModel * stocksTableModel, b
 
     if (checkBox_service->isChecked())
     {
+    	lineEdit_quantite_par_lot->setReadOnly(true);
+
+    	lineEdit_quantite_par_lot->setText("1");
+
     	doubleSpinBox_lots_entrant->setDecimals(2);
     }
     else
     {
+    	lineEdit_quantite_par_lot->setReadOnly(false);
+
+    	lineEdit_quantite_par_lot->clear();
+
     	doubleSpinBox_lots_entrant->setDecimals(0);
     }
 

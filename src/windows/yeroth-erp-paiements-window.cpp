@@ -273,14 +273,14 @@ void YerothPaiementsWindow::setupLineEdits()
     lineEdit_paiements_nom_entreprise->enableForSearch(QObject::tr("nom de l'entreprise"));
     lineEdit_paiements_numero_bon_paiement->enableForSearch(QObject::trUtf8("numéro du bon de paiement"));
 
-    lineEdit_details_de_paiement_numero_du_bon_de_paiement->setEnabled(false);
-    lineEdit_details_de_paiement_nom_de_lentreprise->setEnabled(false);
-    lineEdit_details_de_paiement_reference->setEnabled(false);
-    lineEdit_details_de_paiement_typedepaiement->setEnabled(false);
-    lineEdit_details_de_paiement_nom_de_lencaisseur->setEnabled(false);
-    lineEdit_details_de_paiement_compte_client->setEnabled(false);
-    lineEdit_details_de_paiement_montant_paye->setEnabled(false);
-    lineEdit_details_de_paiement_heure_de_paiement->setEnabled(false);
+    lineEdit_details_de_paiement_numero_du_bon_de_paiement->setYerothEnabled(false);
+    lineEdit_details_de_paiement_nom_de_lentreprise->setYerothEnabled(false);
+    lineEdit_details_de_paiement_reference->setYerothEnabled(false);
+    lineEdit_details_de_paiement_typedepaiement->setYerothEnabled(false);
+    lineEdit_details_de_paiement_nom_de_lencaisseur->setYerothEnabled(false);
+    lineEdit_details_de_paiement_compte_client->setYerothEnabled(false);
+    lineEdit_details_de_paiement_montant_paye->setYerothEnabled(false);
+    lineEdit_details_de_paiement_heure_de_paiement->setYerothEnabled(false);
 
     lineEdit_paiements_recherche->setFocus();
 
@@ -947,22 +947,22 @@ void YerothPaiementsWindow::rendreVisible(YerothSqlTableModel * stocksTableModel
 
     tabWidget_historique_paiements->setCurrentIndex(TableauDesPaiements);
 
-    lineEdit_paiements_numero_bon_paiement->setEnabled(true);
-    lineEdit_paiements_nom_entreprise->setEnabled(true);
-    lineEdit_paiements_reference->setEnabled(true);
-    lineEdit_paiements_nom_encaisseur->setEnabled(true);
+    lineEdit_paiements_numero_bon_paiement->setYerothEnabled(true);
+    lineEdit_paiements_nom_entreprise->setYerothEnabled(true);
+    lineEdit_paiements_reference->setYerothEnabled(true);
+    lineEdit_paiements_nom_encaisseur->setYerothEnabled(true);
 
     YerothPOSUser *aUser = _allWindows->getUser();
 
     if (0 != aUser && aUser->isVendeur())
     {
-    	lineEdit_paiements_nom_encaisseur->setEnabled(false);
+    	lineEdit_paiements_nom_encaisseur->setYerothEnabled(false);
     	lineEdit_paiements_nom_encaisseur->setText(aUser->nom_complet());
     }
     else
     {
     	lineEdit_paiements_nom_encaisseur->clear();
-    	lineEdit_paiements_nom_encaisseur->setEnabled(true);
+    	lineEdit_paiements_nom_encaisseur->setYerothEnabled(true);
     }
 
     setVisible(true);

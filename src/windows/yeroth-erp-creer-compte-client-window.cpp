@@ -95,7 +95,7 @@ void YerothCreerCompteClientWindow::deconnecter_utilisateur()
 
 void YerothCreerCompteClientWindow::setupLineEdits()
 {
-	lineEdit_compte_client_dette_maximale->setEnabled(false);
+	lineEdit_compte_client_dette_maximale->setYerothEnabled(false);
     lineEdit_compte_client_dette_maximale->setValidator(&YerothUtils::DoubleValidator);
 }
 

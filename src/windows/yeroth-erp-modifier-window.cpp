@@ -370,17 +370,17 @@ void YerothModifierWindow::setupLineEdits()
     lineEdit_stock_minimum->setValidator(&YerothUtils::DoubleValidator);
     lineEdit_prix_vente->setValidator(&YerothUtils::DoubleValidator);
 
-    lineEdit_localisation_produit->setEnabled(true);
-    lineEdit_prix_dachat->setEnabled(true);
-    lineEdit_prix_vente->setEnabled(false);
-    lineEdit_reference_produit->setEnabled(false);
-    lineEdit_designation->setEnabled(false);
-    lineEdit_nom_entreprise_fournisseur->setEnabled(false);
-    lineEdit_categorie_produit->setEnabled(false);
-    lineEdit_quantite_par_lot->setEnabled(false);
-    lineEdit_stock_minimum->setEnabled(true);
-    lineEdit_tva->setEnabled(false);
-    lineEdit_quantite_restante->setEnabled(false);
+    lineEdit_localisation_produit->setYerothEnabled(true);
+    lineEdit_prix_dachat->setYerothEnabled(true);
+    lineEdit_prix_vente->setYerothEnabled(false);
+    lineEdit_reference_produit->setYerothEnabled(false);
+    lineEdit_designation->setYerothEnabled(false);
+    lineEdit_nom_entreprise_fournisseur->setYerothEnabled(false);
+    lineEdit_categorie_produit->setYerothEnabled(false);
+    lineEdit_quantite_par_lot->setYerothEnabled(false);
+    lineEdit_stock_minimum->setYerothEnabled(true);
+    lineEdit_tva->setYerothEnabled(false);
+    lineEdit_quantite_restante->setYerothEnabled(false);
     lineEdit_tva->setText(YerothUtils::getTvaStringWithPercent());
 
 }
@@ -815,7 +815,7 @@ void YerothModifierWindow::showItem()
 
 	if (checkBox_service->isChecked())
 	{
-		lineEdit_prix_vente->setEnabled(false);
+		lineEdit_prix_vente->setYerothEnabled(false);
 
 	    setStockSpecificWidgetVisible(false);
 
@@ -825,7 +825,7 @@ void YerothModifierWindow::showItem()
 	}
 	else
 	{
-		lineEdit_prix_vente->setEnabled(true);
+		lineEdit_prix_vente->setYerothEnabled(true);
 
 		setStockSpecificWidgetVisible(true);
 
@@ -859,13 +859,13 @@ void YerothModifierWindow::showItem()
     	if (!currentUser->isManager() ||
     		!currentUser->isGestionaireDesStocks())
     	{
-    		lineEdit_reference_recu_dachat->setEnabled(false);
-    		lineEdit_prix_dachat->setEnabled(false);
+    		lineEdit_reference_recu_dachat->setYerothEnabled(false);
+    		lineEdit_prix_dachat->setYerothEnabled(false);
     	}
     	else
     	{
-    		lineEdit_reference_recu_dachat->setEnabled(true);
-    		lineEdit_prix_dachat->setEnabled(true);
+    		lineEdit_reference_recu_dachat->setYerothEnabled(true);
+    		lineEdit_prix_dachat->setYerothEnabled(true);
     	}
     }
 

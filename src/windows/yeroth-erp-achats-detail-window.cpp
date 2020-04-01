@@ -76,19 +76,19 @@ YerothAchatsDetailWindow::YerothAchatsDetailWindow()
 
 void YerothAchatsDetailWindow::setupLineEdits()
 {
-	lineEdit_localisation_produit->setEnabled(false);
-    lineEdit_reference_produit->setEnabled(false);
-    lineEdit_designation->setEnabled(false);
-    lineEdit_quantite_restante->setEnabled(false);
-    lineEdit_reference_recu_dachat->setEnabled(false);
-    lineEdit_prix_dachat->setEnabled(false);
-    lineEdit_prix_unitaire->setEnabled(false);
-    lineEdit_prix_vente->setEnabled(false);
+	lineEdit_localisation_produit->setYerothEnabled(false);
+    lineEdit_reference_produit->setYerothEnabled(false);
+    lineEdit_designation->setYerothEnabled(false);
+    lineEdit_quantite_restante->setYerothEnabled(false);
+    lineEdit_reference_recu_dachat->setYerothEnabled(false);
+    lineEdit_prix_dachat->setYerothEnabled(false);
+    lineEdit_prix_unitaire->setYerothEnabled(false);
+    lineEdit_prix_vente->setYerothEnabled(false);
     textEdit_description->setYerothEnabled(false);
-    lineEdit_quantite_initiale->setEnabled(false);
-    lineEdit_stock_minimum->setEnabled(false);
-    lineEdit_categorie_produit->setEnabled(false);
-    lineEdit_nom_entreprise_fournisseur->setEnabled(false);
+    lineEdit_quantite_initiale->setYerothEnabled(false);
+    lineEdit_stock_minimum->setYerothEnabled(false);
+    lineEdit_categorie_produit->setYerothEnabled(false);
+    lineEdit_nom_entreprise_fournisseur->setYerothEnabled(false);
 }
 
 

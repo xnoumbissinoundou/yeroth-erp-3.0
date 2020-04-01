@@ -109,7 +109,7 @@ public slots:
 
     void setStockSpecificWidgetVisible(bool visible);
 
-    void handleServiceCheckBox(int state);
+    void handle_service_checkBox(int state);
 
     void handleTVACheckBox(bool clicked);
 
@@ -182,7 +182,7 @@ public slots:
     	return _curFournisseurName;
     }
 
-    inline void handleAchatCheckBox(int aState)
+    inline void handle_achat_checkBox(int aState)
     {
     	check_fields_mandatory_buying();
     }

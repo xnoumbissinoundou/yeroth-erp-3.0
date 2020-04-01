@@ -149,7 +149,7 @@ void YerothTransactionsWindow::setupLineEdits()
 {
     _logger->log("setupLineEdits");
 
-    lineEdit_transactions_quantite_sortie->setEnabled(false);
+    lineEdit_transactions_quantite_sortie->setYerothEnabled(false);
     lineEdit_transactions_nom_magasinier->enableForSearch(QObject::trUtf8("nom du magasinier"));
     lineEdit_transactions_designation->enableForSearch(QObject::trUtf8("désignation"));
     lineEdit_transactions_nom_categorie->enableForSearch(QObject::trUtf8("nom de la catégorie d'articles"));

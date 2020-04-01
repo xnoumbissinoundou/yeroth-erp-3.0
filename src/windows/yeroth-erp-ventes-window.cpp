@@ -989,42 +989,42 @@ void YerothVentesWindow::setupLineEdits()
     lineEdit_ventes_nom_entreprise_client->enableForSearch(QObject::trUtf8("nom de l'entreprise cliente"));
     lineEdit_ventes_reference_recu_vendu->enableForSearch(QObject::trUtf8("référence reçu de vente"));
 
-    lineEdit_details_type_de_vente->setEnabled(false);
-    lineEdit_details_nom_client->setEnabled(false);
-    lineEdit_details_reference_produit->setEnabled(false);
-    lineEdit_details_designation->setEnabled(false);
-    lineEdit_details_nom_entreprise_fournisseur->setEnabled(false);
-    lineEdit_details_categorie->setEnabled(false);
-    lineEdit_details_remise_prix->setEnabled(false);
-    lineEdit_details_remise_pourcentage->setEnabled(false);
-    lineEdit_details_tva->setEnabled(false);
-    lineEdit_details_montant_total->setEnabled(false);
-    lineEdit_details_nom_caissier->setEnabled(false);
-    lineEdit_details_localisation->setEnabled(false);
-    lineEdit_details_quantite_vendue->setEnabled(false);
-    lineEdit_details_heure_vente->setEnabled(false);
-    lineEdit_details_reference_recu_de_vente->setEnabled(false);
-    lineEdit_details_prix_unitaire->setEnabled(false);
+    lineEdit_details_type_de_vente->setYerothEnabled(false);
+    lineEdit_details_nom_client->setYerothEnabled(false);
+    lineEdit_details_reference_produit->setYerothEnabled(false);
+    lineEdit_details_designation->setYerothEnabled(false);
+    lineEdit_details_nom_entreprise_fournisseur->setYerothEnabled(false);
+    lineEdit_details_categorie->setYerothEnabled(false);
+    lineEdit_details_remise_prix->setYerothEnabled(false);
+    lineEdit_details_remise_pourcentage->setYerothEnabled(false);
+    lineEdit_details_tva->setYerothEnabled(false);
+    lineEdit_details_montant_total->setYerothEnabled(false);
+    lineEdit_details_nom_caissier->setYerothEnabled(false);
+    lineEdit_details_localisation->setYerothEnabled(false);
+    lineEdit_details_quantite_vendue->setYerothEnabled(false);
+    lineEdit_details_heure_vente->setYerothEnabled(false);
+    lineEdit_details_reference_recu_de_vente->setYerothEnabled(false);
+    lineEdit_details_prix_unitaire->setYerothEnabled(false);
 
     lineEdit_retour_vente_quantite_a_retourner->setValidator(&YerothUtils::DoubleValidator);
 
-    lineEdit_retour_vente_type_de_vente->setEnabled(false);
-    lineEdit_retour_vente_nom_client->setEnabled(false);
-    lineEdit_retour_vente_reference_produit->setEnabled(false);
-    lineEdit_retour_vente_designation->setEnabled(false);
-    lineEdit_retour_vente_nom_entreprise_fournisseur->setEnabled(false);
-    lineEdit_retour_vente_categorie->setEnabled(false);
-    lineEdit_retour_vente_remise_prix->setEnabled(false);
-    lineEdit_retour_vente_remise_pourcentage->setEnabled(false);
-    lineEdit_retour_vente_tva->setEnabled(false);
-    lineEdit_retour_vente_montant_total->setEnabled(false);
-    lineEdit_retour_vente_nom_caissier->setEnabled(false);
-    lineEdit_retour_vente_localisation->setEnabled(false);
-    lineEdit_retour_vente_quantite_vendue->setEnabled(false);
-    lineEdit_retour_vente_quantite_a_retourner->setEnabled(true);
-    lineEdit_retour_vente_heure_vente->setEnabled(false);
-    lineEdit_retour_vente_reference_recu_de_vente->setEnabled(false);
-    lineEdit_retour_vente_prix_unitaire->setEnabled(false);
+    lineEdit_retour_vente_type_de_vente->setYerothEnabled(false);
+    lineEdit_retour_vente_nom_client->setYerothEnabled(false);
+    lineEdit_retour_vente_reference_produit->setYerothEnabled(false);
+    lineEdit_retour_vente_designation->setYerothEnabled(false);
+    lineEdit_retour_vente_nom_entreprise_fournisseur->setYerothEnabled(false);
+    lineEdit_retour_vente_categorie->setYerothEnabled(false);
+    lineEdit_retour_vente_remise_prix->setYerothEnabled(false);
+    lineEdit_retour_vente_remise_pourcentage->setYerothEnabled(false);
+    lineEdit_retour_vente_tva->setYerothEnabled(false);
+    lineEdit_retour_vente_montant_total->setYerothEnabled(false);
+    lineEdit_retour_vente_nom_caissier->setYerothEnabled(false);
+    lineEdit_retour_vente_localisation->setYerothEnabled(false);
+    lineEdit_retour_vente_quantite_vendue->setYerothEnabled(false);
+    lineEdit_retour_vente_quantite_a_retourner->setYerothEnabled(true);
+    lineEdit_retour_vente_heure_vente->setYerothEnabled(false);
+    lineEdit_retour_vente_reference_recu_de_vente->setYerothEnabled(false);
+    lineEdit_retour_vente_prix_unitaire->setYerothEnabled(false);
 
     lineEdit_ventes_recherche->setFocus();
 
@@ -1881,24 +1881,24 @@ void YerothVentesWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 
     label_retour_vente_remise_prix->setText(QString(QObject::tr("remise (%1)")).arg(YerothERPConfig::currency));
 
-    lineEdit_ventes_reference_recu_vendu->setEnabled(true);
-    lineEdit_ventes_categorie_produit->setEnabled(true);
-    lineEdit_ventes_designation->setEnabled(true);
-    lineEdit_ventes_nom_caissier->setEnabled(true);
-    lineEdit_ventes_nom_entreprise_fournisseur->setEnabled(true);
-    lineEdit_ventes_nom_entreprise_client->setEnabled(true);
+    lineEdit_ventes_reference_recu_vendu->setYerothEnabled(true);
+    lineEdit_ventes_categorie_produit->setYerothEnabled(true);
+    lineEdit_ventes_designation->setYerothEnabled(true);
+    lineEdit_ventes_nom_caissier->setYerothEnabled(true);
+    lineEdit_ventes_nom_entreprise_fournisseur->setYerothEnabled(true);
+    lineEdit_ventes_nom_entreprise_client->setYerothEnabled(true);
 
     YerothPOSUser *aUser = _allWindows->getUser();
 
     if (0 != aUser && aUser->isVendeur())
     {
-    	lineEdit_ventes_nom_caissier->setEnabled(false);
+    	lineEdit_ventes_nom_caissier->setYerothEnabled(false);
     	lineEdit_ventes_nom_caissier->setText(aUser->nom_complet());
     }
     else
     {
     	lineEdit_ventes_nom_caissier->clear();
-    	lineEdit_ventes_nom_caissier->setEnabled(true);
+    	lineEdit_ventes_nom_caissier->setYerothEnabled(true);
     }
 
     setVisible(true);

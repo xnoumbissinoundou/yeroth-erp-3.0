@@ -87,7 +87,7 @@ YerothAdminWindow::YerothAdminWindow()
                                        "QMessageBox QLabel {color: rgb(%2);}").
                                arg(COLOUR_RGB_STRING_YEROTH_DARK_GREEN_47_67_67, COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
-    lineEdit_this_localisation->setEnabled(false);
+    lineEdit_this_localisation->setYerothEnabled(false);
 
     lineEdit_this_localisation->setText(_allWindows->getInfoEntreprise().getLocalisation());
 

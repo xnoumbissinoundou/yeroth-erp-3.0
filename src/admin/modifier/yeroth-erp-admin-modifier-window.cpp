@@ -97,10 +97,10 @@ void YerothAdminModifierWindow::definirManager()
 
 void YerothAdminModifierWindow::setupLineEdits()
 {
-    lineEdit_modifier_utilisateur_id->setEnabled(false);
-    lineEdit_modifier_alerte_designation_alerte->setEnabled(false);
-    lineEdit_modifier_alerte_quantite->setEnabled(false);
-    lineEdit_modifier_localisation_nom->setEnabled(false);
+    lineEdit_modifier_utilisateur_id->setYerothEnabled(false);
+    lineEdit_modifier_alerte_designation_alerte->setYerothEnabled(false);
+    lineEdit_modifier_alerte_quantite->setYerothEnabled(false);
+    lineEdit_modifier_localisation_nom->setYerothEnabled(false);
     lineEdit_modifier_utilisateur_mot_passe_1->setEchoMode(QLineEdit::Password);
     lineEdit_modifier_utilisateur_mot_passe_2->setEchoMode(QLineEdit::Password);
 }

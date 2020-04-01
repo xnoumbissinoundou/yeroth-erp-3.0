@@ -221,7 +221,7 @@ const QBrush YerothUtils::YEROTH_QBRUSH_ORANGE(YEROTH_ORANGE_COLOR);
 
 const QBrush YerothUtils::YEROTH_QBRUSH_YEROTHGRAY(YEROTH_GRAY_COLOR);
 
-const QPalette YerothUtils::YEROTH_BLACK_PALETTE(QColor(0, 0, 0));
+const QPalette YerothUtils::YEROTH_BLACK_PALETTE(QColor(COLOUR_RGB_YEROTH_BLACK_0_0_0));
 
 const QPalette YerothUtils::YEROTH_BLUE_PALETTE(QColor(0, 0, 255));
 

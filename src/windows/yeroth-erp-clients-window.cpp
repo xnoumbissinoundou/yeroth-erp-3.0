@@ -625,7 +625,7 @@ void YerothERPClientsWindow::populateClientsComboBoxes()
 
 void YerothERPClientsWindow::setupLineEdits()
 {
-	lineEdit_nombre_de_comptes_clients->setEnabled(false);
+	lineEdit_nombre_de_comptes_clients->setYerothEnabled(false);
 
 	lineEdit_resultat_filtre->setValidator(&YerothUtils::DoubleValidator);
 

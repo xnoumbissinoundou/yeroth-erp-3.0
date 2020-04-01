@@ -96,12 +96,12 @@ YerothAlertesWindow::~YerothAlertesWindow()
 
 void YerothAlertesWindow::setupLineEdits()
 {
-    lineEdit_alertes_nom->setEnabled(false);
-    lineEdit_alertes_quantite->setEnabled(false);
-    lineEdit_alertes_resolue->setEnabled(false);
-    lineEdit_alertes_designation->setEnabled(false);
-    lineEdit_alertes_destinataire->setEnabled(false);
-    lineEdit_alertes_nom_destinataire->setEnabled(false);
+    lineEdit_alertes_nom->setYerothEnabled(false);
+    lineEdit_alertes_quantite->setYerothEnabled(false);
+    lineEdit_alertes_resolue->setYerothEnabled(false);
+    lineEdit_alertes_designation->setYerothEnabled(false);
+    lineEdit_alertes_destinataire->setYerothEnabled(false);
+    lineEdit_alertes_nom_destinataire->setYerothEnabled(false);
 }
 
 void YerothAlertesWindow::deconnecter_utilisateur()

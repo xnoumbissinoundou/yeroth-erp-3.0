@@ -367,22 +367,22 @@ void YerothPointDeVenteWindow::setupLineEdits()
     lineEdit_articles_imprimante->setText(YerothERPConfig::printer);
     lineEdit_articles_imprimante->setReadOnly(true);
 
-    lineEdit_article_detail_nom_client->setEnabled(false);
-    lineEdit_article_detail_reference_produit->setEnabled(false);
-    lineEdit_article_detail_designation->setEnabled(false);
-    lineEdit_article_detail_nom_entreprise_fournisseur->setEnabled(false);
-    lineEdit_article_detail_categorie->setEnabled(false);
-    lineEdit_article_detail_prix_unitaire->setEnabled(false);
-    lineEdit_article_detail_tva->setEnabled(false);
-    lineEdit_article_detail_localisation->setEnabled(false);
-    lineEdit_article_detail_nom_caissier->setEnabled(false);
-    lineEdit_articles_nom_caissier->setEnabled(false);
-    lineEdit_articles_total->setEnabled(false);
-    lineEdit_articles_tva->setEnabled(false);
-    lineEdit_articles_somme_total->setEnabled(false);
-    lineEdit_article_detail_quantite_en_stock->setEnabled(false);
-    lineEdit_articles_quantite_a_vendre->setEnabled(false);
-    lineEdit_articles_montant_a_rembourser->setEnabled(false);
+    lineEdit_article_detail_nom_client->setYerothEnabled(false);
+    lineEdit_article_detail_reference_produit->setYerothEnabled(false);
+    lineEdit_article_detail_designation->setYerothEnabled(false);
+    lineEdit_article_detail_nom_entreprise_fournisseur->setYerothEnabled(false);
+    lineEdit_article_detail_categorie->setYerothEnabled(false);
+    lineEdit_article_detail_prix_unitaire->setYerothEnabled(false);
+    lineEdit_article_detail_tva->setYerothEnabled(false);
+    lineEdit_article_detail_localisation->setYerothEnabled(false);
+    lineEdit_article_detail_nom_caissier->setYerothEnabled(false);
+    lineEdit_articles_nom_caissier->setYerothEnabled(false);
+    lineEdit_articles_total->setYerothEnabled(false);
+    lineEdit_articles_tva->setYerothEnabled(false);
+    lineEdit_articles_somme_total->setYerothEnabled(false);
+    lineEdit_article_detail_quantite_en_stock->setYerothEnabled(false);
+    lineEdit_articles_quantite_a_vendre->setYerothEnabled(false);
+    lineEdit_articles_montant_a_rembourser->setYerothEnabled(false);
     lineEdit_articles_montant_a_rembourser->setText(GET_CURRENCY_STRING_NUM(0.0));
 
     connect(lineEdit_articles_nom_client,
