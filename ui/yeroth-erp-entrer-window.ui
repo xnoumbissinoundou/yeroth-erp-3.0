@@ -4418,7 +4418,7 @@ Transférer</string>
       </font>
      </property>
      <property name="text">
-      <string>emplacement du stock</string>
+      <string>localisation du stock</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -14178,11 +14178,6 @@ background-color: rgb(0, 0, 0); </string>
    <header>src/widgets/yeroth-erp-line-edit.hpp</header>
   </customwidget>
   <customwidget>
-   <class>YerothERPQCheckBox</class>
-   <extends>QCheckBox</extends>
-   <header>src/widgets/yeroth-erp-qcheckbox.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>YerothDateTimeEdit</class>
    <extends>QDateEdit</extends>
    <header>src/widgets/yeroth-erp-datetime-edit.hpp</header>
@@ -14191,6 +14186,11 @@ background-color: rgb(0, 0, 0); </string>
    <class>YerothTextEdit</class>
    <extends>QTextEdit</extends>
    <header>src/widgets/yeroth-erp-text-edit.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>YerothERPQCheckBox</class>
+   <extends>QCheckBox</extends>
+   <header>src/widgets/yeroth-erp-qcheckbox.hpp</header>
   </customwidget>
   <customwidget>
    <class>YerothSpinBox</class>
