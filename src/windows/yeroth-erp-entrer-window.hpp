@@ -104,6 +104,7 @@ public slots:
     {
     	_lastEditedPrixVente = newPrixVente;
     }
+    void display_service_montant_total_vente();
 
     void display_prix_vente();
 
@@ -111,7 +112,7 @@ public slots:
 
     void handle_service_checkBox(int state);
 
-    void handleTVACheckBox(bool clicked);
+    void handleTVACheckBox(int state);
 
     void handleCategorieName(const QString &text);
 

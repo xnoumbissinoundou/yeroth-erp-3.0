@@ -53,6 +53,10 @@ YerothEntrerWindow::YerothEntrerWindow()
 
     checkBox_achat->setChecked(false);
 
+	label_montant_total_vente_service->setVisible(false);
+
+	lineEdit_service_montant_total_vente->setVisible(false);
+
     setupLineEdits();
 
     setupLineEditsQCompleters();
@@ -106,9 +110,16 @@ YerothEntrerWindow::YerothEntrerWindow()
 
     connect(checkBox_achat, SIGNAL(stateChanged(int)), this, SLOT(handle_achat_checkBox(int)));
 
-    connect(checkBox_tva, SIGNAL(clicked(bool)), this, SLOT(handleTVACheckBox(bool)));
+    connect(checkBox_tva, SIGNAL(stateChanged(int)), this, SLOT(handleTVACheckBox(int)));
 
-    connect(lineEdit_prix_vente, SIGNAL(textEdited(const QString &)), this,
+    connect(lineEdit_prix_vente,
+    		SIGNAL(textChanged(const QString &)),
+			this,
+            SLOT(display_service_montant_total_vente()));
+
+    connect(lineEdit_prix_vente,
+    		SIGNAL(textEdited(const QString &)),
+			this,
             SLOT(edited_prix_vente(const QString &)));
 
     connect(lineEdit_prix_vente, SIGNAL(editingFinished()), this, SLOT(display_prix_vente()));
@@ -141,6 +152,7 @@ void YerothEntrerWindow::deconnecter_utilisateur()
 
 void YerothEntrerWindow::setupLineEdits()
 {
+	lineEdit_service_montant_total_vente->setYerothEnabled(false);
     lineEdit_quantite_total->setYerothEnabled(false);
     lineEdit_tva->setYerothEnabled(false);
     lineEdit_tva->setText(YerothUtils::getTvaStringWithPercent());
@@ -564,7 +576,14 @@ void YerothEntrerWindow::display_quantite_total(const QString & quantite_par_lot
 {
     double qte_lot = quantite_par_lot.toDouble();
     double qte_total = doubleSpinBox_lots_entrant->valueMultiplyBy(qte_lot);
+
     lineEdit_quantite_total->setText(QString::number(qte_total, 'f', 2));
+
+	if (checkBox_service->isChecked())
+	{
+		qte_total = qte_total * lineEdit_prix_vente->text().toDouble();
+		lineEdit_service_montant_total_vente->setText(GET_CURRENCY_STRING_NUM(qte_total));
+	}
 }
 
 void YerothEntrerWindow::display_quantite_total_by_spinbox(double lots)
@@ -574,18 +593,32 @@ void YerothEntrerWindow::display_quantite_total_by_spinbox(double lots)
     lineEdit_quantite_total->setText(QString::number(qte_total, 'f', 2));
 }
 
+
 void YerothEntrerWindow::display_prix_vente()
 {
     if (_lastEditedPrixVente != lineEdit_prix_vente->text())
     {
         return;
     }
+
     if (checkBox_tva->isChecked())
     {
-        double prix_vente = lineEdit_prix_vente->text().toDouble();
+    	double prix_vente = lineEdit_prix_vente->text().toDouble();
         _montantTva = prix_vente * YerothERPConfig::tva_value;
         prix_vente = prix_vente + _montantTva;
         lineEdit_prix_vente->setText(QString::number(prix_vente, 'f', 2));
+    }
+}
+
+
+void YerothEntrerWindow::display_service_montant_total_vente()
+{
+    if (checkBox_service->isChecked())
+    {
+    	double prix_vente = lineEdit_prix_vente->text().toDouble();
+    	double qte_total = lineEdit_quantite_total->text().toDouble();
+    	double montant_total_vente = qte_total * prix_vente;
+		lineEdit_service_montant_total_vente->setText(GET_CURRENCY_STRING_NUM(montant_total_vente));
     }
 }
 
@@ -612,6 +645,17 @@ void YerothEntrerWindow::setStockSpecificWidgetVisible(bool visible)
 
 	dateEdit_date_peremption->setVisible(visible);
 	label_date_peremption->setVisible(visible);
+
+	/*
+	 * '*_montant_total_vente_service' et
+	 * '*_prix_dachat' sont justaposes dans
+	 * l'interface utilisateur.
+	 *
+	 * Donc ils ne peuvent jamais etre visible
+	 * au meme moment.
+	 */
+	label_montant_total_vente_service->setVisible(!visible);
+	lineEdit_service_montant_total_vente->setVisible(!visible);
 
 	label_prix_dachat->setVisible(visible);
 	lineEdit_prix_dachat->setVisible(visible);
@@ -672,38 +716,23 @@ void YerothEntrerWindow::handle_service_checkBox(int state)
 }
 
 
-void YerothEntrerWindow::handleTVACheckBox(bool clicked)
+void YerothEntrerWindow::handleTVACheckBox(int state)
 {
     double prix_vente = lineEdit_prix_vente->text().toDouble();
 
-    if (clicked && checkBox_tva->isChecked())
+    if (checkBox_tva->isChecked())
     {
-        if (false == _tvaCheckBoxPreviousState)
-        {
-            _tvaCheckBoxPreviousState = true;
-        }
-        else
-        {
-            _tvaCheckBoxPreviousState = false;
-        }
         _montantTva = prix_vente * YerothERPConfig::tva_value;
         prix_vente = prix_vente + _montantTva;
     }
     else
     {
         _montantTva = 0;
-        if (true == _tvaCheckBoxPreviousState)
-        {
-            _tvaCheckBoxPreviousState = false;
-            prix_vente = prix_vente / (1 + YerothERPConfig::tva_value);
-        }
+        prix_vente = prix_vente / (1 + YerothERPConfig::tva_value);
     }
 
     lineEdit_prix_vente->setText(QString::number(prix_vente, 'f', 2));
 }
-
-
-
 
 
 void YerothEntrerWindow::handleCategorieName(const QString &text)
