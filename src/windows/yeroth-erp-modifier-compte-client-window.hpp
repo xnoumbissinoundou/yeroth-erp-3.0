@@ -67,7 +67,7 @@ public slots:
 	{
 		YerothQMessageBox::information(this,
 						 QObject::tr("aide"),
-						 QObject::tr("Modifier les informations sur le stock, "
+						 QObject::tr("Modifier les informations sur le compte client, "
 								     "et ensuite cliquer sur le bouton 'actualiser'!"));
 	}
 
