@@ -108,11 +108,13 @@ void YerothLineEdit::setYerothERPQLineEditDisplayFormat()
 {
 	if (isReadOnly())
 	{
-		/*
-		 * Read-only text must be horizontally centered.
-		 */
 		bool isLeftAligned = ( (Qt::AlignLeft | alignment()) == 1 );
 
+		/*
+		 * Read-only text must be horizontally centered.
+		 * We don't modify already centered or
+		 * right-aligned text.
+		 */
 		if ( isLeftAligned )
 		{
 			setAlignment(Qt::AlignHCenter);
