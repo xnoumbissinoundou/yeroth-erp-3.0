@@ -199,7 +199,7 @@ bool YerothVentesWindow::annuler_cette_vente()
 
 	if (quantite_a_retourner <= 0.0)
 	{
-		msg = QObject::trUtf8("La quantité d'articles à retourner doit être supérieur zéro !");
+		msg = QObject::trUtf8("La quantité d'articles à retourner doit être supérieure zéro !");
 
 		YerothQMessageBox::information(this,
 									   QObject::trUtf8("quantité d'articles à retourner"),
@@ -223,7 +223,7 @@ bool YerothVentesWindow::annuler_cette_vente()
 	if (quantite_a_retourner > curStocksVenduQuantiteVendue)
 	{
 		msg = QObject::trUtf8("La quantité d'articles à retourner doit être "
-							  "inférieur ou égale à la quantité d'articles qui a été vendu !");
+							  "inférieure ou égale à la quantité d'articles qui a été vendu !");
 
 		YerothQMessageBox::information(this,
 									   QObject::trUtf8("quantité d'articles à retourner"),
