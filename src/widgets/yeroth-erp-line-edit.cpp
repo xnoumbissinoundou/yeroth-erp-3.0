@@ -106,10 +106,18 @@ bool YerothLineEdit::checkFieldAndMinimalValue(double min, QPalette *aPalette /*
 
 void YerothLineEdit::setYerothERPQLineEditDisplayFormat()
 {
-    if (isReadOnly())
-    {
-    	setAlignment(Qt::AlignHCenter);
-    }
+	if (isReadOnly())
+	{
+		/*
+		 * Read-only text must be horizontally centered.
+		 */
+		bool isLeftAligned = ( (Qt::AlignLeft | alignment()) == 1 );
+
+		if ( isLeftAligned )
+		{
+			setAlignment(Qt::AlignHCenter);
+		}
+	}
     else
     {
         setAlignment(Qt::AlignLeft);
