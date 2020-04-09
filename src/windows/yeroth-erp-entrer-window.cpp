@@ -562,7 +562,10 @@ bool YerothEntrerWindow::product_search_with_codebar()
         if (success && query.last())
         {
         	lineEdit_designation->setText(query.value(YerothDatabaseTableColumn::DESIGNATION).toString());
+
         	lineEdit_categorie_produit->setText(query.value(YerothDatabaseTableColumn::CATEGORIE).toString());
+
+        	textEdit_description->setText(query.value(YerothDatabaseTableColumn::DESCRIPTION_PRODUIT).toString());
 
             return true;
         }
