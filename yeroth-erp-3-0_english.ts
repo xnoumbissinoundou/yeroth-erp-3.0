@@ -8129,7 +8129,7 @@ un
 stock</oldsource>
         <translation>Check in
 a
-stock item (service)</translation>
+stock (service)</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-main-window.ui" line="4460"/>
