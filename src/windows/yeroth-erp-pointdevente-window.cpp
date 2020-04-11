@@ -270,10 +270,18 @@ void YerothPointDeVenteWindow::setStockItemNameAsStandardInput()
 }
 
 
+void YerothPointDeVenteWindow::disconnect_all_objects_for_stock_article_item_selection()
+{
+	disconnect(lineEdit_recherche_article, 0, 0, 0);
+	disconnect(lineEdit_recherche_article_codebar, 0, 0, 0);
+	disconnect(lineEdit_recherche_article->getMyQCompleter(), 0, 0, 0);
+	disconnect(lineEdit_recherche_article_codebar->getMyQCompleter(), 0, 0, 0);
+}
+
+
 void YerothPointDeVenteWindow::connect_manual_selection_of_article_item()
 {
-	disconnect(lineEdit_recherche_article, 0, this, 0);
-	disconnect(lineEdit_recherche_article_codebar, 0, this, 0);
+	disconnect_all_objects_for_stock_article_item_selection();
 
     if (YerothUtils::
             isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO, YerothERPConfig::salesStrategy))
@@ -315,8 +323,7 @@ void YerothPointDeVenteWindow::connect_manual_selection_of_article_item()
 
 void YerothPointDeVenteWindow::connect_barcode_reader_selection_of_article_item()
 {
-	disconnect(lineEdit_recherche_article, 0, this, 0);
-	disconnect(lineEdit_recherche_article_codebar, 0, this, 0);
+	disconnect_all_objects_for_stock_article_item_selection();
 
     if (YerothUtils::
             isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO, YerothERPConfig::salesStrategy))
