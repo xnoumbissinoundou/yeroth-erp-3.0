@@ -182,10 +182,18 @@ void YerothSortirWindow::handleBarCodeScannerCheckBox(int state)
 }
 
 
+void YerothSortirWindow::disconnect_all_objects_for_stock_article_item_selection()
+{
+	disconnect(lineEdit_recherche_article, 0, 0, 0);
+	disconnect(lineEdit_recherche_article_codebar, 0, 0, 0);
+	disconnect(lineEdit_recherche_article->getMyQCompleter(), 0, 0, 0);
+	disconnect(lineEdit_recherche_article_codebar->getMyQCompleter(), 0, 0, 0);
+}
+
+
 void YerothSortirWindow::connect_manual_selection_of_article_item()
 {
-	disconnect(lineEdit_recherche_article, 0, this, 0);
-	disconnect(lineEdit_recherche_article_codebar, 0, this, 0);
+	disconnect_all_objects_for_stock_article_item_selection();
 
     if (YerothUtils::
             isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO, YerothERPConfig::salesStrategy))
@@ -227,8 +235,7 @@ void YerothSortirWindow::connect_manual_selection_of_article_item()
 
 void YerothSortirWindow::connect_barcode_reader_selection_of_article_item()
 {
-	disconnect(lineEdit_recherche_article, 0, this, 0);
-	disconnect(lineEdit_recherche_article_codebar, 0, this, 0);
+	disconnect_all_objects_for_stock_article_item_selection();
 
     if (YerothUtils::
             isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO, YerothERPConfig::salesStrategy))

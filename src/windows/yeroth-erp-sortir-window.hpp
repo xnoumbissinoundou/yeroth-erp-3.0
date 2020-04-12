@@ -230,6 +230,8 @@ private:
 		return checkBox_lecteur_de_code_barres->isChecked();
 	}
 
+	void disconnect_all_objects_for_stock_article_item_selection();
+
 	void connect_manual_selection_of_article_item();
 
 	void connect_barcode_reader_selection_of_article_item();
