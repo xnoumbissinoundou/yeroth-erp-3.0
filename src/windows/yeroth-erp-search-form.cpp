@@ -173,7 +173,6 @@ void YerothSearchForm::reinitialiser()
     if (_allWindows->STOCKS == _sqlTable->sqlTableName())
     {
         _allWindows->_stocksWindow->setSearchFormSqlTableModel(0);
-        _allWindows->_stocksWindow->set_rechercher_font();
     }
     /*else if (_allWindows->STOCKS_SORTIES == _sqlTable->sqlTableName())
 

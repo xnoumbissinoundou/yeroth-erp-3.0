@@ -65,8 +65,6 @@ YerothStocksWindow::YerothStocksWindow()
 	 _actionRechercheArticleCodebar(0),
      _aProcess(0),
 	 _pushButton_stocks_filtrer_font(0),
-	 _pushButton_RechercherFont(0),
-     _action_RechercherFont(0),
      _searchStocksWidget(0),
      _searchStocksTableModel(0)
 {
@@ -93,9 +91,6 @@ YerothStocksWindow::YerothStocksWindow()
 
     _pushButton_stocks_filtrer_font = new QFont(pushButton_stocks_filtrer->font());
 
-    _action_RechercherFont = new QFont(actionRechercher->font());
-    _pushButton_RechercherFont = new QFont(pushButton_rechercher->font());
-
     tableView_stocks->setTableName(&YerothERPWindows::MARCHANDISES);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
@@ -116,7 +111,6 @@ YerothStocksWindow::YerothStocksWindow()
     pushButton_menu_principal->disable(this);
     pushButton_inventaire_des_stocks->disable(this);
     pushButton_sortir->disable(this);
-    pushButton_rechercher->enable(this, SLOT(rechercher()));
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
     pushButton_connecter_localisation->disable(this);
     pushButton_deconnecter_localisation->disable(this);
@@ -146,7 +140,6 @@ YerothStocksWindow::YerothStocksWindow()
     connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_document()));
     connect(actionA_propos, SIGNAL(triggered()), this, SLOT(apropos()));
     connect(actionAlertes, SIGNAL(triggered()), this, SLOT(alertes()));
-    connect(actionRechercher, SIGNAL(triggered()), this, SLOT(rechercher()));
     connect(actionReinitialiserRecherche, SIGNAL(triggered()), this, SLOT(reinitialiser_recherche()));
     connect(actionReinitialiserElementsDeFiltrage, SIGNAL(triggered()), this, SLOT(reinitialiser_elements_filtrage()));
     connect(actionInformationEntreprise, SIGNAL(triggered()), this, SLOT(infosEntreprise()));
@@ -167,9 +160,6 @@ connect(actionAdministration, SIGNAL(triggered()), this, SLOT(administration()))
     connect(comboBox_strategie_de_stocks, SIGNAL(activated(int)),
     		this, SLOT(gererChoixStrategieGestionDesStocks()));
 
-    connect(tableView_stocks, SIGNAL(signal_lister(YerothSqlTableModel &)),
-    		this, SLOT(set_rechercher_font()));
-
     connect(tableView_stocks, SIGNAL(doubleClicked(const QModelIndex &)), this,
             SLOT(afficher_au_detail(const QModelIndex &)));
 
@@ -182,8 +172,6 @@ connect(actionAdministration, SIGNAL(triggered()), this, SLOT(administration()))
 YerothStocksWindow::~YerothStocksWindow()
 {
 	delete _actionRechercheArticleCodebar;
-    delete _action_RechercherFont;
-    delete _pushButton_RechercherFont;
     delete _searchStocksWidget;
     delete _logger;
 }
@@ -199,7 +187,7 @@ void YerothStocksWindow::setCurrentlyFiltered(bool currentlyFiltered)
 
 void YerothStocksWindow::updateLineEditRechercherCodeBar()
 {
-    lineEdit_recherche_reference->enableForSearch(QObject::trUtf8("référence [ focus avec F11 ]"));
+	lineEdit_stock_terme_recherche->enableForSearch(QObject::trUtf8("terme à rechercher [ focus avec F11 ]"));
 
     if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_ALL,
                                            YerothERPConfig::salesStrategy))
@@ -378,7 +366,7 @@ void YerothStocksWindow::activerComboBoxStrategieDeGestionDesStocks()
 {
     comboBox_strategie_de_stocks->setVisible(true);
     comboBox_strategie_de_stocks->setEnabled(true);
-    lineEdit_recherche_reference->setFixedWidth(663);
+    lineEdit_stock_terme_recherche->setFixedWidth(663);
 }
 
 
@@ -386,7 +374,7 @@ void YerothStocksWindow::desactiverComboBoxStrategieDeGestionDesStocks()
 {
     comboBox_strategie_de_stocks->setVisible(false);
     comboBox_strategie_de_stocks->setEnabled(false);
-    lineEdit_recherche_reference->setFixedWidth(778);
+    lineEdit_stock_terme_recherche->setFixedWidth(778);
 }
 
 
@@ -457,6 +445,11 @@ void YerothStocksWindow::setupLineEdits()
 {
     updateLineEditRechercherCodeBar();
 
+    lineEdit_recherche_reference->enableForSearch(QObject::trUtf8("référence"));
+	lineEdit_stock_categorie->enableForSearch(QObject::trUtf8("catégorie"));
+	lineEdit_stock_designation->enableForSearch(QObject::trUtf8("désignation"));
+	lineEdit_stock_fournisseur->enableForSearch(QObject::tr("fournisseur"));
+
 	lineEdit_stocks_element_de_stock_resultat->setValidator(&YerothUtils::DoubleValidator);
 
     lineEdit_localisation->enableForSearch(QObject::trUtf8("localisation"));
@@ -499,13 +492,11 @@ void YerothStocksWindow::setupShortcuts()
     connect(_actionRechercheArticleCodebar, SIGNAL(triggered()),
     		this,SLOT(setRechercheCodebarArticleFocus()));
 
-    this->setupShortcutActionMessageDaide 	(*actionAppeler_aide);
-    this->setupShortcutActionAfficherPDF	(*actionAfficherPDF);
-    this->setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
+    setupShortcutActionMessageDaide 	(*actionAppeler_aide);
+    setupShortcutActionAfficherPDF	(*actionAfficherPDF);
+    setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
 
     _actionRechercheArticleCodebar->setShortcut(Qt::Key_F11);
-
-    actionRechercher->setShortcut(YerothUtils::RECHERCHER_QKEYSEQUENCE);
 
     actionReinitialiserRecherche->setShortcut(YerothUtils::REINITIALISER_RECHERCHE_QKEYSEQUENCE);
 }
@@ -610,7 +601,7 @@ void YerothStocksWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
         }
     }
 
-    lineEdit_recherche_reference->setFocus();
+    lineEdit_stock_terme_recherche->setFocus();
 
     setVisible(true);
 
@@ -838,10 +829,10 @@ void YerothStocksWindow::afficher_au_detail()
 {
     _logger->log("afficher_au_detail");
 
-    if (this->getLastListerSelectedRow() > -1 && _curStocksTableModel->rowCount() > 0)
+    if (getLastListerSelectedRow() > -1 && _curStocksTableModel->rowCount() > 0)
     {
         _allWindows->_detailWindow->rendreVisible(_curStocksTableModel);
-        this->rendreInvisible();
+        rendreInvisible();
     }
     else
     {
@@ -854,15 +845,15 @@ void YerothStocksWindow::afficher_au_detail(const QModelIndex & modelIndex)
 {
     _logger->log("afficher_au_detail(const QModelIndex &)");
 
-    this->setLastListerSelectedRow(modelIndex.row());
+    setLastListerSelectedRow(modelIndex.row());
 
-    tableView_stocks->selectRow(this->getLastListerSelectedRow());
+    tableView_stocks->selectRow(getLastListerSelectedRow());
 
-    if (this->getLastListerSelectedRow() > -1 && _curStocksTableModel->rowCount() > 0)
+    if (getLastListerSelectedRow() > -1 && _curStocksTableModel->rowCount() > 0)
     {
         _allWindows->_detailWindow->rendreVisible(_curStocksTableModel);
 
-        this->rendreInvisible();
+        rendreInvisible();
     }
     else
     {
@@ -874,30 +865,28 @@ void YerothStocksWindow::afficher_au_detail(const QModelIndex & modelIndex)
 void YerothStocksWindow::afficher_stock_selectioner_bar_code(const QString & stockBarCode)
 {
     _logger->log("afficher_stock_selectioner_bar_code(const QString &)");
-    this->setLastListerSelectedRow(0);
+    setLastListerSelectedRow(0);
     QString filter(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::REFERENCE, stockBarCode));
     //qDebug() << "++ stockName: " << stockName;
     _curStocksTableModel->yerothSetFilter(filter);
     if (_curStocksTableModel->easySelect() > 0)
     {
-        this->afficherStocks(*_curStocksTableModel);
-        this->setSearchFormSqlTableModel(_curStocksTableModel);
-        this->set_rechercher_font();
+        afficherStocks(*_curStocksTableModel);
+        setSearchFormSqlTableModel(_curStocksTableModel);
     }
 }
 
 void YerothStocksWindow::afficher_stock_selectioner(const QString & stockName)
 {
     _logger->log("afficher_stock_selectioner(const QString &)");
-    this->setLastListerSelectedRow(0);
+    setLastListerSelectedRow(0);
     QString filter(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::DESIGNATION, stockName));
     //qDebug() << "++ stockName: " << stockName;
     _curStocksTableModel->yerothSetFilter(filter);
     if (_curStocksTableModel->easySelect() > 0)
     {
-        this->afficherStocks(*_curStocksTableModel);
-        this->setSearchFormSqlTableModel(_curStocksTableModel);
-        this->set_rechercher_font();
+        afficherStocks(*_curStocksTableModel);
+        setSearchFormSqlTableModel(_curStocksTableModel);
     }
 }
 
@@ -1037,23 +1026,20 @@ void YerothStocksWindow::reinitialiser_recherche()
     setSearchFormSqlTableModel(0);
 
     setComboBoxStrategieDeStocks();
-
-    set_rechercher_font();
 }
 
 
 void YerothStocksWindow::entrer()
 {
-    _logger->log("entrer");
-    if (this->getLastListerSelectedRow() > -1 && _curStocksTableModel->rowCount() > 0)
+    if (getLastListerSelectedRow() > -1 && _curStocksTableModel->rowCount() > 0)
     {
         _allWindows->_entrerWindow->rendreVisible(_curStocksTableModel, true);
-        this->rendreInvisible();
+        rendreInvisible();
     }
     else
     {
         _allWindows->_entrerWindow->rendreVisible(_curStocksTableModel);
-        this->rendreInvisible();
+        rendreInvisible();
     }
 }
 
@@ -1064,7 +1050,7 @@ void YerothStocksWindow::modifier_les_articles()
     if (_curStocksTableModel->rowCount() > 0)
     {
         _allWindows->_modifierWindow->rendreVisible(_curStocksTableModel);
-        this->rendreInvisible();
+        rendreInvisible();
     }
     else
     {
@@ -1125,6 +1111,10 @@ void YerothStocksWindow::afficherStocks()
     QString localVisibleStrategy = comboBox_strategie_de_stocks->currentText();
 
     afficherStocks(*_curStocksTableModel, localVisibleStrategy);
+
+    int rowCount = tableView_stocks->rowCount();
+
+    lineEdit_nombre_de_stocks->setText(GET_NUM_STRING(rowCount));
 }
 
 
@@ -1142,24 +1132,6 @@ void YerothStocksWindow::set_filtrer_font()
     }
 
     pushButton_stocks_filtrer->setFont(*_pushButton_stocks_filtrer_font);
-}
-
-
-void YerothStocksWindow::set_rechercher_font()
-{
-    //_logger->log("set_rechercher_font");
-    if (0 != _searchStocksTableModel)
-    {
-        _action_RechercherFont->setUnderline(true);
-        _pushButton_RechercherFont->setUnderline(true);
-    }
-    else
-    {
-        _action_RechercherFont->setUnderline(false);
-        _pushButton_RechercherFont->setUnderline(false);
-    }
-    actionRechercher->setFont(*_action_RechercherFont);
-    pushButton_rechercher->setFont(*_pushButton_RechercherFont);
 }
 
 

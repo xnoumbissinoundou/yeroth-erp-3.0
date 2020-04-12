@@ -258,11 +258,11 @@ public slots:
 
 private slots:
 
-	void handleBarCodeScannerCheckBox(int state);
-
 	void setBarcodeAsStandardInput();
 
 	void setStockItemNameAsStandardInput();
+
+	void handleBarCodeScannerCheckBox(int state);
 
 	bool PROCESS_CREDIT_CARD_PAYMENT();
 

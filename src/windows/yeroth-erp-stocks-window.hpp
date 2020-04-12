@@ -137,8 +137,6 @@ public slots:
 
     void set_filtrer_font();
 
-    void set_rechercher_font();
-
     inline int getLastListerSelectedRow()
     {
     	return tableView_stocks->lastSelectedRow();
@@ -222,10 +220,6 @@ private:
     QProcess				*_aProcess;
 
     QFont 					*_pushButton_stocks_filtrer_font;
-
-    QFont 					*_pushButton_RechercherFont;
-
-    QFont 					*_action_RechercherFont;
 
     YerothSearchForm 		*_searchStocksWidget;
 

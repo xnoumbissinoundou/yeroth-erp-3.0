@@ -625,6 +625,12 @@ void YerothERPClientsWindow::populateClientsComboBoxes()
 
 void YerothERPClientsWindow::setupLineEdits()
 {
+	lineEdit_comptes_clients_reference_client->enableForSearch(QObject::trUtf8("référence client"));
+	lineEdit_comptes_clients_quartier->enableForSearch(QObject::tr("quartier"));
+	lineEdit_comptes_clients_ville->enableForSearch(QObject::tr("ville"));
+	lineEdit_comptes_clients_province_etat->enableForSearch(QObject::trUtf8("province / état"));
+	lineEdit_comptes_clients_pays->enableForSearch(QObject::tr("pays"));
+
 	lineEdit_nombre_de_comptes_clients->setYerothEnabled(false);
 
 	lineEdit_resultat_filtre->setValidator(&YerothUtils::DoubleValidator);

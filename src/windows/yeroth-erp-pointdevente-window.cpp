@@ -243,19 +243,6 @@ void YerothPointDeVenteWindow::deleteArticleVenteInfos()
 }
 
 
-void YerothPointDeVenteWindow::handleBarCodeScannerCheckBox(int state)
-{
-	if (checkBox_lecteur_de_code_barres->isChecked())
-	{
-		connect_barcode_reader_selection_of_article_item();
-	}
-	else
-	{
-		connect_manual_selection_of_article_item();
-	}
-}
-
-
 void YerothPointDeVenteWindow::setBarcodeAsStandardInput()
 {
 	_currentFocusSearchBar = lineEdit_recherche_article_codebar;
@@ -267,6 +254,19 @@ void YerothPointDeVenteWindow::setStockItemNameAsStandardInput()
 {
 	_currentFocusSearchBar = lineEdit_recherche_article;
 	lineEdit_recherche_article->setFocus();
+}
+
+
+void YerothPointDeVenteWindow::handleBarCodeScannerCheckBox(int state)
+{
+	if (checkBox_lecteur_de_code_barres->isChecked())
+	{
+		connect_barcode_reader_selection_of_article_item();
+	}
+	else
+	{
+		connect_manual_selection_of_article_item();
+	}
 }
 
 
