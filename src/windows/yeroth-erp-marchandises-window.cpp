@@ -22,9 +22,6 @@
 
 #include "src/widgets/yeroth-erp-qmessage-box.hpp"
 
-#include "src/windows/yeroth-erp-search-form.hpp"
-
-
 
 #include <QtSql/QSqlRelationalTableModel>
 
@@ -42,19 +39,16 @@ const QString YerothMarchandisesWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%
 
 YerothMarchandisesWindow::YerothMarchandisesWindow()
 :YerothWindowsCommons(YerothMarchandisesWindow::_WINDOW_TITLE),
- _logger(new YerothLogger("YerothInventaireDesStocksWindow")),
+ YerothAbstractClassYerothSearchWindow(_allWindows->MARCHANDISES),
+ _logger(new YerothLogger("YerothMarchandisesWindow")),
  _currentlyFiltered(false),
  _lastSelectedRow(0),
  _pushButton_filtrer_font(0),
- _action_RechercherFont(0),
- _pushButton_RechercherFont(0),
- _searchMarchandisesWidget(0),
- _searchMarchandisesTableModel(0),
- _curInventaireDesStocksTableModel(&_allWindows->getSqlTableModel_marchandises())
+ _curMarchandisesTableModel(&_allWindows->getSqlTableModel_marchandises())
 {
     setupUi(this);
 
-    this->mySetupUi(this);
+    mySetupUi(this);
 
     QMESSAGE_BOX_STYLE_SHEET =
         QString("QMessageBox {background-color: rgb(%1);}").arg(COLOUR_RGB_STRING_YEROTH_FIREBRICK_RED_255_48_48);
@@ -63,21 +57,30 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
 
     setupSelectDBFields(_allWindows->MARCHANDISES);
 
-    reinitialiser_champs_db_visibles();
+    _lineEditsToANDContentForSearch.insert(&lineEdit_marchandises_terme_recherche,
+    		YerothUtils::EMPTY_STRING);
 
-    _searchMarchandisesWidget = new YerothSearchForm(_allWindows, *this, _curInventaireDesStocksTableModel);
+    _lineEditsToANDContentForSearch.insert(&lineEdit_marchandises_reference,
+    		YerothDatabaseTableColumn::REFERENCE);
+
+    _lineEditsToANDContentForSearch.insert(&lineEdit_marchandises_designation,
+    		YerothDatabaseTableColumn::DESIGNATION);
+
+    _lineEditsToANDContentForSearch.insert(&lineEdit_marchandises_categorie,
+    		YerothDatabaseTableColumn::CATEGORIE);
+
+    _lineEditsToANDContentForSearch.insert(&lineEdit_marchandises_nom_entreprise_fournisseur,
+    		YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR);
+
+    reinitialiser_champs_db_visibles();
 
     setupLineEdits();
 
-    setupLineEditsQCompleters();
+    localSetupLineEditsQCompleters();
 
     populateInventaireDesStocksComboBoxes();
 
     _pushButton_filtrer_font = new QFont(pushButton_filtrer->font());
-
-    _action_RechercherFont = new QFont(actionRechercher->font());
-
-    _pushButton_RechercherFont = new QFont(pushButton_rechercher->font());
 
     tableView_marchandises->setTableName(&YerothERPWindows::MARCHANDISES);
 
@@ -97,7 +100,6 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
     pushButton_menu_principal->disable(this);
     pushButton_stocks->disable(this);
     pushButton_sortir->disable(this);
-    pushButton_rechercher->enable(this, SLOT(rechercher()));
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
 
     connect(actionReinitialiserChampsDBVisible, SIGNAL(triggered()), this, SLOT(slot_reinitialiser_champs_db_visibles()));
@@ -118,7 +120,6 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
     connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_document()));
     connect(actionA_propos, SIGNAL(triggered()), this, SLOT(apropos()));
     connect(actionAlertes, SIGNAL(triggered()), this, SLOT(alertes()));
-    connect(actionRechercher, SIGNAL(triggered()), this, SLOT(rechercher()));
     connect(actionReinitialiserRecherche, SIGNAL(triggered()), this, SLOT(reinitialiser_recherche()));
     connect(actionReinitialiserElementsDeFiltrage, SIGNAL(triggered()), this, SLOT(reinitialiser_elements_filtrage()));
     connect(actionInformationEntreprise, SIGNAL(triggered()), this, SLOT(infosEntreprise()));
@@ -138,29 +139,13 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
 
     connect(actionSupprimer_ce_stock, SIGNAL(triggered()), this, SLOT(supprimer_ce_stock()));
 
-    connect(tableView_marchandises,
-    		SIGNAL(signal_lister(YerothSqlTableModel &)),
-			this,
-            SLOT(set_rechercher_font()));
-
     setupShortcuts();
 }
 
 YerothMarchandisesWindow::~YerothMarchandisesWindow()
 {
 	delete _pushButton_filtrer_font;
-    delete _action_RechercherFont;
-    delete _pushButton_RechercherFont;
-    delete _searchMarchandisesWidget;
     delete _logger;
-}
-
-
-void YerothMarchandisesWindow::setSearchFormSqlTableModel(YerothSqlTableModel *searchFormSqlTableModel)
-{
-	setCurrentlyFiltered(false);
-
-	_searchMarchandisesTableModel = searchFormSqlTableModel;
 }
 
 
@@ -273,14 +258,6 @@ double YerothMarchandisesWindow::getQuantiteTotalEnStock(const QModelIndex &aQMo
 }
 
 
-void YerothMarchandisesWindow::slot_reinitialiser_champs_db_visibles()
-{
-	reinitialiser_champs_db_visibles();
-
-	afficherMarchandises();
-}
-
-
 void YerothMarchandisesWindow::reinitialiser_champs_db_visibles()
 {
 	_visibleDBFieldColumnStrList.clear();
@@ -323,8 +300,99 @@ void YerothMarchandisesWindow::setupShortcuts()
     setupShortcutActionAfficherPDF		(*actionAfficherPDF);
 
     actionAfficher_les_stocks_termines->setShortcut(YerothUtils::AFFICHER_LES_STOCKS_TERMINES_QKEYSEQUENCE);
-    actionRechercher->setShortcut(YerothUtils::RECHERCHER_QKEYSEQUENCE);
     actionReinitialiserRecherche->setShortcut(YerothUtils::REINITIALISER_RECHERCHE_QKEYSEQUENCE);
+}
+
+
+void YerothMarchandisesWindow::slot_reinitialiser_champs_db_visibles()
+{
+	reinitialiser_champs_db_visibles();
+
+	afficherMarchandises();
+}
+
+
+void YerothMarchandisesWindow::textChangedSearchLineEditsQCompleters()
+{
+	lineEdit_marchandises_element_de_stock_resultat->clear();
+
+    setCurrentlyFiltered(false);
+
+    clearSearchFilter();
+
+    QString searchTerm(lineEdit_marchandises_terme_recherche->text());
+
+    if (!searchTerm.isEmpty())
+    {
+        QStringList searchTermList = searchTerm.split(QRegExp("\\s+"));
+
+        QString partSearchTerm;
+
+        int lastIdx = searchTermList.size() - 1;
+
+        for (int k = 0; k < searchTermList.size(); ++k)
+        {
+        	partSearchTerm = searchTermList.at(k);
+        	//qDebug() << "++ searchTermList: " << partSearchTerm;
+
+        	_searchFilter.append(QString("(%1 OR %2 OR %3)")
+        							.arg(GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::DESIGNATION, partSearchTerm),
+        								 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::CATEGORIE, partSearchTerm),
+										 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::DESCRIPTION_PRODUIT, partSearchTerm)));
+
+        	if (k != lastIdx)
+        	{
+        		_searchFilter.append(" AND ");
+        	}
+        }
+    }
+
+    YerothLineEdit *aYerothLineEdit = 0;
+
+    QString correspondingDBFieldKeyValue;
+
+    QString aTableColumnFieldContentForANDSearch;
+
+    QMapIterator <YerothLineEdit **, QString> it(_lineEditsToANDContentForSearch);
+
+    while (it.hasNext())
+    {
+    	it.next();
+
+    	aYerothLineEdit = *it.key();
+
+    	correspondingDBFieldKeyValue = it.value();
+
+    	if (0 != aYerothLineEdit)
+    	{
+    		aTableColumnFieldContentForANDSearch = aYerothLineEdit->text();
+
+    		if (!correspondingDBFieldKeyValue.isEmpty() &&
+    				!aTableColumnFieldContentForANDSearch.isEmpty()	)
+    		{
+    			if (!_searchFilter.isEmpty())
+    			{
+    				_searchFilter.append(" AND ");
+    			}
+
+    			_searchFilter.append(GENERATE_SQL_IS_STMT(correspondingDBFieldKeyValue,
+    					aTableColumnFieldContentForANDSearch));
+    		}
+    	}
+    }
+
+    _yerothSqlTableModel->yerothSetFilter(_searchFilter);
+
+    if (_yerothSqlTableModel->select())
+    {
+    	setLastListerSelectedRow(0);
+    	afficherMarchandises(*_yerothSqlTableModel);
+    }
+    else
+    {
+        qDebug() << QString("++ YerothMarchandisesWindow::textChangedSearchLineEditsQCompleters(): %1")
+        				.arg(_yerothSqlTableModel->lastError().text());
+    }
 }
 
 
@@ -332,18 +400,18 @@ void YerothMarchandisesWindow::handle_services_checkBox(int state)
 {
 	if (checkBox_services->isChecked())
 	{
-		_curInventaireDesStocksTableModel->yerothSetFilter(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
+		_curMarchandisesTableModel->yerothSetFilter(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
     										  	  	  	   YerothUtils::MYSQL_TRUE_LITERAL));
     }
     else
     {
-    	_curInventaireDesStocksTableModel->yerothSetFilter(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
+    	_curMarchandisesTableModel->yerothSetFilter(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
     										  	  	  	   YerothUtils::MYSQL_FALSE_LITERAL));
 	}
 
-	_curInventaireDesStocksTableModel->easySelect();
+	_curMarchandisesTableModel->easySelect();
 
-	lineEdit_recherche_designation->clear();
+	lineEdit_marchandises_designation->clear();
 
 	if (-1 != state)
 	{
@@ -352,7 +420,7 @@ void YerothMarchandisesWindow::handle_services_checkBox(int state)
 
 	afficherMarchandises();
 
-	setupLineEditsQCompleters();
+	localSetupLineEditsQCompleters();
 }
 
 
@@ -432,15 +500,15 @@ bool YerothMarchandisesWindow::filtrer_empty_product_stock()
 		return false;
 	}
 
-	_curInventaireDesStocksTableModel->yerothSetFilter(filterString);
+	_curMarchandisesTableModel->yerothSetFilter(filterString);
 
-	int resultRows = _curInventaireDesStocksTableModel->easySelect();
+	int resultRows = _curMarchandisesTableModel->easySelect();
 
 	if (resultRows >= 0)
 	{
 		setCurrentlyFiltered(true);
 
-		afficherMarchandises(*_curInventaireDesStocksTableModel);
+		afficherMarchandises(*_curMarchandisesTableModel);
 
 		YEROTH_QMESSAGE_BOX_QUELQUE_RESULTAT_FILTRE(this, resultRows, "marchandises - filtrer");
 
@@ -488,15 +556,15 @@ bool YerothMarchandisesWindow::filtrer()
 	//qDebug() << QString("filterString: %1")
 	//				.arg(filterString);
 
-	_curInventaireDesStocksTableModel->yerothSetFilter(filterString);
+	_curMarchandisesTableModel->yerothSetFilter(filterString);
 
-	int resultRows = _curInventaireDesStocksTableModel->easySelect();
+	int resultRows = _curMarchandisesTableModel->easySelect();
 
 	if (resultRows >= 0)
 	{
 		setCurrentlyFiltered(true);
 
-		afficherMarchandises(*_curInventaireDesStocksTableModel);
+		afficherMarchandises(*_curMarchandisesTableModel);
 
 		YEROTH_QMESSAGE_BOX_QUELQUE_RESULTAT_FILTRE(this, resultRows, "marchandises - filtrer");
 
@@ -508,6 +576,23 @@ bool YerothMarchandisesWindow::filtrer()
 	}
 
 	return false;
+}
+
+
+void YerothMarchandisesWindow::localSetupLineEditsQCompleters()
+{
+    if (checkBox_services->isChecked())
+    {
+    	QString aConditionStr(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE, "1"));
+
+    	setupLineEditsQCompleters((QObject *)this, aConditionStr);
+    }
+    else
+    {
+    	QString aConditionStr(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE, "0"));
+
+    	setupLineEditsQCompleters((QObject *)this, aConditionStr);
+    }
 }
 
 
@@ -557,35 +642,18 @@ void YerothMarchandisesWindow::populateInventaireDesStocksComboBoxes()
 }
 
 
-void YerothMarchandisesWindow::setupLineEditsQCompleters()
+void YerothMarchandisesWindow::setupLineEdits()
 {
-    lineEdit_recherche_designation->enableForSearch(QObject::trUtf8("désignation"));
+	lineEdit_marchandises_terme_recherche->enableForSearch(QObject::trUtf8("terme à rechercher"));
 
-    if (checkBox_services->isChecked())
-    {
-    	QString aConditionStr(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE, "1"));
+    lineEdit_marchandises_reference->enableForSearch(QObject::trUtf8("référence"));
+    lineEdit_marchandises_categorie->enableForSearch(QObject::trUtf8("catégorie"));
+    lineEdit_marchandises_designation->enableForSearch(QObject::trUtf8("désignation"));
+    lineEdit_marchandises_nom_entreprise_fournisseur->enableForSearch(QObject::tr("nom entreprise fournisseur"));
 
-        lineEdit_recherche_designation->setupMyStaticQCompleter(_allWindows->MARCHANDISES,
-        														YerothDatabaseTableColumn::DESIGNATION,
-																false,
-																true,
-																aConditionStr);
-    }
-    else
-    {
-    	QString aConditionStr(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE, "0"));
+    lineEdit_nombre_de_marchandises->setYerothEnabled(false);
 
-        lineEdit_recherche_designation->setupMyStaticQCompleter(_allWindows->MARCHANDISES,
-        														YerothDatabaseTableColumn::DESIGNATION,
-																false,
-																true,
-																aConditionStr);
-    }
-
-    connect(lineEdit_recherche_designation->getMyQCompleter(),
-    		SIGNAL(activated(const QString &)),
-			this,
-            SLOT(afficher_stock_selectioner(const QString &)));
+	lineEdit_marchandises_element_de_stock_resultat->setValidator(&YerothUtils::DoubleValidator);
 }
 
 
@@ -595,48 +663,35 @@ void YerothMarchandisesWindow::rendreVisible(YerothSqlTableModel * stocksTableMo
 
     setupLineEdits();
 
+    setYerothSqlTableModel(_curMarchandisesTableModel);
+
     _curStocksTableModel = stocksTableModel;
 
-	if (0 == _searchMarchandisesTableModel)
-    {
-        _searchMarchandisesWidget->setSqlTableModel(_curInventaireDesStocksTableModel);
-    }
-
-    lineEdit_recherche_designation->setFocus();
+    lineEdit_marchandises_terme_recherche->setFocus();
 
 	setVisible(true);
 
 	if (checkBox_services->isChecked())
 	{
-		_curInventaireDesStocksTableModel->yerothSetFilter(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
+		_curMarchandisesTableModel->yerothSetFilter(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
     										  	  	  	   YerothUtils::MYSQL_TRUE_LITERAL));
     }
     else
     {
-    	_curInventaireDesStocksTableModel->yerothSetFilter(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
+    	_curMarchandisesTableModel->yerothSetFilter(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
     										  	  	  	   YerothUtils::MYSQL_FALSE_LITERAL));
 	}
 
 	afficherMarchandises();
 
-	setupLineEditsQCompleters();
+	localSetupLineEditsQCompleters();
 }
 
 
 void YerothMarchandisesWindow::rendreInvisible()
 {
-    lineEdit_recherche_designation->clear();
+    lineEdit_marchandises_designation->clear();
     YerothWindowsCommons::rendreInvisible();
-}
-
-
-void YerothMarchandisesWindow::setCurrentlyFiltered(bool currentlyFiltered)
-{
-	_currentlyFiltered = currentlyFiltered;
-
-	set_filtrer_font();
-
-	set_rechercher_font();
 }
 
 
@@ -664,6 +719,7 @@ void YerothMarchandisesWindow::definirCaissier()
     pushButton_stocks->disable(this);
     pushButton_sortir->disable(this);
 }
+
 
 void YerothMarchandisesWindow::definirManager()
 {
@@ -818,13 +874,11 @@ void YerothMarchandisesWindow::afficher_stock_selectioner(const QString & stockN
 
     //qDebug() << QString("filter: %1").arg(filter);
 
-    _curInventaireDesStocksTableModel->yerothSetFilter(filter);
+    _curMarchandisesTableModel->yerothSetFilter(filter);
 
-    if (_curInventaireDesStocksTableModel->easySelect() > 0)
+    if (_curMarchandisesTableModel->easySelect() > 0)
     {
-        this->afficherMarchandises();
-        this->setSearchFormSqlTableModel(_curInventaireDesStocksTableModel);
-        this->set_rechercher_font();
+        afficherMarchandises();
     }
 }
 
@@ -835,7 +889,7 @@ void YerothMarchandisesWindow::supprimer_ce_stock()
 
     unsigned rowToRemove = tableView_marchandises->lastSelectedRow();
 
-    QSqlRecord record = _curInventaireDesStocksTableModel->record(rowToRemove);
+    QSqlRecord record = _curMarchandisesTableModel->record(rowToRemove);
 
     QString msgSupprimer(QString(QObject::trUtf8("Poursuivre avec la suppression de la marchandise '%1' ?"))
     						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION)));
@@ -849,9 +903,9 @@ void YerothMarchandisesWindow::supprimer_ce_stock()
     {
         _logger->debug("supprimer_ce_stock", QString("rowToRemove: %1").arg(rowToRemove));
 
-        bool resRemoved = _curInventaireDesStocksTableModel->removeRow(rowToRemove);
+        bool resRemoved = _curMarchandisesTableModel->removeRow(rowToRemove);
         //qDebug() << "YerothInventaireDesStocksWindow::supprimer_ce_stock() " << resRemoved;
-        if (resRemoved && _curInventaireDesStocksTableModel->select())
+        if (resRemoved && _curMarchandisesTableModel->select())
         {
             msgSupprimer.clear();
 
@@ -876,7 +930,7 @@ void YerothMarchandisesWindow::supprimer_ce_stock()
 
         afficherMarchandises();
 
-        setupLineEditsQCompleters();
+        localSetupLineEditsQCompleters();
     }
     else
     {
@@ -900,13 +954,11 @@ void YerothMarchandisesWindow::reinitialiser_recherche()
 {
     _logger->log("reinitialiser_recherche");
 
-    _searchMarchandisesWidget->reinitialiser();
-
-    setSearchFormSqlTableModel(0);
+    lineEdit_marchandises_designation->clear();
 
     setCurrentlyFiltered(false);
 
-    lineEdit_recherche_designation->clear();
+    resetLineEditsQCompleters((QObject *)this);
 
     handle_services_checkBox(-1);
 }
@@ -914,31 +966,13 @@ void YerothMarchandisesWindow::reinitialiser_recherche()
 
 void YerothMarchandisesWindow::afficherMarchandises(YerothSqlTableModel &aYerothSqlTableModel)
 {
-    _searchMarchandisesWidget->rendreInvisible();
-
     tableView_marchandises->lister_les_elements_du_tableau(aYerothSqlTableModel);
 
     tableView_show_or_hide_columns(*tableView_marchandises);
-}
 
+    int rowCount = tableView_marchandises->rowCount();
 
-void YerothMarchandisesWindow::set_rechercher_font()
-{
-    //_logger->log("set_rechercher_font");
-    if (0 != _searchMarchandisesTableModel)
-    {
-        _action_RechercherFont->setUnderline(true);
-        _pushButton_RechercherFont->setUnderline(true);
-    }
-    else
-    {
-        _action_RechercherFont->setUnderline(false);
-        _pushButton_RechercherFont->setUnderline(false);
-    }
-
-    actionRechercher->setFont(*_action_RechercherFont);
-
-    pushButton_rechercher->setFont(*_pushButton_RechercherFont);
+    lineEdit_nombre_de_marchandises->setText(GET_NUM_STRING(rowCount));
 }
 
 

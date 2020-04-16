@@ -92,11 +92,6 @@ public slots:
 
 	virtual bool imprimer_document();
 
-	inline void setSearchFormSqlTableModel(YerothSqlTableModel *searchFormSqlTableModel)
-    {
-    	_searchClientsTableModel = searchFormSqlTableModel;
-    }
-
     inline int getLastListerSelectedRow()
     {
     	return tableView_clients->lastSelectedRow();
@@ -147,16 +142,9 @@ private slots:
 
 	bool filtrer();
 
-    inline void rechercher()
-    {
-    	_searchClientsWidget->rendreVisible();
-    }
-
     void reinitialiser_elements_filtrage();
 
     void reinitialiser_recherche();
-
-	void set_rechercher_font();
 
 private:
 
@@ -169,19 +157,11 @@ private:
 
     YerothLogger			*_logger;
 
-    bool					_currentlyFiltered;
-
     int 					_lastSelectedRow;
 
     QFont 					*_pushButton_filtrer_font;
 
-    QFont 					*_action_RechercherFont;
-
-    YerothSearchForm 		*_searchClientsWidget;
-
     YerothSqlTableModel 	*_curClientsTableModel;
-
-    YerothSqlTableModel 	*_searchClientsTableModel;
 };
 
 #endif /* SRC_WINDOWS_YEROTH_ERP_CLIENTS_WINDOW_HPP_ */

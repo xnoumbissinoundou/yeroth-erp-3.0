@@ -5579,7 +5579,7 @@ background-color: rgb(0, 0, 0);</string>
     <property name="geometry">
      <rect>
       <x>244</x>
-      <y>469</y>
+      <y>465</y>
       <width>151</width>
       <height>21</height>
      </rect>
@@ -6491,7 +6491,7 @@ background-color: rgb(0, 0, 0); </string>
     <property name="geometry">
      <rect>
       <x>164</x>
-      <y>469</y>
+      <y>465</y>
       <width>77</width>
       <height>21</height>
      </rect>
@@ -6923,7 +6923,7 @@ background-color: rgb(0, 0, 0); </string>
     <property name="geometry">
      <rect>
       <x>11</x>
-      <y>469</y>
+      <y>465</y>
       <width>151</width>
       <height>21</height>
      </rect>

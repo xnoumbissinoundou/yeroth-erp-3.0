@@ -9,13 +9,13 @@
 
 #include "../../ui_yeroth-erp-marchandises-window.h"
 
-#include "src/windows/yeroth-erp-search-form.hpp"
 
 #include <QtCore/QDebug>
 
 #include <QtWidgets/QMessageBox>
 
 #include <QtGui/QContextMenuEvent>
+
 
 #include "yeroth-erp-window-commons.hpp"
 
@@ -27,7 +27,9 @@ class QProcess;
 class YerothSqlTableModel;
 
 
-class YerothMarchandisesWindow : public YerothWindowsCommons, private Ui_YerothStocksDeSecuriteWindow
+class YerothMarchandisesWindow : public YerothWindowsCommons,
+								 private Ui_YerothStocksDeSecuriteWindow,
+								 public YerothAbstractClassYerothSearchWindow
 {
     Q_OBJECT
 
@@ -38,13 +40,6 @@ public:
     YerothMarchandisesWindow();
 
     virtual ~YerothMarchandisesWindow();
-
-    inline bool isCurrentlyFiltered()
-    {
-    	return _currentlyFiltered;
-    }
-
-    void setCurrentlyFiltered(bool currentlyFiltered);
 
     inline virtual QToolBar * getQMainWindowToolBar()
     {
@@ -106,23 +101,16 @@ public slots:
 
 	inline void afficherMarchandises()
 	{
-		afficherMarchandises(*_curInventaireDesStocksTableModel);
+		afficherMarchandises(*_curMarchandisesTableModel);
 	}
 
     void afficher_stock_selectioner(const QString &stockName);
 
     void supprimer_ce_stock();
 
-    inline void rechercher()
-    {
-    	_searchMarchandisesWidget->rendreVisible();
-    }
-
     void reinitialiser_elements_filtrage();
 
     void reinitialiser_recherche();
-
-    void set_rechercher_font();
 
     inline int getLastListerSelectedRow()
     {
@@ -134,17 +122,11 @@ public slots:
     	tableView_marchandises->setLastSelectedRow(row);
     }
 
-    void setSearchFormSqlTableModel(YerothSqlTableModel *searchFormSqlTableModel);
-
     static double getValeurDinventaireEnStock(QString categorie, QString designation);
 
     static double getQuantiteTotalEnStock(QString categorie, QString designation);
 
 	double getQuantiteTotalEnStock(const QModelIndex &aQModelIndex);
-
-protected slots:
-
-	virtual void slot_reinitialiser_champs_db_visibles();
 
 protected:
 
@@ -152,12 +134,13 @@ protected:
 
     void contextMenuEvent(QContextMenuEvent *event);
 
-    inline virtual void hideEvent(QHideEvent * hideEvent)
-    {
-    	_searchMarchandisesWidget->rendreInvisible();
-    }
-
     virtual void setupShortcuts();
+
+protected slots:
+
+    virtual void slot_reinitialiser_champs_db_visibles();
+
+	virtual void textChangedSearchLineEditsQCompleters();
 
 private slots:
 
@@ -169,20 +152,17 @@ private slots:
 
 private:
 
+	void localSetupLineEditsQCompleters();
+
 	void set_filtrer_font();
 
     void populateInventaireDesStocksComboBoxes();
 
-    void setupLineEditsQCompleters();
-
-    inline void setupLineEdits()
-    {
-    	lineEdit_marchandises_element_de_stock_resultat->setValidator(&YerothUtils::DoubleValidator);
-    }
+    void setupLineEdits();
 
     static const QString 	_WINDOW_TITLE;
 
-    YerothLogger				*_logger;
+    YerothLogger			*_logger;
 
     bool					_currentlyFiltered;
 
@@ -190,15 +170,7 @@ private:
 
     QFont 					*_pushButton_filtrer_font;
 
-    QFont 					*_action_RechercherFont;
-
-    QFont 					*_pushButton_RechercherFont;
-
-    YerothSearchForm 		*_searchMarchandisesWidget;
-
-    YerothSqlTableModel 		*_searchMarchandisesTableModel;
-
-    YerothSqlTableModel 		*_curInventaireDesStocksTableModel;
+    YerothSqlTableModel 	*_curMarchandisesTableModel;
 };
 
 #endif /* YEROTH_ERP_INVENTAIRE_DES_STOCKS_WINDOW_HPP_ */

@@ -22,9 +22,6 @@
 
 #include "src/widgets/yeroth-erp-qmessage-box.hpp"
 
-#include "src/windows/yeroth-erp-search-form.hpp"
-
-
 
 #include <QtSql/QSqlRelationalTableModel>
 
@@ -43,13 +40,9 @@ YerothERPClientsWindow::YerothERPClientsWindow()
 :YerothWindowsCommons(YerothERPClientsWindow::_WINDOW_TITLE),
  YerothAbstractClassYerothSearchWindow(_allWindows->CLIENTS),
  _logger(new YerothLogger("YerothERPComptesClientsWindow")),
- _currentlyFiltered(false),
  _lastSelectedRow(0),
  _pushButton_filtrer_font(0),
- _action_RechercherFont(0),
- _searchClientsWidget(0),
- _curClientsTableModel(0),
- _searchClientsTableModel(0)
+ _curClientsTableModel(0)
 {
     setupUi(this);
 
@@ -84,8 +77,6 @@ YerothERPClientsWindow::YerothERPClientsWindow()
 
     _curClientsTableModel = &_allWindows->getSqlTableModel_clients();
 
-    _searchClientsWidget = new YerothSearchForm(_allWindows, *this, &_allWindows->getSqlTableModel_clients());
-
     setupLineEdits();
 
     setupLineEditsQCompleters((QObject *)this);
@@ -93,8 +84,6 @@ YerothERPClientsWindow::YerothERPClientsWindow()
     populateClientsComboBoxes();
 
     _pushButton_filtrer_font = new QFont(pushButton_filtrer->font());
-
-    _action_RechercherFont = new QFont(actionRechercher->font());
 
     tableView_clients->setTableName(&YerothERPWindows::CLIENTS);
 
@@ -138,8 +127,6 @@ YerothERPClientsWindow::YerothERPClientsWindow()
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
     connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_document()));
     connect(actionA_propos, SIGNAL(triggered()), this, SLOT(apropos()));
-    connect(actionAlertes, SIGNAL(triggered()), this, SLOT(alertes()));
-    connect(actionRechercher, SIGNAL(triggered()), this, SLOT(rechercher()));
     connect(actionReinitialiserRecherche, SIGNAL(triggered()), this, SLOT(reinitialiser_recherche()));
     connect(actionReinitialiserElementsDeFiltrage, SIGNAL(triggered()), this, SLOT(reinitialiser_elements_filtrage()));
     connect(actionInformationEntreprise, SIGNAL(triggered()), this, SLOT(infosEntreprise()));
@@ -161,9 +148,6 @@ YerothERPClientsWindow::YerothERPClientsWindow()
 	connect(actionAfficher_client_au_detail, SIGNAL(triggered()),
 			this, SLOT(afficher_au_detail()));
 
-    connect(tableView_clients, SIGNAL(signal_lister(YerothSqlTableModel &)),
-    		this, SLOT(set_rechercher_font()));
-
     connect(tableView_clients, SIGNAL(doubleClicked(const QModelIndex &)), this,
             SLOT(afficher_au_detail(const QModelIndex &)));
 
@@ -172,8 +156,6 @@ YerothERPClientsWindow::YerothERPClientsWindow()
 
 YerothERPClientsWindow::~YerothERPClientsWindow()
 {
-    delete _action_RechercherFont;
-    delete _searchClientsWidget;
     delete _pushButton_filtrer_font;
     delete _logger;
 }
@@ -206,8 +188,6 @@ void YerothERPClientsWindow::contextMenuEvent(QContextMenuEvent * event)
 
 void YerothERPClientsWindow::hideEvent(QHideEvent * hideEvent)
 {
-	_searchClientsWidget->rendreInvisible();
-
 	_allWindows->_transactionsDunClientWindow->close();
 }
 
@@ -659,28 +639,6 @@ void YerothERPClientsWindow::reinitialiser_recherche()
     lineEdit_resultat_filtre->clear();
 
     setCurrentlyFiltered(false);
-
-    _searchClientsWidget->reinitialiser();
-
-    setSearchFormSqlTableModel(0);
-
-    set_rechercher_font();
-}
-
-
-void YerothERPClientsWindow::set_rechercher_font()
-{
-    //_logger->log("set_rechercher_font");
-    if (0 != _searchClientsTableModel)
-    {
-        _action_RechercherFont->setUnderline(true);
-    }
-    else
-    {
-        _action_RechercherFont->setUnderline(false);
-    }
-
-    actionRechercher->setFont(*_action_RechercherFont);
 }
 
 
@@ -739,14 +697,6 @@ void YerothERPClientsWindow::rendreVisible(YerothSqlTableModel * stocksTableMode
     setYerothSqlTableModel(_curClientsTableModel);
 
     _curStocksTableModel = stocksTableModel;
-
-    if (! isCurrentlyFiltered())
-    {
-        if (0 == _searchClientsTableModel)
-        {
-            _searchClientsWidget->setSqlTableModel(&_allWindows->getSqlTableModel_clients());
-        }
-    }
 
 	setVisible(true);
 
@@ -959,16 +909,12 @@ void YerothERPClientsWindow::afficher_nom_entreprise_selectioner(const QString &
     if (_curClientsTableModel->easySelect() > 0)
     {
         afficherClients(*_curClientsTableModel);
-        setSearchFormSqlTableModel(_curClientsTableModel);
-        set_rechercher_font();
     }
 }
 
 
 void YerothERPClientsWindow::afficherClients(YerothSqlTableModel &clientSqlTableModel)
 {
-	_searchClientsWidget->rendreInvisible();
-
     tableView_clients->lister_les_elements_du_tableau(clientSqlTableModel);
 
     tableView_show_or_hide_columns(*tableView_clients);

@@ -38,7 +38,8 @@ void YerothAbstractClassYerothSearchWindow::clearLineEditsQCompleters()
 }
 
 
-void YerothAbstractClassYerothSearchWindow::setupLineEditsQCompleters(QObject *aThis)
+void YerothAbstractClassYerothSearchWindow::setupLineEditsQCompleters(QObject *aThis,
+																	  QString aConditionStr)
 {
 	QMapIterator <YerothLineEdit **, QString> it(_lineEditsToANDContentForSearch);
 
@@ -58,11 +59,15 @@ void YerothAbstractClassYerothSearchWindow::setupLineEditsQCompleters(QObject *a
     	{
     		if (!correspondingDBFieldKeyValue.isEmpty())
     		{
-    			if (!YerothUtils::isEqualCaseInsensitive(correspondingDBFieldKeyValue, YerothDatabaseTableColumn::REFERENCE))
+    			if (!YerothUtils::isEqualCaseInsensitive(correspondingDBFieldKeyValue,
+    													 YerothDatabaseTableColumn::REFERENCE))
     			{
         			aYerothLineEdit->
     					setupMyStaticQCompleter(_dbYerothSqlTableName,
-    						correspondingDBFieldKeyValue);
+    											correspondingDBFieldKeyValue,
+												false,
+												true,
+												aConditionStr);
     			}
     			else
     			{

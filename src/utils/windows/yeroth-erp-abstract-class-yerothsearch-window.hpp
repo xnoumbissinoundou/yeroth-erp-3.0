@@ -30,8 +30,9 @@ public:
 
 	inline YerothAbstractClassYerothSearchWindow(QString aDBYerothSqlTableName)
 	:_currentlyFiltered(false),
-	 _yerothSqlTableModel(0),
-	 _dbYerothSqlTableName(aDBYerothSqlTableName)
+	 _searchFilter(YerothUtils::EMPTY_STRING),
+	 _dbYerothSqlTableName(aDBYerothSqlTableName),
+	 _yerothSqlTableModel(0)
 	{
 	}
 
@@ -60,7 +61,13 @@ protected:
 
 	virtual void clearLineEditsQCompleters();
 
-	virtual void setupLineEditsQCompleters(QObject *aThis);
+	inline virtual void setupLineEditsQCompleters(QObject *aThis)
+	{
+		setupLineEditsQCompleters(aThis, YerothUtils::EMPTY_STRING);
+	}
+
+	virtual void setupLineEditsQCompleters(QObject *aThis,
+										   QString aConditionStr);
 
 	virtual void resetLineEditsQCompleters(QObject *aThis);
 
