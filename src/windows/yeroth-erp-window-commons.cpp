@@ -103,103 +103,110 @@ void YerothWindowsCommons::infosEntreprise()
 
 void YerothWindowsCommons::achats()
 {
-    this->rendreInvisible();
+    rendreInvisible();
     _allWindows->_achatsWindow->rendreVisible(_curStocksTableModel);
 }
 
 void YerothWindowsCommons::afficherStocks()
 {
-    this->rendreInvisible();
+    rendreInvisible();
     _allWindows->_stocksWindow->rendreVisible(_curStocksTableModel);
 }
 
 void YerothWindowsCommons::afficherMarchandises()
 {
-	this->rendreInvisible();
+	rendreInvisible();
     _allWindows->_marchandisesWindow->rendreVisible(_curStocksTableModel);
 }
 
 
 void YerothWindowsCommons::alertes()
 {
-	this->rendreInvisible();
+	rendreInvisible();
     _allWindows->_listerAlertesWindow->rendreVisible(_curStocksTableModel);
 }
 
 
 void YerothWindowsCommons::clients()
 {
-	this->rendreInvisible();
+	rendreInvisible();
     _allWindows->_clientWindow->rendreVisible(_curStocksTableModel);
 }
 
 void YerothWindowsCommons::sortir()
 {
-	this->rendreInvisible();
+	rendreInvisible();
     _allWindows->_sortirWindow->rendreVisible(_curStocksTableModel);
 }
 
 void YerothWindowsCommons::tableaux_de_bords()
 {
-	this->rendreInvisible();
+	rendreInvisible();
     _allWindows->_statistiquesWindow->rendreVisible(_curStocksTableModel);
 }
 
 void YerothWindowsCommons::transactions()
 {
     _allWindows->_transactionsWindow->rendreVisible(_curStocksTableModel);
-    this->rendreInvisible();
+    rendreInvisible();
 }
 
 
 void YerothWindowsCommons::creerCompteClient()
 {
-	this->rendreInvisible();
+	rendreInvisible();
     _allWindows->_creerCompteClientWindow->rendreVisible(_curStocksTableModel);
 }
 
 
 void YerothWindowsCommons::entrer()
 {
-	this->rendreInvisible();
+	rendreInvisible();
     _allWindows->_entrerWindow->rendreVisible(_curStocksTableModel);
 }
 
 void YerothWindowsCommons::paiements()
 {
-	this->rendreInvisible();
+	rendreInvisible();
     _allWindows->_historiquePaiementsWindow->rendreVisible(_curStocksTableModel);
 }
 
 void YerothWindowsCommons::ventes()
 {
-	this->rendreInvisible();
+	rendreInvisible();
     _allWindows->_ventesWindow->rendreVisible(_curStocksTableModel);
 }
 
 void YerothWindowsCommons::vendre()
 {
-	this->rendreInvisible();
+	rendreInvisible();
     _allWindows->_pdVenteWindow->rendreVisible(_curStocksTableModel);
 }
 
 void YerothWindowsCommons::menu()
 {
-    this->rendreInvisible();
+    rendreInvisible();
     _allWindows->_mainWindow->rendreVisible(_curStocksTableModel);
+}
+
+
+void YerothWindowsCommons::configuration_commerciales()
+{
+    rendreInvisible();
+    _allWindows->_configurationsCommercialesWindow->rendreVisible(_curStocksTableModel);
 }
 
 
 void YerothWindowsCommons::comptabilite()
 {
-    this->rendreInvisible();
+    rendreInvisible();
     _allWindows->_configurationComptabiliteWindow->rendreVisible(_curStocksTableModel);
 }
 
 
 void YerothWindowsCommons::administration()
 {
-    this->rendreInvisible();
+    rendreInvisible();
     _allWindows->_adminWindow->rendreVisible(_curStocksTableModel);
 }
 
@@ -411,11 +418,11 @@ void YerothWindowsCommons::deconnecter_utilisateur()
 {
     _allWindows->definirPasDeRole();
     _allWindows->_mainWindow->show();
-    this->rendreInvisible();
+    rendreInvisible();
 }
 
 void YerothWindowsCommons::rendreVisible(YerothSqlTableModel * stocksTableModel)
 {
     _curStocksTableModel = stocksTableModel;
-    this->setVisible(true);
+    setVisible(true);
 }

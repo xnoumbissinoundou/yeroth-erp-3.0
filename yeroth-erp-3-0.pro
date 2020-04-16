@@ -53,6 +53,7 @@ MOC_DIR  = moc
 OBJECTS_DIR = obj
 
 FORMS   = ui/yeroth-erp-main-window.ui \
+			ui/yeroth-erp-configurations-commerciales-window.ui \
 			ui/yeroth-erp-configuration-comptabilite-window.ui \
 			ui/yeroth-erp-modifier-compte-client-window.ui \
 			ui/yeroth-erp-payer-compte-client-window.ui \
@@ -133,6 +134,7 @@ HEADERS = src/yeroth-erp-windows.hpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-carte-credit-dialog.hpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.hpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-dialog.hpp \
+			src/windows/yeroth-erp-configurations-commerciales-window.hpp \
 			src/windows/yeroth-erp-configuration-comptabilite-window.hpp \
 			src/windows/yeroth-erp-modifier-compte-client-window.hpp \
 			src/windows/yeroth-erp-payer-compte-client-window.hpp \
@@ -172,6 +174,7 @@ HEADERS = src/yeroth-erp-windows.hpp \
 		  src/users/yeroth-erp-user-caissier.hpp \
 		  src/users/yeroth-erp-user-administrateur.hpp \
 		  src/utils/credit-card/yeroth-erp-carte-credit-info.hpp \
+		  src/utils/windows/yeroth-erp-abstract-class-yerothsearch-window.hpp \
 		  src/utils/virtual-keyboard/yeroth-erp-key-emitter.hpp \
 		  src/utils/yeroth-erp-sqltable-model.hpp \
 		  src/utils/yeroth-erp-config.hpp \
@@ -234,6 +237,7 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-carte-credit-dialog.cpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.cpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-dialog.cpp \
+			src/windows/yeroth-erp-configurations-commerciales-window.cpp \
 			src/windows/yeroth-erp-configuration-comptabilite-window.cpp \
 			src/windows/yeroth-erp-modifier-compte-client-window.cpp \
 			src/windows/yeroth-erp-payer-compte-client-window.cpp \
@@ -272,6 +276,7 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/users/yeroth-erp-user-caissier.cpp \
 		  src/users/yeroth-erp-user-administrateur.cpp \
 		  src/utils/credit-card/yeroth-erp-carte-credit-info.cpp \
+		  src/utils/windows/yeroth-erp-abstract-class-yerothsearch-window.cpp \
 		  src/utils/virtual-keyboard/yeroth-erp-key-emitter.cpp \
 		  src/utils/yeroth-erp-sqltable-model.cpp \
 		  src/utils/yeroth-erp-config.cpp \

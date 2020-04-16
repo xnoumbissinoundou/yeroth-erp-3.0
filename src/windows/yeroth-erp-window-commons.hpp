@@ -15,6 +15,8 @@
 
 #include "src/utils/yeroth-erp-utils.hpp"
 
+#include "src/utils/windows/yeroth-erp-abstract-class-yerothsearch-window.hpp"
+
 #include <QtWidgets/QAction>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMessageBox>
@@ -155,6 +157,8 @@ public slots:
 	virtual void vendre();
 
 	virtual void menu();
+
+	virtual void configuration_commerciales();
 
 	virtual void comptabilite();
 

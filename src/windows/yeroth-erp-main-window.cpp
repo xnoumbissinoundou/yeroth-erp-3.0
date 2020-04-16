@@ -39,7 +39,7 @@ YerothMainWindow::YerothMainWindow()
 {
     setupUi(this);
 
-    this->mySetupUi(this);
+    mySetupUi(this);
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
                                        "QMessageBox QLabel {color: rgb(%2);}")
@@ -54,6 +54,7 @@ YerothMainWindow::YerothMainWindow()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPaiements, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchats, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionConfigurationsCommerciales, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionComptabilite, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionInventaireDesStocks, false);
@@ -85,6 +86,7 @@ YerothMainWindow::YerothMainWindow()
     connect(actionDeconnecter_utilisateur, SIGNAL(triggered()), this, SLOT(deconnecter_utilisateur()));
     connect(actionAdministration, SIGNAL(triggered()), this, SLOT(administration()));
     connect(actionEntrer, SIGNAL(triggered()), this, SLOT(entrer()));
+    connect(actionConfigurationsCommerciales, SIGNAL(triggered()), this, SLOT(configuration_commerciales()));
     connect(actionComptabilite, SIGNAL(triggered()), this, SLOT(comptabilite()));
     connect(actionStocks, SIGNAL(triggered()), this, SLOT(afficherStocks()));
     connect(actionInventaireDesStocks, SIGNAL(triggered()), this, SLOT(afficherMarchandises()));
@@ -99,7 +101,7 @@ YerothMainWindow::YerothMainWindow()
     connect(actionInformationEntreprise, SIGNAL(triggered()), this, SLOT(infosEntreprise()));
     connect(actionQui_suis_je, SIGNAL(triggered()), this, SLOT(qui_suis_je()));
 
-    this->setupShortcuts();
+    setupShortcuts();
 }
 
 void YerothMainWindow::setupShortcuts()
@@ -118,6 +120,7 @@ void YerothMainWindow::definirCaissier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPaiements, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionConfigurationsCommerciales, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionComptabilite, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchats, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, true);
@@ -153,6 +156,7 @@ void YerothMainWindow::definirManager()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPaiements, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionConfigurationsCommerciales, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionComptabilite, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchats, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, true);
@@ -199,6 +203,7 @@ void YerothMainWindow::definirVendeur()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPaiements, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionConfigurationsCommerciales, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionComptabilite, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchats, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, true);
@@ -245,6 +250,7 @@ void YerothMainWindow::definirGestionaireDesStocks()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPaiements, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionConfigurationsCommerciales, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionComptabilite, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchats, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, true);
@@ -300,7 +306,7 @@ void YerothMainWindow::definirAdministrateur()
 
     _allWindows->_adminWindow->rendreVisible(_curStocksTableModel);
 
-    this->rendreInvisible();
+    rendreInvisible();
 
 #endif
 
@@ -316,6 +322,7 @@ void YerothMainWindow::definirMagasinier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPaiements, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionConfigurationsCommerciales, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionComptabilite, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchats, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, true);
@@ -351,6 +358,7 @@ void YerothMainWindow::definirPasDeRole()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPaiements, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionConfigurationsCommerciales, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionComptabilite, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchats, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, false);
@@ -382,7 +390,7 @@ void YerothMainWindow::definirPasDeRole()
 
 void YerothMainWindow::help()
 {
-//#define YEROTH_DEVEL_TARGET
+#define YEROTH_DEVEL_TARGET
 
 #ifndef YEROTH_DEVEL_TARGET
 	YerothPOSUser * currentUser = _allWindows->getUser();

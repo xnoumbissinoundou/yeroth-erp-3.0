@@ -41,6 +41,7 @@ const QString YerothERPClientsWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 
 
 YerothERPClientsWindow::YerothERPClientsWindow()
 :YerothWindowsCommons(YerothERPClientsWindow::_WINDOW_TITLE),
+ YerothAbstractClassYerothSearchWindow(_allWindows->CLIENTS),
  _logger(new YerothLogger("YerothERPComptesClientsWindow")),
  _currentlyFiltered(false),
  _lastSelectedRow(0),
@@ -61,6 +62,24 @@ YerothERPClientsWindow::YerothERPClientsWindow()
 
     setupSelectDBFields(_allWindows->CLIENTS);
 
+    _lineEditsToANDContentForSearch.insert(&lineEdit_comptes_clients_terme_recherche,
+    		YerothUtils::EMPTY_STRING);
+
+    _lineEditsToANDContentForSearch.insert(&lineEdit_recherche_nom_entreprise,
+    		YerothDatabaseTableColumn::NOM_ENTREPRISE);
+
+    _lineEditsToANDContentForSearch.insert(&lineEdit_comptes_clients_reference_client,
+    		YerothDatabaseTableColumn::REFERENCE_CLIENT);
+
+    _lineEditsToANDContentForSearch.insert(&lineEdit_comptes_clients_quartier,
+    		YerothDatabaseTableColumn::QUARTIER);
+
+    _lineEditsToANDContentForSearch.insert(&lineEdit_comptes_clients_province_etat,
+    		YerothDatabaseTableColumn::PROVINCE_ETAT);
+
+    _lineEditsToANDContentForSearch.insert(&lineEdit_comptes_clients_ville,
+    		YerothDatabaseTableColumn::VILLE);
+
     reinitialiser_champs_db_visibles();
 
     _curClientsTableModel = &_allWindows->getSqlTableModel_clients();
@@ -69,7 +88,7 @@ YerothERPClientsWindow::YerothERPClientsWindow()
 
     setupLineEdits();
 
-    setupLineEditsQCompleters();
+    setupLineEditsQCompleters((QObject *)this);
 
     populateClientsComboBoxes();
 
@@ -160,13 +179,6 @@ YerothERPClientsWindow::~YerothERPClientsWindow()
 }
 
 
-void YerothERPClientsWindow::slot_reinitialiser_champs_db_visibles()
-{
-	reinitialiser_champs_db_visibles();
-	afficherClients();
-}
-
-
 void YerothERPClientsWindow::reinitialiser_champs_db_visibles()
 {
 	_visibleDBFieldColumnStrList.clear();
@@ -209,6 +221,116 @@ void YerothERPClientsWindow::setupShortcuts()
     actionRechercher->setShortcut(YerothUtils::RECHERCHER_QKEYSEQUENCE);
 
     actionReinitialiserRecherche->setShortcut(YerothUtils::REINITIALISER_RECHERCHE_QKEYSEQUENCE);
+}
+
+
+void YerothERPClientsWindow::set_filtrer_font()
+{
+    //_logger->log("set_filtrer_font");
+
+    if (isCurrentlyFiltered())
+    {
+    	_pushButton_filtrer_font->setUnderline(true);
+    }
+    else
+    {
+    	_pushButton_filtrer_font->setUnderline(false);
+    }
+
+    pushButton_filtrer->setFont(*_pushButton_filtrer_font);
+}
+
+
+void YerothERPClientsWindow::slot_reinitialiser_champs_db_visibles()
+{
+	reinitialiser_champs_db_visibles();
+	afficherClients();
+}
+
+
+void YerothERPClientsWindow::textChangedSearchLineEditsQCompleters()
+{
+	lineEdit_resultat_filtre->clear();
+
+    setCurrentlyFiltered(false);
+
+    clearSearchFilter();
+
+    QString searchTerm(lineEdit_comptes_clients_terme_recherche->text());
+
+    if (!searchTerm.isEmpty())
+    {
+        QStringList searchTermList = searchTerm.split(QRegExp("\\s+"));
+
+        QString partSearchTerm;
+
+        int lastIdx = searchTermList.size() - 1;
+
+        for (int k = 0; k < searchTermList.size(); ++k)
+        {
+        	partSearchTerm = searchTermList.at(k);
+        	//qDebug() << "++ searchTermList: " << partSearchTerm;
+
+        	_searchFilter.append(QString("(%1 OR %2 OR %3 OR %4 OR %5)")
+        							.arg(GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::NOM_ENTREPRISE, partSearchTerm),
+        								 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::QUARTIER, partSearchTerm),
+										 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::REFERENCE_CLIENT, partSearchTerm),
+        								 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::NOM_REPRESENTANT, partSearchTerm),
+										 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::DESCRIPTION_CLIENT, partSearchTerm)));
+
+        	if (k != lastIdx)
+        	{
+        		_searchFilter.append(" AND ");
+        	}
+        }
+    }
+
+    YerothLineEdit *aYerothLineEdit = 0;
+
+    QString correspondingDBFieldKeyValue;
+
+    QString aTableColumnFieldContentForANDSearch;
+
+    QMapIterator <YerothLineEdit **, QString> it(_lineEditsToANDContentForSearch);
+
+    while (it.hasNext())
+    {
+    	it.next();
+
+    	aYerothLineEdit = *it.key();
+
+    	correspondingDBFieldKeyValue = it.value();
+
+    	if (0 != aYerothLineEdit)
+    	{
+    		aTableColumnFieldContentForANDSearch = aYerothLineEdit->text();
+
+    		if (!correspondingDBFieldKeyValue.isEmpty() &&
+    				!aTableColumnFieldContentForANDSearch.isEmpty()	)
+    		{
+    			if (!_searchFilter.isEmpty())
+    			{
+    				_searchFilter.append(" AND ");
+    			}
+
+    			_searchFilter.append(GENERATE_SQL_IS_STMT(correspondingDBFieldKeyValue,
+    					aTableColumnFieldContentForANDSearch));
+    		}
+    	}
+    }
+
+    _yerothSqlTableModel->yerothSetFilter(_searchFilter);
+
+    if (_yerothSqlTableModel->select())
+    {
+    	setLastListerSelectedRow(0);
+    	afficherClients(*_yerothSqlTableModel);
+    }
+    else
+    {
+        qDebug() << QString("++ YerothERPClientsWindow::textChangedSearchLineEditsQCompleters(): %1")
+        				.arg(_yerothSqlTableModel->lastError().text());
+    }
 }
 
 
@@ -463,22 +585,6 @@ void YerothERPClientsWindow::afficher_au_detail(const QModelIndex & modelIndex)
 }
 
 
-void YerothERPClientsWindow::updateLineEditRechercheNomEntreprise()
-{
-    lineEdit_recherche_nom_entreprise->enableForSearch(QObject::trUtf8("nom de l'entreprise"));
-
-    lineEdit_recherche_nom_entreprise->setupMyStaticQCompleter(_allWindows->CLIENTS,
-															   YerothDatabaseTableColumn::NOM_ENTREPRISE,
-															   false,
-															   false);
-
-    connect(lineEdit_recherche_nom_entreprise->getMyQCompleter(),
-     		SIGNAL(activated(const QString &)),
- 			this,
-            SLOT(afficher_nom_entreprise_selectioner(const QString &)));
-}
-
-
 bool YerothERPClientsWindow::filtrer()
 {
 	QString stockTableColumnValue(lineEdit_resultat_filtre->text());
@@ -578,23 +684,6 @@ void YerothERPClientsWindow::set_rechercher_font()
 }
 
 
-void YerothERPClientsWindow::set_filtrer_font()
-{
-    //_logger->log("set_filtrer_font");
-
-    if (isCurrentlyFiltered())
-    {
-    	_pushButton_filtrer_font->setUnderline(true);
-    }
-    else
-    {
-    	_pushButton_filtrer_font->setUnderline(false);
-    }
-
-    pushButton_filtrer->setFont(*_pushButton_filtrer_font);
-}
-
-
 void YerothERPClientsWindow::populateClientsComboBoxes()
 {
     _logger->log("populateClientsComboBoxes");
@@ -625,17 +714,17 @@ void YerothERPClientsWindow::populateClientsComboBoxes()
 
 void YerothERPClientsWindow::setupLineEdits()
 {
+	lineEdit_comptes_clients_terme_recherche->enableForSearch(QObject::trUtf8("terme à rechercher"));
+
+	lineEdit_recherche_nom_entreprise->enableForSearch(QObject::tr("nom de l'entreprise cliente"));
 	lineEdit_comptes_clients_reference_client->enableForSearch(QObject::trUtf8("référence client"));
 	lineEdit_comptes_clients_quartier->enableForSearch(QObject::tr("quartier"));
 	lineEdit_comptes_clients_ville->enableForSearch(QObject::tr("ville"));
 	lineEdit_comptes_clients_province_etat->enableForSearch(QObject::trUtf8("province / état"));
-	lineEdit_comptes_clients_pays->enableForSearch(QObject::tr("pays"));
 
 	lineEdit_nombre_de_comptes_clients->setYerothEnabled(false);
 
 	lineEdit_resultat_filtre->setValidator(&YerothUtils::DoubleValidator);
-
-	updateLineEditRechercheNomEntreprise();
 }
 
 
@@ -645,7 +734,9 @@ void YerothERPClientsWindow::rendreVisible(YerothSqlTableModel * stocksTableMode
 
     setupLineEdits();
 
-    setupLineEditsQCompleters();
+    setupLineEditsQCompleters((QObject *)this);
+
+    setYerothSqlTableModel(_curClientsTableModel);
 
     _curStocksTableModel = stocksTableModel;
 
@@ -661,7 +752,7 @@ void YerothERPClientsWindow::rendreVisible(YerothSqlTableModel * stocksTableMode
 
 	afficherClients(*_curClientsTableModel);
 
-    lineEdit_recherche_nom_entreprise->setFocus();
+	lineEdit_comptes_clients_terme_recherche->setFocus();
 }
 
 
@@ -669,14 +760,6 @@ void YerothERPClientsWindow::rendreInvisible()
 {
     lineEdit_recherche_nom_entreprise->clear();
     YerothWindowsCommons::rendreInvisible();
-}
-
-
-void YerothERPClientsWindow::setCurrentlyFiltered(bool currentlyFiltered)
-{
-	_currentlyFiltered = currentlyFiltered;
-
-	set_filtrer_font();
 }
 
 

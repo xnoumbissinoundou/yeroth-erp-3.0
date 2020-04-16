@@ -26,6 +26,7 @@
     
 		<file>yeroth-erp-3-0-sql/create_table_services_completes.sql</file>
 		<file>yeroth-erp-3-0-sql/create_table_comptabilite_comptes.sql</file>
+		<file>yeroth-erp-3-0-sql/create_table_comptes_bancaires.sql</file>
 		<file>yeroth-erp-3-0-sql/create_table_entreprise_info.sql</file>
 		<file>yeroth-erp-3-0-sql/create_table_typedepaiement.sql</file>
 		<file>yeroth-erp-3-0-sql/create_table_paiements.sql</file>

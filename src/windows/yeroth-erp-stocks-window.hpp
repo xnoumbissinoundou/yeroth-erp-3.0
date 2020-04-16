@@ -9,8 +9,6 @@
 
 #include "../../ui_yeroth-erp-stocks-window.h"
 
-#include "src/windows/yeroth-erp-search-form.hpp"
-
 #include <QtCore/QDebug>
 
 #include <QtCore/QVector>
@@ -29,7 +27,9 @@ class QProcess;
 
 class YerothSqlTableModel;
 
-class YerothStocksWindow : public YerothWindowsCommons, private Ui_YerothStocksWindow
+class YerothStocksWindow : public YerothWindowsCommons,
+						   private Ui_YerothStocksWindow,
+						   public YerothAbstractClassYerothSearchWindow
 {
     Q_OBJECT
 
@@ -40,13 +40,6 @@ public:
     YerothStocksWindow();
 
     virtual ~YerothStocksWindow();
-
-    inline bool isCurrentlyFiltered()
-    {
-    	return _currentlyFiltered;
-    }
-
-    void setCurrentlyFiltered(bool currentlyFiltered);
 
     inline virtual QToolBar * getQMainWindowToolBar()
     {
@@ -116,20 +109,11 @@ public slots:
 
     void afficher_au_detail(const QModelIndex &modelIndex);
 
-    void afficher_stock_selectioner_bar_code(const QString &stockBarCode);
-
-    void afficher_stock_selectioner(const QString &stockName);
-
     void connecter_localisation();
 
     void deconnecter_localisation();
 
     void supprimer_ce_stock();
-
-    inline void rechercher()
-    {
-    	_searchStocksWidget->rendreVisible();
-    }
 
     void reinitialiser_elements_filtrage();
 
@@ -147,13 +131,6 @@ public slots:
     	tableView_stocks->setLastSelectedRow(row);
     }
 
-    inline void setSearchFormSqlTableModel(YerothSqlTableModel *searchFormSqlTableModel)
-    {
-    	_searchStocksTableModel = searchFormSqlTableModel;
-    }
-
-    void updateLineEditRechercherCodeBar();
-
     bool SQL_TABLE_STOCKS_VENDU_EMPTY();
 
 private slots:
@@ -169,10 +146,6 @@ private slots:
 		lineEdit_recherche_reference->setFocus();
 	}
 
-protected slots:
-
-	virtual void slot_reinitialiser_champs_db_visibles();
-
 protected:
 
 	virtual void reinitialiser_champs_db_visibles();
@@ -182,6 +155,12 @@ protected:
     virtual void hideEvent(QHideEvent * hideEvent);
 
     virtual void setupShortcuts();
+
+protected slots:
+
+    virtual void slot_reinitialiser_champs_db_visibles();
+
+    virtual void textChangedSearchLineEditsQCompleters();
 
 private:
 
@@ -213,15 +192,11 @@ private:
 
     QStringList				_historiqueStock;
 
-    bool					_currentlyFiltered;
-
     QAction					*_actionRechercheArticleCodebar;
 
     QProcess				*_aProcess;
 
     QFont 					*_pushButton_stocks_filtrer_font;
-
-    YerothSearchForm 		*_searchStocksWidget;
 
     YerothSqlTableModel 	*_searchStocksTableModel;
 };

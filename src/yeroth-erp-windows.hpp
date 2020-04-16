@@ -38,6 +38,7 @@
 #include "src/windows/yeroth-erp-achats-window.hpp"
 #include "src/windows/yeroth-erp-stocks-window.hpp"
 #include "src/windows/yeroth-erp-marchandises-window.hpp"
+#include "src/windows/yeroth-erp-configurations-commerciales-window.hpp"
 #include "src/windows/yeroth-erp-configuration-comptabilite-window.hpp"
 #include "src/windows/yeroth-erp-alertes-window.hpp"
 #include "src/windows/yeroth-erp-ventes-window.hpp"
@@ -75,6 +76,7 @@ class YerothCreerNouvelleCategorieWindow;
 class YerothAchatsWindow;
 class YerothStocksWindow;
 class YerothMarchandisesWindow;
+class YerothConfigurationsCommercialesWindow;
 class YerothConfigurationComptabiliteWindow;
 class YerothAlertesWindow;
 class YerothVentesWindow;
@@ -132,6 +134,8 @@ public:
 	void reinitialiseSqlTableModels();
 
 	void setupConfiguration();
+
+	YerothSqlTableModel &getSqlTableModel_comptes_bancaires();
 
 	YerothSqlTableModel &getSqlTableModel_entreprise_info();
 
@@ -331,6 +335,7 @@ public:
 
 	void hideAllWindows();
 
+	static const QString COMPTES_BANCAIRES;
 	static const QString ENTREPRISE_INFO;
 	static const QString PAIEMENTS;
 	static const QString USERS;
@@ -369,6 +374,7 @@ public:
 	YerothAchatsWindow 									*_achatsWindow;
 	YerothStocksWindow 									*_stocksWindow;
 	YerothMarchandisesWindow 							*_marchandisesWindow;
+	YerothConfigurationsCommercialesWindow 				*_configurationsCommercialesWindow;
 	YerothConfigurationComptabiliteWindow				*_configurationComptabiliteWindow;
 	YerothAlertesWindow									*_listerAlertesWindow;
 	YerothPaiementsWindow								*_historiquePaiementsWindow;
@@ -389,7 +395,6 @@ public:
 	YerothERPClientsWindow								*_clientWindow;
 	YerothPayerCompteClientWindow						*_payerAuCompteclientWindow;
 	YerothSortirListStocksWindow						*_sortirListStocksWindow;
-	YerothConfigurationComptabiliteWindow 				*_configurationComptableWindow;
 	YerothAdminWindow 									*_adminWindow;
 	YerothAdminCreateWindow 							*_adminCreateWindow;
 	YerothAdminListerWindow 							*_adminListerWindow;
@@ -404,6 +409,7 @@ private:
 
 	YerothDatabase 			*_database;
 
+	YerothSqlTableModel 	*_tableModel_comptes_bancaires;
 	YerothSqlTableModel 	*_tableModel_entreprise_info;
 	YerothSqlTableModel 	*_tableModel_historique_paiements;
 	YerothSqlTableModel 	*_tableModel_users;

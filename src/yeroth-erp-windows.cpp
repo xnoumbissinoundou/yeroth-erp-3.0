@@ -47,25 +47,27 @@
 #include <QtWidgets/QDesktopWidget>
 
 
+const QString YerothERPWindows::COMPTES_BANCAIRES				("comptes_bancaires");
+
 const QString YerothERPWindows::ENTREPRISE_INFO					("entreprise_info");
 
 const QString YerothERPWindows::PAIEMENTS						("paiements");
 
-const QString YerothERPWindows::YerothERPWindows::USERS							("users");
+const QString YerothERPWindows::YerothERPWindows::USERS			("users");
 
-const QString YerothERPWindows::YerothERPWindows::TITRES							("titres");
+const QString YerothERPWindows::YerothERPWindows::TITRES		("titres");
 
-const QString YerothERPWindows::YerothERPWindows::LOCALISATIONS					("localisations");
+const QString YerothERPWindows::YerothERPWindows::LOCALISATIONS	("localisations");
 
-const QString YerothERPWindows::YerothERPWindows::CATEGORIES						("categories");
+const QString YerothERPWindows::YerothERPWindows::CATEGORIES	("categories");
 
-const QString YerothERPWindows::YerothERPWindows::CLIENTS							("clients");
+const QString YerothERPWindows::YerothERPWindows::CLIENTS		("clients");
 
-const QString YerothERPWindows::YerothERPWindows::FOURNISSEURS					("fournisseurs");
+const QString YerothERPWindows::YerothERPWindows::FOURNISSEURS	("fournisseurs");
 
-const QString YerothERPWindows::YerothERPWindows::ALERTES							("alertes");
+const QString YerothERPWindows::YerothERPWindows::ALERTES		("alertes");
 
-const QString YerothERPWindows::YerothERPWindows::REMISES							("remises");
+const QString YerothERPWindows::YerothERPWindows::REMISES		("remises");
 
 const QString YerothERPWindows::CREDIT_CARD_ISSUING_COMPANY		("credit_card_issuing_company");
 
@@ -108,6 +110,7 @@ YerothERPWindows::YerothERPWindows(QDesktopWidget *desktopWidget)
 	 _achatsWindow(0),
      _stocksWindow(0),
      _marchandisesWindow(0),
+	 _configurationsCommercialesWindow(0),
 	 _configurationComptabiliteWindow(0),
      _listerAlertesWindow(0),
 	 _historiquePaiementsWindow(0),
@@ -134,6 +137,7 @@ YerothERPWindows::YerothERPWindows(QDesktopWidget *desktopWidget)
      _adminDetailWindow(0),
      _adminModifierWindow(0),
      _database(0),
+	 _tableModel_comptes_bancaires(0),
 	 _tableModel_entreprise_info(0),
 	 _tableModel_historique_paiements(0),
      _tableModel_users(0),
@@ -174,6 +178,7 @@ YerothERPWindows::YerothERPWindows(QDesktopWidget *desktopWidget)
 
     static YerothDatabaseTableColumn aYerothDatabaseTableColumnStaticInstance;
 
+    _tableModel_comptes_bancaires			= new YerothSqlTableModel(YerothERPWindows::COMPTES_BANCAIRES);
     _tableModel_entreprise_info				= new YerothSqlTableModel(YerothERPWindows::ENTREPRISE_INFO);
     _tableModel_historique_paiements		= new YerothSqlTableModel(YerothERPWindows::PAIEMENTS);
     _tableModel_users 						= new YerothSqlTableModel(YerothERPWindows::USERS);
@@ -234,6 +239,7 @@ YerothERPWindows::~YerothERPWindows()
     delete _stocksWindow;
     delete _achatsWindow;
     delete _marchandisesWindow;
+    delete _configurationsCommercialesWindow;
     delete _configurationComptabiliteWindow;
     delete _listerAlertesWindow;
     delete _historiquePaiementsWindow;
@@ -321,8 +327,8 @@ void YerothERPWindows::createAllYerothPosUserWindows()
     _achatsWindow 					= new YerothAchatsWindow;
     _stocksWindow 					= new YerothStocksWindow;
     _marchandisesWindow 			= new YerothMarchandisesWindow;
-    _configurationComptabiliteWindow
-									= new YerothConfigurationComptabiliteWindow;
+    _configurationsCommercialesWindow = new YerothConfigurationsCommercialesWindow;
+    _configurationComptabiliteWindow = new YerothConfigurationComptabiliteWindow;
     _listerAlertesWindow			= new YerothAlertesWindow;
     _historiquePaiementsWindow		= new YerothPaiementsWindow;
     _ventesWindow					= new YerothVentesWindow;
@@ -336,6 +342,7 @@ void YerothERPWindows::createAllYerothPosUserWindows()
 
 void YerothERPWindows::reinitialiseSqlTableModels()
 {
+	delete _tableModel_comptes_bancaires;
 	delete _tableModel_entreprise_info;
 	delete _tableModel_historique_paiements;
     delete _tableModel_users;
@@ -356,6 +363,7 @@ void YerothERPWindows::reinitialiseSqlTableModels()
     delete _tableModel_configurations;
     delete _tableModel_init_configurations;
 
+    _tableModel_comptes_bancaires			= new YerothSqlTableModel(YerothERPWindows::COMPTES_BANCAIRES);
     _tableModel_entreprise_info				= new YerothSqlTableModel(YerothERPWindows::ENTREPRISE_INFO);
     _tableModel_historique_paiements		= new YerothSqlTableModel(YerothERPWindows::PAIEMENTS);
     _tableModel_users 						= new YerothSqlTableModel(YerothERPWindows::USERS);
@@ -448,6 +456,7 @@ void YerothERPWindows::definirMagasinier()
     _achatsWindow->definirMagasinier();
     _stocksWindow->definirMagasinier();
     _marchandisesWindow->definirMagasinier();
+    _configurationsCommercialesWindow->definirMagasinier();
     _configurationComptabiliteWindow->definirMagasinier();
     _listerAlertesWindow->definirMagasinier();
     _historiquePaiementsWindow->definirMagasinier();
@@ -476,6 +485,7 @@ void YerothERPWindows::definirCaissier()
     _achatsWindow->definirCaissier();
     _stocksWindow->definirCaissier();
     _marchandisesWindow->definirCaissier();
+    _configurationsCommercialesWindow->definirCaissier();
     _configurationComptabiliteWindow->definirCaissier();
     _listerAlertesWindow->definirCaissier();
     _historiquePaiementsWindow->definirCaissier();
@@ -504,6 +514,7 @@ void YerothERPWindows::definirManager()
     _achatsWindow->definirManager();
     _stocksWindow->definirManager();
     _marchandisesWindow->definirManager();
+    _configurationsCommercialesWindow->definirManager();
     _configurationComptabiliteWindow->definirManager();
     _listerAlertesWindow->definirManager();
     _historiquePaiementsWindow->definirManager();
@@ -539,6 +550,7 @@ void YerothERPWindows::definirVendeur()
     _achatsWindow->definirVendeur();
     _stocksWindow->definirVendeur();
     _marchandisesWindow->definirVendeur();
+    _configurationsCommercialesWindow->definirVendeur();
     _configurationComptabiliteWindow->definirVendeur();
     _listerAlertesWindow->definirVendeur();
     _historiquePaiementsWindow->definirVendeur();
@@ -574,6 +586,7 @@ void YerothERPWindows::definirGestionaireDesStocks()
     _achatsWindow->definirGestionaireDesStocks();
     _stocksWindow->definirGestionaireDesStocks();
     _marchandisesWindow->definirGestionaireDesStocks();
+    _configurationsCommercialesWindow->definirGestionaireDesStocks();
     _configurationComptabiliteWindow->definirGestionaireDesStocks();
     _listerAlertesWindow->definirGestionaireDesStocks();
     _historiquePaiementsWindow->definirGestionaireDesStocks();
@@ -614,6 +627,7 @@ void YerothERPWindows::definirPasDeRole()
     _achatsWindow->definirPasDeRole();
     _stocksWindow->definirPasDeRole();
     _marchandisesWindow->definirPasDeRole();
+    _configurationsCommercialesWindow->definirPasDeRole();
     _configurationComptabiliteWindow->definirPasDeRole();
     _listerAlertesWindow->definirPasDeRole();
     _historiquePaiementsWindow->definirPasDeRole();
@@ -652,6 +666,7 @@ void YerothERPWindows::hideAllWindows()
     _achatsWindow->rendreInvisible();
     _stocksWindow->rendreInvisible();
     _marchandisesWindow->rendreInvisible();
+    _configurationsCommercialesWindow->rendreInvisible();
     _configurationComptabiliteWindow->rendreInvisible();
     _listerAlertesWindow->rendreInvisible();
     _historiquePaiementsWindow->rendreInvisible();
@@ -667,6 +682,13 @@ void YerothERPWindows::hideAllWindows()
     _adminModifierWindow->rendreInvisible();
 
     _mainWindow->rendreInvisible();
+}
+
+
+YerothSqlTableModel &YerothERPWindows::getSqlTableModel_comptes_bancaires()
+{
+    _tableModel_comptes_bancaires->resetFilter();
+    return *_tableModel_comptes_bancaires;
 }
 
 

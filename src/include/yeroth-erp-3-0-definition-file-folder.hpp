@@ -19,6 +19,7 @@
 
 # define FILE_YEROTH_ERP_3_0_USER_MANUAL_FR 											FOLDER_YEROTH_ERP_3_0_USER_DOC"/francais/yeroth-erp-3.0-manuel-de-lutilisateur.pdf"
 
+# define FILE_YEROTH_ERP_3_0_SQL_TABLE_COMPTES_BANCAIRES 					FOLDER_YEROTH_ERP_3_0_SQL"/create_table_comptes_bancaires.sql"
 # define FILE_YEROTH_ERP_3_0_SQL_TABLE_ENTREPRISE_INFO 						FOLDER_YEROTH_ERP_3_0_SQL"/create_table_entreprise_info.sql"
 # define FILE_YEROTH_ERP_3_0_SQL_TABLE_TYPE_DE_PAIEMENT 					FOLDER_YEROTH_ERP_3_0_SQL"/create_table_typedepaiement.sql"
 # define FILE_YEROTH_ERP_3_0_SQL_TABLE_PAIEMENTS 									FOLDER_YEROTH_ERP_3_0_SQL"/create_table_paiements.sql"

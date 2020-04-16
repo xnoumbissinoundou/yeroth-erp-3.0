@@ -538,6 +538,7 @@ int main(int argc, char *argv[])
 
     QStringList sql_table_list;
     sql_table_list
+			<< FILE_YEROTH_ERP_3_0_SQL_TABLE_COMPTES_BANCAIRES
 			<< FILE_YEROTH_ERP_3_0_SQL_TABLE_ENTREPRISE_INFO
 			<< FILE_YEROTH_ERP_3_0_SQL_TABLE_TYPE_DE_PAIEMENT
 			<< FILE_YEROTH_ERP_3_0_SQL_TABLE_PAIEMENTS

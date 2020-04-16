@@ -27,7 +27,9 @@ class QProcess;
 
 class YerothSqlTableModel;
 
-class YerothERPClientsWindow : public YerothWindowsCommons, private Ui_YerothERPClientsWindow
+class YerothERPClientsWindow : public YerothWindowsCommons,
+							   private Ui_YerothERPClientsWindow,
+							   public YerothAbstractClassYerothSearchWindow
 {
     Q_OBJECT
 
@@ -38,13 +40,6 @@ public:
     YerothERPClientsWindow();
 
     virtual ~YerothERPClientsWindow();
-
-    inline bool isCurrentlyFiltered()
-    {
-    	return _currentlyFiltered;
-    }
-
-    void setCurrentlyFiltered(bool currentlyFiltered);
 
     inline virtual QToolBar * getQMainWindowToolBar()
     {
@@ -118,10 +113,6 @@ public slots:
 
     void afficher_nom_entreprise_selectioner(const QString &nomEntreprise);
 
-protected slots:
-
-    virtual void slot_reinitialiser_champs_db_visibles();
-
 protected:
 
     virtual void reinitialiser_champs_db_visibles();
@@ -131,6 +122,14 @@ protected:
     virtual void hideEvent(QHideEvent * hideEvent);
 
     virtual void setupShortcuts();
+
+    virtual void set_filtrer_font();
+
+protected slots:
+
+    virtual void slot_reinitialiser_champs_db_visibles();
+
+    virtual void textChangedSearchLineEditsQCompleters();
 
 private slots:
 
@@ -145,8 +144,6 @@ private slots:
 	void afficher_au_detail();
 
 	void afficher_au_detail(const QModelIndex & modelIndex);
-
-	void updateLineEditRechercheNomEntreprise();
 
 	bool filtrer();
 
@@ -163,16 +160,9 @@ private slots:
 
 private:
 
-	void set_filtrer_font();
-
     void populateClientsComboBoxes();
 
     void setupLineEdits();
-
-    inline void setupLineEditsQCompleters()
-    {
-    	updateLineEditRechercheNomEntreprise();
-    }
 
 
     static const QString 	_WINDOW_TITLE;

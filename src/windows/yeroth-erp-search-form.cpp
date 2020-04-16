@@ -169,18 +169,6 @@ void YerothSearchForm::reinitialiser()
     this->setupLineEditsQCompleters();
 
     pushButton_ok->click();
-
-    if (_allWindows->STOCKS == _sqlTable->sqlTableName())
-    {
-        _allWindows->_stocksWindow->setSearchFormSqlTableModel(0);
-    }
-    /*else if (_allWindows->STOCKS_SORTIES == _sqlTable->sqlTableName())
-
-       {
-
-       ;
-
-       } */
 }
 
 void YerothSearchForm::performSearch()
@@ -332,13 +320,7 @@ void YerothSearchForm::performSearch()
 
     if (_sqlTable->select())
     {
-        if (YerothUtils::isEqualCaseInsensitive(_allWindows->STOCKS, _sqlTable->sqlTableName()))
-        {
-            _allWindows->_stocksWindow->setLastListerSelectedRow(0);
-            _allWindows->_stocksWindow->setSearchFormSqlTableModel(_sqlTable);
-            _allWindows->_stocksWindow->afficherStocks(*_sqlTable);
-        }
-        else if (YerothUtils::isEqualCaseInsensitive(_allWindows->ACHATS, _sqlTable->sqlTableName()))
+        if (YerothUtils::isEqualCaseInsensitive(_allWindows->ACHATS, _sqlTable->sqlTableName()))
         {
             _allWindows->_achatsWindow->setLastListerSelectedRow(0);
             _allWindows->_achatsWindow->setSearchFormSqlTableModel(_sqlTable);

@@ -59,14 +59,13 @@ arg(YEROTH_ERP_WINDOW_TITLE,
 QObject::trUtf8("fiche des stocks")));
 
 YerothStocksWindow::YerothStocksWindow()
-    :YerothWindowsCommons(YerothStocksWindow::_WINDOW_TITLE),
-     _logger(new YerothLogger("YerothStocksWindow")),
-	 _currentlyFiltered(false),
-	 _actionRechercheArticleCodebar(0),
-     _aProcess(0),
-	 _pushButton_stocks_filtrer_font(0),
-     _searchStocksWidget(0),
-     _searchStocksTableModel(0)
+:YerothWindowsCommons(YerothStocksWindow::_WINDOW_TITLE),
+ YerothAbstractClassYerothSearchWindow(_allWindows->STOCKS),
+ _logger(new YerothLogger("YerothStocksWindow")),
+ _actionRechercheArticleCodebar(0),
+ _aProcess(0),
+ _pushButton_stocks_filtrer_font(0),
+ _searchStocksTableModel(0)
 {
     setupUi(this);
 
@@ -81,13 +80,28 @@ YerothStocksWindow::YerothStocksWindow()
 
     setupSelectDBFields(_allWindows->STOCKS);
 
-    reinitialiser_champs_db_visibles();
+    _lineEditsToANDContentForSearch.insert(&lineEdit_stock_terme_recherche,
+    		YerothUtils::EMPTY_STRING);
 
-    _searchStocksWidget = new YerothSearchForm(_allWindows, *this, &_allWindows->getSqlTableModel_stocks());
+    _lineEditsToANDContentForSearch.insert(&lineEdit_recherche_reference,
+    		YerothDatabaseTableColumn::REFERENCE);
+
+    _lineEditsToANDContentForSearch.insert(&lineEdit_stock_designation,
+    		YerothDatabaseTableColumn::DESIGNATION);
+
+    _lineEditsToANDContentForSearch.insert(&lineEdit_stock_categorie,
+    		YerothDatabaseTableColumn::CATEGORIE);
+
+    _lineEditsToANDContentForSearch.insert(&lineEdit_stock_nom_entreprise_fournisseur,
+    		YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR);
+
+    reinitialiser_champs_db_visibles();
 
     populateComboBoxes();
 
     setupLineEdits();
+
+    setupLineEditsQCompleters((QObject *)this);
 
     _pushButton_stocks_filtrer_font = new QFont(pushButton_stocks_filtrer->font());
 
@@ -169,49 +183,11 @@ connect(actionAdministration, SIGNAL(triggered()), this, SLOT(administration()))
     setupShortcuts();
 }
 
+
 YerothStocksWindow::~YerothStocksWindow()
 {
 	delete _actionRechercheArticleCodebar;
-    delete _searchStocksWidget;
     delete _logger;
-}
-
-
-void YerothStocksWindow::setCurrentlyFiltered(bool currentlyFiltered)
-{
-	_currentlyFiltered = currentlyFiltered;
-
-	set_filtrer_font();
-}
-
-
-void YerothStocksWindow::updateLineEditRechercherCodeBar()
-{
-	lineEdit_stock_terme_recherche->enableForSearch(QObject::trUtf8("terme à rechercher [ focus avec F11 ]"));
-
-    if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_ALL,
-                                           YerothERPConfig::salesStrategy))
-    {
-        lineEdit_recherche_reference->setupMyQCompleterCodebarALL(_allWindows->STOCKS);
-    }
-    else if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO,
-             YerothERPConfig::salesStrategy))
-    {
-        lineEdit_recherche_reference->setupMyQCompleterCodebarDEF_DEO(_allWindows->STOCKS);
-    }
-    else if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO,
-             YerothERPConfig::salesStrategy))
-    {
-        lineEdit_recherche_reference->setupMyQCompleterCodebarFIFO(_allWindows->STOCKS);
-    }
-    else if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_LIFO,
-             YerothERPConfig::salesStrategy))
-    {
-        lineEdit_recherche_reference->setupMyQCompleterCodebarLIFO(_allWindows->STOCKS);
-    }
-
-    connect(lineEdit_recherche_reference->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
-            SLOT(afficher_stock_selectioner_bar_code(const QString &)));
 }
 
 
@@ -434,26 +410,32 @@ void YerothStocksWindow::populateComboBoxes()
 
     comboBox_strategie_de_stocks->clear();
     comboBox_strategie_de_stocks->addItem(YerothERPConfig::STRATEGIE_VENTE_SORTIE_ALL);
+
     //index 0 of enum enum_comboBoxStrategyIndex
     comboBox_strategie_de_stocks->addItem(YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO);
     comboBox_strategie_de_stocks->addItem(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO);
     comboBox_strategie_de_stocks->addItem(YerothERPConfig::STRATEGIE_VENTE_SORTIE_LIFO);
+
     desactiverComboBoxStrategieDeGestionDesStocks();
 }
 
+
 void YerothStocksWindow::setupLineEdits()
 {
-    updateLineEditRechercherCodeBar();
-
+    lineEdit_stock_terme_recherche->enableForSearch(QObject::trUtf8("terme à rechercher"));
     lineEdit_recherche_reference->enableForSearch(QObject::trUtf8("référence"));
 	lineEdit_stock_categorie->enableForSearch(QObject::trUtf8("catégorie"));
 	lineEdit_stock_designation->enableForSearch(QObject::trUtf8("désignation"));
-	lineEdit_stock_fournisseur->enableForSearch(QObject::tr("fournisseur"));
+	lineEdit_stock_nom_entreprise_fournisseur->enableForSearch(QObject::tr("nom entreprise fournisseur"));
 
 	lineEdit_stocks_element_de_stock_resultat->setValidator(&YerothUtils::DoubleValidator);
 
+	lineEdit_nombre_de_stocks->setYerothEnabled(false);
+
     lineEdit_localisation->enableForSearch(QObject::trUtf8("localisation"));
+
     YerothPOSUser *currentUser = _allWindows->getUser();
+
     if (0 != currentUser &&
         (currentUser->isManager() ||
          currentUser->isGestionaireDesStocks() ||
@@ -462,15 +444,15 @@ void YerothStocksWindow::setupLineEdits()
     {
 
 #ifdef YEROTH_CLIENT
-lineEdit_localisation->setVisible(false);
-pushButton_connecter_localisation->setVisible(false);
-pushButton_deconnecter_localisation->setVisible(false);
+    	lineEdit_localisation->setVisible(false);
+    	pushButton_connecter_localisation->setVisible(false);
+    	pushButton_deconnecter_localisation->setVisible(false);
 #else				//YEROTH_SERVER, YEROTH_STANDALONE, YEROTH_ACADEMIC_EVALUSATION_VERSION
-lineEdit_localisation->setVisible(true);
-pushButton_connecter_localisation->setVisible(true);
-pushButton_deconnecter_localisation->setVisible(true);
-lineEdit_localisation->setupMyStaticQCompleter(_allWindows->LOCALISATIONS, "nom_localisation", false);
-lineEdit_localisation->setText(YerothERPConfig::_connectedSite);
+    	lineEdit_localisation->setVisible(true);
+    	pushButton_connecter_localisation->setVisible(true);
+    	pushButton_deconnecter_localisation->setVisible(true);
+    	lineEdit_localisation->setupMyStaticQCompleter(_allWindows->LOCALISATIONS, "nom_localisation", false);
+    	lineEdit_localisation->setText(YerothERPConfig::_connectedSite);
 #endif
 
     }
@@ -499,6 +481,90 @@ void YerothStocksWindow::setupShortcuts()
     _actionRechercheArticleCodebar->setShortcut(Qt::Key_F11);
 
     actionReinitialiserRecherche->setShortcut(YerothUtils::REINITIALISER_RECHERCHE_QKEYSEQUENCE);
+}
+
+
+void YerothStocksWindow::textChangedSearchLineEditsQCompleters()
+{
+	lineEdit_stocks_element_de_stock_resultat->clear();
+
+    setCurrentlyFiltered(false);
+
+    clearSearchFilter();
+
+    QString searchTerm(lineEdit_stock_terme_recherche->text());
+
+    if (!searchTerm.isEmpty())
+    {
+        QStringList searchTermList = searchTerm.split(QRegExp("\\s+"));
+
+        QString partSearchTerm;
+
+        int lastIdx = searchTermList.size() - 1;
+
+        for (int k = 0; k < searchTermList.size(); ++k)
+        {
+        	partSearchTerm = searchTermList.at(k);
+        	//qDebug() << "++ searchTermList: " << partSearchTerm;
+
+        	_searchFilter.append(QString("(%1 OR %2 OR %3)")
+        							.arg(GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::DESIGNATION, partSearchTerm),
+        								 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::CATEGORIE, partSearchTerm),
+										 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::DESCRIPTION_PRODUIT, partSearchTerm)));
+
+        	if (k != lastIdx)
+        	{
+        		_searchFilter.append(" AND ");
+        	}
+        }
+    }
+
+    YerothLineEdit *aYerothLineEdit = 0;
+
+    QString correspondingDBFieldKeyValue;
+
+    QString aTableColumnFieldContentForANDSearch;
+
+    QMapIterator <YerothLineEdit **, QString> it(_lineEditsToANDContentForSearch);
+
+    while (it.hasNext())
+    {
+    	it.next();
+
+    	aYerothLineEdit = *it.key();
+
+    	correspondingDBFieldKeyValue = it.value();
+
+    	if (0 != aYerothLineEdit)
+    	{
+    		aTableColumnFieldContentForANDSearch = aYerothLineEdit->text();
+
+    		if (!correspondingDBFieldKeyValue.isEmpty() &&
+    				!aTableColumnFieldContentForANDSearch.isEmpty()	)
+    		{
+    			if (!_searchFilter.isEmpty())
+    			{
+    				_searchFilter.append(" AND ");
+    			}
+
+    			_searchFilter.append(GENERATE_SQL_IS_STMT(correspondingDBFieldKeyValue,
+    					aTableColumnFieldContentForANDSearch));
+    		}
+    	}
+    }
+
+    _yerothSqlTableModel->yerothSetFilter(_searchFilter);
+
+    if (_yerothSqlTableModel->select())
+    {
+    	setLastListerSelectedRow(0);
+    	afficherStocks(*_yerothSqlTableModel);
+    }
+    else
+    {
+        qDebug() << QString("++ YerothStocksWindow::textChangedSearchLineEditsQCompleters(): %1")
+        				.arg(_yerothSqlTableModel->lastError().text());
+    }
 }
 
 
@@ -576,8 +642,6 @@ void YerothStocksWindow::contextMenuEvent(QContextMenuEvent * event)
 
 void YerothStocksWindow::hideEvent(QHideEvent * hideEvent)
 {
-	_searchStocksWidget->rendreInvisible();
-
 	_selectExportDBQDialog->close();
 
 	_allWindows->_historiqueDuStockWindow->close();
@@ -590,16 +654,9 @@ void YerothStocksWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 
     setupLineEdits();
 
-    _curStocksTableModel = stocksTableModel;
+    setYerothSqlTableModel(stocksTableModel);
 
-    if (! isCurrentlyFiltered())
-    {
-        if (0 == _searchStocksTableModel)
-        {
-        	//qDebug() << QString("++ NON ");
-            _searchStocksWidget->setSqlTableModel(&_allWindows->getSqlTableModel_stocks());
-        }
-    }
+    _curStocksTableModel = stocksTableModel;
 
     lineEdit_stock_terme_recherche->setFocus();
 
@@ -841,6 +898,7 @@ void YerothStocksWindow::afficher_au_detail()
     }
 }
 
+
 void YerothStocksWindow::afficher_au_detail(const QModelIndex & modelIndex)
 {
     _logger->log("afficher_au_detail(const QModelIndex &)");
@@ -862,33 +920,6 @@ void YerothStocksWindow::afficher_au_detail(const QModelIndex & modelIndex)
     }
 }
 
-void YerothStocksWindow::afficher_stock_selectioner_bar_code(const QString & stockBarCode)
-{
-    _logger->log("afficher_stock_selectioner_bar_code(const QString &)");
-    setLastListerSelectedRow(0);
-    QString filter(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::REFERENCE, stockBarCode));
-    //qDebug() << "++ stockName: " << stockName;
-    _curStocksTableModel->yerothSetFilter(filter);
-    if (_curStocksTableModel->easySelect() > 0)
-    {
-        afficherStocks(*_curStocksTableModel);
-        setSearchFormSqlTableModel(_curStocksTableModel);
-    }
-}
-
-void YerothStocksWindow::afficher_stock_selectioner(const QString & stockName)
-{
-    _logger->log("afficher_stock_selectioner(const QString &)");
-    setLastListerSelectedRow(0);
-    QString filter(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::DESIGNATION, stockName));
-    //qDebug() << "++ stockName: " << stockName;
-    _curStocksTableModel->yerothSetFilter(filter);
-    if (_curStocksTableModel->easySelect() > 0)
-    {
-        afficherStocks(*_curStocksTableModel);
-        setSearchFormSqlTableModel(_curStocksTableModel);
-    }
-}
 
 void YerothStocksWindow::connecter_localisation()
 {
@@ -903,8 +934,8 @@ void YerothStocksWindow::connecter_localisation()
         pushButton_connecter_localisation->setPalette(YerothUtils::YEROTH_BLACK_PALETTE);
     }
     _curStocksTableModel = &_allWindows->getSqlTableModel_stocks();
-    _searchStocksWidget->setSqlTableModel(&_allWindows->getSqlTableModel_stocks());
 }
+
 
 void YerothStocksWindow::deconnecter_localisation()
 {
@@ -913,7 +944,6 @@ void YerothStocksWindow::deconnecter_localisation()
     pushButton_connecter_localisation->setPalette(YerothUtils::YEROTH_BLACK_PALETTE);
     YerothUtils::slot_deconnecter_localisation(_allWindows);
     _curStocksTableModel = &_allWindows->getSqlTableModel_stocks();
-    _searchStocksWidget->setSqlTableModel(&_allWindows->getSqlTableModel_stocks());
 }
 
 /**
@@ -992,8 +1022,6 @@ void YerothStocksWindow::supprimer_ce_stock()
         }
 
         afficherStocks(*_curStocksTableModel);
-
-        updateLineEditRechercherCodeBar();
     }
     else
     {
@@ -1021,9 +1049,7 @@ void YerothStocksWindow::reinitialiser_recherche()
 
     setCurrentlyFiltered(false);
 
-    _searchStocksWidget->reinitialiser();
-
-    setSearchFormSqlTableModel(0);
+    resetLineEditsQCompleters((QObject *)this);
 
     setComboBoxStrategieDeStocks();
 }
@@ -1106,8 +1132,6 @@ void YerothStocksWindow::afficherStocks(YerothSqlTableModel & sqlTableModel,
 
 void YerothStocksWindow::afficherStocks()
 {
-    _searchStocksWidget->rendreInvisible();
-
     QString localVisibleStrategy = comboBox_strategie_de_stocks->currentText();
 
     afficherStocks(*_curStocksTableModel, localVisibleStrategy);
