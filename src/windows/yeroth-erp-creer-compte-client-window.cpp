@@ -397,6 +397,8 @@ void YerothCreerCompteClientWindow::rendreVisible(YerothSqlTableModel * stocksTa
 
     check_fields();
 
+    lineEdit_compte_client_reference_client->setFocus();
+
     this->setVisible(true);
 }
 
