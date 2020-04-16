@@ -1,5 +1,5 @@
 /*
- * yeroth-erp-main-window.cpp
+ * yeroth-erp-configuration-comptabilite-window.cpp
  *
  *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
