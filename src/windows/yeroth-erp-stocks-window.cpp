@@ -22,6 +22,8 @@
 
 #include "src/utils/yeroth-erp-database-table-column.hpp"
 
+#include "src/dialogs/yeroth-erp-generic-select-db-field-dialog.hpp"
+
 
 #include <QtSql/QSqlRelationalTableModel>
 
@@ -40,8 +42,6 @@
 #include <QtWidgets/QCompleter>
 
 #include <unistd.h>
-#include "../dialogs/yeroth-erp-generic-select-db-field-dialog.hpp"
-
 
 
 /**
