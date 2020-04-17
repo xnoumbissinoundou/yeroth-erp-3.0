@@ -489,7 +489,7 @@ void YerothPayerCompteClientWindow::setupLineEdits()
 
 void YerothPayerCompteClientWindow::setupLineEditsQCompleters()
 {
-	lineEdit_comptes_clients_reference->enableForSearch(QObject::tr("référence"));
+	lineEdit_comptes_clients_reference->enableForSearch(QObject::trUtf8("référence"));
 
 	QString aConditionStr(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::TYPE_DE_VENTE,
 			              QObject::tr("achat-compte-client")));

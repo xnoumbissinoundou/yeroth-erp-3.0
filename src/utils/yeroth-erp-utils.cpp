@@ -346,7 +346,7 @@ YerothUtils::YerothUtils()
 			QObject::tr("Mme"));
 
     YerothUtils::_titreToUserViewString.insert(YerothUtils::TITRE_MR,
-			QObject::tr("Mr."));
+			QObject::tr("M."));
 
     YerothUtils::_titreToUserViewString.insert(YerothUtils::TITRE_PR,
 			QObject::tr("Pr."));

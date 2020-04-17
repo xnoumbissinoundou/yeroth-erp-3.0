@@ -1104,7 +1104,6 @@ void YerothVentesWindow::reinitialiser_champs_db_visibles()
 
     _visibleDBFieldColumnStrList
 			<< YerothDatabaseTableColumn::DATE_VENTE
-			<< YerothDatabaseTableColumn::HEURE_VENTE
 			<< YerothDatabaseTableColumn::CATEGORIE
 			<< YerothDatabaseTableColumn::DESIGNATION
 			<< YerothDatabaseTableColumn::PRIX_UNITAIRE
