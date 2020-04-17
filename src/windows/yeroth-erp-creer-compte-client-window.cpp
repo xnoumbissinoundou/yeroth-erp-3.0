@@ -54,12 +54,15 @@ YerothCreerCompteClientWindow::YerothCreerCompteClientWindow()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAnnuler, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerImage, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEnregistrer, false);
 
     pushButton_achats->disable(this);
     pushButton_clients->disable(this);
     pushButton_menu_principal->disable(this);
     pushButton_annuler->disable(this);
+    pushButton_supprimer_limage_du_stock->disable(this);
+    pushButton_selectionner_image->disable(this);
     pushButton_enregistrer->disable(this);
 
     /** Menu actions */
@@ -70,6 +73,7 @@ YerothCreerCompteClientWindow::YerothCreerCompteClientWindow()
     connect(actionAchats, SIGNAL(triggered()), this, SLOT(achats()));
     connect(actionClients, SIGNAL(triggered()), this, SLOT(clients()));
     connect(actionAnnuler, SIGNAL(triggered()), this, SLOT(menu()));
+    connect(actionSupprimerImage, SIGNAL(triggered()), this, SLOT(supprimer_image_compte_client()));
     connect(actionEnregistrer, SIGNAL(triggered()), this, SLOT(creerEnregistrerCompteClient()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
     connect(actionA_propos, SIGNAL(triggered()), this, SLOT(apropos()));
@@ -122,12 +126,15 @@ void YerothCreerCompteClientWindow::definirPasDeRole()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAnnuler, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerImage, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEnregistrer, false);
 
     pushButton_achats->disable(this);
     pushButton_clients->disable(this);
     pushButton_menu_principal->disable(this);
     pushButton_annuler->disable(this);
+    pushButton_supprimer_limage_du_stock->disable(this);
+    pushButton_selectionner_image->disable(this);
     pushButton_enregistrer->disable(this);
 }
 
@@ -146,6 +153,7 @@ void YerothCreerCompteClientWindow::definirCaissier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAnnuler, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerImage, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEnregistrer, false);
 
 #ifdef YEROTH_CLIENT
@@ -162,6 +170,8 @@ void YerothCreerCompteClientWindow::definirCaissier()
     pushButton_clients->disable(this);
     pushButton_menu_principal->disable(this);
     pushButton_annuler->disable(this);
+    pushButton_supprimer_limage_du_stock->disable(this);
+    pushButton_selectionner_image->disable(this);
     pushButton_enregistrer->disable(this);
 }
 
@@ -180,6 +190,7 @@ void YerothCreerCompteClientWindow::definirManager()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAnnuler, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerImage, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEnregistrer, true);
 
 #ifdef YEROTH_CLIENT
@@ -196,6 +207,8 @@ void YerothCreerCompteClientWindow::definirManager()
     pushButton_clients->enable(this, SLOT(clients()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_annuler->enable(this, SLOT(clients()));
+    pushButton_supprimer_limage_du_stock->enable(this, SLOT(supprimer_image_compte_client()));
+    pushButton_selectionner_image->enable(this, SLOT(selectionner_image_compte_client()));
     pushButton_enregistrer->enable(this, SLOT(creerEnregistrerCompteClient()));
 }
 
@@ -215,6 +228,7 @@ void YerothCreerCompteClientWindow::definirVendeur()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAnnuler, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerImage, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEnregistrer, false);
 
 #ifdef YEROTH_CLIENT
@@ -231,6 +245,8 @@ void YerothCreerCompteClientWindow::definirVendeur()
     pushButton_clients->enable(this, SLOT(clients()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_annuler->enable(this, SLOT(clients()));
+    pushButton_supprimer_limage_du_stock->disable(this);
+    pushButton_selectionner_image->disable(this);
     pushButton_enregistrer->enable(this, SLOT(creerEnregistrerCompteClient()));
 }
 
@@ -250,6 +266,7 @@ void YerothCreerCompteClientWindow::definirGestionaireDesStocks()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAnnuler, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerImage, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEnregistrer, false);
 
 #ifdef YEROTH_CLIENT
@@ -266,6 +283,8 @@ void YerothCreerCompteClientWindow::definirGestionaireDesStocks()
     pushButton_clients->disable(this);
     pushButton_menu_principal->disable(this);
     pushButton_annuler->disable(this);
+    pushButton_supprimer_limage_du_stock->disable(this);
+    pushButton_selectionner_image->disable(this);
     pushButton_enregistrer->disable(this);
 }
 
@@ -285,6 +304,7 @@ void YerothCreerCompteClientWindow::definirMagasinier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAnnuler, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerImage, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEnregistrer, false);
 
 #ifdef YEROTH_CLIENT
@@ -301,6 +321,8 @@ void YerothCreerCompteClientWindow::definirMagasinier()
     pushButton_clients->disable(this);
     pushButton_menu_principal->disable(this);
     pushButton_annuler->disable(this);
+    pushButton_supprimer_limage_du_stock->disable(this);
+    pushButton_selectionner_image->disable(this);
     pushButton_enregistrer->disable(this);
 }
 
@@ -367,6 +389,8 @@ void YerothCreerCompteClientWindow::clear_all_fields()
     lineEdit_compte_client_numero_de_contribuable->clear();
     lineEdit_compte_client_dette_maximale->clear();
     textEdit_creer_compte_client_description_client->clear();
+    label_image_produit->clear();
+    label_image_produit->setAutoFillBackground(false);
 }
 
 void YerothCreerCompteClientWindow::rendreInvisible()
@@ -437,6 +461,14 @@ bool YerothCreerCompteClientWindow::creerEnregistrerCompteClient()
 		record.setValue(YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT, 0.0);
 
         record.setValue(YerothDatabaseTableColumn::DESCRIPTION_CLIENT, textEdit_creer_compte_client_description_client->toPlainText());
+
+        if (0 != label_image_produit 	&&
+        	label_image_produit->pixmap())
+        {
+        	QByteArray bytes;
+        	YerothUtils::savePixmapToByteArray(bytes, *label_image_produit->pixmap(), "JPG");
+        	record.setValue(YerothDatabaseTableColumn::IMAGE_COMPTE_CLIENT, bytes);
+        }
 
         retMsg.append(lineEdit_compte_client_nom_de_lentreprise->text());
 

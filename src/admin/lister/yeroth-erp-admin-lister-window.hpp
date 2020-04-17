@@ -9,11 +9,14 @@
 
 # include "../../../ui_yeroth-erp-admin-lister-window.h"
 
+
 # include "src/admin/yeroth-erp-admin-windows-commons.hpp"
 
 # include "src/admin/admin-actions-subjects.hpp"
 
+
 # include <QtWidgets/QMessageBox>
+
 
 class QStandardItemModel;
 
@@ -73,6 +76,8 @@ public slots:
 
 	void lister_categorie(YerothSqlTableModel *aSqlTableModel = 0);
 
+	void lister_compte_bancaire(YerothSqlTableModel *aSqlTableModel = 0);
+
 	void lister_fournisseur(YerothSqlTableModel *aSqlTableModel = 0);
 
 	void lister_alerte(YerothSqlTableModel *aSqlTableModel = 0);
@@ -87,6 +92,8 @@ public slots:
 
     void afficher_detail_categorie();
 
+    void afficher_detail_compte_bancaire();
+
     void afficher_detail_fournisseur();
 
     void afficher_detail_remise();
@@ -100,6 +107,8 @@ public slots:
     void supprimer_localisation();
 
     void supprimer_categorie();
+
+    void supprimer_compte_bancaire();
 
     void supprimer_fournisseur();
 
@@ -135,6 +144,11 @@ public slots:
 		return _categoryCurrentlyFiltered;
 	}
 
+	inline bool isBankAccountCurrentlyFiltered() const
+	{
+		return _bankAccountCurrentlyFiltered;
+	}
+
 	inline bool isSiteCurrentlyFiltered() const
 	{
 		return _siteCurrentlyFiltered;
@@ -155,23 +169,48 @@ public slots:
 		return _discountCurrentlyFiltered;
 	}
 
-	void setDiscountCurrentlyFiltered(bool alertCurrentlyFiltered);
+	inline void setDiscountCurrentlyFiltered(bool discountCurrentlyFiltered)
+	{
+		_discountCurrentlyFiltered = discountCurrentlyFiltered;
+	}
 
-	void setAlertCurrentlyFiltered(bool alertCurrentlyFiltered);
+	inline void setAlertCurrentlyFiltered(bool alertCurrentlyFiltered)
+	{
+		_alertCurrentlyFiltered = alertCurrentlyFiltered;
+	}
 
-	void setCategoryCurrentlyFiltered(bool categoryCurrentlyFiltered);
+	inline void setCategoryCurrentlyFiltered(bool categoryCurrentlyFiltered)
+	{
+		_categoryCurrentlyFiltered = categoryCurrentlyFiltered;
+	}
 
-	void setSiteCurrentlyFiltered(bool siteCurrentlyFiltered);
+	inline void setBankAccountCurrentlyFiltered(bool bankAccountCurrentlyFiltered)
+	{
+		_bankAccountCurrentlyFiltered = bankAccountCurrentlyFiltered;
+	}
 
-	void setSupplierCurrentlyFiltered(bool supplierCurrentlyFiltered);
+	inline void setSiteCurrentlyFiltered(bool siteCurrentlyFiltered)
+	{
+		_siteCurrentlyFiltered = siteCurrentlyFiltered;
+	}
 
-	void setUserCurrentlyFiltered(bool userCurrentlyFiltered);
+	inline void setSupplierCurrentlyFiltered(bool supplierCurrentlyFiltered)
+	{
+		_supplierCurrentlyFiltered = supplierCurrentlyFiltered;
+	}
+
+	inline void setUserCurrentlyFiltered(bool userCurrentlyFiltered)
+	{
+		_userCurrentlyFiltered = userCurrentlyFiltered;
+	}
 
 private:
 
     bool 					_alertCurrentlyFiltered;
 
     bool 					_categoryCurrentlyFiltered;
+
+    bool 					_bankAccountCurrentlyFiltered;
 
     bool 					_userCurrentlyFiltered;
 

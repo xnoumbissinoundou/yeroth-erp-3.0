@@ -195,6 +195,7 @@ HEADERS = src/yeroth-erp-windows.hpp \
 		  src/admin/widgets/table-view/yeroth-erp-supplier-table-view.hpp \
 		  src/admin/widgets/table-view/yeroth-erp-user-table-view.hpp \
 			src/admin/widgets/table-view/yeroth-erp-category-table-view.hpp \
+			src/admin/widgets/table-view/yeroth-erp-bank-account-table-view.hpp \
 		  src/admin/creer/yeroth-erp-admin-create-window.hpp \
 		  src/admin/lister/yeroth-erp-admin-lister-window.hpp \
 		  src/admin/detail/yeroth-erp-admin-detail-window.hpp \		
@@ -295,6 +296,7 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/admin/widgets/table-view/yeroth-erp-supplier-table-view.cpp \
 		  src/admin/widgets/table-view/yeroth-erp-user-table-view.cpp \
 		  src/admin/widgets/table-view/yeroth-erp-category-table-view.cpp \
+			src/admin/widgets/table-view/yeroth-erp-bank-account-table-view.cpp \
 		  src/admin/creer/yeroth-erp-admin-create-window.cpp \
 		  src/admin/lister/yeroth-erp-admin-lister-window.cpp \
 		  src/admin/detail/yeroth-erp-admin-detail-window.cpp \

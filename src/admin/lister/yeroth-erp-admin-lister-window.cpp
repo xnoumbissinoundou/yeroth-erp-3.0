@@ -15,6 +15,7 @@ YerothAdminListerWindow::YerothAdminListerWindow()
 :YerothPOSAdminWindowsCommons(QObject::tr("administration ~ lister")),
  _alertCurrentlyFiltered(false),
  _categoryCurrentlyFiltered(false),
+ _bankAccountCurrentlyFiltered(false),
  _userCurrentlyFiltered(false),
  _supplierCurrentlyFiltered(false),
  _siteCurrentlyFiltered(false),
@@ -44,6 +45,7 @@ YerothAdminListerWindow::YerothAdminListerWindow()
     tableView_lister_utilisateur->setTableName(&YerothERPWindows::USERS);
     tableView_lister_localisation->setTableName(&YerothERPWindows::LOCALISATIONS);
     tableView_lister_categorie->setTableName(&YerothERPWindows::CATEGORIES);
+    tableView_lister_compte_bancaire->setTableName(&YerothERPWindows::COMPTES_BANCAIRES);
     tableView_lister_fournisseur->setTableName(&YerothERPWindows::FOURNISSEURS);
     tableView_lister_remise->setTableName(&YerothERPWindows::REMISES);
     tableView_lister_alerte->setTableName(&YerothERPWindows::ALERTES);
@@ -83,6 +85,9 @@ YerothAdminListerWindow::YerothAdminListerWindow()
             SLOT(handleItemModification(QModelIndex)));
 
     connect(tableView_lister_categorie, SIGNAL(clicked(QModelIndex)), this,
+            SLOT(handleItemModification(QModelIndex)));
+
+    connect(tableView_lister_compte_bancaire, SIGNAL(clicked(QModelIndex)), this,
             SLOT(handleItemModification(QModelIndex)));
 
     connect(tableView_lister_fournisseur, SIGNAL(clicked(QModelIndex)), this,
@@ -182,6 +187,13 @@ void YerothAdminListerWindow::rendreVisible(unsigned selectedSujetAction)
     	}
         break;
 
+    case SUJET_ACTION_COMPTE_BANCAIRE:
+    	if (false == isBankAccountCurrentlyFiltered())
+    	{
+    		lister_compte_bancaire();
+    	}
+        break;
+
     case SUJET_ACTION_FOURNISSEUR:
     	if (false == isSupplierCurrentlyFiltered())
     	{
@@ -233,6 +245,8 @@ void YerothAdminListerWindow::reinitialiser()
 
     lister_categorie();
 
+    lister_compte_bancaire();
+
     lister_fournisseur();
 
     lister_alerte();
@@ -259,6 +273,10 @@ void YerothAdminListerWindow::set_admin_rechercher_font()
 
     case SUJET_ACTION_CATEGORIE:
     	MACRO_SET_ADMIN_RECHERCHER_FONT(_categoryCurrentlyFiltered)
+        break;
+
+    case SUJET_ACTION_COMPTE_BANCAIRE:
+    	MACRO_SET_ADMIN_RECHERCHER_FONT(_bankAccountCurrentlyFiltered)
         break;
 
     case SUJET_ACTION_FOURNISSEUR:
@@ -358,6 +376,7 @@ void YerothAdminListerWindow::lister_localisation(YerothSqlTableModel * aSqlTabl
     tableView_lister_localisation->selectRow(this->_lastItemSelectedForModification);
 }
 
+
 void YerothAdminListerWindow::lister_categorie(YerothSqlTableModel * aSqlTableModel)
 {
     int toSelectRow = 0;
@@ -387,6 +406,33 @@ void YerothAdminListerWindow::lister_categorie(YerothSqlTableModel * aSqlTableMo
     set_admin_rechercher_font();
 
     tableView_lister_categorie->selectRow(_lastItemSelectedForModification);
+}
+
+
+void YerothAdminListerWindow::lister_compte_bancaire(YerothSqlTableModel * aSqlTableModel)
+{
+    int toSelectRow = 0;
+
+    if (0 != aSqlTableModel &&
+        true == YerothUtils::isEqualCaseInsensitive(_allWindows->COMPTES_BANCAIRES, aSqlTableModel->sqlTableName()))
+    {
+    	tableView_lister_compte_bancaire->lister_les_elements_du_tableau(*aSqlTableModel);
+
+    	_curSearchSqlTableModel = aSqlTableModel;
+    }
+    else
+    {
+    	setBankAccountCurrentlyFiltered(false);
+    	tableView_lister_compte_bancaire->lister_les_elements_du_tableau(_allWindows->getSqlTableModel_comptes_bancaires());
+    }
+
+    tableView_lister_compte_bancaire->hideColumn(0);
+
+    _lastItemSelectedForModification = toSelectRow;
+
+    set_admin_rechercher_font();
+
+    tableView_lister_compte_bancaire->selectRow(_lastItemSelectedForModification);
 }
 
 
@@ -483,42 +529,6 @@ void YerothAdminListerWindow::handleItemModification(const QModelIndex & index)
 {
     //_logger->debug("handleItemModification", QString("model index: %1").arg(index.row()));
     _lastItemSelectedForModification = index.row();
-}
-
-
-void YerothAdminListerWindow::setDiscountCurrentlyFiltered(bool discountCurrentlyFiltered)
-{
-	_discountCurrentlyFiltered = discountCurrentlyFiltered;
-}
-
-
-void YerothAdminListerWindow::setAlertCurrentlyFiltered(bool alertCurrentlyFiltered)
-{
-	_alertCurrentlyFiltered = alertCurrentlyFiltered;
-}
-
-
-void YerothAdminListerWindow::setCategoryCurrentlyFiltered(bool categoryCurrentlyFiltered)
-{
-	_categoryCurrentlyFiltered = categoryCurrentlyFiltered;
-}
-
-
-void YerothAdminListerWindow::setSiteCurrentlyFiltered(bool siteCurrentlyFiltered)
-{
-	_siteCurrentlyFiltered = siteCurrentlyFiltered;
-}
-
-
-void YerothAdminListerWindow::setSupplierCurrentlyFiltered(bool supplierCurrentlyFiltered)
-{
-	_supplierCurrentlyFiltered = supplierCurrentlyFiltered;
-}
-
-
-void YerothAdminListerWindow::setUserCurrentlyFiltered(bool userCurrentlyFiltered)
-{
-	_userCurrentlyFiltered = userCurrentlyFiltered;
 }
 
 
@@ -628,6 +638,11 @@ void YerothAdminListerWindow::afficher_detail_categorie()
     //  QString("lastSelectedItemForModification: %1").arg(this->lastSelectedItemForModification()));
     _allWindows->_adminDetailWindow->rendreVisibleCategorie(this->lastSelectedItemForModification());
     this->rendreInvisible();
+}
+
+
+void YerothAdminListerWindow::afficher_detail_compte_bancaire()
+{
 }
 
 
@@ -847,6 +862,12 @@ void YerothAdminListerWindow::supprimer_categorie()
                                      QMessageBox::Ok);
         }
     }
+}
+
+
+void YerothAdminListerWindow::supprimer_compte_bancaire()
+{
+
 }
 
 

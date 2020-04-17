@@ -193,6 +193,13 @@ protected slots:
 
 	virtual void tableView_show_or_hide_columns(YerothTableView &tableView_in_out);
 
+	void supprimer_image(QLabel &aLabel_image_produit);
+
+	inline void selectionner_image(QLabel &aLabel_image_produit)
+	{
+		YerothUtils::selectionner_image(this, aLabel_image_produit);
+	}
+
 	/**
 	 * Ce 'slot' est suppose reinitialiser les chanps
 	 * du tableau de la base de donnees et, enfin,

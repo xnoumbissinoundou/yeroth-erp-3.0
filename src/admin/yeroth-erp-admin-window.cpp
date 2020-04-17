@@ -52,6 +52,7 @@ const QString YerothAdminWindow::CATEGORIE(QObject::trUtf8(SUBJECT_ADMIN_OPERATI
 const QString YerothAdminWindow::FOURNISSEUR(QObject::trUtf8(SUBJECT_ADMIN_OPERATIONS_SUPPLIER_FR));
 const QString YerothAdminWindow::ALERTE(QObject::trUtf8(SUBJECT_ADMIN_OPERATIONS_ALERT_FR));
 const QString YerothAdminWindow::BON_DE_COMMANDE(QObject::trUtf8(SUBJECT_ADMIN_OPERATIONS_COMMAND_SHEET_FR));
+const QString YerothAdminWindow::COMPTE_BANCAIRE(QObject::trUtf8(SUBJECT_ADMIN_OPERATIONS_BANK_ACCOUNT_FR));
 const QString YerothAdminWindow::REMISE(QObject::trUtf8(SUBJECT_ADMIN_OPERATIONS_DISCOUNT_FR));
 
 #elif YEROTH_ENGLISH_LANGUAGE
@@ -66,6 +67,7 @@ const QString YerothAdminWindow::CATEGORIE(QObject::tr(SUBJECT_ADMIN_OPERATIONS_
 const QString YerothAdminWindow::FOURNISSEUR(QObject::tr(SUBJECT_ADMIN_OPERATIONS_SUPPLIER_EN));
 const QString YerothAdminWindow::ALERTE(QObject::tr(SUBJECT_ADMIN_OPERATIONS_ALERT_EN));
 const QString YerothAdminWindow::BON_DE_COMMANDE(QObject::tr(SUBJECT_ADMIN_OPERATIONS_COMMAND_SHEET_EN));
+const QString YerothAdminWindow::COMPTE_BANCAIRE(QObject::tr(SUBJECT_ADMIN_OPERATIONS_BANK_ACCOUNT_EN));
 const QString YerothAdminWindow::REMISE(QObject::tr(SUBJECT_ADMIN_OPERATIONS_DISCOUNT_EN));
 #endif
 
@@ -85,7 +87,8 @@ YerothAdminWindow::YerothAdminWindow()
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
                                        "QMessageBox QLabel {color: rgb(%2);}").
-                               arg(COLOUR_RGB_STRING_YEROTH_DARK_GREEN_47_67_67, COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
+                               arg(COLOUR_RGB_STRING_YEROTH_DARK_GREEN_47_67_67,
+                            	   COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
     lineEdit_this_localisation->setYerothEnabled(false);
 
@@ -114,6 +117,7 @@ YerothAdminWindow::YerothAdminWindow()
     _sujetActionsToConst->insert(ALERTE, SUJET_ACTION_ALERTE);
     _sujetActionsToConst->insert(BON_DE_COMMANDE, SUJET_ACTION_BON_DE_COMMANDE);
     _sujetActionsToConst->insert(CATEGORIE, SUJET_ACTION_CATEGORIE);
+    _sujetActionsToConst->insert(COMPTE_BANCAIRE, SUJET_ACTION_COMPTE_BANCAIRE);
     _sujetActionsToConst->insert(COMPTE_UTILISATEUR, SUJET_ACTION_COMPTE_UTILISATEUR);
     _sujetActionsToConst->insert(FOURNISSEUR, SUJET_ACTION_FOURNISSEUR);
     _sujetActionsToConst->insert(LOCALISATION, SUJET_ACTION_LOCALISATION);
@@ -126,6 +130,7 @@ YerothAdminWindow::YerothAdminWindow()
     comboBox_sujets_actions->addItem(ALERTE);
     comboBox_sujets_actions->addItem(BON_DE_COMMANDE);
     comboBox_sujets_actions->addItem(CATEGORIE);
+    comboBox_sujets_actions->addItem(COMPTE_BANCAIRE);
     comboBox_sujets_actions->addItem(FOURNISSEUR);
     comboBox_sujets_actions->addItem(COMPTE_UTILISATEUR);
     comboBox_sujets_actions->addItem(LOCALISATION);
@@ -318,6 +323,7 @@ void YerothAdminWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 
     _allWindows->_adminListerWindow->lister_remise(&_allWindows->getSqlTableModel_remises());
     _allWindows->_adminListerWindow->lister_alerte(&_allWindows->getSqlTableModel_alertes());
+    _allWindows->_adminListerWindow->lister_compte_bancaire(&_allWindows->getSqlTableModel_comptes_bancaires());
     _allWindows->_adminListerWindow->lister_categorie(&_allWindows->getSqlTableModel_categories());
     _allWindows->_adminListerWindow->lister_utilisateur(&_allWindows->getSqlTableModel_users());
     _allWindows->_adminListerWindow->lister_fournisseur(&_allWindows->getSqlTableModel_fournisseurs());
@@ -475,6 +481,9 @@ void YerothAdminWindow::action_creer()
     case SUJET_ACTION_CATEGORIE:
         creer(SUJET_ACTION_CATEGORIE);
         break;
+    case SUJET_ACTION_COMPTE_BANCAIRE:
+        creer(SUJET_ACTION_COMPTE_BANCAIRE);
+        break;
     case SUJET_ACTION_FOURNISSEUR:
         creer(SUJET_ACTION_FOURNISSEUR);
         break;
@@ -505,6 +514,9 @@ void YerothAdminWindow::action_lister()
         break;
     case SUJET_ACTION_CATEGORIE:
         lister(SUJET_ACTION_CATEGORIE);
+        break;
+    case SUJET_ACTION_COMPTE_BANCAIRE:
+        lister(SUJET_ACTION_COMPTE_BANCAIRE);
         break;
     case SUJET_ACTION_FOURNISSEUR:
         lister(SUJET_ACTION_FOURNISSEUR);
@@ -537,6 +549,9 @@ void YerothAdminWindow::action_modifier()
     case SUJET_ACTION_CATEGORIE:
         modifier(SUJET_ACTION_CATEGORIE);
         break;
+    case SUJET_ACTION_COMPTE_BANCAIRE:
+        modifier(SUJET_ACTION_COMPTE_BANCAIRE);
+        break;
     case SUJET_ACTION_FOURNISSEUR:
         modifier(SUJET_ACTION_FOURNISSEUR);
         break;
@@ -567,6 +582,9 @@ void YerothAdminWindow::action_supprimer()
         break;
     case SUJET_ACTION_CATEGORIE:
         modifier(SUJET_ACTION_CATEGORIE);
+        break;
+    case SUJET_ACTION_COMPTE_BANCAIRE:
+        modifier(SUJET_ACTION_COMPTE_BANCAIRE);
         break;
     case SUJET_ACTION_FOURNISSEUR:
         modifier(SUJET_ACTION_FOURNISSEUR);
@@ -1092,7 +1110,7 @@ void YerothAdminWindow::enregistrer_entreprise_info_database_table()
 		aNewEntrepriseInfoRecord.setValue(YerothDatabaseTableColumn::NUMERO_CONTRIBUABLE, lineEdit_entreprise_numero_de_contribuable->text());
 		aNewEntrepriseInfoRecord.setValue(YerothDatabaseTableColumn::SECTEURS_DACTIVITES, lineEdit_entreprise_secteurs_dactivites->text());
 		aNewEntrepriseInfoRecord.setValue(YerothDatabaseTableColumn::AGENCE_DE_COMPTE_BANCAIRE, lineEdit_entreprise_agence_de_compte_bancaire->text());
-		aNewEntrepriseInfoRecord.setValue(YerothDatabaseTableColumn::NUMERO_DE_COMPTE_BANCAIRE, lineEdit_entreprise_secteurs_numero_de_compte_bancaire->text());
+		aNewEntrepriseInfoRecord.setValue(YerothDatabaseTableColumn::REFERENCE_DU_COMPTE_BANCAIRE, lineEdit_entreprise_secteurs_numero_de_compte_bancaire->text());
 		aNewEntrepriseInfoRecord.setValue(YerothDatabaseTableColumn::REFERENCE_REGISTRE_DU_COMMERCE, lineEdit_entreprise_reference_registre_du_commerce->text());
 
 		bool recordUpdated = entreprise_info_TableModel.updateRecord(1, aNewEntrepriseInfoRecord);

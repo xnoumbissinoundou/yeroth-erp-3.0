@@ -47,8 +47,6 @@ public:
 
 	static const QString CATEGORIE;
 
-	static const QString DESIGNATION;
-
 	static const QString QUANTITE;
 
 	static const QString STOCK_MINIMUM;
@@ -72,6 +70,16 @@ public:
 	static const QString PRIX_DACHAT;
 
 	static const QString PRIX_VENTE;
+
+	static const QString REFERENCE_DU_COMPTE_BANCAIRE;
+
+	static const QString AGENCE_DE_COMPTE_BANCAIRE;
+
+	static const QString INTITULE_DU_COMPTE_BANCAIRE;
+
+	static const QString INSTITUT_BANCAIRE;
+
+	static const QString DESCRIPTION_DU_COMPTE_BANCAIRE;
 
 	static const QString DESCRIPTION_CATEGORIE;
 
@@ -100,6 +108,8 @@ public:
 	static const QString QUANTITE_PAR_LOT;
 
 	static const QString LOTS_ENTRANT;
+
+	static const QString IMAGE_COMPTE_CLIENT;
 
 	static const QString IMAGE_PRODUIT;
 
@@ -177,10 +187,6 @@ public:
 
 	static const QString NOM_ENTREPRISE;
 
-	static const QString NUMERO_DE_COMPTE_BANCAIRE;
-
-	static const QString AGENCE_DE_COMPTE_BANCAIRE;
-
 	static const QString SECTEURS_DACTIVITES;
 
 	static const QString NUMERO_CONTRIBUABLE;
@@ -194,6 +200,8 @@ public:
 	static const QString NOM_ENTREPRISE_FOURNISSEUR;
 
 	static const QString DESCRIPTION_CLIENT;
+
+	static const QString DESIGNATION;
 
 	static const QString DESIGNATION_REMISE;
 

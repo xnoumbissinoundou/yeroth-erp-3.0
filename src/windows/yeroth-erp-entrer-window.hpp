@@ -104,6 +104,7 @@ public slots:
     {
     	_lastEditedPrixVente = newPrixVente;
     }
+
     void display_service_montant_total_vente();
 
     void display_prix_vente();
@@ -116,8 +117,6 @@ public slots:
 
     void handleCategorieName(const QString &text);
 
-    void handleFournisseurName(const QString &text);
-
     inline void rendreInvisibleAvecConservation()
     {
     	this->setVisible(false);
@@ -129,13 +128,6 @@ public slots:
     }
 
     void deconnecter_utilisateur();
-
-    void supprimer_image_stock();
-
-    inline void selectionner_image_produit()
-    {
-        YerothUtils::selectionner_image(this, *label_image_produit);
-    }
 
     bool creerNouveauClient(const QString proposedCustomerName);
 
@@ -186,6 +178,18 @@ public slots:
     inline void handle_achat_checkBox(int aState)
     {
     	check_fields_mandatory_buying();
+    }
+
+protected slots:
+
+    inline void supprimer_image_stock()
+    {
+    	YerothWindowsCommons::supprimer_image(*label_image_produit);
+    }
+
+    inline void selectionner_image_produit()
+    {
+    	YerothWindowsCommons::selectionner_image(*label_image_produit);
     }
 
 protected:

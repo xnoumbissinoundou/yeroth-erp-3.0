@@ -73,7 +73,7 @@ public slots:
 
     inline void selectionner_image_produit()
     {
-    	YerothUtils::selectionner_image(this, *label_image_produit);
+    	YerothWindowsCommons::selectionner_image(*label_image_produit);
     }
 
     virtual void deconnecter_utilisateur();

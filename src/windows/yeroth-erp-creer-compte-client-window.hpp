@@ -68,6 +68,18 @@ public slots:
 
     void deconnecter_utilisateur();
 
+protected slots:
+
+    inline void supprimer_image_compte_client()
+    {
+        YerothWindowsCommons::supprimer_image(*label_image_produit);
+    }
+
+    inline void selectionner_image_compte_client()
+    {
+    	YerothWindowsCommons::selectionner_image(*label_image_produit);
+    }
+
 protected:
 
     virtual void setupShortcuts();

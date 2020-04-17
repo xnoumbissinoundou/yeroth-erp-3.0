@@ -514,6 +514,17 @@ void YerothClientsDetailWindow::showClientDetail(int lastSelectedRow)
 	lineEdit_clients_details_compte_client->setText(GET_CURRENCY_STRING_NUM(compte_client));
 
 	textEdit_client_details_description_du_client->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESCRIPTION_CLIENT));
+
+    QVariant img(record.value(YerothDatabaseTableColumn::IMAGE_COMPTE_CLIENT));
+
+    if (!img.isNull())
+    {
+        YerothUtils::loadPixmapFromDB(*label_image_produit, img, "JPG");
+    }
+    else
+    {
+        label_image_produit->setAutoFillBackground(false);
+    }
 }
 
 

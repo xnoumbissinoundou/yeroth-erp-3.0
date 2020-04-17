@@ -1,11 +1,11 @@
 /*
- * yeroth-erp-category-table-view.hpp
+ * yeroth-erp-bank-account-table-view.hpp
  *
  * Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
-#ifndef SRC_YEROTH_ADMIN_CATEGORY_TABLE_VIEW_HPP_
-#define SRC_YEROTH_ADMIN_CATEGORY_TABLE_VIEW_HPP_
+#ifndef SRC_YEROTH_ADMIN_BANK_ACCOUNT_TABLE_VIEW_HPP_
+#define SRC_YEROTH_ADMIN_BANK_ACCOUNT_TABLE_VIEW_HPP_
 
 #include "src/include/yeroth-erp-3-0-software.text-configuration.hpp"
 
@@ -20,7 +20,7 @@ class YerothSqlTableModel;
 
 class YerothPOSQStandardItemModel;
 
-class YerothERPCategoryTableView : public YerothTableView
+class YerothERPBankAccountTableView : public YerothTableView
 {
 	Q_OBJECT
 
@@ -28,19 +28,19 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-	YerothERPCategoryTableView()
+	YerothERPBankAccountTableView()
 	:YerothTableView()
 	{
 		_stdItemModel->_curTableView = this;
 	}
 
-	YerothERPCategoryTableView(QWidget * parent)
+	YerothERPBankAccountTableView(QWidget * parent)
 	:YerothTableView(parent)
 	{
 		_stdItemModel->_curTableView = this;
 	}
 
-	inline virtual ~YerothERPCategoryTableView()
+	inline virtual ~YerothERPBankAccountTableView()
 	{
 	}
 
@@ -48,4 +48,4 @@ public:
 };
 
 
-#endif /* SRC_YEROTH_ADMIN_CATEGORY_TABLE_VIEW_HPP_ */
+#endif /* SRC_YEROTH_ADMIN_BANK_ACCOUNT_TABLE_VIEW_HPP_ */

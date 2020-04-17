@@ -48,6 +48,7 @@ class YerothPayerCompteClientWindow : public YerothWindowsCommons, private Ui_Ye
 		{
 		}
 
+		QString intitule_du_compte_bancaire;
 		QString nom_entreprise;
 		QString nom_encaisseur;
 		int type_de_paiement;

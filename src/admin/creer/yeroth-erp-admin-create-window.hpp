@@ -8,9 +8,13 @@
 #define YEROTH_ADMIN_CREATE_WINDOW_HPP_
 
 #include "../../../ui_yeroth-erp-admin-create-window.h"
-# include "src/admin/yeroth-erp-admin-windows-commons.hpp"
+
+
+#include "src/admin/yeroth-erp-admin-windows-commons.hpp"
+
 
 #include <QtWidgets/QMessageBox>
+
 
 class YerothERPWindows;
 class YerothLogger;
@@ -62,6 +66,8 @@ public slots:
 
 	bool creer_categorie();
 
+	bool creer_compte_bancaire();
+
 	bool creer_remise();
 
 	bool creer_alerte();
@@ -108,6 +114,8 @@ private:
 
     void clear_alerte_all_fields();
 
+    void clear_compte_bancaire_all_fields();
+
     void clear_remise_all_fields();
 
     void clear_fournisseur_all_fields();
@@ -121,6 +129,8 @@ private:
     bool creer_fournisseur_check_fields();
 
     bool creer_alerte_check_fields();
+
+    bool creer_compte_bancaire_check_fields();
 
     bool creer_remise_check_fields();
 

@@ -341,12 +341,12 @@ void YerothPaiementsWindow::reinitialiser_champs_db_visibles()
 
     _visibleDBFieldColumnStrList
     		<< YerothDatabaseTableColumn::DATE_PAIEMENT
-			<< YerothDatabaseTableColumn::HEURE_PAIEMENT
 			<< YerothDatabaseTableColumn::NOM_ENTREPRISE
 			<< YerothDatabaseTableColumn::MONTANT_PAYE
 			<< YerothDatabaseTableColumn::TYPE_DE_PAIEMENT
 			<< YerothDatabaseTableColumn::COMPTE_CLIENT
-			<< YerothDatabaseTableColumn::REFERENCE;
+			<< YerothDatabaseTableColumn::REFERENCE
+			<< YerothDatabaseTableColumn::INTITULE_DU_COMPTE_BANCAIRE;
 }
 
 

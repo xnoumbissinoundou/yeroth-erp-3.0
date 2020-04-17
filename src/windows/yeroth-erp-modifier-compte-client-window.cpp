@@ -542,4 +542,14 @@ void YerothModifierCompteClientWindow::showClientDetail()
 
 	textEdit_modifier_compteclient_description_du_client->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESCRIPTION_CLIENT));
 
+    QVariant img(record.value(YerothDatabaseTableColumn::IMAGE_COMPTE_CLIENT));
+
+    if (!img.isNull())
+    {
+        YerothUtils::loadPixmapFromDB(*label_image_produit, img, "JPG");
+    }
+    else
+    {
+        label_image_produit->setAutoFillBackground(false);
+    }
 }

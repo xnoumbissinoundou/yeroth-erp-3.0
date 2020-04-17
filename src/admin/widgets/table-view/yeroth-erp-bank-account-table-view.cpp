@@ -1,11 +1,11 @@
 /*
- * yeroth-erp-category-table-view.cpp
+ * yeroth-erp-bank-account-table-view.cpp
  *
  *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
 
-#include "yeroth-erp-category-table-view.hpp"
+#include "yeroth-erp-bank-account-table-view.hpp"
 
 #include "src/yeroth-erp-windows.hpp"
 
@@ -33,7 +33,7 @@
 #include <QtSql/QSqlError>
 
 
-void YerothERPCategoryTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel)
+void YerothERPBankAccountTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel)
 {
 	_stdItemModel->_curSqlTableModel = &tableModel;
 

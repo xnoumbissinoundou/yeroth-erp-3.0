@@ -34,7 +34,7 @@ YerothAdminSearchForm::YerothAdminSearchForm(YerothERPWindows * allWindows, QWid
 {
     setupUi(this);
     _logger = new YerothLogger("YerothAdminSearchForm");
-    this->setFixedSize(this->width(), this->height());
+    setFixedSize(this->width(), this->height());
     pushButton_annuler->enable(this, SLOT(reinitialiser()));
 }
 
@@ -46,22 +46,18 @@ YerothAdminSearchForm::~YerothAdminSearchForm()
 void YerothAdminSearchForm::rendreVisible(int tabWidjetListerIdx)
 {
     _logger->log("rendreVisible");
-    this->setupLineEditsQCompleters(tabWidjetListerIdx);
+    setupLineEditsQCompleters(tabWidjetListerIdx);
     lineEdit_terme_recherche->setFocus();
-    this->show();
+    show();
 }
 
 void YerothAdminSearchForm::rendreInvisible()
 {
     _logger->log("rendreInvisible");
-    this->clear_all_fields();
-    this->close();
+    clear_all_fields();
+    close();
 }
 
-void YerothAdminSearchForm::hideEvent(QHideEvent * hideEvent)
-{
-    rendreInvisible();
-}
 
 void YerothAdminSearchForm::setupLineEditsQCompleters(int tabWidjetListerIdx)
 {
@@ -87,6 +83,14 @@ void YerothAdminSearchForm::setupLineEditsQCompleters(int tabWidjetListerIdx)
         lineEdit_terme_recherche->setupMyStaticQCompleter(_allWindows->CATEGORIES, YerothDatabaseTableColumn::NOM_CATEGORIE, false, false);
         _curSujetAction = SUJET_ACTION_CATEGORIE;
         _curSqlTableModel = &_allWindows->getSqlTableModel_categories();
+        break;
+
+    case SUJET_ACTION_COMPTE_BANCAIRE:
+
+        lineEdit_terme_recherche->enableForSearch(QObject::trUtf8("référence du compte bancaire"));
+        lineEdit_terme_recherche->setupMyStaticQCompleter(_allWindows->COMPTES_BANCAIRES, YerothDatabaseTableColumn::REFERENCE_DU_COMPTE_BANCAIRE, false, false);
+        _curSujetAction = SUJET_ACTION_COMPTE_BANCAIRE;
+        _curSqlTableModel = &_allWindows->getSqlTableModel_comptes_bancaires();
         break;
 
     case SUJET_ACTION_COMPTE_UTILISATEUR:
@@ -143,8 +147,8 @@ void YerothAdminSearchForm::reinitialiser()
         _curSqlTableModel->resetFilter();
     }
 
-    this->setCurSqlTableModel(0);
-    this->rendreInvisible();
+    setCurSqlTableModel(0);
+    rendreInvisible();
 }
 
 void YerothAdminSearchForm::rechercher(const QString & itemName)
@@ -164,8 +168,11 @@ void YerothAdminSearchForm::rechercher(const QString & itemName)
     case SUJET_ACTION_CATEGORIE:
         filter = GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::NOM_CATEGORIE, searchString);
         break;
+    case SUJET_ACTION_COMPTE_BANCAIRE:
+        filter = GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::REFERENCE_DU_COMPTE_BANCAIRE, searchString);
+        break;
     case SUJET_ACTION_COMPTE_UTILISATEUR:
-        filter = GENERATE_SQL_IS_STMT("nom_complet", searchString);
+        filter = GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::NOM_COMPLET, searchString);
         break;
     case SUJET_ACTION_FOURNISSEUR:
         filter = GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::NOM_ENTREPRISE, searchString);
@@ -201,6 +208,11 @@ void YerothAdminSearchForm::rechercher(const QString & itemName)
                 _allWindows->_adminListerWindow->lister_categorie(_curSqlTableModel);
                 break;
 
+            case SUJET_ACTION_COMPTE_BANCAIRE:
+            	_allWindows->_adminListerWindow->setBankAccountCurrentlyFiltered(true);
+                _allWindows->_adminListerWindow->lister_compte_bancaire(_curSqlTableModel);
+                break;
+
             case SUJET_ACTION_COMPTE_UTILISATEUR:
             	_allWindows->_adminListerWindow->setUserCurrentlyFiltered(true);
                 _allWindows->_adminListerWindow->lister_utilisateur(_curSqlTableModel);
@@ -220,5 +232,5 @@ void YerothAdminSearchForm::rechercher(const QString & itemName)
             }
         }
     }
-    this->rendreInvisible();
+    rendreInvisible();
 }

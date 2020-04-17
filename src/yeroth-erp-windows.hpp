@@ -249,6 +249,11 @@ public:
 		return YerothERPWindows::getNextIdFromTable(YerothERPWindows::FOURNISSEURS);
 	}
 
+	static inline int getNextIdSqlTableModel_comptes_bancaires()
+	{
+		return YerothERPWindows::getNextIdFromTable(YerothERPWindows::COMPTES_BANCAIRES);
+	}
+
 	static inline int getNextIdSqlTableModel_achats()
 	{
 		return YerothERPWindows::getNextIdFromTable(YerothERPWindows::ACHATS);

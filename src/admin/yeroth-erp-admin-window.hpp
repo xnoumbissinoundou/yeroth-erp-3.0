@@ -8,15 +8,16 @@
 # define SRC_ADMIN_YEROTH_ADMIN_WINDOW_HPP_
 
 # include "../../ui_yeroth-erp-admin-window.h"
+
+
 # include "src/admin/yeroth-erp-admin-windows-commons.hpp"
-# include "../yeroth-erp-windows.hpp"
+
+# include "src/yeroth-erp-windows.hpp"
 
 # include "admin-actions-subjects.hpp"
 
+
 # include <QtWidgets/QMessageBox>
-
-
-class QStyle;
 
 
 class YerothSqlTableModel;
@@ -162,6 +163,7 @@ private:
 	static const QString CATEGORIE;
 	static const QString FOURNISSEUR;
 	static const QString ALERTE;
+	static const QString COMPTE_BANCAIRE;
 	static const QString REMISE;
 	static const QString BON_DE_COMMANDE;
 	static const QString DB;

@@ -47,6 +47,7 @@ YerothAdminCreateWindow::YerothAdminCreateWindow()
     pushButton_creer_utilisateur_annuler->enable(this, SLOT(annuler()));
     pushButton_creer_localisation_annuler->enable(this, SLOT(annuler()));
     pushButton_creer_categorie_annuler->enable(this, SLOT(annuler()));
+    pushButton_creer_compte_bancaire_annuler->enable(this, SLOT(annuler()));
     pushButton_creer_alerte_annuler->enable(this, SLOT(annuler()));
     pushButton_creer_fournisseur_annuler->enable(this, SLOT(annuler()));
     pushButton_creer_remise_annuler->enable(this, SLOT(annuler()));
@@ -55,6 +56,7 @@ YerothAdminCreateWindow::YerothAdminCreateWindow()
     pushButton_creer_utilisateur_valider->enable(this, SLOT(creer_utilisateur()));
     pushButton_creer_localisation_valider->enable(this, SLOT(creer_localisation()));
     pushButton_creer_categorie_valider->enable(this, SLOT(creer_categorie()));
+    pushButton_creer_compte_bancaire_valider->enable(this, SLOT(creer_compte_bancaire()));
     pushButton_creer_alerte_valider->enable(this, SLOT(creer_alerte()));
     pushButton_creer_fournisseur_valider->enable(this, SLOT(creer_fournisseur()));
     pushButton_creer_remise_valider->enable(this, SLOT(creer_remise()));
@@ -151,6 +153,8 @@ void YerothAdminCreateWindow::rendreVisible(unsigned selectedSujetAction)
 
     clear_categorie_all_fields();
 
+    clear_compte_bancaire_all_fields();
+
     clear_localisation_all_fields();
 
     clear_fournisseur_all_fields();
@@ -181,17 +185,17 @@ void YerothAdminCreateWindow::rendreVisible(unsigned selectedSujetAction)
 
     creer_categorie_check_fields();
 
+    creer_compte_bancaire_check_fields();
+
     creer_localisation_check_fields();
 
     creer_fournisseur_check_fields();
-
-    creer_categorie_check_fields();
 
     creer_alerte_check_fields_entry();
 
     creer_remise_check_fields_entry();
 
-    this->setVisible(true);
+    setVisible(true);
 }
 
 void YerothAdminCreateWindow::rendreInvisible()
@@ -200,6 +204,7 @@ void YerothAdminCreateWindow::rendreInvisible()
     dateEdit_creer_localisation_date_ouverture->reset();
     dateEdit_creer_alerte_date_debut->reset();
     dateEdit_creer_alerte_date_fin->reset();
+
     YerothPOSAdminWindowsCommons::rendreInvisible();
 }
 
@@ -342,7 +347,7 @@ void YerothAdminCreateWindow::showDatePeremption(const QString & nomProduit)
 void YerothAdminCreateWindow::lister()
 {
     _allWindows->_adminListerWindow->rendreVisible(tabWidget_creer->currentIndex());
-    this->rendreInvisible();
+    rendreInvisible();
 }
 
 void YerothAdminCreateWindow::annuler()
@@ -350,6 +355,8 @@ void YerothAdminCreateWindow::annuler()
     clear_utilisateur_all_fields();
 
     clear_categorie_all_fields();
+
+    clear_compte_bancaire_all_fields();
 
     clear_localisation_all_fields();
 
@@ -361,7 +368,7 @@ void YerothAdminCreateWindow::annuler()
 
     _allWindows->_adminWindow->rendreVisible();
 
-    this->rendreInvisible();
+    rendreInvisible();
 }
 
 void YerothAdminCreateWindow::radioButtons_quantite()
@@ -400,6 +407,8 @@ void YerothAdminCreateWindow::handleCurrentChanged()
 
     clear_categorie_all_fields();
 
+    clear_compte_bancaire_all_fields();
+
     clear_fournisseur_all_fields();
 
     clear_alerte_all_fields();
@@ -416,11 +425,11 @@ void YerothAdminCreateWindow::handleCurrentChanged()
 
     creer_categorie_check_fields();
 
+    creer_compte_bancaire_check_fields();
+
     creer_localisation_check_fields();
 
     creer_fournisseur_check_fields();
-
-    creer_categorie_check_fields();
 
     creer_alerte_check_fields_entry();
 
@@ -448,4 +457,6 @@ void YerothAdminCreateWindow::hideEvent(QHideEvent * hideEvent)
 #include "creer-alerte.cpp"
 
 #include "creer-remise.cpp"
+
+#include "creer-compte-bancaire.cpp"
 

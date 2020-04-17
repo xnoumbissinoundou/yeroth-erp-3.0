@@ -25,7 +25,6 @@ const QString YerothDatabaseTableColumn::REFERENCE						("reference");
 const QString YerothDatabaseTableColumn::COMPTE_CLIENT					("compte_client");
 const QString YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT	("dette_maximale_compte_client");
 const QString YerothDatabaseTableColumn::CATEGORIE						("categorie");
-const QString YerothDatabaseTableColumn::DESIGNATION					("designation");
 const QString YerothDatabaseTableColumn::QUANTITE						("quantite");
 const QString YerothDatabaseTableColumn::STOCK_MINIMUM					("stock_minimum");
 const QString YerothDatabaseTableColumn::STOCK_MAXIMUM					("stock_maximum");
@@ -38,6 +37,11 @@ const QString YerothDatabaseTableColumn::PRIX_UNITAIRE					("prix_unitaire");
 const QString YerothDatabaseTableColumn::REFERENCE_RECU_DACHAT			("reference_recu_dachat");
 const QString YerothDatabaseTableColumn::PRIX_DACHAT					("prix_dachat");
 const QString YerothDatabaseTableColumn::PRIX_VENTE						("prix_vente");
+const QString YerothDatabaseTableColumn::REFERENCE_DU_COMPTE_BANCAIRE	("reference_du_compte_bancaire");
+const QString YerothDatabaseTableColumn::AGENCE_DE_COMPTE_BANCAIRE		("agence_de_compte_bancaire");
+const QString YerothDatabaseTableColumn::INTITULE_DU_COMPTE_BANCAIRE	("intitule_du_compte_bancaire");
+const QString YerothDatabaseTableColumn::INSTITUT_BANCAIRE				("institut_bancaire");
+const QString YerothDatabaseTableColumn::DESCRIPTION_DU_COMPTE_BANCAIRE	("description_du_compte_bancaire");
 const QString YerothDatabaseTableColumn::DESCRIPTION_CATEGORIE			("description_categorie");
 const QString YerothDatabaseTableColumn::NOM_CATEGORIE					("nom_categorie");
 const QString YerothDatabaseTableColumn::MONTANT_TVA					("montant_tva");
@@ -52,6 +56,7 @@ const QString YerothDatabaseTableColumn::LOCALISATION					("localisation");
 const QString YerothDatabaseTableColumn::LOCALISATION_STOCK				("localisation_stock");
 const QString YerothDatabaseTableColumn::QUANTITE_PAR_LOT				("quantite_par_lot");
 const QString YerothDatabaseTableColumn::LOTS_ENTRANT					("lots_entrant");
+const QString YerothDatabaseTableColumn::IMAGE_COMPTE_CLIENT			("image_compte_client");
 const QString YerothDatabaseTableColumn::IMAGE_PRODUIT					("image_produit");
 const QString YerothDatabaseTableColumn::DATE_PEREMPTION				("date_peremption");
 const QString YerothDatabaseTableColumn::DATE_ENTREE					("date_entree");
@@ -90,8 +95,6 @@ const QString YerothDatabaseTableColumn::STATUT_RESOLU					("statut_resolu");
 const QString YerothDatabaseTableColumn::SIEGE_SOCIAL					("siege_social");
 const QString YerothDatabaseTableColumn::NOTES							("notes");
 const QString YerothDatabaseTableColumn::NOM_ENTREPRISE					("nom_entreprise");
-const QString YerothDatabaseTableColumn::NUMERO_DE_COMPTE_BANCAIRE		("numero_de_compte_bancaire");
-const QString YerothDatabaseTableColumn::AGENCE_DE_COMPTE_BANCAIRE		("agence_de_compte_bancaire");
 const QString YerothDatabaseTableColumn::SECTEURS_DACTIVITES			("secteurs_dactivites");
 const QString YerothDatabaseTableColumn::REFERENCE_REGISTRE_DU_COMMERCE	("reference_registre_du_commerce");
 const QString YerothDatabaseTableColumn::NUMERO_CONTRIBUABLE			("numero_contribuable");
@@ -99,6 +102,7 @@ const QString YerothDatabaseTableColumn::NOM_REPRESENTANT				("nom_representant"
 const QString YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT			("nom_entreprise_client");
 const QString YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR		("nom_entreprise_fournisseur");
 const QString YerothDatabaseTableColumn::DESCRIPTION_CLIENT				("description_client");
+const QString YerothDatabaseTableColumn::DESIGNATION					("designation");
 const QString YerothDatabaseTableColumn::DESIGNATION_REMISE				("designation_remise");
 const QString YerothDatabaseTableColumn::DESIGNATION_ALERTE				("designation_alerte");
 const QString YerothDatabaseTableColumn::CONDITION_ALERTE				("condition_alerte");
@@ -155,8 +159,6 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::CATEGORIE,		QObject::trUtf8("Catégorie"));
 
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::DESIGNATION,		QObject::trUtf8("Désignation"));
-
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::QUANTITE,			QObject::trUtf8("Quantité"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::STOCK_MAXIMUM,	QObject::trUtf8("stock maximum"));
@@ -178,6 +180,16 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::PRIX_DACHAT, 		QObject::tr("Prix d'achat"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::PRIX_VENTE, 		QObject::tr("Prix vente"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REFERENCE_DU_COMPTE_BANCAIRE, 		QObject::trUtf8("Réf. compte bancaire"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::AGENCE_DE_COMPTE_BANCAIRE,	QObject::tr("Agence bancaire"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::INTITULE_DU_COMPTE_BANCAIRE, 	QObject::trUtf8("Intitulé compte bancaire"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::INSTITUT_BANCAIRE, 		QObject::trUtf8("Institut compte bancaire"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::DESCRIPTION_DU_COMPTE_BANCAIRE, 		QObject::trUtf8("Description"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::DESCRIPTION_CATEGORIE, 		QObject::trUtf8("Description"));
 
@@ -206,6 +218,8 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::QUANTITE_PAR_LOT,	QObject::tr("Qté par lot"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::LOTS_ENTRANT,		QObject::tr("Lots entrant"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::IMAGE_COMPTE_CLIENT,	QObject::tr("Image client"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::IMAGE_PRODUIT,	QObject::tr("Image produit"));
 
@@ -281,10 +295,6 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NOM_ENTREPRISE,		QObject::tr("Nom entreprise"));
 
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NUMERO_DE_COMPTE_BANCAIRE,	QObject::trUtf8("Numéro compte bancaire"));
-
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::AGENCE_DE_COMPTE_BANCAIRE,	QObject::tr("Agence bancaire"));
-
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::SECTEURS_DACTIVITES,	QObject::trUtf8("Secteurs d'activités"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REFERENCE_REGISTRE_DU_COMMERCE,	QObject::trUtf8("Régistre de commerce"));
@@ -298,6 +308,8 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR,	QObject::tr("Fournisseur"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::DESCRIPTION_CLIENT,	QObject::tr("Description client"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::DESIGNATION,		QObject::trUtf8("Désignation"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::DESIGNATION_REMISE,	QObject::trUtf8("Désignation remise"));
 

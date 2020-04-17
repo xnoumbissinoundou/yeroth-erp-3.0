@@ -134,11 +134,6 @@ YerothEntrerWindow::YerothEntrerWindow()
 			this,
             SLOT(product_search_with_codebar()));
 
-    connect(lineEdit_nom_entreprise_fournisseur,
-    		SIGNAL(textChanged(const QString &)),
-			this,
-            SLOT(handleFournisseurName(const QString &)));
-
     setupShortcuts();
 }
 
@@ -183,8 +178,7 @@ void YerothEntrerWindow::setupLineEditsQCompleters()
 	    label_fournisseur->setText(QObject::tr("client"));
 
         lineEdit_nom_entreprise_fournisseur->setupMyStaticQCompleter(_allWindows->CLIENTS,
-        															 YerothDatabaseTableColumn::NOM_ENTREPRISE,
-																	 true);
+        															 YerothDatabaseTableColumn::NOM_ENTREPRISE);
 	}
 	else
 	{
@@ -193,8 +187,7 @@ void YerothEntrerWindow::setupLineEditsQCompleters()
 		label_fournisseur->setText(QObject::tr("fournisseur"));
 
         lineEdit_nom_entreprise_fournisseur->setupMyStaticQCompleter(_allWindows->FOURNISSEURS,
-        															 YerothDatabaseTableColumn::NOM_ENTREPRISE,
-																	 true);
+        															 YerothDatabaseTableColumn::NOM_ENTREPRISE);
 
     	QString aConditionStr(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
     						  YerothUtils::MYSQL_FALSE_LITERAL));
@@ -381,13 +374,6 @@ bool YerothEntrerWindow::creerNouvelleCategorie(const QString proposedCategorieN
 }
 
 
-void YerothEntrerWindow::supprimer_image_stock()
-{
-    label_image_produit->clear();
-    label_image_produit->setAutoFillBackground(false);
-}
-
-
 void YerothEntrerWindow::definirPasDeRole()
 {
     _logger->log("definirPasDeRole");
@@ -401,12 +387,12 @@ void YerothEntrerWindow::definirPasDeRole()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEnregisterStock, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerImage, false);
 
-    pushButton_supprimer_limage_du_stock->disable(this);
     pushButton_afficher_stocks->disable(this);
     pushButton_sortir->disable(this);
     pushButton_annuler->disable(this);
-    pushButton_selectionner_image->setEnabled(false);
-    pushButton_enregistrer_produit->setEnabled(false);
+    pushButton_supprimer_limage_du_stock->disable(this);
+    pushButton_selectionner_image->disable(this);
+    pushButton_enregistrer_produit->disable(this);
 }
 
 void YerothEntrerWindow::definirCaissier()
@@ -693,8 +679,7 @@ void YerothEntrerWindow::handle_service_checkBox(int state)
 	    label_fournisseur->setText(QObject::tr("client"));
 
         lineEdit_nom_entreprise_fournisseur->setupMyStaticQCompleter(_allWindows->CLIENTS,
-        															 YerothDatabaseTableColumn::NOM_ENTREPRISE,
-																	 true);
+        															 YerothDatabaseTableColumn::NOM_ENTREPRISE);
 	}
 	else
 	{
@@ -713,8 +698,7 @@ void YerothEntrerWindow::handle_service_checkBox(int state)
 		label_fournisseur->setText(QObject::tr("fournisseur"));
 
         lineEdit_nom_entreprise_fournisseur->setupMyStaticQCompleter(_allWindows->FOURNISSEURS,
-        															 YerothDatabaseTableColumn::NOM_ENTREPRISE,
-																	 true);
+        															 YerothDatabaseTableColumn::NOM_ENTREPRISE);
 	}
 }
 
@@ -764,33 +748,6 @@ void YerothEntrerWindow::handleCategorieName(const QString &text)
     }
 
     return ;
-}
-
-
-void YerothEntrerWindow::handleFournisseurName(const QString &)
-{
-    //_logger->log("handleFournisseurName(const QString &)");
-
-	//qDebug() << QString("handleFournisseurName()");
-
-	QString proposedFournisseurName = lineEdit_nom_entreprise_fournisseur->text();
-
-	if (proposedFournisseurName.isEmpty())
-	{
-		return ;
-	}
-
-    _createNewFournisseur = true;
-
-    _createNewCategorie = false;
-
-    if (YerothUtils::isEqualCaseInsensitive(proposedFournisseurName,
-        								   YerothUtils::NOUVEAU_FOURNISSEUR))
-    {
-    	_allWindows->_creerNouveauFournisseurWindow->rendreVisible(_curStocksTableModel);
-
-    	rendreInvisibleAvecConservation();
-    }
 }
 
 

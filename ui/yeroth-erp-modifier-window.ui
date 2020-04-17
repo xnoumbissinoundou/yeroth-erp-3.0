@@ -5484,7 +5484,7 @@ stock (service)</string>
       </font>
      </property>
      <property name="text">
-      <string>supprimer l'image de ce stock</string>
+      <string>supprimer l'image</string>
      </property>
     </widget>
     <widget class="YerothPushButton" name="pushButton_selectionner_image">
@@ -14050,14 +14050,14 @@ stock (service)</string>
    <header>src/widgets/yeroth-erp-line-edit.hpp</header>
   </customwidget>
   <customwidget>
-   <class>YerothDateTimeEdit</class>
-   <extends>QDateEdit</extends>
-   <header>src/widgets/yeroth-erp-datetime-edit.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>YerothTextEdit</class>
    <extends>QTextEdit</extends>
    <header>src/widgets/yeroth-erp-text-edit.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>YerothDateTimeEdit</class>
+   <extends>QDateEdit</extends>
+   <header>src/widgets/yeroth-erp-datetime-edit.hpp</header>
   </customwidget>
   <customwidget>
    <class>YerothERPQCheckBox</class>

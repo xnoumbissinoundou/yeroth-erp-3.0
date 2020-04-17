@@ -53,7 +53,10 @@ public slots:
 
 protected:
 
-    void hideEvent(QHideEvent * hideEvent);
+    inline void hideEvent(QHideEvent * hideEvent)
+    {
+        rendreInvisible();
+    }
 
 private:
 

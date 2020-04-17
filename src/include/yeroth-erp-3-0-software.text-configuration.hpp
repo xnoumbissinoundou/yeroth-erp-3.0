@@ -58,6 +58,9 @@
 # define SUBJECT_ADMIN_OPERATIONS_SITE_EN				"a site"
 # define SUBJECT_ADMIN_OPERATIONS_SITE_FR				"une localisation"
 
+# define SUBJECT_ADMIN_OPERATIONS_BANK_ACCOUNT_EN				"a bank account"
+# define SUBJECT_ADMIN_OPERATIONS_BANK_ACCOUNT_FR				"un compte bancaire"
+
 # define SUBJECT_ADMIN_OPERATIONS_DISCOUNT_EN				"a discount"
 # define SUBJECT_ADMIN_OPERATIONS_DISCOUNT_FR				"une remise"
 
