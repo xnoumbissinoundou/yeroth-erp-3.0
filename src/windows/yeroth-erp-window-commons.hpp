@@ -158,8 +158,6 @@ public slots:
 
 	virtual void menu();
 
-	virtual void configuration_commerciales();
-
 	virtual void comptabilite();
 
 	virtual void administration();

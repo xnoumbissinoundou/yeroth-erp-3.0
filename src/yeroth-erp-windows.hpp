@@ -38,7 +38,6 @@
 #include "src/windows/yeroth-erp-achats-window.hpp"
 #include "src/windows/yeroth-erp-stocks-window.hpp"
 #include "src/windows/yeroth-erp-marchandises-window.hpp"
-#include "src/windows/yeroth-erp-configurations-commerciales-window.hpp"
 #include "src/windows/yeroth-erp-configuration-comptabilite-window.hpp"
 #include "src/windows/yeroth-erp-alertes-window.hpp"
 #include "src/windows/yeroth-erp-ventes-window.hpp"
@@ -76,7 +75,6 @@ class YerothCreerNouvelleCategorieWindow;
 class YerothAchatsWindow;
 class YerothStocksWindow;
 class YerothMarchandisesWindow;
-class YerothConfigurationsCommercialesWindow;
 class YerothConfigurationComptabiliteWindow;
 class YerothAlertesWindow;
 class YerothVentesWindow;
@@ -374,7 +372,6 @@ public:
 	YerothAchatsWindow 									*_achatsWindow;
 	YerothStocksWindow 									*_stocksWindow;
 	YerothMarchandisesWindow 							*_marchandisesWindow;
-	YerothConfigurationsCommercialesWindow 				*_configurationsCommercialesWindow;
 	YerothConfigurationComptabiliteWindow				*_configurationComptabiliteWindow;
 	YerothAlertesWindow									*_listerAlertesWindow;
 	YerothPaiementsWindow								*_historiquePaiementsWindow;

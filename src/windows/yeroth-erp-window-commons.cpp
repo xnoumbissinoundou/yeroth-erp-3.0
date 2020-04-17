@@ -190,13 +190,6 @@ void YerothWindowsCommons::menu()
 }
 
 
-void YerothWindowsCommons::configuration_commerciales()
-{
-    rendreInvisible();
-    _allWindows->_configurationsCommercialesWindow->rendreVisible(_curStocksTableModel);
-}
-
-
 void YerothWindowsCommons::comptabilite()
 {
     rendreInvisible();

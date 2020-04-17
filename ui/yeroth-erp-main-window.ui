@@ -7559,8 +7559,6 @@ Vente</string>
     </property>
     <addaction name="actionAdministration"/>
     <addaction name="separator"/>
-    <addaction name="actionConfigurationsCommerciales"/>
-    <addaction name="separator"/>
     <addaction name="actionComptabilite"/>
     <addaction name="separator"/>
     <addaction name="actionAlertes"/>
@@ -8281,14 +8279,6 @@ Vente</string>
    </property>
    <property name="toolTip">
     <string>Comptabilité</string>
-   </property>
-  </action>
-  <action name="actionConfigurationsCommerciales">
-   <property name="text">
-    <string>Configurations commerciales</string>
-   </property>
-   <property name="toolTip">
-    <string>Configurations commerciales</string>
    </property>
   </action>
  </widget>
