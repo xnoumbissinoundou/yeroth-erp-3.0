@@ -83,7 +83,6 @@ FORMS   = ui/yeroth-erp-main-window.ui \
 		  ui/yeroth-erp-alertes-window.ui \
 		  ui/yeroth-erp-modifier-window.ui \
 		  ui/yeroth-erp-stock-detail-window.ui \
-		  ui/yeroth-erp-search-form.ui \
 		  ui/yeroth-erp-changer-utilisateur-dialog.ui \
 		  ui/yeroth-erp-admin-search-form.ui \
 		  ui/yeroth-erp-admin-window.ui \
@@ -144,7 +143,6 @@ HEADERS = src/yeroth-erp-windows.hpp \
 		  src/windows/yeroth-erp-window-commons.hpp \
 		  src/windows/yeroth-erp-pointdevente-liststocks-window.hpp \
 		  src/windows/yeroth-erp-sortir-liststocks-window.hpp \
-		  src/windows/yeroth-erp-search-form.hpp \		    		  
 		  src/windows/yeroth-erp-main-window.hpp \
 		  src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
 		  src/windows/yeroth-erp-creer-nouveau-fournisseur-window.hpp \
@@ -165,7 +163,6 @@ HEADERS = src/yeroth-erp-windows.hpp \
 		  src/windows/yeroth-erp-stock-detail-window.hpp \
 		  src/windows/yeroth-erp-paiements-window.hpp \
 		  src/windows/yeroth-erp-ventes-window.hpp \
-		  src/windows/yeroth-erp-search-form.hpp \
 		  src/users/yeroth-erp-users.hpp \
 		  src/users/yeroth-erp-user-vendeur.hpp \		  
 		  src/users/yeroth-erp-user-gestionaire-des-stocks.hpp \		  
@@ -267,7 +264,6 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/windows/yeroth-erp-stock-detail-window.cpp \
 		  src/windows/yeroth-erp-paiements-window.cpp \
 		  src/windows/yeroth-erp-ventes-window.cpp \
-		  src/windows/yeroth-erp-search-form.cpp \
 		  src/users/yeroth-erp-users.cpp \
 		  src/users/yeroth-erp-user-vendeur.cpp \		  
 		  src/users/yeroth-erp-user-gestionaire-des-stocks.cpp \

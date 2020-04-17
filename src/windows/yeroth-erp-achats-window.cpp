@@ -20,8 +20,6 @@
 
 #include "src/utils/yeroth-erp-config.hpp"
 
-#include "src/windows/yeroth-erp-search-form.hpp"
-
 #include "src/utils/yeroth-erp-database-table-column.hpp"
 
 
@@ -40,7 +38,6 @@
 #include <QtWidgets/QCompleter>
 
 #include <unistd.h>
-
 
 
 /**
@@ -65,20 +62,16 @@ arg(YEROTH_ERP_WINDOW_TITLE,
 QObject::trUtf8("fiche des achats")));
 
 YerothAchatsWindow::YerothAchatsWindow()
-    :YerothWindowsCommons(YerothAchatsWindow::_WINDOW_TITLE),
-     _logger(new YerothLogger("YerothAchatsWindow")),
-	 _currentlyFiltered(false),
-     _aProcess(0),
-	 _pushButton_achats_filtrer_font(0),
-	 _pushButton_RechercherFont(0),
-     _action_RechercherFont(0),
-     _searchAchatsWidget(0),
-	 _curAchatSqlTableModel(0),
-     _searchAchatsTableModel(0)
+:YerothWindowsCommons(YerothAchatsWindow::_WINDOW_TITLE),
+ YerothAbstractClassYerothSearchWindow(_allWindows->ACHATS),
+ _logger(new YerothLogger("YerothAchatsWindow")),
+ _aProcess(0),
+ _pushButton_achats_filtrer_font(0),
+ _curAchatSqlTableModel(0)
 {
     setupUi(this);
 
-    this->mySetupUi(this);
+    mySetupUi(this);
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
                                        "QMessageBox QLabel {color: rgb(%2);}").
@@ -88,20 +81,32 @@ YerothAchatsWindow::YerothAchatsWindow()
 
     setupSelectDBFields(_allWindows->ACHATS);
 
+    _lineEditsToANDContentForSearch.insert(&lineEdit_achats_terme_recherche,
+    		YerothUtils::EMPTY_STRING);
+
+    _lineEditsToANDContentForSearch.insert(&lineEdit_achats_reference,
+    		YerothDatabaseTableColumn::REFERENCE);
+
+    _lineEditsToANDContentForSearch.insert(&lineEdit_achats_designation,
+    		YerothDatabaseTableColumn::DESIGNATION);
+
+    _lineEditsToANDContentForSearch.insert(&lineEdit_achats_categorie,
+    		YerothDatabaseTableColumn::CATEGORIE);
+
+    _lineEditsToANDContentForSearch.insert(&lineEdit_achats_nom_entreprise_fournisseur,
+    		YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR);
+
     reinitialiser_champs_db_visibles();
 
     _curAchatSqlTableModel = &_allWindows->getSqlTableModel_achats();
-
-    _searchAchatsWidget = new YerothSearchForm(_allWindows, *this, &_allWindows->getSqlTableModel_achats());
 
     populateComboBoxes();
 
     setupLineEdits();
 
-    _pushButton_achats_filtrer_font = new QFont(pushButton_achats_filtrer->font());
+    setupLineEditsQCompleters((QObject *)this);
 
-    _action_RechercherFont = new QFont(actionRechercher->font());
-    _pushButton_RechercherFont = new QFont(pushButton_rechercher->font());
+    _pushButton_achats_filtrer_font = new QFont(pushButton_achats_filtrer->font());
 
     tableView_achats->setTableName(&YerothERPWindows::ACHATS);
 
@@ -118,7 +123,6 @@ YerothAchatsWindow::YerothAchatsWindow()
     pushButton_menu_principal->disable(this);
     pushButton_stocks->disable(this);
     pushButton_ventes->disable(this);
-    pushButton_rechercher->enable(this, SLOT(rechercher()));
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
 
     connect(actionReinitialiserChampsDBVisible, SIGNAL(triggered()), this, SLOT(slot_reinitialiser_champs_db_visibles()));
@@ -136,13 +140,9 @@ YerothAchatsWindow::YerothAchatsWindow()
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
     connect(actionExporter_au_format_csv, SIGNAL(triggered()), this, SLOT(export_csv_file()));
 
-    connect(actionModifier_ce_stock, SIGNAL(triggered()),
-    		this, SLOT(modifier_les_articles()));
-
     connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_document()));
     connect(actionA_propos, SIGNAL(triggered()), this, SLOT(apropos()));
     connect(actionAlertes, SIGNAL(triggered()), this, SLOT(alertes()));
-    connect(actionRechercher, SIGNAL(triggered()), this, SLOT(rechercher()));
     connect(actionReinitialiserRecherche, SIGNAL(triggered()), this, SLOT(reinitialiser_recherche()));
     connect(actionReinitialiserElementsDeFiltrage, SIGNAL(triggered()), this, SLOT(reinitialiser_elements_filtrage()));
     connect(actionInformationEntreprise, SIGNAL(triggered()), this, SLOT(infosEntreprise()));
@@ -157,9 +157,6 @@ connect(actionAdministration, SIGNAL(triggered()), this, SLOT(administration()))
 	connect(actionAfficher_achat_au_detail, SIGNAL(triggered()),
 			this, SLOT(afficher_au_detail()));
 
-    connect(tableView_achats, SIGNAL(signal_lister(YerothSqlTableModel &)),
-    		this, SLOT(set_rechercher_font()));
-
     connect(tableView_achats, SIGNAL(doubleClicked(const QModelIndex &)), this,
             SLOT(afficher_au_detail(const QModelIndex &)));
 
@@ -168,29 +165,7 @@ connect(actionAdministration, SIGNAL(triggered()), this, SLOT(administration()))
 
 YerothAchatsWindow::~YerothAchatsWindow()
 {
-    delete _action_RechercherFont;
-    delete _pushButton_RechercherFont;
-    delete _searchAchatsWidget;
     delete _logger;
-}
-
-
-void YerothAchatsWindow::setCurrentlyFiltered(bool currentlyFiltered)
-{
-	_currentlyFiltered = currentlyFiltered;
-
-	set_filtrer_font();
-}
-
-
-void YerothAchatsWindow::updateLineEditDesignation()
-{
-    lineEdit_recherche_designation->enableForSearch(QObject::trUtf8("désignation"));
-
-    lineEdit_recherche_designation->setupMyQCompleterALL(_allWindows->ACHATS);
-
-    connect(lineEdit_recherche_designation->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
-            SLOT(afficher_stock_selectioner(const QString &)));
 }
 
 
@@ -287,13 +262,25 @@ void YerothAchatsWindow::populateComboBoxes()
 }
 
 
+void YerothAchatsWindow::setupLineEdits()
+{
+	lineEdit_achats_terme_recherche->enableForSearch(QObject::trUtf8("terme à rechercher"));
+	lineEdit_achats_reference->enableForSearch(QObject::trUtf8("référence"));
+	lineEdit_achats_categorie->enableForSearch(QObject::trUtf8("catégorie"));
+	lineEdit_achats_designation->enableForSearch(QObject::trUtf8("désignation"));
+	lineEdit_achats_nom_entreprise_fournisseur->enableForSearch(QObject::tr("nom entreprise fournisseur"));
+
+	lineEdit_nombre_dachats->setYerothEnabled(false);
+
+	lineEdit_element_achats_resultat->setValidator(&YerothUtils::DoubleValidator);
+}
+
+
 void YerothAchatsWindow::setupShortcuts()
 {
     setupShortcutActionMessageDaide 	(*actionAppeler_aide);
     setupShortcutActionAfficherPDF		(*actionAfficherPDF);
     setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
-
-    actionRechercher->setShortcut(YerothUtils::RECHERCHER_QKEYSEQUENCE);
 
     actionReinitialiserRecherche->setShortcut(YerothUtils::REINITIALISER_RECHERCHE_QKEYSEQUENCE);
 }
@@ -307,6 +294,91 @@ void YerothAchatsWindow::slot_reinitialiser_champs_db_visibles()
 	{
 		afficherAchats(*_curAchatSqlTableModel);
 	}
+}
+
+
+void YerothAchatsWindow::textChangedSearchLineEditsQCompleters()
+{
+	lineEdit_element_achats_resultat->clear();
+
+    setCurrentlyFiltered(false);
+
+    clearSearchFilter();
+
+    QString searchTerm(lineEdit_achats_terme_recherche->text());
+
+    if (!searchTerm.isEmpty())
+    {
+        QStringList searchTermList = searchTerm.split(QRegExp("\\s+"));
+
+        QString partSearchTerm;
+
+        int lastIdx = searchTermList.size() - 1;
+
+        for (int k = 0; k < searchTermList.size(); ++k)
+        {
+        	partSearchTerm = searchTermList.at(k);
+        	//qDebug() << "++ searchTermList: " << partSearchTerm;
+
+        	_searchFilter.append(QString("(%1 OR %2 OR %3 OR %4)")
+        							.arg(GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::REFERENCE, partSearchTerm),
+        								 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::DESIGNATION, partSearchTerm),
+        								 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::CATEGORIE, partSearchTerm),
+										 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::DESCRIPTION_PRODUIT, partSearchTerm)));
+
+        	if (k != lastIdx)
+        	{
+        		_searchFilter.append(" AND ");
+        	}
+        }
+    }
+
+    YerothLineEdit *aYerothLineEdit = 0;
+
+    QString correspondingDBFieldKeyValue;
+
+    QString aTableColumnFieldContentForANDSearch;
+
+    QMapIterator <YerothLineEdit **, QString> it(_lineEditsToANDContentForSearch);
+
+    while (it.hasNext())
+    {
+    	it.next();
+
+    	aYerothLineEdit = *it.key();
+
+    	correspondingDBFieldKeyValue = it.value();
+
+    	if (0 != aYerothLineEdit)
+    	{
+    		aTableColumnFieldContentForANDSearch = aYerothLineEdit->text();
+
+    		if (!correspondingDBFieldKeyValue.isEmpty() &&
+    				!aTableColumnFieldContentForANDSearch.isEmpty()	)
+    		{
+    			if (!_searchFilter.isEmpty())
+    			{
+    				_searchFilter.append(" AND ");
+    			}
+
+    			_searchFilter.append(GENERATE_SQL_IS_STMT(correspondingDBFieldKeyValue,
+    					aTableColumnFieldContentForANDSearch));
+    		}
+    	}
+    }
+
+    _yerothSqlTableModel->yerothSetFilter(_searchFilter);
+
+    if (_yerothSqlTableModel->select())
+    {
+    	setLastListerSelectedRow(0);
+    	afficherAchats(*_yerothSqlTableModel);
+    }
+    else
+    {
+        qDebug() << QString("++ YerothAchatsWindow::textChangedSearchLineEditsQCompleters(): %1")
+        				.arg(_yerothSqlTableModel->lastError().text());
+    }
 }
 
 
@@ -339,30 +411,17 @@ void YerothAchatsWindow::contextMenuEvent(QContextMenuEvent * event)
 }
 
 
-void YerothAchatsWindow::hideEvent(QHideEvent * hideEvent)
-{
-	_searchAchatsWidget->rendreInvisible();
-}
-
-
 void YerothAchatsWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 {
     _logger->log("rendreVisible");
 
     setupLineEdits();
 
+    setYerothSqlTableModel(_curAchatSqlTableModel);
+
     _curStocksTableModel = stocksTableModel;
 
-    if (! isCurrentlyFiltered())
-    {
-        if (0 == _searchAchatsTableModel)
-        {
-        	//qDebug() << QString("++ NON ");
-            _searchAchatsWidget->setSqlTableModel(&_allWindows->getSqlTableModel_achats());
-        }
-    }
-
-    lineEdit_recherche_designation->setFocus();
+    lineEdit_achats_terme_recherche->setFocus();
 
     YerothPOSUser *aCurrentUser = _allWindows->getUser();
 
@@ -382,7 +441,7 @@ void YerothAchatsWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 
 void YerothAchatsWindow::rendreInvisible()
 {
-    lineEdit_recherche_designation->clear();
+	lineEdit_achats_terme_recherche->clear();
     YerothWindowsCommons::rendreInvisible();
 }
 
@@ -544,12 +603,12 @@ void YerothAchatsWindow::afficher_au_detail()
 {
     _logger->log("afficher_au_detail");
 
-    if (this->getLastListerSelectedRow() > -1 && _curAchatSqlTableModel->rowCount() > 0)
+    if (getLastListerSelectedRow() > -1 && _curAchatSqlTableModel->rowCount() > 0)
     {
         _allWindows->_achatsDetailWindow->rendreVisible(getLastListerSelectedRow(),
         												_curStocksTableModel,
 														_curAchatSqlTableModel);
-        this->rendreInvisible();
+        rendreInvisible();
     }
     else
     {
@@ -563,18 +622,18 @@ void YerothAchatsWindow::afficher_au_detail(const QModelIndex & modelIndex)
 {
     _logger->log("afficher_au_detail(const QModelIndex &)");
 
-    this->setLastListerSelectedRow(modelIndex.row());
+    setLastListerSelectedRow(modelIndex.row());
 
-    tableView_achats->selectRow(this->getLastListerSelectedRow());
+    tableView_achats->selectRow(getLastListerSelectedRow());
 
-    if (this->getLastListerSelectedRow() > -1 && _curAchatSqlTableModel->rowCount() > 0)
+    if (getLastListerSelectedRow() > -1 && _curAchatSqlTableModel->rowCount() > 0)
     {
     	//qDebug() << "++ test" << modelIndex.row();
         _allWindows->_achatsDetailWindow->rendreVisible(getLastListerSelectedRow(),
         												_curStocksTableModel,
 														_curAchatSqlTableModel);
 
-        this->rendreInvisible();
+        rendreInvisible();
     }
     else
     {
@@ -600,27 +659,25 @@ void YerothAchatsWindow::reinitialiser_recherche()
 {
     _logger->log("reinitialiser_recherche");
 
-    lineEdit_recherche_designation->clear();
+    lineEdit_achats_terme_recherche->clear();
 
     lineEdit_element_achats_resultat->clear();
 
     setCurrentlyFiltered(false);
 
-    _searchAchatsWidget->reinitialiser();
-
-    setSearchFormSqlTableModel(0);
-
-    set_rechercher_font();
+    resetLineEditsQCompleters((QObject *)this);
 }
 
 
 void YerothAchatsWindow::afficherAchats(YerothSqlTableModel &achatSqlTableModel)
 {
-    _searchAchatsWidget->rendreInvisible();
-
     tableView_achats->lister_les_elements_du_tableau(achatSqlTableModel);
 
     tableView_show_or_hide_columns(*tableView_achats);
+
+    int rowCount = tableView_achats->rowCount();
+
+    lineEdit_nombre_dachats->setText(GET_NUM_STRING(rowCount));
 }
 
 
@@ -640,17 +697,13 @@ void YerothAchatsWindow::afficher_stock_selectioner(const QString & stockName)
 
     if (_curAchatSqlTableModel->easySelect() > 0)
     {
-        this->afficherAchats(*_curAchatSqlTableModel);
-        this->setSearchFormSqlTableModel(_curAchatSqlTableModel);
-        this->set_rechercher_font();
+        afficherAchats(*_curAchatSqlTableModel);
     }
 }
 
 
 void YerothAchatsWindow::set_filtrer_font()
 {
-    //_logger->log("set_filtrer_font");
-
     if (isCurrentlyFiltered())
     {
     	_pushButton_achats_filtrer_font->setUnderline(true);
@@ -661,24 +714,6 @@ void YerothAchatsWindow::set_filtrer_font()
     }
 
     pushButton_achats_filtrer->setFont(*_pushButton_achats_filtrer_font);
-}
-
-
-void YerothAchatsWindow::set_rechercher_font()
-{
-    //_logger->log("set_rechercher_font");
-    if (0 != _searchAchatsTableModel)
-    {
-        _action_RechercherFont->setUnderline(true);
-        _pushButton_RechercherFont->setUnderline(true);
-    }
-    else
-    {
-        _action_RechercherFont->setUnderline(false);
-        _pushButton_RechercherFont->setUnderline(false);
-    }
-    actionRechercher->setFont(*_action_RechercherFont);
-    pushButton_rechercher->setFont(*_pushButton_RechercherFont);
 }
 
 

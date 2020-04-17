@@ -21,9 +21,6 @@
 
 #include "src/users/yeroth-erp-users.hpp"
 
-#include "yeroth-erp-search-form.hpp"
-
-
 
 const QString YerothCreerNouvelleCategorieWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2"))
 			.arg(YEROTH_ERP_WINDOW_TITLE,

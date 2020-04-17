@@ -10,7 +10,6 @@
 
 #include "../../ui_yeroth-erp-pointdevente-window.h"
 
-#include "src/windows/yeroth-erp-search-form.hpp"
 
 #include "yeroth-erp-window-commons.hpp"
 

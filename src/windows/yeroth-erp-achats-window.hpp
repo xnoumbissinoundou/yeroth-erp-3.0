@@ -9,7 +9,6 @@
 
 #include "../../ui_yeroth-erp-achats-window.h"
 
-#include "src/windows/yeroth-erp-search-form.hpp"
 
 #include <QtCore/QDebug>
 
@@ -17,7 +16,9 @@
 
 #include <QtGui/QContextMenuEvent>
 
+
 #include "yeroth-erp-window-commons.hpp"
+
 
 class QStandardItemModel;
 class QContextMenuEvent;
@@ -25,7 +26,9 @@ class QProcess;
 
 class YerothSqlTableModel;
 
-class YerothAchatsWindow : public YerothWindowsCommons, private Ui_YerothAchatsWindow
+class YerothAchatsWindow : public YerothWindowsCommons,
+						   private Ui_YerothAchatsWindow,
+						   public YerothAbstractClassYerothSearchWindow
 {
     Q_OBJECT
 
@@ -36,13 +39,6 @@ public:
     YerothAchatsWindow();
 
     virtual ~YerothAchatsWindow();
-
-    inline bool isCurrentlyFiltered()
-    {
-    	return _currentlyFiltered;
-    }
-
-    void setCurrentlyFiltered(bool currentlyFiltered);
 
     inline virtual QToolBar * getQMainWindowToolBar()
     {
@@ -103,18 +99,11 @@ public slots:
 
     void afficher_au_detail(const QModelIndex &modelIndex);
 
-    inline void rechercher()
-    {
-    	_searchAchatsWidget->rendreVisible();
-    }
-
     void reinitialiser_elements_filtrage();
 
     void reinitialiser_recherche();
 
     void set_filtrer_font();
-
-    void set_rechercher_font();
 
     inline int getLastListerSelectedRow()
     {
@@ -126,26 +115,19 @@ public slots:
     	tableView_achats->setLastSelectedRow(row);
     }
 
-    inline void setSearchFormSqlTableModel(YerothSqlTableModel *searchFormSqlTableModel)
-    {
-    	_searchAchatsTableModel = searchFormSqlTableModel;
-    }
-
-    void updateLineEditDesignation();
-
-protected slots:
-
-		virtual void slot_reinitialiser_champs_db_visibles();
-
 protected:
 
 	virtual void reinitialiser_champs_db_visibles();
 
 	void contextMenuEvent(QContextMenuEvent *event);
 
-    virtual void hideEvent(QHideEvent * hideEvent);
-
     virtual void setupShortcuts();
+
+ protected slots:
+
+    virtual void slot_reinitialiser_champs_db_visibles();
+
+    virtual void textChangedSearchLineEditsQCompleters();
 
 private slots:
 
@@ -155,12 +137,7 @@ private:
 
     void populateComboBoxes();
 
-    inline void setupLineEdits()
-    {
-    	lineEdit_element_achats_resultat->setValidator(&YerothUtils::DoubleValidator);
-
-    	updateLineEditDesignation();
-    }
+    void setupLineEdits();
 
     static unsigned int PDF_LISTING_COLUMN_STOCKS_ID;
 
@@ -174,21 +151,11 @@ private:
 
     YerothLogger			*_logger;
 
-    bool					_currentlyFiltered;
-
     QProcess				*_aProcess;
 
     QFont 					*_pushButton_achats_filtrer_font;
 
-    QFont 					*_pushButton_RechercherFont;
-
-    QFont 					*_action_RechercherFont;
-
-    YerothSearchForm 		*_searchAchatsWidget;
-
     YerothSqlTableModel 	*_curAchatSqlTableModel;
-
-    YerothSqlTableModel 	*_searchAchatsTableModel;
 };
 
 #endif /* YEROTH_ERP_ACHATS_WINDOW_HPP_ */
