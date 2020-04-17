@@ -241,7 +241,7 @@ bool YerothSqlTableModel::updateRecord(unsigned row, QSqlRecord &record)
 
 void YerothSqlTableModel::resetFilter()
 {
-    yerothSetFilter("");
+    yerothSetFilter(YerothUtils::EMPTY_STRING);
     select();
 }
 

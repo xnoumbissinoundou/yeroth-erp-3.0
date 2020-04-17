@@ -123,7 +123,7 @@ YerothStocksWindow::YerothStocksWindow()
     pushButton_menu_principal->disable(this);
     pushButton_inventaire_des_stocks->disable(this);
     pushButton_sortir->disable(this);
-    pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
+    pushButton_reinitialiser->disable(this);
     pushButton_connecter_localisation->disable(this);
     pushButton_deconnecter_localisation->disable(this);
 
@@ -922,6 +922,7 @@ void YerothStocksWindow::afficher_au_detail(const QModelIndex & modelIndex)
 void YerothStocksWindow::connecter_localisation()
 {
     reinitialiser_recherche();
+
     if (YerothUtils::slot_connecter_localisation(*this, _allWindows, lineEdit_localisation->text()))
     {
         pushButton_connecter_localisation->setPalette(YerothUtils::YEROTH_GREEN_PALETTE);
@@ -929,8 +930,10 @@ void YerothStocksWindow::connecter_localisation()
     else
     {
         lineEdit_localisation->setText(_allWindows->getInfoEntreprise().getLocalisation());
+
         pushButton_connecter_localisation->setPalette(YerothUtils::YEROTH_BLACK_PALETTE);
     }
+
     _curStocksTableModel = &_allWindows->getSqlTableModel_stocks();
 }
 
@@ -938,9 +941,13 @@ void YerothStocksWindow::connecter_localisation()
 void YerothStocksWindow::deconnecter_localisation()
 {
     reinitialiser_recherche();
+
     lineEdit_localisation->setText(_allWindows->getInfoEntreprise().getLocalisation());
+
     pushButton_connecter_localisation->setPalette(YerothUtils::YEROTH_BLACK_PALETTE);
+
     YerothUtils::slot_deconnecter_localisation(_allWindows);
+
     _curStocksTableModel = &_allWindows->getSqlTableModel_stocks();
 }
 
