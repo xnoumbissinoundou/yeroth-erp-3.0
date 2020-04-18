@@ -105,6 +105,7 @@ YerothERPClientsWindow::YerothERPClientsWindow()
     pushButton_modifier->disable(this);
     pushButton_supprimer->disable(this);
 
+    pushButton_reinitialiser->disable(this);
     pushButton_filtrer->disable(this);
     pushButton_reinitialiser_filtre->disable(this);
 
@@ -166,6 +167,7 @@ void YerothERPClientsWindow::reinitialiser_champs_db_visibles()
 	_visibleDBFieldColumnStrList.clear();
 
     _visibleDBFieldColumnStrList
+			<< YerothDatabaseTableColumn::REFERENCE_CLIENT
 			<< YerothDatabaseTableColumn::NOM_ENTREPRISE
 			<< YerothDatabaseTableColumn::VILLE
 			<< YerothDatabaseTableColumn::EMAIL
@@ -639,6 +641,8 @@ void YerothERPClientsWindow::reinitialiser_recherche()
     lineEdit_resultat_filtre->clear();
 
     setCurrentlyFiltered(false);
+
+    resetLineEditsQCompleters((QObject *)this);
 }
 
 
@@ -735,6 +739,7 @@ void YerothERPClientsWindow::definirCaissier()
     pushButton_modifier->disable(this);
     pushButton_supprimer->disable(this);
 
+    pushButton_reinitialiser->disable(this);
     pushButton_filtrer->disable(this);
     pushButton_reinitialiser_filtre->disable(this);
 }
@@ -768,6 +773,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     pushButton_modifier->enable(this, SLOT(modifierCompteClient()));
     pushButton_supprimer->enable(this, SLOT(supprimerCompteClient()));
 
+    pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
     pushButton_filtrer->enable(this, SLOT(filtrer()));
     pushButton_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
 }
@@ -802,6 +808,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     pushButton_modifier->enable(this, SLOT(modifierCompteClient()));
     pushButton_supprimer->enable(this, SLOT(supprimerCompteClient()));
 
+    pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
     pushButton_filtrer->enable(this, SLOT(filtrer()));
     pushButton_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
 }
@@ -835,6 +842,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     pushButton_modifier->disable(this);
     pushButton_supprimer->disable(this);
 
+    pushButton_reinitialiser->disable(this);
     pushButton_filtrer->disable(this);
     pushButton_reinitialiser_filtre->disable(this);
 }
@@ -862,6 +870,7 @@ void YerothERPClientsWindow::definirMagasinier()
     pushButton_modifier->disable(this);
     pushButton_supprimer->disable(this);
 
+    pushButton_reinitialiser->disable(this);
     pushButton_filtrer->disable(this);
     pushButton_reinitialiser_filtre->disable(this);
 }
@@ -889,6 +898,7 @@ void YerothERPClientsWindow::definirPasDeRole()
     pushButton_modifier->disable(this);
     pushButton_supprimer->disable(this);
 
+    pushButton_reinitialiser->disable(this);
     pushButton_filtrer->disable(this);
     pushButton_reinitialiser_filtre->disable(this);
 }
