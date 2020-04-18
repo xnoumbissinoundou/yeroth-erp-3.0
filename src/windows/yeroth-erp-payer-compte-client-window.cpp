@@ -80,6 +80,29 @@ YerothPayerCompteClientWindow::YerothPayerCompteClientWindow()
     connect(actionMenu_Principal, SIGNAL(triggered()), this, SLOT(menu()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
     connect(actionQui_suis_je, SIGNAL(triggered()), this, SLOT(qui_suis_je()));
+
+    connect(comboBox_clients_typedepaiement,
+    		SIGNAL(currentTextChanged(const QString &)),
+			this,
+			SLOT(handleComboBoxClients_Typedepaiement_TextChanged(const QString &)));
+}
+
+
+void YerothPayerCompteClientWindow::handleComboBoxClients_Typedepaiement_TextChanged(const QString &currentText)
+{
+	if (YerothUtils::isEqualCaseInsensitive(currentText,
+				YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::VERSEMENT_BANCAIRE)) ||
+		YerothUtils::isEqualCaseInsensitive(currentText,
+				YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::VERSEMENT_TELEPHONE)) ||
+		YerothUtils::isEqualCaseInsensitive(currentText,
+				YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::VERSEMENT_VIREMENT_BANCAIRE)))
+	{
+		comboBox_clients_etablissement_bancaire->setYerothEnabled(true);
+	}
+	else
+	{
+		comboBox_clients_etablissement_bancaire->setYerothEnabled(false);
+	}
 }
 
 
@@ -279,6 +302,16 @@ bool YerothPayerCompteClientWindow::putCashIntoCustomerAccount()
 		YerothQMessageBox::information(this,
 									   QObject::trUtf8("montant à verser"),
 									   QObject::trUtf8("Veuillez choisir le mode de paiement !"));
+
+		return false;
+	}
+
+	if (comboBox_clients_etablissement_bancaire->isEnabled() &&
+		comboBox_clients_etablissement_bancaire->currentText().isEmpty())
+	{
+		YerothQMessageBox::information(this,
+									   QObject::trUtf8("montant à verser"),
+									   QObject::trUtf8("Veuillez choisir un établissement bancaire !"));
 
 		return false;
 	}
@@ -509,6 +542,8 @@ void YerothPayerCompteClientWindow::setupLineEditsQCompleters()
 
 void YerothPayerCompteClientWindow::populatePayerAuCompteClientsComboBoxes()
 {
+	comboBox_clients_etablissement_bancaire->setYerothEnabled(false);
+
 	comboBox_clients_typedepaiement->setupPopulateNORawString(_allWindows->TYPE_DE_PAIEMENT,
     															YerothDatabaseTableColumn::TYPE_DE_PAIEMENT,
 																&YerothUtils::_typedepaiementToUserViewString);

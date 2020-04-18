@@ -112,6 +112,11 @@ public slots:
 
 	static void getPayerAuCompteClientTexDocumentString(QString &texDocumentString_in_out,
 			   	   	   	   	   	   	   	   	   	   	    QString &printString);
+
+protected slots:
+
+	void handleComboBoxClients_Typedepaiement_TextChanged(const QString &currentText);
+
 private slots:
 
 	void handleReferenceChange(const QString &referenceEngagement);
