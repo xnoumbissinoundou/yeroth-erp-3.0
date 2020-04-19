@@ -146,8 +146,9 @@ public slots:
 
     inline void afficher_paiements()
     {
-    	tabWidget_historique_paiements->setCurrentIndex(TableauDesPaiements);
+    	textChangedSearchLineEditsQCompleters();
     }
+
 
     inline void setLastListerSelectedRow(int row)
     {
@@ -185,11 +186,6 @@ private:
     void clear_all_fields();
 
     void setupDateTimeEdits();
-
-    inline void setYerothPaiementsFilter()
-    {
-        _curPaiementsTableModel->yerothSetFilter(_searchFilter);
-    }
 
     static const QString 	_WINDOW_TITLE;
 

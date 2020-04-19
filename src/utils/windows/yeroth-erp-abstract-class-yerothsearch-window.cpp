@@ -92,21 +92,41 @@ void YerothAbstractClassYerothSearchWindow::setCurrentlyFiltered(bool currentlyF
 
 void YerothAbstractClassYerothSearchWindow::clearLineEditsQCompleters()
 {
-	QMapIterator <YerothLineEdit **, QString> it(_lineEditsToANDContentForSearch);
+	{
+		QMapIterator <YerothLineEdit **, QString> it(_lineEditsToANDContentForSearch);
 
-    YerothLineEdit *aYerothLineEdit = 0;
+		YerothLineEdit *aYerothLineEdit = 0;
 
-    while (it.hasNext())
-    {
-        it.next();
+		while (it.hasNext())
+		{
+			it.next();
 
-        aYerothLineEdit = *it.key();
+			aYerothLineEdit = *it.key();
 
-    	if (0 != aYerothLineEdit)
-    	{
-    		aYerothLineEdit->clear();
-    	}
-    }
+			if (0 != aYerothLineEdit)
+			{
+				aYerothLineEdit->clear();
+			}
+		}
+	}
+
+	{
+		QMapIterator <YerothComboBox **, QString> it(_comboBoxesToANDContentForSearch);
+
+		YerothComboBox *aYerothComboBox = 0;
+
+		while (it.hasNext())
+		{
+			it.next();
+
+			aYerothComboBox = *it.key();
+
+			if (0 != aYerothComboBox)
+			{
+				aYerothComboBox->resetYerothComboBox();
+			}
+		}
+	}
 }
 
 

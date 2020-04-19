@@ -277,11 +277,6 @@ void YerothPaiementsWindow::setupLineEdits()
     lineEdit_details_de_paiement_heure_de_paiement->setYerothEnabled(false);
 
     lineEdit_paiements_terme_recherche->setFocus();
-
-    connect(comboBox_paiements_type_de_paiement,
-    		SIGNAL(currentTextChanged(const QString &)),
-			this,
-			SLOT(textChangedSearchLineEditsQCompleters()));
 }
 
 
@@ -432,7 +427,18 @@ void YerothPaiementsWindow::textChangedSearchLineEditsQCompleters()
     	}
     }
 
-    _yerothSqlTableModel->yerothSetFilter(_searchFilter);
+    QString finalSearchFilter(_paiementsDateFilter);
+
+    if (!_searchFilter.isEmpty())
+    {
+    	QString searchFilterWithDate(QString("%1 AND (%2)")
+    									.arg(_paiementsDateFilter,
+    										 _searchFilter));
+
+    	finalSearchFilter = searchFilterWithDate;
+    }
+
+	_yerothSqlTableModel->yerothSetFilter(finalSearchFilter);
 
     if (_yerothSqlTableModel->select())
     {
@@ -959,15 +965,6 @@ void YerothPaiementsWindow::resetFilter(YerothSqlTableModel * historiquePaiement
         _curPaiementsTableModel->resetFilter();
     }
 
-    lineEdit_paiements_terme_recherche->myClear();
-
-    comboBox_paiements_intitule_du_compte_bancaire->resetYerothComboBox();
-
-    comboBox_paiements_type_de_paiement->resetYerothComboBox();
-
-    lineEdit_paiements_reference->myClear();
-    lineEdit_paiements_nom_entreprise->myClear();
-
     dateEdit_paiements_debut->reset();
     dateEdit_paiements_fin->reset();
 }
@@ -1050,11 +1047,11 @@ void YerothPaiementsWindow::rendreVisible(YerothSqlTableModel * stocksTableModel
 {
     _logger->log("rendreVisible");
 
-    setYerothSqlTableModel(_curPaiementsTableModel);
-
     _curStocksTableModel = stocksTableModel;
 
     _curPaiementsTableModel = &_allWindows->getSqlTableModel_paiements();
+
+    setYerothSqlTableModel(_curPaiementsTableModel);
 
     setupLineEditsQCompleters((QObject *)this);
 
@@ -1065,10 +1062,11 @@ void YerothPaiementsWindow::rendreVisible(YerothSqlTableModel * stocksTableModel
 
     setVisible(true);
 
-    lister_les_elements_du_tableau();
+    afficher_paiements();
 
     lineEdit_paiements_terme_recherche->setFocus();
 }
+
 
 void YerothPaiementsWindow::afficher_paiements_detail()
 {
@@ -1129,11 +1127,9 @@ void YerothPaiementsWindow::reinitialiser_recherche()
 
     resetFilter(&_allWindows->getSqlTableModel_paiements());
 
-    textChangedSearchLineEditsQCompleters();
-
     resetLineEditsQCompleters((QObject *)this);
 
-    lister_les_elements_du_tableau();
+    afficher_paiements();
 
     lineEdit_paiements_terme_recherche->setFocus();
 }
@@ -1151,6 +1147,6 @@ void YerothPaiementsWindow::refineYerothLineEdits()
 
 	setupLineEditsQCompleters((QObject *)this);
 
-	textChangedSearchLineEditsQCompleters();
+	afficher_paiements();
 }
 
