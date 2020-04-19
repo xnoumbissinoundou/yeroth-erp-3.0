@@ -130,6 +130,12 @@ if [ $virtualKeyboardFlag ]; then
     virtualKeyboardVal="NO_YEROTH_ERP_3_0_TOUCH_SCREEN"
 fi
 
+YEROTH_GIT_PUSH_COMMIT_ID="$(git rev-parse origin/master)"
+
+YEROTH_GIT_PUSH_COMMIT_ID_TEXT="LAST BUILD ID: '${YEROTH_GIT_PUSH_COMMIT_ID}'.\"));"
+
+sed -i "s/LAST BUILD ID: .*/${YEROTH_GIT_PUSH_COMMIT_ID_TEXT}/g" src/utils/yeroth-erp-utils.cpp
+
 if [ $simulationFlag ]; then
   if [ $continueFlag ]; then
     echo "make -j$jobsVal YEROTH_VIRTUAL_KEYBOARD_OPTIONS=$virtualKeyboardVal YEROTH_DEBUG_LOG=$debugVal YEROTH_VERSION=$yerothVersionVal YEROTH_LANGUAGE=$languageVal ${YEROTH_VIRTUAL_KEYBOARD_OPTIONS}"
