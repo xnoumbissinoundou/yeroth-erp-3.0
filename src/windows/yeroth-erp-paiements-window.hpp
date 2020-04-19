@@ -27,7 +27,9 @@ class YerothLogger;
 
 class QProcess;
 
-class YerothPaiementsWindow : public YerothWindowsCommons, private Ui_YerothPaiementsWindow
+class YerothPaiementsWindow : public YerothWindowsCommons,
+							  private Ui_YerothPaiementsWindow,
+							  public YerothAbstractClassYerothSearchWindow
 {
     Q_OBJECT
 
@@ -47,11 +49,6 @@ public:
 	{
 		delete _logger;
 	}
-
-    inline bool isCurrentlyFiltered()
-    {
-    	return _currentlyFiltered;
-    }
 
 	inline virtual QToolBar * getQMainWindowToolBar()
 	{
@@ -141,13 +138,6 @@ public slots:
 
     void refineYerothLineEdits();
 
-    void rechercher(bool clearPaiementsRecherche = false);
-
-    inline void paiementsRecherche()
-    {
-    	this->rechercher(false);
-    }
-
     void reinitialiser_elements_filtrage();
 
     void reinitialiser_recherche();
@@ -170,6 +160,8 @@ protected slots:
 
    	virtual void slot_reinitialiser_champs_db_visibles();
 
+	virtual void textChangedSearchLineEditsQCompleters();
+
 protected:
 
 	virtual void reinitialiser_champs_db_visibles();
@@ -178,21 +170,17 @@ protected:
 
     virtual void setupShortcuts();
 
+    virtual void set_filtrer_font();
+
 private slots:
 
 	bool filtrer_paiements();
 
 private:
 
-	void set_filtrer_font();
-
-	void setCurrentlyFiltered(bool currentlyFiltered);
-
     void populateComboBoxes();
 
     void setupLineEdits();
-
-    void setupLineEditsQCompleters();
 
     void clear_all_fields();
 
@@ -205,19 +193,15 @@ private:
 
     static const QString 	_WINDOW_TITLE;
 
-    YerothLogger				*_logger;
+    YerothLogger			*_logger;
 
     QProcess 				*_aProcess;
 
     int 				 	_currentTabView;
 
-    bool					_currentlyFiltered;
-
     QFont 					*_pushButton_paiements_filtrer_font;
 
     QString					_paiementsDateFilter;
-
-    QString					_searchFilter;
 
     YerothSqlTableModel 	*_curPaiementsTableModel;
 };

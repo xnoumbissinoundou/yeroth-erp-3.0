@@ -9,6 +9,78 @@
 #include "src/utils/yeroth-erp-database-table-column.hpp"
 
 
+void YerothAbstractClassYerothSearchWindow::setupLineEditsQCompleters(QObject *aThis,
+																	  QString aConditionStr)
+{
+    QString correspondingDBFieldKeyValue;
+
+    {
+    	QMapIterator <YerothLineEdit **, QString> it(_lineEditsToANDContentForSearch);
+
+    	YerothLineEdit *aYerothLineEdit = 0;
+
+    	while (it.hasNext())
+    	{
+    		it.next();
+
+    		aYerothLineEdit = *it.key();
+
+    		correspondingDBFieldKeyValue = it.value();
+
+    		if (0 != aYerothLineEdit)
+    		{
+    			if (!correspondingDBFieldKeyValue.isEmpty())
+    			{
+    				if (!YerothUtils::isEqualCaseInsensitive(correspondingDBFieldKeyValue,
+    						YerothDatabaseTableColumn::REFERENCE))
+    				{
+    					aYerothLineEdit->
+						setupMyStaticQCompleter(_dbYerothSqlTableName,
+								correspondingDBFieldKeyValue,
+								false,
+								true,
+								aConditionStr);
+    				}
+    				else
+    				{
+    					aYerothLineEdit->
+						setupMyStaticQCompleter(_dbYerothSqlTableName,
+								correspondingDBFieldKeyValue,
+								false,
+								false);
+    				}
+    			}
+
+    			QObject::connect(aYerothLineEdit,
+    							 SIGNAL(textChanged(const QString &)),
+								 aThis,
+								 SLOT(textChangedSearchLineEditsQCompleters()));
+    		}
+    	}
+    }
+
+    {
+    	YerothComboBox *aYerothComboBox = 0;
+
+    	QMapIterator <YerothComboBox **, QString> it(_comboBoxesToANDContentForSearch);
+
+    	while (it.hasNext())
+    	{
+    		it.next();
+
+    		aYerothComboBox = *it.key();
+
+    		if (0 != aYerothComboBox)
+    		{
+    			QObject::connect(aYerothComboBox,
+    		    				 SIGNAL(currentTextChanged(const QString &)),
+								 aThis,
+								 SLOT(textChangedSearchLineEditsQCompleters()));
+    		}
+    	}
+    }
+}
+
 
 void YerothAbstractClassYerothSearchWindow::setCurrentlyFiltered(bool currentlyFiltered)
 {
@@ -33,56 +105,6 @@ void YerothAbstractClassYerothSearchWindow::clearLineEditsQCompleters()
     	if (0 != aYerothLineEdit)
     	{
     		aYerothLineEdit->clear();
-    	}
-    }
-}
-
-
-void YerothAbstractClassYerothSearchWindow::setupLineEditsQCompleters(QObject *aThis,
-																	  QString aConditionStr)
-{
-	QMapIterator <YerothLineEdit **, QString> it(_lineEditsToANDContentForSearch);
-
-    YerothLineEdit *aYerothLineEdit = 0;
-
-    QString correspondingDBFieldKeyValue;
-
-    while (it.hasNext())
-    {
-        it.next();
-
-        aYerothLineEdit = *it.key();
-
-        correspondingDBFieldKeyValue = it.value();
-
-    	if (0 != aYerothLineEdit)
-    	{
-    		if (!correspondingDBFieldKeyValue.isEmpty())
-    		{
-    			if (!YerothUtils::isEqualCaseInsensitive(correspondingDBFieldKeyValue,
-    													 YerothDatabaseTableColumn::REFERENCE))
-    			{
-        			aYerothLineEdit->
-    					setupMyStaticQCompleter(_dbYerothSqlTableName,
-    											correspondingDBFieldKeyValue,
-												false,
-												true,
-												aConditionStr);
-    			}
-    			else
-    			{
-        			aYerothLineEdit->
-    					setupMyStaticQCompleter(_dbYerothSqlTableName,
-    											correspondingDBFieldKeyValue,
-												false,
-												false);
-    			}
-    		}
-
-    		QObject::connect(aYerothLineEdit,
-    						 SIGNAL(textChanged(const QString &)),
-							 aThis,
-							 SLOT(textChangedSearchLineEditsQCompleters()));
     	}
     }
 }

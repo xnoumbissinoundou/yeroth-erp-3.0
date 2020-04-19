@@ -8,6 +8,8 @@
 #define SRC_UTILS_WINDOWS_YEROTH_ERP_ABSTRACT_CLASS_YEROTHSEARCH_WINDOW_HPP_
 
 
+#include "src/widgets/yeroth-erp-combo-box.hpp"
+
 #include "src/widgets/yeroth-erp-line-edit.hpp"
 
 
@@ -18,6 +20,7 @@
 #include <QtCore/QString>
 
 
+class YerothComboBox;
 class YerothLineEdit;
 
 
@@ -40,6 +43,18 @@ public:
 	{
 	}
 
+protected slots:
+
+	inline virtual void setupLineEditsQCompleters(QObject *aThis)
+	{
+		setupLineEditsQCompleters(aThis, YerothUtils::EMPTY_STRING);
+	}
+
+	virtual void setupLineEditsQCompleters(QObject *aThis,
+									   	   QString aConditionStr);
+
+	virtual void textChangedSearchLineEditsQCompleters() = 0;
+
 protected:
 
 	inline virtual void setYerothSqlTableModel(YerothSqlTableModel *aYerothSqlTableModel)
@@ -61,22 +76,11 @@ protected:
 
 	virtual void clearLineEditsQCompleters();
 
-	inline virtual void setupLineEditsQCompleters(QObject *aThis)
-	{
-		setupLineEditsQCompleters(aThis, YerothUtils::EMPTY_STRING);
-	}
-
-	virtual void setupLineEditsQCompleters(QObject *aThis,
-										   QString aConditionStr);
-
 	virtual void resetLineEditsQCompleters(QObject *aThis);
 
 	inline virtual void set_filtrer_font()
 	{
 	}
-
-	virtual void textChangedSearchLineEditsQCompleters() = 0;
-
 
     bool								_currentlyFiltered;
 
@@ -85,6 +89,8 @@ protected:
 	QString								_dbYerothSqlTableName;
 
 	YerothSqlTableModel 				*_yerothSqlTableModel;
+
+	QMap<YerothComboBox **, QString> 	_comboBoxesToANDContentForSearch;
 
 	QMap<YerothLineEdit **, QString> 	_lineEditsToANDContentForSearch;
 };

@@ -53,18 +53,17 @@ const QString YerothPaiementsWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 -
 
 YerothPaiementsWindow::YerothPaiementsWindow()
 :YerothWindowsCommons(YerothPaiementsWindow::_WINDOW_TITLE),
+ YerothAbstractClassYerothSearchWindow(_allWindows->PAIEMENTS),
  _logger(new YerothLogger("YerothPaiementsWindow")),
  _aProcess(0),
  _currentTabView(0),
- _currentlyFiltered(false),
  _pushButton_paiements_filtrer_font(0),
  _paiementsDateFilter(YerothUtils::EMPTY_STRING),
- _searchFilter(YerothUtils::EMPTY_STRING),
  _curPaiementsTableModel(&_allWindows->getSqlTableModel_paiements())
 {
     setupUi(this);
 
-    this->mySetupUi(this);
+    mySetupUi(this);
 
     QMESSAGE_BOX_STYLE_SHEET =
         QString("QMessageBox {background-color: rgb(%1);}").arg(COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
@@ -77,6 +76,23 @@ YerothPaiementsWindow::YerothPaiementsWindow()
     	_DBFieldNamesToPrintLeftAligned.append(columnIndexTypeDePaiement);
     }
 
+
+    _lineEditsToANDContentForSearch.insert(&lineEdit_paiements_terme_recherche,
+    		YerothUtils::EMPTY_STRING);
+
+    _lineEditsToANDContentForSearch.insert(&lineEdit_paiements_reference,
+    		YerothDatabaseTableColumn::REFERENCE);
+
+    _lineEditsToANDContentForSearch.insert(&lineEdit_paiements_nom_entreprise,
+    		YerothDatabaseTableColumn::NOM_ENTREPRISE);
+
+    _comboBoxesToANDContentForSearch.insert(&comboBox_paiements_intitule_du_compte_bancaire,
+    		YerothDatabaseTableColumn::INTITULE_DU_COMPTE_BANCAIRE);
+
+    _comboBoxesToANDContentForSearch.insert(&comboBox_paiements_type_de_paiement,
+    		YerothDatabaseTableColumn::TYPE_DE_PAIEMENT);
+
+
     reinitialiser_champs_db_visibles();
 
     textEdit_description->setYerothEnabled(false);
@@ -85,7 +101,7 @@ YerothPaiementsWindow::YerothPaiementsWindow()
 
     setupLineEdits();
 
-    setupLineEditsQCompleters();
+    setupLineEditsQCompleters((QObject *)this);
 
     setupDateTimeEdits();
 
@@ -127,10 +143,12 @@ YerothPaiementsWindow::YerothPaiementsWindow()
 #endif
 
     connect(tabWidget_historique_paiements, SIGNAL(currentChanged(int)), this, SLOT(handleCurrentChanged(int)));
+
     connect(tableView_paiements, SIGNAL(doubleClicked(const QModelIndex &)), this, SLOT(afficher_paiements_detail()));
+
     connect(tableView_paiements, SIGNAL(activated(const QModelIndex &)), this, SLOT(afficher_paiements_detail()));
 
-    this->setupShortcuts();
+    setupShortcuts();
 }
 
 
@@ -202,34 +220,12 @@ bool YerothPaiementsWindow::filtrer_paiements()
 }
 
 
-void YerothPaiementsWindow::set_filtrer_font()
-{
-    //_logger->log("set_filtrer_font");
-
-    if (isCurrentlyFiltered())
-    {
-    	_pushButton_paiements_filtrer_font->setUnderline(true);
-    }
-    else
-    {
-    	_pushButton_paiements_filtrer_font->setUnderline(false);
-    }
-
-    pushButton_paiements_filtrer->setFont(*_pushButton_paiements_filtrer_font);
-}
-
-
-void YerothPaiementsWindow::setCurrentlyFiltered(bool currentlyFiltered)
-{
-	_currentlyFiltered = currentlyFiltered;
-
-	set_filtrer_font();
-}
-
-
 void YerothPaiementsWindow::populateComboBoxes()
 {
 	_logger->log("populateComboBoxes");
+
+	comboBox_paiements_intitule_du_compte_bancaire->populateComboBoxRawString(_allWindows->COMPTES_BANCAIRES,
+																			  YerothDatabaseTableColumn::INTITULE_DU_COMPTE_BANCAIRE);
 
 	comboBox_paiements_type_de_paiement->setupPopulateNORawString(_allWindows->TYPE_DE_PAIEMENT,
 																   YerothDatabaseTableColumn::TYPE_DE_PAIEMENT,
@@ -266,12 +262,10 @@ void YerothPaiementsWindow::setupLineEdits()
 {
     _logger->log("setupLineEdits");
 
-    lineEdit_paiements_recherche->enableForSearch(QObject::tr("nom de l'entreprise"));
-
+    lineEdit_paiements_terme_recherche->enableForSearch(QObject::trUtf8("terme à rechercher"));
     lineEdit_paiements_reference->enableForSearch(QObject::trUtf8("référence"));
-    lineEdit_paiements_nom_encaisseur->enableForSearch(QObject::tr("nom de l'encaisseur (l'encaisseuse)"));
     lineEdit_paiements_nom_entreprise->enableForSearch(QObject::tr("nom de l'entreprise"));
-    lineEdit_paiements_numero_bon_paiement->enableForSearch(QObject::trUtf8("numéro du bon de paiement"));
+
 
     lineEdit_details_de_paiement_numero_du_bon_de_paiement->setYerothEnabled(false);
     lineEdit_details_de_paiement_nom_de_lentreprise->setYerothEnabled(false);
@@ -282,56 +276,174 @@ void YerothPaiementsWindow::setupLineEdits()
     lineEdit_details_de_paiement_montant_paye->setYerothEnabled(false);
     lineEdit_details_de_paiement_heure_de_paiement->setYerothEnabled(false);
 
-    lineEdit_paiements_recherche->setFocus();
+    lineEdit_paiements_terme_recherche->setFocus();
 
-    connect(lineEdit_paiements_recherche, SIGNAL(textChanged(const QString &)), this, SLOT(paiementsRecherche()));
-    connect(comboBox_paiements_type_de_paiement, SIGNAL(currentTextChanged(const QString &)), this, SLOT(rechercher()));
-    connect(lineEdit_paiements_reference, SIGNAL(textChanged(const QString &)), this, SLOT(rechercher()));
-    connect(lineEdit_paiements_nom_encaisseur, SIGNAL(textChanged(const QString &)), this, SLOT(rechercher()));
-    connect(lineEdit_paiements_nom_entreprise, SIGNAL(textChanged(const QString &)), this, SLOT(rechercher()));
-    connect(lineEdit_paiements_numero_bon_paiement, SIGNAL(textChanged(const QString &)), this, SLOT(rechercher()));
+    connect(comboBox_paiements_type_de_paiement,
+    		SIGNAL(currentTextChanged(const QString &)),
+			this,
+			SLOT(textChangedSearchLineEditsQCompleters()));
 }
 
-void YerothPaiementsWindow::setupLineEditsQCompleters()
-{
-    lineEdit_paiements_recherche->
-		setupMyStaticQCompleter(_allWindows->PAIEMENTS,
-								YerothDatabaseTableColumn::NOM_ENTREPRISE,
-								_paiementsDateFilter);
-
-    lineEdit_paiements_reference->
-		setupMyStaticQCompleter(_allWindows->PAIEMENTS,
-								YerothDatabaseTableColumn::REFERENCE,
-								_paiementsDateFilter);
-
-    lineEdit_paiements_nom_encaisseur->
-		setupMyStaticQCompleter(_allWindows->PAIEMENTS,
-								YerothDatabaseTableColumn::NOM_ENCAISSEUR,
-								_paiementsDateFilter);
-
-    lineEdit_paiements_nom_entreprise->
-		setupMyStaticQCompleter(_allWindows->PAIEMENTS,
-								YerothDatabaseTableColumn::NOM_ENTREPRISE,
-								_paiementsDateFilter);
-
-    lineEdit_paiements_numero_bon_paiement->
-		setupMyStaticQCompleter(_allWindows->PAIEMENTS,
-								YerothDatabaseTableColumn::ID,
-								_paiementsDateFilter);
-}
 
 void YerothPaiementsWindow::setupShortcuts()
 {
-    this->setupShortcutActionMessageDaide 	(*actionAppeler_aide);
-    this->setupShortcutActionAfficherPDF	(*actionAfficherPDF);
-    this->setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
+    setupShortcutActionMessageDaide 	(*actionAppeler_aide);
+    setupShortcutActionAfficherPDF	(*actionAfficherPDF);
+    setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
+}
+
+
+void YerothPaiementsWindow::set_filtrer_font()
+{
+    if (isCurrentlyFiltered())
+    {
+    	_pushButton_paiements_filtrer_font->setUnderline(true);
+    }
+    else
+    {
+    	_pushButton_paiements_filtrer_font->setUnderline(false);
+    }
+
+    pushButton_paiements_filtrer->setFont(*_pushButton_paiements_filtrer_font);
 }
 
 
 void YerothPaiementsWindow::slot_reinitialiser_champs_db_visibles()
 {
 	reinitialiser_champs_db_visibles();
-	rechercher();
+	lister_les_elements_du_tableau();
+}
+
+
+void YerothPaiementsWindow::textChangedSearchLineEditsQCompleters()
+{
+	lineEdit_paiements_element_de_paiements_resultat->clear();
+
+    setCurrentlyFiltered(false);
+
+    clearSearchFilter();
+
+    QString searchTerm(lineEdit_paiements_terme_recherche->text());
+
+    if (!searchTerm.isEmpty())
+    {
+        QStringList searchTermList = searchTerm.split(QRegExp("\\s+"));
+
+        QString partSearchTerm;
+
+        int lastIdx = searchTermList.size() - 1;
+
+        for (int k = 0; k < searchTermList.size(); ++k)
+        {
+        	partSearchTerm = searchTermList.at(k);
+        	//qDebug() << "++ searchTermList: " << partSearchTerm;
+
+        	_searchFilter.append(QString("(%1 OR %2 OR %3)")
+        							.arg(GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::NOTES, partSearchTerm),
+        								 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::REFERENCE, partSearchTerm),
+										 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::NOM_ENTREPRISE, partSearchTerm)));
+
+        	if (k != lastIdx)
+        	{
+        		_searchFilter.append(" AND ");
+        	}
+        }
+    }
+
+    QString correspondingDBFieldKeyValue;
+
+    QString aTableColumnFieldContentForANDSearch;
+
+    {
+    	YerothLineEdit *aYerothLineEdit = 0;
+
+    	QMapIterator <YerothLineEdit **, QString> it(_lineEditsToANDContentForSearch);
+
+    	while (it.hasNext())
+    	{
+    		it.next();
+
+    		aYerothLineEdit = *it.key();
+
+    		correspondingDBFieldKeyValue = it.value();
+
+    		if (0 != aYerothLineEdit)
+    		{
+    			aTableColumnFieldContentForANDSearch = aYerothLineEdit->text();
+
+    			if (!correspondingDBFieldKeyValue.isEmpty() &&
+    					!aTableColumnFieldContentForANDSearch.isEmpty()	)
+    			{
+    				if (!_searchFilter.isEmpty())
+    				{
+    					_searchFilter.append(" AND ");
+    				}
+
+    				_searchFilter.append(GENERATE_SQL_IS_STMT(correspondingDBFieldKeyValue,
+    						aTableColumnFieldContentForANDSearch));
+    			}
+    		}
+    	}
+    }
+
+    {
+    	QString curSearchDBStr;
+
+    	YerothComboBox *aYerothComboBox = 0;
+
+    	QMapIterator <YerothComboBox **, QString> it(_comboBoxesToANDContentForSearch);
+
+    	while (it.hasNext())
+    	{
+    		it.next();
+
+    		aYerothComboBox = *it.key();
+
+    		correspondingDBFieldKeyValue = it.value();
+
+    		if (0 != aYerothComboBox)
+    		{
+    			aTableColumnFieldContentForANDSearch = aYerothComboBox->currentText();
+
+    			if (!correspondingDBFieldKeyValue.isEmpty() &&
+    				!aTableColumnFieldContentForANDSearch.isEmpty()	)
+    			{
+    				if (!_searchFilter.isEmpty())
+    				{
+    					_searchFilter.append(" AND ");
+    				}
+
+    				if (aYerothComboBox == comboBox_paiements_intitule_du_compte_bancaire)
+    				{
+    					curSearchDBStr = aTableColumnFieldContentForANDSearch;
+    				}
+    				else if (aYerothComboBox == comboBox_paiements_type_de_paiement)
+    				{
+        				int typedepaiement = YerothUtils::getComboBoxDatabaseQueryValue(aTableColumnFieldContentForANDSearch,
+        						YerothUtils::_typedepaiementToUserViewString);
+
+        				curSearchDBStr = QString::number(typedepaiement);
+    				}
+
+    				_searchFilter.append(GENERATE_SQL_IS_STMT(correspondingDBFieldKeyValue,
+    														  curSearchDBStr));
+    			}
+    		}
+    	}
+    }
+
+    _yerothSqlTableModel->yerothSetFilter(_searchFilter);
+
+    if (_yerothSqlTableModel->select())
+    {
+    	setLastListerSelectedRow(0);
+    	lister_les_elements_du_tableau();
+    }
+    else
+    {
+        qDebug() << QString("++ YerothPaiementsWindow::textChangedSearchLineEditsQCompleters(): %1")
+        				.arg(_yerothSqlTableModel->lastError().text());
+    }
 }
 
 
@@ -405,7 +517,7 @@ void YerothPaiementsWindow::setupDateTimeEdits()
 
 void YerothPaiementsWindow::deconnecter_utilisateur()
 {
-    this->clear_all_fields();
+    clear_all_fields();
     YerothWindowsCommons::deconnecter_utilisateur();
 }
 
@@ -561,11 +673,11 @@ bool YerothPaiementsWindow::export_csv_file()
 }
 
 void YerothPaiementsWindow::getJournalDesPaiementsTexTableString(QString & texTable_in_out,
-        												  QStandardItemModel & tableStandardItemModel,
-														  QList<int> &dbFieldNameOfTypeString,
-														  QList<int> &columnsToIgnore,
-														  int fromRowIndex,
-														  int toRowIndex, bool lastPage)
+        												  	  	 QStandardItemModel & tableStandardItemModel,
+																 QList<int> &dbFieldNameOfTypeString,
+																 QList<int> &columnsToIgnore,
+																 int fromRowIndex,
+																 int toRowIndex, bool lastPage)
 {
     if (lastPage && toRowIndex > 20)
     {
@@ -633,9 +745,9 @@ void YerothPaiementsWindow::getJournalDesPaiementsTexTableString(QString & texTa
             QString itemText(item->text());
 
             YerothUtils::handleTexTableItemText(tableColumnCount,
-                                               texTable_in_out,
-                                               k,
-                                               itemText);
+                                                texTable_in_out,
+												k,
+												itemText);
         }
     }
 
@@ -677,6 +789,7 @@ void YerothPaiementsWindow::getJournalDesPaiementsTexTableString(QString & texTa
                     itemText.truncate(YerothERPConfig::max_string_display_length);
                     itemText.append(".");
                 }
+
                 YerothUtils::handleTexTableItemText(tableColumnCount,
                 									texTable_in_out,
 													k,
@@ -733,9 +846,9 @@ bool YerothPaiementsWindow::imprimer_document()
 
     int pageNumber = qCeil(tableModelRowCount / MAX_TABLE_ROW_COUNT);
 
-    this->getJournalDesPaiementsTexTableString(texTable,
+    getJournalDesPaiementsTexTableString(texTable,
     										   *tableModel,
-											   this->_DBFieldNamesToPrintLeftAligned,
+											   _DBFieldNamesToPrintLeftAligned,
 											   columnsToIgnore,
 											   0,
 											   (20 >= tableModelRowCount) ? tableModelRowCount : 20,
@@ -748,9 +861,9 @@ bool YerothPaiementsWindow::imprimer_document()
         int k = 1;
         do
         {
-            this->getJournalDesPaiementsTexTableString(texTable,
+            getJournalDesPaiementsTexTableString(texTable,
             										   *tableModel,
-													   this->_DBFieldNamesToPrintLeftAligned,
+													   _DBFieldNamesToPrintLeftAligned,
 													   columnsToIgnore,
                                                        (fromRowIndex >=
                                                             tableModelRowCount) ? tableModelRowCount : fromRowIndex,
@@ -798,9 +911,7 @@ bool YerothPaiementsWindow::imprimer_document()
 
     QString yerothFiltres;
 
-    YerothUtils::addFiltre(lineEdit_paiements_nom_encaisseur, QObject::trUtf8("encaisseur"), yerothFiltres);
     YerothUtils::addFiltre(lineEdit_paiements_nom_entreprise, QObject::trUtf8("entreprise"), yerothFiltres);
-    YerothUtils::addFiltre(lineEdit_paiements_numero_bon_paiement, QObject::trUtf8("Nr. bon"), yerothFiltres);
 
     int lastIndexOfComa = yerothFiltres.lastIndexOf(",");
 
@@ -841,21 +952,21 @@ bool YerothPaiementsWindow::imprimer_document()
 
 void YerothPaiementsWindow::resetFilter(YerothSqlTableModel * historiquePaiementsTableModel)
 {
-    this->_curPaiementsTableModel = historiquePaiementsTableModel;
+    _curPaiementsTableModel = historiquePaiementsTableModel;
 
-    if (this->_curPaiementsTableModel)
+    if (_curPaiementsTableModel)
     {
-        this->_curPaiementsTableModel->resetFilter();
+        _curPaiementsTableModel->resetFilter();
     }
 
-    lineEdit_paiements_recherche->myClear();
+    lineEdit_paiements_terme_recherche->myClear();
+
+    comboBox_paiements_intitule_du_compte_bancaire->resetYerothComboBox();
 
     comboBox_paiements_type_de_paiement->resetYerothComboBox();
 
     lineEdit_paiements_reference->myClear();
-    lineEdit_paiements_nom_encaisseur->myClear();
     lineEdit_paiements_nom_entreprise->myClear();
-    lineEdit_paiements_numero_bon_paiement->myClear();
 
     dateEdit_paiements_debut->reset();
     dateEdit_paiements_fin->reset();
@@ -939,37 +1050,24 @@ void YerothPaiementsWindow::rendreVisible(YerothSqlTableModel * stocksTableModel
 {
     _logger->log("rendreVisible");
 
+    setYerothSqlTableModel(_curPaiementsTableModel);
+
     _curStocksTableModel = stocksTableModel;
 
     _curPaiementsTableModel = &_allWindows->getSqlTableModel_paiements();
 
-    setupLineEditsQCompleters();
+    setupLineEditsQCompleters((QObject *)this);
 
     tabWidget_historique_paiements->setCurrentIndex(TableauDesPaiements);
 
-    lineEdit_paiements_numero_bon_paiement->setYerothEnabled(true);
     lineEdit_paiements_nom_entreprise->setYerothEnabled(true);
     lineEdit_paiements_reference->setYerothEnabled(true);
-    lineEdit_paiements_nom_encaisseur->setYerothEnabled(true);
-
-    YerothPOSUser *aUser = _allWindows->getUser();
-
-    if (0 != aUser && aUser->isVendeur())
-    {
-    	lineEdit_paiements_nom_encaisseur->setYerothEnabled(false);
-    	lineEdit_paiements_nom_encaisseur->setText(aUser->nom_complet());
-    }
-    else
-    {
-    	lineEdit_paiements_nom_encaisseur->clear();
-    	lineEdit_paiements_nom_encaisseur->setYerothEnabled(true);
-    }
 
     setVisible(true);
 
-    rechercher();
+    lister_les_elements_du_tableau();
 
-    lineEdit_paiements_recherche->setFocus();
+    lineEdit_paiements_terme_recherche->setFocus();
 }
 
 void YerothPaiementsWindow::afficher_paiements_detail()
@@ -1029,12 +1127,15 @@ void YerothPaiementsWindow::reinitialiser_recherche()
     //  _logger->log("reinitialiser_recherche");
     lineEdit_paiements_element_de_paiements_resultat->clear();
 
-    setCurrentlyFiltered(false);
+    resetFilter(&_allWindows->getSqlTableModel_paiements());
 
-    this->resetFilter(&_allWindows->getSqlTableModel_paiements());
-    this->rechercher();
-    this->lister_les_elements_du_tableau();
-    lineEdit_paiements_recherche->setFocus();
+    textChangedSearchLineEditsQCompleters();
+
+    resetLineEditsQCompleters((QObject *)this);
+
+    lister_les_elements_du_tableau();
+
+    lineEdit_paiements_terme_recherche->setFocus();
 }
 
 
@@ -1048,119 +1149,8 @@ void YerothPaiementsWindow::refineYerothLineEdits()
 										 YerothDatabaseTableColumn::DATE_PAIEMENT,
 										 DATE_TO_DB_FORMAT_STRING(dateEdit_paiements_fin->date())));
 
-	setupLineEditsQCompleters();
+	setupLineEditsQCompleters((QObject *)this);
 
-	rechercher();
+	textChangedSearchLineEditsQCompleters();
 }
 
-
-void YerothPaiementsWindow::rechercher(bool clearPaiementsRecherche)
-{
-    //_logger->log("rechercher");
-
-    lineEdit_paiements_element_de_paiements_resultat->clear();
-
-    setCurrentlyFiltered(false);
-
-	_searchFilter.clear();
-
-    if (clearPaiementsRecherche)
-    {
-    	comboBox_paiements_type_de_paiement->resetYerothComboBox();
-
-        lineEdit_paiements_recherche->clear();
-        lineEdit_paiements_reference->clear();
-        lineEdit_paiements_nom_encaisseur->clear();
-        lineEdit_paiements_nom_entreprise->clear();
-        lineEdit_paiements_numero_bon_paiement->clear();
-    }
-
-    _searchFilter.append(_paiementsDateFilter);
-
-    QString nomEntreprise(lineEdit_paiements_recherche->text());
-
-    if (nomEntreprise.isEmpty())
-    {
-        QString reference(lineEdit_paiements_reference->text());
-
-        if (!reference.isEmpty())
-        {
-            if (!_searchFilter.isEmpty())
-            {
-                _searchFilter.append(" AND ");
-            }
-            _searchFilter.append(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::REFERENCE, reference));
-        }
-
-        QString nom_encaisseur(lineEdit_paiements_nom_encaisseur->text());
-
-        if (!nom_encaisseur.isEmpty())
-        {
-            if (!_searchFilter.isEmpty())
-            {
-                _searchFilter.append(" AND ");
-            }
-            _searchFilter.append(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::NOM_ENCAISSEUR, nom_encaisseur));
-        }
-
-
-        QString nom_entreprise(lineEdit_paiements_nom_entreprise->text());
-
-        if (!nom_entreprise.isEmpty())
-        {
-            if (!_searchFilter.isEmpty())
-            {
-                _searchFilter.append(" AND ");
-            }
-            _searchFilter.append(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::NOM_ENTREPRISE, nom_entreprise));
-        }
-
-        int typedepaiement = YerothUtils::getComboBoxDatabaseQueryValue(comboBox_paiements_type_de_paiement->currentText(),
-        																YerothUtils::_typedepaiementToUserViewString);
-
-        if (YerothUtils::VERSEMENT_INDEFINI != typedepaiement)
-        {
-            if (!_searchFilter.isEmpty())
-            {
-                _searchFilter.append(" AND ");
-            }
-            _searchFilter.append(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::TYPE_DE_PAIEMENT, QString::number(typedepaiement)));
-        }
-
-        QString numero_du_bon_de_paiement(lineEdit_paiements_numero_bon_paiement->text());
-
-        if (!numero_du_bon_de_paiement.isEmpty())
-        {
-            if (!_searchFilter.isEmpty())
-            {
-                _searchFilter.append(" AND ");
-            }
-            _searchFilter.append(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::ID, numero_du_bon_de_paiement));
-        }
-    }
-    else
-    {
-        QString searchNomEntreprise(lineEdit_paiements_recherche->text());
-
-        if (!_searchFilter.isEmpty())
-        {
-            _searchFilter.append(QString(" AND (%1 LIKE '%2')")
-            						.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
-            								searchNomEntreprise));
-        }
-    }
-
-    setYerothPaiementsFilter();
-
-    if (_curPaiementsTableModel->easySelect() > 0)
-    {
-        this->setLastListerSelectedRow(0);
-    }
-    else
-    {
-        _logger->log("rechercher",
-                     QString("reason for failing: %1").arg(_curPaiementsTableModel->lastError().text()));
-    }
-
-    lister_les_elements_du_tableau();
-}

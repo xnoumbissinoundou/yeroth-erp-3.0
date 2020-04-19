@@ -701,6 +701,7 @@ void YerothStocksWindow::definirCaissier()
 
     desactiverComboBoxStrategieDeGestionDesStocks();
 
+    pushButton_reinitialiser->disable(this);
     pushButton_stocks_filtrer->disable(this);
     pushButton_stocks_reinitialiser_filtre->disable(this);
     pushButton_entrer->disable(this);
@@ -736,6 +737,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
     activerComboBoxStrategieDeGestionDesStocks();
 
+    pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
     pushButton_stocks_filtrer->enable(this, SLOT(filtrer_stocks()));
     pushButton_stocks_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
     pushButton_entrer->enable(this, SLOT(entrer()));
@@ -773,6 +775,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     activerComboBoxStrategieDeGestionDesStocks();
 
+    pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
     pushButton_stocks_filtrer->enable(this, SLOT(filtrer_stocks()));
     pushButton_stocks_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
     pushButton_entrer->disable(this);
@@ -810,6 +813,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     activerComboBoxStrategieDeGestionDesStocks();
 
+    pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
     pushButton_stocks_filtrer->enable(this, SLOT(filtrer_stocks()));
     pushButton_stocks_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
     pushButton_entrer->enable(this, SLOT(entrer()));
@@ -868,6 +872,7 @@ void YerothStocksWindow::definirPasDeRole()
 
     desactiverComboBoxStrategieDeGestionDesStocks();
 
+    pushButton_reinitialiser->disable(this);
     pushButton_stocks_filtrer->disable(this);
     pushButton_stocks_reinitialiser_filtre->disable(this);
     pushButton_entrer->disable(this);
