@@ -74,7 +74,7 @@ public:
 
 	inline void setNumeroCompteBancaire(QString numero_comptebancaire)
 	{
-		_numero_comptebancaire = numero_comptebancaire;
+		_reference_comptebancaire = numero_comptebancaire;
 	}
 
 	inline void setActiviteEntreprise(QString activite_entreprise)
@@ -164,7 +164,7 @@ public:
 
 	inline QString getNumeroCompteBancaire() const
 	{
-		return _numero_comptebancaire;
+		return _reference_comptebancaire;
 	}
 
 	inline QString getAgenceCompteBancaire() const
@@ -201,7 +201,7 @@ private:
 	QString _numero_contribuable;
 	QString _secteurs_activites;
 	QString _agence_comptebancaire;
-	QString _numero_comptebancaire;
+	QString _reference_comptebancaire;
 	QString _reference_registre_chambre_du_commerce;
 };
 

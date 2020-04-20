@@ -38,7 +38,7 @@ const QString YerothDatabaseTableColumn::REFERENCE_RECU_DACHAT			("reference_rec
 const QString YerothDatabaseTableColumn::PRIX_DACHAT					("prix_dachat");
 const QString YerothDatabaseTableColumn::PRIX_VENTE						("prix_vente");
 const QString YerothDatabaseTableColumn::REFERENCE_DU_COMPTE_BANCAIRE	("reference_du_compte_bancaire");
-const QString YerothDatabaseTableColumn::AGENCE_DE_COMPTE_BANCAIRE		("agence_de_compte_bancaire");
+const QString YerothDatabaseTableColumn::AGENCE_DU_COMPTE_BANCAIRE		("agence_du_compte_bancaire");
 const QString YerothDatabaseTableColumn::INTITULE_DU_COMPTE_BANCAIRE	("intitule_du_compte_bancaire");
 const QString YerothDatabaseTableColumn::INSTITUT_BANCAIRE				("institut_bancaire");
 const QString YerothDatabaseTableColumn::DESCRIPTION_DU_COMPTE_BANCAIRE	("description_du_compte_bancaire");
@@ -183,7 +183,7 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REFERENCE_DU_COMPTE_BANCAIRE, 		QObject::trUtf8("Réf. compte bancaire"));
 
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::AGENCE_DE_COMPTE_BANCAIRE,	QObject::tr("Agence bancaire"));
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::AGENCE_DU_COMPTE_BANCAIRE,	QObject::tr("Agence bancaire"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::INTITULE_DU_COMPTE_BANCAIRE, 	QObject::trUtf8("Intitulé compte bancaire"));
 

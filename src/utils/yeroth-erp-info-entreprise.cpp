@@ -37,7 +37,7 @@ void YerothInfoEntreprise::updateInfoEntrepriseFromDB()
 		_numero_contribuable 		= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 10) );
 		_secteurs_activites 		= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 11) );
 		_agence_comptebancaire 		= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 12) );
-		_numero_comptebancaire		= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 13) );
+		_reference_comptebancaire	= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 13) );
 		_reference_registre_chambre_du_commerce
 									= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 14) );
 	}

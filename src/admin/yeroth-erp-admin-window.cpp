@@ -83,7 +83,7 @@ YerothAdminWindow::YerothAdminWindow()
 {
     setupUi(this);
 
-    this->mySetupUi(this);
+    mySetupUi(this);
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
                                        "QMessageBox QLabel {color: rgb(%2);}").
@@ -94,12 +94,12 @@ YerothAdminWindow::YerothAdminWindow()
 
     lineEdit_this_localisation->setText(_allWindows->getInfoEntreprise().getLocalisation());
 
-    _yerothAdminWindowTitleStart.append(this->windowTitle());
+    _yerothAdminWindowTitleStart.append(windowTitle());
 
     //en cours de programmation
     tabWidget_administration->setTabEnabled(MAINTENANCE, false);
 
-    this->setupValidators();
+    setupValidators();
 
     YEROTH_ERP_ADMIN_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
@@ -290,17 +290,17 @@ void YerothAdminWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 	{
 		if (aUser->isManager())
 		{
-			tabWidget_administration->setTabEnabled(5, true);
+			tabWidget_administration->setTabEnabled(DONNEES_ENTREPRISE, true);
 		}
 		else
 		{
-			tabWidget_administration->setTabEnabled(5, false);
+			tabWidget_administration->setTabEnabled(DONNEES_ENTREPRISE, false);
 		}
 	}
 
     set_colour_status_of_alert_daemon_process_buttons();
 
-    this->read_configuration();
+    read_configuration();
 
     lineEdit_localisation->setupMyStaticQCompleter(_allWindows->LOCALISATIONS, "nom_localisation", false);
 
@@ -333,14 +333,14 @@ void YerothAdminWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 
     read_entreprise_info_database_table(false);
 
-    this->setVisible(true);
+    setVisible(true);
 }
 
 void YerothAdminWindow::deconnecter_utilisateur()
 {
     _allWindows->definirPasDeRole();
     _allWindows->_mainWindow->show();
-    this->rendreInvisible();
+    rendreInvisible();
 }
 
 
@@ -385,19 +385,19 @@ void YerothAdminWindow::choix_registre_de_caisse(const QString &labelImpressionS
 void YerothAdminWindow::creer(enum AdminSujetAction selectedSujetAction)
 {
     _allWindows->_adminCreateWindow->rendreVisible(selectedSujetAction);
-    this->rendreInvisible();
+    rendreInvisible();
 }
 
 void YerothAdminWindow::lister(enum AdminSujetAction selectedSujetAction)
 {
     _allWindows->_adminListerWindow->rendreVisible(selectedSujetAction);
-    this->rendreInvisible();
+    rendreInvisible();
 }
 
 void YerothAdminWindow::modifier(enum AdminSujetAction selectedSujetAction)
 {
     _allWindows->_adminListerWindow->rendreVisible(selectedSujetAction);
-    this->rendreInvisible();
+    rendreInvisible();
 }
 
 void YerothAdminWindow::enableAllOperationsTabPushButtons()
@@ -900,10 +900,10 @@ void YerothAdminWindow::read_entreprise_info_database_table(bool initalizationVa
 		lineEdit_entreprise_secteurs_dactivites->setText(
 			QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 11) ));
 
-		lineEdit_entreprise_agence_de_compte_bancaire->setText(
+		lineEdit_entreprise_agence_du_compte_bancaire->setText(
 			QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 12) ));
 
-		lineEdit_entreprise_secteurs_numero_de_compte_bancaire->setText(
+		lineEdit_entreprise_reference_du_compte_bancaire->setText(
 			QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 13) ));
 
 		lineEdit_entreprise_reference_registre_du_commerce->setText(
@@ -1109,8 +1109,8 @@ void YerothAdminWindow::enregistrer_entreprise_info_database_table()
 		aNewEntrepriseInfoRecord.setValue(YerothDatabaseTableColumn::NUMERO_TELEPHONE_1, lineEdit_entreprise_telephone->text());
 		aNewEntrepriseInfoRecord.setValue(YerothDatabaseTableColumn::NUMERO_CONTRIBUABLE, lineEdit_entreprise_numero_de_contribuable->text());
 		aNewEntrepriseInfoRecord.setValue(YerothDatabaseTableColumn::SECTEURS_DACTIVITES, lineEdit_entreprise_secteurs_dactivites->text());
-		aNewEntrepriseInfoRecord.setValue(YerothDatabaseTableColumn::AGENCE_DE_COMPTE_BANCAIRE, lineEdit_entreprise_agence_de_compte_bancaire->text());
-		aNewEntrepriseInfoRecord.setValue(YerothDatabaseTableColumn::REFERENCE_DU_COMPTE_BANCAIRE, lineEdit_entreprise_secteurs_numero_de_compte_bancaire->text());
+		aNewEntrepriseInfoRecord.setValue(YerothDatabaseTableColumn::AGENCE_DU_COMPTE_BANCAIRE, lineEdit_entreprise_agence_du_compte_bancaire->text());
+		aNewEntrepriseInfoRecord.setValue(YerothDatabaseTableColumn::REFERENCE_DU_COMPTE_BANCAIRE, lineEdit_entreprise_reference_du_compte_bancaire->text());
 		aNewEntrepriseInfoRecord.setValue(YerothDatabaseTableColumn::REFERENCE_REGISTRE_DU_COMMERCE, lineEdit_entreprise_reference_registre_du_commerce->text());
 
 		bool recordUpdated = entreprise_info_TableModel.updateRecord(1, aNewEntrepriseInfoRecord);

@@ -35,11 +35,11 @@ public:
 	enum YerothAdminWindowTabPositionsTypes
 	{
 		CONNECTER_LOCALISATION = 0,
-		MAINTENANCE			   = 1,
-		OPERATIONS			   = 2,
-		PARAMETRES_APPLICATION = 3,
-		SYSTEME_DALERTES	   = 4,
-		DONNEES_ENTREPRISE 	   = 5
+		DONNEES_ENTREPRISE 	   = 1,
+		MAINTENANCE			   = 2,
+		OPERATIONS			   = 3,
+		PARAMETRES_APPLICATION = 4,
+		SYSTEME_DALERTES	   = 5
 	};
 
 

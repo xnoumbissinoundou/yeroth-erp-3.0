@@ -73,7 +73,7 @@ public:
 
 	static const QString REFERENCE_DU_COMPTE_BANCAIRE;
 
-	static const QString AGENCE_DE_COMPTE_BANCAIRE;
+	static const QString AGENCE_DU_COMPTE_BANCAIRE;
 
 	static const QString INTITULE_DU_COMPTE_BANCAIRE;
 

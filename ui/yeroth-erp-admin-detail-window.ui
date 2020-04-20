@@ -3496,7 +3496,7 @@
       <property name="title">
        <string>Données du compte bancaire</string>
       </property>
-      <widget class="QLabel" name="label_detail_compte_bancaire_reference_de_compte_bancaire">
+      <widget class="QLabel" name="label_detail_compte_bancaire_reference_du_compte_bancaire">
        <property name="geometry">
         <rect>
          <x>16</x>
@@ -3506,7 +3506,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>référence de compte bancaire</string>
+        <string>référence du compte bancaire</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -14589,14 +14589,14 @@ background-color: rgb(255, 255, 255);</string>
    <header>src/widgets/yeroth-erp-datetime-edit.hpp</header>
   </customwidget>
   <customwidget>
-   <class>YerothTextEdit</class>
-   <extends>QTextEdit</extends>
-   <header>src/widgets/yeroth-erp-text-edit.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>YerothComboBox</class>
    <extends>QComboBox</extends>
    <header>src/widgets/yeroth-erp-combo-box.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>YerothTextEdit</class>
+   <extends>QTextEdit</extends>
+   <header>src/widgets/yeroth-erp-text-edit.hpp</header>
   </customwidget>
   <customwidget>
    <class>YerothSpinBox</class>
