@@ -34,7 +34,7 @@
 
 const QString YerothERPClientsWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2")).
         arg(YEROTH_ERP_WINDOW_TITLE,
-            QObject::trUtf8("payer à un compte client")));
+            QObject::trUtf8("comptes clients")));
 
 YerothERPClientsWindow::YerothERPClientsWindow()
 :YerothWindowsCommons(YerothERPClientsWindow::_WINDOW_TITLE),

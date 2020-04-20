@@ -883,7 +883,7 @@
         <x>0</x>
         <y>0</y>
         <width>794</width>
-        <height>305</height>
+        <height>315</height>
        </rect>
       </property>
       <property name="palette">
@@ -1321,7 +1321,7 @@
         <x>0</x>
         <y>0</y>
         <width>794</width>
-        <height>305</height>
+        <height>315</height>
        </rect>
       </property>
       <property name="palette">
@@ -1754,7 +1754,7 @@
     <property name="geometry">
      <rect>
       <x>2</x>
-      <y>392</y>
+      <y>386</y>
       <width>58</width>
       <height>21</height>
      </rect>
@@ -1782,7 +1782,7 @@
       <x>65</x>
       <y>364</y>
       <width>111</width>
-      <height>25</height>
+      <height>21</height>
      </rect>
     </property>
     <property name="palette">
@@ -2220,7 +2220,7 @@
     <property name="geometry">
      <rect>
       <x>4</x>
-      <y>366</y>
+      <y>364</y>
       <width>58</width>
       <height>21</height>
      </rect>
@@ -2243,9 +2243,9 @@
     <property name="geometry">
      <rect>
       <x>65</x>
-      <y>390</y>
+      <y>386</y>
       <width>111</width>
-      <height>25</height>
+      <height>21</height>
      </rect>
     </property>
     <property name="palette">
@@ -2683,7 +2683,7 @@
     <property name="geometry">
      <rect>
       <x>443</x>
-      <y>366</y>
+      <y>364</y>
       <width>151</width>
       <height>21</height>
      </rect>
@@ -2707,9 +2707,9 @@
     <property name="geometry">
      <rect>
       <x>187</x>
-      <y>416</y>
+      <y>408</y>
       <width>231</width>
-      <height>25</height>
+      <height>21</height>
      </rect>
     </property>
     <property name="palette">
@@ -3149,9 +3149,9 @@ background-color: rgb(0, 0, 0); </string>
     <property name="geometry">
      <rect>
       <x>187</x>
-      <y>390</y>
+      <y>386</y>
       <width>231</width>
-      <height>25</height>
+      <height>21</height>
      </rect>
     </property>
     <property name="palette">
@@ -3593,7 +3593,7 @@ background-color: rgb(0, 0, 0); </string>
       <x>187</x>
       <y>364</y>
       <width>231</width>
-      <height>25</height>
+      <height>21</height>
      </rect>
     </property>
     <property name="palette">
@@ -4042,9 +4042,9 @@ background-color: rgb(0, 0, 0); </string>
     <property name="geometry">
      <rect>
       <x>187</x>
-      <y>442</y>
+      <y>430</y>
       <width>231</width>
-      <height>25</height>
+      <height>21</height>
      </rect>
     </property>
     <property name="palette">
@@ -4484,9 +4484,9 @@ background-color: rgb(0, 0, 0); </string>
     <property name="geometry">
      <rect>
       <x>641</x>
-      <y>465</y>
+      <y>475</y>
       <width>155</width>
-      <height>31</height>
+      <height>21</height>
      </rect>
     </property>
     <property name="palette">
@@ -4919,9 +4919,9 @@ background-color: rgb(0, 0, 0); </string>
     <property name="geometry">
      <rect>
       <x>187</x>
-      <y>468</y>
+      <y>452</y>
       <width>231</width>
-      <height>25</height>
+      <height>21</height>
      </rect>
     </property>
     <property name="palette">
@@ -5363,7 +5363,7 @@ background-color: rgb(0, 0, 0); </string>
       <x>597</x>
       <y>364</y>
       <width>200</width>
-      <height>25</height>
+      <height>21</height>
      </rect>
     </property>
     <property name="palette">

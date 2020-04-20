@@ -3983,7 +3983,7 @@ Transférer</string>
      <property name="geometry">
       <rect>
        <x>405</x>
-       <y>157</y>
+       <y>167</y>
        <width>371</width>
        <height>207</height>
       </rect>
@@ -9145,9 +9145,9 @@ Transférer</string>
      <property name="geometry">
       <rect>
        <x>406</x>
-       <y>367</y>
+       <y>377</y>
        <width>184</width>
-       <height>31</height>
+       <height>21</height>
       </rect>
      </property>
      <property name="palette">
@@ -9583,9 +9583,9 @@ Transférer</string>
      <property name="geometry">
       <rect>
        <x>592</x>
-       <y>367</y>
+       <y>377</y>
        <width>184</width>
-       <height>31</height>
+       <height>21</height>
       </rect>
      </property>
      <property name="palette">
