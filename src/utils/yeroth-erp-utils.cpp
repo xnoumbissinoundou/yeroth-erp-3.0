@@ -288,8 +288,9 @@ const QString YerothUtils::MAGELAN_SERVER_OBJECT ("/");
 #ifdef YEROTH_SERVER
 const QString YerothUtils::APROPOS_MSG(QObject::trUtf8("YEROTH-ERP-3.0 SERVER VERSION (22 AVRIL 2020)"
 													   "\n\n par \n\n"
-													   "(c) Diplom-Informatiker Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD).\n\n"
-													   "LAST BUILD ID: ''."));
+		   	   	   	   	   	   	   	   	   	   	   	   "(c) Diplom-Informatiker Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD).\n\n"
+		   	   	   	   	   	   	   	   	   	   	   	   "LAST BUILD ID: ''.\n\n"
+		   	   	   	   	   	   	   	   	   	   	   	   "ON MACHINE: ''."));
 const QString YerothUtils::APPLICATION_NAME(QObject::trUtf8("YEROTH-ERP-3.0 SERVER"));
 #endif
 
@@ -297,24 +298,28 @@ const QString YerothUtils::APPLICATION_NAME(QObject::trUtf8("YEROTH-ERP-3.0 SERV
 const QString YerothUtils::APROPOS_MSG(QObject::trUtf8("YEROTH-ERP-3.0 CLIENT VERSION (22 AVRIL 2020)"
 													   "\n\n par \n\n"
 													   "(c) Diplom-Informatiker Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD).\n\n"
-													   "LAST BUILD ID: ''."));
+													   "LAST BUILD ID: ''.\n\n"
+													   "ON MACHINE: ''."));
 const QString YerothUtils::APPLICATION_NAME(QObject::trUtf8("YEROTH-ERP-3.0 CLIENT"));
 #endif
 
 #ifdef YEROTH_STANDALONE
 const QString YerothUtils::APROPOS_MSG(QObject::trUtf8("YEROTH-ERP-3.0 STANDALONE VERSION (22 AVRIL 2020)"
 													   "\n\n par \n\n"
-													   "(c) Diplom-Informatiker Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD).\n\n"
-													   "LAST BUILD ID: ''."));
+		   	   	   	   	   	   	   	   	   	   	   	   "(c) Diplom-Informatiker Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD).\n\n"
+		   	   	   	   	   	   	   	   	   	   	   	   "LAST BUILD ID: ''.\n\n"
+		   	   	   	   	   	   	   	   	   	   	   	   "ON MACHINE: ''."));
 const QString YerothUtils::APPLICATION_NAME(QObject::trUtf8("YEROTH-ERP-3.0 STANDALONE"));
 #endif
 
 #ifdef YEROTH_ACADEMIC_EVALUATION_VERSION
 const QString YerothUtils::APROPOS_MSG(QObject::trUtf8("YEROTH-ERP-3.0 ACADEMIC EVALUATION VERSION (22 AVRIL 2020)"
 													   "\n\n par \n\n"
-													   "(c) Diplom-Informatiker Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD).\n\n"
-													   "LAST BUILD ID: ''."));
+		   	   	   	   	   	   	   	   	   	   	   	   "(c) Diplom-Informatiker Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD).\n\n"
+		   	   	   	   	   	   	   	   	   	   	   	   "LAST BUILD ID: ''.\n\n"
+		   	   	   	   	   	   	   	   	   	   	   	   "ON MACHINE: ''."));
 const QString YerothUtils::APPLICATION_NAME(QObject::trUtf8("YEROTH-ERP-3.0 ACADEMIC EVALUATION VERSION"));
+
 #endif
 
 const QString YerothUtils::LOCALHOST(STRING_LOCALHOST);
