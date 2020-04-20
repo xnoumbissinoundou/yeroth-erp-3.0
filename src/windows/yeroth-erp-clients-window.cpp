@@ -364,7 +364,8 @@ void YerothERPClientsWindow::private_slot_afficher_les_transactions_dun_client()
 	    													"%5 as 'Compte client (apres)', "
 	    													"%6 as 'Type de paiement', "
 	    			    									"%7 as 'Raison', "
-	    			    									"CONCAT(date_paiement,' ',heure_paiement) as 'Temps' from %8")
+	    			    									"CONCAT(date_paiement,' ',heure_paiement) as 'Temps' from %8 "
+	    			    									"where date_paiement >= CURDATE() and date_paiement <= CURDATE()")
 	    											.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
 	    												 YerothDatabaseTableColumn::DATE_PAIEMENT,
 														 YerothDatabaseTableColumn::HEURE_PAIEMENT,
@@ -381,7 +382,8 @@ void YerothERPClientsWindow::private_slot_afficher_les_transactions_dun_client()
 	    													 "%5 as 'Compte client (apres)', "
 	    													 "%6 as 'Type de paiement', "
 	    			    									 "%7 as 'Raison', "
-	    			    									 "CONCAT(date_vente,' ',heure_vente) as 'Temps' from %8")
+	    			    									 "CONCAT(date_vente,' ',heure_vente) as 'Temps' from %8 "
+	    			    									 "where date_vente >= CURDATE() and date_vente <= CURDATE()")
 	    											.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT,
 	    												 YerothDatabaseTableColumn::DATE_VENTE,
 														 YerothDatabaseTableColumn::HEURE_VENTE,
@@ -398,7 +400,8 @@ void YerothERPClientsWindow::private_slot_afficher_les_transactions_dun_client()
 	    													 "%5 as 'Compte client (apres)', "
 	    													 "%6 as 'Type de paiement', "
 	    			    									 "%7 as 'Raison', "
-	    			    									 "CONCAT(date_vente,' ',heure_vente) as 'Temps' from %8")
+	    			    									 "CONCAT(date_vente,' ',heure_vente) as 'Temps' from %8 "
+	    			    									 "where date_vente >= CURDATE() and date_vente <= CURDATE()")
 	    											.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT,
 	    												 YerothDatabaseTableColumn::DATE_VENTE,
 														 YerothDatabaseTableColumn::HEURE_VENTE,

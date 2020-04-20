@@ -508,6 +508,8 @@ void YerothPayerCompteClientWindow::setupLineEdits()
 
 	lineEdit_comptes_clients_valeur_dette_maximale->setYerothEnabled(false);
 
+	lineEdit_comptes_clients_numero_du_contribuable->setYerothEnabled(false);
+
 	lineEdit_comptes_clients_reference_registre_du_commerce->setYerothEnabled(false);
 
 	lineEdit_comptes_clients_siege_social->setYerothEnabled(false);
