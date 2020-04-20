@@ -3,12 +3,13 @@
 
 USAGE="
        ------------------------------------------------------------
-       'YEROTH-POS-7.0' Build System
-        @auteur: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
+       'YEROTH-ERP-3.0' Build System
+        @auteur: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
 	@email:  xnoundou7@gmail.com
        ------------------------------------------------------------
        Usage: $(basename $0)
 	[-h] : help
+	[-b] : generates an official build-executable, with 'LAST BUILD ID' set
 	[-s] : simulate 'yeroth-erp-3.0' compilation
 	[-l] : compile 'yeroth-erp-3.0' to use with virtual keyboard
 	[-c] : continue previous stopped compilation
@@ -32,9 +33,10 @@ yerothVersionFlag=
 debugFlag=
 yerothVersionFlag=
 continueFlag=
+officialBuildFlag=
 
 
-while getopts 'lhsgv:fecj:' OPTION
+while getopts 'lhsgv:fecj:b' OPTION
 do
   case $OPTION in
 
@@ -71,6 +73,10 @@ do
 
     c)	continueFlag=1
         echo "continue la compilation"
+		;;
+
+		b)	officialBuildFlag=1
+        echo "BUILD OFFICIEL: $(git rev-parse origin/master)"
 		;;
 
     j)	jobsFlag=1
@@ -134,7 +140,9 @@ YEROTH_GIT_PUSH_COMMIT_ID="$(git rev-parse origin/master)"
 
 YEROTH_GIT_PUSH_COMMIT_ID_TEXT="LAST BUILD ID: '${YEROTH_GIT_PUSH_COMMIT_ID}'.\"));"
 
-sed -i "s/LAST BUILD ID: .*/${YEROTH_GIT_PUSH_COMMIT_ID_TEXT}/g" src/utils/yeroth-erp-utils.cpp
+if [ $officialBuildFlag ]; then
+		sed -i "s/LAST BUILD ID: .*/${YEROTH_GIT_PUSH_COMMIT_ID_TEXT}/g" src/utils/yeroth-erp-utils.cpp
+fi
 
 if [ $simulationFlag ]; then
   if [ $continueFlag ]; then
