@@ -28,7 +28,7 @@ YerothAdminListerWindow::YerothAdminListerWindow()
 {
     setupUi(this);
 
-    this->mySetupUi(this);
+    mySetupUi(this);
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
                                        "QMessageBox QLabel {color: rgb(%2);}").
@@ -104,6 +104,9 @@ YerothAdminListerWindow::YerothAdminListerWindow()
 
     connect(tableView_lister_categorie, SIGNAL(doubleClicked(const QModelIndex &)), this,
             SLOT(afficher_detail_categorie()));
+
+    connect(tableView_lister_compte_bancaire, SIGNAL(doubleClicked(const QModelIndex &)), this,
+            SLOT(afficher_detail_compte_bancaire()));
 
     connect(tableView_lister_fournisseur, SIGNAL(doubleClicked(const QModelIndex &)), this,
             SLOT(afficher_detail_fournisseur()));
@@ -344,7 +347,7 @@ void YerothAdminListerWindow::lister_utilisateur(YerothSqlTableModel * aSqlTable
 
     set_admin_rechercher_font();
 
-    tableView_lister_utilisateur->selectRow(this->_lastItemSelectedForModification);
+    tableView_lister_utilisateur->selectRow(_lastItemSelectedForModification);
 }
 
 void YerothAdminListerWindow::lister_localisation(YerothSqlTableModel * aSqlTableModel)
@@ -373,7 +376,7 @@ void YerothAdminListerWindow::lister_localisation(YerothSqlTableModel * aSqlTabl
 
     set_admin_rechercher_font();
 
-    tableView_lister_localisation->selectRow(this->_lastItemSelectedForModification);
+    tableView_lister_localisation->selectRow(_lastItemSelectedForModification);
 }
 
 
@@ -427,6 +430,7 @@ void YerothAdminListerWindow::lister_compte_bancaire(YerothSqlTableModel * aSqlT
     }
 
     tableView_lister_compte_bancaire->hideColumn(0);
+    tableView_lister_compte_bancaire->hideColumn(4);
 
     _lastItemSelectedForModification = toSelectRow;
 
@@ -462,7 +466,7 @@ void YerothAdminListerWindow::lister_fournisseur(YerothSqlTableModel * aSqlTable
 
     set_admin_rechercher_font();
 
-    tableView_lister_fournisseur->selectRow(this->_lastItemSelectedForModification);
+    tableView_lister_fournisseur->selectRow(_lastItemSelectedForModification);
 }
 
 void YerothAdminListerWindow::lister_alerte(YerothSqlTableModel * aSqlTableModel)
@@ -487,7 +491,7 @@ void YerothAdminListerWindow::lister_alerte(YerothSqlTableModel * aSqlTableModel
 
     set_admin_rechercher_font();
 
-    tableView_lister_alerte->selectRow(this->_lastItemSelectedForModification);
+    tableView_lister_alerte->selectRow(_lastItemSelectedForModification);
 }
 
 
@@ -515,14 +519,14 @@ void YerothAdminListerWindow::lister_remise(YerothSqlTableModel * aSqlTableModel
 
     set_admin_rechercher_font();
 
-    tableView_lister_remise->selectRow(this->_lastItemSelectedForModification);
+    tableView_lister_remise->selectRow(_lastItemSelectedForModification);
 }
 
 
 void YerothAdminListerWindow::creer()
 {
     _allWindows->_adminCreateWindow->rendreVisible(tabWidget_lister->currentIndex());
-    this->rendreInvisible();
+    rendreInvisible();
 }
 
 void YerothAdminListerWindow::handleItemModification(const QModelIndex & index)
@@ -542,14 +546,14 @@ void YerothAdminListerWindow::modifier()
         if (tableView_lister_utilisateur->rowCount() > 0)
         {
             _allWindows->_adminModifierWindow->rendreVisible(SUJET_ACTION_COMPTE_UTILISATEUR);
-            this->rendreInvisible();
+            rendreInvisible();
         }
         break;
     case SUJET_ACTION_LOCALISATION:
         if (tableView_lister_localisation->rowCount() > 0)
         {
             _allWindows->_adminModifierWindow->rendreVisible(SUJET_ACTION_LOCALISATION);
-            this->rendreInvisible();
+            rendreInvisible();
         }
         break;
     case SUJET_ACTION_CATEGORIE:
@@ -558,33 +562,40 @@ void YerothAdminListerWindow::modifier()
         	//qDebug() << "++ YerothAdminListerWindow::modifier | categorie";
 
             _allWindows->_adminModifierWindow->rendreVisible(SUJET_ACTION_CATEGORIE);
-            this->rendreInvisible();
+            rendreInvisible();
+        }
+        break;
+    case SUJET_ACTION_COMPTE_BANCAIRE:
+        if (tableView_lister_compte_bancaire->rowCount() > 0)
+        {
+            _allWindows->_adminModifierWindow->rendreVisible(SUJET_ACTION_COMPTE_BANCAIRE);
+            rendreInvisible();
         }
         break;
     case SUJET_ACTION_FOURNISSEUR:
         if (tableView_lister_fournisseur->rowCount() > 0)
         {
             _allWindows->_adminModifierWindow->rendreVisible(SUJET_ACTION_FOURNISSEUR);
-            this->rendreInvisible();
+            rendreInvisible();
         }
         break;
     case SUJET_ACTION_ALERTE:
         if (tableView_lister_alerte->rowCount() > 0)
         {
             _allWindows->_adminModifierWindow->rendreVisible(SUJET_ACTION_ALERTE);
-            this->rendreInvisible();
+            rendreInvisible();
         }
         break;
     case SUJET_ACTION_REMISE:
         if (tableView_lister_remise->rowCount() > 0)
         {
             _allWindows->_adminModifierWindow->rendreVisible(SUJET_ACTION_REMISE);
-            this->rendreInvisible();
+            rendreInvisible();
         }
         break;
     case SUJET_ACTION_BON_DE_COMMANDE:
         //_allWindows->_adminModifierWindow->rendreVisible(SUJET_ACTION_BON_DE_COMMANDE);
-        //this->rendreInvisible();
+        //rendreInvisible();
         break;
     default:
         break;
@@ -604,6 +615,9 @@ void YerothAdminListerWindow::afficher_au_detail()
     case SUJET_ACTION_CATEGORIE:
         afficher_detail_categorie();
         break;
+    case SUJET_ACTION_COMPTE_BANCAIRE:
+        afficher_detail_compte_bancaire();
+        break;
     case SUJET_ACTION_FOURNISSEUR:
         afficher_detail_fournisseur();
         break;
@@ -622,46 +636,48 @@ void YerothAdminListerWindow::afficher_au_detail()
 
 void YerothAdminListerWindow::afficher_detail_utilisateur()
 {
-    _allWindows->_adminDetailWindow->rendreVisibleCompteUtilisateur(this->lastSelectedItemForModification());
-    this->rendreInvisible();
+    _allWindows->_adminDetailWindow->rendreVisibleCompteUtilisateur(lastSelectedItemForModification());
+    rendreInvisible();
 }
 
 void YerothAdminListerWindow::afficher_detail_localisation()
 {
-    _allWindows->_adminDetailWindow->rendreVisibleLocalisation(this->lastSelectedItemForModification());
-    this->rendreInvisible();
+    _allWindows->_adminDetailWindow->rendreVisibleLocalisation(lastSelectedItemForModification());
+    rendreInvisible();
 }
 
 void YerothAdminListerWindow::afficher_detail_categorie()
 {
     //_logger->debug("afficher_detail_categorie",
-    //  QString("lastSelectedItemForModification: %1").arg(this->lastSelectedItemForModification()));
-    _allWindows->_adminDetailWindow->rendreVisibleCategorie(this->lastSelectedItemForModification());
-    this->rendreInvisible();
+    //  QString("lastSelectedItemForModification: %1").arg(lastSelectedItemForModification()));
+    _allWindows->_adminDetailWindow->rendreVisibleCategorie(lastSelectedItemForModification());
+    rendreInvisible();
 }
 
 
 void YerothAdminListerWindow::afficher_detail_compte_bancaire()
 {
+    _allWindows->_adminDetailWindow->rendreVisibleCompteBancaire(lastSelectedItemForModification());
+    rendreInvisible();
 }
 
 
 void YerothAdminListerWindow::afficher_detail_fournisseur()
 {
-    _allWindows->_adminDetailWindow->rendreVisibleFournisseur(this->lastSelectedItemForModification());
-    this->rendreInvisible();
+    _allWindows->_adminDetailWindow->rendreVisibleFournisseur(lastSelectedItemForModification());
+    rendreInvisible();
 }
 
 void YerothAdminListerWindow::afficher_detail_remise()
 {
-    _allWindows->_adminDetailWindow->rendreVisibleRemise(this->lastSelectedItemForModification());
-    this->rendreInvisible();
+    _allWindows->_adminDetailWindow->rendreVisibleRemise(lastSelectedItemForModification());
+    rendreInvisible();
 }
 
 void YerothAdminListerWindow::afficher_detail_alerte()
 {
-    _allWindows->_adminDetailWindow->rendreVisibleAlerte(this->lastSelectedItemForModification());
-    this->rendreInvisible();
+    _allWindows->_adminDetailWindow->rendreVisibleAlerte(lastSelectedItemForModification());
+    rendreInvisible();
 }
 
 void YerothAdminListerWindow::supprimer()
@@ -709,7 +725,7 @@ void YerothAdminListerWindow::supprimer_utilisateur()
         usersTableModel = &_allWindows->getSqlTableModel_users();
     }
 
-    QSqlRecord record = usersTableModel->record(this->lastSelectedItemForModification());
+    QSqlRecord record = usersTableModel->record(lastSelectedItemForModification());
 
     if (record.isEmpty() || record.isNull("nom_utilisateur"))
     {
@@ -731,7 +747,7 @@ void YerothAdminListerWindow::supprimer_utilisateur()
             YerothQMessageBox::question(this, QObject::tr("admin-lister-supprimer-utilisateur"),
                                   msgConfirmation, QMessageBox::Cancel, QMessageBox::Ok))
     {
-        bool success = usersTableModel->removeRow(this->lastSelectedItemForModification());
+        bool success = usersTableModel->removeRow(lastSelectedItemForModification());
         if (success)
         {
             QString msg(QString(QObject::trUtf8("L'utilisateur '%1' a été supprimée de la base de données !"))
@@ -740,7 +756,7 @@ void YerothAdminListerWindow::supprimer_utilisateur()
             YerothQMessageBox::information(this, QObject::tr("admin-lister-supprimer-utilisateur"),
                                      msg, QMessageBox::Ok);
 
-            this->self_reset_view(SUJET_ACTION_COMPTE_UTILISATEUR);
+            self_reset_view(SUJET_ACTION_COMPTE_UTILISATEUR);
         }
         else
         {
@@ -768,7 +784,7 @@ void YerothAdminListerWindow::supprimer_localisation()
         localisationsTableModel = &_allWindows->getSqlTableModel_localisations();
     }
 
-    QSqlRecord record = localisationsTableModel->record(this->lastSelectedItemForModification());
+    QSqlRecord record = localisationsTableModel->record(lastSelectedItemForModification());
 
     if (record.isEmpty() || record.isNull("nom_localisation"))
     {
@@ -784,7 +800,7 @@ void YerothAdminListerWindow::supprimer_localisation()
             YerothQMessageBox::question(this, QObject::tr("admin-lister-supprimer-localisation"),
                                   msgConfirmation, QMessageBox::Cancel, QMessageBox::Ok))
     {
-        bool success = localisationsTableModel->removeRow(this->lastSelectedItemForModification());
+        bool success = localisationsTableModel->removeRow(lastSelectedItemForModification());
 
         QString msg(QString(QObject::tr("La localisation '%1"))
         				.arg(nom_localisation));
@@ -796,7 +812,7 @@ void YerothAdminListerWindow::supprimer_localisation()
             YerothQMessageBox::information(this, QObject::tr("admin-lister-supprimer-localisation"),
                                      msg, QMessageBox::Ok);
 
-            this->self_reset_view(SUJET_ACTION_LOCALISATION);
+            self_reset_view(SUJET_ACTION_LOCALISATION);
         }
         else
         {
@@ -824,7 +840,7 @@ void YerothAdminListerWindow::supprimer_categorie()
         categoriesTableModel = &_allWindows->getSqlTableModel_categories();
     }
 
-    QSqlRecord record = categoriesTableModel->record(this->lastSelectedItemForModification());
+    QSqlRecord record = categoriesTableModel->record(lastSelectedItemForModification());
 
     if (record.isEmpty() || record.isNull(YerothDatabaseTableColumn::NOM_CATEGORIE))
     {
@@ -840,7 +856,7 @@ void YerothAdminListerWindow::supprimer_categorie()
             YerothQMessageBox::question(this, QObject::trUtf8("admin-lister-supprimer-catégorie"),
                                   msgConfirmation, QMessageBox::Cancel, QMessageBox::Ok))
     {
-        bool success = categoriesTableModel->removeRow(this->lastSelectedItemForModification());
+        bool success = categoriesTableModel->removeRow(lastSelectedItemForModification());
 
         QString msg(QString(QObject::trUtf8("La catégorie '%1"))
         				.arg(nom_categorie));
@@ -852,7 +868,7 @@ void YerothAdminListerWindow::supprimer_categorie()
             YerothQMessageBox::information(this, QObject::trUtf8("admin-lister-supprimer-catégorie"),
                                      msg, QMessageBox::Ok);
 
-            this->self_reset_view(SUJET_ACTION_CATEGORIE);
+            self_reset_view(SUJET_ACTION_CATEGORIE);
         }
         else
         {
@@ -889,7 +905,7 @@ void YerothAdminListerWindow::supprimer_fournisseur()
         //qDebug() << "++ _curSearchSqlTableModel is null ";
     }
 
-    QSqlRecord record = fournisseursTableModel->record(this->lastSelectedItemForModification());
+    QSqlRecord record = fournisseursTableModel->record(lastSelectedItemForModification());
 
     if (record.isEmpty() || record.isNull(YerothDatabaseTableColumn::NOM_ENTREPRISE))
     {
@@ -909,7 +925,7 @@ void YerothAdminListerWindow::supprimer_fournisseur()
 										QMessageBox::Cancel,
 										QMessageBox::Ok))
     {
-        bool success = fournisseursTableModel->removeRow(this->lastSelectedItemForModification());
+        bool success = fournisseursTableModel->removeRow(lastSelectedItemForModification());
 
         QString msg(QString(QObject::tr("Le fournisseur '%1"))
         				.arg(nom_entreprise));
@@ -923,7 +939,7 @@ void YerothAdminListerWindow::supprimer_fournisseur()
 										   msg,
 										   QMessageBox::Ok);
 
-            this->self_reset_view(SUJET_ACTION_FOURNISSEUR);
+            self_reset_view(SUJET_ACTION_FOURNISSEUR);
         }
         else
         {
@@ -959,7 +975,7 @@ void YerothAdminListerWindow::supprimer_alerte()
         alertesTableModel = &_allWindows->getSqlTableModel_alertes();
     }
 
-    QSqlRecord record = alertesTableModel->record(this->lastSelectedItemForModification());
+    QSqlRecord record = alertesTableModel->record(lastSelectedItemForModification());
 
     if (record.isEmpty() || record.isNull(YerothDatabaseTableColumn::DESIGNATION_ALERTE))
     {
@@ -978,7 +994,7 @@ void YerothAdminListerWindow::supprimer_alerte()
 										QMessageBox::Cancel,
 										QMessageBox::Ok))
     {
-        bool success = alertesTableModel->removeRow(this->lastSelectedItemForModification());
+        bool success = alertesTableModel->removeRow(lastSelectedItemForModification());
         QString msg("L'alerte '");
         msg.append(designation_alerte);
         if (success)
@@ -990,7 +1006,7 @@ void YerothAdminListerWindow::supprimer_alerte()
 										   msg,
 										   QMessageBox::Ok);
 
-            this->self_reset_view(SUJET_ACTION_ALERTE);
+            self_reset_view(SUJET_ACTION_ALERTE);
         }
         else
         {

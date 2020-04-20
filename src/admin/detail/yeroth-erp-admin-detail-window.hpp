@@ -50,6 +50,8 @@ public:
 
     void rendreVisibleCategorie(int sqlTableRow);
 
+    void rendreVisibleCompteBancaire(int sqlTableRow);
+
     void rendreVisibleFournisseur(int sqlTableRow);
 
     void rendreVisibleRemise(int sqlTableRow);
@@ -73,6 +75,8 @@ public slots:
     void retourListerLocalisation();
 
     void retourListerCategorie();
+
+    void retourListerCompteBancaire();
 
     void retourListerFournisseur();
 

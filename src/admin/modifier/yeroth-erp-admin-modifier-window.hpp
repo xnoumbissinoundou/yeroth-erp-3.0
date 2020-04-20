@@ -57,6 +57,10 @@ public:
 
     void setupEditCategorie();
 
+    void setupEditCompteBancaire();
+
+    void setupEditComptebancaire();
+
     void setupEditFournisseur();
 
     void setupEditAlerte();
@@ -80,6 +84,8 @@ public slots:
 	void modifier_localisation();
 
 	void modifier_categorie();
+
+	void modifier_compte_bancaire();
 
 	void modifier_alerte();
 
@@ -111,11 +117,15 @@ private:
 
 	void modifier_categorie_main();
 
+	void modifier_compte_bancaire_main();
+
 	void retourListerCompteUtilisateur();
 
 	void retourListerLocalisation();
 
 	void retourListerCategorie();
+
+	void retourListerCompteBancaire();
 
 	void retourListerFournisseur();
 
@@ -126,6 +136,8 @@ private:
     void clear_utilisateur_all_fields();
 
     void clear_categorie_all_fields();
+
+    void clear_compte_bancaire_all_fields();
 
     void clear_localisation_all_fields();
 
@@ -138,6 +150,8 @@ private:
     bool modifier_utilisateur_check_fields();
 
     bool modifier_categorie_check_fields();
+
+    bool modifier_compte_bancaire_check_fields();
 
     bool modifier_localisation_check_fields();
 
