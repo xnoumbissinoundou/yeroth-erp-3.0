@@ -693,6 +693,9 @@ void YerothAdminListerWindow::supprimer()
     case SUJET_ACTION_CATEGORIE:
         supprimer_categorie();
         break;
+    case SUJET_ACTION_COMPTE_BANCAIRE:
+        supprimer_compte_bancaire();
+        break;
     case SUJET_ACTION_FOURNISSEUR:
         supprimer_fournisseur();
         break;
@@ -772,7 +775,9 @@ void YerothAdminListerWindow::supprimer_utilisateur()
 void YerothAdminListerWindow::supprimer_localisation()
 {
     _logger->log("supprimer_localisation");
+
     YerothSqlTableModel *localisationsTableModel = 0;
+
     if (_curSearchSqlTableModel
             && YerothUtils::isEqualCaseInsensitive(_allWindows->LOCALISATIONS,
                     _curSearchSqlTableModel->sqlTableName()))
@@ -883,7 +888,58 @@ void YerothAdminListerWindow::supprimer_categorie()
 
 void YerothAdminListerWindow::supprimer_compte_bancaire()
 {
+	_logger->log("supprimer_compte_bancaire");
 
+    YerothSqlTableModel *comptesBancairesTableModel = 0;
+
+    if (_curSearchSqlTableModel
+            && YerothUtils::isEqualCaseInsensitive(_allWindows->COMPTES_BANCAIRES, _curSearchSqlTableModel->sqlTableName()))
+    {
+        comptesBancairesTableModel = _curSearchSqlTableModel;
+    }
+    else
+    {
+        comptesBancairesTableModel = &_allWindows->getSqlTableModel_comptes_bancaires();
+    }
+
+    QSqlRecord record = comptesBancairesTableModel->record(lastSelectedItemForModification());
+
+    if (record.isEmpty() || record.isNull(YerothDatabaseTableColumn::REFERENCE_DU_COMPTE_BANCAIRE))
+    {
+        return;
+    }
+
+    QString reference_du_compte_bancaire(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE_DU_COMPTE_BANCAIRE));
+
+    QString msgConfirmation(QString(QObject::trUtf8("Supprimer le compte bancaire avec la référence '%1' ?"))
+    							.arg(reference_du_compte_bancaire));
+
+    if (QMessageBox::Ok ==
+            YerothQMessageBox::question(this, QObject::trUtf8("admin-lister-supprimer-compte-bancaire"),
+                                  msgConfirmation, QMessageBox::Cancel, QMessageBox::Ok))
+    {
+        bool success = comptesBancairesTableModel->removeRow(lastSelectedItemForModification());
+
+        QString msg(QString(QObject::trUtf8("Le compte bancaire avec la référence '%1"))
+        				.arg(reference_du_compte_bancaire));
+
+        if (success)
+        {
+            msg.append(QObject::trUtf8("' a été supprimée de la base de données !"));
+
+            YerothQMessageBox::information(this, QObject::trUtf8("admin-lister-supprimer-compte-bancaire"),
+                                     msg, QMessageBox::Ok);
+
+            self_reset_view(SUJET_ACTION_COMPTE_BANCAIRE);
+        }
+        else
+        {
+            msg.append(QObject::trUtf8(" n'a pas été supprimée de la base de données !"));
+
+            YerothQMessageBox::information(this, tr("admin-lister-supprimer-compte-bancaire"), msg,
+                                     QMessageBox::Ok);
+        }
+    }
 }
 
 
