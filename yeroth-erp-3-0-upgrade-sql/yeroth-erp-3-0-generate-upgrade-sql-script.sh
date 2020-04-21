@@ -29,14 +29,27 @@ if [ "${CANDIDATE_COMMIT_IS_ANCESTOR}" -eq 0 ]; then
 		
 		ALL_RELEVANT_COMMITS="$(git rev-list --skip=1 --reverse ^${ANCESTOR_COMMIT} ${CANDIDATE_COMMIT_TO_SQL_UPGRADE})"
 
+		COUNTER=0
 		sql_upgrade_file_generated=
 
 		for c in ${ALL_RELEVANT_COMMITS}; do
+
 				SQL_FILE="${c}.sql"
-				if [ -f ${SQL_FILE} ]; then
+				
+				if [ -f ${SQL_FILE} ]; then					
+						
+						if [ $COUNTER -eq 0 ]; then
+								sql_upgrade_file_generated=1
+								echo -e "-- YEROTH-ERP-3.0: '.sql' file to upgrade database." >> ${SQL_UPGRADE_FILE}
+								echo -e "-- @author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)." >> ${SQL_UPGRADE_FILE}
+								echo -e "-- from LAST BUILD ID: '${LAST_BUILD_ID}' to BUILD ID: '${CANDIDATE_COMMIT_TO_SQL_UPGRADE}'." >> ${SQL_UPGRADE_FILE}
+								echo -e "" >> ${SQL_UPGRADE_FILE}
+								let COUNTER=COUNTER+1
+						fi
+						
 						echo "$APP | applies sql upgrade script ${SQL_FILE}";
+						echo -e "-- CONTENT OF FILE '${SQL_FILE}'" >> ${SQL_UPGRADE_FILE}
 						cat ${SQL_FILE} >> ${SQL_UPGRADE_FILE}
-						sql_upgrade_file_generated=1
 				fi
 	  done
 
