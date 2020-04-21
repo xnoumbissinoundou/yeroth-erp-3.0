@@ -16,11 +16,10 @@ LAST_BUILD_ID="f892fef6686bc05c60801ed5eca49f6c99a968fd"
 ANCESTOR_COMMIT="$(git rev-list --parents -n 1 ${LAST_BUILD_ID} | awk '//{print $2}')"
 #ANCESTOR_COMMIT="b65ee8a3aba45d3e79c76dfcc38db5f584ddc49e"
 
-git merge-base --is-ancestor ${ANCESTOR_COMMIT} ${CANDIDATE_COMMIT_TO_SQL_UPGRADE}
-
-# A result of '0' means first commit is an ancestor
-# to second commit.
+# A result of '0' means first argument commit is an
+# ancestor to second argument commit.
 # Therefore a sql upgrade script is necessary.
+git merge-base --is-ancestor ${ANCESTOR_COMMIT} ${CANDIDATE_COMMIT_TO_SQL_UPGRADE}
 
 CANDIDATE_COMMIT_IS_ANCESTOR="$?"
 
