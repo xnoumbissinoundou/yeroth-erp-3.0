@@ -5144,9 +5144,9 @@ background-color: rgb(0, 0, 0); </string>
       <property name="geometry">
        <rect>
         <x>593</x>
-        <y>416</y>
+        <y>426</y>
         <width>200</width>
-        <height>31</height>
+        <height>21</height>
        </rect>
       </property>
       <property name="palette">
