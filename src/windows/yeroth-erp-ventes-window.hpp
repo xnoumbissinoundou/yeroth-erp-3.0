@@ -185,7 +185,7 @@ protected:
 
 private slots:
 
-	void modifier_visibilite_annuler_cette_vente();
+	void modifier_visibilite_actions_sur_cette_vente();
 
 	bool annuler_cette_vente();
 

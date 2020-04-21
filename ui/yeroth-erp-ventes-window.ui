@@ -39540,6 +39540,7 @@ cette Vente</string>
     <addaction name="actionDeconnecter_utilisateur"/>
     <addaction name="separator"/>
     <addaction name="actionAfficherVenteDetail"/>
+    <addaction name="actionAnnulerCetteVente"/>
     <addaction name="separator"/>
     <addaction name="actionMenu"/>
     <addaction name="separator"/>

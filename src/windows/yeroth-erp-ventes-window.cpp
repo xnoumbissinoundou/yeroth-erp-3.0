@@ -90,6 +90,9 @@ YerothVentesWindow::YerothVentesWindow()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherVenteDetail, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAnnulerCetteVente, false);
+
 
     _pushButton_ventes_filtrer_font = new QFont(pushButton_ventes_filtrer->font());
 
@@ -120,6 +123,7 @@ YerothVentesWindow::YerothVentesWindow()
     connect(actionAlertes, SIGNAL(triggered()), this, SLOT(alertes()));
     connect(actionVendre, SIGNAL(triggered()), this, SLOT(vendre()));
     connect(actionInformationEntreprise, SIGNAL(triggered()), this, SLOT(infosEntreprise()));
+    connect(actionAnnulerCetteVente, SIGNAL(triggered()), this, SLOT(annuler_cette_vente()));
     connect(actionAfficherVenteDetail, SIGNAL(triggered()), this, SLOT(afficher_vente_detail()));
     connect(actionReinitialiserRecherche, SIGNAL(triggered()), this, SLOT(reinitialiser_recherche()));
     connect(actionQui_suis_je, SIGNAL(triggered()), this, SLOT(qui_suis_je()));
@@ -138,38 +142,30 @@ YerothVentesWindow::YerothVentesWindow()
     connect(tableView_ventes->getStandardItemModel(),
     		SIGNAL(rowsRemoved(const QModelIndex &, int, int)),
 			this,
-			SLOT(modifier_visibilite_annuler_cette_vente()));
+			SLOT(modifier_visibilite_actions_sur_cette_vente()));
 
     connect(tableView_ventes->getStandardItemModel(),
     		SIGNAL(rowsInserted(const QModelIndex &, int, int)),
 			this,
-			SLOT(modifier_visibilite_annuler_cette_vente()));
+			SLOT(modifier_visibilite_actions_sur_cette_vente()));
 
-    actionAnnulerCetteVente->setVisible(false);
-
-    connect(actionAnnulerCetteVente, SIGNAL(triggered()), this, SLOT(annuler_cette_vente()));
-
-    this->setupShortcuts();
+    setupShortcuts();
 }
 
 
-void YerothVentesWindow::modifier_visibilite_annuler_cette_vente()
+void YerothVentesWindow::modifier_visibilite_actions_sur_cette_vente()
 {
-	if (RetourDuneVente == tabWidget_ventes->currentIndex())
+	if (tableView_ventes->rowCount() > 0)
 	{
-		if (tableView_ventes->rowCount() > 0)
-		{
-			actionAnnulerCetteVente->setVisible(true);
-		}
-		else
-		{
-			actionAnnulerCetteVente->setVisible(false);
-		}
+		actionAfficherVenteDetail->setVisible(true);
+		actionAnnulerCetteVente->setVisible(true);
 	}
 	else
 	{
+		actionAfficherVenteDetail->setVisible(false);
 		actionAnnulerCetteVente->setVisible(false);
 	}
+
 }
 
 
@@ -181,6 +177,8 @@ bool YerothVentesWindow::annuler_cette_vente()
 	{
 		return false;
 	}
+
+	tabWidget_ventes->setCurrentIndex(RetourDuneVente);
 
 	QString msg;
 
@@ -1219,6 +1217,8 @@ void YerothVentesWindow::definirCaissier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionReinitialiserRecherche, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherVenteDetail, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAnnulerCetteVente, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
     tabWidget_ventes->removeTab(RetourDuneVente);
@@ -1251,6 +1251,8 @@ void YerothVentesWindow::definirManager()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionReinitialiserRecherche, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherVenteDetail, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAnnulerCetteVente, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
     if (tabWidget_ventes->count() < 3)
@@ -1290,6 +1292,8 @@ void YerothVentesWindow::definirVendeur()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionReinitialiserRecherche, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherVenteDetail, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAnnulerCetteVente, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
     tabWidget_ventes->removeTab(RetourDuneVente);
@@ -1323,6 +1327,8 @@ void YerothVentesWindow::definirGestionaireDesStocks()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionReinitialiserRecherche, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherVenteDetail, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAnnulerCetteVente, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
     tabWidget_ventes->removeTab(RetourDuneVente);
@@ -1348,6 +1354,8 @@ void YerothVentesWindow::definirMagasinier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionReinitialiserRecherche, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherVenteDetail, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAnnulerCetteVente, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
@@ -1374,6 +1382,8 @@ void YerothVentesWindow::definirPasDeRole()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionReinitialiserRecherche, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherVenteDetail, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAnnulerCetteVente, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
@@ -1788,7 +1798,7 @@ void YerothVentesWindow::handleCurrentTabChanged(int index)
         break;
     }
 
-	modifier_visibilite_annuler_cette_vente();
+	modifier_visibilite_actions_sur_cette_vente();
 }
 
 
@@ -1899,6 +1909,8 @@ void YerothVentesWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
     	lineEdit_ventes_nom_caissier->clear();
     	lineEdit_ventes_nom_caissier->setYerothEnabled(true);
     }
+
+    modifier_visibilite_actions_sur_cette_vente();
 
     setVisible(true);
 
