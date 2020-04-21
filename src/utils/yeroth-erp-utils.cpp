@@ -290,7 +290,7 @@ const QString YerothUtils::APROPOS_MSG(QObject::trUtf8("YEROTH-ERP-3.0 SERVER VE
 													   "\n\n par \n\n"
 		   	   	   	   	   	   	   	   	   	   	   	   "(c) Diplom-Informatiker Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD).\n\n"
 		   	   	   	   	   	   	   	   	   	   	   	   "LAST BUILD ID: ''.\n\n"
-		   	   	   	   	   	   	   	   	   	   	   	   "ON MACHINE: ''."));
+		   	   	   	   	   	   	   	   	   	   	   	   "ON BUILD_COMPUTER: ''."));
 const QString YerothUtils::APPLICATION_NAME(QObject::trUtf8("YEROTH-ERP-3.0 SERVER"));
 #endif
 
@@ -299,7 +299,7 @@ const QString YerothUtils::APROPOS_MSG(QObject::trUtf8("YEROTH-ERP-3.0 CLIENT VE
 													   "\n\n par \n\n"
 													   "(c) Diplom-Informatiker Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD).\n\n"
 													   "LAST BUILD ID: ''.\n\n"
-													   "ON MACHINE: ''."));
+													   "ON BUILD_COMPUTER: ''."));
 const QString YerothUtils::APPLICATION_NAME(QObject::trUtf8("YEROTH-ERP-3.0 CLIENT"));
 #endif
 
@@ -308,7 +308,7 @@ const QString YerothUtils::APROPOS_MSG(QObject::trUtf8("YEROTH-ERP-3.0 STANDALON
 													   "\n\n par \n\n"
 		   	   	   	   	   	   	   	   	   	   	   	   "(c) Diplom-Informatiker Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD).\n\n"
 		   	   	   	   	   	   	   	   	   	   	   	   "LAST BUILD ID: ''.\n\n"
-		   	   	   	   	   	   	   	   	   	   	   	   "ON MACHINE: ''."));
+		   	   	   	   	   	   	   	   	   	   	   	   "ON BUILD_COMPUTER: ''."));
 const QString YerothUtils::APPLICATION_NAME(QObject::trUtf8("YEROTH-ERP-3.0 STANDALONE"));
 #endif
 
@@ -317,7 +317,7 @@ const QString YerothUtils::APROPOS_MSG(QObject::trUtf8("YEROTH-ERP-3.0 ACADEMIC 
 													   "\n\n par \n\n"
 		   	   	   	   	   	   	   	   	   	   	   	   "(c) Diplom-Informatiker Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD).\n\n"
 		   	   	   	   	   	   	   	   	   	   	   	   "LAST BUILD ID: ''.\n\n"
-		   	   	   	   	   	   	   	   	   	   	   	   "ON MACHINE: ''."));
+		   	   	   	   	   	   	   	   	   	   	   	   "ON BUILD_COMPUTER: ''."));
 const QString YerothUtils::APPLICATION_NAME(QObject::trUtf8("YEROTH-ERP-3.0 ACADEMIC EVALUATION VERSION"));
 
 #endif

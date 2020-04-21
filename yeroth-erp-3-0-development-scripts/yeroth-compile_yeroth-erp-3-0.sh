@@ -141,13 +141,13 @@ YEROTH_GIT_PUSH_COMMIT_ID="$(git rev-parse origin/master)"
 
 YEROTH_GIT_PUSH_COMMIT_ID_TEXT="LAST BUILD ID: '${YEROTH_GIT_PUSH_COMMIT_ID}'.\\\n\\\n\""
 
-YEROTH_BUILD_MACHINE="$(uname -srm)"
+YEROTH_BUILD_COMPUTER="$(uname -srm)"
 
-YEROTH_BUILD_MACHINE_TEXT="ON MACHINE: '${YEROTH_BUILD_MACHINE}'.\"));"
+YEROTH_BUILD_COMPUTER_TEXT="ON BUILD COMPUTER: '${YEROTH_BUILD_COMPUTER}'.\"));"
 
 if [ $officialBuildFlag ]; then
 		sed -i "s/LAST BUILD ID: .*/${YEROTH_GIT_PUSH_COMMIT_ID_TEXT}/g" src/utils/yeroth-erp-utils.cpp
-		sed -i "s/ON MACHINE: .*/${YEROTH_BUILD_MACHINE_TEXT}/g" src/utils/yeroth-erp-utils.cpp
+		sed -i "s/ON BUILD COMPUTER: .*/${YEROTH_BUILD_COMPUTER_TEXT}/g" src/utils/yeroth-erp-utils.cpp
 fi
 
 if [ $simulationFlag ]; then
