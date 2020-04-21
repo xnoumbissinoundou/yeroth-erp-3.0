@@ -5740,8 +5740,8 @@ stock (service)</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-admin-window.ui" line="12891"/>
-        <source>référence du compte bancaire</source>
-        <oldsource>numéro du compte bancaire</oldsource>
+        <source>réf. du compte bancaire</source>
+        <oldsource>référence du compte bancaire</oldsource>
         <translation>bank account reference</translation>
     </message>
     <message>
