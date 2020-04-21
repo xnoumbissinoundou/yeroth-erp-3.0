@@ -12888,7 +12888,7 @@
        <string/>
       </property>
       <property name="text">
-       <string>numéro du compte bancaire</string>
+       <string>référence du compte bancaire</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
