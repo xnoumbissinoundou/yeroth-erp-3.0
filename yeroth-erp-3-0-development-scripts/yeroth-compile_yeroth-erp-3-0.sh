@@ -182,3 +182,10 @@ else
 				YEROTH_LANGUAGE=$languageVal
 fi
 
+BUILD_SUCCESSFUL="$?"
+
+if [ ${BUILD_SUCCESSFUL} -eq 0 ] && [ $officialBuildFlag ]; then
+		git checkout src/utils/yeroth-erp-utils.cpp
+fi
+
+
