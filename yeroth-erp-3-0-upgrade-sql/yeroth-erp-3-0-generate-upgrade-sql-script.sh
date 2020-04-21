@@ -29,7 +29,8 @@ if [ "${CANDIDATE_COMMIT_IS_ANCESTOR}" -eq 0 ]; then
 		
 		ALL_RELEVANT_COMMITS="$(git rev-list --skip=1 --reverse ^${ANCESTOR_COMMIT} ${CANDIDATE_COMMIT_TO_SQL_UPGRADE})"
 
-		sql_upgrade_file_generated= 
+		sql_upgrade_file_generated=
+
 		for c in ${ALL_RELEVANT_COMMITS}; do
 				SQL_FILE="${c}.sql"
 				if [ -f ${SQL_FILE} ]; then
