@@ -10,8 +10,11 @@ rm -f "${SQL_UPGRADE_FILE}"
 
 CANDIDATE_COMMIT_TO_SQL_UPGRADE="$(git rev-parse origin/master)"
 
+LAST_BUILD_ID="f892fef6686bc05c60801ed5eca49f6c99a968fd"
+
 # THIS SHOULD BE THE COMMIT JUST BEFORE THE 'LAST BUILD ID' !
-ANCESTOR_COMMIT="b65ee8a3aba45d3e79c76dfcc38db5f584ddc49e"
+ANCESTOR_COMMIT="$(git rev-list --parents -n 1 ${LAST_BUILD_ID} | awk '//{print $2}')"
+#ANCESTOR_COMMIT="b65ee8a3aba45d3e79c76dfcc38db5f584ddc49e"
 
 git merge-base --is-ancestor ${ANCESTOR_COMMIT} ${CANDIDATE_COMMIT_TO_SQL_UPGRADE}
 
@@ -27,11 +30,17 @@ if [ "${CANDIDATE_COMMIT_IS_ANCESTOR}" -eq 0 ]; then
 		
 		ALL_RELEVANT_COMMITS="$(git rev-list --skip=1 --reverse ^${ANCESTOR_COMMIT} ${CANDIDATE_COMMIT_TO_SQL_UPGRADE})"
 
+		sql_upgrade_file_generated= 
 		for c in ${ALL_RELEVANT_COMMITS}; do
 				SQL_FILE="${c}.sql"
 				if [ -f ${SQL_FILE} ]; then
-						echo "$APP | apply sql upgrade script ${SQL_FILE}";
+						echo "$APP | applies sql upgrade script ${SQL_FILE}";
 						cat ${SQL_FILE} >> ${SQL_UPGRADE_FILE}
+						sql_upgrade_file_generated=1
 				fi
 	  done
+
+		if [ $sql_upgrade_file_generated ]; then
+				echo "$APP | generated FINAL sql upgrade script ${SQL_UPGRADE_FILE}";
+		fi
 fi 
