@@ -1062,6 +1062,8 @@ void YerothStocksWindow::reinitialiser_recherche()
     resetLineEditsQCompleters((QObject *)this);
 
     setComboBoxStrategieDeStocks();
+
+    afficherStocks();
 }
 
 

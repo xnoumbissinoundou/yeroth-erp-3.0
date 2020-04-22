@@ -504,11 +504,10 @@ void YerothTableView::lister(YerothSqlTableModel &tableModel,
 void YerothTableView::lister_ALL(YerothSqlTableModel &tableModel,
                                 QMap<QString, int> &designationToTableRows_in_out)
 {
-    tableModel.yerothSetSort(YerothTableView::DESIGNATION_COLUMN, Qt::AscendingOrder);
-
     emit signal_lister(tableModel);
 
-    bool s = tableModel.select();
+    //column 0 is for ID
+	bool s = tableModel.yerothSetSort(0, Qt::AscendingOrder);
 
     int rows = tableModel.rowCount();
     int columns = tableModel.columnCount();
@@ -630,11 +629,10 @@ void YerothTableView::lister_codebar_ALL(YerothSqlTableModel &tableModel,
 {
     codebarToTableRows_in_out.clear();
 
-    tableModel.yerothSetSort(DESIGNATION_COLUMN, Qt::AscendingOrder);
-
     emit signal_lister(tableModel);
 
-    bool s = tableModel.select();
+    //column 0 is for ID
+    bool s = tableModel.yerothSetSort(0, Qt::AscendingOrder);
 
     int rows = tableModel.rowCount();
     int columns = tableModel.columnCount();
@@ -739,11 +737,10 @@ void YerothTableView::lister_codebar_ALL(YerothSqlTableModel &tableModel,
 void YerothTableView::lister_FIFO(YerothSqlTableModel &tableModel,
                                  QMap<QString, int> &designationToTableRows_in_out)
 {
-    tableModel.yerothSetSort(DESIGNATION_COLUMN, Qt::AscendingOrder);
-
     emit signal_lister(tableModel);
 
-    bool s = tableModel.select();
+    //column 12 is for DATE_ENTREE
+	bool s = tableModel.yerothSetSort(12, Qt::AscendingOrder);
 
     int rows = tableModel.rowCount();
     int columns = tableModel.columnCount();
@@ -780,9 +777,9 @@ void YerothTableView::lister_FIFO(YerothSqlTableModel &tableModel,
         for (int i = 0; i < rows; ++i)
         {
             record = tableModel.record(i);
-            date_premption = record.value("date_peremption");
-            quantite_total = record.value("quantite_total");
-            stock_minimum = record.value("stock_minimum");
+            date_premption = record.value(YerothDatabaseTableColumn::DATE_PEREMPTION);
+            quantite_total = record.value(YerothDatabaseTableColumn::QUANTITE_TOTAL);
+            stock_minimum = record.value(YerothDatabaseTableColumn::STOCK_MINIMUM);
 
             for (int k = 0; k < columns; ++k)
             {
@@ -828,13 +825,16 @@ void YerothTableView::lister_FIFO(YerothSqlTableModel &tableModel,
                     break;
 
                 case QVariant::String:
-                    if (YerothTableView::DESIGNATION_COLUMN == k)
+
+                	if (YerothTableView::DESIGNATION_COLUMN == k)
                     {
                         prevDesignation = curDesignation;
                         curDesignation = qv.toString();
                     }
-                	tmpQvString.clear();
+
+                    tmpQvString.clear();
                 	tmpQvString.append(qv.toString());
+
                 	if (YerothTableView::REFERENCE_COLUMN != k)
                 	{
                 		if (tmpQvString.length() > YerothERPConfig::max_string_display_length)
@@ -843,8 +843,11 @@ void YerothTableView::lister_FIFO(YerothSqlTableModel &tableModel,
                 			tmpQvString.append(".");
                 		}
                 	}
-                    anItem = new YerothQStandardItem(tmpQvString);
-                    _stdItemModel->setItem(i, k, anItem);
+
+                	anItem = new YerothQStandardItem(tmpQvString);
+
+                	_stdItemModel->setItem(i, k, anItem);
+
                     break;
 
                 case QVariant::Bool:
@@ -935,13 +938,12 @@ void YerothTableView::lister_FIFO(YerothSqlTableModel &tableModel,
 }
 
 void YerothTableView::lister_codebar_FIFO(YerothSqlTableModel &tableModel,
-        QMap<QString, int> &codebarToTableRows_in_out)
+        								  QMap<QString, int> &codebarToTableRows_in_out)
 {
-    tableModel.yerothSetSort(YerothTableView::DESIGNATION_COLUMN, Qt::AscendingOrder);
-
     emit signal_lister(tableModel);
 
-    bool s = tableModel.select();
+    //column 12 is for DATE_ENTREE
+	bool s = tableModel.yerothSetSort(12, Qt::AscendingOrder);
 
     int rows = tableModel.rowCount();
     int columns = tableModel.columnCount();
@@ -953,8 +955,6 @@ void YerothTableView::lister_codebar_FIFO(YerothSqlTableModel &tableModel,
 
     QStandardItem *anItem = 0;
     QVariant qv;
-
-    QMap<QString, QDate> codebarToDateEntree;
 
     QString prevCodebar;
     QString curCodebar;
@@ -1033,24 +1033,10 @@ void YerothTableView::lister_codebar_FIFO(YerothSqlTableModel &tableModel,
                         prevDate = curDate;
                         curDate = qv.toDate();
 
-                        if (prevDate >= curDate)
+                        if (curDate < prevDate)
                         {
-                            codebarToDateEntree.insert(curCodebar, curDate);
                             codebarToTableRows_in_out.insert(curCodebar, i);
                         }
-                        else
-                        {
-                            if (!codebarToDateEntree.contains(curCodebar))
-                            {
-                                codebarToDateEntree.insert(curCodebar, prevDate);
-                                codebarToTableRows_in_out.insert(curCodebar, i);
-                            }
-                        }
-
-                        //qDebug() << "++ 2. test, curCodebar: " << curCodebar
-                        //	 << ", reference: " << curCodebar
-                        // << ", t date: " << codebarToDateEntree[curCodebar]
-                        //<< ", i row: " << i;
                     }
 
                     anItem = new YerothQStandardItem(DATE_TO_STRING(qv.toDate()));
@@ -1145,11 +1131,10 @@ QDate YerothTableView::getLatestDate(QMultiMap<QString, QDate> allElements,
 void YerothTableView::lister_LIFO(YerothSqlTableModel &tableModel,
                                  QMap<QString, int> &designationToTableRows_in_out)
 {
-    tableModel.yerothSetSort(YerothTableView::DESIGNATION_COLUMN, Qt::AscendingOrder);
-
     emit signal_lister(tableModel);
 
-    bool s = tableModel.select();
+    //column 12 is for DATE_ENTREE
+    bool s = tableModel.yerothSetSort(12, Qt::DescendingOrder);
 
     int rows = tableModel.rowCount();
     int columns = tableModel.columnCount();
@@ -1159,6 +1144,9 @@ void YerothTableView::lister_LIFO(YerothSqlTableModel &tableModel,
 
     YerothUtils::createTableModelHeaders(tableModel, *_stdItemModel, *_tableModelHeaders);
 
+    QMap<QString, QStandardItem *> designationTopreviousLIFOGreenItems;
+
+    QStandardItem *aPreviousLIFOGreenItem = 0;
     QStandardItem *anItem = 0;
     QVariant qv;
 
@@ -1179,20 +1167,20 @@ void YerothTableView::lister_LIFO(YerothSqlTableModel &tableModel,
     if(s)
     {
         QSqlRecord record;
+
         QVariant date_premption;
         QVariant quantite_total;
         QVariant stock_minimum;
-        QMultiMap<QString, QDate> allElements;
 
-        bool itemIsPreempted = false;
+        QMultiMap<QString, QDate> allElements;
 
         for (int i = 0; i < rows; ++i)
         {
             record = tableModel.record(i);
-            date_premption = record.value("date_peremption");
-            quantite_total = record.value("quantite_total");
-            stock_minimum = record.value("stock_minimum");
-            itemIsPreempted = (date_premption.toDate() < GET_CURRENT_DATE);
+
+            date_premption = record.value(YerothDatabaseTableColumn::DATE_PEREMPTION);
+            quantite_total = record.value(YerothDatabaseTableColumn::QUANTITE_TOTAL);
+            stock_minimum = record.value(YerothDatabaseTableColumn::STOCK_MINIMUM);
 
             for (int k = 0; k < columns; ++k)
             {
@@ -1254,6 +1242,7 @@ void YerothTableView::lister_LIFO(YerothSqlTableModel &tableModel,
                 			tmpQvString.append(".");
                 		}
                 	}
+
                     anItem = new YerothQStandardItem(tmpQvString);
                     _stdItemModel->setItem(i, k, anItem);
                     break;
@@ -1270,27 +1259,16 @@ void YerothTableView::lister_LIFO(YerothSqlTableModel &tableModel,
                         prevDate = curDate;
                         curDate = qv.toDate();
 
-                        if (curDate > prevDate)
+                        if (curDate >= prevDate)
                         {
                             testDateEntreeOK = true;
                             designationToDateEntree.insert(curDesignation, curDate);
                             designationToTableRows_in_out.insert(curDesignation, i);
                             allElements.insert(curDesignation, curDate);
-                            //qDebug() << QString("++ LIFO. 1) curDesignation: %1, curDate: %2")
-                            //			.arg(curDesignation, DATE_TO_STRING(designationToDateEntree[curDesignation]));
+//                            qDebug() << QString("++ LIFO. 1) curDesignation: %1, curDate: %2")
+//                            			.arg(curDesignation, DATE_TO_STRING(designationToDateEntree[curDesignation]));
                         }
-                        else
-                        {
-                            if (!designationToDateEntree.contains(curDesignation))
-                            {
-                                testDateEntreeOK = true;
-                                designationToDateEntree.insert(curDesignation, curDate);
-                                designationToTableRows_in_out.insert(curDesignation, i);
-                                allElements.insert(curDesignation, curDate);
-                                //qDebug() << QString("++ LIFO. 2) curDesignation: %1, curDate: %2")
-                                //			.arg(curDesignation, DATE_TO_STRING(designationToDateEntree[curDesignation]));
-                            }
-                        }
+
                         //qDebug() << "++ 1. test, curDesignation: " << curDesignation
                         //	 << ", t date: " << designationToDateEntree[curDesignation]
                         // << ", i row: " << i;
@@ -1312,59 +1290,66 @@ void YerothTableView::lister_LIFO(YerothSqlTableModel &tableModel,
 
                 if (anItem)
                 {
-                    anItem->setForeground(Qt::white);
+                	anItem->setForeground(Qt::white);
 
-                    if (testDateEntreeOK && YerothTableView::DATE_ENTREE_COLUMN == k)
-                    {
-                        if (itemIsPreempted)
-                        {
-                            anItem->setForeground(YerothUtils::YEROTH_RED_COLOR);
-                        }
-                        else
-                        {
-                            QDate latestDate = getLatestDate(allElements, curDesignation);
+                	if (testDateEntreeOK && YerothTableView::DATE_ENTREE_COLUMN == k)
+                	{
+                		QDate latestDate = getLatestDate(allElements, curDesignation);
 
-                            //qDebug() << QString("++ 1, LATEST: designation %1, latestDate: %2")
-                            //							.arg(curDesignation, DATE_TO_STRING(latestDate));
+//                		qDebug() << QString("++ 1, LATEST: designation %1, latestDate: %2")
+//                            			.arg(curDesignation, DATE_TO_STRING(latestDate));
 
-                            QStandardItem *itemDateOfStockEntry;
-                            QString aDesignation;
-                            QDate itemEntryDate;
+                		QStandardItem *itemDateOfStockEntry;
+                		QString aDesignation;
+                		QDate itemEntryDate;
 
-                            for(int h = 0; h < i; ++h)
-                            {
-                                itemDateOfStockEntry = _stdItemModel->item(h, YerothTableView::DATE_ENTREE_COLUMN);
+                		for(int h = 0; h < i; ++h)
+                		{
+                			itemDateOfStockEntry = _stdItemModel->item(h, YerothTableView::DATE_ENTREE_COLUMN);
 
-                                aDesignation = _stdItemModel->item(h, YerothTableView::DESIGNATION_COLUMN)->text();
+                			aDesignation = _stdItemModel->item(h, YerothTableView::DESIGNATION_COLUMN)->text();
 
-                                //qDebug() << QString("++ designation: %1, itemEntryDate: %2")
-                                //				.arg(aDesignation, itemDateOfStockEntry->text());
+                			//                                qDebug() << QString("++ designation: %1, itemEntryDate: %2")
+                			//                                				.arg(aDesignation, itemDateOfStockEntry->text());
 
-                                if (itemDateOfStockEntry &&
-                                        YerothUtils::isEqualCaseInsensitive(aDesignation, curDesignation))
-                                {
-                                    itemEntryDate = GET_DATE_FROM_STRING(itemDateOfStockEntry->text());
+                			if (0 != itemDateOfStockEntry &&
+                					YerothUtils::isEqualCaseInsensitive(aDesignation, curDesignation))
+                			{
+                				itemEntryDate = GET_DATE_FROM_STRING(itemDateOfStockEntry->text());
 
-                                    //qDebug() << QString("++ designation %1, itemEntryDate: %2")
-                                    //		.arg(aDesignation, itemDateOfStockEntry->text());
+                				//                                    qDebug() << QString("++ designation %1, itemEntryDate: %2")
+                				//                                    		.arg(aDesignation, itemDateOfStockEntry->text());
 
-                                    if (itemEntryDate != latestDate)
-                                    {
-                                        itemDateOfStockEntry->setForeground(Qt::white);
-                                        //qDebug() << QString("++ item: %1, itemDateOfStockEntry: %2 <==> white")
-                                        //.arg(aDesignation, itemDateOfStockEntry->text());
-                                    }
-                                }
-                            }
-                            if (latestDate == designationToDateEntree.value(curDesignation))
-                            {
-                                //qDebug() << QString("++ YES, designation %1, date: %2")
-                                //				.arg(curDesignation, DATE_TO_STRING(latestDate));
-                                anItem->setForeground(YerothUtils::YEROTH_GREEN_COLOR);
-                            }
-                        }
-                        testDateEntreeOK = false;
-                    }
+                				if (itemEntryDate != latestDate)
+                				{
+                					itemDateOfStockEntry->setForeground(Qt::white);
+//                					qDebug() << QString("++ item: %1, itemDateOfStockEntry: %2 <==> white")
+//                                        		.arg(aDesignation, itemDateOfStockEntry->text());
+                				}
+                			}
+                		}
+
+                		if (latestDate == designationToDateEntree.value(curDesignation))
+                		{
+//                			qDebug() << QString("++ YES, designation %1, latestDate: %2")
+//                                						.arg(curDesignation, DATE_TO_STRING(latestDate));
+
+                			aPreviousLIFOGreenItem = designationTopreviousLIFOGreenItems.value(curDesignation);
+
+                			if (0 != aPreviousLIFOGreenItem)
+                			{
+                				aPreviousLIFOGreenItem->setForeground(Qt::white);
+                			}
+
+                			anItem->setForeground(YerothUtils::YEROTH_GREEN_COLOR);
+
+                			aPreviousLIFOGreenItem = anItem;
+
+                			designationTopreviousLIFOGreenItems.insert(curDesignation, aPreviousLIFOGreenItem);
+                		}
+
+                		testDateEntreeOK = false;
+                	}
 
                     double quantite_minimale = stock_minimum.toDouble() - 1;
 
@@ -1382,13 +1367,12 @@ void YerothTableView::lister_LIFO(YerothSqlTableModel &tableModel,
 }
 
 void YerothTableView::lister_codebar_LIFO(YerothSqlTableModel &tableModel,
-        QMap<QString, int> &codebarToTableRows_in_out)
+        								  QMap<QString, int> &codebarToTableRows_in_out)
 {
-    tableModel.yerothSetSort(YerothTableView::DESIGNATION_COLUMN, Qt::AscendingOrder);
-
     emit signal_lister(tableModel);
 
-    bool s = tableModel.select();
+    //column 12 is for DATE_ENTREE
+    bool s = tableModel.yerothSetSort(12, Qt::DescendingOrder);
 
     int rows = tableModel.rowCount();
     int columns = tableModel.columnCount();
@@ -1401,12 +1385,8 @@ void YerothTableView::lister_codebar_LIFO(YerothSqlTableModel &tableModel,
     QStandardItem *anItem = 0;
     QVariant qv;
 
-    QMap<QString, QDate> codebarToDateEntree;
-
-    bool testDateEntreeOK = false;
-
-    QString prevCodebar;
-    QString curCodebar;
+    QString prevReference;
+    QString curReference;
 
     QDate defaultDate;
     defaultDate.setDate(QDate::currentDate().year() - 7, 12, 31);
@@ -1416,11 +1396,20 @@ void YerothTableView::lister_codebar_LIFO(YerothSqlTableModel &tableModel,
 
     if(s)
     {
-        bool itemIsPreempted = false;
-        QMultiMap<QString, QDate> allElements;
+        QSqlRecord record;
+
+        QVariant date_premption;
+        QVariant quantite_total;
+        QVariant stock_minimum;
 
         for (int i = 0; i < rows; ++i)
         {
+            record = tableModel.record(i);
+
+            date_premption = record.value(YerothDatabaseTableColumn::DATE_PEREMPTION);
+            quantite_total = record.value(YerothDatabaseTableColumn::QUANTITE_TOTAL);
+            stock_minimum = record.value(YerothDatabaseTableColumn::STOCK_MINIMUM);
+
             for (int k = 0; k < columns; ++k)
             {
                 qv.setValue(tableModel.record(i).value(k));
@@ -1465,10 +1454,10 @@ void YerothTableView::lister_codebar_LIFO(YerothSqlTableModel &tableModel,
                     break;
 
                 case QVariant::String:
-                    if (REFERENCE_COLUMN == k)
+                    if (YerothTableView::REFERENCE_COLUMN == k)
                     {
-                        prevCodebar = curCodebar;
-                        curCodebar = qv.toString();
+                        prevReference = curReference;
+                        curReference = qv.toString();
                     }
 
                     anItem = new YerothQStandardItem(qv.toString());
@@ -1481,40 +1470,19 @@ void YerothTableView::lister_codebar_LIFO(YerothSqlTableModel &tableModel,
                     break;
 
                 case QVariant::Date:
+
                     if (YerothTableView::DATE_ENTREE_COLUMN == k)
                     {
                         prevDate = curDate;
                         curDate = qv.toDate();
 
-                        if (curDate > prevDate)
+                        if (curDate >= prevDate)
                         {
-                            testDateEntreeOK = true;
-                            codebarToDateEntree.insert(curCodebar, curDate);
-                            codebarToTableRows_in_out.insert(curCodebar, i);
-                            allElements.insert(curCodebar, curDate);
-                            //qDebug() << QString("++ LIFO. barcode. 1) curCodebar: %1, curDate: %2")
-                            //		.arg(curDesignation, DATE_TO_STRING(designationToDateEntree[curCodebar]));
+                            codebarToTableRows_in_out.insert(curReference, i);
                         }
-                        else
-                        {
-                            if (!codebarToDateEntree.contains(curCodebar))
-                            {
-                                testDateEntreeOK = true;
-                                codebarToDateEntree.insert(curCodebar, curDate);
-                                codebarToTableRows_in_out.insert(curCodebar, i);
-                                allElements.insert(curCodebar, curDate);
-                                //qDebug() << QString("++ LIFO. barcode. 2) curCodebar: %1, curDate: %2")
-                                //		.arg(curDesignation, DATE_TO_STRING(designationToDateEntree[curCodebar]));
-                            }
-                        }
-
-                        //qDebug() << "++ 2. test, curCodebar: " << curCodebar
-                        //	 << ", reference: " << curCodebar
-                        // << ", t date: " << codebarToDateEntree[curCodebar]
-                        //<< ", i row: " << i;
                     }
 
-                    anItem = new YerothQStandardItem(DATE_TO_STRING(qv.toDate()));
+                    anItem = new YerothQStandardItem(DATE_TO_STRING(qv.toDate()));;
                     _stdItemModel->setItem(i, k, anItem);
                     break;
 
@@ -1527,77 +1495,20 @@ void YerothTableView::lister_codebar_LIFO(YerothSqlTableModel &tableModel,
                     //qDebug() << "YerothTableView::lister(): undecoded QVariant -> " << qv.type();
                     break;
                 }
-                if (anItem)
-                {
-                    anItem->setForeground(Qt::white);
-
-                    if (testDateEntreeOK && YerothTableView::DATE_ENTREE_COLUMN == k)
-                    {
-                        if (itemIsPreempted)
-                        {
-                            anItem->setForeground(YerothUtils::YEROTH_RED_COLOR);
-                        }
-                        else
-                        {
-                            QDate latestDate = getLatestDate(allElements, curCodebar);
-
-                            //qDebug() << QString("++ 1, LATEST: designation %1, latestDate: %2")
-                            //							.arg(curDesignation, DATE_TO_STRING(latestDate));
-
-                            QStandardItem *itemDateOfStockEntry;
-                            QString aCodebar;
-                            QDate itemEntryDate;
-
-                            for(int h = 0; h < i; ++h)
-                            {
-                                itemDateOfStockEntry = _stdItemModel->item(h, YerothTableView::DATE_ENTREE_COLUMN);
-
-                                aCodebar = _stdItemModel->item(h, YerothTableView::REFERENCE_COLUMN)->text();
-
-                                //qDebug() << QString("++ reference: %1, itemEntryDate: %2")
-                                //				.arg(aCodebar, itemDateOfStockEntry->text());
-
-                                if (itemDateOfStockEntry &&
-                                        YerothUtils::isEqualCaseInsensitive(aCodebar, curCodebar))
-                                {
-                                    itemEntryDate = GET_DATE_FROM_STRING(itemDateOfStockEntry->text());
-
-                                    //qDebug() << QString("++ designation %1, itemEntryDate: %2")
-                                    //				.arg(aCodebar, itemDateOfStockEntry->text());
-
-                                    if (itemEntryDate != latestDate)
-                                    {
-                                        itemDateOfStockEntry->setForeground(Qt::white);
-                                        //qDebug() << QString("++ item: %1, itemDateOfStockEntry: %2 <==> white")
-                                        //				.arg(aCodebar, itemDateOfStockEntry->text());
-                                    }
-                                }
-                            }
-                            if (latestDate == codebarToDateEntree.value(curCodebar))
-                            {
-                                //qDebug() << QString("++ YES, designation %1, date: %2")
-                                //				.arg(curCodebar, DATE_TO_STRING(latestDate));
-                                anItem->setForeground(YerothUtils::YEROTH_GREEN_COLOR);
-                            }
-                        }
-                        testDateEntreeOK = false;
-                    }
-                }
             }
-
-            this->resizeColumnsToContents();
         }
     }
+
+    this->resizeColumnsToContents();
 }
 
 void YerothTableView::lister_DEF_DEO(YerothSqlTableModel &tableModel,
                                     QMap<QString, int> &designationToTableRows_in_out)
 {
-    tableModel.yerothSetSort(YerothTableView::DESIGNATION_COLUMN, Qt::AscendingOrder);
-
     emit signal_lister(tableModel);
 
-    bool s = tableModel.select();
+    //column 13 is for DATE_PEREMPTION
+	bool s = tableModel.yerothSetSort(13, Qt::AscendingOrder);
 
     int rows = tableModel.rowCount();
     int columns = tableModel.columnCount();
@@ -1637,9 +1548,9 @@ void YerothTableView::lister_DEF_DEO(YerothSqlTableModel &tableModel,
         for (int i = 0; i < rows; ++i)
         {
             record = tableModel.record(i);
-            date_premption = record.value("date_peremption");
-            quantite_total = record.value("quantite_total");
-            stock_minimum = record.value("stock_minimum");
+            date_premption = record.value(YerothDatabaseTableColumn::DATE_PEREMPTION);
+            quantite_total = record.value(YerothDatabaseTableColumn::QUANTITE_TOTAL);
+            stock_minimum = record.value(YerothDatabaseTableColumn::STOCK_MINIMUM);
             itemIsPreempted = (date_premption.toDate() < GET_CURRENT_DATE);
 
             for (int k = 0; k < columns; ++k)
@@ -1831,11 +1742,10 @@ void YerothTableView::lister_DEF_DEO(YerothSqlTableModel &tableModel,
 void YerothTableView::lister_codebar_DEF_DEO(YerothSqlTableModel &tableModel,
         QMap<QString, int> &codebarToTableRows_in_out)
 {
-    tableModel.yerothSetSort(YerothTableView::REFERENCE_COLUMN, Qt::AscendingOrder);
-
     emit signal_lister(tableModel);
 
-    bool s = tableModel.select();
+    //column 13 is for DATE_PEREMPTION
+	bool s = tableModel.yerothSetSort(13, Qt::AscendingOrder);
 
     int rows = tableModel.rowCount();
     int columns = tableModel.columnCount();
@@ -1848,9 +1758,6 @@ void YerothTableView::lister_codebar_DEF_DEO(YerothSqlTableModel &tableModel,
     QStandardItem *anItem = 0;
     QVariant qv;
 
-    QMap<QString, QDate> codebarToDatePreemption;
-    QMultiMap<QString, QDate> allElements;
-
     QString prevCodebar;
     QString curCodebar;
 
@@ -1859,8 +1766,6 @@ void YerothTableView::lister_codebar_DEF_DEO(YerothSqlTableModel &tableModel,
 
     QDate curDate = defaultDate;
     QDate prevDate = defaultDate;
-
-    bool testDatePreemptionOK = false;
 
     if(s)
     {
@@ -1872,10 +1777,10 @@ void YerothTableView::lister_codebar_DEF_DEO(YerothSqlTableModel &tableModel,
 
         for (int i = 0; i < rows; ++i)
         {
-            quantite_total = record.value("quantite_total");
-            stock_minimum = record.value("stock_minimum");
+            quantite_total = record.value(YerothDatabaseTableColumn::QUANTITE_TOTAL);
+            stock_minimum = record.value(YerothDatabaseTableColumn::STOCK_MINIMUM);
             record = tableModel.record(i);
-            date_premption = record.value("date_peremption");
+            date_premption = record.value(YerothDatabaseTableColumn::DATE_PEREMPTION);
             itemIsPreempted = (date_premption.toDate() < GET_CURRENT_DATE);
 
             for (int k = 0; k < columns; ++k)
@@ -1945,20 +1850,9 @@ void YerothTableView::lister_codebar_DEF_DEO(YerothSqlTableModel &tableModel,
 
                         if (curDate < prevDate)
                         {
-                            testDatePreemptionOK = true;
-                            allElements.insert(curCodebar, curDate);
+                            codebarToTableRows_in_out.insert(curCodebar, i);
                             //qDebug() << "++ 1-OK. curCodebar: "
                             //	 << curCodebar << " date: " << curDate;
-                        }
-                        else
-                        {
-                            if (!codebarToDatePreemption.contains(curCodebar))
-                            {
-                                testDatePreemptionOK = true;
-                                allElements.insert(curCodebar, curDate);
-                                //qDebug() << "++ 2-OK. curCodebar: "
-                                //	 << curCodebar << " date: " << curDate;
-                            }
                         }
                     }
 
@@ -1975,73 +1869,6 @@ void YerothTableView::lister_codebar_DEF_DEO(YerothSqlTableModel &tableModel,
                     //qDebug() << "YerothTableView::lister(): undecoded QVariant -> " << qv.type();
                     break;
                 }
-                if (anItem)
-                {
-                    anItem->setForeground(Qt::white);
-                    //prevItem = anItem;
-
-                    double quantite_minimale = stock_minimum.toDouble() - 1;
-
-                    if (YerothTableView::QUANTITE_TOTAL_COLUMN == k &&
-                            quantite_total.toDouble() <= quantite_minimale)
-                    {
-                        anItem->setForeground(YerothUtils::YEROTH_RED_COLOR);
-                    }
-                    else if (YerothTableView::DATE_PREEMPTION_COLUMN == k)
-                    {
-                        if (itemIsPreempted)
-                        {
-                            anItem->setForeground(YerothUtils::YEROTH_RED_COLOR);
-                        }
-                        else if (testDatePreemptionOK)
-                        {
-                            QDate earliestDate = getEarliestDate(allElements, curCodebar);
-
-                            //qDebug() << "\t++ earliestDate: " << earliestDate;
-                            //QStandardItem *item;
-                            QStandardItem *itemCodebar;
-                            QString aCodebar;
-                            QDate aDate;
-
-                            for(int h = 0; h < i; ++h)
-                            {
-                                itemCodebar = _stdItemModel->item(h, YerothTableView::DESIGNATION_COLUMN);
-                                if (itemCodebar)
-                                {
-                                    aCodebar = itemCodebar->text();
-                                    aDate = codebarToDatePreemption.value(aCodebar);
-                                    //qDebug() << "++ itemCodebar: " << aCodebar;
-
-                                    if (YerothUtils::isEqualCaseInsensitive(aCodebar, curCodebar))
-                                    {
-                                        //item = _stdItemModel->item(h, DATE_PREEMPTION_COLUMN);
-                                        bool isPreempted = aDate < GET_CURRENT_DATE;
-                                        if (!isPreempted)
-                                        {
-                                            //Do nothing
-                                        }
-                                        else
-                                        {
-                                            //item is preempted. so leave colour as it is (red).
-                                        }
-                                    }
-                                }
-                            }
-
-                            codebarToDatePreemption.insert(curCodebar, earliestDate);
-                            codebarToTableRows_in_out.insert(curCodebar, i);
-
-                            //qDebug() << "++ ici: " << codebarToDatePreemption;
-
-                            anItem->setForeground(YerothUtils::YEROTH_GREEN_COLOR);
-                            //qDebug() << QString("\tgreen for %1 with date %2.")
-                            //					.arg(curCodebar,
-                            //					DATE_TO_STRING(earliestDate));
-
-                            testDatePreemptionOK = false;
-                        }
-                    }//first else
-                } // first if
             } //switch-case
         }
 

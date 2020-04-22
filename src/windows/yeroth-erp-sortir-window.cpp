@@ -1126,8 +1126,6 @@ void YerothSortirWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 
     _curStocksTableModel = stocksTableModel;
 
-    _curStocksTableModel->yerothSetSort(YerothTableView::DESIGNATION_COLUMN, Qt::AscendingOrder);
-
     lineEdit_articles_imprimante->setText(YerothERPConfig::printer);
 
     this->setupLineEditsQCompleters();

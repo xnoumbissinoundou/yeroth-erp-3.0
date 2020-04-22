@@ -1806,6 +1806,10 @@ void YerothPointDeVenteWindow::ajouter_article_codebar(const QString & text)
     QString designation(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
     QString categorie(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::CATEGORIE));
 
+//    qDebug() << QString("++ selectedTableRow: %1, ID: %2")
+//    				.arg(QString::number(selectedTableRow),
+//    						GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ID));
+
     if (article_exist(codeBar, designation))
     {
         return;
@@ -1833,7 +1837,10 @@ void YerothPointDeVenteWindow::ajouter_article_codebar(const QString & text)
     //Each call to YerothTableWidget::setItem in method 'YerothTableWidget::addArticle'
     //triggers a call to YerothPointDeVenteWindow::handleQteChange
     int lastCurRow =
-        tableWidget_articles->addArticle(selectedTableRow, codeBar, designation, categorie,
+        tableWidget_articles->addArticle(selectedTableRow,
+        								 codeBar,
+										 designation,
+										 categorie,
                                          QString::number(prix_unitaire, 'f', 2),
 										 QString::number(montant_tva, 'f', 2),
 										 QString::number(prix_vente, 'f', 2),
@@ -1858,16 +1865,23 @@ void YerothPointDeVenteWindow::actualiser_articles_codebar(int row, unsigned new
 				 			 QString::number(newItemQte)));
 
     _qteChangeCodeBar = true;
+
     double quantiteVendue = 0.0;
     double sommeTotal = 0.0;
     double tva = 0.0;
+
     double curTableWidgetItemQte = 1;
+
     QTableWidgetItem *curTableWidgetItem = 0;
+
     for (int k = 0; k < tableWidget_articles->rowCount(); ++k)
     {
         YerothSqlTableModel & articleSqlTableModel = *lineEdit_recherche_article_codebar->getMySqlTableModel();
+
         QSqlRecord record = articleSqlTableModel.record(tableWidget_articles->getSqlTableModelIndex(k));
+
         YerothArticleVenteInfo *articleVenteInfo = articleItemToVenteInfo.value(k);
+
         if (row != k)
         {
             curTableWidgetItem = tableWidget_articles->item(k, YerothTableWidget::QTE_COLUMN);
@@ -2248,6 +2262,9 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
         QSqlRecord stockRecord = _curStocksTableModel->record(articleVenteInfo->sqlTableModelIndex);
 
         QString stockRecordId = GET_SQL_RECORD_DATA(stockRecord, YerothDatabaseTableColumn::ID);
+
+//        qDebug() << QString("++ articleVenteInfo->sqlTableModelIndex: %1, stockRecordId: %2")
+//        				.arg(QString::number(articleVenteInfo->sqlTableModelIndex), stockRecordId);
 
         QString quantiteQueryStr(QString("SELECT %1 FROM %2 WHERE %3 = '%4'")
         							.arg(YerothDatabaseTableColumn::QUANTITE_TOTAL,

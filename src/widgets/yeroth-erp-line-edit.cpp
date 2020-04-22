@@ -6,6 +6,8 @@
 
 #include "yeroth-erp-line-edit.hpp"
 
+#include "src/utils/yeroth-erp-database-table-column.hpp"
+
 #include "src/utils/yeroth-erp-config.hpp"
 
 #include "src/include/yeroth-erp-3-0-software.text-configuration.hpp"
