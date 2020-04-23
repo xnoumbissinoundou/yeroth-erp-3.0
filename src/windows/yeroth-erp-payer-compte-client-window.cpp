@@ -97,11 +97,11 @@ void YerothPayerCompteClientWindow::handleComboBoxClients_Typedepaiement_TextCha
 		YerothUtils::isEqualCaseInsensitive(currentText,
 				YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::VERSEMENT_VIREMENT_BANCAIRE)))
 	{
-		comboBox_clients_etablissement_bancaire->setYerothEnabled(true);
+		comboBox_clients_intitule_du_compte_bancaire->setYerothEnabled(true);
 	}
 	else
 	{
-		comboBox_clients_etablissement_bancaire->setYerothEnabled(false);
+		comboBox_clients_intitule_du_compte_bancaire->setYerothEnabled(false);
 	}
 }
 
@@ -273,7 +273,7 @@ void YerothPayerCompteClientWindow::reinitialiser_donnees_de_paiement_au_comptec
 	lineEdit_comptes_clients_reference->myClear();
 	lineEdit_montant_a_payer->myClear();
 	comboBox_clients_typedepaiement->resetYerothComboBox();
-	comboBox_clients_etablissement_bancaire->resetYerothComboBox();
+	comboBox_clients_intitule_du_compte_bancaire->resetYerothComboBox();
 }
 
 
@@ -306,8 +306,8 @@ bool YerothPayerCompteClientWindow::putCashIntoCustomerAccount()
 		return false;
 	}
 
-	if (comboBox_clients_etablissement_bancaire->isEnabled() &&
-		comboBox_clients_etablissement_bancaire->currentText().isEmpty())
+	if (comboBox_clients_intitule_du_compte_bancaire->isEnabled() &&
+		comboBox_clients_intitule_du_compte_bancaire->currentText().isEmpty())
 	{
 		YerothQMessageBox::information(this,
 									   QObject::trUtf8("montant à verser"),
@@ -441,7 +441,7 @@ bool YerothPayerCompteClientWindow::putCashIntoCustomerAccount()
 
     	paymentInfo.montant_paye = cashPaymentAmount;
 
-    	QString curEtablissementBancaire(comboBox_clients_etablissement_bancaire->currentText());
+    	QString curEtablissementBancaire(comboBox_clients_intitule_du_compte_bancaire->currentText());
 
     	paymentInfo.intitule_du_compte_bancaire = curEtablissementBancaire;
 
@@ -478,7 +478,7 @@ bool YerothPayerCompteClientWindow::putCashIntoCustomerAccount()
 		lineEdit_montant_a_payer->clear();
 
 		comboBox_clients_typedepaiement->resetYerothComboBox();
-		comboBox_clients_etablissement_bancaire->resetYerothComboBox();
+		comboBox_clients_intitule_du_compte_bancaire->resetYerothComboBox();
 
 		setupLineEditsQCompleters();
 
@@ -544,7 +544,7 @@ void YerothPayerCompteClientWindow::setupLineEditsQCompleters()
 
 void YerothPayerCompteClientWindow::populatePayerAuCompteClientsComboBoxes()
 {
-	comboBox_clients_etablissement_bancaire->setYerothEnabled(false);
+	comboBox_clients_intitule_du_compte_bancaire->setYerothEnabled(false);
 
 	comboBox_clients_typedepaiement->setupPopulateNORawString(_allWindows->TYPE_DE_PAIEMENT,
     															YerothDatabaseTableColumn::TYPE_DE_PAIEMENT,
@@ -552,7 +552,7 @@ void YerothPayerCompteClientWindow::populatePayerAuCompteClientsComboBoxes()
 
 	comboBox_clients_typedepaiement->populateComboBoxWithout(YerothUtils::VERSEMENT_ACHAT_ANNULE);
 
-	comboBox_clients_etablissement_bancaire->populateComboBoxRawString(_allWindows->COMPTES_BANCAIRES,
+	comboBox_clients_intitule_du_compte_bancaire->populateComboBoxRawString(_allWindows->COMPTES_BANCAIRES,
     																   YerothDatabaseTableColumn::INTITULE_DU_COMPTE_BANCAIRE);
 }
 
@@ -625,7 +625,7 @@ void YerothPayerCompteClientWindow::rendreInvisible()
 	lineEdit_comptes_clients_reference->clear();
 	lineEdit_montant_a_payer->clear();
 
-	comboBox_clients_etablissement_bancaire->resetYerothComboBox();
+	comboBox_clients_intitule_du_compte_bancaire->resetYerothComboBox();
 
 	comboBox_clients_typedepaiement->resetYerothComboBox();
 

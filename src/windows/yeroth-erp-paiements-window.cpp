@@ -148,6 +148,11 @@ YerothPaiementsWindow::YerothPaiementsWindow()
 
     connect(tableView_paiements, SIGNAL(activated(const QModelIndex &)), this, SLOT(afficher_paiements_detail()));
 
+    connect(comboBox_paiements_type_de_paiement,
+    		SIGNAL(currentTextChanged(const QString &)),
+			this,
+			SLOT(handleComboBoxClients_Typedepaiement_TextChanged(const QString &)));
+
     setupShortcuts();
 }
 
@@ -223,6 +228,8 @@ bool YerothPaiementsWindow::filtrer_paiements()
 void YerothPaiementsWindow::populateComboBoxes()
 {
 	_logger->log("populateComboBoxes");
+
+	comboBox_paiements_intitule_du_compte_bancaire->setYerothEnabled(false);
 
 	comboBox_paiements_intitule_du_compte_bancaire->populateComboBoxRawString(_allWindows->COMPTES_BANCAIRES,
 																			  YerothDatabaseTableColumn::INTITULE_DU_COMPTE_BANCAIRE);
@@ -307,6 +314,24 @@ void YerothPaiementsWindow::slot_reinitialiser_champs_db_visibles()
 {
 	reinitialiser_champs_db_visibles();
 	lister_les_elements_du_tableau();
+}
+
+
+void YerothPaiementsWindow::handleComboBoxClients_Typedepaiement_TextChanged(const QString &currentText)
+{
+	if (YerothUtils::isEqualCaseInsensitive(currentText,
+				YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::VERSEMENT_BANCAIRE)) ||
+		YerothUtils::isEqualCaseInsensitive(currentText,
+				YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::VERSEMENT_TELEPHONE)) ||
+		YerothUtils::isEqualCaseInsensitive(currentText,
+				YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::VERSEMENT_VIREMENT_BANCAIRE)))
+	{
+		comboBox_paiements_intitule_du_compte_bancaire->setYerothEnabled(true);
+	}
+	else
+	{
+		comboBox_paiements_intitule_du_compte_bancaire->setYerothEnabled(false);
+	}
 }
 
 

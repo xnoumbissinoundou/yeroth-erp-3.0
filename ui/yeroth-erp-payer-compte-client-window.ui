@@ -4941,7 +4941,7 @@ background-color: rgb(0, 0, 0); </string>
       <bool>false</bool>
      </property>
     </widget>
-    <widget class="YerothComboBox" name="comboBox_clients_etablissement_bancaire">
+    <widget class="YerothComboBox" name="comboBox_clients_intitule_du_compte_bancaire">
      <property name="geometry">
       <rect>
        <x>9</x>

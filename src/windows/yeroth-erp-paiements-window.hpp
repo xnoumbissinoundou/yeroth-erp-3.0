@@ -161,6 +161,8 @@ protected slots:
 
    	virtual void slot_reinitialiser_champs_db_visibles();
 
+	void handleComboBoxClients_Typedepaiement_TextChanged(const QString &currentText);
+
 	virtual void textChangedSearchLineEditsQCompleters();
 
 protected:
