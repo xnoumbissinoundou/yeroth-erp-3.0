@@ -606,6 +606,14 @@ public:
 	static QString EN_bar_diag_tex;
 
 
+    enum STRATEGIE_COMBOBOX_INDEX
+	{
+    	STRATEGIE_ALL_COMBOBOX_INDEX 		= 0,
+		STRATEGIE_DEF_DEO_COMBOBOX_INDEX 	= 1,
+		STRATEGIE_FIFO_COMBOBOX_INDEX 		= 2,
+		STRATEGIE_LIFO_COMBOBOX_INDEX 		= 3
+	};
+
 	enum TITRE
 	{
 		TITRE_DR = 100,
@@ -641,6 +649,10 @@ public:
 		VERSEMENT_ACHAT_ANNULE 		= 60,
 		VERSEMENT_INDEFINI 			= 70
 	};
+
+
+	static QMap<int, QString> _strategieindexToUserViewString;
+
 
 	static QMap<int, QString> _titreToUserViewString;
 

@@ -111,6 +111,13 @@ public:
 
 	bool yerothSetSort(int column, Qt::SortOrder order);
 
+	bool yerothSetQuery(QString aSqlQuery);
+
+	inline QString yerothSelectStatement()
+	{
+		return QSqlTableModel::selectStatement();
+	}
+
 private:
 
     const QString 	_sqlTableName;

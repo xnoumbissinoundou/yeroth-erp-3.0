@@ -506,8 +506,11 @@ void YerothTableView::lister_ALL(YerothSqlTableModel &tableModel,
 {
     emit signal_lister(tableModel);
 
-    //column 0 is for ID
-	bool s = tableModel.yerothSetSort(0, Qt::AscendingOrder);
+    QString anALLQueryStr(QString("%1 ORDER BY %2 ASC")
+    							.arg(tableModel.yerothSelectStatement(),
+									 YerothDatabaseTableColumn::ID));
+
+    bool s = tableModel.yerothSetQuery(anALLQueryStr);
 
     int rows = tableModel.rowCount();
     int columns = tableModel.columnCount();
@@ -631,8 +634,11 @@ void YerothTableView::lister_codebar_ALL(YerothSqlTableModel &tableModel,
 
     emit signal_lister(tableModel);
 
-    //column 0 is for ID
-    bool s = tableModel.yerothSetSort(0, Qt::AscendingOrder);
+    QString aReferenceALLQueryStr(QString("%1 ORDER BY %2 ASC")
+    							.arg(tableModel.yerothSelectStatement(),
+									 YerothDatabaseTableColumn::ID));
+
+    bool s = tableModel.yerothSetQuery(aReferenceALLQueryStr);
 
     int rows = tableModel.rowCount();
     int columns = tableModel.columnCount();
@@ -739,8 +745,12 @@ void YerothTableView::lister_FIFO(YerothSqlTableModel &tableModel,
 {
     emit signal_lister(tableModel);
 
-    //column 12 is for DATE_ENTREE
-	bool s = tableModel.yerothSetSort(12, Qt::AscendingOrder);
+    QString aFIFOQueryStr(QString("%1 ORDER BY %2 ASC, %3 ASC")
+    							.arg(tableModel.yerothSelectStatement(),
+									 YerothDatabaseTableColumn::DESIGNATION,
+									 YerothDatabaseTableColumn::DATE_ENTREE));
+
+    bool s = tableModel.yerothSetQuery(aFIFOQueryStr);
 
     int rows = tableModel.rowCount();
     int columns = tableModel.columnCount();
@@ -942,8 +952,12 @@ void YerothTableView::lister_codebar_FIFO(YerothSqlTableModel &tableModel,
 {
     emit signal_lister(tableModel);
 
-    //column 12 is for DATE_ENTREE
-	bool s = tableModel.yerothSetSort(12, Qt::AscendingOrder);
+    QString aReferenceFIFOQueryStr(QString("%1 ORDER BY %2 ASC, %3 ASC")
+    							.arg(tableModel.yerothSelectStatement(),
+									 YerothDatabaseTableColumn::DESIGNATION,
+									 YerothDatabaseTableColumn::DATE_ENTREE));
+
+    bool s = tableModel.yerothSetQuery(aReferenceFIFOQueryStr);
 
     int rows = tableModel.rowCount();
     int columns = tableModel.columnCount();
@@ -1133,8 +1147,12 @@ void YerothTableView::lister_LIFO(YerothSqlTableModel &tableModel,
 {
     emit signal_lister(tableModel);
 
-    //column 12 is for DATE_ENTREE
-    bool s = tableModel.yerothSetSort(12, Qt::DescendingOrder);
+    QString aLIFOStringQuery(QString("%1 ORDER BY %2 ASC, %3 DESC")
+    							.arg(tableModel.yerothSelectStatement(),
+									 YerothDatabaseTableColumn::DESIGNATION,
+									 YerothDatabaseTableColumn::DATE_ENTREE));
+
+    bool s = tableModel.yerothSetQuery(aLIFOStringQuery);
 
     int rows = tableModel.rowCount();
     int columns = tableModel.columnCount();
@@ -1371,8 +1389,12 @@ void YerothTableView::lister_codebar_LIFO(YerothSqlTableModel &tableModel,
 {
     emit signal_lister(tableModel);
 
-    //column 12 is for DATE_ENTREE
-    bool s = tableModel.yerothSetSort(12, Qt::DescendingOrder);
+    QString aReferenceLIFOStringQuery(QString("%1 ORDER BY %2 ASC, %3 DESC")
+    							.arg(tableModel.yerothSelectStatement(),
+									 YerothDatabaseTableColumn::DESIGNATION,
+									 YerothDatabaseTableColumn::DATE_ENTREE));
+
+    bool s = tableModel.yerothSetQuery(aReferenceLIFOStringQuery);
 
     int rows = tableModel.rowCount();
     int columns = tableModel.columnCount();
@@ -1505,10 +1527,16 @@ void YerothTableView::lister_codebar_LIFO(YerothSqlTableModel &tableModel,
 void YerothTableView::lister_DEF_DEO(YerothSqlTableModel &tableModel,
                                     QMap<QString, int> &designationToTableRows_in_out)
 {
+	qDebug() << "++ YerothTableView::lister_DEF_DEO";
+
     emit signal_lister(tableModel);
 
-    //column 13 is for DATE_PEREMPTION
-	bool s = tableModel.yerothSetSort(13, Qt::AscendingOrder);
+    QString aDEFDEOQueryStr(QString("%1 ORDER BY %2 ASC, %3 ASC")
+    							.arg(tableModel.yerothSelectStatement(),
+									 YerothDatabaseTableColumn::DESIGNATION,
+									 YerothDatabaseTableColumn::DATE_PEREMPTION));
+
+    bool s = tableModel.yerothSetQuery(aDEFDEOQueryStr);
 
     int rows = tableModel.rowCount();
     int columns = tableModel.columnCount();
@@ -1744,8 +1772,12 @@ void YerothTableView::lister_codebar_DEF_DEO(YerothSqlTableModel &tableModel,
 {
     emit signal_lister(tableModel);
 
-    //column 13 is for DATE_PEREMPTION
-	bool s = tableModel.yerothSetSort(13, Qt::AscendingOrder);
+    QString aReferenceDEFDEOQueryStr(QString("%1 ORDER BY %2 ASC, %3 ASC")
+    							.arg(tableModel.yerothSelectStatement(),
+									 YerothDatabaseTableColumn::DESIGNATION,
+									 YerothDatabaseTableColumn::DATE_PEREMPTION));
+
+    bool s = tableModel.yerothSetQuery(aReferenceDEFDEOQueryStr);
 
     int rows = tableModel.rowCount();
     int columns = tableModel.columnCount();

@@ -143,6 +143,12 @@ QString YerothUtils::EN_bar_diag_tex("");
 /*
  * All valid key values must be >= 0.
  */
+QMap<int, QString> YerothUtils::_strategieindexToUserViewString;
+
+
+/*
+ * All valid key values must be >= 0.
+ */
 QMap<int, QString> YerothUtils::_titreToUserViewString;
 
 
@@ -350,6 +356,19 @@ const QRegExpValidator YerothUtils::PasswordValidator(PasswordRegExp);
 
 YerothUtils::YerothUtils()
 {
+    YerothUtils::_strategieindexToUserViewString.insert(YerothUtils::STRATEGIE_ALL_COMBOBOX_INDEX,
+			YerothERPConfig::STRATEGIE_VENTE_SORTIE_ALL);
+
+    YerothUtils::_strategieindexToUserViewString.insert(YerothUtils::STRATEGIE_DEF_DEO_COMBOBOX_INDEX,
+			YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO);
+
+    YerothUtils::_strategieindexToUserViewString.insert(YerothUtils::STRATEGIE_FIFO_COMBOBOX_INDEX,
+			YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO);
+
+    YerothUtils::_strategieindexToUserViewString.insert(YerothUtils::STRATEGIE_LIFO_COMBOBOX_INDEX,
+			YerothERPConfig::STRATEGIE_VENTE_SORTIE_LIFO);
+
+
     YerothUtils::_titreToUserViewString.insert(YerothUtils::TITRE_DR,
 			QObject::tr("Dr."));
 

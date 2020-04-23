@@ -44,7 +44,6 @@
 # define FILE_YEROTH_ERP_3_0_SQL_TABLE_FOURNISSEURS 							FOLDER_YEROTH_ERP_3_0_SQL"/create_table_fournisseurs.sql"
 # define FILE_YEROTH_ERP_3_0_SQL_TABLE_DBMS 											FOLDER_YEROTH_ERP_3_0_SQL"/create_table_dbms.sql"
 # define FILE_YEROTH_ERP_3_0_SQL_TABLE_CATEGORIES 								FOLDER_YEROTH_ERP_3_0_SQL"/create_table_categories.sql"
-# define FILE_YEROTH_ERP_3_0_SQL_TABLE_STRATEGIE_VENTE_SORTIE 		FOLDER_YEROTH_ERP_3_0_SQL"/create_table_strategie_vente_sortie.sql"
 
 # define FILE_YEROTH_ERP_3_0_TEMPLATE_1A_TEX 											FOLDER_YEROTH_ERP_3_0_TEMPLATES"/1a.tex"
 

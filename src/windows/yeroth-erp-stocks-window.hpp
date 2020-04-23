@@ -64,10 +64,7 @@ public:
 
 public slots:
 
-	inline void gererChoixStrategieGestionDesStocks()
-	{
-		afficherStocks();
-	}
+	void gererChoixStrategieGestionDesStocks();
 
 	inline virtual void apropos()
 	{
@@ -101,7 +98,7 @@ public slots:
 
     void afficherStocks(YerothSqlTableModel &sqlTableModel, QString localVisibleStrategy  = YerothUtils::EMPTY_STRING);
 
-    virtual void afficherStocks();
+    virtual void afficherStocks(QString strategieGlobale = YerothUtils::EMPTY_STRING);
 
     virtual void modifier_les_articles();
 
@@ -164,16 +161,6 @@ protected slots:
 
 private:
 
-
-    typedef enum enum_comboBoxStrategyIndex
-	{
-    	STRATEGIE_VENTE_SORTIE_ALL 		= 0,
-    	STRATEGIE_VENTE_SORTIE_DPF_DPO 	= 1,
-    	STRATEGIE_VENTE_SORTIE_FIFO 	= 2,
-    	STRATEGIE_VENTE_SORTIE_LIFO 	= 3
-	}
-    comboBoxStrategyIndex;
-
     void activerComboBoxStrategieDeGestionDesStocks();
 
     void desactiverComboBoxStrategieDeGestionDesStocks();
@@ -187,6 +174,7 @@ private:
     static const QString 	_WINDOW_TITLE;
 
 
+    QString					_localStrategy;
 
     YerothLogger			*_logger;
 

@@ -34,7 +34,7 @@ QString YerothERPConfig::pathToLatexSystemRootFolder("/usr/bin");
 
 QString YerothERPConfig::receiptFormat("grand (A4)");
 
-QString YerothERPConfig::salesStrategy(OPTION_SALES_STRATEGY_DEF_DEO);
+QString YerothERPConfig::salesStrategy("");
 
 QString YerothERPConfig::YEROTH_ERP_3_0_PROPERTIES_CONFIGURATION_FOLDER("/etc");
 

@@ -169,7 +169,7 @@ connect(actionAdministration, SIGNAL(triggered()), this, SLOT(administration()))
     connect(actionSupprimer_ce_stock, SIGNAL(triggered()),
     		this, SLOT(supprimer_ce_stock()));
 
-    connect(comboBox_strategie_de_stocks, SIGNAL(activated(int)),
+    connect(comboBox_strategie_de_stocks, SIGNAL(currentTextChanged(const QString &)),
     		this, SLOT(gererChoixStrategieGestionDesStocks()));
 
     connect(tableView_stocks, SIGNAL(doubleClicked(const QModelIndex &)), this,
@@ -339,7 +339,7 @@ void YerothStocksWindow::slot_reinitialiser_champs_db_visibles()
 void YerothStocksWindow::activerComboBoxStrategieDeGestionDesStocks()
 {
     comboBox_strategie_de_stocks->setVisible(true);
-    comboBox_strategie_de_stocks->setEnabled(true);
+    comboBox_strategie_de_stocks->setYerothEnabled(true);
     lineEdit_stock_terme_recherche->setFixedWidth(663);
 }
 
@@ -347,31 +347,35 @@ void YerothStocksWindow::activerComboBoxStrategieDeGestionDesStocks()
 void YerothStocksWindow::desactiverComboBoxStrategieDeGestionDesStocks()
 {
     comboBox_strategie_de_stocks->setVisible(false);
-    comboBox_strategie_de_stocks->setEnabled(false);
+    comboBox_strategie_de_stocks->setYerothEnabled(false);
     lineEdit_stock_terme_recherche->setFixedWidth(778);
 }
 
 
 void YerothStocksWindow::setComboBoxStrategieDeStocks()
 {
-    if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::salesStrategy, YerothERPConfig::STRATEGIE_VENTE_SORTIE_ALL))
+    if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::salesStrategy,
+    										YerothERPConfig::STRATEGIE_VENTE_SORTIE_ALL))
     {
-        comboBox_strategie_de_stocks->setCurrentIndex(comboBoxStrategyIndex::STRATEGIE_VENTE_SORTIE_ALL);
+        comboBox_strategie_de_stocks->setCurrentIndex(YerothUtils::STRATEGIE_ALL_COMBOBOX_INDEX);
     }
     else if (YerothUtils::
-             isEqualCaseInsensitive(YerothERPConfig::salesStrategy, YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO))
+             isEqualCaseInsensitive(YerothERPConfig::salesStrategy,
+            		 	 	 	 	YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO))
     {
-        comboBox_strategie_de_stocks->setCurrentIndex(comboBoxStrategyIndex::STRATEGIE_VENTE_SORTIE_DPF_DPO);
+        comboBox_strategie_de_stocks->setCurrentIndex(YerothUtils::STRATEGIE_DEF_DEO_COMBOBOX_INDEX);
     }
     else if (YerothUtils::
-             isEqualCaseInsensitive(YerothERPConfig::salesStrategy, YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO))
+             isEqualCaseInsensitive(YerothERPConfig::salesStrategy,
+            		 	 	 	 	YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO))
     {
-        comboBox_strategie_de_stocks->setCurrentIndex(comboBoxStrategyIndex::STRATEGIE_VENTE_SORTIE_FIFO);
+        comboBox_strategie_de_stocks->setCurrentIndex(YerothUtils::STRATEGIE_FIFO_COMBOBOX_INDEX);
     }
     else if (YerothUtils::
-             isEqualCaseInsensitive(YerothERPConfig::salesStrategy, YerothERPConfig::STRATEGIE_VENTE_SORTIE_LIFO))
+             isEqualCaseInsensitive(YerothERPConfig::salesStrategy,
+            		 	 	 	 	YerothERPConfig::STRATEGIE_VENTE_SORTIE_LIFO))
     {
-        comboBox_strategie_de_stocks->setCurrentIndex(comboBoxStrategyIndex::STRATEGIE_VENTE_SORTIE_LIFO);
+        comboBox_strategie_de_stocks->setCurrentIndex(YerothUtils::STRATEGIE_LIFO_COMBOBOX_INDEX);
     }
 }
 
@@ -662,7 +666,7 @@ void YerothStocksWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 
     _curStocksTableModel->easySelect();
 
-    afficherStocks();
+    afficherStocks(YerothERPConfig::salesStrategy);
 
     if (YerothERPConfig::_distantSiteConnected)
     {
@@ -677,7 +681,16 @@ void YerothStocksWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 void YerothStocksWindow::rendreInvisible()
 {
     lineEdit_recherche_reference->clear();
+
     YerothWindowsCommons::rendreInvisible();
+}
+
+
+void YerothStocksWindow::gererChoixStrategieGestionDesStocks()
+{
+	_localStrategy = comboBox_strategie_de_stocks->currentText();
+
+	afficherStocks(_localStrategy);
 }
 
 
@@ -735,6 +748,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 #endif
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
+
     activerComboBoxStrategieDeGestionDesStocks();
 
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
@@ -1134,7 +1148,7 @@ void YerothStocksWindow::afficherStocks(YerothSqlTableModel & sqlTableModel,
     else			//YerothConfig::STRATEGIE_VENTE_SORTIE_ALL
     {
     	tableView_stocks->setSortingEnabled(true);
-        tableView_stocks->lister_les_elements_du_tableau(*_curStocksTableModel);
+    	tableView_stocks->lister_les_elements_du_tableau(*_curStocksTableModel);
     }
 
     tableView_show_or_hide_columns(*tableView_stocks);
@@ -1142,11 +1156,21 @@ void YerothStocksWindow::afficherStocks(YerothSqlTableModel & sqlTableModel,
     setWindowTitle(YerothUtils::getWindowTitleWithStrategy(this, localVisibleStrategy));
 }
 
-void YerothStocksWindow::afficherStocks()
+void YerothStocksWindow::afficherStocks(QString strategieGlobale /* = YerothUtils::EMPTY_STRING */)
 {
-    QString localVisibleStrategy = comboBox_strategie_de_stocks->currentText();
+	QString curStrategy = strategieGlobale;
 
-    afficherStocks(*_curStocksTableModel, localVisibleStrategy);
+	if (curStrategy.isEmpty())
+	{
+		//set local visible strategy
+		curStrategy = _localStrategy;
+	}
+
+	comboBox_strategie_de_stocks
+		->setCurrentIndex(YerothUtils::getComboBoxDatabaseQueryValue(curStrategy,
+						  YerothUtils::_strategieindexToUserViewString));
+
+	afficherStocks(*_curStocksTableModel, curStrategy);
 
     int rowCount = tableView_stocks->rowCount();
 

@@ -257,8 +257,27 @@ int YerothSqlTableModel::easySelect()
     return rowCount();
 }
 
+
 bool YerothSqlTableModel::yerothSetSort(int column, Qt::SortOrder order)
 {
     setSort(column, order);
     return select();
+}
+
+
+bool YerothSqlTableModel::yerothSetQuery(QString aSqlQuery)
+{
+	QSqlQueryModel::setQuery(aSqlQuery);
+
+   	if (lastError().isValid())
+   	{
+   		qDebug() << "++ YerothSqlTableModel::yerothSetQuery(QString): \n\t"
+   				 << aSqlQuery
+				 << "\n"
+				 << lastError();
+
+   		return false;
+   	}
+
+   	return true;
 }

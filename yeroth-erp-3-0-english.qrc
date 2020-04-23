@@ -50,7 +50,6 @@
     <file>yeroth-erp-3-0-sql/create_table_clients.sql</file>
     <file>yeroth-erp-3-0-sql/create_table_fournisseurs.sql</file>
     <file>yeroth-erp-3-0-sql/create_table_dbms.sql</file>
-    <file>yeroth-erp-3-0-sql/create_table_strategie_vente_sortie.sql</file>
     
 		<file>yeroth-erp-3-0-images/folder-sort.svg.png</file>
 		<file>yeroth-erp-3-0-images/yeroth-erp-3.0-icon.png</file>

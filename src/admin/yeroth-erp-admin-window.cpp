@@ -765,24 +765,28 @@ void YerothAdminWindow::read_configuration()
     comboBox_strategie_vente_sortie->addItem(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO);
     comboBox_strategie_vente_sortie->addItem(YerothERPConfig::STRATEGIE_VENTE_SORTIE_LIFO);
 
-    if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::salesStrategy, YerothERPConfig::STRATEGIE_VENTE_SORTIE_ALL))
+    if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::salesStrategy,
+    										YerothERPConfig::STRATEGIE_VENTE_SORTIE_ALL))
     {
-        comboBox_strategie_vente_sortie->resetYerothComboBox();
+        comboBox_strategie_vente_sortie->setCurrentIndex(YerothUtils::STRATEGIE_ALL_COMBOBOX_INDEX);
     }
     else if (YerothUtils::
-             isEqualCaseInsensitive(YerothERPConfig::salesStrategy, YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO))
+             isEqualCaseInsensitive(YerothERPConfig::salesStrategy,
+            		 	 	 	 	YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO))
     {
-        comboBox_strategie_vente_sortie->setCurrentIndex(1);
+        comboBox_strategie_vente_sortie->setCurrentIndex(YerothUtils::STRATEGIE_DEF_DEO_COMBOBOX_INDEX);
     }
     else if (YerothUtils::
-             isEqualCaseInsensitive(YerothERPConfig::salesStrategy, YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO))
+             isEqualCaseInsensitive(YerothERPConfig::salesStrategy,
+            		 	 	 	 	YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO))
     {
-        comboBox_strategie_vente_sortie->setCurrentIndex(2);
+        comboBox_strategie_vente_sortie->setCurrentIndex(YerothUtils::STRATEGIE_FIFO_COMBOBOX_INDEX);
     }
     else if (YerothUtils::
-             isEqualCaseInsensitive(YerothERPConfig::salesStrategy, YerothERPConfig::STRATEGIE_VENTE_SORTIE_LIFO))
+             isEqualCaseInsensitive(YerothERPConfig::salesStrategy,
+            		 	 	 	 	YerothERPConfig::STRATEGIE_VENTE_SORTIE_LIFO))
     {
-        comboBox_strategie_vente_sortie->setCurrentIndex(3);
+        comboBox_strategie_vente_sortie->setCurrentIndex(YerothUtils::STRATEGIE_LIFO_COMBOBOX_INDEX);
     }
 
     comboBox_impression_sur->clear();
