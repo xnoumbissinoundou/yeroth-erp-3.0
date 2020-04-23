@@ -8833,7 +8833,7 @@ background-color: rgb(0, 0, 0); </string>
      </font>
     </property>
     <property name="text">
-     <string>Nbre d'achats</string>
+     <string># achats</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

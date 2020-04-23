@@ -16,9 +16,13 @@
 
 #include <QtSql/QSqlTableModel>
 
+
+class YerothERPWindows;
+
 class YerothSqlTableModel;
 
 class YerothPOSQStandardItemModel;
+
 
 class YerothERPMarchandisesTableView : public YerothTableView
 {
@@ -32,7 +36,9 @@ public:
 
 	YerothERPMarchandisesTableView(QWidget * parent);
 
-	virtual ~YerothERPMarchandisesTableView();
+	inline virtual ~YerothERPMarchandisesTableView()
+	{
+	}
 
 	virtual void lister_les_elements_du_tableau(YerothSqlTableModel &tableModel_in_out);
 
@@ -42,6 +48,10 @@ public:
 	static const int VALEUR_DINVENTAIRE_COLUMN;
 
     static const int QUANTITE_TOTAL_COLUMN;
+
+private:
+
+    YerothERPWindows *_allWindows;
 };
 
 

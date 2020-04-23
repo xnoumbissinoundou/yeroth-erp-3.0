@@ -41,6 +41,8 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
 :YerothWindowsCommons(YerothMarchandisesWindow::_WINDOW_TITLE),
  YerothAbstractClassYerothSearchWindow(_allWindows->MARCHANDISES),
  _logger(new YerothLogger("YerothMarchandisesWindow")),
+ _valeurTheoriqueDinventaire(0.0),
+ _qteTotaleDarticlesEnStock(0.0),
  _currentlyFiltered(false),
  _lastSelectedRow(0),
  _pushButton_filtrer_font(0),
@@ -149,8 +151,8 @@ YerothMarchandisesWindow::~YerothMarchandisesWindow()
 }
 
 
-double YerothMarchandisesWindow::getValeurDinventaireEnStock(QString categorie,
-							   	   	   	   	   	   	   	     QString designation)
+double YerothMarchandisesWindow::getValeurTotaleDinventaireEnStock(QString categorie,
+							   	   	   	   	   	   	   	     	   QString designation)
 {
 	double valeurMarchande = 0.0;
 
@@ -198,7 +200,7 @@ double YerothMarchandisesWindow::getValeurDinventaireEnStock(QString categorie,
 }
 
 
-double YerothMarchandisesWindow::getQuantiteTotalEnStock(QString categorie,
+double YerothMarchandisesWindow::getQuantiteTotaleEnStock(QString categorie,
 							   	   	   	   	   	   	   	 QString designation)
 {
 	double qteTotalEnStock = 0.0;
@@ -239,7 +241,7 @@ double YerothMarchandisesWindow::getQuantiteTotalEnStock(QString categorie,
 }
 
 
-double YerothMarchandisesWindow::getQuantiteTotalEnStock(const QModelIndex &aQModelIndex)
+double YerothMarchandisesWindow::getQuantiteTotaleEnStock(const QModelIndex &aQModelIndex)
 {
 	double qteTotalEnStock = 0.0;
 
@@ -251,7 +253,7 @@ double YerothMarchandisesWindow::getQuantiteTotalEnStock(const QModelIndex &aQMo
 
 		QString categorie(YerothUtils::get_text(aQModelIndex.sibling(_lastSelectedRow, 3).data()));
 
-		qteTotalEnStock = YerothMarchandisesWindow::getQuantiteTotalEnStock(categorie, designation);
+		qteTotalEnStock = YerothMarchandisesWindow::getQuantiteTotaleEnStock(categorie, designation);
 	}
 
 	return qteTotalEnStock;
@@ -973,6 +975,10 @@ void YerothMarchandisesWindow::afficherMarchandises(YerothSqlTableModel &aYeroth
     int rowCount = tableView_marchandises->rowCount();
 
     lineEdit_nombre_de_marchandises->setText(GET_NUM_STRING(rowCount));
+
+    lineEdit_nombre_darticles->setText(GET_DOUBLE_STRING(_qteTotaleDarticlesEnStock));
+
+    lineEdit_valeur_totale_dinventaire->setText(GET_CURRENCY_STRING_NUM(_valeurTheoriqueDinventaire));
 }
 
 

@@ -122,11 +122,11 @@ public slots:
     	tableView_marchandises->setLastSelectedRow(row);
     }
 
-    static double getValeurDinventaireEnStock(QString categorie, QString designation);
+    static double getValeurTotaleDinventaireEnStock(QString categorie, QString designation);
 
-    static double getQuantiteTotalEnStock(QString categorie, QString designation);
+    static double getQuantiteTotaleEnStock(QString categorie, QString designation);
 
-	double getQuantiteTotalEnStock(const QModelIndex &aQModelIndex);
+	double getQuantiteTotaleEnStock(const QModelIndex &aQModelIndex);
 
 protected:
 
@@ -149,6 +149,12 @@ private slots:
 	bool filtrer_empty_product_stock();
 
 	bool filtrer();
+
+public:
+
+    double 					_valeurTheoriqueDinventaire;
+
+    double 					_qteTotaleDarticlesEnStock;
 
 private:
 

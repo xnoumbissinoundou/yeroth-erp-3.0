@@ -43,24 +43,27 @@ const int YerothERPMarchandisesTableView::QUANTITE_TOTAL_COLUMN = 5;
 
 
 YerothERPMarchandisesTableView::YerothERPMarchandisesTableView()
-:YerothTableView()
+:YerothTableView(),
+ _allWindows(YerothUtils::getAllWindows())
 {
 	_stdItemModel->_curTableView = this;
 }
 
 YerothERPMarchandisesTableView::YerothERPMarchandisesTableView(QWidget * parent)
-:YerothTableView(parent)
+:YerothTableView(parent),
+ _allWindows(YerothUtils::getAllWindows())
 {
 	_stdItemModel->_curTableView = this;
 }
 
-YerothERPMarchandisesTableView::~YerothERPMarchandisesTableView()
-{
-}
 
 void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel)
 {
 	_stdItemModel->_curSqlTableModel = &tableModel;
+
+	_allWindows->_marchandisesWindow->_valeurTheoriqueDinventaire = 0.0;
+
+	_allWindows->_marchandisesWindow->_qteTotaleDarticlesEnStock = 0.0;
 
     emit signal_lister(tableModel);
 
@@ -221,16 +224,21 @@ void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTab
                 	if (YerothERPMarchandisesTableView::QUANTITE_TOTAL_COLUMN == k)
                 	{
                 		double qteTotalEnStock =
-                				YerothMarchandisesWindow::getQuantiteTotalEnStock(categorieStr,
+                				YerothMarchandisesWindow::getQuantiteTotaleEnStock(categorieStr,
                 						designationStr);
+
+                		_allWindows->_marchandisesWindow->_qteTotaleDarticlesEnStock += qteTotalEnStock;
 
                 		anItem->setText(GET_DOUBLE_STRING(qteTotalEnStock));
                 	}
                 	else if (YerothERPMarchandisesTableView::VALEUR_DINVENTAIRE_COLUMN == k)
                 	{
                 		double valeurDinventaireEnStock =
-                				YerothMarchandisesWindow::getValeurDinventaireEnStock(categorieStr,
+                				YerothMarchandisesWindow::getValeurTotaleDinventaireEnStock(categorieStr,
                 						designationStr);
+
+                		_allWindows->_marchandisesWindow->_valeurTheoriqueDinventaire += valeurDinventaireEnStock;
+
                 		anItem->setText(GET_DOUBLE_STRING(valeurDinventaireEnStock));
                 	}
 
