@@ -3888,7 +3888,7 @@ background-color: rgb(0, 0, 0); </string>
        </font>
       </property>
       <property name="text">
-       <string>Nbre de paiements</string>
+       <string># paiements</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -5628,7 +5628,7 @@ background-color: rgb(0, 0, 0); </string>
        </font>
       </property>
       <property name="text">
-       <string>Total paiements</string>
+       <string>Montant total</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

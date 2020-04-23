@@ -986,7 +986,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <location filename="src/windows/yeroth-erp-achats-window.cpp" line="178"/>
         <location filename="src/windows/yeroth-erp-clients-window.cpp" line="579"/>
         <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="534"/>
-        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="161"/>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="166"/>
         <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="281"/>
         <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="824"/>
         <source>Veuillez saisir une valeur numérique pour la recherche !</source>
@@ -997,7 +997,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <location filename="src/windows/yeroth-erp-achats-window.cpp" line="181"/>
         <location filename="src/windows/yeroth-erp-clients-window.cpp" line="582"/>
         <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="537"/>
-        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="164"/>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="169"/>
         <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="284"/>
         <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="827"/>
         <source>filtrer</source>
@@ -1692,7 +1692,7 @@ Continue with update of the stock ?</translation>
         <translation>payments</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="920"/>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="945"/>
         <source>entreprise</source>
         <translation>company</translation>
     </message>
@@ -1710,7 +1710,7 @@ Continue with update of the stock ?</translation>
         <translation>There are no data to export in csv format !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="842"/>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="867"/>
         <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1611"/>
         <source>pas de données à imprimer</source>
         <translation>there are no data to print-out</translation>
@@ -2222,7 +2222,7 @@ Please contact an administrator of %1</translation>
     <message>
         <location filename="src/windows/yeroth-erp-achats-window.cpp" line="268"/>
         <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="651"/>
-        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="266"/>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="273"/>
         <location filename="src/windows/yeroth-erp-payer-compte-client-window.cpp" line="285"/>
         <location filename="src/windows/yeroth-erp-payer-compte-client-window.cpp" line="527"/>
         <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="424"/>
@@ -2373,7 +2373,7 @@ Please contact an administrator of %1</translation>
     <message>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="2295"/>
         <location filename="src/windows/yeroth-erp-historique-du-stock-window.cpp" line="228"/>
-        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="843"/>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="868"/>
         <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="743"/>
         <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="925"/>
         <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="607"/>
@@ -3206,13 +3206,13 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <location filename="src/windows/yeroth-erp-achats-window.cpp" line="267"/>
         <location filename="src/windows/yeroth-erp-clients-window.cpp" line="682"/>
         <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="649"/>
-        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="265"/>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="272"/>
         <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="423"/>
         <source>terme à rechercher</source>
         <translation>word to search for:</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="267"/>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="274"/>
         <source>nom de l&apos;entreprise</source>
         <translation>company name</translation>
     </message>
@@ -8918,8 +8918,9 @@ stock item (service)</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-paiements-window.ui" line="3891"/>
-        <source>Nbre de paiements</source>
-        <translation>Payments</translation>
+        <source># paiements</source>
+        <oldsource>Nbre de paiements</oldsource>
+        <translation># payments</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-paiements-window.ui" line="4329"/>
@@ -8928,8 +8929,9 @@ stock item (service)</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-paiements-window.ui" line="5631"/>
-        <source>Total paiements</source>
-        <translation>Total payments</translation>
+        <source>Montant total</source>
+        <oldsource>Total paiements</oldsource>
+        <translation>Total amount</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-paiements-window.ui" line="6068"/>
