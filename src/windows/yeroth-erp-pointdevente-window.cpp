@@ -1725,12 +1725,12 @@ void YerothPointDeVenteWindow::ajouter_article(const QString & text)
 
     int selectedTableRow = designationToTableRows.value(text);
 
-    _logger->log("ajouter_article(const QModelIndex &)", QString("model index: %1").arg(selectedTableRow));
+//    _logger->log("ajouter_article(const QModelIndex &)",
+//    		     QString("model index: %1")
+//				 	 .arg(selectedTableRow));
 
     YerothTableView & articleTableView = *lineEdit_recherche_article->getMyTableView();
     articleTableView.setLastSelectedRow(selectedTableRow);
-
-    lineEdit_recherche_article->getMySqlTableModel()->select();
 
     QSqlRecord record = lineEdit_recherche_article->getMySqlTableModel()->record(selectedTableRow);
 
@@ -1790,15 +1790,15 @@ void YerothPointDeVenteWindow::ajouter_article_codebar(const QString & text)
 
     int selectedTableRow = codebarToTableRows.value(text);
 
-    _logger->log("ajouter_article_codebar(const QString &)", QString("model index: %1").arg(selectedTableRow));
-    //qDebug() << "YerothPointDeVenteWindow::ajouter_article_codebar(const QString &), "
-    // << QString::number(selectedTableRow);
+//    _logger->log("ajouter_article_codebar(const QString &)",
+//    			 QString("model index: %1").arg(selectedTableRow));
+
+//    qDebug() << "YerothPointDeVenteWindow::ajouter_article_codebar(const QString &), "
+//    		 << QString::number(selectedTableRow);
 
     YerothTableView & articleTableView = *lineEdit_recherche_article_codebar->getMyTableView();
 
     articleTableView.setLastSelectedRow(selectedTableRow);
-
-    lineEdit_recherche_article_codebar->getMySqlTableModel()->select();
 
     QSqlRecord record = lineEdit_recherche_article_codebar->getMySqlTableModel()->record(selectedTableRow);
 
