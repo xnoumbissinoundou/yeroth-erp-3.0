@@ -1527,8 +1527,6 @@ void YerothTableView::lister_codebar_LIFO(YerothSqlTableModel &tableModel,
 void YerothTableView::lister_DEF_DEO(YerothSqlTableModel &tableModel,
                                     QMap<QString, int> &designationToTableRows_in_out)
 {
-	qDebug() << "++ YerothTableView::lister_DEF_DEO";
-
     emit signal_lister(tableModel);
 
     QString aDEFDEOQueryStr(QString("%1 ORDER BY %2 ASC, %3 ASC")
