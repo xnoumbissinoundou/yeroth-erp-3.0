@@ -103,7 +103,10 @@ public slots:
 
     virtual void afficherClients(YerothSqlTableModel &clientSqlTableModel);
 
-    void afficherClients();
+    inline void afficherClients()
+    {
+    	afficherClients(*_curClientsTableModel);
+    }
 
     void afficher_nom_entreprise_selectioner(const QString &nomEntreprise);
 

@@ -9,7 +9,8 @@ USAGE="
        ------------------------------------------------------------
        Usage: $(basename $0)
 	[-h] : help
-	[-b] : generates an official build-executable, with 'LAST BUILD ID' set
+	[-r] : generates an official release build-executable,
+	       with 'LAST BUILD ID' set
 	[-s] : simulate 'yeroth-erp-3.0' compilation
 	[-l] : compile 'yeroth-erp-3.0' to use with virtual keyboard
 	[-c] : continue previous stopped compilation
@@ -33,10 +34,10 @@ yerothVersionFlag=
 debugFlag=
 yerothVersionFlag=
 continueFlag=
-officialBuildFlag=
+releaseBuildFlag=
 
 
-while getopts 'lhsgv:fecj:b' OPTION
+while getopts 'lhsgv:fecj:r' OPTION
 do
   case $OPTION in
 
@@ -75,7 +76,7 @@ do
         echo "continue la compilation"
 		;;
 
-		b)	officialBuildFlag=1
+		r)	releaseBuildFlag=1
         echo "BUILD OFFICIEL: $(git rev-parse origin/master)"
 		;;
 
@@ -145,7 +146,7 @@ YEROTH_BUILD_COMPUTER="$(uname -srm)"
 
 YEROTH_BUILD_COMPUTER_TEXT="ON BUILD_COMPUTER: '${YEROTH_BUILD_COMPUTER}'.\"));"
 
-if [ $officialBuildFlag ]; then
+if [ $releaseBuildFlag ]; then
 		sed -i "s/LAST BUILD ID: .*/${YEROTH_GIT_PUSH_COMMIT_ID_TEXT}/g" src/utils/yeroth-erp-utils.cpp
 		sed -i "s/ON BUILD_COMPUTER: .*/${YEROTH_BUILD_COMPUTER_TEXT}/g" src/utils/yeroth-erp-utils.cpp
 fi
@@ -184,7 +185,7 @@ fi
 
 BUILD_SUCCESSFUL="$?"
 
-if [ ${BUILD_SUCCESSFUL} -eq 0 ] && [ $officialBuildFlag ]; then
+if [ ${BUILD_SUCCESSFUL} -eq 0 ] && [ $releaseBuildFlag ]; then
 		git checkout src/utils/yeroth-erp-utils.cpp
 fi
 

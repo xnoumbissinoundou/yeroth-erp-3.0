@@ -666,6 +666,8 @@ void YerothAchatsWindow::reinitialiser_recherche()
     setCurrentlyFiltered(false);
 
     resetLineEditsQCompleters((QObject *)this);
+
+    afficherAchats();
 }
 
 

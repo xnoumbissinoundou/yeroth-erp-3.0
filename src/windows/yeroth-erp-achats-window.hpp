@@ -93,6 +93,11 @@ public slots:
 
     virtual void afficherAchats(YerothSqlTableModel &achatSqlTableModel);
 
+    inline void afficherAchats()
+    {
+    	afficherAchats(*_curAchatSqlTableModel);
+    }
+
     void afficher_stock_selectioner(const QString &stockName);
 
     void afficher_au_detail();

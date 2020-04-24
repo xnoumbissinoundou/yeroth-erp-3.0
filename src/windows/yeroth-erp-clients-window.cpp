@@ -646,6 +646,8 @@ void YerothERPClientsWindow::reinitialiser_recherche()
     setCurrentlyFiltered(false);
 
     resetLineEditsQCompleters((QObject *)this);
+
+    afficherClients();
 }
 
 
@@ -935,12 +937,6 @@ void YerothERPClientsWindow::afficherClients(YerothSqlTableModel &clientSqlTable
     int rowCount = tableView_clients->rowCount();
 
     lineEdit_nombre_de_comptes_clients->setText(GET_NUM_STRING(rowCount));
-}
-
-
-void YerothERPClientsWindow::afficherClients()
-{
-	afficherClients(_allWindows->getSqlTableModel_clients());
 }
 
 
