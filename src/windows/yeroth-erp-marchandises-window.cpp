@@ -654,6 +654,8 @@ void YerothMarchandisesWindow::setupLineEdits()
     lineEdit_marchandises_nom_entreprise_fournisseur->enableForSearch(QObject::tr("nom entreprise fournisseur"));
 
     lineEdit_nombre_de_marchandises->setYerothEnabled(false);
+    lineEdit_nombre_darticles->setYerothEnabled(false);
+	lineEdit_valeur_totale_dinventaire->setYerothEnabled(false);
 
 	lineEdit_marchandises_element_de_stock_resultat->setValidator(&YerothUtils::DoubleValidator);
 }

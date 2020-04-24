@@ -274,6 +274,9 @@ void YerothPaiementsWindow::setupLineEdits()
     lineEdit_paiements_nom_entreprise->enableForSearch(QObject::tr("nom de l'entreprise"));
 
 
+    lineEdit_paiements_nombre_paiements->setYerothEnabled(false);
+	lineEdit_paiements_total->setYerothEnabled(false);
+
     lineEdit_details_de_paiement_numero_du_bon_de_paiement->setYerothEnabled(false);
     lineEdit_details_de_paiement_nom_de_lentreprise->setYerothEnabled(false);
     lineEdit_details_de_paiement_reference->setYerothEnabled(false);

@@ -987,6 +987,13 @@ void YerothVentesWindow::setupLineEdits()
     lineEdit_ventes_nom_entreprise_client->enableForSearch(QObject::trUtf8("nom de l'entreprise cliente"));
     lineEdit_ventes_reference_recu_vendu->enableForSearch(QObject::trUtf8("référence reçu de vente"));
 
+
+    lineEdit_ventes_quantite_vendue->setYerothEnabled(false);
+	lineEdit_ventes_tva->setYerothEnabled(false);
+	lineEdit_ventes_remise_totale_currency->setYerothEnabled(false);
+	lineEdit_ventes_recette_totale->setYerothEnabled(false);
+
+
     lineEdit_details_type_de_vente->setYerothEnabled(false);
     lineEdit_details_nom_client->setYerothEnabled(false);
     lineEdit_details_reference_produit->setYerothEnabled(false);
