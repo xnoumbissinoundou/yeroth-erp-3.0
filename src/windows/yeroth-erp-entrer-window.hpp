@@ -148,6 +148,11 @@ public slots:
     		   !lineEdit_prix_dachat->text().isEmpty();
     }
 
+    bool isReferenceUnique(QString aStockServiceReference,
+			   	   	   	   QString aStockServiceDesignation,
+						   QString aStockServiceNomCategorie,
+						   QString &curExistingReference_in_out);
+
     void enregistrer_produit();
 
 	inline void setCurrentCategorieName(QString curCategorieName)

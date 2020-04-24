@@ -789,7 +789,23 @@ bool YerothEntrerWindow::check_fields(bool withClearAllServiceMandatoryFields /*
 
     bool designation = lineEdit_designation->checkField();
 
-    bool quantite = lineEdit_quantite_par_lot->checkField();
+    bool quantite_par_lot = lineEdit_quantite_par_lot->checkField();
+
+    if (quantite_par_lot)
+    {
+    	if (lineEdit_quantite_par_lot->text().toDouble() <= 0)
+    	{
+    		YerothQMessageBox::information(this,
+    				QObject::trUtf8("enregistrer article"),
+					QObject::trUtf8("La quantité par lot doit être supérieure à zéro !"));
+
+    		lineEdit_quantite_par_lot->clear();
+
+    		lineEdit_quantite_par_lot->checkField();
+
+    		return false;
+    	}
+    }
 
     bool prix_vente = lineEdit_prix_vente->checkField();
 
@@ -799,7 +815,7 @@ bool YerothEntrerWindow::check_fields(bool withClearAllServiceMandatoryFields /*
     			  designation       &&
     			  categorie_produit &&
 				  prix_vente 		&&
-				  quantite;
+				  quantite_par_lot;
 
     return result;
 }
@@ -1321,6 +1337,43 @@ bool YerothEntrerWindow::handle_clients_table(int stockID, double montant_total_
 	return false;
 }
 
+bool YerothEntrerWindow::isReferenceUnique(QString aStockServiceReference,
+										   QString aStockServiceDesignation,
+										   QString aStockServiceNomCategorie,
+										   QString &curExistingReference_in_out)
+{
+	curExistingReference_in_out.clear();
+
+    YerothSqlTableModel &marchandisesTableModel = _allWindows->getSqlTableModel_marchandises();
+
+    marchandisesTableModel.yerothSetFilter(QString("LOWER(%1) = LOWER('%2') AND "
+    											   "LOWER(%3) = LOWER('%4')")
+                                   	   	   	   .arg(YerothDatabaseTableColumn::DESIGNATION,
+													aStockServiceDesignation,
+													YerothDatabaseTableColumn::CATEGORIE,
+													aStockServiceNomCategorie));
+
+    int marchandisesTableModelRowCount = marchandisesTableModel.easySelect();
+
+    QSqlRecord record;
+    QString stockReference;
+
+    for( int k = 0; k < marchandisesTableModelRowCount; ++k)
+    {
+    	 record = marchandisesTableModel.record(k);
+    	 stockReference = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE);
+
+    	 if (!YerothUtils::isEqualCaseInsensitive(stockReference, aStockServiceReference))
+    	 {
+    		 curExistingReference_in_out = stockReference;
+
+    		 return false;
+    	 }
+    }
+
+    return true;
+}
+
 
 void YerothEntrerWindow::enregistrer_produit()
 {
@@ -1347,6 +1400,31 @@ void YerothEntrerWindow::enregistrer_produit()
         else
         {
         }
+
+        return ;
+    }
+
+    QString curExistingReference;
+
+    if (!isReferenceUnique(lineEdit_reference_produit->text(),
+    					   lineEdit_designation->text(),
+						   lineEdit_categorie_produit->text(),
+						   curExistingReference))
+    {
+    	if (curExistingReference.isEmpty())
+    	{
+    		YerothQMessageBox::information(this,
+    				QObject::trUtf8("enregistrer article"),
+					QObject::trUtf8("Cette marchandise, déjà existante dans la liste des "
+									"marchandises, n'utilise aucune valeur pour référence !"));
+    	}
+    	else
+    	{
+    		YerothQMessageBox::information(this, "enregistrer",
+    				QString(QObject::trUtf8("Cette marchandise, déjà existante dans la liste des "
+    										"marchandises, utilise la référence '%1' !"))
+							.arg(curExistingReference));
+    	}
 
         return ;
     }
