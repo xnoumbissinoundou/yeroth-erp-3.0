@@ -1416,13 +1416,13 @@ void YerothEntrerWindow::enregistrer_produit()
     		YerothQMessageBox::information(this,
     				QObject::trUtf8("enregistrer article"),
 					QObject::trUtf8("Cette marchandise, déjà existante dans la liste des "
-									"marchandises, n'utilise aucune valeur pour référence !"));
+									"marchandises, n'utilise aucune valeur pour 'référence' !"));
     	}
     	else
     	{
     		YerothQMessageBox::information(this, "enregistrer",
     				QString(QObject::trUtf8("Cette marchandise, déjà existante dans la liste des "
-    										"marchandises, utilise la référence '%1' !"))
+    										"marchandises, utilise la 'référence (%1)' !"))
 							.arg(curExistingReference));
     	}
 
