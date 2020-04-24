@@ -583,18 +583,18 @@ bool YerothMarchandisesWindow::filtrer()
 
 void YerothMarchandisesWindow::localSetupLineEditsQCompleters()
 {
+	QString aConditionStr;
+
     if (checkBox_services->isChecked())
     {
-    	QString aConditionStr(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE, "1"));
-
-    	setupLineEditsQCompleters((QObject *)this, aConditionStr);
+    	aConditionStr = YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE, "1");
     }
     else
     {
-    	QString aConditionStr(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE, "0"));
-
-    	setupLineEditsQCompleters((QObject *)this, aConditionStr);
+    	aConditionStr = YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE, "0");
     }
+
+    setupLineEditsQCompleters((QObject *)this, aConditionStr);
 }
 
 
@@ -675,16 +675,27 @@ void YerothMarchandisesWindow::rendreVisible(YerothSqlTableModel * stocksTableMo
 
 	setVisible(true);
 
+	QString currentFilter(_curMarchandisesTableModel->filter());
+
+	if (!currentFilter.isEmpty())
+	{
+		currentFilter.append(QString(" AND "));
+	}
+
 	if (checkBox_services->isChecked())
 	{
-		_curMarchandisesTableModel->yerothSetFilter(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
-    										  	  	  	   YerothUtils::MYSQL_TRUE_LITERAL));
+		currentFilter.append(QString("%1")
+								.arg(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
+    										  	  	  	   	    YerothUtils::MYSQL_TRUE_LITERAL)));
     }
     else
     {
-    	_curMarchandisesTableModel->yerothSetFilter(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
-    										  	  	  	   YerothUtils::MYSQL_FALSE_LITERAL));
+		currentFilter.append(QString("%1")
+								.arg(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
+    										  	  	  	   	    YerothUtils::MYSQL_FALSE_LITERAL)));
 	}
+
+	_curMarchandisesTableModel->yerothSetFilter(currentFilter);
 
 	afficherMarchandises();
 
