@@ -1391,30 +1391,69 @@ QString YerothUtils::getStrategySqlQueryStr(QString aSelectStmt,
 
     if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO, aStrategy))
     {
-    	resultStrategyQueryStr = QString("%1 ORDER BY %2 ASC, %3 ASC")
-									.arg(aSelectStmt,
-										 YerothDatabaseTableColumn::DESIGNATION,
-										 YerothDatabaseTableColumn::DATE_PEREMPTION);
+    	if (!aSelectStmt.contains("ORDER BY", Qt::CaseInsensitive))
+    	{
+        	resultStrategyQueryStr = QString("%1 ORDER BY %2 ASC, %3 ASC")
+    									.arg(aSelectStmt,
+    										 YerothDatabaseTableColumn::DESIGNATION,
+    										 YerothDatabaseTableColumn::DATE_PEREMPTION);
+    	}
+    	else
+    	{
+        	resultStrategyQueryStr = QString("%1, %2 ASC, %3 ASC")
+    									.arg(aSelectStmt,
+    										 YerothDatabaseTableColumn::DESIGNATION,
+    										 YerothDatabaseTableColumn::DATE_PEREMPTION);
+    	}
     }
     else if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO, aStrategy))
     {
-    	resultStrategyQueryStr = QString("%1 ORDER BY %2 ASC, %3 ASC")
-									.arg(aSelectStmt,
-										 YerothDatabaseTableColumn::DESIGNATION,
-										 YerothDatabaseTableColumn::DATE_ENTREE);
+    	if (!aSelectStmt.contains("ORDER BY", Qt::CaseInsensitive))
+    	{
+        	resultStrategyQueryStr = QString("%1 ORDER BY %2 ASC, %3 ASC")
+    									.arg(aSelectStmt,
+    										 YerothDatabaseTableColumn::DESIGNATION,
+    										 YerothDatabaseTableColumn::DATE_ENTREE);
+    	}
+    	else
+    	{
+        	resultStrategyQueryStr = QString("%1, %2 ASC, %3 ASC")
+    									.arg(aSelectStmt,
+    										 YerothDatabaseTableColumn::DESIGNATION,
+    										 YerothDatabaseTableColumn::DATE_ENTREE);
+    	}
     }
     else if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_LIFO, aStrategy))
     {
-    	resultStrategyQueryStr = QString("%1 ORDER BY %2 ASC, %3 DESC")
-									.arg(aSelectStmt,
-										 YerothDatabaseTableColumn::DESIGNATION,
-										 YerothDatabaseTableColumn::DATE_ENTREE);
+    	if (!aSelectStmt.contains("ORDER BY", Qt::CaseInsensitive))
+    	{
+        	resultStrategyQueryStr = QString("%1 ORDER BY %2 ASC, %3 DESC")
+    									.arg(aSelectStmt,
+    										 YerothDatabaseTableColumn::DESIGNATION,
+    										 YerothDatabaseTableColumn::DATE_ENTREE);
+    	}
+    	else
+    	{
+        	resultStrategyQueryStr = QString("%1, %2 ASC, %3 DESC")
+    									.arg(aSelectStmt,
+    										 YerothDatabaseTableColumn::DESIGNATION,
+    										 YerothDatabaseTableColumn::DATE_ENTREE);
+    	}
     }
     else //YerothConfig::STRATEGIE_VENTE_SORTIE_ALL
     {
-    	resultStrategyQueryStr = QString("%1 ORDER BY %2 ASC")
-									.arg(aSelectStmt,
-										 YerothDatabaseTableColumn::ID);
+    	if (!aSelectStmt.contains("ORDER BY", Qt::CaseInsensitive))
+    	{
+        	resultStrategyQueryStr = QString("%1 ORDER BY %2 ASC")
+    									.arg(aSelectStmt,
+    										 YerothDatabaseTableColumn::ID);
+    	}
+    	else
+    	{
+        	resultStrategyQueryStr = QString("%1, %2 ASC")
+    									.arg(aSelectStmt,
+    										 YerothDatabaseTableColumn::ID);
+    	}
     }
 
 	return resultStrategyQueryStr;
