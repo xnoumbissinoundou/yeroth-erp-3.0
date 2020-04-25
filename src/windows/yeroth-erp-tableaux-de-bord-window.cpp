@@ -106,7 +106,7 @@ const unsigned int YerothTableauxDeBordWindow::MAX_YEARS_REPORTS(10);
 const double YerothTableauxDeBordWindow::STATS_MIN_VALUE(0.0009);
 
 const QString YerothTableauxDeBordWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2"))
-        .arg(YEROTH_ERP_WINDOW_TITLE, QObject::trUtf8("tableaux de bord")));
+        .arg(YEROTH_ERP_WINDOW_TITLE, QObject::trUtf8("tableaux de bords")));
 
 YerothTableauxDeBordWindow::YerothTableauxDeBordWindow()
     :YerothWindowsCommons(YerothTableauxDeBordWindow::_WINDOW_TITLE),

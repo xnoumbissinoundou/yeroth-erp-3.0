@@ -32,9 +32,9 @@
 #include <QtWidgets/QCompleter>
 
 
-const QString YerothMarchandisesWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2")).
-        arg(YEROTH_ERP_WINDOW_TITLE,
-            QObject::trUtf8("Marchandises")));
+const QString YerothMarchandisesWindow::_WINDOW_TITLE(QString("%1 - %2")
+        												.arg(YEROTH_ERP_WINDOW_TITLE,
+        													 QObject::tr("les marchandises")));
 
 
 YerothMarchandisesWindow::YerothMarchandisesWindow()

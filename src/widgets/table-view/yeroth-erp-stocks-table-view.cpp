@@ -91,9 +91,9 @@ void YerothERPStocksTableView::lister_les_elements_du_tableau(YerothSqlTableMode
         for (int i = 0; i < rows; ++i)
         {
             record = tableModel.record(i);
-            date_premption = record.value("date_peremption");
-            quantite_total = record.value("quantite_total");
-            stock_minimum = record.value("stock_minimum");
+            date_premption = record.value(YerothDatabaseTableColumn::DATE_PEREMPTION);
+            quantite_total = record.value(YerothDatabaseTableColumn::QUANTITE_TOTAL);
+            stock_minimum = record.value(YerothDatabaseTableColumn::STOCK_MINIMUM);
 
             for (int k = 0; k < columns; ++k)
             {
