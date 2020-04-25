@@ -355,6 +355,9 @@ public:
 
 	static QString appendPDFReceiptFormat(QString aStr);
 
+	static QString getStrategySqlQueryStr(QString aSelectStmt,
+										  QString aStrategy);
+
 	inline static QString getTvaString()
 	{
 		return QString::number((YerothERPConfig::tva_value * 100), 'f', 2);

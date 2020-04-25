@@ -506,9 +506,9 @@ void YerothTableView::lister_ALL(YerothSqlTableModel &tableModel,
 {
     emit signal_lister(tableModel);
 
-    QString anALLQueryStr(QString("%1 ORDER BY %2 ASC")
-    							.arg(tableModel.yerothSelectStatement(),
-									 YerothDatabaseTableColumn::ID));
+    QString anALLQueryStr =
+    		YerothUtils::getStrategySqlQueryStr(tableModel.yerothSelectStatement(),
+    											YerothERPConfig::STRATEGIE_VENTE_SORTIE_ALL);
 
     bool s = tableModel.yerothSetQuery(anALLQueryStr);
 
@@ -627,128 +627,15 @@ void YerothTableView::lister_ALL(YerothSqlTableModel &tableModel,
     }// if
 }
 
-void YerothTableView::lister_codebar_ALL(YerothSqlTableModel &tableModel,
-                                        QMap<QString, int> &codebarToTableRows_in_out)
-{
-    codebarToTableRows_in_out.clear();
-
-    emit signal_lister(tableModel);
-
-    QString aReferenceALLQueryStr(QString("%1 ORDER BY %2 ASC")
-    							.arg(tableModel.yerothSelectStatement(),
-									 YerothDatabaseTableColumn::ID));
-
-    bool s = tableModel.yerothSetQuery(aReferenceALLQueryStr);
-
-    int rows = tableModel.rowCount();
-    int columns = tableModel.columnCount();
-
-    _stdItemModel->setRowCount(rows);
-    _stdItemModel->setColumnCount(columns);
-
-    YerothUtils::createTableModelHeaders(tableModel, *_stdItemModel, *_tableModelHeaders);
-
-    QStandardItem *anItem = 0;
-    QVariant qv;
-
-    QString curCodebar;
-
-    if(s)
-    {
-        for (int i = 0; i < rows; ++i)
-        {
-            for (int k = 0; k < columns; ++k)
-            {
-                qv.setValue(tableModel.record(i).value(k));
-
-                anItem = _stdItemModel->item(i, k);
-
-                if (anItem)
-                {
-                    delete anItem;
-                }
-
-                switch (qv.type())
-                {
-                case QVariant::UInt:
-                    anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toUInt()));
-                    _stdItemModel->setItem(i, k, anItem);
-                    break;
-
-                case QVariant::Int:
-                    anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
-                    _stdItemModel->setItem(i, k, anItem);
-                    break;
-
-                case QVariant::Double:
-                    anItem = new YerothQStandardItem(GET_DOUBLE_STRING(qv.toDouble()));
-                    _stdItemModel->setItem(i, k, anItem);
-                    break;
-
-                case QVariant::ULongLong:
-                    anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toULongLong()));
-                    _stdItemModel->setItem(i, k, anItem);
-                    break;
-
-                case QVariant::LongLong:
-                    anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toLongLong()));
-                    _stdItemModel->setItem(i, k, anItem);
-                    break;
-
-                case QVariant::Char:
-                    anItem = new YerothQStandardItem(QString(qv.toChar()));
-                    _stdItemModel->setItem(i, k, anItem);
-                    break;
-
-                case QVariant::String:
-                    if (YerothTableView::REFERENCE_COLUMN == k)
-                    {
-                        curCodebar = qv.toString();
-                        if (!codebarToTableRows_in_out.contains(curCodebar))
-                        {
-                            codebarToTableRows_in_out.insert(curCodebar, i);
-                            anItem = new YerothQStandardItem(qv.toString());
-                            _stdItemModel->setItem(i, k, anItem);
-                        }
-                    }
-
-                    break;
-
-                case QVariant::Bool:
-                    anItem = new YerothQStandardItem(qv.toBool() ? "True" : "False");
-                    _stdItemModel->setItem(i, k, anItem);
-                    break;
-
-                case QVariant::Date:
-                    anItem = new YerothQStandardItem(DATE_TO_STRING(qv.toDate()));
-                    _stdItemModel->setItem(i, k, anItem);
-                    break;
-
-                case QVariant::Time:
-                    anItem = new YerothQStandardItem(TIME_TO_STRING(qv.toTime()));
-                    _stdItemModel->setItem(i, k, anItem);
-                    break;
-
-                default:
-                    //qDebug() << "YerothTableView::lister(): undecoded QVariant -> " << qv.type();
-                    break;
-                }
-            }
-        }
-
-        this->resizeColumnsToContents();
-    }
-}
 
 void YerothTableView::lister_FIFO(YerothSqlTableModel &tableModel,
                                  QMap<QString, int> &designationToTableRows_in_out)
 {
     emit signal_lister(tableModel);
 
-    QString aFIFOQueryStr(QString("%1 ORDER BY %2 ASC, %3 ASC")
-    							.arg(tableModel.yerothSelectStatement(),
-									 YerothDatabaseTableColumn::DESIGNATION,
-									 YerothDatabaseTableColumn::DATE_ENTREE));
+    QString aFIFOQueryStr =
+    		YerothUtils::getStrategySqlQueryStr(tableModel.yerothSelectStatement(),
+    											YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO);
 
     bool s = tableModel.yerothSetQuery(aFIFOQueryStr);
 
@@ -947,131 +834,6 @@ void YerothTableView::lister_FIFO(YerothSqlTableModel &tableModel,
     }
 }
 
-void YerothTableView::lister_codebar_FIFO(YerothSqlTableModel &tableModel,
-        								  QMap<QString, int> &codebarToTableRows_in_out)
-{
-    emit signal_lister(tableModel);
-
-    QString aReferenceFIFOQueryStr(QString("%1 ORDER BY %2 ASC, %3 ASC")
-    							.arg(tableModel.yerothSelectStatement(),
-									 YerothDatabaseTableColumn::DESIGNATION,
-									 YerothDatabaseTableColumn::DATE_ENTREE));
-
-    bool s = tableModel.yerothSetQuery(aReferenceFIFOQueryStr);
-
-    int rows = tableModel.rowCount();
-    int columns = tableModel.columnCount();
-
-    _stdItemModel->setRowCount(rows);
-    _stdItemModel->setColumnCount(columns);
-
-    YerothUtils::createTableModelHeaders(tableModel, *_stdItemModel, *_tableModelHeaders);
-
-    QStandardItem *anItem = 0;
-    QVariant qv;
-
-    QString prevCodebar;
-    QString curCodebar;
-
-    QDate defaultDate;
-    defaultDate.setDate(QDate::currentDate().year() + 1000, 12, 31);
-
-    QDate curDate = defaultDate;
-    QDate prevDate = defaultDate;
-
-    if(s)
-    {
-        for (int i = 0; i < rows; ++i)
-        {
-            for (int k = 0; k < columns; ++k)
-            {
-                qv.setValue(tableModel.record(i).value(k));
-
-                anItem = _stdItemModel->item(i, k);
-
-                if (anItem)
-                {
-                    delete anItem;
-                }
-
-                switch (qv.type())
-                {
-                case QVariant::UInt:
-                    anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toUInt()));
-                    _stdItemModel->setItem(i, k, anItem);
-                    break;
-
-                case QVariant::Int:
-                    anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
-                    _stdItemModel->setItem(i, k, anItem);
-                    break;
-
-                case QVariant::Double:
-                    anItem = new YerothQStandardItem(GET_DOUBLE_STRING(qv.toDouble()));
-                    _stdItemModel->setItem(i, k, anItem);
-                    break;
-
-                case QVariant::ULongLong:
-                    anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toULongLong()));
-                    _stdItemModel->setItem(i, k, anItem);
-                    break;
-
-                case QVariant::LongLong:
-                    anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toLongLong()));
-                    _stdItemModel->setItem(i, k, anItem);
-                    break;
-
-                case QVariant::Char:
-                    anItem = new YerothQStandardItem(QString(qv.toChar()));
-                    _stdItemModel->setItem(i, k, anItem);
-                    break;
-
-                case QVariant::String:
-                    if (YerothTableView::REFERENCE_COLUMN == k)
-                    {
-                        prevCodebar = curCodebar;
-                        curCodebar = qv.toString();
-                    }
-                    anItem = new YerothQStandardItem(qv.toString());
-                    _stdItemModel->setItem(i, k, anItem);
-                    break;
-
-                case QVariant::Bool:
-                    anItem = new YerothQStandardItem(qv.toBool() ? "True" : "False");
-                    _stdItemModel->setItem(i, k, anItem);
-                    break;
-
-                case QVariant::Date:
-                    if (YerothTableView::DATE_ENTREE_COLUMN == k)
-                    {
-                        prevDate = curDate;
-                        curDate = qv.toDate();
-
-                        if (curDate < prevDate)
-                        {
-                            codebarToTableRows_in_out.insert(curCodebar, i);
-                        }
-                    }
-
-                    anItem = new YerothQStandardItem(DATE_TO_STRING(qv.toDate()));
-                    _stdItemModel->setItem(i, k, anItem);
-                    break;
-
-                case QVariant::Time:
-                    anItem = new YerothQStandardItem(TIME_TO_STRING(qv.toTime()));
-                    _stdItemModel->setItem(i, k, anItem);
-                    break;
-
-                default:
-                    //qDebug() << "YerothTableView::lister(): undecoded QVariant -> " << qv.type();
-                    break;
-                }
-            }
-        }
-
-        this->resizeColumnsToContents();
-    }
-}
 
 QDate YerothTableView::getEarliestDate(QMultiMap<QString, QDate> allElements,
                                       QString aDesignation)
@@ -1147,10 +909,9 @@ void YerothTableView::lister_LIFO(YerothSqlTableModel &tableModel,
 {
     emit signal_lister(tableModel);
 
-    QString aLIFOStringQuery(QString("%1 ORDER BY %2 ASC, %3 DESC")
-    							.arg(tableModel.yerothSelectStatement(),
-									 YerothDatabaseTableColumn::DESIGNATION,
-									 YerothDatabaseTableColumn::DATE_ENTREE));
+    QString aLIFOStringQuery =
+    		YerothUtils::getStrategySqlQueryStr(tableModel.yerothSelectStatement(),
+    											YerothERPConfig::STRATEGIE_VENTE_SORTIE_LIFO);
 
     bool s = tableModel.yerothSetQuery(aLIFOStringQuery);
 
@@ -1384,155 +1145,15 @@ void YerothTableView::lister_LIFO(YerothSqlTableModel &tableModel,
     this->resizeColumnsToContents();
 }
 
-void YerothTableView::lister_codebar_LIFO(YerothSqlTableModel &tableModel,
-        								  QMap<QString, int> &codebarToTableRows_in_out)
-{
-    emit signal_lister(tableModel);
-
-    QString aReferenceLIFOStringQuery(QString("%1 ORDER BY %2 ASC, %3 DESC")
-    							.arg(tableModel.yerothSelectStatement(),
-									 YerothDatabaseTableColumn::DESIGNATION,
-									 YerothDatabaseTableColumn::DATE_ENTREE));
-
-    bool s = tableModel.yerothSetQuery(aReferenceLIFOStringQuery);
-
-    int rows = tableModel.rowCount();
-    int columns = tableModel.columnCount();
-
-    _stdItemModel->setRowCount(rows);
-    _stdItemModel->setColumnCount(columns);
-
-    YerothUtils::createTableModelHeaders(tableModel, *_stdItemModel, *_tableModelHeaders);
-
-    QStandardItem *anItem = 0;
-    QVariant qv;
-
-    QString prevReference;
-    QString curReference;
-
-    QDate defaultDate;
-    defaultDate.setDate(QDate::currentDate().year() - 7, 12, 31);
-
-    QDate curDate = defaultDate;
-    QDate prevDate = defaultDate;
-
-    if(s)
-    {
-        QSqlRecord record;
-
-        QVariant date_premption;
-        QVariant quantite_total;
-        QVariant stock_minimum;
-
-        for (int i = 0; i < rows; ++i)
-        {
-            record = tableModel.record(i);
-
-            date_premption = record.value(YerothDatabaseTableColumn::DATE_PEREMPTION);
-            quantite_total = record.value(YerothDatabaseTableColumn::QUANTITE_TOTAL);
-            stock_minimum = record.value(YerothDatabaseTableColumn::STOCK_MINIMUM);
-
-            for (int k = 0; k < columns; ++k)
-            {
-                qv.setValue(tableModel.record(i).value(k));
-
-                anItem = _stdItemModel->item(i, k);
-
-                if (anItem)
-                {
-                    delete anItem;
-                }
-
-                switch (qv.type())
-                {
-                case QVariant::UInt:
-                    anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toUInt()));
-                    _stdItemModel->setItem(i, k, anItem);
-                    break;
-
-                case QVariant::Int:
-                    anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
-                    _stdItemModel->setItem(i, k, anItem);
-                    break;
-
-                case QVariant::Double:
-                    anItem = new YerothQStandardItem(GET_DOUBLE_STRING(qv.toDouble()));
-                    _stdItemModel->setItem(i, k, anItem);
-                    break;
-
-                case QVariant::ULongLong:
-                    anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toULongLong()));
-                    _stdItemModel->setItem(i, k, anItem);
-                    break;
-
-                case QVariant::LongLong:
-                    anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toLongLong()));
-                    _stdItemModel->setItem(i, k, anItem);
-                    break;
-
-                case QVariant::Char:
-                    anItem = new YerothQStandardItem(QString(qv.toChar()));
-                    _stdItemModel->setItem(i, k, anItem);
-                    break;
-
-                case QVariant::String:
-                    if (YerothTableView::REFERENCE_COLUMN == k)
-                    {
-                        prevReference = curReference;
-                        curReference = qv.toString();
-                    }
-
-                    anItem = new YerothQStandardItem(qv.toString());
-                    _stdItemModel->setItem(i, k, anItem);
-                    break;
-
-                case QVariant::Bool:
-                    anItem = new YerothQStandardItem(qv.toBool() ? "True" : "False");
-                    _stdItemModel->setItem(i, k, anItem);
-                    break;
-
-                case QVariant::Date:
-
-                    if (YerothTableView::DATE_ENTREE_COLUMN == k)
-                    {
-                        prevDate = curDate;
-                        curDate = qv.toDate();
-
-                        if (curDate >= prevDate)
-                        {
-                            codebarToTableRows_in_out.insert(curReference, i);
-                        }
-                    }
-
-                    anItem = new YerothQStandardItem(DATE_TO_STRING(qv.toDate()));;
-                    _stdItemModel->setItem(i, k, anItem);
-                    break;
-
-                case QVariant::Time:
-                    anItem = new YerothQStandardItem(TIME_TO_STRING(qv.toTime()));
-                    _stdItemModel->setItem(i, k, anItem);
-                    break;
-
-                default:
-                    //qDebug() << "YerothTableView::lister(): undecoded QVariant -> " << qv.type();
-                    break;
-                }
-            }
-        }
-    }
-
-    this->resizeColumnsToContents();
-}
 
 void YerothTableView::lister_DEF_DEO(YerothSqlTableModel &tableModel,
                                     QMap<QString, int> &designationToTableRows_in_out)
 {
     emit signal_lister(tableModel);
 
-    QString aDEFDEOQueryStr(QString("%1 ORDER BY %2 ASC, %3 ASC")
-    							.arg(tableModel.yerothSelectStatement(),
-									 YerothDatabaseTableColumn::DESIGNATION,
-									 YerothDatabaseTableColumn::DATE_PEREMPTION));
+    QString aDEFDEOQueryStr =
+    		YerothUtils::getStrategySqlQueryStr(tableModel.yerothSelectStatement(),
+    											YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO);
 
     bool s = tableModel.yerothSetQuery(aDEFDEOQueryStr);
 
@@ -1765,15 +1386,427 @@ void YerothTableView::lister_DEF_DEO(YerothSqlTableModel &tableModel,
     }
 }
 
+
+void YerothTableView::lister_codebar_ALL(YerothSqlTableModel &tableModel,
+                                        QMap<QString, int> &codebarToTableRows_in_out)
+{
+    codebarToTableRows_in_out.clear();
+
+    emit signal_lister(tableModel);
+
+    QString aReferenceALLQueryStr =
+    		YerothUtils::getStrategySqlQueryStr(tableModel.yerothSelectStatement(),
+    											YerothERPConfig::STRATEGIE_VENTE_SORTIE_ALL);
+
+    bool s = tableModel.yerothSetQuery(aReferenceALLQueryStr);
+
+    int rows = tableModel.rowCount();
+    int columns = tableModel.columnCount();
+
+    _stdItemModel->setRowCount(rows);
+    _stdItemModel->setColumnCount(columns);
+
+    YerothUtils::createTableModelHeaders(tableModel, *_stdItemModel, *_tableModelHeaders);
+
+    QStandardItem *anItem = 0;
+    QVariant qv;
+
+    QString curReference;
+
+    if(s)
+    {
+    	QSqlRecord record;
+
+    	QVariant date_premption;
+    	bool itemIsPreempted = false;
+
+        for (int i = 0; i < rows; ++i)
+        {
+        	record = tableModel.record(i);
+
+        	date_premption = record.value(YerothDatabaseTableColumn::DATE_PEREMPTION);
+        	itemIsPreempted = (date_premption.toDate() < GET_CURRENT_DATE);
+
+            for (int k = 0; k < columns; ++k)
+            {
+                qv.setValue(tableModel.record(i).value(k));
+
+                anItem = _stdItemModel->item(i, k);
+
+                if (anItem)
+                {
+                    delete anItem;
+                }
+
+                switch (qv.type())
+                {
+                case QVariant::UInt:
+                    anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toUInt()));
+                    _stdItemModel->setItem(i, k, anItem);
+                    break;
+
+                case QVariant::Int:
+                    anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
+                    _stdItemModel->setItem(i, k, anItem);
+                    break;
+
+                case QVariant::Double:
+                    anItem = new YerothQStandardItem(GET_DOUBLE_STRING(qv.toDouble()));
+                    _stdItemModel->setItem(i, k, anItem);
+                    break;
+
+                case QVariant::ULongLong:
+                    anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toULongLong()));
+                    _stdItemModel->setItem(i, k, anItem);
+                    break;
+
+                case QVariant::LongLong:
+                    anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toLongLong()));
+                    _stdItemModel->setItem(i, k, anItem);
+                    break;
+
+                case QVariant::Char:
+                    anItem = new YerothQStandardItem(QString(qv.toChar()));
+                    _stdItemModel->setItem(i, k, anItem);
+                    break;
+
+                case QVariant::String:
+
+                    if (YerothTableView::REFERENCE_COLUMN == k && !itemIsPreempted)
+                    {
+                        curReference = qv.toString();
+
+                        if (!codebarToTableRows_in_out.contains(curReference))
+                        {
+                            codebarToTableRows_in_out.insert(curReference, i);
+                            anItem = new YerothQStandardItem(curReference);
+                            _stdItemModel->setItem(i, k, anItem);
+                        }
+                    }
+
+                    break;
+
+                case QVariant::Bool:
+                    anItem = new YerothQStandardItem(qv.toBool() ? "True" : "False");
+                    _stdItemModel->setItem(i, k, anItem);
+                    break;
+
+                case QVariant::Date:
+                    anItem = new YerothQStandardItem(DATE_TO_STRING(qv.toDate()));
+                    _stdItemModel->setItem(i, k, anItem);
+                    break;
+
+                case QVariant::Time:
+                    anItem = new YerothQStandardItem(TIME_TO_STRING(qv.toTime()));
+                    _stdItemModel->setItem(i, k, anItem);
+                    break;
+
+                default:
+                    //qDebug() << "YerothTableView::lister(): undecoded QVariant -> " << qv.type();
+                    break;
+                }
+            }
+        }
+    }
+}
+
+
+void YerothTableView::lister_codebar_FIFO(YerothSqlTableModel &tableModel,
+        								  QMap<QString, int> &codebarToTableRows_in_out)
+{
+    emit signal_lister(tableModel);
+
+    QString aReferenceFIFOQueryStr =
+    		YerothUtils::getStrategySqlQueryStr(tableModel.yerothSelectStatement(),
+    											YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO);
+
+    bool s = tableModel.yerothSetQuery(aReferenceFIFOQueryStr);
+
+    int rows = tableModel.rowCount();
+    int columns = tableModel.columnCount();
+
+    _stdItemModel->setRowCount(rows);
+    _stdItemModel->setColumnCount(columns);
+
+    YerothUtils::createTableModelHeaders(tableModel, *_stdItemModel, *_tableModelHeaders);
+
+    QStandardItem *anItem = 0;
+    QVariant qv;
+
+    QString prevReference;
+    QString curReference;
+
+    QDate defaultDate;
+    defaultDate.setDate(QDate::currentDate().year() + 1000, 12, 31);
+
+    QDate curDate = defaultDate;
+    QDate prevDate = defaultDate;
+
+    if(s)
+    {
+    	QSqlRecord record;
+
+    	QVariant date_premption;
+    	bool itemIsPreempted = false;
+
+        for (int i = 0; i < rows; ++i)
+        {
+        	record = tableModel.record(i);
+
+        	date_premption = record.value(YerothDatabaseTableColumn::DATE_PEREMPTION);
+        	itemIsPreempted = (date_premption.toDate() < GET_CURRENT_DATE);
+
+            for (int k = 0; k < columns; ++k)
+            {
+                qv.setValue(tableModel.record(i).value(k));
+
+                anItem = _stdItemModel->item(i, k);
+
+                if (anItem)
+                {
+                    delete anItem;
+                }
+
+                switch (qv.type())
+                {
+                case QVariant::UInt:
+                    anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toUInt()));
+                    _stdItemModel->setItem(i, k, anItem);
+                    break;
+
+                case QVariant::Int:
+                    anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
+                    _stdItemModel->setItem(i, k, anItem);
+                    break;
+
+                case QVariant::Double:
+                    anItem = new YerothQStandardItem(GET_DOUBLE_STRING(qv.toDouble()));
+                    _stdItemModel->setItem(i, k, anItem);
+                    break;
+
+                case QVariant::ULongLong:
+                    anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toULongLong()));
+                    _stdItemModel->setItem(i, k, anItem);
+                    break;
+
+                case QVariant::LongLong:
+                    anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toLongLong()));
+                    _stdItemModel->setItem(i, k, anItem);
+                    break;
+
+                case QVariant::Char:
+                    anItem = new YerothQStandardItem(QString(qv.toChar()));
+                    _stdItemModel->setItem(i, k, anItem);
+                    break;
+
+                case QVariant::String:
+                    if (YerothTableView::REFERENCE_COLUMN == k && !itemIsPreempted)
+                    {
+                        prevReference = curReference;
+                        curReference = qv.toString();
+                    }
+                    anItem = new YerothQStandardItem(qv.toString());
+                    _stdItemModel->setItem(i, k, anItem);
+                    break;
+
+                case QVariant::Bool:
+                    anItem = new YerothQStandardItem(qv.toBool() ? "True" : "False");
+                    _stdItemModel->setItem(i, k, anItem);
+                    break;
+
+                case QVariant::Date:
+                    if (YerothTableView::DATE_ENTREE_COLUMN == k && !itemIsPreempted)
+                    {
+                        prevDate = curDate;
+                        curDate = qv.toDate();
+
+                        if (curDate < prevDate)
+                        {
+                            codebarToTableRows_in_out.insert(curReference, i);
+                        }
+                        else
+                        {
+                            if (!codebarToTableRows_in_out.contains(curReference))
+                            {
+                                codebarToTableRows_in_out.insert(curReference, i);
+                            }
+                        }
+                    }
+
+                    anItem = new YerothQStandardItem(DATE_TO_STRING(qv.toDate()));
+                    _stdItemModel->setItem(i, k, anItem);
+                    break;
+
+                case QVariant::Time:
+                    anItem = new YerothQStandardItem(TIME_TO_STRING(qv.toTime()));
+                    _stdItemModel->setItem(i, k, anItem);
+                    break;
+
+                default:
+                    //qDebug() << "YerothTableView::lister(): undecoded QVariant -> " << qv.type();
+                    break;
+                }
+            }
+        }
+    }
+}
+
+
+void YerothTableView::lister_codebar_LIFO(YerothSqlTableModel &tableModel,
+        								  QMap<QString, int> &codebarToTableRows_in_out)
+{
+    emit signal_lister(tableModel);
+
+    QString aReferenceLIFOStringQuery =
+    		YerothUtils::getStrategySqlQueryStr(tableModel.yerothSelectStatement(),
+    											YerothERPConfig::STRATEGIE_VENTE_SORTIE_LIFO);
+
+    bool s = tableModel.yerothSetQuery(aReferenceLIFOStringQuery);
+
+    int rows = tableModel.rowCount();
+    int columns = tableModel.columnCount();
+
+    _stdItemModel->setRowCount(rows);
+    _stdItemModel->setColumnCount(columns);
+
+    YerothUtils::createTableModelHeaders(tableModel, *_stdItemModel, *_tableModelHeaders);
+
+    QStandardItem *anItem = 0;
+    QVariant qv;
+
+    QString prevReference;
+    QString curReference;
+
+    QDate defaultDate;
+    defaultDate.setDate(QDate::currentDate().year() - 7, 12, 31);
+
+    QDate curDate = defaultDate;
+    QDate prevDate = defaultDate;
+
+    if(s)
+    {
+        QSqlRecord record;
+
+        QVariant date_premption;
+        QVariant quantite_total;
+        QVariant stock_minimum;
+        bool itemIsPreempted = false;
+
+        for (int i = 0; i < rows; ++i)
+        {
+            record = tableModel.record(i);
+
+            date_premption = record.value(YerothDatabaseTableColumn::DATE_PEREMPTION);
+            quantite_total = record.value(YerothDatabaseTableColumn::QUANTITE_TOTAL);
+            stock_minimum = record.value(YerothDatabaseTableColumn::STOCK_MINIMUM);
+            itemIsPreempted = (date_premption.toDate() < GET_CURRENT_DATE);
+
+            for (int k = 0; k < columns; ++k)
+            {
+                qv.setValue(tableModel.record(i).value(k));
+
+                anItem = _stdItemModel->item(i, k);
+
+                if (anItem)
+                {
+                    delete anItem;
+                }
+
+                switch (qv.type())
+                {
+                case QVariant::UInt:
+                    anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toUInt()));
+                    _stdItemModel->setItem(i, k, anItem);
+                    break;
+
+                case QVariant::Int:
+                    anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
+                    _stdItemModel->setItem(i, k, anItem);
+                    break;
+
+                case QVariant::Double:
+                    anItem = new YerothQStandardItem(GET_DOUBLE_STRING(qv.toDouble()));
+                    _stdItemModel->setItem(i, k, anItem);
+                    break;
+
+                case QVariant::ULongLong:
+                    anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toULongLong()));
+                    _stdItemModel->setItem(i, k, anItem);
+                    break;
+
+                case QVariant::LongLong:
+                    anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toLongLong()));
+                    _stdItemModel->setItem(i, k, anItem);
+                    break;
+
+                case QVariant::Char:
+                    anItem = new YerothQStandardItem(QString(qv.toChar()));
+                    _stdItemModel->setItem(i, k, anItem);
+                    break;
+
+                case QVariant::String:
+                    if (YerothTableView::REFERENCE_COLUMN == k && !itemIsPreempted)
+                    {
+                        prevReference = curReference;
+                        curReference = qv.toString();
+                    }
+
+                    anItem = new YerothQStandardItem(qv.toString());
+                    _stdItemModel->setItem(i, k, anItem);
+                    break;
+
+                case QVariant::Bool:
+                    anItem = new YerothQStandardItem(qv.toBool() ? "True" : "False");
+                    _stdItemModel->setItem(i, k, anItem);
+                    break;
+
+                case QVariant::Date:
+
+                    if (YerothTableView::DATE_ENTREE_COLUMN == k && !itemIsPreempted)
+                    {
+                        prevDate = curDate;
+                        curDate = qv.toDate();
+
+                        if (curDate >= prevDate)
+                        {
+                            codebarToTableRows_in_out.insert(curReference, i);
+                        }
+                        else
+                        {
+                            if (!codebarToTableRows_in_out.contains(curReference))
+                            {
+                                codebarToTableRows_in_out.insert(curReference, i);
+                            }
+                        }
+                    }
+
+                    anItem = new YerothQStandardItem(DATE_TO_STRING(qv.toDate()));;
+                    _stdItemModel->setItem(i, k, anItem);
+                    break;
+
+                case QVariant::Time:
+                    anItem = new YerothQStandardItem(TIME_TO_STRING(qv.toTime()));
+                    _stdItemModel->setItem(i, k, anItem);
+                    break;
+
+                default:
+                    //qDebug() << "YerothTableView::lister(): undecoded QVariant -> " << qv.type();
+                    break;
+                }
+            }
+        }
+    }
+}
+
+
 void YerothTableView::lister_codebar_DEF_DEO(YerothSqlTableModel &tableModel,
         QMap<QString, int> &codebarToTableRows_in_out)
 {
     emit signal_lister(tableModel);
 
-    QString aReferenceDEFDEOQueryStr(QString("%1 ORDER BY %2 ASC, %3 ASC")
-    							.arg(tableModel.yerothSelectStatement(),
-									 YerothDatabaseTableColumn::DESIGNATION,
-									 YerothDatabaseTableColumn::DATE_PEREMPTION));
+    QString aReferenceDEFDEOQueryStr =
+    		YerothUtils::getStrategySqlQueryStr(tableModel.yerothSelectStatement(),
+    											YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO);
 
     bool s = tableModel.yerothSetQuery(aReferenceDEFDEOQueryStr);
 
@@ -1788,8 +1821,8 @@ void YerothTableView::lister_codebar_DEF_DEO(YerothSqlTableModel &tableModel,
     QStandardItem *anItem = 0;
     QVariant qv;
 
-    QString prevCodebar;
-    QString curCodebar;
+    QString prevReference;
+    QString curReference;
 
     QDate defaultDate;
     defaultDate.setDate(QDate::currentDate().year() + 1000, 12, 31);
@@ -1807,9 +1840,10 @@ void YerothTableView::lister_codebar_DEF_DEO(YerothSqlTableModel &tableModel,
 
         for (int i = 0; i < rows; ++i)
         {
+        	record = tableModel.record(i);
+
             quantite_total = record.value(YerothDatabaseTableColumn::QUANTITE_TOTAL);
             stock_minimum = record.value(YerothDatabaseTableColumn::STOCK_MINIMUM);
-            record = tableModel.record(i);
             date_premption = record.value(YerothDatabaseTableColumn::DATE_PEREMPTION);
             itemIsPreempted = (date_premption.toDate() < GET_CURRENT_DATE);
 
@@ -1859,8 +1893,8 @@ void YerothTableView::lister_codebar_DEF_DEO(YerothSqlTableModel &tableModel,
                 case QVariant::String:
                     if (YerothTableView::REFERENCE_COLUMN == k && !itemIsPreempted)
                     {
-                        prevCodebar = curCodebar;
-                        curCodebar = qv.toString();
+                        prevReference = curReference;
+                        curReference = qv.toString();
                     }
 
                     anItem = new YerothQStandardItem(qv.toString());
@@ -1880,9 +1914,16 @@ void YerothTableView::lister_codebar_DEF_DEO(YerothSqlTableModel &tableModel,
 
                         if (curDate < prevDate)
                         {
-                            codebarToTableRows_in_out.insert(curCodebar, i);
+                            codebarToTableRows_in_out.insert(curReference, i);
                             //qDebug() << "++ 1-OK. curCodebar: "
                             //	 << curCodebar << " date: " << curDate;
+                        }
+                        else
+                        {
+                            if (!codebarToTableRows_in_out.contains(curReference))
+                            {
+                                codebarToTableRows_in_out.insert(curReference, i);
+                            }
                         }
                     }
 
@@ -1901,8 +1942,6 @@ void YerothTableView::lister_codebar_DEF_DEO(YerothSqlTableModel &tableModel,
                 }
             } //switch-case
         }
-
-        this->resizeColumnsToContents();
     }
 }
 
