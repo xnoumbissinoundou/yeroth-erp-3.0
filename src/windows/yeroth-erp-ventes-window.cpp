@@ -1053,6 +1053,8 @@ void YerothVentesWindow::setupLineEditsQCompleters()
     lineEdit_ventes_recherche->
 		setupMyStaticQCompleter(_allWindows->STOCKS_VENDU,
 								YerothDatabaseTableColumn::REFERENCE,
+								false,
+								false,
 								_ventesDateFilter);
 
     lineEdit_ventes_nom_caissier->
