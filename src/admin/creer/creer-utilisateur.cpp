@@ -218,7 +218,6 @@ void YerothAdminCreateWindow::clear_utilisateur_all_fields()
     lineEdit_creer_utilisateur_boite_postale->clearField();
     lineEdit_creer_utilisateur_mot_passe_1->clearField();
     lineEdit_creer_utilisateur_verification->clearField();
-    lineEdit_creer_utilisateur_localisation->clearField();
 
     comboBox_creer_utilisateur_titre->clearField();
     comboBox_creer_utilisateur_role->clearField();
