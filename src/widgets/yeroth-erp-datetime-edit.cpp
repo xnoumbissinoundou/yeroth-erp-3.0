@@ -26,6 +26,16 @@ YerothDateTimeEdit::YerothDateTimeEdit(QWidget *parent)
 
     setCalendarWidget(_calendarWidget);
 
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+
+    setLocale(YerothUtils::frenchLocale);
+
+#else //YEROTH_ENGLISH_LANGUAGE
+
+    setLocale(YerothUtils::englishLocale);
+
+#endif
+
     setYerothERPDateTimeEditDisplayFormat();
 }
 
