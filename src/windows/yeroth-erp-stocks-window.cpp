@@ -1153,6 +1153,10 @@ void YerothStocksWindow::afficherStocks(YerothSqlTableModel & sqlTableModel,
 
     tableView_show_or_hide_columns(*tableView_stocks);
 
+    int rowCount = tableView_stocks->rowCount();
+
+    lineEdit_nombre_de_stocks->setText(GET_NUM_STRING(rowCount));
+
     setWindowTitle(YerothUtils::getWindowTitleWithStrategy(this, localVisibleStrategy));
 }
 
@@ -1171,10 +1175,6 @@ void YerothStocksWindow::afficherStocks(QString strategieGlobale /* = YerothUtil
 						  YerothUtils::_strategieindexToUserViewString));
 
 	afficherStocks(*_curStocksTableModel, curStrategy);
-
-    int rowCount = tableView_stocks->rowCount();
-
-    lineEdit_nombre_de_stocks->setText(GET_NUM_STRING(rowCount));
 }
 
 
