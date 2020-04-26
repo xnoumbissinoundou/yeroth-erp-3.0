@@ -886,6 +886,8 @@ bool YerothVentesWindow::filtrer_ventes()
 bool YerothVentesWindow::handleCompteClient(QString client_id,
 											double curMontantARembourserAuClient)
 {
+	bool result = false;
+
 	YerothSqlTableModel &clientsSqlTableModel = _allWindows->getSqlTableModel_clients();
 
 	QString clientsFilter(QString("%1 = '%2'")
@@ -906,12 +908,12 @@ bool YerothVentesWindow::handleCompteClient(QString client_id,
 
 		clientsRecord.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT, nouveauCompteClient);
 
-		clientsSqlTableModel.updateRecord(0, clientsRecord);
-
-		return true;
+		result = clientsSqlTableModel.updateRecord(0, clientsRecord);
 	}
 
-	return false;
+	clientsSqlTableModel.resetFilter();
+
+	return result;
 }
 
 
@@ -2006,6 +2008,8 @@ void YerothVentesWindow::afficher_retour_vente()
         lineEdit_retour_vente_nom_client->setText("");
     }
 
+    clientsTableModel.resetFilter();
+
     lineEdit_retour_vente_nom_client->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT));
     lineEdit_retour_vente_type_de_vente->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::TYPE_DE_VENTE));
 
@@ -2074,6 +2078,8 @@ void YerothVentesWindow::afficher_vente_detail()
     {
         lineEdit_details_nom_client->setText("");
     }
+
+    clientsTableModel.resetFilter();
 
     lineEdit_details_nom_client->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT));
     lineEdit_details_type_de_vente->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::TYPE_DE_VENTE));
