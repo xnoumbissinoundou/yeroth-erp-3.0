@@ -250,7 +250,7 @@ bool YerothVentesWindow::annuler_cette_vente()
 		return false;
 	}
 
-	QString typeDeVente(QObject::tr("achat-comptant"));
+	int typeDeVente = YerothUtils::VENTE_COMPTANT;
 
 	QString curNomDuClient;
 
@@ -305,7 +305,7 @@ bool YerothVentesWindow::annuler_cette_vente()
 			GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::CLIENTS_ID).toInt();
 
 	typeDeVente =
-			GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::TYPE_DE_VENTE);
+			GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::TYPE_DE_VENTE).toInt();
 
 	if (1 == curStocksTableRowCount)
 	{
@@ -470,8 +470,8 @@ bool YerothVentesWindow::annuler_cette_vente()
 			bool successRemoveRowQuery = YerothUtils::execQuery(removeRowQuery);
 		}
 
-		if (-1 != clients_id 	  &&
-			YerothUtils::isEqualCaseInsensitive(QObject::tr("achat-compte-client"), typeDeVente))
+		if (-1 != clients_id 	&&
+			YerothUtils::VENTE_COMPTE_CLIENT == typeDeVente)
 		{
 			rembourserAuCompteClient = handleCompteClient(QString::number(clients_id),
 														  curMontantARembourserAuClient);

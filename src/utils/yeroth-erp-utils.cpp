@@ -161,6 +161,12 @@ QMap<int, QString> YerothUtils::_roleToUserViewString;
 /*
  * All valid key values must be >= 0.
  */
+QMap<int, QString> YerothUtils::_typedeventeToUserViewString;
+
+
+/*
+ * All valid key values must be >= 0.
+ */
 QMap<int, QString> YerothUtils::_typedepaiementToUserViewString;
 
 
@@ -390,6 +396,9 @@ YerothUtils::YerothUtils()
     YerothUtils::_titreToUserViewString.insert(YerothUtils::TITRE_PROF,
 			QObject::tr("Prof."));
 
+    YerothUtils::_titreToUserViewString.insert(YerothUtils::TITRE_INDEFINI,
+			QObject::tr("titre indéfini"));
+
 
     YerothUtils::_roleToUserViewString.insert(YerothUtils::ROLE_ADMINISTRATEUR,
 			QObject::tr("administrateur"));
@@ -410,7 +419,17 @@ YerothUtils::YerothUtils()
 			QObject::tr("vendeur"));
 
     YerothUtils::_roleToUserViewString.insert(YerothUtils::ROLE_INDEFINI,
-			QObject::tr("indéfini"));
+			QObject::tr("role indéfini"));
+
+
+    YerothUtils::_typedeventeToUserViewString.insert(YerothUtils::VENTE_COMPTANT,
+			QObject::trUtf8("vente (comptant)"));
+
+    YerothUtils::_typedeventeToUserViewString.insert(YerothUtils::VENTE_COMPTE_CLIENT,
+			QObject::trUtf8("vente (compte client)"));
+
+    YerothUtils::_typedeventeToUserViewString.insert(YerothUtils::VENTE_INDEFINI,
+			QObject::trUtf8("vente indéfini"));
 
 
     YerothUtils::_typedepaiementToUserViewString.insert(YerothUtils::VERSEMENT_COMPTANT,
@@ -432,7 +451,7 @@ YerothUtils::YerothUtils()
 			QObject::trUtf8("versement (retour achat (annulé))"));
 
     YerothUtils::_typedepaiementToUserViewString.insert(YerothUtils::VERSEMENT_INDEFINI,
-			QObject::trUtf8("indéfini"));
+			QObject::trUtf8("versement indéfini"));
 }
 
 
@@ -2211,7 +2230,7 @@ void YerothUtils::getFactureFRTexDocumentString(QString &texDocumentString_in_ou
         QString &printString)
 {
     printString.append("\n \\vspace*{0.2cm}\n")
-    .append("Arr\\^et\\'e la pr\\'esente facture au montant total TTC de \\textbf{YEROTHSOMME}.\n");
+    .append("Arr\\^et\\'e le pr\\'esent re\\c{c}u au montant total TTC de \\textbf{YEROTHSOMME}.\n");
 
     texDocumentString_in_out.clear();
     texDocumentString_in_out.append(FR_template_facture_grand_tex);

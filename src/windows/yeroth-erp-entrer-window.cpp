@@ -1120,7 +1120,7 @@ bool YerothEntrerWindow::handle_stocks_vendu_table(int stockID,
 
         QSqlRecord record = stocksVenduTableModel.record();
 
-        QString typeDeVente = QObject::tr("achat-compte-client");
+        int typeDeVente = YerothUtils::VENTE_COMPTE_CLIENT;
 
         record.setValue(YerothDatabaseTableColumn::TYPE_DE_VENTE, typeDeVente);
 

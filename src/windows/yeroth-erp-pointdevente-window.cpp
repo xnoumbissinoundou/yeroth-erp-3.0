@@ -766,7 +766,10 @@ QString YerothPointDeVenteWindow::imprimer_facture_grand(QString referenceRecuGR
     YerothUtils::getFactureENTexDocumentString(factureTexDocument, factureTexTable);
 #endif
 
-    factureTexDocument.replace("YEROTHTYPEPAIEMENT", YerothUtils::LATEX_IN_OUT_handleForeignAccents(_typeDeVente));
+    QString typeDeVenteStr(YerothUtils::_typedeventeToUserViewString.value(_typeDeVente));
+
+    factureTexDocument.replace("YEROTHTYPEPAIEMENT",
+    		YerothUtils::LATEX_IN_OUT_handleForeignAccents(typeDeVenteStr));
 
     if (referenceRecuGRAND.isEmpty())
     {
@@ -784,7 +787,8 @@ QString YerothPointDeVenteWindow::imprimer_facture_grand(QString referenceRecuGR
         factureTexDocument.replace("YEROTHPAPERSPEC", "a4paper");
     }
 
-    factureTexDocument.replace("YEROTHPAIEMENT", YerothUtils::LATEX_IN_OUT_handleForeignAccents(_typeDeVente));
+
+    factureTexDocument.replace("YEROTHPAIEMENT", YerothUtils::LATEX_IN_OUT_handleForeignAccents(typeDeVenteStr));
     factureTexDocument.replace("YEROTHENTREPRISE", infoEntreprise.getNomCommercialTex());
     factureTexDocument.replace("YEROTHACTIVITESENTREPRISE", infoEntreprise.getSecteursActivitesTex());
     factureTexDocument.replace("YEROTHBOITEPOSTALE", infoEntreprise.getBoitePostal());
@@ -982,7 +986,9 @@ QString YerothPointDeVenteWindow::imprimer_facture_petit(QString referenceRecuPE
     QString minPaperHeight(QString("%1in").arg(QString::number(factureInchSize, 'f', 2)));
     //qDebug() << "\t++minPaperHeight: " << minPaperHeight;
 
-	factureTexDocument.replace("YEROTHPAIEMENT", YerothUtils::LATEX_IN_OUT_handleForeignAccents(_typeDeVente));
+    QString typeDeVenteStr(YerothUtils::_typedeventeToUserViewString.value(_typeDeVente));
+
+	factureTexDocument.replace("YEROTHPAIEMENT", YerothUtils::LATEX_IN_OUT_handleForeignAccents(typeDeVenteStr));
     factureTexDocument.replace("YEROTHFACTURESMALLPAPERHEIGHT", minPaperHeight);
     factureTexDocument.replace("YEROTHENTREPRISE", infoEntreprise.getNomCommercialTex());
     factureTexDocument.replace("YEROTHACTIVITESENTREPRISE", infoEntreprise.getSecteursActivitesTex());
@@ -1164,7 +1170,7 @@ void YerothPointDeVenteWindow::cleanUpAfterVente()
 
     _allWindows->_pdVenteMethodePaiementComptantEntreeDialog->clearLineEditValue();
 
-    _typeDeVente.clear();
+    _typeDeVente= YerothUtils::VENTE_INDEFINI;
 
     lineEdit_articles_montant_a_rembourser->setText(GET_CURRENCY_STRING_NUM(0.0));
     lineEdit_articles_tva->setText(GET_CURRENCY_STRING_NUM(0.0));
@@ -2293,7 +2299,7 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
 
         QSqlRecord stocksVenduRecord = stocksVenduTableModel.record();
 
-        _typeDeVente = QObject::tr("achat-comptant");
+        _typeDeVente = YerothUtils::VENTE_COMPTANT;
 
         stocksVenduID = YerothERPWindows::getNextIdSqlTableModel_stocks_vendu();
 
@@ -2566,7 +2572,7 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
 
         QSqlRecord stocksVenduCompteClientRecord = stocksVenduTableModel.record();
 
-        _typeDeVente = QObject::tr("achat-compte-client");
+        _typeDeVente = YerothUtils::VENTE_COMPTE_CLIENT;
 
         stocksVenduID = YerothERPWindows::getNextIdSqlTableModel_stocks_vendu();
 

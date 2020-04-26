@@ -21,6 +21,7 @@
 
 # define FILE_YEROTH_ERP_3_0_SQL_TABLE_COMPTES_BANCAIRES 					FOLDER_YEROTH_ERP_3_0_SQL"/create_table_comptes_bancaires.sql"
 # define FILE_YEROTH_ERP_3_0_SQL_TABLE_ENTREPRISE_INFO 						FOLDER_YEROTH_ERP_3_0_SQL"/create_table_entreprise_info.sql"
+# define FILE_YEROTH_ERP_3_0_SQL_TABLE_TYPE_DE_VENTE 							FOLDER_YEROTH_ERP_3_0_SQL"/create_table_typedevente.sql"
 # define FILE_YEROTH_ERP_3_0_SQL_TABLE_TYPE_DE_PAIEMENT 					FOLDER_YEROTH_ERP_3_0_SQL"/create_table_typedepaiement.sql"
 # define FILE_YEROTH_ERP_3_0_SQL_TABLE_PAIEMENTS 									FOLDER_YEROTH_ERP_3_0_SQL"/create_table_paiements.sql"
 # define FILE_YEROTH_ERP_3_0_SQL_TABLE_CREDIT_CARD_ISSUING_COMPANY 			FOLDER_YEROTH_ERP_3_0_SQL"/create_table_credit_card_issuing_company.sql"

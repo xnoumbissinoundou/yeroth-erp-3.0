@@ -527,7 +527,7 @@ void YerothPayerCompteClientWindow::setupLineEditsQCompleters()
 	lineEdit_comptes_clients_reference->enableForSearch(QObject::trUtf8("référence"));
 
 	QString aConditionStr(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::TYPE_DE_VENTE,
-			              QObject::tr("achat-compte-client")));
+						  	  	  	  	  	  	  	 QString::number(YerothUtils::VENTE_COMPTE_CLIENT)));
 
 	aConditionStr.append(QString(" AND %1 = '%2' AND %3 > '0'")
 							.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT,

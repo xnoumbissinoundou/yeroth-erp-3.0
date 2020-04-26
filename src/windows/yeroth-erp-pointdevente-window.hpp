@@ -319,7 +319,7 @@ private:
 
     bool 					_updateItemConversionError;
 
-    QString					_typeDeVente;
+    int						_typeDeVente;
     QString					_previousPressedQteValue;
 
     bool					_tvaCheckBoxPreviousState;

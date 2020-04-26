@@ -642,6 +642,14 @@ public:
 	};
 
 
+	enum TYPEDEVENTE
+	{
+		VENTE_COMPTANT 			= 350,
+		VENTE_COMPTE_CLIENT		= 360,
+		VENTE_INDEFINI 			= 370
+	};
+
+
 	enum TYPEDEPAIEMENT
 	{
 		VERSEMENT_COMPTANT 			= 10,
@@ -660,6 +668,8 @@ public:
 	static QMap<int, QString> _titreToUserViewString;
 
 	static QMap<int, QString> _roleToUserViewString;
+
+	static QMap<int, QString> _typedeventeToUserViewString;
 
 	static QMap<int, QString> _typedepaiementToUserViewString;
 
