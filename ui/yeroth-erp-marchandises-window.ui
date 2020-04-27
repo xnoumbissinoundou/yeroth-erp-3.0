@@ -6576,6 +6576,8 @@ background-color: rgb(0, 0, 0); </string>
     <property name="font">
      <font>
       <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
      </font>
     </property>
     <property name="styleSheet">
@@ -9340,6 +9342,8 @@ background-color: rgb(0, 0, 0); </string>
     <property name="font">
      <font>
       <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
      </font>
     </property>
     <property name="styleSheet">
@@ -9834,6 +9838,8 @@ background-color: rgb(0, 0, 0); </string>
     <property name="font">
      <font>
       <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
      </font>
     </property>
     <property name="styleSheet">
@@ -12617,6 +12623,11 @@ background-color: rgb(0, 0, 0); </string>
    <header>src/widgets/yeroth-erp-line-edit.hpp</header>
   </customwidget>
   <customwidget>
+   <class>YerothERPQCheckBox</class>
+   <extends>QCheckBox</extends>
+   <header>src/widgets/yeroth-erp-qcheckbox.hpp</header>
+  </customwidget>
+  <customwidget>
    <class>YerothComboBox</class>
    <extends>QComboBox</extends>
    <header>src/widgets/yeroth-erp-combo-box.hpp</header>
@@ -12625,11 +12636,6 @@ background-color: rgb(0, 0, 0); </string>
    <class>YerothERPMarchandisesTableView</class>
    <extends>QTableView</extends>
    <header>src/widgets/table-view/yeroth-erp-marchandises-table-view.hpp</header>
-  </customwidget>
-  <customwidget>
-   <class>YerothERPQCheckBox</class>
-   <extends>QCheckBox</extends>
-   <header>src/widgets/yeroth-erp-qcheckbox.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

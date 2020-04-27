@@ -989,7 +989,7 @@ void YerothMarchandisesWindow::afficherMarchandises(YerothSqlTableModel &aYeroth
 
     lineEdit_nombre_de_marchandises->setText(GET_NUM_STRING(rowCount));
 
-    lineEdit_nombre_darticles->setText(GET_DOUBLE_STRING(_qteTotaleDarticlesEnStock));
+    lineEdit_nombre_darticles->setText(GET_NUM_STRING(_qteTotaleDarticlesEnStock));
 
     lineEdit_valeur_totale_dinventaire->setText(GET_CURRENCY_STRING_NUM(_valeurTheoriqueDinventaire));
 }
