@@ -8,34 +8,26 @@
 
 #include <QtCore/QDebug>
 
-YerothArticleVenteInfo::YerothArticleVenteInfo()
-    :sqlTableModelIndex(-1),
-     quantite_en_stock(0.0),
-     prix_unitaire(0.0),
-     quantite_a_vendre(0.0),
-     _montant_tva(0.0),
-     remise_prix(0.0),
-     remise_pourcentage(0.0)
-{
-
-}
-
-YerothArticleVenteInfo::~YerothArticleVenteInfo()
-{
-
-}
 
 void YerothArticleVenteInfo::print()
 {
-    qDebug() << "[ArticleVenteInfo][print]"
-             << "\n\treference: " << reference
-             << "\n\tdesignation: " << designation
-             << "\n\tsqlTableModelIndex: " << sqlTableModelIndex
-             << "\n\tqte_en_stock: " << quantite_en_stock
-             << "\n\tprix_unitaire: " << prix_unitaire
-             << "\n\tquantite_a_vendre: " << quantite_a_vendre
-             << "\n\tmontant_tva: " << _montant_tva
-             << "\n\tremise_prix: " << remise_prix
-             << "\n\tremise_pourcentage: " << remise_pourcentage
-             << "\n";
+    qDebug() << QString("[ArticleVenteInfo][print]"
+    					"	stockReference: %1"
+    					"	stockName: %2"
+    					"	stockID: %3"
+    					"	_qte_en_stock: %4"
+    					"	_prix_unitaire: %5"
+    					"	_quantite_a_vendre: %6"
+    					"	_montant_tva: %7"
+    					"	_remise_prix: %8"
+    					"	_remise_pourcentage: %9")
+    				.arg(_stockReference,
+    					 _stockName,
+						 _stockID,
+						 QString::number(_quantite_en_stock),
+						 QString::number(_prix_unitaire),
+						 QString::number(_quantite_a_vendre),
+						 QString::number(_montant_tva),
+						 QString::number(_remise_prix),
+						 QString::number(_remise_pourcentage));
 }

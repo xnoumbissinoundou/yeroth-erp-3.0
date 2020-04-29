@@ -30,7 +30,10 @@ public:
 
 	YerothTableWidget(QWidget *parent = 0);
 
-	~YerothTableWidget();
+	inline ~YerothTableWidget()
+	{
+	    delete _logger;
+	}
 
 	inline void setColoursQStandardItem()
 	{
@@ -43,10 +46,10 @@ public:
 
 	int addArticleAfter(YerothArticleVenteInfo &articleVenteInfo);
 
-	int addArticle(int stocksSqlTableModelIndex,
-				   QString reference,
-				   QString designation,
-				   QString categorie,
+	int addArticle(QString stockID,
+	               QString stockReference,
+				   QString stockName,
+				   QString stockCategorie,
 				   QString prix_unitaire,
 				   QString montant_tva,
 				   QString prix_vente,
@@ -55,14 +58,14 @@ public:
 
 	void removeArticle(int tableWidgetRow);
 
-	inline int getSqlTableModelIndex(int aRow)
+	inline QString getStockID(int aRow)
 	{
-		return _mapListIdxToItems.value(aRow);
+		return _mapListIdxToStockID.value(aRow);
 	}
 
 	inline int itemCount()
 	{
-		return _mapListIdxToItems.size();
+		return _mapListIdxToStockID.size();
 	}
 
     static const unsigned int REFERENCE_COLUMN;
@@ -89,15 +92,15 @@ signals:
 
 private:
 
-	int 				_curRow;
+	int 					_curRow;
 
-	QMap<int, int> 		_mapListIdxToItems;
+	QMap<int, QString> 		_mapListIdxToStockID;
 
-	YerothQTableWidgetItem 	*_referenceItem;
+	YerothQTableWidgetItem 	*_stockReferenceItem;
 
-	YerothQTableWidgetItem 	*_designationItem;
+	YerothQTableWidgetItem 	*_stockNameItem;
 
-	YerothQTableWidgetItem 	*_categorieItem;
+	YerothQTableWidgetItem 	*_stockCategorieItem;
 
 	YerothQTableWidgetItem 	*_prixUnitaireItem;
 

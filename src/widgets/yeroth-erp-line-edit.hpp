@@ -115,14 +115,14 @@ public:
 
 	void setupMyQCompleterCodebarLIFO(QString sqlTableName);
 
-	inline QMap<QString, int> &getDesignationToTableRows()
+	inline QMap<QString, QString> &getStockNameToStockID()
 	{
-		return _designationToTableRows;
+		return _stockNameToStockID;
 	}
 
-	inline QMap<QString, int> &getCodebarToTableRows()
+	inline QMap<QString, QString> &getStockreferenceCodebarToStockID()
 	{
-		return _codebarToTableRows;
+		return _stockReferenceToStockID;
 	}
 
 	void refreshCodebarCompleterList(QString strategy);
@@ -173,9 +173,9 @@ private:
 
 	QCompleter			*_searchQCompleter;
 
-	QMap<QString, int>  _designationToTableRows;
+	QMap<QString, QString>  _stockNameToStockID;
 
-	QMap<QString, int> 	_codebarToTableRows;
+	QMap<QString, QString> 	_stockReferenceToStockID;
 
 	QStringList			_currentStaticStringList;
 

@@ -292,14 +292,14 @@ void YerothLineEdit::setupMyQCompleterALL(QString sqlTableName)
 
     _sqlTableModel = new YerothSqlTableModel(sqlTableName, true);
 
-    _designationToTableRows.clear();
+    _stockNameToStockID.clear();
 
     _sqlTableModelView->lister_ALL(*_sqlTableModel,
-                                   _designationToTableRows);
+                                   _stockNameToStockID);
 
     QStringList articleDesignations;
 
-    QMapIterator<QString, int> it(_designationToTableRows);
+    QMapIterator<QString, QString> it(_stockNameToStockID);
 
     while (it.hasNext())
     {
@@ -326,11 +326,11 @@ void YerothLineEdit::setupMyQCompleterDEF_DEO(QString sqlTableName)
     _sqlTableModel = new YerothSqlTableModel(sqlTableName, true);
 
     _sqlTableModelView->lister_DEF_DEO(*_sqlTableModel,
-                                       _designationToTableRows);
+                                       _stockNameToStockID);
 
     QStringList articleDesignations;
 
-    QMapIterator<QString, int> it(_designationToTableRows);
+    QMapIterator<QString, QString> it(_stockNameToStockID);
 
     //qDebug() << "++ YerothLineEdit::setupMyQCompleterDPF_DPO, size articleDesignations: "
     //<< articleDesignations.size();
@@ -353,6 +353,7 @@ void YerothLineEdit::setupMyQCompleterDEF_DEO(QString sqlTableName)
     connect( this, SIGNAL(returnPressed()), this, SLOT(clearQCompleterText()) );
 }
 
+
 void YerothLineEdit::setupMyQCompleterFIFO(QString sqlTableName)
 {
     _sqlTableModelView = new YerothTableView;
@@ -361,14 +362,11 @@ void YerothLineEdit::setupMyQCompleterFIFO(QString sqlTableName)
     _sqlTableModel = new YerothSqlTableModel(sqlTableName, true);
 
     _sqlTableModelView->lister_FIFO(*_sqlTableModel,
-                                    _designationToTableRows);
+                                    _stockNameToStockID);
 
     QStringList articleDesignations;
 
-    QMapIterator<QString, int> it(_designationToTableRows);
-
-    //qDebug() << "++ YerothLineEdit::setupMyQCompleterFIFO, size articleDesignations: "
-    //	 << articleDesignations.size();
+    QMapIterator<QString, QString> it(_stockNameToStockID);
 
     while (it.hasNext())
     {
@@ -386,6 +384,7 @@ void YerothLineEdit::setupMyQCompleterFIFO(QString sqlTableName)
     connect( this, SIGNAL(returnPressed()), this, SLOT(clearQCompleterText()) );
 }
 
+
 void YerothLineEdit::setupMyQCompleterLIFO(QString sqlTableName)
 {
     _sqlTableModelView = new YerothTableView;
@@ -394,11 +393,11 @@ void YerothLineEdit::setupMyQCompleterLIFO(QString sqlTableName)
     _sqlTableModel = new YerothSqlTableModel(sqlTableName, true);
 
     _sqlTableModelView->lister_LIFO(*_sqlTableModel,
-                                    _designationToTableRows);
+                                    _stockNameToStockID);
 
     QStringList articleDesignations;
 
-    QMapIterator<QString, int> it(_designationToTableRows);
+    QMapIterator<QString, QString> it(_stockNameToStockID);
 
     //qDebug() << "++ YerothLineEdit::setupMyQCompleterLIFO, size articleDesignations: "
     //	 << articleDesignations.size();
@@ -419,6 +418,7 @@ void YerothLineEdit::setupMyQCompleterLIFO(QString sqlTableName)
     connect( this, SIGNAL(returnPressed()), this, SLOT(clearQCompleterText()) );
 }
 
+
 void YerothLineEdit::setupMyQCompleterCodebarALL(QString sqlTableName)
 {
     _sqlTableModelView = new YerothTableView;
@@ -427,11 +427,11 @@ void YerothLineEdit::setupMyQCompleterCodebarALL(QString sqlTableName)
     _sqlTableModel = new YerothSqlTableModel(sqlTableName, true);
 
     _sqlTableModelView->lister_codebar_ALL(*_sqlTableModel,
-                                           _codebarToTableRows);
+                                           _stockReferenceToStockID);
 
     QStringList articleCodebars;
 
-    QMapIterator<QString, int> it(_codebarToTableRows);
+    QMapIterator<QString, QString> it(_stockReferenceToStockID);
     QString aCodebarString;
 
     while (it.hasNext())
@@ -465,11 +465,11 @@ void YerothLineEdit::setupMyQCompleterCodebarDEF_DEO(QString sqlTableName)
     _sqlTableModel = new YerothSqlTableModel(sqlTableName, true);
 
     _sqlTableModelView->lister_codebar_DEF_DEO(*_sqlTableModel,
-            _codebarToTableRows);
+            _stockReferenceToStockID);
 
     QStringList articleCodebars;
 
-    QMapIterator<QString, int> it(_codebarToTableRows);
+    QMapIterator<QString, QString> it(_stockReferenceToStockID);
     QString aCodebarString;
 
     while (it.hasNext())
@@ -503,11 +503,11 @@ void YerothLineEdit::setupMyQCompleterCodebarFIFO(QString sqlTableName)
     _sqlTableModel = new YerothSqlTableModel(sqlTableName, true);
 
     _sqlTableModelView->lister_codebar_FIFO(*_sqlTableModel,
-                                            _codebarToTableRows);
+                                            _stockReferenceToStockID);
 
     QStringList articleCodebars;
 
-    QMapIterator<QString, int> it(_codebarToTableRows);
+    QMapIterator<QString, QString> it(_stockReferenceToStockID);
     QString aCodebarString;
 
     while (it.hasNext())
@@ -541,11 +541,11 @@ void YerothLineEdit::setupMyQCompleterCodebarLIFO(QString sqlTableName)
     _sqlTableModel = new YerothSqlTableModel(sqlTableName, true);
 
     _sqlTableModelView->lister_codebar_LIFO(*_sqlTableModel,
-                                            _codebarToTableRows);
+                                            _stockReferenceToStockID);
 
     QStringList articleCodebars;
 
-    QMapIterator<QString, int> it(_codebarToTableRows);
+    QMapIterator<QString, QString> it(_stockReferenceToStockID);
     QString aCodebarString;
 
     while (it.hasNext())
@@ -574,27 +574,27 @@ void YerothLineEdit::setupMyQCompleterCodebarLIFO(QString sqlTableName)
 void YerothLineEdit::refreshCodebarCompleterList(QString strategy)
 {
     //qDebug() << "++ test refresh: " << _sqlTableModelView;
-    _designationToTableRows.clear();
+    _stockNameToStockID.clear();
 
     if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_ALL,
                                            strategy))
     {
-        _sqlTableModelView->lister_codebar_ALL(*_sqlTableModel, _designationToTableRows);
+        _sqlTableModelView->lister_codebar_ALL(*_sqlTableModel, _stockNameToStockID);
     }
     else if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO,
              strategy))
     {
-        _sqlTableModelView->lister_codebar_FIFO(*_sqlTableModel, _designationToTableRows);
+        _sqlTableModelView->lister_codebar_FIFO(*_sqlTableModel, _stockNameToStockID);
     }
     else if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_LIFO,
              strategy))
     {
-        _sqlTableModelView->lister_codebar_LIFO(*_sqlTableModel, _designationToTableRows);
+        _sqlTableModelView->lister_codebar_LIFO(*_sqlTableModel, _stockNameToStockID);
     }
     else if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO,
              strategy))
     {
-        _sqlTableModelView->lister_codebar_DEF_DEO(*_sqlTableModel, _designationToTableRows);
+        _sqlTableModelView->lister_codebar_DEF_DEO(*_sqlTableModel, _stockNameToStockID);
     }
 }
 
@@ -602,26 +602,26 @@ void YerothLineEdit::refreshCodebarCompleterList(QString strategy)
 void YerothLineEdit::refreshCompleterList(QString strategy)
 {
     //qDebug() << "++ test refresh: " << _sqlTableModelView;
-    _designationToTableRows.clear();
+    _stockNameToStockID.clear();
 
     if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_ALL,
                                            strategy))
     {
-        _sqlTableModelView->lister_ALL(*_sqlTableModel, _designationToTableRows);
+        _sqlTableModelView->lister_ALL(*_sqlTableModel, _stockNameToStockID);
     }
     else if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO,
              strategy))
     {
-        _sqlTableModelView->lister_FIFO(*_sqlTableModel, _designationToTableRows);
+        _sqlTableModelView->lister_FIFO(*_sqlTableModel, _stockNameToStockID);
     }
     else if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_LIFO,
              strategy))
     {
-        _sqlTableModelView->lister_LIFO(*_sqlTableModel, _designationToTableRows);
+        _sqlTableModelView->lister_LIFO(*_sqlTableModel, _stockNameToStockID);
     }
     else if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO,
              strategy))
     {
-        _sqlTableModelView->lister_DEF_DEO(*_sqlTableModel, _designationToTableRows);
+        _sqlTableModelView->lister_DEF_DEO(*_sqlTableModel, _stockNameToStockID);
     }
 }

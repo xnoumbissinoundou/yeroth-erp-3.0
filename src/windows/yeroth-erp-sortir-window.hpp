@@ -150,7 +150,10 @@ public slots:
 
     void actualiser_tableau_sortie();
 
-    void update_lineedits_and_labels();
+    inline void update_lineedits_and_labels()
+    {
+        lineEdit_articles_quantite_a_transferer->setText(GET_NUM_STRING(_quantiteVendue));
+    }
 
     void enlever_article();
 

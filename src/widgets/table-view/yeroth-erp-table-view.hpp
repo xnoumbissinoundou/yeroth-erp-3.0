@@ -52,32 +52,32 @@ public:
 				bool truncateString = true);
 
 	void lister_ALL(YerothSqlTableModel &tableModel,
-					 QMap<QString, int> &designationToTableRows_in_out);
+					QMap<QString, QString> &stockNameToStockID_in_out);
 
 	void lister_FIFO(YerothSqlTableModel &tableModel,
-					 QMap<QString, int> &designationToTableRows_in_out);
+					 QMap<QString, QString> &stockNameToStockID_in_out);
 
 	QDate getEarliestDate(QMultiMap<QString, QDate> allElements, QString aDesignation);
 
 	QDate getLatestDate(QMultiMap<QString, QDate> allElements, QString aDesignation);
 
 	void lister_LIFO(YerothSqlTableModel &tableModel,
-					 QMap<QString, int> &designationToTableRows_in_out);
+					 QMap<QString, QString> &stockNameToStockID_in_out);
 
 	void lister_DEF_DEO(YerothSqlTableModel &tableModel,
-					    QMap<QString, int> &designationToTableRows_in_out);
+					    QMap<QString, QString> &stockNameToStockID_in_out);
 
 	void lister_codebar_ALL(YerothSqlTableModel &tableModel,
-					 	 	QMap<QString, int> &codebarToTableRows_in_out);
+					 	 	QMap<QString, QString> &stockReferenceToStockID_in_out);
 
 	void lister_codebar_FIFO(YerothSqlTableModel &tableModel,
-					 	 	 QMap<QString, int> &codebarToTableRows_in_out);
+					 	 	 QMap<QString, QString> &stockReferenceToStockID_in_out);
 
 	void lister_codebar_LIFO(YerothSqlTableModel &tableModel,
-					 	 	 QMap<QString, int> &codebarToTableRows_in_out);
+					 	 	 QMap<QString, QString> &stockReferenceToStockID_in_out);
 
 	void lister_codebar_DEF_DEO(YerothSqlTableModel &tableModel,
-					 	 	    QMap<QString, int> &codebarToTableRows_in_out);
+					 	 	    QMap<QString, QString> &stockReferenceToStockID_in_out);
 
 	inline int rowCount()
 	{

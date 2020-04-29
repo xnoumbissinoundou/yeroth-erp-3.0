@@ -1119,7 +1119,7 @@ void YerothStocksWindow::afficherStocks(YerothSqlTableModel & sqlTableModel,
 
     _curStocksTableModel = &sqlTableModel;
 
-    QMultiMap < QString, int >designationToTableRows_in_out;
+    QMultiMap<QString, QString> stockNameToStockID_in_out;
 
     QString currentStockListingStrategy(localVisibleStrategy);
 
@@ -1128,22 +1128,23 @@ void YerothStocksWindow::afficherStocks(YerothSqlTableModel & sqlTableModel,
         currentStockListingStrategy = YerothERPConfig::salesStrategy;
     }
 
-    if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO, currentStockListingStrategy))
+    if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO,
+    										currentStockListingStrategy))
     {
     	tableView_stocks->setSortingEnabled(false);
-        tableView_stocks->lister_FIFO(*_curStocksTableModel, designationToTableRows_in_out);
+        tableView_stocks->lister_FIFO(*_curStocksTableModel, stockNameToStockID_in_out);
     }
-    else if (YerothUtils::
-             isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_LIFO, currentStockListingStrategy))
+    else if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_LIFO,
+    											 currentStockListingStrategy))
     {
     	tableView_stocks->setSortingEnabled(false);
-        tableView_stocks->lister_LIFO(*_curStocksTableModel, designationToTableRows_in_out);
+        tableView_stocks->lister_LIFO(*_curStocksTableModel, stockNameToStockID_in_out);
     }
-    else if (YerothUtils::
-             isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO, currentStockListingStrategy))
+    else if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO,
+            		 	 	 	 	 	 	 	 currentStockListingStrategy))
     {
     	tableView_stocks->setSortingEnabled(false);
-        tableView_stocks->lister_DEF_DEO(*_curStocksTableModel, designationToTableRows_in_out);
+        tableView_stocks->lister_DEF_DEO(*_curStocksTableModel, stockNameToStockID_in_out);
     }
     else			//YerothConfig::STRATEGIE_VENTE_SORTIE_ALL
     {

@@ -44,24 +44,24 @@ void YerothPointDeVenteListStocksWindow::listStocks(YerothSqlTableModel & aSqlTa
     else if (YerothUtils::
              isEqualCaseInsensitive(YerothERPConfig::salesStrategy, YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO))
     {
-        QMap < QString, int >designationToTableRows_in_out;
+        QMap<QString, QString> stockNameToStockID_in_out;
         //qDebug() << "++ YerothVenteListStocksWindow::listStocks tableView_list_stocks->lister_FIFO";
-        tableView_list_stocks->lister_FIFO(aSqlTableModel, designationToTableRows_in_out);
-        //qDebug() << designationToTableRows_in_out;
+        tableView_list_stocks->lister_FIFO(aSqlTableModel, stockNameToStockID_in_out);
+        //qDebug() << stockNameToStockID_in_out;
     }
     else if (YerothUtils::
              isEqualCaseInsensitive(YerothERPConfig::salesStrategy, YerothERPConfig::STRATEGIE_VENTE_SORTIE_LIFO))
     {
-        QMap < QString, int >designationToTableRows_in_out;
+    	QMap<QString, QString> stockNameToStockID_in_out;
         //qDebug() << "++ YerothVenteListStocksWindow::listStocks tableView_list_stocks->lister_LIFO";
-        tableView_list_stocks->lister_LIFO(aSqlTableModel, designationToTableRows_in_out);
-        //qDebug() << designationToTableRows_in_out;
+        tableView_list_stocks->lister_LIFO(aSqlTableModel, stockNameToStockID_in_out);
+        //qDebug() << stockNameToStockID_in_out;
     }
     else if (YerothUtils::
              isEqualCaseInsensitive(YerothERPConfig::salesStrategy, YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO))
     {
-        QMap < QString, int >designationToTableRows_in_out;
-        tableView_list_stocks->lister_DEF_DEO(aSqlTableModel, designationToTableRows_in_out);
+    	QMap<QString, QString> stockNameToStockID_in_out;
+        tableView_list_stocks->lister_DEF_DEO(aSqlTableModel, stockNameToStockID_in_out);
     }
 
     tableView_list_stocks->hideColumn(0);

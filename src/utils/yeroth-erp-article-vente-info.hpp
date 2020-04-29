@@ -22,20 +22,30 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-	YerothArticleVenteInfo();
+	inline YerothArticleVenteInfo()
+	:_quantite_en_stock(0.0),
+	 _prix_unitaire(0.0),
+	 _quantite_a_vendre(0.0),
+	 _montant_tva(0.0),
+	 _remise_prix(0.0),
+	 _remise_pourcentage(0.0)
+	{
+	}
 
-	~YerothArticleVenteInfo();
+	inline ~YerothArticleVenteInfo()
+	{
+	}
 
 	void print();
 
 	inline double prix_vente()
 	{
-		return (prix_unitaire + _montant_tva - remise_prix) * quantite_a_vendre;
+		return (_prix_unitaire + _montant_tva - _remise_prix) * _quantite_a_vendre;
 	}
 
 	inline double montant_tva()
 	{
-		return _montant_tva * quantite_a_vendre;
+		return _montant_tva * _quantite_a_vendre;
 	}
 
 	inline QString prixVente()
@@ -45,17 +55,17 @@ public:
 
 	inline QString quantiteEnStock()
 	{
-		return GET_NUM_STRING((int)quantite_en_stock);
+		return GET_NUM_STRING((int)_quantite_en_stock);
 	}
 
 	inline QString prixUnitaire()
 	{
-		return QString::number(prix_unitaire, 'f', 2);
+		return QString::number(_prix_unitaire, 'f', 2);
 	}
 
 	inline QString quantiteAVendre()
 	{
-		return QString::number(quantite_a_vendre, 'f', 0);
+		return QString::number(_quantite_a_vendre, 'f', 0);
 	}
 
 	inline QString montantTva()
@@ -65,25 +75,35 @@ public:
 
 	inline QString remisePrix()
 	{
-		return QString::number(remise_prix, 'f', 2);
+		return QString::number(_remise_prix, 'f', 2);
 	}
 
 	inline QString remisePourcentage()
 	{
-		return QString::number(remise_pourcentage, 'f', 2);
+		return QString::number(_remise_pourcentage, 'f', 2);
 	}
 
-	QString reference;
-	QString designation;
-	QString categorie;
 
-	int 	sqlTableModelIndex;
-	double 	quantite_en_stock;
-	double 	prix_unitaire;
-	double 	quantite_a_vendre;
+	double 	_quantite_en_stock;
+
+	double 	_prix_unitaire;
+
+	double 	_quantite_a_vendre;
+
 	double 	_montant_tva;
-	double 	remise_prix;
-	double 	remise_pourcentage;
+
+	double 	_remise_prix;
+
+	double 	_remise_pourcentage;
+
+
+	QString _stockReference;
+
+	QString _stockName;
+
+	QString _stockCategorie;
+
+	QString _stockID;
 };
 
 
