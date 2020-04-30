@@ -143,7 +143,7 @@ YerothAdminWindow::YerothAdminWindow()
     comboBox_sujets_maintain->addItem(DONNEES);
 
     comboBox_strategie_vente_sortie->addItem(YerothERPConfig::STRATEGIE_VENTE_SORTIE_ALL);
-    comboBox_strategie_vente_sortie->addItem(YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO);
+    comboBox_strategie_vente_sortie->addItem(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FEFO);
     comboBox_strategie_vente_sortie->addItem(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO);
     comboBox_strategie_vente_sortie->addItem(YerothERPConfig::STRATEGIE_VENTE_SORTIE_LIFO);
 
@@ -763,7 +763,7 @@ void YerothAdminWindow::read_configuration()
 
     comboBox_strategie_vente_sortie->clear();
     comboBox_strategie_vente_sortie->addItem(YerothERPConfig::STRATEGIE_VENTE_SORTIE_ALL);
-    comboBox_strategie_vente_sortie->addItem(YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO);
+    comboBox_strategie_vente_sortie->addItem(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FEFO);
     comboBox_strategie_vente_sortie->addItem(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO);
     comboBox_strategie_vente_sortie->addItem(YerothERPConfig::STRATEGIE_VENTE_SORTIE_LIFO);
 
@@ -774,9 +774,9 @@ void YerothAdminWindow::read_configuration()
     }
     else if (YerothUtils::
              isEqualCaseInsensitive(YerothERPConfig::salesStrategy,
-            		 	 	 	 	YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO))
+            		 	 	 	 	YerothERPConfig::STRATEGIE_VENTE_SORTIE_FEFO))
     {
-        comboBox_strategie_vente_sortie->setCurrentIndex(YerothUtils::STRATEGIE_DEF_DEO_COMBOBOX_INDEX);
+        comboBox_strategie_vente_sortie->setCurrentIndex(YerothUtils::STRATEGIE_FEFO_COMBOBOX_INDEX);
     }
     else if (YerothUtils::
              isEqualCaseInsensitive(YerothERPConfig::salesStrategy,
@@ -1046,7 +1046,7 @@ void YerothAdminWindow::read_app_parameters_init_configuration()
         comboBox_strategie_vente_sortie->clear();
         //qDebug() << "++ test";
         comboBox_strategie_vente_sortie->addItem(YerothERPConfig::STRATEGIE_VENTE_SORTIE_ALL);
-        comboBox_strategie_vente_sortie->addItem(YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO);
+        comboBox_strategie_vente_sortie->addItem(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FEFO);
         comboBox_strategie_vente_sortie->addItem(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO);
         comboBox_strategie_vente_sortie->addItem(YerothERPConfig::STRATEGIE_VENTE_SORTIE_LIFO);
 

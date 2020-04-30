@@ -1207,14 +1207,14 @@ void YerothTableView::lister_LIFO(YerothSqlTableModel &tableModel,
 }
 
 
-void YerothTableView::lister_DEF_DEO(YerothSqlTableModel &tableModel,
+void YerothTableView::lister_FEFO(YerothSqlTableModel &tableModel,
                                      QMap<QString, QString> &stockNameToStockID_in_out)
 {
     emit signal_lister(tableModel);
 
     QString aDEFDEOQueryStr =
     		YerothUtils::getStrategySqlQueryStr(tableModel.yerothSelectStatement(),
-    											YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO);
+    											YerothERPConfig::STRATEGIE_VENTE_SORTIE_FEFO);
 
     bool s = tableModel.yerothSetQuery(aDEFDEOQueryStr);
 
@@ -1456,7 +1456,7 @@ void YerothTableView::lister_DEF_DEO(YerothSqlTableModel &tableModel,
         resizeColumnsToContents();
     }
 
-//    qDebug() << "++ DEF_DEO, designationToTableRows_in_out: " << designationToTableRows_in_out;
+//    qDebug() << "++ FEFO, designationToTableRows_in_out: " << designationToTableRows_in_out;
 }
 
 
@@ -1899,14 +1899,14 @@ void YerothTableView::lister_codebar_LIFO(YerothSqlTableModel &tableModel,
 }
 
 
-void YerothTableView::lister_codebar_DEF_DEO(YerothSqlTableModel &tableModel,
+void YerothTableView::lister_codebar_FEFO(YerothSqlTableModel &tableModel,
         									 QMap<QString, QString> &stockReferenceToStockID_in_out)
 {
     emit signal_lister(tableModel);
 
     QString aReferenceDEFDEOQueryStr =
     		YerothUtils::getStrategySqlQueryStr(tableModel.yerothSelectStatement(),
-    											YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO);
+    											YerothERPConfig::STRATEGIE_VENTE_SORTIE_FEFO);
 
     bool s = tableModel.yerothSetQuery(aReferenceDEFDEOQueryStr);
 

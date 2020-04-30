@@ -318,15 +318,15 @@ void YerothLineEdit::setupMyQCompleterALL(QString sqlTableName)
 }
 
 
-void YerothLineEdit::setupMyQCompleterDEF_DEO(QString sqlTableName)
+void YerothLineEdit::setupMyQCompleterFEFO(QString sqlTableName)
 {
     _sqlTableModelView = new YerothTableView;
     _sqlTableModelView->setTableName(&sqlTableName);
 
     _sqlTableModel = new YerothSqlTableModel(sqlTableName, true);
 
-    _sqlTableModelView->lister_DEF_DEO(*_sqlTableModel,
-                                       _stockNameToStockID);
+    _sqlTableModelView->lister_FEFO(*_sqlTableModel,
+                                    _stockNameToStockID);
 
     QStringList articleDesignations;
 
@@ -457,15 +457,15 @@ void YerothLineEdit::setupMyQCompleterCodebarALL(QString sqlTableName)
 }
 
 
-void YerothLineEdit::setupMyQCompleterCodebarDEF_DEO(QString sqlTableName)
+void YerothLineEdit::setupMyQCompleterCodebarFEFO(QString sqlTableName)
 {
     _sqlTableModelView = new YerothTableView;
     _sqlTableModelView->setTableName(&sqlTableName);
 
     _sqlTableModel = new YerothSqlTableModel(sqlTableName, true);
 
-    _sqlTableModelView->lister_codebar_DEF_DEO(*_sqlTableModel,
-            _stockReferenceToStockID);
+    _sqlTableModelView->lister_codebar_FEFO(*_sqlTableModel,
+            								_stockReferenceToStockID);
 
     QStringList articleCodebars;
 
@@ -591,10 +591,10 @@ void YerothLineEdit::refreshCodebarCompleterList(QString strategy)
     {
         _sqlTableModelView->lister_codebar_LIFO(*_sqlTableModel, _stockNameToStockID);
     }
-    else if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO,
+    else if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FEFO,
              strategy))
     {
-        _sqlTableModelView->lister_codebar_DEF_DEO(*_sqlTableModel, _stockNameToStockID);
+        _sqlTableModelView->lister_codebar_FEFO(*_sqlTableModel, _stockNameToStockID);
     }
 }
 
@@ -619,9 +619,9 @@ void YerothLineEdit::refreshCompleterList(QString strategy)
     {
         _sqlTableModelView->lister_LIFO(*_sqlTableModel, _stockNameToStockID);
     }
-    else if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO,
+    else if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FEFO,
              strategy))
     {
-        _sqlTableModelView->lister_DEF_DEO(*_sqlTableModel, _stockNameToStockID);
+        _sqlTableModelView->lister_FEFO(*_sqlTableModel, _stockNameToStockID);
     }
 }

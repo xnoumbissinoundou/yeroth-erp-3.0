@@ -58,10 +58,10 @@ void YerothSortirListStocksWindow::listStocks(YerothSqlTableModel & aSqlTableMod
         //qDebug() << stockNameToStockID_in_out;
     }
     else if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::salesStrategy,
-            		 	 	 	 	 	 	 	 YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO))
+            		 	 	 	 	 	 	 	 YerothERPConfig::STRATEGIE_VENTE_SORTIE_FEFO))
     {
     	QMap<QString, QString> stockNameToStockID_in_out;
-        tableView_list_stocks->lister_DEF_DEO(aSqlTableModel, stockNameToStockID_in_out);
+        tableView_list_stocks->lister_FEFO(aSqlTableModel, stockNameToStockID_in_out);
     }
 
     tableView_list_stocks->hideColumn(0);

@@ -101,7 +101,7 @@ public:
 
 	void setupMyQCompleterALL(QString sqlTableName);
 
-	void setupMyQCompleterDEF_DEO(QString sqlTableName);
+	void setupMyQCompleterFEFO(QString sqlTableName);
 
 	void setupMyQCompleterFIFO(QString sqlTableName);
 
@@ -109,7 +109,7 @@ public:
 
 	void setupMyQCompleterCodebarALL(QString sqlTableName);
 
-	void setupMyQCompleterCodebarDEF_DEO(QString sqlTableName);
+	void setupMyQCompleterCodebarFEFO(QString sqlTableName);
 
 	void setupMyQCompleterCodebarFIFO(QString sqlTableName);
 

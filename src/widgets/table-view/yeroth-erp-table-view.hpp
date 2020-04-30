@@ -64,7 +64,7 @@ public:
 	void lister_LIFO(YerothSqlTableModel &tableModel,
 					 QMap<QString, QString> &stockNameToStockID_in_out);
 
-	void lister_DEF_DEO(YerothSqlTableModel &tableModel,
+	void lister_FEFO(YerothSqlTableModel &tableModel,
 					    QMap<QString, QString> &stockNameToStockID_in_out);
 
 	void lister_codebar_ALL(YerothSqlTableModel &tableModel,
@@ -76,7 +76,7 @@ public:
 	void lister_codebar_LIFO(YerothSqlTableModel &tableModel,
 					 	 	 QMap<QString, QString> &stockReferenceToStockID_in_out);
 
-	void lister_codebar_DEF_DEO(YerothSqlTableModel &tableModel,
+	void lister_codebar_FEFO(YerothSqlTableModel &tableModel,
 					 	 	    QMap<QString, QString> &stockReferenceToStockID_in_out);
 
 	inline int rowCount()

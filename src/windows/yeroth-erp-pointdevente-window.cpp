@@ -288,7 +288,7 @@ void YerothPointDeVenteWindow::connect_manual_selection_of_article_item()
 {
 	disconnect_all_objects_for_stock_article_item_selection();
 
-    if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO,
+    if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FEFO,
     										YerothERPConfig::salesStrategy))
     {
         connect(lineEdit_recherche_article->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
@@ -316,7 +316,7 @@ void YerothPointDeVenteWindow::connect_manual_selection_of_article_item()
         connect(lineEdit_recherche_article_codebar->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
                 SLOT(ajouter_article_codebar(const QString &)));
     }
-    else			//CMUP == YerothConfig::salesStrategy
+    else			//ALL == YerothConfig::salesStrategy
     {
         connect(lineEdit_recherche_article->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
                 SLOT(ajouter_article(const QString &)));
@@ -332,7 +332,7 @@ void YerothPointDeVenteWindow::connect_barcode_reader_selection_of_article_item(
 	disconnect_all_objects_for_stock_article_item_selection();
 
     if (YerothUtils::
-            isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO, YerothERPConfig::salesStrategy))
+            isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FEFO, YerothERPConfig::salesStrategy))
     {
         connect(lineEdit_recherche_article->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
                 SLOT(ajouter_article(const QString &)));
@@ -358,7 +358,7 @@ void YerothPointDeVenteWindow::connect_barcode_reader_selection_of_article_item(
         connect(lineEdit_recherche_article_codebar, SIGNAL(textChanged(const QString &)), this,
                 SLOT(ajouter_article_codebar(const QString &)));
     }
-    else			//CMUP == YerothConfig::salesStrategy
+    else			//ALL == YerothConfig::salesStrategy
     {
         connect(lineEdit_recherche_article->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
                 SLOT(ajouter_article(const QString &)));

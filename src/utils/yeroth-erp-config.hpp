@@ -97,7 +97,7 @@ public:
 
 	static const QString STRATEGIE_VENTE_SORTIE_LIFO;
 
-	static const QString STRATEGIE_VENTE_SORTIE_DEF_DEO;
+	static const QString STRATEGIE_VENTE_SORTIE_FEFO;
 
 	static const int OPEN_CASH_DRAWER;
 

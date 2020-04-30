@@ -361,9 +361,9 @@ void YerothStocksWindow::setComboBoxStrategieDeStocks()
     }
     else if (YerothUtils::
              isEqualCaseInsensitive(YerothERPConfig::salesStrategy,
-            		 	 	 	 	YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO))
+            		 	 	 	 	YerothERPConfig::STRATEGIE_VENTE_SORTIE_FEFO))
     {
-        comboBox_strategie_de_stocks->setCurrentIndex(YerothUtils::STRATEGIE_DEF_DEO_COMBOBOX_INDEX);
+        comboBox_strategie_de_stocks->setCurrentIndex(YerothUtils::STRATEGIE_FEFO_COMBOBOX_INDEX);
     }
     else if (YerothUtils::
              isEqualCaseInsensitive(YerothERPConfig::salesStrategy,
@@ -414,7 +414,7 @@ void YerothStocksWindow::populateComboBoxes()
     comboBox_strategie_de_stocks->addItem(YerothERPConfig::STRATEGIE_VENTE_SORTIE_ALL);
 
     //index 0 of enum enum_comboBoxStrategyIndex
-    comboBox_strategie_de_stocks->addItem(YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO);
+    comboBox_strategie_de_stocks->addItem(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FEFO);
     comboBox_strategie_de_stocks->addItem(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO);
     comboBox_strategie_de_stocks->addItem(YerothERPConfig::STRATEGIE_VENTE_SORTIE_LIFO);
 
@@ -1140,11 +1140,11 @@ void YerothStocksWindow::afficherStocks(YerothSqlTableModel & sqlTableModel,
     	tableView_stocks->setSortingEnabled(false);
         tableView_stocks->lister_LIFO(*_curStocksTableModel, stockNameToStockID_in_out);
     }
-    else if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO,
+    else if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FEFO,
             		 	 	 	 	 	 	 	 currentStockListingStrategy))
     {
     	tableView_stocks->setSortingEnabled(false);
-        tableView_stocks->lister_DEF_DEO(*_curStocksTableModel, stockNameToStockID_in_out);
+        tableView_stocks->lister_FEFO(*_curStocksTableModel, stockNameToStockID_in_out);
     }
     else			//YerothConfig::STRATEGIE_VENTE_SORTIE_ALL
     {

@@ -90,7 +90,7 @@ const QString YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO						(QObject::trUtf8
 
 const QString YerothERPConfig::STRATEGIE_VENTE_SORTIE_LIFO						(QObject::trUtf8(OPTION_SALES_STRATEGY_LIFO));
 
-const QString YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO					(QObject::trUtf8(OPTION_SALES_STRATEGY_DEF_DEO));
+const QString YerothERPConfig::STRATEGIE_VENTE_SORTIE_FEFO					(QObject::trUtf8(OPTION_SALES_STRATEGY_FEFO));
 
 const int YerothERPConfig::OPEN_CASH_DRAWER(1);
 

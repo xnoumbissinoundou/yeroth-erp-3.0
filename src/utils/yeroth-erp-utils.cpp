@@ -365,8 +365,8 @@ YerothUtils::YerothUtils()
     YerothUtils::_strategieindexToUserViewString.insert(YerothUtils::STRATEGIE_ALL_COMBOBOX_INDEX,
 			YerothERPConfig::STRATEGIE_VENTE_SORTIE_ALL);
 
-    YerothUtils::_strategieindexToUserViewString.insert(YerothUtils::STRATEGIE_DEF_DEO_COMBOBOX_INDEX,
-			YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO);
+    YerothUtils::_strategieindexToUserViewString.insert(YerothUtils::STRATEGIE_FEFO_COMBOBOX_INDEX,
+			YerothERPConfig::STRATEGIE_VENTE_SORTIE_FEFO);
 
     YerothUtils::_strategieindexToUserViewString.insert(YerothUtils::STRATEGIE_FIFO_COMBOBOX_INDEX,
 			YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO);
@@ -1360,9 +1360,9 @@ QString YerothUtils::getWindowTitleWithStrategy(QMainWindow *aMainWindow, QStrin
     {
         aNewTitle.replace(YerothERPConfig::STRATEGIE_VENTE_SORTIE_ALL, currentStockListingStrategy);
     }
-    else if (aNewTitle.contains(YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO))
+    else if (aNewTitle.contains(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FEFO))
     {
-        aNewTitle.replace(YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO, currentStockListingStrategy);
+        aNewTitle.replace(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FEFO, currentStockListingStrategy);
     }
     else if (aNewTitle.contains(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO))
     {
@@ -1420,7 +1420,7 @@ QString YerothUtils::getStrategySqlQueryStr(QString aSelectStmt,
 {
 	QString resultStrategyQueryStr;
 
-    if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO, aStrategy))
+    if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FEFO, aStrategy))
     {
     	if (!aSelectStmt.contains("ORDER BY", Qt::CaseInsensitive))
     	{
@@ -2173,13 +2173,13 @@ void YerothUtils::refreshSalesStrategy(YerothSqlTableModel &curStocksTableModel,
         lineEdit_recherche_article_codebar->
         setupMyQCompleterCodebarLIFO(curStocksTableModelName);
     }
-    else if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_DEF_DEO,
+    else if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FEFO,
              YerothERPConfig::salesStrategy))
     {
-        lineEdit_recherche_article->setupMyQCompleterDEF_DEO(curStocksTableModelName);
+        lineEdit_recherche_article->setupMyQCompleterFEFO(curStocksTableModelName);
 
         lineEdit_recherche_article_codebar->
-        setupMyQCompleterCodebarDEF_DEO(curStocksTableModelName);
+        setupMyQCompleterCodebarFEFO(curStocksTableModelName);
     }
     else //YerothConfig::STRATEGIE_VENTE_SORTIE_ALL
     {
