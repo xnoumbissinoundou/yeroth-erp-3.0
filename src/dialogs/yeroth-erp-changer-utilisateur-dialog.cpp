@@ -161,7 +161,7 @@ void YerothPOSChangerUtilisateurDialog::valider()
             {
                 _allWindows->_mainWindow->rendreVisible(&_allWindows->getSqlTableModel_stocks());
             }
-            else if (YerothUtils::ROLE_GESTIONAIREDESSTOCKS == role)
+            else if (YerothUtils::ROLE_GESTIONNAIREDESTOCK == role)
             {
                 _allWindows->_mainWindow->rendreVisible(&_allWindows->getSqlTableModel_stocks());
             }
@@ -209,7 +209,7 @@ YerothPOSUser *YerothPOSChangerUtilisateurDialog::createUser(QSqlRecord & userRe
     {
         user = new YerothERPUserVendeur(_allWindows);
     }
-    if (YerothUtils::ROLE_GESTIONAIREDESSTOCKS == role)
+    if (YerothUtils::ROLE_GESTIONNAIREDESTOCK == role)
     {
         user = new YerothPOSUserGestionaireDesStocks(_allWindows);
     }

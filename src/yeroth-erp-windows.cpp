@@ -402,7 +402,7 @@ void YerothERPWindows::setUser(YerothPOSUser *user)
         this->definirVendeur();
         break;
 
-    case YerothUtils::ROLE_GESTIONAIREDESSTOCKS:
+    case YerothUtils::ROLE_GESTIONNAIREDESTOCK:
         this->definirGestionaireDesStocks();
         break;
 

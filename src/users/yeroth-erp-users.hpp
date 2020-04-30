@@ -197,7 +197,7 @@ public:
 
 	inline virtual bool isGestionaireDesStocks()
 	{
-		return _role == YerothUtils::ROLE_GESTIONAIREDESSTOCKS;
+		return _role == YerothUtils::ROLE_GESTIONNAIREDESTOCK;
 	}
 
 	inline virtual bool isCaissier()

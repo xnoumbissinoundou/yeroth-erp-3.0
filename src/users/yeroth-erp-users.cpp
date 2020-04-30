@@ -40,8 +40,8 @@ QString YerothPOSUser::getRole()
         role.append(YerothUtils::_roleToUserViewString.value(YerothUtils::ROLE_VENDEUR));
         break;
 
-    case YerothUtils::ROLE_GESTIONAIREDESSTOCKS:
-        role.append(YerothUtils::_roleToUserViewString.value(YerothUtils::ROLE_GESTIONAIREDESSTOCKS));
+    case YerothUtils::ROLE_GESTIONNAIREDESTOCK:
+        role.append(YerothUtils::_roleToUserViewString.value(YerothUtils::ROLE_GESTIONNAIREDESTOCK));
         break;
 
     case YerothUtils::ROLE_CAISSIER:

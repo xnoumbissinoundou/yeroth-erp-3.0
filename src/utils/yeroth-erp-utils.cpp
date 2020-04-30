@@ -406,8 +406,8 @@ YerothUtils::YerothUtils()
     YerothUtils::_roleToUserViewString.insert(YerothUtils::ROLE_MANAGER,
 			QObject::tr("manager"));
 
-    YerothUtils::_roleToUserViewString.insert(YerothUtils::ROLE_GESTIONAIREDESSTOCKS,
-			QObject::tr("gestionaire des stocks"));
+    YerothUtils::_roleToUserViewString.insert(YerothUtils::ROLE_GESTIONNAIREDESTOCK,
+			QObject::tr("gestionnaire de stock"));
 
     YerothUtils::_roleToUserViewString.insert(YerothUtils::ROLE_MAGASINIER,
 			QObject::tr("magasinier"));

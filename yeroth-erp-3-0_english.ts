@@ -1363,7 +1363,8 @@ Continue with update of the stock ?</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="410"/>
-        <source>gestionaire des stocks</source>
+        <source>gestionnaire de stock</source>
+        <oldsource>gestionaire des stocks</oldsource>
         <translation>stock manager</translation>
     </message>
     <message>

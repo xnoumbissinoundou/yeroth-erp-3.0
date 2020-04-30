@@ -20,7 +20,7 @@ public:
 	inline YerothPOSUserGestionaireDesStocks(YerothERPWindows *allWindows)
 	:YerothPOSUser(allWindows)
 	{
-		_role = YerothUtils::ROLE_GESTIONAIREDESSTOCKS;
+		_role = YerothUtils::ROLE_GESTIONNAIREDESTOCK;
 	}
 
 	inline virtual ~YerothPOSUserGestionaireDesStocks(){}
