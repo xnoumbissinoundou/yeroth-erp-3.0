@@ -37,7 +37,7 @@
 
 const int YerothERPVentesTableView::REFERENCE_COLUMN(7);
 
-const int YerothERPVentesTableView::TYPE_DE_VENTE_COLUMN(23);
+const int YerothERPVentesTableView::TYPE_DE_VENTE_COLUMN(22);
 
 
 YerothERPVentesTableView::YerothERPVentesTableView()
@@ -99,7 +99,17 @@ void YerothERPVentesTableView::lister_les_elements_du_tableau(YerothSqlTableMode
                     break;
 
                 case QVariant::Int:
-                    anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
+
+                	if (YerothERPVentesTableView::TYPE_DE_VENTE_COLUMN == k)
+                	{
+                		tmpQvString = YerothUtils::_typedeventeToUserViewString.value(qv.toInt());
+                		anItem = new YerothQStandardItem(tmpQvString);
+                	}
+                	else
+                	{
+                		anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
+                	}
+
                     _stdItemModel->setItem(i, k, anItem);
                     break;
 
@@ -127,8 +137,7 @@ void YerothERPVentesTableView::lister_les_elements_du_tableau(YerothSqlTableMode
                 	tmpQvString.clear();
                 	tmpQvString.append(qv.toString());
 
-                	if (YerothERPVentesTableView::REFERENCE_COLUMN != k 	||
-                		YerothERPVentesTableView::TYPE_DE_VENTE_COLUMN != k)
+                	if (YerothERPVentesTableView::REFERENCE_COLUMN != k)
                 	{
                 		if (tmpQvString.length() > YerothERPConfig::max_string_display_length)
                 		{

@@ -26,11 +26,10 @@
 
 #include <QtWidgets/QDesktopWidget>
 
+
 YerothERPWindows *YerothWindowsCommons::_allWindows(0);
 
 QPoint *YerothWindowsCommons::_centerPosition(new QPoint);
-
-
 
 
 YerothWindowsCommons::~YerothWindowsCommons()
@@ -59,6 +58,7 @@ void YerothWindowsCommons::mySetupUi(QMainWindow * aWindow)
     aWindow->move(*_centerPosition);
     aWindow->setWindowTitle(getWindowName());
 }
+
 
 void YerothWindowsCommons::getManuelUtilisateurPDF()
 {
@@ -96,10 +96,12 @@ void YerothWindowsCommons::getManuelUtilisateurPDF()
     }
 }
 
+
 void YerothWindowsCommons::infosEntreprise()
 {
     YerothUtils::infosEntreprise(*this, _allWindows->getInfoEntreprise().toString());
 }
+
 
 void YerothWindowsCommons::achats()
 {
@@ -107,11 +109,13 @@ void YerothWindowsCommons::achats()
     _allWindows->_achatsWindow->rendreVisible(_curStocksTableModel);
 }
 
+
 void YerothWindowsCommons::afficherStocks()
 {
     rendreInvisible();
     _allWindows->_stocksWindow->rendreVisible(_curStocksTableModel);
 }
+
 
 void YerothWindowsCommons::afficherMarchandises()
 {
@@ -133,17 +137,20 @@ void YerothWindowsCommons::clients()
     _allWindows->_clientWindow->rendreVisible(_curStocksTableModel);
 }
 
+
 void YerothWindowsCommons::sortir()
 {
 	rendreInvisible();
     _allWindows->_sortirWindow->rendreVisible(_curStocksTableModel);
 }
 
+
 void YerothWindowsCommons::tableaux_de_bords()
 {
 	rendreInvisible();
     _allWindows->_statistiquesWindow->rendreVisible(_curStocksTableModel);
 }
+
 
 void YerothWindowsCommons::transactions()
 {
@@ -165,11 +172,13 @@ void YerothWindowsCommons::entrer()
     _allWindows->_entrerWindow->rendreVisible(_curStocksTableModel);
 }
 
+
 void YerothWindowsCommons::paiements()
 {
 	rendreInvisible();
     _allWindows->_historiquePaiementsWindow->rendreVisible(_curStocksTableModel);
 }
+
 
 void YerothWindowsCommons::ventes()
 {
@@ -177,11 +186,13 @@ void YerothWindowsCommons::ventes()
     _allWindows->_ventesWindow->rendreVisible(_curStocksTableModel);
 }
 
+
 void YerothWindowsCommons::vendre()
 {
 	rendreInvisible();
     _allWindows->_pdVenteWindow->rendreVisible(_curStocksTableModel);
 }
+
 
 void YerothWindowsCommons::menu()
 {
@@ -241,6 +252,11 @@ void YerothWindowsCommons::setupSelectDBFields(QString aSqlTableName)
 		{
 			_DBFieldNamesToPrintLeftAligned.append(columnIdx);
 		}
+
+//		qDebug() << QString("++ aSqlTableName: %1, fieldName: %2, columnIdx: %3")
+//						.arg(aSqlTableName,
+//							 fieldName,
+//						     QString::number(columnIdx));
 
 		_toSelectDBFieldNameStrToDBColumnIndex.insert(fieldName, columnIdx);
 	}
@@ -414,12 +430,14 @@ void YerothWindowsCommons::changer_utilisateur()
     }
 }
 
+
 void YerothWindowsCommons::deconnecter_utilisateur()
 {
     _allWindows->definirPasDeRole();
     _allWindows->_mainWindow->show();
     rendreInvisible();
 }
+
 
 void YerothWindowsCommons::rendreVisible(YerothSqlTableModel * stocksTableModel)
 {
