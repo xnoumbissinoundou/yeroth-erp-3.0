@@ -696,12 +696,14 @@ void YerothModifierWindow::supprimer_image_stock()
 {
     QSqlRecord record = _curStocksTableModel->record(_allWindows->getLastSelectedListerRow());
 
+    QString stockName(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
+
     QVariant image_produit(record.value(YerothDatabaseTableColumn::IMAGE_PRODUIT));
 
     if (image_produit.toByteArray().isEmpty())
     {
         QString msg(QString(QObject::trUtf8("Le stock '%1' n'a pas d'image enregistrée !"))
-        				.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION)));
+        				.arg(stockName));
 
         YerothQMessageBox::information(this, QObject::trUtf8("suppression de l'image d'un stock"),
                                       msg);
@@ -713,19 +715,17 @@ void YerothModifierWindow::supprimer_image_stock()
     }
 
 
+    QString msgSupprimer(QObject::tr("Poursuivre avec la suppression de l'image du stock \""));
 
-    QString msgSupprimer("Poursuivre avec la suppression de l'image du stock \"");
-
-    msgSupprimer.append(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
+    msgSupprimer.append(stockName);
     msgSupprimer.append("\" ?");
 
     if (QMessageBox::Ok ==
-            YerothQMessageBox::question(this, QObject::trUtf8("suppression de l'image d'un stock"),
+            YerothQMessageBox::question(this, QObject::tr("suppression de l'image d'un stock"),
                                        msgSupprimer, QMessageBox::Cancel, QMessageBox::Ok))
     {
         record.setValue(YerothDatabaseTableColumn::IMAGE_PRODUIT, QVariant(QVariant::ByteArray));
         bool resRemoved = _curStocksTableModel->updateRecord(_allWindows->getLastSelectedListerRow(), record);
-        //qDebug() << "YerothModifierWindow::supprimer_ce_stock() " << resRemoved;
 
         label_image_produit->clear();
 
@@ -734,8 +734,8 @@ void YerothModifierWindow::supprimer_image_stock()
         if (resRemoved)
         {
             msgSupprimer.clear();
-            msgSupprimer.append("L'image du stock \"");
-            msgSupprimer.append(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
+            msgSupprimer.append(QObject::tr("L'image du stock \""));
+            msgSupprimer.append(stockName);
             msgSupprimer.append(QObject::trUtf8("\" a été supprimé."));
 
             YerothQMessageBox::information(this,
@@ -745,9 +745,9 @@ void YerothModifierWindow::supprimer_image_stock()
         else
         {
             msgSupprimer.clear();
-            msgSupprimer.append("L'image du stock \"");
-            msgSupprimer.append(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
-            msgSupprimer.append("\" ne pouvait pas être supprimé !");
+            msgSupprimer.append(QObject::tr("L'image du stock \""));
+            msgSupprimer.append(stockName);
+            msgSupprimer.append(QObject::trUtf8("\" ne pouvait pas être supprimé !"));
 
             YerothQMessageBox::information(this,
                                           QObject::trUtf8("échec de la suppression de l'image d'un stock"),

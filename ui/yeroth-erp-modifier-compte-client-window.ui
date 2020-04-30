@@ -10513,7 +10513,7 @@
       <string>sélectionner une image</string>
      </property>
     </widget>
-    <widget class="YerothPushButton" name="pushButton_supprimer_limage_du_stock">
+    <widget class="YerothPushButton" name="pushButton_supprimer_image">
      <property name="geometry">
       <rect>
        <x>404</x>

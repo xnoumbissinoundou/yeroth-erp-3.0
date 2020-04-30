@@ -754,8 +754,8 @@ int YerothUtils::execQuery(QSqlQuery &query, YerothLogger *logger)
 
 
 void YerothUtils::loadPixmapFromDB(QLabel &label_image,
-                                  QVariant imageVariant,
-                                  const char *format)
+                                   QVariant imageVariant,
+                                   const char *format)
 {
     QByteArray bytes;
     QBuffer buffer(&bytes);
@@ -771,14 +771,26 @@ void YerothUtils::loadPixmapFromDB(QLabel &label_image,
     label_image.setPixmap(pixmap);
 }
 
+
 void YerothUtils::savePixmapToByteArray(QByteArray &bytes,
-                                       const QPixmap &pixmap,
-                                       const char *format)
+                                        const QPixmap &pixmap,
+                                        const char *format)
 {
     QBuffer buffer(&bytes);
     buffer.open(QIODevice::WriteOnly);
     pixmap.save(&buffer, format);
 }
+
+
+void YerothUtils::savePixmapToFile(QString aFileFullPath,
+                                   const QPixmap &pixmap,
+                                   const char *format)
+{
+    QFile aFile(aFileFullPath);
+    aFile.open(QIODevice::WriteOnly);
+    pixmap.save(&aFile, format);
+}
+
 
 void YerothUtils::selectionner_image(QWidget *parent, QLabel &label_image)
 {

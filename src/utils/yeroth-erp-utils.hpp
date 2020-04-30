@@ -149,6 +149,10 @@ public:
 									  const QPixmap &pixmap,
 									  const char 	*format);
 
+	static void savePixmapToFile(QString aFileFullPath,
+	                             const QPixmap &pixmap,
+	                             const char *format);
+
 	static void getCenterPosition(unsigned 		desktopWidth,
 			   	   	   	   	   	  unsigned 		desktopHeight,
 								  QWidget 		&aWidget,

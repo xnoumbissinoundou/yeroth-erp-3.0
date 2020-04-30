@@ -29,6 +29,7 @@
 \usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
 \usepackage{epsfig}
 \usepackage{booktabs}
+\usepackage{tcolorbox}
 
 \usepackage{amsmath}
 
@@ -99,5 +100,23 @@ pdfauthor={YEROTHENTREPRISE (YEROTHNOMUTILISATEUR)}
 
 \vspace{0.3cm} 
 
+\begin{table}[!htbp]
+\begin{tabular}{ll}
+\parbox{27em}{
+YEROTHDETAILSCOMPTECLIENT
+}
 
-CONTENU \\
+&
+
+\parbox{15em}{
+\begin{center}
+\includegraphics[scale=0.6]{YEROTHCHEMINCOMPLETIMAGECOMPTECLIENT}
+\caption*{Image of this customer account}
+\end{center}
+}
+\end{tabular}
+\end{table}
+
+\vspace{0.3cm}
+
+YEROTHDESCRIPTIONCOMPTECLIENT

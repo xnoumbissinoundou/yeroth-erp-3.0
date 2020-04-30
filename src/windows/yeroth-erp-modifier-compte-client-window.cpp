@@ -53,6 +53,9 @@ YerothModifierCompteClientWindow::YerothModifierCompteClientWindow()
     pushButton_annuler->disable(this);
     pushButton_actualiser->disable(this);
 
+    pushButton_selectionner_image->disable(this);
+    pushButton_supprimer_image->disable(this);
+
     /** Menu actions */
     connect(actionChanger_utilisateur, SIGNAL(triggered()), this, SLOT(changer_utilisateur()));
     connect(actionAppeler_aide, SIGNAL(triggered()), this, SLOT(help()));
@@ -128,6 +131,9 @@ void YerothModifierCompteClientWindow::definirPasDeRole()
     pushButton_supprimer->disable(this);
     pushButton_annuler->disable(this);
     pushButton_actualiser->disable(this);
+
+    pushButton_selectionner_image->disable(this);
+    pushButton_supprimer_image->disable(this);
 }
 
 void YerothModifierCompteClientWindow::definirCaissier()
@@ -153,6 +159,9 @@ void YerothModifierCompteClientWindow::definirCaissier()
     pushButton_supprimer->disable(this);
     pushButton_annuler->disable(this);
     pushButton_actualiser->disable(this);
+
+    pushButton_selectionner_image->disable(this);
+    pushButton_supprimer_image->disable(this);
 }
 
 void YerothModifierCompteClientWindow::definirManager()
@@ -182,6 +191,9 @@ void YerothModifierCompteClientWindow::definirManager()
     pushButton_supprimer->enable(this, SLOT(supprimerCompteClient()));
     pushButton_annuler->enable(this, SLOT(clients()));
     pushButton_actualiser->enable(this, SLOT(actualiserCompteClient()));
+
+    pushButton_selectionner_image->enable(this, SLOT(selectionner_image_produit()));
+    pushButton_supprimer_image->enable(this, SLOT(supprimer_image_compte_client()));
 }
 
 
@@ -212,6 +224,9 @@ void YerothModifierCompteClientWindow::definirVendeur()
     pushButton_supprimer->enable(this, SLOT(supprimerCompteClient()));
     pushButton_annuler->enable(this, SLOT(clients()));
     pushButton_actualiser->enable(this, SLOT(actualiserCompteClient()));
+
+    pushButton_selectionner_image->enable(this, SLOT(selectionner_image_produit()));
+    pushButton_supprimer_image->enable(this, SLOT(supprimer_image_compte_client()));
 }
 
 
@@ -238,6 +253,9 @@ void YerothModifierCompteClientWindow::definirGestionaireDesStocks()
     pushButton_supprimer->disable(this);
     pushButton_annuler->disable(this);
     pushButton_actualiser->disable(this);
+
+    pushButton_selectionner_image->disable(this);
+    pushButton_supprimer_image->disable(this);
 }
 
 void YerothModifierCompteClientWindow::definirMagasinier()
@@ -263,6 +281,9 @@ void YerothModifierCompteClientWindow::definirMagasinier()
     pushButton_supprimer->disable(this);
     pushButton_annuler->disable(this);
     pushButton_actualiser->disable(this);
+
+    pushButton_selectionner_image->disable(this);
+    pushButton_supprimer_image->disable(this);
 }
 
 
@@ -291,6 +312,79 @@ void YerothModifierCompteClientWindow::clear_all_fields()
 	lineEdit_modifier_compteclient_numero_telephone_2->clear();
 	lineEdit_modifier_compteclient_numero_contribuable->clear();
 	lineEdit_modifier_compteclient_dette_maximale->clear();
+
+    label_image_produit->clear();
+    label_image_produit->setAutoFillBackground(false);
+}
+
+
+void YerothModifierCompteClientWindow::supprimer_image_compte_client()
+{
+	QSqlRecord record = _curClientTableModel->record(_clientLastSelectedRow);
+
+	QString nomEntreprise(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE));
+
+    QVariant image_produit(record.value(YerothDatabaseTableColumn::IMAGE_COMPTE_CLIENT));
+
+    if (image_produit.toByteArray().isEmpty())
+    {
+        QString msg(QString(QObject::trUtf8("Le compte client '%1' n'a pas d'image enregistrée !"))
+        				.arg(nomEntreprise));
+
+        YerothQMessageBox::information(this,
+        							   QObject::tr("suppression de l'image d'un compte client"),
+                                       msg);
+
+        label_image_produit->clear();
+        label_image_produit->setAutoFillBackground(false);
+
+        return;
+    }
+
+
+    QString msgSupprimer(QObject::tr("Poursuivre avec la suppression de l'image de ce compte client \""));
+
+    msgSupprimer.append(nomEntreprise);
+    msgSupprimer.append("\" ?");
+
+    if (QMessageBox::Ok ==
+            YerothQMessageBox::question(this, QObject::tr("suppression de l'image ce compte client"),
+                                       msgSupprimer, QMessageBox::Cancel, QMessageBox::Ok))
+    {
+        record.setValue(YerothDatabaseTableColumn::IMAGE_COMPTE_CLIENT, QVariant(QVariant::ByteArray));
+
+        bool resRemoved = _curClientTableModel->updateRecord(_clientLastSelectedRow, record);
+
+        label_image_produit->clear();
+
+        label_image_produit->setAutoFillBackground(false);
+
+        if (resRemoved)
+        {
+            msgSupprimer.clear();
+            msgSupprimer.append(QObject::tr("L'image de ce compte client \""));
+            msgSupprimer.append(nomEntreprise);
+            msgSupprimer.append(QObject::trUtf8("\" a été supprimé."));
+
+            YerothQMessageBox::information(this,
+                                          QObject::trUtf8("suppression de l'image du stock avec succès"),
+                                          msgSupprimer);
+        }
+        else
+        {
+            msgSupprimer.clear();
+            msgSupprimer.append(QObject::tr("L'image de ce compte client \""));
+            msgSupprimer.append(nomEntreprise);
+            msgSupprimer.append(QObject::trUtf8("\" ne pouvait pas être supprimé !"));
+
+            YerothQMessageBox::information(this,
+                                          QObject::trUtf8("échec de la suppression de l'image d'un stock"),
+                                          msgSupprimer);
+        }
+    }
+    else
+    {
+    }
 }
 
 
@@ -381,6 +475,14 @@ void YerothModifierCompteClientWindow::actualiserCompteClient()
         record.setValue(YerothDatabaseTableColumn::DESCRIPTION_CLIENT, textEdit_modifier_compteclient_description_du_client->toPlainText());
 
 
+        if (0 != label_image_produit->pixmap())
+        {
+            QByteArray bytes;
+            YerothUtils::savePixmapToByteArray(bytes, *label_image_produit->pixmap(), "JPG");
+            record.setValue(YerothDatabaseTableColumn::IMAGE_COMPTE_CLIENT, QVariant::fromValue(bytes));
+        }
+
+
         bool success = _curClientTableModel->updateRecord(_clientLastSelectedRow, record);
 
         if (success)
@@ -461,7 +563,9 @@ void YerothModifierCompteClientWindow::supprimerCompteClient()
             msgSupprimer.append(QString(QObject::trUtf8("Le compte client '%1' a été supprimé !"))
             						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE)));
 
-            YerothQMessageBox::information(this, QObject::trUtf8("suppression d'un stock avec succès"), msgSupprimer);
+            YerothQMessageBox::information(this,
+            							   QObject::trUtf8("suppression d'un stock avec succès"),
+										   msgSupprimer);
 
             clients();
         }
@@ -471,7 +575,9 @@ void YerothModifierCompteClientWindow::supprimerCompteClient()
             msgSupprimer.append(QString(QObject::trUtf8("Le compte client '' ne pouvait pas être supprimé !"))
             						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE)));
 
-            YerothQMessageBox::information(this, "échec de la suppression d'un compte client", msgSupprimer);
+            YerothQMessageBox::information(this,
+            							   QObject::trUtf8("échec de la suppression d'un compte client"),
+										   msgSupprimer);
         }
     }
     else

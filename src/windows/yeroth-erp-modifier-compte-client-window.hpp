@@ -79,6 +79,13 @@ protected:
 
 private slots:
 
+	inline void selectionner_image_produit()
+	{
+		YerothWindowsCommons::selectionner_image(*label_image_produit);
+	}
+
+	void supprimer_image_compte_client();
+
 	bool customerAccountAlreadyExist();
 
 	void actualiserCompteClient();

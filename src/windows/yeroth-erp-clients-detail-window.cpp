@@ -313,6 +313,20 @@ bool YerothClientsDetailWindow::imprimer_document()
 {
     _logger->log("imprimer_document");
 
+    QString yerothCustomerAccountImage("yeroth");
+
+    QString yerothCustomerAccountImageTmpFile(QString("%1JPG")
+    		.arg(YerothUtils::getUniquePrefixFileInTemporaryFilesDir(yerothCustomerAccountImage)));
+
+    const QPixmap *label_image_produit_pixmap = label_image_produit->pixmap();
+
+    if (0 != label_image_produit_pixmap)
+    {
+        YerothUtils::savePixmapToFile(yerothCustomerAccountImageTmpFile,
+        							  *label_image_produit_pixmap,
+                                      "JPG");
+    }
+
     QString latexFileNamePrefix("yeroth-erp-fiche-client");
 
 #ifdef YEROTH_ENGLISH_LANGUAGE
@@ -379,9 +393,22 @@ bool YerothClientsDetailWindow::imprimer_document()
     data.append(QString("%1").arg(YerothUtils::get_latex_bold_text(QObject::tr("DESCRIPTION CLIENT:"))));
     data.append("\n\n\\vspace{0.3cm}\n\n");
 
+    texDocument.replace("YEROTHDETAILSCOMPTECLIENT", data);
+
+    data.clear();
     data.append(QString("%1\\\\").arg(textEdit_client_details_description_du_client->toPlainTextForLatex()));
 
-    texDocument.replace("CONTENU", data);
+    texDocument.replace("YEROTHDESCRIPTIONCOMPTECLIENT", data);
+
+    if (0 != label_image_produit_pixmap)
+    {
+    	texDocument.replace("YEROTHCHEMINCOMPLETIMAGECOMPTECLIENT", yerothCustomerAccountImageTmpFile);
+    }
+    else
+    {
+    	texDocument.replace("YEROTHCHEMINCOMPLETIMAGECOMPTECLIENT", "");
+    }
+
 
     YerothInfoEntreprise & infoEntreprise = YerothUtils::getAllWindows()->getInfoEntreprise();
 
@@ -450,6 +477,9 @@ void YerothClientsDetailWindow::rendreInvisible()
 	lineEdit_clients_details_compte_client->clear();
 
 	textEdit_client_details_description_du_client->clear();
+
+    label_image_produit->clear();
+    label_image_produit->setAutoFillBackground(false);
 
     YerothWindowsCommons::rendreInvisible();
 }
