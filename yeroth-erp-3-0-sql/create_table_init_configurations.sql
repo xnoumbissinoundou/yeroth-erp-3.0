@@ -6,7 +6,7 @@ insert into init_configurations (id, nom_configuration, description_configuratio
 insert into init_configurations (id, nom_configuration, description_configuration, valeur_configuration) values (4, "CONFIG_TEMPORARY_FILES_DIR", "Répertoire des alertes fichiers temporaires", "/tmp");
 insert into init_configurations (id, nom_configuration, description_configuration, valeur_configuration) values (5, "CONFIG_TVA_VALUE", "Valeur de la TVA", "19.25");
 insert into init_configurations (id, nom_configuration, description_configuration, valeur_configuration) values (6, "CONFIG_ANNEE_DEPART_RAPPORTS_CHIFFRE_AFFAIRE", "Année de départ (rapports - chiffre d'affaire)", "2020");
-insert into init_configurations (id, nom_configuration, description_configuration, valeur_configuration) values (7, "CONFIG_SALES_STRATEGY", "Configuration de la stratégie de vente/sortie", "FIFO");
+insert into init_configurations (id, nom_configuration, description_configuration, valeur_configuration) values (7, "CONFIG_SALES_STRATEGY", "Configuration de la stratégie de vente/sortie", "CMUP");
 insert into init_configurations (id, nom_configuration, description_configuration, valeur_configuration) values (8, 'CONFIG_PRINTER', 'Imprimante', 'pdf');
 insert into init_configurations (id, nom_configuration, description_configuration, valeur_configuration) values (9, 'CONFIG_CURRENCY', 'Configuration de la devise', '$');
 insert into init_configurations (id, nom_configuration, description_configuration, valeur_configuration) values (10, 'CONFIG_OPEN_CASH_DRAWER', 'Open cash drawer', '0');

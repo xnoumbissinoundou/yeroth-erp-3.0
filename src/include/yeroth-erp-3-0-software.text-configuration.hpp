@@ -23,7 +23,7 @@
 
 # define TRANSLATION_FILE_ENGLISH 					"yeroth-erp-3-0_english"
 
-# define OPTION_SALES_STRATEGY_ALL 					"ALL"
+# define OPTION_SALES_STRATEGY_ALL 					"CMUP"
 # define OPTION_SALES_STRATEGY_FIFO 					"FIFO"
 # define OPTION_SALES_STRATEGY_LIFO 					"LIFO"
 # define OPTION_SALES_STRATEGY_FEFO 					"FEFO"
