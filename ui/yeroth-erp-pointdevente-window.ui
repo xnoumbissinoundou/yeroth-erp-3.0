@@ -19810,7 +19810,7 @@ background-color: rgb(0, 0, 0); </string>
      <normaloff>:/yeroth-erp-3-0-images/yeroth-print-icon-software.svg.png</normaloff>:/yeroth-erp-3-0-images/yeroth-print-icon-software.svg.png</iconset>
    </property>
    <property name="text">
-    <string>Imprimer la facture (ou l'exemple)</string>
+    <string>Imprimer le reçu (ou l'exemple)</string>
    </property>
    <property name="toolTip">
     <string>Imprimer la facture (ou l'exemple)</string>

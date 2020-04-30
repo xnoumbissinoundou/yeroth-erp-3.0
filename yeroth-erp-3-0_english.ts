@@ -3539,7 +3539,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     </message>
     <message>
         <location filename="src/admin/yeroth-erp-admin-windows-commons.cpp" line="63"/>
-        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="393"/>
+        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="409"/>
         <source>qui suis je ?</source>
         <translation>who am I ?</translation>
     </message>
@@ -3568,7 +3568,7 @@ Press &apos;Cancel&apos; to exit &apos;%3&apos;</translation>
         <translation>financial accounting window</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="357"/>
+        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="373"/>
         <source>(&apos;%1&apos; colones de base de données)</source>
         <oldsource>(%1 colones de base de données)</oldsource>
         <translation>(&apos;%1&apos; database columns)</translation>
@@ -9659,6 +9659,10 @@ Account
     </message>
     <message>
         <location filename="ui/yeroth-erp-pointdevente-window.ui" line="19813"/>
+        <source>Imprimer le reçu (ou l&apos;exemple)</source>
+        <translation>Print the receipt (or a sample)</translation>
+    </message>
+    <message>
         <location filename="ui/yeroth-erp-pointdevente-window.ui" line="19816"/>
         <source>Imprimer la facture (ou l&apos;exemple)</source>
         <translation>Print invoice (or sample)</translation>
