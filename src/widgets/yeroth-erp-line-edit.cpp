@@ -28,6 +28,8 @@ YerothLineEdit::YerothLineEdit(QWidget *parent /* = 0 */)
  _sqlTableModelView(0),
  _searchQCompleter(0)
 {
+	setMaxLength(255);
+
 	_originalPlaceHolderText = placeholderText();
 
 	_originalPaletteBeforeMissingInformation = palette();
