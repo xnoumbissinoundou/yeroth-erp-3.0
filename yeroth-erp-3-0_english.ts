@@ -3159,7 +3159,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>sign in - alerts</translation>
     </message>
     <message>
-        <location filename="src/widgets/yeroth-erp-line-edit.cpp" line="63"/>
+        <location filename="src/widgets/yeroth-erp-line-edit.cpp" line="65"/>
         <source>[* champ de texte obligatoire]</source>
         <oldsource>[* obligatoire]</oldsource>
         <translation>[* mandatory field]</translation>
@@ -7890,7 +7890,7 @@ Transférer</source>
     <message>
         <location filename="ui/yeroth-erp-entrer-window.ui" line="5827"/>
         <source>nombre de lots</source>
-        <translation>batch number</translation>
+        <translation>batch qty</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-entrer-window.ui" line="5853"/>
