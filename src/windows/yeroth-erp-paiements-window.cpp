@@ -4,9 +4,10 @@
  *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
-#include "src/windows/yeroth-erp-paiements-window.hpp"
+#include "yeroth-erp-paiements-window.hpp"
 
-#include  "src/process/yeroth-erp-process.hpp"
+
+#include "src/process/yeroth-erp-process.hpp"
 
 #include "src/yeroth-erp-windows.hpp"
 
@@ -20,11 +21,12 @@
 
 #include "src/utils/yeroth-erp-utils.hpp"
 
+
 #include <QtSql/QSqlQuery>
 
 #include <QtSql/QSqlError>
 
-#include  <QtWidgets/QFileDialog>
+#include <QtWidgets/QFileDialog>
 
 #include <QtWidgets/QCompleter>
 
@@ -43,6 +45,7 @@
 #include <QtCore/QProcess>
 
 #include <QtCore/QProcessEnvironment>
+
 
 #include <unistd.h>
 
@@ -66,15 +69,10 @@ YerothPaiementsWindow::YerothPaiementsWindow()
     mySetupUi(this);
 
     QMESSAGE_BOX_STYLE_SHEET =
-        QString("QMessageBox {background-color: rgb(%1);}").arg(COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
+        QString("QMessageBox {background-color: rgb(%1);}")
+			.arg(COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
     setupSelectDBFields(_allWindows->PAIEMENTS);
-
-    {
-    	int columnIndexTypeDePaiement = _toSelectDBFieldNameStrToDBColumnIndex.value(YerothDatabaseTableColumn::TYPE_DE_PAIEMENT);
-
-    	_DBFieldNamesToPrintLeftAligned.append(columnIndexTypeDePaiement);
-    }
 
 
     _lineEditsToANDContentForSearch.insert(&lineEdit_paiements_terme_recherche,
@@ -228,6 +226,11 @@ bool YerothPaiementsWindow::filtrer_paiements()
 void YerothPaiementsWindow::populateComboBoxes()
 {
 	_logger->log("populateComboBoxes");
+
+	int columnIndexTypeDePaiement = _dbfieldNameToDBColumnIndex
+			.value(YerothDatabaseTableColumn::TYPE_DE_PAIEMENT);
+
+	_DBFieldNamesToPrintLeftAligned.append(columnIndexTypeDePaiement);
 
 	comboBox_paiements_intitule_du_compte_bancaire->setYerothEnabled(false);
 
@@ -572,6 +575,7 @@ void YerothPaiementsWindow::definirCaissier()
     pushButton_paiements_reinitialiser_filtre->disable(this);
 }
 
+
 void YerothPaiementsWindow::definirManager()
 {
     _logger->log("definirManager");
@@ -637,6 +641,7 @@ void YerothPaiementsWindow::definirGestionaireDesStocks()
     pushButton_paiements_reinitialiser_filtre->disable(this);
 }
 
+
 void YerothPaiementsWindow::definirMagasinier()
 {
     _logger->log("definirMagasinier");
@@ -651,6 +656,7 @@ void YerothPaiementsWindow::definirMagasinier()
     pushButton_paiements_filtrer->disable(this);
     pushButton_paiements_reinitialiser_filtre->disable(this);
 }
+
 
 void YerothPaiementsWindow::definirPasDeRole()
 {
@@ -667,6 +673,7 @@ void YerothPaiementsWindow::definirPasDeRole()
     pushButton_paiements_reinitialiser_filtre->disable(this);
 }
 
+
 void YerothPaiementsWindow::readProcessData()
 {
     _logger->log("readProcessData");
@@ -676,6 +683,7 @@ void YerothPaiementsWindow::readProcessData()
     }
     //qDebug() << "\t==>" << _aProcess->readAllStandardOutput();
 }
+
 
 bool YerothPaiementsWindow::export_csv_file()
 {
@@ -705,6 +713,7 @@ bool YerothPaiementsWindow::export_csv_file()
 
 	return success;
 }
+
 
 void YerothPaiementsWindow::getJournalDesPaiementsTexTableString(QString & texTable_in_out,
         												  	  	 QStandardItemModel & tableStandardItemModel,
@@ -849,6 +858,7 @@ void YerothPaiementsWindow::getJournalDesPaiementsTexTableString(QString & texTa
     texTable_in_out.replace("\"\"", "");
     texTable_in_out.append("\\end{tabular}\n\\end{table*}\n");
 }
+
 
 bool YerothPaiementsWindow::imprimer_document()
 {
@@ -1152,6 +1162,8 @@ void YerothPaiementsWindow::reinitialiser_recherche()
 {
     //  _logger->log("reinitialiser_recherche");
     lineEdit_paiements_element_de_paiements_resultat->clear();
+
+    setCurrentlyFiltered(false);
 
     resetFilter(&_allWindows->getSqlTableModel_paiements());
 

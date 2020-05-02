@@ -13,7 +13,7 @@
 
 #include "src/utils/yeroth-erp-logger.hpp"
 
-#include "yeroth-erp-window-commons.hpp"
+#include "src/windows/yeroth-erp-window-commons.hpp"
 
 
 #include <QtWidgets/QMessageBox>
@@ -148,7 +148,6 @@ public slots:
     {
     	textChangedSearchLineEditsQCompleters();
     }
-
 
     inline void setLastListerSelectedRow(int row)
     {

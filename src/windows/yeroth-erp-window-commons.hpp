@@ -249,7 +249,7 @@ protected:
     }
 
 
-    QMap<QString, int>					_toSelectDBFieldNameStrToDBColumnIndex;
+    QMap<QString, int>					_dbfieldNameToDBColumnIndex;
 
     QStringList							_visibleDBFieldColumnStrList;
 

@@ -5,6 +5,7 @@
    */
 #include "yeroth-erp-ventes-window.hpp"
 
+
 #include "src/process/yeroth-erp-process.hpp"
 
 #include "src/yeroth-erp-windows.hpp"
@@ -53,23 +54,24 @@
 const QString YerothVentesWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2")).
         arg(YEROTH_ERP_WINDOW_TITLE, QObject::trUtf8("ventes")));
 
+
 YerothVentesWindow::YerothVentesWindow()
 :YerothWindowsCommons(YerothVentesWindow::_WINDOW_TITLE),
+ YerothAbstractClassYerothSearchWindow(_allWindows->STOCKS_VENDU),
  _retourVenteTabWidget(0),
  _logger(new YerothLogger("YerothVentesWindow")),
  _aProcess(0),
- _currentlyFiltered(false),
  _pushButton_ventes_filtrer_font(0),
  _ventesDateFilter(YerothUtils::EMPTY_STRING),
- _searchFilter(YerothUtils::EMPTY_STRING),
  _curStocksVenduTableModel(&_allWindows->getSqlTableModel_stocks_vendu())
 {
     setupUi(this);
 
-    this->mySetupUi(this);
+    mySetupUi(this);
 
     QMESSAGE_BOX_STYLE_SHEET =
-        QString("QMessageBox {background-color: rgb(%1);}").arg(COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
+        QString("QMessageBox {background-color: rgb(%1);}")
+			.arg(COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
     _retourVenteTabWidgetTitle = tabWidget_ventes->tabText(RetourDuneVente);
 
@@ -77,13 +79,33 @@ YerothVentesWindow::YerothVentesWindow()
 
     setupSelectDBFields(_allWindows->STOCKS_VENDU);
 
+
+    _lineEditsToANDContentForSearch.insert(&lineEdit_ventes_terme_recherche,
+    		YerothUtils::EMPTY_STRING);
+
+    _lineEditsToANDContentForSearch.insert(&lineEdit_ventes_nom_caissier,
+    		YerothDatabaseTableColumn::REFERENCE);
+
+    _lineEditsToANDContentForSearch.insert(&lineEdit_ventes_designation,
+    		YerothDatabaseTableColumn::DESIGNATION);
+
+    _lineEditsToANDContentForSearch.insert(&lineEdit_ventes_categorie_produit,
+    		YerothDatabaseTableColumn::CATEGORIE);
+
+    _lineEditsToANDContentForSearch.insert(&lineEdit_ventes_nom_entreprise_client,
+    		YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT);
+
+    _comboBoxesToANDContentForSearch.insert(&comboBox_ventes_type_de_vente,
+    		YerothDatabaseTableColumn::TYPE_DE_VENTE);
+
+
     reinitialiser_champs_db_visibles();
 
     populateComboBoxes();
 
     setupLineEdits();
 
-    setupLineEditsQCompleters();
+    setupLineEditsQCompleters((QObject *)this);
 
     setupDateTimeEdits();
 
@@ -150,6 +172,13 @@ YerothVentesWindow::YerothVentesWindow()
 			SLOT(modifier_visibilite_actions_sur_cette_vente()));
 
     setupShortcuts();
+}
+
+
+void YerothVentesWindow::afficher_ventes()
+{
+	tabWidget_ventes->setCurrentIndex(TableauDesVentes);
+	textChangedSearchLineEditsQCompleters();
 }
 
 
@@ -917,34 +946,20 @@ bool YerothVentesWindow::handleCompteClient(QString client_id,
 }
 
 
-void YerothVentesWindow::set_filtrer_font()
-{
-    //_logger->log("set_filtrer_font");
-
-    if (isCurrentlyFiltered())
-    {
-    	_pushButton_ventes_filtrer_font->setUnderline(true);
-    }
-    else
-    {
-    	_pushButton_ventes_filtrer_font->setUnderline(false);
-    }
-
-    pushButton_ventes_filtrer->setFont(*_pushButton_ventes_filtrer_font);
-}
-
-
-void YerothVentesWindow::setCurrentlyFiltered(bool currentlyFiltered)
-{
-	_currentlyFiltered = currentlyFiltered;
-
-	set_filtrer_font();
-}
-
-
 void YerothVentesWindow::populateComboBoxes()
 {
 	_logger->log("populateComboBoxes");
+
+	int columnIndexTypeDeVente = _dbfieldNameToDBColumnIndex
+			.value(YerothDatabaseTableColumn::TYPE_DE_VENTE);
+
+	_DBFieldNamesToPrintLeftAligned.append(columnIndexTypeDeVente);
+
+	comboBox_ventes_type_de_vente->setupPopulateNORawString(_allWindows->TYPE_DE_VENTE,
+															YerothDatabaseTableColumn::TYPE_DE_VENTE,
+															&YerothUtils::_typedeventeToUserViewString);
+
+	comboBox_ventes_type_de_vente->populateComboBox();
 
 	QStringList aQStringList;
 
@@ -981,13 +996,11 @@ void YerothVentesWindow::setupLineEdits()
 {
     _logger->log("setupLineEdits");
 
-    lineEdit_ventes_recherche->enableForSearch(QObject::trUtf8("référence"));
+    lineEdit_ventes_terme_recherche->enableForSearch(QObject::trUtf8("terme à rechercher (référence, référence reçu de vente, fournisseur)"));
     lineEdit_ventes_nom_caissier->enableForSearch(QObject::trUtf8("nom du caissier (caissière)"));
-    lineEdit_ventes_designation->enableForSearch(QObject::trUtf8("désignation"));
+    lineEdit_ventes_designation->enableForSearch(QObject::trUtf8("désignation de l'article"));
     lineEdit_ventes_categorie_produit->enableForSearch(QObject::trUtf8("nom de la catégorie d'articles"));
-    lineEdit_ventes_nom_entreprise_fournisseur->enableForSearch(QObject::trUtf8("nom de l'entreprise fournisseur"));
     lineEdit_ventes_nom_entreprise_client->enableForSearch(QObject::trUtf8("nom de l'entreprise cliente"));
-    lineEdit_ventes_reference_recu_vendu->enableForSearch(QObject::trUtf8("référence reçu de vente"));
 
 
     lineEdit_ventes_quantite_vendue->setYerothEnabled(false);
@@ -1033,62 +1046,9 @@ void YerothVentesWindow::setupLineEdits()
     lineEdit_retour_vente_reference_recu_de_vente->setYerothEnabled(false);
     lineEdit_retour_vente_prix_unitaire->setYerothEnabled(false);
 
-    lineEdit_ventes_recherche->setFocus();
-
-    connect(lineEdit_ventes_recherche, SIGNAL(textChanged(const QString &)), this, SLOT(venteRecherche()));
-
-    connect(lineEdit_ventes_nom_caissier, SIGNAL(textChanged(const QString &)), this, SLOT(rechercher()));
-
-    connect(lineEdit_ventes_designation, SIGNAL(textChanged(const QString &)), this, SLOT(rechercher()));
-
-    connect(lineEdit_ventes_categorie_produit, SIGNAL(textChanged(const QString &)), this, SLOT(rechercher()));
-
-    connect(lineEdit_ventes_nom_entreprise_fournisseur, SIGNAL(textChanged(const QString &)), this, SLOT(rechercher()));
-
-    connect(lineEdit_ventes_nom_entreprise_client, SIGNAL(textChanged(const QString &)), this, SLOT(rechercher()));
-
-    connect(lineEdit_ventes_reference_recu_vendu, SIGNAL(textChanged(const QString &)), this, SLOT(rechercher()));
+    lineEdit_ventes_terme_recherche->setFocus();
 }
 
-void YerothVentesWindow::setupLineEditsQCompleters()
-{
-    lineEdit_ventes_recherche->
-		setupMyStaticQCompleter(_allWindows->STOCKS_VENDU,
-								YerothDatabaseTableColumn::REFERENCE,
-								false,
-								false,
-								_ventesDateFilter);
-
-    lineEdit_ventes_nom_caissier->
-		setupMyStaticQCompleter(_allWindows->STOCKS_VENDU,
-								YerothDatabaseTableColumn::NOM_CAISSIER,
-								_ventesDateFilter);
-
-    lineEdit_ventes_designation->
-		setupMyStaticQCompleter(_allWindows->STOCKS_VENDU,
-								YerothDatabaseTableColumn::DESIGNATION,
-								_ventesDateFilter);
-
-    lineEdit_ventes_categorie_produit->
-		setupMyStaticQCompleter(_allWindows->STOCKS_VENDU,
-								YerothDatabaseTableColumn::CATEGORIE,
-								_ventesDateFilter);
-
-    lineEdit_ventes_nom_entreprise_fournisseur->
-		setupMyStaticQCompleter(_allWindows->STOCKS_VENDU,
-								YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR,
-								_ventesDateFilter);
-
-    lineEdit_ventes_nom_entreprise_client->
-		setupMyStaticQCompleter(_allWindows->STOCKS_VENDU,
-								YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT,
-								_ventesDateFilter);
-
-    lineEdit_ventes_reference_recu_vendu->
-		setupMyStaticQCompleter(_allWindows->STOCKS_VENDU,
-								YerothDatabaseTableColumn::REFERENCE_RECU_VENDU,
-								_ventesDateFilter);
-}
 
 void YerothVentesWindow::setupShortcuts()
 {
@@ -1100,10 +1060,166 @@ void YerothVentesWindow::setupShortcuts()
 }
 
 
+void YerothVentesWindow::set_filtrer_font()
+{
+    //_logger->log("set_filtrer_font");
+
+    if (isCurrentlyFiltered())
+    {
+    	_pushButton_ventes_filtrer_font->setUnderline(true);
+    }
+    else
+    {
+    	_pushButton_ventes_filtrer_font->setUnderline(false);
+    }
+
+    pushButton_ventes_filtrer->setFont(*_pushButton_ventes_filtrer_font);
+}
+
+
 void YerothVentesWindow::slot_reinitialiser_champs_db_visibles()
 {
 	reinitialiser_champs_db_visibles();
-	rechercher();
+	lister_les_elements_du_tableau();
+}
+
+
+void YerothVentesWindow::textChangedSearchLineEditsQCompleters()
+{
+	lineEdit_ventes_element_de_vente_resultat->clear();
+
+    setCurrentlyFiltered(false);
+
+    clearSearchFilter();
+
+    QString searchTerm(lineEdit_ventes_terme_recherche->text());
+
+    if (!searchTerm.isEmpty())
+    {
+        QStringList searchTermList = searchTerm.split(QRegExp("\\s+"));
+
+        QString partSearchTerm;
+
+        int lastIdx = searchTermList.size() - 1;
+
+        for (int k = 0; k < searchTermList.size(); ++k)
+        {
+        	partSearchTerm = searchTermList.at(k);
+//        	qDebug() << "++ searchTermList: " << partSearchTerm;
+
+        	_searchFilter.append(QString("(%1 OR %2 OR %3)")
+        							.arg(GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::REFERENCE, partSearchTerm),
+        								 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::REFERENCE_RECU_VENDU, partSearchTerm),
+										 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR, partSearchTerm)));
+
+        	if (k != lastIdx)
+        	{
+        		_searchFilter.append(" AND ");
+        	}
+        }
+    }
+
+    QString correspondingDBFieldKeyValue;
+
+    QString aTableColumnFieldContentForANDSearch;
+
+    {
+    	YerothLineEdit *aYerothLineEdit = 0;
+
+    	QMapIterator <YerothLineEdit **, QString> it(_lineEditsToANDContentForSearch);
+
+    	while (it.hasNext())
+    	{
+    		it.next();
+
+    		aYerothLineEdit = *it.key();
+
+    		correspondingDBFieldKeyValue = it.value();
+
+    		if (0 != aYerothLineEdit)
+    		{
+    			aTableColumnFieldContentForANDSearch = aYerothLineEdit->text();
+
+    			if (!correspondingDBFieldKeyValue.isEmpty() &&
+    					!aTableColumnFieldContentForANDSearch.isEmpty()	)
+    			{
+    				if (!_searchFilter.isEmpty())
+    				{
+    					_searchFilter.append(" AND ");
+    				}
+
+    				_searchFilter.append(GENERATE_SQL_IS_STMT(correspondingDBFieldKeyValue,
+    						aTableColumnFieldContentForANDSearch));
+    			}
+    		}
+    	}
+    }
+
+    {
+    	QString curSearchDBStr;
+
+    	YerothComboBox *aYerothComboBox = 0;
+
+    	QMapIterator <YerothComboBox **, QString> it(_comboBoxesToANDContentForSearch);
+
+    	while (it.hasNext())
+    	{
+    		it.next();
+
+    		aYerothComboBox = *it.key();
+
+    		correspondingDBFieldKeyValue = it.value();
+
+    		if (0 != aYerothComboBox)
+    		{
+    			aTableColumnFieldContentForANDSearch = aYerothComboBox->currentText();
+
+    			if (!correspondingDBFieldKeyValue.isEmpty() &&
+    				!aTableColumnFieldContentForANDSearch.isEmpty()	)
+    			{
+    				if (!_searchFilter.isEmpty())
+    				{
+    					_searchFilter.append(" AND ");
+    				}
+
+    				if (aYerothComboBox == comboBox_ventes_type_de_vente)
+    				{
+        				int typedevente = YerothUtils::getComboBoxDatabaseQueryValue(aTableColumnFieldContentForANDSearch,
+        						YerothUtils::_typedeventeToUserViewString);
+
+        				curSearchDBStr = QString::number(typedevente);
+    				}
+
+    				_searchFilter.append(GENERATE_SQL_IS_STMT(correspondingDBFieldKeyValue,
+    														  curSearchDBStr));
+    			}
+    		}
+    	}
+    }
+
+    QString finalSearchFilter(_ventesDateFilter);
+
+    if (!_searchFilter.isEmpty())
+    {
+    	QString searchFilterWithDate(QString("%1 AND (%2)")
+    									.arg(_ventesDateFilter,
+    										 _searchFilter));
+
+    	finalSearchFilter = searchFilterWithDate;
+    }
+
+	_yerothSqlTableModel->yerothSetFilter(finalSearchFilter);
+
+    if (_yerothSqlTableModel->select())
+    {
+    	setLastListerSelectedRow(0);
+    	lister_les_elements_du_tableau();
+    }
+    else
+    {
+        qDebug() << QString("++ YerothVentesWindow::textChangedSearchLineEditsQCompleters(): %1")
+        				.arg(_yerothSqlTableModel->lastError().text());
+    }
 }
 
 
@@ -1175,7 +1291,6 @@ void YerothVentesWindow::clear_all_fields()
     lineEdit_ventes_remise_totale_currency->clearField();
     lineEdit_ventes_recette_totale->clearField();
     lineEdit_ventes_quantite_vendue->clearField();
-    lineEdit_ventes_recherche->clearField();
 }
 
 void YerothVentesWindow::setupDateTimeEdits()
@@ -1217,6 +1332,7 @@ void YerothVentesWindow::deconnecter_utilisateur()
     clear_all_fields();
     YerothWindowsCommons::deconnecter_utilisateur();
 }
+
 
 void YerothVentesWindow::definirCaissier()
 {
@@ -1357,6 +1473,7 @@ void YerothVentesWindow::definirGestionaireDesStocks()
     pushButton_annuler_vente->disable(this);
 }
 
+
 void YerothVentesWindow::definirMagasinier()
 {
     _logger->log("definirMagasinier");
@@ -1384,6 +1501,7 @@ void YerothVentesWindow::definirMagasinier()
 
     pushButton_annuler_vente->disable(this);
 }
+
 
 void YerothVentesWindow::definirPasDeRole()
 {
@@ -1413,15 +1531,18 @@ void YerothVentesWindow::definirPasDeRole()
     pushButton_annuler_vente->disable(this);
 }
 
+
 void YerothVentesWindow::readProcessData()
 {
     _logger->log("readProcessData");
+
     if (!_aProcess)
     {
         return;
     }
     //qDebug() << "\t==>" << _aProcess->readAllStandardOutput();
 }
+
 
 bool YerothVentesWindow::export_csv_file()
 {
@@ -1451,6 +1572,7 @@ bool YerothVentesWindow::export_csv_file()
 
 	return success;
 }
+
 
 void YerothVentesWindow::getJournalDesVentesTexTableString(QString & texTable_in_out,
         												   QStandardItemModel & tableStandardItemModel,
@@ -1602,6 +1724,7 @@ void YerothVentesWindow::getJournalDesVentesTexTableString(QString & texTable_in
     texTable_in_out.append("\\end{tabular}").append("\n").append("\\end{table*}").append("\n");
 }
 
+
 bool YerothVentesWindow::imprimer_document()
 {
     _logger->log("imprimer_document");
@@ -1635,9 +1758,9 @@ bool YerothVentesWindow::imprimer_document()
     //_logger->log("imprimer_document",
     //                  QString("number of pages to print: %1").arg(pageNumber));
 
-    this->getJournalDesVentesTexTableString(texTable,
+    getJournalDesVentesTexTableString(texTable,
     										*tableModel,
-											this->_DBFieldNamesToPrintLeftAligned,
+											_DBFieldNamesToPrintLeftAligned,
 											columnsToIgnore,
 											0,
                                             (20 >= tableModelRowCount) ? tableModelRowCount : 20,
@@ -1652,9 +1775,9 @@ bool YerothVentesWindow::imprimer_document()
         {
             //qDebug() << QString("## fromRowIndex: %1, toRowIndex: %2")
             //          .arg(QString::number(fromRowIndex), QString::number(toRowIndex));
-            this->getJournalDesVentesTexTableString(texTable,
+            getJournalDesVentesTexTableString(texTable,
             										*tableModel,
-													this->_DBFieldNamesToPrintLeftAligned,
+													_DBFieldNamesToPrintLeftAligned,
 													columnsToIgnore,
                                                     (fromRowIndex >=
                                                             tableModelRowCount) ? tableModelRowCount : fromRowIndex,
@@ -1698,12 +1821,11 @@ bool YerothVentesWindow::imprimer_document()
 
     QString yerothFiltres;
 
-    YerothUtils::addFiltre(lineEdit_ventes_nom_caissier, QObject::trUtf8("caissier"), yerothFiltres);
+    YerothUtils::addFiltre(lineEdit_ventes_terme_recherche, QObject::trUtf8("mot clé"), yerothFiltres);
+    YerothUtils::addFiltre(lineEdit_ventes_nom_caissier, QObject::tr("caissier"), yerothFiltres);
     YerothUtils::addFiltre(lineEdit_ventes_designation, QObject::trUtf8("désignation"), yerothFiltres);
     YerothUtils::addFiltre(lineEdit_ventes_categorie_produit, QObject::trUtf8("catégorie"), yerothFiltres);
-    YerothUtils::addFiltre(lineEdit_ventes_nom_entreprise_fournisseur, QObject::trUtf8("fournisseur"), yerothFiltres);
-    YerothUtils::addFiltre(lineEdit_ventes_nom_entreprise_client, QObject::trUtf8("client"), yerothFiltres);
-    YerothUtils::addFiltre(lineEdit_ventes_reference_recu_vendu, QObject::trUtf8("Nr. reçu"), yerothFiltres);
+    YerothUtils::addFiltre(lineEdit_ventes_nom_entreprise_client, QObject::tr("client"), yerothFiltres);
 
     int lastIndexOfComa = yerothFiltres.lastIndexOf(",");
 
@@ -1745,21 +1867,19 @@ bool YerothVentesWindow::imprimer_document()
 
 void YerothVentesWindow::resetFilter(YerothSqlTableModel * stocksVenduTableModel)
 {
-    this->_curStocksVenduTableModel = stocksVenduTableModel;
+    _curStocksVenduTableModel = stocksVenduTableModel;
 
-    if (this->_curStocksVenduTableModel)
+    if (_curStocksVenduTableModel)
     {
-        this->_curStocksVenduTableModel->resetFilter();
+        _curStocksVenduTableModel->resetFilter();
     }
 
-    lineEdit_ventes_recherche->myClear();
+    lineEdit_ventes_terme_recherche->myClear();
 
     lineEdit_ventes_nom_caissier->myClear();
     lineEdit_ventes_designation->myClear();
     lineEdit_ventes_categorie_produit->myClear();
-    lineEdit_ventes_nom_entreprise_fournisseur->myClear();
     lineEdit_ventes_nom_entreprise_client->myClear();
-    lineEdit_ventes_reference_recu_vendu->myClear();
 
     dateEdit_ventes_debut->reset();
     dateEdit_ventes_fin->reset();
@@ -1889,7 +2009,9 @@ void YerothVentesWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 
     _curStocksVenduTableModel = &_allWindows->getSqlTableModel_stocks_vendu();
 
-    setupLineEditsQCompleters();
+    setYerothSqlTableModel(_curStocksVenduTableModel);
+
+    setupLineEditsQCompleters((QObject *)this);
 
     tabWidget_ventes->setCurrentIndex(TableauDesVentes);
 
@@ -1901,11 +2023,9 @@ void YerothVentesWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 
     label_retour_vente_remise_prix->setText(QString(QObject::tr("remise (%1)")).arg(YerothERPConfig::currency));
 
-    lineEdit_ventes_reference_recu_vendu->setYerothEnabled(true);
     lineEdit_ventes_categorie_produit->setYerothEnabled(true);
     lineEdit_ventes_designation->setYerothEnabled(true);
     lineEdit_ventes_nom_caissier->setYerothEnabled(true);
-    lineEdit_ventes_nom_entreprise_fournisseur->setYerothEnabled(true);
     lineEdit_ventes_nom_entreprise_client->setYerothEnabled(true);
 
     YerothPOSUser *aUser = _allWindows->getUser();
@@ -1925,9 +2045,9 @@ void YerothVentesWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 
     setVisible(true);
 
-    rechercher();
+    afficher_ventes();
 
-    lineEdit_ventes_recherche->setFocus();
+    lineEdit_ventes_terme_recherche->setFocus();
 }
 
 
@@ -2107,10 +2227,13 @@ void YerothVentesWindow::reinitialiser_recherche()
 
     setCurrentlyFiltered(false);
 
-    this->resetFilter(&_allWindows->getSqlTableModel_stocks_vendu());
-    this->rechercher();
-    this->lister_les_elements_du_tableau();
-    lineEdit_ventes_recherche->setFocus();
+    resetFilter(&_allWindows->getSqlTableModel_stocks_vendu());
+
+    resetLineEditsQCompleters((QObject *)this);
+
+    afficher_ventes();
+
+    lineEdit_ventes_terme_recherche->setFocus();
 }
 
 
@@ -2124,133 +2247,7 @@ void YerothVentesWindow::refineYerothLineEdits()
 							 YerothDatabaseTableColumn::DATE_VENTE,
 							 DATE_TO_DB_FORMAT_STRING(dateEdit_ventes_fin->date())));
 
-	setupLineEditsQCompleters();
+	setupLineEditsQCompleters((QObject *)this);
 
-	rechercher();
-}
-
-
-void YerothVentesWindow::rechercher(bool clearVentesRecherche)
-{
-    //_logger->log("rechercher");
-
-    lineEdit_ventes_element_de_vente_resultat->clear();
-
-    setCurrentlyFiltered(false);
-
-	_searchFilter.clear();
-
-    if (clearVentesRecherche)
-    {
-        lineEdit_ventes_recherche->clear();
-        lineEdit_ventes_nom_caissier->clear();
-        lineEdit_ventes_designation->clear();
-        lineEdit_ventes_categorie_produit->clear();
-        lineEdit_ventes_nom_entreprise_fournisseur->clear();
-        lineEdit_ventes_nom_entreprise_client->clear();
-        lineEdit_ventes_reference_recu_vendu->clear();
-    }
-
-    _searchFilter.append(_ventesDateFilter);
-
-    QString codebar(lineEdit_ventes_recherche->text());
-
-    if (codebar.isEmpty())
-    {
-        QString nom_caissier(lineEdit_ventes_nom_caissier->text());
-
-        if (!nom_caissier.isEmpty())
-        {
-            if (!_searchFilter.isEmpty())
-            {
-                _searchFilter.append(" AND ");
-            }
-            _searchFilter.append(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::NOM_CAISSIER, nom_caissier));
-        }
-
-
-        QString categorie(lineEdit_ventes_categorie_produit->text());
-
-        if (!categorie.isEmpty())
-        {
-            if (!_searchFilter.isEmpty())
-            {
-                _searchFilter.append(" AND ");
-            }
-            _searchFilter.append(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::CATEGORIE, categorie));
-        }
-
-
-        QString designation(lineEdit_ventes_designation->text());
-
-        if (!designation.isEmpty())
-        {
-            if (!_searchFilter.isEmpty())
-            {
-                _searchFilter.append(" AND ");
-            }
-            _searchFilter.append(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::DESIGNATION, designation));
-        }
-
-
-        QString nom_entreprise_fournisseur(lineEdit_ventes_nom_entreprise_fournisseur->text());
-
-        if (!nom_entreprise_fournisseur.isEmpty())
-        {
-            if (!_searchFilter.isEmpty())
-            {
-                _searchFilter.append(" AND ");
-            }
-            _searchFilter.append(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR, nom_entreprise_fournisseur));
-        }
-
-
-        QString nom_entreprise_client(lineEdit_ventes_nom_entreprise_client->text());
-
-        if (!nom_entreprise_client.isEmpty())
-        {
-            if (!_searchFilter.isEmpty())
-            {
-                _searchFilter.append(" AND ");
-            }
-            _searchFilter.append(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT, nom_entreprise_client));
-        }
-
-        QString reference_recu_vendu(lineEdit_ventes_reference_recu_vendu->text());
-
-        if (!reference_recu_vendu.isEmpty())
-        {
-            if (!_searchFilter.isEmpty())
-            {
-                _searchFilter.append(" AND ");
-            }
-            _searchFilter.append(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::REFERENCE_RECU_VENDU, reference_recu_vendu));
-        }
-
-    }
-    else
-    {
-        QString searchCodebar(lineEdit_ventes_recherche->text());
-
-        if (!_searchFilter.isEmpty())
-        {
-            _searchFilter.append(QString(" AND (%1 LIKE '%2')")
-            						.arg(YerothDatabaseTableColumn::REFERENCE,
-            							 searchCodebar));
-        }
-    }
-
-    setYerothVentesFilter();
-
-    if (_curStocksVenduTableModel->easySelect() > 0)
-    {
-        this->setLastListerSelectedRow(0);
-    }
-    else
-    {
-        _logger->log("rechercher",
-                     QString("reason for failing: %1").arg(_curStocksVenduTableModel->lastError().text()));
-    }
-
-    lister_les_elements_du_tableau();
+	afficher_ventes();
 }

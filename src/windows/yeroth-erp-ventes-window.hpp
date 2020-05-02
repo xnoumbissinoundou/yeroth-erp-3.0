@@ -8,13 +8,16 @@
 #define SRC_YEROTH_CAISSE_WINDOW_HPP_
 
 
-# include "../../ui_yeroth-erp-ventes-window.h"
+#include "../../ui_yeroth-erp-ventes-window.h"
 
-# include <QtWidgets/QMessageBox>
 
-# include "src/utils/yeroth-erp-logger.hpp"
+#include "src/utils/yeroth-erp-logger.hpp"
 
-#include "yeroth-erp-window-commons.hpp"
+#include "src/windows/yeroth-erp-window-commons.hpp"
+
+
+#include <QtWidgets/QMessageBox>
+
 
 class QContextMenuEvent;
 
@@ -24,7 +27,9 @@ class YerothLogger;
 
 class QProcess;
 
-class YerothVentesWindow : public YerothWindowsCommons, private Ui_YerothVentesWindow
+class YerothVentesWindow : public YerothWindowsCommons,
+						   private Ui_YerothVentesWindow,
+						   public YerothAbstractClassYerothSearchWindow
 {
     Q_OBJECT
 
@@ -45,11 +50,6 @@ public:
 	{
 		delete _logger;
 	}
-
-    inline bool isCurrentlyFiltered()
-    {
-    	return _currentlyFiltered;
-    }
 
 	inline virtual QToolBar * getQMainWindowToolBar()
 	{
@@ -144,13 +144,6 @@ public slots:
 
     void refineYerothLineEdits();
 
-    void rechercher(bool clearVentesRecherche = false);
-
-    inline void venteRecherche()
-    {
-    	this->rechercher(false);
-    }
-
     void reinitialiser_elements_filtrage();
 
     void reinitialiser_recherche();
@@ -158,11 +151,6 @@ public slots:
     void afficher_retour_vente();
 
     void afficher_vente_detail();
-
-    inline void afficher_ventes()
-    {
-    	tabWidget_ventes->setCurrentIndex(TableauDesVentes);
-    }
 
     inline void setLastListerSelectedRow(int row)
     {
@@ -173,7 +161,9 @@ public slots:
 
 protected slots:
 
-    	virtual void slot_reinitialiser_champs_db_visibles();
+    virtual void slot_reinitialiser_champs_db_visibles();
+
+	virtual void textChangedSearchLineEditsQCompleters();
 
 protected:
 
@@ -183,7 +173,11 @@ protected:
 
     virtual void setupShortcuts();
 
+	virtual void set_filtrer_font();
+
 private slots:
+
+	void afficher_ventes();
 
 	void modifier_visibilite_actions_sur_cette_vente();
 
@@ -196,15 +190,9 @@ private:
     bool handleCompteClient(QString client_id,
 							double curMontantARembourserAuClient);
 
-	void set_filtrer_font();
-
-	void setCurrentlyFiltered(bool currentlyFiltered);
-
     void populateComboBoxes();
 
     void setupLineEdits();
-
-    void setupLineEditsQCompleters();
 
     void clear_all_fields();
 
@@ -225,13 +213,9 @@ private:
 
     QProcess 				*_aProcess;
 
-    bool					_currentlyFiltered;
-
     QFont 					*_pushButton_ventes_filtrer_font;
 
     QString 				_ventesDateFilter;
-
-    QString					_searchFilter;
 
     YerothSqlTableModel 	*_curStocksVenduTableModel;
 };
