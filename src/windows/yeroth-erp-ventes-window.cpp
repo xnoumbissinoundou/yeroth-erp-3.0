@@ -996,7 +996,10 @@ void YerothVentesWindow::setupLineEdits()
 {
     _logger->log("setupLineEdits");
 
-    lineEdit_ventes_terme_recherche->enableForSearch(QObject::trUtf8("terme à rechercher (référence, référence reçu de vente, fournisseur)"));
+    lineEdit_ventes_terme_recherche->enableForSearch(
+    		QObject::trUtf8("terme à rechercher (référence, "
+    						"référence reçu de vente, fournisseur)"));
+
     lineEdit_ventes_nom_caissier->enableForSearch(QObject::trUtf8("nom du caissier (caissière)"));
     lineEdit_ventes_designation->enableForSearch(QObject::trUtf8("désignation de l'article"));
     lineEdit_ventes_categorie_produit->enableForSearch(QObject::trUtf8("nom de la catégorie d'articles"));
