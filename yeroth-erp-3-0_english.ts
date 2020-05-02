@@ -3205,8 +3205,10 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     </message>
     <message>
         <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="192"/>
-        <source>Type de paiement</source>
-        <translation>Type of payment</translation>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="320"/>
+        <source>Type d&apos;opération</source>
+        <oldsource>Type de paiement</oldsource>
+        <translation>Operation</translation>
     </message>
     <message>
         <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="193"/>
@@ -3217,11 +3219,6 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="319"/>
         <source>ID du stock</source>
         <translation>Stock ID</translation>
-    </message>
-    <message>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="320"/>
-        <source>Type d&apos;opération</source>
-        <translation>Operation type</translation>
     </message>
     <message>
         <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="321"/>
