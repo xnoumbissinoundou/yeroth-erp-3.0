@@ -8,6 +8,10 @@
 
 #include "src/utils/yeroth-erp-utils.hpp"
 
+
+#include <QtCore/QDebug>
+
+
 QString YerothERPConfig::_db_type("MYSQL");
 
 QString YerothERPConfig::_db_name("yeroth_erp_3");
@@ -34,6 +38,8 @@ QString YerothERPConfig::pathToLatexSystemRootFolder("/usr/bin");
 
 QString YerothERPConfig::receiptFormat("grand (A4)");
 
+QString YerothERPConfig::receiptType("");
+
 QString YerothERPConfig::salesStrategy("");
 
 QString YerothERPConfig::YEROTH_ERP_3_0_PROPERTIES_CONFIGURATION_FOLDER("/etc");
@@ -41,6 +47,8 @@ QString YerothERPConfig::YEROTH_ERP_3_0_PROPERTIES_CONFIGURATION_FOLDER("/etc");
 QString YerothERPConfig::YEROTH_ERP_ALERT_3_0_HOME_FOLDER("");
 
 QString YerothERPConfig::YEROTH_ERP_3_0_HOME_FOLDER("");
+
+QString YerothERPConfig::FILE_ABSOLUTEPATH_YEROTH_ERP_3_0_SYSTEM_LOCAL_CONFIGURATION_PROPERTIES(FILE_YEROTH_ERP_3_0_PUBLIC_SYSTEM_LOCAL_CONFIGURATION_PROPERTIES);
 
 QString YerothERPConfig::FILE_ABSOLUTEPATH_YEROTH_ERP_3_0_MANUEL_DE_LUTILISATEUR_MANAGER(FILE_YEROTH_ERP_3_0_MANUEL_DE_LUTILISATEUR_MANAGER);
 
@@ -96,32 +104,115 @@ const int YerothERPConfig::OPEN_CASH_DRAWER(1);
 
 const int YerothERPConfig::CLOSE_CASH_DRAWER(0);
 
-const unsigned int YerothERPConfig::CONFIG_PDF_READER             		(0);
 
-const unsigned int YerothERPConfig::CONFIG_TYPE_OF_FACTURATION          (1);
+const unsigned int YerothERPConfig::CONFIG_ALERT_PERIOD_TIME_INTERVAL 	(0);
 
-const unsigned int YerothERPConfig::CONFIG_ALERT_PERIOD_TIME_INTERVAL 	(2);
+const unsigned int YerothERPConfig::CONFIG_ALERT_QUANTITY_TIME_INTERVAL	(1);
 
-const unsigned int YerothERPConfig::CONFIG_ALERT_QUANTITY_TIME_INTERVAL	(3);
+const unsigned int YerothERPConfig::CONFIG_TVA_VALUE (2);
 
-const unsigned int YerothERPConfig::CONFIG_TEMPORARY_FILES_DIR (4);
+const unsigned int YerothERPConfig::CONFIG_SALES_STRATEGY (3);
 
-const unsigned int YerothERPConfig::CONFIG_TVA_VALUE (5);
+const unsigned int YerothERPConfig::CONFIG_CURRENCY (4);
 
-const unsigned int YerothERPConfig::CONFIG_ANNEE_DEPART_RAPPORTS_CHIFFRE_AFFAIRE (6);
 
-const unsigned int YerothERPConfig::CONFIG_SALES_STRATEGY (7);
+void YerothERPConfig::initYerothConfig(QString initCfg)
+{
+	QFile file(initCfg);
 
-const unsigned int YerothERPConfig::CONFIG_PRINTER (8);
+	if (!file.open(QFile::ReadOnly))
+	{
+		return ;
+	}
 
-const unsigned int YerothERPConfig::CONFIG_CURRENCY (9);
+	QTextStream init_cfg(&file);
+	QString line;
+	QStringList list;
 
-const unsigned int YerothERPConfig::CONFIG_OPEN_CASH_DRAWER (10);
+	do
+	{
+		line = init_cfg.readLine();
+		list = line.split(YEROTH_ERP_3_0_CONFIGURATION_FILE_SEPARATION_OPERATOR);
+		//logger << "++ line: " << line << "\n";
 
-const unsigned int YerothERPConfig::CONFIG_LATEX_SYSTEM_ROOT_FOLDER (11);
+		if ("db_type" == list.at(0))
+		{
+			YerothERPConfig::_db_type = list.at(1).trimmed();
+			// logger << "++ db_type = " << db_type << "\n";
+		}
+		if ("db_name" == list.at(0))
+		{
+		    YerothERPConfig::_db_name = list.at(1).trimmed();
+			//logger << "++ db_name = " << db_name << "\n";
+		}
+		else if ("db_ip_address" == list.at(0))
+		{
+		    YerothERPConfig::_db_ip_address = list.at(1).trimmed();
+			//logger << "++ db_ip_address = " << db_ip_address << "\n";
+		}
+		else if ("db_user_name" == list.at(0))
+		{
+		    YerothERPConfig::_db_user_name = list.at(1).trimmed();
+			//logger << "++ db_user_name = " << db_user_name << "\n";
+		}
+		else if ("db_user_pwd" == list.at(0))
+		{
+		    YerothERPConfig::_db_user_pwd = list.at(1).trimmed();
+			//logger << "++ db_user_pwd = " << db_user_pwd << "\n";
+		}
+		else if ("db_connection_options" == list.at(0))
+		{
+			YerothERPConfig::_db_connection_options = list.at(1).trimmed();
+			//logger << "++ db_connection_options = " << db_connection_options << "\n";
+		}
+	}
+	while(!line.isNull());
+}
 
-const unsigned int YerothERPConfig::CONFIG_THERMAL_PRINTER_DEVICE_FILE_FULL_PATH (12);
 
-const unsigned int YerothERPConfig::CONFIG_MAX_STRING_DISPLAY_LENGTH (13);
+void YerothERPConfig::saveYerothConfig()
+{
+	QFile file(YerothERPConfig::FILE_ABSOLUTEPATH_YEROTH_ERP_3_0_SYSTEM_LOCAL_CONFIGURATION_PROPERTIES);
+
+	if (!file.open(QFile::WriteOnly))
+	{
+		return ;
+	}
+
+	QTextStream textStream(&file);
+
+	textStream
+		<< QString("local_parameter_full_path_pdf_reader=%1\n")
+				.arg(YerothERPConfig::pathToPdfReader)
+
+		<< QString("local_parameter_full_path_pdf_latex_executable_root_dir=%1\n")
+				.arg(YerothERPConfig::pathToLatexSystemRootFolder)
+
+		<< QString("local_parameter_full_path_file_temporary_folder=%1\n")
+				.arg(YerothERPConfig::temporaryFilesDir)
+
+		<< QString("local_parameter_file_system_device_thermal_printer=%1\n")
+				.arg(YerothERPConfig::pathToThermalPrinterDeviceFile)
+
+		<< QString("local_parameter_type_receipt=%1\n")
+				.arg(YerothERPConfig::receiptType)
+
+		<< QString("local_parameter_thermal_printer=%1\n")
+				.arg(YerothERPConfig::printer)
+
+		<< QString("local_parameter_state_open_cash_register=%1\n")
+				.arg(YerothERPConfig::ouvrirRegistreDeCaisse ? 1 : 0)
+
+		<< QString("local_parameter_format_receipt=%1\n")
+				.arg(YerothERPConfig::receiptFormat)
+
+		<< QString("local_parameter_starting_year_business_dashboard=%1\n")
+				.arg(YerothERPConfig::annee_depart_rapports_chiffre_affaire_value)
+
+		<< QString("local_parameter_length_maximal_display_string=%1\n")
+				.arg(QString::number(YerothERPConfig::max_string_display_length));
+
+	file.close();
+}
 
 

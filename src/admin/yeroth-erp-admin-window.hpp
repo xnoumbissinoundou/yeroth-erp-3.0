@@ -114,6 +114,8 @@ public slots:
 
     void enregistrer_alert_system_configuration();
 
+    void enregistrer_system_local_app_parameters_configuration();
+
     void enregistrer_app_parameters_configuration();
 
     void set_colour_status_of_alert_daemon_process_buttons();

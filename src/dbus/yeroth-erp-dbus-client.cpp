@@ -123,97 +123,22 @@ bool YerothDBusClient::slot_refresh_app_parameters()
         YerothSqlTableModel &configurationsTableModel =
             _allWindows->getSqlTableModel_configurations();
 
-        QSqlRecord configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_MAX_STRING_DISPLAY_LENGTH);
-        QString maxStringLengthValue(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
-
-        configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_PDF_READER);
-        QString pdfReaderValue(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
-
-        configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_THERMAL_PRINTER_DEVICE_FILE_FULL_PATH);
-        QString thermalPrinterDeviceFileFullPathValue(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
-
-        configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_LATEX_SYSTEM_ROOT_FOLDER);
-        QString latexSystemRootFolderValue(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
-
-        configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_TYPE_OF_FACTURATION);
-        QString typeOfFacturationValue(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
-
-        configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_ALERT_PERIOD_TIME_INTERVAL);
+        QSqlRecord configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_ALERT_PERIOD_TIME_INTERVAL);
         QString alertPeriodTimeIntervalValue(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
 
         configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_ALERT_QUANTITY_TIME_INTERVAL);
         QString alertQuantityTimeIntervalValue(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
 
-        configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_TEMPORARY_FILES_DIR);
-        QString temporaryFilesDirValue(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
-
         configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_TVA_VALUE);
         QString tvaValue(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
-
-        configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_ANNEE_DEPART_RAPPORTS_CHIFFRE_AFFAIRE);
-        QString anneeDepartRapportsChiffreDaffaireValue(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
 
         configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_SALES_STRATEGY);
         QString salesStrategyValue(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
 
-
-        YerothERPConfig::pathToPdfReader = pdfReaderValue;
-        YerothERPConfig::pathToThermalPrinterDeviceFile = thermalPrinterDeviceFileFullPathValue;
-        YerothERPConfig::pathToLatexSystemRootFolder = latexSystemRootFolderValue;
-        YerothERPConfig::receiptFormat= typeOfFacturationValue;
         YerothERPConfig::alert_period_time_interval = alertPeriodTimeIntervalValue.toUInt();
         YerothERPConfig::alert_quantity_time_interval = alertQuantityTimeIntervalValue.toUInt();
-        YerothERPConfig::max_string_display_length = maxStringLengthValue.toUInt();
         YerothERPConfig::tva_value = tvaValue.toDouble();
-        YerothERPConfig::annee_depart_rapports_chiffre_affaire_value = anneeDepartRapportsChiffreDaffaireValue;
         YerothERPConfig::salesStrategy = salesStrategyValue;
-
-        //qDebug() << "++ 1. YerothConfig::salesStrategy: " << YerothConfig::salesStrategy;
-
-        if (!temporaryFilesDirValue.endsWith("/"))
-        {
-            temporaryFilesDirValue.append("/");
-        }
-
-        YerothERPConfig::temporaryFilesDir = temporaryFilesDirValue;
-
-        //logger.log("[main] read_yeroth_configuration",
-        //		QString("Folder for temporary files: %1").arg(YerothConfig::temporaryFilesDir));
-
-        QFileInfo tempDirInfo(YerothERPConfig::temporaryFilesDir);
-
-        if (!tempDirInfo.exists())
-        {
-            //logger.log("[main] read_yeroth_configuration",
-            //		QString("Folder '%1' for temporary files does not exist!")
-            //			.arg(YerothConfig::temporaryFilesDir));
-
-            qDebug() << "yeroth-erp-dbus-client | slot_refresh_app_parameters | ",
-                     QString("Folder '%1' for temporary files does not exist!")
-                     .arg(YerothERPConfig::temporaryFilesDir);
-
-            QDir tempFileDir;
-            if (tempFileDir.mkpath(YerothERPConfig::temporaryFilesDir))
-            {
-                //logger.log("[main] read_yeroth_configuration",
-                //		QString("Created folder '%1' for temporary files")
-                //			.arg(YerothConfig::temporaryFilesDir));
-
-                qDebug() << "yeroth-erp-dbus-client | slot_refresh_app_parameters | ",
-                         QString("Created folder '%1' for temporary files")
-                         .arg(YerothERPConfig::temporaryFilesDir);
-            }
-            else
-            {
-                //logger.log("[main] read_yeroth_configuration",
-                //		QString("Could not Create folder '%1' for temporary files!")
-                //			.arg(YerothConfig::temporaryFilesDir));
-
-                qDebug() << "yeroth-erp-dbus-client | slot_refresh_app_parameters | ",
-                         QString("Could not Create folder '%1' for temporary files!")
-                         .arg(YerothERPConfig::temporaryFilesDir);
-            }
-        }
 
         return true;
     }

@@ -310,87 +310,108 @@ void readTexTemplateFiles(YerothLogger &logger)
 }
 
 
+void read_system_local_yeroth_configuration(YerothERPWindows &allWindows)
+{
+	QFile file(YerothERPConfig::FILE_ABSOLUTEPATH_YEROTH_ERP_3_0_SYSTEM_LOCAL_CONFIGURATION_PROPERTIES);
+
+	if (!file.open(QFile::ReadOnly))
+	{
+		return ;
+	}
+
+	QTextStream init_cfg(&file);
+	QString aValue;
+	QString line;
+	QStringList list;
+
+	do
+	{
+		line = init_cfg.readLine();
+		list = line.split(YEROTH_ERP_3_0_CONFIGURATION_FILE_SEPARATION_OPERATOR);
+//		qDebug() << "++ line: " << line << "\n";
+
+		if (YerothUtils::isEqualCaseInsensitive("local_parameter_full_path_pdf_reader", list.at(0)))
+		{
+			YerothERPConfig::pathToPdfReader = list.at(1).trimmed();
+		}
+		else if (YerothUtils::isEqualCaseInsensitive("local_parameter_full_path_pdf_latex_executable_root_dir", list.at(0)))
+		{
+			YerothERPConfig::pathToLatexSystemRootFolder = list.at(1).trimmed();
+		}
+		else if (YerothUtils::isEqualCaseInsensitive("local_parameter_full_path_file_temporary_folder", list.at(0)))
+		{
+			YerothERPConfig::temporaryFilesDir = list.at(1).trimmed();
+		}
+		else if (YerothUtils::isEqualCaseInsensitive("local_parameter_file_system_device_thermal_printer", list.at(0)))
+		{
+			YerothERPConfig::pathToThermalPrinterDeviceFile = list.at(1).trimmed();
+		}
+		else if (YerothUtils::isEqualCaseInsensitive("local_parameter_type_receipt", list.at(0)))
+		{
+			YerothERPConfig::receiptType = list.at(1).trimmed();
+		}
+		else if (YerothUtils::isEqualCaseInsensitive("local_parameter_thermal_printer", list.at(0)))
+		{
+			YerothERPConfig::printer = list.at(1).trimmed();
+		}
+		else if (YerothUtils::isEqualCaseInsensitive("local_parameter_state_open_cash_register", list.at(0)))
+		{
+			aValue = list.at(1).trimmed();
+
+			if (aValue.toInt() == YerothERPConfig::CLOSE_CASH_DRAWER)
+			{
+				YerothERPConfig::ouvrirRegistreDeCaisse = false;
+			}
+			else
+			{
+				YerothERPConfig::ouvrirRegistreDeCaisse = true;
+			}
+		}
+		else if (YerothUtils::isEqualCaseInsensitive("local_parameter_format_receipt", list.at(0)))
+		{
+			YerothERPConfig::receiptFormat = list.at(1).trimmed();
+		}
+		else if (YerothUtils::isEqualCaseInsensitive("local_parameter_starting_year_business_dashboard", list.at(0)))
+		{
+			YerothERPConfig::annee_depart_rapports_chiffre_affaire_value = list.at(1).trimmed();
+		}
+		else if (YerothUtils::isEqualCaseInsensitive("local_parameter_length_maximal_display_string", list.at(0)))
+		{
+			YerothERPConfig::max_string_display_length = list.at(1).trimmed().toInt();
+		}
+	}
+	while(!line.isNull());
+}
+
+
 void read_yeroth_configuration(YerothLogger &logger, YerothERPWindows &allWindows)
 {
     YerothSqlTableModel &configurationsTableModel =
         allWindows.getSqlTableModel_configurations();
 
-    QSqlRecord configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_PDF_READER);
-    QString pdfReaderValue(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
-
-    configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_MAX_STRING_DISPLAY_LENGTH);
-    QString maxStringLengthValue(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
-
-    configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_THERMAL_PRINTER_DEVICE_FILE_FULL_PATH);
-    QString thermalPrinterDeviceFileFullPathValue(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
-
-    configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_LATEX_SYSTEM_ROOT_FOLDER);
-    QString latexSystemRootFolderValue(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
-
-    configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_ALERT_PERIOD_TIME_INTERVAL);
+    QSqlRecord configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_ALERT_PERIOD_TIME_INTERVAL);
     QString alertPeriodTimeIntervalValue(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
 
     configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_ALERT_QUANTITY_TIME_INTERVAL);
     QString alertQuantityTimeIntervalValue(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
 
-    configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_TEMPORARY_FILES_DIR);
-    QString temporaryFilesDirValue(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
-
     configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_TVA_VALUE);
     QString tvaValue(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
-
-    configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_ANNEE_DEPART_RAPPORTS_CHIFFRE_AFFAIRE);
-    QString anneeDepartRapportsChiffreDaffaireValue(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
 
     configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_SALES_STRATEGY);
     QString salesStrategyValue(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
 
-    configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_PRINTER);
-    QString printerValue(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
-
-    configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_OPEN_CASH_DRAWER);
-    int openCashDrawerValue = GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration").toInt();
-
     configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_CURRENCY);
     QString currencyValue(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
-
-    configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_TYPE_OF_FACTURATION);
-    QString receiptFormatValue(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
 
     /*
      * Now setting the configuration values
      */
-    if (YerothERPConfig::OPEN_CASH_DRAWER == openCashDrawerValue)
-    {
-    	YerothERPConfig::ouvrirRegistreDeCaisse = true;
-    }
-    else
-    {
-    	YerothERPConfig::ouvrirRegistreDeCaisse = false;
-    }
-
-    QString userReceiptFormatValue
-    (YerothUtils::getCurrentAdminWindowReceiptsFormatAccordingToLanguage(receiptFormatValue));
-
-    receiptFormatValue = userReceiptFormatValue;
-
-    YerothERPConfig::receiptFormat = receiptFormatValue;
-
     YerothERPConfig::currency = currencyValue;
-    YerothERPConfig::printer = printerValue;
-    YerothERPConfig::pathToPdfReader = pdfReaderValue;
-    YerothERPConfig::pathToThermalPrinterDeviceFile = thermalPrinterDeviceFileFullPathValue;
-    YerothERPConfig::pathToLatexSystemRootFolder = latexSystemRootFolderValue;
     YerothERPConfig::alert_period_time_interval = alertPeriodTimeIntervalValue.toUInt();
     YerothERPConfig::alert_quantity_time_interval = alertQuantityTimeIntervalValue.toUInt();
-    YerothERPConfig::max_string_display_length = maxStringLengthValue.toUInt();
     YerothERPConfig::tva_value = (tvaValue.toDouble() / 100.0);
-    YerothERPConfig::annee_depart_rapports_chiffre_affaire_value = anneeDepartRapportsChiffreDaffaireValue;
     YerothERPConfig::salesStrategy = salesStrategyValue;
-
-    //qDebug() << "++ 1. YerothConfig::salesStrategy: " << YerothConfig::salesStrategy;
-
-    YerothERPConfig::temporaryFilesDir = temporaryFilesDirValue;
 
     logger.log("[main] read_yeroth_configuration",
                QString("Folder for temporary files: %1").arg(YerothERPConfig::temporaryFilesDir));
@@ -436,6 +457,11 @@ int main(int argc, char *argv[])
     YerothERPConfig::YEROTH_ERP_ALERT_3_0_HOME_FOLDER = QString(std::getenv("YEROTH_ERP_ALERT_3_0_HOME_FOLDER")).trimmed();
 
     YerothERPConfig::YEROTH_ERP_3_0_HOME_FOLDER = QString(std::getenv("YEROTH_ERP_3_0_HOME_FOLDER")).trimmed();
+
+    YerothERPConfig::FILE_ABSOLUTEPATH_YEROTH_ERP_3_0_SYSTEM_LOCAL_CONFIGURATION_PROPERTIES
+		=	QString("%1/%2")
+				.arg(YerothERPConfig::YEROTH_ERP_3_0_PROPERTIES_CONFIGURATION_FOLDER,
+					 FILE_YEROTH_ERP_3_0_PUBLIC_SYSTEM_LOCAL_CONFIGURATION_PROPERTIES);
 
     YerothERPConfig::FILE_ABSOLUTEPATH_YEROTH_ERP_3_0_MANUEL_DE_LUTILISATEUR_MANAGER.prepend('/').prepend(YerothERPConfig::YEROTH_ERP_3_0_HOME_FOLDER);
 
@@ -553,6 +579,8 @@ int main(int argc, char *argv[])
     {
         YerothUtils::executer_fichier_sql(sql_table_list.at(k), &logger);
     }
+
+    read_system_local_yeroth_configuration(allWindows);
 
     read_yeroth_configuration(logger, allWindows);
 

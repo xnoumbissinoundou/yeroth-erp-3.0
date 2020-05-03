@@ -581,15 +581,11 @@ void YerothUtils::saveCurrentAdminWindowFacturesTypeAccordingToLanguage(QString 
 
     assert (0 != _allWindows);
 
-    YerothSqlTableModel &configurationsTableModel = _allWindows->getSqlTableModel_configurations();
-
-    QSqlRecord configurationsRecord(configurationsTableModel.record(YerothERPConfig::CONFIG_TYPE_OF_FACTURATION));
-
-    QString currentFacturesTypeValue_FR;
+    QString currentFacturesTypeValue_FR(YerothERPConfig::receiptFormat);
 
 # ifdef YEROTH_ENGLISH_LANGUAGE
     if (YerothUtils::isEqualCaseInsensitive(currentFacturesTypeValue,
-                                           QObject::trUtf8(RECEIPT_FORMAT_SMALL_EN)))
+                                            QObject::trUtf8(RECEIPT_FORMAT_SMALL_EN)))
     {
         currentFacturesTypeValue_FR = QObject::trUtf8(RECEIPT_FORMAT_SMALL_FR);
     }
@@ -605,17 +601,10 @@ void YerothUtils::saveCurrentAdminWindowFacturesTypeAccordingToLanguage(QString 
 
 # endif
 
-    //qDebug() << QString("++ saveCu... currentFacturesTypeValue_FR: %1")
-    //				.arg(currentFacturesTypeValue_FR);
+    YerothERPConfig::receiptFormat = currentFacturesTypeValue;
 
-    configurationsRecord.setValue("valeur_configuration", currentFacturesTypeValue_FR);
-
-    bool success = configurationsTableModel.updateRecord(YerothERPConfig::CONFIG_TYPE_OF_FACTURATION, configurationsRecord);
-
-    if (success)
-    {
-        YerothERPConfig::receiptFormat = currentFacturesTypeValue;
-    }
+//    qDebug() << QString("++ saveCu... currentFacturesTypeValue_FR: %1")
+//    				.arg(currentFacturesTypeValue_FR);
 }
 
 

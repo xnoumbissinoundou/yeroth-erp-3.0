@@ -47,6 +47,8 @@ public:
 
 	static QString receiptFormat;
 
+	static QString receiptType;
+
 	static QString salesStrategy;
 
 	static QString YEROTH_ALERT_DAEMON_ID_STR;
@@ -58,6 +60,8 @@ public:
 	static QString YEROTH_ERP_ALERT_3_0_HOME_FOLDER;
 
 	static QString YEROTH_ERP_3_0_HOME_FOLDER;
+
+	static QString FILE_ABSOLUTEPATH_YEROTH_ERP_3_0_SYSTEM_LOCAL_CONFIGURATION_PROPERTIES;
 
 	static QString FILE_ABSOLUTEPATH_YEROTH_ERP_3_0_MANUEL_DE_LUTILISATEUR_MANAGER;
 
@@ -103,33 +107,15 @@ public:
 
 	static const int CLOSE_CASH_DRAWER;
 
-	static const unsigned int CONFIG_PDF_READER;
-
-	static const unsigned int CONFIG_TYPE_OF_FACTURATION;
-
 	static const unsigned int CONFIG_ALERT_PERIOD_TIME_INTERVAL;
 
 	static const unsigned int CONFIG_ALERT_QUANTITY_TIME_INTERVAL;
 
-	static const unsigned int CONFIG_TEMPORARY_FILES_DIR;
-
 	static const unsigned int CONFIG_TVA_VALUE;
-
-	static const unsigned int CONFIG_ANNEE_DEPART_RAPPORTS_CHIFFRE_AFFAIRE;
 
 	static const unsigned int CONFIG_SALES_STRATEGY;
 
-	static const unsigned int CONFIG_PRINTER;
-
 	static const unsigned int CONFIG_CURRENCY;
-
-	static const unsigned int CONFIG_OPEN_CASH_DRAWER;
-
-	static const unsigned int CONFIG_LATEX_SYSTEM_ROOT_FOLDER;
-
-	static const unsigned int CONFIG_THERMAL_PRINTER_DEVICE_FILE_FULL_PATH;
-
-	static const unsigned int CONFIG_MAX_STRING_DISPLAY_LENGTH;
 
 	//static const SALES_STRATEGY getSalesStrategy(QString salesStrategyValue);
 
@@ -157,58 +143,9 @@ public:
 				.arg(pathToLatexSystemRootFolder);
 	}
 
-	static void initYerothConfig(QString initCfg)
-	{
-		QFile file(initCfg);
+	static void initYerothConfig(QString initCfg);
 
-		if (!file.open(QFile::ReadOnly))
-		{
-			return ;
-		}
-
-		QTextStream init_cfg(&file);
-		QString line;
-		QStringList list;
-
-		do
-		{
-			line = init_cfg.readLine();
-			list = line.split(YEROTH_ERP_3_0_CONFIGURATION_FILE_SEPARATION_OPERATOR);
-			//logger << "++ line: " << line << "\n";
-
-			if ("db_type" == list.at(0))
-			{
-				YerothERPConfig::_db_type = list.at(1).trimmed();
-				// logger << "++ db_type = " << db_type << "\n";
-			}
-			if ("db_name" == list.at(0))
-			{
-			    YerothERPConfig::_db_name = list.at(1).trimmed();
-				//logger << "++ db_name = " << db_name << "\n";
-			}
-			else if ("db_ip_address" == list.at(0))
-			{
-			    YerothERPConfig::_db_ip_address = list.at(1).trimmed();
-				//logger << "++ db_ip_address = " << db_ip_address << "\n";
-			}
-			else if ("db_user_name" == list.at(0))
-			{
-			    YerothERPConfig::_db_user_name = list.at(1).trimmed();
-				//logger << "++ db_user_name = " << db_user_name << "\n";
-			}
-			else if ("db_user_pwd" == list.at(0))
-			{
-			    YerothERPConfig::_db_user_pwd = list.at(1).trimmed();
-				//logger << "++ db_user_pwd = " << db_user_pwd << "\n";
-			}
-			else if ("db_connection_options" == list.at(0))
-			{
-				YerothERPConfig::_db_connection_options = list.at(1).trimmed();
-				//logger << "++ db_connection_options = " << db_connection_options << "\n";
-			}
-		}
-		while(!line.isNull());
-	}
+	static void saveYerothConfig();
 };
 
 #endif /* SRC_YEROTH_CONFIG_HPP_ */

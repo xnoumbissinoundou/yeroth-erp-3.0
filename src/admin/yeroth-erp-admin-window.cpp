@@ -957,26 +957,8 @@ void YerothAdminWindow::read_app_parameters_init_configuration()
 {
     YerothSqlTableModel & initConfigurationsTableModel = _allWindows->getSqlTableModel_init_configurations();
 
-    QSqlRecord initConfigurationRecord = initConfigurationsTableModel.record(YerothERPConfig::CONFIG_PDF_READER);
-    QString pdfReaderValue(GET_SQL_RECORD_DATA(initConfigurationRecord, "valeur_configuration"));
-
-    initConfigurationRecord = initConfigurationsTableModel.record(YerothERPConfig::CONFIG_THERMAL_PRINTER_DEVICE_FILE_FULL_PATH);
-    QString thermalPrinterDeviceFileFullPathValue(GET_SQL_RECORD_DATA(initConfigurationRecord, "valeur_configuration"));
-
-    initConfigurationRecord = initConfigurationsTableModel.record(YerothERPConfig::CONFIG_MAX_STRING_DISPLAY_LENGTH);
-    QString maxStringLengthValue(GET_SQL_RECORD_DATA(initConfigurationRecord, "valeur_configuration"));
-
-    initConfigurationRecord = initConfigurationsTableModel.record(YerothERPConfig::CONFIG_LATEX_SYSTEM_ROOT_FOLDER);
-    QString latexSystemRootFolderValue(GET_SQL_RECORD_DATA(initConfigurationRecord, "valeur_configuration"));
-
-    initConfigurationRecord = initConfigurationsTableModel.record(YerothERPConfig::CONFIG_TEMPORARY_FILES_DIR);
-    QString temporaryFilesDirValue(GET_SQL_RECORD_DATA(initConfigurationRecord, "valeur_configuration"));
-
-    initConfigurationRecord = initConfigurationsTableModel.record(YerothERPConfig::CONFIG_TVA_VALUE);
+    QSqlRecord initConfigurationRecord = initConfigurationsTableModel.record(YerothERPConfig::CONFIG_TVA_VALUE);
     QString tvaValue(GET_SQL_RECORD_DATA(initConfigurationRecord, "valeur_configuration"));
-
-    initConfigurationRecord = initConfigurationsTableModel.record(YerothERPConfig::CONFIG_ANNEE_DEPART_RAPPORTS_CHIFFRE_AFFAIRE);
-    QString anneeDepartTableauxDeBords(GET_SQL_RECORD_DATA(initConfigurationRecord, "valeur_configuration"));
 
     initConfigurationRecord = initConfigurationsTableModel.record(YerothERPConfig::CONFIG_SALES_STRATEGY);
     QString salesStrategyValue(GET_SQL_RECORD_DATA(initConfigurationRecord, "valeur_configuration"));
@@ -984,28 +966,19 @@ void YerothAdminWindow::read_app_parameters_init_configuration()
     initConfigurationRecord = initConfigurationsTableModel.record(YerothERPConfig::CONFIG_CURRENCY);
     QString currencyValue(GET_SQL_RECORD_DATA(initConfigurationRecord, "valeur_configuration"));
 
-    initConfigurationRecord = initConfigurationsTableModel.record(YerothERPConfig::CONFIG_PRINTER);
-    QString printerValue(GET_SQL_RECORD_DATA(initConfigurationRecord, "valeur_configuration"));
-
-    initConfigurationRecord = initConfigurationsTableModel.record(YerothERPConfig::CONFIG_OPEN_CASH_DRAWER);
-    int openCashDrawerValue = GET_SQL_RECORD_DATA(initConfigurationRecord, "valeur_configuration").toInt();
-
-    initConfigurationRecord = initConfigurationsTableModel.record(YerothERPConfig::CONFIG_TYPE_OF_FACTURATION);
-    QString typeOfFacturationValue(GET_SQL_RECORD_DATA(initConfigurationRecord, "valeur_configuration"));
-
-    QString userLanguageTypeOfFacturationValue(
-    		YerothUtils::getCurrentAdminWindowReceiptsFormatAccordingToLanguage(typeOfFacturationValue));
+    QString userLanguageReceiptFormatValue(
+    		YerothUtils::getCurrentAdminWindowReceiptsFormatAccordingToLanguage(YerothERPConfig::receiptFormat));
 
     /*
      * OPEN_CASH_DRAWER INITIALIZATION CONFIGURATION
      */
-    if (YerothERPConfig::CLOSE_CASH_DRAWER == openCashDrawerValue)
+    if (YerothERPConfig::ouvrirRegistreDeCaisse)
     {
-    	checkBox_activer_registre_de_caisse->setChecked(false);
+    	checkBox_activer_registre_de_caisse->setChecked(true);
     }
     else
     {
-    	checkBox_activer_registre_de_caisse->setChecked(true);
+    	checkBox_activer_registre_de_caisse->setChecked(false);
     }
 
     /*
@@ -1013,9 +986,9 @@ void YerothAdminWindow::read_app_parameters_init_configuration()
      */
     comboBox_impression_sur->clear();
 
-    comboBox_impression_sur->addItem(printerValue);
+    comboBox_impression_sur->addItem(YerothUtils::IMPRIMANTE_PDF);
 
-    if (YerothUtils::isEqualCaseInsensitive(YerothUtils::IMPRIMANTE_PDF, printerValue))
+    if (YerothUtils::isEqualCaseInsensitive(YerothUtils::IMPRIMANTE_PDF, YerothERPConfig::printer))
     {
         comboBox_impression_sur->addItem(YerothUtils::IMPRIMANTE_EPSON_TM_T20ii);
     }
@@ -1026,10 +999,10 @@ void YerothAdminWindow::read_app_parameters_init_configuration()
 
     comboBox_format_de_facture->clear();
 
-    comboBox_format_de_facture->addItem(userLanguageTypeOfFacturationValue);
+    comboBox_format_de_facture->addItem(userLanguageReceiptFormatValue);
 
     if (YerothUtils::
-            isEqualCaseInsensitive(YerothERPConfig::RECEIPT_FORMAT_PETIT, userLanguageTypeOfFacturationValue))
+            isEqualCaseInsensitive(YerothERPConfig::RECEIPT_FORMAT_PETIT, userLanguageReceiptFormatValue))
     {
         comboBox_format_de_facture->addItem(YerothERPConfig::RECEIPT_FORMAT_GRAND_A4PAPER);
         comboBox_format_de_facture->addItem(YerothERPConfig::RECEIPT_FORMAT_PETIT);
@@ -1042,19 +1015,19 @@ void YerothAdminWindow::read_app_parameters_init_configuration()
 
     lineEdit_devise->setText(currencyValue);
 
-    lineEdit_pdfReader->setText(pdfReaderValue);
+    lineEdit_pdfReader->setText(YerothERPConfig::pathToPdfReader);
 
-    lineEdit_longueur_maximale_string->setText(maxStringLengthValue);
+    lineEdit_longueur_maximale_string->setText(QString::number(YerothERPConfig::max_string_display_length));
 
-    lineEdit_fichier_systeme_imprimante_thermique->setText(thermalPrinterDeviceFileFullPathValue);
+    lineEdit_fichier_systeme_imprimante_thermique->setText(YerothERPConfig::pathToThermalPrinterDeviceFile);
 
-    lineEdit_repertoire_systeme_latex->setText(latexSystemRootFolderValue);
+    lineEdit_repertoire_systeme_latex->setText(YerothERPConfig::pathToLatexSystemRootFolder);
 
-    lineEdit_repertoire_fichiers_temporaires->setText(temporaryFilesDirValue);
+    lineEdit_repertoire_fichiers_temporaires->setText(YerothERPConfig::temporaryFilesDir);
 
     lineEdit_tva_value->setText(tvaValue);
 
-    lineEdit_annee_depart_rapports_chiffre_affaire->setText(anneeDepartTableauxDeBords);
+    lineEdit_annee_depart_rapports_chiffre_affaire->setText(YerothERPConfig::annee_depart_rapports_chiffre_affaire_value);
 
     {
         comboBox_strategie_vente_sortie->clear();
@@ -1214,6 +1187,66 @@ void YerothAdminWindow::enregistrer_alert_system_configuration()
     }
 }
 
+
+void YerothAdminWindow::enregistrer_system_local_app_parameters_configuration()
+{
+	_logger->log("enregistrer_system_local_app_parameters_configuration");
+
+    if (checkBox_activer_registre_de_caisse->isChecked())
+    {
+        YerothERPConfig::ouvrirRegistreDeCaisse = true;
+    }
+    else
+    {
+    	YerothERPConfig::ouvrirRegistreDeCaisse = false;
+    }
+
+    if (lineEdit_fichier_systeme_imprimante_thermique->checkField())
+    {
+    	YerothERPConfig::pathToThermalPrinterDeviceFile = lineEdit_fichier_systeme_imprimante_thermique->text();
+    }
+
+    if (lineEdit_repertoire_systeme_latex->checkField())
+    {
+    	YerothERPConfig::pathToLatexSystemRootFolder = lineEdit_repertoire_systeme_latex->text();
+    }
+
+    if (lineEdit_longueur_maximale_string->checkField())
+    {
+    	YerothERPConfig::max_string_display_length = lineEdit_longueur_maximale_string->text().toUInt();
+    }
+
+    if (lineEdit_pdfReader->checkField())
+    {
+    	YerothERPConfig::pathToPdfReader = lineEdit_pdfReader->text();
+    }
+
+    if (comboBox_format_de_facture->checkField())
+    {
+        YerothUtils::saveCurrentAdminWindowFacturesTypeAccordingToLanguage(comboBox_format_de_facture->
+                currentText());
+    }
+
+    if (lineEdit_repertoire_fichiers_temporaires->checkField())
+    {
+    	YerothERPConfig::temporaryFilesDir = lineEdit_repertoire_fichiers_temporaires->text();
+    }
+
+    if (lineEdit_annee_depart_rapports_chiffre_affaire->checkField())
+    {
+    	YerothERPConfig::annee_depart_rapports_chiffre_affaire_value =
+    			lineEdit_annee_depart_rapports_chiffre_affaire->text();
+    }
+
+    if (comboBox_impression_sur->checkField())
+    {
+    	YerothERPConfig::printer = comboBox_impression_sur->currentText();
+    }
+
+	YerothERPConfig::saveYerothConfig();
+}
+
+
 void YerothAdminWindow::enregistrer_app_parameters_configuration()
 {
     _logger->log("enregistrer_app_parameters_configuration");
@@ -1223,34 +1256,11 @@ void YerothAdminWindow::enregistrer_app_parameters_configuration()
     if (QMessageBox::Ok == YerothQMessageBox::question(this, QObject::trUtf8("enregistrer"),
             msgEnregistrer, QMessageBox::Cancel, QMessageBox::Ok))
     {
+    	enregistrer_system_local_app_parameters_configuration();
+
         YerothSqlTableModel & configurationsTableModel = _allWindows->getSqlTableModel_configurations();
 
         QSqlRecord configurationsRecord;
-
-        if (checkBox_activer_registre_de_caisse->isChecked())
-        {
-            configurationsRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_OPEN_CASH_DRAWER);
-            configurationsRecord.setValue("valeur_configuration", YerothERPConfig::OPEN_CASH_DRAWER);
-
-            bool success = configurationsTableModel.updateRecord(YerothERPConfig::CONFIG_OPEN_CASH_DRAWER, configurationsRecord);
-
-            if (success)
-            {
-            	YerothERPConfig::ouvrirRegistreDeCaisse = true;
-            }
-        }
-        else
-        {
-            configurationsRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_OPEN_CASH_DRAWER);
-            configurationsRecord.setValue("valeur_configuration", YerothERPConfig::CLOSE_CASH_DRAWER);
-
-            bool success = configurationsTableModel.updateRecord(YerothERPConfig::CONFIG_OPEN_CASH_DRAWER, configurationsRecord);
-
-            if (success)
-            {
-            	YerothERPConfig::ouvrirRegistreDeCaisse = false;
-            }
-        }
 
         if (lineEdit_devise->checkField())
         {
@@ -1266,86 +1276,6 @@ void YerothAdminWindow::enregistrer_app_parameters_configuration()
             }
         }
 
-        if (lineEdit_fichier_systeme_imprimante_thermique->checkField())
-        {
-            configurationsRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_THERMAL_PRINTER_DEVICE_FILE_FULL_PATH);
-            configurationsRecord.setValue("valeur_configuration", lineEdit_fichier_systeme_imprimante_thermique->text());
-
-            bool success =
-                configurationsTableModel.updateRecord(YerothERPConfig::CONFIG_THERMAL_PRINTER_DEVICE_FILE_FULL_PATH, configurationsRecord);
-
-            if (success)
-            {
-                YerothERPConfig::pathToThermalPrinterDeviceFile = lineEdit_fichier_systeme_imprimante_thermique->text();
-            }
-        }
-
-        if (lineEdit_repertoire_systeme_latex->checkField())
-        {
-            configurationsRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_LATEX_SYSTEM_ROOT_FOLDER);
-            configurationsRecord.setValue("valeur_configuration", lineEdit_repertoire_systeme_latex->text());
-
-            bool success =
-                configurationsTableModel.updateRecord(YerothERPConfig::CONFIG_LATEX_SYSTEM_ROOT_FOLDER, configurationsRecord);
-
-            if (success)
-            {
-                YerothERPConfig::pathToLatexSystemRootFolder = lineEdit_repertoire_systeme_latex->text();
-            }
-        }
-
-        if (lineEdit_longueur_maximale_string->checkField())
-        {
-            configurationsRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_MAX_STRING_DISPLAY_LENGTH);
-            configurationsRecord.setValue("valeur_configuration", lineEdit_longueur_maximale_string->text());
-
-            bool success =
-                configurationsTableModel.updateRecord(YerothERPConfig::CONFIG_MAX_STRING_DISPLAY_LENGTH, configurationsRecord);
-
-            if (success)
-            {
-            	YerothERPConfig::max_string_display_length = lineEdit_longueur_maximale_string->text().toUInt();
-            }
-        }
-
-        if (lineEdit_pdfReader->checkField())
-        {
-            configurationsRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_PDF_READER);
-            configurationsRecord.setValue("valeur_configuration", lineEdit_pdfReader->text());
-
-            bool success =
-                configurationsTableModel.updateRecord(YerothERPConfig::CONFIG_PDF_READER, configurationsRecord);
-
-            if (success)
-            {
-                YerothERPConfig::pathToPdfReader = lineEdit_pdfReader->text();
-            }
-        }
-
-        if (comboBox_format_de_facture->checkField())
-        {
-            YerothUtils::saveCurrentAdminWindowFacturesTypeAccordingToLanguage(comboBox_format_de_facture->
-                    currentText());
-        }
-
-        if (lineEdit_repertoire_fichiers_temporaires->checkField())
-        {
-            configurationsRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_TEMPORARY_FILES_DIR);
-
-            QString repertoireFichiersTemporaires(lineEdit_repertoire_fichiers_temporaires->text());
-
-            configurationsRecord.setValue("valeur_configuration", repertoireFichiersTemporaires);
-
-            bool success =
-                configurationsTableModel.updateRecord(YerothERPConfig::CONFIG_TEMPORARY_FILES_DIR,
-                        configurationsRecord);
-
-            if (success)
-            {
-                YerothERPConfig::temporaryFilesDir = repertoireFichiersTemporaires;
-            }
-        }
-
         if (lineEdit_tva_value->checkField())
         {
             configurationsRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_TVA_VALUE);
@@ -1355,22 +1285,6 @@ void YerothAdminWindow::enregistrer_app_parameters_configuration()
             if (success)
             {
                 YerothERPConfig::tva_value = (lineEdit_tva_value->text().toDouble() / 100.0);
-            }
-        }
-
-        if (lineEdit_annee_depart_rapports_chiffre_affaire->checkField())
-        {
-            configurationsRecord =
-                configurationsTableModel.record(YerothERPConfig::CONFIG_ANNEE_DEPART_RAPPORTS_CHIFFRE_AFFAIRE);
-            configurationsRecord.setValue("valeur_configuration",
-                                          lineEdit_annee_depart_rapports_chiffre_affaire->text());
-            bool success =
-                configurationsTableModel.updateRecord(YerothERPConfig::CONFIG_ANNEE_DEPART_RAPPORTS_CHIFFRE_AFFAIRE,
-                        configurationsRecord);
-            if (success)
-            {
-                YerothERPConfig::annee_depart_rapports_chiffre_affaire_value =
-                    lineEdit_annee_depart_rapports_chiffre_affaire->text();
             }
         }
 
@@ -1387,21 +1301,6 @@ void YerothAdminWindow::enregistrer_app_parameters_configuration()
                 YerothERPConfig::salesStrategy = comboBox_strategie_vente_sortie->currentText();
             }
         }
-
-        if (comboBox_impression_sur->checkField())
-        {
-            configurationsRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_PRINTER);
-            configurationsRecord.setValue("valeur_configuration", comboBox_impression_sur->currentText());
-
-            bool success =
-                configurationsTableModel.updateRecord(YerothERPConfig::CONFIG_PRINTER, configurationsRecord);
-
-            if (success)
-            {
-                YerothERPConfig::printer = comboBox_impression_sur->currentText();
-            }
-        }
-
 
 #ifdef YEROTH_SERVER
         YerothDBusServer *dbusServer = _allWindows->dbusServer();
@@ -1460,14 +1359,19 @@ void YerothAdminWindow::stop_alert_daemon_process()
 void YerothAdminWindow::set_localisation_adresse_ip_text()
 {
     YerothSqlTableModel & localisationSqlTableModel = _allWindows->getSqlTableModel_localisations();
-    localisationSqlTableModel.yerothSetFilter(GENERATE_SQL_IS_STMT("nom_localisation", lineEdit_localisation->text()));
+
+    localisationSqlTableModel.yerothSetFilter(
+    		GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::NOM_LOCALISATION, lineEdit_localisation->text()));
+
     int localisationSqlTableModelRowCount = localisationSqlTableModel.easySelect();
+
     if (localisationSqlTableModelRowCount > 0)
     {
         QSqlRecord localisationRecord = localisationSqlTableModel.record(0);
         _localisation_adresse_ip = GET_SQL_RECORD_DATA(localisationRecord, "adresse_ip");
         lineEdit_localisation_adresse_ip->setText(_localisation_adresse_ip);
     }
+
     //qDebug() << "++localisation_adresse_ip: " << _localisation_adresse_ip;
     localisationSqlTableModel.resetFilter();
 }

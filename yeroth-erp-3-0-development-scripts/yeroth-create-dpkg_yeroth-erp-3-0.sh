@@ -134,8 +134,10 @@ echo -e "${YEROTH_ERP_3_0_DEB_PACKAGE_INFORMATION}$(cat ${TARGET_INSTALLATION_DI
 
 if [ ! "$qsqlite3Flag" ]; then
 	${CP} yeroth-erp-3-0-deployment-configuration-scripts/yeroth-erp-3-0.properties "${YEROTH_ERP_3_0_PROPERTIES_FILE_DIR}"
+	${CP} yeroth-erp-3-0-deployment-configuration-scripts/yeroth-erp-3-0-system-local-configuration.properties "${YEROTH_ERP_3_0_PROPERTIES_FILE_DIR}"
 else
 	${CP} yeroth-erp-3-0-deployment-configuration-scripts/yeroth-erp-3-0-qsqlite3.properties "${YEROTH_ERP_3_0_PROPERTIES_FILE_DIR}/yeroth-erp-3-0.properties"
+	${CP} yeroth-erp-3-0-deployment-configuration-scripts/yeroth-erp-3-0-system-local-configuration.properties "${YEROTH_ERP_3_0_PROPERTIES_FILE_DIR}"
 fi
 
 YEROTH_ERP_3_0_POSTRM_STR="#!/bin/bash
@@ -152,7 +154,9 @@ chmod 755 ${TARGET_INSTALLATION_DIR}/DEBIAN/postrm
 YEROTH_ERP_3_0_POSTINST_STR="#!/bin/bash
 echo -e \"export YEROTH_ERP_3_0_HOME_FOLDER=/opt/${YEROTH_ERP_3_0_BINARY_NAME}\" >> /etc/environment
 echo -e \"export YEROTH_ERP_3_0_PROPERTIES_CONFIGURATION_FOLDER=/opt/${YEROTH_ERP_3_0_BINARY_NAME}\" >> /etc/environment
-echo -e \"export YEROTH_ERP_ALERT_3_0_HOME_FOLDER=/opt/yeroth-erp-alert-3-0\" >> /etc/environment"
+echo -e \"export YEROTH_ERP_ALERT_3_0_HOME_FOLDER=/opt/yeroth-erp-alert-3-0\" >> /etc/environment
+chmod go+w /opt/${YEROTH_ERP_3_0_BINARY_NAME}/yeroth-erp-3-0.log
+chmod go+w /opt/${YEROTH_ERP_3_0_BINARY_NAME}/yeroth-erp-3-0-system-local-configuration.properties"
 
 echo -e "${YEROTH_ERP_3_0_POSTINST_STR}$(cat ${TARGET_INSTALLATION_DIR}/DEBIAN/postinst)" > ${TARGET_INSTALLATION_DIR}/DEBIAN/postinst
 
