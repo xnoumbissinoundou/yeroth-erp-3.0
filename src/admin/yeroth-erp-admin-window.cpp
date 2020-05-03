@@ -283,16 +283,24 @@ void YerothAdminWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 {
 	groupBox_yeroth_erp_3_0_parametres_serveur->setVisible(false);
 
-	YerothERPWindows *allWindows = YerothUtils::getAllWindows();
+	YerothPOSUser *user = _allWindows->getUser();
 
-	if (0 != allWindows)
+	if (0 != user && user->isManager())
 	{
-		QString localIpAddress(allWindows->getDatabase().db_ip_address());
+		YerothERPWindows *allWindows = YerothUtils::getAllWindows();
 
-		if (YerothUtils::isEqualCaseInsensitive(localIpAddress, STRING_LOCALHOST))
+		QString localIpAddress;
+
+		if (0 != allWindows)
 		{
-			groupBox_yeroth_erp_3_0_parametres_serveur->setVisible(true);
+			localIpAddress = allWindows->getDatabase().db_ip_address();
 		}
+
+		groupBox_yeroth_erp_3_0_parametres_serveur
+			->setTitle(QString(QObject::trUtf8("paramètres serveur [ \"%1\" ]"))
+							.arg(localIpAddress));
+
+		groupBox_yeroth_erp_3_0_parametres_serveur->setVisible(true);
 	}
 
     if (0 != stocksTableModel)
@@ -1115,12 +1123,7 @@ void YerothAdminWindow::enregistrer_entreprise_info_database_table()
 			retMesg = "Les données commerciales de l'entreprise "
 					"ont été enregistrées avec succès !";
 
-			if (QMessageBox::Ok == YerothQMessageBox::information(this, QObject::trUtf8("succès"), retMesg))
-			{
-			}
-			else
-			{
-			}
+			YerothQMessageBox::information(this, QObject::trUtf8("succès"), retMesg);
 		}
 		else
 		{

@@ -17962,7 +17962,7 @@
        </rect>
       </property>
       <property name="title">
-       <string>paramètres client (cet ordinateur)</string>
+       <string>paramètres client [ &quot;localhost&quot; ]</string>
       </property>
       <widget class="YerothLineEdit" name="lineEdit_pdfReader">
        <property name="geometry">
@@ -23542,7 +23542,7 @@
        </rect>
       </property>
       <property name="title">
-       <string>paramètres serveur</string>
+       <string>paramètres serveur </string>
       </property>
       <widget class="YerothLineEdit" name="lineEdit_tva_value">
        <property name="geometry">
@@ -24976,7 +24976,7 @@
        </rect>
       </property>
       <property name="title">
-       <string>paramètres client - 2 (cet ordinateur)</string>
+       <string>paramètres client - 2  [ &quot;localhost&quot; ]</string>
       </property>
       <widget class="YerothLineEdit" name="lineEdit_longueur_maximale_string">
        <property name="geometry">
