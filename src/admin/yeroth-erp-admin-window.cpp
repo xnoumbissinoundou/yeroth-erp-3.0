@@ -281,6 +281,20 @@ void YerothAdminWindow::definirManager()
 
 void YerothAdminWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 {
+	groupBox_yeroth_erp_3_0_parametres_serveur->setVisible(false);
+
+	YerothERPWindows *allWindows = YerothUtils::getAllWindows();
+
+	if (0 != allWindows)
+	{
+		QString localIpAddress(allWindows->getDatabase().db_ip_address());
+
+		if (YerothUtils::isEqualCaseInsensitive(localIpAddress, STRING_LOCALHOST))
+		{
+			groupBox_yeroth_erp_3_0_parametres_serveur->setVisible(true);
+		}
+	}
+
     if (0 != stocksTableModel)
     {
         _curStocksTableModel = stocksTableModel;

@@ -380,6 +380,29 @@ void YerothMainWindow::definirPasDeRole()
 }
 
 
+void YerothMainWindow::setup_YEROTH_ERP_3_0_SERVER_PARAMETERS_DISPLAY()
+{
+	YerothUtils::YEROTH_ERP_3_0_SERVER_PARAMETERS_DISPLAY =
+			QString("database server: %1 - "
+					"database ip address: %2 - "
+					"database options: %3")
+				.arg(_allWindows->getDatabase().db_name(),
+					 _allWindows->getDatabase().db_ip_address(),
+					 _allWindows->getDatabase().db_connection_options());
+}
+
+
+void YerothMainWindow::rendreVisibleLocalTOCLASS()
+{
+	setup_YEROTH_ERP_3_0_SERVER_PARAMETERS_DISPLAY();
+
+	label_display_yeroth_erp_3_0_server_parameters
+		->setText(YerothUtils::YEROTH_ERP_3_0_SERVER_PARAMETERS_DISPLAY);
+
+	show();
+}
+
+
 void YerothMainWindow::help()
 {
 //#define YEROTH_DEVEL_TARGET

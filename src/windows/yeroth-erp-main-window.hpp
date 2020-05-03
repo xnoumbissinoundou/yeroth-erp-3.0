@@ -60,6 +60,10 @@ public:
 
     virtual void definirPasDeRole();
 
+    void setup_YEROTH_ERP_3_0_SERVER_PARAMETERS_DISPLAY();
+
+    void rendreVisibleLocalTOCLASS();
+
 public slots:
 
 	inline virtual void apropos()

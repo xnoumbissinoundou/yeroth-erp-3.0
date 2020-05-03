@@ -509,9 +509,12 @@ int main(int argc, char *argv[])
 
     allWindows.setDatabase(&database);
 
-    logger.log("main", QString("db_name: %1").arg(database.db_name()));
-    logger.log("main", QString("db_ip_address: %1").arg(database.db_ip_address()));
-    logger.log("main", QString("db_connection_options: %1").arg(database.db_connection_options()));
+    qDebug() << QString("db_name: %1, "
+    					"db_ip_address: %2, "
+    					"db_connection_options: %3")
+					.arg(database.db_name(),
+						 database.db_ip_address(),
+						 database.db_connection_options());
 
     if (!database.open())
     {
@@ -574,7 +577,7 @@ int main(int argc, char *argv[])
 
     readTexTemplateFiles(logger);
 
-    allWindows._mainWindow->show();
+    allWindows._mainWindow->rendreVisibleLocalTOCLASS();
 
     app.exec();
 

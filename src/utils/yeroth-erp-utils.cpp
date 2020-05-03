@@ -188,6 +188,9 @@ const QKeySequence YerothUtils::REINITIALISER_QUI_SUI_JE_QKEYSEQUENCE(QObject::t
 
 const QKeySequence YerothUtils::LISTER_STOCKS_QKEYSEQUENCE(QObject::tr(SHORTCUT_LIST_STOCKS));
 
+
+QString YerothUtils::YEROTH_ERP_3_0_SERVER_PARAMETERS_DISPLAY("");
+
 const QString YerothUtils::YEROTH_QT_STYLE_CDE("cde");
 
 const unsigned int YerothUtils::CURRENT_CLIENT_DB_ID_UNDEFINED(-2);

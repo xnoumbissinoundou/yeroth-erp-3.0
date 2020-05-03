@@ -434,6 +434,9 @@ public:
 
 	static void yerothSetWidgetColor(QWidget *aWidget);
 
+
+	static QString YEROTH_ERP_3_0_SERVER_PARAMETERS_DISPLAY;
+
 	static const QString YEROTH_QT_STYLE_CDE;
 
 	static const unsigned int CURRENT_CLIENT_DB_ID_UNDEFINED;
