@@ -24,7 +24,7 @@ class YerothSqlTableModel;
 class YerothLogger;
 class YerothDatabase;
 
-class YerothAdminWindow : public YerothPOSAdminWindowsCommons, private Ui_YerothAdminWindow
+class YerothAdminWindow : public YerothPOSAdminWindowsCommons, public Ui_YerothAdminWindow
 {
     Q_OBJECT
 

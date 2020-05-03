@@ -402,6 +402,10 @@ void YerothMainWindow::rendreVisibleLocalTOCLASS(bool isDatabaseOpened /* = fals
 			->setStyleSheet(QString("color: rgb(%1);")
 								.arg(COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255));
 
+		_allWindows->_adminWindow->label_ADMIN_WINDOW_display_yeroth_erp_3_0_server_parameters
+			->setStyleSheet(QString("color: rgb(%1);")
+								.arg(COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255));
+
 		_allWindows->_pdVenteWindow->label_PDV_display_yeroth_erp_3_0_server_parameters
 			->setStyleSheet(QString("color: rgb(%1);")
 								.arg(COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255));
@@ -412,12 +416,20 @@ void YerothMainWindow::rendreVisibleLocalTOCLASS(bool isDatabaseOpened /* = fals
 			->setStyleSheet(QString("color: rgb(%1);")
 								.arg(COLOUR_RGB_STRING_YEROTH_FIREBRICK_RED_255_48_48));
 
+		_allWindows->_adminWindow->label_ADMIN_WINDOW_display_yeroth_erp_3_0_server_parameters
+			->setStyleSheet(QString("color: rgb(%1);")
+								.arg(COLOUR_RGB_STRING_YEROTH_FIREBRICK_RED_255_48_48));
+
 		_allWindows->_pdVenteWindow->label_PDV_display_yeroth_erp_3_0_server_parameters
 			->setStyleSheet(QString("color: rgb(%1);")
 								.arg(COLOUR_RGB_STRING_YEROTH_FIREBRICK_RED_255_48_48));
 	}
 
+
 	label_display_yeroth_erp_3_0_server_parameters
+		->setText(YerothUtils::YEROTH_ERP_3_0_SERVER_PARAMETERS_DISPLAY);
+
+	_allWindows->_adminWindow->label_ADMIN_WINDOW_display_yeroth_erp_3_0_server_parameters
 		->setText(YerothUtils::YEROTH_ERP_3_0_SERVER_PARAMETERS_DISPLAY);
 
 	_allWindows->_pdVenteWindow->label_PDV_display_yeroth_erp_3_0_server_parameters
