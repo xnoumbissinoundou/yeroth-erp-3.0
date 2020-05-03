@@ -26,7 +26,7 @@ class YerothArticleVenteInfo;
 class YerothPOSCreditCardInfo;
 
 
-class YerothPointDeVenteWindow : public YerothWindowsCommons, private Ui_YerothPointDeVenteWindow
+class YerothPointDeVenteWindow : public YerothWindowsCommons, public Ui_YerothPointDeVenteWindow
 {
     Q_OBJECT
 

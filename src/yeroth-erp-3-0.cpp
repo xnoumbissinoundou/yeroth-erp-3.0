@@ -516,26 +516,7 @@ int main(int argc, char *argv[])
 						 database.db_ip_address(),
 						 database.db_connection_options());
 
-    if (!database.open())
-    {
-        QString errMsg(QString(QObject::trUtf8("Impossible de se connecter au serveur '%1' !\n\n"
-        									   "Contacter l'administrateur de '%2'\n\n"
-        		                			   "Cliquer sur 'Cancel' pour terminer '%3'"))
-        					.arg(database.db_type(),
-        						 YerothUtils::APPLICATION_NAME,
-								 YerothUtils::APPLICATION_NAME));
-
-        QMessageBox::critical(0, YerothUtils::APPLICATION_NAME, errMsg, QMessageBox::Cancel);
-
-//        qDebug() << QString("++ test: %1").arg(database.toString());
-
-        logger.log("main",
-                   QString(QObject::tr("Impossible de se connecter au serveur '%1': %2 !"))
-				   	   .arg(database.db_type(),
-				   			database.lastError().text()));
-
-        exit(0);
-    }
+    bool isDatabaseOpened = database.open();
 
     logger.log("main", "Database connection could be opened successfully");
 
@@ -577,7 +558,7 @@ int main(int argc, char *argv[])
 
     readTexTemplateFiles(logger);
 
-    allWindows._mainWindow->rendreVisibleLocalTOCLASS();
+    allWindows._mainWindow->rendreVisibleLocalTOCLASS(isDatabaseOpened);
 
     app.exec();
 

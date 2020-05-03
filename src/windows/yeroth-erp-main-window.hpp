@@ -62,7 +62,7 @@ public:
 
     void setup_YEROTH_ERP_3_0_SERVER_PARAMETERS_DISPLAY();
 
-    void rendreVisibleLocalTOCLASS();
+    void rendreVisibleLocalTOCLASS(bool isDatabaseOpened = false);
 
 public slots:
 

@@ -383,20 +383,44 @@ void YerothMainWindow::definirPasDeRole()
 void YerothMainWindow::setup_YEROTH_ERP_3_0_SERVER_PARAMETERS_DISPLAY()
 {
 	YerothUtils::YEROTH_ERP_3_0_SERVER_PARAMETERS_DISPLAY =
-			QString("database server: %1 - "
-					"database ip address: %2 - "
+			QString("database ip address: %1 - "
+					"database table: %2 - "
 					"database options: %3")
-				.arg(_allWindows->getDatabase().db_name(),
-					 _allWindows->getDatabase().db_ip_address(),
+				.arg(_allWindows->getDatabase().db_ip_address(),
+					 _allWindows->getDatabase().db_name(),
 					 _allWindows->getDatabase().db_connection_options());
 }
 
 
-void YerothMainWindow::rendreVisibleLocalTOCLASS()
+void YerothMainWindow::rendreVisibleLocalTOCLASS(bool isDatabaseOpened /* = false */)
 {
 	setup_YEROTH_ERP_3_0_SERVER_PARAMETERS_DISPLAY();
 
+	if (isDatabaseOpened)
+	{
+		label_display_yeroth_erp_3_0_server_parameters
+			->setStyleSheet(QString("color: rgb(%1);")
+								.arg(COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255));
+
+		_allWindows->_pdVenteWindow->label_PDV_display_yeroth_erp_3_0_server_parameters
+			->setStyleSheet(QString("color: rgb(%1);")
+								.arg(COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255));
+	}
+	else
+	{
+		label_display_yeroth_erp_3_0_server_parameters
+			->setStyleSheet(QString("color: rgb(%1);")
+								.arg(COLOUR_RGB_STRING_YEROTH_FIREBRICK_RED_255_48_48));
+
+		_allWindows->_pdVenteWindow->label_PDV_display_yeroth_erp_3_0_server_parameters
+			->setStyleSheet(QString("color: rgb(%1);")
+								.arg(COLOUR_RGB_STRING_YEROTH_FIREBRICK_RED_255_48_48));
+	}
+
 	label_display_yeroth_erp_3_0_server_parameters
+		->setText(YerothUtils::YEROTH_ERP_3_0_SERVER_PARAMETERS_DISPLAY);
+
+	_allWindows->_pdVenteWindow->label_PDV_display_yeroth_erp_3_0_server_parameters
 		->setText(YerothUtils::YEROTH_ERP_3_0_SERVER_PARAMETERS_DISPLAY);
 
 	show();

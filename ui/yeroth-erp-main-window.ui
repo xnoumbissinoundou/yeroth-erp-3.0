@@ -4471,9 +4471,9 @@ Vente</string>
    <widget class="QLabel" name="label_display_yeroth">
     <property name="geometry">
      <rect>
-      <x>327</x>
+      <x>0</x>
       <y>229</y>
-      <width>148</width>
+      <width>800</width>
       <height>21</height>
      </rect>
     </property>
