@@ -5933,7 +5933,7 @@ stock (service)</translation>
         <location filename="ui/yeroth-erp-admin-window.ui" line="18873"/>
         <location filename="ui/yeroth-erp-admin-window.ui" line="19309"/>
         <location filename="ui/yeroth-erp-admin-window.ui" line="19745"/>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="23066"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="23523"/>
         <source>Supprimer un article</source>
         <translation>Remove stock</translation>
     </message>
@@ -6115,12 +6115,13 @@ stock (service)</translation>
     <message>
         <location filename="ui/yeroth-erp-admin-window.ui" line="17965"/>
         <source>paramètres client (cet ordinateur)</source>
-        <translation>client computer parameter (this computer)</translation>
+        <translation>client computer parameters (this computer)</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-admin-window.ui" line="22635"/>
-        <source>fichier sys. imprimante therm.</source>
-        <translation type="unfinished"></translation>
+        <source>fichier système imprimante thermique</source>
+        <oldsource>fichier sys. imprimante therm.</oldsource>
+        <translation>thermal printer system device file</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-admin-window.ui" line="23545"/>
@@ -6128,9 +6129,14 @@ stock (service)</translation>
         <translation>server parameters</translation>
     </message>
     <message>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="24979"/>
+        <source>paramètres client - 2 (cet ordinateur)</source>
+        <translation>client computer parameters - 2 (this computer)</translation>
+    </message>
+    <message>
         <location filename="ui/yeroth-erp-admin-window.ui" line="25456"/>
         <source>long. max. d&apos;affichage &apos;string&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>max. &apos;string&apos; length display</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-admin-window.ui" line="29922"/>
