@@ -383,9 +383,9 @@ void YerothMainWindow::definirPasDeRole()
 void YerothMainWindow::setup_YEROTH_ERP_3_0_SERVER_PARAMETERS_DISPLAY()
 {
 	YerothUtils::YEROTH_ERP_3_0_SERVER_PARAMETERS_DISPLAY =
-			QString("database ip address: %1 - "
-					"database table: %2 - "
-					"database options: %3")
+			QString("database ip address: \"%1\" - "
+					"database table: \"%2\" - "
+					"database options: \"%3\"")
 				.arg(_allWindows->getDatabase().db_ip_address(),
 					 _allWindows->getDatabase().db_name(),
 					 _allWindows->getDatabase().db_connection_options());
