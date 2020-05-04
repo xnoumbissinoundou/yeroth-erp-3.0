@@ -23858,6 +23858,11 @@ background-color: rgb(0, 0, 0); </string>
    </property>
   </action>
   <action name="actionAdministration">
+   <property name="icon">
+    <iconset>
+     <normalon>:/yeroth-erp-3-0-images/yeroth-erp-3-0-administration-icon.png</normalon>
+    </iconset>
+   </property>
    <property name="text">
     <string>Administration</string>
    </property>
@@ -23969,9 +23974,9 @@ background-color: rgb(0, 0, 0); </string>
    <header>src/widgets/yeroth-erp-line-edit.hpp</header>
   </customwidget>
   <customwidget>
-   <class>YerothTableWidget</class>
-   <extends>QTableWidget</extends>
-   <header>src/widgets/yeroth-erp-table-widget.hpp</header>
+   <class>YerothTextEdit</class>
+   <extends>QTextEdit</extends>
+   <header>src/widgets/yeroth-erp-text-edit.hpp</header>
   </customwidget>
   <customwidget>
    <class>YerothERPQCheckBox</class>
@@ -23979,9 +23984,9 @@ background-color: rgb(0, 0, 0); </string>
    <header>src/widgets/yeroth-erp-qcheckbox.hpp</header>
   </customwidget>
   <customwidget>
-   <class>YerothTextEdit</class>
-   <extends>QTextEdit</extends>
-   <header>src/widgets/yeroth-erp-text-edit.hpp</header>
+   <class>YerothTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>src/widgets/yeroth-erp-table-widget.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

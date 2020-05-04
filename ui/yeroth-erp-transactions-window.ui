@@ -7702,6 +7702,11 @@ background-color: rgb(0, 0, 0); </string>
    </property>
   </action>
   <action name="actionAdministration">
+   <property name="icon">
+    <iconset>
+     <normalon>:/yeroth-erp-3-0-images/yeroth-erp-3-0-administration-icon.png</normalon>
+    </iconset>
+   </property>
    <property name="text">
     <string>Administration</string>
    </property>

@@ -2609,7 +2609,7 @@ background-color: rgb(198, 198, 198);</string>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <property name="locale">
@@ -4504,6 +4504,11 @@ background-color: rgb(198, 198, 198);</string>
    </property>
   </action>
   <action name="actionAdministration">
+   <property name="icon">
+    <iconset>
+     <normalon>:/yeroth-erp-3-0-images/yeroth-erp-3-0-administration-icon.png</normalon>
+    </iconset>
+   </property>
    <property name="text">
     <string>Administration</string>
    </property>
