@@ -526,7 +526,9 @@ void YerothModifierCompteClientWindow::actualiserCompteClient()
                                      QObject::tr("modification d'un compte client - succès"),
                                      retMsg);
 
-            clients();
+            _allWindows->_clientsDetailWindow->rendreVisible(_clientLastSelectedRow,
+            												 _curClientTableModel,
+    														 _curStocksTableModel);
         }
         else
         {

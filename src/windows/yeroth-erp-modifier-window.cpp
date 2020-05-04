@@ -342,7 +342,8 @@ void YerothModifierWindow::actualiser_stock()
                 YerothQMessageBox::warning(this, QObject::trUtf8("échec"), retMsg);
             }
 
-            _allWindows->_stocksWindow->rendreVisible(_curStocksTableModel);
+            _allWindows->_detailWindow->rendreVisible(_curStocksTableModel);
+//            _allWindows->_stocksWindow->rendreVisible(_curStocksTableModel);
 
             rendreInvisible();
         }
