@@ -40505,6 +40505,7 @@ cette Vente</string>
    <addaction name="actionChanger_utilisateur"/>
    <addaction name="actionDeconnecter_utilisateur"/>
    <addaction name="actionAppeler_aide"/>
+   <addaction name="actionExporter_au_format_csv"/>
    <addaction name="actionAfficherPDF"/>
    <addaction name="actionMenu"/>
    <addaction name="actionAlertes"/>
@@ -40696,6 +40697,11 @@ cette Vente</string>
    </property>
   </action>
   <action name="actionExporter_au_format_csv">
+   <property name="icon">
+    <iconset>
+     <normalon>:/yeroth-erp-3-0-images/yeroth-erp-3.0-export-csv-data-icon.png</normalon>
+    </iconset>
+   </property>
    <property name="text">
     <string>Exporter au format csv</string>
    </property>
