@@ -355,12 +355,12 @@ void YerothModifierCompteClientWindow::supprimer_image_compte_client()
 
         bool resRemoved = _curClientTableModel->updateRecord(_clientLastSelectedRow, record);
 
-        label_image_produit->clear();
-
-        label_image_produit->setAutoFillBackground(false);
-
         if (resRemoved)
         {
+            label_image_produit->clear();
+
+            label_image_produit->setAutoFillBackground(false);
+
             msgSupprimer.clear();
             msgSupprimer.append(QObject::tr("L'image de ce compte client \""));
             msgSupprimer.append(nomEntreprise);
@@ -526,9 +526,9 @@ void YerothModifierCompteClientWindow::actualiserCompteClient()
                                      QObject::tr("modification d'un compte client - succès"),
                                      retMsg);
 
-            _allWindows->_clientsDetailWindow->rendreVisible(_clientLastSelectedRow,
-            												 _curClientTableModel,
-    														 _curStocksTableModel);
+            clients();
+
+            rendreInvisible();
         }
         else
         {

@@ -342,8 +342,7 @@ void YerothModifierWindow::actualiser_stock()
                 YerothQMessageBox::warning(this, QObject::trUtf8("échec"), retMsg);
             }
 
-            _allWindows->_detailWindow->rendreVisible(_curStocksTableModel);
-//            _allWindows->_stocksWindow->rendreVisible(_curStocksTableModel);
+            _allWindows->_stocksWindow->rendreVisible(_curStocksTableModel);
 
             rendreInvisible();
         }
@@ -383,7 +382,6 @@ void YerothModifierWindow::setupLineEdits()
     lineEdit_tva->setYerothEnabled(false);
     lineEdit_quantite_restante->setYerothEnabled(false);
     lineEdit_tva->setText(YerothUtils::getTvaStringWithPercent());
-
 }
 
 
