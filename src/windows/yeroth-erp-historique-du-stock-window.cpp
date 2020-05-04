@@ -34,7 +34,7 @@ YerothHistoriqueDuStockWindow::YerothHistoriqueDuStockWindow()
                                     .arg(COLOUR_RGB_STRING_YEROTH_ORANGE_243_162_0,
                                     		COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
-    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_document()));
+    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_pdf_document()));
 }
 
 
@@ -205,9 +205,9 @@ void YerothHistoriqueDuStockWindow::getStockHistoryListingTexTableString(QString
 }
 
 
-bool YerothHistoriqueDuStockWindow::imprimer_document()
+bool YerothHistoriqueDuStockWindow::imprimer_pdf_document()
 {
-	_logger->log("imprimer_document");
+	_logger->log("imprimer_pdf_document");
 
 	QString latexFileNamePrefix("yeroth-erp-historique-dun-stock");
 
@@ -240,7 +240,7 @@ bool YerothHistoriqueDuStockWindow::imprimer_document()
 	int pageNumber = qCeil(tableModelRowCount / MAX_TABLE_ROW_COUNT);
 
 	//qDebug() << QString("number of pages to print: %1").arg(pageNumber);
-	//_logger->log("imprimer_document",
+	//_logger->log("imprimer_pdf_document",
 	//                  QString("number of pages to print: %1").arg(pageNumber));
 	getStockHistoryListingTexTableString(texTable, *tableModel, columnsToIgnore, 0,
 			(20 >= tableModelRowCount) ? tableModelRowCount : 20,

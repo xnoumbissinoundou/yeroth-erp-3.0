@@ -149,7 +149,7 @@ YerothStocksWindow::YerothStocksWindow()
     connect(actionModifier_ce_stock, SIGNAL(triggered()),
     		this, SLOT(modifier_les_articles()));
 
-    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_document()));
+    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_pdf_document()));
     connect(actionA_propos, SIGNAL(triggered()), this, SLOT(apropos()));
     connect(actionAlertes, SIGNAL(triggered()), this, SLOT(alertes()));
     connect(actionReinitialiserRecherche, SIGNAL(triggered()), this, SLOT(reinitialiser_recherche()));
@@ -1371,9 +1371,9 @@ void YerothStocksWindow::getStocksListingTexTableString(QString &texTable_in_out
 }
 
 
-bool YerothStocksWindow::imprimer_document()
+bool YerothStocksWindow::imprimer_pdf_document()
 {
-    _logger->log("imprimer_document");
+    _logger->log("imprimer_pdf_document");
 
     QString latexFileNamePrefix("yeroth-erp-fichier-stocks");
 

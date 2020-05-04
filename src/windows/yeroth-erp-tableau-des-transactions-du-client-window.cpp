@@ -30,7 +30,7 @@ YerothTableauDesTransactionsDuClientWindow::YerothTableauDesTransactionsDuClient
         QString("QMessageBox {background-color: rgb(%1);}")
 			.arg(COLOUR_RGB_STRING_YEROTH_YELLOW_254_254_0);
 
-    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_document()));
+    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_pdf_document()));
 }
 
 
@@ -201,7 +201,7 @@ void YerothTableauDesTransactionsDuClientWindow::getTransactionsDunClientTexDocu
 }
 
 
-bool YerothTableauDesTransactionsDuClientWindow::imprimer_document()
+bool YerothTableauDesTransactionsDuClientWindow::imprimer_pdf_document()
 {
 	QString latexFileNamePrefix("yeroth-erp-tableau-des-transactions-dun-client");
 

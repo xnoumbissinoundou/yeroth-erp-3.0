@@ -92,7 +92,7 @@ public slots:
 											   int toRowIndex,
 											   bool lastPage);
 
-	virtual bool imprimer_document();
+	virtual bool imprimer_pdf_document();
 
     virtual void entrer();
 

@@ -126,7 +126,7 @@ YerothPaiementsWindow::YerothPaiementsWindow()
     connect(actionMenu, SIGNAL(triggered()), this, SLOT(menu()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
     connect(actionExporter_au_format_csv, SIGNAL(triggered()), this, SLOT(export_csv_file()));
-    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_document()));
+    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_pdf_document()));
     connect(actionA_propos, SIGNAL(triggered()), this, SLOT(apropos()));
     connect(actionAlertes, SIGNAL(triggered()), this, SLOT(alertes()));
     connect(actionVendre, SIGNAL(triggered()), this, SLOT(vendre()));
@@ -860,9 +860,9 @@ void YerothPaiementsWindow::getJournalDesPaiementsTexTableString(QString & texTa
 }
 
 
-bool YerothPaiementsWindow::imprimer_document()
+bool YerothPaiementsWindow::imprimer_pdf_document()
 {
-    _logger->log("imprimer_document");
+    _logger->log("imprimer_pdf_document");
 
     QString texTable;
 

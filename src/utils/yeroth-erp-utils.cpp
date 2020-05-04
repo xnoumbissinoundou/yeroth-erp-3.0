@@ -2427,7 +2427,7 @@ QString YerothUtils::prindDocumentFromTableView(YerothWindowsCommons *aWindowCal
     YerothPOSUser *aCurrentUser = _allWindows->getUser();
 
     //qDebug() << QString("number of pages to print: %1").arg(pageNumber);
-    //_logger->log("imprimer_document",
+    //_logger->log("imprimer_pdf_document",
     //                  QString("number of pages to print: %1").arg(pageNumber));
     functionPointerToGetTableViewLatexString(texTable,
     										 *tableModel,

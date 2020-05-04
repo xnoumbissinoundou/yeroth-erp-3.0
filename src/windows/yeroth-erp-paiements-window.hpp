@@ -128,7 +128,7 @@ public slots:
 
 	bool export_csv_file();
 
-	virtual bool imprimer_document();
+	virtual bool imprimer_pdf_document();
 
 	void handleCurrentChanged(int index);
 

@@ -62,7 +62,7 @@ public:
 
 public slots:
 
-	virtual bool imprimer_document();
+	virtual bool imprimer_pdf_document();
 
 	inline virtual void apropos()
 	{

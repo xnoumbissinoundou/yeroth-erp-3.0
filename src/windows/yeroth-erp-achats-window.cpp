@@ -140,7 +140,7 @@ YerothAchatsWindow::YerothAchatsWindow()
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
     connect(actionExporter_au_format_csv, SIGNAL(triggered()), this, SLOT(export_csv_file()));
 
-    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_document()));
+    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_pdf_document()));
     connect(actionA_propos, SIGNAL(triggered()), this, SLOT(apropos()));
     connect(actionAlertes, SIGNAL(triggered()), this, SLOT(alertes()));
     connect(actionReinitialiserRecherche, SIGNAL(triggered()), this, SLOT(reinitialiser_recherche()));
@@ -891,9 +891,9 @@ void YerothAchatsWindow::getAchatsListingTexTableString(QString &texTable_in_out
 }
 
 
-bool YerothAchatsWindow::imprimer_document()
+bool YerothAchatsWindow::imprimer_pdf_document()
 {
-    _logger->log("imprimer_document");
+    _logger->log("imprimer_pdf_document");
 
     QString latexFileNamePrefix("yeroth-erp-marchandises");
 

@@ -40539,7 +40539,7 @@ cette Vente</string>
   <action name="actionAfficherPDF">
    <property name="icon">
     <iconset resource="../yeroth-erp-3-0.qrc">
-     <normaloff>:/yeroth-erp-3-0-images/yeroth-print-icon-software.svg.png</normaloff>:/yeroth-erp-3-0-images/yeroth-print-icon-software.svg.png</iconset>
+     <normaloff>:/yeroth-erp-3-0-images/yeroth-pdf-print-icon-software.svg</normaloff>:/yeroth-erp-3-0-images/yeroth-pdf-print-icon-software.svg</iconset>
    </property>
    <property name="text">
     <string>Imprimer le journal des ventes</string>

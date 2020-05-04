@@ -127,7 +127,7 @@ public:
 
 	static int execQuery(QSqlQuery &query, YerothLogger *logger = 0);
 
-	//static bool imprimer_document(QWidget *widget);
+	//static bool imprimer_pdf_document(QWidget *widget);
 
 	inline static QString get_latex_bold_text(QString text)
 	{

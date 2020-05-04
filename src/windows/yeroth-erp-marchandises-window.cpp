@@ -119,7 +119,7 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
     connect(actionExporter_au_format_csv, SIGNAL(triggered()), this, SLOT(export_csv_file()));
     connect(actionAfficher_les_stocks_termines, SIGNAL(triggered()), this, SLOT(filtrer_empty_product_stock()));
-    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_document()));
+    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_pdf_document()));
     connect(actionA_propos, SIGNAL(triggered()), this, SLOT(apropos()));
     connect(actionAlertes, SIGNAL(triggered()), this, SLOT(alertes()));
     connect(actionReinitialiserRecherche, SIGNAL(triggered()), this, SLOT(reinitialiser_recherche()));
@@ -1155,9 +1155,9 @@ void YerothMarchandisesWindow::getMarchandisesTexDocumentString(QString &texDocu
 }
 
 
-bool YerothMarchandisesWindow::imprimer_document()
+bool YerothMarchandisesWindow::imprimer_pdf_document()
 {
-    _logger->log("imprimer_document");
+    _logger->log("imprimer_pdf_document");
 
     QString latexFileNamePrefix("yeroth-erp-marchandises");
 

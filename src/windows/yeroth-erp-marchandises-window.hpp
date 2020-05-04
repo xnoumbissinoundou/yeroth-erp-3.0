@@ -95,7 +95,7 @@ public slots:
 	static void getMarchandisesTexDocumentString(QString &texDocumentString_in_out,
 			   	   	   	   	   	   	   	   	   	 QString &printString);
 
-	virtual bool imprimer_document();
+	virtual bool imprimer_pdf_document();
 
     virtual void afficherMarchandises(YerothSqlTableModel &aYerothSqlTableModel);
 

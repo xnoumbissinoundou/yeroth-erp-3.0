@@ -63,7 +63,7 @@ YerothClientsDetailWindow::YerothClientsDetailWindow()
     connect(actionAppeler_aide, SIGNAL(triggered()), this, SLOT(help()));
     connect(actionDeconnecter_utilisateur, SIGNAL(triggered()), this, SLOT(deconnecter_utilisateur()));
     connect(actionMenu, SIGNAL(triggered()), this, SLOT(menu()));
-    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_document()));
+    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_pdf_document()));
     connect(actionClients, SIGNAL(triggered()), this, SLOT(clients()));
     connect(actionModifierCompteClient, SIGNAL(triggered()), this, SLOT(modifierCompteClient()));
     connect(actionSupprimerCompteClient, SIGNAL(triggered()), this, SLOT(supprimerCompteClient()));
@@ -309,9 +309,9 @@ void YerothClientsDetailWindow::definirMagasinier()
 }
 
 
-bool YerothClientsDetailWindow::imprimer_document()
+bool YerothClientsDetailWindow::imprimer_pdf_document()
 {
-    _logger->log("imprimer_document");
+    _logger->log("imprimer_pdf_document");
 
     QString yerothCustomerAccountImage("yeroth");
 

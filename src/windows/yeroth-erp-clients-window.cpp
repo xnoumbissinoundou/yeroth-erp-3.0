@@ -126,7 +126,7 @@ YerothERPClientsWindow::YerothERPClientsWindow()
     connect(actionExporter_au_format_csv, SIGNAL(triggered()), this, SLOT(export_csv_file()));
     connect(actionMenu_Principal, SIGNAL(triggered()), this, SLOT(menu()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
-    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_document()));
+    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_pdf_document()));
     connect(actionA_propos, SIGNAL(triggered()), this, SLOT(apropos()));
     connect(actionReinitialiserRecherche, SIGNAL(triggered()), this, SLOT(reinitialiser_recherche()));
     connect(actionReinitialiserElementsDeFiltrage, SIGNAL(triggered()), this, SLOT(reinitialiser_elements_filtrage()));
@@ -1113,9 +1113,9 @@ void YerothERPClientsWindow::getComptesClientsTexDocumentString(QString &texDocu
 }
 
 
-bool YerothERPClientsWindow::imprimer_document()
+bool YerothERPClientsWindow::imprimer_pdf_document()
 {
-    _logger->log("imprimer_document");
+    _logger->log("imprimer_pdf_document");
 
     QString latexFileNamePrefix("yeroth-erp-comptes-clients");
 

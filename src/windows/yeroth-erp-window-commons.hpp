@@ -166,7 +166,7 @@ public slots:
 
 	virtual void qui_suis_je();
 
-	inline virtual bool imprimer_document()
+	inline virtual bool imprimer_pdf_document()
 	{
 		return false;
 	}

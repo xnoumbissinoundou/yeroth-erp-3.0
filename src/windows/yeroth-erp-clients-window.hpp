@@ -89,7 +89,7 @@ public slots:
 	static void getComptesClientsTexDocumentString(QString &texDocumentString_in_out,
 			   	   	   	   	   	   	   	   	   	   QString &printString);
 
-	virtual bool imprimer_document();
+	virtual bool imprimer_pdf_document();
 
     inline int getLastListerSelectedRow()
     {
