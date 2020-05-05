@@ -205,7 +205,7 @@ public slots:
 
 	    inline void rendreInvisibleAvecConservation()
 	    {
-	    	this->setVisible(false);
+	    	setVisible(false);
 	    }
 
 		void lister();
@@ -251,7 +251,7 @@ public slots:
 			YerothQMessageBox::information(this,
 							 QObject::trUtf8("aide"),
 							 QObject::trUtf8("Choisissez les articles à vendre en utilisant "
-											 "leur reference à la première barre de recherche, ou bien "
+											 "leur référence à la première barre de recherche, ou bien "
 											 "leur désignation à la deuxième barre de recherche !"));
 		}
 

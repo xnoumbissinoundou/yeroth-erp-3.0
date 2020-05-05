@@ -2759,7 +2759,8 @@ Please contact an administrator</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-pointdevente-window.hpp" line="253"/>
-        <source>Choisissez les articles à vendre en utilisant leur reference à la première barre de recherche, ou bien leur désignation à la deuxième barre de recherche !</source>
+        <source>Choisissez les articles à vendre en utilisant leur référence à la première barre de recherche, ou bien leur désignation à la deuxième barre de recherche !</source>
+        <oldsource>Choisissez les articles à vendre en utilisant leur reference à la première barre de recherche, ou bien leur désignation à la deuxième barre de recherche !</oldsource>
         <translation>Select the stock items you wish to &quot;check out&quot; using their reference within the first search bar, or, using their name within the second search bar!</translation>
     </message>
     <message>
@@ -9757,6 +9758,11 @@ Account
         <location filename="ui/yeroth-erp-pointdevente-window.ui" line="20423"/>
         <source>Lister les stocks</source>
         <translation>View stocks</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="20435"/>
+        <source>Guide de l&apos;utilisateur (PDF)</source>
+        <translation>User guide (PDF)</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-pointdevente-window.ui" line="20438"/>
