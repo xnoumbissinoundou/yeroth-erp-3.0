@@ -121,7 +121,7 @@
 \newcommand{\uwaterloo}{
 	\company{University of Waterloo}~\footnote{\url{http://www.uwaterloo.ca}}\xspace}
 
-\newcommand{\mariadbmysql}{\emph{MariaDB (MySQL)}\xspace}
+\newcommand{\mariadb}{\texttt{'MariaDB'}\xspace}
 
 \usepackage[T1]{fontenc}
 \newcommand{\changefont}[3]{
@@ -140,7 +140,7 @@
 %% really bad the content
 
 \rhead{}
-\rfoot{{\small Version du --~\date{$01$~Mai~$2020$}~--}}
+\rfoot{{\small Version du --~\date{$05$~Mai~$2020$}~--}}
 \cfoot{\thepage}
 
 %Remove widows and orphants
@@ -172,22 +172,21 @@
 \vspace{-1.1em}
 \section{Introduction}
 \vspace{-0.3em}
-\yeren est un logiciel de gestion commerciale
-(ERP~\footnote{Enterprise Resource Planing.}).
+\yeren est un syst\`eme--logiciel ERP (Enterprise Resource Planing).
 
 Apr\`es son installation, \yeren est accessible \`a
-toute personne qui poss\`ede un nom d'utilisateur et
-un mot de passe.
-Les utilisateurs de \yeren peuvent avoir les r\^oles ou 
-les niveaux d'acc\`es suivants:
+toute personne qui poss\`ede un compte d'utilisateur.
+
+Les utilisateurs de \yeren ont les r\^oles ou 
+niveaux d'acc\`es suivants:
 \begin{enumerate}[1)]
 	\itemsep -0.6em
 	\item \administrateur
-	\item \manager
-	\item \vendeur
+	\item \caissier	
 	\item \gestionairedestocks
-	\item \magasinier
-	\item \caissier.
+	\item \magasinier	
+	\item \manager
+	\item \vendeur.
 \end{enumerate}
 
 \yeren permet de r\'ealiser les t\^aches de gestion
@@ -200,7 +199,6 @@ en fonction du r\^ole de l'utilisateur.
 \textbf{T\^aches} 							& \managerb		 & \vendeurb	 		&	\gestionairedestocksb	& \magasinierb		& \caissierb 		\\ \hline
 entrer un stock 							& \mycheckmark{blue} & 				 		& \mycheckmark{blue}			& 					&  				 	\\ \hline
 supprimer un stock 							& \mycheckmark{blue} & 				 		& 							&					&  					\\ \hline
-lister les marchandises 					& \mycheckmark{blue} &\mycheckmark{blue} 		& \mycheckmark{blue} & 	& \\ \hline
 lister les stocks 							& \mycheckmark{blue} &\mycheckmark{blue} 		& \mycheckmark{blue}			& \mycheckmark{blue}	& \mycheckmark{blue} 	\\ \hline
 modifier un stock 							& \mycheckmark{blue} & 				 		& \mycheckmark{blue}			& 					&  				 	\\ \hline
 transf\'erer des stocks 					& \mycheckmark{blue} & 				 		& \mycheckmark{blue}			& \mycheckmark{blue}	&  				 	\\ \hline
@@ -214,12 +212,12 @@ mouvements des stocks 	   		 			& \mycheckmark{blue} & 				 		&\mycheckmark{blue
 gestion des achats 							& \mycheckmark{blue} &\mytimespartial{blue} &\mycheckmark{blue}				& 					&  				 	\\ \hline
 gestion des clients 			& \mycheckmark{blue} &\mycheckmark{blue} &							& 					&  				 	\\ \hline
 tableaux de bords 		& \mycheckmark{blue}	& 	&					& 					& 	\\ \hline
+retour sur vente 		& \mycheckmark{blue}	& 	&					& 					& \\\hline
 acc\'eder aux informations					&				 &						&							&					&					\\
 sur les ventes 								& \mycheckmark{blue} &\mytimespartial{blue} &							&					&					\\
 
 \end{tabular}
-\caption{Tableau des t\^aches et des r\^oles associ\'es
-\`a la gestion des stocks, des achats, des clients, et des ventes}\label{tachesEtFonctions}
+\caption{Tableau des r\^oles et des t\^aches associ\'ees}\label{tachesEtFonctions}
 \end{table*}
 
 \begin{figure}[!htbp]
@@ -235,84 +233,83 @@ sur les ventes 								& \mycheckmark{blue} &\mytimespartial{blue} &							&				
 \begin{enumerate}[1)]
 	\itemsep -0.3em
 	\item une tr\`es grande stabilit\'e de l'application
-	\item des utilisateurs avec des r\^oles (ou niveaux
-	  d'acc\`es)
+	\item des utilisateurs avec des r\^oles bien sp\'ecifi\'es
 	\item un syst\`eme d'alerte qui comporte des alertes
-	      sur des p\'eriodes de temps, et des alertes sur des
-	      quantit\'es en stock
-	\item la possibilit\'e de g\'en\'er\'er des factures au
+	      param\'etr\'ees en fonction des quantit\'es en stock
+	      ou des p\'eriodes de temps
+	\item la possibilit\'e de g\'en\'er\'er des re\c{c}us au
 	      petit format pour des imprimantes thermiques, ou bien
-	      de g\'en\'er\'er des factures au format ''A4''
+	      de g\'en\'er\'er des documents au format ''A4''
 	\item Linux--Debian comme syst\`eme d'exploitation, car
 	      tr\`es stable, performant, et moins vuln\'erable
-	      aux attaques des pirates en comparaison aux autres
-	      syst\`emes d'exploitation
-	\item une interface ''ventes'' qui aide le \manager a
-	      avoir une vue d'ensemble sur ses 
-	      ventes~(voir la Figure~\ref{fig:fenetre-de-la-vente})
-	\item une interface ''tableaux--de--bord'' qui
-		  g\'en\`ere des diagrammes commerciaux au format PDF,
-		  pour aider le \manager \`a prendre des d\'ecisions.
+	      aux attaques des pirates informatiques en comparaison
+	      aux autres syst\`emes d'exploitation
+	\item une interface ''ventes'' qui permet au \manager
+	      d'avoir une vue d'ensemble des 
+	      ventes~(voir la Figure~\ref{fig:fenetre-de-la-vente}),
+	      et aussi d'effectuer des ''retours sur ventes''
+	\item une interface ''tableaux de bords'' qui
+		  g\'en\`ere des rapports financiers,
+		  pour l'aide \`a la d\'ecision manag\'eriale
+		  du ''business''.
 \end{enumerate}
 
 \vspace{-1em}
 \section{Le syst\`eme d'alerte}
 \vspace{-0.5em}
-\yeren permet \`a ses utilisateurs de cr\'eer
-des alertes par rapport:
+Les utilisateurs aux r\^oles \administrateur ou
+\manager sont ceux capable de cr\'eer des
+alertes dans \yeren.
+\yeren permet  de cr\'eer des alertes pour:
 \begin{enumerate}[1)]
 	\itemsep -0.5em
-	\item \`a la quantit\'e restante d'un stock
-	\item \`a une p\'eriode de temps bien
-		d\'etermin\'ee (ceci aide pour les
-		produits p\'erissables et pour les promotions).
+	\item une quantit\'e d'articles restante en stock
+	\item une p\'eriode de temps.
 \end{enumerate}
 
 \vspace{-1em}
 
 \subsection{Alertes sur une quantit\'e en stock}
 \vspace{-0.1em}
-Les utilisateurs ayant les r\^oles \administrateur ou
-\manager peuvent cr\'eer des alertes qui se
-d\'eclenchent lorsque la quantit\'e en stock d'un produit
-atteint un certain nombre.
+Une alerte sur la quantit\'e en stock (X) d'un produit
+est un message qui est g\'en\'er\'e lorsque la
+quantit\'e en stock de ce produit atteint X.
 
-Par exemple Xavier (\manager) cr\'e une alerte sur le
+Par exemple Xavier (\manager) cr\'ee une alerte sur le
 produit ''mangue'' qui se d\'eclenche d\`es que sa quantit\'e
-en stock atteint $100$; cette alerte est envoy\'ee et
-accompagn\'ee d'un message \`a l'utilisateur Jean (\magasinier).
+en stock atteint $100$; $1$ message est g\'en\'er\'e et
+envoy\'e \`a l'utilisateur Jean (\magasinier).
 
 \vspace{-1em}
 
 \subsection{Alertes sur une p\'eriode de temps}
 \vspace{-0.1em}
-Les utilisateurs ayant les r\^oles \magasinier ou
-\manager peuvent cr\'eer des alertes qui se
-d\'eclenchent d\`es qu'une date est atteinte.
+Une p\'eriode de temps est d\'efinie par $1$ date
+de d\'ebut de p\'eriode, et $1$ date de fin
+de p\'eriode.
+
+Une alerte sur une p\'eriode de temps pour un
+produit est un message qui est g\'en\'er\'e et 
+qui reste existant dans \yeren durant toute la
+dur\'ee de cette p\'eriode de temps.
 
 Par exemple, un message d'alerte doit \^etre envoy\'e
 a l'utilisateur Paul (\caissier) d\`es que
-la date du 18 Novembre est atteinte afin que celui-ci
+la date du $05$~Mai est atteinte afin que celui-ci
 applique un rabais de $20\%$ sur chaque vente de
-yaourt 'tr\`esbon' pendant une p\'eriode de 2 semaines.
+yaourt 'tr\`esbon' durant une p\'eriode de $2$ semaines.
 
 \vspace{-1.1em}
 \section{Le syst\`eme de gestion de base--de--donn\'ees}
 \vspace{-0.3em}
-\mariadbmysql est utilis\'e comme syst\`eme de gestion
-de base de donn\'ees. \mariadbmysql est tr\`es stable,
-performant, et gratuit.
+\mariadb est utilis\'e comme syst\`eme de gestion
+de base de donn\'ees. \mariadb est tr\`es stable,
+tr\`es performant, et source--libre.
+
+Des copies ex\'ecutables de \mariadb peuvent \^etre
+accessible \`a tr\`es moindre co\^ut (ex.: $0$).
 
 \vspace{-1.1em}
-\section{Le r\^ole \administrateur}\label{tachesadmin}
-\vspace{-0.3em}
-Les t\^aches principales, entre autres, du r\^ole
-\administrateur, sont les suivantes: \\
-\{\emph{cr\'eer, modifier, lister, supprimer}\} $\longrightarrow$
-\hspace{0.09cm} \{une alerte, une cat\'egorie de produit,
-un compte utilisateur, un compte fournisseur, une localisation\}.
-
-\vspace{-1em}
 \section{Conclusion}
 \vspace{-1em}
 \begin{figure}[!htbp]

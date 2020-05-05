@@ -100,7 +100,7 @@
 
 \newcommand{\company}[1]{\textbf{#1}\xspace}
 \newcommand{\diplinf}{\textsc{\diplinfn}}
-\newcommand{\saint}{\textbf{saint}\xspace}
+\newcommand{\mariadb}{\texttt{'MariaDB'}\xspace}
 
 \newcommand{\emphbf}[1]{\emph{\textbf{#1}}\xspace}
 \newcommand{\emphit}[1]{\emph{\textit{#1}}\xspace}
@@ -182,7 +182,6 @@ depending on user role.
 \centering \textbf{Tasks} 		& \managerb 		& \sellerb				& \inventorystockmanagerb 	& \storekeeperb	&	\cashierb 		 		\\ \hline
 insert stock 					& \mycheckmark{blue}	&		& \mycheckmark{blue}	& 	&  				 			\\ \hline
 delete stock 					& \mycheckmark{blue}	&		& 						&   &  							\\ \hline
-view merchandise list			& \mycheckmark{blue}	& \mycheckmark{blue} & \mycheckmark{blue} & 				& 	\\ \hline
 view stock 						& \mycheckmark{blue}	& \mycheckmark{blue} & \mycheckmark{blue} & \mycheckmark{blue}	& \mycheckmark{blue} 	\\ \hline
 modify stock 					& \mycheckmark{blue}	&	& \mycheckmark{blue}		& 		&  				 			\\ \hline
 transfer stock					& \mycheckmark{blue}	&	& \mycheckmark{blue}		& \mycheckmark{blue}	&  			\\ \hline
@@ -193,6 +192,7 @@ point--of--sale 		& \mycheckmark{blue}	& \mycheckmark{blue}	&						& 	& \mycheck
 view stock transfers 		 	& \mycheckmark{blue}	&						& \mycheckmark{blue}	& \mycheckmark{blue}	&  							\\ \hline
 customer management 			& \mycheckmark{blue}	& \mycheckmark{blue}	& 						& 					&  	\\ \hline
 business dashboard 				& \mycheckmark{blue}	& 	&					& 					& \\\hline
+sale return 					& \mycheckmark{blue}	& 	&					& 					& \\\hline
 view sales information 			& \mycheckmark{blue}	& \mytimespartial{blue}	&						& 					& 	\\ 	 				
 \end{tabular}
 \caption{\yerenpos functions--tasks, and associated users--roles.}\label{tachesEtFonctions}
@@ -218,20 +218,24 @@ view sales information 			& \mycheckmark{blue}	& \mytimespartial{blue}	&						& 
 	\item \yeren runs on the Linux operating system,
 	      because Linux is stable, performant, and less
 	      vulnerable to security breaches in comparison
-	      to other operating systems
-	\item \yeren has an user interface ''Sales'', which
-	      helps the \manager to view sales
-	      information~(Figure~\ref{fig:fenetre-de-la-vente})
+	      to other operating systems ('\texttt{Windows~$10$}')
+	\item \yeren has an user interface ''Sales'' to view
+		  sale information~(Figure~\ref{fig:fenetre-de-la-vente}),
+		  and thus enables users to make managerial decisions
 	\item \yeren has an interface ''Business--Dashboard'' that
-		  generates pie and bar charts, from sales information,
-		  in PDF format, to help the \manager to take
-		  business--decisions.
+		  generates financial accounting reports,
+		  from sale and payment information, to help
+		  managers to make ''business decisions''.
 \end{enumerate}
 
 \vspace{-1.2em}
 \section{Alert System}
 \vspace{-0.3em}
-\yeren allows users to create two types of alerts:
+Users with roles \administrator or \manager
+are the ones able to create alerts.
+
+\yeren allows its users to create two
+types of alerts:
 \begin{enumerate}[1)]
 	\itemsep -0.5em
   \item alerts over stocks--quantities
@@ -243,49 +247,44 @@ view sales information 			& \mycheckmark{blue}	& \mytimespartial{blue}	&						& 
 \vspace{-1.1em}
 \subsection{Alerts over Stock--Quantity}
 \vspace{0em}
-Users with the roles \administrator or \manager
-could create alerts that will be triggered
-whenever a ''pre--determined'' stock--quantity
-will be reached.
+An alert aver a stock--quantity is a message that
+is sent to a pre--determined user whenever
+''pre--determined'' stock--quantity (X) of
+a specific article--stock is reached.
 
 For instance, Xavier (\manager) could create
 an alert for stock ''mango'' that will be
 trigerred whenever stock ''mango'' quantity
-reaches $100$; this alert will be sent,
-together with a message to user John (\storekeeper).
+reaches $100$; An alert--message is sent
+to user John (\storekeeper).
 
 \vspace{-1.1em}
 \subsection{Alerts over Time--Period}
 \vspace{0em}
-Users with roles \administrator or \manager
-could create alerts that will be triggered
-whenever a ''pre--specified'' ''gregorian''
-calendar date will be reached.
+A time--period is defined by a
+starting--date and an ending--date
+(dates are from the ''gregorian'' calendar).
+
+An alert aver a time--period (T) is a message
+that is generated, sent to a pre--determined user,
+and kept within \yeren from T's starting--date 
+up to T's ending--date.
 
 For example, an alert with a message has to be
-sent to Paul (\cashier) when the date of November
-$18^{th}$ is reached. The alert's message
+sent to Paul (\cashier) when the date of May
+$05^{th}$ is reached. The alert message
 specifies that a rebate of $20\%$ has to be applied
-on every sale of the yoghourt 'tr\`esbon', during a
+on every sale of yoghourt 'tr\`esbon' during a
 time interval of $2$ weeks.
 
 \vspace{-1.5em}
 \section{Database Management System}
 \vspace{-0.9em}
-\yeren uses \emph{MySQL} as the standard DBMS. 
-\emph{MySQL} is very stable, performant, and
-free.
+\yeren uses \mariadb as the standard DBMS. 
+\mariadb is very stable, very performant,
+and free--software.
 
-\vspace{-1.1em}
-\section{Tasks of the User--Role \administrator}\label{tachesadmin}
-\vspace{-0.3em}
-The main tasks of a user with the role \administrator
-among others are to:\\
-\{\emph{create, modifiy, list, delete}\} $\longrightarrow$
-\hspace{0.09cm} \{an alert, a category of articles,
-a user account, a supplier account, a localisation\}.
-
-\vspace{-0.5em}
+\vspace{-1em}
 \section{Conclusion}
 \vspace{-0.9em}
 \begin{figure}[!htbp]
