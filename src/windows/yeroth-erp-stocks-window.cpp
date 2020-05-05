@@ -424,7 +424,7 @@ void YerothStocksWindow::populateComboBoxes()
 
 void YerothStocksWindow::setupLineEdits()
 {
-    lineEdit_stock_terme_recherche->enableForSearch(QObject::trUtf8("terme à rechercher"));
+    lineEdit_stock_terme_recherche->enableForSearch(QObject::trUtf8("terme à rechercher (description de l'article (ou service))"));
     lineEdit_recherche_reference->enableForSearch(QObject::trUtf8("référence"));
 	lineEdit_stock_categorie->enableForSearch(QObject::trUtf8("catégorie"));
 	lineEdit_stock_designation->enableForSearch(QObject::trUtf8("désignation"));
@@ -509,10 +509,8 @@ void YerothStocksWindow::textChangedSearchLineEditsQCompleters()
         	partSearchTerm = searchTermList.at(k);
         	//qDebug() << "++ searchTermList: " << partSearchTerm;
 
-        	_searchFilter.append(QString("(%1 OR %2 OR %3)")
-        							.arg(GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::DESIGNATION, partSearchTerm),
-        								 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::CATEGORIE, partSearchTerm),
-										 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::DESCRIPTION_PRODUIT, partSearchTerm)));
+        	_searchFilter.append(QString("(%1)")
+        							.arg(GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::DESCRIPTION_PRODUIT, partSearchTerm)));
 
         	if (k != lastIdx)
         	{
