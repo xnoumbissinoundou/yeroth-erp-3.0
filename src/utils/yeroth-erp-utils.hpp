@@ -756,7 +756,7 @@ YerothQMessageBox::information(this, QObject::trUtf8(DIALOG_BOX_TITLE), msg); }
 
 #define YEROTH_ERP_3_0_COMMIT_DATABASE_TRANSACTION YerothUtils::commitTransaction()
 
-#define GET_POURCENTAGE(X, TOTAL) ((X / TOTAL) * 100.0)
+#define POURCENTAGE_YEROTH_GET_VALUE(X, TOTAL) ( (0 == TOTAL) ? 0 : ((X / TOTAL) * 100.0) )
 
 # define GET_CURRENT_DATE QDate::currentDate()
 

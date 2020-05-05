@@ -100,10 +100,9 @@ public slots:
 
     void display_quantite_total_by_spinbox(double lots);
 
-    inline void edited_prix_vente(const QString & newPrixVente)
-    {
-    	_lastEditedPrixVente = newPrixVente;
-    }
+    void calculate_and_display_benefit_buying_price_percentage();
+
+    void edited_prix_vente(const QString & newPrixVente);
 
     void display_service_montant_total_vente();
 
@@ -180,10 +179,7 @@ public slots:
     	return _curFournisseurName;
     }
 
-    inline void handle_achat_checkBox(int aState)
-    {
-    	check_fields_mandatory_buying();
-    }
+    void handle_achat_checkBox(int aState);
 
 protected slots:
 

@@ -663,7 +663,18 @@ void YerothMarchandisesWindow::setupLineEdits()
 
 void YerothMarchandisesWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 {
-    _logger->log("rendreVisible");
+	YerothPOSUser *aCurrentUser = _allWindows->getUser();
+
+    if (0 != aCurrentUser && !aCurrentUser->isManager())
+    {
+    	checkBox_services->setChecked(false);
+
+    	checkBox_services->setVisible(false);
+    }
+    else
+    {
+    	checkBox_services->setVisible(true);
+    }
 
     setupLineEdits();
 

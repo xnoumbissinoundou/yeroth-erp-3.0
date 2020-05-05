@@ -44,7 +44,7 @@ YerothEntrerWindow::YerothEntrerWindow()
 {
     setupUi(this);
 
-    this->mySetupUi(this);
+    mySetupUi(this);
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
                                        "QMessageBox QLabel {color: rgb(%2);}").
@@ -112,6 +112,11 @@ YerothEntrerWindow::YerothEntrerWindow()
 
     connect(checkBox_tva, SIGNAL(stateChanged(int)), this, SLOT(handleTVACheckBox(int)));
 
+    connect(lineEdit_prix_dachat,
+    		SIGNAL(textChanged(const QString &)),
+			this,
+            SLOT(calculate_and_display_benefit_buying_price_percentage()));
+
     connect(lineEdit_prix_vente,
     		SIGNAL(textChanged(const QString &)),
 			this,
@@ -139,23 +144,32 @@ YerothEntrerWindow::YerothEntrerWindow()
 
 void YerothEntrerWindow::deconnecter_utilisateur()
 {
-    this->clear_all_fields();
+    clear_all_fields();
     _allWindows->definirPasDeRole();
     _allWindows->_mainWindow->show();
-    this->rendreInvisible();
+    rendreInvisible();
 }
 
 void YerothEntrerWindow::setupLineEdits()
 {
+	lineEdit_pourcentage_prix_dachat_prix_de_vente->setVisible(false);
+
+	lineEdit_pourcentage_prix_dachat_prix_de_vente->setYerothEnabled(false);
+
 	lineEdit_service_montant_total_vente->setYerothEnabled(false);
     lineEdit_quantite_total->setYerothEnabled(false);
     lineEdit_tva->setYerothEnabled(false);
+
     lineEdit_tva->setText(YerothUtils::getTvaStringWithPercent());
+
     lineEdit_quantite_total->setValidator(&YerothUtils::DoubleValidator);
     lineEdit_quantite_par_lot->setValidator(&YerothUtils::IntValidator);
     lineEdit_stock_minimum->setValidator(&YerothUtils::DoubleValidator);
     lineEdit_prix_dachat->setValidator(&YerothUtils::DoubleValidator);
     lineEdit_prix_vente->setValidator(&YerothUtils::DoubleValidator);
+
+    calculate_and_display_benefit_buying_price_percentage();
+
     lineEdit_reference_produit->setFocus();
 }
 
@@ -207,8 +221,8 @@ void YerothEntrerWindow::setupLineEditsQCompleters()
 
 void YerothEntrerWindow::setupShortcuts()
 {
-    this->setupShortcutActionMessageDaide 	(*actionAppeler_aide);
-    this->setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
+    setupShortcutActionMessageDaide 	(*actionAppeler_aide);
+    setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
 }
 
 
@@ -600,6 +614,39 @@ void YerothEntrerWindow::display_prix_vente()
 }
 
 
+void YerothEntrerWindow::calculate_and_display_benefit_buying_price_percentage()
+{
+    if (!checkBox_service->isChecked() && checkBox_achat->isChecked())
+    {
+    	double prix_dachat = lineEdit_prix_dachat->text().toDouble();
+    	double prix_vente = lineEdit_prix_vente->text().toDouble();
+    	//double montantTva = 0.0;
+
+    	if( YerothUtils::isProfitable(prix_vente, prix_dachat, _montantTva) )
+    	{
+        	double pourcentage_benefice_prix_dachat =
+        	 POURCENTAGE_YEROTH_GET_VALUE(YerothUtils::getMargeBeneficiaire(prix_vente, prix_dachat, _montantTva), prix_dachat);
+
+        	lineEdit_pourcentage_prix_dachat_prix_de_vente
+				->setText(QString("%1%")
+							.arg(QString::number(pourcentage_benefice_prix_dachat, 'f', 2)));
+    	}
+    	else
+    	{
+        	lineEdit_pourcentage_prix_dachat_prix_de_vente->setText("0.00 %");
+    	}
+    }
+}
+
+
+void YerothEntrerWindow::edited_prix_vente(const QString &newPrixVente)
+{
+	_lastEditedPrixVente = newPrixVente;
+
+	calculate_and_display_benefit_buying_price_percentage();
+}
+
+
 void YerothEntrerWindow::display_service_montant_total_vente()
 {
     if (checkBox_service->isChecked())
@@ -608,6 +655,10 @@ void YerothEntrerWindow::display_service_montant_total_vente()
     	double qte_total = lineEdit_quantite_total->text().toDouble();
     	double montant_total_vente = qte_total * prix_vente;
 		lineEdit_service_montant_total_vente->setText(GET_CURRENCY_STRING_NUM(montant_total_vente));
+    }
+    else
+    {
+    	calculate_and_display_benefit_buying_price_percentage();
     }
 }
 
@@ -648,6 +699,8 @@ void YerothEntrerWindow::setStockSpecificWidgetVisible(bool visible)
 
 	label_prix_dachat->setVisible(visible);
 	lineEdit_prix_dachat->setVisible(visible);
+
+	lineEdit_pourcentage_prix_dachat_prix_de_vente->setVisible(visible);
 
 	checkBox_achat->setVisible(visible);
 }
@@ -719,6 +772,8 @@ void YerothEntrerWindow::handleTVACheckBox(int state)
     }
 
     lineEdit_prix_vente->setText(QString::number(prix_vente, 'f', 2));
+
+    calculate_and_display_benefit_buying_price_percentage();
 }
 
 
@@ -744,7 +799,7 @@ void YerothEntrerWindow::handleCategorieName(const QString &text)
     {
     	_allWindows->_creerNouvelleCategorieWindow->rendreVisible(_curStocksTableModel);
 
-    	this->rendreInvisibleAvecConservation();
+    	rendreInvisibleAvecConservation();
     }
 
     return ;
@@ -849,13 +904,25 @@ void YerothEntrerWindow::clear_all_fields()
 
 void YerothEntrerWindow::rendreInvisible()
 {
-    this->clear_all_fields();
+    clear_all_fields();
     dateEdit_date_peremption->reset();
-    this->setVisible(false);
+    setVisible(false);
 }
 
 void YerothEntrerWindow::rendreVisible(YerothSqlTableModel * stocksTableModel, bool aShowItem)
 {
+    YerothPOSUser *aCurrentUser = _allWindows->getUser();
+
+    if (0 != aCurrentUser && !aCurrentUser->isManager())
+    {
+    	checkBox_service->setChecked(false);
+    	checkBox_service->setVisible(false);
+    }
+    else
+    {
+    	checkBox_service->setVisible(true);
+    }
+
     _curStocksTableModel = stocksTableModel;
 
     if (_createNewCategorie)
@@ -883,7 +950,6 @@ void YerothEntrerWindow::rendreVisible(YerothSqlTableModel * stocksTableModel, b
             lineEdit_nom_entreprise_fournisseur->clear();
         }
     }
-
 
     if (checkBox_service->isChecked())
     {
@@ -941,17 +1007,40 @@ void YerothEntrerWindow::rendreVisible(YerothSqlTableModel * stocksTableModel, b
 }
 
 
+void YerothEntrerWindow::handle_achat_checkBox(int aState)
+{
+	if (checkBox_achat->isChecked())
+	{
+		lineEdit_prix_dachat->setVisible(true);
+		lineEdit_pourcentage_prix_dachat_prix_de_vente->setVisible(true);
+	}
+	else
+	{
+		lineEdit_prix_dachat->setVisible(false);
+		lineEdit_pourcentage_prix_dachat_prix_de_vente->setVisible(false);
+	}
+
+	lineEdit_pourcentage_prix_dachat_prix_de_vente->setText("0.00 %");
+
+	check_fields_mandatory_buying();
+}
+
+
 bool YerothEntrerWindow::check_fields_mandatory_buying()
 {
 	bool prix_dachat = true;
 
 	if (checkBox_achat->isChecked())
 	{
+		lineEdit_prix_dachat->setVisible(true);
+		lineEdit_pourcentage_prix_dachat_prix_de_vente->setVisible(true);
 		prix_dachat = lineEdit_prix_dachat->checkField();
 	}
 	else
 	{
 		lineEdit_prix_dachat->clearField();
+		lineEdit_prix_dachat->setVisible(false);
+		lineEdit_pourcentage_prix_dachat_prix_de_vente->setVisible(false);
 	}
 
     return prix_dachat;
@@ -1433,7 +1522,7 @@ void YerothEntrerWindow::enregistrer_produit()
     							   lineEdit_prix_dachat->text().toDouble(),
 								   _montantTva))
     {
-    	QString warnMsg(QObject::trUtf8("Le prix de vente doit être supérieure ou égal au prix d'achat !"));
+    	QString warnMsg(QObject::trUtf8("Le prix de vente doit être supérieur ou égal au prix d'achat !"));
 
     	if (QMessageBox::Ok ==
     			YerothQMessageBox::warning(this, QObject::tr("pas profitable"), warnMsg))
