@@ -12319,6 +12319,8 @@ background-color: rgb(0, 0, 0); </string>
    <addaction name="actionChanger_utilisateur"/>
    <addaction name="actionDeconnecter_utilisateur"/>
    <addaction name="actionAppeler_aide"/>
+   <addaction name="actionChampsDBVisible"/>
+   <addaction name="actionReinitialiserChampsDBVisible"/>
    <addaction name="actionExporter_au_format_csv"/>
    <addaction name="actionAfficherPDF"/>
    <addaction name="actionAlertes"/>
@@ -12641,6 +12643,11 @@ background-color: rgb(0, 0, 0); </string>
    </property>
   </action>
   <action name="actionChampsDBVisible">
+   <property name="icon">
+    <iconset>
+     <normalon>:/yeroth-erp-3-0-images/yeroth-erp-3.0-select-database-table-column-icon.png</normalon>
+    </iconset>
+   </property>
    <property name="text">
     <string>Sélectionner les  champs (base de données) visible</string>
    </property>
@@ -12654,6 +12661,11 @@ background-color: rgb(0, 0, 0); </string>
    </property>
   </action>
   <action name="actionReinitialiserChampsDBVisible">
+   <property name="icon">
+    <iconset>
+     <normalon>:/yeroth-erp-3-0-images/yeroth-erp-3.0-reset-database-table-column-selection-icon.png</normalon>
+    </iconset>
+   </property>
    <property name="text">
     <string>Réinitialiser les  champs (base de données) visible</string>
    </property>

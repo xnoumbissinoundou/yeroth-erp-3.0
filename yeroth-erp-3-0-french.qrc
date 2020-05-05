@@ -54,7 +54,9 @@
     
 		<file>yeroth-erp-3-0-images/folder-sort.svg.png</file>
 		<file>yeroth-erp-3-0-images/yeroth-erp-3.0-icon.png</file>
-    <file>yeroth-erp-3-0-images/yeroth-erp-3.0-export-csv-data-icon.png</file>
+		<file>yeroth-erp-3-0-images/yeroth-erp-3.0-reset-database-table-column-selection-icon.png</file>
+    <file>yeroth-erp-3-0-images/yeroth-erp-3.0-select-database-table-column-icon.png</file>
+		<file>yeroth-erp-3-0-images/yeroth-erp-3.0-export-csv-data-icon.png</file>
     <file>yeroth-erp-3-0-images/yeroth-erp-3-0-administration-icon.png</file>
     <file>yeroth-erp-3-0-images/yeroth-pdf-print-icon-software.svg</file>
     <file>yeroth-erp-3-0-images/log-in.png</file>
