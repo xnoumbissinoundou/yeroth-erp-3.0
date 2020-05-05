@@ -10600,7 +10600,6 @@ background-color: rgb(0, 0, 0); </string>
     <addaction name="actionDeconnecter_utilisateur"/>
     <addaction name="separator"/>
     <addaction name="actionAfficherDetailsClient"/>
-    <addaction name="actionConsulterTransactionsClient"/>
     <addaction name="actionPayerAuCompteClient"/>
     <addaction name="separator"/>
     <addaction name="actionCreerCompteClient"/>
@@ -11823,19 +11822,6 @@ background-color: rgb(0, 0, 0); </string>
    </property>
    <property name="toolTip">
     <string>Réinitialiser les  champs (base de données) visible</string>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
-  </action>
-  <action name="actionConsulterTransactionsClient">
-   <property name="text">
-    <string>Consulter les transactions de ce client</string>
-   </property>
-   <property name="toolTip">
-    <string>Consulter les transactions de ce client</string>
    </property>
    <property name="font">
     <font>

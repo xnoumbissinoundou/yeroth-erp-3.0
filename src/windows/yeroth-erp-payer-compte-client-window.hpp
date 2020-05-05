@@ -129,6 +129,10 @@ private slots:
 
 	void reinitialiser_donnees_de_paiement_au_compteclient();
 
+	void reinitialiser_donnees_de_consultation_des_transactions_financieres();
+
+	void private_slot_afficher_les_transactions_dun_client();
+
   	bool putCashIntoCustomerAccount();
 
 private:
@@ -136,6 +140,8 @@ private:
     void setupLineEdits();
 
     void setupLineEditsQCompleters();
+
+    void setupDateTimeEdits();
 
   	void populatePayerAuCompteClientsComboBoxes();
 

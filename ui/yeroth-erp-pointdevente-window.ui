@@ -20432,7 +20432,7 @@ background-color: rgb(0, 0, 0); </string>
   </action>
   <action name="actionGuideUtilisateur">
    <property name="text">
-    <string>Manuel de l'utilisateur (PDF)</string>
+    <string>Guide de l'utilisateur (PDF)</string>
    </property>
    <property name="toolTip">
     <string>Manuel de l'utilisateur (PDF)</string>

@@ -143,14 +143,11 @@ YerothERPClientsWindow::YerothERPClientsWindow()
 
 #endif
 
-    connect(actionConsulterTransactionsClient, SIGNAL(triggered()),
-    		this, SLOT(private_slot_afficher_les_transactions_dun_client()));
-
 	connect(actionAfficher_client_au_detail, SIGNAL(triggered()),
 			this, SLOT(afficher_au_detail()));
 
     connect(tableView_clients, SIGNAL(doubleClicked(const QModelIndex &)), this,
-            SLOT(afficher_au_detail(const QModelIndex &)));
+            SLOT(private_payer_au_compteclient()));
 
     setupShortcuts();
 }
@@ -181,7 +178,6 @@ void YerothERPClientsWindow::contextMenuEvent(QContextMenuEvent * event)
 	menu.setPalette(toolBar_clientsWindow->palette());
 	menu.addAction(actionAfficherDetailsClient);
 	menu.addAction(actionPayerAuCompteClient);
-	menu.addAction(actionConsulterTransactionsClient);
 	menu.addAction(actionModifierCompteClient);
 	menu.addAction(actionSupprimerCompteClient);
 	menu.exec(event->globalPos());
@@ -333,111 +329,6 @@ void YerothERPClientsWindow::private_payer_au_compteclient()
         YerothQMessageBox::warning(this, QObject::trUtf8("payer à un compte client"),
                                   QObject::trUtf8("Sélectionnez un compte client afin d'effectuer un paiement !"));
     }
-}
-
-
-void YerothERPClientsWindow::private_slot_afficher_les_transactions_dun_client()
-{
-	int lastSelectedRow = getLastListerSelectedRow();
-
-	//qDebug() << QString("lastSelectedRow: %1")
-	//				.arg(QString::number(lastSelectedRow));
-
-	if (0 != _curClientsTableModel && _curClientsTableModel->rowCount() > 0 && lastSelectedRow > -1)
-	{
-	    QSqlRecord record = _curClientsTableModel->record(lastSelectedRow);
-
-//	    int stockId = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ID).toInt();
-
-	    QString clientCompanyName(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE));
-
-//	    YerothHistoriqueStock::listHistoriqueDuStock(historiqueStockSelectionne,
-//	    											 stockReference,
-//													 QString::number(stockId),
-//													 stockDesignation);
-
-
-	    QString clientTransactionsPaiementsQueryStr(QString("select %1, "
-	    													"%2 as 'Date transaction', "
-	    													"%3 as 'Heure transaction', "
-	    													"%4 as 'Total transaction', "
-	    													"%5 as 'Compte client (apres)', "
-	    													"%6 as 'Type de paiement', "
-	    			    									"%7 as 'Raison', "
-	    			    									"CONCAT(date_paiement,' ',heure_paiement) as 'Temps' from %8 "
-	    			    									"where date_paiement >= CURDATE() and date_paiement <= CURDATE()")
-	    											.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
-	    												 YerothDatabaseTableColumn::DATE_PAIEMENT,
-														 YerothDatabaseTableColumn::HEURE_PAIEMENT,
-														 YerothDatabaseTableColumn::MONTANT_PAYE,
-														 YerothDatabaseTableColumn::COMPTE_CLIENT,
-														 YerothDatabaseTableColumn::TYPE_DE_PAIEMENT,
-														 YerothDatabaseTableColumn::REFERENCE,
-														 _allWindows->PAIEMENTS));
-
-	    QString clientTransactionsServicesCompletesQueryStr(QString("select %1, "
-	    													 "%2 as 'Date transaction', "
-	    													 "%3 as 'Heure transaction', "
-	    													 "%4 as 'Total transaction', "
-	    													 "%5 as 'Compte client (apres)', "
-	    													 "%6 as 'Type de paiement', "
-	    			    									 "%7 as 'Raison', "
-	    			    									 "CONCAT(date_vente,' ',heure_vente) as 'Temps' from %8 "
-	    			    									 "where date_vente >= CURDATE() and date_vente <= CURDATE()")
-	    											.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT,
-	    												 YerothDatabaseTableColumn::DATE_VENTE,
-														 YerothDatabaseTableColumn::HEURE_VENTE,
-														 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
-														 YerothDatabaseTableColumn::COMPTE_CLIENT,
-														 YerothDatabaseTableColumn::TYPE_DE_VENTE,
-														 YerothDatabaseTableColumn::REFERENCE,
-														 _allWindows->SERVICES_COMPLETES));
-
-	    QString clientTransactionsStockVenduQueryStr(QString("select %1, "
-	    													 "%2 as 'Date transaction', "
-	    													 "%3 as 'Heure transaction', "
-	    													 "%4 as 'Total transaction', "
-	    													 "%5 as 'Compte client (apres)', "
-	    													 "%6 as 'Type de paiement', "
-	    			    									 "%7 as 'Raison', "
-	    			    									 "CONCAT(date_vente,' ',heure_vente) as 'Temps' from %8 "
-	    			    									 "where date_vente >= CURDATE() and date_vente <= CURDATE()")
-	    											.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT,
-	    												 YerothDatabaseTableColumn::DATE_VENTE,
-														 YerothDatabaseTableColumn::HEURE_VENTE,
-														 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
-														 YerothDatabaseTableColumn::COMPTE_CLIENT,
-														 YerothDatabaseTableColumn::TYPE_DE_VENTE,
-														 YerothDatabaseTableColumn::REFERENCE,
-														 _allWindows->STOCKS_VENDU));
-
-	    QString clientTransactionsUnionQueryStr(QString("SELECT * FROM (%1 UNION %2 UNION %3 ORDER BY Temps ASC) AS U WHERE U.%4 = '%5'")
-	    										.arg(clientTransactionsPaiementsQueryStr,
-	    											 clientTransactionsServicesCompletesQueryStr,
-													 clientTransactionsStockVenduQueryStr,
-													 YerothDatabaseTableColumn::NOM_ENTREPRISE,
-													 clientCompanyName));
-
-//	    qDebug() << QString("++ clientTransactionsUnionQueryStr: %1")
-//	    				.arg(clientTransactionsUnionQueryStr);
-
-		QSqlQuery sqlClientTransactionsUnionQuery;
-
-		int querySize = YerothUtils::execQuery(sqlClientTransactionsUnionQuery, clientTransactionsUnionQueryStr);
-
-//		qDebug() << QString("++ querySize: %1")
-//						.arg(QString::number(querySize));
-
-		YerothUtils::getAllWindows()->_transactionsDunClientWindow
-				->listerTransactionsDunClient(clientCompanyName,
-											  sqlClientTransactionsUnionQuery);
-	}
-	else
-	{
-	    YerothQMessageBox::information(this,
-	    		QObject::trUtf8("comptes clients - transactions d'un client"),
-				QObject::trUtf8("Il n'y a pas de transactions de ce client à lister !"));
-	}
 }
 
 

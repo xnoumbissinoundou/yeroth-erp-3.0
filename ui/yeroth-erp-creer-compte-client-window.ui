@@ -1774,45 +1774,45 @@
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>198</red>
-          <green>198</green>
-          <blue>198</blue>
+          <red>60</red>
+          <green>60</green>
+          <blue>60</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Light">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>255</green>
-          <blue>255</blue>
+          <red>90</red>
+          <green>90</green>
+          <blue>90</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Midlight">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>226</red>
-          <green>226</green>
-          <blue>226</blue>
+          <red>75</red>
+          <green>75</green>
+          <blue>75</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Dark">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>99</red>
-          <green>99</green>
-          <blue>99</blue>
+          <red>30</red>
+          <green>30</green>
+          <blue>30</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Mid">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>132</red>
-          <green>132</green>
-          <blue>132</blue>
+          <red>40</red>
+          <green>40</green>
+          <blue>40</blue>
          </color>
         </brush>
        </colorrole>
@@ -1837,9 +1837,9 @@
        <colorrole role="ButtonText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
@@ -1855,27 +1855,27 @@
        <colorrole role="Window">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>198</red>
-          <green>198</green>
-          <blue>198</blue>
+          <red>60</red>
+          <green>60</green>
+          <blue>60</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Shadow">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>198</red>
-          <green>198</green>
-          <blue>198</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="AlternateBase">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>226</red>
-          <green>226</green>
-          <blue>226</blue>
+          <red>30</red>
+          <green>30</green>
+          <blue>30</blue>
          </color>
         </brush>
        </colorrole>
@@ -1911,45 +1911,45 @@
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>198</red>
-          <green>198</green>
-          <blue>198</blue>
+          <red>60</red>
+          <green>60</green>
+          <blue>60</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Light">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>255</green>
-          <blue>255</blue>
+          <red>90</red>
+          <green>90</green>
+          <blue>90</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Midlight">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>226</red>
-          <green>226</green>
-          <blue>226</blue>
+          <red>75</red>
+          <green>75</green>
+          <blue>75</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Dark">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>99</red>
-          <green>99</green>
-          <blue>99</blue>
+          <red>30</red>
+          <green>30</green>
+          <blue>30</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Mid">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>132</red>
-          <green>132</green>
-          <blue>132</blue>
+          <red>40</red>
+          <green>40</green>
+          <blue>40</blue>
          </color>
         </brush>
        </colorrole>
@@ -1974,9 +1974,9 @@
        <colorrole role="ButtonText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
@@ -1992,27 +1992,27 @@
        <colorrole role="Window">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>198</red>
-          <green>198</green>
-          <blue>198</blue>
+          <red>60</red>
+          <green>60</green>
+          <blue>60</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Shadow">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>198</red>
-          <green>198</green>
-          <blue>198</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="AlternateBase">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>226</red>
-          <green>226</green>
-          <blue>226</blue>
+          <red>30</red>
+          <green>30</green>
+          <blue>30</blue>
          </color>
         </brush>
        </colorrole>
@@ -2039,63 +2039,63 @@
        <colorrole role="WindowText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>99</red>
-          <green>99</green>
-          <blue>99</blue>
+          <red>30</red>
+          <green>30</green>
+          <blue>30</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>198</red>
-          <green>198</green>
-          <blue>198</blue>
+          <red>60</red>
+          <green>60</green>
+          <blue>60</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Light">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>255</green>
-          <blue>255</blue>
+          <red>90</red>
+          <green>90</green>
+          <blue>90</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Midlight">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>226</red>
-          <green>226</green>
-          <blue>226</blue>
+          <red>75</red>
+          <green>75</green>
+          <blue>75</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Dark">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>99</red>
-          <green>99</green>
-          <blue>99</blue>
+          <red>30</red>
+          <green>30</green>
+          <blue>30</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Mid">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>132</red>
-          <green>132</green>
-          <blue>132</blue>
+          <red>40</red>
+          <green>40</green>
+          <blue>40</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Text">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>99</red>
-          <green>99</green>
-          <blue>99</blue>
+          <red>30</red>
+          <green>30</green>
+          <blue>30</blue>
          </color>
         </brush>
        </colorrole>
@@ -2111,45 +2111,45 @@
        <colorrole role="ButtonText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>99</red>
-          <green>99</green>
-          <blue>99</blue>
+          <red>30</red>
+          <green>30</green>
+          <blue>30</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Base">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>198</red>
-          <green>198</green>
-          <blue>198</blue>
+          <red>60</red>
+          <green>60</green>
+          <blue>60</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Window">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>198</red>
-          <green>198</green>
-          <blue>198</blue>
+          <red>60</red>
+          <green>60</green>
+          <blue>60</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Shadow">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>198</red>
-          <green>198</green>
-          <blue>198</blue>
+          <red>0</red>
+          <green>0</green>
+          <blue>0</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="AlternateBase">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>198</red>
-          <green>198</green>
-          <blue>198</blue>
+          <red>60</red>
+          <green>60</green>
+          <blue>60</blue>
          </color>
         </brush>
        </colorrole>
@@ -2177,8 +2177,8 @@
     <property name="font">
      <font>
       <pointsize>10</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
+      <weight>50</weight>
+      <bold>false</bold>
      </font>
     </property>
     <property name="title">

@@ -32,7 +32,9 @@ public:
 		return toolBar_tableauDesTransactionDuClient;
 	}
 
-	void listerTransactionsDunClient(QString clientCompanyName,
+	void listerTransactionsDunClient(QDate dateDebutTransactions,
+									 QDate dateFinTransactions,
+									 QString clientCompanyName,
 									 QSqlQuery &sqlClientTransactionsUnionQuery);
 
 	static void getTransactionsDunClientTexTableString(QString &texTable_in_out,
@@ -52,9 +54,13 @@ public slots:
 
 private:
 
-    static const QString 		_WINDOW_TITLE;
+    static const QString 	_WINDOW_TITLE;
 
-    QString						_clientCompanyName;
+    QDate 					_curDateDebutTransactions;
+
+	QDate 					_curDateFinTransactions;
+
+    QString					_clientCompanyName;
 };
 
 #endif /* SRC_YEROTH_COMPTES_CLIENTS_TRANSACTIONS_DUN_CLIENT_WINDOW_HPP_ */

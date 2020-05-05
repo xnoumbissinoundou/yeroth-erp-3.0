@@ -132,8 +132,6 @@ private slots:
 
 	void private_payer_au_compteclient();
 
-	void private_slot_afficher_les_transactions_dun_client();
-
 	void modifierCompteClient();
 
 	void supprimerCompteClient();

@@ -34,9 +34,15 @@ YerothTableauDesTransactionsDuClientWindow::YerothTableauDesTransactionsDuClient
 }
 
 
-void YerothTableauDesTransactionsDuClientWindow::listerTransactionsDunClient(QString clientCompanyName,
+void YerothTableauDesTransactionsDuClientWindow::listerTransactionsDunClient(QDate dateDebutTransactions,
+																			 QDate dateFinTransactions,
+																			 QString clientCompanyName,
 																			 QSqlQuery &sqlClientTransactionsUnionQuery)
 {
+	_curDateDebutTransactions = dateDebutTransactions;
+
+	_curDateFinTransactions = dateFinTransactions;
+
 	_clientCompanyName = clientCompanyName;
 
 	QString curTitle(windowTitle());
@@ -224,8 +230,10 @@ bool YerothTableauDesTransactionsDuClientWindow::imprimer_pdf_document()
     QMap<QString, QString> documentSpecificElements;
 
     documentSpecificElements.insert("YEROTHCLIENT", YerothUtils::LATEX_IN_OUT_handleForeignAccents(_clientCompanyName));
-    documentSpecificElements.insert("YEROTHVENTESFIN", SET_DATE_TO_STRING(GET_CURRENT_DATE));
-    documentSpecificElements.insert("YEROTHVENTESDEBUT", SET_DATE_TO_STRING(GET_CURRENT_DATE));
+
+    documentSpecificElements.insert("YEROTHVENTESFIN", SET_DATE_TO_STRING(_curDateFinTransactions));
+
+    documentSpecificElements.insert("YEROTHVENTESDEBUT", SET_DATE_TO_STRING(_curDateDebutTransactions));
 
 
     pdfStockFileName = YerothUtils::prindDocumentFromTableView(this,
