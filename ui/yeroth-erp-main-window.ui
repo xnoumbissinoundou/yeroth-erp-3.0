@@ -8474,6 +8474,7 @@ Vente</string>
    <addaction name="actionChanger_utilisateur"/>
    <addaction name="actionDeconnecter_utilisateur"/>
    <addaction name="actionAppeler_aide"/>
+   <addaction name="actionAdministration"/>
   </widget>
   <action name="actionA_propos">
    <property name="text">
