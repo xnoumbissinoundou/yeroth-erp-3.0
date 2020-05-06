@@ -5171,8 +5171,8 @@ background-color: rgb(0, 0, 0); </string>
       <property name="font">
        <font>
         <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="layoutDirection">
@@ -5643,8 +5643,8 @@ background-color: rgb(0, 0, 0); </string>
       <property name="font">
        <font>
         <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="layoutDirection">
@@ -6365,9 +6365,9 @@ background-color: rgb(0, 0, 0); </string>
       <property name="font">
        <font>
         <pointsize>10</pointsize>
-        <weight>75</weight>
+        <weight>50</weight>
         <italic>false</italic>
-        <bold>true</bold>
+        <bold>false</bold>
        </font>
       </property>
       <property name="text">
@@ -6831,8 +6831,8 @@ background-color: rgb(0, 0, 0); </string>
       <property name="font">
        <font>
         <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="autoFillBackground">
@@ -7309,8 +7309,8 @@ background-color: rgb(0, 0, 0); </string>
       <property name="font">
        <font>
         <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="autoFillBackground">
@@ -7759,8 +7759,8 @@ background-color: rgb(0, 0, 0); </string>
       </property>
       <property name="font">
        <font>
-        <weight>50</weight>
-        <bold>false</bold>
+        <weight>75</weight>
+        <bold>true</bold>
        </font>
       </property>
       <property name="text">
@@ -8193,8 +8193,8 @@ background-color: rgb(0, 0, 0); </string>
       </property>
       <property name="font">
        <font>
-        <weight>50</weight>
-        <bold>false</bold>
+        <weight>75</weight>
+        <bold>true</bold>
        </font>
       </property>
       <property name="text">
@@ -9519,8 +9519,8 @@ background-color: rgb(0, 0, 0); </string>
       <property name="font">
        <font>
         <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="autoFillBackground">
@@ -11016,8 +11016,8 @@ background-color: rgb(0, 0, 0); </string>
       <property name="font">
        <font>
         <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="styleSheet">
@@ -12305,9 +12305,9 @@ background-color: rgb(0, 0, 0); </string>
       <property name="font">
        <font>
         <pointsize>10</pointsize>
-        <weight>75</weight>
+        <weight>50</weight>
         <italic>false</italic>
-        <bold>true</bold>
+        <bold>false</bold>
        </font>
       </property>
       <property name="text">
@@ -40541,7 +40541,7 @@ cette Vente</string>
   <action name="actionAfficherPDF">
    <property name="icon">
     <iconset resource="../yeroth-erp-3-0.qrc">
-     <normaloff>:/yeroth-erp-3-0-images/yeroth-pdf-print-icon-software.svg</normaloff>:/yeroth-erp-3-0-images/yeroth-pdf-print-icon-software.svg</iconset>
+     <normaloff>:/yeroth-erp-3-0-images/yeroth-erp-3-0-pdf-print-icon.svg</normaloff>:/yeroth-erp-3-0-images/yeroth-erp-3-0-pdf-print-icon.svg</iconset>
    </property>
    <property name="text">
     <string>Imprimer le journal des ventes</string>

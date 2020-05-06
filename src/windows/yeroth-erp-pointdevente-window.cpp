@@ -84,7 +84,7 @@ YerothPointDeVenteWindow::YerothPointDeVenteWindow()
 {
     setupUi(this);
 
-    this->mySetupUi(this);
+    mySetupUi(this);
 
     QMESSAGE_BOX_STYLE_SHEET =
         QString("QMessageBox {background-color: rgb(%1);}").arg(COLOUR_RGB_STRING_YEROTH_GREEN_2_160_70);
@@ -193,9 +193,7 @@ YerothPointDeVenteWindow::YerothPointDeVenteWindow()
     connect(actionSet_stock_item_name_as_standard_input, SIGNAL(triggered()), this,
             SLOT(setStockItemNameAsStandardInput()));
 
-    handleBasculerLecteurDeCodebarres();
-
-    this->setupShortcuts();
+    setupShortcuts();
 }
 
 YerothPointDeVenteWindow::~YerothPointDeVenteWindow()
@@ -502,11 +500,11 @@ void YerothPointDeVenteWindow::setupShortcuts()
 
     connect(actionStocks, SIGNAL(triggered()), this, SLOT(lister()));
 
-    this->setupShortcutActionMessageDaide 	(*actionAppeler_aide);
+    setupShortcutActionMessageDaide 	(*actionAppeler_aide);
 
-    this->setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
+    setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
 
-    this->setupShortcutActionAfficherPDF	(*actionAfficherPDF);
+    setupShortcutActionAfficherPDF	(*actionAfficherPDF);
 
     actionRechercheArticle->setShortcut(Qt::Key_F12);
 
@@ -1120,7 +1118,7 @@ void YerothPointDeVenteWindow::handleClientName(const QString &text)
     if (YerothUtils::isEqualCaseInsensitive(text, YerothUtils::NOUVEAU_CLIENT))
     {
         _allWindows->_creerNouveauClientWindow->rendreVisible(_curStocksTableModel);
-        this->rendreInvisibleAvecConservation();
+        rendreInvisibleAvecConservation();
     }
 }
 
@@ -1175,7 +1173,7 @@ void YerothPointDeVenteWindow::cleanUpAfterVente()
 
 	set_paiment_compte_client(false);
 
-    this->resetCheckboxTVA();
+    resetCheckboxTVA();
 
     tableWidget_articles->myClear();
     articleItemToVenteInfo.clear();
@@ -1302,7 +1300,7 @@ void YerothPointDeVenteWindow::rendreVisible(YerothSqlTableModel * stocksTableMo
 
     _curStocksTableModel = stocksTableModel;
 
-    this->setupLineEditsQCompleters();
+    setupLineEditsQCompleters();
 
     if (!_curClientName.isEmpty())
     {
@@ -1314,15 +1312,17 @@ void YerothPointDeVenteWindow::rendreVisible(YerothSqlTableModel * stocksTableMo
         lineEdit_articles_nom_client->clear();
     }
 
-    this->resetCheckboxTVA();
+    resetCheckboxTVA();
 
     tabWidget_vente->setCurrentIndex(TableauDesVentes);
 
     lineEdit_articles_nom_caissier->setText(_allWindows->getUser()->nom_complet());
 
     YerothUtils::refreshSalesStrategy(*_curStocksTableModel,
-    								 lineEdit_recherche_article,
-                                     lineEdit_recherche_article_codebar);
+    								  lineEdit_recherche_article,
+                                      lineEdit_recherche_article_codebar);
+
+    handleBasculerLecteurDeCodebarres();
 
     handleTabViews();
 
@@ -1334,13 +1334,13 @@ void YerothPointDeVenteWindow::rendreVisible(YerothSqlTableModel * stocksTableMo
 
     aNewWindowTitle = YerothUtils::appendPDFReceiptFormat(aNewWindowTitle);
 
-    this->setWindowTitle(aNewWindowTitle);
+    setWindowTitle(aNewWindowTitle);
 
     actualiser_toutes_valeurs();
 
     tableWidget_articles->resizeColumnsToContents();
 
-    this->setVisible(true);
+    setVisible(true);
 }
 
 
@@ -1773,7 +1773,7 @@ void YerothPointDeVenteWindow::handleQteChange(QTableWidgetItem * itemChanged)
 
             if (qteEnStock_OK)
             {
-            	if (_qteChangeCodeBar)
+            	if (!_qteChangeCodeBar)
             	{
             		actualiser_articles(itemChanged->row(), newQteValue);
             	}
@@ -2058,7 +2058,7 @@ myItemBreak:
 
     update_lineedits_and_labels(total);
 
-    this->tableWidget_articles->resizeColumnsToContents();
+    tableWidget_articles->resizeColumnsToContents();
 }
 
 /**
@@ -2128,7 +2128,7 @@ myItemBreak:
 
     update_lineedits_and_labels(total);
 
-    this->tableWidget_articles->resizeColumnsToContents();
+    tableWidget_articles->resizeColumnsToContents();
 }
 
 void YerothPointDeVenteWindow::actualiser_tableau_vente()
@@ -2167,7 +2167,7 @@ void YerothPointDeVenteWindow::actualiser_tableau_vente()
 
     update_lineedits_and_labels(total);
 
-    this->tableWidget_articles->resizeColumnsToContents();
+    tableWidget_articles->resizeColumnsToContents();
 }
 
 void YerothPointDeVenteWindow::actualiser_toutes_valeurs()
@@ -2609,7 +2609,7 @@ unsigned int YerothPointDeVenteWindow::effectuer_check_out_comptant()
 
     QString msgVente(QObject::trUtf8("Poursuivre avec la vente de "));
 
-    msgVente.append(QString::number(this->_quantiteAVendre, 'f', 0));
+    msgVente.append(QString::number(_quantiteAVendre, 'f', 0));
     msgVente.append(QObject::trUtf8(" articles (comptant) ?"));
 
     if (QMessageBox::Ok ==
@@ -2624,7 +2624,7 @@ YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
 
 YEROTH_ERP_3_0_COMMIT_DATABASE_TRANSACTION;
 
-        this->cleanUpAfterVente();
+        cleanUpAfterVente();
     }
     else
     {
@@ -2884,7 +2884,7 @@ unsigned int YerothPointDeVenteWindow::effectuer_check_out_compte_client()
 {
     QString msgVente(QObject::trUtf8("Poursuivre avec la vente de "));
 
-    msgVente.append(QString::number(this->_quantiteAVendre, 'f', 0));
+    msgVente.append(QString::number(_quantiteAVendre, 'f', 0));
     msgVente.append(QObject::trUtf8(" articles (compte client) ?"));
 
     if (QMessageBox::Ok ==
@@ -2899,7 +2899,7 @@ unsigned int YerothPointDeVenteWindow::effectuer_check_out_compte_client()
 
     	YerothUtils::commitTransaction();
 
-        this->cleanUpAfterVente();
+        cleanUpAfterVente();
     }
     else
     {

@@ -4786,8 +4786,8 @@ background-color: rgb(0, 0, 0); </string>
       <property name="font">
        <font>
         <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="layoutDirection">
@@ -5258,8 +5258,8 @@ background-color: rgb(0, 0, 0); </string>
       <property name="font">
        <font>
         <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="layoutDirection">
@@ -7820,8 +7820,8 @@ background-color: rgb(0, 0, 0); </string>
       <property name="font">
        <font>
         <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="autoFillBackground">
@@ -8622,9 +8622,9 @@ background-color: rgb(0, 0, 0); </string>
       <property name="font">
        <font>
         <pointsize>10</pointsize>
-        <weight>75</weight>
+        <weight>50</weight>
         <italic>false</italic>
-        <bold>true</bold>
+        <bold>false</bold>
        </font>
       </property>
       <property name="text">
@@ -9412,9 +9412,9 @@ background-color: rgb(0, 0, 0); </string>
       <property name="font">
        <font>
         <pointsize>10</pointsize>
-        <weight>75</weight>
+        <weight>50</weight>
         <italic>false</italic>
-        <bold>true</bold>
+        <bold>false</bold>
        </font>
       </property>
       <property name="text">
@@ -21013,7 +21013,7 @@ background-color: rgb(0, 0, 0); </string>
   <action name="actionAfficherPDF">
    <property name="icon">
     <iconset resource="../yeroth-erp-3-0.qrc">
-     <normaloff>:/yeroth-erp-3-0-images/yeroth-pdf-print-icon-software.svg</normaloff>:/yeroth-erp-3-0-images/yeroth-pdf-print-icon-software.svg</iconset>
+     <normaloff>:/yeroth-erp-3-0-images/yeroth-erp-3-0-pdf-print-icon.svg</normaloff>:/yeroth-erp-3-0-images/yeroth-erp-3-0-pdf-print-icon.svg</iconset>
    </property>
    <property name="text">
     <string>Imprimer le journal des paiements</string>
@@ -21242,24 +21242,24 @@ background-color: rgb(0, 0, 0); </string>
    <header>src/widgets/yeroth-erp-line-edit.hpp</header>
   </customwidget>
   <customwidget>
-   <class>YerothComboBox</class>
-   <extends>QComboBox</extends>
-   <header>src/widgets/yeroth-erp-combo-box.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>YerothDateTimeEdit</class>
    <extends>QDateEdit</extends>
    <header>src/widgets/yeroth-erp-datetime-edit.hpp</header>
   </customwidget>
   <customwidget>
-   <class>YerothERPPaiementsTableView</class>
-   <extends>QTableView</extends>
-   <header>src/widgets/table-view/yeroth-erp-paiements-table-view.hpp</header>
+   <class>YerothComboBox</class>
+   <extends>QComboBox</extends>
+   <header>src/widgets/yeroth-erp-combo-box.hpp</header>
   </customwidget>
   <customwidget>
    <class>YerothTextEdit</class>
    <extends>QTextEdit</extends>
    <header>src/widgets/yeroth-erp-text-edit.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>YerothERPPaiementsTableView</class>
+   <extends>QTableView</extends>
+   <header>src/widgets/table-view/yeroth-erp-paiements-table-view.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

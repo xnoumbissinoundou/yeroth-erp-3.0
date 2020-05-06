@@ -1382,6 +1382,12 @@
         </disabled>
        </palette>
       </property>
+      <property name="font">
+       <font>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
       <property name="text">
        <string>Magasinier</string>
       </property>
@@ -1544,9 +1550,9 @@
       </property>
       <property name="font">
        <font>
-        <weight>50</weight>
+        <weight>75</weight>
         <italic>false</italic>
-        <bold>false</bold>
+        <bold>true</bold>
        </font>
       </property>
       <property name="text">
@@ -3377,8 +3383,8 @@ background-color: rgb(0, 0, 0); </string>
       <property name="font">
        <font>
         <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="layoutDirection">
@@ -7015,6 +7021,12 @@ background-color: rgb(2, 160, 70); </string>
          </colorrole>
         </disabled>
        </palette>
+      </property>
+      <property name="font">
+       <font>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
       </property>
       <property name="text">
        <string>Imprimante</string>
@@ -23752,7 +23764,7 @@ background-color: rgb(0, 0, 0); </string>
   <action name="actionAfficherPDF">
    <property name="icon">
     <iconset resource="../yeroth-erp-3-0.qrc">
-     <normaloff>:/yeroth-erp-3-0-images/yeroth-pdf-print-icon-software.svg</normaloff>:/yeroth-erp-3-0-images/yeroth-pdf-print-icon-software.svg</iconset>
+     <normaloff>:/yeroth-erp-3-0-images/yeroth-erp-3-0-pdf-print-icon.svg</normaloff>:/yeroth-erp-3-0-images/yeroth-erp-3-0-pdf-print-icon.svg</iconset>
    </property>
    <property name="text">
     <string>Imprimer le bon de sortie (ou l'exemple)</string>
@@ -23974,9 +23986,9 @@ background-color: rgb(0, 0, 0); </string>
    <header>src/widgets/yeroth-erp-line-edit.hpp</header>
   </customwidget>
   <customwidget>
-   <class>YerothTextEdit</class>
-   <extends>QTextEdit</extends>
-   <header>src/widgets/yeroth-erp-text-edit.hpp</header>
+   <class>YerothTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>src/widgets/yeroth-erp-table-widget.hpp</header>
   </customwidget>
   <customwidget>
    <class>YerothERPQCheckBox</class>
@@ -23984,9 +23996,9 @@ background-color: rgb(0, 0, 0); </string>
    <header>src/widgets/yeroth-erp-qcheckbox.hpp</header>
   </customwidget>
   <customwidget>
-   <class>YerothTableWidget</class>
-   <extends>QTableWidget</extends>
-   <header>src/widgets/yeroth-erp-table-widget.hpp</header>
+   <class>YerothTextEdit</class>
+   <extends>QTextEdit</extends>
+   <header>src/widgets/yeroth-erp-text-edit.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>
