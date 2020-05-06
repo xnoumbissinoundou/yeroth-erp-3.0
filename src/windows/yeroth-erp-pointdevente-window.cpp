@@ -67,7 +67,7 @@ YerothPointDeVenteWindow::YerothPointDeVenteWindow()
  _paiement_compte_client(false),
  _currentFocusSearchBar(0),
  _currentCreditCardInfo(0),
- _barcodeReaderActivated(true),
+ _barcodeReaderActivated(false),
  _updateItemConversionError(false),
  _previousPressedQteValue("1"),
  _tvaCheckBoxPreviousState(false),
@@ -112,6 +112,8 @@ YerothPointDeVenteWindow::YerothPointDeVenteWindow()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
+
+    pushButton_lecteur_de_code_barres->setVisible(_barcodeReaderActivated);
 
     pushButton_minus->enable(this, SLOT(enlever_article()));
 
@@ -259,6 +261,19 @@ void YerothPointDeVenteWindow::setStockItemNameAsStandardInput()
 }
 
 
+void YerothPointDeVenteWindow::updateLineEditQCompleterInput()
+{
+	if (_barcodeReaderActivated)
+	{
+		connect_barcode_reader_selection_of_article_item();
+	}
+	else
+	{
+		connect_manual_selection_of_article_item();
+	}
+}
+
+
 void YerothPointDeVenteWindow::handleBasculerLecteurDeCodebarres()
 {
 	pushButton_lecteur_de_code_barres->setVisible(!_barcodeReaderActivated);
@@ -273,6 +288,16 @@ void YerothPointDeVenteWindow::handleBasculerLecteurDeCodebarres()
 		_barcodeReaderActivated = false;
 		connect_manual_selection_of_article_item();
 	}
+}
+
+
+void YerothPointDeVenteWindow::handleRefreshSaleStrategy()
+{
+    YerothUtils::refreshSalesStrategy(*_curStocksTableModel,
+                                     lineEdit_recherche_article,
+                                     lineEdit_recherche_article_codebar);
+
+    updateLineEditQCompleterInput();
 }
 
 
@@ -1215,9 +1240,7 @@ void YerothPointDeVenteWindow::cleanUpAfterVente()
     radioButton_article_detail_remise_pourcentage->clearFocus();
     lineEdit_article_detail_quantite_a_vendre->setFocus();
 
-    YerothUtils::refreshSalesStrategy(*_curStocksTableModel,
-                                     lineEdit_recherche_article,
-                                     lineEdit_recherche_article_codebar);
+    handleRefreshSaleStrategy();
 
     setRechercheLineEditFocus();
 }
@@ -1318,11 +1341,7 @@ void YerothPointDeVenteWindow::rendreVisible(YerothSqlTableModel * stocksTableMo
 
     lineEdit_articles_nom_caissier->setText(_allWindows->getUser()->nom_complet());
 
-    YerothUtils::refreshSalesStrategy(*_curStocksTableModel,
-    								  lineEdit_recherche_article,
-                                      lineEdit_recherche_article_codebar);
-
-    handleBasculerLecteurDeCodebarres();
+    handleRefreshSaleStrategy();
 
     handleTabViews();
 

@@ -261,7 +261,11 @@ private slots:
 
 	void setStockItemNameAsStandardInput();
 
+	void updateLineEditQCompleterInput();
+
 	void handleBasculerLecteurDeCodebarres();
+
+	void handleRefreshSaleStrategy();
 
 	bool PROCESS_CREDIT_CARD_PAYMENT();
 
@@ -298,7 +302,7 @@ private:
 
     static const QString 	_WINDOW_TITLE;
 
-    YerothLogger				*_logger;
+    YerothLogger			*_logger;
 
     bool					_paiement_carte_credit_carte_debit;
 

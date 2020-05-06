@@ -219,7 +219,15 @@ protected:
 
 private slots:
 
-    void handleBarCodeScannerCheckBox(int state);
+	void setBarcodeAsStandardInput();
+
+	void setStockItemNameAsStandardInput();
+
+	void updateLineEditQCompleterInput();
+
+	void handleBasculerLecteurDeCodebarres();
+
+	void handleRefreshSaleStrategy();
 
 private:
 
@@ -228,11 +236,6 @@ private:
     	TableauDesSorties = 0,
     	AfficherSortieAuDetail
     };
-
-	inline bool isBarCodeReaderSelectionOfArticleItem()
-	{
-		return checkBox_lecteur_de_code_barres->isChecked();
-	}
 
 	void disconnect_all_objects_for_stock_article_item_selection();
 
@@ -260,6 +263,8 @@ private:
     YerothLineEdit			*_currentFocusSearchBar;
 
     static bool            _qteChangeCodeBar;
+
+    bool					_barcodeReaderActivated;
 
     QProcess 				*_linuxWhich;
 

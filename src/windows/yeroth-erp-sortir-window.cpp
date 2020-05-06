@@ -46,6 +46,7 @@ YerothSortirWindow::YerothSortirWindow()
 :YerothWindowsCommons(YerothSortirWindow::_WINDOW_TITLE),
  _logger(new YerothLogger("YerothSortirWindow")),
  _currentFocusSearchBar(0),
+ _barcodeReaderActivated(false),
  _linuxWhich(0),
  _updateItemConversionError(false),
  _previousPressedQteValue("1"),
@@ -70,8 +71,6 @@ YerothSortirWindow::YerothSortirWindow()
 
     setRechercheLineEditFocus();
 
-    checkBox_lecteur_de_code_barres->setChecked(false);
-
     setupLineEdits();
 
     setupLineEditsQCompleters();
@@ -81,6 +80,8 @@ YerothSortirWindow::YerothSortirWindow()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
+
+    pushButton_lecteur_de_code_barres->setVisible(_barcodeReaderActivated);
 
     pushButton_minus->enable(this, SLOT(enlever_article()));
 
@@ -97,6 +98,7 @@ YerothSortirWindow::YerothSortirWindow()
     connect(actionAlertes, SIGNAL(triggered()), this, SLOT(alertes()));
     connect(actionInformationEntreprise, SIGNAL(triggered()), this, SLOT(infosEntreprise()));
     connect(actionQui_suis_je, SIGNAL(triggered()), this, SLOT(qui_suis_je()));
+    connect(actionBasculerLecteurDeCodebarres, SIGNAL(triggered()), this, SLOT(handleBasculerLecteurDeCodebarres()));
     connect(actionAdministration, SIGNAL(triggered()), this, SLOT(administration()));
 
 #ifdef YEROTH_CLIENT
@@ -120,9 +122,6 @@ YerothSortirWindow::YerothSortirWindow()
     connect(tableWidget_articles, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), this,
             SLOT(afficher_sortie_detail(QTableWidgetItem *)));
 
-    connect(checkBox_lecteur_de_code_barres, SIGNAL(stateChanged(int)),
-    		this, SLOT(handleBarCodeScannerCheckBox(int)));
-
     /* Signals-slots connection for the second tab 'Article au détail' */
     connect(checkBox_tva, SIGNAL(clicked(bool)), this, SLOT(handleTVACheckBox(bool)));
 
@@ -140,6 +139,12 @@ YerothSortirWindow::YerothSortirWindow()
 
     connect(radioButton_article_detail_remise_pourcentage, SIGNAL(toggled(bool)), this,
             SLOT(activateLineEditRemisePourcentage(bool)));
+
+    connect(actionSet_reference_as_standard_input, SIGNAL(triggered()), this,
+            SLOT(setBarcodeAsStandardInput()));
+
+    connect(actionSet_stock_item_name_as_standard_input, SIGNAL(triggered()), this,
+            SLOT(setStockItemNameAsStandardInput()));
 
     setupShortcuts();
 }
@@ -176,9 +181,23 @@ void YerothSortirWindow::deleteArticleVenteInfos()
 }
 
 
-void YerothSortirWindow::handleBarCodeScannerCheckBox(int state)
+void YerothSortirWindow::setBarcodeAsStandardInput()
 {
-	if (checkBox_lecteur_de_code_barres->isChecked())
+	_currentFocusSearchBar = lineEdit_recherche_article_codebar;
+	lineEdit_recherche_article_codebar->setFocus();
+}
+
+
+void YerothSortirWindow::setStockItemNameAsStandardInput()
+{
+	_currentFocusSearchBar = lineEdit_recherche_article;
+	lineEdit_recherche_article->setFocus();
+}
+
+
+void YerothSortirWindow::updateLineEditQCompleterInput()
+{
+	if (_barcodeReaderActivated)
 	{
 		connect_barcode_reader_selection_of_article_item();
 	}
@@ -186,6 +205,33 @@ void YerothSortirWindow::handleBarCodeScannerCheckBox(int state)
 	{
 		connect_manual_selection_of_article_item();
 	}
+}
+
+
+void YerothSortirWindow::handleBasculerLecteurDeCodebarres()
+{
+	pushButton_lecteur_de_code_barres->setVisible(!_barcodeReaderActivated);
+
+	if (!_barcodeReaderActivated)
+	{
+		_barcodeReaderActivated = true;
+		connect_barcode_reader_selection_of_article_item();
+	}
+	else
+	{
+		_barcodeReaderActivated = false;
+		connect_manual_selection_of_article_item();
+	}
+}
+
+
+void YerothSortirWindow::handleRefreshSaleStrategy()
+{
+    YerothUtils::refreshSalesStrategy(*_curStocksTableModel,
+                                     lineEdit_recherche_article,
+                                     lineEdit_recherche_article_codebar);
+
+    updateLineEditQCompleterInput();
 }
 
 
@@ -1090,18 +1136,7 @@ void YerothSortirWindow::cleanUpAfterVente()
 
     lineEdit_article_detail_quantite_a_vendre->setFocus();
 
-    YerothUtils::refreshSalesStrategy(*_curStocksTableModel,
-    								 lineEdit_recherche_article,
-                                     lineEdit_recherche_article_codebar);
-
-    if (isBarCodeReaderSelectionOfArticleItem())
-    {
-    	connect_barcode_reader_selection_of_article_item();
-    }
-    else
-    {
-    	connect_manual_selection_of_article_item();
-    }
+    handleRefreshSaleStrategy();
 
     setRechercheLineEditFocus();
 }
@@ -1161,18 +1196,7 @@ void YerothSortirWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 
     lineEdit_articles_nom_magasinier->setText(_allWindows->getUser()->nom_complet());
 
-    YerothUtils::refreshSalesStrategy(*_curStocksTableModel,
-    								 lineEdit_recherche_article,
-                                     lineEdit_recherche_article_codebar);
-
-    if (isBarCodeReaderSelectionOfArticleItem())
-    {
-    	connect_barcode_reader_selection_of_article_item();
-    }
-    else
-    {
-    	connect_manual_selection_of_article_item();
-    }
+    handleRefreshSaleStrategy();
 
     lineEdit_articles_transfert->setupMyStaticQCompleter(_allWindows->LOCALISATIONS, YerothDatabaseTableColumn::NOM_LOCALISATION);
 
@@ -1609,6 +1633,8 @@ void YerothSortirWindow::handleQteChange(QTableWidgetItem * itemChanged)
 
             YerothArticleVenteInfo *articleVenteInfo = articleItemToVenteInfo.value(itemChanged->row());
 
+            bool qteEnStock_OK = true;
+
             if (0 == articleVenteInfo)
             {
                 articleVenteInfo = new YerothArticleVenteInfo;
@@ -1627,6 +1653,8 @@ void YerothSortirWindow::handleQteChange(QTableWidgetItem * itemChanged)
             {
                 if (articleVenteInfo->_quantite_en_stock < newQteValue)
                 {
+                	qteEnStock_OK = false;
+
                     YerothQMessageBox::warning(this,
                                               QObject::tr("pas assez d'articles en stock"),
                                               QObject::tr("Il n'y a pas assez d'articles en stock !"));
@@ -1638,13 +1666,17 @@ void YerothSortirWindow::handleQteChange(QTableWidgetItem * itemChanged)
                     articleVenteInfo->_quantite_a_vendre = newQteValue;
                 }
             }
-            if (_qteChangeCodeBar)
+
+            if (qteEnStock_OK)
             {
-                actualiser_articles(itemChanged->row(), newQteValue);
-            }
-            else
-            {
-                actualiser_articles_codebar(itemChanged->row(), newQteValue);
+            	if (!_qteChangeCodeBar)
+            	{
+            		actualiser_articles(itemChanged->row(), newQteValue);
+            	}
+            	else
+            	{
+            		actualiser_articles_codebar(itemChanged->row(), newQteValue);
+            	}
             }
         }
         else

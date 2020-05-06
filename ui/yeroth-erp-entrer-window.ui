@@ -11845,6 +11845,9 @@ background-color: rgb(0, 0, 0); </string>
        </disabled>
       </palette>
      </property>
+     <property name="toolTip">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pourcentage de la marge bénéficiaire sur le prix d'achat.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
      <property name="styleSheet">
       <string notr="true">border: 1px solid rgb(60, 60, 60);
 background-color: rgb(0, 0, 0); </string>
