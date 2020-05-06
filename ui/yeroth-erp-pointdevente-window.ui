@@ -1330,8 +1330,8 @@
       <property name="font">
        <font>
         <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="text">
@@ -1376,9 +1376,9 @@
       <property name="font">
        <font>
         <pointsize>10</pointsize>
-        <weight>75</weight>
+        <weight>50</weight>
         <italic>false</italic>
-        <bold>true</bold>
+        <bold>false</bold>
        </font>
       </property>
       <property name="text">
@@ -3453,9 +3453,9 @@ background-color: rgb(0, 0, 0); </string>
       <property name="font">
        <font>
         <pointsize>10</pointsize>
-        <weight>75</weight>
+        <weight>50</weight>
         <italic>false</italic>
-        <bold>true</bold>
+        <bold>false</bold>
        </font>
       </property>
       <property name="text">
@@ -4411,8 +4411,8 @@ background-color: rgb(0, 0, 0); </string>
       <property name="font">
        <font>
         <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="layoutDirection">
@@ -6015,10 +6015,10 @@ background-color: rgb(0, 0, 0); </string>
      <widget class="YerothPushButton" name="pushButton_minus">
       <property name="geometry">
        <rect>
-        <x>185</x>
+        <x>748</x>
         <y>315</y>
-        <width>28</width>
-        <height>10</height>
+        <width>21</width>
+        <height>8</height>
        </rect>
       </property>
       <property name="palette">
@@ -6035,7 +6035,7 @@ background-color: rgb(0, 0, 0); </string>
          </colorrole>
          <colorrole role="Button">
           <brush brushstyle="SolidPattern">
-           <color alpha="255">
+           <color alpha="0">
             <red>0</red>
             <green>0</green>
             <blue>0</blue>
@@ -6107,7 +6107,7 @@ background-color: rgb(0, 0, 0); </string>
          </colorrole>
          <colorrole role="Base">
           <brush brushstyle="SolidPattern">
-           <color alpha="255">
+           <color alpha="0">
             <red>0</red>
             <green>0</green>
             <blue>0</blue>
@@ -6116,7 +6116,7 @@ background-color: rgb(0, 0, 0); </string>
          </colorrole>
          <colorrole role="Window">
           <brush brushstyle="SolidPattern">
-           <color alpha="255">
+           <color alpha="0">
             <red>0</red>
             <green>0</green>
             <blue>0</blue>
@@ -6172,7 +6172,7 @@ background-color: rgb(0, 0, 0); </string>
          </colorrole>
          <colorrole role="Button">
           <brush brushstyle="SolidPattern">
-           <color alpha="255">
+           <color alpha="0">
             <red>0</red>
             <green>0</green>
             <blue>0</blue>
@@ -6244,7 +6244,7 @@ background-color: rgb(0, 0, 0); </string>
          </colorrole>
          <colorrole role="Base">
           <brush brushstyle="SolidPattern">
-           <color alpha="255">
+           <color alpha="0">
             <red>0</red>
             <green>0</green>
             <blue>0</blue>
@@ -6253,7 +6253,7 @@ background-color: rgb(0, 0, 0); </string>
          </colorrole>
          <colorrole role="Window">
           <brush brushstyle="SolidPattern">
-           <color alpha="255">
+           <color alpha="0">
             <red>0</red>
             <green>0</green>
             <blue>0</blue>
@@ -6309,7 +6309,7 @@ background-color: rgb(0, 0, 0); </string>
          </colorrole>
          <colorrole role="Button">
           <brush brushstyle="SolidPattern">
-           <color alpha="255">
+           <color alpha="0">
             <red>0</red>
             <green>0</green>
             <blue>0</blue>
@@ -6381,7 +6381,7 @@ background-color: rgb(0, 0, 0); </string>
          </colorrole>
          <colorrole role="Base">
           <brush brushstyle="SolidPattern">
-           <color alpha="255">
+           <color alpha="0">
             <red>0</red>
             <green>0</green>
             <blue>0</blue>
@@ -6390,7 +6390,7 @@ background-color: rgb(0, 0, 0); </string>
          </colorrole>
          <colorrole role="Window">
           <brush brushstyle="SolidPattern">
-           <color alpha="255">
+           <color alpha="0">
             <red>0</red>
             <green>0</green>
             <blue>0</blue>
@@ -6436,8 +6436,16 @@ background-color: rgb(0, 0, 0); </string>
         </disabled>
        </palette>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
       <property name="toolTip">
        <string>Supprimer un article</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(0,0,0,0%);</string>
       </property>
       <property name="text">
        <string/>
@@ -6445,6 +6453,9 @@ background-color: rgb(0, 0, 0); </string>
       <property name="icon">
        <iconset resource="../yeroth-erp-3-0.qrc">
         <normaloff>:/yeroth-erp-3-0-images/minus.png</normaloff>:/yeroth-erp-3-0-images/minus.png</iconset>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="YerothLineEdit" name="lineEdit_recherche_article_codebar">
@@ -7470,8 +7481,8 @@ background-color: rgb(0, 0, 0); </string>
       <property name="font">
        <font>
         <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="text">
@@ -8004,13 +8015,13 @@ background-color: rgb(0, 0, 0); </string>
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="YerothERPQCheckBox" name="checkBox_lecteur_de_code_barres">
+     <widget class="YerothPushButton" name="pushButton_lecteur_de_code_barres">
       <property name="geometry">
        <rect>
-        <x>3</x>
-        <y>309</y>
-        <width>164</width>
-        <height>21</height>
+        <x>766</x>
+        <y>307</y>
+        <width>26</width>
+        <height>25</height>
        </rect>
       </property>
       <property name="palette">
@@ -8027,7 +8038,7 @@ background-color: rgb(0, 0, 0); </string>
          </colorrole>
          <colorrole role="Button">
           <brush brushstyle="SolidPattern">
-           <color alpha="255">
+           <color alpha="0">
             <red>0</red>
             <green>0</green>
             <blue>0</blue>
@@ -8099,7 +8110,7 @@ background-color: rgb(0, 0, 0); </string>
          </colorrole>
          <colorrole role="Base">
           <brush brushstyle="SolidPattern">
-           <color alpha="255">
+           <color alpha="0">
             <red>0</red>
             <green>0</green>
             <blue>0</blue>
@@ -8108,7 +8119,7 @@ background-color: rgb(0, 0, 0); </string>
          </colorrole>
          <colorrole role="Window">
           <brush brushstyle="SolidPattern">
-           <color alpha="255">
+           <color alpha="0">
             <red>0</red>
             <green>0</green>
             <blue>0</blue>
@@ -8164,7 +8175,7 @@ background-color: rgb(0, 0, 0); </string>
          </colorrole>
          <colorrole role="Button">
           <brush brushstyle="SolidPattern">
-           <color alpha="255">
+           <color alpha="0">
             <red>0</red>
             <green>0</green>
             <blue>0</blue>
@@ -8236,7 +8247,7 @@ background-color: rgb(0, 0, 0); </string>
          </colorrole>
          <colorrole role="Base">
           <brush brushstyle="SolidPattern">
-           <color alpha="255">
+           <color alpha="0">
             <red>0</red>
             <green>0</green>
             <blue>0</blue>
@@ -8245,7 +8256,7 @@ background-color: rgb(0, 0, 0); </string>
          </colorrole>
          <colorrole role="Window">
           <brush brushstyle="SolidPattern">
-           <color alpha="255">
+           <color alpha="0">
             <red>0</red>
             <green>0</green>
             <blue>0</blue>
@@ -8301,7 +8312,7 @@ background-color: rgb(0, 0, 0); </string>
          </colorrole>
          <colorrole role="Button">
           <brush brushstyle="SolidPattern">
-           <color alpha="255">
+           <color alpha="0">
             <red>0</red>
             <green>0</green>
             <blue>0</blue>
@@ -8373,7 +8384,7 @@ background-color: rgb(0, 0, 0); </string>
          </colorrole>
          <colorrole role="Base">
           <brush brushstyle="SolidPattern">
-           <color alpha="255">
+           <color alpha="0">
             <red>0</red>
             <green>0</green>
             <blue>0</blue>
@@ -8382,7 +8393,7 @@ background-color: rgb(0, 0, 0); </string>
          </colorrole>
          <colorrole role="Window">
           <brush brushstyle="SolidPattern">
-           <color alpha="255">
+           <color alpha="0">
             <red>0</red>
             <green>0</green>
             <blue>0</blue>
@@ -8428,11 +8439,27 @@ background-color: rgb(0, 0, 0); </string>
         </disabled>
        </palette>
       </property>
-      <property name="layoutDirection">
-       <enum>Qt::RightToLeft</enum>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="toolTip">
+       <string>Supprimer un article</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(0,0,0,0%);</string>
       </property>
       <property name="text">
-       <string>lecteur de code barres</string>
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normalon>:/yeroth-erp-3-0-images/yeroth-erp-3.0-activate-barcode-reader-icon.png</normalon>
+       </iconset>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
       </property>
      </widget>
     </widget>
@@ -19792,6 +19819,8 @@ background-color: rgb(0, 0, 0); </string>
     <addaction name="actionSet_stock_item_name_as_standard_input"/>
     <addaction name="actionSet_reference_as_standard_input"/>
     <addaction name="separator"/>
+    <addaction name="actionBasculerLecteurDeCodebarres"/>
+    <addaction name="separator"/>
     <addaction name="actionAlertes"/>
     <addaction name="separator"/>
     <addaction name="actionAfficherPDF"/>
@@ -20238,6 +20267,7 @@ background-color: rgb(0, 0, 0); </string>
    <addaction name="actionDeconnecter_utilisateur"/>
    <addaction name="actionAppeler_aide"/>
    <addaction name="actionAfficherPDF"/>
+   <addaction name="actionBasculerLecteurDeCodebarres"/>
    <addaction name="actionMenu"/>
    <addaction name="actionAlertes"/>
    <addaction name="actionStocks"/>
@@ -20469,6 +20499,24 @@ background-color: rgb(0, 0, 0); </string>
     </font>
    </property>
   </action>
+  <action name="actionBasculerLecteurDeCodebarres">
+   <property name="icon">
+    <iconset>
+     <normalon>:/yeroth-erp-3-0-images/yeroth-erp-3.0-activate-barcode-reader-icon.png</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>Basculer le lecteur de code-barres</string>
+   </property>
+   <property name="toolTip">
+    <string>Basculer le lecteur de code-barres</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -20483,11 +20531,6 @@ background-color: rgb(0, 0, 0); </string>
    <class>YerothLineEdit</class>
    <extends>QLineEdit</extends>
    <header>src/widgets/yeroth-erp-line-edit.hpp</header>
-  </customwidget>
-  <customwidget>
-   <class>YerothERPQCheckBox</class>
-   <extends>QCheckBox</extends>
-   <header>src/widgets/yeroth-erp-qcheckbox.hpp</header>
   </customwidget>
   <customwidget>
    <class>YerothTableWidget</class>

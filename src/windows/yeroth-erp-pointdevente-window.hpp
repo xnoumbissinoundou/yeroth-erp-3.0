@@ -261,7 +261,7 @@ private slots:
 
 	void setStockItemNameAsStandardInput();
 
-	void handleBarCodeScannerCheckBox(int state);
+	void handleBasculerLecteurDeCodebarres();
 
 	bool PROCESS_CREDIT_CARD_PAYMENT();
 
@@ -287,11 +287,6 @@ private:
 
 	void connect_barcode_reader_selection_of_article_item();
 
-	inline bool isBarCodeReaderSelectionOfArticleItem()
-	{
-		return checkBox_lecteur_de_code_barres->isChecked();
-	}
-
     void setupLineEdits();
 
     void setupLineEditsQCompleters();
@@ -316,6 +311,8 @@ private:
     YerothPOSCreditCardInfo  *_currentCreditCardInfo;
 
     static bool 			_qteChangeCodeBar;
+
+    bool					_barcodeReaderActivated;
 
     bool 					_updateItemConversionError;
 

@@ -67,6 +67,7 @@ YerothPointDeVenteWindow::YerothPointDeVenteWindow()
  _paiement_compte_client(false),
  _currentFocusSearchBar(0),
  _currentCreditCardInfo(0),
+ _barcodeReaderActivated(true),
  _updateItemConversionError(false),
  _previousPressedQteValue("1"),
  _tvaCheckBoxPreviousState(false),
@@ -99,8 +100,6 @@ YerothPointDeVenteWindow::YerothPointDeVenteWindow()
 
     setRechercheLineEditFocus();
 
-    checkBox_lecteur_de_code_barres->setChecked(false);
-
     setupLineEdits();
 
     setupLineEditsQCompleters();
@@ -129,6 +128,7 @@ YerothPointDeVenteWindow::YerothPointDeVenteWindow()
     connect(actionAlertes, SIGNAL(triggered()), this, SLOT(alertes()));
     connect(actionInformationEntreprise, SIGNAL(triggered()), this, SLOT(infosEntreprise()));
     connect(actionQui_suis_je, SIGNAL(triggered()), this, SLOT(qui_suis_je()));
+    connect(actionBasculerLecteurDeCodebarres, SIGNAL(triggered()), this, SLOT(handleBasculerLecteurDeCodebarres()));
     connect(actionAdministration, SIGNAL(triggered()), this, SLOT(administration()));
 
 #ifdef YEROTH_CLIENT
@@ -169,9 +169,6 @@ YerothPointDeVenteWindow::YerothPointDeVenteWindow()
     connect(tableWidget_articles, SIGNAL(itemDoubleClicked(QTableWidgetItem *)), this,
             SLOT(afficher_vente_detail(QTableWidgetItem *)));
 
-    connect(checkBox_lecteur_de_code_barres, SIGNAL(stateChanged(int)),
-    		this, SLOT(handleBarCodeScannerCheckBox(int)));
-
     /* Signals-slots connection for the second tab 'Article au détail' */
     connect(checkBox_tva, SIGNAL(clicked(bool)), this, SLOT(handleTVACheckBox(bool)));
 
@@ -195,6 +192,8 @@ YerothPointDeVenteWindow::YerothPointDeVenteWindow()
 
     connect(actionSet_stock_item_name_as_standard_input, SIGNAL(triggered()), this,
             SLOT(setStockItemNameAsStandardInput()));
+
+    handleBasculerLecteurDeCodebarres();
 
     this->setupShortcuts();
 }
@@ -262,14 +261,18 @@ void YerothPointDeVenteWindow::setStockItemNameAsStandardInput()
 }
 
 
-void YerothPointDeVenteWindow::handleBarCodeScannerCheckBox(int state)
+void YerothPointDeVenteWindow::handleBasculerLecteurDeCodebarres()
 {
-	if (checkBox_lecteur_de_code_barres->isChecked())
+	pushButton_lecteur_de_code_barres->setVisible(!_barcodeReaderActivated);
+
+	if (!_barcodeReaderActivated)
 	{
+		_barcodeReaderActivated = true;
 		connect_barcode_reader_selection_of_article_item();
 	}
 	else
 	{
+		_barcodeReaderActivated = false;
 		connect_manual_selection_of_article_item();
 	}
 }
@@ -279,8 +282,20 @@ void YerothPointDeVenteWindow::disconnect_all_objects_for_stock_article_item_sel
 {
 	disconnect(lineEdit_recherche_article, 0, 0, 0);
 	disconnect(lineEdit_recherche_article_codebar, 0, 0, 0);
-	disconnect(lineEdit_recherche_article->getMyQCompleter(), 0, 0, 0);
-	disconnect(lineEdit_recherche_article_codebar->getMyQCompleter(), 0, 0, 0);
+
+	QCompleter *aQCompleter = lineEdit_recherche_article->getMyQCompleter();
+
+	if (0 != aQCompleter)
+	{
+		disconnect(aQCompleter, 0, 0, 0);
+	}
+
+	aQCompleter = lineEdit_recherche_article_codebar->getMyQCompleter();
+
+	if (0 != aQCompleter)
+	{
+		disconnect(aQCompleter, 0, 0, 0);
+	}
 }
 
 
@@ -1206,15 +1221,6 @@ void YerothPointDeVenteWindow::cleanUpAfterVente()
                                      lineEdit_recherche_article,
                                      lineEdit_recherche_article_codebar);
 
-    if (isBarCodeReaderSelectionOfArticleItem())
-    {
-    	connect_barcode_reader_selection_of_article_item();
-    }
-    else
-    {
-    	connect_manual_selection_of_article_item();
-    }
-
     setRechercheLineEditFocus();
 }
 
@@ -1317,15 +1323,6 @@ void YerothPointDeVenteWindow::rendreVisible(YerothSqlTableModel * stocksTableMo
     YerothUtils::refreshSalesStrategy(*_curStocksTableModel,
     								 lineEdit_recherche_article,
                                      lineEdit_recherche_article_codebar);
-
-    if (isBarCodeReaderSelectionOfArticleItem())
-    {
-    	connect_barcode_reader_selection_of_article_item();
-    }
-    else
-    {
-    	connect_manual_selection_of_article_item();
-    }
 
     handleTabViews();
 
@@ -1739,6 +1736,8 @@ void YerothPointDeVenteWindow::handleQteChange(QTableWidgetItem * itemChanged)
 
             YerothArticleVenteInfo *articleVenteInfo = articleItemToVenteInfo.value(itemChanged->row());
 
+            bool qteEnStock_OK = true;
+
             if (0 == articleVenteInfo)
             {
                 articleVenteInfo = new YerothArticleVenteInfo;
@@ -1758,9 +1757,12 @@ void YerothPointDeVenteWindow::handleQteChange(QTableWidgetItem * itemChanged)
             {
                 if (articleVenteInfo->_quantite_en_stock < newQteValue)
                 {
+                	qteEnStock_OK = false;
+
                     YerothQMessageBox::warning(this,
                                               QObject::tr("articles en stock"),
                                               QObject::tr("Il n'y a pas assez de articles en stock !"));
+
                     itemChanged->setText(articleVenteInfo->quantiteAVendre());
                 }
                 else
@@ -1769,13 +1771,16 @@ void YerothPointDeVenteWindow::handleQteChange(QTableWidgetItem * itemChanged)
                 }
             }
 
-            if (_qteChangeCodeBar)
+            if (qteEnStock_OK)
             {
-                actualiser_articles(itemChanged->row(), newQteValue);
-            }
-            else
-            {
-                actualiser_articles_codebar(itemChanged->row(), newQteValue);
+            	if (_qteChangeCodeBar)
+            	{
+            		actualiser_articles(itemChanged->row(), newQteValue);
+            	}
+            	else
+            	{
+            		actualiser_articles_codebar(itemChanged->row(), newQteValue);
+            	}
             }
         }
         else
