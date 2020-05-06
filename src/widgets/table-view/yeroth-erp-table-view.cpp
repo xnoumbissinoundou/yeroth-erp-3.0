@@ -61,6 +61,13 @@ YerothTableView::YerothTableView()
     setModel(_stdItemModel);
     setupSelectionOptions();
     setBackgroundRole(QPalette::Window);
+
+    QHeaderView *qHeaderView = horizontalHeader();
+
+    if (0 != qHeaderView)
+    {
+    	qHeaderView->setSectionsMovable(true);
+    }
 }
 
 YerothTableView::YerothTableView(QWidget * parent)
@@ -76,6 +83,13 @@ YerothTableView::YerothTableView(QWidget * parent)
     setModel(_stdItemModel);
     setupSelectionOptions();
     setBackgroundRole(QPalette::Window);
+
+    QHeaderView *qHeaderView = horizontalHeader();
+
+    if (0 != qHeaderView)
+    {
+    	qHeaderView->setSectionsMovable(true);
+    }
 }
 
 YerothTableView::~YerothTableView()
