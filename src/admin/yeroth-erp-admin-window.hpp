@@ -141,7 +141,7 @@ private slots:
 
 	void choix_registre_de_caisse(const QString &);
 
-	void generate_table_header_mapping_entries(const QString &aSqlTableName);
+	void generate_table_header_mapping_entries();
 
 private:
 

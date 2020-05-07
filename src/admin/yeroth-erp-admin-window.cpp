@@ -104,6 +104,8 @@ YerothAdminWindow::YerothAdminWindow()
 
     _yerothAdminWindowTitleStart.append(windowTitle());
 
+    tabWidget_administration->setTabEnabled(MAINTENANCE, false);
+
     setupValidators();
 
     YEROTH_ERP_ADMIN_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
@@ -182,8 +184,6 @@ YerothAdminWindow::YerothAdminWindow()
     label_ONLINE->setVisible(false);
     label_OFFLINE->setVisible(true);
 
-    pushButton_fichier_csv_a_importer->enable(this, SLOT(choose_fichier_csv_a_importer()));
-
     pushButton_choose_pdfReader->enable(this, SLOT(choose_path_pdfReader()));
 
     pushButton_choose_fichier_systeme_imprimante_thermique->enable(this, SLOT(choose_path_thermalPrinterDeviceFile()));
@@ -207,9 +207,6 @@ YerothAdminWindow::YerothAdminWindow()
 
     connect(comboBox_impression_sur, SIGNAL(currentTextChanged(const QString &)),
     		this, SLOT(choix_registre_de_caisse(const QString &)));
-
-    connect(comboBox_tableaux_mariadb_sql, SIGNAL(currentTextChanged(const QString &)),
-    		this, SLOT(generate_table_header_mapping_entries(const QString &)));
 
     connect(actionStocks, SIGNAL(triggered()), this, SLOT(action_lister()));
     connect(actionCreer, SIGNAL(triggered()), this, SLOT(action_creer()));
@@ -418,7 +415,7 @@ void YerothAdminWindow::choix_registre_de_caisse(const QString &labelImpressionS
 }
 
 
-void YerothAdminWindow::generate_table_header_mapping_entries(const QString &aSqlTableName)
+void YerothAdminWindow::generate_table_header_mapping_entries()
 {
 	if (0 == _curCsvFileToImportContentWordList.size())
 	{
@@ -478,7 +475,7 @@ void YerothAdminWindow::generate_table_header_mapping_entries(const QString &aSq
 	}
 
 	QString strShowColumnQuery(QString("SHOW COLUMNS FROM %1")
-									.arg(aSqlTableName));
+									.arg(lineEdit_tableaux_mariadb_sql->text()));
 	QSqlQuery query;
 
 	int querySize = YerothUtils::execQuery(query, strShowColumnQuery);
@@ -523,6 +520,9 @@ void YerothAdminWindow::generate_table_header_mapping_entries(const QString &aSq
 
 void YerothAdminWindow::initialize_admin_importer_csv_tableau()
 {
+    pushButton_fichier_csv_a_importer->
+		enable(this, SLOT(choose_fichier_csv_a_importer()));
+
 	_indexToSQLTableImportHeader.insert(0, comboBox_importer_tableau_entete_0);
 	_indexToSQLTableImportHeader.insert(1, comboBox_importer_tableau_entete_1);
 	_indexToSQLTableImportHeader.insert(2, comboBox_importer_tableau_entete_2);
@@ -561,24 +561,13 @@ void YerothAdminWindow::initialize_admin_importer_csv_tableau()
 
 	QSqlQuery databaseTableNameQuery;
 
-    QString databaseTableNameQueryStr(QString("SHOW TABLES FROM %1")
-    									.arg(_allWindows->getDatabase().db_name()));
+	YerothERPWindows *yerothERPWindows = YerothUtils::getAllWindows();
 
-    int querySize = YerothUtils::execQuery(databaseTableNameQuery, databaseTableNameQueryStr, _logger);
-
-    if (querySize > 0)
-    {
-    	QString curDBTableName;
-
-    	comboBox_tableaux_mariadb_sql->clear();
-
-    	while(databaseTableNameQuery.next())
-    	{
-    		curDBTableName = databaseTableNameQuery.value(0).toString();
-
-    		comboBox_tableaux_mariadb_sql->addItem(curDBTableName);
-    	}
-    }
+	if (0 != yerothERPWindows)
+	{
+		lineEdit_tableaux_mariadb_sql->setYerothEnabled(false);
+		lineEdit_tableaux_mariadb_sql->setText(yerothERPWindows->STOCKS);
+	}
 }
 
 
@@ -902,7 +891,7 @@ void YerothAdminWindow::choose_fichier_csv_a_importer()
 
 	YerothUtils::import_csv_file_content(csvFilePath, _curCsvFileToImportContentWordList);
 
-	generate_table_header_mapping_entries(comboBox_tableaux_mariadb_sql->currentText());
+	generate_table_header_mapping_entries();
 }
 
 
