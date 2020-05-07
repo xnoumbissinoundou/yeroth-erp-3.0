@@ -36,6 +36,8 @@
 #include <QtWidgets/QStyleFactory>
 
 
+const int YerothAdminWindow::MAX_IMPORT_CSV_HEADER_SIZE(16);
+
 const QString YerothAdminWindow::EXPORTER(QObject::trUtf8("exporter"));
 const QString YerothAdminWindow::IMPORTER(QObject::trUtf8("importer"));
 const QString YerothAdminWindow::EFFACER(QObject::trUtf8("effacer"));
@@ -503,9 +505,10 @@ void YerothAdminWindow::generate_table_header_mapping_entries(const QString &aSq
 		}
 	}
 
-	int sizeRemainingHeaderContent = (curCsvFileLineSize < 18) ? (18 - curCsvFileLineSize) : 0;
+	int sizeRemainingHeaderContent =
+			(curCsvFileLineSize < MAX_IMPORT_CSV_HEADER_SIZE) ? (MAX_IMPORT_CSV_HEADER_SIZE - curCsvFileLineSize) : 0;
 
-	for (int j = curCsvFileLineSize; j < 18; ++j)
+	for (int j = curCsvFileLineSize; j < MAX_IMPORT_CSV_HEADER_SIZE; ++j)
 	{
 		aCsvHeaderLabel = _indexToCsvFileContentImportHeader.value(j);
 
@@ -536,8 +539,6 @@ void YerothAdminWindow::initialize_admin_importer_csv_tableau()
 	_indexToSQLTableImportHeader.insert(13, comboBox_importer_tableau_entete_13);
 	_indexToSQLTableImportHeader.insert(14, comboBox_importer_tableau_entete_14);
 	_indexToSQLTableImportHeader.insert(15, comboBox_importer_tableau_entete_15);
-	_indexToSQLTableImportHeader.insert(16, comboBox_importer_tableau_entete_16);
-	_indexToSQLTableImportHeader.insert(17, comboBox_importer_tableau_entete_17);
 
 
 	_indexToCsvFileContentImportHeader.insert(0, label_importer_fichier_csv_entete_0);
@@ -556,8 +557,6 @@ void YerothAdminWindow::initialize_admin_importer_csv_tableau()
 	_indexToCsvFileContentImportHeader.insert(13, label_importer_fichier_csv_entete_13);
 	_indexToCsvFileContentImportHeader.insert(14, label_importer_fichier_csv_entete_14);
 	_indexToCsvFileContentImportHeader.insert(15, label_importer_fichier_csv_entete_15);
-	_indexToCsvFileContentImportHeader.insert(16, label_importer_fichier_csv_entete_16);
-	_indexToCsvFileContentImportHeader.insert(17, label_importer_fichier_csv_entete_17);
 
 
 	QSqlQuery databaseTableNameQuery;

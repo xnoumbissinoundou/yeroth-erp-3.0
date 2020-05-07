@@ -159,6 +159,8 @@ private:
 
     inline void maintenance_effacer(enum AdminSujetAction selectedSujetAction){}
 
+    static const int MAX_IMPORT_CSV_HEADER_SIZE;
+
 	static const QString CREER;
 	static const QString LISTER;
 	static const QString MODIFIER;
