@@ -349,11 +349,15 @@ const QString YerothUtils::MYSQL_TRUE_LITERAL("1");
 
 const QString YerothUtils::MYSQL_FALSE_LITERAL("0");
 
+const char YerothUtils::COMMA_STRING_CHAR(',');
+
 const QString YerothUtils::EMPTY_STRING("");
 
 const QChar YerothUtils::SLASH_CHAR('/');
 
 const QRegExp YerothUtils::PasswordRegExp("");
+
+const QRegExp YerothUtils::LINE_ENDING_STRING_REGEXP("[\r\n]");
 
 const QRegExp YerothUtils::EMPTY_SPACE_REGEXP("\\s");
 
@@ -2518,6 +2522,27 @@ QString YerothUtils::prindDocumentFromTableView(YerothWindowsCommons *aWindowCal
     YerothUtils::writeStringToQFilewithUTF8Encoding(tmpLatexFile, texDocument);
 
     return YerothERPProcess::compileLatex(yerothPrefixFileName);
+}
+
+
+bool YerothUtils::import_csv_file_content(QString aCsvFileFullPath,
+										  QStringList &wordList_IN_OUT)
+{
+	wordList_IN_OUT.clear();
+
+	QFile aCsvFile(aCsvFileFullPath);
+
+	if (!aCsvFile.open(QIODevice::ReadOnly))
+	{
+		return false;
+	}
+
+	QTextStream aCsvFileTextStream(&aCsvFile);
+
+	wordList_IN_OUT.append(aCsvFileTextStream.readAll()
+			.split(YerothUtils::LINE_ENDING_STRING_REGEXP));
+
+	return true;
 }
 
 

@@ -306,6 +306,9 @@ public:
         texDocumentString_in_out.append(YerothUtils::template_bilan_comptable_tex);
     }
 
+    static bool import_csv_file_content(QString aCsvFileFullPath,
+    									QStringList &wordList_IN_OUT);
+
     static void getLatexCustomerData(QString &texDocumentString_in_out);
 
 	static void getSortieDesStocksFRTexDocumentString(QString &texDocumentString_in_out,
@@ -543,6 +546,8 @@ public:
 
 	static const QString MYSQL_FALSE_LITERAL;
 
+	static const char COMMA_STRING_CHAR;
+
 	static const QString EMPTY_STRING;
 
 	static const QChar SLASH_CHAR;
@@ -554,6 +559,8 @@ public:
 	static const QRegExp PasswordRegExp;
 
 	static const QRegExpValidator PasswordValidator;
+
+	static const QRegExp LINE_ENDING_STRING_REGEXP;
 
 	static const QRegExp EMPTY_SPACE_REGEXP;
 

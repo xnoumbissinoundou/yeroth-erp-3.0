@@ -5,6 +5,7 @@
 
 #include "yeroth-erp-admin-window.hpp"
 
+
 #include "src/utils/yeroth-erp-config.hpp"
 
 #include "src/utils/yeroth-erp-utils.hpp"
@@ -20,6 +21,9 @@
 #include "src/dbus/yeroth-erp-dbus-server.hpp"
 
 #include "src/users/yeroth-erp-users.hpp"
+
+
+#include <QtSql/QSqlQuery>
 
 #include <QtCore/QDebug>
 
@@ -97,9 +101,6 @@ YerothAdminWindow::YerothAdminWindow()
     lineEdit_this_localisation->setText(_allWindows->getInfoEntreprise().getLocalisation());
 
     _yerothAdminWindowTitleStart.append(windowTitle());
-
-    //en cours de programmation
-    tabWidget_administration->setTabEnabled(MAINTENANCE, false);
 
     setupValidators();
 
@@ -179,6 +180,8 @@ YerothAdminWindow::YerothAdminWindow()
     label_ONLINE->setVisible(false);
     label_OFFLINE->setVisible(true);
 
+    pushButton_fichier_csv_a_importer->enable(this, SLOT(choose_fichier_csv_a_importer()));
+
     pushButton_choose_pdfReader->enable(this, SLOT(choose_path_pdfReader()));
 
     pushButton_choose_fichier_systeme_imprimante_thermique->enable(this, SLOT(choose_path_thermalPrinterDeviceFile()));
@@ -203,6 +206,9 @@ YerothAdminWindow::YerothAdminWindow()
     connect(comboBox_impression_sur, SIGNAL(currentTextChanged(const QString &)),
     		this, SLOT(choix_registre_de_caisse(const QString &)));
 
+    connect(comboBox_tableaux_mariadb_sql, SIGNAL(currentTextChanged(const QString &)),
+    		this, SLOT(generate_table_header_mapping_entries(const QString &)));
+
     connect(actionStocks, SIGNAL(triggered()), this, SLOT(action_lister()));
     connect(actionCreer, SIGNAL(triggered()), this, SLOT(action_creer()));
     connect(actionGo, SIGNAL(triggered()), this, SLOT(gerer_choix_action()));
@@ -222,6 +228,8 @@ YerothAdminWindow::YerothAdminWindow()
     connect(lineEdit_localisation, SIGNAL(editingFinished()), this, SLOT(set_localisation_adresse_ip_text()));
 
     connect(tabWidget_administration, SIGNAL(currentChanged(int)), this, SLOT(handleTabChanged(int)));
+
+    initialize_admin_importer_csv_tableau();
 }
 
 YerothAdminWindow::~YerothAdminWindow()
@@ -326,7 +334,9 @@ void YerothAdminWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 
     read_configuration();
 
-    lineEdit_localisation->setupMyStaticQCompleter(_allWindows->LOCALISATIONS, "nom_localisation", false);
+    lineEdit_localisation->setupMyStaticQCompleter(_allWindows->LOCALISATIONS,
+    											   YerothDatabaseTableColumn::NOM_LOCALISATION,
+												   false);
 
     if (YerothERPConfig::_distantSiteConnected)
     {
@@ -406,6 +416,173 @@ void YerothAdminWindow::choix_registre_de_caisse(const QString &labelImpressionS
 }
 
 
+void YerothAdminWindow::generate_table_header_mapping_entries(const QString &aSqlTableName)
+{
+	if (0 == _curCsvFileToImportContentWordList.size())
+	{
+		return ;
+	}
+
+	QStringList csvHeaderContent = _curCsvFileToImportContentWordList.at(0)
+			.split(YerothUtils::COMMA_STRING_CHAR);
+
+	int curCsvFileLineSize = csvHeaderContent.size();
+
+	QString dbFieldName;
+
+	QString dbFieldType;
+
+	QString aCsvHeaderString;
+
+	QLabel *aCsvHeaderLabel = 0;
+
+	YerothComboBox *aMappedComboBox = 0;
+
+
+	for (int k = 0; k < csvHeaderContent.size(); ++k)
+	{
+		aCsvHeaderString = csvHeaderContent.at(k);
+
+		aCsvHeaderLabel = _indexToCsvFileContentImportHeader.value(k);
+
+		if (0 != aCsvHeaderLabel)
+		{
+			aCsvHeaderLabel->setVisible(true);
+			aCsvHeaderLabel->setEnabled(true);
+			aCsvHeaderLabel->setText(QString("%1 (%2)")
+										.arg(aCsvHeaderString,
+											 QString::number(k+1)));
+		}
+	}
+
+	{
+		_curSQLDatabaseTableColumns.clear();
+
+		QMapIterator<int, YerothComboBox *> itIndexToSQLTableImportHeader(_indexToSQLTableImportHeader);
+
+		while(itIndexToSQLTableImportHeader.hasNext())
+		{
+			itIndexToSQLTableImportHeader.next();
+
+			aMappedComboBox = itIndexToSQLTableImportHeader.value();
+
+			if (0 != aMappedComboBox)
+			{
+				aMappedComboBox->setVisible(false);
+				aMappedComboBox->setEnabled(false);
+				aMappedComboBox->clear();
+			}
+		}
+	}
+
+	QString strShowColumnQuery(QString("SHOW COLUMNS FROM %1")
+									.arg(aSqlTableName));
+	QSqlQuery query;
+
+	int querySize = YerothUtils::execQuery(query, strShowColumnQuery);
+
+	for (int j = 0; j < querySize && query.next(); ++j)
+	{
+		dbFieldName = query.value(0).toString();
+
+		if (!YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::ID, dbFieldName))
+		{
+			_curSQLDatabaseTableColumns.append(dbFieldName);
+		}
+	}
+
+	for (int i = 0; i < curCsvFileLineSize; ++i)
+	{
+		aMappedComboBox = _indexToSQLTableImportHeader.value(i);
+
+		if (0 != aMappedComboBox)
+		{
+			aMappedComboBox->setVisible(true);
+			aMappedComboBox->setEnabled(true);
+			aMappedComboBox->addItems(_curSQLDatabaseTableColumns);
+		}
+	}
+
+	int sizeRemainingHeaderContent = (curCsvFileLineSize < 18) ? (18 - curCsvFileLineSize) : 0;
+
+	for (int j = curCsvFileLineSize; j < 18; ++j)
+	{
+		aCsvHeaderLabel = _indexToCsvFileContentImportHeader.value(j);
+
+		if (0 != aCsvHeaderLabel)
+		{
+			aCsvHeaderLabel->setVisible(false);
+			aCsvHeaderLabel->setEnabled(false);
+		}
+	}
+}
+
+
+void YerothAdminWindow::initialize_admin_importer_csv_tableau()
+{
+	_indexToSQLTableImportHeader.insert(0, comboBox_importer_tableau_entete_0);
+	_indexToSQLTableImportHeader.insert(1, comboBox_importer_tableau_entete_1);
+	_indexToSQLTableImportHeader.insert(2, comboBox_importer_tableau_entete_2);
+	_indexToSQLTableImportHeader.insert(3, comboBox_importer_tableau_entete_3);
+	_indexToSQLTableImportHeader.insert(4, comboBox_importer_tableau_entete_4);
+	_indexToSQLTableImportHeader.insert(5, comboBox_importer_tableau_entete_5);
+	_indexToSQLTableImportHeader.insert(6, comboBox_importer_tableau_entete_6);
+	_indexToSQLTableImportHeader.insert(7, comboBox_importer_tableau_entete_7);
+	_indexToSQLTableImportHeader.insert(8, comboBox_importer_tableau_entete_8);
+	_indexToSQLTableImportHeader.insert(9, comboBox_importer_tableau_entete_9);
+	_indexToSQLTableImportHeader.insert(10, comboBox_importer_tableau_entete_10);
+	_indexToSQLTableImportHeader.insert(11, comboBox_importer_tableau_entete_11);
+	_indexToSQLTableImportHeader.insert(12, comboBox_importer_tableau_entete_12);
+	_indexToSQLTableImportHeader.insert(13, comboBox_importer_tableau_entete_13);
+	_indexToSQLTableImportHeader.insert(14, comboBox_importer_tableau_entete_14);
+	_indexToSQLTableImportHeader.insert(15, comboBox_importer_tableau_entete_15);
+	_indexToSQLTableImportHeader.insert(16, comboBox_importer_tableau_entete_16);
+	_indexToSQLTableImportHeader.insert(17, comboBox_importer_tableau_entete_17);
+
+
+	_indexToCsvFileContentImportHeader.insert(0, label_importer_fichier_csv_entete_0);
+	_indexToCsvFileContentImportHeader.insert(1, label_importer_fichier_csv_entete_1);
+	_indexToCsvFileContentImportHeader.insert(2, label_importer_fichier_csv_entete_2);
+	_indexToCsvFileContentImportHeader.insert(3, label_importer_fichier_csv_entete_3);
+	_indexToCsvFileContentImportHeader.insert(4, label_importer_fichier_csv_entete_4);
+	_indexToCsvFileContentImportHeader.insert(5, label_importer_fichier_csv_entete_5);
+	_indexToCsvFileContentImportHeader.insert(6, label_importer_fichier_csv_entete_6);
+	_indexToCsvFileContentImportHeader.insert(7, label_importer_fichier_csv_entete_7);
+	_indexToCsvFileContentImportHeader.insert(8, label_importer_fichier_csv_entete_8);
+	_indexToCsvFileContentImportHeader.insert(9, label_importer_fichier_csv_entete_9);
+	_indexToCsvFileContentImportHeader.insert(10, label_importer_fichier_csv_entete_10);
+	_indexToCsvFileContentImportHeader.insert(11, label_importer_fichier_csv_entete_11);
+	_indexToCsvFileContentImportHeader.insert(12, label_importer_fichier_csv_entete_12);
+	_indexToCsvFileContentImportHeader.insert(13, label_importer_fichier_csv_entete_13);
+	_indexToCsvFileContentImportHeader.insert(14, label_importer_fichier_csv_entete_14);
+	_indexToCsvFileContentImportHeader.insert(15, label_importer_fichier_csv_entete_15);
+	_indexToCsvFileContentImportHeader.insert(16, label_importer_fichier_csv_entete_16);
+	_indexToCsvFileContentImportHeader.insert(17, label_importer_fichier_csv_entete_17);
+
+
+	QSqlQuery databaseTableNameQuery;
+
+    QString databaseTableNameQueryStr(QString("SHOW TABLES FROM %1")
+    									.arg(_allWindows->getDatabase().db_name()));
+
+    int querySize = YerothUtils::execQuery(databaseTableNameQuery, databaseTableNameQueryStr, _logger);
+
+    if (querySize > 0)
+    {
+    	QString curDBTableName;
+
+    	comboBox_tableaux_mariadb_sql->clear();
+
+    	while(databaseTableNameQuery.next())
+    	{
+    		curDBTableName = databaseTableNameQuery.value(0).toString();
+
+    		comboBox_tableaux_mariadb_sql->addItem(curDBTableName);
+    	}
+    }
+}
+
+
 void YerothAdminWindow::creer(enum AdminSujetAction selectedSujetAction)
 {
     _allWindows->_adminCreateWindow->rendreVisible(selectedSujetAction);
@@ -460,17 +637,25 @@ void YerothAdminWindow::handleTabChanged(int currentTab)
 {
     switch (currentTab)
     {
-    case OPERATIONS:
-        enableAllOperationsTabPushButtons();
-        setCurrentAdminWindowTitle(OPERATIONS);
-        break;
     case CONNECTER_LOCALISATION:
         disableAllOperationsTabPushButtons();
         setCurrentAdminWindowTitle(CONNECTER_LOCALISATION);
         break;
+    case DONNEES_ENTREPRISE:
+        disableAllOperationsTabPushButtons();
+        setCurrentAdminWindowTitle(DONNEES_ENTREPRISE);
+        break;
+    case IMPORTER_CSV_TABLEAU:
+        disableAllOperationsTabPushButtons();
+        setCurrentAdminWindowTitle(IMPORTER_CSV_TABLEAU);
+        break;
     case MAINTENANCE:
         disableAllOperationsTabPushButtons();
         setCurrentAdminWindowTitle(MAINTENANCE);
+        break;
+    case OPERATIONS:
+        enableAllOperationsTabPushButtons();
+        setCurrentAdminWindowTitle(OPERATIONS);
         break;
     case PARAMETRES_APPLICATION:
         disableAllOperationsTabPushButtons();
@@ -480,10 +665,7 @@ void YerothAdminWindow::handleTabChanged(int currentTab)
         disableAllOperationsTabPushButtons();
         setCurrentAdminWindowTitle(SYSTEME_DALERTES);
         break;
-    case DONNEES_ENTREPRISE:
-        disableAllOperationsTabPushButtons();
-        setCurrentAdminWindowTitle(DONNEES_ENTREPRISE);
-        break;
+
     default:
         disableAllOperationsTabPushButtons();
         setWindowTitle(_yerothAdminWindowTitleStart);
@@ -706,6 +888,24 @@ void YerothAdminWindow::gerer_choix_action()
         break;
     }
 }
+
+
+void YerothAdminWindow::choose_fichier_csv_a_importer()
+{
+    QString csvFilePath =
+        QFileDialog::getOpenFileName(this,
+                                     QObject::trUtf8("Choisir le chemin qui mène au fichier au format (.csv)"),
+                                     QString::null, QString::null);
+    if (!csvFilePath.isEmpty())
+    {
+    	lineEdit_fichier_csv_a_importer->setText(csvFilePath);
+    }
+
+	YerothUtils::import_csv_file_content(csvFilePath, _curCsvFileToImportContentWordList);
+
+	generate_table_header_mapping_entries(comboBox_tableaux_mariadb_sql->currentText());
+}
+
 
 void YerothAdminWindow::choose_path_pdfReader()
 {

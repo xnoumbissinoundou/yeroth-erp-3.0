@@ -36,10 +36,11 @@ public:
 	{
 		CONNECTER_LOCALISATION = 0,
 		DONNEES_ENTREPRISE 	   = 1,
-		MAINTENANCE			   = 2,
-		OPERATIONS			   = 3,
-		PARAMETRES_APPLICATION = 4,
-		SYSTEME_DALERTES	   = 5
+		IMPORTER_CSV_TABLEAU   = 2,
+		MAINTENANCE			   = 3,
+		OPERATIONS			   = 4,
+		PARAMETRES_APPLICATION = 5,
+		SYSTEME_DALERTES	   = 6
 	};
 
 
@@ -87,6 +88,8 @@ public slots:
     void action_effacer();
 
     void gerer_choix_action();
+
+    void choose_fichier_csv_a_importer();
 
     void choose_path_pdfReader();
 
@@ -138,7 +141,11 @@ private slots:
 
 	void choix_registre_de_caisse(const QString &);
 
+	void generate_table_header_mapping_entries(const QString &aSqlTableName);
+
 private:
+
+	void initialize_admin_importer_csv_tableau();
 
     void creer(enum AdminSujetAction selectedSujetAction);
 
@@ -181,7 +188,15 @@ private:
     enum AdminAction 		_curAdminMaintainAction;
     enum AdminSujetAction 	_curAdminSujetsMaintainAction;
 
-    YerothLogger							*_logger;
+    YerothLogger						*_logger;
+
+    QStringList 						_curSQLDatabaseTableColumns;
+
+    QStringList 						_curCsvFileToImportContentWordList;
+
+    QMap<int, YerothComboBox *>			_indexToSQLTableImportHeader;
+
+    QMap<int, QLabel *>					_indexToCsvFileContentImportHeader;
 
     QMap<QString, AdminAction> 			*_actionsToConst;
 
