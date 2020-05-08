@@ -754,8 +754,6 @@ void YerothPayerCompteClientWindow::rendreVisible(int lastSelectedRow,
 
     populatePayerAuCompteClientsComboBoxes();
 
-//    setupLineEditsQCompleters();
-
 	setVisible(true);
 
     updateLineEdits();
@@ -764,6 +762,8 @@ void YerothPayerCompteClientWindow::rendreVisible(int lastSelectedRow,
     		SIGNAL(currentTextChanged(const QString &)),
     		this,
             SLOT(handleReferenceChange(const QString &)));
+
+    dateEdit_transactions_compte_client_debut->setFocus();
 }
 
 
