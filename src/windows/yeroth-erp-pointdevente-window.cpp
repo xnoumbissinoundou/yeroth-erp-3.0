@@ -1694,7 +1694,7 @@ void YerothPointDeVenteWindow::afficher_vente_detail(const int tableWidgetRow)
 
         checkBox_tva->setChecked(false);
 
-        lineEdit_article_detail_tva->setText(YerothLineEdit::EMPTY_STRING);
+        lineEdit_article_detail_tva->setText(YerothUtils::EMPTY_STRING);
     }
 
     dateEdit_article_detail_date_peremption->setDate(date_peremption);

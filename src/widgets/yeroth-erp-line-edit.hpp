@@ -7,20 +7,25 @@
 #ifndef SRC_WIDGETS_YEROTH_LINE_EDIT_HPP_
 #define SRC_WIDGETS_YEROTH_LINE_EDIT_HPP_
 
-#include <QtCore/QStringList>
-
-#include <QtWidgets/QLineEdit>
-
 #include "src/utils/yeroth-erp-utils.hpp"
+
 #include "src/utils/yeroth-erp-sqltable-model.hpp"
 
 #include "src/widgets/table-view/yeroth-erp-table-view.hpp"
 
+
+#include <QtCore/QStringList>
+
+#include <QtWidgets/QLineEdit>
+
+
 class QCompleter;
+class QInputDialog;
 
 class YerothUtils;
 class YerothSqlTableModel;
 class YerothTableView;
+
 
 class YerothLineEdit : public QLineEdit
 {
@@ -32,7 +37,7 @@ public:
 
 	YerothLineEdit(QWidget *parent = 0);
 
-	virtual ~YerothLineEdit(){}
+	virtual ~YerothLineEdit();
 
 	inline bool isEmpty()
 	{
@@ -149,7 +154,9 @@ public:
 		return _currentStaticStringList;
 	}
 
-	static const QString	    EMPTY_STRING;
+protected:
+
+	virtual void mouseDoubleClickEvent(QMouseEvent *event) override;
 
 public slots:
 
@@ -159,27 +166,34 @@ public slots:
 
 private:
 
-	bool 				_forSearch;
 
-	bool				_wasMissingRequiredText;
+	bool					_firstTimeStyleSheetCheck;
 
-	QString				_originalPlaceHolderText;
+	bool 					_forSearch;
 
-	QPalette 			_originalPaletteBeforeMissingInformation;
+	bool					_wasMissingRequiredText;
+
+	QInputDialog			*_inputDialog;
+
+	QString					_aDefaultStyleSheet;
+
+	QString					_originalPlaceHolderText;
+
+	QPalette 				_originalPaletteBeforeMissingInformation;
 
 	YerothSqlTableModel 	*_sqlTableModel;
 
 	YerothTableView 		*_sqlTableModelView;
 
-	QCompleter			*_searchQCompleter;
+	QCompleter				*_searchQCompleter;
 
 	QMap<QString, QString>  _stockNameToStockID;
 
 	QMap<QString, QString> 	_stockReferenceToStockID;
 
-	QStringList			_currentStaticStringList;
+	QStringList				_currentStaticStringList;
 
-	QString				_lastQCompleterText;
+	QString					_lastQCompleterText;
 };
 
 #endif /* SRC_WIDGETS_YEROTH_LINE_EDIT_HPP_ */

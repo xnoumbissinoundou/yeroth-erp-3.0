@@ -6,6 +6,7 @@
 
 #include "yeroth-erp-line-edit.hpp"
 
+
 #include "src/utils/yeroth-erp-database-table-column.hpp"
 
 #include "src/utils/yeroth-erp-config.hpp"
@@ -14,15 +15,19 @@
 
 #include "src/widgets/yeroth-erp-qmessage-box.hpp"
 
+
+#include <QtWidgets/QInputDialog>
+
 #include <QtWidgets/QCompleter>
 
 #include <QtCore/QDebug>
 
-const QString YerothLineEdit::EMPTY_STRING("");
 
 YerothLineEdit::YerothLineEdit(QWidget *parent /* = 0 */)
 :QLineEdit(parent),
+ _firstTimeStyleSheetCheck(true),
  _forSearch(false),
+ _inputDialog(0),
  _wasMissingRequiredText(false),
  _sqlTableModel(0),
  _sqlTableModelView(0),
@@ -30,11 +35,37 @@ YerothLineEdit::YerothLineEdit(QWidget *parent /* = 0 */)
 {
 	setMaxLength(255);
 
+	_aDefaultStyleSheet =
+			QString("QInputDialog {background-color: rgb(%1); color: rgb(%2);}")
+				.arg(COLOUR_RGB_STRING_YEROTH_DARK_GREEN_47_67_67,
+					 COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
+
+	_inputDialog = new QInputDialog;
+
+	_inputDialog->setWindowTitle(YerothUtils::EMPTY_STRING);
+
+	_inputDialog->setLabelText(QObject::tr("contenu de ce champs de texte"));
+
+	_inputDialog->setTextEchoMode(QLineEdit::Normal);
+
+	_inputDialog->setOption(QInputDialog::NoButtons);
+
+
 	_originalPlaceHolderText = placeholderText();
 
 	_originalPaletteBeforeMissingInformation = palette();
 
+
     setYerothERPQLineEditDisplayFormat();
+}
+
+
+YerothLineEdit::~YerothLineEdit()
+{
+	if (0 != _inputDialog)
+	{
+		delete _inputDialog;
+	}
 }
 
 
@@ -199,7 +230,7 @@ void YerothLineEdit::isInputValid()
 void YerothLineEdit::myClear()
 {
     QLineEdit::clear();
-    QLineEdit::setText(EMPTY_STRING);
+    QLineEdit::setText(YerothUtils::EMPTY_STRING);
 }
 
 void YerothLineEdit::setupMyQCompleter(QString sqlTableName,
@@ -627,3 +658,33 @@ void YerothLineEdit::refreshCompleterList(QString strategy)
         _sqlTableModelView->lister_FEFO(*_sqlTableModel, _stockNameToStockID);
     }
 }
+
+
+void YerothLineEdit::mouseDoubleClickEvent(QMouseEvent *event)
+{
+	if (!isReadOnly())
+	{
+		return ;
+	}
+
+	if (_firstTimeStyleSheetCheck)
+	{
+		QString aStyleSheet(styleSheet());
+
+		if (!aStyleSheet.isEmpty())
+		{
+			_inputDialog->setStyleSheet(aStyleSheet);
+		}
+		else
+		{
+			_inputDialog->setStyleSheet(_aDefaultStyleSheet);
+		}
+
+		_firstTimeStyleSheetCheck = false;
+	}
+
+	_inputDialog->setTextValue(text());
+
+	_inputDialog->show();
+}
+
