@@ -3487,7 +3487,7 @@
       <property name="geometry">
        <rect>
         <x>379</x>
-        <y>15</y>
+        <y>14</y>
         <width>165</width>
         <height>21</height>
        </rect>
@@ -3947,7 +3947,7 @@
         <x>548</x>
         <y>15</y>
         <width>224</width>
-        <height>25</height>
+        <height>21</height>
        </rect>
       </property>
       <property name="palette">
@@ -4407,7 +4407,7 @@
         <x>548</x>
         <y>45</y>
         <width>224</width>
-        <height>25</height>
+        <height>21</height>
        </rect>
       </property>
       <property name="palette">
@@ -4862,7 +4862,7 @@
       <property name="geometry">
        <rect>
         <x>468</x>
-        <y>45</y>
+        <y>44</y>
         <width>77</width>
         <height>21</height>
        </rect>
@@ -4886,8 +4886,8 @@
       <property name="geometry">
        <rect>
         <x>6</x>
-        <y>15</y>
-        <width>26</width>
+        <y>14</y>
+        <width>103</width>
         <height>21</height>
        </rect>
       </property>
@@ -4909,10 +4909,10 @@
      <widget class="YerothLineEdit" name="lineEdit_this_localisation">
       <property name="geometry">
        <rect>
-        <x>36</x>
+        <x>113</x>
         <y>15</y>
         <width>224</width>
-        <height>25</height>
+        <height>21</height>
        </rect>
       </property>
       <property name="palette">
@@ -24242,7 +24242,7 @@
         <x>6</x>
         <y>39</y>
         <width>141</width>
-        <height>25</height>
+        <height>21</height>
        </rect>
       </property>
       <property name="palette">
@@ -24718,7 +24718,7 @@
         <x>155</x>
         <y>39</y>
         <width>614</width>
-        <height>25</height>
+        <height>21</height>
        </rect>
       </property>
       <property name="palette">
@@ -25161,7 +25161,7 @@
         <x>6</x>
         <y>39</y>
         <width>141</width>
-        <height>25</height>
+        <height>21</height>
        </rect>
       </property>
       <property name="palette">
@@ -25616,7 +25616,7 @@
         <x>155</x>
         <y>39</y>
         <width>614</width>
-        <height>25</height>
+        <height>21</height>
        </rect>
       </property>
       <property name="palette">
@@ -34893,7 +34893,7 @@
       <property name="geometry">
        <rect>
         <x>7</x>
-        <y>15</y>
+        <y>14</y>
         <width>170</width>
         <height>21</height>
        </rect>
@@ -35353,7 +35353,7 @@
         <x>182</x>
         <y>45</y>
         <width>141</width>
-        <height>25</height>
+        <height>21</height>
        </rect>
       </property>
       <property name="palette">
@@ -35808,7 +35808,7 @@
       <property name="geometry">
        <rect>
         <x>7</x>
-        <y>45</y>
+        <y>44</y>
         <width>170</width>
         <height>21</height>
        </rect>
@@ -36268,7 +36268,7 @@
         <x>182</x>
         <y>15</y>
         <width>141</width>
-        <height>25</height>
+        <height>21</height>
        </rect>
       </property>
       <property name="palette">
