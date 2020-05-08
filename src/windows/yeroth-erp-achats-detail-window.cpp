@@ -86,7 +86,7 @@ void YerothAchatsDetailWindow::setupLineEdits()
     lineEdit_prix_vente->setYerothEnabled(false);
     textEdit_description->setYerothEnabled(false);
     lineEdit_quantite_initiale->setYerothEnabled(false);
-    lineEdit_stock_minimum->setYerothEnabled(false);
+    lineEdit_stock_dalerte->setYerothEnabled(false);
     lineEdit_categorie_produit->setYerothEnabled(false);
     lineEdit_nom_entreprise_fournisseur->setYerothEnabled(false);
 }
@@ -316,9 +316,9 @@ void YerothAchatsDetailWindow::showItem(int lastSelectedRow)
 
     lineEdit_quantite_restante->setText(GET_DOUBLE_STRING_P(quantite_restante, 0));
 
-    double stock_minimum = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::STOCK_MINIMUM).toDouble();
+    double stock_dalerte = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::STOCK_DALERTE).toDouble();
 
-    lineEdit_stock_minimum->setText(GET_DOUBLE_STRING_P(stock_minimum, 0));
+    lineEdit_stock_dalerte->setText(GET_DOUBLE_STRING_P(stock_dalerte, 0));
     dateEdit_date_peremption->setDate(GET_DATE_FROM_STRING(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DATE_PEREMPTION)));
 
     int lots_entrant = GET_SQL_RECORD_DATA(record, "lots_entrant").toInt();

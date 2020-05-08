@@ -26,7 +26,7 @@ const QString YerothDatabaseTableColumn::COMPTE_CLIENT					("compte_client");
 const QString YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT	("dette_maximale_compte_client");
 const QString YerothDatabaseTableColumn::CATEGORIE						("categorie");
 const QString YerothDatabaseTableColumn::QUANTITE						("quantite");
-const QString YerothDatabaseTableColumn::STOCK_MINIMUM					("stock_minimum");
+const QString YerothDatabaseTableColumn::STOCK_DALERTE					("stock_dalerte");
 const QString YerothDatabaseTableColumn::STOCK_MAXIMUM					("stock_maximum");
 const QString YerothDatabaseTableColumn::QUANTITE_VENDUE				("quantite_vendue");
 const QString YerothDatabaseTableColumn::QUANTITE_TOTAL					("quantite_total");
@@ -163,7 +163,7 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::STOCK_MAXIMUM,	QObject::trUtf8("stock maximum"));
 
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::STOCK_MINIMUM,	QObject::trUtf8("stock minimum"));
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::STOCK_DALERTE,	QObject::trUtf8("stock d'alerte"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::QUANTITE_VENDUE,	QObject::trUtf8("Qté"));
 

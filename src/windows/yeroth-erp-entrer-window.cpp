@@ -164,7 +164,7 @@ void YerothEntrerWindow::setupLineEdits()
 
     lineEdit_quantite_total->setValidator(&YerothUtils::DoubleValidator);
     lineEdit_quantite_par_lot->setValidator(&YerothUtils::IntValidator);
-    lineEdit_stock_minimum->setValidator(&YerothUtils::DoubleValidator);
+    lineEdit_stock_dalerte->setValidator(&YerothUtils::DoubleValidator);
     lineEdit_prix_dachat->setValidator(&YerothUtils::DoubleValidator);
     lineEdit_prix_vente->setValidator(&YerothUtils::DoubleValidator);
 
@@ -214,8 +214,7 @@ void YerothEntrerWindow::setupLineEditsQCompleters()
 	}
 
 	lineEdit_categorie_produit->setupMyStaticQCompleter(_allWindows->CATEGORIES,
-														YerothDatabaseTableColumn::NOM_CATEGORIE,
-														true);
+														YerothDatabaseTableColumn::NOM_CATEGORIE);
 }
 
 
@@ -677,8 +676,8 @@ void YerothEntrerWindow::setStockSpecificWidgetVisible(bool visible)
 	label_reference_recu_dachat->setVisible(visible);
 	lineEdit_reference_recu_dachat->setVisible(visible);
 
-	label_stock_minimum->setVisible(visible);
-	lineEdit_stock_minimum->setVisible(visible);
+	label_stock_dalerte->setVisible(visible);
+	lineEdit_stock_dalerte->setVisible(visible);
 
 	label_localisation_du_stock->setVisible(visible);
 	lineEdit_localisation_produit->setVisible(visible);
@@ -886,7 +885,7 @@ void YerothEntrerWindow::clear_all_fields()
     lineEdit_quantite_par_lot->clearField();
     lineEdit_quantite_total->clear();
     lineEdit_nom_entreprise_fournisseur->clearField();
-    lineEdit_stock_minimum->clearField();
+    lineEdit_stock_dalerte->clearField();
     lineEdit_reference_recu_dachat->clearField();
     lineEdit_prix_dachat->clearField();
     lineEdit_prix_vente->clearField();
@@ -1654,7 +1653,7 @@ void YerothEntrerWindow::enregistrer_produit()
 
     double quantite_total = lineEdit_quantite_total->text().toDouble();
 
-    double stock_minimum = lineEdit_stock_minimum->text().toDouble();
+    double stock_dalerte = lineEdit_stock_dalerte->text().toDouble();
 
     QString reference_recu_dachat = lineEdit_reference_recu_dachat->text();
 
@@ -1682,7 +1681,7 @@ void YerothEntrerWindow::enregistrer_produit()
     {
     	achatRecord.setValue(YerothDatabaseTableColumn::ENREGISTREUR_STOCK, utilisateurCourrantNomComplet);
     	achatRecord.setValue(YerothDatabaseTableColumn::QUANTITE_TOTAL, quantite_total);
-    	achatRecord.setValue(YerothDatabaseTableColumn::STOCK_MINIMUM, stock_minimum);
+    	achatRecord.setValue(YerothDatabaseTableColumn::STOCK_DALERTE, stock_dalerte);
     	achatRecord.setValue(YerothDatabaseTableColumn::REFERENCE_RECU_DACHAT, reference_recu_dachat);
     	achatRecord.setValue(YerothDatabaseTableColumn::PRIX_DACHAT, prix_dachat);
     	achatRecord.setValue(YerothDatabaseTableColumn::PRIX_VENTE, prix_vente);
@@ -1693,7 +1692,7 @@ void YerothEntrerWindow::enregistrer_produit()
     if (!checkBox_service->isChecked())
     {
     	record.setValue(YerothDatabaseTableColumn::REFERENCE_RECU_DACHAT, reference_recu_dachat);
-    	record.setValue(YerothDatabaseTableColumn::STOCK_MINIMUM, stock_minimum);
+    	record.setValue(YerothDatabaseTableColumn::STOCK_DALERTE, stock_dalerte);
     	record.setValue(YerothDatabaseTableColumn::PRIX_DACHAT, prix_dachat);
     }
 

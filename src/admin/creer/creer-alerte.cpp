@@ -290,7 +290,7 @@ void YerothAdminCreateWindow::clear_alerte_all_fields()
     lineEdit_creer_alerte_designation->clearField();
     lineEdit_creer_alerte_destinataire->clearField();
 
-    lineEdit_creer_alerte_stock_minimum->clear();
+    lineEdit_creer_alerte_stock_dalerte->clear();
     lineEdit_creer_alerte_nom_destinataire->clear();
     lineEdit_creer_alerte_quantite_en_stock->clear();
     lineEdit_creer_alerte_date_peremption->clear();

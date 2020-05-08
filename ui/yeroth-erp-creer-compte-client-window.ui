@@ -4752,7 +4752,7 @@
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="label_stock_minimum">
+    <widget class="QLabel" name="label_creer_compte_client_numero_de_contribuable">
      <property name="geometry">
       <rect>
        <x>414</x>

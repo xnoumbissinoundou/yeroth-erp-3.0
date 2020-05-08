@@ -277,7 +277,7 @@ void YerothModifierWindow::actualiser_stock()
 
             record.setValue(YerothDatabaseTableColumn::PRIX_VENTE, prix_vente);
 
-            record.setValue(YerothDatabaseTableColumn::STOCK_MINIMUM, lineEdit_stock_minimum->text().toDouble());
+            record.setValue(YerothDatabaseTableColumn::STOCK_DALERTE, lineEdit_stock_dalerte->text().toDouble());
 
             record.setValue(YerothDatabaseTableColumn::DATE_PEREMPTION, dateEdit_date_peremption->date());
 
@@ -367,7 +367,7 @@ void YerothModifierWindow::setupLineEdits()
 {
     lineEdit_quantite_par_lot->setValidator(&YerothUtils::DoubleValidator);
     lineEdit_quantite_restante->setValidator(&YerothUtils::IntValidator);
-    lineEdit_stock_minimum->setValidator(&YerothUtils::DoubleValidator);
+    lineEdit_stock_dalerte->setValidator(&YerothUtils::DoubleValidator);
     lineEdit_prix_vente->setValidator(&YerothUtils::DoubleValidator);
 
     lineEdit_localisation_produit->setYerothEnabled(true);
@@ -378,7 +378,7 @@ void YerothModifierWindow::setupLineEdits()
     lineEdit_nom_entreprise_fournisseur->setYerothEnabled(false);
     lineEdit_categorie_produit->setYerothEnabled(false);
     lineEdit_quantite_par_lot->setYerothEnabled(false);
-    lineEdit_stock_minimum->setYerothEnabled(true);
+    lineEdit_stock_dalerte->setYerothEnabled(true);
     lineEdit_tva->setYerothEnabled(false);
     lineEdit_quantite_restante->setYerothEnabled(false);
     lineEdit_tva->setText(YerothUtils::getTvaStringWithPercent());
@@ -571,7 +571,7 @@ void YerothModifierWindow::clear_all_fields()
     spinBox_lots->clear();
     lineEdit_quantite_par_lot->clearField();
     lineEdit_nom_entreprise_fournisseur->clear();
-    lineEdit_stock_minimum->clearField();
+    lineEdit_stock_dalerte->clearField();
     lineEdit_prix_vente->clearField();
     textEdit_description->clear();
     lineEdit_localisation_produit->clear();
@@ -790,8 +790,8 @@ void YerothModifierWindow::setStockSpecificWidgetVisible(bool visible)
 	label_reference_recu_dachat->setVisible(visible);
 	lineEdit_reference_recu_dachat->setVisible(visible);
 
-	label_stock_minimum->setVisible(visible);
-	lineEdit_stock_minimum->setVisible(visible);
+	label_stock_dalerte->setVisible(visible);
+	lineEdit_stock_dalerte->setVisible(visible);
 
 	label_localisation_du_stock->setVisible(visible);
 	lineEdit_localisation_produit->setVisible(visible);
@@ -845,7 +845,7 @@ void YerothModifierWindow::showItem()
 
     lineEdit_quantite_par_lot->setText(QString::number(quantite_par_lot, 'f', 2));
 
-    lineEdit_stock_minimum->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::STOCK_MINIMUM));
+    lineEdit_stock_dalerte->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::STOCK_DALERTE));
 
     lineEdit_reference_recu_dachat->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE_RECU_DACHAT));
 

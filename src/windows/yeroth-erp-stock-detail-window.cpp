@@ -98,7 +98,7 @@ void YerothStockDetailWindow::setupLineEdits()
     lineEdit_prix_vente->setYerothEnabled(false);
     textEdit_description->setYerothEnabled(false);
     lineEdit_quantite_initiale->setYerothEnabled(false);
-    lineEdit_stock_minimum->setYerothEnabled(false);
+    lineEdit_stock_dalerte->setYerothEnabled(false);
     lineEdit_categorie_produit->setYerothEnabled(false);
     lineEdit_nom_entreprise_fournisseur->setYerothEnabled(false);
 }
@@ -306,8 +306,8 @@ void YerothStockDetailWindow::setStockSpecificWidgetVisible(bool visible)
 	label_reference_recu_dachat->setVisible(visible);
 	lineEdit_reference_recu_dachat->setVisible(visible);
 
-	label_stock_minimum->setVisible(visible);
-	lineEdit_stock_minimum->setVisible(visible);
+	label_stock_dalerte->setVisible(visible);
+	lineEdit_stock_dalerte->setVisible(visible);
 
 	label_localisation_du_stock->setVisible(visible);
 	lineEdit_localisation_produit->setVisible(visible);
@@ -383,9 +383,9 @@ void YerothStockDetailWindow::showItem()
 
     lineEdit_quantite_restante->setText(GET_DOUBLE_STRING_P(quantite_restante, 2));
 
-    double quantite_minimale_en_stock = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::STOCK_MINIMUM).toDouble();
+    double stock_dalerte = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::STOCK_DALERTE).toDouble();
 
-    lineEdit_stock_minimum->setText(GET_DOUBLE_STRING_P(quantite_minimale_en_stock, 2));
+    lineEdit_stock_dalerte->setText(GET_DOUBLE_STRING_P(stock_dalerte, 2));
     dateEdit_date_peremption->setDate(GET_DATE_FROM_STRING(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DATE_PEREMPTION)));
 
     double lots_entrant = GET_SQL_RECORD_DATA(record, "lots_entrant").toDouble();

@@ -3033,7 +3033,7 @@
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
       </widget>
-      <widget class="YerothLineEdit" name="lineEdit_creer_alerte_stock_minimum">
+      <widget class="YerothLineEdit" name="lineEdit_creer_alerte_stock_dalerte">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -3053,7 +3053,7 @@
         </font>
        </property>
       </widget>
-      <widget class="QLabel" name="label_creer_alerte_quantite_minimale_en_stock">
+      <widget class="QLabel" name="label_creer_alerte_stock_dalerte">
        <property name="geometry">
         <rect>
          <x>400</x>
@@ -3063,7 +3063,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>stock minimum</string>
+        <string>stock d'alerte</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -16249,7 +16249,7 @@ background-color: rgb(255, 255, 255);</string>
   <tabstop>pushButton_creer_alerte_annuler</tabstop>
   <tabstop>textEdit_creer_alerte_message</tabstop>
   <tabstop>lineEdit_creer_alerte_quantite_en_stock</tabstop>
-  <tabstop>lineEdit_creer_alerte_stock_minimum</tabstop>
+  <tabstop>lineEdit_creer_alerte_stock_dalerte</tabstop>
   <tabstop>lineEdit_creer_alerte_date_peremption</tabstop>
   <tabstop>lineEdit_creer_alerte_nom_destinataire</tabstop>
   <tabstop>lineEdit_creer_categorie_nom</tabstop>

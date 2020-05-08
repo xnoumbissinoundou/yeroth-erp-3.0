@@ -235,7 +235,7 @@ void YerothAdminCreateWindow::showProduitInfo(const QString & nomProduit)
 {
     _logger->log("showProduitInfo(const QString &)", QString("designation: %1").arg(nomProduit));
 
-    double stock_minimum = 0.0;
+    double stock_dalerte = 0.0;
 
     double quantite_en_stock = 0.0;
 
@@ -258,7 +258,7 @@ void YerothAdminCreateWindow::showProduitInfo(const QString & nomProduit)
     query.clear();
 
     strQuery = QString("SELECT %1 FROM %2 WHERE %3 = '%4'")
-    					.arg(YerothDatabaseTableColumn::STOCK_MINIMUM,
+    					.arg(YerothDatabaseTableColumn::STOCK_DALERTE,
     						_allWindows->STOCKS,
     						 YerothDatabaseTableColumn::DESIGNATION,
 							 sqlNomProduit);
@@ -269,7 +269,7 @@ void YerothAdminCreateWindow::showProduitInfo(const QString & nomProduit)
 
         if (query.next())
         {
-            stock_minimum = query.value(0).toDouble();
+            stock_dalerte = query.value(0).toDouble();
         }
     }
 
@@ -277,7 +277,7 @@ void YerothAdminCreateWindow::showProduitInfo(const QString & nomProduit)
     {
     case SUJET_ACTION_ALERTE:
     	lineEdit_creer_alerte_quantite_en_stock->setText(QString::number(quantite_en_stock, 'f', 0));
-    	lineEdit_creer_alerte_stock_minimum->setText(QString::number(stock_minimum, 'f', 0));
+    	lineEdit_creer_alerte_stock_dalerte->setText(QString::number(stock_dalerte, 'f', 0));
         break;
 
     case SUJET_ACTION_REMISE:

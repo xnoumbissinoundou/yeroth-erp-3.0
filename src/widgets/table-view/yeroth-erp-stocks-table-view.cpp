@@ -86,14 +86,14 @@ void YerothERPStocksTableView::lister_les_elements_du_tableau(YerothSqlTableMode
         QSqlRecord record;
         QVariant date_premption;
         QVariant quantite_total;
-        QVariant stock_minimum;
+        QVariant stock_dalerte;
 
         for (int i = 0; i < rows; ++i)
         {
             record = tableModel.record(i);
             date_premption = record.value(YerothDatabaseTableColumn::DATE_PEREMPTION);
             quantite_total = record.value(YerothDatabaseTableColumn::QUANTITE_TOTAL);
-            stock_minimum = record.value(YerothDatabaseTableColumn::STOCK_MINIMUM);
+            stock_dalerte = record.value(YerothDatabaseTableColumn::STOCK_DALERTE);
 
             for (int k = 0; k < columns; ++k)
             {
@@ -190,10 +190,9 @@ void YerothERPStocksTableView::lister_les_elements_du_tableau(YerothSqlTableMode
                 if (anItem)
                 {
                     anItem->setForeground(Qt::white);
-                    double qantite_minimale = stock_minimum.toDouble() - 1;
 
                     if (YerothERPStocksTableView::QUANTITE_TOTAL_COLUMN == k &&
-                            quantite_total.toDouble() <= qantite_minimale)
+                            quantite_total.toDouble() <= stock_dalerte.toDouble())
                     {
                         anItem->setForeground(YerothUtils::YEROTH_RED_COLOR);
                     }

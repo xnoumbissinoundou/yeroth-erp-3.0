@@ -8144,7 +8144,7 @@ stock (service)</string>
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="YerothLineEdit" name="lineEdit_stock_minimum">
+    <widget class="YerothLineEdit" name="lineEdit_stock_dalerte">
      <property name="geometry">
       <rect>
        <x>570</x>
@@ -8574,7 +8574,7 @@ stock (service)</string>
       </font>
      </property>
     </widget>
-    <widget class="QLabel" name="label_stock_minimum">
+    <widget class="QLabel" name="label_stock_dalerte">
      <property name="geometry">
       <rect>
        <x>414</x>
@@ -8591,7 +8591,7 @@ stock (service)</string>
       </font>
      </property>
      <property name="text">
-      <string>stock minimum</string>
+      <string>stock d'alerte</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -11923,7 +11923,7 @@ stock (service)</string>
   <tabstop>lineEdit_prix_vente</tabstop>
   <tabstop>dateEdit_date_peremption</tabstop>
   <tabstop>lineEdit_localisation_produit</tabstop>
-  <tabstop>lineEdit_stock_minimum</tabstop>
+  <tabstop>lineEdit_stock_dalerte</tabstop>
   <tabstop>lineEdit_reference_recu_dachat</tabstop>
   <tabstop>pushButton_entrer</tabstop>
   <tabstop>pushButton_modifier</tabstop>

@@ -715,7 +715,7 @@ void YerothTableView::lister_FIFO(YerothSqlTableModel &tableModel,
 
         QVariant date_premption;
         QVariant quantite_total;
-        QVariant stock_minimum;
+        QVariant stock_dalerte;
 
         bool itemHasExpired = false;
 
@@ -727,7 +727,7 @@ void YerothTableView::lister_FIFO(YerothSqlTableModel &tableModel,
 
             date_premption = record.value(YerothDatabaseTableColumn::DATE_PEREMPTION);
             quantite_total = record.value(YerothDatabaseTableColumn::QUANTITE_TOTAL);
-            stock_minimum = record.value(YerothDatabaseTableColumn::STOCK_MINIMUM);
+            stock_dalerte = record.value(YerothDatabaseTableColumn::STOCK_DALERTE);
 
             itemHasExpired = (date_premption.toDate() < GET_CURRENT_DATE);
 
@@ -863,10 +863,8 @@ void YerothTableView::lister_FIFO(YerothSqlTableModel &tableModel,
                         testDateEntreeOK = false;
                     }
 
-                    double quantite_minimale = stock_minimum.toDouble() - 1;
-
                     if (YerothTableView::QUANTITE_TOTAL_COLUMN ==k &&
-                            quantite_total.toDouble() <= quantite_minimale)
+                            quantite_total.toDouble() <= stock_dalerte.toDouble())
                     {
                         anItem->setForeground(YerothUtils::YEROTH_RED_COLOR);
                     }
@@ -1004,7 +1002,7 @@ void YerothTableView::lister_LIFO(YerothSqlTableModel &tableModel,
 
         QVariant date_premption;
         QVariant quantite_total;
-        QVariant stock_minimum;
+        QVariant stock_dalerte;
 
         QString curStockID;
 
@@ -1020,7 +1018,7 @@ void YerothTableView::lister_LIFO(YerothSqlTableModel &tableModel,
 
             date_premption = record.value(YerothDatabaseTableColumn::DATE_PEREMPTION);
             quantite_total = record.value(YerothDatabaseTableColumn::QUANTITE_TOTAL);
-            stock_minimum = record.value(YerothDatabaseTableColumn::STOCK_MINIMUM);
+            stock_dalerte = record.value(YerothDatabaseTableColumn::STOCK_DALERTE);
 
             itemHasExpired = (date_premption.toDate() < GET_CURRENT_DATE);
 
@@ -1203,10 +1201,8 @@ void YerothTableView::lister_LIFO(YerothSqlTableModel &tableModel,
                 		testDateEntreeOK = false;
                 	}
 
-                    double quantite_minimale = stock_minimum.toDouble() - 1;
-
-                    if (YerothTableView::QUANTITE_TOTAL_COLUMN == k 		&&
-                            quantite_total.toDouble() <= quantite_minimale)
+                    if (YerothTableView::QUANTITE_TOTAL_COLUMN == k 	   &&
+                        quantite_total.toDouble() <= stock_dalerte.toDouble())
                     {
                         anItem->setForeground(YerothUtils::YEROTH_RED_COLOR);
                     }
@@ -1265,7 +1261,7 @@ void YerothTableView::lister_FEFO(YerothSqlTableModel &tableModel,
 
         QVariant date_premption;
         QVariant quantite_total;
-        QVariant stock_minimum;
+        QVariant stock_dalerte;
 
         QString curStockID;
 
@@ -1279,7 +1275,7 @@ void YerothTableView::lister_FEFO(YerothSqlTableModel &tableModel,
 
             date_premption = record.value(YerothDatabaseTableColumn::DATE_PEREMPTION);
             quantite_total = record.value(YerothDatabaseTableColumn::QUANTITE_TOTAL);
-            stock_minimum = record.value(YerothDatabaseTableColumn::STOCK_MINIMUM);
+            stock_dalerte = record.value(YerothDatabaseTableColumn::STOCK_DALERTE);
 
             itemIsPreempted = (date_premption.toDate() < GET_CURRENT_DATE);
 
@@ -1398,10 +1394,8 @@ void YerothTableView::lister_FEFO(YerothSqlTableModel &tableModel,
                     anItem->setForeground(Qt::white);
                     //prevItem = anItem;
 
-                    double quantite_minimale = stock_minimum.toDouble() - 1;
-
-                    if (YerothTableView::QUANTITE_TOTAL_COLUMN == k &&
-                        quantite_total.toDouble() <= quantite_minimale)
+                    if (YerothTableView::QUANTITE_TOTAL_COLUMN == k 	  &&
+                        quantite_total.toDouble() <= stock_dalerte.toDouble())
                     {
                         anItem->setForeground(YerothUtils::YEROTH_RED_COLOR);
                     }
@@ -1795,7 +1789,7 @@ void YerothTableView::lister_codebar_LIFO(YerothSqlTableModel &tableModel,
 
         QVariant date_premption;
         QVariant quantite_total;
-        QVariant stock_minimum;
+        QVariant stock_dalerte;
 
         QString curStockID;
 
@@ -1809,7 +1803,7 @@ void YerothTableView::lister_codebar_LIFO(YerothSqlTableModel &tableModel,
 
             date_premption = record.value(YerothDatabaseTableColumn::DATE_PEREMPTION);
             quantite_total = record.value(YerothDatabaseTableColumn::QUANTITE_TOTAL);
-            stock_minimum = record.value(YerothDatabaseTableColumn::STOCK_MINIMUM);
+            stock_dalerte = record.value(YerothDatabaseTableColumn::STOCK_DALERTE);
 
             itemHasExpired = (date_premption.toDate() < GET_CURRENT_DATE);
 
@@ -1949,7 +1943,7 @@ void YerothTableView::lister_codebar_FEFO(YerothSqlTableModel &tableModel,
         QSqlRecord record;
 
         QVariant quantite_total;
-        QVariant stock_minimum;
+        QVariant stock_dalerte;
         QVariant date_premption;
 
         QString curStockID;
@@ -1963,7 +1957,7 @@ void YerothTableView::lister_codebar_FEFO(YerothSqlTableModel &tableModel,
         	curStockID = record.value(YerothDatabaseTableColumn::ID).toString();
 
             quantite_total = record.value(YerothDatabaseTableColumn::QUANTITE_TOTAL);
-            stock_minimum = record.value(YerothDatabaseTableColumn::STOCK_MINIMUM);
+            stock_dalerte = record.value(YerothDatabaseTableColumn::STOCK_DALERTE);
             date_premption = record.value(YerothDatabaseTableColumn::DATE_PEREMPTION);
 
             itemIsPreempted = (date_premption.toDate() < GET_CURRENT_DATE);
