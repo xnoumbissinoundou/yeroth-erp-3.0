@@ -10,13 +10,14 @@
 
 #include "src/utils/yeroth-erp-utils.hpp"
 
+
 #include <QtWidgets/QComboBox>
 
 #include <QtSql/QSqlRecord>
 
 
-class YerothUtils;
 class QSqlRecord;
+
 
 class YerothComboBox : public QComboBox
 {
@@ -89,7 +90,8 @@ public:
 	}
 
 	bool populateComboBoxRawString(QString aDBTableViewStringName,
-								   QString aDBFieldColumn);
+								   QString aDBFieldColumn,
+								   QString aConditionStr = "");
 
 	bool populateComboBoxMissingRawString(const QString aDBFieldColumn,
 										  const QString aDBTableViewString,

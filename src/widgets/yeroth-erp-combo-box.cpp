@@ -96,7 +96,8 @@ void YerothComboBox::saveCurrentValueToDatabase(const QString &aDBFieldColumn,
  * of combo box elements.
  */
 bool YerothComboBox::populateComboBoxRawString(QString aDBTableViewStringName,
-		   	   	   	   	   	   	   	   	   	   QString aDBFieldColumn)
+		   	   	   	   	   	   	   	   	   	   QString aDBFieldColumn,
+											   QString aConditionStr /* = YerothUtils::EMPTY_STRING */)
 {
 	if (!isPopulateRaw())
 	{
@@ -107,8 +108,22 @@ bool YerothComboBox::populateComboBoxRawString(QString aDBTableViewStringName,
 
     clear();
 
-    QString strQuery(QString("select %1 from %2")
-    					.arg(aDBFieldColumn, aDBTableViewStringName));
+    QString strQuery;
+
+    if (aConditionStr.isEmpty())
+    {
+    	strQuery = QString("select %1 from %2")
+    	    		 .arg(aDBFieldColumn,
+    	    			  aDBTableViewStringName);
+    }
+    else
+    {
+    	strQuery = QString("select %1 from %2 where %3")
+    	    		 .arg(aDBFieldColumn,
+    	    			  aDBTableViewStringName,
+						  aConditionStr);
+    }
+
 
     //qDebug() << "++ query: " << strQuery;
     QSqlQuery query;
@@ -132,6 +147,8 @@ bool YerothComboBox::populateComboBoxRawString(QString aDBTableViewStringName,
             }
         }
     }
+
+    clear();
 
     addItems(curItems);
 
@@ -186,6 +203,8 @@ bool YerothComboBox::populateComboBoxMissingRawString(const QString aDBFieldColu
         }
     }
 
+    clear();
+
     addItems(curItems);
 
     curItems.clear();
@@ -235,6 +254,8 @@ bool YerothComboBox::populateComboBox()
             }
         }
     }
+
+    clear();
 
     addItems(curItems);
 
@@ -287,6 +308,8 @@ bool YerothComboBox::populateComboBoxMissing(const int aContentINTValue)
         }
     }
 
+    clear();
+
     addItems(curItems);
 
     curItems.clear();
@@ -336,6 +359,8 @@ bool YerothComboBox::populateComboBoxWithout(const int aContentINTValue)
             }
         }
     }
+
+    clear();
 
     addItems(curItems);
 

@@ -282,8 +282,8 @@ bool YerothPayerCompteClientWindow::createPaymentForCustomerAccount(PaymentInfo 
 void YerothPayerCompteClientWindow::reinitialiser_donnees_de_paiement_au_compteclient()
 {
 	textEdit_description->clear();
-	lineEdit_comptes_clients_reference->myClear();
 	lineEdit_montant_a_payer->myClear();
+	comboBox_comptes_clients_reference->resetYerothComboBox();
 	comboBox_clients_typedepaiement->resetYerothComboBox();
 	comboBox_clients_intitule_du_compte_bancaire->resetYerothComboBox();
 }
@@ -418,7 +418,7 @@ void YerothPayerCompteClientWindow::private_slot_afficher_les_transactions_dun_c
 
 bool YerothPayerCompteClientWindow::putCashIntoCustomerAccount()
 {
-	if (lineEdit_comptes_clients_reference->text().isEmpty())
+	if (comboBox_comptes_clients_reference->currentText().isEmpty())
 	{
 		YerothQMessageBox::information(this,
 									   QObject::trUtf8("référence"),
@@ -566,7 +566,7 @@ bool YerothPayerCompteClientWindow::putCashIntoCustomerAccount()
 
     	paymentInfo.notes = textEdit_description->toPlainText();
 
-    	paymentInfo.reference = lineEdit_comptes_clients_reference->text();
+    	paymentInfo.reference = comboBox_comptes_clients_reference->currentText();
 
     	paymentInfo.type_de_paiement = YerothUtils::getComboBoxDatabaseQueryValue(comboBox_clients_typedepaiement->currentText(),
     																 	 	 	  YerothUtils::_typedepaiementToUserViewString);
@@ -612,13 +612,14 @@ bool YerothPayerCompteClientWindow::putCashIntoCustomerAccount()
 
 		lineEdit_comptes_clients_reference_reste_a_payer->clear();
 
-		lineEdit_comptes_clients_reference->clear();
 		lineEdit_montant_a_payer->clear();
 
+		comboBox_comptes_clients_reference->resetYerothComboBox();
 		comboBox_clients_typedepaiement->resetYerothComboBox();
 		comboBox_clients_intitule_du_compte_bancaire->resetYerothComboBox();
 
-		setupLineEditsQCompleters();
+		populatePayerAuCompteClientsComboBoxes();
+//		setupLineEditsQCompleters();
 
 		updateLineEdits();
     }
@@ -662,21 +663,13 @@ void YerothPayerCompteClientWindow::setupLineEdits()
 
 void YerothPayerCompteClientWindow::setupLineEditsQCompleters()
 {
-	lineEdit_comptes_clients_reference->enableForSearch(QObject::trUtf8("référence du service"));
-
-	QString aConditionStr(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::TYPE_DE_VENTE,
-						  	  	  	  	  	  	  	 QString::number(YerothUtils::VENTE_COMPTE_CLIENT)));
-
-	aConditionStr.append(QString(" AND %1 = '%2' AND %3 > '0'")
-							.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT,
-								 _curCompanyName,
-								 YerothDatabaseTableColumn::MONTANT_A_REMBOURSER));
-
-	lineEdit_comptes_clients_reference->setupMyStaticQCompleter(_allWindows->STOCKS_VENDU,
-														 	 	 YerothDatabaseTableColumn::REFERENCE,
-																 false,
-																 true,
-																 aConditionStr);
+//	QString aConditionStr(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::TYPE_DE_VENTE,
+//						  	  	  	  	  	  	  	 QString::number(YerothUtils::VENTE_COMPTE_CLIENT)));
+//
+//	aConditionStr.append(QString(" AND %1 = '%2' AND %3 > '0'")
+//							.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT,
+//								 _curCompanyName,
+//								 YerothDatabaseTableColumn::MONTANT_A_REMBOURSER));
 }
 
 
@@ -690,6 +683,18 @@ void YerothPayerCompteClientWindow::setupDateTimeEdits()
 
 void YerothPayerCompteClientWindow::populatePayerAuCompteClientsComboBoxes()
 {
+	QString aConditionStr(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::TYPE_DE_VENTE,
+						  	  	  	  	  	  	  	 QString::number(YerothUtils::VENTE_COMPTE_CLIENT)));
+
+	aConditionStr.append(QString(" AND %1 = '%2' AND %3 > '0'")
+							.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT,
+								 _curCompanyName,
+								 YerothDatabaseTableColumn::MONTANT_A_REMBOURSER));
+
+	comboBox_comptes_clients_reference->populateComboBoxRawString(_allWindows->STOCKS_VENDU,
+																  YerothDatabaseTableColumn::REFERENCE,
+																  aConditionStr);
+
 	comboBox_clients_intitule_du_compte_bancaire->setYerothEnabled(false);
 
 	comboBox_clients_typedepaiement->setupPopulateNORawString(_allWindows->TYPE_DE_PAIEMENT,
@@ -747,14 +752,16 @@ void YerothPayerCompteClientWindow::rendreVisible(int lastSelectedRow,
 
     setupLineEdits();
 
-    setupLineEditsQCompleters();
+    populatePayerAuCompteClientsComboBoxes();
+
+//    setupLineEditsQCompleters();
 
 	setVisible(true);
 
     updateLineEdits();
 
-    connect(lineEdit_comptes_clients_reference,
-    		SIGNAL(textChanged(const QString &)),
+    connect(comboBox_comptes_clients_reference,
+    		SIGNAL(currentTextChanged(const QString &)),
     		this,
             SLOT(handleReferenceChange(const QString &)));
 }
@@ -768,8 +775,9 @@ void YerothPayerCompteClientWindow::rendreInvisible()
 
 	lineEdit_comptes_clients_reference_reste_a_payer->clear();
 
-	lineEdit_comptes_clients_reference->clear();
 	lineEdit_montant_a_payer->clear();
+
+	comboBox_comptes_clients_reference->resetYerothComboBox();
 
 	comboBox_clients_intitule_du_compte_bancaire->resetYerothComboBox();
 
