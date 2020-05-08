@@ -78,8 +78,8 @@ YerothPaiementsWindow::YerothPaiementsWindow()
     _lineEditsToANDContentForSearch.insert(&lineEdit_paiements_terme_recherche,
     		YerothUtils::EMPTY_STRING);
 
-    _lineEditsToANDContentForSearch.insert(&lineEdit_paiements_reference_recu_paiement_client,
-    		YerothDatabaseTableColumn::REFERENCE_RECU_PAIEMENT_CLIENT);
+    _lineEditsToANDContentForSearch.insert(&lineEdit_paiements_reference,
+    		YerothDatabaseTableColumn::REFERENCE);
 
     _lineEditsToANDContentForSearch.insert(&lineEdit_paiements_nom_entreprise,
     		YerothDatabaseTableColumn::NOM_ENTREPRISE);
@@ -272,8 +272,8 @@ void YerothPaiementsWindow::setupLineEdits()
 {
     _logger->log("setupLineEdits");
 
-    lineEdit_paiements_terme_recherche->enableForSearch(QObject::trUtf8("terme à rechercher"));
-    lineEdit_paiements_reference_recu_paiement_client->enableForSearch(QObject::trUtf8("référence reçu de paiement client"));
+    lineEdit_paiements_terme_recherche->enableForSearch(QObject::trUtf8("terme à rechercher (référence reçu de paiement client, notes)"));
+    lineEdit_paiements_reference->enableForSearch(QObject::trUtf8("référence"));
     lineEdit_paiements_nom_entreprise->enableForSearch(QObject::tr("nom de l'entreprise"));
 
 
@@ -364,10 +364,9 @@ void YerothPaiementsWindow::textChangedSearchLineEditsQCompleters()
         	partSearchTerm = searchTermList.at(k);
         	//qDebug() << "++ searchTermList: " << partSearchTerm;
 
-        	_searchFilter.append(QString("(%1 OR %2 OR %3)")
+        	_searchFilter.append(QString("(%1 OR %2)")
         							.arg(GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::NOTES, partSearchTerm),
-        								 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::JUSTIFICATION_TRANSACTION_CLIENT, partSearchTerm),
-										 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::NOM_ENTREPRISE, partSearchTerm)));
+										 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::REFERENCE_RECU_PAIEMENT_CLIENT, partSearchTerm)));
 
         	if (k != lastIdx)
         	{
@@ -494,7 +493,7 @@ void YerothPaiementsWindow::reinitialiser_champs_db_visibles()
 			<< YerothDatabaseTableColumn::MONTANT_PAYE
 			<< YerothDatabaseTableColumn::TYPE_DE_PAIEMENT
 			<< YerothDatabaseTableColumn::COMPTE_CLIENT
-			<< YerothDatabaseTableColumn::JUSTIFICATION_TRANSACTION_CLIENT
+			<< YerothDatabaseTableColumn::REFERENCE
 			<< YerothDatabaseTableColumn::INTITULE_DU_COMPTE_BANCAIRE;
 }
 
@@ -1096,7 +1095,7 @@ void YerothPaiementsWindow::rendreVisible(YerothSqlTableModel * stocksTableModel
     tabWidget_historique_paiements->setCurrentIndex(TableauDesPaiements);
 
     lineEdit_paiements_nom_entreprise->setYerothEnabled(true);
-    lineEdit_paiements_reference_recu_paiement_client->setYerothEnabled(true);
+    lineEdit_paiements_reference->setYerothEnabled(true);
 
     setVisible(true);
 

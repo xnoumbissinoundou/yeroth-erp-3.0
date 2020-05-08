@@ -53,7 +53,7 @@ class YerothPayerCompteClientWindow : public YerothWindowsCommons, private Ui_Ye
 		QString nom_encaisseur;
 		int type_de_paiement;
 		QString notes;
-		QString justification;
+		QString reference;
 		QDate date_paiement;
 
 		double compte_client;
@@ -112,6 +112,10 @@ public slots:
 
 	static void getPayerAuCompteClientTexDocumentString(QString &texDocumentString_in_out,
 			   	   	   	   	   	   	   	   	   	   	    QString &printString);
+
+protected:
+
+	virtual void hideEvent(QHideEvent * hideEvent);
 
 protected slots:
 

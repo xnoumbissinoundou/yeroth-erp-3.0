@@ -95,6 +95,12 @@ YerothPayerCompteClientWindow::YerothPayerCompteClientWindow()
 }
 
 
+void YerothPayerCompteClientWindow::hideEvent(QHideEvent * hideEvent)
+{
+	_allWindows->_transactionsDunClientWindow->close();
+}
+
+
 void YerothPayerCompteClientWindow::handleComboBoxClients_Typedepaiement_TextChanged(const QString &currentText)
 {
 	if (YerothUtils::isEqualCaseInsensitive(currentText,
@@ -166,7 +172,7 @@ void YerothPayerCompteClientWindow::updateStocksVeduTable(PaymentInfo &paymentIn
 
 	QString stocksVenduFilter(QString("%1 = '%2' AND %3 = '%4' ")
 								.arg(YerothDatabaseTableColumn::REFERENCE,
-									 paymentInfo.justification,
+									 paymentInfo.reference,
 									 YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT,
 									 paymentInfo.nom_entreprise));
 
@@ -223,7 +229,7 @@ void YerothPayerCompteClientWindow::updateStocksVeduTable(PaymentInfo &paymentIn
     			QString removeStocksVenduRowQuery(QString("DELETE FROM %1 WHERE %2 = '%3'")
     												.arg(_allWindows->STOCKS_VENDU,
     													 YerothDatabaseTableColumn::REFERENCE,
-														 paymentInfo.justification));
+														 paymentInfo.reference));
 
     			if (YerothUtils::execQuery(removeStocksVenduRowQuery))
     			{
@@ -231,7 +237,7 @@ void YerothPayerCompteClientWindow::updateStocksVeduTable(PaymentInfo &paymentIn
     				QString removeMarchandisesRowQuery(QString("DELETE FROM %1 WHERE %2 = '%3'")
     													 .arg(_allWindows->MARCHANDISES,
     														  YerothDatabaseTableColumn::REFERENCE,
-															  paymentInfo.justification));
+															  paymentInfo.reference));
 
     				YerothUtils::execQuery(removeMarchandisesRowQuery);
     			}
@@ -255,12 +261,8 @@ bool YerothPayerCompteClientWindow::createPaymentForCustomerAccount(PaymentInfo 
 	record.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT, 		paymentInfo.compte_client);
 	record.setValue(YerothDatabaseTableColumn::TYPE_DE_PAIEMENT, 	paymentInfo.type_de_paiement);
 	record.setValue(YerothDatabaseTableColumn::NOTES, 				paymentInfo.notes);
-
-	record.setValue(YerothDatabaseTableColumn::JUSTIFICATION_TRANSACTION_CLIENT,
-			paymentInfo.justification);
-
+	record.setValue(YerothDatabaseTableColumn::REFERENCE, 			paymentInfo.reference);
 	record.setValue(YerothDatabaseTableColumn::MONTANT_PAYE, 		paymentInfo.montant_paye);
-
 	record.setValue(YerothDatabaseTableColumn::HEURE_PAIEMENT, 		CURRENT_TIME);
 
 	record.setValue(YerothDatabaseTableColumn::INTITULE_DU_COMPTE_BANCAIRE,
@@ -319,7 +321,8 @@ void YerothPayerCompteClientWindow::private_slot_afficher_les_transactions_dun_c
 	    													"%4 as 'Total transaction', "
 	    													"%5 as 'Compte client (apres)', "
 	    													"%6 as 'Type de paiement', "
-	    			    									"justification_transaction_client as 'Raison', "
+	    			    									"reference as 'Raison', "
+	    			    									"reference_recu_paiement_client as 'Recu', "
 	    			    									"CONCAT(date_paiement,' ',heure_paiement) as 'Temps' from %7 "
 	    			    									"where date_paiement >= '%8' and date_paiement <= '%9'")
 	    											.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
@@ -339,6 +342,7 @@ void YerothPayerCompteClientWindow::private_slot_afficher_les_transactions_dun_c
 	    													 "%5 as 'Compte client (apres)', "
 	    													 "%6 as 'Type de paiement', "
 	    			    									 "reference as 'Raison', "
+	    			    									 "reference_recu_vendu as 'Recu', "
 	    			    									 "CONCAT(date_vente,' ',heure_vente) as 'Temps' from %7 "
 	    			    									 "where date_vente >= '%8' and date_vente <= '%9'")
 	    											.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT,
@@ -358,6 +362,7 @@ void YerothPayerCompteClientWindow::private_slot_afficher_les_transactions_dun_c
 	    													 "%5 as 'Compte client (apres)', "
 	    													 "%6 as 'Type de paiement', "
 	    			    									 "reference as 'Raison', "
+	    			    									 "reference_recu_vendu as 'Recu', "
 	    			    									 "CONCAT(date_vente,' ',heure_vente) as 'Temps' from %7 "
 	    			    									 "where date_vente >= '%8' and date_vente <= '%9'")
 	    											.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT,
@@ -445,7 +450,7 @@ bool YerothPayerCompteClientWindow::putCashIntoCustomerAccount()
 	{
 		YerothQMessageBox::information(this,
 									   QObject::trUtf8("montant à verser"),
-									   QObject::trUtf8("Vous n'avez choisi aucun établissement bancaire !"));
+									   QObject::trUtf8("Vous n'avez choisi aucun compte bancaire !"));
 	}
 
 
@@ -561,7 +566,7 @@ bool YerothPayerCompteClientWindow::putCashIntoCustomerAccount()
 
     	paymentInfo.notes = textEdit_description->toPlainText();
 
-    	paymentInfo.justification = lineEdit_comptes_clients_reference->text();
+    	paymentInfo.reference = lineEdit_comptes_clients_reference->text();
 
     	paymentInfo.type_de_paiement = YerothUtils::getComboBoxDatabaseQueryValue(comboBox_clients_typedepaiement->currentText(),
     																 	 	 	  YerothUtils::_typedepaiementToUserViewString);
@@ -657,7 +662,7 @@ void YerothPayerCompteClientWindow::setupLineEdits()
 
 void YerothPayerCompteClientWindow::setupLineEditsQCompleters()
 {
-	lineEdit_comptes_clients_reference->enableForSearch(QObject::trUtf8("référence"));
+	lineEdit_comptes_clients_reference->enableForSearch(QObject::trUtf8("référence du service"));
 
 	QString aConditionStr(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::TYPE_DE_VENTE,
 						  	  	  	  	  	  	  	 QString::number(YerothUtils::VENTE_COMPTE_CLIENT)));

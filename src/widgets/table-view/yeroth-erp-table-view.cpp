@@ -198,23 +198,23 @@ void YerothTableView::dataChanged(const QModelIndex &index,
 
 void YerothTableView::lister_les_transactions_dun_client(QSqlQuery &sqlClientTransactionsUnionQuery)
 {
-    QString companyNameHdr(QObject::tr("Entreprise"));
     QString dateHdr(QObject::tr("Date"));
     QString timeHdr(QObject::tr("Heure"));
     QString transactionAmountHdr(QObject::tr("Montant total"));
     QString customerAccountValueAfterHdr(QObject::trUtf8("Compte client (après)"));
     QString operationTypeHdr(QObject::tr("Type d'opération"));
     QString reasonHdr(QObject::trUtf8("Justification"));
+    QString receiptHdr(QObject::trUtf8("Référence reçu"));
 
     _tableModelHeaders->clear();
 
-    _tableModelHeaders->append(companyNameHdr);
     _tableModelHeaders->append(dateHdr);
     _tableModelHeaders->append(timeHdr);
     _tableModelHeaders->append(transactionAmountHdr);
     _tableModelHeaders->append(customerAccountValueAfterHdr);
     _tableModelHeaders->append(operationTypeHdr);
     _tableModelHeaders->append(reasonHdr);
+    _tableModelHeaders->append(receiptHdr);
 
 
     int querySize = sqlClientTransactionsUnionQuery.size();
@@ -244,9 +244,21 @@ void YerothTableView::lister_les_transactions_dun_client(QSqlQuery &sqlClientTra
 			{
 				QVariant qv;
 
-				for (int j = 0; j < _stdItemModel->columnCount(); ++j)
+				for (int j = 0; j < _stdItemModel->columnCount() ; ++j)
 				{
-					qv = sqlClientTransactionsUnionQuery.value(j);
+					/*
+					 * J'ignore le nom de l'entreprise pour la presentation
+					 * des donnees de transactions de l'entreprise cliente.
+					 * Ce nom d'entreprise apparait deja dans le fichier
+					 * PDF.
+					 *
+					 * J'utilise (j+1), et non (j) comme index !
+					 */
+
+					qv = sqlClientTransactionsUnionQuery.value(j+1);
+
+//					qDebug() << QString("++ j: %1, qv: %2")
+//									.arg(QString::number(j), qv.toString());
 
 					switch (qv.type())
 					{
@@ -276,7 +288,7 @@ void YerothTableView::lister_les_transactions_dun_client(QSqlQuery &sqlClientTra
 					case QVariant::Int:
 						keyValue = qv.toInt();
 
-						if (5 == j)
+						if (4 == j)
 						{
 							if (0 < keyValue)
 							{

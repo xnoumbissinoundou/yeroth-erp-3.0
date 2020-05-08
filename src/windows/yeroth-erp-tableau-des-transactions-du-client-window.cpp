@@ -45,34 +45,12 @@ void YerothTableauDesTransactionsDuClientWindow::listerTransactionsDunClient(QDa
 
 	_clientCompanyName = clientCompanyName;
 
-	QString curTitle(windowTitle());
+	QString curWindowTitle(QString("%1 - %2 - '%3'")
+								.arg(YEROTH_ERP_WINDOW_TITLE,
+									 QObject::tr("transactions d'un client"),
+									 clientCompanyName));
 
-	static QString preambleTitle(QString("%1 - %2")
-									.arg(YEROTH_ERP_WINDOW_TITLE,
-										 QObject::tr("transactions d'un client")));
-
-	static bool first_time_inside = true;
-
-	static int preambleTitleLength = preambleTitle.length();
-
-	if (!first_time_inside)
-	{
-		int len = curTitle.length() - preambleTitleLength;
-
-		preambleTitle.remove(preambleTitleLength, len);
-
-		//qDebug() << QString("preambleTitle: %1")
-		//				.arg(preambleTitle);
-	}
-	else
-	{
-		first_time_inside = false;
-	}
-
-//	preambleTitle.append(QString(" client (%1)")
-//						.arg(stockID));
-
-	setWindowTitle(preambleTitle);
+	setWindowTitle(curWindowTitle);
 
 	tableView_tableau_des_transactions_du_client
 			->lister_les_transactions_dun_client(sqlClientTransactionsUnionQuery);

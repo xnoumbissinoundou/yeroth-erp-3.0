@@ -4332,7 +4332,7 @@ background-color: rgb(0, 0, 0); </string>
        <bool>false</bool>
       </property>
      </widget>
-     <widget class="YerothLineEdit" name="lineEdit_paiements_reference_recu_paiement_client">
+     <widget class="YerothLineEdit" name="lineEdit_paiements_reference">
       <property name="geometry">
        <rect>
         <x>236</x>
@@ -21268,7 +21268,7 @@ background-color: rgb(0, 0, 0); </string>
   <tabstop>lineEdit_paiements_terme_recherche</tabstop>
   <tabstop>dateEdit_paiements_debut</tabstop>
   <tabstop>dateEdit_paiements_fin</tabstop>
-  <tabstop>lineEdit_paiements_reference_recu_paiement_client</tabstop>
+  <tabstop>lineEdit_paiements_reference</tabstop>
   <tabstop>lineEdit_paiements_nom_entreprise</tabstop>
   <tabstop>comboBox_paiements_element_de_paiements</tabstop>
   <tabstop>comboBox_paiements_element_de_paiements_condition</tabstop>
