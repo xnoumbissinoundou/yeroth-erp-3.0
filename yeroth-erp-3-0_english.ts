@@ -495,7 +495,7 @@ Press m &apos;Cancel&apos; to exit %2</translation>
         <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="166"/>
         <source>stock d&apos;alerte</source>
         <oldsource>stock minimum</oldsource>
-        <translation>alert stock</translation>
+        <translation>alert stock qty</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="178"/>
@@ -3767,7 +3767,7 @@ stock (service)</translation>
         <location filename="ui/yeroth-erp-achats-detail-window.ui" line="8159"/>
         <source>stock d&apos;alerte</source>
         <oldsource>stock minimum</oldsource>
-        <translation>alert stock</translation>
+        <translation>alert stock qty</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-achats-detail-window.ui" line="8612"/>
@@ -4208,7 +4208,7 @@ stock (service)</translation>
         <location filename="ui/yeroth-erp-admin-create-window.ui" line="3066"/>
         <source>stock d&apos;alerte</source>
         <oldsource>stock minimum</oldsource>
-        <translation>alert stock</translation>
+        <translation>alert stock qty</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-admin-create-window.ui" line="3076"/>
@@ -8036,7 +8036,7 @@ Transférer</source>
         <location filename="ui/yeroth-erp-entrer-window.ui" line="5853"/>
         <source>stock d&apos;alerte</source>
         <oldsource>stock minimum</oldsource>
-        <translation>alert stock</translation>
+        <translation>alert stock qty</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-entrer-window.ui" line="5876"/>
@@ -8804,7 +8804,7 @@ Sale</translation>
         <location filename="ui/yeroth-erp-modifier-window.ui" line="5948"/>
         <source>stock d&apos;alerte</source>
         <oldsource>stock minimum</oldsource>
-        <translation>alert stock</translation>
+        <translation>alert stock qty</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-modifier-window.ui" line="5974"/>
@@ -10610,7 +10610,7 @@ stock (service)</translation>
         <location filename="ui/yeroth-erp-stock-detail-window.ui" line="8594"/>
         <source>stock d&apos;alerte</source>
         <oldsource>stock minimum</oldsource>
-        <translation>alert stock</translation>
+        <translation>alert stock qty</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-stock-detail-window.ui" line="9047"/>
