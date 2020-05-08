@@ -18,6 +18,8 @@ const QString YerothDatabaseTableColumn::IS_SERVICE						("is_service");
 const QString YerothDatabaseTableColumn::ID								("id");
 const QString YerothDatabaseTableColumn::HISTORIQUE_STOCK				("historique_stock");
 const QString YerothDatabaseTableColumn::CLIENTS_ID						("clients_id");
+const QString YerothDatabaseTableColumn::JUSTIFICATION_TRANSACTION_CLIENT	("justification_transaction_client");
+const QString YerothDatabaseTableColumn::REFERENCE_RECU_PAIEMENT_CLIENT	("reference_recu_paiement_client");
 const QString YerothDatabaseTableColumn::REFERENCE_RECU_VENDU			("reference_recu_vendu");
 const QString YerothDatabaseTableColumn::REFERENCE_RECU_SORTIE			("reference_recu_sortie");
 const QString YerothDatabaseTableColumn::ENREGISTREUR_STOCK				("enregistreur_stock");
@@ -144,6 +146,10 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::HISTORIQUE_STOCK,	QObject::tr("Historique stock"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::CLIENTS_ID,			QObject::tr("ID client"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::JUSTIFICATION_TRANSACTION_CLIENT,QObject::tr("Justification"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REFERENCE_RECU_PAIEMENT_CLIENT,QObject::trUtf8("Reçu paiement"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REFERENCE_RECU_VENDU,QObject::trUtf8("Reçu"));
 

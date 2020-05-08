@@ -15289,7 +15289,7 @@ background-color: rgb(0, 0, 0); </string>
       <bool>false</bool>
      </property>
     </widget>
-    <widget class="YerothPushButton" name="pushButton_transactions_compte_client_valider_consultation">
+    <widget class="YerothPushButton" name="pushButton_transactions_compte_client_consulter">
      <property name="geometry">
       <rect>
        <x>141</x>
@@ -15721,7 +15721,7 @@ background-color: rgb(0, 0, 0); </string>
       </font>
      </property>
      <property name="text">
-      <string>valider</string>
+      <string>consulter</string>
      </property>
      <property name="flat">
       <bool>false</bool>

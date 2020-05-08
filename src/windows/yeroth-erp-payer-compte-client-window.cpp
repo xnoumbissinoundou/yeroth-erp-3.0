@@ -73,7 +73,7 @@ YerothPayerCompteClientWindow::YerothPayerCompteClientWindow()
     pushButton_menu_principal->disable(this);
 
 
-    pushButton_transactions_compte_client_valider_consultation->disable(this);
+    pushButton_transactions_compte_client_consulter->disable(this);
     pushButton_transactions_compte_client_reinitialiser_consultation->disable(this);
 
 
@@ -166,7 +166,7 @@ void YerothPayerCompteClientWindow::updateStocksVeduTable(PaymentInfo &paymentIn
 
 	QString stocksVenduFilter(QString("%1 = '%2' AND %3 = '%4' ")
 								.arg(YerothDatabaseTableColumn::REFERENCE,
-									 paymentInfo.reference,
+									 paymentInfo.justification,
 									 YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT,
 									 paymentInfo.nom_entreprise));
 
@@ -223,7 +223,7 @@ void YerothPayerCompteClientWindow::updateStocksVeduTable(PaymentInfo &paymentIn
     			QString removeStocksVenduRowQuery(QString("DELETE FROM %1 WHERE %2 = '%3'")
     												.arg(_allWindows->STOCKS_VENDU,
     													 YerothDatabaseTableColumn::REFERENCE,
-														 paymentInfo.reference));
+														 paymentInfo.justification));
 
     			if (YerothUtils::execQuery(removeStocksVenduRowQuery))
     			{
@@ -231,7 +231,7 @@ void YerothPayerCompteClientWindow::updateStocksVeduTable(PaymentInfo &paymentIn
     				QString removeMarchandisesRowQuery(QString("DELETE FROM %1 WHERE %2 = '%3'")
     													 .arg(_allWindows->MARCHANDISES,
     														  YerothDatabaseTableColumn::REFERENCE,
-															  paymentInfo.reference));
+															  paymentInfo.justification));
 
     				YerothUtils::execQuery(removeMarchandisesRowQuery);
     			}
@@ -255,7 +255,10 @@ bool YerothPayerCompteClientWindow::createPaymentForCustomerAccount(PaymentInfo 
 	record.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT, 		paymentInfo.compte_client);
 	record.setValue(YerothDatabaseTableColumn::TYPE_DE_PAIEMENT, 	paymentInfo.type_de_paiement);
 	record.setValue(YerothDatabaseTableColumn::NOTES, 				paymentInfo.notes);
-	record.setValue(YerothDatabaseTableColumn::REFERENCE, 			paymentInfo.reference);
+
+	record.setValue(YerothDatabaseTableColumn::JUSTIFICATION_TRANSACTION_CLIENT,
+			paymentInfo.justification);
+
 	record.setValue(YerothDatabaseTableColumn::MONTANT_PAYE, 		paymentInfo.montant_paye);
 
 	record.setValue(YerothDatabaseTableColumn::HEURE_PAIEMENT, 		CURRENT_TIME);
@@ -316,7 +319,7 @@ void YerothPayerCompteClientWindow::private_slot_afficher_les_transactions_dun_c
 	    													"%4 as 'Total transaction', "
 	    													"%5 as 'Compte client (apres)', "
 	    													"%6 as 'Type de paiement', "
-	    			    									"reference as 'Raison', "
+	    			    									"justification_transaction_client as 'Raison', "
 	    			    									"CONCAT(date_paiement,' ',heure_paiement) as 'Temps' from %7 "
 	    			    									"where date_paiement >= '%8' and date_paiement <= '%9'")
 	    											.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
@@ -442,10 +445,9 @@ bool YerothPayerCompteClientWindow::putCashIntoCustomerAccount()
 	{
 		YerothQMessageBox::information(this,
 									   QObject::trUtf8("montant à verser"),
-									   QObject::trUtf8("Veuillez choisir un établissement bancaire !"));
-
-		return false;
+									   QObject::trUtf8("Vous n'avez choisi aucun établissement bancaire !"));
 	}
+
 
     YerothSqlTableModel & clientsTableModel = _allWindows->getSqlTableModel_clients();
 
@@ -559,7 +561,7 @@ bool YerothPayerCompteClientWindow::putCashIntoCustomerAccount()
 
     	paymentInfo.notes = textEdit_description->toPlainText();
 
-    	paymentInfo.reference = lineEdit_comptes_clients_reference->text();
+    	paymentInfo.justification = lineEdit_comptes_clients_reference->text();
 
     	paymentInfo.type_de_paiement = YerothUtils::getComboBoxDatabaseQueryValue(comboBox_clients_typedepaiement->currentText(),
     																 	 	 	  YerothUtils::_typedepaiementToUserViewString);
@@ -789,7 +791,7 @@ void YerothPayerCompteClientWindow::definirCaissier()
     pushButton_reinitialiser->disable(this);
     pushButton_menu_principal->disable(this);
     pushButton_detail_client->disable(this);
-    pushButton_transactions_compte_client_valider_consultation->disable(this);
+    pushButton_transactions_compte_client_consulter->disable(this);
     pushButton_transactions_compte_client_reinitialiser_consultation->disable(this);
 }
 
@@ -813,7 +815,7 @@ void YerothPayerCompteClientWindow::definirManager()
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_detail_client->enable(this, SLOT(afficher_detail_client()));
 
-    pushButton_transactions_compte_client_valider_consultation
+    pushButton_transactions_compte_client_consulter
 		->enable(this, SLOT(private_slot_afficher_les_transactions_dun_client()));
 
     pushButton_transactions_compte_client_reinitialiser_consultation
@@ -840,7 +842,7 @@ void YerothPayerCompteClientWindow::definirVendeur()
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_detail_client->enable(this, SLOT(afficher_detail_client()));
 
-    pushButton_transactions_compte_client_valider_consultation
+    pushButton_transactions_compte_client_consulter
 		->enable(this, SLOT(private_slot_afficher_les_transactions_dun_client()));
 
     pushButton_transactions_compte_client_reinitialiser_consultation
@@ -865,7 +867,7 @@ void YerothPayerCompteClientWindow::definirGestionaireDesStocks()
     pushButton_reinitialiser->disable(this);
     pushButton_menu_principal->disable(this);
     pushButton_detail_client->disable(this);
-    pushButton_transactions_compte_client_valider_consultation->disable(this);
+    pushButton_transactions_compte_client_consulter->disable(this);
     pushButton_transactions_compte_client_reinitialiser_consultation->disable(this);
 }
 
@@ -887,7 +889,7 @@ void YerothPayerCompteClientWindow::definirMagasinier()
     pushButton_reinitialiser->disable(this);
     pushButton_menu_principal->disable(this);
     pushButton_detail_client->disable(this);
-    pushButton_transactions_compte_client_valider_consultation->disable(this);
+    pushButton_transactions_compte_client_consulter->disable(this);
     pushButton_transactions_compte_client_reinitialiser_consultation->disable(this);
 }
 
@@ -908,7 +910,7 @@ void YerothPayerCompteClientWindow::definirPasDeRole()
     pushButton_reinitialiser->disable(this);
     pushButton_menu_principal->disable(this);
     pushButton_detail_client->disable(this);
-    pushButton_transactions_compte_client_valider_consultation->disable(this);
+    pushButton_transactions_compte_client_consulter->disable(this);
     pushButton_transactions_compte_client_reinitialiser_consultation->disable(this);
 }
 

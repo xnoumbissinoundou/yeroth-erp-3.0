@@ -53,7 +53,7 @@ class YerothPayerCompteClientWindow : public YerothWindowsCommons, private Ui_Ye
 		QString nom_encaisseur;
 		int type_de_paiement;
 		QString notes;
-		QString reference;
+		QString justification;
 		QDate date_paiement;
 
 		double compte_client;

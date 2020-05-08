@@ -33,6 +33,10 @@ public:
 
 	static const QString CLIENTS_ID;
 
+	static const QString JUSTIFICATION_TRANSACTION_CLIENT;
+
+	static const QString REFERENCE_RECU_PAIEMENT_CLIENT;
+
 	static const QString REFERENCE_RECU_VENDU;
 
 	static const QString REFERENCE_RECU_SORTIE;
