@@ -1703,8 +1703,6 @@ QString YerothUtils::LATEX_IN_OUT_handleForeignAccents(const QString &texText_in
     QString tempText(texText_in);
     tempText = tempText.isEmpty() ? "\"\"" : tempText.replace(EMPTY_SPACE_REGEXP, "\\ ");
 
-    tempText.replace("-", "--");
-
     tempText.replace("_", "\\_");
     tempText.replace("%", "\\%");
     tempText.replace("&", "\\&");
