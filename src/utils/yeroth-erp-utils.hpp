@@ -546,7 +546,7 @@ public:
 
 	static const QString MYSQL_FALSE_LITERAL;
 
-	static const char COMMA_STRING_CHAR;
+	static const char SEMI_COLON_STRING_CHAR;
 
 	static const QString EMPTY_STRING;
 

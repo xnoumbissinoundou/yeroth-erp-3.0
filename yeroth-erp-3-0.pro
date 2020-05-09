@@ -93,6 +93,7 @@ FORMS   = ui/yeroth-erp-main-window.ui \
 		  ui/yeroth-erp-sortir-liststocks-window.ui
  
 HEADERS = src/yeroth-erp-windows.hpp \
+		  src/imports/yeroth-erp-stock-import.hpp \
 		  src/include/yeroth-erp-3-0-definition-special-qt5.7-macro.hpp \
 		  src/include/yeroth-erp-3-0-definition-colour-rgb.hpp \
 		  src/include/yeroth-erp-3-0-definition-user-manual.hpp \
@@ -203,6 +204,7 @@ HEADERS = src/yeroth-erp-windows.hpp \
  
 SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/yeroth-erp-windows.cpp \
+		  src/imports/yeroth-erp-stock-import.cpp \
 		  src/widgets/yeroth-erp-qtabwidget.cpp \
 			src/widgets/table-view/yeroth-erp-table-view.cpp \
 		  src/widgets/table-view/yeroth-erp-paiements-table-view.cpp \

@@ -6,6 +6,8 @@
 #include "yeroth-erp-admin-window.hpp"
 
 
+#include "src/imports/yeroth-erp-stock-import.hpp"
+
 #include "src/utils/yeroth-erp-config.hpp"
 
 #include "src/utils/yeroth-erp-utils.hpp"
@@ -415,15 +417,40 @@ void YerothAdminWindow::choix_registre_de_caisse(const QString &labelImpressionS
 }
 
 
-void YerothAdminWindow::generate_table_header_mapping_entries()
+void YerothAdminWindow::import_current_selected_csv_file()
 {
-	if (0 == _curCsvFileToImportContentWordList.size())
+	YerothERPStockImport erpStockImport(*this,
+										_curCsvFileToImportContentWordList,
+										_indexToSQLTableImportHeader);
+
+	int successImportCount = erpStockImport.import();
+
+	if (successImportCount > 0)
+	{
+		QString infoMesg = QString(QObject::trUtf8("'%1' entrée(s) du fichier CSV ont "
+												   "été importée(s) avec succès !"))
+							 .arg(QString::number(successImportCount));
+
+		YerothQMessageBox::information(this,
+									   QObject::tr("résultat importation fichier CSV"),
+									   infoMesg);
+	}
+	else
+	{
+
+	}
+}
+
+
+void YerothAdminWindow::generate_table_header_mapping_entries_for_csv_import()
+{
+	if (_curCsvFileToImportContentWordList.size() <= 1)
 	{
 		return ;
 	}
 
 	QStringList csvHeaderContent = _curCsvFileToImportContentWordList.at(0)
-			.split(YerothUtils::COMMA_STRING_CHAR);
+			.split(YerothUtils::SEMI_COLON_STRING_CHAR);
 
 	int curCsvFileLineSize = csvHeaderContent.size();
 
@@ -515,6 +542,8 @@ void YerothAdminWindow::generate_table_header_mapping_entries()
 			aCsvHeaderLabel->setEnabled(false);
 		}
 	}
+
+	pushButton_importer_fichier_csv->enable(this, SLOT(import_current_selected_csv_file()));
 }
 
 
@@ -891,7 +920,7 @@ void YerothAdminWindow::choose_fichier_csv_a_importer()
 
 	YerothUtils::import_csv_file_content(csvFilePath, _curCsvFileToImportContentWordList);
 
-	generate_table_header_mapping_entries();
+	generate_table_header_mapping_entries_for_csv_import();
 }
 
 
