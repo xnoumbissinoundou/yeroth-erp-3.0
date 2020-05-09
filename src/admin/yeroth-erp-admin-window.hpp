@@ -4,25 +4,29 @@
  *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
-# ifndef SRC_ADMIN_YEROTH_ADMIN_WINDOW_HPP_
-# define SRC_ADMIN_YEROTH_ADMIN_WINDOW_HPP_
+#ifndef SRC_ADMIN_YEROTH_ADMIN_WINDOW_HPP_
+#define SRC_ADMIN_YEROTH_ADMIN_WINDOW_HPP_
 
-# include "../../ui_yeroth-erp-admin-window.h"
-
-
-# include "src/admin/yeroth-erp-admin-windows-commons.hpp"
-
-# include "src/yeroth-erp-windows.hpp"
-
-# include "admin-actions-subjects.hpp"
+#include "../../ui_yeroth-erp-admin-window.h"
 
 
-# include <QtWidgets/QMessageBox>
+#include "src/admin/yeroth-erp-admin-windows-commons.hpp"
+
+#include "src/yeroth-erp-windows.hpp"
+
+#include "admin-actions-subjects.hpp"
 
 
+#include <QtCore/QDebug>
+
+#include <QtWidgets/QMessageBox>
+
+
+class YerothERPDatabaseTableColumnInfo;
 class YerothSqlTableModel;
 class YerothLogger;
 class YerothDatabase;
+
 
 class YerothAdminWindow : public YerothPOSAdminWindowsCommons, public Ui_YerothAdminWindow
 {
@@ -194,9 +198,15 @@ private:
 
     YerothLogger						*_logger;
 
-    QStringList 						_curSQLDatabaseTableColumns;
-
     QStringList 						_curCsvFileToImportContentWordList;
+
+    QList<YerothERPDatabaseTableColumnInfo *>	_allDatabaseTableColumnInfo;
+
+    QMap<QString, bool>							_dbTableColumnToIsNotNULL;
+
+    QMap<QString, QString>						_dbTableColumnToType;
+
+    QMap<int, YerothERPDatabaseTableColumnInfo *>	_indexToDatabaseTableColumnInfo;
 
     QMap<int, YerothComboBox *>			_indexToSQLTableImportHeader;
 

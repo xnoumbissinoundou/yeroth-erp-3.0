@@ -5,7 +5,7 @@
  */
 
 #ifndef SRC_YEROTH_UTILS_HPP_
-# define SRC_YEROTH_UTILS_HPP_
+#define SRC_YEROTH_UTILS_HPP_
 
 #include "src/include/yeroth-erp-3-0-software.text-configuration.hpp"
 
@@ -120,6 +120,10 @@ public:
 	{
 		return aStr.replace("'", "''");
 	}
+
+	static double YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(const QString &aDoubleQString);
+
+	static int execQueryRowCount(QString strQuery, YerothLogger *logger = 0);
 
 	static bool execQuery(QString strQuery, YerothLogger *logger = 0);
 
@@ -736,26 +740,29 @@ YerothQMessageBox::information(this, QObject::trUtf8(DIALOG_BOX_TITLE), msg); }
 		YerothQMessageBox::information(THIS, QObject::trUtf8(DIALOG_BOX_TITLE), msg); }
 
 
-# define EXPR_IS_POSITIV(X)	(0 <= X)
 
-# define BOOL_TO_STRING(B) (B ? "True" : "False")
+#define YEROTH_QSTRING_CONTAINS(S, V) S.contains(V, Qt::CaseInsensitive)
+
+#define EXPR_IS_POSITIV(X)	(0 <= X)
+
+#define BOOL_TO_STRING(B) (B ? "True" : "False")
 
 //Get the value of an QSqlRecord when given as value R
-# define GET_SQL_RECORD_DATA(R,V) YerothUtils::get_text(R.value(V))
+#define GET_SQL_RECORD_DATA(R,V) YerothUtils::get_text(R.value(V))
 
 //Get the MD5 hash of value X
-# define MD5_HASH(X) YerothUtils::md5Hash(X)
+#define MD5_HASH(X) YerothUtils::md5Hash(X)
 
-# define GENERATE_SQL_LIKE_STMT(COLUMN, SEARCH_STR) \
+#define GENERATE_SQL_LIKE_STMT(COLUMN, SEARCH_STR) \
 	YerothUtils::generateSqlLike(COLUMN, SEARCH_STR)
 
-# define GENERATE_SQL_IS_STMT(COLUMN, SEARCH_STR) \
+#define GENERATE_SQL_IS_STMT(COLUMN, SEARCH_STR) \
 	YerothUtils::generateSqlIs(COLUMN, SEARCH_STR)
 
-# define GENERATE_SQL_IS_NOT_EMPTY(COLUMN) \
+#define GENERATE_SQL_IS_NOT_EMPTY(COLUMN) \
 	YerothUtils::generateSqlIsNotEmpty(COLUMN)
 
-# define GENERATE_SQL_IS_EMPTY(COLUMN) \
+#define GENERATE_SQL_IS_EMPTY(COLUMN) \
 	YerothUtils::generateSqlIsEmpty(COLUMN)
 
 
@@ -765,49 +772,57 @@ YerothQMessageBox::information(this, QObject::trUtf8(DIALOG_BOX_TITLE), msg); }
 
 #define POURCENTAGE_YEROTH_GET_VALUE(X, TOTAL) ( (0 == TOTAL) ? 0 : ((X / TOTAL) * 100.0) )
 
-# define GET_CURRENT_DATE QDate::currentDate()
+#define GET_CURRENT_DATE QDate::currentDate()
 
-# define GET_CURRENT_STRING_DATE QDate::currentDate().toString(YerothUtils::DATE_FORMAT)
+#define GET_CURRENT_STRING_DATE QDate::currentDate().toString(YerothUtils::DATE_FORMAT)
 
-# define CURRENT_TIME QTime::currentTime().toString(YerothUtils::TIME_FORMAT)
+#define CURRENT_TIME QTime::currentTime().toString(YerothUtils::TIME_FORMAT)
 
-# define FILE_NAME_USERID_CURRENT_TIME(F) YerothUtils::getFileNameWithUserIDAndCurrentTime(F)
+#define FILE_NAME_USERID_CURRENT_TIME(F) YerothUtils::getFileNameWithUserIDAndCurrentTime(F)
 
-# define DATE_TO_STRING(D) D.toString(YerothUtils::DATE_FORMAT)
+#define DATE_TO_STRING(D) D.toString(YerothUtils::DATE_FORMAT)
 
-# define GET_DATE_FROM_STRING(D) QDate::fromString(D, YerothUtils::DATE_FORMAT)
+#define GET_DATE_FROM_STRING(D) QDate::fromString(D, YerothUtils::DATE_FORMAT)
 
-# define TIME_TO_STRING(D) D.toString(YerothUtils::TIME_FORMAT)
+#define TIME_TO_STRING(D) D.toString(YerothUtils::TIME_FORMAT)
 
-# define DATE_TO_DB_FORMAT_STRING(D) D.toString(YerothUtils::DB_DATE_FORMAT)
+#define DATE_TO_DB_FORMAT_STRING(D) D.toString(YerothUtils::DB_DATE_FORMAT)
 
-# define SET_DATE_TO_STRING(D) D.toString(YerothUtils::DATE_FORMAT)
+#define SET_DATE_TO_STRING(D) D.toString(YerothUtils::DATE_FORMAT)
 
 
-# ifdef YEROTH_FRANCAIS_LANGUAGE
-	# define GET_NUM_STRING(NUM) YerothUtils::frenchLocale.toString(NUM)
+#ifdef YEROTH_FRANCAIS_LANGUAGE
 
-	# define GET_DOUBLE_STRING(NUM) YerothUtils::frenchLocale.toString(NUM, 'f', 2)
-	# define GET_DOUBLE_STRING_P(NUM, P) YerothUtils::frenchLocale.toString(NUM, 'f', P)
+	#define DOUBLE_FROM_LOCALIZED_STRING(NUM) YerothUtils::frenchLocale.toDouble(NUM)
 
-	# define GET_CURRENCY_STRING_NUM(NUM) YerothUtils::frenchLocale.toString(NUM, 'f', 2).append(" ").append(YerothERPConfig::currency)
-	# define GET_CURRENCY_STRING_NUM_P(NUM, P) YerothUtils::frenchLocale.toString(NUM, 'f', P).append(" ").append(YerothERPConfig::currency)
+	#define GET_NUM_STRING(NUM) YerothUtils::frenchLocale.toString(NUM)
 
-	# define GET_MONTH_NAME_LOCALIZED(M) YerothUtils::frenchLocale.monthName(M)
-# endif
+	#define GET_DOUBLE_STRING(NUM) YerothUtils::frenchLocale.toString(NUM, 'f', 2)
+	#define GET_DOUBLE_STRING_P(NUM, P) YerothUtils::frenchLocale.toString(NUM, 'f', P)
 
-# ifdef YEROTH_ENGLISH_LANGUAGE
-	# define GET_NUM_STRING(NUM) YerothUtils::englishLocale.toString(NUM)
+	#define GET_CURRENCY_STRING_NUM(NUM) YerothUtils::frenchLocale.toString(NUM, 'f', 2).append(" ").append(YerothERPConfig::currency)
+	#define GET_CURRENCY_STRING_NUM_P(NUM, P) YerothUtils::frenchLocale.toString(NUM, 'f', P).append(" ").append(YerothERPConfig::currency)
 
-	# define GET_DOUBLE_STRING(NUM) YerothUtils::englishLocale.toString(NUM, 'f', 2)
-	# define GET_DOUBLE_STRING_P(NUM, P) YerothUtils::englishLocale.toString(NUM, 'f', P)
+	#define GET_MONTH_NAME_LOCALIZED(M) YerothUtils::frenchLocale.monthName(M)
 
-	# define GET_CURRENCY_STRING_NUM(NUM) YerothUtils::englishLocale.toString(NUM, 'f', 2).append(" ").append(YerothERPConfig::currency)
-	# define GET_CURRENCY_STRING_NUM_P(NUM, P) YerothUtils::englishLocale.toString(NUM, 'f', P).append(" ").append(YerothERPConfig::currency)
+#endif
 
-	# define GET_MONTH_NAME_LOCALIZED(M) YerothUtils::englishLocale.monthName(M)
-# endif
+#ifdef YEROTH_ENGLISH_LANGUAGE
 
-# define GET_CURRENCY_STRING_NUM_FOR_LATEX(NUM) YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_CURRENCY_STRING_NUM(NUM))
+	#define DOUBLE_FROM_LOCALIZED_STRING(NUM) YerothUtils::englishLocale.toDouble(NUM)
 
-# endif /* SRC_YEROTH_UTILS_HPP_ */
+	#define GET_NUM_STRING(NUM) YerothUtils::englishLocale.toString(NUM)
+
+	#define GET_DOUBLE_STRING(NUM) YerothUtils::englishLocale.toString(NUM, 'f', 2)
+	#define GET_DOUBLE_STRING_P(NUM, P) YerothUtils::englishLocale.toString(NUM, 'f', P)
+
+	#define GET_CURRENCY_STRING_NUM(NUM) YerothUtils::englishLocale.toString(NUM, 'f', 2).append(" ").append(YerothERPConfig::currency)
+	#define GET_CURRENCY_STRING_NUM_P(NUM, P) YerothUtils::englishLocale.toString(NUM, 'f', P).append(" ").append(YerothERPConfig::currency)
+
+	#define GET_MONTH_NAME_LOCALIZED(M) YerothUtils::englishLocale.monthName(M)
+
+#endif
+
+#define GET_CURRENCY_STRING_NUM_FOR_LATEX(NUM) YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_CURRENCY_STRING_NUM(NUM))
+
+#endif /* SRC_YEROTH_UTILS_HPP_ */

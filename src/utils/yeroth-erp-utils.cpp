@@ -656,6 +656,66 @@ bool YerothUtils::executer_fichier_sql(const QString &fileName, YerothLogger *lo
     return true;
 }
 
+
+double YerothUtils::YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(const QString &aDoubleQString)
+{
+	double aDoubleNum = 0.0;
+
+	bool ok = true;
+
+	aDoubleNum = aDoubleQString.toDouble(&ok);
+
+	if (false == ok)
+	{
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+
+	 aDoubleNum = YerothUtils::frenchLocale.toDouble(aDoubleQString, &ok);
+
+#elif YEROTH_ENGLISH_LANGUAGE
+
+	 aDoubleNum = YerothUtils::englishLocale.toDouble(aDoubleQString, &ok);
+
+#endif
+	}
+
+	return aDoubleNum;
+}
+
+
+int YerothUtils::execQueryRowCount(QString strQuery, YerothLogger *logger)
+{
+    //qDebug() << "[YerothUtils][execQuery]";
+
+    QSqlQuery query;
+
+    query.prepare(strQuery);
+
+    bool success = query.exec();
+
+    //qDebug() << "\t[" << success << "]" << query.executedQuery();
+
+    if (logger)
+    {
+        logger->log("execQuery",
+                    QString("[%1] %2").arg(BOOL_TO_STRING(success), query.executedQuery()));
+    }
+
+    if (!success)
+    {
+        if (logger)
+        {
+            *logger << "\t\t[reason for failing] " << query.lastError().text() << "\n";
+        }
+        else
+        {
+            qDebug() << "\t\t[reason for failing] " << query.lastError();
+        }
+    }
+
+    return query.size();
+}
+
+
 bool YerothUtils::execQuery(QString strQuery, YerothLogger *logger)
 {
     //qDebug() << "[YerothUtils][execQuery]";
@@ -686,6 +746,7 @@ bool YerothUtils::execQuery(QString strQuery, YerothLogger *logger)
 
     return success;
 }
+
 
 int YerothUtils::execQuery(QSqlQuery &query, QString strQuery, YerothLogger *logger)
 {

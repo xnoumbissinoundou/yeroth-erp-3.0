@@ -93,7 +93,8 @@ FORMS   = ui/yeroth-erp-main-window.ui \
 		  ui/yeroth-erp-sortir-liststocks-window.ui
  
 HEADERS = src/yeroth-erp-windows.hpp \
-		  src/imports/yeroth-erp-stock-import.hpp \
+		  src/imports/yeroth-erp-database-table-import-info.hpp \
+			src/imports/yeroth-erp-stock-import.hpp \
 		  src/include/yeroth-erp-3-0-definition-special-qt5.7-macro.hpp \
 		  src/include/yeroth-erp-3-0-definition-colour-rgb.hpp \
 		  src/include/yeroth-erp-3-0-definition-user-manual.hpp \

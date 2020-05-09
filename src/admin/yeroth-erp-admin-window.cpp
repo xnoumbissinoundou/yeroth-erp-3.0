@@ -27,8 +27,6 @@
 
 #include <QtSql/QSqlQuery>
 
-#include <QtCore/QDebug>
-
 #include <QtCore/QTemporaryFile>
 
 #include <QtWidgets/QDesktopWidget>
@@ -419,26 +417,60 @@ void YerothAdminWindow::choix_registre_de_caisse(const QString &labelImpressionS
 
 void YerothAdminWindow::import_current_selected_csv_file()
 {
+//	qDebug() << "++ import_current_selected_csv_file";
+
+	QStringList csvHeaderContent = _curCsvFileToImportContentWordList.at(0)
+			.split(YerothUtils::SEMI_COLON_STRING_CHAR);
+
+	int curCsvFileLineSize = csvHeaderContent.size();
+
+	QString dbFieldName;
+
+	YerothERPDatabaseTableColumnInfo *curDatabaseTableColumnInfo = 0;
+
+	YerothComboBox *aMappedComboBox = 0;
+
+	for (int i = 0; i < curCsvFileLineSize; ++i)
+	{
+		aMappedComboBox = _indexToSQLTableImportHeader.value(i);
+
+		if (0 != aMappedComboBox)
+		{
+			dbFieldName = aMappedComboBox->currentText();
+
+			curDatabaseTableColumnInfo =
+					new YerothERPDatabaseTableColumnInfo(dbFieldName,
+														 _dbTableColumnToType.value(dbFieldName));
+
+			_indexToDatabaseTableColumnInfo.insert(i, curDatabaseTableColumnInfo);
+
+			_allDatabaseTableColumnInfo.append(curDatabaseTableColumnInfo);
+		}
+	}
+
 	YerothERPStockImport erpStockImport(*this,
 										_curCsvFileToImportContentWordList,
-										_indexToSQLTableImportHeader);
+										_indexToDatabaseTableColumnInfo);
 
 	int successImportCount = erpStockImport.import();
 
+	QString infoMesg;
+
 	if (successImportCount > 0)
 	{
-		QString infoMesg = QString(QObject::trUtf8("'%1' entrée(s) du fichier CSV ont "
-												   "été importée(s) avec succès !"))
+		infoMesg = QString(QObject::trUtf8("'%1' entrée(s) du fichier CSV ont "
+										   "été importée(s) avec succès !"))
 							 .arg(QString::number(successImportCount));
-
-		YerothQMessageBox::information(this,
-									   QObject::tr("résultat importation fichier CSV"),
-									   infoMesg);
 	}
 	else
 	{
-
+		infoMesg = QString(QObject::trUtf8("AUCUNE DONNÉES DU FICHIER (.csv) n'ont "
+										   "été importée(s) !"));
 	}
+
+	YerothQMessageBox::information(this,
+								   QObject::tr("résultat importation fichier CSV"),
+								   infoMesg);
 }
 
 
@@ -453,10 +485,6 @@ void YerothAdminWindow::generate_table_header_mapping_entries_for_csv_import()
 			.split(YerothUtils::SEMI_COLON_STRING_CHAR);
 
 	int curCsvFileLineSize = csvHeaderContent.size();
-
-	QString dbFieldName;
-
-	QString dbFieldType;
 
 	QString aCsvHeaderString;
 
@@ -481,29 +509,33 @@ void YerothAdminWindow::generate_table_header_mapping_entries_for_csv_import()
 		}
 	}
 
+	QMapIterator<int, YerothComboBox *> itIndexToSQLTableImportHeader(_indexToSQLTableImportHeader);
+
+	while(itIndexToSQLTableImportHeader.hasNext())
 	{
-		_curSQLDatabaseTableColumns.clear();
+		itIndexToSQLTableImportHeader.next();
 
-		QMapIterator<int, YerothComboBox *> itIndexToSQLTableImportHeader(_indexToSQLTableImportHeader);
+		aMappedComboBox = itIndexToSQLTableImportHeader.value();
 
-		while(itIndexToSQLTableImportHeader.hasNext())
+		if (0 != aMappedComboBox)
 		{
-			itIndexToSQLTableImportHeader.next();
-
-			aMappedComboBox = itIndexToSQLTableImportHeader.value();
-
-			if (0 != aMappedComboBox)
-			{
-				aMappedComboBox->setVisible(false);
-				aMappedComboBox->setEnabled(false);
-				aMappedComboBox->clear();
-			}
+			aMappedComboBox->setVisible(false);
+			aMappedComboBox->setEnabled(false);
+			aMappedComboBox->clear();
 		}
 	}
+
+	_dbTableColumnToType.clear();
 
 	QString strShowColumnQuery(QString("SHOW COLUMNS FROM %1")
 									.arg(lineEdit_tableaux_mariadb_sql->text()));
 	QSqlQuery query;
+
+	bool dbFieldNullAble = false;
+
+	QString dbFieldName;
+
+	QString dbFieldType;
 
 	int querySize = YerothUtils::execQuery(query, strShowColumnQuery);
 
@@ -511,9 +543,21 @@ void YerothAdminWindow::generate_table_header_mapping_entries_for_csv_import()
 	{
 		dbFieldName = query.value(0).toString();
 
-		if (!YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::ID, dbFieldName))
+		dbFieldType = query.value(1).toString();
+
+		dbFieldNullAble = (query.value(2).toString() == "NO") ? false : true;
+
+		if (YerothDatabaseTableColumn::ID != dbFieldName)
 		{
-			_curSQLDatabaseTableColumns.append(dbFieldName);
+//			qDebug() << QString("++ (%1 ==> %2, %3)")
+//							.arg(dbFieldName, dbFieldType, BOOL_TO_STRING(dbFieldNullAble));
+
+			if (false == dbFieldNullAble)
+			{
+				_dbTableColumnToIsNotNULL.insert(dbFieldName, dbFieldNullAble);
+			}
+
+			_dbTableColumnToType.insert(dbFieldName, dbFieldType);
 		}
 	}
 
@@ -525,7 +569,7 @@ void YerothAdminWindow::generate_table_header_mapping_entries_for_csv_import()
 		{
 			aMappedComboBox->setVisible(true);
 			aMappedComboBox->setEnabled(true);
-			aMappedComboBox->addItems(_curSQLDatabaseTableColumns);
+			aMappedComboBox->addItems(_dbTableColumnToType.keys());
 		}
 	}
 
@@ -542,6 +586,8 @@ void YerothAdminWindow::generate_table_header_mapping_entries_for_csv_import()
 			aCsvHeaderLabel->setEnabled(false);
 		}
 	}
+
+	YerothERPStockImport::_dbTableColumnToIsNotNULL = &_dbTableColumnToIsNotNULL;
 
 	pushButton_importer_fichier_csv->enable(this, SLOT(import_current_selected_csv_file()));
 }
@@ -916,11 +962,11 @@ void YerothAdminWindow::choose_fichier_csv_a_importer()
     if (!csvFilePath.isEmpty())
     {
     	lineEdit_fichier_csv_a_importer->setText(csvFilePath);
+
+    	YerothUtils::import_csv_file_content(csvFilePath, _curCsvFileToImportContentWordList);
+
+    	generate_table_header_mapping_entries_for_csv_import();
     }
-
-	YerothUtils::import_csv_file_content(csvFilePath, _curCsvFileToImportContentWordList);
-
-	generate_table_header_mapping_entries_for_csv_import();
 }
 
 

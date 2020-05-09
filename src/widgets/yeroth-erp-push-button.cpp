@@ -11,7 +11,7 @@
 
 void YerothPushButton::enable(const QObject *receiver, const char *f)
 {
-    QObject::connect(this, SIGNAL(clicked()), receiver, f);
+    QObject::connect(this, SIGNAL(clicked()), receiver, f, Qt::UniqueConnection);
     setEnabled(true);
     setVisible(true);
 }
