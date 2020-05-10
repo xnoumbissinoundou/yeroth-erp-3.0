@@ -573,9 +573,6 @@ void YerothAdminWindow::generate_table_header_mapping_entries_for_csv_import()
 		}
 	}
 
-	int sizeRemainingHeaderContent =
-			(curCsvFileLineSize < MAX_IMPORT_CSV_HEADER_SIZE) ? (MAX_IMPORT_CSV_HEADER_SIZE - curCsvFileLineSize) : 0;
-
 	for (int j = curCsvFileLineSize; j < MAX_IMPORT_CSV_HEADER_SIZE; ++j)
 	{
 		aCsvHeaderLabel = _indexToCsvFileContentImportHeader.value(j);

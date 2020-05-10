@@ -270,11 +270,11 @@ void YerothTableView::lister_les_transactions_dun_client(QSqlQuery &sqlClientTra
 						 */
 						if (qv.isNull())
 						{
-							aYerothQStandardItem = new YerothQStandardItem("N/A");
+							aYerothQStandardItem = new YerothQStandardItem("N/A", Qt::AlignRight);
 						}
 						else
 						{
-							aYerothQStandardItem = new YerothQStandardItem(GET_DOUBLE_STRING(qv.toDouble()));
+							aYerothQStandardItem = new YerothQStandardItem(GET_DOUBLE_STRING(qv.toDouble()), Qt::AlignRight);
 						}
 
 						_stdItemModel->setItem(i, j, aYerothQStandardItem);
@@ -307,7 +307,7 @@ void YerothTableView::lister_les_transactions_dun_client(QSqlQuery &sqlClientTra
 						}
 						else
 						{
-							aYerothQStandardItem = new YerothQStandardItem(keyValue);
+							aYerothQStandardItem = new YerothQStandardItem(keyValue, Qt::AlignRight);
 							_stdItemModel->setItem(i, j, aYerothQStandardItem);
 						}
 
@@ -362,7 +362,7 @@ void YerothTableView::lister_lhistorique_du_stock(const QStringList &aMouvementS
 
 	_stdItemModel->yerothPOSClear();
 
-    _stdItemModel->setColumnCount(7);
+    _stdItemModel->setColumnCount(_tableModelHeaders->size());
 
     _stdItemModel->setRowCount(rowSize);
 

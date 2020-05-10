@@ -18,29 +18,33 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-	inline YerothQStandardItem()
+	inline YerothQStandardItem(Qt::Alignment alignPosition = Qt::AlignHCenter | Qt::AlignCenter)
 	:QStandardItem()
 	{
-		setTextAlignment(Qt::AlignHCenter | Qt::AlignCenter);
+		setTextAlignment(alignPosition);
 	}
 
-	inline YerothQStandardItem(const QString &text)
+	inline YerothQStandardItem(const QString &text,
+							   Qt::Alignment alignPosition = Qt::AlignHCenter | Qt::AlignCenter)
 	:QStandardItem(text)
 	{
-		setTextAlignment(Qt::AlignHCenter | Qt::AlignCenter);
+		setTextAlignment(alignPosition);
 	}
 
 	inline YerothQStandardItem (const QIcon &icon,
-							   const QString &text)
+							    const QString &text,
+								Qt::Alignment alignPosition = Qt::AlignHCenter | Qt::AlignCenter)
 	:QStandardItem(icon, text)
 	{
-		setTextAlignment(Qt::AlignHCenter | Qt::AlignCenter);
+		setTextAlignment(alignPosition);
 	}
 
-	inline YerothQStandardItem(int rows, int columns = 1)
+	inline YerothQStandardItem(int rows,
+							   int columns = 1,
+							   Qt::Alignment alignPosition = Qt::AlignHCenter | Qt::AlignCenter)
 	:QStandardItem(rows, columns)
 	{
-		setTextAlignment(Qt::AlignHCenter | Qt::AlignCenter);
+		setTextAlignment(alignPosition);
 	}
 
 	inline ~YerothQStandardItem(){}
