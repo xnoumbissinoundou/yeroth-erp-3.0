@@ -238,7 +238,7 @@ enum import_csv_entry_row_return_status
 					if (!YerothUtils::execQuery(queryCategoryStr))
 					{
 						QString infoMesg =
-								QString(QObject::trUtf8("La catégorie '%1' ne pouvait pas"
+								QString(QObject::trUtf8("La catégorie '%1' ne pouvait pas "
 														"être créée !"))
 									.arg(curColumnRowEntry);
 
