@@ -18,10 +18,9 @@
 YerothComboBox::YerothComboBox(QWidget *parent)
 :QComboBox(parent),
  _populateRawString(true),
- _pointerToUserViewStringMAP(0)
+ _pointerToUserViewStringMAP(0),
+ _originalPaletteBeforeMissingInformation(palette())
 {
-	_originalPaletteBeforeMissingInformation = palette();
-
     setLineEdit(new QLineEdit);
 
     lineEdit()->setReadOnly(true);

@@ -91,6 +91,7 @@ const QString YerothDatabaseTableColumn::QUARTIER						("quartier");
 const QString YerothDatabaseTableColumn::PROVINCE_ETAT					("province_etat");
 const QString YerothDatabaseTableColumn::PAYS							("pays");
 const QString YerothDatabaseTableColumn::ADRESSE						("adresse");
+const QString YerothDatabaseTableColumn::ADRESSE_IP						("adresse_ip");
 const QString YerothDatabaseTableColumn::BOITE_POSTALE					("boite_postale");
 const QString YerothDatabaseTableColumn::STATUT_RESOLU					("statut_resolu");
 const QString YerothDatabaseTableColumn::SIEGE_SOCIAL					("siege_social");
@@ -289,6 +290,8 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::PAYS,					QObject::tr("Pays"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::ADRESSE,				QObject::tr("Adresse"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::ADRESSE_IP,			QObject::tr("Adresse IP"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::BOITE_POSTALE,		QObject::trUtf8("Boîte postale"));
 

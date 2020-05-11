@@ -21,9 +21,20 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-	YerothTextEdit(QWidget * parent = 0);
+	inline YerothTextEdit(QWidget *parent = 0)
+		   :QTextEdit(parent),
+			_originalPaletteBeforeMissingInformation(palette())
+	{
+		setYerothPOSTextEditDisplayFormat();
+	}
 
-	YerothTextEdit(const QString &text, QWidget *parent);
+
+	inline YerothTextEdit(const QString &text, QWidget *parent)
+		   :QTextEdit(text, parent),
+		   _originalPaletteBeforeMissingInformation(palette())
+	{
+		setYerothPOSTextEditDisplayFormat();
+	}
 
 	inline ~YerothTextEdit()
 	{

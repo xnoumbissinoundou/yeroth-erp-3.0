@@ -287,8 +287,8 @@ public:
     static bool export_csv_file(YerothWindowsCommons &aCallingWindow,
     							YerothTableView &aTableView,
     							QList<int> databaseTableColumnsToIgnore,
-								QString csvFileName,
-								QString strMessage);
+								const QString &csvFileName,
+								const QString &strMessage);
 
     static QString prindDocumentFromTableView(YerothWindowsCommons *aWindowCaller,
     									   YerothTableView &aTableView,
@@ -714,7 +714,7 @@ public slots:
 
 	static bool slot_connecter_localisation(QWidget &aWidget,
 			 	 	 	 	 	 	 	 	YerothERPWindows *allWindows,
-											const QString localisation);
+											const QString &localisation);
 
 	static bool slot_deconnecter_localisation(YerothERPWindows *allWindows);
 

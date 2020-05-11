@@ -9,25 +9,6 @@
 #include "src/utils/yeroth-erp-utils.hpp"
 
 
-
-YerothTextEdit::YerothTextEdit(QWidget * parent /* = 0 */)
-:QTextEdit(parent)
-{
-	_originalPaletteBeforeMissingInformation = palette();
-
-	setYerothPOSTextEditDisplayFormat();
-}
-
-
-YerothTextEdit::YerothTextEdit(const QString &text, QWidget *parent)
-:QTextEdit(text, parent)
-{
-	_originalPaletteBeforeMissingInformation = palette();
-
-	setYerothPOSTextEditDisplayFormat();
-}
-
-
 bool YerothTextEdit::checkField()
 {
     if (this->toPlainText().isEmpty())

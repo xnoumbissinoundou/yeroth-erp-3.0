@@ -38,10 +38,10 @@ public:
 	inline YerothWindowsCommons(QString windowName)
 	:_selectExportDBQDialog(0),
 	 _curStocksTableModel(0),
+	 QMESSAGE_BOX_STYLE_SHEET(QString("QMessageBox {background-color: rgb(%1);}")
+								.arg(COLOUR_RGB_STRING_YEROTH_ORANGE_243_162_0)),
 	 _windowName(windowName)
 	{
-		QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}")
-									.arg(COLOUR_RGB_STRING_YEROTH_ORANGE_243_162_0);
 	}
 
 	virtual ~YerothWindowsCommons();

@@ -1615,13 +1615,13 @@ void YerothUtils::getCurrentLocaleDate(QString &date_IN_OUT)
 }
 
 bool YerothUtils::slot_connecter_localisation(QWidget &aWidget,
-        YerothERPWindows *allWindows,
-        const QString localisation)
+        									  YerothERPWindows *allWindows,
+											  const QString &localisation)
 {
     YerothSqlTableModel &localisationsSqlTableModel =
         allWindows->getSqlTableModel_localisations();
 
-    localisationsSqlTableModel.yerothSetFilter(GENERATE_SQL_IS_STMT("nom_localisation", localisation));
+    localisationsSqlTableModel.yerothSetFilter(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::NOM_LOCALISATION, localisation));
 
     int rowCount = localisationsSqlTableModel.easySelect();
 
@@ -1633,7 +1633,7 @@ bool YerothUtils::slot_connecter_localisation(QWidget &aWidget,
 
     QSqlRecord localisationsRecord = localisationsSqlTableModel.record(0);
 
-    QString addresseIP(GET_SQL_RECORD_DATA(localisationsRecord, "adresse_ip"));
+    QString addresseIP(GET_SQL_RECORD_DATA(localisationsRecord, YerothDatabaseTableColumn::ADRESSE_IP));
 
     QString widgetTitle(aWidget.windowTitle());
 
@@ -2335,8 +2335,8 @@ void YerothUtils::getFactureSmallENTexDocumentString(QString &texDocumentString_
 bool YerothUtils::export_csv_file(YerothWindowsCommons &aCallingWindow,
 								  YerothTableView &aTableView,
 								  QList<int> databaseTableColumnsToIgnore,
-								  QString csvFileName,
-								  QString strMessage)
+								  const QString &csvFileName,
+								  const QString &strMessage)
 {
     QStandardItemModel *tableModel = aTableView.getStandardItemModel();
 
