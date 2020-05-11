@@ -9144,7 +9144,7 @@ Transférer</string>
     <widget class="YerothPushButton" name="pushButton_supprimer_limage_du_stock">
      <property name="geometry">
       <rect>
-       <x>406</x>
+       <x>405</x>
        <y>377</y>
        <width>184</width>
        <height>21</height>
