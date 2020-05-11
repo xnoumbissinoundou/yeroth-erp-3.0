@@ -224,9 +224,6 @@ private:
         dateEdit_date_peremption->setStartDate(GET_CURRENT_DATE);
     }
 
-    static const unsigned int MAX_STOCKS;
-
-    static const unsigned int INDEX_ZERO;
 
     static const QString 	_WINDOW_TITLE;
 

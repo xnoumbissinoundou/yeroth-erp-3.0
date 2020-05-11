@@ -92,8 +92,6 @@ private:
     YerothSqlTableModel 	*_curAchatStocksTableModel;
 
 	YerothLogger			*_logger;
-
-    static const unsigned int INDEX_ZERO;
 };
 
 

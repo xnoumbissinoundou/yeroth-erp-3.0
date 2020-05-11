@@ -42,7 +42,7 @@ public:
 
     virtual void definirManager();
 
-    virtual void rendreVisible(unsigned selectedAction);
+    virtual void rendreVisible(unsigned selectedSujetAction);
 
     virtual void rendreInvisible();
 

@@ -110,30 +110,30 @@ public:
 
 	static QString getUniquePrefixFileInTemporaryFilesDir(QString fileName);
 
-	static const QString getCurrentAdminWindowReceiptsFormatAccordingToLanguage(QString currentFacturesTypeValue);
+	static const QString getCurrentAdminWindowReceiptsFormatAccordingToLanguage(const QString &currentFacturesTypeValue);
 
-	static void saveCurrentAdminWindowFacturesTypeAccordingToLanguage(QString currentFacturesTypeValue);
+	static void saveCurrentAdminWindowFacturesTypeAccordingToLanguage(const QString &currentFacturesTypeValue);
 
 	static bool executer_fichier_sql(const QString &fileName, YerothLogger *logger = 0);
 
-	inline static QString prepareSqlStr(QString aStr)
+	inline static QString prepareSqlStr(const QString &aStr)
 	{
-		return aStr.replace("'", "''");
+		return QString(aStr).replace("'", "''");
 	}
 
 	static double YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(const QString &aDoubleQString);
 
-	static int execQueryRowCount(QString strQuery, YerothLogger *logger = 0);
+	static int execQueryRowCount(const QString &strQuery, YerothLogger *logger = 0);
 
-	static bool execQuery(QString strQuery, YerothLogger *logger = 0);
+	static bool execQuery(const QString &strQuery, YerothLogger *logger = 0);
 
-	static int execQuery(QSqlQuery &query, QString strQuery, YerothLogger *logger = 0);
+	static int execQuery(QSqlQuery &query, const QString &strQuery, YerothLogger *logger = 0);
 
 	static int execQuery(QSqlQuery &query, YerothLogger *logger = 0);
 
 	//static bool imprimer_pdf_document(QWidget *widget);
 
-	inline static QString get_latex_bold_text(QString text)
+	inline static QString get_latex_bold_text(const QString &text)
 	{
 		return QString("\\textbf{%1}")
 					.arg(text);
@@ -153,13 +153,13 @@ public:
 									  const QPixmap &pixmap,
 									  const char 	*format);
 
-	static void savePixmapToFile(QString aFileFullPath,
+	static void savePixmapToFile(const QString &aFileFullPath,
 	                             const QPixmap &pixmap,
 	                             const char *format);
 
 	static void getCenterPosition(unsigned 		desktopWidth,
 			   	   	   	   	   	  unsigned 		desktopHeight,
-								  QWidget 		&aWidget,
+								  const QWidget &aWidget,
 								  QPoint 		&result);
 
 	static QString boolToString(bool b);
@@ -168,10 +168,10 @@ public:
 						  QString filterName,
 						  QString &yerothFiltre_in_out);
 
-	static int getComboBoxDatabaseQueryValue(const QString comboBoxStringValue,
+	static int getComboBoxDatabaseQueryValue(const QString &comboBoxStringValue,
 								  	  	     QMap<int, QString> *toViewStringMAP);
 
-	static int getComboBoxDatabaseQueryValue(const QString comboBoxStringValue,
+	static int getComboBoxDatabaseQueryValue(const QString &comboBoxStringValue,
 								  	  	  	 QMap<int, QString> &toViewStringMAP);
 
 	inline static QByteArray md5Hash(QString data)
@@ -231,12 +231,12 @@ public:
 											 QString fixedNumber);
 
 	static void getColumnListString(QStringList   &columnStringList,
-									const QString tableName,
-									const QString fieldName,
-									const QString conditionStr = YerothUtils::EMPTY_STRING);
+									const QString &tableName,
+									const QString &fieldName,
+									QString conditionStr = YerothUtils::EMPTY_STRING);
 
-	static QString colorLatexTextInput(const QString colorSpec,
-			 	 	 	 	 	 	   const QString latexString_in);
+	static QString colorLatexTextInput(const QString &colorSpec,
+			 	 	 	 	 	 	   const QString &latexString_in);
 
 	static QString LATEX_IN_OUT_handleForeignAccents(const QString &texText_in_out);
 
@@ -248,27 +248,27 @@ public:
 													 QString &itemText);
 
 	static void handleAchatsTexTableItemText(int texTableColumnCount,
-										     QString &texTable_in_out,
+										     QString &texTable_INT_OUT,
 											 int itemTextColumnPosition,
-											 QString &itemText);
+											 const QString &itemText);
 
 	static void handleFactureTexTableItemText(int texTableColumnCount,
-										      QString &texTable_in_out,
+										      QString &texTable_IN_OUT,
 											  int itemTextColumnPosition,
-											  QString &itemText);
+											  const QString &itemText);
 
 	static void handleTexTableItemText(int texTableColumnCount,
-									   QString &texTable_in_out,
+									   QString &texTable_IN_OUT,
 									   int itemTextColumnPosition,
-									   QString &itemText);
+									   const QString &itemText);
 
-	static void getFactureTexTableString(QString &texTable_in_out,
+	static void getFactureTexTableString(QString &texTable_IN_OUT,
 			  	  	  	  	  	  	  	 QTableWidget &tableStandardItemModel,
 										 int 	quantiteVendue,
 										 double totalTVA,
 										 double sommeTotal);
 
-	static void getFactureSmallTexTableString(QString &texTable_in_out,
+	static void getFactureSmallTexTableString(QString &texTable_IN_OUT,
 			  	  	  	  	  	  	  	 	  QTableWidget &tableStandardItemModel,
 											  int 	quantiteVendue,
 											  double totalTVA,
@@ -357,9 +357,9 @@ public:
 	static void getComptesClientsTexDocumentString(QString &texDocumentString_in_out,
 			   	   	   	   	   	   	   	   	   	   	 QString &printString);
 
-	static QString getFileNameWithCurrentTime(const QString fileName);
+	static QString getFileNameWithCurrentTime(const QString &fileName);
 
-	static QString getFileNameWithUserIDAndCurrentTime(const QString fileName);
+	static QString getFileNameWithUserIDAndCurrentTime(const QString &fileName);
 
 	static QString getWindowTitleWithStrategy(QMainWindow *aMainWindow,
 											  QString localVisibleStrategy = "");
@@ -385,14 +385,14 @@ public:
 	}
 
 	static void infosEntreprise(YerothPOSAdminWindowsCommons &aYerothPOSAdminQMainWindow,
-								const QString infos);
+								const QString &infos);
 
 	static void infosEntreprise(YerothWindowsCommons &aYerothPOSQMainWindow,
-								const QString infos);
+								const QString &infos);
 
-	static void getCurrentSimplifiedDate(QString &date);
+	static void getCurrentSimplifiedDate(QString &date_IN_OUT);
 
-	static void getCurrentLocaleDate(QString &date);
+	static void getCurrentLocaleDate(QString &date_IN_OUT);
 
 	inline static bool isEqualCaseSensitive(const QString &str1, const QString &str2)
 	{
@@ -404,7 +404,7 @@ public:
 		return (0 == str1.compare(str2, Qt::CaseInsensitive));
 	}
 
-	inline static void setMainWorkingDirectory(QString workingDirectory)
+	inline static void setMainWorkingDirectory(const QString &workingDirectory)
 	{
 		_mainWorkingDirectory = workingDirectory;
 	}
@@ -414,7 +414,7 @@ public:
 		return _mainWorkingDirectory;
 	}
 
-	inline static void setLogFileName(QString logFileName)
+	inline static void setLogFileName(const QString &logFileName)
 	{
 		_logFileName = logFileName;
 	}

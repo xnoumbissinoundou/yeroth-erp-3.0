@@ -662,7 +662,8 @@ void YerothLineEdit::refreshCompleterList(QString strategy)
 
 void YerothLineEdit::mouseDoubleClickEvent(QMouseEvent *event)
 {
-	if (!isReadOnly())
+	if (text().isEmpty() ||
+		!isReadOnly())
 	{
 		return ;
 	}

@@ -115,57 +115,57 @@ public:
 		return _titre;
 	}
 
-	inline void set_prenom(QString prenom)
+	inline void set_prenom(const QString &prenom)
 	{
 		_prenom = prenom;
 	}
 
-	inline void set_nom(QString nom)
+	inline void set_nom(const QString &nom)
 	{
 		_nom = nom;
 	}
 
-	inline void set_nom_utilisateur(QString nom_utilisateur)
+	inline void set_nom_utilisateur(const QString &nom_utilisateur)
 	{
 		_nom_utilisateur = nom_utilisateur;
 	}
 
-	inline void set_nom_complet(QString nom_complet)
+	inline void set_nom_complet(const QString &nom_complet)
 	{
 		_nom_complet = nom_complet;
 	}
 
-	inline void set_localisation(QString localisation)
+	inline void set_localisation(const QString &localisation)
 	{
 		_localisation = localisation;
 	}
 
-	inline void set_email(QString email)
+	inline void set_email(const QString &email)
 	{
 		_email = email;
 	}
 
-	inline void set_numero_telephone_1(QString numero_telephone_1)
+	inline void set_numero_telephone_1(const QString &numero_telephone_1)
 	{
 		_numero_telephone_1 = numero_telephone_1;
 	}
 
-	inline void set_numero_telephone_2(QString numero_telephone_2)
+	inline void set_numero_telephone_2(const QString &numero_telephone_2)
 	{
 		_numero_telephone_2 = numero_telephone_2;
 	}
 
-	inline void set_lieu_naissance(QString lieu_naissance)
+	inline void set_lieu_naissance(const QString &lieu_naissance)
 	{
 		_lieu_naissance = lieu_naissance;
 	}
 
-	inline void set_date_naissance(QString date_naissance)
+	inline void set_date_naissance(const QString &date_naissance)
 	{
 		_date_naissance = date_naissance;
 	}
 
-	inline void set_titre(QString titre)
+	inline void set_titre(const QString &titre)
 	{
 		_titre = titre;
 	}

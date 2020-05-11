@@ -120,7 +120,6 @@ private:
 
     void showItem();
 
-    static const unsigned int 	INDEX_ZERO;
 
     static const QString 		_WINDOW_TITLE;
 

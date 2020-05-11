@@ -106,8 +106,6 @@ private:
     YerothSqlTableModel 	*_curClientTableModel;
 
     int 					_clientLastSelectedRow;
-
-    static const unsigned int INDEX_ZERO;
 };
 
 

@@ -15,8 +15,6 @@
 #include <QtGui/QContextMenuEvent>
 
 
-const unsigned int YerothModifierWindow::INDEX_ZERO(0);
-
 const QString YerothModifierWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2")).
         arg(YEROTH_ERP_WINDOW_TITLE,
             QObject::trUtf8("modifier un stock")));

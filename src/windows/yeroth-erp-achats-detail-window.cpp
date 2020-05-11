@@ -15,7 +15,6 @@
 #include <QtSql/QSqlRecord>
 
 
-const unsigned int YerothAchatsDetailWindow::INDEX_ZERO(0);
 const QString YerothAchatsDetailWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2")).
         arg(YEROTH_ERP_WINDOW_TITLE,
             QObject::trUtf8("détails d'un achat de stock")));

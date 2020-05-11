@@ -24,10 +24,6 @@
 #include <QtSql/QSqlQuery>
 
 
-const unsigned int YerothEntrerWindow::MAX_STOCKS(7);
-
-const unsigned int YerothEntrerWindow::INDEX_ZERO(0);
-
 const QString YerothEntrerWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2")).
         arg(YEROTH_ERP_WINDOW_TITLE, QObject::trUtf8("entrer un stock (service)")));
 

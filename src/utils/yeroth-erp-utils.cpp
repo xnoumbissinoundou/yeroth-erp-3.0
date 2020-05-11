@@ -543,7 +543,7 @@ QString YerothUtils::getUniquePrefixFileInTemporaryFilesDir(QString aPrefixFileN
 }
 
 
-const QString YerothUtils::getCurrentAdminWindowReceiptsFormatAccordingToLanguage(QString currentReceiptFormatValue)
+const QString YerothUtils::getCurrentAdminWindowReceiptsFormatAccordingToLanguage(const QString &currentReceiptFormatValue)
 {
     QString resultReceiptFormat(currentReceiptFormatValue);
 
@@ -579,7 +579,7 @@ const QString YerothUtils::getCurrentAdminWindowReceiptsFormatAccordingToLanguag
 }
 
 
-void YerothUtils::saveCurrentAdminWindowFacturesTypeAccordingToLanguage(QString currentFacturesTypeValue)
+void YerothUtils::saveCurrentAdminWindowFacturesTypeAccordingToLanguage(const QString &currentFacturesTypeValue)
 {
 	//qDebug() << QString("YerothUtils::saveCurrentAdminWindowFacturesTypeAccordingToLanguage");
 
@@ -631,10 +631,13 @@ bool YerothUtils::executer_fichier_sql(const QString &fileName, YerothLogger *lo
 
     query.clear();
 
+    QString line;
+
     bool success = false;
+
     while (!in.atEnd())
     {
-        QString line = in.readLine();
+        line = in.readLine();
         success = query.exec(line);
 
         if (logger)
@@ -682,7 +685,7 @@ double YerothUtils::YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(const QString &aD
 }
 
 
-int YerothUtils::execQueryRowCount(QString strQuery, YerothLogger *logger)
+int YerothUtils::execQueryRowCount(const QString &strQuery, YerothLogger *logger)
 {
     //qDebug() << "[YerothUtils][execQuery]";
 
@@ -716,7 +719,7 @@ int YerothUtils::execQueryRowCount(QString strQuery, YerothLogger *logger)
 }
 
 
-bool YerothUtils::execQuery(QString strQuery, YerothLogger *logger)
+bool YerothUtils::execQuery(const QString &strQuery, YerothLogger *logger)
 {
     //qDebug() << "[YerothUtils][execQuery]";
 
@@ -748,7 +751,7 @@ bool YerothUtils::execQuery(QString strQuery, YerothLogger *logger)
 }
 
 
-int YerothUtils::execQuery(QSqlQuery &query, QString strQuery, YerothLogger *logger)
+int YerothUtils::execQuery(QSqlQuery &query, const QString &strQuery, YerothLogger *logger)
 {
     //qDebug() << "[YerothUtils][execQuery]";
 
@@ -839,7 +842,7 @@ void YerothUtils::savePixmapToByteArray(QByteArray &bytes,
 }
 
 
-void YerothUtils::savePixmapToFile(QString aFileFullPath,
+void YerothUtils::savePixmapToFile(const QString &aFileFullPath,
                                    const QPixmap &pixmap,
                                    const char *format)
 {
@@ -972,9 +975,9 @@ QString YerothUtils::get_text(const QVariant &qv)
 }
 
 void YerothUtils::getCenterPosition(unsigned desktopWidth,
-                                   unsigned desktopHeight,
-                                   QWidget &aWidget,
-                                   QPoint &result)
+                                    unsigned desktopHeight,
+                                    const QWidget &aWidget,
+                                    QPoint &result)
 {
     int x = desktopWidth / 2 - aWidget.width() / 2;
     int y = desktopHeight / 2 - aWidget.height() / 2 - 25;
@@ -1073,7 +1076,7 @@ void YerothUtils::addFiltre(YerothLineEdit *aLineEdit,
 }
 
 
-int YerothUtils::getComboBoxDatabaseQueryValue(const QString comboBoxStringValue,
+int YerothUtils::getComboBoxDatabaseQueryValue(const QString &comboBoxStringValue,
 							  	  			   QMap<int, QString> *toViewStringMAP)
 {
 	if (0 != toViewStringMAP)
@@ -1086,7 +1089,7 @@ int YerothUtils::getComboBoxDatabaseQueryValue(const QString comboBoxStringValue
 }
 
 
-int YerothUtils::getComboBoxDatabaseQueryValue(const QString comboBoxStringValue,
+int YerothUtils::getComboBoxDatabaseQueryValue(const QString &comboBoxStringValue,
 							  	  			   QMap<int, QString> &toViewStringMAP)
 {
 	int databaseQueryValue = -1;
@@ -1124,9 +1127,9 @@ QString YerothUtils::GET_REFERENCE_RECU_SUFFIX(QString prefix,
 
 
 void YerothUtils::getColumnListString(QStringList &columnStringList,
-                                      const QString tableName,
-                                      const QString fieldName,
-									  const QString conditionStr /* = YerothUtils::EMPTY_STRING */)
+                                      const QString &tableName,
+                                      const QString &fieldName,
+									  QString conditionStr /* = YerothUtils::EMPTY_STRING */)
 {
     columnStringList.clear();
 
@@ -1369,7 +1372,7 @@ void YerothUtils::yerothSetWidgetColor(QWidget *aWidget)
     }*/
 }
 
-QString YerothUtils::getFileNameWithCurrentTime(const QString fileName)
+QString YerothUtils::getFileNameWithCurrentTime(const QString &fileName)
 {
     QString resultFileName(fileName);
 
@@ -1381,7 +1384,7 @@ QString YerothUtils::getFileNameWithCurrentTime(const QString fileName)
     return resultFileName;
 }
 
-QString YerothUtils::getFileNameWithUserIDAndCurrentTime(const QString fileName)
+QString YerothUtils::getFileNameWithUserIDAndCurrentTime(const QString &fileName)
 {
     QString resultFileName(fileName);
 
@@ -1549,7 +1552,7 @@ QString YerothUtils::getStrategySqlQueryStr(QString aSelectStmt,
 
 
 void YerothUtils::infosEntreprise(YerothPOSAdminWindowsCommons &aYerothPOSAdminQMainWindow,
-                                 const QString infos)
+                                  const QString &infos)
 {
 #ifdef YEROTH_FRANCAIS_LANGUAGE
     YerothQMessageBox::information(&aYerothPOSAdminQMainWindow,
@@ -1565,7 +1568,7 @@ void YerothUtils::infosEntreprise(YerothPOSAdminWindowsCommons &aYerothPOSAdminQ
 }
 
 void YerothUtils::infosEntreprise(YerothWindowsCommons &aYerothPOSQMainWindow,
-                                  const QString infos)
+                                  const QString &infos)
 {
     YerothQMessageBox::information(&aYerothPOSQMainWindow,
                                   QObject::trUtf8("Informations sur l'entreprise"),
@@ -1573,41 +1576,41 @@ void YerothUtils::infosEntreprise(YerothWindowsCommons &aYerothPOSQMainWindow,
 }
 
 
-void YerothUtils::getCurrentSimplifiedDate(QString &date)
+void YerothUtils::getCurrentSimplifiedDate(QString &date_IN_OUT)
 {
 #ifdef YEROTH_FRANCAIS_LANGUAGE
-    date.append(QString(", Le %1 à %2")
+    date_IN_OUT.append(QString(", Le %1 à %2")
     				.arg(QDate::currentDate().toString("dd-MM-yyyy"),
     					 CURRENT_TIME));
-    date = YerothUtils::LATEX_IN_OUT_handleForeignAccents(date);
+    date_IN_OUT = YerothUtils::LATEX_IN_OUT_handleForeignAccents(date_IN_OUT);
 #endif
 
 #ifdef YEROTH_ENGLISH_LANGUAGE
-    date.append(QString(", The %1 at %2")
+    date_IN_OUT.append(QString(", The %1 at %2")
     				.arg(QDate::currentDate().toString("dd-MM-yyyy"),
     					 CURRENT_TIME));
-    date = YerothUtils::LATEX_IN_OUT_handleForeignAccents(date);
+    date_IN_OUT = YerothUtils::LATEX_IN_OUT_handleForeignAccents(date_IN_OUT);
 #endif
 }
 
 
-void YerothUtils::getCurrentLocaleDate(QString &date)
+void YerothUtils::getCurrentLocaleDate(QString &date_IN_OUT)
 {
 #ifdef YEROTH_FRANCAIS_LANGUAGE
-    date.append(", le ")
+    date_IN_OUT.append(", le ")
     .append(YerothUtils::frenchLocale.toString(GET_CURRENT_DATE));
-    //qDebug() << "++ before date: " << date << " (" << date.indexOf(QString::fromUtf8("û")) << ")";
-    date = YerothUtils::LATEX_IN_OUT_handleForeignAccents(date);
-    //qDebug() << "++ after date: " << date << " (" << date.indexOf(QString::fromUtf8("û")) << ")";
+    //qDebug() << "++ before date: " << date_IN_OUT << " (" << date_IN_OUT.indexOf(QString::fromUtf8("û")) << ")";
+    date_IN_OUT = YerothUtils::LATEX_IN_OUT_handleForeignAccents(date_IN_OUT);
+    //qDebug() << "++ after date: " << date_IN_OUT << " (" << date_IN_OUT.indexOf(QString::fromUtf8("û")) << ")";
 #endif
 
 #ifdef YEROTH_ENGLISH_LANGUAGE
     QString d(YerothUtils::englishLocale.toString(GET_CURRENT_DATE));
     int firstCommaIndex = d.indexOf(",", 0);
     d.replace(firstCommaIndex, 1, " ");
-    date.append(", ")
+    date_IN_OUT.append(", ")
     .append(d);
-    date = YerothUtils::LATEX_IN_OUT_handleForeignAccents(date);
+    date_IN_OUT = YerothUtils::LATEX_IN_OUT_handleForeignAccents(date_IN_OUT);
 #endif
 }
 
@@ -1750,8 +1753,8 @@ bool YerothUtils::slot_deconnecter_localisation(YerothERPWindows *allWindows)
 }
 
 
-QString YerothUtils::colorLatexTextInput(const QString colorSpec,
-										 const QString latexString_in)
+QString YerothUtils::colorLatexTextInput(const QString &colorSpec,
+										 const QString &latexString_in)
 {
 	return QString(QString("\\textcolor{%1}{%2}")
 						.arg(colorSpec,
@@ -1830,9 +1833,9 @@ void YerothUtils::handleComptesClientsTexTableItemText(int texTableColumnCount,
 
 
 void YerothUtils::handleAchatsTexTableItemText(int texTableColumnCount,
-        									   QString &texTable_in_out,
+        									   QString &texTable_IN_OUT,
 											   int itemTextColumnPosition,
-											   QString &itemText)
+											   const QString &itemText)
 {
     QString resultItemText(itemText);
 
@@ -1840,24 +1843,24 @@ void YerothUtils::handleAchatsTexTableItemText(int texTableColumnCount,
     {
         resultItemText = LATEX_IN_OUT_handleForeignAccents(resultItemText);
 
-        texTable_in_out.append(resultItemText);
+        texTable_IN_OUT.append(resultItemText);
     }
 
     if (itemTextColumnPosition < texTableColumnCount - 1)
     {
-        texTable_in_out.append(" &");
+        texTable_IN_OUT.append(" &");
     }
     else
     {
-        texTable_in_out.append(" \\\\").append("\n");
+        texTable_IN_OUT.append(" \\\\").append("\n");
     }
 }
 
 
 void YerothUtils::handleFactureTexTableItemText(int texTableColumnCount,
-        QString &texTable_in_out,
-        int itemTextColumnPosition,
-        QString &itemText)
+        										QString &texTable_IN_OUT,
+												int itemTextColumnPosition,
+												const QString &itemText)
 {
     QString resultItemText(itemText);
 
@@ -1865,51 +1868,51 @@ void YerothUtils::handleFactureTexTableItemText(int texTableColumnCount,
     {
         resultItemText = LATEX_IN_OUT_handleForeignAccents(resultItemText);
 
-        texTable_in_out.append(resultItemText);
+        texTable_IN_OUT.append(resultItemText);
     }
 
     if (itemTextColumnPosition < texTableColumnCount - 1)
     {
-        texTable_in_out.append(" &");
+        texTable_IN_OUT.append(" &");
     }
     else
     {
-        texTable_in_out.append(" \\\\").append("\n");
+        texTable_IN_OUT.append(" \\\\").append("\n");
     }
 }
 
 void YerothUtils::handleTexTableItemText(int texTableColumnCount,
-                                        QString &texTable_in_out,
-                                        int itemTextColumnPosition,
-                                        QString &itemText)
+                                         QString &texTable_IN_OUT,
+                                         int itemTextColumnPosition,
+                                         const QString &itemText)
 {
     QString resultItemText(LATEX_IN_OUT_handleForeignAccents(itemText));
 
     if (!resultItemText.isEmpty())
     {
-        texTable_in_out.append(resultItemText);
+        texTable_IN_OUT.append(resultItemText);
     }
 
     if (itemTextColumnPosition < texTableColumnCount - 1)
     {
-        texTable_in_out.append(" &");
+        texTable_IN_OUT.append(" &");
     }
     else
     {
-        texTable_in_out.append(" \\\\").append("\n");
+        texTable_IN_OUT.append(" \\\\").append("\n");
     }
 }
 
-void YerothUtils::getFactureTexTableString(QString &texTable_in_out,
-        QTableWidget &tableStandardItemModel,
-        int 	 quantiteVendue,
-        double totalTVA,
-        double sommeTotal)
+void YerothUtils::getFactureTexTableString(QString &texTable_IN_OUT,
+        								   QTableWidget &tableStandardItemModel,
+										   int 	 quantiteVendue,
+										   double totalTVA,
+										   double sommeTotal)
 {
-    texTable_in_out.append("\\begin{table*}[!htbp]").append("\n")
-    .append("\\centering").append("\n")
-    .append("\\begin{tabular}")
-    .append("{|");
+    texTable_IN_OUT.append("\\begin{table*}[!htbp]\n"
+    					   "\\centering\n"
+    					   "\\begin{tabular}"
+    					   "{|");
 
     /**
      * We reduce the header items of the table by 1 element
@@ -1929,17 +1932,17 @@ void YerothUtils::getFactureTexTableString(QString &texTable_in_out,
         }
 
         if (YerothTableWidget::TOTAL_COLUMN == k   	||
-                YerothTableWidget::TOTAL_TVA_COLUMN == k )
+            YerothTableWidget::TOTAL_TVA_COLUMN == k )
         {
-            texTable_in_out.append("r|");
+            texTable_IN_OUT.append("r|");
         }
         else
         {
-            texTable_in_out.append("r|");
+            texTable_IN_OUT.append("r|");
         }
     }
 
-    texTable_in_out.append("} \\hline").append("\n"); //Table header end
+    texTable_IN_OUT.append("} \\hline\n"); //Table header end
 
     QTableWidgetItem *item;
 
@@ -1955,7 +1958,7 @@ void YerothUtils::getFactureTexTableString(QString &texTable_in_out,
         {
             QString emptyString;
             handleTexTableItemText(tableStandardItemModel.columnCount(),
-                                   texTable_in_out,
+                                   texTable_IN_OUT,
                                    k,
                                    emptyString);
         }
@@ -1972,7 +1975,7 @@ void YerothUtils::getFactureTexTableString(QString &texTable_in_out,
         {
             QString itemText(item->text().prepend("\\textbf{").append("}"));
             handleTexTableItemText(tableStandardItemModel.columnCount(),
-                                   texTable_in_out,
+                                   texTable_IN_OUT,
                                    k,
                                    itemText);
         }
@@ -1989,15 +1992,15 @@ void YerothUtils::getFactureTexTableString(QString &texTable_in_out,
         {
             QString emptyString;
             handleTexTableItemText(tableStandardItemModel.columnCount(),
-                                   texTable_in_out,
+                                   texTable_IN_OUT,
                                    k,
                                    emptyString);
         }
     }
 
-    cleanUpTexTableLastString(texTable_in_out);
+    cleanUpTexTableLastString(texTable_IN_OUT);
 
-    texTable_in_out.append("\\hline").append("\n");
+    texTable_IN_OUT.append("\\hline\n");
 
     //Tex table body
 
@@ -2023,7 +2026,7 @@ void YerothUtils::getFactureTexTableString(QString &texTable_in_out,
                 }
 
                 handleFactureTexTableItemText(tableStandardItemModel.columnCount(),
-                                              texTable_in_out,
+                                              texTable_IN_OUT,
                                               k,
                                               itemText);
             }
@@ -2031,18 +2034,18 @@ void YerothUtils::getFactureTexTableString(QString &texTable_in_out,
             {
                 if (k < tableStandardItemModel.columnCount() - 1)
                 {
-                    texTable_in_out.append("\"\"").append(" &");
+                    texTable_IN_OUT.append("\"\" &");
                 }
                 else
                 {
-                    texTable_in_out.append("\"\"").append(" \\hline").append("\n");
+                    texTable_IN_OUT.append("\"\"  \\hline\n");
                 }
             }
         }
 
-        cleanUpTexTableLastString(texTable_in_out);
+        cleanUpTexTableLastString(texTable_IN_OUT);
 
-        texTable_in_out.append("\\hline").append("\n");
+        texTable_IN_OUT.append("\\hline\n");
     }
 
     QString quantiteVendueStr(LATEX_IN_OUT_handleForeignAccents(GET_NUM_STRING(quantiteVendue)));
@@ -2063,39 +2066,31 @@ void YerothUtils::getFactureTexTableString(QString &texTable_in_out,
 #ifdef YEROTH_ENGLISH_LANGUAGE
     totalStr.append("TOTAL");
 #endif
-
-    texTable_in_out.append("\\multicolumn{").append(GET_NUM_STRING(tableStandardItemModel.columnCount()-5)).append("}")
-    										.append("{|c|}")
-											.append(QString("{\\textbf{%1}}").arg(totalStr))
-				   .append(" & ")
-				   .append(quantiteVendueStr).append(" & ")
-				   .append(" & ")
-				   .append(totalTVAStr).append(" & ")
-				   .append(sommeTotalStr).append("\\\\");
-
-    texTable_in_out.append(" \\hline").append("\n");
+    texTable_IN_OUT.append(QString("\\multicolumn{%1}{|c}{\\textbf{%2}} & %3 & %4 & %5 \\\\ \\hline \n")
+    							.arg(GET_NUM_STRING(tableStandardItemModel.columnCount()-5),
+    								 totalStr,
+									 quantiteVendueStr,
+									 totalTVAStr,
+									 sommeTotalStr));
 
     //Removes the empty character "" from Latex output
-    texTable_in_out.replace("\"\"", "");
+    texTable_IN_OUT.replace("\"\"", "");
 
-    texTable_in_out.append("\\end{tabular}").append("\n")
-    .append("\\end{table*}").append("\n");
+    texTable_IN_OUT.append("\\end{tabular}\n"
+    					   "\\end{table*}\n");
 }
 
-void YerothUtils::getFactureSmallTexTableString(QString &texTable_in_out,
-        									   QTableWidget &tableStandardItemModel,
-											   int 	 quantiteVendue,
-											   double totalTVA,
-											   double sommeTotal,
-											   double montantRecuDuCient, /* = 0.0 */
-											   double montantARembourserAuClient /* = 0.0 */)
+void YerothUtils::getFactureSmallTexTableString(QString &texTable_IN_OUT,
+        									    QTableWidget &tableStandardItemModel,
+											    int 	 quantiteVendue,
+											    double totalTVA,
+											    double sommeTotal,
+											    double montantRecuDuCient, /* = 0.0 */
+											    double montantARembourserAuClient /* = 0.0 */)
 {
-    texTable_in_out.append("\\begin{table*}[!htbp]").append("\n")
-    .append("\\centering").append("\n")
-    .append("\\begin{tabular}")
-    .append("{lrr}");
-
-    texTable_in_out.append("\n"); //Table header end
+    texTable_IN_OUT.append("\\begin{table*}[!htbp]\n"
+    					   "\\centering\n"
+    					   "\\begin{tabular}{lrr}\n");
 
     int tableColumnCount = tableStandardItemModel.columnCount();
 
@@ -2103,23 +2098,23 @@ void YerothUtils::getFactureSmallTexTableString(QString &texTable_in_out,
     for (int k = 0; k < tableColumnCount; ++k)
     {
         if (k == YerothTableWidget::DESIGNATION_COLUMN ||
-                k == YerothTableWidget::QTE_COLUMN 		  ||
-                k == YerothTableWidget::TOTAL_COLUMN)
+            k == YerothTableWidget::QTE_COLUMN 		   ||
+            k == YerothTableWidget::TOTAL_COLUMN)
         {
             item = tableStandardItemModel.horizontalHeaderItem(k);
             if (item)
             {
                 QString itemText(item->text());
                 handleTexTableItemText(tableStandardItemModel.columnCount(),
-                                       texTable_in_out,
+                                       texTable_IN_OUT,
                                        k,
                                        itemText);
             }
         }
     }
-    cleanUpTexTableLastString(texTable_in_out);
+    cleanUpTexTableLastString(texTable_IN_OUT);
 
-    texTable_in_out.append("\\hline").append("\n");
+    texTable_IN_OUT.append("\\hline\n");
 
     QString articleName;
     int articleNameLength;
@@ -2150,7 +2145,7 @@ void YerothUtils::getFactureSmallTexTableString(QString &texTable_in_out,
                 //qDebug() << QString("article name after truncate: %1").arg(articleName);
             }
 
-            texTable_in_out.append(QString("%1. %2 & $x%3$ & %4 \\\\ \n")
+            texTable_IN_OUT.append(QString("%1. %2 & $x%3$ & %4 \\\\ \n")
                                    .arg(QString::number(k+1),
                                         YerothUtils::LATEX_IN_OUT_handleForeignAccents(articleName),
                                         articleQteItem->text(),
@@ -2161,10 +2156,11 @@ void YerothUtils::getFactureSmallTexTableString(QString &texTable_in_out,
     //We now add the sum
     QString sommeTotalStr(YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_CURRENCY_STRING_NUM(sommeTotal)));
 
-    texTable_in_out.append(QString("\\hline\n & $%1$ & %2 \\\\ \n")
-                           .arg(QString::number(quantiteVendue), sommeTotalStr));
+    texTable_IN_OUT.append(QString("\\hline\n & $%1$ & %2 \\\\ \n")
+                           .arg(QString::number(quantiteVendue),
+                        		sommeTotalStr));
 
-    texTable_in_out.append(QString(" & & \\\\ \n"));
+    texTable_IN_OUT.append(QString(" & & \\\\ \n"));
 
     QString totalTVAStr(YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_CURRENCY_STRING_NUM(totalTVA)));
 
@@ -2185,25 +2181,25 @@ void YerothUtils::getFactureSmallTexTableString(QString &texTable_in_out,
 
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
-    texTable_in_out.append(QString("dont total TVA: & & %1\\\\ \n").arg(totalTVAStr));
+    texTable_IN_OUT.append(QString("dont total TVA: & & %1\\\\ \n").arg(totalTVAStr));
 
-    texTable_in_out.append(QString("Montant re\\c{c}u: & & %1\\\\ \n").arg(montantRecuDuClientStr));
+    texTable_IN_OUT.append(QString("Montant re\\c{c}u: & & %1\\\\ \n").arg(montantRecuDuClientStr));
 
-    texTable_in_out.append(QString("Montant remi: & & %1\\ \n").arg(montantARembourserAuClientStr));
+    texTable_IN_OUT.append(QString("Montant remi: & & %1\\ \n").arg(montantARembourserAuClientStr));
 
 
 #endif
 
 #ifdef YEROTH_ENGLISH_LANGUAGE
-    texTable_in_out.append(QString("with total taxes: & & %1\\\\ \n").arg(totalTVAStr));
+    texTable_IN_OUT.append(QString("with total taxes: & & %1\\\\ \n").arg(totalTVAStr));
 
-    texTable_in_out.append(QString("Received amount: & & %1\\\\ \n").arg(montantRecuDuClientStr));
+    texTable_IN_OUT.append(QString("Received amount: & & %1\\\\ \n").arg(montantRecuDuClientStr));
 
-    texTable_in_out.append(QString("Amout given back: & & %1\\ \n").arg(montantARembourserAuClientStr));
+    texTable_IN_OUT.append(QString("Amout given back: & & %1\\ \n").arg(montantARembourserAuClientStr));
 #endif
 
-    texTable_in_out.append("\\end{tabular}").append("\n")
-    .append("\\end{table*}").append("\n");
+    texTable_IN_OUT.append("\\end{tabular}\n"
+    					   "\\end{table*}\n");
 }
 
 
@@ -2486,8 +2482,6 @@ QString YerothUtils::prindDocumentFromTableView(YerothWindowsCommons *aWindowCal
     double MAX_TABLE_ROW_COUNT = 35.0;
 
     int pageNumber = qCeil(tableModelRowCount / MAX_TABLE_ROW_COUNT);
-
-    YerothPOSUser *aCurrentUser = _allWindows->getUser();
 
     //qDebug() << QString("number of pages to print: %1").arg(pageNumber);
     //_logger->log("imprimer_pdf_document",

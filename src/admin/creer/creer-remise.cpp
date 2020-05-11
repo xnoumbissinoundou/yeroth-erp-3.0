@@ -7,8 +7,8 @@ void YerothAdminCreateWindow::populateRemiseComboBoxes()
 
 void YerothAdminCreateWindow::creer_remise_check_fields_entry()
 {
-    bool remise_nom = lineEdit_creer_remise_nom->checkField();
-    bool produit = lineEdit_creer_remise_designation_article->checkField();
+    lineEdit_creer_remise_nom->checkField();
+    lineEdit_creer_remise_designation_article->checkField();
 }
 
 

@@ -68,20 +68,20 @@ public:
 		return (_database.isValid()) ? _database.lastError() : QSqlError("");
 	}
 
-	inline void set_db_type(QString db_type)
+	inline void set_db_type(const QString &db_type)
 	{
 		_db_type =  db_type;
 	}
 
-	void set_db_name(QString db_name);
+	void set_db_name(const QString &db_name);
 
-	void set_db_ip_address(QString db_ip_address);
+	void set_db_ip_address(const QString &db_ip_address);
 
-	void set_db_user_name(QString db_user_name);
+	void set_db_user_name(const QString &db_user_name);
 
-	void set_db_user_pwd(QString db_user_pwd);
+	void set_db_user_pwd(const QString &db_user_pwd);
 
-	void set_db_connection_options(QString db_connection_options);
+	void set_db_connection_options(const QString &db_connection_options);
 
 	inline QString db_type() const
 	{
