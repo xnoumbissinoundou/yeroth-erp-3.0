@@ -10017,7 +10017,7 @@ Transférer</string>
       <string>sélectionner une image</string>
      </property>
     </widget>
-    <widget class="YerothLineEdit" name="lineEdit_quantite_total">
+    <widget class="YerothLineEdit" name="lineEdit_quantite_totale">
      <property name="geometry">
       <rect>
        <x>184</x>
@@ -14328,7 +14328,7 @@ background-color: rgb(0, 0, 0); </string>
   <tabstop>lineEdit_localisation_produit</tabstop>
   <tabstop>lineEdit_stock_dalerte</tabstop>
   <tabstop>lineEdit_reference_recu_dachat</tabstop>
-  <tabstop>lineEdit_quantite_total</tabstop>
+  <tabstop>lineEdit_quantite_totale</tabstop>
   <tabstop>lineEdit_tva</tabstop>
   <tabstop>pushButton_supprimer_limage_du_stock</tabstop>
   <tabstop>pushButton_selectionner_image</tabstop>

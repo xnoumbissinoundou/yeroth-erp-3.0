@@ -1311,7 +1311,7 @@ void YerothTableauxDeBordWindow::bilanComptable()
 
     QString strAchatsQuery(QString("SELECT %1, %2 FROM %3 WHERE %4 >= '%5' AND %6 <= '%7'")
     							.arg(YerothDatabaseTableColumn::PRIX_DACHAT,
-    								 YerothDatabaseTableColumn::QUANTITE_TOTAL,
+    								 YerothDatabaseTableColumn::QUANTITE_TOTALE,
 									 _allWindows->ACHATS,
 									 YerothDatabaseTableColumn::DATE_ENTREE,
 									 DATE_TO_DB_FORMAT_STRING(dateEdit_bilan_comptable_debut->date()),
@@ -1673,25 +1673,25 @@ void YerothTableauxDeBordWindow::analyseComparee()
 
     QString strAchatQuery;
 
-    strAchatQuery.append("SELECT date_entree, prix_dachat, quantite_total ");
-
-    strAchatQuery.append("FROM ")
-        				.append(_allWindows->ACHATS)
-						.append(" WHERE date_entree >= '")
-						.append(dateDebut)
-						.append("' AND ");
+    strAchatQuery.append(QString("SELECT %1, %2, %3 FROM %4 WHERE %5 >= '%6' AND ")
+    						.arg(YerothDatabaseTableColumn::DATE_ENTREE,
+    							 YerothDatabaseTableColumn::PRIX_DACHAT,
+								 YerothDatabaseTableColumn::QUANTITE_TOTALE,
+								 _allWindows->ACHATS,
+								 YerothDatabaseTableColumn::DATE_ENTREE,
+								 dateDebut));
 
     if (moisFinAjuster)
     {
-    	strAchatQuery.append("date_entree < '")
-            		.append(dateFin)
-					.append("'");
+    	strAchatQuery.append(QString("%1 < '%2'")
+    							.arg(YerothDatabaseTableColumn::DATE_ENTREE,
+    								 dateFin));
     }
     else
     {
-    	strAchatQuery.append("date_entree <= '")
-            		.append(dateFin)
-					.append("'");
+    	strAchatQuery.append(QString("%1 <= '%2'")
+    							.arg(YerothDatabaseTableColumn::DATE_ENTREE,
+    								 dateFin));
     }
 
     //qDebug() << "calculerChiffresDaffaireMois - analyse comparee \n\t" <<

@@ -1624,7 +1624,7 @@ void YerothSortirWindow::handleQteChange(QTableWidgetItem * itemChanged)
             {
             	montantTva = stockRecordQuery.value(YerothDatabaseTableColumn::MONTANT_TVA).toDouble();
             	prixVente = stockRecordQuery.value(YerothDatabaseTableColumn::PRIX_VENTE).toDouble();
-            	qteEnStock = stockRecordQuery.value(YerothDatabaseTableColumn::QUANTITE_TOTAL).toDouble();
+            	qteEnStock = stockRecordQuery.value(YerothDatabaseTableColumn::QUANTITE_TOTALE).toDouble();
 
             	stockReference = stockRecordQuery.value(YerothDatabaseTableColumn::REFERENCE).toString();
                 stockName = stockRecordQuery.value(YerothDatabaseTableColumn::DESIGNATION).toString();
@@ -1755,7 +1755,7 @@ void YerothSortirWindow::ajouter_article(const QString & text)
     {
     	montantTva = stockRecordQuery.value(YerothDatabaseTableColumn::MONTANT_TVA).toDouble();
     	prixVente = stockRecordQuery.value(YerothDatabaseTableColumn::PRIX_VENTE).toDouble();
-    	qteEnStock = stockRecordQuery.value(YerothDatabaseTableColumn::QUANTITE_TOTAL).toDouble();
+    	qteEnStock = stockRecordQuery.value(YerothDatabaseTableColumn::QUANTITE_TOTALE).toDouble();
 
     	stockReference = stockRecordQuery.value(YerothDatabaseTableColumn::REFERENCE).toString();
     	stockName = stockRecordQuery.value(YerothDatabaseTableColumn::DESIGNATION).toString();
@@ -1828,7 +1828,7 @@ void YerothSortirWindow::ajouter_article_codebar(const QString & text)
     {
     	montantTva = stockRecordQuery.value(YerothDatabaseTableColumn::MONTANT_TVA).toDouble();
     	prixVente = stockRecordQuery.value(YerothDatabaseTableColumn::PRIX_VENTE).toDouble();
-    	qteEnStock = stockRecordQuery.value(YerothDatabaseTableColumn::QUANTITE_TOTAL).toDouble();
+    	qteEnStock = stockRecordQuery.value(YerothDatabaseTableColumn::QUANTITE_TOTALE).toDouble();
 
     	stockReference = stockRecordQuery.value(YerothDatabaseTableColumn::REFERENCE).toString();
     	stockName = stockRecordQuery.value(YerothDatabaseTableColumn::DESIGNATION).toString();
@@ -2134,7 +2134,7 @@ void YerothSortirWindow::sortir()
             	isService = quantiteQuery.value(YerothDatabaseTableColumn::IS_SERVICE).toBool();
 
                 quantite_totale_actuelle =
-                		quantiteQuery.value(YerothDatabaseTableColumn::QUANTITE_TOTAL).toDouble();
+                		quantiteQuery.value(YerothDatabaseTableColumn::QUANTITE_TOTALE).toDouble();
 
                 datePeremtion =
                 		quantiteQuery.value(YerothDatabaseTableColumn::DATE_PEREMPTION).toDate();
@@ -2242,7 +2242,7 @@ void YerothSortirWindow::sortir()
                 quantiteQueryStr.clear();
                 quantiteQueryStr.append(QString("UPDATE %1 SET %2 = '%3', %4 = '%5' WHERE %6 = '%7'")
                                         .arg(_allWindows->STOCKS,
-                                             YerothDatabaseTableColumn::QUANTITE_TOTAL,
+                                             YerothDatabaseTableColumn::QUANTITE_TOTALE,
                                              QString::number(nouvelle_quantite_totale),
 											 YerothDatabaseTableColumn::HISTORIQUE_STOCK,
 											 historiqueStock,

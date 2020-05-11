@@ -57,7 +57,7 @@ public:
 
 	static const QString QUANTITE_VENDUE;
 
-	static const QString QUANTITE_TOTAL;
+	static const QString QUANTITE_TOTALE;
 
 	static const QString QUANTITE_SORTIE;
 

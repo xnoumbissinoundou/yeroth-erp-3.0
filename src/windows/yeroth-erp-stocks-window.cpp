@@ -391,7 +391,7 @@ void YerothStocksWindow::populateComboBoxes()
 
 	aQStringList.append(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(YerothDatabaseTableColumn::PRIX_UNITAIRE));
 
-	aQStringList.append(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(YerothDatabaseTableColumn::QUANTITE_TOTAL));
+	aQStringList.append(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(YerothDatabaseTableColumn::QUANTITE_TOTALE));
 
 	comboBox_stocks_element_de_stock->addItems(aQStringList);
 
@@ -579,7 +579,7 @@ void YerothStocksWindow::reinitialiser_champs_db_visibles()
 			<< YerothDatabaseTableColumn::PRIX_UNITAIRE
 			<< YerothDatabaseTableColumn::MONTANT_TVA
 			<< YerothDatabaseTableColumn::PRIX_VENTE
-			<< YerothDatabaseTableColumn::QUANTITE_TOTAL
+			<< YerothDatabaseTableColumn::QUANTITE_TOTALE
 			<< YerothDatabaseTableColumn::DATE_ENTREE
 			<< YerothDatabaseTableColumn::DATE_PEREMPTION;
 }

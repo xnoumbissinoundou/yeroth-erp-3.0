@@ -203,8 +203,8 @@ void YerothTableView::lister_les_transactions_dun_client(QSqlQuery &sqlClientTra
     QString transactionAmountHdr(QObject::tr("Montant total"));
     QString customerAccountValueAfterHdr(QObject::trUtf8("Compte client (après)"));
     QString operationTypeHdr(QObject::tr("Type d'opération"));
-    QString reasonHdr(QObject::trUtf8("Justification"));
-    QString receiptHdr(QObject::trUtf8("Référence reçu"));
+    QString referenceHdr(QObject::trUtf8("Référence article (service)"));
+    QString receiptReferenceHdr(QObject::trUtf8("Référence reçu"));
 
     _tableModelHeaders->clear();
 
@@ -213,8 +213,8 @@ void YerothTableView::lister_les_transactions_dun_client(QSqlQuery &sqlClientTra
     _tableModelHeaders->append(transactionAmountHdr);
     _tableModelHeaders->append(customerAccountValueAfterHdr);
     _tableModelHeaders->append(operationTypeHdr);
-    _tableModelHeaders->append(reasonHdr);
-    _tableModelHeaders->append(receiptHdr);
+    _tableModelHeaders->append(referenceHdr);
+    _tableModelHeaders->append(receiptReferenceHdr);
 
 
     int querySize = sqlClientTransactionsUnionQuery.size();
@@ -726,7 +726,7 @@ void YerothTableView::lister_FIFO(YerothSqlTableModel &tableModel,
         QSqlRecord record;
 
         QVariant date_premption;
-        QVariant quantite_total;
+        QVariant quantite_totale;
         QVariant stock_dalerte;
 
         bool itemHasExpired = false;
@@ -738,7 +738,7 @@ void YerothTableView::lister_FIFO(YerothSqlTableModel &tableModel,
             curStockID = record.value(YerothDatabaseTableColumn::ID).toString();
 
             date_premption = record.value(YerothDatabaseTableColumn::DATE_PEREMPTION);
-            quantite_total = record.value(YerothDatabaseTableColumn::QUANTITE_TOTAL);
+            quantite_totale = record.value(YerothDatabaseTableColumn::QUANTITE_TOTALE);
             stock_dalerte = record.value(YerothDatabaseTableColumn::STOCK_DALERTE);
 
             itemHasExpired = (date_premption.toDate() < GET_CURRENT_DATE);
@@ -876,7 +876,7 @@ void YerothTableView::lister_FIFO(YerothSqlTableModel &tableModel,
                     }
 
                     if (YerothTableView::QUANTITE_TOTAL_COLUMN ==k &&
-                            quantite_total.toDouble() <= stock_dalerte.toDouble())
+                            quantite_totale.toDouble() <= stock_dalerte.toDouble())
                     {
                         anItem->setForeground(YerothUtils::YEROTH_RED_COLOR);
                     }
@@ -1013,7 +1013,7 @@ void YerothTableView::lister_LIFO(YerothSqlTableModel &tableModel,
         QSqlRecord record;
 
         QVariant date_premption;
-        QVariant quantite_total;
+        QVariant quantite_totale;
         QVariant stock_dalerte;
 
         QString curStockID;
@@ -1029,7 +1029,7 @@ void YerothTableView::lister_LIFO(YerothSqlTableModel &tableModel,
             curStockID = record.value(YerothDatabaseTableColumn::ID).toString();
 
             date_premption = record.value(YerothDatabaseTableColumn::DATE_PEREMPTION);
-            quantite_total = record.value(YerothDatabaseTableColumn::QUANTITE_TOTAL);
+            quantite_totale = record.value(YerothDatabaseTableColumn::QUANTITE_TOTALE);
             stock_dalerte = record.value(YerothDatabaseTableColumn::STOCK_DALERTE);
 
             itemHasExpired = (date_premption.toDate() < GET_CURRENT_DATE);
@@ -1214,7 +1214,7 @@ void YerothTableView::lister_LIFO(YerothSqlTableModel &tableModel,
                 	}
 
                     if (YerothTableView::QUANTITE_TOTAL_COLUMN == k 	   &&
-                        quantite_total.toDouble() <= stock_dalerte.toDouble())
+                        quantite_totale.toDouble() <= stock_dalerte.toDouble())
                     {
                         anItem->setForeground(YerothUtils::YEROTH_RED_COLOR);
                     }
@@ -1272,7 +1272,7 @@ void YerothTableView::lister_FEFO(YerothSqlTableModel &tableModel,
         QSqlRecord record;
 
         QVariant date_premption;
-        QVariant quantite_total;
+        QVariant quantite_totale;
         QVariant stock_dalerte;
 
         QString curStockID;
@@ -1286,7 +1286,7 @@ void YerothTableView::lister_FEFO(YerothSqlTableModel &tableModel,
             curStockID = record.value(YerothDatabaseTableColumn::ID).toString();
 
             date_premption = record.value(YerothDatabaseTableColumn::DATE_PEREMPTION);
-            quantite_total = record.value(YerothDatabaseTableColumn::QUANTITE_TOTAL);
+            quantite_totale = record.value(YerothDatabaseTableColumn::QUANTITE_TOTALE);
             stock_dalerte = record.value(YerothDatabaseTableColumn::STOCK_DALERTE);
 
             itemIsPreempted = (date_premption.toDate() < GET_CURRENT_DATE);
@@ -1407,7 +1407,7 @@ void YerothTableView::lister_FEFO(YerothSqlTableModel &tableModel,
                     //prevItem = anItem;
 
                     if (YerothTableView::QUANTITE_TOTAL_COLUMN == k 	  &&
-                        quantite_total.toDouble() <= stock_dalerte.toDouble())
+                        quantite_totale.toDouble() <= stock_dalerte.toDouble())
                     {
                         anItem->setForeground(YerothUtils::YEROTH_RED_COLOR);
                     }
@@ -1800,7 +1800,7 @@ void YerothTableView::lister_codebar_LIFO(YerothSqlTableModel &tableModel,
         QSqlRecord record;
 
         QVariant date_premption;
-        QVariant quantite_total;
+        QVariant quantite_totale;
         QVariant stock_dalerte;
 
         QString curStockID;
@@ -1814,7 +1814,7 @@ void YerothTableView::lister_codebar_LIFO(YerothSqlTableModel &tableModel,
             curStockID = record.value(YerothDatabaseTableColumn::ID).toString();
 
             date_premption = record.value(YerothDatabaseTableColumn::DATE_PEREMPTION);
-            quantite_total = record.value(YerothDatabaseTableColumn::QUANTITE_TOTAL);
+            quantite_totale = record.value(YerothDatabaseTableColumn::QUANTITE_TOTALE);
             stock_dalerte = record.value(YerothDatabaseTableColumn::STOCK_DALERTE);
 
             itemHasExpired = (date_premption.toDate() < GET_CURRENT_DATE);
@@ -1954,7 +1954,7 @@ void YerothTableView::lister_codebar_FEFO(YerothSqlTableModel &tableModel,
     {
         QSqlRecord record;
 
-        QVariant quantite_total;
+        QVariant quantite_totale;
         QVariant stock_dalerte;
         QVariant date_premption;
 
@@ -1968,7 +1968,7 @@ void YerothTableView::lister_codebar_FEFO(YerothSqlTableModel &tableModel,
 
         	curStockID = record.value(YerothDatabaseTableColumn::ID).toString();
 
-            quantite_total = record.value(YerothDatabaseTableColumn::QUANTITE_TOTAL);
+            quantite_totale = record.value(YerothDatabaseTableColumn::QUANTITE_TOTALE);
             stock_dalerte = record.value(YerothDatabaseTableColumn::STOCK_DALERTE);
             date_premption = record.value(YerothDatabaseTableColumn::DATE_PEREMPTION);
 

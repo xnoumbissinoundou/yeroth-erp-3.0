@@ -30,7 +30,7 @@ const QString YerothDatabaseTableColumn::QUANTITE						("quantite");
 const QString YerothDatabaseTableColumn::STOCK_DALERTE					("stock_dalerte");
 const QString YerothDatabaseTableColumn::STOCK_MAXIMUM					("stock_maximum");
 const QString YerothDatabaseTableColumn::QUANTITE_VENDUE				("quantite_vendue");
-const QString YerothDatabaseTableColumn::QUANTITE_TOTAL					("quantite_total");
+const QString YerothDatabaseTableColumn::QUANTITE_TOTALE				("quantite_totale");
 const QString YerothDatabaseTableColumn::QUANTITE_SORTIE				("quantite_sortie");
 const QString YerothDatabaseTableColumn::DESCRIPTION_FOURNISSEUR		("description_fournisseur");
 const QString YerothDatabaseTableColumn::DESCRIPTION_PRODUIT			("description_produit");
@@ -170,7 +170,7 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::QUANTITE_VENDUE,	QObject::trUtf8("Qté"));
 
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::QUANTITE_TOTAL,	QObject::trUtf8("Qté totale"));
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::QUANTITE_TOTALE,	QObject::trUtf8("Qté totale"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::QUANTITE_SORTIE,	QObject::trUtf8("Qté sortie"));
 

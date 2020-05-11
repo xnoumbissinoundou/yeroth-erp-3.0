@@ -42,7 +42,7 @@ const int YerothERPStocksTableView::REFERENCE_COLUMN(1);
 
 const int YerothERPStocksTableView::DATE_PREEMPTION_COLUMN(13);
 
-const int YerothERPStocksTableView::QUANTITE_TOTAL_COLUMN(8);
+const int YerothERPStocksTableView::QUANTITE_TOTALE_COLUMN(8);
 
 
 YerothERPStocksTableView::YerothERPStocksTableView()
@@ -85,14 +85,14 @@ void YerothERPStocksTableView::lister_les_elements_du_tableau(YerothSqlTableMode
     {
         QSqlRecord record;
         QVariant date_premption;
-        QVariant quantite_total;
+        QVariant quantite_totale;
         QVariant stock_dalerte;
 
         for (int i = 0; i < rows; ++i)
         {
             record = tableModel.record(i);
             date_premption = record.value(YerothDatabaseTableColumn::DATE_PEREMPTION);
-            quantite_total = record.value(YerothDatabaseTableColumn::QUANTITE_TOTAL);
+            quantite_totale = record.value(YerothDatabaseTableColumn::QUANTITE_TOTALE);
             stock_dalerte = record.value(YerothDatabaseTableColumn::STOCK_DALERTE);
 
             for (int k = 0; k < columns; ++k)
@@ -121,8 +121,8 @@ void YerothERPStocksTableView::lister_les_elements_du_tableau(YerothSqlTableMode
                     break;
 
                 case QVariant::Double:
-                    //quantite_total (c'est la quantite restante en stock)
-                    if (QUANTITE_TOTAL_COLUMN == k)
+                    //quantite_totale (c'est la quantite restante en stock)
+                    if (QUANTITE_TOTALE_COLUMN == k)
                     {
                         anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toUInt()));
                     }
@@ -191,8 +191,8 @@ void YerothERPStocksTableView::lister_les_elements_du_tableau(YerothSqlTableMode
                 {
                     anItem->setForeground(Qt::white);
 
-                    if (YerothERPStocksTableView::QUANTITE_TOTAL_COLUMN == k &&
-                            quantite_total.toDouble() <= stock_dalerte.toDouble())
+                    if (YerothERPStocksTableView::QUANTITE_TOTALE_COLUMN == k &&
+                            quantite_totale.toDouble() <= stock_dalerte.toDouble())
                     {
                         anItem->setForeground(YerothUtils::YEROTH_RED_COLOR);
                     }

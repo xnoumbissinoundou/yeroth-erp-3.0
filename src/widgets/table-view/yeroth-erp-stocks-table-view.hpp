@@ -43,7 +43,7 @@ public:
 
     static const int DATE_PREEMPTION_COLUMN;
 
-    static const int QUANTITE_TOTAL_COLUMN;
+    static const int QUANTITE_TOTALE_COLUMN;
 };
 
 

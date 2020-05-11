@@ -881,7 +881,7 @@ void YerothModifierWindow::showItem()
     lineEdit_tva->setText(YerothUtils::getTvaStringWithPercent());
     lineEdit_prix_vente->setText(QString::number(prix_vente, 'f', 2));
 
-    double quantite_restante = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::QUANTITE_TOTAL).toDouble();
+    double quantite_restante = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::QUANTITE_TOTALE).toDouble();
 
     lineEdit_quantite_restante->setText(QString::number(quantite_restante, 'f', 2));
     textEdit_description->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESCRIPTION_PRODUIT));

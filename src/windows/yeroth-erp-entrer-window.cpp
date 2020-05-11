@@ -157,12 +157,12 @@ void YerothEntrerWindow::setupLineEdits()
 	lineEdit_pourcentage_prix_dachat_prix_de_vente->setYerothEnabled(false);
 
 	lineEdit_service_montant_total_vente->setYerothEnabled(false);
-    lineEdit_quantite_total->setYerothEnabled(false);
+    lineEdit_quantite_totale->setYerothEnabled(false);
     lineEdit_tva->setYerothEnabled(false);
 
     lineEdit_tva->setText(YerothUtils::getTvaStringWithPercent());
 
-    lineEdit_quantite_total->setValidator(&YerothUtils::DoubleValidator);
+    lineEdit_quantite_totale->setValidator(&YerothUtils::DoubleValidator);
     lineEdit_quantite_par_lot->setValidator(&YerothUtils::IntValidator);
     lineEdit_stock_dalerte->setValidator(&YerothUtils::DoubleValidator);
     lineEdit_prix_dachat->setValidator(&YerothUtils::DoubleValidator);
@@ -577,22 +577,22 @@ bool YerothEntrerWindow::product_search_with_codebar()
 void YerothEntrerWindow::display_quantite_total(const QString & quantite_par_lot)
 {
     double qte_lot = quantite_par_lot.toDouble();
-    double qte_total = doubleSpinBox_lots_entrant->valueMultiplyBy(qte_lot);
+    double qte_totale = doubleSpinBox_lots_entrant->valueMultiplyBy(qte_lot);
 
-    lineEdit_quantite_total->setText(QString::number(qte_total, 'f', 2));
+    lineEdit_quantite_totale->setText(QString::number(qte_totale, 'f', 2));
 
 	if (checkBox_service->isChecked())
 	{
-		qte_total = qte_total * lineEdit_prix_vente->text().toDouble();
-		lineEdit_service_montant_total_vente->setText(GET_CURRENCY_STRING_NUM(qte_total));
+		qte_totale = qte_totale * lineEdit_prix_vente->text().toDouble();
+		lineEdit_service_montant_total_vente->setText(GET_CURRENCY_STRING_NUM(qte_totale));
 	}
 }
 
 void YerothEntrerWindow::display_quantite_total_by_spinbox(double lots)
 {
     double qte_lot = lineEdit_quantite_par_lot->text().toDouble();
-    double qte_total = lots * qte_lot;
-    lineEdit_quantite_total->setText(QString::number(qte_total, 'f', 2));
+    double qte_totale = lots * qte_lot;
+    lineEdit_quantite_totale->setText(QString::number(qte_totale, 'f', 2));
 }
 
 
@@ -651,8 +651,8 @@ void YerothEntrerWindow::display_service_montant_total_vente()
     if (checkBox_service->isChecked())
     {
     	double prix_vente = lineEdit_prix_vente->text().toDouble();
-    	double qte_total = lineEdit_quantite_total->text().toDouble();
-    	double montant_total_vente = qte_total * prix_vente;
+    	double qte_totale = lineEdit_quantite_totale->text().toDouble();
+    	double montant_total_vente = qte_totale * prix_vente;
 		lineEdit_service_montant_total_vente->setText(GET_CURRENCY_STRING_NUM(montant_total_vente));
     }
     else
@@ -666,11 +666,11 @@ void YerothEntrerWindow::setStockSpecificWidgetVisible(bool visible)
 {
 	if (visible)
 	{
-		lineEdit_quantite_total->setFixedWidth(104);
+		lineEdit_quantite_totale->setFixedWidth(104);
 	}
 	else
 	{
-		lineEdit_quantite_total->setFixedWidth(205);
+		lineEdit_quantite_totale->setFixedWidth(205);
 	}
 
 	label_reference_recu_dachat->setVisible(visible);
@@ -883,7 +883,7 @@ void YerothEntrerWindow::clear_all_fields()
     lineEdit_nom_entreprise_fournisseur->clearField();
     doubleSpinBox_lots_entrant->setValue(1.0);
     lineEdit_quantite_par_lot->clearField();
-    lineEdit_quantite_total->clear();
+    lineEdit_quantite_totale->clear();
     lineEdit_nom_entreprise_fournisseur->clearField();
     lineEdit_stock_dalerte->clearField();
     lineEdit_reference_recu_dachat->clearField();
@@ -1187,7 +1187,7 @@ bool YerothEntrerWindow::handle_stocks_vendu_table(int stockID,
 		QSqlRecord stockRecord = stocksTableModel.record(0);
 
         QString quantiteQueryStr(QString("SELECT %1 FROM %2 WHERE id = '%3'")
-        							.arg(YerothDatabaseTableColumn::QUANTITE_TOTAL,
+        							.arg(YerothDatabaseTableColumn::QUANTITE_TOTALE,
         								 _allWindows->STOCKS,
 										 QString::number(stockID)));
         QSqlQuery quantiteQuery;
@@ -1231,7 +1231,7 @@ bool YerothEntrerWindow::handle_stocks_vendu_table(int stockID,
         record.setValue(YerothDatabaseTableColumn::REFERENCE_RECU_VENDU, referenceRecuVenduCompteClient);
 
         double quantite_total_vendue =
-        		GET_SQL_RECORD_DATA(stockRecord, YerothDatabaseTableColumn::QUANTITE_TOTAL).toDouble();
+        		GET_SQL_RECORD_DATA(stockRecord, YerothDatabaseTableColumn::QUANTITE_TOTALE).toDouble();
 
         record.setValue(YerothDatabaseTableColumn::QUANTITE_VENDUE, quantite_total_vendue);
 
@@ -1651,7 +1651,7 @@ void YerothEntrerWindow::enregistrer_produit()
     record.setValue(YerothDatabaseTableColumn::LOTS_ENTRANT, doubleSpinBox_lots_entrant->value());
     record.setValue(YerothDatabaseTableColumn::QUANTITE_PAR_LOT, lineEdit_quantite_par_lot->text().toDouble());
 
-    double quantite_total = lineEdit_quantite_total->text().toDouble();
+    double quantite_totale = lineEdit_quantite_totale->text().toDouble();
 
     double stock_dalerte = lineEdit_stock_dalerte->text().toDouble();
 
@@ -1666,7 +1666,7 @@ void YerothEntrerWindow::enregistrer_produit()
     	prix_dachat = 0;
     }
 
-    double montant_total_vente = quantite_total * prix_vente;
+    double montant_total_vente = quantite_totale * prix_vente;
 
     QString utilisateurCourrantNomComplet;
 
@@ -1680,7 +1680,7 @@ void YerothEntrerWindow::enregistrer_produit()
     if (!checkBox_service->isChecked() && hasBuying())
     {
     	achatRecord.setValue(YerothDatabaseTableColumn::ENREGISTREUR_STOCK, utilisateurCourrantNomComplet);
-    	achatRecord.setValue(YerothDatabaseTableColumn::QUANTITE_TOTAL, quantite_total);
+    	achatRecord.setValue(YerothDatabaseTableColumn::QUANTITE_TOTALE, quantite_totale);
     	achatRecord.setValue(YerothDatabaseTableColumn::STOCK_DALERTE, stock_dalerte);
     	achatRecord.setValue(YerothDatabaseTableColumn::REFERENCE_RECU_DACHAT, reference_recu_dachat);
     	achatRecord.setValue(YerothDatabaseTableColumn::PRIX_DACHAT, prix_dachat);
@@ -1697,7 +1697,7 @@ void YerothEntrerWindow::enregistrer_produit()
     }
 
     record.setValue(YerothDatabaseTableColumn::ENREGISTREUR_STOCK, utilisateurCourrantNomComplet);
-    record.setValue(YerothDatabaseTableColumn::QUANTITE_TOTAL, quantite_total);
+    record.setValue(YerothDatabaseTableColumn::QUANTITE_TOTALE, quantite_totale);
     record.setValue(YerothDatabaseTableColumn::PRIX_VENTE, prix_vente);
     //qDebug() << "++_tva: " << QString::number(_tva, 'f', 2);
     record.setValue(YerothDatabaseTableColumn::MONTANT_TVA, _montantTva);
@@ -1739,8 +1739,8 @@ void YerothEntrerWindow::enregistrer_produit()
     				stock_id_to_save,
 					GET_CURRENT_DATE,
 					0.0,
-					quantite_total,
-					quantite_total));
+					quantite_totale,
+					quantite_totale));
 
     //qDebug() << QString("++ test: %1")
         		//				.arg(historiqueStockInitial);

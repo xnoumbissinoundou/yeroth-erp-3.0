@@ -242,7 +242,7 @@ void YerothAdminCreateWindow::showProduitInfo(const QString & nomProduit)
     QString sqlNomProduit(YerothUtils::prepareSqlStr(nomProduit));
 
     QString strQuery(QString("SELECT %1 FROM %2 WHERE %3 = '%4'")
-    					.arg(YerothDatabaseTableColumn::QUANTITE_TOTAL,
+    					.arg(YerothDatabaseTableColumn::QUANTITE_TOTALE,
     						_allWindows->STOCKS,
     						 YerothDatabaseTableColumn::DESIGNATION,
 							 sqlNomProduit));

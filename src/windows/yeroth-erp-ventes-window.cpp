@@ -341,14 +341,14 @@ bool YerothVentesWindow::annuler_cette_vente()
 		curStockRecord = curStockTableModel.record(0);
 
 		curStockQuantiteTotal =
-				GET_SQL_RECORD_DATA(curStockRecord, YerothDatabaseTableColumn::QUANTITE_TOTAL).toDouble();
+				GET_SQL_RECORD_DATA(curStockRecord, YerothDatabaseTableColumn::QUANTITE_TOTALE).toDouble();
 
 		curStockNouvelleQuantiteTotal = curStockQuantiteTotal + quantite_a_retourner;
 
 		curMontantTotalVente =
 				GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE).toDouble();
 
-		curStockRecord.setValue(YerothDatabaseTableColumn::QUANTITE_TOTAL, curStockNouvelleQuantiteTotal);
+		curStockRecord.setValue(YerothDatabaseTableColumn::QUANTITE_TOTALE, curStockNouvelleQuantiteTotal);
 
 		curHistoriqueStock =
 				GET_SQL_RECORD_DATA(curStockRecord, YerothDatabaseTableColumn::HISTORIQUE_STOCK);
@@ -384,7 +384,7 @@ bool YerothVentesWindow::annuler_cette_vente()
 
 		curStockRecord.setValue(YerothDatabaseTableColumn::CATEGORIE, curStocksVenduCategorie);
 
-		curStockRecord.setValue(YerothDatabaseTableColumn::QUANTITE_TOTAL, curStocksVenduQuantiteVendue);
+		curStockRecord.setValue(YerothDatabaseTableColumn::QUANTITE_TOTALE, curStocksVenduQuantiteVendue);
 
 		curMontantTotalVente =
 				GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE).toDouble();
@@ -392,12 +392,12 @@ bool YerothVentesWindow::annuler_cette_vente()
 		//		    qDebug() << QString("++ a rembourser au client: %1")
 		//		    				.arg(QString::number(curMontantARembourserAuClient));
 
-		double quantite_total = curStocksVenduQuantiteVendue;
+		double quantite_totale = curStocksVenduQuantiteVendue;
 
 		double montant_total_tva =
 				GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::MONTANT_TVA).toDouble();
 
-		double montant_tva_unitaire = montant_total_tva / quantite_total;
+		double montant_tva_unitaire = montant_total_tva / quantite_totale;
 
 		double prix_unitaire =
 				GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::PRIX_UNITAIRE).toDouble();
@@ -428,7 +428,7 @@ bool YerothVentesWindow::annuler_cette_vente()
 
 		curStockRecord.setValue(YerothDatabaseTableColumn::LOTS_ENTRANT, 1);
 
-		curStockRecord.setValue(YerothDatabaseTableColumn::QUANTITE_PAR_LOT, quantite_total);
+		curStockRecord.setValue(YerothDatabaseTableColumn::QUANTITE_PAR_LOT, quantite_totale);
 
 		curStockRecord.setValue(YerothDatabaseTableColumn::DATE_ENTREE, GET_CURRENT_DATE);
 
@@ -668,14 +668,14 @@ bool YerothVentesWindow::annuler_cette_vente()
 //			curStockRecord = curStockTableModel.record(0);
 //
 //			curStockQuantiteTotal =
-//					GET_SQL_RECORD_DATA(curStockRecord, YerothDatabaseTableColumn::QUANTITE_TOTAL).toDouble();
+//					GET_SQL_RECORD_DATA(curStockRecord, YerothDatabaseTableColumn::QUANTITE_TOTALE).toDouble();
 //
 //			curStockNouvelleQuantiteTotal = curStockQuantiteTotal + curStocksVenduQuantiteVendue;
 //
 //			curMontantARembourserAuClient +=
 //					    		GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE).toDouble();
 //
-//			curStockRecord.setValue(YerothDatabaseTableColumn::QUANTITE_TOTAL, curStockNouvelleQuantiteTotal);
+//			curStockRecord.setValue(YerothDatabaseTableColumn::QUANTITE_TOTALE, curStockNouvelleQuantiteTotal);
 //
 //			curHistoriqueStock =
 //	        		GET_SQL_RECORD_DATA(curStockRecord, YerothDatabaseTableColumn::HISTORIQUE_STOCK);
@@ -711,7 +711,7 @@ bool YerothVentesWindow::annuler_cette_vente()
 //
 //		    curStockRecord.setValue(YerothDatabaseTableColumn::CATEGORIE, curStocksVenduCategorie);
 //
-//		    curStockRecord.setValue(YerothDatabaseTableColumn::QUANTITE_TOTAL, curStocksVenduQuantiteVendue);
+//		    curStockRecord.setValue(YerothDatabaseTableColumn::QUANTITE_TOTALE, curStocksVenduQuantiteVendue);
 //
 //		    curMontantARembourserAuClient +=
 //		    		GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE).toDouble();
@@ -719,12 +719,12 @@ bool YerothVentesWindow::annuler_cette_vente()
 ////		    qDebug() << QString("++ a rembourser au client: %1")
 ////		    				.arg(QString::number(curMontantARembourserAuClient));
 //
-//		    double quantite_total = curStocksVenduQuantiteVendue;
+//		    double quantite_totale = curStocksVenduQuantiteVendue;
 //
 //		    double montant_total_tva =
 //		    		GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::MONTANT_TVA).toDouble();
 //
-//		    double montant_tva_unitaire = montant_total_tva / quantite_total;
+//		    double montant_tva_unitaire = montant_total_tva / quantite_totale;
 //
 //		    double prix_unitaire =
 //		    		GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::PRIX_UNITAIRE).toDouble();
@@ -755,7 +755,7 @@ bool YerothVentesWindow::annuler_cette_vente()
 //
 //		    curStockRecord.setValue(YerothDatabaseTableColumn::LOTS_ENTRANT, 1);
 //
-//		    curStockRecord.setValue(YerothDatabaseTableColumn::QUANTITE_PAR_LOT, quantite_total);
+//		    curStockRecord.setValue(YerothDatabaseTableColumn::QUANTITE_PAR_LOT, quantite_totale);
 //
 //		    curStockRecord.setValue(YerothDatabaseTableColumn::DATE_ENTREE, GET_CURRENT_DATE);
 //

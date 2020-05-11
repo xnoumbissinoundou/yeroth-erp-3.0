@@ -241,7 +241,7 @@ void YerothAchatsWindow::populateComboBoxes()
 
 	aQStringList.append(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(YerothDatabaseTableColumn::PRIX_UNITAIRE));
 
-	aQStringList.append(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(YerothDatabaseTableColumn::QUANTITE_TOTAL));
+	aQStringList.append(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(YerothDatabaseTableColumn::QUANTITE_TOTALE));
 
     comboBox_element_achats->addItems(aQStringList);
 
@@ -394,7 +394,7 @@ void YerothAchatsWindow::reinitialiser_champs_db_visibles()
 		<< YerothDatabaseTableColumn::PRIX_VENTE
 		<< YerothDatabaseTableColumn::MARGE_BENEFICIAIRE
 		<< YerothDatabaseTableColumn::DATE_ENTREE
-		<< YerothDatabaseTableColumn::QUANTITE_TOTAL;
+		<< YerothDatabaseTableColumn::QUANTITE_TOTALE;
 
 }
 

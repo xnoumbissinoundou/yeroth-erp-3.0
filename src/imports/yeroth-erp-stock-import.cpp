@@ -35,7 +35,7 @@ YerothERPStockImport::YerothERPStockImport(YerothPOSAdminWindowsCommons 					&aC
 
 	_allMandatoryTableColumns.append(YerothDatabaseTableColumn::CATEGORIE);
 
-	_allMandatoryTableColumns.append(YerothDatabaseTableColumn::QUANTITE_TOTAL);
+	_allMandatoryTableColumns.append(YerothDatabaseTableColumn::QUANTITE_TOTALE);
 
 	_allMandatoryTableColumns.append(YerothDatabaseTableColumn::PRIX_UNITAIRE);
 }
@@ -258,7 +258,7 @@ enum import_csv_entry_row_return_status
 			}
 			else if (YEROTH_QSTRING_CONTAINS(curTableColumnType, "double"))
 			{
-				if (YerothDatabaseTableColumn::QUANTITE_TOTAL == curTableColumnName)
+				if (YerothDatabaseTableColumn::QUANTITE_TOTALE == curTableColumnName)
 				{
 					quantite_totale = YerothUtils::YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(curColumnRowEntry);
 					record.setValue(curTableColumnName, quantite_totale);
@@ -299,7 +299,7 @@ enum import_csv_entry_row_return_status
 	{
 		QString infoMesg =
 				QString(QObject::trUtf8("La colone '%1' a une valeur <= '0' !"))
-					.arg(YerothDatabaseTableColumn::QUANTITE_TOTAL);
+					.arg(YerothDatabaseTableColumn::QUANTITE_TOTALE);
 
 		YerothQMessageBox::information(_callingWindow,
 									   QObject::tr("valeur incorrecte"),

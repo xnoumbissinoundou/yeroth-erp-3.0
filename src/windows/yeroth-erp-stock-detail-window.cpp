@@ -379,7 +379,7 @@ void YerothStockDetailWindow::showItem()
     textEdit_description->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESCRIPTION_PRODUIT));
 
 
-    double quantite_restante = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::QUANTITE_TOTAL).toDouble();
+    double quantite_restante = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::QUANTITE_TOTALE).toDouble();
 
     lineEdit_quantite_restante->setText(GET_DOUBLE_STRING_P(quantite_restante, 2));
 

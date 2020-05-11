@@ -157,7 +157,7 @@ double YerothMarchandisesWindow::getValeurTotaleDinventaireEnStock(QString categ
 	double valeurMarchande = 0.0;
 
 	QString sqlSearchStocksTableQueryStr(QString("SELECT %1, (round(%2, 2) - round(%3, 2)) FROM %4 WHERE %5 = '%6' AND %7 = '%8'")
-											.arg(YerothDatabaseTableColumn::QUANTITE_TOTAL,
+											.arg(YerothDatabaseTableColumn::QUANTITE_TOTALE,
 												 YerothDatabaseTableColumn::PRIX_VENTE,
 												 YerothDatabaseTableColumn::MONTANT_TVA,
 												 _allWindows->STOCKS,
@@ -179,7 +179,7 @@ double YerothMarchandisesWindow::getValeurTotaleDinventaireEnStock(QString categ
 
 		while (sqlSearchStockTableQuery.next())
 		{
-			qteTotalEnStock = sqlSearchStockTableQuery.value(YerothDatabaseTableColumn::QUANTITE_TOTAL).toDouble();
+			qteTotalEnStock = sqlSearchStockTableQuery.value(YerothDatabaseTableColumn::QUANTITE_TOTALE).toDouble();
 			montant_dinventaire = sqlSearchStockTableQuery.value(1).toDouble();
 			valeurMarchande += (qteTotalEnStock * montant_dinventaire);
 		}
@@ -206,7 +206,7 @@ double YerothMarchandisesWindow::getQuantiteTotaleEnStock(QString categorie,
 	double qteTotalEnStock = 0.0;
 
 	QString sqlSearchStockTableQueryStr(QString("SELECT %1 FROM %2 WHERE %3 = '%4' AND %5 = '%6'")
-											.arg(YerothDatabaseTableColumn::QUANTITE_TOTAL,
+											.arg(YerothDatabaseTableColumn::QUANTITE_TOTALE,
 												 _allWindows->STOCKS,
 	                                             YerothDatabaseTableColumn::CATEGORIE,
 												 categorie,
@@ -222,12 +222,12 @@ double YerothMarchandisesWindow::getQuantiteTotaleEnStock(QString categorie,
 	{
 		while(sqlSearchStockTableQuery.next())
 		{
-			qteTotalEnStock += sqlSearchStockTableQuery.value(YerothDatabaseTableColumn::QUANTITE_TOTAL).toDouble();
+			qteTotalEnStock += sqlSearchStockTableQuery.value(YerothDatabaseTableColumn::QUANTITE_TOTALE).toDouble();
 		}
 
 		QString updateQteTotalQueryStr(QString("UPDATE %1 SET %2 = '%3' WHERE (%4 = '%5') AND (%6 = '%7')")
 											.arg(_allWindows->MARCHANDISES,
-												 YerothDatabaseTableColumn::QUANTITE_TOTAL,
+												 YerothDatabaseTableColumn::QUANTITE_TOTALE,
 												 QString::number(qteTotalEnStock),
 												 YerothDatabaseTableColumn::CATEGORIE,
 												 categorie,
@@ -267,7 +267,7 @@ void YerothMarchandisesWindow::reinitialiser_champs_db_visibles()
     _visibleDBFieldColumnStrList
 		<< YerothDatabaseTableColumn::DESIGNATION
 		<< YerothDatabaseTableColumn::CATEGORIE
-		<< YerothDatabaseTableColumn::QUANTITE_TOTAL
+		<< YerothDatabaseTableColumn::QUANTITE_TOTALE
 		<< YerothDatabaseTableColumn::REFERENCE
 		<< YerothDatabaseTableColumn::VALEUR_DIVENTAIRE;
 }
@@ -623,7 +623,7 @@ void YerothMarchandisesWindow::populateInventaireDesStocksComboBoxes()
 
 	aQStringList.append(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(YerothDatabaseTableColumn::VALEUR_DIVENTAIRE));
 
-	aQStringList.append(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(YerothDatabaseTableColumn::QUANTITE_TOTAL));
+	aQStringList.append(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(YerothDatabaseTableColumn::QUANTITE_TOTALE));
 
     comboBox_inventaire_des_stocks_element_de_stock->addItems(aQStringList);
 
