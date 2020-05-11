@@ -3597,9 +3597,9 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-window-commons.cpp" line="373"/>
-        <source>(&apos;%1&apos; colones de base de données)</source>
-        <oldsource>(%1 colones de base de données)</oldsource>
-        <translation>(&apos;%1&apos; database columns)</translation>
+        <source>(&apos;%1&apos; colones du tableau)</source>
+        <oldsource>(&apos;%1&apos; colones de base de données)</oldsource>
+        <translation>(&apos;%1&apos; table columns)</translation>
     </message>
     <message>
         <location filename="src/admin/creer/creer-remise.cpp" line="29"/>
@@ -8093,7 +8093,8 @@ Transférer</source>
     </message>
     <message>
         <location filename="ui/yeroth-erp-entrer-window.ui" line="4372"/>
-        <source>quantité total</source>
+        <source>quantité totale</source>
+        <oldsource>quantité total</oldsource>
         <translation>total quantity</translation>
     </message>
     <message>
