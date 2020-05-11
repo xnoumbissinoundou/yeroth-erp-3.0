@@ -4349,7 +4349,7 @@ Transférer</string>
       </property>
      </widget>
     </widget>
-    <widget class="QLabel" name="label_quantite_total">
+    <widget class="QLabel" name="label_quantite_totale">
      <property name="geometry">
       <rect>
        <x>8</x>
@@ -4369,7 +4369,7 @@ Transférer</string>
       <enum>Qt::LeftToRight</enum>
      </property>
      <property name="text">
-      <string>quantité total</string>
+      <string>quantité totale</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
