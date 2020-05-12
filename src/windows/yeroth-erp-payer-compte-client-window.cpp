@@ -268,6 +268,12 @@ bool YerothPayerCompteClientWindow::createPaymentForCustomerAccount(PaymentInfo 
 	record.setValue(YerothDatabaseTableColumn::INTITULE_DU_COMPTE_BANCAIRE,
 			paymentInfo.intitule_du_compte_bancaire);
 
+	int IDforReceipt = YerothERPWindows::getNextIdSqlTableModel_paiements();
+
+	QString referenceRecuPaiementClient(YerothUtils::GET_REFERENCE_RECU_PAIEMENT_CLIENT(QString::number(IDforReceipt)));
+
+	record.setValue(YerothDatabaseTableColumn::REFERENCE_RECU_PAIEMENT_CLIENT, referenceRecuPaiementClient);
+
 	bool success = paiementsTableModel.insertNewRecord(record, this);
 
 	if (success)

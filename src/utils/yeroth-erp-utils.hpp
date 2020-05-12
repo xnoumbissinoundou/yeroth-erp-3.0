@@ -227,8 +227,13 @@ public:
 		return  YerothUtils::GET_REFERENCE_RECU_SUFFIX(YerothUtils::PREFIX_RECU_VENDU, fixedNumber);
 	}
 
-	static QString GET_REFERENCE_RECU_SUFFIX(QString prefix,
-											 QString fixedNumber);
+	inline static QString GET_REFERENCE_RECU_PAIEMENT_CLIENT(QString fixedNumber)
+	{
+		return  YerothUtils::GET_REFERENCE_RECU_SUFFIX(YerothUtils::PREFIX_RECU_PAIEMENT_CLIENT, fixedNumber);
+	}
+
+	static QString GET_REFERENCE_RECU_SUFFIX(const QString &prefix,
+											 const QString &fixedNumber);
 
 	static void getColumnListString(QStringList   &columnStringList,
 									const QString &tableName,
@@ -691,6 +696,8 @@ public:
 
 	static QMap<int, QString> _typedepaiementToUserViewString;
 
+
+	static const QString PREFIX_RECU_PAIEMENT_CLIENT;
 
 	static const QString PREFIX_RECU_VENDU;
 

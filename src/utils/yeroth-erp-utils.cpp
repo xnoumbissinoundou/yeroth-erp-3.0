@@ -170,6 +170,8 @@ QMap<int, QString> YerothUtils::_typedeventeToUserViewString;
 QMap<int, QString> YerothUtils::_typedepaiementToUserViewString;
 
 
+const QString YerothUtils::PREFIX_RECU_PAIEMENT_CLIENT("PAI-");
+
 const QString YerothUtils::PREFIX_RECU_VENDU("VEN-");
 
 const QString YerothUtils::PREFIX_RECU_SORTIE("SOR-");
@@ -1111,8 +1113,8 @@ int YerothUtils::getComboBoxDatabaseQueryValue(const QString &comboBoxStringValu
 }
 
 
-QString YerothUtils::GET_REFERENCE_RECU_SUFFIX(QString prefix,
-											   QString fixedNumber)
+QString YerothUtils::GET_REFERENCE_RECU_SUFFIX(const QString &prefix,
+											   const QString &fixedNumber)
 {
 	QString resultString(prefix);
 

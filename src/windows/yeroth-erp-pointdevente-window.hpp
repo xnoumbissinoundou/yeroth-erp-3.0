@@ -113,13 +113,13 @@ public slots:
 			actionAfficherPDF->setEnabled(true);
 		}
 
-		QString afficher_facture_pdf(QString referenceRecu = QString(""));
+		QString afficher_recu_vendu_pdf(QString referenceRecu = YerothUtils::EMPTY_STRING);
 
-		QString imprimer_facture(QString referenceRecu = QString(""));
+		QString imprimer_recu_vendu(QString referenceRecu = YerothUtils::EMPTY_STRING);
 
-		QString imprimer_facture_grand(QString referenceRecuGRAND = QString(""));
+		QString imprimer_recu_vendu_grand(QString referenceRecuGRAND = YerothUtils::EMPTY_STRING);
 
-		QString imprimer_facture_petit(QString referenceRecuPETIT = QString(""));
+		QString imprimer_recu_vendu_petit(QString referenceRecuPETIT = YerothUtils::EMPTY_STRING);
 
 		void handleAddedArticle();
 

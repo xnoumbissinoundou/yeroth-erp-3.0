@@ -264,6 +264,11 @@ public:
 		return YerothERPWindows::getNextIdFromTable(YerothERPWindows::MARCHANDISES);
 	}
 
+	static inline int getNextIdSqlTableModel_paiements()
+	{
+		return YerothERPWindows::getNextIdFromTable(YerothERPWindows::PAIEMENTS);
+	}
+
 	static inline int getNextIdSqlTableModel_stocks()
 	{
 		return YerothERPWindows::NEXT_TABLE_ID_MYSQL_FOR_STOCKS();

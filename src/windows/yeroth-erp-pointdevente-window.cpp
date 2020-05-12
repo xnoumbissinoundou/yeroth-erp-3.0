@@ -100,6 +100,8 @@ YerothPointDeVenteWindow::YerothPointDeVenteWindow()
 
     setRechercheLineEditFocus();
 
+    checkBox_imprimer_recu_vendu->setChecked(true);
+
     setupLineEdits();
 
     setupLineEditsQCompleters();
@@ -125,7 +127,7 @@ YerothPointDeVenteWindow::YerothPointDeVenteWindow()
     connect(actionMenu, SIGNAL(triggered()), this, SLOT(menu()));
     connect(actionStocks, SIGNAL(triggered()), this, SLOT(lister()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
-    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(afficher_facture_pdf()));
+    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(afficher_recu_vendu_pdf()));
     connect(actionA_propos, SIGNAL(triggered()), this, SLOT(apropos()));
     connect(actionAlertes, SIGNAL(triggered()), this, SLOT(alertes()));
     connect(actionInformationEntreprise, SIGNAL(triggered()), this, SLOT(infosEntreprise()));
@@ -669,17 +671,17 @@ void YerothPointDeVenteWindow::definirPasDeRole()
 }
 
 
-QString YerothPointDeVenteWindow::afficher_facture_pdf(QString referenceRecu /* = QString("") */)
+QString YerothPointDeVenteWindow::afficher_recu_vendu_pdf(QString referenceRecu /* = QString("") */)
 {
 	QString pdfReceiptFileName;
 
     if (YerothERPConfig::RECEIPT_FORMAT_PETIT == YerothERPConfig::receiptFormat)
     {
-    	pdfReceiptFileName.append(imprimer_facture_petit(referenceRecu));
+    	pdfReceiptFileName.append(imprimer_recu_vendu_petit(referenceRecu));
     }
     else
     {
-    	pdfReceiptFileName.append(imprimer_facture_grand(referenceRecu));
+    	pdfReceiptFileName.append(imprimer_recu_vendu_grand(referenceRecu));
     }
 
     if (! pdfReceiptFileName.isEmpty())
@@ -691,13 +693,18 @@ QString YerothPointDeVenteWindow::afficher_facture_pdf(QString referenceRecu /* 
 }
 
 
-QString YerothPointDeVenteWindow::imprimer_facture(QString referenceRecu)
+QString YerothPointDeVenteWindow::imprimer_recu_vendu(QString referenceRecu)
 {
+	if (!checkBox_imprimer_recu_vendu->isChecked())
+	{
+		return YerothUtils::EMPTY_STRING;
+	}
+
 	QString pdfReceiptFileName;
 
     if (YerothERPConfig::RECEIPT_FORMAT_PETIT == YerothERPConfig::receiptFormat)
     {
-    	pdfReceiptFileName.append(imprimer_facture_petit(referenceRecu));
+    	pdfReceiptFileName.append(imprimer_recu_vendu_petit(referenceRecu));
 
     	if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::printer, YerothUtils::IMPRIMANTE_PDF))
     	{
@@ -706,7 +713,7 @@ QString YerothPointDeVenteWindow::imprimer_facture(QString referenceRecu)
     }
     else
     {
-    	pdfReceiptFileName.append(imprimer_facture_grand(referenceRecu));
+    	pdfReceiptFileName.append(imprimer_recu_vendu_grand(referenceRecu));
 
     	return YerothERPProcess::startPdfViewerProcess(pdfReceiptFileName);
     }
@@ -771,11 +778,11 @@ QString YerothPointDeVenteWindow::imprimer_facture(QString referenceRecu)
     	}
     }
 
-    return "";
+    return YerothUtils::EMPTY_STRING;
 }
 
 
-QString YerothPointDeVenteWindow::imprimer_facture_grand(QString referenceRecuGRAND /* = QString("") */)
+QString YerothPointDeVenteWindow::imprimer_recu_vendu_grand(QString referenceRecuGRAND /* = QString("") */)
 {
     _logger->log("imprimer_facture_grand");
 
@@ -786,7 +793,7 @@ QString YerothPointDeVenteWindow::imprimer_facture_grand(QString referenceRecuGR
         YerothQMessageBox::information(this, QObject::trUtf8("impression"),
                                       QObject::trUtf8("Il n'y a pas de données à imprimer !"));
 
-        return "";
+        return YerothUtils::EMPTY_STRING;
     }
 
     YerothUtils::getFactureTexTableString(factureTexTable, *tableWidget_articles, _quantiteAVendre, _tva,
@@ -961,7 +968,7 @@ QString YerothPointDeVenteWindow::imprimer_facture_grand(QString referenceRecuGR
     return YerothERPProcess::compileLatex(prefixFileName);
 }
 
-QString YerothPointDeVenteWindow::imprimer_facture_petit(QString referenceRecuPETIT /* = QString("") */)
+QString YerothPointDeVenteWindow::imprimer_recu_vendu_petit(QString referenceRecuPETIT /* = QString("") */)
 {
     _logger->log("imprimer_facture_petit");
 
@@ -971,7 +978,7 @@ QString YerothPointDeVenteWindow::imprimer_facture_petit(QString referenceRecuPE
     {
         YerothQMessageBox::information(this, QObject::trUtf8("impression"),
                                       QObject::trUtf8("Il n'y a pas de données à imprimer !"));
-        return "";
+        return YerothUtils::EMPTY_STRING;
     }
 
     YerothPOSUser *yerothUser = _allWindows->getUser();
@@ -1512,7 +1519,6 @@ void YerothPointDeVenteWindow::handleTVACheckBox(bool clicked)
 
     if (clicked)
     {
-
         if (false == _tvaCheckBoxPreviousState)
         {
             _tvaCheckBoxPreviousState = true;
@@ -1540,6 +1546,7 @@ void YerothPointDeVenteWindow::handleTVACheckBox(bool clicked)
 
     actualiser_montant_remise();
 }
+
 
 void YerothPointDeVenteWindow::updateQuantiteAVendre()
 {
@@ -2600,7 +2607,7 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
     				QObject::trUtf8("succès d'une vente"),
 					vMsg))
     {
-    	imprimer_facture(referenceRecuVendu);
+    	imprimer_recu_vendu(referenceRecuVendu);
     }
 }
 
@@ -2894,7 +2901,7 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
     				QObject::trUtf8("succès d'une vente"),
 					vMsg))
     {
-    	imprimer_facture(referenceRecuVenduCompteClient);
+    	imprimer_recu_vendu(referenceRecuVenduCompteClient);
     }
 }
 
