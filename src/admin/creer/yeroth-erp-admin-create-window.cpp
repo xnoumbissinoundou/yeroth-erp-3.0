@@ -81,6 +81,14 @@ YerothAdminCreateWindow::YerothAdminCreateWindow()
     connect(actionRetournerMenuPrincipal, SIGNAL(triggered()), this, SLOT(retour_menu_principal()));
     connect(actionQui_suis_je, SIGNAL(triggered()), this, SLOT(qui_suis_je()));
 
+
+    connect(comboBox_creer_alerte_designation, SIGNAL(currentTextChanged(const QString &)), this,
+            SLOT(showProduitInfo(const QString &)));
+
+    connect(comboBox_creer_alerte_destinataire, SIGNAL(currentTextChanged(const QString &)), this,
+            SLOT(showDestinataireNomComplet(const QString &)));
+
+
     connect(radioButton_creer_alerte_quantite, SIGNAL(clicked(bool)), this, SLOT(radioButtons_quantite()));
 
     connect(radioButton_creer_alerte_periode_temps, SIGNAL(clicked(bool)), this,
@@ -120,14 +128,6 @@ void YerothAdminCreateWindow::setupLineEdits()
     lineEdit_creer_alerte_quantite->setValidator(&YerothUtils::IntValidator);
     lineEdit_creer_utilisateur_mot_passe_1->setEchoMode(QLineEdit::Password);
     lineEdit_creer_utilisateur_verification->setEchoMode(QLineEdit::Password);
-    lineEdit_creer_alerte_designation->setupMyStaticQCompleter(_allWindows->STOCKS, YerothDatabaseTableColumn::DESIGNATION);
-    lineEdit_creer_alerte_destinataire->setupMyStaticQCompleter(_allWindows->USERS, "nom_utilisateur");
-
-    connect(lineEdit_creer_alerte_destinataire, SIGNAL(textChanged(const QString &)), this,
-            SLOT(showDestinataireNomComplet(const QString &)));
-
-    connect(lineEdit_creer_alerte_designation, SIGNAL(textChanged(const QString &)), this,
-            SLOT(showProduitInfo(const QString &)));
 
     connect(lineEdit_creer_remise_designation_article, SIGNAL(textChanged(const QString &)), this,
             SLOT(showProduitInfo(const QString &)));
@@ -162,10 +162,6 @@ void YerothAdminCreateWindow::rendreVisible(unsigned selectedSujetAction)
     clear_alerte_all_fields();
 
     clear_remise_all_fields();
-
-    lineEdit_creer_alerte_designation->setupMyStaticQCompleter(_allWindows->STOCKS, YerothDatabaseTableColumn::DESIGNATION);
-
-    lineEdit_creer_alerte_destinataire->setupMyStaticQCompleter(_allWindows->USERS, "nom_utilisateur");
 
     lineEdit_creer_remise_designation_article->setupMyStaticQCompleter(_allWindows->STOCKS, YerothDatabaseTableColumn::DESIGNATION);
 
