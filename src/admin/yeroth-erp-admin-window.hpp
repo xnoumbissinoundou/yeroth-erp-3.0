@@ -145,6 +145,8 @@ private slots:
 
 	void choix_registre_de_caisse(const QString &);
 
+	void reset_import_current_selected_csv_file();
+
 	void import_current_selected_csv_file();
 
 	void generate_table_header_mapping_entries_for_csv_import();

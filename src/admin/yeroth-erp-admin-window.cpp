@@ -415,6 +415,15 @@ void YerothAdminWindow::choix_registre_de_caisse(const QString &labelImpressionS
 }
 
 
+void YerothAdminWindow::reset_import_current_selected_csv_file()
+{
+	for( int k = 0; k < _indexToSQLTableImportHeader.size(); ++k)
+	{
+		_indexToSQLTableImportHeader.value(k)->resetYerothComboBox();
+	}
+}
+
+
 void YerothAdminWindow::import_current_selected_csv_file()
 {
 //	qDebug() << "++ import_current_selected_csv_file";
@@ -484,6 +493,8 @@ void YerothAdminWindow::generate_table_header_mapping_entries_for_csv_import()
 	QStringList csvHeaderContent = _curCsvFileToImportContentWordList.at(0)
 			.split(YerothUtils::SEMI_COLON_STRING_CHAR);
 
+	bool csvFileHasVisibleContentToImport = false;
+
 	int curCsvFileLineSize = csvHeaderContent.size();
 
 	QString aCsvHeaderString;
@@ -506,6 +517,8 @@ void YerothAdminWindow::generate_table_header_mapping_entries_for_csv_import()
 			aCsvHeaderLabel->setText(QString("%1 (%2)")
 										.arg(aCsvHeaderString,
 											 QString::number(k+1)));
+
+			csvFileHasVisibleContentToImport = true;
 		}
 	}
 
@@ -570,6 +583,8 @@ void YerothAdminWindow::generate_table_header_mapping_entries_for_csv_import()
 			aMappedComboBox->setVisible(true);
 			aMappedComboBox->setEnabled(true);
 			aMappedComboBox->addItems(_dbTableColumnToType.keys());
+
+			csvFileHasVisibleContentToImport = true;
 		}
 	}
 
@@ -584,9 +599,20 @@ void YerothAdminWindow::generate_table_header_mapping_entries_for_csv_import()
 		}
 	}
 
+
+	label_importer_fichier_csv_entete_TITRE->setVisible(csvFileHasVisibleContentToImport);
+	label_importer_fichier_csv_entete_TITRE_1->setVisible(csvFileHasVisibleContentToImport);
+	label_importer_tableau_mariadb_entete_TITRE->setVisible(csvFileHasVisibleContentToImport);
+	label_importer_tableau_mariadb_entete_TITRE_1->setVisible(csvFileHasVisibleContentToImport);
+
+
 	YerothERPStockImport::_dbTableColumnToIsNotNULL = &_dbTableColumnToIsNotNULL;
 
-	pushButton_importer_fichier_csv->enable(this, SLOT(import_current_selected_csv_file()));
+    pushButton_importer_fichier_csv_reinitialiser->
+		enable(this, SLOT(reset_import_current_selected_csv_file()));
+
+	pushButton_importer_fichier_csv_valider->
+		enable(this, SLOT(import_current_selected_csv_file()));
 }
 
 
@@ -594,6 +620,33 @@ void YerothAdminWindow::initialize_admin_importer_csv_tableau()
 {
     pushButton_fichier_csv_a_importer->
 		enable(this, SLOT(choose_fichier_csv_a_importer()));
+
+	label_importer_fichier_csv_entete_TITRE->setVisible(false);
+	label_importer_fichier_csv_entete_TITRE_1->setVisible(false);
+	label_importer_tableau_mariadb_entete_TITRE->setVisible(false);
+	label_importer_tableau_mariadb_entete_TITRE_1->setVisible(false);
+
+	_indexToCsvFileContentImportHeader.insert(0, label_importer_fichier_csv_entete_0);
+	_indexToCsvFileContentImportHeader.insert(1, label_importer_fichier_csv_entete_1);
+	_indexToCsvFileContentImportHeader.insert(2, label_importer_fichier_csv_entete_2);
+	_indexToCsvFileContentImportHeader.insert(3, label_importer_fichier_csv_entete_3);
+	_indexToCsvFileContentImportHeader.insert(4, label_importer_fichier_csv_entete_4);
+	_indexToCsvFileContentImportHeader.insert(5, label_importer_fichier_csv_entete_5);
+	_indexToCsvFileContentImportHeader.insert(6, label_importer_fichier_csv_entete_6);
+	_indexToCsvFileContentImportHeader.insert(7, label_importer_fichier_csv_entete_7);
+	_indexToCsvFileContentImportHeader.insert(8, label_importer_fichier_csv_entete_8);
+	_indexToCsvFileContentImportHeader.insert(9, label_importer_fichier_csv_entete_9);
+	_indexToCsvFileContentImportHeader.insert(10, label_importer_fichier_csv_entete_10);
+	_indexToCsvFileContentImportHeader.insert(11, label_importer_fichier_csv_entete_11);
+	_indexToCsvFileContentImportHeader.insert(12, label_importer_fichier_csv_entete_12);
+	_indexToCsvFileContentImportHeader.insert(13, label_importer_fichier_csv_entete_13);
+	_indexToCsvFileContentImportHeader.insert(14, label_importer_fichier_csv_entete_14);
+	_indexToCsvFileContentImportHeader.insert(15, label_importer_fichier_csv_entete_15);
+
+	for( int k = 0; k < _indexToCsvFileContentImportHeader.size(); ++k)
+	{
+		_indexToCsvFileContentImportHeader.value(k)->setVisible(false);
+	}
 
 	_indexToSQLTableImportHeader.insert(0, comboBox_importer_tableau_entete_0);
 	_indexToSQLTableImportHeader.insert(1, comboBox_importer_tableau_entete_1);
@@ -612,23 +665,10 @@ void YerothAdminWindow::initialize_admin_importer_csv_tableau()
 	_indexToSQLTableImportHeader.insert(14, comboBox_importer_tableau_entete_14);
 	_indexToSQLTableImportHeader.insert(15, comboBox_importer_tableau_entete_15);
 
-
-	_indexToCsvFileContentImportHeader.insert(0, label_importer_fichier_csv_entete_0);
-	_indexToCsvFileContentImportHeader.insert(1, label_importer_fichier_csv_entete_1);
-	_indexToCsvFileContentImportHeader.insert(2, label_importer_fichier_csv_entete_2);
-	_indexToCsvFileContentImportHeader.insert(3, label_importer_fichier_csv_entete_3);
-	_indexToCsvFileContentImportHeader.insert(4, label_importer_fichier_csv_entete_4);
-	_indexToCsvFileContentImportHeader.insert(5, label_importer_fichier_csv_entete_5);
-	_indexToCsvFileContentImportHeader.insert(6, label_importer_fichier_csv_entete_6);
-	_indexToCsvFileContentImportHeader.insert(7, label_importer_fichier_csv_entete_7);
-	_indexToCsvFileContentImportHeader.insert(8, label_importer_fichier_csv_entete_8);
-	_indexToCsvFileContentImportHeader.insert(9, label_importer_fichier_csv_entete_9);
-	_indexToCsvFileContentImportHeader.insert(10, label_importer_fichier_csv_entete_10);
-	_indexToCsvFileContentImportHeader.insert(11, label_importer_fichier_csv_entete_11);
-	_indexToCsvFileContentImportHeader.insert(12, label_importer_fichier_csv_entete_12);
-	_indexToCsvFileContentImportHeader.insert(13, label_importer_fichier_csv_entete_13);
-	_indexToCsvFileContentImportHeader.insert(14, label_importer_fichier_csv_entete_14);
-	_indexToCsvFileContentImportHeader.insert(15, label_importer_fichier_csv_entete_15);
+	for( int k = 0; k < _indexToSQLTableImportHeader.size(); ++k)
+	{
+		_indexToSQLTableImportHeader.value(k)->setVisible(false);
+	}
 
 
 	QSqlQuery databaseTableNameQuery;
