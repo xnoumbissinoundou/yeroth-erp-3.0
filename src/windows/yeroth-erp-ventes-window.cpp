@@ -84,7 +84,7 @@ YerothVentesWindow::YerothVentesWindow()
     		YerothUtils::EMPTY_STRING);
 
     _lineEditsToANDContentForSearch.insert(&lineEdit_ventes_nom_caissier,
-    		YerothDatabaseTableColumn::REFERENCE);
+    		YerothDatabaseTableColumn::NOM_CAISSIER);
 
     _lineEditsToANDContentForSearch.insert(&lineEdit_ventes_designation,
     		YerothDatabaseTableColumn::DESIGNATION);
