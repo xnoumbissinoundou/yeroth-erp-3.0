@@ -47,7 +47,7 @@ YerothEntrerWindow::YerothEntrerWindow()
                                arg(COLOUR_RGB_STRING_YEROTH_GRAY_78_78_78,
                             	   COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
-    checkBox_achat->setChecked(false);
+    checkBox_achat->setChecked(true);
 
 	label_montant_total_vente_service->setVisible(false);
 
