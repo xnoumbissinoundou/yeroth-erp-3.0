@@ -3,15 +3,15 @@
 
 USAGE="
        ------------------------------------------------------------
-       'YEROTH-POS-7.0' Build System
-        @auteur: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
+       'YEROTH-ERP-3.0' Build System
+        @auteur: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
 	@email:  xnoundou7@gmail.com
        ------------------------------------------------------------
        Usage: $(basename $0)
 	[-h] : help
+	[-r] : generates an official release build-executable,
+	       with 'LAST BUILD ID' set
 	[-s] : simulate 'yeroth-erp-3.0' compilation
-	[-t] : compile 'yeroth-erp-3.0' with QT Test library activated
-					for unit tests
 	[-l] : compile 'yeroth-erp-3.0' to use with virtual keyboard
 	[-c] : continue previous stopped compilation
 	[-g] : compiles 'yeroth-erp-3.0' with debug information
@@ -27,7 +27,6 @@ USAGE="
 
 NUMBER_OF_JOBS=4
 
-qtTestLibFlag=
 virtualKeyboardFlag=
 simulationFlag=
 jobsFlag=
@@ -35,9 +34,10 @@ yerothVersionFlag=
 debugFlag=
 yerothVersionFlag=
 continueFlag=
+releaseBuildFlag=
 
 
-while getopts 'tlhsgv:fecj:' OPTION
+while getopts 'lhsgv:fecj:r' OPTION
 do
   case $OPTION in
 
@@ -48,10 +48,6 @@ do
 		s)	simulationFlag=1
       	simulationVal="$OPTARG"
         echo "simulation activée."
-		;;
-
-		t)	qtTestLibFlag=1
-        echo "QT testlib incluse."
 		;;
 
     l)	virtualKeyboardFlag=1
@@ -78,6 +74,10 @@ do
 
     c)	continueFlag=1
         echo "continue la compilation"
+		;;
+
+		r)	releaseBuildFlag=1
+        echo "BUILD OFFICIEL: $(git rev-parse origin/master)"
 		;;
 
     j)	jobsFlag=1
@@ -131,23 +131,31 @@ if [ ! $languageFlag ]; then
   languageVal="YEROTH_FRANCAIS_LANGUAGE"
 fi
 
-if [ $qtTestLibFlag ]; then
-    qtTestLibVal="YEROTH_ERP_3_0_TEST"
-	else
-    qtTestLibVal="NO_YEROTH_ERP_3_0_TEST"
-fi
-
 if [ $virtualKeyboardFlag ]; then
     virtualKeyboardVal="YEROTH_ERP_3_0_TOUCH_SCREEN"
 	else
     virtualKeyboardVal="NO_YEROTH_ERP_3_0_TOUCH_SCREEN"
 fi
 
+
+YEROTH_GIT_PUSH_COMMIT_ID="$(git rev-parse origin/master)"
+
+YEROTH_GIT_PUSH_COMMIT_ID_TEXT="LAST BUILD ID: '${YEROTH_GIT_PUSH_COMMIT_ID}'.\\\n\\\n\""
+
+YEROTH_BUILD_COMPUTER="$(uname -srm)"
+
+YEROTH_BUILD_COMPUTER_TEXT="ON BUILD_COMPUTER: '${YEROTH_BUILD_COMPUTER}'.\"));"
+
+if [ $releaseBuildFlag ]; then
+		sed -i "s/LAST BUILD ID: .*/${YEROTH_GIT_PUSH_COMMIT_ID_TEXT}/g" src/utils/yeroth-erp-utils.cpp
+		sed -i "s/ON BUILD_COMPUTER: .*/${YEROTH_BUILD_COMPUTER_TEXT}/g" src/utils/yeroth-erp-utils.cpp
+fi
+
 if [ $simulationFlag ]; then
   if [ $continueFlag ]; then
-    echo "make -j$jobsVal -f Makefile.Release YEROTH_QT_TEST_LIB_OPTIONS=$qtTestLibVal YEROTH_VIRTUAL_KEYBOARD_OPTIONS=$virtualKeyboardVal YEROTH_DEBUG_LOG=$debugVal YEROTH_VERSION=$yerothVersionVal YEROTH_LANGUAGE=$languageVal ${YEROTH_VIRTUAL_KEYBOARD_OPTIONS}"
+    echo "make -j$jobsVal YEROTH_VIRTUAL_KEYBOARD_OPTIONS=$virtualKeyboardVal YEROTH_DEBUG_LOG=$debugVal YEROTH_VERSION=$yerothVersionVal YEROTH_LANGUAGE=$languageVal ${YEROTH_VIRTUAL_KEYBOARD_OPTIONS}"
   else 
-    echo "make clean && make -j$jobsVal -f Makefile.Release YEROTH_QT_TEST_LIB_OPTIONS=$qtTestLibVal YEROTH_VIRTUAL_KEYBOARD_OPTIONS=$virtualKeyboardVal YEROTH_DEBUG_LOG=$debugVal YEROTH_VERSION=$yerothVersionVal YEROTH_LANGUAGE=$languageVal"
+    echo "make clean && make -j$jobsVal YEROTH_VIRTUAL_KEYBOARD_OPTIONS=$virtualKeyboardVal YEROTH_DEBUG_LOG=$debugVal YEROTH_VERSION=$yerothVersionVal YEROTH_LANGUAGE=$languageVal"
   fi
   exit 3
 fi
@@ -163,19 +171,24 @@ qmake
 yerothx-replace-string.sh -o '../../../..' -n 'C:' Makefile.Release
 
 if [ $continueFlag ]; then
-	make -f Makefile.Release -j$jobsVal \
-				YEROTH_QT_TEST_LIB_OPTIONS=$qtTestLibVal \
+	make -j$jobsVal \
 				YEROTH_VIRTUAL_KEYBOARD_OPTIONS=$virtualKeyboardVal \
 				YEROTH_DEBUG_LOG=$debugVal \
 				YEROTH_VERSION=$yerothVersionVal \
 				YEROTH_LANGUAGE=$languageVal
 else
-	make -f Makefile.Release clean && \
-	make -f Makefile.Release -j$jobsVal \
-				YEROTH_QT_TEST_LIB_OPTIONS=$qtTestLibVal \
+	make clean && \
+	make -j$jobsVal \
 				YEROTH_VIRTUAL_KEYBOARD_OPTIONS=$virtualKeyboardVal \
 				YEROTH_DEBUG_LOG=$debugVal \
 				YEROTH_VERSION=$yerothVersionVal \
 				YEROTH_LANGUAGE=$languageVal
 fi
+
+BUILD_SUCCESSFUL="$?"
+
+if [ ${BUILD_SUCCESSFUL} -eq 0 ] && [ $releaseBuildFlag ]; then
+		git checkout src/utils/yeroth-erp-utils.cpp
+fi
+
 
