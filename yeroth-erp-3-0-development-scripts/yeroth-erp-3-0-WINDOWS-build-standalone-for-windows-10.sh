@@ -18,4 +18,4 @@ fi
 
 echo "${SCRIPT_NAME} | compiling standalone for windows 10"
 
-yeroth-compile_yeroth-erp-3-0-standalone.sh -j8 -r "${@}"
+yeroth-compile_yeroth-erp-3-0-standalone.sh -j21 -r "${@}"
