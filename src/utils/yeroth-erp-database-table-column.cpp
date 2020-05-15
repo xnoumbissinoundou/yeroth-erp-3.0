@@ -165,9 +165,9 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::QUANTITE,			QObject::trUtf8("Quantité"));
 
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::STOCK_MAXIMUM,	QObject::trUtf8("stock maximum"));
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::STOCK_MAXIMUM,	QObject::trUtf8("Stock maximum"));
 
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::STOCK_DALERTE,	QObject::trUtf8("stock d'alerte"));
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::STOCK_DALERTE,	QObject::trUtf8("Stock d'alerte"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::QUANTITE_VENDUE,	QObject::trUtf8("Qté"));
 
