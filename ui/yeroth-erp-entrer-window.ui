@@ -3979,7 +3979,7 @@ Transférer</string>
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QGroupBox" name="groupBox_2">
+    <widget class="QGroupBox" name="groupBox_image_du_stock_service">
      <property name="geometry">
       <rect>
        <x>405</x>

@@ -662,12 +662,32 @@ void YerothEntrerWindow::setStockSpecificWidgetVisible(bool visible)
 {
 	if (visible)
 	{
+		lineEdit_quantite_par_lot->clear();
 		lineEdit_quantite_totale->setFixedWidth(104);
 	}
 	else
 	{
+	    lineEdit_quantite_par_lot->setText("1");
 		lineEdit_quantite_totale->setFixedWidth(205);
 	}
+
+	label_description->setVisible(visible);
+
+	textEdit_description->setVisible(visible);
+
+	label_quantite->setVisible(visible);
+
+	label_quantite_totale->setVisible(visible);
+
+	lineEdit_quantite_totale->setVisible(visible);
+
+	lineEdit_quantite_par_lot->setVisible(visible);
+
+	pushButton_selectionner_image->setVisible(visible);
+
+	pushButton_supprimer_limage_du_stock->setVisible(visible);
+
+	groupBox_image_du_stock_service->setVisible(visible);
 
 	label_reference_recu_dachat->setVisible(visible);
 	lineEdit_reference_recu_dachat->setVisible(visible);
@@ -707,9 +727,7 @@ void YerothEntrerWindow::handle_service_checkBox(int state)
 	{
 	    setStockSpecificWidgetVisible(false);
 
-	    lineEdit_quantite_par_lot->setText("1");
-
-    	lineEdit_quantite_par_lot->setYerothEnabled(false);
+    	doubleSpinBox_lots_entrant->setFixedWidth(205);
 
 	    doubleSpinBox_lots_entrant->setDecimals(2);
 
@@ -735,9 +753,7 @@ void YerothEntrerWindow::handle_service_checkBox(int state)
 
 		setStockSpecificWidgetVisible(true);
 
-		lineEdit_quantite_par_lot->clear();
-
-    	lineEdit_quantite_par_lot->setYerothEnabled(true);
+    	doubleSpinBox_lots_entrant->setFixedWidth(52);
 
 		doubleSpinBox_lots_entrant->setDecimals(0);
 
