@@ -494,7 +494,7 @@ void YerothPaiementsWindow::reinitialiser_champs_db_visibles()
 			<< YerothDatabaseTableColumn::TYPE_DE_PAIEMENT
 			<< YerothDatabaseTableColumn::COMPTE_CLIENT
 			<< YerothDatabaseTableColumn::REFERENCE
-			<< YerothDatabaseTableColumn::INTITULE_DU_COMPTE_BANCAIRE;
+			<< YerothDatabaseTableColumn::REFERENCE_RECU_PAIEMENT_CLIENT;
 }
 
 
