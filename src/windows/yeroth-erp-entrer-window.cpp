@@ -662,13 +662,23 @@ void YerothEntrerWindow::setStockSpecificWidgetVisible(bool visible)
 {
 	if (visible)
 	{
+    	doubleSpinBox_lots_entrant->setFixedWidth(52);
+
+		doubleSpinBox_lots_entrant->setDecimals(0);
+
 		lineEdit_quantite_par_lot->clear();
+
 		lineEdit_quantite_totale->setFixedWidth(104);
 	}
 	else
 	{
+    	doubleSpinBox_lots_entrant->setFixedWidth(205);
+
+	    doubleSpinBox_lots_entrant->setDecimals(2);
+
 	    lineEdit_quantite_par_lot->setText("1");
-		lineEdit_quantite_totale->setFixedWidth(205);
+
+	    lineEdit_quantite_totale->setFixedWidth(205);
 	}
 
 	label_description->setVisible(visible);
@@ -727,10 +737,6 @@ void YerothEntrerWindow::handle_service_checkBox(int state)
 	{
 	    setStockSpecificWidgetVisible(false);
 
-    	doubleSpinBox_lots_entrant->setFixedWidth(205);
-
-	    doubleSpinBox_lots_entrant->setDecimals(2);
-
 	    check_fields_service();
 
     	QString aConditionStr(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
@@ -752,10 +758,6 @@ void YerothEntrerWindow::handle_service_checkBox(int state)
 		lineEdit_designation->clearQCompleter();
 
 		setStockSpecificWidgetVisible(true);
-
-    	doubleSpinBox_lots_entrant->setFixedWidth(52);
-
-		doubleSpinBox_lots_entrant->setDecimals(0);
 
 		check_fields(true);
 
@@ -962,23 +964,9 @@ void YerothEntrerWindow::rendreVisible(YerothSqlTableModel * stocksTableModel, b
         }
     }
 
-    if (checkBox_service->isChecked())
-    {
-    	lineEdit_quantite_par_lot->setReadOnly(true);
+    bool stockCheckInVisible = !checkBox_service->isChecked();
 
-    	lineEdit_quantite_par_lot->setText("1");
-
-    	doubleSpinBox_lots_entrant->setDecimals(2);
-    }
-    else
-    {
-    	lineEdit_quantite_par_lot->setReadOnly(false);
-
-    	lineEdit_quantite_par_lot->clear();
-
-    	doubleSpinBox_lots_entrant->setDecimals(0);
-    }
-
+    setStockSpecificWidgetVisible(stockCheckInVisible);
 
     setupLineEditsQCompleters();
 
