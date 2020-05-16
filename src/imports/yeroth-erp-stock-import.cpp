@@ -313,11 +313,6 @@ enum import_csv_entry_row_return_status
 
 	QString aCurProductExistingReference;
 
-    qDebug() << QString("++ productCategorie: %1, productName: %2, productReference: %3")
-    				.arg(productCategorie,
-    					 productName,
-						 productReference);
-
     if (!YerothUtils::isReferenceUnique(productReference,
     									productName,
 										productCategorie,
