@@ -1142,19 +1142,36 @@ enum service_stock_already_exist_type YerothEntrerWindow::isStockItemInProductLi
     	}
     }
 
-    int designationRowCount =
-        productListSqlTableModel.Is_SearchQSqlTable(YerothDatabaseTableColumn::DESIGNATION,
-                lineEdit_designation->text());
-
-    int categorieRowCount =
-        productListSqlTableModel.Is_SearchQSqlTable(YerothDatabaseTableColumn::CATEGORIE,
-                lineEdit_categorie_produit->text());
-
-    bool result = (designationRowCount > 0) && (categorieRowCount > 0);
-
-    if (result)
     {
-    	return SERVICE_STOCK_DESIGNATION_AND_CATEGORIE_EXIST;
+    	QString searchDesignationCategorieStr(QString("SELECT * FROM %1 WHERE %2 = '%3' AND %4 != '%5'")
+    											.arg(_allWindows->MARCHANDISES,
+    												 YerothDatabaseTableColumn::DESIGNATION,
+													 lineEdit_designation->text(),
+													 YerothDatabaseTableColumn::CATEGORIE,
+													 lineEdit_categorie_produit->text()));
+
+    	int rowCount = YerothUtils::execQueryRowCount(searchDesignationCategorieStr, _logger);
+
+    	if (rowCount > 0)
+    	{
+    		return SERVICE_STOCK_DESIGNATION_AND_DIFFERENT_CATEGORIE_EXIST;
+    	}
+    }
+
+    {
+    	QString searchDesignationCategorieStr2(QString("SELECT * FROM %1 WHERE %2 = '%3' AND %4 = '%5'")
+    												.arg(_allWindows->MARCHANDISES,
+    													 YerothDatabaseTableColumn::DESIGNATION,
+														 lineEdit_designation->text(),
+														 YerothDatabaseTableColumn::CATEGORIE,
+														 lineEdit_categorie_produit->text()));
+
+    	int rowCount2 = YerothUtils::execQueryRowCount(searchDesignationCategorieStr2, _logger);
+
+    	if (rowCount2 > 0)
+    	{
+    		return SERVICE_STOCK_DESIGNATION_AND_SAME_CATEGORIE_EXIST;
+    	}
     }
 
     return SERVICE_STOCK_UNDEFINED;
@@ -1501,14 +1518,14 @@ void YerothEntrerWindow::enregistrer_produit()
     {
     	if (curExistingReference.isEmpty())
     	{
-    		YerothQMessageBox::information(this,
-    				QObject::trUtf8("enregistrer article"),
+    		YerothQMessageBox::warning(this,
+    				QObject::trUtf8("aucune référence"),
 					QObject::trUtf8("Cette marchandise, déjà existante dans la liste des "
 									"marchandises, n'utilise aucune valeur pour 'référence' !"));
     	}
     	else
     	{
-    		YerothQMessageBox::information(this, "enregistrer",
+    		YerothQMessageBox::warning(this, "enregistrer",
     				QString(QObject::trUtf8("Cette marchandise, déjà existante dans la liste des "
     										"marchandises, utilise la 'référence (%1)' !"))
 							.arg(curExistingReference));
@@ -1523,13 +1540,8 @@ void YerothEntrerWindow::enregistrer_produit()
     {
     	QString warnMsg(QObject::trUtf8("Le prix de vente doit être supérieur ou égal au prix d'achat !"));
 
-    	if (QMessageBox::Ok ==
-    			YerothQMessageBox::warning(this, QObject::tr("pas profitable"), warnMsg))
-    	{
-    	}
-    	else
-    	{
-    	}
+    	YerothQMessageBox::warning(this, QObject::tr("pas profitable"), warnMsg);
+
     	return ;
     }
 
@@ -1563,31 +1575,41 @@ void YerothEntrerWindow::enregistrer_produit()
     }
     else
     {
-    	if (checkBox_service->isChecked())
+    	if (SERVICE_REFERENCE_EXISTS == serviceStockExists)
     	{
-    		if (SERVICE_REFERENCE_EXISTS == serviceStockExists)
-    		{
-    			YerothQMessageBox::information(this,
-    					QObject::trUtf8("aide"),
-						QString(QObject::trUtf8("Un service (stock) avec la référence '%1' existe déjà !")
-    						.arg(lineEdit_reference_produit->text())));
-    			return;
-    		}
+    		YerothQMessageBox::warning(this,
+    								   QObject::trUtf8("référence"),
+									   QString(QObject::trUtf8("Un service (stock) "
+											   	   	   	   	   "avec la référence '%1' existe déjà !")
+    										.arg(lineEdit_reference_produit->text())));
+    		return;
+    	}
 
 
-    		if (SERVICE_STOCK_DESIGNATION_AND_CATEGORIE_EXIST == serviceStockExists)
-    		{
-    			YerothQMessageBox::information(this,
-    					QObject::trUtf8("aide"),
-						QString(QObject::trUtf8("Un service (ou stock) avec la désignation '%1' "
-								"et la catégorie '%2') existe déjà !")
-    						.arg(lineEdit_designation->text(),
-    							 lineEdit_categorie_produit->text())));
-    			return;
-    		}
+    	if (SERVICE_STOCK_DESIGNATION_AND_DIFFERENT_CATEGORIE_EXIST == serviceStockExists)
+    	{
+    		YerothQMessageBox::warning(this,
+    								   QObject::trUtf8("désignation"),
+									   QString(QObject::trUtf8("Un service (ou stock) avec la désignation '%1' "
+											   	   	   	   	   "existe déjà dans une autre catégorie d'article "
+											   	   	   	   	   "autre que '%2' !")
+    										.arg(lineEdit_designation->text(),
+    											 lineEdit_categorie_produit->text())));
+    		return;
     	}
     }
 
+    QString msgContinuer(QObject::tr("Poursuivre avec l'insertion de ce stock ?"));
+
+    if (QMessageBox::Cancel ==
+            YerothQMessageBox::question(this,
+                                       QObject::tr("suppression d'un compte client"),
+									   msgContinuer,
+                                       QMessageBox::Cancel,
+									   QMessageBox::Ok))
+    {
+    	return ;
+    }
 
     QString proposed_Fournisseur_Client_Name = lineEdit_nom_entreprise_fournisseur->text();
 

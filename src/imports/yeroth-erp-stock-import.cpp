@@ -45,15 +45,15 @@ int YerothERPStockImport::import()
 {
 	YerothERPStockImport::_allMissingMandatoryColumnValue.clear();
 
-	QString infoMesg;
+	QString warnMesg;
 
 	if (_curCsvFileToImportContentWordList->size() <= 1)
 	{
-		infoMesg = QObject::trUtf8("Le fichier CSV n'a pas de données à importer !");
+		warnMesg = QObject::trUtf8("Le fichier CSV n'a pas de données à importer !");
 
-		YerothQMessageBox::information(_callingWindow,
+		YerothQMessageBox::warning(_callingWindow,
 									   QObject::tr("fichier CSV vide"),
-									   infoMesg);
+									   warnMesg);
 
 		return 0;
 	}
@@ -86,14 +86,14 @@ int YerothERPStockImport::import()
 			}
 			else
 			{
-				infoMesg = QString(QObject::trUtf8("La colone '%1' apparaît "
+				warnMesg = QString(QObject::trUtf8("La colone '%1' apparaît "
 												   "plusieurs fois parmis les "
 												   "colones d'importation !"))
 								.arg(curSqlTableImportHeaderStr);
 
-				YerothQMessageBox::information(_callingWindow,
+				YerothQMessageBox::warning(_callingWindow,
 						QObject::tr("colones d'importation multiples"),
-						infoMesg);
+						warnMesg);
 
 				return 0;
 			}
@@ -141,7 +141,7 @@ int YerothERPStockImport::import()
 										"suivantes '%1' sont manquantes !"))
 							.arg(YerothERPStockImport::_allMissingMandatoryColumnValue);
 
-			YerothQMessageBox::information(_callingWindow,
+			YerothQMessageBox::warning(_callingWindow,
 					QObject::tr("colones obligatoires manquantes"),
 					warnMesg);
 		}
@@ -242,7 +242,7 @@ enum import_csv_entry_row_return_status
 														"être créée !"))
 									.arg(curColumnRowEntry);
 
-						YerothQMessageBox::information(_callingWindow,
+						YerothQMessageBox::warning(_callingWindow,
 													   QObject::tr("création de catégorie d'articles"),
 													   infoMesg);
 
@@ -301,7 +301,7 @@ enum import_csv_entry_row_return_status
 				QString(QObject::trUtf8("La colone '%1' a une valeur <= '0' !"))
 					.arg(YerothDatabaseTableColumn::QUANTITE_TOTALE);
 
-		YerothQMessageBox::information(_callingWindow,
+		YerothQMessageBox::warning(_callingWindow,
 									   QObject::tr("valeur incorrecte"),
 									   infoMesg);
 
@@ -392,13 +392,13 @@ enum import_csv_entry_row_return_status
 
 void YerothERPStockImport::missing_mandatory_item_field_msg(const QString &aMandatoryColumn)
 {
-	QString infoMesg =
+	QString warnMesg =
 			QString(QObject::trUtf8("La colone OBLIGATOIRE '%1' est manquante !"))
 				.arg(aMandatoryColumn);
 
-	YerothQMessageBox::information(_callingWindow,
+	YerothQMessageBox::warning(_callingWindow,
 								   QObject::tr("colone OBLIGATOIRE manquante"),
-								   infoMesg);
+								   warnMesg);
 }
 
 

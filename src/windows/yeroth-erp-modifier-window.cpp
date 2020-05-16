@@ -39,7 +39,7 @@ YerothModifierWindow::YerothModifierWindow()
 
     checkBox_service->setReadOnly(true);
 
-    textEdit_description->setReadOnly(true);
+    textEdit_description->setYerothEnabled(false);
 
     setupLineEdits();
 

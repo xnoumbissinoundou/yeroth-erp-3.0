@@ -463,23 +463,23 @@ void YerothAdminWindow::import_current_selected_csv_file()
 
 	int successImportCount = erpStockImport.import();
 
-	QString infoMesg;
+	QString warnMesg;
 
 	if (successImportCount > 0)
 	{
-		infoMesg = QString(QObject::trUtf8("'%1' entrée(s) du fichier CSV ont "
+		warnMesg = QString(QObject::trUtf8("'%1' entrée(s) du fichier CSV ont "
 										   "été importée(s) avec succès !"))
 							 .arg(QString::number(successImportCount));
 	}
 	else
 	{
-		infoMesg = QString(QObject::trUtf8("AUCUNE DONNÉES DU FICHIER (.csv) n'ont "
+		warnMesg = QString(QObject::trUtf8("AUCUNE DONNÉES DU FICHIER (.csv) n'ont "
 										   "été importée(s) !"));
 	}
 
-	YerothQMessageBox::information(this,
-								   QObject::tr("résultat importation fichier CSV"),
-								   infoMesg);
+	YerothQMessageBox::warning(this,
+							   QObject::tr("résultat importation fichier CSV"),
+							   warnMesg);
 }
 
 
