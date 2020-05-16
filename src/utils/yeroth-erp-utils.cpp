@@ -464,6 +464,86 @@ YerothUtils::YerothUtils()
 }
 
 
+bool YerothUtils::isReferenceUnique(const QString &aStockServiceReference,
+									const QString &aStockServiceDesignation,
+									const QString &aStockServiceNomCategorie,
+									QString &curExistingReference_in_out)
+{
+	curExistingReference_in_out.clear();
+
+    YerothSqlTableModel &marchandisesTableModel = _allWindows->getSqlTableModel_marchandises();
+
+    marchandisesTableModel.yerothSetFilter(QString("LOWER(%1) = LOWER('%2') AND "
+    											   "LOWER(%3) = LOWER('%4')")
+                                   	   	   	   .arg(YerothDatabaseTableColumn::DESIGNATION,
+													aStockServiceDesignation,
+													YerothDatabaseTableColumn::CATEGORIE,
+													aStockServiceNomCategorie));
+
+    int marchandisesTableModelRowCount = marchandisesTableModel.easySelect();
+
+    QSqlRecord record;
+    QString stockReference;
+
+    for( int k = 0; k < marchandisesTableModelRowCount; ++k)
+    {
+    	 record = marchandisesTableModel.record(k);
+    	 stockReference = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE);
+
+    	 if (!YerothUtils::isEqualCaseInsensitive(stockReference, aStockServiceReference))
+    	 {
+    		 curExistingReference_in_out = stockReference;
+
+    		 return false;
+    	 }
+    }
+
+    return true;
+}
+
+
+enum service_stock_already_exist_type
+	YerothUtils::isStockItemInProductList(const QString &productCategorie,
+										  const QString &productName)
+{
+    YerothSqlTableModel & productListSqlTableModel = _allWindows->getSqlTableModel_marchandises();
+
+    {
+    	QString searchDesignationCategorieStr(QString("SELECT * FROM %1 WHERE %2 = '%3' AND %4 != '%5'")
+    											.arg(_allWindows->MARCHANDISES,
+    												 YerothDatabaseTableColumn::DESIGNATION,
+													 productName,
+													 YerothDatabaseTableColumn::CATEGORIE,
+													 productCategorie));
+
+    	int rowCount = YerothUtils::execQueryRowCount(searchDesignationCategorieStr);
+
+    	if (rowCount > 0)
+    	{
+    		return SERVICE_STOCK_DESIGNATION_AND_DIFFERENT_CATEGORIE_EXIST;
+    	}
+    }
+
+    {
+    	QString searchDesignationCategorieStr2(QString("SELECT * FROM %1 WHERE %2 = '%3' AND %4 = '%5'")
+    												.arg(_allWindows->MARCHANDISES,
+    													 YerothDatabaseTableColumn::DESIGNATION,
+														 productName,
+														 YerothDatabaseTableColumn::CATEGORIE,
+														 productCategorie));
+
+    	int rowCount2 = YerothUtils::execQueryRowCount(searchDesignationCategorieStr2);
+
+    	if (rowCount2 > 0)
+    	{
+    		return SERVICE_STOCK_DESIGNATION_AND_SAME_CATEGORIE_EXIST;
+    	}
+    }
+
+    return SERVICE_STOCK_UNDEFINED;
+}
+
+
 QString YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(QString aString_IN)
 {
 	QString aString_OUT(aString_IN);

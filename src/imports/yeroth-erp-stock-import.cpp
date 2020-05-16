@@ -150,6 +150,7 @@ int YerothERPStockImport::import()
 	return successImportCount;
 }
 
+
 enum import_csv_entry_row_return_status
 	YerothERPStockImport::import_csv_entry_row(QStringList &aCsvFileEntryLine)
 {
@@ -191,6 +192,10 @@ enum import_csv_entry_row_return_status
 	QString curTableColumnName;
 	QString curColumnRowEntry;
 
+	QString productReference;
+	QString productName;
+	QString productCategorie;
+
 	for (int j = 0; j < aCsvFileEntryLine.size(); ++j)
 	{
 		curColumnRowEntry = aCsvFileEntryLine.at(j).trimmed();
@@ -216,9 +221,22 @@ enum import_csv_entry_row_return_status
 
 			curTableColumnName = curDatabaseTableColumnInfo->getColumnName();
 
+			if (YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::REFERENCE, curTableColumnName))
+			{
+				productReference = curColumnRowEntry;
+			}
+
+			if (_allMandatoryTableColumns.contains(curTableColumnName)     &&
+				YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::DESIGNATION, curTableColumnName))
+			{
+				productName = curColumnRowEntry;
+			}
+
 			if (_allMandatoryTableColumns.contains(curTableColumnName)     &&
 				YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::CATEGORIE, curTableColumnName))
 			{
+				productCategorie = curColumnRowEntry;
+
 				QString queryCategoryStr(QString("select * from %1 WHERE %2 = '%3'")
 						.arg(YerothUtils::getAllWindows()->CATEGORIES,
 							 YerothDatabaseTableColumn::NOM_CATEGORIE,
@@ -291,6 +309,56 @@ enum import_csv_entry_row_return_status
 
 			allImportedTableColumns.append(curTableColumnName);
 		}
+	}
+
+	QString aCurProductExistingReference;
+
+    qDebug() << QString("++ productCategorie: %1, productName: %2, productReference: %3")
+    				.arg(productCategorie,
+    					 productName,
+						 productReference);
+
+    if (!YerothUtils::isReferenceUnique(productReference,
+    									productName,
+										productCategorie,
+										aCurProductExistingReference))
+    {
+    	if (aCurProductExistingReference.isEmpty())
+    	{
+    		YerothQMessageBox::warning(_callingWindow,
+    				QObject::trUtf8("aucune référence"),
+					QString(QObject::trUtf8("Cette marchandise (désignation: '%1 - catégorie: %2'), "
+											"déjà existante dans la liste des marchandises, "
+											"n'utilise aucune valeur pour 'référence' !"))
+    					.arg(productName,
+    						 productCategorie));
+    	}
+    	else
+    	{
+    		YerothQMessageBox::warning(_callingWindow, "enregistrer",
+    				QString(QObject::trUtf8("Cette marchandise (désignation: '%1 - catégorie: %2'), "
+    				    										"déjà existante dans la liste des marchandises, "
+    				    										"utilise la 'référence (%3)' !"))
+    					.arg(productName,
+    						 productCategorie,
+							 aCurProductExistingReference));
+    	}
+
+        return INSERTION_FAILED;
+    }
+
+	if (SERVICE_STOCK_DESIGNATION_AND_DIFFERENT_CATEGORIE_EXIST ==
+			YerothUtils::isStockItemInProductList(productCategorie,
+												  productName))
+	{
+		YerothQMessageBox::warning(_callingWindow,
+				QObject::trUtf8("désignation"),
+				QString(QObject::trUtf8("La désignation '%1', est déjà existante dans la liste des "
+								"marchandises, dans une autre catégorie que '%2' !"))
+					.arg(productName,
+						 productCategorie));
+
+		return INSERTION_FAILED;
 	}
 
 	static bool quantite_totale_already_visited = false;

@@ -22,15 +22,6 @@ class YerothSqlTableModel;
 class ServiceClientInfo;
 
 
-enum service_stock_already_exist_type
-{
-	SERVICE_REFERENCE_EXISTS 									= 0,
-	SERVICE_STOCK_DESIGNATION_AND_DIFFERENT_CATEGORIE_EXIST 	= 1,
-	SERVICE_STOCK_DESIGNATION_AND_SAME_CATEGORIE_EXIST 			= 2,
-	SERVICE_STOCK_UNDEFINED										= 3
-};
-
-
 class YerothEntrerWindow : public YerothWindowsCommons, private Ui_YerothEntrerWindow
 {
     Q_OBJECT
@@ -148,11 +139,6 @@ public slots:
     		   !lineEdit_prix_dachat->text().isEmpty();
     }
 
-    bool isReferenceUnique(QString aStockServiceReference,
-			   	   	   	   QString aStockServiceDesignation,
-						   QString aStockServiceNomCategorie,
-						   QString &curExistingReference_in_out);
-
     void enregistrer_produit();
 
 	inline void setCurrentCategorieName(QString curCategorieName)
@@ -206,7 +192,10 @@ private:
 
     bool insertStockItemInProductList();
 
-    enum service_stock_already_exist_type isStockItemInProductList();
+    enum service_stock_already_exist_type
+		isStockItemInProductList(const QString &productReference,
+								 const QString &productCategorie,
+								 const QString &productName);
 
     void showItem();
 

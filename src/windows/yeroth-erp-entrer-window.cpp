@@ -1124,7 +1124,10 @@ bool YerothEntrerWindow::insertStockItemInProductList()
     return success;
 }
 
-enum service_stock_already_exist_type YerothEntrerWindow::isStockItemInProductList()
+enum service_stock_already_exist_type
+	YerothEntrerWindow::isStockItemInProductList(const QString &productReference,
+												 const QString &productCategorie,
+												 const QString &productName)
 {
     YerothSqlTableModel & productListSqlTableModel = _allWindows->getSqlTableModel_marchandises();
 
@@ -1132,7 +1135,7 @@ enum service_stock_already_exist_type YerothEntrerWindow::isStockItemInProductLi
     {
         int referenceRowCount =
             productListSqlTableModel.Is_SearchQSqlTable(YerothDatabaseTableColumn::REFERENCE,
-            		lineEdit_reference_produit->text());
+            										    productReference);
 
     	bool serviceStockReferenceExist = (referenceRowCount > 0);
 
@@ -1142,39 +1145,8 @@ enum service_stock_already_exist_type YerothEntrerWindow::isStockItemInProductLi
     	}
     }
 
-    {
-    	QString searchDesignationCategorieStr(QString("SELECT * FROM %1 WHERE %2 = '%3' AND %4 != '%5'")
-    											.arg(_allWindows->MARCHANDISES,
-    												 YerothDatabaseTableColumn::DESIGNATION,
-													 lineEdit_designation->text(),
-													 YerothDatabaseTableColumn::CATEGORIE,
-													 lineEdit_categorie_produit->text()));
-
-    	int rowCount = YerothUtils::execQueryRowCount(searchDesignationCategorieStr, _logger);
-
-    	if (rowCount > 0)
-    	{
-    		return SERVICE_STOCK_DESIGNATION_AND_DIFFERENT_CATEGORIE_EXIST;
-    	}
-    }
-
-    {
-    	QString searchDesignationCategorieStr2(QString("SELECT * FROM %1 WHERE %2 = '%3' AND %4 = '%5'")
-    												.arg(_allWindows->MARCHANDISES,
-    													 YerothDatabaseTableColumn::DESIGNATION,
-														 lineEdit_designation->text(),
-														 YerothDatabaseTableColumn::CATEGORIE,
-														 lineEdit_categorie_produit->text()));
-
-    	int rowCount2 = YerothUtils::execQueryRowCount(searchDesignationCategorieStr2, _logger);
-
-    	if (rowCount2 > 0)
-    	{
-    		return SERVICE_STOCK_DESIGNATION_AND_SAME_CATEGORIE_EXIST;
-    	}
-    }
-
-    return SERVICE_STOCK_UNDEFINED;
+    return YerothUtils::isStockItemInProductList(productCategorie,
+    											 productName);
 }
 
 
@@ -1442,43 +1414,6 @@ bool YerothEntrerWindow::handle_clients_table(int stockID, double montant_total_
 	return false;
 }
 
-bool YerothEntrerWindow::isReferenceUnique(QString aStockServiceReference,
-										   QString aStockServiceDesignation,
-										   QString aStockServiceNomCategorie,
-										   QString &curExistingReference_in_out)
-{
-	curExistingReference_in_out.clear();
-
-    YerothSqlTableModel &marchandisesTableModel = _allWindows->getSqlTableModel_marchandises();
-
-    marchandisesTableModel.yerothSetFilter(QString("LOWER(%1) = LOWER('%2') AND "
-    											   "LOWER(%3) = LOWER('%4')")
-                                   	   	   	   .arg(YerothDatabaseTableColumn::DESIGNATION,
-													aStockServiceDesignation,
-													YerothDatabaseTableColumn::CATEGORIE,
-													aStockServiceNomCategorie));
-
-    int marchandisesTableModelRowCount = marchandisesTableModel.easySelect();
-
-    QSqlRecord record;
-    QString stockReference;
-
-    for( int k = 0; k < marchandisesTableModelRowCount; ++k)
-    {
-    	 record = marchandisesTableModel.record(k);
-    	 stockReference = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE);
-
-    	 if (!YerothUtils::isEqualCaseInsensitive(stockReference, aStockServiceReference))
-    	 {
-    		 curExistingReference_in_out = stockReference;
-
-    		 return false;
-    	 }
-    }
-
-    return true;
-}
-
 
 void YerothEntrerWindow::enregistrer_produit()
 {
@@ -1511,24 +1446,30 @@ void YerothEntrerWindow::enregistrer_produit()
 
     QString curExistingReference;
 
-    if (!isReferenceUnique(lineEdit_reference_produit->text(),
-    					   lineEdit_designation->text(),
-						   lineEdit_categorie_produit->text(),
-						   curExistingReference))
+    if (!YerothUtils::isReferenceUnique(lineEdit_reference_produit->text(),
+    					   	   	   	    lineEdit_designation->text(),
+										lineEdit_categorie_produit->text(),
+										curExistingReference))
     {
     	if (curExistingReference.isEmpty())
     	{
     		YerothQMessageBox::warning(this,
     				QObject::trUtf8("aucune référence"),
-					QObject::trUtf8("Cette marchandise, déjà existante dans la liste des "
-									"marchandises, n'utilise aucune valeur pour 'référence' !"));
+					QString(QObject::trUtf8("Cette marchandise (désignation: '%1 - catégorie: %2'), "
+														"déjà existante dans la liste des marchandises, "
+														"n'utilise aucune valeur pour 'référence' !"))
+			    		.arg(lineEdit_designation->text(),
+			    			 lineEdit_categorie_produit->text()));
     	}
     	else
     	{
     		YerothQMessageBox::warning(this, "enregistrer",
-    				QString(QObject::trUtf8("Cette marchandise, déjà existante dans la liste des "
-    										"marchandises, utilise la 'référence (%1)' !"))
-							.arg(curExistingReference));
+    				QString(QObject::trUtf8("Cette marchandise (désignation: '%1 - catégorie: %2'), "
+    										"déjà existante dans la liste des marchandises, "
+    										"utilise la 'référence (%3)' !"))
+							.arg(lineEdit_designation->text(),
+								 lineEdit_categorie_produit->text(),
+								 curExistingReference));
     	}
 
         return ;
@@ -1567,7 +1508,10 @@ void YerothEntrerWindow::enregistrer_produit()
 
     YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
 
-    service_stock_already_exist_type serviceStockExists = isStockItemInProductList();
+    service_stock_already_exist_type serviceStockExists =
+    		isStockItemInProductList(lineEdit_reference_produit->text(),
+    								 lineEdit_categorie_produit->text(),
+									 lineEdit_designation->text());
 
     if (SERVICE_STOCK_UNDEFINED == serviceStockExists)
     {

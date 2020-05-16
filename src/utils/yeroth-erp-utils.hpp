@@ -59,6 +59,16 @@ class YerothSqlTableModel;
 class QPluginLoader;
 class QtPlugin;
 
+
+enum service_stock_already_exist_type
+{
+	SERVICE_REFERENCE_EXISTS 									= 0,
+	SERVICE_STOCK_DESIGNATION_AND_DIFFERENT_CATEGORIE_EXIST 	= 1,
+	SERVICE_STOCK_DESIGNATION_AND_SAME_CATEGORIE_EXIST 			= 2,
+	SERVICE_STOCK_UNDEFINED										= 3
+};
+
+
 class YerothUtils : public QObject
 {
 	Q_OBJECT
@@ -70,6 +80,17 @@ public:
 	YerothUtils();
 
 	inline ~YerothUtils(){}
+
+	static
+	bool isReferenceUnique(const QString &aStockServiceReference,
+						   const QString &aStockServiceDesignation,
+						   const QString &aStockServiceNomCategorie,
+						   QString &curExistingReference_in_out);
+
+    static
+    enum service_stock_already_exist_type
+		isStockItemInProductList(const QString &productCategorie,
+								 const QString &productName);
 
 	static QString YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(QString aString_IN);
 
