@@ -21,7 +21,7 @@ bool YerothAdminCreateWindow::creer_remise_check_fields()
     			  produit 		;
 
 
-    if (dateEdit_creer_remise_date_debut->date() < QDate::currentDate())
+    if (dateEdit_creer_remise_date_debut->date() < GET_CURRENT_DATE)
     {
     	dateEdit_creer_remise_date_debut->setPalette(YerothUtils::YEROTH_RED_PALETTE);
     	dateEdit_creer_remise_date_fin->setPalette(YerothUtils::YEROTH_RED_PALETTE);

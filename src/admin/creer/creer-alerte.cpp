@@ -178,7 +178,7 @@ void YerothAdminCreateWindow::creer_alerte_check_fields_entry()
         comboBox_creer_alerte_condition->setPalette(YerothUtils::YEROTH_WHITE_PALETTE);
         lineEdit_creer_alerte_quantite->setPalette(YerothUtils::YEROTH_WHITE_PALETTE);
 
-        if (dateEdit_creer_alerte_date_debut->date() < QDate::currentDate())
+        if (dateEdit_creer_alerte_date_debut->date() < GET_CURRENT_DATE)
         {
             dateEdit_creer_alerte_date_debut->setPalette(YerothUtils::YEROTH_RED_PALETTE);
             dateEdit_creer_alerte_date_fin->setPalette(YerothUtils::YEROTH_RED_PALETTE);
@@ -264,7 +264,7 @@ bool YerothAdminCreateWindow::creer_alerte_check_fields()
         comboBox_creer_alerte_condition->setPalette(YerothUtils::YEROTH_WHITE_PALETTE);
         lineEdit_creer_alerte_quantite->setPalette(YerothUtils::YEROTH_WHITE_PALETTE);
 
-        if (dateEdit_creer_alerte_date_debut->date() < QDate::currentDate())
+        if (dateEdit_creer_alerte_date_debut->date() < GET_CURRENT_DATE)
         {
             dateEdit_creer_alerte_date_debut->setPalette(YerothUtils::YEROTH_RED_PALETTE);
             dateEdit_creer_alerte_date_fin->setPalette(YerothUtils::YEROTH_RED_PALETTE);

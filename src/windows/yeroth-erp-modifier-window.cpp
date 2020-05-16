@@ -211,7 +211,7 @@ void YerothModifierWindow::actualiser_stock()
 
         bool correctDatePeremption = true;
 
-        if (dateEdit_date_peremption->date() <= QDate::currentDate())
+        if (dateEdit_date_peremption->date() <= GET_CURRENT_DATE)
         {
             QString warnMsg(QObject::trUtf8("La date de péremption n'est pas postdatée !\n\n"
                             "Continuer avec l'actualisation des données de l'article ?"));
