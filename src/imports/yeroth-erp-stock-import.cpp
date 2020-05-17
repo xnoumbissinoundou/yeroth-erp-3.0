@@ -59,7 +59,7 @@ int YerothERPStockImport::import()
 	}
 
 	QStringList csvHeader = _curCsvFileToImportContentWordList->at(0)
-					.split(YerothUtils::SEMI_COLON_STRING_CHAR);
+					.split(YerothUtils::_curCSVFileCharSeparator);
 
 	QString curSqlTableImportHeaderStr;
 

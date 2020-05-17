@@ -96,6 +96,10 @@ YerothAdminWindow::YerothAdminWindow()
                                arg(COLOUR_RGB_STRING_YEROTH_DARK_GREEN_47_67_67,
                             	   COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
+    lineEdit_importer_separation_csv->setYerothEnabled(false);
+
+    lineEdit_importer_separation_csv->setText(QString(YerothUtils::_curCSVFileCharSeparator));
+
     lineEdit_localisation_adresse_ip->setYerothEnabled(false);
 
     lineEdit_this_localisation->setYerothEnabled(false);
@@ -426,8 +430,6 @@ void YerothAdminWindow::reset_import_current_selected_csv_file()
 
 void YerothAdminWindow::import_current_selected_csv_file()
 {
-//	qDebug() << "++ import_current_selected_csv_file";
-
 	QStringList csvHeaderContent = _curCsvFileToImportContentWordList.at(0)
 			.split(YerothUtils::SEMI_COLON_STRING_CHAR);
 
@@ -605,13 +607,6 @@ void YerothAdminWindow::generate_table_header_mapping_entries_for_csv_import()
 		}
 	}
 
-
-	label_importer_fichier_csv_entete_TITRE->setVisible(csvFileHasVisibleContentToImport);
-	label_importer_fichier_csv_entete_TITRE_1->setVisible(csvFileHasVisibleContentToImport);
-	label_importer_tableau_mariadb_entete_TITRE->setVisible(csvFileHasVisibleContentToImport);
-	label_importer_tableau_mariadb_entete_TITRE_1->setVisible(csvFileHasVisibleContentToImport);
-
-
 	YerothERPStockImport::_dbTableColumnToIsNotNULL = &_dbTableColumnToIsNotNULL;
 
     pushButton_importer_fichier_csv_reinitialiser->
@@ -627,11 +622,6 @@ void YerothAdminWindow::initialize_admin_importer_csv_tableau()
     pushButton_fichier_csv_a_importer->
 		enable(this, SLOT(choose_fichier_csv_a_importer()));
 
-	label_importer_fichier_csv_entete_TITRE->setVisible(false);
-	label_importer_fichier_csv_entete_TITRE_1->setVisible(false);
-	label_importer_tableau_mariadb_entete_TITRE->setVisible(false);
-	label_importer_tableau_mariadb_entete_TITRE_1->setVisible(false);
-
 	_indexToCsvFileContentImportHeader.insert(0, label_importer_fichier_csv_entete_0);
 	_indexToCsvFileContentImportHeader.insert(1, label_importer_fichier_csv_entete_1);
 	_indexToCsvFileContentImportHeader.insert(2, label_importer_fichier_csv_entete_2);
@@ -646,8 +636,6 @@ void YerothAdminWindow::initialize_admin_importer_csv_tableau()
 	_indexToCsvFileContentImportHeader.insert(11, label_importer_fichier_csv_entete_11);
 	_indexToCsvFileContentImportHeader.insert(12, label_importer_fichier_csv_entete_12);
 	_indexToCsvFileContentImportHeader.insert(13, label_importer_fichier_csv_entete_13);
-	_indexToCsvFileContentImportHeader.insert(14, label_importer_fichier_csv_entete_14);
-	_indexToCsvFileContentImportHeader.insert(15, label_importer_fichier_csv_entete_15);
 
 	for( int k = 0; k < _indexToCsvFileContentImportHeader.size(); ++k)
 	{
@@ -668,8 +656,6 @@ void YerothAdminWindow::initialize_admin_importer_csv_tableau()
 	_indexToSQLTableImportHeader.insert(11, comboBox_importer_tableau_entete_11);
 	_indexToSQLTableImportHeader.insert(12, comboBox_importer_tableau_entete_12);
 	_indexToSQLTableImportHeader.insert(13, comboBox_importer_tableau_entete_13);
-	_indexToSQLTableImportHeader.insert(14, comboBox_importer_tableau_entete_14);
-	_indexToSQLTableImportHeader.insert(15, comboBox_importer_tableau_entete_15);
 
 	for( int k = 0; k < _indexToSQLTableImportHeader.size(); ++k)
 	{

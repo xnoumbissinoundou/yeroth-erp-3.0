@@ -477,8 +477,11 @@ int main(int argc, char *argv[])
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
+    YerothUtils::_curCSVFileCharSeparator = YerothUtils::SEMI_COLON_STRING_CHAR;
+
 #else //YEROTH_ENGLISH_LANGUAGE
 
+    YerothUtils::_curCSVFileCharSeparator = YerothUtils::COMMA_STRING_CHAR;
 
     QString path(QString("%1/bin/%2")
     				.arg(YerothERPConfig::YEROTH_ERP_3_0_HOME_FOLDER,
