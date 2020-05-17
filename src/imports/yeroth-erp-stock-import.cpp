@@ -117,6 +117,8 @@ int YerothERPStockImport::import()
 
 	QStringList curCsvFileImportRow;
 
+	YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
+
 	for (int k = 1; k < curCsvFileLineCount; ++k)
 	{
 		curCsvFileImportRow = _curCsvFileToImportContentWordList->at(k)
@@ -129,6 +131,8 @@ int YerothERPStockImport::import()
 			++successImportCount;
 		}
 	}
+
+	YEROTH_ERP_3_0_COMMIT_DATABASE_TRANSACTION;
 
 	if (successImportCount != curCsvFileLineCount)
 	{
@@ -175,10 +179,10 @@ enum import_csv_entry_row_return_status
 
     QSqlRecord record = curStocksTableModel.record();
 
-    double montant_tva = -1;
-    double prix_unitaire = -1;
-    double prix_vente = -1;
-    double quantite_totale = -1;
+    double montant_tva = -1.0;
+    double prix_unitaire = -1.0;
+    double prix_vente = -1.0;
+    double quantite_totale = -1.0;
 
     int stock_id_to_save = YerothERPWindows::getNextIdSqlTableModel_stocks();
 

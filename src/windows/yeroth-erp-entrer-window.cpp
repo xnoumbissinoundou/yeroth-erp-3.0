@@ -1487,7 +1487,7 @@ void YerothEntrerWindow::enregistrer_produit()
     }
 
     if (!checkBox_service->isChecked() &&
-    	dateEdit_date_peremption->date() <= QDate::currentDate())
+    	dateEdit_date_peremption->date() <= GET_CURRENT_DATE)
     {
     	QString warnMsg(QObject::trUtf8("La date de péremption n'est pas postdatée !\n\n"
     			"Continuer avec l'enregistrement des données du stock (service) ?"));
