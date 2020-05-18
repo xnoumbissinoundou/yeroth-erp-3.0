@@ -193,6 +193,18 @@ const QKeySequence YerothUtils::LISTER_STOCKS_QKEYSEQUENCE(QObject::tr(SHORTCUT_
 
 QString YerothUtils::YEROTH_ERP_3_0_SERVER_PARAMETERS_DISPLAY("");
 
+
+const QString YerothUtils::DATABASE_MYSQL_CHAR_TYPE_STRING		("char");
+
+const QString YerothUtils::DATABASE_MYSQL_DATE_TYPE_STRING		("date");
+
+const QString YerothUtils::DATABASE_MYSQL_DOUBLE_TYPE_STRING	("double");
+
+const QString YerothUtils::DATABASE_MYSQL_INT_TYPE_STRING		("int");
+
+const QString YerothUtils::DATABASE_MYSQL_TIME_TYPE_STRING		("time");
+
+
 const QString YerothUtils::YEROTH_QT_STYLE_CDE("cde");
 
 const unsigned int YerothUtils::CURRENT_CLIENT_DB_ID_UNDEFINED(-2);
@@ -351,7 +363,7 @@ const QString YerothUtils::MYSQL_TRUE_LITERAL("1");
 
 const QString YerothUtils::MYSQL_FALSE_LITERAL("0");
 
-char YerothUtils::_curCSVFileCharSeparator(';');
+QString YerothUtils::_curCSVFileCharSeparator(";");
 
 const char YerothUtils::COMMA_STRING_CHAR(',');
 
@@ -2462,7 +2474,9 @@ bool YerothUtils::export_csv_file(YerothWindowsCommons &aCallingWindow,
         {
             anItemText = anItem->text();
 
-            csvFileContent.append( QString("\"%1\"; ").arg(anItemText) );
+            csvFileContent.append( QString("\"%1\"%2 ")
+            						 .arg(anItemText,
+            						      YerothUtils::_curCSVFileCharSeparator) );
         }
     }
 
@@ -2484,7 +2498,9 @@ bool YerothUtils::export_csv_file(YerothWindowsCommons &aCallingWindow,
             {
                 anItemText = anItem->text();
 
-                csvFileContent.append( QString("\"%1\"; ").arg(anItemText) );
+                csvFileContent.append( QString("\"%1\"%2 ")
+                						 .arg(anItemText,
+                							  YerothUtils::_curCSVFileCharSeparator) );
             }
         }
 

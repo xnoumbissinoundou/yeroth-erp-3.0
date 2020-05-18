@@ -470,6 +470,18 @@ public:
 
 	static QString YEROTH_ERP_3_0_SERVER_PARAMETERS_DISPLAY;
 
+
+	static const QString DATABASE_MYSQL_CHAR_TYPE_STRING;
+
+	static const QString DATABASE_MYSQL_DATE_TYPE_STRING;
+
+	static const QString DATABASE_MYSQL_DOUBLE_TYPE_STRING;
+
+	static const QString DATABASE_MYSQL_INT_TYPE_STRING;
+
+	static const QString DATABASE_MYSQL_TIME_TYPE_STRING;
+
+
 	static const QString YEROTH_QT_STYLE_CDE;
 
 	static const unsigned int CURRENT_CLIENT_DB_ID_UNDEFINED;
@@ -576,7 +588,7 @@ public:
 
 	static const QString MYSQL_FALSE_LITERAL;
 
-	static char _curCSVFileCharSeparator;
+	static QString _curCSVFileCharSeparator;
 
 	static const char COMMA_STRING_CHAR;
 

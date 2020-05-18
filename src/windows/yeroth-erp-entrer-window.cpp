@@ -1455,7 +1455,7 @@ void YerothEntrerWindow::enregistrer_produit()
     	{
     		YerothQMessageBox::warning(this,
     				QObject::trUtf8("aucune référence"),
-					QString(QObject::trUtf8("Cette marchandise (désignation: '%1 - catégorie: %2'), "
+					QString(QObject::trUtf8("Cette marchandise (désignation: '%1' - catégorie: '%2'), "
 														"déjà existante dans la liste des marchandises, "
 														"n'utilise aucune valeur pour 'référence' !"))
 			    		.arg(lineEdit_designation->text(),
@@ -1464,7 +1464,7 @@ void YerothEntrerWindow::enregistrer_produit()
     	else
     	{
     		YerothQMessageBox::warning(this, "enregistrer",
-    				QString(QObject::trUtf8("Cette marchandise (désignation: '%1 - catégorie: %2'), "
+    				QString(QObject::trUtf8("Cette marchandise (désignation: '%1' - catégorie: '%2'), "
     										"déjà existante dans la liste des marchandises, "
     										"utilise la 'référence (%3)' !"))
 							.arg(lineEdit_designation->text(),

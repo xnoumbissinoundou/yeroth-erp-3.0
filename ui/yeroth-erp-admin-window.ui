@@ -20377,9 +20377,9 @@
       <property name="font">
        <font>
         <pointsize>10</pointsize>
-        <weight>75</weight>
+        <weight>50</weight>
         <italic>false</italic>
-        <bold>true</bold>
+        <bold>false</bold>
        </font>
       </property>
       <property name="text">
@@ -21731,8 +21731,8 @@
       <property name="font">
        <font>
         <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="toolTip">
@@ -22642,24 +22642,24 @@
      <widget class="QLabel" name="label_importer_separation_csv">
       <property name="geometry">
        <rect>
-        <x>412</x>
+        <x>405</x>
         <y>15</y>
-        <width>138</width>
+        <width>147</width>
         <height>21</height>
        </rect>
       </property>
       <property name="font">
        <font>
         <pointsize>10</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="toolTip">
        <string/>
       </property>
       <property name="text">
-       <string>séparation</string>
+       <string>charactère de séparation</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

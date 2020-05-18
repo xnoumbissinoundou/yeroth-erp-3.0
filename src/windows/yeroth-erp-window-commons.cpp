@@ -246,9 +246,9 @@ void YerothWindowsCommons::setupSelectDBFields(QString aSqlTableName)
 
 		columnIdx = columnIdx + 1;
 
-		if (type.contains("char") ||
-			type.contains("time") ||
-			type.contains("date") )
+		if (type.contains(YerothUtils::DATABASE_MYSQL_CHAR_TYPE_STRING) ||
+			type.contains(YerothUtils::DATABASE_MYSQL_TIME_TYPE_STRING) ||
+			type.contains(YerothUtils::DATABASE_MYSQL_DATE_TYPE_STRING) )
 		{
 			_DBFieldNamesToPrintLeftAligned.append(columnIdx);
 		}

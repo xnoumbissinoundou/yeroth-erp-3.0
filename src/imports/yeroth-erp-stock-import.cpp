@@ -122,7 +122,7 @@ int YerothERPStockImport::import()
 	for (int k = 1; k < curCsvFileLineCount; ++k)
 	{
 		curCsvFileImportRow = _curCsvFileToImportContentWordList->at(k)
-						.split(YerothUtils::SEMI_COLON_STRING_CHAR);
+						.split(YerothUtils::_curCSVFileCharSeparator);
 
 		insertionReturnStatusValue = import_csv_entry_row(curCsvFileImportRow);
 
@@ -158,12 +158,6 @@ int YerothERPStockImport::import()
 enum import_csv_entry_row_return_status
 	YerothERPStockImport::import_csv_entry_row(QStringList &aCsvFileEntryLine)
 {
-//	qDebug() << "++ aCsvFileEntryLine: " << aCsvFileEntryLine;
-//
-//
-//	qDebug() << QString("++ aCsvFileEntryLine.size(): %1")
-//					.arg(QString::number(aCsvFileEntryLine.size()));
-
 	enum import_csv_entry_row_return_status insertionReturnStatus = INSERTION_FAILED;
 
 	YerothERPWindows *allWindows = YerothUtils::getAllWindows();
@@ -265,8 +259,8 @@ enum import_csv_entry_row_return_status
 									.arg(curColumnRowEntry);
 
 						YerothQMessageBox::warning(_callingWindow,
-													   QObject::tr("création de catégorie d'articles"),
-													   infoMesg);
+												   QObject::trUtf8("création de catégorie d'articles"),
+												   infoMesg);
 
 						return INSERTION_FAILED;
 					}
@@ -274,11 +268,11 @@ enum import_csv_entry_row_return_status
 			}
 
 
-			if (YEROTH_QSTRING_CONTAINS(curTableColumnType, "int"))
+			if (YEROTH_QSTRING_CONTAINS(curTableColumnType, YerothUtils::DATABASE_MYSQL_INT_TYPE_STRING))
 			{
 				record.setValue(curTableColumnName, curColumnRowEntry.toInt());
 			}
-			else if (YEROTH_QSTRING_CONTAINS(curTableColumnType, "double"))
+			else if (YEROTH_QSTRING_CONTAINS(curTableColumnType, YerothUtils::DATABASE_MYSQL_DOUBLE_TYPE_STRING))
 			{
 				if (YerothDatabaseTableColumn::QUANTITE_TOTALE == curTableColumnName)
 				{
@@ -301,7 +295,7 @@ enum import_csv_entry_row_return_status
 							YerothUtils::YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(curColumnRowEntry));
 				}
 			}
-			else if (YEROTH_QSTRING_CONTAINS(curTableColumnType, "date"))
+			else if (YEROTH_QSTRING_CONTAINS(curTableColumnType, YerothUtils::DATABASE_MYSQL_DATE_TYPE_STRING))
 			{
 				record.setValue(curTableColumnName,
 						GET_DATE_FROM_STRING(curColumnRowEntry));
@@ -326,7 +320,7 @@ enum import_csv_entry_row_return_status
     	{
     		YerothQMessageBox::warning(_callingWindow,
     				QObject::trUtf8("aucune référence"),
-					QString(QObject::trUtf8("Cette marchandise (désignation: '%1 - catégorie: %2'), "
+					QString(QObject::trUtf8("Cette marchandise (désignation: '%1' - catégorie: '%2'), "
 											"déjà existante dans la liste des marchandises, "
 											"n'utilise aucune valeur pour 'référence' !"))
     					.arg(productName,
@@ -335,7 +329,7 @@ enum import_csv_entry_row_return_status
     	else
     	{
     		YerothQMessageBox::warning(_callingWindow, "enregistrer",
-    				QString(QObject::trUtf8("Cette marchandise (désignation: '%1 - catégorie: %2'), "
+    				QString(QObject::trUtf8("Cette marchandise (désignation: '%1' - catégorie: '%2'), "
     				    										"déjà existante dans la liste des marchandises, "
     				    										"utilise la 'référence (%3)' !"))
     					.arg(productName,
