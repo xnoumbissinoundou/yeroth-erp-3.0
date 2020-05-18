@@ -53,6 +53,8 @@ public:
 
 	static const QString STOCK_DALERTE;
 
+	static const QString STOCK_MINIMUM;
+
 	static const QString STOCK_MAXIMUM;
 
 	static const QString QUANTITE_VENDUE;
