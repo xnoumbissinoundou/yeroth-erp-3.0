@@ -13,26 +13,42 @@
 
 //#define YEROTH_DEBUG_LOG
 
+
+QDebug 	*YerothLogger::_qDebug(0);
+
+QFile 	*YerothLogger::_logFile(0);
+
+
 YerothLogger::YerothLogger(QString cppClassName, YEROTH_LOG_LEVEL logLevel)
-    :_logLevel(logLevel),
-     _cppClassName(cppClassName),
-     _qDebug(0),
-     _logFile(0)
+:_logLevel(logLevel),
+ _cppClassName(cppClassName)
 {
-    _logFile = new QFile(YerothUtils::getLogFileName());
-    _qDebug = new QDebug(_logFile);
-    if (!_logFile->open(QIODevice::WriteOnly | QIODevice::Append))
-    {
-        qDebug() << "[YerothLogger][YerothLogger] "
-                 << "Could not create file "
-                 << YerothUtils::getLogFileName();
-    }
+	static bool alreadyInstantiated = false;
+
+	if (!alreadyInstantiated)
+	{
+		_logFile = new QFile(YerothUtils::getLogFileName());
+
+	    _qDebug = new QDebug(_logFile);
+
+	    _logFile->open(QIODevice::WriteOnly | QIODevice::Append);
+
+	    alreadyInstantiated = true;
+	}
 }
 
 YerothLogger::~YerothLogger()
 {
-    delete _logFile;
-    delete _qDebug;
+	static bool alreadyDestroyed = false;
+
+	if (!alreadyDestroyed)
+	{
+		_logFile->close();
+
+	    delete _qDebug;
+
+	    alreadyDestroyed = true;
+	}
 }
 
 void YerothLogger::debug(const char *cppMethodName, const char *msg)

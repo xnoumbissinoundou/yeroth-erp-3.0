@@ -51,10 +51,11 @@ private:
 
 	YEROTH_LOG_LEVEL _logLevel;
 
-	QString _cppClassName;
+	QString 		_cppClassName;
 
-	QDebug  *_qDebug;
-	QFile 	*_logFile;
+	static QDebug  	*_qDebug;
+
+	static QFile 	*_logFile;
 };
 
 
