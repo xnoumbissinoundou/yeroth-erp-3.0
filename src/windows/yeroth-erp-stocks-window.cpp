@@ -74,8 +74,6 @@ YerothStocksWindow::YerothStocksWindow()
                                     .arg(COLOUR_RGB_STRING_YEROTH_ORANGE_243_162_0,
                                     		COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
-    _logger->log("YerothStocksWindow");
-
     setupSelectDBFields(_allWindows->STOCKS);
 
     _lineEditsToANDContentForSearch.insert(&lineEdit_stock_terme_recherche,
@@ -381,8 +379,6 @@ void YerothStocksWindow::setComboBoxStrategieDeStocks()
 
 void YerothStocksWindow::populateComboBoxes()
 {
-	_logger->log("populateComboBoxes");
-
 	QStringList aQStringList;
 
 	aQStringList.append(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(YerothDatabaseTableColumn::MONTANT_TVA));
@@ -650,8 +646,6 @@ void YerothStocksWindow::hideEvent(QHideEvent * hideEvent)
 
 void YerothStocksWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 {
-    _logger->log("rendreVisible");
-
     setupLineEdits();
 
     setYerothSqlTableModel(stocksTableModel);
@@ -840,6 +834,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 void YerothStocksWindow::definirMagasinier()
 {
     _logger->log("definirMagasinier");
+
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, true);
@@ -869,6 +864,7 @@ void YerothStocksWindow::definirMagasinier()
 void YerothStocksWindow::definirPasDeRole()
 {
     _logger->log("definirPasDeRole");
+
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_lhistorique_de_ce_stock, false);
@@ -899,8 +895,6 @@ void YerothStocksWindow::definirPasDeRole()
 
 void YerothStocksWindow::afficher_au_detail()
 {
-    _logger->log("afficher_au_detail");
-
     if (getLastListerSelectedRow() > -1 && _curStocksTableModel->rowCount() > 0)
     {
         _allWindows->_detailWindow->rendreVisible(_curStocksTableModel);
@@ -916,8 +910,6 @@ void YerothStocksWindow::afficher_au_detail()
 
 void YerothStocksWindow::afficher_au_detail(const QModelIndex & modelIndex)
 {
-    _logger->log("afficher_au_detail(const QModelIndex &)");
-
     setLastListerSelectedRow(modelIndex.row());
 
     tableView_stocks->selectRow(getLastListerSelectedRow());
@@ -1053,8 +1045,6 @@ void YerothStocksWindow::supprimer_ce_stock()
 
 void YerothStocksWindow::reinitialiser_elements_filtrage()
 {
-    _logger->log("reinitialiser_elements_filtrage");
-
     lineEdit_stocks_element_de_stock_resultat->clear();
 
     setCurrentlyFiltered(false);
@@ -1065,8 +1055,6 @@ void YerothStocksWindow::reinitialiser_elements_filtrage()
 
 void YerothStocksWindow::reinitialiser_recherche()
 {
-    _logger->log("reinitialiser_recherche");
-
     lineEdit_stocks_element_de_stock_resultat->clear();
 
     setCurrentlyFiltered(false);
@@ -1096,7 +1084,6 @@ void YerothStocksWindow::entrer()
 
 void YerothStocksWindow::modifier_les_articles()
 {
-    _logger->log("modifier_les_articles");
     if (_curStocksTableModel->rowCount() > 0)
     {
         _allWindows->_modifierWindow->rendreVisible(_curStocksTableModel);
@@ -1113,8 +1100,6 @@ void YerothStocksWindow::modifier_les_articles()
 void YerothStocksWindow::afficherStocks(YerothSqlTableModel & sqlTableModel,
 									    QString localVisibleStrategy	/* = YerothUtils::EMPTY_STRING */)
 {
-    //_logger->log("afficherStocks(YerothSqlTableModel &)");
-
     _curStocksTableModel = &sqlTableModel;
 
     QMultiMap<QString, QString> stockNameToStockID_in_out;
@@ -1179,8 +1164,6 @@ void YerothStocksWindow::afficherStocks(QString strategieGlobale /* = YerothUtil
 
 void YerothStocksWindow::set_filtrer_font()
 {
-    //_logger->log("set_filtrer_font");
-
     if (isCurrentlyFiltered())
     {
     	_pushButton_stocks_filtrer_font->setUnderline(true);
@@ -1196,8 +1179,6 @@ void YerothStocksWindow::set_filtrer_font()
 
 bool YerothStocksWindow::export_csv_file()
 {
-    _logger->log("export_csv_file");
-
 	bool success = false;
 
 	QList<int> tableColumnsToIgnore;
@@ -1371,8 +1352,6 @@ void YerothStocksWindow::getStocksListingTexTableString(QString &texTable_in_out
 
 bool YerothStocksWindow::imprimer_pdf_document()
 {
-    _logger->log("imprimer_pdf_document");
-
     QString latexFileNamePrefix("yeroth-erp-fichier-stocks");
 
     QList<int> tableColumnsToIgnore;

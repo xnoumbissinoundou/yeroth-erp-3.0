@@ -77,8 +77,6 @@ YerothAchatsWindow::YerothAchatsWindow()
                                        "QMessageBox QLabel {color: rgb(%2);}").
                                arg(COLOUR_RGB_STRING_YEROTH_GREEN_2_160_170, COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
-    _logger->log("YerothAchatsWindow");
-
     setupSelectDBFields(_allWindows->ACHATS);
 
     _lineEditsToANDContentForSearch.insert(&lineEdit_achats_terme_recherche,

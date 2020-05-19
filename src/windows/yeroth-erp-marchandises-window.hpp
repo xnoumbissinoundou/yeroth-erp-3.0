@@ -162,7 +162,7 @@ private:
 
 	void set_filtrer_font();
 
-    void populateInventaireDesStocksComboBoxes();
+    void populateMarchandisesComboBoxes();
 
     void setupLineEdits();
 

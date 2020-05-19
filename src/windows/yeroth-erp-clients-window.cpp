@@ -51,8 +51,6 @@ YerothERPClientsWindow::YerothERPClientsWindow()
     QMESSAGE_BOX_STYLE_SHEET =
         QString("QMessageBox {background-color: rgb(%1);}").arg(COLOUR_RGB_STRING_YEROTH_YELLOW_254_254_0);
 
-    _logger->log("YerothERPClientsWindow");
-
     setupSelectDBFields(_allWindows->CLIENTS);
 
     _lineEditsToANDContentForSearch.insert(&lineEdit_comptes_clients_terme_recherche,

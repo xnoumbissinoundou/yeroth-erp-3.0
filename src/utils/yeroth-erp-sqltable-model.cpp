@@ -67,7 +67,7 @@ YerothSqlTableModel::YerothSqlTableModel(const QString &sqlTableName,
 
 
 int YerothSqlTableModel::Is_SearchQSqlTable(QString tableColumn,
-        								   QString searchTerm)
+        								    QString searchTerm)
 {
     QString queryFilter(GENERATE_SQL_IS_STMT(tableColumn, searchTerm));
 
@@ -76,19 +76,11 @@ int YerothSqlTableModel::Is_SearchQSqlTable(QString tableColumn,
     int filterRowCount = rowCount();
 
     _logger->log("Is_SearchQSqlTable",
-                 QString("(table: %1, column: %2) \n\t\t\t\t| queryFilter (%3) | row count: %4")
-                 .arg(_sqlTableName)
-                 .arg(tableColumn)
-                 .arg(queryFilter)
-                 .arg(filterRowCount));
-
-    /*qDebug() <<
-    		QString("YerothSqlTableModel | Is_SearchQSqlTable (table: %1, column: %2) \n\t\t| queryFilter (%3) | row count: %4")
-    		 .arg(_sqlTableName)
-    		 .arg(tableColumn)
-    		 .arg(queryFilter)
-    		 .arg(filterRowCount);*/
-
+                 QString("(table: %1, column: %2) | queryFilter (%3) | row count: %4")
+                 	 .arg(_sqlTableName,
+                 		  tableColumn,
+						  queryFilter,
+						  QString::number(filterRowCount)));
     resetFilter();
 
     return filterRowCount;
@@ -136,7 +128,7 @@ int YerothSqlTableModel::Like_SearchQSqlTable(QString tableColumn,
     int filterRowCount = rowCount();
 
     _logger->log("Like_SearchQSqlTable",
-                 QString("(table: %1, column: %2) \n\t\t\t\t| queryFilter (%3) | row count: %4")
+                 QString("(table: %1, column: %2) | queryFilter (%3) | row count: %4")
                  .arg(_sqlTableName)
                  .arg(tableColumn)
                  .arg(queryFilter)

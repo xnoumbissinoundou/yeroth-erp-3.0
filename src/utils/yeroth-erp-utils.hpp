@@ -468,7 +468,11 @@ public:
 	static void yerothSetWidgetColor(QWidget *aWidget);
 
 
+
 	static QString YEROTH_ERP_3_0_SERVER_PARAMETERS_DISPLAY;
+
+
+	static const QString UTILISATEUR_NON_EXISTANT;
 
 
 	static const QString DATABASE_MYSQL_CHAR_TYPE_STRING;

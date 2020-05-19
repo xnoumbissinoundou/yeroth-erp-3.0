@@ -504,7 +504,7 @@ int main(int argc, char *argv[])
     YerothLogger logger("yeroth-erp-3.0");
 
     logger.log("main",
-               QString("yeroth home folder (located in the environment variable YEROTHPOS_HOME_FOLDER): %1")
+               QString("yeroth home folder (located in the environment variable YEROTH_ERP_3_0_HOME_FOLDER): %1")
                .arg(YerothERPConfig::YEROTH_ERP_3_0_HOME_FOLDER));
 
     logger.log("main", QString("log file name: %1").arg(logFileName));

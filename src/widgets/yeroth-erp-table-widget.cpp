@@ -48,8 +48,6 @@ YerothTableWidget::YerothTableWidget(QWidget *parent)
 
     _logger = new YerothLogger("YerothTableWidget");
 
-    _logger->log("YerothTableWidget");
-
     setFrameShadow(QFrame::Plain);
 
     setEditTriggers(QAbstractItemView::CurrentChanged);

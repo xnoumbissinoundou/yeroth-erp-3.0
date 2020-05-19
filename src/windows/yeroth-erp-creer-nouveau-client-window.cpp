@@ -37,8 +37,6 @@ YerothCreerNouveauClientWindow::YerothCreerNouveauClientWindow():YerothWindowsCo
                                     .arg(COLOUR_RGB_STRING_YEROTH_YELLOW_254_254_0,
                                     	 COLOUR_RGB_STRING_YEROTH_BLACK_0_0_0);
 
-    _logger->log("YerothCreerNouveauClientWindow");
-
     lineEdit_client_nom_entreprise->setFocus();
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);

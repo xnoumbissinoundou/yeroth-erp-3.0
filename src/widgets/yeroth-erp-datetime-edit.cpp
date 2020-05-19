@@ -16,8 +16,6 @@ YerothDateTimeEdit::YerothDateTimeEdit(QWidget *parent)
  _logger(new YerothLogger("YerothDateTimeEdit")),
  _calendarWidget(new QCalendarWidget)
 {
-    _logger->log("YerothDateTimeEdit");
-
     _calendarWidget->setMinimumDate(QDate(1900, 1, 1));
     _calendarWidget->setMaximumDate(QDate(70000, 1, 1));
     _calendarWidget->setGridVisible(true);

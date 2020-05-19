@@ -55,8 +55,6 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
     QMESSAGE_BOX_STYLE_SHEET =
         QString("QMessageBox {background-color: rgb(%1);}").arg(COLOUR_RGB_STRING_YEROTH_FIREBRICK_RED_255_48_48);
 
-    _logger->log("YerothInventaireDesStocksWindow");
-
     setupSelectDBFields(_allWindows->MARCHANDISES);
 
     _lineEditsToANDContentForSearch.insert(&lineEdit_marchandises_terme_recherche,
@@ -80,7 +78,7 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
 
     localSetupLineEditsQCompleters();
 
-    populateInventaireDesStocksComboBoxes();
+    populateMarchandisesComboBoxes();
 
     _pushButton_filtrer_font = new QFont(pushButton_filtrer->font());
 
@@ -600,8 +598,6 @@ void YerothMarchandisesWindow::localSetupLineEditsQCompleters()
 
 void YerothMarchandisesWindow::set_filtrer_font()
 {
-    //_logger->log("set_filtrer_font");
-
     if (isCurrentlyFiltered())
     {
     	_pushButton_filtrer_font->setUnderline(true);
@@ -615,10 +611,8 @@ void YerothMarchandisesWindow::set_filtrer_font()
 }
 
 
-void YerothMarchandisesWindow::populateInventaireDesStocksComboBoxes()
+void YerothMarchandisesWindow::populateMarchandisesComboBoxes()
 {
-    _logger->log("populateInventaireDesStocksComboBoxes");
-
 	QStringList aQStringList;
 
 	aQStringList.append(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(YerothDatabaseTableColumn::VALEUR_DIVENTAIRE));
@@ -890,10 +884,6 @@ void YerothMarchandisesWindow::definirPasDeRole()
 
 void YerothMarchandisesWindow::afficher_stock_selectioner(const QString & stockName)
 {
-    _logger->log("afficher_stock_selectioner(const QString &)");
-
-    //qDebug() << QString("afficher_stock_selectioner(%1)").arg(stockName);
-
     setLastListerSelectedRow(0);
 
     QString filter(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::DESIGNATION, stockName));
@@ -966,8 +956,6 @@ void YerothMarchandisesWindow::supprimer_ce_stock()
 
 void YerothMarchandisesWindow::reinitialiser_elements_filtrage()
 {
-    _logger->log("reinitialiser_elements_filtrage");
-
     lineEdit_marchandises_element_de_stock_resultat->clear();
 
     setCurrentlyFiltered(false);
@@ -978,8 +966,6 @@ void YerothMarchandisesWindow::reinitialiser_elements_filtrage()
 
 void YerothMarchandisesWindow::reinitialiser_recherche()
 {
-    _logger->log("reinitialiser_recherche");
-
     lineEdit_marchandises_designation->clear();
 
     setCurrentlyFiltered(false);
@@ -1008,8 +994,6 @@ void YerothMarchandisesWindow::afficherMarchandises(YerothSqlTableModel &aYeroth
 
 bool YerothMarchandisesWindow::export_csv_file()
 {
-	_logger->log("export_csv_file");
-
 	bool success = false;
 
 	QList<int> tableColumnsToIgnore;
@@ -1168,8 +1152,6 @@ void YerothMarchandisesWindow::getMarchandisesTexDocumentString(QString &texDocu
 
 bool YerothMarchandisesWindow::imprimer_pdf_document()
 {
-    _logger->log("imprimer_pdf_document");
-
     QString latexFileNamePrefix("yeroth-erp-marchandises");
 
     QList<int> tableColumnsToIgnore;

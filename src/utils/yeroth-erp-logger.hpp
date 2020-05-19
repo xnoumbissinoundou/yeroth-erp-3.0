@@ -7,12 +7,20 @@
 #ifndef SRC_YEROTH_LOGGER_HPP_
 #define SRC_YEROTH_LOGGER_HPP_
 
+
 #include "src/include/yeroth-erp-3-0-software.text-configuration.hpp"
+
 
 #include <QtCore/QString>
 
+
 class QDebug;
 class QFile;
+
+
+class YerothPOSUser;
+class YerothERPWindows;
+
 
 class YerothLogger
 {
@@ -32,6 +40,8 @@ public:
 
 	~YerothLogger();
 
+	void renewCurrentYEROTHERPUser();
+
 	void debug(const char *cppMethodName, const char *msg = "");
 
 	void debug(const char *cppMethodName, QString msg);
@@ -49,13 +59,21 @@ public:
 
 private:
 
-	YEROTH_LOG_LEVEL _logLevel;
+	YEROTH_LOG_LEVEL 		_logLevel;
 
-	QString 		_cppClassName;
+	QString					_curUserUtilisateur;
 
-	static QDebug  	*_qDebug;
+	QString					_curUserNomComplet;
 
-	static QFile 	*_logFile;
+	QString 				_cppClassName;
+
+	YerothPOSUser 			*_curYEROTHERPUser;
+
+	static QDebug  			*_qDebug;
+
+	static QFile 			*_logFile;
+
+	static YerothERPWindows *_allWindows;
 };
 
 

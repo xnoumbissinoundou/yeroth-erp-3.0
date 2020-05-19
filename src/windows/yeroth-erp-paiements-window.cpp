@@ -225,8 +225,6 @@ bool YerothPaiementsWindow::filtrer_paiements()
 
 void YerothPaiementsWindow::populateComboBoxes()
 {
-	_logger->log("populateComboBoxes");
-
 	int columnIndexTypeDePaiement = _dbtablefieldNameToDBColumnIndex
 			.value(YerothDatabaseTableColumn::TYPE_DE_PAIEMENT);
 
@@ -270,8 +268,6 @@ void YerothPaiementsWindow::populateComboBoxes()
 
 void YerothPaiementsWindow::setupLineEdits()
 {
-    _logger->log("setupLineEdits");
-
     lineEdit_paiements_terme_recherche->enableForSearch(QObject::trUtf8("terme à rechercher (référence reçu de paiement client, notes)"));
     lineEdit_paiements_reference->enableForSearch(QObject::trUtf8("référence"));
     lineEdit_paiements_nom_entreprise->enableForSearch(QObject::tr("nom de l'entreprise"));
@@ -644,6 +640,7 @@ void YerothPaiementsWindow::definirGestionaireDesStocks()
 void YerothPaiementsWindow::definirMagasinier()
 {
     _logger->log("definirMagasinier");
+
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
@@ -660,6 +657,7 @@ void YerothPaiementsWindow::definirMagasinier()
 void YerothPaiementsWindow::definirPasDeRole()
 {
     _logger->log("definirPasDeRole");
+
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
@@ -676,6 +674,7 @@ void YerothPaiementsWindow::definirPasDeRole()
 void YerothPaiementsWindow::readProcessData()
 {
     _logger->log("readProcessData");
+
     if (!_aProcess)
     {
         return;
@@ -686,8 +685,6 @@ void YerothPaiementsWindow::readProcessData()
 
 bool YerothPaiementsWindow::export_csv_file()
 {
-	_logger->log("export_csv_file");
-
 	bool success = false;
 
 	QList<int> tableColumnsToIgnore;
@@ -861,8 +858,6 @@ void YerothPaiementsWindow::getJournalDesPaiementsTexTableString(QString & texTa
 
 bool YerothPaiementsWindow::imprimer_pdf_document()
 {
-    _logger->log("imprimer_pdf_document");
-
     QString texTable;
 
     QStandardItemModel *tableModel = tableView_paiements->getStandardItemModel();
@@ -1016,9 +1011,8 @@ void YerothPaiementsWindow::retourPaiements()
 
 void YerothPaiementsWindow::handleCurrentChanged(int index)
 {
-    //_logger->log("handleCurrentChanged(int)",
-    //                  QString("handleCurrentChanged]. index: %1").arg(index));
     _currentTabView = index;
+
     switch (index)
     {
     case TableauDesPaiements:
@@ -1082,8 +1076,6 @@ void YerothPaiementsWindow::lister_les_elements_du_tableau(YerothSqlTableModel &
 
 void YerothPaiementsWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 {
-    _logger->log("rendreVisible");
-
     _curStocksTableModel = stocksTableModel;
 
     _curPaiementsTableModel = &_allWindows->getSqlTableModel_paiements();
@@ -1114,7 +1106,6 @@ void YerothPaiementsWindow::afficher_paiements_detail()
 
     int lastSelectedPaiementsRow = tableView_paiements->lastSelectedRow();
 
-    //_logger->log("afficher_paiements_detail]", QString("row: %1").arg(lastSelectedPaiementsRow));
     QSqlRecord record = _curPaiementsTableModel->record(lastSelectedPaiementsRow);
 
     textEdit_description->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOTES));
@@ -1147,8 +1138,6 @@ void YerothPaiementsWindow::afficher_paiements_detail()
 
 void YerothPaiementsWindow::reinitialiser_elements_filtrage()
 {
-    _logger->log("reinitialiser_elements_filtrage");
-
     lineEdit_paiements_element_de_paiements_resultat->clear();
 
     setCurrentlyFiltered(false);
@@ -1159,7 +1148,6 @@ void YerothPaiementsWindow::reinitialiser_elements_filtrage()
 
 void YerothPaiementsWindow::reinitialiser_recherche()
 {
-    //  _logger->log("reinitialiser_recherche");
     lineEdit_paiements_element_de_paiements_resultat->clear();
 
     setCurrentlyFiltered(false);
