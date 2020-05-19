@@ -1474,8 +1474,8 @@ QString YerothUtils::getFileNameWithCurrentTime(const QString &fileName)
 {
     QString resultFileName(fileName);
 
-    resultFileName.append(QDate::currentDate().toString("-yyyy-MM-dd"));
-    resultFileName.append(QTime::currentTime().toString("_HH-mm-ss"));
+    resultFileName.append(QDate::currentDate().toString("-yyyyMMdd"));
+    resultFileName.append(QTime::currentTime().toString("_HHmmss"));
 
     //qDebug() << "++ " << resultFileName;
 
