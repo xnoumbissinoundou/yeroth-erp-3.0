@@ -227,7 +227,7 @@ void YerothPaiementsWindow::populateComboBoxes()
 {
 	_logger->log("populateComboBoxes");
 
-	int columnIndexTypeDePaiement = _dbfieldNameToDBColumnIndex
+	int columnIndexTypeDePaiement = _dbtablefieldNameToDBColumnIndex
 			.value(YerothDatabaseTableColumn::TYPE_DE_PAIEMENT);
 
 	_DBFieldNamesToPrintLeftAligned.append(columnIndexTypeDePaiement);

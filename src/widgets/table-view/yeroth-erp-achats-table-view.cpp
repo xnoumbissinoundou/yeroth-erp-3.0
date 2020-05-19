@@ -35,13 +35,6 @@
 #include <QtSql/QSqlError>
 
 
-
-const int YerothERPAchatsTableView::REFERENCE_COLUMN(3);
-
-const int YerothERPAchatsTableView::REFERENCE_RECU_DACHAT_COLUMN(6);
-
-
-
 YerothERPAchatsTableView::YerothERPAchatsTableView()
 :YerothTableView()
 {
@@ -58,7 +51,8 @@ YerothERPAchatsTableView::~YerothERPAchatsTableView()
 {
 }
 
-void YerothERPAchatsTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel)
+void YerothERPAchatsTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel,
+															  YerothWindowsCommons *aCallingWindows)
 {
 	_stdItemModel->_curSqlTableModel = &tableModel;
 
@@ -135,13 +129,12 @@ void YerothERPAchatsTableView::lister_les_elements_du_tableau(YerothSqlTableMode
 					tmpQvString.clear();
 					tmpQvString.append(qv.toString());
 
-					if (YerothERPAchatsTableView::REFERENCE_COLUMN != k 			||
-						YerothERPAchatsTableView::REFERENCE_RECU_DACHAT_COLUMN != k)
+					if (0 != aCallingWindows)
 					{
-						if (tmpQvString.length() > YerothERPConfig::max_string_display_length)
+						if (YEROTH_DATABASE_TABLE_COLUMN_INDEX((*aCallingWindows), YerothDatabaseTableColumn::REFERENCE) != k 		||
+							YEROTH_DATABASE_TABLE_COLUMN_INDEX((*aCallingWindows), YerothDatabaseTableColumn::REFERENCE_RECU_DACHAT) != k)
 						{
-							tmpQvString.truncate(YerothERPConfig::max_string_display_length);
-							tmpQvString.append(".");
+							YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(tmpQvString);
 						}
 					}
 

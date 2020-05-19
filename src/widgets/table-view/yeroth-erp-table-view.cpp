@@ -21,6 +21,9 @@
 
 #include "src/widgets/yeroth-erp-qstandard-item.hpp"
 
+#include "src/windows/yeroth-erp-window-commons.hpp"
+
+
 #include <QtCore/QDebug>
 
 #include <QtCore/QDate>

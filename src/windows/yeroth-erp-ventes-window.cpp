@@ -950,7 +950,7 @@ void YerothVentesWindow::populateComboBoxes()
 {
 	_logger->log("populateComboBoxes");
 
-	int columnIndexTypeDeVente = _dbfieldNameToDBColumnIndex
+	int columnIndexTypeDeVente = _dbtablefieldNameToDBColumnIndex
 			.value(YerothDatabaseTableColumn::TYPE_DE_VENTE);
 
 	_DBFieldNamesToPrintLeftAligned.append(columnIndexTypeDeVente);

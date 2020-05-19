@@ -785,6 +785,9 @@ YerothQMessageBox::information(this, QObject::trUtf8(DIALOG_BOX_TITLE), msg); }
 
 
 
+#define YEROTH_DATABASE_TABLE_COLUMN_INDEX(W, C) W.getDBTableFieldColumnIndex(C)
+
+
 #define YEROTH_QSTRING_CONTAINS(S, V) S.contains(V, Qt::CaseInsensitive)
 
 #define EXPR_IS_POSITIV(X)	(0 <= X)

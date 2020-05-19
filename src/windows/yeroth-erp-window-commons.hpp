@@ -102,6 +102,11 @@ public:
 
     virtual void definirPasDeRole(){}
 
+    inline int getDBTableFieldColumnIndex(const QString &aDBTableColumnName)
+    {
+        return _dbtablefieldNameToDBColumnIndex.value(aDBTableColumnName);
+    }
+
     virtual void rendreVisible(YerothSqlTableModel *stocksTableModel);
 
 	inline virtual void rendreInvisible()
@@ -249,7 +254,7 @@ protected:
     }
 
 
-    QMap<QString, int>					_dbfieldNameToDBColumnIndex;
+    QMap<QString, int>					_dbtablefieldNameToDBColumnIndex;
 
     QStringList							_visibleDBFieldColumnStrList;
 

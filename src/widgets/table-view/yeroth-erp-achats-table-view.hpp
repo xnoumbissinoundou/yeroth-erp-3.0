@@ -34,12 +34,8 @@ public:
 
 	virtual ~YerothERPAchatsTableView();
 
-	virtual void lister_les_elements_du_tableau(YerothSqlTableModel &achatSqlTableModel);
-
-
-	static const int REFERENCE_COLUMN;
-
-	static const int REFERENCE_RECU_DACHAT_COLUMN;
+	virtual void lister_les_elements_du_tableau(YerothSqlTableModel &achatSqlTableModel,
+												YerothWindowsCommons *aCallingWindows);
 };
 
 

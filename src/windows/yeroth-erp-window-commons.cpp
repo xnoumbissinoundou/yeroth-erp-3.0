@@ -43,7 +43,7 @@ YerothWindowsCommons::~YerothWindowsCommons()
 
 	_DBFieldNamesToPrintLeftAligned.clear();
 
-	_dbfieldNameToDBColumnIndex.clear();
+	_dbtablefieldNameToDBColumnIndex.clear();
 
 	_visibleDBFieldColumnStrList.clear();
 
@@ -258,14 +258,14 @@ void YerothWindowsCommons::setupSelectDBFields(QString aSqlTableName)
 //							 fieldName,
 //						     QString::number(columnIdx));
 
-		_dbfieldNameToDBColumnIndex.insert(fieldName, columnIdx);
+		_dbtablefieldNameToDBColumnIndex.insert(fieldName, columnIdx);
 	}
 }
 
 
 void YerothWindowsCommons::tableView_show_or_hide_columns(YerothTableView &tableView_in_out)
 {
-    QMapIterator<QString, int> it(_dbfieldNameToDBColumnIndex);
+    QMapIterator<QString, int> it(_dbtablefieldNameToDBColumnIndex);
 
     QString fieldColumn;
 
@@ -333,7 +333,7 @@ int YerothWindowsCommons::getDialogBox_Xn_coordinate(unsigned int n)
 
 void YerothWindowsCommons::selectionner_champs_db_visibles()
 {
-	unsigned int toSelectDBFieldNameStrSize = _dbfieldNameToDBColumnIndex.size();
+	unsigned int toSelectDBFieldNameStrSize = _dbtablefieldNameToDBColumnIndex.size();
 
 	if (_visibleDBFieldColumnStrList.size() >= 0)
 	{
@@ -348,7 +348,7 @@ void YerothWindowsCommons::selectionner_champs_db_visibles()
 
 		aQCheckBox = new YerothSelectDBQCheckBox(_selectExportDBQDialog, &_visibleDBFieldColumnStrList);
 
-		QString dbFieldName(_dbfieldNameToDBColumnIndex.key(k));
+		QString dbFieldName(_dbtablefieldNameToDBColumnIndex.key(k));
 
 		aQCheckBox->setObjectName(dbFieldName);
 
@@ -381,7 +381,7 @@ void YerothWindowsCommons::selectionner_champs_db_visibles()
 
 void YerothWindowsCommons::fill_table_columns_to_ignore(QList<int> &tableColumnsToIgnore_in_out)
 {
-    QMapIterator<QString, int> it(_dbfieldNameToDBColumnIndex);
+    QMapIterator<QString, int> it(_dbtablefieldNameToDBColumnIndex);
 
     QString curFieldColumn;
 

@@ -673,7 +673,7 @@ void YerothAchatsWindow::reinitialiser_recherche()
 
 void YerothAchatsWindow::afficherAchats(YerothSqlTableModel &achatSqlTableModel)
 {
-    tableView_achats->lister_les_elements_du_tableau(achatSqlTableModel);
+    tableView_achats->lister_les_elements_du_tableau(achatSqlTableModel, this);
 
     tableView_show_or_hide_columns(*tableView_achats);
 
