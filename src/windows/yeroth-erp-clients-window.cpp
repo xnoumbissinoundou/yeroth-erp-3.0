@@ -821,7 +821,7 @@ void YerothERPClientsWindow::afficher_nom_entreprise_selectioner(const QString &
 
 void YerothERPClientsWindow::afficherClients(YerothSqlTableModel &clientSqlTableModel)
 {
-    tableView_clients->lister_les_elements_du_tableau(clientSqlTableModel);
+    tableView_clients->lister_les_elements_du_tableau(clientSqlTableModel, this);
 
     tableView_show_or_hide_columns(*tableView_clients);
 

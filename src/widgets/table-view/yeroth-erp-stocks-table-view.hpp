@@ -34,16 +34,8 @@ public:
 
 	virtual ~YerothERPStocksTableView();
 
-	virtual void lister_les_elements_du_tableau(YerothSqlTableModel &tableModel_in_out);
-
-
-	static const int REFERENCE_RECU_DACHAT_COLUMN;
-
-	static const int REFERENCE_COLUMN;
-
-    static const int DATE_PREEMPTION_COLUMN;
-
-    static const int QUANTITE_TOTALE_COLUMN;
+	virtual void lister_les_elements_du_tableau(YerothSqlTableModel &tableModel_in_out,
+												YerothWindowsCommons *aCallingWindows);
 };
 
 

@@ -35,11 +35,6 @@
 #include <QtSql/QSqlError>
 
 
-const int YerothERPVentesTableView::REFERENCE_COLUMN(7);
-
-const int YerothERPVentesTableView::TYPE_DE_VENTE_COLUMN(22);
-
-
 YerothERPVentesTableView::YerothERPVentesTableView()
 :YerothTableView()
 {
@@ -56,7 +51,8 @@ YerothERPVentesTableView::~YerothERPVentesTableView()
 {
 }
 
-void YerothERPVentesTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel_in_out)
+void YerothERPVentesTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel_in_out,
+															  YerothWindowsCommons *aCallingWindows)
 {
 	_stdItemModel->_curSqlTableModel = &tableModel_in_out;
 
@@ -100,15 +96,18 @@ void YerothERPVentesTableView::lister_les_elements_du_tableau(YerothSqlTableMode
 
                 case QVariant::Int:
 
-                	if (YerothERPVentesTableView::TYPE_DE_VENTE_COLUMN == k)
-                	{
-                		tmpQvString = YerothUtils::_typedeventeToUserViewString.value(qv.toInt());
-                		anItem = new YerothQStandardItem(tmpQvString);
-                	}
-                	else
-                	{
-                		anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
-                	}
+					if (0 != aCallingWindows)
+					{
+						if (YEROTH_DATABASE_TABLE_COLUMN_INDEX((*aCallingWindows), YerothDatabaseTableColumn::TYPE_DE_VENTE) == k)
+						{
+	                		tmpQvString = YerothUtils::_typedeventeToUserViewString.value(qv.toInt());
+	                		anItem = new YerothQStandardItem(tmpQvString);
+						}
+						else
+						{
+							anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
+						}
+					}
 
                     _stdItemModel->setItem(i, k, anItem);
                     break;
@@ -137,14 +136,13 @@ void YerothERPVentesTableView::lister_les_elements_du_tableau(YerothSqlTableMode
                 	tmpQvString.clear();
                 	tmpQvString.append(qv.toString());
 
-                	if (YerothERPVentesTableView::REFERENCE_COLUMN != k)
-                	{
-                		if (tmpQvString.length() > YerothERPConfig::max_string_display_length)
-                		{
-                			tmpQvString.truncate(YerothERPConfig::max_string_display_length);
-                			tmpQvString.append(".");
-                		}
-                	}
+					if (0 != aCallingWindows)
+					{
+						if (YEROTH_DATABASE_TABLE_COLUMN_INDEX((*aCallingWindows), YerothDatabaseTableColumn::REFERENCE) != k)
+						{
+							YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(tmpQvString);
+						}
+					}
 
                 	anItem = new YerothQStandardItem(tmpQvString);
                     _stdItemModel->setItem(i, k, anItem);

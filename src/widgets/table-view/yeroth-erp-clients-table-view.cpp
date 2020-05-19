@@ -33,9 +33,6 @@
 #include <QtSql/QSqlError>
 
 
-const int YerothERPClientsTableView::REFERENCE_CLIENT_COLUMN = 1;
-
-
 YerothERPClientsTableView::YerothERPClientsTableView()
 :YerothTableView()
 {
@@ -48,11 +45,14 @@ YerothERPClientsTableView::YerothERPClientsTableView(QWidget * parent)
 	_stdItemModel->_curTableView = this;
 }
 
+
 YerothERPClientsTableView::~YerothERPClientsTableView()
 {
 }
 
-void YerothERPClientsTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel)
+
+void YerothERPClientsTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel,
+															   YerothWindowsCommons *aCallingWindows)
 {
 	_stdItemModel->_curSqlTableModel = &tableModel;
 
@@ -129,12 +129,12 @@ void YerothERPClientsTableView::lister_les_elements_du_tableau(YerothSqlTableMod
 					tmpQvString.clear();
 					tmpQvString.append(qv.toString());
 
-					if (YerothERPClientsTableView::REFERENCE_CLIENT_COLUMN != k)
+					if (0 != aCallingWindows)
 					{
-						if (tmpQvString.length() > YerothERPConfig::max_string_display_length)
+						if (YEROTH_DATABASE_TABLE_COLUMN_INDEX((*aCallingWindows),
+								YerothDatabaseTableColumn::REFERENCE_CLIENT) != k)
 						{
-							tmpQvString.truncate(YerothERPConfig::max_string_display_length);
-							tmpQvString.append(".");
+							YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(tmpQvString);
 						}
 					}
 

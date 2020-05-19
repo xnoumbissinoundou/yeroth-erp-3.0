@@ -35,9 +35,6 @@
 #include <QtSql/QSqlError>
 
 
-const int YerothERPTransactionsTableView::REFERENCE_COLUMN(8);
-
-
 YerothERPTransactionsTableView::YerothERPTransactionsTableView()
 :YerothTableView()
 {
@@ -57,7 +54,8 @@ YerothERPTransactionsTableView::~YerothERPTransactionsTableView()
 }
 
 
-void YerothERPTransactionsTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel)
+void YerothERPTransactionsTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel,
+																	YerothWindowsCommons *aCallingWindows)
 {
 	_stdItemModel->_curSqlTableModel = &tableModel;
 
@@ -127,15 +125,19 @@ void YerothERPTransactionsTableView::lister_les_elements_du_tableau(YerothSqlTab
                 case QVariant::String:
                 	tmpQvString.clear();
                 	tmpQvString.append(qv.toString());
-                	if (YerothTableView::REFERENCE_COLUMN != k)
-                	{
-                		if (tmpQvString.length() > YerothERPConfig::max_string_display_length)
-                		{
-                			tmpQvString.truncate(YerothERPConfig::max_string_display_length);
-                			tmpQvString.append(".");
-                		}
-                	}
-                    anItem = new YerothQStandardItem(tmpQvString);
+
+					if (0 != aCallingWindows)
+					{
+						qDebug() << "++ idx: " <<
+								QString::number(YEROTH_DATABASE_TABLE_COLUMN_INDEX((*aCallingWindows), YerothDatabaseTableColumn::REFERENCE));
+
+						if (YEROTH_DATABASE_TABLE_COLUMN_INDEX((*aCallingWindows), YerothDatabaseTableColumn::REFERENCE) != k)
+						{
+							YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(tmpQvString);
+						}
+					}
+
+                	anItem = new YerothQStandardItem(tmpQvString);
                     _stdItemModel->setItem(i, k, anItem);
                     break;
 

@@ -35,19 +35,13 @@
 #include <QtSql/QSqlError>
 
 
-const int YerothERPMarchandisesTableView::REFERENCE_COLUMN = 1;
-
-const int YerothERPMarchandisesTableView::VALEUR_DINVENTAIRE_COLUMN = 6;
-
-const int YerothERPMarchandisesTableView::QUANTITE_TOTAL_COLUMN = 5;
-
-
 YerothERPMarchandisesTableView::YerothERPMarchandisesTableView()
 :YerothTableView(),
  _allWindows(YerothUtils::getAllWindows())
 {
 	_stdItemModel->_curTableView = this;
 }
+
 
 YerothERPMarchandisesTableView::YerothERPMarchandisesTableView(QWidget * parent)
 :YerothTableView(parent),
@@ -57,7 +51,8 @@ YerothERPMarchandisesTableView::YerothERPMarchandisesTableView(QWidget * parent)
 }
 
 
-void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel)
+void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel,
+																	YerothWindowsCommons *aCallingWindows)
 {
 	_stdItemModel->_curSqlTableModel = &tableModel;
 
@@ -162,14 +157,15 @@ void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTab
                 case QVariant::String:
                 	tmpQvString.clear();
                 	tmpQvString.append(qv.toString());
-                	if (YerothERPMarchandisesTableView::REFERENCE_COLUMN != k)
-                	{
-                		if (tmpQvString.length() > YerothERPConfig::max_string_display_length)
-                		{
-                			tmpQvString.truncate(YerothERPConfig::max_string_display_length);
-                			tmpQvString.append(".");
-                		}
-                	}
+
+					if (0 != aCallingWindows)
+					{
+						if (YEROTH_DATABASE_TABLE_COLUMN_INDEX((*aCallingWindows), YerothDatabaseTableColumn::REFERENCE) != k)
+						{
+							YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(tmpQvString);
+						}
+					}
+
                     anItem = new YerothQStandardItem(tmpQvString);
                     _stdItemModel->setItem(i, k, anItem);
                     break;
@@ -221,27 +217,29 @@ void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTab
                 		anItem->setForeground(YerothUtils::YEROTH_RED_COLOR);
                 	}
 
-                	if (YerothERPMarchandisesTableView::QUANTITE_TOTAL_COLUMN == k)
-                	{
-                		double qteTotalEnStock =
-                				YerothMarchandisesWindow::getQuantiteTotaleEnStock(categorieStr,
-                						designationStr);
+					if (0 != aCallingWindows)
+					{
+						if (YEROTH_DATABASE_TABLE_COLUMN_INDEX((*aCallingWindows), YerothDatabaseTableColumn::QUANTITE_TOTALE) == k)
+						{
+	                		double qteTotalEnStock =
+	                				YerothMarchandisesWindow::getQuantiteTotaleEnStock(categorieStr,
+	                						designationStr);
 
-                		_allWindows->_marchandisesWindow->_qteTotaleDarticlesEnStock += qteTotalEnStock;
+	                		_allWindows->_marchandisesWindow->_qteTotaleDarticlesEnStock += qteTotalEnStock;
 
-                		anItem->setText(GET_DOUBLE_STRING(qteTotalEnStock));
-                	}
-                	else if (YerothERPMarchandisesTableView::VALEUR_DINVENTAIRE_COLUMN == k)
-                	{
-                		double valeurDinventaireEnStock =
-                				YerothMarchandisesWindow::getValeurTotaleDinventaireEnStock(categorieStr,
-                						designationStr);
+	                		anItem->setText(GET_DOUBLE_STRING(qteTotalEnStock));
+						}
+	                	else if (YEROTH_DATABASE_TABLE_COLUMN_INDEX((*aCallingWindows), YerothDatabaseTableColumn::VALEUR_DIVENTAIRE) == k)
+	                	{
+	                		double valeurDinventaireEnStock =
+	                				YerothMarchandisesWindow::getValeurTotaleDinventaireEnStock(categorieStr,
+	                						designationStr);
 
-                		_allWindows->_marchandisesWindow->_valeurTheoriqueDinventaire += valeurDinventaireEnStock;
+	                		_allWindows->_marchandisesWindow->_valeurTheoriqueDinventaire += valeurDinventaireEnStock;
 
-                		anItem->setText(GET_DOUBLE_STRING(valeurDinventaireEnStock));
-                	}
-
+	                		anItem->setText(GET_DOUBLE_STRING(valeurDinventaireEnStock));
+	                	}
+					}
                 } //if (0 != item)
             }
         }

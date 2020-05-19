@@ -40,14 +40,8 @@ public:
 	{
 	}
 
-	virtual void lister_les_elements_du_tableau(YerothSqlTableModel &tableModel_in_out);
-
-
-	static const int REFERENCE_COLUMN;
-
-	static const int VALEUR_DINVENTAIRE_COLUMN;
-
-    static const int QUANTITE_TOTAL_COLUMN;
+	virtual void lister_les_elements_du_tableau(YerothSqlTableModel &tableModel_in_out,
+												YerothWindowsCommons *aCallingWindows);
 
 private:
 

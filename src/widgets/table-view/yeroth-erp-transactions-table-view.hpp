@@ -7,6 +7,7 @@
 #ifndef SRC_YEROTH_TRANSACTIONS_TABLE_VIEW_HPP_
 #define SRC_YEROTH_TRANSACTIONS_TABLE_VIEW_HPP_
 
+
 #include "src/include/yeroth-erp-3-0-software.text-configuration.hpp"
 
 #include "src/widgets/yeroth-erp-qstandard-item-model.hpp"
@@ -34,10 +35,8 @@ public:
 
 	virtual ~YerothERPTransactionsTableView();
 
-	void lister_les_elements_du_tableau(YerothSqlTableModel &tableModel);
-
-
-	static const int REFERENCE_COLUMN;
+	void lister_les_elements_du_tableau(YerothSqlTableModel &tableModel,
+										YerothWindowsCommons *aCallingWindows);
 };
 
 

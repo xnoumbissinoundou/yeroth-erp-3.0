@@ -34,12 +34,8 @@ public:
 
 	virtual ~YerothERPVentesTableView();
 
-	virtual void lister_les_elements_du_tableau(YerothSqlTableModel &tableModel_in_out);
-
-
-	static const int REFERENCE_COLUMN;
-
-	static const int TYPE_DE_VENTE_COLUMN;
+	virtual void lister_les_elements_du_tableau(YerothSqlTableModel &tableModel_in_out,
+												YerothWindowsCommons *aCallingWindows);
 };
 
 

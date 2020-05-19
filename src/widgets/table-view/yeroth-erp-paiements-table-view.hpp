@@ -35,9 +35,6 @@ public:
 	virtual ~YerothERPPaiementsTableView();
 
 	virtual void lister_les_elements_du_tableau(YerothSqlTableModel &tableModel_in_out);
-
-
-	static const int ID_COLUMN;
 };
 
 

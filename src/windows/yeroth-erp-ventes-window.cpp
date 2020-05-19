@@ -1938,7 +1938,7 @@ void YerothVentesWindow::handleCurrentTabChanged(int index)
 
 void YerothVentesWindow::lister_les_elements_du_tableau(YerothSqlTableModel &stocksVenduTableModel)
 {
-    tableView_ventes->lister_les_elements_du_tableau(stocksVenduTableModel);
+    tableView_ventes->lister_les_elements_du_tableau(stocksVenduTableModel, this);
 
     tableView_show_or_hide_columns(*tableView_ventes);
 
