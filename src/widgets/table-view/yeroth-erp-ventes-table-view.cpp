@@ -35,9 +35,9 @@
 #include <QtSql/QSqlError>
 
 
-int YerothERPVentesTableView::reference_column_idx;
+int YerothERPVentesTableView::reference_column_idx(0);
 
-int YerothERPVentesTableView::typedevente_column_idx;
+int YerothERPVentesTableView::typedevente_column_idx(0);
 
 
 YerothERPVentesTableView::YerothERPVentesTableView()

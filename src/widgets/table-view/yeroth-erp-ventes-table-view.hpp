@@ -40,7 +40,6 @@ public:
 	static int reference_column_idx;
 
 	static int typedevente_column_idx;
-
 };
 
 

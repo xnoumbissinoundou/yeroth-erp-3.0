@@ -35,9 +35,9 @@
 #include <QtSql/QSqlError>
 
 
-int YerothERPAchatsTableView::reference_column_idx;
+int YerothERPAchatsTableView::reference_column_idx(0);
 
-int YerothERPAchatsTableView::reference_recu_dachat_column_idx;
+int YerothERPAchatsTableView::reference_recu_dachat_column_idx(0);
 
 
 YerothERPAchatsTableView::YerothERPAchatsTableView()
