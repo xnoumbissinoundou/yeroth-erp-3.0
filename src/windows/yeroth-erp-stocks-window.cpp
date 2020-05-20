@@ -101,7 +101,7 @@ YerothStocksWindow::YerothStocksWindow()
 
     _pushButton_stocks_filtrer_font = new QFont(pushButton_stocks_filtrer->font());
 
-    tableView_stocks->setTableName(&YerothERPWindows::MARCHANDISES);
+    tableView_stocks->setTableName(&YerothERPWindows::STOCKS);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, false);
