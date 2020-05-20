@@ -92,7 +92,7 @@ public:
 		isStockItemInProductList(const QString &productCategorie,
 								 const QString &productName);
 
-	static QString YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(QString aString_IN);
+	static QString YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(const QString &aString_IN);
 
     inline static double getMargeBeneficiaire(double prix_vente,
     								   	   	  double prix_dachat,

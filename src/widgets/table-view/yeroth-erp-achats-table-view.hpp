@@ -36,6 +36,11 @@ public:
 
 	virtual void lister_les_elements_du_tableau(YerothSqlTableModel &achatSqlTableModel,
 												YerothWindowsCommons *aCallingWindows);
+
+
+	static int reference_column_idx;
+
+	static int reference_recu_dachat_column_idx;
 };
 
 

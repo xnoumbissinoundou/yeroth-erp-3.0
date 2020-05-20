@@ -35,6 +35,11 @@
 #include <QtSql/QSqlError>
 
 
+int YerothERPAchatsTableView::reference_column_idx;
+
+int YerothERPAchatsTableView::reference_recu_dachat_column_idx;
+
+
 YerothERPAchatsTableView::YerothERPAchatsTableView()
 :YerothTableView()
 {
@@ -129,16 +134,16 @@ void YerothERPAchatsTableView::lister_les_elements_du_tableau(YerothSqlTableMode
 					tmpQvString.clear();
 					tmpQvString.append(qv.toString());
 
-					if (0 != aCallingWindows)
+					if (YerothERPAchatsTableView::reference_column_idx != k 		||
+						YerothERPAchatsTableView::reference_recu_dachat_column_idx != k)
 					{
-						if (YEROTH_DATABASE_TABLE_COLUMN_INDEX((*aCallingWindows), YerothDatabaseTableColumn::REFERENCE) != k 		||
-							YEROTH_DATABASE_TABLE_COLUMN_INDEX((*aCallingWindows), YerothDatabaseTableColumn::REFERENCE_RECU_DACHAT) != k)
-						{
-							YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(tmpQvString);
-						}
+						anItem = new YerothQStandardItem(YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(tmpQvString));
+					}
+					else
+					{
+						anItem = new YerothQStandardItem(tmpQvString);
 					}
 
-					anItem = new YerothQStandardItem(tmpQvString);
 					_stdItemModel->setItem(i, k, anItem);
 					break;
 

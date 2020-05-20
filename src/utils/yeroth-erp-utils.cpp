@@ -563,7 +563,7 @@ enum service_stock_already_exist_type
 }
 
 
-QString YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(QString aString_IN)
+QString YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(const QString &aString_IN)
 {
 	QString aString_OUT(aString_IN);
 

@@ -35,6 +35,11 @@
 #include <QtSql/QSqlError>
 
 
+int YerothERPVentesTableView::reference_column_idx;
+
+int YerothERPVentesTableView::typedevente_column_idx;
+
+
 YerothERPVentesTableView::YerothERPVentesTableView()
 :YerothTableView()
 {
@@ -96,17 +101,14 @@ void YerothERPVentesTableView::lister_les_elements_du_tableau(YerothSqlTableMode
 
                 case QVariant::Int:
 
-					if (0 != aCallingWindows)
+					if (YerothERPVentesTableView::typedevente_column_idx != k)
 					{
-						if (YEROTH_DATABASE_TABLE_COLUMN_INDEX((*aCallingWindows), YerothDatabaseTableColumn::TYPE_DE_VENTE) == k)
-						{
-	                		tmpQvString = YerothUtils::_typedeventeToUserViewString.value(qv.toInt());
-	                		anItem = new YerothQStandardItem(tmpQvString);
-						}
-						else
-						{
-							anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
-						}
+                		tmpQvString = YerothUtils::_typedeventeToUserViewString.value(qv.toInt());
+                		anItem = new YerothQStandardItem(tmpQvString);
+					}
+					else
+					{
+						anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
 					}
 
                     _stdItemModel->setItem(i, k, anItem);
@@ -136,15 +138,15 @@ void YerothERPVentesTableView::lister_les_elements_du_tableau(YerothSqlTableMode
                 	tmpQvString.clear();
                 	tmpQvString.append(qv.toString());
 
-					if (0 != aCallingWindows)
+					if (YerothERPVentesTableView::reference_column_idx != k)
 					{
-						if (YEROTH_DATABASE_TABLE_COLUMN_INDEX((*aCallingWindows), YerothDatabaseTableColumn::REFERENCE) != k)
-						{
-							YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(tmpQvString);
-						}
+						anItem = new YerothQStandardItem(YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(tmpQvString));
+					}
+					else
+					{
+						anItem = new YerothQStandardItem(tmpQvString);
 					}
 
-                	anItem = new YerothQStandardItem(tmpQvString);
                     _stdItemModel->setItem(i, k, anItem);
                     break;
 
