@@ -117,8 +117,6 @@ public:
 
     static const int DATE_ENTREE_COLUMN;
 
-    static const int DATE_VENTE_COLUMN;
-
     static const int DATE_PREEMPTION_COLUMN;
 
     static const int DESIGNATION_COLUMN;

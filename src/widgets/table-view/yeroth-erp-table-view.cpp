@@ -43,8 +43,6 @@ const int YerothTableView::DATE_ENTREE_COLUMN = 12;
 
 const int YerothTableView::DATE_PREEMPTION_COLUMN = 13;
 
-const int YerothTableView::DATE_VENTE_COLUMN = 4;
-
 const int YerothTableView::DESIGNATION_COLUMN = 2;
 
 const int YerothTableView::QUANTITE_TOTAL_COLUMN = 8;
