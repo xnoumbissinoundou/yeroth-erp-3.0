@@ -75,12 +75,12 @@ void YerothLogger::renewCurrentYEROTHERPUser()
 		_allWindows = YerothUtils::getAllWindows();
 	}
 
-	if (0 != _allWindows)
+	if (0 != _allWindows && !_allWindows->CURRENTLY_CHANGING_USER)
 	{
 		_curYEROTHERPUser = _allWindows->getUser();
 	}
 
-	if (0 != _curYEROTHERPUser)
+	if (0 != _curYEROTHERPUser && !_allWindows->CURRENTLY_CHANGING_USER)
 	{
 		_curUserUtilisateur = _curYEROTHERPUser->nom_utilisateur();
 

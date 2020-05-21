@@ -47,6 +47,9 @@
 #include <QtWidgets/QDesktopWidget>
 
 
+bool YerothERPWindows::CURRENTLY_CHANGING_USER(false);
+
+
 const QString YerothERPWindows::COMPTES_BANCAIRES				("comptes_bancaires");
 
 const QString YerothERPWindows::ENTREPRISE_INFO					("entreprise_info");

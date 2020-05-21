@@ -343,6 +343,8 @@ public:
 
 	void hideAllWindows();
 
+	static bool CURRENTLY_CHANGING_USER;
+
 	static const QString COMPTES_BANCAIRES;
 	static const QString ENTREPRISE_INFO;
 	static const QString PAIEMENTS;

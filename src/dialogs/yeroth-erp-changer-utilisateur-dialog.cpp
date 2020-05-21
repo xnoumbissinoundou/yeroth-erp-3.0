@@ -138,7 +138,11 @@ void YerothPOSChangerUtilisateurDialog::valider()
             //Check if the user has new alerts.
             checkCourriersAlertes();
 
+            _allWindows->CURRENTLY_CHANGING_USER = true;
+
             _allWindows->_mainWindow->cleanupAllOtherWindows();
+
+            _allWindows->CURRENTLY_CHANGING_USER = false;
 
             _allWindows->setUser(user);
 
@@ -250,7 +254,9 @@ YerothPOSUser *YerothPOSChangerUtilisateurDialog::createUser(QSqlRecord & userRe
 
     	user->set_titre(YerothUtils::_titreToUserViewString.value(GET_SQL_RECORD_DATA(userRecord, YerothDatabaseTableColumn::TITRE).toInt()));
 
-    	user->set_nom_complet(user->prenom().append(" ").append(user->nom()));
+    	user->set_nom_complet(QString("%1 %2")
+    							.arg(user->prenom(),
+    								 user->nom()));
     }
 
     return user;
