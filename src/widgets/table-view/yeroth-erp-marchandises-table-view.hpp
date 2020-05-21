@@ -40,8 +40,7 @@ public:
 	{
 	}
 
-	virtual void lister_les_elements_du_tableau(YerothSqlTableModel &tableModel_in_out,
-												YerothWindowsCommons *aCallingWindows);
+	virtual void lister_les_elements_du_tableau(YerothSqlTableModel &tableModel);
 
 private:
 

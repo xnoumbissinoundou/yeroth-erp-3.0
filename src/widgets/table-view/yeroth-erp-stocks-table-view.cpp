@@ -35,24 +35,7 @@
 #include <QtSql/QSqlError>
 
 
-YerothERPStocksTableView::YerothERPStocksTableView()
-:YerothTableView()
-{
-	_stdItemModel->_curTableView = this;
-}
-
-YerothERPStocksTableView::YerothERPStocksTableView(QWidget * parent)
-:YerothTableView(parent)
-{
-	_stdItemModel->_curTableView = this;
-}
-
-YerothERPStocksTableView::~YerothERPStocksTableView()
-{
-}
-
-void YerothERPStocksTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel,
-															  YerothWindowsCommons *aCallingWindows)
+void YerothERPStocksTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel)
 {
 	_stdItemModel->_curSqlTableModel = &tableModel;
 
@@ -66,10 +49,19 @@ void YerothERPStocksTableView::lister_les_elements_du_tableau(YerothSqlTableMode
     _stdItemModel->setRowCount(rows);
     _stdItemModel->setColumnCount(columns);
 
-    YerothUtils::createTableModelHeaders(tableModel, *_stdItemModel, *_tableModelHeaders);
+    QStringList	tableModelRawHeaders;
+
+    YerothUtils::createTableModelHeaders(tableModel,
+    									 *_stdItemModel,
+										 *_tableModelHeaders,
+										 tableModelRawHeaders);
+
+    QString curTableModelRawHdr;
 
 	QString tmpQvString;
+
     QStandardItem *anItem = 0;
+
     QVariant qv;
 
     if(s)
@@ -114,17 +106,16 @@ void YerothERPStocksTableView::lister_les_elements_du_tableau(YerothSqlTableMode
                 case QVariant::Double:
                     //quantite_totale (c'est la quantite restante en stock)
 
-					if (0 != aCallingWindows)
-					{
-						if (YEROTH_DATABASE_TABLE_COLUMN_INDEX((*aCallingWindows), YerothDatabaseTableColumn::QUANTITE_TOTALE) == k)
-						{
-							anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toUInt()));
-						}
-						else
-						{
-							anItem = new YerothQStandardItem(GET_DOUBLE_STRING(qv.toDouble()));
-						}
-					}
+                	curTableModelRawHdr = tableModelRawHeaders.at(k);
+
+                	if (YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::QUANTITE_TOTALE))
+                	{
+                		anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toUInt()));
+                	}
+                	else
+                	{
+                		anItem = new YerothQStandardItem(GET_DOUBLE_STRING(qv.toDouble()));
+                	}
 
                     _stdItemModel->setItem(i, k, anItem);
                     break;
@@ -148,16 +139,18 @@ void YerothERPStocksTableView::lister_les_elements_du_tableau(YerothSqlTableMode
                 	tmpQvString.clear();
                 	tmpQvString.append(qv.toString());
 
-					if (0 != aCallingWindows)
-					{
-						if (YEROTH_DATABASE_TABLE_COLUMN_INDEX((*aCallingWindows), YerothDatabaseTableColumn::REFERENCE) != k 			 ||
-							YEROTH_DATABASE_TABLE_COLUMN_INDEX((*aCallingWindows), YerothDatabaseTableColumn::REFERENCE_RECU_DACHAT) != k	)
-						{
-							YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(tmpQvString);
-						}
-					}
+                	curTableModelRawHdr = tableModelRawHeaders.at(k);
 
-                    anItem = new YerothQStandardItem(tmpQvString);
+                	if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::REFERENCE) &&
+                		!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::REFERENCE_RECU_DACHAT))
+                	{
+                		anItem = new YerothQStandardItem(YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(tmpQvString));
+                	}
+                	else
+                	{
+                		anItem = new YerothQStandardItem(tmpQvString);
+                	}
+
                     _stdItemModel->setItem(i, k, anItem);
                     break;
 
@@ -185,20 +178,19 @@ void YerothERPStocksTableView::lister_les_elements_du_tableau(YerothSqlTableMode
                 {
                     anItem->setForeground(Qt::white);
 
-					if (0 != aCallingWindows)
-					{
-						if (YEROTH_DATABASE_TABLE_COLUMN_INDEX((*aCallingWindows), YerothDatabaseTableColumn::QUANTITE_TOTALE) == k &&
-								quantite_totale.toDouble() <= stock_dalerte.toDouble())
-						{
-							anItem->setForeground(YerothUtils::YEROTH_RED_COLOR);
-						}
+                	curTableModelRawHdr = tableModelRawHeaders.at(k);
 
-						if (YEROTH_DATABASE_TABLE_COLUMN_INDEX((*aCallingWindows), YerothDatabaseTableColumn::DATE_PEREMPTION) == k &&
-								date_premption.toDate() <= GET_CURRENT_DATE)
-						{
-							anItem->setForeground(YerothUtils::YEROTH_RED_COLOR);
-						}
-					}
+                	if (YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::QUANTITE_TOTALE) &&
+                			quantite_totale.toDouble() <= stock_dalerte.toDouble())
+                	{
+                		anItem->setForeground(YerothUtils::YEROTH_RED_COLOR);
+                	}
+
+                	if (YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::DATE_PEREMPTION) &&
+                			date_premption.toDate() <= GET_CURRENT_DATE)
+                	{
+                		anItem->setForeground(YerothUtils::YEROTH_RED_COLOR);
+                	}
                 }
             }
         }

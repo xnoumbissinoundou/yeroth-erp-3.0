@@ -35,27 +35,7 @@
 #include <QtSql/QSqlError>
 
 
-YerothERPTransactionsTableView::YerothERPTransactionsTableView()
-:YerothTableView()
-{
-	_stdItemModel->_curTableView = this;
-}
-
-
-YerothERPTransactionsTableView::YerothERPTransactionsTableView(QWidget * parent)
-:YerothTableView(parent)
-{
-	_stdItemModel->_curTableView = this;
-}
-
-
-YerothERPTransactionsTableView::~YerothERPTransactionsTableView()
-{
-}
-
-
-void YerothERPTransactionsTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel,
-																	YerothWindowsCommons *aCallingWindows)
+void YerothERPTransactionsTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel)
 {
 	_stdItemModel->_curSqlTableModel = &tableModel;
 
@@ -69,10 +49,19 @@ void YerothERPTransactionsTableView::lister_les_elements_du_tableau(YerothSqlTab
     _stdItemModel->setRowCount(rows);
     _stdItemModel->setColumnCount(columns);
 
-    YerothUtils::createTableModelHeaders(tableModel, *_stdItemModel, *_tableModelHeaders);
+    QStringList	tableModelRawHeaders;
+
+    YerothUtils::createTableModelHeaders(tableModel,
+    									 *_stdItemModel,
+										 *_tableModelHeaders,
+										 tableModelRawHeaders);
+
+    QString curTableModelRawHdr;
 
     QString tmpQvString;
+
     QStandardItem *anItem = 0;
+
     QVariant qv;
 
     if(s)
@@ -126,18 +115,17 @@ void YerothERPTransactionsTableView::lister_les_elements_du_tableau(YerothSqlTab
                 	tmpQvString.clear();
                 	tmpQvString.append(qv.toString());
 
-					if (0 != aCallingWindows)
-					{
-						qDebug() << "++ idx: " <<
-								QString::number(YEROTH_DATABASE_TABLE_COLUMN_INDEX((*aCallingWindows), YerothDatabaseTableColumn::REFERENCE));
+                	curTableModelRawHdr = tableModelRawHeaders.at(k);
 
-						if (YEROTH_DATABASE_TABLE_COLUMN_INDEX((*aCallingWindows), YerothDatabaseTableColumn::REFERENCE) != k)
-						{
-							YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(tmpQvString);
-						}
-					}
+                	if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::REFERENCE))
+                	{
+                		anItem = new YerothQStandardItem(YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(tmpQvString));
+                	}
+                	else
+                	{
+                		anItem = new YerothQStandardItem(tmpQvString);
+                	}
 
-                	anItem = new YerothQStandardItem(tmpQvString);
                     _stdItemModel->setItem(i, k, anItem);
                     break;
 

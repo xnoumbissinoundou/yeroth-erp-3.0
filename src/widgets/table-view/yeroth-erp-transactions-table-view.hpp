@@ -29,14 +29,25 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-	YerothERPTransactionsTableView();
+	inline YerothERPTransactionsTableView()
+	:YerothTableView()
+	{
+		_stdItemModel->_curTableView = this;
+	}
 
-	YerothERPTransactionsTableView(QWidget * parent);
 
-	virtual ~YerothERPTransactionsTableView();
+	inline YerothERPTransactionsTableView(QWidget * parent)
+	:YerothTableView(parent)
+	{
+		_stdItemModel->_curTableView = this;
+	}
 
-	void lister_les_elements_du_tableau(YerothSqlTableModel &tableModel,
-										YerothWindowsCommons *aCallingWindows);
+
+	inline virtual ~YerothERPTransactionsTableView()
+	{
+	}
+
+	void lister_les_elements_du_tableau(YerothSqlTableModel &tableModel);
 };
 
 

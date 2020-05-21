@@ -28,19 +28,23 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-	YerothERPAchatsTableView();
+	inline YerothERPAchatsTableView()
+	:YerothTableView()
+	{
+		_stdItemModel->_curTableView = this;
+	}
 
-	YerothERPAchatsTableView(QWidget * parent);
+	inline YerothERPAchatsTableView(QWidget * parent)
+	:YerothTableView(parent)
+	{
+		_stdItemModel->_curTableView = this;
+	}
 
-	virtual ~YerothERPAchatsTableView();
+	inline virtual ~YerothERPAchatsTableView()
+	{
+	}
 
-	virtual void lister_les_elements_du_tableau(YerothSqlTableModel &achatSqlTableModel,
-												YerothWindowsCommons *aCallingWindows);
-
-
-	static int reference_column_idx;
-
-	static int reference_recu_dachat_column_idx;
+	virtual void lister_les_elements_du_tableau(YerothSqlTableModel &achatSqlTableModel);
 };
 
 

@@ -16,9 +16,11 @@
 
 #include <QtSql/QSqlTableModel>
 
+
 class YerothSqlTableModel;
 
 class YerothPOSQStandardItemModel;
+
 
 class YerothERPClientsTableView : public YerothTableView
 {
@@ -28,14 +30,24 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-	YerothERPClientsTableView();
+	inline YerothERPClientsTableView()
+	:YerothTableView()
+	{
+		_stdItemModel->_curTableView = this;
+	}
 
-	YerothERPClientsTableView(QWidget * parent);
+	inline YerothERPClientsTableView(QWidget * parent)
+	:YerothTableView(parent)
+	{
+		_stdItemModel->_curTableView = this;
+	}
 
-	virtual ~YerothERPClientsTableView();
 
-	virtual void lister_les_elements_du_tableau(YerothSqlTableModel &clientSqlTableModel,
-												YerothWindowsCommons *aCallingWindows);
+	inline virtual ~YerothERPClientsTableView()
+	{
+	}
+
+	virtual void lister_les_elements_du_tableau(YerothSqlTableModel &tableModel);
 };
 
 

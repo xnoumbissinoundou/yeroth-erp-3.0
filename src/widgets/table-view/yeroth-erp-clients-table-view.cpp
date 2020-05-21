@@ -33,26 +33,7 @@
 #include <QtSql/QSqlError>
 
 
-YerothERPClientsTableView::YerothERPClientsTableView()
-:YerothTableView()
-{
-	_stdItemModel->_curTableView = this;
-}
-
-YerothERPClientsTableView::YerothERPClientsTableView(QWidget * parent)
-:YerothTableView(parent)
-{
-	_stdItemModel->_curTableView = this;
-}
-
-
-YerothERPClientsTableView::~YerothERPClientsTableView()
-{
-}
-
-
-void YerothERPClientsTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel,
-															   YerothWindowsCommons *aCallingWindows)
+void YerothERPClientsTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel)
 {
 	_stdItemModel->_curSqlTableModel = &tableModel;
 
@@ -66,10 +47,19 @@ void YerothERPClientsTableView::lister_les_elements_du_tableau(YerothSqlTableMod
 	_stdItemModel->setRowCount(rows);
 	_stdItemModel->setColumnCount(columns);
 
-	YerothUtils::createTableModelHeaders(tableModel, *_stdItemModel, *_tableModelHeaders);
+	QStringList	tableModelRawHeaders;
+
+    YerothUtils::createTableModelHeaders(tableModel,
+    									 *_stdItemModel,
+										 *_tableModelHeaders,
+										 tableModelRawHeaders);
+
+    QString curTableModelRawHdr;
 
 	QString tmpQvString;
+
 	QStandardItem *anItem = 0;
+
 	QVariant qv;
 
 	if(s)
@@ -129,16 +119,17 @@ void YerothERPClientsTableView::lister_les_elements_du_tableau(YerothSqlTableMod
 					tmpQvString.clear();
 					tmpQvString.append(qv.toString());
 
-					if (0 != aCallingWindows)
-					{
-						if (YEROTH_DATABASE_TABLE_COLUMN_INDEX((*aCallingWindows),
-								YerothDatabaseTableColumn::REFERENCE_CLIENT) != k)
-						{
-							YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(tmpQvString);
-						}
-					}
+					curTableModelRawHdr = tableModelRawHeaders.at(k);
 
-					anItem = new YerothQStandardItem(tmpQvString);
+                	if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::REFERENCE_CLIENT))
+                	{
+                		anItem = new YerothQStandardItem(YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(tmpQvString));
+                	}
+                	else
+                	{
+                		anItem = new YerothQStandardItem(tmpQvString);
+                	}
+
 					_stdItemModel->setItem(i, k, anItem);
 					break;
 

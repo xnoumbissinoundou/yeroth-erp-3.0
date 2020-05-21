@@ -203,7 +203,7 @@ public:
 	static void createTableModelHeaders(QSqlTableModel 		&tableModel,
 			   	   	   	   	   	   	    QStandardItemModel 	&stdItemModel,
 			   	   	   	   	   	   	    QStringList			&tableModelHeaders,
-										QStringList			*tableModelRawHeaders_IN_OUT = 0);
+										QStringList			&tableModelRawHeaders_IN_OUT);
 
 	inline static QString toUtf8String(QString &str)
 	{

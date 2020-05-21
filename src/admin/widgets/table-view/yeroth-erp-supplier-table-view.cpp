@@ -33,22 +33,6 @@
 #include <QtSql/QSqlError>
 
 
-YerothERPSupplierTableView::YerothERPSupplierTableView()
-:YerothTableView()
-{
-	_stdItemModel->_curTableView = this;
-}
-
-YerothERPSupplierTableView::YerothERPSupplierTableView(QWidget * parent)
-:YerothTableView(parent)
-{
-	_stdItemModel->_curTableView = this;
-}
-
-YerothERPSupplierTableView::~YerothERPSupplierTableView()
-{
-}
-
 void YerothERPSupplierTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel)
 {
 	_stdItemModel->_curSqlTableModel = &tableModel;
@@ -63,7 +47,12 @@ void YerothERPSupplierTableView::lister_les_elements_du_tableau(YerothSqlTableMo
 	_stdItemModel->setRowCount(rows);
 	_stdItemModel->setColumnCount(columns);
 
-	YerothUtils::createTableModelHeaders(tableModel, *_stdItemModel, *_tableModelHeaders);
+	QStringList	tableModelRawHeaders;
+
+    YerothUtils::createTableModelHeaders(tableModel,
+    									 *_stdItemModel,
+										 *_tableModelHeaders,
+										 tableModelRawHeaders);
 
 	QStandardItem *anItem = 0;
 	QVariant qv;

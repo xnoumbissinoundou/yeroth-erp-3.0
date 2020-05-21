@@ -978,7 +978,7 @@ void YerothMarchandisesWindow::reinitialiser_recherche()
 
 void YerothMarchandisesWindow::afficherMarchandises(YerothSqlTableModel &aYerothSqlTableModel)
 {
-    tableView_marchandises->lister_les_elements_du_tableau(aYerothSqlTableModel, this);
+    tableView_marchandises->lister_les_elements_du_tableau(aYerothSqlTableModel);
 
     tableView_show_or_hide_columns(*tableView_marchandises);
 

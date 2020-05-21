@@ -974,6 +974,7 @@ void YerothUtils::selectionner_image(QWidget *parent, QLabel &label_image)
     }
 }
 
+
 QString YerothUtils::get_text_sql_escaped(const QVariant &qv)
 {
     QString retStr;
@@ -1022,6 +1023,7 @@ QString YerothUtils::get_text_sql_escaped(const QVariant &qv)
 
     return YerothUtils::prepareSqlStr(retStr);
 }
+
 
 QString YerothUtils::get_text(const QVariant &qv)
 {
@@ -1075,6 +1077,7 @@ QString YerothUtils::get_text(const QVariant &qv)
     return retStr;
 }
 
+
 void YerothUtils::getCenterPosition(unsigned desktopWidth,
                                     unsigned desktopHeight,
                                     const QWidget &aWidget,
@@ -1085,6 +1088,7 @@ void YerothUtils::getCenterPosition(unsigned desktopWidth,
     result.setX(x);
     result.setY(y);
 }
+
 
 QString YerothUtils::boolToString(bool b)
 {
@@ -1100,15 +1104,13 @@ QString YerothUtils::boolToString(bool b)
     return result;
 }
 
+
 void YerothUtils::createTableModelHeaders(QSqlTableModel 		&tableModel,
         								  QStandardItemModel 	&stdItemModel,
 										  QStringList 			&tableModelHeaders,
-										  QStringList			*tableModelRawHeaders_IN_OUT /* = 0 */)
+										  QStringList			&tableModelRawHeaders_IN_OUT)
 {
-    if (0 != tableModelRawHeaders_IN_OUT)
-    {
-    	tableModelRawHeaders_IN_OUT->clear();
-    }
+	tableModelRawHeaders_IN_OUT.clear();
 
     tableModelHeaders.clear();
 
@@ -1117,17 +1119,16 @@ void YerothUtils::createTableModelHeaders(QSqlTableModel 		&tableModel,
     {
         QString strHdr(tableModel.record(0).fieldName(k));
 
-        if (0 != tableModelRawHeaders_IN_OUT)
-        {
-        	tableModelRawHeaders_IN_OUT->append(strHdr);
-        }
+        tableModelRawHeaders_IN_OUT.append(strHdr);
 
         strHdr = YerothDatabaseTableColumn::_tableColumnToUserViewString.value(strHdr);
 
         tableModelHeaders.append(strHdr);
+
         stdItemModel.setHeaderData(k, Qt::Horizontal, strHdr);
     }
 }
+
 
 QString YerothUtils::generateSqlLike(QString sqlTableColumn,
                                     QString searchStr)

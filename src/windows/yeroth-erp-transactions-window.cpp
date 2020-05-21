@@ -813,7 +813,7 @@ void YerothTransactionsWindow::lister_les_elements_du_tableau(QString aSearchFil
 
     //qDebug() << "++ lister_les_elements_du_tableau, aSearchFilter: " << _curTransactionsTableModel->filter();
 
-    tableView_sorties_articles->lister_les_elements_du_tableau(*_curTransactionsTableModel, this);
+    tableView_sorties_articles->lister_les_elements_du_tableau(*_curTransactionsTableModel);
 
 
     if (SUJET_ACTION_SORTIES_STOCKS == tabWidget_transactions->currentIndex())
@@ -823,7 +823,7 @@ void YerothTransactionsWindow::lister_les_elements_du_tableau(QString aSearchFil
         	_visibleDBFieldColumnStrList.removeAll(YerothDatabaseTableColumn::LOCALISATION_ENTREE);
         }
 
-        tableView_sorties_articles->lister_les_elements_du_tableau(*_curTransactionsTableModel, this);
+        tableView_sorties_articles->lister_les_elements_du_tableau(*_curTransactionsTableModel);
 
         tableView_show_or_hide_columns(*tableView_sorties_articles);
     }
@@ -834,7 +834,7 @@ void YerothTransactionsWindow::lister_les_elements_du_tableau(QString aSearchFil
         	_visibleDBFieldColumnStrList.append(YerothDatabaseTableColumn::LOCALISATION_ENTREE);
         }
 
-        tableView_transferts_articles->lister_les_elements_du_tableau(*_curTransactionsTableModel, this);
+        tableView_transferts_articles->lister_les_elements_du_tableau(*_curTransactionsTableModel);
 
         tableView_show_or_hide_columns(*tableView_transferts_articles);
     }

@@ -1132,7 +1132,7 @@ void YerothStocksWindow::afficherStocks(YerothSqlTableModel & sqlTableModel,
     else			//YerothConfig::STRATEGIE_VENTE_SORTIE_ALL
     {
     	tableView_stocks->setSortingEnabled(true);
-    	tableView_stocks->lister_les_elements_du_tableau(*_curStocksTableModel, this);
+    	tableView_stocks->lister_les_elements_du_tableau(*_curStocksTableModel);
     }
 
     tableView_show_or_hide_columns(*tableView_stocks);

@@ -79,12 +79,6 @@ YerothAchatsWindow::YerothAchatsWindow()
 
     setupSelectDBFields(_allWindows->ACHATS);
 
-    YerothERPAchatsTableView::reference_column_idx =
-    		getDBTableFieldColumnIndex(YerothDatabaseTableColumn::REFERENCE);
-
-    YerothERPAchatsTableView::reference_recu_dachat_column_idx =
-    		getDBTableFieldColumnIndex(YerothDatabaseTableColumn::REFERENCE_RECU_DACHAT);
-
     _lineEditsToANDContentForSearch.insert(&lineEdit_achats_terme_recherche,
     		YerothUtils::EMPTY_STRING);
 
@@ -677,7 +671,7 @@ void YerothAchatsWindow::reinitialiser_recherche()
 
 void YerothAchatsWindow::afficherAchats(YerothSqlTableModel &achatSqlTableModel)
 {
-    tableView_achats->lister_les_elements_du_tableau(achatSqlTableModel, this);
+    tableView_achats->lister_les_elements_du_tableau(achatSqlTableModel);
 
     tableView_show_or_hide_columns(*tableView_achats);
 

@@ -28,13 +28,23 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-	YerothERPPaiementsTableView();
+	inline YerothERPPaiementsTableView()
+	:YerothTableView()
+	{
+		_stdItemModel->_curTableView = this;
+	}
 
-	YerothERPPaiementsTableView(QWidget * parent);
+	inline YerothERPPaiementsTableView(QWidget * parent)
+	:YerothTableView(parent)
+	{
+		_stdItemModel->_curTableView = this;
+	}
 
-	virtual ~YerothERPPaiementsTableView();
+	inline virtual ~YerothERPPaiementsTableView()
+	{
+	}
 
-	virtual void lister_les_elements_du_tableau(YerothSqlTableModel &tableModel_in_out);
+	virtual void lister_les_elements_du_tableau(YerothSqlTableModel &tableModel);
 };
 
 

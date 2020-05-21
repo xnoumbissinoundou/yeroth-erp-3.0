@@ -34,46 +34,33 @@
 #include <QtSql/QSqlError>
 
 
-YerothERPPaiementsTableView::YerothERPPaiementsTableView()
-:YerothTableView()
+void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel)
 {
-	_stdItemModel->_curTableView = this;
-}
+	_stdItemModel->_curSqlTableModel = &tableModel;
 
-YerothERPPaiementsTableView::YerothERPPaiementsTableView(QWidget * parent)
-:YerothTableView(parent)
-{
-	_stdItemModel->_curTableView = this;
-}
+    emit signal_lister(tableModel);
 
-YerothERPPaiementsTableView::~YerothERPPaiementsTableView()
-{
-}
+    bool s = tableModel.select();
 
-void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel_in_out)
-{
-	_stdItemModel->_curSqlTableModel = &tableModel_in_out;
-
-    emit signal_lister(tableModel_in_out);
-
-    bool s = tableModel_in_out.select();
-
-    int rows = tableModel_in_out.rowCount();
-    int columns = tableModel_in_out.columnCount();
+    int rows = tableModel.rowCount();
+    int columns = tableModel.columnCount();
 
     _stdItemModel->setRowCount(rows);
     _stdItemModel->setColumnCount(columns);
 
     QStringList	tableModelRawHeaders;
 
-    YerothUtils::createTableModelHeaders(tableModel_in_out,
+    YerothUtils::createTableModelHeaders(tableModel,
     									 *_stdItemModel,
 										 *_tableModelHeaders,
-										 &tableModelRawHeaders);
+										 tableModelRawHeaders);
 
-    QString curHdr;
+    QString curTableModelRawHdr;
+
     QString tmpQvString;
+
     QStandardItem *anItem = 0;
+
     QVariant qv;
 
     if(s)
@@ -82,7 +69,7 @@ void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableM
         {
             for (int k = 0; k < columns; ++k)
             {
-                qv.setValue(tableModel_in_out.record(i).value(k));
+                qv.setValue(tableModel.record(i).value(k));
 
                 anItem = _stdItemModel->item(i, k);
 
@@ -99,11 +86,13 @@ void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableM
                     break;
 
                 case QVariant::Int:
-                	curHdr = tableModelRawHeaders.at(k);
 
-                	if (YerothUtils::isEqualCaseInsensitive(curHdr, YerothDatabaseTableColumn::TYPE_DE_PAIEMENT))
+                	curTableModelRawHdr = tableModelRawHeaders.at(k);
+
+                	if (YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::TYPE_DE_PAIEMENT))
                 	{
-                		anItem = new YerothQStandardItem(YerothUtils::_typedepaiementToUserViewString.value(qv.toInt()));
+                		tmpQvString = YerothUtils::_typedepaiementToUserViewString.value(qv.toInt());
+                		anItem = new YerothQStandardItem(YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(tmpQvString));
                 	}
                 	else
                 	{
@@ -137,18 +126,23 @@ void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableM
                 	tmpQvString.clear();
                 	tmpQvString.append(qv.toString());
 
-                	if (tmpQvString.length() > YerothERPConfig::max_string_display_length)
+                	curTableModelRawHdr = tableModelRawHeaders.at(k);
+
+                	if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::REFERENCE) &&
+                		!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::REFERENCE_RECU_PAIEMENT_CLIENT))
                 	{
-                		tmpQvString.truncate(YerothERPConfig::max_string_display_length);
-                		tmpQvString.append(".");
+                		anItem = new YerothQStandardItem(YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(tmpQvString));
+                	}
+                	else
+                	{
+                		anItem = new YerothQStandardItem(tmpQvString);
                 	}
 
-                	anItem = new YerothQStandardItem(tmpQvString);
                     _stdItemModel->setItem(i, k, anItem);
                     break;
 
                 case QVariant::Bool:
-                    anItem = new YerothQStandardItem(qv.toBool() ? "True" : "False");
+                    anItem = new YerothQStandardItem(BOOL_TO_STRING(qv.toBool()));
                     _stdItemModel->setItem(i, k, anItem);
                     break;
 

@@ -823,12 +823,6 @@ void YerothPaiementsWindow::getJournalDesPaiementsTexTableString(QString & texTa
                  * YerothERPConfig::max_string_display_length
                  */
                 QString itemText(item->text());
-                if (itemText.length() > YerothERPConfig::max_string_display_length)
-                {
-                    itemText.truncate(YerothERPConfig::max_string_display_length);
-                    itemText.append(".");
-                }
-
                 YerothUtils::handleTexTableItemText(tableColumnCount,
                 									texTable_in_out,
 													k,

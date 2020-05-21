@@ -28,11 +28,21 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-	YerothERPAlertTableView();
+	inline YerothERPAlertTableView()
+	:YerothTableView()
+	{
+		_stdItemModel->_curTableView = this;
+	}
 
-	YerothERPAlertTableView(QWidget * parent);
+	inline YerothERPAlertTableView(QWidget * parent)
+	:YerothTableView(parent)
+	{
+		_stdItemModel->_curTableView = this;
+	}
 
-	virtual ~YerothERPAlertTableView();
+	inline virtual ~YerothERPAlertTableView()
+	{
+	}
 
 	virtual void lister_les_elements_du_tableau(YerothSqlTableModel &clientSqlTableModel);
 };

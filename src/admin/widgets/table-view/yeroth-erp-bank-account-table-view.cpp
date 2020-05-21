@@ -47,7 +47,12 @@ void YerothERPBankAccountTableView::lister_les_elements_du_tableau(YerothSqlTabl
 	_stdItemModel->setRowCount(rows);
 	_stdItemModel->setColumnCount(columns);
 
-	YerothUtils::createTableModelHeaders(tableModel, *_stdItemModel, *_tableModelHeaders);
+	QStringList	tableModelRawHeaders;
+
+    YerothUtils::createTableModelHeaders(tableModel,
+    									 *_stdItemModel,
+										 *_tableModelHeaders,
+										 tableModelRawHeaders);
 
 	QStandardItem *anItem = 0;
 	QVariant qv;

@@ -39,7 +39,7 @@ void YerothPointDeVenteListStocksWindow::listStocks(YerothSqlTableModel & aSqlTa
 {
     if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::salesStrategy, YerothERPConfig::STRATEGIE_VENTE_SORTIE_ALL))
     {
-        tableView_list_stocks->lister_les_elements_du_tableau(aSqlTableModel, this);
+        tableView_list_stocks->lister_les_elements_du_tableau(aSqlTableModel);
     }
     else if (YerothUtils::
              isEqualCaseInsensitive(YerothERPConfig::salesStrategy, YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO))

@@ -51,8 +51,7 @@ YerothERPMarchandisesTableView::YerothERPMarchandisesTableView(QWidget * parent)
 }
 
 
-void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel,
-																	YerothWindowsCommons *aCallingWindows)
+void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel)
 {
 	_stdItemModel->_curSqlTableModel = &tableModel;
 
@@ -81,11 +80,20 @@ void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTab
     	//qDebug() << "++  yerothPOSClear";
     }
 
-    YerothUtils::createTableModelHeaders(tableModel, *_stdItemModel, *_tableModelHeaders);
+    QStringList	tableModelRawHeaders;
+
+    YerothUtils::createTableModelHeaders(tableModel,
+    									 *_stdItemModel,
+										 *_tableModelHeaders,
+										 tableModelRawHeaders);
+
+    QString curTableModelRawHdr;
 
 	QString tmpQvString;
-    QStandardItem *anItem = 0;
-    QVariant qv;
+
+	QStandardItem *anItem = 0;
+
+	QVariant qv;
 
     if(tableModel.isFromQSqlQuery() || s)
     {
@@ -106,7 +114,9 @@ void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTab
         for (int i = 0; i < rows; ++i)
         {
             record = tableModel.record(i);
+
             designation = record.value(YerothDatabaseTableColumn::DESIGNATION);
+
             categorie = record.value(YerothDatabaseTableColumn::CATEGORIE);
 
             for (int k = 0; k < columns; ++k)
@@ -158,15 +168,17 @@ void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTab
                 	tmpQvString.clear();
                 	tmpQvString.append(qv.toString());
 
-					if (0 != aCallingWindows)
-					{
-						if (YEROTH_DATABASE_TABLE_COLUMN_INDEX((*aCallingWindows), YerothDatabaseTableColumn::REFERENCE) != k)
-						{
-							YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(tmpQvString);
-						}
-					}
+                	curTableModelRawHdr = tableModelRawHeaders.at(k);
 
-                    anItem = new YerothQStandardItem(tmpQvString);
+                	if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::REFERENCE))
+                	{
+                		anItem = new YerothQStandardItem(YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(tmpQvString));
+                	}
+                	else
+                	{
+                		anItem = new YerothQStandardItem(tmpQvString);
+                	}
+
                     _stdItemModel->setItem(i, k, anItem);
                     break;
 
@@ -217,29 +229,28 @@ void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTab
                 		anItem->setForeground(YerothUtils::YEROTH_RED_COLOR);
                 	}
 
-					if (0 != aCallingWindows)
-					{
-						if (YEROTH_DATABASE_TABLE_COLUMN_INDEX((*aCallingWindows), YerothDatabaseTableColumn::QUANTITE_TOTALE) == k)
-						{
-	                		double qteTotalEnStock =
-	                				YerothMarchandisesWindow::getQuantiteTotaleEnStock(categorieStr,
-	                						designationStr);
+                	curTableModelRawHdr = tableModelRawHeaders.at(k);
 
-	                		_allWindows->_marchandisesWindow->_qteTotaleDarticlesEnStock += qteTotalEnStock;
+                	if (YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::QUANTITE_TOTALE))
+                	{
+                		double qteTotalEnStock =
+                				YerothMarchandisesWindow::getQuantiteTotaleEnStock(categorieStr,
+                						designationStr);
 
-	                		anItem->setText(GET_DOUBLE_STRING(qteTotalEnStock));
-						}
-	                	else if (YEROTH_DATABASE_TABLE_COLUMN_INDEX((*aCallingWindows), YerothDatabaseTableColumn::VALEUR_DIVENTAIRE) == k)
-	                	{
-	                		double valeurDinventaireEnStock =
-	                				YerothMarchandisesWindow::getValeurTotaleDinventaireEnStock(categorieStr,
-	                						designationStr);
+                		_allWindows->_marchandisesWindow->_qteTotaleDarticlesEnStock += qteTotalEnStock;
 
-	                		_allWindows->_marchandisesWindow->_valeurTheoriqueDinventaire += valeurDinventaireEnStock;
+                		anItem->setText(GET_DOUBLE_STRING(qteTotalEnStock));
+                	}
+                	else if (YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::VALEUR_DIVENTAIRE))
+                	{
+                		double valeurDinventaireEnStock =
+                				YerothMarchandisesWindow::getValeurTotaleDinventaireEnStock(categorieStr,
+                						designationStr);
 
-	                		anItem->setText(GET_DOUBLE_STRING(valeurDinventaireEnStock));
-	                	}
-					}
+                		_allWindows->_marchandisesWindow->_valeurTheoriqueDinventaire += valeurDinventaireEnStock;
+
+                		anItem->setText(GET_DOUBLE_STRING(valeurDinventaireEnStock));
+                	}
                 } //if (0 != item)
             }
         }

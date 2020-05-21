@@ -35,46 +35,33 @@
 #include <QtSql/QSqlError>
 
 
-int YerothERPVentesTableView::reference_column_idx(0);
-
-int YerothERPVentesTableView::typedevente_column_idx(0);
-
-
-YerothERPVentesTableView::YerothERPVentesTableView()
-:YerothTableView()
+void YerothERPVentesTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel)
 {
-	_stdItemModel->_curTableView = this;
-}
+	_stdItemModel->_curSqlTableModel = &tableModel;
 
-YerothERPVentesTableView::YerothERPVentesTableView(QWidget * parent)
-:YerothTableView(parent)
-{
-	_stdItemModel->_curTableView = this;
-}
+    emit signal_lister(tableModel);
 
-YerothERPVentesTableView::~YerothERPVentesTableView()
-{
-}
+    bool s = tableModel.select();
 
-void YerothERPVentesTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel_in_out,
-															  YerothWindowsCommons *aCallingWindows)
-{
-	_stdItemModel->_curSqlTableModel = &tableModel_in_out;
-
-    emit signal_lister(tableModel_in_out);
-
-    bool s = tableModel_in_out.select();
-
-    int rows = tableModel_in_out.rowCount();
-    int columns = tableModel_in_out.columnCount();
+    int rows = tableModel.rowCount();
+    int columns = tableModel.columnCount();
 
     _stdItemModel->setRowCount(rows);
     _stdItemModel->setColumnCount(columns);
 
-    YerothUtils::createTableModelHeaders(tableModel_in_out, *_stdItemModel, *_tableModelHeaders);
+    QStringList	tableModelRawHeaders;
+
+    YerothUtils::createTableModelHeaders(tableModel,
+    									 *_stdItemModel,
+										 *_tableModelHeaders,
+										 tableModelRawHeaders);
+
+    QString curTableModelRawHdr;
 
     QString tmpQvString;
+
     QStandardItem *anItem = 0;
+
     QVariant qv;
 
     if(s)
@@ -83,7 +70,7 @@ void YerothERPVentesTableView::lister_les_elements_du_tableau(YerothSqlTableMode
         {
             for (int k = 0; k < columns; ++k)
             {
-                qv.setValue(tableModel_in_out.record(i).value(k));
+                qv.setValue(tableModel.record(i).value(k));
 
                 anItem = _stdItemModel->item(i, k);
 
@@ -101,15 +88,17 @@ void YerothERPVentesTableView::lister_les_elements_du_tableau(YerothSqlTableMode
 
                 case QVariant::Int:
 
-					if (YerothERPVentesTableView::typedevente_column_idx != k)
-					{
+                	curTableModelRawHdr = tableModelRawHeaders.at(k);
+
+                	if (YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::TYPE_DE_VENTE))
+                	{
                 		tmpQvString = YerothUtils::_typedeventeToUserViewString.value(qv.toInt());
-                		anItem = new YerothQStandardItem(tmpQvString);
-					}
-					else
-					{
-						anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
-					}
+                		anItem = new YerothQStandardItem(YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(tmpQvString));
+                	}
+                	else
+                	{
+                		anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
+                	}
 
                     _stdItemModel->setItem(i, k, anItem);
                     break;
@@ -138,14 +127,16 @@ void YerothERPVentesTableView::lister_les_elements_du_tableau(YerothSqlTableMode
                 	tmpQvString.clear();
                 	tmpQvString.append(qv.toString());
 
-					if (YerothERPVentesTableView::reference_column_idx != k)
-					{
-						anItem = new YerothQStandardItem(YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(tmpQvString));
-					}
-					else
-					{
-						anItem = new YerothQStandardItem(tmpQvString);
-					}
+                	curTableModelRawHdr = tableModelRawHeaders.at(k);
+
+                	if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::REFERENCE))
+                	{
+                		anItem = new YerothQStandardItem(YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(tmpQvString));
+                	}
+                	else
+                	{
+                		anItem = new YerothQStandardItem(tmpQvString);
+                	}
 
                     _stdItemModel->setItem(i, k, anItem);
                     break;

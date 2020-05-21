@@ -79,12 +79,6 @@ YerothVentesWindow::YerothVentesWindow()
 
     setupSelectDBFields(_allWindows->STOCKS_VENDU);
 
-    YerothERPVentesTableView::reference_column_idx =
-    		getDBTableFieldColumnIndex(YerothDatabaseTableColumn::REFERENCE);
-
-    YerothERPVentesTableView::typedevente_column_idx =
-    		getDBTableFieldColumnIndex(YerothDatabaseTableColumn::TYPE_DE_VENTE);
-
     _lineEditsToANDContentForSearch.insert(&lineEdit_ventes_terme_recherche,
     		YerothUtils::EMPTY_STRING);
 
@@ -1943,7 +1937,7 @@ void YerothVentesWindow::handleCurrentTabChanged(int index)
 
 void YerothVentesWindow::lister_les_elements_du_tableau(YerothSqlTableModel &stocksVenduTableModel)
 {
-    tableView_ventes->lister_les_elements_du_tableau(stocksVenduTableModel, this);
+    tableView_ventes->lister_les_elements_du_tableau(stocksVenduTableModel);
 
     tableView_show_or_hide_columns(*tableView_ventes);
 

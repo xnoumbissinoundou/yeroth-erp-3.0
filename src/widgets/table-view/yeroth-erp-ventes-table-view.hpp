@@ -20,6 +20,7 @@ class YerothSqlTableModel;
 
 class YerothPOSQStandardItemModel;
 
+
 class YerothERPVentesTableView : public YerothTableView
 {
 	Q_OBJECT
@@ -28,18 +29,23 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-	YerothERPVentesTableView();
+	inline YerothERPVentesTableView()
+	:YerothTableView()
+	{
+		_stdItemModel->_curTableView = this;
+	}
 
-	YerothERPVentesTableView(QWidget * parent);
+	inline YerothERPVentesTableView(QWidget * parent)
+	:YerothTableView(parent)
+	{
+		_stdItemModel->_curTableView = this;
+	}
 
-	virtual ~YerothERPVentesTableView();
+	inline virtual ~YerothERPVentesTableView()
+	{
+	}
 
-	virtual void lister_les_elements_du_tableau(YerothSqlTableModel &tableModel_in_out,
-												YerothWindowsCommons *aCallingWindows);
-
-	static int reference_column_idx;
-
-	static int typedevente_column_idx;
+	virtual void lister_les_elements_du_tableau(YerothSqlTableModel &tableModel);
 };
 
 
