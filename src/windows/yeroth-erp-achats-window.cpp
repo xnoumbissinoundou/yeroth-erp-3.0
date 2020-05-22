@@ -415,6 +415,8 @@ void YerothAchatsWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 
     setupLineEdits();
 
+    setupLineEditsQCompleters((QObject *)this);
+
     setYerothSqlTableModel(_curAchatSqlTableModel);
 
     _curStocksTableModel = stocksTableModel;

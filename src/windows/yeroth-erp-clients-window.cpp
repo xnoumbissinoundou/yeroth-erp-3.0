@@ -390,6 +390,8 @@ void YerothERPClientsWindow::supprimerCompteClient()
 
         if (success)
         {
+        	setupLineEditsQCompleters((QObject *)this);
+
         	afficherClients();
 
             msg.append(QObject::trUtf8("' a été supprimée de la base de données !"));

@@ -648,6 +648,8 @@ void YerothStocksWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 {
     setupLineEdits();
 
+    setupLineEditsQCompleters((QObject *)this);
+
     setYerothSqlTableModel(stocksTableModel);
 
     _curStocksTableModel = stocksTableModel;
@@ -1034,6 +1036,8 @@ void YerothStocksWindow::supprimer_ce_stock()
                                        QObject::trUtf8("suppression d'un stock (service)"),
                                        msgSupprimer);
         }
+
+        setupLineEditsQCompleters((QObject *)this);
 
         afficherStocks(*_curStocksTableModel);
     }
