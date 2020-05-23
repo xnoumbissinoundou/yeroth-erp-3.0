@@ -3,7 +3,7 @@
 # @author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
 # @email: xnoundou7@gmail.com
 
-if [[ "${@}" == *"-s"* || "${@}" == *"-h"* ]]; then
+if [[ "${@}" == *"s"* || "${@}" == *"h"* ]]; then
 		yeroth-compile_yeroth-erp-3-0.sh -v YEROTH_STANDALONE "${@}"
 		exit
 fi
