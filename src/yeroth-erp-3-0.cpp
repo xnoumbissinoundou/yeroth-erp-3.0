@@ -11,7 +11,7 @@
 
 
 #ifdef YEROTH_ERP_3_0_TESTING_UNIT_TEST
-	#include "src/windows/tests/yeroth-erp-test-vente-window.hpp"
+	#include "src/tests/yeroth-erp-test-yeroth-erp-windows.hpp"
 #endif
 
 
@@ -607,9 +607,9 @@ int main(int argc, char *argv[])
 
 #else
 
-    Test_YerothPointDeVenteWindow t;
+    Test_YerothERPWindows aYEROTHERP_TestInstance(&allWindows);
 
-    return QTest::qExec(&t, argc, argv);
+    return QTest::qExec(&aYEROTHERP_TestInstance, argc, argv);
 
 #endif
 }
