@@ -11,7 +11,7 @@ fi
 OUT_CMD_TIME=$(time yeroth-compile_yeroth-erp-3-0.sh -v YEROTH_STANDALONE "${@}" > standalone.out.log 2> standalone.error.log) && \
   mv bin/yeroth-erp-3-0 bin/yeroth-erp-3.0-standalone
 
-val=$(cat standalone.error.log | grep 'error\|ERROR' | wc -l)
+val=$(cat standalone.error.log | grep 'error\|ERROR\|Error' | wc -l)
 
 if [ ${val} -eq 0 ]; then
 		echo "[compilation avec succes]"
