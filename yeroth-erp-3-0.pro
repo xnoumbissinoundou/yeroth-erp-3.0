@@ -1,6 +1,7 @@
 
 RC_ICONS = yeroth-erp-3-0-icon.ico
 
+DEFINES += ${YEROTH_ERP_3_0_TEST}
 DEFINES += ${YEROTH_VIRTUAL_KEYBOARD_OPTIONS}
 DEFINES += ${YEROTH_LANGUAGE}
 DEFINES += ${YEROTH_DEBUG_LOG}
@@ -14,11 +15,18 @@ DEFINES += ${YEROTH_VERSION}
 CONFIG += qt 
 CONFIG += moc 
 
-contains(DEFINES, YEROTH_ERP_3_0_TOUCH_SCREEN) {
+contains(DEFINES, YEROTH_ERP_3_0_TEST) 
+{
+	CONFIG += testcase
+  QT += testlib
+}
+
+contains(DEFINES, YEROTH_ERP_3_0_TOUCH_SCREEN) 
+{
   CONFIG += disable-desktop
 }
 
-#CONFIG += debug
+CONFIG += debug
 
 CONFIG -= import_plugins
 
@@ -83,7 +91,6 @@ FORMS   = ui/yeroth-erp-main-window.ui \
 		  ui/yeroth-erp-modifier-window.ui \
 		  ui/yeroth-erp-stock-detail-window.ui \
 		  ui/yeroth-erp-changer-utilisateur-dialog.ui \
-		  ui/yeroth-erp-admin-search-form.ui \
 		  ui/yeroth-erp-admin-window.ui \
 		  ui/yeroth-erp-admin-create-window.ui \
 		  ui/yeroth-erp-admin-lister-window.ui \
@@ -149,7 +156,7 @@ HEADERS = src/yeroth-erp-windows.hpp \
 		  src/windows/yeroth-erp-creer-nouvelle-categorie-window.hpp \
 		  src/windows/yeroth-erp-marchandises-window.hpp \
 		  src/windows/yeroth-erp-tableau-des-transactions-du-client-window.hpp \
-			src/windows/yeroth-erp-historique-du-stock-window.hpp \
+		  src/windows/yeroth-erp-historique-du-stock-window.hpp \
 		  src/windows/yeroth-erp-achats-detail-window.hpp \
 		  src/windows/yeroth-erp-achats-window.hpp \
 		  src/windows/yeroth-erp-stocks-window.hpp \
@@ -163,6 +170,7 @@ HEADERS = src/yeroth-erp-windows.hpp \
 		  src/windows/yeroth-erp-stock-detail-window.hpp \
 		  src/windows/yeroth-erp-paiements-window.hpp \
 		  src/windows/yeroth-erp-ventes-window.hpp \
+		  src/windows/tests/yeroth-erp-test-vente-window.hpp \
 		  src/users/yeroth-erp-users.hpp \
 		  src/users/yeroth-erp-user-vendeur.hpp \		  
 		  src/users/yeroth-erp-user-gestionaire-des-stocks.hpp \		  
@@ -265,6 +273,7 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/windows/yeroth-erp-stock-detail-window.cpp \
 		  src/windows/yeroth-erp-paiements-window.cpp \
 		  src/windows/yeroth-erp-ventes-window.cpp \
+		  src/windows/tests/yeroth-erp-test-vente-window.cpp \
 		  src/users/yeroth-erp-users.cpp \
 		  src/users/yeroth-erp-user-vendeur.cpp \		  
 		  src/users/yeroth-erp-user-gestionaire-des-stocks.cpp \

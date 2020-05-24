@@ -311,12 +311,7 @@ void YerothERPWindows::createAllYerothPosUserWindows()
 
     _pdVenteMethodePaiementDialog		= new YerothPOSVenteMethodePaiementDialog(this, _pdVenteWindow);
 
-#ifndef YEROTH_ERP_3_0_TEST
     _pdVenteWindow 					= new YerothPointDeVenteWindow;
-#else
-    _pdVenteWindow 					= new Test_YerothPointDeVenteWindow;
-#endif
-
     _clientsDetailWindow 			= new YerothClientsDetailWindow;
     _achatsDetailWindow 			= new YerothAchatsDetailWindow;
     _detailWindow 					= new YerothStockDetailWindow;

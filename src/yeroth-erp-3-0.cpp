@@ -9,6 +9,12 @@
 
 #include "src/yeroth-erp-windows.hpp"
 
+
+#ifdef YEROTH_ERP_3_0_TESTING_UNIT_TEST
+	#include "src/windows/tests/yeroth-erp-test-vente-window.hpp"
+#endif
+
+
 #include "src/utils/yeroth-erp-command-line-parser.hpp"
 #include "src/utils/yeroth-erp-config.hpp"
 #include "src/utils/yeroth-erp-utils.hpp"
@@ -589,6 +595,8 @@ int main(int argc, char *argv[])
 
     readTexTemplateFiles(logger);
 
+#ifndef YEROTH_ERP_3_0_TESTING_UNIT_TEST
+
     allWindows._mainWindow->rendreVisibleLocalTOCLASS(isDatabaseOpened);
 
     app.exec();
@@ -596,4 +604,12 @@ int main(int argc, char *argv[])
     database.close();
 
     return 0;
+
+#else
+
+    Test_YerothPointDeVenteWindow t;
+
+    return QTest::qExec(&t, argc, argv);
+
+#endif
 }
