@@ -366,11 +366,7 @@ const QString YerothUtils::MYSQL_TRUE_LITERAL("1");
 
 const QString YerothUtils::MYSQL_FALSE_LITERAL("0");
 
-QString YerothUtils::_curCSVFileCharSeparator(";");
-
-const char YerothUtils::COMMA_STRING_CHAR(',');
-
-const char YerothUtils::SEMI_COLON_STRING_CHAR(';');
+const QString YerothUtils::SEMI_COLON_STRING_CHAR(';');
 
 const QString YerothUtils::EMPTY_STRING("");
 
@@ -2480,7 +2476,7 @@ bool YerothUtils::export_csv_file(YerothWindowsCommons &aCallingWindow,
 
             csvFileContent.append( QString("\"%1\"%2 ")
             						 .arg(anItemText,
-            						      YerothUtils::_curCSVFileCharSeparator) );
+            							  YerothUtils::SEMI_COLON_STRING_CHAR) );
         }
     }
 
@@ -2504,7 +2500,7 @@ bool YerothUtils::export_csv_file(YerothWindowsCommons &aCallingWindow,
 
                 csvFileContent.append( QString("\"%1\"%2 ")
                 						 .arg(anItemText,
-                							  YerothUtils::_curCSVFileCharSeparator) );
+                							  YerothUtils::SEMI_COLON_STRING_CHAR) );
             }
         }
 

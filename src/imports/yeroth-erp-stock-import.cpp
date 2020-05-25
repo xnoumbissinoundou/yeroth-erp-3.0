@@ -59,7 +59,7 @@ int YerothERPStockImport::import()
 	}
 
 	QStringList csvHeader = _curCsvFileToImportContentWordList->at(0)
-					.split(YerothUtils::_curCSVFileCharSeparator);
+					.split(YerothUtils::SEMI_COLON_STRING_CHAR);
 
 	QString curSqlTableImportHeaderStr;
 
@@ -122,7 +122,7 @@ int YerothERPStockImport::import()
 	for (int k = 1; k < curCsvFileLineCount; ++k)
 	{
 		curCsvFileImportRow = _curCsvFileToImportContentWordList->at(k)
-						.split(YerothUtils::_curCSVFileCharSeparator);
+						.split(YerothUtils::SEMI_COLON_STRING_CHAR);
 
 		insertionReturnStatusValue = import_csv_entry_row(curCsvFileImportRow);
 
