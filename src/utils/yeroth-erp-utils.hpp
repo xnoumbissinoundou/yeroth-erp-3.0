@@ -796,6 +796,8 @@ YerothQMessageBox::information(this, QObject::trUtf8(DIALOG_BOX_TITLE), msg); }
 
 #define EXPR_IS_POSITIV(X)	(0 <= X)
 
+#define INT_TO_STRING(B) ((0 != B) ? "OUI" : "NON")
+
 #define BOOL_TO_STRING(B) (B ? "True" : "False")
 
 //Get the value of an QSqlRecord when given as value R

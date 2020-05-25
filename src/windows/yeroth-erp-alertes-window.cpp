@@ -1,15 +1,13 @@
 /*
+ * yeroth-erp-alertes-window.cpp
+ *
+ *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
+ */
 
-   * yeroth-erp-alertes-window.cpp
-
-   *
+#include "yeroth-erp-alertes-window.hpp"
 
 
-   *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
-
-
-   */
-#include "src/windows/yeroth-erp-alertes-window.hpp"
+#include "src/utils/yeroth-erp-database-table-column.hpp"
 
 #include "src/yeroth-erp-windows.hpp"
 
@@ -19,25 +17,27 @@
 
 #include "src/utils/yeroth-erp-logger.hpp"
 
-#include <QtSql/QSqlRecord>
 
+#include <QtSql/QSqlRecord>
 
 
 const QString YerothAlertesWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2")).
         arg(YEROTH_ERP_WINDOW_TITLE, QObject::trUtf8("alertes")));
 
 
-
-YerothAlertesWindow::YerothAlertesWindow():YerothWindowsCommons(YerothAlertesWindow::_WINDOW_TITLE), _logger(new YerothLogger("YerothAlertesWindow")),
-    _currentTabView(0)
+YerothAlertesWindow::YerothAlertesWindow()
+:YerothWindowsCommons(YerothAlertesWindow::_WINDOW_TITLE),
+ _logger(new YerothLogger("YerothAlertesWindow")),
+ _currentTabView(0)
 {
     setupUi(this);
 
-    this->mySetupUi(this);
+    mySetupUi(this);
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
                                        "QMessageBox QLabel {color: rgb(%2);}").
-                               arg(COLOUR_RGB_STRING_YEROTH_GREEN_2_160_70, COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
+                               arg(COLOUR_RGB_STRING_YEROTH_GREEN_2_160_70,
+                            	   COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMarquerResolue, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
@@ -86,7 +86,7 @@ YerothAlertesWindow::YerothAlertesWindow():YerothWindowsCommons(YerothAlertesWin
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 #endif
 
-    this->setupShortcuts();
+    setupShortcuts();
 }
 
 YerothAlertesWindow::~YerothAlertesWindow()
@@ -106,7 +106,7 @@ void YerothAlertesWindow::setupLineEdits()
 
 void YerothAlertesWindow::deconnecter_utilisateur()
 {
-    this->clear_all_fields();
+    clear_all_fields();
     YerothWindowsCommons::deconnecter_utilisateur();
 }
 
@@ -249,20 +249,17 @@ void YerothAlertesWindow::definirPasDeRole()
 
 void YerothAlertesWindow::handleCurrentChanged(int index)
 {
-    //qDebug() << "YerothVentesWindow::handleCurrentChanged: " << index;
     _currentTabView = index;
+
     switch (index)
     {
     case TableauDesAlertes:
-
+    	lister_alertes();
         clear_all_fields();
-
         break;
 
     case AfficherAlerteAuDetail:
-
         afficher_au_detail();
-
         break;
 
     default:
@@ -294,14 +291,11 @@ void YerothAlertesWindow::afficher()
 void YerothAlertesWindow::lister_alertes()
 {
     YerothSqlTableModel & courrierAlertesSqlTableModel = _allWindows->getSqlTableModel_courriers_alertes();
+
     /*
-
      * Les utilisateurs 'Manager' et 'Administrateur' ont accès
-
      * à toutes les alertes. 'YerothUtils::ROLE_MAGASINIER' et 'YerothUtils::ROLE_CAISSIER' eux ont
-
      * juste accès aux alertes qui leurs sont destinées.
-
      */
     if (_allWindows->getUser()->isMagasinier() || _allWindows->getUser()->isGestionaireDesStocks()
             || _allWindows->getUser()->isCaissier())
@@ -388,7 +382,7 @@ void YerothAlertesWindow::afficher_au_detail()
 
         int alerte_resolue = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ALERTE_RESOLUE).toInt();
 
-        lineEdit_alertes_resolue->setText((0 == alerte_resolue) ? "Non" : "Oui");
+        lineEdit_alertes_resolue->setText(INT_TO_STRING(alerte_resolue));
     }
 }
 
@@ -411,7 +405,7 @@ void YerothAlertesWindow::marquer_resolue()
 
     QSqlRecord courriersAlertesRecord = courrierAlertesSqlTableModel.record(getLastListerSelectedRow());
 
-    QString id_alerte = GET_SQL_RECORD_DATA(courriersAlertesRecord, "id_alerte");
+    QString id_alerte = GET_SQL_RECORD_DATA(courriersAlertesRecord, YerothDatabaseTableColumn::ID_ALERTE);
 
     YerothSqlTableModel & alertesSqlTableModel = _allWindows->getSqlTableModel_alertes();
 
@@ -452,6 +446,8 @@ void YerothAlertesWindow::marquer_resolue()
 
         if (alertes && successCourriersAlertes)
         {
+        	lister_les_alertes();
+
             QString msg(QString(QObject::trUtf8("L'alerte '%1' a été marquée résolue !"))
             				.arg(GET_SQL_RECORD_DATA(courriersAlertesRecord,
             					 YerothDatabaseTableColumn::DESIGNATION_ALERTE)));
@@ -473,16 +469,12 @@ void YerothAlertesWindow::marquer_resolue()
         }
         //qDebug() << "++ successCourriersAlertes: " << successCourriersAlertes;
     }
-    else
-    {
-        //qDebug() << "++ marquer_resolu(), else";
-    }
 }
 
 void YerothAlertesWindow::lister_les_alertes()
 {
     tabWidget_alertes->setCurrentIndex(TableauDesAlertes);
-    this->lister_alertes();
+    lister_alertes();
 }
 
 void YerothAlertesWindow::supprimer()
@@ -523,7 +515,7 @@ void YerothAlertesWindow::supprimer()
 
             YerothUtils::execQuery(supprimerAlerteStr);
 
-            this->lister_alertes();
+            lister_alertes();
 
             if (resRemoved)
             {
@@ -565,8 +557,8 @@ void YerothAlertesWindow::clear_all_fields()
 
 void YerothAlertesWindow::setupShortcuts()
 {
-    this->setupShortcutActionMessageDaide 	(*actionAppeler_aide);
-    this->setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
+    setupShortcutActionMessageDaide 	(*actionAppeler_aide);
+    setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
 }
 
 void YerothAlertesWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
@@ -584,7 +576,7 @@ void YerothAlertesWindow::rendreInvisible()
 {
 	tabWidget_alertes->setTabEnabled(AfficherAlerteAuDetail, false);
 
-	this->clear_all_fields();
+	clear_all_fields();
 
     YerothWindowsCommons::rendreInvisible();
 }

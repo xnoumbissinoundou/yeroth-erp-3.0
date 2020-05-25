@@ -27,6 +27,8 @@ public:
 
 	static const QString IS_SERVICE;
 
+	static const QString ID_ALERTE;
+
 	static const QString ID;
 
 	static const QString HISTORIQUE_STOCK;
