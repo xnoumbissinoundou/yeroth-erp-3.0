@@ -33,7 +33,7 @@ public:
     					 QStringList 				  					&aCurCsvFileToImportContentWordList,
 						 QMap<int, YerothERPDatabaseTableColumnInfo *> 	&anIndexToDatabaseTableColumnInfo);
 
-    inline ~YerothERPStockImport()
+    inline virtual ~YerothERPStockImport()
     {
     }
 

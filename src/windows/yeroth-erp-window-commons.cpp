@@ -370,8 +370,9 @@ void YerothWindowsCommons::selectionner_champs_db_visibles()
 		_visibleQCheckboxs.append(aQCheckBox);
 	}
 
-	_selectExportDBQDialog->setWindowTitle(QString(QObject::trUtf8("('%1' colones du tableau)"))
-												.arg(QString::number(toSelectDBFieldNameStrSize)));
+	_selectExportDBQDialog->setWindowTitle(QString(QObject::trUtf8("%1 - sélectionner les colones visibles ('%2' colones)"))
+												.arg(YEROTH_ERP_WINDOW_TITLE,
+													 QString::number(toSelectDBFieldNameStrSize)));
 
 	_selectExportDBQDialog->setFixedSize(getDialogBox_LONGUEUR(toSelectDBFieldNameStrSize), 255);
 
