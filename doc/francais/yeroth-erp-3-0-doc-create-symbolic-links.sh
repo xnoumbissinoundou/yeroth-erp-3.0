@@ -3,7 +3,7 @@
 
 symlinksfiles=(images yeroth-administration yeroth-user-tex-file)
 
-for f in $(find . -name 'manuel*'); do
+for f in $(find . -name 'guide*'); do
 		curDir="$f"
 		for j in "${symlinksfiles[@]}"; do
 				curFile=${curDir}/"${j}"
@@ -14,22 +14,22 @@ for f in $(find . -name 'manuel*'); do
 		done
 done
 
-rm -f yeroth-erp-3.0-manuel-de-lutilisateur-manager.pdf
+rm -f yeroth-erp-3.0-guide-de-lutilisateur-manager.pdf
 
-rm -f yeroth-erp-3.0-manuel-de-lutilisateur-gestionairedestocks.pdf
+rm -f yeroth-erp-3.0-guide-de-lutilisateur-gestionairedestocks.pdf
 
-rm -f yeroth-erp-3.0-manuel-de-lutilisateur-magasinier.pdf
+rm -f yeroth-erp-3.0-guide-de-lutilisateur-magasinier.pdf
 
-rm -f yeroth-erp-3.0-manuel-de-lutilisateur-caissier.pdf
+rm -f yeroth-erp-3.0-guide-de-lutilisateur-caissier.pdf
 
-rm -f yeroth-erp-3.0-manuel-de-lutilisateur-administrateur.pdf
+rm -f yeroth-erp-3.0-guide-de-lutilisateur-administrateur.pdf
 
-ln -s "$PWD"/manuel-de-lutilisateur-manager/yeroth-erp-3.0-manuel-de-lutilisateur-manager.pdf yeroth-erp-3.0-manuel-de-lutilisateur-manager.pdf
+ln -s "$PWD"/guide-de-lutilisateur-manager/yeroth-erp-3.0-manuel-de-lutilisateur-manager.pdf yeroth-erp-3.0-guide-de-lutilisateur-manager.pdf
 
-ln -s "$PWD"/manuel-de-lutilisateur-gestionairedestocks/yeroth-erp-3.0-manuel-de-lutilisateur-gestionairedestocks.pdf yeroth-erp-3.0-manuel-de-lutilisateur-gestionairedestocks.pdf
+ln -s "$PWD"/guide-de-lutilisateur-gestionairedestocks/yeroth-erp-3.0-manuel-de-lutilisateur-gestionairedestocks.pdf yeroth-erp-3.0-guide-de-lutilisateur-gestionairedestocks.pdf
 
-ln -s "$PWD"/manuel-de-lutilisateur-magasinier/yeroth-erp-3.0-manuel-de-lutilisateur-magasinier.pdf yeroth-erp-3.0-manuel-de-lutilisateur-magasinier.pdf
+ln -s "$PWD"/guide-de-lutilisateur-magasinier/yeroth-erp-3.0-manuel-de-lutilisateur-magasinier.pdf yeroth-erp-3.0-guide-de-lutilisateur-magasinier.pdf
 
-ln -s "$PWD"/manuel-de-lutilisateur-caissier/yeroth-erp-3.0-manuel-de-lutilisateur-caissier.pdf yeroth-erp-3.0-manuel-de-lutilisateur-caissier.pdf
+ln -s "$PWD"/guide-de-lutilisateur-caissier/yeroth-erp-3.0-manuel-de-lutilisateur-caissier.pdf yeroth-erp-3.0-guide-de-lutilisateur-caissier.pdf
 
-ln -s "$PWD"/manuel-de-lutilisateur-administrateur/yeroth-erp-3.0-manuel-de-lutilisateur-administrateur.pdf yeroth-erp-3.0-manuel-de-lutilisateur-administrateur.pdf
+ln -s "$PWD"/guide-de-lutilisateur-administrateur/yeroth-erp-3.0-manuel-de-lutilisateur-administrateur.pdf yeroth-erp-3.0-guide-de-lutilisateur-administrateur.pdf
