@@ -193,6 +193,7 @@ enum import_csv_entry_row_return_status
 	QString productReference;
 	QString productName;
 	QString productCategorie;
+	QString proposedFournisseur;
 
 	for (int j = 0; j < aCsvFileEntryLine.size(); ++j)
 	{
@@ -229,6 +230,43 @@ enum import_csv_entry_row_return_status
 			{
 				productName = curColumnRowEntry;
 			}
+
+			if (YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR,
+													curTableColumnName))
+			{
+				proposedFournisseur = curColumnRowEntry;
+
+				QString queryFournisseurStr(QString("select * from %1 WHERE %2 = '%3'")
+						.arg(YerothUtils::getAllWindows()->FOURNISSEURS,
+							 YerothDatabaseTableColumn::NOM_ENTREPRISE,
+							 curColumnRowEntry));
+
+				querySize = YerothUtils::execQueryRowCount(queryFournisseurStr);
+
+				if (querySize <= 0)
+				{
+					queryFournisseurStr = QString("insert into %1 (%2, %3) values ('%4', '%5')")
+											.arg(YerothUtils::getAllWindows()->FOURNISSEURS,
+												 YerothDatabaseTableColumn::ID,
+												 YerothDatabaseTableColumn::NOM_ENTREPRISE,
+												 QString::number(allWindows->getNextIdSqlTableModel_fournisseurs()),
+												 curColumnRowEntry);
+
+					if (!YerothUtils::execQuery(queryFournisseurStr))
+					{
+						QString infoMesg =
+								QString(QObject::trUtf8("L'entreprise fournisseur '%1' ne pouvait pas être créée !"))
+									.arg(curColumnRowEntry);
+
+						YerothQMessageBox::warning(_callingWindow,
+												   QObject::trUtf8("création d'une entreprise fournisseuse"),
+												   infoMesg);
+
+						return INSERTION_FAILED;
+					}
+				}
+			}
+
 
 			if (_allMandatoryTableColumns.contains(curTableColumnName)     &&
 				YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::CATEGORIE, curTableColumnName))
