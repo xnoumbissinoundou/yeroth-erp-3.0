@@ -1050,6 +1050,13 @@ bool YerothEntrerWindow::insertStockItemInProductList()
 {
     bool success = false;
 
+    QString proposedCategorieName = lineEdit_categorie_produit->text();
+
+    if (!creerNouvelleCategorie(proposedCategorieName))
+    {
+    	return false;
+    }
+
     YerothSqlTableModel & productListSqlTableModel = _allWindows->getSqlTableModel_marchandises();
 
     QSqlRecord record = productListSqlTableModel.record();
@@ -1109,15 +1116,15 @@ bool YerothEntrerWindow::insertStockItemInProductList()
         retMsg.append(QObject::trUtf8(" a été enregistré dans la liste des marchandises !"));
 
         YerothQMessageBox::information(this,
-        							   QObject::trUtf8("enregistrement du stock dans la liste des marchandises"),
+        							   QObject::trUtf8("enregistrement de l'article type dans la liste des marchandises"),
         							   retMsg);
     }
     else
     {
-        retMsg.append(QObject::trUtf8(" n'a pas pu être enregistré dans la liste des produits !"));
+        retMsg.append(QObject::trUtf8(" n'a pas pu être enregistré dans la liste des marchandises !"));
 
         YerothQMessageBox::warning(this,
-        						   QObject::trUtf8("échec de l'enregistrement du stock dans la liste des marchandises"),
+        						   QObject::trUtf8("échec de l'enregistrement de l'article type dans la liste des marchandises"),
         						   retMsg);
     }
 
@@ -1513,6 +1520,18 @@ void YerothEntrerWindow::enregistrer_produit()
     								 lineEdit_categorie_produit->text(),
 									 lineEdit_designation->text());
 
+    QString msgContinuer(QObject::tr("Poursuivre avec l'insertion de ce stock ?"));
+
+    if (QMessageBox::Cancel ==
+            YerothQMessageBox::question(this,
+                                       QObject::tr("suppression d'un compte client"),
+									   msgContinuer,
+                                       QMessageBox::Cancel,
+									   QMessageBox::Ok))
+    {
+    	return ;
+    }
+
     if (SERVICE_STOCK_UNDEFINED == serviceStockExists)
     {
     	insertStockItemInProductList();
@@ -1543,18 +1562,6 @@ void YerothEntrerWindow::enregistrer_produit()
     	}
     }
 
-    QString msgContinuer(QObject::tr("Poursuivre avec l'insertion de ce stock ?"));
-
-    if (QMessageBox::Cancel ==
-            YerothQMessageBox::question(this,
-                                       QObject::tr("suppression d'un compte client"),
-									   msgContinuer,
-                                       QMessageBox::Cancel,
-									   QMessageBox::Ok))
-    {
-    	return ;
-    }
-
     QString proposed_Fournisseur_Client_Name = lineEdit_nom_entreprise_fournisseur->text();
 
     if (checkBox_service->isChecked())
@@ -1578,13 +1585,6 @@ void YerothEntrerWindow::enregistrer_produit()
         }
     }
 
-    QString proposedCategorieName = lineEdit_categorie_produit->text();
-
-    if (!creerNouvelleCategorie(proposedCategorieName))
-    {
-    	return ;
-    }
-
     YerothSqlTableModel & achatSqlTableModel = _allWindows->getSqlTableModel_achats();
 
     QSqlRecord achatRecord;
@@ -1603,7 +1603,7 @@ void YerothEntrerWindow::enregistrer_produit()
     	achatRecord.setValue(YerothDatabaseTableColumn::STOCKS_ID, stock_id_to_save);
     	achatRecord.setValue(YerothDatabaseTableColumn::REFERENCE, lineEdit_reference_produit->text());
     	achatRecord.setValue(YerothDatabaseTableColumn::DESIGNATION, lineEdit_designation->text());
-    	achatRecord.setValue(YerothDatabaseTableColumn::CATEGORIE, proposedCategorieName);
+    	achatRecord.setValue(YerothDatabaseTableColumn::CATEGORIE, lineEdit_categorie_produit->text());
     	achatRecord.setValue(YerothDatabaseTableColumn::DESCRIPTION_PRODUIT, textEdit_description->toPlainText());
     	achatRecord.setValue(YerothDatabaseTableColumn::LOTS_ENTRANT, doubleSpinBox_lots_entrant->value());
     	achatRecord.setValue(YerothDatabaseTableColumn::QUANTITE_PAR_LOT, lineEdit_quantite_par_lot->text().toDouble());
@@ -1612,7 +1612,7 @@ void YerothEntrerWindow::enregistrer_produit()
     record.setValue(YerothDatabaseTableColumn::ID, stock_id_to_save);
     record.setValue(YerothDatabaseTableColumn::REFERENCE, lineEdit_reference_produit->text());
     record.setValue(YerothDatabaseTableColumn::DESIGNATION, lineEdit_designation->text());
-    record.setValue(YerothDatabaseTableColumn::CATEGORIE, proposedCategorieName);
+    record.setValue(YerothDatabaseTableColumn::CATEGORIE, lineEdit_categorie_produit->text());
     record.setValue(YerothDatabaseTableColumn::DESCRIPTION_PRODUIT, textEdit_description->toPlainText());
     record.setValue(YerothDatabaseTableColumn::LOTS_ENTRANT, doubleSpinBox_lots_entrant->value());
     record.setValue(YerothDatabaseTableColumn::QUANTITE_PAR_LOT, lineEdit_quantite_par_lot->text().toDouble());
