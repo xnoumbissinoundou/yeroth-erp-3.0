@@ -98,7 +98,7 @@ YerothAdminWindow::YerothAdminWindow()
 
     lineEdit_importer_separation_csv->setYerothEnabled(false);
 
-    lineEdit_importer_separation_csv->setText(YerothUtils::SEMI_COLON_STRING_CHAR);
+    lineEdit_importer_separation_csv->setText(YerothUtils::CSV_FILE_SEPARATION_SEMI_COLON_STRING_CHAR);
 
     lineEdit_localisation_adresse_ip->setYerothEnabled(false);
 
@@ -439,7 +439,7 @@ void YerothAdminWindow::reset_import_current_selected_csv_file()
 void YerothAdminWindow::import_current_selected_csv_file()
 {
 	QStringList csvHeaderContent = _curCsvFileToImportContentWordList.at(0)
-			.split(YerothUtils::SEMI_COLON_STRING_CHAR);
+			.split(YerothUtils::CSV_FILE_SEPARATION_SEMI_COLON_STRING_CHAR);
 
 	int curCsvFileLineSize = csvHeaderContent.size();
 
@@ -507,7 +507,7 @@ void YerothAdminWindow::generate_table_header_mapping_entries_for_csv_import()
 	}
 
 	QStringList csvHeaderContent = _curCsvFileToImportContentWordList.at(0)
-			.split(YerothUtils::SEMI_COLON_STRING_CHAR);
+			.split(YerothUtils::CSV_FILE_SEPARATION_SEMI_COLON_STRING_CHAR);
 
 	bool csvFileHasVisibleContentToImport = false;
 

@@ -592,7 +592,7 @@ public:
 
 	static const QString MYSQL_FALSE_LITERAL;
 
-	static const QString SEMI_COLON_STRING_CHAR;
+	static const QString CSV_FILE_SEPARATION_SEMI_COLON_STRING_CHAR;
 
 	static const QString EMPTY_STRING;
 
