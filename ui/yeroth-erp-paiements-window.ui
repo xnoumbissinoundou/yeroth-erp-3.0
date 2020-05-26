@@ -10423,7 +10423,7 @@ background-color: rgb(0, 0, 0); </string>
      <attribute name="title">
       <string>Détails d'un paiement</string>
      </attribute>
-     <widget class="QLabel" name="label_details_de_paiement_numero_du_bon_de_paiement">
+     <widget class="QLabel" name="label_details_de_paiement_reference_recu_paiement_client">
       <property name="geometry">
        <rect>
         <x>7</x>
@@ -10858,13 +10858,13 @@ background-color: rgb(0, 0, 0); </string>
        <enum>Qt::LeftToRight</enum>
       </property>
       <property name="text">
-       <string>numéro du bon de paiement</string>
+       <string>référence reçu de paiement</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="YerothLineEdit" name="lineEdit_details_de_paiement_numero_du_bon_de_paiement">
+     <widget class="YerothLineEdit" name="lineEdit_details_de_paiement_reference_recu_paiement_client">
       <property name="geometry">
        <rect>
         <x>185</x>
@@ -21282,7 +21282,7 @@ background-color: rgb(0, 0, 0); </string>
   <tabstop>pushButton_retour_paiements</tabstop>
   <tabstop>lineEdit_details_de_paiement_montant_paye</tabstop>
   <tabstop>lineEdit_details_de_paiement_compte_client</tabstop>
-  <tabstop>lineEdit_details_de_paiement_numero_du_bon_de_paiement</tabstop>
+  <tabstop>lineEdit_details_de_paiement_reference_recu_paiement_client</tabstop>
   <tabstop>lineEdit_details_de_paiement_nom_de_lentreprise</tabstop>
   <tabstop>lineEdit_details_de_paiement_typedepaiement</tabstop>
   <tabstop>lineEdit_details_de_paiement_heure_de_paiement</tabstop>

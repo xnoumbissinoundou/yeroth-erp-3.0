@@ -2204,7 +2204,10 @@ void YerothVentesWindow::afficher_vente_detail()
     clientsTableModel.resetFilter();
 
     lineEdit_details_nom_client->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT));
-    lineEdit_details_type_de_vente->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::TYPE_DE_VENTE));
+
+    int typeDeVente = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::TYPE_DE_VENTE).toInt();
+
+    lineEdit_details_type_de_vente->setText(YerothUtils::_typedeventeToUserViewString.value(typeDeVente));
 
     tabWidget_ventes->setCurrentIndex(AfficherVenteAuDetail);
 }

@@ -1520,11 +1520,11 @@ void YerothEntrerWindow::enregistrer_produit()
     								 lineEdit_categorie_produit->text(),
 									 lineEdit_designation->text());
 
-    QString msgContinuer(QObject::tr("Poursuivre avec l'insertion de ce stock ?"));
+    QString msgContinuer(QObject::tr("Poursuivre avec l'insertion d'un stock (service) ?"));
 
     if (QMessageBox::Cancel ==
             YerothQMessageBox::question(this,
-                                       QObject::tr("suppression d'un compte client"),
+                                       QObject::tr("insertion d'un stock (service)"),
 									   msgContinuer,
                                        QMessageBox::Cancel,
 									   QMessageBox::Ok))
@@ -1795,8 +1795,7 @@ void YerothEntrerWindow::enregistrer_produit()
 
     if (checkBox_service->isChecked())
     {
-    	_allWindows->_marchandisesWindow->setCheckBoxServices(true);
-    	_allWindows->_marchandisesWindow->rendreVisible(_curStocksTableModel);
+    	_allWindows->_ventesWindow->rendreVisible(_curStocksTableModel);
     }
     else
     {

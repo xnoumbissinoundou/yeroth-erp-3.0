@@ -276,7 +276,7 @@ void YerothPaiementsWindow::setupLineEdits()
     lineEdit_paiements_nombre_paiements->setYerothEnabled(false);
 	lineEdit_paiements_total->setYerothEnabled(false);
 
-    lineEdit_details_de_paiement_numero_du_bon_de_paiement->setYerothEnabled(false);
+    lineEdit_details_de_paiement_reference_recu_paiement_client->setYerothEnabled(false);
     lineEdit_details_de_paiement_nom_de_lentreprise->setYerothEnabled(false);
     lineEdit_details_de_paiement_reference->setYerothEnabled(false);
     lineEdit_details_de_paiement_typedepaiement->setYerothEnabled(false);
@@ -509,7 +509,7 @@ void YerothPaiementsWindow::clear_all_fields()
 {
 	textEdit_description->clear();
 
-    lineEdit_details_de_paiement_numero_du_bon_de_paiement->clearField();
+    lineEdit_details_de_paiement_reference_recu_paiement_client->clearField();
     lineEdit_details_de_paiement_nom_de_lentreprise->clearField();
     lineEdit_details_de_paiement_reference->clearField();
     lineEdit_details_de_paiement_typedepaiement->clearField();
@@ -1104,7 +1104,7 @@ void YerothPaiementsWindow::afficher_paiements_detail()
 
     textEdit_description->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOTES));
 
-    lineEdit_details_de_paiement_numero_du_bon_de_paiement->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ID));
+    lineEdit_details_de_paiement_reference_recu_paiement_client->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE_RECU_PAIEMENT_CLIENT));
     lineEdit_details_de_paiement_nom_de_lentreprise->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE));
     lineEdit_details_de_paiement_nom_de_lencaisseur->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENCAISSEUR));
 

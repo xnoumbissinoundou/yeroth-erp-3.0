@@ -1150,7 +1150,6 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
     <message>
         <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="118"/>
         <location filename="src/windows/yeroth-erp-clients-window.cpp" line="381"/>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1527"/>
         <location filename="src/windows/yeroth-erp-modifier-compte-client-window.cpp" line="555"/>
         <source>suppression d&apos;un compte client</source>
         <translation>deletion of a customer account</translation>
@@ -2088,8 +2087,9 @@ Continue with update of the stock (service) ?</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1523"/>
-        <source>Poursuivre avec l&apos;insertion de ce stock ?</source>
-        <translation>Continue with stock insertion ?</translation>
+        <source>Poursuivre avec l&apos;insertion d&apos;un stock (service) ?</source>
+        <oldsource>Poursuivre avec l&apos;insertion de ce stock ?</oldsource>
+        <translation>Continue with stock (service) insertion ?</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1732"/>
@@ -3711,6 +3711,11 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <location filename="src/imports/yeroth-erp-stock-import.cpp" line="258"/>
         <source>L&apos;entreprise fournisseur &apos;%1&apos; ne pouvait pas être créée !</source>
         <translation>Supplier company &apos;%1&apos; couldn&apos;t be created !</translation>
+    </message>
+    <message>
+        <location filename="src/imports/yeroth-erp-stock-import.cpp" line="262"/>
+        <source>création d&apos;une entreprise fournisseuse</source>
+        <translation>creation of a supplier company</translation>
     </message>
     <message>
         <location filename="src/imports/yeroth-erp-stock-import.cpp" line="295"/>
