@@ -1817,6 +1817,11 @@ bool YerothUtils::slot_connecter_localisation(QWidget &aWidget,
 
 bool YerothUtils::slot_deconnecter_localisation(YerothERPWindows *allWindows)
 {
+	if (!YerothERPConfig::_distantSiteConnected)
+	{
+		return true;
+	}
+
     YerothDatabase &database = allWindows->getDatabase();
 
     database.close();

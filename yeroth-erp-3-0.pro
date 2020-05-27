@@ -26,7 +26,7 @@ contains(DEFINES, YEROTH_ERP_3_0_TOUCH_SCREEN)
   CONFIG += disable-desktop
 }
 
-CONFIG += debug
+#CONFIG += debug
 
 CONFIG -= import_plugins
 
