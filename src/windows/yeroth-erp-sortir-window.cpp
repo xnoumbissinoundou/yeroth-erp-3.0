@@ -71,6 +71,8 @@ YerothSortirWindow::YerothSortirWindow()
 
     setRechercheLineEditFocus();
 
+    checkBox_imprimer_recu_sortie->setChecked(true);
+
     setupLineEdits();
 
     setupLineEditsQCompleters();
@@ -583,6 +585,11 @@ QString YerothSortirWindow::afficher_facture_pdf(QString referenceRecuSORTIE /* 
 
 QString YerothSortirWindow::imprimer_facture(QString referenceRecuSORTIE /* = QString("") */)
 {
+	if (!checkBox_imprimer_recu_sortie->isChecked())
+	{
+		return YerothUtils::EMPTY_STRING;
+	}
+
 	QString pdfReceiptFileName;
 
     if (YerothERPConfig::RECEIPT_FORMAT_PETIT == YerothERPConfig::receiptFormat)
