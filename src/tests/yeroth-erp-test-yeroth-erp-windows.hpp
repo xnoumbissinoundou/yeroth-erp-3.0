@@ -33,12 +33,6 @@ private slots:
 		QVERIFY(0 != _allWindows);
     }
 
-	void test_TABLE_VIEW_lister_fefo();
-
-	void test_TABLE_VIEW_lister_fifo();
-
-	void test_TABLE_VIEW_lister_lifo();
-
 private:
 
 	YerothERPWindows *_allWindows;
