@@ -71,7 +71,7 @@ YerothSortirWindow::YerothSortirWindow()
 
     setRechercheLineEditFocus();
 
-    checkBox_imprimer_recu_sortie->setChecked(true);
+    checkBox_imprimer_recu_sortie->setChecked(false);
 
     setupLineEdits();
 
