@@ -11,7 +11,11 @@
 
 
 #ifdef YEROTH_ERP_3_0_TESTING_UNIT_TEST
+
 	#include "src/tests/yeroth-erp-test-yeroth-erp-windows.hpp"
+
+	#include "src/tests/yeroth-erp-test-yeroth-erp-table-view.hpp"
+
 #endif
 
 
@@ -605,9 +609,9 @@ int main(int argc, char *argv[])
 
 #else
 
-    Test_YerothERPWindows aYEROTHERP_TestInstance(&allWindows);
+    Test_YerothERPTableView aYEROTHERPTableView_TestInstance(&allWindows);
 
-    return QTest::qExec(&aYEROTHERP_TestInstance, argc, argv);
+    return QTest::qExec(&aYEROTHERPTableView_TestInstance, argc, argv);
 
 #endif
 }

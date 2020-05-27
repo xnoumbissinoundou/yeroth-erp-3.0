@@ -170,7 +170,8 @@ HEADERS = src/yeroth-erp-windows.hpp \
 		  src/windows/yeroth-erp-stock-detail-window.hpp \
 		  src/windows/yeroth-erp-paiements-window.hpp \
 		  src/windows/yeroth-erp-ventes-window.hpp \
-		  src/tests/yeroth-erp-test-yeroth-erp-windows.hpp \
+		  src/tests/yeroth-erp-test-yeroth-erp-table-view.hpp \
+			src/tests/yeroth-erp-test-yeroth-erp-windows.hpp \
 		  src/users/yeroth-erp-users.hpp \
 		  src/users/yeroth-erp-user-vendeur.hpp \		  
 		  src/users/yeroth-erp-user-gestionaire-des-stocks.hpp \		  
@@ -191,6 +192,7 @@ HEADERS = src/yeroth-erp-windows.hpp \
 		  src/utils/yeroth-erp-article-vente-info.hpp \
 		  src/utils/yeroth-erp-database-table-column.hpp \
 		  src/utils/yeroth-erp-command-line-parser.hpp \
+			src/utils/yeroth-erp-number-word-translation.hpp \
 		  src/utils/yeroth-erp-style.hpp \
 		  src/dbus/yeroth-erp-dbus-client.hpp \
 		  src/dbus/yeroth-erp-dbus-client-adaptor.hpp \
@@ -273,7 +275,8 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/windows/yeroth-erp-stock-detail-window.cpp \
 		  src/windows/yeroth-erp-paiements-window.cpp \
 		  src/windows/yeroth-erp-ventes-window.cpp \
-		  src/tests/yeroth-erp-test-yeroth-erp-windows.cpp \
+		  src/tests/yeroth-erp-test-yeroth-erp-table-view.cpp \
+			src/tests/yeroth-erp-test-yeroth-erp-windows.cpp \
 		  src/users/yeroth-erp-users.cpp \
 		  src/users/yeroth-erp-user-vendeur.cpp \		  
 		  src/users/yeroth-erp-user-gestionaire-des-stocks.cpp \
@@ -294,7 +297,8 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/utils/yeroth-erp-article-vente-info.cpp \
 		  src/utils/yeroth-erp-database-table-column.cpp \
 		  src/utils/yeroth-erp-command-line-parser.cpp \
-		  src/utils/yeroth-erp-style.cpp \
+		  src/utils/yeroth-erp-number-word-translation.cpp \
+			src/utils/yeroth-erp-style.cpp \
 		  src/dbus/yeroth-erp-dbus-client.cpp \
 		  src/dbus/yeroth-erp-dbus-server.cpp \
 		  src/dbus/yeroth-erp-dbus-client-adaptor.cpp \
