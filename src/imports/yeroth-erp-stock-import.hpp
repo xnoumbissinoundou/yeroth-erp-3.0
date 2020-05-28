@@ -29,6 +29,9 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
+    YerothERPStockImport(QStringList 				  					&aCurCsvFileToImportContentWordList,
+						 QMap<int, YerothERPDatabaseTableColumnInfo *> 	&anIndexToDatabaseTableColumnInfo);
+
     YerothERPStockImport(YerothPOSAdminWindowsCommons 					&aCallingWindow,
     					 QStringList 				  					&aCurCsvFileToImportContentWordList,
 						 QMap<int, YerothERPDatabaseTableColumnInfo *> 	&anIndexToDatabaseTableColumnInfo);

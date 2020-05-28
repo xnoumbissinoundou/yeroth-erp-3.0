@@ -24,6 +24,22 @@ QString 				YerothERPStockImport::_allMissingMandatoryColumnValue;
 QMap<QString, bool>		*YerothERPStockImport::_dbTableColumnToIsNotNULL;
 
 
+YerothERPStockImport::YerothERPStockImport(QStringList 				  						&aCurCsvFileToImportContentWordList,
+										   QMap<int, YerothERPDatabaseTableColumnInfo *> 	&anIndexToDatabaseTableColumnInfo)
+:_curCsvFileToImportContentWordList(&aCurCsvFileToImportContentWordList),
+ _indexToDatabaseTableColumnInfo(&anIndexToDatabaseTableColumnInfo),
+ _callingWindow(0)
+{
+	_allMandatoryTableColumns.append(YerothDatabaseTableColumn::DESIGNATION);
+
+	_allMandatoryTableColumns.append(YerothDatabaseTableColumn::CATEGORIE);
+
+	_allMandatoryTableColumns.append(YerothDatabaseTableColumn::QUANTITE_TOTALE);
+
+	_allMandatoryTableColumns.append(YerothDatabaseTableColumn::PRIX_UNITAIRE);
+}
+
+
 YerothERPStockImport::YerothERPStockImport(YerothPOSAdminWindowsCommons 					&aCallingWindow,
 		 	 	 	 	 	 	 	 	   QStringList 				  						&aCurCsvFileToImportContentWordList,
 										   QMap<int, YerothERPDatabaseTableColumnInfo *> 	&anIndexToDatabaseTableColumnInfo)
@@ -49,11 +65,14 @@ int YerothERPStockImport::import()
 
 	if (_curCsvFileToImportContentWordList->size() <= 1)
 	{
-		warnMesg = QObject::trUtf8("Le fichier CSV n'a pas de données à importer !");
+		if (0 != _callingWindow)
+		{
+			warnMesg = QObject::trUtf8("Le fichier CSV n'a pas de données à importer !");
 
-		YerothQMessageBox::warning(_callingWindow,
-									   QObject::tr("fichier CSV vide"),
-									   warnMesg);
+			YerothQMessageBox::warning(_callingWindow,
+					QObject::tr("fichier CSV vide"),
+					warnMesg);
+		}
 
 		return 0;
 	}
@@ -86,14 +105,17 @@ int YerothERPStockImport::import()
 			}
 			else
 			{
-				warnMesg = QString(QObject::trUtf8("La colone '%1' apparaît "
-												   "plusieurs fois parmis les "
-												   "colones d'importation !"))
-								.arg(curSqlTableImportHeaderStr);
+				if (0 != _callingWindow)
+				{
+					warnMesg = QString(QObject::trUtf8("La colone '%1' apparaît "
+													   "plusieurs fois parmis les "
+													   "colones d'importation !"))
+									.arg(curSqlTableImportHeaderStr);
 
-				YerothQMessageBox::warning(_callingWindow,
-						QObject::tr("colones d'importation multiples"),
-						warnMesg);
+					YerothQMessageBox::warning(_callingWindow,
+							QObject::tr("colones d'importation multiples"),
+							warnMesg);
+				}
 
 				return 0;
 			}
@@ -140,14 +162,17 @@ int YerothERPStockImport::import()
 		{
 			YerothERPStockImport::_allMissingMandatoryColumnValue.replace(0, 3, YerothUtils::EMPTY_STRING);
 
-			QString warnMesg =
-					QString(QObject::tr("Les colones obligatoires "
-										"suivantes '%1' sont manquantes !"))
-							.arg(YerothERPStockImport::_allMissingMandatoryColumnValue);
+			if (0 != _callingWindow)
+			{
+				QString warnMesg =
+						QString(QObject::tr("Les colones obligatoires "
+								"suivantes '%1' sont manquantes !"))
+								.arg(YerothERPStockImport::_allMissingMandatoryColumnValue);
 
-			YerothQMessageBox::warning(_callingWindow,
-					QObject::tr("colones obligatoires manquantes"),
-					warnMesg);
+				YerothQMessageBox::warning(_callingWindow,
+						QObject::tr("colones obligatoires manquantes"),
+						warnMesg);
+			}
 		}
 	}
 
@@ -254,13 +279,16 @@ enum import_csv_entry_row_return_status
 
 					if (!YerothUtils::execQuery(queryFournisseurStr))
 					{
-						QString infoMesg =
-								QString(QObject::trUtf8("L'entreprise fournisseur '%1' ne pouvait pas être créée !"))
+						if (0 != _callingWindow)
+						{
+							QString infoMesg =
+									QString(QObject::trUtf8("L'entreprise fournisseur '%1' ne pouvait pas être créée !"))
 									.arg(curColumnRowEntry);
 
-						YerothQMessageBox::warning(_callingWindow,
-												   QObject::trUtf8("création d'une entreprise fournisseuse"),
-												   infoMesg);
+							YerothQMessageBox::warning(_callingWindow,
+									QObject::trUtf8("création d'une entreprise fournisseuse"),
+									infoMesg);
+						}
 
 						return INSERTION_FAILED;
 					}
@@ -291,14 +319,17 @@ enum import_csv_entry_row_return_status
 
 					if (!YerothUtils::execQuery(queryCategoryStr))
 					{
-						QString infoMesg =
-								QString(QObject::trUtf8("La catégorie '%1' ne pouvait pas "
-														"être créée !"))
-									.arg(curColumnRowEntry);
+						if (0 != _callingWindow)
+						{
+							QString infoMesg =
+									QString(QObject::trUtf8("La catégorie '%1' ne pouvait pas "
+											"être créée !"))
+											.arg(curColumnRowEntry);
 
-						YerothQMessageBox::warning(_callingWindow,
-												   QObject::trUtf8("création de catégorie d'articles"),
-												   infoMesg);
+							YerothQMessageBox::warning(_callingWindow,
+									QObject::trUtf8("création de catégorie d'articles"),
+									infoMesg);
+						}
 
 						return INSERTION_FAILED;
 					}
@@ -356,23 +387,29 @@ enum import_csv_entry_row_return_status
     {
     	if (aCurProductExistingReference.isEmpty())
     	{
-    		YerothQMessageBox::warning(_callingWindow,
-    				QObject::trUtf8("aucune référence"),
-					QString(QObject::trUtf8("Cette marchandise (désignation: '%1' - catégorie: '%2'), "
-											"déjà existante dans la liste des marchandises, "
-											"n'utilise aucune valeur pour 'référence' !"))
-    					.arg(productName,
-    						 productCategorie));
+    		if (0 != _callingWindow)
+    		{
+    			YerothQMessageBox::warning(_callingWindow,
+    					QObject::trUtf8("aucune référence"),
+						QString(QObject::trUtf8("Cette marchandise (désignation: '%1' - catégorie: '%2'), "
+								"déjà existante dans la liste des marchandises, "
+								"n'utilise aucune valeur pour 'référence' !"))
+    			.arg(productName,
+    					productCategorie));
+    		}
     	}
     	else
     	{
-    		YerothQMessageBox::warning(_callingWindow, "enregistrer",
-    				QString(QObject::trUtf8("Cette marchandise (désignation: '%1' - catégorie: '%2'), "
-    				    										"déjà existante dans la liste des marchandises, "
-    				    										"utilise la 'référence (%3)' !"))
-    					.arg(productName,
-    						 productCategorie,
-							 aCurProductExistingReference));
+    		if (0 != _callingWindow)
+    		{
+    			YerothQMessageBox::warning(_callingWindow, "enregistrer",
+    					QString(QObject::trUtf8("Cette marchandise (désignation: '%1' - catégorie: '%2'), "
+    							"déjà existante dans la liste des marchandises, "
+    							"utilise la 'référence (%3)' !"))
+								.arg(productName,
+										productCategorie,
+										aCurProductExistingReference));
+    		}
     	}
 
         return INSERTION_FAILED;
@@ -382,12 +419,15 @@ enum import_csv_entry_row_return_status
 			YerothUtils::isStockItemInProductList(productCategorie,
 												  productName))
 	{
-		YerothQMessageBox::warning(_callingWindow,
-				QObject::trUtf8("désignation"),
-				QString(QObject::trUtf8("La désignation '%1', est déjà existante dans la liste des "
-								"marchandises, dans une autre catégorie que '%2' !"))
-					.arg(productName,
-						 productCategorie));
+		if (0 != _callingWindow)
+		{
+			YerothQMessageBox::warning(_callingWindow,
+					QObject::trUtf8("désignation"),
+					QString(QObject::trUtf8("La désignation '%1', est déjà existante dans la liste des "
+							"marchandises, dans une autre catégorie que '%2' !"))
+			.arg(productName,
+					productCategorie));
+		}
 
 		return INSERTION_FAILED;
 	}
@@ -396,13 +436,17 @@ enum import_csv_entry_row_return_status
 
 	if (quantite_totale <= 0 && !quantite_totale_already_visited)
 	{
-		QString infoMesg =
-				QString(QObject::trUtf8("La colone '%1' a une valeur <= '0' !"))
+		if (0 != _callingWindow)
+		{
+			QString infoMesg =
+					QString(QObject::trUtf8("La colone '%1' a une valeur <= '0' !"))
 					.arg(YerothDatabaseTableColumn::QUANTITE_TOTALE);
 
-		YerothQMessageBox::warning(_callingWindow,
-									   QObject::tr("valeur incorrecte"),
-									   infoMesg);
+
+			YerothQMessageBox::warning(_callingWindow,
+					QObject::tr("valeur incorrecte"),
+					infoMesg);
+		}
 
 		quantite_totale_already_visited = true;
 
@@ -491,13 +535,16 @@ enum import_csv_entry_row_return_status
 
 void YerothERPStockImport::missing_mandatory_item_field_msg(const QString &aMandatoryColumn)
 {
-	QString warnMesg =
-			QString(QObject::trUtf8("La colone OBLIGATOIRE '%1' est manquante !"))
+	if (0 != _callingWindow)
+	{
+		QString warnMesg =
+				QString(QObject::trUtf8("La colone OBLIGATOIRE '%1' est manquante !"))
 				.arg(aMandatoryColumn);
 
-	YerothQMessageBox::warning(_callingWindow,
-								   QObject::tr("colone OBLIGATOIRE manquante"),
-								   warnMesg);
+		YerothQMessageBox::warning(_callingWindow,
+				QObject::tr("colone OBLIGATOIRE manquante"),
+				warnMesg);
+	}
 }
 
 
