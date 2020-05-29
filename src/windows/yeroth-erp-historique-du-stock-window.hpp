@@ -15,7 +15,8 @@
 
 
 
-class YerothHistoriqueDuStockWindow : public YerothWindowsCommons, private Ui_YerothHistoriqueDuStockWindow
+class YerothHistoriqueDuStockWindow : public YerothWindowsCommons,
+									  private Ui_YerothHistoriqueDuStockWindow
 {
 	Q_OBJECT
 
@@ -40,12 +41,6 @@ public:
 							   const QString 	 stockID,
 							   const QString 	 stockDesignation);
 
-	void getStockHistoryListingTexTableString(QString &texTable_in_out,
-	       									  QStandardItemModel &tableStandardItemModel,
-											  QList<int> &columnsToIgnore,
-											  int fromRowIndex,
-											  int toRowIndex,
-											  bool lastPage);
 public slots:
 
 	virtual bool imprimer_pdf_document();

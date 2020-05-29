@@ -81,17 +81,6 @@ public slots:
 
 	bool export_csv_file();
 
-	static void getStocksListingTexDocumentString(QString &texDocumentString_in_out,
-												  QString &printString);
-
-	static void getStocksListingTexTableString(QString &texTable_in_out,
-											   QStandardItemModel &tableStandardItemModel,
-											   QList<int> &dbFieldNameOfTypeString,
-											   QList<int> &columnsToIgnore,
-											   int fromRowIndex,
-											   int toRowIndex,
-											   bool lastPage);
-
 	virtual bool imprimer_pdf_document();
 
     virtual void entrer();

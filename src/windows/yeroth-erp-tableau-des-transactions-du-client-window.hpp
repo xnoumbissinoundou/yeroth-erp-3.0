@@ -1,5 +1,5 @@
 /*
- * yeroth-erp-pointdevente-liststocks-window..hpp
+ * yeroth-erp-pointdevente-liststocks-window.hpp
  *
  *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
@@ -14,8 +14,8 @@
 #include "src/windows/yeroth-erp-window-commons.hpp"
 
 
-
-class YerothTableauDesTransactionsDuClientWindow : public YerothWindowsCommons, private Ui_YerothTableauDesTransactionsDuClientWindow
+class YerothTableauDesTransactionsDuClientWindow : public YerothWindowsCommons,
+												   private Ui_YerothTableauDesTransactionsDuClientWindow
 {
 	Q_OBJECT
 
@@ -36,17 +36,6 @@ public:
 									 QDate dateFinTransactions,
 									 QString clientCompanyName,
 									 QSqlQuery &sqlClientTransactionsUnionQuery);
-
-	static void getTransactionsDunClientTexTableString(QString &texTable_in_out,
-	       									    	   QStandardItemModel &tableStandardItemModel,
-													   QList<int> &dbFieldNameOfTypeString,
-													   QList<int> &columnsToIgnore,
-													   int fromRowIndex,
-													   int toRowIndex,
-													   bool lastPage);
-
-	static void getTransactionsDunClientTexDocumentString(QString &texDocumentString_in_out,
-	        									   	   	  QString &printString);
 
 public slots:
 

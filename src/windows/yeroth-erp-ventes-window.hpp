@@ -103,20 +103,6 @@ public slots:
 
 	void readProcessData();
 
-	/*
-	 * This is only use when printing sales information into the
-	 * 'journal de ventes / journal of sales'.
-	 * Printing sales information into the visible table is done
-	 * by the function 'lister_les_elements_du_tableau'
-	 */
-	void getJournalDesVentesTexTableString(QString &texTable_in_out,
-			  	  	  	   	   	   	   	   QStandardItemModel &tableStandardItemModel,
-										   QList<int> &dbFieldNameOfTypeString,
-										   QList<int> &columnsToIgnore,
-										   int fromRowIndex,
-										   int toRowIndex,
-										   bool lastPage);
-
 	inline void disableImprimer()
 	{
 		actionAfficherPDF->setVisible(false);

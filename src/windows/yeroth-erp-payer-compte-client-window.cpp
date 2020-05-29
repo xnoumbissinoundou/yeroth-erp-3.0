@@ -1032,7 +1032,7 @@ void YerothPayerCompteClientWindow::getPayerAuCompteClientListingTexTableString(
             if (item)
             {
                 QString itemText(item->text());
-                YerothUtils::handleComptesClientsTexTableItemText(texTableColumnCount,
+                YerothUtils::handleTexTableItemText(texTableColumnCount,
                                               	  	  	  	  	  texTable_in_out,
 																  k,
 																  itemText);

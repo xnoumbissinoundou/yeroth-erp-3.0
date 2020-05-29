@@ -16,23 +16,26 @@
 #include <QtCore/qmath.h>
 
 
-const QString YerothHistoriqueDuStockWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2")).
-        arg(YEROTH_ERP_WINDOW_TITLE,
-            QObject::trUtf8("historique du stock")));
+const QString YerothHistoriqueDuStockWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2"))
+																.arg(YEROTH_ERP_WINDOW_TITLE,
+																	 QObject::trUtf8("historique du stock")));
 
 
 YerothHistoriqueDuStockWindow::YerothHistoriqueDuStockWindow()
-:YerothWindowsCommons(YerothHistoriqueDuStockWindow::_WINDOW_TITLE),
+:YerothWindowsCommons(YerothHistoriqueDuStockWindow::_WINDOW_TITLE,
+					  "yeroth-erp-historique-dun-stock"),
  _logger(new YerothLogger("YerothHistoriqueDuStockWindow"))
 {
     setupUi(this);
 
-    this->mySetupUi(this);
+    mySetupUi(this);
+
+    _yerothTableView_FROM_WINDOWS_COMMONS = tableView_historique_du_stock;
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
                                        "QMessageBox QLabel {color: rgb(%2);}")
                                     .arg(COLOUR_RGB_STRING_YEROTH_ORANGE_243_162_0,
-                                    		COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
+                                    	 COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
     connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_pdf_document()));
 }
@@ -96,238 +99,20 @@ void YerothHistoriqueDuStockWindow::listHistoriqueDuStock(const QStringList &aMo
 }
 
 
-void YerothHistoriqueDuStockWindow::getStockHistoryListingTexTableString(QString &texTable_in_out,
-       																	 QStandardItemModel &tableStandardItemModel,
-																		 QList<int> &columnsToIgnore,
-																		 int fromRowIndex,
-																		 int toRowIndex,
-																		 bool lastPage)
-{
-    texTable_in_out.append("\\begin{table*}[!htbp]").append("\n")
-    .append("\\centering").append("\n")
-    .append("\\begin{tabular}")
-    .append("{|");
-
-    int texTableColumnCount = tableStandardItemModel.columnCount();
-
-    //Tex table header
-    for (int k = 0; k < texTableColumnCount; ++k)
-    {
-        if (columnsToIgnore.contains(k))
-        {
-            continue;
-        }
-
-        if (4 == k ||
-		    5 == k ||
-			6 == k)
-        {
-        	texTable_in_out.append("r|");
-        }
-        else
-        {
-        	texTable_in_out.append("c|");
-        }
-    }
-
-    texTable_in_out.append("} \\hline").append("\n");
-
-    QStandardItem *item;
-
-    for (int k = 0; k < texTableColumnCount; ++k)
-    {
-        if (columnsToIgnore.contains(k))
-        {
-            continue;
-        }
-
-        item = tableStandardItemModel.horizontalHeaderItem(k);
-        if (item)
-        {
-            QString itemText(item->text().prepend("\\textbf{").append("}"));
-            YerothUtils::handleTexTableItemText(tableStandardItemModel.columnCount(),
-                                   texTable_in_out,
-                                   k,
-                                   itemText);
-        }
-    }
-    /** Closing Tex table header */
-    YerothUtils::cleanUpTexTableLastString(texTable_in_out);
-
-    texTable_in_out.append("\\hline\n");
-
-
-    for (int j = 0; j < tableStandardItemModel.rowCount(); ++j)
-    {
-        for (int k = 0; k < tableStandardItemModel.columnCount(); ++k)
-        {
-            if (columnsToIgnore.contains(k))
-            {
-                continue;
-            }
-
-            item = tableStandardItemModel.item(j, k);
-            if (item)
-            {
-                QString itemText(item->text());
-                YerothUtils::handleFactureTexTableItemText(tableStandardItemModel.columnCount(),
-                                              texTable_in_out,
-                                              k,
-                                              itemText);
-            }
-            else
-            {
-                if (k < tableStandardItemModel.columnCount() - 1)
-                {
-                    texTable_in_out.append("\"\"").append(" &");
-                }
-                else
-                {
-                    texTable_in_out.append("\"\"").append("\\\\ \\hline\n");
-                }
-            }
-        }
-
-        texTable_in_out = texTable_in_out.trimmed();
-
-        YerothUtils::cleanUpTexTableLastString(texTable_in_out);
-
-        texTable_in_out.append("\\hline\n");
-    }
-
-    //Removes the empty character "" from Latex output
-    texTable_in_out.replace("\"\"", "");
-
-    texTable_in_out.append("\\end{tabular}").append("\n")
-    .append("\\end{table*}").append("\n");
-
-    //qDebug() << "++ texTable_in_out in getStocksListingTexTableString: " << texTable_in_out;
-}
-
-
 bool YerothHistoriqueDuStockWindow::imprimer_pdf_document()
 {
-	_logger->log("imprimer_pdf_document");
+	_latex_template_print_pdf_content = YerothUtils::template_historique_dun_stock_tex;
 
-	QString latexFileNamePrefix("yeroth-erp-historique-dun-stock");
+    QMap<QString, QString> documentSpecificElements;
 
-	QStandardItemModel *tableModel = 0;
+    documentSpecificElements.insert("YEROTHSTOCKHISTORYREFERENCE",
+    		YerothUtils::LATEX_IN_OUT_handleForeignAccents(_currentStockReference));
 
-	QList<int> columnsToIgnore;
+    documentSpecificElements.insert("YEROTHSTOCKHISTORYDESIGNATION",
+    		YerothUtils::LATEX_IN_OUT_handleForeignAccents(_currentStockDesignation));
 
-	tableModel = tableView_historique_du_stock->getStandardItemModel();
+    documentSpecificElements.insert("YEROTHSTOCKHISTORYSTOCKID", _currentStockID);
 
-	columnsToIgnore << 3;
-
-	int tableModelRowCount = tableView_historique_du_stock->rowCount();
-
-	if (tableModelRowCount <= 0)
-	{
-		YerothQMessageBox::information(this,
-									   QObject::trUtf8("impression"),
-									   QObject::trUtf8("Il n'y a pas de données à imprimer !"));
-		return false;
-	}
-
-	QString texTable;
-
-	int fromRowIndex = 0;
-
-	int toRowIndex = tableModelRowCount;
-
-	double MAX_TABLE_ROW_COUNT = 35.0;
-
-	int pageNumber = qCeil(tableModelRowCount / MAX_TABLE_ROW_COUNT);
-
-	//qDebug() << QString("number of pages to print: %1").arg(pageNumber);
-	//_logger->log("imprimer_pdf_document",
-	//                  QString("number of pages to print: %1").arg(pageNumber));
-	getStockHistoryListingTexTableString(texTable, *tableModel, columnsToIgnore, 0,
-			(20 >= tableModelRowCount) ? tableModelRowCount : 20,
-					tableModelRowCount <= 20);
-
-	//qDebug() << "++ texTable: " << texTable;
-	if (tableModelRowCount >= 20)
-	{
-		fromRowIndex = 20;
-
-		toRowIndex = (fromRowIndex >= tableModelRowCount) ? fromRowIndex : fromRowIndex + MAX_TABLE_ROW_COUNT;
-
-		int k = 1;
-
-		do
-		{
-			//qDebug() << QString("## fromRowIndex: %1, toRowIndex: %2")
-			//  .arg(QString::number(fromRowIndex), QString::number(toRowIndex));
-			getStockHistoryListingTexTableString(texTable, *tableModel, columnsToIgnore,
-														  (fromRowIndex >= tableModelRowCount) ? tableModelRowCount :
-														  fromRowIndex,
-														  (toRowIndex >= tableModelRowCount) ? (tableModelRowCount + 1) : toRowIndex,
-														  k == pageNumber);
-			texTable.append(QString("\\newpage \n"));
-
-			fromRowIndex = toRowIndex;
-
-			toRowIndex =
-					(fromRowIndex >= tableModelRowCount) ? (fromRowIndex + 1) : fromRowIndex + MAX_TABLE_ROW_COUNT;
-
-			++k;
-		}
-		while (k <= pageNumber && fromRowIndex <= toRowIndex);
-	}
-
-	YerothInfoEntreprise & infoEntreprise = _allWindows->getInfoEntreprise();
-
-	QString texDocument;
-
-	QString factureDate(YerothUtils::LATEX_IN_OUT_handleForeignAccents(infoEntreprise.getVilleTex()));
-
-	YerothUtils::getCurrentLocaleDate(factureDate);
-
-
-	YerothUtils::getLatexStockHistory(texDocument, texTable);
-
-
-	texDocument.replace("YEROTHPAPERSPEC", "a4paper");
-
-	texDocument.replace("YEROTHENTREPRISE", infoEntreprise.getNomCommercialTex());
-	texDocument.replace("YEROTHACTIVITESENTREPRISE", infoEntreprise.getSecteursActivitesTex());
-	texDocument.replace("YEROTHBOITEPOSTALE", infoEntreprise.getBoitePostal());
-	texDocument.replace("YEROTHVILLE", infoEntreprise.getVilleTex());
-	texDocument.replace("YEROTHPAYS", infoEntreprise.getPaysTex());
-	texDocument.replace("YEROTHEMAIL", infoEntreprise.getEmailTex());
-	texDocument.replace("YEROTHTELEPHONE", infoEntreprise.getTelephone());
-	texDocument.replace("YEROTHDATE", factureDate);
-	texDocument.replace("YEROTHNOMUTILISATEUR", _allWindows->getUser()->nom_completTex());
-	texDocument.replace("YEROTHHEUREDIMPRESSION", CURRENT_TIME);
-	texDocument.replace("YEROTHCOMPTEBANCAIRENR", infoEntreprise.getNumeroCompteBancaire());
-	texDocument.replace("YEROTHCONTRIBUABLENR", infoEntreprise.getNumeroDeContribuable());
-	texDocument.replace("YEROTHAGENCECOMPTEBANCAIRE", infoEntreprise.getAgenceCompteBancaireTex());
-
-	texDocument.replace("YEROTHSTOCKHISTORYREFERENCE", YerothUtils::LATEX_IN_OUT_handleForeignAccents(_currentStockReference));
-	texDocument.replace("YEROTHSTOCKHISTORYDESIGNATION", YerothUtils::LATEX_IN_OUT_handleForeignAccents(_currentStockDesignation));
-	texDocument.replace("YEROTHSTOCKHISTORYSTOCKID", _currentStockID);
-
-	QString yerothstockHistoryFileName;
-
-#ifdef YEROTH_FRANCAIS_LANGUAGE
-		yerothstockHistoryFileName.append(YerothUtils::getUniquePrefixFileInTemporaryFilesDir("yeroth-erp-historique-dun-stock"));
-#endif
-
-#ifdef YEROTH_ENGLISH_LANGUAGE
-		yerothstockHistoryFileName.append(YerothUtils::getUniquePrefixFileInTemporaryFilesDir("yeroth-erp-stock-history"));
-#endif
-
-	QFile tmpLatexFile(QString("%1tex").arg(yerothstockHistoryFileName));
-
-	YerothUtils::writeStringToQFilewithUTF8Encoding(tmpLatexFile,
-													texDocument);
-
-	QString pdfStockHistoryFileName(YerothERPProcess::compileLatex(yerothstockHistoryFileName));
-
-	YerothERPProcess::startPdfViewerProcess(pdfStockHistoryFileName);
-
-	return true;
+	return YerothWindowsCommons::imprimer_pdf_document(&documentSpecificElements);
 }
-
 

@@ -194,7 +194,8 @@ HEADERS = src/yeroth-erp-windows.hpp \
 		  src/utils/yeroth-erp-command-line-parser.hpp \
 			src/utils/yeroth-erp-number-word-translation.hpp \
 		  src/utils/yeroth-erp-style.hpp \
-		  src/dbus/yeroth-erp-dbus-client.hpp \
+		  src/utils/print_latex_pdf/yeroth-erp-print_yeroth_latex_util_pdf.hpp \
+			src/dbus/yeroth-erp-dbus-client.hpp \
 		  src/dbus/yeroth-erp-dbus-client-adaptor.hpp \
 		  src/dbus/yeroth-erp-dbus-server.hpp \
 		  src/dbus/yeroth-erp-dbus-server-adaptor.hpp \
@@ -299,6 +300,7 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/utils/yeroth-erp-command-line-parser.cpp \
 		  src/utils/yeroth-erp-number-word-translation.cpp \
 			src/utils/yeroth-erp-style.cpp \
+			src/utils/print_latex_pdf/yeroth-erp-print_yeroth_latex_util_pdf.cpp \
 		  src/dbus/yeroth-erp-dbus-client.cpp \
 		  src/dbus/yeroth-erp-dbus-server.cpp \
 		  src/dbus/yeroth-erp-dbus-client-adaptor.cpp \

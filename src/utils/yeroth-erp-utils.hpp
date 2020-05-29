@@ -268,16 +268,6 @@ public:
 
 	static void cleanUpTexTableLastString(QString &texTable_in_out);
 
-	static void handleComptesClientsTexTableItemText(int texTableColumnCount,
-										     	 	 QString &texTable_in_out,
-													 int itemTextColumnPosition,
-													 QString &itemText);
-
-	static void handleAchatsTexTableItemText(int texTableColumnCount,
-										     QString &texTable_INT_OUT,
-											 int itemTextColumnPosition,
-											 const QString &itemText);
-
 	static void handleFactureTexTableItemText(int texTableColumnCount,
 										      QString &texTable_IN_OUT,
 											  int itemTextColumnPosition,
@@ -316,20 +306,13 @@ public:
 								const QString &csvFileName,
 								const QString &strMessage);
 
-    static QString prindDocumentFromTableView(YerothWindowsCommons *aWindowCaller,
-    									   YerothTableView &aTableView,
-    									   QList<int> &tableColumnsToIgnore,
-										   void (*functionPointerToGetTableViewLatexString)(QString &texTable_in_out_OUT,
-												   	   	   	   	   	   	   	   	   	   	    QStandardItemModel &tableStandardItemModel_OUT,
-																							QList<int> &dbFieldNameOfTypeString_OUT,
-																							QList<int> &columnsToIgnore_OUT,
-																							int fromRowIndex_OUT,
-																							int toRowIndex_OUT,
-																							bool lastPage_OUT),
-										   void (*getLatexTemplateDocumentString)(QString &texDocumentString_in_out_OUT,
-												   	   	   	   	   	   	   	   	  QString &printString_in_out_OUT),
-										   QString latexFileNamePrefix,
-										   QMap<QString, QString> *documentSpecificElements = 0);
+    static void get_YEROTH_TableViewListingTexDocumentString(QString &texTable_in_out,
+															 YerothTableView &aYerothTableView,
+															 QList<int> &dbFieldNameOfTypeString,
+															 QList<int> &columnsToIgnore,
+															 int fromRowIndex,
+															 int toRowIndex,
+															 bool lastPage);
 
     inline static void getLatexFinancialAccountingReportData(QString &texDocumentString_in_out)
     {

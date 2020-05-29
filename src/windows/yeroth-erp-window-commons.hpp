@@ -22,6 +22,7 @@
 #include <QtWidgets/QMessageBox>
 
 
+class YerothTableViewPRINT_UTILITIES_TEX_TABLE;
 class YerothSelectDBQCheckBox;
 class YerothERPGenericSelectDBFieldDialog;
 class YerothERPWindows;
@@ -35,9 +36,14 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-	inline YerothWindowsCommons(QString windowName)
+	inline YerothWindowsCommons(QString windowName,
+							    const QString &anOutput_print_pdf_latexFileNamePrefix = "")
 	:_selectExportDBQDialog(0),
+	 _yeroth_PRINT_UTILITIES_TEX_TABLE(0),
+	 _output_print_pdf_latexFileNamePrefix(anOutput_print_pdf_latexFileNamePrefix),
+	 _yerothTableView_FROM_WINDOWS_COMMONS(0),
 	 _curStocksTableModel(0),
+	 _first_time_imprimer_pdf_document_call(true),
 	 QMESSAGE_BOX_STYLE_SHEET(QString("QMessageBox {background-color: rgb(%1);}")
 								.arg(COLOUR_RGB_STRING_YEROTH_ORANGE_243_162_0)),
 	 _windowName(windowName)
@@ -50,6 +56,11 @@ public:
 													   	   	  bool aBooleanValue)
 	{
 		anAction->setVisible(aBooleanValue);
+	}
+
+	inline QList<int> &getDBFieldNamesToPrintRightAligned()
+	{
+		return _DBFieldNamesToPrintRightAligned;
 	}
 
 	inline QList<int> &getDBFieldNamesToPrintLeftAligned()
@@ -114,6 +125,8 @@ public:
 		this->setVisible(false);
 	}
 
+	virtual void fill_table_columns_to_ignore(QList<int> &tableColumnsToIgnore_in_out);
+
 	inline static YerothERPWindows *getAllWindows()
 	{
 		return _allWindows;
@@ -171,10 +184,7 @@ public slots:
 
 	virtual void qui_suis_je();
 
-	inline virtual bool imprimer_pdf_document()
-	{
-		return false;
-	}
+	virtual bool imprimer_pdf_document(QMap<QString, QString> *documentSpecificElements = 0);
 
     virtual void changer_utilisateur();
 
@@ -228,8 +238,6 @@ protected slots:
 
 protected:
 
-	virtual void fill_table_columns_to_ignore(QList<int> &tableColumnsToIgnore_in_out);
-
 	inline virtual void reinitialiser_champs_db_visibles()
 	{
 	}
@@ -258,6 +266,8 @@ protected:
 
     QStringList							_visibleDBFieldColumnStrList;
 
+    QList<int>							_DBFieldNamesToPrintRightAligned;
+
     QList<int>							_DBFieldNamesToPrintLeftAligned;
 
     QVector<YerothSelectDBQCheckBox *> 	_visibleQCheckboxs;
@@ -265,13 +275,23 @@ protected:
     YerothERPGenericSelectDBFieldDialog  *_selectExportDBQDialog;
 
 
-    static YerothERPWindows		*_allWindows;
+    static YerothERPWindows				 *_allWindows;
 
-    YerothSqlTableModel 		*_curStocksTableModel;
+    YerothTableViewPRINT_UTILITIES_TEX_TABLE *_yeroth_PRINT_UTILITIES_TEX_TABLE;
 
-    QString 				QMESSAGE_BOX_STYLE_SHEET;
+    QString								_latex_template_print_pdf_content;
 
-    const QString 			_windowName;
+    QString 							_output_print_pdf_latexFileNamePrefix;
+
+    YerothTableView 					 *_yerothTableView_FROM_WINDOWS_COMMONS;
+
+    YerothSqlTableModel 				*_curStocksTableModel;
+
+    bool 								_first_time_imprimer_pdf_document_call;
+
+    QString 							QMESSAGE_BOX_STYLE_SHEET;
+
+    const QString 						_windowName;
 
 private:
 

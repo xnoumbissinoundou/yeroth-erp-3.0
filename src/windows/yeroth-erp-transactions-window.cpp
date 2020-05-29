@@ -32,18 +32,21 @@
 
 
 
-const QString YerothTransactionsWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2")).
-        arg(YEROTH_ERP_WINDOW_TITLE,
-            QObject::trUtf8("transactions de stocks")));
+const QString YerothTransactionsWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2"))
+														.arg(YEROTH_ERP_WINDOW_TITLE,
+															 QObject::trUtf8("transactions de stocks")));
 
 YerothTransactionsWindow::YerothTransactionsWindow()
-:YerothWindowsCommons(YerothTransactionsWindow::_WINDOW_TITLE),
+:YerothWindowsCommons(YerothTransactionsWindow::_WINDOW_TITLE,
+					  "yeroth-erp-journal-sortie-stocks"),
  _logger(new YerothLogger("YerothTransactionsWindow")),
  _curTransactionsTableModel(0)
 {
     setupUi(this);
 
     this->mySetupUi(this);
+
+    _yerothTableView_FROM_WINDOWS_COMMONS = tableView_sorties_articles;
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
                                        "QMessageBox QLabel {color: rgb(%2);}").
@@ -72,7 +75,7 @@ YerothTransactionsWindow::YerothTransactionsWindow()
     connect(actionMenu, SIGNAL(triggered()), this, SLOT(menu()));
     connect(actionExporter_au_format_csv, SIGNAL(triggered()), this, SLOT(export_csv_file()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
-    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_journal_transactions()));
+    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_pdf_document()));
     connect(actionReinitialiserRecherche, SIGNAL(triggered()), this, SLOT(reinitialiser_recherche()));
     connect(actionA_propos, SIGNAL(triggered()), this, SLOT(apropos()));
     connect(actionAlertes, SIGNAL(triggered()), this, SLOT(alertes()));
@@ -124,6 +127,7 @@ void YerothTransactionsWindow::setupShortcuts()
     setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
 }
 
+
 void YerothTransactionsWindow::setFilter()
 {
     if (0 == _curTransactionsTableModel)
@@ -133,6 +137,7 @@ void YerothTransactionsWindow::setFilter()
 
     _curTransactionsTableModel->yerothSetFilter(_searchFilter);
 }
+
 
 void YerothTransactionsWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 {
@@ -144,6 +149,7 @@ void YerothTransactionsWindow::rendreVisible(YerothSqlTableModel * stocksTableMo
 
     rechercher();
 }
+
 
 void YerothTransactionsWindow::setupLineEdits()
 {
@@ -162,6 +168,7 @@ void YerothTransactionsWindow::setupLineEdits()
     connect(lineEdit_transactions_reference_recu_sortie, SIGNAL(textChanged(const QString &)), this, SLOT(rechercher()));
     connect(lineEdit_transactions_nom_recepteur, SIGNAL(textChanged(const QString &)), this, SLOT(rechercher()));
 }
+
 
 void YerothTransactionsWindow::setupLineEditsQCompleters()
 {
@@ -191,11 +198,6 @@ void YerothTransactionsWindow::setupDateTimeEdits()
     connect(dateEdit_transactions_fin, SIGNAL(dateChanged(const QDate &)), this, SLOT(rechercher()));
 }
 
-
-void YerothTransactionsWindow::handleTabChanged(int index)
-{
-	rechercher();
-}
 
 void YerothTransactionsWindow::definirCaissier()
 {
@@ -341,336 +343,31 @@ bool YerothTransactionsWindow::export_csv_file()
 }
 
 
-void YerothTransactionsWindow::getJournalDesTransactionsTexTableString(QString &texTable_in_out,
-        															   QStandardItemModel &tableStandardItemModel,
-																	   QList<int> &dbFieldNameOfTypeString,
-																	   QList<int> &columnsToIgnore,
-																	   int fromRowIndex,
-																	   int toRowIndex,
-																	   bool lastPage)
+bool YerothTransactionsWindow::imprimer_pdf_document()
 {
-    if (lastPage && toRowIndex > 20)
-    {
-        toRowIndex -= 1;
-    }
-
-    if (fromRowIndex == toRowIndex)
-    {
-        return ;
-    }
-
-    texTable_in_out.append("\\begin{table*}[!htbp]")
-    			   .append("\n")
-				   .append("\\centering")
-				   .append("\n")
-				   .append("\\begin{tabular}")
-				   .append("{|");
-
-    texTable_in_out.append("c|");
-
-    //Tex table header
-    for (int k = 0; k < tableStandardItemModel.columnCount(); ++k)
-    {
-        if (columnsToIgnore.contains(k))
-        {
-            continue;
-        }
-
-        if (dbFieldNameOfTypeString.contains(k))
-        {
-        	texTable_in_out.append("l|");
-        }
-        else
-        {
-        	texTable_in_out.append("r|");
-        }
-    }
-
-    texTable_in_out.append("} \\hline \n");
-    //qDebug() << "++ texTable caisse: " << texTable_in_out;
-
-    QStandardItem *item;
-
-    int tableColumnCount = tableStandardItemModel.columnCount() + 1;
-
-    /** We add a column named ''id'' for numbering the rows
-
-       * in the Tex table. */
-    texTable_in_out.append("\\textbf{n\\textsuperscript{o}} & ");
-
-    for (int k = 0; k < tableColumnCount; ++k)
-    {
-        if (columnsToIgnore.contains(k))
-        {
-            continue;
-        }
-
-        item = tableStandardItemModel.horizontalHeaderItem(k);
-
-        if (item)
-        {
-            QString itemText(item->text().prepend("\\textbf{")
-            							 .append("}"));
-
-            YerothUtils::handleTexTableItemText(tableColumnCount,
-            								   texTable_in_out,
-											   k,
-                                               itemText);
-        }
-    }
-
-    YerothUtils::cleanUpTexTableLastString(texTable_in_out);
-
-    texTable_in_out.append("\\\\ \\hline \n");
-
-    //Tex table body
-    //qDebug() << "++ fromRowIndex: " << fromRowIndex;
-    //qDebug() << "++ toRowIndex: " << toRowIndex;
-    /* Variable to print the row's number in the output file */
-
-    int rowToPrintSums = toRowIndex - 1;
-
-    static int b = 1;
-
-    if (0 == fromRowIndex)
-    {
-        b = 1;
-    }
-
-    QString idColumnText;
-
-    for (int j = fromRowIndex; j < toRowIndex; ++j)
-    {
-        idColumnText.clear();
-
-        idColumnText.append(QString::number(b))
-        			.prepend("\\textbf{")
-					.append("}")
-					.append(" & ");
-
-        texTable_in_out.append(idColumnText);
-
-        ++b;
-
-        for (int k = 0; k < tableStandardItemModel.columnCount(); ++k)
-        {
-            if (columnsToIgnore.contains(k))
-            {
-                continue;
-            }
-
-            item = tableStandardItemModel.item(j, k);
-
-            if (item)
-            {
-                /**
-                 * Any string shall have a length smaller than
-                 * YerothERPConfig::max_string_display_length
-                 */
-                QString itemText(item->text());
-
-                if (itemText.length() > YerothERPConfig::max_string_display_length)
-                {
-                    itemText.truncate(YerothERPConfig::max_string_display_length);
-                    itemText.append(".");
-                }
-
-                YerothUtils::handleTexTableItemText(tableColumnCount,
-                									texTable_in_out,
-													k,
-                                                    itemText);
-            }
-            else
-            {
-                if (k < tableStandardItemModel.columnCount() - 1)
-                {
-                    texTable_in_out.append("\"\"").append(" &");
-                }
-                else
-                {
-                    texTable_in_out.append("\"\" \\hline \n");
-                }
-            }
-        }
-        YerothUtils::cleanUpTexTableLastString(texTable_in_out);
-        texTable_in_out.append("\\\\ \\hline \n");
-    }
-
-    //Removes the string "" from Latex output
-    texTable_in_out.replace("\"\"", "");
-
-    texTable_in_out.append("\\end{tabular}")
-    			   .append("\n")
-				   .append("\\end{table*}")
-				   .append("\n");
-}
-
-void YerothTransactionsWindow::imprimer_journal_transactions()
-{
-    _logger->log("imprimer_journal_transactions");
-
-    QStandardItemModel *tableModel = 0;
-
-    QList<int> columnsToIgnore;
-
-    fill_table_columns_to_ignore(columnsToIgnore);
-
-
     if (SUJET_ACTION_SORTIES_STOCKS == tabWidget_transactions->currentIndex())
     {
-        tableModel = tableView_sorties_articles->getStandardItemModel();
+    	_yerothTableView_FROM_WINDOWS_COMMONS = tableView_sorties_articles;
     }
     else if (SUJET_ACTION_TRANSFERTS_STOCKS == tabWidget_transactions->currentIndex())
     {
-        tableModel = tableView_transferts_articles->getStandardItemModel();
+    	_yerothTableView_FROM_WINDOWS_COMMONS = tableView_transferts_articles;
     }
 
-
-    int tableModelRowCount = tableModel->rowCount();
-
-    if (tableModelRowCount <= 0)
-    {
-        YerothQMessageBox::information(this,
-        							   QObject::trUtf8("impression"),
-									   QObject::trUtf8("Il n'y a pas de données à imprimer !"));
-        return;
-    }
-
-    QString texTable;
-
-    int fromRowIndex = 0;
-
-    int toRowIndex = tableModelRowCount;
-
-    double MAX_TABLE_ROW_COUNT = 35.0;
-
-    int pageNumber = qCeil(tableModelRowCount / MAX_TABLE_ROW_COUNT);
-
-    //qDebug() << QString("number of pages to print: %1").arg(pageNumber);
-    //_logger->log("imprimer_pdf_document",
-    //                  QString("number of pages to print: %1").arg(pageNumber));
-    this->getJournalDesTransactionsTexTableString(texTable,
-    											  *tableModel,
-												  this->getDBFieldNamesToPrintLeftAligned(),
-												  columnsToIgnore,
-												  0,
-												  (20 >= tableModelRowCount) ? tableModelRowCount : 20,
-												  tableModelRowCount <= 20);
-
-    //qDebug() << "++ texTable: " << texTable;
-    if (tableModelRowCount >= 20)
-    {
-        fromRowIndex = 20;
-
-        toRowIndex = (fromRowIndex >= tableModelRowCount) ? fromRowIndex : fromRowIndex + MAX_TABLE_ROW_COUNT;
-
-        int k = 1;
-
-        do
-        {
-            //qDebug() << QString("## fromRowIndex: %1, toRowIndex: %2")
-            //  .arg(QString::number(fromRowIndex), QString::number(toRowIndex));
-            this->getJournalDesTransactionsTexTableString(texTable,
-            											  *tableModel,
-														  this->getDBFieldNamesToPrintLeftAligned(),
-														  columnsToIgnore,
-														  (fromRowIndex >= tableModelRowCount) ? tableModelRowCount : fromRowIndex,
-														  (toRowIndex >= tableModelRowCount) ? (tableModelRowCount + 1) : toRowIndex,
-														  k == pageNumber);
-            texTable.append(QString("\\newpage \n"));
-
-            fromRowIndex = toRowIndex;
-
-            toRowIndex =
-                (fromRowIndex >= tableModelRowCount) ? (fromRowIndex + 1) : fromRowIndex + MAX_TABLE_ROW_COUNT;
-
-            ++k;
-        }
-        while (k <= pageNumber && fromRowIndex <= toRowIndex);
-    }
-
-    YerothInfoEntreprise & infoEntreprise = _allWindows->getInfoEntreprise();
-
-    QString texDocument;
-
-    QString factureDate(YerothUtils::LATEX_IN_OUT_handleForeignAccents(infoEntreprise.getVilleTex()));
-
-    YerothUtils::getCurrentLocaleDate(factureDate);
-
-#ifdef YEROTH_FRANCAIS_LANGUAGE
-
-    YerothUtils::getTexLandscapeFROutgoingDocumentString(texDocument, texTable);
-
-    if (SUJET_ACTION_SORTIES_STOCKS == tabWidget_transactions->currentIndex())
-    {
-        texDocument.replace("YEROTHSUBJECT", "Journal des sorties d'articles");
-    }
-    else if (SUJET_ACTION_TRANSFERTS_STOCKS == tabWidget_transactions->currentIndex())
-    {
-        texDocument.replace("YEROTHSUBJECT", "Journal des transferts d'articles");
-    }
-
-#endif
-
-#ifdef YEROTH_ENGLISH_LANGUAGE
-
-    YerothUtils::getTexLandscapeENOutgoingDocumentString(texDocument, texTable);
-
-    if (SUJET_ACTION_SORTIES_STOCKS == tabWidget_transactions->currentIndex())
-    {
-        texDocument.replace("YEROTHSUBJECT", "Journal of outgoing articles");
-    }
-    else if (SUJET_ACTION_TRANSFERTS_STOCKS == tabWidget_transactions->currentIndex())
-    {
-        texDocument.replace("YEROTHSUBJECT", "Journal of article transfers");
-    }
-
-#endif
-
-    texDocument.replace("YEROTHPAPERSPEC", "a4paper");
-
-    texDocument.replace("YEROTHENTREPRISE", infoEntreprise.getNomCommercialTex());
-    texDocument.replace("YEROTHACTIVITESENTREPRISE", infoEntreprise.getSecteursActivitesTex());
-    texDocument.replace("YEROTHBOITEPOSTALE", infoEntreprise.getBoitePostal());
-    texDocument.replace("YEROTHVILLE", infoEntreprise.getVilleTex());
-    texDocument.replace("YEROTHPAYS", infoEntreprise.getPaysTex());
-    texDocument.replace("YEROTHEMAIL", infoEntreprise.getEmailTex());
-    texDocument.replace("YEROTHTELEPHONE", infoEntreprise.getTelephone());
-    texDocument.replace("YEROTHDATE", factureDate);
-    texDocument.replace("YEROTHVENTESDEBUT", DATE_TO_STRING(dateEdit_transactions_debut->date()));
-    texDocument.replace("YEROTHVENTESFIN", DATE_TO_STRING(dateEdit_transactions_fin->date()));
-    texDocument.replace("YEROTHNOMUTILISATEUR", _allWindows->getUser()->nom_completTex());
-    texDocument.replace("YEROTHHEUREDIMPRESSION", CURRENT_TIME);
-    texDocument.replace("YEROTHCOMPTEBANCAIRENR", infoEntreprise.getNumeroCompteBancaire());
-    texDocument.replace("YEROTHCONTRIBUABLENR", infoEntreprise.getNumeroDeContribuable());
-    texDocument.replace("YEROTHAGENCECOMPTEBANCAIRE", infoEntreprise.getAgenceCompteBancaireTex());
-
-    QString yerothFiltres;
-
-    YerothUtils::addFiltre(lineEdit_transactions_nom_magasinier, QObject::trUtf8("magasinier"), yerothFiltres);
-    YerothUtils::addFiltre(lineEdit_transactions_designation, QObject::trUtf8("désignation"), yerothFiltres);
-    YerothUtils::addFiltre(lineEdit_transactions_nom_categorie, QObject::trUtf8("catégorie"), yerothFiltres);
-    YerothUtils::addFiltre(lineEdit_transactions_reference_recu_sortie, QObject::trUtf8("numéro de bon"), yerothFiltres);
-    YerothUtils::addFiltre(lineEdit_transactions_nom_recepteur, QObject::trUtf8("récepteur"), yerothFiltres);
-
-    int lastIndexOfComa = yerothFiltres.lastIndexOf(",");
-
-    yerothFiltres.remove(lastIndexOfComa, yerothFiltres.length());
-
-    texDocument.replace("YEROTHFILTRES", YerothUtils::LATEX_IN_OUT_handleForeignAccents(yerothFiltres));
-
-    QString yerothTableauTransactionsFileName;
+    QMap<QString, QString> documentSpecificElements;
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
     if (SUJET_ACTION_SORTIES_STOCKS == tabWidget_transactions->currentIndex())
     {
-    	yerothTableauTransactionsFileName.append(YerothUtils::getUniquePrefixFileInTemporaryFilesDir("yeroth-erp-journal-sortie-stocks"));
+    	documentSpecificElements.insert("YEROTHSUBJECT", "Journal des sorties d'articles");
     }
     else if (SUJET_ACTION_TRANSFERTS_STOCKS == tabWidget_transactions->currentIndex())
     {
-    	yerothTableauTransactionsFileName.append(YerothUtils::getUniquePrefixFileInTemporaryFilesDir("yeroth-erp-journal-transferts-stocks"));
+    	documentSpecificElements.insert("YEROTHSUBJECT", "Journal des transferts d'articles");
     }
+
+    _latex_template_print_pdf_content = YerothUtils::FR_template_journal_des_transactions_tex;
 
 #endif
 
@@ -678,23 +375,18 @@ void YerothTransactionsWindow::imprimer_journal_transactions()
 
     if (SUJET_ACTION_SORTIES_STOCKS == tabWidget_transactions->currentIndex())
     {
-    	yerothTableauTransactionsFileName.append(YerothUtils::getUniquePrefixFileInTemporaryFilesDir("yeroth-erp-journal-outgoing-stocks"));
+    	documentSpecificElements.insert("YEROTHSUBJECT", "Journal of outgoing articles");
     }
     else if (SUJET_ACTION_TRANSFERTS_STOCKS == tabWidget_transactions->currentIndex())
     {
-    	yerothTableauTransactionsFileName.append(YerothUtils::getUniquePrefixFileInTemporaryFilesDir("yeroth-erp-journal-stocks-transfer"));
+    	documentSpecificElements.insert("YEROTHSUBJECT", "Journal of article transfers");
     }
+
+    _latex_template_print_pdf_content = YerothUtils::EN_template_journal_des_transactions_tex;
 
 #endif
 
-    QFile tmpLatexFile(QString("%1tex").arg(yerothTableauTransactionsFileName));
-
-    YerothUtils::writeStringToQFilewithUTF8Encoding(tmpLatexFile,
-    											   texDocument);
-
-    QString pdfTableauTransactionsFileName(YerothERPProcess::compileLatex(yerothTableauTransactionsFileName));
-
-    YerothERPProcess::startPdfViewerProcess(pdfTableauTransactionsFileName);
+	return YerothWindowsCommons::imprimer_pdf_document(&documentSpecificElements);
 }
 
 void YerothTransactionsWindow::rechercher()
@@ -773,6 +465,7 @@ void YerothTransactionsWindow::rechercher()
 
     lister_les_elements_du_tableau(_searchFilter);
 }
+
 
 void YerothTransactionsWindow::lister_les_elements_du_tableau(QString aSearchFilter)
 {
@@ -856,6 +549,7 @@ void YerothTransactionsWindow::lister_les_elements_du_tableau(QString aSearchFil
     lineEdit_transactions_quantite_sortie->setText(QString::number(quantite_sortie_total, 'f', 2));
 }
 
+
 void YerothTransactionsWindow::resetFilter()
 {
     _searchFilter.clear();
@@ -885,6 +579,7 @@ void YerothTransactionsWindow::resetFilter()
     }
 }
 
+
 void YerothTransactionsWindow::setLastListerSelectedRow(int row)
 {
     if (SUJET_ACTION_SORTIES_STOCKS == tabWidget_transactions->currentIndex())
@@ -896,6 +591,7 @@ void YerothTransactionsWindow::setLastListerSelectedRow(int row)
         tableView_transferts_articles->setLastSelectedRow(row);
     }
 }
+
 
 void YerothTransactionsWindow::reinitialiser_recherche()
 {

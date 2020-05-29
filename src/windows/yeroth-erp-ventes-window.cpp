@@ -51,12 +51,13 @@
 #include <unistd.h>
 
 
-const QString YerothVentesWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2")).
-        arg(YEROTH_ERP_WINDOW_TITLE, QObject::trUtf8("ventes")));
+const QString YerothVentesWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2"))
+													.arg(YEROTH_ERP_WINDOW_TITLE, QObject::trUtf8("ventes")));
 
 
 YerothVentesWindow::YerothVentesWindow()
-:YerothWindowsCommons(YerothVentesWindow::_WINDOW_TITLE),
+:YerothWindowsCommons(YerothVentesWindow::_WINDOW_TITLE,
+					  "yeroth-erp-journal-ventes"),
  YerothAbstractClassYerothSearchWindow(_allWindows->STOCKS_VENDU),
  _retourVenteTabWidget(0),
  _logger(new YerothLogger("YerothVentesWindow")),
@@ -68,6 +69,8 @@ YerothVentesWindow::YerothVentesWindow()
     setupUi(this);
 
     mySetupUi(this);
+
+    _yerothTableView_FROM_WINDOWS_COMMONS = tableView_ventes;
 
     QMESSAGE_BOX_STYLE_SHEET =
         QString("QMessageBox {background-color: rgb(%1);}")
@@ -1576,294 +1579,10 @@ bool YerothVentesWindow::export_csv_file()
 }
 
 
-void YerothVentesWindow::getJournalDesVentesTexTableString(QString & texTable_in_out,
-        												   QStandardItemModel & tableStandardItemModel,
-														   QList<int> &dbFieldNameOfTypeString,
-														   QList<int> &columnsToIgnore,
-														   int fromRowIndex,
-														   int toRowIndex,
-														   bool lastPage)
-{
-    if (lastPage && toRowIndex > 20)
-    {
-        toRowIndex -= 1;
-    }
-
-    if (fromRowIndex == toRowIndex)
-    {
-        return ;
-    }
-
-    texTable_in_out.append("\\begin{table*}[!htbp]")
-    			   .append("\n")
-				   .append("\\centering")
-				   .append("\n")
-				   .append("\\begin{tabular}")
-				   .append("{|");
-
-    //Tex table header
-
-    /** We center the id column*/
-
-    texTable_in_out.append("c|");
-
-    //Tex table header
-    for (int k = 0; k < tableStandardItemModel.columnCount(); ++k)
-    {
-        if (columnsToIgnore.contains(k))
-        {
-            continue;
-        }
-
-        if (dbFieldNameOfTypeString.contains(k))
-        {
-        	texTable_in_out.append("l|");
-        }
-        else
-        {
-        	texTable_in_out.append("r|");
-        }
-    }
-
-    texTable_in_out.append("} \\hline \n");
-    //qDebug() << "++ texTable caisse: " << texTable_in_out;
-
-    QStandardItem *item;
-
-    int tableColumnCount = 1 + tableStandardItemModel.columnCount();
-    /** We add a column named ''n0'' for numbering the rows
-
-     * in the Tex table. */
-    texTable_in_out.append("\\textbf{n\\textsuperscript{o}} & ");
-
-    for (int k = 0; k < tableStandardItemModel.columnCount(); ++k)
-    {
-        if (columnsToIgnore.contains(k))
-        {
-            continue;
-        }
-
-        item = tableStandardItemModel.horizontalHeaderItem(k);
-
-        if (item)
-        {
-            QString itemText(item->text());
-
-            if (YerothUtils::isEqualCaseInsensitive(itemText, "Total TTC"))
-            {
-                itemText.append(" (Chiffre d'affaire)");
-            }
-
-            itemText.prepend("\\textbf{").append("}");
-
-            YerothUtils::handleTexTableItemText(tableColumnCount,
-                                               texTable_in_out,
-                                               k,
-                                               itemText);
-        }
-    }
-    YerothUtils::cleanUpTexTableLastString(texTable_in_out);
-    texTable_in_out.append("\\\\ \\hline \n");
-    //Tex table body
-    //qDebug() << "++ fromRowIndex: " << fromRowIndex;
-    //qDebug() << "++ toRowIndex: " << toRowIndex;
-    /* Variable to print the row's number in the output file */
-
-    static int b = 1;
-    if (0 == fromRowIndex)
-    {
-        b = 1;
-    }
-    QString idColumnText;
-    for (int j = fromRowIndex; j < toRowIndex; ++j)
-    {
-        idColumnText.clear();
-        idColumnText.append(QString::number(b)).prepend("\\textbf{").append("}").append(" & ");
-        texTable_in_out.append(idColumnText);
-        ++b;
-        for (int k = 0; k < tableStandardItemModel.columnCount(); ++k)
-        {
-            if (columnsToIgnore.contains(k))
-            {
-                continue;
-            }
-            item = tableStandardItemModel.item(j, k);
-            if (item)
-            {
-                /**
-                 * Any string shall have a length smaller than
-                 * YerothERPConfig::max_string_display_length
-                 */
-                QString itemText(item->text());
-                if (itemText.length() > YerothERPConfig::max_string_display_length)
-                {
-                    itemText.truncate(YerothERPConfig::max_string_display_length);
-                    itemText.append(".");
-                }
-                YerothUtils::handleTexTableItemText(tableColumnCount,
-                									texTable_in_out,
-													k,
-                                                    itemText);
-            }
-            else
-            {
-                if (k < tableStandardItemModel.columnCount() - 1)
-                {
-                    texTable_in_out.append("\"\"").append(" &");
-                }
-                else
-                {
-                    texTable_in_out.append("\"\" \\hline \n");
-                }
-            }
-        }
-        YerothUtils::cleanUpTexTableLastString(texTable_in_out);
-        texTable_in_out.append("\\\\ \\hline \n");
-        //qDebug() << "++ lastPage: " << lastPage << ". check j: " << j << ", rowToPrintSums: " << rowToPrintSums;
-    }
-    //Removes the string "" from Latex output
-    texTable_in_out.replace("\"\"", "");
-    texTable_in_out.append("\\end{tabular}").append("\n").append("\\end{table*}").append("\n");
-}
-
-
 bool YerothVentesWindow::imprimer_pdf_document()
 {
-    _logger->log("imprimer_pdf_document");
-
-    QString texTable;
-
-    QStandardItemModel *tableModel = tableView_ventes->getStandardItemModel();
-
-    QList <int> columnsToIgnore;
-
-    fill_table_columns_to_ignore(columnsToIgnore);
-
-    int tableModelRowCount = tableModel->rowCount();
-
-    if (tableModelRowCount <= 0)
-    {
-        YerothQMessageBox::information(this,
-                                       QObject::trUtf8("pas de données à imprimer"),
-                                       QObject::trUtf8("Il n'y a pas de données à imprimer !"));
-        return false;
-    }
-
-    int fromRowIndex = 0;
-
-    int toRowIndex = tableModelRowCount;
-
-    double MAX_TABLE_ROW_COUNT = 35.0;
-
-    int pageNumber = qCeil(tableModelRowCount / MAX_TABLE_ROW_COUNT);
-    //qDebug() << QString("number of pages to print: %1").arg(pageNumber);
-    //_logger->log("imprimer_pdf_document",
-    //                  QString("number of pages to print: %1").arg(pageNumber));
-
-    getJournalDesVentesTexTableString(texTable,
-    										*tableModel,
-											_DBFieldNamesToPrintLeftAligned,
-											columnsToIgnore,
-											0,
-                                            (20 >= tableModelRowCount) ? tableModelRowCount : 20,
-                                            tableModelRowCount <= 20);
-    //qDebug() << "++ texTable: " << texTable;
-    if (tableModelRowCount >= 20)
-    {
-        fromRowIndex = 20;
-        toRowIndex = (fromRowIndex >= tableModelRowCount) ? fromRowIndex : fromRowIndex + MAX_TABLE_ROW_COUNT;
-        int k = 1;
-        do
-        {
-            //qDebug() << QString("## fromRowIndex: %1, toRowIndex: %2")
-            //          .arg(QString::number(fromRowIndex), QString::number(toRowIndex));
-            getJournalDesVentesTexTableString(texTable,
-            										*tableModel,
-													_DBFieldNamesToPrintLeftAligned,
-													columnsToIgnore,
-                                                    (fromRowIndex >=
-                                                            tableModelRowCount) ? tableModelRowCount : fromRowIndex,
-                                                    (toRowIndex >=
-                                                            tableModelRowCount) ? (tableModelRowCount + 1) : toRowIndex,
-                                                    k == pageNumber);
-            texTable.append(QString("\\newpage \n"));
-            fromRowIndex = toRowIndex;
-            toRowIndex =
-                (fromRowIndex >= tableModelRowCount) ? (fromRowIndex + 1) : fromRowIndex + MAX_TABLE_ROW_COUNT;
-            ++k;
-        }
-        while (k <= pageNumber && fromRowIndex <= toRowIndex);
-    }
-    YerothInfoEntreprise & infoEntreprise = _allWindows->getInfoEntreprise();
-    QString texDocument;
-    QString factureDate(YerothUtils::LATEX_IN_OUT_handleForeignAccents(infoEntreprise.getVilleTex()));
-    YerothUtils::getCurrentLocaleDate(factureDate);
-
-
-    YerothUtils::getTexLandscapeSellingDocumentString(texDocument, texTable);
-
-
-    texDocument.replace("YEROTHPAPERSPEC", "a4paper");
-
-    texDocument.replace("YEROTHENTREPRISE", infoEntreprise.getNomCommercialTex());
-    texDocument.replace("YEROTHACTIVITESENTREPRISE", infoEntreprise.getSecteursActivitesTex());
-    texDocument.replace("YEROTHBOITEPOSTALE", infoEntreprise.getBoitePostal());
-    texDocument.replace("YEROTHVILLE", infoEntreprise.getVilleTex());
-    texDocument.replace("YEROTHPAYS", infoEntreprise.getPaysTex());
-    texDocument.replace("YEROTHEMAIL", infoEntreprise.getEmailTex());
-    texDocument.replace("YEROTHTELEPHONE", infoEntreprise.getTelephone());
-    texDocument.replace("YEROTHDATE", factureDate);
-    texDocument.replace("YEROTHVENTESDEBUT", DATE_TO_STRING(dateEdit_ventes_debut->date()));
-    texDocument.replace("YEROTHVENTESFIN", DATE_TO_STRING(dateEdit_ventes_fin->date()));
-    texDocument.replace("YEROTHNOMUTILISATEUR", _allWindows->getUser()->nom_completTex());
-    texDocument.replace("YEROTHHEUREDIMPRESSION", CURRENT_TIME);
-    texDocument.replace("YEROTHCOMPTEBANCAIRENR", infoEntreprise.getNumeroCompteBancaire());
-    texDocument.replace("YEROTHCONTRIBUABLENR", infoEntreprise.getNumeroDeContribuable());
-    texDocument.replace("YEROTHAGENCECOMPTEBANCAIRE", infoEntreprise.getAgenceCompteBancaireTex());
-
-    QString yerothFiltres;
-
-    YerothUtils::addFiltre(lineEdit_ventes_terme_recherche, QObject::trUtf8("mot clé"), yerothFiltres);
-    YerothUtils::addFiltre(lineEdit_ventes_nom_caissier, QObject::tr("caissier"), yerothFiltres);
-    YerothUtils::addFiltre(lineEdit_ventes_designation, QObject::trUtf8("désignation"), yerothFiltres);
-    YerothUtils::addFiltre(lineEdit_ventes_categorie_produit, QObject::trUtf8("catégorie"), yerothFiltres);
-    YerothUtils::addFiltre(lineEdit_ventes_nom_entreprise_client, QObject::tr("client"), yerothFiltres);
-
-    int lastIndexOfComa = yerothFiltres.lastIndexOf(",");
-
-    yerothFiltres.remove(lastIndexOfComa, yerothFiltres.length());
-
-    texDocument.replace("YEROTHFILTRES", YerothUtils::LATEX_IN_OUT_handleForeignAccents(yerothFiltres));
-
-    //qDebug() << "++ temp file dir: " << YerothConfig::temporaryFilesDir;
-    //qDebug() << "++ texDocument: \n" << texDocument << "\n++++++++";
-
-    QString yerothTableauCaissePrefixFileName;
-
-#ifdef YEROTH_FRANCAIS_LANGUAGE
-
-    yerothTableauCaissePrefixFileName.append(YerothUtils::getUniquePrefixFileInTemporaryFilesDir("yeroth-erp-journal-ventes"));
-
-#endif
-
-#ifdef YEROTH_ENGLISH_LANGUAGE
-
-    yerothTableauCaissePrefixFileName.append(YerothUtils::getUniquePrefixFileInTemporaryFilesDir("yeroth-erp-cashier-journal"));
-
-#endif
-
-
-    QFile tmpLatexFile(QString("%1tex")
-    					.arg(yerothTableauCaissePrefixFileName));
-
-    YerothUtils::writeStringToQFilewithUTF8Encoding(tmpLatexFile,
-    												texDocument);
-
-    QString pdfVentesFileName(YerothERPProcess::compileLatex(yerothTableauCaissePrefixFileName));
-
-    YerothERPProcess::startPdfViewerProcess(pdfVentesFileName);
-
-    return true;
+	_latex_template_print_pdf_content = YerothUtils::template_journal_des_ventes_tex;
+	return YerothWindowsCommons::imprimer_pdf_document();
 }
 
 

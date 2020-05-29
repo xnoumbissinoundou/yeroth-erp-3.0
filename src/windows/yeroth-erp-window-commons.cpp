@@ -5,6 +5,10 @@
 #include "yeroth-erp-window-commons.hpp"
 
 
+#include "src/process/yeroth-erp-process.hpp"
+
+#include "src/utils/print_latex_pdf/yeroth-erp-print_yeroth_latex_util_pdf.hpp"
+
 #include "src/widgets/yeroth-erp-select-db-qcheckbox.hpp"
 
 #include "src/dialogs/yeroth-erp-generic-select-db-field-dialog.hpp"
@@ -41,6 +45,11 @@ YerothWindowsCommons::~YerothWindowsCommons()
 		delete _selectExportDBQDialog;
 	}
 
+	if (0 != _yeroth_PRINT_UTILITIES_TEX_TABLE)
+	{
+		delete _yeroth_PRINT_UTILITIES_TEX_TABLE;
+	}
+
 	_DBFieldNamesToPrintLeftAligned.clear();
 
 	_dbtablefieldNameToDBColumnIndex.clear();
@@ -48,7 +57,6 @@ YerothWindowsCommons::~YerothWindowsCommons()
 	_visibleDBFieldColumnStrList.clear();
 
 	_visibleQCheckboxs.clear();
-
 }
 
 
@@ -252,6 +260,11 @@ void YerothWindowsCommons::setupSelectDBFields(QString aSqlTableName)
 		{
 			_DBFieldNamesToPrintLeftAligned.append(columnIdx);
 		}
+		else if (type.contains(YerothUtils::DATABASE_MYSQL_DOUBLE_TYPE_STRING) ||
+				 type.contains(YerothUtils::DATABASE_MYSQL_INT_TYPE_STRING))
+		{
+			_DBFieldNamesToPrintRightAligned.append(columnIdx);
+		}
 
 //		qDebug() << QString("++ aSqlTableName: %1, fieldName: %2, columnIdx: %3")
 //						.arg(aSqlTableName,
@@ -380,34 +393,47 @@ void YerothWindowsCommons::selectionner_champs_db_visibles()
 }
 
 
-void YerothWindowsCommons::fill_table_columns_to_ignore(QList<int> &tableColumnsToIgnore_in_out)
-{
-    QMapIterator<QString, int> it(_dbtablefieldNameToDBColumnIndex);
-
-    QString curFieldColumn;
-
-    while (it.hasNext())
-    {
-    	it.next();
-
-    	curFieldColumn = it.key();
-
-    	if (curFieldColumn.isEmpty())
-    	{
-    		continue;
-    	}
-
-    	if (!_visibleDBFieldColumnStrList.contains(curFieldColumn))
-    	{
-    		tableColumnsToIgnore_in_out.append(it.value());
-    	}
-    }
-}
-
-
 void YerothWindowsCommons::qui_suis_je()
 {
     YerothQMessageBox::information(this, QObject::tr("qui suis je ?"), _allWindows->getUser()->toString());
+}
+
+
+bool YerothWindowsCommons::imprimer_pdf_document(QMap<QString, QString> *documentSpecificElements /* = 0 */)
+{
+	if (_latex_template_print_pdf_content.isEmpty() ||
+		0 == _yerothTableView_FROM_WINDOWS_COMMONS)
+	{
+		return false;
+	}
+
+	if (_first_time_imprimer_pdf_document_call && 0 != _yerothTableView_FROM_WINDOWS_COMMONS)
+	{
+		if (_output_print_pdf_latexFileNamePrefix.isEmpty())
+		{
+			_output_print_pdf_latexFileNamePrefix.append(_windowName);
+		}
+
+		_yeroth_PRINT_UTILITIES_TEX_TABLE =
+				new YerothTableViewPRINT_UTILITIES_TEX_TABLE(_output_print_pdf_latexFileNamePrefix,
+															 *this,
+															 *_yerothTableView_FROM_WINDOWS_COMMONS);
+		_first_time_imprimer_pdf_document_call = false;
+	}
+
+	QString pdfOutputFileName =
+			_yeroth_PRINT_UTILITIES_TEX_TABLE->
+				print_YEROTH_document_from_TableView(_latex_template_print_pdf_content,
+													 documentSpecificElements);
+
+	if (pdfOutputFileName.isEmpty())
+	{
+		return false;
+	}
+
+	YerothERPProcess::startPdfViewerProcess(pdfOutputFileName);
+
+    return true;
 }
 
 
@@ -445,3 +471,29 @@ void YerothWindowsCommons::rendreVisible(YerothSqlTableModel * stocksTableModel)
     _curStocksTableModel = stocksTableModel;
     setVisible(true);
 }
+
+
+void YerothWindowsCommons::fill_table_columns_to_ignore(QList<int> &tableColumnsToIgnore_in_out)
+{
+    QMapIterator<QString, int> it(_dbtablefieldNameToDBColumnIndex);
+
+    QString curFieldColumn;
+
+    while (it.hasNext())
+    {
+    	it.next();
+
+    	curFieldColumn = it.key();
+
+    	if (curFieldColumn.isEmpty())
+    	{
+    		continue;
+    	}
+
+    	if (!_visibleDBFieldColumnStrList.contains(curFieldColumn))
+    	{
+    		tableColumnsToIgnore_in_out.append(it.value());
+    	}
+    }
+}
+

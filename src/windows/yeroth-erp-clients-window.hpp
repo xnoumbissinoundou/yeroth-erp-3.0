@@ -78,17 +78,6 @@ public slots:
 
 	bool export_csv_file();
 
-	static void getComptesClientsListingTexTableString(QString &texTable_in_out,
-	        								   	   	   QStandardItemModel &tableStandardItemModel,
-													   QList<int> &dbFieldNameOfTypeString,
-													   QList<int> &columnsToIgnore,
-													   int fromRowIndex,
-													   int toRowIndex,
-													   bool lastPage);
-
-	static void getComptesClientsTexDocumentString(QString &texDocumentString_in_out,
-			   	   	   	   	   	   	   	   	   	   QString &printString);
-
 	virtual bool imprimer_pdf_document();
 
     inline int getLastListerSelectedRow()

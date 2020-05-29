@@ -69,17 +69,12 @@ public slots:
 
 	bool export_csv_file();
 
-	void getJournalDesTransactionsTexTableString(QString &texTable_in_out,
-			  	  	  	   	   	   	   	    	 QStandardItemModel &tableStandardItemModel,
-												 QList<int> &dbFieldNameOfTypeString,
-												 QList<int> &columnsToIgnore,
-												 int fromRowIndex,
-												 int toRowIndex,
-												 bool lastPage);
+    virtual bool imprimer_pdf_document();
 
-    void imprimer_journal_transactions();
-
-    void handleTabChanged(int index);
+    inline void handleTabChanged(int index)
+    {
+    	rechercher();
+    }
 
     void setLastListerSelectedRow(int row);
 

@@ -50,12 +50,14 @@
 #include <unistd.h>
 
 
-const QString YerothPaiementsWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2")).
-        arg(YEROTH_ERP_WINDOW_TITLE, QObject::trUtf8("paiements")));
+const QString YerothPaiementsWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2"))
+													.arg(YEROTH_ERP_WINDOW_TITLE,
+														 QObject::trUtf8("paiements")));
 
 
 YerothPaiementsWindow::YerothPaiementsWindow()
-:YerothWindowsCommons(YerothPaiementsWindow::_WINDOW_TITLE),
+:YerothWindowsCommons(YerothPaiementsWindow::_WINDOW_TITLE,
+					  "yeroth-erp-journal-paiements"),
  YerothAbstractClassYerothSearchWindow(_allWindows->PAIEMENTS),
  _logger(new YerothLogger("YerothPaiementsWindow")),
  _aProcess(0),
@@ -67,6 +69,8 @@ YerothPaiementsWindow::YerothPaiementsWindow()
     setupUi(this);
 
     mySetupUi(this);
+
+    _yerothTableView_FROM_WINDOWS_COMMONS = tableView_paiements;
 
     QMESSAGE_BOX_STYLE_SHEET =
         QString("QMessageBox {background-color: rgb(%1);}")
@@ -711,274 +715,10 @@ bool YerothPaiementsWindow::export_csv_file()
 }
 
 
-void YerothPaiementsWindow::getJournalDesPaiementsTexTableString(QString & texTable_in_out,
-        												  	  	 QStandardItemModel & tableStandardItemModel,
-																 QList<int> &dbFieldNameOfTypeString,
-																 QList<int> &columnsToIgnore,
-																 int fromRowIndex,
-																 int toRowIndex, bool lastPage)
-{
-    if (lastPage && toRowIndex > 20)
-    {
-        toRowIndex -= 1;
-    }
-
-    if (fromRowIndex == toRowIndex)
-    {
-        return ;
-    }
-
-    texTable_in_out.append("\\begin{table*}[!htbp]")
-    			   .append("\n")
-				   .append("\\centering")
-				   .append("\n")
-				   .append("\\begin{tabular}")
-				   .append("{|");
-
-    //Tex table header
-
-    /** We center the n0 column*/
-
-    texTable_in_out.append("c|");
-
-    //Tex table header
-    for (int k = 0; k < tableStandardItemModel.columnCount(); ++k)
-    {
-        if (columnsToIgnore.contains(k))
-        {
-            continue;
-        }
-
-        if (dbFieldNameOfTypeString.contains(k))
-        {
-        	texTable_in_out.append("l|");
-        }
-        else
-        {
-        	texTable_in_out.append("r|");
-        }
-    }
-
-    texTable_in_out.append("} \\hline \n");
-
-
-    QStandardItem *item;
-
-    int tableColumnCount = 1 + tableStandardItemModel.columnCount();
-    /** We add a column named ''n0'' for numbering the rows
-
-     * in the Tex table. */
-    texTable_in_out.append("\\textbf{n\\textsuperscript{o}} & ");
-
-    for (int k = 0; k < tableStandardItemModel.columnCount(); ++k)
-    {
-        if (columnsToIgnore.contains(k))
-        {
-            continue;
-        }
-
-        item = tableStandardItemModel.horizontalHeaderItem(k);
-
-        if (0 != item)
-        {
-            QString itemText(item->text());
-
-            YerothUtils::handleTexTableItemText(tableColumnCount,
-                                                texTable_in_out,
-												k,
-												itemText);
-        }
-    }
-
-    YerothUtils::cleanUpTexTableLastString(texTable_in_out);
-
-    texTable_in_out.append("\\\\ \\hline \n");
-
-    //Tex table body
-
-
-    static int b = 1;
-    if (0 == fromRowIndex)
-    {
-        b = 1;
-    }
-    QString idColumnText;
-    for (int j = fromRowIndex; j < toRowIndex; ++j)
-    {
-        idColumnText.clear();
-        idColumnText.append(QString::number(b)).prepend("\\textbf{").append("}").append(" & ");
-        texTable_in_out.append(idColumnText);
-        ++b;
-        for (int k = 0; k < tableStandardItemModel.columnCount(); ++k)
-        {
-            if (columnsToIgnore.contains(k))
-            {
-                continue;
-            }
-            item = tableStandardItemModel.item(j, k);
-            if (item)
-            {
-                /**
-                 * Any string shall have a length smaller than
-                 * YerothERPConfig::max_string_display_length
-                 */
-                QString itemText(item->text());
-                YerothUtils::handleTexTableItemText(tableColumnCount,
-                									texTable_in_out,
-													k,
-                                                    itemText);
-            }
-            else
-            {
-                if (k < tableStandardItemModel.columnCount() - 1)
-                {
-                    texTable_in_out.append("\"\"").append(" &");
-                }
-                else
-                {
-                    texTable_in_out.append("\"\" \\hline \n");
-                }
-            }
-        }
-        YerothUtils::cleanUpTexTableLastString(texTable_in_out);
-        texTable_in_out.append("\\\\ \\hline \n");
-    }
-
-    //Removes string "" from Latex output
-    texTable_in_out.replace("\"\"", "");
-    texTable_in_out.append("\\end{tabular}\n\\end{table*}\n");
-}
-
-
 bool YerothPaiementsWindow::imprimer_pdf_document()
 {
-    QString texTable;
-
-    QStandardItemModel *tableModel = tableView_paiements->getStandardItemModel();
-
-    QList<int> columnsToIgnore;
-
-    fill_table_columns_to_ignore(columnsToIgnore);
-
-    int tableModelRowCount = tableModel->rowCount();
-
-    if (tableModelRowCount <= 0)
-    {
-        YerothQMessageBox::information(this,
-                                       QObject::trUtf8("pas de données à imprimer"),
-									   QObject::trUtf8("Il n'y a pas de données à imprimer !"));
-        return false;
-    }
-
-    int fromRowIndex = 0;
-
-    int toRowIndex = tableModelRowCount;
-
-    double MAX_TABLE_ROW_COUNT = 35.0;
-
-    int pageNumber = qCeil(tableModelRowCount / MAX_TABLE_ROW_COUNT);
-
-    getJournalDesPaiementsTexTableString(texTable,
-    										   *tableModel,
-											   _DBFieldNamesToPrintLeftAligned,
-											   columnsToIgnore,
-											   0,
-											   (20 >= tableModelRowCount) ? tableModelRowCount : 20,
-											   tableModelRowCount <= 20);
-
-    if (tableModelRowCount >= 20)
-    {
-        fromRowIndex = 20;
-        toRowIndex = (fromRowIndex >= tableModelRowCount) ? fromRowIndex : fromRowIndex + MAX_TABLE_ROW_COUNT;
-        int k = 1;
-        do
-        {
-            getJournalDesPaiementsTexTableString(texTable,
-            										   *tableModel,
-													   _DBFieldNamesToPrintLeftAligned,
-													   columnsToIgnore,
-                                                       (fromRowIndex >=
-                                                            tableModelRowCount) ? tableModelRowCount : fromRowIndex,
-                                                       (toRowIndex >=
-                                                            tableModelRowCount) ? (tableModelRowCount + 1) : toRowIndex,
-                                                       k == pageNumber);
-            texTable.append(QString("\\newpage \n"));
-            fromRowIndex = toRowIndex;
-            toRowIndex =
-                (fromRowIndex >= tableModelRowCount) ? (fromRowIndex + 1) : fromRowIndex + MAX_TABLE_ROW_COUNT;
-            ++k;
-        }
-        while (k <= pageNumber && fromRowIndex <= toRowIndex);
-    }
-
-    YerothInfoEntreprise & infoEntreprise = _allWindows->getInfoEntreprise();
-
-    QString texDocument;
-
-    QString factureDate(YerothUtils::LATEX_IN_OUT_handleForeignAccents(infoEntreprise.getVilleTex()));
-
-    YerothUtils::getCurrentLocaleDate(factureDate);
-
-
-    YerothUtils::getTexLandscapePaymentsDocumentString(texDocument, texTable);
-
-
-    texDocument.replace("YEROTHPAPERSPEC", "a4paper");
-
-    texDocument.replace("YEROTHENTREPRISE", infoEntreprise.getNomCommercialTex());
-    texDocument.replace("YEROTHACTIVITESENTREPRISE", infoEntreprise.getSecteursActivitesTex());
-    texDocument.replace("YEROTHBOITEPOSTALE", infoEntreprise.getBoitePostal());
-    texDocument.replace("YEROTHVILLE", infoEntreprise.getVilleTex());
-    texDocument.replace("YEROTHPAYS", infoEntreprise.getPaysTex());
-    texDocument.replace("YEROTHEMAIL", infoEntreprise.getEmailTex());
-    texDocument.replace("YEROTHTELEPHONE", infoEntreprise.getTelephone());
-    texDocument.replace("YEROTHDATE", factureDate);
-    texDocument.replace("YEROTHVENTESDEBUT", DATE_TO_STRING(dateEdit_paiements_debut->date()));
-    texDocument.replace("YEROTHVENTESFIN", DATE_TO_STRING(dateEdit_paiements_fin->date()));
-    texDocument.replace("YEROTHNOMUTILISATEUR", _allWindows->getUser()->nom_completTex());
-    texDocument.replace("YEROTHHEUREDIMPRESSION", CURRENT_TIME);
-    texDocument.replace("YEROTHCOMPTEBANCAIRENR", infoEntreprise.getNumeroCompteBancaire());
-    texDocument.replace("YEROTHCONTRIBUABLENR", infoEntreprise.getNumeroDeContribuable());
-    texDocument.replace("YEROTHAGENCECOMPTEBANCAIRE", infoEntreprise.getAgenceCompteBancaireTex());
-
-    QString yerothFiltres;
-
-    YerothUtils::addFiltre(lineEdit_paiements_nom_entreprise, QObject::trUtf8("entreprise"), yerothFiltres);
-
-    int lastIndexOfComa = yerothFiltres.lastIndexOf(",");
-
-    yerothFiltres.remove(lastIndexOfComa, yerothFiltres.length());
-
-    texDocument.replace("YEROTHFILTRES", YerothUtils::LATEX_IN_OUT_handleForeignAccents(yerothFiltres));
-
-    //qDebug() << "++ temp file dir: " << YerothConfig::temporaryFilesDir;
-    //qDebug() << "++ texDocument: \n" << texDocument << "\n++++++++";
-
-    QString yerothTableauCaissePrefixFileName;
-
-#ifdef YEROTH_FRANCAIS_LANGUAGE
-
-    yerothTableauCaissePrefixFileName.append(YerothUtils::getUniquePrefixFileInTemporaryFilesDir("yeroth-erp-journal-paiements"));
-
-#endif
-
-#ifdef YEROTH_ENGLISH_LANGUAGE
-
-    yerothTableauCaissePrefixFileName.append(YerothUtils::getUniquePrefixFileInTemporaryFilesDir("yeroth-erp-cashier-journal"));
-
-#endif
-
-    QFile tmpLatexFile(QString("%1tex")
-    		.arg(yerothTableauCaissePrefixFileName));
-
-    YerothUtils::writeStringToQFilewithUTF8Encoding(tmpLatexFile,
-    		texDocument);
-
-    QString pdfPaiementsFileName(YerothERPProcess::compileLatex(yerothTableauCaissePrefixFileName));
-
-    YerothERPProcess::startPdfViewerProcess(pdfPaiementsFileName);
-
-    return true;
+	_latex_template_print_pdf_content = YerothUtils::template_journal_des_paiements_tex;
+	return YerothWindowsCommons::imprimer_pdf_document();
 }
 
 

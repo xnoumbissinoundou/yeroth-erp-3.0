@@ -6,9 +6,8 @@
 
 #include "yeroth-erp-achats-window.hpp"
 
-#include "src/yeroth-erp-windows.hpp"
 
-#include "src/process/yeroth-erp-process.hpp"
+#include "src/yeroth-erp-windows.hpp"
 
 #include "src/users/yeroth-erp-users.hpp"
 
@@ -62,7 +61,8 @@ arg(YEROTH_ERP_WINDOW_TITLE,
 QObject::trUtf8("fiche des achats")));
 
 YerothAchatsWindow::YerothAchatsWindow()
-:YerothWindowsCommons(YerothAchatsWindow::_WINDOW_TITLE),
+:YerothWindowsCommons(YerothAchatsWindow::_WINDOW_TITLE,
+					  "yeroth-erp-marchandises"),
  YerothAbstractClassYerothSearchWindow(_allWindows->ACHATS),
  _logger(new YerothLogger("YerothAchatsWindow")),
  _aProcess(0),
@@ -72,6 +72,8 @@ YerothAchatsWindow::YerothAchatsWindow()
     setupUi(this);
 
     mySetupUi(this);
+
+    _yerothTableView_FROM_WINDOWS_COMMONS = tableView_achats;
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
                                        "QMessageBox QLabel {color: rgb(%2);}").
@@ -749,183 +751,9 @@ bool YerothAchatsWindow::export_csv_file()
 }
 
 
-void YerothAchatsWindow::getAchatsListingTexDocumentString(QString &texDocumentString_in_out,
-        												   QString &printString)
-{
-    texDocumentString_in_out.clear();
-    texDocumentString_in_out.append(YerothUtils::template_lister_achats_tex);
-    texDocumentString_in_out.append(printString).append("\n");
-    texDocumentString_in_out.append("\\end{document}");
-}
-
-
-void YerothAchatsWindow::getAchatsListingTexTableString(QString &texTable_in_out,
-        										 	 	QStandardItemModel &tableStandardItemModel,
-														QList<int> &dbFieldNameOfTypeString,
-														QList<int> &columnsToIgnore,
-														int fromRowIndex,
-														int toRowIndex,
-														bool lastPage)
-{
-    if (lastPage && toRowIndex > 20)
-    {
-        toRowIndex -= 1;
-    }
-
-    if (fromRowIndex == toRowIndex)
-    {
-        return ;
-    }
-
-    texTable_in_out.append("\\begin{table*}[!htbp]").append("\n")
-    			   .append("\\centering").append("\n")
-				   .append("\\begin{tabular}")
-				   .append("{|");
-
-    int texTableColumnCount = tableStandardItemModel.columnCount() + 1;
-
-    texTable_in_out.append("c|");
-
-    //Tex table header
-    for (int k = 0; k < tableStandardItemModel.columnCount(); ++k)
-    {
-        if (columnsToIgnore.contains(k))
-        {
-            continue;
-        }
-
-        if (dbFieldNameOfTypeString.contains(k))
-        {
-        	texTable_in_out.append("l|");
-        }
-        else
-        {
-        	texTable_in_out.append("r|");
-        }
-    }
-
-    texTable_in_out.append("} \\hline\n");
-
-    /** We add a column named 'id' for numbering the rows
-     * in the Tex table. */
-    unsigned int id = fromRowIndex + 1;
-    texTable_in_out.append("\\textbf{n\\textsuperscript{o}} & ");
-
-    QStandardItem *item;
-
-    for (int k = 0; k < tableStandardItemModel.columnCount(); ++k)
-    {
-        if (columnsToIgnore.contains(k))
-        {
-            continue;
-        }
-
-        item = tableStandardItemModel.horizontalHeaderItem(k);
-
-        if (item)
-        {
-            QString itemText(item->text().prepend("\\textbf{").append("}"));
-            YerothUtils::handleTexTableItemText(texTableColumnCount,
-                                   texTable_in_out,
-                                   k,
-                                   itemText);
-        }
-    }
-    /** Closing Tex table header */
-    YerothUtils::cleanUpTexTableLastString(texTable_in_out);
-
-    texTable_in_out.append(" \\\\ \\hline\n");
-
-    //qDebug() << QString("++ fromRowIndex: %1, toRowIndex: %2")
-    //			.arg(QString::number(fromRowIndex), QString::number(toRowIndex));
-
-    for (int j = fromRowIndex; j < toRowIndex; ++j)
-    {
-        texTable_in_out.append(QString::number(id));
-        texTable_in_out.append(" &");
-        ++id;
-
-        for (int k = 0; k < tableStandardItemModel.columnCount(); ++k)
-        {
-            if (columnsToIgnore.contains(k))
-            {
-                continue;
-            }
-
-            item = tableStandardItemModel.item(j, k);
-            if (item)
-            {
-                QString itemText(item->text());
-                YerothUtils::handleAchatsTexTableItemText(texTableColumnCount,
-                                              	  	  	  texTable_in_out,
-														  k,
-														  itemText);
-            }
-            else
-            {
-                if (k < tableStandardItemModel.columnCount() - 1)
-                {
-                    texTable_in_out.append("\"\"").append(" &");
-                }
-                else
-                {
-                    texTable_in_out.append("\"\"").append("\\hline\n");
-                }
-            }
-        }
-
-        texTable_in_out = texTable_in_out.trimmed();
-
-        YerothUtils::cleanUpTexTableLastString(texTable_in_out);
-
-        texTable_in_out.append("\\\\ \\hline\n");
-    }
-
-    //Removes the empty character "" from Latex output
-    texTable_in_out.replace("\"\"", "");
-
-    texTable_in_out.append("\\end{tabular}").append("\n")
-    			   .append("\\end{table*}").append("\n");
-
-    //qDebug() << "++ texTable_in_out in getStocksListingTexTableString: " << texTable_in_out;
-}
-
-
 bool YerothAchatsWindow::imprimer_pdf_document()
 {
-    _logger->log("imprimer_pdf_document");
-
-    QString latexFileNamePrefix("yeroth-erp-marchandises");
-
-    QList<int> tableColumnsToIgnore;
-
-    fill_table_columns_to_ignore(tableColumnsToIgnore);
-
-    QString pdfBuyingsFileName;
-
-#ifdef YEROTH_FRANCAIS_LANGUAGE
-    latexFileNamePrefix.clear();
-    latexFileNamePrefix.append("yeroth-erp-fichier-achats");
-#endif
-
-#ifdef YEROTH_ENGLISH_LANGUAGE
-    latexFileNamePrefix.clear();
-    latexFileNamePrefix.append("yeroth-erp-purchases-listing");
-#endif
-
-    pdfBuyingsFileName = YerothUtils::prindDocumentFromTableView(this,
-    														     *tableView_achats,
-																 tableColumnsToIgnore,
-																 &YerothAchatsWindow::getAchatsListingTexTableString,
-																 &YerothAchatsWindow::getAchatsListingTexDocumentString,
-																 latexFileNamePrefix);
-
-    if (pdfBuyingsFileName.isEmpty())
-    {
-    	return false;
-    }
-
-    YerothERPProcess::startPdfViewerProcess(pdfBuyingsFileName);
-
-    return true;
+	_latex_template_print_pdf_content = YerothUtils::template_lister_achats_tex;
+	return YerothWindowsCommons::imprimer_pdf_document();
 }
+
