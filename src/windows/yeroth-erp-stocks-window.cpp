@@ -333,6 +333,7 @@ bool YerothStocksWindow::filtrer_stocks()
 void YerothStocksWindow::slot_reinitialiser_champs_db_visibles()
 {
 	reinitialiser_champs_db_visibles();
+	resetTableViewHorizontalHeader_DEFAULT_ORDERING();
 	afficherStocks();
 }
 

@@ -1085,6 +1085,7 @@ void YerothVentesWindow::set_filtrer_font()
 void YerothVentesWindow::slot_reinitialiser_champs_db_visibles()
 {
 	reinitialiser_champs_db_visibles();
+	resetTableViewHorizontalHeader_DEFAULT_ORDERING();
 	lister_les_elements_du_tableau();
 }
 

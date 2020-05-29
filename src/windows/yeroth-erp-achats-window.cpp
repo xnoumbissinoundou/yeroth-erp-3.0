@@ -289,6 +289,7 @@ void YerothAchatsWindow::setupShortcuts()
 void YerothAchatsWindow::slot_reinitialiser_champs_db_visibles()
 {
 	reinitialiser_champs_db_visibles();
+	resetTableViewHorizontalHeader_DEFAULT_ORDERING();
 
 	if (0 != _curAchatSqlTableModel)
 	{

@@ -204,6 +204,8 @@ public slots:
 
     inline virtual void help(){}
 
+    void resetTableViewHorizontalHeader_DEFAULT_ORDERING();
+
 protected slots:
 
 	virtual void tableView_show_or_hide_columns(YerothTableView &tableView_in_out);

@@ -183,8 +183,6 @@ public:
 								  const QWidget &aWidget,
 								  QPoint 		&result);
 
-	static QString boolToString(bool b);
-
 	static void addFiltre(YerothLineEdit *aLineEdit,
 						  QString filterName,
 						  QString &yerothFiltre_in_out);
@@ -306,14 +304,6 @@ public:
 								const QString &csvFileName,
 								const QString &strMessage);
 
-    static void get_YEROTH_TableViewListingTexDocumentString(QString &texTable_in_out,
-															 YerothTableView &aYerothTableView,
-															 QList<int> &dbFieldNameOfTypeString,
-															 QList<int> &columnsToIgnore,
-															 int fromRowIndex,
-															 int toRowIndex,
-															 bool lastPage);
-
     inline static void getLatexFinancialAccountingReportData(QString &texDocumentString_in_out)
     {
         texDocumentString_in_out.append(YerothUtils::template_bilan_comptable_tex);
@@ -336,21 +326,6 @@ public:
 	static void getSortieDesStocksSmallENTexDocumentString(QString &texDocumentString_in_out,
 												   	       QString &printString);
 
-	static void getLatexStockHistory(QString &texDocumentString_in_out,
-									 QString &printString);
-
-	static void getTexLandscapePaymentsDocumentString(QString &texDocumentString_in_out,
-													  QString &printString);
-
-	static void getTexLandscapeSellingDocumentString(QString &texDocumentString_in_out,
-								  	 	 	  	  	 QString &printString);
-
-	static void getTexLandscapeFROutgoingDocumentString(QString &texDocumentString_in_out,
-													  QString &printString);
-
-	static void getTexLandscapeENOutgoingDocumentString(QString &texDocumentString_in_out,
-													  QString &printString);
-
 	static void getFactureFRTexDocumentString(QString &texDocumentString_in_out,
 											  QString &printString);
 
@@ -362,9 +337,6 @@ public:
 
 	static void getFactureSmallENTexDocumentString(QString &texDocumentString_in_out,
 												   QString &printString);
-
-	static void getComptesClientsTexDocumentString(QString &texDocumentString_in_out,
-			   	   	   	   	   	   	   	   	   	   	 QString &printString);
 
 	static QString getFileNameWithCurrentTime(const QString &fileName);
 

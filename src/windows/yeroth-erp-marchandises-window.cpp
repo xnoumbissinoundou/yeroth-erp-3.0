@@ -310,7 +310,7 @@ void YerothMarchandisesWindow::setupShortcuts()
 void YerothMarchandisesWindow::slot_reinitialiser_champs_db_visibles()
 {
 	reinitialiser_champs_db_visibles();
-
+	resetTableViewHorizontalHeader_DEFAULT_ORDERING();
 	afficherMarchandises();
 }
 

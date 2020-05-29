@@ -276,6 +276,17 @@ void YerothWindowsCommons::setupSelectDBFields(QString aSqlTableName)
 }
 
 
+void YerothWindowsCommons::resetTableViewHorizontalHeader_DEFAULT_ORDERING()
+{
+	if (0 == _yerothTableView_FROM_WINDOWS_COMMONS)
+	{
+		return ;
+	}
+
+	//TODO: (ACHEVER L'ALGORITHME).
+}
+
+
 void YerothWindowsCommons::tableView_show_or_hide_columns(YerothTableView &tableView_in_out)
 {
     QMapIterator<QString, int> it(_dbtablefieldNameToDBColumnIndex);

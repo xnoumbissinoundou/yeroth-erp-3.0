@@ -1090,21 +1090,6 @@ void YerothUtils::getCenterPosition(unsigned desktopWidth,
 }
 
 
-QString YerothUtils::boolToString(bool b)
-{
-    QString result;
-    if (b)
-    {
-        result = "True";
-    }
-    else
-    {
-        result = "False";
-    }
-    return result;
-}
-
-
 void YerothUtils::createTableModelHeaders(QSqlTableModel 		&tableModel,
         								  QStandardItemModel 	&stdItemModel,
 										  QStringList 			&tableModelHeaders,
@@ -2297,54 +2282,6 @@ void YerothUtils::refreshSalesStrategy(YerothSqlTableModel &curStocksTableModel,
     }
 }
 
-
-void YerothUtils::getLatexStockHistory(QString &texDocumentString_in_out,
-									   QString &printString)
-{
-    texDocumentString_in_out.clear();
-    texDocumentString_in_out.append(template_historique_dun_stock_tex);
-    texDocumentString_in_out.append(printString).append("\n");
-    texDocumentString_in_out.append("\\end{document}");
-}
-
-
-void YerothUtils::getTexLandscapePaymentsDocumentString(QString &texDocumentString_in_out,
-														QString &printString)
-{
-    texDocumentString_in_out.clear();
-    texDocumentString_in_out.append(template_journal_des_paiements_tex);
-    texDocumentString_in_out.append(printString).append("\n");
-    texDocumentString_in_out.append("\\end{document}");
-}
-
-
-void YerothUtils::getTexLandscapeSellingDocumentString(QString &texDocumentString_in_out,
-        QString &printString)
-{
-    texDocumentString_in_out.clear();
-    texDocumentString_in_out.append(template_journal_des_ventes_tex);
-    texDocumentString_in_out.append(printString).append("\n");
-    texDocumentString_in_out.append("\\end{document}");
-}
-
-
-void YerothUtils::getTexLandscapeFROutgoingDocumentString(QString &texDocumentString_in_out,
-        QString &printString)
-{
-    texDocumentString_in_out.clear();
-    texDocumentString_in_out.append(FR_template_journal_des_transactions_tex);
-    texDocumentString_in_out.append(printString).append("\n");
-    texDocumentString_in_out.append("\\end{document}");
-}
-
-void YerothUtils::getTexLandscapeENOutgoingDocumentString(QString &texDocumentString_in_out,
-        QString &printString)
-{
-    texDocumentString_in_out.clear();
-    texDocumentString_in_out.append(EN_template_journal_des_transactions_tex);
-    texDocumentString_in_out.append(printString).append("\n");
-    texDocumentString_in_out.append("\\end{document}");
-}
 
 void YerothUtils::getFactureFRTexDocumentString(QString &texDocumentString_in_out,
         QString &printString)
