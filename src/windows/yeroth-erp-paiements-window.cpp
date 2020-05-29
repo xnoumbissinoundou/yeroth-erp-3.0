@@ -719,7 +719,14 @@ bool YerothPaiementsWindow::export_csv_file()
 bool YerothPaiementsWindow::imprimer_pdf_document()
 {
 	_latex_template_print_pdf_content = YerothUtils::template_journal_des_paiements_tex;
-	return YerothWindowsCommons::imprimer_pdf_document();
+
+    QMap<QString, QString> documentSpecificElements;
+
+    documentSpecificElements.insert("YEROTHVENTESDEBUT", DATE_TO_STRING(dateEdit_paiements_debut->date()));
+
+    documentSpecificElements.insert("YEROTHVENTESFIN", DATE_TO_STRING(dateEdit_paiements_fin->date()));
+
+	return YerothWindowsCommons::imprimer_pdf_document(&documentSpecificElements);
 }
 
 

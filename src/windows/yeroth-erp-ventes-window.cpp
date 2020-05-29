@@ -1583,7 +1583,14 @@ bool YerothVentesWindow::export_csv_file()
 bool YerothVentesWindow::imprimer_pdf_document()
 {
 	_latex_template_print_pdf_content = YerothUtils::template_journal_des_ventes_tex;
-	return YerothWindowsCommons::imprimer_pdf_document();
+
+    QMap<QString, QString> documentSpecificElements;
+
+    documentSpecificElements.insert("YEROTHVENTESDEBUT", DATE_TO_STRING(dateEdit_ventes_debut->date()));
+
+    documentSpecificElements.insert("YEROTHVENTESFIN", DATE_TO_STRING(dateEdit_ventes_fin->date()));
+
+	return YerothWindowsCommons::imprimer_pdf_document(&documentSpecificElements);
 }
 
 

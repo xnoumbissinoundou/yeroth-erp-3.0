@@ -77,9 +77,9 @@ bool YerothTableauDesTransactionsDuClientWindow::imprimer_pdf_document()
 
     documentSpecificElements.insert("YEROTHCLIENT", YerothUtils::LATEX_IN_OUT_handleForeignAccents(_clientCompanyName));
 
-    documentSpecificElements.insert("YEROTHVENTESFIN", SET_DATE_TO_STRING(_curDateFinTransactions));
-
     documentSpecificElements.insert("YEROTHVENTESDEBUT", SET_DATE_TO_STRING(_curDateDebutTransactions));
+
+    documentSpecificElements.insert("YEROTHVENTESFIN", SET_DATE_TO_STRING(_curDateFinTransactions));
 
 	return YerothWindowsCommons::imprimer_pdf_document(&documentSpecificElements);
 }

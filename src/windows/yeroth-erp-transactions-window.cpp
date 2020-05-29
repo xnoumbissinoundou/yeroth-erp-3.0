@@ -387,6 +387,12 @@ bool YerothTransactionsWindow::imprimer_pdf_document()
 
 #endif
 
+    documentSpecificElements.insert("YEROTHVENTESDEBUT", DATE_TO_STRING(dateEdit_transactions_debut->date()));
+
+    documentSpecificElements.insert("YEROTHVENTESFIN", DATE_TO_STRING(dateEdit_transactions_fin->date()));
+
+	return YerothWindowsCommons::imprimer_pdf_document(&documentSpecificElements);
+
 	return YerothWindowsCommons::imprimer_pdf_document(&documentSpecificElements);
 }
 
