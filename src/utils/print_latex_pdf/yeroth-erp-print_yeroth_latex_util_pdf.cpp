@@ -54,7 +54,6 @@ QString YerothTableViewPRINT_UTILITIES_TEX_TABLE::
     latexFileNamePrefix.append("_english");
 #endif
 
-
     QStandardItemModel *tableModel = _yerothTableView->getStandardItemModel();
 
     int tableModelRowCount = tableModel->rowCount();
@@ -214,23 +213,25 @@ void YerothTableViewPRINT_UTILITIES_TEX_TABLE::
 
     QList<int> headerViewModelIndex;
 
+    int realK_pos = 0;
+
     //Tex table header
     for (int k = 0; k < _yerothTableView->horizontalHeader()->count(); ++k)
     {
-    	int pos = _yerothTableView->horizontalHeader()->logicalIndex(k);
+    	realK_pos = _yerothTableView->horizontalHeader()->logicalIndex(k);
 
-        if (aDBTableColumnsToIgnore_in_out.contains(pos))
+        if (aDBTableColumnsToIgnore_in_out.contains(realK_pos))
         {
             continue;
         }
 
-        headerViewModelIndex.append(pos);
+        headerViewModelIndex.append(realK_pos);
 
-        if (_dbLEFT_TO_ALIGN_FieldName.contains(pos))
+        if (_dbLEFT_TO_ALIGN_FieldName.contains(realK_pos))
         {
         	latexTable_in_out.append("l|");
         }
-        else if (_dbRIGHT_TO_ALIGN_FieldName.contains(pos))
+        else if (_dbRIGHT_TO_ALIGN_FieldName.contains(realK_pos))
         {
         	latexTable_in_out.append("r|");
         }
@@ -250,13 +251,11 @@ void YerothTableViewPRINT_UTILITIES_TEX_TABLE::
 
     QStandardItem *item;
 
-    int pos = 0;
-
     for (int k = 0; k < headerViewModelIndex.count(); ++k)
     {
-    	pos = headerViewModelIndex.at(k);
+    	realK_pos = headerViewModelIndex.at(k);
 
-        item = tableStandardItemModel.horizontalHeaderItem(pos);
+        item = tableStandardItemModel.horizontalHeaderItem(realK_pos);
 
         if (item)
         {
@@ -264,7 +263,7 @@ void YerothTableViewPRINT_UTILITIES_TEX_TABLE::
 
             YerothUtils::handleTexTableItemText(texTableColumnCount,
                                    latexTable_in_out,
-                                   pos,
+                                   realK_pos,
                                    itemText);
         }
     }
@@ -283,25 +282,25 @@ void YerothTableViewPRINT_UTILITIES_TEX_TABLE::
         latexTable_in_out.append(" &");
         ++id;
 
-        int pos = 0;
+        realK_pos = 0;
 
         for (int k = 0; k < headerViewModelIndex.count(); ++k)
         {
-        	pos = headerViewModelIndex.at(k);
+        	realK_pos = headerViewModelIndex.at(k);
 
-            item = tableStandardItemModel.item(j, pos);
+            item = tableStandardItemModel.item(j, realK_pos);
 
             if (item)
             {
                 QString itemText(item->text());
                 YerothUtils::handleTexTableItemText(texTableColumnCount,
                                               	  	latexTable_in_out,
-													pos,
+													realK_pos,
 													itemText);
             }
             else
             {
-                if (pos < tableStandardItemModel.columnCount() - 1)
+                if (realK_pos < tableStandardItemModel.columnCount() - 1)
                 {
                     latexTable_in_out.append("\"\"").append(" &");
                 }
