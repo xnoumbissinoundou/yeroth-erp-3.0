@@ -392,8 +392,6 @@ bool YerothTransactionsWindow::imprimer_pdf_document()
     documentSpecificElements.insert("YEROTHVENTESFIN", DATE_TO_STRING(dateEdit_transactions_fin->date()));
 
 	return YerothWindowsCommons::imprimer_pdf_document(&documentSpecificElements);
-
-	return YerothWindowsCommons::imprimer_pdf_document(&documentSpecificElements);
 }
 
 void YerothTransactionsWindow::rechercher()
