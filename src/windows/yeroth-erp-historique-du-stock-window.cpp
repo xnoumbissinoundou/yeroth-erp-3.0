@@ -86,8 +86,6 @@ void YerothHistoriqueDuStockWindow::listHistoriqueDuStock(const QStringList &aMo
 
 	tableView_historique_du_stock->lister_lhistorique_du_stock(aMouvementStockList);
 
-	tableView_historique_du_stock->hideColumn(3);
-
 	tableView_historique_du_stock->resizeColumnsToContents();
 
 	if (tableView_historique_du_stock->rowCount() > 0)

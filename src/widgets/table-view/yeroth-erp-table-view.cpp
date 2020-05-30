@@ -343,7 +343,7 @@ void YerothTableView::lister_lhistorique_du_stock(const QStringList &aMouvementS
 
     QString dateHdr(QObject::tr("Date"));
     QString timeHdr(QObject::tr("Heure"));
-    QString idHdr(QObject::tr("ID du stock"));
+    QString idHdr(QObject::tr("ID de l'opération"));
     QString operationHdr(QObject::trUtf8("Type d'opération"));
     QString qteInitialeHdr(QObject::trUtf8("Qté initiale en stock"));
     QString qteRetireeHdr(QObject::trUtf8("Qté en mouvement"));
