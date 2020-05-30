@@ -60,6 +60,20 @@ YerothWindowsCommons::~YerothWindowsCommons()
 }
 
 
+void YerothWindowsCommons::setYerothTableView_FROM_WINDOWS_COMMONS(YerothTableView *aYerothTableView_FROM_WINDOWS_COMMONS)
+{
+	if (0 == aYerothTableView_FROM_WINDOWS_COMMONS ||
+		0 == _yeroth_PRINT_UTILITIES_TEX_TABLE)
+	{
+		return ;
+	}
+
+	_yerothTableView_FROM_WINDOWS_COMMONS = aYerothTableView_FROM_WINDOWS_COMMONS;
+
+	_yeroth_PRINT_UTILITIES_TEX_TABLE->setYerothTableView(_yerothTableView_FROM_WINDOWS_COMMONS);
+}
+
+
 void YerothWindowsCommons::mySetupUi(QMainWindow * aWindow)
 {
     aWindow->setFixedSize(aWindow->width(), aWindow->height());

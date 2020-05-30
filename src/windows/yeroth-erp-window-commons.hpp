@@ -52,6 +52,8 @@ public:
 
 	virtual ~YerothWindowsCommons();
 
+	void setYerothTableView_FROM_WINDOWS_COMMONS(YerothTableView *aYerothTableView_FROM_WINDOWS_COMMONS);
+
 	inline virtual void YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(QAction *anAction,
 													   	   	  bool aBooleanValue)
 	{

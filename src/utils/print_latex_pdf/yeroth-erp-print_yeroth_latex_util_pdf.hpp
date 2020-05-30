@@ -30,6 +30,8 @@ public:
 											 YerothWindowsCommons &aYerothWindowTableOutputView,
 											 YerothTableView &aYerothTableView);
 
+	void setYerothTableView(YerothTableView *aYerothTableView);
+
 	QString print_YEROTH_document_from_TableView(const QString &aLatex_template_document_string,
 												 QMap<QString, QString> *documentSpecificElements = 0);
 

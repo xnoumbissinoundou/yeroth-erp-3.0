@@ -348,11 +348,11 @@ bool YerothTransactionsWindow::imprimer_pdf_document()
 {
     if (SUJET_ACTION_SORTIES_STOCKS == tabWidget_transactions->currentIndex())
     {
-    	_yerothTableView_FROM_WINDOWS_COMMONS = tableView_sorties_articles;
+    	YerothWindowsCommons::setYerothTableView_FROM_WINDOWS_COMMONS(tableView_sorties_articles);
     }
     else if (SUJET_ACTION_TRANSFERTS_STOCKS == tabWidget_transactions->currentIndex())
     {
-    	_yerothTableView_FROM_WINDOWS_COMMONS = tableView_transferts_articles;
+    	YerothWindowsCommons::setYerothTableView_FROM_WINDOWS_COMMONS(tableView_transferts_articles);
     }
 
     QMap<QString, QString> documentSpecificElements;

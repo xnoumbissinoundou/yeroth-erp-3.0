@@ -31,6 +31,17 @@ YerothTableViewPRINT_UTILITIES_TEX_TABLE::
 }
 
 
+void YerothTableViewPRINT_UTILITIES_TEX_TABLE::setYerothTableView(YerothTableView *aYerothTableView)
+{
+	if (0 == aYerothTableView)
+	{
+		return ;
+	}
+
+	_yerothTableView = aYerothTableView;
+}
+
+
 QString YerothTableViewPRINT_UTILITIES_TEX_TABLE::
 	print_YEROTH_document_from_TableView(const QString &aLatex_template_document_string,
 										 QMap<QString, QString> *documentSpecificElements /* = 0 */)
