@@ -72,18 +72,55 @@ void Test_YerothERPTableView::test_TABLE_VIEW_lister_fefo()
 
 	int stockID = stockNameToStockID_in_out.value("test_yeroth_1").toInt();
 
-	QVERIFY(stockID == 3);
+	QVERIFY(stockID == 2);
 }
 
+//SELECT
+//CONCAT('TRUNCATE TABLE ',TABLE_NAME,';') AS truncateCommand
+//FROM information_schema.TABLES
+//WHERE TABLE_SCHEMA = 'yeroth_erp_3'
 
 void Test_YerothERPTableView::test_TABLE_VIEW_lister_fifo()
 {
+	YerothTableView a_test_TableView_object;
+
+	QMap<QString, QString> stockNameToStockID_in_out;
+
+	YerothSqlTableModel &aQSqlStockTableModel = _allWindows->getSqlTableModel_stocks();
+
+	a_test_TableView_object.lister_FIFO(aQSqlStockTableModel, stockNameToStockID_in_out);
+
+	qDebug() << "++ stockNameToStockID_in_out: " << stockNameToStockID_in_out;
+
+	int TEST_VAR_QMAP_STOCK_RESULT_COUNT = stockNameToStockID_in_out.size();
+
+	QVERIFY(TEST_VAR_QMAP_STOCK_RESULT_COUNT == 1);
+
+	int stockID = stockNameToStockID_in_out.value("test_yeroth_1").toInt();
+
+	QVERIFY(stockID == 1);
 }
 
 
 void Test_YerothERPTableView::test_TABLE_VIEW_lister_lifo()
 {
+	YerothTableView a_test_TableView_object;
 
+	QMap<QString, QString> stockNameToStockID_in_out;
+
+	YerothSqlTableModel &aQSqlStockTableModel = _allWindows->getSqlTableModel_stocks();
+
+	a_test_TableView_object.lister_LIFO(aQSqlStockTableModel, stockNameToStockID_in_out);
+
+	qDebug() << "++ stockNameToStockID_in_out: " << stockNameToStockID_in_out;
+
+	int TEST_VAR_QMAP_STOCK_RESULT_COUNT = stockNameToStockID_in_out.size();
+
+	QVERIFY(TEST_VAR_QMAP_STOCK_RESULT_COUNT == 1);
+
+	int stockID = stockNameToStockID_in_out.value("test_yeroth_1").toInt();
+
+	QVERIFY(stockID == 3);
 }
 
 
@@ -355,7 +392,6 @@ enum import_csv_entry_row_return_status
 	record.setValue(YerothDatabaseTableColumn::IS_SERVICE, 0);
 	record.setValue(YerothDatabaseTableColumn::LOTS_ENTRANT, 1);
 	record.setValue(YerothDatabaseTableColumn::QUANTITE_PAR_LOT, quantite_totale);
-	record.setValue(YerothDatabaseTableColumn::DATE_ENTREE, GET_CURRENT_DATE);
 
 	if (_dbTableColumnToIsNotNULL.size() > 0)
 	{
@@ -367,7 +403,6 @@ enum import_csv_entry_row_return_status
 		allSqltableColumns.removeAll(YerothDatabaseTableColumn::IS_SERVICE);
 		allSqltableColumns.removeAll(YerothDatabaseTableColumn::LOTS_ENTRANT);
 		allSqltableColumns.removeAll(YerothDatabaseTableColumn::QUANTITE_PAR_LOT);
-		allSqltableColumns.removeAll(YerothDatabaseTableColumn::DATE_ENTREE);
 
 	    QString historiqueStockInitial(
 	    		YerothHistoriqueStock::creer_mouvement_stock(ENTREE,
@@ -424,7 +459,7 @@ void Test_YerothERPTableView::test_TABLE_VIEW_lister_import_test_data()
 {
     QString csvFilePath(QString("%1/yeroth-erp-3-0-test_data/%2")
     						.arg(YerothERPConfig::YEROTH_ERP_3_0_HOME_FOLDER,
-    							 "yeroth_test_data_stock_1_fefo.csv"));
+    							 "yeroth_test_data_stock_1.csv"));
 
     if (!csvFilePath.isEmpty())
     {
