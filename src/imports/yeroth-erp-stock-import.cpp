@@ -129,10 +129,6 @@ int YerothERPStockImport::import()
 
 	int curCsvFileLineCount = _curCsvFileToImportContentWordList->size() - 1;
 
-	/*
-	 * We start at index 1 so to avoid the first line
-	 * that represents the header content, and not data !
-	 */
 	int successImportCount = 0;
 
 	enum import_csv_entry_row_return_status insertionReturnStatusValue = UNDEFINED;
@@ -141,6 +137,10 @@ int YerothERPStockImport::import()
 
 	YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
 
+	/*
+	 * We start at index 1 so to avoid the first line
+	 * that represents the header content, and not data !
+	 */
 	for (int k = 1; k < curCsvFileLineCount; ++k)
 	{
 		curCsvFileImportRow = _curCsvFileToImportContentWordList->at(k)
