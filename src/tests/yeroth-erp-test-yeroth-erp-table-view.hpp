@@ -8,8 +8,13 @@
 #define YEROTH_TEST_YEROTH_ERP_TABLE_VIEW_WINDOWS_HPP_
 
 
+#include "src/imports/yeroth-erp-stock-import.hpp"
+
+
 #include <QtTest/QtTest>
 
+
+class YerothERPDatabaseTableColumnInfo;
 
 class YerothERPWindows;
 
@@ -26,9 +31,15 @@ public:
 		_allWindows = allWindows;
 	}
 
+	inline virtual ~Test_YerothERPTableView()
+	{
+	}
+
 private slots:
 
 	void initTestCase();
+
+	void cleanupTestCase();
 
 	void test_TABLE_VIEW_lister_fefo();
 
@@ -40,10 +51,27 @@ private:
 
 	void test_TABLE_VIEW_lister_collect_data_result(const QList<QDate> &allStocksInsertDate_in_out);
 
+	enum import_csv_entry_row_return_status
+		import_csv_entry_row(QStringList &aCsvFileEntryLine);
+
 	void test_TABLE_VIEW_lister_import_test_data();
 
 
-	YerothERPWindows *_allWindows;
+	static QString 			_allMissingMandatoryColumnValue;
+
+	QMap<int, YerothERPDatabaseTableColumnInfo *> _TEST_csvContentIdxToDatabaseTableColumnInfo;
+
+	QStringList 			_curCsvFileToImportContentWordList;
+
+	QStringList 			_allSqlTableImportColumns;
+
+	QStringList 			_allMandatoryTableColumns;
+
+    QMap<QString, bool>		_dbTableColumnToIsNotNULL;
+
+    QMap<QString, QString>	_dbTableColumnToType;
+
+	YerothERPWindows 		*_allWindows;
 };
 
 

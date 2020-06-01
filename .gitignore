@@ -17,7 +17,6 @@ moc_*
 qrc_yeroth*
 *.stash
 *.dvi
-*.csv
 .settings/
 object_script.yeroth-erp-3-0.Debug
 object_script.yeroth-erp-3-0.Release
