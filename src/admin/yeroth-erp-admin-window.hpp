@@ -208,11 +208,11 @@ private:
 
     QMap<QString, QString>						_dbTableColumnToType;
 
-    QMap<int, YerothERPDatabaseTableColumnInfo *>	_indexToDatabaseTableColumnInfo;
+    QMap<int, YerothERPDatabaseTableColumnInfo *>	_csvContentIdxToDatabaseTableColumnInfo;
 
-    QMap<int, YerothComboBox *>			_indexToSQLTableImportHeader;
+    QMap<int, YerothComboBox *>			_csvContentIdxToSQLTableImportHeader;
 
-    QMap<int, QLabel *>					_indexToCsvFileContentImportHeader;
+    QMap<int, QLabel *>					_csvContentIdxToCsvFileContentImportHeader;
 
     QMap<QString, AdminAction> 			*_actionsToConst;
 

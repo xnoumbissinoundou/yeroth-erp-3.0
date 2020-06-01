@@ -428,9 +428,9 @@ void YerothAdminWindow::reset_import_current_selected_csv_file()
 
 		generate_table_header_mapping_entries_for_csv_import();
 
-		for( int k = 0; k < _indexToSQLTableImportHeader.size(); ++k)
+		for( int k = 0; k < _csvContentIdxToSQLTableImportHeader.size(); ++k)
 		{
-			_indexToSQLTableImportHeader.value(k)->resetYerothComboBox();
+			_csvContentIdxToSQLTableImportHeader.value(k)->resetYerothComboBox();
 		}
 	}
 }
@@ -451,7 +451,7 @@ void YerothAdminWindow::import_current_selected_csv_file()
 
 	for (int i = 0; i < curCsvFileLineSize; ++i)
 	{
-		aMappedComboBox = _indexToSQLTableImportHeader.value(i);
+		aMappedComboBox = _csvContentIdxToSQLTableImportHeader.value(i);
 
 		if (0 != aMappedComboBox)
 		{
@@ -461,7 +461,7 @@ void YerothAdminWindow::import_current_selected_csv_file()
 					new YerothERPDatabaseTableColumnInfo(dbFieldName,
 														 _dbTableColumnToType.value(dbFieldName));
 
-			_indexToDatabaseTableColumnInfo.insert(i, curDatabaseTableColumnInfo);
+			_csvContentIdxToDatabaseTableColumnInfo.insert(i, curDatabaseTableColumnInfo);
 
 			_allDatabaseTableColumnInfo.append(curDatabaseTableColumnInfo);
 		}
@@ -469,7 +469,7 @@ void YerothAdminWindow::import_current_selected_csv_file()
 
 	YerothERPStockImport erpStockImport(*this,
 										_curCsvFileToImportContentWordList,
-										_indexToDatabaseTableColumnInfo);
+										_csvContentIdxToDatabaseTableColumnInfo);
 
 	int successImportCount = erpStockImport.import();
 
@@ -524,7 +524,7 @@ void YerothAdminWindow::generate_table_header_mapping_entries_for_csv_import()
 	{
 		aCsvHeaderString = csvHeaderContent.at(k);
 
-		aCsvHeaderLabel = _indexToCsvFileContentImportHeader.value(k);
+		aCsvHeaderLabel = _csvContentIdxToCsvFileContentImportHeader.value(k);
 
 		if (0 != aCsvHeaderLabel)
 		{
@@ -538,7 +538,7 @@ void YerothAdminWindow::generate_table_header_mapping_entries_for_csv_import()
 		}
 	}
 
-	QMapIterator<int, YerothComboBox *> itIndexToSQLTableImportHeader(_indexToSQLTableImportHeader);
+	QMapIterator<int, YerothComboBox *> itIndexToSQLTableImportHeader(_csvContentIdxToSQLTableImportHeader);
 
 	while(itIndexToSQLTableImportHeader.hasNext())
 	{
@@ -592,7 +592,7 @@ void YerothAdminWindow::generate_table_header_mapping_entries_for_csv_import()
 
 	for (int i = 0; i < curCsvFileLineSize; ++i)
 	{
-		aMappedComboBox = _indexToSQLTableImportHeader.value(i);
+		aMappedComboBox = _csvContentIdxToSQLTableImportHeader.value(i);
 
 		if (0 != aMappedComboBox)
 		{
@@ -606,7 +606,7 @@ void YerothAdminWindow::generate_table_header_mapping_entries_for_csv_import()
 
 	for (int j = curCsvFileLineSize; j < MAX_IMPORT_CSV_HEADER_SIZE; ++j)
 	{
-		aCsvHeaderLabel = _indexToCsvFileContentImportHeader.value(j);
+		aCsvHeaderLabel = _csvContentIdxToCsvFileContentImportHeader.value(j);
 
 		if (0 != aCsvHeaderLabel)
 		{
@@ -630,44 +630,44 @@ void YerothAdminWindow::initialize_admin_importer_csv_tableau()
     pushButton_fichier_csv_a_importer->
 		enable(this, SLOT(choose_fichier_csv_a_importer()));
 
-	_indexToCsvFileContentImportHeader.insert(0, label_importer_fichier_csv_entete_0);
-	_indexToCsvFileContentImportHeader.insert(1, label_importer_fichier_csv_entete_1);
-	_indexToCsvFileContentImportHeader.insert(2, label_importer_fichier_csv_entete_2);
-	_indexToCsvFileContentImportHeader.insert(3, label_importer_fichier_csv_entete_3);
-	_indexToCsvFileContentImportHeader.insert(4, label_importer_fichier_csv_entete_4);
-	_indexToCsvFileContentImportHeader.insert(5, label_importer_fichier_csv_entete_5);
-	_indexToCsvFileContentImportHeader.insert(6, label_importer_fichier_csv_entete_6);
-	_indexToCsvFileContentImportHeader.insert(7, label_importer_fichier_csv_entete_7);
-	_indexToCsvFileContentImportHeader.insert(8, label_importer_fichier_csv_entete_8);
-	_indexToCsvFileContentImportHeader.insert(9, label_importer_fichier_csv_entete_9);
-	_indexToCsvFileContentImportHeader.insert(10, label_importer_fichier_csv_entete_10);
-	_indexToCsvFileContentImportHeader.insert(11, label_importer_fichier_csv_entete_11);
-	_indexToCsvFileContentImportHeader.insert(12, label_importer_fichier_csv_entete_12);
-	_indexToCsvFileContentImportHeader.insert(13, label_importer_fichier_csv_entete_13);
+	_csvContentIdxToCsvFileContentImportHeader.insert(0, label_importer_fichier_csv_entete_0);
+	_csvContentIdxToCsvFileContentImportHeader.insert(1, label_importer_fichier_csv_entete_1);
+	_csvContentIdxToCsvFileContentImportHeader.insert(2, label_importer_fichier_csv_entete_2);
+	_csvContentIdxToCsvFileContentImportHeader.insert(3, label_importer_fichier_csv_entete_3);
+	_csvContentIdxToCsvFileContentImportHeader.insert(4, label_importer_fichier_csv_entete_4);
+	_csvContentIdxToCsvFileContentImportHeader.insert(5, label_importer_fichier_csv_entete_5);
+	_csvContentIdxToCsvFileContentImportHeader.insert(6, label_importer_fichier_csv_entete_6);
+	_csvContentIdxToCsvFileContentImportHeader.insert(7, label_importer_fichier_csv_entete_7);
+	_csvContentIdxToCsvFileContentImportHeader.insert(8, label_importer_fichier_csv_entete_8);
+	_csvContentIdxToCsvFileContentImportHeader.insert(9, label_importer_fichier_csv_entete_9);
+	_csvContentIdxToCsvFileContentImportHeader.insert(10, label_importer_fichier_csv_entete_10);
+	_csvContentIdxToCsvFileContentImportHeader.insert(11, label_importer_fichier_csv_entete_11);
+	_csvContentIdxToCsvFileContentImportHeader.insert(12, label_importer_fichier_csv_entete_12);
+	_csvContentIdxToCsvFileContentImportHeader.insert(13, label_importer_fichier_csv_entete_13);
 
-	for( int k = 0; k < _indexToCsvFileContentImportHeader.size(); ++k)
+	for( int k = 0; k < _csvContentIdxToCsvFileContentImportHeader.size(); ++k)
 	{
-		_indexToCsvFileContentImportHeader.value(k)->setVisible(false);
+		_csvContentIdxToCsvFileContentImportHeader.value(k)->setVisible(false);
 	}
 
-	_indexToSQLTableImportHeader.insert(0, comboBox_importer_tableau_entete_0);
-	_indexToSQLTableImportHeader.insert(1, comboBox_importer_tableau_entete_1);
-	_indexToSQLTableImportHeader.insert(2, comboBox_importer_tableau_entete_2);
-	_indexToSQLTableImportHeader.insert(3, comboBox_importer_tableau_entete_3);
-	_indexToSQLTableImportHeader.insert(4, comboBox_importer_tableau_entete_4);
-	_indexToSQLTableImportHeader.insert(5, comboBox_importer_tableau_entete_5);
-	_indexToSQLTableImportHeader.insert(6, comboBox_importer_tableau_entete_6);
-	_indexToSQLTableImportHeader.insert(7, comboBox_importer_tableau_entete_7);
-	_indexToSQLTableImportHeader.insert(8, comboBox_importer_tableau_entete_8);
-	_indexToSQLTableImportHeader.insert(9, comboBox_importer_tableau_entete_9);
-	_indexToSQLTableImportHeader.insert(10, comboBox_importer_tableau_entete_10);
-	_indexToSQLTableImportHeader.insert(11, comboBox_importer_tableau_entete_11);
-	_indexToSQLTableImportHeader.insert(12, comboBox_importer_tableau_entete_12);
-	_indexToSQLTableImportHeader.insert(13, comboBox_importer_tableau_entete_13);
+	_csvContentIdxToSQLTableImportHeader.insert(0, comboBox_importer_tableau_entete_0);
+	_csvContentIdxToSQLTableImportHeader.insert(1, comboBox_importer_tableau_entete_1);
+	_csvContentIdxToSQLTableImportHeader.insert(2, comboBox_importer_tableau_entete_2);
+	_csvContentIdxToSQLTableImportHeader.insert(3, comboBox_importer_tableau_entete_3);
+	_csvContentIdxToSQLTableImportHeader.insert(4, comboBox_importer_tableau_entete_4);
+	_csvContentIdxToSQLTableImportHeader.insert(5, comboBox_importer_tableau_entete_5);
+	_csvContentIdxToSQLTableImportHeader.insert(6, comboBox_importer_tableau_entete_6);
+	_csvContentIdxToSQLTableImportHeader.insert(7, comboBox_importer_tableau_entete_7);
+	_csvContentIdxToSQLTableImportHeader.insert(8, comboBox_importer_tableau_entete_8);
+	_csvContentIdxToSQLTableImportHeader.insert(9, comboBox_importer_tableau_entete_9);
+	_csvContentIdxToSQLTableImportHeader.insert(10, comboBox_importer_tableau_entete_10);
+	_csvContentIdxToSQLTableImportHeader.insert(11, comboBox_importer_tableau_entete_11);
+	_csvContentIdxToSQLTableImportHeader.insert(12, comboBox_importer_tableau_entete_12);
+	_csvContentIdxToSQLTableImportHeader.insert(13, comboBox_importer_tableau_entete_13);
 
-	for( int k = 0; k < _indexToSQLTableImportHeader.size(); ++k)
+	for( int k = 0; k < _csvContentIdxToSQLTableImportHeader.size(); ++k)
 	{
-		_indexToSQLTableImportHeader.value(k)->setVisible(false);
+		_csvContentIdxToSQLTableImportHeader.value(k)->setVisible(false);
 	}
 
 
