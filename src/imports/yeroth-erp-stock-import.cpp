@@ -25,9 +25,9 @@ QMap<QString, bool>		*YerothERPStockImport::_dbTableColumnToIsNotNULL;
 
 
 YerothERPStockImport::YerothERPStockImport(QStringList 				  						&aCurCsvFileToImportContentWordList,
-										   QMap<int, YerothERPDatabaseTableColumnInfo *> 	&anIndexToDatabaseTableColumnInfo)
+										   QMap<int, YerothERPDatabaseTableColumnInfo *> 	&aCsvContentIdxToDatabaseTableColumnInfo)
 :_curCsvFileToImportContentWordList(&aCurCsvFileToImportContentWordList),
- _indexToDatabaseTableColumnInfo(&anIndexToDatabaseTableColumnInfo),
+ _csvContentIdxToDatabaseTableColumnInfo(&aCsvContentIdxToDatabaseTableColumnInfo),
  _callingWindow(0)
 {
 	_allMandatoryTableColumns.append(YerothDatabaseTableColumn::DESIGNATION);
@@ -44,7 +44,7 @@ YerothERPStockImport::YerothERPStockImport(YerothPOSAdminWindowsCommons 					&aC
 		 	 	 	 	 	 	 	 	   QStringList 				  						&aCurCsvFileToImportContentWordList,
 										   QMap<int, YerothERPDatabaseTableColumnInfo *> 	&anIndexToDatabaseTableColumnInfo)
 :_curCsvFileToImportContentWordList(&aCurCsvFileToImportContentWordList),
- _indexToDatabaseTableColumnInfo(&anIndexToDatabaseTableColumnInfo),
+ _csvContentIdxToDatabaseTableColumnInfo(&anIndexToDatabaseTableColumnInfo),
  _callingWindow(&aCallingWindow)
 {
 	_allMandatoryTableColumns.append(YerothDatabaseTableColumn::DESIGNATION);
@@ -93,7 +93,7 @@ int YerothERPStockImport::import()
 
 	for (int i = 0; i < curCsvFileColumnSize; ++i)
 	{
-		curDatabaseTableColumnInfo = _indexToDatabaseTableColumnInfo->value(i);
+		curDatabaseTableColumnInfo = _csvContentIdxToDatabaseTableColumnInfo->value(i);
 
 		if (0 != curDatabaseTableColumnInfo)
 		{
@@ -237,7 +237,7 @@ enum import_csv_entry_row_return_status
 			}
 		}
 
-		curDatabaseTableColumnInfo = _indexToDatabaseTableColumnInfo->value(j);
+		curDatabaseTableColumnInfo = _csvContentIdxToDatabaseTableColumnInfo->value(j);
 
 		if (0 != curDatabaseTableColumnInfo)
 		{

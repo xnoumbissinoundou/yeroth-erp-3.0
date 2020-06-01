@@ -61,7 +61,7 @@ private:
 
     QStringList 					*_curCsvFileToImportContentWordList;
 
-    QMap<int, YerothERPDatabaseTableColumnInfo *> 	*_indexToDatabaseTableColumnInfo;
+    QMap<int, YerothERPDatabaseTableColumnInfo *> 	*_csvContentIdxToDatabaseTableColumnInfo;
 
     YerothPOSAdminWindowsCommons 	*_callingWindow;
 };
