@@ -345,6 +345,10 @@ public:
 	static QString getWindowTitleWithStrategy(QMainWindow *aMainWindow,
 											  QString localVisibleStrategy = "");
 
+	static void fillDBTableColumnNameToDBTableColumnType_TEST(const QString &aDBTableName,
+															  QMap<QString, QString> 	&aDBbTableColumnToType_IN_OUT,
+															  QMap<QString, bool> 	&aDBTableColumnToIsNotNULL_IN_OUT);
+
 	static QString appendPDFReceiptFormat(QString aStr);
 
 	static QString getStrategySqlQueryStr(QString aSelectStmt,

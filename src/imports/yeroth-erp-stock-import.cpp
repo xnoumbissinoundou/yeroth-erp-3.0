@@ -131,7 +131,7 @@ int YerothERPStockImport::import()
 
 	int successImportCount = 0;
 
-	enum import_csv_entry_row_return_status insertionReturnStatusValue = UNDEFINED;
+	enum import_csv_entry_row_return_status insertionReturnStatusValue = IMPORT_DATA_CSV_STOCK_UNDEFINED;
 
 	QStringList curCsvFileImportRow;
 
@@ -148,7 +148,7 @@ int YerothERPStockImport::import()
 
 		insertionReturnStatusValue = import_csv_entry_row(curCsvFileImportRow);
 
-		if (INSERTION_SUCCEED == insertionReturnStatusValue)
+		if (IMPORT_DATA_CSV_STOCK_INSERTION_SUCCEED == insertionReturnStatusValue)
 		{
 			++successImportCount;
 		}
@@ -158,7 +158,7 @@ int YerothERPStockImport::import()
 
 	if (successImportCount != curCsvFileLineCount)
 	{
-		if (MANDATORY_COLUMN_VALUE_MISSING == insertionReturnStatusValue)
+		if (IMPORT_DATA_CSV_STOCK_MANDATORY_COLUMN_VALUE_MISSING == insertionReturnStatusValue)
 		{
 			YerothERPStockImport::_allMissingMandatoryColumnValue.replace(0, 3, YerothUtils::EMPTY_STRING);
 
@@ -183,13 +183,13 @@ int YerothERPStockImport::import()
 enum import_csv_entry_row_return_status
 	YerothERPStockImport::import_csv_entry_row(QStringList &aCsvFileEntryLine)
 {
-	enum import_csv_entry_row_return_status insertionReturnStatus = INSERTION_FAILED;
+	enum import_csv_entry_row_return_status insertionReturnStatus = IMPORT_DATA_CSV_STOCK_INSERTION_FAILED;
 
 	YerothERPWindows *allWindows = YerothUtils::getAllWindows();
 
 	if (0 == allWindows)
 	{
-		return INSERTION_FAILED;
+		return IMPORT_DATA_CSV_STOCK_INSERTION_FAILED;
 	}
 
 	YerothERPDatabaseTableColumnInfo *curDatabaseTableColumnInfo = 0;
@@ -245,6 +245,11 @@ enum import_csv_entry_row_return_status
 
 			curTableColumnName = curDatabaseTableColumnInfo->getColumnName();
 
+//			qDebug() << QString("++ curTableColumnName: %1, curTableColumnType: %2, curColumnRowEntry: %3")
+//							.arg(curTableColumnName,
+//								 curTableColumnType,
+//								 curColumnRowEntry);
+
 			if (YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::REFERENCE, curTableColumnName))
 			{
 				productReference = curColumnRowEntry;
@@ -290,7 +295,7 @@ enum import_csv_entry_row_return_status
 									infoMesg);
 						}
 
-						return INSERTION_FAILED;
+						return IMPORT_DATA_CSV_STOCK_INSERTION_FAILED;
 					}
 				}
 			}
@@ -331,7 +336,7 @@ enum import_csv_entry_row_return_status
 									infoMesg);
 						}
 
-						return INSERTION_FAILED;
+						return IMPORT_DATA_CSV_STOCK_INSERTION_FAILED;
 					}
 				}
 			}
@@ -412,7 +417,7 @@ enum import_csv_entry_row_return_status
     		}
     	}
 
-        return INSERTION_FAILED;
+        return IMPORT_DATA_CSV_STOCK_INSERTION_FAILED;
     }
 
 	if (SERVICE_STOCK_DESIGNATION_AND_DIFFERENT_CATEGORIE_EXIST ==
@@ -429,7 +434,7 @@ enum import_csv_entry_row_return_status
 					productCategorie));
 		}
 
-		return INSERTION_FAILED;
+		return IMPORT_DATA_CSV_STOCK_INSERTION_FAILED;
 	}
 
 	static bool quantite_totale_already_visited = false;
@@ -439,8 +444,9 @@ enum import_csv_entry_row_return_status
 		if (0 != _callingWindow)
 		{
 			QString infoMesg =
-					QString(QObject::trUtf8("La colone '%1' a une valeur <= '0' !"))
-					.arg(YerothDatabaseTableColumn::QUANTITE_TOTALE);
+					QString(QObject::trUtf8("La colone '%1' a une valeur (%2) <= '0' !"))
+						.arg(YerothDatabaseTableColumn::QUANTITE_TOTALE,
+							 QString::number(quantite_totale));
 
 
 			YerothQMessageBox::warning(_callingWindow,
@@ -450,7 +456,7 @@ enum import_csv_entry_row_return_status
 
 		quantite_totale_already_visited = true;
 
-		return INCORRECT_COLUMN_VALUE;
+		return IMPORT_DATA_CSV_STOCK_INCORRECT_COLUMN_VALUE;
 	}
 
 	if (montant_tva > -1 && prix_unitaire > 0)
@@ -503,7 +509,7 @@ enum import_csv_entry_row_return_status
 
 			if (false == _dbTableColumnToIsNotNULL->value(aCurSqlTableImportColumn))
 			{
-				insertionReturnStatus = MANDATORY_COLUMN_VALUE_MISSING;
+				insertionReturnStatus = IMPORT_DATA_CSV_STOCK_MANDATORY_COLUMN_VALUE_MISSING;
 				/*
 				 * This SQL stock table column MUST BE NOT NULL.
 				 * So we attribute it a standard value.
@@ -516,9 +522,9 @@ enum import_csv_entry_row_return_status
 			}
 		}
 
-		if (MANDATORY_COLUMN_VALUE_MISSING == insertionReturnStatus)
+		if (IMPORT_DATA_CSV_STOCK_MANDATORY_COLUMN_VALUE_MISSING == insertionReturnStatus)
 		{
-			return MANDATORY_COLUMN_VALUE_MISSING;
+			return IMPORT_DATA_CSV_STOCK_MANDATORY_COLUMN_VALUE_MISSING;
 		}
 	}
 
@@ -526,10 +532,10 @@ enum import_csv_entry_row_return_status
 
 	if (queryResut)
 	{
-		return INSERTION_SUCCEED;
+		return IMPORT_DATA_CSV_STOCK_INSERTION_SUCCEED;
 	}
 
-	return INSERTION_FAILED;
+	return IMPORT_DATA_CSV_STOCK_INSERTION_FAILED;
 }
 
 

@@ -1530,6 +1530,48 @@ QString YerothUtils::getWindowTitleWithStrategy(QMainWindow *aMainWindow, QStrin
     return aNewTitle;
 }
 
+
+void YerothUtils::fillDBTableColumnNameToDBTableColumnType_TEST(const QString &aDBTableName,
+																QMap<QString, QString> 	&aDBbTableColumnToType_IN_OUT,
+																QMap<QString, bool> 	&aDBTableColumnToIsNotNULL_IN_OUT)
+{
+	aDBbTableColumnToType_IN_OUT.clear();
+
+	aDBTableColumnToIsNotNULL_IN_OUT.clear();
+
+	QString strShowColumnQuery(QString("SHOW COLUMNS FROM %1").arg(aDBTableName));
+
+	QSqlQuery query;
+
+	bool dbFieldNullAble = false;
+
+	QString dbFieldName;
+
+	QString dbFieldType;
+
+	int querySize = YerothUtils::execQuery(query, strShowColumnQuery);
+
+	for (int j = 0; j < querySize && query.next(); ++j)
+	{
+		dbFieldName = query.value(0).toString();
+
+		dbFieldType = query.value(1).toString();
+
+		dbFieldNullAble = (query.value(2).toString() == "NO") ? false : true;
+
+		if (YerothDatabaseTableColumn::ID != dbFieldName)
+		{
+			if (false == dbFieldNullAble)
+			{
+				aDBTableColumnToIsNotNULL_IN_OUT.insert(dbFieldName, dbFieldNullAble);
+			}
+
+			aDBbTableColumnToType_IN_OUT.insert(dbFieldName, dbFieldType);
+		}
+	}
+}
+
+
 QString YerothUtils::appendPDFReceiptFormat(QString aStr)
 {
     QString resultStr(aStr);

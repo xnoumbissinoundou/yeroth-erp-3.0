@@ -554,41 +554,9 @@ void YerothAdminWindow::generate_table_header_mapping_entries_for_csv_import()
 		}
 	}
 
-	_dbTableColumnToType.clear();
-
-	QString strShowColumnQuery(QString("SHOW COLUMNS FROM %1")
-									.arg(lineEdit_tableaux_mariadb_sql->text()));
-	QSqlQuery query;
-
-	bool dbFieldNullAble = false;
-
-	QString dbFieldName;
-
-	QString dbFieldType;
-
-	int querySize = YerothUtils::execQuery(query, strShowColumnQuery);
-
-	for (int j = 0; j < querySize && query.next(); ++j)
-	{
-		dbFieldName = query.value(0).toString();
-
-		dbFieldType = query.value(1).toString();
-
-		dbFieldNullAble = (query.value(2).toString() == "NO") ? false : true;
-
-		if (YerothDatabaseTableColumn::ID != dbFieldName)
-		{
-//			qDebug() << QString("++ (%1 ==> %2, %3)")
-//							.arg(dbFieldName, dbFieldType, BOOL_TO_STRING(dbFieldNullAble));
-
-			if (false == dbFieldNullAble)
-			{
-				_dbTableColumnToIsNotNULL.insert(dbFieldName, dbFieldNullAble);
-			}
-
-			_dbTableColumnToType.insert(dbFieldName, dbFieldType);
-		}
-	}
+	YerothUtils::fillDBTableColumnNameToDBTableColumnType_TEST(lineEdit_tableaux_mariadb_sql->text(),
+															   _dbTableColumnToType,
+															   _dbTableColumnToIsNotNULL);
 
 	for (int i = 0; i < curCsvFileLineSize; ++i)
 	{
