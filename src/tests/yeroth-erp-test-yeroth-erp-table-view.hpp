@@ -51,21 +51,11 @@ private:
 
 	void test_TABLE_VIEW_lister_collect_data_result(const QList<QDate> &allStocksInsertDate_in_out);
 
-	enum import_csv_entry_row_return_status
-		import_csv_entry_row(QStringList &aCsvFileEntryLine);
-
 	void test_TABLE_VIEW_lister_import_test_data();
-
-
-	static QString 			_allMissingMandatoryColumnValue;
 
 	QMap<int, YerothERPDatabaseTableColumnInfo *> _TEST_csvContentIdxToDatabaseTableColumnInfo;
 
 	QStringList 			_curCsvFileToImportContentWordList;
-
-	QStringList 			_allSqlTableImportColumns;
-
-	QStringList 			_allMandatoryTableColumns;
 
     QMap<QString, bool>		_dbTableColumnToIsNotNULL;
 
