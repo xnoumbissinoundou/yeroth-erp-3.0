@@ -49,8 +49,6 @@ private slots:
 
 private:
 
-	void test_TABLE_VIEW_lister_collect_data_result(const QList<QDate> &allStocksInsertDate_in_out);
-
 	void test_TABLE_VIEW_lister_import_test_data();
 
 	QMap<int, YerothERPDatabaseTableColumnInfo *> _TEST_csvContentIdxToDatabaseTableColumnInfo;
