@@ -67,7 +67,7 @@ void Test_YerothERPTableView::test_TABLE_VIEW_lister_fefo()
 //SELECT
 //CONCAT('TRUNCATE TABLE ',TABLE_NAME,';') AS truncateCommand
 //FROM information_schema.TABLES
-//WHERE TABLE_SCHEMA = 'yeroth_erp_3'
+//WHERE TABLE_SCHEMA = 'yeroth_erp_3_test'
 
 void Test_YerothERPTableView::test_TABLE_VIEW_lister_fifo()
 {
@@ -110,12 +110,6 @@ void Test_YerothERPTableView::test_TABLE_VIEW_lister_lifo()
 	int stockID = stockNameToStockID_in_out.value("test_yeroth_1").toInt();
 
 	QVERIFY(stockID == 3);
-}
-
-
-void Test_YerothERPTableView::test_TABLE_VIEW_lister_collect_data_result(
-		const QList<QDate> &allStocksInsertDate_in_out)
-{
 }
 
 
