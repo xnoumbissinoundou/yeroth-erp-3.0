@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-test-yeroth-erp-windows.cpp
  *
- *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
+ *      Author: XAVIER NOUMBISSI NOUNDOU, DIPL.-INF., PH.D. (ABD)
  */
 
 #include "yeroth-erp-test-yeroth-erp-windows.hpp"
