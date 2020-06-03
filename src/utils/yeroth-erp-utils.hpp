@@ -36,6 +36,7 @@
 
 class YerothLogger;
 
+class YerothDatabase;
 class YerothComboBox;
 class YerothQMessageBox;
 class QSqlTableModel;
@@ -118,6 +119,8 @@ public:
 	{
 		return _allWindows;
 	}
+
+	static YerothDatabase *getDatabase();
 
 	inline static QString getYerothAlertDaemonExecutableFullpath()
 	{

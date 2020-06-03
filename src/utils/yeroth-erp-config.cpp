@@ -142,7 +142,13 @@ void YerothERPConfig::initYerothConfig(QString initCfg)
 		}
 		if ("db_name" == list.at(0))
 		{
+#ifndef YEROTH_ERP_3_0_TESTING_UNIT_TEST
 		    YerothERPConfig::_db_name = list.at(1).trimmed();
+#else
+		    YerothERPConfig::_db_name = QString("%1_test")
+		    								.arg(list.at(1).trimmed());
+#endif
+
 			//logger << "++ db_name = " << db_name << "\n";
 		}
 		else if ("db_ip_address" == list.at(0))

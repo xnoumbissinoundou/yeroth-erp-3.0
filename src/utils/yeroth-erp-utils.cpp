@@ -8,6 +8,8 @@
 
 #include "src/widgets/yeroth-erp-qmessage-box.hpp"
 
+#include "src/utils/yeroth-erp-database.hpp"
+
 #include "src/utils/yeroth-erp-database-table-column.hpp"
 
 #include "yeroth-erp-logger.hpp"
@@ -621,6 +623,17 @@ void YerothUtils::setAllWindows(YerothERPWindows *allWindows)
     YerothWindowsCommons::setAllWindows(allWindows);
 
     YerothPOSAdminWindowsCommons::setAllWindows(allWindows);
+}
+
+
+YerothDatabase *YerothUtils::getDatabase()
+{
+	if (0 != _allWindows)
+	{
+		return &_allWindows->getDatabase();
+	}
+
+	return 0;
 }
 
 
