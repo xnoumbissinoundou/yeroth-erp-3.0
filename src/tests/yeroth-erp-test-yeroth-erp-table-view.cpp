@@ -14,6 +14,9 @@
 #include "src/widgets/table-view/yeroth-erp-table-view.hpp"
 
 
+#include <QtTest/QtTest>
+
+
 void Test_YerothERPTableView::initTestCase()
 {
 	QVERIFY(0 != _allWindows);

@@ -11,9 +11,6 @@
 #include "src/imports/yeroth-erp-stock-import.hpp"
 
 
-#include <QtTest/QtTest>
-
-
 class YerothERPDatabaseTableColumnInfo;
 
 class YerothERPWindows;
