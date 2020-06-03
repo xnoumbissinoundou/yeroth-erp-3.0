@@ -18,7 +18,12 @@ CONFIG += moc
 contains(DEFINES, YEROTH_ERP_3_0_TEST) 
 {
 	CONFIG += testcase
-  QT += testlib
+  
+	QT += testlib
+  
+	LIBS += -lgcov
+	
+	QMAKE_CXXFLAGS_RELEASE += --coverage
 }
 
 contains(DEFINES, YEROTH_ERP_3_0_TOUCH_SCREEN) 
@@ -46,10 +51,8 @@ QT += quick
 #}
 
 #LIBS += -L/usr/lib/i386-linux-gnu/qt5/plugins/styles -lqmotifstyle -lqplastiquestyle
-#LIBS += -lgcov
 
 QMAKE_CXXFLAGS_RELEASE -= -O2
-#QMAKE_CXXFLAGS_RELEASE += --coverage
 #QMAKE_CXXFLAGS_RELEASE += -Wunused-parameter
 
 QMAKE_CFLAGS_RELEASE -= -O2
