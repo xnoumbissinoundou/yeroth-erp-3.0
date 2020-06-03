@@ -7,6 +7,8 @@
 #include "yeroth-erp-test-yeroth-erp-table-view.hpp"
 
 
+#include "src/tests/utils/yeroth-erp-test-utils.hpp"
+
 #include "src/utils/yeroth-erp-historique-stock.hpp"
 
 #include "src/yeroth-erp-windows.hpp"
@@ -20,6 +22,8 @@
 void Test_YerothERPTableView::initTestCase()
 {
 	QVERIFY(0 != _allWindows);
+
+	Test_YerothERPTestUtils::TEST_UTILS_truncate_database_all_tables();
 
 	test_TABLE_VIEW_lister_import_test_data();
 }
@@ -67,10 +71,6 @@ void Test_YerothERPTableView::test_TABLE_VIEW_lister_fefo()
 	QVERIFY(stockID == 2);
 }
 
-//SELECT
-//CONCAT('TRUNCATE TABLE ',TABLE_NAME,';') AS truncateCommand
-//FROM information_schema.TABLES
-//WHERE TABLE_SCHEMA = 'yeroth_erp_3_test'
 
 void Test_YerothERPTableView::test_TABLE_VIEW_lister_fifo()
 {

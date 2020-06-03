@@ -172,7 +172,8 @@ HEADERS = src/yeroth-erp-windows.hpp \
 		  src/windows/yeroth-erp-ventes-window.hpp \
 		  src/tests/yeroth-erp-test-yeroth-erp-table-view.hpp \
 			src/tests/yeroth-erp-test-yeroth-erp-windows.hpp \
-		  src/users/yeroth-erp-users.hpp \
+		  src/tests/utils/yeroth-erp-test-utils.hpp \
+			src/users/yeroth-erp-users.hpp \
 		  src/users/yeroth-erp-user-vendeur.hpp \		  
 		  src/users/yeroth-erp-user-gestionaire-des-stocks.hpp \		  
 		  src/users/yeroth-erp-user-manager.hpp \
@@ -278,6 +279,7 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/windows/yeroth-erp-ventes-window.cpp \
 		  src/tests/yeroth-erp-test-yeroth-erp-table-view.cpp \
 			src/tests/yeroth-erp-test-yeroth-erp-windows.cpp \
+		  src/tests/utils/yeroth-erp-test-utils.cpp \
 		  src/users/yeroth-erp-users.cpp \
 		  src/users/yeroth-erp-user-vendeur.cpp \		  
 		  src/users/yeroth-erp-user-gestionaire-des-stocks.cpp \
