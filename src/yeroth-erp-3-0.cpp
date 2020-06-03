@@ -535,6 +535,14 @@ int main(int argc, char *argv[])
 
     YerothUtils::setAllWindows(&allWindows);
 
+
+#ifdef YEROTH_ERP_3_0_TESTING_UNIT_TEST
+
+    Test_YerothERPTestUtils::setAllWindows(&allWindows);
+
+#endif
+
+
     allWindows.createAllYerothPosUserWindows();
 
     YerothERPConfig::_connectedSite = allWindows.getInfoEntreprise().getLocalisation();
@@ -609,7 +617,7 @@ int main(int argc, char *argv[])
 
 #else
 
-    Test_YerothERPTableView aYEROTHERPTableView_TestInstance(&allWindows);
+    Test_YerothERPTableView aYEROTHERPTableView_TestInstance;
 
     return QTest::qExec(&aYEROTHERPTableView_TestInstance, argc, argv);
 

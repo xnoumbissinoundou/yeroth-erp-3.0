@@ -1,13 +1,13 @@
 /*
  * yeroth-erp-test-yeroth-erp-windows.cpp
  *
- *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
+ *      Author: XAVIER NOUMBISSI NOUNDOU, DIPL.-INF., PH.D. (ABD)
  */
 
 #include "yeroth-erp-test-yeroth-erp-table-view.hpp"
 
 
-#include "src/tests/utils/yeroth-erp-test-utils.hpp"
+#include "src/tests/utils/yeroth-erp-test-import-csv-file-data.hpp"
 
 #include "src/utils/yeroth-erp-historique-stock.hpp"
 
@@ -19,34 +19,22 @@
 #include <QtTest/QtTest>
 
 
-void Test_YerothERPTableView::initTestCase()
+Test_YerothERPTableView::Test_YerothERPTableView()
+:_yerothERPTestImportCSVFileData(0),
+ _allWindows(0)
 {
-	QVERIFY(0 != _allWindows);
+	_yerothERPTestImportCSVFileData = new Test_YerothERPTestImportCSVFileData;
 
-	Test_YerothERPTestUtils::TEST_UTILS_truncate_database_all_tables();
-
-	test_TABLE_VIEW_lister_import_test_data();
+	_allWindows = Test_YerothERPTestUtils::getAllWindows();
 }
 
 
-void Test_YerothERPTableView::cleanupTestCase()
+void Test_YerothERPTableView::initTestCase()
 {
-    QMapIterator<int, YerothERPDatabaseTableColumnInfo *>
-    	_it_TEST_csvContentIdxToDatabaseTableColumnInfo(_TEST_csvContentIdxToDatabaseTableColumnInfo);
+	Test_YerothERPTestUtils::TEST_UTILS_truncate_database_all_tables();
 
-    YerothERPDatabaseTableColumnInfo *anERPDatabaseTableColumnInfo = 0;
-
-    while(_it_TEST_csvContentIdxToDatabaseTableColumnInfo.hasNext())
-    {
-    	_it_TEST_csvContentIdxToDatabaseTableColumnInfo.next();
-
-    	anERPDatabaseTableColumnInfo = _it_TEST_csvContentIdxToDatabaseTableColumnInfo.value();
-
-    	if (0 != anERPDatabaseTableColumnInfo)
-    	{
-    		delete anERPDatabaseTableColumnInfo;
-    	}
-    }
+	_yerothERPTestImportCSVFileData->
+		test_TABLE_VIEW_lister_import_test_data("yeroth_test_data_stock_1.csv");
 }
 
 
@@ -113,59 +101,5 @@ void Test_YerothERPTableView::test_TABLE_VIEW_lister_lifo()
 	int stockID = stockNameToStockID_in_out.value("test_yeroth_1").toInt();
 
 	QVERIFY(stockID == 3);
-}
-
-
-void Test_YerothERPTableView::test_TABLE_VIEW_lister_import_test_data()
-{
-    QString csvFilePath(QString("%1/yeroth-erp-3-0-test_data/%2")
-    						.arg(YerothERPConfig::YEROTH_ERP_3_0_HOME_FOLDER,
-    							 "yeroth_test_data_stock_1.csv"));
-
-    if (!csvFilePath.isEmpty())
-    {
-    	bool importSuccess = YerothUtils::import_csv_file_content(csvFilePath, _curCsvFileToImportContentWordList);
-
-    	QVERIFY(importSuccess == true);
-    }
-
-	YerothERPStockImport erpStockImport(_curCsvFileToImportContentWordList,
-										_TEST_csvContentIdxToDatabaseTableColumnInfo);
-
-
-
-
-	QString curSqlTableImportHeaderStr;
-
-    YerothERPDatabaseTableColumnInfo *curDatabaseTableColumnInfo = 0;
-
-	QStringList csvHeader = _curCsvFileToImportContentWordList.at(0)
-					.split(YerothUtils::CSV_FILE_SEPARATION_SEMI_COLON_STRING_CHAR);
-
-    int curCsvFileColumnSize = csvHeader.size();
-
-	YerothUtils::fillDBTableColumnNameToDBTableColumnType_TEST(_allWindows->STOCKS,
-															   _dbTableColumnToType,
-															   _dbTableColumnToIsNotNULL);
-
-    YerothERPDatabaseTableColumnInfo *anERPDatabaseTableColumnInfo = 0;
-
-    QString aDBColumnName;
-
-    for (int kTEST = 0; kTEST < curCsvFileColumnSize; ++kTEST)
-    {
-    	aDBColumnName = csvHeader.at(kTEST).trimmed();
-
-    	anERPDatabaseTableColumnInfo = new YerothERPDatabaseTableColumnInfo(aDBColumnName,
-    												_dbTableColumnToType.value(aDBColumnName));
-
-    	_TEST_csvContentIdxToDatabaseTableColumnInfo.insert(kTEST, anERPDatabaseTableColumnInfo);
-    }
-
-    //	qDebug() << "++ _TEST_csvContentIdxToDatabaseTableColumnInfo: " << _TEST_csvContentIdxToDatabaseTableColumnInfo;
-
-	int successImportCount = erpStockImport.import();
-
-    QVERIFY(successImportCount > 0);
 }
 

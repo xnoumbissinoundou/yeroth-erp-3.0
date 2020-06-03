@@ -1,15 +1,22 @@
 /*
  * yeroth-erp-test-yeroth-erp-windows.hpp
  *
- *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
+ *      Author: XAVIER NOUMBISSI NOUNDOU, DIPL.-INF., PH.D. (ABD)
  */
 
 #ifndef YEROTH_TEST_YEROTH_ERP_TABLE_VIEW_WINDOWS_HPP_
 #define YEROTH_TEST_YEROTH_ERP_TABLE_VIEW_WINDOWS_HPP_
 
 
-#include "src/imports/yeroth-erp-stock-import.hpp"
+#include "src/include/yeroth-erp-3-0-definition-oo-class-operators.hpp"
 
+#include "src/tests/utils/yeroth-erp-test-utils.hpp"
+
+
+#include <QtCore/QObject>
+
+
+class Test_YerothERPTestImportCSVFileData;
 
 class YerothERPDatabaseTableColumnInfo;
 
@@ -22,21 +29,18 @@ class Test_YerothERPTableView : public QObject
 
 public:
 
-	inline Test_YerothERPTableView(YerothERPWindows *allWindows)
-	:_allWindows(0)
-	{
-		_allWindows = allWindows;
-	}
+	YEROTH_CLASS_OPERATORS
 
-	inline virtual ~Test_YerothERPTableView()
+	Test_YerothERPTableView();
+
+	inline ~Test_YerothERPTableView()
 	{
+		delete _yerothERPTestImportCSVFileData;
 	}
 
 private slots:
 
 	void initTestCase();
-
-	void cleanupTestCase();
 
 	void test_TABLE_VIEW_lister_fefo();
 
@@ -46,15 +50,7 @@ private slots:
 
 private:
 
-	void test_TABLE_VIEW_lister_import_test_data();
-
-	QMap<int, YerothERPDatabaseTableColumnInfo *> _TEST_csvContentIdxToDatabaseTableColumnInfo;
-
-	QStringList 			_curCsvFileToImportContentWordList;
-
-    QMap<QString, bool>		_dbTableColumnToIsNotNULL;
-
-    QMap<QString, QString>	_dbTableColumnToType;
+	Test_YerothERPTestImportCSVFileData *_yerothERPTestImportCSVFileData;
 
 	YerothERPWindows 		*_allWindows;
 };

@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-test-utils.hpp
  *
- *      Author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
+ *      Author: XAVIER NOUMBISSI NOUNDOU, DIPL.-INF., PH.D. (ABD)
  */
 
 #ifndef YEROTH_TEST_UTILS_HPP_
@@ -22,9 +22,16 @@ public:
 
 	static void TEST_UTILS_truncate_database_all_tables();
 
+	inline static YerothERPWindows *getAllWindows()
+	{
+		return _allWindows;
+	}
+
+	static void setAllWindows(YerothERPWindows *allWindows);
+
 private:
 
-	YerothERPWindows 		*_allWindows;
+	static YerothERPWindows		*_allWindows;
 };
 
 
