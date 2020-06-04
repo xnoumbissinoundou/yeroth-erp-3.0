@@ -1,5 +1,6 @@
 #!/bin/sh
- 
+#@author: XAVIER NOUMBISSI NOUNDOU, DIPL.-INF., PH.D. (ABD)
+
 ############################################################################################################
 # You should edit the following 3 paths when necessary
 ############################################################################################################
@@ -34,4 +35,4 @@ genhtml -o "${HTML_RESULTS}" "${COV_DIR}/yeroth-tests-coverage-filtered.info"
 lcov -d "${COV_DIR}" -z
  
 # Open the index.html
-firefox "${HTML_RESULTS}/index.html"
+firefox "${HTML_RESULTS}/index.html"&
