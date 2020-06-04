@@ -95,6 +95,7 @@ FORMS   = ui/yeroth-erp-main-window.ui \
 		  ui/yeroth-erp-stock-detail-window.ui \
 		  ui/yeroth-erp-changer-utilisateur-dialog.ui \
 		  ui/yeroth-erp-admin-window.ui \
+		  ui/yeroth-erp-admin-search-form.ui \
 		  ui/yeroth-erp-admin-create-window.ui \
 		  ui/yeroth-erp-admin-lister-window.ui \
 		  ui/yeroth-erp-admin-detail-window.ui \
