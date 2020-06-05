@@ -21,3 +21,7 @@ qrc_yeroth*
 object_script.yeroth-erp-3-0.Debug
 object_script.yeroth-erp-3-0.Release
 out
+yeroth-tests-coverage-information
+target_wrapper.sh
+obj
+Makefile
