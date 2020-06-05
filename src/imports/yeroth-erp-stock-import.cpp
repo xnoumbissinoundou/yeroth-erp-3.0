@@ -505,6 +505,8 @@ enum import_csv_entry_row_return_status
 	record.setValue(YerothDatabaseTableColumn::IS_SERVICE, 0);
 	record.setValue(YerothDatabaseTableColumn::LOTS_ENTRANT, 1);
 	record.setValue(YerothDatabaseTableColumn::QUANTITE_PAR_LOT, quantite_totale);
+	record.setValue(YerothDatabaseTableColumn::LOCALISATION,
+			allWindows->getInfoEntreprise().getLocalisation());
 	record.setValue(YerothDatabaseTableColumn::DATE_ENTREE, GET_CURRENT_DATE);
 
 
@@ -518,6 +520,7 @@ enum import_csv_entry_row_return_status
 		allSqltableColumns.removeAll(YerothDatabaseTableColumn::IS_SERVICE);
 		allSqltableColumns.removeAll(YerothDatabaseTableColumn::LOTS_ENTRANT);
 		allSqltableColumns.removeAll(YerothDatabaseTableColumn::QUANTITE_PAR_LOT);
+		allSqltableColumns.removeAll(YerothDatabaseTableColumn::LOCALISATION);
 		allSqltableColumns.removeAll(YerothDatabaseTableColumn::DATE_ENTREE);
 
 	    QString historiqueStockInitial(

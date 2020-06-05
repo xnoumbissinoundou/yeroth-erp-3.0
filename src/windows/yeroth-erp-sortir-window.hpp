@@ -243,7 +243,12 @@ private:
 
 	void connect_barcode_reader_selection_of_article_item();
 
-    bool check_fields();
+	bool check_fields();
+
+	inline void check_fields_entry()
+	{
+	    lineEdit_articles_nom_recepteur->checkField();
+	}
 
     void clear_all_fields();
 

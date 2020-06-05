@@ -341,9 +341,11 @@ bool YerothSortirWindow::check_fields()
         return false;
     }
     QString currentLocalisation(_allWindows->getInfoEntreprise().getLocalisation());
+
     bool destinationIsCorrect =
         !YerothUtils::isEqualCaseInsensitive(currentLocalisation, lineEdit_articles_transfert->text());
-    if (!destinationIsCorrect)
+
+    if (!currentLocalisation.isEmpty() && !destinationIsCorrect)
     {
         YerothQMessageBox::warning(this, QObject::trUtf8("localisation"),
                                   QObject::trUtf8("La localisation d'entrée doit"
@@ -352,6 +354,7 @@ bool YerothSortirWindow::check_fields()
     }
     return true;
 }
+
 
 void YerothSortirWindow::clear_all_fields()
 {
@@ -1214,9 +1217,13 @@ void YerothSortirWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
     QString aNewWindowTitle;
 
     aNewWindowTitle = YerothUtils::getWindowTitleWithStrategy(this);
+
     aNewWindowTitle = YerothUtils::appendPDFReceiptFormat(aNewWindowTitle);
 
     setWindowTitle(aNewWindowTitle);
+
+    check_fields_entry();
+
     setVisible(true);
 }
 
