@@ -375,21 +375,7 @@ void YerothSortirWindow::setupLineEditsQCompleters()
 		->setupMyStaticQCompleter(_allWindows->LOCALISATIONS, YerothDatabaseTableColumn::NOM_LOCALISATION);
 
     lineEdit_articles_nom_client
-		->setupMyStaticQCompleter(_allWindows->CLIENTS, YerothDatabaseTableColumn::NOM_ENTREPRISE, true);
-
-    {
-        YerothPOSUser *user = _allWindows->getUser();
-        if (user && user->isManager())
-        {
-            lineEdit_articles_nom_client
-				->setupMyStaticQCompleter(_allWindows->CLIENTS, YerothDatabaseTableColumn::NOM_ENTREPRISE, true);
-        }
-        else
-        {
-            lineEdit_articles_nom_client
-				->setupMyStaticQCompleter(_allWindows->CLIENTS, YerothDatabaseTableColumn::NOM_ENTREPRISE);
-        }
-    }
+		->setupMyStaticQCompleter(_allWindows->CLIENTS, YerothDatabaseTableColumn::NOM_ENTREPRISE);
 }
 
 
@@ -416,8 +402,7 @@ void YerothSortirWindow::setupLineEdits()
     lineEdit_articles_quantite_a_transferer->setYerothEnabled(false);
     lineEdit_articles_quantite_a_transferer->setText(GET_DOUBLE_STRING(0.0));
     //qDebug() << "++ YerothSortirWindow::setupLineEdits(): " << YerothConfig::salesStrategy;
-    connect(lineEdit_articles_transfert, SIGNAL(textChanged(const QString &)), this, SLOT(handleClient()));
-    connect(lineEdit_articles_nom_client, SIGNAL(textChanged(const QString &)), this, SLOT(handleDestination()));
+
     lineEdit_article_detail_quantite_a_vendre->setValidator(&YerothUtils::DoubleValidator);
     lineEdit_article_detail_remise_prix->setValidator(&YerothUtils::DoubleValidator);
     lineEdit_article_detail_remise_pourcentage->setValidator(&YerothUtils::DoubleValidator);

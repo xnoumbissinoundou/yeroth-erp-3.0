@@ -77,16 +77,6 @@ public slots:
 		actionAfficherPDF->setEnabled(true);
 	}
 
-	inline void handleClient()
-	{
-		lineEdit_articles_nom_client->clear();
-	}
-
-	inline void handleDestination()
-	{
-		lineEdit_articles_transfert->clear();
-	}
-
 	QString afficher_facture_pdf(QString referenceRecuSORTIE = QString(""));
 
 	QString imprimer_facture(QString referenceRecuSORTIE = QString(""));
