@@ -201,9 +201,9 @@ void YerothTableView::lister_les_transactions_dun_client(QSqlQuery &sqlClientTra
 {
     QString dateHdr(QObject::tr("Date"));
     QString timeHdr(QObject::tr("Heure"));
+    QString operationTypeHdr(QObject::tr("Type d'opération"));
     QString transactionAmountHdr(QObject::tr("Montant total"));
     QString customerAccountValueAfterHdr(QObject::trUtf8("Compte client (après)"));
-    QString operationTypeHdr(QObject::tr("Type d'opération"));
     QString referenceHdr(QObject::trUtf8("Référence article (service)"));
     QString receiptReferenceHdr(QObject::trUtf8("Référence reçu"));
 
@@ -211,9 +211,9 @@ void YerothTableView::lister_les_transactions_dun_client(QSqlQuery &sqlClientTra
 
     _tableModelHeaders->append(dateHdr);
     _tableModelHeaders->append(timeHdr);
+    _tableModelHeaders->append(operationTypeHdr);
     _tableModelHeaders->append(transactionAmountHdr);
     _tableModelHeaders->append(customerAccountValueAfterHdr);
-    _tableModelHeaders->append(operationTypeHdr);
     _tableModelHeaders->append(referenceHdr);
     _tableModelHeaders->append(receiptReferenceHdr);
 
@@ -289,7 +289,7 @@ void YerothTableView::lister_les_transactions_dun_client(QSqlQuery &sqlClientTra
 					case QVariant::Int:
 						keyValue = qv.toInt();
 
-						if (4 == j)
+						if (2 == j)
 						{
 							if (0 < keyValue)
 							{

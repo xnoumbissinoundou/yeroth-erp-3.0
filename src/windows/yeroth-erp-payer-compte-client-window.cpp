@@ -324,9 +324,9 @@ void YerothPayerCompteClientWindow::private_slot_afficher_les_transactions_dun_c
 	    QString clientTransactionsPaiementsQueryStr(QString("select %1, "
 	    													"%2 as 'Date transaction', "
 	    													"%3 as 'Heure transaction', "
-	    													"%4 as 'Total transaction', "
-	    													"%5 as 'Compte client (apres)', "
-	    													"%6 as 'Type de paiement', "
+	    													"%4 as 'Type de paiement', "
+	    													"%5 as 'Total transaction', "
+	    													"%6 as 'Compte client (apres)', "
 	    			    									"reference as 'Raison', "
 	    			    									"reference_recu_paiement_client as 'Recu', "
 	    			    									"CONCAT(date_paiement,' ',heure_paiement) as 'Temps' from %7 "
@@ -334,9 +334,9 @@ void YerothPayerCompteClientWindow::private_slot_afficher_les_transactions_dun_c
 	    											.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
 	    												 YerothDatabaseTableColumn::DATE_PAIEMENT,
 														 YerothDatabaseTableColumn::HEURE_PAIEMENT,
+														 YerothDatabaseTableColumn::TYPE_DE_PAIEMENT,
 														 YerothDatabaseTableColumn::MONTANT_PAYE,
 														 YerothDatabaseTableColumn::COMPTE_CLIENT,
-														 YerothDatabaseTableColumn::TYPE_DE_PAIEMENT,
 														 _allWindows->PAIEMENTS,
 														 DATE_TO_DB_FORMAT_STRING(dateEdit_transactions_compte_client_debut->date()),
 														 DATE_TO_DB_FORMAT_STRING(dateEdit_transactions_compte_client_fin->date())));
@@ -344,9 +344,9 @@ void YerothPayerCompteClientWindow::private_slot_afficher_les_transactions_dun_c
 	    QString clientTransactionsServicesCompletesQueryStr(QString("select %1, "
 	    													 "%2 as 'Date transaction', "
 	    													 "%3 as 'Heure transaction', "
-	    													 "%4 as 'Total transaction', "
-	    													 "%5 as 'Compte client (apres)', "
-	    													 "%6 as 'Type de paiement', "
+	    													 "%4 as 'Type de paiement', "
+	    													 "%5 as 'Total transaction', "
+	    													 "%6 as 'Compte client (apres)', "
 	    			    									 "reference as 'Raison', "
 	    			    									 "reference_recu_vendu as 'Recu', "
 	    			    									 "CONCAT(date_vente,' ',heure_vente) as 'Temps' from %7 "
@@ -354,9 +354,9 @@ void YerothPayerCompteClientWindow::private_slot_afficher_les_transactions_dun_c
 	    											.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT,
 	    												 YerothDatabaseTableColumn::DATE_VENTE,
 														 YerothDatabaseTableColumn::HEURE_VENTE,
+														 YerothDatabaseTableColumn::TYPE_DE_VENTE,
 														 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
 														 YerothDatabaseTableColumn::COMPTE_CLIENT,
-														 YerothDatabaseTableColumn::TYPE_DE_VENTE,
 														 _allWindows->SERVICES_COMPLETES,
 														 DATE_TO_DB_FORMAT_STRING(dateEdit_transactions_compte_client_debut->date()),
 														 DATE_TO_DB_FORMAT_STRING(dateEdit_transactions_compte_client_fin->date())));
@@ -364,9 +364,9 @@ void YerothPayerCompteClientWindow::private_slot_afficher_les_transactions_dun_c
 	    QString clientTransactionsStockVenduQueryStr(QString("select %1, "
 	    													 "%2 as 'Date transaction', "
 	    													 "%3 as 'Heure transaction', "
-	    													 "%4 as 'Total transaction', "
-	    													 "%5 as 'Compte client (apres)', "
-	    													 "%6 as 'Type de paiement', "
+	    													 "%4 as 'Type de paiement', "
+	    													 "%5 as 'Total transaction', "
+	    													 "%6 as 'Compte client (apres)', "
 	    			    									 "reference as 'Raison', "
 	    			    									 "reference_recu_vendu as 'Recu', "
 	    			    									 "CONCAT(date_vente,' ',heure_vente) as 'Temps' from %7 "
@@ -374,9 +374,9 @@ void YerothPayerCompteClientWindow::private_slot_afficher_les_transactions_dun_c
 	    											.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT,
 	    												 YerothDatabaseTableColumn::DATE_VENTE,
 														 YerothDatabaseTableColumn::HEURE_VENTE,
+														 YerothDatabaseTableColumn::TYPE_DE_VENTE,
 														 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
 														 YerothDatabaseTableColumn::COMPTE_CLIENT,
-														 YerothDatabaseTableColumn::TYPE_DE_VENTE,
 														 _allWindows->STOCKS_VENDU,
 														 DATE_TO_DB_FORMAT_STRING(dateEdit_transactions_compte_client_debut->date()),
 														 DATE_TO_DB_FORMAT_STRING(dateEdit_transactions_compte_client_fin->date())));
