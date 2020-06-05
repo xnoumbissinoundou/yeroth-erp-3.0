@@ -313,7 +313,7 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NUMERO_CONTRIBUABLE,	QObject::trUtf8("Numéro contribuable"));
 
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NOM_REPRESENTANT,		QObject::trUtf8("Représentant"));
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NOM_REPRESENTANT,		QObject::trUtf8("Réprésentant"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT,	QObject::tr("Client"));
 

@@ -252,10 +252,8 @@ void YerothERPClientsWindow::textChangedSearchLineEditsQCompleters()
         	partSearchTerm = searchTermList.at(k);
         	//qDebug() << "++ searchTermList: " << partSearchTerm;
 
-        	_searchFilter.append(QString("(%1 OR %2 OR %3 OR %4 OR %5)")
-        							.arg(GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::NOM_ENTREPRISE, partSearchTerm),
-        								 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::QUARTIER, partSearchTerm),
-										 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::REFERENCE_CLIENT, partSearchTerm),
+        	_searchFilter.append(QString("(%1 OR %2 OR %3)")
+        							.arg(GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::EMAIL, partSearchTerm),
         								 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::NOM_REPRESENTANT, partSearchTerm),
 										 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::DESCRIPTION_CLIENT, partSearchTerm)));
 
@@ -577,7 +575,7 @@ void YerothERPClientsWindow::populateClientsComboBoxes()
 
 void YerothERPClientsWindow::setupLineEdits()
 {
-	lineEdit_comptes_clients_terme_recherche->enableForSearch(QObject::trUtf8("terme à rechercher"));
+	lineEdit_comptes_clients_terme_recherche->enableForSearch(QObject::trUtf8("terme à rechercher (émail, réprésentant, description de l'entreprise cliente)"));
 
 	lineEdit_recherche_nom_entreprise->enableForSearch(QObject::tr("nom de l'entreprise cliente"));
 	lineEdit_comptes_clients_reference_client->enableForSearch(QObject::trUtf8("référence client"));

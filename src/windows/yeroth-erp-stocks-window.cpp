@@ -453,7 +453,7 @@ void YerothStocksWindow::setupLineEdits()
     	lineEdit_localisation->setVisible(true);
     	pushButton_connecter_localisation->setVisible(true);
     	pushButton_deconnecter_localisation->setVisible(true);
-    	lineEdit_localisation->setupMyStaticQCompleter(_allWindows->LOCALISATIONS, "nom_localisation", false);
+    	lineEdit_localisation->setupMyStaticQCompleter(_allWindows->LOCALISATIONS, YerothDatabaseTableColumn::NOM_LOCALISATION, false);
     	lineEdit_localisation->setText(YerothERPConfig::_connectedSite);
 #endif
 
@@ -509,7 +509,7 @@ void YerothStocksWindow::textChangedSearchLineEditsQCompleters()
         	partSearchTerm = searchTermList.at(k);
         	//qDebug() << "++ searchTermList: " << partSearchTerm;
 
-        	_searchFilter.append(QString("(%1)")
+        	_searchFilter.append(QString("%1")
         							.arg(GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::DESCRIPTION_PRODUIT, partSearchTerm)));
 
         	if (k != lastIdx)
