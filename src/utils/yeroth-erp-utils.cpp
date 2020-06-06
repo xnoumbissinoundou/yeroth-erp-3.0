@@ -1601,15 +1601,8 @@ QString YerothUtils::appendPDFReceiptFormat(QString aStr)
     {
         if (!resultStr.contains(YerothERPConfig::receiptFormat))
         {
-# ifdef YEROTH_FRANCAIS_LANGUAGE
-
-            resultStr.append("\t[ factures pdf au format: '").append(YerothERPConfig::receiptFormat).append("' ]");
-
-# elif YEROTH_ENGLISH_LANGUAGE
-
-            resultStr.append("\t[ pdf receipt format: '").append(YerothERPConfig::receiptFormat).append("' ]");
-
-# endif
+        	resultStr.append(QString(QObject::tr("\t[ factures pdf au format: '%1' ]"))
+        						.arg(YerothERPConfig::receiptFormat));
         }
     }
 

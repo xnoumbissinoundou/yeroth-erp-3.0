@@ -381,47 +381,52 @@ Click Cancel to exit.</source>
         <translation>A company with trade registry reference &apos;%1&apos; already exists in database !</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1716"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1604"/>
+        <source>	[ factures pdf au format: &apos;%1&apos; ]</source>
+        <translation>	[ pdf receipt size: &apos;%1&apos; ]</translation>
+    </message>
+    <message>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1709"/>
         <source>Informations sur l&apos;entreprise</source>
         <translation>Company info</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1785"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1778"/>
         <source>La localisation %1 n&apos;a pas d&apos;adresse IP enregistrée !</source>
         <translation>Site %1 doesn&apos;t have a registered IP address !</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1788"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1781"/>
         <source>%1 - pas d&apos;adresse IP !</source>
         <translation>%1 - no IP address !</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1802"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1795"/>
         <source>La localisation &apos;&apos;%1&apos;&apos; est déjà connectée par l&apos;adresse loopback (127.0.0.1) !</source>
         <translation>Site &apos;%1 is already connected through loopback IP address (127.0.0.1) !</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1830"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1823"/>
         <source>Connecter à la localisation %1 !</source>
         <translation>Connect site %1 !</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1833"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1826"/>
         <source>%1 - Connection à la localisation !</source>
         <translation>%1 - Connection to site !</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1842"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1835"/>
         <source>Impossible de se connecter à la localisation %1 !</source>
         <translation>Connection to site %1 cannot be established !</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1845"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1838"/>
         <source>%1 - Pas de connection à la localisation !</source>
         <translation>%1 - no connection to site !</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1879"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1872"/>
         <source>Impossible de se connecter au serveur &apos;%1&apos; de base de données !
 Contacter l&apos;administrateur de yeroth
 
@@ -1812,13 +1817,13 @@ Continue with update of the stock ?</translation>
         <translation>keyword to search for (payment reference receipt, memo)</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="2405"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="2398"/>
         <location filename="src/windows/yeroth-erp-transactions-window.cpp" line="317"/>
         <source>pas de données à exporter au format csv</source>
         <translation>there are no data to export in csv format</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="2406"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="2399"/>
         <location filename="src/windows/yeroth-erp-transactions-window.cpp" line="318"/>
         <source>Il n&apos;y a pas de données à exporter au format csv !</source>
         <oldsource>Il n&apos;y a pas de données à exporter au format csv!</oldsource>
