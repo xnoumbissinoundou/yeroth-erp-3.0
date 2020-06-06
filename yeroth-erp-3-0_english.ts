@@ -2159,13 +2159,6 @@ Continue with update of the stock (service) ?</translation>
         <translation>rankings - no data !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1812"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2353"/>
-        <source>Fenêtre des rapports</source>
-        <oldsource>Yeroth - Fenêtre des rapports</oldsource>
-        <translation>Business dashboard window</translation>
-    </message>
-    <message>
         <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1728"/>
         <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2093"/>
         <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2271"/>
@@ -2185,8 +2178,15 @@ Continue with update of the stock (service) ?</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1620"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1846"/>
         <source>analyse comparée</source>
         <translation>compared analysis</translation>
+    </message>
+    <message>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1812"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2353"/>
+        <source>paramètre manquant</source>
+        <translation>missing parameter</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1813"/>
@@ -2195,10 +2195,16 @@ Continue with update of the stock (service) ?</translation>
         <translation>Please enter a string in field &apos;name&apos; !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1846"/>
-        <source>Yeroth-erp-3.0 - rapports - analyse comparée - pas de données !</source>
-        <oldsource>Yeroth - rapports - analyse comparée - pas de données !</oldsource>
-        <translation>Yeroth-erp-3.0 - business dashboard - compared analysis - no data !</translation>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2382"/>
+        <source>pas de données</source>
+        <translation>no data</translation>
+    </message>
+    <message>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2383"/>
+        <source>Il n&apos;y a pas de données correspondante à la requête !
+Vérifier que les dates de début et de fin, ainsi que l&apos;année sont correctes !</source>
+        <translation>There is no data associated with this request!
+Please check that begin and end dates are correct!</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2101"/>
@@ -2209,11 +2215,6 @@ Continue with update of the stock (service) ?</translation>
         <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2193"/>
         <source>évolution du chiffre d&apos;affaire</source>
         <translation>business turnover progress</translation>
-    </message>
-    <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2382"/>
-        <source>évolution du chiffre d&apos;affaire - pas de données !</source>
-        <translation>business turnover progress - no data !</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1118"/>

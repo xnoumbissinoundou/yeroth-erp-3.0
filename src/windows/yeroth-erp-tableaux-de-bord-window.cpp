@@ -1809,7 +1809,7 @@ void YerothTableauxDeBordWindow::analyseComparee()
 	{
 		if (textFromLineEditEvolutionSujets.isEmpty())
 		{
-	        YerothQMessageBox::warning(this, QObject::trUtf8("Fenêtre des rapports"),
+	        YerothQMessageBox::warning(this, QObject::trUtf8("paramètre manquant"),
 	                                  QObject::trUtf8("Vous devez spécifier un paramètre dans"
 	                                          	  	  " le champs de texte 'nom' !"));
 			return ;
@@ -1843,7 +1843,7 @@ void YerothTableauxDeBordWindow::analyseComparee()
     {
 
     	YerothQMessageBox::information(this,
-    			QObject::trUtf8("Yeroth-erp-3.0 - rapports - analyse comparée - pas de données !"),
+    			QObject::trUtf8("analyse comparée"),
 				QObject::trUtf8(("Il n'y a pas de données correspondante à la requête !\n"
 								 "Vérifier que les dates de début et de fin, "
 								 "ainsi que l'année sont correctes !")));
@@ -2245,25 +2245,25 @@ void YerothTableauxDeBordWindow::calculerChiffresDaffaireMois()
 //    						 BOOL_TO_STRING(moisFinAjuster),
 //    						 QString::number(moisFin));
 
-    QString strQuery(QString("SELECT date_vente, (montant_total_vente - montant_tva) "));
-
-    strQuery.append("FROM ")
-    		.append(_allWindows->STOCKS_VENDU)
-			.append(" WHERE date_vente >= '")
-			.append(dateDebut)
-			.append("' AND ");
+    QString strQuery(QString("SELECT %1, (%2 - %3) FROM %4 WHERE %5 >= '%6' AND ")
+    					.arg(YerothDatabaseTableColumn::DATE_VENTE,
+    						 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
+							 YerothDatabaseTableColumn::MONTANT_TVA,
+							 _allWindows->STOCKS_VENDU,
+							 YerothDatabaseTableColumn::DATE_VENTE,
+							 dateDebut));
 
     if (moisFinAjuster)
     {
-        strQuery.append("date_vente < '")
-        .append(dateFin)
-        .append("'");
+        strQuery.append(QString("%1 < '%2'")
+        				 .arg(YerothDatabaseTableColumn::DATE_VENTE,
+        					  dateFin));
     }
     else
     {
-        strQuery.append("date_vente <= '")
-        .append(dateFin)
-        .append("'");
+        strQuery.append(QString("%1 <= '%2'")
+        				 .arg(YerothDatabaseTableColumn::DATE_VENTE,
+        					  dateFin));
     }
 
     bool filtreActif = false;
@@ -2350,7 +2350,7 @@ void YerothTableauxDeBordWindow::calculerChiffresDaffaireMois()
 	{
 		if (textFromLineEditEvolutionSujets.isEmpty())
 		{
-	        YerothQMessageBox::warning(this, QObject::trUtf8("Fenêtre des rapports"),
+	        YerothQMessageBox::warning(this, QObject::trUtf8("paramètre manquant"),
 	                                  QObject::trUtf8("Vous devez spécifier un paramètre dans"
 	                                          	  	  " le champs de texte 'nom' !"));
 			return ;
@@ -2379,10 +2379,10 @@ void YerothTableauxDeBordWindow::calculerChiffresDaffaireMois()
     {
 
         YerothQMessageBox::information(this,
-                                      QObject::trUtf8("évolution du chiffre d'affaire - pas de données !"),
-                                      QObject::trUtf8(("Il n'y a pas de données correspondante à la requête !\n"
-                                              	  	   "Vérifier que les dates de début et de fin, "
-                                              	  	   "ainsi que l'année sont correctes !")));
+                                      QObject::trUtf8("pas de données"),
+                                      QObject::trUtf8("Il n'y a pas de données correspondante à la requête !\n"
+                                              	  	  "Vérifier que les dates de début et de fin, "
+                                              	  	  "ainsi que l'année sont correctes !"));
         return ;
     }
 
