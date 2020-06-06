@@ -51,13 +51,8 @@
 #include <unistd.h>
 
 
-const QString YerothVentesWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2"))
-													.arg(YEROTH_ERP_WINDOW_TITLE, QObject::trUtf8("ventes")));
-
-
 YerothVentesWindow::YerothVentesWindow()
-:YerothWindowsCommons(YerothVentesWindow::_WINDOW_TITLE,
-					  "yeroth-erp-journal-ventes"),
+:YerothWindowsCommons("yeroth-erp-journal-ventes"),
  YerothAbstractClassYerothSearchWindow(_allWindows->STOCKS_VENDU),
  _retourVenteTabWidget(0),
  _logger(new YerothLogger("YerothVentesWindow")),
@@ -66,6 +61,10 @@ YerothVentesWindow::YerothVentesWindow()
  _ventesDateFilter(YerothUtils::EMPTY_STRING),
  _curStocksVenduTableModel(&_allWindows->getSqlTableModel_stocks_vendu())
 {
+    _windowName = QString("%1 - %2")
+    				.arg(YEROTH_ERP_WINDOW_TITLE,
+    					 QObject::trUtf8("ventes"));
+
     setupUi(this);
 
     mySetupUi(this);

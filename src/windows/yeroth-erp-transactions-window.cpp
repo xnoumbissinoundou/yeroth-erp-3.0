@@ -4,6 +4,7 @@
  */
 #include "yeroth-erp-transactions-window.hpp"
 
+
 #include "src/yeroth-erp-windows.hpp"
 
 #include "src/process/yeroth-erp-process.hpp"
@@ -31,20 +32,18 @@
 #include <QtWidgets/QDesktopWidget>
 
 
-
-const QString YerothTransactionsWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2"))
-														.arg(YEROTH_ERP_WINDOW_TITLE,
-															 QObject::trUtf8("transactions de stocks")));
-
 YerothTransactionsWindow::YerothTransactionsWindow()
-:YerothWindowsCommons(YerothTransactionsWindow::_WINDOW_TITLE,
-					  "yeroth-erp-journal-sortie-stocks"),
+:YerothWindowsCommons("yeroth-erp-journal-sortie-stocks"),
  _logger(new YerothLogger("YerothTransactionsWindow")),
  _curTransactionsTableModel(0)
 {
+    _windowName = QString("%1 - %2")
+    				.arg(YEROTH_ERP_WINDOW_TITLE,
+    					 QObject::trUtf8("transactions de stocks"));
+
     setupUi(this);
 
-    this->mySetupUi(this);
+    mySetupUi(this);
 
     _yerothTableView_FROM_WINDOWS_COMMONS = tableView_sorties_articles;
 
@@ -453,14 +452,14 @@ void YerothTransactionsWindow::rechercher()
         _searchFilter.append(GENERATE_SQL_IS_STMT("nom_recepteur", nom_recepteur));
     }
 
-    this->setFilter();
+    setFilter();
 
     _logger->log("rechercher", QString("search filter: %1").arg(_searchFilter));
 
 
     if (_curTransactionsTableModel->easySelect() > 0)
     {
-        this->setLastListerSelectedRow(0);
+        setLastListerSelectedRow(0);
     }
     else
     {
@@ -559,13 +558,13 @@ void YerothTransactionsWindow::resetFilter()
 {
     _searchFilter.clear();
 
-    if (0 != this->_curTransactionsTableModel)
+    if (0 != _curTransactionsTableModel)
     {
-        this->_curTransactionsTableModel->resetFilter();
+        _curTransactionsTableModel->resetFilter();
     }
     else
     {
-        this->_curTransactionsTableModel = &_allWindows->getSqlTableModel_stocks_sorties();
+        _curTransactionsTableModel = &_allWindows->getSqlTableModel_stocks_sorties();
     }
 
     lineEdit_transactions_nom_magasinier->clear();

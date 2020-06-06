@@ -43,7 +43,6 @@ public slots:
 
 private:
 
-    static const QString 	_WINDOW_TITLE;
 
     QDate 					_curDateDebutTransactions;
 

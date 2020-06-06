@@ -16,7 +16,8 @@ class QContextMenuEvent;
 
 class YerothSqlTableModel;
 
-class YerothModifierCompteClientWindow : public YerothWindowsCommons, private Ui_YerothModifierCompteClientWindow
+class YerothModifierCompteClientWindow : public YerothWindowsCommons,
+										 private Ui_YerothModifierCompteClientWindow
 {
     Q_OBJECT
 
@@ -102,7 +103,6 @@ private:
 
     void showClientDetail();
 
-    static const QString 		_WINDOW_TITLE;
 
     YerothLogger				*_logger;
 

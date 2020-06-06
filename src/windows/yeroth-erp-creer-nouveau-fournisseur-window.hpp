@@ -19,7 +19,8 @@ class YerothUtils;
 class YerothLogger;
 class YerothSqlTableModel;
 
-class YerothCreerNouveauFournisseurWindow : public YerothWindowsCommons, private Ui_YerothCreerNouveauFournisseurWindow
+class YerothCreerNouveauFournisseurWindow : public YerothWindowsCommons,
+											private Ui_YerothCreerNouveauFournisseurWindow
 {
     Q_OBJECT
 
@@ -90,8 +91,6 @@ protected:
     virtual void setupShortcuts();
 
 private:
-
-    static const QString 	_WINDOW_TITLE;
 
     YerothLogger				*_logger;
 };

@@ -26,7 +26,8 @@ class YerothArticleVenteInfo;
 class YerothPOSCreditCardInfo;
 
 
-class YerothPointDeVenteWindow : public YerothWindowsCommons, public Ui_YerothPointDeVenteWindow
+class YerothPointDeVenteWindow : public YerothWindowsCommons,
+								 public Ui_YerothPointDeVenteWindow
 {
     Q_OBJECT
 
@@ -300,7 +301,6 @@ private:
     	dateEdit_article_detail_date_peremption->setEnabled(false);
     }
 
-    static const QString 	_WINDOW_TITLE;
 
     YerothLogger			*_logger;
 

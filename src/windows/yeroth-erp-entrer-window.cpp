@@ -24,12 +24,8 @@
 #include <QtSql/QSqlQuery>
 
 
-const QString YerothEntrerWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2")).
-        arg(YEROTH_ERP_WINDOW_TITLE, QObject::trUtf8("entrer un stock (service)")));
-
-
 YerothEntrerWindow::YerothEntrerWindow()
-:YerothWindowsCommons(YerothEntrerWindow::_WINDOW_TITLE),
+:YerothWindowsCommons(),
  _logger(new YerothLogger("YerothEntrerWindow")),
  _currentServiceInfo(0),
  _stocks_id(0),
@@ -38,6 +34,10 @@ YerothEntrerWindow::YerothEntrerWindow()
  _createNewCategorie(false),
  _createNewFournisseur(false)
 {
+    _windowName = QString("%1 - %2")
+    				.arg(YEROTH_ERP_WINDOW_TITLE,
+    					 QObject::trUtf8("entrer un stock (service)"));
+
     setupUi(this);
 
     mySetupUi(this);

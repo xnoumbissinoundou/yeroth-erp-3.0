@@ -15,7 +15,8 @@
 class YerothERPWindows;
 class YerothSqlTableModel;
 
-class YerothCreerCompteClientWindow : public YerothWindowsCommons, private Ui_YerothCreerCompteClientWindow
+class YerothCreerCompteClientWindow : public YerothWindowsCommons,
+									  private Ui_YerothCreerCompteClientWindow
 {
     Q_OBJECT
 
@@ -97,8 +98,6 @@ private:
     void clear_all_fields();
 
     void setupLineEdits();
-
-    static const QString 	_WINDOW_TITLE;
 
     YerothLogger				*_logger;
 };

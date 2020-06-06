@@ -49,18 +49,11 @@
 #include <unistd.h>
 
 
-
-
 bool YerothPointDeVenteWindow::_qteChangeCodeBar(false);
-
-const QString YerothPointDeVenteWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2")).
-        arg(YEROTH_ERP_WINDOW_TITLE, QObject::tr("point de vente")));
 
 
 YerothPointDeVenteWindow::YerothPointDeVenteWindow()
-
-:YerothWindowsCommons(YerothPointDeVenteWindow::_WINDOW_TITLE),
-
+:YerothWindowsCommons(),
  _logger(new YerothLogger("YerothPointDeVenteWindow")),
  _paiement_carte_credit_carte_debit(false),
  _paiment_comptant(false),
@@ -82,6 +75,10 @@ YerothPointDeVenteWindow::YerothPointDeVenteWindow()
  actionRechercheArticle(0),
  actionRechercheArticleCodebar(0)
 {
+    _windowName = QString("%1 - %2")
+    				.arg(YEROTH_ERP_WINDOW_TITLE,
+    					 QObject::trUtf8("point de vente"));
+
     setupUi(this);
 
     mySetupUi(this);

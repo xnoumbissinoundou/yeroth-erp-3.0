@@ -50,14 +50,8 @@
 #include <unistd.h>
 
 
-const QString YerothPaiementsWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2"))
-													.arg(YEROTH_ERP_WINDOW_TITLE,
-														 QObject::trUtf8("paiements")));
-
-
 YerothPaiementsWindow::YerothPaiementsWindow()
-:YerothWindowsCommons(YerothPaiementsWindow::_WINDOW_TITLE,
-					  "yeroth-erp-journal-paiements"),
+:YerothWindowsCommons("yeroth-erp-journal-paiements"),
  YerothAbstractClassYerothSearchWindow(_allWindows->PAIEMENTS),
  _logger(new YerothLogger("YerothPaiementsWindow")),
  _aProcess(0),
@@ -66,6 +60,10 @@ YerothPaiementsWindow::YerothPaiementsWindow()
  _paiementsDateFilter(YerothUtils::EMPTY_STRING),
  _curPaiementsTableModel(&_allWindows->getSqlTableModel_paiements())
 {
+    _windowName = QString("%1 - %2")
+    				.arg(YEROTH_ERP_WINDOW_TITLE,
+    					 QObject::trUtf8("paiements"));
+
     setupUi(this);
 
     mySetupUi(this);

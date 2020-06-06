@@ -85,8 +85,6 @@ private:
 
     void checkCourrierAlerts();
 
-    static const QString 	_WINDOW_TITLE;
-
     int 					_achatLastSelectedRow;
 
     YerothSqlTableModel 	*_curAchatStocksTableModel;

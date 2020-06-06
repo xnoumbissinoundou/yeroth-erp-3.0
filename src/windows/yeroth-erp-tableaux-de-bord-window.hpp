@@ -9,9 +9,12 @@
 
 #include "../../ui_yeroth-erp-tableaux-de-bord-window.h"
 
+
 #include "yeroth-erp-window-commons.hpp"
 
+
 #include "src/utils/yeroth-erp-database-table-column.hpp"
+
 
 class QProcess;
 
@@ -20,7 +23,8 @@ class YerothLogger;
 class YerothSqlTableModel;
 class YerothERPWindows;
 
-class YerothTableauxDeBordWindow : public YerothWindowsCommons, private Ui_YerothRapportsWindow
+class YerothTableauxDeBordWindow : public YerothWindowsCommons,
+								   private Ui_YerothRapportsWindow
 {
     Q_OBJECT
 
@@ -254,7 +258,6 @@ private:
 
 	static const unsigned int MAX_YEARS_REPORTS;
 
-	static const QString 	_WINDOW_TITLE;
 
 	YerothLogger				*_logger;
 

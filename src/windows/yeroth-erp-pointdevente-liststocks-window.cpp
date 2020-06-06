@@ -21,17 +21,18 @@
 
 #include <QtWidgets/QDesktopWidget>
 
-const QString YerothPointDeVenteListStocksWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2")).
-        arg(YEROTH_ERP_WINDOW_TITLE,
-            QObject::trUtf8("stocks à vendre")));
 
 YerothPointDeVenteListStocksWindow::YerothPointDeVenteListStocksWindow()
-:YerothWindowsCommons(YerothPointDeVenteListStocksWindow::_WINDOW_TITLE),
+:YerothWindowsCommons(),
  _logger(new YerothLogger("YerothVenteListStocksWindow"))
 {
+    _windowName = QString("%1 - %2")
+    				.arg(YEROTH_ERP_WINDOW_TITLE,
+    					 QObject::trUtf8("stocks à vendre"));
+
     setupUi(this);
 
-    this->mySetupUi(this);
+    mySetupUi(this);
 }
 
 

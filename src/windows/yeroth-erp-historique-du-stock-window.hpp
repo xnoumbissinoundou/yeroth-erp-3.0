@@ -48,8 +48,6 @@ public slots:
 private:
 
 
-    static const QString 		_WINDOW_TITLE;
-
     QString						_currentStockID;
     QString						_currentStockReference;
     QString						_currentStockDesignation;

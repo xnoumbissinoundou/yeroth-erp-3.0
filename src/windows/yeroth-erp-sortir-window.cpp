@@ -38,12 +38,8 @@
 bool YerothSortirWindow::_qteChangeCodeBar(false);
 
 
-const QString YerothSortirWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2")).
-        arg(YEROTH_ERP_WINDOW_TITLE,
-            QObject::trUtf8("sortir ou transférer des stocks")));
-
 YerothSortirWindow::YerothSortirWindow()
-:YerothWindowsCommons(YerothSortirWindow::_WINDOW_TITLE),
+:YerothWindowsCommons(),
  _logger(new YerothLogger("YerothSortirWindow")),
  _currentFocusSearchBar(0),
  _barcodeReaderActivated(false),
@@ -58,6 +54,10 @@ YerothSortirWindow::YerothSortirWindow()
  actionRechercheArticle(0),
  actionRechercheArticleCodebar(0)
 {
+    _windowName = QString("%1 - %2")
+    				.arg(YEROTH_ERP_WINDOW_TITLE,
+    					 QObject::trUtf8("sortir ou transférer des stocks"));
+
     setupUi(this);
 
     mySetupUi(this);

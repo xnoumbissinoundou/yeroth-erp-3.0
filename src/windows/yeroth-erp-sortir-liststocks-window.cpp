@@ -17,16 +17,14 @@
 #include<QtWidgets/QDesktopWidget>
 
 
-const QString YerothSortirListStocksWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2")).
-        arg(YEROTH_ERP_WINDOW_TITLE,
-            QObject::
-            trUtf8("stocks à sortir ou à transférer")));
-
-
 YerothSortirListStocksWindow::YerothSortirListStocksWindow()
-:YerothWindowsCommons(YerothSortirListStocksWindow::_WINDOW_TITLE),
+:YerothWindowsCommons(),
  _logger(new YerothLogger("YerothSortirListStocksWindow"))
 {
+    _windowName = QString("%1 - %2")
+    				.arg(YEROTH_ERP_WINDOW_TITLE,
+    					 QObject::trUtf8("stocks à sortir ou à transférer"));
+
     setupUi(this);
 
     mySetupUi(this);

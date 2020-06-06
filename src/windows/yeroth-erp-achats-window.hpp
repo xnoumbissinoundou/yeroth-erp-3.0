@@ -141,8 +141,6 @@ private:
 
     static unsigned int PDF_LISTING_COLUMN_CATEGORIE;
 
-    static const QString 	_WINDOW_TITLE;
-
     YerothLogger			*_logger;
 
     QProcess				*_aProcess;

@@ -174,7 +174,6 @@ private:
 
     void setupDateTimeEdits();
 
-    static const QString 	_WINDOW_TITLE;
 
     YerothLogger			*_logger;
 

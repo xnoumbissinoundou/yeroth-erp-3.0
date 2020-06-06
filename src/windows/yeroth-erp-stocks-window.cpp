@@ -52,13 +52,8 @@
  */
 
 
-const QString YerothStocksWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2")).
-arg(YEROTH_ERP_WINDOW_TITLE,
-QObject::trUtf8("fiche des stocks")));
-
 YerothStocksWindow::YerothStocksWindow()
-:YerothWindowsCommons(YerothStocksWindow::_WINDOW_TITLE,
-					  "yeroth-erp-fichier-stocks"),
+:YerothWindowsCommons("yeroth-erp-fichier-stocks"),
  YerothAbstractClassYerothSearchWindow(_allWindows->STOCKS),
  _logger(new YerothLogger("YerothStocksWindow")),
  _actionRechercheArticleCodebar(0),
@@ -66,6 +61,10 @@ YerothStocksWindow::YerothStocksWindow()
  _pushButton_stocks_filtrer_font(0),
  _searchStocksTableModel(0)
 {
+    _windowName = QString("%1 - %2")
+    				.arg(YEROTH_ERP_WINDOW_TITLE,
+    					 QObject::trUtf8("fiche des stocks"));
+
     setupUi(this);
 
     mySetupUi(this);

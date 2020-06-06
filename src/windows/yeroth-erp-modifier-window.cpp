@@ -15,17 +15,17 @@
 #include <QtGui/QContextMenuEvent>
 
 
-const QString YerothModifierWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2")).
-        arg(YEROTH_ERP_WINDOW_TITLE,
-            QObject::trUtf8("modifier un stock")));
-
 YerothModifierWindow::YerothModifierWindow()
-:YerothWindowsCommons(YerothModifierWindow::_WINDOW_TITLE),
+:YerothWindowsCommons(),
  _logger(new YerothLogger("YerothModifierWindow")),
  _montantTva(0.0),
  _tvaCheckBoxPreviousState(false),
  _tvaPercent(YerothUtils::getTvaStringWithPercent())
 {
+    _windowName = QString("%1 - %2")
+    				.arg(YEROTH_ERP_WINDOW_TITLE,
+    					 QObject::trUtf8("modifier un stock"));
+
     setupUi(this);
 
     mySetupUi(this);

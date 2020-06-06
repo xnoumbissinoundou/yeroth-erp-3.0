@@ -32,22 +32,21 @@
 #include <QtWidgets/QCompleter>
 
 
-const QString YerothERPClientsWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2")).
-        arg(YEROTH_ERP_WINDOW_TITLE,
-            QObject::trUtf8("comptes clients")));
-
 YerothERPClientsWindow::YerothERPClientsWindow()
-:YerothWindowsCommons(YerothERPClientsWindow::_WINDOW_TITLE,
-					  "yeroth-erp-comptes-clients"),
+:YerothWindowsCommons("yeroth-erp-comptes-clients"),
  YerothAbstractClassYerothSearchWindow(_allWindows->CLIENTS),
  _logger(new YerothLogger("YerothERPComptesClientsWindow")),
  _lastSelectedRow(0),
  _pushButton_filtrer_font(0),
  _curClientsTableModel(0)
 {
+    _windowName = QString("%1 - %2")
+    				.arg(YEROTH_ERP_WINDOW_TITLE,
+    					 QObject::trUtf8("comptes clients"));
+
     setupUi(this);
 
-    this->mySetupUi(this);
+    mySetupUi(this);
 
     _yerothTableView_FROM_WINDOWS_COMMONS = tableView_clients;
 

@@ -19,15 +19,15 @@
 #include "src/users/yeroth-erp-users.hpp"
 
 
-const QString YerothCreerNouveauClientWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2"))
-												.arg(YEROTH_ERP_WINDOW_TITLE,
-													 QObject::trUtf8("créer un nouveau client")));
-
-
-YerothCreerNouveauClientWindow::YerothCreerNouveauClientWindow():YerothWindowsCommons(YerothCreerNouveauClientWindow::_WINDOW_TITLE),
-    _logger(new
+YerothCreerNouveauClientWindow::YerothCreerNouveauClientWindow()
+:YerothWindowsCommons(),
+ _logger(new
             YerothLogger("YerothCreerNouveauClientWindow"))
 {
+    _windowName = QString("%1 - %2")
+    				.arg(YEROTH_ERP_WINDOW_TITLE,
+    					 QObject::trUtf8("créer un nouveau client"));
+
     setupUi(this);
 
     mySetupUi(this);

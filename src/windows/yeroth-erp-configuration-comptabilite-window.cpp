@@ -29,17 +29,17 @@
 #include <QtSql/QSqlRecord>
 
 
-const QString YerothConfigurationComptabiliteWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2")).
-        arg(YEROTH_ERP_WINDOW_TITLE,
-            QObject::trUtf8("fenêtre du comptable")));
-
 YerothConfigurationComptabiliteWindow::YerothConfigurationComptabiliteWindow()
-:YerothWindowsCommons(YerothConfigurationComptabiliteWindow::_WINDOW_TITLE),
+:YerothWindowsCommons(),
  _logger(new YerothLogger("YerothConfigurationComptabiliteWindow"))
 {
+    _windowName = QString("%1 - %2")
+    				.arg(YEROTH_ERP_WINDOW_TITLE,
+    					 QObject::trUtf8("fenêtre du comptable"));
+
     setupUi(this);
 
-    this->mySetupUi(this);
+    mySetupUi(this);
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
                                        "QMessageBox QLabel {color: rgb(%2);}")
@@ -66,7 +66,7 @@ YerothConfigurationComptabiliteWindow::YerothConfigurationComptabiliteWindow()
     connect(actionInformationEntreprise, SIGNAL(triggered()), this, SLOT(infosEntreprise()));
     connect(actionQui_suis_je, SIGNAL(triggered()), this, SLOT(qui_suis_je()));
 
-    this->setupShortcuts();
+    setupShortcuts();
 }
 
 

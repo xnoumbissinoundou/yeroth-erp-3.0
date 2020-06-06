@@ -99,8 +99,6 @@ private:
 
 	static void getLatexCustomerData(QString &texDocumentString_in_out);
 
-    static const QString 	_WINDOW_TITLE;
-
     YerothLogger			*_logger;
 
     YerothSqlTableModel 	*_curClientTableModel;

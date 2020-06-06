@@ -4,18 +4,21 @@
  *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
-# ifndef SRC_WINDOWS_YEROTH_SORTIR_LISTSTOCKS_WINDOW_HPP_
-# define SRC_WINDOWS_YEROTH_SORTIR_LISTSTOCKS_WINDOW_HPP_
+#ifndef SRC_WINDOWS_YEROTH_SORTIR_LISTSTOCKS_WINDOW_HPP_
+#define SRC_WINDOWS_YEROTH_SORTIR_LISTSTOCKS_WINDOW_HPP_
 
-# include "../../ui_yeroth-erp-sortir-liststocks-window.h"
+#include "../../ui_yeroth-erp-sortir-liststocks-window.h"
+
 
 #include "yeroth-erp-window-commons.hpp"
+
 
 class YerothERPWindows;
 class YerothSqlTableModel;
 class YerothPOSUser;
 
-class YerothSortirListStocksWindow : public YerothWindowsCommons, private Ui_YerothSortirListStocksWindow
+class YerothSortirListStocksWindow : public YerothWindowsCommons,
+									 private Ui_YerothSortirListStocksWindow
 {
 	Q_OBJECT
 
@@ -38,8 +41,6 @@ public:
 	void listStocks(YerothSqlTableModel &aSqlTableModel);
 
 private:
-
-    static const QString 	_WINDOW_TITLE;
 
     YerothLogger				*_logger;
 };

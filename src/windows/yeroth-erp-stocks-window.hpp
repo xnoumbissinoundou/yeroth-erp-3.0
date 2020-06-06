@@ -160,8 +160,6 @@ private:
 
     void setupLineEdits();
 
-    static const QString 	_WINDOW_TITLE;
-
 
     QString					_localStrategy;
 

@@ -15,21 +15,24 @@
 #include <QtSql/QSqlRecord>
 
 
-const QString YerothAchatsDetailWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2")).
-        arg(YEROTH_ERP_WINDOW_TITLE,
-            QObject::trUtf8("détails d'un achat de stock")));
-
 YerothAchatsDetailWindow::YerothAchatsDetailWindow()
-:YerothWindowsCommons(YerothAchatsDetailWindow::_WINDOW_TITLE),
+:YerothWindowsCommons(),
  _logger(new YerothLogger("YerothAchatsDetailWindow"))
 {
+    _windowName = QString("%1 - %2")
+    				.arg(YEROTH_ERP_WINDOW_TITLE,
+    					 QObject::trUtf8("détails d'un achat de stock"));
+
     setupUi(this);
-    this->mySetupUi(this);
+
+    mySetupUi(this);
+
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
                                        "QMessageBox QLabel {color: rgb(%2);}").
-                               arg(COLOUR_RGB_STRING_YEROTH_DARK_GRAY_60_60_60, COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
+                               arg(COLOUR_RGB_STRING_YEROTH_DARK_GRAY_60_60_60,
+                            	   COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
-    this->setupLineEdits();
+    setupLineEdits();
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, false);
@@ -70,7 +73,7 @@ YerothAchatsDetailWindow::YerothAchatsDetailWindow()
 
 #endif
 
-    this->setupShortcuts();
+    setupShortcuts();
 }
 
 void YerothAchatsDetailWindow::setupLineEdits()
@@ -259,7 +262,7 @@ void YerothAchatsDetailWindow::rendreVisible(int lastSelectedRow,
 											 YerothSqlTableModel * stocksTableModel,
 											 YerothSqlTableModel * achatStocksTableModel)
 {
-	this->_achatLastSelectedRow = lastSelectedRow;
+	_achatLastSelectedRow = lastSelectedRow;
 
 	_curStocksTableModel = stocksTableModel;
 
@@ -268,7 +271,7 @@ void YerothAchatsDetailWindow::rendreVisible(int lastSelectedRow,
     setVisible(true);
 
     //qDebug() << "++ last selected row: " << _allWindows->getLastSelectedListerRow();
-    this->showItem(lastSelectedRow);
+    showItem(lastSelectedRow);
 }
 
 

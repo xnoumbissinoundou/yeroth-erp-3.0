@@ -92,8 +92,6 @@ protected:
 
 private:
 
-    static const QString 	_WINDOW_TITLE;
-
     YerothLogger				*_logger;
 };
 

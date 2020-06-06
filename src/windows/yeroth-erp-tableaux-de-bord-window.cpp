@@ -5,15 +5,14 @@
  */
 #include "yeroth-erp-tableaux-de-bord-window.hpp"
 
+
 #include "src/yeroth-erp-windows.hpp"
-
 #include "src/users/yeroth-erp-users.hpp"
-
 #include "src/process/yeroth-erp-process.hpp"
-
 #include "src/utils/yeroth-erp-logger.hpp"
 #include "src/utils/yeroth-erp-config.hpp"
 #include "src/utils/yeroth-erp-utils.hpp"
+
 
 #include <unistd.h>
 
@@ -105,19 +104,21 @@ const unsigned int YerothTableauxDeBordWindow::MAX_YEARS_REPORTS(10);
 
 const double YerothTableauxDeBordWindow::STATS_MIN_VALUE(0.0009);
 
-const QString YerothTableauxDeBordWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2"))
-        .arg(YEROTH_ERP_WINDOW_TITLE, QObject::trUtf8("tableaux de bords")));
 
 YerothTableauxDeBordWindow::YerothTableauxDeBordWindow()
-    :YerothWindowsCommons(YerothTableauxDeBordWindow::_WINDOW_TITLE),
+    :YerothWindowsCommons(),
      _logger(new YerothLogger("YerothRapportsWindow")),
      _csvFileItemSize(0),
      _startYear(0),
      _curStocksVenduTableModel(&_allWindows->getSqlTableModel_stocks_vendu())
 {
+    _windowName = QString("%1 - %2")
+    				.arg(YEROTH_ERP_WINDOW_TITLE,
+    					 QObject::trUtf8("tableaux de bords"));
+
     setupUi(this);
 
-    this->mySetupUi(this);
+    mySetupUi(this);
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
                                        "QMessageBox QLabel {color: rgb(%2);}")
@@ -332,7 +333,7 @@ void YerothTableauxDeBordWindow::rendreVisible(YerothSqlTableModel *stocksTableM
         comboBox_annee_chiffre_affaire->setCurrentIndex(previousYearIdx);
     }
 
-    this->setVisible(true);
+    setVisible(true);
 }
 
 
@@ -1112,7 +1113,7 @@ void YerothTableauxDeBordWindow::rechercher()
 
     }
 
-    if (this->_csvFileItemSize <= 0)
+    if (_csvFileItemSize <= 0)
     {
         QString retMsg(QObject::trUtf8("Il n'y a pas de données correspondante à la requête !\n"
         							   "Vérifier que les dates de début et de fin sont correctes !"));
@@ -2682,7 +2683,7 @@ void YerothTableauxDeBordWindow::choisirEvolutionDuChiffreDaffaire()
 
 void YerothTableauxDeBordWindow::setupShortcuts()
 {
-    this->setupShortcutActionMessageDaide 	(*actionAppeler_aide);
-    this->setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
+    setupShortcutActionMessageDaide 	(*actionAppeler_aide);
+    setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
 }
 

@@ -23,17 +23,17 @@
 #include "src/utils/yeroth-erp-historique-stock.hpp"
 
 
-const QString YerothCreerCompteClientWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2")).
-        arg(YEROTH_ERP_WINDOW_TITLE, QObject::trUtf8("créer un compte client")));
-
-
 YerothCreerCompteClientWindow::YerothCreerCompteClientWindow()
-:YerothWindowsCommons(YerothCreerCompteClientWindow::_WINDOW_TITLE),
+:YerothWindowsCommons(),
  _logger(new YerothLogger("YerothCreerCompteClientWindow"))
 {
+    _windowName = QString("%1 - %2")
+    				.arg(YEROTH_ERP_WINDOW_TITLE,
+    					 QObject::trUtf8("créer un compte client"));
+
     setupUi(this);
 
-    this->mySetupUi(this);
+    mySetupUi(this);
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
                                        "QMessageBox QLabel {color: rgb(%2);}")
@@ -91,10 +91,10 @@ YerothCreerCompteClientWindow::YerothCreerCompteClientWindow()
 
 void YerothCreerCompteClientWindow::deconnecter_utilisateur()
 {
-    this->clear_all_fields();
+    clear_all_fields();
     _allWindows->definirPasDeRole();
     _allWindows->_mainWindow->show();
-    this->rendreInvisible();
+    rendreInvisible();
 }
 
 void YerothCreerCompteClientWindow::setupLineEdits()
@@ -106,8 +106,8 @@ void YerothCreerCompteClientWindow::setupLineEdits()
 
 void YerothCreerCompteClientWindow::setupShortcuts()
 {
-    this->setupShortcutActionMessageDaide 	(*actionAppeler_aide);
-    this->setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
+    setupShortcutActionMessageDaide 	(*actionAppeler_aide);
+    setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
 }
 
 
@@ -423,7 +423,7 @@ void YerothCreerCompteClientWindow::rendreVisible(YerothSqlTableModel * stocksTa
 
     lineEdit_compte_client_reference_client->setFocus();
 
-    this->setVisible(true);
+    setVisible(true);
 }
 
 

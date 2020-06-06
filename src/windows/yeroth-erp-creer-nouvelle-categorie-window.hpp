@@ -19,7 +19,8 @@ class YerothUtils;
 class YerothLogger;
 class YerothSqlTableModel;
 
-class YerothCreerNouvelleCategorieWindow : public YerothWindowsCommons, private Ui_YerothCreerNouvelleCategorieWindow
+class YerothCreerNouvelleCategorieWindow : public YerothWindowsCommons,
+										   private Ui_YerothCreerNouvelleCategorieWindow
 {
     Q_OBJECT
 
@@ -93,8 +94,6 @@ protected:
     virtual void setupShortcuts();
 
 private:
-
-    static const QString 	_WINDOW_TITLE;
 
     YerothLogger				*_logger;
 };

@@ -56,19 +56,18 @@ unsigned int YerothAchatsWindow::PDF_LISTING_COLUMN_DESIGNATION(2);
 unsigned int YerothAchatsWindow::PDF_LISTING_COLUMN_CATEGORIE(4);
 
 
-const QString YerothAchatsWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2")).
-arg(YEROTH_ERP_WINDOW_TITLE,
-QObject::trUtf8("fiche des achats")));
-
 YerothAchatsWindow::YerothAchatsWindow()
-:YerothWindowsCommons(YerothAchatsWindow::_WINDOW_TITLE,
-					  "yeroth-erp-marchandises"),
+:YerothWindowsCommons("yeroth-erp-marchandises"),
  YerothAbstractClassYerothSearchWindow(_allWindows->ACHATS),
  _logger(new YerothLogger("YerothAchatsWindow")),
  _aProcess(0),
  _pushButton_achats_filtrer_font(0),
  _curAchatSqlTableModel(0)
 {
+    _windowName = QString("%1 - %2")
+    				.arg(YEROTH_ERP_WINDOW_TITLE,
+    					 QObject::trUtf8("fiche des achats"));
+
     setupUi(this);
 
     mySetupUi(this);

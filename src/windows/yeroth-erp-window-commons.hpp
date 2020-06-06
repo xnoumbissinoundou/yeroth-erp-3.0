@@ -36,8 +36,7 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-	inline YerothWindowsCommons(QString windowName,
-							    const QString &anOutput_print_pdf_latexFileNamePrefix = "")
+	inline YerothWindowsCommons(const QString &anOutput_print_pdf_latexFileNamePrefix = "")
 	:_selectExportDBQDialog(0),
 	 _yeroth_PRINT_UTILITIES_TEX_TABLE(0),
 	 _output_print_pdf_latexFileNamePrefix(anOutput_print_pdf_latexFileNamePrefix),
@@ -46,7 +45,7 @@ public:
 	 _first_time_imprimer_pdf_document_call(true),
 	 QMESSAGE_BOX_STYLE_SHEET(QString("QMessageBox {background-color: rgb(%1);}")
 								.arg(COLOUR_RGB_STRING_YEROTH_ORANGE_243_162_0)),
-	 _windowName(windowName)
+	 _windowName(YerothUtils::EMPTY_STRING)
 	{
 	}
 
@@ -295,7 +294,7 @@ protected:
 
     QString 							QMESSAGE_BOX_STYLE_SHEET;
 
-    const QString 						_windowName;
+    QString 							_windowName;
 
 private:
 

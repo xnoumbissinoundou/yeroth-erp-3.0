@@ -6,17 +6,12 @@
 #include"yeroth-erp-creer-nouveau-fournisseur-window.hpp"
 
 /**
-
-#include "../utils/yeroth-erp-database-table-column.hpp"
-* yeroth-erp-windows.hpp cannot be included in
-
-* the header file because it will caused circular
-
-* dependency that will lead to an unsuccessful
-
-* compilation.
-
-*/
+ * #include "../utils/yeroth-erp-database-table-column.hpp"
+ * yeroth-erp-windows.hpp cannot be included in
+ * the header file because it will caused circular
+ * dependency that will lead to an unsuccessful
+ * compilation.
+ */
 
 #include "src/yeroth-erp-windows.hpp"
 
@@ -27,17 +22,17 @@
 #include "src/users/yeroth-erp-users.hpp"
 
 
-const QString YerothCreerNouveauFournisseurWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2"))
-																	.arg(YEROTH_ERP_WINDOW_TITLE,
-																		 QObject::trUtf8("créer un nouveau fournisseur")));
-
 YerothCreerNouveauFournisseurWindow::YerothCreerNouveauFournisseurWindow()
-:YerothWindowsCommons(YerothCreerNouveauFournisseurWindow::_WINDOW_TITLE),
+:YerothWindowsCommons(),
  _logger(new YerothLogger("YerothCreerNouveauFournisseurWindow"))
 {
+    _windowName = QString("%1 - %2")
+    				.arg(YEROTH_ERP_WINDOW_TITLE,
+    					 QObject::trUtf8("créer un nouveau fournisseur"));
+
     setupUi(this);
 
-    this->mySetupUi(this);
+    mySetupUi(this);
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
                                        "QMessageBox QLabel {color: rgb(%2);}").
@@ -76,7 +71,7 @@ void YerothCreerNouveauFournisseurWindow::annuler()
     //*_logger << "[YerothCreerNouveauFournisseurWindow][annuler]" << "\n";
     _logger->log("annuler");
     _allWindows->_entrerWindow->rendreVisible(_curStocksTableModel);
-    this->rendreInvisible();
+    rendreInvisible();
 }
 
 void YerothCreerNouveauFournisseurWindow::valider()
@@ -182,7 +177,7 @@ void YerothCreerNouveauFournisseurWindow::menu()
     _allWindows->_mainWindow->rendreVisible(_curStocksTableModel);
     _allWindows->_entrerWindow->rendreInvisible();
 
-    this->rendreInvisible();
+    rendreInvisible();
 }
 
 void YerothCreerNouveauFournisseurWindow::alertes()
@@ -301,6 +296,6 @@ void YerothCreerNouveauFournisseurWindow::clear_fournisseur_all_fields()
 
 void YerothCreerNouveauFournisseurWindow::setupShortcuts()
 {
-    this->setupShortcutActionMessageDaide 	(*actionAppeler_aide);
-    this->setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
+    setupShortcutActionMessageDaide 	(*actionAppeler_aide);
+    setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
 }

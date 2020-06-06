@@ -110,8 +110,6 @@ private:
 
     void clear_all_fields();
 
-    static const QString 	_WINDOW_TITLE;
-
     YerothLogger 			*_logger;
 
     int 					_currentTabView;

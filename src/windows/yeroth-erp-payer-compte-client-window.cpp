@@ -32,20 +32,21 @@
 #include <QtWidgets/QCompleter>
 
 
-const QString YerothPayerCompteClientWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2")).
-        arg(YEROTH_ERP_WINDOW_TITLE,
-            QObject::trUtf8("payer au compte client")));
-
 YerothPayerCompteClientWindow::YerothPayerCompteClientWindow()
-:YerothWindowsCommons(YerothPayerCompteClientWindow::_WINDOW_TITLE),
+:YerothWindowsCommons(),
  _curReferenceEngagementResteAPayer(0.0)
 {
+    _windowName = QString("%1 - %2")
+    				.arg(YEROTH_ERP_WINDOW_TITLE,
+    					 QObject::trUtf8("payer au compte client"));
+
     setupUi(this);
 
-    this->mySetupUi(this);
+    mySetupUi(this);
 
     QMESSAGE_BOX_STYLE_SHEET =
-        QString("QMessageBox {background-color: rgb(%1);}").arg(COLOUR_RGB_STRING_YEROTH_YELLOW_254_254_0);
+        QString("QMessageBox {background-color: rgb(%1);}")
+			.arg(COLOUR_RGB_STRING_YEROTH_YELLOW_254_254_0);
 
     setupLineEdits();
 

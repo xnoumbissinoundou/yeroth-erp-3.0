@@ -10,13 +10,17 @@
 #include "../../ui_yeroth-erp-pointdevente-liststocks-window.h"
 
 #include "src/yeroth-erp-windows.hpp"
+
 #include "yeroth-erp-window-commons.hpp"
+
 
 class YerothERPWindows;
 class YerothSqlTableModel;
 class YerothPOSUser;
 
-class YerothPointDeVenteListStocksWindow : public YerothWindowsCommons, private Ui_YerothVenteListStocksWindow
+
+class YerothPointDeVenteListStocksWindow : public YerothWindowsCommons,
+										   private Ui_YerothVenteListStocksWindow
 {
 	Q_OBJECT
 
@@ -40,7 +44,6 @@ public:
 
 private:
 
-    static const QString 	_WINDOW_TITLE;
 
     YerothLogger				*_logger;
 };

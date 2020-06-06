@@ -4,15 +4,20 @@
  *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
-# ifndef SRC_WINDOWS_YEROTH_STOCK_DETAIL_WINDOW_HPP_
-# define SRC_WINDOWS_YEROTH_STOCK_DETAIL_WINDOW_HPP_
+#ifndef SRC_WINDOWS_YEROTH_STOCK_DETAIL_WINDOW_HPP_
+#define SRC_WINDOWS_YEROTH_STOCK_DETAIL_WINDOW_HPP_
 
-# include "../../ui_yeroth-erp-stock-detail-window.h"
+#include "../../ui_yeroth-erp-stock-detail-window.h"
+
 
 #include "src/utils/yeroth-erp-logger.hpp"
 
-# include <QtWidgets/QMessageBox>
+
 #include "yeroth-erp-window-commons.hpp"
+
+
+# include <QtWidgets/QMessageBox>
+
 
 class QContextMenuEvent;
 
@@ -20,7 +25,8 @@ class YerothERPWindows;
 class YerothSqlTableModel;
 class YerothLogger;
 
-class YerothStockDetailWindow : public YerothWindowsCommons, private Ui_YerothStockDetailWindow
+class YerothStockDetailWindow : public YerothWindowsCommons,
+								private Ui_YerothStockDetailWindow
 {
     Q_OBJECT
 
@@ -91,7 +97,6 @@ private:
 
     void checkCourrierAlerts();
 
-    static const QString 	_WINDOW_TITLE;
 
     YerothLogger				*_logger;
 };

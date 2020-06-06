@@ -27,7 +27,8 @@ class YerothSqlTableModel;
 
 
 
-class YerothPayerCompteClientWindow : public YerothWindowsCommons, private Ui_YerothPayerCompteClientWindow
+class YerothPayerCompteClientWindow : public YerothWindowsCommons,
+									  private Ui_YerothPayerCompteClientWindow
 {
     Q_OBJECT
 
@@ -149,7 +150,6 @@ private:
 
   	void populatePayerAuCompteClientsComboBoxes();
 
-    static const QString 	_WINDOW_TITLE;
 
     YerothSqlTableModel 	*_curClientTableModel;
 

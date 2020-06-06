@@ -29,14 +29,14 @@
 #include <QtSql/QSqlRecord>
 
 
-const QString YerothMainWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2")).
-        arg(YEROTH_ERP_WINDOW_TITLE,
-            QObject::trUtf8("fenêtre de l'utilisateur")));
-
 YerothMainWindow::YerothMainWindow()
-:YerothWindowsCommons(YerothMainWindow::_WINDOW_TITLE),
+:YerothWindowsCommons(),
  _logger(new YerothLogger("YerothMainWindow"))
 {
+    _windowName = QString("%1 - %2")
+    				.arg(YEROTH_ERP_WINDOW_TITLE,
+    					 QObject::trUtf8("fenêtre de l'utilisateur"));
+
     setupUi(this);
 
     mySetupUi(this);

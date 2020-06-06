@@ -21,15 +21,15 @@
 #include <QtSql/QSqlRecord>
 
 
-const QString YerothAlertesWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2")).
-        arg(YEROTH_ERP_WINDOW_TITLE, QObject::trUtf8("alertes")));
-
-
 YerothAlertesWindow::YerothAlertesWindow()
-:YerothWindowsCommons(YerothAlertesWindow::_WINDOW_TITLE),
+:YerothWindowsCommons(),
  _logger(new YerothLogger("YerothAlertesWindow")),
  _currentTabView(0)
 {
+    _windowName = QString("%1 - %2")
+    				.arg(YEROTH_ERP_WINDOW_TITLE,
+    					 QObject::trUtf8("alertes"));
+
     setupUi(this);
 
     mySetupUi(this);

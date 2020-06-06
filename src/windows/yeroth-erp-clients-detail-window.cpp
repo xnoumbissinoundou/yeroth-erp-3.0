@@ -17,23 +17,22 @@
 #include <QtSql/QSqlRecord>
 
 
-const QString YerothClientsDetailWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2")).
-        arg(YEROTH_ERP_WINDOW_TITLE,
-            QObject::trUtf8("détails d'un client")));
-
-
 YerothClientsDetailWindow::YerothClientsDetailWindow()
-:YerothWindowsCommons(YerothClientsDetailWindow::_WINDOW_TITLE),
+:YerothWindowsCommons(),
  _logger(new YerothLogger("YerothClientsDetailWindow"))
 {
+    _windowName = QString("%1 - %2")
+    				.arg(YEROTH_ERP_WINDOW_TITLE,
+    					 QObject::trUtf8("détails d'un client"));
+
     setupUi(this);
 
-    this->mySetupUi(this);
+    mySetupUi(this);
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
-                                       "QMessageBox QLabel {color: rgb(%2);}").
-                               arg(COLOUR_RGB_STRING_YEROTH_YELLOW_254_254_0,
-                            	   COLOUR_RGB_STRING_YEROTH_BLACK_0_0_0);
+                                       "QMessageBox QLabel {color: rgb(%2);}")
+                            		.arg(COLOUR_RGB_STRING_YEROTH_YELLOW_254_254_0,
+                            		     COLOUR_RGB_STRING_YEROTH_BLACK_0_0_0);
 
     setupLineEdits();
 

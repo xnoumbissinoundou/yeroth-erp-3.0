@@ -16,15 +16,15 @@
 #include <QtGui/QContextMenuEvent>
 
 
-const QString YerothModifierCompteClientWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2")).
-        arg(YEROTH_ERP_WINDOW_TITLE,
-            QObject::trUtf8("modifier un compte client")));
-
 YerothModifierCompteClientWindow::YerothModifierCompteClientWindow()
-:YerothWindowsCommons(YerothModifierCompteClientWindow::_WINDOW_TITLE),
+:YerothWindowsCommons(),
  _logger(new YerothLogger("YerothModifierCompteClientWindow")),
  _curClientDetailDBID(-2)
 {
+    _windowName = QString("%1 - %2")
+    				.arg(YEROTH_ERP_WINDOW_TITLE,
+    					 QObject::trUtf8("modifier un compte client"));
+
     setupUi(this);
 
     mySetupUi(this);

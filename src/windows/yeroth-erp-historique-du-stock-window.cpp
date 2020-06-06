@@ -16,16 +16,14 @@
 #include <QtCore/qmath.h>
 
 
-const QString YerothHistoriqueDuStockWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2"))
-																.arg(YEROTH_ERP_WINDOW_TITLE,
-																	 QObject::trUtf8("historique du stock")));
-
-
 YerothHistoriqueDuStockWindow::YerothHistoriqueDuStockWindow()
-:YerothWindowsCommons(YerothHistoriqueDuStockWindow::_WINDOW_TITLE,
-					  "yeroth-erp-historique-dun-stock"),
+:YerothWindowsCommons("yeroth-erp-historique-dun-stock"),
  _logger(new YerothLogger("YerothHistoriqueDuStockWindow"))
 {
+    _windowName = QString("%1 - %2")
+    				.arg(YEROTH_ERP_WINDOW_TITLE,
+    					 QObject::trUtf8("historique du stock"));
+
     setupUi(this);
 
     mySetupUi(this);

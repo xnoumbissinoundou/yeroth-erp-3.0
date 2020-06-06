@@ -32,14 +32,8 @@
 #include <QtWidgets/QCompleter>
 
 
-const QString YerothMarchandisesWindow::_WINDOW_TITLE(QString("%1 - %2")
-        												.arg(YEROTH_ERP_WINDOW_TITLE,
-        													 QObject::tr("les marchandises")));
-
-
 YerothMarchandisesWindow::YerothMarchandisesWindow()
-:YerothWindowsCommons(YerothMarchandisesWindow::_WINDOW_TITLE,
-					  "yeroth-erp-marchandises"),
+:YerothWindowsCommons("yeroth-erp-marchandises"),
  YerothAbstractClassYerothSearchWindow(_allWindows->MARCHANDISES),
  _logger(new YerothLogger("YerothMarchandisesWindow")),
  _valeurTheoriqueDinventaire(0.0),
@@ -49,6 +43,10 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
  _pushButton_filtrer_font(0),
  _curMarchandisesTableModel(&_allWindows->getSqlTableModel_marchandises())
 {
+    _windowName = QString("%1 - %2")
+    				.arg(YEROTH_ERP_WINDOW_TITLE,
+    					 QObject::trUtf8("les marchandises"));
+
     setupUi(this);
 
     mySetupUi(this);

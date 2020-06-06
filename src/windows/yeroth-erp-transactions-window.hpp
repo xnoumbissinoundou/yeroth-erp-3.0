@@ -10,14 +10,19 @@
 
 # include "../../ui_yeroth-erp-transactions-window.h"
 
-# include <QtWidgets/QMessageBox>
+
 #include "yeroth-erp-window-commons.hpp"
+
+
+# include <QtWidgets/QMessageBox>
+
 
 class YerothUtils;
 class YerothSqlTableModel;
 class QProcess;
 
-class YerothTransactionsWindow : public YerothWindowsCommons, private Ui_YerothTransactionsWindow
+class YerothTransactionsWindow : public YerothWindowsCommons,
+								 private Ui_YerothTransactionsWindow
 {
     Q_OBJECT
 
@@ -110,7 +115,6 @@ private:
 
     void setupDateTimeEdits();
 
-    static const QString 	_WINDOW_TITLE;
 
     YerothLogger				*_logger;
 

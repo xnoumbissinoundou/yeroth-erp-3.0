@@ -6,6 +6,7 @@
 
 #include "yeroth-erp-tableau-des-transactions-du-client-window.hpp"
 
+
 #include "src/process/yeroth-erp-process.hpp"
 
 #include "src/widgets/yeroth-erp-qstandard-item.hpp"
@@ -14,18 +15,16 @@
 #include <QtCore/qmath.h>
 
 
-const QString YerothTableauDesTransactionsDuClientWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2")).
-        arg(YEROTH_ERP_WINDOW_TITLE,
-            QObject::trUtf8("transactions financières d'un client")));
-
-
 YerothTableauDesTransactionsDuClientWindow::YerothTableauDesTransactionsDuClientWindow()
-:YerothWindowsCommons(YerothTableauDesTransactionsDuClientWindow::_WINDOW_TITLE,
-					  "yeroth-erp-tableau-des-transactions-dun-client")
+:YerothWindowsCommons("yeroth-erp-tableau-des-transactions-dun-client")
 {
+    _windowName = QString("%1 - %2")
+    				.arg(YEROTH_ERP_WINDOW_TITLE,
+    					 QObject::trUtf8("transactions financières d'un client"));
+
     setupUi(this);
 
-    this->mySetupUi(this);
+    mySetupUi(this);
 
     _yerothTableView_FROM_WINDOWS_COMMONS = tableView_tableau_des_transactions_du_client;
 

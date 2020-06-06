@@ -4,19 +4,24 @@
  *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
  */
 
-# ifndef SRC_WINDOWS_YEROTH_MODIFIER_WINDOW_HPP_
-# define SRC_WINDOWS_YEROTH_MODIFIER_WINDOW_HPP_
+#ifndef SRC_WINDOWS_YEROTH_MODIFIER_WINDOW_HPP_
+#define SRC_WINDOWS_YEROTH_MODIFIER_WINDOW_HPP_
 
-# include "../../ui_yeroth-erp-modifier-window.h"
+#include "../../ui_yeroth-erp-modifier-window.h"
 
-# include <QtWidgets/QMessageBox>
+
 #include "yeroth-erp-window-commons.hpp"
+
+
+#include <QtWidgets/QMessageBox>
+
 
 class QContextMenuEvent;
 
 class YerothSqlTableModel;
 
-class YerothModifierWindow : public YerothWindowsCommons, private Ui_YerothModifierWindow
+class YerothModifierWindow : public YerothWindowsCommons,
+							 private Ui_YerothModifierWindow
 {
     Q_OBJECT
 
@@ -120,8 +125,6 @@ private:
 
     void showItem();
 
-
-    static const QString 		_WINDOW_TITLE;
 
     YerothLogger					*_logger;
 

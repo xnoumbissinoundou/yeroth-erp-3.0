@@ -22,18 +22,17 @@
 #include "src/users/yeroth-erp-users.hpp"
 
 
-const QString YerothCreerNouvelleCategorieWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2"))
-			.arg(YEROTH_ERP_WINDOW_TITLE,
-					QObject::trUtf8("créer une nouvelle catégorie")));
-
-
-YerothCreerNouvelleCategorieWindow::YerothCreerNouvelleCategorieWindow():YerothWindowsCommons(YerothCreerNouvelleCategorieWindow::_WINDOW_TITLE),
-    _logger(new
-            YerothLogger("YerothCreerNouvelleCategorieWindow"))
+YerothCreerNouvelleCategorieWindow::YerothCreerNouvelleCategorieWindow()
+:YerothWindowsCommons(),
+ _logger(new YerothLogger("YerothCreerNouvelleCategorieWindow"))
 {
+    _windowName = QString("%1 - %2")
+    				.arg(YEROTH_ERP_WINDOW_TITLE,
+    					 QObject::trUtf8("créer une nouvelle catégorie"));
+
     setupUi(this);
 
-    this->mySetupUi(this);
+    mySetupUi(this);
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
                                        "QMessageBox QLabel {color: rgb(%2);}").
@@ -70,7 +69,7 @@ void YerothCreerNouvelleCategorieWindow::annuler()
     //*_logger << "[YerothCreerNouvelleCategorieWindow][annuler]" << "\n";
     _logger->log("annuler");
     _allWindows->_entrerWindow->rendreVisible(_curStocksTableModel);
-    this->rendreInvisible();
+    rendreInvisible();
 }
 
 void YerothCreerNouvelleCategorieWindow::valider()
@@ -81,7 +80,7 @@ void YerothCreerNouvelleCategorieWindow::valider()
     {
         _allWindows->_entrerWindow->setCurrentCategorieName(lineEdit_creer_categorie_nom->text());
         _allWindows->_entrerWindow->rendreVisible(_curStocksTableModel);
-        this->rendreInvisible();
+        rendreInvisible();
     }
 }
 
@@ -171,7 +170,7 @@ void YerothCreerNouvelleCategorieWindow::menu()
     _logger->log("menu");
     _allWindows->_mainWindow->rendreVisible(_curStocksTableModel);
     _allWindows->_entrerWindow->rendreInvisible();
-    this->rendreInvisible();
+    rendreInvisible();
 }
 
 void YerothCreerNouvelleCategorieWindow::alertes()
@@ -179,7 +178,7 @@ void YerothCreerNouvelleCategorieWindow::alertes()
     _logger->log("alertes");
     _allWindows->_listerAlertesWindow->rendreVisible(_curStocksTableModel);
     _allWindows->_entrerWindow->rendreInvisible();
-    this->rendreInvisible();
+    rendreInvisible();
 }
 
 void YerothCreerNouvelleCategorieWindow::ventes()
@@ -187,7 +186,7 @@ void YerothCreerNouvelleCategorieWindow::ventes()
     _logger->log("caisse");
     _allWindows->_ventesWindow->rendreVisible(_curStocksTableModel);
     _allWindows->_entrerWindow->rendreInvisible();
-    this->rendreInvisible();
+    rendreInvisible();
 }
 
 void YerothCreerNouvelleCategorieWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
@@ -195,7 +194,7 @@ void YerothCreerNouvelleCategorieWindow::rendreVisible(YerothSqlTableModel * sto
     _logger->log("rendreVisible(YerothSqlTableModel *)");
     _curStocksTableModel = stocksTableModel;
     lineEdit_creer_categorie_nom->setFocus();
-    this->setVisible(true);
+    setVisible(true);
 }
 
 void YerothCreerNouvelleCategorieWindow::rendreInvisible()
@@ -208,7 +207,7 @@ void YerothCreerNouvelleCategorieWindow::administration()
 {
     _allWindows->_adminWindow->rendreVisible(_curStocksTableModel);
     _allWindows->_entrerWindow->rendreInvisible();
-    this->rendreInvisible();
+    rendreInvisible();
 }
 
 bool YerothCreerNouvelleCategorieWindow::creer_categorie()

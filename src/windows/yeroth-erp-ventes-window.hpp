@@ -189,7 +189,6 @@ private:
         _curStocksVenduTableModel->yerothSetFilter(_searchFilter);
     }
 
-    static const QString 	_WINDOW_TITLE;
 
     QString 				_retourVenteTabWidgetTitle;
 

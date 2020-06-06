@@ -5,6 +5,7 @@
 
 #include "src/yeroth-erp-windows.hpp"
 
+
 #include "src/windows/yeroth-erp-stock-detail-window.hpp"
 
 #include "src/users/yeroth-erp-users.hpp"
@@ -17,14 +18,14 @@
 #include <QtSql/QSqlRecord>
 
 
-const QString YerothStockDetailWindow::_WINDOW_TITLE(QString(QObject::trUtf8("%1 - %2")).
-        arg(YEROTH_ERP_WINDOW_TITLE,
-            QObject::trUtf8("détails d'un stock")));
-
-
-YerothStockDetailWindow::YerothStockDetailWindow():YerothWindowsCommons(YerothStockDetailWindow::_WINDOW_TITLE),
-    _logger(new YerothLogger("YerothDetailWindow"))
+YerothStockDetailWindow::YerothStockDetailWindow()
+:YerothWindowsCommons(),
+ _logger(new YerothLogger("YerothDetailWindow"))
 {
+    _windowName = QString("%1 - %2")
+    				.arg(YEROTH_ERP_WINDOW_TITLE,
+    					 QObject::trUtf8("détails d'un stock"));
+
     setupUi(this);
 
     mySetupUi(this);

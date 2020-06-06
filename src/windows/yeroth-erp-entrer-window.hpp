@@ -22,7 +22,8 @@ class YerothSqlTableModel;
 class ServiceClientInfo;
 
 
-class YerothEntrerWindow : public YerothWindowsCommons, private Ui_YerothEntrerWindow
+class YerothEntrerWindow : public YerothWindowsCommons,
+						   private Ui_YerothEntrerWindow
 {
     Q_OBJECT
 
@@ -110,12 +111,12 @@ public slots:
 
     inline void rendreInvisibleAvecConservation()
     {
-    	this->setVisible(false);
+    	setVisible(false);
     }
 
     inline virtual void modifier()
     {
-    	this->afficherStocks();
+    	afficherStocks();
     }
 
     void deconnecter_utilisateur();
@@ -214,8 +215,6 @@ private:
         dateEdit_date_peremption->setStartDate(GET_CURRENT_DATE);
     }
 
-
-    static const QString 	_WINDOW_TITLE;
 
     YerothLogger				*_logger;
 

@@ -20,13 +20,15 @@
 
 #include "yeroth-erp-window-commons.hpp"
 
+
 class QProcess;
 
 class YerothSqlTableModel;
 class YerothTableView;
 class YerothArticleVenteInfo;
 
-class YerothSortirWindow : public YerothWindowsCommons, private Ui_YerothSortirWindow
+class YerothSortirWindow : public YerothWindowsCommons,
+						   private Ui_YerothSortirWindow
 {
     Q_OBJECT
 
@@ -251,7 +253,6 @@ private:
     	dateEdit_article_detail_date_peremption->setEnabled(false);
     }
 
-    static const QString 	_WINDOW_TITLE;
 
     YerothLogger				*_logger;
 
