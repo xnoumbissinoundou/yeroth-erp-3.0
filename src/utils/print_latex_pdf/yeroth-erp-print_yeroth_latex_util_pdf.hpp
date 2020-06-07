@@ -12,9 +12,8 @@
 
 #include "src/windows/yeroth-erp-window-commons.hpp"
 
-
+#include <QtCore/QSet>
 #include <QtCore/QString>
-
 #include <QtCore/QCryptographicHash>
 
 
@@ -52,9 +51,9 @@ protected:
 
 	QString					_tex_template_document_string;
 
-	QList<int> 				_dbRIGHT_TO_ALIGN_FieldName;
+	QSet<int> 				_dbRIGHT_TO_ALIGN_FieldName;
 
-	QList<int> 				_dbLEFT_TO_ALIGN_FieldName;
+	QSet<int> 				_dbLEFT_TO_ALIGN_FieldName;
 
 	YerothWindowsCommons 	*_yerothWindowTableOutputView;
 

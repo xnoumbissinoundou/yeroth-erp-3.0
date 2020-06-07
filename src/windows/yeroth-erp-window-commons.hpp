@@ -17,6 +17,9 @@
 
 #include "src/utils/windows/yeroth-erp-abstract-class-yerothsearch-window.hpp"
 
+
+#include <QtCore/QSet>
+
 #include <QtWidgets/QAction>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMessageBox>
@@ -59,12 +62,12 @@ public:
 		anAction->setVisible(aBooleanValue);
 	}
 
-	inline QList<int> &getDBFieldNamesToPrintRightAligned()
+	inline QSet<int> &getDBFieldNamesToPrintRightAligned()
 	{
 		return _DBFieldNamesToPrintRightAligned;
 	}
 
-	inline QList<int> &getDBFieldNamesToPrintLeftAligned()
+	inline QSet<int> &getDBFieldNamesToPrintLeftAligned()
 	{
 		return _DBFieldNamesToPrintLeftAligned;
 	}
@@ -269,9 +272,9 @@ protected:
 
     QStringList							_visibleDBFieldColumnStrList;
 
-    QList<int>							_DBFieldNamesToPrintRightAligned;
+    QSet<int>							_DBFieldNamesToPrintRightAligned;
 
-    QList<int>							_DBFieldNamesToPrintLeftAligned;
+    QSet<int>							_DBFieldNamesToPrintLeftAligned;
 
     QVector<YerothSelectDBQCheckBox *> 	_visibleQCheckboxs;
 

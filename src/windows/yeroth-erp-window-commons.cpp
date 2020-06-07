@@ -272,12 +272,12 @@ void YerothWindowsCommons::setupSelectDBFields(QString aSqlTableName)
 			type.contains(YerothUtils::DATABASE_MYSQL_TIME_TYPE_STRING) ||
 			type.contains(YerothUtils::DATABASE_MYSQL_DATE_TYPE_STRING) )
 		{
-			_DBFieldNamesToPrintLeftAligned.append(columnIdx);
+			_DBFieldNamesToPrintLeftAligned.insert(columnIdx);
 		}
 		else if (type.contains(YerothUtils::DATABASE_MYSQL_DOUBLE_TYPE_STRING) ||
 				 type.contains(YerothUtils::DATABASE_MYSQL_INT_TYPE_STRING))
 		{
-			_DBFieldNamesToPrintRightAligned.append(columnIdx);
+			_DBFieldNamesToPrintRightAligned.insert(columnIdx);
 		}
 
 //		qDebug() << QString("++ aSqlTableName: %1, fieldName: %2, columnIdx: %3")

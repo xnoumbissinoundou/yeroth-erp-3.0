@@ -168,6 +168,8 @@ private:
 
     void populateComboBoxes();
 
+    void updateComboBoxes();
+
     void setupLineEdits();
 
     void clear_all_fields();

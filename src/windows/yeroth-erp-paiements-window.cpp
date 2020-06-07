@@ -230,7 +230,7 @@ void YerothPaiementsWindow::populateComboBoxes()
 	int columnIndexTypeDePaiement = _dbtablefieldNameToDBColumnIndex
 			.value(YerothDatabaseTableColumn::TYPE_DE_PAIEMENT);
 
-	_DBFieldNamesToPrintLeftAligned.append(columnIndexTypeDePaiement);
+	_DBFieldNamesToPrintLeftAligned.insert(columnIndexTypeDePaiement);
 
 	comboBox_paiements_intitule_du_compte_bancaire->setYerothEnabled(false);
 
@@ -265,6 +265,19 @@ void YerothPaiementsWindow::populateComboBoxes()
 	aQStringList.append("=");
 
     comboBox_paiements_element_de_paiements_condition->addItems(aQStringList);
+}
+
+
+void YerothPaiementsWindow::updateComboBoxes()
+{
+	QString currentText = comboBox_paiements_intitule_du_compte_bancaire->currentText();
+
+	comboBox_paiements_intitule_du_compte_bancaire->populateComboBoxRawString(_allWindows->COMPTES_BANCAIRES,
+																			  YerothDatabaseTableColumn::INTITULE_DU_COMPTE_BANCAIRE);
+
+	int currentTextIdx = comboBox_paiements_intitule_du_compte_bancaire->findText(currentText);
+
+	comboBox_paiements_intitule_du_compte_bancaire->setCurrentIndex(currentTextIdx);
 }
 
 
@@ -821,6 +834,8 @@ void YerothPaiementsWindow::rendreVisible(YerothSqlTableModel * stocksTableModel
     _curPaiementsTableModel = &_allWindows->getSqlTableModel_paiements();
 
     setYerothSqlTableModel(_curPaiementsTableModel);
+
+    updateComboBoxes();
 
     setupLineEditsQCompleters((QObject *)this);
 
