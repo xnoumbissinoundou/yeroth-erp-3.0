@@ -445,29 +445,71 @@ enum import_csv_entry_row_return_status
         return IMPORT_DATA_CSV_STOCK_INSERTION_FAILED;
     }
 
-	if (SERVICE_STOCK_DESIGNATION_AND_DIFFERENT_CATEGORIE_EXIST ==
-			YerothUtils::isStockItemInProductList(productCategorie,
-												  productName))
-	{
-		QString infoMesg =
-				QString(QObject::trUtf8("La désignation '%1', est déjà existante dans la liste des "
-										"marchandises, dans une autre catégorie que '%2' !"))
-					.arg(productName,
-						 productCategorie);
+    service_stock_already_exist_type serviceStockExists =
+    		YerothUtils::isStockItemInProductList(false,
+    											  productReference,
+												  productCategorie,
+												  productName);
 
-		if (0 != _callingWindow)
-		{
-			YerothQMessageBox::warning(_callingWindow,
-					QObject::trUtf8("désignation"),
-					infoMesg);
-		}
-		else
-		{
-			qDebug() << infoMesg;
-		}
+    YerothERPServiceStockMarchandiseData aServiceStockData;
 
-		return IMPORT_DATA_CSV_STOCK_INSERTION_FAILED;
-	}
+    aServiceStockData._categorie = productCategorie;
+    aServiceStockData._designation = productName;
+    aServiceStockData._reference = productReference;
+
+
+    if (SERVICE_STOCK_UNDEFINED == serviceStockExists)
+    {
+    	if (!YerothUtils::insertStockItemInProductList(aServiceStockData))
+    	{
+    		return IMPORT_DATA_CSV_STOCK_INSERTION_FAILED;
+    	}
+    }
+    else
+    {
+    	if (SERVICE_REFERENCE_EXISTS == serviceStockExists)
+    	{
+    		QString infoMesg =
+					   QString(QObject::trUtf8("Un service (stock) "
+							   	   	   	   	   "avec la référence '%1' existe déjà !"))
+							.arg(productReference);
+
+    		if (0 != _callingWindow)
+    		{
+    			YerothQMessageBox::warning(_callingWindow,
+    					QObject::trUtf8("référence"),
+    					infoMesg);
+    		}
+    		else
+    		{
+    			qDebug() << infoMesg;
+    		}
+
+    		return IMPORT_DATA_CSV_STOCK_INSERTION_FAILED;
+    	}
+
+    	if (SERVICE_STOCK_DESIGNATION_AND_DIFFERENT_CATEGORIE_EXIST == serviceStockExists)
+    	{
+    		QString infoMesg =
+    				QString(QObject::trUtf8("La désignation '%1', est déjà existante dans la liste des "
+    										"marchandises, dans une autre catégorie que '%2' !"))
+    					.arg(productName,
+    						 productCategorie);
+
+    		if (0 != _callingWindow)
+    		{
+    			YerothQMessageBox::warning(_callingWindow,
+    					QObject::trUtf8("désignation"),
+    					infoMesg);
+    		}
+    		else
+    		{
+    			qDebug() << infoMesg;
+    		}
+
+    		return IMPORT_DATA_CSV_STOCK_INSERTION_FAILED;
+    	}
+    }
 
 	static bool quantite_totale_already_visited = false;
 

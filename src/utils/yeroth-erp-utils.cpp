@@ -485,11 +485,91 @@ YerothUtils::YerothUtils()
 }
 
 
+bool YerothUtils::creerNouvelleCategorie(const QString 			&proposedCategorieName,
+										 YerothWindowsCommons 	*_callingWindow /* = 0 */)
+{
+	if (proposedCategorieName.isEmpty())
+	{
+		return false;
+	}
+
+    YerothSqlTableModel &categorieSqlTableModel = _allWindows->getSqlTableModel_categories();
+
+    QString categorieFilter = QString("%1 = '%2'")
+    							.arg(YerothDatabaseTableColumn::NOM_CATEGORIE,
+    								 proposedCategorieName);
+
+    categorieSqlTableModel.yerothSetFilter(categorieFilter);
+
+    int rows = categorieSqlTableModel.easySelect();
+
+    if (rows > 0)
+    {
+    	categorieSqlTableModel.resetFilter();
+    	return true;
+    }
+    else
+    {
+    	categorieSqlTableModel.resetFilter();
+
+    	QSqlRecord record = categorieSqlTableModel.record();
+
+    	record.setValue(YerothDatabaseTableColumn::ID, YerothERPWindows::getNextIdSqlTableModel_categories());
+    	record.setValue(YerothDatabaseTableColumn::NOM_CATEGORIE, proposedCategorieName);
+    	record.setValue(YerothDatabaseTableColumn::DESCRIPTION_CATEGORIE, "");
+
+    	QString retMsg(QString(QObject::trUtf8("La catégorie '%1'"))
+    						.arg(proposedCategorieName));
+
+    	bool success = categorieSqlTableModel.insertNewRecord(record);
+
+    	if (!success)
+    	{
+    		retMsg.append(QObject::trUtf8(" n'a pas pu être créer !"));
+
+    		if (0 != _callingWindow)
+    		{
+        		YerothQMessageBox::warning(_callingWindow, QObject::trUtf8("échec"), retMsg);
+    		}
+    		else
+    		{
+#ifdef YEROTH_ERP_3_0_TESTING_UNIT_TEST
+    		qDebug() << retMsg;
+#endif
+    		}
+
+    		return false;
+    	}
+    	else
+    	{
+    		retMsg.append(QObject::trUtf8(" a été créer avec succès !"));
+
+    		if (0 != _callingWindow)
+    		{
+        		YerothQMessageBox::information(_callingWindow, QObject::trUtf8("succès"), retMsg);
+    		}
+    		else
+    		{
+#ifdef YEROTH_ERP_3_0_TESTING_UNIT_TEST
+    		qDebug() << retMsg;
+#endif
+    		}
+
+    		return true;
+    	}
+    }
+
+    return false;
+}
+
+
 bool YerothUtils::isReferenceUnique(const QString &aStockServiceReference,
 									const QString &aStockServiceDesignation,
 									const QString &aStockServiceNomCategorie,
 									QString &curExistingReference_in_out)
 {
+	bool result = true;
+
 	curExistingReference_in_out.clear();
 
     YerothSqlTableModel &marchandisesTableModel = _allWindows->getSqlTableModel_marchandises();
@@ -509,17 +589,22 @@ bool YerothUtils::isReferenceUnique(const QString &aStockServiceReference,
     for( int k = 0; k < marchandisesTableModelRowCount; ++k)
     {
     	 record = marchandisesTableModel.record(k);
+
     	 stockReference = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE);
 
     	 if (!YerothUtils::isEqualCaseInsensitive(stockReference, aStockServiceReference))
     	 {
     		 curExistingReference_in_out = stockReference;
 
-    		 return false;
+    		 result = false;
+
+    		 break;
     	 }
     }
 
-    return true;
+    marchandisesTableModel.resetFilter();
+
+    return result;
 }
 
 
@@ -527,8 +612,6 @@ enum service_stock_already_exist_type
 	YerothUtils::isStockItemInProductList(const QString &productCategorie,
 										  const QString &productName)
 {
-    YerothSqlTableModel & productListSqlTableModel = _allWindows->getSqlTableModel_marchandises();
-
     {
     	QString searchDesignationCategorieStr(QString("SELECT * FROM %1 WHERE %2 = '%3' AND %4 != '%5'")
     											.arg(_allWindows->MARCHANDISES,
@@ -562,6 +645,137 @@ enum service_stock_already_exist_type
     }
 
     return SERVICE_STOCK_UNDEFINED;
+}
+
+
+enum service_stock_already_exist_type
+	YerothUtils::isStockItemInProductList(bool isService,
+										  const QString &productReference,
+										  const QString &productCategorie,
+										  const QString &productName)
+{
+    YerothSqlTableModel & productListSqlTableModel = _allWindows->getSqlTableModel_marchandises();
+
+    if (isService)
+    {
+        int referenceRowCount =
+            productListSqlTableModel.Is_SearchQSqlTable(YerothDatabaseTableColumn::REFERENCE,
+            										    productReference);
+
+    	bool serviceStockReferenceExist = (referenceRowCount > 0);
+
+    	if (serviceStockReferenceExist)
+    	{
+    		return SERVICE_REFERENCE_EXISTS;
+    	}
+    }
+
+    return YerothUtils::isStockItemInProductList(productCategorie,
+    											 productName);
+}
+
+
+bool YerothUtils::insertStockItemInProductList(const YerothERPServiceStockMarchandiseData &aServiceStockData,
+											   YerothWindowsCommons 		   *_callingWindow /* = 0 */)
+{
+    bool success = false;
+
+    if (!YerothUtils::creerNouvelleCategorie(aServiceStockData._categorie,
+    										 _callingWindow))
+    {
+    	QString retMsg(QObject::trUtf8("La désignation de la catégorie ne doit pas être vide !"));
+
+    	if (0 != _callingWindow)
+    	{
+    		YerothQMessageBox::warning(_callingWindow,
+    				QObject::trUtf8("création d'une catégorie"),
+							retMsg);
+    	}
+    	else
+    	{
+#ifdef YEROTH_ERP_3_0_TESTING_UNIT_TEST
+    		qDebug() << retMsg;
+#endif
+    	}
+
+    	return false;
+    }
+
+    YerothSqlTableModel & productListSqlTableModel =
+    		_allWindows->getSqlTableModel_marchandises();
+
+    QSqlRecord record = productListSqlTableModel.record();
+
+    record.setValue(YerothDatabaseTableColumn::ID,
+                    YerothERPWindows::getNextIdSqlTableModel_marchandises());
+
+    if (aServiceStockData._isService)
+    {
+    	record.setValue(YerothDatabaseTableColumn::IS_SERVICE, YerothUtils::MYSQL_TRUE_LITERAL);
+    }
+    else
+    {
+    	record.setValue(YerothDatabaseTableColumn::IS_SERVICE, YerothUtils::MYSQL_FALSE_LITERAL);
+    }
+
+    record.setValue(YerothDatabaseTableColumn::REFERENCE, aServiceStockData._reference);
+
+    record.setValue(YerothDatabaseTableColumn::DESIGNATION, aServiceStockData._designation);
+
+    record.setValue(YerothDatabaseTableColumn::CATEGORIE, aServiceStockData._categorie);
+
+    record.setValue(YerothDatabaseTableColumn::DESCRIPTION_PRODUIT, aServiceStockData._description);
+
+    success = productListSqlTableModel.insertNewRecord(record);
+
+    QString stockOuService(aServiceStockData._designation);
+
+    if (aServiceStockData._isService)
+    {
+    	stockOuService = aServiceStockData._reference;
+    }
+
+    QString retMsg(QString(QObject::tr("Le stock (service) '%1'"))
+    					.arg(stockOuService));
+
+    if (success)
+    {
+        retMsg.append(QObject::trUtf8(" a été enregistré dans la liste des marchandises !"));
+
+        if (0 != _callingWindow)
+        {
+            YerothQMessageBox::information(_callingWindow,
+            							   QObject::trUtf8("enregistrement de l'article type "
+            									   	   	   "dans la liste des marchandises"),
+            							   retMsg);
+        }
+        else
+        {
+#ifdef YEROTH_ERP_3_0_TESTING_UNIT_TEST
+    		qDebug() << retMsg;
+#endif
+        }
+    }
+    else
+    {
+        retMsg.append(QObject::trUtf8(" n'a pas pu être enregistré dans la liste des marchandises !"));
+
+        if (0 != _callingWindow)
+        {
+            YerothQMessageBox::warning(_callingWindow,
+            						   QObject::trUtf8("échec de l'enregistrement de "
+            								   	   	   "l'article type dans la liste des marchandises"),
+            						   retMsg);
+        }
+        else
+        {
+#ifdef YEROTH_ERP_3_0_TESTING_UNIT_TEST
+    		qDebug() << retMsg;
+#endif
+        }
+    }
+
+    return success;
 }
 
 

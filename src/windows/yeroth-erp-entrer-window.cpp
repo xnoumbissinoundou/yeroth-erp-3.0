@@ -8,6 +8,8 @@
 
 #include "src/yeroth-erp-windows.hpp"
 
+#include "src/utils/yeroth-erp-service-stock-marchandise-data.hpp"
+
 #include "src/utils/yeroth-erp-database-table-column.hpp"
 
 #include "src/users/yeroth-erp-users.hpp"
@@ -221,7 +223,7 @@ void YerothEntrerWindow::setupShortcuts()
 }
 
 
-bool YerothEntrerWindow::creerNouveauClient(const QString proposedCustomerName)
+bool YerothEntrerWindow::creerNouveauClient(const QString &proposedCustomerName)
 {
 	YerothSqlTableModel &customerSqlTableModel = _allWindows->getSqlTableModel_clients();
 
@@ -276,7 +278,7 @@ bool YerothEntrerWindow::creerNouveauClient(const QString proposedCustomerName)
 }
 
 
-bool YerothEntrerWindow::creerNouveauFournisseur(const QString proposedFournisseurName)
+bool YerothEntrerWindow::creerNouveauFournisseur(const QString &proposedFournisseurName)
 {
 	YerothSqlTableModel &fournisseurSqlTableModel = _allWindows->getSqlTableModel_fournisseurs();
 
@@ -326,60 +328,6 @@ bool YerothEntrerWindow::creerNouveauFournisseur(const QString proposedFournisse
 	}
 
 	return false;
-}
-
-
-bool YerothEntrerWindow::creerNouvelleCategorie(const QString proposedCategorieName)
-{
-    YerothSqlTableModel &categorieSqlTableModel = _allWindows->getSqlTableModel_categories();
-
-    QString categorieFilter = QString("%1 = '%2'")
-    							.arg(YerothDatabaseTableColumn::NOM_CATEGORIE,
-    								 proposedCategorieName);
-
-    categorieSqlTableModel.yerothSetFilter(categorieFilter);
-
-    int rows = categorieSqlTableModel.easySelect();
-
-    if (rows > 0)
-    {
-    	categorieSqlTableModel.resetFilter();
-    	return true;
-    }
-    else
-    {
-    	categorieSqlTableModel.resetFilter();
-
-    	QSqlRecord record = categorieSqlTableModel.record();
-
-    	record.setValue(YerothDatabaseTableColumn::ID, YerothERPWindows::getNextIdSqlTableModel_categories());
-    	record.setValue(YerothDatabaseTableColumn::NOM_CATEGORIE, proposedCategorieName);
-    	record.setValue(YerothDatabaseTableColumn::DESCRIPTION_CATEGORIE, "");
-
-    	QString retMsg(QString(QObject::trUtf8("La catégorie '%1"))
-    						.arg(proposedCategorieName));
-
-    	bool success = categorieSqlTableModel.insertNewRecord(record);
-
-    	if (!success)
-    	{
-    		retMsg.append(QObject::trUtf8("' n'a pas pu être créer !"));
-
-    		YerothQMessageBox::warning(this, QObject::trUtf8("échec"), retMsg);
-
-    		return false;
-    	}
-    	else
-    	{
-    		retMsg.append(QObject::trUtf8("' a été créer avec succès !"));
-
-    		YerothQMessageBox::information(this, QObject::trUtf8("succès"), retMsg);
-
-    		return true;
-    	}
-    }
-
-    return false;
 }
 
 
@@ -1048,14 +996,13 @@ bool YerothEntrerWindow::check_fields_mandatory_buying()
 
 bool YerothEntrerWindow::insertStockItemInProductList()
 {
-    bool success = false;
-
-    QString proposedCategorieName = lineEdit_categorie_produit->text();
-
-    if (!creerNouvelleCategorie(proposedCategorieName))
+    if (!YerothUtils::creerNouvelleCategorie(lineEdit_categorie_produit->text(),
+    										 this))
     {
     	return false;
     }
+
+    bool success = false;
 
     YerothSqlTableModel & productListSqlTableModel = _allWindows->getSqlTableModel_marchandises();
 
@@ -1129,31 +1076,6 @@ bool YerothEntrerWindow::insertStockItemInProductList()
     }
 
     return success;
-}
-
-enum service_stock_already_exist_type
-	YerothEntrerWindow::isStockItemInProductList(const QString &productReference,
-												 const QString &productCategorie,
-												 const QString &productName)
-{
-    YerothSqlTableModel & productListSqlTableModel = _allWindows->getSqlTableModel_marchandises();
-
-    if (checkBox_service->isChecked())
-    {
-        int referenceRowCount =
-            productListSqlTableModel.Is_SearchQSqlTable(YerothDatabaseTableColumn::REFERENCE,
-            										    productReference);
-
-    	bool serviceStockReferenceExist = (referenceRowCount > 0);
-
-    	if (serviceStockReferenceExist)
-    	{
-    		return SERVICE_REFERENCE_EXISTS;
-    	}
-    }
-
-    return YerothUtils::isStockItemInProductList(productCategorie,
-    											 productName);
 }
 
 
@@ -1513,12 +1435,23 @@ void YerothEntrerWindow::enregistrer_produit()
     	}
     }
 
+
+    YerothERPServiceStockMarchandiseData aServiceStockData;
+
+    aServiceStockData._categorie = lineEdit_categorie_produit->text();
+    aServiceStockData._description = textEdit_description->toPlainText();
+    aServiceStockData._designation = lineEdit_designation->text();
+    aServiceStockData._isService = checkBox_service->isChecked();
+    aServiceStockData._reference = lineEdit_reference_produit->text();
+
+
     YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
 
     service_stock_already_exist_type serviceStockExists =
-    		isStockItemInProductList(lineEdit_reference_produit->text(),
-    								 lineEdit_categorie_produit->text(),
-									 lineEdit_designation->text());
+    		YerothUtils::isStockItemInProductList(checkBox_service->isChecked(),
+    								 	 	 	  lineEdit_reference_produit->text(),
+												  lineEdit_categorie_produit->text(),
+												  lineEdit_designation->text());
 
     QString msgContinuer(QObject::tr("Poursuivre avec l'insertion d'un stock (service) ?"));
 
@@ -1534,7 +1467,12 @@ void YerothEntrerWindow::enregistrer_produit()
 
     if (SERVICE_STOCK_UNDEFINED == serviceStockExists)
     {
-    	insertStockItemInProductList();
+    	bool successInsertMarchandise = YerothUtils::insertStockItemInProductList(aServiceStockData);
+
+    	if (!successInsertMarchandise)
+    	{
+    		return;
+    	}
     }
     else
     {

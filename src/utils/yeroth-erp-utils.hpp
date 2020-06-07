@@ -11,6 +11,8 @@
 
 #include "src/widgets/table-view/yeroth-erp-table-view.hpp"
 
+#include "src/utils/yeroth-erp-service-stock-marchandise-data.hpp"
+
 #include "src/utils/yeroth-erp-config.hpp"
 
 #include "src/widgets/yeroth-erp-combo-box.hpp"
@@ -82,6 +84,9 @@ public:
 
 	inline ~YerothUtils(){}
 
+	static bool creerNouvelleCategorie(const QString 		&proposedCategorieName,
+									   YerothWindowsCommons *_callingWindow = 0);
+
 	static
 	bool isReferenceUnique(const QString &aStockServiceReference,
 						   const QString &aStockServiceDesignation,
@@ -92,6 +97,16 @@ public:
     enum service_stock_already_exist_type
 		isStockItemInProductList(const QString &productCategorie,
 								 const QString &productName);
+
+    static
+    enum service_stock_already_exist_type
+    	isStockItemInProductList(bool isService,
+    							 const QString &productReference,
+    							 const QString &productCategorie,
+    							 const QString &productName);
+
+    static bool insertStockItemInProductList(const YerothERPServiceStockMarchandiseData &aServiceStockData,
+    										 YerothWindowsCommons 		 	 *_callingWindow = 0);
 
 	static QString YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(const QString &aString_IN);
 

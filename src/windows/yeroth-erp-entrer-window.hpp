@@ -14,7 +14,7 @@
 # include <QtWidgets/QMessageBox>
 
 
-#include "yeroth-erp-window-commons.hpp"
+#include "src/windows/yeroth-erp-window-commons.hpp"
 
 
 class YerothERPWindows;
@@ -121,11 +121,9 @@ public slots:
 
     void deconnecter_utilisateur();
 
-    bool creerNouveauClient(const QString proposedCustomerName);
+    bool creerNouveauClient(const QString &proposedCustomerName);
 
-    bool creerNouveauFournisseur(const QString proposedFourisseurName);
-
-    bool creerNouvelleCategorie(const QString proposedCategorieName);
+    bool creerNouveauFournisseur(const QString &proposedFourisseurName);
 
     bool handle_stocks_vendu_table(int stockID,
     							   ServiceClientInfo &aServiceInfo,
@@ -192,11 +190,6 @@ private slots:
 private:
 
     bool insertStockItemInProductList();
-
-    enum service_stock_already_exist_type
-		isStockItemInProductList(const QString &productReference,
-								 const QString &productCategorie,
-								 const QString &productName);
 
     void showItem();
 

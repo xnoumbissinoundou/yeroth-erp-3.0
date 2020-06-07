@@ -963,7 +963,8 @@ void YerothAdminWindow::choose_fichier_csv_a_importer()
     QString csvFilePath =
         QFileDialog::getOpenFileName(this,
                                      QObject::trUtf8("Choisir le chemin qui mène au fichier au format (.csv)"),
-                                     QString::null, QString::null);
+                                     QString::null,
+									 QObject::tr(".csv (*.csv)"));
     if (!csvFilePath.isEmpty())
     {
     	lineEdit_fichier_csv_a_importer->setText(csvFilePath);

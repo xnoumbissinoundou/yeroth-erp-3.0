@@ -190,7 +190,8 @@ HEADERS = src/yeroth-erp-windows.hpp \
 		  src/utils/virtual-keyboard/yeroth-erp-key-emitter.hpp \
 		  src/utils/yeroth-erp-sqltable-model.hpp \
 		  src/utils/yeroth-erp-config.hpp \
-		  src/utils/yeroth-erp-utils.hpp \
+		  src/utils/yeroth-erp-service-stock-marchandise-data.hpp \
+			src/utils/yeroth-erp-utils.hpp \
 		  src/utils/yeroth-erp-database.hpp \
 		  src/utils/yeroth-erp-logger.hpp \
 		  src/utils/yeroth-erp-historique-stock.hpp \
