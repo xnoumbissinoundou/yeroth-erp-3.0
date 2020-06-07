@@ -1088,7 +1088,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
     <message>
         <location filename="src/windows/yeroth-erp-achats-window.cpp" line="69"/>
         <source>fiche des achats</source>
-        <translation>buyings list</translation>
+        <translation>purchase listing</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-achats-window.cpp" line="177"/>
@@ -1812,7 +1812,7 @@ Continue with update of the stock ?</translation>
         <translation>payments</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="273"/>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="286"/>
         <source>terme à rechercher (référence reçu de paiement client, notes)</source>
         <translation>keyword to search for (payment reference receipt, memo)</translation>
     </message>
@@ -2362,7 +2362,7 @@ Please contact an administrator of %1</translation>
         <location filename="src/windows/yeroth-erp-achats-window.cpp" line="267"/>
         <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1544"/>
         <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="644"/>
-        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="274"/>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="287"/>
         <location filename="src/windows/yeroth-erp-payer-compte-client-window.cpp" line="431"/>
         <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="427"/>
         <source>référence</source>
@@ -3350,7 +3350,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>keyword to search for (email, representant, client company description)</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="275"/>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="288"/>
         <source>nom de l&apos;entreprise</source>
         <translation>company name</translation>
     </message>
