@@ -358,7 +358,7 @@ ON BUILD_COMPUTER: &apos;&apos;.</translation>
     <message>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="481"/>
         <source>versement (retour achat (annulé))</source>
-        <translation>buying cancelled</translation>
+        <translation>cancelled purchase</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="484"/>
@@ -586,12 +586,12 @@ Press m &apos;Cancel&apos; to exit %2</translation>
     <message>
         <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="188"/>
         <source>Référence achat</source>
-        <translation>Buying receipt ref.</translation>
+        <translation>Purchase receipt ref.</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="190"/>
         <source>Prix d&apos;achat</source>
-        <translation>Buying price</translation>
+        <translation>Purchase price</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="196"/>
@@ -2036,7 +2036,7 @@ Continue with update of the stock ?</translation>
     <message>
         <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1411"/>
         <source>Le prix de vente doit être supérieur ou égal au prix d&apos;achat !</source>
-        <translation>Selling price must be superior or equal to buying price !</translation>
+        <translation>Selling price must be superior or equal to purchase price !</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1421"/>
@@ -2099,7 +2099,7 @@ Continue with update of the stock (service) ?</translation>
     <message>
         <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="200"/>
         <source>Le prix de vente doit être supérieure ou égal au prix d&apos;achat !</source>
-        <translation>Selling price must be superior or equal to buying price !</translation>
+        <translation>Selling price must be superior or equal to purchase price !</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1413"/>
@@ -2126,7 +2126,7 @@ Continue with update of the stock (service) ?</translation>
     <message>
         <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1670"/>
         <source>L&apos;achat du stock &apos;%1&apos;</source>
-        <translation>Buying of stock &apos;%1&apos;</translation>
+        <translation>Purchase of stock &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1678"/>
@@ -3316,12 +3316,12 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     <message>
         <location filename="src/windows/yeroth-erp-achats-detail-window.cpp" line="24"/>
         <source>détails d&apos;un achat de stock</source>
-        <translation>stock buying details</translation>
+        <translation>stock purchase details</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-achats-window.hpp" line="75"/>
         <source>Sélectionner un achat dans le tableau des achats, ensuite cliquer sur l&apos;opération que vous souhaitez réaliser !</source>
-        <translation>Select a buying in table listing, and then, press the button of the action you would like to perform!</translation>
+        <translation>Select a stock purchase in table listing, and then, press the button of the action you would like to perform!</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-clients-window.cpp" line="45"/>
@@ -3901,7 +3901,7 @@ stock (service)</translation>
     <message>
         <location filename="ui/yeroth-erp-achats-detail-window.ui" line="7706"/>
         <source>prix d&apos;achat</source>
-        <translation>buying price</translation>
+        <translation>purchase price</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-achats-detail-window.ui" line="8159"/>
@@ -3912,7 +3912,7 @@ stock (service)</translation>
     <message>
         <location filename="ui/yeroth-erp-achats-detail-window.ui" line="8612"/>
         <source>référence reçu d&apos;achat</source>
-        <translation>buying receipt reference</translation>
+        <translation>purchase receipt reference</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-achats-detail-window.ui" line="9054"/>
@@ -4017,7 +4017,7 @@ stock (service)</translation>
         <location filename="ui/yeroth-erp-achats-window.ui" line="434"/>
         <location filename="ui/yeroth-erp-achats-window.ui" line="11031"/>
         <source>Yeroth-erp-3.0 - fiche des achats</source>
-        <translation>Yeroth-erp-3.0 - buying listing</translation>
+        <translation>Yeroth-erp-3.0 - purchase listing</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-achats-window.ui" line="872"/>
@@ -4116,7 +4116,7 @@ stock (service)</translation>
     <message>
         <location filename="ui/yeroth-erp-achats-window.ui" line="11127"/>
         <source>Imprimer la fiche des achats</source>
-        <translation>Print stock buying listing</translation>
+        <translation>Print stock purchase listing</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-achats-window.ui" line="11130"/>
@@ -4201,7 +4201,7 @@ stock (service)</translation>
     <message>
         <location filename="ui/yeroth-erp-achats-window.ui" line="11328"/>
         <source>Afficher les détails de cet achat</source>
-        <translation>Show buying details</translation>
+        <translation>Show stock purchase details</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-achats-window.ui" line="11331"/>
@@ -8120,7 +8120,7 @@ Transférer</source>
     <message>
         <location filename="ui/yeroth-erp-entrer-window.ui" line="11854"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Pourcentage de la marge bénéficiaire sur le prix d&apos;achat.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Benefit margin percentage on buying price.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Benefit margin percentage on purchase price.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-entrer-window.ui" line="14181"/>
@@ -8196,12 +8196,12 @@ Transférer</source>
     <message>
         <location filename="ui/yeroth-erp-entrer-window.ui" line="8189"/>
         <source>prix d&apos;achat</source>
-        <translation>buying price</translation>
+        <translation>purchase price</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-entrer-window.ui" line="8678"/>
         <source>référence reçu d&apos;achat</source>
-        <translation>buying receipt reference</translation>
+        <translation>purchase receipt reference</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-entrer-window.ui" line="9576"/>
@@ -8212,7 +8212,7 @@ Transférer</source>
     <message>
         <location filename="ui/yeroth-erp-entrer-window.ui" line="11069"/>
         <source>achat</source>
-        <translation>buying</translation>
+        <translation>purchase</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-entrer-window.ui" line="11510"/>
@@ -8973,12 +8973,12 @@ Sale</translation>
     <message>
         <location filename="ui/yeroth-erp-modifier-window.ui" line="10696"/>
         <source>prix d&apos;achat</source>
-        <translation>buying price</translation>
+        <translation>purchase price</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-modifier-window.ui" line="11179"/>
         <source>référence reçu d&apos;achat</source>
-        <translation>buying receipt reference</translation>
+        <translation>purchase receipt reference</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-modifier-window.ui" line="12498"/>
@@ -10744,7 +10744,7 @@ stock (service)</translation>
     <message>
         <location filename="ui/yeroth-erp-stock-detail-window.ui" line="8141"/>
         <source>prix d&apos;achat</source>
-        <translation>buying price</translation>
+        <translation>purchase price</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-stock-detail-window.ui" line="8594"/>
@@ -10755,12 +10755,12 @@ stock (service)</translation>
     <message>
         <location filename="ui/yeroth-erp-stock-detail-window.ui" line="9047"/>
         <source>référence reçu d&apos;achat</source>
-        <translation>buying receipt reference</translation>
+        <translation>purchase receipt reference</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-stock-detail-window.ui" line="9491"/>
         <source>achat</source>
-        <translation>buying</translation>
+        <translation>purchase</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-stock-detail-window.ui" line="9932"/>
