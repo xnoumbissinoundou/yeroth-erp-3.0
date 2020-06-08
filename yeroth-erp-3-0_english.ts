@@ -4072,7 +4072,7 @@ stock (service)</translation>
         <location filename="ui/yeroth-erp-achats-window.ui" line="8839"/>
         <source># achats</source>
         <oldsource>Nbre d&apos;achats</oldsource>
-        <translation># buyings</translation>
+        <translation># purchases</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-achats-window.ui" line="9695"/>
@@ -7162,7 +7162,7 @@ Customer Account</translation>
     <message>
         <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="12539"/>
         <source>Achats</source>
-        <translation>Buyings</translation>
+        <translation>Purchase</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="876"/>
@@ -7387,7 +7387,7 @@ Customer Account</translation>
         <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="14484"/>
         <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="14487"/>
         <source>Lister les achats</source>
-        <translation>List buyings</translation>
+        <translation>Show purchases</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="14499"/>
@@ -8380,7 +8380,7 @@ Transférer</source>
     <message>
         <location filename="ui/yeroth-erp-main-window.ui" line="885"/>
         <source>Achats</source>
-        <translation>Buyings</translation>
+        <translation>Purchase</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-main-window.ui" line="2217"/>
@@ -8534,7 +8534,7 @@ Transférer</source>
         <location filename="ui/yeroth-erp-main-window.ui" line="8738"/>
         <source>Lister les achats</source>
         <oldsource>Lister les achats</oldsource>
-        <translation>List buyings</translation>
+        <translation>Show purchases</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-main-window.ui" line="5795"/>
