@@ -7387,7 +7387,7 @@ Customer Account</translation>
         <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="14484"/>
         <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="14487"/>
         <source>Lister les achats</source>
-        <translation>Show purchases</translation>
+        <translation>View purchases</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="14499"/>
@@ -8534,7 +8534,7 @@ Transférer</source>
         <location filename="ui/yeroth-erp-main-window.ui" line="8738"/>
         <source>Lister les achats</source>
         <oldsource>Lister les achats</oldsource>
-        <translation>Show purchases</translation>
+        <translation>View purchases</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-main-window.ui" line="5795"/>
