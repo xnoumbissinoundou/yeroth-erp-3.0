@@ -39,7 +39,7 @@
 
 \newcommand{\yerenpos}{\textcolor{yerenColorBlue}{\sc YEROTH--ERP--$3.0$}\xspace}
 
-\newcommand{\myfullacademicname}{Xavier NOUMBISSI NOUNDOU,~DIPL.--INF.,~PH.D.~(ABD)\xspace}
+\newcommand{\myfullacademicname}{XAVIER NOUMBISSI NOUNDOU,~DIPL.--INF.,~PH.D.~(ABD)\xspace}
 
 \usepackage{hyperref}
 \hypersetup{
@@ -52,7 +52,7 @@
     bookmarks,
     plainpages=false,
 	pdftitle={Information Brochure of the \pos \yerenpos by: ''\myfullacademicname''},
-    pdfauthor={Xavier NOUMBISSI NOUNDOU}
+    pdfauthor={XAVIER NOUMBISSI NOUNDOU}
 }
 
 \usepackage{url}
@@ -145,7 +145,7 @@
 of the \\
 \pos \\ \vspace{1em}
 \yerenpos}}
-\author{\myfullacademicname}
+\author{\textbf{\myfullacademicname}}
 }
 
 \date{} 
@@ -156,9 +156,10 @@ of the \\
 
 \input{xavier-biography}
 
-\vspace{-1.5em}
+\vspace{-1em}
+
 \section{Introduction}
-\vspace{-0.3em}
+
 \yeren is an \textbf{Enterprise Resource Planing} (ERP)
 software--system. 
 
@@ -205,30 +206,34 @@ view sales information 			& \mycheckmark{blue}	& \mytimespartial{blue}	&						& 
 \label{fig:fenetre-de-la-vente}
 \end{figure}
 
-\vspace{-1.9em}
+
 \section{Advantages of \yeren}
-\vspace{-0.3em}
+
 \begin{enumerate}[1)]
 	\itemsep -0.3em
 	\item \yeren is $100\%$ stable
+
 	\item \yeren has an alert system with two types of alerts:
 	      alerts based on stock--quantity, and time--period alerts
+
 	\item users have the choice between small size receipts,
 	      and, bigger size receipts (''A4'')
+
 	\item \yeren runs on the Linux operating system,
 	      because Linux is stable, performant, and less
 	      vulnerable to security breaches in comparison
 	      to other operating systems ('\texttt{Windows~$10$}')
+
 	\item \yeren has an user interface ''Sales'' to view
 		  sale information~(Figure~\ref{fig:fenetre-de-la-vente}),
 		  and thus enables users to make managerial decisions
-	\item \yeren has an interface ''Business--Dashboard'' that
+
+	\item \yeren has an interface ''Business dashboard'' that
 		  generates financial accounting reports,
 		  from sale and payment information, to help
 		  managers to make ''business decisions''.
 \end{enumerate}
 
-\vspace{-1.2em}
 \section{Alert System}
 \vspace{-0.3em}
 Users with roles \administrator or \manager
@@ -244,9 +249,8 @@ types of alerts:
 	  over a period of time).
 \end{enumerate}
 
-\vspace{-1.1em}
 \subsection{Alerts over Stock--Quantity}
-\vspace{0em}
+
 An alert aver a stock--quantity is a message that
 is sent to a pre--determined user whenever
 ''pre--determined'' stock--quantity (X) of
@@ -258,9 +262,8 @@ trigerred whenever stock ''mango'' quantity
 reaches $100$; An alert--message is sent
 to user John (\storekeeper).
 
-\vspace{-1.1em}
 \subsection{Alerts over Time--Period}
-\vspace{0em}
+
 A time--period is defined by a
 starting--date and an ending--date
 (dates are from the ''gregorian'' calendar).
@@ -277,16 +280,15 @@ specifies that a rebate of $20\%$ has to be applied
 on every sale of yoghourt 'tr\`esbon' during a
 time interval of $2$ weeks.
 
-\vspace{-1.5em}
+
 \section{Database Management System}
-\vspace{-0.9em}
+
 \yeren uses \mariadb as the standard DBMS. 
 \mariadb is very stable, very performant,
 and free--software.
-
-\vspace{-1em}
+\vspace{-0.3em}
 \section{Conclusion}
-\vspace{-0.9em}
+\vspace{-0.3em}
 \begin{figure}[!htbp]
 \centering
 \includegraphics[scale=0.33]{../../francais/images/yeren-pos-7-0-window-cashier.png}
@@ -294,9 +296,19 @@ and free--software.
 \label{fig:fenetre-de-vente}
 \end{figure}
 
-Figure~\ref{fig:fenetre-de-vente} illustrates the window
-for selling articles.
+\vspace{-0.5em}
 
-\yeren is available in the English and French languages.
+Figure~\ref{fig:fenetre-de-vente} illustrates
+the window for selling articles.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[scale=0.33]{images/yeroth-stock-listing-window.png}
+\caption{stock listing window.}
+\label{fig:fenetre-de-stock}
+\end{figure}
+
+Figure~\ref{fig:fenetre-de-stock} illustrates
+the window for viewing and searching for stocks.
 
 \end{document}
