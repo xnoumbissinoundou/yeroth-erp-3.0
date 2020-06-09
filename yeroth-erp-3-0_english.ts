@@ -8201,7 +8201,7 @@ Transférer</source>
     <message>
         <location filename="ui/yeroth-erp-entrer-window.ui" line="8678"/>
         <source>référence reçu d&apos;achat</source>
-        <translation>purchase receipt reference</translation>
+        <translation>purchase receipt ref.</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-entrer-window.ui" line="9576"/>
