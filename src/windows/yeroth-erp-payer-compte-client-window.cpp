@@ -322,6 +322,7 @@ void YerothPayerCompteClientWindow::private_slot_afficher_les_transactions_dun_c
 //													 stockDesignation);
 
 
+
 	    QString clientTransactionsPaiementsQueryStr(QString("select %1, "
 	    													"%2 as 'Date transaction', "
 	    													"%3 as 'Heure transaction', "
@@ -362,25 +363,35 @@ void YerothPayerCompteClientWindow::private_slot_afficher_les_transactions_dun_c
 														 DATE_TO_DB_FORMAT_STRING(dateEdit_transactions_compte_client_debut->date()),
 														 DATE_TO_DB_FORMAT_STRING(dateEdit_transactions_compte_client_fin->date())));
 
+	    QString paiementComptantQueryStr;
+
+	    if (checkBox_ne_pas_inclure_les_ventes_comptant->isChecked())
+	    {
+	    	paiementComptantQueryStr = QString(" and (%1 != '%2')")
+	    									.arg(YerothDatabaseTableColumn::TYPE_DE_VENTE,
+	    										 QString::number(YerothUtils::VENTE_COMPTANT));
+	    }
+
 	    QString clientTransactionsStockVenduQueryStr(QString("select %1, "
 	    													 "%2 as 'Date transaction', "
 	    													 "%3 as 'Heure transaction', "
 	    													 "%4 as 'Type de paiement', "
 	    													 "%5 as 'Total transaction', "
-	    													 "%6 as 'Compte client (apres)', "
+	    													 "compte_client as 'Compte client (apres)', "
 	    			    									 "reference as 'Raison', "
 	    			    									 "reference_recu_vendu as 'Recu', "
-	    			    									 "CONCAT(date_vente,' ',heure_vente) as 'Temps' from %7 "
-	    			    									 "where date_vente >= '%8' and date_vente <= '%9'")
+	    			    									 "CONCAT(date_vente,' ',heure_vente) as 'Temps' from %6 "
+	    			    									 "where (date_vente >= '%7' and date_vente <= '%8') "
+	    			    									 "%9")
 	    											.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT,
 	    												 YerothDatabaseTableColumn::DATE_VENTE,
 														 YerothDatabaseTableColumn::HEURE_VENTE,
 														 YerothDatabaseTableColumn::TYPE_DE_VENTE,
 														 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
-														 YerothDatabaseTableColumn::COMPTE_CLIENT,
 														 _allWindows->STOCKS_VENDU,
 														 DATE_TO_DB_FORMAT_STRING(dateEdit_transactions_compte_client_debut->date()),
-														 DATE_TO_DB_FORMAT_STRING(dateEdit_transactions_compte_client_fin->date())));
+														 DATE_TO_DB_FORMAT_STRING(dateEdit_transactions_compte_client_fin->date()),
+														 paiementComptantQueryStr));
 
 	    QString clientTransactionsUnionQueryStr(QString("SELECT * FROM (%1 UNION %2 UNION %3 ORDER BY Temps ASC) AS U WHERE U.%4 = '%5'")
 	    										.arg(clientTransactionsPaiementsQueryStr,
