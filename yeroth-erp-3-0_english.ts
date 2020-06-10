@@ -3204,7 +3204,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <source>Votre nom d&apos;utilisateur ou bien votre mot de passe est incorrect !</source>
         <oldsource>Votre nom d&apos;utilisateur ou bien votre mot de passe est incorrect!
 </oldsource>
-        <translation>User name or password is incorrect!</translation>
+        <translation>User name or password is incorrect !</translation>
     </message>
     <message>
         <location filename="src/dialogs/yeroth-erp-changer-utilisateur-dialog.cpp" line="232"/>
