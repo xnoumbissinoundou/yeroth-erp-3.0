@@ -1,1 +1,7 @@
-1) ajouter des temps de validite pour chaque compte utilisateur
+1) ajouter des temps de validite pour chaque compte utilisateur (SECURITE DE L'APPLICATION)
+2) ajouter un time-out pour une session utilisateur (SECURITE DE L'APPLICATION)
+3) rendre 'claire' pour l'utilisateur dans 1 fenetre avec plusieurs
+   QGroupBox laquelle est actuellement active ! (ERGONOMIE DE L'APPLICATION) 
+4) ajouter le dernier moment d'utilisation de YEROTH-ERP-3.0 par 1 utilisateur (SECURITE DE L'APPLICATION)
+5) ajouter L'UTILISATEUR qui est a l'origine d'1 autre compte
+6) ajouter la date de creation d'1 compte utilisateur
