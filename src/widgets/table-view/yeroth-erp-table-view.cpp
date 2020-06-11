@@ -409,8 +409,9 @@ void YerothTableView::lister_lhistorique_du_stock(const QStringList &aMouvementS
 			}
 			else if (5 == j)
 			{
-				if (QObject::tr("RETOUR VENTE") == curTypeMouvementStock ||
-					QObject::tr("ENTRÉE") == curTypeMouvementStock)
+				if (QObject::trUtf8("RÉ-APPROVISIONEMENT") == curTypeMouvementStock ||
+					QObject::tr("RETOUR VENTE") == curTypeMouvementStock ||
+					QObject::trUtf8("ENTRÉE") == curTypeMouvementStock)
 				{
 					//5 is corresponds to 'RETOUR'.
 					strOut = YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING("(+) " + anEntry.at(j));

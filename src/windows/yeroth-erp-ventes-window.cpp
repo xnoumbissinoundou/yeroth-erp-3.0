@@ -355,7 +355,7 @@ bool YerothVentesWindow::annuler_cette_vente()
 				GET_SQL_RECORD_DATA(curStockRecord, YerothDatabaseTableColumn::HISTORIQUE_STOCK);
 
 		curHistoriqueStockRetour = YerothHistoriqueStock::creer_mouvement_stock
-				(RETOUR_VENTE,
+				(MOUVEMENT_DE_STOCK_RETOUR_VENTE,
 						curStockRecord.value(YerothDatabaseTableColumn::ID).toInt(),
 						GET_CURRENT_DATE,
 						curStockQuantiteTotal,
@@ -437,7 +437,7 @@ bool YerothVentesWindow::annuler_cette_vente()
 				GET_SQL_RECORD_DATA(curStockRecord, YerothDatabaseTableColumn::HISTORIQUE_STOCK);
 
 		curHistoriqueStockRetour = YerothHistoriqueStock::creer_mouvement_stock
-				(RETOUR_VENTE,
+				(MOUVEMENT_DE_STOCK_RETOUR_VENTE,
 						curStocksVendu_stocksID.toInt(),
 						GET_CURRENT_DATE,
 						0.0,
@@ -682,7 +682,7 @@ bool YerothVentesWindow::annuler_cette_vente()
 //	        		GET_SQL_RECORD_DATA(curStockRecord, YerothDatabaseTableColumn::HISTORIQUE_STOCK);
 //
 //	        curHistoriqueStockRetour = YerothHistoriqueStock::creer_mouvement_stock
-//	        			(RETOUR_VENTE,
+//	        			(MOUVEMENT_DE_STOCK_RETOUR_VENTE,
 //	        			 curStockRecord.value(YerothDatabaseTableColumn::ID).toInt(),
 //						 GET_CURRENT_DATE,
 //						 curStockQuantiteTotal,
@@ -764,7 +764,7 @@ bool YerothVentesWindow::annuler_cette_vente()
 //	        		GET_SQL_RECORD_DATA(curStockRecord, YerothDatabaseTableColumn::HISTORIQUE_STOCK);
 //
 //	        curHistoriqueStockRetour = YerothHistoriqueStock::creer_mouvement_stock
-//	        			(RETOUR_VENTE,
+//	        			(MOUVEMENT_DE_STOCK_RETOUR_VENTE,
 //	        			 curStocksVendu_stocksID.toInt(),
 //						 GET_CURRENT_DATE,
 //						 0.0,

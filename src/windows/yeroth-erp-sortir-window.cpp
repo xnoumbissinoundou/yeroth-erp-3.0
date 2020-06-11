@@ -2194,7 +2194,7 @@ void YerothSortirWindow::sortir()
             if (lineEdit_articles_transfert->text().isEmpty())
             {
             	historiqueStockSortie_transfert.append(YerothHistoriqueStock::creer_mouvement_stock
-                			(SORTIE,
+                			(MOUVEMENT_DE_STOCK_SORTIE,
                 			 stocksSortieID,
 							 GET_CURRENT_DATE,
 							 quantite_totale_actuelle,
@@ -2204,7 +2204,7 @@ void YerothSortirWindow::sortir()
             else
             {
                 historiqueStockSortie_transfert.append(YerothHistoriqueStock::creer_mouvement_stock
-                			(TRANSFERT,
+                			(MOUVEMENT_DE_STOCK_TRANSFERT,
                 			 stocksSortieID,
 							 GET_CURRENT_DATE,
 							 quantite_totale_actuelle,

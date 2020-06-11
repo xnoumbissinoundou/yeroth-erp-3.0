@@ -25,12 +25,13 @@ QMap<QString, enum TypeMouvementStock> YerothHistoriqueStock::_qstringToTypeMouv
 
 YerothHistoriqueStock::YerothHistoriqueStock()
 {
-	_qstringToTypeMouvement.insert("0", INDEFINI);
-	_qstringToTypeMouvement.insert("1", ENTREE);
-	_qstringToTypeMouvement.insert("2", VENTE);
-	_qstringToTypeMouvement.insert("3", SORTIE);
-	_qstringToTypeMouvement.insert("4", TRANSFERT);
-	_qstringToTypeMouvement.insert("5", RETOUR_VENTE);
+	_qstringToTypeMouvement.insert("0", MOUVEMENT_DE_STOCK_INDEFINI);
+	_qstringToTypeMouvement.insert("1", MOUVEMENT_DE_STOCK_ENTREE);
+	_qstringToTypeMouvement.insert("2", MOUVEMENT_DE_STOCK_VENTE);
+	_qstringToTypeMouvement.insert("3", MOUVEMENT_DE_STOCK_SORTIE);
+	_qstringToTypeMouvement.insert("4", MOUVEMENT_DE_STOCK_TRANSFERT);
+	_qstringToTypeMouvement.insert("5", MOUVEMENT_DE_STOCK_RETOUR_VENTE);
+	_qstringToTypeMouvement.insert("6", MOUVEMENT_DE_STOCK_RE_APPROVISIONEMENT);
 }
 
 
@@ -99,7 +100,7 @@ QString YerothHistoriqueStock::get_type_mouvement_stock_string(const QString & a
 
 	if ("1" == aStockHistory)
 	{
-		return QObject::tr("ENTRÉE");
+		return QObject::trUtf8("ENTRÉE");
 	}
 	else if ("2" == aStockHistory)
 	{
@@ -116,6 +117,10 @@ QString YerothHistoriqueStock::get_type_mouvement_stock_string(const QString & a
 	else if ("5" == aStockHistory)
 	{
 		return QObject::tr("RETOUR VENTE");
+	}
+	else if ("6" == aStockHistory)
+	{
+		return QObject::trUtf8("RÉ-APPROVISIONEMENT");
 	}
 	else
 	{
@@ -138,7 +143,7 @@ enum TypeMouvementStock YerothHistoriqueStock::get_type_mouvement_stock(QString 
 	 else
 	 {
 		 //qDebug() << QString("++ test-3: %1").arg(QString::number(INDEFINI));
-		 return INDEFINI;
+		 return MOUVEMENT_DE_STOCK_INDEFINI;
 	 }
 }
 

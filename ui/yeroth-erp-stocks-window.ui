@@ -12635,7 +12635,10 @@ background-color: rgb(0, 0, 0); </string>
   </action>
   <action name="actionModifier_ce_stock">
    <property name="text">
-    <string>Modifier ce stock</string>
+    <string>Modifier (ou ré-approvisionner) un stock</string>
+   </property>
+   <property name="toolTip">
+    <string>Modifier (ou ré-approvisionner) un stock</string>
    </property>
    <property name="font">
     <font>

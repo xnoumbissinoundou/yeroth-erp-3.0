@@ -2494,7 +2494,7 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
         double nouvelle_quantite_totale = quantite_totale_actuelle - articleVenteInfo->_quantite_a_vendre;
 
         QString historiqueStockVendu(YerothHistoriqueStock::creer_mouvement_stock
-        			(VENTE,
+        			(MOUVEMENT_DE_STOCK_VENTE,
         			 stocksVenduID,
 					 GET_CURRENT_DATE,
 					 quantite_totale_actuelle,
@@ -2784,7 +2784,7 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
         double nouvelle_quantite_totale = quantite_totale_actuelle - articleVenteInfo->_quantite_a_vendre;
 
         QString historiqueStockVendu(YerothHistoriqueStock::creer_mouvement_stock
-        			(VENTE,
+        			(MOUVEMENT_DE_STOCK_VENTE,
         			 stocksVenduID,
 					 GET_CURRENT_DATE,
 					 quantite_totale_actuelle,

@@ -18,12 +18,13 @@ class YerothUtils;
 
 enum TypeMouvementStock
 {
-	INDEFINI 		= 	0,
-	ENTREE	 		= 	1,
-	VENTE    		= 	2,
-	SORTIE	  		= 	3,
-	TRANSFERT 		= 	4,
-	RETOUR_VENTE	= 	5
+	MOUVEMENT_DE_STOCK_INDEFINI 			= 	0,
+	MOUVEMENT_DE_STOCK_ENTREE	 			= 	1,
+	MOUVEMENT_DE_STOCK_VENTE    			= 	2,
+	MOUVEMENT_DE_STOCK_SORTIE	  			= 	3,
+	MOUVEMENT_DE_STOCK_TRANSFERT 			= 	4,
+	MOUVEMENT_DE_STOCK_RETOUR_VENTE			= 	5,
+	MOUVEMENT_DE_STOCK_RE_APPROVISIONEMENT	= 	6
 };
 
 class YerothHistoriqueStock

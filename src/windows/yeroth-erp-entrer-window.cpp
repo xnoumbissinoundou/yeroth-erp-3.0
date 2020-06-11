@@ -1199,7 +1199,7 @@ bool YerothEntrerWindow::handle_stocks_vendu_table(int stockID,
 
         QString historiqueStockVendu(
         		YerothHistoriqueStock::creer_mouvement_stock
-        									(VENTE,
+        									(MOUVEMENT_DE_STOCK_VENTE,
         									 stocksVenduID,
 											 GET_CURRENT_DATE,
 											 quantite_actuelle,
@@ -1639,7 +1639,7 @@ void YerothEntrerWindow::enregistrer_produit()
     record.setValue(YerothDatabaseTableColumn::DATE_ENTREE, GET_CURRENT_DATE);
 
     QString historiqueStockInitial(
-    		YerothHistoriqueStock::creer_mouvement_stock(ENTREE,
+    		YerothHistoriqueStock::creer_mouvement_stock(MOUVEMENT_DE_STOCK_ENTREE,
     				stock_id_to_save,
 					GET_CURRENT_DATE,
 					0.0,

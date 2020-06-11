@@ -566,7 +566,7 @@ enum import_csv_entry_row_return_status
 		allSqltableColumns.removeAll(YerothDatabaseTableColumn::DATE_ENTREE);
 
 	    QString historiqueStockInitial(
-	    		YerothHistoriqueStock::creer_mouvement_stock(ENTREE,
+	    		YerothHistoriqueStock::creer_mouvement_stock(MOUVEMENT_DE_STOCK_ENTREE,
 	    				stock_id_to_save,
 						GET_CURRENT_DATE,
 						0.0,

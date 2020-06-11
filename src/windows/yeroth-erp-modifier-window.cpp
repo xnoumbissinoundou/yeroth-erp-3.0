@@ -8,6 +8,8 @@
 
 #include "src/yeroth-erp-windows.hpp"
 
+#include "src/utils/yeroth-erp-historique-stock.hpp"
+
 #include <unistd.h>
 
 #include <QtSql/QSqlRecord>
@@ -24,7 +26,7 @@ YerothModifierWindow::YerothModifierWindow()
 {
     _windowName = QString("%1 - %2")
     				.arg(YEROTH_ERP_WINDOW_TITLE,
-    					 QObject::trUtf8("modifier un stock"));
+    					 QObject::trUtf8("modifier (ré-approvisionner) un stock"));
 
     setupUi(this);
 
@@ -45,7 +47,11 @@ YerothModifierWindow::YerothModifierWindow()
 
     setupDateTimeEdits();
 
-    spinBox_lots->setEnabled(false);
+    label_quantite->setVisible(false);
+
+    label_lots->setVisible(false);
+
+    spinBox_lots->setVisible(false);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionActualiser, false);
@@ -253,7 +259,7 @@ void YerothModifierWindow::actualiser_stock()
         if (QMessageBox::Ok ==
                 YerothQMessageBox::question(this, _windowName, msgEnregistrer, QMessageBox::Cancel, QMessageBox::Ok))
         {
-        	YerothUtils::startTransaction();
+        	YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
 
             QSqlRecord record = _curStocksTableModel->record(_allWindows->getLastSelectedListerRow());
 
@@ -265,6 +271,7 @@ void YerothModifierWindow::actualiser_stock()
             }
 
             record.setValue(YerothDatabaseTableColumn::LOCALISATION_STOCK, lineEdit_localisation_produit->text());
+
             record.setValue(YerothDatabaseTableColumn::MONTANT_TVA, _montantTva);
 
             double prix_unitaire_ht = prix_vente - _montantTva;
@@ -286,9 +293,55 @@ void YerothModifierWindow::actualiser_stock()
                 record.setValue(YerothDatabaseTableColumn::IMAGE_PRODUIT, QVariant::fromValue(bytes));
             }
 
+            int stock_id_to_save = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ID).toInt();
+
+            double ancienne_quantite_totale =
+            		GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::QUANTITE_TOTALE).toDouble();
+
+            double quantite_totale = lineEdit_quantite_restante->text().toDouble();
+
+            double quantite_en_re_approvisionement = quantite_totale - ancienne_quantite_totale;
+
+            if (quantite_en_re_approvisionement > 0)
+            {
+            	record.setValue(YerothDatabaseTableColumn::QUANTITE_TOTALE, quantite_totale);
+
+                QString historiqueStock =
+                		GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::HISTORIQUE_STOCK);
+
+                QString historiqueStockReApprovisionement(
+                		YerothHistoriqueStock::creer_mouvement_stock(MOUVEMENT_DE_STOCK_RE_APPROVISIONEMENT,
+                				stock_id_to_save,
+            					GET_CURRENT_DATE,
+    							ancienne_quantite_totale,
+								quantite_en_re_approvisionement,
+								quantite_totale));
+
+                historiqueStock.append(YerothHistoriqueStock::SEPARATION_EXTERNE)
+                			   .append(historiqueStockReApprovisionement);
+
+                record.setValue(YerothDatabaseTableColumn::HISTORIQUE_STOCK, historiqueStock);
+            }
+            else
+            {
+                if (quantite_en_re_approvisionement < 0)
+                {
+                	QString retMsg(QObject::trUtf8("En mode ré-approvisionnement, la quantité "
+                								   "restante doit être supérieure à "
+                								   "l'ancienne quantité totale !"));
+
+                	YerothQMessageBox::warning(this, QObject::trUtf8("échec"), retMsg);
+
+                	lineEdit_quantite_restante->
+						setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::QUANTITE_TOTALE));
+
+                	return ;
+                }
+            }
+
             bool success = _curStocksTableModel->updateRecord(_allWindows->getLastSelectedListerRow(), record);
 
-            YerothUtils::commitTransaction();
+            YEROTH_ERP_3_0_COMMIT_DATABASE_TRANSACTION;
 
             /*
              * To avoid having two message boxes shown at the same
@@ -375,10 +428,10 @@ void YerothModifierWindow::setupLineEdits()
     lineEdit_designation->setYerothEnabled(false);
     lineEdit_nom_entreprise_fournisseur->setYerothEnabled(false);
     lineEdit_categorie_produit->setYerothEnabled(false);
-    lineEdit_quantite_par_lot->setYerothEnabled(false);
+    lineEdit_quantite_par_lot->setVisible(false);
     lineEdit_stock_dalerte->setYerothEnabled(true);
     lineEdit_tva->setYerothEnabled(false);
-    lineEdit_quantite_restante->setYerothEnabled(false);
+    lineEdit_quantite_restante->setYerothEnabled(true);
     lineEdit_tva->setText(YerothUtils::getTvaStringWithPercent());
 }
 
@@ -836,8 +889,6 @@ void YerothModifierWindow::showItem()
     lineEdit_designation->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
 
     spinBox_lots->setValue(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::LOTS_ENTRANT).toDouble());
-
-    lineEdit_quantite_par_lot->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::QUANTITE_PAR_LOT));
 
     double quantite_par_lot = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::QUANTITE_PAR_LOT).toDouble();
 
