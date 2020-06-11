@@ -47,12 +47,6 @@ YerothModifierWindow::YerothModifierWindow()
 
     setupDateTimeEdits();
 
-    label_quantite->setVisible(false);
-
-    label_lots->setVisible(false);
-
-    spinBox_lots->setVisible(false);
-
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionActualiser, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAnnuler, false);
@@ -71,12 +65,6 @@ YerothModifierWindow::YerothModifierWindow()
     pushButton_annuler->disable(this);
     pushButton_supprimer_limage_du_stock->disable(this);
     pushButton_selectionner_image->disable(this);
-
-    connect(lineEdit_quantite_par_lot, SIGNAL(textChanged(const QString &)), this,
-            SLOT(display_quantite_restante(const QString &)));
-
-    connect(spinBox_lots, SIGNAL(valueChanged(double)),
-    		this, SLOT(display_quantite_restante_by_spinbox(double)));
 
     connect(checkBox_tva, SIGNAL(clicked(bool)), this, SLOT(handleTVACheckBox(bool)));
 
@@ -424,7 +412,6 @@ void YerothModifierWindow::actualiser_stock()
 
 void YerothModifierWindow::setupLineEdits()
 {
-    lineEdit_quantite_par_lot->setValidator(&YerothUtils::DoubleValidator);
     lineEdit_quantite_restante->setValidator(&YerothUtils::IntValidator);
     lineEdit_stock_dalerte->setValidator(&YerothUtils::DoubleValidator);
     lineEdit_prix_vente->setValidator(&YerothUtils::DoubleValidator);
@@ -436,7 +423,6 @@ void YerothModifierWindow::setupLineEdits()
     lineEdit_designation->setYerothEnabled(false);
     lineEdit_nom_entreprise_fournisseur->setYerothEnabled(false);
     lineEdit_categorie_produit->setYerothEnabled(false);
-    lineEdit_quantite_par_lot->setVisible(false);
     lineEdit_stock_dalerte->setYerothEnabled(true);
     lineEdit_tva->setYerothEnabled(false);
     lineEdit_quantite_restante->setYerothEnabled(true);
@@ -474,6 +460,7 @@ void YerothModifierWindow::definirPasDeRole()
     pushButton_selectionner_image->disable(this);
 }
 
+
 void YerothModifierWindow::definirCaissier()
 {
     _logger->log("definirCaissier");
@@ -502,6 +489,7 @@ void YerothModifierWindow::definirCaissier()
     pushButton_supprimer_limage_du_stock->disable(this);
     pushButton_selectionner_image->disable(this);
 }
+
 
 void YerothModifierWindow::definirManager()
 {
@@ -591,6 +579,7 @@ void YerothModifierWindow::definirGestionaireDesStocks()
     pushButton_selectionner_image->enable(this, SLOT(selectionner_image_produit()));
 }
 
+
 void YerothModifierWindow::definirMagasinier()
 {
     _logger->log("definirMagasinier");
@@ -616,47 +605,33 @@ void YerothModifierWindow::definirMagasinier()
     pushButton_selectionner_image->disable(this);
 }
 
+
 bool YerothModifierWindow::check_fields()
 {
     bool prix_vente = lineEdit_prix_vente->checkField();
     return prix_vente;
 }
 
+
 void YerothModifierWindow::clear_all_fields()
 {
+    checkBox_tva->setChecked(false);
+
     lineEdit_reference_produit->clearField();
     lineEdit_designation->clearField();
     lineEdit_categorie_produit->clearField();
-    spinBox_lots->clear();
-    lineEdit_quantite_par_lot->clearField();
     lineEdit_nom_entreprise_fournisseur->clear();
     lineEdit_stock_dalerte->clearField();
     lineEdit_prix_vente->clearField();
-    textEdit_description->clear();
     lineEdit_localisation_produit->clear();
+    lineEdit_tva->clearField();
+
     label_image_produit->clear();
     label_image_produit->setAutoFillBackground(false);
-    lineEdit_tva->clearField();
-    checkBox_tva->setChecked(false);
+
+    textEdit_description->clear();
 }
 
-void YerothModifierWindow::display_quantite_restante(const QString & quantite_par_lot)
-{
-    double qte_lot = quantite_par_lot.toDouble();
-
-    double qte_restante = spinBox_lots->valueMultiplyBy(qte_lot);
-
-    lineEdit_quantite_restante->setText(QString::number(qte_restante, 'f', 2));
-}
-
-void YerothModifierWindow::display_quantite_restante_by_spinbox(double lots)
-{
-    double qte_lot = lineEdit_quantite_par_lot->text().toDouble();
-
-    double qte_restante = lots * qte_lot;
-
-    lineEdit_quantite_restante->setText(QString::number(qte_restante, 'f', 2));
-}
 
 void YerothModifierWindow::display_prix_vente()
 {
@@ -676,6 +651,7 @@ void YerothModifierWindow::display_prix_vente()
         lineEdit_prix_vente->setText(QString::number(prix_vente, 'f', 2));
     }
 }
+
 
 void YerothModifierWindow::handleTVACheckBox(bool clicked)
 {
@@ -748,6 +724,7 @@ void YerothModifierWindow::supprimer_ce_stock()
     }
 }
 
+
 void YerothModifierWindow::supprimer_image_stock()
 {
     QSqlRecord record = _curStocksTableModel->record(_allWindows->getLastSelectedListerRow());
@@ -814,6 +791,7 @@ void YerothModifierWindow::supprimer_image_stock()
     {
     }
 }
+
 
 void YerothModifierWindow::rendreInvisible()
 {
@@ -893,12 +871,6 @@ void YerothModifierWindow::showItem()
     lineEdit_reference_produit->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE));
 
     lineEdit_designation->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
-
-    spinBox_lots->setValue(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::LOTS_ENTRANT).toDouble());
-
-    double quantite_par_lot = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::QUANTITE_PAR_LOT).toDouble();
-
-    lineEdit_quantite_par_lot->setText(QString::number(quantite_par_lot, 'f', 2));
 
     lineEdit_stock_dalerte->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::STOCK_DALERTE));
 

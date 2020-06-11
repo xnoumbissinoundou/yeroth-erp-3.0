@@ -1344,7 +1344,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
 2) Get help message by pressing the second icon !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="226"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="214"/>
         <source>La date de péremption n&apos;est pas postdatée !
 
 Continuer avec l&apos;actualisation des données de l&apos;article ?</source>
@@ -1353,23 +1353,23 @@ Continuer avec l&apos;actualisation des données de l&apos;article ?</source>
 Continue with update of the stock ?</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="231"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="219"/>
         <source>actualiser les détails d&apos;un stock</source>
         <translation>update stock details</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="260"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="248"/>
         <source>Poursuivre avec la modification du stock &apos;%1&apos; ?</source>
         <translation>Continue with modification of inventory stock &apos;%1&apos; ?</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="361"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="349"/>
         <source>Les détails du stock &apos;%1</source>
         <translation>Details of stock &apos;%1</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="172"/>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="393"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="160"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="381"/>
         <source>&apos; ont été actualisés avec succès !</source>
         <translation>&apos; have been successfully updated !</translation>
     </message>
@@ -1379,88 +1379,88 @@ Continue with update of the stock ?</translation>
         <translation>modify (replenish) stock</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="135"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="123"/>
         <source>Poursuivre avec la modification du service &apos;%1&apos; ?</source>
         <translation>Continue with modification of &apos;service %1&apos; ?</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="140"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="128"/>
         <source>modification du service</source>
         <translation>service modification</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="167"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="155"/>
         <source>Les détails du service &apos;%1</source>
         <translation>Details of service &apos;%1</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="178"/>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="399"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="166"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="387"/>
         <source>&apos; n&apos;ont pas pu être actualisés avec succès !</source>
         <translation>&apos; couldn&apos;t be updated !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="191"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="179"/>
         <source>Vous avez annulé la modification des détails du service &apos;%1&apos; !</source>
         <translation>You cancelled details modifications of service &apos;%1&apos; !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="265"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="253"/>
         <source>modification du stock</source>
         <translation>stock modification</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="337"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="325"/>
         <source>En mode ré-approvisionnement, la quantité restante doit être supérieure à l&apos;ancienne quantité restante !</source>
         <oldsource>En mode ré-approvisionnement, la quantité restante doit être supérieure à l&apos;ancienne restante !</oldsource>
         <translation>During restock, the remaining quantity must be greater than the previous remaining quantity !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="412"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="400"/>
         <source>Vous avez annulé la modification des détails du stock &apos;%1&apos; !</source>
         <translation>You cancelled details modifications of stock &apos;%1&apos; !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="719"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="695"/>
         <source>suppression</source>
         <translation>deletion</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="761"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="738"/>
         <source>Le stock &apos;%1&apos; n&apos;a pas d&apos;image enregistrée !</source>
         <translation>Inventory stock &apos;%1&apos; doesn&apos;t have a saved image !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="764"/>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="780"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="741"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="757"/>
         <source>suppression de l&apos;image d&apos;un stock</source>
         <translation>delete stock item image</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="774"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="751"/>
         <source>Poursuivre avec la suppression de l&apos;image du stock &quot;</source>
         <translation>Continue with deletion of stock image &quot;</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="794"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="771"/>
         <source>L&apos;image du stock &apos;%1&apos; a été supprimée !</source>
         <translation>Image of stock &apos;%1&apos; could be deleted !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="805"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="782"/>
         <source>L&apos;image du stock &apos;%1&apos; ne pouvait pas être supprimée !</source>
         <translation>Image of stock &apos;%1&apos; couldn&apos;t be deleted !</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-modifier-compte-client-window.cpp" line="370"/>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="798"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="775"/>
         <source>suppression de l&apos;image du stock avec succès</source>
         <oldsource>L&apos;image du stock &quot;</oldsource>
         <translation>stock image could be deleted</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-modifier-compte-client-window.cpp" line="381"/>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="809"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="786"/>
         <source>échec de la suppression de l&apos;image d&apos;un stock</source>
         <translation>stock item image couldn&apos;t successfully de deleted</translation>
     </message>
@@ -1655,7 +1655,7 @@ Continue with update of the stock ?</translation>
         <location filename="src/windows/yeroth-erp-main-window.cpp" line="460"/>
         <location filename="src/windows/yeroth-erp-marchandises-window.hpp" line="80"/>
         <location filename="src/windows/yeroth-erp-modifier-compte-client-window.hpp" line="70"/>
-        <location filename="src/windows/yeroth-erp-modifier-window.hpp" line="94"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.hpp" line="90"/>
         <location filename="src/windows/yeroth-erp-paiements-window.hpp" line="89"/>
         <location filename="src/windows/yeroth-erp-pointdevente-window.hpp" line="253"/>
         <location filename="src/windows/yeroth-erp-sortir-window.hpp" line="200"/>
@@ -1776,7 +1776,7 @@ Continue with update of the stock ?</translation>
     <message>
         <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="199"/>
         <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="712"/>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="888"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="866"/>
         <location filename="src/windows/yeroth-erp-stock-detail-window.cpp" line="343"/>
         <source>fournisseur</source>
         <translation>supplier</translation>
@@ -1784,7 +1784,7 @@ Continue with update of the stock ?</translation>
     <message>
         <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="190"/>
         <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="699"/>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="878"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="856"/>
         <location filename="src/windows/yeroth-erp-stock-detail-window.cpp" line="336"/>
         <source>client</source>
         <translation>customer</translation>
@@ -1895,8 +1895,8 @@ Continue with update of the stock ?</translation>
         <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="271"/>
         <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="324"/>
         <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="931"/>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="174"/>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="395"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="162"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="383"/>
         <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2279"/>
         <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="534"/>
         <source>succès</source>
@@ -1960,9 +1960,9 @@ Continue with update of the stock ?</translation>
         <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="263"/>
         <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="316"/>
         <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="942"/>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="180"/>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="341"/>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="401"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="168"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="329"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="389"/>
         <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="550"/>
         <source>échec</source>
         <translation>failed</translation>
@@ -2121,13 +2121,13 @@ Continue with update of the stock (service) ?</translation>
         <translation> has been saved to the merchandise list !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="210"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="198"/>
         <source>Le prix de vente doit être supérieure ou égal au prix d&apos;achat !</source>
         <translation>Selling price must be superior or equal to purchase price !</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1413"/>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="213"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="201"/>
         <source>pas profitable</source>
         <translation>not profitable</translation>
     </message>
@@ -2390,8 +2390,8 @@ Please contact an administrator of %1</translation>
         <translation> could be taken out successfully.</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="194"/>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="415"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="182"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="403"/>
         <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2292"/>
         <source>annulation</source>
         <translation>cancellation</translation>
@@ -2477,7 +2477,7 @@ Please contact an administrator of %1</translation>
         <translation>Continue with deletion of service &apos;%1&apos; ?</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="715"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="691"/>
         <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="996"/>
         <source>Poursuivre avec la suppression du stock &apos;%1&apos; ?</source>
         <translation>Continue with deletion of stock &apos;%1&apos; ?</translation>
@@ -2513,7 +2513,7 @@ Please contact an administrator of %1</translation>
         <translation>Continue with deletion of stock &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="731"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="707"/>
         <location filename="src/windows/yeroth-erp-stock-detail-window.cpp" line="468"/>
         <source>Le stock &apos;%1&apos; a été supprimé !</source>
         <translation>Inventory stock &apos;%1&apos; has been deleted !</translation>
@@ -2576,7 +2576,7 @@ Please contact an administrator of %1</translation>
         <translation>Customer account &apos;&apos; couldn&apos;t be deleted !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="740"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="716"/>
         <location filename="src/windows/yeroth-erp-stock-detail-window.cpp" line="478"/>
         <source>Le stock &apos;%1&apos; ne pouvait pas être supprimé !</source>
         <translation>Inventory stock &apos;%1&apos; couldn&apos;t be deleted !</translation>
@@ -3703,7 +3703,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>Details of this customer account could be modify by pressing button &apos;Modify&apos; !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.hpp" line="95"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.hpp" line="91"/>
         <source>Modifier les informations sur le stock (service), et ensuite cliquer sur le bouton &apos;actualiser&apos;!</source>
         <translation>Modify stock (service) details, and then press button &apos;update&apos; !</translation>
     </message>
@@ -8880,8 +8880,8 @@ Sale</translation>
         <translation>Yeroth-erp-3.0 - modify this stock</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13839"/>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13842"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="12861"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="12864"/>
         <source>Entrer un stock</source>
         <oldsource>Entrer</oldsource>
         <translation>Check in</translation>
@@ -8930,16 +8930,11 @@ Sale</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-modifier-window.ui" line="4522"/>
-        <source>quantité</source>
-        <translation>quantity</translation>
-    </message>
-    <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="5008"/>
         <source>catégorie</source>
         <translation>stock item category</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="5031"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="4545"/>
         <source>Image du stock (service)</source>
         <oldsource>Image de l&apos;article</oldsource>
         <translation>Stock item (service) picture</translation>
@@ -8950,110 +8945,105 @@ Sale</translation>
         <translation>Cancel</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="5487"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="5001"/>
         <source>supprimer l&apos;image</source>
         <oldsource>supprimer l&apos;image de ce stock</oldsource>
         <translation>delete image</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="5925"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="5439"/>
         <source>sélectionner une image</source>
         <oldsource>Sélectionner une image</oldsource>
         <translation>choose an image</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="5948"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="5462"/>
         <source>stock d&apos;alerte</source>
         <oldsource>stock minimum</oldsource>
         <translation>alert stock qty</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="5974"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="5488"/>
         <source>prix de vente</source>
         <translation>selling price</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="5997"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="5511"/>
         <source>localisation du stock</source>
         <translation>stock item site</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="6937"/>
-        <source>lots</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="7883"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="6905"/>
         <source>quantité restante</source>
         <translation>stock quantity (remaining)</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="8349"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="7371"/>
         <source>dd/MM/yyyy</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="8376"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="7398"/>
         <source>date de péremption</source>
         <translation>expiration date</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="12064"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="11086"/>
         <source>TVA</source>
         <translation>Tax</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="10696"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="9718"/>
         <source>prix d&apos;achat</source>
         <translation>purchase price</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="11179"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="10201"/>
         <source>référence reçu d&apos;achat</source>
         <translation>purchase receipt reference</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="12498"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="11520"/>
         <source>Aide</source>
         <oldsource>Aide</oldsource>
         <translation>Help</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="12923"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="11945"/>
         <source>Actions</source>
         <oldsource>Actions</oldsource>
         <translation>Functions</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13361"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="12383"/>
         <source>Outils</source>
         <oldsource>Outils</oldsource>
         <translation>Tools</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13791"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="12813"/>
         <source>toolBar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13812"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="12834"/>
         <source>À propos</source>
         <translation>About Yeroth-erp-3.0</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13828"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="12850"/>
         <source>Changer d&apos;utilisateur</source>
         <translation>Sign in</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="14031"/>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="14034"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="13053"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="13056"/>
         <source>Annuler la modification de ce stock</source>
         <translation>Cancel stock item modification</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13854"/>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13857"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="12876"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="12879"/>
         <source>Modifier ce stock</source>
         <translation>modify this stock</translation>
     </message>
@@ -9067,73 +9057,73 @@ a
 stock item (service)</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="11623"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="10645"/>
         <source>service</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13868"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="12890"/>
         <source>Fermeture</source>
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13880"/>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13883"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="12902"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="12905"/>
         <source>Menu principal</source>
         <translation>Main menu</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13899"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="12921"/>
         <source>Message d&apos;aide</source>
         <translation>User tip</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13902"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="12924"/>
         <source>Appeler l&apos;aide</source>
         <translation>Help</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13917"/>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13920"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="12939"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="12942"/>
         <source>Déconnecter l&apos;utilisateur</source>
         <translation>Sign out</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13931"/>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13934"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="12953"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="12956"/>
         <source>Alertes</source>
         <translation>Alerts</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13945"/>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13948"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="12967"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="12970"/>
         <source>Supprimer ce stock</source>
         <translation>Delete this stock</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13960"/>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13963"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="12982"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="12985"/>
         <source>Supprimer l&apos;image de ce stock</source>
         <translation>Delete stock item image</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13980"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="13002"/>
         <source>Administration</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13992"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="13014"/>
         <source>Informations sur l&apos;entreprise</source>
         <translation>Company info</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="14004"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="13026"/>
         <source>Qui suis je ?</source>
         <translation>Who am I?</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="14016"/>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="14019"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="13038"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="13041"/>
         <source>Actualiser ce stock</source>
         <translation>Update this stock</translation>
     </message>

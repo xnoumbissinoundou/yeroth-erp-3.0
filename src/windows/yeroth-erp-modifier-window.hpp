@@ -59,10 +59,6 @@ public:
 
 public slots:
 
-    void display_quantite_restante(const QString &quantite_par_lot);
-
-    void display_quantite_restante_by_spinbox(double lots);
-
     inline void edited_prix_vente(const QString & newPrixVente)
     {
     	_lastEditedPrixVente = newPrixVente;
