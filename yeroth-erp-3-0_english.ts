@@ -1411,8 +1411,8 @@ Continue with update of the stock ?</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="337"/>
-        <source>En mode ré-approvisionnement, la quantité restante doit être supérieure à l&apos;ancienne restante !</source>
-        <oldsource>En mode ré-approvisionnement, la quantité restante doit être supérieure à l&apos;ancienne quantité totale !</oldsource>
+        <source>En mode ré-approvisionnement, la quantité restante doit être supérieure à l&apos;ancienne quantité restante !</source>
+        <oldsource>En mode ré-approvisionnement, la quantité restante doit être supérieure à l&apos;ancienne restante !</oldsource>
         <translation>During restock, the remaining quantity must be greater than the previous remaining quantity !</translation>
     </message>
     <message>

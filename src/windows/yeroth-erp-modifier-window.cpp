@@ -336,7 +336,7 @@ void YerothModifierWindow::actualiser_stock()
                 {
                 	QString retMsg(QObject::trUtf8("En mode ré-approvisionnement, la quantité "
                 								   "restante doit être supérieure à "
-                								   "l'ancienne restante !"));
+                								   "l'ancienne quantité restante !"));
 
                 	YerothQMessageBox::warning(this, QObject::trUtf8("échec"), retMsg);
 
