@@ -1253,6 +1253,12 @@ void YerothTableView::lister_LIFO(YerothSqlTableModel &tableModel,
     				testDateEntreeOK = false;
     			}
 
+    			if (YerothTableView::DATE_PREEMPTION_COLUMN == k 	   &&
+    					date_premption.toDate() <= GET_CURRENT_DATE)
+    			{
+    				anItem->setForeground(YerothUtils::YEROTH_RED_COLOR);
+    			}
+
     			if (YerothTableView::QUANTITE_TOTAL_COLUMN == k 	   &&
     					quantite_totale.toDouble() <= stock_dalerte.toDouble())
     			{
