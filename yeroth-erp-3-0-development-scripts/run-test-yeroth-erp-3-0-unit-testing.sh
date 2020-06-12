@@ -13,10 +13,13 @@ USAGE="
 	        coverage information with 'gcov'
        ------------------------------------------------------------"
 
+jobsVal=2
+jobsFlag=
+buildFlag=
 simulationFlag=
 coverageGenFlag=
 
-while getopts 'sch' OPTION
+while getopts 'cbj:sh' OPTION
 do
   case $OPTION in
 
@@ -26,6 +29,15 @@ do
 
 		s)	simulationFlag=1
         echo "simulation activée."
+		;;
+
+		j)	jobsFlag=1
+      	jobsVal="$OPTARG"
+        echo "compilation activée avec '$jobsVal' jobs."
+		;;
+
+
+		b)	buildFlag=1
 		;;
 
     c)	coverageGenFlag=1
@@ -38,6 +50,15 @@ do
   esac
 done
 shift $(($OPTIND - 1))
+
+
+if [ $buildFlag ]; then
+		if [ $simulationFlag ]; then
+				echo "yeroth-compile_yeroth-erp-3-0-standalone.sh -j${jobsVal} -c"
+		else
+				yeroth-compile_yeroth-erp-3-0-standalone.sh -j${jobsVal} -c
+		fi
+fi
 
 
 if [ $simulationFlag ]; then
