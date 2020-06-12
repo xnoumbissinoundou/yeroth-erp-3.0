@@ -3631,7 +3631,8 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     <message>
         <location filename="src/utils/yeroth-erp-historique-stock.cpp" line="123"/>
         <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="412"/>
-        <source>RÉ-APPROVISIONEMENT</source>
+        <source>RÉ-APPROVISIONNEMENT</source>
+        <oldsource>RÉ-APPROVISIONEMENT</oldsource>
         <translation>RESTOCK</translation>
     </message>
     <message>
@@ -11257,7 +11258,8 @@ stock (service)</translation>
     <message>
         <location filename="ui/yeroth-erp-stocks-window.ui" line="12638"/>
         <location filename="ui/yeroth-erp-stocks-window.ui" line="12641"/>
-        <source>Modifier (ou ré-approvisionner) un stock</source>
+        <source>Modifier (ou ré-approvisionner) ce stock</source>
+        <oldsource>Modifier (ou ré-approvisionner) un stock</oldsource>
         <translation>Modify (or replenish) stock</translation>
     </message>
     <message>

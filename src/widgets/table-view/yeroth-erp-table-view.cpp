@@ -409,7 +409,7 @@ void YerothTableView::lister_lhistorique_du_stock(const QStringList &aMouvementS
 			}
 			else if (5 == j)
 			{
-				if (QObject::trUtf8("RÉ-APPROVISIONEMENT") == curTypeMouvementStock ||
+				if (QObject::trUtf8("RÉ-APPROVISIONNEMENT") == curTypeMouvementStock ||
 					QObject::tr("RETOUR VENTE") == curTypeMouvementStock ||
 					QObject::trUtf8("ENTRÉE") == curTypeMouvementStock)
 				{

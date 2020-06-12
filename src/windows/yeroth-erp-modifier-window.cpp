@@ -306,7 +306,7 @@ void YerothModifierWindow::actualiser_stock()
                 		GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::HISTORIQUE_STOCK);
 
                 QString historiqueStockReApprovisionement(
-                		YerothHistoriqueStock::creer_mouvement_stock(MOUVEMENT_DE_STOCK_RE_APPROVISIONEMENT,
+                		YerothHistoriqueStock::creer_mouvement_stock(MOUVEMENT_DE_STOCK_RE_APPROVISIONNEMENT,
                 				stock_id_to_save,
             					GET_CURRENT_DATE,
     							ancienne_quantite_totale,

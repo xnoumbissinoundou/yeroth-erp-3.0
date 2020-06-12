@@ -31,7 +31,7 @@ YerothHistoriqueStock::YerothHistoriqueStock()
 	_qstringToTypeMouvement.insert("3", MOUVEMENT_DE_STOCK_SORTIE);
 	_qstringToTypeMouvement.insert("4", MOUVEMENT_DE_STOCK_TRANSFERT);
 	_qstringToTypeMouvement.insert("5", MOUVEMENT_DE_STOCK_RETOUR_VENTE);
-	_qstringToTypeMouvement.insert("6", MOUVEMENT_DE_STOCK_RE_APPROVISIONEMENT);
+	_qstringToTypeMouvement.insert("6", MOUVEMENT_DE_STOCK_RE_APPROVISIONNEMENT);
 }
 
 
@@ -120,7 +120,7 @@ QString YerothHistoriqueStock::get_type_mouvement_stock_string(const QString & a
 	}
 	else if ("6" == aStockHistory)
 	{
-		return QObject::trUtf8("RÉ-APPROVISIONEMENT");
+		return QObject::trUtf8("RÉ-APPROVISIONNEMENT");
 	}
 	else
 	{
