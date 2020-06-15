@@ -11723,10 +11723,10 @@ stock (service)</string>
   </action>
   <action name="actionModifier">
    <property name="text">
-    <string>Modifier ce stock</string>
+    <string>Modifier (ou ré-approvisionner) ce stock</string>
    </property>
    <property name="toolTip">
-    <string>Modifier un stock</string>
+    <string>Modifier (ou ré-approvisionner) ce stock</string>
    </property>
    <property name="font">
     <font>
