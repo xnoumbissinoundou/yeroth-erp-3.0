@@ -149,9 +149,11 @@ private slots:
 
 	void import_current_selected_csv_file();
 
-	void generate_table_header_mapping_entries_for_csv_import();
+	bool generate_table_header_mapping_entries_for_csv_import();
 
 private:
+
+	void clear_csv_import_panel_content_mapping();
 
 	void initialize_admin_importer_csv_tableau();
 

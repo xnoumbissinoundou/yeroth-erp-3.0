@@ -433,11 +433,20 @@ void YerothAdminWindow::reset_import_current_selected_csv_file()
 			_csvContentIdxToSQLTableImportHeader.value(k)->resetYerothComboBox();
 		}
 	}
+	else
+	{
+		clear_csv_import_panel_content_mapping();
+	}
 }
 
 
 void YerothAdminWindow::import_current_selected_csv_file()
 {
+	if (_curCsvFileToImportContentWordList.size() <= 0)
+	{
+		return ;
+	}
+
 	QStringList csvHeaderContent = _curCsvFileToImportContentWordList.at(0)
 			.split(YerothUtils::CSV_FILE_SEPARATION_SEMI_COLON_STRING_CHAR);
 
@@ -499,11 +508,11 @@ void YerothAdminWindow::import_current_selected_csv_file()
 }
 
 
-void YerothAdminWindow::generate_table_header_mapping_entries_for_csv_import()
+bool YerothAdminWindow::generate_table_header_mapping_entries_for_csv_import()
 {
 	if (_curCsvFileToImportContentWordList.size() <= 1)
 	{
-		return ;
+		return false;
 	}
 
 	QStringList csvHeaderContent = _curCsvFileToImportContentWordList.at(0)
@@ -518,7 +527,6 @@ void YerothAdminWindow::generate_table_header_mapping_entries_for_csv_import()
 	QLabel *aCsvHeaderLabel = 0;
 
 	YerothComboBox *aMappedComboBox = 0;
-
 
 	for (int k = 0; k < csvHeaderContent.size(); ++k)
 	{
@@ -590,6 +598,48 @@ void YerothAdminWindow::generate_table_header_mapping_entries_for_csv_import()
 
 	pushButton_importer_fichier_csv_valider->
 		enable(this, SLOT(import_current_selected_csv_file()));
+
+	return csvFileHasVisibleContentToImport;
+}
+
+
+void YerothAdminWindow::clear_csv_import_panel_content_mapping()
+{
+	QLabel *aCsvHeaderLabel = 0;
+
+	for (int k = 0; k < _csvContentIdxToCsvFileContentImportHeader.size(); ++k)
+	{
+		aCsvHeaderLabel = _csvContentIdxToCsvFileContentImportHeader.value(k);
+
+		if (0 != aCsvHeaderLabel)
+		{
+			aCsvHeaderLabel->setVisible(false);
+			aCsvHeaderLabel->setEnabled(false);
+			aCsvHeaderLabel->setText(YerothUtils::EMPTY_STRING);
+		}
+	}
+
+	QMapIterator<int, YerothComboBox *> itIndexToSQLTableImportHeader(_csvContentIdxToSQLTableImportHeader);
+
+	YerothComboBox *aMappedComboBox = 0;
+
+	while(itIndexToSQLTableImportHeader.hasNext())
+	{
+		itIndexToSQLTableImportHeader.next();
+
+		aMappedComboBox = itIndexToSQLTableImportHeader.value();
+
+		if (0 != aMappedComboBox)
+		{
+			aMappedComboBox->setVisible(false);
+			aMappedComboBox->setEnabled(false);
+			aMappedComboBox->clear();
+		}
+	}
+
+	pushButton_importer_fichier_csv_reinitialiser->setEnabled(false);
+
+	pushButton_importer_fichier_csv_valider->setEnabled(false);
 }
 
 
