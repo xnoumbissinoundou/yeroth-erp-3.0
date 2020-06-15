@@ -291,9 +291,9 @@ void YerothStockDetailWindow::rendreVisible(YerothSqlTableModel * stocksTableMod
 }
 
 
-void YerothStockDetailWindow::setStockSpecificWidgetVisible(bool visible)
+void YerothStockDetailWindow::setStockAchatValuesVisibility(bool aVisibility)
 {
-	if (visible)
+	if (aVisibility)
 	{
 		lineEdit_quantite_restante->setFixedWidth(104);
 	}
@@ -302,22 +302,47 @@ void YerothStockDetailWindow::setStockSpecificWidgetVisible(bool visible)
 		lineEdit_quantite_restante->setFixedWidth(205);
 	}
 
-	label_reference_recu_dachat->setVisible(visible);
-	lineEdit_reference_recu_dachat->setVisible(visible);
+	checkBox_achat->setVisible(aVisibility);
 
-	label_stock_dalerte->setVisible(visible);
-	lineEdit_stock_dalerte->setVisible(visible);
+	checkBox_achat->setChecked(aVisibility);
 
-	label_localisation_du_stock->setVisible(visible);
-	lineEdit_localisation_produit->setVisible(visible);
+	label_prix_dachat->setVisible(aVisibility);
 
-	dateEdit_date_peremption->setVisible(visible);
-	label_date_peremption->setVisible(visible);
+    lineEdit_prix_dachat->setVisible(aVisibility);
 
-	label_prix_dachat->setVisible(visible);
-	lineEdit_prix_dachat->setVisible(visible);
+    label_reference_recu_dachat->setVisible(aVisibility);
 
-	checkBox_achat->setVisible(visible);
+    lineEdit_reference_recu_dachat->setVisible(aVisibility);
+}
+
+
+void YerothStockDetailWindow::setStockSpecificWidgetVisibility(bool aVisibility)
+{
+	if (aVisibility)
+	{
+		lineEdit_quantite_restante->setFixedWidth(104);
+	}
+	else
+	{
+		lineEdit_quantite_restante->setFixedWidth(205);
+	}
+
+	label_reference_recu_dachat->setVisible(aVisibility);
+	lineEdit_reference_recu_dachat->setVisible(aVisibility);
+
+	label_stock_dalerte->setVisible(aVisibility);
+	lineEdit_stock_dalerte->setVisible(aVisibility);
+
+	label_localisation_du_stock->setVisible(aVisibility);
+	lineEdit_localisation_produit->setVisible(aVisibility);
+
+	dateEdit_date_peremption->setVisible(aVisibility);
+	label_date_peremption->setVisible(aVisibility);
+
+	label_prix_dachat->setVisible(aVisibility);
+	lineEdit_prix_dachat->setVisible(aVisibility);
+
+	checkBox_achat->setVisible(aVisibility);
 }
 
 
@@ -331,21 +356,27 @@ void YerothStockDetailWindow::showItem()
 
 	if (is_service)
 	{
-	    setStockSpecificWidgetVisible(false);
+	    setStockSpecificWidgetVisibility(false);
+
+	    checkBox_service->setVisible(true);
 
 	    label_fournisseur->setText(QObject::tr("client"));
 	    lineEdit_nom_entreprise_fournisseur->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT));
 	}
 	else
 	{
-		setStockSpecificWidgetVisible(true);
+		setStockSpecificWidgetVisibility(true);
+
+		checkBox_service->setVisible(false);
 
 		label_fournisseur->setText(QObject::tr("fournisseur"));
 		lineEdit_nom_entreprise_fournisseur->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR));
 	}
 
     lineEdit_reference_produit->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE));
+
     lineEdit_designation->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
+
     lineEdit_categorie_produit->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::CATEGORIE));
 
     double prix_unitaire = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::PRIX_UNITAIRE).toDouble();
@@ -353,6 +384,12 @@ void YerothStockDetailWindow::showItem()
     lineEdit_prix_unitaire->setText(GET_CURRENCY_STRING_NUM(prix_unitaire));
 
     double prix_dachat = 0.0;
+
+    setStockAchatValuesVisibility(false);
+
+    QString recordID = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ID);
+
+    int achatRecordSize = YerothUtils::STOCK_PURCHASE_RECORDS_QUANTITY(recordID);
 
     YerothPOSUser *currentUser = YerothUtils::getAllWindows()->getUser();
 
@@ -362,12 +399,18 @@ void YerothStockDetailWindow::showItem()
     		currentUser->isGestionaireDesStocks())
     	{
     		prix_dachat = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::PRIX_DACHAT).toDouble();
+
+    	    if (achatRecordSize > 0)
+    	    {
+    	    	setStockAchatValuesVisibility(true);
+
+        	    lineEdit_prix_dachat->setText(GET_CURRENCY_STRING_NUM(prix_dachat));
+
+        	    lineEdit_reference_recu_dachat->setText(
+        	    		GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE_RECU_DACHAT));
+    	    }
     	}
     }
-
-    lineEdit_reference_recu_dachat->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE_RECU_DACHAT));
-
-    lineEdit_prix_dachat->setText(GET_CURRENCY_STRING_NUM(prix_dachat));
 
     double prix_vente = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::PRIX_VENTE).toDouble();
 
@@ -385,9 +428,12 @@ void YerothStockDetailWindow::showItem()
     double stock_dalerte = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::STOCK_DALERTE).toDouble();
 
     lineEdit_stock_dalerte->setText(GET_DOUBLE_STRING_P(stock_dalerte, 2));
-    dateEdit_date_peremption->setDate(GET_DATE_FROM_STRING(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DATE_PEREMPTION)));
 
-    double lots_entrant = GET_SQL_RECORD_DATA(record, "lots_entrant").toDouble();
+    dateEdit_date_peremption->setDate(
+    		GET_DATE_FROM_STRING(
+    				GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DATE_PEREMPTION)));
+
+    double lots_entrant = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::LOTS_ENTRANT).toDouble();
 
     double quantite_par_lot = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::QUANTITE_PAR_LOT).toDouble();
 
@@ -412,31 +458,6 @@ void YerothStockDetailWindow::showItem()
     else
     {
         label_image_produit->setAutoFillBackground(false);
-    }
-
-    QString recordID = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ID);
-
-    QString strAchatsQuery(QString("SELECT %1 FROM %2 WHERE %3 = '%4'")
-    							.arg(YerothDatabaseTableColumn::ID,
-    								 _allWindows->ACHATS,
-    								 YerothDatabaseTableColumn::STOCKS_ID,
-									 recordID));
-
-    QSqlQuery query;
-
-    int achatQuerySize = YerothUtils::execQuery(query, strAchatsQuery, _logger);
-
-//    qDebug() << QString("++ strAchatsQuery: %1, querySize: %2")
-//    				.arg(strAchatsQuery,
-//    					 QString::number(achatQuerySize));
-
-    if (1 == achatQuerySize)
-    {
-    	checkBox_achat->setChecked(true);
-    }
-    else
-    {
-    	checkBox_achat->setChecked(false);
     }
 }
 

@@ -272,6 +272,13 @@ public:
 	static QString GET_REFERENCE_RECU_SUFFIX(const QString &prefix,
 											 const QString &fixedNumber);
 
+	static int STOCK_PURCHASE_RECORDS_QUANTITY(int stockId);
+
+	inline static int STOCK_PURCHASE_RECORDS_QUANTITY(const QString &stockId)
+	{
+		return YerothUtils::STOCK_PURCHASE_RECORDS_QUANTITY(stockId.toInt());
+	}
+
 	static void getColumnListString(QStringList   &columnStringList,
 									const QString &tableName,
 									const QString &fieldName,

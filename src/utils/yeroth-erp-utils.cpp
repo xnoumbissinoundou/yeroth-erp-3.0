@@ -1440,6 +1440,22 @@ QString YerothUtils::GET_REFERENCE_RECU_SUFFIX(const QString &prefix,
 }
 
 
+int YerothUtils::STOCK_PURCHASE_RECORDS_QUANTITY(int stockId)
+{
+    QString strAchatsQuery(QString("SELECT %1 FROM %2 WHERE %3 = '%4'")
+    							.arg(YerothDatabaseTableColumn::ID,
+    								 _allWindows->ACHATS,
+    								 YerothDatabaseTableColumn::STOCKS_ID,
+									 QString::number(stockId)));
+
+    QSqlQuery query;
+
+    int achatQuerySize = YerothUtils::execQuery(query, strAchatsQuery);
+
+    return achatQuerySize;
+}
+
+
 void YerothUtils::getColumnListString(QStringList &columnStringList,
                                       const QString &tableName,
                                       const QString &fieldName,

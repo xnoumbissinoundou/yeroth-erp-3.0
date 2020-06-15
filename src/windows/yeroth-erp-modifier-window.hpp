@@ -59,11 +59,6 @@ public:
 
 public slots:
 
-    inline void edited_prix_vente(const QString & newPrixVente)
-    {
-    	_lastEditedPrixVente = newPrixVente;
-    }
-
     void display_prix_vente();
 
     void handleTVACheckBox(bool clicked);
@@ -98,15 +93,30 @@ protected:
 
 private slots:
 
-	void actualiser_service_ou_stock();
+	void handle_achat_checkBox(int aState);
 
-private:
-
-	void actualiser_service();
+	void handle_re_approvisionnement_checkBox(int state);
 
 	void actualiser_stock();
 
+	void edited_prix_vente(const QString &newPrixVente);
+
+	void calculate_and_display_benefit_buying_price_percentage();
+
+private:
+
+	void handleVisibilityPrixDachat(bool anEditable);
+
+	void ajouter_nouveau_re_approvisionnement_achat(double quantiteEnReApprovisionement,
+													int stockId);
+
+	void update_achat_deja_existant(const QSqlRecord &aStockRecord,
+									double aPrixUnitaireHT,
+									double aMargeBeneficiaire);
+
     void setupLineEdits();
+
+    void setupLineEditsQCompleters();
 
     inline void setupDateTimeEdits()
     {
@@ -122,11 +132,15 @@ private:
     void showItem();
 
 
-    YerothLogger					*_logger;
+    YerothLogger				*_logger;
+
+    int							_currentStockID;
 
     double						_montantTva;
 
     bool						_tvaCheckBoxPreviousState;
+
+    QString						_currentPrixDachat;
 
     QString						_lastEditedPrixVente;
 

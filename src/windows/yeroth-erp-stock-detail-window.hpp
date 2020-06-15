@@ -91,7 +91,9 @@ private:
 
     void setupLineEdits();
 
-    void setStockSpecificWidgetVisible(bool visible);
+    void setStockAchatValuesVisibility(bool aVisibility);
+
+    void setStockSpecificWidgetVisibility(bool aVisibility);
 
     void showItem();
 

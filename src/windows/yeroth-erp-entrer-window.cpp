@@ -1542,9 +1542,6 @@ void YerothEntrerWindow::enregistrer_produit()
     	achatRecord.setValue(YerothDatabaseTableColumn::REFERENCE, lineEdit_reference_produit->text());
     	achatRecord.setValue(YerothDatabaseTableColumn::DESIGNATION, lineEdit_designation->text());
     	achatRecord.setValue(YerothDatabaseTableColumn::CATEGORIE, lineEdit_categorie_produit->text());
-    	achatRecord.setValue(YerothDatabaseTableColumn::DESCRIPTION_PRODUIT, textEdit_description->toPlainText());
-    	achatRecord.setValue(YerothDatabaseTableColumn::LOTS_ENTRANT, doubleSpinBox_lots_entrant->value());
-    	achatRecord.setValue(YerothDatabaseTableColumn::QUANTITE_PAR_LOT, lineEdit_quantite_par_lot->text().toDouble());
     }
 
     record.setValue(YerothDatabaseTableColumn::ID, stock_id_to_save);
@@ -1585,7 +1582,6 @@ void YerothEntrerWindow::enregistrer_produit()
     {
     	achatRecord.setValue(YerothDatabaseTableColumn::ENREGISTREUR_STOCK, utilisateurCourrantNomComplet);
     	achatRecord.setValue(YerothDatabaseTableColumn::QUANTITE_TOTALE, quantite_totale);
-    	achatRecord.setValue(YerothDatabaseTableColumn::STOCK_DALERTE, stock_dalerte);
     	achatRecord.setValue(YerothDatabaseTableColumn::REFERENCE_RECU_DACHAT, reference_recu_dachat);
     	achatRecord.setValue(YerothDatabaseTableColumn::PRIX_DACHAT, prix_dachat);
     	achatRecord.setValue(YerothDatabaseTableColumn::PRIX_VENTE, prix_vente);
@@ -1790,21 +1786,9 @@ void YerothEntrerWindow::showItem()
 
     QString recordID = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ID);
 
-    QString strAchatsQuery(QString("SELECT %1 FROM %2 WHERE %3 = '%4'")
-    							.arg(YerothDatabaseTableColumn::ID,
-    								 _allWindows->ACHATS,
-    								 YerothDatabaseTableColumn::STOCKS_ID,
-									 recordID));
+    int achatQuerySize = YerothUtils::STOCK_PURCHASE_RECORDS_QUANTITY(recordID);
 
-    QSqlQuery query;
-
-    int achatQuerySize = YerothUtils::execQuery(query, strAchatsQuery, _logger);
-
-//    qDebug() << QString("++ strAchatsQuery: %1, querySize: %2")
-//    				.arg(strAchatsQuery,
-//    					 QString::number(achatQuerySize));
-
-    if (1 == achatQuerySize)
+    if (achatQuerySize > 0)
     {
     	checkBox_achat->setChecked(true);
     }

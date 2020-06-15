@@ -86,9 +86,6 @@ void YerothAchatsDetailWindow::setupLineEdits()
     lineEdit_prix_dachat->setYerothEnabled(false);
     lineEdit_prix_unitaire->setYerothEnabled(false);
     lineEdit_prix_vente->setYerothEnabled(false);
-    textEdit_description->setYerothEnabled(false);
-    lineEdit_quantite_initiale->setYerothEnabled(false);
-    lineEdit_stock_dalerte->setYerothEnabled(false);
     lineEdit_categorie_produit->setYerothEnabled(false);
     lineEdit_nom_entreprise_fournisseur->setYerothEnabled(false);
 }
@@ -250,9 +247,7 @@ void YerothAchatsDetailWindow::rendreInvisible()
     lineEdit_prix_dachat->clear();
     lineEdit_prix_unitaire->clear();
     lineEdit_prix_vente->clear();
-    textEdit_description->clear();
     lineEdit_localisation_produit->clear();
-    label_image_produit->clear();
 
     YerothWindowsCommons::rendreInvisible();
 }
@@ -311,36 +306,11 @@ void YerothAchatsDetailWindow::showItem(int lastSelectedRow)
 
     lineEdit_localisation_produit->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::LOCALISATION_STOCK));
 
-    textEdit_description->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESCRIPTION_PRODUIT));
-
-
     double quantite_restante = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::QUANTITE_TOTALE).toDouble();
 
     lineEdit_quantite_restante->setText(GET_DOUBLE_STRING_P(quantite_restante, 0));
 
-    double stock_dalerte = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::STOCK_DALERTE).toDouble();
-
-    lineEdit_stock_dalerte->setText(GET_DOUBLE_STRING_P(stock_dalerte, 0));
     dateEdit_date_peremption->setDate(GET_DATE_FROM_STRING(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DATE_PEREMPTION)));
-
-    int lots_entrant = GET_SQL_RECORD_DATA(record, "lots_entrant").toInt();
-
-    double quantite_par_lot = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::QUANTITE_PAR_LOT).toDouble();
-
-    double quantite_initiale = lots_entrant * quantite_par_lot;
-
-    lineEdit_quantite_initiale->setText(GET_DOUBLE_STRING_P(quantite_initiale, 0));
-
-    QVariant img(record.value(YerothDatabaseTableColumn::IMAGE_PRODUIT));
-
-    if (!img.isNull())
-    {
-        YerothUtils::loadPixmapFromDB(*label_image_produit, img, "JPG");
-    }
-    else
-    {
-        label_image_produit->setAutoFillBackground(false);
-    }
 }
 
 
