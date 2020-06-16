@@ -28,6 +28,10 @@ git merge-base --is-ancestor ${ANCESTOR_GIT_COMMIT} ${CANDIDATE_GIT_COMMIT_TO_SQ
 
 CANDIDATE_GIT_COMMIT_IS_ANCESTOR="$?"
 
+BASEDIR=$(dirname $0)
+
+echo processing .sql files from folder: "${BASEDIR}"
+
 if [ "${CANDIDATE_GIT_COMMIT_IS_ANCESTOR}" -eq 0 ]; then
 		#echo "$APP | commit ${CANDIDATE_GIT_COMMIT_TO_SQL_UPGRADE} is a descendant of commit ${ANCESTOR_GIT_COMMIT}";
 		#echo "$APP | find all sql upgrade scripts required from commit ${ANCESTOR_GIT_COMMIT}";
@@ -39,7 +43,7 @@ if [ "${CANDIDATE_GIT_COMMIT_IS_ANCESTOR}" -eq 0 ]; then
 
 		for c in ${ALL_RELEVANT_GIT_COMMITS}; do
 
-				SQL_FILE="${c}.sql"
+				SQL_FILE="${BASEDIR}/${c}.sql"
 				
 				if [ -f ${SQL_FILE} ]; then					
 						
