@@ -457,7 +457,7 @@ bool YerothMarchandisesWindow::filtrer_empty_product_stock()
 
 				splittedData = data.split("|");
 
-				if (splittedData.size() > 0)
+				if (splittedData.size() > 1)
 				{
 					categorieStr = splittedData.at(0);
 					designationStr = splittedData.at(1);

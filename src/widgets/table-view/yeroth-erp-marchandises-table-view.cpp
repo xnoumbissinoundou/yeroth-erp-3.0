@@ -226,6 +226,10 @@ void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTab
 
                 	if (0 >= querySize)
                 	{
+                		anItem->setAccessibleText(QString("%1|%2")
+                									.arg(categorieStr,
+                										 designationStr));
+
                 		anItem->setForeground(YerothUtils::YEROTH_RED_COLOR);
                 	}
 
