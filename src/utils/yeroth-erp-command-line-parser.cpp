@@ -6,20 +6,13 @@
 
 #include "yeroth-erp-command-line-parser.hpp"
 
-#include <getopt.h>
 
 #include <QtCore/QString>
 #include <QtCore/QDebug>
 
-YerothCommandLineParser::YerothCommandLineParser()
-{
 
-}
+#include <getopt.h>
 
-YerothCommandLineParser::~YerothCommandLineParser()
-{
-
-}
 
 enum YerothCommandLineArgumentType
 YerothCommandLineParser::parseProgramArguments(int argc, char *argv[])

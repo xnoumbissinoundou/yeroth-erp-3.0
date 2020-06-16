@@ -28,9 +28,13 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-	YerothCommandLineParser();
+	inline YerothCommandLineParser()
+	{
+	}
 
-	~YerothCommandLineParser();
+	inline ~YerothCommandLineParser()
+	{
+	}
 
 	enum YerothCommandLineArgumentType parseProgramArguments(int argc, char *argv[]);
 };

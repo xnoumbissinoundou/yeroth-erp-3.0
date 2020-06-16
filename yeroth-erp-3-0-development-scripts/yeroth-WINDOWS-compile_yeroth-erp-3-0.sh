@@ -147,6 +147,7 @@ YEROTH_BUILD_COMPUTER="$(uname -s)"
 YEROTH_BUILD_COMPUTER_TEXT="ON BUILD_COMPUTER: '${YEROTH_BUILD_COMPUTER}'.\"));"
 
 if [ $releaseBuildFlag ]; then
+		sed -i "s/YEROTH_GIT_PUSH_COMMIT_ID/${YEROTH_GIT_PUSH_COMMIT_ID}/g" src/utils/yeroth-erp-utils.cpp
 		sed -i "s/LAST BUILD ID: .*/${YEROTH_GIT_PUSH_COMMIT_ID_TEXT}/g" src/utils/yeroth-erp-utils.cpp
 		sed -i "s/ON BUILD_COMPUTER: .*/${YEROTH_BUILD_COMPUTER_TEXT}/g" src/utils/yeroth-erp-utils.cpp
 fi

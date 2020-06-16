@@ -319,6 +319,8 @@ const QString YerothUtils::MAGELAN_SERVER		("com.yeroth.server");
 
 const QString YerothUtils::MAGELAN_SERVER_OBJECT ("/");
 
+const QString YerothUtils::YEROTH_ERP_3_0_LAST_BUILD_ID ("YEROTH_GIT_PUSH_COMMIT_ID");
+
 #ifdef YEROTH_SERVER
 const QString YerothUtils::APROPOS_MSG(QObject::trUtf8("YEROTH-ERP-3.0-SERVER"
 													   "\n(VERSION du YEROTH_BUILD_DATE à YEROTH_BUILD_DATE_TIMESTAMP)"

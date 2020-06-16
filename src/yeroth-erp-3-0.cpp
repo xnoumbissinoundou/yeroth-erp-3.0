@@ -5,6 +5,8 @@
  */
 #include "src/include/yeroth-erp-3-0-software.text-configuration.hpp"
 
+#include "src/utils/yeroth-erp-command-line-parser.hpp"
+
 #include "src/utils/virtual-keyboard/yeroth-erp-key-emitter.hpp"
 
 #include "src/yeroth-erp-windows.hpp"
@@ -552,14 +554,41 @@ int main(int argc, char *argv[])
 
     QApplication::setWindowIcon(QIcon(":yeroth-erp-3-0-images/yeroth-erp-3.0-icon.png"));
 
-    allWindows.setDatabase(&database);
 
-    qDebug() << QString("db_name: %1, "
-    					"db_ip_address: %2, "
-    					"db_connection_options: %3")
+    bool yerothCmdLineParser_isUsed = false;
+
+    YerothCommandLineParser yerothCmdLineParser;
+
+    enum YerothCommandLineArgumentType yerothCmdLineParseResult =
+    		yerothCmdLineParser.parseProgramArguments(argc, argv);
+
+    switch(yerothCmdLineParseResult)
+    {
+    case VERSION:
+    	yerothCmdLineParser_isUsed = true;
+    	qDebug() << YerothUtils::YEROTH_ERP_3_0_LAST_BUILD_ID;
+    	break;
+
+    default:
+    	break;
+    }
+
+    if (yerothCmdLineParser_isUsed)
+    {
+    	if (VERSION == yerothCmdLineParseResult)
+    	{
+    		return 0;
+    	}
+    }
+
+	qDebug() << QString("db_name: %1, "
+						"db_ip_address: %2, "
+						"db_connection_options: %3")
 					.arg(database.db_name(),
 						 database.db_ip_address(),
 						 database.db_connection_options());
+
+    allWindows.setDatabase(&database);
 
     bool isDatabaseOpened = database.open();
 

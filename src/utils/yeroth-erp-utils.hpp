@@ -550,6 +550,8 @@ public:
 
 	static const QString MAGELAN_SERVER_OBJECT;
 
+	static const QString YEROTH_ERP_3_0_LAST_BUILD_ID;
+
 	static const QString APROPOS_MSG;
 
 	static const QString APPLICATION_NAME;
