@@ -566,7 +566,7 @@ int main(int argc, char *argv[])
     {
     case VERSION:
     	yerothCmdLineParser_isUsed = true;
-    	qDebug() << YerothUtils::YEROTH_ERP_3_0_LAST_BUILD_ID;
+    	YerothUtils::YEROTH_PRINT_TO_STDOUT(YerothUtils::YEROTH_ERP_3_0_LAST_BUILD_ID);
     	break;
 
     default:

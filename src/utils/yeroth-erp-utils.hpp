@@ -379,6 +379,11 @@ public:
 	static QString getStrategySqlQueryStr(QString aSelectStmt,
 										  QString aStrategy);
 
+	inline static void YEROTH_PRINT_TO_STDOUT(const QString &aQStringOutput)
+	{
+		QTextStream(stdout) << aQStringOutput << endl;
+	}
+
 	inline static QString getTvaString()
 	{
 		return QString::number((YerothERPConfig::tva_value * 100), 'f', 2);
