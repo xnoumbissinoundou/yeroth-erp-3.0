@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-modifier-compte-client.hpp
  *
- *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
+ *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
  */
 
 # ifndef SRC_WINDOWS_YEROTH_MODIFIER_COMPTE_CLIENT_WINDOW_HPP_

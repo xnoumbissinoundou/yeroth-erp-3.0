@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-sortir-liststocks-window.hpp
  *
- *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
+ *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef SRC_WINDOWS_YEROTH_SORTIR_LISTSTOCKS_WINDOW_HPP_

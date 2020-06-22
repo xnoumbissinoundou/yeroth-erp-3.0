@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-qstandard-item.cpp
  *
- *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
+ *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "yeroth-erp-qstandard-item.hpp"

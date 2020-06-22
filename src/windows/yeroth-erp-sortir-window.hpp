@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-sortir-window.hpp
  *
- *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
+ *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
  */
 
 # ifndef YEROTH_SORTIR_WINDOW_HPP_

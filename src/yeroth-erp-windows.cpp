@@ -2,7 +2,7 @@
  * yeroth-erp-windows.cpp
  *
  *  Created on: Oct 7, 2015
- *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
+ *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
  *      Email:  xnoundou7@gmail.com
  */
 

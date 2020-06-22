@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-style.cpp
  *
- *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
+ *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
  */
 #include "src/utils/yeroth-erp-style.hpp"
 

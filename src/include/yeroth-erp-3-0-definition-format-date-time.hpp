@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-3-0-definition-format-date-time.hpp
  *
- *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
+ *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
  */
 
 # ifndef _YEROTH_ERP_3_0_DEFINITION_FORMAT_DATE_TIME_HPP_

@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-alertes-window.hpp
  *
- *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
+ *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
  */
 
 # ifndef SRC_YEROTH_ALERTES_WINDOW_HPP_

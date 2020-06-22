@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-ventes-window.hpp
  *
- *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
+ *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef SRC_YEROTH_CAISSE_WINDOW_HPP_

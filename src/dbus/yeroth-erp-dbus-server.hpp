@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-dbus-server.hpp
  *
- *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
+ *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef SRC_DBUS_YEROTH_DBUS_SERVER_HPP_

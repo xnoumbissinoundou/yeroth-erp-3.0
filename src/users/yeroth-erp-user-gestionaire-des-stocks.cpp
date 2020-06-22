@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-user-gestionaire-des-stocks.cpp
  *
- *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
+ *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "yeroth-erp-user-gestionaire-des-stocks.hpp"

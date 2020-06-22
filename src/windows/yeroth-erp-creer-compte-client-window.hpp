@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-creer-compte-client-window.hpp
  *
- *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
+ *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
  */
 
 # ifndef YEROTH_CREER_COMPTE_CLIENT_WINDOW_HPP_

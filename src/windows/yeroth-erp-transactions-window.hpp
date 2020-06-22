@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-transactions-window.hpp
  *
- *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
+ *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef YEROTH_TRANSACTIONS_WINDOW_HPP_

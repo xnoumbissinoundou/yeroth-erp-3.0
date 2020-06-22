@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.hpp
  *
- *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
+ *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef YEROTH_ERP_VENTE_METHODE_PAIEMENT_COMPTANT_ENTREE_DIALOG_HPP_

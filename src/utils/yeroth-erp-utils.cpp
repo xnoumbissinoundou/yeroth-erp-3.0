@@ -325,7 +325,7 @@ const QString YerothUtils::YEROTH_ERP_3_0_LAST_BUILD_ID ("YEROTH_GIT_PUSH_COMMIT
 const QString YerothUtils::APROPOS_MSG(QObject::trUtf8("YEROTH-ERP-3.0-SERVER"
 													   "\n(VERSION du YEROTH_BUILD_DATE à YEROTH_BUILD_DATE_TIMESTAMP)"
 													   "\n\n par \n\n"
-		   	   	   	   	   	   	   	   	   	   	   	   "(c) XAVIER NOUMBISSI NOUNDOU, DIPL.-INF., PH.D. (ABD).\n\n"
+		   	   	   	   	   	   	   	   	   	   	   	   "(c) (2015 - ...) Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU.\n\n"
 		   	   	   	   	   	   	   	   	   	   	   	   "LAST BUILD ID: ''.\n\n"
 		   	   	   	   	   	   	   	   	   	   	   	   "ON BUILD_COMPUTER: ''."));
 const QString YerothUtils::APPLICATION_NAME(QObject::trUtf8("YEROTH-ERP-3.0-SERVER"));
@@ -335,7 +335,7 @@ const QString YerothUtils::APPLICATION_NAME(QObject::trUtf8("YEROTH-ERP-3.0-SERV
 const QString YerothUtils::APROPOS_MSG(QObject::trUtf8("YEROTH-ERP-3.0-CLIENT"
 													   "\n(VERSION du YEROTH_BUILD_DATE à YEROTH_BUILD_DATE_TIMESTAMP)"
 													   "\n\n par \n\n"
-													   "(c) XAVIER NOUMBISSI NOUNDOU, DIPL.-INF., PH.D. (ABD).\n\n"
+													   "(c) (2015 - ...) Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU.\n\n"
 													   "LAST BUILD ID: ''.\n\n"
 													   "ON BUILD_COMPUTER: ''."));
 const QString YerothUtils::APPLICATION_NAME(QObject::trUtf8("YEROTH-ERP-3.0-CLIENT"));
@@ -345,7 +345,7 @@ const QString YerothUtils::APPLICATION_NAME(QObject::trUtf8("YEROTH-ERP-3.0-CLIE
 const QString YerothUtils::APROPOS_MSG(QObject::trUtf8("YEROTH-ERP-3.0-STANDALONE"
 													   "\n(VERSION du YEROTH_BUILD_DATE à YEROTH_BUILD_DATE_TIMESTAMP)"
 													   "\n\n par \n\n"
-		   	   	   	   	   	   	   	   	   	   	   	   "(c) XAVIER NOUMBISSI NOUNDOU, DIPL.-INF., PH.D. (ABD).\n\n"
+		   	   	   	   	   	   	   	   	   	   	   	   "(c) (2015 - ...) Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU.\n\n"
 		   	   	   	   	   	   	   	   	   	   	   	   "LAST BUILD ID: ''.\n\n"
 		   	   	   	   	   	   	   	   	   	   	   	   "ON BUILD_COMPUTER: ''."));
 const QString YerothUtils::APPLICATION_NAME(QObject::trUtf8("YEROTH-ERP-3.0-STANDALONE"));
@@ -355,7 +355,7 @@ const QString YerothUtils::APPLICATION_NAME(QObject::trUtf8("YEROTH-ERP-3.0-STAN
 const QString YerothUtils::APROPOS_MSG(QObject::trUtf8("YEROTH-ERP-3.0-ACADEMIC_EVALUATION"
 													   "\n(VERSION du YEROTH_BUILD_DATE à YEROTH_BUILD_DATE_TIMESTAMP)"
 													   "\n\n par \n\n"
-		   	   	   	   	   	   	   	   	   	   	   	   "(c) XAVIER NOUMBISSI NOUNDOU, DIPL.-INF., PH.D. (ABD).\n\n"
+		   	   	   	   	   	   	   	   	   	   	   	   "(c) (2015 - ...) Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU.\n\n"
 		   	   	   	   	   	   	   	   	   	   	   	   "LAST BUILD ID: ''.\n\n"
 		   	   	   	   	   	   	   	   	   	   	   	   "ON BUILD_COMPUTER: ''."));
 const QString YerothUtils::APPLICATION_NAME(QObject::trUtf8("YEROTH-ERP-3.0-ACADEMIC_EVALUATION"));

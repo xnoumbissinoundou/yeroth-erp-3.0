@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-admin-detail-window.hpp
  *
- *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
+ *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef YEROTH_ADMIN_DETAIL_WINDOW_HPP_

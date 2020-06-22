@@ -2,7 +2,7 @@
  * yeroth-erp-ui-loader.cpp
  *
  *  Created on: August 28, 2017
- *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
+ *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
  *      Email:  xnoundou7@gmail.com
  */
 

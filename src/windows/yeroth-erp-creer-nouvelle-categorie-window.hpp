@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-creer-nouvelle-categorie-window.hpp
  *
- *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
+ *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef SRC_YEROTH_NOUVELLE_CATEGORIE_WINDOW_HPP_

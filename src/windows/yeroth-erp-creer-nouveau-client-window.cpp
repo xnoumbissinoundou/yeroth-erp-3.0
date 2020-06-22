@@ -1,6 +1,6 @@
 /*
  * yeroth-erp-creer-nouveau-client-window.cpp
- *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
+ *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "yeroth-erp-creer-nouveau-client-window.hpp"

@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-service-stock-marchandise-data.hpp
  *
- *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
+ *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef SRC_YEROTH_SERVICE_STOCK_MARCHANDISES_DATA_HPP_

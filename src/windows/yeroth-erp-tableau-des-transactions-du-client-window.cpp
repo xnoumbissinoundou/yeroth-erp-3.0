@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-tableau-des-transactions-du-client-window.cpp
  *
- *      Author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
+ *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "yeroth-erp-tableau-des-transactions-du-client-window.hpp"
