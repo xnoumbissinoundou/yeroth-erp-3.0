@@ -6260,7 +6260,7 @@
         <x>182</x>
         <y>15</y>
         <width>168</width>
-        <height>25</height>
+        <height>21</height>
        </rect>
       </property>
       <property name="palette">
@@ -6715,9 +6715,9 @@
       <property name="geometry">
        <rect>
         <x>182</x>
-        <y>45</y>
+        <y>39</y>
         <width>168</width>
-        <height>25</height>
+        <height>21</height>
        </rect>
       </property>
       <property name="palette">
@@ -7172,7 +7172,7 @@
       <property name="geometry">
        <rect>
         <x>9</x>
-        <y>45</y>
+        <y>39</y>
         <width>169</width>
         <height>21</height>
        </rect>
@@ -7196,7 +7196,7 @@
       <property name="geometry">
        <rect>
         <x>9</x>
-        <y>75</y>
+        <y>63</y>
         <width>169</width>
         <height>21</height>
        </rect>
@@ -7220,7 +7220,7 @@
       <property name="geometry">
        <rect>
         <x>9</x>
-        <y>105</y>
+        <y>87</y>
         <width>169</width>
         <height>21</height>
        </rect>
@@ -7244,7 +7244,7 @@
       <property name="geometry">
        <rect>
         <x>9</x>
-        <y>135</y>
+        <y>111</y>
         <width>169</width>
         <height>21</height>
        </rect>
@@ -7268,7 +7268,7 @@
       <property name="geometry">
        <rect>
         <x>9</x>
-        <y>195</y>
+        <y>159</y>
         <width>169</width>
         <height>21</height>
        </rect>
@@ -7292,7 +7292,7 @@
       <property name="geometry">
        <rect>
         <x>9</x>
-        <y>225</y>
+        <y>183</y>
         <width>169</width>
         <height>21</height>
        </rect>
@@ -7316,7 +7316,7 @@
       <property name="geometry">
        <rect>
         <x>9</x>
-        <y>285</y>
+        <y>231</y>
         <width>169</width>
         <height>21</height>
        </rect>
@@ -7339,8 +7339,8 @@
      <widget class="QLabel" name="label_entreprise_secteurs_dactivites">
       <property name="geometry">
        <rect>
-        <x>415</x>
-        <y>15</y>
+        <x>9</x>
+        <y>279</y>
         <width>169</width>
         <height>21</height>
        </rect>
@@ -7364,7 +7364,7 @@
       <property name="geometry">
        <rect>
         <x>9</x>
-        <y>255</y>
+        <y>207</y>
         <width>169</width>
         <height>21</height>
        </rect>
@@ -7388,7 +7388,7 @@
       <property name="geometry">
        <rect>
         <x>9</x>
-        <y>165</y>
+        <y>135</y>
         <width>169</width>
         <height>21</height>
        </rect>
@@ -7412,9 +7412,9 @@
       <property name="geometry">
        <rect>
         <x>182</x>
-        <y>75</y>
+        <y>63</y>
         <width>168</width>
-        <height>25</height>
+        <height>21</height>
        </rect>
       </property>
       <property name="palette">
@@ -7869,9 +7869,9 @@
       <property name="geometry">
        <rect>
         <x>182</x>
-        <y>105</y>
+        <y>87</y>
         <width>168</width>
-        <height>25</height>
+        <height>21</height>
        </rect>
       </property>
       <property name="palette">
@@ -8326,9 +8326,9 @@
       <property name="geometry">
        <rect>
         <x>182</x>
-        <y>135</y>
+        <y>111</y>
         <width>168</width>
-        <height>25</height>
+        <height>21</height>
        </rect>
       </property>
       <property name="palette">
@@ -8783,9 +8783,9 @@
       <property name="geometry">
        <rect>
         <x>182</x>
-        <y>165</y>
+        <y>135</y>
         <width>168</width>
-        <height>25</height>
+        <height>21</height>
        </rect>
       </property>
       <property name="palette">
@@ -9240,9 +9240,9 @@
       <property name="geometry">
        <rect>
         <x>182</x>
-        <y>195</y>
+        <y>159</y>
         <width>168</width>
-        <height>25</height>
+        <height>21</height>
        </rect>
       </property>
       <property name="palette">
@@ -9697,9 +9697,9 @@
       <property name="geometry">
        <rect>
         <x>182</x>
-        <y>225</y>
+        <y>183</y>
         <width>168</width>
-        <height>25</height>
+        <height>21</height>
        </rect>
       </property>
       <property name="palette">
@@ -10154,9 +10154,9 @@
       <property name="geometry">
        <rect>
         <x>182</x>
-        <y>285</y>
+        <y>231</y>
         <width>168</width>
-        <height>25</height>
+        <height>21</height>
        </rect>
       </property>
       <property name="palette">
@@ -10611,9 +10611,9 @@
       <property name="geometry">
        <rect>
         <x>182</x>
-        <y>255</y>
+        <y>207</y>
         <width>168</width>
-        <height>25</height>
+        <height>21</height>
        </rect>
       </property>
       <property name="palette">
@@ -11067,10 +11067,10 @@
      <widget class="YerothLineEdit" name="lineEdit_entreprise_secteurs_dactivites">
       <property name="geometry">
        <rect>
-        <x>586</x>
-        <y>15</y>
+        <x>182</x>
+        <y>279</y>
         <width>168</width>
-        <height>25</height>
+        <height>21</height>
        </rect>
       </property>
       <property name="palette">
@@ -12392,8 +12392,8 @@
      <widget class="QLabel" name="label_entreprise_agence_du_compte_bancaire">
       <property name="geometry">
        <rect>
-        <x>415</x>
-        <y>45</y>
+        <x>9</x>
+        <y>303</y>
         <width>169</width>
         <height>21</height>
        </rect>
@@ -12416,10 +12416,10 @@
      <widget class="YerothLineEdit" name="lineEdit_entreprise_agence_du_compte_bancaire">
       <property name="geometry">
        <rect>
-        <x>586</x>
-        <y>45</y>
+        <x>182</x>
+        <y>303</y>
         <width>168</width>
-        <height>25</height>
+        <height>21</height>
        </rect>
       </property>
       <property name="palette">
@@ -12873,9 +12873,9 @@
      <widget class="QLabel" name="label_entreprise_numero_du_compte_bancaire">
       <property name="geometry">
        <rect>
-        <x>403</x>
-        <y>75</y>
-        <width>181</width>
+        <x>9</x>
+        <y>327</y>
+        <width>169</width>
         <height>21</height>
        </rect>
       </property>
@@ -12897,10 +12897,10 @@
      <widget class="YerothLineEdit" name="lineEdit_entreprise_reference_du_compte_bancaire">
       <property name="geometry">
        <rect>
-        <x>586</x>
-        <y>75</y>
+        <x>182</x>
+        <y>327</y>
         <width>168</width>
-        <height>25</height>
+        <height>21</height>
        </rect>
       </property>
       <property name="palette">
@@ -13355,9 +13355,9 @@
       <property name="geometry">
        <rect>
         <x>182</x>
-        <y>315</y>
+        <y>255</y>
         <width>168</width>
-        <height>25</height>
+        <height>21</height>
        </rect>
       </property>
       <property name="palette">
@@ -13812,7 +13812,7 @@
       <property name="geometry">
        <rect>
         <x>9</x>
-        <y>315</y>
+        <y>255</y>
         <width>169</width>
         <height>21</height>
        </rect>
