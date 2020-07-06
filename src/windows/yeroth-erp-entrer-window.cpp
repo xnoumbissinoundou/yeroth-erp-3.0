@@ -532,6 +532,7 @@ void YerothEntrerWindow::display_quantite_total(const QString & quantite_par_lot
 	}
 }
 
+
 void YerothEntrerWindow::display_quantite_total_by_spinbox(double lots)
 {
     double qte_lot = lineEdit_quantite_par_lot->text().toDouble();
@@ -610,6 +611,8 @@ void YerothEntrerWindow::setStockSpecificWidgetVisible(bool visible)
 {
 	if (visible)
 	{
+		doubleSpinBox_lots_entrant->setMinimum(1.0);
+
     	doubleSpinBox_lots_entrant->setFixedWidth(52);
 
 		doubleSpinBox_lots_entrant->setDecimals(0);
@@ -620,6 +623,8 @@ void YerothEntrerWindow::setStockSpecificWidgetVisible(bool visible)
 	}
 	else
 	{
+		doubleSpinBox_lots_entrant->setMinimum(0.0);
+
     	doubleSpinBox_lots_entrant->setFixedWidth(205);
 
 	    doubleSpinBox_lots_entrant->setDecimals(2);
@@ -627,6 +632,15 @@ void YerothEntrerWindow::setStockSpecificWidgetVisible(bool visible)
 	    lineEdit_quantite_par_lot->setText("1");
 
 	    lineEdit_quantite_totale->setFixedWidth(205);
+
+		if (checkBox_service->isChecked())
+		{
+			doubleSpinBox_lots_entrant->setValue(0.0);
+		}
+		else
+		{
+			doubleSpinBox_lots_entrant->setValue(1.0);
+		}
 	}
 
 	label_description->setVisible(visible);
@@ -839,11 +853,20 @@ bool YerothEntrerWindow::check_fields(bool withClearAllServiceMandatoryFields /*
 
 void YerothEntrerWindow::clear_all_fields()
 {
+	if (checkBox_service->isChecked())
+	{
+		doubleSpinBox_lots_entrant->setValue(0.0);
+	}
+	else
+	{
+		doubleSpinBox_lots_entrant->setValue(1.0);
+	}
+
     lineEdit_reference_produit->clearField();
     lineEdit_designation->clearField();
     lineEdit_categorie_produit->clearField();
     lineEdit_nom_entreprise_fournisseur->clearField();
-    doubleSpinBox_lots_entrant->setValue(1.0);
+
     lineEdit_quantite_par_lot->clearField();
     lineEdit_quantite_totale->clear();
     lineEdit_nom_entreprise_fournisseur->clearField();
@@ -855,9 +878,11 @@ void YerothEntrerWindow::clear_all_fields()
     textEdit_description->clear();
     label_image_produit->clear();
     label_image_produit->setAutoFillBackground(false);
-    _lastEditedPrixVente.clear();
-    _montantTva = 0.0;
     checkBox_tva->setChecked(false);
+
+    _lastEditedPrixVente.clear();
+
+    _montantTva = 0.0;
     _tvaCheckBoxPreviousState = false;
     _createNewCategorie = false;
     _createNewFournisseur = false;
