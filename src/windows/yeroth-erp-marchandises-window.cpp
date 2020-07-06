@@ -707,13 +707,6 @@ void YerothMarchandisesWindow::rendreVisible(YerothSqlTableModel * stocksTableMo
 }
 
 
-void YerothMarchandisesWindow::rendreInvisible()
-{
-    lineEdit_marchandises_designation->clear();
-    YerothWindowsCommons::rendreInvisible();
-}
-
-
 void YerothMarchandisesWindow::definirCaissier()
 {
     _logger->log("definirCaissier");

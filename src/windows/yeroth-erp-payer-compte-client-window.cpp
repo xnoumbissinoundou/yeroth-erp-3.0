@@ -305,8 +305,8 @@ void YerothPayerCompteClientWindow::reinitialiser_donnees_de_consultation_des_tr
 
 void YerothPayerCompteClientWindow::private_slot_afficher_les_transactions_dun_client()
 {
-	//qDebug() << QString("_clientLastSelectedRow: %1")
-	//				.arg(QString::number(_clientLastSelectedRow));
+//	qDebug() << QString("_clientLastSelectedRow: %1")
+//					.arg(QString::number(_clientLastSelectedRow));
 
 	if (0 != _curClientTableModel && _curClientTableModel->rowCount() > 0 && _clientLastSelectedRow > -1)
 	{

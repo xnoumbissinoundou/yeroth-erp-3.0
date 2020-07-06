@@ -59,8 +59,6 @@ public:
 
     virtual void rendreVisible(YerothSqlTableModel *stocksTableModel);
 
-    virtual void rendreInvisible();
-
 public slots:
 
 	inline virtual void apropos()
@@ -121,6 +119,8 @@ private slots:
 
 	void private_payer_au_compteclient();
 
+	void private_payer_au_compteclient(const QModelIndex & aModelIndex);
+
 	void modifierCompteClient();
 
 	void supprimerCompteClient();
@@ -143,8 +143,6 @@ private:
 
 
     YerothLogger			*_logger;
-
-    int 					_lastSelectedRow;
 
     QFont 					*_pushButton_filtrer_font;
 

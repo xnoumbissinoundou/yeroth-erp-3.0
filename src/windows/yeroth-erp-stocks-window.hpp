@@ -60,8 +60,6 @@ public:
 
     virtual void rendreVisible(YerothSqlTableModel *stocksTableModel);
 
-    virtual void rendreInvisible();
-
 public slots:
 
 	void gererChoixStrategieGestionDesStocks();

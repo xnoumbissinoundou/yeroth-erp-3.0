@@ -65,8 +65,6 @@ public:
 
     virtual void rendreVisible(YerothSqlTableModel *stocksTableModel);
 
-    virtual void rendreInvisible();
-
 public slots:
 
 	inline virtual void apropos()

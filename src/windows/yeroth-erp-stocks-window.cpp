@@ -675,13 +675,6 @@ void YerothStocksWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
     }
 }
 
-void YerothStocksWindow::rendreInvisible()
-{
-    lineEdit_recherche_reference->clear();
-
-    YerothWindowsCommons::rendreInvisible();
-}
-
 
 void YerothStocksWindow::gererChoixStrategieGestionDesStocks()
 {

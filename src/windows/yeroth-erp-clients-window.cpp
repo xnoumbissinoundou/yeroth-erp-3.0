@@ -36,7 +36,6 @@ YerothERPClientsWindow::YerothERPClientsWindow()
 :YerothWindowsCommons("yeroth-erp-comptes-clients"),
  YerothAbstractClassYerothSearchWindow(_allWindows->CLIENTS),
  _logger(new YerothLogger("YerothERPComptesClientsWindow")),
- _lastSelectedRow(0),
  _pushButton_filtrer_font(0),
  _curClientsTableModel(0)
 {
@@ -148,7 +147,7 @@ YerothERPClientsWindow::YerothERPClientsWindow()
 			this, SLOT(afficher_au_detail()));
 
     connect(tableView_clients, SIGNAL(doubleClicked(const QModelIndex &)), this,
-            SLOT(private_payer_au_compteclient()));
+            SLOT(private_payer_au_compteclient(const QModelIndex &)));
 
     setupShortcuts();
 }
@@ -314,6 +313,26 @@ void YerothERPClientsWindow::textChangedSearchLineEditsQCompleters()
 
 void YerothERPClientsWindow::private_payer_au_compteclient()
 {
+    if (getLastListerSelectedRow() > -1 && _curClientsTableModel->rowCount() > 0)
+    {
+    	rendreInvisible();
+
+    	_allWindows->_payerAuCompteclientWindow->rendreVisible(getLastListerSelectedRow(),
+    														   _curClientsTableModel,
+    														   _curStocksTableModel);
+    }
+    else
+    {
+        YerothQMessageBox::warning(this, QObject::trUtf8("payer à un compte client"),
+                                  QObject::trUtf8("Sélectionnez un compte client afin d'effectuer un paiement !"));
+    }
+}
+
+
+void YerothERPClientsWindow::private_payer_au_compteclient(const QModelIndex & aModelIndex)
+{
+    setLastListerSelectedRow(aModelIndex.row());
+
     tableView_clients->selectRow(getLastListerSelectedRow());
 
     if (getLastListerSelectedRow() > -1 && _curClientsTableModel->rowCount() > 0)
@@ -605,13 +624,6 @@ void YerothERPClientsWindow::rendreVisible(YerothSqlTableModel * stocksTableMode
 	afficherClients(*_curClientsTableModel);
 
 	lineEdit_comptes_clients_terme_recherche->setFocus();
-}
-
-
-void YerothERPClientsWindow::rendreInvisible()
-{
-    lineEdit_recherche_nom_entreprise->clear();
-    YerothWindowsCommons::rendreInvisible();
 }
 
 
