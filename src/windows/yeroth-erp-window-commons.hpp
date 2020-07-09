@@ -62,6 +62,11 @@ public:
 		anAction->setVisible(aBooleanValue);
 	}
 
+	inline QSet<int> &getDBFieldNamesToPrintCenterAligned()
+	{
+		return _DBFieldNamesToPrintCenterAligned;
+	}
+
 	inline QSet<int> &getDBFieldNamesToPrintRightAligned()
 	{
 		return _DBFieldNamesToPrintRightAligned;
@@ -271,6 +276,8 @@ protected:
     QMap<QString, int>					_dbtablefieldNameToDBColumnIndex;
 
     QStringList							_visibleDBFieldColumnStrList;
+
+    QSet<int>							_DBFieldNamesToPrintCenterAligned;
 
     QSet<int>							_DBFieldNamesToPrintRightAligned;
 

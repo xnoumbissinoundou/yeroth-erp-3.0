@@ -51,6 +51,8 @@ protected:
 
 	QString					_tex_template_document_string;
 
+	QSet<int>				_dbCENTER_TO_ALIGN_FieldName;
+
 	QSet<int> 				_dbRIGHT_TO_ALIGN_FieldName;
 
 	QSet<int> 				_dbLEFT_TO_ALIGN_FieldName;

@@ -30,6 +30,12 @@ YerothHistoriqueDuStockWindow::YerothHistoriqueDuStockWindow()
 
     _yerothTableView_FROM_WINDOWS_COMMONS = tableView_historique_du_stock;
 
+    _DBFieldNamesToPrintCenterAligned.insert(2);
+    _DBFieldNamesToPrintCenterAligned.insert(3);
+
+    _DBFieldNamesToPrintLeftAligned.insert(0);
+    _DBFieldNamesToPrintLeftAligned.insert(1);
+
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
                                        "QMessageBox QLabel {color: rgb(%2);}")
                                     .arg(COLOUR_RGB_STRING_YEROTH_ORANGE_243_162_0,

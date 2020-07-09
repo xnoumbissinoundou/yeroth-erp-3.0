@@ -134,9 +134,9 @@ public slots:
 
     void reinitialiser_recherche();
 
-    void afficher_retour_vente();
+    bool afficher_retour_vente();
 
-    void afficher_vente_detail();
+    bool afficher_vente_detail();
 
     inline void setLastListerSelectedRow(int row)
     {

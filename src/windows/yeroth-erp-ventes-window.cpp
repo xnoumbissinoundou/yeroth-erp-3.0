@@ -1642,15 +1642,19 @@ void YerothVentesWindow::handleCurrentTabChanged(int index)
         break;
 
     case AfficherVenteAuDetail:
-        afficher_vente_detail();
-        disableImprimer();
+    	if (afficher_vente_detail())
+    	{
+    		disableImprimer();
+    	}
         break;
 
     case RetourDuneVente:
     	lineEdit_retour_vente_quantite_a_retourner->setFocus();
 
-    	afficher_retour_vente();
-        disableImprimer();
+    	if (afficher_retour_vente())
+    	{
+    		disableImprimer();
+    	}
         break;
 
     default:
@@ -1779,11 +1783,11 @@ void YerothVentesWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 }
 
 
-void YerothVentesWindow::afficher_retour_vente()
+bool YerothVentesWindow::afficher_retour_vente()
 {
 	if (tableView_ventes->rowCount() <= 0)
 	{
-		return ;
+		return false;
 	}
 
     int lastSelectedVentesRow = tableView_ventes->lastSelectedRow();
@@ -1803,7 +1807,7 @@ void YerothVentesWindow::afficher_retour_vente()
 
     	tabWidget_ventes->setCurrentIndex(TableauDesVentes);
 
-    	return ;
+    	return false;
     }
 
     lineEdit_retour_vente_reference_produit->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE));
@@ -1862,14 +1866,16 @@ void YerothVentesWindow::afficher_retour_vente()
     lineEdit_retour_vente_type_de_vente->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::TYPE_DE_VENTE));
 
     tabWidget_ventes->setCurrentIndex(RetourDuneVente);
+
+    return true;
 }
 
 
-void YerothVentesWindow::afficher_vente_detail()
+bool YerothVentesWindow::afficher_vente_detail()
 {
 	if (tableView_ventes->rowCount() <= 0)
 	{
-		return ;
+		return false;
 	}
 
     int lastSelectedVentesRow = tableView_ventes->lastSelectedRow();
@@ -1936,6 +1942,8 @@ void YerothVentesWindow::afficher_vente_detail()
     lineEdit_details_type_de_vente->setText(YerothUtils::_typedeventeToUserViewString.value(typeDeVente));
 
     tabWidget_ventes->setCurrentIndex(AfficherVenteAuDetail);
+
+    return true;
 }
 
 

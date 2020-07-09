@@ -25,6 +25,8 @@ YerothTableViewPRINT_UTILITIES_TEX_TABLE::
  _yerothWindowTableOutputView(&aYerothWindowTableOutputView),
  _yerothTableView(&aYerothTableView)
 {
+	_dbCENTER_TO_ALIGN_FieldName = _yerothWindowTableOutputView->getDBFieldNamesToPrintCenterAligned();
+
 	_dbRIGHT_TO_ALIGN_FieldName = _yerothWindowTableOutputView->getDBFieldNamesToPrintRightAligned();
 
 	_dbLEFT_TO_ALIGN_FieldName = _yerothWindowTableOutputView->getDBFieldNamesToPrintLeftAligned();
@@ -245,6 +247,10 @@ void YerothTableViewPRINT_UTILITIES_TEX_TABLE::
         else if (_dbRIGHT_TO_ALIGN_FieldName.contains(realK_pos))
         {
         	latexTable_in_out.append("r|");
+        }
+        else if (_dbCENTER_TO_ALIGN_FieldName.contains(realK_pos))
+        {
+        	latexTable_in_out.append("c|");
         }
         else
         {

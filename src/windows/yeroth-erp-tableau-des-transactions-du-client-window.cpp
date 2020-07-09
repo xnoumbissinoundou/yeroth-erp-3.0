@@ -28,6 +28,12 @@ YerothTableauDesTransactionsDuClientWindow::YerothTableauDesTransactionsDuClient
 
     _yerothTableView_FROM_WINDOWS_COMMONS = tableView_tableau_des_transactions_du_client;
 
+    _DBFieldNamesToPrintLeftAligned.insert(0);
+    _DBFieldNamesToPrintLeftAligned.insert(1);
+    _DBFieldNamesToPrintLeftAligned.insert(2);
+    _DBFieldNamesToPrintLeftAligned.insert(5);
+    _DBFieldNamesToPrintLeftAligned.insert(6);
+
     QMESSAGE_BOX_STYLE_SHEET =
         QString("QMessageBox {background-color: rgb(%1);}")
 			.arg(COLOUR_RGB_STRING_YEROTH_YELLOW_254_254_0);
