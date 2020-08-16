@@ -21,6 +21,7 @@ enum import_csv_entry_row_return_status
 	IMPORT_DATA_CSV_STOCK_UNDEFINED
 };
 
+
 class YerothERPStockImport : public QObject
 {
     Q_OBJECT
@@ -40,20 +41,24 @@ public:
     {
     }
 
-    int import();
+    virtual int import();
 
     static QString 					_allMissingMandatoryColumnValue;
 
     static QMap<QString, bool>		*_dbTableColumnToIsNotNULL;
 
-private:
 
-    enum import_csv_entry_row_return_status
-		import_csv_entry_row(QStringList &aCsvFileEntryLine);
+protected:
 
     void missing_mandatory_item_field_msg(const QString &aMandatoryColumn);
 
+
     bool check_mandatory_item_field();
+
+
+    virtual enum import_csv_entry_row_return_status
+		import_csv_entry_row(QStringList &aCsvFileEntryLine);
+
 
     QStringList 					_allSqlTableImportColumns;
 

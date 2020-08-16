@@ -184,6 +184,45 @@ int YerothERPStockImport::import()
 }
 
 
+void YerothERPStockImport::missing_mandatory_item_field_msg(const QString &aMandatoryColumn)
+{
+	QString warnMesg =
+			QString(QObject::trUtf8("La colone OBLIGATOIRE '%1' est manquante !"))
+				.arg(aMandatoryColumn);
+
+	if (0 != _callingWindow)
+	{
+		YerothQMessageBox::warning(_callingWindow,
+				QObject::tr("colone OBLIGATOIRE manquante"),
+				warnMesg);
+	}
+	else
+	{
+		qDebug() << warnMesg;
+	}
+}
+
+
+bool YerothERPStockImport::check_mandatory_item_field()
+{
+	QString curMandatoryTableColumn;
+
+	for (int j = 0; j < _allMandatoryTableColumns.size(); ++j)
+	{
+		curMandatoryTableColumn = _allMandatoryTableColumns.at(j);
+
+		if (!_allSqlTableImportColumns.contains(curMandatoryTableColumn))
+		{
+			missing_mandatory_item_field_msg(curMandatoryTableColumn);
+
+			return false;
+		}
+	}
+
+	return true;
+}
+
+
 enum import_csv_entry_row_return_status
 	YerothERPStockImport::import_csv_entry_row(QStringList &aCsvFileEntryLine)
 {
@@ -616,43 +655,4 @@ enum import_csv_entry_row_return_status
 	}
 
 	return IMPORT_DATA_CSV_STOCK_INSERTION_FAILED;
-}
-
-
-void YerothERPStockImport::missing_mandatory_item_field_msg(const QString &aMandatoryColumn)
-{
-	QString warnMesg =
-			QString(QObject::trUtf8("La colone OBLIGATOIRE '%1' est manquante !"))
-				.arg(aMandatoryColumn);
-
-	if (0 != _callingWindow)
-	{
-		YerothQMessageBox::warning(_callingWindow,
-				QObject::tr("colone OBLIGATOIRE manquante"),
-				warnMesg);
-	}
-	else
-	{
-		qDebug() << warnMesg;
-	}
-}
-
-
-bool YerothERPStockImport::check_mandatory_item_field()
-{
-	QString curMandatoryTableColumn;
-
-	for (int j = 0; j < _allMandatoryTableColumns.size(); ++j)
-	{
-		curMandatoryTableColumn = _allMandatoryTableColumns.at(j);
-
-		if (!_allSqlTableImportColumns.contains(curMandatoryTableColumn))
-		{
-			missing_mandatory_item_field_msg(curMandatoryTableColumn);
-
-			return false;
-		}
-	}
-
-	return true;
 }

@@ -220,6 +220,8 @@ private:
 
     QMap<QString, AdminSujetAction> 	*_sujetActionsToConst;
 
+    QString 							_current_selected_import_table;
+
     QString 							_localisation_adresse_ip;
 };
 

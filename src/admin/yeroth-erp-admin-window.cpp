@@ -6,6 +6,8 @@
 #include "yeroth-erp-admin-window.hpp"
 
 
+#include "src/imports/yeroth-erp-marchandise-import.hpp"
+
 #include "src/imports/yeroth-erp-stock-import.hpp"
 
 #include "src/utils/yeroth-erp-config.hpp"
@@ -476,11 +478,29 @@ void YerothAdminWindow::import_current_selected_csv_file()
 		}
 	}
 
-	YerothERPStockImport erpStockImport(*this,
-										_curCsvFileToImportContentWordList,
-										_csvContentIdxToDatabaseTableColumnInfo);
+	_current_selected_import_table = comboBox_tableaux_mariadb_sql->currentText();
 
-	int successImportCount = erpStockImport.import();
+	int successImportCount = 0;
+
+	if (YerothUtils::isEqualCaseInsensitive(_current_selected_import_table,
+											YerothERPWindows::STOCKS))
+	{
+		YerothERPStockImport erpStockImport(*this,
+											_curCsvFileToImportContentWordList,
+											_csvContentIdxToDatabaseTableColumnInfo);
+
+		successImportCount = erpStockImport.import();
+	}
+	else if (YerothUtils::isEqualCaseInsensitive(_current_selected_import_table,
+												 YerothERPWindows::MARCHANDISES))
+	{
+		YerothERPMarchandiseImport erpMarchandiseImport(*this,
+														_curCsvFileToImportContentWordList,
+														_csvContentIdxToDatabaseTableColumnInfo);
+
+		successImportCount = erpMarchandiseImport.import();
+	}
+
 
 	QString msg;
 
@@ -562,7 +582,7 @@ bool YerothAdminWindow::generate_table_header_mapping_entries_for_csv_import()
 		}
 	}
 
-	YerothUtils::fillDBTableColumnNameToDBTableColumnType_TEST(lineEdit_tableaux_mariadb_sql->text(),
+	YerothUtils::fillDBTableColumnNameToDBTableColumnType_TEST(comboBox_tableaux_mariadb_sql->currentText(),
 															   _dbTableColumnToType,
 															   _dbTableColumnToIsNotNULL);
 
@@ -695,8 +715,8 @@ void YerothAdminWindow::initialize_admin_importer_csv_tableau()
 
 	if (0 != yerothERPWindows)
 	{
-		lineEdit_tableaux_mariadb_sql->setYerothEnabled(false);
-		lineEdit_tableaux_mariadb_sql->setText(yerothERPWindows->STOCKS);
+		comboBox_tableaux_mariadb_sql->addItem(yerothERPWindows->MARCHANDISES);
+		comboBox_tableaux_mariadb_sql->addItem(yerothERPWindows->STOCKS);
 	}
 }
 
