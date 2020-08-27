@@ -14,11 +14,11 @@
 
 enum import_csv_entry_row_return_status
 {
-    IMPORT_DATA_CSV_STOCK_INSERTION_SUCCEED = 0,
-	IMPORT_DATA_CSV_STOCK_INSERTION_FAILED,
-	IMPORT_DATA_CSV_STOCK_INCORRECT_COLUMN_VALUE,
-	IMPORT_DATA_CSV_STOCK_MANDATORY_COLUMN_VALUE_MISSING,
-	IMPORT_DATA_CSV_STOCK_UNDEFINED
+    IMPORT_DATA_CSV_INSERTION_SUCCEED = 0,
+	IMPORT_DATA_CSV_INSERTION_FAILED,
+	IMPORT_DATA_CSV_INCORRECT_COLUMN_VALUE,
+	IMPORT_DATA_CSV_MANDATORY_COLUMN_VALUE_MISSING,
+	IMPORT_DATA_CSV_UNDEFINED
 };
 
 
@@ -41,7 +41,7 @@ public:
     {
     }
 
-    virtual int import();
+    virtual int import(bool importerParlant = false);
 
     static QString 					_allMissingMandatoryColumnValue;
 
@@ -52,12 +52,10 @@ protected:
 
     void missing_mandatory_item_field_msg(const QString &aMandatoryColumn);
 
-
     bool check_mandatory_item_field();
 
-
     virtual enum import_csv_entry_row_return_status
-		import_csv_entry_row(QStringList &aCsvFileEntryLine);
+		import_csv_entry_row(bool importerParlant, QStringList &aCsvFileEntryLine);
 
 
     QStringList 					_allSqlTableImportColumns;

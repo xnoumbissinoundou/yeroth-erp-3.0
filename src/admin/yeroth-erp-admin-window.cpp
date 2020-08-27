@@ -82,6 +82,7 @@ const QString YerothAdminWindow::REMISE(QObject::tr(SUBJECT_ADMIN_OPERATIONS_DIS
 YerothAdminWindow::YerothAdminWindow()
 :YerothPOSAdminWindowsCommons(QObject::trUtf8("administration ~ acceuil")),
  _logger(new YerothLogger("YerothAdminWindow")),
+ _importer_parlant(false),
  _curAdminAction(ACTION_CREER),
  _curAdminSujetAction(SUJET_ACTION_COMPTE_UTILISATEUR),
  _curAdminMaintainAction(ACTION_EXPORTER),
@@ -204,6 +205,14 @@ YerothAdminWindow::YerothAdminWindow()
     pushButton_parametres_enregistrer->enable(this, SLOT(enregistrer_app_parameters_configuration()));
     pushButton_connecter_localisation->enable(this, SLOT(connecter_localisation_db()));
     pushButton_deconnecter_localisation->enable(this, SLOT(deconnecter_localisation_db()));
+
+
+    connect(comboBox_tableaux_mariadb_sql, SIGNAL(currentTextChanged(const QString &)),
+    		this, SLOT(handle_changer_tableau_dimportation(const QString &)));
+
+    connect(checkBox_importer_parlant, SIGNAL(stateChanged(int)),
+    		this, SLOT(handle_importer_parlant_checkBox(int)));
+
 
     connect(comboBox_impression_sur, SIGNAL(currentIndexChanged(const QString &)),
     		this, SLOT(handleThermalPrinterConfiguration(const QString &)));
@@ -396,6 +405,19 @@ void YerothAdminWindow::handleCheckboxActiverRegistreCaisse(int state)
 }
 
 
+void YerothAdminWindow::handle_importer_parlant_checkBox(int aState)
+{
+	if (checkBox_importer_parlant->isChecked())
+	{
+		setImporterParlant(true);
+	}
+	else
+	{
+		setImporterParlant(false);
+	}
+}
+
+
 void YerothAdminWindow::choix_registre_de_caisse(const QString &labelImpressionSur)
 {
 	if (YerothUtils::isEqualCaseInsensitive(labelImpressionSur, YerothUtils::IMPRIMANTE_EPSON_TM_T20ii))
@@ -481,6 +503,7 @@ void YerothAdminWindow::import_current_selected_csv_file()
 	_current_selected_import_table = comboBox_tableaux_mariadb_sql->currentText();
 
 	int successImportCount = 0;
+
 
 	if (YerothUtils::isEqualCaseInsensitive(_current_selected_import_table,
 											YerothERPWindows::STOCKS))

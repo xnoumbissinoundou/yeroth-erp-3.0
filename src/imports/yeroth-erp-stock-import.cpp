@@ -57,7 +57,7 @@ YerothERPStockImport::YerothERPStockImport(YerothPOSAdminWindowsCommons 					&aC
 }
 
 
-int YerothERPStockImport::import()
+int YerothERPStockImport::import(bool importerParlant /* = false */)
 {
 	YerothERPStockImport::_allMissingMandatoryColumnValue.clear();
 
@@ -135,7 +135,7 @@ int YerothERPStockImport::import()
 
 	int successImportCount = 0;
 
-	enum import_csv_entry_row_return_status insertionReturnStatusValue = IMPORT_DATA_CSV_STOCK_UNDEFINED;
+	enum import_csv_entry_row_return_status insertionReturnStatusValue = IMPORT_DATA_CSV_UNDEFINED;
 
 	QStringList curCsvFileImportRow;
 
@@ -150,9 +150,9 @@ int YerothERPStockImport::import()
 		curCsvFileImportRow = _curCsvFileToImportContentWordList->at(k)
 						.split(YerothUtils::CSV_FILE_SEPARATION_SEMI_COLON_STRING_CHAR);
 
-		insertionReturnStatusValue = import_csv_entry_row(curCsvFileImportRow);
+		insertionReturnStatusValue = import_csv_entry_row(importerParlant, curCsvFileImportRow);
 
-		if (IMPORT_DATA_CSV_STOCK_INSERTION_SUCCEED == insertionReturnStatusValue)
+		if (IMPORT_DATA_CSV_INSERTION_SUCCEED == insertionReturnStatusValue)
 		{
 			++successImportCount;
 		}
@@ -162,7 +162,7 @@ int YerothERPStockImport::import()
 
 	if (successImportCount != curCsvFileLineCount)
 	{
-		if (IMPORT_DATA_CSV_STOCK_MANDATORY_COLUMN_VALUE_MISSING == insertionReturnStatusValue)
+		if (IMPORT_DATA_CSV_MANDATORY_COLUMN_VALUE_MISSING == insertionReturnStatusValue)
 		{
 			YerothERPStockImport::_allMissingMandatoryColumnValue.replace(0, 3, YerothUtils::EMPTY_STRING);
 
@@ -224,15 +224,15 @@ bool YerothERPStockImport::check_mandatory_item_field()
 
 
 enum import_csv_entry_row_return_status
-	YerothERPStockImport::import_csv_entry_row(QStringList &aCsvFileEntryLine)
+	YerothERPStockImport::import_csv_entry_row(bool importerParlant, QStringList &aCsvFileEntryLine)
 {
-	enum import_csv_entry_row_return_status insertionReturnStatus = IMPORT_DATA_CSV_STOCK_INSERTION_FAILED;
+	enum import_csv_entry_row_return_status insertionReturnStatus = IMPORT_DATA_CSV_INSERTION_FAILED;
 
 	YerothERPWindows *allWindows = YerothUtils::getAllWindows();
 
 	if (0 == allWindows)
 	{
-		return IMPORT_DATA_CSV_STOCK_INSERTION_FAILED;
+		return IMPORT_DATA_CSV_INSERTION_FAILED;
 	}
 
 	YerothERPDatabaseTableColumnInfo *curDatabaseTableColumnInfo = 0;
@@ -333,16 +333,19 @@ enum import_csv_entry_row_return_status
 
 						if (0 != _callingWindow)
 						{
-							YerothQMessageBox::warning(_callingWindow,
-									QObject::trUtf8("création d'une entreprise fournisseuse"),
-									infoMesg);
+							if (importerParlant)
+							{
+								YerothQMessageBox::warning(_callingWindow,
+										QObject::trUtf8("création d'une entreprise fournisseuse"),
+										infoMesg);
+							}
 						}
 						else
 						{
 							qDebug() << infoMesg;
 						}
 
-						return IMPORT_DATA_CSV_STOCK_INSERTION_FAILED;
+						return IMPORT_DATA_CSV_INSERTION_FAILED;
 					}
 				}
 			}
@@ -378,16 +381,19 @@ enum import_csv_entry_row_return_status
 
 						if (0 != _callingWindow)
 						{
-							YerothQMessageBox::warning(_callingWindow,
-									QObject::trUtf8("création de catégorie d'articles"),
-									infoMesg);
+							if (importerParlant)
+							{
+								YerothQMessageBox::warning(_callingWindow,
+										QObject::trUtf8("création de catégorie d'articles"),
+										infoMesg);
+							}
 						}
 						else
 						{
 							qDebug() << infoMesg;
 						}
 
-						return IMPORT_DATA_CSV_STOCK_INSERTION_FAILED;
+						return IMPORT_DATA_CSV_INSERTION_FAILED;
 					}
 				}
 			}
@@ -452,9 +458,12 @@ enum import_csv_entry_row_return_status
 
 			if (0 != _callingWindow)
 			{
-    			YerothQMessageBox::warning(_callingWindow,
-    					QObject::trUtf8("aucune référence"),
-						infoMesg);
+				if (importerParlant)
+				{
+					YerothQMessageBox::warning(_callingWindow,
+							QObject::trUtf8("aucune référence"),
+							infoMesg);
+				}
 			}
 			else
 			{
@@ -473,7 +482,10 @@ enum import_csv_entry_row_return_status
 
 			if (0 != _callingWindow)
 			{
-    			YerothQMessageBox::warning(_callingWindow, "enregistrer", infoMesg);
+				if (importerParlant)
+				{
+					YerothQMessageBox::warning(_callingWindow, "enregistrer", infoMesg);
+				}
 			}
 			else
 			{
@@ -481,7 +493,7 @@ enum import_csv_entry_row_return_status
 			}
     	}
 
-        return IMPORT_DATA_CSV_STOCK_INSERTION_FAILED;
+        return IMPORT_DATA_CSV_INSERTION_FAILED;
     }
 
     service_stock_already_exist_type serviceStockExists =
@@ -501,7 +513,7 @@ enum import_csv_entry_row_return_status
     {
     	if (!YerothUtils::insertStockItemInProductList(aServiceStockData))
     	{
-    		return IMPORT_DATA_CSV_STOCK_INSERTION_FAILED;
+    		return IMPORT_DATA_CSV_INSERTION_FAILED;
     	}
     }
     else
@@ -515,16 +527,19 @@ enum import_csv_entry_row_return_status
 
     		if (0 != _callingWindow)
     		{
-    			YerothQMessageBox::warning(_callingWindow,
-    					QObject::trUtf8("référence"),
-    					infoMesg);
+    			if (importerParlant)
+    			{
+    				YerothQMessageBox::warning(_callingWindow,
+    						QObject::trUtf8("référence"),
+							infoMesg);
+    			}
     		}
     		else
     		{
     			qDebug() << infoMesg;
     		}
 
-    		return IMPORT_DATA_CSV_STOCK_INSERTION_FAILED;
+    		return IMPORT_DATA_CSV_INSERTION_FAILED;
     	}
 
     	if (SERVICE_STOCK_DESIGNATION_AND_DIFFERENT_CATEGORIE_EXIST == serviceStockExists)
@@ -537,16 +552,19 @@ enum import_csv_entry_row_return_status
 
     		if (0 != _callingWindow)
     		{
-    			YerothQMessageBox::warning(_callingWindow,
-    					QObject::trUtf8("désignation"),
-    					infoMesg);
+    			if (importerParlant)
+    			{
+    				YerothQMessageBox::warning(_callingWindow,
+    						QObject::trUtf8("désignation"),
+							infoMesg);
+    			}
     		}
     		else
     		{
     			qDebug() << infoMesg;
     		}
 
-    		return IMPORT_DATA_CSV_STOCK_INSERTION_FAILED;
+    		return IMPORT_DATA_CSV_INSERTION_FAILED;
     	}
     }
 
@@ -561,9 +579,12 @@ enum import_csv_entry_row_return_status
 
 		if (0 != _callingWindow)
 		{
-			YerothQMessageBox::warning(_callingWindow,
-					QObject::tr("valeur incorrecte"),
-					infoMesg);
+			if (importerParlant)
+			{
+				YerothQMessageBox::warning(_callingWindow,
+						QObject::tr("valeur incorrecte"),
+						infoMesg);
+			}
 		}
 		else
 		{
@@ -572,7 +593,7 @@ enum import_csv_entry_row_return_status
 
 		quantite_totale_already_visited = true;
 
-		return IMPORT_DATA_CSV_STOCK_INCORRECT_COLUMN_VALUE;
+		return IMPORT_DATA_CSV_INCORRECT_COLUMN_VALUE;
 	}
 
 	if (montant_tva > -1 && prix_unitaire > 0)
@@ -628,7 +649,7 @@ enum import_csv_entry_row_return_status
 
 			if (false == _dbTableColumnToIsNotNULL->value(aCurSqlTableImportColumn))
 			{
-				insertionReturnStatus = IMPORT_DATA_CSV_STOCK_MANDATORY_COLUMN_VALUE_MISSING;
+				insertionReturnStatus = IMPORT_DATA_CSV_MANDATORY_COLUMN_VALUE_MISSING;
 				/*
 				 * This SQL stock table column MUST BE NOT NULL.
 				 * So we attribute it a standard value.
@@ -641,9 +662,9 @@ enum import_csv_entry_row_return_status
 			}
 		}
 
-		if (IMPORT_DATA_CSV_STOCK_MANDATORY_COLUMN_VALUE_MISSING == insertionReturnStatus)
+		if (IMPORT_DATA_CSV_MANDATORY_COLUMN_VALUE_MISSING == insertionReturnStatus)
 		{
-			return IMPORT_DATA_CSV_STOCK_MANDATORY_COLUMN_VALUE_MISSING;
+			return IMPORT_DATA_CSV_MANDATORY_COLUMN_VALUE_MISSING;
 		}
 	}
 
@@ -651,8 +672,8 @@ enum import_csv_entry_row_return_status
 
 	if (queryResut)
 	{
-		return IMPORT_DATA_CSV_STOCK_INSERTION_SUCCEED;
+		return IMPORT_DATA_CSV_INSERTION_SUCCEED;
 	}
 
-	return IMPORT_DATA_CSV_STOCK_INSERTION_FAILED;
+	return IMPORT_DATA_CSV_INSERTION_FAILED;
 }

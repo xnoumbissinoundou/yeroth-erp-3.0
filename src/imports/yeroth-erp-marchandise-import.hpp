@@ -31,7 +31,10 @@ public:
     {
     }
 
-    virtual int import();
+protected:
+
+    virtual enum import_csv_entry_row_return_status
+		import_csv_entry_row(bool importerParlant, QStringList &aCsvFileEntryLine);
 };
 
 

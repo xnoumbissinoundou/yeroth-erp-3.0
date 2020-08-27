@@ -57,6 +57,16 @@ public:
     	return toolBar_adminWindow;
     }
 
+    inline void setImporterParlant(bool aValue)
+    {
+    	_importer_parlant = aValue;
+    }
+
+    inline bool getImporterParlant()
+    {
+    	return _importer_parlant;
+    }
+
     void setupValidators();
 
     virtual void definirPasDeRole();
@@ -141,7 +151,16 @@ public slots:
 
 private slots:
 
+private slots:
+
 	void handleCheckboxActiverRegistreCaisse(int state);
+
+	inline void handle_changer_tableau_dimportation(const QString &sqlTableName)
+	{
+		generate_table_header_mapping_entries_for_csv_import();
+	}
+
+	void handle_importer_parlant_checkBox(int aState);
 
 	void choix_registre_de_caisse(const QString &);
 
@@ -193,6 +212,10 @@ private:
 
 	QString _currentWindowTitle;
 	QString _yerothAdminWindowTitleStart;
+
+
+	bool 					_importer_parlant;
+
 
     enum AdminAction 		_curAdminAction;
     enum AdminSujetAction 	_curAdminSujetAction;
