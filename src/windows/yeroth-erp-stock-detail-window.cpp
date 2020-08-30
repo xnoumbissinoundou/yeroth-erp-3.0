@@ -429,9 +429,7 @@ void YerothStockDetailWindow::showItem()
 
     lineEdit_stock_dalerte->setText(GET_DOUBLE_STRING_P(stock_dalerte, 2));
 
-    dateEdit_date_peremption->setDate(
-    		GET_DATE_FROM_STRING(
-    				GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DATE_PEREMPTION)));
+    dateEdit_date_peremption->setDate(record.value(YerothDatabaseTableColumn::DATE_PEREMPTION).toDate());
 
     double lots_entrant = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::LOTS_ENTRANT).toDouble();
 

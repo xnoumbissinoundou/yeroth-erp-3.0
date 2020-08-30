@@ -225,6 +225,9 @@ bool YerothVentesWindow::annuler_cette_vente()
 
 	double quantite_a_retourner = lineEdit_retour_vente_quantite_a_retourner->text().toInt();
 
+//	qDebug() << QString("++ qte a retourner: %1")
+//					.arg(QString::number(quantite_a_retourner));
+
 	if (quantite_a_retourner <= 0.0)
 	{
 		msg = QObject::trUtf8("La quantité d'articles à retourner doit être supérieure zéro !");
@@ -385,7 +388,14 @@ bool YerothVentesWindow::annuler_cette_vente()
 
 		curStockRecord.setValue(YerothDatabaseTableColumn::CATEGORIE, curStocksVenduCategorie);
 
-		curStockRecord.setValue(YerothDatabaseTableColumn::QUANTITE_TOTALE, curStocksVenduQuantiteVendue);
+		curStockRecord.setValue(YerothDatabaseTableColumn::LOTS_ENTRANT, 1);
+
+		curStockRecord.setValue(YerothDatabaseTableColumn::DATE_PEREMPTION,
+				curStocksVenduRecord.value(YerothDatabaseTableColumn::DATE_PEREMPTION).toDate());
+
+		curStockRecord.setValue(YerothDatabaseTableColumn::QUANTITE_PAR_LOT, quantite_a_retourner);
+
+		curStockRecord.setValue(YerothDatabaseTableColumn::QUANTITE_TOTALE, quantite_a_retourner);
 
 		curMontantTotalVente =
 				GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE).toDouble();
@@ -393,12 +403,10 @@ bool YerothVentesWindow::annuler_cette_vente()
 		//		    qDebug() << QString("++ a rembourser au client: %1")
 		//		    				.arg(QString::number(curMontantARembourserAuClient));
 
-		double quantite_totale = curStocksVenduQuantiteVendue;
-
 		double montant_total_tva =
 				GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::MONTANT_TVA).toDouble();
 
-		double montant_tva_unitaire = montant_total_tva / quantite_totale;
+		double montant_tva_unitaire = montant_total_tva / curStocksVenduQuantiteVendue;
 
 		double prix_unitaire =
 				GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::PRIX_UNITAIRE).toDouble();
@@ -414,22 +422,11 @@ bool YerothVentesWindow::annuler_cette_vente()
 		curStockRecord.setValue(YerothDatabaseTableColumn::IS_SERVICE,
 				YerothUtils::MYSQL_FALSE_LITERAL);
 
-		QString curStocksVenduDatePeremption =
-				GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::DATE_PEREMPTION);
-
-		QDate formatee(GET_DATE_FROM_STRING(curStocksVenduDatePeremption));
-
-		curStockRecord.setValue(YerothDatabaseTableColumn::DATE_PEREMPTION, DATE_TO_DB_FORMAT_STRING(formatee));
-
 		curStockRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR,
 				GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR));
 
 		curStockRecord.setValue(YerothDatabaseTableColumn::LOCALISATION,
 				GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::LOCALISATION));
-
-		curStockRecord.setValue(YerothDatabaseTableColumn::LOTS_ENTRANT, 1);
-
-		curStockRecord.setValue(YerothDatabaseTableColumn::QUANTITE_PAR_LOT, quantite_totale);
 
 		curStockRecord.setValue(YerothDatabaseTableColumn::DATE_ENTREE, GET_CURRENT_DATE);
 
@@ -441,8 +438,8 @@ bool YerothVentesWindow::annuler_cette_vente()
 						curStocksVendu_stocksID.toInt(),
 						GET_CURRENT_DATE,
 						0.0,
-						curStocksVenduQuantiteVendue,
-						curStocksVenduQuantiteVendue);
+						quantite_a_retourner,
+						quantite_a_retourner);
 
 		curHistoriqueStock.append(YerothHistoriqueStock::SEPARATION_EXTERNE)
 	        					   .append(curHistoriqueStockRetour);
@@ -1828,7 +1825,7 @@ bool YerothVentesWindow::afficher_retour_vente()
     lineEdit_retour_vente_tva->setText(GET_CURRENCY_STRING_NUM(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::MONTANT_TVA).toDouble()));
     lineEdit_retour_vente_montant_total->setText(GET_CURRENCY_STRING_NUM(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE).toDouble()));
 
-    dateEdit_retour_vente_date_peremption->setDate(GET_DATE_FROM_STRING(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DATE_PEREMPTION)));
+    dateEdit_retour_vente_date_peremption->setDate(record.value(YerothDatabaseTableColumn::DATE_PEREMPTION).toDate());
     dateEdit_retour_vente_date_vente->setDate(GET_DATE_FROM_STRING(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DATE_VENTE)));
 
     lineEdit_retour_vente_heure_vente->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::HEURE_VENTE));
@@ -1901,7 +1898,7 @@ bool YerothVentesWindow::afficher_vente_detail()
     lineEdit_details_tva->setText(GET_CURRENCY_STRING_NUM(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::MONTANT_TVA).toDouble()));
     lineEdit_details_montant_total->setText(GET_CURRENCY_STRING_NUM(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE).toDouble()));
 
-    dateEdit_details_date_peremption->setDate(GET_DATE_FROM_STRING(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DATE_PEREMPTION)));
+    dateEdit_details_date_peremption->setDate(record.value(YerothDatabaseTableColumn::DATE_PEREMPTION).toDate());
     dateEdit_details_date_vente->setDate(GET_DATE_FROM_STRING(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DATE_VENTE)));
 
     lineEdit_details_heure_vente->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::HEURE_VENTE));

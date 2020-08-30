@@ -640,10 +640,6 @@ enum service_stock_already_exist_type
 
     	int rowCount2 = YerothUtils::execQueryRowCount(searchDesignationCategorieStr2);
 
-    	qDebug() << QString("++ searchDesignationCategorieStr2: %1, rowCount2: %2")
-    					.arg(searchDesignationCategorieStr2,
-    						 QString::number(rowCount2));
-
     	if (rowCount2 > 0)
     	{
     		return SERVICE_STOCK_DESIGNATION_AND_SAME_CATEGORIE_EXIST;
