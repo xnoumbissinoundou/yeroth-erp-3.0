@@ -544,7 +544,7 @@ void YerothAdminWindow::import_current_selected_csv_file()
 										   "été importée !"));
 
 
-		YerothQMessageBox::warning(this,
+		YerothQMessageBox::information(this,
 								   QObject::tr("résultat importation fichier CSV"),
 								   msg);
 	}

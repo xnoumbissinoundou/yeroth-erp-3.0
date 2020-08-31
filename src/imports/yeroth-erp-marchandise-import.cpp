@@ -294,6 +294,10 @@ enum import_csv_entry_row_return_status
 
     	return IMPORT_DATA_CSV_INSERTION_FAILED;
     }
+    else if (SERVICE_STOCK_DESIGNATION_AND_SAME_CATEGORIE_EXIST == serviceStockExists)
+    {
+    	return IMPORT_DATA_CSV_INSERTION_ALREADY_EXISTANT;
+    }
 
 
     record.setValue(YerothDatabaseTableColumn::IS_SERVICE, 0);
