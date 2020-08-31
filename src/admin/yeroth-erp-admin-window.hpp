@@ -50,7 +50,7 @@ public:
 
     YerothAdminWindow();
 
-    ~YerothAdminWindow();
+    virtual ~YerothAdminWindow();
 
     inline virtual QToolBar * getQMainWindowToolBar()
     {
@@ -148,8 +148,6 @@ public slots:
     void deconnecter_localisation_db();
 
 	virtual void deconnecter_utilisateur();
-
-private slots:
 
 private slots:
 

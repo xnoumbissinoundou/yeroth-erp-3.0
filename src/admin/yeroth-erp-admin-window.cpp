@@ -512,7 +512,7 @@ void YerothAdminWindow::import_current_selected_csv_file()
 											_curCsvFileToImportContentWordList,
 											_csvContentIdxToDatabaseTableColumnInfo);
 
-		successImportCount = erpStockImport.import();
+		successImportCount = erpStockImport.import(_importer_parlant);
 	}
 	else if (YerothUtils::isEqualCaseInsensitive(_current_selected_import_table,
 												 YerothERPWindows::MARCHANDISES))
@@ -521,7 +521,7 @@ void YerothAdminWindow::import_current_selected_csv_file()
 														_curCsvFileToImportContentWordList,
 														_csvContentIdxToDatabaseTableColumnInfo);
 
-		successImportCount = erpMarchandiseImport.import();
+		successImportCount = erpMarchandiseImport.import(_importer_parlant);
 	}
 
 
