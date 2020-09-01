@@ -132,6 +132,11 @@ YerothEntrerWindow::YerothEntrerWindow()
 			this,
             SLOT(handleCategorieName(const QString &)));
 
+    connect(lineEdit_designation,
+    		SIGNAL(editingFinished()),
+			this,
+            SLOT(product_search_with_designation()));
+
     connect(lineEdit_reference_produit,
     		SIGNAL(editingFinished()),
 			this,
@@ -203,6 +208,12 @@ void YerothEntrerWindow::setupLineEditsQCompleters()
 
     	QString aConditionStr(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
     						  YerothUtils::MYSQL_FALSE_LITERAL));
+
+    	lineEdit_designation->setupMyStaticQCompleter(_allWindows->MARCHANDISES,
+    												  YerothDatabaseTableColumn::DESIGNATION,
+    												  false,
+    												  false,
+    												  aConditionStr);
 
     	lineEdit_reference_produit->setupMyStaticQCompleter(_allWindows->MARCHANDISES,
     														YerothDatabaseTableColumn::REFERENCE,
@@ -478,6 +489,43 @@ void YerothEntrerWindow::definirMagasinier()
     pushButton_annuler->enable(this, SLOT(menu()));
     pushButton_selectionner_image->enable(this, SLOT(selectionner_image_produit()));
     pushButton_enregistrer_produit->disable(this);
+}
+
+
+bool YerothEntrerWindow::product_search_with_designation()
+{
+    YerothSqlTableModel & productListSqlTableModel = _allWindows->getSqlTableModel_marchandises();
+
+    QString productName(lineEdit_designation->text());
+
+    int productNameRowCount =
+        productListSqlTableModel.Is_SearchQSqlTable(YerothDatabaseTableColumn::DESIGNATION, productName);
+
+    if (!productName.isEmpty() && 1 == productNameRowCount)
+    {
+        QString strQuery(QString("select * from %1 where %2 = '%3';")
+        					.arg(productListSqlTableModel.sqlTableName(),
+								 YerothDatabaseTableColumn::DESIGNATION,
+								 productName));
+
+        QSqlQuery query;
+        query.prepare(strQuery);
+
+        bool success = query.exec();
+
+        if (success && query.last())
+        {
+        	lineEdit_reference_produit->setText(query.value(YerothDatabaseTableColumn::REFERENCE).toString());
+
+        	lineEdit_categorie_produit->setText(query.value(YerothDatabaseTableColumn::CATEGORIE).toString());
+
+        	textEdit_description->setText(query.value(YerothDatabaseTableColumn::DESCRIPTION_PRODUIT).toString());
+
+            return true;
+        }
+    }
+
+	return false;
 }
 
 

@@ -11437,6 +11437,7 @@ background-color: rgb(0, 0, 0); </string>
     <addaction name="actionChanger_utilisateur"/>
     <addaction name="actionDeconnecter_utilisateur"/>
     <addaction name="separator"/>
+    <addaction name="actionModifier_cette_reference"/>
     <addaction name="actionSupprimer_ce_stock"/>
     <addaction name="separator"/>
     <addaction name="actionEntrer"/>
@@ -12626,6 +12627,19 @@ background-color: rgb(0, 0, 0); </string>
    </property>
    <property name="toolTip">
     <string>Réinitialiser les  champs (base de données) visible</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionModifier_cette_reference">
+   <property name="text">
+    <string>Modifier cette référence</string>
+   </property>
+   <property name="toolTip">
+    <string>Modifier cette référence</string>
    </property>
    <property name="font">
     <font>

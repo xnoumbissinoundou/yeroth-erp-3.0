@@ -263,3 +263,124 @@ void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTab
     this->resizeColumnsToContents();
 }
 
+
+void YerothERPMarchandisesTableView::startEditingModeSelection()
+{
+	setEditTriggers(QAbstractItemView::SelectedClicked |
+					QAbstractItemView::DoubleClicked);
+
+	setWriteEnabled(true);
+
+	QObject::connect(_stdItemModel,
+					 SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)),
+					 this,
+					 SLOT(dataChanged(const QModelIndex &, const QModelIndex &)));
+}
+
+
+void YerothERPMarchandisesTableView::dataChanged(const QModelIndex &index,
+                                  	  	  	  	 const QModelIndex &bottomRight,
+												 const QVector<int> &roles /*= QVector<int>()*/)
+{
+    if (index != bottomRight)
+    {
+    	return ;
+    }
+
+    if (_writeEnabled)
+    {
+    	//        qDebug() << "YerothTableView::dataChanged(). Updates table " << *_tableName;
+    	QString msg;
+
+    	QString curItemText;
+
+    	if (0 != _stdItemModel->item(index.row(), 0))
+    	{
+    		curItemText.append(_stdItemModel->item(index.row(), 0)->text());
+    	}
+
+    	QString REAL_DB_ID_NAME_marchandiseTableColumnProperty(
+    			YerothDatabaseTableColumn::_tableColumnToUserViewString.key(_tableModelHeaders->at(index.column())));
+
+    	if (YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::REFERENCE,
+    											REAL_DB_ID_NAME_marchandiseTableColumnProperty))
+    	{
+    		QString strQuery(QString("UPDATE %1 SET %2 = ? WHERE %3 = '%4'")
+    				.arg(*_tableName,
+    						REAL_DB_ID_NAME_marchandiseTableColumnProperty,
+							YerothDatabaseTableColumn::ID,
+							curItemText));
+
+    		QSqlQuery query(strQuery);
+
+    		QVariant q = index.data();
+    		switch (q.type())
+    		{
+    		case QVariant::UInt:
+    			msg.clear();
+    			msg.setNum(q.toUInt());
+    			break;
+
+    		case QVariant::Int:
+    			msg.clear();
+    			msg.setNum(q.toInt());
+    			break;
+
+    		case QVariant::Double:
+    			msg.clear();
+    			msg.setNum(q.toDouble());
+    			break;
+
+    		case QVariant::ULongLong:
+    			msg.clear();
+    			msg.setNum(q.toULongLong());
+    			break;
+
+    		case QVariant::LongLong:
+    			msg.clear();
+    			msg.setNum(q.toLongLong());
+    			break;
+
+    		case QVariant::Char:
+    			msg.append(q.toChar());
+    			break;
+
+    		case QVariant::String:
+    			msg.append(q.toString());
+    			break;
+
+    		case QVariant::Bool:
+    			msg.append(q.toBool());
+    			break;
+
+    		default:
+    			break;
+    		}
+
+    		query.bindValue(0, msg);
+
+    		bool success = query.exec();
+    		//        qDebug() << "[" << BOOL_TO_STRING(success) << "]" << query.executedQuery();
+
+    		if (success)
+    		{
+
+    		}
+    	}
+    }
+
+    stopEditingModeSelection();
+}
+
+
+void YerothERPMarchandisesTableView::stopEditingModeSelection()
+{
+	setWriteEnabled(false);
+
+	setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+	QObject::disconnect(_stdItemModel,
+			   	   	    SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)),
+						this,
+						SLOT(dataChanged(const QModelIndex &, const QModelIndex &)));
+}

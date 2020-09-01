@@ -138,6 +138,8 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
 
     connect(checkBox_services, SIGNAL(stateChanged(int)), this, SLOT(handle_services_checkBox(int)));
 
+    connect(actionModifier_cette_reference, SIGNAL(triggered()), this, SLOT(modifier_cette_reference()));
+
     connect(actionSupprimer_ce_stock, SIGNAL(triggered()), this, SLOT(supprimer_ce_stock()));
 
     setupShortcuts();
@@ -286,6 +288,7 @@ void YerothMarchandisesWindow::contextMenuEvent(QContextMenuEvent * event)
             {
                 QMenu menu(this);
                 menu.setPalette(toolBar_inventaireDesStocksWindow->palette());
+                menu.addAction(actionModifier_cette_reference);
                 menu.addAction(actionSupprimer_ce_stock);
                 menu.exec(event->globalPos());
             }
@@ -888,6 +891,15 @@ void YerothMarchandisesWindow::afficher_stock_selectioner(const QString & stockN
     {
         afficherMarchandises();
     }
+}
+
+
+void YerothMarchandisesWindow::modifier_cette_reference()
+{
+	if (0 != _curMarchandisesTableModel)
+	{
+		tableView_marchandises->startEditingModeSelection();
+	}
 }
 
 

@@ -132,10 +132,6 @@ protected:
 	virtual void selectionChanged(const QItemSelection & selected,
 								  const QItemSelection & deselected);
 
-	virtual void dataChanged(const QModelIndex &topLeft,
-							 const QModelIndex &bottomRight,
-							 const QVector<int> &roles = QVector<int>());
-
 protected:
 
 	bool 						_writeEnabled;

@@ -87,6 +87,8 @@ public slots:
 										 "sur enregistrer !"));
 	}
 
+	bool product_search_with_designation();
+
 	bool product_search_with_codebar();
 
     void display_quantite_total(const QString &quantite_par_lot);

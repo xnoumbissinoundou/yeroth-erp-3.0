@@ -93,6 +93,8 @@ public slots:
 
     void afficher_stock_selectioner(const QString &stockName);
 
+    void modifier_cette_reference();
+
     void supprimer_ce_stock();
 
     void reinitialiser_elements_filtrage();

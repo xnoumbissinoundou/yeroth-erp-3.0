@@ -42,6 +42,18 @@ public:
 
 	virtual void lister_les_elements_du_tableau(YerothSqlTableModel &tableModel);
 
+public slots:
+
+	void startEditingModeSelection();
+
+	void stopEditingModeSelection();
+
+protected slots:
+
+	virtual void dataChanged(const QModelIndex &index,
+					 	 	 const QModelIndex &bottomRight,
+							 const QVector<int> &roles = QVector<int>());
+
 private:
 
     YerothERPWindows *_allWindows;
