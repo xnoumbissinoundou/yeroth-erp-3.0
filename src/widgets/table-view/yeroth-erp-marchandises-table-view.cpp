@@ -291,36 +291,118 @@ void YerothERPMarchandisesTableView::dataChanged(const QModelIndex &index,
     {
     	//qDebug() << "YerothTableView::dataChanged(). Updates table " << *_tableName;
 
-    	QString curItemText;
+    	QString curIDText;
 
     	if (0 != _stdItemModel->item(index.row(), 0))
     	{
-    		curItemText.append(_stdItemModel->item(index.row(), 0)->text());
+    		curIDText.append(_stdItemModel->item(index.row(), 0)->text());
     	}
 
+    	QString columnHeaderText(_tableModelHeaders->at(index.column()));
+
     	QString REAL_DB_ID_NAME_marchandiseTableColumnProperty(
-    			YerothDatabaseTableColumn::_tableColumnToUserViewString.key(_tableModelHeaders->at(index.column())));
+    			YerothDatabaseTableColumn::_tableColumnToUserViewString.key(columnHeaderText));
 
     	if (YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::REFERENCE,
     											REAL_DB_ID_NAME_marchandiseTableColumnProperty))
     	{
+    		QSqlQuery mySqlQuery;
+
+    		QString designationText;
+        	QString prevReferenceText;
+
     		QVariant qvIndexData = index.data();
 
     		QString cellTextData = (YerothUtils::get_text(qvIndexData));
 
-    		QString strQuery(QString("UPDATE %1 SET %2 = %3 WHERE %4 = '%5'")
+    		QString strSelectPreviousValueQuery(QString("SELECT %1, %2 FROM %3 WHERE %4 = '%5'")
+    							.arg(REAL_DB_ID_NAME_marchandiseTableColumnProperty,
+    								 YerothDatabaseTableColumn::DESIGNATION,
+    								 *_tableName,
+									 YerothDatabaseTableColumn::ID,
+									 curIDText));
+
+    		QString strUpdateMarchandisesTableQuery(QString("UPDATE %1 SET %2 = '%3' WHERE %4 = '%5'")
     							.arg(*_tableName,
     								 REAL_DB_ID_NAME_marchandiseTableColumnProperty,
 									 cellTextData,
 									 YerothDatabaseTableColumn::ID,
-									 curItemText));
+									 curIDText));
 
-    		bool success = YerothUtils::execQuery(strQuery);
+    		YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
+
+    		int mySqlQuerySize = YerothUtils::execQuery(mySqlQuery, strSelectPreviousValueQuery);
+
+    		if (mySqlQuerySize > 0)
+    		{
+    			mySqlQuery.next();
+
+    			prevReferenceText = mySqlQuery.value(0).toString();
+
+    			designationText = mySqlQuery.value(1).toString();
+
+    			mySqlQuery.clear();
+    		}
+
+//    		QDEBUG_STRINGS_OUTPUT(QString::number(mySqlQuerySize), strUpdateMarchandisesTableQuery);
+
+    		bool success = YerothUtils::execQuery(strUpdateMarchandisesTableQuery);
 
     		if (success)
     		{
+        		QStringList allToUpdateTables;
 
+        		allToUpdateTables << _allWindows->PAIEMENTS
+        						  << _allWindows->STOCKS
+        						  << _allWindows->STOCKS_SORTIES
+    							  << _allWindows->STOCKS_VENDU
+    							  << _allWindows->ACHATS;
+
+        		QString strUpdateTableQuery;
+
+        		for (uint i = 0; i < allToUpdateTables.size(); ++i)
+        		{
+        			strUpdateTableQuery.clear();
+
+            		strUpdateTableQuery.append(QString("UPDATE %1 SET %2 = '%3' WHERE %4 = '%5'")
+            										.arg(allToUpdateTables.at(i),
+            											 YerothDatabaseTableColumn::REFERENCE,
+            											 cellTextData,
+    													 YerothDatabaseTableColumn::REFERENCE,
+    													 prevReferenceText));
+
+        			success = YerothUtils::execQuery(strUpdateTableQuery,
+        							_allWindows->_marchandisesWindow->getLogger()) && success;
+        		}
     		}
+
+    		QString msgBoxTitle(QObject::trUtf8("modification (%1) ")
+    								.arg(columnHeaderText));
+
+    		if (success)
+    		{
+    	        YerothQMessageBox::information(_allWindows->_marchandisesWindow,
+    	        							   msgBoxTitle,
+    	                                       QObject::trUtf8("Succès de la modification de la colone '%1' (%2) "
+    	                                    		   	   	   "de la marchandise '%3' !")
+    	        									.arg(columnHeaderText,
+    	        										 cellTextData,
+														 designationText),
+											   QMessageBox::Ok);
+    		}
+    		else
+    		{
+    	        YerothQMessageBox::information(_allWindows->_marchandisesWindow,
+    	        							   msgBoxTitle,
+    	                                       QObject::trUtf8("Échec de la modification de la colone '%1' (%2) "
+    	                                    		   	   	   "de la marchandise '%3' !")
+    	        									.arg(columnHeaderText,
+    	        										 cellTextData,
+														 designationText),
+											   QMessageBox::Ok);
+    		}
+
+    		YEROTH_ERP_3_0_COMMIT_DATABASE_TRANSACTION;
     	}
     }
 

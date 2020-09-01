@@ -336,8 +336,7 @@ bool YerothSortirWindow::check_fields()
     if (false == nom_recepteur)
     {
         YerothQMessageBox::warning(this, QObject::trUtf8("nom du récepteur de(s) stock(s) sortant"),
-                                  QObject::trUtf8("Vous n'avez pas saisi le nom"
-                                          " du récepteur de(s) stock(s) sortant !"));
+                                  QObject::trUtf8("Entrez le nom du récepteur de(s) stock(s) sortant !"));
         return false;
     }
     QString currentLocalisation(_allWindows->getInfoEntreprise().getLocalisation());

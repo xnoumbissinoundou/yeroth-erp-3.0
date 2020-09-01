@@ -117,6 +117,11 @@ public slots:
 
 	double getQuantiteTotaleEnStock(const QModelIndex &aQModelIndex);
 
+	inline YerothLogger *getLogger()
+	{
+		return _logger;
+	}
+
 protected:
 
 	virtual void reinitialiser_champs_db_visibles();

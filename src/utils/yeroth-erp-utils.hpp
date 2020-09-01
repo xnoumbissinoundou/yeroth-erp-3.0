@@ -164,6 +164,8 @@ public:
 
 	static int execQueryRowCount(const QString &strQuery, YerothLogger *logger = 0);
 
+	static void qDebugStrings(const QString &firstString, const QString &secondString);
+
 	static bool execQuery(const QString &strQuery, YerothLogger *logger = 0);
 
 	static int execQuery(QSqlQuery &query, const QString &strQuery, YerothLogger *logger = 0);
@@ -780,6 +782,8 @@ YerothQMessageBox::information(this, QObject::trUtf8(DIALOG_BOX_TITLE), msg); }
 
 
 #define YEROTH_QSTRING_CONTAINS(S, V) S.contains(V, Qt::CaseInsensitive)
+
+#define QDEBUG_STRINGS_OUTPUT(X, Y) YerothUtils::qDebugStrings(X, Y)
 
 #define EXPR_IS_POSITIV(X)	(0 <= X)
 
