@@ -289,8 +289,7 @@ void YerothERPMarchandisesTableView::dataChanged(const QModelIndex &index,
 
     if (_writeEnabled)
     {
-    	//        qDebug() << "YerothTableView::dataChanged(). Updates table " << *_tableName;
-    	QString msg;
+    	//qDebug() << "YerothTableView::dataChanged(). Updates table " << *_tableName;
 
     	QString curItemText;
 
@@ -305,62 +304,18 @@ void YerothERPMarchandisesTableView::dataChanged(const QModelIndex &index,
     	if (YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::REFERENCE,
     											REAL_DB_ID_NAME_marchandiseTableColumnProperty))
     	{
-    		QString strQuery(QString("UPDATE %1 SET %2 = ? WHERE %3 = '%4'")
-    				.arg(*_tableName,
-    						REAL_DB_ID_NAME_marchandiseTableColumnProperty,
-							YerothDatabaseTableColumn::ID,
-							curItemText));
+    		QVariant qvIndexData = index.data();
 
-    		QSqlQuery query(strQuery);
+    		QString cellTextData = (YerothUtils::get_text(qvIndexData));
 
-    		QVariant q = index.data();
-    		switch (q.type())
-    		{
-    		case QVariant::UInt:
-    			msg.clear();
-    			msg.setNum(q.toUInt());
-    			break;
+    		QString strQuery(QString("UPDATE %1 SET %2 = %3 WHERE %4 = '%5'")
+    							.arg(*_tableName,
+    								 REAL_DB_ID_NAME_marchandiseTableColumnProperty,
+									 cellTextData,
+									 YerothDatabaseTableColumn::ID,
+									 curItemText));
 
-    		case QVariant::Int:
-    			msg.clear();
-    			msg.setNum(q.toInt());
-    			break;
-
-    		case QVariant::Double:
-    			msg.clear();
-    			msg.setNum(q.toDouble());
-    			break;
-
-    		case QVariant::ULongLong:
-    			msg.clear();
-    			msg.setNum(q.toULongLong());
-    			break;
-
-    		case QVariant::LongLong:
-    			msg.clear();
-    			msg.setNum(q.toLongLong());
-    			break;
-
-    		case QVariant::Char:
-    			msg.append(q.toChar());
-    			break;
-
-    		case QVariant::String:
-    			msg.append(q.toString());
-    			break;
-
-    		case QVariant::Bool:
-    			msg.append(q.toBool());
-    			break;
-
-    		default:
-    			break;
-    		}
-
-    		query.bindValue(0, msg);
-
-    		bool success = query.exec();
-    		//        qDebug() << "[" << BOOL_TO_STRING(success) << "]" << query.executedQuery();
+    		bool success = YerothUtils::execQuery(strQuery);
 
     		if (success)
     		{
