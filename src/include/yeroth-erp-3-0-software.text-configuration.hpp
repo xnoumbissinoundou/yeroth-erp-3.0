@@ -82,9 +82,6 @@
 # define STRING_NEW_SUPPLIER_EN						"new supplier (*)"
 # define STRING_NEW_SUPPLIER_FR						"nouveau fournisseur (*)"
 
-# define STRING_LOCALHOST						"localhost"
-# define STRING_LOCALHOST_IP_ADDRESS					"127.0.0.1"
-
 # define STRING_TEXT_YES_EN						"yes"
 # define STRING_TEXT_YES_FR						"oui"
 

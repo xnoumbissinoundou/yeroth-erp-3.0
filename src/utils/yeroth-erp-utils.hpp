@@ -477,6 +477,10 @@ public:
 	static const QString DATABASE_MYSQL_TIME_TYPE_STRING;
 
 
+	static const QString ETHERNET_LOCALHOST_STRING_NAME;
+
+	static const QString ETHERNET_LOCALHOST_LOOPBACK_IP_ADDRESS;
+
 	static const QString YEROTH_QT_STYLE_CDE;
 
 	static const unsigned int CURRENT_CLIENT_DB_ID_UNDEFINED;
@@ -562,10 +566,6 @@ public:
 	static const QString APROPOS_MSG;
 
 	static const QString APPLICATION_NAME;
-
-	static const QString LOCALHOST;
-
-	static const QString LOCALHOST_IP_ADDRESS;
 
 	static const QString STRING_OUI;
 

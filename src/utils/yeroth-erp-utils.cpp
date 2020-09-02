@@ -210,6 +210,10 @@ const QString YerothUtils::DATABASE_MYSQL_INT_TYPE_STRING		("int");
 const QString YerothUtils::DATABASE_MYSQL_TIME_TYPE_STRING		("time");
 
 
+const QString YerothUtils::ETHERNET_LOCALHOST_STRING_NAME("localhost");
+
+const QString YerothUtils::ETHERNET_LOCALHOST_LOOPBACK_IP_ADDRESS("127.0.0.1");
+
 const QString YerothUtils::YEROTH_QT_STYLE_CDE("cde");
 
 const unsigned int YerothUtils::CURRENT_CLIENT_DB_ID_UNDEFINED(-2);
@@ -361,10 +365,6 @@ const QString YerothUtils::APROPOS_MSG(QObject::trUtf8("YEROTH-ERP-3.0-ACADEMIC_
 const QString YerothUtils::APPLICATION_NAME(QObject::trUtf8("YEROTH-ERP-3.0-ACADEMIC_EVALUATION"));
 
 #endif
-
-const QString YerothUtils::LOCALHOST(STRING_LOCALHOST);
-
-const QString YerothUtils::LOCALHOST_IP_ADDRESS(STRING_LOCALHOST_IP_ADDRESS);
 
 const unsigned int YerothUtils::FACTURE_GRAND_STRING_MAX_CHARS(12);
 
@@ -520,7 +520,7 @@ bool YerothUtils::creerNouvelleCategorie(const QString 			&proposedCategorieName
     	record.setValue(YerothDatabaseTableColumn::NOM_CATEGORIE, proposedCategorieName);
     	record.setValue(YerothDatabaseTableColumn::DESCRIPTION_CATEGORIE, "");
 
-    	QString retMsg(QString(QObject::trUtf8("La catégorie '%1'"))
+    	QString retMsg(QObject::trUtf8("La catégorie '%1'")
     						.arg(proposedCategorieName));
 
     	bool success = categorieSqlTableModel.insertNewRecord(record);
@@ -1541,9 +1541,9 @@ bool YerothUtils::checkIfCustomerAccountAlreadyExist_NOMENTREPRISE(YerothWindows
 				{
 					aClientTableModel.resetFilter();
 
-					QString retMsg(QString(QObject::trUtf8("Une entreprise nommée '%1' existe déjà "
-							"dans la base de données !"))
-							.arg(aYerothLineEdit_nom_entreprise.text()));
+					QString retMsg(QObject::trUtf8("Une entreprise nommée '%1' existe déjà "
+												   "dans la base de données !")
+										.arg(aYerothLineEdit_nom_entreprise.text()));
 
 					YerothQMessageBox::warning(&aCallingWindow,
 							QObject::trUtf8("compte client déjà existant"),
@@ -1554,9 +1554,9 @@ bool YerothUtils::checkIfCustomerAccountAlreadyExist_NOMENTREPRISE(YerothWindows
 		}
 		else
 		{
-			QString retMsg(QString(QObject::trUtf8("Une entreprise nommée '%1' existe déjà "
-					"dans la base de données !"))
-					.arg(aYerothLineEdit_nom_entreprise.text()));
+			QString retMsg(QObject::trUtf8("Une entreprise nommée '%1' existe déjà "
+										   "dans la base de données !")
+								.arg(aYerothLineEdit_nom_entreprise.text()));
 
 			YerothQMessageBox::warning(&aCallingWindow,
 					QObject::trUtf8("compte client déjà existant"),
@@ -1601,9 +1601,10 @@ bool YerothUtils::checkIfCustomerAccountAlreadyExist_REFERENCE_REGISTRE_DU_COMME
 					{
 						aClientTableModel.resetFilter();
 
-						QString retMsg(QString(QObject::trUtf8("Une entreprise avec la référence régistre du commerce '%1' existe déjà "
-								"dans la base de données !"))
-								.arg(aYerothLineEdit_reference_registre_du_commerce.text()));
+						QString retMsg(QObject::trUtf8("Une entreprise avec la référence "
+													   "régistre du commerce '%1' existe déjà "
+													   "dans la base de données !")
+											.arg(aYerothLineEdit_reference_registre_du_commerce.text()));
 
 						YerothQMessageBox::warning(&aCallingWindow,
 								QObject::trUtf8("compte client déjà existant"),
@@ -1615,9 +1616,10 @@ bool YerothUtils::checkIfCustomerAccountAlreadyExist_REFERENCE_REGISTRE_DU_COMME
 			}
 			else
 			{
-				QString retMsg(QString(QObject::trUtf8("Une entreprise avec la référence régistre du commerce '%1' existe déjà "
-						"dans la base de données !"))
-						.arg(aYerothLineEdit_reference_registre_du_commerce.text()));
+				QString retMsg(QObject::trUtf8("Une entreprise avec la référence "
+											   "régistre du commerce '%1' existe déjà "
+											   "dans la base de données !")
+									.arg(aYerothLineEdit_reference_registre_du_commerce.text()));
 
 				YerothQMessageBox::warning(&aCallingWindow,
 						QObject::trUtf8("compte client déjà existant"),
@@ -1662,9 +1664,9 @@ bool YerothUtils::checkIfCustomerAccountAlreadyExist_REFERENCECLIENT(YerothWindo
 					{
 						aClientTableModel.resetFilter();
 
-						QString retMsg(QString(QObject::trUtf8("Une entreprise avec la référence '%1' existe déjà "
-								"dans la base de données !"))
-								.arg(aYerothLineEdit_reference_client.text()));
+						QString retMsg(QObject::trUtf8("Une entreprise avec la référence '%1' existe déjà "
+													   "dans la base de données !")
+											.arg(aYerothLineEdit_reference_client.text()));
 
 						YerothQMessageBox::warning(&aCallingWindow,
 								QObject::trUtf8("compte client déjà existant"),
@@ -1676,9 +1678,9 @@ bool YerothUtils::checkIfCustomerAccountAlreadyExist_REFERENCECLIENT(YerothWindo
 			}
 			else
 			{
-				QString retMsg(QString(QObject::trUtf8("Une entreprise avec la référence '%1' existe déjà "
-						"dans la base de données !"))
-						.arg(aYerothLineEdit_reference_client.text()));
+				QString retMsg(QObject::trUtf8("Une entreprise avec la référence '%1' existe déjà "
+											   "dans la base de données !")
+									.arg(aYerothLineEdit_reference_client.text()));
 
 				YerothQMessageBox::warning(&aCallingWindow,
 						QObject::trUtf8("compte client déjà existant"),
@@ -2014,10 +2016,10 @@ bool YerothUtils::slot_connecter_localisation(QWidget &aWidget,
     if (addresseIP.isEmpty())
     {
         QString retMsg;
-        retMsg.append(QString(QObject::trUtf8("La localisation %1 n'a pas d'adresse IP enregistrée !"))
-                      .arg(localisation));
+        retMsg.append(QObject::trUtf8("La localisation %1 n'a pas d'adresse IP enregistrée !")
+                      	  .arg(localisation));
 
-        QString msg(QString(QObject::tr("%1 - pas d'adresse IP !"))
+        QString msg(QObject::tr("%1 - pas d'adresse IP !")
         				.arg(widgetTitle));
 
         QMessageBox::information(&aWidget,
@@ -2028,12 +2030,14 @@ bool YerothUtils::slot_connecter_localisation(QWidget &aWidget,
     }
     else
     {
-        if ("127.0.0.1" == addresseIP)
+        if (YerothUtils::isEqualCaseInsensitive(ETHERNET_LOCALHOST_LOOPBACK_IP_ADDRESS, addresseIP))
         {
             QString retMsg;
-            retMsg.append(QString(QObject::trUtf8("La localisation ''%1'' est "
-                                  "déjà connectée par l'adresse loopback (127.0.0.1) !"))
-                          .arg(localisation));
+            retMsg.append(QObject::trUtf8("La localisation ''%1'' est "
+                                  	  	  "déjà connectée par l'adresse "
+                                  	  	  "IP loopback ('%2') !")
+                          	  .arg(localisation,
+                          		   YerothUtils::ETHERNET_LOCALHOST_LOOPBACK_IP_ADDRESS));
 
             QMessageBox::information(&aWidget,
                                      "Connection par adresse IP",
@@ -2108,10 +2112,10 @@ bool YerothUtils::slot_deconnecter_localisation(YerothERPWindows *allWindows)
 
     if (!database.open())
     {
-        QString errMsg(QString(QObject::trUtf8("Impossible de se connecter au serveur '%1' "
-        									   "de base de données !\n"
-        									   "Contacter l'administrateur de yeroth\n\n"
-        									   "Cliquer sur 'Cancel' pour terminer %2"))
+        QString errMsg(QObject::trUtf8("Impossible de se connecter au serveur '%1' "
+        							   "de base de données !\n"
+        							   "Contacter l'administrateur de yeroth\n\n"
+        							   "Cliquer sur 'Cancel' pour terminer %2")
         					.arg(database.db_type(),
         						 YerothUtils::APPLICATION_NAME));
 

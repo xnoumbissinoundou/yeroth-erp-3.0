@@ -298,22 +298,27 @@ void YerothERPMarchandisesTableView::dataChanged(const QModelIndex &index,
     		curIDText.append(_stdItemModel->item(index.row(), 0)->text());
     	}
 
+    	QString cellTextData;
+
+    	QString designationText;
+
     	QString columnHeaderText(_tableModelHeaders->at(index.column()));
 
     	QString REAL_DB_ID_NAME_marchandiseTableColumnProperty(
     			YerothDatabaseTableColumn::_tableColumnToUserViewString.key(columnHeaderText));
+
+    	bool success = false;
 
     	if (YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::REFERENCE,
     											REAL_DB_ID_NAME_marchandiseTableColumnProperty))
     	{
     		QSqlQuery mySqlQuery;
 
-    		QString designationText;
         	QString prevReferenceText;
 
     		QVariant qvIndexData = index.data();
 
-    		QString cellTextData = (YerothUtils::get_text(qvIndexData));
+    		cellTextData = YerothUtils::get_text(qvIndexData);
 
     		QString strSelectPreviousValueQuery(QString("SELECT %1, %2 FROM %3 WHERE %4 = '%5'")
     							.arg(REAL_DB_ID_NAME_marchandiseTableColumnProperty,
@@ -346,7 +351,7 @@ void YerothERPMarchandisesTableView::dataChanged(const QModelIndex &index,
 
 //    		QDEBUG_STRINGS_OUTPUT(QString::number(mySqlQuerySize), strUpdateMarchandisesTableQuery);
 
-    		bool success = YerothUtils::execQuery(strUpdateMarchandisesTableQuery);
+    		success = YerothUtils::execQuery(strUpdateMarchandisesTableQuery);
 
     		if (success)
     		{
@@ -376,34 +381,35 @@ void YerothERPMarchandisesTableView::dataChanged(const QModelIndex &index,
         		}
     		}
 
-    		QString msgBoxTitle(QObject::trUtf8("modification (%1) ")
-    								.arg(columnHeaderText));
-
-    		if (success)
-    		{
-    	        YerothQMessageBox::information(_allWindows->_marchandisesWindow,
-    	        							   msgBoxTitle,
-    	                                       QObject::trUtf8("Succès de la modification de la colone '%1' (%2) "
-    	                                    		   	   	   "de la marchandise '%3' !")
-    	        									.arg(columnHeaderText,
-    	        										 cellTextData,
-														 designationText),
-											   QMessageBox::Ok);
-    		}
-    		else
-    		{
-    	        YerothQMessageBox::information(_allWindows->_marchandisesWindow,
-    	        							   msgBoxTitle,
-    	                                       QObject::trUtf8("Échec de la modification de la colone '%1' (%2) "
-    	                                    		   	   	   "de la marchandise '%3' !")
-    	        									.arg(columnHeaderText,
-    	        										 cellTextData,
-														 designationText),
-											   QMessageBox::Ok);
-    		}
-
     		YEROTH_ERP_3_0_COMMIT_DATABASE_TRANSACTION;
     	}
+
+		QString msgBoxTitle(QObject::trUtf8("modification (%1) ")
+								.arg(columnHeaderText));
+
+		if (success)
+		{
+	        YerothQMessageBox::information(_allWindows->_marchandisesWindow,
+	        							   msgBoxTitle,
+	                                       QObject::trUtf8("Succès de la modification de la colone '%1' (%2) "
+	                                    		   	   	   "de la marchandise '%3' !")
+	        									.arg(columnHeaderText,
+	        										 cellTextData,
+													 designationText),
+										   QMessageBox::Ok);
+		}
+		else
+		{
+	        YerothQMessageBox::information(_allWindows->_marchandisesWindow,
+	        							   msgBoxTitle,
+	                                       QObject::trUtf8("Échec de la modification de la colone '%1' (%2) "
+	                                    		   	   	   "de la marchandise '%3' !")
+	        									.arg(columnHeaderText,
+	        										 cellTextData,
+													 designationText),
+										   QMessageBox::Ok);
+		}
+
     }
 
     stopEditingModeSelection();
