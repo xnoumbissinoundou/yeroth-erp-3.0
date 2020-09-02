@@ -737,7 +737,7 @@ bool YerothUtils::insertStockItemInProductList(const YerothERPServiceStockMarcha
     	stockOuService = aServiceStockData._reference;
     }
 
-    QString retMsg(QString(QObject::tr("Le stock (service) '%1'"))
+    QString retMsg(QObject::tr("Le stock (service) '%1'")
     					.arg(stockOuService));
 
     if (success)
@@ -1842,7 +1842,7 @@ QString YerothUtils::appendPDFReceiptFormat(QString aStr)
     {
         if (!resultStr.contains(YerothERPConfig::receiptFormat))
         {
-        	resultStr.append(QString(QObject::tr("\t[ factures pdf au format: '%1' ]"))
+        	resultStr.append(QObject::tr("\t[ factures pdf au format: '%1' ]")
         						.arg(YerothERPConfig::receiptFormat));
         }
     }
@@ -2033,7 +2033,7 @@ bool YerothUtils::slot_connecter_localisation(QWidget &aWidget,
         if (YerothUtils::isEqualCaseInsensitive(ETHERNET_LOCALHOST_LOOPBACK_IP_ADDRESS, addresseIP))
         {
             QString retMsg;
-            retMsg.append(QObject::trUtf8("La localisation ''%1'' est "
+            retMsg.append(QObject::trUtf8("La localisation '%1' est "
                                   	  	  "déjà connectée par l'adresse "
                                   	  	  "IP loopback ('%2') !")
                           	  .arg(localisation,
@@ -2063,10 +2063,10 @@ bool YerothUtils::slot_connecter_localisation(QWidget &aWidget,
 
         allWindows->reinitialiseSqlTableModels();
 
-        QString retMsg(QString(QObject::trUtf8("Connecter à la localisation %1 !"))
-        				.arg(localisation));
+        QString retMsg(QObject::trUtf8("Connecter à la localisation %1 !")
+        					.arg(localisation));
 
-        QString msg(QString(QObject::trUtf8("%1 - Connection à la localisation !"))
+        QString msg(QObject::trUtf8("%1 - Connection à la localisation !")
         				.arg(widgetTitle));
 
         QMessageBox::information(&aWidget, msg, retMsg);
@@ -2075,10 +2075,10 @@ bool YerothUtils::slot_connecter_localisation(QWidget &aWidget,
     }
     else
     {
-        QString retMsg(QString(QObject::trUtf8("Impossible de se connecter à la localisation %1 !"))
+        QString retMsg(QObject::trUtf8("Impossible de se connecter à la localisation %1 !")
                       .arg(localisation));
 
-        QString msg(QString(QObject::trUtf8("%1 - Pas de connection à la localisation !"))
+        QString msg(QObject::trUtf8("%1 - Pas de connection à la localisation !")
                     .arg(widgetTitle));
 
         QMessageBox::information(&aWidget, msg, retMsg);

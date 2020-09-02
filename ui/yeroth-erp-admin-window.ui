@@ -23555,7 +23555,7 @@
         <x>6</x>
         <y>73</y>
         <width>763</width>
-        <height>45</height>
+        <height>61</height>
        </rect>
       </property>
       <property name="font">
@@ -23566,93 +23566,45 @@
       <property name="title">
        <string>période de temps</string>
       </property>
-      <widget class="YerothDateTimeEdit" name="dateEdit_maintenance_date_fin">
+      <widget class="YerothDateTimeEdit" name="dateEdit_maintenance_date">
        <property name="geometry">
         <rect>
-         <x>530</x>
-         <y>16</y>
-         <width>205</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="displayFormat">
-        <string>dd/MM/yyyy</string>
-       </property>
-       <property name="date">
-        <date>
-         <year>2016</year>
-         <month>1</month>
-         <day>1</day>
-        </date>
-       </property>
-      </widget>
-      <widget class="YerothDateTimeEdit" name="dateEdit_maintenance_date_debut">
-       <property name="geometry">
-        <rect>
-         <x>157</x>
-         <y>16</y>
-         <width>205</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="displayFormat">
-        <string>dd/MM/yyyy</string>
-       </property>
-       <property name="date">
-        <date>
-         <year>2016</year>
-         <month>1</month>
-         <day>1</day>
-        </date>
-       </property>
-      </widget>
-      <widget class="QRadioButton" name="radioButton_creer_alerte_periode_temps">
-       <property name="geometry">
-        <rect>
-         <x>132</x>
-         <y>18</y>
-         <width>21</width>
-         <height>26</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>RadioButton</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_maintenance_date_debut">
-       <property name="geometry">
-        <rect>
-         <x>15</x>
+         <x>122</x>
          <y>20</y>
-         <width>101</width>
+         <width>205</width>
          <height>21</height>
         </rect>
        </property>
-       <property name="text">
-        <string>début</string>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="displayFormat">
+        <string>dd/MM/yyyy</string>
+       </property>
+       <property name="date">
+        <date>
+         <year>2016</year>
+         <month>1</month>
+         <day>1</day>
+        </date>
        </property>
       </widget>
-      <widget class="QLabel" name="label_maintenance_date_fin">
+      <widget class="QLabel" name="label_maintenance_date">
        <property name="geometry">
         <rect>
-         <x>380</x>
-         <y>16</y>
-         <width>101</width>
+         <x>2</x>
+         <y>20</y>
+         <width>117</width>
          <height>21</height>
         </rect>
        </property>
        <property name="text">
-        <string>fin</string>
+        <string>date</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
       </widget>
      </widget>
@@ -24524,7 +24476,7 @@
        <string>Annuler</string>
       </property>
      </widget>
-     <widget class="YerothComboBox" name="comboBox_actions_maintain">
+     <widget class="YerothComboBox" name="comboBox_operations_maintenance">
       <property name="geometry">
        <rect>
         <x>6</x>
@@ -25000,7 +24952,7 @@
        <string>opérations</string>
       </property>
      </widget>
-     <widget class="YerothComboBox" name="comboBox_sujets_maintain">
+     <widget class="YerothComboBox" name="comboBox_sujets_maintenance">
       <property name="geometry">
        <rect>
         <x>155</x>
@@ -25436,6 +25388,24 @@
       </property>
       <property name="minimumContentsLength">
        <number>0</number>
+      </property>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_maintenance_commandes">
+      <property name="geometry">
+       <rect>
+        <x>6</x>
+        <y>150</y>
+        <width>763</width>
+        <height>171</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="title">
+       <string>commandes (terminal 'Bash')</string>
       </property>
      </widget>
     </widget>
@@ -41598,11 +41568,9 @@
   <tabstop>lineEdit_localisation</tabstop>
   <tabstop>pushButton_connecter_localisation</tabstop>
   <tabstop>pushButton_deconnecter_localisation</tabstop>
-  <tabstop>comboBox_actions_maintain</tabstop>
-  <tabstop>comboBox_sujets_maintain</tabstop>
-  <tabstop>radioButton_creer_alerte_periode_temps</tabstop>
-  <tabstop>dateEdit_maintenance_date_debut</tabstop>
-  <tabstop>dateEdit_maintenance_date_fin</tabstop>
+  <tabstop>comboBox_operations_maintenance</tabstop>
+  <tabstop>comboBox_sujets_maintenance</tabstop>
+  <tabstop>dateEdit_maintenance_date</tabstop>
   <tabstop>pushButton_creer_alerte_annuler</tabstop>
   <tabstop>pushButton_maintenance_valider</tabstop>
   <tabstop>comboBox_actions</tabstop>

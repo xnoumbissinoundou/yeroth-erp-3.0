@@ -40,13 +40,28 @@
 
 const int YerothAdminWindow::MAX_IMPORT_CSV_HEADER_SIZE(16);
 
-const QString YerothAdminWindow::EXPORTER(QObject::trUtf8("exporter"));
-const QString YerothAdminWindow::IMPORTER(QObject::trUtf8("importer"));
-const QString YerothAdminWindow::EFFACER(QObject::trUtf8("effacer"));
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+
+const QString YerothAdminWindow::EFFACER(QObject::tr("effacer"));
+const QString YerothAdminWindow::EXPORTER(QObject::tr("exporter"));
+const QString YerothAdminWindow::IMPORTER(QObject::tr("importer"));
 
 const QString YerothAdminWindow::DB(QObject::trUtf8("base de données"));
-const QString YerothAdminWindow::TABLEAU(QObject::trUtf8("tableau"));
-const QString YerothAdminWindow::DONNEES(QObject::trUtf8("données"));
+const QString YerothAdminWindow::TABLEAU(QObject::tr("tableau"));
+
+#elif YEROTH_ENGLISH_LANGUAGE
+
+const QString YerothAdminWindow::EFFACER(QObject::tr("erase"));
+const QString YerothAdminWindow::EXPORTER(QObject::tr("export"));
+const QString YerothAdminWindow::IMPORTER(QObject::tr("import"));
+
+const QString YerothAdminWindow::DB(QObject::trUtf8("database"));
+const QString YerothAdminWindow::TABLEAU(QObject::tr("database table"));
+
+#endif
+
+
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 const QString YerothAdminWindow::CREER(QObject::trUtf8(ACTION_ADMIN_OPERATIONS_CREATE_FR));
@@ -111,8 +126,6 @@ YerothAdminWindow::YerothAdminWindow()
 
     _yerothAdminWindowTitleStart.append(windowTitle());
 
-    tabWidget_administration->setTabEnabled(MAINTENANCE, false);
-
     setupValidators();
 
     YEROTH_ERP_ADMIN_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
@@ -139,7 +152,6 @@ YerothAdminWindow::YerothAdminWindow()
 
     _sujetActionsToConst->insert(DB, SUJET_ACTION_DB);
     _sujetActionsToConst->insert(TABLEAU, SUJET_ACTION_TABLEAU);
-    _sujetActionsToConst->insert(DONNEES, SUJET_ACTION_DONNEES);
 
     comboBox_sujets_actions->addItem(ALERTE);
     comboBox_sujets_actions->addItem(BON_DE_COMMANDE);
@@ -150,9 +162,8 @@ YerothAdminWindow::YerothAdminWindow()
     comboBox_sujets_actions->addItem(LOCALISATION);
     comboBox_sujets_actions->addItem(REMISE);
 
-    comboBox_sujets_maintain->addItem(DB);
-    comboBox_sujets_maintain->addItem(TABLEAU);
-    comboBox_sujets_maintain->addItem(DONNEES);
+    comboBox_sujets_maintenance->addItem(DB);
+    comboBox_sujets_maintenance->addItem(TABLEAU);
 
     comboBox_strategie_vente_sortie->addItem(YerothERPConfig::STRATEGIE_VENTE_SORTIE_ALL);
     comboBox_strategie_vente_sortie->addItem(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FEFO);
@@ -164,9 +175,12 @@ YerothAdminWindow::YerothAdminWindow()
     comboBox_actions->addItem(MODIFIER);
     comboBox_actions->addItem(SUPPRIMER);
 
-    comboBox_actions_maintain->addItem(EXPORTER);
-    comboBox_actions_maintain->addItem(IMPORTER);
-    comboBox_actions_maintain->addItem(EFFACER);
+
+    comboBox_operations_maintenance->addItem(EFFACER);
+    comboBox_operations_maintenance->addItem(EXPORTER);
+    comboBox_operations_maintenance->addItem(IMPORTER);
+    comboBox_operations_maintenance->addItem(SUPPRIMER);
+
 
     pushButton_menu_go->disable(this);
     pushButton_creer->disable(this);
@@ -972,7 +986,7 @@ void YerothAdminWindow::action_supprimer()
 
 void YerothAdminWindow::action_exporter()
 {
-    _curAdminSujetsMaintainAction = _sujetActionsToConst->value(comboBox_sujets_maintain->currentText());
+    _curAdminSujetsMaintainAction = _sujetActionsToConst->value(comboBox_sujets_maintenance->currentText());
     switch (_curAdminSujetsMaintainAction)
     {
     case SUJET_ACTION_DB:
@@ -988,7 +1002,7 @@ void YerothAdminWindow::action_exporter()
 
 void YerothAdminWindow::action_importer()
 {
-    _curAdminSujetsMaintainAction = _sujetActionsToConst->value(comboBox_sujets_maintain->currentText());
+    _curAdminSujetsMaintainAction = _sujetActionsToConst->value(comboBox_sujets_maintenance->currentText());
     switch (_curAdminSujetsMaintainAction)
     {
     case SUJET_ACTION_DB:
@@ -1004,7 +1018,7 @@ void YerothAdminWindow::action_importer()
 
 void YerothAdminWindow::action_effacer()
 {
-    _curAdminSujetsMaintainAction = _sujetActionsToConst->value(comboBox_sujets_maintain->currentText());
+    _curAdminSujetsMaintainAction = _sujetActionsToConst->value(comboBox_sujets_maintenance->currentText());
     switch (_curAdminSujetsMaintainAction)
     {
     case SUJET_ACTION_DB:

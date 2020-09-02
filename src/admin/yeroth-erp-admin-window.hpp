@@ -206,7 +206,6 @@ private:
 	static const QString BON_DE_COMMANDE;
 	static const QString DB;
 	static const QString TABLEAU;
-	static const QString DONNEES;
 
 	QString _currentWindowTitle;
 	QString _yerothAdminWindowTitleStart;
