@@ -1,0 +1,256 @@
+%====================================================
+%
+% Author: Dipl.--Inf. XAVIER NOUMBISSI NOUNDOU
+%
+%====================================================
+\documentclass[a4paper, 9pt]{article}
+\NeedsTeXFormat{LaTeX2e}
+
+%---------------------------- PACKAGE INCLUSION -------------------------------
+% This group renders characters clearer and more precise
+
+\RequirePackage[bitstream-charter,cal,expert]{mathdesign}
+\RequirePackage{latexsym}
+
+\usepackage{geometry}
+\geometry{a4paper,
+		  %showframe=true,
+		  %margin=2.75em,
+		  %a4paper,
+		  %total={170mm,257mm},
+		  top=3.5em,
+		  left=3em,
+		  right=3em,
+		  bottom=3.39em
+		  }
+
+\usepackage[default]{cantarell}
+\usepackage{graphicx}
+\usepackage{xspace}
+\usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{listings} % for lstset definitions
+\usepackage{url}
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+\usepackage{epsfig}
+\usepackage{booktabs}
+%\usepackage{enumitem} %funny itemize icons
+\usepackage{verbatim}
+\usepackage{tcolorbox}
+
+\usepackage{pagecolor}
+
+\usepackage{multicol,lipsum}
+
+\usepackage{amsmath}
+\newcommand{\mathbold}[1]{\text{\textbf{#1}}}
+
+\usepackage{xcolor}
+\definecolor{yerothColorOrange}{RGB}{242, 161, 0}   
+\definecolor{yerothColorBlue}{RGB}{77 , 93 , 254}
+\definecolor{yerothColorRed}{RGB}{254, 48 , 48}
+\definecolor{yerothColorGray}{RGB}{198, 198, 198}
+\definecolor{yerothColorDarkgray}{RGB}{60, 60 , 60}
+\definecolor{yerothColorIndigo}{RGB}{83, 0, 125}
+\definecolor{yerothColorGreen}{RGB}{2  , 160, 70}
+\definecolor{forestgreen}{RGB}{2,160,70}    
+\definecolor{mediumblue}{RGB}{7,43,205}    
+\definecolor{firebrickred}{RGB}{178,34,34}
+\definecolor{listingray}{gray}{0.9}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+\definecolor{darkgreen}{rgb}{0,0.35,0}
+\definecolor{medgreen}{rgb}{0,0.5,0}
+\definecolor{lightgreen}{rgb}{0.5,0.7,0.5}
+\definecolor{pmcolour}{rgb}{0.5,0.7,0.5}
+\definecolor{medgrey}{rgb}{0.6,0.6,0.6}
+\definecolor{purplish}{rgb}{0.4,0,0.6}
+\definecolor{brightred}{rgb}{1,0.2,0.2}
+
+\newcommand{\diplinfn}{Dipl.--Inf.\xspace}
+
+\newcommand{\yerothrd}{\textcolor{yerothColorGreen}
+			{\textsc{\textcolor{yerothColorRed}{YEROTH}}$_{\text{r\&d}}$\xspace}}
+
+\newcommand{\fatclient}{fat--client\xspace}
+
+\newcommand{\webclient}{web--client\xspace}
+
+\newcommand{\yerotherpblack}{YEROTH--ERP--$3.0$\xspace}
+
+\newcommand{\yerotherp}{\textsc{\textcolor{yerothColorBlue}{YEROTH--ERP--$3.0$}}\xspace}
+
+\newcommand{\saperp}{SAP Business One\xspace}
+
+\newcommand{\sageerp}{Sage Gescom i$7$\xspace}
+
+\newcommand{\myfullacademicname}{Dipl.--Inf. XAVIER NOUMBISSI NOUNDOU\xspace}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+	pagebackref,
+    citecolor=medgreen,
+    linkcolor=purplish,
+    breaklinks,
+    pdftex,
+    bookmarks,
+    plainpages=false,
+	pdftitle={Fat--client applications VS \webclient applications.
+			Authored by: ''\myfullacademicname''.},
+    pdfauthor={\myfullacademicname}
+}
+
+%--------------------------------------------------------------------------------
+
+%---------------------------- COMMANDS DEFINITION -------------------------------
+\newcommand{\diplinf}{\emph{Dipl.-Inf.}\xspace}
+\newcommand{\mycheckmark}[1]{\textcolor{#1}{$\checkmark$}\xspace}
+
+\newcommand{\myenumitem}[1]{\emph{#1}\xspace}
+\newcommand{\yerenalert}{\emph{yeren-alert}\xspace}
+
+\newcommand{\erpsoftware}{ERP~software--system\xspace}
+
+\newcommand{\mysql}{MySQL\xspace}
+\newcommand{\mysqlcolored}{\textcolor{yerothColorBlue}{My}\textcolor{yerothColorOrange}{SQL}\xspace}
+
+\newcommand{\admin}{<< Administrator >>\xspace}
+\newcommand{\manager}{<< Manager >>\xspace}
+\newcommand{\seller}{<< Seller >>\xspace}
+\newcommand{\inventorystockmanager}{<< InventoryStockManager >>\xspace}
+\newcommand{\storekeeper}{<< StoreKeeper >>\xspace}
+\newcommand{\cashier}{<< Cashier >>\xspace}
+
+\newcommand{\adminb}{\textbf{<< Administrator >>}\xspace}
+\newcommand{\managerb}{\textbf{<< Manager >>}\xspace}
+\newcommand{\inventorystockmanagerb}{\textbf{<< InventoryStockManager >>}\xspace}
+\newcommand{\storekeeperb}{\textbf{<< StoreKeeper >>}\xspace}
+\newcommand{\cashierb}{\textbf{<< Cashier >>}\xspace}
+
+\newcommand{\yerothvert}[1]{\textcolor{yerothColorGreen}{#1}\xspace}
+\newcommand{\yerothorange}[1]{\textcolor{yerothColorOrange}{#1}\xspace}
+\newcommand{\yerothrouge}[1]{\textcolor{yerothColorRed}{#1}\xspace}
+
+\newcommand{\yerothfacile}{\yerothvert{easy}\xspace}
+\newcommand{\yerothdifficile}{\yerothorange{difficult}\xspace}
+\newcommand{\yerothtresdifficile}{\yerothrouge{very difficult}\xspace}
+
+\newcommand{\featuresummary}[2]{\textbf{\textcolor{#1}{\textsc{#2}}}}
+
+%--------------------------------------------------------------------------------
+
+\usepackage[T1]{fontenc}
+\newcommand{\changefont}[3]{
+\fontfamily{#1} \fontseries{#2} \fontshape{#3} \selectfont}
+\changefont{cmss}{m}{n}
+
+\renewcommand\labelenumi{\theenumi)}
+
+\pagenumbering{gobble}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\rhead{}
+\lhead{}
+\lfoot{}
+\rfoot{}
+\cfoot{}
+
+\clubpenalty = 10000
+\widowpenalty = 10000
+\displaywidowpenalty = 10000
+
+\begin{document}
+
+
+\onecolumn
+
+{\bf \Large \yerothrd} {| \sc \scriptsize \fatclient applications vs \webclient applications}
+
+\vspace{2.0em}
+
+\begin{center}
+{\large \textbf{\myfullacademicname}}
+\end{center}
+
+\vspace{2.0em}
+
+\begin{center}
+{\LARGE Fat--client applications VS \webclient applications}
+\end{center}
+
+\vspace{2.0em}
+
+\begin{center}
+\parbox{32em}{
+This paper describes the advantages of \fatclient
+applications over \webclient applications.
+}
+\end{center}
+
+\vspace{5.0em}
+
+\begin{multicols}{2}
+
+
+\section{Introduction}
+
+Table~\ref{tab:comparison-against-others-erp-software-systems}
+pictures the 'simplicity' and 'effectiveness'
+of \yerotherpblack, compared to ERP
+software--systems ''\sageerp'', and ''\saperp''.
+
+
+\section{Application Architecture}
+
+
+\section{Application Maintenance}
+
+
+\section{Defect Analysis}
+
+
+\section{User Experience}
+
+
+\section{User Interface}
+
+
+\section{Conclusion}
+
+
+\end{multicols}
+
+\vspace{1.0em}
+
+\begin{table}[!htbp]
+\centering
+\begin{tabular}{cccc} 
+
+\multicolumn{1}{c}{}			&
+Fat--client application 				& 
+Web--client application		\\ \hline
+
+complete training					&
+		\yerothvert{$5$ days}		&						
+		\yerothrouge{$3$ months}	\\ \hline
+
+difficulty in navigation			&
+		\yerothfacile				&					
+		\yerothtresdifficile		\\  \hline		
+		
+internet connection				&
+		\yerothrouge{mandatory}	&						
+		\yerothrouge{mandatory}	\\ 
+\end{tabular}
+\caption{Comparison between \yerotherpblack and $2$ other full featured ERP software--systems\\}
+\label{tab:comparison-against-others-erp-software-systems}
+\end{table}
+
+\vspace{0.68em}
+
+
+
+\end{document}
+
