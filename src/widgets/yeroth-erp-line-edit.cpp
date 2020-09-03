@@ -660,6 +660,15 @@ void YerothLineEdit::refreshCompleterList(QString strategy)
 }
 
 
+void YerothLineEdit::hideEvent(QHideEvent * hideEvent)
+{
+	if (0 != _inputDialog)
+	{
+		_inputDialog->close();
+	}
+}
+
+
 void YerothLineEdit::mouseDoubleClickEvent(QMouseEvent *event)
 {
 	if (text().isEmpty() ||

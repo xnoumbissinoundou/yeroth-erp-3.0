@@ -156,6 +156,8 @@ public:
 
 protected:
 
+	virtual void hideEvent(QHideEvent * hideEvent);
+
 	virtual void mouseDoubleClickEvent(QMouseEvent *event) override;
 
 public slots:
