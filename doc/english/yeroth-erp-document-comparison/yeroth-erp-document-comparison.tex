@@ -66,9 +66,12 @@
 
 \newcommand{\diplinfn}{Dipl.--Inf.\xspace}
 
-\newcommand{\yerenlabs}{\textsc{YEROTH~R\&D}\xspace}
+\newcommand{\yerothrd}{\textcolor{yerothColorGreen}
+			{\textsc{\textcolor{yerothColorRed}{YEROTH}}$_{\text{r\&d}}$\xspace}}
 
-\newcommand{\yerotherp}{\textcolor{yerothColorBlue}{\sc YEROTH--ERP--$3.0$}\xspace}
+\newcommand{\yerotherpblack}{YEROTH--ERP--$3.0$\xspace}
+
+\newcommand{\yerotherp}{\textsc{\textcolor{yerothColorBlue}{YEROTH--ERP--$3.0$}}\xspace}
 
 \newcommand{\saperp}{SAP Business One\xspace}
 
@@ -86,8 +89,8 @@
     pdftex,
     bookmarks,
     plainpages=false,
-	pdftitle={\yerotherp: comparison against other full featured ERP
-			  software--systems, authored by: ''\myfullacademicname''},
+	pdftitle={Advantages of \yerotherpblack over tier--1 ERP
+			  software--systems. Authored by: ''\myfullacademicname''.},
     pdfauthor={\myfullacademicname}
 }
 
@@ -144,7 +147,7 @@
 \renewcommand{\headrulewidth}{0pt}
 \rhead{}
 \lhead{}
-\lfoot{{\small Author: \myfullacademicname}}
+\lfoot{{\small \myfullacademicname}}
 \rfoot{{\small Version of --~\today~--}}
 \cfoot{}
 
@@ -154,14 +157,22 @@
 
 \begin{document}
 
-{\bf \LARGE \yerotherp} {| \sc \scriptsize Comparison to other ERP software--systems}
+{\bf \Large \yerothrd} {| \sc \scriptsize \yerotherpblack vs tier--1 ERP software--systems}
 
-\vspace{3.75em}
+\vspace{2.0em}
+
+\begin{center}
+{\large \textbf{\myfullacademicname}}
+\end{center}
+
+\vspace{0.6em}
 
 \begin{table}[!htbp]
 \begin{tabular}{ll}
 \parbox{27em}{
-\yerotherp is a very easy to use ERP (Enterprise Resource Planing)
+\section*{Advantages of \yerotherpblack over other ERP software--systems.}
+\vspace{0.5em}
+\yerotherpblack is a very easy to use ERP (Enterprise Resource Planing)
 software--system because of its characteristics:
 \vspace{0.5em}
 \begin{enumerate}
@@ -186,56 +197,56 @@ software--system because of its characteristics:
 \end{tabular}
 \end{table}
 
-\vspace{0.7cm}
+\vspace{0em}
+
+Table~\ref{tab:comparison-against-others-erp-software-systems}
+pictures the 'simplicity' and 'effectiveness' of \yerotherpblack, 
+compared to ERP software--systems ''\sageerp'', and ''\saperp''.\\
+
+\vspace{0.1em}
 
 \begin{table}[!htbp]
 \centering
-\begin{tabular}{cccc}
+\begin{tabular}{cccc} 
 
 \multicolumn{1}{c}{}			&
-\yerotherp 						& 
+\yerotherpblack 				& 
 \sageerp						&
 \saperp		\\ \hline
 
-\textbf{complete training}		&
-		\yerothvert{$5$ days}			&
-		\yerothorange{$2$ months}			&						
-		\yerothrouge{$3$ months}			\\ \hline
+complete training					&
+		\yerothvert{$5$ days}		&
+		\yerothorange{$2$ months}	&						
+		\yerothrouge{$3$ months}	\\ \hline
 
-\textbf{difficulty in navigation}		&
-		\yerothfacile					&
-		\yerothdifficile				&						
-		\yerothtresdifficile				\\  \hline
+difficulty in navigation			&
+		\yerothfacile				&
+		\yerothdifficile			&						
+		\yerothtresdifficile		\\  \hline
 		
-\textbf{usage language in software}			&
+usage language in software					&
 		\yerothvert{easy everyday English}	&
-		\yerothorange{simple}					&						
-		\yerothrouge{technical}					\\ \hline			
+		\yerothorange{simple}				&						
+		\yerothrouge{technical}				\\ \hline			
 		
-\textbf{financial accounting knowledge}	&
-		\yerothvert{no}		&
-		\yerothvert{no}		&						
+financial accounting knowledge	&
+		\yerothvert{no}			&
+		\yerothvert{no}			&						
 		\yerothorange{useful}	\\ \hline		
 
-\textbf{advanced marketing knowledge}	&
+advanced marketing knowledge	&
 		\yerothvert{no}			&
 		\yerothorange{useful}	&						
 		\yerothorange{useful}	\\ \hline
 		
-\textbf{internet connection}				&
+internet connection				&
 		\yerothvert{no}			&
 		\yerothrouge{mandatory}	&						
-		\yerothrouge{mandatory}	\\		
+		\yerothrouge{mandatory}	\\ 
 \end{tabular}
-\caption{Comparison between \yerotherp and $2$ other full featured ERP software--systems\\}
+\caption{Comparison between \yerotherpblack and $2$ other full featured ERP software--systems\\}
 \label{tab:comparison-against-others-erp-software-systems}
 \end{table}
-
-\vspace{0.3cm}
-
-Table~\ref{tab:comparison-against-others-erp-software-systems}
-pictures the 'simplicity' and 'effectiveness' of \yerotherp, 
-compared to ERP software--systems ''\sageerp'', and ''\saperp''.\\
 
 \vspace{0.68em}
 
