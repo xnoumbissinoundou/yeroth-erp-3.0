@@ -175,6 +175,9 @@ connect(actionAdministration, SIGNAL(triggered()), this, SLOT(administration()))
     connect(tableView_stocks, SIGNAL(doubleClicked(const QModelIndex &)), this,
             SLOT(afficher_au_detail(const QModelIndex &)));
 
+    connect(actionAfficher_les_stocks_en_alerte_de_stock, SIGNAL(triggered()),
+    		this, SLOT(filtrer_stocks_en_alerte_de_stock()));
+
     connect(actionAfficher_les_stocks_perimes, SIGNAL(triggered()),
     		this, SLOT(filtrer_stocks_perimes_seulement()));
 
@@ -235,6 +238,43 @@ void YerothStocksWindow::private_slot_afficher_historique_du_stock()
 }
 
 
+bool YerothStocksWindow::filtrer_stocks_en_alerte_de_stock()
+{
+	QString filterString;
+
+	filterString.append(QString("%1 <= %2")
+			.arg(YerothDatabaseTableColumn::QUANTITE_TOTALE,
+				 YerothDatabaseTableColumn::STOCK_DALERTE));
+
+//	qDebug() << QString("++ filtrer_stocks_en_alerte_de_stock | filterString: %1")
+//    						.arg(filterString);
+
+	_curStocksTableModel->yerothSetFilter(filterString);
+
+	int resultRows = _curStocksTableModel->easySelect();
+
+	if (resultRows >= 0)
+	{
+		setCurrentlyFiltered(true);
+	}
+
+	afficherStocks();
+
+	if (resultRows > 0)
+	{
+		YEROTH_QMESSAGE_BOX_QUELQUE_RESULTAT_FILTRE(this, resultRows, "stocks en état d'alerte de stocks");
+	}
+	else
+	{
+		YEROTH_QMESSAGE_BOX_AUCUN_RESULTAT_FILTRE(this, "stocks en état d'alerte de stocks");
+	}
+
+	set_filtrer_font();
+
+	return true;
+}
+
+
 bool YerothStocksWindow::filtrer_stocks_perimes_seulement()
 {
 	QString filterString;
@@ -259,11 +299,11 @@ bool YerothStocksWindow::filtrer_stocks_perimes_seulement()
 
 	if (resultRows > 0)
 	{
-		YEROTH_QMESSAGE_BOX_QUELQUE_RESULTAT_FILTRE(this, resultRows, "stocks - filtrer");
+		YEROTH_QMESSAGE_BOX_QUELQUE_RESULTAT_FILTRE(this, resultRows, "stocks périmés");
 	}
 	else
 	{
-		YEROTH_QMESSAGE_BOX_AUCUN_RESULTAT_FILTRE(this, "stocks - filtrer");
+		YEROTH_QMESSAGE_BOX_AUCUN_RESULTAT_FILTRE(this, "stocks périmés");
 	}
 
 	set_filtrer_font();

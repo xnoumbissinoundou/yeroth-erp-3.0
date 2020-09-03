@@ -121,6 +121,8 @@ private slots:
 
 	void private_slot_afficher_historique_du_stock();
 
+	bool filtrer_stocks_en_alerte_de_stock();
+
 	bool filtrer_stocks_perimes_seulement();
 
 	bool filtrer_stocks();

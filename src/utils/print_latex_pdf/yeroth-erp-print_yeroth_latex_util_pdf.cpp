@@ -274,9 +274,11 @@ void YerothTableViewPRINT_UTILITIES_TEX_TABLE::
 
         item = tableStandardItemModel.horizontalHeaderItem(realK_pos);
 
-        if (item)
+        if (0 != item)
         {
-            QString itemText(item->text().prepend("\\textbf{").append("}"));
+        	QString itemText(item->text());
+
+        	itemText.prepend("\\textbf{").append("}");
 
             YerothUtils::handleTexTableItemText(texTableColumnCount,
                                    latexTable_in_out,
@@ -310,10 +312,19 @@ void YerothTableViewPRINT_UTILITIES_TEX_TABLE::
             if (item)
             {
                 QString itemText(item->text());
+
+            	if (YerothUtils::YEROTH_RED_COLOR == item->foreground().color())
+    			{
+            		itemText.prepend("\\textcolor{yerothColorRed}{").append("}");
+    			}
+
                 YerothUtils::handleTexTableItemText(texTableColumnCount,
                                               	  	latexTable_in_out,
 													realK_pos,
 													itemText);
+
+//                qDebug() << QString("++ itemText: %1")
+//                				.arg(itemText);
             }
             else
             {
