@@ -48,13 +48,13 @@
 \newcommand{\mathbold}[1]{\text{\textbf{#1}}}
 
 \usepackage{xcolor}
-\definecolor{yerenColorOrange}{RGB}{242, 161, 0}   
-\definecolor{yerenColorBlue}{RGB}{77 , 93 , 254}
-\definecolor{yerenColorRed}{RGB}{254, 48 , 48}
-\definecolor{yerenColorGray}{RGB}{197, 197, 197}
-\definecolor{yerenColorDarkgray}{RGB}{60, 60 , 60}
-\definecolor{yerenColorIndigo}{RGB}{83, 0, 125}
-\definecolor{yerenColorGreen}{RGB}{2, 160, 70}
+\definecolor{yerothColorOrange}{RGB}{242, 161, 0}   
+\definecolor{yerothColorBlue}{RGB}{77, 93 , 254}
+\definecolor{yerothColorRed}{RGB}{254, 48 , 48}
+\definecolor{yerothColorGray}{RGB}{198, 198, 198}
+\definecolor{yerothColorDarkgray}{RGB}{60, 60 , 60}
+\definecolor{yerothColorIndigo}{RGB}{83, 0, 125}
+\definecolor{yerothColorGreen}{RGB}{2, 160, 70}
 \definecolor{forestgreen}{RGB}{2,160,70}    
 \definecolor{mediumblue}{RGB}{7,43,205}    
 \definecolor{firebrickred}{RGB}{178,34,34}
@@ -70,9 +70,13 @@
 
 \newcommand{\diplinfn}{Dipl.--Inf.\xspace}
 
-\newcommand{\yerothrd}{\textsc{YEROTH~R\&D}\xspace}
+\newcommand{\yerothrd}{\textcolor{yerothColorGreen}
+			{\textsc{\textcolor{yerothColorRed}{YEROTH}}$_{\text{r\&d}}$\xspace}}
 
-\newcommand{\yerotherp}{\textcolor{yerenColorBlue}{\sc YEROTH--ERP--$3.0$}\xspace}
+
+\newcommand{\yerotherpblack}{YEROTH--ERP--$3.0$\xspace}
+
+\newcommand{\yerotherp}{\textcolor{yerothColorBlue}{\sc YEROTH--ERP--$3.0$}\xspace}
 
 \newcommand{\myfullacademicname}{Dipl.--Inf. XAVIER NOUMBISSI NOUNDOU\xspace}
 
@@ -86,7 +90,7 @@
     pdftex,
     bookmarks,
     plainpages=false,
-	pdftitle={\yerotherp software--system inventory stock recommended hardware
+	pdftitle={\yerotherpblack software--system inventory stock recommended hardware
 				authored by: ''\myfullacademicname''},
     pdfauthor={\myfullacademicname}
 }
@@ -103,7 +107,7 @@
 \newcommand{\pos}{point--of--sale~software--system\xspace}
 
 \newcommand{\mysql}{MySQL\xspace}
-\newcommand{\mysqlcolored}{\textcolor{yerenColorBlue}{My}\textcolor{yerenColorOrange}{SQL}\xspace}
+\newcommand{\mysqlcolored}{\textcolor{yerothColorBlue}{My}\textcolor{yerothColorOrange}{SQL}\xspace}
 
 \newcommand{\featuresummary}[2]{\textbf{\textcolor{#1}{\textsc{#2}}}}
 
@@ -144,19 +148,14 @@
 
 \begin{document}
 
-{\bf \LARGE \yerotherp} {| \sc \scriptsize ERP point--of--sale recommended hardware }
+{\bf \LARGE \yerothrd} {| \sc \scriptsize \yerotherpblack point--of--sale recommended hardware}
 
-\vspace{2em}
+\vspace{2.5em}
 
-\parbox{31em}{
-\chapintro{
-This document describes the recommended hardware for
-\yerotherp's customers.
-The total cost of recommended harware is 
-about ''\money{812}''.\\}
-}
 
-\vspace{0em}
+\parbox{27em}{\LARGE \yerotherpblack Point--of--Sale Recommended Hardware}
+
+\vspace{1.0em}
 
 \section{Barcode Scanner}
 \vspace{-3.7em}
