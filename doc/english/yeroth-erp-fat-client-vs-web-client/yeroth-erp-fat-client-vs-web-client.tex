@@ -3,7 +3,7 @@
 % Author: Dipl.--Inf. XAVIER NOUMBISSI NOUNDOU
 %
 %====================================================
-\documentclass[a4paper, 9pt]{article}
+\documentclass[a4paper, 12pt]{article}
 \NeedsTeXFormat{LaTeX2e}
 
 %---------------------------- PACKAGE INCLUSION -------------------------------
@@ -40,7 +40,7 @@
 
 \usepackage{pagecolor}
 
-\usepackage{multicol,lipsum}
+\usepackage{multicol}
 
 \usepackage{amsmath}
 \newcommand{\mathbold}[1]{\text{\textbf{#1}}}
@@ -71,9 +71,9 @@
 \newcommand{\yerothrd}{\textcolor{yerothColorGreen}
 			{\textsc{\textcolor{yerothColorRed}{YEROTH}}$_{\text{r\&d}}$\xspace}}
 
-\newcommand{\fatclient}{fat--client\xspace}
+\newcommand{\thickclient}{thick--client\xspace}
 
-\newcommand{\webclient}{web--client\xspace}
+\newcommand{\webbrowser}{web--browser--based\xspace}
 
 \newcommand{\yerotherpblack}{YEROTH--ERP--$3.0$\xspace}
 
@@ -95,7 +95,7 @@
     pdftex,
     bookmarks,
     plainpages=false,
-	pdftitle={Fat--client applications VS \webclient applications.
+	pdftitle={Thick--client applications VS \webbrowser applications.
 			Authored by: ''\myfullacademicname''.},
     pdfauthor={\myfullacademicname}
 }
@@ -110,6 +110,8 @@
 \newcommand{\yerenalert}{\emph{yeren-alert}\xspace}
 
 \newcommand{\erpsoftware}{ERP~software--system\xspace}
+
+\newcommand{\ajax}{AJAX\xspace}
 
 \newcommand{\mysql}{MySQL\xspace}
 \newcommand{\mysqlcolored}{\textcolor{yerothColorBlue}{My}\textcolor{yerothColorOrange}{SQL}\xspace}
@@ -146,15 +148,15 @@
 
 \renewcommand\labelenumi{\theenumi)}
 
-\pagenumbering{gobble}
+\pagenumbering{arabic}
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \renewcommand{\headrulewidth}{0pt}
 \rhead{}
 \lhead{}
-\lfoot{}
-\rfoot{}
+\lfoot{{\small Author: \myfullacademicname}}
+\rfoot{{\small Version of --~\today~--}}
 \cfoot{}
 
 \clubpenalty = 10000
@@ -164,9 +166,7 @@
 \begin{document}
 
 
-\onecolumn
-
-{\bf \Large \yerothrd} {| \sc \scriptsize \fatclient applications vs \webclient applications}
+{\bf \Large \yerothrd} {| \sc \scriptsize the application architecture of \yerotherpblack}
 
 \vspace{2.0em}
 
@@ -177,72 +177,56 @@
 \vspace{2.0em}
 
 \begin{center}
-{\LARGE Fat--client applications VS \webclient applications}
+{\LARGE The Application Architecture of \yerotherpblack}
 \end{center}
 
 \vspace{2.0em}
 
 \begin{center}
-\parbox{32em}{
-This paper describes the advantages of \fatclient
-applications over \webclient applications.
+\parbox{42em}{
+This document describes the application architecture of
+\erpsoftware \yerotherpblack.
 }
 \end{center}
 
-\vspace{5.0em}
-
-\begin{multicols}{2}
-
+\vspace{3.0em}
 
 \section{Introduction}
+
+
+\section{Conclusion}
+
+
+\vspace{1.0em}
 
 Table~\ref{tab:comparison-against-others-erp-software-systems}
 pictures the 'simplicity' and 'effectiveness'
 of \yerotherpblack, compared to ERP
 software--systems ''\sageerp'', and ''\saperp''.
 
-
-\section{Application Architecture}
-
-
-\section{Application Maintenance}
-
-
-\section{Defect Analysis}
-
-
-\section{User Experience}
-
-
-\section{User Interface}
-
-
-\section{Conclusion}
-
-
-\end{multicols}
-
-\vspace{1.0em}
-
 \begin{table}[!htbp]
 \centering
 \begin{tabular}{cccc} 
 
 \multicolumn{1}{c}{}			&
-Fat--client application 				& 
-Web--client application		\\ \hline
+Thick--client application 				& 
+Web--browser--based application		\\ \hline
 
-complete training					&
-		\yerothvert{$5$ days}		&						
-		\yerothrouge{$3$ months}	\\ \hline
+user interface development			&
+		\yerothvert{WYSIWYG tool}	&						
+		\yerothrouge{manual coding}	\\ \hline
 
-difficulty in navigation			&
-		\yerothfacile				&					
-		\yerothtresdifficile		\\  \hline		
-		
-internet connection				&
-		\yerothrouge{mandatory}	&						
-		\yerothrouge{mandatory}	\\ 
+user interface deployment					&
+		\yerothrouge{custom thick--gui client}		&						
+		\yerothvert{standard web--browser}	\\ \hline
+
+application architecture							&
+		\yerothvert{1--tier architecture}		&						
+		\yerothrouge{multi--tier architecture}	\\ \hline
+
+graphical user interface widgets			&
+		\yerothvert{all widgets}			&					
+		\yerothrouge{some missing widgets}	\\ 
 \end{tabular}
 \caption{Comparison between \yerotherpblack and $2$ other full featured ERP software--systems\\}
 \label{tab:comparison-against-others-erp-software-systems}

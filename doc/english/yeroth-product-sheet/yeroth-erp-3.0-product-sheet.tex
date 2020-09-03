@@ -44,13 +44,13 @@
 \newcommand{\mathbold}[1]{\text{\textbf{#1}}}
 
 \usepackage{xcolor}
-\definecolor{yerenColorOrange}{RGB}{242, 161, 0}   
-\definecolor{yerenColorBlue}{RGB}{77 , 93 , 254}
-\definecolor{yerenColorRed}{RGB}{254, 48 , 48}
-\definecolor{yerenColorGray}{RGB}{197, 197, 197}
-\definecolor{yerenColorDarkgray}{RGB}{60, 60 , 60}
-\definecolor{yerenColorIndigo}{RGB}{83, 0, 125}
-\definecolor{yerenColorGreen}{RGB}{2, 160, 70}
+\definecolor{yerothColorOrange}{RGB}{242, 161, 0}   
+\definecolor{yerothColorBlue}{RGB}{77, 93 , 254}
+\definecolor{yerothColorRed}{RGB}{254, 48 , 48}
+\definecolor{yerothColorGray}{RGB}{198, 198, 198}
+\definecolor{yerothColorDarkgray}{RGB}{60, 60 , 60}
+\definecolor{yerothColorIndigo}{RGB}{83, 0, 125}
+\definecolor{yerothColorGreen}{RGB}{2, 160, 70}
 \definecolor{forestgreen}{RGB}{2,160,70}    
 \definecolor{mediumblue}{RGB}{7,43,205}    
 \definecolor{firebrickred}{RGB}{178,34,34}
@@ -66,9 +66,12 @@
 
 \newcommand{\diplinfn}{Dipl.--Inf.\xspace}
 
-\newcommand{\yerenlabs}{\textsc{YEROTH~R\&D}\xspace}
+\newcommand{\yerothrd}{\textcolor{yerothColorGreen}
+			{\textsc{\textcolor{yerothColorRed}{YEROTH}}$_{\text{r\&d}}$\xspace}}
 
-\newcommand{\yerenpos}{\textcolor{yerenColorBlue}{\sc YEROTH--ERP--$3.0$}\xspace}
+\newcommand{\yerotherpblack}{YEROTH--ERP--$3.0$\xspace}
+
+\newcommand{\yerotherp}{\textsc{\textcolor{yerothColorBlue}{YEROTH--ERP--$3.0$}}\xspace}
 
 \newcommand{\myfullacademicname}{Dipl.--Inf. XAVIER NOUMBISSI NOUNDOU\xspace}
 
@@ -82,7 +85,8 @@
     pdftex,
     bookmarks,
     plainpages=false,
-	pdftitle={\yerenpos software--system product sheet authored by: ''\myfullacademicname''},
+	pdftitle={\yerotherpblack software--system
+				product sheet authored by: ''\myfullacademicname''.},
     pdfauthor={Dipl.--Inf. XAVIER NOUMBISSI NOUNDOU}
 }
 
@@ -98,7 +102,7 @@
 \newcommand{\pos}{ERP~software--system\xspace}
 
 \newcommand{\mysql}{MySQL\xspace}
-\newcommand{\mysqlcolored}{\textcolor{yerenColorBlue}{My}\textcolor{yerenColorOrange}{SQL}\xspace}
+\newcommand{\mysqlcolored}{\textcolor{yerothColorBlue}{My}\textcolor{yerothColorOrange}{SQL}\xspace}
 
 \newcommand{\admin}{<< Administrator >>\xspace}
 \newcommand{\manager}{<< Business manager >>\xspace}
@@ -141,15 +145,21 @@
 
 \begin{document}
 
-{\bf \LARGE \yerenpos} {| \sc \scriptsize software--system product sheet }
+{\bf \Large \yerothrd} {| \sc \scriptsize \yerotherpblack software--system product sheet}
 
-\vspace{3.75em}
+
+\vspace{2.5em}
+
+
+\parbox{27em}{\LARGE \yerotherpblack Software--System Product Sheet}
+
+\vspace{1.0em}
 
 \begin{table}[!htbp]
 \begin{tabular}{ll}
 \parbox{27em}{
 
-\yerenpos is an \textbf{\pos} with $6$ \textbf{user roles, and types}:
+\yerotherpblack is an \textbf{\pos} with $6$ \textbf{user roles, and types}:
 \vspace{0.1em}
 \begin{enumerate}
 	\item \admin
@@ -160,7 +170,7 @@
 	\item \storekeeper.\\
 \end{enumerate}
 
-\yerenpos \textbf{features}:
+\yerotherpblack \textbf{features}:
 \vspace{0.1em}
 \begin{enumerate}
 	\item alerts over stock quantity, and, time period	
@@ -171,7 +181,7 @@
 	\item user, and role administration.\\
 \end{enumerate}
 
-\yerenpos \textbf{is}:
+\yerotherpblack \textbf{is}:
 \vspace{0.1em}
 \begin{enumerate}
 	\item easier, and, intuitiver, in its use
@@ -181,7 +191,7 @@
 
 \vspace{0.5em}
 
-\yerenpos's runtime memory usage test is realized
+\yerotherpblack's runtime memory usage test is realized
 using software analysis tool \textbf{valgrind}.\\
 }
 
@@ -202,7 +212,7 @@ using software analysis tool \textbf{valgrind}.\\
 \end{tabular}
 \end{table}
 
-\vspace{1.25em}
+\vspace{1.0em}
 
 {\large \bf OPERATIONS}
 
@@ -217,8 +227,8 @@ using software analysis tool \textbf{valgrind}.\\
 \hrule
 \vspace{0.75em}
 \begin{itemize}[]
-	\item[\mycheckmark{yerenColorDarkgray}] Barcode scanner
-	\item[\mycheckmark{yerenColorDarkgray}] Thermal printer, etc.\\
+	\item[\mycheckmark{yerothColorDarkgray}] Barcode scanner
+	\item[\mycheckmark{yerothColorDarkgray}] Thermal printer, etc.\\
 \end{itemize}
 \begin{center}
 \includegraphics[scale=0.24]{images/xfox-fj-5-usb-plug-and-play-automatic-barcode-scanner.png}
@@ -233,7 +243,7 @@ using software analysis tool \textbf{valgrind}.\\
 \hrule
 \vspace{0.75em}
 \begin{itemize}[]
-	\item[\mycheckmark{yerenColorBlue}] \mysqlcolored\\
+	\item[\mycheckmark{yerothColorBlue}] \mysqlcolored\\
 \end{itemize}
 \begin{center}
 \includegraphics[scale=0.14]{images/free-reuse-dbms-logo}
@@ -248,7 +258,7 @@ using software analysis tool \textbf{valgrind}.\\
 \hrule
 \vspace{0.75em}
 \begin{itemize}[]
-	\item[\mycheckmark{yerenColorRed}] Debian--Linux\\	
+	\item[\mycheckmark{yerothColorRed}] Debian--Linux\\	
 \end{itemize}
 \begin{center}
 \includegraphics[scale=0.53]{images/free-reuse-stretch-logo}
