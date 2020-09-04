@@ -18,7 +18,7 @@
 		  %margin=2.75em,
 		  %a4paper,
 		  %total={170mm,257mm},
-		  top=3.5em,
+		  top=4.3em,
 		  left=3em,
 		  right=3em,
 		  bottom=3.39em
@@ -189,7 +189,16 @@
 
 \input{abstract}
 
-\vspace{0em}
+\vspace{5em}
+
+% TABLE OF CONTENTS
+\phantomsection
+\addcontentsline{toc}{section}{\contentsname}
+\begingroup
+\tableofcontents
+\endgroup
+
+\newpage
 
 \begin{multicols}{2}
 
@@ -227,8 +236,7 @@ following reasons:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\section{Thick--Client VS Web--Browser based}
-
+\section{Thick--Client VS Web--Browser}
 
 Table~\ref{tab:thickclient-application-againts-webbrowserbased-application}
 compares a \thickclient application against
@@ -236,6 +244,16 @@ a \webbrowserbased application.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{\yerotherpblack Upgrade Deployment}
+
+
+\subsection{Debian--Linux}
+
+
+\subsection{Windows~$10$}
+
 
 
 \section{Conclusion}
