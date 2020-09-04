@@ -95,7 +95,7 @@
     pdftex,
     bookmarks,
     plainpages=false,
-	pdftitle={Thick--client applications VS \webbrowser applications.
+	pdftitle={The application architecture of \yerotherpblack.
 			Authored by: ''\myfullacademicname''.},
     pdfauthor={\myfullacademicname}
 }
@@ -153,18 +153,25 @@
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \renewcommand{\headrulewidth}{0pt}
-\rhead{}
-\lhead{}
+\rhead{\textbf{\yerothrd}}
+\lhead{The Application Architecture of \yerotherpblack}
 \lfoot{{\small Author: \myfullacademicname}}
 \rfoot{{\small Version of --~\today~--}}
-\cfoot{}
+\cfoot{\thepage}
 
 \clubpenalty = 10000
 \widowpenalty = 10000
 \displaywidowpenalty = 10000
 
+\fancypagestyle{OnlyFirstPage}{%
+	\lhead{}
+	\rhead{}
+    \lfoot{}
+}
+
 \begin{document}
 
+\thispagestyle{OnlyFirstPage}
 
 {\bf \Large \yerothrd} {| \sc \scriptsize the application architecture of \yerotherpblack}
 
@@ -180,10 +187,9 @@
 {\large \textbf{\myfullacademicname}}
 \end{center}
 
-\vspace{3.0em}
+\vspace{2.0em}
 
 \section{Introduction}
-
 
 \section{Conclusion}
 
