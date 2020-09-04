@@ -1,4 +1,4 @@
-\documentclass[a4paper, 10pt, twocolumn]{article}
+\documentclass[a4paper, 10pt]{article}
 
 \NeedsTeXFormat{LaTeX2e}
 
@@ -19,7 +19,13 @@
 		  right=3em,
 		  bottom=3.39em
 		  }
-		  
+	
+\usepackage{graphicx}  
+
+\usepackage{multicol}  	  
+
+\usepackage{caption}		  
+		  		  
 \usepackage[default]{cantarell}
 \usepackage{xspace}
 \usepackage{paralist}
@@ -29,37 +35,15 @@
 \usepackage{epsfig}
 \usepackage{booktabs}
 
-\newcommand{\diplinfn}{Dipl.--Inf.\xspace}
-
-\newcommand{\pos}{ERP~software--system\xspace}
-
-\newcommand{\yerenpos}{\textcolor{yerenColorBlue}{\sc YEROTH--ERP--$3.0$}\xspace}
-
-\newcommand{\myfullacademicname}{Dipl.--Inf. XAVIER NOUMBISSI NOUNDOU\xspace}
-
-\usepackage{hyperref}
-\hypersetup{
-    colorlinks,
-	pagebackref,
-    citecolor=medgreen,
-    linkcolor=purplish,
-    breaklinks,
-    pdftex,
-    bookmarks,
-    plainpages=false,
-	pdftitle={Information Brochure of the \pos \yerenpos by: ''\myfullacademicname''},
-    pdfauthor={Dipl.--Inf. XAVIER NOUMBISSI NOUNDOU}
-}
-
-\usepackage{url}
+\usepackage{amsmath}
 
 \usepackage{xcolor}
-\definecolor{yerenColorOrange}{RGB}{242, 161, 0}   
-\definecolor{yerenColorBlue}{RGB}{77 , 93 , 254}
-\definecolor{yerenColorRed}{RGB}{254, 48 , 48}
-\definecolor{yerenColorDarkgray}{RGB}{60, 60 , 60}
-\definecolor{yerenColorIndigo}{RGB}{83, 0, 125}
-\definecolor{yerenColorGreen}{RGB}{2  , 160, 70}
+\definecolor{yerothColorOrange}{RGB}{242, 161, 0}   
+\definecolor{yerothColorBlue}{RGB}{77 , 93 , 254}
+\definecolor{yerothColorRed}{RGB}{254, 48 , 48}
+\definecolor{yerothColorDarkgray}{RGB}{60, 60 , 60}
+\definecolor{yerothColorIndigo}{RGB}{83, 0, 125}
+\definecolor{yerothColorGreen}{RGB}{2  , 160, 70}
 \definecolor{forestgreen}{RGB}{2,160,70}    
 \definecolor{mediumblue}{RGB}{7,43,205}    
 \definecolor{firebrickred}{RGB}{178,34,34}
@@ -73,7 +57,34 @@
 \definecolor{purplish}{rgb}{0.4,0,0.6}
 \definecolor{brightred}{rgb}{1,0.2,0.2}
 
-\newcommand{\yeren}{\textsc{yeroth--erp--3.0}\xspace}
+\newcommand{\diplinfn}{Dipl.--Inf.\xspace}
+
+\newcommand{\erpsoftwaresystem}{ERP~software--system\xspace}
+
+\newcommand{\yerothrd}{\textcolor{yerothColorGreen}
+			{\textsc{\textcolor{yerothColorRed}{YEROTH}}$_{\text{r\&d}}$\xspace}}
+
+\newcommand{\yerotherpblack}{YEROTH--ERP--$3.0$\xspace}
+
+\newcommand{\yerotherp}{\textsc{\textcolor{yerothColorBlue}{YEROTH--ERP--$3.0$}}\xspace}
+
+\newcommand{\myfullacademicname}{Dipl.--Inf. XAVIER NOUMBISSI NOUNDOU\xspace}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+	pagebackref,
+    citecolor=medgreen,
+    linkcolor=purplish,
+    breaklinks,
+    pdftex,
+    bookmarks,
+    plainpages=false,
+	pdftitle={Information Brochure of the \erpsoftwaresystem \yerotherpblack by: ''\myfullacademicname''.},
+    pdfauthor={Dipl.--Inf. XAVIER NOUMBISSI NOUNDOU}
+}
+
+\usepackage{url}
 
 \newcommand{\all}{<< CMUP >>\xspace}
 \newcommand{\defdeo}{<< DEF\_DEO >>\xspace}
@@ -119,9 +130,10 @@
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \renewcommand{\headrulewidth}{0pt}
-\lhead{}
 \rhead{}
-\rfoot{{\small Document version of --~\today~--}}
+\lhead{}
+\lfoot{}
+\rfoot{{\small Version of --~\today~--}}
 \cfoot{\thepage}
 
 %Remove widows and orphants
@@ -131,110 +143,100 @@
 
 \begin{document}
 
-\title{\textcolor{medgreen}{
-\vspace{0em}
-\textsc{\textbf{Information Brochure \\
-of the \\
-\pos \\ \vspace{1em}
-\yerenpos}}}
-\author{\textbf{\myfullacademicname}}
-}
+{\bf \Large \yerothrd} {| \sc \scriptsize information brochure of the \erpsoftwaresystem \yerotherpblack}
 
-\date{} 
-\maketitle
-\thispagestyle{fancy}
-%\bigskip 
-%-------------------
+\vspace{2.0em}
+
+\begin{center}
+{\LARGE Information Brochure of the \\
+    \vspace{0.3em}
+    \erpsoftwaresystem \\
+    \vspace{0.5em}
+    \yerotherpblack}
+\end{center}
+
+\vspace{2.0em}
+
+\begin{center}
+{\large \textbf{\myfullacademicname}}
+\end{center}
+
+\vspace{3.0em}
+
+\begin{multicols}{2}
 
 \input{xavier-biography}
 
-\vspace{-1em}
+%\vspace{-1em}
 
 \section{Introduction}
 
-\yeren is an \textbf{Enterprise Resource Planing} (ERP)
+\yerotherpblack is an \textbf{Enterprise Resource Planing} (ERP)
 software--system. 
 
-Users of \yeren could have the following roles:
+Users of \yerotherpblack could have the following roles:
 \begin{enumerate}[1)]
-	\itemsep -0.6em
+	\itemsep -0.4em
 	\item \administrator
 	\item \manager
 	\item \cashier
 	\item \seller
 	\item \inventorystockmanager
-	\item \storekeeper.	
+	\item \storekeeper.
 \end{enumerate}
 
-\yeren allows for business management tasks 
+\yerotherpblack allows for business management tasks 
 listed in Table~\ref{tachesEtFonctions},
 depending on user role.
-\begin{table*}[!htbp]
-\centering
-\begin{tabular}{lccccc}
-\centering \textbf{Tasks} 		& \managerb 		& \sellerb				& \inventorystockmanagerb 	& \storekeeperb	&	\cashierb 		 		\\ \hline
-insert stock (or service)			& \mycheckmark{blue}	&		& \mycheckmark{blue}	& 	&  				 			\\ \hline
-delete stock 					& \mycheckmark{blue}	&		& 						&   &  							\\ \hline
-view stock 						& \mycheckmark{blue}	& \mycheckmark{blue} & \mycheckmark{blue} & \mycheckmark{blue}	& \mycheckmark{blue} 	\\ \hline
-modify stock 					& \mycheckmark{blue}	&	& \mycheckmark{blue}		& 		&  				 			\\ \hline
-transfer stock					& \mycheckmark{blue}	&	& \mycheckmark{blue}		& \mycheckmark{blue}	&  			\\ \hline
-modify stock 					&  			& 			& 	& 					&	 								\\ 
-management strategy  			& \mycheckmark{blue} 	& \mytimespartial{blue}	& \mytimespartial{blue}	& 	&  		\\ 
-(ex.: \fifo, etc.)				&				 		&		&				&						&					\\ \hline
-point--of--sale 		& \mycheckmark{blue}	& \mycheckmark{blue}	&						& 	& \mycheckmark{blue} 			\\ \hline
-view stock transfers 		 	& \mycheckmark{blue}	&						& \mycheckmark{blue}	& \mycheckmark{blue}	&  							\\ \hline
-customer management 			& \mycheckmark{blue}	& \mycheckmark{blue}	& 						& 					&  	\\ \hline
-business dashboard 				& \mycheckmark{blue}	& 	&					& 					& \\\hline
-sale return 					& \mycheckmark{blue}	& 	&					& 					& \\\hline
-view sales information 			& \mycheckmark{blue}	& \mytimespartial{blue}	&						& 					& 	\\ 	 				
-\end{tabular}
-\caption{\yerenpos functions--tasks, and associated users--roles.}\label{tachesEtFonctions}
-\end{table*}
 
-\begin{figure}[!htbp]
-\centering
-\includegraphics[scale=0.32]{../../francais/images/yeren-window-sale-information.png}
-\caption{Sale--information window}
-\label{fig:fenetre-de-la-vente}
-\end{figure}
-
-
-\section{Advantages of \yeren}
+\section{Advantages of \yerotherpblack}
 
 \begin{enumerate}[1)]
-	\itemsep -0.3em
-	\item \yeren is $100\%$ stable
+	\itemsep 0em
+	\item \yerotherpblack is $100\%$ stable
 
-	\item \yeren has an alert system with two types of alerts:
+	\item \yerotherpblack has an alert system with two types of alerts:
 	      alerts based on stock--quantity, and time--period alerts
 
 	\item users have the choice between small size receipts,
 	      and, bigger size receipts (''A4'')
 
-	\item \yeren runs on the Linux operating system,
+	\item \yerotherpblack runs on the Linux operating system,
 	      because Linux is stable, performant, and less
 	      vulnerable to security breaches in comparison
 	      to other operating systems ('\texttt{Windows~$10$}')
 
-	\item \yeren has an user interface ''Sales'' to view
+	\item \yerotherpblack has an user interface ''Sales'' to view
 		  sale information~(Figure~\ref{fig:fenetre-de-la-vente}),
 		  and thus enables users to make managerial decisions
 
-	\item \yeren has an interface ''Business dashboard'' that
+	\item \yerotherpblack has an interface ''Business dashboard'' that
 		  generates financial accounting reports,
 		  from sale and payment information, to help
 		  managers to make ''business decisions''.
 \end{enumerate}
+
+\input{yeroth-erp-3-0-user-task-table}
+
+\vspace{0.1em}
+
+\begin{center}
+\includegraphics[scale=0.32]{../../francais/images/yeren-window-sale-information.png}
+\captionof{figure}{Sale--information window.\label{fig:fenetre-de-la-vente}}
+\label{fig:fenetre-de-la-vente}
+\end{center}
+
+\vspace{0.1em}
 
 \section{Alert System}
 \vspace{-0.3em}
 Users with roles \administrator or \manager
 are the ones able to create alerts.
 
-\yeren allows its users to create two
+\yerotherpblack allows its users to create two
 types of alerts:
 \begin{enumerate}[1)]
-	\itemsep -0.5em
+  \itemsep -0.5em
   \item alerts over stocks--quantities
   \item alerts over time intervals (this helps for
 	  perissable articles and for sales discounts
@@ -262,7 +264,7 @@ starting--date and an ending--date
 
 An alert aver a time--period (T) is a message
 that is generated, sent to a pre--determined user,
-and kept within \yeren from T's starting--date 
+and kept within \yerotherpblack from T's starting--date 
 up to T's ending--date.
 
 For example, an alert with a message has to be
@@ -272,35 +274,32 @@ specifies that a rebate of $20\%$ has to be applied
 on every sale of yoghourt 'tr\`esbon' during a
 time interval of $2$ weeks.
 
-
 \section{Database Management System}
-
-\yeren uses \mariadb as the standard DBMS. 
+\vspace{-0.3em}
+\yerotherpblack uses \mariadb as the standard DBMS. 
 \mariadb is very stable, very performant,
 and free--software.
-\vspace{-0.3em}
-\section{Conclusion}
-\vspace{-0.3em}
-\begin{figure}[!htbp]
-\centering
-\includegraphics[scale=0.33]{../../francais/images/yeren-pos-7-0-window-cashier.png}
-\caption{Point--of--sale window.}
-\label{fig:fenetre-de-vente}
-\end{figure}
 
-\vspace{-0.5em}
+\vspace{-0.3em}
+
+\section{Conclusion}
+\begin{center}
+\includegraphics[scale=0.33]{../../francais/images/yeren-pos-7-0-window-cashier.png}
+\captionof{figure}{Point--of--sale window.\label{fig:fenetre-de-vente}}
+\end{center}
 
 Figure~\ref{fig:fenetre-de-vente} illustrates
 the window for selling articles.
 
-\begin{figure}[!htbp]
-\centering
+\begin{center}
 \includegraphics[scale=0.33]{images/yeroth-stock-listing-window.png}
-\caption{stock listing window.}
+\captionof{figure}{Stock listing window.\label{fig:fenetre-de-stock}}
 \label{fig:fenetre-de-stock}
-\end{figure}
+\end{center}
 
 Figure~\ref{fig:fenetre-de-stock} illustrates
 the window for viewing and searching for stocks.
+
+\end{multicols}
 
 \end{document}
