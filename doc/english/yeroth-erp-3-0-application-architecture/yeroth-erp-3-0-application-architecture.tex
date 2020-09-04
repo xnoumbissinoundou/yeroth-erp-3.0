@@ -3,7 +3,7 @@
 % Author: Dipl.--Inf. XAVIER NOUMBISSI NOUNDOU
 %
 %====================================================
-\documentclass[a4paper, 12pt]{article}
+\documentclass[a4paper, 10pt]{article}
 \NeedsTeXFormat{LaTeX2e}
 
 %---------------------------- PACKAGE INCLUSION -------------------------------
@@ -24,6 +24,12 @@
 		  bottom=3.39em
 		  }
 
+\usepackage{graphicx}  
+
+\usepackage{multicol}  	  
+
+\usepackage{caption}
+
 \usepackage[default]{cantarell}
 \usepackage{graphicx}
 \usepackage{xspace}
@@ -39,8 +45,6 @@
 \usepackage{tcolorbox}
 
 \usepackage{pagecolor}
-
-\usepackage{multicol}
 
 \usepackage{amsmath}
 \newcommand{\mathbold}[1]{\text{\textbf{#1}}}
@@ -71,17 +75,15 @@
 \newcommand{\yerothrd}{\textcolor{yerothColorGreen}
 			{\textsc{\textcolor{yerothColorRed}{YEROTH}}$_{\text{r\&d}}$\xspace}}
 
-\newcommand{\thickclient}{thick--client\xspace}
-
-\newcommand{\webbrowser}{web--browser--based\xspace}
+\newcommand{\webbrowserbased}{web--browser--based\xspace}
 
 \newcommand{\yerotherpblack}{YEROTH--ERP--$3.0$\xspace}
 
 \newcommand{\yerotherp}{\textsc{\textcolor{yerothColorBlue}{YEROTH--ERP--$3.0$}}\xspace}
 
-\newcommand{\saperp}{SAP Business One\xspace}
+\newcommand{\saperp}{'SAP Business One'\xspace}
 
-\newcommand{\sageerp}{Sage Gescom i$7$\xspace}
+\newcommand{\sageerp}{'Sage Gescom i$7$'\xspace}
 
 \newcommand{\myfullacademicname}{Dipl.--Inf. XAVIER NOUMBISSI NOUNDOU\xspace}
 
@@ -111,23 +113,19 @@
 
 \newcommand{\erpsoftware}{ERP~software--system\xspace}
 
-\newcommand{\ajax}{AJAX\xspace}
 
-\newcommand{\mysql}{MySQL\xspace}
-\newcommand{\mysqlcolored}{\textcolor{yerothColorBlue}{My}\textcolor{yerothColorOrange}{SQL}\xspace}
+\newcommand{\wy}{WYSIWYG\xspace}
 
-\newcommand{\admin}{<< Administrator >>\xspace}
-\newcommand{\manager}{<< Manager >>\xspace}
-\newcommand{\seller}{<< Seller >>\xspace}
-\newcommand{\inventorystockmanager}{<< InventoryStockManager >>\xspace}
-\newcommand{\storekeeper}{<< StoreKeeper >>\xspace}
-\newcommand{\cashier}{<< Cashier >>\xspace}
+\newcommand{\applicationtier}[1]{$#1$--tier\xspace}
 
-\newcommand{\adminb}{\textbf{<< Administrator >>}\xspace}
-\newcommand{\managerb}{\textbf{<< Manager >>}\xspace}
-\newcommand{\inventorystockmanagerb}{\textbf{<< InventoryStockManager >>}\xspace}
-\newcommand{\storekeeperb}{\textbf{<< StoreKeeper >>}\xspace}
-\newcommand{\cashierb}{\textbf{<< Cashier >>}\xspace}
+\newcommand{\thickclient}{thick--client\xspace}
+
+\newcommand{\ministudio}{\texttt{miniStudio (vxWorks)}\xspace}
+
+\newcommand{\qtdesigner}{\texttt{Qt designer}\xspace}
+
+\newcommand{\cplusplus}{\texttt{C++}\xspace}
+
 
 \newcommand{\yerothvert}[1]{\textcolor{yerothColorGreen}{#1}\xspace}
 \newcommand{\yerothorange}[1]{\textcolor{yerothColorOrange}{#1}\xspace}
@@ -184,54 +182,69 @@
 \vspace{2.0em}
 
 \begin{center}
-{\large \textbf{\myfullacademicname}}
+{\large \myfullacademicname}
 \end{center}
 
 \vspace{2.0em}
 
+\input{abstract}
+
+\vspace{0em}
+
+\begin{multicols}{2}
+
+
+\input{yeroth-erp-3-0-application-architecture-comparison-table}
+
+
 \section{Introduction}
+\yerotherpblack is an \textbf{Enterprise Resource Planing (ERP)}
+software that aims 'effectiveness' and 'simplicity',
+compared to other high ranked ERP software--systems
+(e.g.: \sageerp, \saperp, etc.).
+
+We chose to design and implement \yerotherpblack as
+a \thickclient software--system because of the
+following reasons:
+
+\begin{enumerate}
+	\item the implementation language \cplusplus
+		offers much flexibility (use of macro, etc.)
+		
+	\item the availability of \texttt{'WHAT YOU SEE IS WHAT YOU GET'}
+		tools (\wy) for fast and useful
+		user interface design (e.g.: \qtdesigner~\cite{qtdesigner:2020},
+		\ministudio~\cite{miniStudio:2020}, etc.)
+		
+	\item the low number of computers involved
+		with the operation of a \thickclient
+		software--system (\applicationtier{1} architecture),
+		as opposed to a \webbrowserbased software--system
+		(at least a \applicationtier{2} architecture).
+	
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Thick--Client VS Web--Browser based}
+
+
+Table~\ref{tab:thickclient-application-againts-webbrowserbased-application}
+compares a \thickclient application against
+a \webbrowserbased application.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \section{Conclusion}
 
 
-\vspace{1.0em}
+\bibliographystyle{alpha}
+\bibliography{yeroth-erp-3-0-application-architecture}
 
-Table~\ref{tab:comparison-against-others-erp-software-systems}
-pictures the 'simplicity' and 'effectiveness'
-of \yerotherpblack, compared to ERP
-software--systems ''\sageerp'', and ''\saperp''.
-
-\begin{table}[!htbp]
-\centering
-\begin{tabular}{cccc} 
-
-\multicolumn{1}{c}{}			&
-Thick--client application 				& 
-Web--browser--based application		\\ \hline
-
-user interface development			&
-		\yerothvert{WYSIWYG tool}	&						
-		\yerothrouge{manual coding}	\\ \hline
-
-user interface deployment					&
-		\yerothrouge{custom thick--gui client}		&						
-		\yerothvert{standard web--browser}	\\ \hline
-
-application architecture							&
-		\yerothvert{1--tier architecture}		&						
-		\yerothrouge{multi--tier architecture}	\\ \hline
-
-graphical user interface widgets			&
-		\yerothvert{all widgets}			&					
-		\yerothrouge{some missing widgets}	\\ 
-\end{tabular}
-\caption{Comparison between \yerotherpblack and $2$ other full featured ERP software--systems\\}
-\label{tab:comparison-against-others-erp-software-systems}
-\end{table}
-
-\vspace{0.68em}
-
-
+\end{multicols}
 
 \end{document}
 

@@ -12,6 +12,8 @@ moc_*
 *.ind
 *.bak
 *.idx
+*.bbl
+*.blg
 .cproject
 .project
 qrc_yeroth*
