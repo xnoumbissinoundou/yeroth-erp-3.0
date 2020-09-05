@@ -79,6 +79,10 @@
 
 \newcommand{\mytime}[2]{$#1$:$#2$\xspace}
 
+\newcommand{\debianlinux}{\texttt{Debian--Linux}\xspace}
+
+\newcommand{\windowsten}{\texttt{MS Windows $10$}\xspace}
+
 \newcommand{\webbrowserbased}{web--browser--based\xspace}
 
 \newcommand{\yerotherpblack}{YEROTH--ERP--$3.0$\xspace}
@@ -101,7 +105,7 @@
     pdftex,
     bookmarks,
     plainpages=false,
-	pdftitle={The application architecture of \yerotherpblack.
+	pdftitle={The software--system architecture of \yerotherpblack.
 			Authored by: ''\myfullacademicname''.},
     pdfauthor={\myfullacademicname}
 }
@@ -118,8 +122,6 @@
 \newcommand{\erpsoftware}{ERP~software--system\xspace}
 
 \newcommand{\wy}{WYSIWYG\xspace}
-
-\newcommand{\applicationtier}[1]{$#1$--tier\xspace}
 
 \newcommand{\thickclient}{thick--client\xspace}
 
@@ -169,12 +171,12 @@
 
 \thispagestyle{OnlyFirstPage}
 
-{\bf \Large \yerothrd} {| \sc \scriptsize the application architecture of \yerotherpblack}
+{\bf \Large \yerothrd} {| \sc \scriptsize the software--system architecture of \yerotherpblack}
 
 \vspace{2.0em}
 
 \begin{center}
-{\LARGE The Application Architecture of \yerotherpblack}
+{\LARGE The Software--System Architecture of \yerotherpblack}
 \end{center}
 
 \vspace{2.0em}
@@ -187,13 +189,29 @@
 
 \input{abstract}
 
-\vspace{5em}
+\vspace{3em}
 
 % TABLE OF CONTENTS
 \phantomsection
-\addcontentsline{toc}{section}{\contentsname}
+%\addcontentsline{toc}{section}{\contentsname}
 \begingroup
 \tableofcontents
+\endgroup
+
+% LIST OF TABLES
+\phantomsection
+%\addcontentsline{toc}{section}{\listtablename}
+\begingroup
+\color{medgreen}
+\listoftables
+\endgroup
+
+% LIST OF FIGURES
+\phantomsection
+%\addcontentsline{toc}{section}{\listfigurename}
+\begingroup
+\color{medgreen}
+\listoffigures
 \endgroup
 
 \newpage
@@ -202,10 +220,11 @@
 
 \input{yeroth-erp-3-0-application-architecture-comparison-table}
 
+\input{xavier-biography}
 
 \section{Introduction}
 \yerotherpblack is an \textbf{Enterprise Resource Planing (ERP)}
-software that aims 'effectiveness' and 'simplicity',
+software--system that aims 'effectiveness' and 'simplicity',
 compared to other high ranked ERP software--systems
 (e.g.: \sageerp, \saperp, etc.).
 
@@ -213,7 +232,8 @@ We chose to design and implement \yerotherpblack as
 a \thickclient software--system because of the
 following reasons:
 
-\begin{enumerate}
+\begin{enumerate}[1)]
+
 	\item the implementation language \cplusplus
 		offers much flexibility (use of macro, etc.)
 		
@@ -224,9 +244,9 @@ following reasons:
 		
 	\item the low number of computers involved
 		with the operation of a \thickclient
-		software--system (\applicationtier{1} architecture),
+		software--system ($2$--layers architecture),
 		as opposed to a \webbrowserbased software--system
-		(at least a \applicationtier{2} architecture).
+		(with at least a $2$--layers architecture).
 	
 \end{enumerate}
 
@@ -237,54 +257,99 @@ following reasons:
 
 \begin{center}
 \includegraphics[scale=0.39]{images/yeroth-three-tier-architecture.png}
-\captionof{figure}{Physical \applicationtier{3} architecture.}
+\captionof{figure}{$4$--layers logical architecture
+of \webbrowserbased software--system
+(copied from \cite{trevor:2006}).}
 \label{fig:yeroth-three-tier-architecture}
 \end{center}
 
 Figure~\ref{fig:yeroth-three-tier-architecture}
-illustrates an example of a physical
-\applicationtier{3} architecture
-(copied from \cite{trevor:2006}).
+illustrates an example of a \webbrowserbased
+software--system with a $3$--layers
+logical architecture.
 
 \vspace{1em}
 
 \begin{center}
-\includegraphics[scale=0.42]{images/yeroth-three-tier-architecture-logical.png}
-\captionof{figure}{Logical \applicationtier{3} architecture.}
-\label{fig:yeroth-three-tier-architecture-logical}
+\includegraphics[scale=0.52]{images/yeroth-thickclient-application-two-tier-architecture.png}
+\captionof{figure}{$2$--layers logical 
+architecture of \thickclient software--system 
+(copied from \cite{securityboulevarddotcom:2020}).}
+\label{fig:yeroth-thickclient-application-two-tier-architecture}
 \end{center}
 
-Figure~\ref{fig:yeroth-three-tier-architecture-logical}
-illustrates an example of a logical
-\applicationtier{3} architecture 
-(copied from \cite{quoradotcom:2020}).
+Figure~\ref{fig:yeroth-thickclient-application-two-tier-architecture}
+illustrates an example of a \thickclient
+software--system with a $2$--layers
+logical architecture.
 
 \vspace{1em}
 
 Table~\ref{tab:thickclient-application-againts-webbrowserbased-application}
-compares a \thickclient application against
-a \webbrowserbased application.
-
-
+compares \thickclient software--systems against
+\webbrowserbased software--systems.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-\section{\yerotherpblack Upgrade Deployment}
-
-
-\subsection{Debian--Linux}
+\section{\yerotherpblack as a Thick--Client Software Application}
 
 
-\subsection{Windows~$10$}
+\subsection{Business and user interface code upgrade deployment}
 
+Table~\ref{tab:thickclient-application-againts-webbrowserbased-application}
+depicts the issue of upgrading business
+and user interface code on all computers
+participating in the functioning of \yerotherpblack,
+as a networked computer system for a
+potential customer company.
+
+We tackle the problem of automatic deployment of
+business and user interface code on all networked
+computers by using the 'apt upgrade' system 
+on '\debianlinux'.
+
+\subsection{Co--related software--systems}
+
+
+\subsection{Networked architecture}
+
+
+\subsection{Security vulnerability protection}
 
 
 \section{Conclusion}
 
+\yerotherpblack has a \thickclient
+software--system logical architecture
+because we found \thickclient software--system
+architectures simpler than \webbrowserbased
+software--system architectures.
 
-\newpage
+A \webbrowserbased software--system
+architecture has more drawbacks as
+follows:
+
+\begin{enumerate}[1)]
+	\item it requires at least $3$ co--related 
+		software--systems are required 
+		(e.g.: DBMS, web server, application server.)
+		to fully operate.
+		
+	\item A \webbrowserbased software--system
+		requires at least $4$ layers are
+		required within its logical architecture
+		(e.g.: client, presentation, logic, and data).
+
+	\item A \webbrowserbased software--system
+		potentially possesses more software
+		security vulnerabilities because its
+		implementation requires of the use of
+		at least $2$ different programming 
+		languages, and frameworks in combination.
+\end{enumerate}
+
+%\newpage
 
 
 \bibliographystyle{alpha}
