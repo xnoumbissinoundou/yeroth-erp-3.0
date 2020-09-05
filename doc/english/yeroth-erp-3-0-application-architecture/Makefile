@@ -8,5 +8,5 @@ yeroth-erp-3-0-application-architecture.pdf: clean yeroth-erp-3-0-application-ar
 	evince yeroth-erp-3-0-application-architecture.pdf&
 
 clean:
-	rm -f *~ *.glo *.aux *.bbl *.brf *.idx *.bak *.ilg *.ind *.lof \
+	rm -f *~ *.glo *.aux *.blg *.bbl *.brf *.idx *.bak *.ilg *.ind *.lof \
 	   *.lot *.out *.thm *.toc
