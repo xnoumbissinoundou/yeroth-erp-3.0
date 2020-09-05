@@ -1,11 +1,11 @@
-default: yeroth-software-system-architecture.pdf
+default: YEROTH-ERP-3-0-SOFTWARE-SYSTEM-ARCHITECTURE.pdf
 
-yeroth-software-system-architecture.pdf: clean yeroth-software-system-architecture.tex 
-	pdflatex yeroth-software-system-architecture
-	bibtex yeroth-software-system-architecture
-	pdflatex yeroth-software-system-architecture
-	pdflatex yeroth-software-system-architecture
-	evince yeroth-software-system-architecture.pdf&
+YEROTH-ERP-3-0-SOFTWARE-SYSTEM-ARCHITECTURE.pdf: clean YEROTH-ERP-3-0-SOFTWARE-SYSTEM-ARCHITECTURE.tex 
+	pdflatex YEROTH-ERP-3-0-SOFTWARE-SYSTEM-ARCHITECTURE
+	bibtex YEROTH-ERP-3-0-SOFTWARE-SYSTEM-ARCHITECTURE
+	pdflatex YEROTH-ERP-3-0-SOFTWARE-SYSTEM-ARCHITECTURE
+	pdflatex YEROTH-ERP-3-0-SOFTWARE-SYSTEM-ARCHITECTURE
+	evince YEROTH-ERP-3-0-SOFTWARE-SYSTEM-ARCHITECTURE.pdf&
 
 clean:
 	rm -f *~ *.glo *.aux *.blg *.bbl *.brf *.idx *.bak *.ilg *.ind *.lof \
