@@ -5,35 +5,35 @@
 \resizebox{\textwidth}{!}{%to fit the table within the text width
 \begin{tabular}{cccc} 
 
-\multicolumn{1}{c}{}			&
-Thick--client application 		& 
-Web--browser--based application	\\ \hline
+\multicolumn{1}{c}{}										&
+Thick--client application \mycheckmark{yerothColorBlue}	& 
+Web--browser--based application								\\ \hline
 
-application security vulnerability													&
-		\yerothvert{very good (use of a single harmonized programming language)}	&					
-		\yerothrouge{very bad (use of several disparate technologies)}	\\ \hline
-
-application business code installation and upgrade	&
-		\yerothrouge{on each computer}				&						
-		\yerothvert{only on the web~/~application server}	\\ \hline
+business code								&
+		\yerothrouge{all computers}			&						
+		\yerothvert{application server}		\\ \hline
 		
-user interface installation and upgrade						&
-		\yerothvert{on each computer (\thickclient gui)}	&						
-		\yerothvert{on each computer (web--browser)}		\\ \hline		
+co--related software--systems		&
+		\yerothvert{$1$ (DBMS)}		&						
+		\yerothrouge{at least $2$ (DBMS, web~/~application server)}	\\ \hline
+				
+user interface											&
+		\yerothvert{all computers (\thickclient gui)}	&						
+		\yerothvert{all computers (web--browser)}		\\ \hline		
 
 user interface development			&
 		\yerothvert{WYSIWYG tool}	&						
 		\yerothrouge{manual coding}	\\ \hline
-
-application networked architecture				&
-		\yerothvert{1--tier architecture}		&						
-		\yerothrouge{multi--tier architecture}	\\ \hline
-
-other involved software--systems				&
-		\yerothvert{at least $1$ (DBMS)}		&						
-		\yerothrouge{at least $2$ (DBMS, web~/~application server)}	\\
+		
+networked architecture													&
+		\yerothvert{\applicationtier{2} (client and data)}				&						
+		\yerothrouge{at least \applicationtier{2} (client, logic~/~data)}	\\ \hline
+				
+security vulnerability										&
+		\yerothvert{low (single programming language)}		&					
+		\yerothrouge{high (several programming languages)}	\\ 
 \end{tabular}}
-\caption{Thick--client application VS Web--browser--based application\\}
+\caption{Thick--client application VS Web--browser--based application.\\}
 \label{tab:thickclient-application-againts-webbrowserbased-application}
 \end{table*}
 

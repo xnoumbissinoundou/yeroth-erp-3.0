@@ -12,6 +12,8 @@
 \RequirePackage[bitstream-charter,cal,expert]{mathdesign}
 \RequirePackage{latexsym}
 
+\usepackage[numbib]{tocbibind}
+
 \usepackage{geometry}
 \geometry{a4paper,
 		  %showframe=true,
@@ -75,6 +77,8 @@
 \newcommand{\yerothrd}{\textcolor{yerothColorGreen}
 			{\textsc{\textcolor{yerothColorRed}{YEROTH}}$_{\text{r\&d}}$\xspace}}
 
+\newcommand{\mytime}[2]{$#1$:$#2$\xspace}
+
 \newcommand{\webbrowserbased}{web--browser--based\xspace}
 
 \newcommand{\yerotherpblack}{YEROTH--ERP--$3.0$\xspace}
@@ -113,7 +117,6 @@
 
 \newcommand{\erpsoftware}{ERP~software--system\xspace}
 
-
 \newcommand{\wy}{WYSIWYG\xspace}
 
 \newcommand{\applicationtier}[1]{$#1$--tier\xspace}
@@ -128,12 +131,7 @@
 
 
 \newcommand{\yerothvert}[1]{\textcolor{yerothColorGreen}{#1}\xspace}
-\newcommand{\yerothorange}[1]{\textcolor{yerothColorOrange}{#1}\xspace}
 \newcommand{\yerothrouge}[1]{\textcolor{yerothColorRed}{#1}\xspace}
-
-\newcommand{\yerothfacile}{\yerothvert{easy}\xspace}
-\newcommand{\yerothdifficile}{\yerothorange{difficult}\xspace}
-\newcommand{\yerothtresdifficile}{\yerothrouge{very difficult}\xspace}
 
 \newcommand{\featuresummary}[2]{\textbf{\textcolor{#1}{\textsc{#2}}}}
 
@@ -202,7 +200,6 @@
 
 \begin{multicols}{2}
 
-
 \input{yeroth-erp-3-0-application-architecture-comparison-table}
 
 
@@ -221,7 +218,7 @@ following reasons:
 		offers much flexibility (use of macro, etc.)
 		
 	\item the availability of \texttt{'WHAT YOU SEE IS WHAT YOU GET'}
-		tools (\wy) for fast and useful
+		(\wy) tools for fast and useful
 		user interface design (e.g.: \qtdesigner~\cite{qtdesigner:2020},
 		\ministudio~\cite{miniStudio:2020}, etc.)
 		
@@ -238,9 +235,37 @@ following reasons:
 
 \section{Thick--Client VS Web--Browser}
 
+\begin{center}
+\includegraphics[scale=0.39]{images/yeroth-three-tier-architecture.png}
+\captionof{figure}{Physical \applicationtier{3} architecture.}
+\label{fig:yeroth-three-tier-architecture}
+\end{center}
+
+Figure~\ref{fig:yeroth-three-tier-architecture}
+illustrates an example of a physical
+\applicationtier{3} architecture
+(copied from \cite{trevor:2006}).
+
+\vspace{1em}
+
+\begin{center}
+\includegraphics[scale=0.42]{images/yeroth-three-tier-architecture-logical.png}
+\captionof{figure}{Logical \applicationtier{3} architecture.}
+\label{fig:yeroth-three-tier-architecture-logical}
+\end{center}
+
+Figure~\ref{fig:yeroth-three-tier-architecture-logical}
+illustrates an example of a logical
+\applicationtier{3} architecture 
+(copied from \cite{quoradotcom:2020}).
+
+\vspace{1em}
+
 Table~\ref{tab:thickclient-application-againts-webbrowserbased-application}
 compares a \thickclient application against
 a \webbrowserbased application.
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -257,6 +282,9 @@ a \webbrowserbased application.
 
 
 \section{Conclusion}
+
+
+\newpage
 
 
 \bibliographystyle{alpha}
