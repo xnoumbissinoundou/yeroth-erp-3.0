@@ -1,5 +1,5 @@
 /*
- * yeroth-erp-pointdevente-liststocks-window.hpp
+ * yeroth-erp-tableau-des-transactions-du-client-window.hpp
  *
  *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
  */
