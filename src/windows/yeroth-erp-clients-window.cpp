@@ -1,5 +1,5 @@
 /*
- * yeroth-erp-marchandises-window.cpp
+ * yeroth-erp-clients-window.cpp
  *
  *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
  */
