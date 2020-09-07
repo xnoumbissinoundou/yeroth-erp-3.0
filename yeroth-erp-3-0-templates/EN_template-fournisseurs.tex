@@ -18,6 +18,7 @@
 		  right=5.5em,
 		  bottom=3.39em
 		  }
+		  
 \usepackage{graphicx}
 \usepackage{xspace}
 \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
@@ -62,7 +63,7 @@
     pdftex,
     bookmarks,
     plainpages=false,
-    pdftitle={Une fiche de comptes clients imprim\'ee par YEROTHNOMUTILISATEUR (YEROTHENTREPRISE, YEROTHDATE)},
+    pdftitle={Supplier listing printed by YEROTHNOMUTILISATEUR (YEROTHENTREPRISE, YEROTHDATE)},
     pdfauthor={YEROTHENTREPRISE (YEROTHNOMUTILISATEUR)}
 }
 
@@ -75,23 +76,24 @@
 
 \newcommand{\emphbold}[1]{\textbf{\emph{#1}}\xspace}
 
+
 \begin{document}
 \bigskip
 
 \headerrow
 	{\emphbold{YEROTHENTREPRISE}}
-	{\emph{\textbf{Num\'ero de contribuable:} YEROTHCONTRIBUABLENR}}
+	{\emph{\textbf{Tax payer registration number:} YEROTHCONTRIBUABLENR}}
 \headerrow
 	{\emphbold{YEROTHACTIVITESENTREPRISE}}
-	{\emph{\textbf{Num\'ero de compte bancaire:} YEROTHCOMPTEBANCAIRENR,}}
+	{\emph{\textbf{Bank account number:} YEROTHCOMPTEBANCAIRENR,}}
 \headerrow
-	{\emphbold{\'Email: YEROTHEMAIL}}
+	{\emphbold{Email: YEROTHEMAIL}}
 	{\emph{YEROTHAGENCECOMPTEBANCAIRE}}
 \headerrow
-	{\emphbold{T\'el.: YEROTHTELEPHONE}}
+	{\emphbold{Tel.: YEROTHTELEPHONE}}
 	{}
 \headerrow
-	{\emphbold{B.P.: YEROTHBOITEPOSTALE, YEROTHVILLE}}
+	{\emphbold{PO Box: YEROTHBOITEPOSTALE, YEROTHVILLE}}
 	{}
 	
 \hrule
@@ -100,9 +102,9 @@
 	{}
 	{\textbf{YEROTHDATE}}
 
-\section*{Fiche des Comptes Clients}
+\section*{Supplier Listing}
 
-\textbf{Imprim\'e par:} YEROTHNOMUTILISATEUR\\
-\textbf{Heure d'impression:} YEROTHHEUREDIMPRESSION
+\textbf{Printed by:} YEROTHNOMUTILISATEUR\\
+\textbf{Time of print:} YEROTHHEUREDIMPRESSION
 
 \vspace{0.3cm}
