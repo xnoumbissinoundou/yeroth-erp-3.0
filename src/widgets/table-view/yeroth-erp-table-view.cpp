@@ -125,6 +125,148 @@ void YerothTableView::selectionChanged (const QItemSelection & selected,
 }
 
 
+void YerothTableView::lister_les_transactions_dun_fournisseur(QSqlQuery &sqlFournisseurTransactionsUnionQuery)
+{
+    QString dateHdr(QObject::tr("Date"));
+    QString timeHdr(QObject::tr("Heure"));
+    QString operationTypeHdr(QObject::tr("Type d'opération"));
+    QString transactionAmountHdr(QObject::tr("Montant total"));
+    QString customerAccountValueAfterHdr(QObject::trUtf8("Compte client (après)"));
+    QString referenceHdr(QObject::trUtf8("Référence article (service)"));
+    QString receiptReferenceHdr(QObject::trUtf8("Référence reçu"));
+
+    _tableModelHeaders->clear();
+
+    _tableModelHeaders->append(dateHdr);
+    _tableModelHeaders->append(timeHdr);
+    _tableModelHeaders->append(operationTypeHdr);
+    _tableModelHeaders->append(transactionAmountHdr);
+    _tableModelHeaders->append(customerAccountValueAfterHdr);
+    _tableModelHeaders->append(referenceHdr);
+    _tableModelHeaders->append(receiptReferenceHdr);
+
+
+    int querySize = sqlFournisseurTransactionsUnionQuery.size();
+
+	_stdItemModel->yerothPOSClear();
+
+    _stdItemModel->setColumnCount(_tableModelHeaders->size());
+
+    _stdItemModel->setRowCount(querySize);
+
+    //Nous mettons les noms des colones
+    for(int k = 0; k < _tableModelHeaders->size(); ++k)
+    {
+    	_stdItemModel->setHeaderData(k, Qt::Horizontal, _tableModelHeaders->at(k));
+    }
+
+    YerothQStandardItem *aYerothQStandardItem = 0;
+
+    if (querySize <= 0)
+    {
+    	return ;
+    }
+
+    int keyValue;
+    QString stringKeyValue;
+
+    for (int i = 0; i < querySize; ++i)
+    {
+    	if (sqlFournisseurTransactionsUnionQuery.next())
+    	{
+    		QVariant qv;
+
+    		for (int j = 0; j < _stdItemModel->columnCount() ; ++j)
+    		{
+    			/*
+    			 * J'ignore le nom de l'entreprise pour la presentation
+    			 * des donnees de transactions de l'entreprise cliente.
+    			 * Ce nom d'entreprise apparait deja dans le fichier
+    			 * PDF.
+    			 *
+    			 * J'utilise (j+1), et non (j) comme index !
+    			 */
+
+    			qv = sqlFournisseurTransactionsUnionQuery.value(j+1);
+
+    			//					qDebug() << QString("++ j: %1, qv: %2")
+    			//									.arg(QString::number(j), qv.toString());
+
+    			switch (qv.type())
+    			{
+    			case QVariant::Double:
+    				/*
+    				 * Le montant de la transaction est un 'double'.
+    				 * Dans ce cas de figure, utiliser le chaine de
+    				 * caractere "N/A" au cas ou il est 'NULL' !
+    				 */
+    				if (qv.isNull())
+    				{
+    					aYerothQStandardItem = new YerothQStandardItem("N/A", Qt::AlignRight);
+    				}
+    				else
+    				{
+    					aYerothQStandardItem = new YerothQStandardItem(GET_DOUBLE_STRING(qv.toDouble()), Qt::AlignRight);
+    				}
+
+    				_stdItemModel->setItem(i, j, aYerothQStandardItem);
+    				break;
+
+    			case QVariant::String:
+    				aYerothQStandardItem = new YerothQStandardItem(YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(qv.toString()));
+    				_stdItemModel->setItem(i, j, aYerothQStandardItem);
+    				break;
+
+    			case QVariant::Int:
+    				keyValue = qv.toInt();
+
+    				if (2 == j)
+    				{
+    					if (0 < keyValue)
+    					{
+    						if (YerothUtils::_typedepaiementToUserViewString.contains(keyValue))
+    						{
+    							stringKeyValue = YerothUtils::_typedepaiementToUserViewString.value(keyValue);
+    						}
+    						else if (YerothUtils::_typedeventeToUserViewString.contains(keyValue))
+    						{
+    							stringKeyValue = YerothUtils::_typedeventeToUserViewString.value(keyValue);
+    						}
+    					}
+
+    					aYerothQStandardItem = new YerothQStandardItem(YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(stringKeyValue));
+    					_stdItemModel->setItem(i, j, aYerothQStandardItem);
+    				}
+    				else
+    				{
+    					aYerothQStandardItem = new YerothQStandardItem(keyValue, Qt::AlignRight);
+    					_stdItemModel->setItem(i, j, aYerothQStandardItem);
+    				}
+
+    				break;
+
+    			case QVariant::Date:
+    				aYerothQStandardItem = new YerothQStandardItem(DATE_TO_STRING(qv.toDate()));
+    				_stdItemModel->setItem(i, j, aYerothQStandardItem);
+    				break;
+
+    			case QVariant::Time:
+    				aYerothQStandardItem = new YerothQStandardItem(TIME_TO_STRING(qv.toTime()));
+    				_stdItemModel->setItem(i, j, aYerothQStandardItem);
+    				break;
+
+    			default:
+    				//qDebug() << "YerothTableView:::lister(): undecoded QVariant -> " << qv.type();
+    				break;
+    			}
+
+    			_stdItemModel->setItem(i, j, aYerothQStandardItem);
+    		}
+    	}
+    }
+}
+
+
 void YerothTableView::lister_les_transactions_dun_client(QSqlQuery &sqlClientTransactionsUnionQuery)
 {
     QString dateHdr(QObject::tr("Date"));

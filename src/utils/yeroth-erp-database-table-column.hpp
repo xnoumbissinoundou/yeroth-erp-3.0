@@ -115,6 +115,8 @@ public:
 
 	static const QString LOTS_ENTRANT;
 
+	static const QString IMAGE_FOURNISSEUR;
+
 	static const QString IMAGE_COMPTE_CLIENT;
 
 	static const QString IMAGE_PRODUIT;

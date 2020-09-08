@@ -5,6 +5,7 @@
 
     <file>yeroth-erp-3-0-templates/EN_template-bilan-comptable.tex</file>
     <file>yeroth-erp-3-0-templates/EN_template-fiche-dun-client.tex</file>
+    <file>yeroth-erp-3-0-templates/EN_template-transactions-dun-fournisseur.tex</file>
     <file>yeroth-erp-3-0-templates/EN_template-transactions-dun-client.tex</file>
     <file>yeroth-erp-3-0-templates/EN_template-historique-dun-stock.tex</file>
     <file>yeroth-erp-3-0-templates/EN_template-journal-des-paiements.tex</file>
@@ -14,6 +15,7 @@
     <file>yeroth-erp-3-0-templates/EN_template-sortie-des-stocks-grand.tex</file>
     <file>yeroth-erp-3-0-templates/EN_template-sortie-des-stocks-petit.tex</file>           
     <file>yeroth-erp-3-0-templates/EN_template-journal-transactions.tex</file>
+    <file>yeroth-erp-3-0-templates/EN_template-fournisseurs.tex</file> 
     <file>yeroth-erp-3-0-templates/EN_template-comptes-clients.tex</file> 
     <file>yeroth-erp-3-0-templates/EN_template-marchandises.tex</file>    
     <file>yeroth-erp-3-0-templates/EN_template-lister-achats.tex</file>    

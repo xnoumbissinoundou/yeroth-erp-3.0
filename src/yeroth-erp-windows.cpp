@@ -104,10 +104,13 @@ const QString YerothERPWindows::DBMS							("dbms");
 
 YerothERPWindows::YerothERPWindows(QDesktopWidget *desktopWidget)
     :_mainWindow(0),
+	 _transactionsDunFournisseurWindow(0),
 	 _transactionsDunClientWindow(0),
 	 _historiqueDuStockWindow(0),
      _changerUtilisateurDialog(0),
+	 _creerFournisseurWindow(0),
 	 _creerCompteClientWindow(0),
+	 _modifierFournisseurWindow(0),
 	 _modifierCompteClientWindow(0),
      _creerNouveauClientWindow(0),
      _creerNouveauFournisseurWindow(0),
@@ -124,6 +127,7 @@ YerothERPWindows::YerothERPWindows(QDesktopWidget *desktopWidget)
      _statistiquesWindow(0),
      _transactionsWindow(0),
      _pdVenteWindow(0),
+	 _fournisseurDetailsWindow(0),
 	 _clientsDetailWindow(0),
 	 _achatsDetailWindow(0),
 	 _detailWindow(0),
@@ -132,8 +136,10 @@ YerothERPWindows::YerothERPWindows(QDesktopWidget *desktopWidget)
 	 _pdVenteMethodePaiementCarteCreditDialog(0),
 	 _pdVenteMethodePaiementComptantEntreeDialog(0),
 	 _pdVenteMethodePaiementDialog(0),
-	 _clientWindow(0),
-	 _payerAuCompteclientWindow(0),
+	 _fournisseursWindow(0),
+	 _clientsWindow(0),
+	 _payerAuFournisseurWindow(0),
+	 _payerAuCompteClientWindow(0),
      _sortirListStocksWindow(0),
      _adminWindow(0),
      _adminCreateWindow(0),
@@ -233,10 +239,13 @@ YerothERPWindows::~YerothERPWindows()
     delete _detailWindow;
     delete _achatsDetailWindow;
     delete _clientsDetailWindow;
+    delete _fournisseurDetailsWindow;
     delete _modifierWindow;
     delete _entrerWindow;
     delete _creerCompteClientWindow;
+    delete _creerFournisseurWindow;
     delete _modifierCompteClientWindow;
+    delete _modifierFournisseurWindow;
     delete _creerNouveauClientWindow;
     delete _creerNouveauFournisseurWindow;
     delete _creerNouvelleCategorieWindow;
@@ -250,8 +259,11 @@ YerothERPWindows::~YerothERPWindows()
     delete _pdVenteListStocksWindow;
     delete _historiqueDuStockWindow;
     delete _transactionsDunClientWindow;
-    delete _clientWindow;
-    delete _payerAuCompteclientWindow;
+    delete _transactionsDunFournisseurWindow;
+    delete _clientsWindow;
+    delete _fournisseursWindow;
+    delete _payerAuCompteClientWindow;
+    delete _payerAuFournisseurWindow;
     delete _sortirListStocksWindow;
 
     delete _adminWindow;
@@ -297,6 +309,7 @@ void YerothERPWindows::createAllYerothPosUserWindows()
     _adminDetailWindow 				= new YerothAdminDetailWindow;
     _adminModifierWindow			= new YerothAdminModifierWindow;
 
+    _transactionsDunFournisseurWindow	= new YerothTableauDesTransactionsDuFournisseurWindow;
     _transactionsDunClientWindow	= new YerothTableauDesTransactionsDuClientWindow;
     _historiqueDuStockWindow		= new YerothHistoriqueDuStockWindow;
     _sortirWindow 					= new YerothSortirWindow;
@@ -312,12 +325,15 @@ void YerothERPWindows::createAllYerothPosUserWindows()
     _pdVenteMethodePaiementDialog		= new YerothPOSVenteMethodePaiementDialog(this, _pdVenteWindow);
 
     _pdVenteWindow 					= new YerothPointDeVenteWindow;
+    _fournisseurDetailsWindow 		= new YerothFournisseurDetailsWindow;
     _clientsDetailWindow 			= new YerothClientsDetailWindow;
     _achatsDetailWindow 			= new YerothAchatsDetailWindow;
     _detailWindow 					= new YerothStockDetailWindow;
     _modifierWindow 				= new YerothModifierWindow;
     _entrerWindow 					= new YerothEntrerWindow;
+    _creerFournisseurWindow			= new YerothCreerFournisseurWindow;
     _creerCompteClientWindow		= new YerothCreerCompteClientWindow;
+    _modifierFournisseurWindow		= new YerothModifierFournisseurWindow;
     _modifierCompteClientWindow		= new YerothModifierCompteClientWindow;
     _creerNouveauClientWindow 		= new YerothCreerNouveauClientWindow;
     _creerNouveauFournisseurWindow  = new YerothCreerNouveauFournisseurWindow;
@@ -330,8 +346,10 @@ void YerothERPWindows::createAllYerothPosUserWindows()
     _historiquePaiementsWindow		= new YerothPaiementsWindow;
     _ventesWindow					= new YerothVentesWindow;
     _pdVenteListStocksWindow		= new YerothPointDeVenteListStocksWindow;
-    _clientWindow					= new YerothERPClientsWindow;
-    _payerAuCompteclientWindow		= new YerothPayerCompteClientWindow;
+    _fournisseursWindow				= new YerothERPFournisseursWindow;
+    _clientsWindow					= new YerothERPClientsWindow;
+    _payerAuFournisseurWindow		= new YerothPayerFournisseurWindow;
+    _payerAuCompteClientWindow		= new YerothPayerCompteClientWindow;
     _sortirListStocksWindow			= new YerothSortirListStocksWindow;
 
     this->move(*_mainWindow);
@@ -440,12 +458,15 @@ void YerothERPWindows::definirMagasinier()
     _statistiquesWindow->definirMagasinier();
     _transactionsWindow->definirMagasinier();
     _pdVenteWindow->definirMagasinier();
+    _fournisseurDetailsWindow->definirMagasinier();
     _clientsDetailWindow->definirMagasinier();
     _achatsDetailWindow->definirMagasinier();
     _detailWindow->definirMagasinier();
     _modifierWindow->definirMagasinier();
     _entrerWindow->definirMagasinier();
+    _creerFournisseurWindow->definirMagasinier();
     _creerCompteClientWindow->definirMagasinier();
+    _modifierFournisseurWindow->definirMagasinier();
     _modifierCompteClientWindow->definirMagasinier();
     _creerNouveauClientWindow->definirMagasinier();
     _creerNouveauFournisseurWindow->definirMagasinier();
@@ -457,8 +478,10 @@ void YerothERPWindows::definirMagasinier()
     _listerAlertesWindow->definirMagasinier();
     _historiquePaiementsWindow->definirMagasinier();
     _ventesWindow->definirMagasinier();
-    _clientWindow->definirMagasinier();
-    _payerAuCompteclientWindow->definirMagasinier();
+    _fournisseursWindow->definirMagasinier();
+    _clientsWindow->definirMagasinier();
+    _payerAuFournisseurWindow->definirMagasinier();
+    _payerAuCompteClientWindow->definirMagasinier();
 }
 
 void YerothERPWindows::definirCaissier()
@@ -468,12 +491,15 @@ void YerothERPWindows::definirCaissier()
     _statistiquesWindow->definirCaissier();
     _transactionsWindow->definirCaissier();
     _pdVenteWindow->definirCaissier();
+    _fournisseurDetailsWindow->definirCaissier();
     _clientsDetailWindow->definirCaissier();
     _achatsDetailWindow->definirCaissier();
     _detailWindow->definirCaissier();
     _modifierWindow->definirCaissier();
     _entrerWindow->definirCaissier();
+    _creerFournisseurWindow->definirCaissier();
     _creerCompteClientWindow->definirCaissier();
+    _modifierFournisseurWindow->definirCaissier();
     _modifierCompteClientWindow->definirCaissier();
     _creerNouveauClientWindow->definirCaissier();
     _creerNouveauFournisseurWindow->definirCaissier();
@@ -485,8 +511,10 @@ void YerothERPWindows::definirCaissier()
     _listerAlertesWindow->definirCaissier();
     _historiquePaiementsWindow->definirCaissier();
     _ventesWindow->definirCaissier();
-    _clientWindow->definirCaissier();
-    _payerAuCompteclientWindow->definirCaissier();
+    _fournisseursWindow->definirCaissier();
+    _clientsWindow->definirCaissier();
+    _payerAuFournisseurWindow->definirCaissier();
+    _payerAuCompteClientWindow->definirCaissier();
 }
 
 void YerothERPWindows::definirManager()
@@ -496,12 +524,15 @@ void YerothERPWindows::definirManager()
     _statistiquesWindow->definirManager();
     _transactionsWindow->definirManager();
     _pdVenteWindow->definirManager();
+    _fournisseurDetailsWindow->definirManager();
     _clientsDetailWindow->definirManager();
     _achatsDetailWindow->definirManager();
     _detailWindow->definirManager();
     _modifierWindow->definirManager();
     _entrerWindow->definirManager();
+    _creerFournisseurWindow->definirManager();
     _creerCompteClientWindow->definirManager();
+    _modifierFournisseurWindow->definirManager();
     _modifierCompteClientWindow->definirManager();
     _creerNouveauClientWindow->definirManager();
     _creerNouveauFournisseurWindow->definirManager();
@@ -513,8 +544,10 @@ void YerothERPWindows::definirManager()
     _listerAlertesWindow->definirManager();
     _historiquePaiementsWindow->definirManager();
     _ventesWindow->definirManager();
-    _clientWindow->definirManager();
-    _payerAuCompteclientWindow->definirManager();
+    _fournisseursWindow->definirManager();
+    _clientsWindow->definirManager();
+    _payerAuFournisseurWindow->definirManager();
+    _payerAuCompteClientWindow->definirManager();
 
     _adminWindow->definirManager();
     _adminCreateWindow->definirManager();
@@ -531,12 +564,15 @@ void YerothERPWindows::definirVendeur()
     _statistiquesWindow->definirVendeur();
     _transactionsWindow->definirVendeur();
     _pdVenteWindow->definirVendeur();
+    _fournisseurDetailsWindow->definirVendeur();
     _clientsDetailWindow->definirVendeur();
     _achatsDetailWindow->definirVendeur();
     _detailWindow->definirVendeur();
     _modifierWindow->definirVendeur();
     _entrerWindow->definirVendeur();
+    _creerFournisseurWindow->definirVendeur();
     _creerCompteClientWindow->definirVendeur();
+    _modifierFournisseurWindow->definirVendeur();
     _modifierCompteClientWindow->definirVendeur();
     _creerNouveauClientWindow->definirVendeur();
     _creerNouveauFournisseurWindow->definirVendeur();
@@ -548,8 +584,10 @@ void YerothERPWindows::definirVendeur()
     _listerAlertesWindow->definirVendeur();
     _historiquePaiementsWindow->definirVendeur();
     _ventesWindow->definirVendeur();
-    _clientWindow->definirVendeur();
-    _payerAuCompteclientWindow->definirVendeur();
+    _fournisseursWindow->definirVendeur();
+    _clientsWindow->definirVendeur();
+    _payerAuFournisseurWindow->definirVendeur();
+    _payerAuCompteClientWindow->definirVendeur();
 
     _adminWindow->definirVendeur();
     _adminCreateWindow->definirVendeur();
@@ -566,12 +604,15 @@ void YerothERPWindows::definirGestionaireDesStocks()
     _statistiquesWindow->definirGestionaireDesStocks();
     _transactionsWindow->definirGestionaireDesStocks();
     _pdVenteWindow->definirGestionaireDesStocks();
+    _fournisseurDetailsWindow->definirGestionaireDesStocks();
     _clientsDetailWindow->definirGestionaireDesStocks();
     _achatsDetailWindow->definirGestionaireDesStocks();
     _detailWindow->definirGestionaireDesStocks();
     _modifierWindow->definirGestionaireDesStocks();
     _entrerWindow->definirGestionaireDesStocks();
+    _creerFournisseurWindow->definirGestionaireDesStocks();
     _creerCompteClientWindow->definirGestionaireDesStocks();
+    _modifierFournisseurWindow->definirGestionaireDesStocks();
     _modifierCompteClientWindow->definirGestionaireDesStocks();
     _creerNouveauClientWindow->definirGestionaireDesStocks();
     _creerNouveauFournisseurWindow->definirGestionaireDesStocks();
@@ -583,8 +624,10 @@ void YerothERPWindows::definirGestionaireDesStocks()
     _listerAlertesWindow->definirGestionaireDesStocks();
     _historiquePaiementsWindow->definirGestionaireDesStocks();
     _ventesWindow->definirGestionaireDesStocks();
-    _clientWindow->definirGestionaireDesStocks();
-    _payerAuCompteclientWindow->definirGestionaireDesStocks();
+    _fournisseursWindow->definirGestionaireDesStocks();
+    _clientsWindow->definirGestionaireDesStocks();
+    _payerAuFournisseurWindow->definirGestionaireDesStocks();
+    _payerAuCompteClientWindow->definirGestionaireDesStocks();
 
     _adminWindow->definirGestionaireDesStocks();
     _adminCreateWindow->definirGestionaireDesStocks();
@@ -606,12 +649,15 @@ void YerothERPWindows::definirPasDeRole()
     _statistiquesWindow->definirPasDeRole();
     _transactionsWindow->definirPasDeRole();
     _pdVenteWindow->definirPasDeRole();
+    _fournisseurDetailsWindow->definirPasDeRole();
     _clientsDetailWindow->definirPasDeRole();
     _achatsDetailWindow->definirPasDeRole();
     _detailWindow->definirPasDeRole();
     _modifierWindow->definirPasDeRole();
     _entrerWindow->definirPasDeRole();
+    _creerFournisseurWindow->definirPasDeRole();
     _creerCompteClientWindow->definirPasDeRole();
+    _modifierFournisseurWindow->definirPasDeRole();
     _modifierCompteClientWindow->definirPasDeRole();
     _creerNouveauClientWindow->definirPasDeRole();
     _creerNouveauFournisseurWindow->definirPasDeRole();
@@ -623,8 +669,10 @@ void YerothERPWindows::definirPasDeRole()
     _listerAlertesWindow->definirPasDeRole();
     _historiquePaiementsWindow->definirPasDeRole();
     _ventesWindow->definirPasDeRole();
-    _clientWindow->definirPasDeRole();
-    _payerAuCompteclientWindow->definirPasDeRole();
+    _fournisseursWindow->definirPasDeRole();
+    _clientsWindow->definirPasDeRole();
+    _payerAuFournisseurWindow->definirPasDeRole();
+    _payerAuCompteClientWindow->definirPasDeRole();
 
     _adminWindow->definirPasDeRole();
     _adminCreateWindow->definirPasDeRole();
@@ -636,6 +684,7 @@ void YerothERPWindows::definirPasDeRole()
 void YerothERPWindows::hideAllWindows()
 {
     _sortirWindow->rendreInvisible();
+    _transactionsDunFournisseurWindow->rendreInvisible();
     _transactionsDunClientWindow->rendreInvisible();
     _historiqueDuStockWindow->rendreInvisible();
     _statistiquesWindow->rendreInvisible();
@@ -646,10 +695,13 @@ void YerothERPWindows::hideAllWindows()
     _pdVenteMethodePaiementComptantEntreeDialog->rendreInvisible();
     _pdVenteMethodePaiementDialog->rendreInvisible();
     _sortirListStocksWindow->rendreInvisible();
+    _fournisseurDetailsWindow->rendreInvisible();
     _clientsDetailWindow->rendreInvisible();
     _achatsDetailWindow->rendreInvisible();
     _detailWindow->rendreInvisible();
+    _creerFournisseurWindow->rendreInvisible();
     _creerCompteClientWindow->rendreInvisible();
+    _modifierFournisseurWindow->rendreInvisible();
     _modifierCompteClientWindow->rendreInvisible();
     _creerNouveauClientWindow->rendreInvisible();
     _creerNouveauFournisseurWindow->rendreInvisible();
@@ -661,8 +713,10 @@ void YerothERPWindows::hideAllWindows()
     _listerAlertesWindow->rendreInvisible();
     _historiquePaiementsWindow->rendreInvisible();
     _ventesWindow->rendreInvisible();
-    _clientWindow->rendreInvisible();
-    _payerAuCompteclientWindow->rendreInvisible();
+    _fournisseursWindow->rendreInvisible();
+    _clientsWindow->rendreInvisible();
+    _payerAuFournisseurWindow->rendreInvisible();
+    _payerAuCompteClientWindow->rendreInvisible();
     _modifierWindow->rendreInvisible();
     _entrerWindow->rendreInvisible();
     _adminWindow->rendreInvisible();

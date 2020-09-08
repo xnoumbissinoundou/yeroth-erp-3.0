@@ -63,12 +63,17 @@ MOC_DIR  = moc
 
 OBJECTS_DIR = obj
 
-FORMS   = ui/yeroth-erp-main-window.ui \
+FORMS = ui/yeroth-erp-main-window.ui \
 			ui/yeroth-erp-configuration-comptabilite-window.ui \
+			ui/yeroth-erp-modifier-fournisseur-window.ui \
 			ui/yeroth-erp-modifier-compte-client-window.ui \
+			ui/yeroth-erp-payer-fournisseur-window.ui \
 			ui/yeroth-erp-payer-compte-client-window.ui \
+			ui/yeroth-erp-creer-fournisseur-window.ui \
 			ui/yeroth-erp-creer-compte-client-window.ui \
+			ui/yeroth-erp-fournisseur-details-window.ui \
 			ui/yeroth-erp-clients-detail-window.ui \
+		  ui/yeroth-erp-fournisseurs-window.ui \
 			ui/yeroth-erp-clients-window.ui \
 			ui/yeroth-erp-achats-detail-window.ui \
 			ui/yeroth-erp-achats-window.ui \
@@ -87,6 +92,7 @@ FORMS   = ui/yeroth-erp-main-window.ui \
 		  ui/yeroth-erp-creer-nouveau-fournisseur-window.ui \
 		  ui/yeroth-erp-creer-nouvelle-categorie-window.ui \
 		  ui/yeroth-erp-marchandises-window.ui \
+			ui/yeroth-erp-tableau-des-transactions-du-fournisseur-window.ui \
 			ui/yeroth-erp-tableau-des-transactions-du-client-window.ui \
 			ui/yeroth-erp-historique-du-stock-window.ui \
 			ui/yeroth-erp-stocks-window.ui \
@@ -122,6 +128,7 @@ HEADERS = src/yeroth-erp-windows.hpp \
 		  src/widgets/table-view/yeroth-erp-stocks-table-view.hpp \
 		  src/widgets/table-view/yeroth-erp-ventes-table-view.hpp \
 		  src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
+		  src/widgets/table-view/yeroth-erp-fournisseurs-table-view.hpp \
 		  src/widgets/table-view/yeroth-erp-clients-table-view.hpp \
 		  src/widgets/table-view/yeroth-erp-achats-table-view.hpp \
 		  src/widgets/table-view/yeroth-erp-marchandises-table-view.hpp \
@@ -147,10 +154,15 @@ HEADERS = src/yeroth-erp-windows.hpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.hpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-dialog.hpp \
 			src/windows/yeroth-erp-configuration-comptabilite-window.hpp \
+			src/windows/yeroth-erp-modifier-fournisseur-window.hpp \
 			src/windows/yeroth-erp-modifier-compte-client-window.hpp \
+			src/windows/yeroth-erp-payer-fournisseur-window.hpp \
 			src/windows/yeroth-erp-payer-compte-client-window.hpp \
+			src/windows/yeroth-erp-creer-fournisseur-window.hpp \
 			src/windows/yeroth-erp-creer-compte-client-window.hpp \
+		  src/windows/yeroth-erp-fournisseur-details-window.hpp \
 		  src/windows/yeroth-erp-clients-detail-window.hpp \
+		  src/windows/yeroth-erp-fournisseurs-window.hpp \
 		  src/windows/yeroth-erp-clients-window.hpp \
 		  src/windows/yeroth-erp-window-commons.hpp \
 		  src/windows/yeroth-erp-pointdevente-liststocks-window.hpp \
@@ -160,6 +172,7 @@ HEADERS = src/yeroth-erp-windows.hpp \
 		  src/windows/yeroth-erp-creer-nouveau-fournisseur-window.hpp \
 		  src/windows/yeroth-erp-creer-nouvelle-categorie-window.hpp \
 		  src/windows/yeroth-erp-marchandises-window.hpp \
+		  src/windows/yeroth-erp-tableau-des-transactions-du-fournisseur-window.hpp \
 		  src/windows/yeroth-erp-tableau-des-transactions-du-client-window.hpp \
 		  src/windows/yeroth-erp-historique-du-stock-window.hpp \
 		  src/windows/yeroth-erp-achats-detail-window.hpp \
@@ -232,6 +245,7 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/widgets/table-view/yeroth-erp-stocks-table-view.cpp \
 			src/widgets/table-view/yeroth-erp-ventes-table-view.cpp \
 		  src/widgets/table-view/yeroth-erp-transactions-table-view.cpp \
+		  src/widgets/table-view/yeroth-erp-fournisseurs-table-view.cpp \
 		  src/widgets/table-view/yeroth-erp-clients-table-view.cpp \
 		  src/widgets/table-view/yeroth-erp-achats-table-view.cpp \
 		  src/widgets/table-view/yeroth-erp-marchandises-table-view.cpp \
@@ -257,10 +271,15 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.cpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-dialog.cpp \
 			src/windows/yeroth-erp-configuration-comptabilite-window.cpp \
+			src/windows/yeroth-erp-modifier-fournisseur-window.cpp \
 			src/windows/yeroth-erp-modifier-compte-client-window.cpp \
+			src/windows/yeroth-erp-payer-fournisseur-window.cpp \
 			src/windows/yeroth-erp-payer-compte-client-window.cpp \
+			src/windows/yeroth-erp-creer-fournisseur-window.cpp \
 			src/windows/yeroth-erp-creer-compte-client-window.cpp \
+		  src/windows/yeroth-erp-fournisseur-details-window.cpp \
 		  src/windows/yeroth-erp-clients-detail-window.cpp \
+		  src/windows/yeroth-erp-fournisseurs-window.cpp \
 		  src/windows/yeroth-erp-clients-window.cpp \
 		  src/windows/yeroth-erp-window-commons.cpp \
 		  src/windows/yeroth-erp-pointdevente-liststocks-window.cpp \
@@ -270,6 +289,7 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/windows/yeroth-erp-creer-nouveau-fournisseur-window.cpp \
 		  src/windows/yeroth-erp-creer-nouvelle-categorie-window.cpp \
 		  src/windows/yeroth-erp-marchandises-window.cpp \
+		  src/windows/yeroth-erp-tableau-des-transactions-du-fournisseur-window.cpp \
 			src/windows/yeroth-erp-tableau-des-transactions-du-client-window.cpp \
 			src/windows/yeroth-erp-historique-du-stock-window.cpp \
 		  src/windows/yeroth-erp-achats-detail-window.cpp \

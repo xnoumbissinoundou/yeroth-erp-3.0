@@ -21,16 +21,20 @@
 #include "src/windows/yeroth-erp-pointdevente-window.hpp"
 
 #include "src/windows/yeroth-erp-paiements-window.hpp"
+#include "src/windows/yeroth-erp-tableau-des-transactions-du-fournisseur-window.hpp"
 #include "src/windows/yeroth-erp-tableau-des-transactions-du-client-window.hpp"
 #include "src/windows/yeroth-erp-historique-du-stock-window.hpp"
 #include "src/windows/yeroth-erp-sortir-window.hpp"
 #include "src/windows/yeroth-erp-tableaux-de-bord-window.hpp"
 #include "src/windows/yeroth-erp-transactions-window.hpp"
+#include "src/windows/yeroth-erp-fournisseur-details-window.hpp"
 #include "src/windows/yeroth-erp-clients-detail-window.hpp"
 #include "src/windows/yeroth-erp-achats-detail-window.hpp"
 #include "src/windows/yeroth-erp-stock-detail-window.hpp"
 #include "src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp"
+#include "src/windows/yeroth-erp-creer-fournisseur-window.hpp"
 #include "src/windows/yeroth-erp-creer-compte-client-window.hpp"
+#include "src/windows/yeroth-erp-modifier-fournisseur-window.hpp"
 #include "src/windows/yeroth-erp-modifier-compte-client-window.hpp"
 #include "src/windows/yeroth-erp-creer-nouveau-client-window.hpp"
 #include "src/windows/yeroth-erp-creer-nouveau-fournisseur-window.hpp"
@@ -43,7 +47,9 @@
 #include "src/windows/yeroth-erp-ventes-window.hpp"
 #include "src/windows/yeroth-erp-modifier-window.hpp"
 #include "src/windows/yeroth-erp-pointdevente-liststocks-window.hpp"
+#include "src/windows/yeroth-erp-fournisseurs-window.hpp"
 #include "src/windows/yeroth-erp-clients-window.hpp"
+#include "src/windows/yeroth-erp-payer-fournisseur-window.hpp"
 #include "src/windows/yeroth-erp-payer-compte-client-window.hpp"
 #include "src/windows/yeroth-erp-sortir-liststocks-window.hpp"
 
@@ -64,10 +70,13 @@
 class YerothSqlTableModel;
 class YerothMainWindow;
 class YerothPaiementsWindow;
+class YerothTableauDesTransactionsDuFournisseurWindow;
 class YerothTableauDesTransactionsDuClientWindow;
 class YerothHistoriqueDuStockWindow;
 class YerothPOSChangerUtilisateurDialog;
+class YerothCreerFournisseurWindow;
 class YerothCreerCompteClientWindow;
+class YerothModifierFournisseurWindow;
 class YerothModifierCompteClientWindow;
 class YerothCreerNouveauClientWindow;
 class YerothCreerNouveauFournisseurWindow;
@@ -86,6 +95,7 @@ class YerothPointDeVenteWindow;
 class YerothPOSVenteMethodePaiementCarteCreditDialog;
 class YerothPOSVenteMethodePaiementComptantEntreeDialog;
 class YerothPOSVenteMethodePaiementDialog;
+class YerothFournisseurDetailsWindow;
 class YerothClientsDetailWindow;
 class YerothAchatsDetailWindow;
 class YerothStockDetailWindow;
@@ -101,6 +111,7 @@ class YerothLogger;
 class YerothDatabase;
 class YerothPointDeVenteListStocksWindow;
 class YerothPayerCompteClientWindow;
+class YerothERPFournisseursWindow;
 class YerothERPClientsWindow;
 class YerothSortirListStocksWindow;
 class YerothUtils;
@@ -375,9 +386,12 @@ public:
 	YerothMainWindow 									*_mainWindow;
 
 	YerothPOSChangerUtilisateurDialog 					*_changerUtilisateurDialog;
+	YerothTableauDesTransactionsDuFournisseurWindow		*_transactionsDunFournisseurWindow;
 	YerothTableauDesTransactionsDuClientWindow			*_transactionsDunClientWindow;
 	YerothHistoriqueDuStockWindow						*_historiqueDuStockWindow;
+	YerothCreerFournisseurWindow 						*_creerFournisseurWindow;
 	YerothCreerCompteClientWindow 						*_creerCompteClientWindow;
+	YerothModifierFournisseurWindow 					*_modifierFournisseurWindow;
 	YerothModifierCompteClientWindow 					*_modifierCompteClientWindow;
 	YerothCreerNouveauClientWindow 						*_creerNouveauClientWindow;
 	YerothCreerNouveauFournisseurWindow 				*_creerNouveauFournisseurWindow;
@@ -394,6 +408,7 @@ public:
 	YerothTableauxDeBordWindow 							*_statistiquesWindow;
 	YerothTransactionsWindow 							*_transactionsWindow;
 	YerothPointDeVenteWindow 							*_pdVenteWindow;
+	YerothFournisseurDetailsWindow 						*_fournisseurDetailsWindow;
 	YerothClientsDetailWindow 							*_clientsDetailWindow;
 	YerothAchatsDetailWindow 							*_achatsDetailWindow;
 	YerothStockDetailWindow 							*_detailWindow;
@@ -402,8 +417,10 @@ public:
 	YerothPOSVenteMethodePaiementCarteCreditDialog		*_pdVenteMethodePaiementCarteCreditDialog;
 	YerothPOSVenteMethodePaiementComptantEntreeDialog	*_pdVenteMethodePaiementComptantEntreeDialog;
 	YerothPOSVenteMethodePaiementDialog					*_pdVenteMethodePaiementDialog;
-	YerothERPClientsWindow								*_clientWindow;
-	YerothPayerCompteClientWindow						*_payerAuCompteclientWindow;
+	YerothERPFournisseursWindow							*_fournisseursWindow;
+	YerothERPClientsWindow								*_clientsWindow;
+	YerothPayerFournisseurWindow						*_payerAuFournisseurWindow;
+	YerothPayerCompteClientWindow						*_payerAuCompteClientWindow;
 	YerothSortirListStocksWindow						*_sortirListStocksWindow;
 	YerothAdminWindow 									*_adminWindow;
 	YerothAdminCreateWindow 							*_adminCreateWindow;

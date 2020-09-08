@@ -160,6 +160,8 @@ public slots:
 
 	virtual void alertes();
 
+	virtual void fournisseurs();
+
 	virtual void clients();
 
 	inline virtual void courrier()
@@ -172,6 +174,8 @@ public slots:
 	virtual void tableaux_de_bords();
 
 	virtual void transactions();
+
+	virtual void creerFournisseur();
 
 	virtual void creerCompteClient();
 

@@ -1,10 +1,10 @@
 /*
- * yeroth-erp-clients-window.cpp
+ * yeroth-erp-fournisseurs-window.cpp
  *
  *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
  */
 
-#include "yeroth-erp-clients-window.hpp"
+#include "yeroth-erp-fournisseurs-window.hpp"
 
 #include "src/yeroth-erp-windows.hpp"
 
@@ -32,76 +32,77 @@
 #include <QtWidgets/QCompleter>
 
 
-YerothERPClientsWindow::YerothERPClientsWindow()
-:YerothWindowsCommons("yeroth-erp-comptes-clients"),
+YerothERPFournisseursWindow::YerothERPFournisseursWindow()
+:YerothWindowsCommons("yeroth-erp-fournisseurs"),
  YerothAbstractClassYerothSearchWindow(_allWindows->CLIENTS),
- _logger(new YerothLogger("YerothERPComptesClientsWindow")),
+ _logger(new YerothLogger("YerothERPFournisseursWindow")),
  _pushButton_filtrer_font(0),
- _curClientsTableModel(0)
+ _curFournisseursTableModel(0)
 {
     _windowName = QString("%1 - %2")
     				.arg(YEROTH_ERP_WINDOW_TITLE,
-    					 QObject::trUtf8("comptes clients"));
+    					 QObject::trUtf8("fournisseurs"));
 
     setupUi(this);
 
     mySetupUi(this);
 
-    _yerothTableView_FROM_WINDOWS_COMMONS = tableView_clients;
+    _yerothTableView_FROM_WINDOWS_COMMONS = tableView_fournisseurs;
 
-    QMESSAGE_BOX_STYLE_SHEET =
-        QString("QMessageBox {background-color: rgb(%1);}")
-			.arg(COLOUR_RGB_STRING_YEROTH_YELLOW_254_254_0);
+    QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
+                                       "QMessageBox QLabel {color: rgb(%2);}")
+                                   .arg(COLOUR_RGB_STRING_YEROTH_GREEN_2_160_70,
+                                		COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
     setupSelectDBFields(_allWindows->CLIENTS);
 
-    _lineEditsToANDContentForSearch.insert(&lineEdit_comptes_clients_terme_recherche,
+    _lineEditsToANDContentForSearch.insert(&lineEdit_fournisseurs_terme_recherche,
     		YerothUtils::EMPTY_STRING);
 
     _lineEditsToANDContentForSearch.insert(&lineEdit_recherche_nom_entreprise,
     		YerothDatabaseTableColumn::NOM_ENTREPRISE);
 
-    _lineEditsToANDContentForSearch.insert(&lineEdit_comptes_clients_reference_client,
+    _lineEditsToANDContentForSearch.insert(&lineEdit_fournisseurs_reference_fournisseur,
     		YerothDatabaseTableColumn::REFERENCE_CLIENT);
 
-    _lineEditsToANDContentForSearch.insert(&lineEdit_comptes_clients_quartier,
+    _lineEditsToANDContentForSearch.insert(&lineEdit_fournisseurs_quartier,
     		YerothDatabaseTableColumn::QUARTIER);
 
-    _lineEditsToANDContentForSearch.insert(&lineEdit_comptes_clients_province_etat,
+    _lineEditsToANDContentForSearch.insert(&lineEdit_fournisseurs_province_etat,
     		YerothDatabaseTableColumn::PROVINCE_ETAT);
 
-    _lineEditsToANDContentForSearch.insert(&lineEdit_comptes_clients_ville,
+    _lineEditsToANDContentForSearch.insert(&lineEdit_fournisseurs_ville,
     		YerothDatabaseTableColumn::VILLE);
 
     reinitialiser_champs_db_visibles();
 
-    _curClientsTableModel = &_allWindows->getSqlTableModel_clients();
+    _curFournisseursTableModel = &_allWindows->getSqlTableModel_fournisseurs();
 
     setupLineEdits();
 
     setupLineEditsQCompleters((QObject *)this);
 
-    populateClientsComboBoxes();
+    populateFournisseursComboBoxes();
 
     _pushButton_filtrer_font = new QFont(pushButton_filtrer->font());
 
-    tableView_clients->setTableName(&YerothERPWindows::CLIENTS);
+    tableView_fournisseurs->setTableName(&YerothERPWindows::CLIENTS);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPayerAuCompteClient, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCreerCompteClient, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierCompteClient, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherDetailsClient, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPayerAuFournisseur, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCreerFournisseur, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierFournisseur, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerFournisseur, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherDetailsFournisseur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     pushButton_afficher->disable(this);
     pushButton_menu_principal->disable(this);
-    pushButton_creer_compte_client->disable(this);
+    pushButton_creer_fournisseur->disable(this);
     pushButton_modifier->disable(this);
     pushButton_supprimer->disable(this);
 
@@ -118,11 +119,11 @@ YerothERPClientsWindow::YerothERPClientsWindow()
     connect(actionChanger_utilisateur, SIGNAL(triggered()), this, SLOT(changer_utilisateur()));
     connect(actionAppeler_aide, SIGNAL(triggered()), this, SLOT(help()));
     connect(actionDeconnecter_utilisateur, SIGNAL(triggered()), this, SLOT(deconnecter_utilisateur()));
-    connect(actionPayerAuCompteClient, SIGNAL(triggered()), this, SLOT(private_payer_au_compteclient()));
-    connect(actionCreerCompteClient, SIGNAL(triggered()), this, SLOT(creerCompteClient()));
-    connect(actionModifierCompteClient, SIGNAL(triggered()), this, SLOT(modifierCompteClient()));
-    connect(actionSupprimerCompteClient, SIGNAL(triggered()), this, SLOT(supprimerCompteClient()));
-    connect(actionAfficherDetailsClient, SIGNAL(triggered()), this, SLOT(afficher_au_detail()));
+    connect(actionPayerAuFournisseur, SIGNAL(triggered()), this, SLOT(private_payer_au_fournisseur()));
+    connect(actionCreerFournisseur, SIGNAL(triggered()), this, SLOT(creerFournisseur()));
+    connect(actionModifierFournisseur, SIGNAL(triggered()), this, SLOT(modifierFournisseur()));
+    connect(actionSupprimerFournisseur, SIGNAL(triggered()), this, SLOT(supprimerFournisseur()));
+    connect(actionAfficherDetailsFournisseur, SIGNAL(triggered()), this, SLOT(afficher_au_detail()));
     connect(actionExporter_au_format_csv, SIGNAL(triggered()), this, SLOT(export_csv_file()));
     connect(actionMenu_Principal, SIGNAL(triggered()), this, SLOT(menu()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
@@ -143,23 +144,23 @@ YerothERPClientsWindow::YerothERPClientsWindow()
 
 #endif
 
-	connect(actionAfficher_client_au_detail, SIGNAL(triggered()),
+	connect(actionAfficher_fournisseur_au_detail, SIGNAL(triggered()),
 			this, SLOT(afficher_au_detail()));
 
-    connect(tableView_clients, SIGNAL(doubleClicked(const QModelIndex &)), this,
-            SLOT(private_payer_au_compteclient(const QModelIndex &)));
+    connect(tableView_fournisseurs, SIGNAL(doubleClicked(const QModelIndex &)), this,
+            SLOT(private_payer_au_fournisseur(const QModelIndex &)));
 
     setupShortcuts();
 }
 
-YerothERPClientsWindow::~YerothERPClientsWindow()
+YerothERPFournisseursWindow::~YerothERPFournisseursWindow()
 {
     delete _pushButton_filtrer_font;
     delete _logger;
 }
 
 
-void YerothERPClientsWindow::reinitialiser_champs_db_visibles()
+void YerothERPFournisseursWindow::reinitialiser_champs_db_visibles()
 {
 	_visibleDBFieldColumnStrList.clear();
 
@@ -172,25 +173,25 @@ void YerothERPClientsWindow::reinitialiser_champs_db_visibles()
 }
 
 
-void YerothERPClientsWindow::contextMenuEvent(QContextMenuEvent * event)
+void YerothERPFournisseursWindow::contextMenuEvent(QContextMenuEvent * event)
 {
 	QMenu menu(this);
-	menu.setPalette(toolBar_clientsWindow->palette());
-	menu.addAction(actionAfficherDetailsClient);
-	menu.addAction(actionPayerAuCompteClient);
-	menu.addAction(actionModifierCompteClient);
-	menu.addAction(actionSupprimerCompteClient);
+	menu.setPalette(toolBar_fournisseursWindow->palette());
+	menu.addAction(actionAfficherDetailsFournisseur);
+	menu.addAction(actionPayerAuFournisseur);
+	menu.addAction(actionModifierFournisseur);
+	menu.addAction(actionSupprimerFournisseur);
 	menu.exec(event->globalPos());
 }
 
 
-void YerothERPClientsWindow::hideEvent(QHideEvent * hideEvent)
+void YerothERPFournisseursWindow::hideEvent(QHideEvent * hideEvent)
 {
-	_allWindows->_transactionsDunClientWindow->close();
+	_allWindows->_transactionsDunFournisseurWindow->close();
 }
 
 
-void YerothERPClientsWindow::setupShortcuts()
+void YerothERPFournisseursWindow::setupShortcuts()
 {
     setupShortcutActionMessageDaide 	(*actionAppeler_aide);
     setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
@@ -202,7 +203,7 @@ void YerothERPClientsWindow::setupShortcuts()
 }
 
 
-void YerothERPClientsWindow::set_filtrer_font()
+void YerothERPFournisseursWindow::set_filtrer_font()
 {
     //_logger->log("set_filtrer_font");
 
@@ -219,15 +220,15 @@ void YerothERPClientsWindow::set_filtrer_font()
 }
 
 
-void YerothERPClientsWindow::slot_reinitialiser_champs_db_visibles()
+void YerothERPFournisseursWindow::slot_reinitialiser_champs_db_visibles()
 {
 	reinitialiser_champs_db_visibles();
 	resetTableViewHorizontalHeader_DEFAULT_ORDERING();
-	afficherClients();
+	afficherFournisseurs();
 }
 
 
-void YerothERPClientsWindow::textChangedSearchLineEditsQCompleters()
+void YerothERPFournisseursWindow::textChangedSearchLineEditsQCompleters()
 {
 	lineEdit_resultat_filtre->clear();
 
@@ -235,7 +236,7 @@ void YerothERPClientsWindow::textChangedSearchLineEditsQCompleters()
 
     clearSearchFilter();
 
-    QString searchTerm(lineEdit_comptes_clients_terme_recherche->text());
+    QString searchTerm(lineEdit_fournisseurs_terme_recherche->text());
 
     if (!searchTerm.isEmpty())
     {
@@ -301,91 +302,91 @@ void YerothERPClientsWindow::textChangedSearchLineEditsQCompleters()
     if (_yerothSqlTableModel->select())
     {
     	setLastListerSelectedRow(0);
-    	afficherClients(*_yerothSqlTableModel);
+    	afficherFournisseurs(*_yerothSqlTableModel);
     }
     else
     {
-        qDebug() << QString("++ YerothERPClientsWindow::textChangedSearchLineEditsQCompleters(): %1")
+        qDebug() << QString("++ YerothERPFournisseursWindow::textChangedSearchLineEditsQCompleters(): %1")
         				.arg(_yerothSqlTableModel->lastError().text());
     }
 }
 
 
-void YerothERPClientsWindow::private_payer_au_compteclient()
+void YerothERPFournisseursWindow::private_payer_au_fournisseur()
 {
-    if (getLastListerSelectedRow() > -1 && _curClientsTableModel->rowCount() > 0)
+    if (getLastListerSelectedRow() > -1 && _curFournisseursTableModel->rowCount() > 0)
     {
     	rendreInvisible();
 
-    	_allWindows->_payerAuCompteClientWindow->rendreVisible(getLastListerSelectedRow(),
-    														   _curClientsTableModel,
+    	_allWindows->_payerAuFournisseurWindow->rendreVisible(getLastListerSelectedRow(),
+    														   _curFournisseursTableModel,
     														   _curStocksTableModel);
     }
     else
     {
-        YerothQMessageBox::warning(this, QObject::trUtf8("payer à un compte client"),
-                                  QObject::trUtf8("Sélectionnez un compte client afin d'effectuer un paiement !"));
+        YerothQMessageBox::warning(this, QObject::trUtf8("payer à un fournisseur"),
+                                  QObject::trUtf8("Sélectionnez un fournisseur afin d'effectuer un paiement !"));
     }
 }
 
 
-void YerothERPClientsWindow::private_payer_au_compteclient(const QModelIndex & aModelIndex)
+void YerothERPFournisseursWindow::private_payer_au_fournisseur(const QModelIndex & aModelIndex)
 {
     setLastListerSelectedRow(aModelIndex.row());
 
-    tableView_clients->selectRow(getLastListerSelectedRow());
+    tableView_fournisseurs->selectRow(getLastListerSelectedRow());
 
-    if (getLastListerSelectedRow() > -1 && _curClientsTableModel->rowCount() > 0)
+    if (getLastListerSelectedRow() > -1 && _curFournisseursTableModel->rowCount() > 0)
     {
     	rendreInvisible();
 
-    	_allWindows->_payerAuCompteClientWindow->rendreVisible(getLastListerSelectedRow(),
-    														   _curClientsTableModel,
+    	_allWindows->_payerAuFournisseurWindow->rendreVisible(getLastListerSelectedRow(),
+    														   _curFournisseursTableModel,
     														   _curStocksTableModel);
     }
     else
     {
-        YerothQMessageBox::warning(this, QObject::trUtf8("payer à un compte client"),
-                                  QObject::trUtf8("Sélectionnez un compte client afin d'effectuer un paiement !"));
+        YerothQMessageBox::warning(this, QObject::trUtf8("payer à un fournisseur"),
+                                  QObject::trUtf8("Sélectionnez un fournisseur afin d'effectuer un paiement !"));
     }
 }
 
 
-void YerothERPClientsWindow::modifierCompteClient()
+void YerothERPFournisseursWindow::modifierFournisseur()
 {
-    if (_curClientsTableModel->rowCount() > 0)
+    if (_curFournisseursTableModel->rowCount() > 0)
     {
     	rendreInvisible();
 
-        _allWindows->_modifierCompteClientWindow->rendreVisible(tableView_clients->lastSelectedRow(),
-        														_curClientsTableModel,
+        _allWindows->_modifierFournisseurWindow->rendreVisible(tableView_fournisseurs->lastSelectedRow(),
+        														_curFournisseursTableModel,
 																_curStocksTableModel);
     }
     else
     {
-        YerothQMessageBox::warning(this, QObject::tr("modifier un compte client"),
+        YerothQMessageBox::warning(this, QObject::tr("modifier un fournisseur"),
                                    QObject::trUtf8("Sélectionnez un stock à modifier."));
     }
 }
 
 
-void YerothERPClientsWindow::supprimerCompteClient()
+void YerothERPFournisseursWindow::supprimerFournisseur()
 {
-	unsigned rowToRemove = tableView_clients->lastSelectedRow();
+	unsigned rowToRemove = tableView_fournisseurs->lastSelectedRow();
 
-    YerothSqlTableModel *clientsTableModel = 0;
+    YerothSqlTableModel *fournisseursTableModel = 0;
 
-    if (_curClientsTableModel
-            && YerothUtils::isEqualCaseInsensitive(_allWindows->CLIENTS, _curClientsTableModel->sqlTableName()))
+    if (_curFournisseursTableModel
+            && YerothUtils::isEqualCaseInsensitive(_allWindows->CLIENTS, _curFournisseursTableModel->sqlTableName()))
     {
-        clientsTableModel = _curClientsTableModel;
+        fournisseursTableModel = _curFournisseursTableModel;
     }
     else
     {
         return ;
     }
 
-    QSqlRecord record = clientsTableModel->record(rowToRemove);
+    QSqlRecord record = fournisseursTableModel->record(rowToRemove);
 
     if (record.isEmpty() || record.isNull(YerothDatabaseTableColumn::NOM_ENTREPRISE))
     {
@@ -394,31 +395,31 @@ void YerothERPClientsWindow::supprimerCompteClient()
 
     QString nom_entreprise(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE));
 
-    QString msgConfirmation(QString(QObject::trUtf8("Supprimer le client '%1' ?"))
+    QString msgConfirmation(QString(QObject::trUtf8("Supprimer le fournisseur '%1' ?"))
     							.arg(nom_entreprise));
 
     if (QMessageBox::Ok ==
             YerothQMessageBox::question(this,
-            							QObject::tr("suppression d'un compte client"),
+            							QObject::tr("suppression d'un fournisseur"),
             							msgConfirmation,
 										QMessageBox::Cancel,
 										QMessageBox::Ok))
     {
-        bool success = clientsTableModel->removeRow(rowToRemove);
+        bool success = fournisseursTableModel->removeRow(rowToRemove);
 
-        QString msg(QString(QObject::trUtf8("Le client '%1"))
+        QString msg(QString(QObject::trUtf8("Le fournisseur '%1"))
         				.arg(nom_entreprise));
 
         if (success)
         {
         	setupLineEditsQCompleters((QObject *)this);
 
-        	afficherClients();
+        	afficherFournisseurs();
 
             msg.append(QObject::trUtf8("' a été supprimée de la base de données !"));
 
             YerothQMessageBox::information(this,
-            							   QObject::tr("suppression d'un compte client - succès"),
+            							   QObject::tr("suppression d'un fournisseur - succès"),
             							   msg,
 										   QMessageBox::Ok);
         }
@@ -427,7 +428,7 @@ void YerothERPClientsWindow::supprimerCompteClient()
             msg.append(QObject::trUtf8(" n'a pas été supprimée de la base de données !"));
 
             YerothQMessageBox::information(this,
-            							   QObject::tr("suppression d'un compte client - échec"),
+            							   QObject::tr("suppression d'un fournisseur - échec"),
 										   msg,
 										   QMessageBox::Ok);
         }
@@ -435,54 +436,54 @@ void YerothERPClientsWindow::supprimerCompteClient()
 }
 
 
-void YerothERPClientsWindow::afficher_au_detail()
+void YerothERPFournisseursWindow::afficher_au_detail()
 {
     _logger->log("afficher_au_detail");
 
-    tableView_clients->selectRow(getLastListerSelectedRow());
+    tableView_fournisseurs->selectRow(getLastListerSelectedRow());
 
-    if (getLastListerSelectedRow() > -1 && _curClientsTableModel->rowCount() > 0)
+    if (getLastListerSelectedRow() > -1 && _curFournisseursTableModel->rowCount() > 0)
     {
     	//qDebug() << "++ test" << modelIndex.row();
-        _allWindows->_clientsDetailWindow->rendreVisible(getLastListerSelectedRow(),
-        												 _curClientsTableModel,
-														 _curStocksTableModel);
+        _allWindows->_fournisseurDetailsWindow->rendreVisible(getLastListerSelectedRow(),
+        												 	 _curFournisseursTableModel,
+															 _curStocksTableModel);
 
         rendreInvisible();
     }
     else
     {
-        YerothQMessageBox::warning(this, QObject::trUtf8("détails d'un compte client"),
-                                  QObject::trUtf8("Sélectionnez un compte client à afficher les détails !"));
+        YerothQMessageBox::warning(this, QObject::trUtf8("détails d'un fournisseur"),
+                                  QObject::trUtf8("Sélectionnez un fournisseur à afficher les détails !"));
     }
 }
 
 
-void YerothERPClientsWindow::afficher_au_detail(const QModelIndex & modelIndex)
+void YerothERPFournisseursWindow::afficher_au_detail(const QModelIndex & modelIndex)
 {
     _logger->log("afficher_au_detail(const QModelIndex &)");
 
     setLastListerSelectedRow(modelIndex.row());
 
-    tableView_clients->selectRow(getLastListerSelectedRow());
+    tableView_fournisseurs->selectRow(getLastListerSelectedRow());
 
-    if (getLastListerSelectedRow() > -1 && _curClientsTableModel->rowCount() > 0)
+    if (getLastListerSelectedRow() > -1 && _curFournisseursTableModel->rowCount() > 0)
     {
     	rendreInvisible();
 
-        _allWindows->_clientsDetailWindow->rendreVisible(getLastListerSelectedRow(),
-        												 _curClientsTableModel,
-														 _curStocksTableModel);
+        _allWindows->_fournisseurDetailsWindow->rendreVisible(getLastListerSelectedRow(),
+        												 	  _curFournisseursTableModel,
+															  _curStocksTableModel);
     }
     else
     {
-        YerothQMessageBox::warning(this, QObject::trUtf8("détails d'un compte client"),
-                                  QObject::trUtf8("Sélectionnez un compte client à afficher les détails !"));
+        YerothQMessageBox::warning(this, QObject::trUtf8("détails d'un fournisseur"),
+                                  QObject::trUtf8("Sélectionnez un fournisseur à afficher les détails !"));
     }
 }
 
 
-bool YerothERPClientsWindow::filtrer()
+bool YerothERPFournisseursWindow::filtrer()
 {
 	QString stockTableColumnValue(lineEdit_resultat_filtre->text());
 
@@ -513,29 +514,29 @@ bool YerothERPClientsWindow::filtrer()
 	//qDebug() << QString("filterString: %1")
 	//				.arg(filterString);
 
-	_curClientsTableModel->yerothSetFilter(filterString);
+	_curFournisseursTableModel->yerothSetFilter(filterString);
 
-	int resultRows = _curClientsTableModel->easySelect();
+	int resultRows = _curFournisseursTableModel->easySelect();
 
 	if (resultRows >= 0)
 	{
 		setCurrentlyFiltered(true);
 
-		afficherClients(*_curClientsTableModel);
+		afficherFournisseurs(*_curFournisseursTableModel);
 
-		YEROTH_QMESSAGE_BOX_QUELQUE_RESULTAT_FILTRE(this, resultRows, "clients - filtrer");
+		YEROTH_QMESSAGE_BOX_QUELQUE_RESULTAT_FILTRE(this, resultRows, "fournisseurs - filtrer");
 
 		return true;
 	}
 	else
 	{
-		YEROTH_QMESSAGE_BOX_AUCUN_RESULTAT_FILTRE(this, "clients - filtrer");
+		YEROTH_QMESSAGE_BOX_AUCUN_RESULTAT_FILTRE(this, "fournisseurs - filtrer");
 	}
 
 	return false;
 }
 
-void YerothERPClientsWindow::reinitialiser_elements_filtrage()
+void YerothERPFournisseursWindow::reinitialiser_elements_filtrage()
 {
     _logger->log("reinitialiser_elements_filtrage");
 
@@ -547,7 +548,7 @@ void YerothERPClientsWindow::reinitialiser_elements_filtrage()
 }
 
 
-void YerothERPClientsWindow::reinitialiser_recherche()
+void YerothERPFournisseursWindow::reinitialiser_recherche()
 {
     _logger->log("reinitialiser_recherche");
 
@@ -559,13 +560,13 @@ void YerothERPClientsWindow::reinitialiser_recherche()
 
     resetLineEditsQCompleters((QObject *)this);
 
-    afficherClients();
+    afficherFournisseurs();
 }
 
 
-void YerothERPClientsWindow::populateClientsComboBoxes()
+void YerothERPFournisseursWindow::populateFournisseursComboBoxes()
 {
-    _logger->log("populateClientsComboBoxes");
+    _logger->log("populateFournisseursComboBoxes");
 
 	QStringList aQStringList;
 
@@ -591,23 +592,23 @@ void YerothERPClientsWindow::populateClientsComboBoxes()
 }
 
 
-void YerothERPClientsWindow::setupLineEdits()
+void YerothERPFournisseursWindow::setupLineEdits()
 {
-	lineEdit_comptes_clients_terme_recherche->enableForSearch(QObject::trUtf8("terme à rechercher (émail, réprésentant, description de l'entreprise cliente)"));
+	lineEdit_fournisseurs_terme_recherche->enableForSearch(QObject::trUtf8("terme à rechercher (émail, réprésentant, description de l'entreprise fournisseure)"));
 
-	lineEdit_recherche_nom_entreprise->enableForSearch(QObject::tr("nom de l'entreprise cliente"));
-	lineEdit_comptes_clients_reference_client->enableForSearch(QObject::trUtf8("référence client"));
-	lineEdit_comptes_clients_quartier->enableForSearch(QObject::tr("quartier"));
-	lineEdit_comptes_clients_ville->enableForSearch(QObject::tr("ville"));
-	lineEdit_comptes_clients_province_etat->enableForSearch(QObject::trUtf8("province / état"));
+	lineEdit_recherche_nom_entreprise->enableForSearch(QObject::tr("nom de l'entreprise fournisseure"));
+	lineEdit_fournisseurs_reference_fournisseur->enableForSearch(QObject::trUtf8("référence fournisseur"));
+	lineEdit_fournisseurs_quartier->enableForSearch(QObject::tr("quartier"));
+	lineEdit_fournisseurs_ville->enableForSearch(QObject::tr("ville"));
+	lineEdit_fournisseurs_province_etat->enableForSearch(QObject::trUtf8("province / état"));
 
-	lineEdit_nombre_de_comptes_clients->setYerothEnabled(false);
+	lineEdit_nombre_de_fournisseurs->setYerothEnabled(false);
 
 	lineEdit_resultat_filtre->setValidator(&YerothUtils::DoubleValidator);
 }
 
 
-void YerothERPClientsWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
+void YerothERPFournisseursWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 {
     _logger->log("rendreVisible");
 
@@ -615,37 +616,37 @@ void YerothERPClientsWindow::rendreVisible(YerothSqlTableModel * stocksTableMode
 
     setupLineEditsQCompleters((QObject *)this);
 
-    setYerothSqlTableModel(_curClientsTableModel);
+    setYerothSqlTableModel(_curFournisseursTableModel);
 
     _curStocksTableModel = stocksTableModel;
 
 	setVisible(true);
 
-	afficherClients(*_curClientsTableModel);
+	afficherFournisseurs(*_curFournisseursTableModel);
 
-	lineEdit_comptes_clients_terme_recherche->setFocus();
+	lineEdit_fournisseurs_terme_recherche->setFocus();
 }
 
 
-void YerothERPClientsWindow::definirCaissier()
+void YerothERPFournisseursWindow::definirCaissier()
 {
     _logger->log("definirCaissier");
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherDetailsClient, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPayerAuCompteClient, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCreerCompteClient, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierCompteClient, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherDetailsFournisseur, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPayerAuFournisseur, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCreerFournisseur, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierFournisseur, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerFournisseur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     pushButton_afficher->disable(this);
     pushButton_menu_principal->disable(this);
-    pushButton_creer_compte_client->disable(this);
+    pushButton_creer_fournisseur->disable(this);
     pushButton_modifier->disable(this);
     pushButton_supprimer->disable(this);
 
@@ -655,18 +656,18 @@ void YerothERPClientsWindow::definirCaissier()
 }
 
 
-void YerothERPClientsWindow::definirManager()
+void YerothERPFournisseursWindow::definirManager()
 {
     _logger->log("definirManager");
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherDetailsClient, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPayerAuCompteClient, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCreerCompteClient, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierCompteClient, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherDetailsFournisseur, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPayerAuFournisseur, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCreerFournisseur, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierFournisseur, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerFournisseur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, true);
@@ -679,9 +680,9 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
-    pushButton_creer_compte_client->enable(this, SLOT(creerCompteClient()));
-    pushButton_modifier->enable(this, SLOT(modifierCompteClient()));
-    pushButton_supprimer->enable(this, SLOT(supprimerCompteClient()));
+    pushButton_creer_fournisseur->enable(this, SLOT(creerFournisseur()));
+    pushButton_modifier->enable(this, SLOT(modifierFournisseur()));
+    pushButton_supprimer->enable(this, SLOT(supprimerFournisseur()));
 
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
     pushButton_filtrer->enable(this, SLOT(filtrer()));
@@ -689,18 +690,18 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 }
 
 
-void YerothERPClientsWindow::definirVendeur()
+void YerothERPFournisseursWindow::definirVendeur()
 {
     _logger->log("definirVendeur");
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherDetailsClient, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPayerAuCompteClient, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCreerCompteClient, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierCompteClient, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherDetailsFournisseur, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPayerAuFournisseur, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCreerFournisseur, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierFournisseur, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerFournisseur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
@@ -714,9 +715,9 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
-    pushButton_creer_compte_client->enable(this, SLOT(creerCompteClient()));
-    pushButton_modifier->enable(this, SLOT(modifierCompteClient()));
-    pushButton_supprimer->enable(this, SLOT(supprimerCompteClient()));
+    pushButton_creer_fournisseur->enable(this, SLOT(creerFournisseur()));
+    pushButton_modifier->enable(this, SLOT(modifierFournisseur()));
+    pushButton_supprimer->enable(this, SLOT(supprimerFournisseur()));
 
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
     pushButton_filtrer->enable(this, SLOT(filtrer()));
@@ -724,18 +725,18 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 }
 
 
-void YerothERPClientsWindow::definirGestionaireDesStocks()
+void YerothERPFournisseursWindow::definirGestionaireDesStocks()
 {
     _logger->log("definirGestionaireDesStocks");
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherDetailsClient, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPayerAuCompteClient, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCreerCompteClient, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierCompteClient, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherDetailsFournisseur, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPayerAuFournisseur, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCreerFournisseur, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierFournisseur, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerFournisseur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
@@ -748,7 +749,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     pushButton_afficher->disable(this);
     pushButton_menu_principal->disable(this);
-    pushButton_creer_compte_client->disable(this);
+    pushButton_creer_fournisseur->disable(this);
     pushButton_modifier->disable(this);
     pushButton_supprimer->disable(this);
 
@@ -758,25 +759,25 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 }
 
 
-void YerothERPClientsWindow::definirMagasinier()
+void YerothERPFournisseursWindow::definirMagasinier()
 {
     _logger->log("definirMagasinier");
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherDetailsClient, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPayerAuCompteClient, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCreerCompteClient, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierCompteClient, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherDetailsFournisseur, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPayerAuFournisseur, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCreerFournisseur, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierFournisseur, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerFournisseur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     pushButton_afficher->disable(this);
     pushButton_menu_principal->disable(this);
-    pushButton_creer_compte_client->disable(this);
+    pushButton_creer_fournisseur->disable(this);
     pushButton_modifier->disable(this);
     pushButton_supprimer->disable(this);
 
@@ -786,25 +787,25 @@ void YerothERPClientsWindow::definirMagasinier()
 }
 
 
-void YerothERPClientsWindow::definirPasDeRole()
+void YerothERPFournisseursWindow::definirPasDeRole()
 {
     _logger->log("definirPasDeRole");
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherDetailsClient, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPayerAuCompteClient, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCreerCompteClient, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierCompteClient, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherDetailsFournisseur, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPayerAuFournisseur, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCreerFournisseur, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierFournisseur, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerFournisseur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     pushButton_afficher->disable(this);
     pushButton_menu_principal->disable(this);
-    pushButton_creer_compte_client->disable(this);
+    pushButton_creer_fournisseur->disable(this);
     pushButton_modifier->disable(this);
     pushButton_supprimer->disable(this);
 
@@ -814,7 +815,7 @@ void YerothERPClientsWindow::definirPasDeRole()
 }
 
 
-void YerothERPClientsWindow::afficher_nom_entreprise_selectioner(const QString & nomEntreprise)
+void YerothERPFournisseursWindow::afficher_nom_entreprise_selectioner(const QString & nomEntreprise)
 {
     _logger->log("afficher_nom_entreprise_selectioner(const QString &)");
 
@@ -824,28 +825,28 @@ void YerothERPClientsWindow::afficher_nom_entreprise_selectioner(const QString &
 
     //qDebug() << QString("filter: %1").arg(filter);
 
-    _curClientsTableModel->yerothSetFilter(filter);
+    _curFournisseursTableModel->yerothSetFilter(filter);
 
-    if (_curClientsTableModel->easySelect() > 0)
+    if (_curFournisseursTableModel->easySelect() > 0)
     {
-        afficherClients(*_curClientsTableModel);
+        afficherFournisseurs(*_curFournisseursTableModel);
     }
 }
 
 
-void YerothERPClientsWindow::afficherClients(YerothSqlTableModel &clientSqlTableModel)
+void YerothERPFournisseursWindow::afficherFournisseurs(YerothSqlTableModel &fournisseurSqlTableModel)
 {
-    tableView_clients->lister_les_elements_du_tableau(clientSqlTableModel);
+    tableView_fournisseurs->lister_les_elements_du_tableau(fournisseurSqlTableModel);
 
-    tableView_show_or_hide_columns(*tableView_clients);
+    tableView_show_or_hide_columns(*tableView_fournisseurs);
 
-    int rowCount = tableView_clients->rowCount();
+    int rowCount = tableView_fournisseurs->rowCount();
 
-    lineEdit_nombre_de_comptes_clients->setText(GET_NUM_STRING(rowCount));
+    lineEdit_nombre_de_fournisseurs->setText(GET_NUM_STRING(rowCount));
 }
 
 
-bool YerothERPClientsWindow::export_csv_file()
+bool YerothERPFournisseursWindow::export_csv_file()
 {
 	_logger->log("export_csv_file");
 
@@ -857,27 +858,27 @@ bool YerothERPClientsWindow::export_csv_file()
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 	success = YerothUtils::export_csv_file(*this,
-										   *tableView_clients,
+										   *tableView_fournisseurs,
 										   tableColumnsToIgnore,
-										   "yeroth-erp-fiche-clients-format-csv",
-										   "fiche des comptes clients");
+										   "yeroth-erp-fiche-fournisseurs-format-csv",
+										   "fiche des fournisseurs");
 #endif
 
 #ifdef YEROTH_ENGLISH_LANGUAGE
 	success = YerothUtils::export_csv_file(*this,
-										   *tableView_clients,
+										   *tableView_fournisseurs,
 										   tableColumnsToIgnore,
-										   "yeroth-erp-customer-account-listing-csv-format",
-										   "customer account listing file");
+										   "yeroth-erp-supplier-account-listing-csv-format",
+										   "supplier account listing file");
 #endif
 
 	return success;
 }
 
 
-bool YerothERPClientsWindow::imprimer_pdf_document()
+bool YerothERPFournisseursWindow::imprimer_pdf_document()
 {
-	_latex_template_print_pdf_content = YerothUtils::template_comptes_clients_tex;
+	_latex_template_print_pdf_content = YerothUtils::template_fournisseurs_tex;
 	return YerothWindowsCommons::imprimer_pdf_document();
 }
 

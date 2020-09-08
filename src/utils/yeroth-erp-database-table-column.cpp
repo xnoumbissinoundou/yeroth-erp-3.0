@@ -59,6 +59,7 @@ const QString YerothDatabaseTableColumn::LOCALISATION					("localisation");
 const QString YerothDatabaseTableColumn::LOCALISATION_STOCK				("localisation_stock");
 const QString YerothDatabaseTableColumn::QUANTITE_PAR_LOT				("quantite_par_lot");
 const QString YerothDatabaseTableColumn::LOTS_ENTRANT					("lots_entrant");
+const QString YerothDatabaseTableColumn::IMAGE_FOURNISSEUR				("image_fournisseur");
 const QString YerothDatabaseTableColumn::IMAGE_COMPTE_CLIENT			("image_compte_client");
 const QString YerothDatabaseTableColumn::IMAGE_PRODUIT					("image_produit");
 const QString YerothDatabaseTableColumn::DATE_PEREMPTION				("date_peremption");

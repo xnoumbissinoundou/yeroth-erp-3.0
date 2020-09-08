@@ -153,10 +153,18 @@ void YerothWindowsCommons::alertes()
 }
 
 
+void YerothWindowsCommons::fournisseurs()
+{
+	rendreInvisible();
+    _allWindows->_fournisseursWindow->rendreVisible(_curStocksTableModel);
+}
+
+
+
 void YerothWindowsCommons::clients()
 {
 	rendreInvisible();
-    _allWindows->_clientWindow->rendreVisible(_curStocksTableModel);
+    _allWindows->_clientsWindow->rendreVisible(_curStocksTableModel);
 }
 
 
@@ -178,6 +186,13 @@ void YerothWindowsCommons::transactions()
 {
     _allWindows->_transactionsWindow->rendreVisible(_curStocksTableModel);
     rendreInvisible();
+}
+
+
+void YerothWindowsCommons::creerFournisseur()
+{
+	rendreInvisible();
+    _allWindows->_creerFournisseurWindow->rendreVisible(_curStocksTableModel);
 }
 
 

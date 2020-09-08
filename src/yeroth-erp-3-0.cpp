@@ -234,6 +234,18 @@ void readTexTemplateFiles(YerothLogger &logger)
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
+    QFile fileSupplierTransactionListingFr(FILE_YEROTH_ERP_3_0_TEMPLATE_TRANSACTIONS_DUN_FOURNISSEUR_FR);
+    yeroth_read_file(fileSupplierTransactionListingFr, YerothUtils::template_transactions_dun_fournisseur_tex);
+
+#else //YEROTH_ENGLISH_LANGUAGE
+
+    QFile fileSupplierTransactionListingEn(FILE_YEROTH_ERP_3_0_TEMPLATE_TRANSACTIONS_DUN_FOURNISSEUR_EN);
+    yeroth_read_file(fileSupplierTransactionListingEn, YerothUtils::template_transactions_dun_fournisseur_tex);
+
+#endif
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+
     QFile fileCustomerTransactionListingFr(FILE_YEROTH_ERP_3_0_TEMPLATE_TRANSACTIONS_DUN_CLIENT_FR);
     yeroth_read_file(fileCustomerTransactionListingFr, YerothUtils::template_transactions_dun_client_tex);
 
@@ -241,6 +253,18 @@ void readTexTemplateFiles(YerothLogger &logger)
 
     QFile fileCustomerTransactionListingEn(FILE_YEROTH_ERP_3_0_TEMPLATE_TRANSACTIONS_DUN_CLIENT_EN);
     yeroth_read_file(fileCustomerTransactionListingEn, YerothUtils::template_transactions_dun_client_tex);
+
+#endif
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+
+    QFile fileSupplierListingFr(FILE_YEROTH_ERP_3_0_TEMPLATE_FOURNISSEURS_FR);
+    yeroth_read_file(fileSupplierListingFr, YerothUtils::template_fournisseurs_tex);
+
+#else //YEROTH_ENGLISH_LANGUAGE
+
+    QFile fileSupplierListingEn(FILE_YEROTH_ERP_3_0_TEMPLATE_FOURNISSEURS_EN);
+    yeroth_read_file(fileSupplierListingEn, YerothUtils::template_fournisseurs_tex);
 
 #endif
 
