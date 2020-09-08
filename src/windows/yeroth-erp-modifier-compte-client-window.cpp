@@ -523,7 +523,7 @@ void YerothModifierCompteClientWindow::actualiserCompteClient()
             retMsg.append(QObject::trUtf8(" ont été modifiées avec succès !"));
 
             YerothQMessageBox::information(this,
-                                     QObject::tr("modification d'un client - succès"),
+                                     QObject::trUtf8("modification d'un client - succès"),
                                      retMsg);
 
             clients();
@@ -537,7 +537,7 @@ void YerothModifierCompteClientWindow::actualiserCompteClient()
             retMsg.append(QObject::trUtf8(" n'ont pas pu être modifiées !"));
 
             YerothQMessageBox::warning(this,
-                                 QObject::tr("modification d'un client - échec"),
+                                 QObject::trUtf8("modification d'un client - échec"),
                                  retMsg);
         }
     }
