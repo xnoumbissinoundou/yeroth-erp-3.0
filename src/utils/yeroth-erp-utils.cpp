@@ -1053,7 +1053,8 @@ int YerothUtils::execQueryRowCount(const QString &strQuery, YerothLogger *logger
 }
 
 
-void YerothUtils::qDebugStrings(const QString &firstString, const QString &secondString)
+void YerothUtils::qDebugStrings(const QString &firstString,
+								const QString &secondString /* = YerothUtils::EMPTY_STRING */)
 {
 		qDebug() << QString("++ firstString: %1, secondString: %2")
 						.arg(firstString, secondString);
