@@ -365,7 +365,7 @@ void YerothERPFournisseursWindow::modifierFournisseur()
     else
     {
         YerothQMessageBox::warning(this, QObject::tr("modifier un fournisseur"),
-                                   QObject::trUtf8("Sélectionnez un stock à modifier."));
+                                   QObject::trUtf8("Sélectionnez un fournisseur à modifier !"));
     }
 }
 

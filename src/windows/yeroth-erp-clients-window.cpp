@@ -364,7 +364,7 @@ void YerothERPClientsWindow::modifierCompteClient()
     else
     {
         YerothQMessageBox::warning(this, QObject::tr("modifier un compte client"),
-                                   QObject::trUtf8("Sélectionnez un stock à modifier."));
+                                   QObject::trUtf8("Sélectionnez un client à modifier !"));
     }
 }
 

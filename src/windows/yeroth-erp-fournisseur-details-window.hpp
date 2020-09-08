@@ -74,7 +74,7 @@ public slots:
 		YerothQMessageBox::information(this,
 						 QObject::trUtf8("aide"),
 						 QObject::trUtf8("Vous pouvez modifier les détails de ce fournisseur"
-										 "en cliquant sur 'Modifier' !"));
+										 " en cliquant sur 'Modifier' !"));
 	}
 
 protected:
