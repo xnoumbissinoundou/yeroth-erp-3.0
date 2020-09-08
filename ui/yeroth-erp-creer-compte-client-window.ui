@@ -2184,7 +2184,7 @@
     <property name="title">
      <string>Données du compte client</string>
     </property>
-    <widget class="QLabel" name="label_compt_client_reference_client">
+    <widget class="QLabel" name="label_compte_client_reference_client">
      <property name="geometry">
       <rect>
        <x>8</x>
