@@ -42,7 +42,7 @@ YerothMainWindow::YerothMainWindow()
     mySetupUi(this);
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {messagebox-text-interaction-flags: 5; background-color: rgb(%1);}"
-                                       "QMessageBox QLabel {color: rgb(%2);}")
+                                       "QMessageBox QLabel {color: rgb(%2);} ")
                                     .arg(COLOUR_RGB_STRING_YEROTH_GREEN_2_160_70,
                                     	 COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
