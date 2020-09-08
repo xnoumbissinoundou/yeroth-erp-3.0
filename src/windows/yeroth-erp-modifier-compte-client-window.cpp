@@ -574,7 +574,7 @@ void YerothModifierCompteClientWindow::supprimerCompteClient()
         else
         {
             msgSupprimer.clear();
-            msgSupprimer.append(QString(QObject::trUtf8("Le client '' ne pouvait pas être supprimé !"))
+            msgSupprimer.append(QString(QObject::trUtf8("Le client '%1' ne pouvait pas être supprimé !"))
             						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE)));
 
             YerothQMessageBox::information(this,
