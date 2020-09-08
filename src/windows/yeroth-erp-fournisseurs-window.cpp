@@ -34,7 +34,7 @@
 
 YerothERPFournisseursWindow::YerothERPFournisseursWindow()
 :YerothWindowsCommons("yeroth-erp-fournisseurs"),
- YerothAbstractClassYerothSearchWindow(_allWindows->CLIENTS),
+ YerothAbstractClassYerothSearchWindow(_allWindows->FOURNISSEURS),
  _logger(new YerothLogger("YerothERPFournisseursWindow")),
  _pushButton_filtrer_font(0),
  _curFournisseursTableModel(0)
@@ -54,7 +54,7 @@ YerothERPFournisseursWindow::YerothERPFournisseursWindow()
                                    .arg(COLOUR_RGB_STRING_YEROTH_GREEN_2_160_70,
                                 		COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
-    setupSelectDBFields(_allWindows->CLIENTS);
+    setupSelectDBFields(_allWindows->FOURNISSEURS);
 
     _lineEditsToANDContentForSearch.insert(&lineEdit_fournisseurs_terme_recherche,
     		YerothUtils::EMPTY_STRING);
@@ -86,7 +86,7 @@ YerothERPFournisseursWindow::YerothERPFournisseursWindow()
 
     _pushButton_filtrer_font = new QFont(pushButton_filtrer->font());
 
-    tableView_fournisseurs->setTableName(&YerothERPWindows::CLIENTS);
+    tableView_fournisseurs->setTableName(&YerothERPWindows::FOURNISSEURS);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
@@ -377,7 +377,7 @@ void YerothERPFournisseursWindow::supprimerFournisseur()
     YerothSqlTableModel *fournisseursTableModel = 0;
 
     if (_curFournisseursTableModel
-            && YerothUtils::isEqualCaseInsensitive(_allWindows->CLIENTS, _curFournisseursTableModel->sqlTableName()))
+            && YerothUtils::isEqualCaseInsensitive(_allWindows->FOURNISSEURS, _curFournisseursTableModel->sqlTableName()))
     {
         fournisseursTableModel = _curFournisseursTableModel;
     }
