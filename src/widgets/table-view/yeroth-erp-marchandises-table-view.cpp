@@ -349,7 +349,7 @@ void YerothERPMarchandisesTableView::dataChanged(const QModelIndex &index,
     			mySqlQuery.clear();
     		}
 
-//    		QDEBUG_STRINGS_OUTPUT(QString::number(mySqlQuerySize), strUpdateMarchandisesTableQuery);
+//    		QDEBUG_STRINGS_OUTPUT_2(QString::number(mySqlQuerySize), strUpdateMarchandisesTableQuery);
 
     		success = YerothUtils::execQuery(strUpdateMarchandisesTableQuery);
 
