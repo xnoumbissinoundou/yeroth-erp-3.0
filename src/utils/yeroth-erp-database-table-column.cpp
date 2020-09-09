@@ -182,6 +182,8 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::QUANTITE_SORTIE,	QObject::trUtf8("Qté sortie"));
 
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::DESCRIPTION_FOURNISSEUR, QObject::tr("Description fournisseur"));
+
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::DESCRIPTION_PRODUIT, QObject::tr("Description produit"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::PRIX_UNITAIRE, 	QObject::tr("Prix unitaire"));
