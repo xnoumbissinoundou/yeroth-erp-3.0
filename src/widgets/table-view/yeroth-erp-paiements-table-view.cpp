@@ -157,6 +157,8 @@ void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableM
                     break;
 
                 default:
+					anItem = new YerothQStandardItem(YerothUtils::EMPTY_STRING);
+					_stdItemModel->setItem(i, k, anItem);
                     //qDebug() << "YerothTableView::lister(): undecoded QVariant -> " << qv.type();
                     break;
                 }

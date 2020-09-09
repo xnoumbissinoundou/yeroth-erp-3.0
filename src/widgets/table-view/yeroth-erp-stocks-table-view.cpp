@@ -170,6 +170,8 @@ void YerothERPStocksTableView::lister_les_elements_du_tableau(YerothSqlTableMode
                     break;
 
                 default:
+					anItem = new YerothQStandardItem(YerothUtils::EMPTY_STRING);
+					_stdItemModel->setItem(i, k, anItem);
                     //qDebug() << "YerothERPStocksTableView::lister(): undecoded QVariant -> " << qv.type();
                     break;
                 }

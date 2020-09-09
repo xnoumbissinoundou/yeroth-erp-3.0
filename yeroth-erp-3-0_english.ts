@@ -3930,17 +3930,17 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>%1 - select visible columns (&apos;%2&apos; columns)</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-marchandises-table-view.cpp" line="387"/>
+        <location filename="src/widgets/table-view/yeroth-erp-marchandises-table-view.cpp" line="389"/>
         <source>modification (%1) </source>
         <translation>modification (%1) </translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-marchandises-table-view.cpp" line="394"/>
+        <location filename="src/widgets/table-view/yeroth-erp-marchandises-table-view.cpp" line="396"/>
         <source>Succès de la modification de la colone &apos;%1&apos; (%2) de la marchandise &apos;%3&apos; !</source>
         <translation>Column &apos;%1&apos; (%2) of merchandise &apos;%3&apos; has been successfully modified !</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-marchandises-table-view.cpp" line="405"/>
+        <location filename="src/widgets/table-view/yeroth-erp-marchandises-table-view.cpp" line="407"/>
         <source>Échec de la modification de la colone &apos;%1&apos; (%2) de la marchandise &apos;%3&apos; !</source>
         <translation>Column &apos;%1&apos; (%2) of merchandise &apos;%3&apos; couldn&apos;t be modified !</translation>
     </message>
