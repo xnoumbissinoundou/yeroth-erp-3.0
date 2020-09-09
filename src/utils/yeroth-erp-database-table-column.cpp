@@ -232,6 +232,8 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::LOTS_ENTRANT,		QObject::tr("Lots entrant"));
 
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::IMAGE_FOURNISSEUR,	QObject::tr("Image fournisseur"));
+
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::IMAGE_COMPTE_CLIENT,	QObject::tr("Image client"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::IMAGE_PRODUIT,	QObject::tr("Image produit"));
