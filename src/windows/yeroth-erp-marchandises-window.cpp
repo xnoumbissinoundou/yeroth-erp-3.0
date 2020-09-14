@@ -157,12 +157,11 @@ YerothMarchandisesWindow::~YerothMarchandisesWindow()
 double YerothMarchandisesWindow::getValeurTotaleDinventaireEnStock(QString categorie,
 							   	   	   	   	   	   	   	     	   QString designation)
 {
-	double valeurMarchande = 0.0;
+	double valeur_dinventaire = 0.0;
 
-	QString sqlSearchStocksTableQueryStr(QString("SELECT %1, (round(%2, 2) - round(%3, 2)) FROM %4 WHERE %5 = '%6' AND %7 = '%8'")
+	QString sqlSearchStocksTableQueryStr(QString("SELECT %1, %2 FROM %3 WHERE %4 = '%5' AND %6 = '%7'")
 											.arg(YerothDatabaseTableColumn::QUANTITE_TOTALE,
-												 YerothDatabaseTableColumn::PRIX_VENTE,
-												 YerothDatabaseTableColumn::MONTANT_TVA,
+												 YerothDatabaseTableColumn::PRIX_DACHAT,
 												 _allWindows->STOCKS,
 	                                             YerothDatabaseTableColumn::CATEGORIE,
 												 categorie,
@@ -178,19 +177,19 @@ double YerothMarchandisesWindow::getValeurTotaleDinventaireEnStock(QString categ
 	if (querySize > 0)
 	{
 		double qteTotalEnStock = 0.0;
-		double montant_dinventaire = 0.0;
+		double prix_dachat = 0.0;
 
 		while (sqlSearchStockTableQuery.next())
 		{
 			qteTotalEnStock = sqlSearchStockTableQuery.value(YerothDatabaseTableColumn::QUANTITE_TOTALE).toDouble();
-			montant_dinventaire = sqlSearchStockTableQuery.value(1).toDouble();
-			valeurMarchande += (qteTotalEnStock * montant_dinventaire);
+			prix_dachat = sqlSearchStockTableQuery.value(YerothDatabaseTableColumn::PRIX_DACHAT).toDouble();
+			valeur_dinventaire += (qteTotalEnStock * prix_dachat);
 		}
 
 		QString updateValeurMarchandeQueryStr(QString("UPDATE %1 SET %2 = '%3' WHERE (%4 = '%5') AND (%6 = '%7')")
 				.arg(_allWindows->MARCHANDISES,
 						YerothDatabaseTableColumn::VALEUR_DIVENTAIRE,
-						QString::number(valeurMarchande),
+						QString::number(valeur_dinventaire),
 						YerothDatabaseTableColumn::CATEGORIE,
 						categorie,
 						YerothDatabaseTableColumn::DESIGNATION,
@@ -199,7 +198,7 @@ double YerothMarchandisesWindow::getValeurTotaleDinventaireEnStock(QString categ
 		YerothUtils::execQuery(updateValeurMarchandeQueryStr);
 	}
 
-	return valeurMarchande;
+	return valeur_dinventaire;
 }
 
 
