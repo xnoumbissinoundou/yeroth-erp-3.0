@@ -530,6 +530,8 @@ void YerothTableView::lister(YerothSqlTableModel &tableModel,
     	return ;
     }
 
+    QString curTableModelRawHdr;
+
     QString tmpQvString;
     QStandardItem *anItem = 0;
     QVariant qv;
@@ -538,6 +540,8 @@ void YerothTableView::lister(YerothSqlTableModel &tableModel,
     {
     	for (int k = 0; k < columns; ++k)
     	{
+    		curTableModelRawHdr = tableModelRawHeaders.at(k);
+
     		qv.setValue(tableModel.record(i).value(k));
 
     		anItem = _stdItemModel->item(i, k);
@@ -550,12 +554,30 @@ void YerothTableView::lister(YerothSqlTableModel &tableModel,
     		switch (qv.type())
     		{
     		case QVariant::UInt:
-    			anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toUInt()));
+
+            	if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID))
+            	{
+            		anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toUInt()));
+            	}
+            	else
+            	{
+            		anItem = new YerothQStandardItem(QString::number(qv.toUInt()));
+            	}
+
     			_stdItemModel->setItem(i, k, anItem);
     			break;
 
     		case QVariant::Int:
-    			anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
+
+            	if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID))
+            	{
+            		anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
+            	}
+            	else
+            	{
+            		anItem = new YerothQStandardItem(QString::number(qv.toInt()));
+            	}
+
     			_stdItemModel->setItem(i, k, anItem);
     			break;
 
@@ -610,6 +632,7 @@ void YerothTableView::lister(YerothSqlTableModel &tableModel,
     			break;
 
     		default:
+    			anItem = new YerothQStandardItem(YerothUtils::EMPTY_STRING);
     			//qDebug() << "YerothTableView:::lister(): undecoded QVariant -> " << qv.type();
     			break;
     		}
@@ -649,6 +672,8 @@ void YerothTableView::lister_ALL(YerothSqlTableModel &tableModel,
     	return ;
     }
 
+    QString curTableModelRawHdr;
+
 	QString tmpQvString;
     QStandardItem *anItem = 0;
     QVariant qv;
@@ -675,6 +700,8 @@ void YerothTableView::lister_ALL(YerothSqlTableModel &tableModel,
 
     	for (int k = 0; k < columns; ++k)
     	{
+        	curTableModelRawHdr = tableModelRawHeaders.at(k);
+
     		qv.setValue(tableModel.record(i).value(k));
 
     		anItem = _stdItemModel->item(i, k);
@@ -687,12 +714,30 @@ void YerothTableView::lister_ALL(YerothSqlTableModel &tableModel,
     		switch (qv.type())
     		{
     		case QVariant::UInt:
-    			anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toUInt()));
+
+            	if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID))
+            	{
+            		anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toUInt()));
+            	}
+            	else
+            	{
+            		anItem = new YerothQStandardItem(QString::number(qv.toUInt()));
+            	}
+
     			_stdItemModel->setItem(i, k, anItem);
     			break;
 
     		case QVariant::Int:
-    			anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
+
+            	if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID))
+            	{
+            		anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
+            	}
+            	else
+            	{
+            		anItem = new YerothQStandardItem(QString::number(qv.toInt()));
+            	}
+
     			_stdItemModel->setItem(i, k, anItem);
     			break;
 
@@ -758,7 +803,8 @@ void YerothTableView::lister_ALL(YerothSqlTableModel &tableModel,
     			break;
 
     		default:
-    			//qDebug() << "YerothTableView::lister(): undecoded QVariant -> " << qv.type();
+    			anItem = new YerothQStandardItem(YerothUtils::EMPTY_STRING);
+    			//qDebug() << "YerothTableView::lister_ALL(): undecoded QVariant -> " << qv.type();
     			break;
     		}
 
@@ -799,6 +845,8 @@ void YerothTableView::lister_FIFO(YerothSqlTableModel &tableModel,
     {
     	return ;
     }
+
+    QString curTableModelRawHdr;
 
 	QString tmpQvString;
     QStandardItem *anItem = 0;
@@ -841,6 +889,8 @@ void YerothTableView::lister_FIFO(YerothSqlTableModel &tableModel,
 
     	for (int k = 0; k < columns; ++k)
     	{
+        	curTableModelRawHdr = tableModelRawHeaders.at(k);
+
     		qv.setValue(tableModel.record(i).value(k));
 
     		anItem = _stdItemModel->item(i, k);
@@ -853,12 +903,30 @@ void YerothTableView::lister_FIFO(YerothSqlTableModel &tableModel,
     		switch (qv.type())
     		{
     		case QVariant::UInt:
-    			anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toUInt()));
+
+            	if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID))
+            	{
+            		anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toUInt()));
+            	}
+            	else
+            	{
+            		anItem = new YerothQStandardItem(QString::number(qv.toUInt()));
+            	}
+
     			_stdItemModel->setItem(i, k, anItem);
     			break;
 
     		case QVariant::Int:
-    			anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
+
+            	if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID))
+            	{
+            		anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
+            	}
+            	else
+            	{
+            		anItem = new YerothQStandardItem(QString::number(qv.toInt()));
+            	}
+
     			_stdItemModel->setItem(i, k, anItem);
     			break;
 
@@ -954,7 +1022,8 @@ void YerothTableView::lister_FIFO(YerothSqlTableModel &tableModel,
     			break;
 
     		default:
-    			//qDebug() << "YerothTableView::lister(): undecoded QVariant -> " << qv.type();
+    			anItem = new YerothQStandardItem(YerothUtils::EMPTY_STRING);
+    			//qDebug() << "YerothTableView::lister_FIFO(): undecoded QVariant -> " << qv.type();
     			break;
     		}
 
@@ -1096,6 +1165,8 @@ void YerothTableView::lister_LIFO(YerothSqlTableModel &tableModel,
     	return ;
     }
 
+    QString curTableModelRawHdr;
+
     QMap<QString, QStandardItem *> designationTopreviousLIFOGreenItems;
 
     QStandardItem *aPreviousLIFOGreenItem = 0;
@@ -1142,6 +1213,8 @@ void YerothTableView::lister_LIFO(YerothSqlTableModel &tableModel,
 
     	for (int k = 0; k < columns; ++k)
     	{
+    		curTableModelRawHdr = tableModelRawHeaders.at(k);
+
     		qv.setValue(tableModel.record(i).value(k));
 
     		anItem = _stdItemModel->item(i, k);
@@ -1154,12 +1227,30 @@ void YerothTableView::lister_LIFO(YerothSqlTableModel &tableModel,
     		switch (qv.type())
     		{
     		case QVariant::UInt:
-    			anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toUInt()));
+
+            	if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID))
+            	{
+            		anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toUInt()));
+            	}
+            	else
+            	{
+            		anItem = new YerothQStandardItem(QString::number(qv.toUInt()));
+            	}
+
     			_stdItemModel->setItem(i, k, anItem);
     			break;
 
     		case QVariant::Int:
-    			anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
+
+            	if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID))
+            	{
+            		anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
+            	}
+            	else
+            	{
+            		anItem = new YerothQStandardItem(QString::number(qv.toInt()));
+            	}
+
     			_stdItemModel->setItem(i, k, anItem);
     			break;
 
@@ -1252,11 +1343,12 @@ void YerothTableView::lister_LIFO(YerothSqlTableModel &tableModel,
     			break;
 
     		default:
-    			//qDebug() << "YerothTableView::lister(): undecoded QVariant -> " << qv.type();
+    			anItem = new YerothQStandardItem(YerothUtils::EMPTY_STRING);
+    			//qDebug() << "YerothTableView::lister_LIFO(): undecoded QVariant -> " << qv.type();
     			break;
     		}
 
-    		if (anItem)
+    		if (0 != anItem)
     		{
     			anItem->setForeground(Qt::white);
 
@@ -1369,6 +1461,8 @@ void YerothTableView::lister_FEFO(YerothSqlTableModel &tableModel,
     	return ;
     }
 
+    QString curTableModelRawHdr;
+
     QStandardItem *anItem = 0;
     //QStandardItem *prevItem = 0;
     QVariant qv;
@@ -1412,11 +1506,13 @@ void YerothTableView::lister_FEFO(YerothSqlTableModel &tableModel,
 
     	for (int k = 0; k < columns; ++k)
     	{
+    		curTableModelRawHdr = tableModelRawHeaders.at(k);
+
     		qv.setValue(tableModel.record(i).value(k));
 
     		anItem = _stdItemModel->item(i, k);
 
-    		if (anItem)
+    		if (0 != anItem)
     		{
     			delete anItem;
     		}
@@ -1424,12 +1520,30 @@ void YerothTableView::lister_FEFO(YerothSqlTableModel &tableModel,
     		switch (qv.type())
     		{
     		case QVariant::UInt:
-    			anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toUInt()));
+
+            	if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID))
+            	{
+            		anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toUInt()));
+            	}
+            	else
+            	{
+            		anItem = new YerothQStandardItem(QString::number(qv.toUInt()));
+            	}
+
     			_stdItemModel->setItem(i, k, anItem);
     			break;
 
     		case QVariant::Int:
-    			anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
+
+            	if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID))
+            	{
+            		anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
+            	}
+            	else
+            	{
+            		anItem = new YerothQStandardItem(QString::number(qv.toInt()));
+            	}
+
     			_stdItemModel->setItem(i, k, anItem);
     			break;
 
@@ -1516,11 +1630,12 @@ void YerothTableView::lister_FEFO(YerothSqlTableModel &tableModel,
     			break;
 
     		default:
-    			//qDebug() << "YerothTableView::lister(): undecoded QVariant -> " << qv.type();
+    			anItem = new YerothQStandardItem(YerothUtils::EMPTY_STRING);
+//    			qDebug() << "YerothTableView::lister_FEFO(): undecoded QVariant -> " << qv.type();
     			break;
     		}
 
-    		if (anItem)
+    		if (0 != anItem)
     		{
     			anItem->setForeground(Qt::white);
     			//prevItem = anItem;
@@ -1631,6 +1746,8 @@ void YerothTableView::lister_codebar_ALL(YerothSqlTableModel &tableModel,
     	return ;
     }
 
+    QString curTableModelRawHdr;
+
     QStandardItem *anItem = 0;
     QVariant qv;
 
@@ -1656,11 +1773,13 @@ void YerothTableView::lister_codebar_ALL(YerothSqlTableModel &tableModel,
 
     	for (int k = 0; k < columns; ++k)
     	{
+    		curTableModelRawHdr = tableModelRawHeaders.at(k);
+
     		qv.setValue(tableModel.record(i).value(k));
 
     		anItem = _stdItemModel->item(i, k);
 
-    		if (anItem)
+    		if (0 != anItem)
     		{
     			delete anItem;
     		}
@@ -1668,12 +1787,30 @@ void YerothTableView::lister_codebar_ALL(YerothSqlTableModel &tableModel,
     		switch (qv.type())
     		{
     		case QVariant::UInt:
-    			anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toUInt()));
+
+            	if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID))
+            	{
+            		anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toUInt()));
+            	}
+            	else
+            	{
+            		anItem = new YerothQStandardItem(QString::number(qv.toUInt()));
+            	}
+
     			_stdItemModel->setItem(i, k, anItem);
     			break;
 
     		case QVariant::Int:
-    			anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
+
+            	if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID))
+            	{
+            		anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
+            	}
+            	else
+            	{
+            		anItem = new YerothQStandardItem(QString::number(qv.toInt()));
+            	}
+
     			_stdItemModel->setItem(i, k, anItem);
     			break;
 
@@ -1729,7 +1866,8 @@ void YerothTableView::lister_codebar_ALL(YerothSqlTableModel &tableModel,
     			break;
 
     		default:
-    			//qDebug() << "YerothTableView::lister(): undecoded QVariant -> " << qv.type();
+    			anItem = new YerothQStandardItem(YerothUtils::EMPTY_STRING);
+//    			qDebug() << "YerothTableView::lister_codebar_ALL(): undecoded QVariant -> " << qv.type();
     			break;
     		}
     	}
@@ -1767,6 +1905,8 @@ void YerothTableView::lister_codebar_FIFO(YerothSqlTableModel &tableModel,
     	return ;
     }
 
+    QString curTableModelRawHdr;
+
     QStandardItem *anItem = 0;
     QVariant qv;
 
@@ -1799,11 +1939,13 @@ void YerothTableView::lister_codebar_FIFO(YerothSqlTableModel &tableModel,
 
     	for (int k = 0; k < columns; ++k)
     	{
+    		curTableModelRawHdr = tableModelRawHeaders.at(k);
+
     		qv.setValue(tableModel.record(i).value(k));
 
     		anItem = _stdItemModel->item(i, k);
 
-    		if (anItem)
+    		if (0 != anItem)
     		{
     			delete anItem;
     		}
@@ -1811,12 +1953,30 @@ void YerothTableView::lister_codebar_FIFO(YerothSqlTableModel &tableModel,
     		switch (qv.type())
     		{
     		case QVariant::UInt:
-    			anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toUInt()));
+
+            	if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID))
+            	{
+            		anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toUInt()));
+            	}
+            	else
+            	{
+            		anItem = new YerothQStandardItem(QString::number(qv.toUInt()));
+            	}
+
     			_stdItemModel->setItem(i, k, anItem);
     			break;
 
     		case QVariant::Int:
-    			anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
+
+            	if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID))
+            	{
+            		anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
+            	}
+            	else
+            	{
+            		anItem = new YerothQStandardItem(QString::number(qv.toInt()));
+            	}
+
     			_stdItemModel->setItem(i, k, anItem);
     			break;
 
@@ -1884,7 +2044,8 @@ void YerothTableView::lister_codebar_FIFO(YerothSqlTableModel &tableModel,
     			break;
 
     		default:
-    			//qDebug() << "YerothTableView::lister(): undecoded QVariant -> " << qv.type();
+    			anItem = new YerothQStandardItem(YerothUtils::EMPTY_STRING);
+//    			qDebug() << "YerothTableView::lister_codebar_FIFO(): undecoded QVariant -> " << qv.type();
     			break;
     		}
     	}
@@ -1923,6 +2084,8 @@ void YerothTableView::lister_codebar_LIFO(YerothSqlTableModel &tableModel,
     	return ;
     }
 
+    QString curTableModelRawHdr;
+
     QStandardItem *anItem = 0;
     QVariant qv;
 
@@ -1959,6 +2122,8 @@ void YerothTableView::lister_codebar_LIFO(YerothSqlTableModel &tableModel,
 
     	for (int k = 0; k < columns; ++k)
     	{
+    		curTableModelRawHdr = tableModelRawHeaders.at(k);
+
     		qv.setValue(tableModel.record(i).value(k));
 
     		anItem = _stdItemModel->item(i, k);
@@ -1971,12 +2136,30 @@ void YerothTableView::lister_codebar_LIFO(YerothSqlTableModel &tableModel,
     		switch (qv.type())
     		{
     		case QVariant::UInt:
-    			anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toUInt()));
+
+            	if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID))
+            	{
+            		anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toUInt()));
+            	}
+            	else
+            	{
+            		anItem = new YerothQStandardItem(QString::number(qv.toUInt()));
+            	}
+
     			_stdItemModel->setItem(i, k, anItem);
     			break;
 
     		case QVariant::Int:
-    			anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
+
+            	if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID))
+            	{
+            		anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
+            	}
+            	else
+            	{
+            		anItem = new YerothQStandardItem(QString::number(qv.toInt()));
+            	}
+
     			_stdItemModel->setItem(i, k, anItem);
     			break;
 
@@ -2046,7 +2229,8 @@ void YerothTableView::lister_codebar_LIFO(YerothSqlTableModel &tableModel,
     			break;
 
     		default:
-    			//qDebug() << "YerothTableView::lister(): undecoded QVariant -> " << qv.type();
+    			anItem = new YerothQStandardItem(YerothUtils::EMPTY_STRING);
+//    			qDebug() << "YerothTableView::lister_codebar_LIFO(): undecoded QVariant -> " << qv.type();
     			break;
     		}
     	}
@@ -2084,6 +2268,8 @@ void YerothTableView::lister_codebar_FEFO(YerothSqlTableModel &tableModel,
     	return ;
     }
 
+    QString curTableModelRawHdr;
+
     QStandardItem *anItem = 0;
     QVariant qv;
 
@@ -2120,6 +2306,8 @@ void YerothTableView::lister_codebar_FEFO(YerothSqlTableModel &tableModel,
 
     	for (int k = 0; k < columns; ++k)
     	{
+    		curTableModelRawHdr = tableModelRawHeaders.at(k);
+
     		qv.setValue(tableModel.record(i).value(k));
 
     		anItem = _stdItemModel->item(i, k);
@@ -2132,12 +2320,30 @@ void YerothTableView::lister_codebar_FEFO(YerothSqlTableModel &tableModel,
     		switch (qv.type())
     		{
     		case QVariant::UInt:
-    			anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toUInt()));
+
+            	if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID))
+            	{
+            		anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toUInt()));
+            	}
+            	else
+            	{
+            		anItem = new YerothQStandardItem(QString::number(qv.toUInt()));
+            	}
+
     			_stdItemModel->setItem(i, k, anItem);
     			break;
 
     		case QVariant::Int:
-    			anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
+
+            	if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID))
+            	{
+            		anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
+            	}
+            	else
+            	{
+            		anItem = new YerothQStandardItem(QString::number(qv.toInt()));
+            	}
+
     			_stdItemModel->setItem(i, k, anItem);
     			break;
 
@@ -2208,7 +2414,8 @@ void YerothTableView::lister_codebar_FEFO(YerothSqlTableModel &tableModel,
     			break;
 
     		default:
-    			//qDebug() << "YerothTableView::lister(): undecoded QVariant -> " << qv.type();
+    			anItem = new YerothQStandardItem(YerothUtils::EMPTY_STRING);
+//    			qDebug() << "YerothTableView::lister_codebar_FEFO(): undecoded QVariant -> " << qv.type();
     			break;
     		}
     	} //switch-case

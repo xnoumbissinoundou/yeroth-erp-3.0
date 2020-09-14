@@ -70,6 +70,8 @@ void YerothERPTransactionsTableView::lister_les_elements_du_tableau(YerothSqlTab
         {
             for (int k = 0; k < columns; ++k)
             {
+            	curTableModelRawHdr = tableModelRawHeaders.at(k);
+
                 qv.setValue(tableModel.record(i).value(k));
 
                 anItem = _stdItemModel->item(i, k);
@@ -82,12 +84,30 @@ void YerothERPTransactionsTableView::lister_les_elements_du_tableau(YerothSqlTab
                 switch (qv.type())
                 {
                 case QVariant::UInt:
-                    anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toUInt()));
+
+                	if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID))
+                	{
+                		anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toUInt()));
+                	}
+                	else
+                	{
+                		anItem = new YerothQStandardItem(QString::number(qv.toUInt()));
+                	}
+
                     _stdItemModel->setItem(i, k, anItem);
                     break;
 
                 case QVariant::Int:
-                    anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
+
+                	if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID))
+                	{
+                		anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
+                	}
+                	else
+                	{
+                		anItem = new YerothQStandardItem(QString::number(qv.toInt()));
+                	}
+
                     _stdItemModel->setItem(i, k, anItem);
                     break;
 
@@ -114,8 +134,6 @@ void YerothERPTransactionsTableView::lister_les_elements_du_tableau(YerothSqlTab
                 case QVariant::String:
                 	tmpQvString.clear();
                 	tmpQvString.append(qv.toString());
-
-                	curTableModelRawHdr = tableModelRawHeaders.at(k);
 
                 	if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::REFERENCE))
                 	{

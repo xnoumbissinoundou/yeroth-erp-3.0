@@ -82,22 +82,34 @@ void YerothERPVentesTableView::lister_les_elements_du_tableau(YerothSqlTableMode
                 switch (qv.type())
                 {
                 case QVariant::UInt:
-                    anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toUInt()));
+
+                	if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID))
+                	{
+                		anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toUInt()));
+                	}
+                	else
+                	{
+                		anItem = new YerothQStandardItem(QString::number(qv.toUInt()));
+                	}
+
                     _stdItemModel->setItem(i, k, anItem);
                     break;
 
                 case QVariant::Int:
 
-                	curTableModelRawHdr = tableModelRawHeaders.at(k);
 
-                	if (YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::TYPE_DE_VENTE))
+                	if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID))
+                	{
+                		anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
+                	}
+                	else if (YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::TYPE_DE_VENTE))
                 	{
                 		tmpQvString = YerothUtils::_typedeventeToUserViewString.value(qv.toInt());
                 		anItem = new YerothQStandardItem(YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(tmpQvString));
                 	}
                 	else
                 	{
-                		anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
+                		anItem = new YerothQStandardItem(QString::number(qv.toInt()));
                 	}
 
                     _stdItemModel->setItem(i, k, anItem);
@@ -126,8 +138,6 @@ void YerothERPVentesTableView::lister_les_elements_du_tableau(YerothSqlTableMode
                 case QVariant::String:
                 	tmpQvString.clear();
                 	tmpQvString.append(qv.toString());
-
-                	curTableModelRawHdr = tableModelRawHeaders.at(k);
 
                 	if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::REFERENCE))
                 	{

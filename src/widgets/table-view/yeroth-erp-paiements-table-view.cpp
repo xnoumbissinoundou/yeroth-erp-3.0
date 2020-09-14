@@ -69,6 +69,8 @@ void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableM
         {
             for (int k = 0; k < columns; ++k)
             {
+            	curTableModelRawHdr = tableModelRawHeaders.at(k);
+
                 qv.setValue(tableModel.record(i).value(k));
 
                 anItem = _stdItemModel->item(i, k);
@@ -81,22 +83,33 @@ void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableM
                 switch (qv.type())
                 {
                 case QVariant::UInt:
-                    anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toUInt()));
+
+                	if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID))
+                	{
+                		anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toUInt()));
+                	}
+                	else
+                	{
+                		anItem = new YerothQStandardItem(QString::number(qv.toUInt()));
+                	}
+
                     _stdItemModel->setItem(i, k, anItem);
                     break;
 
                 case QVariant::Int:
 
-                	curTableModelRawHdr = tableModelRawHeaders.at(k);
-
-                	if (YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::TYPE_DE_PAIEMENT))
+                	if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID))
+                	{
+                		anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
+                	}
+                	else if (YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::TYPE_DE_PAIEMENT))
                 	{
                 		tmpQvString = YerothUtils::_typedepaiementToUserViewString.value(qv.toInt());
                 		anItem = new YerothQStandardItem(YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(tmpQvString));
                 	}
                 	else
                 	{
-                		anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
+                		anItem = new YerothQStandardItem(QString::number(qv.toInt()));
                 	}
 
                     _stdItemModel->setItem(i, k, anItem);
@@ -125,8 +138,6 @@ void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableM
                 case QVariant::String:
                 	tmpQvString.clear();
                 	tmpQvString.append(qv.toString());
-
-                	curTableModelRawHdr = tableModelRawHeaders.at(k);
 
                 	if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::REFERENCE) &&
                 		!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::REFERENCE_RECU_PAIEMENT_CLIENT))
