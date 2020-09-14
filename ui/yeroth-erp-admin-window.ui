@@ -20368,9 +20368,9 @@
      <widget class="QLabel" name="label_tableaux_mariadb_sql">
       <property name="geometry">
        <rect>
-        <x>405</x>
+        <x>6</x>
         <y>39</y>
-        <width>147</width>
+        <width>161</width>
         <height>21</height>
        </rect>
       </property>
@@ -22668,7 +22668,7 @@
      <widget class="YerothComboBox" name="comboBox_tableaux_mariadb_sql">
       <property name="geometry">
        <rect>
-        <x>554</x>
+        <x>171</x>
         <y>39</y>
         <width>205</width>
         <height>21</height>
@@ -23103,7 +23103,7 @@
      <widget class="QCheckBox" name="checkBox_importer_parlant">
       <property name="geometry">
        <rect>
-        <x>554</x>
+        <x>171</x>
         <y>63</y>
         <width>205</width>
         <height>21</height>
