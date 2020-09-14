@@ -10566,7 +10566,7 @@ background-color: rgb(0, 0, 0); </string>
      </font>
     </property>
     <property name="text">
-     <string>Valeur totale</string>
+     <string>Valeur d'inv.</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -11871,7 +11871,8 @@ background-color: rgb(0, 0, 0); </string>
     <addaction name="separator"/>
     <addaction name="actionAlertes"/>
     <addaction name="separator"/>
-    <addaction name="actionAfficher_les_stocks_termines"/>
+    <addaction name="actionAfficher_les_marchandises_non_terminees"/>
+    <addaction name="actionAfficher_les_marchandises_terminees"/>
     <addaction name="separator"/>
     <addaction name="actionReinitialiserChampsDBVisible"/>
     <addaction name="actionChampsDBVisible"/>
@@ -12588,9 +12589,12 @@ background-color: rgb(0, 0, 0); </string>
     </font>
    </property>
   </action>
-  <action name="actionAfficher_les_stocks_termines">
+  <action name="actionAfficher_les_marchandises_terminees">
    <property name="text">
-    <string>Afficher la liste des stocks terminés</string>
+    <string>Afficher la liste des marchandises terminées</string>
+   </property>
+   <property name="toolTip">
+    <string>Afficher la liste des marchandises terminées</string>
    </property>
    <property name="font">
     <font>
@@ -12640,6 +12644,19 @@ background-color: rgb(0, 0, 0); </string>
    </property>
    <property name="toolTip">
     <string>Modifier cette référence</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionAfficher_les_marchandises_non_terminees">
+   <property name="text">
+    <string>Afficher la liste des marchandises non terminées</string>
+   </property>
+   <property name="toolTip">
+    <string>Afficher la liste des marchandises non terminées</string>
    </property>
    <property name="font">
     <font>

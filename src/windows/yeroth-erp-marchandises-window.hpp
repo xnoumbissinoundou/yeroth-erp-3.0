@@ -76,8 +76,12 @@ public slots:
 	{
 		YerothQMessageBox::information(this,
 							 QObject::trUtf8("aide"),
-							 QObject::trUtf8("Sélectionner un stock dans le tableau des stocks, ensuite cliquer "
-											 "sur l'opération que vous souhaitez réaliser !"));
+							 QObject::trUtf8("1) Sélectionner un marchandise dans le tableau "
+									 	 	 "de marchandises, ensuite cliquer "
+											 "sur l'opération que vous souhaitez réaliser !\n\n"
+											 "2) La valeur d'inventaire d'une marchandise (VI) "
+											 "est calculée comme suit:\n"
+											 " [VI = prix_dachat * quantite_en_stock] !"));
 	}
 
 	bool export_csv_file();
@@ -140,9 +144,11 @@ private slots:
 
 	void handle_services_checkBox(int state);
 
-	bool filtrer_empty_product_stock();
+	bool slot_filtrer_non_empty_product_stock();
 
-	bool filtrer();
+	bool slot_filtrer_empty_product_stock();
+
+	bool slot_filtrer();
 
 public:
 

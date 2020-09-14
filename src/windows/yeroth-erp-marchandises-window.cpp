@@ -119,7 +119,8 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
     connect(actionVendre, SIGNAL(triggered()), this, SLOT(vendre()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
     connect(actionExporter_au_format_csv, SIGNAL(triggered()), this, SLOT(export_csv_file()));
-    connect(actionAfficher_les_stocks_termines, SIGNAL(triggered()), this, SLOT(filtrer_empty_product_stock()));
+    connect(actionAfficher_les_marchandises_non_terminees, SIGNAL(triggered()), this, SLOT(slot_filtrer_non_empty_product_stock()));
+    connect(actionAfficher_les_marchandises_terminees, SIGNAL(triggered()), this, SLOT(slot_filtrer_empty_product_stock()));
     connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_pdf_document()));
     connect(actionA_propos, SIGNAL(triggered()), this, SLOT(apropos()));
     connect(actionAlertes, SIGNAL(triggered()), this, SLOT(alertes()));
@@ -299,12 +300,12 @@ void YerothMarchandisesWindow::contextMenuEvent(QContextMenuEvent * event)
 
 void YerothMarchandisesWindow::setupShortcuts()
 {
-	setupShortcutActionMessageDaide 	(*actionAfficher_les_stocks_termines);
+	setupShortcutActionMessageDaide 	(*actionAfficher_les_marchandises_terminees);
     setupShortcutActionMessageDaide 	(*actionAppeler_aide);
     setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
     setupShortcutActionAfficherPDF		(*actionAfficherPDF);
 
-    actionAfficher_les_stocks_termines->setShortcut(YerothUtils::AFFICHER_LES_STOCKS_TERMINES_QKEYSEQUENCE);
+    actionAfficher_les_marchandises_terminees->setShortcut(YerothUtils::AFFICHER_LES_STOCKS_TERMINES_QKEYSEQUENCE);
     actionReinitialiserRecherche->setShortcut(YerothUtils::REINITIALISER_RECHERCHE_QKEYSEQUENCE);
 }
 
@@ -427,7 +428,56 @@ void YerothMarchandisesWindow::handle_services_checkBox(int state)
 }
 
 
-bool YerothMarchandisesWindow::filtrer_empty_product_stock()
+bool YerothMarchandisesWindow::slot_filtrer_non_empty_product_stock()
+{
+	QStandardItem *anItem = 0;
+
+	//This is clear from the way our project is organized
+	QStandardItemModel *stdItemModel =
+			(QStandardItemModel *) tableView_marchandises->model();
+
+	if (0 == stdItemModel)
+	{
+		YEROTH_QMESSAGE_BOX_AUCUN_RESULTAT_FILTRE(this, "non terminées");
+
+		return false;
+	}
+
+	QString data;
+	QString categorieStr;
+	QString designationStr;
+
+	QString filterString(QString("%1 > 0")
+							.arg(YerothDatabaseTableColumn::QUANTITE_TOTALE));
+
+//	qDebug() << QString("++ filterString: %1")
+//					.arg(filterString);
+
+
+	_curMarchandisesTableModel->yerothSetFilter(filterString);
+
+	int resultRows = _curMarchandisesTableModel->easySelect();
+
+	if (resultRows >= 0)
+	{
+		setCurrentlyFiltered(true);
+
+		afficherMarchandises(*_curMarchandisesTableModel);
+
+		YEROTH_QMESSAGE_BOX_QUELQUE_RESULTAT_FILTRE(this, resultRows, "non terminées");
+
+		return true;
+	}
+	else
+	{
+		YEROTH_QMESSAGE_BOX_AUCUN_RESULTAT_FILTRE(this, "non terminées");
+	}
+
+	return false;
+}
+
+
+bool YerothMarchandisesWindow::slot_filtrer_empty_product_stock()
 {
 	QStandardItem *anItem = 0;
 
@@ -441,6 +491,10 @@ bool YerothMarchandisesWindow::filtrer_empty_product_stock()
 
 		return false;
 	}
+
+	_curMarchandisesTableModel->resetFilter();
+
+	afficherMarchandises();
 
 	QStringList filterStrings;
 	QStringList splittedData;
@@ -481,7 +535,7 @@ bool YerothMarchandisesWindow::filtrer_empty_product_stock()
 
 	if (0 >= filterStrings.size())
 	{
-		YEROTH_QMESSAGE_BOX_AUCUN_RESULTAT_FILTRE(this, "marchandises - filtrer");
+		YEROTH_QMESSAGE_BOX_AUCUN_RESULTAT_FILTRE(this, "terminées");
 
 		return false;
 	}
@@ -498,7 +552,7 @@ bool YerothMarchandisesWindow::filtrer_empty_product_stock()
 
 	if (filterString.isEmpty())
 	{
-		YEROTH_QMESSAGE_BOX_AUCUN_RESULTAT_FILTRE(this, "marchandises - filtrer");
+		YEROTH_QMESSAGE_BOX_AUCUN_RESULTAT_FILTRE(this, "terminées");
 
 		return false;
 	}
@@ -513,20 +567,20 @@ bool YerothMarchandisesWindow::filtrer_empty_product_stock()
 
 		afficherMarchandises(*_curMarchandisesTableModel);
 
-		YEROTH_QMESSAGE_BOX_QUELQUE_RESULTAT_FILTRE(this, resultRows, "marchandises - filtrer");
+		YEROTH_QMESSAGE_BOX_QUELQUE_RESULTAT_FILTRE(this, resultRows, "terminées");
 
 		return true;
 	}
 	else
 	{
-		YEROTH_QMESSAGE_BOX_AUCUN_RESULTAT_FILTRE(this, "marchandises - filtrer");
+		YEROTH_QMESSAGE_BOX_AUCUN_RESULTAT_FILTRE(this, "terminées");
 	}
 
 	return false;
 }
 
 
-bool YerothMarchandisesWindow::filtrer()
+bool YerothMarchandisesWindow::slot_filtrer()
 {
 	QString stockTableColumnValue(lineEdit_marchandises_element_de_stock_resultat->text());
 
@@ -759,7 +813,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
     pushButton_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
-    pushButton_filtrer->enable(this, SLOT(filtrer()));
+    pushButton_filtrer->enable(this, SLOT(slot_filtrer()));
     pushButton_entrer->enable(this, SLOT(entrer()));
     pushButton_rapports->enable(this, SLOT(tableaux_de_bords()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
@@ -790,7 +844,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
     pushButton_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
-    pushButton_filtrer->enable(this, SLOT(filtrer()));
+    pushButton_filtrer->enable(this, SLOT(slot_filtrer()));
     pushButton_entrer->disable(this);
     pushButton_rapports->disable(this);
     pushButton_menu_principal->enable(this, SLOT(menu()));
@@ -821,7 +875,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
     pushButton_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
-    pushButton_filtrer->enable(this, SLOT(filtrer()));
+    pushButton_filtrer->enable(this, SLOT(slot_filtrer()));
     pushButton_entrer->enable(this, SLOT(entrer()));
     pushButton_rapports->disable(this);
     pushButton_menu_principal->enable(this, SLOT(menu()));
