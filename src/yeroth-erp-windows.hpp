@@ -142,6 +142,9 @@ public:
 
 	void reinitialiseSqlTableModels();
 
+	void setupSqlTableModelFromName(const QString &aSqlTableName,
+	 	 						 	YerothSqlTableModel **aYerothSqlTableModel);
+
 	void setupConfiguration();
 
 	YerothSqlTableModel &getSqlTableModel_comptes_bancaires();
@@ -332,6 +335,11 @@ public:
 		return *this->_infoEntreprise;
 	}
 
+	inline YerothSqlTableModel * getSqlTableModelFromName(QString &aSqlTableName)
+	{
+		return _sqltablenameTOsqltablemodel.value(aSqlTableName);
+	}
+
 	bool move(QMainWindow &aWindow);
 
 	bool updateUserData(int userRecordRow);
@@ -435,6 +443,8 @@ private:
 	static int getNextIdFromTable(const QString &tableName);
 
 	YerothDatabase 			*_database;
+
+	QMap<QString, YerothSqlTableModel *> _sqltablenameTOsqltablemodel;
 
 	YerothSqlTableModel 	*_tableModel_comptes_bancaires;
 	YerothSqlTableModel 	*_tableModel_entreprise_info;

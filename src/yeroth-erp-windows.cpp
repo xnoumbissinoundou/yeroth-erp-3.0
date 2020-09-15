@@ -184,31 +184,31 @@ YerothERPWindows::YerothERPWindows(QDesktopWidget *desktopWidget)
 {
     _logger = new YerothLogger("YerothWindows");
 
-    this->setupConfiguration();
+    YerothERPWindows::setupConfiguration();
 
     static YerothDatabaseTableColumn aYerothDatabaseTableColumnStaticInstance;
 
-    _tableModel_comptes_bancaires			= new YerothSqlTableModel(YerothERPWindows::COMPTES_BANCAIRES);
-    _tableModel_entreprise_info				= new YerothSqlTableModel(YerothERPWindows::ENTREPRISE_INFO);
-    _tableModel_historique_paiements		= new YerothSqlTableModel(YerothERPWindows::PAIEMENTS);
-    _tableModel_users 						= new YerothSqlTableModel(YerothERPWindows::USERS);
-    _tableModel_titres 						= new YerothSqlTableModel(YerothERPWindows::TITRES);
-    _tableModel_localisations 				= new YerothSqlTableModel(YerothERPWindows::LOCALISATIONS);
-    _tableModel_categories 					= new YerothSqlTableModel(YerothERPWindows::CATEGORIES);
-    _tableModel_clients						= new YerothSqlTableModel(YerothERPWindows::CLIENTS);
-    _tableModel_fournisseurs 				= new YerothSqlTableModel(YerothERPWindows::FOURNISSEURS);
-    _tableModel_alertes 					= new YerothSqlTableModel(YerothERPWindows::ALERTES);
-    _tableModel_remises 					= new YerothSqlTableModel(YerothERPWindows::REMISES);
-    _tableModel_conditions_alertes 			= new YerothSqlTableModel(YerothERPWindows::CONDITIONS_ALERTES);
-    _tableModel_courriers_alertes 			= new YerothSqlTableModel(YerothERPWindows::COURRIERS_ALERTES);
-    _tableModel_achats 						= new YerothSqlTableModel(YerothERPWindows::ACHATS);
-    _tableModel_stocks 						= new YerothSqlTableModel(YerothERPWindows::STOCKS);
-    _tableModel_services_completes 			= new YerothSqlTableModel(YerothERPWindows::SERVICES_COMPLETES);
-    _tableModel_stocks_vendu 				= new YerothSqlTableModel(YerothERPWindows::STOCKS_VENDU);
-    _tableModel_stocks_sorties				= new YerothSqlTableModel(YerothERPWindows::STOCKS_SORTIES);
-    _tableModel_marchandises 				= new YerothSqlTableModel(YerothERPWindows::MARCHANDISES);
-    _tableModel_configurations 				= new YerothSqlTableModel(YerothERPWindows::CONFIGURATIONS);
-    _tableModel_init_configurations 		= new YerothSqlTableModel(YerothERPWindows::INIT_CONFIGURATIONS);
+    setupSqlTableModelFromName(YerothERPWindows::COMPTES_BANCAIRES, &_tableModel_comptes_bancaires);
+    setupSqlTableModelFromName(YerothERPWindows::ENTREPRISE_INFO, &_tableModel_entreprise_info);
+    setupSqlTableModelFromName(YerothERPWindows::PAIEMENTS, &_tableModel_historique_paiements);
+    setupSqlTableModelFromName(YerothERPWindows::USERS, &_tableModel_users);
+    setupSqlTableModelFromName(YerothERPWindows::TITRES, &_tableModel_titres);
+    setupSqlTableModelFromName(YerothERPWindows::LOCALISATIONS, &_tableModel_localisations);
+    setupSqlTableModelFromName(YerothERPWindows::CATEGORIES, &_tableModel_categories);
+    setupSqlTableModelFromName(YerothERPWindows::CLIENTS, &_tableModel_clients);
+    setupSqlTableModelFromName(YerothERPWindows::FOURNISSEURS, &_tableModel_fournisseurs);
+    setupSqlTableModelFromName(YerothERPWindows::ALERTES, &_tableModel_alertes);
+    setupSqlTableModelFromName(YerothERPWindows::REMISES, &_tableModel_remises);
+    setupSqlTableModelFromName(YerothERPWindows::CONDITIONS_ALERTES, &_tableModel_conditions_alertes);
+    setupSqlTableModelFromName(YerothERPWindows::COURRIERS_ALERTES, &_tableModel_courriers_alertes);
+    setupSqlTableModelFromName(YerothERPWindows::ACHATS, &_tableModel_achats);
+    setupSqlTableModelFromName(YerothERPWindows::STOCKS, &_tableModel_stocks);
+    setupSqlTableModelFromName(YerothERPWindows::SERVICES_COMPLETES, &_tableModel_services_completes);
+    setupSqlTableModelFromName(YerothERPWindows::STOCKS_VENDU, &_tableModel_stocks_vendu);
+    setupSqlTableModelFromName(YerothERPWindows::STOCKS_SORTIES, &_tableModel_stocks_sorties);
+    setupSqlTableModelFromName(YerothERPWindows::MARCHANDISES, &_tableModel_marchandises);
+    setupSqlTableModelFromName(YerothERPWindows::CONFIGURATIONS, &_tableModel_configurations);
+    setupSqlTableModelFromName(YerothERPWindows::INIT_CONFIGURATIONS, &_tableModel_init_configurations);
 
     /*
      * This is to initialize constants useful for 'INTERNATIONALIZATION'.
@@ -352,7 +352,7 @@ void YerothERPWindows::createAllYerothPosUserWindows()
     _payerAuCompteClientWindow		= new YerothPayerCompteClientWindow;
     _sortirListStocksWindow			= new YerothSortirListStocksWindow;
 
-    this->move(*_mainWindow);
+    YerothERPWindows::move(*_mainWindow);
 }
 
 void YerothERPWindows::reinitialiseSqlTableModels()
@@ -436,6 +436,15 @@ void YerothERPWindows::setUser(YerothPOSUser *user)
         break;
     }
 }
+
+
+void YerothERPWindows::setupSqlTableModelFromName(const QString &aSqlTableName,
+ 	 											  YerothSqlTableModel **aYerothSqlTableModel)
+{
+	*aYerothSqlTableModel = new YerothSqlTableModel(aSqlTableName);
+	_sqltablenameTOsqltablemodel.insert(aSqlTableName, *aYerothSqlTableModel);
+}
+
 
 void YerothERPWindows::setupConfiguration()
 {
