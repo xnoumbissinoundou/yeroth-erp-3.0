@@ -1,5 +1,5 @@
 /*
- * yeroth-erp-sql-table-view.hpp
+ * yeroth-erp-table-view.hpp
  *
  *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
  */
@@ -134,15 +134,13 @@ protected:
 	virtual void selectionChanged(const QItemSelection & selected,
 								  const QItemSelection & deselected);
 
-protected:
-
 	bool 						_writeEnabled;
 
 	int 						_lastSelectedRow;
 
 	const QString 				*_tableName;
 
-	YerothPOSQStandardItemModel 	*_stdItemModel;
+	YerothPOSQStandardItemModel *_stdItemModel;
 
 	QStringList 				*_tableModelHeaders;
 };
