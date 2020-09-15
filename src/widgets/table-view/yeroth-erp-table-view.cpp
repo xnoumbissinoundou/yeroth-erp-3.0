@@ -1,5 +1,5 @@
 /*
- * yeroth-erp-table-view-model.cpp
+ * yeroth-erp-table-view.cpp
  *
  *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
  */
