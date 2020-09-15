@@ -50,6 +50,9 @@
 bool YerothERPWindows::CURRENTLY_CHANGING_USER(false);
 
 
+QMap<QString, YerothSqlTableModel *> YerothERPWindows::_sqltablenameTOsqltablemodel;
+
+
 const QString YerothERPWindows::COMPTES_BANCAIRES				("comptes_bancaires");
 
 const QString YerothERPWindows::ENTREPRISE_INFO					("entreprise_info");
@@ -441,7 +444,13 @@ void YerothERPWindows::setUser(YerothPOSUser *user)
 void YerothERPWindows::setupSqlTableModelFromName(const QString &aSqlTableName,
  	 											  YerothSqlTableModel **aYerothSqlTableModel)
 {
+	if (0 != *aYerothSqlTableModel)
+	{
+		delete *aYerothSqlTableModel;
+	}
+
 	*aYerothSqlTableModel = new YerothSqlTableModel(aSqlTableName);
+
 	_sqltablenameTOsqltablemodel.insert(aSqlTableName, *aYerothSqlTableModel);
 }
 

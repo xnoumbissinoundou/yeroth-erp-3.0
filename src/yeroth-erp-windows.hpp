@@ -335,7 +335,7 @@ public:
 		return *this->_infoEntreprise;
 	}
 
-	inline YerothSqlTableModel * getSqlTableModelFromName(QString &aSqlTableName)
+	static inline YerothSqlTableModel * getSqlTableModelFromName(const QString &aSqlTableName)
 	{
 		return _sqltablenameTOsqltablemodel.value(aSqlTableName);
 	}
@@ -444,7 +444,7 @@ private:
 
 	YerothDatabase 			*_database;
 
-	QMap<QString, YerothSqlTableModel *> _sqltablenameTOsqltablemodel;
+	static QMap<QString, YerothSqlTableModel *> _sqltablenameTOsqltablemodel;
 
 	YerothSqlTableModel 	*_tableModel_comptes_bancaires;
 	YerothSqlTableModel 	*_tableModel_entreprise_info;
