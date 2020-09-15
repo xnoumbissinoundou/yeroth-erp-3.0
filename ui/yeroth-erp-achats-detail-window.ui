@@ -8516,8 +8516,6 @@ stock (service)</string>
     </property>
     <addaction name="separator"/>
     <addaction name="actionAdministration"/>
-    <addaction name="actionAlertes"/>
-    <addaction name="separator"/>
     <addaction name="separator"/>
     <addaction name="actionQui_suis_je"/>
    </widget>
@@ -8960,7 +8958,6 @@ stock (service)</string>
    <addaction name="actionChanger_utilisateur"/>
    <addaction name="actionDeconnecter_utilisateur"/>
    <addaction name="actionAppeler_aide"/>
-   <addaction name="actionAlertes"/>
   </widget>
   <action name="actionA_propos">
    <property name="text">
@@ -9088,21 +9085,6 @@ stock (service)</string>
    </property>
    <property name="font">
     <font>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-  </action>
-  <action name="actionAlertes">
-   <property name="text">
-    <string>Alertes</string>
-   </property>
-   <property name="toolTip">
-    <string>Alertes</string>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>

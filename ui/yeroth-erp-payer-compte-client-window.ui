@@ -2182,7 +2182,7 @@
      </font>
     </property>
     <property name="title">
-     <string>Données de paiement</string>
+     <string>Données d'encaissement</string>
     </property>
     <widget class="YerothComboBox" name="comboBox_clients_typedepaiement">
      <property name="geometry">
@@ -18006,14 +18006,14 @@ background-color: rgb(0, 0, 0); </string>
    <header>src/widgets/yeroth-erp-line-edit.hpp</header>
   </customwidget>
   <customwidget>
-   <class>YerothTextEdit</class>
-   <extends>QTextEdit</extends>
-   <header>src/widgets/yeroth-erp-text-edit.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>YerothComboBox</class>
    <extends>QComboBox</extends>
    <header>src/widgets/yeroth-erp-combo-box.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>YerothTextEdit</class>
+   <extends>QTextEdit</extends>
+   <header>src/widgets/yeroth-erp-text-edit.hpp</header>
   </customwidget>
   <customwidget>
    <class>YerothDateTimeEdit</class>

@@ -239,7 +239,7 @@ void YerothPaiementsWindow::populateComboBoxes()
 
 	comboBox_paiements_type_de_paiement->setupPopulateNORawString(_allWindows->TYPE_DE_PAIEMENT,
 																   YerothDatabaseTableColumn::TYPE_DE_PAIEMENT,
-																   &YerothUtils::_typedepaiementToUserViewString);
+																   &YerothUtils::_typedencaissementToUserViewString);
 
 	comboBox_paiements_type_de_paiement->populateComboBox();
 
@@ -338,11 +338,11 @@ void YerothPaiementsWindow::slot_reinitialiser_champs_db_visibles()
 void YerothPaiementsWindow::handleComboBoxClients_Typedepaiement_TextChanged(const QString &currentText)
 {
 	if (YerothUtils::isEqualCaseInsensitive(currentText,
-				YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::VERSEMENT_BANCAIRE)) ||
+				YerothUtils::_typedencaissementToUserViewString.value(YerothUtils::ENCAISSEMENT_BANCAIRE)) ||
 		YerothUtils::isEqualCaseInsensitive(currentText,
-				YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::VERSEMENT_TELEPHONE)) ||
+				YerothUtils::_typedencaissementToUserViewString.value(YerothUtils::ENCAISSEMENT_TELEPHONE)) ||
 		YerothUtils::isEqualCaseInsensitive(currentText,
-				YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::VERSEMENT_VIREMENT_BANCAIRE)))
+				YerothUtils::_typedencaissementToUserViewString.value(YerothUtils::ENCAISSEMENT_VIREMENT_BANCAIRE)))
 	{
 		comboBox_paiements_intitule_du_compte_bancaire->setYerothEnabled(true);
 	}
@@ -457,7 +457,7 @@ void YerothPaiementsWindow::textChangedSearchLineEditsQCompleters()
     				else if (aYerothComboBox == comboBox_paiements_type_de_paiement)
     				{
         				int typedepaiement = YerothUtils::getComboBoxDatabaseQueryValue(aTableColumnFieldContentForANDSearch,
-        						YerothUtils::_typedepaiementToUserViewString);
+        						YerothUtils::_typedencaissementToUserViewString);
 
         				curSearchDBStr = QString::number(typedepaiement);
     				}
@@ -875,7 +875,7 @@ void YerothPaiementsWindow::afficher_paiements_detail()
 
     int typeDePaiementIntValue = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::TYPE_DE_PAIEMENT).toInt();
 
-    lineEdit_details_de_paiement_typedepaiement->setText(YerothUtils::_typedepaiementToUserViewString.value(typeDePaiementIntValue));
+    lineEdit_details_de_paiement_typedepaiement->setText(YerothUtils::_typedencaissementToUserViewString.value(typeDePaiementIntValue));
 
     double aDoubleValue = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::COMPTE_CLIENT).toDouble();
 

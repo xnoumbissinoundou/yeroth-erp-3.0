@@ -40513,8 +40513,8 @@ cette Vente</string>
    <addaction name="actionReinitialiserChampsDBVisible"/>
    <addaction name="actionExporter_au_format_csv"/>
    <addaction name="actionAfficherPDF"/>
-   <addaction name="actionMenu"/>
    <addaction name="actionAlertes"/>
+   <addaction name="actionMenu"/>
   </widget>
   <action name="actionA_propos">
    <property name="text">
@@ -40597,6 +40597,12 @@ cette Vente</string>
    </property>
   </action>
   <action name="actionAlertes">
+   <property name="icon">
+    <iconset>
+     <normalon>:/yeroth-erp-3-0-images/yeroth-erp-3.0-alert-good.png</normalon>
+     <selectedoff>:/yeroth-erp-3-0-images/yeroth-erp-3.0-alert-signaling.png</selectedoff>
+    </iconset>
+   </property>
    <property name="text">
     <string>Alertes</string>
    </property>

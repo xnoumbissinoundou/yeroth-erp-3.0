@@ -3900,7 +3900,6 @@ background-color: rgb(198, 198, 198);</string>
     </property>
     <addaction name="actionAdministration"/>
     <addaction name="separator"/>
-    <addaction name="actionAlertes"/>
     <addaction name="actionVente"/>
     <addaction name="separator"/>
     <addaction name="actionQui_suis_je"/>
@@ -4353,7 +4352,6 @@ background-color: rgb(198, 198, 198);</string>
    <addaction name="actionChanger_utilisateur"/>
    <addaction name="actionDeconnecter_utilisateur"/>
    <addaction name="actionAppeler_aide"/>
-   <addaction name="actionAlertes"/>
    <addaction name="actionVente"/>
   </widget>
   <action name="actionA_propos">
@@ -4448,17 +4446,6 @@ background-color: rgb(198, 198, 198);</string>
   <action name="actionQui_suis_je">
    <property name="text">
     <string>Qui suis je ?</string>
-   </property>
-   <property name="font">
-    <font>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-  </action>
-  <action name="actionAlertes">
-   <property name="text">
-    <string>Alertes</string>
    </property>
    <property name="font">
     <font>

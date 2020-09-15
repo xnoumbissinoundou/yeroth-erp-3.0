@@ -46,7 +46,6 @@ YerothStockDetailWindow::YerothStockDetailWindow()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
@@ -67,7 +66,6 @@ YerothStockDetailWindow::YerothStockDetailWindow()
     connect(actionSupprimer, SIGNAL(triggered()), this, SLOT(supprimer_ce_stock()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
     connect(actionA_propos, SIGNAL(triggered()), this, SLOT(apropos()));
-    connect(actionAlertes, SIGNAL(triggered()), this, SLOT(alertes()));
     connect(actionInformationEntreprise, SIGNAL(triggered()), this, SLOT(infosEntreprise()));
     connect(actionQui_suis_je, SIGNAL(triggered()), this, SLOT(qui_suis_je()));
 
@@ -119,7 +117,6 @@ void YerothStockDetailWindow::definirPasDeRole()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
@@ -140,7 +137,6 @@ void YerothStockDetailWindow::definirCaissier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
     pushButton_entrer->disable(this);
@@ -160,7 +156,6 @@ void YerothStockDetailWindow::definirManager()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
 
 #ifdef YEROTH_SERVER
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, true);
@@ -189,7 +184,6 @@ void YerothStockDetailWindow::definirVendeur()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
 
 #ifdef YEROTH_SERVER
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
@@ -218,7 +212,6 @@ void YerothStockDetailWindow::definirGestionaireDesStocks()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
 
 #ifdef YEROTH_SERVER
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
@@ -246,7 +239,6 @@ void YerothStockDetailWindow::definirMagasinier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
     pushButton_entrer->disable(this);

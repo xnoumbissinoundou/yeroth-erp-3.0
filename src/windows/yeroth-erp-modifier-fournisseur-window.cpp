@@ -43,7 +43,6 @@ YerothModifierFournisseurWindow::YerothModifierFournisseurWindow()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionActualiserFournisseur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionFournisseurs, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerFournisseur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
@@ -67,7 +66,6 @@ YerothModifierFournisseurWindow::YerothModifierFournisseurWindow()
     connect(actionFournisseurs, SIGNAL(triggered()), this, SLOT(entrer()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
     connect(actionA_propos, SIGNAL(triggered()), this, SLOT(apropos()));
-    connect(actionAlertes, SIGNAL(triggered()), this, SLOT(alertes()));
     connect(actionInformationEntreprise, SIGNAL(triggered()), this, SLOT(infosEntreprise()));
     connect(actionQui_suis_je, SIGNAL(triggered()), this, SLOT(qui_suis_je()));
 
@@ -118,7 +116,6 @@ void YerothModifierFournisseurWindow::definirPasDeRole()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionActualiserFournisseur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionFournisseurs, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerFournisseur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
@@ -146,7 +143,6 @@ void YerothModifierFournisseurWindow::definirCaissier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionActualiserFournisseur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionFournisseurs, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerFournisseur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
@@ -174,7 +170,6 @@ void YerothModifierFournisseurWindow::definirManager()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionActualiserFournisseur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionFournisseurs, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerFournisseur, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
@@ -207,7 +202,6 @@ void YerothModifierFournisseurWindow::definirVendeur()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionActualiserFournisseur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionFournisseurs, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerFournisseur, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
@@ -240,7 +234,6 @@ void YerothModifierFournisseurWindow::definirGestionaireDesStocks()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionActualiserFournisseur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionFournisseurs, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerFournisseur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
@@ -268,7 +261,6 @@ void YerothModifierFournisseurWindow::definirMagasinier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionActualiserFournisseur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionFournisseurs, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerFournisseur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 

@@ -13850,6 +13850,12 @@ stock (service)</string>
    </property>
   </action>
   <action name="actionAlertes">
+   <property name="icon">
+    <iconset>
+     <normalon>:/yeroth-erp-3-0-images/yeroth-erp-3.0-alert-good.png</normalon>
+     <selectedoff>:/yeroth-erp-3-0-images/yeroth-erp-3.0-alert-signaling.png</selectedoff>
+    </iconset>
+   </property>
    <property name="text">
     <string>Alertes</string>
    </property>

@@ -12345,8 +12345,6 @@
     <addaction name="separator"/>
     <addaction name="actionAdministration"/>
     <addaction name="separator"/>
-    <addaction name="actionAlertes"/>
-    <addaction name="separator"/>
     <addaction name="actionAfficherPDF"/>
     <addaction name="separator"/>
     <addaction name="actionQui_suis_je"/>
@@ -12791,7 +12789,6 @@
    <addaction name="actionDeconnecter_utilisateur"/>
    <addaction name="actionAppeler_aide"/>
    <addaction name="actionAfficherPDF"/>
-   <addaction name="actionAlertes"/>
   </widget>
   <action name="actionA_propos">
    <property name="text">
@@ -12877,21 +12874,6 @@
    </property>
    <property name="toolTip">
     <string>Déconnecter l'utilisateur</string>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-  </action>
-  <action name="actionAlertes">
-   <property name="text">
-    <string>Alertes</string>
-   </property>
-   <property name="toolTip">
-    <string>Alertes</string>
    </property>
    <property name="font">
     <font>

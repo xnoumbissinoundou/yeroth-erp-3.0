@@ -24209,8 +24209,8 @@ background-color: rgb(0, 0, 0); </string>
    <addaction name="actionAppeler_aide"/>
    <addaction name="actionAfficherPDF"/>
    <addaction name="actionBasculerLecteurDeCodebarres"/>
-   <addaction name="actionMenu"/>
    <addaction name="actionAlertes"/>
+   <addaction name="actionMenu"/>
    <addaction name="actionStocks"/>
   </widget>
   <action name="actionA_propos">
@@ -24305,6 +24305,12 @@ background-color: rgb(0, 0, 0); </string>
    </property>
   </action>
   <action name="actionAlertes">
+   <property name="icon">
+    <iconset>
+     <normalon>:/yeroth-erp-3-0-images/yeroth-erp-3.0-alert-good.png</normalon>
+     <selectedoff>:/yeroth-erp-3-0-images/yeroth-erp-3.0-alert-signaling.png</selectedoff>
+    </iconset>
+   </property>
    <property name="text">
     <string>Alertes</string>
    </property>
@@ -24510,14 +24516,14 @@ background-color: rgb(0, 0, 0); </string>
    <header>src/widgets/yeroth-erp-line-edit.hpp</header>
   </customwidget>
   <customwidget>
-   <class>YerothTableWidget</class>
-   <extends>QTableWidget</extends>
-   <header>src/widgets/yeroth-erp-table-widget.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>YerothTextEdit</class>
    <extends>QTextEdit</extends>
    <header>src/widgets/yeroth-erp-text-edit.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>YerothTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>src/widgets/yeroth-erp-table-widget.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

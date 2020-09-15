@@ -104,7 +104,7 @@ void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableM
                 	}
                 	else if (YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::TYPE_DE_PAIEMENT))
                 	{
-                		tmpQvString = YerothUtils::_typedepaiementToUserViewString.value(qv.toInt());
+                		tmpQvString = YerothUtils::_typedencaissementToUserViewString.value(qv.toInt());
                 		anItem = new YerothQStandardItem(YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(tmpQvString));
                 	}
                 	else
