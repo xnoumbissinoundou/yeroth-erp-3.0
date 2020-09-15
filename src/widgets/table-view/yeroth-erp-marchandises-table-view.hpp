@@ -11,7 +11,7 @@
 
 #include "src/widgets/yeroth-erp-qstandard-item-model.hpp"
 
-#include "src/widgets/table-view/yeroth-erp-table-view.hpp"
+#include "src/widgets/table-view/yeroth-erp-table-view-with-paging.hpp"
 
 
 #include <QtSql/QSqlTableModel>
@@ -24,7 +24,7 @@ class YerothSqlTableModel;
 class YerothPOSQStandardItemModel;
 
 
-class YerothERPMarchandisesTableView : public YerothTableView
+class YerothERPMarchandisesTableView : public YerothTableViewWITHpaging
 {
 	Q_OBJECT
 

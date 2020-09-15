@@ -85,7 +85,7 @@ YerothERPClientsWindow::YerothERPClientsWindow()
 
     _pushButton_filtrer_font = new QFont(pushButton_filtrer->font());
 
-    tableView_clients->setTableName(&YerothERPWindows::CLIENTS);
+    tableView_clients->setSqlTableName(&YerothERPWindows::CLIENTS);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);

@@ -90,7 +90,12 @@ public:
 		return _stdItemModel->rowCount();
 	}
 
-	inline void setTableName(const QString *tableName)
+	inline const QString &getSqlTableName()
+	{
+		return *_tableName;
+	}
+
+	inline void setSqlTableName(const QString *tableName)
 	{
 		_tableName = tableName;
 	}

@@ -85,7 +85,7 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
 
     _pushButton_filtrer_font = new QFont(pushButton_filtrer->font());
 
-    tableView_marchandises->setTableName(&YerothERPWindows::MARCHANDISES);
+    tableView_marchandises->setSqlTableName(&YerothERPWindows::MARCHANDISES);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, false);

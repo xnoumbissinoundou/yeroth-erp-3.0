@@ -242,7 +242,7 @@ void YerothLineEdit::setupMyQCompleter(QString sqlTableName,
     _sqlTableModel->yerothSetSort(listColumnIndex, sortOrder);
 
     _sqlTableModelView = new YerothTableView;
-    _sqlTableModelView->setTableName(&sqlTableName);
+    _sqlTableModelView->setSqlTableName(&sqlTableName);
     _sqlTableModelView->lister(*_sqlTableModel, truncateString);
 
     _searchQCompleter = new QCompleter(this);
@@ -321,7 +321,7 @@ void YerothLineEdit::setupMyStaticQCompleter(QString sqlTableName,
 void YerothLineEdit::setupMyQCompleterALL(QString sqlTableName)
 {
     _sqlTableModelView = new YerothTableView;
-    _sqlTableModelView->setTableName(&sqlTableName);
+    _sqlTableModelView->setSqlTableName(&sqlTableName);
 
     _sqlTableModel = new YerothSqlTableModel(sqlTableName, true);
 
@@ -354,7 +354,7 @@ void YerothLineEdit::setupMyQCompleterALL(QString sqlTableName)
 void YerothLineEdit::setupMyQCompleterFEFO(QString sqlTableName)
 {
     _sqlTableModelView = new YerothTableView;
-    _sqlTableModelView->setTableName(&sqlTableName);
+    _sqlTableModelView->setSqlTableName(&sqlTableName);
 
     _sqlTableModel = new YerothSqlTableModel(sqlTableName, true);
 
@@ -390,7 +390,7 @@ void YerothLineEdit::setupMyQCompleterFEFO(QString sqlTableName)
 void YerothLineEdit::setupMyQCompleterFIFO(QString sqlTableName)
 {
     _sqlTableModelView = new YerothTableView;
-    _sqlTableModelView->setTableName(&sqlTableName);
+    _sqlTableModelView->setSqlTableName(&sqlTableName);
 
     _sqlTableModel = new YerothSqlTableModel(sqlTableName, true);
 
@@ -421,7 +421,7 @@ void YerothLineEdit::setupMyQCompleterFIFO(QString sqlTableName)
 void YerothLineEdit::setupMyQCompleterLIFO(QString sqlTableName)
 {
     _sqlTableModelView = new YerothTableView;
-    _sqlTableModelView->setTableName(&sqlTableName);
+    _sqlTableModelView->setSqlTableName(&sqlTableName);
 
     _sqlTableModel = new YerothSqlTableModel(sqlTableName, true);
 
@@ -455,7 +455,7 @@ void YerothLineEdit::setupMyQCompleterLIFO(QString sqlTableName)
 void YerothLineEdit::setupMyQCompleterCodebarALL(QString sqlTableName)
 {
     _sqlTableModelView = new YerothTableView;
-    _sqlTableModelView->setTableName(&sqlTableName);
+    _sqlTableModelView->setSqlTableName(&sqlTableName);
 
     _sqlTableModel = new YerothSqlTableModel(sqlTableName, true);
 
@@ -493,7 +493,7 @@ void YerothLineEdit::setupMyQCompleterCodebarALL(QString sqlTableName)
 void YerothLineEdit::setupMyQCompleterCodebarFEFO(QString sqlTableName)
 {
     _sqlTableModelView = new YerothTableView;
-    _sqlTableModelView->setTableName(&sqlTableName);
+    _sqlTableModelView->setSqlTableName(&sqlTableName);
 
     _sqlTableModel = new YerothSqlTableModel(sqlTableName, true);
 
@@ -531,7 +531,7 @@ void YerothLineEdit::setupMyQCompleterCodebarFEFO(QString sqlTableName)
 void YerothLineEdit::setupMyQCompleterCodebarFIFO(QString sqlTableName)
 {
     _sqlTableModelView = new YerothTableView;
-    _sqlTableModelView->setTableName(&sqlTableName);
+    _sqlTableModelView->setSqlTableName(&sqlTableName);
 
     _sqlTableModel = new YerothSqlTableModel(sqlTableName, true);
 
@@ -569,7 +569,7 @@ void YerothLineEdit::setupMyQCompleterCodebarFIFO(QString sqlTableName)
 void YerothLineEdit::setupMyQCompleterCodebarLIFO(QString sqlTableName)
 {
     _sqlTableModelView = new YerothTableView;
-    _sqlTableModelView->setTableName(&sqlTableName);
+    _sqlTableModelView->setSqlTableName(&sqlTableName);
 
     _sqlTableModel = new YerothSqlTableModel(sqlTableName, true);
 

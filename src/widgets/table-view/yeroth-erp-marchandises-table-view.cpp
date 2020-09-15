@@ -36,7 +36,7 @@
 
 
 YerothERPMarchandisesTableView::YerothERPMarchandisesTableView()
-:YerothTableView(),
+:YerothTableViewWITHpaging(),
  _allWindows(YerothUtils::getAllWindows())
 {
 	_stdItemModel->_curTableView = this;
@@ -44,7 +44,7 @@ YerothERPMarchandisesTableView::YerothERPMarchandisesTableView()
 
 
 YerothERPMarchandisesTableView::YerothERPMarchandisesTableView(QWidget * parent)
-:YerothTableView(parent),
+:YerothTableViewWITHpaging(parent),
  _allWindows(YerothUtils::getAllWindows())
 {
 	_stdItemModel->_curTableView = this;

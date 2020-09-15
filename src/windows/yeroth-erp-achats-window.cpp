@@ -107,7 +107,7 @@ YerothAchatsWindow::YerothAchatsWindow()
 
     _pushButton_achats_filtrer_font = new QFont(pushButton_achats_filtrer->font());
 
-    tableView_achats->setTableName(&YerothERPWindows::ACHATS);
+    tableView_achats->setSqlTableName(&YerothERPWindows::ACHATS);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);

@@ -42,13 +42,13 @@ YerothAdminListerWindow::YerothAdminListerWindow()
 
     YEROTH_ERP_ADMIN_WRAPPER_QACTION_SET_ENABLED(actionRetournerMenuPrincipal, false);
 
-    tableView_lister_utilisateur->setTableName(&YerothERPWindows::USERS);
-    tableView_lister_localisation->setTableName(&YerothERPWindows::LOCALISATIONS);
-    tableView_lister_categorie->setTableName(&YerothERPWindows::CATEGORIES);
-    tableView_lister_compte_bancaire->setTableName(&YerothERPWindows::COMPTES_BANCAIRES);
-    tableView_lister_fournisseur->setTableName(&YerothERPWindows::FOURNISSEURS);
-    tableView_lister_remise->setTableName(&YerothERPWindows::REMISES);
-    tableView_lister_alerte->setTableName(&YerothERPWindows::ALERTES);
+    tableView_lister_utilisateur->setSqlTableName(&YerothERPWindows::USERS);
+    tableView_lister_localisation->setSqlTableName(&YerothERPWindows::LOCALISATIONS);
+    tableView_lister_categorie->setSqlTableName(&YerothERPWindows::CATEGORIES);
+    tableView_lister_compte_bancaire->setSqlTableName(&YerothERPWindows::COMPTES_BANCAIRES);
+    tableView_lister_fournisseur->setSqlTableName(&YerothERPWindows::FOURNISSEURS);
+    tableView_lister_remise->setSqlTableName(&YerothERPWindows::REMISES);
+    tableView_lister_alerte->setSqlTableName(&YerothERPWindows::ALERTES);
 
     pushButton_menu->enable(this, SLOT(menu()));
 
