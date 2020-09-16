@@ -10,7 +10,7 @@ bool YerothAdminCreateWindow::creer_utilisateur()
 
         QString nom_utilisateur(lineEdit_creer_utilisateur_id->text().toLower());
 
-        usersTableModel.yerothSetFilter(QString("LOWER(nom_utilisateur) = LOWER('%1')")
+        usersTableModel.yerothSetFilter_WITH_where_clause(QString("LOWER(nom_utilisateur) = LOWER('%1')")
                                   .arg(nom_utilisateur));
 
         //qDebug() << "++ filter: " << usersTableModel.filter();

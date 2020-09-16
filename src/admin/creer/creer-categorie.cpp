@@ -7,7 +7,7 @@ bool YerothAdminCreateWindow::creer_categorie()
 
         YerothSqlTableModel &categoriesTableModel = _allWindows->getSqlTableModel_categories();
 
-        categoriesTableModel.yerothSetFilter(QString("LOWER(nom_categorie) = LOWER('%1')")
+        categoriesTableModel.yerothSetFilter_WITH_where_clause(QString("LOWER(nom_categorie) = LOWER('%1')")
                                        .arg(lineEdit_creer_categorie_nom->text()));
 
         //qDebug() << "++ filter: " << categoriesTableModel.filter();

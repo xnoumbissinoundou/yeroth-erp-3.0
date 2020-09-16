@@ -7,7 +7,7 @@ bool YerothAdminCreateWindow::creer_compte_bancaire()
 
         YerothSqlTableModel &compteBancaireSqlTableModel = _allWindows->getSqlTableModel_comptes_bancaires();
 
-        compteBancaireSqlTableModel.yerothSetFilter(QString("LOWER(%1) = LOWER('%2')")
+        compteBancaireSqlTableModel.yerothSetFilter_WITH_where_clause(QString("LOWER(%1) = LOWER('%2')")
                                        .arg(YerothDatabaseTableColumn::REFERENCE_DU_COMPTE_BANCAIRE,
                                     		lineEdit_creer_compte_bancaire_reference_du_compte_bancaire->text()));
 

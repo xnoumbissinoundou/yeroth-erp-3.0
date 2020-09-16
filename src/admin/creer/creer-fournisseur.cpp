@@ -7,7 +7,7 @@ bool YerothAdminCreateWindow::creer_fournisseur()
 
         YerothSqlTableModel &fournisseursTableModel = _allWindows->getSqlTableModel_fournisseurs();
 
-        fournisseursTableModel.yerothSetFilter(QString("LOWER(nom_entreprise) = LOWER('%1')")
+        fournisseursTableModel.yerothSetFilter_WITH_where_clause(QString("LOWER(nom_entreprise) = LOWER('%1')")
                                          .arg(lineEdit_creer_fournisseur_nom_entreprise->text()));
 
         //qDebug() << "++ filter: " << fournisseursTableModel.filter();

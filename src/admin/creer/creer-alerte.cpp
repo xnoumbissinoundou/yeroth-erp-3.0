@@ -6,7 +6,7 @@ bool YerothAdminCreateWindow::creer_alerte()
 
         YerothSqlTableModel &alertesTableModel = _allWindows->getSqlTableModel_alertes();
 
-        alertesTableModel.yerothSetFilter(QString("LOWER(designation_alerte) = LOWER('%1')")
+        alertesTableModel.yerothSetFilter_WITH_where_clause(QString("LOWER(designation_alerte) = LOWER('%1')")
                                     .arg(lineEdit_creer_alerte_nom->text()));
 
         //qDebug() << "++ filter: " << alertesTableModel.filter();
@@ -40,7 +40,7 @@ bool YerothAdminCreateWindow::creer_alerte()
 
         YerothSqlTableModel &stocksTableModel = _allWindows->getSqlTableModel_stocks();
 
-        stocksTableModel.yerothSetFilter(
+        stocksTableModel.yerothSetFilter_WITH_where_clause(
         		GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::DESIGNATION,
         							 comboBox_creer_alerte_designation->currentText()));
 

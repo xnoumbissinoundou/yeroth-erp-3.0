@@ -62,7 +62,7 @@ bool YerothAdminCreateWindow::creer_remise()
 
         YerothSqlTableModel &remiseTableModel = _allWindows->getSqlTableModel_remises();
 
-        remiseTableModel.yerothSetFilter(QString("LOWER(%1) = LOWER('%2')")
+        remiseTableModel.yerothSetFilter_WITH_where_clause(QString("LOWER(%1) = LOWER('%2')")
                                     .arg(YerothDatabaseTableColumn::DESIGNATION_REMISE,
                                     	 lineEdit_creer_remise_nom->text()));
 
@@ -98,7 +98,7 @@ bool YerothAdminCreateWindow::creer_remise()
 
         YerothSqlTableModel &stocksTableModel = _allWindows->getSqlTableModel_stocks();
 
-        stocksTableModel.yerothSetFilter(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::DESIGNATION, lineEdit_creer_remise_designation_article->text()));
+        stocksTableModel.yerothSetFilter_WITH_where_clause(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::DESIGNATION, lineEdit_creer_remise_designation_article->text()));
 
         int stocksTableModelRowCount = stocksTableModel.easySelect();
         if (stocksTableModelRowCount <= 0)

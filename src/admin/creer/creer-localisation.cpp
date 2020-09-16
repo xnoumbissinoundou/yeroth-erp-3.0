@@ -8,7 +8,7 @@ bool YerothAdminCreateWindow::creer_localisation()
 
         YerothSqlTableModel &localisationsTableModel = _allWindows->getSqlTableModel_localisations();
 
-        localisationsTableModel.yerothSetFilter(QString("LOWER(nom_localisation) = LOWER('%1')")
+        localisationsTableModel.yerothSetFilter_WITH_where_clause(QString("LOWER(nom_localisation) = LOWER('%1')")
                                           .arg(lineEdit_creer_localisation_nom->text()));
 
         //qDebug() << "++ filter: " << localisationsTableModel.filter();
