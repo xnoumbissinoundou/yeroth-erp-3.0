@@ -28,7 +28,7 @@ class YerothSqlTableModel;
 
 
 class YerothMarchandisesWindow : public YerothWindowsCommons,
-								 private Ui_YerothStocksDeSecuriteWindow,
+								 private Ui_YerothERPMarchandisesWindow,
 								 public YerothAbstractClassYerothSearchWindow
 {
     Q_OBJECT
@@ -43,7 +43,7 @@ public:
 
     inline virtual QToolBar * getQMainWindowToolBar()
     {
-    	return toolBar_inventaireDesStocksWindow;
+    	return toolBar_marchandisesWindow;
     }
 
     virtual void definirCaissier();
@@ -62,6 +62,16 @@ public:
     {
     	checkBox_services->setChecked(checked);
     }
+
+	inline void setYerothTableViewPreviousPageNumberText(const QString &aPreviousPageNumberText)
+	{
+		label_marchandises_numero_page_precedente->setText(aPreviousPageNumberText);
+	}
+
+	inline void setYerothTableViewNextPageNumberText(const QString &aNextPageNumberText)
+	{
+		label_marchandises_numero_page_suivante->setText(aNextPageNumberText);
+	}
 
     virtual void rendreVisible(YerothSqlTableModel *stocksTableModel);
 
@@ -141,6 +151,8 @@ protected slots:
 	virtual void textChangedSearchLineEditsQCompleters();
 
 private slots:
+
+	void slot_set_page_view_row_count();
 
 	void handle_services_checkBox(int state);
 

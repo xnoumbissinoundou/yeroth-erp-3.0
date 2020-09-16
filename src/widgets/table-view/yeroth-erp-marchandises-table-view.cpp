@@ -296,6 +296,18 @@ void YerothERPMarchandisesTableView::startEditingModeSelection()
 }
 
 
+void YerothERPMarchandisesTableView::view_setYerothTableViewPreviousPageNumberText(const QString &aPreviousPageNumberText)
+{
+	_allWindows->_marchandisesWindow->setYerothTableViewPreviousPageNumberText(aPreviousPageNumberText);
+}
+
+
+void YerothERPMarchandisesTableView::view_setYerothTableViewNextPageNumberText(const QString &aNextPageNumberText)
+{
+	_allWindows->_marchandisesWindow->setYerothTableViewNextPageNumberText(aNextPageNumberText);
+}
+
+
 void YerothERPMarchandisesTableView::dataChanged(const QModelIndex &index,
                                   	  	  	  	 const QModelIndex &bottomRight,
 												 const QVector<int> &roles /*= QVector<int>()*/)

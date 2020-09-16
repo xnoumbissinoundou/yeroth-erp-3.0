@@ -37,11 +37,19 @@ public:
 		return _yerothTableViewPageRowCount;
 	}
 
+	void setYerothTableViewPageRowCount(uint rowCount);
+
 protected:
+
+	virtual void view_setYerothTableViewPreviousPageNumberText(const QString &aPreviousPageNumberText) = 0;
+
+	virtual void view_setYerothTableViewNextPageNumberText(const QString &aNextPageNumberText) = 0;
+
 
 	virtual void queryYerothTableViewCurrentPageContentRow();
 
-	virtual void setYerothTableViewPageRowCount(uint rowCount);
+
+	int	_yerothTableViewLastPageNumber;
 
 	int	_yerothTableViewPreviousPageNumber;
 

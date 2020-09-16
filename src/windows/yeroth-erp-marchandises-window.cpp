@@ -77,6 +77,16 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
 
     reinitialiser_champs_db_visibles();
 
+    label_marchandises_numero_page_precedente->setText("1");
+
+    label_marchandises_numero_page_suivante->setText("1");
+
+    label_marchandises_numero_page_precedente->
+        	setStyleSheet(YerothPosStyle::getColorStyleSheetString(QColor(COLOUR_RGB_YEROTH_WHITE_255_255_255)));
+
+    label_marchandises_numero_page_suivante->
+    		setStyleSheet(YerothPosStyle::getColorStyleSheetString(QColor(COLOUR_RGB_YEROTH_WHITE_255_255_255)));
+
     setupLineEdits();
 
     localSetupLineEditsQCompleters();
@@ -289,7 +299,7 @@ void YerothMarchandisesWindow::contextMenuEvent(QContextMenuEvent * event)
             if (tableView_marchandises->rowCount() > 0)
             {
                 QMenu menu(this);
-                menu.setPalette(toolBar_inventaireDesStocksWindow->palette());
+                menu.setPalette(toolBar_marchandisesWindow->palette());
                 menu.addAction(actionModifier_cette_reference);
                 menu.addAction(actionSupprimer_ce_stock);
                 menu.exec(event->globalPos());
@@ -397,6 +407,17 @@ void YerothMarchandisesWindow::textChangedSearchLineEditsQCompleters()
         qDebug() << QString("++ YerothMarchandisesWindow::textChangedSearchLineEditsQCompleters(): %1")
         				.arg(_yerothSqlTableModel->lastError().text());
     }
+}
+
+
+void YerothMarchandisesWindow::slot_set_page_view_row_count()
+{
+	QString pageTableViewRowCount = lineEdit_marchandises_nombre_de_lignes_par_page->text();
+
+	tableView_marchandises->
+		setYerothTableViewPageRowCount(pageTableViewRowCount.toInt());
+
+	QDEBUG_STRINGS_OUTPUT_1(pageTableViewRowCount);
 }
 
 
@@ -707,6 +728,15 @@ void YerothMarchandisesWindow::setupLineEdits()
     lineEdit_nombre_de_marchandises->setYerothEnabled(false);
     lineEdit_nombre_darticles->setYerothEnabled(false);
 	lineEdit_valeur_totale_dinventaire->setYerothEnabled(false);
+
+
+	lineEdit_marchandises_nombre_de_lignes_par_page->setValidator(&YerothUtils::IntValidator);
+
+	connect(lineEdit_marchandises_nombre_de_lignes_par_page,
+				SIGNAL(editingFinished()),
+			this,
+				SLOT(slot_set_page_view_row_count()));
+
 
 	lineEdit_marchandises_element_de_stock_resultat->setValidator(&YerothUtils::DoubleValidator);
 }

@@ -48,6 +48,12 @@ public slots:
 
 	void stopEditingModeSelection();
 
+protected:
+
+	virtual void view_setYerothTableViewPreviousPageNumberText(const QString &aPreviousPageNumberText);
+
+	virtual void view_setYerothTableViewNextPageNumberText(const QString &aNextPageNumberText);
+
 protected slots:
 
 	virtual void dataChanged(const QModelIndex &index,

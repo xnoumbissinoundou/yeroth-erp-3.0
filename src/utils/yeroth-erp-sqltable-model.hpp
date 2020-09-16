@@ -42,6 +42,11 @@ public:
 		return _fromQSqlQuery;
 	}
 
+//	inline virtual void yerothSetFilter(const QString &filter)
+//	{
+//		QSqlTableModel::setFilter(filter.trimmed());
+//	}
+
 	inline virtual void yerothSetFilter(const QString &filter)
 	{
 		QSqlTableModel::setFilter(filter.trimmed());
