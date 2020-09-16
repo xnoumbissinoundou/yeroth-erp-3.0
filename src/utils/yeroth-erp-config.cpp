@@ -64,11 +64,13 @@ QString YerothERPConfig::YEROTH_ALERT_DAEMON_ID_STR("yeroth-erp-aler");
 
 QString YerothERPConfig::YEROTH_ALERT_DAEMON_ID("yeroth-erp-alert-3-0");
 
-unsigned int YerothERPConfig::alert_period_time_interval(0);
+uint YerothERPConfig::alert_period_time_interval(0);
 
-unsigned int YerothERPConfig::alert_quantity_time_interval(0);
+uint YerothERPConfig::alert_quantity_time_interval(0);
 
-unsigned int YerothERPConfig::max_string_display_length(22);
+uint YerothERPConfig::standard_pagination_number(12);
+
+uint YerothERPConfig::max_string_display_length(22);
 
 double YerothERPConfig::tva_value(19.25/100.0);
 
@@ -216,7 +218,10 @@ void YerothERPConfig::saveYerothConfig()
 				.arg(YerothERPConfig::annee_depart_rapports_chiffre_affaire_value)
 
 		<< QString("local_parameter_length_maximal_display_string=%1\n")
-				.arg(QString::number(YerothERPConfig::max_string_display_length));
+				.arg(QString::number(YerothERPConfig::max_string_display_length))
+
+		<< QString("local_parameter_length_standard_pagination_number=%1\n")
+				.arg(QString::number(YerothERPConfig::standard_pagination_number));
 
 	file.close();
 }

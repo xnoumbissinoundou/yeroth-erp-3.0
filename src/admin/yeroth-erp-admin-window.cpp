@@ -1153,6 +1153,8 @@ void YerothAdminWindow::read_configuration()
 
     lineEdit_longueur_maximale_string->setText(QString::number(YerothERPConfig::max_string_display_length));
 
+    lineEdit_taille_de_pagination_par_defaut->setText(QString::number(YerothERPConfig::standard_pagination_number));
+
     lineEdit_repertoire_fichiers_temporaires->setText(YerothERPConfig::temporaryFilesDir);
 
     lineEdit_tva_value->setText(YerothUtils::getTvaString());
@@ -1403,6 +1405,8 @@ void YerothAdminWindow::read_app_parameters_init_configuration()
 
     lineEdit_longueur_maximale_string->setText(QString::number(YerothERPConfig::max_string_display_length));
 
+    lineEdit_taille_de_pagination_par_defaut->setText(QString::number(YerothERPConfig::standard_pagination_number));
+
     lineEdit_fichier_systeme_imprimante_thermique->setText(YerothERPConfig::pathToThermalPrinterDeviceFile);
 
     lineEdit_repertoire_systeme_latex->setText(YerothERPConfig::pathToLatexSystemRootFolder);
@@ -1592,7 +1596,12 @@ void YerothAdminWindow::enregistrer_system_local_app_parameters_configuration()
 
     if (lineEdit_longueur_maximale_string->checkField())
     {
-    	YerothERPConfig::max_string_display_length = lineEdit_longueur_maximale_string->text().toUInt();
+    	YerothERPConfig::max_string_display_length = lineEdit_longueur_maximale_string->text().toInt();
+    }
+
+    if (lineEdit_taille_de_pagination_par_defaut->checkField())
+    {
+    	YerothERPConfig::standard_pagination_number = lineEdit_taille_de_pagination_par_defaut->text().toInt();
     }
 
     if (lineEdit_pdfReader->checkField())

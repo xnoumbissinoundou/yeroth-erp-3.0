@@ -346,7 +346,7 @@ void readTexTemplateFiles(YerothLogger &logger)
 }
 
 
-void read_system_local_yeroth_configuration(YerothERPWindows &allWindows)
+void read_system_local_yeroth_configuration()
 {
 	QFile file(YerothERPConfig::FILE_ABSOLUTEPATH_YEROTH_ERP_3_0_SYSTEM_LOCAL_CONFIGURATION_PROPERTIES);
 
@@ -414,6 +414,10 @@ void read_system_local_yeroth_configuration(YerothERPWindows &allWindows)
 		else if (YerothUtils::isEqualCaseInsensitive("local_parameter_length_maximal_display_string", list.at(0)))
 		{
 			YerothERPConfig::max_string_display_length = list.at(1).trimmed().toInt();
+		}
+		else if (YerothUtils::isEqualCaseInsensitive("local_parameter_length_standard_pagination_number", list.at(0)))
+		{
+			YerothERPConfig::standard_pagination_number = list.at(1).trimmed().toInt();
 		}
 	}
 	while(!line.isNull());
@@ -553,6 +557,8 @@ int main(int argc, char *argv[])
 
     YerothERPConfig::initYerothConfig(initCfg);
 
+    read_system_local_yeroth_configuration();
+
     YerothDatabase database;
 
     YerothERPWindows allWindows(qApp->desktop());
@@ -651,8 +657,6 @@ int main(int argc, char *argv[])
     {
         YerothUtils::executer_fichier_sql(sql_table_list.at(k), &logger);
     }
-
-    read_system_local_yeroth_configuration(allWindows);
 
     read_yeroth_configuration(logger, allWindows);
 

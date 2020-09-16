@@ -73,11 +73,13 @@ public:
 
 	static QString FILE_ABSOLUTEPATH_YEROTH_ERP_3_0_MANUEL__DE_LUTILISATEUR_ADMINISTRATEUR;
 
-	static unsigned int alert_period_time_interval;
+	static uint alert_period_time_interval;
 
-	static unsigned int alert_quantity_time_interval;
+	static uint alert_quantity_time_interval;
 
-	static unsigned int max_string_display_length;
+	static uint standard_pagination_number;
+
+	static uint max_string_display_length;
 
 	static double tva_value;
 
