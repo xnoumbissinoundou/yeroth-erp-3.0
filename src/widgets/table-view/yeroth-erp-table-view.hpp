@@ -44,7 +44,8 @@ public:
 
 	void setupSelectionOptions();
 
-	inline virtual void lister_les_elements_du_tableau(YerothSqlTableModel &tableModel_in_out)
+	inline virtual void lister_les_elements_du_tableau(YerothSqlTableModel &tableModel,
+													   bool execSelectStatement = true)
 	{
 	}
 

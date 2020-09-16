@@ -26,6 +26,10 @@ public:
 	{
 	}
 
+	inline int getYerothSqlTableModelTotalRowCount()
+	{
+		return _yerothSqlTableModelTotalRowCount;
+	}
 
 	inline int getYerothTableViewPageCount()
 	{
@@ -37,17 +41,34 @@ public:
 		return _yerothTableViewPageRowCount;
 	}
 
-	void setYerothTableViewPageRowCount(uint rowCount);
+	virtual void setYerothTableViewPageRowCount(uint rowCount);
+
+	virtual void displayYerothTableViewPageContentRowLimit(YerothSqlTableModel &curYerothSqlTableModel);
+
+	virtual void queryYerothTableViewCurrentPageContentRow();
+
+public slots:
+
+	virtual void viewYerothTableViewPreviousPage();
+
+	virtual void viewYerothTableViewNextPage();
 
 protected:
+
+	inline virtual void view_lister_les_elements_du_tableau(YerothSqlTableModel &tableModel)
+	{
+		lister_les_elements_du_tableau(tableModel, false);
+	}
 
 	virtual void view_setYerothTableViewPreviousPageNumberText(const QString &aPreviousPageNumberText) = 0;
 
 	virtual void view_setYerothTableViewNextPageNumberText(const QString &aNextPageNumberText) = 0;
 
 
-	virtual void queryYerothTableViewCurrentPageContentRow();
+	int	_yerothSqlTableModelTotalRowCount;
 
+
+	int _yerothTableViewCurPageFromRowNumber;
 
 	int	_yerothTableViewLastPageNumber;
 

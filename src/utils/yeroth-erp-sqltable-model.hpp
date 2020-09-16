@@ -42,10 +42,7 @@ public:
 		return _fromQSqlQuery;
 	}
 
-//	inline virtual void yerothSetFilter(const QString &filter)
-//	{
-//		QSqlTableModel::setFilter(filter.trimmed());
-//	}
+	virtual int yeroth_specify_filter_FROM_SELECT_STATEMENT(const QString &filter);
 
 	inline virtual void yerothSetFilter_WITH_where_clause(const QString &filter)
 	{
@@ -116,7 +113,9 @@ public:
 
 	bool yerothSetSort(int column, Qt::SortOrder order);
 
-	bool yerothSetQuery(QString aSqlQuery);
+	int yerothSetQueryRowCount(const QString &aSqlQuery);
+
+	bool yerothSetQuery(const QString &aSqlQuery);
 
 	inline QString yerothSelectStatement()
 	{

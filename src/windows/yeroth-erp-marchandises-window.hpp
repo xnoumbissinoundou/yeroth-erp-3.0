@@ -152,6 +152,16 @@ protected slots:
 
 private slots:
 
+	inline void slot_marchandises_window_YerothTableViewPreviousPage()
+	{
+		tableView_marchandises->viewYerothTableViewPreviousPage();
+	}
+
+	inline void slot_marchandises_window_YerothTableViewNextPage()
+	{
+		tableView_marchandises->viewYerothTableViewNextPage();
+	}
+
 	void slot_set_page_view_row_count();
 
 	void handle_services_checkBox(int state);
@@ -184,6 +194,8 @@ private:
     bool					_currentlyFiltered;
 
     int 					_lastSelectedRow;
+
+    QIntValidator 			*_nombre_de_ligne_IntValidator;
 
     QFont 					*_pushButton_filtrer_font;
 

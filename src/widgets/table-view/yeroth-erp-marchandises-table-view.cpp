@@ -51,7 +51,8 @@ YerothERPMarchandisesTableView::YerothERPMarchandisesTableView(QWidget * parent)
 }
 
 
-void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel)
+void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel,
+																	bool execSelectStatement /* = true */)
 {
 	_stdItemModel->_curSqlTableModel = &tableModel;
 
@@ -61,7 +62,12 @@ void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTab
 
     emit signal_lister(tableModel);
 
-    bool s = tableModel.select();
+    bool s = true;
+
+    if (execSelectStatement)
+    {
+    	s = tableModel.select();
+    }
 
     int rows = tableModel.rowCount();
 
@@ -71,7 +77,7 @@ void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTab
 
     _stdItemModel->setColumnCount(columns);
 
-    //qDebug() << "++  rows: " << rows;
+//    qDebug() << "++  rows: " << rows;
 
     if (tableModel.isFromQSqlQuery() && rows <= 0)
     {

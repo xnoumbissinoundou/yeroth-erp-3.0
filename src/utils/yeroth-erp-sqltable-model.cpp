@@ -66,6 +66,19 @@ YerothSqlTableModel::YerothSqlTableModel(const QString &sqlTableName,
 }
 
 
+int YerothSqlTableModel::yeroth_specify_filter_FROM_SELECT_STATEMENT(const QString &filter)
+{
+	QString curYerothSelectStatement(yerothSelectStatement());
+
+	curYerothSelectStatement.append(QString(" %1")
+										.arg(filter));
+
+	int queryResultSize = yerothSetQueryRowCount(curYerothSelectStatement);
+
+	return queryResultSize;
+}
+
+
 int YerothSqlTableModel::Is_SearchQSqlTable(QString tableColumn,
         								    QString searchTerm)
 {
@@ -256,8 +269,27 @@ bool YerothSqlTableModel::yerothSetSort(int column, Qt::SortOrder order)
     return select();
 }
 
+int YerothSqlTableModel::yerothSetQueryRowCount(const QString &aSqlQuery)
+{
+	QSqlQueryModel::setQuery(aSqlQuery);
 
-bool YerothSqlTableModel::yerothSetQuery(QString aSqlQuery)
+   	if (lastError().isValid())
+   	{
+   		qDebug() << "++ YerothSqlTableModel::yerothSetQuery(QString): \n\t"
+   				 << aSqlQuery
+				 << "\n"
+				 << lastError();
+
+   		return -1;
+   	}
+
+   	int queryResultRowCount = QSqlQueryModel::rowCount();
+
+   	return queryResultRowCount;
+}
+
+
+bool YerothSqlTableModel::yerothSetQuery(const QString &aSqlQuery)
 {
 	QSqlQueryModel::setQuery(aSqlQuery);
 
