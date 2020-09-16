@@ -51,9 +51,9 @@ public slots:
 
 protected:
 
-	virtual void view_setYerothTableViewPreviousPageNumberText(const QString &aPreviousPageNumberText);
+	virtual void view_setYerothTableViewLastPageNumberText(const QString &aLastPageNumberText);
 
-	virtual void view_setYerothTableViewNextPageNumberText(const QString &aNextPageNumberText);
+	virtual void view_setYerothTableViewCurrentPageNumberText(const QString &aNextPageNumberText);
 
 protected slots:
 

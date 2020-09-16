@@ -98,6 +98,8 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
+    pushButton_page_premiere->disable(this);
+	pushButton_page_derniere->disable(this);
 
     pushButton_page_precedente->disable(this);
 	pushButton_page_suivante->disable(this);
@@ -414,8 +416,7 @@ void YerothMarchandisesWindow::slot_set_page_view_row_count()
 	if (0 != pageTableViewRowCount)
 	{
 		tableView_marchandises->setYerothTableViewPageRowCount(pageTableViewRowCount);
-
-//		QDEBUG_STRINGS_OUTPUT_2("pageTableViewRowCount", pageTableViewRowCountText);
+		//		QDEBUG_STRINGS_OUTPUT_2("pageTableViewRowCount", pageTableViewRowCountText);
 	}
 }
 
@@ -632,10 +633,13 @@ bool YerothMarchandisesWindow::slot_filtrer()
 								 mathOperator,
 								 stockTableColumnValue));
 
-	//qDebug() << QString("filterString: %1")
-	//				.arg(filterString);
+//	qDebug() << QString("filterString: %1")
+//					.arg(filterString);
 
 	_curMarchandisesTableModel->yerothSetFilter_WITH_where_clause(filterString);
+
+//	QDEBUG_STRINGS_OUTPUT_2("_curMarchandisesTableModel->yerothSelectStatement()",
+//			_curMarchandisesTableModel->yerothSelectStatement());
 
 	int resultRows = _curMarchandisesTableModel->easySelect();
 
@@ -730,7 +734,6 @@ void YerothMarchandisesWindow::setupLineEdits()
     lineEdit_nombre_darticles->setYerothEnabled(false);
 	lineEdit_valeur_totale_dinventaire->setYerothEnabled(false);
 
-
 	if (0 == _nombre_de_ligne_IntValidator)
 	{
 		_nombre_de_ligne_IntValidator = new QIntValidator(0, 250);
@@ -800,6 +803,8 @@ void YerothMarchandisesWindow::rendreVisible(YerothSqlTableModel * stocksTableMo
 
 	_curMarchandisesTableModel->yerothSetFilter_WITH_where_clause(currentFilter);
 
+//	QDEBUG_STRINGS_OUTPUT_2("currentFilter", currentFilter);
+
 	afficherMarchandises();
 
 	localSetupLineEditsQCompleters();
@@ -822,8 +827,8 @@ void YerothMarchandisesWindow::definirCaissier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
-    pushButton_page_precedente->disable(this);
-	pushButton_page_suivante->disable(this);
+    pushButton_page_premiere->disable(this);
+	pushButton_page_derniere->disable(this);
 
     pushButton_reinitialiser_filtre->disable(this);
     pushButton_filtrer->disable(this);
@@ -855,6 +860,9 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 #endif
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
+
+    pushButton_page_premiere->enable(this, SLOT(slot_marchandises_window_YerothTableViewFirstPage()));
+	pushButton_page_derniere->enable(this, SLOT(slot_marchandises_window_YerothTableViewLastPage()));
 
     pushButton_page_precedente->enable(this, SLOT(slot_marchandises_window_YerothTableViewPreviousPage()));
 	pushButton_page_suivante->enable(this, SLOT(slot_marchandises_window_YerothTableViewNextPage()));
@@ -890,6 +898,9 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
+    pushButton_page_premiere->enable(this, SLOT(slot_marchandises_window_YerothTableViewFirstPage()));
+	pushButton_page_derniere->enable(this, SLOT(slot_marchandises_window_YerothTableViewLastPage()));
+
     pushButton_page_precedente->enable(this, SLOT(slot_marchandises_window_YerothTableViewPreviousPage()));
 	pushButton_page_suivante->enable(this, SLOT(slot_marchandises_window_YerothTableViewNextPage()));
 
@@ -924,6 +935,9 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
+    pushButton_page_premiere->enable(this, SLOT(slot_marchandises_window_YerothTableViewFirstPage()));
+	pushButton_page_derniere->enable(this, SLOT(slot_marchandises_window_YerothTableViewLastPage()));
+
     pushButton_page_precedente->enable(this, SLOT(slot_marchandises_window_YerothTableViewPreviousPage()));
 	pushButton_page_suivante->enable(this, SLOT(slot_marchandises_window_YerothTableViewNextPage()));
 
@@ -951,6 +965,9 @@ void YerothMarchandisesWindow::definirMagasinier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
+    pushButton_page_premiere->disable(this);
+	pushButton_page_derniere->disable(this);
+
     pushButton_page_precedente->disable(this);
 	pushButton_page_suivante->disable(this);
 
@@ -977,6 +994,9 @@ void YerothMarchandisesWindow::definirPasDeRole()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
+
+    pushButton_page_premiere->disable(this);
+	pushButton_page_derniere->disable(this);
 
     pushButton_page_precedente->disable(this);
 	pushButton_page_suivante->disable(this);
@@ -1097,11 +1117,10 @@ void YerothMarchandisesWindow::reinitialiser_recherche()
 void YerothMarchandisesWindow::afficherMarchandises(YerothSqlTableModel &aYerothSqlTableModel)
 {
 	tableView_marchandises->queryYerothTableViewCurrentPageContentRow();
-//    tableView_marchandises->lister_les_elements_du_tableau(aYerothSqlTableModel);
 
     tableView_show_or_hide_columns(*tableView_marchandises);
 
-    int rowCount = tableView_marchandises->rowCount();
+    int rowCount = tableView_marchandises->getYerothSqlTableModelTotalRowCount();
 
     lineEdit_nombre_de_marchandises->setText(GET_NUM_STRING(rowCount));
 

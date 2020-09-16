@@ -41,6 +41,8 @@ public:
 		return _yerothTableViewPageRowCount;
 	}
 
+	void calculate_and_set_YerothViewLastPageNumber();
+
 	virtual void setYerothTableViewPageRowCount(uint rowCount);
 
 	virtual void displayYerothTableViewPageContentRowLimit(YerothSqlTableModel &curYerothSqlTableModel);
@@ -48,6 +50,10 @@ public:
 	virtual void queryYerothTableViewCurrentPageContentRow();
 
 public slots:
+
+	virtual void viewYerothTableViewFirstPage();
+
+	virtual void viewYerothTableViewLastPage();
 
 	virtual void viewYerothTableViewPreviousPage();
 
@@ -60,21 +66,15 @@ protected:
 		lister_les_elements_du_tableau(tableModel, false);
 	}
 
-	virtual void view_setYerothTableViewPreviousPageNumberText(const QString &aPreviousPageNumberText) = 0;
+	virtual void view_setYerothTableViewLastPageNumberText(const QString &aPreviousPageNumberText) = 0;
 
-	virtual void view_setYerothTableViewNextPageNumberText(const QString &aNextPageNumberText) = 0;
+	virtual void view_setYerothTableViewCurrentPageNumberText(const QString &aNextPageNumberText) = 0;
 
 
 	int	_yerothSqlTableModelTotalRowCount;
 
 
-	int _yerothTableViewCurPageFromRowNumber;
-
 	int	_yerothTableViewLastPageNumber;
-
-	int	_yerothTableViewPreviousPageNumber;
-
-	int	_yerothTableViewNextPageNumber;
 
 	int	_yerothTableViewCurPageNumber;
 

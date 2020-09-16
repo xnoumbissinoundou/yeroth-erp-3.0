@@ -302,15 +302,15 @@ void YerothERPMarchandisesTableView::startEditingModeSelection()
 }
 
 
-void YerothERPMarchandisesTableView::view_setYerothTableViewPreviousPageNumberText(const QString &aPreviousPageNumberText)
+void YerothERPMarchandisesTableView::view_setYerothTableViewLastPageNumberText(const QString &aLastPageNumberText)
 {
-	_allWindows->_marchandisesWindow->setYerothTableViewPreviousPageNumberText(aPreviousPageNumberText);
+	_allWindows->_marchandisesWindow->setYerothTableViewLastPageNumberText(aLastPageNumberText);
 }
 
 
-void YerothERPMarchandisesTableView::view_setYerothTableViewNextPageNumberText(const QString &aNextPageNumberText)
+void YerothERPMarchandisesTableView::view_setYerothTableViewCurrentPageNumberText(const QString &aNextPageNumberText)
 {
-	_allWindows->_marchandisesWindow->setYerothTableViewNextPageNumberText(aNextPageNumberText);
+	_allWindows->_marchandisesWindow->setYerothTableViewCurrentPageNumberText(aNextPageNumberText);
 }
 
 

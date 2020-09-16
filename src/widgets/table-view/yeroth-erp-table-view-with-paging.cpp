@@ -20,13 +20,10 @@
 YerothTableViewWITHpaging::YerothTableViewWITHpaging()
 :YerothTableView(),
  _yerothSqlTableModelTotalRowCount(0),
- _yerothTableViewCurPageFromRowNumber(0),
  _yerothTableViewLastPageNumber(1),
- _yerothTableViewPreviousPageNumber(1),
- _yerothTableViewNextPageNumber(1),
  _yerothTableViewCurPageNumber(1),
  _yerothTableViewPageCount(1),
- _yerothTableViewPageRowCount(12)
+ _yerothTableViewPageRowCount(YerothERPConfig::standard_pagination_number)
 {
 }
 
@@ -34,41 +31,16 @@ YerothTableViewWITHpaging::YerothTableViewWITHpaging()
 YerothTableViewWITHpaging::YerothTableViewWITHpaging(QWidget * parent)
 :YerothTableView(parent),
  _yerothSqlTableModelTotalRowCount(0),
- _yerothTableViewCurPageFromRowNumber(0),
  _yerothTableViewLastPageNumber(1),
- _yerothTableViewPreviousPageNumber(1),
- _yerothTableViewNextPageNumber(1),
  _yerothTableViewCurPageNumber(1),
  _yerothTableViewPageCount(1),
- _yerothTableViewPageRowCount(12)
+ _yerothTableViewPageRowCount(YerothERPConfig::standard_pagination_number)
 {
 }
 
 
-void YerothTableViewWITHpaging::setYerothTableViewPageRowCount(uint rowCount)
+void YerothTableViewWITHpaging::calculate_and_set_YerothViewLastPageNumber()
 {
-	_yerothTableViewPageRowCount = rowCount;
-
-	double realPageCount = YerothTableView::rowCount() / _yerothTableViewPageRowCount;
-
-	_yerothTableViewPageCount = qCeil(realPageCount);
-
-	_yerothTableViewPreviousPageNumber = 1;
-	_yerothTableViewCurPageNumber = 1;
-	_yerothTableViewNextPageNumber = _yerothTableViewCurPageNumber + 1;
-	_yerothTableViewCurPageFromRowNumber = 0;
-
-	queryYerothTableViewCurrentPageContentRow();
-}
-
-
-void YerothTableViewWITHpaging::displayYerothTableViewPageContentRowLimit(YerothSqlTableModel &curYerothSqlTableModel)
-{
-	if (1 == _yerothTableViewCurPageNumber)
-	{
-//		curYerothSqlTableModel.resetFilter();
-	}
-
 	QString selectTotalSqlTableRowCountStr(QString("select COUNT(*) from %1")
 												.arg(YerothTableView::getSqlTableName()));
 
@@ -81,68 +53,77 @@ void YerothTableViewWITHpaging::displayYerothTableViewPageContentRowLimit(Yeroth
 		_yerothSqlTableModelTotalRowCount = query.value(0).toInt();
 	}
 
-	if (_yerothTableViewCurPageFromRowNumber > _yerothSqlTableModelTotalRowCount)
+	double tmp = _yerothSqlTableModelTotalRowCount / (double) _yerothTableViewPageRowCount;
+
+	_yerothTableViewLastPageNumber = qCeil(tmp);
+
+	if (_yerothTableViewLastPageNumber <= 0)
+	{
+		_yerothTableViewLastPageNumber = 1;
+	}
+
+	view_setYerothTableViewLastPageNumberText(QString::number(_yerothTableViewLastPageNumber));
+}
+
+
+void YerothTableViewWITHpaging::setYerothTableViewPageRowCount(uint rowCount)
+{
+	_yerothTableViewPageRowCount = rowCount;
+
+	double realPageCount = YerothTableView::rowCount() / _yerothTableViewPageRowCount;
+
+	_yerothTableViewPageCount = qCeil(realPageCount);
+
+	_yerothTableViewCurPageNumber = 0;
+
+	viewYerothTableViewNextPage();
+}
+
+
+void YerothTableViewWITHpaging::displayYerothTableViewPageContentRowLimit(YerothSqlTableModel &curYerothSqlTableModel)
+{
+	uint previousPageNumber = 0;
+
+	if (_yerothTableViewCurPageNumber > 1)
+	{
+		previousPageNumber = _yerothTableViewCurPageNumber - 1;
+	}
+
+	uint curPageFromRowNumber = previousPageNumber * _yerothTableViewPageRowCount;
+
+	calculate_and_set_YerothViewLastPageNumber();
+
+	if (curPageFromRowNumber > _yerothSqlTableModelTotalRowCount)
 	{
 		return ;
 	}
 
-	QString curYerothTableViewPageFilter =
-			QString("limit %2, %3")
-				.arg(QString::number(_yerothTableViewCurPageFromRowNumber),
-					 QString::number(_yerothTableViewPageRowCount));
+	QString curYerothTableViewPageFilter = QString("limit %2, %3")
+												.arg(QString::number(curPageFromRowNumber),
+													 QString::number(_yerothTableViewPageRowCount));
 
-//	QDEBUG_STRINGS_OUTPUT_2("yerothTableViewFilter", curYerothTableViewPageFilter);
-
-	querySize = curYerothSqlTableModel.yeroth_specify_filter_FROM_SELECT_STATEMENT(curYerothTableViewPageFilter);
+	int querySize  =
+			curYerothSqlTableModel.yeroth_specify_filter_FROM_SELECT_STATEMENT(curYerothTableViewPageFilter);
 
 	view_lister_les_elements_du_tableau(curYerothSqlTableModel);
 
-//	QDEBUG_STRINGS_OUTPUT_2("yerothSelectStatement", curYerothSqlTableModel.yerothSelectStatement());
-
-//	QDEBUG_STRINGS_OUTPUT_2("querySize", QString::number(querySize));
-
 	if (querySize > 0)
 	{
-		_yerothTableViewNextPageNumber = _yerothTableViewCurPageNumber + 1;
-
-		if (1 != _yerothTableViewCurPageNumber)
+		if (curPageFromRowNumber 			<= _yerothSqlTableModelTotalRowCount &&
+			_yerothTableViewCurPageNumber   !=_yerothTableViewLastPageNumber)
 		{
-			_yerothTableViewPreviousPageNumber = _yerothTableViewCurPageNumber - 1;
+			view_setYerothTableViewCurrentPageNumberText(QString::number(_yerothTableViewCurPageNumber));
 		}
 		else
 		{
-			_yerothTableViewPreviousPageNumber = 1;
+			view_setYerothTableViewCurrentPageNumberText(QString::number(_yerothTableViewLastPageNumber));
 		}
 
-		double tmp = _yerothSqlTableModelTotalRowCount / (double) _yerothTableViewPageRowCount;
-
-//		QDEBUG_STRINGS_OUTPUT_2("_yerothTableViewPageRowCount", QString::number(_yerothTableViewPageRowCount));
-
-//		QDEBUG_STRINGS_OUTPUT_2("_yerothSqlTableModelTotalRowCount", QString::number(_yerothSqlTableModelTotalRowCount));
-
-		_yerothTableViewLastPageNumber = qCeil(tmp);
-
-//		QDEBUG_STRINGS_OUTPUT_2("_yerothTableViewLastPageNumber", QString::number(_yerothTableViewLastPageNumber));
-
-		if (_yerothTableViewPreviousPageNumber >= 1 &&
-			_yerothTableViewCurPageNumber != 1)
-		{
-			view_setYerothTableViewPreviousPageNumberText(QString::number(_yerothTableViewPreviousPageNumber));
-		}
-		else
-		{
-			view_setYerothTableViewPreviousPageNumberText("-");
-		}
-
-		if (_yerothTableViewCurPageFromRowNumber <= _yerothSqlTableModelTotalRowCount &&
-			_yerothTableViewLastPageNumber != _yerothTableViewCurPageNumber)
-		{
-			view_setYerothTableViewNextPageNumberText(QString::number(_yerothTableViewNextPageNumber));
-		}
-		else
-		{
-			view_setYerothTableViewNextPageNumberText("-");
-		}
+		calculate_and_set_YerothViewLastPageNumber();
+	}
+	else
+	{
+		calculate_and_set_YerothViewLastPageNumber();
 	}
 }
 
@@ -161,75 +142,46 @@ void YerothTableViewWITHpaging::queryYerothTableViewCurrentPageContentRow()
 }
 
 
+void YerothTableViewWITHpaging::viewYerothTableViewFirstPage()
+{
+	_yerothTableViewCurPageNumber = 1;
+
+	queryYerothTableViewCurrentPageContentRow();
+}
+
+
+void YerothTableViewWITHpaging::viewYerothTableViewLastPage()
+{
+	calculate_and_set_YerothViewLastPageNumber();
+
+	_yerothTableViewCurPageNumber = _yerothTableViewLastPageNumber;
+
+	queryYerothTableViewCurrentPageContentRow();
+}
+
+
 void YerothTableViewWITHpaging::viewYerothTableViewPreviousPage()
 {
-	YerothSqlTableModel *curYerothSqlTableModel =
-			YerothERPWindows::getSqlTableModelFromName(YerothTableView::getSqlTableName());
-
-	if (0 == curYerothSqlTableModel || (1 == _yerothTableViewCurPageNumber))
+	if (_yerothTableViewCurPageNumber > 1)
 	{
-		return ;
-	}
-
-	int potentialPreviousPage = _yerothTableViewCurPageNumber - 2;
-
-	if (potentialPreviousPage >= 1)
-	{
-		_yerothTableViewPreviousPageNumber 		= potentialPreviousPage;
-		_yerothTableViewCurPageNumber 			= _yerothTableViewPreviousPageNumber + 1;
-		_yerothTableViewCurPageFromRowNumber 	= _yerothTableViewPreviousPageNumber * _yerothTableViewPageRowCount;
+		_yerothTableViewCurPageNumber = _yerothTableViewCurPageNumber - 1;
 	}
 	else
 	{
-		view_setYerothTableViewPreviousPageNumberText("-");
-
-		_yerothTableViewPreviousPageNumber = 1;
 		_yerothTableViewCurPageNumber = 1;
-		_yerothTableViewCurPageFromRowNumber = 0;
 	}
 
-	_yerothTableViewNextPageNumber = _yerothTableViewCurPageNumber + 1;
-
-//	QDEBUG_STRINGS_OUTPUT_2("_yerothTableViewPreviousPageNumber", QString::number(_yerothTableViewPreviousPageNumber));
-//	QDEBUG_STRINGS_OUTPUT_2("_yerothTableViewCurPageNumber", QString::number(_yerothTableViewCurPageNumber));
-//	QDEBUG_STRINGS_OUTPUT_2("_yerothTableViewNextPageNumber", QString::number(_yerothTableViewNextPageNumber));
-//	QDEBUG_STRINGS_OUTPUT_2("_yerothTableViewCurPageFromRowNumber", QString::number(_yerothTableViewCurPageFromRowNumber));
-
-	displayYerothTableViewPageContentRowLimit(*curYerothSqlTableModel);
+	queryYerothTableViewCurrentPageContentRow();
 }
 
 
 void YerothTableViewWITHpaging::viewYerothTableViewNextPage()
 {
-	YerothSqlTableModel *curYerothSqlTableModel =
-			YerothERPWindows::getSqlTableModelFromName(YerothTableView::getSqlTableName());
-
-	if (0 == curYerothSqlTableModel)
+	if (_yerothTableViewCurPageNumber < _yerothTableViewLastPageNumber)
 	{
-		return ;
+		_yerothTableViewCurPageNumber = _yerothTableViewCurPageNumber + 1;
 	}
 
-	_yerothTableViewPreviousPageNumber 		= _yerothTableViewCurPageNumber;
-
-	_yerothTableViewCurPageNumber 			= _yerothTableViewPreviousPageNumber + 1;
-
-	_yerothTableViewNextPageNumber 			= _yerothTableViewCurPageNumber + 1;
-
-	_yerothTableViewCurPageFromRowNumber 	= _yerothTableViewPreviousPageNumber * _yerothTableViewPageRowCount;
-
-	if (_yerothTableViewCurPageFromRowNumber <= _yerothSqlTableModelTotalRowCount)
-	{
-		displayYerothTableViewPageContentRowLimit(*curYerothSqlTableModel);
-	}
-	else
-	{
-		view_setYerothTableViewNextPageNumberText("-");
-
-		_yerothTableViewNextPageNumber 		= _yerothTableViewCurPageNumber;
-
-		_yerothTableViewCurPageNumber 		= _yerothTableViewPreviousPageNumber;
-
-		_yerothTableViewPreviousPageNumber 	= _yerothTableViewCurPageNumber - 1;
-	}
+	queryYerothTableViewCurrentPageContentRow();
 }
 

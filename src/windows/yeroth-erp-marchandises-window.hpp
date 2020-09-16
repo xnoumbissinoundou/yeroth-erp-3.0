@@ -4,8 +4,8 @@
  *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
  */
 
-#ifndef YEROTH_ERP_INVENTAIRE_DES_STOCKS_WINDOW_HPP_
-#define YEROTH_ERP_INVENTAIRE_DES_STOCKS_WINDOW_HPP_
+#ifndef YEROTH_ERP_MARCHANDISES_WINDOW_HPP_
+#define YEROTH_ERP_MARCHANDISES_WINDOW_HPP_
 
 #include "../../ui_yeroth-erp-marchandises-window.h"
 
@@ -63,14 +63,14 @@ public:
     	checkBox_services->setChecked(checked);
     }
 
-	inline void setYerothTableViewPreviousPageNumberText(const QString &aPreviousPageNumberText)
+	inline void setYerothTableViewLastPageNumberText(const QString &aLastPageNumberText)
 	{
-		label_marchandises_numero_page_precedente->setText(aPreviousPageNumberText);
+		label_marchandises_numero_page_derniere->setText(aLastPageNumberText);
 	}
 
-	inline void setYerothTableViewNextPageNumberText(const QString &aNextPageNumberText)
+	inline void setYerothTableViewCurrentPageNumberText(const QString &aNextPageNumberText)
 	{
-		label_marchandises_numero_page_suivante->setText(aNextPageNumberText);
+		label_marchandises_numero_page_courante->setText(aNextPageNumberText);
 	}
 
     virtual void rendreVisible(YerothSqlTableModel *stocksTableModel);
@@ -152,6 +152,16 @@ protected slots:
 
 private slots:
 
+	inline void slot_marchandises_window_YerothTableViewFirstPage()
+	{
+		tableView_marchandises->viewYerothTableViewFirstPage();
+	}
+
+	inline void slot_marchandises_window_YerothTableViewLastPage()
+	{
+		tableView_marchandises->viewYerothTableViewLastPage();
+	}
+
 	inline void slot_marchandises_window_YerothTableViewPreviousPage()
 	{
 		tableView_marchandises->viewYerothTableViewPreviousPage();
@@ -202,4 +212,4 @@ private:
     YerothSqlTableModel 	*_curMarchandisesTableModel;
 };
 
-#endif /* YEROTH_ERP_INVENTAIRE_DES_STOCKS_WINDOW_HPP_ */
+#endif /* YEROTH_ERP_MARCHANDISES_WINDOW_HPP_ */
