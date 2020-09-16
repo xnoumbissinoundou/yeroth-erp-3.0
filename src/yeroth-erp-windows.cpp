@@ -444,11 +444,6 @@ void YerothERPWindows::setUser(YerothPOSUser *user)
 void YerothERPWindows::setupSqlTableModelFromName(const QString &aSqlTableName,
  	 											  YerothSqlTableModel **aYerothSqlTableModel)
 {
-	if (0 != *aYerothSqlTableModel)
-	{
-		delete *aYerothSqlTableModel;
-	}
-
 	*aYerothSqlTableModel = new YerothSqlTableModel(aSqlTableName);
 
 	_sqltablenameTOsqltablemodel.insert(aSqlTableName, *aYerothSqlTableModel);
