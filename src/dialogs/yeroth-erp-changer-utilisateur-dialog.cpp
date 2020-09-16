@@ -95,7 +95,7 @@ void YerothPOSChangerUtilisateurDialog::valider()
 
         searchUserFilter.append(GENERATE_SQL_IS_STMT("nom_utilisateur", nom_utilisateur));
 
-        usersSqlTableModel.yerothSetFilter(searchUserFilter);
+        usersSqlTableModel.yerothSetFilter_WITH_where_clause(searchUserFilter);
 
         int usersSqlTableModelRowCount = usersSqlTableModel.easySelect();
 
@@ -269,7 +269,7 @@ void YerothPOSChangerUtilisateurDialog::checkCourriersAlertes()
     QString courriersAlertesFilter(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::DESTINATAIRE, lineEdit_nom_utilisateur->text()));
 
     courriersAlertesFilter.append(" AND ").append(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::ALERTE_RESOLUE, "0"));
-    courriersAlertesTable.yerothSetFilter(courriersAlertesFilter);
+    courriersAlertesTable.yerothSetFilter_WITH_where_clause(courriersAlertesFilter);
 
     int alertsNr = courriersAlertesTable.rowCount();
 

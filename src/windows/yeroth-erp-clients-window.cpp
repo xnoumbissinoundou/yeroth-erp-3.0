@@ -296,7 +296,7 @@ void YerothERPClientsWindow::textChangedSearchLineEditsQCompleters()
     	}
     }
 
-    _yerothSqlTableModel->yerothSetFilter(_searchFilter);
+    _yerothSqlTableModel->yerothSetFilter_WITH_where_clause(_searchFilter);
 
     if (_yerothSqlTableModel->select())
     {
@@ -513,7 +513,7 @@ bool YerothERPClientsWindow::filtrer()
 	//qDebug() << QString("filterString: %1")
 	//				.arg(filterString);
 
-	_curClientsTableModel->yerothSetFilter(filterString);
+	_curClientsTableModel->yerothSetFilter_WITH_where_clause(filterString);
 
 	int resultRows = _curClientsTableModel->easySelect();
 
@@ -824,7 +824,7 @@ void YerothERPClientsWindow::afficher_nom_entreprise_selectioner(const QString &
 
     //qDebug() << QString("filter: %1").arg(filter);
 
-    _curClientsTableModel->yerothSetFilter(filter);
+    _curClientsTableModel->yerothSetFilter_WITH_where_clause(filter);
 
     if (_curClientsTableModel->easySelect() > 0)
     {

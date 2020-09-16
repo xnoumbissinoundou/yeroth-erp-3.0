@@ -74,7 +74,7 @@ void YerothTableViewWITHpaging::queryYerothTableViewCurrentPageContentRow()
 
 	QDEBUG_STRINGS_OUTPUT_2("yerothTableViewFilter", curYerothTableViewPageFilter);
 
-	curYerothSqlTableModel->yerothSetFilter(curYerothTableViewPageFilter);
+	curYerothSqlTableModel->yerothSetFilter_WITH_where_clause(curYerothTableViewPageFilter);
 
 	int querySize = curYerothSqlTableModel->easySelect();
 

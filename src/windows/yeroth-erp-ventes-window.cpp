@@ -327,7 +327,7 @@ bool YerothVentesWindow::annuler_cette_vente()
 										.arg(YerothDatabaseTableColumn::ID,
 												curStocksVendu_stocksID);
 
-	curStockTableModel.yerothSetFilter(curStockTableFilter);
+	curStockTableModel.yerothSetFilter_WITH_where_clause(curStockTableFilter);
 
 	int curStocksTableRowCount = curStockTableModel.easySelect();
 
@@ -885,7 +885,7 @@ bool YerothVentesWindow::filtrer_ventes()
 
 	setCurrentlyFiltered(true);
 
-	_curStocksVenduTableModel->yerothSetFilter(_searchFilter);
+	_curStocksVenduTableModel->yerothSetFilter_WITH_where_clause(_searchFilter);
 
 	int resultRows = _curStocksVenduTableModel->easySelect();
 
@@ -921,7 +921,7 @@ bool YerothVentesWindow::handleCompteClient(QString client_id,
 							.arg(YerothDatabaseTableColumn::ID,
 								 client_id));
 
-	clientsSqlTableModel.yerothSetFilter(clientsFilter);
+	clientsSqlTableModel.yerothSetFilter_WITH_where_clause(clientsFilter);
 
 	int clientsRowCount = clientsSqlTableModel.easySelect();
 
@@ -1210,7 +1210,7 @@ void YerothVentesWindow::textChangedSearchLineEditsQCompleters()
     	finalSearchFilter = searchFilterWithDate;
     }
 
-	_yerothSqlTableModel->yerothSetFilter(finalSearchFilter);
+	_yerothSqlTableModel->yerothSetFilter_WITH_where_clause(finalSearchFilter);
 
     if (_yerothSqlTableModel->select())
     {
@@ -1843,7 +1843,7 @@ bool YerothVentesWindow::afficher_retour_vente()
     						 .arg(YerothDatabaseTableColumn::ID,
     							  GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::CLIENTS_ID)));
 
-    clientsTableModel.yerothSetFilter(clientsIdFilter);
+    clientsTableModel.yerothSetFilter_WITH_where_clause(clientsIdFilter);
 
     int clientsTableModelRowCount = clientsTableModel.easySelect();
 
@@ -1916,7 +1916,7 @@ bool YerothVentesWindow::afficher_vente_detail()
     						 .arg(YerothDatabaseTableColumn::ID,
     							  GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::CLIENTS_ID)));
 
-    clientsTableModel.yerothSetFilter(clientsIdFilter);
+    clientsTableModel.yerothSetFilter_WITH_where_clause(clientsIdFilter);
 
     int clientsTableModelRowCount = clientsTableModel.easySelect();
 

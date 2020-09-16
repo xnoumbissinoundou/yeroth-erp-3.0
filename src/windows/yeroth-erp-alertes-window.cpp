@@ -302,7 +302,7 @@ void YerothAlertesWindow::lister_alertes()
     {
         QString userFilter(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::DESTINATAIRE, _allWindows->getUser()->nom_utilisateur()));
         //qDebug() << "++ userFilter: " << userFilter;
-        courrierAlertesSqlTableModel.yerothSetFilter(userFilter);
+        courrierAlertesSqlTableModel.yerothSetFilter_WITH_where_clause(userFilter);
     }
     tableView_lister_alertes->lister(courrierAlertesSqlTableModel);
     tableView_lister_alertes->hideColumn(0);
@@ -334,7 +334,7 @@ void YerothAlertesWindow::afficher_au_detail()
     {
         QString userFilter(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::DESTINATAIRE, _allWindows->getUser()->nom_utilisateur()));
         //qDebug() << "++ userFilter: " << userFilter;
-        courrierAlertesSqlTableModel.yerothSetFilter(userFilter);
+        courrierAlertesSqlTableModel.yerothSetFilter_WITH_where_clause(userFilter);
     }
 
     if (courrierAlertesSqlTableModel.select()
@@ -397,7 +397,7 @@ void YerothAlertesWindow::marquer_resolue()
         										_allWindows->getUser()->nom_utilisateur()));
 
         //qDebug() << "++ userFilter: " << userFilter;
-        courrierAlertesSqlTableModel.yerothSetFilter(userFilter);
+        courrierAlertesSqlTableModel.yerothSetFilter_WITH_where_clause(userFilter);
     }
 
     QString userFilter(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::DESTINATAIRE,
@@ -410,7 +410,7 @@ void YerothAlertesWindow::marquer_resolue()
     YerothSqlTableModel & alertesSqlTableModel = _allWindows->getSqlTableModel_alertes();
 
     QString alerteFilter(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::ID, id_alerte));
-    alertesSqlTableModel.yerothSetFilter(alerteFilter);
+    alertesSqlTableModel.yerothSetFilter_WITH_where_clause(alerteFilter);
 
     //qDebug() << "++ marquer_resolu(), filter: " << alerteFilter;
     int alertesSqlTableModelRowCount = alertesSqlTableModel.easySelect();

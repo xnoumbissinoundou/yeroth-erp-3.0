@@ -200,7 +200,7 @@ bool YerothPaiementsWindow::filtrer_paiements()
 
 	setCurrentlyFiltered(true);
 
-	_curPaiementsTableModel->yerothSetFilter(_searchFilter);
+	_curPaiementsTableModel->yerothSetFilter_WITH_where_clause(_searchFilter);
 
 	int resultRows = _curPaiementsTableModel->easySelect();
 
@@ -480,7 +480,7 @@ void YerothPaiementsWindow::textChangedSearchLineEditsQCompleters()
     	finalSearchFilter = searchFilterWithDate;
     }
 
-	_yerothSqlTableModel->yerothSetFilter(finalSearchFilter);
+	_yerothSqlTableModel->yerothSetFilter_WITH_where_clause(finalSearchFilter);
 
     if (_yerothSqlTableModel->select())
     {

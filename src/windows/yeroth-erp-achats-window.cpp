@@ -199,7 +199,7 @@ bool YerothAchatsWindow::filtrer_achats()
 					mathOperator,
 					achatsTableColumnValue));
 
-	_curAchatSqlTableModel->yerothSetFilter(filterString);
+	_curAchatSqlTableModel->yerothSetFilter_WITH_where_clause(filterString);
 
 	int resultRows = _curAchatSqlTableModel->easySelect();
 
@@ -364,7 +364,7 @@ void YerothAchatsWindow::textChangedSearchLineEditsQCompleters()
     	}
     }
 
-    _yerothSqlTableModel->yerothSetFilter(_searchFilter);
+    _yerothSqlTableModel->yerothSetFilter_WITH_where_clause(_searchFilter);
 
     if (_yerothSqlTableModel->select())
     {
@@ -694,7 +694,7 @@ void YerothAchatsWindow::afficher_stock_selectioner(const QString & stockName)
 
     //qDebug() << QString("filter: %1").arg(filter);
 
-    _curAchatSqlTableModel->yerothSetFilter(filter);
+    _curAchatSqlTableModel->yerothSetFilter_WITH_where_clause(filter);
 
     if (_curAchatSqlTableModel->easySelect() > 0)
     {

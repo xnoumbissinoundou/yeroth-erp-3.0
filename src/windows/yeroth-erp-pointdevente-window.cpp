@@ -872,7 +872,7 @@ QString YerothPointDeVenteWindow::imprimer_recu_vendu_grand(QString referenceRec
     {
         YerothSqlTableModel & clientTableModel = _allWindows->getSqlTableModel_clients();
 
-        clientTableModel.yerothSetFilter(QString("nom_entreprise = '%1'").arg(nomClient));
+        clientTableModel.yerothSetFilter_WITH_where_clause(QString("nom_entreprise = '%1'").arg(nomClient));
         factureTexDocument.replace("YEROTHCLIENT", YerothUtils::LATEX_IN_OUT_handleForeignAccents(nomClient));
 
         if (clientTableModel.easySelect() > 0)
@@ -2337,7 +2337,7 @@ void YerothPointDeVenteWindow::choisir_methode_paiment()
 
         nom_entreprise_filter.append(lineEdit_articles_nom_client->text()).append("'");
 
-        clientsTableModel.yerothSetFilter(nom_entreprise_filter);
+        clientsTableModel.yerothSetFilter_WITH_where_clause(nom_entreprise_filter);
 
         int clientsTableModelRowCount = clientsTableModel.rowCount();
 
@@ -2517,7 +2517,7 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
         						.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
         							 lineEdit_articles_nom_client->text()));
 
-        clientsTableModel.yerothSetFilter(clientFilter);
+        clientsTableModel.yerothSetFilter_WITH_where_clause(clientFilter);
 
         int clientsTableModelRowCount = clientsTableModel.easySelect();
 
@@ -2807,7 +2807,7 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
         QString clientFilter(QString("%1 = '%2'")
         						.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
         							 lineEdit_articles_nom_client->text()));
-        clientsTableModel.yerothSetFilter(clientFilter);
+        clientsTableModel.yerothSetFilter_WITH_where_clause(clientFilter);
 
         int clientsTableModelRowCount = clientsTableModel.easySelect();
         if (clientsTableModelRowCount > 0)

@@ -186,7 +186,7 @@ private:
 
     inline void setYerothVentesFilter()
     {
-        _curStocksVenduTableModel->yerothSetFilter(_searchFilter);
+        _curStocksVenduTableModel->yerothSetFilter_WITH_where_clause(_searchFilter);
     }
 
 

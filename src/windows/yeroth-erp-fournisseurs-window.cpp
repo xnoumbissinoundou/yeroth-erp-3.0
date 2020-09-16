@@ -297,7 +297,7 @@ void YerothERPFournisseursWindow::textChangedSearchLineEditsQCompleters()
     	}
     }
 
-    _yerothSqlTableModel->yerothSetFilter(_searchFilter);
+    _yerothSqlTableModel->yerothSetFilter_WITH_where_clause(_searchFilter);
 
     if (_yerothSqlTableModel->select())
     {
@@ -514,7 +514,7 @@ bool YerothERPFournisseursWindow::filtrer()
 	//qDebug() << QString("filterString: %1")
 	//				.arg(filterString);
 
-	_curFournisseursTableModel->yerothSetFilter(filterString);
+	_curFournisseursTableModel->yerothSetFilter_WITH_where_clause(filterString);
 
 	int resultRows = _curFournisseursTableModel->easySelect();
 
@@ -825,7 +825,7 @@ void YerothERPFournisseursWindow::afficher_nom_entreprise_selectioner(const QStr
 
     //qDebug() << QString("filter: %1").arg(filter);
 
-    _curFournisseursTableModel->yerothSetFilter(filter);
+    _curFournisseursTableModel->yerothSetFilter_WITH_where_clause(filter);
 
     if (_curFournisseursTableModel->easySelect() > 0)
     {

@@ -533,7 +533,7 @@ bool YerothUtils::creerNouvelleCategorie(const QString 			&proposedCategorieName
     							.arg(YerothDatabaseTableColumn::NOM_CATEGORIE,
     								 proposedCategorieName);
 
-    categorieSqlTableModel.yerothSetFilter(categorieFilter);
+    categorieSqlTableModel.yerothSetFilter_WITH_where_clause(categorieFilter);
 
     int rows = categorieSqlTableModel.easySelect();
 
@@ -608,7 +608,7 @@ bool YerothUtils::isReferenceUnique(const QString &aStockServiceReference,
 
     YerothSqlTableModel &marchandisesTableModel = _allWindows->getSqlTableModel_marchandises();
 
-    marchandisesTableModel.yerothSetFilter(QString("LOWER(%1) = LOWER('%2') AND "
+    marchandisesTableModel.yerothSetFilter_WITH_where_clause(QString("LOWER(%1) = LOWER('%2') AND "
     											   "LOWER(%3) = LOWER('%4')")
                                    	   	   	   .arg(YerothDatabaseTableColumn::DESIGNATION,
 													aStockServiceDesignation,
@@ -1556,7 +1556,7 @@ bool YerothUtils::checkIfCustomerAccountAlreadyExist_NOMENTREPRISE(YerothWindows
 	//		qDebug() << QString("++ nom_entreprise_filter: %1")
 	//						.arg(nom_entreprise_filter);
 
-	aClientTableModel.yerothSetFilter(nom_entreprise_filter);
+	aClientTableModel.yerothSetFilter_WITH_where_clause(nom_entreprise_filter);
 
 	int clientsTableModelRowCount = aClientTableModel.rowCount();
 
@@ -1617,7 +1617,7 @@ bool YerothUtils::checkIfCustomerAccountAlreadyExist_REFERENCE_REGISTRE_DU_COMME
 															.arg(YerothDatabaseTableColumn::REFERENCE_REGISTRE_DU_COMMERCE,
 																 aYerothLineEdit_reference_registre_du_commerce.text()));
 
-		aClientTableModel.yerothSetFilter(reference_du_registre_du_commerce_filter);
+		aClientTableModel.yerothSetFilter_WITH_where_clause(reference_du_registre_du_commerce_filter);
 
 		int clientsTableModelRowCount = aClientTableModel.rowCount();
 
@@ -1680,7 +1680,7 @@ bool YerothUtils::checkIfCustomerAccountAlreadyExist_REFERENCECLIENT(YerothWindo
 											.arg(YerothDatabaseTableColumn::REFERENCE_CLIENT,
 													aYerothLineEdit_reference_client.text()));
 
-		aClientTableModel.yerothSetFilter(reference_client_filter);
+		aClientTableModel.yerothSetFilter_WITH_where_clause(reference_client_filter);
 
 		int clientsTableModelRowCount = aClientTableModel.rowCount();
 
@@ -2030,7 +2030,7 @@ bool YerothUtils::slot_connecter_localisation(QWidget &aWidget,
     YerothSqlTableModel &localisationsSqlTableModel =
         allWindows->getSqlTableModel_localisations();
 
-    localisationsSqlTableModel.yerothSetFilter(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::NOM_LOCALISATION, localisation));
+    localisationsSqlTableModel.yerothSetFilter_WITH_where_clause(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::NOM_LOCALISATION, localisation));
 
     int rowCount = localisationsSqlTableModel.easySelect();
 

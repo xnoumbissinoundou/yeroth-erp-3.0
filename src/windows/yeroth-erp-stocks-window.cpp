@@ -249,7 +249,7 @@ bool YerothStocksWindow::filtrer_stocks_en_alerte_de_stock()
 //	qDebug() << QString("++ filtrer_stocks_en_alerte_de_stock | filterString: %1")
 //    						.arg(filterString);
 
-	_curStocksTableModel->yerothSetFilter(filterString);
+	_curStocksTableModel->yerothSetFilter_WITH_where_clause(filterString);
 
 	int resultRows = _curStocksTableModel->easySelect();
 
@@ -286,7 +286,7 @@ bool YerothStocksWindow::filtrer_stocks_perimes_seulement()
 	//qDebug() << QString("++ filtrer_stocks_perimes_seulement | filterString: %1")
     //						.arg(filterString);
 
-	_curStocksTableModel->yerothSetFilter(filterString);
+	_curStocksTableModel->yerothSetFilter_WITH_where_clause(filterString);
 
 	int resultRows = _curStocksTableModel->easySelect();
 
@@ -342,7 +342,7 @@ bool YerothStocksWindow::filtrer_stocks()
 					mathOperator,
 					stockTableColumnValue));
 
-	_curStocksTableModel->yerothSetFilter(filterString);
+	_curStocksTableModel->yerothSetFilter_WITH_where_clause(filterString);
 
 	int resultRows = _curStocksTableModel->easySelect();
 
@@ -592,7 +592,7 @@ void YerothStocksWindow::textChangedSearchLineEditsQCompleters()
     	}
     }
 
-    _yerothSqlTableModel->yerothSetFilter(_searchFilter);
+    _yerothSqlTableModel->yerothSetFilter_WITH_where_clause(_searchFilter);
 
     if (_yerothSqlTableModel->select())
     {

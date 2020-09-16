@@ -47,7 +47,7 @@ public:
 //		QSqlTableModel::setFilter(filter.trimmed());
 //	}
 
-	inline virtual void yerothSetFilter(const QString &filter)
+	inline virtual void yerothSetFilter_WITH_where_clause(const QString &filter)
 	{
 		QSqlTableModel::setFilter(filter.trimmed());
 	}

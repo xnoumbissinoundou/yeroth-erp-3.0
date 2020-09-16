@@ -71,7 +71,7 @@ int YerothSqlTableModel::Is_SearchQSqlTable(QString tableColumn,
 {
     QString queryFilter(GENERATE_SQL_IS_STMT(tableColumn, searchTerm));
 
-    yerothSetFilter(queryFilter);
+    yerothSetFilter_WITH_where_clause(queryFilter);
 
     int filterRowCount = rowCount();
 
@@ -109,7 +109,7 @@ int YerothSqlTableModel::_Is_SearchQSqlTable(enum YerothSqlQueryType,
         }
     }
 
-    yerothSetFilter(queryTerm);
+    yerothSetFilter_WITH_where_clause(queryTerm);
 
     int filterRowCount = rowCount();
 
@@ -123,7 +123,7 @@ int YerothSqlTableModel::Like_SearchQSqlTable(QString tableColumn,
 {
     QString queryFilter(GENERATE_SQL_LIKE_STMT(tableColumn, searchTerm));
 
-    yerothSetFilter(queryFilter);
+    yerothSetFilter_WITH_where_clause(queryFilter);
 
     int filterRowCount = rowCount();
 
@@ -168,7 +168,7 @@ int YerothSqlTableModel::_Like_SearchQSqlTable(enum YerothSqlQueryType,
         }
     }
 
-    yerothSetFilter(queryTerm);
+    yerothSetFilter_WITH_where_clause(queryTerm);
 
     int filterRowCount = rowCount();
 
@@ -233,7 +233,7 @@ bool YerothSqlTableModel::updateRecord(unsigned row, QSqlRecord &record)
 
 void YerothSqlTableModel::resetFilter()
 {
-    yerothSetFilter(YerothUtils::EMPTY_STRING);
+    yerothSetFilter_WITH_where_clause(YerothUtils::EMPTY_STRING);
     select();
 }
 

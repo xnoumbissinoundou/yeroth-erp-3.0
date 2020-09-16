@@ -186,7 +186,7 @@ void YerothAdminSearchForm::rechercher(const QString & itemName)
     //qDebug() << "++ YerothAdminSearchForm::rechercher, searchString: " << searchString;
     if (0 != _curSqlTableModel)
     {
-        _curSqlTableModel->yerothSetFilter(filter);
+        _curSqlTableModel->yerothSetFilter_WITH_where_clause(filter);
         //qDebug() << "++ filter: "
         //               << filter << ", _curSqlTableModel: "
         //               << _curSqlTableModel->sqlTableName();

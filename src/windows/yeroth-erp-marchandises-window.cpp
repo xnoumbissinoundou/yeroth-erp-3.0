@@ -395,7 +395,7 @@ void YerothMarchandisesWindow::textChangedSearchLineEditsQCompleters()
     	}
     }
 
-    _yerothSqlTableModel->yerothSetFilter(_searchFilter);
+    _yerothSqlTableModel->yerothSetFilter_WITH_where_clause(_searchFilter);
 
     if (_yerothSqlTableModel->select())
     {
@@ -425,12 +425,12 @@ void YerothMarchandisesWindow::handle_services_checkBox(int state)
 {
 	if (checkBox_services->isChecked())
 	{
-		_curMarchandisesTableModel->yerothSetFilter(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
+		_curMarchandisesTableModel->yerothSetFilter_WITH_where_clause(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
     										  	  	  	   YerothUtils::MYSQL_TRUE_LITERAL));
     }
     else
     {
-    	_curMarchandisesTableModel->yerothSetFilter(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
+    	_curMarchandisesTableModel->yerothSetFilter_WITH_where_clause(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
     										  	  	  	   YerothUtils::MYSQL_FALSE_LITERAL));
 	}
 
@@ -475,7 +475,7 @@ bool YerothMarchandisesWindow::slot_filtrer_non_empty_product_stock()
 //					.arg(filterString);
 
 
-	_curMarchandisesTableModel->yerothSetFilter(filterString);
+	_curMarchandisesTableModel->yerothSetFilter_WITH_where_clause(filterString);
 
 	int resultRows = _curMarchandisesTableModel->easySelect();
 
@@ -578,7 +578,7 @@ bool YerothMarchandisesWindow::slot_filtrer_empty_product_stock()
 		return false;
 	}
 
-	_curMarchandisesTableModel->yerothSetFilter(filterString);
+	_curMarchandisesTableModel->yerothSetFilter_WITH_where_clause(filterString);
 
 	int resultRows = _curMarchandisesTableModel->easySelect();
 
@@ -634,7 +634,7 @@ bool YerothMarchandisesWindow::slot_filtrer()
 	//qDebug() << QString("filterString: %1")
 	//				.arg(filterString);
 
-	_curMarchandisesTableModel->yerothSetFilter(filterString);
+	_curMarchandisesTableModel->yerothSetFilter_WITH_where_clause(filterString);
 
 	int resultRows = _curMarchandisesTableModel->easySelect();
 
@@ -787,7 +787,7 @@ void YerothMarchandisesWindow::rendreVisible(YerothSqlTableModel * stocksTableMo
     										  	  	  	   	    YerothUtils::MYSQL_FALSE_LITERAL)));
 	}
 
-	_curMarchandisesTableModel->yerothSetFilter(currentFilter);
+	_curMarchandisesTableModel->yerothSetFilter_WITH_where_clause(currentFilter);
 
 	afficherMarchandises();
 
@@ -970,7 +970,7 @@ void YerothMarchandisesWindow::afficher_stock_selectioner(const QString & stockN
 
     //qDebug() << QString("filter: %1").arg(filter);
 
-    _curMarchandisesTableModel->yerothSetFilter(filter);
+    _curMarchandisesTableModel->yerothSetFilter_WITH_where_clause(filter);
 
     if (_curMarchandisesTableModel->easySelect() > 0)
     {

@@ -242,7 +242,7 @@ bool YerothEntrerWindow::creerNouveauClient(const QString &proposedCustomerName)
 	            					.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
 	            						 proposedCustomerName);
 
-	customerSqlTableModel.yerothSetFilter(customerTableFilter);
+	customerSqlTableModel.yerothSetFilter_WITH_where_clause(customerTableFilter);
 
 	int rows = customerSqlTableModel.easySelect();
 
@@ -297,7 +297,7 @@ bool YerothEntrerWindow::creerNouveauFournisseur(const QString &proposedFourniss
 	            					.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
 	            						 proposedFournisseurName);
 
-	fournisseurSqlTableModel.yerothSetFilter(fournisseurFilter);
+	fournisseurSqlTableModel.yerothSetFilter_WITH_where_clause(fournisseurFilter);
 
 	int rows = fournisseurSqlTableModel.easySelect();
 
@@ -1169,7 +1169,7 @@ bool YerothEntrerWindow::handle_stocks_vendu_table(int stockID,
 	            					.arg(YerothDatabaseTableColumn::ID,
 	            							QString::number(stockID));
 
-	stocksTableModel.yerothSetFilter(stocksTableFilter);
+	stocksTableModel.yerothSetFilter_WITH_where_clause(stocksTableFilter);
 
 	int rows = stocksTableModel.easySelect();
 
@@ -1355,7 +1355,7 @@ bool YerothEntrerWindow::handle_clients_table(int stockID, double montant_total_
 	            					.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
 	            						 clientName);
 
-	clientsTableModel.yerothSetFilter(clientsTableFilter);
+	clientsTableModel.yerothSetFilter_WITH_where_clause(clientsTableFilter);
 
 	int rows = clientsTableModel.easySelect();
 

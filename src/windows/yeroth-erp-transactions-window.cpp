@@ -135,7 +135,7 @@ void YerothTransactionsWindow::setFilter()
         _curTransactionsTableModel = &_allWindows->getSqlTableModel_stocks_sorties();
     }
 
-    _curTransactionsTableModel->yerothSetFilter(_searchFilter);
+    _curTransactionsTableModel->yerothSetFilter_WITH_where_clause(_searchFilter);
 }
 
 
@@ -504,7 +504,7 @@ void YerothTransactionsWindow::lister_les_elements_du_tableau(QString aSearchFil
         _searchFilter.append(" AND localisation_entree != ''");
     }
 
-    _curTransactionsTableModel->yerothSetFilter(_searchFilter);
+    _curTransactionsTableModel->yerothSetFilter_WITH_where_clause(_searchFilter);
 
     _logger->log("lister_les_elements_du_tableau", _searchFilter);
 

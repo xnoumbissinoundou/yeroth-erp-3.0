@@ -301,7 +301,7 @@ bool YerothCreerNouveauClientWindow::customerAccountExist()
 				.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
 						lineEdit_client_nom_entreprise->text()));
 
-		clientsTableModel.yerothSetFilter(nom_entreprise_filter);
+		clientsTableModel.yerothSetFilter_WITH_where_clause(nom_entreprise_filter);
 
 		int clientsTableModelRowCount = clientsTableModel.rowCount();
 
@@ -329,7 +329,7 @@ bool YerothCreerNouveauClientWindow::customerAccountExist()
 															.arg(YerothDatabaseTableColumn::REFERENCE_REGISTRE_DU_COMMERCE,
 																 lineEdit_client_reference_registre_du_commerce->text()));
 
-		clientsTableModel.yerothSetFilter(reference_du_registre_du_commerce_filter);
+		clientsTableModel.yerothSetFilter_WITH_where_clause(reference_du_registre_du_commerce_filter);
 
 		int clientsTableModelRowCount = clientsTableModel.rowCount();
 
@@ -357,7 +357,7 @@ bool YerothCreerNouveauClientWindow::customerAccountExist()
 											.arg(YerothDatabaseTableColumn::REFERENCE_CLIENT,
 												 lineEdit_client_reference_client->text()));
 
-		clientsTableModel.yerothSetFilter(reference_client_filter);
+		clientsTableModel.yerothSetFilter_WITH_where_clause(reference_client_filter);
 
 		int clientsTableModelRowCount = clientsTableModel.rowCount();
 

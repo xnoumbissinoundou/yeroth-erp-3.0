@@ -1739,7 +1739,7 @@ void YerothAdminWindow::set_localisation_adresse_ip_text()
 {
     YerothSqlTableModel & localisationSqlTableModel = _allWindows->getSqlTableModel_localisations();
 
-    localisationSqlTableModel.yerothSetFilter(
+    localisationSqlTableModel.yerothSetFilter_WITH_where_clause(
     		GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::NOM_LOCALISATION, lineEdit_localisation->text()));
 
     int localisationSqlTableModelRowCount = localisationSqlTableModel.easySelect();

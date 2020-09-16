@@ -958,7 +958,7 @@ void YerothSortirWindow::handle_info_succursale(QString & factureTexDocument, co
     QString succursale;
     succursale.append("Succursale de ").append("\"").append(nom_succursale).append("\"");
     YerothSqlTableModel & localisationTableModel = _allWindows->getSqlTableModel_localisations();
-    localisationTableModel.yerothSetFilter(QString("nom_localisation = '%1'").arg(nom_succursale));
+    localisationTableModel.yerothSetFilter_WITH_where_clause(QString("nom_localisation = '%1'").arg(nom_succursale));
     //qDebug() << "++ nom_succursale: " << nom_succursale;
     factureTexDocument.replace("YEROTHCLIENT", YerothUtils::LATEX_IN_OUT_handleForeignAccents(succursale));
     if (localisationTableModel.easySelect() > 0)
@@ -995,7 +995,7 @@ void YerothSortirWindow::handle_info_succursale(QString & factureTexDocument, co
 void YerothSortirWindow::handle_info_client(QString & factureTexDocument, const QString nom_client)
 {
     YerothSqlTableModel & clientTableModel = _allWindows->getSqlTableModel_clients();
-    clientTableModel.yerothSetFilter(QString("nom_entreprise = '%1'").arg(nom_client));
+    clientTableModel.yerothSetFilter_WITH_where_clause(QString("nom_entreprise = '%1'").arg(nom_client));
     //qDebug() << "++ nom_client: " << nom_client;
     factureTexDocument.replace("YEROTHCLIENT", YerothUtils::LATEX_IN_OUT_handleForeignAccents(nom_client));
     if (clientTableModel.easySelect() > 0)

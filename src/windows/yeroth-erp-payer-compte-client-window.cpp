@@ -132,7 +132,7 @@ void YerothPayerCompteClientWindow::handleReferenceChange(const QString &referen
 							 YerothDatabaseTableColumn::REFERENCE,
 							 referenceEngagement);
 
-	stocksVenduSqlTableModel.yerothSetFilter(aConditionStr);
+	stocksVenduSqlTableModel.yerothSetFilter_WITH_where_clause(aConditionStr);
 
 	int rows = stocksVenduSqlTableModel.easySelect();
 
@@ -177,7 +177,7 @@ void YerothPayerCompteClientWindow::updateStocksVeduTable(PaymentInfo &paymentIn
 									 YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT,
 									 paymentInfo.nom_entreprise));
 
-	stocksVenduTableModel.yerothSetFilter(stocksVenduFilter);
+	stocksVenduTableModel.yerothSetFilter_WITH_where_clause(stocksVenduFilter);
 
 	int rowCount = stocksVenduTableModel.easySelect();
 
@@ -479,7 +479,7 @@ bool YerothPayerCompteClientWindow::putCashIntoCustomerAccount()
     						.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
     							 _curCompanyName));
 
-    clientsTableModel.yerothSetFilter(clientFilter);
+    clientsTableModel.yerothSetFilter_WITH_where_clause(clientFilter);
 
     bool success = false;
 
