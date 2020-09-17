@@ -63,15 +63,8 @@ public:
     	checkBox_services->setChecked(checked);
     }
 
-	inline virtual void setYerothTableViewLastPageNumberText(const QString &aLastPageNumberText)
-	{
-		label_marchandises_numero_page_derniere->setText(aLastPageNumberText);
-	}
-
-	inline virtual void setYerothTableViewCurrentPageNumberText(const QString &aNextPageNumberText)
-	{
-		label_marchandises_numero_page_courante->setText(aNextPageNumberText);
-	}
+    MACRO_TO_DEFINE_VIEWING_PAGE_NUMBER_FOR_TABLEVIEW(label_marchandises_numero_page_derniere,
+    												  label_marchandises_numero_page_courante)
 
     virtual void rendreVisible(YerothSqlTableModel *stocksTableModel);
 

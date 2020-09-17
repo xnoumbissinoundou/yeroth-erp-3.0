@@ -72,6 +72,8 @@ YerothAchatsWindow::YerothAchatsWindow()
 
     mySetupUi(this);
 
+    tableView_achats->_currentViewWindow = this;
+
     _yerothTableView_FROM_WINDOWS_COMMONS = tableView_achats;
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
@@ -115,6 +117,11 @@ YerothAchatsWindow::YerothAchatsWindow()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVentes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
+
+    pushButton_page_premiere->disable(this);
+	pushButton_page_derniere->disable(this);
+    pushButton_page_precedente->disable(this);
+	pushButton_page_suivante->disable(this);
 
     pushButton_achats_filtrer->disable(this);
     pushButton_entrer->disable(this);
@@ -164,6 +171,8 @@ connect(actionAdministration, SIGNAL(triggered()), this, SLOT(administration()))
 
 YerothAchatsWindow::~YerothAchatsWindow()
 {
+	MACRO_TO_DELETE_PAGINATION_INTEGER_VALIDATOR
+
     delete _logger;
 }
 
@@ -272,6 +281,8 @@ void YerothAchatsWindow::setupLineEdits()
 	lineEdit_nombre_dachats->setYerothEnabled(false);
 
 	lineEdit_element_achats_resultat->setValidator(&YerothUtils::DoubleValidator);
+
+	MACRO_TO_BIND_PAGING_WITH_QLINEEDIT(lineEdit_achats_nombre_de_lignes_par_page, tableView_achats);
 }
 
 
@@ -458,6 +469,11 @@ void YerothAchatsWindow::definirCaissier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
+    pushButton_page_premiere->disable(this);
+	pushButton_page_derniere->disable(this);
+    pushButton_page_precedente->disable(this);
+	pushButton_page_suivante->disable(this);
+
     pushButton_achats_filtrer->disable(this);
     pushButton_achats_reinitialiser_filtre->disable(this);
 
@@ -485,6 +501,11 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 #endif
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
+
+    pushButton_page_premiere->enable(tableView_achats, SLOT(viewYerothTableViewFirstPage()));
+	pushButton_page_derniere->enable(tableView_achats, SLOT(viewYerothTableViewLastPage()));
+    pushButton_page_precedente->enable(tableView_achats, SLOT(viewYerothTableViewPreviousPage()));
+	pushButton_page_suivante->enable(tableView_achats, SLOT(viewYerothTableViewNextPage()));
 
     pushButton_achats_filtrer->enable(this, SLOT(filtrer_achats()));
     pushButton_achats_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
@@ -515,6 +536,11 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
+    pushButton_page_premiere->enable(tableView_achats, SLOT(viewYerothTableViewFirstPage()));
+	pushButton_page_derniere->enable(tableView_achats, SLOT(viewYerothTableViewLastPage()));
+    pushButton_page_precedente->enable(tableView_achats, SLOT(viewYerothTableViewPreviousPage()));
+	pushButton_page_suivante->enable(tableView_achats, SLOT(viewYerothTableViewNextPage()));
+
     pushButton_achats_filtrer->enable(this, SLOT(filtrer_achats()));
     pushButton_achats_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
 
@@ -544,6 +570,11 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
+    pushButton_page_premiere->enable(tableView_achats, SLOT(viewYerothTableViewFirstPage()));
+	pushButton_page_derniere->enable(tableView_achats, SLOT(viewYerothTableViewLastPage()));
+    pushButton_page_precedente->enable(tableView_achats, SLOT(viewYerothTableViewPreviousPage()));
+	pushButton_page_suivante->enable(tableView_achats, SLOT(viewYerothTableViewNextPage()));
+
     pushButton_achats_filtrer->enable(this, SLOT(filtrer_achats()));
     pushButton_achats_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
 
@@ -566,6 +597,11 @@ void YerothAchatsWindow::definirMagasinier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVentes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
+    pushButton_page_premiere->disable(this);
+	pushButton_page_derniere->disable(this);
+    pushButton_page_precedente->disable(this);
+	pushButton_page_suivante->disable(this);
+
     pushButton_achats_filtrer->enable(this, SLOT(filtrer_achats()));
     pushButton_achats_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
 
@@ -587,6 +623,11 @@ void YerothAchatsWindow::definirPasDeRole()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
+
+    pushButton_page_premiere->disable(this);
+	pushButton_page_derniere->disable(this);
+    pushButton_page_precedente->disable(this);
+	pushButton_page_suivante->disable(this);
 
     pushButton_achats_filtrer->disable(this);
     pushButton_achats_reinitialiser_filtre->disable(this);
@@ -672,7 +713,7 @@ void YerothAchatsWindow::reinitialiser_recherche()
 
 void YerothAchatsWindow::afficherAchats(YerothSqlTableModel &achatSqlTableModel)
 {
-    tableView_achats->lister_les_elements_du_tableau(achatSqlTableModel);
+	tableView_achats->queryYerothTableViewCurrentPageContentRow();
 
     tableView_show_or_hide_columns(*tableView_achats);
 

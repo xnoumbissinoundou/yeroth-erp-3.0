@@ -327,6 +327,18 @@ private:
 };
 
 
+#define MACRO_TO_DEFINE_VIEWING_PAGE_NUMBER_FOR_TABLEVIEW(X, Y) 				\
+	inline virtual void setYerothTableViewLastPageNumberText(const QString &aLastPageNumberText) \
+	{																							 \
+		X->setText(aLastPageNumberText);						 								 \
+	}																							 \
+																								 \
+	inline virtual void setYerothTableViewCurrentPageNumberText(const QString &aNextPageNumberText) \
+	{																								\
+		Y->setText(aNextPageNumberText);															\
+	}
+
+
 #define MACRO_TO_DELETE_PAGINATION_INTEGER_VALIDATOR 		\
 	{														\
 		if (0 != _pagination_nombre_de_ligne_IntValidator) 	\

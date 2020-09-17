@@ -57,6 +57,9 @@ public:
 
     virtual void definirPasDeRole();
 
+    MACRO_TO_DEFINE_VIEWING_PAGE_NUMBER_FOR_TABLEVIEW(label_achats_numero_page_derniere,
+    												  label_achats_numero_page_courante)
+
     virtual void rendreVisible(YerothSqlTableModel *stocksTableModel);
 
     virtual void rendreInvisible();
