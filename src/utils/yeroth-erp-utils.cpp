@@ -866,6 +866,8 @@ void YerothUtils::setAllWindows(YerothERPWindows *allWindows)
 {
     _allWindows = allWindows;
 
+    YerothTableView::YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER = allWindows;
+
     YerothPOSDialogCommons::setAllWindows(allWindows);
 
     YerothWindowsCommons::setAllWindows(allWindows);

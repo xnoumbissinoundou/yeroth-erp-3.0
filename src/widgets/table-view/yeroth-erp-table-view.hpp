@@ -17,6 +17,8 @@
 #include <QtSql/QSqlTableModel>
 
 
+class YerothERPWindows;
+
 class YerothSqlTableModel;
 
 class YerothPOSQStandardItemModel;
@@ -120,6 +122,10 @@ public:
 	{
 		_stdItemModel = stdItemModel;
 	}
+
+
+	static YerothERPWindows *YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER;
+
 
     static const int REFERENCE_COLUMN;
 

@@ -17,8 +17,6 @@
 #include <QtSql/QSqlTableModel>
 
 
-class YerothERPWindows;
-
 class YerothSqlTableModel;
 
 class YerothPOSQStandardItemModel;
@@ -60,10 +58,6 @@ protected slots:
 	virtual void dataChanged(const QModelIndex &index,
 					 	 	 const QModelIndex &bottomRight,
 							 const QVector<int> &roles = QVector<int>());
-
-private:
-
-    YerothERPWindows *_allWindows;
 };
 
 

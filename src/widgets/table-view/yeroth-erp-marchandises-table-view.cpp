@@ -36,16 +36,14 @@
 
 
 YerothERPMarchandisesTableView::YerothERPMarchandisesTableView()
-:YerothTableViewWITHpaging(),
- _allWindows(YerothUtils::getAllWindows())
+:YerothTableViewWITHpaging()
 {
 	_stdItemModel->_curTableView = this;
 }
 
 
 YerothERPMarchandisesTableView::YerothERPMarchandisesTableView(QWidget * parent)
-:YerothTableViewWITHpaging(parent),
- _allWindows(YerothUtils::getAllWindows())
+:YerothTableViewWITHpaging(parent)
 {
 	_stdItemModel->_curTableView = this;
 }
@@ -56,9 +54,9 @@ void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTab
 {
 	_stdItemModel->_curSqlTableModel = &tableModel;
 
-	_allWindows->_marchandisesWindow->_valeurTheoriqueDinventaire = 0.0;
+	YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->_marchandisesWindow->_valeurTheoriqueDinventaire = 0.0;
 
-	_allWindows->_marchandisesWindow->_qteTotaleDarticlesEnStock = 0.0;
+	YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->_marchandisesWindow->_qteTotaleDarticlesEnStock = 0.0;
 
     emit signal_lister(tableModel);
 
@@ -265,7 +263,7 @@ void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTab
                 				YerothMarchandisesWindow::getQuantiteTotaleEnStock(categorieStr,
                 						designationStr);
 
-                		_allWindows->_marchandisesWindow->_qteTotaleDarticlesEnStock += qteTotalEnStock;
+                		YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->_marchandisesWindow->_qteTotaleDarticlesEnStock += qteTotalEnStock;
 
                 		anItem->setText(GET_DOUBLE_STRING(qteTotalEnStock));
                 	}
@@ -275,7 +273,7 @@ void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTab
                 				YerothMarchandisesWindow::getValeurTotaleDinventaireEnStock(categorieStr,
                 						designationStr);
 
-                		_allWindows->_marchandisesWindow->_valeurTheoriqueDinventaire += valeurDinventaireEnStock;
+                		YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->_marchandisesWindow->_valeurTheoriqueDinventaire += valeurDinventaireEnStock;
 
                 		anItem->setText(GET_DOUBLE_STRING(valeurDinventaireEnStock));
                 	}
@@ -304,13 +302,13 @@ void YerothERPMarchandisesTableView::startEditingModeSelection()
 
 void YerothERPMarchandisesTableView::view_setYerothTableViewLastPageNumberText(const QString &aLastPageNumberText)
 {
-	_allWindows->_marchandisesWindow->setYerothTableViewLastPageNumberText(aLastPageNumberText);
+	YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->_marchandisesWindow->setYerothTableViewLastPageNumberText(aLastPageNumberText);
 }
 
 
 void YerothERPMarchandisesTableView::view_setYerothTableViewCurrentPageNumberText(const QString &aNextPageNumberText)
 {
-	_allWindows->_marchandisesWindow->setYerothTableViewCurrentPageNumberText(aNextPageNumberText);
+	YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->_marchandisesWindow->setYerothTableViewCurrentPageNumberText(aNextPageNumberText);
 }
 
 
@@ -393,11 +391,11 @@ void YerothERPMarchandisesTableView::dataChanged(const QModelIndex &index,
     		{
         		QStringList allToUpdateTables;
 
-        		allToUpdateTables << _allWindows->PAIEMENTS
-        						  << _allWindows->STOCKS
-        						  << _allWindows->STOCKS_SORTIES
-    							  << _allWindows->STOCKS_VENDU
-    							  << _allWindows->ACHATS;
+        		allToUpdateTables << YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->PAIEMENTS
+        						  << YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->STOCKS
+        						  << YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->STOCKS_SORTIES
+    							  << YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->STOCKS_VENDU
+    							  << YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->ACHATS;
 
         		QString strUpdateTableQuery;
 
@@ -413,7 +411,7 @@ void YerothERPMarchandisesTableView::dataChanged(const QModelIndex &index,
     													 prevReferenceText));
 
         			success = YerothUtils::execQuery(strUpdateTableQuery,
-        							_allWindows->_marchandisesWindow->getLogger()) && success;
+        					YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->_marchandisesWindow->getLogger()) && success;
         		}
     		}
 
@@ -425,7 +423,7 @@ void YerothERPMarchandisesTableView::dataChanged(const QModelIndex &index,
 			QString succesMsgBoxTitle(QObject::trUtf8("succès modification (%1) ")
 									.arg(columnHeaderText));
 
-	        YerothQMessageBox::information(_allWindows->_marchandisesWindow,
+	        YerothQMessageBox::information(YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->_marchandisesWindow,
 	        							   succesMsgBoxTitle,
 	                                       QObject::trUtf8("Succès de la modification de la colone '%1' (%2) "
 	                                    		   	   	   "de la marchandise '%3' !")
@@ -439,7 +437,7 @@ void YerothERPMarchandisesTableView::dataChanged(const QModelIndex &index,
 			QString echecMsgBoxTitle(QObject::trUtf8("échec modification (%1) ")
 									.arg(columnHeaderText));
 
-	        YerothQMessageBox::information(_allWindows->_marchandisesWindow,
+	        YerothQMessageBox::information(YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->_marchandisesWindow,
 	        							   echecMsgBoxTitle,
 	                                       QObject::trUtf8("Échec de la modification de la colone '%1' (%2) "
 	                                    		   	   	   "de la marchandise '%3' !")

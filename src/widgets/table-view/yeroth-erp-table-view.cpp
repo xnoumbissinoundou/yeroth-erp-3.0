@@ -37,6 +37,8 @@
 #include <QtSql/QSqlError>
 
 
+YerothERPWindows *YerothTableView::YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER;
+
 const int YerothTableView::REFERENCE_COLUMN = 1;
 
 const int YerothTableView::DATE_ENTREE_COLUMN = 12;
