@@ -124,8 +124,6 @@ YerothStocksWindow::YerothStocksWindow()
     pushButton_inventaire_des_stocks->disable(this);
     pushButton_sortir->disable(this);
     pushButton_reinitialiser->disable(this);
-    pushButton_connecter_localisation->disable(this);
-    pushButton_deconnecter_localisation->disable(this);
 
     //Menu actions
     connect(actionChanger_utilisateur, SIGNAL(triggered()), this, SLOT(changer_utilisateur()));
@@ -472,37 +470,6 @@ void YerothStocksWindow::setupLineEdits()
 	lineEdit_stocks_element_de_stock_resultat->setValidator(&YerothUtils::DoubleValidator);
 
 	lineEdit_nombre_de_stocks->setYerothEnabled(false);
-
-    lineEdit_localisation->enableForSearch(QObject::trUtf8("localisation"));
-
-    YerothPOSUser *currentUser = _allWindows->getUser();
-
-    if (0 != currentUser &&
-        (currentUser->isManager() ||
-         currentUser->isGestionaireDesStocks() ||
-		 currentUser->isMagasinier() ||
-		 currentUser->isVendeur()))
-    {
-
-#ifdef YEROTH_CLIENT
-    	lineEdit_localisation->setVisible(false);
-    	pushButton_connecter_localisation->setVisible(false);
-    	pushButton_deconnecter_localisation->setVisible(false);
-#else				//YEROTH_SERVER, YEROTH_STANDALONE, YEROTH_ACADEMIC_EVALUSATION_VERSION
-    	lineEdit_localisation->setVisible(true);
-    	pushButton_connecter_localisation->setVisible(true);
-    	pushButton_deconnecter_localisation->setVisible(true);
-    	lineEdit_localisation->setupMyStaticQCompleter(_allWindows->LOCALISATIONS, YerothDatabaseTableColumn::NOM_LOCALISATION, false);
-    	lineEdit_localisation->setText(YerothERPConfig::_connectedSite);
-#endif
-
-    }
-    else
-    {
-        lineEdit_localisation->setVisible(false);
-        pushButton_connecter_localisation->setVisible(false);
-        pushButton_deconnecter_localisation->setVisible(false);
-    }
 }
 
 
@@ -704,15 +671,6 @@ void YerothStocksWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
     _curStocksTableModel->easySelect();
 
     afficherStocks(YerothERPConfig::salesStrategy);
-
-    if (YerothERPConfig::_distantSiteConnected)
-    {
-        pushButton_connecter_localisation->setPalette(YerothUtils::YEROTH_GREEN_PALETTE);
-    }
-    else
-    {
-        pushButton_connecter_localisation->setPalette(YerothUtils::YEROTH_BLACK_PALETTE);
-    }
 }
 
 
@@ -752,8 +710,6 @@ void YerothStocksWindow::definirCaissier()
     pushButton_menu_principal->disable(this);
     pushButton_inventaire_des_stocks->disable(this);
     pushButton_sortir->disable(this);
-    pushButton_connecter_localisation->disable(this);
-    pushButton_deconnecter_localisation->disable(this);
 }
 
 void YerothStocksWindow::definirManager()
@@ -789,8 +745,6 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_inventaire_des_stocks->enable(this, SLOT(afficherMarchandises()));
     pushButton_sortir->enable(this, SLOT(sortir()));
-    pushButton_connecter_localisation->enable(this, SLOT(connecter_localisation()));
-    pushButton_deconnecter_localisation->enable(this, SLOT(deconnecter_localisation()));
 }
 
 
@@ -827,8 +781,6 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_inventaire_des_stocks->enable(this, SLOT(afficherMarchandises()));
     pushButton_sortir->disable(this);
-    pushButton_connecter_localisation->enable(this, SLOT(connecter_localisation()));
-    pushButton_deconnecter_localisation->enable(this, SLOT(deconnecter_localisation()));
 }
 
 
@@ -865,8 +817,6 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_inventaire_des_stocks->enable(this, SLOT(afficherMarchandises()));
     pushButton_sortir->enable(this, SLOT(sortir()));
-    pushButton_connecter_localisation->enable(this, SLOT(connecter_localisation()));
-    pushButton_deconnecter_localisation->enable(this, SLOT(deconnecter_localisation()));
 }
 
 void YerothStocksWindow::definirMagasinier()
@@ -895,8 +845,6 @@ void YerothStocksWindow::definirMagasinier()
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_inventaire_des_stocks->disable(this);
     pushButton_sortir->enable(this, SLOT(sortir()));
-    pushButton_connecter_localisation->enable(this, SLOT(connecter_localisation()));
-    pushButton_deconnecter_localisation->enable(this, SLOT(deconnecter_localisation()));
 }
 
 void YerothStocksWindow::definirPasDeRole()
@@ -926,8 +874,6 @@ void YerothStocksWindow::definirPasDeRole()
     pushButton_inventaire_des_stocks->disable(this);
     pushButton_sortir->disable(this);
     pushButton_menu_principal->disable(this);
-    pushButton_connecter_localisation->disable(this);
-    pushButton_deconnecter_localisation->disable(this);
 }
 
 
@@ -965,38 +911,6 @@ void YerothStocksWindow::afficher_au_detail(const QModelIndex & modelIndex)
     }
 }
 
-
-void YerothStocksWindow::connecter_localisation()
-{
-    reinitialiser_recherche();
-
-    if (YerothUtils::slot_connecter_localisation(*this, _allWindows, lineEdit_localisation->text()))
-    {
-        pushButton_connecter_localisation->setPalette(YerothUtils::YEROTH_GREEN_PALETTE);
-    }
-    else
-    {
-        lineEdit_localisation->setText(_allWindows->getInfoEntreprise().getLocalisation());
-
-        pushButton_connecter_localisation->setPalette(YerothUtils::YEROTH_BLACK_PALETTE);
-    }
-
-    _curStocksTableModel = &_allWindows->getSqlTableModel_stocks();
-}
-
-
-void YerothStocksWindow::deconnecter_localisation()
-{
-    reinitialiser_recherche();
-
-    lineEdit_localisation->setText(_allWindows->getInfoEntreprise().getLocalisation());
-
-    pushButton_connecter_localisation->setPalette(YerothUtils::YEROTH_BLACK_PALETTE);
-
-    YerothUtils::slot_deconnecter_localisation(_allWindows);
-
-    _curStocksTableModel = &_allWindows->getSqlTableModel_stocks();
-}
 
 /**
  * La suppression d'un stock entraine automatiquement la

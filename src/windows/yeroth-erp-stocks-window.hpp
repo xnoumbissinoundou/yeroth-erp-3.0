@@ -93,10 +93,6 @@ public slots:
 
     void afficher_au_detail(const QModelIndex &modelIndex);
 
-    void connecter_localisation();
-
-    void deconnecter_localisation();
-
     void supprimer_ce_stock();
 
     void reinitialiser_elements_filtrage();
