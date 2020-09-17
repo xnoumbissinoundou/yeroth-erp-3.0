@@ -57,7 +57,7 @@ YerothMainWindow::YerothMainWindow()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchats, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionComptabilite, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionInventaireDesStocks, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMarchandises, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
@@ -73,7 +73,7 @@ YerothMainWindow::YerothMainWindow()
     pushButton_achats->disable(this);
     pushButton_entrer->disable(this);
     pushButton_afficher_stocks->disable(this);
-    pushButton_afficher_inventaire_des_stocks->disable(this);
+    pushButton_marchandises->disable(this);
     pushButton_sortir->disable(this);
     pushButton_rapports->disable(this);
     pushButton_transactions->disable(this);
@@ -88,7 +88,7 @@ YerothMainWindow::YerothMainWindow()
     connect(actionEntrer, SIGNAL(triggered()), this, SLOT(entrer()));
     connect(actionComptabilite, SIGNAL(triggered()), this, SLOT(comptabilite()));
     connect(actionStocks, SIGNAL(triggered()), this, SLOT(afficherStocks()));
-    connect(actionInventaireDesStocks, SIGNAL(triggered()), this, SLOT(afficherMarchandises()));
+    connect(actionMarchandises, SIGNAL(triggered()), this, SLOT(afficherMarchandises()));
     connect(actionAchats, SIGNAL(triggered()), this, SLOT(achats()));
     connect(actionSortir, SIGNAL(triggered()), this, SLOT(sortir()));
     connect(actionVendre, SIGNAL(triggered()), this, SLOT(vendre()));
@@ -124,7 +124,7 @@ void YerothMainWindow::definirCaissier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionComptabilite, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchats, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionInventaireDesStocks, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMarchandises, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
@@ -138,7 +138,7 @@ void YerothMainWindow::definirCaissier()
     pushButton_achats->disable(this);
     pushButton_entrer->disable(this);
     pushButton_afficher_stocks->enable(this, SLOT(afficherStocks()));
-    pushButton_afficher_inventaire_des_stocks->disable(this);
+    pushButton_marchandises->disable(this);
     pushButton_sortir->disable(this);
     pushButton_rapports->disable(this);
     pushButton_transactions->disable(this);
@@ -159,7 +159,7 @@ void YerothMainWindow::definirManager()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionComptabilite, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchats, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionInventaireDesStocks, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMarchandises, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
@@ -183,7 +183,7 @@ void YerothMainWindow::definirManager()
     pushButton_achats->enable(this, SLOT(achats()));
     pushButton_entrer->enable(this, SLOT(entrer()));
     pushButton_afficher_stocks->enable(this, SLOT(afficherStocks()));
-    pushButton_afficher_inventaire_des_stocks->enable(this, SLOT(afficherMarchandises()));
+    pushButton_marchandises->enable(this, SLOT(afficherMarchandises()));
     pushButton_sortir->enable(this, SLOT(sortir()));
     pushButton_rapports->enable(this, SLOT(tableaux_de_bords()));
     pushButton_transactions->enable(this, SLOT(transactions()));
@@ -206,7 +206,7 @@ void YerothMainWindow::definirVendeur()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionComptabilite, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchats, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionInventaireDesStocks, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMarchandises, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
@@ -230,7 +230,7 @@ void YerothMainWindow::definirVendeur()
     pushButton_achats->enable(this, SLOT(achats()));
     pushButton_entrer->disable(this);
     pushButton_afficher_stocks->enable(this, SLOT(afficherStocks()));
-    pushButton_afficher_inventaire_des_stocks->enable(this, SLOT(afficherMarchandises()));
+    pushButton_marchandises->enable(this, SLOT(afficherMarchandises()));
     pushButton_sortir->disable(this);
     pushButton_rapports->disable(this);
     pushButton_transactions->disable(this);
@@ -253,7 +253,7 @@ void YerothMainWindow::definirGestionaireDesStocks()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionComptabilite, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchats, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionInventaireDesStocks, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMarchandises, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
@@ -277,7 +277,7 @@ void YerothMainWindow::definirGestionaireDesStocks()
     pushButton_achats->enable(this, SLOT(achats()));
     pushButton_entrer->enable(this, SLOT(entrer()));
     pushButton_afficher_stocks->enable(this, SLOT(afficherStocks()));
-    pushButton_afficher_inventaire_des_stocks->enable(this, SLOT(afficherMarchandises()));
+    pushButton_marchandises->enable(this, SLOT(afficherMarchandises()));
     pushButton_sortir->enable(this, SLOT(sortir()));
     pushButton_transactions->enable(this, SLOT(transactions()));
 
@@ -325,7 +325,7 @@ void YerothMainWindow::definirMagasinier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionComptabilite, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchats, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionInventaireDesStocks, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMarchandises, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
@@ -337,7 +337,7 @@ void YerothMainWindow::definirMagasinier()
     pushButton_clients->disable(this);
     pushButton_paiements->disable(this);
     pushButton_achats->disable(this);
-    pushButton_afficher_inventaire_des_stocks->disable(this);
+    pushButton_marchandises->disable(this);
     pushButton_rapports->disable(this);
     pushButton_ventes->disable(this);
     pushButton_vendre->disable(this);
@@ -361,7 +361,7 @@ void YerothMainWindow::definirPasDeRole()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionComptabilite, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchats, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionInventaireDesStocks, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMarchandises, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
@@ -376,7 +376,7 @@ void YerothMainWindow::definirPasDeRole()
     pushButton_achats->disable(this);
     pushButton_entrer->disable(this);
     pushButton_afficher_stocks->disable(this);
-    pushButton_afficher_inventaire_des_stocks->disable(this);
+    pushButton_marchandises->disable(this);
     pushButton_sortir->disable(this);
     pushButton_rapports->disable(this);
     pushButton_transactions->disable(this);

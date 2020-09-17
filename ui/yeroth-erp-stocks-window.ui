@@ -13849,7 +13849,7 @@ border: 0px rgb(255, 255, 255);</string>
     <addaction name="actionSupprimer_ce_stock"/>
     <addaction name="separator"/>
     <addaction name="actionEntrer"/>
-    <addaction name="actionInventaireDesStocks"/>
+    <addaction name="actionMarchandises"/>
     <addaction name="actionSortir"/>
     <addaction name="separator"/>
     <addaction name="actionMenu_Principal"/>
@@ -14791,7 +14791,7 @@ border: 0px rgb(255, 255, 255);</string>
     </font>
    </property>
   </action>
-  <action name="actionInventaireDesStocks">
+  <action name="actionMarchandises">
    <property name="text">
     <string>Afficher les marchandises</string>
    </property>

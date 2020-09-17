@@ -1778,7 +1778,7 @@
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="YerothPushButton" name="pushButton_afficher_inventaire_des_stocks">
+   <widget class="YerothPushButton" name="pushButton_marchandises">
     <property name="enabled">
      <bool>true</bool>
     </property>
@@ -7588,7 +7588,7 @@ Vente</string>
     <addaction name="actionFournisseurs"/>
     <addaction name="actionPaiements"/>
     <addaction name="actionStocks"/>
-    <addaction name="actionInventaireDesStocks"/>
+    <addaction name="actionMarchandises"/>
     <addaction name="actionSortir"/>
     <addaction name="actionVendre"/>
     <addaction name="separator"/>
@@ -8521,7 +8521,7 @@ Vente</string>
     </font>
    </property>
   </action>
-  <action name="actionInventaireDesStocks">
+  <action name="actionMarchandises">
    <property name="text">
     <string>Lister les marchandises</string>
    </property>
@@ -8795,7 +8795,7 @@ Vente</string>
   <tabstop>pushButton_ventes</tabstop>
   <tabstop>pushButton_clients</tabstop>
   <tabstop>pushButton_afficher_stocks</tabstop>
-  <tabstop>pushButton_afficher_inventaire_des_stocks</tabstop>
+  <tabstop>pushButton_marchandises</tabstop>
   <tabstop>pushButton_sortir</tabstop>
   <tabstop>pushButton_paiements</tabstop>
   <tabstop>pushButton_rapports</tabstop>
