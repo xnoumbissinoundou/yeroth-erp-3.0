@@ -63,12 +63,12 @@ public:
     	checkBox_services->setChecked(checked);
     }
 
-	inline void setYerothTableViewLastPageNumberText(const QString &aLastPageNumberText)
+	inline virtual void setYerothTableViewLastPageNumberText(const QString &aLastPageNumberText)
 	{
 		label_marchandises_numero_page_derniere->setText(aLastPageNumberText);
 	}
 
-	inline void setYerothTableViewCurrentPageNumberText(const QString &aNextPageNumberText)
+	inline virtual void setYerothTableViewCurrentPageNumberText(const QString &aNextPageNumberText)
 	{
 		label_marchandises_numero_page_courante->setText(aNextPageNumberText);
 	}
@@ -152,28 +152,6 @@ protected slots:
 
 private slots:
 
-	inline void slot_marchandises_window_YerothTableViewFirstPage()
-	{
-		tableView_marchandises->viewYerothTableViewFirstPage();
-	}
-
-	inline void slot_marchandises_window_YerothTableViewLastPage()
-	{
-		tableView_marchandises->viewYerothTableViewLastPage();
-	}
-
-	inline void slot_marchandises_window_YerothTableViewPreviousPage()
-	{
-		tableView_marchandises->viewYerothTableViewPreviousPage();
-	}
-
-	inline void slot_marchandises_window_YerothTableViewNextPage()
-	{
-		tableView_marchandises->viewYerothTableViewNextPage();
-	}
-
-	void slot_set_page_view_row_count();
-
 	void handle_services_checkBox(int state);
 
 	bool slot_filtrer_non_empty_product_stock();
@@ -204,8 +182,6 @@ private:
     bool					_currentlyFiltered;
 
     int 					_lastSelectedRow;
-
-    QIntValidator 			*_nombre_de_ligne_IntValidator;
 
     QFont 					*_pushButton_filtrer_font;
 

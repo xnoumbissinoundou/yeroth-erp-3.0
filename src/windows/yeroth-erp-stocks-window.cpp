@@ -69,6 +69,8 @@ YerothStocksWindow::YerothStocksWindow()
 
     mySetupUi(this);
 
+    tableView_stocks->_currentViewWindow = this;
+
     _yerothTableView_FROM_WINDOWS_COMMONS = tableView_stocks;
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
@@ -116,6 +118,11 @@ YerothStocksWindow::YerothStocksWindow()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
+
+    pushButton_page_premiere->disable(this);
+	pushButton_page_derniere->disable(this);
+    pushButton_page_precedente->disable(this);
+	pushButton_page_suivante->disable(this);
 
     pushButton_stocks_filtrer->disable(this);
     pushButton_entrer->disable(this);
@@ -185,6 +192,8 @@ connect(actionAdministration, SIGNAL(triggered()), this, SLOT(administration()))
 
 YerothStocksWindow::~YerothStocksWindow()
 {
+	MACRO_TO_DELETE_PAGINATION_INTEGER_VALIDATOR
+
 	delete _actionRechercheArticleCodebar;
     delete _logger;
 }
@@ -470,6 +479,8 @@ void YerothStocksWindow::setupLineEdits()
 	lineEdit_stocks_element_de_stock_resultat->setValidator(&YerothUtils::DoubleValidator);
 
 	lineEdit_nombre_de_stocks->setYerothEnabled(false);
+
+	MACRO_TO_BIND_PAGING_WITH_QLINEEDIT(lineEdit_stocks_nombre_de_lignes_par_page, tableView_stocks);
 }
 
 
@@ -702,6 +713,11 @@ void YerothStocksWindow::definirCaissier()
 
     desactiverComboBoxStrategieDeGestionDesStocks();
 
+    pushButton_page_premiere->disable(this);
+	pushButton_page_derniere->disable(this);
+    pushButton_page_precedente->disable(this);
+	pushButton_page_suivante->disable(this);
+
     pushButton_reinitialiser->disable(this);
     pushButton_stocks_filtrer->disable(this);
     pushButton_stocks_reinitialiser_filtre->disable(this);
@@ -736,6 +752,11 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
     activerComboBoxStrategieDeGestionDesStocks();
+
+    pushButton_page_premiere->enable(tableView_stocks, SLOT(viewYerothTableViewFirstPage()));
+	pushButton_page_derniere->enable(tableView_stocks, SLOT(viewYerothTableViewLastPage()));
+    pushButton_page_precedente->enable(tableView_stocks, SLOT(viewYerothTableViewPreviousPage()));
+	pushButton_page_suivante->enable(tableView_stocks, SLOT(viewYerothTableViewNextPage()));
 
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
     pushButton_stocks_filtrer->enable(this, SLOT(filtrer_stocks()));
@@ -773,6 +794,11 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     activerComboBoxStrategieDeGestionDesStocks();
 
+    pushButton_page_premiere->enable(tableView_stocks, SLOT(viewYerothTableViewFirstPage()));
+	pushButton_page_derniere->enable(tableView_stocks, SLOT(viewYerothTableViewLastPage()));
+    pushButton_page_precedente->enable(tableView_stocks, SLOT(viewYerothTableViewPreviousPage()));
+	pushButton_page_suivante->enable(tableView_stocks, SLOT(viewYerothTableViewNextPage()));
+
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
     pushButton_stocks_filtrer->enable(this, SLOT(filtrer_stocks()));
     pushButton_stocks_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
@@ -808,6 +834,11 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
     activerComboBoxStrategieDeGestionDesStocks();
+
+    pushButton_page_premiere->enable(tableView_stocks, SLOT(viewYerothTableViewFirstPage()));
+	pushButton_page_derniere->enable(tableView_stocks, SLOT(viewYerothTableViewLastPage()));
+    pushButton_page_precedente->enable(tableView_stocks, SLOT(viewYerothTableViewPreviousPage()));
+	pushButton_page_suivante->enable(tableView_stocks, SLOT(viewYerothTableViewNextPage()));
 
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
     pushButton_stocks_filtrer->enable(this, SLOT(filtrer_stocks()));
@@ -865,6 +896,11 @@ void YerothStocksWindow::definirPasDeRole()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
 
     desactiverComboBoxStrategieDeGestionDesStocks();
+
+    pushButton_page_premiere->disable(this);
+	pushButton_page_derniere->disable(this);
+    pushButton_page_precedente->disable(this);
+	pushButton_page_suivante->disable(this);
 
     pushButton_reinitialiser->disable(this);
     pushButton_stocks_filtrer->disable(this);
@@ -1086,7 +1122,8 @@ void YerothStocksWindow::afficherStocks(YerothSqlTableModel & sqlTableModel,
     else			//YerothConfig::STRATEGIE_VENTE_SORTIE_ALL
     {
     	tableView_stocks->setSortingEnabled(true);
-    	tableView_stocks->lister_les_elements_du_tableau(*_curStocksTableModel);
+    	tableView_stocks->queryYerothTableViewCurrentPageContentRow();
+//    	tableView_stocks->lister_les_elements_du_tableau(*_curStocksTableModel);
     }
 
     tableView_show_or_hide_columns(*tableView_stocks);

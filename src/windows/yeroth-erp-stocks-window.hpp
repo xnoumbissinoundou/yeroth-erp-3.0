@@ -58,6 +58,16 @@ public:
 
     virtual void definirPasDeRole();
 
+	inline virtual void setYerothTableViewLastPageNumberText(const QString &aLastPageNumberText)
+	{
+		label_stocks_numero_page_derniere->setText(aLastPageNumberText);
+	}
+
+	inline virtual void setYerothTableViewCurrentPageNumberText(const QString &aNextPageNumberText)
+	{
+		label_stocks_numero_page_courante->setText(aNextPageNumberText);
+	}
+
     virtual void rendreVisible(YerothSqlTableModel *stocksTableModel);
 
 public slots:

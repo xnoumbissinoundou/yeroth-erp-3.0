@@ -45,6 +45,7 @@ public:
 	 _output_print_pdf_latexFileNamePrefix(anOutput_print_pdf_latexFileNamePrefix),
 	 _yerothTableView_FROM_WINDOWS_COMMONS(0),
 	 _curStocksTableModel(0),
+	 _pagination_nombre_de_ligne_IntValidator(0),
 	 _first_time_imprimer_pdf_document_call(true),
 	 QMESSAGE_BOX_STYLE_SHEET(QString("QMessageBox {background-color: rgb(%1);}")
 								.arg(COLOUR_RGB_STRING_YEROTH_ORANGE_243_162_0)),
@@ -219,6 +220,14 @@ public slots:
 
     void resetTableViewHorizontalHeader_DEFAULT_ORDERING();
 
+	inline virtual void setYerothTableViewLastPageNumberText(const QString &aLastPageNumberText)
+	{
+	}
+
+	inline virtual void setYerothTableViewCurrentPageNumberText(const QString &aNextPageNumberText)
+	{
+	}
+
 protected slots:
 
 	virtual void tableView_show_or_hide_columns(YerothTableView &tableView_in_out);
@@ -304,6 +313,8 @@ protected:
 
     YerothSqlTableModel 				*_curStocksTableModel;
 
+    QIntValidator 						*_pagination_nombre_de_ligne_IntValidator;
+
     bool 								_first_time_imprimer_pdf_document_call;
 
     QString 							QMESSAGE_BOX_STYLE_SHEET;
@@ -314,5 +325,33 @@ private:
 
     static QPoint			*_centerPosition;
 };
+
+
+#define MACRO_TO_DELETE_PAGINATION_INTEGER_VALIDATOR 		\
+	{														\
+		if (0 != _pagination_nombre_de_ligne_IntValidator) 	\
+		{													\
+			delete _pagination_nombre_de_ligne_IntValidator;\
+		}													\
+	}
+
+
+#define MACRO_TO_BIND_PAGING_WITH_QLINEEDIT(X, Y) 				\
+	{ 															\
+			if (0 == _pagination_nombre_de_ligne_IntValidator) 	\
+			{					 								\
+				_pagination_nombre_de_ligne_IntValidator = new QIntValidator(0, 250); 	\
+				X->setValidator(_pagination_nombre_de_ligne_IntValidator); 				\
+			} 																			\
+																						\
+			_pagination_nombre_de_ligne_IntValidator->setRange(0, Y->getYerothSqlTableModelTotalRowCount()); \
+			X->setText(QString::number(Y->getYerothTableViewPageRowCount())); 	\
+																				\
+			connect(X,															\
+					SIGNAL(textEdited(const QString &)),	  					\
+					Y,						  									\
+					SLOT(slot_set_page_view_row_count(const QString &))); 		\
+	}
+
 
 #endif /* SRC_YEROTH_ERP_WINDOWS_COMMONS_HPP_ */

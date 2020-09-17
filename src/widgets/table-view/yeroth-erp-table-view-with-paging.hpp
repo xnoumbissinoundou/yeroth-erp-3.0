@@ -7,6 +7,9 @@
 #ifndef SRC_YEROTH_TABLE_VIEW_WITH_PAGING_HPP_
 #define SRC_YEROTH_TABLE_VIEW_WITH_PAGING_HPP_
 
+
+#include "src/utils/yeroth-erp-config.hpp"
+
 #include "src/widgets/table-view/yeroth-erp-table-view.hpp"
 
 
@@ -18,9 +21,28 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-	YerothTableViewWITHpaging();
+	inline YerothTableViewWITHpaging()
+	:YerothTableView(),
+	 _currentViewWindow(0),
+	 _yerothSqlTableModelTotalRowCount(0),
+	 _yerothTableViewLastPageNumber(1),
+	 _yerothTableViewCurPageNumber(1),
+	 _yerothTableViewPageCount(1),
+	 _yerothTableViewPageRowCount(YerothERPConfig::standard_pagination_number)
+	{
+	}
 
-	YerothTableViewWITHpaging(QWidget * parent);
+
+	inline YerothTableViewWITHpaging(QWidget * parent)
+	:YerothTableView(parent),
+	 _currentViewWindow(0),
+	 _yerothSqlTableModelTotalRowCount(0),
+	 _yerothTableViewLastPageNumber(1),
+	 _yerothTableViewCurPageNumber(1),
+	 _yerothTableViewPageCount(1),
+	 _yerothTableViewPageRowCount(YerothERPConfig::standard_pagination_number)
+	{
+	}
 
 	inline virtual ~YerothTableViewWITHpaging()
 	{
@@ -51,6 +73,8 @@ public:
 
 public slots:
 
+	virtual void slot_set_page_view_row_count(const QString &pageTableViewRowCountText);
+
 	virtual void viewYerothTableViewFirstPage();
 
 	virtual void viewYerothTableViewLastPage();
@@ -59,16 +83,16 @@ public slots:
 
 	virtual void viewYerothTableViewNextPage();
 
+public:
+
+	YerothWindowsCommons *_currentViewWindow;
+
 protected:
 
 	inline virtual void view_lister_les_elements_du_tableau(YerothSqlTableModel &tableModel)
 	{
 		lister_les_elements_du_tableau(tableModel, false);
 	}
-
-	virtual void view_setYerothTableViewLastPageNumberText(const QString &aPreviousPageNumberText) = 0;
-
-	virtual void view_setYerothTableViewCurrentPageNumberText(const QString &aNextPageNumberText) = 0;
 
 
 	int	_yerothSqlTableModelTotalRowCount;

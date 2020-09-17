@@ -35,20 +35,6 @@
 #include <QtSql/QSqlError>
 
 
-YerothERPMarchandisesTableView::YerothERPMarchandisesTableView()
-:YerothTableViewWITHpaging()
-{
-	_stdItemModel->_curTableView = this;
-}
-
-
-YerothERPMarchandisesTableView::YerothERPMarchandisesTableView(QWidget * parent)
-:YerothTableViewWITHpaging(parent)
-{
-	_stdItemModel->_curTableView = this;
-}
-
-
 void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel,
 																	bool execSelectStatement /* = true */)
 {
@@ -297,18 +283,6 @@ void YerothERPMarchandisesTableView::startEditingModeSelection()
 					 SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)),
 					 this,
 					 SLOT(dataChanged(const QModelIndex &, const QModelIndex &)));
-}
-
-
-void YerothERPMarchandisesTableView::view_setYerothTableViewLastPageNumberText(const QString &aLastPageNumberText)
-{
-	YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->_marchandisesWindow->setYerothTableViewLastPageNumberText(aLastPageNumberText);
-}
-
-
-void YerothERPMarchandisesTableView::view_setYerothTableViewCurrentPageNumberText(const QString &aNextPageNumberText)
-{
-	YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->_marchandisesWindow->setYerothTableViewCurrentPageNumberText(aNextPageNumberText);
 }
 
 

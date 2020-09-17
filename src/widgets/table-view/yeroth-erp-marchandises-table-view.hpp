@@ -30,9 +30,18 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-	YerothERPMarchandisesTableView();
+	inline YerothERPMarchandisesTableView()
+	:YerothTableViewWITHpaging()
+	{
+		_stdItemModel->_curTableView = this;
+	}
 
-	YerothERPMarchandisesTableView(QWidget * parent);
+
+	inline YerothERPMarchandisesTableView(QWidget * parent)
+	:YerothTableViewWITHpaging(parent)
+	{
+		_stdItemModel->_curTableView = this;
+	}
 
 	inline virtual ~YerothERPMarchandisesTableView()
 	{
@@ -46,12 +55,6 @@ public slots:
 	void startEditingModeSelection();
 
 	void stopEditingModeSelection();
-
-protected:
-
-	virtual void view_setYerothTableViewLastPageNumberText(const QString &aLastPageNumberText);
-
-	virtual void view_setYerothTableViewCurrentPageNumberText(const QString &aNextPageNumberText);
 
 protected slots:
 
