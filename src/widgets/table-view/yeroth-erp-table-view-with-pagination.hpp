@@ -1,5 +1,5 @@
 /*
- * yeroth-erp-table-view-with-paging.hpp
+ * yeroth-erp-table-view-with-pagination.hpp
  *
  *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
  */
@@ -13,7 +13,7 @@
 #include "src/widgets/table-view/yeroth-erp-table-view.hpp"
 
 
-class YerothTableViewWITHpaging : public YerothTableView
+class YerothTableViewWITHpagination : public YerothTableView
 {
 	Q_OBJECT
 
@@ -21,7 +21,7 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-	inline YerothTableViewWITHpaging()
+	inline YerothTableViewWITHpagination()
 	:YerothTableView(),
 	 _currentViewWindow(0),
 	 _yerothSqlTableModelTotalRowCount(0),
@@ -33,7 +33,7 @@ public:
 	}
 
 
-	inline YerothTableViewWITHpaging(QWidget * parent)
+	inline YerothTableViewWITHpagination(QWidget * parent)
 	:YerothTableView(parent),
 	 _currentViewWindow(0),
 	 _yerothSqlTableModelTotalRowCount(0),
@@ -44,7 +44,7 @@ public:
 	{
 	}
 
-	inline virtual ~YerothTableViewWITHpaging()
+	inline virtual ~YerothTableViewWITHpagination()
 	{
 	}
 

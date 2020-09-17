@@ -1,11 +1,11 @@
 /*
- * yeroth-erp-table-view-with-paging.cpp
+ * yeroth-erp-table-view-with-pagination.cpp
  *
  *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
  */
 
 
-#include "yeroth-erp-table-view-with-paging.hpp"
+#include "yeroth-erp-table-view-with-pagination.hpp"
 
 #include "src/yeroth-erp-windows.hpp"
 
@@ -17,7 +17,7 @@
 #include <QtCore/QtMath>
 
 
-void YerothTableViewWITHpaging::calculate_and_set_YerothViewLastPageNumber()
+void YerothTableViewWITHpagination::calculate_and_set_YerothViewLastPageNumber()
 {
 	QString selectTotalSqlTableRowCountStr(QString("select COUNT(*) from %1")
 												.arg(YerothTableView::getSqlTableName()));
@@ -48,7 +48,7 @@ void YerothTableViewWITHpaging::calculate_and_set_YerothViewLastPageNumber()
 }
 
 
-void YerothTableViewWITHpaging::setYerothTableViewPageRowCount(uint rowCount)
+void YerothTableViewWITHpagination::setYerothTableViewPageRowCount(uint rowCount)
 {
 	_yerothTableViewPageRowCount = rowCount;
 
@@ -62,7 +62,7 @@ void YerothTableViewWITHpaging::setYerothTableViewPageRowCount(uint rowCount)
 }
 
 
-void YerothTableViewWITHpaging::displayYerothTableViewPageContentRowLimit(YerothSqlTableModel &curYerothSqlTableModel)
+void YerothTableViewWITHpagination::displayYerothTableViewPageContentRowLimit(YerothSqlTableModel &curYerothSqlTableModel)
 {
 	uint previousPageNumber = 0;
 
@@ -119,7 +119,7 @@ void YerothTableViewWITHpaging::displayYerothTableViewPageContentRowLimit(Yeroth
 }
 
 
-void YerothTableViewWITHpaging::queryYerothTableViewCurrentPageContentRow()
+void YerothTableViewWITHpagination::queryYerothTableViewCurrentPageContentRow()
 {
 	YerothSqlTableModel *curYerothSqlTableModel =
 			YerothERPWindows::getSqlTableModelFromName(YerothTableView::getSqlTableName());
@@ -133,7 +133,7 @@ void YerothTableViewWITHpaging::queryYerothTableViewCurrentPageContentRow()
 }
 
 
-void YerothTableViewWITHpaging::slot_set_page_view_row_count(const QString &pageTableViewRowCountText)
+void YerothTableViewWITHpagination::slot_set_page_view_row_count(const QString &pageTableViewRowCountText)
 {
 	int pageTableViewRowCount = pageTableViewRowCountText.toInt();
 
@@ -144,7 +144,7 @@ void YerothTableViewWITHpaging::slot_set_page_view_row_count(const QString &page
 }
 
 
-void YerothTableViewWITHpaging::viewYerothTableViewFirstPage()
+void YerothTableViewWITHpagination::viewYerothTableViewFirstPage()
 {
 	_yerothTableViewCurPageNumber = 1;
 
@@ -152,7 +152,7 @@ void YerothTableViewWITHpaging::viewYerothTableViewFirstPage()
 }
 
 
-void YerothTableViewWITHpaging::viewYerothTableViewLastPage()
+void YerothTableViewWITHpagination::viewYerothTableViewLastPage()
 {
 	calculate_and_set_YerothViewLastPageNumber();
 
@@ -162,7 +162,7 @@ void YerothTableViewWITHpaging::viewYerothTableViewLastPage()
 }
 
 
-void YerothTableViewWITHpaging::viewYerothTableViewPreviousPage()
+void YerothTableViewWITHpagination::viewYerothTableViewPreviousPage()
 {
 	if (_yerothTableViewCurPageNumber > 1)
 	{
@@ -177,7 +177,7 @@ void YerothTableViewWITHpaging::viewYerothTableViewPreviousPage()
 }
 
 
-void YerothTableViewWITHpaging::viewYerothTableViewNextPage()
+void YerothTableViewWITHpagination::viewYerothTableViewNextPage()
 {
 	if (_yerothTableViewCurPageNumber < _yerothTableViewLastPageNumber)
 	{

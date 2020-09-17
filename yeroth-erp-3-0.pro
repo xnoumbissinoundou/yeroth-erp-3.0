@@ -123,7 +123,7 @@ HEADERS = src/yeroth-erp-windows.hpp \
 		  src/include/yeroth-erp-3-0-definition-shortcut.hpp \
 		  src/include/yeroth-erp-3-0-software.text-configuration.hpp \
 	  	src/widgets/yeroth-erp-qtabwidget.hpp \
-			src/widgets/table-view/yeroth-erp-table-view-with-paging.hpp \
+			src/widgets/table-view/yeroth-erp-table-view-with-pagination.hpp \
 			src/widgets/table-view/yeroth-erp-table-view.hpp \
 		  src/widgets/table-view/yeroth-erp-paiements-table-view.hpp \
 		  src/widgets/table-view/yeroth-erp-stocks-table-view.hpp \
@@ -241,7 +241,7 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 			src/imports/yeroth-erp-marchandise-import.cpp \
 		  src/imports/yeroth-erp-stock-import.cpp \
 		  src/widgets/yeroth-erp-qtabwidget.cpp \
-			src/widgets/table-view/yeroth-erp-table-view-with-paging.cpp \
+			src/widgets/table-view/yeroth-erp-table-view-with-pagination.cpp \
 			src/widgets/table-view/yeroth-erp-table-view.cpp \
 		  src/widgets/table-view/yeroth-erp-paiements-table-view.cpp \
 		  src/widgets/table-view/yeroth-erp-stocks-table-view.cpp \
