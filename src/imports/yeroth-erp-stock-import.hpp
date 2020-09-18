@@ -42,12 +42,20 @@ public:
     {
     }
 
+    inline virtual int import_csv_file()
+    {
+    	return import();
+    }
+
     virtual int import(bool importerParlant = false);
 
     static QString 					_allMissingMandatoryColumnValue;
 
     static QMap<QString, bool>		*_dbTableColumnToIsNotNULL;
 
+signals:
+
+	void SIGNAL_INCREMENT_PROGRESS_BAR(int countSuccess);
 
 protected:
 

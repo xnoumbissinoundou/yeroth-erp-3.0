@@ -31,6 +31,16 @@ public:
     {
     }
 
+    inline virtual int import_csv_file()
+    {
+    	return YerothERPStockImport::import_csv_file();
+    }
+
+    inline virtual int import(bool importerParlant = false)
+    {
+    	return YerothERPStockImport::import(importerParlant);
+    }
+
 protected:
 
     virtual enum import_csv_entry_row_return_status

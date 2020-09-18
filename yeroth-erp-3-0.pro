@@ -122,6 +122,7 @@ HEADERS = src/yeroth-erp-windows.hpp \
 		  src/include/yeroth-erp-3-0-definition-month.hpp \
 		  src/include/yeroth-erp-3-0-definition-shortcut.hpp \
 		  src/include/yeroth-erp-3-0-software.text-configuration.hpp \
+		  src/widgets/yeroth-erp-progress-bar.hpp \
 	  	src/widgets/yeroth-erp-qtabwidget.hpp \
 			src/widgets/table-view/yeroth-erp-table-view-with-pagination.hpp \
 			src/widgets/table-view/yeroth-erp-table-view.hpp \
@@ -240,6 +241,7 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/yeroth-erp-windows.cpp \
 			src/imports/yeroth-erp-marchandise-import.cpp \
 		  src/imports/yeroth-erp-stock-import.cpp \
+		  src/widgets/yeroth-erp-progress-bar.cpp \
 		  src/widgets/yeroth-erp-qtabwidget.cpp \
 			src/widgets/table-view/yeroth-erp-table-view-with-pagination.cpp \
 			src/widgets/table-view/yeroth-erp-table-view.cpp \

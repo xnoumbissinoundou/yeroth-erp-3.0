@@ -24,6 +24,8 @@
 
 #include "src/dbus/yeroth-erp-dbus-server.hpp"
 
+#include "src/widgets/yeroth-erp-progress-bar.hpp"
+
 #include "src/users/yeroth-erp-users.hpp"
 
 
@@ -110,9 +112,9 @@ YerothAdminWindow::YerothAdminWindow()
     mySetupUi(this);
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
-                                       "QMessageBox QLabel {color: rgb(%2);}").
-                               arg(COLOUR_RGB_STRING_YEROTH_DARK_GREEN_47_67_67,
-                            	   COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
+                                       "QMessageBox QLabel {color: rgb(%2);}")
+                                  .arg(COLOUR_RGB_STRING_YEROTH_DARK_GREEN_47_67_67,
+                                	   COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
     lineEdit_importer_separation_csv->setYerothEnabled(false);
 
@@ -518,24 +520,29 @@ void YerothAdminWindow::import_current_selected_csv_file()
 
 	int successImportCount = 0;
 
-
 	if (YerothUtils::isEqualCaseInsensitive(_current_selected_import_table,
 											YerothERPWindows::STOCKS))
 	{
 		YerothERPStockImport erpStockImport(*this,
-											_curCsvFileToImportContentWordList,
-											_csvContentIdxToDatabaseTableColumnInfo);
+											 _curCsvFileToImportContentWordList,
+											 _csvContentIdxToDatabaseTableColumnInfo);
 
-		successImportCount = erpStockImport.import(_importer_parlant);
+		YerothProgressBar(this)(&erpStockImport,
+								&YerothERPStockImport::import_csv_file,
+								&successImportCount,
+								_curCsvFileToImportContentWordList.size());
 	}
 	else if (YerothUtils::isEqualCaseInsensitive(_current_selected_import_table,
 												 YerothERPWindows::MARCHANDISES))
 	{
-		YerothERPMarchandiseImport erpMarchandiseImport(*this,
-														_curCsvFileToImportContentWordList,
-														_csvContentIdxToDatabaseTableColumnInfo);
+		YerothERPMarchandiseImport stockMarchandiseImport(*this,
+											        	  _curCsvFileToImportContentWordList,
+														  _csvContentIdxToDatabaseTableColumnInfo);
 
-		successImportCount = erpMarchandiseImport.import(_importer_parlant);
+		YerothProgressBar (this)(&stockMarchandiseImport,
+								 &YerothERPMarchandiseImport::import_csv_file,
+								 &successImportCount,
+								 _curCsvFileToImportContentWordList.size());
 	}
 
 

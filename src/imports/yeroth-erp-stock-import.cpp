@@ -156,6 +156,8 @@ int YerothERPStockImport::import(bool importerParlant /* = false */)
 		{
 			++successImportCount;
 		}
+
+		emit SIGNAL_INCREMENT_PROGRESS_BAR(k);
 	}
 
 	YEROTH_ERP_3_0_COMMIT_DATABASE_TRANSACTION;
