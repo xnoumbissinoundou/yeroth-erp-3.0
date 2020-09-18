@@ -352,11 +352,13 @@ private:
 	{ 															\
 			if (0 == _pagination_nombre_de_ligne_IntValidator) 	\
 			{					 								\
-				_pagination_nombre_de_ligne_IntValidator = new QIntValidator(0, 250); 	\
+				_pagination_nombre_de_ligne_IntValidator = new QIntValidator(1, 250); 	\
 				X->setValidator(_pagination_nombre_de_ligne_IntValidator); 				\
 			} 																			\
 																						\
-			_pagination_nombre_de_ligne_IntValidator->setRange(0, Y->getYerothSqlTableModelTotalRowCount()); \
+			_pagination_nombre_de_ligne_IntValidator->									\
+				setRange(1, (0 >= Y->getYerothSqlTableModelTotalRowCount()) ? 1 : Y->getYerothSqlTableModelTotalRowCount()); \
+																				\
 			X->setText(QString::number(Y->getYerothTableViewPageRowCount())); 	\
 																				\
 			connect(X,															\

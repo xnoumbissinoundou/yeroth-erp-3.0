@@ -135,6 +135,12 @@ void YerothTableViewWITHpagination::queryYerothTableViewCurrentPageContentRow()
 
 void YerothTableViewWITHpagination::slot_set_page_view_row_count(const QString &pageTableViewRowCountText)
 {
+	if (pageTableViewRowCountText.isEmpty())
+	{
+		setYerothTableViewPageRowCount(1);
+		return ;
+	}
+
 	int pageTableViewRowCount = pageTableViewRowCountText.toInt();
 
 	if (0 != pageTableViewRowCount)
