@@ -157,6 +157,7 @@ YerothERPWindows::YerothERPWindows(QDesktopWidget *desktopWidget)
      _tableModel_titres(0),
      _tableModel_localisations(0),
      _tableModel_categories(0),
+	 _tableModel_clients(0),
      _tableModel_fournisseurs(0),
      _tableModel_alertes(0),
 	 _tableModel_remises(0),
@@ -367,6 +368,7 @@ void YerothERPWindows::reinitialiseSqlTableModels()
     delete _tableModel_titres;
     delete _tableModel_localisations;
     delete _tableModel_categories;
+    delete _tableModel_clients;
     delete _tableModel_fournisseurs;
     delete _tableModel_alertes;
     delete _tableModel_remises;
