@@ -12,6 +12,7 @@ DEFINES += ${YEROTH_VERSION}
 
 #include(yeroth-erp-3-0-qtvirtualkeyboard-deployment.pri)
 
+CONFIG += precompile_header 
 CONFIG += qt 
 CONFIG += moc 
 
@@ -108,8 +109,11 @@ FORMS = ui/yeroth-erp-main-window.ui \
 		  ui/yeroth-erp-admin-modifier-window.ui \
 		  ui/yeroth-erp-pointdevente-liststocks-window.ui \
 		  ui/yeroth-erp-sortir-liststocks-window.ui
- 
-HEADERS = src/yeroth-erp-windows.hpp \
+
+PRECOMPILED_HEADER  = src/include/yeroth-erp-3-0-precompiled-header.hpp
+
+HEADERS = src/include/yeroth-erp-3-0-precompiled-header.hpp \
+			src/yeroth-erp-windows.hpp \
 		  src/imports/yeroth-erp-database-table-import-info.hpp \
 			src/imports/yeroth-erp-marchandise-import.hpp \
 			src/imports/yeroth-erp-stock-import.hpp \
