@@ -91,7 +91,10 @@ void YerothProgressBar::call_funtion_with_progress_bar_updates(classType *aClass
 
 	setVisible(false);
 
-	*aRetValue = retValue;
+	if (0 != aRetValue)
+	{
+		*aRetValue = retValue;
+	}
 }
 
 
