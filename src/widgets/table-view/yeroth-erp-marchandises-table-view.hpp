@@ -36,7 +36,6 @@ public:
 		_stdItemModel->_curTableView = this;
 	}
 
-
 	inline YerothERPMarchandisesTableView(QWidget * parent)
 	:YerothTableViewWITHpagination(parent)
 	{
