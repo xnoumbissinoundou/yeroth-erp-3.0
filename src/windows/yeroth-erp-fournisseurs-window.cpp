@@ -47,6 +47,8 @@ YerothERPFournisseursWindow::YerothERPFournisseursWindow()
 
     mySetupUi(this);
 
+    MACRO_TO_DEFINE_CURRENT_VIEW_WINDOW_FOR_TABLE_PAGINATION(tableView_fournisseurs)
+
     _yerothTableView_FROM_WINDOWS_COMMONS = tableView_fournisseurs;
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
@@ -67,9 +69,6 @@ YerothERPFournisseursWindow::YerothERPFournisseursWindow()
 
     _lineEditsToANDContentForSearch.insert(&lineEdit_fournisseurs_quartier,
     		YerothDatabaseTableColumn::QUARTIER);
-
-    _lineEditsToANDContentForSearch.insert(&lineEdit_fournisseurs_province_etat,
-    		YerothDatabaseTableColumn::PROVINCE_ETAT);
 
     _lineEditsToANDContentForSearch.insert(&lineEdit_fournisseurs_ville,
     		YerothDatabaseTableColumn::VILLE);
@@ -155,6 +154,8 @@ YerothERPFournisseursWindow::YerothERPFournisseursWindow()
 
 YerothERPFournisseursWindow::~YerothERPFournisseursWindow()
 {
+	MACRO_TO_DELETE_PAGINATION_INTEGER_VALIDATOR
+
     delete _pushButton_filtrer_font;
     delete _logger;
 }
@@ -600,9 +601,10 @@ void YerothERPFournisseursWindow::setupLineEdits()
 	lineEdit_fournisseurs_reference_fournisseur->enableForSearch(QObject::trUtf8("référence fournisseur"));
 	lineEdit_fournisseurs_quartier->enableForSearch(QObject::tr("quartier"));
 	lineEdit_fournisseurs_ville->enableForSearch(QObject::tr("ville"));
-	lineEdit_fournisseurs_province_etat->enableForSearch(QObject::trUtf8("province / état"));
 
 	lineEdit_nombre_de_fournisseurs->setYerothEnabled(false);
+
+	MACRO_TO_BIND_PAGING_WITH_QLINEEDIT(lineEdit_fournisseurs_nombre_de_lignes_par_page, tableView_fournisseurs);
 
 	lineEdit_resultat_filtre->setValidator(&YerothUtils::DoubleValidator);
 }
@@ -836,7 +838,7 @@ void YerothERPFournisseursWindow::afficher_nom_entreprise_selectioner(const QStr
 
 void YerothERPFournisseursWindow::afficherFournisseurs(YerothSqlTableModel &fournisseurSqlTableModel)
 {
-    tableView_fournisseurs->lister_les_elements_du_tableau(fournisseurSqlTableModel);
+	tableView_fournisseurs->queryYerothTableViewCurrentPageContentRow();
 
     tableView_show_or_hide_columns(*tableView_fournisseurs);
 

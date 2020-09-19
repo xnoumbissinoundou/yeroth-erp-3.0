@@ -11,7 +11,7 @@
 
 #include "src/widgets/yeroth-erp-qstandard-item-model.hpp"
 
-#include "src/widgets/table-view/yeroth-erp-table-view.hpp"
+#include "src/widgets/table-view/yeroth-erp-table-view-with-pagination.hpp"
 
 
 #include <QtSql/QSqlTableModel>
@@ -22,7 +22,7 @@ class YerothSqlTableModel;
 class YerothPOSQStandardItemModel;
 
 
-class YerothERPFournisseursTableView : public YerothTableView
+class YerothERPFournisseursTableView : public YerothTableViewWITHpagination
 {
 	Q_OBJECT
 
@@ -31,13 +31,13 @@ public:
 	YEROTH_CLASS_OPERATORS
 
 	inline YerothERPFournisseursTableView()
-	:YerothTableView()
+	:YerothTableViewWITHpagination()
 	{
 		_stdItemModel->_curTableView = this;
 	}
 
 	inline YerothERPFournisseursTableView(QWidget * parent)
-	:YerothTableView(parent)
+	:YerothTableViewWITHpagination(parent)
 	{
 		_stdItemModel->_curTableView = this;
 	}
@@ -47,7 +47,8 @@ public:
 	{
 	}
 
-	virtual void lister_les_elements_du_tableau(YerothSqlTableModel &tableModel);
+	virtual void lister_les_elements_du_tableau(YerothSqlTableModel &achatSqlTableModel,
+												bool execSelectStatement = true);
 };
 
 

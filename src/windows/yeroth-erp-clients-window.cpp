@@ -47,6 +47,8 @@ YerothERPClientsWindow::YerothERPClientsWindow()
 
     mySetupUi(this);
 
+    MACRO_TO_DEFINE_CURRENT_VIEW_WINDOW_FOR_TABLE_PAGINATION(tableView_clients)
+
     _yerothTableView_FROM_WINDOWS_COMMONS = tableView_clients;
 
     QMESSAGE_BOX_STYLE_SHEET =
@@ -66,9 +68,6 @@ YerothERPClientsWindow::YerothERPClientsWindow()
 
     _lineEditsToANDContentForSearch.insert(&lineEdit_comptes_clients_quartier,
     		YerothDatabaseTableColumn::QUARTIER);
-
-    _lineEditsToANDContentForSearch.insert(&lineEdit_comptes_clients_province_etat,
-    		YerothDatabaseTableColumn::PROVINCE_ETAT);
 
     _lineEditsToANDContentForSearch.insert(&lineEdit_comptes_clients_ville,
     		YerothDatabaseTableColumn::VILLE);
@@ -154,6 +153,8 @@ YerothERPClientsWindow::YerothERPClientsWindow()
 
 YerothERPClientsWindow::~YerothERPClientsWindow()
 {
+	MACRO_TO_DELETE_PAGINATION_INTEGER_VALIDATOR
+
     delete _pushButton_filtrer_font;
     delete _logger;
 }
@@ -599,9 +600,10 @@ void YerothERPClientsWindow::setupLineEdits()
 	lineEdit_comptes_clients_reference_client->enableForSearch(QObject::trUtf8("référence client"));
 	lineEdit_comptes_clients_quartier->enableForSearch(QObject::tr("quartier"));
 	lineEdit_comptes_clients_ville->enableForSearch(QObject::tr("ville"));
-	lineEdit_comptes_clients_province_etat->enableForSearch(QObject::trUtf8("province / état"));
 
 	lineEdit_nombre_de_comptes_clients->setYerothEnabled(false);
+
+	MACRO_TO_BIND_PAGING_WITH_QLINEEDIT(lineEdit_clients_nombre_de_lignes_par_page, tableView_clients);
 
 	lineEdit_resultat_filtre->setValidator(&YerothUtils::DoubleValidator);
 }
@@ -835,7 +837,7 @@ void YerothERPClientsWindow::afficher_nom_entreprise_selectioner(const QString &
 
 void YerothERPClientsWindow::afficherClients(YerothSqlTableModel &clientSqlTableModel)
 {
-    tableView_clients->lister_les_elements_du_tableau(clientSqlTableModel);
+	tableView_clients->queryYerothTableViewCurrentPageContentRow();
 
     tableView_show_or_hide_columns(*tableView_clients);
 

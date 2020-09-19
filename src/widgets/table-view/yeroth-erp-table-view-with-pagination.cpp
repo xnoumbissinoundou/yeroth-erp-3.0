@@ -111,8 +111,11 @@ void YerothTableViewWITHpagination::displayYerothTableViewPageContentRowLimit(Ye
 	}
 	else
 	{
-		_currentViewWindow->
-			setYerothTableViewCurrentPageNumberText(QString::number(_yerothTableViewLastPageNumber));
+		if (0 != _currentViewWindow)
+		{
+			_currentViewWindow->
+				setYerothTableViewCurrentPageNumberText(QString::number(_yerothTableViewLastPageNumber));
+		}
 
 		calculate_and_set_YerothViewLastPageNumber();
 	}

@@ -33,13 +33,19 @@
 #include <QtSql/QSqlError>
 
 
-void YerothERPClientsTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel)
+void YerothERPClientsTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel,
+															   bool execSelectStatement /* = true */)
 {
 	_stdItemModel->_curSqlTableModel = &tableModel;
 
 	emit signal_lister(tableModel);
 
-	bool s = tableModel.select();
+    bool s = true;
+
+    if (execSelectStatement)
+    {
+    	s = tableModel.select();
+    }
 
 	int rows = tableModel.rowCount();
 	int columns = tableModel.columnCount();

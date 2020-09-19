@@ -339,6 +339,10 @@ private:
 	}
 
 
+#define MACRO_TO_DEFINE_CURRENT_VIEW_WINDOW_FOR_TABLE_PAGINATION(X) \
+		X->_currentViewWindow = this;
+
+
 #define MACRO_TO_DELETE_PAGINATION_INTEGER_VALIDATOR 		\
 	{														\
 		if (0 != _pagination_nombre_de_ligne_IntValidator) 	\

@@ -51,7 +51,7 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
 
     mySetupUi(this);
 
-    tableView_marchandises->_currentViewWindow = this;
+    MACRO_TO_DEFINE_CURRENT_VIEW_WINDOW_FOR_TABLE_PAGINATION(tableView_marchandises)
 
     _yerothTableView_FROM_WINDOWS_COMMONS = tableView_marchandises;
 
