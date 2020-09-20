@@ -24,6 +24,7 @@ public:
 	inline YerothTableViewWITHpagination()
 	:YerothTableView(),
 	 _currentViewWindow(0),
+	 _needExecSelectStatement_FOR_TABLE_VIEW_PAGING_LISTING(false),
 	 _yerothSqlTableModelTotalRowCount(0),
 	 _yerothTableViewLastPageNumber(1),
 	 _yerothTableViewCurPageNumber(1),
@@ -36,6 +37,7 @@ public:
 	inline YerothTableViewWITHpagination(QWidget * parent)
 	:YerothTableView(parent),
 	 _currentViewWindow(0),
+	 _needExecSelectStatement_FOR_TABLE_VIEW_PAGING_LISTING(false),
 	 _yerothSqlTableModelTotalRowCount(0),
 	 _yerothTableViewLastPageNumber(1),
 	 _yerothTableViewCurPageNumber(1),
@@ -89,11 +91,7 @@ public:
 
 protected:
 
-	inline virtual void view_lister_les_elements_du_tableau(YerothSqlTableModel &tableModel)
-	{
-		lister_les_elements_du_tableau(tableModel, false);
-	}
-
+	bool _needExecSelectStatement_FOR_TABLE_VIEW_PAGING_LISTING;
 
 	int	_yerothSqlTableModelTotalRowCount;
 

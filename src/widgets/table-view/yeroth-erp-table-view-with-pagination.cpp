@@ -87,7 +87,7 @@ void YerothTableViewWITHpagination::displayYerothTableViewPageContentRowLimit(Ye
 	int querySize  =
 			curYerothSqlTableModel.yeroth_specify_filter_FROM_SELECT_STATEMENT(curYerothTableViewPageFilter);
 
-	view_lister_les_elements_du_tableau(curYerothSqlTableModel);
+	lister_les_elements_du_tableau(curYerothSqlTableModel);
 
 	if (querySize > 0)
 	{

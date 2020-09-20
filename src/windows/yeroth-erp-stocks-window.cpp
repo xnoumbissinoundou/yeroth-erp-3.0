@@ -1123,7 +1123,6 @@ void YerothStocksWindow::afficherStocks(YerothSqlTableModel & sqlTableModel,
     {
     	tableView_stocks->setSortingEnabled(true);
     	tableView_stocks->queryYerothTableViewCurrentPageContentRow();
-//    	tableView_stocks->lister_les_elements_du_tableau(*_curStocksTableModel);
     }
 
     tableView_show_or_hide_columns(*tableView_stocks);
@@ -1134,6 +1133,7 @@ void YerothStocksWindow::afficherStocks(YerothSqlTableModel & sqlTableModel,
 
     setWindowTitle(YerothUtils::getWindowTitleWithStrategy(this, localVisibleStrategy));
 }
+
 
 void YerothStocksWindow::afficherStocks(QString strategieGlobale /* = YerothUtils::EMPTY_STRING */)
 {

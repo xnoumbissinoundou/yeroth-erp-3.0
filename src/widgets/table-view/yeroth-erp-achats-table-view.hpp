@@ -44,8 +44,7 @@ public:
 	{
 	}
 
-	virtual void lister_les_elements_du_tableau(YerothSqlTableModel &achatSqlTableModel,
-												bool execSelectStatement = true);
+	virtual void lister_les_elements_du_tableau(YerothSqlTableModel &achatSqlTableModel);
 };
 
 

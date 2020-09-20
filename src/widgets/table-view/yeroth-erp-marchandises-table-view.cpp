@@ -35,8 +35,7 @@
 #include <QtSql/QSqlError>
 
 
-void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel,
-																	bool execSelectStatement /* = true */)
+void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel)
 {
 	_stdItemModel->_curSqlTableModel = &tableModel;
 
@@ -48,7 +47,7 @@ void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTab
 
     bool s = true;
 
-    if (execSelectStatement)
+    if (_needExecSelectStatement_FOR_TABLE_VIEW_PAGING_LISTING)
     {
     	s = tableModel.select();
     }
