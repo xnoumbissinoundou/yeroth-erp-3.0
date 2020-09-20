@@ -165,6 +165,8 @@ public:
 
 	static const QString EMAIL;
 
+	static const QString REFERENCE_FOURNISSEUR;
+
 	static const QString REFERENCE_CLIENT;
 
 	static const QString NUMERO_TELEPHONE_1;

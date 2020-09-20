@@ -84,6 +84,7 @@ const QString YerothDatabaseTableColumn::APPELATION_TITRE				("appelation_titre"
 const QString YerothDatabaseTableColumn::ROLE							("role");
 const QString YerothDatabaseTableColumn::NOM_ROLE						("nom_role");
 const QString YerothDatabaseTableColumn::EMAIL							("email");
+const QString YerothDatabaseTableColumn::REFERENCE_FOURNISSEUR			("reference_fournisseur");
 const QString YerothDatabaseTableColumn::REFERENCE_CLIENT				("reference_client");
 const QString YerothDatabaseTableColumn::NUMERO_TELEPHONE_1				("numero_telephone_1");
 const QString YerothDatabaseTableColumn::NUMERO_TELEPHONE_2				("numero_telephone_2");
@@ -281,6 +282,8 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NOM_ROLE,			QObject::trUtf8("rôle"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::EMAIL,				QObject::trUtf8("Émail"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REFERENCE_FOURNISSEUR,	QObject::trUtf8("Référence fourn."));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REFERENCE_CLIENT,	QObject::trUtf8("Référence client"));
 
