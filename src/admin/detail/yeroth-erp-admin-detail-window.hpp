@@ -52,8 +52,6 @@ public:
 
     void rendreVisibleCompteBancaire(int sqlTableRow);
 
-    void rendreVisibleFournisseur(int sqlTableRow);
-
     void rendreVisibleRemise(int sqlTableRow);
 
     void rendreVisibleAlerte(int sqlTableRow);
@@ -77,8 +75,6 @@ public slots:
     void retourListerCategorie();
 
     void retourListerCompteBancaire();
-
-    void retourListerFournisseur();
 
     void retourListerRemise();
 

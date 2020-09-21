@@ -49,7 +49,6 @@ YerothAdminCreateWindow::YerothAdminCreateWindow()
     pushButton_creer_categorie_annuler->enable(this, SLOT(annuler()));
     pushButton_creer_compte_bancaire_annuler->enable(this, SLOT(annuler()));
     pushButton_creer_alerte_annuler->enable(this, SLOT(annuler()));
-    pushButton_creer_fournisseur_annuler->enable(this, SLOT(annuler()));
     pushButton_creer_remise_annuler->enable(this, SLOT(annuler()));
 
 
@@ -58,7 +57,6 @@ YerothAdminCreateWindow::YerothAdminCreateWindow()
     pushButton_creer_categorie_valider->enable(this, SLOT(creer_categorie()));
     pushButton_creer_compte_bancaire_valider->enable(this, SLOT(creer_compte_bancaire()));
     pushButton_creer_alerte_valider->enable(this, SLOT(creer_alerte()));
-    pushButton_creer_fournisseur_valider->enable(this, SLOT(creer_fournisseur()));
     pushButton_creer_remise_valider->enable(this, SLOT(creer_remise()));
 
 
@@ -157,8 +155,6 @@ void YerothAdminCreateWindow::rendreVisible(unsigned selectedSujetAction)
 
     clear_localisation_all_fields();
 
-    clear_fournisseur_all_fields();
-
     clear_alerte_all_fields();
 
     clear_remise_all_fields();
@@ -184,8 +180,6 @@ void YerothAdminCreateWindow::rendreVisible(unsigned selectedSujetAction)
     creer_compte_bancaire_check_fields();
 
     creer_localisation_check_fields();
-
-    creer_fournisseur_check_fields();
 
     creer_alerte_check_fields_entry();
 
@@ -356,8 +350,6 @@ void YerothAdminCreateWindow::annuler()
 
     clear_localisation_all_fields();
 
-    clear_fournisseur_all_fields();
-
     clear_alerte_all_fields();
 
     clear_remise_all_fields();
@@ -405,8 +397,6 @@ void YerothAdminCreateWindow::handleCurrentChanged()
 
     clear_compte_bancaire_all_fields();
 
-    clear_fournisseur_all_fields();
-
     clear_alerte_all_fields();
 
     clear_remise_all_fields();
@@ -424,8 +414,6 @@ void YerothAdminCreateWindow::handleCurrentChanged()
     creer_compte_bancaire_check_fields();
 
     creer_localisation_check_fields();
-
-    creer_fournisseur_check_fields();
 
     creer_alerte_check_fields_entry();
 
@@ -447,8 +435,6 @@ void YerothAdminCreateWindow::hideEvent(QHideEvent * hideEvent)
 #include "creer-localisation.cpp"
 
 #include "creer-categorie.cpp"
-
-#include "creer-fournisseur.cpp"
 
 #include "creer-alerte.cpp"
 

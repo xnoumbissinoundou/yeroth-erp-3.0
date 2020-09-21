@@ -61,8 +61,6 @@ public:
 
     void setupEditComptebancaire();
 
-    void setupEditFournisseur();
-
     void setupEditAlerte();
 
     void setupEditRemise();
@@ -90,8 +88,6 @@ public slots:
 	void modifier_alerte();
 
 	void modifier_remise();
-
-	void modifier_fournisseur();
 
     void annuler();
 
@@ -127,8 +123,6 @@ private:
 
 	void retourListerCompteBancaire();
 
-	void retourListerFournisseur();
-
 	void retourListerAlerte();
 
 	void retourListerRemise();
@@ -140,8 +134,6 @@ private:
     void clear_compte_bancaire_all_fields();
 
     void clear_localisation_all_fields();
-
-    void clear_fournisseur_all_fields();
 
     void clear_alerte_all_fields();
 
@@ -157,13 +149,12 @@ private:
 
     bool modifier_client_check_fields();
 
-    bool modifier_fournisseur_check_fields();
-
     bool modifier_alerte_check_fields(QString previousAlertText);
 
     bool modifier_remise_check_fields(QString previousDiscountText);
 
     YerothLogger			*_logger;
+
     YerothSqlTableModel 	*_curSearchSqlTableModel;
 
     bool				_savePassword;

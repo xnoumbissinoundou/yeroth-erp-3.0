@@ -17,7 +17,6 @@ YerothAdminListerWindow::YerothAdminListerWindow()
  _categoryCurrentlyFiltered(false),
  _bankAccountCurrentlyFiltered(false),
  _userCurrentlyFiltered(false),
- _supplierCurrentlyFiltered(false),
  _siteCurrentlyFiltered(false),
  _discountCurrentlyFiltered(false),
  _pushButton_admin_rechercher_font(0),
@@ -46,7 +45,6 @@ YerothAdminListerWindow::YerothAdminListerWindow()
     tableView_lister_localisation->setSqlTableName(&YerothERPWindows::LOCALISATIONS);
     tableView_lister_categorie->setSqlTableName(&YerothERPWindows::CATEGORIES);
     tableView_lister_compte_bancaire->setSqlTableName(&YerothERPWindows::COMPTES_BANCAIRES);
-    tableView_lister_fournisseur->setSqlTableName(&YerothERPWindows::FOURNISSEURS);
     tableView_lister_remise->setSqlTableName(&YerothERPWindows::REMISES);
     tableView_lister_alerte->setSqlTableName(&YerothERPWindows::ALERTES);
 
@@ -90,9 +88,6 @@ YerothAdminListerWindow::YerothAdminListerWindow()
     connect(tableView_lister_compte_bancaire, SIGNAL(clicked(QModelIndex)), this,
             SLOT(handleItemModification(QModelIndex)));
 
-    connect(tableView_lister_fournisseur, SIGNAL(clicked(QModelIndex)), this,
-            SLOT(handleItemModification(QModelIndex)));
-
     connect(tableView_lister_alerte, SIGNAL(clicked(QModelIndex)), this,
             SLOT(handleItemModification(QModelIndex)));
 
@@ -107,9 +102,6 @@ YerothAdminListerWindow::YerothAdminListerWindow()
 
     connect(tableView_lister_compte_bancaire, SIGNAL(doubleClicked(const QModelIndex &)), this,
             SLOT(afficher_detail_compte_bancaire()));
-
-    connect(tableView_lister_fournisseur, SIGNAL(doubleClicked(const QModelIndex &)), this,
-            SLOT(afficher_detail_fournisseur()));
 
     connect(tableView_lister_remise, SIGNAL(doubleClicked(const QModelIndex &)), this,
             SLOT(afficher_detail_remise()));
@@ -197,13 +189,6 @@ void YerothAdminListerWindow::rendreVisible(unsigned selectedSujetAction)
     	}
         break;
 
-    case SUJET_ACTION_FOURNISSEUR:
-    	if (false == isSupplierCurrentlyFiltered())
-    	{
-    		lister_fournisseur();
-    	}
-        break;
-
     case SUJET_ACTION_ALERTE:
     	if (false == isAlertCurrentlyFiltered())
     	{
@@ -250,8 +235,6 @@ void YerothAdminListerWindow::reinitialiser()
 
     lister_compte_bancaire();
 
-    lister_fournisseur();
-
     lister_alerte();
 
     lister_remise();
@@ -280,10 +263,6 @@ void YerothAdminListerWindow::set_admin_rechercher_font()
 
     case SUJET_ACTION_COMPTE_BANCAIRE:
     	MACRO_SET_ADMIN_RECHERCHER_FONT(_bankAccountCurrentlyFiltered)
-        break;
-
-    case SUJET_ACTION_FOURNISSEUR:
-    	MACRO_SET_ADMIN_RECHERCHER_FONT(_supplierCurrentlyFiltered)
         break;
 
     case SUJET_ACTION_REMISE:
@@ -440,35 +419,6 @@ void YerothAdminListerWindow::lister_compte_bancaire(YerothSqlTableModel * aSqlT
 }
 
 
-void YerothAdminListerWindow::lister_fournisseur(YerothSqlTableModel * aSqlTableModel)
-{
-    if (aSqlTableModel
-            && YerothUtils::isEqualCaseInsensitive(_allWindows->FOURNISSEURS, aSqlTableModel->sqlTableName()))
-    {
-        tableView_lister_fournisseur->lister_les_elements_du_tableau(*aSqlTableModel);
-        _curSearchSqlTableModel = aSqlTableModel;
-    }
-    else
-    {
-    	setSupplierCurrentlyFiltered(false);
-        tableView_lister_fournisseur->lister_les_elements_du_tableau(_allWindows->getSqlTableModel_fournisseurs());
-    }
-
-    tableView_lister_fournisseur->hideColumn(0);
-    tableView_lister_fournisseur->hideColumn(3);
-    tableView_lister_fournisseur->hideColumn(4);
-    tableView_lister_fournisseur->hideColumn(8);
-    tableView_lister_fournisseur->hideColumn(9);
-    tableView_lister_fournisseur->hideColumn(10);
-    tableView_lister_fournisseur->hideColumn(11);
-    tableView_lister_fournisseur->hideColumn(12);
-    tableView_lister_fournisseur->hideColumn(13);
-
-    set_admin_rechercher_font();
-
-    tableView_lister_fournisseur->selectRow(_lastItemSelectedForModification);
-}
-
 void YerothAdminListerWindow::lister_alerte(YerothSqlTableModel * aSqlTableModel)
 {
     if (aSqlTableModel
@@ -549,6 +499,7 @@ void YerothAdminListerWindow::modifier()
             rendreInvisible();
         }
         break;
+
     case SUJET_ACTION_LOCALISATION:
         if (tableView_lister_localisation->rowCount() > 0)
         {
@@ -556,6 +507,7 @@ void YerothAdminListerWindow::modifier()
             rendreInvisible();
         }
         break;
+
     case SUJET_ACTION_CATEGORIE:
         if (tableView_lister_categorie->rowCount() > 0)
         {
@@ -565,6 +517,7 @@ void YerothAdminListerWindow::modifier()
             rendreInvisible();
         }
         break;
+
     case SUJET_ACTION_COMPTE_BANCAIRE:
         if (tableView_lister_compte_bancaire->rowCount() > 0)
         {
@@ -572,13 +525,7 @@ void YerothAdminListerWindow::modifier()
             rendreInvisible();
         }
         break;
-    case SUJET_ACTION_FOURNISSEUR:
-        if (tableView_lister_fournisseur->rowCount() > 0)
-        {
-            _allWindows->_adminModifierWindow->rendreVisible(SUJET_ACTION_FOURNISSEUR);
-            rendreInvisible();
-        }
-        break;
+
     case SUJET_ACTION_ALERTE:
         if (tableView_lister_alerte->rowCount() > 0)
         {
@@ -586,6 +533,7 @@ void YerothAdminListerWindow::modifier()
             rendreInvisible();
         }
         break;
+
     case SUJET_ACTION_REMISE:
         if (tableView_lister_remise->rowCount() > 0)
         {
@@ -593,10 +541,12 @@ void YerothAdminListerWindow::modifier()
             rendreInvisible();
         }
         break;
+
     case SUJET_ACTION_BON_DE_COMMANDE:
         //_allWindows->_adminModifierWindow->rendreVisible(SUJET_ACTION_BON_DE_COMMANDE);
         //rendreInvisible();
         break;
+
     default:
         break;
     }
@@ -609,26 +559,30 @@ void YerothAdminListerWindow::afficher_au_detail()
     case SUJET_ACTION_COMPTE_UTILISATEUR:
         afficher_detail_utilisateur();
         break;
+
     case SUJET_ACTION_LOCALISATION:
         afficher_detail_localisation();
         break;
+
     case SUJET_ACTION_CATEGORIE:
         afficher_detail_categorie();
         break;
+
     case SUJET_ACTION_COMPTE_BANCAIRE:
         afficher_detail_compte_bancaire();
         break;
-    case SUJET_ACTION_FOURNISSEUR:
-        afficher_detail_fournisseur();
-        break;
+
     case SUJET_ACTION_REMISE:
         afficher_detail_remise();
         break;
+
     case SUJET_ACTION_ALERTE:
         afficher_detail_alerte();
         break;
+
     case SUJET_ACTION_BON_DE_COMMANDE:
         break;
+
     default:
         break;
     }
@@ -662,12 +616,6 @@ void YerothAdminListerWindow::afficher_detail_compte_bancaire()
 }
 
 
-void YerothAdminListerWindow::afficher_detail_fournisseur()
-{
-    _allWindows->_adminDetailWindow->rendreVisibleFournisseur(lastSelectedItemForModification());
-    rendreInvisible();
-}
-
 void YerothAdminListerWindow::afficher_detail_remise()
 {
     _allWindows->_adminDetailWindow->rendreVisibleRemise(lastSelectedItemForModification());
@@ -687,26 +635,30 @@ void YerothAdminListerWindow::supprimer()
     case SUJET_ACTION_COMPTE_UTILISATEUR:
         supprimer_utilisateur();
         break;
+
     case SUJET_ACTION_LOCALISATION:
         supprimer_localisation();
         break;
+
     case SUJET_ACTION_CATEGORIE:
         supprimer_categorie();
         break;
+
     case SUJET_ACTION_COMPTE_BANCAIRE:
         supprimer_compte_bancaire();
         break;
-    case SUJET_ACTION_FOURNISSEUR:
-        supprimer_fournisseur();
-        break;
+
     case SUJET_ACTION_REMISE:
         supprimer_remise();
         break;
+
     case SUJET_ACTION_ALERTE:
         supprimer_alerte();
         break;
+
     case SUJET_ACTION_BON_DE_COMMANDE:
         break;
+
     default:
         break;
     }
@@ -938,73 +890,6 @@ void YerothAdminListerWindow::supprimer_compte_bancaire()
 
             YerothQMessageBox::information(this, tr("admin-lister-supprimer-compte-bancaire"), msg,
                                      QMessageBox::Ok);
-        }
-    }
-}
-
-
-void YerothAdminListerWindow::supprimer_fournisseur()
-{
-    _logger->log("supprimer_fournisseur");
-
-    YerothSqlTableModel *fournisseursTableModel = 0;
-
-    if (_curSearchSqlTableModel
-            && YerothUtils::isEqualCaseInsensitive(_allWindows->FOURNISSEURS, _curSearchSqlTableModel->sqlTableName()))
-    {
-        fournisseursTableModel = _curSearchSqlTableModel;
-        //qDebug() << "++ _curSearchSqlTableModel not null ";
-    }
-    else
-    {
-        fournisseursTableModel = &_allWindows->getSqlTableModel_fournisseurs();
-        //qDebug() << "++ _curSearchSqlTableModel is null ";
-    }
-
-    QSqlRecord record = fournisseursTableModel->record(lastSelectedItemForModification());
-
-    if (record.isEmpty() || record.isNull(YerothDatabaseTableColumn::NOM_ENTREPRISE))
-    {
-        //_logger->log("record is empty or null");
-        return;
-    }
-
-    QString nom_entreprise(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE));
-
-    QString msgConfirmation(QString(QObject::tr("Supprimer le fournisseur '%1' ?"))
-    							.arg(nom_entreprise));
-
-    if (QMessageBox::Ok ==
-            YerothQMessageBox::question(this,
-            							QObject::tr("admin-lister-supprimer-fournisseur"),
-                                  	  	msgConfirmation,
-										QMessageBox::Cancel,
-										QMessageBox::Ok))
-    {
-        bool success = fournisseursTableModel->removeRow(lastSelectedItemForModification());
-
-        QString msg(QString(QObject::tr("Le fournisseur '%1"))
-        				.arg(nom_entreprise));
-
-        if (success)
-        {
-            msg.append(QObject::trUtf8("' a été supprimée de la base de données !"));
-
-            YerothQMessageBox::information(this,
-            							   QObject::tr("admin-lister-supprimer-fournisseur"),
-										   msg,
-										   QMessageBox::Ok);
-
-            self_reset_view(SUJET_ACTION_FOURNISSEUR);
-        }
-        else
-        {
-            msg.append(QObject::trUtf8(" n'a pas été supprimée de la base de données !"));
-
-            YerothQMessageBox::information(this,
-            							   QObject::tr("admin-lister-supprimer-fournisseur"),
-										   msg,
-										   QMessageBox::Ok);
         }
     }
 }

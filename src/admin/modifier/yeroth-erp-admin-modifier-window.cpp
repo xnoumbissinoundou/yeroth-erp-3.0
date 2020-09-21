@@ -47,14 +47,12 @@ _savePassword(false)
     pushButton_modifier_categorie_annuler->enable(this, SLOT(annuler()));
     pushButton_modifier_compte_bancaire_annuler->enable(this, SLOT(annuler()));
     pushButton_modifier_alerte_annuler->enable(this, SLOT(annuler()));
-    pushButton_modifier_fournisseur_annuler->enable(this, SLOT(annuler()));
 
     pushButton_modifier_utilisateur_valider->enable(this, SLOT(modifier_utilisateur()));
     pushButton_modifier_localisation_valider->enable(this, SLOT(modifier_localisation()));
     pushButton_modifier_categorie_valider->enable(this, SLOT(modifier_categorie()));
     pushButton_modifier_compte_bancaire_valider->enable(this, SLOT(modifier_compte_bancaire()));
     pushButton_modifier_alerte_valider->enable(this, SLOT(modifier_alerte()));
-    pushButton_modifier_fournisseur_valider->enable(this, SLOT(modifier_fournisseur()));
 
     pushButton_creer->enable(this, SLOT(creer()));
     pushButton_lister->enable(this, SLOT(lister()));
@@ -113,7 +111,6 @@ void YerothAdminModifierWindow::rendreInvisible()
     clear_utilisateur_all_fields();
     clear_categorie_all_fields();
     clear_localisation_all_fields();
-    clear_fournisseur_all_fields();
     clear_alerte_all_fields();
 
     _savePassword = false;
@@ -139,7 +136,6 @@ void YerothAdminModifierWindow::rendreVisible(enum AdminSujetAction selectedSuje
     clear_categorie_all_fields();
     clear_compte_bancaire_all_fields();
     clear_localisation_all_fields();
-    clear_fournisseur_all_fields();
     clear_alerte_all_fields();
     clear_remise_all_fields();
 
@@ -150,40 +146,42 @@ void YerothAdminModifierWindow::rendreVisible(enum AdminSujetAction selectedSuje
         enableOtherTabs(SUJET_ACTION_COMPTE_UTILISATEUR, false);
         setupEditCompteUtilisateur();
         break;
+
     case SUJET_ACTION_LOCALISATION:
         tabWidget_modifier->setCurrentIndex(SUJET_ACTION_LOCALISATION);
         enableOtherTabs(SUJET_ACTION_LOCALISATION, false);
         setupEditLocalisation();
         break;
+
     case SUJET_ACTION_CATEGORIE:
         tabWidget_modifier->setCurrentIndex(SUJET_ACTION_CATEGORIE);
         enableOtherTabs(SUJET_ACTION_CATEGORIE, false);
         setupEditCategorie();
         break;
+
     case SUJET_ACTION_COMPTE_BANCAIRE:
         tabWidget_modifier->setCurrentIndex(SUJET_ACTION_COMPTE_BANCAIRE);
         enableOtherTabs(SUJET_ACTION_COMPTE_BANCAIRE, false);
         setupEditCompteBancaire();
         break;
-    case SUJET_ACTION_FOURNISSEUR:
-        tabWidget_modifier->setCurrentIndex(SUJET_ACTION_FOURNISSEUR);
-        enableOtherTabs(SUJET_ACTION_FOURNISSEUR, false);
-        setupEditFournisseur();
-        break;
+
     case SUJET_ACTION_ALERTE:
         tabWidget_modifier->setCurrentIndex(SUJET_ACTION_ALERTE);
         enableOtherTabs(SUJET_ACTION_ALERTE, false);
         setupEditAlerte();
         break;
+
     case SUJET_ACTION_REMISE:
         tabWidget_modifier->setCurrentIndex(SUJET_ACTION_REMISE);
         enableOtherTabs(SUJET_ACTION_REMISE, false);
         setupEditRemise();
         break;
+
     case SUJET_ACTION_BON_DE_COMMANDE:
         tabWidget_modifier->setCurrentIndex(SUJET_ACTION_BON_DE_COMMANDE);
         enableOtherTabs(SUJET_ACTION_BON_DE_COMMANDE, false);
         break;
+
     default:
         break;
     }
@@ -219,12 +217,6 @@ void YerothAdminModifierWindow::retourListerCompteBancaire()
 }
 
 
-void YerothAdminModifierWindow::retourListerFournisseur()
-{
-    _allWindows->_adminListerWindow->rendreVisible(SUJET_ACTION_FOURNISSEUR);
-    rendreInvisible();
-}
-
 void YerothAdminModifierWindow::retourListerAlerte()
 {
     _allWindows->_adminListerWindow->rendreVisible(SUJET_ACTION_ALERTE);
@@ -247,32 +239,35 @@ void YerothAdminModifierWindow::annuler()
         clear_utilisateur_all_fields();
         retourListerCompteUtilisateur();
         break;
+
     case SUJET_ACTION_LOCALISATION:
         clear_localisation_all_fields();
         retourListerLocalisation();
         break;
+
     case SUJET_ACTION_CATEGORIE:
         clear_categorie_all_fields();
         retourListerCategorie();
         break;
+
     case SUJET_ACTION_COMPTE_BANCAIRE:
         clear_compte_bancaire_all_fields();
         retourListerCompteBancaire();
         break;
-    case SUJET_ACTION_FOURNISSEUR:
-        clear_fournisseur_all_fields();
-        retourListerFournisseur();
-        break;
+
     case SUJET_ACTION_ALERTE:
         clear_alerte_all_fields();
         retourListerAlerte();
         break;
+
     case SUJET_ACTION_REMISE:
         clear_remise_all_fields();
         retourListerRemise();
         break;
+
     case SUJET_ACTION_BON_DE_COMMANDE:
         break;
+
     default:
         break;
     }
@@ -321,8 +316,6 @@ void YerothAdminModifierWindow::radioButtons_periode_temps()
 #include"modifier-categorie.cpp"
 
 #include"modifier-compte-bancaire.cpp"
-
-#include"modifier-fournisseur.cpp"
 
 #include"modifier-alerte.cpp"
 

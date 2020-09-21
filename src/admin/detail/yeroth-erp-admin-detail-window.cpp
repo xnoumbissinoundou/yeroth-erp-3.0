@@ -25,7 +25,6 @@ YerothAdminDetailWindow::YerothAdminDetailWindow():YerothPOSAdminWindowsCommons(
 
     dateEdit_detail_utilisateur_date_naissance->setEnabled(false);
     dateEdit_detail_localisation_date_ouverture->setEnabled(false);
-    textEdit_detail_fournisseur_description->setYerothEnabled(false);
     textEdit_detail_categorie_description->setYerothEnabled(false);
     textEdit_detail_compte_bancaire_description_du_compte->setYerothEnabled(false);
     textEdit_detail_localisation_description_lieu->setYerothEnabled(false);
@@ -58,7 +57,6 @@ YerothAdminDetailWindow::YerothAdminDetailWindow():YerothPOSAdminWindowsCommons(
     pushButton_detail_compte_bancaire_retour->enable(this, SLOT(retourListerCompteBancaire()));
     pushButton_detail_remise_retour->enable(this, SLOT(retourListerRemise()));
     pushButton_detail_alerte_retour->enable(this, SLOT(retourListerAlerte()));
-    pushButton_detail_fournisseur_retour->enable(this, SLOT(retourListerFournisseur()));
 
     /** Menu actions */
     connect(actionChanger_utilisateur, SIGNAL(triggered()), this, SLOT(changer_utilisateur()));
@@ -84,19 +82,6 @@ void YerothAdminDetailWindow::setupLineEdits()
     lineEdit_detail_utilisateur_numero_telephone_2->setYerothEnabled(false);
     lineEdit_detail_utilisateur_id->setYerothEnabled(false);
     lineEdit_detail_utilisateur_mot_passe->setYerothEnabled(false);
-
-    lineEdit_detail_fournisseur_nom_entreprise->setYerothEnabled(false);
-    lineEdit_detail_fournisseur_nom_representant->setYerothEnabled(false);
-    lineEdit_detail_fournisseur_quartier->setYerothEnabled(false);
-    lineEdit_detail_fournisseur_ville->setYerothEnabled(false);
-    lineEdit_detail_fournisseur_province_etat->setYerothEnabled(false);
-    lineEdit_detail_fournisseur_pays->setYerothEnabled(false);
-    lineEdit_detail_fournisseur_boite_postale->setYerothEnabled(false);
-    lineEdit_detail_fournisseur_siege_social->setYerothEnabled(false);
-    lineEdit_detail_fournisseur_email->setYerothEnabled(false);
-    lineEdit_detail_fournisseur_numero_telephone_1->setYerothEnabled(false);
-    lineEdit_detail_fournisseur_numero_telephone_2->setYerothEnabled(false);
-    lineEdit_detail_fournisseur_numero_contribuable->setYerothEnabled(false);
 
     lineEdit_detail_categorie_nom->setYerothEnabled(false);
 
@@ -169,9 +154,6 @@ void YerothAdminDetailWindow::modifier()
         break;
     case SUJET_ACTION_COMPTE_BANCAIRE:
         _allWindows->_adminModifierWindow->rendreVisible(SUJET_ACTION_COMPTE_BANCAIRE);
-        break;
-    case SUJET_ACTION_FOURNISSEUR:
-        _allWindows->_adminModifierWindow->rendreVisible(SUJET_ACTION_FOURNISSEUR);
         break;
     case SUJET_ACTION_REMISE:
         _allWindows->_adminModifierWindow->rendreVisible(SUJET_ACTION_REMISE);
@@ -363,47 +345,6 @@ void YerothAdminDetailWindow::rendreVisibleCompteBancaire(int sqlTableRow)
 }
 
 
-void YerothAdminDetailWindow::rendreVisibleFournisseur(int sqlTableRow)
-{
-	tabWidget_detail->setCurrentIndex(SUJET_ACTION_FOURNISSEUR);
-
-	YerothAdminListerWindow *lw = _allWindows->_adminListerWindow;
-
-	YerothSqlTableModel *fournisseursTableModel = lw->getCurSearchSqlTableModel();
-
-	if (!fournisseursTableModel)
-	{
-		fournisseursTableModel = &_allWindows->getSqlTableModel_fournisseurs();
-	}
-	else if (fournisseursTableModel
-			&& !YerothUtils::isEqualCaseInsensitive(fournisseursTableModel->sqlTableName(),
-					_allWindows->FOURNISSEURS))
-	{
-		fournisseursTableModel = &_allWindows->getSqlTableModel_fournisseurs();
-	}
-
-	QSqlRecord record = fournisseursTableModel->record(sqlTableRow);
-
-	lineEdit_detail_fournisseur_nom_entreprise->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE));
-	lineEdit_detail_fournisseur_nom_representant->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_REPRESENTANT));
-	lineEdit_detail_fournisseur_quartier->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::QUARTIER));
-	lineEdit_detail_fournisseur_ville->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::VILLE));
-	lineEdit_detail_fournisseur_province_etat->setText(GET_SQL_RECORD_DATA(record, "province_etat"));
-	lineEdit_detail_fournisseur_pays->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::PAYS));
-	lineEdit_detail_fournisseur_boite_postale->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::BOITE_POSTALE));
-	lineEdit_detail_fournisseur_siege_social->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::SIEGE_SOCIAL));
-	lineEdit_detail_fournisseur_email->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::EMAIL));
-	lineEdit_detail_fournisseur_numero_telephone_1->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NUMERO_TELEPHONE_1));
-	lineEdit_detail_fournisseur_numero_telephone_2->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NUMERO_TELEPHONE_2));
-	lineEdit_detail_fournisseur_numero_contribuable->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NUMERO_CONTRIBUABLE));
-	textEdit_detail_fournisseur_description->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESCRIPTION_FOURNISSEUR));
-
-	enableOtherTabs(SUJET_ACTION_FOURNISSEUR, false);
-
-	setVisible(true);
-}
-
-
 void YerothAdminDetailWindow::rendreVisibleRemise(int sqlTableRow)
 {
    tabWidget_detail->setCurrentIndex(SUJET_ACTION_REMISE);
@@ -534,12 +475,6 @@ void YerothAdminDetailWindow::retourListerCompteBancaire()
    rendreInvisible();
 }
 
-
-void YerothAdminDetailWindow::retourListerFournisseur()
-{
-    _allWindows->_adminListerWindow->rendreVisible(SUJET_ACTION_FOURNISSEUR);
-   rendreInvisible();
-}
 
 void YerothAdminDetailWindow::retourListerRemise()
 {

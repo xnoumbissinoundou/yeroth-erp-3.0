@@ -74,7 +74,6 @@ const QString YerothAdminWindow::SUPPRIMER(QObject::trUtf8(ACTION_ADMIN_OPERATIO
 const QString YerothAdminWindow::COMPTE_UTILISATEUR(QObject::trUtf8(SUBJECT_ADMIN_OPERATIONS_USER_ACCOUNT_FR));
 const QString YerothAdminWindow::LOCALISATION(QObject::trUtf8(SUBJECT_ADMIN_OPERATIONS_SITE_FR));
 const QString YerothAdminWindow::CATEGORIE(QObject::trUtf8(SUBJECT_ADMIN_OPERATIONS_CATEGORY_FR));
-const QString YerothAdminWindow::FOURNISSEUR(QObject::trUtf8(SUBJECT_ADMIN_OPERATIONS_SUPPLIER_FR));
 const QString YerothAdminWindow::ALERTE(QObject::trUtf8(SUBJECT_ADMIN_OPERATIONS_ALERT_FR));
 const QString YerothAdminWindow::BON_DE_COMMANDE(QObject::trUtf8(SUBJECT_ADMIN_OPERATIONS_COMMAND_SHEET_FR));
 const QString YerothAdminWindow::COMPTE_BANCAIRE(QObject::trUtf8(SUBJECT_ADMIN_OPERATIONS_BANK_ACCOUNT_FR));
@@ -89,7 +88,6 @@ const QString YerothAdminWindow::SUPPRIMER(QObject::tr(ACTION_ADMIN_OPERATIONS_D
 const QString YerothAdminWindow::COMPTE_UTILISATEUR(QObject::tr(SUBJECT_ADMIN_OPERATIONS_USER_ACCOUNT_EN));
 const QString YerothAdminWindow::LOCALISATION(QObject::tr(SUBJECT_ADMIN_OPERATIONS_SITE_EN));
 const QString YerothAdminWindow::CATEGORIE(QObject::tr(SUBJECT_ADMIN_OPERATIONS_CATEGORY_EN));
-const QString YerothAdminWindow::FOURNISSEUR(QObject::tr(SUBJECT_ADMIN_OPERATIONS_SUPPLIER_EN));
 const QString YerothAdminWindow::ALERTE(QObject::tr(SUBJECT_ADMIN_OPERATIONS_ALERT_EN));
 const QString YerothAdminWindow::BON_DE_COMMANDE(QObject::tr(SUBJECT_ADMIN_OPERATIONS_COMMAND_SHEET_EN));
 const QString YerothAdminWindow::COMPTE_BANCAIRE(QObject::tr(SUBJECT_ADMIN_OPERATIONS_BANK_ACCOUNT_EN));
@@ -148,7 +146,6 @@ YerothAdminWindow::YerothAdminWindow()
     _sujetActionsToConst->insert(CATEGORIE, SUJET_ACTION_CATEGORIE);
     _sujetActionsToConst->insert(COMPTE_BANCAIRE, SUJET_ACTION_COMPTE_BANCAIRE);
     _sujetActionsToConst->insert(COMPTE_UTILISATEUR, SUJET_ACTION_COMPTE_UTILISATEUR);
-    _sujetActionsToConst->insert(FOURNISSEUR, SUJET_ACTION_FOURNISSEUR);
     _sujetActionsToConst->insert(LOCALISATION, SUJET_ACTION_LOCALISATION);
     _sujetActionsToConst->insert(REMISE, SUJET_ACTION_REMISE);
 
@@ -159,7 +156,6 @@ YerothAdminWindow::YerothAdminWindow()
     comboBox_sujets_actions->addItem(BON_DE_COMMANDE);
     comboBox_sujets_actions->addItem(CATEGORIE);
     comboBox_sujets_actions->addItem(COMPTE_BANCAIRE);
-    comboBox_sujets_actions->addItem(FOURNISSEUR);
     comboBox_sujets_actions->addItem(COMPTE_UTILISATEUR);
     comboBox_sujets_actions->addItem(LOCALISATION);
     comboBox_sujets_actions->addItem(REMISE);
@@ -390,7 +386,6 @@ void YerothAdminWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
     _allWindows->_adminListerWindow->lister_compte_bancaire(&_allWindows->getSqlTableModel_comptes_bancaires());
     _allWindows->_adminListerWindow->lister_categorie(&_allWindows->getSqlTableModel_categories());
     _allWindows->_adminListerWindow->lister_utilisateur(&_allWindows->getSqlTableModel_users());
-    _allWindows->_adminListerWindow->lister_fournisseur(&_allWindows->getSqlTableModel_fournisseurs());
     _allWindows->_adminListerWindow->lister_localisation(&_allWindows->getSqlTableModel_localisations());
 
     handleTabChanged(tabWidget_administration->currentIndex());
@@ -872,9 +867,6 @@ void YerothAdminWindow::action_creer()
     case SUJET_ACTION_COMPTE_BANCAIRE:
         creer(SUJET_ACTION_COMPTE_BANCAIRE);
         break;
-    case SUJET_ACTION_FOURNISSEUR:
-        creer(SUJET_ACTION_FOURNISSEUR);
-        break;
     case SUJET_ACTION_ALERTE:
         creer(SUJET_ACTION_ALERTE);
         break;
@@ -905,9 +897,6 @@ void YerothAdminWindow::action_lister()
         break;
     case SUJET_ACTION_COMPTE_BANCAIRE:
         lister(SUJET_ACTION_COMPTE_BANCAIRE);
-        break;
-    case SUJET_ACTION_FOURNISSEUR:
-        lister(SUJET_ACTION_FOURNISSEUR);
         break;
     case SUJET_ACTION_ALERTE:
         lister(SUJET_ACTION_ALERTE);
@@ -940,9 +929,6 @@ void YerothAdminWindow::action_modifier()
     case SUJET_ACTION_COMPTE_BANCAIRE:
         modifier(SUJET_ACTION_COMPTE_BANCAIRE);
         break;
-    case SUJET_ACTION_FOURNISSEUR:
-        modifier(SUJET_ACTION_FOURNISSEUR);
-        break;
     case SUJET_ACTION_REMISE:
         modifier(SUJET_ACTION_REMISE);
         break;
@@ -973,9 +959,6 @@ void YerothAdminWindow::action_supprimer()
         break;
     case SUJET_ACTION_COMPTE_BANCAIRE:
         modifier(SUJET_ACTION_COMPTE_BANCAIRE);
-        break;
-    case SUJET_ACTION_FOURNISSEUR:
-        modifier(SUJET_ACTION_FOURNISSEUR);
         break;
     case SUJET_ACTION_ALERTE:
         modifier(SUJET_ACTION_ALERTE);

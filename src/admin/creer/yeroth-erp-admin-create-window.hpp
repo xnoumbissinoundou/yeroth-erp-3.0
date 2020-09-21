@@ -72,8 +72,6 @@ public slots:
 
 	bool creer_alerte();
 
-	bool creer_fournisseur();
-
 	void radioButtons_quantite();
 
 	void radioButtons_periode_temps();
@@ -118,15 +116,11 @@ private:
 
     void clear_remise_all_fields();
 
-    void clear_fournisseur_all_fields();
-
     bool creer_utilisateur_check_fields();
 
     bool creer_categorie_check_fields();
 
     bool creer_localisation_check_fields();
-
-    bool creer_fournisseur_check_fields();
 
     bool creer_alerte_check_fields();
 

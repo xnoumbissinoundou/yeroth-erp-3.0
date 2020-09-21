@@ -231,8 +231,6 @@ HEADERS = src/include/yeroth-erp-3-0-precompiled-header.hpp \
 		  src/admin/yeroth-erp-admin-search-form.hpp \		  
 		  src/admin/widgets/table-view/yeroth-erp-alert-table-view.hpp \
 		  src/admin/widgets/table-view/yeroth-erp-site-table-view.hpp \
-		  src/admin/widgets/table-view/yeroth-erp-customer-table-view.hpp \
-		  src/admin/widgets/table-view/yeroth-erp-supplier-table-view.hpp \
 		  src/admin/widgets/table-view/yeroth-erp-user-table-view.hpp \
 			src/admin/widgets/table-view/yeroth-erp-category-table-view.hpp \
 			src/admin/widgets/table-view/yeroth-erp-bank-account-table-view.hpp \
@@ -349,8 +347,6 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/admin/yeroth-erp-admin-search-form.cpp \		  
 		  src/admin/widgets/table-view/yeroth-erp-alert-table-view.cpp \
 		  src/admin/widgets/table-view/yeroth-erp-site-table-view.cpp \
-		  src/admin/widgets/table-view/yeroth-erp-customer-table-view.cpp \
-		  src/admin/widgets/table-view/yeroth-erp-supplier-table-view.cpp \
 		  src/admin/widgets/table-view/yeroth-erp-user-table-view.cpp \
 		  src/admin/widgets/table-view/yeroth-erp-category-table-view.cpp \
 			src/admin/widgets/table-view/yeroth-erp-bank-account-table-view.cpp \

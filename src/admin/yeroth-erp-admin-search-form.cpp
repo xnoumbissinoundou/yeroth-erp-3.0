@@ -101,15 +101,6 @@ void YerothAdminSearchForm::setupLineEditsQCompleters(int tabWidjetListerIdx)
         _curSqlTableModel = &_allWindows->getSqlTableModel_users();
         break;
 
-    case SUJET_ACTION_FOURNISSEUR:
-
-        lineEdit_terme_recherche->enableForSearch(QObject::trUtf8("nom de l'entreprise fournisseuse"));
-        lineEdit_terme_recherche->setupMyStaticQCompleter(_allWindows->FOURNISSEURS, YerothDatabaseTableColumn::NOM_ENTREPRISE, false,
-                false);
-        _curSujetAction = SUJET_ACTION_FOURNISSEUR;
-        _curSqlTableModel = &_allWindows->getSqlTableModel_fournisseurs();
-        break;
-
     case SUJET_ACTION_LOCALISATION:
 
         lineEdit_terme_recherche->enableForSearch(QObject::trUtf8("nom de la localisation"));
@@ -174,9 +165,7 @@ void YerothAdminSearchForm::rechercher(const QString & itemName)
     case SUJET_ACTION_COMPTE_UTILISATEUR:
         filter = GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::NOM_COMPLET, searchString);
         break;
-    case SUJET_ACTION_FOURNISSEUR:
-        filter = GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::NOM_ENTREPRISE, searchString);
-        break;
+
     case SUJET_ACTION_LOCALISATION:
         filter = GENERATE_SQL_IS_STMT("nom_localisation", searchString);
         break;
@@ -216,11 +205,6 @@ void YerothAdminSearchForm::rechercher(const QString & itemName)
             case SUJET_ACTION_COMPTE_UTILISATEUR:
             	_allWindows->_adminListerWindow->setUserCurrentlyFiltered(true);
                 _allWindows->_adminListerWindow->lister_utilisateur(_curSqlTableModel);
-                break;
-
-            case SUJET_ACTION_FOURNISSEUR:
-            	_allWindows->_adminListerWindow->setSupplierCurrentlyFiltered(true);
-                _allWindows->_adminListerWindow->lister_fournisseur(_curSqlTableModel);
                 break;
 
             case SUJET_ACTION_LOCALISATION:

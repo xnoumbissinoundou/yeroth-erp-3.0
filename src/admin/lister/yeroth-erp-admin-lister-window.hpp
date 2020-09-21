@@ -78,8 +78,6 @@ public slots:
 
 	void lister_compte_bancaire(YerothSqlTableModel *aSqlTableModel = 0);
 
-	void lister_fournisseur(YerothSqlTableModel *aSqlTableModel = 0);
-
 	void lister_alerte(YerothSqlTableModel *aSqlTableModel = 0);
 
 	void lister_remise(YerothSqlTableModel *aSqlTableModel = 0);
@@ -94,8 +92,6 @@ public slots:
 
     void afficher_detail_compte_bancaire();
 
-    void afficher_detail_fournisseur();
-
     void afficher_detail_remise();
 
     void afficher_detail_alerte();
@@ -109,8 +105,6 @@ public slots:
     void supprimer_categorie();
 
     void supprimer_compte_bancaire();
-
-    void supprimer_fournisseur();
 
     void supprimer_remise();
 
@@ -154,11 +148,6 @@ public slots:
 		return _siteCurrentlyFiltered;
 	}
 
-	inline bool isSupplierCurrentlyFiltered() const
-	{
-		return _supplierCurrentlyFiltered;
-	}
-
 	inline bool isUserCurrentlyFiltered() const
 	{
 		return _userCurrentlyFiltered;
@@ -194,11 +183,6 @@ public slots:
 		_siteCurrentlyFiltered = siteCurrentlyFiltered;
 	}
 
-	inline void setSupplierCurrentlyFiltered(bool supplierCurrentlyFiltered)
-	{
-		_supplierCurrentlyFiltered = supplierCurrentlyFiltered;
-	}
-
 	inline void setUserCurrentlyFiltered(bool userCurrentlyFiltered)
 	{
 		_userCurrentlyFiltered = userCurrentlyFiltered;
@@ -213,8 +197,6 @@ private:
     bool 					_bankAccountCurrentlyFiltered;
 
     bool 					_userCurrentlyFiltered;
-
-    bool 					_supplierCurrentlyFiltered;
 
     bool 					_siteCurrentlyFiltered;
 
