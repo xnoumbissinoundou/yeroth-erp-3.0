@@ -10083,7 +10083,7 @@ border: 0px rgb(255, 255, 255);</string>
    <widget class="QLabel" name="label_nombre_de_lignes_par_page">
     <property name="geometry">
      <rect>
-      <x>103</x>
+      <x>140</x>
       <y>394</y>
       <width>57</width>
       <height>21</height>
@@ -10441,9 +10441,9 @@ border: 0px rgb(255, 255, 255);</string>
    <widget class="YerothLineEdit" name="lineEdit_fournisseurs_nombre_de_lignes_par_page">
     <property name="geometry">
      <rect>
-      <x>165</x>
+      <x>202</x>
       <y>396</y>
-      <width>77</width>
+      <width>40</width>
       <height>21</height>
      </rect>
     </property>
@@ -10893,6 +10893,9 @@ border: 0px rgb(255, 255, 255);</string>
      <font>
       <pointsize>10</pointsize>
      </font>
+    </property>
+    <property name="toolTip">
+     <string>Allant de 1 à 999.</string>
     </property>
     <property name="styleSheet">
      <string notr="true">border: 1px solid rgb(60, 60, 60);</string>
