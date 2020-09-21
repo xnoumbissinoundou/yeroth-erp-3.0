@@ -325,7 +325,7 @@ bool YerothFournisseurDetailsWindow::imprimer_pdf_document()
 
     QString texDocument;
 
-    YerothUtils::getLatexCustomerData(texDocument);
+    YerothUtils::getLatexSupplierData(texDocument);
 
     QString data;
 
@@ -374,28 +374,28 @@ bool YerothFournisseurDetailsWindow::imprimer_pdf_document()
     data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Dette maximale: ")));
     data.append(QString("%1\\\\\n").arg(lineEdit_fournisseur_details_dette_maximale->textForLatex()));
 
-    data.append(YerothUtils::get_latex_bold_text(QObject::tr("Compte fournisseur: ")));
+    data.append(YerothUtils::get_latex_bold_text(QObject::tr("Fournisseur: ")));
     data.append(QString("%1\\\\\n").arg(lineEdit_fournisseur_details_fournisseur->textForLatex()));
 
     data.append("\n\n\\vspace{0.3cm}\n\n");
 
-    data.append(QString("%1").arg(YerothUtils::get_latex_bold_text(QObject::tr("DESCRIPTION CLIENT:"))));
+    data.append(QString("%1").arg(YerothUtils::get_latex_bold_text(QObject::tr("DESCRIPTION FOURNISSEUR:"))));
     data.append("\n\n\\vspace{0.3cm}\n\n");
 
-    texDocument.replace("YEROTHDETAILSCOMPTECLIENT", data);
+    texDocument.replace("YEROTHDETAILSFOURNISSEUR", data);
 
     data.clear();
     data.append(QString("%1\\\\").arg(textEdit_fournisseur_details_description_du_fournisseur->toPlainTextForLatex()));
 
-    texDocument.replace("YEROTHDESCRIPTIONCOMPTECLIENT", data);
+    texDocument.replace("YEROTHDESCRIPTIONFOURNISSEUR", data);
 
     if (0 != label_image_produit_pixmap)
     {
-    	texDocument.replace("YEROTHCHEMINCOMPLETIMAGECOMPTECLIENT", yerothCustomerAccountImageTmpFile);
+    	texDocument.replace("YEROTHCHEMINCOMPLETIMAGEFOURNISSEUR", yerothCustomerAccountImageTmpFile);
     }
     else
     {
-    	texDocument.replace("YEROTHCHEMINCOMPLETIMAGECOMPTECLIENT", "");
+    	texDocument.replace("YEROTHCHEMINCOMPLETIMAGEFOURNISSEUR", "");
     }
 
 
@@ -496,7 +496,7 @@ void YerothFournisseurDetailsWindow::showFournisseurDetail(int lastSelectedRow)
 {
 	QSqlRecord record = _curFournisseurTableModel->record(lastSelectedRow);
 
-	lineEdit_fournisseur_details_reference_fournisseur->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE_CLIENT));
+	lineEdit_fournisseur_details_reference_fournisseur->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE_FOURNISSEUR));
 
 	lineEdit_fournisseur_details_reference_registre_du_commerce->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE_REGISTRE_DU_COMMERCE));
 
@@ -532,7 +532,7 @@ void YerothFournisseurDetailsWindow::showFournisseurDetail(int lastSelectedRow)
 
 	lineEdit_fournisseur_details_fournisseur->setText(GET_CURRENCY_STRING_NUM(fournisseur));
 
-	textEdit_fournisseur_details_description_du_fournisseur->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESCRIPTION_CLIENT));
+	textEdit_fournisseur_details_description_du_fournisseur->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESCRIPTION_FOURNISSEUR));
 
     QVariant img(record.value(YerothDatabaseTableColumn::IMAGE_FOURNISSEUR));
 

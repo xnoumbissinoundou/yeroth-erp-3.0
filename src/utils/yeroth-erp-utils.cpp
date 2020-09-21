@@ -91,6 +91,8 @@ QString YerothUtils::_1a_tex("");
 
 QString YerothUtils::template_bilan_comptable_tex("");
 
+QString YerothUtils::template_fiche_dun_fournisseur_tex("");
+
 QString YerothUtils::template_fiche_client_tex("");
 
 QString YerothUtils::template_historique_dun_stock_tex("");
@@ -2787,6 +2789,14 @@ bool YerothUtils::import_csv_file_content(QString aCsvFileFullPath,
 			.split(YerothUtils::LINE_ENDING_STRING_REGEXP));
 
 	return true;
+}
+
+
+void YerothUtils::getLatexSupplierData(QString &texDocumentString_in_out)
+{
+    texDocumentString_in_out.append(YerothUtils::template_fiche_dun_fournisseur_tex);
+    texDocumentString_in_out.append("\n");
+    texDocumentString_in_out.append("\\end{document}");
 }
 
 

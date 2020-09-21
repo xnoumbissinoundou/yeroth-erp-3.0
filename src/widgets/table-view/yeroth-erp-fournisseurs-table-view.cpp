@@ -165,7 +165,7 @@ void YerothERPFournisseursTableView::lister_les_elements_du_tableau(YerothSqlTab
 				tmpQvString.clear();
 				tmpQvString.append(qv.toString());
 
-				if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::REFERENCE_CLIENT))
+				if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::REFERENCE_FOURNISSEUR))
 				{
 					anItem = new YerothQStandardItem(YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(tmpQvString));
 				}

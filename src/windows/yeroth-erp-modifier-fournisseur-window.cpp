@@ -427,7 +427,7 @@ void YerothModifierFournisseurWindow::actualiserFournisseur()
         bool currentFournisseurRefChanged = false;
         bool currentCompanyNameChanged = false;
 
-        QString oldFournisseurRef(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE_CLIENT));
+        QString oldFournisseurRef(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE_FOURNISSEUR));
         QString oldCompanyName(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE));
 
 //        qDebug() << QString("++ oldFournisseurRef: %1, fournisseur ref: %2")
@@ -446,7 +446,7 @@ void YerothModifierFournisseurWindow::actualiserFournisseur()
         	currentCompanyNameChanged = true;
         }
 
-		record.setValue(YerothDatabaseTableColumn::REFERENCE_CLIENT, lineEdit_modifier_fournisseur_reference_fournisseur->text());
+		record.setValue(YerothDatabaseTableColumn::REFERENCE_FOURNISSEUR, lineEdit_modifier_fournisseur_reference_fournisseur->text());
 		record.setValue(YerothDatabaseTableColumn::REFERENCE_REGISTRE_DU_COMMERCE, lineEdit_modifier_fournisseur_reference_registre_du_commerce->text());
 		record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE, lineEdit_modifier_fournisseur_nom_entreprise->text());
         record.setValue(YerothDatabaseTableColumn::NOM_REPRESENTANT, lineEdit_modifier_fournisseur_nom_representant->text());
@@ -610,7 +610,7 @@ void YerothModifierFournisseurWindow::showFournisseurDetail()
 
     _curFournisseurDetailDBID = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ID).toInt();
 
-	lineEdit_modifier_fournisseur_reference_fournisseur->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE_CLIENT));
+	lineEdit_modifier_fournisseur_reference_fournisseur->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE_FOURNISSEUR));
 
 	lineEdit_modifier_fournisseur_reference_registre_du_commerce->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE_REGISTRE_DU_COMMERCE));
 

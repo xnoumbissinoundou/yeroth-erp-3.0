@@ -97,7 +97,6 @@ private:
 
     void checkCourrierAlerts();
 
-	static void getLatexCustomerData(QString &texDocumentString_in_out);
 
     YerothLogger			*_logger;
 

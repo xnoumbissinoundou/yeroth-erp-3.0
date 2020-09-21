@@ -80,7 +80,7 @@ bool YerothTableauDesTransactionsDuFournisseurWindow::imprimer_pdf_document()
 
     QMap<QString, QString> documentSpecificElements;
 
-    documentSpecificElements.insert("YEROTHCLIENT", YerothUtils::LATEX_IN_OUT_handleForeignAccents(_fournisseurCompanyName));
+    documentSpecificElements.insert("YEROTHFOURNISSEUR", YerothUtils::LATEX_IN_OUT_handleForeignAccents(_fournisseurCompanyName));
 
     documentSpecificElements.insert("YEROTHVENTESDEBUT", SET_DATE_TO_STRING(_curDateDebutTransactions));
 

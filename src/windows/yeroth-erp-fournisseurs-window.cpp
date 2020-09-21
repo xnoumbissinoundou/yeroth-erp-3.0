@@ -65,7 +65,7 @@ YerothERPFournisseursWindow::YerothERPFournisseursWindow()
     		YerothDatabaseTableColumn::NOM_ENTREPRISE);
 
     _lineEditsToANDContentForSearch.insert(&lineEdit_fournisseurs_reference_fournisseur,
-    		YerothDatabaseTableColumn::REFERENCE_CLIENT);
+    		YerothDatabaseTableColumn::REFERENCE_FOURNISSEUR);
 
     _lineEditsToANDContentForSearch.insert(&lineEdit_fournisseurs_quartier,
     		YerothDatabaseTableColumn::QUARTIER);
@@ -166,7 +166,7 @@ void YerothERPFournisseursWindow::reinitialiser_champs_db_visibles()
 	_visibleDBFieldColumnStrList.clear();
 
     _visibleDBFieldColumnStrList
-			<< YerothDatabaseTableColumn::REFERENCE_CLIENT
+			<< YerothDatabaseTableColumn::REFERENCE_FOURNISSEUR
 			<< YerothDatabaseTableColumn::NOM_ENTREPRISE
 			<< YerothDatabaseTableColumn::VILLE
 			<< YerothDatabaseTableColumn::EMAIL
