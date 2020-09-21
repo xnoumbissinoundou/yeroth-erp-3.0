@@ -593,6 +593,8 @@ public:
 
 	static const QChar SLASH_CHAR;
 
+	static const int YEROTH_PAGINATION_INT_VALIDATOR_MAXIMAL_VALUE;
+
 	static const QIntValidator IntValidator;
 
 	static const QDoubleValidator DoubleValidator;

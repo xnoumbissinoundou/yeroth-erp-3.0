@@ -398,6 +398,8 @@ const QRegExp YerothUtils::LINE_ENDING_STRING_REGEXP("[\r\n]");
 
 const QRegExp YerothUtils::EMPTY_SPACE_REGEXP("\\s");
 
+const int YerothUtils::YEROTH_PAGINATION_INT_VALIDATOR_MAXIMAL_VALUE = 999;
+
 const QIntValidator YerothUtils::IntValidator(0, 444444444);
 const QDoubleValidator YerothUtils::DoubleValidator(0, 444444444, 2);
 const QRegExpValidator YerothUtils::PasswordValidator(PasswordRegExp);
