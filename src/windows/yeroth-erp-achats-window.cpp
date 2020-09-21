@@ -118,10 +118,7 @@ YerothAchatsWindow::YerothAchatsWindow()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
-    pushButton_page_premiere->disable(this);
-	pushButton_page_derniere->disable(this);
-    pushButton_page_precedente->disable(this);
-	pushButton_page_suivante->disable(this);
+    MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS
 
     pushButton_achats_filtrer->disable(this);
     pushButton_entrer->disable(this);
@@ -469,10 +466,7 @@ void YerothAchatsWindow::definirCaissier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
-    pushButton_page_premiere->disable(this);
-	pushButton_page_derniere->disable(this);
-    pushButton_page_precedente->disable(this);
-	pushButton_page_suivante->disable(this);
+    MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS
 
     pushButton_achats_filtrer->disable(this);
     pushButton_achats_reinitialiser_filtre->disable(this);
@@ -502,10 +496,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
-    pushButton_page_premiere->enable(tableView_achats, SLOT(viewYerothTableViewFirstPage()));
-	pushButton_page_derniere->enable(tableView_achats, SLOT(viewYerothTableViewLastPage()));
-    pushButton_page_precedente->enable(tableView_achats, SLOT(viewYerothTableViewPreviousPage()));
-	pushButton_page_suivante->enable(tableView_achats, SLOT(viewYerothTableViewNextPage()));
+    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(tableView_achats)
 
     pushButton_achats_filtrer->enable(this, SLOT(filtrer_achats()));
     pushButton_achats_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
@@ -536,10 +527,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
-    pushButton_page_premiere->enable(tableView_achats, SLOT(viewYerothTableViewFirstPage()));
-	pushButton_page_derniere->enable(tableView_achats, SLOT(viewYerothTableViewLastPage()));
-    pushButton_page_precedente->enable(tableView_achats, SLOT(viewYerothTableViewPreviousPage()));
-	pushButton_page_suivante->enable(tableView_achats, SLOT(viewYerothTableViewNextPage()));
+    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(tableView_achats)
 
     pushButton_achats_filtrer->enable(this, SLOT(filtrer_achats()));
     pushButton_achats_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
@@ -570,10 +558,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
-    pushButton_page_premiere->enable(tableView_achats, SLOT(viewYerothTableViewFirstPage()));
-	pushButton_page_derniere->enable(tableView_achats, SLOT(viewYerothTableViewLastPage()));
-    pushButton_page_precedente->enable(tableView_achats, SLOT(viewYerothTableViewPreviousPage()));
-	pushButton_page_suivante->enable(tableView_achats, SLOT(viewYerothTableViewNextPage()));
+    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(tableView_achats)
 
     pushButton_achats_filtrer->enable(this, SLOT(filtrer_achats()));
     pushButton_achats_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
@@ -597,10 +582,7 @@ void YerothAchatsWindow::definirMagasinier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVentes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
-    pushButton_page_premiere->disable(this);
-	pushButton_page_derniere->disable(this);
-    pushButton_page_precedente->disable(this);
-	pushButton_page_suivante->disable(this);
+    MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS
 
     pushButton_achats_filtrer->enable(this, SLOT(filtrer_achats()));
     pushButton_achats_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
@@ -624,10 +606,7 @@ void YerothAchatsWindow::definirPasDeRole()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
 
-    pushButton_page_premiere->disable(this);
-	pushButton_page_derniere->disable(this);
-    pushButton_page_precedente->disable(this);
-	pushButton_page_suivante->disable(this);
+    MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS
 
     pushButton_achats_filtrer->disable(this);
     pushButton_achats_reinitialiser_filtre->disable(this);

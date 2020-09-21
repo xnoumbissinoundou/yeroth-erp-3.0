@@ -69,7 +69,7 @@ YerothStocksWindow::YerothStocksWindow()
 
     mySetupUi(this);
 
-    tableView_stocks->_currentViewWindow = this;
+    MACRO_TO_DEFINE_CURRENT_VIEW_WINDOW_FOR_TABLE_PAGINATION(tableView_stocks);
 
     _yerothTableView_FROM_WINDOWS_COMMONS = tableView_stocks;
 
@@ -119,10 +119,7 @@ YerothStocksWindow::YerothStocksWindow()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
-    pushButton_page_premiere->disable(this);
-	pushButton_page_derniere->disable(this);
-    pushButton_page_precedente->disable(this);
-	pushButton_page_suivante->disable(this);
+    MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS
 
     pushButton_stocks_filtrer->disable(this);
     pushButton_entrer->disable(this);
@@ -713,10 +710,7 @@ void YerothStocksWindow::definirCaissier()
 
     desactiverComboBoxStrategieDeGestionDesStocks();
 
-    pushButton_page_premiere->disable(this);
-	pushButton_page_derniere->disable(this);
-    pushButton_page_precedente->disable(this);
-	pushButton_page_suivante->disable(this);
+    MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS
 
     pushButton_reinitialiser->disable(this);
     pushButton_stocks_filtrer->disable(this);
@@ -753,10 +747,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     activerComboBoxStrategieDeGestionDesStocks();
 
-    pushButton_page_premiere->enable(tableView_stocks, SLOT(viewYerothTableViewFirstPage()));
-	pushButton_page_derniere->enable(tableView_stocks, SLOT(viewYerothTableViewLastPage()));
-    pushButton_page_precedente->enable(tableView_stocks, SLOT(viewYerothTableViewPreviousPage()));
-	pushButton_page_suivante->enable(tableView_stocks, SLOT(viewYerothTableViewNextPage()));
+    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(tableView_stocks);
 
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
     pushButton_stocks_filtrer->enable(this, SLOT(filtrer_stocks()));
@@ -794,10 +785,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     activerComboBoxStrategieDeGestionDesStocks();
 
-    pushButton_page_premiere->enable(tableView_stocks, SLOT(viewYerothTableViewFirstPage()));
-	pushButton_page_derniere->enable(tableView_stocks, SLOT(viewYerothTableViewLastPage()));
-    pushButton_page_precedente->enable(tableView_stocks, SLOT(viewYerothTableViewPreviousPage()));
-	pushButton_page_suivante->enable(tableView_stocks, SLOT(viewYerothTableViewNextPage()));
+    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(tableView_stocks);
 
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
     pushButton_stocks_filtrer->enable(this, SLOT(filtrer_stocks()));
@@ -835,10 +823,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     activerComboBoxStrategieDeGestionDesStocks();
 
-    pushButton_page_premiere->enable(tableView_stocks, SLOT(viewYerothTableViewFirstPage()));
-	pushButton_page_derniere->enable(tableView_stocks, SLOT(viewYerothTableViewLastPage()));
-    pushButton_page_precedente->enable(tableView_stocks, SLOT(viewYerothTableViewPreviousPage()));
-	pushButton_page_suivante->enable(tableView_stocks, SLOT(viewYerothTableViewNextPage()));
+    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(tableView_stocks);
 
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
     pushButton_stocks_filtrer->enable(this, SLOT(filtrer_stocks()));
@@ -869,6 +854,8 @@ void YerothStocksWindow::definirMagasinier()
 
     desactiverComboBoxStrategieDeGestionDesStocks();
 
+    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(tableView_stocks);
+
     pushButton_stocks_filtrer->enable(this, SLOT(filtrer_stocks()));
     pushButton_stocks_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
     pushButton_entrer->disable(this);
@@ -897,10 +884,7 @@ void YerothStocksWindow::definirPasDeRole()
 
     desactiverComboBoxStrategieDeGestionDesStocks();
 
-    pushButton_page_premiere->disable(this);
-	pushButton_page_derniere->disable(this);
-    pushButton_page_precedente->disable(this);
-	pushButton_page_suivante->disable(this);
+    MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS
 
     pushButton_reinitialiser->disable(this);
     pushButton_stocks_filtrer->disable(this);

@@ -99,11 +99,7 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
-    pushButton_page_premiere->disable(this);
-	pushButton_page_derniere->disable(this);
-
-    pushButton_page_precedente->disable(this);
-	pushButton_page_suivante->disable(this);
+    MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS
 
     pushButton_reinitialiser_filtre->disable(this);
     pushButton_entrer->disable(this);
@@ -800,10 +796,7 @@ void YerothMarchandisesWindow::definirCaissier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
-    pushButton_page_premiere->disable(this);
-	pushButton_page_derniere->disable(this);
-    pushButton_page_precedente->disable(this);
-	pushButton_page_suivante->disable(this);
+    MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS
 
     pushButton_reinitialiser_filtre->disable(this);
     pushButton_filtrer->disable(this);
@@ -836,10 +829,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
-    pushButton_page_premiere->enable(tableView_marchandises, SLOT(viewYerothTableViewFirstPage()));
-	pushButton_page_derniere->enable(tableView_marchandises, SLOT(viewYerothTableViewLastPage()));
-    pushButton_page_precedente->enable(tableView_marchandises, SLOT(viewYerothTableViewPreviousPage()));
-	pushButton_page_suivante->enable(tableView_marchandises, SLOT(viewYerothTableViewNextPage()));
+    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(tableView_marchandises);
 
     pushButton_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
     pushButton_filtrer->enable(this, SLOT(slot_filtrer()));
@@ -872,10 +862,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
-    pushButton_page_premiere->enable(tableView_marchandises, SLOT(viewYerothTableViewFirstPage()));
-	pushButton_page_derniere->enable(tableView_marchandises, SLOT(viewYerothTableViewLastPage()));
-    pushButton_page_precedente->enable(tableView_marchandises, SLOT(viewYerothTableViewPreviousPage()));
-	pushButton_page_suivante->enable(tableView_marchandises, SLOT(viewYerothTableViewNextPage()));
+    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(tableView_marchandises);
 
     pushButton_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
     pushButton_filtrer->enable(this, SLOT(slot_filtrer()));
@@ -908,10 +895,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
-    pushButton_page_premiere->enable(tableView_marchandises, SLOT(viewYerothTableViewFirstPage()));
-	pushButton_page_derniere->enable(tableView_marchandises, SLOT(viewYerothTableViewLastPage()));
-    pushButton_page_precedente->enable(tableView_marchandises, SLOT(viewYerothTableViewPreviousPage()));
-	pushButton_page_suivante->enable(tableView_marchandises, SLOT(viewYerothTableViewNextPage()));
+    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(tableView_marchandises);
 
     pushButton_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
     pushButton_filtrer->enable(this, SLOT(slot_filtrer()));
@@ -937,10 +921,7 @@ void YerothMarchandisesWindow::definirMagasinier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
-    pushButton_page_premiere->disable(this);
-	pushButton_page_derniere->disable(this);
-    pushButton_page_precedente->disable(this);
-	pushButton_page_suivante->disable(this);
+    MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS
 
     pushButton_reinitialiser_filtre->disable(this);
     pushButton_filtrer->disable(this);
@@ -966,10 +947,7 @@ void YerothMarchandisesWindow::definirPasDeRole()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
 
-    pushButton_page_premiere->disable(this);
-	pushButton_page_derniere->disable(this);
-    pushButton_page_precedente->disable(this);
-	pushButton_page_suivante->disable(this);
+    MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS
 
     pushButton_reinitialiser_filtre->disable(this);
     pushButton_filtrer->disable(this);

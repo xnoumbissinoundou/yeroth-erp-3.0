@@ -35,24 +35,6 @@
 #include <QtSql/QSqlError>
 
 
-YerothERPStocksTableView::YerothERPStocksTableView()
-:YerothTableViewWITHpagination()
-{
-	_needExecSelectStatement_FOR_TABLE_VIEW_PAGING_LISTING = true;
-
-	_stdItemModel->_curTableView = this;
-}
-
-
-YerothERPStocksTableView::YerothERPStocksTableView(QWidget * parent)
-:YerothTableViewWITHpagination(parent)
-{
-	_needExecSelectStatement_FOR_TABLE_VIEW_PAGING_LISTING = true;
-
-	_stdItemModel->_curTableView = this;
-}
-
-
 void YerothERPStocksTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel)
 {
 	_stdItemModel->_curSqlTableModel = &tableModel;

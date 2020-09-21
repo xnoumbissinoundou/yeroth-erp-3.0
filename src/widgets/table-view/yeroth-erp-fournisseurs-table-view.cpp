@@ -33,24 +33,6 @@
 #include <QtSql/QSqlError>
 
 
-YerothERPFournisseursTableView::YerothERPFournisseursTableView()
-:YerothTableViewWITHpagination()
-{
-	_needExecSelectStatement_FOR_TABLE_VIEW_PAGING_LISTING = true;
-
-	_stdItemModel->_curTableView = this;
-}
-
-
-YerothERPFournisseursTableView::YerothERPFournisseursTableView(QWidget * parent)
-:YerothTableViewWITHpagination(parent)
-{
-	_needExecSelectStatement_FOR_TABLE_VIEW_PAGING_LISTING = true;
-
-	_stdItemModel->_curTableView = this;
-}
-
-
 void YerothERPFournisseursTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel)
 {
 	_stdItemModel->_curSqlTableModel = &tableModel;

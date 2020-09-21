@@ -65,6 +65,16 @@ public:
 		return _yerothTableViewPageRowCount;
 	}
 
+	inline int getNEEDExecSelectStatement_FOR_TABLE_VIEW_PAGING_LISTING()
+	{
+		return _needExecSelectStatement_FOR_TABLE_VIEW_PAGING_LISTING;
+	}
+
+	inline void setNEEDExecSelectStatement_FOR_TABLE_VIEW_PAGING_LISTING(bool aBooleanValue)
+	{
+		_needExecSelectStatement_FOR_TABLE_VIEW_PAGING_LISTING = aBooleanValue;
+	}
+
 	void calculate_and_set_YerothViewLastPageNumber();
 
 	virtual void setYerothTableViewPageRowCount(uint rowCount);

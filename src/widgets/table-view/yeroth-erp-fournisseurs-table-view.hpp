@@ -30,9 +30,17 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-	YerothERPFournisseursTableView();
+	inline YerothERPFournisseursTableView()
+	:YerothTableViewWITHpagination()
+	{
+		_stdItemModel->_curTableView = this;
+	}
 
-	YerothERPFournisseursTableView(QWidget * parent);
+	inline YerothERPFournisseursTableView(QWidget * parent)
+	:YerothTableViewWITHpagination(parent)
+	{
+		_stdItemModel->_curTableView = this;
+	}
 
 	inline virtual ~YerothERPFournisseursTableView()
 	{

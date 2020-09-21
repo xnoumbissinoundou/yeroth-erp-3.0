@@ -327,6 +327,22 @@ private:
 };
 
 
+
+
+#define MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS		\
+	    pushButton_page_premiere->disable(this);						\
+		pushButton_page_derniere->disable(this);						\
+	    pushButton_page_precedente->disable(this);						\
+		pushButton_page_suivante->disable(this);
+
+
+#define MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(X)					\
+	    pushButton_page_premiere->enable(X, SLOT(viewYerothTableViewFirstPage()));		\
+		pushButton_page_derniere->enable(X, SLOT(viewYerothTableViewLastPage()));		\
+	    pushButton_page_precedente->enable(X, SLOT(viewYerothTableViewPreviousPage()));	\
+		pushButton_page_suivante->enable(X, SLOT(viewYerothTableViewNextPage()));
+
+
 #define MACRO_TO_DEFINE_VIEWING_PAGE_NUMBER_FOR_TABLEVIEW(X, Y) 				\
 	inline virtual void setYerothTableViewLastPageNumberText(const QString &aLastPageNumberText) \
 	{																							 \

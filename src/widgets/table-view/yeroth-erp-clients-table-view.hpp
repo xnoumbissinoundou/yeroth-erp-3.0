@@ -30,9 +30,18 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-	YerothERPClientsTableView();
+	inline YerothERPClientsTableView()
+	:YerothTableViewWITHpagination()
+	{
+		_stdItemModel->_curTableView = this;
+	}
 
-	YerothERPClientsTableView(QWidget * parent);
+
+	inline YerothERPClientsTableView(QWidget * parent)
+	:YerothTableViewWITHpagination(parent)
+	{
+		_stdItemModel->_curTableView = this;
+	}
 
 	inline virtual ~YerothERPClientsTableView()
 	{
