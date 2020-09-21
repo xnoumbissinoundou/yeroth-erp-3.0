@@ -14273,7 +14273,6 @@ border: none;</string>
     <addaction name="separator"/>
     <addaction name="actionExporter_au_format_csv"/>
     <addaction name="separator"/>
-    <addaction name="actionRechercher"/>
     <addaction name="actionReinitialiserRecherche"/>
     <addaction name="actionReinitialiserElementsDeFiltrage"/>
     <addaction name="separator"/>
@@ -14941,21 +14940,6 @@ border: none;</string>
    </property>
    <property name="toolTip">
     <string>Afficher les détails d'un client</string>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-    </font>
-   </property>
-  </action>
-  <action name="actionRechercher">
-   <property name="text">
-    <string>Rechercher un compte client</string>
-   </property>
-   <property name="toolTip">
-    <string>Rechercher un compte client</string>
    </property>
    <property name="font">
     <font>

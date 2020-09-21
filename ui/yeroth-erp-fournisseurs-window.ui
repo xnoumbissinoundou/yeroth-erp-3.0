@@ -14246,7 +14246,6 @@ border: 0px rgb(255, 255, 255);</string>
     <addaction name="separator"/>
     <addaction name="actionExporter_au_format_csv"/>
     <addaction name="separator"/>
-    <addaction name="actionRechercher"/>
     <addaction name="actionReinitialiserRecherche"/>
     <addaction name="actionReinitialiserElementsDeFiltrage"/>
     <addaction name="separator"/>
@@ -14914,21 +14913,6 @@ border: 0px rgb(255, 255, 255);</string>
    </property>
    <property name="toolTip">
     <string>Afficher les détails d'un fournisseur</string>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-    </font>
-   </property>
-  </action>
-  <action name="actionRechercher">
-   <property name="text">
-    <string>Rechercher un fournisseur</string>
-   </property>
-   <property name="toolTip">
-    <string>Rechercher un fournisseur</string>
    </property>
    <property name="font">
     <font>

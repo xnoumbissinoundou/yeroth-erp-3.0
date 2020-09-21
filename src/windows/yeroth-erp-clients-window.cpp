@@ -33,7 +33,7 @@
 
 
 YerothERPClientsWindow::YerothERPClientsWindow()
-:YerothWindowsCommons("yeroth-erp-comptes-clients"),
+:YerothWindowsCommons("yeroth-erp-clients"),
  YerothAbstractClassYerothSearchWindow(_allWindows->CLIENTS),
  _logger(new YerothLogger("YerothERPComptesClientsWindow")),
  _pushButton_filtrer_font(0),
@@ -41,7 +41,7 @@ YerothERPClientsWindow::YerothERPClientsWindow()
 {
     _windowName = QString("%1 - %2")
     				.arg(YEROTH_ERP_WINDOW_TITLE,
-    					 QObject::trUtf8("comptes clients"));
+    					 QObject::trUtf8("clients"));
 
     setupUi(this);
 
@@ -198,8 +198,6 @@ void YerothERPClientsWindow::setupShortcuts()
     setupShortcutActionMessageDaide 	(*actionAppeler_aide);
     setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
     setupShortcutActionAfficherPDF		(*actionAfficherPDF);
-
-    actionRechercher->setShortcut(YerothUtils::RECHERCHER_QKEYSEQUENCE);
 
     actionReinitialiserRecherche->setShortcut(YerothUtils::REINITIALISER_RECHERCHE_QKEYSEQUENCE);
 }

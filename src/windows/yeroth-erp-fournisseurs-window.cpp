@@ -200,8 +200,6 @@ void YerothERPFournisseursWindow::setupShortcuts()
     setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
     setupShortcutActionAfficherPDF		(*actionAfficherPDF);
 
-    actionRechercher->setShortcut(YerothUtils::RECHERCHER_QKEYSEQUENCE);
-
     actionReinitialiserRecherche->setShortcut(YerothUtils::REINITIALISER_RECHERCHE_QKEYSEQUENCE);
 }
 
