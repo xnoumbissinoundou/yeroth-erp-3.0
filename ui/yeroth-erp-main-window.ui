@@ -7586,9 +7586,9 @@ Vente</string>
     <addaction name="actionAchats"/>
     <addaction name="actionClients"/>
     <addaction name="actionFournisseurs"/>
+    <addaction name="actionMarchandises"/>
     <addaction name="actionPaiements"/>
     <addaction name="actionStocks"/>
-    <addaction name="actionMarchandises"/>
     <addaction name="actionSortir"/>
     <addaction name="actionVendre"/>
     <addaction name="separator"/>
