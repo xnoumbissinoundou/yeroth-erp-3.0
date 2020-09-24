@@ -431,7 +431,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>Yeroth-erp-3.0 - détail d'un compte fournisseur</string>
+   <string>Yeroth-erp-3.0 - détails d'un fournisseur</string>
   </property>
   <property name="locale">
    <locale language="French" country="France"/>
@@ -10577,7 +10577,7 @@
       </font>
      </property>
      <property name="title">
-      <string>Image du compte fournisseur</string>
+      <string>Image du fournisseur</string>
      </property>
      <widget class="QLabel" name="label_image_produit">
       <property name="geometry">
