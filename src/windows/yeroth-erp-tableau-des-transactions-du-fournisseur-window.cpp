@@ -85,11 +85,15 @@ bool YerothTableauDesTransactionsDuFournisseurWindow::export_csv_file()
 
 	fill_table_columns_to_ignore(tableColumnsToIgnore);
 
+	QString aNewFournisseurCompanyName =
+				YerothUtils::YEROTH_REPLACE_ALL_EMPTYSPACES_WITH_UNDERSCORE_CHARACTER(_fournisseurCompanyName);
+
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 	success = YerothUtils::export_csv_file(*this,
 										   *tableView_tableau_des_transactions_du_fournisseur,
 										   tableColumnsToIgnore,
-										   "yeroth-erp-transaction-fournisseur-format-csv",
+										   QString("yeroth-erp-transaction-fournisseur-%1-format-csv")
+										   	   .arg(aNewFournisseurCompanyName),
 										   "transactions d'un client");
 #endif
 
@@ -97,7 +101,8 @@ bool YerothTableauDesTransactionsDuFournisseurWindow::export_csv_file()
 	success = YerothUtils::export_csv_file(*this,
 										   *tableView_tableau_des_transactions_du_fournisseur,
 										   tableColumnsToIgnore,
-										   "yeroth-erp-supplier-transaction-csv-format",
+										   QString("yeroth-erp-%1-supplier-transaction-csv-format")
+										   	   .arg(aNewFournisseurCompanyName),
 										   "client transaction");
 #endif
 

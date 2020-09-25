@@ -112,11 +112,15 @@ bool YerothHistoriqueDuStockWindow::export_csv_file()
 
 	fill_table_columns_to_ignore(tableColumnsToIgnore);
 
+	QString aCurrentStockDesignation =
+				YerothUtils::YEROTH_REPLACE_ALL_EMPTYSPACES_WITH_UNDERSCORE_CHARACTER(_currentStockDesignation);
+
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 	success = YerothUtils::export_csv_file(*this,
 										   *tableView_historique_du_stock,
 										   tableColumnsToIgnore,
-										   "yeroth-erp-historique-stock-format-csv",
+										   QString("yeroth-erp-historique-stock-%1-format-csv")
+										   	   .arg(aCurrentStockDesignation),
 										   "historique d'un stock");
 #endif
 
@@ -124,7 +128,8 @@ bool YerothHistoriqueDuStockWindow::export_csv_file()
 	success = YerothUtils::export_csv_file(*this,
 										   *tableView_historique_du_stock,
 										   tableColumnsToIgnore,
-										   "yeroth-erp-stock-history-csv-format",
+										   QString("yeroth-erp-%1-stock-history-csv-format")
+										   	   .arg(aCurrentStockDesignation),
 										   "stock history");
 #endif
 

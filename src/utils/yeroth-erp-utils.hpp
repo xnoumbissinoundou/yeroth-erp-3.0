@@ -388,6 +388,11 @@ public:
 		QTextStream(stdout) << aQStringOutput << endl;
 	}
 
+	inline static QString YEROTH_REPLACE_ALL_EMPTYSPACES_WITH_UNDERSCORE_CHARACTER(const QString &aStr_in)
+	{
+		return QString(aStr_in).replace(YerothUtils::EMPTY_SPACE_REGEXP, "_");
+	}
+
 	inline static QString getTvaString()
 	{
 		return QString::number((YerothERPConfig::tva_value * 100), 'f', 2);
