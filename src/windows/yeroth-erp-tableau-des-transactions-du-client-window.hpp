@@ -39,6 +39,8 @@ public:
 
 public slots:
 
+	bool export_csv_file();
+
 	virtual bool imprimer_pdf_document();
 
 private:

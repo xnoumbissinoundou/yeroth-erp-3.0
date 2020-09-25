@@ -41,6 +41,9 @@ YerothHistoriqueDuStockWindow::YerothHistoriqueDuStockWindow()
                                     .arg(COLOUR_RGB_STRING_YEROTH_ORANGE_243_162_0,
                                     	 COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
+
+    connect(actionExporter_au_format_csv, SIGNAL(triggered()), this, SLOT(export_csv_file()));
+
     connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_pdf_document()));
 }
 
@@ -98,6 +101,34 @@ void YerothHistoriqueDuStockWindow::listHistoriqueDuStock(const QStringList &aMo
 	}
 
 	show();
+}
+
+
+bool YerothHistoriqueDuStockWindow::export_csv_file()
+{
+	bool success = false;
+
+	QList<int> tableColumnsToIgnore;
+
+	fill_table_columns_to_ignore(tableColumnsToIgnore);
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+	success = YerothUtils::export_csv_file(*this,
+										   *tableView_historique_du_stock,
+										   tableColumnsToIgnore,
+										   "yeroth-erp-historique-stock-format-csv",
+										   "historique d'un stock");
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+	success = YerothUtils::export_csv_file(*this,
+										   *tableView_historique_du_stock,
+										   tableColumnsToIgnore,
+										   "yeroth-erp-stock-history-csv-format",
+										   "stock history");
+#endif
+
+	return success;
 }
 
 

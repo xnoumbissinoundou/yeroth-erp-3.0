@@ -38,6 +38,9 @@ YerothTableauDesTransactionsDuClientWindow::YerothTableauDesTransactionsDuClient
         QString("QMessageBox {background-color: rgb(%1);}")
 			.arg(COLOUR_RGB_STRING_YEROTH_YELLOW_254_254_0);
 
+
+    connect(actionExporter_au_format_csv, SIGNAL(triggered()), this, SLOT(export_csv_file()));
+
     connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_pdf_document()));
 }
 
@@ -71,6 +74,34 @@ void YerothTableauDesTransactionsDuClientWindow::listerTransactionsDunClient(QDa
 	}
 
 	show();
+}
+
+
+bool YerothTableauDesTransactionsDuClientWindow::export_csv_file()
+{
+	bool success = false;
+
+	QList<int> tableColumnsToIgnore;
+
+	fill_table_columns_to_ignore(tableColumnsToIgnore);
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+	success = YerothUtils::export_csv_file(*this,
+										   *tableView_tableau_des_transactions_du_client,
+										   tableColumnsToIgnore,
+										   "yeroth-erp-transaction-client-format-csv",
+										   "transactions d'un client");
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+	success = YerothUtils::export_csv_file(*this,
+										   *tableView_tableau_des_transactions_du_client,
+										   tableColumnsToIgnore,
+										   "yeroth-erp-client-transaction-csv-format",
+										   "client transaction");
+#endif
+
+	return success;
 }
 
 
