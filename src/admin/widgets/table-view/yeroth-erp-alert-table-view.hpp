@@ -44,7 +44,8 @@ public:
 	{
 	}
 
-	virtual void lister_les_elements_du_tableau(YerothSqlTableModel &clientSqlTableModel);
+	virtual void lister_les_elements_du_tableau(YerothSqlTableModel &clientSqlTableModel,
+												QString aStockListingStrategy = "");
 };
 
 
