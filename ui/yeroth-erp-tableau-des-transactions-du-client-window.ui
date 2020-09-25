@@ -1307,6 +1307,7 @@
     <property name="title">
      <string>Outils</string>
     </property>
+    <addaction name="actionExporter_au_format_csv"/>
     <addaction name="actionAfficherPDF"/>
    </widget>
    <addaction name="menuOutils"/>
@@ -1745,6 +1746,7 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionExporter_au_format_csv"/>
    <addaction name="actionAfficherPDF"/>
   </widget>
   <action name="actionAfficherPDF">
@@ -1757,6 +1759,21 @@
    </property>
    <property name="toolTip">
     <string>Imprimer le tableau des transactions de ce client</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionExporter_au_format_csv">
+   <property name="icon">
+    <iconset>
+     <normalon>:/yeroth-erp-3-0-images/yeroth-erp-3.0-export-csv-data-icon.png</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>Exporter au format csv</string>
    </property>
    <property name="font">
     <font>
