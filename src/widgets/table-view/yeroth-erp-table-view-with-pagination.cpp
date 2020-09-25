@@ -62,7 +62,8 @@ void YerothTableViewWITHpagination::setYerothTableViewPageRowCount(uint rowCount
 }
 
 
-void YerothTableViewWITHpagination::displayYerothTableViewPageContentRowLimit(YerothSqlTableModel &curYerothSqlTableModel)
+void YerothTableViewWITHpagination::displayYerothTableViewPageContentRowLimit(YerothSqlTableModel &curYerothSqlTableModel,
+																			  QString aListingStrategy /* = YerothUtils::EMPTY_STRING*/)
 {
 	uint previousPageNumber = 0;
 
@@ -87,7 +88,8 @@ void YerothTableViewWITHpagination::displayYerothTableViewPageContentRowLimit(Ye
 	int querySize  =
 			curYerothSqlTableModel.yeroth_specify_filter_FROM_SELECT_STATEMENT(curYerothTableViewPageFilter);
 
-	lister_les_elements_du_tableau(curYerothSqlTableModel);
+	lister_les_elements_du_tableau(curYerothSqlTableModel,
+								   aListingStrategy);
 
 	if (querySize > 0)
 	{
@@ -122,7 +124,7 @@ void YerothTableViewWITHpagination::displayYerothTableViewPageContentRowLimit(Ye
 }
 
 
-void YerothTableViewWITHpagination::queryYerothTableViewCurrentPageContentRow()
+void YerothTableViewWITHpagination::queryYerothTableViewCurrentPageContentRow(QString aListingStrategy /* = YerothUtils::EMPTY_STRING */)
 {
 	YerothSqlTableModel *curYerothSqlTableModel =
 			YerothERPWindows::getSqlTableModelFromName(YerothTableView::getSqlTableName());
@@ -132,7 +134,8 @@ void YerothTableViewWITHpagination::queryYerothTableViewCurrentPageContentRow()
 		return ;
 	}
 
-	displayYerothTableViewPageContentRowLimit(*curYerothSqlTableModel);
+	displayYerothTableViewPageContentRowLimit(*curYerothSqlTableModel,
+											  aListingStrategy);
 }
 
 

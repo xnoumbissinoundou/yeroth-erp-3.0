@@ -7,6 +7,7 @@
 #ifndef SRC_YEROTH_TABLE_VIEW_HPP_
 #define SRC_YEROTH_TABLE_VIEW_HPP_
 
+
 #include "src/include/yeroth-erp-3-0-software.text-configuration.hpp"
 
 #include "src/widgets/yeroth-erp-qstandard-item-model.hpp"
@@ -40,13 +41,20 @@ public:
 
 	virtual ~YerothTableView();
 
-	inline void setWriteEnabled(bool w){ _writeEnabled = w; }
+	inline void setWriteEnabled(bool w)
+	{
+		_writeEnabled = w;
+	}
 
-	inline bool isWriteEnabled() { return _writeEnabled; }
+	inline bool isWriteEnabled()
+	{
+		return _writeEnabled;
+	}
 
 	void setupSelectionOptions();
 
-	inline virtual void lister_les_elements_du_tableau(YerothSqlTableModel &tableModel)
+	inline virtual void lister_les_elements_du_tableau(YerothSqlTableModel &tableModel,
+													   QString aStockListingStrategy = "")
 	{
 	}
 

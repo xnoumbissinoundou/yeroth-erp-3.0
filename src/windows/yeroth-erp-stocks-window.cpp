@@ -1072,7 +1072,7 @@ void YerothStocksWindow::modifier_les_articles()
 
 
 void YerothStocksWindow::afficherStocks(YerothSqlTableModel & sqlTableModel,
-									    QString localVisibleStrategy	/* = YerothUtils::EMPTY_STRING */)
+									    QString localVisibleStrategy /* = YerothUtils::EMPTY_STRING */)
 {
     _curStocksTableModel = &sqlTableModel;
 
@@ -1085,29 +1085,21 @@ void YerothStocksWindow::afficherStocks(YerothSqlTableModel & sqlTableModel,
         currentStockListingStrategy = YerothERPConfig::salesStrategy;
     }
 
-    if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO,
-    										currentStockListingStrategy))
+    if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FEFO,
+    										currentStockListingStrategy) 					||
+    	YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO,
+    		    							currentStockListingStrategy) 					||
+		YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_LIFO,
+											currentStockListingStrategy))
     {
     	tableView_stocks->setSortingEnabled(false);
-        tableView_stocks->lister_FIFO(*_curStocksTableModel, stockNameToStockID_in_out);
     }
-    else if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_LIFO,
-    											 currentStockListingStrategy))
-    {
-    	tableView_stocks->setSortingEnabled(false);
-        tableView_stocks->lister_LIFO(*_curStocksTableModel, stockNameToStockID_in_out);
-    }
-    else if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FEFO,
-            		 	 	 	 	 	 	 	 currentStockListingStrategy))
-    {
-    	tableView_stocks->setSortingEnabled(false);
-        tableView_stocks->lister_FEFO(*_curStocksTableModel, stockNameToStockID_in_out);
-    }
-    else			//YerothConfig::STRATEGIE_VENTE_SORTIE_ALL
+    else	//YerothConfig::STRATEGIE_VENTE_SORTIE_ALL
     {
     	tableView_stocks->setSortingEnabled(true);
-    	tableView_stocks->queryYerothTableViewCurrentPageContentRow();
     }
+
+    tableView_stocks->queryYerothTableViewCurrentPageContentRow(currentStockListingStrategy);
 
     tableView_show_or_hide_columns(*tableView_stocks);
 

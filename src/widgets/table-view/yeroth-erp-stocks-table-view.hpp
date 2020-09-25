@@ -45,7 +45,12 @@ public:
 	{
 	}
 
-	virtual void lister_les_elements_du_tableau(YerothSqlTableModel &tableModel);
+	virtual void lister_les_elements_du_tableau(YerothSqlTableModel &tableModel,
+												QString aStockListingStrategy = YerothERPConfig::STRATEGIE_VENTE_SORTIE_ALL);
+
+private:
+
+	static QMultiMap<QString, QString> _DUMMY_STOCKNAME_TO_STOCKID_IN_OUT;
 };
 
 

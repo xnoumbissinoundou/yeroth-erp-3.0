@@ -35,11 +35,41 @@
 #include <QtSql/QSqlError>
 
 
-void YerothERPStocksTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel)
+QMultiMap<QString, QString> YerothERPStocksTableView::_DUMMY_STOCKNAME_TO_STOCKID_IN_OUT;
+
+
+void YerothERPStocksTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel,
+															  QString aStockListingStrategy /* = YerothERPConfig::STRATEGIE_VENTE_SORTIE_ALL */)
 {
 	_stdItemModel->_curSqlTableModel = &tableModel;
 
     emit signal_lister(tableModel);
+
+    _DUMMY_STOCKNAME_TO_STOCKID_IN_OUT.clear();
+
+    if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO,
+    										aStockListingStrategy))
+    {
+        YerothTableView::lister_FIFO(tableModel,
+        							 _DUMMY_STOCKNAME_TO_STOCKID_IN_OUT);
+        return ;
+    }
+    else if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_LIFO,
+    											 aStockListingStrategy))
+    {
+    	YerothTableView::lister_LIFO(tableModel,
+    								  _DUMMY_STOCKNAME_TO_STOCKID_IN_OUT);
+        return ;
+    }
+    else if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FEFO,
+            		 	 	 	 	 	 	 	 aStockListingStrategy))
+    {
+    	YerothTableView::lister_FEFO(tableModel,
+    								 _DUMMY_STOCKNAME_TO_STOCKID_IN_OUT);
+        return ;
+    }
+
+    //YerothConfig::STRATEGIE_VENTE_SORTIE_ALL
 
     bool s = true;
 

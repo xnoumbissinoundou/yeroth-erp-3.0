@@ -86,7 +86,8 @@ public slots:
 
     virtual void entrer();
 
-    void afficherStocks(YerothSqlTableModel &sqlTableModel, QString localVisibleStrategy  = YerothUtils::EMPTY_STRING);
+    void afficherStocks(YerothSqlTableModel &sqlTableModel,
+    					QString localVisibleStrategy = YerothUtils::EMPTY_STRING);
 
     virtual void afficherStocks(QString strategieGlobale = YerothUtils::EMPTY_STRING);
 

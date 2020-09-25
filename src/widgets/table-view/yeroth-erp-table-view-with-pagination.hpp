@@ -8,6 +8,8 @@
 #define SRC_YEROTH_TABLE_VIEW_WITH_PAGING_HPP_
 
 
+#include "src/utils/yeroth-erp-utils.hpp"
+
 #include "src/utils/yeroth-erp-config.hpp"
 
 #include "src/widgets/table-view/yeroth-erp-table-view.hpp"
@@ -79,9 +81,10 @@ public:
 
 	virtual void setYerothTableViewPageRowCount(uint rowCount);
 
-	virtual void displayYerothTableViewPageContentRowLimit(YerothSqlTableModel &curYerothSqlTableModel);
+	virtual void displayYerothTableViewPageContentRowLimit(YerothSqlTableModel &curYerothSqlTableModel,
+														   QString aListingStrategy = YerothUtils::EMPTY_STRING);
 
-	virtual void queryYerothTableViewCurrentPageContentRow();
+	virtual void queryYerothTableViewCurrentPageContentRow(QString aListingStrategy = YerothUtils::EMPTY_STRING);
 
 public slots:
 
