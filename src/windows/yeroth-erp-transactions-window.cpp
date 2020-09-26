@@ -536,8 +536,8 @@ void YerothTransactionsWindow::lister_les_elements_du_tableau(QString aSearchFil
         tableView_show_or_hide_columns(*tableView_transferts_articles);
     }
 
-    int quantite_sortie = 0;
-    int quantite_sortie_total = 0;
+    double quantite_sortie = 0;
+    double quantite_sortie_total = 0;
 
     int curTransactionsTableModelRowCount = _curTransactionsTableModel->easySelect();
 
@@ -550,7 +550,7 @@ void YerothTransactionsWindow::lister_les_elements_du_tableau(QString aSearchFil
         quantite_sortie_total += quantite_sortie;
     }
 
-    lineEdit_transactions_quantite_sortie->setText(QString::number(quantite_sortie_total, 'f', 2));
+    lineEdit_transactions_quantite_sortie->setText(GET_DOUBLE_STRING(quantite_sortie_total));
 }
 
 
