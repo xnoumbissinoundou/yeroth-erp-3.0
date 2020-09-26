@@ -115,8 +115,6 @@ public slots:
     	tableView_stocks->setLastSelectedRow(row);
     }
 
-    bool SQL_TABLE_STOCKS_VENDU_EMPTY();
-
 private slots:
 
 	void private_slot_afficher_historique_du_stock();

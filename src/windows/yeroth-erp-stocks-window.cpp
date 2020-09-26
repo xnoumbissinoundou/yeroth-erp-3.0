@@ -196,13 +196,6 @@ YerothStocksWindow::~YerothStocksWindow()
 }
 
 
-bool YerothStocksWindow::SQL_TABLE_STOCKS_VENDU_EMPTY()
-{
-	return (0 == YerothUtils::execQuery(QString("SELECT * FROM %1")
-											.arg(_allWindows->STOCKS_VENDU)));
-}
-
-
 void YerothStocksWindow::private_slot_afficher_historique_du_stock()
 {
 	//qDebug() << QString("YerothStocksWindow | private_slot_afficher_historique_du_stock");
