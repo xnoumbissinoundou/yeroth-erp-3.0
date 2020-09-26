@@ -283,6 +283,8 @@ bool YerothStocksWindow::filtrer_stocks_perimes_seulement()
 	//qDebug() << QString("++ filtrer_stocks_perimes_seulement | filterString: %1")
     //						.arg(filterString);
 
+	reinitialiser_recherche();
+
 	_curStocksTableModel->yerothSetFilter_WITH_where_clause(filterString);
 
 	int resultRows = _curStocksTableModel->easySelect();
