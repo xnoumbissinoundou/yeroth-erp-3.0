@@ -630,9 +630,9 @@ public:
 
 	static QString template_journal_des_ventes_tex;
 
-	static QString FR_template_journal_des_transactions_tex;
+	static QString FR_template_liste_des_mouvements_de_stocks_tex;
 
-	static QString EN_template_journal_des_transactions_tex;
+	static QString EN_template_liste_des_mouvements_de_stocks_tex;
 
 	static QString FR_template_sortie_des_stocks_grand_tex;
 

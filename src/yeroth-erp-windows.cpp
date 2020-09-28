@@ -128,7 +128,7 @@ YerothERPWindows::YerothERPWindows(QDesktopWidget *desktopWidget)
      _modifierWindow(0),
      _sortirWindow(0),
      _statistiquesWindow(0),
-     _transactionsWindow(0),
+     _mouvementsDeStocksWindow(0),
      _pdVenteWindow(0),
 	 _fournisseurDetailsWindow(0),
 	 _clientsDetailWindow(0),
@@ -235,7 +235,7 @@ YerothERPWindows::~YerothERPWindows()
     delete _mainWindow;
     delete _sortirWindow;
     delete _statistiquesWindow;
-    delete _transactionsWindow;
+    delete _mouvementsDeStocksWindow;
     delete _pdVenteMethodePaiementCarteCreditDialog;
     delete _pdVenteMethodePaiementComptantEntreeDialog;
     delete _pdVenteMethodePaiementDialog;
@@ -318,7 +318,7 @@ void YerothERPWindows::createAllYerothPosUserWindows()
     _historiqueDuStockWindow		= new YerothHistoriqueDuStockWindow;
     _sortirWindow 					= new YerothSortirWindow;
     _statistiquesWindow				= new YerothTableauxDeBordWindow;
-    _transactionsWindow				= new YerothTransactionsWindow;
+    _mouvementsDeStocksWindow				= new YerothMouvementsDeStocksWindow;
 
     _pdVenteMethodePaiementCarteCreditDialog
 									= new YerothPOSVenteMethodePaiementCarteCreditDialog(_pdVenteWindow);
@@ -471,7 +471,7 @@ void YerothERPWindows::definirMagasinier()
     _mainWindow->definirMagasinier();
     _sortirWindow->definirMagasinier();
     _statistiquesWindow->definirMagasinier();
-    _transactionsWindow->definirMagasinier();
+    _mouvementsDeStocksWindow->definirMagasinier();
     _pdVenteWindow->definirMagasinier();
     _fournisseurDetailsWindow->definirMagasinier();
     _clientsDetailWindow->definirMagasinier();
@@ -504,7 +504,7 @@ void YerothERPWindows::definirCaissier()
     _mainWindow->definirCaissier();
     _sortirWindow->definirCaissier();
     _statistiquesWindow->definirCaissier();
-    _transactionsWindow->definirCaissier();
+    _mouvementsDeStocksWindow->definirCaissier();
     _pdVenteWindow->definirCaissier();
     _fournisseurDetailsWindow->definirCaissier();
     _clientsDetailWindow->definirCaissier();
@@ -537,7 +537,7 @@ void YerothERPWindows::definirManager()
     _mainWindow->definirManager();
     _sortirWindow->definirManager();
     _statistiquesWindow->definirManager();
-    _transactionsWindow->definirManager();
+    _mouvementsDeStocksWindow->definirManager();
     _pdVenteWindow->definirManager();
     _fournisseurDetailsWindow->definirManager();
     _clientsDetailWindow->definirManager();
@@ -577,7 +577,7 @@ void YerothERPWindows::definirVendeur()
     _mainWindow->definirVendeur();
     _sortirWindow->definirVendeur();
     _statistiquesWindow->definirVendeur();
-    _transactionsWindow->definirVendeur();
+    _mouvementsDeStocksWindow->definirVendeur();
     _pdVenteWindow->definirVendeur();
     _fournisseurDetailsWindow->definirVendeur();
     _clientsDetailWindow->definirVendeur();
@@ -617,7 +617,7 @@ void YerothERPWindows::definirGestionaireDesStocks()
     _mainWindow->definirGestionaireDesStocks();
     _sortirWindow->definirGestionaireDesStocks();
     _statistiquesWindow->definirGestionaireDesStocks();
-    _transactionsWindow->definirGestionaireDesStocks();
+    _mouvementsDeStocksWindow->definirGestionaireDesStocks();
     _pdVenteWindow->definirGestionaireDesStocks();
     _fournisseurDetailsWindow->definirGestionaireDesStocks();
     _clientsDetailWindow->definirGestionaireDesStocks();
@@ -662,7 +662,7 @@ void YerothERPWindows::definirPasDeRole()
     _mainWindow->definirPasDeRole();
     _sortirWindow->definirPasDeRole();
     _statistiquesWindow->definirPasDeRole();
-    _transactionsWindow->definirPasDeRole();
+    _mouvementsDeStocksWindow->definirPasDeRole();
     _pdVenteWindow->definirPasDeRole();
     _fournisseurDetailsWindow->definirPasDeRole();
     _clientsDetailWindow->definirPasDeRole();
@@ -703,7 +703,7 @@ void YerothERPWindows::hideAllWindows()
     _transactionsDunClientWindow->rendreInvisible();
     _historiqueDuStockWindow->rendreInvisible();
     _statistiquesWindow->rendreInvisible();
-    _transactionsWindow->rendreInvisible();
+    _mouvementsDeStocksWindow->rendreInvisible();
     _pdVenteWindow->rendreInvisible();
     _pdVenteListStocksWindow->rendreInvisible();
     _pdVenteMethodePaiementCarteCreditDialog->rendreInvisible();

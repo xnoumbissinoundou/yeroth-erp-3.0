@@ -87,7 +87,7 @@ FORMS = ui/yeroth-erp-main-window.ui \
 		  ui/yeroth-erp-pointdevente-methode-paiement-dialog.ui \
 		  ui/yeroth-erp-sortir-window.ui \
 		  ui/yeroth-erp-tableaux-de-bord-window.ui \
-		  ui/yeroth-erp-transactions-window.ui \
+		  ui/yeroth-erp-mouvements_de_stocks-window.ui \
 		  ui/yeroth-erp-entrer-window.ui \
 		  ui/yeroth-erp-creer-nouveau-client-window.ui \
 		  ui/yeroth-erp-creer-nouveau-fournisseur-window.ui \
@@ -133,7 +133,7 @@ HEADERS = src/include/yeroth-erp-3-0-precompiled-header.hpp \
 		  src/widgets/table-view/yeroth-erp-paiements-table-view.hpp \
 		  src/widgets/table-view/yeroth-erp-stocks-table-view.hpp \
 		  src/widgets/table-view/yeroth-erp-ventes-table-view.hpp \
-		  src/widgets/table-view/yeroth-erp-transactions-table-view.hpp \
+		  src/widgets/table-view/yeroth-erp-mouvements_de_stocks-table-view.hpp \
 		  src/widgets/table-view/yeroth-erp-fournisseurs-table-view.hpp \
 		  src/widgets/table-view/yeroth-erp-clients-table-view.hpp \
 		  src/widgets/table-view/yeroth-erp-achats-table-view.hpp \
@@ -190,7 +190,7 @@ HEADERS = src/include/yeroth-erp-3-0-precompiled-header.hpp \
 		  src/windows/yeroth-erp-pointdevente-window.hpp \
 		  src/windows/yeroth-erp-sortir-window.hpp \
 		  src/windows/yeroth-erp-tableaux-de-bord-window.hpp \
-		  src/windows/yeroth-erp-transactions-window.hpp \
+		  src/windows/yeroth-erp-mouvements_de_stocks-window.hpp \
 		  src/windows/yeroth-erp-stock-detail-window.hpp \
 		  src/windows/yeroth-erp-paiements-window.hpp \
 		  src/windows/yeroth-erp-ventes-window.hpp \
@@ -250,7 +250,7 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/widgets/table-view/yeroth-erp-paiements-table-view.cpp \
 		  src/widgets/table-view/yeroth-erp-stocks-table-view.cpp \
 			src/widgets/table-view/yeroth-erp-ventes-table-view.cpp \
-		  src/widgets/table-view/yeroth-erp-transactions-table-view.cpp \
+		  src/widgets/table-view/yeroth-erp-mouvements_de_stocks-table-view.cpp \
 		  src/widgets/table-view/yeroth-erp-fournisseurs-table-view.cpp \
 		  src/widgets/table-view/yeroth-erp-clients-table-view.cpp \
 		  src/widgets/table-view/yeroth-erp-achats-table-view.cpp \
@@ -307,7 +307,7 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/windows/yeroth-erp-pointdevente-window.cpp \
 		  src/windows/yeroth-erp-sortir-window.cpp \
 		  src/windows/yeroth-erp-tableaux-de-bord-window.cpp \
-		  src/windows/yeroth-erp-transactions-window.cpp \
+		  src/windows/yeroth-erp-mouvements_de_stocks-window.cpp \
 		  src/windows/yeroth-erp-stock-detail-window.cpp \
 		  src/windows/yeroth-erp-paiements-window.cpp \
 		  src/windows/yeroth-erp-ventes-window.cpp \

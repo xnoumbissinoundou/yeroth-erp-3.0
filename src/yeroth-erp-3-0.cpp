@@ -234,13 +234,13 @@ void readTexTemplateFiles(YerothLogger &logger)
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
-    QFile fileLandscapeTransactions(FILE_YEROTH_ERP_3_0_TEMPLATE_LISTING_TRANSACTIONS_FR);
-    yeroth_read_file(fileLandscapeTransactions, YerothUtils::FR_template_journal_des_transactions_tex);
+    QFile fileLandscapeTransactions(FILE_YEROTH_ERP_3_0_TEMPLATE_MOUVEMENTSDESTOCKS_FR);
+    yeroth_read_file(fileLandscapeTransactions, YerothUtils::FR_template_liste_des_mouvements_de_stocks_tex);
 
 #else //YEROTH_ENGLISH_LANGUAGE
 
-    QFile fileLandscapeTransactionsEN(FILE_YEROTH_ERP_3_0_TEMPLATE_LISTING_TRANSACTIONS_EN);
-    yeroth_read_file(fileLandscapeTransactionsEN, YerothUtils::EN_template_journal_des_transactions_tex);
+    QFile fileLandscapeTransactionsEN(FILE_YEROTH_ERP_3_0_TEMPLATE_MOUVEMENTSDESTOCKS_EN);
+    yeroth_read_file(fileLandscapeTransactionsEN, YerothUtils::EN_template_liste_des_mouvements_de_stocks_tex);
 
 #endif
 

@@ -182,9 +182,9 @@ void YerothWindowsCommons::tableaux_de_bords()
 }
 
 
-void YerothWindowsCommons::transactions()
+void YerothWindowsCommons::mouvements_de_stocks()
 {
-    _allWindows->_transactionsWindow->rendreVisible(_curStocksTableModel);
+    _allWindows->_mouvementsDeStocksWindow->rendreVisible(_curStocksTableModel);
     rendreInvisible();
 }
 

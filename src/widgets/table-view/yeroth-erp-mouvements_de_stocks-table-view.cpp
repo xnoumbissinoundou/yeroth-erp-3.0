@@ -1,11 +1,11 @@
 /*
- * yeroth-erp-transactions-table-view.cpp
+ * yeroth-erp-mouvements_de_stocks-table-view.cpp
  *
  *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
  */
 
 
-#include "yeroth-erp-transactions-table-view.hpp"
+#include "yeroth-erp-mouvements_de_stocks-table-view.hpp"
 
 #include "src/yeroth-erp-windows.hpp"
 
@@ -35,7 +35,7 @@
 #include <QtSql/QSqlError>
 
 
-void YerothERPTransactionsTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel,
+void YerothERPMouvementsDeStocksTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel,
 																	QString aStockListingStrategy /* = "" */)
 {
 	_stdItemModel->_curSqlTableModel = &tableModel;

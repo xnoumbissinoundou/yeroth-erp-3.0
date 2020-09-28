@@ -26,7 +26,7 @@
 #include "src/windows/yeroth-erp-historique-du-stock-window.hpp"
 #include "src/windows/yeroth-erp-sortir-window.hpp"
 #include "src/windows/yeroth-erp-tableaux-de-bord-window.hpp"
-#include "src/windows/yeroth-erp-transactions-window.hpp"
+#include "src/windows/yeroth-erp-mouvements_de_stocks-window.hpp"
 #include "src/windows/yeroth-erp-fournisseur-details-window.hpp"
 #include "src/windows/yeroth-erp-clients-detail-window.hpp"
 #include "src/windows/yeroth-erp-achats-detail-window.hpp"
@@ -90,7 +90,7 @@ class YerothVentesWindow;
 class YerothModifierWindow;
 class YerothSortirWindow;
 class YerothTableauxDeBordWindow;
-class YerothTransactionsWindow;
+class YerothMouvementsDeStocksWindow;
 class YerothPointDeVenteWindow;
 class YerothPOSVenteMethodePaiementCarteCreditDialog;
 class YerothPOSVenteMethodePaiementComptantEntreeDialog;
@@ -414,7 +414,7 @@ public:
 	YerothModifierWindow 								*_modifierWindow;
 	YerothSortirWindow 									*_sortirWindow;
 	YerothTableauxDeBordWindow 							*_statistiquesWindow;
-	YerothTransactionsWindow 							*_transactionsWindow;
+	YerothMouvementsDeStocksWindow 							*_mouvementsDeStocksWindow;
 	YerothPointDeVenteWindow 							*_pdVenteWindow;
 	YerothFournisseurDetailsWindow 						*_fournisseurDetailsWindow;
 	YerothClientsDetailWindow 							*_clientsDetailWindow;

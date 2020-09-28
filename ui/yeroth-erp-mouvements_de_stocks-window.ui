@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <author>Xavier NOUMBISSI NOUNDOU</author>
- <class>YerothTransactionsWindow</class>
- <widget class="QMainWindow" name="YerothTransactionsWindow">
+ <class>YerothMouvementsDeStocksWindow</class>
+ <widget class="QMainWindow" name="YerothMouvementsDeStocksWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -437,8 +437,8 @@
   <property name="locale">
    <locale language="French" country="France"/>
   </property>
-  <widget class="QWidget" name="centralwidget_transactionsWindow">
-   <widget class="QTabWidget" name="tabWidget_transactions">
+  <widget class="QWidget" name="centralwidget_mouvementsDeStocksWindow">
+   <widget class="QTabWidget" name="tabWidget_mouvementsDeStocks">
     <property name="geometry">
      <rect>
       <x>1</x>
@@ -877,7 +877,7 @@
      <attribute name="title">
       <string>Sortie d'articles</string>
      </attribute>
-     <widget class="YerothERPTransactionsTableView" name="tableView_sorties_articles">
+     <widget class="YerothERPMouvementsDeStocksTableView" name="tableView_sorties_articles">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -1315,7 +1315,7 @@
      <attribute name="title">
       <string>Transfert d'articles</string>
      </attribute>
-     <widget class="YerothERPTransactionsTableView" name="tableView_transferts_articles">
+     <widget class="YerothERPMouvementsDeStocksTableView" name="tableView_transferts_articles">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -1776,7 +1776,7 @@
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="YerothDateTimeEdit" name="dateEdit_transactions_debut">
+   <widget class="YerothDateTimeEdit" name="dateEdit_mouvementsDeStocks_debut">
     <property name="geometry">
      <rect>
       <x>65</x>
@@ -2239,7 +2239,7 @@
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="YerothDateTimeEdit" name="dateEdit_transactions_fin">
+   <widget class="YerothDateTimeEdit" name="dateEdit_mouvementsDeStocks_fin">
     <property name="geometry">
      <rect>
       <x>65</x>
@@ -2679,7 +2679,7 @@
      </date>
     </property>
    </widget>
-   <widget class="QLabel" name="label_transactions_quantite_vendue_2">
+   <widget class="QLabel" name="label_mouvementsDeStocks_quantite_vendue_2">
     <property name="geometry">
      <rect>
       <x>443</x>
@@ -2703,7 +2703,7 @@
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="YerothLineEdit" name="lineEdit_transactions_nom_categorie">
+   <widget class="YerothLineEdit" name="lineEdit_mouvementsDeStocks_nom_categorie">
     <property name="geometry">
      <rect>
       <x>187</x>
@@ -3145,7 +3145,7 @@ background-color: rgb(0, 0, 0); </string>
      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="YerothLineEdit" name="lineEdit_transactions_designation">
+   <widget class="YerothLineEdit" name="lineEdit_mouvementsDeStocks_designation">
     <property name="geometry">
      <rect>
       <x>187</x>
@@ -3587,7 +3587,7 @@ background-color: rgb(0, 0, 0); </string>
      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="YerothLineEdit" name="lineEdit_transactions_nom_magasinier">
+   <widget class="YerothLineEdit" name="lineEdit_mouvementsDeStocks_nom_magasinier">
     <property name="geometry">
      <rect>
       <x>187</x>
@@ -4038,7 +4038,7 @@ background-color: rgb(0, 0, 0); </string>
      <enum>Qt::LogicalMoveStyle</enum>
     </property>
    </widget>
-   <widget class="YerothLineEdit" name="lineEdit_transactions_reference_recu_sortie">
+   <widget class="YerothLineEdit" name="lineEdit_mouvementsDeStocks_reference_recu_sortie">
     <property name="geometry">
      <rect>
       <x>187</x>
@@ -4915,7 +4915,7 @@ background-color: rgb(0, 0, 0); </string>
      <string>réinitialiser</string>
     </property>
    </widget>
-   <widget class="YerothLineEdit" name="lineEdit_transactions_nom_recepteur">
+   <widget class="YerothLineEdit" name="lineEdit_mouvementsDeStocks_nom_recepteur">
     <property name="geometry">
      <rect>
       <x>187</x>
@@ -5354,7 +5354,7 @@ background-color: rgb(0, 0, 0); </string>
      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="YerothLineEdit" name="lineEdit_transactions_quantite_sortie">
+   <widget class="YerothLineEdit" name="lineEdit_mouvementsDeStocks_quantite_sortie">
     <property name="enabled">
      <bool>true</bool>
     </property>
@@ -5810,7 +5810,7 @@ background-color: rgb(0, 0, 0); </string>
     </property>
    </widget>
   </widget>
-  <widget class="QMenuBar" name="menubar_transactionsWindow">
+  <widget class="QMenuBar" name="menubar_mouvementsDeStocksWindow">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -6255,7 +6255,7 @@ background-color: rgb(0, 0, 0); </string>
     <addaction name="separator"/>
     <addaction name="actionA_propos"/>
    </widget>
-   <widget class="QMenu" name="menu_transactionsActions">
+   <widget class="QMenu" name="menu_mouvementsDeStocksActions">
     <property name="palette">
      <palette>
       <active>
@@ -7134,12 +7134,12 @@ background-color: rgb(0, 0, 0); </string>
     <addaction name="separator"/>
     <addaction name="actionQui_suis_je"/>
    </widget>
-   <addaction name="menu_transactionsActions"/>
+   <addaction name="menu_mouvementsDeStocksActions"/>
    <addaction name="menuOutils"/>
    <addaction name="menuA_propos"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <widget class="QToolBar" name="toolBar_transactionsWindow">
+  <widget class="QToolBar" name="toolBar_mouvementsDeStocksWindow">
    <property name="palette">
     <palette>
      <active>
@@ -7819,23 +7819,23 @@ background-color: rgb(0, 0, 0); </string>
    <header>src/widgets/yeroth-erp-datetime-edit.hpp</header>
   </customwidget>
   <customwidget>
-   <class>YerothERPTransactionsTableView</class>
+   <class>YerothERPMouvementsDeStocksTableView</class>
    <extends>QTableView</extends>
-   <header>src/widgets/table-view/yeroth-erp-transactions-table-view.hpp</header>
+   <header>src/widgets/table-view/yeroth-erp-mouvements_de_stocks-table-view.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>dateEdit_transactions_debut</tabstop>
-  <tabstop>dateEdit_transactions_fin</tabstop>
-  <tabstop>lineEdit_transactions_nom_magasinier</tabstop>
-  <tabstop>lineEdit_transactions_designation</tabstop>
-  <tabstop>lineEdit_transactions_nom_categorie</tabstop>
-  <tabstop>lineEdit_transactions_reference_recu_sortie</tabstop>
-  <tabstop>lineEdit_transactions_nom_recepteur</tabstop>
-  <tabstop>lineEdit_transactions_quantite_sortie</tabstop>
+  <tabstop>dateEdit_mouvementsDeStocks_debut</tabstop>
+  <tabstop>dateEdit_mouvementsDeStocks_fin</tabstop>
+  <tabstop>lineEdit_mouvementsDeStocks_nom_magasinier</tabstop>
+  <tabstop>lineEdit_mouvementsDeStocks_designation</tabstop>
+  <tabstop>lineEdit_mouvementsDeStocks_nom_categorie</tabstop>
+  <tabstop>lineEdit_mouvementsDeStocks_reference_recu_sortie</tabstop>
+  <tabstop>lineEdit_mouvementsDeStocks_nom_recepteur</tabstop>
+  <tabstop>lineEdit_mouvementsDeStocks_quantite_sortie</tabstop>
   <tabstop>pushButton_reinitialiser</tabstop>
   <tabstop>tableView_sorties_articles</tabstop>
-  <tabstop>tabWidget_transactions</tabstop>
+  <tabstop>tabWidget_mouvementsDeStocks</tabstop>
   <tabstop>tableView_transferts_articles</tabstop>
  </tabstops>
  <resources>

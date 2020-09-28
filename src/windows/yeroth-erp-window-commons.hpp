@@ -174,7 +174,7 @@ public slots:
 
 	virtual void tableaux_de_bords();
 
-	virtual void transactions();
+	virtual void mouvements_de_stocks();
 
 	virtual void creerFournisseur();
 

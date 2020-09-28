@@ -1,5 +1,5 @@
 /*
- * yeroth-erp-transactions-table-view.hpp
+ * yeroth-erp-mouvements_de_stocks-table-view.hpp
  *
  *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
  */
@@ -21,7 +21,7 @@ class YerothSqlTableModel;
 
 class YerothPOSQStandardItemModel;
 
-class YerothERPTransactionsTableView : public YerothTableView
+class YerothERPMouvementsDeStocksTableView : public YerothTableView
 {
 	Q_OBJECT
 
@@ -29,21 +29,21 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-	inline YerothERPTransactionsTableView()
+	inline YerothERPMouvementsDeStocksTableView()
 	:YerothTableView()
 	{
 		_stdItemModel->_curTableView = this;
 	}
 
 
-	inline YerothERPTransactionsTableView(QWidget * parent)
+	inline YerothERPMouvementsDeStocksTableView(QWidget * parent)
 	:YerothTableView(parent)
 	{
 		_stdItemModel->_curTableView = this;
 	}
 
 
-	inline virtual ~YerothERPTransactionsTableView()
+	inline virtual ~YerothERPMouvementsDeStocksTableView()
 	{
 	}
 

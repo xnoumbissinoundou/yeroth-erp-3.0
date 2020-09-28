@@ -15,7 +15,7 @@
     <file>yeroth-erp-3-0-templates/EN_template-facture-petit.tex</file>    
     <file>yeroth-erp-3-0-templates/EN_template-sortie-des-stocks-grand.tex</file>
     <file>yeroth-erp-3-0-templates/EN_template-sortie-des-stocks-petit.tex</file>           
-    <file>yeroth-erp-3-0-templates/EN_template-journal-transactions.tex</file>
+    <file>yeroth-erp-3-0-templates/EN_template-liste-des-mouvements-de-stocks.tex</file>
     <file>yeroth-erp-3-0-templates/EN_template-fournisseurs.tex</file> 
     <file>yeroth-erp-3-0-templates/EN_template-comptes-clients.tex</file> 
     <file>yeroth-erp-3-0-templates/EN_template-marchandises.tex</file>    

@@ -77,7 +77,7 @@ YerothMainWindow::YerothMainWindow()
     pushButton_marchandises->disable(this);
     pushButton_sortir->disable(this);
     pushButton_rapports->disable(this);
-    pushButton_transactions->disable(this);
+    pushButton_mouvementsDeStocks->disable(this);
     pushButton_ventes->disable(this);
     pushButton_vendre->disable(this);
 
@@ -144,7 +144,7 @@ void YerothMainWindow::definirCaissier()
     pushButton_marchandises->disable(this);
     pushButton_sortir->disable(this);
     pushButton_rapports->disable(this);
-    pushButton_transactions->disable(this);
+    pushButton_mouvementsDeStocks->disable(this);
     pushButton_ventes->enable(this, SLOT(ventes()));
     pushButton_vendre->enable(this, SLOT(vendre()));
 
@@ -191,7 +191,7 @@ void YerothMainWindow::definirManager()
     pushButton_marchandises->enable(this, SLOT(afficherMarchandises()));
     pushButton_sortir->enable(this, SLOT(sortir()));
     pushButton_rapports->enable(this, SLOT(tableaux_de_bords()));
-    pushButton_transactions->enable(this, SLOT(transactions()));
+    pushButton_mouvementsDeStocks->enable(this, SLOT(mouvements_de_stocks()));
     pushButton_ventes->enable(this, SLOT(ventes()));
     pushButton_vendre->enable(this, SLOT(vendre()));
 
@@ -239,7 +239,7 @@ void YerothMainWindow::definirVendeur()
     pushButton_marchandises->enable(this, SLOT(afficherMarchandises()));
     pushButton_sortir->disable(this);
     pushButton_rapports->disable(this);
-    pushButton_transactions->disable(this);
+    pushButton_mouvementsDeStocks->disable(this);
     pushButton_ventes->enable(this, SLOT(ventes()));
     pushButton_vendre->enable(this, SLOT(vendre()));
 
@@ -286,7 +286,7 @@ void YerothMainWindow::definirGestionaireDesStocks()
     pushButton_afficher_stocks->enable(this, SLOT(afficherStocks()));
     pushButton_marchandises->enable(this, SLOT(afficherMarchandises()));
     pushButton_sortir->enable(this, SLOT(sortir()));
-    pushButton_transactions->enable(this, SLOT(transactions()));
+    pushButton_mouvementsDeStocks->enable(this, SLOT(mouvements_de_stocks()));
 
     label_display_yeroth->setVisible(false);
 }
@@ -352,7 +352,7 @@ void YerothMainWindow::definirMagasinier()
     pushButton_entrer->disable(this);
     pushButton_afficher_stocks->enable(this, SLOT(afficherStocks()));
     pushButton_sortir->enable(this, SLOT(sortir()));
-    pushButton_transactions->enable(this, SLOT(transactions()));
+    pushButton_mouvementsDeStocks->enable(this, SLOT(mouvements_de_stocks()));
     label_display_yeroth->setVisible(false);
 }
 
@@ -388,7 +388,7 @@ void YerothMainWindow::definirPasDeRole()
     pushButton_marchandises->disable(this);
     pushButton_sortir->disable(this);
     pushButton_rapports->disable(this);
-    pushButton_transactions->disable(this);
+    pushButton_mouvementsDeStocks->disable(this);
     pushButton_ventes->disable(this);
     pushButton_vendre->disable(this);
 

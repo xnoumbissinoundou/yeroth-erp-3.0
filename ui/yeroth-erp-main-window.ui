@@ -1333,7 +1333,7 @@
      <string>Stocks</string>
     </property>
    </widget>
-   <widget class="YerothPushButton" name="pushButton_transactions">
+   <widget class="YerothPushButton" name="pushButton_mouvementsDeStocks">
     <property name="enabled">
      <bool>true</bool>
     </property>
@@ -8836,7 +8836,7 @@ Vente</string>
   <tabstop>pushButton_sortir</tabstop>
   <tabstop>pushButton_paiements</tabstop>
   <tabstop>pushButton_rapports</tabstop>
-  <tabstop>pushButton_transactions</tabstop>
+  <tabstop>pushButton_mouvementsDeStocks</tabstop>
   <tabstop>pushButton_vendre</tabstop>
  </tabstops>
  <resources>

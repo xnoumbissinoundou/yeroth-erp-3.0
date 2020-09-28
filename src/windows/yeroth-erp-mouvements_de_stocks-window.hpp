@@ -1,14 +1,14 @@
 /*
- * yeroth-erp-transactions-window.hpp
+ * yeroth-erp-mouvements_de_stocks-window.hpp
  *
  *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
  */
 
-#ifndef YEROTH_TRANSACTIONS_WINDOW_HPP_
-#define YEROTH_TRANSACTIONS_WINDOW_HPP_
+#ifndef MOUVEMENTSDESTOCKS_WINDOW_HPP_
+#define MOUVEMENTSDESTOCKS_WINDOW_HPP_
 
 
-# include "../../ui_yeroth-erp-transactions-window.h"
+# include "../../ui_yeroth-erp-mouvements_de_stocks-window.h"
 
 
 #include "yeroth-erp-window-commons.hpp"
@@ -21,8 +21,8 @@ class YerothUtils;
 class YerothSqlTableModel;
 class QProcess;
 
-class YerothTransactionsWindow : public YerothWindowsCommons,
-								 private Ui_YerothTransactionsWindow
+class YerothMouvementsDeStocksWindow : public YerothWindowsCommons,
+								 	   private Ui_YerothMouvementsDeStocksWindow
 {
     Q_OBJECT
 
@@ -30,16 +30,16 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-	YerothTransactionsWindow();
+	YerothMouvementsDeStocksWindow();
 
-    inline ~YerothTransactionsWindow()
+    inline ~YerothMouvementsDeStocksWindow()
     {
     	delete _logger;
     }
 
     inline virtual QToolBar * getQMainWindowToolBar()
     {
-    	return toolBar_transactionsWindow;
+    	return toolBar_mouvementsDeStocksWindow;
     }
 
     virtual void rendreVisible(YerothSqlTableModel *stocksTableModel);
@@ -116,12 +116,12 @@ private:
     void setupDateTimeEdits();
 
 
-    YerothLogger				*_logger;
+    YerothLogger			*_logger;
 
     QString 				_searchFilter;
 
-    YerothSqlTableModel 		*_curTransactionsTableModel;
+    YerothSqlTableModel 	*_curMouvementsDeStocksTableModel;
 };
 
 
-#endif /* YEROTH_TRANSACTIONS_WINDOW_HPP_ */
+#endif /* MOUVEMENTSDESTOCKS_WINDOW_HPP_ */

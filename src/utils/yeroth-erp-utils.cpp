@@ -101,9 +101,9 @@ QString YerothUtils::template_journal_des_paiements_tex("");
 
 QString YerothUtils::template_journal_des_ventes_tex("");
 
-QString YerothUtils::FR_template_journal_des_transactions_tex("");
+QString YerothUtils::FR_template_liste_des_mouvements_de_stocks_tex("");
 
-QString YerothUtils::EN_template_journal_des_transactions_tex("");
+QString YerothUtils::EN_template_liste_des_mouvements_de_stocks_tex("");
 
 QString YerothUtils::FR_template_sortie_des_stocks_grand_tex("");
 
