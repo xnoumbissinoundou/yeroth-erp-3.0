@@ -1769,7 +1769,9 @@
      </font>
     </property>
     <property name="text">
-     <string>Transactions</string>
+     <string>Mouvements
+de
+Stocks</string>
     </property>
     <property name="autoDefault">
      <bool>false</bool>
@@ -3559,7 +3561,7 @@ ou
     <property name="text">
      <string>Tableaux
 de
-bords</string>
+Bords</string>
     </property>
     <property name="autoDefault">
      <bool>false</bool>
@@ -7582,15 +7584,18 @@ Vente</string>
     <addaction name="actionChanger_utilisateur"/>
     <addaction name="actionDeconnecter_utilisateur"/>
     <addaction name="separator"/>
+    <addaction name="actionVendre"/>
+    <addaction name="actionTableauxDeBords"/>
     <addaction name="actionEntrer"/>
     <addaction name="actionAchats"/>
     <addaction name="actionClients"/>
     <addaction name="actionFournisseurs"/>
     <addaction name="actionMarchandises"/>
+    <addaction name="actionMouvementsDeStocks"/>
     <addaction name="actionPaiements"/>
     <addaction name="actionStocks"/>
     <addaction name="actionSortir"/>
-    <addaction name="actionVendre"/>
+    <addaction name="actionVente"/>
     <addaction name="separator"/>
     <addaction name="actionFermeture"/>
     <addaction name="separator"/>
@@ -8550,10 +8555,10 @@ Vente</string>
   </action>
   <action name="actionVendre">
    <property name="text">
-    <string>Vendre des articles</string>
+    <string>Accéder au point-de-vente</string>
    </property>
    <property name="toolTip">
-    <string>Vendre des articles</string>
+    <string>Accéder au point-de-vente</string>
    </property>
    <property name="font">
     <font>
@@ -8633,13 +8638,16 @@ Vente</string>
   </action>
   <action name="actionVente">
    <property name="text">
-    <string>Ventes</string>
+    <string>Lister les ventes</string>
+   </property>
+   <property name="toolTip">
+    <string>Lister les ventes</string>
    </property>
    <property name="font">
     <font>
      <pointsize>10</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
+     <weight>50</weight>
+     <bold>false</bold>
     </font>
    </property>
   </action>
@@ -8686,7 +8694,10 @@ Vente</string>
   </action>
   <action name="actionSortir">
    <property name="text">
-    <string>Sortir des articles</string>
+    <string>Sortir ou transférer des articles</string>
+   </property>
+   <property name="toolTip">
+    <string>Sortir ou transférer des articles</string>
    </property>
    <property name="font">
     <font>
@@ -8774,6 +8785,32 @@ Vente</string>
      <pointsize>10</pointsize>
      <weight>50</weight>
      <bold>false</bold>
+    </font>
+   </property>
+  </action>
+  <action name="actionTableauxDeBords">
+   <property name="text">
+    <string>Accéder aux tableaux de bords</string>
+   </property>
+   <property name="toolTip">
+    <string>Accéder aux tableaux de bords</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionMouvementsDeStocks">
+   <property name="text">
+    <string>Lister les mouvements de stocks</string>
+   </property>
+   <property name="toolTip">
+    <string>Accéder aux mouvements de stocks</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
     </font>
    </property>
   </action>
