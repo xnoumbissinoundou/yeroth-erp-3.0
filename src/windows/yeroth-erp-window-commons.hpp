@@ -266,6 +266,8 @@ protected:
 	{
 	}
 
+	void enableResizing();
+
 	void mySetupUi(QMainWindow *aWindow);
 
     virtual void setupShortcuts(){}

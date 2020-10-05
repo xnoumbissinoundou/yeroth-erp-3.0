@@ -43,6 +43,13 @@ public slots:
 
 	virtual bool imprimer_pdf_document();
 
+protected:
+
+	inline virtual void resizeEvent(QResizeEvent *event)
+	{
+		tableView_tableau_des_transactions_du_client->resize(event->size());
+	}
+
 private:
 
 

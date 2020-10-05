@@ -28,6 +28,8 @@ YerothHistoriqueDuStockWindow::YerothHistoriqueDuStockWindow()
 
     mySetupUi(this);
 
+    enableResizing();
+
     _yerothTableView_FROM_WINDOWS_COMMONS = tableView_historique_du_stock;
 
     _DBFieldNamesToPrintCenterAligned.insert(2);

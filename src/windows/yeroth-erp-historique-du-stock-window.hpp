@@ -47,8 +47,14 @@ public slots:
 
 	virtual bool imprimer_pdf_document();
 
-private:
+protected:
 
+	inline void virtual resizeEvent(QResizeEvent *event)
+	{
+		tableView_historique_du_stock->resize(event->size());
+	}
+
+private:
 
     QString						_currentStockID;
     QString						_currentStockReference;

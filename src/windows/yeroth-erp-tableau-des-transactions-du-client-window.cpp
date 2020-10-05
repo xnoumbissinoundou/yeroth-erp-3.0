@@ -26,6 +26,8 @@ YerothTableauDesTransactionsDuClientWindow::YerothTableauDesTransactionsDuClient
 
     mySetupUi(this);
 
+    enableResizing();
+
     _yerothTableView_FROM_WINDOWS_COMMONS = tableView_tableau_des_transactions_du_client;
 
     _DBFieldNamesToPrintLeftAligned.insert(0);
@@ -124,5 +126,4 @@ bool YerothTableauDesTransactionsDuClientWindow::imprimer_pdf_document()
 
 	return YerothWindowsCommons::imprimer_pdf_document(&documentSpecificElements);
 }
-
 

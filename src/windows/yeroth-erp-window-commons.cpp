@@ -74,6 +74,14 @@ void YerothWindowsCommons::setYerothTableView_FROM_WINDOWS_COMMONS(YerothTableVi
 }
 
 
+void YerothWindowsCommons::enableResizing()
+{
+    setMaximumSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX);
+
+    setMinimumSize(width(), height());
+}
+
+
 void YerothWindowsCommons::mySetupUi(QMainWindow * aWindow)
 {
     aWindow->setFixedSize(aWindow->width(), aWindow->height());
