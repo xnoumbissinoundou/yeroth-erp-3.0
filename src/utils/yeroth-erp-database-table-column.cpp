@@ -38,7 +38,9 @@ const QString YerothDatabaseTableColumn::DESCRIPTION_FOURNISSEUR		("description_
 const QString YerothDatabaseTableColumn::DESCRIPTION_PRODUIT			("description_produit");
 const QString YerothDatabaseTableColumn::PRIX_UNITAIRE					("prix_unitaire");
 const QString YerothDatabaseTableColumn::REFERENCE_RECU_DACHAT			("reference_recu_dachat");
+const QString YerothDatabaseTableColumn::PRIX_DACHAT_PRECEDENT			("prix_dachat_precedent");
 const QString YerothDatabaseTableColumn::PRIX_DACHAT					("prix_dachat");
+const QString YerothDatabaseTableColumn::PRIX_VENTE_PRECEDENT			("prix_vente_precedent");
 const QString YerothDatabaseTableColumn::PRIX_VENTE						("prix_vente");
 const QString YerothDatabaseTableColumn::REFERENCE_DU_COMPTE_BANCAIRE	("reference_du_compte_bancaire");
 const QString YerothDatabaseTableColumn::AGENCE_DU_COMPTE_BANCAIRE		("agence_du_compte_bancaire");
@@ -191,7 +193,11 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REFERENCE_RECU_DACHAT, 		QObject::trUtf8("Référence achat"));
 
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::PRIX_DACHAT_PRECEDENT, 	QObject::tr("Prix d'achat précédent"));
+
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::PRIX_DACHAT, 		QObject::tr("Prix d'achat"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::PRIX_VENTE_PRECEDENT, 	QObject::tr("Prix vente précédent"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::PRIX_VENTE, 		QObject::tr("Prix vente"));
 

@@ -73,7 +73,11 @@ public:
 
 	static const QString REFERENCE_RECU_DACHAT;
 
+	static const QString PRIX_DACHAT_PRECEDENT;
+
 	static const QString PRIX_DACHAT;
+
+	static const QString PRIX_VENTE_PRECEDENT;
 
 	static const QString PRIX_VENTE;
 
