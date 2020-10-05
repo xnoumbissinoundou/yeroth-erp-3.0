@@ -586,6 +586,11 @@ void YerothEntrerWindow::display_quantite_total_by_spinbox(double lots)
     double qte_lot = lineEdit_quantite_par_lot->text().toDouble();
     double qte_totale = lots * qte_lot;
     lineEdit_quantite_totale->setText(QString::number(qte_totale, 'f', 2));
+
+    if (checkBox_service->isChecked())
+    {
+    	display_service_montant_total_vente();
+    }
 }
 
 
