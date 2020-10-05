@@ -71,6 +71,8 @@ void YerothERPVentesTableView::lister_les_elements_du_tableau(YerothSqlTableMode
         {
             for (int k = 0; k < columns; ++k)
             {
+            	curTableModelRawHdr = tableModelRawHeaders.at(k);
+
                 qv.setValue(tableModel.record(i).value(k));
 
                 anItem = _stdItemModel->item(i, k);
@@ -98,15 +100,14 @@ void YerothERPVentesTableView::lister_les_elements_du_tableau(YerothSqlTableMode
 
                 case QVariant::Int:
 
-
-                	if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID))
-                	{
-                		anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
-                	}
-                	else if (YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::TYPE_DE_VENTE))
+                	if (YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::TYPE_DE_VENTE))
                 	{
                 		tmpQvString = YerothUtils::_typedeventeToUserViewString.value(qv.toInt());
                 		anItem = new YerothQStandardItem(YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(tmpQvString));
+                	}
+                	else if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID))
+                	{
+                		anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
                 	}
                 	else
                 	{
