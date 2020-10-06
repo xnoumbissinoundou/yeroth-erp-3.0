@@ -99,6 +99,8 @@ YerothPointDeVenteWindow::YerothPointDeVenteWindow()
 
     setRechercheLineEditFocus();
 
+    checkBox_enregistrer_client->setChecked(true);
+
     checkBox_imprimer_recu_vendu->setChecked(true);
 
     setupLineEdits();
@@ -868,6 +870,15 @@ QString YerothPointDeVenteWindow::imprimer_recu_vendu_grand(QString referenceRec
         factureTexDocument.replace("CLIENTYEROTHMAIL", "");
         factureTexDocument.replace("CLIENTYEROTHPHONE", "");
     }
+    else if (!checkBox_enregistrer_client->isChecked())
+    {
+        factureTexDocument.replace("YEROTHCLIENT", YerothUtils::LATEX_IN_OUT_handleForeignAccents(nomClient));
+        factureTexDocument.replace("CLIENTYEROTHREPRESENTANT", "");
+        factureTexDocument.replace("CLIENTYEROTHCITY", "");
+        factureTexDocument.replace("CLIENTYEROTHPOBOX", "");
+        factureTexDocument.replace("CLIENTYEROTHMAIL", "");
+        factureTexDocument.replace("CLIENTYEROTHPHONE", "");
+    }
     else
     {
         YerothSqlTableModel & clientTableModel = _allWindows->getSqlTableModel_clients();
@@ -1145,12 +1156,15 @@ void YerothPointDeVenteWindow::setRechercheCodebarArticleFocus()
 
 void YerothPointDeVenteWindow::handleClientName(const QString &text)
 {
-    //_logger->log("handleClientName(const QString&)");
-    if (YerothUtils::isEqualCaseInsensitive(text, YerothUtils::NOUVEAU_CLIENT))
-    {
-        _allWindows->_creerNouveauClientWindow->rendreVisible(_curStocksTableModel);
-        rendreInvisibleAvecConservation();
-    }
+	if (checkBox_enregistrer_client->isChecked())
+	{
+		//_logger->log("handleClientName(const QString&)");
+		if (YerothUtils::isEqualCaseInsensitive(text, YerothUtils::NOUVEAU_CLIENT))
+		{
+			_allWindows->_creerNouveauClientWindow->rendreVisible(_curStocksTableModel);
+			rendreInvisibleAvecConservation();
+		}
+	}
 }
 
 void YerothPointDeVenteWindow::lister()
@@ -2329,55 +2343,58 @@ void YerothPointDeVenteWindow::choisir_methode_paiment()
     	}
     }
 
-    if (!lineEdit_articles_nom_client->text().isEmpty())
+    if (checkBox_enregistrer_client->isChecked())
     {
-        YerothSqlTableModel & clientsTableModel = _allWindows->getSqlTableModel_clients();
+    	if (!lineEdit_articles_nom_client->text().isEmpty())
+    	{
+    		YerothSqlTableModel & clientsTableModel = _allWindows->getSqlTableModel_clients();
 
-        QString nom_entreprise_filter("nom_entreprise = '");
+    		QString nom_entreprise_filter("nom_entreprise = '");
 
-        nom_entreprise_filter.append(lineEdit_articles_nom_client->text()).append("'");
+    		nom_entreprise_filter.append(lineEdit_articles_nom_client->text()).append("'");
 
-        clientsTableModel.yerothSetFilter_WITH_where_clause(nom_entreprise_filter);
+    		clientsTableModel.yerothSetFilter_WITH_where_clause(nom_entreprise_filter);
 
-        int clientsTableModelRowCount = clientsTableModel.rowCount();
+    		int clientsTableModelRowCount = clientsTableModel.rowCount();
 
-        if (clientsTableModelRowCount > 0)
-        {
-        	QSqlRecord record = clientsTableModel.record(0);
+    		if (clientsTableModelRowCount > 0)
+    		{
+    			QSqlRecord record = clientsTableModel.record(0);
 
-        	double dette_maximale_compte_client = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT).toDouble();
-        	double compte_client = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::COMPTE_CLIENT).toDouble();
+    			double dette_maximale_compte_client = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT).toDouble();
+    			double compte_client = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::COMPTE_CLIENT).toDouble();
 
-        	double dette_compte_client_disponible = 0.0;
+    			double dette_compte_client_disponible = 0.0;
 
-        	if (compte_client >= 0)
-        	{
-        		dette_compte_client_disponible = dette_maximale_compte_client + compte_client;
-        	}
-        	else
-        	{
-        		dette_compte_client_disponible = dette_maximale_compte_client - qFabs(compte_client);
-        	}
+    			if (compte_client >= 0)
+    			{
+    				dette_compte_client_disponible = dette_maximale_compte_client + compte_client;
+    			}
+    			else
+    			{
+    				dette_compte_client_disponible = dette_maximale_compte_client - qFabs(compte_client);
+    			}
 
-//        	qDebug() << QString("++ dette_compte_client_disponible: %1")
-//        					.arg(QString::number(dette_compte_client_disponible));
+    			//        	qDebug() << QString("++ dette_compte_client_disponible: %1")
+    			//        					.arg(QString::number(dette_compte_client_disponible));
 
-        	if (dette_compte_client_disponible >= total_prix_vente)
-        	{
-        		_allWindows->_pdVenteMethodePaiementDialog->setPushbuttonCompteClientEnabled(true);
-        	}
-        	else
-        	{
-        		_allWindows->_pdVenteMethodePaiementDialog->setPushbuttonCompteClientEnabled(false);
-        	}
-        }
-        else
-        {
-            YerothQMessageBox::warning(this, QObject::trUtf8("vendre"),
-                                      QObject::trUtf8("Le client entré n'existe pas dans la base de données !"));
+    			if (dette_compte_client_disponible >= total_prix_vente)
+    			{
+    				_allWindows->_pdVenteMethodePaiementDialog->setPushbuttonCompteClientEnabled(true);
+    			}
+    			else
+    			{
+    				_allWindows->_pdVenteMethodePaiementDialog->setPushbuttonCompteClientEnabled(false);
+    			}
+    		}
+    		else
+    		{
+    			YerothQMessageBox::warning(this, QObject::trUtf8("vendre"),
+    					QObject::trUtf8("Le client saisi n'existe pas dans la base de données !"));
 
-            return ;
-        }
+    			return ;
+    		}
+    	}
     }
     else
     {
@@ -2511,31 +2528,40 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
         //qDebug() << QString("++ test: %1")
          //       		.arg(historiqueStock);
 
-        YerothSqlTableModel & clientsTableModel = _allWindows->getSqlTableModel_clients();
 
-        QString clientFilter(QString("%1 = '%2'")
-        						.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
-        							 lineEdit_articles_nom_client->text()));
-
-        clientsTableModel.yerothSetFilter_WITH_where_clause(clientFilter);
-
-        int clientsTableModelRowCount = clientsTableModel.easySelect();
-
-        if (clientsTableModelRowCount > 0)
+        if (checkBox_enregistrer_client->isChecked())
         {
-            QSqlRecord clientsRecord = clientsTableModel.record(0);
+        	YerothSqlTableModel & clientsTableModel = _allWindows->getSqlTableModel_clients();
 
-            QString clients_id(GET_SQL_RECORD_DATA(clientsRecord, YerothDatabaseTableColumn::ID));
+        	QString clientFilter(QString("%1 = '%2'")
+        			.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
+        					lineEdit_articles_nom_client->text()));
 
-            stocksVenduRecord.setValue(YerothDatabaseTableColumn::CLIENTS_ID, clients_id);
-            stocksVenduRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT, lineEdit_articles_nom_client->text());
+        	clientsTableModel.yerothSetFilter_WITH_where_clause(clientFilter);
 
-            clientsTableModel.resetFilter();
+        	int clientsTableModelRowCount = clientsTableModel.easySelect();
+
+        	if (clientsTableModelRowCount > 0)
+        	{
+        		QSqlRecord clientsRecord = clientsTableModel.record(0);
+
+        		QString clients_id(GET_SQL_RECORD_DATA(clientsRecord, YerothDatabaseTableColumn::ID));
+
+        		stocksVenduRecord.setValue(YerothDatabaseTableColumn::CLIENTS_ID, clients_id);
+        		stocksVenduRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT, lineEdit_articles_nom_client->text());
+
+        		clientsTableModel.resetFilter();
+        	}
+        	else
+        	{
+        		stocksVenduRecord.setValue(YerothDatabaseTableColumn::CLIENTS_ID, -1);
+        		stocksVenduRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT, "DIVERS");
+        	}
         }
         else
         {
-            stocksVenduRecord.setValue(YerothDatabaseTableColumn::CLIENTS_ID, -1);
-            stocksVenduRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT, "DIVERS");
+    		stocksVenduRecord.setValue(YerothDatabaseTableColumn::CLIENTS_ID, -1);
+    		stocksVenduRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT, lineEdit_articles_nom_client->text());
         }
 
         bool success1 = stocksVenduTableModel.insertNewRecord(stocksVenduRecord, this);
