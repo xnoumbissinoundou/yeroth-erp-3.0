@@ -813,10 +813,6 @@ bool YerothUtils::insertStockItemInProductList(const YerothERPServiceStockMarcha
 
     record.setValue(YerothDatabaseTableColumn::CATEGORIE, aServiceStockData._categorie);
 
-    record.setValue(YerothDatabaseTableColumn::PRIX_DACHAT_PRECEDENT, aServiceStockData._prix_dachat_precedent);
-
-    record.setValue(YerothDatabaseTableColumn::PRIX_VENTE_PRECEDENT, aServiceStockData._prix_vente_precedent);
-
     record.setValue(YerothDatabaseTableColumn::DESCRIPTION_PRODUIT, aServiceStockData._description);
 
 

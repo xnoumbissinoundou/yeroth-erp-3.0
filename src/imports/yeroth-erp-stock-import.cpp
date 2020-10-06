@@ -493,8 +493,9 @@ enum import_csv_entry_row_return_status
     		qDebug() << infoMesg;
     	}
 
-    	return IMPORT_DATA_CSV_INSERTION_FAILED;
+    	return IMPORT_DATA_CSV_INSERTION_ALREADY_EXISTANT;
     }
+
 
 	static bool quantite_totale_already_visited = false;
 
@@ -523,30 +524,6 @@ enum import_csv_entry_row_return_status
 
 		return IMPORT_DATA_CSV_INCORRECT_COLUMN_VALUE;
 	}
-
-	if (montant_tva > -1 && prix_unitaire > 0)
-	{
-		prix_vente = prix_unitaire + montant_tva;
-//		qDebug() << QString("++ prix_vente: %1")
-//						.arg(QString::number(prix_vente));
-		record.setValue(YerothDatabaseTableColumn::PRIX_VENTE, prix_vente);
-	}
-
-    YerothERPServiceStockMarchandiseData aServiceStockData;
-
-    aServiceStockData._categorie 			= productCategorie;
-    aServiceStockData._designation 			= productName;
-    aServiceStockData._reference 			= productReference;
-    aServiceStockData._prix_vente_precedent = QString::number(prix_vente);
-
-
-    if (SERVICE_STOCK_UNDEFINED == SERVICE_REFERENCE_STOCK_DESIGNATION_EXIST)
-    {
-    	if (!YerothUtils::insertStockItemInProductList(aServiceStockData))
-    	{
-    		return IMPORT_DATA_CSV_INSERTION_FAILED;
-    	}
-    }
 
 	record.setValue(YerothDatabaseTableColumn::IS_SERVICE, 0);
 	record.setValue(YerothDatabaseTableColumn::LOTS_ENTRANT, 1);
@@ -611,6 +588,30 @@ enum import_csv_entry_row_return_status
 			return IMPORT_DATA_CSV_MANDATORY_COLUMN_VALUE_MISSING;
 		}
 	}
+
+    YerothERPServiceStockMarchandiseData aServiceStockData;
+
+	if (montant_tva > -1 && prix_unitaire > 0)
+	{
+		prix_vente = prix_unitaire + montant_tva;
+//		qDebug() << QString("++ prix_vente: %1")
+//						.arg(QString::number(prix_vente));
+		record.setValue(YerothDatabaseTableColumn::PRIX_VENTE, prix_vente);
+
+		aServiceStockData._prix_vente_precedent = QString::number(prix_vente);
+	}
+
+    aServiceStockData._categorie 			= productCategorie;
+    aServiceStockData._designation 			= productName;
+    aServiceStockData._reference 			= productReference;
+
+    if (SERVICE_STOCK_UNDEFINED == SERVICE_REFERENCE_STOCK_DESIGNATION_EXIST)
+    {
+    	if (!YerothUtils::insertStockItemInProductList(aServiceStockData))
+    	{
+    		return IMPORT_DATA_CSV_INSERTION_FAILED;
+    	}
+    }
 
 	bool queryResut = curStocksTableModel.insertNewRecord(record);
 
