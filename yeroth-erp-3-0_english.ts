@@ -9846,7 +9846,7 @@ stock (service)</translation>
 de
 Vente</source>
         <translation>Point
-of
+Of
 Sale</translation>
     </message>
     <message>
