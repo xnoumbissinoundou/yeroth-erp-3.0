@@ -442,132 +442,58 @@ enum import_csv_entry_row_return_status
 		}
 	}
 
-	QString aCurProductExistingReference;
+	QString infoMesg;
 
-    if (!YerothUtils::isReferenceUnique(productReference,
-    									productName,
-										productCategorie,
-										aCurProductExistingReference))
+	QString curExistingReferenceDesignationCategory_PRODUCT_in_out;
+
+    enum service_stock_already_exist_type SERVICE_REFERENCE_STOCK_DESIGNATION_EXIST =
+    		YerothUtils::IS_STOCK_DESIGNATION_OR_REFERENCE_UNIQUE(productReference,
+    															  productCategorie,
+    									   	   	   	   	   	   	  productName,
+																  curExistingReferenceDesignationCategory_PRODUCT_in_out);
+
+    if (SERVICE_REFERENCE_EXISTS == SERVICE_REFERENCE_STOCK_DESIGNATION_EXIST)
     {
-    	if (aCurProductExistingReference.isEmpty())
+    	if (!curExistingReferenceDesignationCategory_PRODUCT_in_out.isEmpty())
     	{
-			QString infoMesg =
-					QString(QObject::trUtf8("Cette marchandise (désignation: '%1' - catégorie: '%2'), "
-							"déjà existante dans la liste des marchandises, "
-							"n'utilise aucune valeur pour 'référence' !"))
+			infoMesg = QString(QObject::trUtf8("Cette référence ('%1') "
+											"est déjà utilisée par la marchandise '%2' !"))
+							.arg(productReference,
+								 curExistingReferenceDesignationCategory_PRODUCT_in_out);
+    	}
+    }
+    else if (SERVICE_STOCK_CATEGORY_EXIST == SERVICE_REFERENCE_STOCK_DESIGNATION_EXIST)
+    {
+		QString infoMesg =
+				QString(QObject::trUtf8("La marchandise '%1' est déjà dans la catégorie ('%2') !"))
+					.arg(productCategorie,
+						 curExistingReferenceDesignationCategory_PRODUCT_in_out);
+    }
+    else if (SERVICE_STOCK_DESIGNATION_EXIST == SERVICE_REFERENCE_STOCK_DESIGNATION_EXIST)
+    {
+		infoMesg = QString(QObject::trUtf8("La marchandise ('%1') utilise déjà la référence '%2' !"))
 						.arg(productName,
-							 productCategorie);
+							 curExistingReferenceDesignationCategory_PRODUCT_in_out);
+    }
 
-			if (0 != _callingWindow)
-			{
-				if (importerParlant)
-				{
-					YerothQMessageBox::warning(_callingWindow,
-							QObject::trUtf8("aucune référence"),
-							infoMesg);
-				}
-			}
-			else
-			{
-				qDebug() << infoMesg;
-			}
+
+    if (SERVICE_REFERENCE_EXISTS		== SERVICE_REFERENCE_STOCK_DESIGNATION_EXIST ||
+    	SERVICE_STOCK_CATEGORY_EXIST 	== SERVICE_REFERENCE_STOCK_DESIGNATION_EXIST ||
+    	SERVICE_STOCK_DESIGNATION_EXIST == SERVICE_REFERENCE_STOCK_DESIGNATION_EXIST )
+    {
+    	if (0 != _callingWindow)
+    	{
+    		if (importerParlant)
+    		{
+    			YerothQMessageBox::warning(_callingWindow, "enregistrer", infoMesg);
+    		}
     	}
     	else
     	{
-			QString infoMesg =
-					QString(QObject::trUtf8("Cette marchandise (désignation: '%1' - catégorie: '%2'), "
-							"déjà existante dans la liste des marchandises, "
-							"utilise la 'référence (%3)' !"))
-						.arg(productName,
-							 productCategorie,
-							 aCurProductExistingReference);
-
-			if (0 != _callingWindow)
-			{
-				if (importerParlant)
-				{
-					YerothQMessageBox::warning(_callingWindow, "enregistrer", infoMesg);
-				}
-			}
-			else
-			{
-				qDebug() << infoMesg;
-			}
+    		qDebug() << infoMesg;
     	}
 
-        return IMPORT_DATA_CSV_INSERTION_FAILED;
-    }
-
-    service_stock_already_exist_type serviceStockExists =
-    		YerothUtils::isStockItemInProductList(false,
-    											  productReference,
-												  productCategorie,
-												  productName);
-
-    YerothERPServiceStockMarchandiseData aServiceStockData;
-
-    aServiceStockData._categorie = productCategorie;
-    aServiceStockData._designation = productName;
-    aServiceStockData._reference = productReference;
-
-
-    if (SERVICE_STOCK_UNDEFINED == serviceStockExists)
-    {
-    	if (!YerothUtils::insertStockItemInProductList(aServiceStockData))
-    	{
-    		return IMPORT_DATA_CSV_INSERTION_FAILED;
-    	}
-    }
-    else
-    {
-    	if (SERVICE_REFERENCE_EXISTS == serviceStockExists)
-    	{
-    		QString infoMesg =
-					   QString(QObject::trUtf8("Un service (stock) "
-							   	   	   	   	   "avec la référence '%1' existe déjà !"))
-							.arg(productReference);
-
-    		if (0 != _callingWindow)
-    		{
-    			if (importerParlant)
-    			{
-    				YerothQMessageBox::warning(_callingWindow,
-    						QObject::trUtf8("référence"),
-							infoMesg);
-    			}
-    		}
-    		else
-    		{
-    			qDebug() << infoMesg;
-    		}
-
-    		return IMPORT_DATA_CSV_INSERTION_FAILED;
-    	}
-
-    	if (SERVICE_STOCK_DESIGNATION_AND_DIFFERENT_CATEGORIE_EXIST == serviceStockExists)
-    	{
-    		QString infoMesg =
-    				QString(QObject::trUtf8("La désignation '%1', est déjà existante dans la liste des "
-    										"marchandises, dans une autre catégorie que '%2' !"))
-    					.arg(productName,
-    						 productCategorie);
-
-    		if (0 != _callingWindow)
-    		{
-    			if (importerParlant)
-    			{
-    				YerothQMessageBox::warning(_callingWindow,
-    						QObject::trUtf8("désignation"),
-							infoMesg);
-    			}
-    		}
-    		else
-    		{
-    			qDebug() << infoMesg;
-    		}
-
-    		return IMPORT_DATA_CSV_INSERTION_FAILED;
-    	}
+    	return IMPORT_DATA_CSV_INSERTION_FAILED;
     }
 
 	static bool quantite_totale_already_visited = false;
@@ -605,6 +531,22 @@ enum import_csv_entry_row_return_status
 //						.arg(QString::number(prix_vente));
 		record.setValue(YerothDatabaseTableColumn::PRIX_VENTE, prix_vente);
 	}
+
+    YerothERPServiceStockMarchandiseData aServiceStockData;
+
+    aServiceStockData._categorie 			= productCategorie;
+    aServiceStockData._designation 			= productName;
+    aServiceStockData._reference 			= productReference;
+    aServiceStockData._prix_vente_precedent = QString::number(prix_vente);
+
+
+    if (SERVICE_STOCK_UNDEFINED == SERVICE_REFERENCE_STOCK_DESIGNATION_EXIST)
+    {
+    	if (!YerothUtils::insertStockItemInProductList(aServiceStockData))
+    	{
+    		return IMPORT_DATA_CSV_INSERTION_FAILED;
+    	}
+    }
 
 	record.setValue(YerothDatabaseTableColumn::IS_SERVICE, 0);
 	record.setValue(YerothDatabaseTableColumn::LOTS_ENTRANT, 1);

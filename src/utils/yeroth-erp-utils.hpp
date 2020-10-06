@@ -65,10 +65,10 @@ class QtPlugin;
 
 enum service_stock_already_exist_type
 {
-	SERVICE_REFERENCE_EXISTS 									= 0,
-	SERVICE_STOCK_DESIGNATION_AND_DIFFERENT_CATEGORIE_EXIST 	= 1,
-	SERVICE_STOCK_DESIGNATION_AND_SAME_CATEGORIE_EXIST 			= 2,
-	SERVICE_STOCK_UNDEFINED										= 3
+	SERVICE_REFERENCE_EXISTS 			= 0,
+	SERVICE_STOCK_CATEGORY_EXIST 		= 1,
+	SERVICE_STOCK_DESIGNATION_EXIST 	= 2,
+	SERVICE_STOCK_UNDEFINED				= 3
 };
 
 
@@ -88,22 +88,17 @@ public:
 									   YerothWindowsCommons *_callingWindow = 0);
 
 	static
-	bool isReferenceUnique(const QString &aStockServiceReference,
-						   const QString &aStockServiceDesignation,
-						   const QString &aStockServiceNomCategorie,
-						   QString &curExistingReference_in_out);
+	enum service_stock_already_exist_type
+		IS_STOCK_DESIGNATION_OR_REFERENCE_UNIQUE(const QString &aStockServiceReference,
+												 const QString &aStockServiceCategory,
+						  	  	  	  	  	  	 const QString &aStockServiceDesignation,
+												 QString &curExistingReferenceCategoryDesignation_PRODUCT_in_out);
 
-    static
-    enum service_stock_already_exist_type
-		isStockItemInProductList(const QString &productCategorie,
-								 const QString &productName);
+    static bool UPDATE_PREVIOUS_SELLING_PRICE_IN_ProductList(const YerothERPServiceStockMarchandiseData &aServiceStockData,
+    										 	 	 	 	 YerothWindowsCommons 		 	 *_callingWindow = 0);
 
-    static
-    enum service_stock_already_exist_type
-    	isStockItemInProductList(bool isService,
-    							 const QString &productReference,
-    							 const QString &productCategorie,
-    							 const QString &productName);
+    static bool UPDATE_PREVIOUS_BUYING_PRICE_IN_ProductList(const YerothERPServiceStockMarchandiseData &aServiceStockData,
+    										 	 	 	 	YerothWindowsCommons 		 	 *_callingWindow = 0);
 
     static bool insertStockItemInProductList(const YerothERPServiceStockMarchandiseData &aServiceStockData,
     										 YerothWindowsCommons 		 	 *_callingWindow = 0);

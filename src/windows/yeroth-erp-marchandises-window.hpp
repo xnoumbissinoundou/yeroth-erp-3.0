@@ -102,7 +102,7 @@ public slots:
 
     void modifier_cette_reference();
 
-    void supprimer_ce_stock();
+    void supprimer_cette_marchandise();
 
     void reinitialiser_elements_filtrage();
 

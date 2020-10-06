@@ -1451,36 +1451,53 @@ void YerothEntrerWindow::enregistrer_produit()
         return ;
     }
 
-    QString curExistingReference;
 
-    if (!YerothUtils::isReferenceUnique(lineEdit_reference_produit->text(),
-    					   	   	   	    lineEdit_designation->text(),
-										lineEdit_categorie_produit->text(),
-										curExistingReference))
+    QString curExistingReferenceDesignation_PRODUCT_in_out;
+
+    enum service_stock_already_exist_type SERVICE_REFERENCE_STOCK_DESIGNATION_EXIST =
+    		YerothUtils::IS_STOCK_DESIGNATION_OR_REFERENCE_UNIQUE(lineEdit_reference_produit->text(),
+    															  lineEdit_categorie_produit->text(),
+    									   	   	   	   	   	   	  lineEdit_designation->text(),
+																  curExistingReferenceDesignation_PRODUCT_in_out);
+
+    if (SERVICE_REFERENCE_EXISTS == SERVICE_REFERENCE_STOCK_DESIGNATION_EXIST)
     {
-    	if (curExistingReference.isEmpty())
+    	if (!curExistingReferenceDesignation_PRODUCT_in_out.isEmpty())
     	{
-    		YerothQMessageBox::warning(this,
-    				QObject::trUtf8("aucune référence"),
-					QString(QObject::trUtf8("Cette marchandise (désignation: '%1' - catégorie: '%2'), "
-														"déjà existante dans la liste des marchandises, "
-														"n'utilise aucune valeur pour 'référence' !"))
-			    		.arg(lineEdit_designation->text(),
-			    			 lineEdit_categorie_produit->text()));
-    	}
-    	else
-    	{
-    		YerothQMessageBox::warning(this, "enregistrer",
-    				QString(QObject::trUtf8("Cette marchandise (désignation: '%1' - catégorie: '%2'), "
-    										"déjà existante dans la liste des marchandises, "
-    										"utilise la 'référence (%3)' !"))
-							.arg(lineEdit_designation->text(),
-								 lineEdit_categorie_produit->text(),
-								 curExistingReference));
+			QString infoMesg =
+					QString(QObject::trUtf8("Cette référence ('%1') "
+											"est déjà utilisée par la marchandise '%2' !"))
+						.arg(lineEdit_reference_produit->text(),
+							 curExistingReferenceDesignation_PRODUCT_in_out);
+
+			YerothQMessageBox::warning(this, "enregistrer", infoMesg);
     	}
 
         return ;
     }
+    else if (SERVICE_STOCK_DESIGNATION_EXIST == SERVICE_REFERENCE_STOCK_DESIGNATION_EXIST)
+    {
+		QString infoMesg =
+				QString(QObject::trUtf8("La marchandise '%1' utilise déjà la référence ('%2') !"))
+					.arg(lineEdit_designation->text(),
+						curExistingReferenceDesignation_PRODUCT_in_out);
+
+		YerothQMessageBox::warning(this, "enregistrer", infoMesg);
+
+		return ;
+    }
+    else if (SERVICE_STOCK_CATEGORY_EXIST == SERVICE_REFERENCE_STOCK_DESIGNATION_EXIST)
+    {
+		QString infoMesg =
+				QString(QObject::trUtf8("La marchandise '%1' est déjà dans la catégorie ('%2') !"))
+					.arg(lineEdit_designation->text(),
+						curExistingReferenceDesignation_PRODUCT_in_out);
+
+		YerothQMessageBox::warning(this, "enregistrer", infoMesg);
+
+		return ;
+    }
+
 
     if (!YerothUtils::isProfitable(lineEdit_prix_vente->text().toDouble(),
     							   lineEdit_prix_dachat->text().toDouble(),
@@ -1513,68 +1530,29 @@ void YerothEntrerWindow::enregistrer_produit()
     	}
     }
 
+    YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
 
     YerothERPServiceStockMarchandiseData aServiceStockData;
 
     aServiceStockData._categorie = lineEdit_categorie_produit->text();
     aServiceStockData._description = textEdit_description->toPlainText();
     aServiceStockData._designation = lineEdit_designation->text();
+
+    if (checkBox_achat->isChecked())
+    {
+    	aServiceStockData._prix_dachat_precedent = lineEdit_prix_dachat->text();
+    }
+
+    aServiceStockData._prix_vente_precedent = lineEdit_prix_vente->text();
     aServiceStockData._isService = checkBox_service->isChecked();
     aServiceStockData._reference = lineEdit_reference_produit->text();
 
 
-    YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
-
-    service_stock_already_exist_type serviceStockExists =
-    		YerothUtils::isStockItemInProductList(checkBox_service->isChecked(),
-    								 	 	 	  lineEdit_reference_produit->text(),
-												  lineEdit_categorie_produit->text(),
-												  lineEdit_designation->text());
-
-    QString msgContinuer(QObject::tr("Poursuivre avec l'insertion d'un stock (service) ?"));
-
-    if (QMessageBox::Cancel ==
-            YerothQMessageBox::question(this,
-                                       QObject::tr("insertion d'un stock (service)"),
-									   msgContinuer,
-                                       QMessageBox::Cancel,
-									   QMessageBox::Ok))
+    if (SERVICE_STOCK_UNDEFINED == SERVICE_REFERENCE_STOCK_DESIGNATION_EXIST)
     {
-    	return ;
-    }
-
-    if (SERVICE_STOCK_UNDEFINED == serviceStockExists)
-    {
-    	bool successInsertMarchandise = YerothUtils::insertStockItemInProductList(aServiceStockData);
-
-    	if (!successInsertMarchandise)
+    	if (!YerothUtils::insertStockItemInProductList(aServiceStockData))
     	{
-    		return;
-    	}
-    }
-    else
-    {
-    	if (SERVICE_REFERENCE_EXISTS == serviceStockExists)
-    	{
-    		YerothQMessageBox::warning(this,
-    								   QObject::trUtf8("référence"),
-									   QString(QObject::trUtf8("Un service (stock) "
-											   	   	   	   	   "avec la référence '%1' existe déjà !")
-    										.arg(lineEdit_reference_produit->text())));
-    		return;
-    	}
-
-
-    	if (SERVICE_STOCK_DESIGNATION_AND_DIFFERENT_CATEGORIE_EXIST == serviceStockExists)
-    	{
-    		YerothQMessageBox::warning(this,
-    								   QObject::trUtf8("désignation"),
-									   QString(QObject::trUtf8("Un service (ou stock) avec la désignation '%1' "
-											   	   	   	   	   "existe déjà dans une autre catégorie d'article "
-											   	   	   	   	   "autre que '%2' !")
-    										.arg(lineEdit_designation->text(),
-    											 lineEdit_categorie_produit->text())));
-    		return;
+    		return ;
     	}
     }
 
@@ -1671,11 +1649,17 @@ void YerothEntrerWindow::enregistrer_produit()
     {
     	record.setValue(YerothDatabaseTableColumn::REFERENCE_RECU_DACHAT, reference_recu_dachat);
     	record.setValue(YerothDatabaseTableColumn::STOCK_DALERTE, stock_dalerte);
+
+    	YerothUtils::UPDATE_PREVIOUS_BUYING_PRICE_IN_ProductList(aServiceStockData, this);
+
     	record.setValue(YerothDatabaseTableColumn::PRIX_DACHAT, prix_dachat);
     }
 
     record.setValue(YerothDatabaseTableColumn::ENREGISTREUR_STOCK, utilisateurCourrantNomComplet);
     record.setValue(YerothDatabaseTableColumn::QUANTITE_TOTALE, quantite_totale);
+
+    YerothUtils::UPDATE_PREVIOUS_SELLING_PRICE_IN_ProductList(aServiceStockData, this);
+
     record.setValue(YerothDatabaseTableColumn::PRIX_VENTE, prix_vente);
     //qDebug() << "++_tva: " << QString::number(_tva, 'f', 2);
     record.setValue(YerothDatabaseTableColumn::MONTANT_TVA, _montantTva);

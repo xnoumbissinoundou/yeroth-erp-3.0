@@ -99,7 +99,7 @@ YerothPointDeVenteWindow::YerothPointDeVenteWindow()
 
     setRechercheLineEditFocus();
 
-    checkBox_enregistrer_client->setChecked(true);
+    checkBox_enregistrer_client->setChecked(false);
 
     checkBox_imprimer_recu_vendu->setChecked(true);
 

@@ -93,7 +93,7 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer_ce_stock, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer_cette_marchandise, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
@@ -147,7 +147,7 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
 
     connect(actionModifier_cette_reference, SIGNAL(triggered()), this, SLOT(modifier_cette_reference()));
 
-    connect(actionSupprimer_ce_stock, SIGNAL(triggered()), this, SLOT(supprimer_ce_stock()));
+    connect(actionSupprimer_cette_marchandise, SIGNAL(triggered()), this, SLOT(supprimer_cette_marchandise()));
 
     setupShortcuts();
 }
@@ -276,6 +276,8 @@ void YerothMarchandisesWindow::reinitialiser_champs_db_visibles()
     _visibleDBFieldColumnStrList
 		<< YerothDatabaseTableColumn::DESIGNATION
 		<< YerothDatabaseTableColumn::CATEGORIE
+		<< YerothDatabaseTableColumn::PRIX_DACHAT_PRECEDENT
+		<< YerothDatabaseTableColumn::PRIX_VENTE_PRECEDENT
 		<< YerothDatabaseTableColumn::QUANTITE_TOTALE
 		<< YerothDatabaseTableColumn::REFERENCE
 		<< YerothDatabaseTableColumn::VALEUR_DIVENTAIRE;
@@ -297,7 +299,7 @@ void YerothMarchandisesWindow::contextMenuEvent(QContextMenuEvent * event)
                 QMenu menu(this);
                 menu.setPalette(toolBar_marchandisesWindow->palette());
                 menu.addAction(actionModifier_cette_reference);
-                menu.addAction(actionSupprimer_ce_stock);
+                menu.addAction(actionSupprimer_cette_marchandise);
                 menu.exec(event->globalPos());
             }
         }
@@ -791,7 +793,7 @@ void YerothMarchandisesWindow::definirCaissier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer_ce_stock, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer_cette_marchandise, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
@@ -819,7 +821,7 @@ void YerothMarchandisesWindow::definirManager()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer_ce_stock, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer_cette_marchandise, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, true);
 
@@ -852,7 +854,7 @@ void YerothMarchandisesWindow::definirVendeur()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer_ce_stock, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer_cette_marchandise, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
@@ -885,7 +887,7 @@ void YerothMarchandisesWindow::definirGestionaireDesStocks()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer_ce_stock, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer_cette_marchandise, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
@@ -917,7 +919,7 @@ void YerothMarchandisesWindow::definirMagasinier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer_ce_stock, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer_cette_marchandise, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
@@ -941,7 +943,7 @@ void YerothMarchandisesWindow::definirPasDeRole()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer_ce_stock, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer_cette_marchandise, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
@@ -985,7 +987,7 @@ void YerothMarchandisesWindow::modifier_cette_reference()
 }
 
 
-void YerothMarchandisesWindow::supprimer_ce_stock()
+void YerothMarchandisesWindow::supprimer_cette_marchandise()
 {
     _logger->log("supprimer_ce_stock");
 
@@ -1011,7 +1013,7 @@ void YerothMarchandisesWindow::supprimer_ce_stock()
         {
             msgSupprimer.clear();
 
-            msgSupprimer.append(QString(QObject::trUtf8("Le stock '%1' a été supprimé."))
+            msgSupprimer.append(QString(QObject::trUtf8("La marchandise '%1' a été supprimée."))
             						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION)));
 
             YerothQMessageBox::information(this,

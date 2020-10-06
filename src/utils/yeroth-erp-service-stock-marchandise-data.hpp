@@ -24,7 +24,9 @@ public:
 	YEROTH_CLASS_OPERATORS
 
 	inline YerothERPServiceStockMarchandiseData()
-	:_isService(false)
+	:_isService(false),
+     _prix_dachat_precedent("0.0"),
+	 _prix_vente_precedent("0.0")
 	{
 	}
 
@@ -32,7 +34,12 @@ public:
 	{
 	}
 
+
 	bool 		_isService;
+
+	QString		_prix_dachat_precedent;
+
+	QString		_prix_vente_precedent;
 
     QString 	_categorie;
 

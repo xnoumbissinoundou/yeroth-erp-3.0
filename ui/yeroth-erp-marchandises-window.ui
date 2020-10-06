@@ -15147,7 +15147,7 @@ border: none;</string>
     <addaction name="actionDeconnecter_utilisateur"/>
     <addaction name="separator"/>
     <addaction name="actionModifier_cette_reference"/>
-    <addaction name="actionSupprimer_ce_stock"/>
+    <addaction name="actionSupprimer_cette_marchandise"/>
     <addaction name="separator"/>
     <addaction name="actionEntrer"/>
     <addaction name="actionSortir"/>
@@ -16161,7 +16161,7 @@ border: none;</string>
     </font>
    </property>
   </action>
-  <action name="actionSupprimer_ce_stock">
+  <action name="actionSupprimer_cette_marchandise">
    <property name="text">
     <string>Supprimer cette marchandise</string>
    </property>
