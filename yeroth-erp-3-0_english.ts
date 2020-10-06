@@ -9613,7 +9613,8 @@ Transférer</source>
         <source>Mouvements
 de
 Stocks</source>
-        <translation type="unfinished"></translation>
+        <translation>Stock
+Transfer</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-main-window.ui" line="2219"/>
@@ -9631,7 +9632,8 @@ Stocks</source>
         <source>Tableaux
 de
 Bords</source>
-        <translation type="unfinished"></translation>
+        <translation>Business
+Dashboard</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-main-window.ui" line="5349"/>
@@ -9695,17 +9697,17 @@ Bords</source>
         <location filename="ui/yeroth-erp-main-window.ui" line="8793"/>
         <location filename="ui/yeroth-erp-main-window.ui" line="8796"/>
         <source>Accéder aux tableaux de bords</source>
-        <translation type="unfinished"></translation>
+        <translation>Business dashboard</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-main-window.ui" line="8806"/>
         <source>Lister les mouvements de stocks</source>
-        <translation type="unfinished"></translation>
+        <translation>List stock transfers</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-main-window.ui" line="8809"/>
         <source>Accéder aux mouvements de stocks</source>
-        <translation type="unfinished"></translation>
+        <translation>List stock transfers</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-main-window.ui" line="8573"/>
@@ -9729,13 +9731,13 @@ Bords</source>
         <location filename="ui/yeroth-erp-main-window.ui" line="8641"/>
         <location filename="ui/yeroth-erp-main-window.ui" line="8644"/>
         <source>Lister les ventes</source>
-        <translation type="unfinished">View sales</translation>
+        <translation>View sales</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-main-window.ui" line="8697"/>
         <location filename="ui/yeroth-erp-main-window.ui" line="8700"/>
         <source>Sortir ou transférer des articles</source>
-        <translation type="unfinished"></translation>
+        <translation>Check out</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-main-window.ui" line="8770"/>
@@ -9760,7 +9762,7 @@ Bords</source>
         <location filename="ui/yeroth-erp-main-window.ui" line="8558"/>
         <location filename="ui/yeroth-erp-main-window.ui" line="8561"/>
         <source>Accéder au point-de-vente</source>
-        <translation type="unfinished"></translation>
+        <translation>Point-Of-Sale</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-main-window.ui" line="8656"/>
@@ -10595,148 +10597,148 @@ stock item (service)</translation>
         <location filename="ui/yeroth-erp-mouvements_de_stocks-window.ui" line="435"/>
         <source>Yeroth-erp-3.0 - mouvements de stocks</source>
         <oldsource>Yeroth-erp-3.0 - transactions</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Yeroth-erp-3.0 - stock transfer</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-mouvements_de_stocks-window.ui" line="878"/>
         <source>Sortie d&apos;articles</source>
-        <translation type="unfinished">Outgone stock items</translation>
+        <translation>Outgone stock items</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-mouvements_de_stocks-window.ui" line="1316"/>
         <source>Transfert d&apos;articles</source>
-        <translation type="unfinished">Stock item transfer</translation>
+        <translation>Stock item transfer</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-mouvements_de_stocks-window.ui" line="1773"/>
         <source>Fin</source>
-        <translation type="unfinished">End</translation>
+        <translation>End</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-mouvements_de_stocks-window.ui" line="2209"/>
         <location filename="ui/yeroth-erp-mouvements_de_stocks-window.ui" line="2672"/>
         <source>dd/MM/yyyy</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-mouvements_de_stocks-window.ui" line="2236"/>
         <source>Début</source>
-        <translation type="unfinished">Begin</translation>
+        <translation>Begin</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-mouvements_de_stocks-window.ui" line="2700"/>
         <source>Quantité sortie</source>
-        <translation type="unfinished">Transfered quantity</translation>
+        <translation>Transfered quantity</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-mouvements_de_stocks-window.ui" line="4915"/>
         <source>réinitialiser</source>
-        <translation type="unfinished">reset</translation>
+        <translation>reset</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-mouvements_de_stocks-window.ui" line="6250"/>
         <source>Aide</source>
-        <translation type="unfinished">Help</translation>
+        <translation>Help</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-mouvements_de_stocks-window.ui" line="6686"/>
         <source>Actions</source>
-        <translation type="unfinished">Functions</translation>
+        <translation>Functions</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-mouvements_de_stocks-window.ui" line="7120"/>
         <source>Outils</source>
-        <translation type="unfinished">Tools</translation>
+        <translation>Tools</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-mouvements_de_stocks-window.ui" line="7559"/>
         <source>toolBar</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-mouvements_de_stocks-window.ui" line="7588"/>
         <source>À propos</source>
-        <translation type="unfinished"></translation>
+        <translation>About Yeroth-erp-3.0</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-mouvements_de_stocks-window.ui" line="7600"/>
         <source>Changer d&apos;utilisateur</source>
-        <translation type="unfinished">Sign in</translation>
+        <translation>Sign in</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-mouvements_de_stocks-window.ui" line="7616"/>
         <location filename="ui/yeroth-erp-mouvements_de_stocks-window.ui" line="7619"/>
         <source>Imprimer le journal des sorties / transferts</source>
-        <translation type="unfinished">Print stock item transfer</translation>
+        <translation>Print stock item transfer</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-mouvements_de_stocks-window.ui" line="7631"/>
         <source>Déconnecter l&apos;utilisateur</source>
-        <translation type="unfinished">Sign out</translation>
+        <translation>Sign out</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-mouvements_de_stocks-window.ui" line="7647"/>
         <source>Message d&apos;aide</source>
-        <translation type="unfinished">User tip</translation>
+        <translation>User tip</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-mouvements_de_stocks-window.ui" line="7659"/>
         <source>Fermeture</source>
-        <translation type="unfinished">Close</translation>
+        <translation>Close</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-mouvements_de_stocks-window.ui" line="7673"/>
         <location filename="ui/yeroth-erp-mouvements_de_stocks-window.ui" line="7676"/>
         <source>Alertes</source>
-        <translation type="unfinished">Alerts</translation>
+        <translation>Alerts</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-mouvements_de_stocks-window.ui" line="7688"/>
         <source>Ventes</source>
-        <translation type="unfinished">Sales</translation>
+        <translation>Sales</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-mouvements_de_stocks-window.ui" line="7700"/>
         <location filename="ui/yeroth-erp-mouvements_de_stocks-window.ui" line="7703"/>
         <source>Menu principal</source>
-        <translation type="unfinished">Main menu</translation>
+        <translation>Main menu</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-mouvements_de_stocks-window.ui" line="7720"/>
         <source>Administration</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-mouvements_de_stocks-window.ui" line="7728"/>
         <source>Informations sur l&apos;entreprise</source>
-        <translation type="unfinished">Company info</translation>
+        <translation>Company info</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-mouvements_de_stocks-window.ui" line="7736"/>
         <source>Réinitialiser la recherche</source>
-        <translation type="unfinished">Reset search</translation>
+        <translation>Reset search</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-mouvements_de_stocks-window.ui" line="7744"/>
         <source>Qui suis je ?</source>
-        <translation type="unfinished">Who am I?</translation>
+        <translation>Who am I?</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-mouvements_de_stocks-window.ui" line="7757"/>
         <source>Exporter au format csv</source>
-        <translation type="unfinished"></translation>
+        <translation>Export as csv file</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-mouvements_de_stocks-window.ui" line="7772"/>
         <location filename="ui/yeroth-erp-mouvements_de_stocks-window.ui" line="7775"/>
         <source>Sélectionner les  champs (base de données) visible</source>
-        <translation type="unfinished">Select &apos;visible&apos; database table fields</translation>
+        <translation>Select &apos;visible&apos; database table fields</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-mouvements_de_stocks-window.ui" line="7790"/>
         <location filename="ui/yeroth-erp-mouvements_de_stocks-window.ui" line="7793"/>
         <source>Réinitialiser les  champs (base de données) visible</source>
-        <translation type="unfinished">Reset &apos;visible&apos; database table fields</translation>
+        <translation>Reset &apos;visible&apos; database table fields</translation>
     </message>
 </context>
 <context>
@@ -11167,7 +11169,7 @@ stock item (service)</translation>
         <location filename="ui/yeroth-erp-payer-compte-client-window.ui" line="2185"/>
         <source>Données d&apos;encaissement</source>
         <oldsource>Données de paiement</oldsource>
-        <translation type="unfinished">Customer account payment data</translation>
+        <translation>Customer account payment data</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-payer-compte-client-window.ui" line="3117"/>
@@ -11357,27 +11359,27 @@ Account
     <message>
         <location filename="ui/yeroth-erp-payer-fournisseur-window.ui" line="437"/>
         <source>Yeroth-erp-3.0 - payer au compte du fournisseur</source>
-        <translation type="unfinished"></translation>
+        <translation>Yeroth-erp-3.0 - pay to suppllier</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-payer-fournisseur-window.ui" line="876"/>
         <source>Fournisseurs</source>
-        <translation type="unfinished">Suppliers</translation>
+        <translation>Suppliers</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-payer-fournisseur-window.ui" line="1312"/>
         <source>Paiements</source>
-        <translation type="unfinished">Payments</translation>
+        <translation>Payments</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-payer-fournisseur-window.ui" line="1747"/>
         <source>Menu</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-payer-fournisseur-window.ui" line="2185"/>
         <source>Données de paiement</source>
-        <translation type="unfinished">Customer account payment data</translation>
+        <translation>Supplier payment data</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-payer-fournisseur-window.ui" line="3117"/>
