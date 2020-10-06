@@ -3,32 +3,32 @@
 
     <file>yeroth-erp-3-0-main.qml</file>
 
-    <file>yeroth-erp-3-0-templates/FR_template-bilan-comptable.tex</file>
-    <file>yeroth-erp-3-0-templates/FR_template-fiche-dun-fournisseur.tex</file>
-    <file>yeroth-erp-3-0-templates/FR_template-fiche-dun-client.tex</file>
-    <file>yeroth-erp-3-0-templates/FR_template-transactions-dun-fournisseur.tex</file>
-    <file>yeroth-erp-3-0-templates/FR_template-transactions-dun-client.tex</file>
-    <file>yeroth-erp-3-0-templates/FR_template-historique-dun-stock.tex</file>
-    <file>yeroth-erp-3-0-templates/FR_template-journal-des-paiements.tex</file>
-		<file>yeroth-erp-3-0-templates/FR_template-journal-des-ventes.tex</file>
-    <file>yeroth-erp-3-0-templates/FR_template-facture-grand.tex</file>
-    <file>yeroth-erp-3-0-templates/FR_template-facture-petit.tex</file>
-    <file>yeroth-erp-3-0-templates/FR_template-sortie-des-stocks-grand.tex</file>
-    <file>yeroth-erp-3-0-templates/FR_template-sortie-des-stocks-petit.tex</file>
-    <file>yeroth-erp-3-0-templates/FR_template-liste-des-mouvements-de-stocks.tex</file>
-    <file>yeroth-erp-3-0-templates/FR_template-fournisseurs.tex</file>	   
-    <file>yeroth-erp-3-0-templates/FR_template-comptes-clients.tex</file>	   
-    <file>yeroth-erp-3-0-templates/FR_template-marchandises.tex</file>	   
-    <file>yeroth-erp-3-0-templates/FR_template-lister-achats.tex</file>	   
-    <file>yeroth-erp-3-0-templates/FR_template-lister-stock.tex</file>	   
-    <file>yeroth-erp-3-0-templates/FR_bar-diag.tex</file>
-    <file>yeroth-erp-3-0-templates/FR_pie-chart.tex</file>                         
-    <file>yeroth-erp-3-0-templates/FR_bar-chart.tex</file>
+    <file>yeroth-erp-3-0-templates/EN_template-bilan-comptable.tex</file>
+    <file>yeroth-erp-3-0-templates/EN_template-fiche-dun-fournisseur.tex</file>
+    <file>yeroth-erp-3-0-templates/EN_template-fiche-dun-client.tex</file>
+    <file>yeroth-erp-3-0-templates/EN_template-transactions-dun-fournisseur.tex</file>
+    <file>yeroth-erp-3-0-templates/EN_template-transactions-dun-client.tex</file>
+    <file>yeroth-erp-3-0-templates/EN_template-historique-dun-stock.tex</file>
+    <file>yeroth-erp-3-0-templates/EN_template-journal-des-paiements.tex</file>
+    <file>yeroth-erp-3-0-templates/EN_template-journal-des-ventes.tex</file>
+    <file>yeroth-erp-3-0-templates/EN_template-facture-grand.tex</file>
+    <file>yeroth-erp-3-0-templates/EN_template-facture-petit.tex</file>    
+    <file>yeroth-erp-3-0-templates/EN_template-sortie-des-stocks-grand.tex</file>
+    <file>yeroth-erp-3-0-templates/EN_template-sortie-des-stocks-petit.tex</file>           
+    <file>yeroth-erp-3-0-templates/EN_template-liste-des-mouvements-de-stocks.tex</file>
+    <file>yeroth-erp-3-0-templates/EN_template-fournisseurs.tex</file> 
+    <file>yeroth-erp-3-0-templates/EN_template-comptes-clients.tex</file> 
+    <file>yeroth-erp-3-0-templates/EN_template-marchandises.tex</file>    
+    <file>yeroth-erp-3-0-templates/EN_template-lister-achats.tex</file>    
+    <file>yeroth-erp-3-0-templates/EN_template-lister-stock.tex</file>    
+    <file>yeroth-erp-3-0-templates/EN_bar-diag.tex</file>
+    <file>yeroth-erp-3-0-templates/EN_pie-chart.tex</file>
+    <file>yeroth-erp-3-0-templates/EN_bar-chart.tex</file>
     
     <file>yeroth-erp-3-0-templates/1a.tex</file>
-    
+		
 		<file>yeroth-erp-3-0-sql/create_table_services_completes.sql</file>
-		<file>yeroth-erp-3-0-sql/create_table_comptabilite_comptes.sql</file>
+	  <file>yeroth-erp-3-0-sql/create_table_comptabilite_comptes.sql</file>
 		<file>yeroth-erp-3-0-sql/create_table_comptes_bancaires.sql</file>
 		<file>yeroth-erp-3-0-sql/create_table_entreprise_info.sql</file>
 		<file>yeroth-erp-3-0-sql/create_table_typedevente.sql</file>
@@ -59,18 +59,18 @@
 		<file>yeroth-erp-3-0-images/yeroth-erp-3-0-save-icon.png</file>
 		<file>yeroth-erp-3-0-images/yeroth-erp-3.0-icon.png</file>
 		<file>yeroth-erp-3-0-images/yeroth-erp-3.0-activate-barcode-reader-icon.png</file>
-		<file>yeroth-erp-3-0-images/yeroth-erp-3.0-reset-database-table-column-selection-icon.png</file>
+    <file>yeroth-erp-3-0-images/yeroth-erp-3.0-reset-database-table-column-selection-icon.png</file>
     <file>yeroth-erp-3-0-images/yeroth-erp-3.0-select-database-table-column-icon.png</file>
-		<file>yeroth-erp-3-0-images/yeroth-erp-3.0-export-csv-data-icon.png</file>
+    <file>yeroth-erp-3-0-images/yeroth-erp-3.0-export-csv-data-icon.png</file>
     <file>yeroth-erp-3-0-images/yeroth-erp-3-0-administration-icon.png</file>
     <file>yeroth-erp-3-0-images/yeroth-erp-3.0-alert-good.png</file>
     <file>yeroth-erp-3-0-images/yeroth-erp-3.0-alert-signaling.png</file>
-    <file>yeroth-erp-3-0-images/yeroth-erp-3-0-pdf-print-icon.svg</file>
     <file>yeroth-erp-3-0-images/yeroth-erp-3-0-page-premiere-image.png</file>
     <file>yeroth-erp-3-0-images/yeroth-erp-3-0-page-derniere-image.png</file>
-    <file>yeroth-erp-3-0-images/yeroth-erp-3-0-page-precedente-image.png</file>
+	  <file>yeroth-erp-3-0-images/yeroth-erp-3-0-page-precedente-image.png</file>
     <file>yeroth-erp-3-0-images/yeroth-erp-3-0-page-suivante-image.png</file>
-	  <file>yeroth-erp-3-0-images/log-in.png</file>
+    <file>yeroth-erp-3-0-images/yeroth-erp-3-0-pdf-print-icon.svg</file>
+    <file>yeroth-erp-3-0-images/log-in.png</file>
     <file>yeroth-erp-3-0-images/log-out.png</file>
     <file>yeroth-erp-3-0-images/minus.png</file>
     <file>yeroth-erp-3-0-images/question.png</file>
