@@ -1,14 +1,9 @@
 /*
+ * yeroth-erp-pointdevente-liststocks-window.cpp
+ *
+ *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
+ */
 
-   * yeroth-erp-pointdevente-liststocks-window.cpp
-
-   *
-
-
-   *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
-
-
-   */
 #include "yeroth-erp-pointdevente-liststocks-window.hpp"
 
 
@@ -33,6 +28,8 @@ YerothPointDeVenteListStocksWindow::YerothPointDeVenteListStocksWindow()
     setupUi(this);
 
     mySetupUi(this);
+
+    enableResizing();
 }
 
 
@@ -40,47 +37,47 @@ void YerothPointDeVenteListStocksWindow::listStocks(YerothSqlTableModel & aSqlTa
 {
     if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::salesStrategy, YerothERPConfig::STRATEGIE_VENTE_SORTIE_ALL))
     {
-        tableView_list_stocks->lister_les_elements_du_tableau(aSqlTableModel);
+        tableView_PDV_list_stocks->lister_les_elements_du_tableau(aSqlTableModel);
     }
     else if (YerothUtils::
              isEqualCaseInsensitive(YerothERPConfig::salesStrategy, YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO))
     {
         QMap<QString, QString> stockNameToStockID_in_out;
-        //qDebug() << "++ YerothVenteListStocksWindow::listStocks tableView_list_stocks->lister_FIFO";
-        tableView_list_stocks->lister_FIFO(aSqlTableModel, stockNameToStockID_in_out);
+        //qDebug() << "++ YerothVenteListStocksWindow::listStocks tableView_PDV_list_stocks->lister_FIFO";
+        tableView_PDV_list_stocks->lister_FIFO(aSqlTableModel, stockNameToStockID_in_out);
         //qDebug() << stockNameToStockID_in_out;
     }
     else if (YerothUtils::
              isEqualCaseInsensitive(YerothERPConfig::salesStrategy, YerothERPConfig::STRATEGIE_VENTE_SORTIE_LIFO))
     {
     	QMap<QString, QString> stockNameToStockID_in_out;
-        //qDebug() << "++ YerothVenteListStocksWindow::listStocks tableView_list_stocks->lister_LIFO";
-        tableView_list_stocks->lister_LIFO(aSqlTableModel, stockNameToStockID_in_out);
+        //qDebug() << "++ YerothVenteListStocksWindow::listStocks tableView_PDV_list_stocks->lister_LIFO";
+        tableView_PDV_list_stocks->lister_LIFO(aSqlTableModel, stockNameToStockID_in_out);
         //qDebug() << stockNameToStockID_in_out;
     }
     else if (YerothUtils::
              isEqualCaseInsensitive(YerothERPConfig::salesStrategy, YerothERPConfig::STRATEGIE_VENTE_SORTIE_FEFO))
     {
     	QMap<QString, QString> stockNameToStockID_in_out;
-        tableView_list_stocks->lister_FEFO(aSqlTableModel, stockNameToStockID_in_out);
+        tableView_PDV_list_stocks->lister_FEFO(aSqlTableModel, stockNameToStockID_in_out);
     }
 
-    tableView_list_stocks->hideColumn(0);
-    tableView_list_stocks->hideColumn(4);
-    tableView_list_stocks->hideColumn(9);
-    tableView_list_stocks->hideColumn(10);
-    tableView_list_stocks->hideColumn(11);
-    tableView_list_stocks->hideColumn(12);
-    tableView_list_stocks->hideColumn(13);
-    tableView_list_stocks->hideColumn(14);
-    tableView_list_stocks->hideColumn(16);
-    tableView_list_stocks->hideColumn(17);
-    tableView_list_stocks->hideColumn(18);
-    tableView_list_stocks->hideColumn(19);
-    tableView_list_stocks->hideColumn(20);
-    tableView_list_stocks->hideColumn(21);
-    tableView_list_stocks->hideColumn(22);
-    tableView_list_stocks->hideColumn(23);
+    tableView_PDV_list_stocks->hideColumn(0);
+    tableView_PDV_list_stocks->hideColumn(4);
+    tableView_PDV_list_stocks->hideColumn(9);
+    tableView_PDV_list_stocks->hideColumn(10);
+    tableView_PDV_list_stocks->hideColumn(11);
+    tableView_PDV_list_stocks->hideColumn(12);
+    tableView_PDV_list_stocks->hideColumn(13);
+    tableView_PDV_list_stocks->hideColumn(14);
+    tableView_PDV_list_stocks->hideColumn(16);
+    tableView_PDV_list_stocks->hideColumn(17);
+    tableView_PDV_list_stocks->hideColumn(18);
+    tableView_PDV_list_stocks->hideColumn(19);
+    tableView_PDV_list_stocks->hideColumn(20);
+    tableView_PDV_list_stocks->hideColumn(21);
+    tableView_PDV_list_stocks->hideColumn(22);
+    tableView_PDV_list_stocks->hideColumn(23);
 
     setWindowTitle(YerothUtils::getWindowTitleWithStrategy(this));
 

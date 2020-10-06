@@ -1,5 +1,5 @@
 /*
- * yeroth-erp-pointdevente-liststocks-window..hpp
+ * yeroth-erp-pointdevente-liststocks-window.hpp
  *
  *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
  */
@@ -42,8 +42,14 @@ public:
 
 	void listStocks(YerothSqlTableModel &aSqlTableModel);
 
-private:
+protected:
 
+	inline void virtual resizeEvent(QResizeEvent *event)
+	{
+		tableView_PDV_list_stocks->resize(event->size());
+	}
+
+private:
 
     YerothLogger				*_logger;
 };

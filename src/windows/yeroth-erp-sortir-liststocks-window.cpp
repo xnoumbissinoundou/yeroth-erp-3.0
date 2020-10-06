@@ -28,6 +28,8 @@ YerothSortirListStocksWindow::YerothSortirListStocksWindow()
     setupUi(this);
 
     mySetupUi(this);
+
+    enableResizing();
 }
 
 

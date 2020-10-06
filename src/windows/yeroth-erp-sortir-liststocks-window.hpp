@@ -40,6 +40,13 @@ public:
 
 	void listStocks(YerothSqlTableModel &aSqlTableModel);
 
+protected:
+
+	inline void virtual resizeEvent(QResizeEvent *event)
+	{
+		tableView_list_stocks->resize(event->size());
+	}
+
 private:
 
     YerothLogger				*_logger;
