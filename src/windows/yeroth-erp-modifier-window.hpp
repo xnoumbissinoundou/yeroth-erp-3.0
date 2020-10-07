@@ -111,8 +111,7 @@ private:
 													int stockId);
 
 	void update_achat_deja_existant(const QSqlRecord &aStockRecord,
-									double aPrixUnitaireHT,
-									double aMargeBeneficiaire);
+									double aPrixUnitaireHT);
 
     void setupLineEdits();
 

@@ -350,8 +350,18 @@ void YerothModifierWindow::actualiser_stock()
 
 	if (success)
 	{
+		YerothERPServiceStockMarchandiseData aServiceStockData;
+
+		aServiceStockData._designation = lineEdit_designation->text();
+		aServiceStockData._prix_dachat_precedent = lineEdit_prix_dachat->text();
+		aServiceStockData._prix_vente_precedent = lineEdit_prix_vente->text();
+
+		YerothUtils::UPDATE_PREVIOUS_SELLING_PRICE_IN_ProductList(aServiceStockData, this);
+
 		if (checkBox_achat->isChecked())
 		{
+			YerothUtils::UPDATE_PREVIOUS_BUYING_PRICE_IN_ProductList(aServiceStockData, this);
+
 			if (checkBox_re_approvisionnement->isChecked() &&
 				quantite_en_re_approvisionement > 0)
 			{
@@ -360,14 +370,8 @@ void YerothModifierWindow::actualiser_stock()
 			}
 		}
 
-		double marge_beneficiaire =
-				YerothUtils::getMargeBeneficiaire(prix_vente,
-												  prix_dachat,
-												  _montantTva);
+		update_achat_deja_existant(record, prix_unitaire_ht);
 
-		update_achat_deja_existant(record,
-								   prix_unitaire_ht,
-								   marge_beneficiaire);
 
 		retMsg.append(QObject::trUtf8("' ont été actualisés avec succès !"));
 
@@ -507,39 +511,54 @@ void YerothModifierWindow::ajouter_nouveau_re_approvisionnement_achat(double qua
 
 
 void YerothModifierWindow::update_achat_deja_existant(const QSqlRecord &aStockRecord,
-													  double aPrixUnitaireHT,
-													  double aMargeBeneficiaire)
+													  double aPrixUnitaireHT)
 {
     //Handling of table "achats"
-	QString achatsQuery(QString("UPDATE %1 SET %2='%3', %4='%5', %6='%7' WHERE %8='%9'")
-							.arg(_allWindows->ACHATS,
-								 YerothDatabaseTableColumn::PRIX_VENTE,
-								 lineEdit_prix_vente->text(),
-								 YerothDatabaseTableColumn::PRIX_UNITAIRE,
-								 QString::number(aPrixUnitaireHT),
-								 YerothDatabaseTableColumn::MARGE_BENEFICIAIRE,
-								 QString::number(aMargeBeneficiaire),
-								 YerothDatabaseTableColumn::STOCKS_ID,
-								 QString::number(_currentStockID)));
+	YerothSqlTableModel &achatSqlTableModel = _allWindows->getSqlTableModel_achats();
 
-	YerothUtils::execQuery(achatsQuery, 0);
+	achatSqlTableModel.yerothSetFilter_WITH_where_clause(QString("%1='%2'")
+															.arg(YerothDatabaseTableColumn::STOCKS_ID,
+																 QString::number(_currentStockID)));
 
-    achatsQuery.clear();
+	int achatSqlTableModel_RESULT_RowCount = achatSqlTableModel.easySelect();
 
     QString curDatePeremption = GET_SQL_RECORD_DATA(aStockRecord, YerothDatabaseTableColumn::DATE_PEREMPTION);
 
     QDate curDatePeremptionFormatedFORDB(GET_DATE_FROM_STRING(curDatePeremption));
 
-	achatsQuery.append(QString("UPDATE %1 SET %2='%3', %4='%5' WHERE %6='%7'")
-							.arg(_allWindows->ACHATS,
-								 YerothDatabaseTableColumn::DATE_PEREMPTION,
-								 DATE_TO_DB_FORMAT_STRING(curDatePeremptionFormatedFORDB),
-								 YerothDatabaseTableColumn::LOCALISATION_STOCK,
-								 lineEdit_localisation_produit->text(),
-								 YerothDatabaseTableColumn::STOCKS_ID,
-								 QString::number(_currentStockID)));
+	double marge_beneficiaire = 0.0;
+	double prix_vente = lineEdit_prix_vente->text().toDouble();
+	double anAchatPrixDachat = 0.0;
 
-	YerothUtils::execQuery(achatsQuery, 0);
+	QSqlRecord anAchatRecord;
+
+	for (int k = 0; k < achatSqlTableModel_RESULT_RowCount; ++k)
+	{
+		anAchatRecord = achatSqlTableModel.record(k);
+
+		anAchatRecord.setValue(YerothDatabaseTableColumn::DATE_PEREMPTION,
+				DATE_TO_DB_FORMAT_STRING(curDatePeremptionFormatedFORDB));
+
+		anAchatRecord.setValue(YerothDatabaseTableColumn::LOCALISATION_STOCK,
+				lineEdit_localisation_produit->text());
+
+		anAchatPrixDachat =
+				GET_SQL_RECORD_DATA(anAchatRecord, YerothDatabaseTableColumn::PRIX_DACHAT).toDouble();
+
+		anAchatRecord.setValue(YerothDatabaseTableColumn::PRIX_UNITAIRE, aPrixUnitaireHT);
+
+		anAchatRecord.setValue(YerothDatabaseTableColumn::PRIX_VENTE, prix_vente);
+
+		marge_beneficiaire = YerothUtils::getMargeBeneficiaire(prix_vente,
+												  	  	  	   anAchatPrixDachat,
+															   _montantTva);
+
+		anAchatRecord.setValue(YerothDatabaseTableColumn::MARGE_BENEFICIAIRE, marge_beneficiaire);
+
+		achatSqlTableModel.updateRecord(k, anAchatRecord);
+	}
+
+	achatSqlTableModel.resetFilter();
 }
 
 
