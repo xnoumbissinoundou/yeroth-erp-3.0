@@ -685,6 +685,10 @@ void YerothMarchandisesWindow::populateMarchandisesComboBoxes()
 
 	aQStringList.append(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(YerothDatabaseTableColumn::VALEUR_DIVENTAIRE));
 
+	aQStringList.append(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(YerothDatabaseTableColumn::PRIX_DACHAT_PRECEDENT));
+
+	aQStringList.append(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(YerothDatabaseTableColumn::PRIX_VENTE_PRECEDENT));
+
 	aQStringList.append(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(YerothDatabaseTableColumn::QUANTITE_TOTALE));
 
     comboBox_inventaire_des_stocks_element_de_stock->addItems(aQStringList);
