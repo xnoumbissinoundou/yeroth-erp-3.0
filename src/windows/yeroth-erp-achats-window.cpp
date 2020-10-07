@@ -163,6 +163,8 @@ connect(actionAdministration, SIGNAL(triggered()), this, SLOT(administration()))
     connect(tableView_achats, SIGNAL(doubleClicked(const QModelIndex &)), this,
             SLOT(afficher_au_detail(const QModelIndex &)));
 
+    setCenterAligned_FOR_YEROTH_PDF_LATEX_PRINTING(YerothDatabaseTableColumn::STOCKS_ID);
+
     setupShortcuts();
 }
 

@@ -74,6 +74,72 @@ void YerothWindowsCommons::setYerothTableView_FROM_WINDOWS_COMMONS(YerothTableVi
 }
 
 
+void YerothWindowsCommons::setLeftAligned_FOR_YEROTH_PDF_LATEX_PRINTING(const QString &dbtableColumnString)
+{
+	int columnIndexStocksID = _dbtablefieldNameToDBColumnIndex.value(dbtableColumnString);
+
+	_DBFieldNamesToPrintLeftAligned.insert(columnIndexStocksID);
+
+	_DBFieldNamesToPrintCenterAligned.remove(columnIndexStocksID);
+
+	_DBFieldNamesToPrintRightAligned.remove(columnIndexStocksID);
+}
+
+
+void YerothWindowsCommons::setLeftAligned_FOR_YEROTH_PDF_LATEX_PRINTING(int dbtableColumnIndex)
+{
+	_DBFieldNamesToPrintLeftAligned.insert(dbtableColumnIndex);
+
+	_DBFieldNamesToPrintCenterAligned.remove(dbtableColumnIndex);
+
+	_DBFieldNamesToPrintRightAligned.remove(dbtableColumnIndex);
+}
+
+
+void YerothWindowsCommons::setCenterAligned_FOR_YEROTH_PDF_LATEX_PRINTING(const QString &dbtableColumnString)
+{
+	int columnIndexStocksID = _dbtablefieldNameToDBColumnIndex.value(dbtableColumnString);
+
+	_DBFieldNamesToPrintCenterAligned.insert(columnIndexStocksID);
+
+	_DBFieldNamesToPrintLeftAligned.remove(columnIndexStocksID);
+
+	_DBFieldNamesToPrintRightAligned.remove(columnIndexStocksID);
+}
+
+
+void YerothWindowsCommons::setCenterAligned_FOR_YEROTH_PDF_LATEX_PRINTING(int dbtableColumnIndex)
+{
+	_DBFieldNamesToPrintCenterAligned.insert(dbtableColumnIndex);
+
+	_DBFieldNamesToPrintLeftAligned.remove(dbtableColumnIndex);
+
+	_DBFieldNamesToPrintRightAligned.remove(dbtableColumnIndex);
+}
+
+
+void YerothWindowsCommons::setRightftAligned_FOR_YEROTH_PDF_LATEX_PRINTING(const QString &dbtableColumnString)
+{
+	int columnIndexStocksID = _dbtablefieldNameToDBColumnIndex.value(dbtableColumnString);
+
+	_DBFieldNamesToPrintRightAligned.insert(columnIndexStocksID);
+
+	_DBFieldNamesToPrintLeftAligned.remove(columnIndexStocksID);
+
+	_DBFieldNamesToPrintCenterAligned.remove(columnIndexStocksID);
+}
+
+
+void YerothWindowsCommons::setRightftAligned_FOR_YEROTH_PDF_LATEX_PRINTING(int dbtableColumnIndex)
+{
+	_DBFieldNamesToPrintRightAligned.insert(dbtableColumnIndex);
+
+	_DBFieldNamesToPrintLeftAligned.remove(dbtableColumnIndex);
+
+	_DBFieldNamesToPrintCenterAligned.remove(dbtableColumnIndex);
+}
+
+
 void YerothWindowsCommons::enableResizing()
 {
     setMaximumSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX);

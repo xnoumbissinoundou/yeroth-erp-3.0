@@ -32,11 +32,6 @@ YerothHistoriqueDuStockWindow::YerothHistoriqueDuStockWindow()
 
     _yerothTableView_FROM_WINDOWS_COMMONS = tableView_historique_du_stock;
 
-    _DBFieldNamesToPrintCenterAligned.insert(2);
-    _DBFieldNamesToPrintCenterAligned.insert(3);
-
-    _DBFieldNamesToPrintLeftAligned.insert(0);
-    _DBFieldNamesToPrintLeftAligned.insert(1);
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
                                        "QMessageBox QLabel {color: rgb(%2);}")
@@ -47,6 +42,12 @@ YerothHistoriqueDuStockWindow::YerothHistoriqueDuStockWindow()
     connect(actionExporter_au_format_csv, SIGNAL(triggered()), this, SLOT(export_csv_file()));
 
     connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_pdf_document()));
+
+    setLeftAligned_FOR_YEROTH_PDF_LATEX_PRINTING(0);
+	setLeftAligned_FOR_YEROTH_PDF_LATEX_PRINTING(1);
+
+    setCenterAligned_FOR_YEROTH_PDF_LATEX_PRINTING(2);
+    setCenterAligned_FOR_YEROTH_PDF_LATEX_PRINTING(3);
 }
 
 

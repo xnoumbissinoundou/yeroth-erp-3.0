@@ -172,6 +172,8 @@ YerothVentesWindow::YerothVentesWindow()
 			this,
 			SLOT(modifier_visibilite_actions_sur_cette_vente()));
 
+    setLeftAligned_FOR_YEROTH_PDF_LATEX_PRINTING(YerothDatabaseTableColumn::TYPE_DE_VENTE);
+
     setupShortcuts();
 }
 
@@ -947,11 +949,6 @@ bool YerothVentesWindow::handleCompteClient(QString client_id,
 void YerothVentesWindow::populateComboBoxes()
 {
 	_logger->log("populateComboBoxes");
-
-	int columnIndexTypeDeVente = _dbtablefieldNameToDBColumnIndex
-			.value(YerothDatabaseTableColumn::TYPE_DE_VENTE);
-
-	_DBFieldNamesToPrintLeftAligned.insert(columnIndexTypeDeVente);
 
 	comboBox_ventes_type_de_vente->setupPopulateNORawString(_allWindows->TYPE_DE_VENTE,
 															YerothDatabaseTableColumn::TYPE_DE_VENTE,

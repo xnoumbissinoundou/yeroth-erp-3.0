@@ -30,11 +30,6 @@ YerothTableauDesTransactionsDuClientWindow::YerothTableauDesTransactionsDuClient
 
     _yerothTableView_FROM_WINDOWS_COMMONS = tableView_tableau_des_transactions_du_client;
 
-    _DBFieldNamesToPrintLeftAligned.insert(0);
-    _DBFieldNamesToPrintLeftAligned.insert(1);
-    _DBFieldNamesToPrintLeftAligned.insert(2);
-    _DBFieldNamesToPrintLeftAligned.insert(5);
-    _DBFieldNamesToPrintLeftAligned.insert(6);
 
     QMESSAGE_BOX_STYLE_SHEET =
         QString("QMessageBox {background-color: rgb(%1);}")
@@ -44,6 +39,12 @@ YerothTableauDesTransactionsDuClientWindow::YerothTableauDesTransactionsDuClient
     connect(actionExporter_au_format_csv, SIGNAL(triggered()), this, SLOT(export_csv_file()));
 
     connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_pdf_document()));
+
+    setLeftAligned_FOR_YEROTH_PDF_LATEX_PRINTING(0);
+	setLeftAligned_FOR_YEROTH_PDF_LATEX_PRINTING(1);
+    setLeftAligned_FOR_YEROTH_PDF_LATEX_PRINTING(2);
+    setLeftAligned_FOR_YEROTH_PDF_LATEX_PRINTING(5);
+	setLeftAligned_FOR_YEROTH_PDF_LATEX_PRINTING(6);
 }
 
 

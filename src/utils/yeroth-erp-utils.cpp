@@ -726,11 +726,6 @@ bool YerothUtils::UPDATE_PREVIOUS_SELLING_PRICE_IN_ProductList(const YerothERPSe
 
     success = YerothUtils::execQuery(stockItemUpdateSellingPriceQuery, 0);
 
-#ifdef YEROTH_ERP_3_0_TESTING_UNIT_TEST
-    QDEBUG_STRINGS_OUTPUT("stockItemUpdateSellingPriceQuery", stockItemUpdateSellingPriceQuery);
-    QDEBUG_STRINGS_OUTPUT("stockItemUpdateSellingPriceQuery -- success", BOOL_TO_STRING(success));
-#endif
-
     return success;
 }
 
@@ -748,11 +743,6 @@ bool YerothUtils::UPDATE_PREVIOUS_BUYING_PRICE_IN_ProductList(const YerothERPSer
 													 aServiceStockData._designation));
 
     success = YerothUtils::execQuery(stockItemUpdateBuyingPriceQuery, 0);
-
-#ifdef YEROTH_ERP_3_0_TESTING_UNIT_TEST
-    QDEBUG_STRINGS_OUTPUT("stockItemUpdateBuyingPriceQuery", stockItemUpdateBuyingPriceQuery);
-    QDEBUG_STRINGS_OUTPUT("stockItemUpdateBuyingPriceQuery -- success", BOOL_TO_STRING(success));
-#endif
 
     return success;
 }
