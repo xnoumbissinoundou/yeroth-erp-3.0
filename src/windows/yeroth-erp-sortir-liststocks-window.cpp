@@ -35,33 +35,20 @@ YerothSortirListStocksWindow::YerothSortirListStocksWindow()
 
 void YerothSortirListStocksWindow::listStocks(YerothSqlTableModel & aSqlTableModel)
 {
-    if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::salesStrategy,
-    										YerothERPConfig::STRATEGIE_VENTE_SORTIE_ALL))
+	tableView_list_stocks->lister_les_elements_du_tableau(aSqlTableModel, YerothERPConfig::salesStrategy);
+
+    if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FEFO,
+    										YerothERPConfig::salesStrategy) 				||
+    	YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO,
+    										YerothERPConfig::salesStrategy) 				||
+		YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_LIFO,
+											YerothERPConfig::salesStrategy))
     {
-        tableView_list_stocks->lister_les_elements_du_tableau(aSqlTableModel);
+    	tableView_list_stocks->setSortingEnabled(false);
     }
-    else if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::salesStrategy,
-    											 YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO))
+    else	//YerothConfig::STRATEGIE_VENTE_SORTIE_ALL
     {
-        QMap<QString, QString> stockNameToStockID_in_out;
-        //qDebug() << "++ YerothSortirListStocksWindow::listStocks tableView_list_stocks->lister_FIFO";
-        tableView_list_stocks->lister_FIFO(aSqlTableModel, stockNameToStockID_in_out);
-        //qDebug() << stockNameToStockID_in_out;
-    }
-    else if (YerothUtils::
-             isEqualCaseInsensitive(YerothERPConfig::salesStrategy,
-            		 	 	 	 	YerothERPConfig::STRATEGIE_VENTE_SORTIE_LIFO))
-    {
-    	QMap<QString, QString> stockNameToStockID_in_out;
-        //qDebug() << "++ YerothSortirListStocksWindow::listStocks tableView_list_stocks->lister_FIFO";
-        tableView_list_stocks->lister_LIFO(aSqlTableModel, stockNameToStockID_in_out);
-        //qDebug() << stockNameToStockID_in_out;
-    }
-    else if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::salesStrategy,
-            		 	 	 	 	 	 	 	 YerothERPConfig::STRATEGIE_VENTE_SORTIE_FEFO))
-    {
-    	QMap<QString, QString> stockNameToStockID_in_out;
-        tableView_list_stocks->lister_FEFO(aSqlTableModel, stockNameToStockID_in_out);
+    	tableView_list_stocks->setSortingEnabled(true);
     }
 
     tableView_list_stocks->hideColumn(0);
