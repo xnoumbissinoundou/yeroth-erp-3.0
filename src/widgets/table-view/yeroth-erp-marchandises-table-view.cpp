@@ -239,8 +239,6 @@ void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTab
                 		anItem->setAccessibleText(QString("%1|%2")
                 									.arg(categorieStr,
                 										 designationStr));
-
-                		anItem->setForeground(YerothUtils::YEROTH_RED_COLOR);
                 	}
 
                 	if (YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::QUANTITE_TOTALE))
