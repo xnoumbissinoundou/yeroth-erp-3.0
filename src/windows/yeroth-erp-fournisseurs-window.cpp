@@ -56,7 +56,7 @@ YerothERPFournisseursWindow::YerothERPFournisseursWindow()
                                    .arg(COLOUR_RGB_STRING_YEROTH_GREEN_2_160_70,
                                 		COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
-    setupSelectDBFields(_allWindows->FOURNISSEURS);
+    setup_select_configure_dbcolumn(_allWindows->FOURNISSEURS);
 
     _lineEditsToANDContentForSearch.insert(&lineEdit_fournisseurs_terme_recherche,
     		YerothUtils::EMPTY_STRING);

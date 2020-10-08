@@ -468,6 +468,8 @@ public:
 	static const QString UTILISATEUR_NON_EXISTANT;
 
 
+	static const QString DATABASE_MYSQL_VARCHAR_TYPE_STRING;
+
 	static const QString DATABASE_MYSQL_CHAR_TYPE_STRING;
 
 	static const QString DATABASE_MYSQL_DATE_TYPE_STRING;
@@ -801,6 +803,21 @@ YerothQMessageBox::information(this, QObject::trUtf8(DIALOG_BOX_TITLE), msg); }
 		YerothQMessageBox::information(THIS, QObject::trUtf8(DIALOG_BOX_TITLE), msg); }
 
 
+
+#define YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(X) \
+		{ \
+    		_yeroth_WINDOW_QComboBox_SearchDBFieldColumnString = comboBox_element_string_db; \
+    		_yeroth_WINDOW_QLineEdit_SearchDBFieldColumnString = lineEdit_nom_element_string_db; \
+			_dbYerothSqlTableName_WINDOWS_TABLE_VIEW_FOR_SEARCH = X; \
+			YerothWindowsCommons::_yeroth_references_dbColumnString = _yeroth_WINDOW_references_dbColumnString; \
+			YerothWindowsCommons::_yeroth_QComboBox_SearchDBFieldColumnString = _yeroth_WINDOW_QComboBox_SearchDBFieldColumnString; \
+			YerothWindowsCommons::_yeroth_QLineEdit_SearchDBFieldColumnString = _yeroth_WINDOW_QLineEdit_SearchDBFieldColumnString; \
+		}
+
+
+#define YEROTH_USER_VIEW_STRING_TO_DATABASE_TABLE_COLUMN(X) YerothDatabaseTableColumn::_tableColumnToUserViewString.key(X)
+
+#define YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(X) YerothDatabaseTableColumn::_tableColumnToUserViewString.value(X)
 
 #define YEROTH_DATABASE_TABLE_COLUMN_INDEX(W, C) W.getDBTableFieldColumnIndex(C)
 

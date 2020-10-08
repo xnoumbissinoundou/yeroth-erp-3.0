@@ -211,6 +211,8 @@ QString YerothUtils::YEROTH_ERP_3_0_SERVER_PARAMETERS_DISPLAY("");
 const QString YerothUtils::UTILISATEUR_NON_EXISTANT("unknown user");
 
 
+const QString YerothUtils::DATABASE_MYSQL_VARCHAR_TYPE_STRING	("varchar");
+
 const QString YerothUtils::DATABASE_MYSQL_CHAR_TYPE_STRING		("char");
 
 const QString YerothUtils::DATABASE_MYSQL_DATE_TYPE_STRING		("date");

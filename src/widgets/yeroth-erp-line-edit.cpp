@@ -313,7 +313,17 @@ void YerothLineEdit::setupMyStaticQCompleter(QString sqlTableName,
 
     if (returnPressedSignalActivated)
     {
-        connect( this, SIGNAL(returnPressed()), this, SLOT(clearQCompleterText()) );
+        connect(this,
+        		SIGNAL(returnPressed()),
+				this,
+				SLOT(clearQCompleterText()) );
+    }
+    else
+    {
+		disconnect(this,
+				   SIGNAL(returnPressed()),
+				   this,
+				   SLOT(clearQCompleterText()) );
     }
 }
 

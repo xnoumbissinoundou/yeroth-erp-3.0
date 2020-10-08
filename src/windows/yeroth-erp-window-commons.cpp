@@ -50,6 +50,8 @@ YerothWindowsCommons::~YerothWindowsCommons()
 		delete _yeroth_PRINT_UTILITIES_TEX_TABLE;
 	}
 
+	_varchar_dbtable_column_list.clear();
+
 	_DBFieldNamesToPrintLeftAligned.clear();
 
 	_dbtablefieldNameToDBColumnIndex.clear();
@@ -326,7 +328,7 @@ void YerothWindowsCommons::administration()
 }
 
 
-void YerothWindowsCommons::setupSelectDBFields(QString aSqlTableName)
+void YerothWindowsCommons::setup_select_configure_dbcolumn(QString aSqlTableName)
 {
 	_selectExportDBQDialog = new YerothERPGenericSelectDBFieldDialog(_allWindows, this);
 
@@ -356,6 +358,11 @@ void YerothWindowsCommons::setupSelectDBFields(QString aSqlTableName)
 		QString type(query.value(1).toString());
 
 		columnIdx = columnIdx + 1;
+
+		if (type.contains(YerothUtils::DATABASE_MYSQL_VARCHAR_TYPE_STRING))
+		{
+			_varchar_dbtable_column_list.insert(fieldName);
+		}
 
 		if (type.contains(YerothUtils::DATABASE_MYSQL_CHAR_TYPE_STRING) ||
 			type.contains(YerothUtils::DATABASE_MYSQL_TIME_TYPE_STRING) ||
@@ -387,6 +394,73 @@ void YerothWindowsCommons::resetTableViewHorizontalHeader_DEFAULT_ORDERING()
 	}
 
 	//TODO: (ACHEVER L'ALGORITHME).
+}
+
+
+void YerothWindowsCommons::setYerothLineEditQCompleterSearchFilter(QString &aYerothLineEditQCompleterSearchFilter_IN_OUT)
+{
+	if (0 == _yeroth_QComboBox_SearchDBFieldColumnString ||
+		0 == _yeroth_QLineEdit_SearchDBFieldColumnString)
+	{
+		return ;
+	}
+
+	QString correspondingDBFieldKeyValue;
+
+	QString aTableColumnFieldContentForANDSearch;
+
+	correspondingDBFieldKeyValue
+		.append(YEROTH_USER_VIEW_STRING_TO_DATABASE_TABLE_COLUMN(
+				_yeroth_QComboBox_SearchDBFieldColumnString->currentText()));
+
+	aTableColumnFieldContentForANDSearch
+		.append(_yeroth_QLineEdit_SearchDBFieldColumnString->text());
+
+	if (!correspondingDBFieldKeyValue.isEmpty() 	  &&
+			!aTableColumnFieldContentForANDSearch.isEmpty()	)
+	{
+		if (!aYerothLineEditQCompleterSearchFilter_IN_OUT.isEmpty())
+		{
+			aYerothLineEditQCompleterSearchFilter_IN_OUT.append(" AND ");
+		}
+
+		aYerothLineEditQCompleterSearchFilter_IN_OUT.append(GENERATE_SQL_IS_STMT(correspondingDBFieldKeyValue,
+				aTableColumnFieldContentForANDSearch));
+	}
+}
+
+
+void YerothWindowsCommons::updateYerothLineEditQCompleter(const QString &currentDBColumnString)
+{
+	QString correspondingDBFieldKeyValue =
+			YEROTH_USER_VIEW_STRING_TO_DATABASE_TABLE_COLUMN(currentDBColumnString);
+
+	if (0 == _yeroth_QComboBox_SearchDBFieldColumnString ||
+		0 == _yeroth_QLineEdit_SearchDBFieldColumnString ||
+		correspondingDBFieldKeyValue.isEmpty())
+	{
+		return ;
+	}
+
+	if (!correspondingDBFieldKeyValue.isEmpty())
+	{
+		if (!_yeroth_references_dbColumnString.contains(correspondingDBFieldKeyValue))
+		{
+			_yeroth_QLineEdit_SearchDBFieldColumnString
+				->setupMyStaticQCompleter(_dbYerothSqlTableName_WINDOWS_TABLE_VIEW_FOR_SEARCH,
+										  correspondingDBFieldKeyValue,
+										  false,
+										  true);
+		}
+		else
+		{
+			_yeroth_QLineEdit_SearchDBFieldColumnString
+				->setupMyStaticQCompleter(_dbYerothSqlTableName_WINDOWS_TABLE_VIEW_FOR_SEARCH,
+										  correspondingDBFieldKeyValue,
+										  false,
+										  false);
+		}
+	}
 }
 
 

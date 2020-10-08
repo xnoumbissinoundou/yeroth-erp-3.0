@@ -79,7 +79,7 @@ YerothVentesWindow::YerothVentesWindow()
 
     _retourVenteTabWidget = tabWidget_ventes->widget(RetourDuneVente);
 
-    setupSelectDBFields(_allWindows->STOCKS_VENDU);
+    setup_select_configure_dbcolumn(_allWindows->STOCKS_VENDU);
 
     _lineEditsToANDContentForSearch.insert(&lineEdit_ventes_terme_recherche,
     		YerothUtils::EMPTY_STRING);

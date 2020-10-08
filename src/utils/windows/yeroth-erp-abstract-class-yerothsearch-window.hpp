@@ -35,13 +35,13 @@ public:
 	:_currentlyFiltered(false),
 	 _searchFilter(YerothUtils::EMPTY_STRING),
 	 _dbYerothSqlTableName(aDBYerothSqlTableName),
-	 _yerothSqlTableModel(0)
+	 _yerothSqlTableModel(0),
+	 _yeroth_WINDOW_QComboBox_SearchDBFieldColumnString(0),
+	 _yeroth_WINDOW_QLineEdit_SearchDBFieldColumnString(0)
 	{
 	}
 
-	virtual ~YerothAbstractClassYerothSearchWindow()
-	{
-	}
+	virtual ~YerothAbstractClassYerothSearchWindow();
 
 protected slots:
 
@@ -89,6 +89,16 @@ protected:
 	QString								_dbYerothSqlTableName;
 
 	YerothSqlTableModel 				*_yerothSqlTableModel;
+
+	/**
+	 * for use with _yeroth_WINDOW_QComboBox_SearchDBFieldColumnString,
+	 * and _yeroth_WINDOW_QLineEdit_SearchDBFieldColumnString
+	 */
+	QSet<QString> 						_yeroth_WINDOW_references_dbColumnString;
+
+	YerothComboBox 						*_yeroth_WINDOW_QComboBox_SearchDBFieldColumnString;
+
+	YerothLineEdit 						*_yeroth_WINDOW_QLineEdit_SearchDBFieldColumnString;
 
 	QMap<YerothComboBox **, QString> 	_comboBoxesToANDContentForSearch;
 

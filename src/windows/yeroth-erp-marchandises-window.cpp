@@ -60,22 +60,19 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
                                    .arg(COLOUR_RGB_STRING_YEROTH_FIREBRICK_RED_255_48_48,
                                 		COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
-    setupSelectDBFields(_allWindows->MARCHANDISES);
+    setup_select_configure_dbcolumn(_allWindows->MARCHANDISES);
+
 
     _lineEditsToANDContentForSearch.insert(&lineEdit_marchandises_terme_recherche,
     		YerothUtils::EMPTY_STRING);
 
-    _lineEditsToANDContentForSearch.insert(&lineEdit_marchandises_reference,
-    		YerothDatabaseTableColumn::REFERENCE);
+    _yeroth_WINDOW_references_dbColumnString.insert(YerothDatabaseTableColumn::REFERENCE);
 
-    _lineEditsToANDContentForSearch.insert(&lineEdit_marchandises_designation,
-    		YerothDatabaseTableColumn::DESIGNATION);
+//    _yeroth_WINDOW_QComboBox_SearchDBFieldColumnString = comboBox_element_string_db;
+//
+//    _yeroth_WINDOW_QLineEdit_SearchDBFieldColumnString = lineEdit_nom_element_string_db;
 
-    _lineEditsToANDContentForSearch.insert(&lineEdit_marchandises_categorie,
-    		YerothDatabaseTableColumn::CATEGORIE);
-
-    _lineEditsToANDContentForSearch.insert(&lineEdit_marchandises_nom_entreprise_fournisseur,
-    		YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR);
+    YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(_allWindows->MARCHANDISES);
 
     reinitialiser_champs_db_visibles();
 
@@ -357,13 +354,16 @@ void YerothMarchandisesWindow::textChangedSearchLineEditsQCompleters()
         }
     }
 
+    YerothWindowsCommons::setYerothLineEditQCompleterSearchFilter(_searchFilter);
+
+
     YerothLineEdit *aYerothLineEdit = 0;
+
+    QMapIterator <YerothLineEdit **, QString> it(_lineEditsToANDContentForSearch);
 
     QString correspondingDBFieldKeyValue;
 
     QString aTableColumnFieldContentForANDSearch;
-
-    QMapIterator <YerothLineEdit **, QString> it(_lineEditsToANDContentForSearch);
 
     while (it.hasNext())
     {
@@ -377,8 +377,8 @@ void YerothMarchandisesWindow::textChangedSearchLineEditsQCompleters()
     	{
     		aTableColumnFieldContentForANDSearch = aYerothLineEdit->text();
 
-    		if (!correspondingDBFieldKeyValue.isEmpty() &&
-    				!aTableColumnFieldContentForANDSearch.isEmpty()	)
+    		if (!correspondingDBFieldKeyValue.isEmpty() 	  &&
+    			!aTableColumnFieldContentForANDSearch.isEmpty()	)
     		{
     			if (!_searchFilter.isEmpty())
     			{
@@ -421,7 +421,7 @@ void YerothMarchandisesWindow::handle_services_checkBox(int state)
 
 	_curMarchandisesTableModel->easySelect();
 
-	lineEdit_marchandises_designation->clear();
+	lineEdit_nom_element_string_db->clear();
 
 	if (-1 != state)
 	{
@@ -683,6 +683,33 @@ void YerothMarchandisesWindow::populateMarchandisesComboBoxes()
 {
 	QStringList aQStringList;
 
+	aQStringList.append(_varchar_dbtable_column_list.values());
+
+	aQStringList.removeAll(YerothDatabaseTableColumn::DESCRIPTION_PRODUIT);
+
+//	qDebug() << "++ test: " << aQStringList;
+
+	QString aDBColumnElementString;
+
+	for (int k = 0; k < aQStringList.size(); ++k)
+	{
+		aDBColumnElementString = aQStringList.at(k);
+
+		if (!YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::REFERENCE, aDBColumnElementString))
+		{
+			comboBox_element_string_db
+				->addItem(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(aDBColumnElementString));
+		}
+	}
+
+	comboBox_element_string_db
+		->insertItem(0, YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::REFERENCE));
+
+	comboBox_element_string_db->setCurrentIndex(0);
+
+
+	aQStringList.clear();
+
 	aQStringList.append(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(YerothDatabaseTableColumn::VALEUR_DIVENTAIRE));
 
 	aQStringList.append(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(YerothDatabaseTableColumn::PRIX_DACHAT_PRECEDENT));
@@ -714,10 +741,7 @@ void YerothMarchandisesWindow::setupLineEdits()
 {
 	lineEdit_marchandises_terme_recherche->enableForSearch(QObject::trUtf8("terme à rechercher (description de l'article (ou service))"));
 
-    lineEdit_marchandises_reference->enableForSearch(QObject::trUtf8("référence"));
-    lineEdit_marchandises_categorie->enableForSearch(QObject::trUtf8("catégorie"));
-    lineEdit_marchandises_designation->enableForSearch(QObject::trUtf8("désignation"));
-    lineEdit_marchandises_nom_entreprise_fournisseur->enableForSearch(QObject::tr("nom entreprise fournisseur"));
+	lineEdit_nom_element_string_db->enableForSearch(QObject::trUtf8("valeur à rechercher"));
 
     lineEdit_nombre_de_marchandises->setYerothEnabled(false);
     lineEdit_nombre_darticles->setYerothEnabled(false);
@@ -1056,7 +1080,7 @@ void YerothMarchandisesWindow::reinitialiser_elements_filtrage()
 
 void YerothMarchandisesWindow::reinitialiser_recherche()
 {
-    lineEdit_marchandises_designation->clear();
+	lineEdit_nom_element_string_db->clear();
 
     setCurrentlyFiltered(false);
 

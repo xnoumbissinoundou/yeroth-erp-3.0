@@ -51,7 +51,7 @@ YerothMouvementsDeStocksWindow::YerothMouvementsDeStocksWindow()
                                        "QMessageBox QLabel {color: rgb(%2);}").
                                arg(COLOUR_RGB_STRING_YEROTH_BLUE_77_93_254, COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
-    setupSelectDBFields(_allWindows->STOCKS_SORTIES);
+    setup_select_configure_dbcolumn(_allWindows->STOCKS_SORTIES);
 
     reinitialiser_champs_db_visibles();
 

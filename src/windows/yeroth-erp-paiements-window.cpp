@@ -74,7 +74,7 @@ YerothPaiementsWindow::YerothPaiementsWindow()
         QString("QMessageBox {background-color: rgb(%1);}")
 			.arg(COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
-    setupSelectDBFields(_allWindows->PAIEMENTS);
+    setup_select_configure_dbcolumn(_allWindows->PAIEMENTS);
 
 
     _lineEditsToANDContentForSearch.insert(&lineEdit_paiements_terme_recherche,

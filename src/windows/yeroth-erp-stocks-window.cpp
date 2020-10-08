@@ -78,7 +78,7 @@ YerothStocksWindow::YerothStocksWindow()
                                     .arg(COLOUR_RGB_STRING_YEROTH_ORANGE_243_162_0,
                                     		COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
-    setupSelectDBFields(_allWindows->STOCKS);
+    setup_select_configure_dbcolumn(_allWindows->STOCKS);
 
     _lineEditsToANDContentForSearch.insert(&lineEdit_stock_terme_recherche,
     		YerothUtils::EMPTY_STRING);

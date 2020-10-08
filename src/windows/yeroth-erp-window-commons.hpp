@@ -194,7 +194,7 @@ public slots:
 
 	virtual void administration();
 
-	virtual void setupSelectDBFields(QString aSqlTableName);
+	virtual void setup_select_configure_dbcolumn(QString aSqlTableName);
 
 	virtual void qui_suis_je();
 
@@ -229,6 +229,10 @@ public slots:
 	}
 
 protected slots:
+
+	virtual void setYerothLineEditQCompleterSearchFilter(QString &aYerothLineEditQCompleterSearchFilter_IN_OUT);
+
+	virtual void updateYerothLineEditQCompleter(const QString &currentDBColumnString);
 
 	virtual void tableView_show_or_hide_columns(YerothTableView &tableView_in_out);
 
@@ -300,7 +304,26 @@ protected:
     }
 
 
+    /**
+     * Ces membres (les 3 suivants) de la classe sont utilises afin d'executer
+     * la 'recherche' automatique.
+     *
+     * Ces membres (les 3 suivants) sont assignes des valeurs
+     * dans le constructeur de la classe descendante de "QMainWindow",
+     * et de "YerothAbstractClassYerothSearchWindow".
+     */
+	QSet<QString> 						_yeroth_references_dbColumnString;
+
+	YerothComboBox 						*_yeroth_QComboBox_SearchDBFieldColumnString;
+
+	YerothLineEdit 						*_yeroth_QLineEdit_SearchDBFieldColumnString;
+
+
+	QString								_dbYerothSqlTableName_WINDOWS_TABLE_VIEW_FOR_SEARCH;
+
     QMap<QString, int>					_dbtablefieldNameToDBColumnIndex;
+
+    QSet<QString>						_varchar_dbtable_column_list;
 
     QStringList							_visibleDBFieldColumnStrList;
 
@@ -337,7 +360,7 @@ protected:
 
 private:
 
-    static QPoint			*_centerPosition;
+    static QPoint						*_centerPosition;
 };
 
 

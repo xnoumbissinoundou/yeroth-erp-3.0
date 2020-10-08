@@ -9,6 +9,14 @@
 #include "src/utils/yeroth-erp-database-table-column.hpp"
 
 
+YerothAbstractClassYerothSearchWindow::~YerothAbstractClassYerothSearchWindow()
+{
+	 _yeroth_WINDOW_QComboBox_SearchDBFieldColumnString = 0;
+
+	 _yeroth_WINDOW_QLineEdit_SearchDBFieldColumnString = 0;
+}
+
+
 void YerothAbstractClassYerothSearchWindow::setupLineEditsQCompleters(QObject *aThis,
 																	  QString aConditionStr)
 {
@@ -77,6 +85,22 @@ void YerothAbstractClassYerothSearchWindow::setupLineEditsQCompleters(QObject *a
 								 aThis,
 								 SLOT(textChangedSearchLineEditsQCompleters()));
     		}
+    	}
+    }
+
+    {
+    	if (0 != _yeroth_WINDOW_QComboBox_SearchDBFieldColumnString &&
+    		0 != _yeroth_WINDOW_QLineEdit_SearchDBFieldColumnString)
+    	{
+    		QObject::connect(_yeroth_WINDOW_QComboBox_SearchDBFieldColumnString,
+    						 SIGNAL(currentTextChanged(const QString &)),
+							 aThis,
+							 SLOT(updateYerothLineEditQCompleter(const QString &)));
+
+    		QObject::connect(_yeroth_WINDOW_QLineEdit_SearchDBFieldColumnString,
+    						 SIGNAL(textChanged(const QString &)),
+							 aThis,
+							 SLOT(textChangedSearchLineEditsQCompleters()));
     	}
     }
 }
