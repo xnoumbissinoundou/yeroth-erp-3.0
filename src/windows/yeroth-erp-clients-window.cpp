@@ -57,20 +57,13 @@ YerothERPClientsWindow::YerothERPClientsWindow()
 
     setup_select_configure_dbcolumn(_allWindows->CLIENTS);
 
+
     _lineEditsToANDContentForSearch.insert(&lineEdit_comptes_clients_terme_recherche,
     		YerothUtils::EMPTY_STRING);
 
-    _lineEditsToANDContentForSearch.insert(&lineEdit_recherche_nom_entreprise,
-    		YerothDatabaseTableColumn::NOM_ENTREPRISE);
+    _yeroth_WINDOW_references_dbColumnString.insert(YerothDatabaseTableColumn::REFERENCE_CLIENT);
 
-    _lineEditsToANDContentForSearch.insert(&lineEdit_comptes_clients_reference_client,
-    		YerothDatabaseTableColumn::REFERENCE_CLIENT);
-
-    _lineEditsToANDContentForSearch.insert(&lineEdit_comptes_clients_quartier,
-    		YerothDatabaseTableColumn::QUARTIER);
-
-    _lineEditsToANDContentForSearch.insert(&lineEdit_comptes_clients_ville,
-    		YerothDatabaseTableColumn::VILLE);
+    YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(_allWindows->CLIENTS);
 
     reinitialiser_champs_db_visibles();
 
@@ -262,6 +255,10 @@ void YerothERPClientsWindow::textChangedSearchLineEditsQCompleters()
         	}
         }
     }
+
+
+    YerothWindowsCommons::setYerothLineEditQCompleterSearchFilter(_searchFilter);
+
 
     YerothLineEdit *aYerothLineEdit = 0;
 
@@ -552,7 +549,7 @@ void YerothERPClientsWindow::reinitialiser_recherche()
 {
     _logger->log("reinitialiser_recherche");
 
-    lineEdit_recherche_nom_entreprise->clear();
+	lineEdit_nom_element_string_db->clear();
 
     lineEdit_resultat_filtre->clear();
 
@@ -569,6 +566,35 @@ void YerothERPClientsWindow::populateClientsComboBoxes()
     _logger->log("populateClientsComboBoxes");
 
 	QStringList aQStringList;
+
+	aQStringList.append(_varchar_dbtable_column_list.values());
+
+	aQStringList.removeAll(YerothDatabaseTableColumn::DESCRIPTION_CLIENT);
+	aQStringList.removeAll(YerothDatabaseTableColumn::NUMERO_TELEPHONE_1);
+	aQStringList.removeAll(YerothDatabaseTableColumn::NUMERO_TELEPHONE_2);
+
+//	qDebug() << "++ test: " << aQStringList;
+
+	QString aDBColumnElementString;
+
+	for (int k = 0; k < aQStringList.size(); ++k)
+	{
+		aDBColumnElementString = aQStringList.at(k);
+
+		if (!YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::REFERENCE, aDBColumnElementString))
+		{
+			comboBox_element_string_db
+				->addItem(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(aDBColumnElementString));
+		}
+	}
+
+	comboBox_element_string_db
+		->insertItem(0, YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::REFERENCE));
+
+	comboBox_element_string_db->setCurrentIndex(0);
+
+
+	aQStringList.clear();
 
 	aQStringList.append(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(YerothDatabaseTableColumn::COMPTE_CLIENT));
 
@@ -596,10 +622,7 @@ void YerothERPClientsWindow::setupLineEdits()
 {
 	lineEdit_comptes_clients_terme_recherche->enableForSearch(QObject::trUtf8("terme à rechercher (émail, réprésentant, description de l'entreprise cliente)"));
 
-	lineEdit_recherche_nom_entreprise->enableForSearch(QObject::tr("nom de l'entreprise cliente"));
-	lineEdit_comptes_clients_reference_client->enableForSearch(QObject::trUtf8("référence client"));
-	lineEdit_comptes_clients_quartier->enableForSearch(QObject::tr("quartier"));
-	lineEdit_comptes_clients_ville->enableForSearch(QObject::tr("ville"));
+	lineEdit_nom_element_string_db->enableForSearch(QObject::trUtf8("valeur à rechercher"));
 
 	lineEdit_nombre_de_comptes_clients->setYerothEnabled(false);
 

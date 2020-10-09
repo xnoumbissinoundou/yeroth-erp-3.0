@@ -146,8 +146,6 @@ private:
 
     YerothLogger			*_logger;
 
-    QProcess				*_aProcess;
-
     QFont 					*_pushButton_achats_filtrer_font;
 
     YerothSqlTableModel 	*_curAchatSqlTableModel;

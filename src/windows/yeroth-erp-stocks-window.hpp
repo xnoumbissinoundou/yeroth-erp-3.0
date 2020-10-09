@@ -125,11 +125,6 @@ private slots:
 
 	bool filtrer_stocks();
 
-	inline void setRechercheCodebarArticleFocus()
-	{
-		lineEdit_recherche_reference->setFocus();
-	}
-
 protected:
 
 	virtual void reinitialiser_champs_db_visibles();
@@ -164,10 +159,6 @@ private:
     YerothLogger			*_logger;
 
     QStringList				_historiqueStock;
-
-    QAction					*_actionRechercheArticleCodebar;
-
-    QProcess				*_aProcess;
 
     QFont 					*_pushButton_stocks_filtrer_font;
 

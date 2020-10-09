@@ -56,8 +56,6 @@ YerothStocksWindow::YerothStocksWindow()
 :YerothWindowsCommons("yeroth-erp-fichier-stocks"),
  YerothAbstractClassYerothSearchWindow(_allWindows->STOCKS),
  _logger(new YerothLogger("YerothStocksWindow")),
- _actionRechercheArticleCodebar(0),
- _aProcess(0),
  _pushButton_stocks_filtrer_font(0),
  _searchStocksTableModel(0)
 {
@@ -80,20 +78,13 @@ YerothStocksWindow::YerothStocksWindow()
 
     setup_select_configure_dbcolumn(_allWindows->STOCKS);
 
+
     _lineEditsToANDContentForSearch.insert(&lineEdit_stock_terme_recherche,
     		YerothUtils::EMPTY_STRING);
 
-    _lineEditsToANDContentForSearch.insert(&lineEdit_recherche_reference,
-    		YerothDatabaseTableColumn::REFERENCE);
+    _yeroth_WINDOW_references_dbColumnString.insert(YerothDatabaseTableColumn::REFERENCE);
 
-    _lineEditsToANDContentForSearch.insert(&lineEdit_stock_designation,
-    		YerothDatabaseTableColumn::DESIGNATION);
-
-    _lineEditsToANDContentForSearch.insert(&lineEdit_stock_categorie,
-    		YerothDatabaseTableColumn::CATEGORIE);
-
-    _lineEditsToANDContentForSearch.insert(&lineEdit_stock_nom_entreprise_fournisseur,
-    		YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR);
+    YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(_allWindows->STOCKS);
 
     reinitialiser_champs_db_visibles();
 
@@ -191,7 +182,6 @@ YerothStocksWindow::~YerothStocksWindow()
 {
 	MACRO_TO_DELETE_PAGINATION_INTEGER_VALIDATOR
 
-	delete _actionRechercheArticleCodebar;
     delete _logger;
 }
 
@@ -423,6 +413,38 @@ void YerothStocksWindow::populateComboBoxes()
 {
 	QStringList aQStringList;
 
+	aQStringList.append(_varchar_dbtable_column_list.values());
+
+	aQStringList.removeAll(YerothDatabaseTableColumn::DESCRIPTION_PRODUIT);
+	aQStringList.removeAll(YerothDatabaseTableColumn::ENREGISTREUR_STOCK);
+	aQStringList.removeAll(YerothDatabaseTableColumn::HISTORIQUE_STOCK);
+	aQStringList.removeAll(YerothDatabaseTableColumn::LOCALISATION);
+	aQStringList.removeAll(YerothDatabaseTableColumn::LOCALISATION_STOCK);
+	aQStringList.removeAll(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT);
+
+//	qDebug() << "++ test: " << aQStringList;
+
+	QString aDBColumnElementString;
+
+	for (int k = 0; k < aQStringList.size(); ++k)
+	{
+		aDBColumnElementString = aQStringList.at(k);
+
+		if (!YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::REFERENCE, aDBColumnElementString))
+		{
+			comboBox_element_string_db
+				->addItem(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(aDBColumnElementString));
+		}
+	}
+
+	comboBox_element_string_db
+		->insertItem(0, YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::REFERENCE));
+
+	comboBox_element_string_db->setCurrentIndex(0);
+
+
+	aQStringList.clear();
+
 	aQStringList.append(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(YerothDatabaseTableColumn::MONTANT_TVA));
 
 	aQStringList.append(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(YerothDatabaseTableColumn::PRIX_VENTE));
@@ -463,10 +485,8 @@ void YerothStocksWindow::populateComboBoxes()
 void YerothStocksWindow::setupLineEdits()
 {
     lineEdit_stock_terme_recherche->enableForSearch(QObject::trUtf8("terme à rechercher (description de l'article (ou service))"));
-    lineEdit_recherche_reference->enableForSearch(QObject::trUtf8("référence"));
-	lineEdit_stock_categorie->enableForSearch(QObject::trUtf8("catégorie"));
-	lineEdit_stock_designation->enableForSearch(QObject::trUtf8("désignation"));
-	lineEdit_stock_nom_entreprise_fournisseur->enableForSearch(QObject::tr("nom entreprise fournisseur"));
+
+    lineEdit_nom_element_string_db->enableForSearch(QObject::trUtf8("valeur à rechercher"));
 
 	lineEdit_stocks_element_de_stock_resultat->setValidator(&YerothUtils::DoubleValidator);
 
@@ -478,18 +498,9 @@ void YerothStocksWindow::setupLineEdits()
 
 void YerothStocksWindow::setupShortcuts()
 {
-	_actionRechercheArticleCodebar = new QAction(this);
-
-    lineEdit_recherche_reference->addAction(_actionRechercheArticleCodebar);
-
-    connect(_actionRechercheArticleCodebar, SIGNAL(triggered()),
-    		this,SLOT(setRechercheCodebarArticleFocus()));
-
     setupShortcutActionMessageDaide 	(*actionAppeler_aide);
-    setupShortcutActionAfficherPDF	(*actionAfficherPDF);
+    setupShortcutActionAfficherPDF		(*actionAfficherPDF);
     setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
-
-    _actionRechercheArticleCodebar->setShortcut(Qt::Key_F11);
 
     actionReinitialiserRecherche->setShortcut(YerothUtils::REINITIALISER_RECHERCHE_QKEYSEQUENCE);
 }
@@ -527,6 +538,10 @@ void YerothStocksWindow::textChangedSearchLineEditsQCompleters()
         	}
         }
     }
+
+
+    YerothWindowsCommons::setYerothLineEditQCompleterSearchFilter(_searchFilter);
+
 
     YerothLineEdit *aYerothLineEdit = 0;
 
@@ -1024,6 +1039,8 @@ void YerothStocksWindow::reinitialiser_elements_filtrage()
 
 void YerothStocksWindow::reinitialiser_recherche()
 {
+	lineEdit_nom_element_string_db->clear();
+
     lineEdit_stocks_element_de_stock_resultat->clear();
 
     setCurrentlyFiltered(false);
