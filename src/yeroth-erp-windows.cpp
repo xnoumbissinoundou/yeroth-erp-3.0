@@ -909,6 +909,11 @@ bool YerothERPWindows::move(QMainWindow &aWindow)
 }
 
 
+/**
+ * !!! DO NOT MODIFY AT ALL !!!
+ *
+ *  !!! THIS IS A VERY IMPORTANT PIECE OF CODE !!!
+ */
 int YerothERPWindows::NEXT_TABLE_ID_MYSQL_FOR_STOCKS()
 {
 	int max_id = 0;
@@ -934,20 +939,11 @@ int YerothERPWindows::NEXT_TABLE_ID_MYSQL_FOR_STOCKS()
 
     int querySize = YerothUtils::execQuery(aQuery, MAX_ID_QUERY_FOR_STOCKS);
 
-    static bool is_first_execution = true;
-
     if (querySize > 0 && aQuery.next())
     {
     	max_id = aQuery.value(0).toInt();
 
-        if (!is_first_execution)
-        {
-        	max_id += 1;
-        }
-        else
-        {
-        	is_first_execution = false;
-        }
+    	max_id += 1;
     }
 
     return max_id;
