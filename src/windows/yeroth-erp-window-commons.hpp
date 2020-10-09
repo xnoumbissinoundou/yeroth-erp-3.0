@@ -230,11 +230,11 @@ public slots:
 	{
 	}
 
+	virtual void updateYerothLineEditQCompleter(const QString &currentDBColumnString);
+
 protected slots:
 
 	virtual void setYerothLineEditQCompleterSearchFilter(QString &aYerothLineEditQCompleterSearchFilter_IN_OUT);
-
-	virtual void updateYerothLineEditQCompleter(const QString &currentDBColumnString);
 
 	virtual void tableView_show_or_hide_columns(YerothTableView &tableView_in_out);
 

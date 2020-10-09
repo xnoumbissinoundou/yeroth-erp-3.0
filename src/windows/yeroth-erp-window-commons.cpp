@@ -397,39 +397,6 @@ void YerothWindowsCommons::resetTableViewHorizontalHeader_DEFAULT_ORDERING()
 }
 
 
-void YerothWindowsCommons::setYerothLineEditQCompleterSearchFilter(QString &aYerothLineEditQCompleterSearchFilter_IN_OUT)
-{
-	if (0 == _yeroth_QComboBox_SearchDBFieldColumnString ||
-		0 == _yeroth_QLineEdit_SearchDBFieldColumnString)
-	{
-		return ;
-	}
-
-	QString correspondingDBFieldKeyValue;
-
-	QString aTableColumnFieldContentForANDSearch;
-
-	correspondingDBFieldKeyValue
-		.append(YEROTH_USER_VIEW_STRING_TO_DATABASE_TABLE_COLUMN(
-				_yeroth_QComboBox_SearchDBFieldColumnString->currentText()));
-
-	aTableColumnFieldContentForANDSearch
-		.append(_yeroth_QLineEdit_SearchDBFieldColumnString->text());
-
-	if (!correspondingDBFieldKeyValue.isEmpty() 	  &&
-			!aTableColumnFieldContentForANDSearch.isEmpty()	)
-	{
-		if (!aYerothLineEditQCompleterSearchFilter_IN_OUT.isEmpty())
-		{
-			aYerothLineEditQCompleterSearchFilter_IN_OUT.append(" AND ");
-		}
-
-		aYerothLineEditQCompleterSearchFilter_IN_OUT.append(GENERATE_SQL_IS_STMT(correspondingDBFieldKeyValue,
-				aTableColumnFieldContentForANDSearch));
-	}
-}
-
-
 void YerothWindowsCommons::updateYerothLineEditQCompleter(const QString &currentDBColumnString)
 {
 	QString correspondingDBFieldKeyValue =
@@ -460,6 +427,39 @@ void YerothWindowsCommons::updateYerothLineEditQCompleter(const QString &current
 										  false,
 										  false);
 		}
+	}
+}
+
+
+void YerothWindowsCommons::setYerothLineEditQCompleterSearchFilter(QString &aYerothLineEditQCompleterSearchFilter_IN_OUT)
+{
+	if (0 == _yeroth_QComboBox_SearchDBFieldColumnString ||
+		0 == _yeroth_QLineEdit_SearchDBFieldColumnString)
+	{
+		return ;
+	}
+
+	QString correspondingDBFieldKeyValue;
+
+	QString aTableColumnFieldContentForANDSearch;
+
+	correspondingDBFieldKeyValue
+		.append(YEROTH_USER_VIEW_STRING_TO_DATABASE_TABLE_COLUMN(
+				_yeroth_QComboBox_SearchDBFieldColumnString->currentText()));
+
+	aTableColumnFieldContentForANDSearch
+		.append(_yeroth_QLineEdit_SearchDBFieldColumnString->text());
+
+	if (!correspondingDBFieldKeyValue.isEmpty() 	  &&
+			!aTableColumnFieldContentForANDSearch.isEmpty()	)
+	{
+		if (!aYerothLineEditQCompleterSearchFilter_IN_OUT.isEmpty())
+		{
+			aYerothLineEditQCompleterSearchFilter_IN_OUT.append(" AND ");
+		}
+
+		aYerothLineEditQCompleterSearchFilter_IN_OUT.append(GENERATE_SQL_IS_STMT(correspondingDBFieldKeyValue,
+				aTableColumnFieldContentForANDSearch));
 	}
 }
 
