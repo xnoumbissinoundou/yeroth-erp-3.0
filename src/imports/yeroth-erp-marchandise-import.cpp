@@ -267,6 +267,7 @@ enum import_csv_entry_row_return_status
 
 		QStringList allSqltableColumns = _dbTableColumnToIsNotNULL->keys();
 
+		allSqltableColumns.removeAll(YerothDatabaseTableColumn::ID);
 		allSqltableColumns.removeAll(YerothDatabaseTableColumn::IS_SERVICE);
 
 		for (int k = 0; k < allSqltableColumns.size(); ++k)

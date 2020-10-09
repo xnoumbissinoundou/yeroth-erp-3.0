@@ -928,15 +928,26 @@ int YerothERPWindows::NEXT_TABLE_ID_MYSQL_FOR_STOCKS()
 						 YerothDatabaseTableColumn::STOCKS_ID,
 						 SERVICES_COMPLETES));
 
+//	QDEBUG_STRINGS_OUTPUT_2("MAX_ID_QUERY_FOR_STOCKS", MAX_ID_QUERY_FOR_STOCKS);
+
 	QSqlQuery aQuery;
 
     int querySize = YerothUtils::execQuery(aQuery, MAX_ID_QUERY_FOR_STOCKS);
+
+    static bool is_first_execution = true;
 
     if (querySize > 0 && aQuery.next())
     {
     	max_id = aQuery.value(0).toInt();
 
-    	max_id += 1;
+        if (!is_first_execution)
+        {
+        	max_id += 1;
+        }
+        else
+        {
+        	is_first_execution = false;
+        }
     }
 
     return max_id;

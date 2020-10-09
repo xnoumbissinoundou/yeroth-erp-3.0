@@ -150,6 +150,8 @@ int YerothERPStockImport::import(bool importerParlant /* = false */)
 		curCsvFileImportRow = _curCsvFileToImportContentWordList->at(k)
 						.split(YerothUtils::CSV_FILE_SEPARATION_SEMI_COLON_STRING_CHAR);
 
+//		QDEBUG_STRINGS_OUTPUT_Q_CONTAINER("curCsvFileImportRow", curCsvFileImportRow);
+
 		insertionReturnStatusValue = import_csv_entry_row(importerParlant, curCsvFileImportRow);
 
 		if (IMPORT_DATA_CSV_INSERTION_SUCCEED == insertionReturnStatusValue)
@@ -230,6 +232,17 @@ enum import_csv_entry_row_return_status
 {
 	enum import_csv_entry_row_return_status insertionReturnStatus = IMPORT_DATA_CSV_INSERTION_FAILED;
 
+	if (aCsvFileEntryLine.size() <= 0)
+	{
+		return IMPORT_DATA_CSV_INSERTION_FAILED;
+	}
+
+	if (1 == aCsvFileEntryLine.size() 	  &&
+		aCsvFileEntryLine.at(0).isEmpty())
+	{
+		return IMPORT_DATA_CSV_INSERTION_FAILED;
+	}
+
 	YerothERPWindows *allWindows = YerothUtils::getAllWindows();
 
 	if (0 == allWindows)
@@ -243,12 +256,16 @@ enum import_csv_entry_row_return_status
 
     QSqlRecord record = curStocksTableModel.record();
 
+    QString prix_dachat;
+
     double montant_tva = -1.0;
     double prix_unitaire = -1.0;
     double prix_vente = -1.0;
     double quantite_totale = -1.0;
 
     int stock_id_to_save = YerothERPWindows::getNextIdSqlTableModel_stocks();
+
+//    QDEBUG_STRINGS_OUTPUT_2_N("stock_id_to_save - init", stock_id_to_save);
 
     int querySize = -1;
 
@@ -418,6 +435,17 @@ enum import_csv_entry_row_return_status
 					quantite_totale = YerothUtils::YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(curColumnRowEntry);
 					record.setValue(curTableColumnName, quantite_totale);
 				}
+				else if(YerothDatabaseTableColumn::PRIX_DACHAT == curTableColumnName)
+				{
+					if (!curColumnRowEntry.isEmpty())
+					{
+						prix_dachat = curColumnRowEntry;
+
+						double aCurPrixDachat = YerothUtils::YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(prix_dachat);
+
+						record.setValue(curTableColumnName, aCurPrixDachat);
+					}
+				}
 				else if(YerothDatabaseTableColumn::MONTANT_TVA == curTableColumnName)
 				{
 					montant_tva = YerothUtils::YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(curColumnRowEntry);
@@ -482,7 +510,6 @@ enum import_csv_entry_row_return_status
 							 curExistingReferenceDesignationCategory_PRODUCT_in_out);
     }
 
-
     if (SERVICE_REFERENCE_EXISTS		== SERVICE_REFERENCE_STOCK_DESIGNATION_EXIST ||
     	SERVICE_STOCK_CATEGORY_EXIST 	== SERVICE_REFERENCE_STOCK_DESIGNATION_EXIST ||
     	SERVICE_STOCK_DESIGNATION_EXIST == SERVICE_REFERENCE_STOCK_DESIGNATION_EXIST )
@@ -531,8 +558,6 @@ enum import_csv_entry_row_return_status
 		return IMPORT_DATA_CSV_INCORRECT_COLUMN_VALUE;
 	}
 
-	record.setValue(YerothDatabaseTableColumn::ID, stock_id_to_save);
-
 	record.setValue(YerothDatabaseTableColumn::IS_SERVICE, 0);
 	record.setValue(YerothDatabaseTableColumn::LOTS_ENTRANT, 1);
 	record.setValue(YerothDatabaseTableColumn::QUANTITE_PAR_LOT, quantite_totale);
@@ -540,19 +565,22 @@ enum import_csv_entry_row_return_status
 			allWindows->getInfoEntreprise().getLocalisation());
 	record.setValue(YerothDatabaseTableColumn::DATE_ENTREE, GET_CURRENT_DATE);
 
-
 	if (0 != _dbTableColumnToIsNotNULL)
 	{
 		QString aCurSqlTableImportColumn;
 
 		QStringList allSqltableColumns = _dbTableColumnToIsNotNULL->keys();
 
+		allSqltableColumns.removeAll(YerothDatabaseTableColumn::ID);
+		allSqltableColumns.removeAll(YerothDatabaseTableColumn::PRIX_DACHAT);
+		allSqltableColumns.removeAll(YerothDatabaseTableColumn::MONTANT_TVA);
 		allSqltableColumns.removeAll(YerothDatabaseTableColumn::PRIX_VENTE);
 		allSqltableColumns.removeAll(YerothDatabaseTableColumn::IS_SERVICE);
 		allSqltableColumns.removeAll(YerothDatabaseTableColumn::LOTS_ENTRANT);
 		allSqltableColumns.removeAll(YerothDatabaseTableColumn::QUANTITE_PAR_LOT);
 		allSqltableColumns.removeAll(YerothDatabaseTableColumn::LOCALISATION);
 		allSqltableColumns.removeAll(YerothDatabaseTableColumn::DATE_ENTREE);
+
 
 	    QString historiqueStockInitial(
 	    		YerothHistoriqueStock::creer_mouvement_stock(MOUVEMENT_DE_STOCK_ENTREE,
@@ -582,11 +610,17 @@ enum import_csv_entry_row_return_status
 				/*
 				 * This SQL stock table column MUST BE NOT NULL.
 				 * So we attribute it a standard value.
+				 *
+				 * The previous statement is alone not valid for
+				 * the 'id' column !
 				 */
-				if (!YEROTH_QSTRING_CONTAINS(_allMissingMandatoryColumnValue, aCurSqlTableImportColumn))
+				if (!YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::ID, aCurSqlTableImportColumn))
 				{
-					_allMissingMandatoryColumnValue.append(QString(" , %1")
-							.arg(aCurSqlTableImportColumn));
+					if (!YEROTH_QSTRING_CONTAINS(_allMissingMandatoryColumnValue, aCurSqlTableImportColumn))
+					{
+						_allMissingMandatoryColumnValue.append(QString(" , %1")
+								.arg(aCurSqlTableImportColumn));
+					}
 				}
 			}
 		}
@@ -596,6 +630,10 @@ enum import_csv_entry_row_return_status
 			return IMPORT_DATA_CSV_MANDATORY_COLUMN_VALUE_MISSING;
 		}
 	}
+
+//	QDEBUG_STRINGS_OUTPUT_2_N("stock_id_to_save - 2", stock_id_to_save);
+
+	record.setValue(YerothDatabaseTableColumn::ID, stock_id_to_save);
 
     YerothERPServiceStockMarchandiseData aServiceStockData;
 
@@ -609,9 +647,10 @@ enum import_csv_entry_row_return_status
 		aServiceStockData._prix_vente_precedent = QString::number(prix_vente);
 	}
 
-    aServiceStockData._categorie 			= productCategorie;
-    aServiceStockData._designation 			= productName;
-    aServiceStockData._reference 			= productReference;
+	aServiceStockData._prix_dachat_precedent = prix_dachat;
+	aServiceStockData._categorie 			 = productCategorie;
+    aServiceStockData._designation 			 = productName;
+    aServiceStockData._reference 			 = productReference;
 
     if (SERVICE_STOCK_UNDEFINED == SERVICE_REFERENCE_STOCK_DESIGNATION_EXIST)
     {

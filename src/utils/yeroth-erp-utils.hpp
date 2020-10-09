@@ -159,9 +159,6 @@ public:
 
 	static int execQueryRowCount(const QString &strQuery, YerothLogger *logger = 0);
 
-	static void qDebugOutputTokenStrings_DURING_MANUAL_DEBUGGING(const QString &identiyTokenString,
-																 bool aResetValue = false);
-
 	static void qDebugStrings(const QString &firstString, const QString &secondString = YerothUtils::EMPTY_STRING);
 
 	static bool execQuery(const QString &strQuery, YerothLogger *logger = 0);
@@ -466,9 +463,6 @@ public:
 
 
 	static QString YEROTH_ERP_3_0_SERVER_PARAMETERS_DISPLAY;
-
-
-	static QMap<QString, unsigned int> _debugOutputTokenString_TO_intCounter;
 
 
 	static const QString UTILISATEUR_NON_EXISTANT;

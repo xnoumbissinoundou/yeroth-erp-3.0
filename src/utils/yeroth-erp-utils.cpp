@@ -208,9 +208,6 @@ const QKeySequence YerothUtils::LISTER_STOCKS_QKEYSEQUENCE(QObject::tr(SHORTCUT_
 QString YerothUtils::YEROTH_ERP_3_0_SERVER_PARAMETERS_DISPLAY("");
 
 
-QMap<QString, unsigned int> YerothUtils::_debugOutputTokenString_TO_intCounter;
-
-
 const QString YerothUtils::UTILISATEUR_NON_EXISTANT("unknown user");
 
 
@@ -795,11 +792,11 @@ bool YerothUtils::insertStockItemInProductList(const YerothERPServiceStockMarcha
     {
     	record.setValue(YerothDatabaseTableColumn::IS_SERVICE, YerothUtils::MYSQL_FALSE_LITERAL);
 
-        record.setValue(YerothDatabaseTableColumn::PRIX_DACHAT_PRECEDENT,
-        					aServiceStockData._prix_dachat_precedent.toDouble());
+    	record.setValue(YerothDatabaseTableColumn::PRIX_DACHAT_PRECEDENT,
+    			YerothUtils::YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(aServiceStockData._prix_dachat_precedent));
 
-        record.setValue(YerothDatabaseTableColumn::PRIX_VENTE_PRECEDENT,
-        					aServiceStockData._prix_vente_precedent.toDouble());
+    	record.setValue(YerothDatabaseTableColumn::PRIX_VENTE_PRECEDENT,
+    			YerothUtils::YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(aServiceStockData._prix_vente_precedent));
     }
 
     record.setValue(YerothDatabaseTableColumn::REFERENCE, aServiceStockData._reference);
@@ -810,11 +807,46 @@ bool YerothUtils::insertStockItemInProductList(const YerothERPServiceStockMarcha
 
     record.setValue(YerothDatabaseTableColumn::DESCRIPTION_PRODUIT, aServiceStockData._description);
 
-
-    if (productListSqlTableModel.Is_SearchQSqlTable(YerothDatabaseTableColumn::REFERENCE, aServiceStockData._reference) > 0 ||
+    if (productListSqlTableModel.Is_SearchQSqlTable(YerothDatabaseTableColumn::REFERENCE, aServiceStockData._reference) 	> 0 ||
     	productListSqlTableModel.Is_SearchQSqlTable(YerothDatabaseTableColumn::DESIGNATION, aServiceStockData._designation) > 0 ||
-		productListSqlTableModel.Is_SearchQSqlTable(YerothDatabaseTableColumn::CATEGORIE, aServiceStockData._categorie) > 0 )
+		productListSqlTableModel.Is_SearchQSqlTable(YerothDatabaseTableColumn::CATEGORIE, aServiceStockData._categorie) 	> 0 )
     {
+    	productListSqlTableModel
+			.yerothSetFilter_WITH_where_clause(QString("%1='%2' AND %3='%4' AND %5='%6'")
+													.arg(YerothDatabaseTableColumn::REFERENCE,
+														 aServiceStockData._reference,
+														 YerothDatabaseTableColumn::DESIGNATION,
+														 aServiceStockData._designation,
+														 YerothDatabaseTableColumn::CATEGORIE,
+														 aServiceStockData._categorie));
+
+    	int rows = productListSqlTableModel.easySelect();
+
+    	if (rows > 0)
+    	{
+    		record.clear();
+
+    		record = productListSqlTableModel.record(0);
+
+    		QSqlRecord aMarchandiseUpdateRecord(record);
+
+        	if (!aServiceStockData._prix_dachat_precedent.isEmpty())
+        	{
+        		aMarchandiseUpdateRecord.setValue(YerothDatabaseTableColumn::PRIX_DACHAT_PRECEDENT,
+        				YerothUtils::YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(aServiceStockData._prix_dachat_precedent));
+        	}
+
+        	if (!aServiceStockData._prix_vente_precedent.isEmpty())
+        	{
+        		aMarchandiseUpdateRecord.setValue(YerothDatabaseTableColumn::PRIX_VENTE_PRECEDENT,
+        				YerothUtils::YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(aServiceStockData._prix_vente_precedent));
+        	}
+
+            productListSqlTableModel.updateRecord(0, aMarchandiseUpdateRecord);
+    	}
+
+    	productListSqlTableModel.resetFilter();
+
     	return true;
     }
 
@@ -1139,35 +1171,6 @@ int YerothUtils::execQueryRowCount(const QString &strQuery, YerothLogger *logger
     }
 
     return query.size();
-}
-
-
-void YerothUtils::qDebugOutputTokenStrings_DURING_MANUAL_DEBUGGING(const QString &identiyTokenString,
-																   bool aResetValue /* = false */)
-{
-	unsigned int aIntCounter = 0;
-
-	if (aResetValue ||
-		!_debugOutputTokenString_TO_intCounter.contains(identiyTokenString))
-	{
-		_debugOutputTokenString_TO_intCounter.insert(identiyTokenString, aIntCounter);
-	}
-
-	aIntCounter = _debugOutputTokenString_TO_intCounter.value(identiyTokenString);
-
-	QString debugOutputToken(" |");
-
-	for(unsigned int k = 0; k < aIntCounter; ++k)
-	{
-		debugOutputToken.append("|");
-	}
-
-	qDebug() << QString("++ %1: %2")
-					.arg(identiyTokenString, debugOutputToken.trimmed());
-
-	aIntCounter += 1;
-
-	_debugOutputTokenString_TO_intCounter.insert(identiyTokenString, aIntCounter);
 }
 
 
