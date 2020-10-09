@@ -68,10 +68,6 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
 
     _yeroth_WINDOW_references_dbColumnString.insert(YerothDatabaseTableColumn::REFERENCE);
 
-//    _yeroth_WINDOW_QComboBox_SearchDBFieldColumnString = comboBox_element_string_db;
-//
-//    _yeroth_WINDOW_QLineEdit_SearchDBFieldColumnString = lineEdit_nom_element_string_db;
-
     YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(_allWindows->MARCHANDISES);
 
     reinitialiser_champs_db_visibles();
