@@ -43,6 +43,8 @@ public:
 	:_selectExportDBQDialog(0),
 	 _yeroth_PRINT_UTILITIES_TEX_TABLE(0),
 	 _output_print_pdf_latexFileNamePrefix(anOutput_print_pdf_latexFileNamePrefix),
+	 _yeroth_QComboBox_SearchDBFieldColumnString(0),
+	 _yeroth_QLineEdit_SearchDBFieldColumnString(0),
 	 _yerothTableView_FROM_WINDOWS_COMMONS(0),
 	 _curStocksTableModel(0),
 	 _pagination_nombre_de_ligne_IntValidator(0),

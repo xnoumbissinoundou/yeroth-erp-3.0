@@ -351,7 +351,7 @@ void YerothWindowsCommons::setup_select_configure_dbcolumn(QString aSqlTableName
 
 	unsigned int columnIdx = -1;
 
-	for( unsigned int k = 0; k < querySize && query.next(); ++k)
+	for(int k = 0; k < querySize && query.next(); ++k)
 	{
 		QString fieldName(query.value(0).toString());
 
