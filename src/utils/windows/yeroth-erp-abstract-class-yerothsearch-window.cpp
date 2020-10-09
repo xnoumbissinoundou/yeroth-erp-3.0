@@ -6,6 +6,8 @@
 
 #include "yeroth-erp-abstract-class-yerothsearch-window.hpp"
 
+#include "src/windows/yeroth-erp-window-commons.hpp"
+
 #include "src/utils/yeroth-erp-database-table-column.hpp"
 
 
@@ -92,6 +94,9 @@ void YerothAbstractClassYerothSearchWindow::setupLineEditsQCompleters(QObject *a
     	if (0 != _yeroth_WINDOW_QComboBox_SearchDBFieldColumnString &&
     		0 != _yeroth_WINDOW_QLineEdit_SearchDBFieldColumnString)
     	{
+    		((YerothWindowsCommons *)aThis)
+    				->updateYerothLineEditQCompleter(_yeroth_WINDOW_QComboBox_SearchDBFieldColumnString->currentText());
+
     		QObject::connect(_yeroth_WINDOW_QComboBox_SearchDBFieldColumnString,
     						 SIGNAL(currentTextChanged(const QString &)),
 							 aThis,
