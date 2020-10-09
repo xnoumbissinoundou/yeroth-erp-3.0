@@ -350,6 +350,7 @@ void YerothMarchandisesWindow::textChangedSearchLineEditsQCompleters()
         }
     }
 
+
     YerothWindowsCommons::setYerothLineEditQCompleterSearchFilter(_searchFilter);
 
 
