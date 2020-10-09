@@ -2190,7 +2190,7 @@ Transférer</string>
       <x>11</x>
       <y>119</y>
       <width>778</width>
-      <height>273</height>
+      <height>295</height>
      </rect>
     </property>
     <property name="palette">
@@ -6083,7 +6083,7 @@ background-color: rgb(0, 0, 0); </string>
     <property name="geometry">
      <rect>
       <x>11</x>
-      <y>394</y>
+      <y>415</y>
       <width>77</width>
       <height>21</height>
      </rect>
@@ -6099,7 +6099,7 @@ background-color: rgb(0, 0, 0); </string>
     <property name="geometry">
      <rect>
       <x>591</x>
-      <y>395</y>
+      <y>417</y>
       <width>200</width>
       <height>21</height>
      </rect>
@@ -6596,7 +6596,7 @@ background-color: rgb(0, 0, 0); </string>
     <property name="geometry">
      <rect>
       <x>489</x>
-      <y>394</y>
+      <y>416</y>
       <width>99</width>
       <height>21</height>
      </rect>
@@ -7432,7 +7432,7 @@ background-color: rgb(0, 0, 0); </string>
     <property name="geometry">
      <rect>
       <x>591</x>
-      <y>417</y>
+      <y>442</y>
       <width>200</width>
       <height>21</height>
      </rect>
@@ -7929,7 +7929,7 @@ background-color: rgb(0, 0, 0); </string>
     <property name="geometry">
      <rect>
       <x>591</x>
-      <y>439</y>
+      <y>465</y>
       <width>200</width>
       <height>21</height>
      </rect>
@@ -8426,7 +8426,7 @@ background-color: rgb(0, 0, 0); </string>
     <property name="geometry">
      <rect>
       <x>487</x>
-      <y>416</y>
+      <y>441</y>
       <width>101</width>
       <height>21</height>
      </rect>
@@ -8784,7 +8784,7 @@ background-color: rgb(0, 0, 0); </string>
     <property name="geometry">
      <rect>
       <x>487</x>
-      <y>438</y>
+      <y>464</y>
       <width>101</width>
       <height>21</height>
      </rect>
