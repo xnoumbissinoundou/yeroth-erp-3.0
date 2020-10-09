@@ -252,8 +252,6 @@ enum import_csv_entry_row_return_status
 
     int querySize = -1;
 
-	record.setValue(YerothDatabaseTableColumn::ID, stock_id_to_save);
-
 	QStringList allImportedTableColumns;
 
 	QString curTableColumnType;
@@ -403,7 +401,15 @@ enum import_csv_entry_row_return_status
 
 			if (YEROTH_QSTRING_CONTAINS(curTableColumnType, YerothUtils::DATABASE_MYSQL_INT_TYPE_STRING))
 			{
-				record.setValue(curTableColumnName, curColumnRowEntry.toInt());
+				int aCurIntValue = curColumnRowEntry.toInt();
+
+				record.setValue(curTableColumnName, aCurIntValue);
+
+				if (YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::ID,
+						curTableColumnName))
+				{
+					stock_id_to_save = aCurIntValue;
+				}
 			}
 			else if (YEROTH_QSTRING_CONTAINS(curTableColumnType, YerothUtils::DATABASE_MYSQL_DOUBLE_TYPE_STRING))
 			{
@@ -524,6 +530,8 @@ enum import_csv_entry_row_return_status
 
 		return IMPORT_DATA_CSV_INCORRECT_COLUMN_VALUE;
 	}
+
+	record.setValue(YerothDatabaseTableColumn::ID, stock_id_to_save);
 
 	record.setValue(YerothDatabaseTableColumn::IS_SERVICE, 0);
 	record.setValue(YerothDatabaseTableColumn::LOTS_ENTRANT, 1);

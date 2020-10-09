@@ -1904,15 +1904,12 @@ void YerothUtils::fillDBTableColumnNameToDBTableColumnType_TEST(const QString &a
 
 		dbFieldNullAble = (query.value(2).toString() == "NO") ? false : true;
 
-		if (YerothDatabaseTableColumn::ID != dbFieldName)
+		if (false == dbFieldNullAble)
 		{
-			if (false == dbFieldNullAble)
-			{
-				aDBTableColumnToIsNotNULL_IN_OUT.insert(dbFieldName, dbFieldNullAble);
-			}
-
-			aDBbTableColumnToType_IN_OUT.insert(dbFieldName, dbFieldType);
+			aDBTableColumnToIsNotNULL_IN_OUT.insert(dbFieldName, dbFieldNullAble);
 		}
+
+		aDBbTableColumnToType_IN_OUT.insert(dbFieldName, dbFieldType);
 	}
 }
 

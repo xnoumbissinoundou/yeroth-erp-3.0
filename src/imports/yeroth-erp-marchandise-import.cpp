@@ -70,8 +70,6 @@ enum import_csv_entry_row_return_status
 
     int querySize = -1;
 
-	record.setValue(YerothDatabaseTableColumn::ID, marchandises_id_to_save);
-
 	QStringList allImportedTableColumns;
 
 	QString curTableColumnType;
@@ -107,10 +105,11 @@ enum import_csv_entry_row_return_status
 
 			curTableColumnName = curDatabaseTableColumnInfo->getColumnName();
 
-//			qDebug() << QString("++ curTableColumnName: %1, curTableColumnType: %2, curColumnRowEntry: %3")
-//							.arg(curTableColumnName,
-//								 curTableColumnType,
-//								 curColumnRowEntry);
+//			QDEBUG_STRINGS_OUTPUT_2("curTableColumnName", curTableColumnName);
+//
+//			QDEBUG_STRINGS_OUTPUT_2("curTableColumnType", curTableColumnType);
+//
+//			QDEBUG_STRINGS_OUTPUT_2("curColumnRowEntry", curColumnRowEntry);
 
 			if (YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::REFERENCE, curTableColumnName))
 			{
@@ -173,7 +172,25 @@ enum import_csv_entry_row_return_status
 
 			if (YEROTH_QSTRING_CONTAINS(curTableColumnType, YerothUtils::DATABASE_MYSQL_INT_TYPE_STRING))
 			{
-				record.setValue(curTableColumnName, curColumnRowEntry.toInt());
+				int aCurIntValue = curColumnRowEntry.toInt();
+
+				record.setValue(curTableColumnName, aCurIntValue);
+
+				if (YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::ID,
+						curTableColumnName))
+				{
+					marchandises_id_to_save = aCurIntValue;
+				}
+			}
+			else if (YEROTH_QSTRING_CONTAINS(curTableColumnType, YerothUtils::DATABASE_MYSQL_DOUBLE_TYPE_STRING))
+			{
+				record.setValue(curTableColumnName,
+						YerothUtils::YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(curColumnRowEntry));
+			}
+			else if (YEROTH_QSTRING_CONTAINS(curTableColumnType, YerothUtils::DATABASE_MYSQL_DATE_TYPE_STRING))
+			{
+				record.setValue(curTableColumnName,
+						GET_DATE_FROM_STRING(curColumnRowEntry));
 			}
 			else
 			{
@@ -238,6 +255,8 @@ enum import_csv_entry_row_return_status
     	return IMPORT_DATA_CSV_INSERTION_FAILED;
     }
 
+
+	record.setValue(YerothDatabaseTableColumn::ID, marchandises_id_to_save);
 
     record.setValue(YerothDatabaseTableColumn::IS_SERVICE, 0);
 
