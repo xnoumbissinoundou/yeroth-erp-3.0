@@ -208,6 +208,9 @@ const QKeySequence YerothUtils::LISTER_STOCKS_QKEYSEQUENCE(QObject::tr(SHORTCUT_
 QString YerothUtils::YEROTH_ERP_3_0_SERVER_PARAMETERS_DISPLAY("");
 
 
+QMap<QString, unsigned int> YerothUtils::_debugOutputTokenString_TO_intCounter;
+
+
 const QString YerothUtils::UTILISATEUR_NON_EXISTANT("unknown user");
 
 
@@ -1136,6 +1139,35 @@ int YerothUtils::execQueryRowCount(const QString &strQuery, YerothLogger *logger
     }
 
     return query.size();
+}
+
+
+void YerothUtils::qDebugOutputTokenStrings_DURING_MANUAL_DEBUGGING(const QString &identiyTokenString,
+																   bool aResetValue /* = false */)
+{
+	unsigned int aIntCounter = 0;
+
+	if (aResetValue ||
+		!_debugOutputTokenString_TO_intCounter.contains(identiyTokenString))
+	{
+		_debugOutputTokenString_TO_intCounter.insert(identiyTokenString, aIntCounter);
+	}
+
+	aIntCounter = _debugOutputTokenString_TO_intCounter.value(identiyTokenString);
+
+	QString debugOutputToken(" |");
+
+	for(unsigned int k = 0; k < aIntCounter; ++k)
+	{
+		debugOutputToken.append("|");
+	}
+
+	qDebug() << QString("++ %1: %2")
+					.arg(identiyTokenString, debugOutputToken.trimmed());
+
+	aIntCounter += 1;
+
+	_debugOutputTokenString_TO_intCounter.insert(identiyTokenString, aIntCounter);
 }
 
 

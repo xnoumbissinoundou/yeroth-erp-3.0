@@ -159,6 +159,9 @@ public:
 
 	static int execQueryRowCount(const QString &strQuery, YerothLogger *logger = 0);
 
+	static void qDebugOutputTokenStrings_DURING_MANUAL_DEBUGGING(const QString &identiyTokenString,
+																 bool aResetValue = false);
+
 	static void qDebugStrings(const QString &firstString, const QString &secondString = YerothUtils::EMPTY_STRING);
 
 	static bool execQuery(const QString &strQuery, YerothLogger *logger = 0);
@@ -463,6 +466,9 @@ public:
 
 
 	static QString YEROTH_ERP_3_0_SERVER_PARAMETERS_DISPLAY;
+
+
+	static QMap<QString, unsigned int> _debugOutputTokenString_TO_intCounter;
 
 
 	static const QString UTILISATEUR_NON_EXISTANT;
@@ -823,6 +829,12 @@ YerothQMessageBox::information(this, QObject::trUtf8(DIALOG_BOX_TITLE), msg); }
 
 
 #define YEROTH_QSTRING_CONTAINS(S, V) S.contains(V, Qt::CaseInsensitive)
+
+#define QDEBUG_STRINGS_OUTPUT_Q_CONTAINER(X, Y) qDebug() << QString("++ %1: ").arg(X) << Y
+
+#define Q_MANUAL_DEBUGGING_STRINGS_OUTPUT__RESET_TOKEN(X) YerothUtils::qDebugOutputTokenStrings_DURING_MANUAL_DEBUGGING(X, true)
+
+#define Q_MANUAL_DEBUGGING_STRINGS_OUTPUT_TOKEN(X) YerothUtils::qDebugOutputTokenStrings_DURING_MANUAL_DEBUGGING(X)
 
 #define QDEBUG_STRINGS_OUTPUT_1(X) YerothUtils::qDebugStrings(X, YerothUtils::EMPTY_STRING)
 
