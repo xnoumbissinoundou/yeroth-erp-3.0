@@ -269,6 +269,8 @@ void YerothMarchandisesWindow::reinitialiser_champs_db_visibles()
     _visibleDBFieldColumnStrList
 		<< YerothDatabaseTableColumn::DESIGNATION
 		<< YerothDatabaseTableColumn::CATEGORIE
+		<< YerothDatabaseTableColumn::PRIX_DACHAT_PRECEDENT
+		<< YerothDatabaseTableColumn::PRIX_VENTE_PRECEDENT
 		<< YerothDatabaseTableColumn::QUANTITE_TOTALE
 		<< YerothDatabaseTableColumn::REFERENCE
 		<< YerothDatabaseTableColumn::VALEUR_DIVENTAIRE;

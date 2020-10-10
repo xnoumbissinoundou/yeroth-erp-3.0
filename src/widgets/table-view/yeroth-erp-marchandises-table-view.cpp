@@ -70,12 +70,10 @@ void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTab
     	//qDebug() << "++  yerothPOSClear";
     }
 
-    QStringList	tableModelRawHeaders;
-
     YerothUtils::createTableModelHeaders(tableModel,
     									 *_stdItemModel,
 										 *_tableModelHeaders,
-										 tableModelRawHeaders);
+										 _tableModelRawHeaders_IN_OUT);
 
     QString curTableModelRawHdr;
 
@@ -111,7 +109,7 @@ void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTab
 
             for (int k = 0; k < columns; ++k)
             {
-            	curTableModelRawHdr = tableModelRawHeaders.at(k);
+            	curTableModelRawHdr = _tableModelRawHeaders_IN_OUT.at(k);
 
                 qv.setValue(tableModel.record(i).value(k));
 
@@ -288,137 +286,160 @@ void YerothERPMarchandisesTableView::dataChanged(const QModelIndex &index,
                                   	  	  	  	 const QModelIndex &bottomRight,
 												 const QVector<int> &roles /*= QVector<int>()*/)
 {
+//	QDEBUG_STRINGS_OUTPUT_2_N("bottomRight.column()", bottomRight.column());
+
     if (index != bottomRight)
     {
     	return ;
     }
 
-    if (_writeEnabled)
+    if (!_writeEnabled)
     {
-    	//qDebug() << "YerothTableView::dataChanged(). Updates table " << *_tableName;
+    	return ;
+    }
 
-    	QString curIDText;
+    if (0 == _stdItemModel->item(index.row(), 0))
+    {
+    	return ;
+    }
 
-    	if (0 != _stdItemModel->item(index.row(), 0))
+    QString curIDText(_stdItemModel->item(index.row(), 0)->text());
+
+
+//    int curTableViewHeaderModifiedAttemptedColumnIdx = bottomRight.column();
+
+    QString columnHeaderText_VISIBLE(_tableModelHeaders->at(index.column()));
+
+    QString columnHeaderText_NATIVE(_tableModelRawHeaders_IN_OUT.at(index.column()));
+
+    if (!YerothUtils::isEqualCaseInsensitive(columnHeaderText_NATIVE,
+    		YerothDatabaseTableColumn::REFERENCE) 					&&
+
+    	!YerothUtils::isEqualCaseInsensitive(columnHeaderText_NATIVE,
+    		YerothDatabaseTableColumn::PRIX_DACHAT_PRECEDENT) 		&&
+
+		!YerothUtils::isEqualCaseInsensitive(columnHeaderText_NATIVE,
+			YerothDatabaseTableColumn::PRIX_VENTE_PRECEDENT))
+    {
+    	YerothQMessageBox::information(YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->_marchandisesWindow,
+    								   QObject::tr("modification non possible"),
+									   QObject::trUtf8("modification non possible de la colone '%1' !")
+    												.arg(columnHeaderText_VISIBLE));
+
+    	return ;
+    }
+
+
+    QString cellTextData;
+
+    QString designationText;
+
+    QString REAL_DB_ID_NAME_marchandiseTableColumnProperty(
+    		YerothDatabaseTableColumn::_tableColumnToUserViewString.key(columnHeaderText_VISIBLE));
+
+    bool success = false;
+
+    QSqlQuery mySqlQuery;
+
+    QString prevValueDataString;
+
+    QVariant qvIndexData = index.data();
+
+    cellTextData = YerothUtils::get_text(qvIndexData);
+
+    QString strSelectPreviousValueQuery(QString("SELECT %1, %2 FROM %3 WHERE %4 = '%5'")
+    		.arg(REAL_DB_ID_NAME_marchandiseTableColumnProperty,
+    				YerothDatabaseTableColumn::DESIGNATION,
+					*_tableName,
+					YerothDatabaseTableColumn::ID,
+					curIDText));
+
+    QString strUpdateMarchandisesTableQuery(QString("UPDATE %1 SET %2 = '%3' WHERE %4 = '%5'")
+    		.arg(*_tableName,
+    				REAL_DB_ID_NAME_marchandiseTableColumnProperty,
+					cellTextData,
+					YerothDatabaseTableColumn::ID,
+					curIDText));
+
+    YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
+
+    int mySqlQuerySize = YerothUtils::execQuery(mySqlQuery, strSelectPreviousValueQuery);
+
+    if (mySqlQuerySize > 0)
+    {
+    	mySqlQuery.next();
+
+    	prevValueDataString = mySqlQuery.value(0).toString();
+
+    	designationText = mySqlQuery.value(1).toString();
+
+    	mySqlQuery.clear();
+    }
+
+    //    		QDEBUG_STRINGS_OUTPUT_2(QString::number(mySqlQuerySize), strUpdateMarchandisesTableQuery);
+
+    success = YerothUtils::execQuery(strUpdateMarchandisesTableQuery);
+
+    if (success &&
+    		YerothUtils::isEqualCaseInsensitive(columnHeaderText_NATIVE,
+    				YerothDatabaseTableColumn::REFERENCE))
+    {
+    	QStringList allToUpdateTables;
+
+    	allToUpdateTables << YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->PAIEMENTS
+    			<< YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->STOCKS
+				<< YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->STOCKS_SORTIES
+				<< YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->STOCKS_VENDU
+				<< YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->ACHATS;
+
+    	QString strUpdateTableQuery;
+
+    	for (uint i = 0; i < allToUpdateTables.size(); ++i)
     	{
-    		curIDText.append(_stdItemModel->item(index.row(), 0)->text());
+    		strUpdateTableQuery.clear();
+
+    		strUpdateTableQuery.append(QString("UPDATE %1 SET %2 = '%3' WHERE %4 = '%5'")
+    				.arg(allToUpdateTables.at(i),
+    						YerothDatabaseTableColumn::REFERENCE,
+							cellTextData,
+							YerothDatabaseTableColumn::REFERENCE,
+							prevValueDataString));
+
+    		success = YerothUtils::execQuery(strUpdateTableQuery,
+    				YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->_marchandisesWindow->getLogger()) && success;
     	}
+    }
 
-    	QString cellTextData;
+    YEROTH_ERP_3_0_COMMIT_DATABASE_TRANSACTION;
 
-    	QString designationText;
 
-    	QString columnHeaderText(_tableModelHeaders->at(index.column()));
+    if (success)
+    {
+    	QString succesMsgBoxTitle(QObject::trUtf8("succès modification (%1) ")
+    	.arg(columnHeaderText_NATIVE));
 
-    	QString REAL_DB_ID_NAME_marchandiseTableColumnProperty(
-    			YerothDatabaseTableColumn::_tableColumnToUserViewString.key(columnHeaderText));
+    	YerothQMessageBox::information(YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->_marchandisesWindow,
+    			succesMsgBoxTitle,
+				QObject::trUtf8("Succès de la modification de la colone '%1' (%2) "
+						"de la marchandise '%3' !")
+    	.arg(columnHeaderText_NATIVE,
+    			cellTextData,
+				designationText),
+				QMessageBox::Ok);
+    }
+    else
+    {
+    	QString echecMsgBoxTitle(QObject::trUtf8("échec modification (%1) ")
+    	.arg(columnHeaderText_NATIVE));
 
-    	bool success = false;
-
-    	if (YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::REFERENCE,
-    											REAL_DB_ID_NAME_marchandiseTableColumnProperty))
-    	{
-    		QSqlQuery mySqlQuery;
-
-        	QString prevReferenceText;
-
-    		QVariant qvIndexData = index.data();
-
-    		cellTextData = YerothUtils::get_text(qvIndexData);
-
-    		QString strSelectPreviousValueQuery(QString("SELECT %1, %2 FROM %3 WHERE %4 = '%5'")
-    							.arg(REAL_DB_ID_NAME_marchandiseTableColumnProperty,
-    								 YerothDatabaseTableColumn::DESIGNATION,
-    								 *_tableName,
-									 YerothDatabaseTableColumn::ID,
-									 curIDText));
-
-    		QString strUpdateMarchandisesTableQuery(QString("UPDATE %1 SET %2 = '%3' WHERE %4 = '%5'")
-    							.arg(*_tableName,
-    								 REAL_DB_ID_NAME_marchandiseTableColumnProperty,
-									 cellTextData,
-									 YerothDatabaseTableColumn::ID,
-									 curIDText));
-
-    		YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
-
-    		int mySqlQuerySize = YerothUtils::execQuery(mySqlQuery, strSelectPreviousValueQuery);
-
-    		if (mySqlQuerySize > 0)
-    		{
-    			mySqlQuery.next();
-
-    			prevReferenceText = mySqlQuery.value(0).toString();
-
-    			designationText = mySqlQuery.value(1).toString();
-
-    			mySqlQuery.clear();
-    		}
-
-//    		QDEBUG_STRINGS_OUTPUT_2(QString::number(mySqlQuerySize), strUpdateMarchandisesTableQuery);
-
-    		success = YerothUtils::execQuery(strUpdateMarchandisesTableQuery);
-
-    		if (success)
-    		{
-        		QStringList allToUpdateTables;
-
-        		allToUpdateTables << YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->PAIEMENTS
-        						  << YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->STOCKS
-        						  << YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->STOCKS_SORTIES
-    							  << YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->STOCKS_VENDU
-    							  << YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->ACHATS;
-
-        		QString strUpdateTableQuery;
-
-        		for (uint i = 0; i < allToUpdateTables.size(); ++i)
-        		{
-        			strUpdateTableQuery.clear();
-
-            		strUpdateTableQuery.append(QString("UPDATE %1 SET %2 = '%3' WHERE %4 = '%5'")
-            										.arg(allToUpdateTables.at(i),
-            											 YerothDatabaseTableColumn::REFERENCE,
-            											 cellTextData,
-    													 YerothDatabaseTableColumn::REFERENCE,
-    													 prevReferenceText));
-
-        			success = YerothUtils::execQuery(strUpdateTableQuery,
-        					YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->_marchandisesWindow->getLogger()) && success;
-        		}
-    		}
-
-    		YEROTH_ERP_3_0_COMMIT_DATABASE_TRANSACTION;
-    	}
-
-		if (success)
-		{
-			QString succesMsgBoxTitle(QObject::trUtf8("succès modification (%1) ")
-									.arg(columnHeaderText));
-
-	        YerothQMessageBox::information(YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->_marchandisesWindow,
-	        							   succesMsgBoxTitle,
-	                                       QObject::trUtf8("Succès de la modification de la colone '%1' (%2) "
-	                                    		   	   	   "de la marchandise '%3' !")
-	        									.arg(columnHeaderText,
-	        										 cellTextData,
-													 designationText),
-										   QMessageBox::Ok);
-		}
-		else
-		{
-			QString echecMsgBoxTitle(QObject::trUtf8("échec modification (%1) ")
-									.arg(columnHeaderText));
-
-	        YerothQMessageBox::information(YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->_marchandisesWindow,
-	        							   echecMsgBoxTitle,
-	                                       QObject::trUtf8("Échec de la modification de la colone '%1' (%2) "
-	                                    		   	   	   "de la marchandise '%3' !")
-	        									.arg(columnHeaderText,
-	        										 cellTextData,
-													 designationText),
-										   QMessageBox::Ok);
-		}
-
+    	YerothQMessageBox::information(YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->_marchandisesWindow,
+    			echecMsgBoxTitle,
+				QObject::trUtf8("Échec de la modification de la colone '%1' (%2) "
+						"de la marchandise '%3' !")
+    	.arg(columnHeaderText_NATIVE,
+    			cellTextData,
+				designationText),
+				QMessageBox::Ok);
     }
 
     stopEditingModeSelection();

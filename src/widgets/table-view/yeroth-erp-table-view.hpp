@@ -161,6 +161,8 @@ protected:
 
 	YerothPOSQStandardItemModel *_stdItemModel;
 
+	QStringList					_tableModelRawHeaders_IN_OUT;
+
 	QStringList 				*_tableModelHeaders;
 };
 
