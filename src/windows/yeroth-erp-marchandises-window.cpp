@@ -138,7 +138,7 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
 
     connect(checkBox_services, SIGNAL(stateChanged(int)), this, SLOT(handle_services_checkBox(int)));
 
-    connect(actionModifier_cette_reference, SIGNAL(triggered()), this, SLOT(modifier_cette_reference()));
+    connect(actionModifierMarchandise, SIGNAL(triggered()), this, SLOT(modifier_cette_reference()));
 
     connect(actionSupprimer_cette_marchandise, SIGNAL(triggered()), this, SLOT(supprimer_cette_marchandise()));
 
@@ -289,7 +289,7 @@ void YerothMarchandisesWindow::contextMenuEvent(QContextMenuEvent * event)
             {
                 QMenu menu(this);
                 menu.setPalette(toolBar_marchandisesWindow->palette());
-                menu.addAction(actionModifier_cette_reference);
+                menu.addAction(actionModifierMarchandise);
                 menu.addAction(actionSupprimer_cette_marchandise);
                 menu.exec(event->globalPos());
             }

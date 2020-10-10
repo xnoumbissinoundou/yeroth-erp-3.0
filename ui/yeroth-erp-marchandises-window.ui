@@ -14144,7 +14144,7 @@ border: none;</string>
     <addaction name="actionChanger_utilisateur"/>
     <addaction name="actionDeconnecter_utilisateur"/>
     <addaction name="separator"/>
-    <addaction name="actionModifier_cette_reference"/>
+    <addaction name="actionModifierMarchandise"/>
     <addaction name="actionSupprimer_cette_marchandise"/>
     <addaction name="separator"/>
     <addaction name="actionEntrer"/>
@@ -15351,12 +15351,12 @@ border: none;</string>
     </font>
    </property>
   </action>
-  <action name="actionModifier_cette_reference">
+  <action name="actionModifierMarchandise">
    <property name="text">
-    <string>Modifier cette référence</string>
+    <string>Modifier cette référence (ou le prix d'achat précédent, ou le prix de vente précédent)</string>
    </property>
    <property name="toolTip">
-    <string>Modifier cette référence</string>
+    <string>Modifier cette référence (ou le prix d'achat précédent, ou le prix de vente précédent)</string>
    </property>
    <property name="font">
     <font>
