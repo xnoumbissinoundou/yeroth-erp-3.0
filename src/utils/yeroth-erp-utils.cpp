@@ -810,8 +810,7 @@ bool YerothUtils::insertStockItemInProductList(const YerothERPServiceStockMarcha
     record.setValue(YerothDatabaseTableColumn::DESCRIPTION_PRODUIT, aServiceStockData._description);
 
     if (productListSqlTableModel.Is_SearchQSqlTable(YerothDatabaseTableColumn::REFERENCE, aServiceStockData._reference) 	> 0 ||
-    	productListSqlTableModel.Is_SearchQSqlTable(YerothDatabaseTableColumn::DESIGNATION, aServiceStockData._designation) > 0 ||
-		productListSqlTableModel.Is_SearchQSqlTable(YerothDatabaseTableColumn::CATEGORIE, aServiceStockData._categorie) 	> 0 )
+    	productListSqlTableModel.Is_SearchQSqlTable(YerothDatabaseTableColumn::DESIGNATION, aServiceStockData._designation) > 0 )
     {
     	productListSqlTableModel
 			.yerothSetFilter_WITH_where_clause(QString("%1='%2' AND %3='%4' AND %5='%6'")
