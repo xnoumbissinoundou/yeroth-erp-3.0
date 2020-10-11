@@ -721,6 +721,8 @@ void YerothAdminWindow::initialize_admin_importer_csv_tableau()
 	_csvContentIdxToCsvFileContentImportHeader.insert(11, label_importer_fichier_csv_entete_11);
 	_csvContentIdxToCsvFileContentImportHeader.insert(12, label_importer_fichier_csv_entete_12);
 	_csvContentIdxToCsvFileContentImportHeader.insert(13, label_importer_fichier_csv_entete_13);
+	_csvContentIdxToCsvFileContentImportHeader.insert(14, label_importer_fichier_csv_entete_14);
+	_csvContentIdxToCsvFileContentImportHeader.insert(15, label_importer_fichier_csv_entete_15);
 
 	for( int k = 0; k < _csvContentIdxToCsvFileContentImportHeader.size(); ++k)
 	{
@@ -741,6 +743,8 @@ void YerothAdminWindow::initialize_admin_importer_csv_tableau()
 	_csvContentIdxToSQLTableImportHeader.insert(11, comboBox_importer_tableau_entete_11);
 	_csvContentIdxToSQLTableImportHeader.insert(12, comboBox_importer_tableau_entete_12);
 	_csvContentIdxToSQLTableImportHeader.insert(13, comboBox_importer_tableau_entete_13);
+	_csvContentIdxToSQLTableImportHeader.insert(14, comboBox_importer_tableau_entete_14);
+	_csvContentIdxToSQLTableImportHeader.insert(15, comboBox_importer_tableau_entete_15);
 
 	for( int k = 0; k < _csvContentIdxToSQLTableImportHeader.size(); ++k)
 	{
