@@ -305,9 +305,6 @@ void YerothERPMarchandisesTableView::dataChanged(const QModelIndex &index,
 
     QString curIDText(_stdItemModel->item(index.row(), 0)->text());
 
-
-//    int curTableViewHeaderModifiedAttemptedColumnIdx = bottomRight.column();
-
     QString columnHeaderText_VISIBLE(_tableModelHeaders->at(index.column()));
 
     QString columnHeaderText_NATIVE(_tableModelRawHeaders_IN_OUT.at(index.column()));
@@ -416,13 +413,13 @@ void YerothERPMarchandisesTableView::dataChanged(const QModelIndex &index,
     if (success)
     {
     	QString succesMsgBoxTitle(QObject::trUtf8("succès modification (%1) ")
-    	.arg(columnHeaderText_NATIVE));
+    										 .arg(columnHeaderText_VISIBLE));
 
     	YerothQMessageBox::information(YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->_marchandisesWindow,
     			succesMsgBoxTitle,
-				QObject::trUtf8("Succès de la modification de la colone '%1' (%2) "
+				QObject::trUtf8("Succès de la modification de la colone '%1 (%2)' "
 						"de la marchandise '%3' !")
-    	.arg(columnHeaderText_NATIVE,
+    	.arg(columnHeaderText_VISIBLE,
     			cellTextData,
 				designationText),
 				QMessageBox::Ok);
@@ -430,13 +427,13 @@ void YerothERPMarchandisesTableView::dataChanged(const QModelIndex &index,
     else
     {
     	QString echecMsgBoxTitle(QObject::trUtf8("échec modification (%1) ")
-    	.arg(columnHeaderText_NATIVE));
+    										.arg(columnHeaderText_VISIBLE));
 
     	YerothQMessageBox::information(YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->_marchandisesWindow,
     			echecMsgBoxTitle,
-				QObject::trUtf8("Échec de la modification de la colone '%1' (%2) "
+				QObject::trUtf8("Échec de la modification de la colone '%1 (%2)' "
 						"de la marchandise '%3' !")
-    	.arg(columnHeaderText_NATIVE,
+    	.arg(columnHeaderText_VISIBLE,
     			cellTextData,
 				designationText),
 				QMessageBox::Ok);

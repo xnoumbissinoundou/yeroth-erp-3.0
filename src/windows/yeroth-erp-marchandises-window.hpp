@@ -100,7 +100,7 @@ public slots:
 
     void afficher_stock_selectioner(const QString &stockName);
 
-    void modifier_cette_reference();
+    void modifier_marchandise();
 
     void supprimer_cette_marchandise();
 

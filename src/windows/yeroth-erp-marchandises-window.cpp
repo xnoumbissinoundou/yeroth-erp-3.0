@@ -138,7 +138,7 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
 
     connect(checkBox_services, SIGNAL(stateChanged(int)), this, SLOT(handle_services_checkBox(int)));
 
-    connect(actionModifierMarchandise, SIGNAL(triggered()), this, SLOT(modifier_cette_reference()));
+    connect(actionModifierMarchandise, SIGNAL(triggered()), this, SLOT(modifier_marchandise()));
 
     connect(actionSupprimer_cette_marchandise, SIGNAL(triggered()), this, SLOT(supprimer_cette_marchandise()));
 
@@ -1003,7 +1003,7 @@ void YerothMarchandisesWindow::afficher_stock_selectioner(const QString & stockN
 }
 
 
-void YerothMarchandisesWindow::modifier_cette_reference()
+void YerothMarchandisesWindow::modifier_marchandise()
 {
 	if (0 != _curMarchandisesTableModel)
 	{
@@ -1014,8 +1014,6 @@ void YerothMarchandisesWindow::modifier_cette_reference()
 
 void YerothMarchandisesWindow::supprimer_cette_marchandise()
 {
-    _logger->log("supprimer_ce_stock");
-
     unsigned rowToRemove = tableView_marchandises->lastSelectedRow();
 
     QSqlRecord record = _curMarchandisesTableModel->record(rowToRemove);
@@ -1030,7 +1028,7 @@ void YerothMarchandisesWindow::supprimer_cette_marchandise()
 									   QMessageBox::Cancel,
 									   QMessageBox::Ok))
     {
-        _logger->debug("supprimer_ce_stock", QString("rowToRemove: %1").arg(rowToRemove));
+        _logger->debug("supprimer_cette_marchandise", QString("rowToRemove: %1").arg(rowToRemove));
 
         bool resRemoved = _curMarchandisesTableModel->removeRow(rowToRemove);
         //qDebug() << "YerothInventaireDesStocksWindow::supprimer_ce_stock() " << resRemoved;
