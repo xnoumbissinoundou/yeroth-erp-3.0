@@ -6595,9 +6595,9 @@ background-color: rgb(0, 0, 0); </string>
    <widget class="QLabel" name="label_nombre_de_marchandises">
     <property name="geometry">
      <rect>
-      <x>489</x>
+      <x>487</x>
       <y>416</y>
-      <width>99</width>
+      <width>101</width>
       <height>21</height>
      </rect>
     </property>
