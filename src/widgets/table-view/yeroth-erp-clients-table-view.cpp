@@ -168,7 +168,7 @@ void YerothERPClientsTableView::lister_les_elements_du_tableau(YerothSqlTableMod
 
 				if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::REFERENCE_CLIENT))
 				{
-					anItem = new YerothQStandardItem(YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(tmpQvString));
+					anItem = new YerothQStandardItem(tmpQvString, false);
 				}
 				else
 				{
@@ -179,7 +179,7 @@ void YerothERPClientsTableView::lister_les_elements_du_tableau(YerothSqlTableMod
 				break;
 
 			case QVariant::Bool:
-				anItem = new YerothQStandardItem(qv.toBool() ? "True" : "False");
+				anItem = new YerothQStandardItem(qv.toBool() ? BOOLEAN_STRING_TRUE : BOOLEAN_STRING_FALSE);
 				_stdItemModel->setItem(i, k, anItem);
 				break;
 

@@ -151,9 +151,9 @@ void YerothERPAchatsTableView::lister_les_elements_du_tableau(YerothSqlTableMode
 				tmpQvString.append(qv.toString());
 
 				if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::REFERENCE) &&
-						!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::REFERENCE_RECU_DACHAT))
+					!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::REFERENCE_RECU_DACHAT))
 				{
-					anItem = new YerothQStandardItem(YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(tmpQvString));
+					anItem = new YerothQStandardItem(tmpQvString, false);
 				}
 				else
 				{
@@ -164,7 +164,7 @@ void YerothERPAchatsTableView::lister_les_elements_du_tableau(YerothSqlTableMode
 				break;
 
 			case QVariant::Bool:
-				anItem = new YerothQStandardItem(qv.toBool() ? "True" : "False");
+				anItem = new YerothQStandardItem(qv.toBool() ? BOOLEAN_STRING_TRUE : BOOLEAN_STRING_FALSE);
 				_stdItemModel->setItem(i, k, anItem);
 				break;
 

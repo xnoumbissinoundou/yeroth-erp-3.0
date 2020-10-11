@@ -838,9 +838,13 @@ YerothQMessageBox::information(this, QObject::trUtf8(DIALOG_BOX_TITLE), msg); }
 
 #define EXPR_IS_POSITIV(X)	(0 <= X)
 
+#define BOOLEAN_STRING_TRUE "True"
+
+#define BOOLEAN_STRING_FALSE "False"
+
 #define INT_TO_STRING(B) ((0 != B) ? "OUI" : "NON")
 
-#define BOOL_TO_STRING(B) (B ? "True" : "False")
+#define BOOL_TO_STRING(B) (B ? BOOLEAN_STRING_TRUE : BOOLEAN_STRING_FALSE)
 
 //Get the value of an QSqlRecord when given as value R
 #define GET_SQL_RECORD_DATA(R,V) YerothUtils::get_text(R.value(V))

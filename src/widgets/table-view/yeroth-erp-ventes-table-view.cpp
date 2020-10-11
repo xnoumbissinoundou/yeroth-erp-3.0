@@ -103,7 +103,7 @@ void YerothERPVentesTableView::lister_les_elements_du_tableau(YerothSqlTableMode
                 	if (YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::TYPE_DE_VENTE))
                 	{
                 		tmpQvString = YerothUtils::_typedeventeToUserViewString.value(qv.toInt());
-                		anItem = new YerothQStandardItem(YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(tmpQvString));
+                		anItem = new YerothQStandardItem(tmpQvString, false);
                 	}
                 	else if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID))
                 	{
@@ -143,7 +143,7 @@ void YerothERPVentesTableView::lister_les_elements_du_tableau(YerothSqlTableMode
 
                 	if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::REFERENCE))
                 	{
-                		anItem = new YerothQStandardItem(YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(tmpQvString));
+                		anItem = new YerothQStandardItem(tmpQvString, false);
                 	}
                 	else
                 	{
@@ -154,7 +154,7 @@ void YerothERPVentesTableView::lister_les_elements_du_tableau(YerothSqlTableMode
                     break;
 
                 case QVariant::Bool:
-                    anItem = new YerothQStandardItem(qv.toBool() ? "True" : "False");
+                    anItem = new YerothQStandardItem(qv.toBool() ? BOOLEAN_STRING_TRUE : BOOLEAN_STRING_FALSE);
                     _stdItemModel->setItem(i, k, anItem);
                     break;
 

@@ -9,7 +9,9 @@
 
 #include "src/include/yeroth-erp-3-0-software.text-configuration.hpp"
 
+
 #include <QtGui/QStandardItem>
+
 
 class YerothQStandardItem : public QStandardItem
 {
@@ -18,36 +20,48 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-	inline YerothQStandardItem(Qt::Alignment alignPosition = Qt::AlignHCenter | Qt::AlignCenter)
-	:QStandardItem()
-	{
-		setTextAlignment(alignPosition);
-	}
+	YerothQStandardItem(Qt::Alignment alignPosition = Qt::AlignHCenter | Qt::AlignCenter);
 
-	inline YerothQStandardItem(const QString &text,
-							   Qt::Alignment alignPosition = Qt::AlignHCenter | Qt::AlignCenter)
-	:QStandardItem(text)
-	{
-		setTextAlignment(alignPosition);
-	}
+	YerothQStandardItem(int rows,
+						int columns = 1,
+						Qt::Alignment alignPosition = Qt::AlignHCenter | Qt::AlignCenter);
 
-	inline YerothQStandardItem (const QIcon &icon,
-							    const QString &text,
-								Qt::Alignment alignPosition = Qt::AlignHCenter | Qt::AlignCenter)
-	:QStandardItem(icon, text)
-	{
-		setTextAlignment(alignPosition);
-	}
+	YerothQStandardItem(const QString &text,
+						bool display__rawUNMODIFIED_FOR_USER_VIEWING_text = true,
+						Qt::Alignment alignPosition = Qt::AlignHCenter | Qt::AlignCenter);
 
-	inline YerothQStandardItem(int rows,
-							   int columns = 1,
-							   Qt::Alignment alignPosition = Qt::AlignHCenter | Qt::AlignCenter)
-	:QStandardItem(rows, columns)
-	{
-		setTextAlignment(alignPosition);
-	}
+	YerothQStandardItem (const QIcon &icon,
+						 const QString &text,
+						 bool display__rawUNMODIFIED_FOR_USER_VIEWING_text = true,
+						 Qt::Alignment alignPosition = Qt::AlignHCenter | Qt::AlignCenter);
 
 	inline ~YerothQStandardItem(){}
+
+	inline void set_rawUNMODIFIED_FOR_USER_VIEWING_text(const QString &aRawUNMODIFIED_FOR_USER_VIEWING_text)
+	{
+		_rawUNMODIFIED_FOR_USER_VIEWING_text = aRawUNMODIFIED_FOR_USER_VIEWING_text;
+	}
+
+	inline QString get_rawUNMODIFIED_FOR_USER_VIEWING_text()
+	{
+		return _rawUNMODIFIED_FOR_USER_VIEWING_text;
+	}
+
+	inline void set__display__rawUNMODIFIED_FOR_USER_VIEWING_text(bool display__rawUNMODIFIED_FOR_USER_VIEWING_text)
+	{
+		_display__rawUNMODIFIED_FOR_USER_VIEWING_text = display__rawUNMODIFIED_FOR_USER_VIEWING_text;
+	}
+
+	inline bool get__display__rawUNMODIFIED_FOR_USER_VIEWING_text()
+	{
+		return _display__rawUNMODIFIED_FOR_USER_VIEWING_text;
+	}
+
+protected:
+
+	bool	_display__rawUNMODIFIED_FOR_USER_VIEWING_text;
+
+	QString _rawUNMODIFIED_FOR_USER_VIEWING_text;
 };
 
 

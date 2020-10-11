@@ -6,6 +6,8 @@
 
 #include "yeroth-erp-utils.hpp"
 
+#include "src/widgets/yeroth-erp-qstandard-item.hpp"
+
 #include "src/widgets/yeroth-erp-qmessage-box.hpp"
 
 #include "src/utils/yeroth-erp-database.hpp"
@@ -1098,7 +1100,7 @@ bool YerothUtils::executer_fichier_sql(const QString &fileName, YerothLogger *lo
         if (logger)
         {
             logger->log("YerothUtils::executer_fichier_sql",
-                        QString("[%1] %2").arg(success ? "True" : "False", line));
+                        QString("[%1] %2").arg(success ? BOOLEAN_STRING_TRUE : BOOLEAN_STRING_FALSE, line));
         }
 
         if (!success)
@@ -2746,7 +2748,7 @@ bool YerothUtils::export_csv_file(YerothWindowsCommons &aCallingWindow,
 								  const QString &csvFileName,
 								  const QString &strMessage)
 {
-    QStandardItemModel *tableModel = aTableView.getStandardItemModel();
+	YerothPOSQStandardItemModel *tableModel = aTableView.getStandardItemModel();
 
     if (0 == tableModel)
     {
@@ -2768,7 +2770,7 @@ bool YerothUtils::export_csv_file(YerothWindowsCommons &aCallingWindow,
 
     QString csvFileContent;
 
-    QStandardItem * anItem = 0;
+    YerothQStandardItem * anItem = 0;
     QString anItemText;
 
     for (int k = 0; k < tableModelColumnCount; ++k)
@@ -2778,7 +2780,7 @@ bool YerothUtils::export_csv_file(YerothWindowsCommons &aCallingWindow,
             continue;
         }
 
-        anItem = tableModel->horizontalHeaderItem(k);
+        anItem = (YerothQStandardItem *) tableModel->horizontalHeaderItem(k);
 
         if (0 != anItem)
         {
@@ -2802,11 +2804,13 @@ bool YerothUtils::export_csv_file(YerothWindowsCommons &aCallingWindow,
                 continue;
             }
 
-            anItem = tableModel->item(j, k);
+            anItem = (YerothQStandardItem *) tableModel->item(j, k);
 
             if (0 != anItem)
             {
-                anItemText = anItem->text();
+                anItemText = anItem->get_rawUNMODIFIED_FOR_USER_VIEWING_text();
+
+//                QDEBUG_STRINGS_OUTPUT_2("anItemText", anItemText);
 
                 csvFileContent.append( QString("\"%1\"%2 ")
                 						 .arg(anItemText,

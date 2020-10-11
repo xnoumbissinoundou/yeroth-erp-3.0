@@ -215,7 +215,7 @@ void YerothTableView::lister_les_transactions_dun_fournisseur(QSqlQuery &sqlFour
     				break;
 
     			case QVariant::String:
-    				aYerothQStandardItem = new YerothQStandardItem(YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(qv.toString()));
+    				aYerothQStandardItem = new YerothQStandardItem(qv.toString(), false);
     				_stdItemModel->setItem(i, j, aYerothQStandardItem);
     				break;
 
@@ -236,7 +236,7 @@ void YerothTableView::lister_les_transactions_dun_fournisseur(QSqlQuery &sqlFour
     						}
     					}
 
-    					aYerothQStandardItem = new YerothQStandardItem(YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(stringKeyValue));
+    					aYerothQStandardItem = new YerothQStandardItem(stringKeyValue, false);
     					_stdItemModel->setItem(i, j, aYerothQStandardItem);
     				}
     				else
@@ -357,7 +357,7 @@ void YerothTableView::lister_les_transactions_dun_client(QSqlQuery &sqlClientTra
     				break;
 
     			case QVariant::String:
-    				aYerothQStandardItem = new YerothQStandardItem(YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(qv.toString()));
+    				aYerothQStandardItem = new YerothQStandardItem(qv.toString(), false);
     				_stdItemModel->setItem(i, j, aYerothQStandardItem);
     				break;
 
@@ -378,7 +378,7 @@ void YerothTableView::lister_les_transactions_dun_client(QSqlQuery &sqlClientTra
     						}
     					}
 
-    					aYerothQStandardItem = new YerothQStandardItem(YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(stringKeyValue));
+    					aYerothQStandardItem = new YerothQStandardItem(stringKeyValue);
     					_stdItemModel->setItem(i, j, aYerothQStandardItem);
     				}
     				else
@@ -482,19 +482,19 @@ void YerothTableView::lister_lhistorique_du_stock(const QStringList &aMouvementS
 					QObject::trUtf8("ENTRÉE") == curTypeMouvementStock)
 				{
 					//5 is corresponds to 'RETOUR'.
-					strOut = YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING("(+) " + anEntry.at(j));
+					strOut =  "(+) " + anEntry.at(j);
 				}
 				else
 				{
-					strOut = YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING("(-) " + anEntry.at(j));
+					strOut =  "(-) " + anEntry.at(j);
 				}
 
-				anItem = new YerothQStandardItem(strOut);
+				anItem = new YerothQStandardItem(strOut, false);
 			}
 			else
 			{
-				strOut = YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(anEntry.at(j));
-				anItem = new YerothQStandardItem(strOut);
+				strOut =  anEntry.at(j);
+				anItem = new YerothQStandardItem(strOut, false);
 			}
 
 			_stdItemModel->setItem(i, j, anItem);
@@ -619,7 +619,7 @@ void YerothTableView::lister(YerothSqlTableModel &tableModel,
     			break;
 
     		case QVariant::Bool:
-    			anItem = new YerothQStandardItem(qv.toBool() ? "True" : "False");
+    			anItem = new YerothQStandardItem(qv.toBool() ? BOOLEAN_STRING_TRUE : BOOLEAN_STRING_FALSE);
     			_stdItemModel->setItem(i, k, anItem);
     			break;
 
@@ -790,7 +790,7 @@ void YerothTableView::lister_ALL(YerothSqlTableModel &tableModel,
     			break;
 
     		case QVariant::Bool:
-    			anItem = new YerothQStandardItem(qv.toBool() ? "True" : "False");
+    			anItem = new YerothQStandardItem(qv.toBool() ? BOOLEAN_STRING_TRUE : BOOLEAN_STRING_FALSE);
     			_stdItemModel->setItem(i, k, anItem);
     			break;
 
@@ -850,7 +850,6 @@ void YerothTableView::lister_FIFO(YerothSqlTableModel &tableModel,
 
     QString curTableModelRawHdr;
 
-	QString tmpQvString;
     QStandardItem *anItem = 0;
     QVariant qv;
 
@@ -960,26 +959,21 @@ void YerothTableView::lister_FIFO(YerothSqlTableModel &tableModel,
     				curStockName = qv.toString();
     			}
 
-    			tmpQvString.clear();
-    			tmpQvString.append(qv.toString());
-
-    			if (YerothTableView::REFERENCE_COLUMN != k)
-    			{
-    				if (tmpQvString.length() > YerothERPConfig::max_string_display_length)
-    				{
-    					tmpQvString.truncate(YerothERPConfig::max_string_display_length);
-    					tmpQvString.append(".");
-    				}
-    			}
-
-    			anItem = new YerothQStandardItem(tmpQvString);
+            	if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::REFERENCE))
+            	{
+            		anItem = new YerothQStandardItem(qv.toString(), false);
+            	}
+            	else
+            	{
+            		anItem = new YerothQStandardItem(qv.toString());
+            	}
 
     			_stdItemModel->setItem(i, k, anItem);
 
     			break;
 
     		case QVariant::Bool:
-    			anItem = new YerothQStandardItem(qv.toBool() ? "True" : "False");
+    			anItem = new YerothQStandardItem(qv.toBool() ? BOOLEAN_STRING_TRUE : BOOLEAN_STRING_FALSE);
     			_stdItemModel->setItem(i, k, anItem);
     			break;
 
@@ -1177,7 +1171,6 @@ void YerothTableView::lister_LIFO(YerothSqlTableModel &tableModel,
 
     QMap<QString, QDate> designationToDateEntree;
 
-    QString tmpQvString;
     QString prevStockName;
     QString curStockName;
 
@@ -1283,24 +1276,20 @@ void YerothTableView::lister_LIFO(YerothSqlTableModel &tableModel,
     				curStockName = qv.toString();
     			}
 
-    			tmpQvString.clear();
-    			tmpQvString.append(qv.toString());
+            	if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::REFERENCE))
+            	{
+            		anItem = new YerothQStandardItem(qv.toString(), false);
+            	}
+            	else
+            	{
+            		anItem = new YerothQStandardItem(qv.toString());
+            	}
 
-    			if (YerothTableView::REFERENCE_COLUMN != k)
-    			{
-    				if (tmpQvString.length() > YerothERPConfig::max_string_display_length)
-    				{
-    					tmpQvString.truncate(YerothERPConfig::max_string_display_length);
-    					tmpQvString.append(".");
-    				}
-    			}
-
-    			anItem = new YerothQStandardItem(tmpQvString);
     			_stdItemModel->setItem(i, k, anItem);
     			break;
 
     		case QVariant::Bool:
-    			anItem = new YerothQStandardItem(qv.toBool() ? "True" : "False");
+    			anItem = new YerothQStandardItem(qv.toBool() ? BOOLEAN_STRING_TRUE : BOOLEAN_STRING_FALSE);
     			_stdItemModel->setItem(i, k, anItem);
     			break;
 
@@ -1472,7 +1461,6 @@ void YerothTableView::lister_FEFO(YerothSqlTableModel &tableModel,
     QMap<QString, QDate> stockNameToDatePreemption;
     QMultiMap<QString, QDate> allElements;
 
-    QString tmpQvString;
     QString prevDesignation;
     QString curDesignation;
 
@@ -1576,23 +1564,20 @@ void YerothTableView::lister_FEFO(YerothSqlTableModel &tableModel,
     				curDesignation = qv.toString();
     			}
 
-    			tmpQvString.clear();
-    			tmpQvString.append(qv.toString());
+            	if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::REFERENCE))
+            	{
+            		anItem = new YerothQStandardItem(qv.toString(), false);
+            	}
+            	else
+            	{
+            		anItem = new YerothQStandardItem(qv.toString());
+            	}
 
-    			if (YerothTableView::REFERENCE_COLUMN != k)
-    			{
-    				if (tmpQvString.length() > YerothERPConfig::max_string_display_length)
-    				{
-    					tmpQvString.truncate(YerothERPConfig::max_string_display_length);
-    					tmpQvString.append(".");
-    				}
-    			}
-    			anItem = new YerothQStandardItem(tmpQvString);
     			_stdItemModel->setItem(i, k, anItem);
     			break;
 
     		case QVariant::Bool:
-    			anItem = new YerothQStandardItem(qv.toBool() ? "True" : "False");
+    			anItem = new YerothQStandardItem(qv.toBool() ? BOOLEAN_STRING_TRUE : BOOLEAN_STRING_FALSE);
     			_stdItemModel->setItem(i, k, anItem);
     			break;
 
@@ -1853,7 +1838,7 @@ void YerothTableView::lister_codebar_ALL(YerothSqlTableModel &tableModel,
     			break;
 
     		case QVariant::Bool:
-    			anItem = new YerothQStandardItem(qv.toBool() ? "True" : "False");
+    			anItem = new YerothQStandardItem(qv.toBool() ? BOOLEAN_STRING_TRUE : BOOLEAN_STRING_FALSE);
     			_stdItemModel->setItem(i, k, anItem);
     			break;
 
@@ -2013,7 +1998,7 @@ void YerothTableView::lister_codebar_FIFO(YerothSqlTableModel &tableModel,
     			break;
 
     		case QVariant::Bool:
-    			anItem = new YerothQStandardItem(qv.toBool() ? "True" : "False");
+    			anItem = new YerothQStandardItem(qv.toBool() ? BOOLEAN_STRING_TRUE : BOOLEAN_STRING_FALSE);
     			_stdItemModel->setItem(i, k, anItem);
     			break;
 
@@ -2197,7 +2182,7 @@ void YerothTableView::lister_codebar_LIFO(YerothSqlTableModel &tableModel,
     			break;
 
     		case QVariant::Bool:
-    			anItem = new YerothQStandardItem(qv.toBool() ? "True" : "False");
+    			anItem = new YerothQStandardItem(qv.toBool() ? BOOLEAN_STRING_TRUE : BOOLEAN_STRING_FALSE);
     			_stdItemModel->setItem(i, k, anItem);
     			break;
 
@@ -2381,7 +2366,7 @@ void YerothTableView::lister_codebar_FEFO(YerothSqlTableModel &tableModel,
     			break;
 
     		case QVariant::Bool:
-    			anItem = new YerothQStandardItem(qv.toBool() ? "True" : "False");
+    			anItem = new YerothQStandardItem(qv.toBool() ? BOOLEAN_STRING_TRUE : BOOLEAN_STRING_FALSE);
     			_stdItemModel->setItem(i, k, anItem);
     			break;
 

@@ -117,7 +117,7 @@ void YerothERPUserTableView::lister_les_elements_du_tableau(YerothSqlTableModel 
 					break;
 
 				case QVariant::Bool:
-					anItem = new YerothQStandardItem(qv.toBool() ? "True" : "False");
+					anItem = new YerothQStandardItem(qv.toBool() ? BOOLEAN_STRING_TRUE : BOOLEAN_STRING_FALSE);
 					_stdItemModel->setItem(i, k, anItem);
 					break;
 
