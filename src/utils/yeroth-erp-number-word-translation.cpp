@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-number-word-translation.cpp
  *
- *      Author: XAVIER NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
+ *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "yeroth-erp-number-word-translation.hpp"

@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-tableau-des-transactions-du-fournisseur-window.hpp
  *
- *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef SRC_YEROTH_COMPTES_CLIENTS_TRANSACTIONS_DUN_FOURNISSEUR_WINDOW_HPP_

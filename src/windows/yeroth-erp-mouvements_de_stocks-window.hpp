@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-mouvements_de_stocks-window.hpp
  *
- *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef MOUVEMENTSDESTOCKS_WINDOW_HPP_

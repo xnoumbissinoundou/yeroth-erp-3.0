@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-database-table-import-info.hpp
  *
- *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
  */
 
 # ifndef YEROTH_ERP_DATABASE_TABLE_INFO_HPP_

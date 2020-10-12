@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-table-view-with-pagination.hpp
  *
- *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef SRC_YEROTH_TABLE_VIEW_WITH_PAGING_HPP_

@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-logger.cpp
  *
- *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "yeroth-erp-logger.hpp"

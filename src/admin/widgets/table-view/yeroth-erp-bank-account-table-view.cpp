@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-bank-account-table-view.cpp
  *
- *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
  */
 
 

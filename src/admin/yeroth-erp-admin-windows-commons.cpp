@@ -1,6 +1,6 @@
 /*
  * yeroth-erp-admin-windows-commons.cpp
- *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "src/admin/yeroth-erp-admin-windows-commons.hpp"

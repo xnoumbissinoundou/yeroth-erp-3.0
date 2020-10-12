@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-stock-import.hpp
  *
- *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
  */
 
 # ifndef YEROTH_STOCK_IMPORT_WINDOW_HPP_

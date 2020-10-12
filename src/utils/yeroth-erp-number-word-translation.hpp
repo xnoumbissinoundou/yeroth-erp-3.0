@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-number-word-translation.hpp
  *
- *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef SRC_YEROTH_ERP_NUMBER_WORD_TRANSLATION_HPP_

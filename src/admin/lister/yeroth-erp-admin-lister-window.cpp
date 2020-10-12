@@ -1,6 +1,6 @@
 /**
  * yeroth-erp-admin-lister-window.cpp
- *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
  */
 #include "yeroth-erp-admin-lister-window.hpp"
 #include "src/yeroth-erp-windows.hpp"

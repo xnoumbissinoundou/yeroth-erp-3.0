@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-configuration-comptabilite-window.hpp
  *
- *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef SRC_YEROTH_CONFIGURATION_COMPTABILITE_WINDOW_HPP_

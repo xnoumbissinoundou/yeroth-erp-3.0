@@ -1,7 +1,7 @@
 /**
  * yeroth-erp-dialog-commons.cpp
  *
- *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "yeroth-erp-dialog-commons.hpp"

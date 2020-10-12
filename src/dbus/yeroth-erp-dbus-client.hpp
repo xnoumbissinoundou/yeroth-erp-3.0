@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-dbus-client.hpp
  *
- *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef SRC_DBUS_YEROTH_DBUS_CLIENT_HPP_

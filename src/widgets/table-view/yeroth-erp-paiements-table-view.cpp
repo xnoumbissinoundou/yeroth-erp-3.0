@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-paiements-table-view.cpp
  *
- *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "src/widgets/table-view/yeroth-erp-paiements-table-view.hpp"

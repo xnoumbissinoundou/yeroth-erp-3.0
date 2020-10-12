@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-generic-dialog.hpp
  *
- *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef YEROTH_ERP_GENERIC_SELECT_DB_FIELDS_DIALOG_

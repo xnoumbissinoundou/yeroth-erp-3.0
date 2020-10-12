@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-progress-bar.hpp
  *
- *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef SRC_WIDGETS_YEROTH_ERP_PROGRESS_BAR_HPP_

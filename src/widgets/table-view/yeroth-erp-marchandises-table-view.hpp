@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-marchandises-table-view.hpp
  *
- *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef SRC_YEROTH_MARCHANDISES_TABLE_VIEW_HPP_

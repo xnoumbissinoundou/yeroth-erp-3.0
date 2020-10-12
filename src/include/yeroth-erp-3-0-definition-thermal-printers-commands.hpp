@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-3-0-definition-thermal-printers-commands.hpp
  *
- *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef YEROTH_ERP_DEFINITION_THERMAL_PRINTERS_COMMANDS_HPP_

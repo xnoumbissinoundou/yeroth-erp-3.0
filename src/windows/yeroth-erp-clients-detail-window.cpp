@@ -1,6 +1,6 @@
 /*
  * yeroth-erp-clients-detail-window.cpp
- *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "src/windows/yeroth-erp-clients-detail-window.hpp"

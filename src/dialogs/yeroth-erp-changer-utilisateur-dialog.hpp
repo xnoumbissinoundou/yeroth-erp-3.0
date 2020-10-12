@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-changer-utilisateur-dialog.hpp
  *
- *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef YEROTH_ERP_CHANGER_UTILISATEUR_DIALOG_

@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-qtabwidget.hpp
  *
- *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef YEROTH_ERP_QTABWIDGET_HPP_

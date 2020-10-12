@@ -1,7 +1,7 @@
 /**
  * yeroth-erp-admin-lister-window.hpp
  *
- *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
  */
 
 # ifndef YEROTH_ADMIN_LISTER_WINDOW_HPP_

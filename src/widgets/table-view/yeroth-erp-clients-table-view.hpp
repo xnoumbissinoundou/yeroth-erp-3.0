@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-clients-table-view.hpp
  *
- * Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
+ * Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef SRC_YEROTH_CLIENTS_TABLE_VIEW_HPP_

@@ -2,7 +2,7 @@
  * yeroth-erp-windows.hpp
  *
  *  Created on: Oct 7, 2015
- *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
  *      Email:  xnoundou7@gmail.com
  */
 

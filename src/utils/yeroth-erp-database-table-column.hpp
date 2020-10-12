@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-database-table-column.hpp
  *
- *      Author: Dipl.-Inf. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef SRC_UTILS_YEROTH_DATABASE_TABLES_COLUMNS_HPP_
