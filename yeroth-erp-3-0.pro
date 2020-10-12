@@ -1,7 +1,12 @@
 
 RC_ICONS = yeroth-erp-3-0-icon.ico
 
-#DEFINES += ${YEROTH_ERP_3_0_TEST}
+YEROTH_ERP_3_0_CONFIG_BUILD = "NO_YEROTH_ERP_3_0_TESTING_UNIT_TEST"
+
+YEROTH_ERP_3_0_TOUCH_SCREEN = "NO_YEROTH_ERP_3_0_TOUCH_SCREEN_SET"
+
+DEFINES += $${YEROTH_ERP_3_0_CONFIG_BUILD}
+DEFINES += $${YEROTH_ERP_3_0_TOUCH_SCREEN}
 DEFINES += ${YEROTH_VIRTUAL_KEYBOARD_OPTIONS}
 DEFINES += ${YEROTH_LANGUAGE}
 DEFINES += ${YEROTH_DEBUG_LOG}
@@ -16,9 +21,15 @@ CONFIG += precompile_header
 CONFIG += qt 
 CONFIG += moc 
 
-
-contains(DEFINES, YEROTH_ERP_3_0_TEST) 
-{
+contains(YEROTH_ERP_3_0_CONFIG_BUILD, "NO_YEROTH_ERP_3_0_TESTING_UNIT_TEST") {
+	CONFIG -= testcase
+  
+	QT -= testlib
+  
+	LIBS -= -lgcov
+	
+	QMAKE_CXXFLAGS_RELEASE -= --coverage
+} else {
 	CONFIG += testcase
   
 	QT += testlib
@@ -28,16 +39,9 @@ contains(DEFINES, YEROTH_ERP_3_0_TEST)
 	QMAKE_CXXFLAGS_RELEASE += --coverage
 }
 
-CONFIG -= testcase
-  
-QT -= testlib
-  
-LIBS -= -lgcov
-	
-QMAKE_CXXFLAGS_RELEASE -= --coverage
-
-contains(DEFINES, YEROTH_ERP_3_0_TOUCH_SCREEN) 
-{
+contains(YEROTH_ERP_3_0_TOUCH_SCREEN, "NO_YEROTH_ERP_3_0_TOUCH_SCREEN_SET") {
+  CONFIG -= disable-desktop
+} else {
   CONFIG += disable-desktop
 }
 

@@ -4,6 +4,8 @@
  *      Author: XAVIER NOUMBISSI NOUNDOU, DIPL.-INF., PH.D. (ABD)
  */
 
+#ifdef YEROTH_ERP_3_0_TESTING_UNIT_TEST
+
 #include "yeroth-erp-test-utils.hpp"
 
 
@@ -32,4 +34,7 @@ void Test_YerothERPTestUtils::setAllWindows(YerothERPWindows *allWindows)
 
 	_allWindows = allWindows;
 }
+
+
+#endif /* YEROTH_ERP_3_0_TESTING_UNIT_TEST */
 

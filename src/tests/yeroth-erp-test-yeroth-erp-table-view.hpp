@@ -8,6 +8,9 @@
 #define YEROTH_TEST_YEROTH_ERP_TABLE_VIEW_WINDOWS_HPP_
 
 
+#ifdef YEROTH_ERP_3_0_TESTING_UNIT_TEST
+
+
 #include "src/include/yeroth-erp-3-0-definition-oo-class-operators.hpp"
 
 #include "src/tests/utils/yeroth-erp-test-utils.hpp"
@@ -54,6 +57,9 @@ private:
 
 	YerothERPWindows 		*_allWindows;
 };
+
+
+#endif /* YEROTH_ERP_3_0_TESTING_UNIT_TEST */
 
 
 #endif /* YEROTH_TEST_YEROTH_ERP_TABLE_VIEW_WINDOWS_HPP_ */

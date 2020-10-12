@@ -4,10 +4,13 @@
  *      Author: XAVIER NOUMBISSI NOUNDOU, DIPL.-INF., PH.D. (ABD)
  */
 
+#ifdef YEROTH_ERP_3_0_TESTING_UNIT_TEST
+
 #include "yeroth-erp-test-import-csv-file-data.hpp"
 
 
 #include "src/yeroth-erp-windows.hpp"
+
 
 #include "src/imports/yeroth-erp-stock-import.hpp"
 
@@ -92,4 +95,7 @@ void Test_YerothERPTestImportCSVFileData::cleanUP()
     	}
     }
 }
+
+
+#endif /* YEROTH_ERP_3_0_TESTING_UNIT_TEST */
 

@@ -8,6 +8,9 @@
 #define YEROTH_TEST_IMPORT_CSV_FILE_DATA_HPP_
 
 
+#ifdef YEROTH_ERP_3_0_TESTING_UNIT_TEST
+
+
 #include "src/tests/utils/yeroth-erp-test-utils.hpp"
 
 #include "src/imports/yeroth-erp-stock-import.hpp"
@@ -45,6 +48,9 @@ protected:
 
 	YerothERPWindows 		*_allWindows;
 };
+
+
+#endif /* YEROTH_ERP_3_0_TESTING_UNIT_TEST */
 
 
 #endif /* YEROTH_TEST_IMPORT_CSV_FILE_DATA_HPP_ */

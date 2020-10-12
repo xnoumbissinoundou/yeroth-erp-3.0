@@ -8,6 +8,9 @@
 #define YEROTH_TEST_YEROTH_ERP_WINDOWS_HPP_
 
 
+#ifdef YEROTH_ERP_3_0_TESTING_UNIT_TEST
+
+
 #include <QtTest/QtTest>
 
 
@@ -37,6 +40,9 @@ private:
 
 	YerothERPWindows *_allWindows;
 };
+
+
+#endif /* YEROTH_ERP_3_0_TESTING_UNIT_TEST */
 
 
 #endif /* YEROTH_TEST_YEROTH_ERP_WINDOWS_HPP_ */

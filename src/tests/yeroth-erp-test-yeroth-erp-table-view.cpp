@@ -4,6 +4,9 @@
  *      Author: XAVIER NOUMBISSI NOUNDOU, DIPL.-INF., PH.D. (ABD)
  */
 
+#ifdef YEROTH_ERP_3_0_TESTING_UNIT_TEST
+
+
 #include "yeroth-erp-test-yeroth-erp-table-view.hpp"
 
 
@@ -102,4 +105,7 @@ void Test_YerothERPTableView::test_TABLE_VIEW_lister_lifo()
 
 	QVERIFY(stockID == 3);
 }
+
+
+#endif /* YEROTH_ERP_3_0_TESTING_UNIT_TEST */
 

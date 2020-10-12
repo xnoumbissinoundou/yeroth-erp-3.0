@@ -75,8 +75,9 @@
 #include <QtSql/QSqlDriver>
 
 
-#include <QtTest/QtTest>
-
+#ifdef YEROTH_ERP_3_0_TESTING_UNIT_TEST
+	#include <QtTest/QtTest>
+#endif
 
 #include <QtUiTools/QUiLoader>
 
