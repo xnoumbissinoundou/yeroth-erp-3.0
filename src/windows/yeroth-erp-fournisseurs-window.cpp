@@ -58,20 +58,11 @@ YerothERPFournisseursWindow::YerothERPFournisseursWindow()
 
     setup_select_configure_dbcolumn(_allWindows->FOURNISSEURS);
 
+
     _lineEditsToANDContentForSearch.insert(&lineEdit_fournisseurs_terme_recherche,
     		YerothUtils::EMPTY_STRING);
 
-    _lineEditsToANDContentForSearch.insert(&lineEdit_recherche_nom_entreprise,
-    		YerothDatabaseTableColumn::NOM_ENTREPRISE);
-
-    _lineEditsToANDContentForSearch.insert(&lineEdit_fournisseurs_reference_fournisseur,
-    		YerothDatabaseTableColumn::REFERENCE_FOURNISSEUR);
-
-    _lineEditsToANDContentForSearch.insert(&lineEdit_fournisseurs_quartier,
-    		YerothDatabaseTableColumn::QUARTIER);
-
-    _lineEditsToANDContentForSearch.insert(&lineEdit_fournisseurs_ville,
-    		YerothDatabaseTableColumn::VILLE);
+    YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(_allWindows->FOURNISSEURS);
 
     reinitialiser_champs_db_visibles();
 
@@ -263,6 +254,10 @@ void YerothERPFournisseursWindow::textChangedSearchLineEditsQCompleters()
         	}
         }
     }
+
+
+    YerothWindowsCommons::setYerothLineEditQCompleterSearchFilter(_searchFilter);
+
 
     YerothLineEdit *aYerothLineEdit = 0;
 
@@ -551,9 +546,7 @@ void YerothERPFournisseursWindow::reinitialiser_elements_filtrage()
 
 void YerothERPFournisseursWindow::reinitialiser_recherche()
 {
-    _logger->log("reinitialiser_recherche");
-
-    lineEdit_recherche_nom_entreprise->clear();
+	lineEdit_nom_element_string_db->clear();
 
     lineEdit_resultat_filtre->clear();
 
@@ -570,6 +563,25 @@ void YerothERPFournisseursWindow::populateFournisseursComboBoxes()
     _logger->log("populateFournisseursComboBoxes");
 
 	QStringList aQStringList;
+
+	aQStringList.append(_varchar_dbtable_column_list.values());
+
+	aQStringList.removeAll(YerothDatabaseTableColumn::DESCRIPTION_FOURNISSEUR);
+
+//	qDebug() << "++ test: " << aQStringList;
+
+	QString aDBColumnElementString;
+
+	for (int k = 0; k < aQStringList.size(); ++k)
+	{
+		aDBColumnElementString = aQStringList.at(k);
+
+			comboBox_element_string_db
+				->addItem(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(aDBColumnElementString));
+	}
+
+
+	aQStringList.clear();
 
 	aQStringList.append(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(YerothDatabaseTableColumn::COMPTE_CLIENT));
 
@@ -597,10 +609,7 @@ void YerothERPFournisseursWindow::setupLineEdits()
 {
 	lineEdit_fournisseurs_terme_recherche->enableForSearch(QObject::trUtf8("terme à rechercher (émail, réprésentant, description de l'entreprise fournisseure)"));
 
-	lineEdit_recherche_nom_entreprise->enableForSearch(QObject::tr("nom de l'entreprise fournisseure"));
-	lineEdit_fournisseurs_reference_fournisseur->enableForSearch(QObject::trUtf8("référence fournisseur"));
-	lineEdit_fournisseurs_quartier->enableForSearch(QObject::tr("quartier"));
-	lineEdit_fournisseurs_ville->enableForSearch(QObject::tr("ville"));
+	lineEdit_nom_element_string_db->enableForSearch(QObject::trUtf8("valeur à rechercher"));
 
 	lineEdit_nombre_de_fournisseurs->setYerothEnabled(false);
 
