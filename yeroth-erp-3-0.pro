@@ -16,6 +16,7 @@ CONFIG += precompile_header
 CONFIG += qt 
 CONFIG += moc 
 
+
 contains(DEFINES, YEROTH_ERP_3_0_TEST) 
 {
 	CONFIG += testcase
@@ -26,6 +27,14 @@ contains(DEFINES, YEROTH_ERP_3_0_TEST)
 	
 	QMAKE_CXXFLAGS_RELEASE += --coverage
 }
+
+CONFIG -= testcase
+  
+QT -= testlib
+  
+LIBS -= -lgcov
+	
+QMAKE_CXXFLAGS_RELEASE -= --coverage
 
 contains(DEFINES, YEROTH_ERP_3_0_TOUCH_SCREEN) 
 {
