@@ -342,8 +342,9 @@ void YerothMarchandisesWindow::textChangedSearchLineEditsQCompleters()
         	partSearchTerm = searchTermList.at(k);
         	//qDebug() << "++ searchTermList: " << partSearchTerm;
 
-        	_searchFilter.append(QString("%1")
-        							.arg(GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::DESCRIPTION_PRODUIT, partSearchTerm)));
+        	_searchFilter.append(QString("%1 OR %2")
+        							.arg(GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::DESIGNATION, partSearchTerm),
+        								 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::DESCRIPTION_PRODUIT, partSearchTerm)));
 
         	if (k != lastIdx)
         	{
@@ -738,7 +739,7 @@ void YerothMarchandisesWindow::populateMarchandisesComboBoxes()
 
 void YerothMarchandisesWindow::setupLineEdits()
 {
-	lineEdit_marchandises_terme_recherche->enableForSearch(QObject::trUtf8("terme à rechercher (description de l'article (ou service))"));
+	lineEdit_marchandises_terme_recherche->enableForSearch(QObject::trUtf8("terme à rechercher (désignation, et description de l'article (ou service))"));
 
 	lineEdit_nom_element_string_db->enableForSearch(QObject::trUtf8("valeur à rechercher"));
 
