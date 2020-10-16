@@ -1,9 +1,7 @@
 /*
  * yeroth-erp-windows.hpp
  *
- *  Created on: Oct 7, 2015
  *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
- *      Email:  xnoundou7@gmail.com
  */
 
 #ifndef SRC_YEROTH_WINDOWS_HPP_
@@ -59,13 +57,15 @@
 #include "src/admin/detail/yeroth-erp-admin-detail-window.hpp"
 #include "src/admin/modifier/yeroth-erp-admin-modifier-window.hpp"
 
+#include "src/utils/yeroth-erp-database-table-column.hpp"
 #include "src/utils/yeroth-erp-sqltable-model.hpp"
 #include "src/utils/yeroth-erp-info-entreprise.hpp"
 #include "src/utils/yeroth-erp-database.hpp"
 #include "src/utils/yeroth-erp-utils.hpp"
 
+
 #include <QtSql/QSqlDatabase>
-#include "utils/yeroth-erp-database-table-column.hpp"
+
 
 class YerothSqlTableModel;
 class YerothMainWindow;
