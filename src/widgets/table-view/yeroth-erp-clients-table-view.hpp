@@ -38,8 +38,7 @@ public:
 	{
 	}
 
-	virtual void lister_les_elements_du_tableau(YerothSqlTableModel &achatSqlTableModel,
-												QString aStockListingStrategy = "");
+	virtual void lister_les_elements_du_tableau(YerothSqlTableModel &achatSqlTableModel);
 };
 
 

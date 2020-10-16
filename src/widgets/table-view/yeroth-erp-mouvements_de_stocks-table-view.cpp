@@ -35,8 +35,7 @@
 #include <QtSql/QSqlError>
 
 
-void YerothERPMouvementsDeStocksTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel,
-																	QString aStockListingStrategy /* = "" */)
+void YerothERPMouvementsDeStocksTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel)
 {
 	_stdItemModel->_curSqlTableModel = &tableModel;
 

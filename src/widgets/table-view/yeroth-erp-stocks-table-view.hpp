@@ -46,7 +46,8 @@ public:
 	}
 
 	virtual void lister_les_elements_du_tableau(YerothSqlTableModel &tableModel,
-												QString aStockListingStrategy = YerothERPConfig::STRATEGIE_VENTE_SORTIE_ALL);
+												const QString &aStockListingStrategy,
+												const QString &aCurYerothTableViewPageFilter = "");
 
 private:
 

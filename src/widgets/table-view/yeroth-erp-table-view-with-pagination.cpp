@@ -81,15 +81,24 @@ void YerothTableViewWITHpagination::displayYerothTableViewPageContentRowLimit(Ye
 		return ;
 	}
 
-	QString curYerothTableViewPageFilter = QString("limit %2, %3")
+	QString aCurYerothTableViewPageFilter = QString("limit %2, %3")
 												.arg(QString::number(curPageFromRowNumber),
 													 QString::number(_yerothTableViewPageRowCount));
 
 	int querySize  =
-			curYerothSqlTableModel.yeroth_specify_filter_FROM_SELECT_STATEMENT(curYerothTableViewPageFilter);
+			curYerothSqlTableModel.yeroth_specify_filter_FROM_SELECT_STATEMENT(aCurYerothTableViewPageFilter);
 
-	lister_les_elements_du_tableau(curYerothSqlTableModel,
-								   aListingStrategy);
+	if (!YerothUtils::isEqualCaseInsensitive(curYerothSqlTableModel.sqlTableName(),
+											 _allWindows->STOCKS))
+	{
+		lister_les_elements_du_tableau(curYerothSqlTableModel);
+	}
+	else
+	{
+		lister_les_elements_du_tableau(curYerothSqlTableModel,
+									   aListingStrategy,
+									   aCurYerothTableViewPageFilter);
+	}
 
 	if (querySize > 0)
 	{

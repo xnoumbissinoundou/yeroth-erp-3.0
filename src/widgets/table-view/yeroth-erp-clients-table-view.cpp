@@ -51,8 +51,7 @@ YerothERPClientsTableView::YerothERPClientsTableView(QWidget * parent)
 }
 
 
-void YerothERPClientsTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel,
-															   QString aStockListingStrategy /* = "" */)
+void YerothERPClientsTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel)
 {
 	_stdItemModel->_curSqlTableModel = &tableModel;
 

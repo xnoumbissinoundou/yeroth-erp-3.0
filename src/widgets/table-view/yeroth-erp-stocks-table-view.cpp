@@ -39,7 +39,8 @@ QMultiMap<QString, QString> YerothERPStocksTableView::_DUMMY_STOCKNAME_TO_STOCKI
 
 
 void YerothERPStocksTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel,
-															  QString aStockListingStrategy /* = YerothERPConfig::STRATEGIE_VENTE_SORTIE_ALL */)
+															  const QString &aStockListingStrategy,
+															  const QString &aCurYerothTableViewPageFilter /* = "" */)
 {
 	_stdItemModel->_curSqlTableModel = &tableModel;
 
@@ -47,36 +48,77 @@ void YerothERPStocksTableView::lister_les_elements_du_tableau(YerothSqlTableMode
 
     _DUMMY_STOCKNAME_TO_STOCKID_IN_OUT.clear();
 
-    if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO,
-    										aStockListingStrategy))
+    QString curStockListingStrategy(aStockListingStrategy);
+
+    if (curStockListingStrategy.isEmpty())
     {
-        YerothTableView::lister_FIFO(tableModel,
-        							 _DUMMY_STOCKNAME_TO_STOCKID_IN_OUT);
-        return ;
-    }
-    else if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_LIFO,
-    											 aStockListingStrategy))
-    {
-    	YerothTableView::lister_LIFO(tableModel,
-    								  _DUMMY_STOCKNAME_TO_STOCKID_IN_OUT);
-        return ;
-    }
-    else if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FEFO,
-            		 	 	 	 	 	 	 	 aStockListingStrategy))
-    {
-    	YerothTableView::lister_FEFO(tableModel,
-    								 _DUMMY_STOCKNAME_TO_STOCKID_IN_OUT);
-        return ;
+    	curStockListingStrategy.append(YerothERPConfig::salesStrategy);
     }
 
-    //YerothConfig::STRATEGIE_VENTE_SORTIE_ALL
+    static QString curStrategyQueryString;
 
     bool s = true;
 
-    if (_needExecSelectStatement_FOR_TABLE_VIEW_PAGING_LISTING)
+    if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO,
+    										curStockListingStrategy))
     {
-    	s = tableModel.select();
+    	curStrategyQueryString.clear();
+    	curStrategyQueryString.append(YerothUtils::getStrategySqlQueryStr(tableModel.yerothSelectStatement(),
+        											YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO));
+
+        if (!aCurYerothTableViewPageFilter.isEmpty())
+        {
+        	curStrategyQueryString.append(QString(" %1")
+        							.arg(aCurYerothTableViewPageFilter));
+        }
+
+        s = tableModel.yerothSetQuery(curStrategyQueryString);
     }
+    else if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_LIFO,
+    											 curStockListingStrategy))
+    {
+    	curStrategyQueryString.clear();
+    	curStrategyQueryString.append(YerothUtils::getStrategySqlQueryStr(tableModel.yerothSelectStatement(),
+        											YerothERPConfig::STRATEGIE_VENTE_SORTIE_LIFO));
+
+        if (!aCurYerothTableViewPageFilter.isEmpty())
+        {
+        	curStrategyQueryString.append(QString(" %1")
+        							   .arg(aCurYerothTableViewPageFilter));
+        }
+
+        s = tableModel.yerothSetQuery(curStrategyQueryString);
+    }
+    else if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FEFO,
+            		 	 	 	 	 	 	 	 curStockListingStrategy))
+    {
+    	curStrategyQueryString.clear();
+    	curStrategyQueryString.append(YerothUtils::getStrategySqlQueryStr(tableModel.yerothSelectStatement(),
+        											YerothERPConfig::STRATEGIE_VENTE_SORTIE_FEFO));
+
+        if (!aCurYerothTableViewPageFilter.isEmpty())
+        {
+        	curStrategyQueryString.append(QString(" %1")
+        							.arg(aCurYerothTableViewPageFilter));
+        }
+
+        s = tableModel.yerothSetQuery(curStrategyQueryString);
+    }
+    else  // YerothERPConfig::STRATEGIE_VENTE_SORTIE_ALL
+    {
+    	curStrategyQueryString.clear();
+    	curStrategyQueryString.append(YerothUtils::getStrategySqlQueryStr(tableModel.yerothSelectStatement(),
+        											YerothERPConfig::STRATEGIE_VENTE_SORTIE_ALL));
+
+        if (!aCurYerothTableViewPageFilter.isEmpty())
+        {
+        	curStrategyQueryString.append(QString(" %1")
+        							.arg(aCurYerothTableViewPageFilter));
+        }
+
+        s = tableModel.yerothSetQuery(curStrategyQueryString);
+    }
+
 
     int rows = tableModel.rowCount();
     int columns = tableModel.columnCount();

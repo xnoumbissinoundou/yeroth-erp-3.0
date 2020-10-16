@@ -53,8 +53,13 @@ public:
 
 	void setupSelectionOptions();
 
+	inline virtual void lister_les_elements_du_tableau(YerothSqlTableModel &tableModel)
+	{
+	}
+
 	inline virtual void lister_les_elements_du_tableau(YerothSqlTableModel &tableModel,
-													   QString aStockListingStrategy = "")
+													   const QString &aStockListingStrategy,
+													   const QString &aCurYerothTableViewPageFilter = "")
 	{
 	}
 
