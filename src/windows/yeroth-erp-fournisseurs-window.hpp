@@ -65,25 +65,6 @@ public:
 public slots:
 
 	MACRO_TO_DEFINE_VIEWING_POINTERS_PAGE_SLOTS(tableView_fournisseurs)
-//	inline virtual void viewYerothTableViewFirstPage(YerothSqlTableModel &curYerothSqlTableModel_IN)
-//	{
-//		tableView_fournisseurs->viewYerothTableViewFirstPage(curYerothSqlTableModel_IN);
-//	}
-//
-//	inline virtual void viewYerothTableViewLastPage(YerothSqlTableModel &curYerothSqlTableModel_IN)
-//	{
-//		tableView_fournisseurs->viewYerothTableViewLastPage(curYerothSqlTableModel_IN);
-//	}
-//
-//	inline virtual void viewYerothTableViewPreviousPage(YerothSqlTableModel &curYerothSqlTableModel_IN)
-//	{
-//		tableView_fournisseurs->viewYerothTableViewPreviousPage(curYerothSqlTableModel_IN);
-//	}
-//
-//	inline virtual void viewYerothTableViewNextPage(YerothSqlTableModel &curYerothSqlTableModel_IN)
-//	{
-//		tableView_fournisseurs->viewYerothTableViewNextPage(curYerothSqlTableModel_IN);
-//	}
 
 	inline virtual void apropos()
 	{
