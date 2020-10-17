@@ -520,7 +520,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
-    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(tableView_achats)
+    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(this, _curAchatSqlTableModel)
 
     pushButton_achats_filtrer->enable(this, SLOT(filtrer_achats()));
     pushButton_achats_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
@@ -551,7 +551,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
-    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(tableView_achats)
+    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(this, _curAchatSqlTableModel)
 
     pushButton_achats_filtrer->enable(this, SLOT(filtrer_achats()));
     pushButton_achats_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
@@ -582,7 +582,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
-    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(tableView_achats)
+    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(this, _curAchatSqlTableModel)
 
     pushButton_achats_filtrer->enable(this, SLOT(filtrer_achats()));
     pushButton_achats_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
@@ -716,7 +716,7 @@ void YerothAchatsWindow::reinitialiser_recherche()
 
 void YerothAchatsWindow::afficherAchats(YerothSqlTableModel &achatSqlTableModel)
 {
-	tableView_achats->queryYerothTableViewCurrentPageContentRow();
+	tableView_achats->queryYerothTableViewCurrentPageContentRow(achatSqlTableModel);
 
     tableView_show_or_hide_columns(*tableView_achats);
 

@@ -39,6 +39,8 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
+	typedef void (YerothWindowsCommons::*fptr)(YerothSqlTableModel &);
+
 	inline YerothWindowsCommons(const QString &anOutput_print_pdf_latexFileNamePrefix = "")
 	:_selectExportDBQDialog(0),
 	 _yeroth_PRINT_UTILITIES_TEX_TABLE(0),
@@ -145,6 +147,42 @@ public:
 	}
 
 public slots:
+
+	inline virtual void viewYerothTableViewFirstPage(YerothSqlTableModel &curYerothSqlTableModel_IN)
+	{
+	}
+
+	inline virtual void viewYerothTableViewLastPage(YerothSqlTableModel &curYerothSqlTableModel_IN)
+	{
+	}
+
+	inline virtual void viewYerothTableViewPreviousPage(YerothSqlTableModel &curYerothSqlTableModel_IN)
+	{
+	}
+
+	inline virtual void viewYerothTableViewNextPage(YerothSqlTableModel &curYerothSqlTableModel_IN)
+	{
+	}
+
+	inline fptr Get__viewYerothTableViewFirstPage__FPointer(void)
+	{
+		return &YerothWindowsCommons::viewYerothTableViewFirstPage;
+	}
+
+	inline fptr Get__viewYerothTableViewLastPage__FPointer(void)
+	{
+		return &YerothWindowsCommons::viewYerothTableViewLastPage;
+	}
+
+	inline fptr Get__viewYerothTableViewPreviousPage__FPointer(void)
+	{
+		return &YerothWindowsCommons::viewYerothTableViewPreviousPage;
+	}
+
+	inline fptr Get__viewYerothTableViewNextPage__FPointer(void)
+	{
+		return &YerothWindowsCommons::viewYerothTableViewNextPage;
+	}
 
 	virtual void getManuelUtilisateurPDF();
 
@@ -375,11 +413,30 @@ private:
 		pushButton_page_suivante->disable(this);
 
 
-#define MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(X)					\
-	    pushButton_page_premiere->enable(X, SLOT(viewYerothTableViewFirstPage()));		\
-		pushButton_page_derniere->enable(X, SLOT(viewYerothTableViewLastPage()));		\
-	    pushButton_page_precedente->enable(X, SLOT(viewYerothTableViewPreviousPage()));	\
-		pushButton_page_suivante->enable(X, SLOT(viewYerothTableViewNextPage()));
+#define MACRO_TO_DEFINE_VIEWING_POINTERS_PAGE_SLOTS(X)	\
+		inline virtual void viewYerothTableViewFirstPage(YerothSqlTableModel &curYerothSqlTableModel_IN) \
+		{																								 \
+			X->viewYerothTableViewFirstPage(curYerothSqlTableModel_IN);									 \
+		}																								 \
+		inline virtual void viewYerothTableViewLastPage(YerothSqlTableModel &curYerothSqlTableModel_IN)  \
+		{																								 \
+			X->viewYerothTableViewLastPage(curYerothSqlTableModel_IN);									 \
+		}																								 \
+		inline virtual void viewYerothTableViewPreviousPage(YerothSqlTableModel &curYerothSqlTableModel_IN) \
+		{																								 \
+			X->viewYerothTableViewPreviousPage(curYerothSqlTableModel_IN);			 					 \
+		}																								 \
+		inline virtual void viewYerothTableViewNextPage(YerothSqlTableModel &curYerothSqlTableModel_IN)	 \
+		{																								 \
+			X->viewYerothTableViewNextPage(curYerothSqlTableModel_IN);									 \
+		}
+
+
+#define MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(X, Y)					\
+	    pushButton_page_premiere->enable_WITH_SQL_TABLE_MODEL_AS_CALL_ARGUMENT((YerothWindowsCommons*)X, ((YerothWindowsCommons*)X)->Get__viewYerothTableViewFirstPage__FPointer(), &Y);	\
+		pushButton_page_derniere->enable_WITH_SQL_TABLE_MODEL_AS_CALL_ARGUMENT((YerothWindowsCommons*)X, ((YerothWindowsCommons*)X)->Get__viewYerothTableViewLastPage__FPointer(), &Y);	\
+	    pushButton_page_precedente->enable_WITH_SQL_TABLE_MODEL_AS_CALL_ARGUMENT((YerothWindowsCommons*)X, ((YerothWindowsCommons*)X)->Get__viewYerothTableViewPreviousPage__FPointer(), &Y);\
+		pushButton_page_suivante->enable_WITH_SQL_TABLE_MODEL_AS_CALL_ARGUMENT((YerothWindowsCommons*)X, ((YerothWindowsCommons*)X)->Get__viewYerothTableViewNextPage__FPointer(), &Y);
 
 
 #define MACRO_TO_DEFINE_VIEWING_PAGE_NUMBER_FOR_TABLEVIEW(X, Y) 				\

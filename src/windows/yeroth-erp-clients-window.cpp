@@ -704,7 +704,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
-    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(tableView_clients);
+    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(this, _curClientsTableModel)
 
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
@@ -740,7 +740,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
-    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(tableView_clients);
+    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(this, _curClientsTableModel)
 
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
@@ -871,7 +871,7 @@ void YerothERPClientsWindow::afficher_nom_entreprise_selectioner(const QString &
 
 void YerothERPClientsWindow::afficherClients(YerothSqlTableModel &clientSqlTableModel)
 {
-	tableView_clients->queryYerothTableViewCurrentPageContentRow();
+	tableView_clients->queryYerothTableViewCurrentPageContentRow(clientSqlTableModel);
 
     tableView_show_or_hide_columns(*tableView_clients);
 

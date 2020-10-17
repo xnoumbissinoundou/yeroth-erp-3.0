@@ -66,6 +66,8 @@ public:
 
 public slots:
 
+	MACRO_TO_DEFINE_VIEWING_POINTERS_PAGE_SLOTS(tableView_achats)
+
 	inline virtual void apropos()
 	{
 		YerothWindowsCommons::apropos(this);

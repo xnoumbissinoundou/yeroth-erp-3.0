@@ -65,6 +65,8 @@ public:
 
 public slots:
 
+	MACRO_TO_DEFINE_VIEWING_POINTERS_PAGE_SLOTS(tableView_stocks)
+
 	void gererChoixStrategieGestionDesStocks();
 
 	inline virtual void apropos()
@@ -161,8 +163,6 @@ private:
     QStringList				_historiqueStock;
 
     QFont 					*_pushButton_stocks_filtrer_font;
-
-    YerothSqlTableModel 	*_searchStocksTableModel;
 };
 
 #endif /* YEROTH_ERP_STOCKS_WINDOW_HPP_ */

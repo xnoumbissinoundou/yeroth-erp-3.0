@@ -32,7 +32,8 @@ public:
 	 _yerothTableViewCurPageNumber(1),
 	 _yerothTableViewPageCount(1),
 	 _yerothTableViewPageRowCount(YerothERPConfig::standard_pagination_number),
-	 _allWindows(YerothUtils::getAllWindows())
+	 _allWindows(YerothUtils::getAllWindows()),
+	 _curYerothSqlTableModel(0)
 	{
 	}
 
@@ -46,7 +47,8 @@ public:
 	 _yerothTableViewCurPageNumber(1),
 	 _yerothTableViewPageCount(1),
 	 _yerothTableViewPageRowCount(YerothERPConfig::standard_pagination_number),
-	 _allWindows(YerothUtils::getAllWindows())
+	 _allWindows(YerothUtils::getAllWindows()),
+	 _curYerothSqlTableModel(0)
 	{
 	}
 
@@ -79,26 +81,27 @@ public:
 		_needExecSelectStatement_FOR_TABLE_VIEW_PAGING_LISTING = aBooleanValue;
 	}
 
-	void calculate_and_set_YerothViewLastPageNumber();
+	void calculate_and_set_YerothViewLastPageNumber(YerothSqlTableModel &curYerothSqlTableModel_IN);
 
 	virtual void setYerothTableViewPageRowCount(uint rowCount);
 
 	virtual void displayYerothTableViewPageContentRowLimit(YerothSqlTableModel &curYerothSqlTableModel,
 														   QString aListingStrategy = YerothUtils::EMPTY_STRING);
 
-	virtual void queryYerothTableViewCurrentPageContentRow(QString aListingStrategy = YerothUtils::EMPTY_STRING);
+	virtual void queryYerothTableViewCurrentPageContentRow(YerothSqlTableModel &curYerothSqlTableModel_IN,
+														   QString aListingStrategy = YerothUtils::EMPTY_STRING);
 
 public slots:
 
 	virtual void slot_set_page_view_row_count(const QString &pageTableViewRowCountText);
 
-	virtual void viewYerothTableViewFirstPage();
+	virtual void viewYerothTableViewFirstPage(YerothSqlTableModel &curYerothSqlTableModel_IN);
 
-	virtual void viewYerothTableViewLastPage();
+	virtual void viewYerothTableViewLastPage(YerothSqlTableModel &curYerothSqlTableModel_IN);
 
-	virtual void viewYerothTableViewPreviousPage();
+	virtual void viewYerothTableViewPreviousPage(YerothSqlTableModel &curYerothSqlTableModel_IN);
 
-	virtual void viewYerothTableViewNextPage();
+	virtual void viewYerothTableViewNextPage(YerothSqlTableModel &curYerothSqlTableModel_IN);
 
 public:
 
@@ -121,7 +124,9 @@ protected:
 
 private:
 
-	YerothERPWindows *_allWindows;
+	YerothERPWindows 	*_allWindows;
+
+	YerothSqlTableModel *_curYerothSqlTableModel;
 };
 
 

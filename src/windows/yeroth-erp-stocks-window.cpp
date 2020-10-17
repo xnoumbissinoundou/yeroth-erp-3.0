@@ -56,8 +56,7 @@ YerothStocksWindow::YerothStocksWindow()
 :YerothWindowsCommons("yeroth-erp-fichier-stocks"),
  YerothAbstractClassYerothSearchWindow(_allWindows->STOCKS),
  _logger(new YerothLogger("YerothStocksWindow")),
- _pushButton_stocks_filtrer_font(0),
- _searchStocksTableModel(0)
+ _pushButton_stocks_filtrer_font(0)
 {
     _windowName = QString("%1 - %2")
     				.arg(YEROTH_ERP_WINDOW_TITLE,
@@ -757,7 +756,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     activerComboBoxStrategieDeGestionDesStocks();
 
-    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(tableView_stocks);
+    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(this, _curStocksTableModel)
 
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
     pushButton_stocks_filtrer->enable(this, SLOT(filtrer_stocks()));
@@ -795,7 +794,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     activerComboBoxStrategieDeGestionDesStocks();
 
-    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(tableView_stocks);
+    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(this, _curStocksTableModel)
 
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
     pushButton_stocks_filtrer->enable(this, SLOT(filtrer_stocks()));
@@ -833,7 +832,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     activerComboBoxStrategieDeGestionDesStocks();
 
-    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(tableView_stocks);
+    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(this, _curStocksTableModel)
 
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
     pushButton_stocks_filtrer->enable(this, SLOT(filtrer_stocks()));
@@ -864,7 +863,7 @@ void YerothStocksWindow::definirMagasinier()
 
     desactiverComboBoxStrategieDeGestionDesStocks();
 
-    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(tableView_stocks);
+    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(this, _curStocksTableModel)
 
     pushButton_stocks_filtrer->enable(this, SLOT(filtrer_stocks()));
     pushButton_stocks_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
@@ -1111,7 +1110,8 @@ void YerothStocksWindow::afficherStocks(YerothSqlTableModel & sqlTableModel,
     	tableView_stocks->setSortingEnabled(true);
     }
 
-    tableView_stocks->queryYerothTableViewCurrentPageContentRow(currentStockListingStrategy);
+    tableView_stocks->queryYerothTableViewCurrentPageContentRow(*_curStocksTableModel,
+    															currentStockListingStrategy);
 
     tableView_show_or_hide_columns(*tableView_stocks);
 

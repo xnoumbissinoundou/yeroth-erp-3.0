@@ -21,6 +21,7 @@
 
 class QContextMenuEvent;
 
+
 class YerothERPWindows;
 class YerothSqlTableModel;
 class YerothLogger;
@@ -46,10 +47,7 @@ public:
 
 	YerothVentesWindow();
 
-	inline ~YerothVentesWindow()
-	{
-		delete _logger;
-	}
+	~YerothVentesWindow();
 
 	inline virtual QToolBar * getQMainWindowToolBar()
 	{
@@ -75,9 +73,14 @@ public:
     	lister_les_elements_du_tableau(*_curStocksVenduTableModel);
     }
 
+    MACRO_TO_DEFINE_VIEWING_PAGE_NUMBER_FOR_TABLEVIEW(label_ventes_numero_page_derniere,
+    												  label_ventes_numero_page_courante)
+
     virtual void rendreVisible(YerothSqlTableModel *stocksTableModel);
 
 public slots:
+
+	MACRO_TO_DEFINE_VIEWING_POINTERS_PAGE_SLOTS(tableView_ventes)
 
 	inline virtual void apropos()
 	{
