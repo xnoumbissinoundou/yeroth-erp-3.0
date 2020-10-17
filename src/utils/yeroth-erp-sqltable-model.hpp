@@ -42,6 +42,8 @@ public:
 		return _fromQSqlQuery;
 	}
 
+	virtual int yeroth_RESET_specify_filter_FROM_SELECT_STATEMENT(const QString &filter);
+
 	virtual int yeroth_specify_filter_FROM_SELECT_STATEMENT(const QString &filter);
 
 	inline virtual void yerothSetFilter_WITH_where_clause(const QString &filter)

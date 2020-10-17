@@ -66,12 +66,28 @@ YerothSqlTableModel::YerothSqlTableModel(const QString &sqlTableName,
 }
 
 
+int YerothSqlTableModel::yeroth_RESET_specify_filter_FROM_SELECT_STATEMENT(const QString &filter)
+{
+	QString curYerothSelectStatement(yerothSelectStatement());
+
+	curYerothSelectStatement.remove(filter);
+
+//	QDEBUG_STRINGS_OUTPUT_2("RESET filter", curYerothSelectStatement);
+
+	int queryResultSize = yerothSetQueryRowCount(curYerothSelectStatement);
+
+	return queryResultSize;
+}
+
+
 int YerothSqlTableModel::yeroth_specify_filter_FROM_SELECT_STATEMENT(const QString &filter)
 {
 	QString curYerothSelectStatement(yerothSelectStatement());
 
 	curYerothSelectStatement.append(QString(" %1")
 										.arg(filter));
+
+//	QDEBUG_STRINGS_OUTPUT_2("filter", curYerothSelectStatement);
 
 	int queryResultSize = yerothSetQueryRowCount(curYerothSelectStatement);
 
