@@ -74,6 +74,11 @@ void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTab
 										 *_tableModelHeaders,
 										 _tableModelRawHeaders_IN_OUT);
 
+    if (!s)
+    {
+    	return ;
+    }
+
     QString curTableModelRawHdr;
 
 	QString tmpQvString;
@@ -82,7 +87,7 @@ void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTab
 
 	QVariant qv;
 
-    if(tableModel.isFromQSqlQuery() || s)
+    if(s || tableModel.isFromQSqlQuery())
     {
     	int querySize = 0;
 
@@ -263,7 +268,7 @@ void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTab
         }
     }
 
-    this->resizeColumnsToContents();
+    resizeColumnsToContents();
 }
 
 
