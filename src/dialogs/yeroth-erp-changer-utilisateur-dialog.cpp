@@ -93,7 +93,7 @@ void YerothPOSChangerUtilisateurDialog::valider()
 
         QByteArray md5Hash_mot_passe(MD5_HASH(mot_passe));
 
-        searchUserFilter.append(GENERATE_SQL_IS_STMT("nom_utilisateur", nom_utilisateur));
+        searchUserFilter.append(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::NOM_UTILISATEUR, nom_utilisateur));
 
         usersSqlTableModel.yerothSetFilter_WITH_where_clause(searchUserFilter);
 
