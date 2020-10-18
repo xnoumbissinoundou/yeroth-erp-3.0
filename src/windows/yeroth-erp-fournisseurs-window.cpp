@@ -406,7 +406,7 @@ void YerothERPFournisseursWindow::supprimerFournisseur()
         QString msg(QString(QObject::trUtf8("Le fournisseur '%1"))
         				.arg(nom_entreprise));
 
-        if (success)
+        if (success && fournisseursTableModel->select())
         {
         	setupLineEditsQCompleters((QObject *)this);
 

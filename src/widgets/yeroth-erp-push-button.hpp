@@ -59,8 +59,8 @@ public:
 
 	void disable(const QObject *receiver, bool buttonVisible = false);
 
-	void enable_WITH_SQL_TABLE_MODEL_AS_CALL_ARGUMENT(YerothWindowsCommons *receiver,
-													  YerothWindowsCommons::fptr func,
+	void enable_WITH_SQL_TABLE_MODEL_AS_CALL_ARGUMENT(YerothAbstractClassYerothSearchWindow *receiver,
+													  YerothAbstractClassYerothSearchWindow::fptr func,
 													  YerothSqlTableModel **aYerothSqlTableModel_IN);
 
 	inline void emptyEnable()
@@ -74,11 +74,11 @@ public slots:
 
 private:
 
-	YerothSqlTableModel 				*_yerothCurWindowSqlTableModel;
+	YerothSqlTableModel 							**_yerothCurWindowSqlTableModel;
 
-	YerothWindowsCommons 				*_receiver;
+	YerothAbstractClassYerothSearchWindow 			*_receiver;
 
-	YerothWindowsCommons::fptr			_func;
+	YerothAbstractClassYerothSearchWindow::fptr		_func;
 };
 
 

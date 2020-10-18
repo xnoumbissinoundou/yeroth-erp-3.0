@@ -81,9 +81,9 @@ public:
 		_needExecSelectStatement_FOR_TABLE_VIEW_PAGING_LISTING = aBooleanValue;
 	}
 
-	void calculate_and_set_YerothViewLastPageNumber(YerothSqlTableModel &curYerothSqlTableModel_IN);
-
 	virtual void setYerothTableViewPageRowCount(uint rowCount);
+
+	void calculate_and_set_YerothViewLastPageNumber(YerothSqlTableModel &curYerothSqlTableModel_IN);
 
 	virtual void displayYerothTableViewPageContentRowLimit(YerothSqlTableModel &curYerothSqlTableModel,
 														   QString aListingStrategy = YerothUtils::EMPTY_STRING);

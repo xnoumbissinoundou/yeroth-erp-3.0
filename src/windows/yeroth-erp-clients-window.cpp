@@ -407,7 +407,7 @@ void YerothERPClientsWindow::supprimerCompteClient()
         QString msg(QString(QObject::trUtf8("Le client '%1"))
         				.arg(nom_entreprise));
 
-        if (success)
+        if (success && clientsTableModel->select())
         {
         	setupLineEditsQCompleters((QObject *)this);
 

@@ -476,6 +476,8 @@ bool YerothCreerFournisseurWindow::creerEnregistrerFournisseur()
             return false;
         }
 
+        fournisseursTableModel.select();
+
         retMsg.append(QObject::trUtf8("' a été créer avec succès !"));
 
         YerothQMessageBox::information(this,

@@ -476,6 +476,8 @@ bool YerothCreerCompteClientWindow::creerEnregistrerCompteClient()
             return false;
         }
 
+        clientsTableModel.select();
+
         retMsg.append(QObject::trUtf8("' a été créer avec succès !"));
 
         YerothQMessageBox::information(this,

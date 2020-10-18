@@ -17,42 +17,6 @@
 #include <QtCore/QtMath>
 
 
-void YerothTableViewWITHpagination::calculate_and_set_YerothViewLastPageNumber(YerothSqlTableModel &curYerothSqlTableModel_IN)
-{
-//	QString selectTotalSqlTableRowCountStr(QString("select COUNT(*) from %1")
-//												.arg(YerothTableView::getSqlTableName()));
-//	QSqlQuery query;
-//
-//	int querySize = YerothUtils::execQuery(query, selectTotalSqlTableRowCountStr);
-//
-//	if (querySize > 0 && query.next())
-//	{
-//		_yerothSqlTableModelTotalRowCount = query.value(0).toInt();
-//	}
-
-//	QDEBUG_STRINGS_OUTPUT_2_N("calculate_and_set_YerothViewLastPageNumber, curYerothSqlTableModel_IN.rowCount()", curYerothSqlTableModel_IN.rowCount());
-
-	_curYerothSqlTableModel = &curYerothSqlTableModel_IN;
-
-	_yerothSqlTableModelTotalRowCount = curYerothSqlTableModel_IN.rowCount();
-
-	double tmp = _yerothSqlTableModelTotalRowCount / (double) _yerothTableViewPageRowCount;
-
-	_yerothTableViewLastPageNumber = qCeil(tmp);
-
-	if (_yerothTableViewLastPageNumber <= 0)
-	{
-		_yerothTableViewLastPageNumber = 1;
-	}
-
-	if (0 != _currentViewWindow)
-	{
-		_currentViewWindow->
-			setYerothTableViewLastPageNumberText(QString::number(_yerothTableViewLastPageNumber));
-	}
-}
-
-
 void YerothTableViewWITHpagination::setYerothTableViewPageRowCount(uint rowCount)
 {
 	_yerothTableViewPageRowCount = rowCount;
@@ -70,6 +34,33 @@ void YerothTableViewWITHpagination::setYerothTableViewPageRowCount(uint rowCount
 }
 
 
+void YerothTableViewWITHpagination::calculate_and_set_YerothViewLastPageNumber(YerothSqlTableModel &curYerothSqlTableModel_IN)
+{
+	_curYerothSqlTableModel = &curYerothSqlTableModel_IN;
+
+	_yerothSqlTableModelTotalRowCount = curYerothSqlTableModel_IN.rowCount();
+
+	double tmp = _yerothSqlTableModelTotalRowCount / (double) _yerothTableViewPageRowCount;
+
+	_yerothTableViewLastPageNumber = qCeil(tmp);
+
+	if (_yerothTableViewLastPageNumber <= 0)
+	{
+		_yerothTableViewLastPageNumber = 1;
+	}
+
+	if (1 == _yerothTableViewLastPageNumber)
+	{
+		_yerothTableViewCurPageNumber = 1;
+	}
+
+	if (0 != _currentViewWindow)
+	{
+		_currentViewWindow->setYerothTableViewLastPageNumberText(QString::number(_yerothTableViewLastPageNumber));
+	}
+}
+
+
 void YerothTableViewWITHpagination::displayYerothTableViewPageContentRowLimit(YerothSqlTableModel &curYerothSqlTableModel_IN,
 																			  QString aListingStrategy /* = YerothUtils::EMPTY_STRING*/)
 {
@@ -82,13 +73,7 @@ void YerothTableViewWITHpagination::displayYerothTableViewPageContentRowLimit(Ye
 		previousPageNumber = _yerothTableViewCurPageNumber - 1;
 	}
 
-//	QDEBUG_STRINGS_OUTPUT_2_N("_yerothTableViewPageRowCount", _yerothTableViewPageRowCount);
-//
-//	QDEBUG_STRINGS_OUTPUT_2_N("previousPageNumber", previousPageNumber);
-
 	uint curPageFromRowNumber = previousPageNumber * _yerothTableViewPageRowCount;
-
-//	QDEBUG_STRINGS_OUTPUT_2_N("curPageFromRowNumber", curPageFromRowNumber);
 
 	calculate_and_set_YerothViewLastPageNumber(curYerothSqlTableModel_IN);
 
@@ -116,6 +101,8 @@ void YerothTableViewWITHpagination::displayYerothTableViewPageContentRowLimit(Ye
 									   aCurYerothTableViewPageFilter);
 	}
 
+	curYerothSqlTableModel_IN.yeroth_RESET_specify_filter_FROM_SELECT_STATEMENT(aCurYerothTableViewPageFilter);
+
 	if (0 == _currentViewWindow)
 	{
 		return ;
@@ -134,16 +121,12 @@ void YerothTableViewWITHpagination::displayYerothTableViewPageContentRowLimit(Ye
 				_currentViewWindow->setYerothTableViewCurrentPageNumberText(QString::number(_yerothTableViewLastPageNumber));
 			}
 		}
-
-		calculate_and_set_YerothViewLastPageNumber(curYerothSqlTableModel_IN);
 	}
 	else
 	{
 		_yerothTableViewCurPageNumber = 1;
 
 		_currentViewWindow->setYerothTableViewCurrentPageNumberText(QString::number(_yerothTableViewCurPageNumber));
-
-		calculate_and_set_YerothViewLastPageNumber(curYerothSqlTableModel_IN);
 	}
 }
 
@@ -151,8 +134,6 @@ void YerothTableViewWITHpagination::displayYerothTableViewPageContentRowLimit(Ye
 void YerothTableViewWITHpagination::queryYerothTableViewCurrentPageContentRow(YerothSqlTableModel &curYerothSqlTableModel_IN,
 																			  QString aListingStrategy /* = YerothUtils::EMPTY_STRING */)
 {
-//	QDEBUG_STRINGS_OUTPUT_2_N("queryYerothTableViewCurrentPageContentRow, curYerothSqlTableModel_IN.rowCount()", curYerothSqlTableModel_IN.rowCount());
-
 	_curYerothSqlTableModel = &curYerothSqlTableModel_IN;
 
 	displayYerothTableViewPageContentRowLimit(curYerothSqlTableModel_IN,
@@ -190,8 +171,6 @@ void YerothTableViewWITHpagination::viewYerothTableViewFirstPage(YerothSqlTableM
 void YerothTableViewWITHpagination::viewYerothTableViewLastPage(YerothSqlTableModel &curYerothSqlTableModel_IN)
 {
 	_curYerothSqlTableModel = &curYerothSqlTableModel_IN;
-
-	calculate_and_set_YerothViewLastPageNumber(curYerothSqlTableModel_IN);
 
 	_yerothTableViewCurPageNumber = _yerothTableViewLastPageNumber;
 

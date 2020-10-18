@@ -551,7 +551,7 @@ void YerothModifierCompteClientWindow::supprimerCompteClient()
         bool resRemoved = _curClientTableModel->removeRow(_clientLastSelectedRow);
         //qDebug() << "YerothModifierCompteClientWindow::supprimer_ce_stock() " << resRemoved;
 
-        if (resRemoved)
+        if (resRemoved && _curClientTableModel->select())
         {
             msgSupprimer.clear();
             msgSupprimer.append(QString(QObject::trUtf8("Le client '%1' a été supprimé !"))

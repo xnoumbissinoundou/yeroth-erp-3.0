@@ -43,8 +43,6 @@
 
 #include <QtCore/QFile>
 
-#include <QtCore/QProcess>
-
 #include <QtCore/QProcessEnvironment>
 
 
@@ -56,11 +54,12 @@ YerothVentesWindow::YerothVentesWindow()
  YerothAbstractClassYerothSearchWindow(_allWindows->STOCKS_VENDU),
  _retourVenteTabWidget(0),
  _logger(new YerothLogger("YerothVentesWindow")),
- _aProcess(0),
  _pushButton_ventes_filtrer_font(0),
  _ventesDateFilter(YerothUtils::EMPTY_STRING),
  _curStocksVenduTableModel(&_allWindows->getSqlTableModel_stocks_vendu())
 {
+	setYerothSqlTableModel(_curStocksVenduTableModel);
+
     _windowName = QString("%1 - %2")
     				.arg(YEROTH_ERP_WINDOW_TITLE,
     					 QObject::trUtf8("ventes"));
@@ -1585,18 +1584,6 @@ void YerothVentesWindow::definirPasDeRole()
 }
 
 
-void YerothVentesWindow::readProcessData()
-{
-    _logger->log("readProcessData");
-
-    if (!_aProcess)
-    {
-        return;
-    }
-    //qDebug() << "\t==>" << _aProcess->readAllStandardOutput();
-}
-
-
 bool YerothVentesWindow::export_csv_file()
 {
     _logger->log("export_csv_file");
@@ -1645,7 +1632,7 @@ void YerothVentesWindow::resetFilter(YerothSqlTableModel * stocksVenduTableModel
 {
     _curStocksVenduTableModel = stocksVenduTableModel;
 
-    if (_curStocksVenduTableModel)
+    if (0 != _curStocksVenduTableModel)
     {
         _curStocksVenduTableModel->resetFilter();
     }
@@ -1655,11 +1642,23 @@ void YerothVentesWindow::resetFilter(YerothSqlTableModel * stocksVenduTableModel
 
     YerothPOSUser *aUser = _allWindows->getUser();
 
-    if (0 != aUser && aUser->isManager())
+    if (0 != aUser)
     {
-    	QDEBUG_STRINGS_OUTPUT_2("aUser->isManager()", BOOL_TO_STRING(aUser->isManager()));
-
-        lineEdit_ventes_nom_caissier->myClear();
+    	if (aUser->isManager())
+    	{
+    		lineEdit_ventes_nom_caissier->setYerothEnabled(true);
+    		lineEdit_ventes_nom_caissier->myClear();
+    	}
+    	else
+    	{
+        	lineEdit_ventes_nom_caissier->setYerothEnabled(false);
+        	lineEdit_ventes_nom_caissier->setText(aUser->nom_complet());
+    	}
+    }
+    else
+    {
+    	lineEdit_ventes_nom_caissier->setYerothEnabled(false);
+    	lineEdit_ventes_nom_caissier->myClear();
     }
 
     dateEdit_ventes_debut->reset();
@@ -1808,19 +1807,26 @@ void YerothVentesWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 
     label_retour_vente_remise_prix->setText(QString(QObject::tr("remise (%1)")).arg(YerothERPConfig::currency));
 
-    lineEdit_ventes_nom_caissier->setYerothEnabled(true);
 
     YerothPOSUser *aUser = _allWindows->getUser();
 
-    if (0 != aUser && aUser->isVendeur())
+    if (0 != aUser)
     {
-    	lineEdit_ventes_nom_caissier->setYerothEnabled(false);
-    	lineEdit_ventes_nom_caissier->setText(aUser->nom_complet());
+    	if (aUser->isManager())
+    	{
+    		lineEdit_ventes_nom_caissier->setYerothEnabled(true);
+    		lineEdit_ventes_nom_caissier->myClear();
+    	}
+    	else
+    	{
+        	lineEdit_ventes_nom_caissier->setYerothEnabled(false);
+        	lineEdit_ventes_nom_caissier->setText(aUser->nom_complet());
+    	}
     }
     else
     {
-    	lineEdit_ventes_nom_caissier->clear();
-    	lineEdit_ventes_nom_caissier->setYerothEnabled(true);
+    	lineEdit_ventes_nom_caissier->setYerothEnabled(false);
+    	lineEdit_ventes_nom_caissier->myClear();
     }
 
     modifier_visibilite_actions_sur_cette_vente();

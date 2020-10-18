@@ -3,7 +3,7 @@
  *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
  */
 
-#include"yeroth-erp-creer-nouveau-fournisseur-window.hpp"
+#include "yeroth-erp-creer-nouveau-fournisseur-window.hpp"
 
 /**
  * #include "../utils/yeroth-erp-database-table-column.hpp"
@@ -228,20 +228,20 @@ bool YerothCreerNouveauFournisseurWindow::creer_fournisseur()
 
         bool success = fournisseurTableModel.insertNewRecord(record);
 
-        if (!success)
+        if (success && fournisseurTableModel.select())
         {
-            retMsg.append(QObject::trUtf8("' n'a pas pu être créer !"));
+            retMsg.append(QObject::trUtf8("' a été créer avec succès !"));
 
-            YerothQMessageBox::warning(this, QObject::trUtf8("succès"), retMsg);
+            YerothQMessageBox::information(this, QObject::trUtf8("échec"), retMsg);
 
-            return false;
+            return true;
         }
 
-        retMsg.append(QObject::trUtf8("' a été créer avec succès !"));
+        retMsg.append(QObject::trUtf8("' n'a pas pu être créer !"));
 
-        YerothQMessageBox::information(this, QObject::trUtf8("échec"), retMsg);
+        YerothQMessageBox::warning(this, QObject::trUtf8("succès"), retMsg);
 
-        return true;
+        return false;
     }
 
     return false;

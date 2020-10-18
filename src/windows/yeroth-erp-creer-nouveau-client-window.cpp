@@ -249,20 +249,20 @@ bool YerothCreerNouveauClientWindow::creer_client()
 
         bool success = clientsTableModel.insertNewRecord(record);
 
-        if (!success)
+        if (success && clientsTableModel.select())
         {
-            retMsg.append(QObject::trUtf8("' n'a pas pu être créer !"));
+            retMsg.append(QObject::trUtf8("' a été créer avec succès !"));
 
-            YerothQMessageBox::warning(this, QObject::trUtf8("échec"), retMsg);
+            YerothQMessageBox::information(this, QObject::trUtf8("succès"), retMsg);
 
-            return false;
+            return true;
         }
 
-        retMsg.append(QObject::trUtf8("' a été créer avec succès !"));
+        retMsg.append(QObject::trUtf8("' n'a pas pu être créer !"));
 
-        YerothQMessageBox::information(this, QObject::trUtf8("succès"), retMsg);
+        YerothQMessageBox::warning(this, QObject::trUtf8("échec"), retMsg);
 
-        return true;
+        return false;
     }
     return false;
 }

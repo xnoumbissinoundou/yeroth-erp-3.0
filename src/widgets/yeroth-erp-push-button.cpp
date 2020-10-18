@@ -35,11 +35,11 @@ void YerothPushButton::disable(const QObject *receiver, bool buttonVisible /*= f
 }
 
 
-void YerothPushButton::enable_WITH_SQL_TABLE_MODEL_AS_CALL_ARGUMENT(YerothWindowsCommons *receiver,
-																	YerothWindowsCommons::fptr func,
+void YerothPushButton::enable_WITH_SQL_TABLE_MODEL_AS_CALL_ARGUMENT(YerothAbstractClassYerothSearchWindow *receiver,
+																	YerothAbstractClassYerothSearchWindow::fptr func,
 																	YerothSqlTableModel **aYerothSqlTableModel_IN)
 {
-	_yerothCurWindowSqlTableModel = *aYerothSqlTableModel_IN;
+	_yerothCurWindowSqlTableModel = aYerothSqlTableModel_IN;
 
 	if (0 != receiver)
 	{
@@ -63,9 +63,9 @@ void YerothPushButton::call_view_page_function()
 {
 	if (0 != _receiver 				&&
 		0 != _func     				&&
-		0 != _yerothCurWindowSqlTableModel)
+		0 != *_yerothCurWindowSqlTableModel)
 	{
-		(_receiver->*_func)(*_yerothCurWindowSqlTableModel);
+		(_receiver->*_func)(*(*_yerothCurWindowSqlTableModel));
 	}
 }
 

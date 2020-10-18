@@ -163,6 +163,7 @@ void YerothPOSChangerUtilisateurDialog::valider()
             }
             else if (YerothUtils::ROLE_VENDEUR == role)
             {
+            	_allWindows->_ventesWindow->resetFilter(&_allWindows->getSqlTableModel_stocks_vendu());
                 _allWindows->_mainWindow->rendreVisible(&_allWindows->getSqlTableModel_stocks());
             }
             else if (YerothUtils::ROLE_GESTIONNAIREDESTOCK == role)

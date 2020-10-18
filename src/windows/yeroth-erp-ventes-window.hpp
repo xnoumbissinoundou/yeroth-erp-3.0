@@ -66,7 +66,7 @@ public:
 
     virtual void definirPasDeRole();
 
-    void lister_les_elements_du_tableau(YerothSqlTableModel &stocksVenduTableModel);
+    virtual void lister_les_elements_du_tableau(YerothSqlTableModel &stocksVenduTableModel);
 
     inline void lister_les_elements_du_tableau()
     {
@@ -103,8 +103,6 @@ public slots:
 								   	     " tout en bas de l'interface graphique"
 								 	 	 " (exemple: nom du caissier, désignation de l'article, etc.) !"));
 	}
-
-	void readProcessData();
 
 	inline void disableImprimer()
 	{
@@ -198,8 +196,6 @@ private:
     QWidget 				*_retourVenteTabWidget;
 
     YerothLogger			*_logger;
-
-    QProcess 				*_aProcess;
 
     QFont 					*_pushButton_ventes_filtrer_font;
 

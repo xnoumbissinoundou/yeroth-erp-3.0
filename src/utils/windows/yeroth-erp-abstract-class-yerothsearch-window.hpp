@@ -31,6 +31,8 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
+	typedef void (YerothAbstractClassYerothSearchWindow::*fptr)(YerothSqlTableModel &);
+
 	inline YerothAbstractClassYerothSearchWindow(QString aDBYerothSqlTableName)
 	:_currentlyFiltered(false),
 	 _searchFilter(YerothUtils::EMPTY_STRING),
@@ -42,6 +44,40 @@ public:
 	}
 
 	virtual ~YerothAbstractClassYerothSearchWindow();
+
+public slots:
+
+	virtual void viewYerothTableViewFirstPage(YerothSqlTableModel &curYerothSqlTableModel_IN) = 0;
+
+	virtual void viewYerothTableViewLastPage(YerothSqlTableModel &curYerothSqlTableModel_IN) = 0;
+
+	virtual void viewYerothTableViewPreviousPage(YerothSqlTableModel &curYerothSqlTableModel_IN) = 0;
+
+	virtual void viewYerothTableViewNextPage(YerothSqlTableModel &curYerothSqlTableModel_IN) = 0;
+
+	template<class aYerothMainWindowClassType>
+	inline fptr Get__viewYerothTableViewFirstPage__FPointer(aYerothMainWindowClassType *aThisRef)
+	{
+		return (fptr)&aYerothMainWindowClassType::viewYerothTableViewFirstPage;
+	}
+
+	template<class aYerothMainWindowClassType>
+	inline fptr Get__viewYerothTableViewLastPage__FPointer(aYerothMainWindowClassType *aThisRef)
+	{
+		return (fptr)&aYerothMainWindowClassType::viewYerothTableViewLastPage;
+	}
+
+	template<class aYerothMainWindowClassType>
+	inline fptr Get__viewYerothTableViewPreviousPage__FPointer(aYerothMainWindowClassType *aThisRef)
+	{
+		return (fptr)&aYerothMainWindowClassType::viewYerothTableViewPreviousPage;
+	}
+
+	template<class aYerothMainWindowClassType>
+	inline fptr Get__viewYerothTableViewNextPage__FPointer(aYerothMainWindowClassType *aThisRef)
+	{
+		return (fptr)&aYerothMainWindowClassType::viewYerothTableViewNextPage;
+	}
 
 protected slots:
 
