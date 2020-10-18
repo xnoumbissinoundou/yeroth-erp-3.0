@@ -232,7 +232,6 @@ HEADERS = src/include/yeroth-erp-3-0-precompiled-header.hpp \
 		  src/utils/yeroth-erp-article-vente-info.hpp \
 		  src/utils/yeroth-erp-database-table-column.hpp \
 		  src/utils/yeroth-erp-command-line-parser.hpp \
-			src/utils/yeroth-erp-number-word-translation.hpp \
 		  src/utils/yeroth-erp-style.hpp \
 		  src/utils/print_latex_pdf/yeroth-erp-print_yeroth_latex_util_pdf.hpp \
 			src/dbus/yeroth-erp-dbus-client.hpp \
@@ -348,7 +347,6 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/utils/yeroth-erp-article-vente-info.cpp \
 		  src/utils/yeroth-erp-database-table-column.cpp \
 		  src/utils/yeroth-erp-command-line-parser.cpp \
-		  src/utils/yeroth-erp-number-word-translation.cpp \
 			src/utils/yeroth-erp-style.cpp \
 			src/utils/print_latex_pdf/yeroth-erp-print_yeroth_latex_util_pdf.cpp \
 		  src/dbus/yeroth-erp-dbus-client.cpp \

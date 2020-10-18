@@ -1341,7 +1341,7 @@
       <property name="geometry">
        <rect>
         <x>2</x>
-        <y>329</y>
+        <y>330</y>
         <width>117</width>
         <height>21</height>
        </rect>
@@ -1782,7 +1782,7 @@
       <property name="geometry">
        <rect>
         <x>122</x>
-        <y>329</y>
+        <y>330</y>
         <width>111</width>
         <height>21</height>
        </rect>
@@ -10425,7 +10425,7 @@ background-color: rgb(0, 0, 0); </string>
       <property name="geometry">
        <rect>
         <x>236</x>
-        <y>329</y>
+        <y>330</y>
         <width>231</width>
         <height>21</height>
        </rect>
@@ -11335,7 +11335,7 @@ background-color: rgb(0, 0, 0); </string>
       <property name="geometry">
        <rect>
         <x>311</x>
-        <y>307</y>
+        <y>308</y>
         <width>52</width>
         <height>21</height>
        </rect>
@@ -11696,7 +11696,7 @@ background-color: rgb(0, 0, 0); </string>
       <property name="geometry">
        <rect>
         <x>394</x>
-        <y>307</y>
+        <y>308</y>
         <width>21</width>
         <height>21</height>
        </rect>
@@ -12146,7 +12146,7 @@ border: 0px rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>294</x>
-        <y>307</y>
+        <y>308</y>
         <width>12</width>
         <height>21</height>
        </rect>
@@ -12507,7 +12507,7 @@ border: 0px rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>368</x>
-        <y>307</y>
+        <y>308</y>
         <width>21</width>
         <height>21</height>
        </rect>
@@ -13315,7 +13315,7 @@ border: 0px rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>193</x>
-        <y>307</y>
+        <y>308</y>
         <width>40</width>
         <height>21</height>
        </rect>
@@ -13778,7 +13778,7 @@ border: 0px rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>237</x>
-        <y>307</y>
+        <y>308</y>
         <width>52</width>
         <height>21</height>
        </rect>
@@ -14139,7 +14139,7 @@ border: 0px rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>446</x>
-        <y>307</y>
+        <y>308</y>
         <width>21</width>
         <height>21</height>
        </rect>
@@ -14593,7 +14593,7 @@ border: none;</string>
       <property name="geometry">
        <rect>
         <x>420</x>
-        <y>307</y>
+        <y>308</y>
         <width>21</width>
         <height>21</height>
        </rect>

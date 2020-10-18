@@ -54,7 +54,6 @@ YerothPaiementsWindow::YerothPaiementsWindow()
 :YerothWindowsCommons("yeroth-erp-journal-paiements"),
  YerothAbstractClassYerothSearchWindow(_allWindows->PAIEMENTS),
  _logger(new YerothLogger("YerothPaiementsWindow")),
- _aProcess(0),
  _currentTabView(0),
  _pushButton_paiements_filtrer_font(0),
  _paiementsDateFilter(YerothUtils::EMPTY_STRING),
@@ -68,6 +67,8 @@ YerothPaiementsWindow::YerothPaiementsWindow()
 
     mySetupUi(this);
 
+    MACRO_TO_DEFINE_CURRENT_VIEW_WINDOW_FOR_TABLE_PAGINATION(tableView_paiements);
+
     _yerothTableView_FROM_WINDOWS_COMMONS = tableView_paiements;
 
     QMESSAGE_BOX_STYLE_SHEET =
@@ -80,11 +81,7 @@ YerothPaiementsWindow::YerothPaiementsWindow()
     _lineEditsToANDContentForSearch.insert(&lineEdit_paiements_terme_recherche,
     		YerothUtils::EMPTY_STRING);
 
-    _lineEditsToANDContentForSearch.insert(&lineEdit_paiements_reference,
-    		YerothDatabaseTableColumn::REFERENCE);
-
-    _lineEditsToANDContentForSearch.insert(&lineEdit_paiements_nom_entreprise,
-    		YerothDatabaseTableColumn::NOM_ENTREPRISE);
+    _yeroth_WINDOW_references_dbColumnString.insert(YerothDatabaseTableColumn::REFERENCE);
 
     _comboBoxesToANDContentForSearch.insert(&comboBox_paiements_intitule_du_compte_bancaire,
     		YerothDatabaseTableColumn::INTITULE_DU_COMPTE_BANCAIRE);
@@ -92,6 +89,7 @@ YerothPaiementsWindow::YerothPaiementsWindow()
     _comboBoxesToANDContentForSearch.insert(&comboBox_paiements_type_de_paiement,
     		YerothDatabaseTableColumn::TYPE_DE_PAIEMENT);
 
+    YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(_allWindows->PAIEMENTS);
 
     reinitialiser_champs_db_visibles();
 
@@ -108,6 +106,8 @@ YerothPaiementsWindow::YerothPaiementsWindow()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
+
+    MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS
 
     _pushButton_paiements_filtrer_font = new QFont(pushButton_paiements_filtrer->font());
 
@@ -154,6 +154,14 @@ YerothPaiementsWindow::YerothPaiementsWindow()
 			SLOT(handleComboBoxClients_Typedepaiement_TextChanged(const QString &)));
 
     setupShortcuts();
+}
+
+
+YerothPaiementsWindow::~YerothPaiementsWindow()
+{
+	MACRO_TO_DELETE_PAGINATION_INTEGER_VALIDATOR
+
+	delete _logger;
 }
 
 
@@ -245,6 +253,32 @@ void YerothPaiementsWindow::populateComboBoxes()
 
 	QStringList aQStringList;
 
+	aQStringList.append(_varchar_dbtable_column_list.values());
+
+	aQStringList.removeAll(YerothDatabaseTableColumn::NOTES);
+	aQStringList.removeAll(YerothDatabaseTableColumn::INTITULE_DU_COMPTE_BANCAIRE);
+	aQStringList.removeAll(YerothDatabaseTableColumn::NOM_CAISSIER);
+
+//	qDebug() << "++ test: " << aQStringList;
+
+	QString aDBColumnElementString;
+
+	for (int k = 0; k < aQStringList.size(); ++k)
+	{
+		aDBColumnElementString = aQStringList.at(k);
+
+		if (!YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::REFERENCE, aDBColumnElementString))
+		{
+			comboBox_element_string_db
+				->addItem(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(aDBColumnElementString));
+		}
+	}
+
+	comboBox_element_string_db
+		->insertItem(0, YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::REFERENCE));
+
+	comboBox_element_string_db->setCurrentIndex(0);
+
 	aQStringList.append(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(YerothDatabaseTableColumn::MONTANT_PAYE));
 
 	aQStringList.append(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(YerothDatabaseTableColumn::COMPTE_CLIENT));
@@ -284,12 +318,13 @@ void YerothPaiementsWindow::updateComboBoxes()
 void YerothPaiementsWindow::setupLineEdits()
 {
     lineEdit_paiements_terme_recherche->enableForSearch(QObject::trUtf8("terme à rechercher (référence reçu de paiement client, notes)"));
-    lineEdit_paiements_reference->enableForSearch(QObject::trUtf8("référence"));
-    lineEdit_paiements_nom_entreprise->enableForSearch(QObject::tr("nom de l'entreprise"));
 
+    lineEdit_nom_element_string_db->enableForSearch(QObject::trUtf8("valeur à rechercher"));
 
     lineEdit_paiements_nombre_paiements->setYerothEnabled(false);
 	lineEdit_paiements_total->setYerothEnabled(false);
+
+	MACRO_TO_BIND_PAGING_WITH_QLINEEDIT(lineEdit_paiements_nombre_de_lignes_par_page, tableView_paiements);
 
     lineEdit_details_de_paiement_reference_recu_paiement_client->setYerothEnabled(false);
     lineEdit_details_de_paiement_nom_de_lentreprise->setYerothEnabled(false);
@@ -386,6 +421,10 @@ void YerothPaiementsWindow::textChangedSearchLineEditsQCompleters()
         	}
         }
     }
+
+
+    YerothWindowsCommons::setYerothLineEditQCompleterSearchFilter(_searchFilter);
+
 
     QString correspondingDBFieldKeyValue;
 
@@ -582,6 +621,8 @@ void YerothPaiementsWindow::definirCaissier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
+    MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(tableView_paiements);
+
     pushButton_paiements_filtrer->disable(this);
     pushButton_paiements_reinitialiser_filtre->disable(this);
 }
@@ -603,6 +644,8 @@ void YerothPaiementsWindow::definirManager()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionReinitialiserRecherche, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
+
+    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(this, _curPaiementsTableModel)
 
     pushButton_paiements_filtrer->enable(this, SLOT(filtrer_paiements()));
     pushButton_paiements_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
@@ -626,6 +669,8 @@ void YerothPaiementsWindow::definirVendeur()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
+    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(this, _curPaiementsTableModel)
+
     pushButton_paiements_filtrer->enable(this, SLOT(filtrer_paiements()));
     pushButton_paiements_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
 }
@@ -648,6 +693,8 @@ void YerothPaiementsWindow::definirGestionaireDesStocks()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
+    MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(tableView_paiements);
+
     pushButton_paiements_filtrer->disable(this);
     pushButton_paiements_reinitialiser_filtre->disable(this);
 }
@@ -664,6 +711,8 @@ void YerothPaiementsWindow::definirMagasinier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
+
+    MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(tableView_paiements);
 
     pushButton_paiements_filtrer->disable(this);
     pushButton_paiements_reinitialiser_filtre->disable(this);
@@ -682,20 +731,10 @@ void YerothPaiementsWindow::definirPasDeRole()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
+    MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(tableView_paiements);
+
     pushButton_paiements_filtrer->disable(this);
     pushButton_paiements_reinitialiser_filtre->disable(this);
-}
-
-
-void YerothPaiementsWindow::readProcessData()
-{
-    _logger->log("readProcessData");
-
-    if (!_aProcess)
-    {
-        return;
-    }
-    //qDebug() << "\t==>" << _aProcess->readAllStandardOutput();
 }
 
 
@@ -784,7 +823,7 @@ void YerothPaiementsWindow::handleCurrentChanged(int index)
 
 void YerothPaiementsWindow::lister_les_elements_du_tableau(YerothSqlTableModel &historiquePaiementsTableModel)
 {
-    tableView_paiements->lister_les_elements_du_tableau(historiquePaiementsTableModel);
+    tableView_paiements->queryYerothTableViewCurrentPageContentRow(historiquePaiementsTableModel);
 
     int curPaiementsTableModelRowCount = _curPaiementsTableModel->easySelect();
 
@@ -840,9 +879,6 @@ void YerothPaiementsWindow::rendreVisible(YerothSqlTableModel * stocksTableModel
     setupLineEditsQCompleters((QObject *)this);
 
     tabWidget_historique_paiements->setCurrentIndex(TableauDesPaiements);
-
-    lineEdit_paiements_nom_entreprise->setYerothEnabled(true);
-    lineEdit_paiements_reference->setYerothEnabled(true);
 
     setVisible(true);
 
@@ -904,6 +940,8 @@ void YerothPaiementsWindow::reinitialiser_elements_filtrage()
 void YerothPaiementsWindow::reinitialiser_recherche()
 {
     lineEdit_paiements_element_de_paiements_resultat->clear();
+
+    lineEdit_nom_element_string_db->clear();
 
     setCurrentlyFiltered(false);
 

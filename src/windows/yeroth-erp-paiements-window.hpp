@@ -45,10 +45,7 @@ public:
 
 	YerothPaiementsWindow();
 
-	inline ~YerothPaiementsWindow()
-	{
-		delete _logger;
-	}
+	~YerothPaiementsWindow();
 
 	inline virtual QToolBar * getQMainWindowToolBar()
 	{
@@ -74,25 +71,14 @@ public:
     	lister_les_elements_du_tableau(*_curPaiementsTableModel);
     }
 
+    MACRO_TO_DEFINE_VIEWING_PAGE_NUMBER_FOR_TABLEVIEW(label_paiements_numero_page_derniere,
+    												  label_paiements_numero_page_courante)
+
     virtual void rendreVisible(YerothSqlTableModel *stocksTableModel);
 
 public slots:
 
-	virtual void viewYerothTableViewFirstPage(YerothSqlTableModel &curYerothSqlTableModel_IN)
-    {
-    }
-
-    virtual void viewYerothTableViewLastPage(YerothSqlTableModel &curYerothSqlTableModel_IN)
-    {
-    }
-
-    virtual void viewYerothTableViewPreviousPage(YerothSqlTableModel &curYerothSqlTableModel_IN)
-    {
-    }
-
-    virtual void viewYerothTableViewNextPage(YerothSqlTableModel &curYerothSqlTableModel_IN)
-    {
-    }
+	MACRO_TO_DEFINE_VIEWING_POINTERS_PAGE_SLOTS(tableView_paiements)
 
     inline virtual void apropos()
     {
@@ -115,8 +101,6 @@ public slots:
 								   	     " tout en bas de l'interface graphique"
 								 	 	 " (exemple: numéro du bon de paiement, etc.) !"));
 	}
-
-	void readProcessData();
 
 	inline void disableImprimer()
 	{
@@ -194,8 +178,6 @@ private:
 
 
     YerothLogger			*_logger;
-
-    QProcess 				*_aProcess;
 
     int 				 	_currentTabView;
 
