@@ -43,14 +43,27 @@ void YerothPOSQStandardItemModel::yerothPOSClear()
 
 void YerothPOSQStandardItemModel::sort(int column, Qt::SortOrder order /*= Qt::AscendingOrder*/)
 {
-	if (0 != _curSqlTableModel)
+	if (0 == _curSqlTableModel)
 	{
-		//qDebug() << "++ YerothPOSQStandardItemModel::sort not null";
-		_curSqlTableModel->yerothSetSort(column, order);
+		return ;
+	}
 
-		if (0 != _curTableView)
-		{
-			_curTableView->lister_les_elements_du_tableau(*_curSqlTableModel);
-		}
+	//qDebug() << "++ YerothPOSQStandardItemModel::sort not null";
+	_curSqlTableModel->yerothSetSort(column, order);
+
+	if (0 == _curTableView)
+	{
+		return ;
+	}
+
+	if (YerothUtils::instanceOf__YerothTableViewWITHpagination(_curTableView))
+	{
+		((YerothTableViewWITHpagination*)_curTableView)
+							->queryYerothTableViewCurrentPageContentRow(*_curSqlTableModel);
+	}
+	else
+	{
+		_curTableView->lister_les_elements_du_tableau(*_curSqlTableModel);
 	}
 }
+

@@ -36,8 +36,10 @@
 
 #include <QtSql/QSqlTableModel>
 
+
 class YerothLogger;
 
+class YerothTableViewWITHpagination;
 class YerothDatabase;
 class YerothComboBox;
 class YerothQMessageBox;
@@ -83,6 +85,9 @@ public:
 	YerothUtils();
 
 	inline ~YerothUtils(){}
+
+	template<class aTableViewClassType>
+	static bool instanceOf__YerothTableViewWITHpagination(aTableViewClassType *aTableView);
 
 	static bool creerNouvelleCategorie(const QString 		&proposedCategorieName,
 									   YerothWindowsCommons *_callingWindow = 0);
@@ -787,6 +792,24 @@ private:
 	static QString 			_mainWorkingDirectory;
 	static QString 			_logFileName;
 };
+
+
+template<class aTableViewClassType>
+bool YerothUtils::instanceOf__YerothTableViewWITHpagination(aTableViewClassType *aTableView)
+{
+	bool result = false;
+
+	YerothTableViewWITHpagination* aType =
+			dynamic_cast<YerothTableViewWITHpagination *>(aTableView);
+
+	 if (0 != aType)
+	 {
+		 result = true;
+	 }
+
+	return result;
+}
+
 
 /**
  * Macros to facilitate the use of YerothUtils static methods
