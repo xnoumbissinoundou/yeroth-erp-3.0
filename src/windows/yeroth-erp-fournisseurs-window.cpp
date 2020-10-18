@@ -583,9 +583,9 @@ void YerothERPFournisseursWindow::populateFournisseursComboBoxes()
 
 	aQStringList.clear();
 
-	aQStringList.append(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(YerothDatabaseTableColumn::COMPTE_CLIENT));
+	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::COMPTE_CLIENT));
 
-	aQStringList.append(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT));
+	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT));
 
     comboBox_element->addItems(aQStringList);
 

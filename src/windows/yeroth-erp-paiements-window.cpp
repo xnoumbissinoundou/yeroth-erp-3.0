@@ -257,7 +257,6 @@ void YerothPaiementsWindow::populateComboBoxes()
 
 	aQStringList.removeAll(YerothDatabaseTableColumn::NOTES);
 	aQStringList.removeAll(YerothDatabaseTableColumn::INTITULE_DU_COMPTE_BANCAIRE);
-	aQStringList.removeAll(YerothDatabaseTableColumn::NOM_CAISSIER);
 
 //	qDebug() << "++ test: " << aQStringList;
 
@@ -279,9 +278,11 @@ void YerothPaiementsWindow::populateComboBoxes()
 
 	comboBox_element_string_db->setCurrentIndex(0);
 
-	aQStringList.append(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(YerothDatabaseTableColumn::MONTANT_PAYE));
+	aQStringList.clear();
 
-	aQStringList.append(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(YerothDatabaseTableColumn::COMPTE_CLIENT));
+	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::MONTANT_PAYE));
+
+	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::COMPTE_CLIENT));
 
 	comboBox_paiements_element_de_paiements->addItems(aQStringList);
 

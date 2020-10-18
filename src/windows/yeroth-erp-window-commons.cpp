@@ -558,7 +558,7 @@ void YerothWindowsCommons::selectionner_champs_db_visibles()
 									  200,
 									  25));
 
-		aQCheckBox->setText(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(dbFieldName));
+		aQCheckBox->setText(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(dbFieldName));
 
 		if (_visibleDBFieldColumnStrList.contains(dbFieldName))
 		{

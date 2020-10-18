@@ -970,6 +970,7 @@ void YerothVentesWindow::populateComboBoxes()
 	aQStringList.removeAll(YerothDatabaseTableColumn::DATE_PEREMPTION);
 	aQStringList.removeAll(YerothDatabaseTableColumn::HISTORIQUE_STOCK);
 	aQStringList.removeAll(YerothDatabaseTableColumn::LOCALISATION);
+	aQStringList.removeAll(YerothDatabaseTableColumn::NOM_UTILISATEUR_CAISSIER);
 	aQStringList.removeAll(YerothDatabaseTableColumn::NOM_CAISSIER);
 
 //	qDebug() << "++ test: " << aQStringList;
@@ -995,15 +996,17 @@ void YerothVentesWindow::populateComboBoxes()
 
 	aQStringList.clear();
 
-	aQStringList.append(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(YerothDatabaseTableColumn::MONTANT_A_REMBOURSER));
+	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::MARGE_BENEFICIAIRE));
 
-	aQStringList.append(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE));
+	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::QUANTITE_VENDUE));
 
-	aQStringList.append(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(YerothDatabaseTableColumn::PRIX_UNITAIRE));
+	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::PRIX_VENTE));
 
-	aQStringList.append(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(YerothDatabaseTableColumn::QUANTITE_VENDUE));
+	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE));
 
-	aQStringList.append(YerothDatabaseTableColumn::_tableColumnToUserViewString.value(YerothDatabaseTableColumn::MONTANT_TVA));
+	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::PRIX_UNITAIRE));
+
+	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::MONTANT_TVA));
 
 	comboBox_ventes_element_de_vente->addItems(aQStringList);
 

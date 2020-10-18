@@ -1469,7 +1469,7 @@ void YerothUtils::createTableModelHeaders(QSqlTableModel 		&tableModel,
 
         tableModelRawHeaders_IN_OUT.append(strHdr);
 
-        strHdr = YerothDatabaseTableColumn::_tableColumnToUserViewString.value(strHdr);
+        strHdr = YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(strHdr);
 
         tableModelHeaders.append(strHdr);
 
