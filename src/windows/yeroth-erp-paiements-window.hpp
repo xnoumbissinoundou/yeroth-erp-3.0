@@ -78,10 +78,26 @@ public:
 
 public slots:
 
-	inline virtual void apropos()
-	{
-		YerothWindowsCommons::apropos(this);
-	}
+	virtual void viewYerothTableViewFirstPage(YerothSqlTableModel &curYerothSqlTableModel_IN)
+    {
+    }
+
+    virtual void viewYerothTableViewLastPage(YerothSqlTableModel &curYerothSqlTableModel_IN)
+    {
+    }
+
+    virtual void viewYerothTableViewPreviousPage(YerothSqlTableModel &curYerothSqlTableModel_IN)
+    {
+    }
+
+    virtual void viewYerothTableViewNextPage(YerothSqlTableModel &curYerothSqlTableModel_IN)
+    {
+    }
+
+    inline virtual void apropos()
+    {
+    	YerothWindowsCommons::apropos(this);
+    }
 
 	inline virtual void help()
 	{
