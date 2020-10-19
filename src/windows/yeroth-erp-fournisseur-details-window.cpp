@@ -474,11 +474,11 @@ void YerothFournisseurDetailsWindow::rendreInvisible()
 }
 
 
-void YerothFournisseurDetailsWindow::rendreVisible(int lastSelectedRow,
+void YerothFournisseurDetailsWindow::rendreVisible(int lastSelectedRow__ID,
 											  YerothSqlTableModel * fournisseurTableModel,
 											  YerothSqlTableModel * stocksTableModel)
 {
-	_fournisseurLastSelectedRow = lastSelectedRow;
+	_fournisseurLastSelectedRow = lastSelectedRow__ID;
 
 	_curStocksTableModel = stocksTableModel;
 
@@ -488,13 +488,13 @@ void YerothFournisseurDetailsWindow::rendreVisible(int lastSelectedRow,
 
 	setVisible(true);
 
-    showFournisseurDetail(lastSelectedRow);
+    showFournisseurDetail(lastSelectedRow__ID);
 }
 
 
-void YerothFournisseurDetailsWindow::showFournisseurDetail(int lastSelectedRow)
+void YerothFournisseurDetailsWindow::showFournisseurDetail(int lastSelectedRow__ID)
 {
-	QSqlRecord record = _curFournisseurTableModel->record(lastSelectedRow);
+	QSqlRecord record = _curFournisseurTableModel->record(lastSelectedRow__ID);
 
 	lineEdit_fournisseur_details_reference_fournisseur->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE_FOURNISSEUR));
 

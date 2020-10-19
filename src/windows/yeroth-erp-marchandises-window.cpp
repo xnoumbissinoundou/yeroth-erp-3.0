@@ -39,7 +39,7 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
  _valeurTheoriqueDinventaire(0.0),
  _qteTotaleDarticlesEnStock(0.0),
  _currentlyFiltered(false),
- _lastSelectedRow(0),
+ _lastSelectedRow__ID(0),
  _pushButton_filtrer_font(0),
  _curMarchandisesTableModel(&_allWindows->getSqlTableModel_marchandises())
 {
@@ -247,13 +247,13 @@ double YerothMarchandisesWindow::getQuantiteTotaleEnStock(const QModelIndex &aQM
 {
 	double qteTotalEnStock = 0.0;
 
-	_lastSelectedRow = aQModelIndex.row();
+	_lastSelectedRow__ID = aQModelIndex.row();
 
-	if (_lastSelectedRow > -1)
+	if (_lastSelectedRow__ID > -1)
 	{
-		QString designation(YerothUtils::get_text(aQModelIndex.sibling(_lastSelectedRow, 2).data()));
+		QString designation(YerothUtils::get_text(aQModelIndex.sibling(_lastSelectedRow__ID, 2).data()));
 
-		QString categorie(YerothUtils::get_text(aQModelIndex.sibling(_lastSelectedRow, 3).data()));
+		QString categorie(YerothUtils::get_text(aQModelIndex.sibling(_lastSelectedRow__ID, 3).data()));
 
 		qteTotalEnStock = YerothMarchandisesWindow::getQuantiteTotaleEnStock(categorie, designation);
 	}
@@ -1014,7 +1014,7 @@ void YerothMarchandisesWindow::modifier_marchandise()
 
 void YerothMarchandisesWindow::supprimer_cette_marchandise()
 {
-    unsigned rowToRemove = tableView_marchandises->lastSelectedRow();
+    unsigned rowToRemove = tableView_marchandises->lastSelectedRow__ID();
 
     QSqlRecord record = _curMarchandisesTableModel->record(rowToRemove);
 

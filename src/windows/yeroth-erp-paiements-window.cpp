@@ -896,7 +896,7 @@ void YerothPaiementsWindow::afficher_paiements_detail()
 		return ;
 	}
 
-    int lastSelectedPaiementsRow = tableView_paiements->lastSelectedRow();
+    int lastSelectedPaiementsRow = tableView_paiements->lastSelectedRow__ID();
 
     QSqlRecord record = _curPaiementsTableModel->record(lastSelectedPaiementsRow);
 

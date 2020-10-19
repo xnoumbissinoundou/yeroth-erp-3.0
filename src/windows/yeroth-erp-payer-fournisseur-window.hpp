@@ -90,7 +90,7 @@ public:
 
     void updateLineEdits();
 
-    void rendreVisible(int lastSelectedRow,
+    void rendreVisible(int lastSelectedRow__ID,
     				   YerothSqlTableModel *fournisseurTableModel,
 					   YerothSqlTableModel *stocksTableModel);
 

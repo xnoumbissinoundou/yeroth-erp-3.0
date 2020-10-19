@@ -474,11 +474,11 @@ void YerothClientsDetailWindow::rendreInvisible()
 }
 
 
-void YerothClientsDetailWindow::rendreVisible(int lastSelectedRow,
+void YerothClientsDetailWindow::rendreVisible(int lastSelectedRow__ID,
 											  YerothSqlTableModel * clientTableModel,
 											  YerothSqlTableModel * stocksTableModel)
 {
-	_clientLastSelectedRow = lastSelectedRow;
+	_clientLastSelectedRow = lastSelectedRow__ID;
 
 	_curStocksTableModel = stocksTableModel;
 
@@ -488,13 +488,13 @@ void YerothClientsDetailWindow::rendreVisible(int lastSelectedRow,
 
 	setVisible(true);
 
-    showClientDetail(lastSelectedRow);
+    showClientDetail(lastSelectedRow__ID);
 }
 
 
-void YerothClientsDetailWindow::showClientDetail(int lastSelectedRow)
+void YerothClientsDetailWindow::showClientDetail(int lastSelectedRow__ID)
 {
-	QSqlRecord record = _curClientTableModel->record(lastSelectedRow);
+	QSqlRecord record = _curClientTableModel->record(lastSelectedRow__ID);
 
 	lineEdit_clients_details_reference_client->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE_CLIENT));
 

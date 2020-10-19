@@ -83,9 +83,9 @@ public slots:
 
 	virtual bool imprimer_pdf_document();
 
-    inline int getLastListerSelectedRow()
+    inline int getLastListerSelectedRow__ID()
     {
-    	return tableView_clients->lastSelectedRow();
+    	return tableView_clients->lastSelectedRow__ID();
     }
 
     inline void setLastListerSelectedRow(int row)

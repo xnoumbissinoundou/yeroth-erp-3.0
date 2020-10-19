@@ -754,11 +754,11 @@ void YerothPayerCompteClientWindow::updateLineEdits()
 }
 
 
-void YerothPayerCompteClientWindow::rendreVisible(int lastSelectedRow,
+void YerothPayerCompteClientWindow::rendreVisible(int lastSelectedRow__ID,
 		   	   	   	   	   	   	   	   	   	      YerothSqlTableModel *clientTableModel,
 												  YerothSqlTableModel *stocksTableModel)
 {
-	_clientLastSelectedRow = lastSelectedRow;
+	_clientLastSelectedRow = lastSelectedRow__ID;
 
 	_curClientTableModel = clientTableModel;
 

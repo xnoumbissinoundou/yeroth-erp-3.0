@@ -110,9 +110,9 @@ public slots:
 
     void reinitialiser_recherche();
 
-    inline int getLastListerSelectedRow()
+    inline int getLastListerSelectedRow__ID()
     {
-    	return tableView_marchandises->lastSelectedRow();
+    	return tableView_marchandises->lastSelectedRow__ID();
     }
 
     inline void setLastListerSelectedRow(int row)
@@ -176,7 +176,7 @@ private:
 
     bool					_currentlyFiltered;
 
-    int 					_lastSelectedRow;
+    int 					_lastSelectedRow__ID;
 
     QFont 					*_pushButton_filtrer_font;
 

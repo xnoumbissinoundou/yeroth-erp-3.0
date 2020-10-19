@@ -313,7 +313,7 @@ void YerothAlertesWindow::lister_alertes()
 
     tabWidget_alertes->setCurrentIndex(TableauDesAlertes);
 
-    tableView_lister_alertes->selectRow(getLastListerSelectedRow());
+    tableView_lister_alertes->selectRow(getLastListerSelectedRow__ID());
 
     if (courrierAlertesSqlTableModel.rowCount() <= 0)
     {
@@ -338,9 +338,9 @@ void YerothAlertesWindow::afficher_au_detail()
     }
 
     if (courrierAlertesSqlTableModel.select()
-            && courrierAlertesSqlTableModel.rowCount() > getLastListerSelectedRow())
+            && courrierAlertesSqlTableModel.rowCount() > getLastListerSelectedRow__ID())
     {
-        QSqlRecord record = courrierAlertesSqlTableModel.record(getLastListerSelectedRow());
+        QSqlRecord record = courrierAlertesSqlTableModel.record(getLastListerSelectedRow__ID());
 
         lineEdit_alertes_nom->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION_ALERTE));
 
@@ -403,7 +403,7 @@ void YerothAlertesWindow::marquer_resolue()
     QString userFilter(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::DESTINATAIRE,
     										_allWindows->getUser()->nom_utilisateur()));
 
-    QSqlRecord courriersAlertesRecord = courrierAlertesSqlTableModel.record(getLastListerSelectedRow());
+    QSqlRecord courriersAlertesRecord = courrierAlertesSqlTableModel.record(getLastListerSelectedRow__ID());
 
     QString id_alerte = GET_SQL_RECORD_DATA(courriersAlertesRecord, YerothDatabaseTableColumn::ID_ALERTE);
 
@@ -442,7 +442,7 @@ void YerothAlertesWindow::marquer_resolue()
         courriersAlertesRecord.setValue(YerothDatabaseTableColumn::ALERTE_RESOLUE, 1);
 
         bool successCourriersAlertes =
-            courrierAlertesSqlTableModel.updateRecord(getLastListerSelectedRow(), courriersAlertesRecord);
+            courrierAlertesSqlTableModel.updateRecord(getLastListerSelectedRow__ID(), courriersAlertesRecord);
 
         if (alertes && successCourriersAlertes)
         {
@@ -487,7 +487,7 @@ void YerothAlertesWindow::supprimer()
 
     YerothSqlTableModel & courrierAlertesTableModel = _allWindows->getSqlTableModel_courriers_alertes();
 
-    unsigned rowToRemove = tableView_lister_alertes->lastSelectedRow();
+    unsigned rowToRemove = tableView_lister_alertes->lastSelectedRow__ID();
 
     QSqlRecord record = courrierAlertesTableModel.record(rowToRemove);
     QString designation_alerte(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION_ALERTE));

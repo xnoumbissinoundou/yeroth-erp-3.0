@@ -311,11 +311,11 @@ void YerothERPClientsWindow::textChangedSearchLineEditsQCompleters()
 
 void YerothERPClientsWindow::private_payer_au_compteclient()
 {
-    if (getLastListerSelectedRow() > -1 && _curClientsTableModel->rowCount() > 0)
+    if (getLastListerSelectedRow__ID() > -1 && _curClientsTableModel->rowCount() > 0)
     {
     	rendreInvisible();
 
-    	_allWindows->_payerAuCompteClientWindow->rendreVisible(getLastListerSelectedRow(),
+    	_allWindows->_payerAuCompteClientWindow->rendreVisible(getLastListerSelectedRow__ID(),
     														   _curClientsTableModel,
     														   _curStocksTableModel);
     }
@@ -331,13 +331,13 @@ void YerothERPClientsWindow::private_payer_au_compteclient(const QModelIndex & a
 {
     setLastListerSelectedRow(aModelIndex.row());
 
-    tableView_clients->selectRow(getLastListerSelectedRow());
+    tableView_clients->selectRow(getLastListerSelectedRow__ID());
 
-    if (getLastListerSelectedRow() > -1 && _curClientsTableModel->rowCount() > 0)
+    if (getLastListerSelectedRow__ID() > -1 && _curClientsTableModel->rowCount() > 0)
     {
     	rendreInvisible();
 
-    	_allWindows->_payerAuCompteClientWindow->rendreVisible(getLastListerSelectedRow(),
+    	_allWindows->_payerAuCompteClientWindow->rendreVisible(getLastListerSelectedRow__ID(),
     														   _curClientsTableModel,
     														   _curStocksTableModel);
     }
@@ -355,7 +355,7 @@ void YerothERPClientsWindow::modifierCompteClient()
     {
     	rendreInvisible();
 
-        _allWindows->_modifierCompteClientWindow->rendreVisible(tableView_clients->lastSelectedRow(),
+        _allWindows->_modifierCompteClientWindow->rendreVisible(tableView_clients->lastSelectedRow__ID(),
         														_curClientsTableModel,
 																_curStocksTableModel);
     }
@@ -369,7 +369,7 @@ void YerothERPClientsWindow::modifierCompteClient()
 
 void YerothERPClientsWindow::supprimerCompteClient()
 {
-	unsigned rowToRemove = tableView_clients->lastSelectedRow();
+	unsigned rowToRemove = tableView_clients->lastSelectedRow__ID();
 
     YerothSqlTableModel *clientsTableModel = 0;
 
@@ -437,12 +437,12 @@ void YerothERPClientsWindow::afficher_au_detail()
 {
     _logger->log("afficher_au_detail");
 
-    tableView_clients->selectRow(getLastListerSelectedRow());
+    tableView_clients->selectRow(getLastListerSelectedRow__ID());
 
-    if (getLastListerSelectedRow() > -1 && _curClientsTableModel->rowCount() > 0)
+    if (getLastListerSelectedRow__ID() > -1 && _curClientsTableModel->rowCount() > 0)
     {
     	//qDebug() << "++ test" << modelIndex.row();
-        _allWindows->_clientsDetailWindow->rendreVisible(getLastListerSelectedRow(),
+        _allWindows->_clientsDetailWindow->rendreVisible(getLastListerSelectedRow__ID(),
         												 _curClientsTableModel,
 														 _curStocksTableModel);
 
@@ -462,13 +462,13 @@ void YerothERPClientsWindow::afficher_au_detail(const QModelIndex & modelIndex)
 
     setLastListerSelectedRow(modelIndex.row());
 
-    tableView_clients->selectRow(getLastListerSelectedRow());
+    tableView_clients->selectRow(getLastListerSelectedRow__ID());
 
-    if (getLastListerSelectedRow() > -1 && _curClientsTableModel->rowCount() > 0)
+    if (getLastListerSelectedRow__ID() > -1 && _curClientsTableModel->rowCount() > 0)
     {
     	rendreInvisible();
 
-        _allWindows->_clientsDetailWindow->rendreVisible(getLastListerSelectedRow(),
+        _allWindows->_clientsDetailWindow->rendreVisible(getLastListerSelectedRow__ID(),
         												 _curClientsTableModel,
 														 _curStocksTableModel);
     }

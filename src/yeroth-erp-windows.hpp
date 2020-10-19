@@ -205,7 +205,7 @@ public:
 
 	inline int getLastSelectedListerRow()
 	{
-		return this->_stocksWindow->getLastListerSelectedRow();
+		return this->_stocksWindow->getLastListerSelectedRow__ID();
 	}
 
 	inline void setDesktopWidget(QDesktopWidget *desktopWidget)

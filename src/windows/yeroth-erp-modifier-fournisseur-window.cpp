@@ -587,11 +587,11 @@ void YerothModifierFournisseurWindow::rendreInvisible()
 }
 
 
-void YerothModifierFournisseurWindow::rendreVisible(int lastSelectedRow,
+void YerothModifierFournisseurWindow::rendreVisible(int lastSelectedRow__ID,
 											  	  	 YerothSqlTableModel * fournisseurTableModel,
 													 YerothSqlTableModel * stocksTableModel)
 {
-	_fournisseurLastSelectedRow = lastSelectedRow;
+	_fournisseurLastSelectedRow = lastSelectedRow__ID;
 
 	_curStocksTableModel = stocksTableModel;
 

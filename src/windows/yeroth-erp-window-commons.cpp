@@ -487,7 +487,7 @@ void YerothWindowsCommons::tableView_show_or_hide_columns(YerothTableView &table
     	}
     }
 
-    tableView_in_out.selectRow(tableView_in_out.lastSelectedRow());
+    tableView_in_out.selectRow(tableView_in_out.lastSelectedRow__ID());
 }
 
 

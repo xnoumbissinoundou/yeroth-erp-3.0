@@ -310,11 +310,11 @@ void YerothERPFournisseursWindow::textChangedSearchLineEditsQCompleters()
 
 void YerothERPFournisseursWindow::private_payer_au_fournisseur()
 {
-    if (getLastListerSelectedRow() > -1 && _curFournisseursTableModel->rowCount() > 0)
+    if (getLastListerSelectedRow__ID() > -1 && _curFournisseursTableModel->rowCount() > 0)
     {
     	rendreInvisible();
 
-    	_allWindows->_payerAuFournisseurWindow->rendreVisible(getLastListerSelectedRow(),
+    	_allWindows->_payerAuFournisseurWindow->rendreVisible(getLastListerSelectedRow__ID(),
     														   _curFournisseursTableModel,
     														   _curStocksTableModel);
     }
@@ -330,13 +330,13 @@ void YerothERPFournisseursWindow::private_payer_au_fournisseur(const QModelIndex
 {
     setLastListerSelectedRow(aModelIndex.row());
 
-    tableView_fournisseurs->selectRow(getLastListerSelectedRow());
+    tableView_fournisseurs->selectRow(getLastListerSelectedRow__ID());
 
-    if (getLastListerSelectedRow() > -1 && _curFournisseursTableModel->rowCount() > 0)
+    if (getLastListerSelectedRow__ID() > -1 && _curFournisseursTableModel->rowCount() > 0)
     {
     	rendreInvisible();
 
-    	_allWindows->_payerAuFournisseurWindow->rendreVisible(getLastListerSelectedRow(),
+    	_allWindows->_payerAuFournisseurWindow->rendreVisible(getLastListerSelectedRow__ID(),
     														   _curFournisseursTableModel,
     														   _curStocksTableModel);
     }
@@ -354,7 +354,7 @@ void YerothERPFournisseursWindow::modifierFournisseur()
     {
     	rendreInvisible();
 
-        _allWindows->_modifierFournisseurWindow->rendreVisible(tableView_fournisseurs->lastSelectedRow(),
+        _allWindows->_modifierFournisseurWindow->rendreVisible(tableView_fournisseurs->lastSelectedRow__ID(),
         														_curFournisseursTableModel,
 																_curStocksTableModel);
     }
@@ -368,7 +368,7 @@ void YerothERPFournisseursWindow::modifierFournisseur()
 
 void YerothERPFournisseursWindow::supprimerFournisseur()
 {
-	unsigned rowToRemove = tableView_fournisseurs->lastSelectedRow();
+	unsigned rowToRemove = tableView_fournisseurs->lastSelectedRow__ID();
 
     YerothSqlTableModel *fournisseursTableModel = 0;
 
@@ -436,12 +436,12 @@ void YerothERPFournisseursWindow::afficher_au_detail()
 {
     _logger->log("afficher_au_detail");
 
-    tableView_fournisseurs->selectRow(getLastListerSelectedRow());
+    tableView_fournisseurs->selectRow(getLastListerSelectedRow__ID());
 
-    if (getLastListerSelectedRow() > -1 && _curFournisseursTableModel->rowCount() > 0)
+    if (getLastListerSelectedRow__ID() > -1 && _curFournisseursTableModel->rowCount() > 0)
     {
     	//qDebug() << "++ test" << modelIndex.row();
-        _allWindows->_fournisseurDetailsWindow->rendreVisible(getLastListerSelectedRow(),
+        _allWindows->_fournisseurDetailsWindow->rendreVisible(getLastListerSelectedRow__ID(),
         												 	 _curFournisseursTableModel,
 															 _curStocksTableModel);
 
@@ -461,13 +461,13 @@ void YerothERPFournisseursWindow::afficher_au_detail(const QModelIndex & modelIn
 
     setLastListerSelectedRow(modelIndex.row());
 
-    tableView_fournisseurs->selectRow(getLastListerSelectedRow());
+    tableView_fournisseurs->selectRow(getLastListerSelectedRow__ID());
 
-    if (getLastListerSelectedRow() > -1 && _curFournisseursTableModel->rowCount() > 0)
+    if (getLastListerSelectedRow__ID() > -1 && _curFournisseursTableModel->rowCount() > 0)
     {
     	rendreInvisible();
 
-        _allWindows->_fournisseurDetailsWindow->rendreVisible(getLastListerSelectedRow(),
+        _allWindows->_fournisseurDetailsWindow->rendreVisible(getLastListerSelectedRow__ID(),
         												 	  _curFournisseursTableModel,
 															  _curStocksTableModel);
     }

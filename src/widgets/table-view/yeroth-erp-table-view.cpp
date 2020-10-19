@@ -55,7 +55,7 @@ YerothTableView::YerothTableView()
     :QTableView()
 {
     _writeEnabled = false;
-    _lastSelectedRow = 0;
+    _lastSelectedRow__ID = 0;
     _tableName = 0;
 
     _tableModelHeaders = new QStringList;
@@ -77,7 +77,7 @@ YerothTableView::YerothTableView(QWidget * parent)
     :QTableView(parent)
 {
     _writeEnabled = false;
-    _lastSelectedRow = 0;
+    _lastSelectedRow__ID = 0;
     _tableName = 0;
 
     _tableModelHeaders = new QStringList;
@@ -115,8 +115,8 @@ void YerothTableView::selectionChanged (const QItemSelection & selected,
     QModelIndexList selectedIndexes = selected.indexes();
     if (selectedIndexes.size() > 0)
     {
-        _lastSelectedRow = selectedIndexes.at(0).row();
-        //qDebug() << "selectRow: " << _lastSelectedRowForSell << "\n";
+        _lastSelectedRow__ID = selectedIndexes.at(0).row();
+        //qDebug() << "selectRow: " << _lastSelectedRow__IDForSell << "\n";
     }
 
     /*

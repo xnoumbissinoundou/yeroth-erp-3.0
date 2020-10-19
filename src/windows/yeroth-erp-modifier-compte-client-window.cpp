@@ -587,11 +587,11 @@ void YerothModifierCompteClientWindow::rendreInvisible()
 }
 
 
-void YerothModifierCompteClientWindow::rendreVisible(int lastSelectedRow,
+void YerothModifierCompteClientWindow::rendreVisible(int lastSelectedRow__ID,
 											  	  	 YerothSqlTableModel * clientTableModel,
 													 YerothSqlTableModel * stocksTableModel)
 {
-	_clientLastSelectedRow = lastSelectedRow;
+	_clientLastSelectedRow = lastSelectedRow__ID;
 
 	_curStocksTableModel = stocksTableModel;
 

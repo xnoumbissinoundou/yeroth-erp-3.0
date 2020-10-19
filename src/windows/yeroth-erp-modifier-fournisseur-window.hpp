@@ -51,7 +51,7 @@ public:
 
     virtual void rendreInvisible();
 
-    void rendreVisible(int lastSelectedRow,
+    void rendreVisible(int lastSelectedRow__ID,
     				   YerothSqlTableModel *fournisseurTableModel,
 					   YerothSqlTableModel *stocksTableModel);
 

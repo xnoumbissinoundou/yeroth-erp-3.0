@@ -54,7 +54,7 @@ public:
 
     void rendreInvisible();
 
-    void rendreVisible(int lastSelectedRow,
+    void rendreVisible(int lastSelectedRow__ID,
     				   YerothSqlTableModel *achatStocksTableModel,
 					   YerothSqlTableModel *stocksTableModel);
 
@@ -81,7 +81,7 @@ private:
 
     void setupLineEdits();
 
-    void showItem(int lastSelectedRow);
+    void showItem(int lastSelectedRow__ID);
 
     void checkCourrierAlerts();
 

@@ -245,11 +245,11 @@ void YerothAchatsDetailWindow::rendreInvisible()
 }
 
 
-void YerothAchatsDetailWindow::rendreVisible(int lastSelectedRow,
+void YerothAchatsDetailWindow::rendreVisible(int lastSelectedRow__ID,
 											 YerothSqlTableModel * stocksTableModel,
 											 YerothSqlTableModel * achatStocksTableModel)
 {
-	_achatLastSelectedRow = lastSelectedRow;
+	_achatLastSelectedRow = lastSelectedRow__ID;
 
 	_curStocksTableModel = stocksTableModel;
 
@@ -258,13 +258,13 @@ void YerothAchatsDetailWindow::rendreVisible(int lastSelectedRow,
     setVisible(true);
 
     //qDebug() << "++ last selected row: " << _allWindows->getLastSelectedListerRow();
-    showItem(lastSelectedRow);
+    showItem(lastSelectedRow__ID);
 }
 
 
-void YerothAchatsDetailWindow::showItem(int lastSelectedRow)
+void YerothAchatsDetailWindow::showItem(int lastSelectedRow__ID)
 {
-    QSqlRecord record = _curAchatStocksTableModel->record(lastSelectedRow);
+    QSqlRecord record = _curAchatStocksTableModel->record(lastSelectedRow__ID);
 
     lineEdit_reference_produit->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE));
     lineEdit_designation->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));

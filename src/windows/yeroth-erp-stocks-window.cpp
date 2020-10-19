@@ -189,14 +189,14 @@ void YerothStocksWindow::private_slot_afficher_historique_du_stock()
 {
 	//qDebug() << QString("YerothStocksWindow | private_slot_afficher_historique_du_stock");
 
-	int lastSelectedRow = getLastListerSelectedRow();
+	int lastSelectedRow__ID = getLastListerSelectedRow__ID();
 
-	//qDebug() << QString("lastSelectedRow: %1")
-	//				.arg(QString::number(lastSelectedRow));
+	//qDebug() << QString("lastSelectedRow__ID: %1")
+	//				.arg(QString::number(lastSelectedRow__ID));
 
-	if (0 != _curStocksTableModel && _curStocksTableModel->rowCount() > 0 && lastSelectedRow > -1)
+	if (0 != _curStocksTableModel && _curStocksTableModel->rowCount() > 0 && lastSelectedRow__ID > -1)
 	{
-	    QSqlRecord record = _curStocksTableModel->record(lastSelectedRow);
+	    QSqlRecord record = _curStocksTableModel->record(lastSelectedRow__ID);
 
 	    QString historiqueStockSelectionne(
 	    			GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::HISTORIQUE_STOCK));
@@ -908,7 +908,7 @@ void YerothStocksWindow::definirPasDeRole()
 
 void YerothStocksWindow::afficher_au_detail()
 {
-    if (getLastListerSelectedRow() > -1 && _curStocksTableModel->rowCount() > 0)
+    if (getLastListerSelectedRow__ID() > -1 && _curStocksTableModel->rowCount() > 0)
     {
         _allWindows->_detailWindow->rendreVisible(_curStocksTableModel);
         rendreInvisible();
@@ -925,9 +925,9 @@ void YerothStocksWindow::afficher_au_detail(const QModelIndex & modelIndex)
 {
     setLastListerSelectedRow(modelIndex.row());
 
-    tableView_stocks->selectRow(getLastListerSelectedRow());
+    tableView_stocks->selectRow(getLastListerSelectedRow__ID());
 
-    if (getLastListerSelectedRow() > -1 && _curStocksTableModel->rowCount() > 0)
+    if (getLastListerSelectedRow__ID() > -1 && _curStocksTableModel->rowCount() > 0)
     {
         _allWindows->_detailWindow->rendreVisible(_curStocksTableModel);
 
@@ -949,7 +949,7 @@ void YerothStocksWindow::supprimer_ce_stock()
 {
     _logger->log("supprimer_ce_stock");
 
-    unsigned rowToRemove = tableView_stocks->lastSelectedRow();
+    unsigned rowToRemove = tableView_stocks->lastSelectedRow__ID();
 
     QSqlRecord record = _curStocksTableModel->record(rowToRemove);
 
@@ -1054,7 +1054,7 @@ void YerothStocksWindow::reinitialiser_recherche()
 
 void YerothStocksWindow::entrer()
 {
-    if (getLastListerSelectedRow() > -1 && _curStocksTableModel->rowCount() > 0)
+    if (getLastListerSelectedRow__ID() > -1 && _curStocksTableModel->rowCount() > 0)
     {
         _allWindows->_entrerWindow->rendreVisible(_curStocksTableModel, true);
         rendreInvisible();

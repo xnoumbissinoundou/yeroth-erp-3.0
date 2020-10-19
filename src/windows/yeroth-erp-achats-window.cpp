@@ -646,9 +646,9 @@ void YerothAchatsWindow::afficher_au_detail()
 {
     _logger->log("afficher_au_detail");
 
-    if (getLastListerSelectedRow() > -1 && _curAchatSqlTableModel->rowCount() > 0)
+    if (getLastListerSelectedRow__ID() > -1 && _curAchatSqlTableModel->rowCount() > 0)
     {
-        _allWindows->_achatsDetailWindow->rendreVisible(getLastListerSelectedRow(),
+        _allWindows->_achatsDetailWindow->rendreVisible(getLastListerSelectedRow__ID(),
         												_curStocksTableModel,
 														_curAchatSqlTableModel);
         rendreInvisible();
@@ -667,12 +667,12 @@ void YerothAchatsWindow::afficher_au_detail(const QModelIndex & modelIndex)
 
     setLastListerSelectedRow(modelIndex.row());
 
-    tableView_achats->selectRow(getLastListerSelectedRow());
+    tableView_achats->selectRow(getLastListerSelectedRow__ID());
 
-    if (getLastListerSelectedRow() > -1 && _curAchatSqlTableModel->rowCount() > 0)
+    if (getLastListerSelectedRow__ID() > -1 && _curAchatSqlTableModel->rowCount() > 0)
     {
     	//qDebug() << "++ test" << modelIndex.row();
-        _allWindows->_achatsDetailWindow->rendreVisible(getLastListerSelectedRow(),
+        _allWindows->_achatsDetailWindow->rendreVisible(getLastListerSelectedRow__ID(),
         												_curStocksTableModel,
 														_curAchatSqlTableModel);
 

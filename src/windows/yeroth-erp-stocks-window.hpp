@@ -107,9 +107,9 @@ public slots:
 
     void set_filtrer_font();
 
-    inline int getLastListerSelectedRow()
+    inline int getLastListerSelectedRow__ID()
     {
-    	return tableView_stocks->lastSelectedRow();
+    	return tableView_stocks->lastSelectedRow__ID();
     }
 
     inline void setLastListerSelectedRow(int row)

@@ -115,14 +115,14 @@ public:
 		_tableName = tableName;
 	}
 
-	inline int lastSelectedRow()
+	inline int lastSelectedRow__ID()
 	{
-		return _lastSelectedRow;
+		return _lastSelectedRow__ID;
 	}
 
 	inline void setLastSelectedRow(int row)
 	{
-		_lastSelectedRow = row;
+		_lastSelectedRow__ID = row;
 	}
 
 	inline YerothPOSQStandardItemModel *getStandardItemModel()
@@ -160,7 +160,7 @@ protected:
 
 	bool 						_writeEnabled;
 
-	int 						_lastSelectedRow;
+	int 						_lastSelectedRow__ID;
 
 	const QString 				*_tableName;
 

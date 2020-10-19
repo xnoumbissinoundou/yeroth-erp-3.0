@@ -248,7 +248,7 @@ bool YerothVentesWindow::annuler_cette_vente()
 		return false;
 	}
 
-    int lastSelectedVentesRow = tableView_ventes->lastSelectedRow();
+    int lastSelectedVentesRow = tableView_ventes->lastSelectedRow__ID();
 
     YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
 
@@ -1849,7 +1849,7 @@ bool YerothVentesWindow::afficher_retour_vente()
 		return false;
 	}
 
-    int lastSelectedVentesRow = tableView_ventes->lastSelectedRow();
+    int lastSelectedVentesRow = tableView_ventes->lastSelectedRow__ID();
 
     //_logger->log("afficher_vente_detail]", QString("row: %1").arg(lastSelectedVentesRow));
     QSqlRecord record = _curStocksVenduTableModel->record(lastSelectedVentesRow);
@@ -1937,7 +1937,7 @@ bool YerothVentesWindow::afficher_vente_detail()
 		return false;
 	}
 
-    int lastSelectedVentesRow = tableView_ventes->lastSelectedRow();
+    int lastSelectedVentesRow = tableView_ventes->lastSelectedRow__ID();
 
     //_logger->log("afficher_vente_detail]", QString("row: %1").arg(lastSelectedVentesRow));
     QSqlRecord record = _curStocksVenduTableModel->record(lastSelectedVentesRow);

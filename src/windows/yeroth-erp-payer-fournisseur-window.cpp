@@ -755,11 +755,11 @@ void YerothPayerFournisseurWindow::updateLineEdits()
 }
 
 
-void YerothPayerFournisseurWindow::rendreVisible(int lastSelectedRow,
+void YerothPayerFournisseurWindow::rendreVisible(int lastSelectedRow__ID,
 		   	   	   	   	   	   	   	   	   	      YerothSqlTableModel *fournisseurTableModel,
 												  YerothSqlTableModel *stocksTableModel)
 {
-	_fournisseurLastSelectedRow = lastSelectedRow;
+	_fournisseurLastSelectedRow = lastSelectedRow__ID;
 
 	_curFournisseurTableModel = fournisseurTableModel;
 
