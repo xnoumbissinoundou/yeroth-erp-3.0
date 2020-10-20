@@ -298,7 +298,7 @@ void YerothERPClientsWindow::textChangedSearchLineEditsQCompleters()
 
     if (_yerothSqlTableModel->select())
     {
-    	setLastListerSelectedRow(0);
+    	setLastListerSelectedRow__ID(0);
     	afficherClients(*_yerothSqlTableModel);
     }
     else
@@ -329,7 +329,7 @@ void YerothERPClientsWindow::private_payer_au_compteclient()
 
 void YerothERPClientsWindow::private_payer_au_compteclient(const QModelIndex & aModelIndex)
 {
-    setLastListerSelectedRow(aModelIndex.row());
+    setLastListerSelectedRow__ID(aModelIndex.row());
 
     tableView_clients->selectRow(getLastListerSelectedRow__ID());
 
@@ -460,7 +460,7 @@ void YerothERPClientsWindow::afficher_au_detail(const QModelIndex & modelIndex)
 {
     _logger->log("afficher_au_detail(const QModelIndex &)");
 
-    setLastListerSelectedRow(modelIndex.row());
+    setLastListerSelectedRow__ID(modelIndex.row());
 
     tableView_clients->selectRow(getLastListerSelectedRow__ID());
 
@@ -854,7 +854,7 @@ void YerothERPClientsWindow::afficher_nom_entreprise_selectioner(const QString &
 {
     _logger->log("afficher_nom_entreprise_selectioner(const QString &)");
 
-    setLastListerSelectedRow(0);
+    setLastListerSelectedRow__ID(0);
 
     QString filter(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::NOM_ENTREPRISE, nomEntreprise));
 

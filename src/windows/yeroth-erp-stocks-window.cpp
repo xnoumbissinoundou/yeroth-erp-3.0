@@ -580,7 +580,7 @@ void YerothStocksWindow::textChangedSearchLineEditsQCompleters()
 
     if (_yerothSqlTableModel->select())
     {
-    	setLastListerSelectedRow(0);
+    	setLastListerSelectedRow__ID(0);
     	afficherStocks(*_yerothSqlTableModel);
     }
     else
@@ -923,7 +923,7 @@ void YerothStocksWindow::afficher_au_detail()
 
 void YerothStocksWindow::afficher_au_detail(const QModelIndex & modelIndex)
 {
-    setLastListerSelectedRow(modelIndex.row());
+    setLastListerSelectedRow__ID(modelIndex.row());
 
     tableView_stocks->selectRow(getLastListerSelectedRow__ID());
 

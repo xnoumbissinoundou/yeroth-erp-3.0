@@ -109,7 +109,7 @@ public slots:
     	return tableView_achats->lastSelectedRow__ID();
     }
 
-    inline void setLastListerSelectedRow(int row)
+    inline void setLastListerSelectedRow__ID(int row)
     {
     	tableView_achats->setLastSelectedRow__ID(row);
     }

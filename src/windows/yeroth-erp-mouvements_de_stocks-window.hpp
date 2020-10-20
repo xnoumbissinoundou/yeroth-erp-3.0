@@ -81,7 +81,7 @@ public slots:
     	rechercher();
     }
 
-    void setLastListerSelectedRow(int row);
+    void setLastListerSelectedRow__ID(int row);
 
     void setFilter();
 

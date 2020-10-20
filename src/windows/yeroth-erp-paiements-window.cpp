@@ -524,7 +524,7 @@ void YerothPaiementsWindow::textChangedSearchLineEditsQCompleters()
 
     if (_yerothSqlTableModel->select())
     {
-    	setLastListerSelectedRow(0);
+    	setLastListerSelectedRow__ID(0);
     	lister_les_elements_du_tableau();
     }
     else

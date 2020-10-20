@@ -297,7 +297,7 @@ void YerothERPFournisseursWindow::textChangedSearchLineEditsQCompleters()
 
     if (_yerothSqlTableModel->select())
     {
-    	setLastListerSelectedRow(0);
+    	setLastListerSelectedRow__ID(0);
     	afficherFournisseurs(*_yerothSqlTableModel);
     }
     else
@@ -328,7 +328,7 @@ void YerothERPFournisseursWindow::private_payer_au_fournisseur()
 
 void YerothERPFournisseursWindow::private_payer_au_fournisseur(const QModelIndex & aModelIndex)
 {
-    setLastListerSelectedRow(aModelIndex.row());
+    setLastListerSelectedRow__ID(aModelIndex.row());
 
     tableView_fournisseurs->selectRow(getLastListerSelectedRow__ID());
 
@@ -459,7 +459,7 @@ void YerothERPFournisseursWindow::afficher_au_detail(const QModelIndex & modelIn
 {
     _logger->log("afficher_au_detail(const QModelIndex &)");
 
-    setLastListerSelectedRow(modelIndex.row());
+    setLastListerSelectedRow__ID(modelIndex.row());
 
     tableView_fournisseurs->selectRow(getLastListerSelectedRow__ID());
 
@@ -841,7 +841,7 @@ void YerothERPFournisseursWindow::afficher_nom_entreprise_selectioner(const QStr
 {
     _logger->log("afficher_nom_entreprise_selectioner(const QString &)");
 
-    setLastListerSelectedRow(0);
+    setLastListerSelectedRow__ID(0);
 
     QString filter(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::NOM_ENTREPRISE, nomEntreprise));
 

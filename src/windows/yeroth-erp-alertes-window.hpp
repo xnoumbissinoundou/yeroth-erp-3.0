@@ -95,7 +95,7 @@ public slots:
     	return tableView_lister_alertes->lastSelectedRow__ID();
     }
 
-    inline void setLastListerSelectedRow(int row)
+    inline void setLastListerSelectedRow__ID(int row)
     {
     	tableView_lister_alertes->setLastSelectedRow__ID(row);
     }

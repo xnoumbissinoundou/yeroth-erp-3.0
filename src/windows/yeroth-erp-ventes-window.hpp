@@ -139,7 +139,7 @@ public slots:
 
     bool afficher_vente_detail();
 
-    inline void setLastListerSelectedRow(int row)
+    inline void setLastListerSelectedRow__ID(int row)
     {
     	tableView_ventes->setLastSelectedRow__ID(row);
     }

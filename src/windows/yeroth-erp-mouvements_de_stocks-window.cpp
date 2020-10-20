@@ -459,7 +459,7 @@ void YerothMouvementsDeStocksWindow::rechercher()
 
     if (_curMouvementsDeStocksTableModel->easySelect() > 0)
     {
-        setLastListerSelectedRow(0);
+        setLastListerSelectedRow__ID(0);
     }
     else
     {
@@ -584,7 +584,7 @@ void YerothMouvementsDeStocksWindow::resetFilter()
 }
 
 
-void YerothMouvementsDeStocksWindow::setLastListerSelectedRow(int row)
+void YerothMouvementsDeStocksWindow::setLastListerSelectedRow__ID(int row)
 {
     if (SUJET_ACTION_SORTIES_STOCKS == tabWidget_mouvementsDeStocks->currentIndex())
     {

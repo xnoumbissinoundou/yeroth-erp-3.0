@@ -135,7 +135,7 @@ public slots:
     	textChangedSearchLineEditsQCompleters();
     }
 
-    inline void setLastListerSelectedRow(int row)
+    inline void setLastListerSelectedRow__ID(int row)
     {
     	tableView_paiements->setLastSelectedRow__ID(row);
     }
