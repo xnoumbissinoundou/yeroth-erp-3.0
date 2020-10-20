@@ -117,7 +117,7 @@ public slots:
 
     inline void setLastListerSelectedRow(int row)
     {
-    	tableView_marchandises->setLastSelectedRow(row);
+    	tableView_marchandises->setLastSelectedRow__ID(row);
     }
 
     static double getValeurTotaleDinventaireEnStock(QString categorie, QString designation);

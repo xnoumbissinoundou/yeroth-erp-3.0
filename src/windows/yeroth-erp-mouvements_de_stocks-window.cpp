@@ -588,11 +588,11 @@ void YerothMouvementsDeStocksWindow::setLastListerSelectedRow(int row)
 {
     if (SUJET_ACTION_SORTIES_STOCKS == tabWidget_mouvementsDeStocks->currentIndex())
     {
-        tableView_sorties_articles->setLastSelectedRow(row);
+        tableView_sorties_articles->setLastSelectedRow__ID(row);
     }
     else if (SUJET_ACTION_TRANSFERTS_STOCKS == tabWidget_mouvementsDeStocks->currentIndex())
     {
-        tableView_transferts_articles->setLastSelectedRow(row);
+        tableView_transferts_articles->setLastSelectedRow__ID(row);
     }
 }
 

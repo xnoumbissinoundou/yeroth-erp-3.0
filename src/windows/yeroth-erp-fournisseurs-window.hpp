@@ -90,7 +90,7 @@ public slots:
 
     inline void setLastListerSelectedRow(int row)
     {
-    	tableView_fournisseurs->setLastSelectedRow(row);
+    	tableView_fournisseurs->setLastSelectedRow__ID(row);
     }
 
     virtual void afficherFournisseurs(YerothSqlTableModel &fournisseurSqlTableModel);

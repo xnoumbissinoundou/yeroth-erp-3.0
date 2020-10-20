@@ -137,7 +137,7 @@ public slots:
 
     inline void setLastListerSelectedRow(int row)
     {
-    	tableView_paiements->setLastSelectedRow(row);
+    	tableView_paiements->setLastSelectedRow__ID(row);
     }
 
     void resetFilter(YerothSqlTableModel *stocksVenduTableModel);

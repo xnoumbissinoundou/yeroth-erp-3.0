@@ -120,7 +120,7 @@ public:
 		return _lastSelectedRow__ID;
 	}
 
-	inline void setLastSelectedRow(int row)
+	inline void setLastSelectedRow__ID(int row)
 	{
 		_lastSelectedRow__ID = row;
 	}

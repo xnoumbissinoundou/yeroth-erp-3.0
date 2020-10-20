@@ -114,7 +114,7 @@ public slots:
 
     inline void setLastListerSelectedRow(int row)
     {
-    	tableView_stocks->setLastSelectedRow(row);
+    	tableView_stocks->setLastSelectedRow__ID(row);
     }
 
 private slots:
