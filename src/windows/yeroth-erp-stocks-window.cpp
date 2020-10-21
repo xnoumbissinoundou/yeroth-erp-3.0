@@ -683,8 +683,6 @@ void YerothStocksWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 
     setVisible(true);
 
-    _curStocksTableModel->easySelect();
-
     afficherStocks(YerothERPConfig::salesStrategy);
 }
 
