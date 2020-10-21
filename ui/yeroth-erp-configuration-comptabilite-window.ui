@@ -1846,7 +1846,7 @@ background-color: rgb(0, 0, 0); </string>
       <property name="title">
        <string>Liste des marchandises - compte CCC</string>
       </property>
-      <widget class="YerothERPAlertTableView" name="tableView_lister_des_comptes_2">
+      <widget class="YerothERPAlertTableView" name="tableView_lister_des_marchandises_comptes">
        <property name="geometry">
         <rect>
          <x>3</x>

@@ -87,8 +87,7 @@ void YerothClientsDetailWindow::private_payer_au_compteclient()
 {
 	rendreInvisible();
 
-	_allWindows->_payerAuCompteClientWindow->rendreVisible(_clientLastSelectedRow,
-														   _curClientTableModel,
+	_allWindows->_payerAuCompteClientWindow->rendreVisible(_curClientTableModel,
 														   _curStocksTableModel);
 }
 
@@ -97,15 +96,17 @@ void YerothClientsDetailWindow::modifierCompteClient()
 {
     rendreInvisible();
 
-    _allWindows->_modifierCompteClientWindow->rendreVisible(_clientLastSelectedRow,
-    												 	 	_curClientTableModel,
+    _allWindows->_modifierCompteClientWindow->rendreVisible(_curClientTableModel,
 															_curStocksTableModel);
 }
 
 
 void YerothClientsDetailWindow::supprimerCompteClient()
 {
-    QSqlRecord record = _curClientTableModel->record(_clientLastSelectedRow);
+	QSqlRecord record;
+
+	_allWindows->_clientsWindow->
+		SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
 
     QString msgSupprimer(QString(QObject::trUtf8("Poursuivre avec la suppression du compte client '%1' ?"))
     						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE)));
@@ -115,7 +116,9 @@ void YerothClientsDetailWindow::supprimerCompteClient()
                                        QObject::tr("suppression d'un compte client"), msgSupprimer,
                                        QMessageBox::Cancel, QMessageBox::Ok))
     {
-        bool resRemoved = _curClientTableModel->removeRow(_allWindows->getLastSelectedListerRow());
+    	bool resRemoved = _allWindows->_clientsWindow->
+    			SQL_DELETE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW();
+
         //qDebug() << "YerothModifierWindow::supprimer_ce_stock() " << resRemoved;
         clients();
         if (resRemoved)
@@ -241,19 +244,18 @@ void YerothClientsDetailWindow::definirVendeur()
     _logger->log("definirVendeur");
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierCompteClient, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
-    pushButton_clients->disable(this);
-    pushButton_menu->disable(this);
+    pushButton_clients->enable(this, SLOT(clients()));
+    pushButton_menu->enable(this, SLOT(menu()));
     pushButton_modifier->enable(this, SLOT(modifierCompteClient()));
     pushButton_supprimer->enable(this, SLOT(supprimerCompteClient()));
-    pushButton_payer_au_compteclient->enable(this, SLOT(private_payer_au_compteclient()));
 }
 
 
@@ -474,27 +476,27 @@ void YerothClientsDetailWindow::rendreInvisible()
 }
 
 
-void YerothClientsDetailWindow::rendreVisible(int lastSelectedRow__ID,
-											  YerothSqlTableModel * clientTableModel,
+void YerothClientsDetailWindow::rendreVisible(YerothSqlTableModel * clientTableModel,
 											  YerothSqlTableModel * stocksTableModel)
 {
-	_clientLastSelectedRow = lastSelectedRow__ID;
-
 	_curStocksTableModel = stocksTableModel;
 
 	_curClientTableModel = clientTableModel;
 
-    //qDebug() << "++ last selected row: " << _allWindows->getLastSelectedListerRow();
+    //qDebug() << "++ last selected row: " << YerothERPWindows::get_last_lister_selected_row_ID();
 
 	setVisible(true);
 
-    showClientDetail(lastSelectedRow__ID);
+    showClientDetail();
 }
 
 
-void YerothClientsDetailWindow::showClientDetail(int lastSelectedRow__ID)
+void YerothClientsDetailWindow::showClientDetail()
 {
-	QSqlRecord record = _curClientTableModel->record(lastSelectedRow__ID);
+	QSqlRecord record;
+
+	_allWindows->_clientsWindow->
+		SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
 
 	lineEdit_clients_details_reference_client->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE_CLIENT));
 

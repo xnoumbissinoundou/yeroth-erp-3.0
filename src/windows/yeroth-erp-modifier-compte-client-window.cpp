@@ -312,7 +312,10 @@ void YerothModifierCompteClientWindow::clear_all_fields()
 
 void YerothModifierCompteClientWindow::supprimer_image_compte_client()
 {
-	QSqlRecord record = _curClientTableModel->record(_clientLastSelectedRow);
+	QSqlRecord record;
+
+	_allWindows->_clientsWindow->
+			SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
 
 	QString nomEntreprise(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE));
 
@@ -345,7 +348,8 @@ void YerothModifierCompteClientWindow::supprimer_image_compte_client()
     {
         record.setValue(YerothDatabaseTableColumn::IMAGE_COMPTE_CLIENT, QVariant(QVariant::ByteArray));
 
-        bool resRemoved = _curClientTableModel->updateRecord(_clientLastSelectedRow, record);
+        bool resRemoved =
+        		_allWindows->_clientsWindow->SQL_UPDATE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
 
         if (resRemoved)
         {
@@ -422,7 +426,10 @@ void YerothModifierCompteClientWindow::actualiserCompteClient()
     		return ;
     	}
 
-        QSqlRecord record = _curClientTableModel->record(_clientLastSelectedRow);
+    	QSqlRecord record;
+
+    	_allWindows->_clientsWindow->
+			SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
 
         bool currentClientRefChanged = false;
         bool currentCompanyNameChanged = false;
@@ -474,8 +481,8 @@ void YerothModifierCompteClientWindow::actualiserCompteClient()
             record.setValue(YerothDatabaseTableColumn::IMAGE_COMPTE_CLIENT, QVariant::fromValue(bytes));
         }
 
-
-        bool success = _curClientTableModel->updateRecord(_clientLastSelectedRow, record);
+    	bool success = _allWindows->_clientsWindow->
+    			SQL_UPDATE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
 
         if (success)
         {
@@ -538,7 +545,10 @@ void YerothModifierCompteClientWindow::actualiserCompteClient()
 
 void YerothModifierCompteClientWindow::supprimerCompteClient()
 {
-    QSqlRecord record = _curClientTableModel->record(_clientLastSelectedRow);
+	QSqlRecord record;
+
+	bool success = _allWindows->_clientsWindow->
+			SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
 
     QString msgSupprimer(QString(QObject::trUtf8("Poursuivre avec la suppression du client '%1' ?"))
     						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE)));
@@ -548,7 +558,9 @@ void YerothModifierCompteClientWindow::supprimerCompteClient()
             							msgSupprimer,
                                         QMessageBox::Cancel, QMessageBox::Ok))
     {
-        bool resRemoved = _curClientTableModel->removeRow(_clientLastSelectedRow);
+    	bool resRemoved = _allWindows->_clientsWindow->
+    			SQL_DELETE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW();
+
         //qDebug() << "YerothModifierCompteClientWindow::supprimer_ce_stock() " << resRemoved;
 
         if (resRemoved && _curClientTableModel->select())
@@ -587,17 +599,14 @@ void YerothModifierCompteClientWindow::rendreInvisible()
 }
 
 
-void YerothModifierCompteClientWindow::rendreVisible(int lastSelectedRow__ID,
-											  	  	 YerothSqlTableModel * clientTableModel,
+void YerothModifierCompteClientWindow::rendreVisible(YerothSqlTableModel * clientTableModel,
 													 YerothSqlTableModel * stocksTableModel)
 {
-	_clientLastSelectedRow = lastSelectedRow__ID;
-
 	_curStocksTableModel = stocksTableModel;
 
 	_curClientTableModel = clientTableModel;
 
-    //qDebug() << "++ last selected row: " << _allWindows->getLastSelectedListerRow();
+    //qDebug() << "++ last selected row: " << YerothERPWindows::get_last_lister_selected_row_ID();
     showClientDetail();
 
     setVisible(true);
@@ -606,7 +615,10 @@ void YerothModifierCompteClientWindow::rendreVisible(int lastSelectedRow__ID,
 
 void YerothModifierCompteClientWindow::showClientDetail()
 {
-    QSqlRecord record = _curClientTableModel->record(_clientLastSelectedRow);
+	QSqlRecord record;
+
+	_allWindows->_clientsWindow->
+		SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
 
     _curClientDetailDBID = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ID).toInt();
 

@@ -33,6 +33,8 @@
 
 YerothERPWindows *YerothWindowsCommons::_allWindows(0);
 
+QString YerothWindowsCommons::_yerothTableView_FROM_WINDOWS_COMMONS_LAST_SELECTED_ROW__ID;
+
 QPoint *YerothWindowsCommons::_centerPosition(new QPoint);
 
 
@@ -62,17 +64,37 @@ YerothWindowsCommons::~YerothWindowsCommons()
 }
 
 
+int YerothWindowsCommons::get_INT_last_selected_row_number()
+{
+	if (0 == _yerothTableView_FROM_WINDOWS_COMMONS)
+	{
+		return -1;
+	}
+
+	return _yerothTableView_FROM_WINDOWS_COMMONS->
+			_map_dbID_TO_yeroth_table_view_ROW_NUMBER.
+				value(getLastListerSelectedRow__ID(), -1);
+}
+
+
 void YerothWindowsCommons::setYerothTableView_FROM_WINDOWS_COMMONS(YerothTableView *aYerothTableView_FROM_WINDOWS_COMMONS)
 {
-	if (0 == aYerothTableView_FROM_WINDOWS_COMMONS ||
-		0 == _yeroth_PRINT_UTILITIES_TEX_TABLE)
+	if (0 == aYerothTableView_FROM_WINDOWS_COMMONS)
 	{
 		return ;
 	}
 
 	_yerothTableView_FROM_WINDOWS_COMMONS = aYerothTableView_FROM_WINDOWS_COMMONS;
 
-	_yeroth_PRINT_UTILITIES_TEX_TABLE->setYerothTableView(_yerothTableView_FROM_WINDOWS_COMMONS);
+    connect(_yerothTableView_FROM_WINDOWS_COMMONS,
+    		SIGNAL(clicked(const QModelIndex &)),
+    		this,
+            SLOT(setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(const QModelIndex &)));
+
+    if (0 != _yeroth_PRINT_UTILITIES_TEX_TABLE)
+    {
+    	_yeroth_PRINT_UTILITIES_TEX_TABLE->setYerothTableView(_yerothTableView_FROM_WINDOWS_COMMONS);
+    }
 }
 
 
@@ -155,6 +177,107 @@ void YerothWindowsCommons::mySetupUi(QMainWindow * aWindow)
     aWindow->setFixedSize(aWindow->width(), aWindow->height());
     aWindow->move(*_centerPosition);
     aWindow->setWindowTitle(getWindowName());
+}
+
+
+bool YerothWindowsCommons::SQL_UPDATE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(QSqlRecord &resultRecord_IN)
+{
+	if (0 == _yerothTableView_FROM_WINDOWS_COMMONS)
+	{
+//		QDEBUG_STRINGS_OUTPUT_2("YerothWindowsCommons::SQL_UPDATE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW",
+//				QString("There is no SQL TABLE VIEW associated !"));
+
+		return false;
+	}
+
+	int lastSelectRecord_ROW_NUMBER = get_INT_last_selected_row_number();
+
+	YerothSqlTableModel *yerothTableViewSQL_TABLE_MODEL =
+			YerothERPWindows::getSqlTableModelFromName(_yerothTableView_FROM_WINDOWS_COMMONS->getSqlTableName());
+
+	if (0 == yerothTableViewSQL_TABLE_MODEL)
+	{
+//		QDEBUG_STRINGS_OUTPUT_2("YerothWindowsCommons::SQL_UPDATE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW",
+//				QString("There is no SQL TABLE MODEL for table view: %1")
+//					.arg(_yerothTableView_FROM_WINDOWS_COMMONS->getSqlTableName()));
+
+		return false;
+	}
+
+	bool success = yerothTableViewSQL_TABLE_MODEL->
+			updateRecord(lastSelectRecord_ROW_NUMBER, resultRecord_IN);
+
+//	QDEBUG_STRINGS_OUTPUT_2(QString("update of SQL TABLE VIEW: %1")
+//								.arg(_yerothTableView_FROM_WINDOWS_COMMONS->getSqlTableName()),
+//							BOOL_TO_STRING(success));
+
+	return success;
+}
+
+
+bool YerothWindowsCommons::SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(QSqlRecord &resultRecord_IN_OUT)
+{
+	if (0 == _yerothTableView_FROM_WINDOWS_COMMONS)
+	{
+		return false;
+	}
+
+	QString QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW_QUERY_STRING(QString("select * from %1 where %2 = '%3'")
+																		.arg(_yerothTableView_FROM_WINDOWS_COMMONS->getSqlTableName(),
+																			 YerothDatabaseTableColumn::ID,
+																			 YerothWindowsCommons::get_last_lister_selected_row_ID()));
+
+//	QDEBUG_STRINGS_OUTPUT_2("QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW_QUERY_STRING",
+//			QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW_QUERY_STRING);
+
+	QSqlQuery query;
+
+	bool success = YerothUtils::execQuery(query, QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW_QUERY_STRING);
+
+	if (success && query.next())
+	{
+		resultRecord_IN_OUT = query.record();
+
+//		QDEBUG_STRINGS_OUTPUT_2("ID", GET_SQL_RECORD_DATA(resultRecord_IN_OUT, YerothDatabaseTableColumn::ID));
+
+		return true;
+	}
+
+	return false;
+}
+
+
+bool YerothWindowsCommons::SQL_DELETE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW()
+{
+	if (0 == _yerothTableView_FROM_WINDOWS_COMMONS)
+	{
+		return false;
+	}
+
+	QString REMOVE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW_QUERY_STRING(QString("DELETE FROM %1 WHERE %2 = '%3'")
+																		.arg(_yerothTableView_FROM_WINDOWS_COMMONS->getSqlTableName(),
+																			 YerothDatabaseTableColumn::ID,
+																			 YerothWindowsCommons::get_last_lister_selected_row_ID()));
+
+	return YerothUtils::execQuery(REMOVE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW_QUERY_STRING);
+}
+
+int YerothWindowsCommons::get_INT_LastListerSelectedRow__ID()
+{
+	QString lastListerSelectedRow__ID = getLastListerSelectedRow__ID();
+
+	return (lastListerSelectedRow__ID.isEmpty()) ? -1 : lastListerSelectedRow__ID.toInt();
+}
+
+
+const QString & YerothWindowsCommons::getLastListerSelectedRow__ID()
+{
+	if (0 == _yerothTableView_FROM_WINDOWS_COMMONS)
+	{
+		return YerothUtils::EMPTY_STRING;
+	}
+
+	return _yerothTableView_FROM_WINDOWS_COMMONS->lastSelectedRow__ID();
 }
 
 
@@ -487,7 +610,7 @@ void YerothWindowsCommons::tableView_show_or_hide_columns(YerothTableView &table
     	}
     }
 
-    tableView_in_out.selectRow(tableView_in_out.lastSelectedRow__ID());
+    tableView_in_out.selectRow(get_INT_last_selected_row_number());
 }
 
 
@@ -683,5 +806,52 @@ void YerothWindowsCommons::fill_table_columns_to_ignore(QList<int> &tableColumns
     		tableColumnsToIgnore_in_out.append(it.value());
     	}
     }
+}
+
+
+void YerothWindowsCommons::setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(int aRowNumber)
+{
+	YerothPOSQStandardItemModel *model = _yerothTableView_FROM_WINDOWS_COMMONS->getStandardItemModel();
+
+	if (0 == model)
+	{
+		return ;
+	}
+
+	QModelIndex aYerothTableViewIndex = model->create_ZERO_ZERO_MODEL_INDEX_FOR_TABLE_VIEWING();
+
+//	QDEBUG_STRINGS_OUTPUT_2_N("setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID - aYerothTableViewIndex", aYerothTableViewIndex.row());
+
+	setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(aYerothTableViewIndex);
+}
+
+
+void YerothWindowsCommons::setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(const QModelIndex &modelIndex)
+{
+	if (0 == _yerothTableView_FROM_WINDOWS_COMMONS)
+	{
+		return ;
+	}
+
+	int db_ID_yeroth_table_view_column_index =
+			_dbtablefieldNameToDBColumnIndex.value(YerothDatabaseTableColumn::ID);
+
+	int selected_row_nr = modelIndex.row();
+
+	if (_yerothTableView_FROM_WINDOWS_COMMONS->rowCount() <= 0)
+	{
+		return ;
+	}
+
+	QModelIndex id_row_qmodelindex_sibling =
+			modelIndex.sibling(selected_row_nr, db_ID_yeroth_table_view_column_index);
+
+	QString db_ID = YerothUtils::get_text(id_row_qmodelindex_sibling.data());
+
+	_yerothTableView_FROM_WINDOWS_COMMONS->setLastSelectedRow__ID(db_ID);
+
+	_yerothTableView_FROM_WINDOWS_COMMONS->selectRow(selected_row_nr);
+
+	_yerothTableView_FROM_WINDOWS_COMMONS_LAST_SELECTED_ROW__ID = db_ID;
 }
 

@@ -245,26 +245,27 @@ void YerothAchatsDetailWindow::rendreInvisible()
 }
 
 
-void YerothAchatsDetailWindow::rendreVisible(int lastSelectedRow__ID,
-											 YerothSqlTableModel * stocksTableModel,
+void YerothAchatsDetailWindow::rendreVisible(YerothSqlTableModel * stocksTableModel,
 											 YerothSqlTableModel * achatStocksTableModel)
 {
-	_achatLastSelectedRow = lastSelectedRow__ID;
-
 	_curStocksTableModel = stocksTableModel;
 
 	_curAchatStocksTableModel = achatStocksTableModel;
 
     setVisible(true);
 
-    //qDebug() << "++ last selected row: " << _allWindows->getLastSelectedListerRow();
-    showItem(lastSelectedRow__ID);
+    //qDebug() << "++ last selected row: " << YerothERPWindows::get_last_lister_selected_row_ID();
+    showItem();
 }
 
 
-void YerothAchatsDetailWindow::showItem(int lastSelectedRow__ID)
+void YerothAchatsDetailWindow::showItem()
 {
-    QSqlRecord record = _curAchatStocksTableModel->record(lastSelectedRow__ID);
+	_curAchatStocksTableModel->yerothSetFilter_WITH_where_clause(QString("%1 = '%2'")
+																.arg(YerothDatabaseTableColumn::ID,
+																	 YerothERPWindows::get_last_lister_selected_row_ID()));
+
+    QSqlRecord record = _curAchatStocksTableModel->record(0);
 
     lineEdit_reference_produit->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE));
     lineEdit_designation->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
@@ -303,6 +304,8 @@ void YerothAchatsDetailWindow::showItem(int lastSelectedRow__ID)
     lineEdit_quantite_restante->setText(GET_DOUBLE_STRING_P(quantite_restante, 0));
 
     dateEdit_date_peremption->setDate(GET_DATE_FROM_STRING(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DATE_PEREMPTION)));
+
+    _curAchatStocksTableModel->resetFilter();
 }
 
 

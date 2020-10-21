@@ -22,7 +22,7 @@
 
 
 YerothAlertesWindow::YerothAlertesWindow()
-:YerothWindowsCommons(),
+:YerothWindowsCommons("yeroth-erp-alertes"),
  _logger(new YerothLogger("YerothAlertesWindow")),
  _currentTabView(0)
 {
@@ -33,6 +33,8 @@ YerothAlertesWindow::YerothAlertesWindow()
     setupUi(this);
 
     mySetupUi(this);
+
+    setYerothTableView_FROM_WINDOWS_COMMONS(tableView_lister_alertes);
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
                                        "QMessageBox QLabel {color: rgb(%2);}")
@@ -313,7 +315,7 @@ void YerothAlertesWindow::lister_alertes()
 
     tabWidget_alertes->setCurrentIndex(TableauDesAlertes);
 
-    tableView_lister_alertes->selectRow(getLastListerSelectedRow__ID());
+    tableView_lister_alertes->selectRow(get_INT_last_selected_row_number());
 
     if (courrierAlertesSqlTableModel.rowCount() <= 0)
     {
@@ -340,7 +342,10 @@ void YerothAlertesWindow::afficher_au_detail()
     if (courrierAlertesSqlTableModel.select()
             && courrierAlertesSqlTableModel.rowCount() > getLastListerSelectedRow__ID())
     {
-        QSqlRecord record = courrierAlertesSqlTableModel.record(getLastListerSelectedRow__ID());
+        QSqlRecord record;
+
+        _allWindows->_listerAlertesWindow->
+			SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
 
         lineEdit_alertes_nom->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION_ALERTE));
 
@@ -403,7 +408,10 @@ void YerothAlertesWindow::marquer_resolue()
     QString userFilter(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::DESTINATAIRE,
     										_allWindows->getUser()->nom_utilisateur()));
 
-    QSqlRecord courriersAlertesRecord = courrierAlertesSqlTableModel.record(getLastListerSelectedRow__ID());
+    QSqlRecord courriersAlertesRecord;
+
+    _allWindows->_listerAlertesWindow->
+		SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(courriersAlertesRecord);
 
     QString id_alerte = GET_SQL_RECORD_DATA(courriersAlertesRecord, YerothDatabaseTableColumn::ID_ALERTE);
 
@@ -441,8 +449,8 @@ void YerothAlertesWindow::marquer_resolue()
         //Set in table 'courriers_alertes' that this alert has been resolved
         courriersAlertesRecord.setValue(YerothDatabaseTableColumn::ALERTE_RESOLUE, 1);
 
-        bool successCourriersAlertes =
-            courrierAlertesSqlTableModel.updateRecord(getLastListerSelectedRow__ID(), courriersAlertesRecord);
+        bool successCourriersAlertes = _allWindows->_listerAlertesWindow->
+        		SQL_UPDATE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(courriersAlertesRecord);
 
         if (alertes && successCourriersAlertes)
         {
@@ -485,16 +493,15 @@ void YerothAlertesWindow::supprimer()
         return;
     }
 
-    YerothSqlTableModel & courrierAlertesTableModel = _allWindows->getSqlTableModel_courriers_alertes();
+    QSqlRecord record;
 
-    unsigned rowToRemove = tableView_lister_alertes->lastSelectedRow__ID();
+    _allWindows->_listerAlertesWindow->
+		SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
 
-    QSqlRecord record = courrierAlertesTableModel.record(rowToRemove);
     QString designation_alerte(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION_ALERTE));
 
     if (!designation_alerte.isEmpty() && !designation_alerte.isNull())
     {
-        //qDebug() << "row: " << rowToRemove << "\n" << "designation_alerte: " << designation_alerte;
         QString msgSupprimer(QString(QObject::trUtf8("Poursuivre avec la suppression de l'alerte '%1' ?"))
         						.arg(designation_alerte));
 
@@ -505,7 +512,8 @@ void YerothAlertesWindow::supprimer()
 											QMessageBox::Cancel,
 											QMessageBox::Ok))
         {
-            bool resRemoved = courrierAlertesTableModel.removeRow(rowToRemove);
+            bool resRemoved = _allWindows->_listerAlertesWindow->
+            		SQL_DELETE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW();
             //qDebug() << "YerothStocksWindow::supprimer_du_stock() " << resRemoved;
 
             QString supprimerAlerteStr(QString("DELETE FROM %1 WHERE %2 = '%3'")

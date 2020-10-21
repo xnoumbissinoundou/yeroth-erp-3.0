@@ -256,6 +256,14 @@ public:
 		return YerothUtils::generateSqlIsEmpty(QString(sqlTableColumn));
 	}
 
+	inline static void RESET_YEROTH_VIEW_RECORD_WIDTH_LAST_SELECTED_ID(YerothSqlTableModel &aYerothSqlTableModel_in_out)
+	{
+		aYerothSqlTableModel_in_out.resetFilter();
+	}
+
+	static void GET_YEROTH_VIEW_RECORD_WIDTH_LAST_SELECTED_ID(YerothSqlTableModel &aYerothSqlTableModel_in_out,
+															  QSqlRecord &resultSQL_RECORD_in_out);
+
 	inline static QString GET_REFERENCE_RECU_SORTIE(QString fixedNumber)
 	{
 		return  YerothUtils::GET_REFERENCE_RECU_SUFFIX(YerothUtils::PREFIX_RECU_SORTIE, fixedNumber);
@@ -815,6 +823,7 @@ bool YerothUtils::instanceOf__YerothTableViewWITHpagination(aTableViewClassType 
  * Macros to facilitate the use of YerothUtils static methods
  */
 
+
 #define YEROTH_QMESSAGE_BOX_QUELQUE_RESULTAT_FILTRE(THIS, NOMBRE, DIALOG_BOX_TITLE) \
 { QString msg(QObject::trUtf8("Il y'a eu")); \
 msg.append(QString(QObject::trUtf8(" %1 résultat(s) à votre filtre !")).arg(NOMBRE)); \
@@ -844,6 +853,11 @@ YerothQMessageBox::information(this, QObject::trUtf8(DIALOG_BOX_TITLE), msg); }
 
 #define YEROTH_DATABASE_TABLE_COLUMN_INDEX(W, C) W.getDBTableFieldColumnIndex(C)
 
+
+#define YEROTH_SAVE_ID_TO_ROW_NUMBER_FOR_YEROTH_TABLE_VIEW(X, Y) \
+	X.clear();									 	 			 \
+	X.append(QString::number(Y));								 \
+	_map_dbID_TO_yeroth_table_view_ROW_NUMBER.insert(X, Y);
 
 #define YEROTH_QSTRING_CONTAINS(S, V) S.contains(V, Qt::CaseInsensitive)
 

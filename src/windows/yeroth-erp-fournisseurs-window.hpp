@@ -83,16 +83,6 @@ public slots:
 
 	virtual bool imprimer_pdf_document();
 
-    inline int getLastListerSelectedRow__ID()
-    {
-    	return tableView_fournisseurs->lastSelectedRow__ID();
-    }
-
-    inline void setLastListerSelectedRow__ID(int row)
-    {
-    	tableView_fournisseurs->setLastSelectedRow__ID(row);
-    }
-
     virtual void afficherFournisseurs(YerothSqlTableModel &fournisseurSqlTableModel);
 
     inline void afficherFournisseurs()

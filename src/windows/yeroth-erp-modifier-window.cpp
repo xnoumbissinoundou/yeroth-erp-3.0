@@ -256,7 +256,10 @@ void YerothModifierWindow::actualiser_stock()
 
 	YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
 
-	QSqlRecord record = _curStocksTableModel->record(_allWindows->getLastSelectedListerRow());
+	QSqlRecord record;
+
+	_allWindows->_stocksWindow->
+		SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
 
 	QString description_produit(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESCRIPTION_PRODUIT));
 
@@ -343,7 +346,7 @@ void YerothModifierWindow::actualiser_stock()
 		}
 	}
 
-	bool success = _curStocksTableModel->updateRecord(_allWindows->getLastSelectedListerRow(), record);
+	bool success = _allWindows->_stocksWindow->SQL_UPDATE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
 
 	QString retMsg(QString(QObject::trUtf8("Les détails du stock '%1"))
 					  .arg(lineEdit_designation->text()));
@@ -872,7 +875,10 @@ void YerothModifierWindow::handleTVACheckBox(bool clicked)
 
 void YerothModifierWindow::supprimer_ce_stock()
 {
-    QSqlRecord record = _curStocksTableModel->record(_allWindows->getLastSelectedListerRow());
+    QSqlRecord record;
+
+    _allWindows->_stocksWindow->
+		SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
 
     QString msgSupprimer(QString(QObject::tr("Poursuivre avec la suppression du stock '%1' ?"))
     						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION)));
@@ -881,7 +887,9 @@ void YerothModifierWindow::supprimer_ce_stock()
             YerothQMessageBox::question(this, QObject::tr("suppression"), msgSupprimer,
                                        QMessageBox::Cancel, QMessageBox::Ok))
     {
-        bool resRemoved = _curStocksTableModel->removeRow(_allWindows->getLastSelectedListerRow());
+        bool resRemoved = _allWindows->_stocksWindow->
+        		SQL_DELETE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW();
+
         //qDebug() << "YerothModifierWindow::supprimer_ce_stock() " << resRemoved;
 
         afficherStocks();
@@ -913,7 +921,10 @@ void YerothModifierWindow::supprimer_ce_stock()
 
 void YerothModifierWindow::supprimer_image_stock()
 {
-    QSqlRecord record = _curStocksTableModel->record(_allWindows->getLastSelectedListerRow());
+    QSqlRecord record;
+
+    _allWindows->_stocksWindow->
+		SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
 
     QString stockName(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
 
@@ -944,7 +955,11 @@ void YerothModifierWindow::supprimer_image_stock()
                                        msgSupprimer, QMessageBox::Cancel, QMessageBox::Ok))
     {
         record.setValue(YerothDatabaseTableColumn::IMAGE_PRODUIT, QVariant(QVariant::ByteArray));
-        bool resRemoved = _curStocksTableModel->updateRecord(_allWindows->getLastSelectedListerRow(), record);
+
+        QSqlRecord record;
+
+        bool resRemoved = _allWindows->_stocksWindow->
+    		SQL_DELETE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW();
 
         label_image_produit->clear();
 
@@ -1031,7 +1046,10 @@ void YerothModifierWindow::setStockSpecificWidgetVisible(bool visible)
 
 void YerothModifierWindow::showItem()
 {
-    QSqlRecord record = _curStocksTableModel->record(_allWindows->getLastSelectedListerRow());
+    QSqlRecord record;
+
+    _allWindows->_stocksWindow->
+		SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
 
     bool is_service = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::IS_SERVICE).toInt();
 

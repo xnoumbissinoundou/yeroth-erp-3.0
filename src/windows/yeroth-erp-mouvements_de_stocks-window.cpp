@@ -45,7 +45,7 @@ YerothMouvementsDeStocksWindow::YerothMouvementsDeStocksWindow()
 
     mySetupUi(this);
 
-    _yerothTableView_FROM_WINDOWS_COMMONS = tableView_sorties_articles;
+    setYerothTableView_FROM_WINDOWS_COMMONS(tableView_sorties_articles);
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
                                        "QMessageBox QLabel {color: rgb(%2);}").
@@ -89,6 +89,13 @@ YerothMouvementsDeStocksWindow::YerothMouvementsDeStocksWindow()
 #ifdef YEROTH_CLIENT
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 #endif
+
+
+    connect(tableView_sorties_articles, SIGNAL(clicked(const QModelIndex &)), this,
+            SLOT(setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(const QModelIndex &)));
+
+    connect(tableView_transferts_articles, SIGNAL(clicked(const QModelIndex &)), this,
+            SLOT(setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(const QModelIndex &)));
 
     connect(tabWidget_mouvementsDeStocks, SIGNAL(currentChanged(int)), this, SLOT(handleTabChanged(int)));
 
@@ -459,7 +466,7 @@ void YerothMouvementsDeStocksWindow::rechercher()
 
     if (_curMouvementsDeStocksTableModel->easySelect() > 0)
     {
-        setLastListerSelectedRow__ID(0);
+        setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(0);
     }
     else
     {
@@ -580,19 +587,6 @@ void YerothMouvementsDeStocksWindow::resetFilter()
         dateEdit_mouvementsDeStocks_fin->reset();
 
         lister_les_elements_du_tableau(QString(""));
-    }
-}
-
-
-void YerothMouvementsDeStocksWindow::setLastListerSelectedRow__ID(int row)
-{
-    if (SUJET_ACTION_SORTIES_STOCKS == tabWidget_mouvementsDeStocks->currentIndex())
-    {
-        tableView_sorties_articles->setLastSelectedRow__ID(row);
-    }
-    else if (SUJET_ACTION_TRANSFERTS_STOCKS == tabWidget_mouvementsDeStocks->currentIndex())
-    {
-        tableView_transferts_articles->setLastSelectedRow__ID(row);
     }
 }
 

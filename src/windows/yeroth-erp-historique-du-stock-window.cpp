@@ -30,8 +30,7 @@ YerothHistoriqueDuStockWindow::YerothHistoriqueDuStockWindow()
 
     enableResizing();
 
-    _yerothTableView_FROM_WINDOWS_COMMONS = tableView_historique_du_stock;
-
+    setYerothTableView_FROM_WINDOWS_COMMONS(tableView_historique_du_stock);
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
                                        "QMessageBox QLabel {color: rgb(%2);}")
@@ -53,12 +52,9 @@ YerothHistoriqueDuStockWindow::YerothHistoriqueDuStockWindow()
 
 void YerothHistoriqueDuStockWindow::listHistoriqueDuStock(const QStringList &aMouvementStockList,
 														  const QString	    stockReference,
-														  const QString 	stockID,
 														  const QString 	stockDesignation)
 {
 	QString curTitle(windowTitle());
-
-	_currentStockID = stockID;
 
 	_currentStockReference = stockReference;
 
@@ -90,7 +86,8 @@ void YerothHistoriqueDuStockWindow::listHistoriqueDuStock(const QStringList &aMo
 	}
 
 	preambleTitle.append(QString(" ID (%1), stock \"%2\"")
-						.arg(stockID, stockDesignation));
+						.arg(YerothWindowsCommons::get_last_lister_selected_row_ID(),
+							 stockDesignation));
 
 	setWindowTitle(preambleTitle);
 
@@ -152,7 +149,8 @@ bool YerothHistoriqueDuStockWindow::imprimer_pdf_document()
     documentSpecificElements.insert("YEROTHSTOCKHISTORYDESIGNATION",
     		YerothUtils::LATEX_IN_OUT_handleForeignAccents(_currentStockDesignation));
 
-    documentSpecificElements.insert("YEROTHSTOCKHISTORYSTOCKID", _currentStockID);
+    documentSpecificElements.insert("YEROTHSTOCKHISTORYSTOCKID",
+    		YerothWindowsCommons::getLastListerSelectedRow__ID());
 
 	return YerothWindowsCommons::imprimer_pdf_document(&documentSpecificElements);
 }

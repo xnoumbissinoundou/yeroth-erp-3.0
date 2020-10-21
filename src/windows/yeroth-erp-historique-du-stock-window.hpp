@@ -38,7 +38,6 @@ public:
 
 	void listHistoriqueDuStock(const QStringList &aMouvementStockList,
 							   const QString	 stockReference,
-							   const QString 	 stockID,
 							   const QString 	 stockDesignation);
 
 public slots:
@@ -56,11 +55,10 @@ protected:
 
 private:
 
-    QString						_currentStockID;
     QString						_currentStockReference;
     QString						_currentStockDesignation;
 
-    YerothLogger					*_logger;
+    YerothLogger				*_logger;
 };
 
 #endif /* SRC_YEROTH_STOCKS_HISTORIQUE_DU_STOCK_WINDOW_HPP_ */

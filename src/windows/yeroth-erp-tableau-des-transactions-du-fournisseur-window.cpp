@@ -28,7 +28,7 @@ YerothTableauDesTransactionsDuFournisseurWindow::YerothTableauDesTransactionsDuF
 
     enableResizing();
 
-    _yerothTableView_FROM_WINDOWS_COMMONS = tableView_tableau_des_transactions_du_fournisseur;
+    setYerothTableView_FROM_WINDOWS_COMMONS(tableView_tableau_des_transactions_du_fournisseur);
 
     _DBFieldNamesToPrintLeftAligned.insert(0);
     _DBFieldNamesToPrintLeftAligned.insert(1);

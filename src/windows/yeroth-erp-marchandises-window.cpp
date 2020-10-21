@@ -51,9 +51,9 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
 
     mySetupUi(this);
 
-    MACRO_TO_DEFINE_CURRENT_VIEW_WINDOW_FOR_TABLE_PAGINATION(tableView_marchandises)
+    setYerothTableView_FROM_WINDOWS_COMMONS(tableView_marchandises);
 
-    _yerothTableView_FROM_WINDOWS_COMMONS = tableView_marchandises;
+    MACRO_TO_DEFINE_CURRENT_VIEW_WINDOW_FOR_TABLE_PAGINATION(tableView_marchandises)
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
                                        "QMessageBox QLabel {color: rgb(%2);}")
@@ -394,7 +394,7 @@ void YerothMarchandisesWindow::textChangedSearchLineEditsQCompleters()
 
     if (_yerothSqlTableModel->select())
     {
-    	setLastListerSelectedRow__ID(0);
+    	setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(0);
     	afficherMarchandises(*_yerothSqlTableModel);
     }
     else
@@ -988,7 +988,7 @@ void YerothMarchandisesWindow::definirPasDeRole()
 
 void YerothMarchandisesWindow::afficher_stock_selectioner(const QString & stockName)
 {
-    setLastListerSelectedRow__ID(0);
+    setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(0);
 
     QString filter(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::DESIGNATION, stockName));
 
@@ -1014,9 +1014,10 @@ void YerothMarchandisesWindow::modifier_marchandise()
 
 void YerothMarchandisesWindow::supprimer_cette_marchandise()
 {
-    unsigned rowToRemove = tableView_marchandises->lastSelectedRow__ID();
+    QSqlRecord record;
 
-    QSqlRecord record = _curMarchandisesTableModel->record(rowToRemove);
+    _allWindows->_marchandisesWindow->
+			SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
 
     QString msgSupprimer(QString(QObject::trUtf8("Poursuivre avec la suppression de la marchandise '%1' ?"))
     						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION)));
@@ -1028,9 +1029,9 @@ void YerothMarchandisesWindow::supprimer_cette_marchandise()
 									   QMessageBox::Cancel,
 									   QMessageBox::Ok))
     {
-        _logger->debug("supprimer_cette_marchandise", QString("rowToRemove: %1").arg(rowToRemove));
+    	bool resRemoved = _allWindows->_marchandisesWindow->
+    			SQL_DELETE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW();
 
-        bool resRemoved = _curMarchandisesTableModel->removeRow(rowToRemove);
         //qDebug() << "YerothInventaireDesStocksWindow::supprimer_ce_stock() " << resRemoved;
         if (resRemoved && _curMarchandisesTableModel->select())
         {

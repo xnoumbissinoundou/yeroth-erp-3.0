@@ -110,16 +110,6 @@ public slots:
 
     void reinitialiser_recherche();
 
-    inline int getLastListerSelectedRow__ID()
-    {
-    	return tableView_marchandises->lastSelectedRow__ID();
-    }
-
-    inline void setLastListerSelectedRow__ID(int row)
-    {
-    	tableView_marchandises->setLastSelectedRow__ID(row);
-    }
-
     static double getValeurTotaleDinventaireEnStock(QString categorie, QString designation);
 
     static double getQuantiteTotaleEnStock(QString categorie, QString designation);

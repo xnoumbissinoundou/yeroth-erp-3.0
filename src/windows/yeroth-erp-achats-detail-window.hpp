@@ -54,8 +54,7 @@ public:
 
     void rendreInvisible();
 
-    void rendreVisible(int lastSelectedRow__ID,
-    				   YerothSqlTableModel *achatStocksTableModel,
+    void rendreVisible(YerothSqlTableModel *achatStocksTableModel,
 					   YerothSqlTableModel *stocksTableModel);
 
 public slots:
@@ -81,7 +80,7 @@ private:
 
     void setupLineEdits();
 
-    void showItem(int lastSelectedRow__ID);
+    void showItem();
 
     void checkCourrierAlerts();
 

@@ -52,10 +52,9 @@ const int YerothTableView::QUANTITE_TOTAL_COLUMN = 8;
 
 
 YerothTableView::YerothTableView()
-    :QTableView()
+:QTableView()
 {
     _writeEnabled = false;
-    _lastSelectedRow__ID = 0;
     _tableName = 0;
 
     _tableModelHeaders = new QStringList;
@@ -74,10 +73,9 @@ YerothTableView::YerothTableView()
 }
 
 YerothTableView::YerothTableView(QWidget * parent)
-    :QTableView(parent)
+:QTableView(parent)
 {
     _writeEnabled = false;
-    _lastSelectedRow__ID = 0;
     _tableName = 0;
 
     _tableModelHeaders = new QStringList;
@@ -526,7 +524,6 @@ void YerothTableView::lister(YerothSqlTableModel &tableModel,
     									 *_stdItemModel,
 										 *_tableModelHeaders,
 										 tableModelRawHeaders);
-
     if (!s)
     {
     	return ;

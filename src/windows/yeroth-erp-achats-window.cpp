@@ -57,7 +57,7 @@ unsigned int YerothAchatsWindow::PDF_LISTING_COLUMN_CATEGORIE(4);
 
 
 YerothAchatsWindow::YerothAchatsWindow()
-:YerothWindowsCommons("yeroth-erp-marchandises"),
+:YerothWindowsCommons("yeroth-erp-achats"),
  YerothAbstractClassYerothSearchWindow(_allWindows->ACHATS),
  _logger(new YerothLogger("YerothAchatsWindow")),
  _pushButton_achats_filtrer_font(0),
@@ -71,9 +71,9 @@ YerothAchatsWindow::YerothAchatsWindow()
 
     mySetupUi(this);
 
-    MACRO_TO_DEFINE_CURRENT_VIEW_WINDOW_FOR_TABLE_PAGINATION(tableView_achats)
+    setYerothTableView_FROM_WINDOWS_COMMONS(tableView_achats);
 
-    _yerothTableView_FROM_WINDOWS_COMMONS = tableView_achats;
+    MACRO_TO_DEFINE_CURRENT_VIEW_WINDOW_FOR_TABLE_PAGINATION(tableView_achats)
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
                                        "QMessageBox QLabel {color: rgb(%2);}").
@@ -400,7 +400,7 @@ void YerothAchatsWindow::textChangedSearchLineEditsQCompleters()
 
     if (_yerothSqlTableModel->select())
     {
-    	setLastListerSelectedRow__ID(0);
+    	setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(0);
     	afficherAchats(*_yerothSqlTableModel);
     }
     else
@@ -646,10 +646,9 @@ void YerothAchatsWindow::afficher_au_detail()
 {
     _logger->log("afficher_au_detail");
 
-    if (getLastListerSelectedRow__ID() > -1 && _curAchatSqlTableModel->rowCount() > 0)
+    if (get_INT_LastListerSelectedRow__ID() > -1 && _curAchatSqlTableModel->rowCount() > 0)
     {
-        _allWindows->_achatsDetailWindow->rendreVisible(getLastListerSelectedRow__ID(),
-        												_curStocksTableModel,
+        _allWindows->_achatsDetailWindow->rendreVisible(_curStocksTableModel,
 														_curAchatSqlTableModel);
         rendreInvisible();
     }
@@ -665,15 +664,14 @@ void YerothAchatsWindow::afficher_au_detail(const QModelIndex & modelIndex)
 {
     _logger->log("afficher_au_detail(const QModelIndex &)");
 
-    setLastListerSelectedRow__ID(modelIndex.row());
+    setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(modelIndex);
 
-    tableView_achats->selectRow(getLastListerSelectedRow__ID());
+    tableView_achats->selectRow(get_INT_last_selected_row_number());
 
-    if (getLastListerSelectedRow__ID() > -1 && _curAchatSqlTableModel->rowCount() > 0)
+    if (get_INT_LastListerSelectedRow__ID() > -1 && _curAchatSqlTableModel->rowCount() > 0)
     {
     	//qDebug() << "++ test" << modelIndex.row();
-        _allWindows->_achatsDetailWindow->rendreVisible(getLastListerSelectedRow__ID(),
-        												_curStocksTableModel,
+        _allWindows->_achatsDetailWindow->rendreVisible(_curStocksTableModel,
 														_curAchatSqlTableModel);
 
         rendreInvisible();
@@ -732,7 +730,7 @@ void YerothAchatsWindow::afficher_stock_selectioner(const QString & stockName)
 
     //qDebug() << QString("afficher_stock_selectioner(%1)").arg(stockName);
 
-    setLastListerSelectedRow__ID(0);
+    setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(0);
 
     QString filter(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::DESIGNATION, stockName));
 

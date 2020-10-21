@@ -155,9 +155,9 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::CLIENTS_ID,			QObject::tr("ID client"));
 
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REFERENCE_RECU_PAIEMENT_CLIENT,QObject::trUtf8("Reçu paiement"));
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REFERENCE_RECU_PAIEMENT_CLIENT,QObject::trUtf8("Réf. reçu paiement"));
 
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REFERENCE_RECU_VENDU,QObject::trUtf8("Reçu"));
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REFERENCE_RECU_VENDU,QObject::trUtf8("Réf. reçu vente"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REFERENCE_RECU_SORTIE,QObject::trUtf8("Bon"));
 

@@ -51,8 +51,7 @@ public:
 
     virtual void rendreInvisible();
 
-    void rendreVisible(int lastSelectedRow__ID,
-    				   YerothSqlTableModel *fournisseurTableModel,
+    void rendreVisible(YerothSqlTableModel *fournisseurTableModel,
 					   YerothSqlTableModel *stocksTableModel);
 
 public slots:
@@ -108,9 +107,7 @@ private:
 
     YerothSqlTableModel 		*_curFournisseurTableModel;
 
-    int 						_fournisseurLastSelectedRow;
-
-    int							_curFournisseurDetailDBID;
+    int 						_curFournisseurDetailDBID;
 };
 
 

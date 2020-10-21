@@ -90,16 +90,6 @@ public slots:
 
     virtual void deconnecter_utilisateur();
 
-    inline int getLastListerSelectedRow__ID()
-    {
-    	return tableView_lister_alertes->lastSelectedRow__ID();
-    }
-
-    inline void setLastListerSelectedRow__ID(int row)
-    {
-    	tableView_lister_alertes->setLastSelectedRow__ID(row);
-    }
-
 protected:
 
     virtual void setupShortcuts();

@@ -1802,7 +1802,11 @@ void YerothEntrerWindow::enregistrer_produit()
 
 void YerothEntrerWindow::showItem()
 {
-    QSqlRecord record = _curStocksTableModel->record(_allWindows->getLastSelectedListerRow());
+	_curStocksTableModel->yerothSetFilter_WITH_where_clause(QString("%1 = '%2'")
+																.arg(YerothDatabaseTableColumn::ID,
+																	 YerothERPWindows::get_last_lister_selected_row_ID()));
+
+    QSqlRecord record = _curStocksTableModel->record(0);
 
     lineEdit_reference_produit->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE));
 
@@ -1846,7 +1850,7 @@ void YerothEntrerWindow::showItem()
         label_image_produit->setAutoFillBackground(false);
     }
 
-    QString recordID = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ID);
+    QString recordID = YerothERPWindows::get_last_lister_selected_row_ID();
 
     int achatQuerySize = YerothUtils::STOCK_PURCHASE_RECORDS_QUANTITY(recordID);
 
@@ -1858,4 +1862,6 @@ void YerothEntrerWindow::showItem()
     {
     	checkBox_achat->setChecked(false);
     }
+
+    _curStocksTableModel->resetFilter();
 }

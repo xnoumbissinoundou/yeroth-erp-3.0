@@ -90,8 +90,7 @@ public:
 
     void updateLineEdits();
 
-    void rendreVisible(int lastSelectedRow__ID,
-    				   YerothSqlTableModel *clientTableModel,
+    void rendreVisible(YerothSqlTableModel *clientTableModel,
 					   YerothSqlTableModel *stocksTableModel);
 
     virtual void rendreInvisible();
@@ -156,8 +155,6 @@ private:
     QString					_curCompanyName;
 
     double					_curReferenceEngagementResteAPayer;
-
-    int 					_clientLastSelectedRow;
 };
 
 #endif /* SRC_WINDOWS_YEROTH_PAYER_COMPTE_CLIENT_WINDOW_HPP_ */

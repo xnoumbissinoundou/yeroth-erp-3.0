@@ -28,8 +28,7 @@ YerothTableauDesTransactionsDuClientWindow::YerothTableauDesTransactionsDuClient
 
     enableResizing();
 
-    _yerothTableView_FROM_WINDOWS_COMMONS = tableView_tableau_des_transactions_du_client;
-
+    setYerothTableView_FROM_WINDOWS_COMMONS(tableView_tableau_des_transactions_du_client);
 
     QMESSAGE_BOX_STYLE_SHEET =
         QString("QMessageBox {background-color: rgb(%1);}")

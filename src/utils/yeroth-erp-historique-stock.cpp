@@ -11,7 +11,6 @@
 #include "src/utils/yeroth-erp-utils.hpp"
 
 
-
 #include <QtCore/QMap>
 
 
@@ -20,7 +19,6 @@ const QString YerothHistoriqueStock::SEPARATION_EXTERNE("*");
 const QString YerothHistoriqueStock::SEPARATION_INTERNE(";");
 
 QMap<QString, enum TypeMouvementStock> YerothHistoriqueStock::_qstringToTypeMouvement;
-
 
 
 YerothHistoriqueStock::YerothHistoriqueStock()
@@ -35,16 +33,9 @@ YerothHistoriqueStock::YerothHistoriqueStock()
 }
 
 
-YerothHistoriqueStock::~YerothHistoriqueStock()
-{
-
-}
-
-
-void YerothHistoriqueStock::listHistoriqueDuStock(const QString historiqueDuStock,
-												  const QString stockID,
-												  const QString stockReference,
-												  const QString stockDesignation)
+void YerothHistoriqueStock::listHistoriqueDuStock(const QString &historiqueDuStock,
+												  const QString &stockReference,
+												  const QString &stockDesignation)
 {
 	//qDebug() << QString("YerothHistoriqueStock::listHistoriqueDuStock | %1")
 	//				.arg(QString::number(aStockId));
@@ -54,7 +45,6 @@ void YerothHistoriqueStock::listHistoriqueDuStock(const QString historiqueDuStoc
 	aMouvementStockList.append(historiqueDuStock.split(YerothHistoriqueStock::SEPARATION_EXTERNE));
 
 	YerothUtils::getAllWindows()->_historiqueDuStockWindow->listHistoriqueDuStock(aMouvementStockList,
-																				  stockID,
 																				  stockReference,
 																				  stockDesignation);
 }
@@ -129,7 +119,7 @@ QString YerothHistoriqueStock::get_type_mouvement_stock_string(const QString & a
 }
 
 
-enum TypeMouvementStock YerothHistoriqueStock::get_type_mouvement_stock(QString aStockHistoryEntry)
+enum TypeMouvementStock YerothHistoriqueStock::get_type_mouvement_stock(const QString &aStockHistoryEntry)
 {
 	 QString type_mouvement = aStockHistoryEntry.split(YerothHistoriqueStock::SEPARATION_INTERNE).at(2);
 
@@ -145,14 +135,6 @@ enum TypeMouvementStock YerothHistoriqueStock::get_type_mouvement_stock(QString 
 		 //qDebug() << QString("++ test-3: %1").arg(QString::number(INDEFINI));
 		 return MOUVEMENT_DE_STOCK_INDEFINI;
 	 }
-}
-
-
-int YerothHistoriqueStock::get_id_mouvement_stock(QString aStockHistory)
-{
-	int id = aStockHistory.split(YerothHistoriqueStock::SEPARATION_INTERNE).at(3).toInt();
-
-	return id;
 }
 
 

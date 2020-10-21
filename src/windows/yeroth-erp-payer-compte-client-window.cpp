@@ -161,8 +161,7 @@ void YerothPayerCompteClientWindow::afficher_detail_client()
 {
 	rendreInvisible();
 
-    _allWindows->_clientsDetailWindow->rendreVisible(_clientLastSelectedRow,
-    												 _curClientTableModel,
+    _allWindows->_clientsDetailWindow->rendreVisible(_curClientTableModel,
 													 _curStocksTableModel);
 }
 
@@ -308,9 +307,14 @@ void YerothPayerCompteClientWindow::private_slot_afficher_les_transactions_dun_c
 //	qDebug() << QString("_clientLastSelectedRow: %1")
 //					.arg(QString::number(_clientLastSelectedRow));
 
-	if (0 != _curClientTableModel && _curClientTableModel->rowCount() > 0 && _clientLastSelectedRow > -1)
+	int aClientLastSelectedRow = _allWindows->_clientsWindow->get_INT_LastListerSelectedRow__ID();
+
+	if (0 != _curClientTableModel && _curClientTableModel->rowCount() > 0 && aClientLastSelectedRow > -1)
 	{
-	    QSqlRecord record = _curClientTableModel->record(_clientLastSelectedRow);
+		 QSqlRecord record;
+
+		_allWindows->_clientsWindow->
+			SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
 
 //	    int stockId = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ID).toInt();
 
@@ -732,7 +736,10 @@ void YerothPayerCompteClientWindow::updateLineEdits()
 
 	if (_curClientTableModel->select())
 	{
-		QSqlRecord aQSqlRecord = _curClientTableModel->record(_clientLastSelectedRow);
+		QSqlRecord aQSqlRecord;
+
+		_allWindows->_clientsWindow->
+			SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(aQSqlRecord);
 
 		double compteClient = GET_SQL_RECORD_DATA(aQSqlRecord, YerothDatabaseTableColumn::COMPTE_CLIENT).toDouble();
 
@@ -754,17 +761,17 @@ void YerothPayerCompteClientWindow::updateLineEdits()
 }
 
 
-void YerothPayerCompteClientWindow::rendreVisible(int lastSelectedRow__ID,
-		   	   	   	   	   	   	   	   	   	      YerothSqlTableModel *clientTableModel,
+void YerothPayerCompteClientWindow::rendreVisible(YerothSqlTableModel *clientTableModel,
 												  YerothSqlTableModel *stocksTableModel)
 {
-	_clientLastSelectedRow = lastSelectedRow__ID;
-
 	_curClientTableModel = clientTableModel;
 
     _curStocksTableModel = stocksTableModel;
 
-    QSqlRecord aQSqlRecord = _curClientTableModel->record(_clientLastSelectedRow);
+	QSqlRecord aQSqlRecord;
+
+	_allWindows->_clientsWindow->
+		SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(aQSqlRecord);
 
     _curCompanyName = GET_SQL_RECORD_DATA(aQSqlRecord, YerothDatabaseTableColumn::NOM_ENTREPRISE);
 

@@ -107,16 +107,6 @@ public slots:
 
     void set_filtrer_font();
 
-    inline int getLastListerSelectedRow__ID()
-    {
-    	return tableView_stocks->lastSelectedRow__ID();
-    }
-
-    inline void setLastListerSelectedRow__ID(int row)
-    {
-    	tableView_stocks->setLastSelectedRow__ID(row);
-    }
-
 private slots:
 
 	void private_slot_afficher_historique_du_stock();

@@ -139,11 +139,6 @@ public slots:
 
     bool afficher_vente_detail();
 
-    inline void setLastListerSelectedRow__ID(int row)
-    {
-    	tableView_ventes->setLastSelectedRow__ID(row);
-    }
-
     void resetFilter(YerothSqlTableModel *stocksVenduTableModel);
 
 protected slots:
@@ -165,6 +160,8 @@ protected:
 private slots:
 
 	void afficher_ventes();
+
+	void ENABLE_AfficherAnnulerCetteVente(bool enable);
 
 	void modifier_visibilite_actions_sur_cette_vente();
 

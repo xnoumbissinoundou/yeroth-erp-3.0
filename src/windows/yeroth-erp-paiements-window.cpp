@@ -59,6 +59,8 @@ YerothPaiementsWindow::YerothPaiementsWindow()
  _paiementsDateFilter(YerothUtils::EMPTY_STRING),
  _curPaiementsTableModel(&_allWindows->getSqlTableModel_paiements())
 {
+	setYerothSqlTableModel(_curPaiementsTableModel);
+
     _windowName = QString("%1 - %2")
     				.arg(YEROTH_ERP_WINDOW_TITLE,
     					 QObject::trUtf8("paiements"));
@@ -67,9 +69,9 @@ YerothPaiementsWindow::YerothPaiementsWindow()
 
     mySetupUi(this);
 
-    MACRO_TO_DEFINE_CURRENT_VIEW_WINDOW_FOR_TABLE_PAGINATION(tableView_paiements);
+    setYerothTableView_FROM_WINDOWS_COMMONS(tableView_paiements);
 
-    _yerothTableView_FROM_WINDOWS_COMMONS = tableView_paiements;
+    MACRO_TO_DEFINE_CURRENT_VIEW_WINDOW_FOR_TABLE_PAGINATION(tableView_paiements);
 
     QMESSAGE_BOX_STYLE_SHEET =
         QString("QMessageBox {background-color: rgb(%1);}")
@@ -102,6 +104,8 @@ YerothPaiementsWindow::YerothPaiementsWindow()
     setupLineEditsQCompleters((QObject *)this);
 
     setupDateTimeEdits();
+
+    tableView_paiements->setSqlTableName(&YerothERPWindows::PAIEMENTS);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
@@ -144,9 +148,11 @@ YerothPaiementsWindow::YerothPaiementsWindow()
 
     connect(tabWidget_historique_paiements, SIGNAL(currentChanged(int)), this, SLOT(handleCurrentChanged(int)));
 
-    connect(tableView_paiements, SIGNAL(doubleClicked(const QModelIndex &)), this, SLOT(afficher_paiements_detail()));
+    connect(tableView_paiements, SIGNAL(doubleClicked(const QModelIndex &)),
+    		this, SLOT(afficher_paiements_detail()));
 
-    connect(tableView_paiements, SIGNAL(activated(const QModelIndex &)), this, SLOT(afficher_paiements_detail()));
+    connect(tableView_paiements, SIGNAL(activated(const QModelIndex &)),
+    		this, SLOT(afficher_paiements_detail()));
 
     connect(comboBox_paiements_type_de_paiement,
     		SIGNAL(currentTextChanged(const QString &)),
@@ -524,7 +530,7 @@ void YerothPaiementsWindow::textChangedSearchLineEditsQCompleters()
 
     if (_yerothSqlTableModel->select())
     {
-    	setLastListerSelectedRow__ID(0);
+    	setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(0);
     	lister_les_elements_du_tableau();
     }
     else
@@ -896,9 +902,10 @@ void YerothPaiementsWindow::afficher_paiements_detail()
 		return ;
 	}
 
-    int lastSelectedPaiementsRow = tableView_paiements->lastSelectedRow__ID();
+    QSqlRecord record;
 
-    QSqlRecord record = _curPaiementsTableModel->record(lastSelectedPaiementsRow);
+    _allWindows->_historiquePaiementsWindow->
+			SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
 
     textEdit_description->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOTES));
 

@@ -37,15 +37,16 @@ private:
 
 	YerothHistoriqueStock();
 
-	~YerothHistoriqueStock();
+	inline ~YerothHistoriqueStock()
+	{
+	}
 
 public:
 
 
-	static void listHistoriqueDuStock(const QString historiqueDuStock,
-									  const QString stockID,
-									  const QString stockReference,
-									  const QString stockDesignation);
+	static void listHistoriqueDuStock(const QString &historiqueDuStock,
+									  const QString &stockReference,
+									  const QString &stockDesignation);
 
 
 	static QString get_mouvement_stock(QString aMouvementStock_in_out);
@@ -62,7 +63,12 @@ public:
 
 	static QString get_type_mouvement_stock_string(const QString &aStockHistory);
 
-	static enum TypeMouvementStock get_type_mouvement_stock(QString mouvementStock);
+	static enum TypeMouvementStock get_type_mouvement_stock(const QString &mouvementStock);
+
+	inline static int get_id_mouvement_stock(const QString &aStockHistory)
+	{
+		return aStockHistory.split(YerothHistoriqueStock::SEPARATION_INTERNE).at(3).toInt();
+	}
 
 	static int get_id_mouvement_stock(QString mouvementStock);
 

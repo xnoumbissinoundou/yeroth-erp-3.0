@@ -135,11 +135,6 @@ public slots:
     	textChangedSearchLineEditsQCompleters();
     }
 
-    inline void setLastListerSelectedRow__ID(int row)
-    {
-    	tableView_paiements->setLastSelectedRow__ID(row);
-    }
-
     void resetFilter(YerothSqlTableModel *stocksVenduTableModel);
 
 protected slots:

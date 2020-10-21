@@ -115,14 +115,14 @@ public:
 		_tableName = tableName;
 	}
 
-	inline int lastSelectedRow__ID()
+	inline const QString & lastSelectedRow__ID()
 	{
 		return _lastSelectedRow__ID;
 	}
 
-	inline void setLastSelectedRow__ID(int row)
+	inline void setLastSelectedRow__ID(const QString &aLastSelectedRow__ID)
 	{
-		_lastSelectedRow__ID = row;
+		_lastSelectedRow__ID = aLastSelectedRow__ID;
 	}
 
 	inline YerothPOSQStandardItemModel *getStandardItemModel()
@@ -137,6 +137,12 @@ public:
 
 
 	static YerothERPWindows *YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER;
+
+	/**
+	 * This map must be filled during execution of method
+	 * 'lister_les_elements_du_tableau'.
+	 */
+	QMap<QString, int>			_map_dbID_TO_yeroth_table_view_ROW_NUMBER;
 
 
     static const int REFERENCE_COLUMN;
@@ -160,7 +166,7 @@ protected:
 
 	bool 						_writeEnabled;
 
-	int 						_lastSelectedRow__ID;
+	QString 					_lastSelectedRow__ID;
 
 	const QString 				*_tableName;
 

@@ -103,7 +103,8 @@ void YerothERPClientsTableView::lister_les_elements_du_tableau(YerothSqlTableMod
 				}
 				else
 				{
-					anItem = new YerothQStandardItem(QString::number(qv.toUInt()));
+					YEROTH_SAVE_ID_TO_ROW_NUMBER_FOR_YEROTH_TABLE_VIEW(tmpQvString, qv.toUInt())
+					anItem = new YerothQStandardItem(tmpQvString);
 				}
 
 				_stdItemModel->setItem(i, k, anItem);
@@ -117,7 +118,8 @@ void YerothERPClientsTableView::lister_les_elements_du_tableau(YerothSqlTableMod
 				}
 				else
 				{
-					anItem = new YerothQStandardItem(QString::number(qv.toInt()));
+					YEROTH_SAVE_ID_TO_ROW_NUMBER_FOR_YEROTH_TABLE_VIEW(tmpQvString, qv.toInt())
+					anItem = new YerothQStandardItem(tmpQvString);
 				}
 
 				_stdItemModel->setItem(i, k, anItem);

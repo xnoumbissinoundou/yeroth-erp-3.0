@@ -312,7 +312,10 @@ void YerothModifierFournisseurWindow::clear_all_fields()
 
 void YerothModifierFournisseurWindow::supprimer_image_fournisseur()
 {
-	QSqlRecord record = _curFournisseurTableModel->record(_fournisseurLastSelectedRow);
+	QSqlRecord record;
+
+	_allWindows->_fournisseursWindow->
+			SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
 
 	QString nomEntreprise(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE));
 
@@ -345,7 +348,8 @@ void YerothModifierFournisseurWindow::supprimer_image_fournisseur()
     {
         record.setValue(YerothDatabaseTableColumn::IMAGE_COMPTE_CLIENT, QVariant(QVariant::ByteArray));
 
-        bool resRemoved = _curFournisseurTableModel->updateRecord(_fournisseurLastSelectedRow, record);
+        bool resRemoved = _allWindows->_fournisseursWindow->
+        		SQL_UPDATE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
 
         if (resRemoved)
         {
@@ -422,7 +426,10 @@ void YerothModifierFournisseurWindow::actualiserFournisseur()
     		return ;
     	}
 
-        QSqlRecord record = _curFournisseurTableModel->record(_fournisseurLastSelectedRow);
+    	QSqlRecord record;
+
+    	_allWindows->_fournisseursWindow->
+				SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
 
         bool currentFournisseurRefChanged = false;
         bool currentCompanyNameChanged = false;
@@ -474,8 +481,8 @@ void YerothModifierFournisseurWindow::actualiserFournisseur()
             record.setValue(YerothDatabaseTableColumn::IMAGE_COMPTE_CLIENT, QVariant::fromValue(bytes));
         }
 
-
-        bool success = _curFournisseurTableModel->updateRecord(_fournisseurLastSelectedRow, record);
+        bool success = _allWindows->_fournisseursWindow->
+        		SQL_UPDATE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
 
         if (success)
         {
@@ -538,7 +545,10 @@ void YerothModifierFournisseurWindow::actualiserFournisseur()
 
 void YerothModifierFournisseurWindow::supprimerFournisseur()
 {
-    QSqlRecord record = _curFournisseurTableModel->record(_fournisseurLastSelectedRow);
+	QSqlRecord record;
+
+	_allWindows->_fournisseursWindow->
+			SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
 
     QString msgSupprimer(QString(QObject::trUtf8("Poursuivre avec la suppression du fournisseur '%1' ?"))
     						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE)));
@@ -548,7 +558,9 @@ void YerothModifierFournisseurWindow::supprimerFournisseur()
             							msgSupprimer,
                                         QMessageBox::Cancel, QMessageBox::Ok))
     {
-        bool resRemoved = _curFournisseurTableModel->removeRow(_fournisseurLastSelectedRow);
+    	bool resRemoved = _allWindows->_fournisseursWindow->
+    			SQL_DELETE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW();
+
         //qDebug() << "YerothModifierFournisseurWindow::supprimer_ce_stock() " << resRemoved;
 
         if (resRemoved)
@@ -587,17 +599,14 @@ void YerothModifierFournisseurWindow::rendreInvisible()
 }
 
 
-void YerothModifierFournisseurWindow::rendreVisible(int lastSelectedRow__ID,
-											  	  	 YerothSqlTableModel * fournisseurTableModel,
-													 YerothSqlTableModel * stocksTableModel)
+void YerothModifierFournisseurWindow::rendreVisible(YerothSqlTableModel * fournisseurTableModel,
+													YerothSqlTableModel * stocksTableModel)
 {
-	_fournisseurLastSelectedRow = lastSelectedRow__ID;
-
 	_curStocksTableModel = stocksTableModel;
 
 	_curFournisseurTableModel = fournisseurTableModel;
 
-    //qDebug() << "++ last selected row: " << _allWindows->getLastSelectedListerRow();
+    //qDebug() << "++ last selected row: " << YerothERPWindows::get_last_lister_selected_row_ID();
     showFournisseurDetail();
 
     setVisible(true);
@@ -606,7 +615,9 @@ void YerothModifierFournisseurWindow::rendreVisible(int lastSelectedRow__ID,
 
 void YerothModifierFournisseurWindow::showFournisseurDetail()
 {
-    QSqlRecord record = _curFournisseurTableModel->record(_fournisseurLastSelectedRow);
+	QSqlRecord record;
+
+	YerothUtils::GET_YEROTH_VIEW_RECORD_WIDTH_LAST_SELECTED_ID(*_curStocksTableModel, record);
 
     _curFournisseurDetailDBID = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ID).toInt();
 
@@ -652,4 +663,6 @@ void YerothModifierFournisseurWindow::showFournisseurDetail()
     {
         label_image_produit->setAutoFillBackground(false);
     }
+
+    YerothUtils::RESET_YEROTH_VIEW_RECORD_WIDTH_LAST_SELECTED_ID(*_curStocksTableModel);
 }

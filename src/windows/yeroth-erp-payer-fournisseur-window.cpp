@@ -162,8 +162,7 @@ void YerothPayerFournisseurWindow::afficher_detail_fournisseur()
 {
 	rendreInvisible();
 
-    _allWindows->_fournisseurDetailsWindow->rendreVisible(_fournisseurLastSelectedRow,
-    												 	  _curFournisseurTableModel,
+    _allWindows->_fournisseurDetailsWindow->rendreVisible(_curFournisseurTableModel,
 														  _curStocksTableModel);
 }
 
@@ -309,9 +308,13 @@ void YerothPayerFournisseurWindow::private_slot_afficher_les_transactions_dun_fo
 //	qDebug() << QString("_fournisseurLastSelectedRow: %1")
 //					.arg(QString::number(_fournisseurLastSelectedRow));
 
-	if (0 != _curFournisseurTableModel && _curFournisseurTableModel->rowCount() > 0 && _fournisseurLastSelectedRow > -1)
+	if (0 != _curFournisseurTableModel 		  &&
+		_curFournisseurTableModel->rowCount() > 0)
 	{
-	    QSqlRecord record = _curFournisseurTableModel->record(_fournisseurLastSelectedRow);
+		QSqlRecord record;
+
+		_allWindows->_fournisseursWindow->
+				SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
 
 //	    int stockId = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ID).toInt();
 
@@ -733,7 +736,10 @@ void YerothPayerFournisseurWindow::updateLineEdits()
 
 	if (_curFournisseurTableModel->select())
 	{
-		QSqlRecord aQSqlRecord = _curFournisseurTableModel->record(_fournisseurLastSelectedRow);
+		QSqlRecord aQSqlRecord;
+
+		_allWindows->_fournisseursWindow->
+				SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(aQSqlRecord);
 
 		double compteFournisseur = GET_SQL_RECORD_DATA(aQSqlRecord, YerothDatabaseTableColumn::COMPTE_CLIENT).toDouble();
 
@@ -755,17 +761,17 @@ void YerothPayerFournisseurWindow::updateLineEdits()
 }
 
 
-void YerothPayerFournisseurWindow::rendreVisible(int lastSelectedRow__ID,
-		   	   	   	   	   	   	   	   	   	      YerothSqlTableModel *fournisseurTableModel,
-												  YerothSqlTableModel *stocksTableModel)
+void YerothPayerFournisseurWindow::rendreVisible(YerothSqlTableModel *fournisseurTableModel,
+												 YerothSqlTableModel *stocksTableModel)
 {
-	_fournisseurLastSelectedRow = lastSelectedRow__ID;
-
 	_curFournisseurTableModel = fournisseurTableModel;
 
     _curStocksTableModel = stocksTableModel;
 
-    QSqlRecord aQSqlRecord = _curFournisseurTableModel->record(_fournisseurLastSelectedRow);
+    QSqlRecord aQSqlRecord;
+
+	_allWindows->_fournisseursWindow->
+			SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(aQSqlRecord);
 
     _curCompanyName = GET_SQL_RECORD_DATA(aQSqlRecord, YerothDatabaseTableColumn::NOM_ENTREPRISE);
 

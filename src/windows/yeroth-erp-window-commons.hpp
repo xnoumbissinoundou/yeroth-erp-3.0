@@ -45,9 +45,9 @@ public:
 	 _output_print_pdf_latexFileNamePrefix(anOutput_print_pdf_latexFileNamePrefix),
 	 _yeroth_QComboBox_SearchDBFieldColumnString(0),
 	 _yeroth_QLineEdit_SearchDBFieldColumnString(0),
-	 _yerothTableView_FROM_WINDOWS_COMMONS(0),
 	 _curStocksTableModel(0),
 	 _pagination_nombre_de_ligne_IntValidator(0),
+	 _yerothTableView_FROM_WINDOWS_COMMONS(0),
 	 _first_time_imprimer_pdf_document_call(true),
 	 QMESSAGE_BOX_STYLE_SHEET(QString("QMessageBox {background-color: rgb(%1);}")
 								.arg(COLOUR_RGB_STRING_YEROTH_ORANGE_243_162_0)),
@@ -56,6 +56,8 @@ public:
 	}
 
 	virtual ~YerothWindowsCommons();
+
+	int get_INT_last_selected_row_number();
 
 	void setYerothTableView_FROM_WINDOWS_COMMONS(YerothTableView *aYerothTableView_FROM_WINDOWS_COMMONS);
 
@@ -143,6 +145,21 @@ public:
 	{
 		return _allWindows;
 	}
+
+	bool SQL_UPDATE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(QSqlRecord &resultRecord_IN);
+
+	bool SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(QSqlRecord &resultRecord_IN_OUT);
+
+	bool SQL_DELETE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW();
+
+	inline static const QString & get_last_lister_selected_row_ID()
+	{
+		return _yerothTableView_FROM_WINDOWS_COMMONS_LAST_SELECTED_ROW__ID;
+	}
+
+	int get_INT_LastListerSelectedRow__ID();
+
+    const QString & getLastListerSelectedRow__ID();
 
 public slots:
 
@@ -233,6 +250,10 @@ public slots:
 	virtual void updateYerothLineEditQCompleter(const QString &currentDBColumnString);
 
 protected slots:
+
+	virtual void setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(int aRowNumber);
+
+	virtual void setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(const QModelIndex &modelIndex);
 
 	virtual void setYerothLineEditQCompleterSearchFilter(QString &aYerothLineEditQCompleterSearchFilter_IN_OUT);
 
@@ -348,8 +369,6 @@ protected:
 
     QString 							_output_print_pdf_latexFileNamePrefix;
 
-    YerothTableView 					 *_yerothTableView_FROM_WINDOWS_COMMONS;
-
     YerothSqlTableModel 				*_curStocksTableModel;
 
     QIntValidator 						*_pagination_nombre_de_ligne_IntValidator;
@@ -360,7 +379,11 @@ protected:
 
     QString 							_windowName;
 
+    YerothTableView 					*_yerothTableView_FROM_WINDOWS_COMMONS;
+
 private:
+
+    static QString 						_yerothTableView_FROM_WINDOWS_COMMONS_LAST_SELECTED_ROW__ID;
 
     static QPoint						*_centerPosition;
 };

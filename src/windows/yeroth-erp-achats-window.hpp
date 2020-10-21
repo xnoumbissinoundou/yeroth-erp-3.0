@@ -104,16 +104,6 @@ public slots:
 
     void set_filtrer_font();
 
-    inline int getLastListerSelectedRow__ID()
-    {
-    	return tableView_achats->lastSelectedRow__ID();
-    }
-
-    inline void setLastListerSelectedRow__ID(int row)
-    {
-    	tableView_achats->setLastSelectedRow__ID(row);
-    }
-
 protected:
 
 	virtual void reinitialiser_champs_db_visibles();

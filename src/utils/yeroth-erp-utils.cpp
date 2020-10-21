@@ -1561,6 +1561,16 @@ int YerothUtils::getComboBoxDatabaseQueryValue(const QString &comboBoxStringValu
 }
 
 
+void YerothUtils::GET_YEROTH_VIEW_RECORD_WIDTH_LAST_SELECTED_ID(YerothSqlTableModel &aYerothSqlTableModel_in_out,
+														  	    QSqlRecord &resultSQL_RECORD_in_out)
+{
+	aYerothSqlTableModel_in_out.yerothSetFilter_WITH_where_clause(QString("%1 = '%2'")
+																	.arg(YerothDatabaseTableColumn::ID,
+																		 YerothERPWindows::get_last_lister_selected_row_ID()));
+	resultSQL_RECORD_in_out = aYerothSqlTableModel_in_out.record(0);
+}
+
+
 QString YerothUtils::GET_REFERENCE_RECU_SUFFIX(const QString &prefix,
 											   const QString &fixedNumber)
 {

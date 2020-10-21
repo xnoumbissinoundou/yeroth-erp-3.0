@@ -203,9 +203,9 @@ public:
 	}
 #endif
 
-	inline int getLastSelectedListerRow()
+	inline static const QString & get_last_lister_selected_row_ID()
 	{
-		return this->_stocksWindow->getLastListerSelectedRow__ID();
+		return YerothWindowsCommons::get_last_lister_selected_row_ID();
 	}
 
 	inline void setDesktopWidget(QDesktopWidget *desktopWidget)

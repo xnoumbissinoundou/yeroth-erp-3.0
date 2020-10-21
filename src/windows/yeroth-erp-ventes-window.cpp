@@ -68,9 +68,9 @@ YerothVentesWindow::YerothVentesWindow()
 
     mySetupUi(this);
 
-    MACRO_TO_DEFINE_CURRENT_VIEW_WINDOW_FOR_TABLE_PAGINATION(tableView_ventes);
+    setYerothTableView_FROM_WINDOWS_COMMONS(tableView_ventes);
 
-    _yerothTableView_FROM_WINDOWS_COMMONS = tableView_ventes;
+    MACRO_TO_DEFINE_CURRENT_VIEW_WINDOW_FOR_TABLE_PAGINATION(tableView_ventes);
 
     QMESSAGE_BOX_STYLE_SHEET =
         QString("QMessageBox {background-color: rgb(%1);}")
@@ -192,19 +192,47 @@ void YerothVentesWindow::afficher_ventes()
 }
 
 
+void YerothVentesWindow::ENABLE_AfficherAnnulerCetteVente(bool enable)
+{
+	if (!enable)
+	{
+		actionAnnulerCetteVente->setVisible(false);
+		return;
+	}
+	else
+	{
+		YerothPOSUser *aUser = _allWindows->getUser();
+
+		if (0 == aUser)
+		{
+			actionAnnulerCetteVente->setVisible(false);
+			return ;
+		}
+
+		if (aUser->isManager())
+		{
+			actionAnnulerCetteVente->setVisible(true);
+		}
+		else
+		{
+			actionAnnulerCetteVente->setVisible(false);
+		}
+	}
+}
+
+
 void YerothVentesWindow::modifier_visibilite_actions_sur_cette_vente()
 {
 	if (tableView_ventes->rowCount() > 0)
 	{
 		actionAfficherVenteDetail->setVisible(true);
-		actionAnnulerCetteVente->setVisible(true);
+		ENABLE_AfficherAnnulerCetteVente(true);
 	}
 	else
 	{
 		actionAfficherVenteDetail->setVisible(false);
-		actionAnnulerCetteVente->setVisible(false);
+		ENABLE_AfficherAnnulerCetteVente(false);
 	}
-
 }
 
 
@@ -248,12 +276,13 @@ bool YerothVentesWindow::annuler_cette_vente()
 		return false;
 	}
 
-    int lastSelectedVentesRow = tableView_ventes->lastSelectedRow__ID();
-
     YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
 
     //_logger->log("afficher_vente_detail]", QString("row: %1").arg(lastSelectedVentesRow));
-    QSqlRecord curStocksVenduRecord = _curStocksVenduTableModel->record(lastSelectedVentesRow);
+    QSqlRecord curStocksVenduRecord;
+
+    _allWindows->_ventesWindow->
+		SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(curStocksVenduRecord);
 
 	double curStocksVenduQuantiteVendue = 0.0;
 
@@ -268,7 +297,6 @@ bool YerothVentesWindow::annuler_cette_vente()
 		YerothQMessageBox::information(this,
 									   QObject::trUtf8("quantité d'articles à retourner"),
 									   msg);
-
 		return false;
 	}
 
@@ -492,7 +520,8 @@ bool YerothVentesWindow::annuler_cette_vente()
 
 			curStocksVenduRecord.setValue(YerothDatabaseTableColumn::MONTANT_TVA, curStocksVenduNouveauMontantTVA);
 
-			_curStocksVenduTableModel->updateRecord(lastSelectedVentesRow, curStocksVenduRecord);
+			_allWindows->_ventesWindow->
+				SQL_UPDATE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(curStocksVenduRecord);
 		}
 		else
 		{
@@ -967,6 +996,8 @@ void YerothVentesWindow::populateComboBoxes()
 
 	aQStringList.append(_varchar_dbtable_column_list.values());
 
+	aQStringList.removeAll(YerothDatabaseTableColumn::REFERENCE);
+	aQStringList.removeAll(YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR);
 	aQStringList.removeAll(YerothDatabaseTableColumn::DATE_PEREMPTION);
 	aQStringList.removeAll(YerothDatabaseTableColumn::HISTORIQUE_STOCK);
 	aQStringList.removeAll(YerothDatabaseTableColumn::LOCALISATION);
@@ -981,7 +1012,7 @@ void YerothVentesWindow::populateComboBoxes()
 	{
 		aDBColumnElementString = aQStringList.at(k);
 
-		if (!YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::REFERENCE, aDBColumnElementString))
+		if (!YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::REFERENCE_RECU_VENDU, aDBColumnElementString))
 		{
 			comboBox_element_string_db
 				->addItem(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(aDBColumnElementString));
@@ -989,7 +1020,7 @@ void YerothVentesWindow::populateComboBoxes()
 	}
 
 	comboBox_element_string_db
-		->insertItem(0, YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::REFERENCE));
+		->insertItem(0, YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::REFERENCE_RECU_VENDU));
 
 	comboBox_element_string_db->setCurrentIndex(0);
 
@@ -1032,8 +1063,7 @@ void YerothVentesWindow::setupLineEdits()
     _logger->log("setupLineEdits");
 
     lineEdit_ventes_terme_recherche->enableForSearch(
-    		QObject::trUtf8("terme à rechercher (référence, "
-    						"référence reçu de vente, fournisseur)"));
+    		QObject::trUtf8("terme à rechercher (référence, fournisseur)"));
 
     lineEdit_nom_element_string_db->enableForSearch(QObject::trUtf8("valeur à rechercher"));
 
@@ -1146,9 +1176,8 @@ void YerothVentesWindow::textChangedSearchLineEditsQCompleters()
         	partSearchTerm = searchTermList.at(k);
 //        	qDebug() << "++ searchTermList: " << partSearchTerm;
 
-        	_searchFilter.append(QString("(%1 OR %2 OR %3)")
+        	_searchFilter.append(QString("(%1 OR %2)")
         							.arg(GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::REFERENCE, partSearchTerm),
-        								 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::REFERENCE_RECU_VENDU, partSearchTerm),
 										 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR, partSearchTerm)));
 
         	if (k != lastIdx)
@@ -1255,7 +1284,7 @@ void YerothVentesWindow::textChangedSearchLineEditsQCompleters()
 
     if (_yerothSqlTableModel->select())
     {
-    	setLastListerSelectedRow__ID(0);
+//    	setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(0);
     	lister_les_elements_du_tableau();
     }
     else
@@ -1272,11 +1301,11 @@ void YerothVentesWindow::reinitialiser_champs_db_visibles()
 
     _visibleDBFieldColumnStrList
 			<< YerothDatabaseTableColumn::DATE_VENTE
-			<< YerothDatabaseTableColumn::CATEGORIE
-			<< YerothDatabaseTableColumn::DESIGNATION
-			<< YerothDatabaseTableColumn::PRIX_UNITAIRE
-			<< YerothDatabaseTableColumn::QUANTITE_VENDUE
 			<< YerothDatabaseTableColumn::REFERENCE
+			<< YerothDatabaseTableColumn::DESIGNATION
+			<< YerothDatabaseTableColumn::QUANTITE_VENDUE
+			<< YerothDatabaseTableColumn::PRIX_VENTE
+			<< YerothDatabaseTableColumn::CATEGORIE
 			<< YerothDatabaseTableColumn::TYPE_DE_VENTE
 			<< YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE;
 }
@@ -1849,10 +1878,11 @@ bool YerothVentesWindow::afficher_retour_vente()
 		return false;
 	}
 
-    int lastSelectedVentesRow = tableView_ventes->lastSelectedRow__ID();
-
     //_logger->log("afficher_vente_detail]", QString("row: %1").arg(lastSelectedVentesRow));
-    QSqlRecord record = _curStocksVenduTableModel->record(lastSelectedVentesRow);
+    QSqlRecord record;
+
+    _allWindows->_ventesWindow->
+		SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
 
     bool isService =  GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::IS_SERVICE).toInt();
 
@@ -1937,10 +1967,11 @@ bool YerothVentesWindow::afficher_vente_detail()
 		return false;
 	}
 
-    int lastSelectedVentesRow = tableView_ventes->lastSelectedRow__ID();
-
     //_logger->log("afficher_vente_detail]", QString("row: %1").arg(lastSelectedVentesRow));
-    QSqlRecord record = _curStocksVenduTableModel->record(lastSelectedVentesRow);
+    QSqlRecord record;
+
+    _allWindows->_ventesWindow->
+		SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
 
     lineEdit_details_reference_produit->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE));
     lineEdit_details_designation->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));

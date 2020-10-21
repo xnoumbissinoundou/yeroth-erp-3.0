@@ -56,8 +56,7 @@ public:
 
     void rendreInvisible();
 
-    void rendreVisible(int lastSelectedRow__ID,
-    				   YerothSqlTableModel *fournisseurTableModel,
+    void rendreVisible(YerothSqlTableModel *fournisseurTableModel,
 					   YerothSqlTableModel *stocksTableModel);
 
 public slots:
@@ -93,7 +92,7 @@ private:
 
     void setupLineEdits();
 
-    void showFournisseurDetail(int lastSelectedRow__ID);
+    void showFournisseurDetail();
 
     void checkCourrierAlerts();
 
@@ -101,8 +100,6 @@ private:
     YerothLogger			*_logger;
 
     YerothSqlTableModel 	*_curFournisseurTableModel;
-
-    int 					_fournisseurLastSelectedRow;
 };
 
 

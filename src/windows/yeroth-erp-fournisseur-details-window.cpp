@@ -87,9 +87,8 @@ void YerothFournisseurDetailsWindow::private_payer_au_fournisseur()
 {
 	rendreInvisible();
 
-	_allWindows->_payerAuFournisseurWindow->rendreVisible(_fournisseurLastSelectedRow,
-														   _curFournisseurTableModel,
-														   _curStocksTableModel);
+	_allWindows->_payerAuFournisseurWindow->rendreVisible(_curFournisseurTableModel,
+														  _curStocksTableModel);
 }
 
 
@@ -97,15 +96,17 @@ void YerothFournisseurDetailsWindow::modifierFournisseur()
 {
     rendreInvisible();
 
-    _allWindows->_modifierFournisseurWindow->rendreVisible(_fournisseurLastSelectedRow,
-    												 	 	_curFournisseurTableModel,
-															_curStocksTableModel);
+    _allWindows->_modifierFournisseurWindow->rendreVisible(_curFournisseurTableModel,
+														   _curStocksTableModel);
 }
 
 
 void YerothFournisseurDetailsWindow::supprimerFournisseur()
 {
-    QSqlRecord record = _curFournisseurTableModel->record(_fournisseurLastSelectedRow);
+	QSqlRecord record;
+
+	_allWindows->_fournisseursWindow->
+		SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
 
     QString msgSupprimer(QString(QObject::trUtf8("Poursuivre avec la suppression du compte fournisseur '%1' ?"))
     						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE)));
@@ -115,7 +116,9 @@ void YerothFournisseurDetailsWindow::supprimerFournisseur()
                                        QObject::tr("suppression d'un compte fournisseur"), msgSupprimer,
                                        QMessageBox::Cancel, QMessageBox::Ok))
     {
-        bool resRemoved = _curFournisseurTableModel->removeRow(_allWindows->getLastSelectedListerRow());
+    	bool resRemoved = _allWindows->_fournisseursWindow->
+    			SQL_DELETE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW();
+
         //qDebug() << "YerothModifierWindow::supprimer_ce_stock() " << resRemoved;
         fournisseurs();
         if (resRemoved)
@@ -474,12 +477,9 @@ void YerothFournisseurDetailsWindow::rendreInvisible()
 }
 
 
-void YerothFournisseurDetailsWindow::rendreVisible(int lastSelectedRow__ID,
-											  YerothSqlTableModel * fournisseurTableModel,
-											  YerothSqlTableModel * stocksTableModel)
+void YerothFournisseurDetailsWindow::rendreVisible(YerothSqlTableModel * fournisseurTableModel,
+												   YerothSqlTableModel * stocksTableModel)
 {
-	_fournisseurLastSelectedRow = lastSelectedRow__ID;
-
 	_curStocksTableModel = stocksTableModel;
 
 	_curFournisseurTableModel = fournisseurTableModel;
@@ -488,13 +488,16 @@ void YerothFournisseurDetailsWindow::rendreVisible(int lastSelectedRow__ID,
 
 	setVisible(true);
 
-    showFournisseurDetail(lastSelectedRow__ID);
+    showFournisseurDetail();
 }
 
 
-void YerothFournisseurDetailsWindow::showFournisseurDetail(int lastSelectedRow__ID)
+void YerothFournisseurDetailsWindow::showFournisseurDetail()
 {
-	QSqlRecord record = _curFournisseurTableModel->record(lastSelectedRow__ID);
+	QSqlRecord record;
+
+	_allWindows->_fournisseursWindow->
+		SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
 
 	lineEdit_fournisseur_details_reference_fournisseur->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE_FOURNISSEUR));
 
