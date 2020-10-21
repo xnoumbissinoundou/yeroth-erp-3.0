@@ -578,7 +578,6 @@ void YerothStocksWindow::textChangedSearchLineEditsQCompleters()
 
     if (_yerothSqlTableModel->select())
     {
-    	setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(0);
     	afficherStocks(*_yerothSqlTableModel);
     }
     else

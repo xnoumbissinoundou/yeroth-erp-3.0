@@ -297,7 +297,6 @@ void YerothERPFournisseursWindow::textChangedSearchLineEditsQCompleters()
 
     if (_yerothSqlTableModel->select())
     {
-    	setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(0);
     	afficherFournisseurs(*_yerothSqlTableModel);
     }
     else
@@ -838,8 +837,6 @@ void YerothERPFournisseursWindow::definirPasDeRole()
 void YerothERPFournisseursWindow::afficher_nom_entreprise_selectioner(const QString & nomEntreprise)
 {
     _logger->log("afficher_nom_entreprise_selectioner(const QString &)");
-
-    setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(0);
 
     QString filter(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::NOM_ENTREPRISE, nomEntreprise));
 

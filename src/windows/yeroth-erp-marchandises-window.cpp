@@ -394,7 +394,6 @@ void YerothMarchandisesWindow::textChangedSearchLineEditsQCompleters()
 
     if (_yerothSqlTableModel->select())
     {
-    	setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(0);
     	afficherMarchandises(*_yerothSqlTableModel);
     }
     else
@@ -988,8 +987,6 @@ void YerothMarchandisesWindow::definirPasDeRole()
 
 void YerothMarchandisesWindow::afficher_stock_selectioner(const QString & stockName)
 {
-    setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(0);
-
     QString filter(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::DESIGNATION, stockName));
 
     //qDebug() << QString("filter: %1").arg(filter);

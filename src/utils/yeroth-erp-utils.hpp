@@ -823,6 +823,30 @@ bool YerothUtils::instanceOf__YerothTableViewWITHpagination(aTableViewClassType 
  * Macros to facilitate the use of YerothUtils static methods
  */
 
+#define YEROTH_SET_LAST_TABLE_VIEW_SELECTED_ROW_ID(X, Y) 						\
+	static bool first_execution = true;				  							\
+	if (!first_execution)							  							\
+	{												  							\
+		if (0 != X)						  										\
+		{											  							\
+			if (0 != Y)															\
+			{																	\
+				Y->setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(currentIndex());\
+			}											  						\
+		}																		\
+	}																			\
+	else 																		\
+	{ 																			\
+		if (0 != X) 															\
+		{ 																		\
+			if (0 != Y)															\
+			{																	\
+				Y->setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(); 				\
+			}																	\
+		} 																		\
+		first_execution = false; 												\
+	}
+
 
 #define YEROTH_QMESSAGE_BOX_QUELQUE_RESULTAT_FILTRE(THIS, NOMBRE, DIALOG_BOX_TITLE) \
 { QString msg(QObject::trUtf8("Il y'a eu")); \

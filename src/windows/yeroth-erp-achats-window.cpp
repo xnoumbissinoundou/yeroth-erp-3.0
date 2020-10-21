@@ -400,7 +400,6 @@ void YerothAchatsWindow::textChangedSearchLineEditsQCompleters()
 
     if (_yerothSqlTableModel->select())
     {
-    	setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(0);
     	afficherAchats(*_yerothSqlTableModel);
     }
     else
@@ -730,7 +729,7 @@ void YerothAchatsWindow::afficher_stock_selectioner(const QString & stockName)
 
     //qDebug() << QString("afficher_stock_selectioner(%1)").arg(stockName);
 
-    setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(0);
+    setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID();
 
     QString filter(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::DESIGNATION, stockName));
 

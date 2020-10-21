@@ -213,7 +213,7 @@ public slots:
 
 	virtual void administration();
 
-	virtual void setup_select_configure_dbcolumn(QString aSqlTableName);
+	virtual void setup_select_configure_dbcolumn(const QString &aSqlTableName);
 
 	virtual void qui_suis_je();
 
@@ -249,11 +249,11 @@ public slots:
 
 	virtual void updateYerothLineEditQCompleter(const QString &currentDBColumnString);
 
-protected slots:
-
-	virtual void setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(int aRowNumber);
+	virtual void setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID();
 
 	virtual void setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(const QModelIndex &modelIndex);
+
+protected slots:
 
 	virtual void setYerothLineEditQCompleterSearchFilter(QString &aYerothLineEditQCompleterSearchFilter_IN_OUT);
 

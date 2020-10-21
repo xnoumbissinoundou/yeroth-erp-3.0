@@ -451,7 +451,7 @@ void YerothWindowsCommons::administration()
 }
 
 
-void YerothWindowsCommons::setup_select_configure_dbcolumn(QString aSqlTableName)
+void YerothWindowsCommons::setup_select_configure_dbcolumn(const QString &aSqlTableName)
 {
 	_selectExportDBQDialog = new YerothERPGenericSelectDBFieldDialog(_allWindows, this);
 
@@ -809,18 +809,22 @@ void YerothWindowsCommons::fill_table_columns_to_ignore(QList<int> &tableColumns
 }
 
 
-void YerothWindowsCommons::setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(int aRowNumber)
+void YerothWindowsCommons::setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID()
 {
-	YerothPOSQStandardItemModel *model = _yerothTableView_FROM_WINDOWS_COMMONS->getStandardItemModel();
-
-	if (0 == model)
+	if (0 == _yerothTableView_FROM_WINDOWS_COMMONS)
 	{
 		return ;
 	}
 
-	QModelIndex aYerothTableViewIndex = model->create_ZERO_ZERO_MODEL_INDEX_FOR_TABLE_VIEWING();
+	YerothPOSQStandardItemModel *model = _yerothTableView_FROM_WINDOWS_COMMONS->getStandardItemModel();
 
-//	QDEBUG_STRINGS_OUTPUT_2_N("setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID - aYerothTableViewIndex", aYerothTableViewIndex.row());
+	if (0 == model 				   ||
+		0 == model->_curSqlTableModel)
+	{
+		return ;
+	}
+
+	QModelIndex aYerothTableViewIndex = model->index(0, 0);
 
 	setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(aYerothTableViewIndex);
 }
@@ -828,29 +832,24 @@ void YerothWindowsCommons::setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(int aRow
 
 void YerothWindowsCommons::setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(const QModelIndex &modelIndex)
 {
-	if (0 == _yerothTableView_FROM_WINDOWS_COMMONS)
+	if (0 == _yerothTableView_FROM_WINDOWS_COMMONS 			||
+		_yerothTableView_FROM_WINDOWS_COMMONS->rowCount() <= 0)
 	{
 		return ;
 	}
 
-	int db_ID_yeroth_table_view_column_index =
-			_dbtablefieldNameToDBColumnIndex.value(YerothDatabaseTableColumn::ID);
+	int yerothTableViewColumnIndex_dbID = _dbtablefieldNameToDBColumnIndex.value(YerothDatabaseTableColumn::ID);
 
 	int selected_row_nr = modelIndex.row();
 
-	if (_yerothTableView_FROM_WINDOWS_COMMONS->rowCount() <= 0)
-	{
-		return ;
-	}
-
-	QModelIndex id_row_qmodelindex_sibling =
-			modelIndex.sibling(selected_row_nr, db_ID_yeroth_table_view_column_index);
+	QModelIndex id_row_qmodelindex_sibling = modelIndex.sibling(selected_row_nr,
+																yerothTableViewColumnIndex_dbID);
 
 	QString db_ID = YerothUtils::get_text(id_row_qmodelindex_sibling.data());
 
 	_yerothTableView_FROM_WINDOWS_COMMONS->setLastSelectedRow__ID(db_ID);
 
-	_yerothTableView_FROM_WINDOWS_COMMONS->selectRow(selected_row_nr);
+	_yerothTableView_FROM_WINDOWS_COMMONS->setCurrentIndex(modelIndex);
 
 	_yerothTableView_FROM_WINDOWS_COMMONS_LAST_SELECTED_ROW__ID = db_ID;
 }

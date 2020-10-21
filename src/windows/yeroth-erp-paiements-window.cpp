@@ -529,7 +529,6 @@ void YerothPaiementsWindow::textChangedSearchLineEditsQCompleters()
 
     if (_yerothSqlTableModel->select())
     {
-    	setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(0);
     	lister_les_elements_du_tableau();
     }
     else

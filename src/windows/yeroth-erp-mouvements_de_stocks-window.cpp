@@ -461,19 +461,6 @@ void YerothMouvementsDeStocksWindow::rechercher()
 
     setFilter();
 
-    _logger->log("rechercher", QString("search filter: %1").arg(_searchFilter));
-
-
-    if (_curMouvementsDeStocksTableModel->easySelect() > 0)
-    {
-        setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(0);
-    }
-    else
-    {
-        _logger->log("rechercher",
-                     QString("reason for failing: %1").arg(_curMouvementsDeStocksTableModel->lastError().text()));
-    }
-
     lister_les_elements_du_tableau(_searchFilter);
 }
 
