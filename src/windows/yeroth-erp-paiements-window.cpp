@@ -272,7 +272,7 @@ void YerothPaiementsWindow::populateComboBoxes()
 	{
 		aDBColumnElementString = aQStringList.at(k);
 
-		if (!YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::REFERENCE, aDBColumnElementString))
+		if (!YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::REFERENCE_RECU_PAIEMENT_CLIENT, aDBColumnElementString))
 		{
 			comboBox_element_string_db
 				->addItem(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(aDBColumnElementString));
@@ -280,7 +280,7 @@ void YerothPaiementsWindow::populateComboBoxes()
 	}
 
 	comboBox_element_string_db
-		->insertItem(0, YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::REFERENCE));
+		->insertItem(0, YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::REFERENCE_RECU_PAIEMENT_CLIENT));
 
 	comboBox_element_string_db->setCurrentIndex(0);
 
@@ -324,7 +324,7 @@ void YerothPaiementsWindow::updateComboBoxes()
 
 void YerothPaiementsWindow::setupLineEdits()
 {
-    lineEdit_paiements_terme_recherche->enableForSearch(QObject::trUtf8("terme à rechercher (référence reçu de paiement client, notes)"));
+    lineEdit_paiements_terme_recherche->enableForSearch(QObject::trUtf8("terme à rechercher (notes)"));
 
     lineEdit_nom_element_string_db->enableForSearch(QObject::trUtf8("valeur à rechercher"));
 
@@ -349,7 +349,7 @@ void YerothPaiementsWindow::setupLineEdits()
 void YerothPaiementsWindow::setupShortcuts()
 {
     setupShortcutActionMessageDaide 	(*actionAppeler_aide);
-    setupShortcutActionAfficherPDF	(*actionAfficherPDF);
+    setupShortcutActionAfficherPDF		(*actionAfficherPDF);
     setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
 }
 
@@ -418,9 +418,8 @@ void YerothPaiementsWindow::textChangedSearchLineEditsQCompleters()
         	partSearchTerm = searchTermList.at(k);
         	//qDebug() << "++ searchTermList: " << partSearchTerm;
 
-        	_searchFilter.append(QString("(%1 OR %2)")
-        							.arg(GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::NOTES, partSearchTerm),
-										 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::REFERENCE_RECU_PAIEMENT_CLIENT, partSearchTerm)));
+        	_searchFilter.append(QString("(%1)")
+        							.arg(GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::NOTES, partSearchTerm)));
 
         	if (k != lastIdx)
         	{
