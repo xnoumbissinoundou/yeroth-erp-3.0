@@ -1933,8 +1933,9 @@ Continue with update of the stock ?</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="327"/>
-        <source>terme à rechercher (référence reçu de paiement client, notes)</source>
-        <translation>keyword to search for (payment reference receipt, memo)</translation>
+        <source>terme à rechercher (notes)</source>
+        <oldsource>terme à rechercher (référence reçu de paiement client, notes)</oldsource>
+        <translation type="unfinished">keyword to search for (payment reference receipt, memo)</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="2775"/>
