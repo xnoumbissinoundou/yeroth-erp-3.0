@@ -80,9 +80,19 @@ int YerothWindowsCommons::get_INT_last_selected_row_number()
 void YerothWindowsCommons::
 	setYerothTableView_FROM_WINDOWS_COMMONS(const QList<YerothTableView *> &aYerothTableView_FROM_WINDOWS_COMMONS_QLIST)
 {
+	if (aYerothTableView_FROM_WINDOWS_COMMONS_QLIST.size() <= 0)
+	{
+		return ;
+	}
+
 	YerothTableView * curTableView = 0;
 
-	for (int k = 0; k < aYerothTableView_FROM_WINDOWS_COMMONS_QLIST.size(); ++k)
+	curTableView = aYerothTableView_FROM_WINDOWS_COMMONS_QLIST.at(0);
+
+	setYerothTableView_FROM_WINDOWS_COMMONS(curTableView);
+
+
+	for (int k = 1; k < aYerothTableView_FROM_WINDOWS_COMMONS_QLIST.size(); ++k)
 	{
 		curTableView = aYerothTableView_FROM_WINDOWS_COMMONS_QLIST.at(k);
 
@@ -93,15 +103,10 @@ void YerothWindowsCommons::
 					this,
 					SLOT(setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(const QModelIndex &)));
 
-			if (0 == k)
-			{
-				_yerothTableView_FROM_WINDOWS_COMMONS = curTableView;
-
-				if (0 != _yeroth_PRINT_UTILITIES_TEX_TABLE)
-				{
-					_yeroth_PRINT_UTILITIES_TEX_TABLE->setYerothTableView(_yerothTableView_FROM_WINDOWS_COMMONS);
-				}
-			}
+		    connect(curTableView,
+		    		SIGNAL(pressed(const QModelIndex &)),
+		    		this,
+		            SLOT(setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(const QModelIndex &)));
 		}
 	}
 }
@@ -119,6 +124,11 @@ void YerothWindowsCommons::
 
     connect(_yerothTableView_FROM_WINDOWS_COMMONS,
     		SIGNAL(clicked(const QModelIndex &)),
+    		this,
+            SLOT(setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(const QModelIndex &)));
+
+    connect(_yerothTableView_FROM_WINDOWS_COMMONS,
+    		SIGNAL(pressed(const QModelIndex &)),
     		this,
             SLOT(setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(const QModelIndex &)));
 
