@@ -77,7 +77,38 @@ int YerothWindowsCommons::get_INT_last_selected_row_number()
 }
 
 
-void YerothWindowsCommons::setYerothTableView_FROM_WINDOWS_COMMONS(YerothTableView *aYerothTableView_FROM_WINDOWS_COMMONS)
+void YerothWindowsCommons::
+	setYerothTableView_FROM_WINDOWS_COMMONS(const QList<YerothTableView *> &aYerothTableView_FROM_WINDOWS_COMMONS_QLIST)
+{
+	YerothTableView * curTableView = 0;
+
+	for (int k = 0; k < aYerothTableView_FROM_WINDOWS_COMMONS_QLIST.size(); ++k)
+	{
+		curTableView = aYerothTableView_FROM_WINDOWS_COMMONS_QLIST.at(k);
+
+		if (0 != curTableView)
+		{
+			connect(curTableView,
+					SIGNAL(clicked(const QModelIndex &)),
+					this,
+					SLOT(setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(const QModelIndex &)));
+
+			if (0 == k)
+			{
+				_yerothTableView_FROM_WINDOWS_COMMONS = curTableView;
+
+				if (0 != _yeroth_PRINT_UTILITIES_TEX_TABLE)
+				{
+					_yeroth_PRINT_UTILITIES_TEX_TABLE->setYerothTableView(_yerothTableView_FROM_WINDOWS_COMMONS);
+				}
+			}
+		}
+	}
+}
+
+
+void YerothWindowsCommons::
+	setYerothTableView_FROM_WINDOWS_COMMONS(YerothTableView *aYerothTableView_FROM_WINDOWS_COMMONS)
 {
 	if (0 == aYerothTableView_FROM_WINDOWS_COMMONS)
 	{
@@ -609,8 +640,6 @@ void YerothWindowsCommons::tableView_show_or_hide_columns(YerothTableView &table
     		tableView_in_out.hideColumn(it.value());
     	}
     }
-
-    tableView_in_out.selectRow(get_INT_last_selected_row_number());
 }
 
 
@@ -809,6 +838,23 @@ void YerothWindowsCommons::fill_table_columns_to_ignore(QList<int> &tableColumns
 }
 
 
+void YerothWindowsCommons::getQModelIndex_dbID_from_MODEL_INDEX(const QModelIndex &modelIndex,
+																QString &db_ID_in_out)
+{
+	db_ID_in_out.clear();
+
+	int yerothTableViewColumnIndex_dbID =
+			_dbtablefieldNameToDBColumnIndex.value(YerothDatabaseTableColumn::ID);
+
+	int selected_row_nr = modelIndex.row();
+
+	QModelIndex id_row_qmodelindex_sibling =
+			modelIndex.sibling(selected_row_nr, yerothTableViewColumnIndex_dbID);
+
+	db_ID_in_out.append(YerothUtils::get_text(id_row_qmodelindex_sibling.data()));
+}
+
+
 void YerothWindowsCommons::setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID()
 {
 	if (0 == _yerothTableView_FROM_WINDOWS_COMMONS)
@@ -824,9 +870,22 @@ void YerothWindowsCommons::setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID()
 		return ;
 	}
 
-	QModelIndex aYerothTableViewIndex = model->index(0, 0);
+//	qDebug() << "++ model->_curSqlTableModel: " << model->_curSqlTableModel->sqlTableName();
 
-	setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(aYerothTableViewIndex);
+	if (_yerothTableView_FROM_WINDOWS_COMMONS->rowCount() > 0)
+	{
+		QModelIndex aYerothTableViewIndex = model->index(0, 0);
+
+		setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(aYerothTableViewIndex);
+
+		_yerothTableView_FROM_WINDOWS_COMMONS->setCurrentIndex(aYerothTableViewIndex);
+	}
+	else
+	{
+		QModelIndex aYerothTableViewIndex = model->create_ZERO_ZERO_MODEL_INDEX_FOR_TABLE_VIEWING();
+
+		setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(aYerothTableViewIndex);
+	}
 }
 
 
@@ -838,18 +897,41 @@ void YerothWindowsCommons::setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(const QM
 		return ;
 	}
 
-	int yerothTableViewColumnIndex_dbID = _dbtablefieldNameToDBColumnIndex.value(YerothDatabaseTableColumn::ID);
+	QString db_ID;
 
-	int selected_row_nr = modelIndex.row();
+	getQModelIndex_dbID_from_MODEL_INDEX(modelIndex, db_ID);
 
-	QModelIndex id_row_qmodelindex_sibling = modelIndex.sibling(selected_row_nr,
-																yerothTableViewColumnIndex_dbID);
+//	QDEBUG_STRINGS_OUTPUT_2("db_ID - 1", db_ID);
 
-	QString db_ID = YerothUtils::get_text(id_row_qmodelindex_sibling.data());
+	if (!db_ID.isEmpty() 		&&
+		modelIndex.row() >= 0 	&&
+		modelIndex.column() >= 0)
+	{
+//		qDebug() << "++ modelIndex:" << modelIndex;
+		_yerothTableView_FROM_WINDOWS_COMMONS->setCurrentIndex(modelIndex);
+	}
+	else
+	{
+		YerothPOSQStandardItemModel *model = _yerothTableView_FROM_WINDOWS_COMMONS->getStandardItemModel();
+
+		if (0 != model)
+		{
+			QModelIndex aYerothTableViewIndex_2 = model->index(0, 0);
+
+			getQModelIndex_dbID_from_MODEL_INDEX(aYerothTableViewIndex_2, db_ID);
+
+//			QDEBUG_STRINGS_OUTPUT_2("db_ID - 2", db_ID);
+//			qDebug() << "++ aYerothTableViewIndex_2:" << aYerothTableViewIndex_2;
+
+			_yerothTableView_FROM_WINDOWS_COMMONS->setCurrentIndex(aYerothTableViewIndex_2);
+		}
+		else
+		{
+			QDEBUG_STRINGS_OUTPUT_1("couldn't create and set a default QMODELINDEX !");
+		}
+	}
 
 	_yerothTableView_FROM_WINDOWS_COMMONS->setLastSelectedRow__ID(db_ID);
-
-	_yerothTableView_FROM_WINDOWS_COMMONS->setCurrentIndex(modelIndex);
 
 	_yerothTableView_FROM_WINDOWS_COMMONS_LAST_SELECTED_ROW__ID = db_ID;
 }

@@ -15,6 +15,7 @@
 
 #include <QtGui/QStandardItemModel>
 
+
 class YerothTableView;
 
 
@@ -48,6 +49,8 @@ public:
 	}
 
 	void yerothPOSClear();
+
+	QModelIndex create_ZERO_ZERO_MODEL_INDEX_FOR_TABLE_VIEWING();
 
 	virtual void sort(int column, Qt::SortOrder order = Qt::AscendingOrder);
 

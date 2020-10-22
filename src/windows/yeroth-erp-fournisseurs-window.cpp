@@ -326,11 +326,7 @@ void YerothERPFournisseursWindow::private_payer_au_fournisseur()
 
 void YerothERPFournisseursWindow::private_payer_au_fournisseur(const QModelIndex & aModelIndex)
 {
-    setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(aModelIndex);
-
-    tableView_fournisseurs->selectRow(get_INT_last_selected_row_number());
-
-    if (get_INT_LastListerSelectedRow__ID() > -1 && _curFournisseursTableModel->rowCount() > 0)
+    if (_curFournisseursTableModel->rowCount() > 0)
     {
     	rendreInvisible();
 
@@ -432,11 +428,7 @@ void YerothERPFournisseursWindow::supprimerFournisseur()
 
 void YerothERPFournisseursWindow::afficher_au_detail()
 {
-    _logger->log("afficher_au_detail");
-
-    tableView_fournisseurs->selectRow(get_INT_last_selected_row_number());
-
-    if (get_INT_LastListerSelectedRow__ID() > -1 && _curFournisseursTableModel->rowCount() > 0)
+    if (_curFournisseursTableModel->rowCount() > 0)
     {
     	//qDebug() << "++ test" << modelIndex.row();
         _allWindows->_fournisseurDetailsWindow->rendreVisible(_curFournisseursTableModel,
@@ -456,12 +448,7 @@ void YerothERPFournisseursWindow::afficher_au_detail(const QModelIndex & modelIn
 {
     _logger->log("afficher_au_detail(const QModelIndex &)");
 
-    setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(modelIndex);
-
-    tableView_fournisseurs->selectRow(get_INT_last_selected_row_number());
-
-    if (get_INT_LastListerSelectedRow__ID() > -1 	&&
-    	_curFournisseursTableModel->rowCount() > 0)
+    if (_curFournisseursTableModel->rowCount() > 0)
     {
     	rendreInvisible();
 

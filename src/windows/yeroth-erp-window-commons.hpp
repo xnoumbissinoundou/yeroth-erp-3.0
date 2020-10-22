@@ -59,6 +59,8 @@ public:
 
 	int get_INT_last_selected_row_number();
 
+	void setYerothTableView_FROM_WINDOWS_COMMONS(const QList<YerothTableView *> &aYerothTableView_FROM_WINDOWS_COMMONS_QLIST);
+
 	void setYerothTableView_FROM_WINDOWS_COMMONS(YerothTableView *aYerothTableView_FROM_WINDOWS_COMMONS);
 
 	inline virtual void YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(QAction *anAction,
@@ -248,6 +250,8 @@ public slots:
 	}
 
 	virtual void updateYerothLineEditQCompleter(const QString &currentDBColumnString);
+
+	void getQModelIndex_dbID_from_MODEL_INDEX(const QModelIndex &modelIndex, QString &db_ID_in_out);
 
 	virtual void setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID();
 

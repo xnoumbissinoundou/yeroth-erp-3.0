@@ -1750,10 +1750,6 @@ void YerothVentesWindow::handleCurrentTabChanged(int index)
 
 void YerothVentesWindow::lister_les_elements_du_tableau(YerothSqlTableModel &stocksVenduTableModel)
 {
-	tableView_ventes->queryYerothTableViewCurrentPageContentRow(stocksVenduTableModel);
-
-    tableView_show_or_hide_columns(*tableView_ventes);
-
     int curStocksVenduTableModelRowCount = _curStocksVenduTableModel->easySelect();
 
     double quantite_vendue = 0;
@@ -1810,9 +1806,11 @@ void YerothVentesWindow::lister_les_elements_du_tableau(YerothSqlTableModel &sto
     lineEdit_ventes_quantite_vendue->setText(GET_DOUBLE_STRING(quantite_vendue_total));
     lineEdit_ventes_recette_totale->setText(GET_CURRENCY_STRING_NUM(montant_total));
 
-    handleTabEnabled();
+	tableView_ventes->queryYerothTableViewCurrentPageContentRow(stocksVenduTableModel);
 
-    tableView_ventes->resizeColumnsToContents();
+    tableView_show_or_hide_columns(*tableView_ventes);
+
+    handleTabEnabled();
 }
 
 

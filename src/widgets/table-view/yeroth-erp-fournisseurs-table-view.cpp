@@ -190,5 +190,9 @@ void YerothERPFournisseursTableView::lister_les_elements_du_tableau(YerothSqlTab
 		}
 	}
 
+    static YerothERPWindows *curAllWindows = YerothUtils::getAllWindows();
+
+    YEROTH_SET_LAST_TABLE_VIEW_SELECTED_ROW_ID(curAllWindows, curAllWindows->_fournisseursWindow)
+
 	resizeColumnsToContents();
 }

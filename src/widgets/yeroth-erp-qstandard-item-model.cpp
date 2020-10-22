@@ -41,6 +41,12 @@ void YerothPOSQStandardItemModel::yerothPOSClear()
 }
 
 
+QModelIndex YerothPOSQStandardItemModel::create_ZERO_ZERO_MODEL_INDEX_FOR_TABLE_VIEWING()
+{
+	return createIndex(0, 0, (void *)&YerothUtils::EMPTY_STRING);
+}
+
+
 void YerothPOSQStandardItemModel::sort(int column, Qt::SortOrder order /*= Qt::AscendingOrder*/)
 {
 	if (0 == _curSqlTableModel)

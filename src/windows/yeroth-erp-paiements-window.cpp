@@ -828,8 +828,6 @@ void YerothPaiementsWindow::handleCurrentChanged(int index)
 
 void YerothPaiementsWindow::lister_les_elements_du_tableau(YerothSqlTableModel &historiquePaiementsTableModel)
 {
-    tableView_paiements->queryYerothTableViewCurrentPageContentRow(historiquePaiementsTableModel);
-
     int curPaiementsTableModelRowCount = _curPaiementsTableModel->easySelect();
 
     if (curPaiementsTableModelRowCount < 0)
@@ -865,9 +863,9 @@ void YerothPaiementsWindow::lister_les_elements_du_tableau(YerothSqlTableModel &
         tabWidget_historique_paiements->setTabEnabled(AfficherPaiementAuDetail, false);
     }
 
-    tableView_show_or_hide_columns(*tableView_paiements);
+    tableView_paiements->queryYerothTableViewCurrentPageContentRow(historiquePaiementsTableModel);
 
-    tableView_paiements->resizeColumnsToContents();
+    tableView_show_or_hide_columns(*tableView_paiements);
 }
 
 

@@ -918,11 +918,7 @@ void YerothStocksWindow::afficher_au_detail()
 
 void YerothStocksWindow::afficher_au_detail(const QModelIndex & modelIndex)
 {
-    setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(modelIndex);
-
-    tableView_stocks->selectRow(get_INT_last_selected_row_number());
-
-    if (get_INT_LastListerSelectedRow__ID() > -1 && _curStocksTableModel->rowCount() > 0)
+    if (_curStocksTableModel->rowCount() > 0)
     {
         _allWindows->_detailWindow->rendreVisible(_curStocksTableModel);
 

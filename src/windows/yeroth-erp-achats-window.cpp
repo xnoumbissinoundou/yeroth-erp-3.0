@@ -663,11 +663,7 @@ void YerothAchatsWindow::afficher_au_detail(const QModelIndex & modelIndex)
 {
     _logger->log("afficher_au_detail(const QModelIndex &)");
 
-    setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(modelIndex);
-
-    tableView_achats->selectRow(get_INT_last_selected_row_number());
-
-    if (get_INT_LastListerSelectedRow__ID() > -1 && _curAchatSqlTableModel->rowCount() > 0)
+    if (_curAchatSqlTableModel->rowCount() > 0)
     {
     	//qDebug() << "++ test" << modelIndex.row();
         _allWindows->_achatsDetailWindow->rendreVisible(_curStocksTableModel,
@@ -728,8 +724,6 @@ void YerothAchatsWindow::afficher_stock_selectioner(const QString & stockName)
     _logger->log("afficher_stock_selectioner(const QString &)");
 
     //qDebug() << QString("afficher_stock_selectioner(%1)").arg(stockName);
-
-    setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID();
 
     QString filter(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::DESIGNATION, stockName));
 

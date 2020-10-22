@@ -310,7 +310,7 @@ void YerothERPClientsWindow::textChangedSearchLineEditsQCompleters()
 
 void YerothERPClientsWindow::private_payer_au_compteclient()
 {
-    if (get_INT_LastListerSelectedRow__ID() > -1 && _curClientsTableModel->rowCount() > 0)
+    if (_curClientsTableModel->rowCount() > 0)
     {
     	rendreInvisible();
 
@@ -327,11 +327,7 @@ void YerothERPClientsWindow::private_payer_au_compteclient()
 
 void YerothERPClientsWindow::private_payer_au_compteclient(const QModelIndex & aModelIndex)
 {
-    setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(aModelIndex);
-
-    tableView_clients->selectRow(get_INT_last_selected_row_number());
-
-    if (get_INT_LastListerSelectedRow__ID() > -1 && _curClientsTableModel->rowCount() > 0)
+    if (_curClientsTableModel->rowCount() > 0)
     {
     	rendreInvisible();
 
@@ -435,10 +431,7 @@ void YerothERPClientsWindow::afficher_au_detail()
 {
     _logger->log("afficher_au_detail");
 
-    tableView_clients->selectRow(get_INT_last_selected_row_number());
-
-    if (get_INT_LastListerSelectedRow__ID() > -1 &&
-    	_curClientsTableModel->rowCount() > 0)
+    if (_curClientsTableModel->rowCount() > 0)
     {
     	//qDebug() << "++ test" << modelIndex.row();
         _allWindows->_clientsDetailWindow->rendreVisible(_curClientsTableModel,
@@ -456,14 +449,7 @@ void YerothERPClientsWindow::afficher_au_detail()
 
 void YerothERPClientsWindow::afficher_au_detail(const QModelIndex & modelIndex)
 {
-    _logger->log("afficher_au_detail(const QModelIndex &)");
-
-    setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(modelIndex);
-
-    tableView_clients->selectRow(get_INT_last_selected_row_number());
-
-    if (get_INT_LastListerSelectedRow__ID() > -1 &&
-    	_curClientsTableModel->rowCount() > 0)
+    if (_curClientsTableModel->rowCount() > 0)
     {
     	rendreInvisible();
 

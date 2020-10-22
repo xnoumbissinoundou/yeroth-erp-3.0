@@ -190,6 +190,10 @@ void YerothERPVentesTableView::lister_les_elements_du_tableau(YerothSqlTableMode
     	}
     }
 
+    static YerothERPWindows *curAllWindows = YerothUtils::getAllWindows();
+
+    YEROTH_SET_LAST_TABLE_VIEW_SELECTED_ROW_ID(curAllWindows, curAllWindows->_ventesWindow)
+
     resizeColumnsToContents();
 }
 
