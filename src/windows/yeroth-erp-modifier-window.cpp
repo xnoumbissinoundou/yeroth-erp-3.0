@@ -346,7 +346,8 @@ void YerothModifierWindow::actualiser_stock()
 		}
 	}
 
-	bool success = _allWindows->_stocksWindow->SQL_UPDATE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
+	bool success = _allWindows->_stocksWindow->
+			SQL_UPDATE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
 
 	QString retMsg(QString(QObject::trUtf8("Les détails du stock '%1"))
 					  .arg(lineEdit_designation->text()));
