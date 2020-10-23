@@ -35,9 +35,6 @@
 #include <QtSql/QSqlError>
 
 
-QMultiMap<QString, QString> YerothERPStocksTableView::_DUMMY_STOCKNAME_TO_STOCKID_IN_OUT;
-
-
 void YerothERPStocksTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel,
 															  const QString &aStockListingStrategy,
 															  const QString &aCurYerothTableViewPageFilter /* = "" */)
@@ -45,8 +42,6 @@ void YerothERPStocksTableView::lister_les_elements_du_tableau(YerothSqlTableMode
 	_stdItemModel->_curSqlTableModel = &tableModel;
 
     emit signal_lister(tableModel);
-
-    _DUMMY_STOCKNAME_TO_STOCKID_IN_OUT.clear();
 
     QString curStockListingStrategy(aStockListingStrategy);
 

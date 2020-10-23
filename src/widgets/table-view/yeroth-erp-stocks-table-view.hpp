@@ -48,10 +48,6 @@ public:
 	virtual void lister_les_elements_du_tableau(YerothSqlTableModel &tableModel,
 												const QString &aStockListingStrategy,
 												const QString &aCurYerothTableViewPageFilter = "");
-
-private:
-
-	static QMultiMap<QString, QString> _DUMMY_STOCKNAME_TO_STOCKID_IN_OUT;
 };
 
 
