@@ -178,7 +178,7 @@ void YerothERPStocksTableView::lister_les_elements_du_tableau(YerothSqlTableMode
     			}
     			else
     			{
-    				YEROTH_SAVE_ID_TO_ROW_NUMBER_FOR_YEROTH_TABLE_VIEW(tmpQvString, qv.toUInt())
+    				YEROTH_SAVE_ID_TO_ROW_NUMBER_FOR_YEROTH_TABLE_VIEW(tmpQvString, qv.toUInt(), i)
     				anItem = new YerothQStandardItem(tmpQvString);
     			}
 
@@ -193,8 +193,10 @@ void YerothERPStocksTableView::lister_les_elements_du_tableau(YerothSqlTableMode
     			}
     			else
     			{
-    				YEROTH_SAVE_ID_TO_ROW_NUMBER_FOR_YEROTH_TABLE_VIEW(tmpQvString, qv.toInt())
+    				YEROTH_SAVE_ID_TO_ROW_NUMBER_FOR_YEROTH_TABLE_VIEW(tmpQvString, qv.toInt(), i)
     				anItem = new YerothQStandardItem(tmpQvString);
+//    				QDEBUG_STRINGS_OUTPUT_1(QString("row: %1, db_ID: %2")
+//    											.arg(QString::number(i), tmpQvString));
     			}
 
     			_stdItemModel->setItem(i, k, anItem);

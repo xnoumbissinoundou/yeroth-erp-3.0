@@ -103,7 +103,7 @@ void YerothERPFournisseursTableView::lister_les_elements_du_tableau(YerothSqlTab
 				}
 				else
 				{
-					YEROTH_SAVE_ID_TO_ROW_NUMBER_FOR_YEROTH_TABLE_VIEW(tmpQvString, qv.toUInt())
+					YEROTH_SAVE_ID_TO_ROW_NUMBER_FOR_YEROTH_TABLE_VIEW(tmpQvString, qv.toUInt(), i)
 					anItem = new YerothQStandardItem(tmpQvString);
 				}
 
@@ -118,7 +118,7 @@ void YerothERPFournisseursTableView::lister_les_elements_du_tableau(YerothSqlTab
 				}
 				else
 				{
-					YEROTH_SAVE_ID_TO_ROW_NUMBER_FOR_YEROTH_TABLE_VIEW(tmpQvString, qv.toInt())
+					YEROTH_SAVE_ID_TO_ROW_NUMBER_FOR_YEROTH_TABLE_VIEW(tmpQvString, qv.toInt(), i)
 					anItem = new YerothQStandardItem(tmpQvString);
 				}
 

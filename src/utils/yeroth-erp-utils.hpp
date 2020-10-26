@@ -878,10 +878,10 @@ YerothQMessageBox::information(this, QObject::trUtf8(DIALOG_BOX_TITLE), msg); }
 #define YEROTH_DATABASE_TABLE_COLUMN_INDEX(W, C) W.getDBTableFieldColumnIndex(C)
 
 
-#define YEROTH_SAVE_ID_TO_ROW_NUMBER_FOR_YEROTH_TABLE_VIEW(X, Y) \
-	X.clear();									 	 			 \
-	X.append(QString::number(Y));								 \
-	_map_dbID_TO_yeroth_table_view_ROW_NUMBER.insert(X, Y);
+#define YEROTH_SAVE_ID_TO_ROW_NUMBER_FOR_YEROTH_TABLE_VIEW(TS, DB_ID, ROW) \
+	TS.clear();									 	 			 		   \
+	TS.append(QString::number(DB_ID));								 	   \
+	_map_dbID_TO_yeroth_table_view_ROW_NUMBER.insert(TS, ROW);
 
 #define YEROTH_QSTRING_CONTAINS(S, V) S.contains(V, Qt::CaseInsensitive)
 
