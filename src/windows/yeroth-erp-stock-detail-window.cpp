@@ -277,7 +277,7 @@ void YerothStockDetailWindow::rendreVisible(YerothSqlTableModel * stocksTableMod
     _curStocksTableModel = stocksTableModel;
     //qDebug() << "++ last selected row: " << YerothERPWindows::get_last_lister_selected_row_ID();
 
-    showItem();
+    setDetailViewFilter(_curStocksTableModel);
 
     setVisible(true);
 }
@@ -338,7 +338,7 @@ void YerothStockDetailWindow::setStockSpecificWidgetVisibility(bool aVisibility)
 }
 
 
-void YerothStockDetailWindow::showItem()
+void YerothStockDetailWindow::showItem_YerothERPAbstractClassDetailViewFOR_WINDOW()
 {
 	_curStocksTableModel->yerothSetFilter_WITH_where_clause(QString("%1 = '%2'")
 																.arg(YerothDatabaseTableColumn::ID,
@@ -454,7 +454,7 @@ void YerothStockDetailWindow::showItem()
         label_image_produit->setAutoFillBackground(false);
     }
 
-    _curStocksTableModel->resetFilter();
+    resetDetailViewFilter(_curStocksTableModel);
 }
 
 
@@ -511,5 +511,7 @@ void YerothStockDetailWindow::supprimer_ce_stock()
     {
     }
 
-    _curStocksTableModel->resetFilter();
+    resetDetailViewFilter(_curStocksTableModel);
+
+//    _curStocksTableModel->setFilter(getPreviousBEFORETHISWindowsEntering_SQL_TABLE_Filter());
 }

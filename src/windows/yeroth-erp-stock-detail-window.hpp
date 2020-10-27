@@ -12,11 +12,10 @@
 
 #include "src/utils/yeroth-erp-logger.hpp"
 
+#include "src/utils/windows/yeroth-erp-abstract-class-detail-view-window.hpp"
 
-#include "yeroth-erp-window-commons.hpp"
 
-
-# include <QtWidgets/QMessageBox>
+#include <QtWidgets/QMessageBox>
 
 
 class QContextMenuEvent;
@@ -26,7 +25,8 @@ class YerothSqlTableModel;
 class YerothLogger;
 
 class YerothStockDetailWindow : public YerothWindowsCommons,
-								private Ui_YerothStockDetailWindow
+								private Ui_YerothStockDetailWindow,
+								public YerothERPAbstractClassDetailViewFOR_WINDOW
 {
     Q_OBJECT
 
@@ -95,12 +95,11 @@ private:
 
     void setStockSpecificWidgetVisibility(bool aVisibility);
 
-    void showItem();
+    virtual void showItem_YerothERPAbstractClassDetailViewFOR_WINDOW();
 
     void checkCourrierAlerts();
 
-
-    YerothLogger				*_logger;
+    YerothLogger	*_logger;
 };
 
 
