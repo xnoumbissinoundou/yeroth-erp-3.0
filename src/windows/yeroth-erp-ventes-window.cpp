@@ -948,6 +948,27 @@ bool YerothVentesWindow::filtrer_ventes()
 }
 
 
+void YerothVentesWindow::setCurrentUser_NOM_CAISSIER(const QString &aUserNomComplet)
+{
+	lineEdit_ventes_nom_caissier->setYerothEnabled(false);
+	lineEdit_ventes_nom_caissier->setText(aUserNomComplet);
+}
+
+
+void YerothVentesWindow::disableNomCaissier()
+{
+	lineEdit_ventes_nom_caissier->setYerothEnabled(false);
+	lineEdit_ventes_nom_caissier->myClear();
+}
+
+
+void YerothVentesWindow::enableNomCaissier_ONLY_MANAGER()
+{
+	lineEdit_ventes_nom_caissier->setYerothEnabled(true);
+	lineEdit_ventes_nom_caissier->myClear();
+}
+
+
 bool YerothVentesWindow::handleCompteClient(QString client_id,
 											double curMontantARembourserAuClient)
 {
@@ -1120,9 +1141,10 @@ void YerothVentesWindow::setupLineEdits()
 
 void YerothVentesWindow::setupShortcuts()
 {
-    setupShortcutActionMessageDaide 	(*actionAppeler_aide);
-    setupShortcutActionAfficherPDF		(*actionAfficherPDF);
-    setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
+    setupShortcutActionMessageDaide 		(*actionAppeler_aide);
+    setupShortcutActionExporterAuFormatCsv	(*actionExporter_au_format_csv);
+    setupShortcutActionAfficherPDF			(*actionAfficherPDF);
+    setupShortcutActionQuiSuisJe			(*actionQui_suis_je);
 
     actionAnnulerCetteVente->setShortcut(Qt::Key_F2);
 }
@@ -1321,6 +1343,7 @@ void YerothVentesWindow::contextMenuEvent(QContextMenuEvent * event)
     }
 }
 
+
 void YerothVentesWindow::clear_all_fields()
 {
     lineEdit_details_nom_client->clearField();
@@ -1363,6 +1386,7 @@ void YerothVentesWindow::clear_all_fields()
     lineEdit_ventes_recette_totale->clearField();
     lineEdit_ventes_quantite_vendue->clearField();
 }
+
 
 void YerothVentesWindow::setupDateTimeEdits()
 {
@@ -1677,19 +1701,16 @@ void YerothVentesWindow::resetFilter(YerothSqlTableModel * stocksVenduTableModel
     {
     	if (aUser->isManager())
     	{
-    		lineEdit_ventes_nom_caissier->setYerothEnabled(true);
-    		lineEdit_ventes_nom_caissier->myClear();
+    		enableNomCaissier_ONLY_MANAGER();
     	}
     	else
     	{
-        	lineEdit_ventes_nom_caissier->setYerothEnabled(false);
-        	lineEdit_ventes_nom_caissier->setText(aUser->nom_complet());
+    		setCurrentUser_NOM_CAISSIER(aUser->nom_complet());
     	}
     }
     else
     {
-    	lineEdit_ventes_nom_caissier->setYerothEnabled(false);
-    	lineEdit_ventes_nom_caissier->myClear();
+    	disableNomCaissier();
     }
 
     dateEdit_ventes_debut->reset();
@@ -1721,12 +1742,14 @@ void YerothVentesWindow::handleCurrentTabChanged(int index)
     {
     case TableauDesVentes:
         lister_les_elements_du_tableau();
+        enableExporterAuFormatCsv();
         enableImprimer();
         break;
 
     case AfficherVenteAuDetail:
     	if (afficher_vente_detail())
     	{
+    		disableExporterAuFormatCsv();
     		disableImprimer();
     	}
         break;
@@ -1736,6 +1759,7 @@ void YerothVentesWindow::handleCurrentTabChanged(int index)
 
     	if (afficher_retour_vente())
     	{
+    		disableExporterAuFormatCsv();
     		disableImprimer();
     	}
         break;
@@ -1843,19 +1867,16 @@ void YerothVentesWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
     {
     	if (aUser->isManager())
     	{
-    		lineEdit_ventes_nom_caissier->setYerothEnabled(true);
-    		lineEdit_ventes_nom_caissier->myClear();
+    		enableNomCaissier_ONLY_MANAGER();
     	}
     	else
     	{
-        	lineEdit_ventes_nom_caissier->setYerothEnabled(false);
-        	lineEdit_ventes_nom_caissier->setText(aUser->nom_complet());
+    		setCurrentUser_NOM_CAISSIER(aUser->nom_complet());
     	}
     }
     else
     {
-    	lineEdit_ventes_nom_caissier->setYerothEnabled(false);
-    	lineEdit_ventes_nom_caissier->myClear();
+    	disableNomCaissier();
     }
 
     modifier_visibilite_actions_sur_cette_vente();

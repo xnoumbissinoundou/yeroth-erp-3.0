@@ -774,6 +774,8 @@ public:
 
 	static const QKeySequence MESSAGE_DAIDE_QKEYSEQUENCE;
 
+	static const QKeySequence EXPORTER_AU_FORMAT_CSV_QKEYSEQUENCE;
+
 	static const QKeySequence IMPRIMER_QKEYSEQUENCE;
 
 	static const QKeySequence AFFICHER_LES_STOCKS_TERMINES_QKEYSEQUENCE;

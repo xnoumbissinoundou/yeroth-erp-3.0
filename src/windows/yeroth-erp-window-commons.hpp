@@ -320,6 +320,11 @@ protected:
     	anAction.setShortcut(YerothUtils::MESSAGE_DAIDE_QKEYSEQUENCE);
     }
 
+    inline void setupShortcutActionExporterAuFormatCsv(QAction &anAction) const
+    {
+    	anAction.setShortcut(YerothUtils::EXPORTER_AU_FORMAT_CSV_QKEYSEQUENCE);
+    }
+
     inline void setupShortcutActionAfficherPDF(QAction &anAction) const
     {
     	anAction.setShortcut(YerothUtils::IMPRIMER_QKEYSEQUENCE);

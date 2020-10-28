@@ -104,16 +104,6 @@ public slots:
 								 	 	 " (exemple: nom du caissier, désignation de l'article, etc.) !"));
 	}
 
-	inline void disableImprimer()
-	{
-		actionAfficherPDF->setVisible(false);
-	}
-
-	inline void enableImprimer()
-	{
-		actionAfficherPDF->setVisible(true);
-	}
-
 	bool export_csv_file();
 
 	virtual bool imprimer_pdf_document();
@@ -170,6 +160,32 @@ private slots:
 	bool filtrer_ventes();
 
 private:
+
+    void setCurrentUser_NOM_CAISSIER(const QString &aUserNomComplet);
+
+    void disableNomCaissier();
+
+    void enableNomCaissier_ONLY_MANAGER();
+
+	inline void disableExporterAuFormatCsv()
+	{
+		actionExporter_au_format_csv->setVisible(false);
+	}
+
+	inline void enableExporterAuFormatCsv()
+	{
+		actionExporter_au_format_csv->setVisible(true);
+	}
+
+	inline void disableImprimer()
+	{
+		actionAfficherPDF->setVisible(false);
+	}
+
+	inline void enableImprimer()
+	{
+		actionAfficherPDF->setVisible(true);
+	}
 
     bool handleCompteClient(QString client_id,
 							double curMontantARembourserAuClient);
