@@ -301,10 +301,11 @@ void YerothMarchandisesWindow::contextMenuEvent(QContextMenuEvent * event)
 
 void YerothMarchandisesWindow::setupShortcuts()
 {
-	setupShortcutActionMessageDaide 	(*actionAfficher_les_marchandises_terminees);
-    setupShortcutActionMessageDaide 	(*actionAppeler_aide);
-    setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
-    setupShortcutActionAfficherPDF		(*actionAfficherPDF);
+	setupShortcutActionMessageDaide 		(*actionAfficher_les_marchandises_terminees);
+    setupShortcutActionMessageDaide 		(*actionAppeler_aide);
+    setupShortcutActionQuiSuisJe			(*actionQui_suis_je);
+    setupShortcutActionExporterAuFormatCsv	(*actionExporter_au_format_csv);
+    setupShortcutActionAfficherPDF			(*actionAfficherPDF);
 
     actionAfficher_les_marchandises_terminees->setShortcut(YerothUtils::AFFICHER_LES_STOCKS_TERMINES_QKEYSEQUENCE);
     actionReinitialiserRecherche->setShortcut(YerothUtils::REINITIALISER_RECHERCHE_QKEYSEQUENCE);

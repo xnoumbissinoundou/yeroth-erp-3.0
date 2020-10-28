@@ -188,9 +188,10 @@ void YerothERPClientsWindow::hideEvent(QHideEvent * hideEvent)
 
 void YerothERPClientsWindow::setupShortcuts()
 {
-    setupShortcutActionMessageDaide 	(*actionAppeler_aide);
-    setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
-    setupShortcutActionAfficherPDF		(*actionAfficherPDF);
+    setupShortcutActionMessageDaide 		(*actionAppeler_aide);
+    setupShortcutActionExporterAuFormatCsv	(*actionExporter_au_format_csv);
+    setupShortcutActionQuiSuisJe			(*actionQui_suis_je);
+    setupShortcutActionAfficherPDF			(*actionAfficherPDF);
 
     actionReinitialiserRecherche->setShortcut(YerothUtils::REINITIALISER_RECHERCHE_QKEYSEQUENCE);
 }

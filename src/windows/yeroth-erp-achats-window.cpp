@@ -304,9 +304,10 @@ void YerothAchatsWindow::setupLineEdits()
 
 void YerothAchatsWindow::setupShortcuts()
 {
-    setupShortcutActionMessageDaide 	(*actionAppeler_aide);
-    setupShortcutActionAfficherPDF		(*actionAfficherPDF);
-    setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
+    setupShortcutActionMessageDaide 		(*actionAppeler_aide);
+    setupShortcutActionExporterAuFormatCsv	(*actionExporter_au_format_csv);
+    setupShortcutActionAfficherPDF			(*actionAfficherPDF);
+    setupShortcutActionQuiSuisJe			(*actionQui_suis_je);
 
     actionReinitialiserRecherche->setShortcut(YerothUtils::REINITIALISER_RECHERCHE_QKEYSEQUENCE);
 }
