@@ -330,6 +330,16 @@ void YerothLineEdit::setupMyStaticQCompleter(QString sqlTableName,
 
 void YerothLineEdit::setupMyQCompleterALL(QString sqlTableName)
 {
+	if (0 != _sqlTableModel)
+	{
+		delete _sqlTableModel;
+	}
+
+	if (0 != _sqlTableModelView)
+	{
+		delete _sqlTableModelView;
+	}
+
     _sqlTableModelView = new YerothTableView;
     _sqlTableModelView->setSqlTableName(&sqlTableName);
 
@@ -363,6 +373,16 @@ void YerothLineEdit::setupMyQCompleterALL(QString sqlTableName)
 
 void YerothLineEdit::setupMyQCompleterFEFO(QString sqlTableName)
 {
+	if (0 != _sqlTableModel)
+	{
+		delete _sqlTableModel;
+	}
+
+	if (0 != _sqlTableModelView)
+	{
+		delete _sqlTableModelView;
+	}
+
     _sqlTableModelView = new YerothTableView;
     _sqlTableModelView->setSqlTableName(&sqlTableName);
 
@@ -399,6 +419,16 @@ void YerothLineEdit::setupMyQCompleterFEFO(QString sqlTableName)
 
 void YerothLineEdit::setupMyQCompleterFIFO(QString sqlTableName)
 {
+	if (0 != _sqlTableModel)
+	{
+		delete _sqlTableModel;
+	}
+
+	if (0 != _sqlTableModelView)
+	{
+		delete _sqlTableModelView;
+	}
+
     _sqlTableModelView = new YerothTableView;
     _sqlTableModelView->setSqlTableName(&sqlTableName);
 
@@ -430,6 +460,16 @@ void YerothLineEdit::setupMyQCompleterFIFO(QString sqlTableName)
 
 void YerothLineEdit::setupMyQCompleterLIFO(QString sqlTableName)
 {
+	if (0 != _sqlTableModel)
+	{
+		delete _sqlTableModel;
+	}
+
+	if (0 != _sqlTableModelView)
+	{
+		delete _sqlTableModelView;
+	}
+
     _sqlTableModelView = new YerothTableView;
     _sqlTableModelView->setSqlTableName(&sqlTableName);
 
@@ -464,6 +504,16 @@ void YerothLineEdit::setupMyQCompleterLIFO(QString sqlTableName)
 
 void YerothLineEdit::setupMyQCompleterCodebarALL(QString sqlTableName)
 {
+	if (0 != _sqlTableModel)
+	{
+		delete _sqlTableModel;
+	}
+
+	if (0 != _sqlTableModelView)
+	{
+		delete _sqlTableModelView;
+	}
+
     _sqlTableModelView = new YerothTableView;
     _sqlTableModelView->setSqlTableName(&sqlTableName);
 
@@ -502,6 +552,16 @@ void YerothLineEdit::setupMyQCompleterCodebarALL(QString sqlTableName)
 
 void YerothLineEdit::setupMyQCompleterCodebarFEFO(QString sqlTableName)
 {
+	if (0 != _sqlTableModel)
+	{
+		delete _sqlTableModel;
+	}
+
+	if (0 != _sqlTableModelView)
+	{
+		delete _sqlTableModelView;
+	}
+
     _sqlTableModelView = new YerothTableView;
     _sqlTableModelView->setSqlTableName(&sqlTableName);
 
@@ -540,6 +600,16 @@ void YerothLineEdit::setupMyQCompleterCodebarFEFO(QString sqlTableName)
 
 void YerothLineEdit::setupMyQCompleterCodebarFIFO(QString sqlTableName)
 {
+	if (0 != _sqlTableModel)
+	{
+		delete _sqlTableModel;
+	}
+
+	if (0 != _sqlTableModelView)
+	{
+		delete _sqlTableModelView;
+	}
+
     _sqlTableModelView = new YerothTableView;
     _sqlTableModelView->setSqlTableName(&sqlTableName);
 
@@ -578,6 +648,16 @@ void YerothLineEdit::setupMyQCompleterCodebarFIFO(QString sqlTableName)
 
 void YerothLineEdit::setupMyQCompleterCodebarLIFO(QString sqlTableName)
 {
+	if (0 != _sqlTableModel)
+	{
+		delete _sqlTableModel;
+	}
+
+	if (0 != _sqlTableModelView)
+	{
+		delete _sqlTableModelView;
+	}
+
     _sqlTableModelView = new YerothTableView;
     _sqlTableModelView->setSqlTableName(&sqlTableName);
 
