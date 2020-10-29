@@ -70,7 +70,7 @@ QString YerothHistoriqueStock::creer_mouvement_stock(enum TypeMouvementStock aTy
 {
 	unsigned int typeMouvement = (unsigned int) aTypeMouvementStock;
 
-	QString result = QString("%1;%2;%3;%4;%5;%6;%7")
+	QString result = QString("%1_%2_%3_%4_%5_%6_%7")
 						.arg(DATE_TO_STRING(date),
 							 CURRENT_TIME,
 							 QString::number(typeMouvement),
