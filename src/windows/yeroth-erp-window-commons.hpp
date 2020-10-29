@@ -259,6 +259,24 @@ public slots:
 
 protected slots:
 
+	void handleSOMEToolsEnabled();
+
+	inline virtual void disableExporterAuFormatCsv()
+	{
+	}
+
+	inline virtual void enableExporterAuFormatCsv()
+	{
+	}
+
+	inline virtual void disableImprimer()
+	{
+	}
+
+	inline virtual void enableImprimer()
+	{
+	}
+
 	virtual void setYerothLineEditQCompleterSearchFilter(QString &aYerothLineEditQCompleterSearchFilter_IN_OUT);
 
 	virtual void tableView_show_or_hide_columns(YerothTableView &tableView_in_out);

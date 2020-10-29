@@ -137,6 +137,26 @@ protected slots:
 
 	virtual void textChangedSearchLineEditsQCompleters();
 
+	inline virtual void disableExporterAuFormatCsv()
+	{
+		actionExporter_au_format_csv->setVisible(false);
+	}
+
+	inline virtual void enableExporterAuFormatCsv()
+	{
+		actionExporter_au_format_csv->setVisible(true);
+	}
+
+	inline virtual void disableImprimer()
+	{
+		actionAfficherPDF->setVisible(false);
+	}
+
+	inline virtual void enableImprimer()
+	{
+		actionAfficherPDF->setVisible(true);
+	}
+
 protected:
 
 	virtual void reinitialiser_champs_db_visibles();
@@ -166,26 +186,6 @@ private:
     void disableNomCaissier();
 
     void enableNomCaissier_ONLY_MANAGER();
-
-	inline void disableExporterAuFormatCsv()
-	{
-		actionExporter_au_format_csv->setVisible(false);
-	}
-
-	inline void enableExporterAuFormatCsv()
-	{
-		actionExporter_au_format_csv->setVisible(true);
-	}
-
-	inline void disableImprimer()
-	{
-		actionAfficherPDF->setVisible(false);
-	}
-
-	inline void enableImprimer()
-	{
-		actionAfficherPDF->setVisible(true);
-	}
 
     bool handleCompteClient(QString client_id,
 							double curMontantARembourserAuClient);

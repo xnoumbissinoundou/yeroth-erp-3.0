@@ -600,6 +600,26 @@ void YerothWindowsCommons::updateYerothLineEditQCompleter(const QString &current
 }
 
 
+void YerothWindowsCommons::handleSOMEToolsEnabled()
+{
+	if (0 == _yerothTableView_FROM_WINDOWS_COMMONS)
+	{
+		return ;
+	}
+
+    if (_yerothTableView_FROM_WINDOWS_COMMONS->rowCount() > 0)
+    {
+    	enableExporterAuFormatCsv();
+    	enableImprimer();
+    }
+    else
+    {
+    	disableExporterAuFormatCsv();
+    	disableImprimer();
+    }
+}
+
+
 void YerothWindowsCommons::setYerothLineEditQCompleterSearchFilter(QString &aYerothLineEditQCompleterSearchFilter_IN_OUT)
 {
 	if (0 == _yeroth_QComboBox_SearchDBFieldColumnString ||
@@ -655,6 +675,8 @@ void YerothWindowsCommons::tableView_show_or_hide_columns(YerothTableView &table
     		tableView_in_out.hideColumn(it.value());
     	}
     }
+
+    handleSOMEToolsEnabled();
 }
 
 

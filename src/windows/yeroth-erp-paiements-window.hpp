@@ -102,16 +102,6 @@ public slots:
 								 	 	 " (exemple: numéro du bon de paiement, etc.) !"));
 	}
 
-	inline void disableImprimer()
-	{
-		actionAfficherPDF->setVisible(false);
-	}
-
-	inline void enableImprimer()
-	{
-		actionAfficherPDF->setVisible(true);
-	}
-
 	bool export_csv_file();
 
 	virtual bool imprimer_pdf_document();
@@ -144,6 +134,26 @@ protected slots:
 	void handleComboBoxClients_Typedepaiement_TextChanged(const QString &currentText);
 
 	virtual void textChangedSearchLineEditsQCompleters();
+
+	inline virtual void disableExporterAuFormatCsv()
+	{
+		actionExporter_au_format_csv->setVisible(false);
+	}
+
+	inline virtual void enableExporterAuFormatCsv()
+	{
+		actionExporter_au_format_csv->setVisible(true);
+	}
+
+	inline virtual void disableImprimer()
+	{
+		actionAfficherPDF->setVisible(false);
+	}
+
+	inline virtual void enableImprimer()
+	{
+		actionAfficherPDF->setVisible(true);
+	}
 
 protected:
 
