@@ -30,6 +30,7 @@ USAGE="
 
 NUMBER_OF_JOBS=4
 
+yerothCheckMemoryFlag=
 qtTestLibFlag=
 virtualKeyboardFlag=
 simulationFlag=
@@ -41,7 +42,7 @@ continueFlag=
 releaseBuildFlag=
 
 
-while getopts 'tlhsgv:fecj:r' OPTION
+while getopts 'mtlhsgv:fecj:r' OPTION
 do
   case $OPTION in
 
@@ -60,6 +61,10 @@ do
 
     l)	virtualKeyboardFlag=1
         echo "clavier virtuel activé."
+		;;
+
+		m)	yerothCheckMemoryFlag=1
+     		yerothCheckMemoryVal="YEROTH_CHECK_MEMORY"
 		;;
 
     g)	debugFlag=1
@@ -102,6 +107,11 @@ done
 shift $(($OPTIND - 1))
 
 set +x
+
+
+if [ ! $yerothCheckMemoryFlag ]; then
+  yerothCheckMemoryVal="NO_YEROTH_CHECK_MEMORY"
+fi
 
 if [ ! $debugFlag ]; then
   debugVal="YEROTH_NO_DEBUG"
@@ -176,15 +186,15 @@ fi
 if [ $simulationFlag ]; then
 		if [ $qtTestLibFlag ]; then
 				if [ $continueFlag ]; then
-						echo "make -j$jobsVal YEROTH_ERP_3_0_TEST=$qtTestLibVal YEROTH_VIRTUAL_KEYBOARD_OPTIONS=$virtualKeyboardVal YEROTH_DEBUG_LOG=$debugVal YEROTH_VERSION=$yerothVersionVal YEROTH_LANGUAGE=$languageVal"
+						echo "make -j$jobsVal YEROTH_ERP_3_0_TEST=$qtTestLibVal YEROTH_VIRTUAL_KEYBOARD_OPTIONS=$virtualKeyboardVal YEROTH_DEBUG_LOG=$debugVal YEROTH_VERSION=$yerothVersionVal YEROTH_LANGUAGE=$languageVal YEROTH_CHECK_MEMORY=$yerothCheckMemoryVal"
 				else
-						echo "make clean &&  make -j$jobsVal YEROTH_ERP_3_0_TEST=$qtTestLibVal YEROTH_VIRTUAL_KEYBOARD_OPTIONS=$virtualKeyboardVal YEROTH_DEBUG_LOG=$debugVal YEROTH_VERSION=$yerothVersionVal YEROTH_LANGUAGE=$languageVal"
+						echo "make clean &&  make -j$jobsVal YEROTH_ERP_3_0_TEST=$qtTestLibVal YEROTH_VIRTUAL_KEYBOARD_OPTIONS=$virtualKeyboardVal YEROTH_DEBUG_LOG=$debugVal YEROTH_VERSION=$yerothVersionVal YEROTH_LANGUAGE=$languageVal YEROTH_CHECK_MEMORY=$yerothCheckMemoryVal"
 				fi
 		else
 				if [ $continueFlag ]; then
-						echo "make -j$jobsVal YEROTH_ERP_3_0_TEST=$qtTestLibVal YEROTH_VIRTUAL_KEYBOARD_OPTIONS=$virtualKeyboardVal YEROTH_DEBUG_LOG=$debugVal YEROTH_VERSION=$yerothVersionVal YEROTH_LANGUAGE=$languageVal"
+						echo "make -j$jobsVal YEROTH_ERP_3_0_TEST=$qtTestLibVal YEROTH_VIRTUAL_KEYBOARD_OPTIONS=$virtualKeyboardVal YEROTH_DEBUG_LOG=$debugVal YEROTH_VERSION=$yerothVersionVal YEROTH_LANGUAGE=$languageVal YEROTH_CHECK_MEMORY=$yerothCheckMemoryVal"
 				else
-						echo "make clean && make -j$jobsVal YEROTH_ERP_3_0_TEST=$qtTestLibVal YEROTH_VIRTUAL_KEYBOARD_OPTIONS=$virtualKeyboardVal YEROTH_DEBUG_LOG=$debugVal YEROTH_VERSION=$yerothVersionVal YEROTH_LANGUAGE=$languageVal"
+						echo "make clean && make -j$jobsVal YEROTH_ERP_3_0_TEST=$qtTestLibVal YEROTH_VIRTUAL_KEYBOARD_OPTIONS=$virtualKeyboardVal YEROTH_DEBUG_LOG=$debugVal YEROTH_VERSION=$yerothVersionVal YEROTH_LANGUAGE=$languageVal YEROTH_CHECK_MEMORY=$yerothCheckMemoryVal"
 				fi
 		fi
 		exit 3
@@ -203,6 +213,7 @@ if [ $qtTestLibFlag ]; then
 				make -j$jobsVal \
 						YEROTH_ERP_3_0_TEST=$qtTestLibVal \
 						YEROTH_VIRTUAL_KEYBOARD_OPTIONS=$virtualKeyboardVal \
+						YEROTH_CHECK_MEMORY=$yerothCheckMemoryVal \
 						YEROTH_DEBUG_LOG=$debugVal \
 						YEROTH_VERSION=$yerothVersionVal \
 						YEROTH_LANGUAGE=$languageVal
@@ -211,6 +222,7 @@ if [ $qtTestLibFlag ]; then
 				make -j$jobsVal \
 						YEROTH_ERP_3_0_TEST=$qtTestLibVal \
 						YEROTH_VIRTUAL_KEYBOARD_OPTIONS=$virtualKeyboardVal \
+						YEROTH_CHECK_MEMORY=$yerothCheckMemoryVal \
 						YEROTH_DEBUG_LOG=$debugVal \
 						YEROTH_VERSION=$yerothVersionVal \
 						YEROTH_LANGUAGE=$languageVal
@@ -220,6 +232,7 @@ else
 				make -j$jobsVal \
 						YEROTH_ERP_3_0_TEST=$qtTestLibVal \
 						YEROTH_VIRTUAL_KEYBOARD_OPTIONS=$virtualKeyboardVal \
+						YEROTH_CHECK_MEMORY=$yerothCheckMemoryVal \
 						YEROTH_DEBUG_LOG=$debugVal \
 						YEROTH_VERSION=$yerothVersionVal \
 						YEROTH_LANGUAGE=$languageVal
@@ -228,6 +241,7 @@ else
 				make -j$jobsVal \
 						YEROTH_ERP_3_0_TEST=$qtTestLibVal \
 						YEROTH_VIRTUAL_KEYBOARD_OPTIONS=$virtualKeyboardVal \
+						YEROTH_CHECK_MEMORY=$yerothCheckMemoryVal \
 						YEROTH_DEBUG_LOG=$debugVal \
 						YEROTH_VERSION=$yerothVersionVal \
 						YEROTH_LANGUAGE=$languageVal
