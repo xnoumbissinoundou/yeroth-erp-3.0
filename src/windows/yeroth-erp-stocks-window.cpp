@@ -495,9 +495,10 @@ void YerothStocksWindow::setupLineEdits()
 
 void YerothStocksWindow::setupShortcuts()
 {
-    setupShortcutActionMessageDaide 	(*actionAppeler_aide);
-    setupShortcutActionAfficherPDF		(*actionAfficherPDF);
-    setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
+    setupShortcutActionMessageDaide 		(*actionAppeler_aide);
+    setupShortcutActionAfficherPDF			(*actionAfficherPDF);
+    setupShortcutActionExporterAuFormatCsv	(*actionExporter_au_format_csv);
+    setupShortcutActionQuiSuisJe			(*actionQui_suis_je);
 
     actionReinitialiserRecherche->setShortcut(YerothUtils::REINITIALISER_RECHERCHE_QKEYSEQUENCE);
 }
