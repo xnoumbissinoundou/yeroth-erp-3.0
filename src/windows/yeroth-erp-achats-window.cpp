@@ -459,13 +459,6 @@ void YerothAchatsWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 }
 
 
-void YerothAchatsWindow::rendreInvisible()
-{
-	lineEdit_achats_terme_recherche->clear();
-    YerothWindowsCommons::rendreInvisible();
-}
-
-
 void YerothAchatsWindow::definirCaissier()
 {
     _logger->log("definirCaissier");
