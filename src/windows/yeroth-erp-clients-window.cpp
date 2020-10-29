@@ -566,7 +566,7 @@ void YerothERPClientsWindow::populateClientsComboBoxes()
 	{
 		aDBColumnElementString = aQStringList.at(k);
 
-		if (!YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::REFERENCE, aDBColumnElementString))
+		if (!YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::NOM_ENTREPRISE, aDBColumnElementString))
 		{
 			comboBox_element_string_db
 				->addItem(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(aDBColumnElementString));
@@ -574,7 +574,7 @@ void YerothERPClientsWindow::populateClientsComboBoxes()
 	}
 
 	comboBox_element_string_db
-		->insertItem(0, YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::REFERENCE));
+		->insertItem(0, YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::NOM_ENTREPRISE));
 
 	comboBox_element_string_db->setCurrentIndex(0);
 
