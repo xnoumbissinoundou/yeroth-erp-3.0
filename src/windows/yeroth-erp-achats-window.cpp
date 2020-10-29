@@ -686,32 +686,6 @@ void YerothAchatsWindow::reinitialiser_recherche()
 
 void YerothAchatsWindow::afficherAchats(YerothSqlTableModel &achatSqlTableModel)
 {
-	bool userIsManager = false;
-	bool userIsVendeur = false;
-	bool disableTotalAchatsDisplay = false;
-
-    YerothPOSUser *aUser = _allWindows->getUser();
-
-    if (0 != aUser)
-    {
-    	if (aUser->isManager())
-    	{
-    		userIsManager = true;
-    	}
-    	else if (aUser->isVendeur())
-    	{
-    		userIsVendeur = true;
-    	}
-    	else
-    	{
-    		disableTotalAchatsDisplay = true;
-    	}
-    }
-    else
-    {
-    	disableTotalAchatsDisplay = true;
-    }
-
     int curAchatsTableModelRowCount = achatSqlTableModel.easySelect();
 
     double quantite_totale = 0.0;
