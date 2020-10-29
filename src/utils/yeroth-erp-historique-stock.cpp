@@ -16,7 +16,7 @@
 
 const QString YerothHistoriqueStock::SEPARATION_EXTERNE("*");
 
-const QString YerothHistoriqueStock::SEPARATION_INTERNE(";");
+const QString YerothHistoriqueStock::SEPARATION_INTERNE("_");
 
 QMap<QString, enum TypeMouvementStock> YerothHistoriqueStock::_qstringToTypeMouvement;
 
