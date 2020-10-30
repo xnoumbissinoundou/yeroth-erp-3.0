@@ -172,6 +172,10 @@ private:
 
     void desactiverComboBoxStrategieDeGestionDesStocks();
 
+    void disableValeurDinventaire();
+
+    void enableValeurDinventaire_ONLY_MANAGER();
+
     void populateComboBoxes();
 
     void setComboBoxStrategieDeStocks();

@@ -422,6 +422,21 @@ void YerothStocksWindow::setComboBoxStrategieDeStocks()
     }
 }
 
+
+void YerothStocksWindow::disableValeurDinventaire()
+{
+	lineEdit_stocks_valeur_totale_dinventaire->setVisible(false);
+	label_stocks_valeur_totale->setVisible(false);
+}
+
+
+void YerothStocksWindow::enableValeurDinventaire_ONLY_MANAGER()
+{
+	lineEdit_stocks_valeur_totale_dinventaire->setVisible(true);
+	label_stocks_valeur_totale->setVisible(true);
+}
+
+
 void YerothStocksWindow::populateComboBoxes()
 {
 	QStringList aQStringList;
@@ -735,6 +750,26 @@ void YerothStocksWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
     _curStocksTableModel = stocksTableModel;
 
     lineEdit_stock_terme_recherche->setFocus();
+
+
+    YerothPOSUser *aUser = _allWindows->getUser();
+
+    if (0 != aUser)
+    {
+    	if (aUser->isManager())
+    	{
+    		enableValeurDinventaire_ONLY_MANAGER();
+    	}
+    	else
+    	{
+    		disableValeurDinventaire();
+    	}
+    }
+    else
+    {
+    	disableValeurDinventaire();
+    }
+
 
     setVisible(true);
 
