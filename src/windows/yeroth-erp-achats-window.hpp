@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-achats-window.hpp
  *
- *      Author: Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD), Ph.D. (ABD)
+ *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef YEROTH_ERP_ACHATS_WINDOW_HPP_
