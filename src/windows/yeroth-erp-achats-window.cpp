@@ -341,6 +341,22 @@ void YerothAchatsWindow::setupShortcuts()
 }
 
 
+void YerothAchatsWindow::resetFilter(YerothSqlTableModel * achatsTableModel)
+{
+	_curAchatSqlTableModel = achatsTableModel;
+
+    if (0 != _curAchatSqlTableModel)
+    {
+    	_curAchatSqlTableModel->resetFilter();
+    }
+
+    lineEdit_achats_terme_recherche->myClear();
+
+    dateEdit_achats_debut->reset();
+    dateEdit_achats_fin->reset();
+}
+
+
 void YerothAchatsWindow::slot_reinitialiser_champs_db_visibles()
 {
 	reinitialiser_champs_db_visibles();
@@ -726,6 +742,8 @@ void YerothAchatsWindow::reinitialiser_recherche()
 
     setCurrentlyFiltered(false);
 
+    resetFilter(&_allWindows->getSqlTableModel_achats());
+
     resetLineEditsQCompleters((QObject *)this);
 
     afficher_achats();
@@ -743,15 +761,10 @@ void YerothAchatsWindow::lister_les_elements_du_tableau(YerothSqlTableModel &ach
     double montant_total = 0.0;
 
     QSqlRecord aRecord;
-    QString stockId;
-    QString strQuery;
-    QSqlQuery query;
 
     for (int k = 0; k < curAchatsTableModelRowCount; ++k)
     {
         aRecord.clear();
-
-        query.clear();
 
         aRecord = achatSqlTableModel.record(k);
 

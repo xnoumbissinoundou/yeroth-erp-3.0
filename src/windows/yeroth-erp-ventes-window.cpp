@@ -1786,15 +1786,10 @@ void YerothVentesWindow::lister_les_elements_du_tableau(YerothSqlTableModel &sto
     double total_montant_tva = 0.0;
 
     QSqlRecord aRecord;
-    QString stockId;
-    QString strQuery;
-    QSqlQuery query;
 
     for (int k = 0; k < curStocksVenduTableModelRowCount; ++k)
     {
         aRecord.clear();
-
-        query.clear();
 
         aRecord = _curStocksVenduTableModel->record(k);
 
@@ -1813,8 +1808,6 @@ void YerothVentesWindow::lister_les_elements_du_tableau(YerothSqlTableModel &sto
         montant_tva = GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::MONTANT_TVA).toDouble();
 
         total_montant_tva += montant_tva;
-
-        stockId = GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::STOCKS_ID);
     }
 
     if (_allWindows->getUser()->isManager())

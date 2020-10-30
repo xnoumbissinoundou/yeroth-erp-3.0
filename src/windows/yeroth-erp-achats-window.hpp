@@ -112,6 +112,8 @@ protected:
 
     virtual void setupShortcuts();
 
+    void resetFilter(YerothSqlTableModel *achatsTableModel);
+
  protected slots:
 
     virtual void slot_reinitialiser_champs_db_visibles();

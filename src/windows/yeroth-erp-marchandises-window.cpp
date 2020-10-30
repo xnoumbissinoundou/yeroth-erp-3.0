@@ -36,7 +36,6 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
 :YerothWindowsCommons("yeroth-erp-marchandises"),
  YerothAbstractClassYerothSearchWindow(_allWindows->MARCHANDISES),
  _logger(new YerothLogger("YerothMarchandisesWindow")),
- _valeurTheoriqueDinventaire(0.0),
  _qteTotaleDarticlesEnStock(0.0),
  _currentlyFiltered(false),
  _lastSelectedRow__ID(0),
@@ -145,60 +144,13 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
     setupShortcuts();
 }
 
+
 YerothMarchandisesWindow::~YerothMarchandisesWindow()
 {
 	MACRO_TO_DELETE_PAGINATION_INTEGER_VALIDATOR
 
 	delete _pushButton_filtrer_font;
     delete _logger;
-}
-
-
-double YerothMarchandisesWindow::getValeurTotaleDinventaireEnStock(QString categorie,
-							   	   	   	   	   	   	   	     	   QString designation)
-{
-	double valeur_dinventaire = 0.0;
-
-	QString sqlSearchStocksTableQueryStr(QString("SELECT %1, %2 FROM %3 WHERE %4 = '%5' AND %6 = '%7'")
-											.arg(YerothDatabaseTableColumn::QUANTITE_TOTALE,
-												 YerothDatabaseTableColumn::PRIX_DACHAT,
-												 _allWindows->STOCKS,
-	                                             YerothDatabaseTableColumn::CATEGORIE,
-												 categorie,
-												 YerothDatabaseTableColumn::DESIGNATION,
-												 designation));
-
-	//qDebug() << "++ str: " << sqlSearchStockTableQueryStr;
-	QSqlQuery sqlSearchStockTableQuery;
-
-	int querySize = YerothUtils::execQuery(sqlSearchStockTableQuery, sqlSearchStocksTableQueryStr);
-
-	//querySize shall be equal to 0 if product is in 'marchandises' database table.
-	if (querySize > 0)
-	{
-		double qteTotalEnStock = 0.0;
-		double prix_dachat = 0.0;
-
-		while (sqlSearchStockTableQuery.next())
-		{
-			qteTotalEnStock = sqlSearchStockTableQuery.value(YerothDatabaseTableColumn::QUANTITE_TOTALE).toDouble();
-			prix_dachat = sqlSearchStockTableQuery.value(YerothDatabaseTableColumn::PRIX_DACHAT).toDouble();
-			valeur_dinventaire += (qteTotalEnStock * prix_dachat);
-		}
-
-		QString updateValeurMarchandeQueryStr(QString("UPDATE %1 SET %2 = '%3' WHERE (%4 = '%5') AND (%6 = '%7')")
-				.arg(_allWindows->MARCHANDISES,
-						YerothDatabaseTableColumn::VALEUR_DIVENTAIRE,
-						QString::number(valeur_dinventaire),
-						YerothDatabaseTableColumn::CATEGORIE,
-						categorie,
-						YerothDatabaseTableColumn::DESIGNATION,
-						designation));
-
-		YerothUtils::execQuery(updateValeurMarchandeQueryStr);
-	}
-
-	return valeur_dinventaire;
 }
 
 
@@ -272,8 +224,7 @@ void YerothMarchandisesWindow::reinitialiser_champs_db_visibles()
 		<< YerothDatabaseTableColumn::PRIX_DACHAT_PRECEDENT
 		<< YerothDatabaseTableColumn::PRIX_VENTE_PRECEDENT
 		<< YerothDatabaseTableColumn::QUANTITE_TOTALE
-		<< YerothDatabaseTableColumn::REFERENCE
-		<< YerothDatabaseTableColumn::VALEUR_DIVENTAIRE;
+		<< YerothDatabaseTableColumn::REFERENCE;
 }
 
 
@@ -709,8 +660,6 @@ void YerothMarchandisesWindow::populateMarchandisesComboBoxes()
 
 	aQStringList.clear();
 
-	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::VALEUR_DIVENTAIRE));
-
 	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::PRIX_DACHAT_PRECEDENT));
 
 	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::PRIX_VENTE_PRECEDENT));
@@ -743,8 +692,6 @@ void YerothMarchandisesWindow::setupLineEdits()
 	lineEdit_nom_element_string_db->enableForSearch(QObject::trUtf8("valeur à rechercher"));
 
     lineEdit_nombre_de_marchandises->setYerothEnabled(false);
-    lineEdit_nombre_darticles->setYerothEnabled(false);
-	lineEdit_valeur_totale_dinventaire->setYerothEnabled(false);
 
 	MACRO_TO_BIND_PAGING_WITH_QLINEEDIT(lineEdit_marchandises_nombre_de_lignes_par_page, tableView_marchandises);
 
@@ -1095,10 +1042,6 @@ void YerothMarchandisesWindow::afficherMarchandises(YerothSqlTableModel &aYeroth
     int rowCount = tableView_marchandises->getYerothSqlTableModelTotalRowCount();
 
     lineEdit_nombre_de_marchandises->setText(GET_NUM_STRING(rowCount));
-
-    lineEdit_nombre_darticles->setText(GET_DOUBLE_STRING(_qteTotaleDarticlesEnStock));
-
-    lineEdit_valeur_totale_dinventaire->setText(GET_CURRENCY_STRING_NUM(_valeurTheoriqueDinventaire));
 }
 
 

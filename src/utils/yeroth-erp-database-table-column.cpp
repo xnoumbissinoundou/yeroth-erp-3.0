@@ -76,7 +76,6 @@ const QString YerothDatabaseTableColumn::NOM_CAISSIER					("nom_caissier");
 const QString YerothDatabaseTableColumn::NOM_COMPLET_CREATEUR_REMISE_ALERTE	("nom_complet_createur_remise_alerte");
 const QString YerothDatabaseTableColumn::NOM_COMPLET					("nom_complet");
 const QString YerothDatabaseTableColumn::NOM_LOCALISATION				("nom_localisation");
-const QString YerothDatabaseTableColumn::VALEUR_DIVENTAIRE				("valeur_dinventaire");
 const QString YerothDatabaseTableColumn::NOM_UTILISATEUR				("nom_utilisateur");
 const QString YerothDatabaseTableColumn::STOCKS_ID						("stocks_id");
 const QString YerothDatabaseTableColumn::STOCK_MANAGER					("stock_manager");
@@ -268,8 +267,6 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NOM_COMPLET,			QObject::tr("Nom complet"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NOM_LOCALISATION,	QObject::tr("Nom"));
-
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::VALEUR_DIVENTAIRE,	QObject::tr("Valeur d'inventaire"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NOM_UTILISATEUR,		QObject::tr("ID"));
 

@@ -81,12 +81,9 @@ public slots:
 	{
 		YerothQMessageBox::information(this,
 							 QObject::trUtf8("aide"),
-							 QObject::trUtf8("1) Sélectionner un marchandise dans le tableau "
+							 QObject::trUtf8("Sélectionner un marchandise dans le tableau "
 									 	 	 "de marchandises, ensuite cliquer "
-											 "sur l'opération que vous souhaitez réaliser !\n\n"
-											 "2) La valeur d'inventaire d'une marchandise (VI) "
-											 "est calculée comme suit:\n"
-											 " [VI = prix_dachat * quantite_en_stock] !"));
+											 "sur l'opération que vous souhaitez réaliser !"));
 	}
 
 	bool export_csv_file();
@@ -109,8 +106,6 @@ public slots:
     void reinitialiser_elements_filtrage();
 
     void reinitialiser_recherche();
-
-    static double getValeurTotaleDinventaireEnStock(QString categorie, QString designation);
 
     static double getQuantiteTotaleEnStock(QString categorie, QString designation);
 
@@ -146,8 +141,6 @@ private slots:
 	bool slot_filtrer();
 
 public:
-
-    double 					_valeurTheoriqueDinventaire;
 
     double 					_qteTotaleDarticlesEnStock;
 

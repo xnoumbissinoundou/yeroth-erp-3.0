@@ -39,8 +39,6 @@ void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTab
 {
 	_stdItemModel->_curSqlTableModel = &tableModel;
 
-	YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->_marchandisesWindow->_valeurTheoriqueDinventaire = 0.0;
-
 	YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->_marchandisesWindow->_qteTotaleDarticlesEnStock = 0.0;
 
     emit signal_lister(tableModel);
@@ -254,16 +252,6 @@ void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTab
                 		YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->_marchandisesWindow->_qteTotaleDarticlesEnStock += qteTotalEnStock;
 
                 		anItem->setText(GET_DOUBLE_STRING(qteTotalEnStock));
-                	}
-                	else if (YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::VALEUR_DIVENTAIRE))
-                	{
-                		double valeurDinventaireEnStock =
-                				YerothMarchandisesWindow::getValeurTotaleDinventaireEnStock(categorieStr,
-                						designationStr);
-
-                		YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->_marchandisesWindow->_valeurTheoriqueDinventaire += valeurDinventaireEnStock;
-
-                		anItem->setText(GET_DOUBLE_STRING(valeurDinventaireEnStock));
                 	}
                 } //if (0 != item)
             }

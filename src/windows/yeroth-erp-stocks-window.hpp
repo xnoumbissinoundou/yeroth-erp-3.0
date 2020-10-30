@@ -78,8 +78,12 @@ public slots:
 	{
 		YerothQMessageBox::information(this,
 							 QObject::trUtf8("aide"),
-							 QObject::trUtf8("Sélectionner un stock dans le tableau des stocks, ensuite cliquer "
-											 "sur l'opération que vous souhaitez réaliser !"));
+							 QObject::trUtf8("1) Sélectionner un stock dans le tableau des stocks,"
+											 " ensuite cliquer sur l'opération que vous souhaitez"
+											 " réaliser !\n\n"
+											 "2) La valeur d'inventaire d'une marchandise (VI) "
+											 "est calculée comme suit:\n"
+											 " [VI = prix_dachat * quantite_en_stock] !"));
 	}
 
 	bool export_csv_file();
@@ -88,10 +92,10 @@ public slots:
 
     virtual void entrer();
 
-    void afficherStocks(YerothSqlTableModel &sqlTableModel,
-    					QString localVisibleStrategy = YerothUtils::EMPTY_STRING);
+    void lister_les_elements_du_tableau(YerothSqlTableModel &sqlTableModel,
+    									QString localVisibleStrategy = YerothUtils::EMPTY_STRING);
 
-    virtual void afficherStocks(QString strategieGlobale = YerothUtils::EMPTY_STRING);
+    virtual void lister_les_elements_du_tableau(QString strategieGlobale = YerothUtils::EMPTY_STRING);
 
     virtual void modifier_les_articles();
 
@@ -100,6 +104,8 @@ public slots:
     void afficher_au_detail(const QModelIndex &modelIndex);
 
     void supprimer_ce_stock();
+
+    void refineYerothLineEdits();
 
     void reinitialiser_elements_filtrage();
 
@@ -115,6 +121,11 @@ private slots:
 
 	bool filtrer_stocks_perimes_seulement();
 
+	inline void afficher_stocks()
+	{
+		textChangedSearchLineEditsQCompleters();
+	}
+
 	bool filtrer_stocks();
 
 protected:
@@ -126,6 +137,8 @@ protected:
     virtual void hideEvent(QHideEvent * hideEvent);
 
     virtual void setupShortcuts();
+
+    void resetFilter();
 
 protected slots:
 
@@ -165,12 +178,15 @@ private:
 
     void setupLineEdits();
 
+    void setupDateTimeEdits();
 
     QString					_localStrategy;
 
     YerothLogger			*_logger;
 
     QStringList				_historiqueStock;
+
+    QString 				_stocksDateEntreeFilter;
 
     QFont 					*_pushButton_stocks_filtrer_font;
 };

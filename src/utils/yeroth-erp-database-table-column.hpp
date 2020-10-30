@@ -149,8 +149,6 @@ public:
 
 	static const QString NOM_LOCALISATION;
 
-	static const QString VALEUR_DIVENTAIRE;
-
 	static const QString NOM_UTILISATEUR;
 
 	static const QString STOCKS_ID;

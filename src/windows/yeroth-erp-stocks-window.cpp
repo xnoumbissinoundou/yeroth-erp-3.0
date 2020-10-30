@@ -93,6 +93,8 @@ YerothStocksWindow::YerothStocksWindow()
 
     setupLineEditsQCompleters((QObject *)this);
 
+    setupDateTimeEdits();
+
     _pushButton_stocks_filtrer_font = new QFont(pushButton_stocks_filtrer->font());
 
     tableView_stocks->setSqlTableName(&YerothERPWindows::STOCKS);
@@ -242,7 +244,7 @@ bool YerothStocksWindow::filtrer_stocks_en_alerte_de_stock()
 		setCurrentlyFiltered(true);
 	}
 
-	afficherStocks();
+	lister_les_elements_du_tableau();
 
 	if (resultRows > 0)
 	{
@@ -281,7 +283,7 @@ bool YerothStocksWindow::filtrer_stocks_perimes_seulement()
 		setCurrentlyFiltered(true);
 	}
 
-	afficherStocks();
+	lister_les_elements_du_tableau();
 
 	if (resultRows > 0)
 	{
@@ -336,7 +338,7 @@ bool YerothStocksWindow::filtrer_stocks()
 	{
 		setCurrentlyFiltered(true);
 
-		afficherStocks();
+		lister_les_elements_du_tableau();
 
 		YEROTH_QMESSAGE_BOX_QUELQUE_RESULTAT_FILTRE(this, resultRows, "stocks - filtrer");
 
@@ -355,11 +357,25 @@ bool YerothStocksWindow::filtrer_stocks()
 }
 
 
+void YerothStocksWindow::resetFilter()
+{
+    if (0 != _curStocksTableModel)
+    {
+    	_curStocksTableModel->resetFilter();
+    }
+
+    lineEdit_stock_terme_recherche->myClear();
+
+    dateEdit_stocks_debut->reset();
+    dateEdit_stocks_fin->reset();
+}
+
+
 void YerothStocksWindow::slot_reinitialiser_champs_db_visibles()
 {
 	reinitialiser_champs_db_visibles();
 	resetTableViewHorizontalHeader_DEFAULT_ORDERING();
-	afficherStocks();
+	lister_les_elements_du_tableau();
 }
 
 
@@ -487,9 +503,37 @@ void YerothStocksWindow::setupLineEdits()
 
 	lineEdit_stocks_element_de_stock_resultat->setValidator(&YerothUtils::DoubleValidator);
 
+    lineEdit_stocks_nombre_darticles->setYerothEnabled(false);
+    lineEdit_stocks_valeur_totale_dinventaire->setYerothEnabled(false);
 	lineEdit_nombre_de_stocks->setYerothEnabled(false);
 
 	MACRO_TO_BIND_PAGING_WITH_QLINEEDIT(lineEdit_stocks_nombre_de_lignes_par_page, tableView_stocks);
+}
+
+
+void YerothStocksWindow::setupDateTimeEdits()
+{
+    dateEdit_stocks_debut->setStartDate(GET_CURRENT_DATE);
+
+    dateEdit_stocks_fin->setStartDate(GET_CURRENT_DATE);
+
+    _stocksDateEntreeFilter.clear();
+
+    _stocksDateEntreeFilter.append(QString(" ( %1 >= '%2' AND %3 <= '%4' ) ")
+    								.arg(YerothDatabaseTableColumn::DATE_ENTREE,
+    									 DATE_TO_DB_FORMAT_STRING(dateEdit_stocks_debut->date()),
+										 YerothDatabaseTableColumn::DATE_ENTREE,
+										 DATE_TO_DB_FORMAT_STRING(dateEdit_stocks_fin->date())));
+
+    connect(dateEdit_stocks_debut,
+    		SIGNAL(dateChanged(const QDate &)),
+			this,
+			SLOT(refineYerothLineEdits()));
+
+    connect(dateEdit_stocks_fin,
+    		SIGNAL(dateChanged(const QDate &)),
+			this,
+			SLOT(refineYerothLineEdits()));
 }
 
 
@@ -575,11 +619,22 @@ void YerothStocksWindow::textChangedSearchLineEditsQCompleters()
     	}
     }
 
-    _yerothSqlTableModel->yerothSetFilter_WITH_where_clause(_searchFilter);
+    QString finalSearchFilter(_stocksDateEntreeFilter);
+
+    if (!_searchFilter.isEmpty())
+    {
+    	QString searchFilterWithDate(QString("%1 AND (%2)")
+    									.arg(_stocksDateEntreeFilter,
+    										 _searchFilter));
+
+    	finalSearchFilter = searchFilterWithDate;
+    }
+
+    _yerothSqlTableModel->yerothSetFilter_WITH_where_clause(finalSearchFilter);
 
     if (_yerothSqlTableModel->select())
     {
-    	afficherStocks(*_yerothSqlTableModel);
+    	lister_les_elements_du_tableau(*_yerothSqlTableModel);
     }
     else
     {
@@ -683,7 +738,7 @@ void YerothStocksWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 
     setVisible(true);
 
-    afficherStocks(YerothERPConfig::salesStrategy);
+    afficher_stocks();
 }
 
 
@@ -691,7 +746,7 @@ void YerothStocksWindow::gererChoixStrategieGestionDesStocks()
 {
 	_localStrategy = comboBox_strategie_de_stocks->currentText();
 
-	afficherStocks(_localStrategy);
+	lister_les_elements_du_tableau(_localStrategy);
 }
 
 
@@ -1010,11 +1065,27 @@ void YerothStocksWindow::supprimer_ce_stock()
 
         setupLineEditsQCompleters((QObject *)this);
 
-        afficherStocks(*_curStocksTableModel);
+        lister_les_elements_du_tableau(*_curStocksTableModel);
     }
     else
     {
     }
+}
+
+
+void YerothStocksWindow::refineYerothLineEdits()
+{
+	_stocksDateEntreeFilter.clear();
+
+	_stocksDateEntreeFilter.append(QString(" ( %1 >= '%2' AND %3 <= '%4' ) ")
+    					.arg(YerothDatabaseTableColumn::DATE_ENTREE,
+    						 DATE_TO_DB_FORMAT_STRING(dateEdit_stocks_debut->date()),
+							 YerothDatabaseTableColumn::DATE_ENTREE,
+							 DATE_TO_DB_FORMAT_STRING(dateEdit_stocks_fin->date())));
+
+	setupLineEditsQCompleters((QObject *)this);
+
+	afficher_stocks();
 }
 
 
@@ -1036,11 +1107,13 @@ void YerothStocksWindow::reinitialiser_recherche()
 
     setCurrentlyFiltered(false);
 
+    resetFilter();
+
     resetLineEditsQCompleters((QObject *)this);
 
     setComboBoxStrategieDeStocks();
 
-    afficherStocks();
+    afficher_stocks();
 }
 
 
@@ -1074,8 +1147,8 @@ void YerothStocksWindow::modifier_les_articles()
 }
 
 
-void YerothStocksWindow::afficherStocks(YerothSqlTableModel & sqlTableModel,
-									    QString localVisibleStrategy /* = YerothUtils::EMPTY_STRING */)
+void YerothStocksWindow::lister_les_elements_du_tableau(YerothSqlTableModel & sqlTableModel,
+									    				QString localVisibleStrategy /* = YerothUtils::EMPTY_STRING */)
 {
     _curStocksTableModel = &sqlTableModel;
 
@@ -1102,20 +1175,52 @@ void YerothStocksWindow::afficherStocks(YerothSqlTableModel & sqlTableModel,
     	tableView_stocks->setSortingEnabled(true);
     }
 
+
+    int curStocksTableModelRowCount = _curStocksTableModel->easySelect();
+
+    double quantite_stock = 0;
+    double quantite_totale = 0;
+    double prix_unitaire = 0.0;
+    double valeur_achat = 0.0;
+    double valeur_total_achat = 0.0;
+
+    QSqlRecord aRecord;
+
+    for (int k = 0; k < curStocksTableModelRowCount; ++k)
+    {
+        aRecord.clear();
+
+        aRecord = _curStocksTableModel->record(k);
+
+        quantite_stock = GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::QUANTITE_TOTALE).toDouble();
+
+        quantite_totale += quantite_stock;
+
+        prix_unitaire = GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::PRIX_UNITAIRE).toDouble();
+
+        valeur_achat =  prix_unitaire * quantite_stock;
+
+        valeur_total_achat += valeur_achat;
+    }
+
+    lineEdit_stocks_nombre_darticles->setText(GET_NUM_STRING(quantite_totale));
+
+    lineEdit_nombre_de_stocks->setText(GET_NUM_STRING(curStocksTableModelRowCount));
+
+    lineEdit_stocks_valeur_totale_dinventaire->setText(GET_CURRENCY_STRING_NUM(valeur_total_achat));
+
+
     tableView_stocks->queryYerothTableViewCurrentPageContentRow(*_curStocksTableModel,
     															currentStockListingStrategy);
 
     tableView_show_or_hide_columns(*tableView_stocks);
 
-    int rowCount = tableView_stocks->rowCount();
-
-    lineEdit_nombre_de_stocks->setText(GET_NUM_STRING(rowCount));
 
     setWindowTitle(YerothUtils::getWindowTitleWithStrategy(this, localVisibleStrategy));
 }
 
 
-void YerothStocksWindow::afficherStocks(QString strategieGlobale /* = YerothUtils::EMPTY_STRING */)
+void YerothStocksWindow::lister_les_elements_du_tableau(QString strategieGlobale /* = YerothUtils::EMPTY_STRING */)
 {
 	QString curStrategy = strategieGlobale;
 
@@ -1129,7 +1234,7 @@ void YerothStocksWindow::afficherStocks(QString strategieGlobale /* = YerothUtil
 		->setCurrentIndex(YerothUtils::getComboBoxDatabaseQueryValue(curStrategy,
 						  YerothUtils::_strategieindexToUserViewString));
 
-	afficherStocks(*_curStocksTableModel, curStrategy);
+	lister_les_elements_du_tableau(*_curStocksTableModel, curStrategy);
 }
 
 
