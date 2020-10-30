@@ -126,6 +126,33 @@ YerothAdminWindow::YerothAdminWindow()
 
     _yerothAdminWindowTitleStart.append(windowTitle());
 
+
+    lineEdit_administration_maintenance_commandes_COMMANDE_ACTUELLE->setYerothEnabled(false);
+
+    lineEdit_administration_maintenance_commandes_exporter_yerotherp3_0->setYerothEnabled(false);
+
+    lineEdit_administration_maintenance_commandes_effacer_un_tableau->setYerothEnabled(false);
+	lineEdit_administration_maintenance_commandes_exporter_un_tableau->setYerothEnabled(false);
+	lineEdit_administration_maintenance_commandes_importer_un_tableau->setYerothEnabled(false);
+	lineEdit_administration_maintenance_commandes_supprimer_un_tableau->setYerothEnabled(false);
+
+
+    lineEdit_administration_maintenance_commandes_exporter_yerotherp3_0->
+		setText(QString("mysqldump -u '%1' -p '%2'"));
+
+    lineEdit_administration_maintenance_commandes_effacer_un_tableau->
+		setText(QString("mysql -u '%1' -p --execute=\"truncate table '%2'\""));
+
+    lineEdit_administration_maintenance_commandes_exporter_un_tableau->
+		setText(QString("mysqldump -u '%1' -p '%3' '%2'"));
+
+    lineEdit_administration_maintenance_commandes_importer_un_tableau->
+		setText(QString("mysql -u '%1' -p < '%2'"));
+
+    lineEdit_administration_maintenance_commandes_supprimer_un_tableau->
+		setText(QString("mysql -u '%1' -p --execute=\"drop table '%2'\""));
+
+
     setupValidators();
 
     YEROTH_ERP_ADMIN_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
@@ -160,8 +187,7 @@ YerothAdminWindow::YerothAdminWindow()
     comboBox_sujets_actions->addItem(LOCALISATION);
     comboBox_sujets_actions->addItem(REMISE);
 
-    comboBox_sujets_maintenance->addItem(DB);
-    comboBox_sujets_maintenance->addItem(TABLEAU);
+    YEROTH_ERP_3_populate_all_tables();
 
     comboBox_strategie_vente_sortie->addItem(YerothERPConfig::STRATEGIE_VENTE_SORTIE_ALL);
     comboBox_strategie_vente_sortie->addItem(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FEFO);
@@ -186,6 +212,9 @@ YerothAdminWindow::YerothAdminWindow()
     pushButton_modifier->disable(this);
     pushButton_supprimer->disable(this);
     pushButton_operation_go->disable(this);
+
+
+    pushButton_maintenance_reinitialiser->enable(this, SLOT(reinitialiser_AFFICHAGE_COMMANDE_MAINTENANCE()));
 
     pushButton_entreprise_reinitialiser->enable(this, SLOT(read_entreprise_info_database_table()));
 
@@ -218,6 +247,12 @@ YerothAdminWindow::YerothAdminWindow()
     pushButton_connecter_localisation->enable(this, SLOT(connecter_localisation_db()));
     pushButton_deconnecter_localisation->enable(this, SLOT(deconnecter_localisation_db()));
 
+
+    connect(comboBox_operations_maintenance, SIGNAL(currentTextChanged(const QString &)),
+    		this, SLOT(handle_changer_commande_MAINTENANCE_OPERATION(const QString &)));
+
+    connect(comboBox_sujets_maintenance, SIGNAL(currentTextChanged(const QString &)),
+    		this, SLOT(handle_changer_commande_MAINTENANCE_SUJET(const QString &)));
 
     connect(comboBox_tableaux_mariadb_sql, SIGNAL(currentTextChanged(const QString &)),
     		this, SLOT(handle_changer_tableau_dimportation(const QString &)));
@@ -403,6 +438,43 @@ void YerothAdminWindow::deconnecter_utilisateur()
 }
 
 
+void YerothAdminWindow::YEROTH_ERP_3_populate_all_tables()
+{
+	QString strShowTABLESQuery("SHOW TABLES");
+
+	QSqlQuery query;
+
+	int querySize = YerothUtils::execQuery(query, strShowTABLESQuery);
+
+	for(int k = 0; k < querySize && query.next(); ++k)
+	{
+
+		comboBox_sujets_maintenance->addItem(query.value(0).toString());
+	}
+}
+
+
+void YerothAdminWindow::reinitialiser_AFFICHAGE_COMMANDE_MAINTENANCE()
+{
+	comboBox_sujets_maintenance->setCurrentIndex(0);
+	comboBox_operations_maintenance->setCurrentIndex(0);
+
+	label_administration_exporter_yeroth_erp_3->setVisible(true);
+	label_administration_effacer_tableau->setVisible(true);
+	label_administration_exporter_tableau->setVisible(true);
+	label_administration_importer_tableau->setVisible(true);
+	label_administration_supprimer_tableau->setVisible(true);
+
+	lineEdit_administration_maintenance_commandes_COMMANDE_ACTUELLE->clear();
+    lineEdit_administration_maintenance_commandes_COMMANDE_ACTUELLE->setVisible(true);
+    lineEdit_administration_maintenance_commandes_exporter_yerotherp3_0->setVisible(true);
+    lineEdit_administration_maintenance_commandes_effacer_un_tableau->setVisible(true);
+	lineEdit_administration_maintenance_commandes_exporter_un_tableau->setVisible(true);
+	lineEdit_administration_maintenance_commandes_importer_un_tableau->setVisible(true);
+	lineEdit_administration_maintenance_commandes_supprimer_un_tableau->setVisible(true);
+}
+
+
 void YerothAdminWindow::handleCheckboxActiverRegistreCaisse(int state)
 {
 	if (Qt::Checked	== state)
@@ -412,6 +484,68 @@ void YerothAdminWindow::handleCheckboxActiverRegistreCaisse(int state)
 	else
 	{
 		YerothERPConfig::ouvrirRegistreDeCaisse = false;
+	}
+}
+
+
+void YerothAdminWindow::handle_changer_commande_MAINTENANCE_OPERATION(const QString &commande_MAINTENANCE)
+{
+	QString sqlTableName(comboBox_sujets_maintenance->currentText());
+
+	if (YerothUtils::isEqualCaseInsensitive(EFFACER, commande_MAINTENANCE))
+	{
+		changer_commande_YEROTH_LINE_EDIT(*lineEdit_administration_maintenance_commandes_effacer_un_tableau,
+										  sqlTableName);
+	}
+	else if (YerothUtils::isEqualCaseInsensitive(EXPORTER, commande_MAINTENANCE))
+	{
+		changer_commande_YEROTH_LINE_EDIT(*lineEdit_administration_maintenance_commandes_exporter_un_tableau,
+										  sqlTableName);
+	}
+	else if (YerothUtils::isEqualCaseInsensitive(IMPORTER, commande_MAINTENANCE))
+	{
+		changer_commande_YEROTH_LINE_EDIT(*lineEdit_administration_maintenance_commandes_importer_un_tableau,
+										  sqlTableName);
+	}
+	else if (YerothUtils::isEqualCaseInsensitive(SUPPRIMER, commande_MAINTENANCE))
+	{
+		changer_commande_YEROTH_LINE_EDIT(*lineEdit_administration_maintenance_commandes_supprimer_un_tableau,
+										  sqlTableName);
+	}
+	else
+	{
+		QDEBUG_STRINGS_OUTPUT_1(" ## INVALID COMMAND FOR MAINTENANCE ##");
+	}
+}
+
+
+void YerothAdminWindow::handle_changer_commande_MAINTENANCE_SUJET(const QString &sqlTableName)
+{
+	QString commande_MAINTENANCE(comboBox_operations_maintenance->currentText());
+
+	if (YerothUtils::isEqualCaseInsensitive(EFFACER, commande_MAINTENANCE))
+	{
+		changer_commande_YEROTH_LINE_EDIT(*lineEdit_administration_maintenance_commandes_effacer_un_tableau,
+										  sqlTableName);
+	}
+	else if (YerothUtils::isEqualCaseInsensitive(EXPORTER, commande_MAINTENANCE))
+	{
+		changer_commande_YEROTH_LINE_EDIT(*lineEdit_administration_maintenance_commandes_exporter_un_tableau,
+										  sqlTableName);
+	}
+	else if (YerothUtils::isEqualCaseInsensitive(IMPORTER, commande_MAINTENANCE))
+	{
+		changer_commande_YEROTH_LINE_EDIT(*lineEdit_administration_maintenance_commandes_importer_un_tableau,
+										  sqlTableName);
+	}
+	else if (YerothUtils::isEqualCaseInsensitive(SUPPRIMER, commande_MAINTENANCE))
+	{
+		changer_commande_YEROTH_LINE_EDIT(*lineEdit_administration_maintenance_commandes_supprimer_un_tableau,
+										  sqlTableName);
+	}
+	else
+	{
+		QDEBUG_STRINGS_OUTPUT_1(" ## INVALID COMMAND FOR MAINTENANCE ##");
 	}
 }
 
@@ -659,6 +793,85 @@ bool YerothAdminWindow::generate_table_header_mapping_entries_for_csv_import()
 		enable(this, SLOT(import_current_selected_csv_file()));
 
 	return csvFileHasVisibleContentToImport;
+}
+
+
+void YerothAdminWindow::cacher_autres_commandes_YEROTH_LINE_EDIT(YerothLineEdit *aYerothCommandLineEdit)
+{
+	if (0 != aYerothCommandLineEdit)
+	{
+		aYerothCommandLineEdit->setVisible(true);
+
+		if (aYerothCommandLineEdit != lineEdit_administration_maintenance_commandes_exporter_yerotherp3_0)
+		{
+			label_administration_exporter_yeroth_erp_3->setVisible(false);
+			lineEdit_administration_maintenance_commandes_exporter_yerotherp3_0->setVisible(false);
+		}
+		else
+		{
+			label_administration_exporter_yeroth_erp_3->setVisible(true);
+		}
+
+		if (aYerothCommandLineEdit != lineEdit_administration_maintenance_commandes_effacer_un_tableau)
+		{
+			label_administration_effacer_tableau->setVisible(false);
+			lineEdit_administration_maintenance_commandes_effacer_un_tableau->setVisible(false);
+		}
+		else
+		{
+			label_administration_effacer_tableau->setVisible(true);
+		}
+
+		if (aYerothCommandLineEdit != lineEdit_administration_maintenance_commandes_exporter_un_tableau)
+		{
+			label_administration_exporter_tableau->setVisible(false);
+			lineEdit_administration_maintenance_commandes_exporter_un_tableau->setVisible(false);
+		}
+		else
+		{
+			label_administration_exporter_tableau->setVisible(true);
+		}
+
+		if (aYerothCommandLineEdit != lineEdit_administration_maintenance_commandes_importer_un_tableau)
+		{
+			label_administration_importer_tableau->setVisible(false);
+			lineEdit_administration_maintenance_commandes_importer_un_tableau->setVisible(false);
+		}
+		else
+		{
+			label_administration_importer_tableau->setVisible(true);
+		}
+
+		if (aYerothCommandLineEdit != lineEdit_administration_maintenance_commandes_supprimer_un_tableau)
+		{
+			label_administration_supprimer_tableau->setVisible(false);
+			lineEdit_administration_maintenance_commandes_supprimer_un_tableau->setVisible(false);
+		}
+		else
+		{
+			label_administration_supprimer_tableau->setVisible(true);
+		}
+	}
+}
+
+
+void YerothAdminWindow::changer_commande_YEROTH_LINE_EDIT(YerothLineEdit &aYerothCommandLineEdit,
+														  const QString &sqlTableName)
+{
+	cacher_autres_commandes_YEROTH_LINE_EDIT(&aYerothCommandLineEdit);
+
+	QString curCOMMANDString(aYerothCommandLineEdit.text());
+
+	curCOMMANDString.replace("'%1'", QString("%1")
+										.arg(YerothERPConfig::_db_user_name));
+
+	curCOMMANDString.replace("'%2'", QString("%1.%2")
+										.arg(YerothERPConfig::_db_name,
+											 sqlTableName));
+
+//	QDEBUG_STRINGS_OUTPUT_2("cur_COMMAND_string", curCOMMANDString);
+
+	lineEdit_administration_maintenance_commandes_COMMANDE_ACTUELLE->setText(curCOMMANDString);
 }
 
 

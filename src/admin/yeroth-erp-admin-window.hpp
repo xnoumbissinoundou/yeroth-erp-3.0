@@ -151,7 +151,15 @@ public slots:
 
 private slots:
 
+	void YEROTH_ERP_3_populate_all_tables();
+
+	void reinitialiser_AFFICHAGE_COMMANDE_MAINTENANCE();
+
 	void handleCheckboxActiverRegistreCaisse(int state);
+
+	void handle_changer_commande_MAINTENANCE_OPERATION(const QString &commande_MAINTENANCE);
+
+	void handle_changer_commande_MAINTENANCE_SUJET(const QString &sqlTableName);
 
 	inline void handle_changer_tableau_dimportation(const QString &sqlTableName)
 	{
@@ -169,6 +177,11 @@ private slots:
 	bool generate_table_header_mapping_entries_for_csv_import();
 
 private:
+
+	void cacher_autres_commandes_YEROTH_LINE_EDIT(YerothLineEdit *aYerothCommandLineEdit);
+
+	void changer_commande_YEROTH_LINE_EDIT(YerothLineEdit &aYerothCommandLineEdit,
+										   const QString &sqlTableName);
 
 	void clear_csv_import_panel_content_mapping();
 
