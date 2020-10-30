@@ -83,11 +83,11 @@ public slots:
 
     virtual bool imprimer_pdf_document();
 
-    virtual void afficherAchats(YerothSqlTableModel &achatSqlTableModel);
+    virtual void lister_les_elements_du_tableau(YerothSqlTableModel &achatSqlTableModel);
 
-    inline void afficherAchats()
+    inline void lister_les_elements_du_tableau()
     {
-    	afficherAchats(*_curAchatSqlTableModel);
+    	lister_les_elements_du_tableau(*_curAchatSqlTableModel);
     }
 
     void afficher_stock_selectioner(const QString &stockName);
@@ -95,6 +95,8 @@ public slots:
     void afficher_au_detail();
 
     void afficher_au_detail(const QModelIndex &modelIndex);
+
+    void refineYerothLineEdits();
 
     void reinitialiser_elements_filtrage();
 
@@ -138,6 +140,11 @@ protected:
 
 private slots:
 
+	inline void afficher_achats()
+	{
+		textChangedSearchLineEditsQCompleters();
+	}
+
     bool filtrer_achats();
 
 private:
@@ -145,6 +152,8 @@ private:
     void populateComboBoxes();
 
     void setupLineEdits();
+
+    void setupDateTimeEdits();
 
     static unsigned int PDF_LISTING_COLUMN_STOCKS_ID;
 
@@ -157,6 +166,8 @@ private:
     YerothLogger			*_logger;
 
     QFont 					*_pushButton_achats_filtrer_font;
+
+    QString 				_achatsDateFilter;
 
     YerothSqlTableModel 	*_curAchatSqlTableModel;
 };

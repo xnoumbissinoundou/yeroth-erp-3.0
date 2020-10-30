@@ -100,6 +100,8 @@ YerothAchatsWindow::YerothAchatsWindow()
 
     setupLineEditsQCompleters((QObject *)this);
 
+    setupDateTimeEdits();
+
     _pushButton_achats_filtrer_font = new QFont(pushButton_achats_filtrer->font());
 
     tableView_achats->setSqlTableName(&YerothERPWindows::ACHATS);
@@ -207,7 +209,7 @@ bool YerothAchatsWindow::filtrer_achats()
 	{
 		setCurrentlyFiltered(true);
 
-		afficherAchats(*_curAchatSqlTableModel);
+		lister_les_elements_du_tableau(*_curAchatSqlTableModel);
 
 		YEROTH_QMESSAGE_BOX_QUELQUE_RESULTAT_FILTRE(this, resultRows, "achats - filtrer");
 
@@ -302,6 +304,32 @@ void YerothAchatsWindow::setupLineEdits()
 }
 
 
+void YerothAchatsWindow::setupDateTimeEdits()
+{
+    dateEdit_achats_debut->setStartDate(GET_CURRENT_DATE);
+
+    dateEdit_achats_fin->setStartDate(GET_CURRENT_DATE);
+
+    _achatsDateFilter.clear();
+
+    _achatsDateFilter.append(QString(" ( %1 >= '%2' AND %3 <= '%4' ) ")
+    					.arg(YerothDatabaseTableColumn::DATE_ENTREE,
+    						 DATE_TO_DB_FORMAT_STRING(dateEdit_achats_debut->date()),
+							 YerothDatabaseTableColumn::DATE_ENTREE,
+							 DATE_TO_DB_FORMAT_STRING(dateEdit_achats_fin->date())));
+
+    connect(dateEdit_achats_debut,
+    		SIGNAL(dateChanged(const QDate &)),
+			this,
+			SLOT(refineYerothLineEdits()));
+
+    connect(dateEdit_achats_fin,
+    		SIGNAL(dateChanged(const QDate &)),
+			this,
+			SLOT(refineYerothLineEdits()));
+}
+
+
 void YerothAchatsWindow::setupShortcuts()
 {
     setupShortcutActionMessageDaide 		(*actionAppeler_aide);
@@ -320,7 +348,7 @@ void YerothAchatsWindow::slot_reinitialiser_champs_db_visibles()
 
 	if (0 != _curAchatSqlTableModel)
 	{
-		afficherAchats(*_curAchatSqlTableModel);
+		lister_les_elements_du_tableau(*_curAchatSqlTableModel);
 	}
 }
 
@@ -396,11 +424,22 @@ void YerothAchatsWindow::textChangedSearchLineEditsQCompleters()
     	}
     }
 
-    _yerothSqlTableModel->yerothSetFilter_WITH_where_clause(_searchFilter);
+    QString finalSearchFilter(_achatsDateFilter);
+
+    if (!_searchFilter.isEmpty())
+    {
+    	QString searchFilterWithDate(QString("%1 AND (%2)")
+    									.arg(_achatsDateFilter,
+    										 _searchFilter));
+
+    	finalSearchFilter = searchFilterWithDate;
+    }
+
+    _yerothSqlTableModel->yerothSetFilter_WITH_where_clause(finalSearchFilter);
 
     if (_yerothSqlTableModel->select())
     {
-    	afficherAchats(*_yerothSqlTableModel);
+    	lister_les_elements_du_tableau(*_yerothSqlTableModel);
     }
     else
     {
@@ -455,7 +494,7 @@ void YerothAchatsWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 
     setVisible(true);
 
-    afficherAchats(*_curAchatSqlTableModel);
+    afficher_achats();
 }
 
 
@@ -649,6 +688,22 @@ void YerothAchatsWindow::afficher_au_detail(const QModelIndex & modelIndex)
 }
 
 
+void YerothAchatsWindow::refineYerothLineEdits()
+{
+	_achatsDateFilter.clear();
+
+	_achatsDateFilter.append(QString(" ( %1 >= '%2' AND %3 <= '%4' ) ")
+    					.arg(YerothDatabaseTableColumn::DATE_ENTREE,
+    						 DATE_TO_DB_FORMAT_STRING(dateEdit_achats_debut->date()),
+							 YerothDatabaseTableColumn::DATE_ENTREE,
+							 DATE_TO_DB_FORMAT_STRING(dateEdit_achats_fin->date())));
+
+	setupLineEditsQCompleters((QObject *)this);
+
+	afficher_achats();
+}
+
+
 void YerothAchatsWindow::reinitialiser_elements_filtrage()
 {
     _logger->log("reinitialiser_elements_filtrage");
@@ -673,11 +728,11 @@ void YerothAchatsWindow::reinitialiser_recherche()
 
     resetLineEditsQCompleters((QObject *)this);
 
-    afficherAchats();
+    afficher_achats();
 }
 
 
-void YerothAchatsWindow::afficherAchats(YerothSqlTableModel &achatSqlTableModel)
+void YerothAchatsWindow::lister_les_elements_du_tableau(YerothSqlTableModel &achatSqlTableModel)
 {
     int curAchatsTableModelRowCount = achatSqlTableModel.easySelect();
 
@@ -736,7 +791,7 @@ void YerothAchatsWindow::afficher_stock_selectioner(const QString & stockName)
 
     if (_curAchatSqlTableModel->easySelect() > 0)
     {
-        afficherAchats(*_curAchatSqlTableModel);
+        lister_les_elements_du_tableau(*_curAchatSqlTableModel);
     }
 }
 
