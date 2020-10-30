@@ -141,16 +141,16 @@ YerothAdminWindow::YerothAdminWindow()
 		setText(QString("mysqldump -u '%1' -p '%2'"));
 
     lineEdit_administration_maintenance_commandes_effacer_un_tableau->
-		setText(QString("mysql -u '%1' -p --execute=\"truncate table '%2'\""));
+		setText(QString("mysql -u '%1' -p --execute=\"truncate table %2\""));
 
     lineEdit_administration_maintenance_commandes_exporter_un_tableau->
-		setText(QString("mysqldump -u '%1' -p '%3' '%2'"));
+		setText(QString("mysqldump -u '%1' -p '%3' > '%2'"));
 
     lineEdit_administration_maintenance_commandes_importer_un_tableau->
-		setText(QString("mysql -u '%1' -p < '%2'"));
+		setText(QString("mysql -u '%1' -p '%3' < '%2'"));
 
     lineEdit_administration_maintenance_commandes_supprimer_un_tableau->
-		setText(QString("mysql -u '%1' -p --execute=\"drop table '%2'\""));
+		setText(QString("mysql -u '%1' -p --execute=\"drop table %2\""));
 
 
     setupValidators();
@@ -862,10 +862,13 @@ void YerothAdminWindow::changer_commande_YEROTH_LINE_EDIT(YerothLineEdit &aYerot
 
 	QString curCOMMANDString(aYerothCommandLineEdit.text());
 
-	curCOMMANDString.replace("'%1'", QString("%1")
+	curCOMMANDString.replace("%1", QString("%1")
 										.arg(YerothERPConfig::_db_user_name));
 
-	curCOMMANDString.replace("'%2'", QString("%1.%2")
+	curCOMMANDString.replace("%3", QString("%1")
+										.arg(YerothERPConfig::_db_name));
+
+	curCOMMANDString.replace("%2", QString("%1.%2")
 										.arg(YerothERPConfig::_db_name,
 											 sqlTableName));
 
