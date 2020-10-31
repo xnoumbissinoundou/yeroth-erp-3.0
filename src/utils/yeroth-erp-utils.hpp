@@ -582,6 +582,10 @@ public:
 
 	static const QString APROPOS_MSG;
 
+	static const QString MYSQL;
+
+	static const QString MYSQL_DUMP;
+
 	static const QString APPLICATION_NAME;
 
 	static const QString STRING_OUI;

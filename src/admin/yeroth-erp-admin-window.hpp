@@ -105,6 +105,8 @@ public slots:
 
     void choose_fichier_csv_a_importer();
 
+	void choose_path_mariadb_client_dir();
+
     void choose_path_pdfReader();
 
     void choose_path_thermalPrinterDeviceFile();
@@ -154,6 +156,8 @@ public slots:
 private slots:
 
 	void YEROTH_ERP_3_populate_all_tables();
+
+	void EXECUTER_COMMANDE_MAINTENANCE();
 
 	void reinitialiser_AFFICHAGE_COMMANDE_MAINTENANCE();
 

@@ -161,7 +161,7 @@ YEROTH_ERP_3_0_POSTINST_STR="#!/bin/bash
 echo -e \"export YEROTH_ERP_3_0_HOME_FOLDER=/opt/${YEROTH_ERP_3_0_BINARY_NAME}\" >> /etc/environment
 echo -e \"export YEROTH_ERP_3_0_PROPERTIES_CONFIGURATION_FOLDER=/opt/${YEROTH_ERP_3_0_BINARY_NAME}\" >> /etc/environment
 echo -e \"export YEROTH_ERP_ALERT_3_0_HOME_FOLDER=/opt/yeroth-erp-alert-3-0\" >> /etc/environment
-chmod -R 755 /opt/${YEROTH_ERP_3_0_BINARY_NAME}/${YEROTH_SQL_BACKUP_FOLDER_NAME}
+chmod go+rwx /opt/${YEROTH_ERP_3_0_BINARY_NAME}/${YEROTH_SQL_BACKUP_FOLDER_NAME}
 chmod go+w /opt/${YEROTH_ERP_3_0_BINARY_NAME}/yeroth-erp-3-0.log
 chmod go+w /opt/${YEROTH_ERP_3_0_BINARY_NAME}/yeroth-erp-3-0-system-local-configuration.properties"
 

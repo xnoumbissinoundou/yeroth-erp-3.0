@@ -388,6 +388,10 @@ void read_system_local_yeroth_configuration()
 		{
 			YerothERPConfig::pathToLatexSystemRootFolder = list.at(1).trimmed();
 		}
+		else if (YerothUtils::isEqualCaseInsensitive("local_parameter_full_path_mariadb_client_executables_root_dir", list.at(0)))
+		{
+			YerothERPConfig::pathToMARIA_DB_BASE_DIR = list.at(1).trimmed();
+		}
 		else if (YerothUtils::isEqualCaseInsensitive("local_parameter_full_path_file_sql_backup_folder", list.at(0)))
 		{
 			YerothERPConfig::sqlBackupDir = list.at(1).trimmed();

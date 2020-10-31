@@ -85,6 +85,8 @@ public:
 
 	static QString annee_depart_rapports_chiffre_affaire_value;
 
+	static QString pathToMARIA_DB_BASE_DIR;
+
 	static QString sqlBackupDir;
 
 	static QString temporaryFilesDir;

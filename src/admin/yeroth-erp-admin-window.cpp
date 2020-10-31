@@ -218,6 +218,8 @@ YerothAdminWindow::YerothAdminWindow()
     pushButton_operation_go->disable(this);
 
 
+    pushButton_maintenance_valider->enable(this, SLOT(EXECUTER_COMMANDE_MAINTENANCE()));
+
     pushButton_maintenance_reinitialiser->enable(this, SLOT(reinitialiser_AFFICHAGE_COMMANDE_MAINTENANCE()));
 
     pushButton_entreprise_reinitialiser->enable(this, SLOT(read_entreprise_info_database_table()));
@@ -235,6 +237,8 @@ YerothAdminWindow::YerothAdminWindow()
 
     label_ONLINE->setVisible(false);
     label_OFFLINE->setVisible(true);
+
+    pushButton_choose_mariadb_client_full_path_dir->enable(this, SLOT(choose_path_mariadb_client_dir()));
 
     pushButton_choose_pdfReader->enable(this, SLOT(choose_path_pdfReader()));
 
@@ -468,6 +472,95 @@ void YerothAdminWindow::YEROTH_ERP_3_populate_all_tables()
 }
 
 
+void YerothAdminWindow::EXECUTER_COMMANDE_MAINTENANCE()
+{
+	if (lineEdit_administration_maintenance_commandes_COMMANDE_ACTUELLE->isEmpty())
+	{
+		YerothQMessageBox::warning(this,
+				QObject::trUtf8("EXÉCUTER COMMANDE MAINTENANCE"),
+				QString(QObject::trUtf8("Sélectionner 1 commande à exécuter !")));
+
+		return ;
+	}
+
+	QString maintenanceCommand(lineEdit_administration_maintenance_commandes_COMMANDE_ACTUELLE->text());
+
+	QString currentProgram_mysql_mysqldump(YerothUtils::MYSQL);
+
+	maintenanceCommand.replace("'", YerothUtils::EMPTY_STRING);
+
+	int lenToRemoveFromMAINTENANCE_COMMAND = 0;
+
+	if (maintenanceCommand.contains(YerothUtils::MYSQL_DUMP))
+	{
+		currentProgram_mysql_mysqldump = YerothUtils::MYSQL_DUMP;
+		
+		lenToRemoveFromMAINTENANCE_COMMAND = YerothUtils::MYSQL_DUMP.length();
+	}
+	else if (maintenanceCommand.contains(YerothUtils::MYSQL))
+	{
+		currentProgram_mysql_mysqldump = YerothUtils::MYSQL;
+		
+		lenToRemoveFromMAINTENANCE_COMMAND = YerothUtils::MYSQL.length();
+	}
+	else
+	{
+		YerothQMessageBox::warning(this,
+				QObject::trUtf8("EXÉCUTER COMMANDE MAINTENANCE"),
+				QObject::trUtf8("Commande à exécuter INVALIDE !"));
+
+		return ;
+	}
+
+	QString progArgsString(maintenanceCommand.remove(0, lenToRemoveFromMAINTENANCE_COMMAND).trimmed());
+
+	progArgsString.replace("-p", QString("-p%1")
+									.arg(YerothERPConfig::_db_user_pwd));
+
+	QStringList progArguments(progArgsString.split(YerothUtils::EMPTY_SPACE_REGEXP));
+
+    QProcess MYSQL_PROCESS;
+
+    MYSQL_PROCESS.start(QString("%1/%2")
+    							.arg(YerothERPConfig::pathToMARIA_DB_BASE_DIR,
+    								 currentProgram_mysql_mysqldump),
+							 progArguments);
+
+    if ( ! MYSQL_PROCESS.waitForFinished() )
+    {
+		YerothQMessageBox::warning(this,
+				QObject::trUtf8("EXÉCUTER COMMANDE MAINTENANCE"),
+				QObject::trUtf8("Exécutable INEXISTANT: \"%1\" !")
+							.arg(MYSQL_PROCESS.program()));
+
+		return ;
+    }
+
+    QString yeroth_erp_3_0_restore_backup_sql_file(
+    		QString("%1.sql")
+				.arg(FILE_NAME_USERID_CURRENT_TIME("yeroth_erp_3_0_BACKUP_RESTORE")));
+
+    QFile tmpFile( QString("%1/%2")
+    					.arg(YerothERPConfig::sqlBackupDir,
+    						 yeroth_erp_3_0_restore_backup_sql_file) );
+
+    if (tmpFile.open(QFile::WriteOnly))
+    {
+        tmpFile.write(MYSQL_PROCESS.readAllStandardOutput().trimmed());
+    }
+
+    if (tmpFile.size() > 0)
+    {
+		YerothQMessageBox::information(this,
+				QObject::trUtf8("EXÉCUTER COMMANDE MAINTENANCE"),
+				QObject::trUtf8("La commande \"%1\" a été exécuter avec succès !")
+							.arg(lineEdit_administration_maintenance_commandes_COMMANDE_ACTUELLE->text()));
+    }
+
+    tmpFile.close();
+}
+
+
 void YerothAdminWindow::reinitialiser_AFFICHAGE_COMMANDE_MAINTENANCE()
 {
 	comboBox_sujets_maintenance->setCurrentIndex(0);
@@ -511,13 +604,13 @@ void YerothAdminWindow::handle_changer_commande_MAINTENANCE_OPERATION_SUJET_for_
 			setCurrentIndex(comboBox_operations_maintenance->findText(EXPORTER));
 	}
 
-	changer_commande_YEROTH_LINE_EDIT(*lineEdit_administration_maintenance_commandes_exporter_un_tableau,
+	changer_commande_YEROTH_LINE_EDIT(*lineEdit_administration_maintenance_commandes_exporter_yerotherp3_0,
 									  sqlTableName);
 
 	label_administration_exporter_yeroth_erp_3->setVisible(true);
 	lineEdit_administration_maintenance_commandes_exporter_yerotherp3_0->setVisible(true);
 
-	cacher_autres_commandes_YEROTH_LINE_EDIT(lineEdit_administration_maintenance_commandes_exporter_un_tableau);
+	cacher_autres_commandes_YEROTH_LINE_EDIT(lineEdit_administration_maintenance_commandes_exporter_yerotherp3_0);
 }
 
 
@@ -1348,6 +1441,20 @@ void YerothAdminWindow::choose_fichier_csv_a_importer()
 }
 
 
+void YerothAdminWindow::choose_path_mariadb_client_dir()
+{
+    QString mariaDBClientBASE_DIR_FULL_PATH =
+        QFileDialog::getOpenFileName(this,
+                                     QObject::trUtf8("Choisir le chemin qui mène au rpertoire de base de 'MariaDB-client'"),
+                                     QString::null, QString::null);
+    if (!mariaDBClientBASE_DIR_FULL_PATH.isEmpty())
+    {
+    	lineEdit_mariadb_client_base_dir_full_path->
+			setText(mariaDBClientBASE_DIR_FULL_PATH);
+    }
+}
+
+
 void YerothAdminWindow::choose_path_pdfReader()
 {
     QString pdfReaderFilePath =
@@ -1422,6 +1529,8 @@ void YerothAdminWindow::read_configuration()
    	checkBox_activer_registre_de_caisse->setChecked(YerothERPConfig::ouvrirRegistreDeCaisse);
 
 	lineEdit_devise->setText(YerothERPConfig::currency);
+
+	lineEdit_mariadb_client_base_dir_full_path->setText(YerothERPConfig::pathToMARIA_DB_BASE_DIR);
 
 	lineEdit_pdfReader->setText(YerothERPConfig::pathToPdfReader);
 
@@ -1685,6 +1794,8 @@ void YerothAdminWindow::read_app_parameters_init_configuration()
 
     lineEdit_devise->setText(currencyValue);
 
+    lineEdit_mariadb_client_base_dir_full_path->setText(YerothERPConfig::pathToMARIA_DB_BASE_DIR);
+
     lineEdit_pdfReader->setText(YerothERPConfig::pathToPdfReader);
 
     lineEdit_longueur_maximale_string->setText(QString::number(YerothERPConfig::max_string_display_length));
@@ -1888,6 +1999,11 @@ void YerothAdminWindow::enregistrer_system_local_app_parameters_configuration()
     if (lineEdit_taille_de_pagination_par_defaut->checkField())
     {
     	YerothERPConfig::standard_pagination_number = lineEdit_taille_de_pagination_par_defaut->text().toInt();
+    }
+
+    if (lineEdit_mariadb_client_base_dir_full_path->checkField())
+    {
+    	YerothERPConfig::pathToMARIA_DB_BASE_DIR = lineEdit_mariadb_client_base_dir_full_path->text();
     }
 
     if (lineEdit_pdfReader->checkField())
