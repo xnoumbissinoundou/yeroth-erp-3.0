@@ -1445,7 +1445,7 @@ void YerothAdminWindow::choose_path_mariadb_client_dir()
 {
     QString mariaDBClientBASE_DIR_FULL_PATH =
         QFileDialog::getOpenFileName(this,
-                                     QObject::trUtf8("Choisir le chemin qui mène au rpertoire de base de 'MariaDB-client'"),
+                                     QObject::trUtf8("Choisir le chemin qui mène au répertoire de base de 'MariaDB-client'"),
                                      QString::null, QString::null);
     if (!mariaDBClientBASE_DIR_FULL_PATH.isEmpty())
     {
