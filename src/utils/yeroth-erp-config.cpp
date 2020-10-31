@@ -76,6 +76,8 @@ double YerothERPConfig::tva_value(19.25/100.0);
 
 QString YerothERPConfig::annee_depart_rapports_chiffre_affaire_value("2020");
 
+QString YerothERPConfig::sqlBackupDir("/opt/yeroth-erp-3.0-standalone");
+
 QString YerothERPConfig::temporaryFilesDir("/home/yeroth");
 
 bool YerothERPConfig::_distantSiteConnected(false);
@@ -195,6 +197,9 @@ void YerothERPConfig::saveYerothConfig()
 
 		<< QString("local_parameter_full_path_pdf_latex_executable_root_dir=%1\n")
 				.arg(YerothERPConfig::pathToLatexSystemRootFolder)
+
+		<< QString("local_parameter_full_path_file_sql_backup_folder=%1\n")
+				.arg(YerothERPConfig::sqlBackupDir)
 
 		<< QString("local_parameter_full_path_file_temporary_folder=%1\n")
 				.arg(YerothERPConfig::temporaryFilesDir)

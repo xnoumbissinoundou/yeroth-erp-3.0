@@ -111,6 +111,8 @@ public slots:
 
     void choose_path_latex_system_root_folder();
 
+    void choose_repertoire_des_sauvegardes();
+
     void choose_repertoire_fichiers_temporaires();
 
     void read_configuration();

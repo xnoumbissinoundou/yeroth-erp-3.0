@@ -242,13 +242,20 @@ YerothAdminWindow::YerothAdminWindow()
 
     pushButton_choose_repertoire_systeme_latex->enable(this, SLOT(choose_path_latex_system_root_folder()));
 
+    pushButton_choose_repertoire_des_sauvegardes->enable(this, SLOT(choose_repertoire_des_sauvegardes()));
+
     pushButton_choose_repertoire_fichiers_temporaires->enable(this, SLOT(choose_repertoire_fichiers_temporaires()));
 
     pushButton_alertes_reinitialiser->enable(this, SLOT(reinitialiser_alert_system_configuration()));
+
     pushButton_alertes_enregistrer->enable(this, SLOT(enregistrer_alert_system_configuration()));
+
     pushButton_parametres_reinitialiser->enable(this, SLOT(reinitialiser_app_parameters_configuration()));
+
     pushButton_parametres_enregistrer->enable(this, SLOT(enregistrer_app_parameters_configuration()));
+
     pushButton_connecter_localisation->enable(this, SLOT(connecter_localisation_db()));
+
     pushButton_deconnecter_localisation->enable(this, SLOT(deconnecter_localisation_db()));
 
 
@@ -1379,6 +1386,22 @@ void YerothAdminWindow::choose_path_latex_system_root_folder()
     }
 }
 
+
+void YerothAdminWindow::choose_repertoire_des_sauvegardes()
+{
+    QString backupFileDirPath =
+        QFileDialog::getExistingDirectory(this,
+                                          QObject::
+                                          trUtf8
+                                          ("Choisir le chemin qui mène au répertoire des sauvegardes"),
+                                          QString::null, QFileDialog::ShowDirsOnly);
+    if (!backupFileDirPath.isEmpty())
+    {
+    	lineEdit_repertoire_des_sauvegardes->setText(backupFileDirPath);
+    }
+}
+
+
 void YerothAdminWindow::choose_repertoire_fichiers_temporaires()
 {
     QString temporaryFileDirPath =
@@ -1392,6 +1415,7 @@ void YerothAdminWindow::choose_repertoire_fichiers_temporaires()
         lineEdit_repertoire_fichiers_temporaires->setText(temporaryFileDirPath);
     }
 }
+
 
 void YerothAdminWindow::read_configuration()
 {
@@ -1412,6 +1436,8 @@ void YerothAdminWindow::read_configuration()
     lineEdit_longueur_maximale_string->setText(QString::number(YerothERPConfig::max_string_display_length));
 
     lineEdit_taille_de_pagination_par_defaut->setText(QString::number(YerothERPConfig::standard_pagination_number));
+
+    lineEdit_repertoire_des_sauvegardes->setText(YerothERPConfig::sqlBackupDir);
 
     lineEdit_repertoire_fichiers_temporaires->setText(YerothERPConfig::temporaryFilesDir);
 
@@ -1669,6 +1695,8 @@ void YerothAdminWindow::read_app_parameters_init_configuration()
 
     lineEdit_repertoire_systeme_latex->setText(YerothERPConfig::pathToLatexSystemRootFolder);
 
+    lineEdit_repertoire_des_sauvegardes->setText(YerothERPConfig::sqlBackupDir);
+
     lineEdit_repertoire_fichiers_temporaires->setText(YerothERPConfig::temporaryFilesDir);
 
     lineEdit_tva_value->setText(tvaValue);
@@ -1871,6 +1899,11 @@ void YerothAdminWindow::enregistrer_system_local_app_parameters_configuration()
     {
         YerothUtils::saveCurrentAdminWindowFacturesTypeAccordingToLanguage(comboBox_format_de_facture->
                 currentText());
+    }
+
+    if (lineEdit_repertoire_des_sauvegardes->checkField())
+    {
+    	YerothERPConfig::sqlBackupDir = lineEdit_repertoire_des_sauvegardes->text();
     }
 
     if (lineEdit_repertoire_fichiers_temporaires->checkField())

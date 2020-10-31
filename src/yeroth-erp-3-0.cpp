@@ -375,8 +375,10 @@ void read_system_local_yeroth_configuration()
 	do
 	{
 		line = init_cfg.readLine();
+
 		list = line.split(YEROTH_ERP_3_0_CONFIGURATION_FILE_SEPARATION_OPERATOR);
-//		qDebug() << "++ line: " << line << "\n";
+
+//		QDEBUG_STRINGS_OUTPUT_2("line", line);
 
 		if (YerothUtils::isEqualCaseInsensitive("local_parameter_full_path_pdf_reader", list.at(0)))
 		{
@@ -385,6 +387,10 @@ void read_system_local_yeroth_configuration()
 		else if (YerothUtils::isEqualCaseInsensitive("local_parameter_full_path_pdf_latex_executable_root_dir", list.at(0)))
 		{
 			YerothERPConfig::pathToLatexSystemRootFolder = list.at(1).trimmed();
+		}
+		else if (YerothUtils::isEqualCaseInsensitive("local_parameter_full_path_file_sql_backup_folder", list.at(0)))
+		{
+			YerothERPConfig::sqlBackupDir = list.at(1).trimmed();
 		}
 		else if (YerothUtils::isEqualCaseInsensitive("local_parameter_full_path_file_temporary_folder", list.at(0)))
 		{
@@ -436,6 +442,35 @@ void read_system_local_yeroth_configuration()
 }
 
 
+void YEROTH_CREATE_FOLDER(YerothLogger &logger,
+						  const QString &aFullPathDir)
+{
+    QFileInfo aFullPathDirInfo(aFullPathDir);
+
+    if (!aFullPathDirInfo.exists())
+    {
+        logger.log("[main] read_yeroth_configuration",
+                   QString("Folder '%1' for temporary files does not exist!")
+				   	   .arg(aFullPathDir));
+
+        QDir tempFileDir;
+
+        if (tempFileDir.mkpath(aFullPathDir))
+        {
+            logger.log("[main] read_yeroth_configuration",
+                       QString("Created folder '%1' for temporary files")
+					   	   .arg(aFullPathDir));
+        }
+        else
+        {
+            logger.log("[main] read_yeroth_configuration",
+                       QString("Could not Create folder '%1' for temporary files!")
+					   	   .arg(aFullPathDir));
+        }
+    }
+}
+
+
 void read_yeroth_configuration(YerothLogger &logger, YerothERPWindows &allWindows)
 {
     YerothSqlTableModel &configurationsTableModel =
@@ -465,28 +500,19 @@ void read_yeroth_configuration(YerothLogger &logger, YerothERPWindows &allWindow
     YerothERPConfig::tva_value = (tvaValue.toDouble() / 100.0);
     YerothERPConfig::salesStrategy = salesStrategyValue;
 
+
     logger.log("[main] read_yeroth_configuration",
-               QString("Folder for temporary files: %1").arg(YerothERPConfig::temporaryFilesDir));
+               QString("Folder for backup: %1")
+			   	   .arg(YerothERPConfig::sqlBackupDir));
 
-    QFileInfo tempDirInfo(YerothERPConfig::temporaryFilesDir);
+    YEROTH_CREATE_FOLDER(logger, YerothERPConfig::sqlBackupDir);
 
-    if (!tempDirInfo.exists())
-    {
-        logger.log("[main] read_yeroth_configuration",
-                   QString("Folder '%1' for temporary files does not exist!").arg(YerothERPConfig::temporaryFilesDir));
 
-        QDir tempFileDir;
-        if (tempFileDir.mkpath(YerothERPConfig::temporaryFilesDir))
-        {
-            logger.log("[main] read_yeroth_configuration",
-                       QString("Created folder '%1' for temporary files").arg(YerothERPConfig::temporaryFilesDir));
-        }
-        else
-        {
-            logger.log("[main] read_yeroth_configuration",
-                       QString("Could not Create folder '%1' for temporary files!").arg(YerothERPConfig::temporaryFilesDir));
-        }
-    }
+    logger.log("[main] read_yeroth_configuration",
+               QString("Folder for temporary files: %1")
+			   	   .arg(YerothERPConfig::temporaryFilesDir));
+
+    YEROTH_CREATE_FOLDER(logger, YerothERPConfig::temporaryFilesDir);
 }
 
 

@@ -85,6 +85,8 @@ public:
 
 	static QString annee_depart_rapports_chiffre_affaire_value;
 
+	static QString sqlBackupDir;
+
 	static QString temporaryFilesDir;
 
 	static bool _distantSiteConnected;
