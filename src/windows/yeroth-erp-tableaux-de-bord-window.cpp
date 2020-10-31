@@ -1962,7 +1962,7 @@ void YerothTableauxDeBordWindow::analyseComparee()
 
 #ifdef YEROTH_ENGLISH_LANGUAGE
 		.append(QString("%1}: sales $\\rightarrow %2$, buyings $\\rightarrow %3$\n")
-					.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(YerothUtils::frenchLocale.monthName(k)),
+					.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(YerothUtils::englishLocale.monthName(k)),
 						 YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_CURRENCY_STRING_NUM(monthToVentesTotalAmount[k])),
 						 YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_CURRENCY_STRING_NUM(monthToAchatsTotalAmount[k]))));
 #endif
