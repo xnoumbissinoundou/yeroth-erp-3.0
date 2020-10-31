@@ -76,7 +76,7 @@ double YerothERPConfig::tva_value(19.25/100.0);
 
 QString YerothERPConfig::annee_depart_rapports_chiffre_affaire_value("2020");
 
-QString YerothERPConfig::sqlBackupDir("/opt/yeroth-erp-3.0-standalone");
+QString YerothERPConfig::sqlBackupDir("/opt/yeroth-erp-3.0-standalone/YEROTH_sql_backup");
 
 QString YerothERPConfig::temporaryFilesDir("/home/yeroth");
 
