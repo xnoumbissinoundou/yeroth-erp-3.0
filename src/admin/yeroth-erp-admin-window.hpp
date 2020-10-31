@@ -157,6 +157,9 @@ private slots:
 
 	void handleCheckboxActiverRegistreCaisse(int state);
 
+	void handle_changer_commande_MAINTENANCE_OPERATION_SUJET_for_database(const QString &commande_MAINTENANCE,
+																		  const QString &sqlTableName);
+
 	void handle_changer_commande_MAINTENANCE_OPERATION(const QString &commande_MAINTENANCE);
 
 	void handle_changer_commande_MAINTENANCE_SUJET(const QString &sqlTableName);
@@ -200,6 +203,8 @@ private:
     inline void maintenance_effacer(enum AdminSujetAction selectedSujetAction){}
 
     static const int MAX_IMPORT_CSV_HEADER_SIZE;
+
+    static const QString DATABASE_YEROTH_ERP_3_0_KEYWORD;
 
 	static const QString CREER;
 	static const QString LISTER;

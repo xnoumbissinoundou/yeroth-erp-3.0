@@ -43,6 +43,10 @@
 const int YerothAdminWindow::MAX_IMPORT_CSV_HEADER_SIZE(16);
 
 
+const QString YerothAdminWindow::DATABASE_YEROTH_ERP_3_0_KEYWORD("* database * ");
+
+
+
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
 const QString YerothAdminWindow::EFFACER(QObject::tr("effacer"));
@@ -440,6 +444,10 @@ void YerothAdminWindow::deconnecter_utilisateur()
 
 void YerothAdminWindow::YEROTH_ERP_3_populate_all_tables()
 {
+	comboBox_sujets_maintenance->addItem(QString("%1 %2")
+											.arg(YerothAdminWindow::DATABASE_YEROTH_ERP_3_0_KEYWORD,
+												 YerothERPConfig::_db_name));
+
 	QString strShowTABLESQuery("SHOW TABLES");
 
 	QSqlQuery query;
@@ -448,7 +456,6 @@ void YerothAdminWindow::YEROTH_ERP_3_populate_all_tables()
 
 	for(int k = 0; k < querySize && query.next(); ++k)
 	{
-
 		comboBox_sujets_maintenance->addItem(query.value(0).toString());
 	}
 }
@@ -488,9 +495,35 @@ void YerothAdminWindow::handleCheckboxActiverRegistreCaisse(int state)
 }
 
 
+void YerothAdminWindow::handle_changer_commande_MAINTENANCE_OPERATION_SUJET_for_database(const QString &commande_MAINTENANCE,
+																						 const QString &sqlTableName)
+{
+	if (!YerothUtils::isEqualCaseInsensitive(EXPORTER, commande_MAINTENANCE))
+	{
+		comboBox_operations_maintenance->
+			setCurrentIndex(comboBox_operations_maintenance->findText(EXPORTER));
+	}
+
+	changer_commande_YEROTH_LINE_EDIT(*lineEdit_administration_maintenance_commandes_exporter_un_tableau,
+									  sqlTableName);
+
+	label_administration_exporter_yeroth_erp_3->setVisible(true);
+	lineEdit_administration_maintenance_commandes_exporter_yerotherp3_0->setVisible(true);
+
+	cacher_autres_commandes_YEROTH_LINE_EDIT(lineEdit_administration_maintenance_commandes_exporter_un_tableau);
+}
+
+
 void YerothAdminWindow::handle_changer_commande_MAINTENANCE_OPERATION(const QString &commande_MAINTENANCE)
 {
 	QString sqlTableName(comboBox_sujets_maintenance->currentText());
+
+	if (sqlTableName.contains(YerothAdminWindow::DATABASE_YEROTH_ERP_3_0_KEYWORD))
+	{
+		handle_changer_commande_MAINTENANCE_OPERATION_SUJET_for_database(commande_MAINTENANCE,
+																		 sqlTableName);
+		return ;
+	}
 
 	if (YerothUtils::isEqualCaseInsensitive(EFFACER, commande_MAINTENANCE))
 	{
@@ -522,6 +555,13 @@ void YerothAdminWindow::handle_changer_commande_MAINTENANCE_OPERATION(const QStr
 void YerothAdminWindow::handle_changer_commande_MAINTENANCE_SUJET(const QString &sqlTableName)
 {
 	QString commande_MAINTENANCE(comboBox_operations_maintenance->currentText());
+
+	if (sqlTableName.contains(YerothAdminWindow::DATABASE_YEROTH_ERP_3_0_KEYWORD))
+	{
+		handle_changer_commande_MAINTENANCE_OPERATION_SUJET_for_database(commande_MAINTENANCE,
+																		 sqlTableName);
+		return ;
+	}
 
 	if (YerothUtils::isEqualCaseInsensitive(EFFACER, commande_MAINTENANCE))
 	{
@@ -868,9 +908,17 @@ void YerothAdminWindow::changer_commande_YEROTH_LINE_EDIT(YerothLineEdit &aYerot
 	curCOMMANDString.replace("%3", QString("%1")
 										.arg(YerothERPConfig::_db_name));
 
-	curCOMMANDString.replace("%2", QString("%1.%2")
+	if (sqlTableName.contains(YerothAdminWindow::DATABASE_YEROTH_ERP_3_0_KEYWORD))
+	{
+		curCOMMANDString.replace("%2", QString("%1")
+										.arg(YerothERPConfig::_db_name));
+	}
+	else
+	{
+		curCOMMANDString.replace("%2", QString("%1.%2")
 										.arg(YerothERPConfig::_db_name,
 											 sqlTableName));
+	}
 
 //	QDEBUG_STRINGS_OUTPUT_2("cur_COMMAND_string", curCOMMANDString);
 
