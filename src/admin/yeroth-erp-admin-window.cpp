@@ -16,8 +16,6 @@
 
 #include "src/utils/yeroth-erp-logger.hpp"
 
-#include "src/process/yeroth-erp-process.hpp"
-
 #include "src/process/yeroth-erp-process-info.hpp"
 
 #include "src/utils/yeroth-erp-database.hpp"
@@ -350,11 +348,16 @@ void YerothAdminWindow::definirAdministrateur()
     _allWindows->_adminWindow->rendreVisible(_curStocksTableModel);
 }
 
+
 void YerothAdminWindow::definirManager()
 {
     _logger->log("definirManager");
+
     YEROTH_ERP_ADMIN_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
     YEROTH_ERP_ADMIN_WRAPPER_QACTION_SET_ENABLED(actionRetournerMenuPrincipal, true);
+
+    tabWidget_administration->setCurrentIndex(OPERATIONS);
+
     pushButton_menu_go->enable(this, SLOT(gerer_choix_action()));
     pushButton_creer->enable(this, SLOT(action_creer()));
     pushButton_lister->enable(this, SLOT(action_lister()));
@@ -362,6 +365,7 @@ void YerothAdminWindow::definirManager()
     pushButton_supprimer->enable(this, SLOT(action_lister()));
     pushButton_operation_go->enable(this, SLOT(gerer_choix_action()));
 }
+
 
 void YerothAdminWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 {

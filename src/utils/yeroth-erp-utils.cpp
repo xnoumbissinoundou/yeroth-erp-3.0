@@ -612,6 +612,31 @@ bool YerothUtils::creerNouvelleCategorie(const QString 			&proposedCategorieName
     return false;
 }
 
+
+bool YerothUtils::GREP_YEROTH_FILE_CONTENT(const QString &file_full_path,
+									 	   const QString &keyword_IN)
+{
+    QStringList progArguments;
+
+    progArguments << keyword_IN
+    			  << file_full_path;
+
+    QProcess GREP_PROCESS;
+
+    bool checkProcessFinished = YerothERPProcess::startAndWaitForFinished(GREP_PROCESS,
+		  	  	  	  	  	  	  	  	  	  	  	  	    			  "/bin/grep",
+																		  progArguments,
+																		  1000);
+	if (checkProcessFinished)
+	{
+	    QString checkAlertDeamonProcessOutput(GREP_PROCESS.readAllStandardOutput().trimmed());
+	    return checkAlertDeamonProcessOutput.contains(YerothUtils::getYerothAlertDaemonExecutableFullpath());
+	}
+
+	return false;
+}
+
+
 enum service_stock_already_exist_type
 	YerothUtils::IS_STOCK_DESIGNATION_OR_REFERENCE_UNIQUE(const QString &aStockServiceReference,
 														  const QString &aStockServiceCategory,

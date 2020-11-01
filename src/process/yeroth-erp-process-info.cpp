@@ -31,32 +31,24 @@ bool YerothProcessInfo::checkYerothERPAlertDaemonRunning(YerothLogger *logger /*
     progArguments << "-a"
     		      << YerothERPConfig::YEROTH_ALERT_DAEMON_ID_STR;
 
-    QProcess checkProcess;
+	QString yeroth_erp_3_0_restore_backup_sql_file(QString("%1.sql")
+					.arg(FILE_NAME_USERID_CURRENT_TIME("yeroth_erp_3_0_BACKUP_RESTORE")));
 
-    checkProcess.start("/usr/bin/pgrep", progArguments);
+	QString mysqlProcessProgram("/usr/bin/pgrep");
 
-    checkProcess.waitForFinished();
+	QString yerothpsoutput_file(QString("%1/%2")
+	    							.arg(YerothERPConfig::temporaryFilesDir,
+	    								 "yerothpsoutput"));
 
-    QFile tmpFile( QString("%1/%2")
-    					.arg(YerothERPConfig::temporaryFilesDir, "yerothpsoutput") );
+	int output_file_size =
+			YerothERPProcess::start_PROCESS_AND_READ_PROCESS_output_INTO_FILE(mysqlProcessProgram,
+																			  yerothpsoutput_file,
+																			  progArguments);
+	if (output_file_size > 0)
+	{
+		return YerothUtils::GREP_YEROTH_FILE_CONTENT(yerothpsoutput_file,
+    									  	  	 	 YerothUtils::getYerothAlertDaemonExecutableFullpath());
+	}
 
-    if (tmpFile.open(QFile::WriteOnly))
-    {
-        tmpFile.write(checkProcess.readAllStandardOutput().trimmed());
-    }
-
-    tmpFile.close();
-
-    progArguments.clear();
-
-    progArguments << YerothUtils::getYerothAlertDaemonExecutableFullpath()
-    			  << tmpFile.fileName();
-
-    checkProcess.start("/bin/grep", progArguments);
-    checkProcess.waitForFinished(1000);
-
-    QString checkAlertDeamonProcessOutput(checkProcess.readAllStandardOutput().trimmed());
-
-    return checkAlertDeamonProcessOutput.contains(YerothUtils::getYerothAlertDaemonExecutableFullpath());
+	return false;
 }
-

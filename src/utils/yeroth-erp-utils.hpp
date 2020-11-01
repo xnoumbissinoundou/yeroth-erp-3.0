@@ -92,6 +92,9 @@ public:
 	static bool creerNouvelleCategorie(const QString 		&proposedCategorieName,
 									   YerothWindowsCommons *_callingWindow = 0);
 
+	static bool GREP_YEROTH_FILE_CONTENT(const QString &file_full_path,
+										 const QString &keyword_IN);
+
 	static
 	enum service_stock_already_exist_type
 		IS_STOCK_DESIGNATION_OR_REFERENCE_UNIQUE(const QString &aStockServiceReference,

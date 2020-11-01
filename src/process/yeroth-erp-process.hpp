@@ -40,9 +40,25 @@ public:
 	 * Returns the size of the output file created
 	 * by execution of the program 'program' !
 	 */
+	inline static int start_PROCESS_AND_READ_PROCESS_output_INTO_FILE(const QString &program_executable_location_full_path,
+													   	   	   	      const QString &program_working_directory_full_path,
+																	  const QString &output_file_name,
+																	  const QStringList &program_executable_args)
+	{
+	    return YerothERPProcess::
+					start_PROCESS_AND_READ_PROCESS_output_INTO_FILE(program_executable_location_full_path,
+																	QString("%1/%2")
+											    						.arg(program_working_directory_full_path,
+											    							 output_file_name),
+																	program_executable_args);
+	}
+
+	/**
+	 * Returns the size of the output file created
+	 * by execution of the program 'program' !
+	 */
 	static int start_PROCESS_AND_READ_PROCESS_output_INTO_FILE(const QString &program_executable_location_full_path,
-													   	   	   const QString &program_working_directory_full_path,
-															   const QString &output_file_name,
+													   	   	   const QString &output_file_full_path,
 															   const QStringList &program_executable_args);
 
 	/**

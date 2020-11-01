@@ -9,9 +9,12 @@
 
 #include "src/include/yeroth-erp-3-0-software.text-configuration.hpp"
 
+
+#include "src/process/yeroth-erp-process.hpp"
+
+
 #include <QtCore/QString>
 
-#include "src/utils/yeroth-erp-utils.hpp"
 
 class YerothUtils;
 class YerothLogger;
