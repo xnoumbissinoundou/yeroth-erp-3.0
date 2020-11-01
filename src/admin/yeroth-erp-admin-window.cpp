@@ -544,7 +544,7 @@ void YerothAdminWindow::EXECUTER_COMMANDE_MAINTENANCE()
 	{
 		YerothQMessageBox::warning(this,
 				QObject::trUtf8("EXÉCUTER COMMANDE MAINTENANCE"),
-				QObject::trUtf8("Exécutable INEXISTANT: \"%1 (%2)\" !\n\n"
+				QObject::trUtf8("Commande non exécutable: \"%1\" (%2) !\n\n"
 								"%3")
 							.arg(mysqlProcessProgram,
 								 userViewPrettyCommand,

@@ -84,10 +84,13 @@
     </message>
     <message>
         <location filename="src/admin/yeroth-erp-admin-window.cpp" line="547"/>
-        <source>Exécutable INEXISTANT: &quot;%1 (%2)&quot; !
+        <source>Commande non exécutable: &quot;%1&quot; (%2) !
 
 %3</source>
-        <translation>INEXISTANT binary executable: &quot;%1 (%2)&quot; !
+        <oldsource>Exécutable INEXISTANT: &quot;%1 (%2)&quot; !
+
+%3</oldsource>
+        <translation>Couldn&apos;t run binary executable: &quot;%1&quot; (%2) !
 
 %3</translation>
     </message>
