@@ -519,45 +519,44 @@ void YerothAdminWindow::EXECUTER_COMMANDE_MAINTENANCE()
 
 	QStringList progArguments(progArgsString.split(YerothUtils::EMPTY_SPACE_REGEXP));
 
-    QProcess MYSQL_PROCESS;
+	QString yeroth_erp_3_0_restore_backup_sql_file(QString("%1.sql")
+					.arg(FILE_NAME_USERID_CURRENT_TIME("yeroth_erp_3_0_BACKUP_RESTORE")));
 
-    MYSQL_PROCESS.start(QString("%1/%2")
-    							.arg(YerothERPConfig::pathToMARIA_DB_BASE_DIR,
-    								 currentProgram_mysql_mysqldump),
-							 progArguments);
+	QString mysqlProcessProgram(QString("%1/%2")
+									.arg(YerothERPConfig::pathToMARIA_DB_BASE_DIR,
+										 currentProgram_mysql_mysqldump));
 
-    if ( ! MYSQL_PROCESS.waitForFinished() )
-    {
+	int output_file_size =
+			YerothERPProcess::start_PROCESS_AND_READ_PROCESS_output_INTO_FILE(mysqlProcessProgram,
+																 	 	 	  YerothERPConfig::sqlBackupDir,
+																			  yeroth_erp_3_0_restore_backup_sql_file,
+																			  progArguments);
+
+		QString userViewPrettyCommand(QString("%1 %2")
+										.arg(comboBox_operations_maintenance->currentText(),
+											 comboBox_sujets_maintenance->currentText()));
+
+	if (output_file_size <= 0)
+	{
 		YerothQMessageBox::warning(this,
 				QObject::trUtf8("EXÉCUTER COMMANDE MAINTENANCE"),
-				QObject::trUtf8("Exécutable INEXISTANT: \"%1\" !")
-							.arg(MYSQL_PROCESS.program()));
-
+				QObject::trUtf8("Exécutable INEXISTANT: \"%1 (%2)\" !\n\n"
+								"%3")
+							.arg(mysqlProcessProgram,
+								 userViewPrettyCommand,
+								 lineEdit_administration_maintenance_commandes_COMMANDE_ACTUELLE->text()));
 		return ;
-    }
+	}
 
-    QString yeroth_erp_3_0_restore_backup_sql_file(
-    		QString("%1.sql")
-				.arg(FILE_NAME_USERID_CURRENT_TIME("yeroth_erp_3_0_BACKUP_RESTORE")));
-
-    QFile tmpFile( QString("%1/%2")
-    					.arg(YerothERPConfig::sqlBackupDir,
-    						 yeroth_erp_3_0_restore_backup_sql_file) );
-
-    if (tmpFile.open(QFile::WriteOnly))
-    {
-        tmpFile.write(MYSQL_PROCESS.readAllStandardOutput().trimmed());
-    }
-
-    if (tmpFile.size() > 0)
-    {
+	if (output_file_size > 0)
+	{
 		YerothQMessageBox::information(this,
 				QObject::trUtf8("EXÉCUTER COMMANDE MAINTENANCE"),
-				QObject::trUtf8("La commande \"%1\" a été exécuter avec succès !")
-							.arg(lineEdit_administration_maintenance_commandes_COMMANDE_ACTUELLE->text()));
-    }
-
-    tmpFile.close();
+				QObject::trUtf8("La commande \"%1\" a été exécuter avec succès !\n\n"
+								"%2")
+							.arg(userViewPrettyCommand,
+								 lineEdit_administration_maintenance_commandes_COMMANDE_ACTUELLE->text()));
+	}
 }
 
 

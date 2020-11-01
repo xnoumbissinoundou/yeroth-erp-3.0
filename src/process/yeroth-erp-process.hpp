@@ -37,6 +37,15 @@ public:
 	static bool startYerothERPAlertProcess();
 
 	/**
+	 * Returns the size of the output file created
+	 * by execution of the program 'program' !
+	 */
+	static int start_PROCESS_AND_READ_PROCESS_output_INTO_FILE(const QString &program_executable_location_full_path,
+													   	   	   const QString &program_working_directory_full_path,
+															   const QString &output_file_name,
+															   const QStringList &program_executable_args);
+
+	/**
 	 * @return: the full file path name of the
 	 *          opened PDF file with prefix: prefixFileName
 	 *          ("prefixFileName.pdf").

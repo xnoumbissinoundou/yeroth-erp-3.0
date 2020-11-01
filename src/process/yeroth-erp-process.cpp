@@ -96,6 +96,43 @@ bool YerothERPProcess::startYerothERPAlertProcess()
 }
 
 
+int YerothERPProcess::
+	start_PROCESS_AND_READ_PROCESS_output_INTO_FILE(const QString &program_executable_location_full_path,
+												    const QString &program_working_directory_full_path,
+												    const QString &output_file_name,
+												    const QStringList &program_executable_args)
+{
+    QProcess A_YEROTH_PROCESS;
+
+    A_YEROTH_PROCESS.start(program_executable_location_full_path,
+    					   program_executable_args);
+
+    if ( ! A_YEROTH_PROCESS.waitForFinished() )
+    {
+		return -1;
+    }
+
+    QFile tmpFile( QString("%1/%2")
+    					.arg(program_working_directory_full_path,
+    						 output_file_name) );
+
+    if (tmpFile.open(QFile::WriteOnly))
+    {
+        tmpFile.write(A_YEROTH_PROCESS.readAllStandardOutput().trimmed());
+    }
+    else
+    {
+    	return -1;
+    }
+
+    int output_file_size = tmpFile.size();
+
+    tmpFile.close();
+
+    return output_file_size;
+}
+
+
 QString YerothERPProcess::compileLatex(QString prefixFileName)
 {
     QStringList progArguments;
