@@ -532,9 +532,9 @@ void YerothAdminWindow::EXECUTER_COMMANDE_MAINTENANCE()
 																			  yeroth_erp_3_0_restore_backup_sql_file,
 																			  progArguments);
 
-		QString userViewPrettyCommand(QString("%1 %2")
-										.arg(comboBox_operations_maintenance->currentText(),
-											 comboBox_sujets_maintenance->currentText()));
+	QString userViewPrettyCommand(QString("%1 %2")
+									.arg(comboBox_operations_maintenance->currentText(),
+										 comboBox_sujets_maintenance->currentText()));
 
 	if (output_file_size <= 0)
 	{
