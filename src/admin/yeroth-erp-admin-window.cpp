@@ -155,6 +155,10 @@ YerothAdminWindow::YerothAdminWindow()
 		setText(QString("mysql -u '%1' -p --execute=\"drop table %2\""));
 
 
+    dateEdit_date_derniere_sauvegarde_yeroth_erp_3->setDate(GET_CURRENT_DATE);
+    dateEdit_date_derniere_sauvegarde_yeroth_erp_3->setYerothEnabled(false);
+
+
     setupValidators();
 
     YEROTH_ERP_ADMIN_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
