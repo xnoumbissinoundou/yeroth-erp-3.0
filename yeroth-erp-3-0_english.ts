@@ -1290,7 +1290,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="597"/>
         <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="692"/>
         <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="329"/>
-        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="517"/>
+        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="489"/>
         <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1089"/>
         <source>valeur à rechercher</source>
         <translation>value to search for</translation>
@@ -1321,8 +1321,8 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <location filename="src/windows/yeroth-erp-achats-window.cpp" line="681"/>
         <location filename="src/windows/yeroth-erp-achats-window.cpp" line="701"/>
         <location filename="src/windows/yeroth-erp-stock-detail-window.cpp" line="27"/>
-        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="1004"/>
-        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="1020"/>
+        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="984"/>
+        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="1000"/>
         <source>détails d&apos;un stock</source>
         <oldsource>stock details</oldsource>
         <translation>stock details</translation>
@@ -2293,12 +2293,15 @@ Continue with update of the stock (service) ?</translation>
         <location filename="src/windows/yeroth-erp-stocks-window.hpp" line="81"/>
         <source>1) Sélectionner un stock dans le tableau des stocks, ensuite cliquer sur l&apos;opération que vous souhaitez réaliser !
 
-2) La valeur d&apos;inventaire d&apos;une marchandise (VI) est calculée comme suit:
+2) La valeur d&apos;inventaire d&apos;un stock (VI) est calculée comme suit:
  [VI = prix_dachat * quantite_en_stock] !</source>
-        <oldsource>Sélectionner un stock dans le tableau des stocks, ensuite cliquer sur l&apos;opération que vous souhaitez réaliser !</oldsource>
+        <oldsource>1) Sélectionner un stock dans le tableau des stocks, ensuite cliquer sur l&apos;opération que vous souhaitez réaliser !
+
+2) La valeur d&apos;inventaire d&apos;une marchandise (VI) est calculée comme suit:
+ [VI = prix_dachat * quantite_en_stock] !</oldsource>
         <translation>1) Select a stock item in the table listing, and then, press the button of the action you would like to perform!
 
-2) The stock inventory value of a merchandise (VI) is calculated as follows:
+2) The inventory value of a stock (VI) is calculated as follows:
  [VI = buying_price * stock_quantity] !</translation>
     </message>
     <message>
@@ -2568,44 +2571,44 @@ Please contact an administrator of %1</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="690"/>
-        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="515"/>
+        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="487"/>
         <source>terme à rechercher (description de l&apos;article (ou service))</source>
         <oldsource>terme à rechercher (désignation, et description de l&apos;article (ou service))</oldsource>
         <translation>keyword to search for (article (or service) description)</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="1048"/>
+        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="1028"/>
         <source>Poursuivre avec la suppression du service &apos;%1&apos; ?</source>
         <translation>Continue with deletion of service &apos;%1&apos; ?</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="884"/>
-        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="1055"/>
+        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="1035"/>
         <source>Poursuivre avec la suppression du stock &apos;%1&apos; ?</source>
         <translation>Continue with deletion of stock &apos;%1&apos; ?</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="1062"/>
-        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="1086"/>
-        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="1097"/>
+        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="1042"/>
+        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="1066"/>
+        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="1077"/>
         <source>suppression d&apos;un stock (service)</source>
         <translation>deletion of a stock (service)</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="1082"/>
+        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="1062"/>
         <source>Le stock (service) &apos;%1&apos; a été supprimé !</source>
         <translation>Stock (service) &apos;%1&apos; has been deleted !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="1093"/>
+        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="1073"/>
         <source>Le stock (service) &apos;%1&apos; ne pouvait pas être supprimé !</source>
         <translation>Stock (service) &apos;%1&apos; couldn&apos;t be deleted !</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-achats-window.cpp" line="682"/>
         <location filename="src/windows/yeroth-erp-achats-window.cpp" line="702"/>
-        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="1005"/>
-        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="1021"/>
+        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="985"/>
+        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="1001"/>
         <source>Sélectionnez un stock à afficher les détails.</source>
         <translation>Select a stock item to view its stock details.</translation>
     </message>
@@ -2739,7 +2742,7 @@ Please contact an administrator of %1</translation>
         <translation>stock couldn&apos;t be deleted</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="1180"/>
+        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="1162"/>
         <source>Sélectionnez un stock à modifier.</source>
         <translation>Select a stock item to modify its details.</translation>
     </message>
