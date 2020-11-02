@@ -81,7 +81,7 @@ public slots:
 							 QObject::trUtf8("1) Sélectionner un stock dans le tableau des stocks,"
 											 " ensuite cliquer sur l'opération que vous souhaitez"
 											 " réaliser !\n\n"
-											 "2) La valeur d'inventaire d'une marchandise (VI) "
+											 "2) La valeur d'inventaire d'un stock (VI) "
 											 "est calculée comme suit:\n"
 											 " [VI = prix_dachat * quantite_en_stock] !"));
 	}
@@ -172,13 +172,18 @@ private:
 
     void desactiverComboBoxStrategieDeGestionDesStocks();
 
+    inline void setComboBoxStrategieDeStocks()
+    {
+    	comboBox_strategie_de_stocks
+    		->setCurrentIndex(YerothUtils::getComboBoxDatabaseQueryValue(YerothERPConfig::salesStrategy,
+    						  YerothUtils::_strategieindexToUserViewString));
+    }
+
     void disableValeurDinventaire();
 
     void enableValeurDinventaire_ONLY_MANAGER();
 
     void populateComboBoxes();
-
-    void setComboBoxStrategieDeStocks();
 
     void setupLineEdits();
 

@@ -395,34 +395,6 @@ void YerothStocksWindow::desactiverComboBoxStrategieDeGestionDesStocks()
 }
 
 
-void YerothStocksWindow::setComboBoxStrategieDeStocks()
-{
-    if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::salesStrategy,
-    										YerothERPConfig::STRATEGIE_VENTE_SORTIE_ALL))
-    {
-        comboBox_strategie_de_stocks->setCurrentIndex(YerothUtils::STRATEGIE_ALL_COMBOBOX_INDEX);
-    }
-    else if (YerothUtils::
-             isEqualCaseInsensitive(YerothERPConfig::salesStrategy,
-            		 	 	 	 	YerothERPConfig::STRATEGIE_VENTE_SORTIE_FEFO))
-    {
-        comboBox_strategie_de_stocks->setCurrentIndex(YerothUtils::STRATEGIE_FEFO_COMBOBOX_INDEX);
-    }
-    else if (YerothUtils::
-             isEqualCaseInsensitive(YerothERPConfig::salesStrategy,
-            		 	 	 	 	YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO))
-    {
-        comboBox_strategie_de_stocks->setCurrentIndex(YerothUtils::STRATEGIE_FIFO_COMBOBOX_INDEX);
-    }
-    else if (YerothUtils::
-             isEqualCaseInsensitive(YerothERPConfig::salesStrategy,
-            		 	 	 	 	YerothERPConfig::STRATEGIE_VENTE_SORTIE_LIFO))
-    {
-        comboBox_strategie_de_stocks->setCurrentIndex(YerothUtils::STRATEGIE_LIFO_COMBOBOX_INDEX);
-    }
-}
-
-
 void YerothStocksWindow::disableValeurDinventaire()
 {
 	lineEdit_stocks_valeur_totale_dinventaire->setVisible(false);
@@ -649,7 +621,7 @@ void YerothStocksWindow::textChangedSearchLineEditsQCompleters()
 
     if (_yerothSqlTableModel->select())
     {
-    	lister_les_elements_du_tableau(*_yerothSqlTableModel);
+    	lister_les_elements_du_tableau(*_yerothSqlTableModel, _localStrategy);
     }
     else
     {
@@ -770,6 +742,14 @@ void YerothStocksWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
     	disableValeurDinventaire();
     }
 
+
+    static bool first_execution = true;
+
+    if (first_execution)
+    {
+    	setComboBoxStrategieDeStocks();
+    	first_execution = false;
+    }
 
     setVisible(true);
 
@@ -1145,6 +1125,8 @@ void YerothStocksWindow::reinitialiser_recherche()
     resetFilter();
 
     resetLineEditsQCompleters((QObject *)this);
+
+    _localStrategy.clear();
 
     setComboBoxStrategieDeStocks();
 
