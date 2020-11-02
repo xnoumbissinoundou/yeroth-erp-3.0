@@ -319,7 +319,7 @@ void YerothModifierFournisseurWindow::supprimer_image_fournisseur()
 
 	QString nomEntreprise(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE));
 
-    QVariant image_produit(record.value(YerothDatabaseTableColumn::IMAGE_COMPTE_CLIENT));
+    QVariant image_produit(record.value(YerothDatabaseTableColumn::IMAGE_FOURNISSEUR));
 
     if (image_produit.toByteArray().isEmpty())
     {
@@ -346,7 +346,7 @@ void YerothModifierFournisseurWindow::supprimer_image_fournisseur()
             YerothQMessageBox::question(this, QObject::tr("suppression de l'image ce fournisseur"),
                                        msgSupprimer, QMessageBox::Cancel, QMessageBox::Ok))
     {
-        record.setValue(YerothDatabaseTableColumn::IMAGE_COMPTE_CLIENT, QVariant(QVariant::ByteArray));
+        record.setValue(YerothDatabaseTableColumn::IMAGE_FOURNISSEUR, QVariant(QVariant::ByteArray));
 
         bool resRemoved = _allWindows->_fournisseursWindow->
         		SQL_UPDATE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
@@ -478,7 +478,7 @@ void YerothModifierFournisseurWindow::actualiserFournisseur()
         {
             QByteArray bytes;
             YerothUtils::savePixmapToByteArray(bytes, *label_image_produit->pixmap(), "JPG");
-            record.setValue(YerothDatabaseTableColumn::IMAGE_COMPTE_CLIENT, QVariant::fromValue(bytes));
+            record.setValue(YerothDatabaseTableColumn::IMAGE_FOURNISSEUR, QVariant::fromValue(bytes));
         }
 
         bool success = _allWindows->_fournisseursWindow->
@@ -653,7 +653,7 @@ void YerothModifierFournisseurWindow::showFournisseurDetail()
 
 	textEdit_modifier_fournisseur_description_du_fournisseur->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESCRIPTION_CLIENT));
 
-    QVariant img(record.value(YerothDatabaseTableColumn::IMAGE_COMPTE_CLIENT));
+    QVariant img(record.value(YerothDatabaseTableColumn::IMAGE_FOURNISSEUR));
 
     if (!img.isNull())
     {
