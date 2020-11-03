@@ -681,6 +681,10 @@ public:
 
 	static QString EN_template_facture_petit_tex;
 
+	static QString EN_ZERO_ventes_tex;
+
+	static QString FR_ZERO_ventes_tex;
+
 	static QString FR_pie_chart_tex;
 
 	static QString FR_bar_chart_tex;

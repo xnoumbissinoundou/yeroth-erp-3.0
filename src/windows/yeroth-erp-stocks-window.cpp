@@ -1197,9 +1197,9 @@ void YerothStocksWindow::lister_les_elements_du_tableau(YerothSqlTableModel & sq
 
     double quantite_stock = 0;
     double quantite_totale = 0;
-    double prix_unitaire = 0.0;
-    double valeur_achat = 0.0;
-    double valeur_total_achat = 0.0;
+    double prix_dachat = 0.0;
+    double valeur_dinventaire = 0.0;
+    double valeur_totale_dinventaire = 0.0;
 
     QSqlRecord aRecord;
 
@@ -1213,18 +1213,18 @@ void YerothStocksWindow::lister_les_elements_du_tableau(YerothSqlTableModel & sq
 
         quantite_totale += quantite_stock;
 
-        prix_unitaire = GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::PRIX_UNITAIRE).toDouble();
+        prix_dachat = GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::PRIX_DACHAT).toDouble();
 
-        valeur_achat =  prix_unitaire * quantite_stock;
+        valeur_dinventaire =  prix_dachat * quantite_stock;
 
-        valeur_total_achat += valeur_achat;
+        valeur_totale_dinventaire += valeur_dinventaire;
     }
 
     lineEdit_stocks_nombre_darticles->setText(GET_NUM_STRING(quantite_totale));
 
     lineEdit_nombre_de_stocks->setText(GET_NUM_STRING(curStocksTableModelRowCount));
 
-    lineEdit_stocks_valeur_totale_dinventaire->setText(GET_CURRENCY_STRING_NUM(valeur_total_achat));
+    lineEdit_stocks_valeur_totale_dinventaire->setText(GET_CURRENCY_STRING_NUM(valeur_totale_dinventaire));
 
 
     tableView_stocks->queryYerothTableViewCurrentPageContentRow(*_curStocksTableModel,

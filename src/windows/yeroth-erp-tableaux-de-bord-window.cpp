@@ -26,6 +26,7 @@
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 		const QString YerothTableauxDeBordWindow::OPERATION_GENERER("générer les");
 		const QString YerothTableauxDeBordWindow::QUALITE_MEILLEURS("les chiffres d'affaires les plus élevés");
+		const QString YerothTableauxDeBordWindow::QUALITE_ZERO("les chiffres d'affaires zéro");
 		const QString YerothTableauxDeBordWindow::QUALITE_DERNIERS("les chiffres d'affaires les moins élevés");
 		const QString YerothTableauxDeBordWindow::OBJET_ARTICLES("articles");
 		const QString YerothTableauxDeBordWindow::OBJET_CATEGORIES("catégories");
@@ -39,6 +40,7 @@
 #ifdef YEROTH_ENGLISH_LANGUAGE
 		const QString YerothTableauxDeBordWindow::OPERATION_GENERER("generate the");
 		const QString YerothTableauxDeBordWindow::QUALITE_MEILLEURS("best business turnover");
+		const QString YerothTableauxDeBordWindow::QUALITE_ZERO("zero business turnover");
 		const QString YerothTableauxDeBordWindow::QUALITE_DERNIERS("least business turnover");
 		const QString YerothTableauxDeBordWindow::OBJET_ARTICLES("products");
 		const QString YerothTableauxDeBordWindow::OBJET_CATEGORIES("categories");
@@ -108,6 +110,7 @@ const double YerothTableauxDeBordWindow::STATS_MIN_VALUE(0.0009);
 YerothTableauxDeBordWindow::YerothTableauxDeBordWindow()
     :YerothWindowsCommons(),
      _logger(new YerothLogger("YerothRapportsWindow")),
+	 _objetClientLastIndex(-1),
      _csvFileItemSize(0),
      _startYear(0),
      _curStocksVenduTableModel(&_allWindows->getSqlTableModel_stocks_vendu())
@@ -172,8 +175,13 @@ YerothTableauxDeBordWindow::YerothTableauxDeBordWindow()
     connect( actionQui_suis_je, SIGNAL(triggered()), this, SLOT(qui_suis_je()) );
 
 
-    changeLineEditEvolutionObjetsTextSetup(YerothTableauxDeBordWindow::OBJET_ARTICLES);
+    connect( comboBox_qualite,
+    		 SIGNAL(currentTextChanged(const QString &)),
+    		 this,
+			 SLOT(remove_BAR_PIE_CHART_OPTION_FOR_ZERO_BUSINESS_TURNOVER(const QString &)));
 
+
+    changeLineEditEvolutionObjetsTextSetup(YerothTableauxDeBordWindow::OBJET_ARTICLES);
 
     connect( comboBox_evolution_objets,
     		 SIGNAL(currentTextChanged(const QString &)),
@@ -287,6 +295,7 @@ void YerothTableauxDeBordWindow::setupTab_COMPARAISON_DES_CHIFFRES_DAFFAIRES()
     comboBox_quantite->addItem(YerothTableauxDeBordWindow::QUANTITE_9);
 
     comboBox_qualite->addItem(YerothTableauxDeBordWindow::QUALITE_MEILLEURS);
+    comboBox_qualite->addItem(YerothTableauxDeBordWindow::QUALITE_ZERO);
     comboBox_qualite->addItem(YerothTableauxDeBordWindow::QUALITE_DERNIERS);
 
     comboBox_objets->addItem(YerothTableauxDeBordWindow::OBJET_ARTICLES);
@@ -682,6 +691,318 @@ void YerothTableauxDeBordWindow::meilleursStats(QString fileName,
 }
 
 
+void YerothTableauxDeBordWindow::ZERO_stats_stocks(QString fileName,
+												   QString fieldId)
+{
+    _logger->log("ZERO_stats_stocks");
+
+    QString strQuery(QString("SELECT %1, prix_dachat, quantite_totale "
+    						 "FROM %2 s "
+    						 "WHERE s.%3 NOT IN "
+    						 	 	"(select %4 "
+    						 	 	"from %5 sv "
+    						 	 	"where sv.%6 = s.%7 "
+    						 	 	"AND date_vente >= '%8' AND date_vente <= '%9')")
+    					.arg(fieldId,
+							 _allWindows->STOCKS,
+							 fieldId,
+							 fieldId,
+							 _allWindows->STOCKS_VENDU,
+							 fieldId,
+							 fieldId,
+							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_debut->date()),
+							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_fin->date())));
+
+
+//    QDEBUG_STRINGS_OUTPUT_2("YerothTableauxDeBordWindow::ZERO_stats, strQuery", strQuery);
+
+    QSqlQuery query;
+
+    int querySize = YerothUtils::execQuery(query, strQuery, _logger);
+
+//    QDEBUG_STRINGS_OUTPUT_2_N("querySize", querySize);
+
+    double prix_dachat = 0.0;
+
+    double valeur_dinventaire = 0.0;
+
+    double quantite_totale = 0.0;
+
+    QString fieldIdValue;
+
+    YerothStatsItem *anItem = 0;
+
+    QList<YerothStatsItem *> allItems;
+
+    if (querySize > 0)
+    {
+        while(query.next())
+        {
+        	fieldIdValue = query.value(0).toString();
+
+        	prix_dachat = query.value(1).toDouble();
+
+        	quantite_totale = query.value(2).toDouble();
+
+            int idx = -1;
+            for(int i = 0; i < allItems.size(); ++i)
+            {
+                if (YerothUtils::isEqualCaseInsensitive(allItems.value(i)->_itemName, fieldIdValue))
+                {
+                    idx = i;
+                    break;
+                }
+            }
+
+
+            if (-1 == idx)
+            {
+            	anItem = new YerothStatsItem(fieldIdValue, 0.0);
+
+            	anItem->_itemName = fieldIdValue;
+
+                allItems.push_back(anItem);
+            }
+            else
+            {
+            	anItem = allItems.value(idx);
+            }
+
+            valeur_dinventaire = (quantite_totale * prix_dachat);
+
+            anItem->_itemValue += quantite_totale;
+
+            anItem->_itemSecondValue += valeur_dinventaire;
+        }
+    }
+
+    qSort(allItems.begin(), allItems.end(), YerothStatsItem::lessThan_second_value);
+
+    QString csvFileContent;
+
+    _reportTexFileEndString.clear();
+
+    _reportTexFileEndString.append("\\begin{enumerate}[1)]\n");
+
+    _csvFileItemSize = 0;
+
+    double valeur_dinventaire_toute_marchandise = 0.0;
+
+    QString label;
+    QString value;
+
+    for(int j = allItems.size() - 1, k = 0; j > -1; --j, ++k)
+    {
+        label.clear();
+
+        label.append(QString("\"%1\"")
+        				.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(allItems.at(j)->_itemName)));
+
+        value.clear();
+
+        value.append(YerothUtils::LATEX_IN_OUT_handleForeignAccents(
+        		GET_DOUBLE_STRING(allItems.at(j)->_itemValue)));
+
+        csvFileContent.prepend(QString("%1; %2; %3\n")
+        						.arg(label,
+        							 value,
+									 QString::number(0.0)));
+
+        valeur_dinventaire = allItems.at(j)->_itemSecondValue;
+
+        valeur_dinventaire_toute_marchandise += valeur_dinventaire;
+
+        _reportTexFileEndString.append(QObject::trUtf8("\\item %1 | "
+        											   "Qté en stock: \"%2\" | "
+        											   "Valeur d'inventaire: \"%3\"\n")
+        									.arg(label,
+        										 value,
+												 GET_CURRENCY_STRING_NUM(valeur_dinventaire)));
+
+        //qDebug() << "++ reportTexFileEndString: " << _reportTexFileEndString;
+        ++_csvFileItemSize;
+    }
+
+    _reportTexFileEndString.append("\\end{enumerate}"
+    							   "\\vspace{1em}");
+
+    _reportTexFileEndString.append(QObject::tr("\\underline{\\textbf{SOMME (VALEUR D'INVENTAIRE TOUT STOCK): %1}}")
+    									.arg(GET_CURRENCY_STRING_NUM(valeur_dinventaire_toute_marchandise)));
+
+    //qDebug() << "++ test, _csvFileItemSize: " << caissierToVentes.size();
+
+    csvFileContent.prepend(QObject::trUtf8("Nom; Quantité totale en stock; Total chiffre d'affaire\n"));
+
+    //clean up
+    for (int k = 0; k < allItems.size(); ++k)
+    {
+        delete allItems.value(k);
+    }
+
+    QFile csvFile(fileName);
+
+     if (!csvFile.open(QIODevice::WriteOnly | QIODevice::Truncate))
+     {
+         _logger->log("ZERO_stats", csvFile.errorString());
+     }
+     else
+     {
+         QTextStream outCsvFile(&csvFile);
+
+         outCsvFile << csvFileContent;
+
+         //qDebug() << QString("\t%1: \n%2").arg(fileName, csvFileContent);
+
+         csvFile.close();
+     }
+}
+
+
+
+void YerothTableauxDeBordWindow::ZERO_stats(QString fileName,
+											QString fieldId)
+{
+    _logger->log("ZERO_stats");
+
+    QString strQuery(QString("SELECT %1, quantite_totale "
+    						 "FROM %2 s "
+    						 "WHERE s.%3 NOT IN "
+    						 	 	"(select %4 "
+    						 	 	"from %5 sv "
+    						 	 	"where sv.%6 = s.%7 "
+    						 	 	"AND date_vente >= '%8' AND date_vente <= '%9')")
+    					.arg(fieldId,
+							 _allWindows->STOCKS,
+							 fieldId,
+							 fieldId,
+							 _allWindows->STOCKS_VENDU,
+							 fieldId,
+							 fieldId,
+							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_debut->date()),
+							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_fin->date())));
+
+
+//    QDEBUG_STRINGS_OUTPUT_2("YerothTableauxDeBordWindow::ZERO_stats, strQuery", strQuery);
+
+    QSqlQuery query;
+
+    int querySize = YerothUtils::execQuery(query, strQuery, _logger);
+
+    double quantite_totale = 0.0;
+
+    QString fieldIdValue;
+
+    YerothStatsItem *anItem = 0;
+
+    QList<YerothStatsItem *> allItems;
+
+    if (querySize > 0)
+    {
+        while(query.next())
+        {
+        	fieldIdValue = query.value(0).toString();
+
+        	quantite_totale = query.value(1).toDouble();
+
+            int idx = -1;
+            for(int i = 0; i < allItems.size(); ++i)
+            {
+                if (YerothUtils::isEqualCaseInsensitive(allItems.value(i)->_itemName, fieldIdValue))
+                {
+                    idx = i;
+                    break;
+                }
+            }
+
+            if (-1 == idx)
+            {
+            	anItem = new YerothStatsItem(fieldIdValue, 0.0);
+
+                anItem->_itemName = fieldIdValue;
+
+                allItems.push_back(anItem);
+            }
+            else
+            {
+            	anItem = allItems.value(idx);
+            }
+
+            anItem->_itemValue += quantite_totale;
+        }
+    }
+
+    qSort(allItems.begin(), allItems.end(), YerothStatsItem::lessThan);
+
+    QString csvFileContent;
+
+    _reportTexFileEndString.clear();
+
+    _reportTexFileEndString.append("\\begin{enumerate}[1)]\n");
+
+    _csvFileItemSize = 0;
+
+    double valeur_dinventaire_toute_marchandise = 0.0;
+
+    QString label;
+    QString value;
+
+    for(int j = allItems.size() - 1, k = 0; j > -1; --j, ++k)
+    {
+        label.clear();
+
+        label.append(QString("\"%1\"")
+        				.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(allItems.at(j)->_itemName)));
+
+        value.clear();
+
+        value.append(YerothUtils::LATEX_IN_OUT_handleForeignAccents(
+        		GET_DOUBLE_STRING(allItems.at(j)->_itemValue)));
+
+        csvFileContent.prepend(QString("%1; %2; %3\n")
+        						.arg(label,
+        							 value,
+									 QString::number(0.0)));
+
+        _reportTexFileEndString.append(QObject::trUtf8("\\item %1 | "
+        											   "Qté en stock: \"%2\"\n")
+        									.arg(label,
+        										 value));
+
+        //qDebug() << "++ reportTexFileEndString: " << _reportTexFileEndString;
+        ++_csvFileItemSize;
+    }
+
+    _reportTexFileEndString.append("\\end{enumerate}");
+
+    //qDebug() << "++ test, _csvFileItemSize: " << caissierToVentes.size();
+
+    csvFileContent.prepend(QObject::trUtf8("Nom; Quantité totale en stock; Total chiffre d'affaire\n"));
+
+    //clean up
+    for (int k = 0; k < allItems.size(); ++k)
+    {
+        delete allItems.value(k);
+    }
+
+    QFile csvFile(fileName);
+
+     if (!csvFile.open(QIODevice::WriteOnly | QIODevice::Truncate))
+     {
+         _logger->log("ZERO_stats", csvFile.errorString());
+     }
+     else
+     {
+         QTextStream outCsvFile(&csvFile);
+
+         outCsvFile << csvFileContent;
+
+         //qDebug() << QString("\t%1: \n%2").arg(fileName, csvFileContent);
+
+         csvFile.close();
+     }
+}
+
+
 void YerothTableauxDeBordWindow::derniersStats(QString fileName, QString fieldId, int size)
 {
     _logger->log("derniersStats");
@@ -865,13 +1186,29 @@ void YerothTableauxDeBordWindow::rechercher()
     QString csvFile;
     QString pdfFileTitle;
 
+    if (YerothTableauxDeBordWindow::QUALITE_MEILLEURS == comboBox_qualite->currentText() ||
+    	YerothTableauxDeBordWindow::QUALITE_DERNIERS == comboBox_qualite->currentText() )
+    {
 #ifdef YEROTH_FRANCAIS_LANGUAGE
-    pdfFileTitle.append("Les " + QString::number(size) + " ");
+    	pdfFileTitle.append(QString("Les %1 ")
+    							.arg(QString::number(size)));
 #endif
 
 #ifdef YEROTH_ENGLISH_LANGUAGE
-    pdfFileTitle.append("The " + QString::number(size) + " ");
+    	pdfFileTitle.append(QString("The %1 ")
+    							.arg(QString::number(size)));
 #endif
+    }
+    else
+    {
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+    	pdfFileTitle.append("Les ");
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+    	pdfFileTitle.append("The ");
+#endif
+    }
 
     if (YerothTableauxDeBordWindow::QUALITE_MEILLEURS == comboBox_qualite->currentText())
     {
@@ -993,7 +1330,109 @@ void YerothTableauxDeBordWindow::rechercher()
 #endif
 
     }
-    else
+
+    else if (YerothTableauxDeBordWindow::QUALITE_ZERO == comboBox_qualite->currentText())
+    {
+        if (YerothTableauxDeBordWindow::OBJET_ARTICLES == objet)
+        {
+            pdfFileTitle.append(YerothTableauxDeBordWindow::OBJET_ARTICLES);
+
+            tmpFilePrefix = FILE_NAME_USERID_CURRENT_TIME("zero-articles");
+
+            csvFile = tmpFilePrefix + ".csv";
+
+            csvFile.prepend(YerothERPConfig::temporaryFilesDir + "/");
+
+            tempDir.remove(csvFile);
+
+            statsZERO_Articles(csvFile);
+        }
+        else if (YerothTableauxDeBordWindow::OBJET_CATEGORIES == objet)
+        {
+            pdfFileTitle.append(YerothTableauxDeBordWindow::OBJET_CATEGORIES);
+
+            tmpFilePrefix = FILE_NAME_USERID_CURRENT_TIME("zero-categories");
+
+            csvFile = tmpFilePrefix + ".csv";
+
+            csvFile.prepend(YerothERPConfig::temporaryFilesDir + "/");
+
+            tempDir.remove(csvFile);
+
+            statsZERO_Categories(csvFile);
+        }
+        else if (YerothTableauxDeBordWindow::OBJET_CAISSIERS == objet)
+        {
+            pdfFileTitle.append(YerothTableauxDeBordWindow::OBJET_CAISSIERS);
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+            tmpFilePrefix = FILE_NAME_USERID_CURRENT_TIME("zero-caissiers");
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+            tmpFilePrefix = FILE_NAME_USERID_CURRENT_TIME("zero-cashiers");
+#endif
+
+            csvFile = tmpFilePrefix + ".csv";
+
+            csvFile.prepend(YerothERPConfig::temporaryFilesDir  + "/");
+
+            tempDir.remove(csvFile);
+
+            statsZERO_Caissiers(csvFile);
+        }
+        else if (YerothTableauxDeBordWindow::OBJET_CLIENTS == objet)
+        {
+            pdfFileTitle.append(YerothTableauxDeBordWindow::OBJET_CLIENTS);
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+            tmpFilePrefix = FILE_NAME_USERID_CURRENT_TIME("zero-chiffre-daffaire-clients");
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+            tmpFilePrefix = FILE_NAME_USERID_CURRENT_TIME("zero-turnover-customers");
+#endif
+            csvFile = tmpFilePrefix + ".csv";
+
+            csvFile.prepend(YerothERPConfig::temporaryFilesDir + "/");
+
+            tempDir.remove(csvFile);
+
+            statsZERO_Clients(csvFile);
+        }
+        else if (YerothTableauxDeBordWindow::OBJET_FOURNISSEURS == objet)
+        {
+            pdfFileTitle.append(YerothTableauxDeBordWindow::OBJET_FOURNISSEURS);
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+            tmpFilePrefix = FILE_NAME_USERID_CURRENT_TIME("zero-fournisseurs-ventes");
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+            tmpFilePrefix = FILE_NAME_USERID_CURRENT_TIME("zero-suppliers-sales");
+#endif
+
+            csvFile = tmpFilePrefix + ".csv";
+
+            csvFile.prepend(YerothERPConfig::temporaryFilesDir + "/");
+
+            tempDir.remove(csvFile);
+
+            statsZERO_FournisseursVentes(csvFile);
+        }
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+        pdfFileTitle.append(QString(" (quantité: %1) avec les chiffres d'affaires nuls (0)")
+        						.arg(GET_NUM_STRING(_csvFileItemSize)));
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+        pdfFileTitle.append(QString(" (quantity: %1) with NO (zero) financial income")
+        						.arg(GET_NUM_STRING(_csvFileItemSize)));
+#endif
+    }
+
+    else if (YerothTableauxDeBordWindow::QUALITE_DERNIERS == comboBox_qualite->currentText())
     {
         if (YerothTableauxDeBordWindow::OBJET_ARTICLES == objet)
         {
@@ -1082,7 +1521,7 @@ void YerothTableauxDeBordWindow::rechercher()
 
             statsDerniersClients(csvFile, size);
         }
-        else if (YerothTableauxDeBordWindow::OBJET_CLIENTS == objet)
+        else if (YerothTableauxDeBordWindow::OBJET_FOURNISSEURS == objet)
         {
             pdfFileTitle.append(YerothTableauxDeBordWindow::OBJET_FOURNISSEURS);
 
@@ -1121,6 +1560,8 @@ void YerothTableauxDeBordWindow::rechercher()
         YerothQMessageBox::information(this,
                                       QObject::trUtf8("rankings - pas de données !"),
                                       retMsg);
+        _csvFileItemSize = 0;
+
         return ;
     }
 
@@ -1128,27 +1569,43 @@ void YerothTableauxDeBordWindow::rechercher()
     QString latexChartFileNamePrefix;
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
-    if (YerothTableauxDeBordWindow::GRAPHE_BAR_CHART == comboBox_type_graphes->currentText())
+	if (YerothTableauxDeBordWindow::QUALITE_ZERO == comboBox_qualite->currentText())
+	{
+		latexChartTemplate.append(YerothUtils::FR_ZERO_ventes_tex);
+
+		latexChartFileNamePrefix.append(YerothERPConfig::temporaryFilesDir + "/" + tmpFilePrefix + "_ZERO");
+	}
+	else if (YerothTableauxDeBordWindow::GRAPHE_BAR_CHART == comboBox_type_graphes->currentText())
     {
-        latexChartTemplate.append(YerothUtils::FR_bar_chart_tex);
+    	latexChartTemplate.append(YerothUtils::FR_bar_chart_tex);
+
         latexChartFileNamePrefix.append(YerothERPConfig::temporaryFilesDir + "/" + tmpFilePrefix + "-bar-chart");
     }
     else if (YerothTableauxDeBordWindow::GRAPHE_PIE_CHART == comboBox_type_graphes->currentText())
     {
-        latexChartTemplate.append(YerothUtils::FR_pie_chart_tex);
+    	latexChartTemplate.append(YerothUtils::FR_pie_chart_tex);
+
         latexChartFileNamePrefix.append(YerothERPConfig::temporaryFilesDir + "/" + tmpFilePrefix + "-pie-chart");
     }
 #endif
 
 #ifdef YEROTH_ENGLISH_LANGUAGE
-    if (YerothTableauxDeBordWindow::GRAPHE_BAR_CHART == comboBox_type_graphes->currentText())
+	if (YerothTableauxDeBordWindow::QUALITE_ZERO == comboBox_qualite->currentText())
+	{
+		latexChartTemplate.append(YerothUtils::EN_ZERO_ventes_tex);
+
+		latexChartFileNamePrefix.append(YerothERPConfig::temporaryFilesDir + "/" + tmpFilePrefix + "_ZERO");
+	}
+	else if (YerothTableauxDeBordWindow::GRAPHE_BAR_CHART == comboBox_type_graphes->currentText())
     {
-        latexChartTemplate.append(YerothUtils::EN_bar_chart_tex);
+    	latexChartTemplate.append(YerothUtils::EN_bar_chart_tex);
+
         latexChartFileNamePrefix.append(YerothERPConfig::temporaryFilesDir + "/" + tmpFilePrefix + "-bar-chart");
     }
     else if (YerothTableauxDeBordWindow::GRAPHE_PIE_CHART == comboBox_type_graphes->currentText())
     {
-        latexChartTemplate.append(YerothUtils::EN_pie_chart_tex);
+    	latexChartTemplate.append(YerothUtils::EN_pie_chart_tex);
+
         latexChartFileNamePrefix.append(YerothERPConfig::temporaryFilesDir + "/" + tmpFilePrefix + "-pie-chart");
     }
 #endif
@@ -1236,6 +1693,46 @@ void YerothTableauxDeBordWindow::rechercher()
         aProcess.startDetached(YerothERPConfig::pathToPdfReader, progArguments);
         aProcess.waitForFinished();
     }
+
+    _csvFileItemSize = 0;
+}
+
+
+void YerothTableauxDeBordWindow::remove_BAR_PIE_CHART_OPTION_FOR_ZERO_BUSINESS_TURNOVER(const QString &comboBoxQualiteCurrentText)
+{
+	//qDebug() << QString("remove_BAR_PIE_CHART_OPTION_FOR_ZERO_BUSINESS_TURNOVER: %1")
+	//				.arg(comboBoxQualiteCurrentText);
+	if (YerothUtils::isEqualCaseInsensitive(YerothTableauxDeBordWindow::QUALITE_ZERO,
+											comboBoxQualiteCurrentText))
+	{
+		_objetClientLastIndex = comboBox_objets->
+				findText(YerothTableauxDeBordWindow::OBJET_CLIENTS);
+
+		if (-1 != _objetClientLastIndex)
+		{
+			comboBox_objets->removeItem(_objetClientLastIndex);
+		}
+
+		label_comparaison_chiffres_daffaires_quantite->setVisible(false);
+
+		comboBox_quantite->setVisible(false);
+		comboBox_type_graphes->setVisible(false);
+	}
+	else
+	{
+		if (-1 != _objetClientLastIndex)
+		{
+			comboBox_objets->insertItem(_objetClientLastIndex,
+					YerothTableauxDeBordWindow::OBJET_CLIENTS);
+
+			_objetClientLastIndex = -1;
+		}
+
+		label_comparaison_chiffres_daffaires_quantite->setVisible(true);
+
+		comboBox_quantite->setVisible(true);
+		comboBox_type_graphes->setVisible(true);
+	}
 }
 
 

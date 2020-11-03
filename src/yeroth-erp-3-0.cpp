@@ -162,6 +162,18 @@ void readTexTemplateFiles(YerothLogger &logger)
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
+    QFile ZERO_ventes_Template(FILE_YEROTH_ERP_3_0_TEMPLATE_ZERO_VENTES_FR);
+    yeroth_read_file(ZERO_ventes_Template, YerothUtils::FR_ZERO_ventes_tex);
+
+#else //YEROTH_ENGLISH_LANGUAGE
+
+    QFile ZERO_ventes_ENTemplate(FILE_YEROTH_ERP_3_0_TEMPLATE_ZERO_VENTES_EN);
+    yeroth_read_file(ZERO_ventes_ENTemplate, YerothUtils::EN_ZERO_ventes_tex);
+
+#endif
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+
     QFile pieChartTemplate(FILE_YEROTH_ERP_3_0_TEMPLATE_PIE_CHART_FR);
     yeroth_read_file(pieChartTemplate, YerothUtils::FR_pie_chart_tex);
 

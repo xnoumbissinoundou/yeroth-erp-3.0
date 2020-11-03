@@ -137,6 +137,10 @@ QString YerothUtils::FR_template_facture_petit_tex("");
 
 QString YerothUtils::EN_template_facture_petit_tex("");
 
+QString YerothUtils::EN_ZERO_ventes_tex("");
+
+QString YerothUtils::FR_ZERO_ventes_tex("");
+
 QString YerothUtils::FR_pie_chart_tex("");
 
 QString YerothUtils::FR_bar_chart_tex("");
@@ -2317,6 +2321,7 @@ QString YerothUtils::LATEX_IN_OUT_handleForeignAccents(const QString &texText_in
     QString tempText(texText_in);
     tempText = tempText.isEmpty() ? "\"\"" : tempText.replace(EMPTY_SPACE_REGEXP, "\\ ");
 
+    tempText.replace("#", "\\#");
     tempText.replace("_", "\\_");
     tempText.replace("%", "\\%");
     tempText.replace("&", "\\&");

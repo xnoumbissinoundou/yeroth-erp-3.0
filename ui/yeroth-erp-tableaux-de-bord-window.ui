@@ -4022,7 +4022,7 @@
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="label_2">
+     <widget class="QLabel" name="label_comparaison_chiffres_daffaires_quantite">
       <property name="geometry">
        <rect>
         <x>0</x>

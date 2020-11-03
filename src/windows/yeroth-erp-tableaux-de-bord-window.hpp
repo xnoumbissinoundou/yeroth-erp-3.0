@@ -95,6 +95,10 @@ public slots:
 
     void meilleursStats(QString fileName, QString fieldId, int size);
 
+    void ZERO_stats_stocks(QString fileName, QString fieldId);
+
+    void ZERO_stats(QString fileName, QString fieldId);
+
     void derniersStats(QString fileName, QString fieldId, int size);
 
     inline void statsMeilleursClients(QString fileName, int size)
@@ -120,6 +124,31 @@ public slots:
     inline void statsMeilleursCategories(QString fileName, int size)
     {
     	meilleursStats(fileName, YerothDatabaseTableColumn::CATEGORIE, size);
+    }
+
+    inline void statsZERO_Clients(QString fileName)
+    {
+//    	ZERO_stats(fileName, YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT);
+    }
+
+    inline void statsZERO_FournisseursVentes(QString fileName)
+    {
+    	ZERO_stats(fileName, YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR);
+    }
+
+    inline void statsZERO_Caissiers(QString fileName)
+    {
+//    	ZERO_stats(fileName, YerothDatabaseTableColumn::NOM_CAISSIER);
+    }
+
+    inline void statsZERO_Articles(QString fileName)
+    {
+    	ZERO_stats_stocks(fileName, YerothDatabaseTableColumn::DESIGNATION);
+    }
+
+    inline void statsZERO_Categories(QString fileName)
+    {
+    	ZERO_stats(fileName, YerothDatabaseTableColumn::CATEGORIE);
     }
 
     inline void statsDerniersClients(QString fileName, int size)
@@ -148,6 +177,8 @@ public slots:
     }
 
     void rechercher();
+
+    void remove_BAR_PIE_CHART_OPTION_FOR_ZERO_BUSINESS_TURNOVER(const QString &comboBoxQualiteCurrentText);
 
     void changeLineEditEvolutionObjetsTextSetup(const QString &comboBoxEvolutionObjetsCurrentText);
 
@@ -203,17 +234,24 @@ private:
 	public:
     	QString _itemName;
     	double  _itemValue;
+    	double  _itemSecondValue;
 
     	inline YerothStatsItem(QString itemName, double itemValue)
     	:_itemName(itemName),
-		 _itemValue(itemValue)
+		 _itemValue(itemValue),
+		 _itemSecondValue(0.0)
     	{
     	}
 
-    	 inline static bool lessThan(const YerothStatsItem *anItem1, const YerothStatsItem *anItem2)
-    	 {
-    	     return anItem1->_itemValue < anItem2->_itemValue;
-    	 }
+    	inline static bool lessThan(const YerothStatsItem *anItem1, const YerothStatsItem *anItem2)
+    	{
+    		return anItem1->_itemValue < anItem2->_itemValue;
+    	}
+
+    	inline static bool lessThan_second_value(const YerothStatsItem *anItem1, const YerothStatsItem *anItem2)
+    	{
+    		return anItem1->_itemSecondValue < anItem2->_itemSecondValue;
+    	}
 	};
 
 	static const QString OPERATION_GENERER;
@@ -243,6 +281,7 @@ private:
 	static const QString MOIS_12;
 
 	static const QString QUALITE_MEILLEURS;
+	static const QString QUALITE_ZERO;
 	static const QString QUALITE_DERNIERS;
 
 	static const QString OBJET_ARTICLES;
@@ -259,17 +298,19 @@ private:
 	static const unsigned int MAX_YEARS_REPORTS;
 
 
-	YerothLogger				*_logger;
+	YerothLogger			*_logger;
 
 	QString					_searchFilter;
 	QString 				_reportTexFileEndString;
 
 	QMap<QString, int> 		_moisToNombre;
 
+	int						_objetClientLastIndex;
+
 	unsigned int 			_csvFileItemSize;
 	unsigned int 			_startYear;
 
-	YerothSqlTableModel 		*_curStocksVenduTableModel;
+	YerothSqlTableModel 	*_curStocksVenduTableModel;
 };
 
 
