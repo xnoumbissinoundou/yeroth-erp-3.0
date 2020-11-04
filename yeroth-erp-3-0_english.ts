@@ -2311,110 +2311,141 @@ Continue with update of the stock (service) ?</translation>
         <translation>Modify customer account details, and then press button &apos;update&apos;!</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="120"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="128"/>
         <source>tableaux de bords</source>
         <oldsource>tableaux de bord</oldsource>
         <translation>business dashboard</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="619"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1100"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="653"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1136"/>
         <source>D\&apos;etails en %1:</source>
         <translation>Details in %1:</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1561"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1597"/>
         <source>rankings - pas de données !</source>
         <oldsource>Yeroth - rapports - rankings - pas de données !</oldsource>
         <translation>rankings - no data !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2225"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2590"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2768"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3074"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2303"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2668"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2846"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3152"/>
         <source>aucun filtre !</source>
         <translation>no filter !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1772"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1850"/>
         <source>bilan comptable</source>
         <translation>financial accounting report</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="815"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="850"/>
         <source>\item %1 | Qté en stock: &quot;%2&quot; | Valeur d&apos;inventaire: &quot;%3&quot;
 </source>
         <translation>\item %1 | Stock qty: &quot;%2&quot; | Inventory value: &quot;%3&quot;
 </translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="829"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="864"/>
         <source>\underline{\textbf{SOMME (VALEUR D&apos;INVENTAIRE TOUT STOCK): %1}}</source>
         <translation>\underline{\textbf{SUM (INVENTORY VALUE OF ALL STOCKS): %1}}</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="834"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="979"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1015"/>
         <source>Nom; Quantité totale en stock; Total chiffre d&apos;affaire
 </source>
         <translation>Name; Total stock quantity; Business turnover
 </translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="966"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1002"/>
         <source>\item %1 | Qté en stock: &quot;%2&quot;
 </source>
         <translation>\item %1 | Stock qty: &quot;%2&quot;
 </translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1773"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="236"/>
+        <source>%1 - bilan comptable</source>
+        <translation>%1 - financial accounting report</translation>
+    </message>
+    <message>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="247"/>
+        <source>%1 - comparaison des chiffres d&apos;affaires</source>
+        <translation>%1 - business turnover comparison</translation>
+    </message>
+    <message>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="256"/>
+        <source>%1 - évolution du chiffre d&apos;affaire</source>
+        <translation>%1 - business turnover progress</translation>
+    </message>
+    <message>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="869"/>
+        <source>Nom; Quantité totale en stock; Valeur d&apos;inventaire (%1); Total chiffre d&apos;affaire
+</source>
+        <translation>Name; Total stock quantity; Inventory value (%1); Business turnover
+</translation>
+    </message>
+    <message>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1763"/>
+        <source>Saisir le nom du fichier &apos;.csv&apos;</source>
+        <translation>Enter CSV file name</translation>
+    </message>
+    <message>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1765"/>
+        <source>articles avec chiffre d&apos;affaire nul &quot;*.csv&quot; (*.csv)</source>
+        <translation>articles with 0 business turnover &quot;*.csv* (*.csv)</translation>
+    </message>
+    <message>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1851"/>
         <source>La date de &apos;début&apos; doit être antérieur à la date de &apos;fin&apos; !</source>
         <translation>The &apos;begin&apos; date must be anterior to the &apos;end&apos; date !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2117"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2343"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2195"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2421"/>
         <source>analyse comparée</source>
         <translation>compared analysis</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2309"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2850"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2387"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2928"/>
         <source>paramètre manquant</source>
         <translation>missing parameter</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2310"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2851"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2388"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2929"/>
         <source>Vous devez spécifier un paramètre dans le champs de texte &apos;nom&apos; !</source>
         <translation>Please enter a string in field &apos;name&apos; !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2879"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2957"/>
         <source>pas de données</source>
         <translation>no data</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2880"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2958"/>
         <source>Il n&apos;y a pas de données correspondante à la requête !
 Vérifier que les dates de début et de fin, ainsi que l&apos;année sont correctes !</source>
         <translation>There is no data associated with this request!
 Please check that begin and end dates are correct!</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2598"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2676"/>
         <source>[analyse compar\&apos;ee]</source>
         <translation>[compared analysis]</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2690"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2768"/>
         <source>évolution du chiffre d&apos;affaire</source>
         <translation>business turnover progress</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1557"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1593"/>
         <source>Il n&apos;y a pas de données correspondante à la requête !
 Vérifier que les dates de début et de fin sont correctes !</source>
         <oldsource>Il n&apos;y a pas de données correspondante à la requête !Vérifier que les dates de début et de fin sont correctes !</oldsource>
@@ -2422,8 +2453,8 @@ Vérifier que les dates de début et de fin sont correctes !</source>
 Please check that begin and end dates are correct!</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2118"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2691"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2196"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2769"/>
         <source>Le mois de &apos;début&apos; doit être antérieur au mois de &apos;fin&apos; !</source>
         <translation>The &apos;begin&apos; month must be anterior to the &apos;end&apos; month!</translation>
     </message>
@@ -12215,82 +12246,88 @@ Details</translation>
         <translation>Tools</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13013"/>
+        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13018"/>
         <source>toolBar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13035"/>
+        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13042"/>
         <source>À propos</source>
         <translation>About Yeroth</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13050"/>
+        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13057"/>
         <source>Changer d&apos;utilisateur</source>
         <translation>Sign in</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13076"/>
+        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13072"/>
         <source>Déconnecter l&apos;utilisateur</source>
         <translation>Sign out</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13091"/>
+        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13087"/>
         <source>Message d&apos;aide</source>
         <translation>User tip</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13102"/>
+        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13098"/>
         <source>Fermeture</source>
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13118"/>
-        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13121"/>
+        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13114"/>
+        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13117"/>
         <source>Alertes</source>
         <translation>Alerts</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13132"/>
-        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13135"/>
+        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13128"/>
+        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13131"/>
         <source>Caisse</source>
         <translation>Sales</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13198"/>
-        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13201"/>
+        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13194"/>
+        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13197"/>
         <source>Générer le fichier PDF</source>
         <translation>Generate PDF file</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13146"/>
-        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13149"/>
+        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13227"/>
+        <source>Exporter au format csv</source>
+        <translation>Export as csv file</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13241"/>
+        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13244"/>
+        <source>Générer PDF</source>
+        <translation>Generate PDF file</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13142"/>
+        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13145"/>
         <source>Menu principal</source>
         <translation>Main menu</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13165"/>
+        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13161"/>
         <source>Administration</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13176"/>
+        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13172"/>
         <source>Informations sur l&apos;entreprise</source>
         <translation>Company info</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13187"/>
+        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13183"/>
         <source>Qui suis je ?</source>
         <translation>Who am I?</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13061"/>
-        <source>Imprimer</source>
-        <translation>Print</translation>
-    </message>
-    <message>
-        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13212"/>
-        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13215"/>
+        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13208"/>
+        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="13211"/>
         <source>Réinitialiser la recherche</source>
         <translation>Reset search</translation>
     </message>
