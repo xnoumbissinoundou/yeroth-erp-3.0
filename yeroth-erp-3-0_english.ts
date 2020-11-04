@@ -2406,7 +2406,8 @@ Continue with update of the stock (service) ?</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1851"/>
-        <source>La date de &apos;début&apos; doit être antérieur à la date de &apos;fin&apos; !</source>
+        <source>La date de &apos;début&apos; doit être antérieure à la date de &apos;fin&apos; !</source>
+        <oldsource>La date de &apos;début&apos; doit être antérieur à la date de &apos;fin&apos; !</oldsource>
         <translation>The &apos;begin&apos; date must be anterior to the &apos;end&apos; date !</translation>
     </message>
     <message>

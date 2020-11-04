@@ -1849,7 +1849,7 @@ void YerothTableauxDeBordWindow::bilanComptable()
     {
         YerothQMessageBox::warning(this, QObject::tr("bilan comptable"),
                                   QObject::trUtf8("La date de 'début' doit être"
-                                          " antérieur à la date de 'fin' !"));
+                                          " antérieure à la date de 'fin' !"));
 
         return ;
     }
