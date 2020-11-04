@@ -169,47 +169,47 @@ Program executing directory: &quot;%3&quot;.</translation>
         <translation>Select temporary file folder</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1668"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1676"/>
         <source>Réinitialiser les données de l&apos;entreprise avec les paramètres par défaut ?</source>
         <translation>Reinitialize company data with default values?</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1672"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1859"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1874"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1680"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1867"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1882"/>
         <source>réinitialiser</source>
         <translation>reset</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1857"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1865"/>
         <source>Réinitialiser la configuration du système d&apos;alertes avec les paramètres par défaut ?</source>
         <translation>Reinitialize alert system configuration data with default values?</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1872"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1880"/>
         <source>Réinitialiser la configuration (générale) avec les paramètres par défaut ?</source>
         <translation>Reinitialize general configuration data with default values?</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1890"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1898"/>
         <source>Enregistrer les données de l&apos;entreprise (modifiées) ?</source>
         <translation>Save modified company data?</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1894"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1955"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2080"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1902"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1963"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2088"/>
         <source>enregistrer</source>
         <translation>save</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1951"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1959"/>
         <source>Enregistrer la configuration (système d&apos;alertes) modifiée ?</source>
         <oldsource>Enregistrer la configuration (système d&apos;alertes) modifiée de Yeroth ?</oldsource>
         <translation>Save the modified configuration of the alert system ?</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2078"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2086"/>
         <source>Enregistrer la configuration (générale) modifiée ?</source>
         <oldsource>Enregistrer la configuration (générale) modifiée de Yeroth ?</oldsource>
         <translation>Save the modified general configuration ?</translation>
@@ -2018,7 +2018,7 @@ Continue with update of the stock ?</translation>
         <translation>&apos; couldn&apos;t be created!</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1926"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1934"/>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="607"/>
         <location filename="src/windows/yeroth-erp-creer-nouveau-client-window.cpp" line="256"/>
         <location filename="src/windows/yeroth-erp-creer-nouveau-fournisseur-window.cpp" line="242"/>
@@ -2027,7 +2027,7 @@ Continue with update of the stock ?</translation>
         <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="335"/>
         <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="989"/>
         <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="382"/>
-        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2278"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2285"/>
         <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="569"/>
         <source>succès</source>
         <translation>success</translation>
@@ -2082,7 +2082,7 @@ Continue with update of the stock ?</translation>
         <translation>&apos; has been successfully created !</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1932"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1940"/>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="590"/>
         <location filename="src/windows/yeroth-erp-creer-nouveau-client-window.cpp" line="263"/>
         <location filename="src/windows/yeroth-erp-creer-nouveau-fournisseur-window.cpp" line="235"/>
@@ -2500,83 +2500,83 @@ Please check that begin and end dates are correct!</translation>
         <translation>The outgoing site must be different from the incoming site!</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="659"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="666"/>
         <source>sortir des stocks - pas de données !</source>
         <oldsource>imprimer un bon de sortie/transfert</oldsource>
         <translation>stock check out  / transfer - no data !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="1045"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="1052"/>
         <source>annulation de sortie</source>
         <translation>cancellation of (check out/transfer) stock item</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="1046"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="1053"/>
         <source>Vous avez annulé la sortie !</source>
         <translation>You have canceled the (outgoing/transfer) of stock item!</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="1427"/>
-        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="1657"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="1434"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="1664"/>
         <source>pas assez d&apos;articles en stock</source>
         <translation>not enough items in stock</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="1428"/>
-        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="1658"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="1435"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="1665"/>
         <source>Il n&apos;y a pas assez d&apos;articles en stock !</source>
         <translation>There are not enough items in stock!</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2065"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2072"/>
         <source>stocks à sortir</source>
         <translation>stock items to tranfer</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2066"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2073"/>
         <source>Vous n&apos;avez pas entré de stocks à sortir!</source>
         <translation>You haven&apos;t selected any stock item to transfer!</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2077"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2084"/>
         <source>Poursuivre avec la sortie de </source>
         <translation>Continue with the transfer of </translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2083"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2090"/>
         <source>sortie</source>
         <translation>transfer</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2252"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2259"/>
         <source>Le stock &apos;%1&apos; (%2 pièce(s))</source>
         <translation>Stock &apos;%1&apos; (%2 item(s))</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2262"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2269"/>
         <source> n&apos;a pas pu être sorti !
 Contacter l&apos;administrateur de %1</source>
         <translation> couldn&apos;t be checked out !
 Please contact an administrator of %1</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2273"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2280"/>
         <source>La sortie de &apos;%1&apos; articles a été effectuée avec succès !</source>
         <translation>Checkout of &apos;%1&apos; stock items could be done successfully !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2258"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2265"/>
         <source> à été sorti avec succès.</source>
         <translation> could be taken out successfully.</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="251"/>
-        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2291"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2298"/>
         <source>annulation</source>
         <translation>cancellation</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2292"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2299"/>
         <source>Vous avez annulé la sortie des articles !</source>
         <translation>You have canceled the transfer of the stock items!</translation>
     </message>
@@ -2813,7 +2813,7 @@ Please contact an administrator of %1</translation>
         <location filename="src/utils/print_latex_pdf/yeroth-erp-print_yeroth_latex_util_pdf.cpp" line="78"/>
         <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="801"/>
         <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="996"/>
-        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="811"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="818"/>
         <source>impression</source>
         <translation>print</translation>
     </message>
@@ -2821,8 +2821,8 @@ Please contact an administrator of %1</translation>
         <location filename="src/utils/print_latex_pdf/yeroth-erp-print_yeroth_latex_util_pdf.cpp" line="79"/>
         <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="802"/>
         <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="997"/>
-        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="660"/>
-        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="812"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="667"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="819"/>
         <source>Il n&apos;y a pas de données à imprimer !</source>
         <oldsource>Il n&apos;y a pas de données a imprimer !</oldsource>
         <translation>There are no data to print-out!</translation>
@@ -2896,8 +2896,8 @@ Please contact an administrator of %1</translation>
     <message>
         <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="835"/>
         <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="1035"/>
-        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="690"/>
-        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="845"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="697"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="852"/>
         <source>EXEMPLE (*NON VALIDE*)</source>
         <translation>SAMPLE (*NOT VALID*)</translation>
     </message>
@@ -3032,7 +3032,7 @@ Please contact an administrator</translation>
         <translation>The check out of &apos;</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2079"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2086"/>
         <source> articles ?</source>
         <translation> stock items ?</translation>
     </message>

@@ -1628,6 +1628,10 @@ void YerothAdminWindow::handleThermalPrinterConfiguration(const QString &addedPr
         comboBox_format_de_facture->setYerothEnabled(false);
 
         YerothERPConfig::receiptFormat = YerothERPConfig::RECEIPT_FORMAT_PETIT;
+
+		label_nbre_de_LINE_FEED_POUR_IMPRESSION_PETIT_THERMIQUE->setVisible(true);
+
+		lineEdit_nbre_de_LINE_FEED_POUR_IMPRESSION_PETIT_THERMIQUE->setVisible(true);
 	}
 	else
 	{
@@ -1648,6 +1652,10 @@ void YerothAdminWindow::handleThermalPrinterConfiguration(const QString &addedPr
 	    }
 
         comboBox_format_de_facture->setYerothEnabled(true);
+
+		label_nbre_de_LINE_FEED_POUR_IMPRESSION_PETIT_THERMIQUE->setVisible(false);
+
+		lineEdit_nbre_de_LINE_FEED_POUR_IMPRESSION_PETIT_THERMIQUE->setVisible(false);
 	}
 }
 

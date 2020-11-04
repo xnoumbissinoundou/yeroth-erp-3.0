@@ -610,16 +610,23 @@ QString YerothSortirWindow::imprimer_facture(QString referenceRecuSORTIE /* = QS
     	progOptions << pdfReceiptFileName_txt;
 
     	if (YerothERPProcess::startAndWaitForFinished("/usr/bin/pdftotext",
-    			progOptions,
-				YerothUtils::PRINT_TIMEOUT))
+    												  progOptions,
+													  YerothUtils::PRINT_TIMEOUT))
     	{
     		QThread::sleep(0.5);
 
     		progOptions.clear();
 
+    		QString LINE_FEED_CHARACTERS_FOR_THERMAL_SMALL_PRINTING;
+    		for (unsigned int k = 0; k < YerothERPConfig::LINE_FEED_CHARACTER_COUNT_FOR_THERMAL_SMALL_PRINTING; ++k)
+    		{
+    			LINE_FEED_CHARACTERS_FOR_THERMAL_SMALL_PRINTING.append("\n");
+    		}
+
     		progOptions << "-c";
-    		progOptions << QString("/bin/echo -e \"\n\n\n\n\n\n\n\n\n\n\" >> %1")
-    							 .arg(pdfReceiptFileName_txt);
+    		progOptions << QString("/bin/echo -e \"%1\" >> %2")
+    							 .arg(LINE_FEED_CHARACTERS_FOR_THERMAL_SMALL_PRINTING,
+    								  pdfReceiptFileName_txt);
 
     		YerothERPProcess::startAndWaitForFinished("/bin/bash",
     												  progOptions,
