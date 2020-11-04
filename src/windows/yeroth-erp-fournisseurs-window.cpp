@@ -247,7 +247,7 @@ void YerothERPFournisseursWindow::textChangedSearchLineEditsQCompleters()
         	_searchFilter.append(QString("(%1 OR %2 OR %3)")
         							.arg(GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::EMAIL, partSearchTerm),
         								 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::NOM_REPRESENTANT, partSearchTerm),
-										 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::DESCRIPTION_CLIENT, partSearchTerm)));
+										 GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::DESCRIPTION_FOURNISSEUR, partSearchTerm)));
 
         	if (k != lastIdx)
         	{
@@ -568,9 +568,7 @@ void YerothERPFournisseursWindow::populateFournisseursComboBoxes()
 
 	aQStringList.clear();
 
-	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::COMPTE_CLIENT));
-
-	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT));
+	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::COMPTE_FOURNISSEUR));
 
     comboBox_element->addItems(aQStringList);
 
