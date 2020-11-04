@@ -2029,6 +2029,7 @@ void YerothTableauxDeBordWindow::bilanComptable()
     double total_sorties = montant_total_achat + montant_total_dette_clientelle;
 
     double balance = 0.0;
+    double achats_depenses_financieres_effectues = 0.0;
     double benefice_sur_vente_effectuees = 0.0;
     double chiffre_daffaire = 0.0;
 
@@ -2143,6 +2144,8 @@ void YerothTableauxDeBordWindow::bilanComptable()
     }
 
     texDocument.replace("YEROTHBILANCOMPTABLEBALANCEDEVISE", balanceDeviseLatexStr);
+
+    texDocument.replace("YEROTHBILANCOMPTABLECHARGESDEPENSESFINANCIERES", GET_CURRENCY_STRING_NUM_FOR_LATEX(achats_depenses_financieres_effectues));
 
     texDocument.replace("YEROTHBILANCOMPTABLEBENEFICEDEVISE", GET_CURRENCY_STRING_NUM_FOR_LATEX(benefice_sur_vente_effectuees));
 

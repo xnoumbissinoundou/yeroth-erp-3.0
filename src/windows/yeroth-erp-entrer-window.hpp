@@ -105,7 +105,9 @@ public slots:
 
     void setStockSpecificWidgetVisible(bool visible);
 
-    void handle_service_checkBox(int state);
+    void handle_checkBox_service_achat(int state);
+
+    void handle_checkBox_service_vente(int state);
 
     void handleTVACheckBox(int state);
 
