@@ -45,6 +45,8 @@ public:
 
 	static const QString REFERENCE;
 
+	static const QString COMPTE_FOURNISSEUR;
+
 	static const QString COMPTE_CLIENT;
 
 	static const QString DETTE_MAXIMALE_COMPTE_CLIENT;

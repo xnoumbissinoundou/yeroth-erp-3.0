@@ -24,6 +24,7 @@ const QString YerothDatabaseTableColumn::REFERENCE_RECU_VENDU			("reference_recu
 const QString YerothDatabaseTableColumn::REFERENCE_RECU_SORTIE			("reference_recu_sortie");
 const QString YerothDatabaseTableColumn::ENREGISTREUR_STOCK				("enregistreur_stock");
 const QString YerothDatabaseTableColumn::REFERENCE						("reference");
+const QString YerothDatabaseTableColumn::COMPTE_FOURNISSEUR				("compte_fournisseur");
 const QString YerothDatabaseTableColumn::COMPTE_CLIENT					("compte_client");
 const QString YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT	("dette_maximale_compte_client");
 const QString YerothDatabaseTableColumn::CATEGORIE						("categorie");
@@ -163,6 +164,8 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::ENREGISTREUR_STOCK,			QObject::tr("Gestionnaire stock"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REFERENCE,			QObject::trUtf8("Référence"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::COMPTE_FOURNISSEUR,		QObject::tr("Compte fournisseur"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::COMPTE_CLIENT,			QObject::tr("Compte client"));
 
