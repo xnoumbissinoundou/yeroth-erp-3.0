@@ -12579,7 +12579,11 @@ background-color: rgb(0, 0, 0); </string>
     <addaction name="actionAlertes"/>
     <addaction name="actionCaisse"/>
     <addaction name="separator"/>
+    <addaction name="separator"/>
+    <addaction name="actionExporter_au_format_csv"/>
+    <addaction name="separator"/>
     <addaction name="actionImprimer"/>
+    <addaction name="separator"/>
     <addaction name="separator"/>
     <addaction name="actionQui_suis_je"/>
    </widget>
@@ -13027,6 +13031,7 @@ background-color: rgb(0, 0, 0); </string>
    <addaction name="actionChanger_utilisateur"/>
    <addaction name="actionDeconnecter_utilisateur"/>
    <addaction name="actionAppeler_aide"/>
+   <addaction name="actionExporter_au_format_csv"/>
    <addaction name="actionAlertes"/>
    <addaction name="actionMenu"/>
   </widget>
@@ -13218,6 +13223,21 @@ background-color: rgb(0, 0, 0); </string>
     <font>
      <weight>75</weight>
      <bold>true</bold>
+    </font>
+   </property>
+  </action>
+  <action name="actionExporter_au_format_csv">
+   <property name="icon">
+    <iconset>
+     <normalon>:/yeroth-erp-3-0-images/yeroth-erp-3.0-export-csv-data-icon.png</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>Exporter au format csv</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
     </font>
    </property>
   </action>

@@ -7,20 +7,28 @@
 
 
 #include "src/yeroth-erp-windows.hpp"
+
 #include "src/users/yeroth-erp-users.hpp"
+
 #include "src/process/yeroth-erp-process.hpp"
+
 #include "src/utils/yeroth-erp-logger.hpp"
+
 #include "src/utils/yeroth-erp-config.hpp"
+
 #include "src/utils/yeroth-erp-utils.hpp"
 
 
 #include <unistd.h>
+
+#include <QtWidgets/QFileDialog>
 
 #include <QtCore/QtMath>
 
 #include <QtCore/QPair>
 
 #include <QtSql/QSqlQuery>
+
 #include <QtSql/QSqlError>
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
@@ -132,6 +140,8 @@ YerothTableauxDeBordWindow::YerothTableauxDeBordWindow()
 
     setupDateTimeEdits_BILAN_COMPTABLE();
 
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionExporter_au_format_csv, false);
+
     actionDeconnecter_utilisateur->setEnabled(false);
     actionAlertes->setEnabled(false);
     actionMenu->setEnabled(false);
@@ -164,6 +174,7 @@ YerothTableauxDeBordWindow::YerothTableauxDeBordWindow()
     setupTab_BILAN_COMPTABLE();
 
     // Menu actions
+    connect( actionExporter_au_format_csv, SIGNAL(triggered()), this, SLOT(export_csv_file()));
     connect( actionChanger_utilisateur, SIGNAL( triggered() ), this, SLOT( changer_utilisateur() ) );
     connect( actionAppeler_aide, SIGNAL(triggered()), this, SLOT(help()));
     connect( actionDeconnecter_utilisateur, SIGNAL(triggered()), this, SLOT(deconnecter_utilisateur()));
@@ -803,14 +814,15 @@ void YerothTableauxDeBordWindow::ZERO_stats_stocks(QString fileName,
         value.append(YerothUtils::LATEX_IN_OUT_handleForeignAccents(
         		GET_DOUBLE_STRING(allItems.at(j)->_itemValue)));
 
-        csvFileContent.prepend(QString("%1; %2; %3\n")
-        						.arg(label,
-        							 value,
-									 QString::number(0.0)));
-
         valeur_dinventaire = allItems.at(j)->_itemSecondValue;
 
         valeur_dinventaire_toute_marchandise += valeur_dinventaire;
+
+        csvFileContent.prepend(QString("%1; %2; %3; %4\n")
+        						.arg(allItems.at(j)->_itemName,
+        							 value,
+									 GET_DOUBLE_STRING(valeur_dinventaire),
+									 QString::number(0.0)));
 
         _reportTexFileEndString.append(QObject::trUtf8("\\item %1 | "
         											   "Qté en stock: \"%2\" | "
@@ -831,7 +843,8 @@ void YerothTableauxDeBordWindow::ZERO_stats_stocks(QString fileName,
 
     //qDebug() << "++ test, _csvFileItemSize: " << caissierToVentes.size();
 
-    csvFileContent.prepend(QObject::trUtf8("Nom; Quantité totale en stock; Total chiffre d'affaire\n"));
+    csvFileContent.prepend(QObject::trUtf8("Nom; Quantité totale en stock; Valeur d'inventaire (%1); Total chiffre d'affaire\n")
+    								.arg(YerothERPConfig::currency));
 
     //clean up
     for (int k = 0; k < allItems.size(); ++k)
@@ -1698,6 +1711,44 @@ void YerothTableauxDeBordWindow::rechercher()
 }
 
 
+bool YerothTableauxDeBordWindow::export_csv_file()
+{
+	QString comboBoxQualiteCurrentText(comboBox_qualite->currentText());
+
+	if (! YerothUtils::isEqualCaseInsensitive(YerothTableauxDeBordWindow::QUALITE_ZERO,
+											  comboBoxQualiteCurrentText))
+	{
+		return false;
+	}
+
+	if (! YerothUtils::isEqualCaseInsensitive(YerothTableauxDeBordWindow::OBJET_ARTICLES,
+											  comboBox_objets->currentText()))
+	{
+		return false;
+	}
+
+	QString csvFileName("articles-zero-chiffre-daffaire");
+
+    QString yerothStocksListingCSVFileName(QString("%1/%2")
+    										.arg(YerothERPConfig::temporaryFilesDir,
+    											 csvFileName));
+
+    yerothStocksListingCSVFileName = FILE_NAME_USERID_CURRENT_TIME(yerothStocksListingCSVFileName);
+
+    yerothStocksListingCSVFileName =
+    		QFileDialog::getSaveFileName(this,
+    									 QObject::tr("Saisir le nom du fichier '.csv'"),
+										 yerothStocksListingCSVFileName,
+										 QObject::trUtf8("articles avec chiffre d'affaire nul \"*.csv\" (*.csv)"));
+
+    statsZERO_Articles(yerothStocksListingCSVFileName.append(".csv"));
+
+    _reportTexFileEndString.clear();
+
+	return true;
+}
+
+
 void YerothTableauxDeBordWindow::remove_BAR_PIE_CHART_OPTION_FOR_ZERO_BUSINESS_TURNOVER(const QString &comboBoxQualiteCurrentText)
 {
 	//qDebug() << QString("remove_BAR_PIE_CHART_OPTION_FOR_ZERO_BUSINESS_TURNOVER: %1")
@@ -1705,6 +1756,8 @@ void YerothTableauxDeBordWindow::remove_BAR_PIE_CHART_OPTION_FOR_ZERO_BUSINESS_T
 	if (YerothUtils::isEqualCaseInsensitive(YerothTableauxDeBordWindow::QUALITE_ZERO,
 											comboBoxQualiteCurrentText))
 	{
+		YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionExporter_au_format_csv, true);
+
 		_objetClientLastIndex = comboBox_objets->
 				findText(YerothTableauxDeBordWindow::OBJET_CLIENTS);
 
@@ -1722,6 +1775,8 @@ void YerothTableauxDeBordWindow::remove_BAR_PIE_CHART_OPTION_FOR_ZERO_BUSINESS_T
 	{
 		if (-1 != _objetClientLastIndex)
 		{
+			YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionExporter_au_format_csv, false);
+
 			comboBox_objets->insertItem(_objetClientLastIndex,
 					YerothTableauxDeBordWindow::OBJET_CLIENTS);
 

@@ -178,6 +178,8 @@ public slots:
 
     void rechercher();
 
+    virtual bool export_csv_file();
+
     void remove_BAR_PIE_CHART_OPTION_FOR_ZERO_BUSINESS_TURNOVER(const QString &comboBoxQualiteCurrentText);
 
     void changeLineEditEvolutionObjetsTextSetup(const QString &comboBoxEvolutionObjetsCurrentText);
