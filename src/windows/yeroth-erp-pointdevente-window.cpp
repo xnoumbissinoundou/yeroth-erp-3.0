@@ -741,9 +741,16 @@ QString YerothPointDeVenteWindow::imprimer_recu_vendu(QString referenceRecu)
 
     		progOptions.clear();
 
+    		QString LINE_FEED_CHARACTERS_FOR_THERMAL_SMALL_PRINTING;
+    		for (unsigned int k = 0; k < YerothERPConfig::LINE_FEED_CHARACTER_COUNT_FOR_THERMAL_SMALL_PRINTING; ++k)
+    		{
+    			LINE_FEED_CHARACTERS_FOR_THERMAL_SMALL_PRINTING.append("\n");
+    		}
+
     		progOptions << "-c";
-    		progOptions << QString("/bin/echo -e \"\n\n\n\n\n\n\n\n\n\n\" >> %1")
-    							 .arg(pdfReceiptFileName_txt);
+    		progOptions << QString("/bin/echo -e \"%1\" >> %2")
+    							 .arg(LINE_FEED_CHARACTERS_FOR_THERMAL_SMALL_PRINTING,
+    								  pdfReceiptFileName_txt);
 
     		YerothERPProcess::startAndWaitForFinished("/bin/bash",
     												  progOptions,

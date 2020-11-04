@@ -320,8 +320,14 @@ YerothAdminWindow::~YerothAdminWindow()
 void YerothAdminWindow::setupValidators()
 {
     lineEdit_alert_period_time_interval->setValidator(&YerothUtils::IntValidator);
+
     lineEdit_alert_quantity_time_interval->setValidator(&YerothUtils::IntValidator);
+
+    lineEdit_nbre_de_LINE_FEED_POUR_IMPRESSION_PETIT_THERMIQUE->
+		setValidator(&YerothUtils::nbre_de_LINE_FEED_POUR_IMPRESSION_PETIT_THERMIQUE_Validator);
+
     lineEdit_longueur_maximale_string->setValidator(&YerothUtils::IntValidator);
+
     lineEdit_annee_depart_rapports_chiffre_affaire->setValidator(&YerothUtils::IntValidator);
 }
 
@@ -1553,6 +1559,9 @@ void YerothAdminWindow::read_configuration()
 
     lineEdit_alert_quantity_time_interval->setText(QString::number(YerothERPConfig::alert_quantity_time_interval));
 
+    lineEdit_nbre_de_LINE_FEED_POUR_IMPRESSION_PETIT_THERMIQUE->
+		setText(QString::number(YerothERPConfig::LINE_FEED_CHARACTER_COUNT_FOR_THERMAL_SMALL_PRINTING));
+
     lineEdit_longueur_maximale_string->setText(QString::number(YerothERPConfig::max_string_display_length));
 
     lineEdit_taille_de_pagination_par_defaut->setText(QString::number(YerothERPConfig::standard_pagination_number));
@@ -1809,6 +1818,9 @@ void YerothAdminWindow::read_app_parameters_init_configuration()
 
     lineEdit_pdfReader->setText(YerothERPConfig::pathToPdfReader);
 
+    lineEdit_nbre_de_LINE_FEED_POUR_IMPRESSION_PETIT_THERMIQUE->
+		setText(QString::number(YerothERPConfig::LINE_FEED_CHARACTER_COUNT_FOR_THERMAL_SMALL_PRINTING));
+
     lineEdit_longueur_maximale_string->setText(QString::number(YerothERPConfig::max_string_display_length));
 
     lineEdit_taille_de_pagination_par_defaut->setText(QString::number(YerothERPConfig::standard_pagination_number));
@@ -2000,6 +2012,12 @@ void YerothAdminWindow::enregistrer_system_local_app_parameters_configuration()
     if (lineEdit_repertoire_systeme_latex->checkField())
     {
     	YerothERPConfig::pathToLatexSystemRootFolder = lineEdit_repertoire_systeme_latex->text();
+    }
+
+    if (lineEdit_nbre_de_LINE_FEED_POUR_IMPRESSION_PETIT_THERMIQUE->checkField())
+    {
+    	YerothERPConfig::LINE_FEED_CHARACTER_COUNT_FOR_THERMAL_SMALL_PRINTING =
+    			lineEdit_nbre_de_LINE_FEED_POUR_IMPRESSION_PETIT_THERMIQUE->text().toInt();
     }
 
     if (lineEdit_longueur_maximale_string->checkField())

@@ -445,6 +445,10 @@ void read_system_local_yeroth_configuration()
 		{
 			YerothERPConfig::annee_depart_rapports_chiffre_affaire_value = list.at(1).trimmed();
 		}
+		else if (YerothUtils::isEqualCaseInsensitive("local_parameter_length_line_feed_thermal_print_character_count", list.at(0)))
+		{
+			YerothERPConfig::LINE_FEED_CHARACTER_COUNT_FOR_THERMAL_SMALL_PRINTING = list.at(1).trimmed().toInt();
+		}
 		else if (YerothUtils::isEqualCaseInsensitive("local_parameter_length_maximal_display_string", list.at(0)))
 		{
 			YerothERPConfig::max_string_display_length = list.at(1).trimmed().toInt();

@@ -79,6 +79,8 @@ public:
 
 	static uint standard_pagination_number;
 
+	static uint LINE_FEED_CHARACTER_COUNT_FOR_THERMAL_SMALL_PRINTING;
+
 	static uint max_string_display_length;
 
 	static double tva_value;

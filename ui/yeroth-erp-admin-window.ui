@@ -38889,7 +38889,7 @@
         </font>
        </property>
        <property name="toolTip">
-        <string/>
+        <string>de '1' - '12'.</string>
        </property>
        <property name="text">
         <string>nbre de '\n' pour l'impression (petit)</string>
@@ -39353,6 +39353,9 @@
         <font>
          <pointsize>10</pointsize>
         </font>
+       </property>
+       <property name="toolTip">
+        <string>de '1' - '12'.</string>
        </property>
       </widget>
      </widget>

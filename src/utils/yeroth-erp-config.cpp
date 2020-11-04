@@ -70,6 +70,8 @@ uint YerothERPConfig::alert_quantity_time_interval(0);
 
 uint YerothERPConfig::standard_pagination_number(12);
 
+uint YerothERPConfig::LINE_FEED_CHARACTER_COUNT_FOR_THERMAL_SMALL_PRINTING(9);
+
 uint YerothERPConfig::max_string_display_length(22);
 
 double YerothERPConfig::tva_value(19.25/100.0);
@@ -229,6 +231,9 @@ void YerothERPConfig::saveYerothConfig()
 
 		<< QString("local_parameter_length_maximal_display_string=%1\n")
 				.arg(QString::number(YerothERPConfig::max_string_display_length))
+
+		<< QString("local_parameter_length_line_feed_thermal_print_character_count=%1\n")
+				.arg(QString::number(YerothERPConfig::LINE_FEED_CHARACTER_COUNT_FOR_THERMAL_SMALL_PRINTING))
 
 		<< QString("local_parameter_length_standard_pagination_number=%1\n")
 				.arg(QString::number(YerothERPConfig::standard_pagination_number));

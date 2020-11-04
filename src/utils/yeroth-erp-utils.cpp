@@ -416,8 +416,12 @@ const QRegExp YerothUtils::EMPTY_SPACE_REGEXP("\\s");
 
 const int YerothUtils::YEROTH_PAGINATION_INT_VALIDATOR_MAXIMAL_VALUE = 999;
 
+const QIntValidator YerothUtils::nbre_de_LINE_FEED_POUR_IMPRESSION_PETIT_THERMIQUE_Validator(1, 12);
+
 const QIntValidator YerothUtils::IntValidator(0, 444444444);
+
 const QDoubleValidator YerothUtils::DoubleValidator(0, 444444444, 2);
+
 const QRegExpValidator YerothUtils::PasswordValidator(PasswordRegExp);
 
 
