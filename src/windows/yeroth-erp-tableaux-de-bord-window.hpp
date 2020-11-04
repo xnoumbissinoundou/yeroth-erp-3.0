@@ -34,7 +34,7 @@ public:
 
 	YerothTableauxDeBordWindow();
 
-    ~YerothTableauxDeBordWindow();
+    virtual ~YerothTableauxDeBordWindow();
 
     inline virtual QToolBar * getQMainWindowToolBar()
     {
