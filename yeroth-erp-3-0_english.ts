@@ -1292,7 +1292,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
     <message>
         <location filename="src/windows/yeroth-erp-achats-window.cpp" line="297"/>
         <location filename="src/windows/yeroth-erp-clients-window.cpp" line="610"/>
-        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="597"/>
+        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="595"/>
         <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="692"/>
         <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="329"/>
         <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="489"/>
@@ -4178,7 +4178,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>Select a supplier to view its details !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="595"/>
+        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="593"/>
         <source>terme à rechercher (émail, réprésentant, description de l&apos;entreprise fournisseure)</source>
         <translation>keyword to search for (email, representant, supplier description)</translation>
     </message>
