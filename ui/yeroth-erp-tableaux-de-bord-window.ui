@@ -12582,7 +12582,8 @@ background-color: rgb(0, 0, 0); </string>
     <addaction name="separator"/>
     <addaction name="actionExporter_au_format_csv"/>
     <addaction name="separator"/>
-    <addaction name="actionImprimer"/>
+    <addaction name="separator"/>
+    <addaction name="actionAfficherPDF"/>
     <addaction name="separator"/>
     <addaction name="separator"/>
     <addaction name="actionQui_suis_je"/>
@@ -13032,6 +13033,7 @@ background-color: rgb(0, 0, 0); </string>
    <addaction name="actionDeconnecter_utilisateur"/>
    <addaction name="actionAppeler_aide"/>
    <addaction name="actionExporter_au_format_csv"/>
+   <addaction name="actionAfficherPDF"/>
    <addaction name="actionAlertes"/>
    <addaction name="actionMenu"/>
   </widget>
@@ -13053,17 +13055,6 @@ background-color: rgb(0, 0, 0); </string>
    </property>
    <property name="text">
     <string>Changer d'utilisateur</string>
-   </property>
-   <property name="font">
-    <font>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-  </action>
-  <action name="actionImprimer">
-   <property name="text">
-    <string>Imprimer</string>
    </property>
    <property name="font">
     <font>
@@ -13238,6 +13229,25 @@ background-color: rgb(0, 0, 0); </string>
    <property name="font">
     <font>
      <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionAfficherPDF">
+   <property name="icon">
+    <iconset resource="../yeroth-erp-3-0.qrc">
+     <normaloff>:/yeroth-erp-3-0-images/yeroth-erp-3-0-pdf-print-icon.svg</normaloff>:/yeroth-erp-3-0-images/yeroth-erp-3-0-pdf-print-icon.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Imprimer la fiche des stocks</string>
+   </property>
+   <property name="toolTip">
+    <string>Imprimer la fiche des stocks</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
     </font>
    </property>
   </action>

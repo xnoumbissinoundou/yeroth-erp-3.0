@@ -140,6 +140,7 @@ YerothTableauxDeBordWindow::YerothTableauxDeBordWindow()
 
     setupDateTimeEdits_BILAN_COMPTABLE();
 
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionExporter_au_format_csv, false);
 
     actionDeconnecter_utilisateur->setEnabled(false);
@@ -224,18 +225,40 @@ YerothTableauxDeBordWindow::~YerothTableauxDeBordWindow ()
 
 void YerothTableauxDeBordWindow::handleTabChanged(int index)
 {
+	YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionExporter_au_format_csv, false);
+
+	actionAfficherPDF->disconnect();
 	actionGenererPDF->disconnect();
 	actionReinitialiserRecherche->disconnect();
 
-    if (index == SUJET_ACTION_BUSINESS_TURNOVER_PROGRESS)
+    if (index == SUJET_ACTION_FINANCIAL_ACCOUNTING_REPORT_GENERATION)
     {
-    	connect( actionGenererPDF, SIGNAL(triggered()), this, SLOT(choisirEvolutionDuChiffreDaffaire()) );
-    	connect( actionReinitialiserRecherche, SIGNAL(triggered()), this, SLOT(reinitialiser_chiffre_affaire()) );
+    	setWindowTitle(QObject::trUtf8("%1 - bilan comptable")
+    						.arg(_windowName));
+
+        connect( actionAfficherPDF, SIGNAL(triggered()), this, SLOT(bilanComptable()) );
+    	connect( actionGenererPDF, SIGNAL(triggered()), this, SLOT(bilanComptable()) );
+    	connect( actionReinitialiserRecherche, SIGNAL(triggered()), this, SLOT(reinitialiser_bilan_comptable()) );
     }
     else if (index == SUJET_ACTION_BUSINESS_TURNOVER_COMPARISON)
     {
+    	remove_BAR_PIE_CHART_OPTION_FOR_ZERO_BUSINESS_TURNOVER(comboBox_qualite->currentText());
+
+    	setWindowTitle(QObject::trUtf8("%1 - comparaison des chiffres d'affaires")
+    						.arg(_windowName));
+
+    	connect( actionAfficherPDF, SIGNAL(triggered()), this, SLOT(generer()) );
     	connect( actionGenererPDF, SIGNAL(triggered()), this, SLOT(generer()) );
     	connect( actionReinitialiserRecherche, SIGNAL(triggered()), this, SLOT(reinitialiser()) );
+    }
+    else // SUJET_ACTION_BUSINESS_TURNOVER_PROGRESS
+    {
+    	setWindowTitle(QObject::trUtf8("%1 - évolution du chiffre d'affaire")
+    						.arg(_windowName));
+
+        connect( actionAfficherPDF, SIGNAL(triggered()), this, SLOT(choisirEvolutionDuChiffreDaffaire()) );
+    	connect( actionGenererPDF, SIGNAL(triggered()), this, SLOT(choisirEvolutionDuChiffreDaffaire()) );
+    	connect( actionReinitialiserRecherche, SIGNAL(triggered()), this, SLOT(reinitialiser_chiffre_affaire()) );
     }
 }
 
@@ -1773,10 +1796,10 @@ void YerothTableauxDeBordWindow::remove_BAR_PIE_CHART_OPTION_FOR_ZERO_BUSINESS_T
 	}
 	else
 	{
+		YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionExporter_au_format_csv, false);
+
 		if (-1 != _objetClientLastIndex)
 		{
-			YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionExporter_au_format_csv, false);
-
 			comboBox_objets->insertItem(_objetClientLastIndex,
 					YerothTableauxDeBordWindow::OBJET_CLIENTS);
 
