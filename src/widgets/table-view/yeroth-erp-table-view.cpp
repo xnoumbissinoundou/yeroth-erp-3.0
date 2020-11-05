@@ -213,7 +213,17 @@ void YerothTableView::lister_les_transactions_dun_fournisseur(QSqlQuery &sqlFour
     				break;
 
     			case QVariant::String:
-    				aYerothQStandardItem = new YerothQStandardItem(qv.toString(), false);
+
+    				if (5 == j ||
+    					6 == j)
+    				{
+        				aYerothQStandardItem = new YerothQStandardItem(qv.toString());
+    				}
+    				else
+    				{
+        				aYerothQStandardItem = new YerothQStandardItem(qv.toString(), false);
+    				}
+
     				_stdItemModel->setItem(i, j, aYerothQStandardItem);
     				break;
 
@@ -355,7 +365,17 @@ void YerothTableView::lister_les_transactions_dun_client(QSqlQuery &sqlClientTra
     				break;
 
     			case QVariant::String:
-    				aYerothQStandardItem = new YerothQStandardItem(qv.toString(), false);
+
+    				if (5 == j ||
+    					6 == j)
+    				{
+        				aYerothQStandardItem = new YerothQStandardItem(qv.toString());
+    				}
+    				else
+    				{
+        				aYerothQStandardItem = new YerothQStandardItem(qv.toString(), false);
+    				}
+
     				_stdItemModel->setItem(i, j, aYerothQStandardItem);
     				break;
 
