@@ -3490,67 +3490,67 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     </message>
     <message>
         <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="130"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="272"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="416"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="282"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="436"/>
         <source>Date</source>
         <translation></translation>
     </message>
     <message>
         <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="131"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="273"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="417"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="283"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="437"/>
         <source>Heure</source>
         <translation>Time</translation>
     </message>
     <message>
         <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="133"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="275"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="285"/>
         <source>Montant total</source>
         <translation>Total amount</translation>
     </message>
     <message>
         <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="134"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="276"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="286"/>
         <source>Compte client (après)</source>
         <translation>Customer account (after)</translation>
     </message>
     <message>
         <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="132"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="274"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="419"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="284"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="439"/>
         <source>Type d&apos;opération</source>
         <oldsource>Type de paiement</oldsource>
         <translation>Operation</translation>
     </message>
     <message>
         <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="135"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="277"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="287"/>
         <source>Référence article (service)</source>
         <translation>Article (service) reference</translation>
     </message>
     <message>
         <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="136"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="278"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="288"/>
         <source>Référence reçu</source>
         <translation>Receipt ref.</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="418"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="438"/>
         <source>ID de l&apos;opération</source>
         <translation>Operation id</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="420"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="440"/>
         <source>Qté initiale en stock</source>
         <translation>Initial stock qty</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="421"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="441"/>
         <source>Qté en mouvement</source>
         <translation>Moved qty</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="422"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="442"/>
         <source>Qté restante en stock</source>
         <translation>Remaining stock qty</translation>
     </message>
@@ -3825,7 +3825,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-historique-stock.cpp" line="93"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="480"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="500"/>
         <source>ENTRÉE</source>
         <oldsource>ENTREE</oldsource>
         <translation>ENTRANCE</translation>
@@ -3847,13 +3847,13 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-historique-stock.cpp" line="109"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="479"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="499"/>
         <source>RETOUR VENTE</source>
         <translation>SALE RETURN</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-historique-stock.cpp" line="113"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="478"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="498"/>
         <source>RÉ-APPROVISIONNEMENT</source>
         <oldsource>RÉ-APPROVISIONEMENT</oldsource>
         <translation>RESTOCK</translation>
