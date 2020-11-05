@@ -1,0 +1,18 @@
+fabricewilliam12@gmail.com
+
+1) create a chart of account (4coa)
+2) generates the trial balance (query 2 columns, 4 columns, 6 columns, and 8 columns)
+   based on date begin and end
+   (11TB)
+    
+   -> negative amounts on the credit 
+   -> each entry into an account is done twice (debit, and credit)
+   (6OB)
+   Information entered into the double entry bookkeeping
+   ends into the trial balance (11TB)
+
+3) all reports are generated based on the trial 
+   balance.
+
+4) REPORTS: Tax (12VatR for UK), Balance sheet and trading profit and loss account OHADA version (T04)
+
