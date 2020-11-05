@@ -2149,7 +2149,7 @@ void YerothTableauxDeBordWindow::bilanComptable()
 
     texDocument.replace("YEROTHBILANCOMPTABLEBENEFICEDEVISE", GET_CURRENCY_STRING_NUM_FOR_LATEX(benefice_sur_vente_effectuees));
 
-    texDocument.replace("YEROTHBILANCOMPTABLECHIFFREDAFFAIREDEVISE", GET_CURRENCY_STRING_NUM_FOR_LATEX(chiffre_daffaire));
+    texDocument.replace("YEROTHBILANCOMPTABLECHIFFREDAFFAIREDEVISE", GET_CURRENCY_STRING_NUM_FOR_LATEX(total_entrees));
 
     texDocument.replace("YEROTHPAPERSPEC", "a4paper");
     texDocument.replace("YEROTHENTREPRISE", infoEntreprise.getNomCommercialTex());
