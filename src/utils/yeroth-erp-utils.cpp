@@ -2445,6 +2445,11 @@ void YerothUtils::getFactureTexTableString(QString &texTable_IN_OUT,
         {
             texTable_IN_OUT.append("r|");
         }
+        else if (YerothTableWidget::DESIGNATION_COLUMN == k  ||
+        		 YerothTableWidget::CATEGORIE_COLUMN == k )
+        {
+            texTable_IN_OUT.append("l|");
+        }
         else
         {
             texTable_IN_OUT.append("r|");
@@ -2575,8 +2580,8 @@ void YerothUtils::getFactureTexTableString(QString &texTable_IN_OUT,
 #ifdef YEROTH_ENGLISH_LANGUAGE
     totalStr.append("TOTAL");
 #endif
-    texTable_IN_OUT.append(QString("\\multicolumn{%1}{|c}{\\textbf{%2}} & %3 & %4 & %5 \\\\ \\hline \n")
-    							.arg(GET_NUM_STRING(tableStandardItemModel.columnCount()-5),
+    texTable_IN_OUT.append(QString("\\multicolumn{%1}{|c}{\\textbf{%2}} & & %3 & & %4 & %5 \\\\ \\hline \n")
+    							.arg(GET_NUM_STRING(tableStandardItemModel.columnCount()-6),
     								 totalStr,
 									 quantiteVendueStr,
 									 totalTVAStr,
