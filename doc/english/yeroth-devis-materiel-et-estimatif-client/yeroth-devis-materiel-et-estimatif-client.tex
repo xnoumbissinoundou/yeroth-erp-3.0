@@ -1,0 +1,231 @@
+%====================================================
+%
+% Author: Dipl.--Inf. XAVIER NOUMBISSI NOUNDOU
+%
+%====================================================
+\documentclass[12pt, a4paper]{article}
+\NeedsTeXFormat{LaTeX2e}
+
+%---------------------------- PACKAGE INCLUSION -------------------------------
+% This group renders characters clearer and more precise
+
+\RequirePackage[bitstream-charter,cal,expert]{mathdesign}
+\RequirePackage{latexsym}
+
+\usepackage[french]{babel}
+
+\usepackage{geometry}
+\geometry{a4paper,
+		  %showframe=true,
+		  %margin=2.75em,
+		  %a4paper,
+		  %total={170mm,257mm},
+		  top=3.5em,
+		  left=3em,
+		  right=3em,
+		  bottom=3.39em
+		  }
+
+\usepackage[default]{cantarell}
+\usepackage{graphicx}
+\usepackage{xspace}
+\usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{listings} % for lstset definitions
+\usepackage{url}
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+\usepackage{epsfig}
+\usepackage{booktabs}
+%\usepackage{enumitem} %funny itemize icons
+\usepackage{verbatim}
+\usepackage{tcolorbox}
+
+\usepackage{pagecolor}
+
+\usepackage{amsmath}
+\newcommand{\mathbold}[1]{\text{\textbf{#1}}}
+
+\usepackage{xcolor}
+\definecolor{yerothColorOrange}{RGB}{242, 161, 0}   
+\definecolor{yerothColorBlue}{RGB}{77, 93 , 254}
+\definecolor{yerothColorRed}{RGB}{254, 48 , 48}
+\definecolor{yerothColorGray}{RGB}{198, 198, 198}
+\definecolor{yerothColorDarkgray}{RGB}{60, 60 , 60}
+\definecolor{yerothColorIndigo}{RGB}{83, 0, 125}
+\definecolor{yerothColorGreen}{RGB}{2, 160, 70}
+\definecolor{forestgreen}{RGB}{2,160,70}    
+\definecolor{mediumblue}{RGB}{7,43,205}    
+\definecolor{firebrickred}{RGB}{178,34,34}
+\definecolor{listingray}{gray}{0.9}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+\definecolor{darkgreen}{rgb}{0,0.35,0}
+\definecolor{medgreen}{rgb}{0,0.5,0}
+\definecolor{lightgreen}{rgb}{0.5,0.7,0.5}
+\definecolor{pmcolour}{rgb}{0.5,0.7,0.5}
+\definecolor{medgrey}{rgb}{0.6,0.6,0.6}
+\definecolor{purplish}{rgb}{0.4,0,0.6}
+\definecolor{brightred}{rgb}{1,0.2,0.2}
+
+\newcommand{\diplinfn}{Dipl.--Inf.\xspace}
+
+\newcommand{\yerothrdnoir}{yerothrd\xspace}
+
+\newcommand{\yerothrd}{\textcolor{yerothColorGreen}
+			{\textsc{\textcolor{yerothColorRed}{YEROTH}}$_{\text{r\&d}}$\xspace}}
+
+\newcommand{\yerotherp}{\textsc{YEROTH--ERP--$3.0$}\xspace}
+
+\newcommand{\myfullacademicname}{Dipl.--Inf. XAVIER NOUMBISSI NOUNDOU\xspace}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+	pagebackref,
+    citecolor=medgreen,
+    linkcolor=purplish,
+    breaklinks,
+    pdftex,
+    bookmarks,
+    plainpages=false,
+    pdfauthor={Dipl.--Inf. XAVIER NOUMBISSI NOUNDOU}
+}
+
+%--------------------------------------------------------------------------------
+
+%---------------------------- COMMANDS DEFINITION -------------------------------
+\newcommand{\diplinf}{\emph{Dipl.-Inf.}\xspace}
+\newcommand{\mycheckmark}[1]{\textcolor{#1}{$\checkmark$}\xspace}
+
+\newcommand{\myenumitem}[1]{\emph{#1}\xspace}
+\newcommand{\yerenalert}{\emph{yeren-alert}\xspace}
+
+\newcommand{\pos}{ERP~software--system\xspace}
+
+\newcommand{\mysql}{MySQL\xspace}
+\newcommand{\mysqlcolored}{\textcolor{yerothColorBlue}{My}\textcolor{yerothColorOrange}{SQL}\xspace}
+
+\newcommand{\featuresummary}[2]{\textbf{\textcolor{#1}{\textsc{#2}}}}
+
+%--------------------------------------------------------------------------------
+
+\usepackage[T1]{fontenc}
+\newcommand{\changefont}[3]{
+\fontfamily{#1} \fontseries{#2} \fontshape{#3} \selectfont}
+\changefont{cmss}{m}{n}
+
+\renewcommand\labelenumi{\theenumi)}
+
+\pagenumbering{gobble}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\rhead{}
+\lhead{}
+\lfoot{}
+\rfoot{{\small version du --~\today~--}}
+\cfoot{}
+
+\clubpenalty = 10000
+\widowpenalty = 10000
+\displaywidowpenalty = 10000
+
+\newcommand{\yerothdebianlinuxdix}{'SE~debian--linux~$10.0.0$'\xspace}
+\newcommand{\yerothachat}[1]{$\mathit{#1}\ \text{cfa}$\xspace}
+\newcommand{\yerothachatb}[1]{\textbf{$\mathbf{#1}\ \text{FCFA}$}\xspace}
+\newcommand{\yerothapc}{'APC'\xspace}
+\newcommand{\yerothlenovo}{'LENOVO'\xspace}
+\newcommand{\yerothyaounde}{\textbf{Yaound\'e}\xspace}
+\newcommand{\yerothdouala}{\textbf{Douala}\xspace}
+
+\AtBeginDocument{
+% ce 'hook' est utilise ici parce que
+% qu'avant ici, '\today' est toujours
+% affiche en Anglais.
+  \hypersetup{pdftitle={devis estimatif d'installation du,
+  	\today{}, pour X par: ''\myfullacademicname''.}}
+}
+
+\begin{document}
+
+{\bf \Large \yerothrd} {| \sc \scriptsize \yerotherp devis estimatif d'installation}
+
+
+\vspace{3.5em}
+
+
+\parbox{27em}{\LARGE \yerotherp Devis Estimatif D'installation pour X (DOUALA, et YAOUND\'E).}
+
+\vspace{2.0em}
+
+\begin{center}
+\textbf{AUTEUR: \myfullacademicname}
+\end{center}
+
+\vspace{2.5em}
+
+\begin{table}[!htbp]
+\centering
+\resizebox{\textwidth}{!}{%to fit the table within the text width
+\begin{tabular}{lrrr}
+\centering 
+ 		
+\textbf{Mat\'eriel} 	& 
+\textbf{\yerothdouala} 	&   
+\textbf{\yerothyaounde}	&
+TOTAL			\\ \hline
+
+rallonge $3$ ports universels + $3$ ports USB					& $\mathbf{2}$  		& $\mathbf{2}$			&	 \\ 
+\hspace{5em}(au moins $220$~VOLTS et $10$~AMP\`ERES)			& 			   			& 			 			&	\\
+\hspace{2em}\textbf{environ localement:} 
+\yerothachat{5\ 000}							& \yerothachat{10\ 000}	& \yerothachat{10\ 000} &	\yerothachat{20\ 000}\\ \hline
+
+imprimante thermique epson tm-t$20$ii							& $\mathbf{1}$  		& $\mathbf{1}$			 & 	\\ 
+\hspace{2em}\textbf{environ localement:}
+\yerothachat{125\ 000}							& \yerothachat{125\ 000}& \yerothachat{125\ 000} & \yerothachat{250\ 000} \\ \hline
+
+scanner de code--barres	(avec ou sans fil)						& $\mathbf{2}$  		& $\mathbf{1}$			& \\ 
+\hspace{2em}\textbf{environ localement:} 
+\yerothachat{10\ 000}							& \yerothachat{20\ 000}	& \yerothachat{10\ 000} & \yerothachat{30\ 000} \\ \hline
+
+ordinateur (desktop de marque \yerothlenovo, intel--chipset, 	& $\mathbf{2}$ 			& $\mathbf{1}$	 		& \\
+\hspace{5em}\'ecran de minimum 18--pouces,						& 			   			& 			 			& \\
+\hspace{5em}processeur intel core--i$7$,						& 			   			& 			 			& \\ 
+\hspace{5em}disque dur $1$--TERA avec SSD--tech)				& 			   			& 			 			& \\ 
+\hspace{2em}\textbf{environ localement:} 
+\yerothachat{130\ 000}							& \yerothachat{260\ 000}& \yerothachat{130\ 000}&\yerothachat{390\ 000} \\ \hline
+
+onduleur \yerothapc $650$VA 									& $\mathbf{1}$  		& $\mathbf{1}$			& \\ 
+\hspace{2em}\textbf{environ localement:} 
+\yerothachat{70\ 000}							& \yerothachat{70\ 000}& \yerothachat{70\ 000}  & \yerothachat{140\ 000}\\ \hline
+
+routeur ng (au moins 1 vitesse de $300$~Mbps)					& $\mathbf{1}$  		& \textbf{N/A}	& \\ 
+\hspace{2em}\textbf{environ localement:} 
+\yerothachat{30\ 000}							& \yerothachat{30\ 000} &  				& \yerothachat{30\ 000} \\ \hline
+
+cl\'e wifi (tp--link tl wn$821$n)								& $\mathbf{2}$  		& $\mathbf{1}$			& \\ 
+\hspace{2em}\textbf{environ localement:} 
+\yerothachat{7\ 000}							& \yerothachat{14\ 000} & \yerothachat{7\ 000}	& \yerothachat{21\ 000}\\ \hline
+
+copie \yerothdebianlinuxdix										& $\mathbf{2}$  		& $\mathbf{1}$			& 	 \\ 
+\hspace{2em}\textbf{environ localement:} 
+\yerothachat{500} (copie universel d\'elivr\'ee 
+par \yerothrdnoir)& \yerothachat{1\ 000}				& \yerothachat{0} 		& \yerothachat{1\ 000}	\\ \hline
+
+copie \yerotherp								& $\mathbf{2}$  		& $\mathbf{1}$		&	 	 \\ 
+\hspace{2em}\textbf{environ localement:} 
+\yerothachat{200\ 000} (\textbf{r\'eduction 
+de} $\mathbf{66.66\%}$) 						& \yerothachat{400\ 000} & \yerothachat{200\ 000} 	& \yerothachat{600\ 000} \\ \hline
+
+frais du technicien	
+(dipl.--inf. XAVIER NOUMBISSI NOUNDOU)			& \yerothachat{30\ 000}  &  \yerothachat{0}	& \yerothachat{30\ 000}\\ \hline
+\multicolumn{4}{l}{}\\ 
+\multicolumn{3}{c}{\textbf{X FCFA}} & \yerothachatb{X NUM}  \\ 
+ 				
+\end{tabular}}
+\label{tachesEtFonctions}
+\end{table}
+
+	
+\end{document}
+
