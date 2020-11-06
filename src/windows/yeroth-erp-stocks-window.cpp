@@ -636,15 +636,11 @@ void YerothStocksWindow::reinitialiser_champs_db_visibles()
 	_visibleDBFieldColumnStrList.clear();
 
     _visibleDBFieldColumnStrList
-			<< YerothDatabaseTableColumn::REFERENCE
 			<< YerothDatabaseTableColumn::DESIGNATION
 			<< YerothDatabaseTableColumn::CATEGORIE
-			<< YerothDatabaseTableColumn::PRIX_UNITAIRE
-			<< YerothDatabaseTableColumn::MONTANT_TVA
 			<< YerothDatabaseTableColumn::PRIX_VENTE
 			<< YerothDatabaseTableColumn::QUANTITE_TOTALE
-			<< YerothDatabaseTableColumn::DATE_ENTREE
-			<< YerothDatabaseTableColumn::DATE_PEREMPTION;
+			<< YerothDatabaseTableColumn::LOCALISATION_STOCK;
 }
 
 
