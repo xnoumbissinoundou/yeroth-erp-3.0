@@ -125,6 +125,8 @@ QString YerothUtils::template_comptes_clients_tex("");
 
 QString YerothUtils::template_marchandises_tex("");
 
+QString YerothUtils::template_lister_alertes_tex("");
+
 QString YerothUtils::template_lister_achats_tex("");
 
 QString YerothUtils::template_lister_stock_tex("");
@@ -152,6 +154,12 @@ QString YerothUtils::EN_pie_chart_tex("");
 QString YerothUtils::EN_bar_chart_tex("");
 
 QString YerothUtils::EN_bar_diag_tex("");
+
+
+/*
+ * All valid key values must be >= 0.
+ */
+QMap<int, QString> YerothUtils::_alerte_OUI_NON_ToUserViewString;
 
 
 /*
@@ -315,8 +323,8 @@ const QString YerothUtils::NOUVEAU_FOURNISSEUR(QObject::trUtf8(STRING_NEW_SUPPLI
 
 const QString YerothUtils::NOUVELLE_CATEGORIE(QObject::trUtf8(STRING_NEW_CATEGORY_FR));
 
-const QString YerothUtils::STRING_OUI(QObject::tr(STRING_TEXT_YES_FR));
-const QString YerothUtils::STRING_NON(QObject::tr(STRING_TEXT_NO_FR));
+const QString YerothUtils::STRING_OUI(STRING_TEXT_YES_FR);
+const QString YerothUtils::STRING_NON(STRING_TEXT_NO_FR);
 
 const QString YerothUtils::INFERIEUR_OU_EGAL(QObject::trUtf8(STRING_MATH_INFERIOR_OR_EQUAL_FR));
 const QString YerothUtils::SUPERIEUR(QObject::trUtf8(STRING_MATH_SUPERIOR_FR));
@@ -329,8 +337,8 @@ const QString YerothUtils::NOUVEAU_FOURNISSEUR(QObject::trUtf8(STRING_NEW_SUPPLI
 
 const QString YerothUtils::NOUVELLE_CATEGORIE(QObject::trUtf8(STRING_NEW_CATEGORY_EN));
 
-const QString YerothUtils::STRING_OUI(QObject::tr(STRING_TEXT_YES_EN));
-const QString YerothUtils::STRING_NON(QObject::tr(STRING_TEXT_NO_EN));
+const QString YerothUtils::STRING_OUI(STRING_TEXT_YES_EN);
+const QString YerothUtils::STRING_NON(STRING_TEXT_NO_EN);
 
 const QString YerothUtils::INFERIEUR_OU_EGAL(QObject::trUtf8(STRING_MATH_INFERIOR_OR_EQUAL_EN));
 const QString YerothUtils::SUPERIEUR(QObject::trUtf8(STRING_MATH_SUPERIOR_EN));
@@ -428,6 +436,13 @@ const QRegExpValidator YerothUtils::PasswordValidator(PasswordRegExp);
 
 YerothUtils::YerothUtils()
 {
+    YerothUtils::_alerte_OUI_NON_ToUserViewString.insert(YerothUtils::ALERTE_RESOLUE_NON_INDEX,
+    		YerothUtils::STRING_NON);
+
+    YerothUtils::_alerte_OUI_NON_ToUserViewString.insert(YerothUtils::ALERTE_RESOLUE_OUI_INDEX,
+    		YerothUtils::STRING_OUI);
+
+
     YerothUtils::_strategieindexToUserViewString.insert(YerothUtils::STRATEGIE_ALL_COMBOBOX_INDEX,
 			YerothERPConfig::STRATEGIE_VENTE_SORTIE_ALL);
 

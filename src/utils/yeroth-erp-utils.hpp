@@ -671,6 +671,8 @@ public:
 
 	static QString template_marchandises_tex;
 
+	static QString template_lister_alertes_tex;
+
 	static QString template_lister_achats_tex;
 
 	static QString template_lister_stock_tex;
@@ -699,6 +701,11 @@ public:
 
 	static QString EN_bar_diag_tex;
 
+    enum ALERTE_RESOLUE_OUI_NON_INDEX
+	{
+    	ALERTE_RESOLUE_NON_INDEX 		= 0,
+		ALERTE_RESOLUE_OUI_INDEX 		= 1
+	};
 
     enum STRATEGIE_COMBOBOX_INDEX
 	{
@@ -765,8 +772,9 @@ public:
 	};
 
 
-	static QMap<int, QString> _strategieindexToUserViewString;
+	static QMap<int, QString> _alerte_OUI_NON_ToUserViewString;
 
+	static QMap<int, QString> _strategieindexToUserViewString;
 
 	static QMap<int, QString> _titreToUserViewString;
 

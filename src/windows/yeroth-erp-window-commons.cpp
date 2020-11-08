@@ -183,7 +183,7 @@ void YerothWindowsCommons::setCenterAligned_FOR_YEROTH_PDF_LATEX_PRINTING(int db
 }
 
 
-void YerothWindowsCommons::setRightftAligned_FOR_YEROTH_PDF_LATEX_PRINTING(const QString &dbtableColumnString)
+void YerothWindowsCommons::setRightAligned_FOR_YEROTH_PDF_LATEX_PRINTING(const QString &dbtableColumnString)
 {
 	int columnIndexStocksID = _dbtablefieldNameToDBColumnIndex.value(dbtableColumnString);
 
@@ -195,7 +195,7 @@ void YerothWindowsCommons::setRightftAligned_FOR_YEROTH_PDF_LATEX_PRINTING(const
 }
 
 
-void YerothWindowsCommons::setRightftAligned_FOR_YEROTH_PDF_LATEX_PRINTING(int dbtableColumnIndex)
+void YerothWindowsCommons::setRightAligned_FOR_YEROTH_PDF_LATEX_PRINTING(int dbtableColumnIndex)
 {
 	_DBFieldNamesToPrintRightAligned.insert(dbtableColumnIndex);
 

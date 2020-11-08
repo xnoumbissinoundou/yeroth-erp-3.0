@@ -4,31 +4,43 @@
  *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
  */
 
-# ifndef SRC_YEROTH_ALERTES_WINDOW_HPP_
-# define SRC_YEROTH_ALERTES_WINDOW_HPP_
+#ifndef YEROTH_ERP_ALERTES_WINDOW_HPP_
+#define YEROTH_ERP_ALERTES_WINDOW_HPP_
 
-# include "../../ui_yeroth-erp-alertes-window.h"
+#include "../../ui_yeroth-erp-alertes-window.h"
 
-# include <QtWidgets/QMessageBox>
+
+#include <QtCore/QDebug>
+
+#include <QtWidgets/QMessageBox>
+
+#include <QtGui/QContextMenuEvent>
+
+
 #include "yeroth-erp-window-commons.hpp"
 
-class YerothLogger;
-class YerothERPWindows;
+
+class QStandardItemModel;
+class QContextMenuEvent;
+class QProcess;
+
 class YerothSqlTableModel;
 
-class YerothAlertesWindow : public YerothWindowsCommons, private Ui_YerothAlertesWindow
+class YerothAlertesWindow : public YerothWindowsCommons,
+						    private Ui_YerothAlertesWindow,
+						    public YerothAbstractClassYerothSearchWindow
 {
     Q_OBJECT
 
 	enum TabIndex
 	{
-		TableauDesAlertes = 0,
-		AfficherAlerteAuDetail
+		TableauDesAlertes 		= 0,
+		AfficherAlerteAuDetail	= 1
 	};
 
 public:
 
-    YEROTH_CLASS_OPERATORS
+	YEROTH_CLASS_OPERATORS
 
     YerothAlertesWindow();
 
@@ -51,11 +63,14 @@ public:
 
     virtual void definirPasDeRole();
 
-    void rendreVisible(YerothSqlTableModel *stocksTableModel);
+    MACRO_TO_DEFINE_VIEWING_PAGE_NUMBER_FOR_TABLEVIEW(label_alertes_numero_page_derniere,
+    												  label_alertes_numero_page_courante)
 
-    void rendreInvisible();
+    virtual void rendreVisible(YerothSqlTableModel *stocksTableModel);
 
 public slots:
+
+	MACRO_TO_DEFINE_VIEWING_POINTERS_PAGE_SLOTS(tableView_alertes)
 
 	inline virtual void apropos()
 	{
@@ -65,45 +80,86 @@ public slots:
 	inline virtual void help()
 	{
 		YerothQMessageBox::information(this,
-						 QObject::trUtf8("aide"),
-						 QObject::trUtf8("1) Sélectionez l'alerte que vous souhaitez résoudre!\n"
-								   	   	 "2) Résolvez l'alerte en exécutant le message d'alerte!\n"
-								   	   	 "3) Cliquez sur le bouton 'marquer résolue' lorsque "
-								       	 "vous avez terminer!"));
+							 QObject::trUtf8("aide"),
+							 QObject::trUtf8("Sélectionner un alertes dans le tableau des alertes, ensuite cliquer "
+											 "sur l'opération que vous souhaitez réaliser !"));
 	}
 
-    void handleCurrentChanged(int index);
+	virtual bool imprimer_pdf_document();
 
-    void retourAlertes();
+	void resetFilter(YerothSqlTableModel *alertesSqlTableModel);
 
-    void afficher();
+    virtual void lister_les_elements_du_tableau(YerothSqlTableModel &alertesSqlTableModel);
 
-    void lister_alertes();
+    inline void lister_les_elements_du_tableau()
+    {
+    	lister_les_elements_du_tableau(*_curAlertesSqlTableModel);
+    }
 
-    void afficher_au_detail();
+    void afficher_alerte_selectioner(const QString &alerteDesignation);
 
-    void marquer_resolue();
+    bool afficher_au_detail();
 
-    void lister_les_alertes();
+    void reinitialiser_recherche();
 
-    void supprimer();
+    void handle_visibilite_autres_elements(bool aBoolValue);
 
-    virtual void deconnecter_utilisateur();
+protected slots:
+
+	void handleCurrentTabChanged(int index);
+
+	void handleComboBoxClients_courriers_alertes_resolue_oui_OU_non(const QString &currentText);
 
 protected:
 
+	virtual void reinitialiser_champs_db_visibles();
+
+	void contextMenuEvent(QContextMenuEvent *event);
+
     virtual void setupShortcuts();
+
+ protected slots:
+
+    virtual void slot_reinitialiser_champs_db_visibles();
+
+    virtual void textChangedSearchLineEditsQCompleters();
+
+	inline virtual void disableImprimer()
+	{
+		actionAfficherPDF->setVisible(false);
+	}
+
+	inline virtual void enableImprimer()
+	{
+		actionAfficherPDF->setVisible(true);
+	}
+
+private slots:
+
+	void afficher_alertes();
+
+    void marquer_resolue();
+
+    void supprimer();
 
 private:
 
-    void setupLineEdits();
+    void setCurrentUser_NOM_UTILISATEUR(const QString &aUserNomUtilisateur);
+
+    void disable_NOM_UTILISATEUR();
+
+    void enable_NOM_UTILISATEUR_ONLY_MANAGER();
 
     void clear_all_fields();
 
-    YerothLogger 			*_logger;
+    void populateComboBoxes();
 
-    int 					_currentTabView;
+    void setupLineEdits();
+
+
+    YerothLogger			*_logger;
+
+    YerothSqlTableModel 	*_curAlertesSqlTableModel;
 };
 
-
-#endif /* SRC_YEROTH_ALERTES_WINDOW_HPP_ */
+#endif /* YEROTH_ERP_ALERTES_WINDOW_HPP_ */

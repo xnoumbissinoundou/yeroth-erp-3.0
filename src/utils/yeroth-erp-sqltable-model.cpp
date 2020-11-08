@@ -270,17 +270,24 @@ bool YerothSqlTableModel::updateRecord(QSqlRecord &record)
     		if (!aCurFieldName.contains("date_"))
     		{
         		aCurFieldValue = YerothUtils::get_text(record.value(aCurFieldName));
+
+            	SQL_UPDATE_STRING_COMMAND.append(QString("%1='%2', ")
+            										.arg(aCurFieldName,
+            											 aCurFieldValue));
     		}
     		else
     		{
     			aCurFieldValue = DATE_TO_DB_FORMAT_STRING(record.value(aCurFieldName).toDate());
 
 //    			QDEBUG_STRINGS_OUTPUT_2("aCurFieldValue (DATE_TO_DB_FORMAT_STRING)", aCurFieldValue);
-    		}
 
-        	SQL_UPDATE_STRING_COMMAND.append(QString("%1='%2', ")
-        										.arg(aCurFieldName,
-        											 aCurFieldValue));
+    			if (!aCurFieldValue.isEmpty())
+    			{
+    				SQL_UPDATE_STRING_COMMAND.append(QString("%1='%2', ")
+    													.arg(aCurFieldName,
+    														 aCurFieldValue));
+    			}
+    		}
     	}
     	else
     	{

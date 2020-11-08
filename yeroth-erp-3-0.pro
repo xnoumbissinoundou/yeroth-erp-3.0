@@ -149,6 +149,7 @@ HEADERS = src/include/yeroth-erp-3-0-precompiled-header.hpp \
 		  src/widgets/table-view/yeroth-erp-mouvements_de_stocks-table-view.hpp \
 		  src/widgets/table-view/yeroth-erp-fournisseurs-table-view.hpp \
 		  src/widgets/table-view/yeroth-erp-clients-table-view.hpp \
+		  src/widgets/table-view/yeroth-erp-alertes-table-view.hpp \
 		  src/widgets/table-view/yeroth-erp-achats-table-view.hpp \
 		  src/widgets/table-view/yeroth-erp-marchandises-table-view.hpp \
 			src/widgets/yeroth-erp-qtable-widget-item.hpp \
@@ -266,6 +267,7 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/widgets/table-view/yeroth-erp-mouvements_de_stocks-table-view.cpp \
 		  src/widgets/table-view/yeroth-erp-fournisseurs-table-view.cpp \
 		  src/widgets/table-view/yeroth-erp-clients-table-view.cpp \
+		  src/widgets/table-view/yeroth-erp-alertes-table-view.cpp \
 		  src/widgets/table-view/yeroth-erp-achats-table-view.cpp \
 		  src/widgets/table-view/yeroth-erp-marchandises-table-view.cpp \
 			src/widgets/yeroth-erp-qtable-widget-item.cpp \

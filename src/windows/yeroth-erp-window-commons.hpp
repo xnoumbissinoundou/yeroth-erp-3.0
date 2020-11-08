@@ -323,9 +323,9 @@ protected:
 
     void setCenterAligned_FOR_YEROTH_PDF_LATEX_PRINTING(int dbtableColumnIndex);
 
-    void setRightftAligned_FOR_YEROTH_PDF_LATEX_PRINTING(const QString &dbtableColumnString);
+    void setRightAligned_FOR_YEROTH_PDF_LATEX_PRINTING(const QString &dbtableColumnString);
 
-    void setRightftAligned_FOR_YEROTH_PDF_LATEX_PRINTING(int dbtableColumnIndex);
+    void setRightAligned_FOR_YEROTH_PDF_LATEX_PRINTING(int dbtableColumnIndex);
 
 	void enableResizing();
 

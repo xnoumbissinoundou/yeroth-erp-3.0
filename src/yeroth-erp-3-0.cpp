@@ -318,6 +318,18 @@ void readTexTemplateFiles(YerothLogger &logger)
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
+    QFile fileListeAlertesFr(FILE_YEROTH_ERP_3_0_TEMPLATE_LISTE_ALERTES_FR);
+    yeroth_read_file(fileListeAlertesFr, YerothUtils::template_lister_alertes_tex);
+
+#else //YEROTH_ENGLISH_LANGUAGE
+
+    QFile fileListeAlertesEn(FILE_YEROTH_ERP_3_0_TEMPLATE_LISTE_ALERTES_EN);
+    yeroth_read_file(fileListeAlertesEn, YerothUtils::template_lister_alertes_tex);
+
+#endif
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+
     QFile fileListeAchatsFr(FILE_YEROTH_ERP_3_0_TEMPLATE_LISTE_ACHATS_FR);
     yeroth_read_file(fileListeAchatsFr, YerothUtils::template_lister_achats_tex);
 
