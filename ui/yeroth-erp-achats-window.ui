@@ -16457,7 +16457,7 @@ background-color: rgb(0, 0, 0); </string>
     <string>Imprimer la fiche des achats</string>
    </property>
    <property name="toolTip">
-    <string>Imprimer la fiche des stocks</string>
+    <string>Imprimer la fiche des achats</string>
    </property>
    <property name="font">
     <font>
