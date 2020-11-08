@@ -102,17 +102,6 @@ public slots:
 		YerothWindowsCommons::apropos(this);
 	}
 
-	static void getPayerAuFournisseurListingTexTableString(QString &texTable_in_out,
-	        								   	   	   	    QStandardItemModel &tableStandardItemModel,
-															QList<int> &dbFieldNameOfTypeString,
-															QList<int> &columnsToIgnore,
-															int fromRowIndex,
-															int toRowIndex,
-															bool lastPage);
-
-	static void getPayerAuFournisseurTexDocumentString(QString &texDocumentString_in_out,
-			   	   	   	   	   	   	   	   	   	   	    QString &printString);
-
 protected:
 
 	virtual void hideEvent(QHideEvent * hideEvent);

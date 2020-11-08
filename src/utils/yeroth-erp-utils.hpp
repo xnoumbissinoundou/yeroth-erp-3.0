@@ -9,6 +9,8 @@
 
 #include "src/include/yeroth-erp-3-0-software.text-configuration.hpp"
 
+#include "src/widgets/yeroth-erp-qmessage-box.hpp"
+
 #include "src/widgets/table-view/yeroth-erp-table-view.hpp"
 
 #include "src/utils/yeroth-erp-service-stock-marchandise-data.hpp"
@@ -210,8 +212,12 @@ public:
 						  QString filterName,
 						  QString &yerothFiltre_in_out);
 
-	static int getComboBoxDatabaseQueryValue(const QString &comboBoxStringValue,
-								  	  	     QMap<int, QString> *toViewStringMAP);
+	inline static int getComboBoxDatabaseQueryValue(const QString &comboBoxStringValue,
+								  	  	  	  	  	QMap<int, QString> *toViewStringMAP)
+	{
+		return (0 != toViewStringMAP) ?
+				YerothUtils::getComboBoxDatabaseQueryValue(comboBoxStringValue, *toViewStringMAP) : -1;
+	}
 
 	static int getComboBoxDatabaseQueryValue(const QString &comboBoxStringValue,
 								  	  	  	 QMap<int, QString> &toViewStringMAP);
@@ -238,14 +244,24 @@ public:
 		return YerothUtils::generateSqlLike(QString(sqlTableColumn), searchStr);
 	}
 
-	static QString generateSqlIs(QString sqlTableColumn, QString searchStr);
+	inline static QString generateSqlIs(QString sqlTableColumn,
+	                                    QString searchStr)
+	{
+	    return QString("%1 = \'%2\'")
+	    			.arg(sqlTableColumn,
+	    				 searchStr.replace("'", "''"));
+	}
 
 	inline static QString generateSqlIs(const char *sqlTableColumn, QString searchStr)
 	{
 		return YerothUtils::generateSqlIs(QString(sqlTableColumn), searchStr);
 	}
 
-	static QString generateSqlIsNotEmpty(QString sqlTableColumn);
+	inline static QString generateSqlIsNotEmpty(QString sqlTableColumn)
+	{
+		return QString("%1 != \'\'")
+					.arg(sqlTableColumn);
+	}
 
 	inline static QString generateSqlIsNotEmpty(const char *sqlTableColumn)
 	{
@@ -282,8 +298,16 @@ public:
 		return  YerothUtils::GET_REFERENCE_RECU_SUFFIX(YerothUtils::PREFIX_RECU_PAIEMENT_CLIENT, fixedNumber);
 	}
 
-	static QString GET_REFERENCE_RECU_SUFFIX(const QString &prefix,
-											 const QString &fixedNumber);
+	inline static QString GET_REFERENCE_RECU_SUFFIX(const QString &prefix,
+												    const QString &fixedNumber)
+	{
+		return QString("%1%2")
+					.arg(prefix,
+						 QString("%1-%2-%3")
+							.arg(QDate::currentDate().toString("yyyyMMdd"),
+							     QTime::currentTime().toString("hhmmss"),
+								 fixedNumber));
+	}
 
 	static int STOCK_PURCHASE_RECORDS_QUANTITY(int stockId);
 
@@ -378,7 +402,13 @@ public:
 	static void getFactureSmallENTexDocumentString(QString &texDocumentString_in_out,
 												   QString &printString);
 
-	static QString getFileNameWithCurrentTime(const QString &fileName);
+	inline static QString getFileNameWithCurrentTime(const QString &fileName)
+	{
+		return QString("%1%2%3")
+					.arg(fileName,
+						 QDate::currentDate().toString("-yyyyMMdd"),
+						 QTime::currentTime().toString("_HHmmss"));
+	}
 
 	static QString getFileNameWithUserIDAndCurrentTime(const QString &fileName);
 
@@ -422,8 +452,13 @@ public:
 	static void infosEntreprise(YerothPOSAdminWindowsCommons &aYerothPOSAdminQMainWindow,
 								const QString &infos);
 
-	static void infosEntreprise(YerothWindowsCommons &aYerothPOSQMainWindow,
-								const QString &infos);
+	inline static void infosEntreprise(YerothWindowsCommons &aYerothPOSQMainWindow,
+	                                   const QString &infos)
+	{
+	    YerothQMessageBox::information(&aYerothPOSQMainWindow,
+	                                  QObject::trUtf8("Informations sur l'entreprise"),
+	                                  infos);
+	}
 
 	static void getCurrentSimplifiedDate(QString &date_IN_OUT);
 
@@ -474,9 +509,19 @@ public:
 																   YerothLineEdit &aYerothLineEdit_reference_client,
 																   int aCurrentClientDetailDBID = YerothUtils::CURRENT_CLIENT_DB_ID_UNDEFINED);
 
-	static void yerothSetWidgetColor(QWidget *aWidget);
+	inline static void yerothSetWidgetColor(QWidget *aWidget)
+	{
+		return ;
 
-
+	    /*if (aWidget->isEnabled())
+	    {
+	    	aWidget->setPalette(YerothUtils::YEROTH_WHITE_PALETTE);
+	    }
+	    else
+	    {
+	    	aWidget->setPalette(YerothUtils::YEROTH_BLACK_PALETTE);
+	    }*/
+	}
 
 	static QString YEROTH_ERP_3_0_SERVER_PARAMETERS_DISPLAY;
 

@@ -8,8 +8,6 @@
 
 #include "src/widgets/yeroth-erp-qstandard-item.hpp"
 
-#include "src/widgets/yeroth-erp-qmessage-box.hpp"
-
 #include "src/utils/yeroth-erp-database.hpp"
 
 #include "src/utils/yeroth-erp-database-table-column.hpp"
@@ -1547,27 +1545,6 @@ QString YerothUtils::generateSqlLike(QString sqlTableColumn,
     return result;
 }
 
-QString YerothUtils::generateSqlIs(QString sqlTableColumn,
-                                  QString searchStr)
-{
-    QString result;
-
-    searchStr.replace("'", "''");
-
-    result.append(sqlTableColumn)
-    .append(" = \'").append(searchStr).append("\'");
-
-    return result;
-}
-
-QString YerothUtils::generateSqlIsNotEmpty(QString sqlTableColumn)
-{
-    QString result;
-    result.append(sqlTableColumn)
-    .append(" != \'\'");
-
-    return result;
-}
 
 void YerothUtils::addFiltre(YerothLineEdit *aLineEdit,
 							QString filterName,
@@ -1579,19 +1556,6 @@ void YerothUtils::addFiltre(YerothLineEdit *aLineEdit,
         								.arg(filterName, aLineEdit->text()))
         .append(", ");
     }
-}
-
-
-int YerothUtils::getComboBoxDatabaseQueryValue(const QString &comboBoxStringValue,
-							  	  			   QMap<int, QString> *toViewStringMAP)
-{
-	if (0 != toViewStringMAP)
-	{
-		return YerothUtils::getComboBoxDatabaseQueryValue(comboBoxStringValue,
-												   	   	  *toViewStringMAP);
-	}
-
-	return -1;
 }
 
 
@@ -1624,21 +1588,6 @@ void YerothUtils::GET_YEROTH_VIEW_RECORD_WIDTH_LAST_SELECTED_ID(YerothSqlTableMo
 																	.arg(YerothDatabaseTableColumn::ID,
 																		 YerothERPWindows::get_last_lister_selected_row_ID()));
 	resultSQL_RECORD_in_out = aYerothSqlTableModel_in_out.record(0);
-}
-
-
-QString YerothUtils::GET_REFERENCE_RECU_SUFFIX(const QString &prefix,
-											   const QString &fixedNumber)
-{
-	QString resultString(prefix);
-
-	QString referenceRecuSuffix(QString("%1-%2-%3")
-										.arg(QDate::currentDate().toString("yyyyMMdd"),
-										     QTime::currentTime().toString("hhmmss"),
-											 fixedNumber));
-	resultString.append(referenceRecuSuffix);
-
-	return resultString;
 }
 
 
@@ -1889,35 +1838,6 @@ bool YerothUtils::checkIfCustomerAccountAlreadyExist_REFERENCECLIENT(YerothWindo
 }
 
 
-void YerothUtils::yerothSetWidgetColor(QWidget *aWidget)
-{
-    if (!aWidget)
-    {
-        return;
-    }
-
-    /*if (aWidget->isEnabled())
-    {
-    	aWidget->setPalette(YerothUtils::YEROTH_WHITE_PALETTE);
-    }
-    else
-    {
-    	aWidget->setPalette(YerothUtils::YEROTH_BLACK_PALETTE);
-    }*/
-}
-
-QString YerothUtils::getFileNameWithCurrentTime(const QString &fileName)
-{
-    QString resultFileName(fileName);
-
-    resultFileName.append(QDate::currentDate().toString("-yyyyMMdd"));
-    resultFileName.append(QTime::currentTime().toString("_HHmmss"));
-
-    //qDebug() << "++ " << resultFileName;
-
-    return resultFileName;
-}
-
 QString YerothUtils::getFileNameWithUserIDAndCurrentTime(const QString &fileName)
 {
     QString resultFileName(fileName);
@@ -1938,6 +1858,7 @@ QString YerothUtils::getFileNameWithUserIDAndCurrentTime(const QString &fileName
 
     return resultFileName;
 }
+
 
 QString YerothUtils::getWindowTitleWithStrategy(QMainWindow *aMainWindow, QString localVisibleStrategy/* = ""*/)
 {
@@ -2133,14 +2054,6 @@ void YerothUtils::infosEntreprise(YerothPOSAdminWindowsCommons &aYerothPOSAdminQ
 #endif
 }
 
-void YerothUtils::infosEntreprise(YerothWindowsCommons &aYerothPOSQMainWindow,
-                                  const QString &infos)
-{
-    YerothQMessageBox::information(&aYerothPOSQMainWindow,
-                                  QObject::trUtf8("Informations sur l'entreprise"),
-                                  infos);
-}
-
 
 void YerothUtils::getCurrentSimplifiedDate(QString &date_IN_OUT)
 {
@@ -2179,6 +2092,7 @@ void YerothUtils::getCurrentLocaleDate(QString &date_IN_OUT)
     date_IN_OUT = YerothUtils::LATEX_IN_OUT_handleForeignAccents(date_IN_OUT);
 #endif
 }
+
 
 bool YerothUtils::slot_connecter_localisation(QWidget &aWidget,
         									  YerothERPWindows *allWindows,
@@ -2405,6 +2319,7 @@ void YerothUtils::handleFactureTexTableItemText(int texTableColumnCount,
     }
 }
 
+
 void YerothUtils::handleTexTableItemText(int texTableColumnCount,
                                          QString &texTable_IN_OUT,
                                          int itemTextColumnPosition,
@@ -2609,6 +2524,7 @@ void YerothUtils::getFactureTexTableString(QString &texTable_IN_OUT,
     					   "\\end{table*}\n");
 }
 
+
 void YerothUtils::getFactureSmallTexTableString(QString &texTable_IN_OUT,
         									    QTableWidget &tableStandardItemModel,
 											    int 	 quantiteVendue,
@@ -2782,6 +2698,7 @@ void YerothUtils::getFactureFRTexDocumentString(QString &texDocumentString_in_ou
     texDocumentString_in_out.append("\\end{document}");
 }
 
+
 void YerothUtils::getFactureENTexDocumentString(QString &texDocumentString_in_out,
         QString &printString)
 {
@@ -2794,6 +2711,7 @@ void YerothUtils::getFactureENTexDocumentString(QString &texDocumentString_in_ou
     texDocumentString_in_out.append("\\end{document}");
 }
 
+
 void YerothUtils::getFactureSmallFRTexDocumentString(QString &texDocumentString_in_out,
         QString &printString)
 {
@@ -2802,6 +2720,7 @@ void YerothUtils::getFactureSmallFRTexDocumentString(QString &texDocumentString_
     texDocumentString_in_out.append(printString).append("\n");
     texDocumentString_in_out.append("\\end{document}");
 }
+
 
 void YerothUtils::getFactureSmallENTexDocumentString(QString &texDocumentString_in_out,
         QString &printString)
@@ -2978,6 +2897,7 @@ void YerothUtils::getSortieDesStocksFRTexDocumentString(QString &texDocumentStri
     texDocumentString_in_out.append("\\end{document}");
 }
 
+
 void YerothUtils::getSortieDesStocksENTexDocumentString(QString &texDocumentString_in_out,
         QString &printString)
 {
@@ -2986,6 +2906,7 @@ void YerothUtils::getSortieDesStocksENTexDocumentString(QString &texDocumentStri
     texDocumentString_in_out.append(printString).append("\n");
     texDocumentString_in_out.append("\\end{document}");
 }
+
 
 void YerothUtils::getSortieDesStocksSmallFRTexDocumentString(QString &texDocumentString_in_out,
         QString &printString)
@@ -2996,6 +2917,7 @@ void YerothUtils::getSortieDesStocksSmallFRTexDocumentString(QString &texDocumen
     texDocumentString_in_out.append("\\end{document}");
 }
 
+
 void YerothUtils::getSortieDesStocksSmallENTexDocumentString(QString &texDocumentString_in_out,
         QString &printString)
 {
@@ -3004,4 +2926,5 @@ void YerothUtils::getSortieDesStocksSmallENTexDocumentString(QString &texDocumen
     texDocumentString_in_out.append(printString).append("\n");
     texDocumentString_in_out.append("\\end{document}");
 }
+
 
