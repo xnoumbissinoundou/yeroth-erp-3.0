@@ -125,7 +125,7 @@ public slots:
     	textChangedSearchLineEditsQCompleters();
     }
 
-    void resetFilter(YerothSqlTableModel *stocksVenduTableModel);
+    void resetFilter(YerothSqlTableModel *historiquePaiementsTableModel);
 
 protected slots:
 

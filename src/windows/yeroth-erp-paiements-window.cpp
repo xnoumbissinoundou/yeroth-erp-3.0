@@ -118,8 +118,8 @@ YerothPaiementsWindow::YerothPaiementsWindow()
     pushButton_paiements_filtrer->disable(this);
     pushButton_paiements_reinitialiser_filtre->disable(this);
 
-    pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
-    pushButton_retour_paiements->enable(this, SLOT(retourPaiements()));
+    pushButton_reinitialiser->disable(this);
+    pushButton_retour_paiements->disable(this);
 
 
     connect(actionReinitialiserChampsDBVisible, SIGNAL(triggered()), this, SLOT(slot_reinitialiser_champs_db_visibles()));
@@ -629,6 +629,10 @@ void YerothPaiementsWindow::definirCaissier()
 
     MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(tableView_paiements);
 
+    pushButton_retour_paiements->disable(this);
+
+    pushButton_reinitialiser->disable(this);
+
     pushButton_paiements_filtrer->disable(this);
     pushButton_paiements_reinitialiser_filtre->disable(this);
 }
@@ -652,6 +656,10 @@ void YerothPaiementsWindow::definirManager()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
     MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(this, _curPaiementsTableModel)
+
+    pushButton_retour_paiements->enable(this, SLOT(retourPaiements()));
+
+    pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
 
     pushButton_paiements_filtrer->enable(this, SLOT(filtrer_paiements()));
     pushButton_paiements_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
@@ -677,6 +685,10 @@ void YerothPaiementsWindow::definirVendeur()
 
     MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(this, _curPaiementsTableModel)
 
+    pushButton_retour_paiements->enable(this, SLOT(retourPaiements()));
+
+    pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
+
     pushButton_paiements_filtrer->enable(this, SLOT(filtrer_paiements()));
     pushButton_paiements_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
 }
@@ -701,6 +713,10 @@ void YerothPaiementsWindow::definirGestionaireDesStocks()
 
     MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(tableView_paiements);
 
+    pushButton_retour_paiements->disable(this);
+
+    pushButton_reinitialiser->disable(this);
+
     pushButton_paiements_filtrer->disable(this);
     pushButton_paiements_reinitialiser_filtre->disable(this);
 }
@@ -720,6 +736,10 @@ void YerothPaiementsWindow::definirMagasinier()
 
     MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(tableView_paiements);
 
+    pushButton_retour_paiements->disable(this);
+
+    pushButton_reinitialiser->disable(this);
+
     pushButton_paiements_filtrer->disable(this);
     pushButton_paiements_reinitialiser_filtre->disable(this);
 }
@@ -738,6 +758,10 @@ void YerothPaiementsWindow::definirPasDeRole()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
     MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(tableView_paiements);
+
+    pushButton_retour_paiements->disable(this);
+
+    pushButton_reinitialiser->disable(this);
 
     pushButton_paiements_filtrer->disable(this);
     pushButton_paiements_reinitialiser_filtre->disable(this);
@@ -786,7 +810,7 @@ bool YerothPaiementsWindow::imprimer_pdf_document()
 }
 
 
-void YerothPaiementsWindow::resetFilter(YerothSqlTableModel * historiquePaiementsTableModel)
+void YerothPaiementsWindow::resetFilter(YerothSqlTableModel *historiquePaiementsTableModel)
 {
     _curPaiementsTableModel = historiquePaiementsTableModel;
 
