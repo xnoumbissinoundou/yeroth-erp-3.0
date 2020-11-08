@@ -191,12 +191,16 @@ void YerothAlertesWindow::marquer_resolue()
 {
     YerothSqlTableModel & courrierAlertesSqlTableModel = _allWindows->getSqlTableModel_courriers_alertes();
 
+    bool courrierAlertesSqlTableModelFILTERED = false;
+
     if (_allWindows->getUser()->isMagasinier() || _allWindows->getUser()->isCaissier())
     {
         QString userFilter(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::DESTINATAIRE,
         										_allWindows->getUser()->nom_utilisateur()));
 
         courrierAlertesSqlTableModel.yerothSetFilter_WITH_where_clause(userFilter);
+
+        courrierAlertesSqlTableModelFILTERED = true;
     }
 
     QString userFilter(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::DESTINATAIRE,
@@ -219,6 +223,11 @@ void YerothAlertesWindow::marquer_resolue()
 
     if (alertesSqlTableModelRowCount <= 0)
     {
+    	if (courrierAlertesSqlTableModelFILTERED)
+    	{
+    		courrierAlertesSqlTableModel.resetFilter();
+    	}
+
     	alertesSqlTableModel.resetFilter();
 
     	return ;
@@ -229,6 +238,13 @@ void YerothAlertesWindow::marquer_resolue()
 
     if (1 == GET_SQL_RECORD_DATA(alertesRecord, YerothDatabaseTableColumn::ALERTE_RESOLUE).toInt())
     {
+    	if (courrierAlertesSqlTableModelFILTERED)
+    	{
+    		courrierAlertesSqlTableModel.resetFilter();
+    	}
+
+    	alertesSqlTableModel.resetFilter();
+
     	YerothQMessageBox::information(this,
     			QObject::trUtf8("marquer résolue"),
 				QObject::trUtf8("L'alerte '%1' est déjà marquée résolue !")
@@ -271,6 +287,11 @@ void YerothAlertesWindow::marquer_resolue()
 				    		 YerothDatabaseTableColumn::DESIGNATION_ALERTE),
 				    		 YerothUtils::APPLICATION_NAME));
     }
+
+	if (courrierAlertesSqlTableModelFILTERED)
+	{
+		courrierAlertesSqlTableModel.resetFilter();
+	}
 
     alertesSqlTableModel.resetFilter();
 }
