@@ -402,9 +402,9 @@ void YerothAlertesWindow::populateComboBoxes()
 {
 	comboBox_alertes_resolue_oui_OU_non->addItem(YerothUtils::EMPTY_STRING);
 
-	comboBox_alertes_resolue_oui_OU_non->addItem(YerothUtils::STRING_NON);
-
 	comboBox_alertes_resolue_oui_OU_non->addItem(YerothUtils::STRING_OUI);
+
+	comboBox_alertes_resolue_oui_OU_non->addItem(YerothUtils::STRING_NON);
 
 
 	QStringList aQStringList;
