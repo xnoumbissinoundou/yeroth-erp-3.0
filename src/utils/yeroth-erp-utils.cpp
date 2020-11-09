@@ -863,46 +863,49 @@ bool YerothUtils::insertStockItemInProductList(const YerothERPServiceStockMarcha
 
     record.setValue(YerothDatabaseTableColumn::DESCRIPTION_PRODUIT, aServiceStockData._description);
 
-    if (productListSqlTableModel.Is_SearchQSqlTable(YerothDatabaseTableColumn::REFERENCE, aServiceStockData._reference) 	> 0 ||
-    	productListSqlTableModel.Is_SearchQSqlTable(YerothDatabaseTableColumn::DESIGNATION, aServiceStockData._designation) > 0 )
+    if (!aServiceStockData._reference.isEmpty())
     {
-    	productListSqlTableModel
-			.yerothSetFilter_WITH_where_clause(QString("%1='%2' AND %3='%4' AND %5='%6'")
-													.arg(YerothDatabaseTableColumn::REFERENCE,
-														 aServiceStockData._reference,
-														 YerothDatabaseTableColumn::DESIGNATION,
-														 aServiceStockData._designation,
-														 YerothDatabaseTableColumn::CATEGORIE,
-														 aServiceStockData._categorie));
-
-    	int rows = productListSqlTableModel.easySelect();
-
-    	if (rows > 0)
+    	if (productListSqlTableModel.Is_SearchQSqlTable(YerothDatabaseTableColumn::REFERENCE, aServiceStockData._reference) 	> 0 ||
+    		productListSqlTableModel.Is_SearchQSqlTable(YerothDatabaseTableColumn::DESIGNATION, aServiceStockData._designation) > 0 )
     	{
-    		record.clear();
+    		productListSqlTableModel
+				.yerothSetFilter_WITH_where_clause(QString("%1='%2' AND %3='%4' AND %5='%6'")
+														.arg(YerothDatabaseTableColumn::REFERENCE,
+															 aServiceStockData._reference,
+															 YerothDatabaseTableColumn::DESIGNATION,
+															 aServiceStockData._designation,
+															 YerothDatabaseTableColumn::CATEGORIE,
+															 aServiceStockData._categorie));
 
-    		record = productListSqlTableModel.record(0);
+    		int rows = productListSqlTableModel.easySelect();
 
-    		QSqlRecord aMarchandiseUpdateRecord(record);
+    		if (rows > 0)
+    		{
+    			record.clear();
 
-        	if (!aServiceStockData._prix_dachat_precedent.isEmpty())
-        	{
-        		aMarchandiseUpdateRecord.setValue(YerothDatabaseTableColumn::PRIX_DACHAT_PRECEDENT,
-        				YerothUtils::YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(aServiceStockData._prix_dachat_precedent));
-        	}
+    			record = productListSqlTableModel.record(0);
 
-        	if (!aServiceStockData._prix_vente_precedent.isEmpty())
-        	{
-        		aMarchandiseUpdateRecord.setValue(YerothDatabaseTableColumn::PRIX_VENTE_PRECEDENT,
-        				YerothUtils::YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(aServiceStockData._prix_vente_precedent));
-        	}
+    			QSqlRecord aMarchandiseUpdateRecord(record);
 
-            productListSqlTableModel.updateRecord(0, aMarchandiseUpdateRecord);
+    			if (!aServiceStockData._prix_dachat_precedent.isEmpty())
+    			{
+    				aMarchandiseUpdateRecord.setValue(YerothDatabaseTableColumn::PRIX_DACHAT_PRECEDENT,
+    						YerothUtils::YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(aServiceStockData._prix_dachat_precedent));
+    			}
+
+    			if (!aServiceStockData._prix_vente_precedent.isEmpty())
+    			{
+    				aMarchandiseUpdateRecord.setValue(YerothDatabaseTableColumn::PRIX_VENTE_PRECEDENT,
+    						YerothUtils::YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(aServiceStockData._prix_vente_precedent));
+    			}
+
+    			productListSqlTableModel.updateRecord(0, aMarchandiseUpdateRecord);
+    		}
+
+    		productListSqlTableModel.resetFilter();
+
+    		return true;
     	}
-
-    	productListSqlTableModel.resetFilter();
-
-    	return true;
     }
 
 
