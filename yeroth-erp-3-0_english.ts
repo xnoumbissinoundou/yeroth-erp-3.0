@@ -499,12 +499,12 @@ ON BUILD_COMPUTER: &apos;&apos;.</translation>
         <translation>category creation</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1130"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1133"/>
         <source>Cannot open file</source>
         <translation>Le fichier ne peut pas être ouvert</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1131"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1134"/>
         <source>Unable to open file establish a database connection.
 This example needs SQLite support. Please read the Qt SQL driver documentation for information how to build it.
 
@@ -512,14 +512,14 @@ Click Cancel to exit.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1746"/>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1761"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1749"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1764"/>
         <location filename="src/windows/yeroth-erp-creer-nouveau-client-window.cpp" line="340"/>
         <source>Une entreprise avec la référence régistre du commerce &apos;%1&apos; existe déjà dans la base de données !</source>
         <translation>A company with trade registry reference &apos;%1&apos; already exists in database !</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1956"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1959"/>
         <source>	[ factures pdf au format: &apos;%1&apos; ]</source>
         <translation>	[ pdf receipt size: &apos;%1&apos; ]</translation>
     </message>
@@ -529,43 +529,43 @@ Click Cancel to exit.</source>
         <translation>Company info</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="2123"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="2126"/>
         <source>La localisation %1 n&apos;a pas d&apos;adresse IP enregistrée !</source>
         <translation>Site %1 doesn&apos;t have a registered IP address !</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="2126"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="2129"/>
         <source>%1 - pas d&apos;adresse IP !</source>
         <translation>%1 - no IP address !</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="2140"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="2143"/>
         <source>La localisation &apos;%1&apos; est déjà connectée par l&apos;adresse IP loopback (&apos;%2&apos;) !</source>
         <oldsource>La localisation &apos;&apos;%1&apos;&apos; est déjà connectée par l&apos;adresse IP loopback (&apos;%2&apos;) !</oldsource>
         <translation>Site &apos;%1&apos; is already connected through the loopback IP address (&apos;%2&apos;) !</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="2170"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="2173"/>
         <source>Connecter à la localisation %1 !</source>
         <translation>Connect site %1 !</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="2173"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="2176"/>
         <source>%1 - Connection à la localisation !</source>
         <translation>%1 - Connection to site !</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="2182"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="2185"/>
         <source>Impossible de se connecter à la localisation %1 !</source>
         <translation>Connection to site %1 cannot be established !</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="2185"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="2188"/>
         <source>%1 - Pas de connection à la localisation !</source>
         <translation>%1 - no connection to site !</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="2219"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="2222"/>
         <source>Impossible de se connecter au serveur &apos;%1&apos; de base de données !
 Contacter l&apos;administrateur de yeroth
 
@@ -608,7 +608,7 @@ Press m &apos;Cancel&apos; to exit %2</translation>
         <translation>Discount (%)</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1378"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1381"/>
         <source>Images (*.png *.xpm *.jpg *.jpeg *.gif *.PNG *.XPM *.JPG *.JPEG *.GIF)</source>
         <translation></translation>
     </message>
@@ -1998,13 +1998,13 @@ Continue with update of the stock ?</translation>
         <translation>keyword to search for (memo)</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="2756"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="2759"/>
         <location filename="src/windows/yeroth-erp-mouvements_de_stocks-window.cpp" line="322"/>
         <source>pas de données à exporter au format csv</source>
         <translation>there are no data to export in csv format</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="2757"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="2760"/>
         <location filename="src/windows/yeroth-erp-mouvements_de_stocks-window.cpp" line="323"/>
         <source>Il n&apos;y a pas de données à exporter au format csv !</source>
         <oldsource>Il n&apos;y a pas de données à exporter au format csv!</oldsource>
@@ -2041,19 +2041,19 @@ Continue with update of the stock ?</translation>
         <translation>create a customer account</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1686"/>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1699"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1689"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1702"/>
         <location filename="src/windows/yeroth-erp-creer-nouveau-client-window.cpp" line="312"/>
         <source>Une entreprise nommée &apos;%1&apos; existe déjà dans la base de données !</source>
         <translation>A company named &apos;%1&apos; already exists in database !</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1691"/>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1704"/>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1752"/>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1767"/>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1814"/>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1828"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1694"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1707"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1755"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1770"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1817"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1831"/>
         <location filename="src/windows/yeroth-erp-creer-nouveau-client-window.cpp" line="317"/>
         <location filename="src/windows/yeroth-erp-creer-nouveau-client-window.cpp" line="345"/>
         <location filename="src/windows/yeroth-erp-creer-nouveau-client-window.cpp" line="373"/>
@@ -2061,8 +2061,8 @@ Continue with update of the stock ?</translation>
         <translation>customer account already exist</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1809"/>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1823"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1812"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1826"/>
         <location filename="src/windows/yeroth-erp-creer-nouveau-client-window.cpp" line="368"/>
         <source>Une entreprise avec la référence &apos;%1&apos; existe déjà dans la base de données !</source>
         <translation>A company with reference &apos;%1&apos; already exists in database !</translation>
@@ -2172,30 +2172,30 @@ Continue with update of the stock ?</translation>
         <translation>Supplier &apos;%1</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="928"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="931"/>
         <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1187"/>
         <source>enregistrement de l&apos;article type dans la liste des marchandises</source>
         <translation>saving of article type in merchandise list</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="941"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="944"/>
         <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1192"/>
         <source> n&apos;a pas pu être enregistré dans la liste des marchandises !</source>
         <translation> couldn&apos;t be successfully saved in merhandise list !</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="946"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="949"/>
         <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1195"/>
         <source>échec de l&apos;enregistrement de l&apos;article type dans la liste des marchandises</source>
         <translation>failing to save article type in merchandise list</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1549"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1554"/>
         <source>Le prix de vente doit être supérieur ou égal au prix d&apos;achat !</source>
         <translation>Selling price must be superior or equal to purchase price !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1559"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1565"/>
         <source>La date de péremption n&apos;est pas postdatée !
 
 Continuer avec l&apos;enregistrement des données du stock (service) ?</source>
@@ -2204,23 +2204,23 @@ Continuer avec l&apos;enregistrement des données du stock (service) ?</source>
 Continue with update of the stock (service) ?</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1782"/>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1819"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1788"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1825"/>
         <source>enregistrement du stock (service) avec succès</source>
         <translation>successful saving of stock item (service)</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1790"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1796"/>
         <source>échec de l&apos;enregistrement du stock (service)</source>
         <translation>failed to save stock item (service)</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1804"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1810"/>
         <source>Le stock &apos;%1&apos;</source>
         <translation>Stock &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="918"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="921"/>
         <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1179"/>
         <source>Le stock (service) &apos;%1&apos;</source>
         <translation>Stock (service) &apos;%1&apos;</translation>
@@ -2236,7 +2236,7 @@ Continue with update of the stock (service) ?</translation>
         <translation>Batch quantity must be greater to zero !</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="923"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="926"/>
         <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1184"/>
         <source> a été enregistré dans la liste des marchandises !</source>
         <translation> has been saved to the merchandise list !</translation>
@@ -2247,18 +2247,18 @@ Continue with update of the stock (service) ?</translation>
         <translation>Selling price must be superior or equal to purchase price !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1551"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1556"/>
         <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="203"/>
         <source>pas profitable</source>
         <translation>not profitable</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1564"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1570"/>
         <source>enregistrer un stock</source>
         <translation>save this stock item</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1524"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1528"/>
         <source>La marchandise &apos;%1&apos; utilise déjà la référence (&apos;%2&apos;) !</source>
         <translation>Merchandise &apos;%1&apos; already uses reference (&apos;%2&apos;) !</translation>
     </message>
@@ -2278,29 +2278,29 @@ Continue with update of the stock (service) ?</translation>
         <translation>selling price</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1771"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1777"/>
         <source>L&apos;achat du stock &apos;%1&apos;</source>
         <translation>Purchase of stock &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1779"/>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1816"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1785"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1822"/>
         <source> a été enregistré dans la base de données !</source>
         <translation> has been added to the database !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1787"/>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1824"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1793"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1830"/>
         <source> n&apos;a pas pu être enregistré dans la base de données !</source>
         <translation> couldn&apos;t be added to the database !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1827"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1833"/>
         <source>échec de l&apos;enregistrement du stock</source>
         <translation>failed to save stock item</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1799"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1805"/>
         <source>Le service &apos;%1&apos;</source>
         <translation>Service &apos;%1&apos;</translation>
     </message>
@@ -4005,14 +4005,14 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     <message>
         <location filename="src/imports/yeroth-erp-marchandise-import.cpp" line="219"/>
         <location filename="src/imports/yeroth-erp-stock-import.cpp" line="493"/>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1511"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1515"/>
         <source>Cette référence (&apos;%1&apos;) est déjà utilisée par la marchandise &apos;%2&apos; !</source>
         <translation>This reference (&apos;%1&apos;) is already used by merchandise &apos;%2&apos; !</translation>
     </message>
     <message>
         <location filename="src/imports/yeroth-erp-marchandise-import.cpp" line="228"/>
         <location filename="src/imports/yeroth-erp-stock-import.cpp" line="502"/>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1535"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1539"/>
         <source>La marchandise &apos;%1&apos; est déjà dans la catégorie (&apos;%2&apos;) !</source>
         <translation>Merchandise &apos;%1&apos; is already in category (&apos;%2&apos;) !</translation>
     </message>
