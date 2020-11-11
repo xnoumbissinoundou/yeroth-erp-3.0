@@ -1762,7 +1762,7 @@ void YerothEntrerWindow::enregistrer_produit()
     {
     	QByteArray bytes;
     	YerothUtils::savePixmapToByteArray(bytes, *label_image_produit->pixmap(), "JPG");
-    	record.setValue(YerothDatabaseTableColumn::IMAGE_PRODUIT, bytes);
+    	record.setValue(YerothDatabaseTableColumn::IMAGE_PRODUIT, QVariant::fromValue(bytes));
     }
 
     bool achatSuccess = false;
