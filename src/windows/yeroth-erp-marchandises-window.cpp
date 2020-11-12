@@ -223,6 +223,7 @@ void YerothMarchandisesWindow::reinitialiser_champs_db_visibles()
 		<< YerothDatabaseTableColumn::CATEGORIE
 		<< YerothDatabaseTableColumn::PRIX_DACHAT_PRECEDENT
 		<< YerothDatabaseTableColumn::PRIX_VENTE_PRECEDENT
+		<< YerothDatabaseTableColumn::PRIX_VENTE_EN_GROS_PRECEDENT
 		<< YerothDatabaseTableColumn::QUANTITE_TOTALE
 		<< YerothDatabaseTableColumn::REFERENCE;
 }
@@ -350,6 +351,10 @@ void YerothMarchandisesWindow::textChangedSearchLineEditsQCompleters()
     }
     else
     {
+    	disableExporterAuFormatCsv();
+
+    	disableImprimer();
+
         qDebug() << QString("++ YerothMarchandisesWindow::textChangedSearchLineEditsQCompleters(): %1")
         				.arg(_yerothSqlTableModel->lastError().text());
     }
