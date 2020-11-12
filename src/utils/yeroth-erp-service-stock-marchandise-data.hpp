@@ -26,7 +26,8 @@ public:
 	inline YerothERPServiceStockMarchandiseData()
 	:_isService(false),
      _prix_dachat_precedent("0.0"),
-	 _prix_vente_precedent("0.0")
+	 _prix_vente_precedent("0.0"),
+	 _prix_vente_en_gros_precedent("0.0")
 	{
 	}
 
@@ -40,6 +41,8 @@ public:
 	QString		_prix_dachat_precedent;
 
 	QString		_prix_vente_precedent;
+
+	QString		_prix_vente_en_gros_precedent;
 
     QString 	_categorie;
 
