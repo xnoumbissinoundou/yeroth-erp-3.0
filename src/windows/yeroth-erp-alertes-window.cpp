@@ -606,6 +606,8 @@ void YerothAlertesWindow::textChangedSearchLineEditsQCompleters()
     }
     else
     {
+    	disableImprimer();
+
         qDebug() << QString("++ YerothAlertesWindow::textChangedSearchLineEditsQCompleters(): %1")
         				.arg(_yerothSqlTableModel->lastError().text());
     }

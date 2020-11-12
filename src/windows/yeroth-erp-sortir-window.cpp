@@ -1472,6 +1472,10 @@ void YerothSortirWindow::afficher_tableau_sorties(const int tableWidgetRow)
             tableWidget_articles->selectRow(tableWidgetRow);
         }
     }
+    else
+    {
+    	disableImprimer();
+    }
 }
 
 void YerothSortirWindow::afficher_sortie_detail(const int tableWidgetRow)

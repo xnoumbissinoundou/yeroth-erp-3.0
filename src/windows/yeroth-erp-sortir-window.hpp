@@ -69,12 +69,12 @@ public:
 
 public slots:
 
-	inline void disableImprimer()
+	inline virtual void disableImprimer()
 	{
 		actionAfficherPDF->setEnabled(false);
 	}
 
-	inline void enableImprimer()
+	inline virtual void enableImprimer()
 	{
 		actionAfficherPDF->setEnabled(true);
 	}

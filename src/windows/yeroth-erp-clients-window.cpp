@@ -303,6 +303,10 @@ void YerothERPClientsWindow::textChangedSearchLineEditsQCompleters()
     }
     else
     {
+    	disableExporterAuFormatCsv();
+
+    	disableImprimer();
+
         qDebug() << QString("++ YerothERPClientsWindow::textChangedSearchLineEditsQCompleters(): %1")
         				.arg(_yerothSqlTableModel->lastError().text());
     }

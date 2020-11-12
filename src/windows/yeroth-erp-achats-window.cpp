@@ -459,6 +459,10 @@ void YerothAchatsWindow::textChangedSearchLineEditsQCompleters()
     }
     else
     {
+    	disableExporterAuFormatCsv();
+
+    	disableImprimer();
+
         qDebug() << QString("++ YerothAchatsWindow::textChangedSearchLineEditsQCompleters(): %1")
         				.arg(_yerothSqlTableModel->lastError().text());
     }
