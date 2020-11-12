@@ -640,7 +640,8 @@ void YerothStocksWindow::reinitialiser_champs_db_visibles()
 			<< YerothDatabaseTableColumn::CATEGORIE
 			<< YerothDatabaseTableColumn::PRIX_VENTE
 			<< YerothDatabaseTableColumn::QUANTITE_TOTALE
-			<< YerothDatabaseTableColumn::LOCALISATION_STOCK;
+			<< YerothDatabaseTableColumn::LOCALISATION_STOCK
+			<< YerothDatabaseTableColumn::DATE_PEREMPTION;
 }
 
 
