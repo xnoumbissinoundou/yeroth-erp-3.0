@@ -1081,7 +1081,6 @@ void YerothSortirWindow::handleCurrentChanged(int index)
     {
     case TableauDesSorties:
         afficher_tableau_sorties(tableWidget_articles->currentRow());
-        enableImprimer();
         break;
     case AfficherSortieAuDetail:
         afficher_sortie_detail(tableWidget_articles->currentRow());
@@ -1214,6 +1213,15 @@ void YerothSortirWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
     setWindowTitle(aNewWindowTitle);
 
     check_fields_entry();
+
+    if (tableWidget_articles->rowCount() > 0)
+    {
+    	enableImprimer();
+    }
+    else
+    {
+    	disableImprimer();
+    }
 
     setVisible(true);
 }
@@ -1471,6 +1479,8 @@ void YerothSortirWindow::afficher_tableau_sorties(const int tableWidgetRow)
         {
             tableWidget_articles->selectRow(tableWidgetRow);
         }
+
+        enableImprimer();
     }
     else
     {

@@ -69,16 +69,6 @@ public:
 
 public slots:
 
-	inline virtual void disableImprimer()
-	{
-		actionAfficherPDF->setEnabled(false);
-	}
-
-	inline virtual void enableImprimer()
-	{
-		actionAfficherPDF->setEnabled(true);
-	}
-
 	QString afficher_facture_pdf(QString referenceRecuSORTIE = QString(""));
 
 	QString imprimer_facture(QString referenceRecuSORTIE = QString(""));
@@ -202,6 +192,18 @@ public slots:
 			    						 "leur reference à la première barre de recherche, ou bien "
 			    						 "leur désignation à la deuxième barre de recherche !"));
     }
+
+protected slots:
+
+	inline virtual void disableImprimer()
+	{
+		actionAfficherPDF->setVisible(false);
+	}
+
+	inline virtual void enableImprimer()
+	{
+		actionAfficherPDF->setVisible(true);
+	}
 
 protected:
 
