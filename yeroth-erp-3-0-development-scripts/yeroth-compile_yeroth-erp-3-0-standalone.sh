@@ -16,7 +16,7 @@ val=$(cat standalone.error.log | grep 'error\|ERROR\|Error' | wc -l)
 if [ ${val} -eq 0 ]; then
 		echo "[compilation avec succes]"
 else
-		echo "[compilation avec des erreurs]"
+		echo "[compilation avec des erreurs (${val})]"
 fi
 
 echo ${OUT_CMD_TIME}
