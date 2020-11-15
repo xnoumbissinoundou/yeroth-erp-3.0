@@ -88,11 +88,11 @@ int YerothTableWidget::addArticleAfter(YerothArticleVenteInfo &articleVenteInfo)
 
     setRowCount(_curRow + 1);
 
-    double prix_unitaire = articleVenteInfo._prix_unitaire;
+    double prix_unitaire = articleVenteInfo.prix_unitaire();
 
-    if (articleVenteInfo._remise_prix > 0)
+    if (articleVenteInfo.remise_prix() > 0)
     {
-        prix_unitaire = articleVenteInfo._prix_unitaire - articleVenteInfo._remise_prix;
+        prix_unitaire = articleVenteInfo.prix_unitaire() - articleVenteInfo.remise_prix();
     }
 
     _stockReferenceItem = new YerothQTableWidgetItem(articleVenteInfo._stockReference);

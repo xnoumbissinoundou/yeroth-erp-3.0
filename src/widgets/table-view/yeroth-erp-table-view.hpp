@@ -144,17 +144,6 @@ public:
 	 */
 	QMap<QString, int>			_map_dbID_TO_yeroth_table_view_ROW_NUMBER;
 
-
-    static const int REFERENCE_COLUMN;
-
-    static const int DATE_ENTREE_COLUMN;
-
-    static const int DATE_PREEMPTION_COLUMN;
-
-    static const int DESIGNATION_COLUMN;
-
-    static const int QUANTITE_TOTAL_COLUMN;
-
 signals:
 
 	void signal_lister(YerothSqlTableModel &sqlTableModel);

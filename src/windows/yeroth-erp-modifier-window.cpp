@@ -79,12 +79,18 @@ YerothModifierWindow::YerothModifierWindow()
     connect(lineEdit_prix_dachat,
     		SIGNAL(textChanged(const QString &)),
 			this,
-            SLOT(calculate_and_display_benefit_buying_price_percentage()));
+            SLOT(calculate_and_display_ALL_benefit_buying_price_percentage()));
 
     connect(lineEdit_prix_vente, SIGNAL(textChanged(const QString &)), this,
             SLOT(edited_prix_vente(const QString &)));
 
     connect(lineEdit_prix_vente, SIGNAL(editingFinished()), this, SLOT(display_prix_vente()));
+
+    connect(lineEdit_prix_vente_EN_GROS, SIGNAL(textChanged(const QString &)), this,
+            SLOT(edited_prix_vente_EN_GROS(const QString &)));
+
+    connect(lineEdit_prix_vente_EN_GROS, SIGNAL(editingFinished()), this,
+    		SLOT(display_prix_vente_EN_GROS()));
 
     /** Menu actions */
     connect(actionChanger_utilisateur, SIGNAL(triggered()), this, SLOT(changer_utilisateur()));
@@ -195,6 +201,8 @@ void YerothModifierWindow::actualiser_stock()
 
 	double prix_vente = lineEdit_prix_vente->text().toDouble();
 
+	double prix_vente_EN_GROS = lineEdit_prix_vente_EN_GROS->text().toDouble();
+
 	double prix_dachat = lineEdit_prix_dachat->text().toDouble();
 
 	if (!YerothUtils::isProfitable(prix_vente, prix_dachat, _montantTva))
@@ -282,6 +290,8 @@ void YerothModifierWindow::actualiser_stock()
 
 	record.setValue(YerothDatabaseTableColumn::PRIX_VENTE, prix_vente);
 
+	record.setValue(YerothDatabaseTableColumn::PRIX_VENTE_EN_GROS, prix_vente_EN_GROS);
+
 	record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR,
 			lineEdit_nom_entreprise_fournisseur->text());
 
@@ -293,9 +303,9 @@ void YerothModifierWindow::actualiser_stock()
 
 	if (label_image_produit->pixmap())
 	{
-		QByteArray bytes;
-		YerothUtils::savePixmapToByteArray(bytes, *label_image_produit->pixmap(), "JPG");
-		record.setValue(YerothDatabaseTableColumn::IMAGE_PRODUIT, QVariant::fromValue(bytes));
+        QByteArray bytes;
+        YerothUtils::savePixmapToByteArray(bytes, *label_image_produit->pixmap(), "JPG");
+        record.setValue(YerothDatabaseTableColumn::IMAGE_PRODUIT, bytes);
 	}
 
 	double quantite_en_re_approvisionement = 0;
@@ -359,6 +369,7 @@ void YerothModifierWindow::actualiser_stock()
 		aServiceStockData._designation = lineEdit_designation->text();
 		aServiceStockData._prix_dachat_precedent = lineEdit_prix_dachat->text();
 		aServiceStockData._prix_vente_precedent = lineEdit_prix_vente->text();
+		aServiceStockData._prix_vente_en_gros_precedent = lineEdit_prix_vente_EN_GROS->text();
 
 		YerothUtils::UPDATE_PREVIOUS_SELLING_PRICE_IN_ProductList(aServiceStockData, this);
 
@@ -404,6 +415,21 @@ void YerothModifierWindow::edited_prix_vente(const QString &newPrixVente)
 }
 
 
+void YerothModifierWindow::edited_prix_vente_EN_GROS(const QString &newPrixVente_en_gros)
+{
+	_lastEditedPrixVente_EN_GROS = newPrixVente_en_gros;
+
+	calculate_and_display_benefit_buying_price_percentage_EN_GROS();
+}
+
+
+void YerothModifierWindow::calculate_and_display_ALL_benefit_buying_price_percentage()
+{
+	calculate_and_display_benefit_buying_price_percentage();
+	calculate_and_display_benefit_buying_price_percentage_EN_GROS();
+}
+
+
 void YerothModifierWindow::calculate_and_display_benefit_buying_price_percentage()
 {
     if (checkBox_achat->isChecked())
@@ -433,6 +459,39 @@ void YerothModifierWindow::calculate_and_display_benefit_buying_price_percentage
 }
 
 
+void YerothModifierWindow::calculate_and_display_benefit_buying_price_percentage_EN_GROS()
+{
+    if (checkBox_achat->isChecked())
+    {
+    	double prix_dachat = lineEdit_prix_dachat->text().toDouble();
+
+    	double prix_vente_EN_GROS = lineEdit_prix_vente_EN_GROS->text().toDouble();
+
+    	if( YerothUtils::isProfitable(prix_vente_EN_GROS, prix_dachat, _montantTva_EN_GROS) )
+    	{
+        	double pourcentage_benefice_prix_dachat_EN_GROS =
+        	 POURCENTAGE_YEROTH_GET_VALUE(
+        			 YerothUtils::getMargeBeneficiaire(prix_vente_EN_GROS,
+        					 	 	 	 	 	 	   prix_dachat,
+													   _montantTva_EN_GROS),
+					  prix_dachat);
+
+        	lineEdit_pourcentage_prix_dachat_prix_de_vente_EN_GROS
+				->setText(QString("%1%")
+							.arg(QString::number(pourcentage_benefice_prix_dachat_EN_GROS, 'f', 2)));
+    	}
+    	else
+    	{
+    		lineEdit_pourcentage_prix_dachat_prix_de_vente_EN_GROS->setText("0.00 %");
+    	}
+    }
+    else
+    {
+    	lineEdit_pourcentage_prix_dachat_prix_de_vente_EN_GROS->setText("0.00 %");
+    }
+}
+
+
 void YerothModifierWindow::handleVisibilityPrixDachat(bool anEditable)
 {
 	label_prix_dachat->setVisible(anEditable);
@@ -440,6 +499,8 @@ void YerothModifierWindow::handleVisibilityPrixDachat(bool anEditable)
 	lineEdit_prix_dachat->setVisible(anEditable);
 
 	lineEdit_pourcentage_prix_dachat_prix_de_vente->setVisible(anEditable);
+
+	lineEdit_pourcentage_prix_dachat_prix_de_vente_EN_GROS->setVisible(anEditable);
 }
 
 
@@ -590,8 +651,11 @@ void YerothModifierWindow::setupLineEdits()
 
     lineEdit_pourcentage_prix_dachat_prix_de_vente->setYerothEnabled(false);
 
+    lineEdit_pourcentage_prix_dachat_prix_de_vente_EN_GROS->setYerothEnabled(false);
+
     lineEdit_prix_dachat->setYerothEnabled(false);
     lineEdit_prix_vente->setYerothEnabled(false);
+    lineEdit_prix_vente_EN_GROS->setYerothEnabled(false);
     lineEdit_reference_produit->setYerothEnabled(false);
     lineEdit_designation->setYerothEnabled(false);
     lineEdit_nom_entreprise_fournisseur->setYerothEnabled(false);
@@ -806,6 +870,8 @@ void YerothModifierWindow::clear_all_fields()
 
     lineEdit_pourcentage_prix_dachat_prix_de_vente->setText("0.00 %");
 
+    lineEdit_pourcentage_prix_dachat_prix_de_vente_EN_GROS->setText("0.00 %");
+
     lineEdit_reference_produit->clearField();
     lineEdit_designation->clearField();
     lineEdit_categorie_produit->clearField();
@@ -813,6 +879,7 @@ void YerothModifierWindow::clear_all_fields()
     lineEdit_stock_dalerte->clearField();
     lineEdit_prix_dachat->clearField();
     lineEdit_prix_vente->clearField();
+    lineEdit_prix_vente_EN_GROS->clear();
     lineEdit_localisation_produit->clear();
     lineEdit_tva->clearField();
 
@@ -843,9 +910,32 @@ void YerothModifierWindow::display_prix_vente()
 }
 
 
+void YerothModifierWindow::display_prix_vente_EN_GROS()
+{
+    if (_lastEditedPrixVente_EN_GROS != lineEdit_prix_vente_EN_GROS->text())
+    {
+        return;
+    }
+
+    if (checkBox_tva->isChecked())
+    {
+        double prix_vente_EN_GROS = lineEdit_prix_vente_EN_GROS->text().toDouble();
+
+        _montantTva_EN_GROS = prix_vente_EN_GROS * YerothERPConfig::tva_value;
+
+        prix_vente_EN_GROS = prix_vente_EN_GROS + _montantTva_EN_GROS;
+
+        lineEdit_prix_vente_EN_GROS->setText(QString::number(prix_vente_EN_GROS, 'f', 2));
+    }
+}
+
+
 void YerothModifierWindow::handleTVACheckBox(bool clicked)
 {
     double prix_vente = lineEdit_prix_vente->text().toDouble();
+
+    double prix_vente_EN_GROS = lineEdit_prix_vente_EN_GROS->text().toDouble();
+
     if (clicked && checkBox_tva->isChecked())
     {
         if (false == _tvaCheckBoxPreviousState)
@@ -858,19 +948,33 @@ void YerothModifierWindow::handleTVACheckBox(bool clicked)
         }
         //qDebug() << "\t ++_montantTva: " << _montantTva;
         _montantTva = prix_vente * YerothERPConfig::tva_value;
+
+        _montantTva_EN_GROS = prix_vente_EN_GROS * YerothERPConfig::tva_value;
+
         prix_vente = prix_vente + _montantTva;
+
+        prix_vente_EN_GROS = prix_vente_EN_GROS + _montantTva_EN_GROS;
     }
     else
     {
         //qDebug() << "\t ++_montantTva: " << _montantTva;
         _montantTva = 0;
+
+        _montantTva_EN_GROS = 0;
+
         if (true == _tvaCheckBoxPreviousState)
         {
             _tvaCheckBoxPreviousState = false;
+
             prix_vente = prix_vente / (1 + YerothERPConfig::tva_value);
+
+            prix_vente_EN_GROS = prix_vente_EN_GROS / (1 + YerothERPConfig::tva_value);
         }
     }
+
     lineEdit_prix_vente->setText(QString::number(prix_vente, 'f', 2));
+
+    lineEdit_prix_vente_EN_GROS->setText(QString::number(prix_vente_EN_GROS, 'f', 2));
 }
 
 
@@ -1012,6 +1116,7 @@ void YerothModifierWindow::rendreInvisible()
     YerothWindowsCommons::rendreInvisible();
 }
 
+
 void YerothModifierWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 {
     _curStocksTableModel = stocksTableModel;
@@ -1039,9 +1144,6 @@ void YerothModifierWindow::setStockSpecificWidgetVisible(bool visible)
 
 	dateEdit_date_peremption->setVisible(visible);
 	label_date_peremption->setVisible(visible);
-
-//	label_prix_dachat->setVisible(visible);
-//	lineEdit_prix_dachat->setVisible(visible);
 }
 
 
@@ -1082,6 +1184,8 @@ void YerothModifierWindow::showItem()
 
 	lineEdit_prix_vente->setYerothEnabled(true);
 
+	lineEdit_prix_vente_EN_GROS->setYerothEnabled(true);
+
 	label_fournisseur->setText(QObject::tr("fournisseur"));
 
 	lineEdit_nom_entreprise_fournisseur->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR));
@@ -1116,7 +1220,11 @@ void YerothModifierWindow::showItem()
     	}
     }
 
-    double prix_vente = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::PRIX_VENTE).toDouble();
+    double prix_vente = GET_SQL_RECORD_DATA(record,
+    		YerothDatabaseTableColumn::PRIX_VENTE).toDouble();
+
+    double prix_vente_EN_GROS = GET_SQL_RECORD_DATA(record,
+    		YerothDatabaseTableColumn::PRIX_VENTE_EN_GROS).toDouble();
 
     _montantTva = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::MONTANT_TVA).toDouble();
     //qDebug() << "\t++ showItem, _montantTva: " << _montantTva;
@@ -1127,7 +1235,10 @@ void YerothModifierWindow::showItem()
     }
 
     lineEdit_tva->setText(YerothUtils::getTvaStringWithPercent());
+
     lineEdit_prix_vente->setText(QString::number(prix_vente, 'f', 2));
+
+    lineEdit_prix_vente_EN_GROS->setText(QString::number(prix_vente_EN_GROS, 'f', 2));
 
     double quantite_restante = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::QUANTITE_TOTALE).toDouble();
 

@@ -64,6 +64,7 @@ YerothPointDeVenteWindow::YerothPointDeVenteWindow()
  _updateItemConversionError(false),
  _previousPressedQteValue("1"),
  _tvaCheckBoxPreviousState(false),
+ _currentStocksID(YerothUtils::EMPTY_STRING),
  _sommeTotal(0.0),
  _remise_somme_total_prix(0.0),
  _remise_somme_total_pourcentage(0.0),
@@ -198,6 +199,9 @@ YerothPointDeVenteWindow::YerothPointDeVenteWindow()
     connect(actionSet_stock_item_name_as_standard_input, SIGNAL(triggered()), this,
             SLOT(setStockItemNameAsStandardInput()));
 
+    connect(checkBox_effectuer_1_vente_en_gros, SIGNAL(stateChanged(int)), this,
+            SLOT(handle_effectuer_vente_en_gros(int)));
+
     setupShortcuts();
 }
 
@@ -277,6 +281,32 @@ void YerothPointDeVenteWindow::updateLineEditQCompleterInput()
 }
 
 
+void YerothPointDeVenteWindow::handle_effectuer_vente_en_gros(int state)
+{
+	YerothArticleVenteInfo * articleVenteInfo =
+			articleItemToVenteInfo.value(tableWidget_articles->currentRow());
+
+	if (0 == articleVenteInfo)
+	{
+		QDEBUG_STRINGS_OUTPUT_2("YerothPointDeVenteWindow::handle_effectuer_vente_en_gros(int)",
+				QString("invalid YerothArticleVenteInfo (NULL) !"));
+
+		return ;
+	}
+
+	if (checkBox_effectuer_1_vente_en_gros->isChecked())
+	{
+		articleVenteInfo->_effectuer_vente_en_gros = true;
+	}
+	else
+	{
+		articleVenteInfo->_effectuer_vente_en_gros = false;
+	}
+
+    actualiser_montant_remise();
+}
+
+
 void YerothPointDeVenteWindow::handleBasculerLecteurDeCodebarres()
 {
 	pushButton_lecteur_de_code_barres->setVisible(!_barcodeReaderActivated);
@@ -333,7 +363,7 @@ void YerothPointDeVenteWindow::connect_manual_selection_of_article_item()
     										YerothERPConfig::salesStrategy))
     {
         connect(lineEdit_recherche_article->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
-                SLOT(ajouter_article(const QString &)));
+                SLOT(ajouter_article_stockname(const QString &)));
 
         connect(lineEdit_recherche_article_codebar->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
                 SLOT(ajouter_article_codebar(const QString &)));
@@ -342,7 +372,7 @@ void YerothPointDeVenteWindow::connect_manual_selection_of_article_item()
     											 YerothERPConfig::salesStrategy))
     {
         connect(lineEdit_recherche_article->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
-                SLOT(ajouter_article(const QString &)));
+                SLOT(ajouter_article_stockname(const QString &)));
 
         connect(lineEdit_recherche_article_codebar->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
                 SLOT(ajouter_article_codebar(const QString &)));
@@ -352,7 +382,7 @@ void YerothPointDeVenteWindow::connect_manual_selection_of_article_item()
             		 	 	 	 	YerothERPConfig::salesStrategy))
     {
         connect(lineEdit_recherche_article->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
-                SLOT(ajouter_article(const QString &)));
+                SLOT(ajouter_article_stockname(const QString &)));
 
         connect(lineEdit_recherche_article_codebar->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
                 SLOT(ajouter_article_codebar(const QString &)));
@@ -360,7 +390,7 @@ void YerothPointDeVenteWindow::connect_manual_selection_of_article_item()
     else			//ALL == YerothConfig::salesStrategy
     {
         connect(lineEdit_recherche_article->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
-                SLOT(ajouter_article(const QString &)));
+                SLOT(ajouter_article_stockname(const QString &)));
 
         connect(lineEdit_recherche_article_codebar->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
                 SLOT(ajouter_article_codebar(const QString &)));
@@ -376,7 +406,7 @@ void YerothPointDeVenteWindow::connect_barcode_reader_selection_of_article_item(
             isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FEFO, YerothERPConfig::salesStrategy))
     {
         connect(lineEdit_recherche_article->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
-                SLOT(ajouter_article(const QString &)));
+                SLOT(ajouter_article_stockname(const QString &)));
 
         connect(lineEdit_recherche_article_codebar, SIGNAL(textChanged(const QString &)), this,
                 SLOT(ajouter_article_codebar(const QString &)));
@@ -385,7 +415,7 @@ void YerothPointDeVenteWindow::connect_barcode_reader_selection_of_article_item(
              isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FIFO, YerothERPConfig::salesStrategy))
     {
         connect(lineEdit_recherche_article->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
-                SLOT(ajouter_article(const QString &)));
+                SLOT(ajouter_article_stockname(const QString &)));
 
         connect(lineEdit_recherche_article_codebar, SIGNAL(textChanged(const QString &)), this,
                 SLOT(ajouter_article_codebar(const QString &)));
@@ -394,7 +424,7 @@ void YerothPointDeVenteWindow::connect_barcode_reader_selection_of_article_item(
              isEqualCaseInsensitive(YerothERPConfig::STRATEGIE_VENTE_SORTIE_LIFO, YerothERPConfig::salesStrategy))
     {
         connect(lineEdit_recherche_article->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
-                SLOT(ajouter_article(const QString &)));
+                SLOT(ajouter_article_stockname(const QString &)));
 
         connect(lineEdit_recherche_article_codebar, SIGNAL(textChanged(const QString &)), this,
                 SLOT(ajouter_article_codebar(const QString &)));
@@ -402,7 +432,7 @@ void YerothPointDeVenteWindow::connect_barcode_reader_selection_of_article_item(
     else			//ALL == YerothConfig::salesStrategy
     {
         connect(lineEdit_recherche_article->getMyQCompleter(), SIGNAL(activated(const QString &)), this,
-                SLOT(ajouter_article(const QString &)));
+                SLOT(ajouter_article_stockname(const QString &)));
 
         connect(lineEdit_recherche_article_codebar, SIGNAL(textChanged(const QString &)), this,
                 SLOT(ajouter_article_codebar(const QString &)));
@@ -427,6 +457,7 @@ void YerothPointDeVenteWindow::setupLineEdits()
     lineEdit_article_detail_nom_entreprise_fournisseur->setYerothEnabled(false);
     lineEdit_article_detail_categorie->setYerothEnabled(false);
     lineEdit_article_detail_prix_unitaire->setYerothEnabled(false);
+    lineEdit_article_detail_prix_unitaire_en_gros->setYerothEnabled(false);
     lineEdit_article_detail_tva->setYerothEnabled(false);
     lineEdit_article_detail_localisation->setYerothEnabled(false);
     lineEdit_article_detail_nom_caissier->setYerothEnabled(false);
@@ -1202,7 +1233,6 @@ void YerothPointDeVenteWindow::handleCurrentChanged(int index)
     {
     case TableauDesVentes:
         afficher_tableau_ventes(tableWidget_articles->currentRow());
-        enableImprimer();
         break;
     case AfficherVenteAuDetail:
         afficher_vente_detail(tableWidget_articles->currentRow());
@@ -1256,6 +1286,7 @@ void YerothPointDeVenteWindow::cleanUpAfterVente()
     lineEdit_article_detail_nom_entreprise_fournisseur->clear();
     lineEdit_article_detail_categorie->clear();
     lineEdit_article_detail_prix_unitaire->clear();
+    lineEdit_article_detail_prix_unitaire_en_gros->clear();
     lineEdit_article_detail_tva->clear();
     lineEdit_article_detail_localisation->clear();
     lineEdit_article_detail_nom_caissier->clear();
@@ -1386,6 +1417,15 @@ void YerothPointDeVenteWindow::rendreVisible(YerothSqlTableModel * stocksTableMo
 
     tableWidget_articles->resizeColumnsToContents();
 
+    if (tableWidget_articles->rowCount() > 0)
+    {
+    	enableImprimer();
+    }
+    else
+    {
+    	disableImprimer();
+    }
+
     setVisible(true);
 }
 
@@ -1417,32 +1457,42 @@ void YerothPointDeVenteWindow::activateLineEditRemisePourcentage(bool toggled)
 
 void YerothPointDeVenteWindow::calculate_details_window_remise_prix()
 {
-    //_logger->log("calculate_details_window_remise_prix");
     int tableWidgetRow = tableWidget_articles->currentRow();
+
     if (tableWidgetRow < 0)
     {
         return;
     }
+
     YerothArticleVenteInfo *articleVenteInfo = articleItemToVenteInfo.value(tableWidgetRow);
+
     if (articleVenteInfo && radioButton_article_detail_remise_prix->isChecked())
     {
         double remise_prix = lineEdit_article_detail_remise_prix->text().toDouble();
-        double remise_pourcentage = (100.0 * remise_prix) / articleVenteInfo->_prix_unitaire;
-        if (remise_prix > articleVenteInfo->_prix_unitaire)
+
+        double remise_pourcentage = (100.0 * remise_prix) / articleVenteInfo->prix_unitaire();
+
+        if (remise_prix > articleVenteInfo->prix_unitaire())
         {
             lineEdit_article_detail_remise_prix->setText(QString::number(0.0, 'f', 2));
+
             lineEdit_article_detail_remise_pourcentage->setText(QString::number(0.0, 'f', 2));
+
             YerothQMessageBox::warning(this, QObject::trUtf8("montant d'une remise"),
                                       QString::
                                       fromUtf8("Le montant d'une remise sur un article doit être inférieur"
                                                " au prix unitaire de cet article !"));
             return;
         }
-        articleVenteInfo->_remise_prix = remise_prix;
-        articleVenteInfo->_remise_pourcentage = remise_pourcentage;
+
+        articleVenteInfo->setRemisePrix(remise_prix);
+
+        articleVenteInfo->setRemisePourcentage(remise_pourcentage);
+
         lineEdit_article_detail_remise_pourcentage->
-        setText(QString::number(articleVenteInfo->_remise_pourcentage, 'f', 2));
+			setText(articleVenteInfo->remisePourcentage());
     }
+
     actualiser_montant_remise();
 }
 
@@ -1451,16 +1501,21 @@ void YerothPointDeVenteWindow::calculate_details_window_remise_pourcentage()
 {
     //_logger->log("calculate_details_window_remise_pourcentage");
     int tableWidgetRow = tableWidget_articles->currentRow();
+
     if (tableWidgetRow < 0)
     {
         return;
     }
+
     YerothArticleVenteInfo *articleVenteInfo = articleItemToVenteInfo.value(tableWidgetRow);
+
     if (articleVenteInfo && radioButton_article_detail_remise_pourcentage->isChecked())
     {
         double remise_pourcentage = lineEdit_article_detail_remise_pourcentage->text().toDouble();
-        double remise_prix = (articleVenteInfo->_prix_unitaire * remise_pourcentage) / 100.0;
-        if (remise_prix > articleVenteInfo->_prix_unitaire)
+
+        double remise_prix = (articleVenteInfo->prix_unitaire() * remise_pourcentage) / 100.0;
+
+        if (remise_prix > articleVenteInfo->prix_unitaire())
         {
             lineEdit_article_detail_remise_prix->setText(QString::number(0.0, 'f', 2));
             lineEdit_article_detail_remise_pourcentage->setText(QString::number(0.0, 'f', 2));
@@ -1470,10 +1525,14 @@ void YerothPointDeVenteWindow::calculate_details_window_remise_pourcentage()
                                                " au prix unitaire de cet article !"));
             return;
         }
-        articleVenteInfo->_remise_pourcentage = remise_pourcentage;
-        articleVenteInfo->_remise_prix = remise_prix;
+
+        articleVenteInfo->setRemisePourcentage(remise_pourcentage);
+
+        articleVenteInfo->setRemisePrix(remise_prix);
+
         lineEdit_article_detail_remise_prix->setText(articleVenteInfo->remisePrix());
     }
+
     actualiser_montant_remise();
 }
 
@@ -1481,19 +1540,44 @@ void YerothPointDeVenteWindow::actualiser_montant_remise()
 {
     //_logger->log("actualiser_montant_remise");
     int tableWidgetRow = tableWidget_articles->currentRow();
+
     if (tableWidgetRow < 0)
     {
         return;
     }
+
     YerothArticleVenteInfo *articleVenteInfo = articleItemToVenteInfo.value(tableWidgetRow);
-    double prix_unitaire = articleVenteInfo->_prix_unitaire - articleVenteInfo->_remise_prix;
-    double montant_tva = prix_unitaire * YerothERPConfig::tva_value;
+
+    double prix_unitaire = articleVenteInfo->_prix_unitaire;
+
+    double prix_unitaire_en_gros = articleVenteInfo->_prix_unitaire_en_gros;
+
+    if (!checkBox_effectuer_1_vente_en_gros->isChecked())
+    {
+    	prix_unitaire = articleVenteInfo->_prix_unitaire - articleVenteInfo->remise_prix();
+    }
+    else
+    {
+    	prix_unitaire_en_gros = articleVenteInfo->_prix_unitaire_en_gros - articleVenteInfo->remise_prix();
+    }
+
     if (checkBox_tva->isChecked())
     {
-        articleVenteInfo->_montant_tva = montant_tva;
+        double montant_tva = prix_unitaire * YerothERPConfig::tva_value;
+
+        double montant_tva_en_gros = prix_unitaire_en_gros * YerothERPConfig::tva_value;
+
+    	articleVenteInfo->_montant_tva = montant_tva;
+
+    	articleVenteInfo->_montant_tva_en_gros = montant_tva_en_gros;
     }
+
     lineEdit_article_detail_tva->setText(articleVenteInfo->montantTva());
+
     lineEdit_article_detail_prix_unitaire->setText(GET_CURRENCY_STRING_NUM(prix_unitaire));
+
+    lineEdit_article_detail_prix_unitaire_en_gros->setText(GET_CURRENCY_STRING_NUM(prix_unitaire_en_gros));
+
     actualiser_toutes_valeurs();
 }
 
@@ -1622,6 +1706,12 @@ void YerothPointDeVenteWindow::afficher_tableau_ventes(const int tableWidgetRow)
         {
             tableWidget_articles->selectRow(tableWidgetRow);
         }
+
+        enableImprimer();
+    }
+    else
+    {
+    	disableImprimer();
     }
 
     actualiser_toutes_valeurs();
@@ -1639,6 +1729,12 @@ void YerothPointDeVenteWindow::afficher_vente_detail(const int tableWidgetRow)
     checkBox_tva->setText(YerothUtils::getTVALabelStringWithPercent());
 
     QString rowStockID = tableWidget_articles->getStockID(tableWidgetRow);
+
+    /**
+     * I set the stock ID of the current article
+     * in detail view !
+     */
+    _currentStocksID = rowStockID;
 
     QSqlQuery stockRecordQuery;
 
@@ -1672,6 +1768,15 @@ void YerothPointDeVenteWindow::afficher_vente_detail(const int tableWidgetRow)
 
     YerothArticleVenteInfo *articleVenteInfo = articleItemToVenteInfo.value(tableWidgetRow);
 
+	if (articleVenteInfo->_effectuer_vente_en_gros)
+	{
+		checkBox_effectuer_1_vente_en_gros->setChecked(true);
+	}
+	else
+	{
+		checkBox_effectuer_1_vente_en_gros->setChecked(false);
+	}
+
     lineEdit_article_detail_reference_produit->setText(articleVenteInfo->_stockReference);
     lineEdit_article_detail_designation->setText(articleVenteInfo->_stockName);
     lineEdit_article_detail_nom_entreprise_fournisseur->setText(nom_entreprise_fournisseur);
@@ -1688,12 +1793,13 @@ void YerothPointDeVenteWindow::afficher_vente_detail(const int tableWidgetRow)
     }
 
     lineEdit_article_detail_prix_unitaire->setText(GET_CURRENCY_STRING_NUM(articleVenteInfo->_prix_unitaire));
+    lineEdit_article_detail_prix_unitaire_en_gros->setText(GET_CURRENCY_STRING_NUM(articleVenteInfo->_prix_unitaire_en_gros));
     lineEdit_article_detail_quantite_en_stock->setText(articleVenteInfo->quantiteEnStock());
     lineEdit_article_detail_quantite_a_vendre->setText(articleVenteInfo->quantiteAVendre());
     lineEdit_article_detail_remise_prix->setText(articleVenteInfo->remisePrix());
     lineEdit_article_detail_remise_pourcentage->setText(articleVenteInfo->remisePourcentage());
 
-    if (articleVenteInfo->_montant_tva > 0)
+    if (articleVenteInfo->montant_tva() > 0)
     {
         if (checkBox_tva->isChecked())
         {
@@ -1730,6 +1836,8 @@ void YerothPointDeVenteWindow::afficher_vente_detail(const int tableWidgetRow)
     lineEdit_article_detail_localisation->setText(localisation);
     lineEdit_article_detail_nom_client->setText(lineEdit_articles_nom_client->text());
 
+    actualiser_montant_remise();
+
     tabWidget_vente->setCurrentIndex(AfficherVenteAuDetail);
 }
 
@@ -1760,7 +1868,11 @@ void YerothPointDeVenteWindow::handleQteChange(QTableWidgetItem * itemChanged)
         										 rowStockID));
 
             double montantTva = 0.0;
+            double montantTva_en_gros = 0.0;
+
             double prixVente = 0.0;
+            double prixVente_en_gros = 0.0;
+
             double qteEnStock = 0.0;
 
             QString stockReference;
@@ -1772,7 +1884,11 @@ void YerothPointDeVenteWindow::handleQteChange(QTableWidgetItem * itemChanged)
             if (querySize > 0 && stockRecordQuery.next())
             {
             	montantTva = stockRecordQuery.value(YerothDatabaseTableColumn::MONTANT_TVA).toDouble();
+            	montantTva_en_gros = stockRecordQuery.value(YerothDatabaseTableColumn::MONTANT_TVA_EN_GROS).toDouble();
+
             	prixVente = stockRecordQuery.value(YerothDatabaseTableColumn::PRIX_VENTE).toDouble();
+            	prixVente_en_gros = stockRecordQuery.value(YerothDatabaseTableColumn::PRIX_VENTE_EN_GROS).toDouble();
+
             	qteEnStock = stockRecordQuery.value(YerothDatabaseTableColumn::QUANTITE_TOTALE).toDouble();
 
             	stockReference = stockRecordQuery.value(YerothDatabaseTableColumn::REFERENCE).toString();
@@ -1793,8 +1909,13 @@ void YerothPointDeVenteWindow::handleQteChange(QTableWidgetItem * itemChanged)
                 articleVenteInfo->_stockCategorie = stockcategorie;
                 articleVenteInfo->_stockID = rowStockID;
                 articleVenteInfo->_quantite_en_stock = qteEnStock;
+
                 articleVenteInfo->_montant_tva = montantTva;
+                articleVenteInfo->_montant_tva_en_gros = montantTva_en_gros;
+
                 articleVenteInfo->_prix_unitaire = prixVente - montantTva;
+                articleVenteInfo->_prix_unitaire_en_gros = prixVente_en_gros - montantTva_en_gros;
+
                 articleVenteInfo->_quantite_a_vendre = newQteValue;
 
                 articleItemToVenteInfo.insert(itemChanged->row(), articleVenteInfo);
@@ -1870,172 +1991,111 @@ bool YerothPointDeVenteWindow::article_exist(const QString codeBar, const QStrin
     return false;
 }
 
-void YerothPointDeVenteWindow::ajouter_article(const QString & text)
+
+void YerothPointDeVenteWindow::ajouter_article(const QString &aStockID)
+{
+	QSqlQuery stockRecordQuery;
+
+	QString stockRecordQueryStr(QString("SELECT * FROM %1 WHERE %2 = '%3'")
+			.arg(_allWindows->STOCKS,
+					YerothDatabaseTableColumn::ID,
+					aStockID));
+
+	double montantTva = 0.0;
+	double prixVente = 0.0;
+	double qteEnStock = 0.0;
+
+	QString stockReference;
+	QString stockName;
+	QString stockCategorie;
+
+	int querySize = YerothUtils::execQuery(stockRecordQuery, stockRecordQueryStr, _logger);
+
+	if (querySize > 0 && stockRecordQuery.next())
+	{
+		montantTva = stockRecordQuery.value(YerothDatabaseTableColumn::MONTANT_TVA).toDouble();
+		prixVente = stockRecordQuery.value(YerothDatabaseTableColumn::PRIX_VENTE).toDouble();
+		qteEnStock = stockRecordQuery.value(YerothDatabaseTableColumn::QUANTITE_TOTALE).toDouble();
+
+		stockName = stockRecordQuery.value(YerothDatabaseTableColumn::DESIGNATION).toString();
+		stockReference = stockRecordQuery.value(YerothDatabaseTableColumn::REFERENCE).toString();
+		stockCategorie = stockRecordQuery.value(YerothDatabaseTableColumn::CATEGORIE).toString();
+
+		if (article_exist(stockReference, stockName))
+		{
+			return;
+		}
+	}
+	else
+	{
+		return ;
+	}
+
+	double prix_unitaire = prixVente - montantTva;
+
+	if (prix_unitaire < 0)
+	{
+		QString warningMsg(QString(QObject::trUtf8("Prix unitaire inférieur à zéro pour l'article '%1' !"))
+				.arg(stockName));
+
+		if (QMessageBox::Ok ==
+				YerothQMessageBox::warning(this,
+						QObject::trUtf8("prix unitaire d'un article"),
+						warningMsg))
+		{
+			return;
+		}
+	}
+
+	//Each call to YerothTableWidget::setItem in method 'YerothTableWidget::addArticle'
+	//triggers a call to YerothPointDeVenteWindow::handleQteChange
+	int lastCurRow =
+			tableWidget_articles->addArticle(aStockID,
+											 stockReference,
+											 stockName,
+											 stockCategorie,
+											 QString::number(prix_unitaire, 'f', 2),
+											 QString::number(montantTva, 'f', 2),
+											 QString::number(prixVente, 'f', 2),
+											 YerothTableWidget::QTE_1,
+											 QString::number(qteEnStock));
+	if (lastCurRow > -1)
+	{
+		tableWidget_articles->selectRow(lastCurRow);
+	}
+}
+
+
+void YerothPointDeVenteWindow::ajouter_article_stockname(const QString & aStockName)
 {
     _qteChangeCodeBar = false;
 
     QMap<QString, QString> stockNameToStockID = lineEdit_recherche_article->getStockNameToStockID();
 
-    if (!stockNameToStockID.contains(text))
+    if (!stockNameToStockID.contains(aStockName))
     {
     	return ;
     }
 
-    QString stockID = stockNameToStockID.value(text);
+    QString stockID = stockNameToStockID.value(aStockName);
 
-    QSqlQuery stockRecordQuery;
-
-    QString stockRecordQueryStr(QString("SELECT * FROM %1 WHERE %2 = '%3'")
-    								.arg(_allWindows->STOCKS,
-										 YerothDatabaseTableColumn::ID,
-										 stockID));
-
-    double montantTva = 0.0;
-    double prixVente = 0.0;
-    double qteEnStock = 0.0;
-
-    QString stockReference;
-    QString stockName;
-    QString stockCategorie;
-
-    int querySize = YerothUtils::execQuery(stockRecordQuery, stockRecordQueryStr, _logger);
-
-    if (querySize > 0 && stockRecordQuery.next())
-    {
-    	montantTva = stockRecordQuery.value(YerothDatabaseTableColumn::MONTANT_TVA).toDouble();
-    	prixVente = stockRecordQuery.value(YerothDatabaseTableColumn::PRIX_VENTE).toDouble();
-    	qteEnStock = stockRecordQuery.value(YerothDatabaseTableColumn::QUANTITE_TOTALE).toDouble();
-
-    	stockName = stockRecordQuery.value(YerothDatabaseTableColumn::DESIGNATION).toString();
-    	stockReference = stockRecordQuery.value(YerothDatabaseTableColumn::REFERENCE).toString();
-    	stockCategorie = stockRecordQuery.value(YerothDatabaseTableColumn::CATEGORIE).toString();
-
-    	if (article_exist(stockReference, stockName))
-    	{
-    		return;
-    	}
-    }
-    else
-    {
-    	return ;
-    }
-
-    double prix_unitaire = prixVente - montantTva;
-
-    if (prix_unitaire < 0)
-    {
-        QString warningMsg(QString(QObject::trUtf8("Prix unitaire inférieur à zéro pour l'article '%1' !"))
-        						.arg(stockName));
-
-        if (QMessageBox::Ok ==
-        		YerothQMessageBox::warning(this,
-        								   QObject::trUtf8("prix unitaire d'un article"),
-										   warningMsg))
-        {
-        	return;
-        }
-    }
-
-    //Each call to YerothTableWidget::setItem in method 'YerothTableWidget::addArticle'
-    //triggers a call to YerothPointDeVenteWindow::handleQteChange
-    int lastCurRow =
-        tableWidget_articles->addArticle(stockID,
-        								 stockReference,
-										 stockName,
-										 stockCategorie,
-                                         QString::number(prix_unitaire, 'f', 2),
-										 QString::number(montantTva, 'f', 2),
-										 QString::number(prixVente, 'f', 2),
-										 YerothTableWidget::QTE_1,
-										 QString::number(qteEnStock));
-    if (lastCurRow > -1)
-    {
-        tableWidget_articles->selectRow(lastCurRow);
-    }
+    ajouter_article(stockID);
 }
 
 
-void YerothPointDeVenteWindow::ajouter_article_codebar(const QString & text)
+void YerothPointDeVenteWindow::ajouter_article_codebar(const QString & aStockReference)
 {
     QMap<QString, QString> stockReferenceToStockID =
     		lineEdit_recherche_article_codebar->getStockreferenceCodebarToStockID();
 
-    if (!stockReferenceToStockID.contains(text))
+    if (!stockReferenceToStockID.contains(aStockReference))
     {
     	return ;
     }
 
-    QString stockID = stockReferenceToStockID.value(text);
+    QString stockID = stockReferenceToStockID.value(aStockReference);
 
-    QSqlQuery stockRecordQuery;
-
-    QString stockRecordQueryStr(QString("SELECT * FROM %1 WHERE %2 = '%3'")
-    								.arg(_allWindows->STOCKS,
-										 YerothDatabaseTableColumn::ID,
-										 stockID));
-
-    double montantTva = 0.0;
-    double prixVente = 0.0;
-    double qteEnStock = 0.0;
-
-    QString stockReference;
-    QString stockName;
-    QString stockCategorie;
-
-    int querySize = YerothUtils::execQuery(stockRecordQuery, stockRecordQueryStr, _logger);
-
-    if (querySize > 0 && stockRecordQuery.next())
-    {
-    	montantTva = stockRecordQuery.value(YerothDatabaseTableColumn::MONTANT_TVA).toDouble();
-    	prixVente = stockRecordQuery.value(YerothDatabaseTableColumn::PRIX_VENTE).toDouble();
-    	qteEnStock = stockRecordQuery.value(YerothDatabaseTableColumn::QUANTITE_TOTALE).toDouble();
-
-    	stockName = stockRecordQuery.value(YerothDatabaseTableColumn::DESIGNATION).toString();
-    	stockReference = stockRecordQuery.value(YerothDatabaseTableColumn::REFERENCE).toString();
-    	stockCategorie = stockRecordQuery.value(YerothDatabaseTableColumn::CATEGORIE).toString();
-
-    	if (article_exist(stockReference, stockName))
-    	{
-    		return;
-    	}
-    }
-    else
-    {
-    	return ;
-    }
-
-    double prix_unitaire = prixVente - montantTva;
-
-    if (prix_unitaire < 0)
-    {
-        QString warningMsg(QString(QObject::trUtf8("Prix unitaire inférieur à zéro pour l'article '%1' !"))
-        						.arg(stockName));
-
-        if (QMessageBox::Ok ==
-        		YerothQMessageBox::warning(this,
-        								   QObject::trUtf8("prix unitaire d'un article"),
-										   warningMsg))
-        {
-        	return;
-        }
-    }
-
-    //Each call to YerothTableWidget::setItem in method 'YerothTableWidget::addArticle'
-    //triggers a call to YerothPointDeVenteWindow::handleQteChange
-    int lastCurRow =
-        tableWidget_articles->addArticle(stockID,
-        								 stockReference,
-										 stockName,
-										 stockCategorie,
-                                         QString::number(prix_unitaire, 'f', 2),
-										 QString::number(montantTva, 'f', 2),
-										 QString::number(prixVente, 'f', 2),
-										 YerothTableWidget::QTE_1,
-										 QString::number(qteEnStock));
-    if (lastCurRow > -1)
-    {
-        tableWidget_articles->selectRow(lastCurRow);
-    }
+    ajouter_article(stockID);
 }
 
 
@@ -2092,7 +2152,7 @@ void YerothPointDeVenteWindow::actualiser_articles_codebar(int row, unsigned new
 
 myItemBreak:
         quantiteVendue += curTableWidgetItemQte;
-        tva += (curTableWidgetItemQte * articleVenteInfo->_montant_tva);
+        tva += (curTableWidgetItemQte * articleVenteInfo->montant_tva());
         sommeTotal += articleVenteInfo->prix_vente();
     }
 
@@ -2162,7 +2222,7 @@ void YerothPointDeVenteWindow::actualiser_articles(int row, unsigned newItemQte)
 
 myItemBreak:
         quantiteVendue += curTableWidgetItemQte;
-        tva += (curTableWidgetItemQte * articleVenteInfo->_montant_tva);
+        tva += (curTableWidgetItemQte * articleVenteInfo->montant_tva());
         sommeTotal += articleVenteInfo->prix_vente();
     }
 
@@ -2497,8 +2557,8 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
         stocksVenduRecord.setValue(YerothDatabaseTableColumn::QUANTITE_VENDUE, articleVenteInfo->_quantite_a_vendre);
         stocksVenduRecord.setValue(YerothDatabaseTableColumn::PRIX_UNITAIRE, articleVenteInfo->_prix_unitaire);
         stocksVenduRecord.setValue(YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE, articleVenteInfo->prix_vente());
-        stocksVenduRecord.setValue(YerothDatabaseTableColumn::REMISE_PRIX, articleVenteInfo->_remise_prix);
-        stocksVenduRecord.setValue(YerothDatabaseTableColumn::REMISE_POURCENTAGE, articleVenteInfo->_remise_pourcentage);
+        stocksVenduRecord.setValue(YerothDatabaseTableColumn::REMISE_PRIX, articleVenteInfo->remise_prix());
+        stocksVenduRecord.setValue(YerothDatabaseTableColumn::REMISE_POURCENTAGE, articleVenteInfo->remise_pourcentage());
         stocksVenduRecord.setValue(YerothDatabaseTableColumn::MONTANT_TVA, articleVenteInfo->montant_tva());
         stocksVenduRecord.setValue(YerothDatabaseTableColumn::LOCALISATION, localisation);
         stocksVenduRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR, nomEntrepriseFournisseur);
@@ -2516,6 +2576,31 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
 
         stocksVenduRecord.setValue(YerothDatabaseTableColumn::MONTANT_A_REMBOURSER,
         		lineEdit_articles_montant_a_rembourser->text().toDouble());
+
+        if (articleVenteInfo->_effectuer_vente_en_gros)
+        {
+            stocksVenduRecord.setValue(YerothDatabaseTableColumn::IS_VENTE_EN_GROS, true);
+        }
+        else
+        {
+        	stocksVenduRecord.setValue(YerothDatabaseTableColumn::IS_VENTE_EN_GROS, false);
+        }
+
+        double articleVenteInfo_prix_dachat = YerothUtils::get_prix_dachat_wheter_exists(articleVenteInfo->get_stocksID());
+
+        if (articleVenteInfo_prix_dachat > 0)
+        {
+            double marge_beneficiaire =
+            		YerothUtils::getMargeBeneficiaire(articleVenteInfo->prix_vente(),
+            									      (articleVenteInfo_prix_dachat * articleVenteInfo->_quantite_a_vendre),
+    												  articleVenteInfo->montant_tva());
+
+            if (marge_beneficiaire > 0)
+            {
+            	stocksVenduRecord.setValue(YerothDatabaseTableColumn::MARGE_BENEFICIAIRE,
+            							   marge_beneficiaire);
+            }
+        }
 
         double nouvelle_quantite_totale = quantite_totale_actuelle - articleVenteInfo->_quantite_a_vendre;
 
@@ -2796,8 +2881,8 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
         total_prix_vente += articleVenteInfo->prix_vente();
 
         stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE, articleVenteInfo->prix_vente());
-        stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::REMISE_PRIX, articleVenteInfo->_remise_prix);
-        stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::REMISE_POURCENTAGE, articleVenteInfo->_remise_pourcentage);
+        stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::REMISE_PRIX, articleVenteInfo->remise_prix());
+        stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::REMISE_POURCENTAGE, articleVenteInfo->remise_pourcentage());
         stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::MONTANT_TVA, articleVenteInfo->montant_tva());
         stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::LOCALISATION, localisation);
         stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR, nomEntrepriseFournisseur);
@@ -2815,6 +2900,27 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
 
         stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::MONTANT_A_REMBOURSER,
         		lineEdit_articles_montant_a_rembourser->text().toDouble());
+
+        if (articleVenteInfo->_effectuer_vente_en_gros)
+        {
+        	stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::IS_VENTE_EN_GROS, true);
+        }
+        else
+        {
+        	stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::IS_VENTE_EN_GROS, false);
+        }
+
+        double articleVenteInfo_prix_dachat = YerothUtils::get_prix_dachat_wheter_exists(articleVenteInfo->get_stocksID());
+
+        if (articleVenteInfo_prix_dachat > 0)
+        {
+            double marge_beneficiaire = YerothUtils::getMargeBeneficiaire(articleVenteInfo->prix_vente(),
+            															  articleVenteInfo_prix_dachat,
+    																	  articleVenteInfo->montant_tva());
+
+            stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::MARGE_BENEFICIAIRE,
+            		(marge_beneficiaire * articleVenteInfo->_quantite_a_vendre));
+        }
 
         double nouvelle_quantite_totale = quantite_totale_actuelle - articleVenteInfo->_quantite_a_vendre;
 

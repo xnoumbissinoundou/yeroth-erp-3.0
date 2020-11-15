@@ -31,3 +31,23 @@ void YerothArticleVenteInfo::print()
 						 QString::number(_remise_prix),
 						 QString::number(_remise_pourcentage));
 }
+
+
+double YerothArticleVenteInfo::prix_vente()
+{
+	double result_prix_vente = 0.0;
+
+	if (!_effectuer_vente_en_gros)
+	{
+		result_prix_vente =
+				(_prix_unitaire + _montant_tva - _remise_prix) * _quantite_a_vendre;
+	}
+	else
+	{
+		result_prix_vente =
+				(_prix_unitaire_en_gros + _montant_tva_en_gros - _remise_prix) * _quantite_a_vendre;
+	}
+
+	return result_prix_vente;
+}
+

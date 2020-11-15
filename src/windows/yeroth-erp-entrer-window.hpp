@@ -87,32 +87,6 @@ public slots:
 										 "sur enregistrer !"));
 	}
 
-	bool product_search_with_designation();
-
-	bool product_search_with_codebar();
-
-    void display_quantite_total(const QString &quantite_par_lot);
-
-    void display_quantite_total_by_spinbox(double lots);
-
-    void calculate_and_display_benefit_buying_price_percentage();
-
-    void edited_prix_vente(const QString & newPrixVente);
-
-    void display_service_montant_total_vente();
-
-    void display_prix_vente();
-
-    void setStockSpecificWidgetVisible(bool visible);
-
-    void handle_checkBox_service_achat(int state);
-
-    void handle_checkBox_service_vente(int state);
-
-    void handleTVACheckBox(int state);
-
-    void handleCategorieName(const QString &text);
-
     inline void rendreInvisibleAvecConservation()
     {
     	setVisible(false);
@@ -189,9 +163,50 @@ protected:
 
 private slots:
 
+	bool product_search_with_designation();
+
+	bool product_search_with_codebar();
+
+	void display_quantite_total(const QString &quantite_par_lot);
+
+	void display_quantite_total_by_spinbox(double lots);
+
+	void calculate_and_display_ALL_benefit_buying_price_percentage();
+
+	void calculate_and_display_benefit_buying_price_percentage();
+
+	void calculate_and_display_benefit_buying_price_percentage_EN_GROS();
+
+	void edited_prix_vente(const QString & newPrixVente);
+
+	void edited_prix_vente_en_gros(const QString & newPrixVente);
+
+	void display_service_montant_total_vente();
+
+	void display_prix_vente();
+
+	void display_prix_vente_en_gros();
+
+	void setStockSpecificWidgetVisible(bool visible);
+
+	void handle_checkBox_service_achat(int state);
+
+	void handle_checkBox_service_vente(int state);
+
+	void handleTVACheckBox(int state);
+
+	void handleCategorieName(const QString &text);
+
 	bool check_fields_mandatory_buying();
 
 private:
+
+	inline double get_prix_vente_en_gros()
+	{
+		return !lineEdit_prix_vente_en_gros->isEmpty() ?
+				lineEdit_prix_vente_en_gros->text().toDouble() :
+				lineEdit_prix_vente->text().toDouble();
+	}
 
     bool insertStockItemInProductList();
 
@@ -221,6 +236,8 @@ private:
 
     double					_montantTva;
 
+    double					_montantTva_en_gros;
+
     bool					_tvaCheckBoxPreviousState;
 
     bool					_createNewCategorie;
@@ -232,6 +249,8 @@ private:
     QString 				_curFournisseurName;
 
     QString					_lastEditedPrixVente;
+
+    QString					_lastEditedPrixVente_en_gros;
 };
 
 

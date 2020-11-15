@@ -27,6 +27,8 @@ public:
 
 	static const QString IS_SERVICE;
 
+	static const QString IS_VENTE_EN_GROS;
+
 	static const QString ID_ALERTE;
 
 	static const QString ID;
@@ -73,6 +75,8 @@ public:
 
 	static const QString PRIX_UNITAIRE;
 
+	static const QString PRIX_UNITAIRE_EN_GROS;
+
 	static const QString REFERENCE_RECU_DACHAT;
 
 	static const QString PRIX_DACHAT_PRECEDENT;
@@ -81,7 +85,11 @@ public:
 
 	static const QString PRIX_VENTE_PRECEDENT;
 
+	static const QString PRIX_VENTE_EN_GROS_PRECEDENT;
+
 	static const QString PRIX_VENTE;
+
+	static const QString PRIX_VENTE_EN_GROS;
 
 	static const QString REFERENCE_DU_COMPTE_BANCAIRE;
 
@@ -99,9 +107,13 @@ public:
 
 	static const QString MONTANT_TVA;
 
+	static const QString MONTANT_TVA_EN_GROS;
+
 	static const QString TVA;
 
 	static const QString MARGE_BENEFICIAIRE;
+
+	static const QString MARGE_BENEFICIAIRE_EN_GROS;
 
 	static const QString MONTANT_RECU;
 

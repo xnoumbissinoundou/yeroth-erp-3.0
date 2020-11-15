@@ -59,7 +59,9 @@ public:
 
 public slots:
 
-    void display_prix_vente();
+	void display_prix_vente();
+
+    void display_prix_vente_EN_GROS();
 
     void handleTVACheckBox(bool clicked);
 
@@ -101,7 +103,13 @@ private slots:
 
 	void edited_prix_vente(const QString &newPrixVente);
 
+	void edited_prix_vente_EN_GROS(const QString &newPrixVente_en_gros);
+
+	void calculate_and_display_ALL_benefit_buying_price_percentage();
+
 	void calculate_and_display_benefit_buying_price_percentage();
+
+	void calculate_and_display_benefit_buying_price_percentage_EN_GROS();
 
 private:
 
@@ -137,11 +145,15 @@ private:
 
     double						_montantTva;
 
+    double						_montantTva_EN_GROS;
+
     bool						_tvaCheckBoxPreviousState;
 
     QString						_currentPrixDachat;
 
     QString						_lastEditedPrixVente;
+
+    QString						_lastEditedPrixVente_EN_GROS;
 
     QString						_tvaPercent;
 };

@@ -775,14 +775,16 @@ bool YerothUtils::UPDATE_PREVIOUS_SELLING_PRICE_IN_ProductList(const YerothERPSe
 {
     bool success = false;
 
-	QString stockItemUpdateSellingPriceQuery(QString("UPDATE %1 SET %2='%3' WHERE %4='%5'")
+	QString stockItemUpdateSellingPriceQuery(QString("UPDATE %1 SET %2='%3', %4='%5' WHERE %6='%7'")
 												.arg(_allWindows->MARCHANDISES,
 													 YerothDatabaseTableColumn::PRIX_VENTE_PRECEDENT,
 													 aServiceStockData._prix_vente_precedent,
+													 YerothDatabaseTableColumn::PRIX_VENTE_EN_GROS_PRECEDENT,
+													 aServiceStockData._prix_vente_en_gros_precedent,
 													 YerothDatabaseTableColumn::DESIGNATION,
 													 aServiceStockData._designation));
 
-    success = YerothUtils::execQuery(stockItemUpdateSellingPriceQuery, 0);
+    success = YerothUtils::execQuery(stockItemUpdateSellingPriceQuery);
 
     return success;
 }
@@ -850,6 +852,9 @@ bool YerothUtils::insertStockItemInProductList(const YerothERPServiceStockMarcha
 
     	record.setValue(YerothDatabaseTableColumn::PRIX_DACHAT_PRECEDENT,
     			YerothUtils::YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(aServiceStockData._prix_dachat_precedent));
+
+    	record.setValue(YerothDatabaseTableColumn::PRIX_VENTE_EN_GROS_PRECEDENT,
+    			YerothUtils::YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(aServiceStockData._prix_vente_en_gros_precedent));
 
     	record.setValue(YerothDatabaseTableColumn::PRIX_VENTE_PRECEDENT,
     			YerothUtils::YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(aServiceStockData._prix_vente_precedent));
@@ -973,6 +978,31 @@ QString YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(const QString &
 	}
 
 	return aString_OUT;
+}
+
+
+double YerothUtils::get_prix_dachat_wheter_exists(const QString &stocksID)
+{
+    QString prixDachatQueryString(QString("SELECT %1 FROM %2 WHERE %3='%4'")
+    								.arg(YerothDatabaseTableColumn::PRIX_DACHAT,
+    									 _allWindows->ACHATS,
+										 YerothDatabaseTableColumn::STOCKS_ID,
+										 stocksID));
+
+//    QDEBUG_STRINGS_OUTPUT_2("prixDachatQueryString", prixDachatQueryString);
+
+    QSqlQuery prixDachatQuery;
+
+	int achatQuerySize = YerothUtils::execQuery(prixDachatQuery, prixDachatQueryString);
+
+	double prix_dachat = 0.0;
+
+    if (achatQuerySize > 0 && prixDachatQuery.next())
+    {
+    	prix_dachat = prixDachatQuery.value(0).toDouble();
+    }
+
+	return prix_dachat;
 }
 
 

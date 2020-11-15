@@ -412,6 +412,10 @@ void YerothStockDetailWindow::showItem_YerothERPAbstractClassDetailViewFOR_WINDO
 
     lineEdit_prix_vente->setText(GET_CURRENCY_STRING_NUM(prix_vente));
 
+    double prix_vente_en_gros = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::PRIX_VENTE_EN_GROS).toDouble();
+
+    lineEdit_prix_vente_en_gros->setText(GET_CURRENCY_STRING_NUM(prix_vente_en_gros));
+
     lineEdit_localisation_produit->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::LOCALISATION_STOCK));
 
     textEdit_description->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESCRIPTION_PRODUIT));

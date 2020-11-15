@@ -1294,14 +1294,15 @@ void YerothSortirWindow::calculate_details_window_remise_prix()
     if (articleVenteInfo && radioButton_article_detail_remise_prix->isChecked())
     {
         double remise_prix = lineEdit_article_detail_remise_prix->text().toDouble();
+
         double remise_pourcentage = (100.0 * remise_prix) / articleVenteInfo->_prix_unitaire;
 
-        articleVenteInfo->_remise_prix = remise_prix;
+        articleVenteInfo->setRemisePrix(remise_prix);
 
-        articleVenteInfo->_remise_pourcentage = remise_pourcentage;
+        articleVenteInfo->setRemisePourcentage(remise_pourcentage);
 
         lineEdit_article_detail_remise_pourcentage
-			->setText(QString::number(articleVenteInfo->_remise_pourcentage, 'f', 2));
+			->setText(articleVenteInfo->remisePourcentage());
     }
 
     actualiser_montant_remise();
@@ -1322,9 +1323,13 @@ void YerothSortirWindow::calculate_details_window_remise_pourcentage()
     if (0 != articleVenteInfo && radioButton_article_detail_remise_pourcentage->isChecked())
     {
         double remise_pourcentage = lineEdit_article_detail_remise_pourcentage->text().toDouble();
+
         double remise_prix = (articleVenteInfo->_prix_unitaire * remise_pourcentage) / 100.0;
-        articleVenteInfo->_remise_pourcentage = remise_pourcentage;
-        articleVenteInfo->_remise_prix = remise_prix;
+
+        articleVenteInfo->setRemisePourcentage(remise_pourcentage);
+
+        articleVenteInfo->setRemisePrix(remise_prix);
+
         lineEdit_article_detail_remise_prix->setText(articleVenteInfo->remisePrix());
     }
 
@@ -1342,7 +1347,7 @@ void YerothSortirWindow::actualiser_montant_remise()
 
     YerothArticleVenteInfo *articleVenteInfo = articleItemToVenteInfo.value(tableWidgetRow);
 
-    double prix_unitaire = articleVenteInfo->_prix_unitaire - articleVenteInfo->_remise_prix;
+    double prix_unitaire = articleVenteInfo->prix_unitaire() - articleVenteInfo->remise_prix();
 
     double montant_tva = prix_unitaire * YerothERPConfig::tva_value;
 
@@ -1352,6 +1357,7 @@ void YerothSortirWindow::actualiser_montant_remise()
     }
 
     lineEdit_article_detail_tva->setText(articleVenteInfo->montantTva());
+
     lineEdit_article_detail_prix_unitaire->setText(GET_CURRENCY_STRING_NUM(prix_unitaire));
 }
 

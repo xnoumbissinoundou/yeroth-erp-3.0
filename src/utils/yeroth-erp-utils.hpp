@@ -115,11 +115,13 @@ public:
 
 	static QString YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(const QString &aString_IN);
 
+	static double get_prix_dachat_wheter_exists(const QString &stocksID);
+
     inline static double getMargeBeneficiaire(double prix_vente,
     								   	   	  double prix_dachat,
-											  double montantTva)
+											  double montant_tva)
     {
-    	return (prix_vente - QString::number(montantTva, 'f', 2).toDouble() - prix_dachat);
+    	return (prix_vente - QString::number(montant_tva, 'f', 2).toDouble() - prix_dachat);
     }
 
     inline static bool isProfitable(double prix_vente,
@@ -225,6 +227,12 @@ public:
 	inline static QByteArray md5Hash(QString data)
 	{
 		return QCryptographicHash::hash(data.toLatin1(), QCryptographicHash::Md5);
+	}
+
+	inline static int get_index_of_table_raw_column(const QStringList &tableModelRawHeaders,
+											 	 	const QString &databaseTableColumnRAW_NAME)
+	{
+		return tableModelRawHeaders.indexOf(databaseTableColumnRAW_NAME);
 	}
 
 	static void createTableModelHeaders(QSqlTableModel 		&tableModel,

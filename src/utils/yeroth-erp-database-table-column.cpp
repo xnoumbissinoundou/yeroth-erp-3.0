@@ -15,6 +15,7 @@ QMap<QString, QString> YerothDatabaseTableColumn::_tableColumnToUserViewString;
 
 
 const QString YerothDatabaseTableColumn::IS_SERVICE						("is_service");
+const QString YerothDatabaseTableColumn::IS_VENTE_EN_GROS				("is_vente_en_gros");
 const QString YerothDatabaseTableColumn::ID_ALERTE						("id_alerte");
 const QString YerothDatabaseTableColumn::ID								("id");
 const QString YerothDatabaseTableColumn::HISTORIQUE_STOCK				("historique_stock");
@@ -38,11 +39,14 @@ const QString YerothDatabaseTableColumn::QUANTITE_SORTIE				("quantite_sortie");
 const QString YerothDatabaseTableColumn::DESCRIPTION_FOURNISSEUR		("description_fournisseur");
 const QString YerothDatabaseTableColumn::DESCRIPTION_PRODUIT			("description_produit");
 const QString YerothDatabaseTableColumn::PRIX_UNITAIRE					("prix_unitaire");
+const QString YerothDatabaseTableColumn::PRIX_UNITAIRE_EN_GROS			("prix_unitaire_en_gros");
 const QString YerothDatabaseTableColumn::REFERENCE_RECU_DACHAT			("reference_recu_dachat");
 const QString YerothDatabaseTableColumn::PRIX_DACHAT_PRECEDENT			("prix_dachat_precedent");
 const QString YerothDatabaseTableColumn::PRIX_DACHAT					("prix_dachat");
 const QString YerothDatabaseTableColumn::PRIX_VENTE_PRECEDENT			("prix_vente_precedent");
+const QString YerothDatabaseTableColumn::PRIX_VENTE_EN_GROS_PRECEDENT	("prix_vente_en_gros_precedent");
 const QString YerothDatabaseTableColumn::PRIX_VENTE						("prix_vente");
+const QString YerothDatabaseTableColumn::PRIX_VENTE_EN_GROS				("prix_vente_en_gros");
 const QString YerothDatabaseTableColumn::REFERENCE_DU_COMPTE_BANCAIRE	("reference_du_compte_bancaire");
 const QString YerothDatabaseTableColumn::AGENCE_DU_COMPTE_BANCAIRE		("agence_du_compte_bancaire");
 const QString YerothDatabaseTableColumn::INTITULE_DU_COMPTE_BANCAIRE	("intitule_du_compte_bancaire");
@@ -51,8 +55,10 @@ const QString YerothDatabaseTableColumn::DESCRIPTION_DU_COMPTE_BANCAIRE	("descri
 const QString YerothDatabaseTableColumn::DESCRIPTION_CATEGORIE			("description_categorie");
 const QString YerothDatabaseTableColumn::NOM_CATEGORIE					("nom_categorie");
 const QString YerothDatabaseTableColumn::MONTANT_TVA					("montant_tva");
+const QString YerothDatabaseTableColumn::MONTANT_TVA_EN_GROS			("montant_tva_en_gros");
 const QString YerothDatabaseTableColumn::TVA							("tva");
 const QString YerothDatabaseTableColumn::MARGE_BENEFICIAIRE				("marge_beneficiaire");
+const QString YerothDatabaseTableColumn::MARGE_BENEFICIAIRE_EN_GROS		("marge_beneficiaire_en_gros");
 const QString YerothDatabaseTableColumn::MONTANT_RECU					("montant_recu");
 const QString YerothDatabaseTableColumn::MONTANT_A_REMBOURSER			("montant_a_rembourser");
 const QString YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE			("montant_total_vente");
@@ -147,6 +153,8 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::IS_SERVICE, 		QObject::tr("Service"));
 
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::IS_VENTE_EN_GROS, QObject::tr("Vente en gros"));
+
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::ID_ALERTE, 		QObject::tr("ID ALERTE"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::ID, 				QObject::tr("ID"));
@@ -193,15 +201,21 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::PRIX_UNITAIRE, 	QObject::tr("Prix unitaire"));
 
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::PRIX_UNITAIRE_EN_GROS, 	QObject::tr("Prix unitaire (en gros)"));
+
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REFERENCE_RECU_DACHAT, 		QObject::trUtf8("Référence achat"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::PRIX_DACHAT_PRECEDENT, 	QObject::tr("Prix d'achat précédent"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::PRIX_DACHAT, 		QObject::tr("Prix d'achat"));
 
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::PRIX_VENTE_PRECEDENT, 	QObject::tr("Prix vente précédent"));
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::PRIX_VENTE_PRECEDENT, 	QObject::trUtf8("Prix vente précédent"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::PRIX_VENTE_EN_GROS_PRECEDENT, 	QObject::trUtf8("P.V. (en gros) précédent"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::PRIX_VENTE, 		QObject::tr("Prix vente"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::PRIX_VENTE_EN_GROS, 		QObject::tr("Prix vente (en gros)"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REFERENCE_DU_COMPTE_BANCAIRE, 		QObject::trUtf8("Réf. compte bancaire"));
 
@@ -219,9 +233,13 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::MONTANT_TVA, 		QObject::tr("Montant TVA"));
 
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::MONTANT_TVA_EN_GROS, QObject::tr("Montant TVA (en gros)"));
+
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::TVA,				QObject::tr("TVA"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::MARGE_BENEFICIAIRE,		QObject::trUtf8("Bénéfice"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::MARGE_BENEFICIAIRE_EN_GROS,	QObject::trUtf8("Bénéfice (gros)"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::MONTANT_RECU,		QObject::trUtf8("Montant reçu"));
 

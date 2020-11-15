@@ -104,165 +104,159 @@ signals:
 
 public slots:
 
-		inline void disableImprimer()
-		{
-			actionAfficherPDF->setEnabled(false);
-		}
+	QString afficher_recu_vendu_pdf(QString referenceRecu = YerothUtils::EMPTY_STRING);
 
-		inline void enableImprimer()
-		{
-			actionAfficherPDF->setEnabled(true);
-		}
+	QString imprimer_recu_vendu(QString referenceRecu = YerothUtils::EMPTY_STRING);
 
-		QString afficher_recu_vendu_pdf(QString referenceRecu = YerothUtils::EMPTY_STRING);
+	QString imprimer_recu_vendu_grand(QString referenceRecuGRAND = YerothUtils::EMPTY_STRING);
 
-		QString imprimer_recu_vendu(QString referenceRecu = YerothUtils::EMPTY_STRING);
+	QString imprimer_recu_vendu_petit(QString referenceRecuPETIT = YerothUtils::EMPTY_STRING);
 
-		QString imprimer_recu_vendu_grand(QString referenceRecuGRAND = YerothUtils::EMPTY_STRING);
+	void handleAddedArticle();
 
-		QString imprimer_recu_vendu_petit(QString referenceRecuPETIT = YerothUtils::EMPTY_STRING);
+	void handleCurrentChanged(int index);
 
-		void handleAddedArticle();
+	void annuler();
 
-		void handleCurrentChanged(int index);
+	void setRechercheLineEditFocus();
 
-		void annuler();
+	void setRechercheDesignationArticleFocus();
 
-		void setRechercheLineEditFocus();
+	void setRechercheCodebarArticleFocus();
 
-		void setRechercheDesignationArticleFocus();
+	void handleClientName(const QString& text);
 
-		void setRechercheCodebarArticleFocus();
+	void activateLineEditRemisePrix(bool toggled);
 
-		void handleClientName(const QString& text);
+	void activateLineEditRemisePourcentage(bool toggled);
 
-		void activateLineEditRemisePrix(bool toggled);
+	void calculate_details_window_remise_prix();
 
-		void activateLineEditRemisePourcentage(bool toggled);
+	void calculate_details_window_remise_pourcentage();
 
-		void calculate_details_window_remise_prix();
+	void actualiser_montant_remise();
 
-	    void calculate_details_window_remise_pourcentage();
+	void resetCheckboxTVA();
 
-	    void actualiser_montant_remise();
+	void handleTVACheckBox(bool clicked);
 
-	    void resetCheckboxTVA();
+	inline void handleQtePressed(QTableWidgetItem *itemPressed)
+	{
+		_previousPressedQteValue = itemPressed->text();
+	}
 
-	    void handleTVACheckBox(bool clicked);
+	void handleQteChange(QTableWidgetItem *itemChanged);
 
-		inline void handleQtePressed(QTableWidgetItem *itemPressed)
-		{
-			_previousPressedQteValue = itemPressed->text();
-		}
+	void updateQuantiteAVendre();
 
-		void handleQteChange(QTableWidgetItem *itemChanged);
+	bool article_exist(const QString codeBar,
+			const QString designation);
 
-		void updateQuantiteAVendre();
+	void ajouter_article(const QString &aStockID);
 
-		bool article_exist(const QString codeBar,
-				 	 	   const QString designation);
+	void ajouter_article_stockname(const QString &aStockName);
 
-		void ajouter_article(const QString &text);
+	void ajouter_article_codebar(const QString &aStockReference);
 
-		void ajouter_article_codebar(const QString &text);
+	void actualiser_articles(int row, unsigned newItemQte);
 
-	    void actualiser_articles(int row, unsigned newItemQte);
+	void actualiser_articles_codebar(int row, unsigned newItemQte);
 
-	    void actualiser_articles_codebar(int row, unsigned newItemQte);
+	void actualiser_tableau_vente();
 
-	    void actualiser_tableau_vente();
+	void actualiser_toutes_valeurs();
 
-	    void actualiser_toutes_valeurs();
+	void update_lineedits_and_labels(double total);
 
-	    void update_lineedits_and_labels(double total);
+	inline void setMontantComptantRecu(double unMontantRecu)
+	{
+		_montantRecu = unMontantRecu;
+	}
 
-	    inline void setMontantComptantRecu(double unMontantRecu)
-	    {
-	    	_montantRecu = unMontantRecu;
-	    }
+	void handleMontantRecu();
 
-		void handleMontantRecu();
+	void enlever_article();
 
-	    void enlever_article();
+	void afficher_tableau_ventes(const int tableWidgetRow);
 
-	    void afficher_tableau_ventes(const int tableWidgetRow);
+	void afficher_vente_detail(const int tableWidgetRow);
 
-	    void afficher_vente_detail(const int tableWidgetRow);
+	inline void afficher_vente_detail(const QModelIndex &modelIndex)
+	{
+		afficher_vente_detail(modelIndex.row());
+	}
 
-	    inline void afficher_vente_detail(const QModelIndex &modelIndex)
-	    {
-	    	afficher_vente_detail(modelIndex.row());
-	    }
+	inline void afficher_vente_detail(QTableWidgetItem *item)
+	{
+		afficher_vente_detail(item->row());
+	}
 
-	    inline void afficher_vente_detail(QTableWidgetItem *item)
-	    {
-	    	afficher_vente_detail(item->row());
-	    }
+	inline void afficher_ventes()
+	{
+		tabWidget_vente->setCurrentIndex(TableauDesVentes);
+	}
 
-	    inline void afficher_ventes()
-	    {
-	    	tabWidget_vente->setCurrentIndex(TableauDesVentes);
-	    }
+	inline void rendreInvisibleAvecConservation()
+	{
+		setVisible(false);
+	}
 
-	    inline void rendreInvisibleAvecConservation()
-	    {
-	    	setVisible(false);
-	    }
+	void lister();
 
-		void lister();
+	inline YerothPOSCreditCardInfo  *getCurrentCreditCardInfo()
+	{
+		return _currentCreditCardInfo;
+	}
 
-		inline YerothPOSCreditCardInfo  *getCurrentCreditCardInfo()
-		{
-			return _currentCreditCardInfo;
-		}
+	void choisir_methode_paiment();
 
-		void choisir_methode_paiment();
+	unsigned int effectuer_check_out_carte_credit_carte_debit();
 
-		unsigned int effectuer_check_out_carte_credit_carte_debit();
+	void executer_la_vente_comptant();
 
-		void executer_la_vente_comptant();
+	unsigned int effectuer_check_out_comptant();
 
-		unsigned int effectuer_check_out_comptant();
+	void updateCompteClient(double nouveau_compte_client);
 
-		void updateCompteClient(double nouveau_compte_client);
+	void executer_la_vente_compte_client();
 
-		void executer_la_vente_compte_client();
+	unsigned int effectuer_check_out_compte_client();
 
-		unsigned int effectuer_check_out_compte_client();
+	inline void setCurrentClientName(QString curClientName)
+	{
+		_curClientName = curClientName;
+	}
 
-		void retourVentes();
+	inline QString getCurrentClientName()
+	{
+		return _curClientName;
+	}
 
-	    inline void setCurrentClientName(QString curClientName)
-	    {
-	    	_curClientName = curClientName;
-	    }
+	inline virtual void apropos()
+	{
+		YerothWindowsCommons::apropos(this);
+	}
 
-	    inline QString getCurrentClientName()
-	    {
-	    	return _curClientName;
-	    }
-
-		inline virtual void apropos()
-		{
-			YerothWindowsCommons::apropos(this);
-		}
-
-		inline virtual void help()
-		{
-			YerothQMessageBox::information(this,
-							 QObject::trUtf8("aide"),
-							 QObject::trUtf8("Choisissez les articles à vendre en utilisant "
-											 "leur référence à la première barre de recherche, ou bien "
-											 "leur désignation à la deuxième barre de recherche !"));
-		}
+	inline virtual void help()
+	{
+		YerothQMessageBox::information(this,
+				QObject::trUtf8("aide"),
+				QObject::trUtf8("Choisissez les articles à vendre en utilisant "
+						"leur référence à la première barre de recherche, ou bien "
+						"leur désignation à la deuxième barre de recherche !"));
+	}
 
 private slots:
+
+	void retourVentes();
 
 	void setBarcodeAsStandardInput();
 
 	void setStockItemNameAsStandardInput();
 
 	void updateLineEditQCompleterInput();
+
+	void handle_effectuer_vente_en_gros(int state);
 
 	void handleBasculerLecteurDeCodebarres();
 
@@ -271,6 +265,18 @@ private slots:
 	bool PROCESS_CREDIT_CARD_PAYMENT();
 
 	bool PRE__PROCESS_CREDIT_CARD_PAYMENT();
+
+protected slots:
+
+	inline virtual void disableImprimer()
+	{
+		actionAfficherPDF->setVisible(false);
+	}
+
+	inline virtual void enableImprimer()
+	{
+		actionAfficherPDF->setVisible(true);
+	}
 
 protected:
 
@@ -321,9 +327,12 @@ private:
     bool 					_updateItemConversionError;
 
     int						_typeDeVente;
+
     QString					_previousPressedQteValue;
 
     bool					_tvaCheckBoxPreviousState;
+
+    QString 				_currentStocksID;
 
     double 					_sommeTotal;
     double 					_remise_somme_total_prix;

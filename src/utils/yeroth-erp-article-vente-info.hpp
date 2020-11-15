@@ -23,10 +23,13 @@ public:
 	YEROTH_CLASS_OPERATORS
 
 	inline YerothArticleVenteInfo()
-	:_quantite_en_stock(0.0),
+	:_effectuer_vente_en_gros(false),
+	 _quantite_en_stock(0.0),
 	 _prix_unitaire(0.0),
+	 _prix_unitaire_en_gros(0.0),
 	 _quantite_a_vendre(0.0),
 	 _montant_tva(0.0),
+	 _montant_tva_en_gros(0.0),
 	 _remise_prix(0.0),
 	 _remise_pourcentage(0.0)
 	{
@@ -38,19 +41,28 @@ public:
 
 	void print();
 
-	inline double prix_vente()
+	inline QString get_stocksID()
 	{
-		return (_prix_unitaire + _montant_tva - _remise_prix) * _quantite_a_vendre;
+		return _stockID;
+	}
+
+	double prix_vente();
+
+	inline double prix_unitaire()
+	{
+		return _effectuer_vente_en_gros ? _prix_unitaire_en_gros : _prix_unitaire;
 	}
 
 	inline double montant_tva()
 	{
-		return _montant_tva * _quantite_a_vendre;
+		return _effectuer_vente_en_gros ?
+				_montant_tva_en_gros * _quantite_a_vendre :
+				_montant_tva * _quantite_a_vendre;
 	}
 
 	inline QString prixVente()
 	{
-		return QString::number(this->prix_vente(), 'f', 2);
+		return QString::number(prix_vente(), 'f', 2);
 	}
 
 	inline QString quantiteEnStock()
@@ -60,7 +72,9 @@ public:
 
 	inline QString prixUnitaire()
 	{
-		return QString::number(_prix_unitaire, 'f', 2);
+		return _effectuer_vente_en_gros ?
+				QString::number(_prix_unitaire_en_gros, 'f', 2) :
+				QString::number(_prix_unitaire, 'f', 2);
 	}
 
 	inline QString quantiteAVendre()
@@ -70,7 +84,17 @@ public:
 
 	inline QString montantTva()
 	{
-		return QString::number(this->montant_tva(), 'f', 2);
+		return QString::number(montant_tva(), 'f', 2);
+	}
+
+	inline double remise_prix()
+	{
+		return _remise_prix;
+	}
+
+	inline double remise_pourcentage()
+	{
+		return _remise_pourcentage;
 	}
 
 	inline QString remisePrix()
@@ -83,18 +107,30 @@ public:
 		return QString::number(_remise_pourcentage, 'f', 2);
 	}
 
+	inline void setRemisePrix(double remise_prix)
+	{
+		_remise_prix = remise_prix;
+	}
+
+	inline void setRemisePourcentage(double remise_pourcentage)
+	{
+		_remise_pourcentage = remise_pourcentage;
+	}
+
+
+	bool 	_effectuer_vente_en_gros;
 
 	double 	_quantite_en_stock;
-
-	double 	_prix_unitaire;
 
 	double 	_quantite_a_vendre;
 
 	double 	_montant_tva;
 
-	double 	_remise_prix;
+	double 	_montant_tva_en_gros;
 
-	double 	_remise_pourcentage;
+	double 	_prix_unitaire;
+
+	double 	_prix_unitaire_en_gros;
 
 
 	QString _stockReference;
@@ -104,6 +140,14 @@ public:
 	QString _stockCategorie;
 
 	QString _stockID;
+
+
+private:
+
+	double 	_remise_prix;
+
+	double 	_remise_pourcentage;
+
 };
 
 
