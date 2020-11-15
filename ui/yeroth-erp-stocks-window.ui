@@ -4296,7 +4296,7 @@ background-color: rgb(0, 0, 0);</string>
     <property name="geometry">
      <rect>
       <x>244</x>
-      <y>465</y>
+      <y>470</y>
       <width>231</width>
       <height>21</height>
      </rect>
@@ -5208,7 +5208,7 @@ background-color: rgb(0, 0, 0); </string>
     <property name="geometry">
      <rect>
       <x>164</x>
-      <y>465</y>
+      <y>470</y>
       <width>77</width>
       <height>21</height>
      </rect>
@@ -5640,7 +5640,7 @@ background-color: rgb(0, 0, 0); </string>
     <property name="geometry">
      <rect>
       <x>11</x>
-      <y>465</y>
+      <y>470</y>
       <width>151</width>
       <height>21</height>
      </rect>
@@ -11505,7 +11505,7 @@ border: 0px rgb(255, 255, 255);</string>
     <property name="geometry">
      <rect>
       <x>244</x>
-      <y>444</y>
+      <y>446</y>
       <width>231</width>
       <height>21</height>
      </rect>
@@ -11983,7 +11983,7 @@ background-color: rgb(0, 0, 0); </string>
     <property name="geometry">
      <rect>
       <x>131</x>
-      <y>444</y>
+      <y>446</y>
       <width>111</width>
       <height>21</height>
      </rect>
@@ -13310,7 +13310,7 @@ background-color: rgb(0, 0, 0); </string>
     <property name="geometry">
      <rect>
       <x>12</x>
-      <y>444</y>
+      <y>446</y>
       <width>117</width>
       <height>21</height>
      </rect>
@@ -13748,7 +13748,7 @@ background-color: rgb(0, 0, 0); </string>
     <property name="geometry">
      <rect>
       <x>487</x>
-      <y>444</y>
+      <y>445</y>
       <width>101</width>
       <height>21</height>
      </rect>
@@ -14106,7 +14106,7 @@ background-color: rgb(0, 0, 0); </string>
     <property name="geometry">
      <rect>
       <x>591</x>
-      <y>444</y>
+      <y>446</y>
       <width>200</width>
       <height>21</height>
      </rect>
@@ -15100,7 +15100,7 @@ background-color: rgb(0, 0, 0); </string>
     <property name="geometry">
      <rect>
       <x>487</x>
-      <y>422</y>
+      <y>421</y>
       <width>101</width>
       <height>21</height>
      </rect>
