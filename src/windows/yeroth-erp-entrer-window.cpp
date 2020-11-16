@@ -234,12 +234,18 @@ void YerothEntrerWindow::setupLineEditsQCompleters__FOR_STOCK_INVENTORY()
 
 	if (checkBox_service_achat->isChecked())
 	{
+		label_designation->setVisible(false);
+		lineEdit_designation->setVisible(false);
+
 		label_prix_vente->setText(QObject::tr("prix d'achat"));
 
 		label_montant_total_vente_service->setText(QObject::tr("montant total achat"));
 	}
 	else
 	{
+		label_designation->setVisible(true);
+		lineEdit_designation->setVisible(true);
+
 		label_prix_vente->setText(QObject::tr("prix de vente"));
 
 		label_montant_total_vente_service->setText(QObject::tr("montant total vente"));
@@ -440,7 +446,7 @@ void YerothEntrerWindow::definirManager()
     pushButton_sortir->enable(this, SLOT(sortir()));
     pushButton_annuler->enable(this, SLOT(menu()));
     pushButton_selectionner_image->enable(this, SLOT(selectionner_image_produit()));
-    pushButton_enregistrer_produit->enable(this, SLOT(enregistrer_produit()));
+    pushButton_enregistrer_produit->enable(this, SLOT(handle_enregistrer()));
 }
 
 
@@ -492,7 +498,7 @@ void YerothEntrerWindow::definirGestionaireDesStocks()
     pushButton_sortir->enable(this, SLOT(sortir()));
     pushButton_annuler->enable(this, SLOT(menu()));
     pushButton_selectionner_image->enable(this, SLOT(selectionner_image_produit()));
-    pushButton_enregistrer_produit->enable(this, SLOT(enregistrer_produit()));
+    pushButton_enregistrer_produit->enable(this, SLOT(handle_enregistrer()));
 }
 
 
@@ -518,6 +524,19 @@ void YerothEntrerWindow::definirMagasinier()
     pushButton_annuler->enable(this, SLOT(menu()));
     pushButton_selectionner_image->enable(this, SLOT(selectionner_image_produit()));
     pushButton_enregistrer_produit->disable(this);
+}
+
+
+void YerothEntrerWindow::handle_enregistrer()
+{
+	if (checkBox_service_achat->isChecked())
+	{
+		enregistrer_achat();
+	}
+	else
+	{
+		enregistrer_produit();
+	}
 }
 
 
@@ -854,7 +873,7 @@ void YerothEntrerWindow::handle_checkBox_service_achat(int state)
 
 		setStockSpecificWidgetVisible(false);
 
-		check_fields_service();
+		check_fields_service_vente();
 	}
 	else
 	{
@@ -879,7 +898,7 @@ void YerothEntrerWindow::handle_checkBox_service_vente(int state)
 
 	    setStockSpecificWidgetVisible(false);
 
-	    check_fields_service();
+	    check_fields_service_vente();
 	}
 	else
 	{
@@ -1137,7 +1156,29 @@ void YerothEntrerWindow::showItem()
 }
 
 
-bool YerothEntrerWindow::check_fields_service()
+bool YerothEntrerWindow::check_fields_service_achat()
+{
+	bool fournisseur = lineEdit_nom_entreprise_fournisseur->checkField();
+
+	bool categorie_produit = lineEdit_categorie_produit->checkField();
+
+	bool reference = lineEdit_reference_produit->checkField();
+
+    bool quantite = lineEdit_quantite_par_lot->checkField();
+
+    bool prix_vente = lineEdit_prix_vente->checkField();
+
+    bool result = fournisseur &&
+    			  categorie_produit  &&
+				  reference 		 &&
+				  prix_vente 		 &&
+				  quantite;
+
+    return result;
+}
+
+
+bool YerothEntrerWindow::check_fields_service_vente()
 {
 	bool designation = lineEdit_designation->checkField();
 
@@ -1312,7 +1353,7 @@ void YerothEntrerWindow::rendreVisible(YerothSqlTableModel * stocksTableModel, b
 
     if (checkBox_service_vente->isChecked())
     {
-    	check_fields_service();
+    	check_fields_service_vente();
     }
     else
     {
@@ -1625,15 +1666,39 @@ bool YerothEntrerWindow::handle_clients_table(int stockID, double montant_total_
 }
 
 
+void YerothEntrerWindow::enregistrer_achat()
+{
+	if (!checkBox_service_achat->isChecked())
+	{
+		return ;
+	}
+
+	bool result_check_field = check_fields_service_achat();
+
+    if (!result_check_field)
+    {
+        if (QMessageBox::Ok ==
+            	YerothQMessageBox::warning(this, "achat",
+                                           tr("Remplisser tous les champs obligatoires !")))
+        {
+        }
+        else
+        {
+        }
+
+        return ;
+    }
+
+}
+
+
 void YerothEntrerWindow::enregistrer_produit()
 {
-    _logger->log("enregistrer_produit");
-
     bool result_check_field = false;
 
     if (checkBox_service_vente->isChecked())
     {
-    	result_check_field = check_fields_service();
+    	result_check_field = check_fields_service_vente();
     }
     else
     {
@@ -1643,7 +1708,7 @@ void YerothEntrerWindow::enregistrer_produit()
     if (!result_check_field)
     {
         if (QMessageBox::Ok ==
-            	YerothQMessageBox::warning(this, "enregistrer",
+            	YerothQMessageBox::warning(this, "stock (service)",
                                            tr("Remplisser tous les champs obligatoires !")))
         {
         }

@@ -116,6 +116,8 @@ public slots:
     		   !lineEdit_prix_dachat->text().isEmpty();
     }
 
+    void enregistrer_achat();
+
     void enregistrer_produit();
 
 	inline void setCurrentCategorieName(QString curCategorieName)
@@ -162,6 +164,8 @@ protected:
     virtual void setupShortcuts();
 
 private slots:
+
+	void handle_enregistrer();
 
 	bool product_search_with_designation();
 
@@ -212,7 +216,9 @@ private:
 
     void showItem();
 
-    bool check_fields_service();
+    bool check_fields_service_achat();
+
+    bool check_fields_service_vente();
 
     bool check_fields(bool withClearAllServiceMandatoryFields = false);
 
