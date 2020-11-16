@@ -220,6 +220,8 @@ private:
 
     void setupLineEdits();
 
+    void setupLineEditsQCompleters__FOR_STOCK_INVENTORY();
+
     void setupLineEditsQCompleters();
 
     inline void setupDateTimeEdits()

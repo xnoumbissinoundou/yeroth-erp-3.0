@@ -189,31 +189,22 @@ void YerothEntrerWindow::setupLineEdits()
     lineEdit_reference_produit->setFocus();
 }
 
-void YerothEntrerWindow::setupLineEditsQCompleters()
-{
-    YerothPOSUser *user = _allWindows->getUser();
 
+void YerothEntrerWindow::setupLineEditsQCompleters__FOR_STOCK_INVENTORY()
+{
 	if (checkBox_service_vente->isChecked())
 	{
-    	QString aConditionStr(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
-    						  YerothUtils::MYSQL_TRUE_LITERAL));
-
-		lineEdit_designation->setupMyStaticQCompleter(_allWindows->MARCHANDISES,
-													  YerothDatabaseTableColumn::DESIGNATION,
-													  false,
-													  true,
-													  aConditionStr);
-
-
 	    label_fournisseur->setText(QObject::tr("client"));
 
         lineEdit_nom_entreprise_fournisseur->setupMyStaticQCompleter(_allWindows->CLIENTS,
         															 YerothDatabaseTableColumn::NOM_ENTREPRISE);
+
+    	lineEdit_reference_produit->clearQCompleter();
+
+		lineEdit_designation->clearQCompleter();
 	}
 	else
 	{
-		lineEdit_designation->clear();
-
 		label_fournisseur->setText(QObject::tr("fournisseur"));
 
         lineEdit_nom_entreprise_fournisseur->setupMyStaticQCompleter(_allWindows->FOURNISSEURS,
@@ -222,18 +213,24 @@ void YerothEntrerWindow::setupLineEditsQCompleters()
     	QString aConditionStr(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
     						  YerothUtils::MYSQL_FALSE_LITERAL));
 
-    	lineEdit_designation->setupMyStaticQCompleter(_allWindows->MARCHANDISES,
-    												  YerothDatabaseTableColumn::DESIGNATION,
-    												  false,
-    												  false,
-    												  aConditionStr);
-
     	lineEdit_reference_produit->setupMyStaticQCompleter(_allWindows->MARCHANDISES,
     														YerothDatabaseTableColumn::REFERENCE,
     														false,
     														false,
     														aConditionStr);
+
+    	lineEdit_designation->setupMyStaticQCompleter(_allWindows->MARCHANDISES,
+    												  YerothDatabaseTableColumn::DESIGNATION,
+    												  false,
+    												  false,
+    												  aConditionStr);
 	}
+}
+
+
+void YerothEntrerWindow::setupLineEditsQCompleters()
+{
+    setupLineEditsQCompleters__FOR_STOCK_INVENTORY();
 
 	lineEdit_categorie_produit->setupMyStaticQCompleter(_allWindows->CATEGORIES,
 														YerothDatabaseTableColumn::NOM_CATEGORIE);
@@ -867,36 +864,17 @@ void YerothEntrerWindow::handle_checkBox_service_vente(int state)
 	    setStockSpecificWidgetVisible(false);
 
 	    check_fields_service();
-
-    	QString aConditionStr(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
-    						  YerothUtils::MYSQL_TRUE_LITERAL));
-
-		lineEdit_designation->setupMyStaticQCompleter(_allWindows->MARCHANDISES,
-													  YerothDatabaseTableColumn::DESIGNATION,
-													  false,
-													  true,
-													  aConditionStr);
-
-	    label_fournisseur->setText(QObject::tr("client"));
-
-        lineEdit_nom_entreprise_fournisseur->setupMyStaticQCompleter(_allWindows->CLIENTS,
-        															 YerothDatabaseTableColumn::NOM_ENTREPRISE);
 	}
 	else
 	{
 		checkBox_service_achat->setVisible(true);
 
-		lineEdit_designation->clearQCompleter();
-
 		setStockSpecificWidgetVisible(true);
 
 		check_fields(true);
-
-		label_fournisseur->setText(QObject::tr("fournisseur"));
-
-        lineEdit_nom_entreprise_fournisseur->setupMyStaticQCompleter(_allWindows->FOURNISSEURS,
-        															 YerothDatabaseTableColumn::NOM_ENTREPRISE);
 	}
+
+	setupLineEditsQCompleters__FOR_STOCK_INVENTORY();
 }
 
 
