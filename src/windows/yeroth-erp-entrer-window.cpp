@@ -192,24 +192,15 @@ void YerothEntrerWindow::setupLineEdits()
 
 void YerothEntrerWindow::setupLineEditsQCompleters__FOR_STOCK_INVENTORY()
 {
-	if (checkBox_service_vente->isChecked())
+	if (checkBox_service_achat->isChecked() ||
+		checkBox_service_vente->isChecked())
 	{
-	    label_fournisseur->setText(QObject::tr("client"));
-
-        lineEdit_nom_entreprise_fournisseur->setupMyStaticQCompleter(_allWindows->CLIENTS,
-        															 YerothDatabaseTableColumn::NOM_ENTREPRISE);
-
     	lineEdit_reference_produit->clearQCompleter();
 
 		lineEdit_designation->clearQCompleter();
 	}
 	else
 	{
-		label_fournisseur->setText(QObject::tr("fournisseur"));
-
-        lineEdit_nom_entreprise_fournisseur->setupMyStaticQCompleter(_allWindows->FOURNISSEURS,
-        															 YerothDatabaseTableColumn::NOM_ENTREPRISE);
-
     	QString aConditionStr(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
     						  YerothUtils::MYSQL_FALSE_LITERAL));
 
@@ -224,6 +215,34 @@ void YerothEntrerWindow::setupLineEditsQCompleters__FOR_STOCK_INVENTORY()
     												  false,
     												  false,
     												  aConditionStr);
+	}
+
+	if (checkBox_service_vente->isChecked())
+	{
+		label_fournisseur->setText(QObject::tr("client"));
+
+		lineEdit_nom_entreprise_fournisseur->setupMyStaticQCompleter(_allWindows->CLIENTS,
+				YerothDatabaseTableColumn::NOM_ENTREPRISE);
+	}
+	else
+	{
+		label_fournisseur->setText(QObject::tr("fournisseur"));
+
+        lineEdit_nom_entreprise_fournisseur->setupMyStaticQCompleter(_allWindows->FOURNISSEURS,
+        															 YerothDatabaseTableColumn::NOM_ENTREPRISE);
+	}
+
+	if (checkBox_service_achat->isChecked())
+	{
+		label_prix_vente->setText(QObject::tr("prix d'achat"));
+
+		label_montant_total_vente_service->setText(QObject::tr("montant total achat"));
+	}
+	else
+	{
+		label_prix_vente->setText(QObject::tr("prix de vente"));
+
+		label_montant_total_vente_service->setText(QObject::tr("montant total vente"));
 	}
 }
 
@@ -743,6 +762,8 @@ void YerothEntrerWindow::setStockSpecificWidgetVisible(bool visible)
 
 		lineEdit_quantite_par_lot->clear();
 
+		lineEdit_prix_vente->setFixedWidth(104);
+
 		lineEdit_quantite_totale->setFixedWidth(104);
 	}
 	else
@@ -754,6 +775,8 @@ void YerothEntrerWindow::setStockSpecificWidgetVisible(bool visible)
 	    doubleSpinBox_lots_entrant->setDecimals(2);
 
 	    lineEdit_quantite_par_lot->setText("1");
+
+	    lineEdit_prix_vente->setFixedWidth(205);
 
 	    lineEdit_quantite_totale->setFixedWidth(205);
 
@@ -809,6 +832,9 @@ void YerothEntrerWindow::setStockSpecificWidgetVisible(bool visible)
 	label_montant_total_vente_service->setVisible(!visible);
 	lineEdit_service_montant_total_vente->setVisible(!visible);
 
+	label_prix_vente_en_gros->setVisible(visible);
+	lineEdit_prix_vente_en_gros->setVisible(visible);
+
 	label_prix_dachat->setVisible(visible);
 	lineEdit_prix_dachat->setVisible(visible);
 
@@ -823,35 +849,24 @@ void YerothEntrerWindow::handle_checkBox_service_achat(int state)
 {
 	if (checkBox_service_achat->isChecked())
 	{
-		label_prix_vente->setText(QObject::tr("prix d'achat"));
-
-		label_montant_total_vente_service->setText(QObject::tr("montant total achat"));
-
 		checkBox_service_vente->setVisible(false);
-
-		lineEdit_designation->clearQCompleter();
+		checkBox_service_vente->setChecked(false);
 
 		setStockSpecificWidgetVisible(false);
 
 		check_fields_service();
-
-		label_fournisseur->setText(QObject::tr("fournisseur"));
-
-        lineEdit_nom_entreprise_fournisseur->setupMyStaticQCompleter(_allWindows->FOURNISSEURS,
-        															 YerothDatabaseTableColumn::NOM_ENTREPRISE);
 	}
 	else
 	{
-		label_prix_vente->setText(QObject::tr("prix de vente"));
-
-		label_montant_total_vente_service->setText("montant total vente");
-
 		checkBox_service_vente->setVisible(true);
+		checkBox_service_vente->setChecked(false);
 
 	    setStockSpecificWidgetVisible(true);
 
 	    check_fields(true);
 	}
+
+	setupLineEditsQCompleters__FOR_STOCK_INVENTORY();
 }
 
 
@@ -860,6 +875,7 @@ void YerothEntrerWindow::handle_checkBox_service_vente(int state)
 	if (checkBox_service_vente->isChecked())
 	{
 		checkBox_service_achat->setVisible(false);
+		checkBox_service_achat->setChecked(false);
 
 	    setStockSpecificWidgetVisible(false);
 
@@ -868,6 +884,7 @@ void YerothEntrerWindow::handle_checkBox_service_vente(int state)
 	else
 	{
 		checkBox_service_achat->setVisible(true);
+		checkBox_service_achat->setChecked(false);
 
 		setStockSpecificWidgetVisible(true);
 
