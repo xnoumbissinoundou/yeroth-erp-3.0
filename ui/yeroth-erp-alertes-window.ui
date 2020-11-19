@@ -900,9 +900,9 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>27</y>
+        <y>28</y>
         <width>772</width>
-        <height>273</height>
+        <height>271</height>
        </rect>
       </property>
       <property name="palette">
@@ -1329,9 +1329,9 @@
      <widget class="YerothLineEdit" name="lineEdit_alertes_terme_recherche">
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>1</x>
         <y>1</y>
-        <width>772</width>
+        <width>771</width>
         <height>25</height>
        </rect>
       </property>
@@ -18111,11 +18111,6 @@ background-color: rgb(0, 0, 0); </string>
    <header>src/widgets/yeroth-erp-line-edit.hpp</header>
   </customwidget>
   <customwidget>
-   <class>YerothComboBox</class>
-   <extends>QComboBox</extends>
-   <header>src/widgets/yeroth-erp-combo-box.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>YerothDateTimeEdit</class>
    <extends>QDateEdit</extends>
    <header>src/widgets/yeroth-erp-datetime-edit.hpp</header>
@@ -18124,6 +18119,11 @@ background-color: rgb(0, 0, 0); </string>
    <class>YerothTextEdit</class>
    <extends>QTextEdit</extends>
    <header>src/widgets/yeroth-erp-text-edit.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>YerothComboBox</class>
+   <extends>QComboBox</extends>
+   <header>src/widgets/yeroth-erp-combo-box.hpp</header>
   </customwidget>
   <customwidget>
    <class>YerothQTabWidget</class>
