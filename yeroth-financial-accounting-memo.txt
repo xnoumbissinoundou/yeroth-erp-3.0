@@ -1,4 +1,4 @@
-fabricewilliam12@gmail.com
+YEROTH.
 
 1) create a chart of account (4coa)
 2) generates the trial balance (query 2 columns, 4 columns, 6 columns, and 8 columns)
