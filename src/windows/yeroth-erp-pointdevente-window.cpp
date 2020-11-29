@@ -168,7 +168,7 @@ YerothPointDeVenteWindow::YerothPointDeVenteWindow()
     connect(tableWidget_articles, SIGNAL(itemChanged(QTableWidgetItem *)), this,
             SLOT(handleQteChange(QTableWidgetItem *)));
 
-    connect(tabWidget_vente, SIGNAL(currentChanged(int)), this, SLOT(handleCurrentChanged(int)));
+    connect(tabWidget_vente, SIGNAL(currentChanged(int)), this, SLOT(handleCurrentTABChanged(int)));
 
     connect(tableWidget_articles, SIGNAL(addedYerothTableWidget()), this, SLOT(handleAddedArticle()));
 
@@ -1161,6 +1161,8 @@ void YerothPointDeVenteWindow::annuler()
         YerothQMessageBox::information(this, QObject::trUtf8("annulation de la vente"),
                                       QObject::trUtf8("Vous avez annulé la vente !"), QMessageBox::Ok);
     }
+
+    disableImprimer();
 }
 
 void YerothPointDeVenteWindow::setRechercheLineEditFocus()
@@ -1219,13 +1221,12 @@ void YerothPointDeVenteWindow::retourVentes()
 
 void YerothPointDeVenteWindow::handleAddedArticle()
 {
-    //_logger->debug("handleAddedArticle()");
-    //qDebug() << QString("handleAddedArticle()");
+	enableImprimer();
     tabWidget_vente->setTabEnabled(AfficherVenteAuDetail, true);
 }
 
 
-void YerothPointDeVenteWindow::handleCurrentChanged(int index)
+void YerothPointDeVenteWindow::handleCurrentTABChanged(int index)
 {
     //_logger->debug("handleCurrentChanged(int)", QString("index: %1").arg(index));
     _currentTabView = index;

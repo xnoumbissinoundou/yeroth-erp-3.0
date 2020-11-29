@@ -2382,6 +2382,7 @@ void YerothUtils::getFactureTexTableString(QString &texTable_IN_OUT,
 										   double sommeTotal)
 {
     texTable_IN_OUT.append("\\begin{table*}[!htbp]\n"
+    					   "\\resizebox{\\textwidth}{!}{\n"
     					   "\\centering\n"
     					   "\\begin{tabular}"
     					   "{|");
@@ -2553,7 +2554,7 @@ void YerothUtils::getFactureTexTableString(QString &texTable_IN_OUT,
     //Removes the empty character "" from Latex output
     texTable_IN_OUT.replace("\"\"", "");
 
-    texTable_IN_OUT.append("\\end{tabular}\n"
+    texTable_IN_OUT.append("\\end{tabular}}\n"
     					   "\\end{table*}\n");
 }
 
@@ -2567,6 +2568,7 @@ void YerothUtils::getFactureSmallTexTableString(QString &texTable_IN_OUT,
 											    double montantARembourserAuClient /* = 0.0 */)
 {
     texTable_IN_OUT.append("\\begin{table*}[!htbp]\n"
+    					   "\\resizebox{\\textwidth}{!}{"
     					   "\\centering\n"
     					   "\\begin{tabular}{lrr}\n");
 
@@ -2658,25 +2660,13 @@ void YerothUtils::getFactureSmallTexTableString(QString &texTable_IN_OUT,
     }
 
 
-#ifdef YEROTH_FRANCAIS_LANGUAGE
-    texTable_IN_OUT.append(QString("dont total TVA: & & %1\\\\ \n").arg(totalTVAStr));
+    texTable_IN_OUT.append(QObject::tr("dont total TVA: & & %1\\\\ \n").arg(totalTVAStr));
 
-    texTable_IN_OUT.append(QString("Montant re\\c{c}u: & & %1\\\\ \n").arg(montantRecuDuClientStr));
+    texTable_IN_OUT.append(QObject::trUtf8("Montant re\\c{c}u: & & %1\\\\ \n").arg(montantRecuDuClientStr));
 
-    texTable_IN_OUT.append(QString("Montant remi: & & %1\\ \n").arg(montantARembourserAuClientStr));
+    texTable_IN_OUT.append(QObject::trUtf8("Montant remi: & & %1\\ \n").arg(montantARembourserAuClientStr));
 
-
-#endif
-
-#ifdef YEROTH_ENGLISH_LANGUAGE
-    texTable_IN_OUT.append(QString("with total taxes: & & %1\\\\ \n").arg(totalTVAStr));
-
-    texTable_IN_OUT.append(QString("Received amount: & & %1\\\\ \n").arg(montantRecuDuClientStr));
-
-    texTable_IN_OUT.append(QString("Amout given back: & & %1\\ \n").arg(montantARembourserAuClientStr));
-#endif
-
-    texTable_IN_OUT.append("\\end{tabular}\n"
+    texTable_IN_OUT.append("\\end{tabular}}\n"
     					   "\\end{table*}\n");
 }
 

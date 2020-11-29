@@ -114,7 +114,7 @@ public slots:
 
 	void handleAddedArticle();
 
-	void handleCurrentChanged(int index);
+	void handleCurrentTABChanged(int index);
 
 	void annuler();
 

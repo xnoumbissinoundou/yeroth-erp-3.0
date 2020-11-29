@@ -489,22 +489,22 @@ ON BUILD_COMPUTER: &apos;&apos;.</translation>
         <translation> couldn&apos;t be created !</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="817"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="819"/>
         <source>La désignation de la catégorie ne doit pas être vide !</source>
         <translation>Category designation must be non empty !</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="822"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="824"/>
         <source>création d&apos;une catégorie</source>
         <translation>category creation</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1133"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1163"/>
         <source>Cannot open file</source>
         <translation>Le fichier ne peut pas être ouvert</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1134"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1164"/>
         <source>Unable to open file establish a database connection.
 This example needs SQLite support. Please read the Qt SQL driver documentation for information how to build it.
 
@@ -512,60 +512,81 @@ Click Cancel to exit.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1749"/>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1764"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1779"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1794"/>
         <location filename="src/windows/yeroth-erp-creer-nouveau-client-window.cpp" line="340"/>
         <source>Une entreprise avec la référence régistre du commerce &apos;%1&apos; existe déjà dans la base de données !</source>
         <translation>A company with trade registry reference &apos;%1&apos; already exists in database !</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1959"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1989"/>
         <source>	[ factures pdf au format: &apos;%1&apos; ]</source>
         <translation>	[ pdf receipt size: &apos;%1&apos; ]</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.hpp" line="459"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="2663"/>
+        <source>dont total TVA: &amp; &amp; %1\\ 
+</source>
+        <translation>with total ATC: &amp; &amp; %1\\ 
+</translation>
+    </message>
+    <message>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="2665"/>
+        <source>Montant re\c{c}u: &amp; &amp; %1\\ 
+</source>
+        <translation>Received amount: &amp; &amp; %1\\ 
+</translation>
+    </message>
+    <message>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="2667"/>
+        <source>Montant remi: &amp; &amp; %1\ 
+</source>
+        <translation>Due amount: &amp; &amp; %1\ 
+</translation>
+    </message>
+    <message>
+        <location filename="src/utils/yeroth-erp-utils.hpp" line="467"/>
         <source>Informations sur l&apos;entreprise</source>
         <translation>Company info</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="2126"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="2156"/>
         <source>La localisation %1 n&apos;a pas d&apos;adresse IP enregistrée !</source>
         <translation>Site %1 doesn&apos;t have a registered IP address !</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="2129"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="2159"/>
         <source>%1 - pas d&apos;adresse IP !</source>
         <translation>%1 - no IP address !</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="2143"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="2173"/>
         <source>La localisation &apos;%1&apos; est déjà connectée par l&apos;adresse IP loopback (&apos;%2&apos;) !</source>
         <oldsource>La localisation &apos;&apos;%1&apos;&apos; est déjà connectée par l&apos;adresse IP loopback (&apos;%2&apos;) !</oldsource>
         <translation>Site &apos;%1&apos; is already connected through the loopback IP address (&apos;%2&apos;) !</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="2173"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="2203"/>
         <source>Connecter à la localisation %1 !</source>
         <translation>Connect site %1 !</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="2176"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="2206"/>
         <source>%1 - Connection à la localisation !</source>
         <translation>%1 - Connection to site !</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="2185"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="2215"/>
         <source>Impossible de se connecter à la localisation %1 !</source>
         <translation>Connection to site %1 cannot be established !</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="2188"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="2218"/>
         <source>%1 - Pas de connection à la localisation !</source>
         <translation>%1 - no connection to site !</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="2222"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="2252"/>
         <source>Impossible de se connecter au serveur &apos;%1&apos; de base de données !
 Contacter l&apos;administrateur de yeroth
 
@@ -576,615 +597,645 @@ Please contact an application administrator
 Press m &apos;Cancel&apos; to exit %2</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="174"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="182"/>
         <source>Catégorie</source>
         <translation>Category</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="166"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="174"/>
         <source>Référence</source>
         <translation>Reference</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="338"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="356"/>
         <source>Désignation</source>
         <translation>Product name</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="236"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="254"/>
         <source>Localisation</source>
         <translation>Site</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="194"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="202"/>
         <source>Prix unitaire</source>
         <oldsource>Prix unitaire (P.U.)</oldsource>
         <translation>Unit price</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="234"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="252"/>
         <source>Remise (%)</source>
         <oldsource>Remise (pourcentage)</oldsource>
         <translation>Discount (%)</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1381"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1411"/>
         <source>Images (*.png *.xpm *.jpg *.jpeg *.gif *.PNG *.XPM *.JPG *.JPEG *.GIF)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="270"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="288"/>
         <source>Nom complet</source>
         <translation>Full name</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="184"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="192"/>
         <source>Qté</source>
         <oldsource>Qté vendue</oldsource>
         <translation>Qty</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="222"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="238"/>
         <source>TVA</source>
         <translation>Tax</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="188"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="196"/>
         <source>Qté sortie</source>
         <translation>Qty</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="254"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="272"/>
         <source>Prénom</source>
         <translation>First name</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="218"/>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="256"/>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="272"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="232"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="274"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="290"/>
         <source>Nom</source>
         <translation>Name</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="306"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="324"/>
         <source>Quartier</source>
         <translation>Location</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="304"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="322"/>
         <source>Ville</source>
         <translation>City</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="316"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="334"/>
         <source>Boîte postale</source>
         <translation>Postal code</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="310"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="328"/>
         <source>Pays</source>
         <translation>Country</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="318"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="336"/>
         <source>Siège social</source>
         <translation>Headquarters</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="282"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="300"/>
         <source>Titre</source>
         <translation>Title</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="380"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="398"/>
         <source>Notifications</source>
         <translation>Notifications</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="374"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="392"/>
         <source>Date de création</source>
         <translation>Creation date</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="160"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="168"/>
         <source>Réf. reçu vente</source>
         <translation>Sale receipt ref.</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="180"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="188"/>
         <source>Stock maximum</source>
         <oldsource>stock maximum</oldsource>
         <translation>Max. stock qty</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="182"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="190"/>
         <source>Stock d&apos;alerte</source>
         <oldsource>stock d&apos;alerte</oldsource>
         <translation>Alert stock qty</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="196"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="206"/>
         <source>Référence achat</source>
         <translation>Purchase receipt ref.</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="200"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="210"/>
         <source>Prix d&apos;achat</source>
         <translation>Purchase price</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="208"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="222"/>
         <source>Agence bancaire</source>
         <oldsource>Agence compte bancaire</oldsource>
         <translation>Bank branch</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="324"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="342"/>
         <source>Secteurs d&apos;activités</source>
         <oldsource>Secteurs d&apos;activites</oldsource>
         <translation>Business sectors</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="328"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="346"/>
         <source>Numéro contribuable</source>
         <translation>Tax payer identification nr</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="330"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="348"/>
         <source>Réprésentant</source>
         <oldsource>Représentant</oldsource>
         <translation>Representant</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="334"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="352"/>
         <source>Fournisseur</source>
         <oldsource>Entreprise fournisseur</oldsource>
         <translation>Supplier</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="152"/>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="274"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="160"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="292"/>
         <source>ID</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="146"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="152"/>
         <source>Remise (%1)</source>
         <translation>Discount (%1)</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="148"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="154"/>
         <source>Service</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="150"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="156"/>
+        <source>Vente en gros</source>
+        <translation>Whole sale</translation>
+    </message>
+    <message>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="158"/>
         <source>ID ALERTE</source>
         <translation>ALERT ID</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="154"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="162"/>
         <source>Historique stock</source>
         <translation>Stock history</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="156"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="164"/>
         <source>ID client</source>
         <translation>customer ID</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="158"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="166"/>
         <source>Réf. reçu paiement</source>
         <oldsource>Reçu paiement</oldsource>
         <translation>Payment receipt ref.</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="162"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="170"/>
         <source>Bon</source>
         <translation>Rec.</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="164"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="172"/>
         <source>Gestionnaire stock</source>
         <translation>Stock manager</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="168"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="176"/>
         <source>Compte fournisseur</source>
         <translation>supplier account</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="170"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="178"/>
         <source>Compte client</source>
         <translation>Customer account</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="172"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="180"/>
         <source>Dette maximale</source>
         <translation>Maximal debt</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="176"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="184"/>
         <source>Quantité</source>
         <translation>Quantity</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="178"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="186"/>
         <source>Stock minimum</source>
         <translation>Minimum stock</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="186"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="194"/>
         <source>Qté totale</source>
         <oldsource>Qté total</oldsource>
         <translation>Total qty</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="190"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="198"/>
         <source>Description fournisseur</source>
         <translation>Supplier business information</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="192"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="200"/>
         <source>Description produit</source>
         <translation>Item description</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="198"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="204"/>
+        <source>Prix unitaire (en gros)</source>
+        <translation>Unit price (whole sale)</translation>
+    </message>
+    <message>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="208"/>
         <source>Prix d&apos;achat précédent</source>
         <translation>Previous buying price</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="202"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="212"/>
         <source>Prix vente précédent</source>
         <translation>Previous selling price</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="204"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="214"/>
+        <source>P.V. (en gros) précédent</source>
+        <translation>Previous whole selling price</translation>
+    </message>
+    <message>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="216"/>
         <source>Prix vente</source>
         <translation>Selling price</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="206"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="218"/>
+        <source>Prix vente (en gros)</source>
+        <translation>Selling price (whole sale)</translation>
+    </message>
+    <message>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="220"/>
         <source>Réf. compte bancaire</source>
         <translation>Bank account ref.</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="210"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="224"/>
         <source>Intitulé compte bancaire</source>
         <translation>Bank account title</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="212"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="226"/>
         <source>Institut compte bancaire</source>
         <translation>Bank</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="214"/>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="216"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="228"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="230"/>
         <source>Description</source>
         <translation>Description</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="220"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="234"/>
         <source>Montant TVA</source>
         <translation>Tax</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="224"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="236"/>
+        <source>Montant TVA (en gros)</source>
+        <translation>Tax (whole sale)</translation>
+    </message>
+    <message>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="240"/>
         <source>Bénéfice</source>
         <oldsource>Marge bénéficiaire</oldsource>
         <translation>Profit</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="226"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="242"/>
+        <source>Bénéfice (gros)</source>
+        <translation>Profit (whole sale)</translation>
+    </message>
+    <message>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="244"/>
         <source>Montant reçu</source>
         <translation>Received amount</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="228"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="246"/>
         <source>Montant à rembourser</source>
         <translation>Due amount</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="230"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="248"/>
         <source>Total vente</source>
         <translation>Total sale</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="232"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="250"/>
         <source>Remise prix</source>
         <translation>Discount (FCFA)</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="238"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="256"/>
         <source>Localisation stock</source>
         <translation>Stock location</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="240"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="258"/>
         <source>Qté par lot</source>
         <translation>Qty / wage</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="242"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="260"/>
         <source>Lots entrant</source>
         <translation>Incoming wages</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="244"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="262"/>
         <source>Image fournisseur</source>
         <translation>Supplier image</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="246"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="264"/>
         <source>Image client</source>
         <translation>Customer image</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="248"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="266"/>
         <source>Image produit</source>
         <translation>Item image</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="250"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="268"/>
         <source>Date péremption</source>
         <translation>Expiration date</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="252"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="270"/>
         <source>Date entrée</source>
         <translation>Entrance date</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="258"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="276"/>
         <source>Nom récepteur</source>
         <translation>Receiver</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="260"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="278"/>
         <source>Nom magasinier</source>
         <translation>Storekeeper</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="262"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="280"/>
         <source>ID magasinier</source>
         <translation>Storekeeper ID</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="264"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="282"/>
         <source>ID caissier</source>
         <translation>Cashier ID</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="266"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="284"/>
         <source>Nom caissier</source>
         <translation>Cashier name</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="268"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="286"/>
         <source>Créateur</source>
         <translation>Creator</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="276"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="294"/>
         <source>Stocks ID</source>
         <translation>Stock ID</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="278"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="296"/>
         <source>Stock manager</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="280"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="298"/>
         <source>Mot de passe</source>
         <translation>Password</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="284"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="302"/>
         <source>Titre appelation</source>
         <translation>Title</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="286"/>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="288"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="304"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="306"/>
         <source>rôle</source>
         <translation>role</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="290"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="308"/>
         <source>Émail</source>
         <translation>E-mail</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="292"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="310"/>
         <source>Référence fourn.</source>
         <translation>Supplier ref.</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="294"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="312"/>
         <source>Référence client</source>
         <translation>Customer ref.</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="296"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="314"/>
         <source>Numéro téléphone 1</source>
         <translation>Phone number (1)</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="298"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="316"/>
         <source>Numéro téléphone 2</source>
         <translation>Phone number (2)</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="300"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="318"/>
         <source>Lieu naissance</source>
         <translation>Place of birth</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="302"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="320"/>
         <source>Date naissance</source>
         <translation>Date of birth</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="308"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="326"/>
         <source>Province/État</source>
         <translation>Province/State</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="312"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="330"/>
         <source>Adresse</source>
         <translation>Address</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="314"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="332"/>
         <source>Adresse IP</source>
         <translation>IP address</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="320"/>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="370"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="338"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="388"/>
         <source>Notes</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="322"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="340"/>
         <source>Nom entreprise</source>
         <translation>Company name</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="326"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="344"/>
         <source>Régistre de commerce</source>
         <translation>Trade registry</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="332"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="350"/>
         <source>Client</source>
         <translation>Customer</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="336"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="354"/>
         <source>Description client</source>
         <translation>Client information</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="340"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="358"/>
         <source>Désignation remise</source>
         <translation>Discount designation</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="342"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="360"/>
         <source>Désignation alerte</source>
         <translation>Alert designation</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="344"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="362"/>
         <source>Condition alerte</source>
         <translation>Alert condition</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="346"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="364"/>
         <source>Encaisseur</source>
         <translation>Cash receiver</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="348"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="366"/>
         <source>Date paiement</source>
         <translation>Payment date</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="350"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="368"/>
         <source>Montant payé</source>
         <translation>Paid amount</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="352"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="370"/>
         <source>Date vente</source>
         <translation>Sale date</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="354"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="372"/>
         <source>Date début</source>
         <translation>Begin (date)</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="356"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="374"/>
         <source>Date fin</source>
         <translation>End (date)</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="358"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="376"/>
         <source>Date sortie</source>
         <translation>Date</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="360"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="378"/>
         <source>Heure paiement</source>
         <translation>Payment time</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="362"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="380"/>
         <source>Heure vente</source>
         <translation>Sale time</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="364"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="382"/>
         <source>Heure sortie</source>
         <translation>Time</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="366"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="384"/>
         <source>Destinataire</source>
         <translation>Receiver</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="368"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="386"/>
         <source>Nom complet destinataire</source>
         <translation>Receiver name</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="372"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="390"/>
         <source>Message d&apos;alerte</source>
         <translation>Alert message</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="376"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="394"/>
         <source>Type paiement</source>
         <translation>Type of payment</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="378"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="396"/>
         <source>Type vente</source>
         <translation>Sale type</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="382"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="400"/>
         <source>Remise résolue</source>
         <translation>Discount resolved</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="384"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="402"/>
         <source>Alerte résolue</source>
         <translation>Resolved alert</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="386"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="404"/>
         <source>Local. sortie</source>
         <translation>Site (outgoing)</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="388"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="406"/>
         <source>Local. entrée</source>
         <translation>Site (incoming)</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="390"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="408"/>
         <source>ID local. sortie</source>
         <translation>Site reference (outgoing)</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="392"/>
+        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="410"/>
         <source>ID local. entrée</source>
         <translation>Site reference (incoming)</translation>
     </message>
@@ -1266,9 +1317,9 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-achats-window.cpp" line="179"/>
-        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="474"/>
-        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="473"/>
-        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="547"/>
+        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="478"/>
+        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="477"/>
+        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="552"/>
         <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="180"/>
         <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="309"/>
         <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="889"/>
@@ -1278,9 +1329,9 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-achats-window.cpp" line="182"/>
-        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="477"/>
-        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="476"/>
-        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="550"/>
+        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="481"/>
+        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="480"/>
+        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="555"/>
         <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="183"/>
         <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="312"/>
         <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="892"/>
@@ -1302,9 +1353,9 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
     <message>
         <location filename="src/windows/yeroth-erp-achats-window.cpp" line="297"/>
         <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="444"/>
-        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="610"/>
-        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="595"/>
-        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="692"/>
+        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="614"/>
+        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="599"/>
+        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="697"/>
         <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="329"/>
         <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="489"/>
         <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1089"/>
@@ -1312,33 +1363,33 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <translation>value to search for</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="967"/>
+        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="972"/>
         <source>Poursuivre avec la suppression de la marchandise &apos;%1&apos; ?</source>
         <oldsource>Poursuivre avec la suppression de l&apos;article &quot;%1&quot; ?</oldsource>
         <translation>Continue with deletion of merchandise &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="985"/>
+        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="990"/>
         <source>La marchandise &apos;%1&apos; a été supprimée.</source>
         <translation>Merchandise &apos;%1&apos; has been deleted !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="996"/>
+        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="1001"/>
         <source>L&apos;article &quot;%1&quot; ne pouvait pas être supprimé !</source>
         <translation>Article &quot;%1&quot; couldn&apos;t be deleted !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="972"/>
+        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="977"/>
         <source>suppression d&apos;une marchandise</source>
         <oldsource>suppression d&apos;un inventaire de stock</oldsource>
         <translation>deletion of a merchandise</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-achats-window.cpp" line="681"/>
-        <location filename="src/windows/yeroth-erp-achats-window.cpp" line="701"/>
+        <location filename="src/windows/yeroth-erp-achats-window.cpp" line="685"/>
+        <location filename="src/windows/yeroth-erp-achats-window.cpp" line="705"/>
         <location filename="src/windows/yeroth-erp-stock-detail-window.cpp" line="27"/>
-        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="980"/>
-        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="996"/>
+        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="985"/>
+        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="1001"/>
         <source>détails d&apos;un stock</source>
         <oldsource>stock details</oldsource>
         <translation>stock details</translation>
@@ -1355,7 +1406,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-clients-detail-window.cpp" line="116"/>
-        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="394"/>
+        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="398"/>
         <source>suppression d&apos;un compte client</source>
         <translation>deletion of a customer account</translation>
     </message>
@@ -1480,7 +1531,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <translation>CUSTOMER BUSINESS INFORMATION:</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-stock-detail-window.cpp" line="481"/>
+        <location filename="src/windows/yeroth-erp-stock-detail-window.cpp" line="485"/>
         <source>suppression d&apos;un article</source>
         <translation>deletion of a stock item</translation>
     </message>
@@ -1520,7 +1571,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
 2) Get help message by pressing the second icon !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="214"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="222"/>
         <source>La date de péremption n&apos;est pas postdatée !
 
 Continuer avec l&apos;actualisation des données de l&apos;article ?</source>
@@ -1529,17 +1580,17 @@ Continuer avec l&apos;actualisation des données de l&apos;article ?</source>
 Continue with update of the stock ?</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="219"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="227"/>
         <source>actualiser les détails d&apos;un stock</source>
         <translation>update stock details</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="352"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="362"/>
         <source>Les détails du stock &apos;%1</source>
         <translation>Details of stock &apos;%1</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="380"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="391"/>
         <source>&apos; ont été actualisés avec succès !</source>
         <translation>&apos; have been successfully updated !</translation>
     </message>
@@ -1549,86 +1600,86 @@ Continue with update of the stock ?</translation>
         <translation>modify (replenish) stock</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="386"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="397"/>
         <source>&apos; n&apos;ont pas pu être actualisés avec succès !</source>
         <translation>&apos; couldn&apos;t be updated !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="233"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="241"/>
         <source>Poursuivre avec la modification (le ré-approvisionnement) du stock &apos;%1&apos; ?</source>
         <translation>Continue with modification (restock) of stock &apos;%1&apos; ?</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="240"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="248"/>
         <source>modification du stock</source>
         <translation>stock modification</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="336"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="346"/>
         <source>En mode ré-approvisionnement, la quantité restante doit être supérieure à l&apos;ancienne quantité restante !</source>
         <oldsource>En mode ré-approvisionnement, la quantité restante doit être supérieure à l&apos;ancienne restante !</oldsource>
         <translation>During restock, the remaining quantity must be greater than the previous remaining quantity !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="247"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="255"/>
         <source>Vous avez annulé la modification des détails du stock &apos;%1&apos; !</source>
         <translation>You cancelled details modifications of stock &apos;%1&apos; !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="504"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="565"/>
         <source>1 nouveau achat a été enregistré dans la base de données !</source>
         <translation>1 new purchase could be inserted to the database !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="508"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="569"/>
         <source>Échec de l&apos;enregistrement d&apos;1 nouveau achat dans la base de données !</source>
         <translation>Insertion failure of 1 new purchase into the database !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="512"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="573"/>
         <source>ajout d&apos;1 nouveau achat</source>
         <oldsource>ajout d&apos;1 achat</oldsource>
         <translation>insertion of 1 new purchase</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="888"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="992"/>
         <source>suppression</source>
         <translation>deletion</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="936"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="1040"/>
         <source>Le stock &apos;%1&apos; n&apos;a pas d&apos;image enregistrée !</source>
         <translation>Inventory stock &apos;%1&apos; doesn&apos;t have a saved image !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="939"/>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="955"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="1043"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="1059"/>
         <source>suppression de l&apos;image d&apos;un stock</source>
         <translation>delete stock item image</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="949"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="1053"/>
         <source>Poursuivre avec la suppression de l&apos;image du stock &quot;</source>
         <translation>Continue with deletion of stock image &quot;</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="973"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="1077"/>
         <source>L&apos;image du stock &apos;%1&apos; a été supprimée !</source>
         <translation>Image of stock &apos;%1&apos; could be deleted !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="984"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="1088"/>
         <source>L&apos;image du stock &apos;%1&apos; ne pouvait pas être supprimée !</source>
         <translation>Image of stock &apos;%1&apos; couldn&apos;t be deleted !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="977"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="1081"/>
         <source>suppression de l&apos;image du stock avec succès</source>
         <oldsource>L&apos;image du stock &quot;</oldsource>
         <translation>stock image could be deleted</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="988"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="1092"/>
         <source>échec de la suppression de l&apos;image d&apos;un stock</source>
         <translation>stock item image couldn&apos;t successfully de deleted</translation>
     </message>
@@ -1710,8 +1761,8 @@ Continue with update of the stock ?</translation>
         <location filename="src/admin/lister/yeroth-erp-admin-lister-window.cpp" line="823"/>
         <location filename="src/admin/lister/yeroth-erp-admin-lister-window.cpp" line="880"/>
         <location filename="src/admin/lister/yeroth-erp-admin-lister-window.cpp" line="943"/>
-        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="411"/>
-        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="410"/>
+        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="415"/>
+        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="414"/>
         <source>&apos; a été supprimée de la base de données !</source>
         <oldsource>&apos; a été supprimée de la base de données!</oldsource>
         <translation>&apos; has been deleted from database !</translation>
@@ -1721,8 +1772,8 @@ Continue with update of the stock ?</translation>
         <location filename="src/admin/lister/yeroth-erp-admin-lister-window.cpp" line="832"/>
         <location filename="src/admin/lister/yeroth-erp-admin-lister-window.cpp" line="889"/>
         <location filename="src/admin/lister/yeroth-erp-admin-lister-window.cpp" line="954"/>
-        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="420"/>
-        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="419"/>
+        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="424"/>
+        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="423"/>
         <source> n&apos;a pas été supprimée de la base de données !</source>
         <oldsource> n&apos;a pas été supprimée de la base de données!</oldsource>
         <translation> hasn&apos;t been deleted from database !</translation>
@@ -1761,24 +1812,24 @@ Continue with update of the stock ?</translation>
         <translation>Bank account with reference &apos;%1</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="389"/>
+        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="393"/>
         <source>Supprimer le client &apos;%1&apos; ?</source>
         <translation>Continue with deletion of customer &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="402"/>
+        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="406"/>
         <location filename="src/windows/yeroth-erp-creer-nouveau-client-window.cpp" line="224"/>
         <source>Le client &apos;%1</source>
         <translation>Customer &apos;%1</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="388"/>
+        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="392"/>
         <source>Supprimer le fournisseur &apos;%1&apos; ?</source>
         <translation>Continue with deletion of supplier &apos;%1&apos;?</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-creer-nouveau-fournisseur-window.cpp" line="218"/>
-        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="401"/>
+        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="405"/>
         <source>Le fournisseur &apos;%1</source>
         <translation>Supplier &apos;%1</translation>
     </message>
@@ -1820,11 +1871,11 @@ Continue with update of the stock ?</translation>
         <location filename="src/windows/yeroth-erp-marchandises-window.hpp" line="83"/>
         <location filename="src/windows/yeroth-erp-modifier-compte-client-window.hpp" line="69"/>
         <location filename="src/windows/yeroth-erp-modifier-fournisseur-window.hpp" line="69"/>
-        <location filename="src/windows/yeroth-erp-modifier-window.hpp" line="85"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.hpp" line="87"/>
         <location filename="src/windows/yeroth-erp-mouvements_de_stocks-window.hpp" line="71"/>
         <location filename="src/windows/yeroth-erp-paiements-window.hpp" line="91"/>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.hpp" line="253"/>
-        <location filename="src/windows/yeroth-erp-sortir-window.hpp" line="200"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.hpp" line="243"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.hpp" line="190"/>
         <location filename="src/windows/yeroth-erp-stock-detail-window.hpp" line="79"/>
         <location filename="src/windows/yeroth-erp-stocks-window.hpp" line="80"/>
         <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.hpp" line="74"/>
@@ -1909,12 +1960,12 @@ Continue with update of the stock ?</translation>
         <translation>cashier name</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1902"/>
+        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1906"/>
         <source>Cette fonctionnalité n&apos;est pas disponible pour les &apos;services&apos; !</source>
         <translation>Sale cancellation isn&apos;t possible for &apos;services&apos; !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1905"/>
+        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1909"/>
         <source>fonctionnalité pas disponible</source>
         <translation>no sale cancellation</translation>
     </message>
@@ -1924,25 +1975,22 @@ Continue with update of the stock ?</translation>
         <translation>cashier</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="206"/>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="768"/>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="822"/>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="1085"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="229"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="1189"/>
         <location filename="src/windows/yeroth-erp-stock-detail-window.cpp" line="368"/>
         <source>fournisseur</source>
         <translation>supplier</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="197"/>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="807"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="222"/>
         <location filename="src/windows/yeroth-erp-stock-detail-window.cpp" line="359"/>
         <source>client</source>
         <translation>customer</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="1344"/>
-        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1852"/>
-        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1854"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="1376"/>
+        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1856"/>
+        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1858"/>
         <source>remise (%1)</source>
         <translation>discount (%1)</translation>
     </message>
@@ -1998,13 +2046,13 @@ Continue with update of the stock ?</translation>
         <translation>keyword to search for (memo)</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="2759"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="2779"/>
         <location filename="src/windows/yeroth-erp-mouvements_de_stocks-window.cpp" line="322"/>
         <source>pas de données à exporter au format csv</source>
         <translation>there are no data to export in csv format</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="2760"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="2780"/>
         <location filename="src/windows/yeroth-erp-mouvements_de_stocks-window.cpp" line="323"/>
         <source>Il n&apos;y a pas de données à exporter au format csv !</source>
         <oldsource>Il n&apos;y a pas de données à exporter au format csv!</oldsource>
@@ -2026,11 +2074,11 @@ Continue with update of the stock ?</translation>
         <location filename="src/windows/yeroth-erp-creer-nouveau-client-window.cpp" line="256"/>
         <location filename="src/windows/yeroth-erp-creer-nouveau-fournisseur-window.cpp" line="242"/>
         <location filename="src/windows/yeroth-erp-creer-nouvelle-categorie-window.cpp" line="241"/>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="284"/>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="337"/>
-        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="989"/>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="382"/>
-        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2285"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="317"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="370"/>
+        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="994"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="393"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2305"/>
         <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="569"/>
         <source>succès</source>
         <translation>success</translation>
@@ -2041,19 +2089,19 @@ Continue with update of the stock ?</translation>
         <translation>create a customer account</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1689"/>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1702"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1719"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1732"/>
         <location filename="src/windows/yeroth-erp-creer-nouveau-client-window.cpp" line="312"/>
         <source>Une entreprise nommée &apos;%1&apos; existe déjà dans la base de données !</source>
         <translation>A company named &apos;%1&apos; already exists in database !</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1694"/>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1707"/>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1755"/>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1770"/>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1817"/>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1831"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1724"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1737"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1785"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1800"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1847"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1861"/>
         <location filename="src/windows/yeroth-erp-creer-nouveau-client-window.cpp" line="317"/>
         <location filename="src/windows/yeroth-erp-creer-nouveau-client-window.cpp" line="345"/>
         <location filename="src/windows/yeroth-erp-creer-nouveau-client-window.cpp" line="373"/>
@@ -2061,8 +2109,8 @@ Continue with update of the stock ?</translation>
         <translation>customer account already exist</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1812"/>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="1826"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1842"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="1856"/>
         <location filename="src/windows/yeroth-erp-creer-nouveau-client-window.cpp" line="368"/>
         <source>Une entreprise avec la référence &apos;%1&apos; existe déjà dans la base de données !</source>
         <translation>A company with reference &apos;%1&apos; already exists in database !</translation>
@@ -2078,8 +2126,8 @@ Continue with update of the stock ?</translation>
         <location filename="src/windows/yeroth-erp-creer-nouveau-client-window.cpp" line="254"/>
         <location filename="src/windows/yeroth-erp-creer-nouveau-fournisseur-window.cpp" line="233"/>
         <location filename="src/windows/yeroth-erp-creer-nouvelle-categorie-window.cpp" line="239"/>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="282"/>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="335"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="315"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="368"/>
         <source>&apos; a été créer avec succès !</source>
         <oldsource>&apos; a été créer avec succès!</oldsource>
         <translation>&apos; has been successfully created !</translation>
@@ -2090,11 +2138,11 @@ Continue with update of the stock ?</translation>
         <location filename="src/windows/yeroth-erp-creer-nouveau-client-window.cpp" line="263"/>
         <location filename="src/windows/yeroth-erp-creer-nouveau-fournisseur-window.cpp" line="235"/>
         <location filename="src/windows/yeroth-erp-creer-nouvelle-categorie-window.cpp" line="234"/>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="276"/>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="329"/>
-        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="1000"/>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="340"/>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="388"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="309"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="362"/>
+        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="1005"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="350"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="399"/>
         <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="585"/>
         <source>échec</source>
         <translation>failed</translation>
@@ -2156,46 +2204,46 @@ Continue with update of the stock ?</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="41"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="42"/>
         <source>entrer un stock (service)</source>
         <oldsource>entrer un stock</oldsource>
         <translation>check in a stock item (service)</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="267"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="300"/>
         <source>L&apos;entreprise cliente &apos;%1</source>
         <translation>Customer company &apos;%1</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="320"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="353"/>
         <source>L&apos;entreprise fournisseur &apos;%1</source>
         <translation>Supplier &apos;%1</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="931"/>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1187"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="936"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1073"/>
         <source>enregistrement de l&apos;article type dans la liste des marchandises</source>
         <translation>saving of article type in merchandise list</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="944"/>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1192"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="949"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1078"/>
         <source> n&apos;a pas pu être enregistré dans la liste des marchandises !</source>
         <translation> couldn&apos;t be successfully saved in merhandise list !</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="949"/>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1195"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="954"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1081"/>
         <source>échec de l&apos;enregistrement de l&apos;article type dans la liste des marchandises</source>
         <translation>failing to save article type in merchandise list</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1554"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1779"/>
         <source>Le prix de vente doit être supérieur ou égal au prix d&apos;achat !</source>
         <translation>Selling price must be superior or equal to purchase price !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1565"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1804"/>
         <source>La date de péremption n&apos;est pas postdatée !
 
 Continuer avec l&apos;enregistrement des données du stock (service) ?</source>
@@ -2204,103 +2252,114 @@ Continuer avec l&apos;enregistrement des données du stock (service) ?</source>
 Continue with update of the stock (service) ?</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1788"/>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1825"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="2056"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="2093"/>
         <source>enregistrement du stock (service) avec succès</source>
         <translation>successful saving of stock item (service)</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1796"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="2064"/>
         <source>échec de l&apos;enregistrement du stock (service)</source>
         <translation>failed to save stock item (service)</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1810"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="2078"/>
         <source>Le stock &apos;%1&apos;</source>
         <translation>Stock &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="921"/>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1179"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="926"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1065"/>
         <source>Le stock (service) &apos;%1&apos;</source>
         <translation>Stock (service) &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="925"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1226"/>
         <source>enregistrer article</source>
         <translation>save stock item</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="926"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1227"/>
         <source>La quantité par lot doit être supérieure à zéro !</source>
         <translation>Batch quantity must be greater to zero !</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="926"/>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1184"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="931"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1070"/>
         <source> a été enregistré dans la liste des marchandises !</source>
         <translation> has been saved to the merchandise list !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="204"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="212"/>
         <source>Le prix de vente doit être supérieure ou égal au prix d&apos;achat !</source>
         <translation>Selling price must be superior or equal to purchase price !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1556"/>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="203"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1781"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1794"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="211"/>
         <source>pas profitable</source>
         <translation>not profitable</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1570"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1809"/>
         <source>enregistrer un stock</source>
         <translation>save this stock item</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1528"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1753"/>
         <source>La marchandise &apos;%1&apos; utilise déjà la référence (&apos;%2&apos;) !</source>
         <translation>Merchandise &apos;%1&apos; already uses reference (&apos;%2&apos;) !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="756"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="240"/>
         <source>prix d&apos;achat</source>
         <translation>purchase price</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="758"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="242"/>
         <source>montant total achat</source>
         <translation>buyings total amount</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="775"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="249"/>
         <source>prix de vente</source>
         <translation>selling price</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1777"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="251"/>
+        <source>montant total vente</source>
+        <translation>sale total amount</translation>
+    </message>
+    <message>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1792"/>
+        <source>Le prix de vente (en gros) doit être supérieur ou égal au prix d&apos;achat !</source>
+        <translation>Selling price (whole sale) must be superior or equal to purchase price !</translation>
+    </message>
+    <message>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="2045"/>
         <source>L&apos;achat du stock &apos;%1&apos;</source>
         <translation>Purchase of stock &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1785"/>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1822"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="2053"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="2090"/>
         <source> a été enregistré dans la base de données !</source>
         <translation> has been added to the database !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1793"/>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1830"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="2061"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="2098"/>
         <source> n&apos;a pas pu être enregistré dans la base de données !</source>
         <translation> couldn&apos;t be added to the database !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1833"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="2101"/>
         <source>échec de l&apos;enregistrement du stock</source>
         <translation>failed to save stock item</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1805"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="2073"/>
         <source>Le service &apos;%1&apos;</source>
         <translation>Service &apos;%1&apos;</translation>
     </message>
@@ -2535,72 +2594,72 @@ Please check that begin and end dates are correct!</translation>
         <translation>You have canceled the (outgoing/transfer) of stock item!</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="1434"/>
-        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="1664"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="1448"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="1684"/>
         <source>pas assez d&apos;articles en stock</source>
         <translation>not enough items in stock</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="1435"/>
-        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="1665"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="1449"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="1685"/>
         <source>Il n&apos;y a pas assez d&apos;articles en stock !</source>
         <translation>There are not enough items in stock!</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2072"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2092"/>
         <source>stocks à sortir</source>
         <translation>stock items to tranfer</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2073"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2093"/>
         <source>Vous n&apos;avez pas entré de stocks à sortir!</source>
         <translation>You haven&apos;t selected any stock item to transfer!</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2084"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2104"/>
         <source>Poursuivre avec la sortie de </source>
         <translation>Continue with the transfer of </translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2090"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2110"/>
         <source>sortie</source>
         <translation>transfer</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2259"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2279"/>
         <source>Le stock &apos;%1&apos; (%2 pièce(s))</source>
         <translation>Stock &apos;%1&apos; (%2 item(s))</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2269"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2289"/>
         <source> n&apos;a pas pu être sorti !
 Contacter l&apos;administrateur de %1</source>
         <translation> couldn&apos;t be checked out !
 Please contact an administrator of %1</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2280"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2300"/>
         <source>La sortie de &apos;%1&apos; articles a été effectuée avec succès !</source>
         <translation>Checkout of &apos;%1&apos; stock items could be done successfully !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2265"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2285"/>
         <source> à été sorti avec succès.</source>
         <translation> could be taken out successfully.</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="251"/>
-        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2298"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="259"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2318"/>
         <source>annulation</source>
         <translation>cancellation</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2299"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2319"/>
         <source>Vous avez annulé la sortie des articles !</source>
         <translation>You have canceled the transfer of the stock items!</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-sortir-window.hpp" line="201"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.hpp" line="191"/>
         <source>Choisissez les articles à sortir en utilisant leur reference à la première barre de recherche, ou bien leur désignation à la deuxième barre de recherche !</source>
         <translation>Select the stock items you wish to transfer using their reference within the first search bar, or, using their name within the second search bar!</translation>
     </message>
@@ -2617,25 +2676,25 @@ Please contact an administrator of %1</translation>
         <translation>reference</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.hpp" line="449"/>
-        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1848"/>
-        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1850"/>
+        <location filename="src/utils/yeroth-erp-utils.hpp" line="457"/>
+        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1852"/>
+        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1854"/>
         <source>TVA (%1)</source>
         <translation>Tax (%1)</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.hpp" line="920"/>
+        <location filename="src/utils/yeroth-erp-utils.hpp" line="928"/>
         <source>Il y&apos;a eu</source>
         <translation>There is</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.hpp" line="921"/>
+        <location filename="src/utils/yeroth-erp-utils.hpp" line="929"/>
         <source> %1 résultat(s) à votre filtre !</source>
         <oldsource> %1 résultat à votre filtre !</oldsource>
         <translation> %1 result(s) to your filter !</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.hpp" line="926"/>
+        <location filename="src/utils/yeroth-erp-utils.hpp" line="934"/>
         <source>Il ny&apos;a eu aucun résultat à votre filtre !</source>
         <oldsource>Il ny&apos;a eu aucun résultat à votre filtre!</oldsource>
         <translation>There is no associated data to your filter !</translation>
@@ -2652,56 +2711,56 @@ Please contact an administrator of %1</translation>
         <translation>There is currently no stock listed !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="690"/>
+        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="695"/>
         <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="487"/>
         <source>terme à rechercher (description de l&apos;article (ou service))</source>
         <oldsource>terme à rechercher (désignation, et description de l&apos;article (ou service))</oldsource>
         <translation>keyword to search for (article (or service) description)</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="1024"/>
+        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="1029"/>
         <source>Poursuivre avec la suppression du service &apos;%1&apos; ?</source>
         <translation>Continue with deletion of service &apos;%1&apos; ?</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="884"/>
-        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="1031"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="988"/>
+        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="1036"/>
         <source>Poursuivre avec la suppression du stock &apos;%1&apos; ?</source>
         <translation>Continue with deletion of stock &apos;%1&apos; ?</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="1038"/>
-        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="1062"/>
-        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="1073"/>
+        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="1043"/>
+        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="1067"/>
+        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="1078"/>
         <source>suppression d&apos;un stock (service)</source>
         <translation>deletion of a stock (service)</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="1058"/>
+        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="1063"/>
         <source>Le stock (service) &apos;%1&apos; a été supprimé !</source>
         <translation>Stock (service) &apos;%1&apos; has been deleted !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="1069"/>
+        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="1074"/>
         <source>Le stock (service) &apos;%1&apos; ne pouvait pas être supprimé !</source>
         <translation>Stock (service) &apos;%1&apos; couldn&apos;t be deleted !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-achats-window.cpp" line="682"/>
-        <location filename="src/windows/yeroth-erp-achats-window.cpp" line="702"/>
-        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="981"/>
-        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="997"/>
+        <location filename="src/windows/yeroth-erp-achats-window.cpp" line="686"/>
+        <location filename="src/windows/yeroth-erp-achats-window.cpp" line="706"/>
+        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="986"/>
+        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="1002"/>
         <source>Sélectionnez un stock à afficher les détails.</source>
         <translation>Select a stock item to view its stock details.</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-stock-detail-window.cpp" line="476"/>
+        <location filename="src/windows/yeroth-erp-stock-detail-window.cpp" line="480"/>
         <source>Poursuivre avec la suppression de l&apos;article &apos;%1&apos; ?</source>
         <translation>Continue with deletion of stock &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="902"/>
-        <location filename="src/windows/yeroth-erp-stock-detail-window.cpp" line="492"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="1006"/>
+        <location filename="src/windows/yeroth-erp-stock-detail-window.cpp" line="496"/>
         <source>Le stock &apos;%1&apos; a été supprimé !</source>
         <translation>Inventory stock &apos;%1&apos; has been deleted !</translation>
     </message>
@@ -2797,7 +2856,7 @@ Please contact an administrator of %1</translation>
         <translation>client was successfully deleted</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-stock-detail-window.cpp" line="496"/>
+        <location filename="src/windows/yeroth-erp-stock-detail-window.cpp" line="500"/>
         <source>suppression d&apos;un stock avec succès</source>
         <translation>stock was successfully deleted</translation>
     </message>
@@ -2813,33 +2872,33 @@ Please contact an administrator of %1</translation>
         <translation>supplier couldn&apos;t be deleted</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="911"/>
-        <location filename="src/windows/yeroth-erp-stock-detail-window.cpp" line="502"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="1015"/>
+        <location filename="src/windows/yeroth-erp-stock-detail-window.cpp" line="506"/>
         <source>Le stock &apos;%1&apos; ne pouvait pas être supprimé !</source>
         <translation>Inventory stock &apos;%1&apos; couldn&apos;t be deleted !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-stock-detail-window.cpp" line="506"/>
+        <location filename="src/windows/yeroth-erp-stock-detail-window.cpp" line="510"/>
         <source>échec de la suppression d&apos;un stock</source>
         <translation>stock couldn&apos;t be deleted</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="1158"/>
+        <location filename="src/windows/yeroth-erp-stocks-window.cpp" line="1163"/>
         <source>Sélectionnez un stock à modifier.</source>
         <translation>Select a stock item to modify its details.</translation>
     </message>
     <message>
         <location filename="src/utils/print_latex_pdf/yeroth-erp-print_yeroth_latex_util_pdf.cpp" line="78"/>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="801"/>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="996"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="832"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="1027"/>
         <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="818"/>
         <source>impression</source>
         <translation>print</translation>
     </message>
     <message>
         <location filename="src/utils/print_latex_pdf/yeroth-erp-print_yeroth_latex_util_pdf.cpp" line="79"/>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="802"/>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="997"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="833"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="1028"/>
         <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="667"/>
         <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="819"/>
         <source>Il n&apos;y a pas de données à imprimer !</source>
@@ -2877,114 +2936,112 @@ Please contact an administrator of %1</translation>
         <translation>stock items to sell</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2336"/>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2399"/>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2674"/>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2949"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2397"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2460"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2760"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="3056"/>
         <source>vendre</source>
         <translation>check out</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="419"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="449"/>
         <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="383"/>
         <source>référence [ focus avec F11 ]</source>
         <oldsource>reference [ focus avec F11 ]</oldsource>
         <translation>reference [focus with F11]</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="417"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="447"/>
         <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="384"/>
         <source>désignation [ focus avec F12 ]</source>
         <translation>stock item name [focus with F12]</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="484"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="515"/>
         <source>PRE__PROCESS_CREDIT_CARD_PAYMENT</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="485"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="516"/>
         <source>Le paiement par &quot;carte de crédit&quot; tel quel, ne peut être effectué.</source>
         <translation>The payment done with the &quot;credit card&quot; as it is, couldn&apos;t be applied.</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="80"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="81"/>
         <source>point de vente</source>
         <translation>point of sale</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="835"/>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="1035"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="866"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="1066"/>
         <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="697"/>
         <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="852"/>
         <source>EXEMPLE (*NON VALIDE*)</source>
         <translation>SAMPLE (*NOT VALID*)</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="1130"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="1161"/>
         <source>annulation de la vente</source>
         <translation>cancel sale</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="1131"/>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2690"/>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2965"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="1162"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2776"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="3072"/>
         <source>Vous avez annulé la vente !</source>
         <translation>You have canceled the sale!</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="1435"/>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="1467"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="1482"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="1523"/>
         <source>montant d&apos;une remise</source>
         <translation>discounted amount</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="1586"/>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="1809"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="1671"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="1931"/>
         <source>articles en stock</source>
         <translation>stock item</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="1587"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="1672"/>
         <source>Il n&apos;y a pas assez de articles en stock |</source>
         <translation>There are not enough items in stock |</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="1810"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="1932"/>
         <source>Il n&apos;y a pas assez de articles en stock !</source>
         <translation>There are not enough items in stock!</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="1927"/>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2011"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2039"/>
         <source>Prix unitaire inférieur à zéro pour l&apos;article &apos;%1&apos; !</source>
         <translation>Unit price smaller than zero for article &apos;%1&apos; !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="1932"/>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2016"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2044"/>
         <source>prix unitaire d&apos;un article</source>
         <translation>article unit price</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2337"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2398"/>
         <source>Vous n&apos;avez pas choisi d&apos;articles à vendre !</source>
         <translation>You haven&apos;t selected any stock item to check out!</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2607"/>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2903"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2693"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="3010"/>
         <source>La quantité en stock de l&apos;article &apos;</source>
         <translation>The quantity of the stock item &apos;</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2615"/>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2911"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2701"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="3018"/>
         <source> a été actualisée avec succès.</source>
         <translation> has been successfully updated.</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2619"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2705"/>
         <source> n&apos;a pas pu être actualisée!
 Contacter &apos;YEROTH&apos;</source>
         <oldsource> n&apos;a pas pu être actualisée!
@@ -2992,83 +3049,83 @@ Contacter &apos;Yeroth Labs&apos;</oldsource>
         <translation> couldn&apos;t be updated ! Contact YEROTH</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2635"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2721"/>
         <source>&apos; articles a été éffectuée avec succès.</source>
         <translation>&apos; stock items could be done successfully.</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2653"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2739"/>
         <source>montant reçu du client</source>
         <translation>amount received from customer</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2654"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2740"/>
         <source>Le montant reçu du client doit être supérieure à la somme total !</source>
         <translation>The received amount from the customer must be greater than the total amount!</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2671"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2757"/>
         <source> articles (comptant) ?</source>
         <translation> articles (cash) ?</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2915"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="3022"/>
         <source> n&apos;a pas pu être actualisée !
 Contacter &apos;YEROTH&apos;</source>
         <translation> couldn&apos;t be updated !
 Please contact an administrator</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2928"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="3035"/>
         <source>La vente de &apos;%1&apos; articles a été éffectuée avec succès !</source>
         <translation>Selling of &apos;%1&apos; stock items could be done successfully !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2946"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="3053"/>
         <source> articles (compte client) ?</source>
         <translation> articles (customer account) ?</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2668"/>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2943"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2754"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="3050"/>
         <source>Poursuivre avec la vente de </source>
         <translation>Continue the checkout of </translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2400"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2461"/>
         <source>Le client saisi n&apos;existe pas dans la base de données !</source>
         <translation>Client doesn&apos;t exists in database !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2610"/>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2906"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2696"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="3013"/>
         <source> (%1 pièce(s))</source>
         <translation> (%1 stock items)</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2632"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2718"/>
         <source>La vente de &apos;</source>
         <translation>The check out of &apos;</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2086"/>
+        <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2106"/>
         <source> articles ?</source>
         <translation> stock items ?</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2639"/>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2933"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2725"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="3040"/>
         <source>succès d&apos;une vente</source>
         <translation>check out success</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2689"/>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2964"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="2775"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="3071"/>
         <source>annulation d&apos;une vente</source>
         <translation>check out cancellation</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-pointdevente-window.hpp" line="254"/>
+        <location filename="src/windows/yeroth-erp-pointdevente-window.hpp" line="244"/>
         <source>Choisissez les articles à vendre en utilisant leur référence à la première barre de recherche, ou bien leur désignation à la deuxième barre de recherche !</source>
         <oldsource>Choisissez les articles à vendre en utilisant leur reference à la première barre de recherche, ou bien leur désignation à la deuxième barre de recherche !</oldsource>
         <translation>Select the stock items you wish to &quot;check out&quot; using their reference within the first search bar, or, using their name within the second search bar!</translation>
@@ -3138,8 +3195,8 @@ Please contact an administrator</translation>
         <location filename="src/windows/yeroth-erp-creer-nouveau-client-window.cpp" line="261"/>
         <location filename="src/windows/yeroth-erp-creer-nouveau-fournisseur-window.cpp" line="240"/>
         <location filename="src/windows/yeroth-erp-creer-nouvelle-categorie-window.cpp" line="232"/>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="274"/>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="327"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="307"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="360"/>
         <source>&apos; n&apos;a pas pu être créer !</source>
         <translation>&apos; couldn&apos;t be created !</translation>
     </message>
@@ -3491,68 +3548,68 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>Alert system &quot;yeroth-erp-alert-3-0&quot; is already running !</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="130"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="282"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="436"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="119"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="271"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="425"/>
         <source>Date</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="131"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="283"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="437"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="120"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="272"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="426"/>
         <source>Heure</source>
         <translation>Time</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="133"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="285"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="122"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="274"/>
         <source>Montant total</source>
         <translation>Total amount</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="134"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="286"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="123"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="275"/>
         <source>Compte client (après)</source>
         <translation>Customer account (after)</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="132"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="284"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="439"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="121"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="273"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="428"/>
         <source>Type d&apos;opération</source>
         <oldsource>Type de paiement</oldsource>
         <translation>Operation</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="135"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="287"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="124"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="276"/>
         <source>Référence article (service)</source>
         <translation>Article (service) reference</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="136"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="288"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="125"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="277"/>
         <source>Référence reçu</source>
         <translation>Receipt ref.</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="438"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="427"/>
         <source>ID de l&apos;opération</source>
         <translation>Operation id</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="440"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="429"/>
         <source>Qté initiale en stock</source>
         <translation>Initial stock qty</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="441"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="430"/>
         <source>Qté en mouvement</source>
         <translation>Moved qty</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="442"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="431"/>
         <source>Qté restante en stock</source>
         <translation>Remaining stock qty</translation>
     </message>
@@ -3578,15 +3635,15 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>customer account</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="323"/>
-        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="340"/>
+        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="327"/>
+        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="344"/>
         <source>payer à un compte client</source>
         <oldsource>comptes clients</oldsource>
         <translation>pay to this customer account</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="324"/>
-        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="341"/>
+        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="328"/>
+        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="345"/>
         <source>Sélectionnez un compte client afin d&apos;effectuer un paiement !</source>
         <translation>Select a customer account to submit a payment to it !</translation>
     </message>
@@ -3598,39 +3655,39 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>There are no financial transactions for this customer to display !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="357"/>
+        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="361"/>
         <source>modifier un compte client</source>
         <translation>modify customer account</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="358"/>
+        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="362"/>
         <source>Sélectionnez un client à modifier !</source>
         <translation>Select a client to modify its details !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="414"/>
+        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="418"/>
         <source>suppression d&apos;un compte client - succès</source>
         <translation>deletion of a customer account - success</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="423"/>
+        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="427"/>
         <source>suppression d&apos;un compte client - échec</source>
         <translation>deletion of a customer account - failure</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="445"/>
-        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="462"/>
+        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="449"/>
+        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="466"/>
         <source>détails d&apos;un compte client</source>
         <translation>customer account details</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="446"/>
-        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="463"/>
+        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="450"/>
+        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="467"/>
         <source>Sélectionnez un compte client à afficher les détails !</source>
         <translation>Select a customer account to view its details !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="608"/>
+        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="612"/>
         <source>terme à rechercher (émail, réprésentant, et description de l&apos;entreprise cliente)</source>
         <oldsource>terme à rechercher (nom de l&apos;entreprise, réprésentant, et description de l&apos;entreprise cliente)</oldsource>
         <translation>keyword to search for (email, representant, and client company description)</translation>
@@ -3827,7 +3884,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-historique-stock.cpp" line="93"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="500"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="489"/>
         <source>ENTRÉE</source>
         <oldsource>ENTREE</oldsource>
         <translation>ENTRANCE</translation>
@@ -3849,13 +3906,13 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-historique-stock.cpp" line="109"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="499"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="488"/>
         <source>RETOUR VENTE</source>
         <translation>SALE RETURN</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-historique-stock.cpp" line="113"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="498"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="487"/>
         <source>RÉ-APPROVISIONNEMENT</source>
         <oldsource>RÉ-APPROVISIONEMENT</oldsource>
         <translation>RESTOCK</translation>
@@ -3929,7 +3986,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>Details of this customer account could be modify by pressing button &apos;Modify&apos; !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-modifier-window.hpp" line="86"/>
+        <location filename="src/windows/yeroth-erp-modifier-window.hpp" line="88"/>
         <source>Modifier les informations sur le stock (service), et ensuite cliquer sur le bouton &apos;actualiser&apos;!</source>
         <translation>Modify stock (service) details, and then press button &apos;update&apos; !</translation>
     </message>
@@ -4005,14 +4062,14 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     <message>
         <location filename="src/imports/yeroth-erp-marchandise-import.cpp" line="219"/>
         <location filename="src/imports/yeroth-erp-stock-import.cpp" line="493"/>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1515"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1740"/>
         <source>Cette référence (&apos;%1&apos;) est déjà utilisée par la marchandise &apos;%2&apos; !</source>
         <translation>This reference (&apos;%1&apos;) is already used by merchandise &apos;%2&apos; !</translation>
     </message>
     <message>
         <location filename="src/imports/yeroth-erp-marchandise-import.cpp" line="228"/>
         <location filename="src/imports/yeroth-erp-stock-import.cpp" line="502"/>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1539"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1764"/>
         <source>La marchandise &apos;%1&apos; est déjà dans la catégorie (&apos;%2&apos;) !</source>
         <translation>Merchandise &apos;%1&apos; is already in category (&apos;%2&apos;) !</translation>
     </message>
@@ -4089,8 +4146,8 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-fournisseur-details-window.cpp" line="26"/>
-        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="442"/>
-        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="461"/>
+        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="446"/>
+        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="465"/>
         <source>détails d&apos;un fournisseur</source>
         <translation>supplier details</translation>
     </message>
@@ -4152,52 +4209,52 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>suppliers</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="322"/>
-        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="339"/>
+        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="326"/>
+        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="343"/>
         <source>payer à un fournisseur</source>
         <translation>pay a supplier</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="323"/>
-        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="340"/>
+        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="327"/>
+        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="344"/>
         <source>Sélectionnez un fournisseur afin d&apos;effectuer un paiement !</source>
         <translation>Select a supplier to submit a payment to it !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="356"/>
+        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="360"/>
         <location filename="src/windows/yeroth-erp-modifier-fournisseur-window.cpp" line="26"/>
         <source>modifier un fournisseur</source>
         <translation>modify supplier</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="357"/>
+        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="361"/>
         <source>Sélectionnez un fournisseur à modifier !</source>
         <translation>Select a supplier to modify its details !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="393"/>
+        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="397"/>
         <location filename="src/windows/yeroth-erp-modifier-fournisseur-window.cpp" line="557"/>
         <source>suppression d&apos;un fournisseur</source>
         <translation>deletion of a supplier</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="413"/>
+        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="417"/>
         <source>suppression d&apos;un fournisseur - succès</source>
         <translation>deletion of a supplier - success</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="422"/>
+        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="426"/>
         <source>suppression d&apos;un fournisseur - échec</source>
         <translation>deletion of a supplier - failure</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="443"/>
-        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="462"/>
+        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="447"/>
+        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="466"/>
         <source>Sélectionnez un fournisseur à afficher les détails !</source>
         <translation>Select a supplier to view its details !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="593"/>
+        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="597"/>
         <source>terme à rechercher (émail, réprésentant, description de l&apos;entreprise fournisseure)</source>
         <translation>keyword to search for (email, representant, supplier description)</translation>
     </message>
@@ -9357,7 +9414,7 @@ Transférer</source>
         <translation>Yeroth-erp-3.0 - check in stock (service)</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-entrer-window.ui" line="12736"/>
+        <location filename="ui/yeroth-erp-entrer-window.ui" line="13338"/>
         <source>Enregistrer</source>
         <translation>Save</translation>
     </message>
@@ -9421,12 +9478,13 @@ Transférer</source>
     </message>
     <message>
         <location filename="ui/yeroth-erp-entrer-window.ui" line="11854"/>
+        <location filename="ui/yeroth-erp-entrer-window.ui" line="12897"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Pourcentage de la marge bénéficiaire sur le prix d&apos;achat.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Benefit margin percentage on purchase price.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-entrer-window.ui" line="14628"/>
-        <location filename="ui/yeroth-erp-entrer-window.ui" line="14631"/>
+        <location filename="ui/yeroth-erp-entrer-window.ui" line="15230"/>
+        <location filename="ui/yeroth-erp-entrer-window.ui" line="15233"/>
         <source>Supprimer l&apos;image de ce stock</source>
         <translation>Delete stock item image</translation>
     </message>
@@ -9527,112 +9585,118 @@ Transférer</source>
         <translation>service (buying from supplier)</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-entrer-window.ui" line="13180"/>
+        <location filename="ui/yeroth-erp-entrer-window.ui" line="12785"/>
+        <source>prix de vente en gros</source>
+        <translation>whole sale selling price</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-entrer-window.ui" line="13782"/>
         <source>Aide</source>
         <oldsource>Aide</oldsource>
         <translation>Help</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-entrer-window.ui" line="13611"/>
+        <location filename="ui/yeroth-erp-entrer-window.ui" line="14213"/>
         <source>Actions</source>
         <oldsource>Actions</oldsource>
         <translation>Functions</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-entrer-window.ui" line="14051"/>
+        <location filename="ui/yeroth-erp-entrer-window.ui" line="14653"/>
         <source>Outils</source>
         <oldsource>Outils</oldsource>
         <translation>Tools</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-entrer-window.ui" line="14481"/>
+        <location filename="ui/yeroth-erp-entrer-window.ui" line="15083"/>
         <source>toolBar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-entrer-window.ui" line="14502"/>
+        <location filename="ui/yeroth-erp-entrer-window.ui" line="15104"/>
         <source>À propos</source>
         <translation>About Yeroth-erp-3.0</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-entrer-window.ui" line="14518"/>
+        <location filename="ui/yeroth-erp-entrer-window.ui" line="15120"/>
         <source>Changer d&apos;utilisateur</source>
         <translation>Sign in</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-entrer-window.ui" line="14530"/>
+        <location filename="ui/yeroth-erp-entrer-window.ui" line="15132"/>
         <source>Afficher les stocks</source>
         <translation>List stocks</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-entrer-window.ui" line="14542"/>
+        <location filename="ui/yeroth-erp-entrer-window.ui" line="15144"/>
         <source>Fermeture</source>
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-entrer-window.ui" line="14554"/>
-        <location filename="ui/yeroth-erp-entrer-window.ui" line="14557"/>
+        <location filename="ui/yeroth-erp-entrer-window.ui" line="15156"/>
+        <location filename="ui/yeroth-erp-entrer-window.ui" line="15159"/>
         <source>Menu principal</source>
         <translation>Main menu</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-entrer-window.ui" line="14573"/>
+        <location filename="ui/yeroth-erp-entrer-window.ui" line="15175"/>
         <source>Message d&apos;aide</source>
         <translation>User tip</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-entrer-window.ui" line="14576"/>
+        <location filename="ui/yeroth-erp-entrer-window.ui" line="15178"/>
         <source>Appeler l&apos;aide</source>
         <translation>Help</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-entrer-window.ui" line="14592"/>
-        <location filename="ui/yeroth-erp-entrer-window.ui" line="14595"/>
+        <location filename="ui/yeroth-erp-entrer-window.ui" line="15194"/>
+        <location filename="ui/yeroth-erp-entrer-window.ui" line="15197"/>
         <source>Déconnecter l&apos;utilisateur</source>
         <translation>Sign out</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-entrer-window.ui" line="14613"/>
-        <location filename="ui/yeroth-erp-entrer-window.ui" line="14616"/>
+        <location filename="ui/yeroth-erp-entrer-window.ui" line="15215"/>
+        <location filename="ui/yeroth-erp-entrer-window.ui" line="15218"/>
         <source>Alertes</source>
         <translation>Alerts</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-entrer-window.ui" line="14648"/>
+        <location filename="ui/yeroth-erp-entrer-window.ui" line="15250"/>
         <source>Administration</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-entrer-window.ui" line="14660"/>
+        <location filename="ui/yeroth-erp-entrer-window.ui" line="15262"/>
         <source>Informations sur l&apos;entreprise</source>
         <translation>Company info</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-entrer-window.ui" line="14672"/>
+        <location filename="ui/yeroth-erp-entrer-window.ui" line="15274"/>
         <source>Qui suis je ?</source>
         <translation>Who am I?</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-entrer-window.ui" line="14684"/>
-        <location filename="ui/yeroth-erp-entrer-window.ui" line="14687"/>
-        <location filename="ui/yeroth-erp-entrer-window.ui" line="14690"/>
+        <location filename="ui/yeroth-erp-entrer-window.ui" line="15286"/>
+        <location filename="ui/yeroth-erp-entrer-window.ui" line="15289"/>
+        <location filename="ui/yeroth-erp-entrer-window.ui" line="15292"/>
         <source>Sortir un stock</source>
         <translation>Check out stock</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-entrer-window.ui" line="14702"/>
-        <location filename="ui/yeroth-erp-entrer-window.ui" line="14705"/>
+        <location filename="ui/yeroth-erp-entrer-window.ui" line="15304"/>
+        <location filename="ui/yeroth-erp-entrer-window.ui" line="15307"/>
         <source>Enregister ce stock</source>
         <translation>Save this stock item</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-entrer-window.ui" line="14717"/>
-        <location filename="ui/yeroth-erp-entrer-window.ui" line="14720"/>
+        <location filename="ui/yeroth-erp-entrer-window.ui" line="15319"/>
+        <location filename="ui/yeroth-erp-entrer-window.ui" line="15322"/>
         <source>Annuler l&apos;entrée en stock</source>
         <translation>Cancel stock item insertion</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1487"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1682"/>
+        <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="1712"/>
         <source>Remplisser tous les champs obligatoires !</source>
         <translation>Please, fill out all mandatory text fields!</translation>
     </message>
@@ -10644,8 +10708,8 @@ Sale</translation>
         <translation>Yeroth-erp-3.0 - modify this stock</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13762"/>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13765"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="14705"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="14708"/>
         <source>Entrer un stock</source>
         <oldsource>Entrer</oldsource>
         <translation>Check in</translation>
@@ -10777,47 +10841,47 @@ Sale</translation>
         <translation>purchase</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="12421"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="13364"/>
         <source>Aide</source>
         <oldsource>Aide</oldsource>
         <translation>Help</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="12846"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="13789"/>
         <source>Actions</source>
         <oldsource>Actions</oldsource>
         <translation>Functions</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13284"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="14227"/>
         <source>Outils</source>
         <oldsource>Outils</oldsource>
         <translation>Tools</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13714"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="14657"/>
         <source>toolBar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13735"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="14678"/>
         <source>À propos</source>
         <translation>About Yeroth-erp-3.0</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13751"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="14694"/>
         <source>Changer d&apos;utilisateur</source>
         <translation>Sign in</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13960"/>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13963"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="14903"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="14906"/>
         <source>Annuler la modification de ce stock</source>
         <translation>Cancel stock item modification</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13777"/>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13780"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="14720"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="14723"/>
         <source>Modifier ce stock</source>
         <translation>modify this stock</translation>
     </message>
@@ -10831,68 +10895,73 @@ a
 stock item (service)</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13791"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="12467"/>
+        <source>prix de vente en gros</source>
+        <translation>whole sale selling price</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="14734"/>
         <source>Fermeture</source>
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13803"/>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13806"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="14746"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="14749"/>
         <source>Menu principal</source>
         <translation>Main menu</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13822"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="14765"/>
         <source>Message d&apos;aide</source>
         <translation>User tip</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13825"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="14768"/>
         <source>Appeler l&apos;aide</source>
         <translation>Help</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13840"/>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13843"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="14783"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="14786"/>
         <source>Déconnecter l&apos;utilisateur</source>
         <translation>Sign out</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13860"/>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13863"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="14803"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="14806"/>
         <source>Alertes</source>
         <translation>Alerts</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13874"/>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13877"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="14817"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="14820"/>
         <source>Supprimer ce stock</source>
         <translation>Delete this stock</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13889"/>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13892"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="14832"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="14835"/>
         <source>Supprimer l&apos;image de ce stock</source>
         <translation>Delete stock item image</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13909"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="14852"/>
         <source>Administration</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13921"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="14864"/>
         <source>Informations sur l&apos;entreprise</source>
         <translation>Company info</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13933"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="14876"/>
         <source>Qui suis je ?</source>
         <translation>Who am I?</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13945"/>
-        <location filename="ui/yeroth-erp-modifier-window.ui" line="13948"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="14888"/>
+        <location filename="ui/yeroth-erp-modifier-window.ui" line="14891"/>
         <source>Actualiser ce stock</source>
         <translation>Update this stock</translation>
     </message>
@@ -11907,27 +11976,27 @@ Details</translation>
         <translation>Item reference</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="19843"/>
+        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="20750"/>
         <source>Aide</source>
         <translation>Help</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="20278"/>
+        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="21185"/>
         <source>Actions</source>
         <translation>Functions</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="20714"/>
+        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="21621"/>
         <source>Outils</source>
         <translation>Tools</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="21206"/>
+        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="22113"/>
         <source>Afficher un modèle de reçu au format pdf</source>
         <translation>View a receipt model in pdf</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="21345"/>
+        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="22252"/>
         <source>Vendre</source>
         <translation>Check out</translation>
     </message>
@@ -11965,8 +12034,8 @@ Details</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-pointdevente-window.ui" line="3903"/>
-        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="21332"/>
-        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="21335"/>
+        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="22239"/>
+        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="22242"/>
         <source>Annuler la vente</source>
         <translation>Cancel sale</translation>
     </message>
@@ -12122,109 +12191,119 @@ Details</translation>
         <translation>Product image</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="18517"/>
+        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="18543"/>
+        <source>prix unitaire (en gros)</source>
+        <translation>unit price (whole sale)</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="18987"/>
+        <source>effectuer 1 vente (en gros)</source>
+        <translation>do a whole sale</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="19424"/>
         <source>TextLabel</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="18981"/>
+        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="19888"/>
         <source>YEROTH-ERP-3.0</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="21151"/>
+        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="22058"/>
         <source>toolBar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="21176"/>
+        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="22083"/>
         <source>À propos</source>
         <translation>About Yeroth</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="21190"/>
+        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="22097"/>
         <source>Changer d&apos;utilisateur</source>
         <translation>Sign in</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="21209"/>
+        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="22116"/>
         <source>Imprimer la facture (ou l&apos;exemple)</source>
         <translation>Print invoice (or sample)</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="21223"/>
+        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="22130"/>
         <source>Déconnecter l&apos;utilisateur</source>
         <translation>Sign out</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="21239"/>
+        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="22146"/>
         <source>Message d&apos;aide</source>
         <translation>User tip</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="21251"/>
+        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="22158"/>
         <source>Fermeture</source>
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="21267"/>
-        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="21270"/>
+        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="22174"/>
+        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="22177"/>
         <source>Alertes</source>
         <translation>Alerts</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="21282"/>
-        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="21285"/>
+        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="22189"/>
+        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="22192"/>
         <source>Menu principal</source>
         <translation>Main menu</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="21302"/>
+        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="22209"/>
         <source>Administration</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="21312"/>
+        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="22219"/>
         <source>Informations sur l&apos;entreprise</source>
         <translation>Company info</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="21322"/>
+        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="22229"/>
         <source>Qui suis je ?</source>
         <translation>Who am I?</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="21355"/>
-        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="21358"/>
+        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="22262"/>
+        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="22265"/>
         <source>Lister les stocks</source>
         <translation>View stocks</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="21370"/>
+        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="22277"/>
         <source>Guide de l&apos;utilisateur (PDF)</source>
         <translation>User guide (PDF)</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="21373"/>
+        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="22280"/>
         <source>Manuel de l&apos;utilisateur (PDF)</source>
         <translation>User manual (PDF)</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="21383"/>
-        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="21386"/>
+        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="22290"/>
+        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="22293"/>
         <source>Activer la réference du stock comme entrée standard</source>
         <oldsource>Set reference as standard input</oldsource>
         <translation>Set stock reference as standard input</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="21396"/>
-        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="21399"/>
+        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="22303"/>
+        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="22306"/>
         <source>Activer la désignation du stock comme entrée standard</source>
         <translation>Set stock item name as standard input</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="21414"/>
-        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="21417"/>
+        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="22321"/>
+        <location filename="ui/yeroth-erp-pointdevente-window.ui" line="22324"/>
         <source>Basculer le lecteur de code-barres</source>
         <oldsource>Activer le lecteur de code-barres</oldsource>
         <translation>Toggle barcode reader</translation>
@@ -12812,8 +12891,8 @@ Details</translation>
         <translation>Yeroth-erp-3.0 - stock details</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="11708"/>
-        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="11711"/>
+        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="12165"/>
+        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="12168"/>
         <source>Entrer un stock</source>
         <translation>Insert stock</translation>
     </message>
@@ -12890,7 +12969,8 @@ stock (service)</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-stock-detail-window.ui" line="4968"/>
-        <source>prix de vente (p.v.)</source>
+        <source>prix de vente</source>
+        <oldsource>prix de vente (p.v.)</oldsource>
         <translation>selling price</translation>
     </message>
     <message>
@@ -12915,8 +12995,9 @@ stock (service)</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-stock-detail-window.ui" line="8117"/>
-        <source>prix unitaire (p.u.)</source>
-        <translation>unit price (u.p.)</translation>
+        <source>prix unitaire (hors taxe)</source>
+        <oldsource>prix unitaire (p.u.)</oldsource>
+        <translation>unit price (no taxes)</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-stock-detail-window.ui" line="8141"/>
@@ -12945,91 +13026,96 @@ stock (service)</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="10371"/>
+        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="10386"/>
+        <source>prix de vente en gros</source>
+        <translation>whole sale selling price</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="10828"/>
         <source>Aide</source>
         <translation>Help</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="10801"/>
+        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="11258"/>
         <source>Actions</source>
         <translation>Functions</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="11231"/>
+        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="11688"/>
         <source>Outils</source>
         <translation>Tools</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="11660"/>
+        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="12117"/>
         <source>toolBar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="11680"/>
+        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="12137"/>
         <source>À propos</source>
         <translation>About Yeroth-erp-3.0</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="11696"/>
+        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="12153"/>
         <source>Changer d&apos;utilisateur</source>
         <translation>Sign in</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="11723"/>
-        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="11726"/>
+        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="12180"/>
+        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="12183"/>
         <source>Modifier (ou ré-approvisionner) ce stock</source>
         <oldsource>Modifier ce stock</oldsource>
         <translation>Modify (or resupply) this stock</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="11738"/>
+        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="12195"/>
         <source>Fermeture</source>
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="11750"/>
-        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="11753"/>
+        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="12207"/>
+        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="12210"/>
         <source>Menu principal</source>
         <translation>Main menu</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="11769"/>
+        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="12226"/>
         <source>Message d&apos;aide</source>
         <translation>User tip</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="11772"/>
+        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="12229"/>
         <source>Appeler l&apos;aide</source>
         <translation>Help</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="11788"/>
-        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="11791"/>
+        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="12245"/>
+        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="12248"/>
         <source>Déconnecter l&apos;utilisateur</source>
         <translation>Sign out</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="11803"/>
+        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="12260"/>
         <source>Courrier</source>
         <translation>E-mail</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="11814"/>
+        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="12271"/>
         <source>Supprimer ce stock</source>
         <translation>Delete this stock</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="11831"/>
+        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="12288"/>
         <source>Administration</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="11843"/>
+        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="12300"/>
         <source>Informations sur l&apos;entreprise</source>
         <translation>Company info</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="11855"/>
+        <location filename="ui/yeroth-erp-stock-detail-window.ui" line="12312"/>
         <source>Qui suis je ?</source>
         <translation>Who am I?</translation>
     </message>
