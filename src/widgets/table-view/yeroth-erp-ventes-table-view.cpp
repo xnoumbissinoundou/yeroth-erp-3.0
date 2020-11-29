@@ -65,6 +65,14 @@ void YerothERPVentesTableView::lister_les_elements_du_tableau(YerothSqlTableMode
     	return ;
     }
 
+    YerothPOSUser *aUser = 0;
+
+    if (0 != _allWindows)
+    {
+    	aUser = _allWindows->getUser();
+    }
+
+
     QString curTableModelRawHdr;
 
     QString tmpQvString;
@@ -126,7 +134,21 @@ void YerothERPVentesTableView::lister_les_elements_du_tableau(YerothSqlTableMode
     			break;
 
     		case QVariant::Double:
-    			anItem = new YerothQStandardItem(GET_DOUBLE_STRING(qv.toDouble()));
+
+    			if (YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::MARGE_BENEFICIAIRE))
+    			{
+    				anItem = new YerothQStandardItem(GET_DOUBLE_STRING(0.0));
+
+    				if (0 != aUser && aUser->isManager())
+    				{
+    					anItem = new YerothQStandardItem(GET_DOUBLE_STRING(qv.toDouble()));
+    				}
+    			}
+    			else
+    			{
+        			anItem = new YerothQStandardItem(GET_DOUBLE_STRING(qv.toDouble()));
+    			}
+
     			_stdItemModel->setItem(i, k, anItem);
     			break;
 

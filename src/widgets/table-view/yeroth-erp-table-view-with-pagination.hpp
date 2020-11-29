@@ -122,9 +122,9 @@ protected:
 
 	int _yerothTableViewPageRowCount;
 
-private:
-
 	YerothERPWindows 	*_allWindows;
+
+private:
 
 	YerothSqlTableModel *_curYerothSqlTableModel;
 };
