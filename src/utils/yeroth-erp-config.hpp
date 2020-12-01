@@ -87,6 +87,8 @@ public:
 
 	static QString annee_depart_rapports_chiffre_affaire_value;
 
+	static QString annee_depart_pour_la_pagination;
+
 	static QString pathToMARIA_DB_BASE_DIR;
 
 	static QString sqlBackupDir;
@@ -124,6 +126,8 @@ public:
 	static const unsigned int CONFIG_SALES_STRATEGY;
 
 	static const unsigned int CONFIG_CURRENCY;
+
+	static const unsigned int CONFIG_PAGINATION_PAGE_BEGIN_YEAR;
 
 	//static const SALES_STRATEGY getSalesStrategy(QString salesStrategyValue);
 

@@ -523,6 +523,9 @@ void read_yeroth_configuration(YerothLogger &logger, YerothERPWindows &allWindow
     configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_CURRENCY);
     QString currencyValue(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
 
+    configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_PAGINATION_PAGE_BEGIN_YEAR);
+    QString pageBeginYearValue(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
+
     /*
      * Now setting the configuration values
      */
@@ -531,6 +534,15 @@ void read_yeroth_configuration(YerothLogger &logger, YerothERPWindows &allWindow
     YerothERPConfig::alert_quantity_time_interval = alertQuantityTimeIntervalValue.toUInt();
     YerothERPConfig::tva_value = (tvaValue.toDouble() / 100.0);
     YerothERPConfig::salesStrategy = salesStrategyValue;
+
+    if (! pageBeginYearValue.isEmpty())
+    {
+    	YerothERPConfig::annee_depart_pour_la_pagination = pageBeginYearValue;
+    }
+    else
+    {
+    	YerothERPConfig::annee_depart_pour_la_pagination = GET_CURRENT_DATE_YEAR;
+    }
 
 
     logger.log("[main] read_yeroth_configuration",

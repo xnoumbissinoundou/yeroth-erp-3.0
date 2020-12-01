@@ -4,3 +4,4 @@ insert into configurations (id, nom_configuration, description_configuration, va
 insert into configurations (id, nom_configuration, description_configuration, valeur_configuration) values (2, "CONFIG_TVA_VALUE", "Valeur de la TVA", "19.25");
 insert into configurations (id, nom_configuration, description_configuration, valeur_configuration) values (3, "CONFIG_SALES_STRATEGY", "Configuration de la stratégie de vente/sortie", "FIFO");
 insert into configurations (id, nom_configuration, description_configuration, valeur_configuration) values (4, "CONFIG_CURRENCY", "Configuration de la devise", "$");
+insert into configurations (id, nom_configuration, description_configuration, valeur_configuration) values (5, "CONFIG_PAGINATION_PAGE_BEGIN_YEAR", "Configuration de l'annee de depart pour la pagination", "2020");

@@ -76,7 +76,9 @@ uint YerothERPConfig::max_string_display_length(22);
 
 double YerothERPConfig::tva_value(19.25/100.0);
 
-QString YerothERPConfig::annee_depart_rapports_chiffre_affaire_value("2020");
+QString YerothERPConfig::annee_depart_rapports_chiffre_affaire_value(GET_CURRENT_DATE_YEAR);
+
+QString YerothERPConfig::annee_depart_pour_la_pagination(GET_CURRENT_DATE_YEAR);
 
 QString YerothERPConfig::pathToMARIA_DB_BASE_DIR("/usr/bin");
 
@@ -122,6 +124,8 @@ const unsigned int YerothERPConfig::CONFIG_TVA_VALUE (2);
 const unsigned int YerothERPConfig::CONFIG_SALES_STRATEGY (3);
 
 const unsigned int YerothERPConfig::CONFIG_CURRENCY (4);
+
+const unsigned int YerothERPConfig::CONFIG_PAGINATION_PAGE_BEGIN_YEAR (5);
 
 
 void YerothERPConfig::initYerothConfig(QString initCfg)

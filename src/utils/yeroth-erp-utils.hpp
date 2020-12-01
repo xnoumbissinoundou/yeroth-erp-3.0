@@ -1010,6 +1010,8 @@ YerothQMessageBox::information(this, QObject::trUtf8(DIALOG_BOX_TITLE), msg); }
 
 #define GET_CURRENT_DATE QDate::currentDate()
 
+#define GET_CURRENT_DATE_YEAR QString::number((QDate::currentDate().year() != 0) ? QDate::currentDate().year() : 2020)
+
 #define GET_CURRENT_STRING_DATE QDate::currentDate().toString(YerothUtils::DATE_FORMAT)
 
 #define CURRENT_TIME QTime::currentTime().toString(YerothUtils::TIME_FORMAT)

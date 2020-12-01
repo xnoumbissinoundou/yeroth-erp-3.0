@@ -329,6 +329,8 @@ void YerothAdminWindow::setupValidators()
     lineEdit_longueur_maximale_string->setValidator(&YerothUtils::IntValidator);
 
     lineEdit_annee_depart_rapports_chiffre_affaire->setValidator(&YerothUtils::IntValidator);
+
+    lineEdit_annee_de_depart_pour_la_pagination->setValidator(&YerothUtils::IntValidator);
 }
 
 void YerothAdminWindow::definirPasDeRole()
@@ -1574,6 +1576,9 @@ void YerothAdminWindow::read_configuration()
 
     lineEdit_annee_depart_rapports_chiffre_affaire->setText(YerothERPConfig::annee_depart_rapports_chiffre_affaire_value);
 
+    lineEdit_annee_de_depart_pour_la_pagination->setText(YerothERPConfig::annee_depart_pour_la_pagination);
+
+
     comboBox_strategie_vente_sortie->clear();
     comboBox_strategie_vente_sortie->addItem(YerothERPConfig::STRATEGIE_VENTE_SORTIE_ALL);
     comboBox_strategie_vente_sortie->addItem(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FEFO);
@@ -1773,6 +1778,18 @@ void YerothAdminWindow::read_app_parameters_init_configuration()
     initConfigurationRecord = initConfigurationsTableModel.record(YerothERPConfig::CONFIG_CURRENCY);
     QString currencyValue(GET_SQL_RECORD_DATA(initConfigurationRecord, "valeur_configuration"));
 
+    initConfigurationRecord = initConfigurationsTableModel.record(YerothERPConfig::CONFIG_PAGINATION_PAGE_BEGIN_YEAR);
+    QString pageBeginYearValue(GET_SQL_RECORD_DATA(initConfigurationRecord, "valeur_configuration"));
+
+    if (!pageBeginYearValue.isEmpty())
+    {
+    	YerothERPConfig::annee_depart_pour_la_pagination = pageBeginYearValue;
+    }
+    else
+    {
+    	YerothERPConfig::annee_depart_pour_la_pagination = GET_CURRENT_DATE_YEAR;
+    }
+
     QString userLanguageReceiptFormatValue(
     		YerothUtils::getCurrentAdminWindowReceiptsFormatAccordingToLanguage(YerothERPConfig::receiptFormat));
 
@@ -1842,6 +1859,9 @@ void YerothAdminWindow::read_app_parameters_init_configuration()
     lineEdit_repertoire_fichiers_temporaires->setText(YerothERPConfig::temporaryFilesDir);
 
     lineEdit_tva_value->setText(tvaValue);
+
+
+    lineEdit_annee_de_depart_pour_la_pagination->setText(YerothERPConfig::annee_depart_pour_la_pagination);
 
     lineEdit_annee_depart_rapports_chiffre_affaire->setText(YerothERPConfig::annee_depart_rapports_chiffre_affaire_value);
 
@@ -2105,6 +2125,18 @@ void YerothAdminWindow::enregistrer_app_parameters_configuration()
             if (success)
             {
                 YerothERPConfig::currency = lineEdit_devise->text();
+            }
+        }
+
+        if (lineEdit_annee_de_depart_pour_la_pagination->checkField())
+        {
+            configurationsRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_PAGINATION_PAGE_BEGIN_YEAR);
+            configurationsRecord.setValue("valeur_configuration", lineEdit_annee_de_depart_pour_la_pagination->text());
+            bool success =
+                configurationsTableModel.updateRecord(YerothERPConfig::CONFIG_PAGINATION_PAGE_BEGIN_YEAR, configurationsRecord);
+            if (success)
+            {
+                YerothERPConfig::annee_depart_pour_la_pagination = lineEdit_annee_de_depart_pour_la_pagination->text();
             }
         }
 
