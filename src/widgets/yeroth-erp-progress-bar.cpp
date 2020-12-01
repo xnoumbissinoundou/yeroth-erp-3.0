@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-progress-bar.cpp
  *
- *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "yeroth-erp-progress-bar.hpp"

@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-modifier.hpp
  *
- *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef SRC_WINDOWS_YEROTH_MODIFIER_WINDOW_HPP_

@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-article-vente-info.hpp
  *
- *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef SRC_UTILS_YEROTH_ARTICLE_VENTE_INFO_HPP_

@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-historique-du-stock-window.cpp
  *
- *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "yeroth-erp-historique-du-stock-window.hpp"

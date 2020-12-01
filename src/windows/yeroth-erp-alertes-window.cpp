@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-alertes-window.cpp
  *
- *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "yeroth-erp-alertes-window.hpp"

@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-select-db-qcheckbox.cpp
  *
- *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
 

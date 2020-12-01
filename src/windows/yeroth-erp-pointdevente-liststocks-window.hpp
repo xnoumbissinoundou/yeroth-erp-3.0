@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-pointdevente-liststocks-window.hpp
  *
- *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef SRC_YEROTH_VENTE_LISTSTOCKS_WINDOW_HPP_

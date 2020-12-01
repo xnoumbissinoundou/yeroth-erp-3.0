@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-3-0.cpp
  *
- *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 #include "src/include/yeroth-erp-3-0-software.text-configuration.hpp"
 

@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-clients-window.hpp
  *
- *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef SRC_WINDOWS_YEROTH_ERP_CLIENTS_WINDOW_HPP_

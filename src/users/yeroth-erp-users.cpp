@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-users.cpp
  *
- *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include <QtCore/QDate>

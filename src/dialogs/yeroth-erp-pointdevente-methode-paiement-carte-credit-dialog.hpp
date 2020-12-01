@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-pointdevente-methode-paiement-carte-credit-dialog.hpp
  *
- *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef YEROTH_ERP_VENTE_METHODE_PAIEMENT_CARTE_CREDIT_DIALOG_HPP_

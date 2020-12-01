@@ -1,6 +1,6 @@
 /*
  * yeroth-erp-generic-dialog.cpp
- *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "yeroth-erp-generic-select-db-field-dialog.hpp"

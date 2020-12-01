@@ -1,7 +1,7 @@
 /*
  * admin-actions-subjects.hpp
  *
- *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef ADMIN_ACTIONS_SUBJECTS_HPP_

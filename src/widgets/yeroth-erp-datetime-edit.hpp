@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-datetime-edit.hpp
  *
- *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef SRC_WIDGETS_YEROTH_DATETIME_EDIT_HPP_

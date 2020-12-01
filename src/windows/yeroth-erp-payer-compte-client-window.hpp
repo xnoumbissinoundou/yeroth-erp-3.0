@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-payer-compte-client-window.hpp
  *
- *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef SRC_WINDOWS_YEROTH_PAYER_COMPTE_CLIENT_WINDOW_HPP_

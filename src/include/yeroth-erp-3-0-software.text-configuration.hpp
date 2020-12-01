@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-3-0-software-text-configuration.hpp
  *
- *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
 # ifndef _YEROTH_ERP_3_0_SOFTWARE_TEXT_CONFIGURATION_HPP_

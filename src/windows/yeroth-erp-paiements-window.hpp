@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-paiements-window.hpp
  *
- *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef SRC_YEROTH_HISTORIQUE_PAIEMENTS_WINDOW_HPP_

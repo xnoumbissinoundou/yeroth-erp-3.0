@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-dbus-server-adaptor.cpp
  *
- *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "yeroth-erp-dbus-server-adaptor.hpp"

@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-creer-nouveau-fournisseur-window.hpp
  *
- *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
 # ifndef SRC_YEROTH_NOUVEAU_FOURNISSEUR_WINDOW_HPP_

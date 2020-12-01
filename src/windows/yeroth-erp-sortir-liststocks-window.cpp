@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-sortir-liststocks-window.cpp
  *
- *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 #include"yeroth-erp-sortir-liststocks-window.hpp"
 

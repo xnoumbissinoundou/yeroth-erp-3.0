@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-list-widget.hpp
  *
- *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef SRC_WIDGETS_YEROTH_TABLE_WIDGET_HPP_

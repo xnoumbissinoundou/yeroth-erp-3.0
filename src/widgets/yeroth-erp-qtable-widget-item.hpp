@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-qtable-widget-item.hpp
  *
- *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef YEROTH_ERP_3_0_QTABLE_WIDGET_ITEM_HPP_

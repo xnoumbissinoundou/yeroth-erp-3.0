@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-abstract-class-yerothsearch-window.cpp
  *
- *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "yeroth-erp-abstract-class-yerothsearch-window.hpp"

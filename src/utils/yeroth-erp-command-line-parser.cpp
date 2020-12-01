@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-command-line-parser.cpp
  *
- *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "yeroth-erp-command-line-parser.hpp"

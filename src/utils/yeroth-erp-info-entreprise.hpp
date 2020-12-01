@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-info-entreprise.hpp
  *
- *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef YEROTH_INFO_ENTREPRISE_HPP_

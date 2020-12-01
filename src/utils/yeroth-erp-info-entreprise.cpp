@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-info-entreprise.cpp
  *
- *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "yeroth-erp-info-entreprise.hpp"

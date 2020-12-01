@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-process-info.hpp
  *
- *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef SRC_UTILS_YEROTH_PROCESS_INFO_HPP_

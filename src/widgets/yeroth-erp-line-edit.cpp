@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-line-edit.cpp
  *
- *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "yeroth-erp-line-edit.hpp"

@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-admin-create-window.cpp
  *
- *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
 

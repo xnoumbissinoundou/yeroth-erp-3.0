@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-admin-search-form.hpp
  *
- *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef SRC_YEROTH_ADMIN_SEARCH_FORM_HPP_

@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-abstract-class-detail-view-window.hpp
  *
- *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef SRC_UTILS_WINDOWS_YEROTH_ABSTRACT_CLASS_VIEW_DETAIL_WINDOW_HPP_

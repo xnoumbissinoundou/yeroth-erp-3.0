@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-qmessage-box.cpp
  *
- *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "src/widgets/yeroth-erp-qmessage-box.hpp"

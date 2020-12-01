@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-stocks-table-view.cpp
  *
- *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
 

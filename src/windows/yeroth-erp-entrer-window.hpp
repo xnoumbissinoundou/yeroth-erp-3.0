@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-entrer-window.hpp
  *
- *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
 # ifndef YEROTH_ENTRER_WINDOW_HPP_

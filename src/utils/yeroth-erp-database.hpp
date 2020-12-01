@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-database.hpp
  *
- *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef SRC_UTILS_YEROTH_DATABASE_HPP_

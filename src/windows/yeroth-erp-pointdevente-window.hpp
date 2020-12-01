@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-pointdevente-window.hpp
  *
- *      Author: DIPL.-INF. XAVIER NOUMBISSI NOUNDOU
+ *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef YEROTH_VENTE_WINDOW_HPP_
