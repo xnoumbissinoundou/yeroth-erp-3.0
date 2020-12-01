@@ -236,7 +236,7 @@ Program executing directory: &quot;%3&quot;.</translation>
 
  par 
 
-(c) (2015 - ...) DIPL.-INF. XAVIER NOUMBISSI NOUNDOU.
+(c) (2015 - ...) DR. XAVIER NOUMBISSI NOUNDOU.
 
 LAST BUILD ID: &apos;&apos;.
 
@@ -269,7 +269,7 @@ ON BUILD_COMPUTER: &apos;&apos;.</translation>
 
  par 
 
-(c) (2015 - ...) DIPL.-INF. XAVIER NOUMBISSI NOUNDOU.
+(c) (2015 - ...) DR. XAVIER NOUMBISSI NOUNDOU.
 
 LAST BUILD ID: &apos;&apos;.
 
@@ -302,7 +302,7 @@ ON BUILD_COMPUTER: &apos;&apos;.</translation>
 
  par 
 
-(c) (2015 - ...) DIPL.-INF. XAVIER NOUMBISSI NOUNDOU.
+(c) (2015 - ...) DR. XAVIER NOUMBISSI NOUNDOU.
 
 LAST BUILD ID: &apos;&apos;.
 
@@ -335,7 +335,7 @@ ON BUILD_COMPUTER: &apos;&apos;.</translation>
 
  par 
 
-(c) (2015 - ...) DIPL.-INF. XAVIER NOUMBISSI NOUNDOU.
+(c) (2015 - ...) DR. XAVIER NOUMBISSI NOUNDOU.
 
 LAST BUILD ID: &apos;&apos;.
 
