@@ -500,7 +500,7 @@ void YerothStocksWindow::setupLineEdits()
 
 void YerothStocksWindow::setupDateTimeEdits()
 {
-    dateEdit_stocks_debut->setStartDate(GET_CURRENT_DATE);
+    dateEdit_stocks_debut->setStartDate(YerothERPConfig::GET_YEROTH_PAGING_DEFAULT_START_DATE());
 
     dateEdit_stocks_fin->setStartDate(GET_CURRENT_DATE);
 

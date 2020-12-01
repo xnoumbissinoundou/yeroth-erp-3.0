@@ -697,7 +697,7 @@ void YerothPayerFournisseurWindow::setupLineEditsQCompleters()
 
 void YerothPayerFournisseurWindow::setupDateTimeEdits()
 {
-	dateEdit_transactions_fournisseur_debut->setStartDate(GET_CURRENT_DATE);
+	dateEdit_transactions_fournisseur_debut->setStartDate(YerothERPConfig::GET_YEROTH_PAGING_DEFAULT_START_DATE());
 
 	dateEdit_transactions_fournisseur_fin->setStartDate(GET_CURRENT_DATE);
 }

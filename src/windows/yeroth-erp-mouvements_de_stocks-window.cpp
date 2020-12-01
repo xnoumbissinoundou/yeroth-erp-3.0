@@ -196,7 +196,7 @@ void YerothMouvementsDeStocksWindow::setupLineEditsQCompleters()
 
 void YerothMouvementsDeStocksWindow::setupDateTimeEdits()
 {
-    dateEdit_mouvementsDeStocks_debut->setStartDate(GET_CURRENT_DATE);
+    dateEdit_mouvementsDeStocks_debut->setStartDate(YerothERPConfig::GET_YEROTH_PAGING_DEFAULT_START_DATE());
     dateEdit_mouvementsDeStocks_fin->setStartDate(GET_CURRENT_DATE);
 
     connect(dateEdit_mouvementsDeStocks_debut, SIGNAL(dateChanged(const QDate &)), this, SLOT(rechercher()));
