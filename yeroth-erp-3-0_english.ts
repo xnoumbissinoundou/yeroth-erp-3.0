@@ -86,30 +86,29 @@
         <location filename="src/admin/yeroth-erp-admin-window.cpp" line="563"/>
         <source>Commande non exécutable: &quot;%1&quot; (%2) !
 
-%3
-
-Répertoire d&apos;exécution: &quot;%4&quot;.</source>
+Répertoire d&apos;exécution: &quot;%3&quot;.</source>
         <oldsource>Commande non exécutable: &quot;%1&quot; (%2) !
 
-%3</oldsource>
-        <translation>Couldn&apos;t run binary executable: &quot;%1&quot; (%2) !
-
 %3
 
-Program executing directory: &quot;%4&quot;.</translation>
+Répertoire d&apos;exécution: &quot;%4&quot;.</oldsource>
+        <translation>Couldn&apos;t run binary executable: &quot;%1&quot; (%2) !
+
+Program executing directory: &quot;%3&quot;.</translation>
     </message>
     <message>
         <location filename="src/admin/yeroth-erp-admin-window.cpp" line="577"/>
         <source>La commande &quot;%1&quot; a été exécuter avec succès !
 
+Répertoire d&apos;exécution: &quot;%2&quot;.</source>
+        <oldsource>La commande &quot;%1&quot; a été exécuter avec succès !
+
 %2
 
-Répertoire d&apos;exécution: &quot;%3&quot;.</source>
+Répertoire d&apos;exécution: &quot;%3&quot;.</oldsource>
         <translation>Command &quot;%1&quot; ran successfully !
 
-%2
-
-Program executing directory: &quot;%3&quot;.</translation>
+Program executing directory: &quot;%2&quot;.</translation>
     </message>
     <message>
         <location filename="src/admin/yeroth-erp-admin-window.cpp" line="845"/>
