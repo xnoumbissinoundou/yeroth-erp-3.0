@@ -26813,6 +26813,9 @@
       </property>
      </widget>
      <widget class="QGroupBox" name="groupBox_maintenance_commandes">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>6</x>

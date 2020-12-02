@@ -111,6 +111,8 @@ YerothAdminWindow::YerothAdminWindow()
 
     mySetupUi(this);
 
+    groupBox_maintenance_commandes->setVisible(false);
+
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
                                        "QMessageBox QLabel {color: rgb(%2);}")
                                   .arg(COLOUR_RGB_STRING_YEROTH_DARK_GREEN_47_67_67,
@@ -381,6 +383,8 @@ void YerothAdminWindow::definirManager()
 
 void YerothAdminWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 {
+	groupBox_maintenance_commandes->setVisible(false);
+
 	groupBox_yeroth_erp_3_0_parametres_serveur->setVisible(false);
 
 	YerothPOSUser *user = _allWindows->getUser();
