@@ -561,11 +561,11 @@ void YerothAdminWindow::EXECUTER_COMMANDE_MAINTENANCE()
 		YerothQMessageBox::warning(this,
 				QObject::trUtf8("EXÉCUTER COMMANDE MAINTENANCE"),
 				QObject::trUtf8("Commande non exécutable: \"%1\" (%2) !\n\n"
-								"%3\n\n"
-								"Répertoire d'exécution: \"%4\".")
+//								"%3\n\n"
+								"Répertoire d'exécution: \"%3\".")
 							.arg(mysqlProcessProgram,
 								 userViewPrettyCommand,
-								 lineEdit_administration_maintenance_commandes_COMMANDE_ACTUELLE->text(),
+//								 lineEdit_administration_maintenance_commandes_COMMANDE_ACTUELLE->text(),
 								 YerothERPConfig::sqlBackupDir));
 		return ;
 	}
@@ -575,10 +575,10 @@ void YerothAdminWindow::EXECUTER_COMMANDE_MAINTENANCE()
 		YerothQMessageBox::information(this,
 				QObject::trUtf8("EXÉCUTER COMMANDE MAINTENANCE"),
 				QObject::trUtf8("La commande \"%1\" a été exécuter avec succès !\n\n"
-								"%2\n\n"
-								"Répertoire d'exécution: \"%3\".")
+//								"%2\n\n"
+								"Répertoire d'exécution: \"%2\".")
 							.arg(userViewPrettyCommand,
-								 lineEdit_administration_maintenance_commandes_COMMANDE_ACTUELLE->text(),
+//								 lineEdit_administration_maintenance_commandes_COMMANDE_ACTUELLE->text(),
 								 YerothERPConfig::sqlBackupDir));
 	}
 }
