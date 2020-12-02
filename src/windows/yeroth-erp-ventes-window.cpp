@@ -1402,7 +1402,7 @@ void YerothVentesWindow::setupDateTimeEdits()
 
 	dateEdit_retour_vente_date_peremption->setYerothEnabled(false);
 
-    dateEdit_ventes_debut->setStartDate(YerothERPConfig::GET_YEROTH_PAGING_DEFAULT_START_DATE());
+    dateEdit_ventes_debut->setStartDate(GET_CURRENT_DATE);
 
     dateEdit_ventes_fin->setStartDate(GET_CURRENT_DATE);
 

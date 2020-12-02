@@ -535,7 +535,7 @@ void read_yeroth_configuration(YerothLogger &logger, YerothERPWindows &allWindow
     YerothERPConfig::tva_value = (tvaValue.toDouble() / 100.0);
     YerothERPConfig::salesStrategy = salesStrategyValue;
 
-    if (! pageBeginYearValue.isEmpty())
+    if (!pageBeginYearValue.isEmpty())
     {
     	YerothERPConfig::annee_depart_pour_la_pagination = pageBeginYearValue;
     }
@@ -657,10 +657,6 @@ int main(int argc, char *argv[])
 #endif
 
 
-    allWindows.createAllYerothPosUserWindows();
-
-    YerothERPConfig::_connectedSite = allWindows.getInfoEntreprise().getLocalisation();
-
     QApplication::setFont(QFont(STRING_APPLICATION_WIDE_FONT_TYPE_YEROTH_ERP_3_0,
                                 INT_APPLICATION_WIDE_FONT_SIZE_YEROTH_ERP_3_0));
 
@@ -743,6 +739,10 @@ int main(int argc, char *argv[])
     read_yeroth_configuration(logger, allWindows);
 
     readTexTemplateFiles(logger);
+
+    allWindows.createAllYerothPosUserWindows();
+
+    YerothERPConfig::_connectedSite = allWindows.getInfoEntreprise().getLocalisation();
 
 #ifndef YEROTH_ERP_3_0_TESTING_UNIT_TEST
 
