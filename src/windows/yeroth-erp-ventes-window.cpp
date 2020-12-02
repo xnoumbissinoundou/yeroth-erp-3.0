@@ -1326,12 +1326,8 @@ void YerothVentesWindow::reinitialiser_champs_db_visibles()
 
     _visibleDBFieldColumnStrList
 			<< YerothDatabaseTableColumn::DATE_VENTE
-			<< YerothDatabaseTableColumn::REFERENCE
 			<< YerothDatabaseTableColumn::DESIGNATION
 			<< YerothDatabaseTableColumn::QUANTITE_VENDUE
-			<< YerothDatabaseTableColumn::PRIX_VENTE
-			<< YerothDatabaseTableColumn::CATEGORIE
-			<< YerothDatabaseTableColumn::TYPE_DE_VENTE
 			<< YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE;
 }
 
