@@ -523,6 +523,7 @@ void YerothMainWindow::help()
 	YerothERPConfig::printer = YerothUtils::IMPRIMANTE_EPSON_TM_T20ii;
 
     YerothPOSUserManager *u = new YerothPOSUserManager(_allWindows);
+    u->set_titre("DR.");
     u->set_prenom("Xavier");
     u->set_nom("NOUMBISSI NOUNDOU");
     u->set_nom_utilisateur("xavierp");
