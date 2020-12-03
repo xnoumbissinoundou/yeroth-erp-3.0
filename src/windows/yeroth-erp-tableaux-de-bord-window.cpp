@@ -168,11 +168,13 @@ YerothTableauxDeBordWindow::YerothTableauxDeBordWindow()
     _moisToNombre[MOIS_11] = 11;
     _moisToNombre[MOIS_12] = 12;
 
-    setupTab_EVOLUTION_DU_CHIFFRE_DAFFAIRE();
+
+    setupTab_BILAN_COMPTABLE();
 
     setupTab_COMPARAISON_DES_CHIFFRES_DAFFAIRES();
 
-    setupTab_BILAN_COMPTABLE();
+    setupTab_EVOLUTION_DU_CHIFFRE_DAFFAIRE();
+
 
     // Menu actions
     connect( actionExporter_au_format_csv, SIGNAL(triggered()), this, SLOT(export_csv_file()));
@@ -211,7 +213,11 @@ YerothTableauxDeBordWindow::YerothTableauxDeBordWindow()
 
     connect(tabWidget_rapports, SIGNAL(currentChanged(int)), this, SLOT(handleTabChanged(int)));
 
-    handleTabChanged(SUJET_ACTION_BUSINESS_TURNOVER_PROGRESS);
+
+    checkBox_analyse_comparee->setChecked(true);
+
+
+    handleTabChanged(SUJET_ACTION_FINANCIAL_ACCOUNTING_REPORT_GENERATION);
 
 
     setupShortcuts();
@@ -340,12 +346,6 @@ void YerothTableauxDeBordWindow::setupTab_COMPARAISON_DES_CHIFFRES_DAFFAIRES()
 
     comboBox_type_graphes->addItem(YerothTableauxDeBordWindow::GRAPHE_BAR_CHART);
     comboBox_type_graphes->addItem(YerothTableauxDeBordWindow::GRAPHE_PIE_CHART);
-}
-
-
-void YerothTableauxDeBordWindow::setupTab_BILAN_COMPTABLE()
-{
-	comboBox_bilan_comptable_operation->addItem(YerothTableauxDeBordWindow::OPERATION_GENERER_BILAN_COMPTABLE);
 }
 
 
@@ -1679,7 +1679,10 @@ void YerothTableauxDeBordWindow::rechercher()
     latexChartTemplate.replace("YEROTHCSVFILE", 					tmpFilePrefix + ".csv");
     latexChartTemplate.replace("YEROTHCHARTFIN", 				_reportTexFileEndString);
 
-    latexChartTemplate.replace("YEROTHUTILISATEUR", 				_allWindows->getUser()->nom_completTex());
+    latexChartTemplate.replace("YEROTHUTILISATEUR", QString("%1 %2")
+       													.arg(YerothUtils::getAllWindows()->getUser()->titreTex(),
+       														 YerothUtils::getAllWindows()->getUser()->nom_completTex()));
+
     latexChartTemplate.replace("YEROTHENTREPRISE", 				infoEntreprise.getNomCommercialTex());
     latexChartTemplate.replace("YEROTHBARCHARTTITLE", 			YerothUtils::LATEX_IN_OUT_handleForeignAccents(pdfFileTitle));
     latexChartTemplate.replace("YEROTHENTREPRISE", 				infoEntreprise.getNomCommercialTex());
@@ -2160,7 +2163,11 @@ void YerothTableauxDeBordWindow::bilanComptable()
     texDocument.replace("YEROTHEMAIL", infoEntreprise.getEmailTex());
     texDocument.replace("YEROTHTELEPHONE", infoEntreprise.getTelephone());
     texDocument.replace("YEROTHDATE", fileDate);
-    texDocument.replace("YEROTHNOMUTILISATEUR", _allWindows->getUser()->nom_completTex());
+
+    texDocument.replace("YEROTHNOMUTILISATEUR", QString("%1 %2")
+       												.arg(YerothUtils::getAllWindows()->getUser()->titreTex(),
+       													 YerothUtils::getAllWindows()->getUser()->nom_completTex()));
+
     texDocument.replace("YEROTHHEUREDIMPRESSION", CURRENT_TIME);
     texDocument.replace("YEROTHCOMPTEBANCAIRENR", infoEntreprise.getNumeroCompteBancaire());
     texDocument.replace("YEROTHCONTRIBUABLENR", infoEntreprise.getNumeroDeContribuable());
@@ -2691,7 +2698,11 @@ void YerothTableauxDeBordWindow::analyseComparee()
     texDocument2.replace("YEROTHEMAIL", 					infoEntreprise.getEmailTex());
     texDocument2.replace("YEROTHTELEPHONE", 				infoEntreprise.getTelephone());
     texDocument2.replace("YEROTHDATE", 					factureDate);
-    texDocument2.replace("YEROTHNOMUTILISATEUR",			_allWindows->getUser()->nom_completTex());
+
+    texDocument2.replace("YEROTHNOMUTILISATEUR", QString("%1 %2")
+       												.arg(YerothUtils::getAllWindows()->getUser()->titreTex(),
+       													 YerothUtils::getAllWindows()->getUser()->nom_completTex()));
+
     texDocument2.replace("YEROTHHEUREDIMPRESSION",		CURRENT_TIME);
     texDocument2.replace("YEROTHCOMPTEBANCAIRENR", 		infoEntreprise.getNumeroCompteBancaire());
     texDocument2.replace("YEROTHCONTRIBUABLENR", 		infoEntreprise.getNumeroDeContribuable());
@@ -3175,7 +3186,11 @@ void YerothTableauxDeBordWindow::calculerChiffresDaffaireMois()
     texDocument2.replace("YEROTHEMAIL", 					infoEntreprise.getEmailTex());
     texDocument2.replace("YEROTHTELEPHONE", 				infoEntreprise.getTelephone());
     texDocument2.replace("YEROTHDATE", 					factureDate);
-    texDocument2.replace("YEROTHNOMUTILISATEUR",			_allWindows->getUser()->nom_completTex());
+
+    texDocument2.replace("YEROTHNOMUTILISATEUR", QString("%1 %2")
+       												.arg(YerothUtils::getAllWindows()->getUser()->titreTex(),
+       													 YerothUtils::getAllWindows()->getUser()->nom_completTex()));
+
     texDocument2.replace("YEROTHHEUREDIMPRESSION",		CURRENT_TIME);
     texDocument2.replace("YEROTHCOMPTEBANCAIRENR", 		infoEntreprise.getNumeroCompteBancaire());
     texDocument2.replace("YEROTHCONTRIBUABLENR", 		infoEntreprise.getNumeroDeContribuable());

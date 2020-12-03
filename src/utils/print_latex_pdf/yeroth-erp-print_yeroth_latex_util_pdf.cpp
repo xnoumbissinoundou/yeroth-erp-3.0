@@ -163,7 +163,11 @@ QString YerothTableViewPRINT_UTILITIES_TEX_TABLE::
     texDocument.replace("YEROTHEMAIL", infoEntreprise.getEmailTex());
     texDocument.replace("YEROTHTELEPHONE", infoEntreprise.getTelephone());
     texDocument.replace("YEROTHDATE", factureDate);
-    texDocument.replace("YEROTHNOMUTILISATEUR", YerothUtils::getAllWindows()->getUser()->nom_completTex());
+
+    texDocument.replace("YEROTHNOMUTILISATEUR", QString("%1 %2")
+    												.arg(YerothUtils::getAllWindows()->getUser()->titre(),
+    													 YerothUtils::getAllWindows()->getUser()->nom_completTex()));
+
     texDocument.replace("YEROTHHEUREDIMPRESSION", CURRENT_TIME);
     texDocument.replace("YEROTHCOMPTEBANCAIRENR", infoEntreprise.getNumeroCompteBancaire());
     texDocument.replace("YEROTHCONTRIBUABLENR", infoEntreprise.getNumeroDeContribuable());

@@ -57,7 +57,10 @@ public:
 
     void setupTab_COMPARAISON_DES_CHIFFRES_DAFFAIRES();
 
-    void setupTab_BILAN_COMPTABLE();
+    inline void setupTab_BILAN_COMPTABLE()
+    {
+    	comboBox_bilan_comptable_operation->addItem(YerothTableauxDeBordWindow::OPERATION_GENERER_BILAN_COMPTABLE);
+    }
 
     virtual void rendreVisible(YerothSqlTableModel *stocksTableModel);
 

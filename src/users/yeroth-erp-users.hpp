@@ -115,6 +115,11 @@ public:
 		return _titre;
 	}
 
+	inline QString titreTex()
+	{
+		return YerothUtils::LATEX_IN_OUT_handleForeignAccents(_titre);
+	}
+
 	inline void set_prenom(const QString &prenom)
 	{
 		_prenom = prenom;
