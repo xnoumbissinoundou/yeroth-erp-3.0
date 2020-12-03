@@ -96,15 +96,15 @@ public slots:
         rechercher();
     }
 
-    void meilleursStats(QString fileName, QString fieldId, int size);
+    void meilleursStats(QString fileName, QString fieldId, int size, bool service = false);
 
     void ZERO_stats_stocks(QString fileName, QString fieldId);
 
     void ZERO_stats(QString fileName, QString fieldId);
 
-    void derniersStats(QString fileName, QString fieldId, int size);
+    void derniersStats(QString fileName, QString fieldId, int size, bool service = false);
 
-    inline void statsMeilleursClients(QString fileName, int size)
+    inline void statsMeilleursClients(QString fileName, int size, bool service = false)
     {
     	meilleursStats(fileName, YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT, size);
     }
@@ -117,6 +117,11 @@ public slots:
     inline void statsMeilleursCaissiers(QString fileName, int size)
     {
     	meilleursStats(fileName, YerothDatabaseTableColumn::NOM_CAISSIER, size);
+    }
+
+    inline void statsMeilleursServices(QString fileName, int size)
+    {
+    	meilleursStats(fileName, YerothDatabaseTableColumn::DESIGNATION, size, true);
     }
 
     inline void statsMeilleursArticles(QString fileName, int size)
@@ -167,6 +172,11 @@ public slots:
     inline void statsDerniersCaissiers(QString fileName, int size)
     {
     	derniersStats(fileName, YerothDatabaseTableColumn::NOM_CAISSIER, size);
+    }
+
+    inline void statsDerniersServices(QString fileName, int size)
+    {
+    	derniersStats(fileName, YerothDatabaseTableColumn::DESIGNATION, size, true);
     }
 
     inline void statsDerniersArticles(QString fileName, int size)
@@ -290,6 +300,7 @@ private:
 	static const QString QUALITE_ZERO;
 	static const QString QUALITE_DERNIERS;
 
+	static const QString OBJET_SERVICES;
 	static const QString OBJET_ARTICLES;
 	static const QString OBJET_CATEGORIES;
 	static const QString OBJET_CAISSIERS;
@@ -310,6 +321,8 @@ private:
 	QString 				_reportTexFileEndString;
 
 	QMap<QString, int> 		_moisToNombre;
+
+	int						_objetServiceLastIndex;
 
 	int						_objetClientLastIndex;
 

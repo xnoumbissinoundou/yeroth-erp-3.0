@@ -36,6 +36,7 @@
 		const QString YerothTableauxDeBordWindow::QUALITE_MEILLEURS("les chiffres d'affaires les plus élevés");
 		const QString YerothTableauxDeBordWindow::QUALITE_ZERO("les chiffres d'affaires zéro");
 		const QString YerothTableauxDeBordWindow::QUALITE_DERNIERS("les chiffres d'affaires les moins élevés");
+		const QString YerothTableauxDeBordWindow::OBJET_SERVICES("services");
 		const QString YerothTableauxDeBordWindow::OBJET_ARTICLES("articles");
 		const QString YerothTableauxDeBordWindow::OBJET_CATEGORIES("catégories");
 		const QString YerothTableauxDeBordWindow::OBJET_CAISSIERS("caissiers");
@@ -50,6 +51,7 @@
 		const QString YerothTableauxDeBordWindow::QUALITE_MEILLEURS("best business turnover");
 		const QString YerothTableauxDeBordWindow::QUALITE_ZERO("zero business turnover");
 		const QString YerothTableauxDeBordWindow::QUALITE_DERNIERS("least business turnover");
+		const QString YerothTableauxDeBordWindow::OBJET_SERVICES("services");
 		const QString YerothTableauxDeBordWindow::OBJET_ARTICLES("products");
 		const QString YerothTableauxDeBordWindow::OBJET_CATEGORIES("categories");
 		const QString YerothTableauxDeBordWindow::OBJET_CAISSIERS("cashiers");
@@ -118,6 +120,7 @@ const double YerothTableauxDeBordWindow::STATS_MIN_VALUE(0.0009);
 YerothTableauxDeBordWindow::YerothTableauxDeBordWindow()
     :YerothWindowsCommons(),
      _logger(new YerothLogger("YerothRapportsWindow")),
+	 _objetServiceLastIndex(-1),
 	 _objetClientLastIndex(-1),
      _csvFileItemSize(0),
      _startYear(0),
@@ -338,6 +341,7 @@ void YerothTableauxDeBordWindow::setupTab_COMPARAISON_DES_CHIFFRES_DAFFAIRES()
     comboBox_qualite->addItem(YerothTableauxDeBordWindow::QUALITE_ZERO);
     comboBox_qualite->addItem(YerothTableauxDeBordWindow::QUALITE_DERNIERS);
 
+    comboBox_objets->addItem(YerothTableauxDeBordWindow::OBJET_SERVICES);
     comboBox_objets->addItem(YerothTableauxDeBordWindow::OBJET_ARTICLES);
     comboBox_objets->addItem(YerothTableauxDeBordWindow::OBJET_CAISSIERS);
     comboBox_objets->addItem(YerothTableauxDeBordWindow::OBJET_CATEGORIES);
@@ -578,11 +582,16 @@ void YerothTableauxDeBordWindow::reinitialiser_bilan_comptable()
 
 void YerothTableauxDeBordWindow::meilleursStats(QString fileName,
         										QString fieldId,
-												int size)
+												int size,
+												bool service /* = false */)
 {
     _logger->log("meilleursStats");
 
-    QString strQuery(QString("SELECT %1, (round(%2, 2) - round(%3, 2)) FROM %4 WHERE %5 >= '%6' AND %7 <= '%8'")
+    QString strQuery;
+
+    if (!service)
+    {
+    	strQuery.append(QString("SELECT %1, (round(%2, 2) - round(%3, 2)) FROM %4 WHERE %5 >= '%6' AND %7 <= '%8'")
     					.arg(fieldId,
     						 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
     						 YerothDatabaseTableColumn::MONTANT_TVA,
@@ -591,14 +600,30 @@ void YerothTableauxDeBordWindow::meilleursStats(QString fileName,
 							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_debut->date()),
 							 YerothDatabaseTableColumn::DATE_VENTE,
 							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_fin->date())));
+    }
+    else //service == true
+    {
+    	strQuery.append(QString("SELECT %1, (round(%2, 2) - round(%3, 2)) FROM %4"
+    							" WHERE date_vente >= '%5' AND %6 <= '%7' AND"
+    							" %8=0 AND %9=1")
+    					.arg(fieldId,
+    						 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
+    						 YerothDatabaseTableColumn::MONTANT_TVA,
+							 _allWindows->SERVICES_COMPLETES,
+							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_debut->date()),
+							 YerothDatabaseTableColumn::DATE_VENTE,
+							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_fin->date()),
+							 YerothDatabaseTableColumn::MONTANT_A_REMBOURSER,
+							 YerothDatabaseTableColumn::IS_SERVICE));
+    }
 
     QSqlQuery query;
 
     int querySize = YerothUtils::execQuery(query, strQuery, _logger);
 
-    //qDebug() << "++ strQuery: " << strQuery;
-
-    //qDebug() << "++ querySize: " << querySize;//query.executedQuery();
+//    qDebug() << "++ strQuery: " << strQuery;
+//
+//    qDebug() << "++ querySize: " << querySize;
 
     QString fieldIdValue;
     double montant_total_vente = 0.0;
@@ -1039,11 +1064,18 @@ void YerothTableauxDeBordWindow::ZERO_stats(QString fileName,
 }
 
 
-void YerothTableauxDeBordWindow::derniersStats(QString fileName, QString fieldId, int size)
+void YerothTableauxDeBordWindow::derniersStats(QString fileName,
+											   QString fieldId,
+											   int size,
+											   bool service /* = false */)
 {
     _logger->log("derniersStats");
 
-    QString strQuery(QString("SELECT %1, (round(%2, 2) - round(%3, 2)) FROM %4 WHERE %5 >= '%6' AND %7 <= '%8'")
+    QString strQuery;
+
+    if (!service)
+    {
+    	strQuery.append(QString("SELECT %1, (round(%2, 2) - round(%3, 2)) FROM %4 WHERE %5 >= '%6' AND %7 <= '%8'")
     					.arg(fieldId,
     						 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
     						 YerothDatabaseTableColumn::MONTANT_TVA,
@@ -1052,12 +1084,28 @@ void YerothTableauxDeBordWindow::derniersStats(QString fileName, QString fieldId
 							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_debut->date()),
 							 YerothDatabaseTableColumn::DATE_VENTE,
 							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_fin->date())));
+    }
+    else
+    {
+    	strQuery.append(QString("SELECT %1, (round(%2, 2) - round(%3, 2)) FROM %4"
+    							" WHERE date_vente >= '%5' AND %6 <= '%7' AND"
+    							" %8=0 AND %9=1")
+    					.arg(fieldId,
+    						 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
+    						 YerothDatabaseTableColumn::MONTANT_TVA,
+							 _allWindows->SERVICES_COMPLETES,
+							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_debut->date()),
+							 YerothDatabaseTableColumn::DATE_VENTE,
+							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_fin->date()),
+							 YerothDatabaseTableColumn::MONTANT_A_REMBOURSER,
+							 YerothDatabaseTableColumn::IS_SERVICE));
+    }
 
     QSqlQuery query;
 
     int querySize = YerothUtils::execQuery(query, strQuery, _logger);
 
-    //qDebug() << "++ query: " << query.executedQuery() << ", querySize: " << querySize;
+//    qDebug() << "++ query: " << query.executedQuery() << ", querySize: " << querySize;
 
     QString fieldIdValue;
 
@@ -1081,7 +1129,7 @@ void YerothTableauxDeBordWindow::derniersStats(QString fileName, QString fieldId
             int idx = -1;
             for(int i = 0; i < caissierToVentes.size(); ++i)
             {
-                if ( YerothUtils::isEqualCaseInsensitive(caissierToVentes.value(i)->_itemName, fieldIdValue))
+                if (YerothUtils::isEqualCaseInsensitive(caissierToVentes.value(i)->_itemName, fieldIdValue))
                 {
                     idx = i;
                     break;
@@ -1145,13 +1193,13 @@ void YerothTableauxDeBordWindow::derniersStats(QString fileName, QString fieldId
         curValue = caissierToVentes.value(j)->_itemValue;
         pourcentage = (curValue / total) * 100.0;
 
-        /*qDebug() << QString("++ j:%1. value: %2, total: %3, pourcentage: %4")
-        				.arg(QString::number(j, 'f', 2),
-        					 QString::number(curValue, 'f', 2),
-        					 QString::number(total, 'f', 2),
-        					 QString::number(pourcentage, 'f', 2));*/
-
-        //qDebug() << "++ pourcentage: " << QString::number(pourcentage, 'f', 9	);
+//        qDebug() << QString("++ j:%1. value: %2, total: %3, pourcentage: %4")
+//        				.arg(QString::number(j, 'f', 2),
+//        					 QString::number(curValue, 'f', 2),
+//        					 QString::number(total, 'f', 2),
+//        					 QString::number(pourcentage, 'f', 2));
+//
+//        qDebug() << "++ pourcentage: " << QString::number(pourcentage, 'f', 9);
 
         if (pourcentage <= STATS_MIN_VALUE)
         {
@@ -1248,7 +1296,27 @@ void YerothTableauxDeBordWindow::rechercher()
 
     if (YerothTableauxDeBordWindow::QUALITE_MEILLEURS == comboBox_qualite->currentText())
     {
-        if (YerothTableauxDeBordWindow::OBJET_ARTICLES == objet)
+        if (YerothTableauxDeBordWindow::OBJET_SERVICES == objet)
+        {
+            pdfFileTitle = YerothTableauxDeBordWindow::OBJET_SERVICES;
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+            tmpFilePrefix = FILE_NAME_USERID_CURRENT_TIME("meilleurs-services");
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+            tmpFilePrefix = FILE_NAME_USERID_CURRENT_TIME("best-services");
+#endif
+
+            csvFile = tmpFilePrefix + ".csv";
+
+            csvFile.prepend(YerothERPConfig::temporaryFilesDir + "/");
+
+            tempDir.remove(csvFile);
+
+            statsMeilleursServices(csvFile, size);
+        }
+        else if (YerothTableauxDeBordWindow::OBJET_ARTICLES == objet)
         {
             pdfFileTitle = YerothTableauxDeBordWindow::OBJET_ARTICLES;
 
@@ -1470,7 +1538,27 @@ void YerothTableauxDeBordWindow::rechercher()
 
     else if (YerothTableauxDeBordWindow::QUALITE_DERNIERS == comboBox_qualite->currentText())
     {
-        if (YerothTableauxDeBordWindow::OBJET_ARTICLES == objet)
+        if (YerothTableauxDeBordWindow::OBJET_SERVICES == objet)
+        {
+            pdfFileTitle.append(YerothTableauxDeBordWindow::OBJET_SERVICES);
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+            tmpFilePrefix = FILE_NAME_USERID_CURRENT_TIME("derniers-services");
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+            tmpFilePrefix = FILE_NAME_USERID_CURRENT_TIME("last-services");
+#endif
+
+            csvFile = tmpFilePrefix + ".csv";
+
+            csvFile.prepend(YerothERPConfig::temporaryFilesDir + "/");
+
+            tempDir.remove(csvFile);
+
+            statsDerniersServices(csvFile, size);
+        }
+        else if (YerothTableauxDeBordWindow::OBJET_ARTICLES == objet)
         {
             pdfFileTitle.append(YerothTableauxDeBordWindow::OBJET_ARTICLES);
 
@@ -1784,6 +1872,14 @@ void YerothTableauxDeBordWindow::remove_BAR_PIE_CHART_OPTION_FOR_ZERO_BUSINESS_T
 	{
 		YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionExporter_au_format_csv, true);
 
+		_objetServiceLastIndex = comboBox_objets->
+				findText(YerothTableauxDeBordWindow::OBJET_SERVICES);
+
+		if (-1 != _objetServiceLastIndex)
+		{
+			comboBox_objets->removeItem(_objetServiceLastIndex);
+		}
+
 		_objetClientLastIndex = comboBox_objets->
 				findText(YerothTableauxDeBordWindow::OBJET_CLIENTS);
 
@@ -1800,6 +1896,14 @@ void YerothTableauxDeBordWindow::remove_BAR_PIE_CHART_OPTION_FOR_ZERO_BUSINESS_T
 	else
 	{
 		YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionExporter_au_format_csv, false);
+
+		if (-1 != _objetServiceLastIndex)
+		{
+			comboBox_objets->insertItem(_objetServiceLastIndex,
+					YerothTableauxDeBordWindow::OBJET_SERVICES);
+
+			_objetServiceLastIndex = -1;
+		}
 
 		if (-1 != _objetClientLastIndex)
 		{
