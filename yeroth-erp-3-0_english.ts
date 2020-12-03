@@ -1877,7 +1877,7 @@ Continue with update of the stock ?</translation>
         <location filename="src/windows/yeroth-erp-sortir-window.hpp" line="190"/>
         <location filename="src/windows/yeroth-erp-stock-detail-window.hpp" line="79"/>
         <location filename="src/windows/yeroth-erp-stocks-window.hpp" line="80"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.hpp" line="74"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.hpp" line="77"/>
         <location filename="src/windows/yeroth-erp-ventes-window.hpp" line="93"/>
         <source>aide</source>
         <translation>help</translation>
@@ -1959,12 +1959,12 @@ Continue with update of the stock ?</translation>
         <translation>cashier name</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1906"/>
+        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1902"/>
         <source>Cette fonctionnalité n&apos;est pas disponible pour les &apos;services&apos; !</source>
         <translation>Sale cancellation isn&apos;t possible for &apos;services&apos; !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1909"/>
+        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1905"/>
         <source>fonctionnalité pas disponible</source>
         <translation>no sale cancellation</translation>
     </message>
@@ -1988,8 +1988,8 @@ Continue with update of the stock ?</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-pointdevente-window.cpp" line="1376"/>
-        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1856"/>
-        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1858"/>
+        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1852"/>
+        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1854"/>
         <source>remise (%1)</source>
         <translation>discount (%1)</translation>
     </message>
@@ -2410,15 +2410,15 @@ Continue with update of the stock (service) ?</translation>
         <translation>rankings - no data !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2306"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2671"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2849"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3155"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2313"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2678"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2860"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3166"/>
         <source>aucun filtre !</source>
         <translation>no filter !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1850"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1853"/>
         <source>bilan comptable</source>
         <translation>financial accounting report</translation>
     </message>
@@ -2449,17 +2449,17 @@ Continue with update of the stock (service) ?</translation>
 </translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="236"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="242"/>
         <source>%1 - bilan comptable</source>
         <translation>%1 - financial accounting report</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="247"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="253"/>
         <source>%1 - comparaison des chiffres d&apos;affaires</source>
         <translation>%1 - business turnover comparison</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="256"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="262"/>
         <source>%1 - évolution du chiffre d&apos;affaire</source>
         <translation>%1 - business turnover progress</translation>
     </message>
@@ -2471,58 +2471,58 @@ Continue with update of the stock (service) ?</translation>
 </translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1763"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1766"/>
         <source>Saisir le nom du fichier &apos;.csv&apos;</source>
         <translation>Enter CSV file name</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1765"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1768"/>
         <source>articles avec chiffre d&apos;affaire nul &quot;*.csv&quot; (*.csv)</source>
         <translation>articles with 0 business turnover &quot;*.csv* (*.csv)</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1851"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1854"/>
         <source>La date de &apos;début&apos; doit être antérieure à la date de &apos;fin&apos; !</source>
         <oldsource>La date de &apos;début&apos; doit être antérieur à la date de &apos;fin&apos; !</oldsource>
         <translation>The &apos;begin&apos; date must be anterior to the &apos;end&apos; date !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2198"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2424"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2205"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2431"/>
         <source>analyse comparée</source>
         <translation>compared analysis</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2390"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2931"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2397"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2942"/>
         <source>paramètre manquant</source>
         <translation>missing parameter</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2391"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2932"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2398"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2943"/>
         <source>Vous devez spécifier un paramètre dans le champs de texte &apos;nom&apos; !</source>
         <translation>Please enter a string in field &apos;name&apos; !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2960"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2971"/>
         <source>pas de données</source>
         <translation>no data</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2961"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2972"/>
         <source>Il n&apos;y a pas de données correspondante à la requête !
 Vérifier que les dates de début et de fin, ainsi que l&apos;année sont correctes !</source>
         <translation>There is no data associated with this request!
 Please check that begin and end dates are correct!</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2679"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2686"/>
         <source>[analyse compar\&apos;ee]</source>
         <translation>[compared analysis]</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2771"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2782"/>
         <source>évolution du chiffre d&apos;affaire</source>
         <translation>business turnover progress</translation>
     </message>
@@ -2535,13 +2535,13 @@ Vérifier que les dates de début et de fin sont correctes !</source>
 Please check that begin and end dates are correct!</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2199"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2772"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2206"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2783"/>
         <source>Le mois de &apos;début&apos; doit être antérieur au mois de &apos;fin&apos; !</source>
         <translation>The &apos;begin&apos; month must be anterior to the &apos;end&apos; month!</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.hpp" line="75"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.hpp" line="78"/>
         <source>Sélectionner les critères commerciaux que vous désirez, ensuite cliquez sur le boutton &apos;générer le fichier PDF&apos; pour obtenir le fichier PDF correspondant !</source>
         <translation>Select the commercial parameters you wish to apply, then, press on the button &apos;generate PDF file&apos; to obtain the corresponding PDF file !</translation>
     </message>
@@ -2676,8 +2676,8 @@ Please contact an administrator of %1</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-utils.hpp" line="457"/>
-        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1852"/>
-        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1854"/>
+        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1848"/>
+        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1850"/>
         <source>TVA (%1)</source>
         <translation>Tax (%1)</translation>
     </message>
