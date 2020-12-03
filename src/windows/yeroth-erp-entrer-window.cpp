@@ -1942,6 +1942,7 @@ void YerothEntrerWindow::enregistrer_produit()
     	achatRecord.setValue(YerothDatabaseTableColumn::PRIX_VENTE, prix_vente);
     	//qDebug() << "++_tva: " << QString::number(_tva, 'f', 2);
     	achatRecord.setValue(YerothDatabaseTableColumn::MONTANT_TVA, _montantTva);
+    	achatRecord.setValue(YerothDatabaseTableColumn::MONTANT_TVA_EN_GROS, _montantTva_en_gros);
     }
 
     if (!checkBox_service_vente->isChecked())
