@@ -667,6 +667,15 @@ void YerothTableauxDeBordWindow::meilleursStats(QString fileName,
 
     qSort(nomEntrepriseFournisseurToVentes.begin(), nomEntrepriseFournisseurToVentes.end(), YerothStatsItem::lessThan);
 
+    //Remove all items with a zero value
+    for(int j = 0; j < nomEntrepriseFournisseurToVentes.size(); ++j)
+    {
+        if (0 == nomEntrepriseFournisseurToVentes.at(j)->_itemValue)
+        {
+        	nomEntrepriseFournisseurToVentes.removeAt(j);
+        }
+    }
+
     QString csvFileContent;
     QString label;
     QString curValueStr;
