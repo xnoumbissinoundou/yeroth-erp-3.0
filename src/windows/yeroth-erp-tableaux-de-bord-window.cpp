@@ -561,6 +561,8 @@ void YerothTableauxDeBordWindow::reinitialiser_chiffre_affaire()
 {
     _logger->log("reinitialiser_chiffre_affaire");
 
+    checkBox_analyse_comparee->setChecked(true);
+
     lineEdit_evolution_objets_value->myClear();
 
     comboBox_operations_chiffre->resetYerothComboBox();
