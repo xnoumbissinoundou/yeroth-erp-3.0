@@ -41,7 +41,12 @@ void YerothERPMouvementsDeStocksTableView::lister_les_elements_du_tableau(Yeroth
 
     emit signal_lister(tableModel);
 
-    bool s = tableModel.select();
+    bool s = true;
+
+    if (_needExecSelectStatement_FOR_TABLE_VIEW_PAGING_LISTING)
+    {
+    	s = tableModel.select();
+    }
 
     int rows = tableModel.rowCount();
     int columns = tableModel.columnCount();

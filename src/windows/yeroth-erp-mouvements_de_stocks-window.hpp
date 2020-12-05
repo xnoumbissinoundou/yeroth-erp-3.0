@@ -22,7 +22,8 @@ class YerothSqlTableModel;
 class QProcess;
 
 class YerothMouvementsDeStocksWindow : public YerothWindowsCommons,
-								 	   private Ui_YerothMouvementsDeStocksWindow
+								 	   private Ui_YerothMouvementsDeStocksWindow,
+									   public YerothAbstractClassYerothSearchWindow
 {
     Q_OBJECT
 
@@ -32,19 +33,19 @@ public:
 
 	YerothMouvementsDeStocksWindow();
 
-    inline ~YerothMouvementsDeStocksWindow()
-    {
-    	delete _logger;
-    }
+    ~YerothMouvementsDeStocksWindow();
 
     inline virtual QToolBar * getQMainWindowToolBar()
     {
     	return toolBar_mouvementsDeStocksWindow;
     }
 
+    MACRO_TO_DEFINE_VIEWING_PAGE_NUMBER_FOR_TABLEVIEW(_curLabel_mouvementsDeStocks_numero_page_derniere,
+    												  _curLabel_mouvementsDeStocks_numero_page_courante)
+
     virtual void rendreVisible(YerothSqlTableModel *stocksTableModel);
 
-    void lister_les_elements_du_tableau(QString aSearchFilter);
+    void lister_les_elements_du_tableau(const QString &aSearchFilter = YerothUtils::EMPTY_STRING);
 
     virtual void definirCaissier();
 
@@ -59,6 +60,8 @@ public:
     virtual void definirPasDeRole();
 
 public slots:
+
+	MACRO_TO_DEFINE_VIEWING_POINTERS_PAGE_SLOTS(_curMouvementsDeStocksTableView)
 
 	inline virtual void apropos()
 	{
@@ -76,22 +79,26 @@ public slots:
 
     virtual bool imprimer_pdf_document();
 
-    inline void handleTabChanged(int index)
-    {
-    	rechercher();
-    }
+    void handleTabChanged(int index);
 
     void setFilter();
 
     void resetFilter();
 
-    void rechercher();
+	inline void afficher_stocks_sorties_OU_transferes()
+	{
+		textChangedSearchLineEditsQCompleters();
+	}
+
+	void refineYerothLineEdits();
 
     void reinitialiser_recherche();
 
 protected slots:
 
 	virtual void slot_reinitialiser_champs_db_visibles();
+
+	virtual void textChangedSearchLineEditsQCompleters();
 
     inline virtual void disableExporterAuFormatCsv()
     {
@@ -119,11 +126,11 @@ protected:
 
     virtual void setupShortcuts();
 
+private slots:
+
+	bool filtrer_stocks_sorties_OU_transferes();
+
 private:
-
-    void setupLineEdits();
-
-    void setupLineEditsQCompleters();
 
     enum TabIndexes
     {
@@ -131,12 +138,30 @@ private:
 		SUJET_ACTION_TRANSFERTS_STOCKS	= 1
     };
 
+    void setupLineEdits();
+
+    void switchTableWidgetTAB_CONTENT_ELEMENTS(enum TabIndexes aTabIndex);
+
     void setupDateTimeEdits();
 
 
     YerothLogger			*_logger;
 
-    QString 				_searchFilter;
+    QLabel 					*_curLabel_mouvementsDeStocks_numero_page_derniere;
+
+    QLabel					*_curLabel_mouvementsDeStocks_numero_page_courante;
+
+    QLineEdit				*_curLineEdit_mouvementsDeStocks_terme_recherche;
+
+    QLineEdit				*_curLineEdit_mouvementsDeStocks_element_de_AAA_resultat;
+
+    YerothDateTimeEdit		*_curDateEdit_debut;
+
+    YerothDateTimeEdit		*_curDateEdit_fin;
+
+    YerothTableViewWITHpagination 	*_curMouvementsDeStocksTableView;
+
+    QString 				_stocksSorties_OU_transferes_DateFilter;
 
     YerothSqlTableModel 	*_curMouvementsDeStocksTableModel;
 };

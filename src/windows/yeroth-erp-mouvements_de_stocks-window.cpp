@@ -34,7 +34,9 @@
 
 YerothMouvementsDeStocksWindow::YerothMouvementsDeStocksWindow()
 :YerothWindowsCommons("yeroth-erp-mouvements_de_stocks-stocks"),
+ YerothAbstractClassYerothSearchWindow(_allWindows->STOCKS_SORTIES),
  _logger(new YerothLogger("YerothMouvementsDeStocksWindow")),
+ _stocksSorties_OU_transferes_DateFilter(YerothUtils::EMPTY_STRING),
  _curMouvementsDeStocksTableModel(0)
 {
     _windowName = QString("%1 - %2")
@@ -52,6 +54,10 @@ YerothMouvementsDeStocksWindow::YerothMouvementsDeStocksWindow()
 
     setYerothTableView_FROM_WINDOWS_COMMONS(allTableViews);
 
+    switchTableWidgetTAB_CONTENT_ELEMENTS(SUJET_ACTION_SORTIES_STOCKS);
+
+    MACRO_TO_DEFINE_CURRENT_VIEW_WINDOW_FOR_TABLE_PAGINATION(_curMouvementsDeStocksTableView);
+
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
                                        "QMessageBox QLabel {color: rgb(%2);}").
                                arg(COLOUR_RGB_STRING_YEROTH_BLUE_77_93_254, COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
@@ -60,11 +66,13 @@ YerothMouvementsDeStocksWindow::YerothMouvementsDeStocksWindow()
 
     reinitialiser_champs_db_visibles();
 
+    MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS
+
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
 
     setupLineEdits();
 
-    setupLineEditsQCompleters();
+    setupLineEditsQCompleters((QObject *)this);
 
     setupDateTimeEdits();
 
@@ -105,7 +113,121 @@ void YerothMouvementsDeStocksWindow::slot_reinitialiser_champs_db_visibles()
 {
 	reinitialiser_champs_db_visibles();
 	resetTableViewHorizontalHeader_DEFAULT_ORDERING();
-	rechercher();
+	lister_les_elements_du_tableau();
+}
+
+
+YerothMouvementsDeStocksWindow::~YerothMouvementsDeStocksWindow()
+{
+	MACRO_TO_DELETE_PAGINATION_INTEGER_VALIDATOR
+
+	delete _logger;
+}
+
+
+void YerothMouvementsDeStocksWindow::textChangedSearchLineEditsQCompleters()
+{
+	if (0 != _curLineEdit_mouvementsDeStocks_element_de_AAA_resultat)
+	{
+		_curLineEdit_mouvementsDeStocks_element_de_AAA_resultat->clear();
+	}
+
+    setCurrentlyFiltered(false);
+
+    clearSearchFilter();
+
+    QString searchTerm;
+
+    if (0 != _curLineEdit_mouvementsDeStocks_terme_recherche)
+    {
+    	searchTerm.append(_curLineEdit_mouvementsDeStocks_terme_recherche->text());
+    }
+
+    if (!searchTerm.isEmpty())
+    {
+        QStringList searchTermList = searchTerm.split(QRegExp("\\s+"));
+
+        QString partSearchTerm;
+
+        int lastIdx = searchTermList.size() - 1;
+
+        for (int k = 0; k < searchTermList.size(); ++k)
+        {
+        	partSearchTerm = searchTermList.at(k);
+        	//qDebug() << "++ searchTermList: " << partSearchTerm;
+
+        	_searchFilter.append(QString("%1")
+        							.arg(GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::NOTES, partSearchTerm)));
+
+        	if (k != lastIdx)
+        	{
+        		_searchFilter.append(" AND ");
+        	}
+        }
+    }
+
+
+    YerothWindowsCommons::setYerothLineEditQCompleterSearchFilter(_searchFilter);
+
+
+    YerothLineEdit *aYerothLineEdit = 0;
+
+    QString correspondingDBFieldKeyValue;
+
+    QString aTableColumnFieldContentForANDSearch;
+
+    QMapIterator <YerothLineEdit **, QString> it(_lineEditsToANDContentForSearch);
+
+    while (it.hasNext())
+    {
+    	it.next();
+
+    	aYerothLineEdit = *it.key();
+
+    	correspondingDBFieldKeyValue = it.value();
+
+    	if (0 != aYerothLineEdit)
+    	{
+    		aTableColumnFieldContentForANDSearch = aYerothLineEdit->text();
+
+    		if (!correspondingDBFieldKeyValue.isEmpty() &&
+    				!aTableColumnFieldContentForANDSearch.isEmpty()	)
+    		{
+    			if (!_searchFilter.isEmpty())
+    			{
+    				_searchFilter.append(" AND ");
+    			}
+
+    			_searchFilter.append(GENERATE_SQL_IS_STMT(correspondingDBFieldKeyValue,
+    					aTableColumnFieldContentForANDSearch));
+    		}
+    	}
+    }
+
+    QString finalSearchFilter(_stocksSorties_OU_transferes_DateFilter);
+
+    if (!_searchFilter.isEmpty())
+    {
+    	QString searchFilterWithDate(QString("%1 AND (%2)")
+    									.arg(_stocksSorties_OU_transferes_DateFilter,
+    										 _searchFilter));
+
+    	finalSearchFilter = searchFilterWithDate;
+    }
+
+    if (_curMouvementsDeStocksTableModel->select())
+    {
+    	lister_les_elements_du_tableau(finalSearchFilter);
+    }
+    else
+    {
+    	disableExporterAuFormatCsv();
+
+    	disableImprimer();
+
+        qDebug() << QString("++ YerothMouvementsDeStocksWindow::textChangedSearchLineEditsQCompleters(): %1")
+        				.arg(_curMouvementsDeStocksTableModel->lastError().text());
+    }
 }
 
 
@@ -133,11 +255,26 @@ void YerothMouvementsDeStocksWindow::setupShortcuts()
 }
 
 
+void YerothMouvementsDeStocksWindow::handleTabChanged(int index)
+{
+    if (SUJET_ACTION_SORTIES_STOCKS == tabWidget_mouvementsDeStocks->currentIndex())
+    {
+    	switchTableWidgetTAB_CONTENT_ELEMENTS(SUJET_ACTION_SORTIES_STOCKS);
+    }
+    else
+    {
+    	switchTableWidgetTAB_CONTENT_ELEMENTS(SUJET_ACTION_TRANSFERTS_STOCKS);
+    }
+
+	afficher_stocks_sorties_OU_transferes();
+}
+
+
 void YerothMouvementsDeStocksWindow::setFilter()
 {
     if (0 == _curMouvementsDeStocksTableModel)
     {
-        _curMouvementsDeStocksTableModel = &_allWindows->getSqlTableModel_stocks_sorties();
+    	switchTableWidgetTAB_CONTENT_ELEMENTS(SUJET_ACTION_SORTIES_STOCKS);
     }
 
     _curMouvementsDeStocksTableModel->yerothSetFilter_WITH_where_clause(_searchFilter);
@@ -146,61 +283,146 @@ void YerothMouvementsDeStocksWindow::setFilter()
 
 void YerothMouvementsDeStocksWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 {
+    setupLineEdits();
+
+    setupLineEditsQCompleters((QObject *)this);
+
+    setYerothSqlTableModel(stocksTableModel);
+
     _curStocksTableModel = stocksTableModel;
 
-    setupLineEditsQCompleters();
+    if (SUJET_ACTION_SORTIES_STOCKS == tabWidget_mouvementsDeStocks->currentIndex())
+    {
+    	switchTableWidgetTAB_CONTENT_ELEMENTS(SUJET_ACTION_SORTIES_STOCKS);
+    }
+    else
+    {
+    	switchTableWidgetTAB_CONTENT_ELEMENTS(SUJET_ACTION_TRANSFERTS_STOCKS);
+    }
+
+    if (0 != _curLineEdit_mouvementsDeStocks_terme_recherche)
+    {
+    	_curLineEdit_mouvementsDeStocks_terme_recherche->setFocus();
+    }
 
     setVisible(true);
 
-    rechercher();
+    afficher_stocks_sorties_OU_transferes();
+}
+
+
+bool YerothMouvementsDeStocksWindow::filtrer_stocks_sorties_OU_transferes()
+{
+
+	return false;
 }
 
 
 void YerothMouvementsDeStocksWindow::setupLineEdits()
 {
-    _logger->log("setupLineEdits");
+	lineEdit_mouvementsDeStocks_terme_recherche->enableForSearch(QObject::trUtf8("terme à rechercher (notes)"));
+	lineEdit_mouvementsDeStocks_terme_recherche_2->enableForSearch(QObject::trUtf8("terme à rechercher (notes)"));
+
+	lineEdit_nom_element_string_db->enableForSearch(QObject::trUtf8("valeur à rechercher"));
+    lineEdit_nom_element_string_db_2->enableForSearch(QObject::trUtf8("valeur à rechercher"));
+
+    lineEdit_mouvementsDeStocks_element_de_sortiestocks_resultat->setValidator(&YerothUtils::DoubleValidator);
+    lineEdit_mouvementsDeStocks_element_de_transfertstocks_resultat->setValidator(&YerothUtils::DoubleValidator);
 
     lineEdit_mouvementsDeStocks_quantite_sortie->setYerothEnabled(false);
-    lineEdit_mouvementsDeStocks_nom_magasinier->enableForSearch(QObject::trUtf8("nom du magasinier"));
-    lineEdit_mouvementsDeStocks_designation->enableForSearch(QObject::trUtf8("désignation"));
-    lineEdit_mouvementsDeStocks_nom_categorie->enableForSearch(QObject::trUtf8("nom de la catégorie d'articles"));
-    lineEdit_mouvementsDeStocks_reference_recu_sortie->enableForSearch(QObject::trUtf8("référence reçu de sortie"));
-    lineEdit_mouvementsDeStocks_nom_recepteur->enableForSearch(QObject::trUtf8("nom du récepteur d'articles"));
 
-    connect(lineEdit_mouvementsDeStocks_nom_magasinier, SIGNAL(textChanged(const QString &)), this, SLOT(rechercher()));
-    connect(lineEdit_mouvementsDeStocks_designation, SIGNAL(textChanged(const QString &)), this, SLOT(rechercher()));
-    connect(lineEdit_mouvementsDeStocks_nom_categorie, SIGNAL(textChanged(const QString &)), this, SLOT(rechercher()));
-    connect(lineEdit_mouvementsDeStocks_reference_recu_sortie, SIGNAL(textChanged(const QString &)), this, SLOT(rechercher()));
-    connect(lineEdit_mouvementsDeStocks_nom_recepteur, SIGNAL(textChanged(const QString &)), this, SLOT(rechercher()));
+    MACRO_TO_BIND_PAGING_WITH_QLINEEDIT(lineEdit_mouvementsDeStocks_nombre_de_lignes_par_page, tableView_sorties_articles);
+    MACRO_TO_BIND_PAGING_WITH_QLINEEDIT(lineEdit_mouvementsDeStocks_nombre_de_lignes_par_page_2, tableView_transferts_articles);
 }
 
 
-void YerothMouvementsDeStocksWindow::setupLineEditsQCompleters()
+void YerothMouvementsDeStocksWindow::switchTableWidgetTAB_CONTENT_ELEMENTS(enum TabIndexes aTabIndex)
 {
-    lineEdit_mouvementsDeStocks_nom_magasinier->
-		setupMyStaticQCompleter(_allWindows->STOCKS_SORTIES, YerothDatabaseTableColumn::NOM_MAGASINIER);
+	_curMouvementsDeStocksTableModel = &_allWindows->getSqlTableModel_stocks_sorties();
 
-    lineEdit_mouvementsDeStocks_designation->
-		setupMyStaticQCompleter(_allWindows->STOCKS_SORTIES, YerothDatabaseTableColumn::DESIGNATION);
+	switch(aTabIndex)
+	{
+	case SUJET_ACTION_SORTIES_STOCKS:
 
-    lineEdit_mouvementsDeStocks_nom_categorie->
-		setupMyStaticQCompleter(_allWindows->STOCKS_SORTIES, YerothDatabaseTableColumn::CATEGORIE);
+		_curDateEdit_debut = dateEdit_mouvementsDeStocks_debut;
 
-    lineEdit_mouvementsDeStocks_reference_recu_sortie->
-		setupMyStaticQCompleter(_allWindows->STOCKS_SORTIES, YerothDatabaseTableColumn::REFERENCE_RECU_SORTIE);
+		_curDateEdit_fin = dateEdit_mouvementsDeStocks_fin;
 
-    lineEdit_mouvementsDeStocks_nom_recepteur->
-		setupMyStaticQCompleter(_allWindows->STOCKS_SORTIES, YerothDatabaseTableColumn::NOM_RECEPTEUR);
+		_curMouvementsDeStocksTableView = tableView_sorties_articles;
+
+		_curLineEdit_mouvementsDeStocks_terme_recherche = lineEdit_mouvementsDeStocks_terme_recherche;
+
+		_curLineEdit_mouvementsDeStocks_element_de_AAA_resultat =
+				lineEdit_mouvementsDeStocks_element_de_sortiestocks_resultat;
+
+		_curLabel_mouvementsDeStocks_numero_page_derniere = label_mouvementsDeStocks_numero_page_derniere;
+
+		_curLabel_mouvementsDeStocks_numero_page_courante = label_mouvementsDeStocks_numero_page_courante;
+
+		break;
+
+	case SUJET_ACTION_TRANSFERTS_STOCKS:
+
+		_curDateEdit_debut = dateEdit_mouvementsDeStocks_debut_2;
+
+		_curDateEdit_fin = dateEdit_mouvementsDeStocks_fin_2;
+
+		_curMouvementsDeStocksTableView = tableView_transferts_articles;
+
+		_curLineEdit_mouvementsDeStocks_terme_recherche = lineEdit_mouvementsDeStocks_terme_recherche_2;
+
+		_curLineEdit_mouvementsDeStocks_element_de_AAA_resultat =
+				lineEdit_mouvementsDeStocks_element_de_transfertstocks_resultat;
+
+		_curLabel_mouvementsDeStocks_numero_page_derniere = label_mouvementsDeStocks_numero_page_derniere_2;
+
+		_curLabel_mouvementsDeStocks_numero_page_courante = label_mouvementsDeStocks_numero_page_courante_2;
+
+		break;
+
+	default:
+		break;
+	}
 }
 
 
 void YerothMouvementsDeStocksWindow::setupDateTimeEdits()
 {
     dateEdit_mouvementsDeStocks_debut->setStartDate(YerothERPConfig::GET_YEROTH_PAGING_DEFAULT_START_DATE());
+
     dateEdit_mouvementsDeStocks_fin->setStartDate(GET_CURRENT_DATE);
 
-    connect(dateEdit_mouvementsDeStocks_debut, SIGNAL(dateChanged(const QDate &)), this, SLOT(rechercher()));
-    connect(dateEdit_mouvementsDeStocks_fin, SIGNAL(dateChanged(const QDate &)), this, SLOT(rechercher()));
+    dateEdit_mouvementsDeStocks_debut_2->setStartDate(YerothERPConfig::GET_YEROTH_PAGING_DEFAULT_START_DATE());
+
+    dateEdit_mouvementsDeStocks_fin_2->setStartDate(GET_CURRENT_DATE);
+
+    _stocksSorties_OU_transferes_DateFilter.clear();
+
+    _stocksSorties_OU_transferes_DateFilter.append(QString(" ( %1 >= '%2' AND %3 <= '%4' ) ")
+    					.arg(YerothDatabaseTableColumn::DATE_SORTIE,
+    						 DATE_TO_DB_FORMAT_STRING(_curDateEdit_debut->date()),
+							 YerothDatabaseTableColumn::DATE_SORTIE,
+							 DATE_TO_DB_FORMAT_STRING(_curDateEdit_fin->date())));
+
+    connect(dateEdit_mouvementsDeStocks_debut,
+    		SIGNAL(dateChanged(const QDate &)),
+			this,
+			SLOT(refineYerothLineEdits()));
+
+    connect(dateEdit_mouvementsDeStocks_fin,
+    		SIGNAL(dateChanged(const QDate &)),
+			this,
+			SLOT(refineYerothLineEdits()));
+
+    connect(dateEdit_mouvementsDeStocks_debut_2,
+    		SIGNAL(dateChanged(const QDate &)),
+			this,
+			SLOT(refineYerothLineEdits()));
+
+    connect(dateEdit_mouvementsDeStocks_fin_2,
+    		SIGNAL(dateChanged(const QDate &)),
+			this,
+			SLOT(refineYerothLineEdits()));
 }
 
 
@@ -391,83 +613,22 @@ bool YerothMouvementsDeStocksWindow::imprimer_pdf_document()
 
 #endif
 
-    documentSpecificElements.insert("YEROTHVENTESDEBUT", DATE_TO_STRING(dateEdit_mouvementsDeStocks_debut->date()));
+    documentSpecificElements.insert("YEROTHVENTESDEBUT", DATE_TO_STRING(_curDateEdit_debut->date()));
 
-    documentSpecificElements.insert("YEROTHVENTESFIN", DATE_TO_STRING(dateEdit_mouvementsDeStocks_fin->date()));
+    documentSpecificElements.insert("YEROTHVENTESFIN", DATE_TO_STRING(_curDateEdit_fin->date()));
 
 	return YerothWindowsCommons::imprimer_pdf_document(&documentSpecificElements);
 }
 
-void YerothMouvementsDeStocksWindow::rechercher()
-{
-    _searchFilter.clear();
 
-    QString nom_magasinier(lineEdit_mouvementsDeStocks_nom_magasinier->text());
-
-    if (!nom_magasinier.isEmpty())
-    {
-        if (!_searchFilter.isEmpty())
-        {
-            _searchFilter.append(" AND ");
-        }
-        _searchFilter.append(GENERATE_SQL_IS_STMT("nom_magasinier", nom_magasinier));
-    }
-
-    QString designation(lineEdit_mouvementsDeStocks_designation->text());
-
-    if (!designation.isEmpty())
-    {
-        if (!_searchFilter.isEmpty())
-        {
-            _searchFilter.append(" AND ");
-        }
-        _searchFilter.append(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::DESIGNATION, designation));
-    }
-
-    QString nom_categorie(lineEdit_mouvementsDeStocks_nom_categorie->text());
-
-    if (!nom_categorie.isEmpty())
-    {
-        if (!_searchFilter.isEmpty())
-        {
-            _searchFilter.append(" AND ");
-        }
-        _searchFilter.append(GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::CATEGORIE, nom_categorie));
-    }
-
-    QString numero_du_bon(lineEdit_mouvementsDeStocks_reference_recu_sortie->text());
-
-    if (!numero_du_bon.isEmpty())
-    {
-        if (!_searchFilter.isEmpty())
-        {
-            _searchFilter.append(" AND ");
-        }
-        _searchFilter.append(GENERATE_SQL_IS_STMT("sortie_id", numero_du_bon));
-    }
-
-    QString nom_recepteur(lineEdit_mouvementsDeStocks_nom_recepteur->text());
-
-    if (!nom_recepteur.isEmpty())
-    {
-        if (!_searchFilter.isEmpty())
-        {
-            _searchFilter.append(" AND ");
-        }
-        _searchFilter.append(GENERATE_SQL_IS_STMT("nom_recepteur", nom_recepteur));
-    }
-
-    setFilter();
-
-    lister_les_elements_du_tableau(_searchFilter);
-}
-
-
-void YerothMouvementsDeStocksWindow::lister_les_elements_du_tableau(QString aSearchFilter)
+void YerothMouvementsDeStocksWindow::lister_les_elements_du_tableau(const QString &aSearchFilter /* = YerothUtils::EMPTY_STRING */)
 {
     _logger->log("lister_les_elements_du_tableau");
 
-    _searchFilter = aSearchFilter;
+    if (!aSearchFilter.isEmpty())
+    {
+    	_searchFilter.append(aSearchFilter);
+    }
 
     if (_searchFilter.isEmpty())
     {
@@ -482,17 +643,16 @@ void YerothMouvementsDeStocksWindow::lister_les_elements_du_tableau(QString aSea
                                  DATE_TO_DB_FORMAT_STRING(dateEdit_mouvementsDeStocks_fin->date())));
     }
 
-    if (0 == _curMouvementsDeStocksTableModel)
-    {
-        _curMouvementsDeStocksTableModel = &_allWindows->getSqlTableModel_stocks_sorties();
-    }
-
     if (SUJET_ACTION_SORTIES_STOCKS == tabWidget_mouvementsDeStocks->currentIndex())
     {
+    	switchTableWidgetTAB_CONTENT_ELEMENTS(SUJET_ACTION_SORTIES_STOCKS);
+
         _searchFilter.append(" AND localisation_entree = ''");
     }
     else
     {
+    	switchTableWidgetTAB_CONTENT_ELEMENTS(SUJET_ACTION_TRANSFERTS_STOCKS);
+
         _searchFilter.append(" AND localisation_entree != ''");
     }
 
@@ -556,23 +716,47 @@ void YerothMouvementsDeStocksWindow::resetFilter()
     }
     else
     {
-        _curMouvementsDeStocksTableModel = &_allWindows->getSqlTableModel_stocks_sorties();
+    	switchTableWidgetTAB_CONTENT_ELEMENTS(SUJET_ACTION_SORTIES_STOCKS);
     }
 
-    lineEdit_mouvementsDeStocks_nom_magasinier->clear();
-    lineEdit_mouvementsDeStocks_designation->clear();
-    lineEdit_mouvementsDeStocks_nom_categorie->clear();
-    lineEdit_mouvementsDeStocks_reference_recu_sortie->clear();
-    lineEdit_mouvementsDeStocks_nom_recepteur->clear();
+    if (0 != _curLineEdit_mouvementsDeStocks_terme_recherche)
+    {
+    	_curLineEdit_mouvementsDeStocks_terme_recherche->clear();
+    }
 
     if (_allWindows->getUser()->isManager() || _allWindows->getUser()->isMagasinier())
     {
-        dateEdit_mouvementsDeStocks_debut->reset();
+    	_curDateEdit_debut->reset();
 
-        dateEdit_mouvementsDeStocks_fin->reset();
+    	_curDateEdit_fin->reset();
 
-        lister_les_elements_du_tableau(QString(""));
+        lister_les_elements_du_tableau();
     }
+}
+
+
+void YerothMouvementsDeStocksWindow::refineYerothLineEdits()
+{
+    if (SUJET_ACTION_SORTIES_STOCKS == tabWidget_mouvementsDeStocks->currentIndex())
+    {
+    	switchTableWidgetTAB_CONTENT_ELEMENTS(SUJET_ACTION_SORTIES_STOCKS);
+    }
+    else
+    {
+    	switchTableWidgetTAB_CONTENT_ELEMENTS(SUJET_ACTION_TRANSFERTS_STOCKS);
+    }
+
+	_stocksSorties_OU_transferes_DateFilter.clear();
+
+	_stocksSorties_OU_transferes_DateFilter.append(QString(" ( %1 >= '%2' AND %3 <= '%4' ) ")
+    					.arg(YerothDatabaseTableColumn::DATE_SORTIE,
+    						 DATE_TO_DB_FORMAT_STRING(_curDateEdit_debut->date()),
+							 YerothDatabaseTableColumn::DATE_SORTIE,
+							 DATE_TO_DB_FORMAT_STRING(_curDateEdit_fin->date())));
+
+	setupLineEditsQCompleters((QObject *)this);
+
+	afficher_stocks_sorties_OU_transferes();
 }
 
 
