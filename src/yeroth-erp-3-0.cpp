@@ -576,7 +576,7 @@ int main(int argc, char *argv[])
 
     YerothERPConfig::YEROTH_ERP_3_0_PROPERTIES_CONFIGURATION_FOLDER = QString(std::getenv("YEROTH_ERP_3_0_PROPERTIES_CONFIGURATION_FOLDER")).trimmed();
 
-    YerothERPConfig::YEROTH_ERP_ALERT_3_0_HOME_FOLDER = QString(std::getenv("YEROTH_ERP_ALERT_3_0_HOME_FOLDER")).trimmed();
+    YerothERPConfig::YEROTH_ERP_3_0_SYSTEM_DAEMON_HOME_FOLDER = QString(std::getenv("YEROTH_ERP_3_0_SYSTEM_DAEMON_HOME_FOLDER")).trimmed();
 
     YerothERPConfig::YEROTH_ERP_3_0_HOME_FOLDER = QString(std::getenv("YEROTH_ERP_3_0_HOME_FOLDER")).trimmed();
 

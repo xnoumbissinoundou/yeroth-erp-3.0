@@ -11,15 +11,15 @@ Installation files of yeroth
    so user could start yeroth by double-clicking 'yeroth-erp-3-0-standalone.sh'
    from nautilus-browser.
    
-   The file 'yeroth-erp-alert-3-0-initd.sh' has to be placed
+   The file 'yeroth-erp-3-0-system-daemon-initd.sh' has to be placed
    in the folder '/etc/init.d' with the following rights '-rwxr-xr-x'.
  
-   After placing file 'yeroth-erp-alert-3-0-initd.sh' in folder '/etc/init.d',
+   After placing file 'yeroth-erp-3-0-system-daemon-initd.sh' in folder '/etc/init.d',
    you need to run the following command with root rigths: 
-   'update-rc.d yeroth-erp-alert-3-0-initd.sh defaults'.
+   'update-rc.d yeroth-erp-3-0-system-daemon-initd.sh defaults'.
    
    This will create all necessary files in the 'run level folders'
    'rcN.d' (with 0 <= N <= 6).
 
-   To remove the links created for the file 'yeroth-erp-alert-3-0-initd.sh',
-   run 'update-rc.d yeroth-erp-alert-3-0-initd.sh remove'.
+   To remove the links created for the file 'yeroth-erp-3-0-system-daemon-initd.sh',
+   run 'update-rc.d yeroth-erp-3-0-system-daemon-initd.sh remove'.

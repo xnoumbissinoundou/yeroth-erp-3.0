@@ -149,7 +149,7 @@ fi
 YEROTH_ERP_3_0_POSTRM_STR="#!/bin/bash
 sed -i '/YEROTH_ERP_3_0_HOME_FOLDER/d' /etc/environment
 sed -i '/YEROTH_ERP_3_0_PROPERTIES_CONFIGURATION_FOLDER/d' /etc/environment
-sed -i '/YEROTH_ERP_ALERT_3_0_HOME_FOLDER/d' /etc/environment
+sed -i '/YEROTH_ERP_3_0_SYSTEM_DAEMON_HOME_FOLDER/d' /etc/environment
 "
 
 echo -e "${YEROTH_ERP_3_0_POSTRM_STR}$(cat ${TARGET_INSTALLATION_DIR}/DEBIAN/postrm)" > ${TARGET_INSTALLATION_DIR}/DEBIAN/postrm
@@ -160,7 +160,7 @@ chmod 755 ${TARGET_INSTALLATION_DIR}/DEBIAN/postrm
 YEROTH_ERP_3_0_POSTINST_STR="#!/bin/bash
 echo -e \"export YEROTH_ERP_3_0_HOME_FOLDER=/opt/${YEROTH_ERP_3_0_BINARY_NAME}\" >> /etc/environment
 echo -e \"export YEROTH_ERP_3_0_PROPERTIES_CONFIGURATION_FOLDER=/opt/${YEROTH_ERP_3_0_BINARY_NAME}\" >> /etc/environment
-echo -e \"export YEROTH_ERP_ALERT_3_0_HOME_FOLDER=/opt/yeroth-erp-alert-3-0\" >> /etc/environment
+echo -e \"export YEROTH_ERP_3_0_SYSTEM_DAEMON_HOME_FOLDER=/opt/yeroth-erp-3-0-system-daemon\" >> /etc/environment
 chmod go+rwx /opt/${YEROTH_ERP_3_0_BINARY_NAME}/${YEROTH_SQL_BACKUP_FOLDER_NAME}
 chmod go+w /opt/${YEROTH_ERP_3_0_BINARY_NAME}/yeroth-erp-3-0.log
 chmod go+w /opt/${YEROTH_ERP_3_0_BINARY_NAME}/yeroth-erp-3-0-system-local-configuration.properties"

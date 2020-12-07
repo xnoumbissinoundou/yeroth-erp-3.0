@@ -44,7 +44,7 @@ QString YerothERPConfig::salesStrategy("");
 
 QString YerothERPConfig::YEROTH_ERP_3_0_PROPERTIES_CONFIGURATION_FOLDER("/etc");
 
-QString YerothERPConfig::YEROTH_ERP_ALERT_3_0_HOME_FOLDER("");
+QString YerothERPConfig::YEROTH_ERP_3_0_SYSTEM_DAEMON_HOME_FOLDER("");
 
 QString YerothERPConfig::YEROTH_ERP_3_0_HOME_FOLDER("");
 

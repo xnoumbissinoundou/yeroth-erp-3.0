@@ -147,7 +147,7 @@ public:
 	inline static QString getYerothAlertDaemonExecutableFullpath()
 	{
 		return QString("%1/bin/%2")
-		  	  	.arg(YerothERPConfig::YEROTH_ERP_ALERT_3_0_HOME_FOLDER,
+		  	  	.arg(YerothERPConfig::YEROTH_ERP_3_0_SYSTEM_DAEMON_HOME_FOLDER,
 		  	  		 YerothERPConfig::YEROTH_ERP_3_0_SYSTEM_DAEMON_ID);
 	}
 
