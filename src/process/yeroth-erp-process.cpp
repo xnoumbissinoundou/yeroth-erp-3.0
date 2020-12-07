@@ -37,7 +37,7 @@ bool YerothERPProcess::stopYerothERPAlertProcess()
 
 	QStringList progArguments;
 
-	progArguments << "/etc/init.d/yeroth-erp-alert-3-0-initd.sh";
+	progArguments << "/etc/init.d/yeroth-erp-3-0-system-daemon-initd.sh";
 
 	progArguments << "stop";
 
@@ -73,7 +73,7 @@ bool YerothERPProcess::startYerothERPAlertProcess()
     {
     	QStringList progArguments;
 
-    	progArguments << "/etc/init.d/yeroth-erp-alert-3-0-initd.sh";
+    	progArguments << "/etc/init.d/yeroth-erp-3-0-system-daemon-initd.sh";
 
     	progArguments << "start";
 
@@ -85,10 +85,10 @@ bool YerothERPProcess::startYerothERPAlertProcess()
     {
     	msg.clear();
 
-        msg.append(QObject::trUtf8("Le système d'alerte \"yeroth-erp-alert-3-0\" est déjà en marche !"));
+        msg.append(QObject::trUtf8("Le système d'alerte \"yeroth-erp-3-0-system-daemon\" est déjà en marche !"));
 
         YerothQMessageBox::information(YerothUtils::getAllWindows()->_adminWindow,
-        							  QObject::trUtf8("démarrage du système d'alerte - yeroth-erp-alert-3-0"),
+        							  QObject::trUtf8("démarrage du système d'alerte - yeroth-erp-3-0-system-daemon"),
                                       msg);
     }
 

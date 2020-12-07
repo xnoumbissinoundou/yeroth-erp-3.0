@@ -52,9 +52,9 @@ public:
 
 	static QString salesStrategy;
 
-	static QString YEROTH_ALERT_DAEMON_ID_STR;
+	static QString YEROTH_ERP_3_0_SYSTEM_DAEMON_ID_STR;
 
-	static QString YEROTH_ALERT_DAEMON_ID;
+	static QString YEROTH_ERP_3_0_SYSTEM_DAEMON_ID;
 
 	static QString YEROTH_ERP_3_0_PROPERTIES_CONFIGURATION_FOLDER;
 

@@ -60,9 +60,9 @@ QString YerothERPConfig::FILE_ABSOLUTEPATH_YEROTH_ERP_3_0_MANUEL_DE_LUTILISATEUR
 
 QString YerothERPConfig::FILE_ABSOLUTEPATH_YEROTH_ERP_3_0_MANUEL__DE_LUTILISATEUR_ADMINISTRATEUR(FILE_YEROTH_ERP_3_0_MANUEL_DE_LUTILISATEUR_ADMINISTRATEUR);
 
-QString YerothERPConfig::YEROTH_ALERT_DAEMON_ID_STR("yeroth-erp-aler");
+QString YerothERPConfig::YEROTH_ERP_3_0_SYSTEM_DAEMON_ID_STR("yeroth-erp-3-0-");
 
-QString YerothERPConfig::YEROTH_ALERT_DAEMON_ID("yeroth-erp-alert-3-0");
+QString YerothERPConfig::YEROTH_ERP_3_0_SYSTEM_DAEMON_ID("yeroth-erp-3-0-system-daemon");
 
 uint YerothERPConfig::alert_period_time_interval(0);
 

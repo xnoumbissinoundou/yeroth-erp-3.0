@@ -148,7 +148,7 @@ public:
 	{
 		return QString("%1/bin/%2")
 		  	  	.arg(YerothERPConfig::YEROTH_ERP_ALERT_3_0_HOME_FOLDER,
-		  	  		 YerothERPConfig::YEROTH_ALERT_DAEMON_ID);
+		  	  		 YerothERPConfig::YEROTH_ERP_3_0_SYSTEM_DAEMON_ID);
 	}
 
 	static void writeStringToQFilewithUTF8Encoding(QFile &latexContentOutputFile,

@@ -29,7 +29,7 @@ bool YerothProcessInfo::checkYerothERPAlertDaemonRunning(YerothLogger *logger /*
     QStringList progArguments;
 
     progArguments << "-a"
-    		      << YerothERPConfig::YEROTH_ALERT_DAEMON_ID_STR;
+    		      << YerothERPConfig::YEROTH_ERP_3_0_SYSTEM_DAEMON_ID_STR;
 
 	QString yeroth_erp_3_0_restore_backup_sql_file(QString("%1.sql")
 					.arg(FILE_NAME_USERID_CURRENT_TIME("yeroth_erp_3_0_BACKUP_RESTORE")));
