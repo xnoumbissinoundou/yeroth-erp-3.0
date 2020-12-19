@@ -2252,7 +2252,8 @@ void YerothTableauxDeBordWindow::bilanComptable()
     texDocument.replace("YEROTHBILANCOMPTABLETOTALSORTIESDEVISE", GET_CURRENCY_STRING_NUM_FOR_LATEX(total_sorties));
 
     QString balanceDeviseLatexStr(GET_CURRENCY_STRING_NUM_FOR_LATEX(balance));
-    if (balance > 0)
+
+    if (balance >= 0)
     {
     	balanceDeviseLatexStr = YerothUtils::colorLatexTextInput("yerothColorGreen", balanceDeviseLatexStr);
     }
