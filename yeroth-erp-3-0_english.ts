@@ -2404,10 +2404,10 @@ Continue with update of the stock (service) ?</translation>
         <translation>rankings - no data !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2428"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2793"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2975"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3281"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2429"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2794"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2976"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3282"/>
         <source>aucun filtre !</source>
         <translation>no filter !</translation>
     </message>
@@ -2481,42 +2481,42 @@ Continue with update of the stock (service) ?</translation>
         <translation>The &apos;begin&apos; date must be anterior to the &apos;end&apos; date !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2320"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2546"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2321"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2547"/>
         <source>analyse comparée</source>
         <translation>compared analysis</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2512"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3057"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2513"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3058"/>
         <source>paramètre manquant</source>
         <translation>missing parameter</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2513"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3058"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2514"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3059"/>
         <source>Vous devez spécifier un paramètre dans le champs de texte &apos;nom&apos; !</source>
         <translation>Please enter a string in field &apos;name&apos; !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3086"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3087"/>
         <source>pas de données</source>
         <translation>no data</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3087"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3088"/>
         <source>Il n&apos;y a pas de données correspondante à la requête !
 Vérifier que les dates de début et de fin, ainsi que l&apos;année sont correctes !</source>
         <translation>There is no data associated with this request!
 Please check that begin and end dates are correct!</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2801"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2802"/>
         <source>[analyse compar\&apos;ee]</source>
         <translation>[compared analysis]</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2897"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2898"/>
         <source>évolution du chiffre d&apos;affaire</source>
         <translation>business turnover progress</translation>
     </message>
@@ -2529,8 +2529,8 @@ Vérifier que les dates de début et de fin sont correctes !</source>
 Please check that begin and end dates are correct!</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2321"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2898"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2322"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2899"/>
         <source>Le mois de &apos;début&apos; doit être antérieur au mois de &apos;fin&apos; !</source>
         <translation>The &apos;begin&apos; month must be anterior to the &apos;end&apos; month!</translation>
     </message>
@@ -9959,7 +9959,7 @@ Transférer</source>
     <message>
         <location filename="ui/yeroth-erp-main-window.ui" line="885"/>
         <source>Achats</source>
-        <translation>Purchase</translation>
+        <translation>Purchases</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-main-window.ui" line="1772"/>
