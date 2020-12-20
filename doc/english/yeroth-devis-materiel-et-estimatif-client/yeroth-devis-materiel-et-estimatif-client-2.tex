@@ -3,7 +3,7 @@
 % Author: DR. XAVIER NOUMBISSI NOUNDOU
 %
 %====================================================
-\documentclass[21pt, a4paper]{article}
+\documentclass[12pt, a4paper]{article}
 \NeedsTeXFormat{LaTeX2e}
 
 %---------------------------- PACKAGE INCLUSION -------------------------------
@@ -115,15 +115,33 @@
 
 \renewcommand\labelenumi{\theenumi)}
 
-\pagenumbering{gobble}
+\pagenumbering{arabic}
 
+
+%%%%%%%%%%%%%%%%%%%% FOR IMAGE IN LANDSCAPE MODE %%%%%%%%%%%%%%%%%%%%%
+\usepackage{rotating}
+
+%%%%%%%%%%%%%%%%%%%%SETTING HEADER AND FOOTER FOR 'REPORT CLASS'%%%%%%%%%%%%%%%%%%%%%
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \renewcommand{\headrulewidth}{0pt}
+\fancyhf{}
+
+\fancypagestyle{plain}{% copies "fancy" over "plain"
+  \fancyfoot[C]{\thepage}% you can add edits that won't affect "fancy" but only "plain"
+}
+
+\fancypagestyle{OnlyFirstPage}{%
+	\lhead{}
+	\rhead{}
+    \lfoot{{\small author: \myfullacademicname}}
+    \rfoot{}
+}
+
 \rhead{}
-\lhead{}
-\lfoot{}
-\rfoot{{\small version du --~\today~--}}
+\lhead{\textbf{\yerothrc}}
+\lfoot{{\small author: \myfullacademicname}}
+\rfoot{{\small Version of --~\today~--}}
 \cfoot{}
 
 \clubpenalty = 10000
@@ -138,6 +156,14 @@
 \newcommand{\yerothyaounde}{\textbf{Yaound\'e}\xspace}
 \newcommand{\yerothdouala}{\textbf{Douala}\xspace}
 
+% format two pieces of text, one left aligned and one right aligned
+\newcommand{\headerrow}[2]
+{\begin{tabular*}{\linewidth}{l@{\extracolsep{\fill}}r}
+	#1 &
+	#2 \\
+\end{tabular*}}
+
+
 \AtBeginDocument{
 % ce 'hook' est utilise ici parce que
 % qu'avant ici, '\today' est toujours
@@ -148,83 +174,63 @@
 
 \begin{document}
 
-{\bf \Large \yerothrc} {| \sc \scriptsize \yerotherp devis estimatif d'installation}
+\thispagestyle{OnlyFirstPage}
 
+{\bf \Large \yerothrc}
+\\ \line(1,0){540}
 
 \vspace{3.5em}
 
-
-\parbox{27em}{\LARGE \yerotherp Devis Estimatif D'installation pour X (DOUALA, et YAOUND\'E).}
-
-\vspace{2.0em}
-
-\begin{center}
-\textbf{AUTEUR: \myfullacademicname}
-\end{center}
+\headerrow
+{}
+{Samedi, le \today}\\
 
 \vspace{2.5em}
 
-\begin{table}[!htbp]
-\centering
-\resizebox{\textwidth}{!}{%to fit the table within the text width
-\begin{tabular}{lrrr}
-\centering 
- 		
-\textbf{Mat\'eriel} 	& 
-\textbf{\yerothdouala} 	&   
-\textbf{\yerothyaounde}	&
-TOTAL			\\ \hline
 
-rallonge $3$ ports universels + $3$ ports USB					& $\mathbf{2}$  		& $\mathbf{2}$			&	 \\ 
-\hspace{5em}(au moins $220$~VOLTS et $10$~AMP\`ERES)			& 			   			& 			 			&	\\
-\hspace{2em}\textbf{environ localement:} 
-\yerothachat{5\ 000}							& \yerothachat{10\ 000}	& \yerothachat{10\ 000} &	\yerothachat{20\ 000}\\ \hline
+\parbox{\linewidth}{
+CHER CL\'EMENT,
+\newline
 
-imprimante thermique epson tm-t$20$ii							& $\mathbf{1}$  		& $\mathbf{1}$			 & 	\\ 
-\hspace{2em}\textbf{environ localement:}
-\yerothachat{125\ 000}							& \yerothachat{125\ 000}& \yerothachat{125\ 000} & \yerothachat{250\ 000} \\ \hline
+Je me suis ravisé par rapport a ma proposition
+précédente d'avoir des bases de données locales
+pour chaque point de vente (ou magasin), AVEC 1 
+BASE DE DONNÉES DE RÉPLICATION POUR CHACUNE.
+\newline
 
-scanner de code--barres	(avec ou sans fil)						& $\mathbf{2}$  		& $\mathbf{1}$			& \\ 
-\hspace{2em}\textbf{environ localement:} 
-\yerothachat{10\ 000}							& \yerothachat{20\ 000}	& \yerothachat{10\ 000} & \yerothachat{30\ 000} \\ \hline
+CETTE PRÉCÉDENTE SOLUTION EST MOINS SCALABLE,
+ET PLUS DIFFICILE A IMPLÉMENTER !
+\newline
+}
 
-ordinateur (desktop de marque \yerothlenovo, intel--chipset, 	& $\mathbf{2}$ 			& $\mathbf{1}$	 		& \\
-\hspace{5em}\'ecran de minimum 18--pouces,						& 			   			& 			 			& \\
-\hspace{5em}processeur intel core--i$7$ ($4$--cores),						& 			   			& 			 			& \\ 
-\hspace{5em}disque dur $1$--TERA avec SSD--tech)				& 			   			& 			 			& \\ 
-\hspace{2em}\textbf{environ localement:} 
-\yerothachat{130\ 000}							& \yerothachat{260\ 000}& \yerothachat{130\ 000}&\yerothachat{390\ 000} \\ \hline
+\parbox{\linewidth}{
+En effet je pense plus ergonomique, comme vous 
+l'avez d'abord proposé, d'avoir 1 base de
+données avec l'ensemble de tous vos stocks et articles
+centralisé sur 1 seul serveur, de HAUTE PERFORMANCE.
+\newline
 
-onduleur \yerothapc $650$VA 									& $\mathbf{1}$  		& $\mathbf{1}$			& \\ 
-\hspace{2em}\textbf{environ localement:} 
-\yerothachat{70\ 000}							& \yerothachat{70\ 000}& \yerothachat{70\ 000}  & \yerothachat{140\ 000}\\ \hline
+JE PRÉCONISE 2 SERVEURS BASÉS À SAN-FRANCISCO
+(\url{HTTP://WWW.DIGITALOCEAN.COM}).
+\newline
 
-routeur ng (au moins 1 vitesse de $300$~Mbps)					& $\mathbf{1}$  		& \textbf{N/A}	& \\ 
-\hspace{2em}\textbf{environ localement:} 
-\yerothachat{30\ 000}							& \yerothachat{30\ 000} &  				& \yerothachat{30\ 000} \\ \hline
+La figure~\ref{fig:plans} refl\`ete les offres
+et tarifs actuels.
+\newline
 
-cl\'e wifi (tp--link tl wn$821$n)								& $\mathbf{2}$  		& $\mathbf{1}$			& \\ 
-\hspace{2em}\textbf{environ localement:} 
-\yerothachat{7\ 000}							& \yerothachat{14\ 000} & \yerothachat{7\ 000}	& \yerothachat{21\ 000}\\ \hline
+MERCI.
+\newline
+}
 
-copie \yerothdebianlinuxdix										& $\mathbf{2}$  		& $\mathbf{1}$			& 	 \\ 
-\hspace{2em}\textbf{environ localement:} 
-\yerothachat{500} (copie universel d\'elivr\'ee 
-par \yerothrcnoir)& \yerothachat{1\ 000}				& \yerothachat{0} 		& \yerothachat{1\ 000}	\\ \hline
+\newpage
 
-copie \yerotherp								& $\mathbf{2}$  		& $\mathbf{1}$		&	 	 \\ 
-\hspace{2em}\textbf{environ localement:} 
-\yerothachat{200\ 000} (\textbf{r\'eduction 
-de} $\mathbf{66.66\%}$) 						& \yerothachat{400\ 000} & \yerothachat{200\ 000} 	& \yerothachat{600\ 000} \\ \hline
+\begin{sidewaysfigure}[!htbp]
+    \includegraphics[scale=0.57]{images/Screenshot_plan_digital_ocean.pdf}
+    \caption{Plans.}
+    \label{fig:plans}
+\end{sidewaysfigure}
 
-frais du technicien	
-(dipl.--inf. XAVIER NOUMBISSI NOUNDOU)			& \yerothachat{30\ 000}  &  \yerothachat{0}	& \yerothachat{30\ 000}\\ \hline
-\multicolumn{4}{l}{}\\ 
-\multicolumn{3}{c}{\textbf{X FCFA}} & \yerothachatb{X NUM}  \\ 
- 				
-\end{tabular}}
-\label{tachesEtFonctions}
-\end{table}
+
 
 	
 \end{document}
