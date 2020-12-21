@@ -99,10 +99,6 @@ public slots:
 
     void deconnecter_utilisateur();
 
-    bool creerNouveauClient(const QString &proposedCustomerName);
-
-    bool creerNouveauFournisseur(const QString &proposedFourisseurName);
-
     bool handle_stocks_vendu_table(int stockID,
     							   ServiceClientInfo &aServiceInfo,
 								   double montant_total_vente,

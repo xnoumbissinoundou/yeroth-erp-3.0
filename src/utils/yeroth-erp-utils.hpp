@@ -91,7 +91,13 @@ public:
 	template<class aTableViewClassType>
 	static bool instanceOf__YerothTableViewWITHpagination(aTableViewClassType *aTableView);
 
-	static bool creerNouvelleCategorie(const QString 		&proposedCategorieName,
+    static bool creerNouveauClient(QString 				&proposedCustomerName_IN_OUT,
+    							   YerothWindowsCommons *_callingWindow = 0);
+
+    static bool creerNouveauFournisseur(QString 			&proposedFourisseurName_IN_OUT,
+    									YerothWindowsCommons *_callingWindow = 0);
+
+	static bool creerNouvelleCategorie(QString 				&proposedCategorieName_IN_OUT,
 									   YerothWindowsCommons *_callingWindow = 0);
 
 	static bool GREP_YEROTH_FILE_CONTENT(const QString &file_full_path,
@@ -110,8 +116,8 @@ public:
     static bool UPDATE_PREVIOUS_BUYING_PRICE_IN_ProductList(const YerothERPServiceStockMarchandiseData &aServiceStockData,
     										 	 	 	 	YerothWindowsCommons 		 	 *_callingWindow = 0);
 
-    static bool insertStockItemInProductList(const YerothERPServiceStockMarchandiseData &aServiceStockData,
-    										 YerothWindowsCommons 		 	 *_callingWindow = 0);
+    static bool insertStockItemInProductList(YerothERPServiceStockMarchandiseData &aServiceStockData_IN_OUT,
+    										 YerothWindowsCommons 		 	 	  *_callingWindow = 0);
 
 	static QString YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(const QString &aString_IN);
 

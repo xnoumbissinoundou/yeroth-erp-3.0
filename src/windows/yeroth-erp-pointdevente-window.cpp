@@ -2413,13 +2413,27 @@ void YerothPointDeVenteWindow::choisir_methode_paiment()
 
     if (checkBox_enregistrer_client->isChecked())
     {
-    	if (!lineEdit_articles_nom_client->text().isEmpty())
+    	if (lineEdit_articles_nom_client->text().isEmpty())
+		{
+			YerothQMessageBox::warning(this, QObject::trUtf8("vendre"),
+					QObject::trUtf8("VEUILLEZ ENTRER LE NOM D'1 CLIENT !"));
+
+			return ;
+		}
+    	else
     	{
+    		QString proposedNonEntrepriseClient(lineEdit_articles_nom_client->text());
+         	if (!YerothUtils::creerNouveauClient(proposedNonEntrepriseClient,
+         										 this))
+         	{
+         		return ;
+         	}
+
     		YerothSqlTableModel & clientsTableModel = _allWindows->getSqlTableModel_clients();
 
     		QString nom_entreprise_filter("nom_entreprise = '");
 
-    		nom_entreprise_filter.append(lineEdit_articles_nom_client->text()).append("'");
+    		nom_entreprise_filter.append(proposedNonEntrepriseClient).append("'");
 
     		clientsTableModel.yerothSetFilter_WITH_where_clause(nom_entreprise_filter);
 
@@ -2454,13 +2468,6 @@ void YerothPointDeVenteWindow::choisir_methode_paiment()
     			{
     				_allWindows->_pdVenteMethodePaiementDialog->setPushbuttonCompteClientEnabled(false);
     			}
-    		}
-    		else
-    		{
-    			YerothQMessageBox::warning(this, QObject::trUtf8("vendre"),
-    					QObject::trUtf8("Le client saisi n'existe pas dans la base de données !"));
-
-    			return ;
     		}
     	}
     }

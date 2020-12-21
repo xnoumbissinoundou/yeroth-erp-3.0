@@ -269,114 +269,6 @@ void YerothEntrerWindow::setupShortcuts()
 }
 
 
-bool YerothEntrerWindow::creerNouveauClient(const QString &proposedCustomerName)
-{
-	YerothSqlTableModel &customerSqlTableModel = _allWindows->getSqlTableModel_clients();
-
-	QString customerTableFilter = QString("%1 = '%2'")
-	            					.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
-	            						 proposedCustomerName);
-
-	customerSqlTableModel.yerothSetFilter_WITH_where_clause(customerTableFilter);
-
-	int rows = customerSqlTableModel.easySelect();
-
-	if (rows > 0)
-	{
-		customerSqlTableModel.resetFilter();
-		return true;
-	}
-	else
-	{
-		customerSqlTableModel.resetFilter();
-
-		QSqlRecord record = customerSqlTableModel.record();
-
-		record.setValue(YerothDatabaseTableColumn::ID, YerothERPWindows::getNextIdSqlTableModel_clients());
-		record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE, proposedCustomerName);
-		record.setValue(YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT, 0.0);
-		record.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT, 0.0);
-
-		QString retMsg(QString(QObject::trUtf8("L'entreprise cliente '%1"))
-							.arg(proposedCustomerName));
-
-		bool success = customerSqlTableModel.insertNewRecord(record);
-
-		if (!success)
-		{
-			retMsg.append(QObject::trUtf8("' n'a pas pu être créer !"));
-
-			YerothQMessageBox::warning(this, QObject::trUtf8("échec"), retMsg);
-
-			return false;
-		}
-		else
-		{
-			retMsg.append(QObject::trUtf8("' a été créer avec succès !"));
-
-			YerothQMessageBox::information(this, QObject::trUtf8("succès"), retMsg);
-
-			return true;
-		}
-	}
-
-	return false;
-}
-
-
-bool YerothEntrerWindow::creerNouveauFournisseur(const QString &proposedFournisseurName)
-{
-	YerothSqlTableModel &fournisseurSqlTableModel = _allWindows->getSqlTableModel_fournisseurs();
-
-	QString fournisseurFilter = QString("%1 = '%2'")
-	            					.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
-	            						 proposedFournisseurName);
-
-	fournisseurSqlTableModel.yerothSetFilter_WITH_where_clause(fournisseurFilter);
-
-	int rows = fournisseurSqlTableModel.easySelect();
-
-	if (rows > 0)
-	{
-		fournisseurSqlTableModel.resetFilter();
-		return true;
-	}
-	else
-	{
-		fournisseurSqlTableModel.resetFilter();
-
-		QSqlRecord record = fournisseurSqlTableModel.record();
-
-		record.setValue(YerothDatabaseTableColumn::ID, YerothERPWindows::getNextIdSqlTableModel_fournisseurs());
-		record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE, proposedFournisseurName);
-
-		QString retMsg(QString(QObject::trUtf8("L'entreprise fournisseur '%1"))
-							.arg(proposedFournisseurName));
-
-		bool success = fournisseurSqlTableModel.insertNewRecord(record);
-
-		if (!success)
-		{
-			retMsg.append(QObject::trUtf8("' n'a pas pu être créer !"));
-
-			YerothQMessageBox::warning(this, QObject::trUtf8("échec"), retMsg);
-
-			return false;
-		}
-		else
-		{
-			retMsg.append(QObject::trUtf8("' a été créer avec succès !"));
-
-			YerothQMessageBox::information(this, QObject::trUtf8("succès"), retMsg);
-
-			return true;
-		}
-	}
-
-	return false;
-}
-
-
 void YerothEntrerWindow::definirPasDeRole()
 {
     _logger->log("definirPasDeRole");
@@ -1005,7 +897,9 @@ bool YerothEntrerWindow::check_fields_mandatory_buying()
 
 bool YerothEntrerWindow::insertStockItemInProductList()
 {
-    if (!YerothUtils::creerNouvelleCategorie(lineEdit_categorie_produit->text(),
+	QString proposedNouvelleCategorie(lineEdit_categorie_produit->text());
+
+    if (!YerothUtils::creerNouvelleCategorie(proposedNouvelleCategorie,
     										 this))
     {
     	return false;
@@ -1033,7 +927,7 @@ bool YerothEntrerWindow::insertStockItemInProductList()
 
     record.setValue(YerothDatabaseTableColumn::DESIGNATION, lineEdit_designation->text());
 
-    record.setValue(YerothDatabaseTableColumn::CATEGORIE, lineEdit_categorie_produit->text());
+    record.setValue(YerothDatabaseTableColumn::CATEGORIE, proposedNouvelleCategorie);
 
     record.setValue(YerothDatabaseTableColumn::DESCRIPTION_PRODUIT, textEdit_description->toPlainText());
 
@@ -1122,7 +1016,12 @@ void YerothEntrerWindow::showItem()
 
     lineEdit_prix_vente->setText(QString::number(prix_vente));
 
-    lineEdit_prix_vente_en_gros->setText(QString::number(prix_vente_en_gros));
+    lineEdit_prix_vente_en_gros->setText(QString::number(prix_vente));
+
+    if (prix_vente_en_gros > 0)
+    {
+    	lineEdit_prix_vente_en_gros->setText(QString::number(prix_vente_en_gros));
+    }
 
     lineEdit_categorie_produit->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::CATEGORIE));
 
@@ -1785,6 +1684,8 @@ void YerothEntrerWindow::enregistrer_produit()
 
     double prix_vente_en_gros = get_prix_vente_en_gros();
 
+    QDEBUG_STRINGS_OUTPUT_2_N("prix_vente_en_gros", prix_vente_en_gros);
+
     if (!YerothUtils::isProfitable(prix_vente_en_gros,
     							   lineEdit_prix_dachat->text().toDouble(),
 								   _montantTva_en_gros))
@@ -1860,7 +1761,8 @@ void YerothEntrerWindow::enregistrer_produit()
     {
         if (!proposed_Fournisseur_Client_Name.isEmpty())
         {
-        	if (!creerNouveauClient(proposed_Fournisseur_Client_Name))
+        	if (!YerothUtils::creerNouveauClient(proposed_Fournisseur_Client_Name,
+        										 this))
         	{
         		return ;
         	}
@@ -1870,7 +1772,8 @@ void YerothEntrerWindow::enregistrer_produit()
     {
         if (!proposed_Fournisseur_Client_Name.isEmpty())
         {
-        	if (!creerNouveauFournisseur(proposed_Fournisseur_Client_Name))
+        	if (!YerothUtils::creerNouveauFournisseur(proposed_Fournisseur_Client_Name,
+        											  this))
         	{
         		return ;
         	}

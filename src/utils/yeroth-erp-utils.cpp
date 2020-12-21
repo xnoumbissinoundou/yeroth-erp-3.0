@@ -556,7 +556,173 @@ YerothUtils::YerothUtils()
 }
 
 
-bool YerothUtils::creerNouvelleCategorie(const QString 			&proposedCategorieName,
+bool YerothUtils::creerNouveauClient(QString 			  &proposedCustomerName,
+		 	 	 	 	 	 	 	 YerothWindowsCommons *_callingWindow /* = 0 */)
+{
+	if (proposedCustomerName.isEmpty())
+	{
+		return false;
+	}
+
+	YerothSqlTableModel &customerSqlTableModel = _allWindows->getSqlTableModel_clients();
+
+	QString customerTableFilter = QString("%1 = '%2'")
+	            					.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
+	            						 proposedCustomerName);
+
+	customerSqlTableModel.yerothSetFilter_WITH_where_clause(customerTableFilter);
+
+	int rows = customerSqlTableModel.easySelect();
+
+	if (rows > 0)
+	{
+		proposedCustomerName.clear();
+		proposedCustomerName.append(GET_SQL_RECORD_DATA(customerSqlTableModel.record(0),
+									YerothDatabaseTableColumn::NOM_ENTREPRISE));
+
+		customerSqlTableModel.resetFilter();
+
+		return true;
+	}
+	else
+	{
+		customerSqlTableModel.resetFilter();
+
+		QSqlRecord record = customerSqlTableModel.record();
+
+		record.setValue(YerothDatabaseTableColumn::ID, YerothERPWindows::getNextIdSqlTableModel_clients());
+		record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE, proposedCustomerName);
+		record.setValue(YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT, 0.0);
+		record.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT, 0.0);
+
+		QString retMsg(QString(QObject::trUtf8("L'entreprise cliente '%1'"))
+							.arg(proposedCustomerName));
+
+		bool success = customerSqlTableModel.insertNewRecord(record);
+
+		if (!success)
+		{
+			retMsg.append(QObject::trUtf8(" n'a pas pu être créer !"));
+
+			if (0 != _callingWindow)
+			{
+				YerothQMessageBox::warning(_callingWindow, QObject::trUtf8("échec"), retMsg);
+			}
+			else
+			{
+#ifdef YEROTH_ERP_3_0_TESTING_UNIT_TEST
+				qDebug() << retMsg;
+#endif
+			}
+
+			return false;
+		}
+		else
+		{
+			retMsg.append(QObject::trUtf8(" a été créer avec succès !"));
+
+			if (0 != _callingWindow)
+			{
+				YerothQMessageBox::information(_callingWindow, QObject::trUtf8("succès"), retMsg);
+			}
+			else
+			{
+#ifdef YEROTH_ERP_3_0_TESTING_UNIT_TEST
+				qDebug() << retMsg;
+#endif
+			}
+
+			return true;
+		}
+	}
+
+	return false;
+}
+
+
+bool YerothUtils::creerNouveauFournisseur(QString 			  &proposedFournisseurName,
+		 	 	 	 	 	 	 	 	  YerothWindowsCommons *_callingWindow /* = 0 */)
+{
+	if (proposedFournisseurName.isEmpty())
+	{
+		return false;
+	}
+
+	YerothSqlTableModel &fournisseurSqlTableModel = _allWindows->getSqlTableModel_fournisseurs();
+
+	QString fournisseurFilter = QString("%1 = '%2'")
+	            					.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
+	            						 proposedFournisseurName);
+
+	fournisseurSqlTableModel.yerothSetFilter_WITH_where_clause(fournisseurFilter);
+
+	int rows = fournisseurSqlTableModel.easySelect();
+
+	if (rows > 0)
+	{
+		proposedFournisseurName.clear();
+		proposedFournisseurName.append(GET_SQL_RECORD_DATA(fournisseurSqlTableModel.record(0),
+									   YerothDatabaseTableColumn::NOM_ENTREPRISE));
+
+		fournisseurSqlTableModel.resetFilter();
+
+		return true;
+	}
+	else
+	{
+		fournisseurSqlTableModel.resetFilter();
+
+		QSqlRecord record = fournisseurSqlTableModel.record();
+
+		record.setValue(YerothDatabaseTableColumn::ID, YerothERPWindows::getNextIdSqlTableModel_fournisseurs());
+		record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE, proposedFournisseurName);
+
+		QString retMsg(QString(QObject::trUtf8("L'entreprise fournisseur '%1'"))
+							.arg(proposedFournisseurName));
+
+		bool success = fournisseurSqlTableModel.insertNewRecord(record);
+
+    	if (!success)
+    	{
+    		retMsg.append(QObject::trUtf8(" n'a pas pu être créer !"));
+
+    		if (0 != _callingWindow)
+    		{
+        		YerothQMessageBox::warning(_callingWindow, QObject::trUtf8("échec"), retMsg);
+    		}
+    		else
+    		{
+#ifdef YEROTH_ERP_3_0_TESTING_UNIT_TEST
+    		qDebug() << retMsg;
+#endif
+    		}
+
+    		return false;
+    	}
+    	else
+    	{
+    		retMsg.append(QObject::trUtf8(" a été créer avec succès !"));
+
+    		if (0 != _callingWindow)
+    		{
+        		YerothQMessageBox::information(_callingWindow, QObject::trUtf8("succès"), retMsg);
+    		}
+    		else
+    		{
+#ifdef YEROTH_ERP_3_0_TESTING_UNIT_TEST
+    		qDebug() << retMsg;
+#endif
+    		}
+
+    		return true;
+    	}
+    }
+
+	return false;
+}
+
+
+bool YerothUtils::creerNouvelleCategorie(QString 				&proposedCategorieName,
 										 YerothWindowsCommons 	*_callingWindow /* = 0 */)
 {
 	if (proposedCategorieName.isEmpty())
@@ -576,7 +742,12 @@ bool YerothUtils::creerNouvelleCategorie(const QString 			&proposedCategorieName
 
     if (rows > 0)
     {
-    	categorieSqlTableModel.resetFilter();
+    	proposedCategorieName.clear();
+		proposedCategorieName.append(GET_SQL_RECORD_DATA(categorieSqlTableModel.record(0),
+									 YerothDatabaseTableColumn::NOM_CATEGORIE));
+
+		categorieSqlTableModel.resetFilter();
+
     	return true;
     }
     else
@@ -808,12 +979,12 @@ bool YerothUtils::UPDATE_PREVIOUS_BUYING_PRICE_IN_ProductList(const YerothERPSer
 }
 
 
-bool YerothUtils::insertStockItemInProductList(const YerothERPServiceStockMarchandiseData &aServiceStockData,
-											   YerothWindowsCommons 		   			  *_callingWindow /* = 0 */)
+bool YerothUtils::insertStockItemInProductList(YerothERPServiceStockMarchandiseData &aServiceStockData_IN_OUT,
+											   YerothWindowsCommons 		   	    *_callingWindow /* = 0 */)
 {
     bool success = false;
 
-    if (!YerothUtils::creerNouvelleCategorie(aServiceStockData._categorie,
+    if (!YerothUtils::creerNouvelleCategorie(aServiceStockData_IN_OUT._categorie,
     										 _callingWindow))
     {
     	QString retMsg(QObject::trUtf8("La désignation de la catégorie ne doit pas être vide !"));
@@ -842,7 +1013,7 @@ bool YerothUtils::insertStockItemInProductList(const YerothERPServiceStockMarcha
     record.setValue(YerothDatabaseTableColumn::ID,
                     YerothERPWindows::getNextIdSqlTableModel_marchandises());
 
-    if (aServiceStockData._isService)
+    if (aServiceStockData_IN_OUT._isService)
     {
     	record.setValue(YerothDatabaseTableColumn::IS_SERVICE, YerothUtils::MYSQL_TRUE_LITERAL);
     }
@@ -851,36 +1022,36 @@ bool YerothUtils::insertStockItemInProductList(const YerothERPServiceStockMarcha
     	record.setValue(YerothDatabaseTableColumn::IS_SERVICE, YerothUtils::MYSQL_FALSE_LITERAL);
 
     	record.setValue(YerothDatabaseTableColumn::PRIX_DACHAT_PRECEDENT,
-    			YerothUtils::YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(aServiceStockData._prix_dachat_precedent));
+    			YerothUtils::YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(aServiceStockData_IN_OUT._prix_dachat_precedent));
 
     	record.setValue(YerothDatabaseTableColumn::PRIX_VENTE_EN_GROS_PRECEDENT,
-    			YerothUtils::YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(aServiceStockData._prix_vente_en_gros_precedent));
+    			YerothUtils::YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(aServiceStockData_IN_OUT._prix_vente_en_gros_precedent));
 
     	record.setValue(YerothDatabaseTableColumn::PRIX_VENTE_PRECEDENT,
-    			YerothUtils::YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(aServiceStockData._prix_vente_precedent));
+    			YerothUtils::YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(aServiceStockData_IN_OUT._prix_vente_precedent));
     }
 
-    record.setValue(YerothDatabaseTableColumn::REFERENCE, aServiceStockData._reference);
+    record.setValue(YerothDatabaseTableColumn::REFERENCE, aServiceStockData_IN_OUT._reference);
 
-    record.setValue(YerothDatabaseTableColumn::DESIGNATION, aServiceStockData._designation);
+    record.setValue(YerothDatabaseTableColumn::DESIGNATION, aServiceStockData_IN_OUT._designation);
 
-    record.setValue(YerothDatabaseTableColumn::CATEGORIE, aServiceStockData._categorie);
+    record.setValue(YerothDatabaseTableColumn::CATEGORIE, aServiceStockData_IN_OUT._categorie);
 
-    record.setValue(YerothDatabaseTableColumn::DESCRIPTION_PRODUIT, aServiceStockData._description);
+    record.setValue(YerothDatabaseTableColumn::DESCRIPTION_PRODUIT, aServiceStockData_IN_OUT._description);
 
-    if (!aServiceStockData._reference.isEmpty())
+    if (!aServiceStockData_IN_OUT._reference.isEmpty())
     {
-    	if (productListSqlTableModel.Is_SearchQSqlTable(YerothDatabaseTableColumn::REFERENCE, aServiceStockData._reference) 	> 0 ||
-    		productListSqlTableModel.Is_SearchQSqlTable(YerothDatabaseTableColumn::DESIGNATION, aServiceStockData._designation) > 0 )
+    	if (productListSqlTableModel.Is_SearchQSqlTable(YerothDatabaseTableColumn::REFERENCE, aServiceStockData_IN_OUT._reference) 	> 0 ||
+    		productListSqlTableModel.Is_SearchQSqlTable(YerothDatabaseTableColumn::DESIGNATION, aServiceStockData_IN_OUT._designation) > 0 )
     	{
     		productListSqlTableModel
 				.yerothSetFilter_WITH_where_clause(QString("%1='%2' AND %3='%4' AND %5='%6'")
 														.arg(YerothDatabaseTableColumn::REFERENCE,
-															 aServiceStockData._reference,
+															 aServiceStockData_IN_OUT._reference,
 															 YerothDatabaseTableColumn::DESIGNATION,
-															 aServiceStockData._designation,
+															 aServiceStockData_IN_OUT._designation,
 															 YerothDatabaseTableColumn::CATEGORIE,
-															 aServiceStockData._categorie));
+															 aServiceStockData_IN_OUT._categorie));
 
     		int rows = productListSqlTableModel.easySelect();
 
@@ -892,16 +1063,16 @@ bool YerothUtils::insertStockItemInProductList(const YerothERPServiceStockMarcha
 
     			QSqlRecord aMarchandiseUpdateRecord(record);
 
-    			if (!aServiceStockData._prix_dachat_precedent.isEmpty())
+    			if (!aServiceStockData_IN_OUT._prix_dachat_precedent.isEmpty())
     			{
     				aMarchandiseUpdateRecord.setValue(YerothDatabaseTableColumn::PRIX_DACHAT_PRECEDENT,
-    						YerothUtils::YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(aServiceStockData._prix_dachat_precedent));
+    						YerothUtils::YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(aServiceStockData_IN_OUT._prix_dachat_precedent));
     			}
 
-    			if (!aServiceStockData._prix_vente_precedent.isEmpty())
+    			if (!aServiceStockData_IN_OUT._prix_vente_precedent.isEmpty())
     			{
     				aMarchandiseUpdateRecord.setValue(YerothDatabaseTableColumn::PRIX_VENTE_PRECEDENT,
-    						YerothUtils::YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(aServiceStockData._prix_vente_precedent));
+    						YerothUtils::YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(aServiceStockData_IN_OUT._prix_vente_precedent));
     			}
 
     			productListSqlTableModel.updateRecord(0, aMarchandiseUpdateRecord);
@@ -916,11 +1087,11 @@ bool YerothUtils::insertStockItemInProductList(const YerothERPServiceStockMarcha
 
     success = productListSqlTableModel.insertNewRecord(record);
 
-    QString stockOuService(aServiceStockData._designation);
+    QString stockOuService(aServiceStockData_IN_OUT._designation);
 
-    if (aServiceStockData._isService)
+    if (aServiceStockData_IN_OUT._isService)
     {
-    	stockOuService = aServiceStockData._reference;
+    	stockOuService = aServiceStockData_IN_OUT._reference;
     }
 
     QString retMsg(QObject::tr("Le stock (service) '%1'")
