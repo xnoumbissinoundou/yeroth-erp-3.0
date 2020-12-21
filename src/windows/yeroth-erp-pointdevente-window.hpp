@@ -124,8 +124,6 @@ public slots:
 
 	void setRechercheCodebarArticleFocus();
 
-	void handleClientName(const QString& text);
-
 	void activateLineEditRemisePrix(bool toggled);
 
 	void activateLineEditRemisePourcentage(bool toggled);

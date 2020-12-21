@@ -469,12 +469,6 @@ void YerothPointDeVenteWindow::setupLineEdits()
     lineEdit_articles_quantite_a_vendre->setYerothEnabled(false);
     lineEdit_articles_montant_a_rembourser->setYerothEnabled(false);
     lineEdit_articles_montant_a_rembourser->setText(GET_CURRENCY_STRING_NUM(0.0));
-
-    connect(lineEdit_articles_nom_client,
-    		SIGNAL(textChanged(const QString &)),
-			this,
-            SLOT(handleClientName(const QString &)));
-
     lineEdit_article_detail_quantite_a_vendre->setValidator(&YerothUtils::DoubleValidator);
     lineEdit_article_detail_remise_prix->setValidator(&YerothUtils::DoubleValidator);
     lineEdit_article_detail_remise_pourcentage->setValidator(&YerothUtils::DoubleValidator);
@@ -485,7 +479,7 @@ void YerothPointDeVenteWindow::setupLineEdits()
 
 void YerothPointDeVenteWindow::setupLineEditsQCompleters()
 {
-	lineEdit_articles_nom_client->setupMyStaticQCompleter(_allWindows->CLIENTS, YerothDatabaseTableColumn::NOM_ENTREPRISE, true);
+	lineEdit_articles_nom_client->setupMyStaticQCompleter(_allWindows->CLIENTS, YerothDatabaseTableColumn::NOM_ENTREPRISE);
 }
 
 
@@ -1194,18 +1188,6 @@ void YerothPointDeVenteWindow::setRechercheCodebarArticleFocus()
     setRechercheLineEditFocus();
 }
 
-void YerothPointDeVenteWindow::handleClientName(const QString &text)
-{
-	if (checkBox_enregistrer_client->isChecked())
-	{
-		//_logger->log("handleClientName(const QString&)");
-		if (YerothUtils::isEqualCaseInsensitive(text, YerothUtils::NOUVEAU_CLIENT))
-		{
-			_allWindows->_creerNouveauClientWindow->rendreVisible(_curStocksTableModel);
-			rendreInvisibleAvecConservation();
-		}
-	}
-}
 
 void YerothPointDeVenteWindow::lister()
 {
