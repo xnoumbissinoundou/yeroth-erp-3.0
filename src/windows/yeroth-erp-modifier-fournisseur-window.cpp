@@ -617,7 +617,8 @@ void YerothModifierFournisseurWindow::showFournisseurDetail()
 {
 	QSqlRecord record;
 
-	YerothUtils::GET_YEROTH_VIEW_RECORD_WIDTH_LAST_SELECTED_ID(*_curStocksTableModel, record);
+	_allWindows->_fournisseursWindow->
+		SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
 
     _curFournisseurDetailDBID = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ID).toInt();
 
@@ -663,6 +664,4 @@ void YerothModifierFournisseurWindow::showFournisseurDetail()
     {
         label_image_produit->setAutoFillBackground(false);
     }
-
-    YerothUtils::RESET_YEROTH_VIEW_RECORD_WIDTH_LAST_SELECTED_ID(*_curStocksTableModel);
 }
