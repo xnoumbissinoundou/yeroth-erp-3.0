@@ -1684,8 +1684,6 @@ void YerothEntrerWindow::enregistrer_produit()
 
     double prix_vente_en_gros = get_prix_vente_en_gros();
 
-    QDEBUG_STRINGS_OUTPUT_2_N("prix_vente_en_gros", prix_vente_en_gros);
-
     if (!YerothUtils::isProfitable(prix_vente_en_gros,
     							   lineEdit_prix_dachat->text().toDouble(),
 								   _montantTva_en_gros))
@@ -1798,13 +1796,13 @@ void YerothEntrerWindow::enregistrer_produit()
     	achatRecord.setValue(YerothDatabaseTableColumn::STOCKS_ID, stock_id_to_save);
     	achatRecord.setValue(YerothDatabaseTableColumn::REFERENCE, lineEdit_reference_produit->text());
     	achatRecord.setValue(YerothDatabaseTableColumn::DESIGNATION, lineEdit_designation->text());
-    	achatRecord.setValue(YerothDatabaseTableColumn::CATEGORIE, lineEdit_categorie_produit->text());
+    	achatRecord.setValue(YerothDatabaseTableColumn::CATEGORIE, aServiceStockData._categorie);
     }
 
     record.setValue(YerothDatabaseTableColumn::ID, stock_id_to_save);
     record.setValue(YerothDatabaseTableColumn::REFERENCE, lineEdit_reference_produit->text());
     record.setValue(YerothDatabaseTableColumn::DESIGNATION, lineEdit_designation->text());
-    record.setValue(YerothDatabaseTableColumn::CATEGORIE, lineEdit_categorie_produit->text());
+    record.setValue(YerothDatabaseTableColumn::CATEGORIE, aServiceStockData._categorie);
     record.setValue(YerothDatabaseTableColumn::DESCRIPTION_PRODUIT, textEdit_description->toPlainText());
     record.setValue(YerothDatabaseTableColumn::LOTS_ENTRANT, doubleSpinBox_lots_entrant->value());
     record.setValue(YerothDatabaseTableColumn::QUANTITE_PAR_LOT, lineEdit_quantite_par_lot->text().toDouble());
