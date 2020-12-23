@@ -93,7 +93,7 @@ void YerothTableView::setupSelectionOptions()
 {
     setFrameShadow(QFrame::Plain);
     setEditTriggers(QAbstractItemView::NoEditTriggers);
-    setSelectionBehavior(QAbstractItemView::SelectRows);
+    setSelectionBehavior(QAbstractItemView::SelectItems);
     setSelectionMode(QAbstractItemView::ContiguousSelection);
 }
 
@@ -103,29 +103,11 @@ void YerothTableView::selectionChanged (const QItemSelection & selected,
 {
     QModelIndexList selectedIndexes = selected.indexes();
 
-    if (selectedIndexes.size() == 1)
-    {
-//    	QDEBUG_STRINGS_OUTPUT_2("selectionChanged", _lastSelected_Row__ID);
+    QString db_ID_in_out;
 
+    if (selectedIndexes.size() > 0)
+    {
         _lastSelected_Row__ID = selectedIndexes.at(0).row();
-    }
-    else if (selectedIndexes.size() > 1)
-    {
-    	uint last_Row_ID = selectedIndexes.size() - 1;
-
-    	for (uint j = 0; j < selectedIndexes.size(); ++j)
-    	{
-//    		QDEBUG_STRINGS_OUTPUT_2_N("selectionChanged - j", j);
-
-    		if (j != last_Row_ID)
-    		{
-    			_lastSelected_Rows__IDs.append(QString::number(selectedIndexes.at(j).row()));
-    		}
-    		else
-    		{
-    			_lastSelected_Row__ID = selectedIndexes.at(j).row();
-    		}
-    	}
     }
 
     /*

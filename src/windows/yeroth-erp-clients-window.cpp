@@ -366,9 +366,19 @@ void YerothERPClientsWindow::modifierCompteClient()
 
 void YerothERPClientsWindow::supprimer_PLUSIEURS_CompteClient()
 {
-	for (uint j = 0; j < tableView_clients->lastSelected_Rows__IDs().size(); ++j)
+	QString YEROTH_TABLE_VIEW_DELETE_A_SELECTED_ROW_QUERY_STRING;
+
+	QMapIterator<QString, QString> j(tableView_clients->lastSelected_Rows__IDs());
+
+	while (j.hasNext())
 	{
-		QDEBUG_STRINGS_OUTPUT_2_N("supprimer_PLUSIEURS_CompteClient", j);
+		j.next();
+
+		YEROTH_TABLE_VIEW_DELETE_A_SELECTED_ROW_QUERY_STRING
+			.append(QString("DELETE FROM %1 WHERE %2 = '%3';")
+				.arg(_allWindows->CLIENTS,
+					 YerothDatabaseTableColumn::ID,
+					 j.value()));
 	}
 }
 

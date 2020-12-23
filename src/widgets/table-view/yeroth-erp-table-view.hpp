@@ -115,14 +115,14 @@ public:
 		_tableName = tableName;
 	}
 
-	inline const int lastSelected_Rows__IDs_INT_SIZE()
+	inline int lastSelected_Rows__IDs_INT_SIZE()
 	{
-		return _lastSelected_Rows__IDs.size();
+		return _MAP_lastSelected_Row__TO__DB_ID.size();
 	}
 
-	inline const QStringList & lastSelected_Rows__IDs()
+	inline const QMap<QString, QString> & lastSelected_Rows__IDs()
 	{
-		return _lastSelected_Rows__IDs;
+		return _MAP_lastSelected_Row__TO__DB_ID;
 	}
 
 	inline const QString & lastSelectedRow__ID()
@@ -164,7 +164,7 @@ protected:
 
 	bool 						_writeEnabled;
 
-	QStringList					_lastSelected_Rows__IDs;
+	QMap<QString, QString>		_MAP_lastSelected_Row__TO__DB_ID;
 
 	QString 					_lastSelected_Row__ID;
 
