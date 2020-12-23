@@ -115,14 +115,24 @@ public:
 		_tableName = tableName;
 	}
 
+	inline const int lastSelected_Rows__IDs_INT_SIZE()
+	{
+		return _lastSelected_Rows__IDs.size();
+	}
+
+	inline const QStringList & lastSelected_Rows__IDs()
+	{
+		return _lastSelected_Rows__IDs;
+	}
+
 	inline const QString & lastSelectedRow__ID()
 	{
-		return _lastSelectedRow__ID;
+		return _lastSelected_Row__ID;
 	}
 
 	inline void setLastSelectedRow__ID(const QString &aLastSelectedRow__ID)
 	{
-		_lastSelectedRow__ID = aLastSelectedRow__ID;
+		_lastSelected_Row__ID = aLastSelectedRow__ID;
 	}
 
 	inline YerothPOSQStandardItemModel *getStandardItemModel()
@@ -134,7 +144,6 @@ public:
 	{
 		_stdItemModel = stdItemModel;
 	}
-
 
 	static YerothERPWindows *YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER;
 
@@ -155,7 +164,9 @@ protected:
 
 	bool 						_writeEnabled;
 
-	QString 					_lastSelectedRow__ID;
+	QStringList					_lastSelected_Rows__IDs;
+
+	QString 					_lastSelected_Row__ID;
 
 	const QString 				*_tableName;
 

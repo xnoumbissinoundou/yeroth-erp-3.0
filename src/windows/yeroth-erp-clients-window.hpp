@@ -138,6 +138,8 @@ private slots:
 
 	void modifierCompteClient();
 
+	void supprimer_PLUSIEURS_CompteClient();
+
 	void supprimerCompteClient();
 
 	void afficher_au_detail();

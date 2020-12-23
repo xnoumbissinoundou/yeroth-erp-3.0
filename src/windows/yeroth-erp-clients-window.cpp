@@ -364,18 +364,34 @@ void YerothERPClientsWindow::modifierCompteClient()
 }
 
 
+void YerothERPClientsWindow::supprimer_PLUSIEURS_CompteClient()
+{
+	for (uint j = 0; j < tableView_clients->lastSelected_Rows__IDs().size(); ++j)
+	{
+		QDEBUG_STRINGS_OUTPUT_2_N("supprimer_PLUSIEURS_CompteClient", j);
+	}
+}
+
+
 void YerothERPClientsWindow::supprimerCompteClient()
 {
     YerothSqlTableModel *clientsTableModel = 0;
 
-    if (_curClientsTableModel
-            && YerothUtils::isEqualCaseInsensitive(_allWindows->CLIENTS, _curClientsTableModel->sqlTableName()))
+    if (_curClientsTableModel &&
+    	YerothUtils::isEqualCaseInsensitive(_allWindows->CLIENTS, _curClientsTableModel->sqlTableName()))
     {
         clientsTableModel = _curClientsTableModel;
     }
     else
     {
         return ;
+    }
+
+    if (tableView_clients->lastSelected_Rows__IDs_INT_SIZE() > 0)
+    {
+    	supprimer_PLUSIEURS_CompteClient();
+
+    	return ;
     }
 
     QSqlRecord record;
