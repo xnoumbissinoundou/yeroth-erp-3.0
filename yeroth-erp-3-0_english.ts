@@ -3673,6 +3673,11 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation> coulnd&apos;t be deleted !</translation>
     </message>
     <message>
+        <location filename="src/windows/yeroth-erp-clients-window.cpp" line="415"/>
+        <source>suppression de clients - échec</source>
+        <translation>deletion of customers - failure</translation>
+    </message>
+    <message>
         <location filename="src/windows/yeroth-erp-clients-window.cpp" line="481"/>
         <source>suppression d&apos;un compte client - succès</source>
         <translation>deletion of a customer account - success</translation>
