@@ -77,7 +77,6 @@ do
 
     f)	languageFlag=1
       	languageVal="YEROTH_FRANCAIS_LANGUAGE"
-        echo "compilation pour la langue francaise"
 		;;
 
     e)	languageFlag=1
@@ -217,7 +216,7 @@ if [ $qtTestLibFlag ]; then
 						YEROTH_DEBUG_LOG=$debugVal \
 						YEROTH_VERSION=$yerothVersionVal \
 						YEROTH_LANGUAGE=$languageVal >> "${yerothVersionVal}.out.log" \
-							2> "${yerothVersionVal}.error.log" 
+							2>> "${yerothVersionVal}.error.log" 
 		else
 				make clean && \
 				make -j$jobsVal \
@@ -247,8 +246,8 @@ else
 						YEROTH_CHECK_MEMORY=$yerothCheckMemoryVal \
 						YEROTH_DEBUG_LOG=$debugVal \
 						YEROTH_VERSION=$yerothVersionVal \
-						YEROTH_LANGUAGE=$languageVal >> "${yerothVersionVal}.out.log" \
-							2>> "${yerothVersionVal}.error.log" 
+						YEROTH_LANGUAGE=$languageVal > "${yerothVersionVal}.out.log" \
+							2> "${yerothVersionVal}.error.log" 
 		fi
 fi
 
