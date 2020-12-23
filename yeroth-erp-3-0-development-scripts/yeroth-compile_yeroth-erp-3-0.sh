@@ -186,15 +186,15 @@ fi
 if [ $simulationFlag ]; then
 		if [ $qtTestLibFlag ]; then
 				if [ $continueFlag ]; then
-						echo "make -j$jobsVal YEROTH_ERP_3_0_TEST=$qtTestLibVal YEROTH_VIRTUAL_KEYBOARD_OPTIONS=$virtualKeyboardVal YEROTH_DEBUG_LOG=$debugVal YEROTH_VERSION=$yerothVersionVal YEROTH_LANGUAGE=$languageVal YEROTH_CHECK_MEMORY=$yerothCheckMemoryVal"
+						echo "make -j$jobsVal YEROTH_ERP_3_0_TEST=$qtTestLibVal YEROTH_VIRTUAL_KEYBOARD_OPTIONS=$virtualKeyboardVal YEROTH_DEBUG_LOG=$debugVal YEROTH_VERSION=$yerothVersionVal YEROTH_LANGUAGE=$languageVal YEROTH_CHECK_MEMORY=$yerothCheckMemoryVal >> ${yerothVersionVal}.out.log	2>> ${yerothVersionVal}.error.log"
 				else
-						echo "make clean &&  make -j$jobsVal YEROTH_ERP_3_0_TEST=$qtTestLibVal YEROTH_VIRTUAL_KEYBOARD_OPTIONS=$virtualKeyboardVal YEROTH_DEBUG_LOG=$debugVal YEROTH_VERSION=$yerothVersionVal YEROTH_LANGUAGE=$languageVal YEROTH_CHECK_MEMORY=$yerothCheckMemoryVal"
+						echo "make clean &&  make -j$jobsVal YEROTH_ERP_3_0_TEST=$qtTestLibVal YEROTH_VIRTUAL_KEYBOARD_OPTIONS=$virtualKeyboardVal YEROTH_DEBUG_LOG=$debugVal YEROTH_VERSION=$yerothVersionVal YEROTH_LANGUAGE=$languageVal YEROTH_CHECK_MEMORY=$yerothCheckMemoryVal > ${yerothVersionVal}.out.log	2> ${yerothVersionVal}.error.log"
 				fi
 		else
 				if [ $continueFlag ]; then
-						echo "make -j$jobsVal YEROTH_ERP_3_0_TEST=$qtTestLibVal YEROTH_VIRTUAL_KEYBOARD_OPTIONS=$virtualKeyboardVal YEROTH_DEBUG_LOG=$debugVal YEROTH_VERSION=$yerothVersionVal YEROTH_LANGUAGE=$languageVal YEROTH_CHECK_MEMORY=$yerothCheckMemoryVal"
+						echo "make -j$jobsVal YEROTH_ERP_3_0_TEST=$qtTestLibVal YEROTH_VIRTUAL_KEYBOARD_OPTIONS=$virtualKeyboardVal YEROTH_DEBUG_LOG=$debugVal YEROTH_VERSION=$yerothVersionVal YEROTH_LANGUAGE=$languageVal YEROTH_CHECK_MEMORY=$yerothCheckMemoryVal >> ${yerothVersionVal}.out.log	2>> ${yerothVersionVal}.error.log"
 				else
-						echo "make clean && make -j$jobsVal YEROTH_ERP_3_0_TEST=$qtTestLibVal YEROTH_VIRTUAL_KEYBOARD_OPTIONS=$virtualKeyboardVal YEROTH_DEBUG_LOG=$debugVal YEROTH_VERSION=$yerothVersionVal YEROTH_LANGUAGE=$languageVal YEROTH_CHECK_MEMORY=$yerothCheckMemoryVal"
+						echo "make clean && make -j$jobsVal YEROTH_ERP_3_0_TEST=$qtTestLibVal YEROTH_VIRTUAL_KEYBOARD_OPTIONS=$virtualKeyboardVal YEROTH_DEBUG_LOG=$debugVal YEROTH_VERSION=$yerothVersionVal YEROTH_LANGUAGE=$languageVal YEROTH_CHECK_MEMORY=$yerothCheckMemoryVal > ${yerothVersionVal}.out.log 2> ${yerothVersionVal}.error.log"
 				fi
 		fi
 		exit 3
@@ -216,7 +216,8 @@ if [ $qtTestLibFlag ]; then
 						YEROTH_CHECK_MEMORY=$yerothCheckMemoryVal \
 						YEROTH_DEBUG_LOG=$debugVal \
 						YEROTH_VERSION=$yerothVersionVal \
-						YEROTH_LANGUAGE=$languageVal
+						YEROTH_LANGUAGE=$languageVal >> "${yerothVersionVal}.out.log" \
+							2> "${yerothVersionVal}.error.log" 
 		else
 				make clean && \
 				make -j$jobsVal \
@@ -225,7 +226,8 @@ if [ $qtTestLibFlag ]; then
 						YEROTH_CHECK_MEMORY=$yerothCheckMemoryVal \
 						YEROTH_DEBUG_LOG=$debugVal \
 						YEROTH_VERSION=$yerothVersionVal \
-						YEROTH_LANGUAGE=$languageVal
+						YEROTH_LANGUAGE=$languageVal > "${yerothVersionVal}.out.log" \
+							2> "${yerothVersionVal}.error.log" 
 		fi
 else
 		if [ $continueFlag ]; then
@@ -235,7 +237,8 @@ else
 						YEROTH_CHECK_MEMORY=$yerothCheckMemoryVal \
 						YEROTH_DEBUG_LOG=$debugVal \
 						YEROTH_VERSION=$yerothVersionVal \
-						YEROTH_LANGUAGE=$languageVal
+						YEROTH_LANGUAGE=$languageVal >> "${yerothVersionVal}.out.log" \
+							2>> "${yerothVersionVal}.error.log" 
 		else
 				make clean && \
 				make -j$jobsVal \
@@ -244,7 +247,8 @@ else
 						YEROTH_CHECK_MEMORY=$yerothCheckMemoryVal \
 						YEROTH_DEBUG_LOG=$debugVal \
 						YEROTH_VERSION=$yerothVersionVal \
-						YEROTH_LANGUAGE=$languageVal
+						YEROTH_LANGUAGE=$languageVal >> "${yerothVersionVal}.out.log" \
+							2>> "${yerothVersionVal}.error.log" 
 		fi
 fi
 
