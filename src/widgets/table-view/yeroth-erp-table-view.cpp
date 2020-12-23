@@ -88,13 +88,15 @@ YerothTableView::~YerothTableView()
     delete _tableModelHeaders;
 }
 
+
 void YerothTableView::setupSelectionOptions()
 {
     setFrameShadow(QFrame::Plain);
     setEditTriggers(QAbstractItemView::NoEditTriggers);
     setSelectionBehavior(QAbstractItemView::SelectRows);
-    setSelectionMode(QAbstractItemView::SingleSelection);
+    setSelectionMode(QAbstractItemView::ContiguousSelection);
 }
+
 
 void YerothTableView::selectionChanged (const QItemSelection & selected,
                                        const QItemSelection & deselected)
