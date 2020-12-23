@@ -1,6 +1,6 @@
 #!/bin/bash
 # @file: yeroth-compile_yeroth-erp-3-0-academic.sh
-# @author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
+# @author: DR. XAVIER NOUMBISSI NOUNDOU
 # @email: xnoundou7@gmail.com
 
 OUT_CMD_TIME=$(yeroth-compile_yeroth-erp-3-0.sh -v YEROTH_ACADEMIC_EVALUATION_VERSION "${@}" 2> academic.error.log) && \

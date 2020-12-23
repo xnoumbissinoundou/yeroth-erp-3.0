@@ -1,6 +1,6 @@
 #!/bin/bash
 # @file: yeroth-compile_yeroth-erp-3-0-standalone.sh
-# @author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
+# @author: DR. XAVIER NOUMBISSI NOUNDOU
 # @email: xnoundou7@gmail.com
 
 if [[ "${@}" == *"s"* || "${@}" == *"h"* ]]; then
