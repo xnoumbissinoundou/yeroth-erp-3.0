@@ -196,3 +196,47 @@ void YerothERPFournisseursTableView::lister_les_elements_du_tableau(YerothSqlTab
 
 	resizeColumnsToContents();
 }
+
+
+void YerothERPFournisseursTableView::selectionChanged (const QItemSelection & selected,
+                                        		  	   const QItemSelection & deselected)
+{
+    static YerothERPWindows *curAllWindows = YerothUtils::getAllWindows();
+
+    QModelIndexList selectedIndexes = selected.indexes();
+
+    QString db_ID_in_out;
+
+    if (selectedIndexes.size() == 1)
+    {
+    	_MAP_lastSelected_Row__TO__DB_ID.clear();
+
+        _lastSelected_Row__ID = selectedIndexes.at(0).row();
+    }
+    else if (selectedIndexes.size() > 1)
+    {
+    	uint last_Row_ID = selectedIndexes.size() - 1;
+
+    	for (uint j = 0; j < selectedIndexes.size(); ++j)
+    	{
+    		curAllWindows->_fournisseursWindow->
+    				getQModelIndex_dbID_from_MODEL_INDEX(selectedIndexes.at(j),
+    													 db_ID_in_out);
+
+			_MAP_lastSelected_Row__TO__DB_ID
+					.insert(QString::number(selectedIndexes.at(j).row()),
+			    			db_ID_in_out);
+
+    		if (last_Row_ID == j)
+    		{
+    			_lastSelected_Row__ID = selectedIndexes.at(j).row();
+    		}
+    	}
+    }
+
+    /*
+     * Cet appel de la fonction 'clearFocus' est necessaire pour
+     * que les nouveaux elements du tableau soit visible immediatement.
+     */
+    clearFocus();
+}

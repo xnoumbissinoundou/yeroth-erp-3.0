@@ -59,6 +59,11 @@ protected slots:
 	virtual void dataChanged(const QModelIndex &index,
 					 	 	 const QModelIndex &bottomRight,
 							 const QVector<int> &roles = QVector<int>());
+
+protected:
+
+	virtual void selectionChanged(const QItemSelection & selected,
+								  const QItemSelection & deselected);
 };
 
 

@@ -48,6 +48,11 @@ public:
 	}
 
 	virtual void lister_les_elements_du_tableau(YerothSqlTableModel &achatSqlTableModel);
+
+protected:
+
+	virtual void selectionChanged(const QItemSelection & selected,
+								  const QItemSelection & deselected);
 };
 
 
