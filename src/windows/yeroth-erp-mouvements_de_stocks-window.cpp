@@ -688,21 +688,32 @@ void YerothMouvementsDeStocksWindow::lister_les_elements_du_tableau(const QStrin
         tableView_show_or_hide_columns(*tableView_transferts_articles);
     }
 
-    double quantite_sortie = 0;
-    double quantite_sortie_total = 0;
+
+    double quantite_sortie_OU_transferee = 0;
+    double quantite_sortie_OU_transferee_TOTAL = 0;
 
     int curMouvementsDeStocksTableModelRowCount = _curMouvementsDeStocksTableModel->easySelect();
 
     QSqlRecord aRecord;
+
     for (int j = 0; j < curMouvementsDeStocksTableModelRowCount; ++j)
     {
         aRecord = _curMouvementsDeStocksTableModel->record(j);
 
-        quantite_sortie = GET_SQL_RECORD_DATA(aRecord, "quantite_sortie").toDouble();
-        quantite_sortie_total += quantite_sortie;
+        quantite_sortie_OU_transferee =
+        		GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::QUANTITE_SORTIE).toDouble();
+
+        quantite_sortie_OU_transferee_TOTAL += quantite_sortie_OU_transferee;
     }
 
-    lineEdit_mouvementsDeStocks_quantite_sortie->setText(GET_DOUBLE_STRING(quantite_sortie_total));
+    if (SUJET_ACTION_SORTIES_STOCKS == tabWidget_mouvementsDeStocks->currentIndex())
+    {
+    	lineEdit_mouvementsDeStocks_quantite_sortie->setText(GET_DOUBLE_STRING(quantite_sortie_OU_transferee_TOTAL));
+    }
+    else if (SUJET_ACTION_TRANSFERTS_STOCKS == tabWidget_mouvementsDeStocks->currentIndex())
+    {
+    	lineEdit_mouvementsDeStocks_quantite_transferee->setText(GET_DOUBLE_STRING(quantite_sortie_OU_transferee_TOTAL));
+    }
 }
 
 
