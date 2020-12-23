@@ -138,7 +138,7 @@ private slots:
 
 	void modifierCompteClient();
 
-	void supprimer_PLUSIEURS_CompteClient();
+	void supprimer_PLUSIEURS_CompteClient(YerothSqlTableModel &aClientsTableModel);
 
 	void supprimerCompteClient();
 
