@@ -15,7 +15,7 @@ USAGE="
 	[-s] : simulate 'yeroth-erp-3.0' compilation
 	[-t] : compile 'yeroth-erp-3.0' with QT Test library activated
 					for unit tests
-	[-l] : compile 'yeroth-erp-3.0' to use with virtual keyboard
+	[-k] : compile 'yeroth-erp-3.0' to use with virtual keyboard
 	[-c] : continue previous stopped compilation
 	[-g] : compiles 'yeroth-erp-3.0' with debug information
 	[-v <'yeroth-erp-3.0'-version>] :
@@ -42,7 +42,7 @@ continueFlag=
 releaseBuildFlag=
 
 
-while getopts 'mtlhsgv:fecj:r' OPTION
+while getopts 'mtkhsgv:fecj:r' OPTION
 do
   case $OPTION in
 
@@ -59,7 +59,7 @@ do
         echo "QT testlib incluse."
 		;;
 
-    l)	virtualKeyboardFlag=1
+    k)	virtualKeyboardFlag=1
         echo "clavier virtuel activé."
 		;;
 
