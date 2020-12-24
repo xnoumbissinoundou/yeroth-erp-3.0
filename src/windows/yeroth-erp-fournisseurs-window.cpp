@@ -397,8 +397,6 @@ void YerothERPFournisseursWindow::supprimer_PLUSIEURS_Fournisseurs(YerothSqlTabl
     	{
     		setupLineEditsQCompleters((QObject *)this);
 
-    		afficherFournisseurs();
-
     		msg.append(QObject::trUtf8(" ont été supprimés de la base de données !"));
 
     		YerothQMessageBox::information(this,
@@ -438,6 +436,10 @@ void YerothERPFournisseursWindow::supprimerFournisseur()
     {
     	supprimer_PLUSIEURS_Fournisseurs(*fournisseursTableModel);
 
+   		tableView_fournisseurs->clearSelection();
+
+    	afficherFournisseurs();
+
     	return ;
     }
 
@@ -471,6 +473,8 @@ void YerothERPFournisseursWindow::supprimerFournisseur()
         if (success && fournisseursTableModel->select())
         {
         	setupLineEditsQCompleters((QObject *)this);
+
+        	tableView_fournisseurs->clearSelection();
 
         	afficherFournisseurs();
 
