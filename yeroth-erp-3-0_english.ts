@@ -1376,23 +1376,23 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <translation>value to search for</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="972"/>
+        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="1014"/>
         <source>Poursuivre avec la suppression de la marchandise &apos;%1&apos; ?</source>
         <oldsource>Poursuivre avec la suppression de l&apos;article &quot;%1&quot; ?</oldsource>
         <translation>Continue with deletion of merchandise &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="990"/>
+        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="1052"/>
         <source>La marchandise &apos;%1&apos; a été supprimée.</source>
         <translation>Merchandise &apos;%1&apos; has been deleted !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="1001"/>
+        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="1063"/>
         <source>L&apos;article &quot;%1&quot; ne pouvait pas être supprimé !</source>
         <translation>Article &quot;%1&quot; couldn&apos;t be deleted !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="977"/>
+        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="1019"/>
         <source>suppression d&apos;une marchandise</source>
         <oldsource>suppression d&apos;un inventaire de stock</oldsource>
         <translation>deletion of a merchandise</translation>
@@ -2081,7 +2081,7 @@ Continue with update of the stock ?</translation>
         <location filename="src/windows/yeroth-erp-creer-nouveau-client-window.cpp" line="256"/>
         <location filename="src/windows/yeroth-erp-creer-nouveau-fournisseur-window.cpp" line="242"/>
         <location filename="src/windows/yeroth-erp-creer-nouvelle-categorie-window.cpp" line="241"/>
-        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="994"/>
+        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="1056"/>
         <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="393"/>
         <location filename="src/windows/yeroth-erp-sortir-window.cpp" line="2305"/>
         <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="569"/>
@@ -2143,7 +2143,7 @@ Continue with update of the stock ?</translation>
         <location filename="src/windows/yeroth-erp-creer-nouveau-client-window.cpp" line="263"/>
         <location filename="src/windows/yeroth-erp-creer-nouveau-fournisseur-window.cpp" line="235"/>
         <location filename="src/windows/yeroth-erp-creer-nouvelle-categorie-window.cpp" line="234"/>
-        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="1005"/>
+        <location filename="src/windows/yeroth-erp-marchandises-window.cpp" line="1067"/>
         <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="350"/>
         <location filename="src/windows/yeroth-erp-modifier-window.cpp" line="399"/>
         <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="585"/>
@@ -4265,6 +4265,11 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="405"/>
         <source>suppression de fournisseurs - succès</source>
         <translation>deletion of suppliers - success</translation>
+    </message>
+    <message>
+        <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="414"/>
+        <source>suppression de fournisseurs - échec</source>
+        <translation>deletion of suppliers - failure</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-fournisseurs-window.cpp" line="460"/>
@@ -9214,70 +9219,70 @@ stock (service)</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-marchandises-window.ui" line="1747"/>
-        <source>Stocks</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="ui/yeroth-erp-marchandises-window.ui" line="2182"/>
         <source>Sortir
 ou
 Transférer</source>
         <translation>Check out</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-marchandises-window.ui" line="3087"/>
+        <location filename="ui/yeroth-erp-marchandises-window.ui" line="2652"/>
         <source>Menu</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-marchandises-window.ui" line="3869"/>
+        <location filename="ui/yeroth-erp-marchandises-window.ui" line="3434"/>
         <source>réinitialiser</source>
         <translation>reset</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-marchandises-window.ui" line="5645"/>
+        <location filename="ui/yeroth-erp-marchandises-window.ui" line="5210"/>
         <source>filtrer</source>
         <translation>filter</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-marchandises-window.ui" line="6079"/>
+        <location filename="ui/yeroth-erp-marchandises-window.ui" line="5644"/>
         <source>réinitialiser filtre</source>
         <translation>reset filter</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-marchandises-window.ui" line="6095"/>
+        <location filename="ui/yeroth-erp-marchandises-window.ui" line="5660"/>
         <source>services</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-marchandises-window.ui" line="6947"/>
+        <location filename="ui/yeroth-erp-marchandises-window.ui" line="6512"/>
         <source># marchandises</source>
         <translation># merchandises</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-marchandises-window.ui" line="8280"/>
+        <location filename="ui/yeroth-erp-marchandises-window.ui" line="7845"/>
         <source># d&apos;articles</source>
         <translation># articles</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-marchandises-window.ui" line="9542"/>
+        <location filename="ui/yeroth-erp-marchandises-window.ui" line="9107"/>
         <source># lignes</source>
         <translation># rows</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-marchandises-window.ui" line="9903"/>
+        <location filename="ui/yeroth-erp-marchandises-window.ui" line="9468"/>
         <source>CURRENT PAGE NR</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-marchandises-window.ui" line="10264"/>
+        <location filename="ui/yeroth-erp-marchandises-window.ui" line="9829"/>
         <source>LAST PAGE NR</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-marchandises-window.ui" line="11085"/>
+        <location filename="ui/yeroth-erp-marchandises-window.ui" line="10650"/>
         <source>/</source>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-marchandises-window.ui" line="12424"/>
+        <source>Supprimer</source>
+        <translation>Delete</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-marchandises-window.ui" line="12862"/>
