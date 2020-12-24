@@ -101,7 +101,10 @@ public slots:
 
     void modifier_marchandise();
 
-    void supprimer_cette_marchandise();
+    void supprimer_PLUSIEURS_Marchandises(YerothSqlTableModel &aMarchandisesTableModel);
+
+    void supprimer_cette_marchandise(QString aMarchandiseID = YerothUtils::EMPTY_STRING,
+									 bool _reEntrant = false);
 
     void reinitialiser_elements_filtrage();
 

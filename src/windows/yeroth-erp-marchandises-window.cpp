@@ -97,7 +97,7 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
     pushButton_entrer->disable(this);
     pushButton_rapports->disable(this);
     pushButton_menu_principal->disable(this);
-    pushButton_stocks->disable(this);
+    pushButton_supprimer->disable(this);
     pushButton_sortir->disable(this);
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
 
@@ -782,7 +782,7 @@ void YerothMarchandisesWindow::definirCaissier()
     pushButton_entrer->disable(this);
     pushButton_rapports->disable(this);
     pushButton_menu_principal->disable(this);
-    pushButton_stocks->disable(this);
+    pushButton_supprimer->disable(this);
     pushButton_sortir->disable(this);
 }
 
@@ -815,7 +815,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     pushButton_entrer->enable(this, SLOT(entrer()));
     pushButton_rapports->enable(this, SLOT(tableaux_de_bords()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
-    pushButton_stocks->enable(this, SLOT(afficherStocks()));
+    pushButton_supprimer->enable(this, SLOT(supprimer_cette_marchandise()));
     pushButton_sortir->enable(this, SLOT(sortir()));
 }
 
@@ -848,7 +848,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     pushButton_entrer->disable(this);
     pushButton_rapports->disable(this);
     pushButton_menu_principal->enable(this, SLOT(menu()));
-    pushButton_stocks->enable(this, SLOT(afficherStocks()));
+    pushButton_supprimer->disable(this);
     pushButton_sortir->disable(this);
 }
 
@@ -881,7 +881,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     pushButton_entrer->enable(this, SLOT(entrer()));
     pushButton_rapports->disable(this);
     pushButton_menu_principal->enable(this, SLOT(menu()));
-    pushButton_stocks->enable(this, SLOT(afficherStocks()));
+    pushButton_supprimer->enable(this, SLOT(supprimer_cette_marchandise()));
     pushButton_sortir->enable(this, SLOT(sortir()));
 }
 
@@ -907,7 +907,7 @@ void YerothMarchandisesWindow::definirMagasinier()
     pushButton_entrer->disable(this);
     pushButton_rapports->disable(this);
     pushButton_menu_principal->disable(this);
-    pushButton_stocks->disable(this);
+    pushButton_supprimer->disable(this);
     pushButton_sortir->disable(this);
 }
 
@@ -932,7 +932,7 @@ void YerothMarchandisesWindow::definirPasDeRole()
     pushButton_filtrer->disable(this);
     pushButton_entrer->disable(this);
     pushButton_rapports->disable(this);
-    pushButton_stocks->disable(this);
+    pushButton_supprimer->disable(this);
     pushButton_sortir->disable(this);
     pushButton_menu_principal->disable(this);
 }
@@ -962,12 +962,54 @@ void YerothMarchandisesWindow::modifier_marchandise()
 }
 
 
-void YerothMarchandisesWindow::supprimer_cette_marchandise()
+void YerothMarchandisesWindow::supprimer_PLUSIEURS_Marchandises(YerothSqlTableModel &aMarchandisesTableModel)
 {
+	QMapIterator<QString, QString> j(tableView_marchandises->lastSelected_Rows__IDs());
+
+	while (j.hasNext())
+	{
+		j.next();
+
+		supprimer_cette_marchandise(j.value(), true);
+	}
+}
+
+
+void YerothMarchandisesWindow::supprimer_cette_marchandise(QString aMarchandiseID /* = YerothUtils::EMPTY_STRING */,
+														   bool _reEntrant /* = false */)
+{
+    if (!_reEntrant & tableView_marchandises->lastSelected_Rows__IDs_INT_SIZE() > 1)
+    {
+    	supprimer_PLUSIEURS_Marchandises(*_curMarchandisesTableModel);
+
+    	return ;
+    }
+
     QSqlRecord record;
 
-    _allWindows->_marchandisesWindow->
-			SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
+    if (!aMarchandiseID.isEmpty())
+    {
+    	static QSqlQuery query;
+
+    	query.clear();
+
+    	QString QUERY_MARCHANDISE_DATA(QString("select * from %1 where %2='%3'")
+    										.arg(_allWindows->MARCHANDISES,
+    											 YerothDatabaseTableColumn::ID,
+												 aMarchandiseID));
+
+    	int querySize = YerothUtils::execQuery(query, QUERY_MARCHANDISE_DATA);
+
+    	if (query.next())
+    	{
+    		record = query.record();
+    	}
+    }
+    else
+    {
+        _allWindows->_marchandisesWindow->
+    			SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
+    }
 
     QString msgSupprimer(QString(QObject::trUtf8("Poursuivre avec la suppression de la marchandise '%1' ?"))
     						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION)));
@@ -979,8 +1021,28 @@ void YerothMarchandisesWindow::supprimer_cette_marchandise()
 									   QMessageBox::Cancel,
 									   QMessageBox::Ok))
     {
-    	bool resRemoved = _allWindows->_marchandisesWindow->
-    			SQL_DELETE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW();
+    	bool resRemoved =  false;
+
+    	if (!aMarchandiseID.isEmpty())
+    	{
+    		QString DELETE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW_QUERY_STRING
+				(QString("DELETE FROM %1 WHERE %2 = '%3'")
+    				.arg(_allWindows->MARCHANDISES,
+    					 YerothDatabaseTableColumn::ID,
+						 aMarchandiseID));
+
+    		resRemoved = YerothUtils::execQuery(DELETE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW_QUERY_STRING);
+
+//    		QDEBUG_STRINGS_OUTPUT_2(QString("resRemoved: %1, stocksID: %2")
+//    									.arg(BOOL_TO_STRING(resRemoved),
+//    										 aStockID),
+//											 DELETE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW_QUERY_STRING);
+    	}
+    	else
+    	{
+        	resRemoved = _allWindows->_marchandisesWindow->
+        			SQL_DELETE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW();
+    	}
 
         //qDebug() << "YerothInventaireDesStocksWindow::supprimer_ce_stock() " << resRemoved;
         if (resRemoved && _curMarchandisesTableModel->select())
