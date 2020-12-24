@@ -103,7 +103,10 @@ public slots:
 
     void afficher_au_detail(const QModelIndex &modelIndex);
 
-    void supprimer_ce_stock();
+    void supprimer_PLUSIEURS_Stocks(YerothSqlTableModel &aStocksTableModel);
+
+    void supprimer_ce_stock(QString aStockID = YerothUtils::EMPTY_STRING,
+    						bool _reEntrant = false);
 
     void refineYerothLineEdits();
 

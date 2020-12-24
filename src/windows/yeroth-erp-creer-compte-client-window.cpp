@@ -97,8 +97,6 @@ void YerothCreerCompteClientWindow::deconnecter_utilisateur()
 
 void YerothCreerCompteClientWindow::setupLineEdits()
 {
-	lineEdit_compte_client_nom_de_lentreprise->setFocus();
-
 	lineEdit_compte_client_dette_maximale->setYerothEnabled(false);
     lineEdit_compte_client_dette_maximale->setValidator(&YerothUtils::DoubleValidator);
 }
@@ -414,6 +412,8 @@ void YerothCreerCompteClientWindow::rendreVisible(YerothSqlTableModel * stocksTa
     }
 
     check_fields();
+
+    lineEdit_compte_client_nom_de_lentreprise->setFocus();
 
     setVisible(true);
 }

@@ -101,7 +101,7 @@ void YerothTableView::setupSelectionOptions()
 void YerothTableView::selectionChanged (const QItemSelection & selected,
                                         const QItemSelection & deselected)
 {
-    QModelIndexList selectedIndexes = selected.indexes();
+    QModelIndexList selectedIndexes = QAbstractItemView::selectedIndexes();
 
     QString db_ID_in_out;
 

@@ -364,7 +364,7 @@ void YerothERPClientsWindow::modifierCompteClient()
 }
 
 
-void YerothERPClientsWindow::supprimer_PLUSIEURS_CompteClient(YerothSqlTableModel &aClientsTableModel)
+void YerothERPClientsWindow::supprimer_PLUSIEURS_Clients(YerothSqlTableModel &aClientsTableModel)
 {
 	QString YEROTH_TABLE_VIEW_DELETE_SELECTED_ROWS_QUERY_STRING;
 
@@ -436,7 +436,7 @@ void YerothERPClientsWindow::supprimerCompteClient()
 
     if (tableView_clients->lastSelected_Rows__IDs_INT_SIZE() > 1)
     {
-    	supprimer_PLUSIEURS_CompteClient(*clientsTableModel);
+    	supprimer_PLUSIEURS_Clients(*clientsTableModel);
 
     	return ;
     }

@@ -413,7 +413,7 @@ void YerothCreerFournisseurWindow::rendreVisible(YerothSqlTableModel * stocksTab
 
     check_fields();
 
-    lineEdit_fournisseur_reference_fournisseur->setFocus();
+    lineEdit_fournisseur_nom_de_lentreprise->setFocus();
 
     setVisible(true);
 }

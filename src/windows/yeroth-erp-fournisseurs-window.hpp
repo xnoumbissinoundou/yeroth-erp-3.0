@@ -138,6 +138,8 @@ private slots:
 
 	void modifierFournisseur();
 
+	void supprimer_PLUSIEURS_Fournisseurs(YerothSqlTableModel &aFournisseursTableModel);
+
 	void supprimerFournisseur();
 
 	void afficher_au_detail();

@@ -117,7 +117,7 @@ YerothStocksWindow::YerothStocksWindow()
     pushButton_entrer->disable(this);
     pushButton_afficher->disable(this);
     pushButton_menu_principal->disable(this);
-    pushButton_inventaire_des_stocks->disable(this);
+    pushButton_supprimer->disable(this);
     pushButton_sortir->disable(this);
     pushButton_reinitialiser->disable(this);
 
@@ -794,7 +794,7 @@ void YerothStocksWindow::definirCaissier()
     pushButton_entrer->disable(this);
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_menu_principal->disable(this);
-    pushButton_inventaire_des_stocks->disable(this);
+    pushButton_supprimer->disable(this);
     pushButton_sortir->disable(this);
 }
 
@@ -831,7 +831,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     pushButton_entrer->enable(this, SLOT(entrer()));
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
-    pushButton_inventaire_des_stocks->enable(this, SLOT(afficherMarchandises()));
+    pushButton_supprimer->enable(this, SLOT(supprimer_ce_stock()));
     pushButton_sortir->enable(this, SLOT(sortir()));
 }
 
@@ -869,7 +869,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     pushButton_entrer->disable(this);
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
-    pushButton_inventaire_des_stocks->enable(this, SLOT(afficherMarchandises()));
+    pushButton_supprimer->disable(this);
     pushButton_sortir->disable(this);
 }
 
@@ -907,7 +907,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     pushButton_entrer->enable(this, SLOT(entrer()));
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
-    pushButton_inventaire_des_stocks->enable(this, SLOT(afficherMarchandises()));
+    pushButton_supprimer->disable(this);
     pushButton_sortir->enable(this, SLOT(sortir()));
 }
 
@@ -937,7 +937,7 @@ void YerothStocksWindow::definirMagasinier()
     pushButton_entrer->disable(this);
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
-    pushButton_inventaire_des_stocks->disable(this);
+    pushButton_supprimer->disable(this);
     pushButton_sortir->enable(this, SLOT(sortir()));
 }
 
@@ -967,7 +967,7 @@ void YerothStocksWindow::definirPasDeRole()
     pushButton_stocks_reinitialiser_filtre->disable(this);
     pushButton_entrer->disable(this);
     pushButton_afficher->disable(this);
-    pushButton_inventaire_des_stocks->disable(this);
+    pushButton_supprimer->disable(this);
     pushButton_sortir->disable(this);
     pushButton_menu_principal->disable(this);
 }
@@ -1008,14 +1008,58 @@ void YerothStocksWindow::afficher_au_detail(const QModelIndex & modelIndex)
  * La suppression d'un stock entraine automatiquement la
  * suppression de l'achat correspondant
  */
-void YerothStocksWindow::supprimer_ce_stock()
+void YerothStocksWindow::supprimer_PLUSIEURS_Stocks(YerothSqlTableModel &aStocksTableModel)
 {
-    _logger->log("supprimer_ce_stock");
+	QMapIterator<QString, QString> j(tableView_stocks->lastSelected_Rows__IDs());
+
+	while (j.hasNext())
+	{
+		j.next();
+
+		supprimer_ce_stock(j.value(), true);
+	}
+}
+
+
+/**
+ * La suppression d'un stock entraine automatiquement la
+ * suppression de l'achat correspondant
+ */
+void YerothStocksWindow::supprimer_ce_stock(QString aStockID /* = YerothUtils::EMPTY_STRING */,
+											bool _reEntrant /* = false */)
+{
+    if (!_reEntrant & tableView_stocks->lastSelected_Rows__IDs_INT_SIZE() > 1)
+    {
+    	supprimer_PLUSIEURS_Stocks(*_curStocksTableModel);
+
+    	return ;
+    }
 
     QSqlRecord record;
 
-    _allWindows->_stocksWindow->
-			SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
+    if (!aStockID.isEmpty())
+    {
+    	static QSqlQuery query;
+
+    	query.clear();
+
+    	QString QUERY_STOCK_DATA(QString("select * from %1 where %2='%3'")
+    								.arg(_allWindows->STOCKS,
+    									 YerothDatabaseTableColumn::ID,
+										 aStockID));
+
+    	int querySize = YerothUtils::execQuery(query, QUERY_STOCK_DATA);
+
+    	if (query.next())
+    	{
+    		record = query.record();
+    	}
+    }
+    else
+    {
+    	_allWindows->_stocksWindow->
+				SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
+    }
 
     QString msgSupprimer;
 
@@ -1043,19 +1087,70 @@ void YerothStocksWindow::supprimer_ce_stock()
                                        ("suppression d'un stock (service)"), msgSupprimer,
                                        QMessageBox::Cancel, QMessageBox::Ok))
     {
-        bool resRemoved = _allWindows->_stocksWindow->
-        		SQL_DELETE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW();
+    	bool resRemoved =  false;
+
+    	if (!aStockID.isEmpty())
+    	{
+    		QString DELETE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW_QUERY_STRING
+				(QString("DELETE FROM %1 WHERE %2 = '%3'")
+    				.arg(_allWindows->STOCKS,
+    					 YerothDatabaseTableColumn::ID,
+						 aStockID));
+
+    		resRemoved = YerothUtils::execQuery(DELETE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW_QUERY_STRING);
+
+//    		QDEBUG_STRINGS_OUTPUT_2(QString("resRemoved: %1, stocksID: %2")
+//    									.arg(BOOL_TO_STRING(resRemoved),
+//    										 aStockID),
+//											 DELETE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW_QUERY_STRING);
+    	}
+    	else
+    	{
+            resRemoved = _allWindows->_stocksWindow->
+            		SQL_DELETE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW();
+    	}
+
         //qDebug() << "YerothStocksWindow::supprimer_ce_stock() " << resRemoved;
 
         if (resRemoved && _curStocksTableModel->select())
         {
         	if (!is_service)
         	{
-        		QString deleteAchatsRowQueryStr(QString("DELETE FROM %1 WHERE stocks_id = '%2';")
-        											.arg(_allWindows->ACHATS,
-        												 GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ID)));
+        		QString deleteAchatsRowQueryStr;
 
-        		YerothUtils::execQuery(deleteAchatsRowQueryStr);
+        		if (!aStockID.isEmpty())
+        		{
+            		deleteAchatsRowQueryStr.append
+							(QString("DELETE FROM %1 WHERE %2='%3'")
+            					.arg(_allWindows->ACHATS,
+            						 YerothDatabaseTableColumn::STOCKS_ID,
+									 aStockID));
+        		}
+        		else
+        		{
+            		deleteAchatsRowQueryStr.append
+							(QString("DELETE FROM %1 WHERE %2='%3'")
+            					.arg(_allWindows->ACHATS,
+            						 YerothDatabaseTableColumn::STOCKS_ID,
+            						 GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ID)));
+        		}
+
+        		bool deletedBuyings = YerothUtils::execQuery(deleteAchatsRowQueryStr);
+
+//        		if (!aStockID.isEmpty())
+//        		{
+//            		QDEBUG_STRINGS_OUTPUT_2(QString("deletedBuyings: %1, stocksID: %2")
+//            									.arg(BOOL_TO_STRING(deletedBuyings),
+//            										 aStockID),
+//    												 deleteAchatsRowQueryStr);
+//        		}
+//        		else
+//        		{
+//            		QDEBUG_STRINGS_OUTPUT_2(QString("deletedBuyings: %1, stocksID: %2")
+//            									.arg(BOOL_TO_STRING(deletedBuyings),
+//            										 GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ID)),
+//    												 deleteAchatsRowQueryStr);
+//        		}
         	}
 
             msgSupprimer.clear();

@@ -305,6 +305,8 @@ bool YerothWindowsCommons::SQL_DELETE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW()
 																			 YerothDatabaseTableColumn::ID,
 																			 YerothWindowsCommons::get_last_lister_selected_row_ID()));
 
+	QDEBUG_STRINGS_OUTPUT_2("**", REMOVE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW_QUERY_STRING);
+
 	return YerothUtils::execQuery(REMOVE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW_QUERY_STRING);
 }
 

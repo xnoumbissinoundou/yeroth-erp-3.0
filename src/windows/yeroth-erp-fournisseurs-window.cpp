@@ -363,6 +363,62 @@ void YerothERPFournisseursWindow::modifierFournisseur()
 }
 
 
+void YerothERPFournisseursWindow::supprimer_PLUSIEURS_Fournisseurs(YerothSqlTableModel &aFournisseursTableModel)
+{
+	QString YEROTH_TABLE_VIEW_DELETE_SELECTED_ROWS_QUERY_STRING;
+
+	QMapIterator<QString, QString> j(tableView_fournisseurs->lastSelected_Rows__IDs());
+
+	while (j.hasNext())
+	{
+		j.next();
+
+		YEROTH_TABLE_VIEW_DELETE_SELECTED_ROWS_QUERY_STRING
+			.append(QString("DELETE FROM %1 WHERE %2 = '%3';")
+				.arg(_allWindows->FOURNISSEURS,
+					 YerothDatabaseTableColumn::ID,
+					 j.value()));
+	}
+
+    QString msgConfirmation(QObject::trUtf8("Supprimer les fournisseurs sélectionés ?"));
+
+    if (QMessageBox::Ok ==
+            YerothQMessageBox::question(this,
+            							QObject::tr("suppression de plusieurs fournisseurs"),
+            							msgConfirmation,
+										QMessageBox::Cancel,
+										QMessageBox::Ok))
+    {
+    	bool success = YerothUtils::execQuery(YEROTH_TABLE_VIEW_DELETE_SELECTED_ROWS_QUERY_STRING);
+
+    	QString msg(QObject::trUtf8("Les fournisseurs sélectionés"));
+
+    	if (success && aFournisseursTableModel.select())
+    	{
+    		setupLineEditsQCompleters((QObject *)this);
+
+    		afficherFournisseurs();
+
+    		msg.append(QObject::trUtf8(" ont été supprimés de la base de données !"));
+
+    		YerothQMessageBox::information(this,
+    				QObject::trUtf8("suppression de fournisseurs - succès"),
+    				msg,
+    				QMessageBox::Ok);
+    	}
+    	else
+    	{
+    		msg.append(QObject::trUtf8(" n'ont pas pu être supprimés de la base de données !"));
+
+    		YerothQMessageBox::information(this,
+    				QObject::trUtf8("suppression de fournisseurs - échec"),
+    				msg,
+    				QMessageBox::Ok);
+    	}
+    }
+}
+
+
 void YerothERPFournisseursWindow::supprimerFournisseur()
 {
     YerothSqlTableModel *fournisseursTableModel = 0;
@@ -376,6 +432,13 @@ void YerothERPFournisseursWindow::supprimerFournisseur()
     else
     {
         return ;
+    }
+
+    if (tableView_fournisseurs->lastSelected_Rows__IDs_INT_SIZE() > 1)
+    {
+    	supprimer_PLUSIEURS_Fournisseurs(*fournisseursTableModel);
+
+    	return ;
     }
 
     QSqlRecord record;

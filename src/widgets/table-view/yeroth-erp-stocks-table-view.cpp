@@ -303,17 +303,13 @@ void YerothERPStocksTableView::selectionChanged (const QItemSelection & selected
 {
     static YerothERPWindows *curAllWindows = YerothUtils::getAllWindows();
 
-    QModelIndexList selectedIndexes = selected.indexes();
+    _MAP_lastSelected_Row__TO__DB_ID.clear();
+
+    QModelIndexList selectedIndexes = QAbstractItemView::selectedIndexes();
 
     QString db_ID_in_out;
 
-    if (selectedIndexes.size() == 1)
-    {
-    	_MAP_lastSelected_Row__TO__DB_ID.clear();
-
-        _lastSelected_Row__ID = selectedIndexes.at(0).row();
-    }
-    else if (selectedIndexes.size() > 1)
+    if (selectedIndexes.size() > 0)
     {
     	uint last_Row_ID = selectedIndexes.size() - 1;
 
@@ -333,6 +329,8 @@ void YerothERPStocksTableView::selectionChanged (const QItemSelection & selected
     		}
     	}
     }
+
+    qDebug() << _MAP_lastSelected_Row__TO__DB_ID;
 
     /*
      * Cet appel de la fonction 'clearFocus' est necessaire pour
