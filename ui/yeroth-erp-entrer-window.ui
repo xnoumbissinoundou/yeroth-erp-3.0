@@ -11423,7 +11423,7 @@ background-color: rgb(0, 0, 0); </string>
      </property>
      <property name="geometry">
       <rect>
-       <x>566</x>
+       <x>569</x>
        <y>30</y>
        <width>104</width>
        <height>21</height>
