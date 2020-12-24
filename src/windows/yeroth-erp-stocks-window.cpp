@@ -1018,6 +1018,8 @@ void YerothStocksWindow::supprimer_PLUSIEURS_Stocks(YerothSqlTableModel &aStocks
 
 		supprimer_ce_stock(j.value(), true);
 	}
+
+	tableView_stocks->clearSelection();
 }
 
 
@@ -1028,7 +1030,7 @@ void YerothStocksWindow::supprimer_PLUSIEURS_Stocks(YerothSqlTableModel &aStocks
 void YerothStocksWindow::supprimer_ce_stock(QString aStockID /* = YerothUtils::EMPTY_STRING */,
 											bool _reEntrant /* = false */)
 {
-    if (!_reEntrant & tableView_stocks->lastSelected_Rows__IDs_INT_SIZE() > 1)
+    if (!_reEntrant && tableView_stocks->lastSelected_Rows__IDs_INT_SIZE() > 1)
     {
     	supprimer_PLUSIEURS_Stocks(*_curStocksTableModel);
 
@@ -1180,6 +1182,11 @@ void YerothStocksWindow::supprimer_ce_stock(QString aStockID /* = YerothUtils::E
     }
     else
     {
+    }
+
+    if (!_reEntrant)
+    {
+    	tableView_stocks->clearSelection();
     }
 }
 

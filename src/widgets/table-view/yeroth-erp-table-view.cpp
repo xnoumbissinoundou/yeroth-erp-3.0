@@ -94,7 +94,7 @@ void YerothTableView::setupSelectionOptions()
     setFrameShadow(QFrame::Plain);
     setEditTriggers(QAbstractItemView::NoEditTriggers);
     setSelectionBehavior(QAbstractItemView::SelectRows);
-    setSelectionMode(QAbstractItemView::ContiguousSelection);
+    setSelectionMode(QAbstractItemView::ExtendedSelection);
 }
 
 
