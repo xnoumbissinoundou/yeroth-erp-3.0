@@ -158,6 +158,10 @@ YerothEntrerWindow::YerothEntrerWindow()
 			this,
             SLOT(product_search_with_codebar()));
 
+
+    radioButton_AUCUN_SERVICE->setChecked(true);
+
+
     setupShortcuts();
 }
 
@@ -1206,7 +1210,7 @@ void YerothEntrerWindow::rendreVisible(YerothSqlTableModel * stocksTableModel, b
     	}
     	else
     	{
-    		groupBox_SERVICE_ACHAT_ET_VENTE_CHOIX->setVisible(false);
+    		radioButton_AUCUN_SERVICE->setChecked(true);
     	}
     }
 
@@ -1250,6 +1254,7 @@ void YerothEntrerWindow::rendreVisible(YerothSqlTableModel * stocksTableModel, b
     {
     	stockCheckInVisible = true;
 
+    	radioButton_AUCUN_SERVICE->setChecked(true);
     	radioButton_SERVICE_ACHAT_FOURNISSEUR->setChecked(false);
     	radioButton_SERVICE_VENTE_CLIENT->setChecked(false);
     }
