@@ -972,15 +972,19 @@ void YerothMarchandisesWindow::supprimer_PLUSIEURS_Marchandises(YerothSqlTableMo
 
 		supprimer_cette_marchandise(j.value(), true);
 	}
+
+    tableView_marchandises->clearSelection();
 }
 
 
 void YerothMarchandisesWindow::supprimer_cette_marchandise(QString aMarchandiseID /* = YerothUtils::EMPTY_STRING */,
 														   bool _reEntrant /* = false */)
 {
-    if (!_reEntrant & tableView_marchandises->lastSelected_Rows__IDs_INT_SIZE() > 1)
+    if (!_reEntrant && tableView_marchandises->lastSelected_Rows__IDs_INT_SIZE() > 1)
     {
     	supprimer_PLUSIEURS_Marchandises(*_curMarchandisesTableModel);
+
+    	afficherMarchandises();
 
     	return ;
     }
@@ -1051,6 +1055,11 @@ void YerothMarchandisesWindow::supprimer_cette_marchandise(QString aMarchandiseI
 
             msgSupprimer.append(QString(QObject::trUtf8("La marchandise '%1' a été supprimée."))
             						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION)));
+
+            if (!_reEntrant)
+            {
+            	tableView_marchandises->clearSelection();
+            }
 
             YerothQMessageBox::information(this,
                                           QObject::trUtf8("succès"),
