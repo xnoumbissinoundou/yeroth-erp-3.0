@@ -970,6 +970,8 @@ void YerothWindowsCommons::setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(const QM
 
 	_yerothTableView_FROM_WINDOWS_COMMONS->setLastSelectedRow__ID(db_ID);
 
+	_yerothTableView_FROM_WINDOWS_COMMONS->selectRow(modelIndex.row());
+
 	_yerothTableView_FROM_WINDOWS_COMMONS_LAST_SELECTED_ROW__ID = db_ID;
 }
 

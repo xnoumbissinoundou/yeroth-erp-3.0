@@ -398,8 +398,6 @@ void YerothERPClientsWindow::supprimer_PLUSIEURS_Clients(YerothSqlTableModel &aC
     	{
     		setupLineEditsQCompleters((QObject *)this);
 
-    		afficherClients();
-
     		msg.append(QObject::trUtf8(" ont été supprimés de la base de données !"));
 
     		YerothQMessageBox::information(this,
@@ -438,6 +436,10 @@ void YerothERPClientsWindow::supprimerCompteClient()
     {
     	supprimer_PLUSIEURS_Clients(*clientsTableModel);
 
+	    tableView_clients->clearSelection();
+
+		afficherClients();
+
     	return ;
     }
 
@@ -472,6 +474,8 @@ void YerothERPClientsWindow::supprimerCompteClient()
         if (success && clientsTableModel->select())
         {
         	setupLineEditsQCompleters((QObject *)this);
+
+            tableView_clients->clearSelection();
 
         	afficherClients();
 
