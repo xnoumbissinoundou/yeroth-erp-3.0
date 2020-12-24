@@ -105,9 +105,15 @@ YerothEntrerWindow::YerothEntrerWindow()
     connect(doubleSpinBox_lots_entrant, SIGNAL(valueChanged(double)),
     		this, SLOT(display_quantite_total_by_spinbox(double)));
 
-    connect(checkBox_service_achat, SIGNAL(stateChanged(int)), this, SLOT(handle_checkBox_service_achat(int)));
+    connect(radioButton_SERVICE_ACHAT_FOURNISSEUR,
+    		SIGNAL(toggled(bool)),
+			this,
+			SLOT(handle_checkBox_service_achat(bool)));
 
-    connect(checkBox_service_vente, SIGNAL(stateChanged(int)), this, SLOT(handle_checkBox_service_vente(int)));
+    connect(radioButton_SERVICE_VENTE_CLIENT,
+    		SIGNAL(toggled(bool)),
+			this,
+			SLOT(handle_checkBox_service_vente(bool)));
 
     connect(checkBox_achat, SIGNAL(stateChanged(int)), this, SLOT(handle_achat_checkBox(int)));
 
@@ -192,8 +198,8 @@ void YerothEntrerWindow::setupLineEdits()
 
 void YerothEntrerWindow::setupLineEditsQCompleters__FOR_STOCK_INVENTORY()
 {
-	if (checkBox_service_achat->isChecked() ||
-		checkBox_service_vente->isChecked())
+	if (radioButton_SERVICE_ACHAT_FOURNISSEUR->isChecked() ||
+		radioButton_SERVICE_VENTE_CLIENT->isChecked())
 	{
     	lineEdit_reference_produit->clearQCompleter();
 
@@ -217,7 +223,7 @@ void YerothEntrerWindow::setupLineEditsQCompleters__FOR_STOCK_INVENTORY()
     												  aConditionStr);
 	}
 
-	if (checkBox_service_vente->isChecked())
+	if (radioButton_SERVICE_VENTE_CLIENT->isChecked())
 	{
 		label_fournisseur->setText(QObject::tr("client"));
 
@@ -232,7 +238,7 @@ void YerothEntrerWindow::setupLineEditsQCompleters__FOR_STOCK_INVENTORY()
         															 YerothDatabaseTableColumn::NOM_ENTREPRISE);
 	}
 
-	if (checkBox_service_achat->isChecked())
+	if (radioButton_SERVICE_ACHAT_FOURNISSEUR->isChecked())
 	{
 		label_designation->setVisible(false);
 		lineEdit_designation->setVisible(false);
@@ -421,7 +427,7 @@ void YerothEntrerWindow::definirMagasinier()
 
 void YerothEntrerWindow::handle_enregistrer()
 {
-	if (checkBox_service_achat->isChecked())
+	if (radioButton_SERVICE_ACHAT_FOURNISSEUR->isChecked())
 	{
 		enregistrer_achat();
 	}
@@ -513,7 +519,7 @@ void YerothEntrerWindow::display_quantite_total(const QString & quantite_par_lot
 
     lineEdit_quantite_totale->setText(QString::number(qte_totale, 'f', 2));
 
-	if (checkBox_service_vente->isChecked())
+	if (radioButton_SERVICE_VENTE_CLIENT->isChecked())
 	{
 		qte_totale = qte_totale * lineEdit_prix_vente->text().toDouble();
 		lineEdit_service_montant_total_vente->setText(GET_CURRENCY_STRING_NUM(qte_totale));
@@ -527,7 +533,7 @@ void YerothEntrerWindow::display_quantite_total_by_spinbox(double lots)
     double qte_totale = lots * qte_lot;
     lineEdit_quantite_totale->setText(QString::number(qte_totale, 'f', 2));
 
-    if (checkBox_service_vente->isChecked())
+    if (radioButton_SERVICE_VENTE_CLIENT->isChecked())
     {
     	display_service_montant_total_vente();
     }
@@ -577,7 +583,7 @@ void YerothEntrerWindow::calculate_and_display_ALL_benefit_buying_price_percenta
 
 void YerothEntrerWindow::calculate_and_display_benefit_buying_price_percentage()
 {
-    if (!checkBox_service_vente->isChecked() && checkBox_achat->isChecked())
+    if (!radioButton_SERVICE_VENTE_CLIENT->isChecked() && checkBox_achat->isChecked())
     {
     	double prix_dachat = lineEdit_prix_dachat->text().toDouble();
 
@@ -603,7 +609,7 @@ void YerothEntrerWindow::calculate_and_display_benefit_buying_price_percentage()
 
 void YerothEntrerWindow::calculate_and_display_benefit_buying_price_percentage_EN_GROS()
 {
-    if (!checkBox_service_vente->isChecked() && checkBox_achat->isChecked())
+    if (!radioButton_SERVICE_VENTE_CLIENT->isChecked() && checkBox_achat->isChecked())
     {
     	double prix_dachat = lineEdit_prix_dachat->text().toDouble();
 
@@ -647,7 +653,7 @@ void YerothEntrerWindow::edited_prix_vente_en_gros(const QString &newPrixVente)
 
 void YerothEntrerWindow::display_service_montant_total_vente()
 {
-    if (checkBox_service_vente->isChecked())
+    if (radioButton_SERVICE_VENTE_CLIENT->isChecked())
     {
     	double prix_vente = lineEdit_prix_vente->text().toDouble();
     	double qte_totale = lineEdit_quantite_totale->text().toDouble();
@@ -691,8 +697,8 @@ void YerothEntrerWindow::setStockSpecificWidgetVisible(bool visible)
 
 	    lineEdit_quantite_totale->setFixedWidth(205);
 
-		if (checkBox_service_achat->isChecked() ||
-			checkBox_service_vente->isChecked()	)
+		if (radioButton_SERVICE_ACHAT_FOURNISSEUR->isChecked() ||
+			radioButton_SERVICE_VENTE_CLIENT->isChecked()	)
 		{
 			doubleSpinBox_lots_entrant->setValue(0.0);
 		}
@@ -756,22 +762,16 @@ void YerothEntrerWindow::setStockSpecificWidgetVisible(bool visible)
 }
 
 
-void YerothEntrerWindow::handle_checkBox_service_achat(int state)
+void YerothEntrerWindow::handle_checkBox_service_achat(bool checked)
 {
-	if (checkBox_service_achat->isChecked())
+	if (radioButton_SERVICE_ACHAT_FOURNISSEUR->isChecked())
 	{
-		checkBox_service_vente->setVisible(false);
-		checkBox_service_vente->setChecked(false);
-
 		setStockSpecificWidgetVisible(false);
 
 		check_fields_service_vente();
 	}
 	else
 	{
-		checkBox_service_vente->setVisible(true);
-		checkBox_service_vente->setChecked(false);
-
 	    setStockSpecificWidgetVisible(true);
 
 	    check_fields(true);
@@ -781,22 +781,16 @@ void YerothEntrerWindow::handle_checkBox_service_achat(int state)
 }
 
 
-void YerothEntrerWindow::handle_checkBox_service_vente(int state)
+void YerothEntrerWindow::handle_checkBox_service_vente(bool checked)
 {
-	if (checkBox_service_vente->isChecked())
+	if (radioButton_SERVICE_VENTE_CLIENT->isChecked())
 	{
-		checkBox_service_achat->setVisible(false);
-		checkBox_service_achat->setChecked(false);
-
 	    setStockSpecificWidgetVisible(false);
 
 	    check_fields_service_vente();
 	}
 	else
 	{
-		checkBox_service_achat->setVisible(true);
-		checkBox_service_achat->setChecked(false);
-
 		setStockSpecificWidgetVisible(true);
 
 		check_fields(true);
@@ -914,7 +908,7 @@ bool YerothEntrerWindow::insertStockItemInProductList()
     record.setValue(YerothDatabaseTableColumn::ID,
                     YerothERPWindows::getNextIdSqlTableModel_marchandises());
 
-    if (checkBox_service_vente->isChecked())
+    if (radioButton_SERVICE_VENTE_CLIENT->isChecked())
     {
     	record.setValue(YerothDatabaseTableColumn::IS_SERVICE, YerothUtils::MYSQL_TRUE_LITERAL);
     }
@@ -951,7 +945,7 @@ bool YerothEntrerWindow::insertStockItemInProductList()
 
     QString stockOuService(lineEdit_designation->text());
 
-    if (checkBox_service_vente->isChecked())
+    if (radioButton_SERVICE_VENTE_CLIENT->isChecked())
     {
     	stockOuService = lineEdit_reference_produit->text();
     }
@@ -1149,7 +1143,7 @@ bool YerothEntrerWindow::check_fields(bool withClearAllServiceMandatoryFields /*
 
 void YerothEntrerWindow::clear_all_fields()
 {
-	if (checkBox_service_vente->isChecked())
+	if (radioButton_SERVICE_VENTE_CLIENT->isChecked())
 	{
 		doubleSpinBox_lots_entrant->setValue(0.0);
 	}
@@ -1172,9 +1166,12 @@ void YerothEntrerWindow::clear_all_fields()
     lineEdit_prix_vente->clearField();
     lineEdit_prix_vente_en_gros->clearField();
     lineEdit_localisation_produit->clearField();
+
     textEdit_description->clear();
+
     label_image_produit->clear();
     label_image_produit->setAutoFillBackground(false);
+
     checkBox_tva->setChecked(false);
 
     _lastEditedPrixVente.clear();
@@ -1182,7 +1179,9 @@ void YerothEntrerWindow::clear_all_fields()
 
     _montantTva = 0.0;
     _montantTva_en_gros = 0.0;
+
     _tvaCheckBoxPreviousState = false;
+
     _createNewCategorie = false;
     _createNewFournisseur = false;
 }
@@ -1198,14 +1197,17 @@ void YerothEntrerWindow::rendreVisible(YerothSqlTableModel * stocksTableModel, b
 {
     YerothPOSUser *aCurrentUser = _allWindows->getUser();
 
-    if (0 != aCurrentUser && !aCurrentUser->isManager())
+    if (0 != aCurrentUser)
     {
-    	checkBox_service_vente->setChecked(false);
-    	checkBox_service_vente->setVisible(false);
-    }
-    else
-    {
-    	checkBox_service_vente->setVisible(true);
+    	if (aCurrentUser->isManager() ||
+    		aCurrentUser->isVendeur())
+    	{
+    		groupBox_SERVICE_ACHAT_ET_VENTE_CHOIX->setVisible(true);
+    	}
+    	else
+    	{
+    		groupBox_SERVICE_ACHAT_ET_VENTE_CHOIX->setVisible(false);
+    	}
     }
 
     _curStocksTableModel = stocksTableModel;
@@ -1236,7 +1238,21 @@ void YerothEntrerWindow::rendreVisible(YerothSqlTableModel * stocksTableModel, b
         }
     }
 
-    bool stockCheckInVisible = !checkBox_service_vente->isChecked();
+    bool stockCheckInVisible = true;
+
+    if (radioButton_SERVICE_ACHAT_FOURNISSEUR->isChecked() ||
+    	radioButton_SERVICE_VENTE_CLIENT->isChecked())
+    {
+    	stockCheckInVisible = false;
+    }
+
+    if (aShowItem)
+    {
+    	stockCheckInVisible = true;
+
+    	radioButton_SERVICE_ACHAT_FOURNISSEUR->setChecked(false);
+    	radioButton_SERVICE_VENTE_CLIENT->setChecked(false);
+    }
 
     setStockSpecificWidgetVisible(stockCheckInVisible);
 
@@ -1244,13 +1260,11 @@ void YerothEntrerWindow::rendreVisible(YerothSqlTableModel * stocksTableModel, b
 
     lineEdit_tva->setText(YerothUtils::getTvaStringWithPercent());
 
-
-    if (aShowItem)
+    if (radioButton_SERVICE_ACHAT_FOURNISSEUR->isChecked())
     {
-    	checkBox_service_vente->setChecked(false);
+    	check_fields_service_achat();
     }
-
-    if (checkBox_service_vente->isChecked())
+    else if (radioButton_SERVICE_VENTE_CLIENT->isChecked())
     {
     	check_fields_service_vente();
     }
@@ -1567,7 +1581,7 @@ bool YerothEntrerWindow::handle_clients_table(int stockID, double montant_total_
 
 void YerothEntrerWindow::enregistrer_achat()
 {
-	if (!checkBox_service_achat->isChecked())
+	if (!radioButton_SERVICE_ACHAT_FOURNISSEUR->isChecked())
 	{
 		return ;
 	}
@@ -1595,7 +1609,7 @@ void YerothEntrerWindow::enregistrer_produit()
 {
     bool result_check_field = false;
 
-    if (checkBox_service_vente->isChecked())
+    if (radioButton_SERVICE_VENTE_CLIENT->isChecked())
     {
     	result_check_field = check_fields_service_vente();
     }
@@ -1697,7 +1711,7 @@ void YerothEntrerWindow::enregistrer_produit()
 
 
 
-    if (!checkBox_service_vente->isChecked() &&
+    if (!radioButton_SERVICE_VENTE_CLIENT->isChecked() &&
     	dateEdit_date_peremption->date() <= GET_CURRENT_DATE)
     {
     	QString warnMsg(QObject::trUtf8("La date de péremption n'est pas postdatée !\n\n"
@@ -1741,7 +1755,7 @@ void YerothEntrerWindow::enregistrer_produit()
     	aServiceStockData._prix_vente_en_gros_precedent = lineEdit_prix_vente->text();
     }
 
-    aServiceStockData._isService = checkBox_service_vente->isChecked();
+    aServiceStockData._isService = radioButton_SERVICE_VENTE_CLIENT->isChecked();
     aServiceStockData._reference = lineEdit_reference_produit->text();
 
 
@@ -1755,7 +1769,7 @@ void YerothEntrerWindow::enregistrer_produit()
 
     QString proposed_Fournisseur_Client_Name = lineEdit_nom_entreprise_fournisseur->text();
 
-    if (checkBox_service_vente->isChecked())
+    if (radioButton_SERVICE_VENTE_CLIENT->isChecked())
     {
         if (!proposed_Fournisseur_Client_Name.isEmpty())
         {
@@ -1786,7 +1800,7 @@ void YerothEntrerWindow::enregistrer_produit()
 
     int stock_id_to_save = YerothERPWindows::getNextIdSqlTableModel_stocks();
 
-    if (!checkBox_service_vente->isChecked() && hasBuying())
+    if (!radioButton_SERVICE_VENTE_CLIENT->isChecked() && hasBuying())
     {
     	achatRecord = achatSqlTableModel.record();
 
@@ -1833,7 +1847,7 @@ void YerothEntrerWindow::enregistrer_produit()
     	utilisateurCourrantNomComplet.append(aUser->nom_complet());
     }
 
-    if (!checkBox_service_vente->isChecked() && hasBuying())
+    if (!radioButton_SERVICE_VENTE_CLIENT->isChecked() && hasBuying())
     {
     	achatRecord.setValue(YerothDatabaseTableColumn::ENREGISTREUR_STOCK, utilisateurCourrantNomComplet);
     	achatRecord.setValue(YerothDatabaseTableColumn::QUANTITE_TOTALE, quantite_totale);
@@ -1846,7 +1860,7 @@ void YerothEntrerWindow::enregistrer_produit()
     	achatRecord.setValue(YerothDatabaseTableColumn::MONTANT_TVA_EN_GROS, _montantTva_en_gros);
     }
 
-    if (!checkBox_service_vente->isChecked())
+    if (!radioButton_SERVICE_VENTE_CLIENT->isChecked())
     {
     	record.setValue(YerothDatabaseTableColumn::REFERENCE_RECU_DACHAT, reference_recu_dachat);
     	record.setValue(YerothDatabaseTableColumn::STOCK_DALERTE, stock_dalerte);
@@ -1878,7 +1892,7 @@ void YerothEntrerWindow::enregistrer_produit()
 
     double marge_beneficiaire_en_gros = YerothUtils::getMargeBeneficiaire(prix_vente_en_gros, prix_dachat, _montantTva_en_gros);
 
-    if (!checkBox_service_vente->isChecked() && hasBuying())
+    if (!radioButton_SERVICE_VENTE_CLIENT->isChecked() && hasBuying())
     {
     	achatRecord.setValue(YerothDatabaseTableColumn::MARGE_BENEFICIAIRE, marge_beneficiaire);
     	achatRecord.setValue(YerothDatabaseTableColumn::MARGE_BENEFICIAIRE_EN_GROS, marge_beneficiaire_en_gros);
@@ -1897,7 +1911,7 @@ void YerothEntrerWindow::enregistrer_produit()
     	achatRecord.setValue(YerothDatabaseTableColumn::DATE_PEREMPTION, dateEdit_date_peremption->date());
     }
 
-    if (!checkBox_service_vente->isChecked())
+    if (!radioButton_SERVICE_VENTE_CLIENT->isChecked())
     {
     	record.setValue(YerothDatabaseTableColumn::IS_SERVICE, YerothUtils::MYSQL_FALSE_LITERAL);
     	record.setValue(YerothDatabaseTableColumn::LOCALISATION_STOCK, lineEdit_localisation_produit->text());
@@ -1937,7 +1951,7 @@ void YerothEntrerWindow::enregistrer_produit()
 
     bool achatSuccess = false;
 
-    if (!checkBox_service_vente->isChecked() && hasBuying())
+    if (!radioButton_SERVICE_VENTE_CLIENT->isChecked() && hasBuying())
     {
     	achatSuccess = achatSqlTableModel.insertNewRecord(achatRecord);
     }
@@ -1948,7 +1962,7 @@ void YerothEntrerWindow::enregistrer_produit()
     		.arg(lineEdit_designation->text()));
 
 
-    if (!checkBox_service_vente->isChecked() && hasBuying())
+    if (!radioButton_SERVICE_VENTE_CLIENT->isChecked() && hasBuying())
     {
     	if (achatSuccess)
     	{
@@ -1970,7 +1984,7 @@ void YerothEntrerWindow::enregistrer_produit()
 
     QString retMsg;
 
-    if (checkBox_service_vente->isChecked())
+    if (radioButton_SERVICE_VENTE_CLIENT->isChecked())
     {
         retMsg.append(QString(QObject::tr("Le service '%1'"))
         				.arg(lineEdit_reference_produit->text()));
@@ -1981,7 +1995,7 @@ void YerothEntrerWindow::enregistrer_produit()
         				.arg(lineEdit_designation->text()));
     }
 
-    if (successInsertStock && checkBox_service_vente->isChecked())
+    if (successInsertStock && radioButton_SERVICE_VENTE_CLIENT->isChecked())
     {
     	//handle 'clients' table
     	handle_clients_table(stock_id_to_save, montant_total_service_vente);
@@ -2008,7 +2022,7 @@ void YerothEntrerWindow::enregistrer_produit()
 
     rendreInvisible();
 
-    if (checkBox_service_vente->isChecked())
+    if (radioButton_SERVICE_VENTE_CLIENT->isChecked())
     {
     	_allWindows->_ventesWindow->rendreVisible(_curStocksTableModel);
     }

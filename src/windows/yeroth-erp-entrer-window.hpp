@@ -189,9 +189,9 @@ private slots:
 
 	void setStockSpecificWidgetVisible(bool visible);
 
-	void handle_checkBox_service_achat(int state);
+	void handle_checkBox_service_achat(bool checked);
 
-	void handle_checkBox_service_vente(int state);
+	void handle_checkBox_service_vente(bool checked);
 
 	void handleTVACheckBox(int state);
 
