@@ -330,7 +330,7 @@ void YerothERPStocksTableView::selectionChanged (const QItemSelection & selected
     	}
     }
 
-    qDebug() << _MAP_lastSelected_Row__TO__DB_ID;
+//    qDebug() << _MAP_lastSelected_Row__TO__DB_ID;
 
     /*
      * Cet appel de la fonction 'clearFocus' est necessaire pour
