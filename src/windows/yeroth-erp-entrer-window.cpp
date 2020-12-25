@@ -433,7 +433,7 @@ void YerothEntrerWindow::handle_enregistrer()
 {
 	if (radioButton_SERVICE_ACHAT_FOURNISSEUR->isChecked())
 	{
-		enregistrer_achat();
+		enregistrer_achat_au_fournisseur();
 	}
 	else
 	{
@@ -1584,7 +1584,7 @@ bool YerothEntrerWindow::handle_clients_table(int stockID, double montant_total_
 }
 
 
-void YerothEntrerWindow::enregistrer_achat()
+void YerothEntrerWindow::enregistrer_achat_au_fournisseur()
 {
 	if (!radioButton_SERVICE_ACHAT_FOURNISSEUR->isChecked())
 	{
