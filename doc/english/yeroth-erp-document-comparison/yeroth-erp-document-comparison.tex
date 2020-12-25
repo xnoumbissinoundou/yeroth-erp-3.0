@@ -114,7 +114,7 @@
 \newcommand{\yerothorange}[1]{\textcolor{yerothColorOrange}{#1}\xspace}
 \newcommand{\yerothrouge}[1]{\textcolor{yerothColorRed}{#1}\xspace}
 
-\newcommand{\yerothfacile}{\yerothvert{easy}\xspace}
+\newcommand{\yerothtresfacile}{\yerothvert{very easy}\xspace}
 \newcommand{\yerothdifficile}{\yerothorange{difficult}\xspace}
 \newcommand{\yerothtresdifficile}{\yerothrouge{very difficult}\xspace}
 
@@ -196,6 +196,7 @@ and ''\erpcustombuiltIESAPone''.\\
 
 \begin{table}[!htbp]
 \centering
+\resizebox{\textwidth}{!}{%to fit the table within the text width
 \begin{tabular}{cccc} 
 
 \multicolumn{1}{c}{}			&
@@ -213,14 +214,14 @@ reusable for multiple purposes	&
 		\yerothvert{yes}		&	
 		\yerothrouge{no*}		\\ \hline
 
-complete training					&
-		\yerothvert{$5$ days}		&
-		\yerothrouge{$3$ months}	&	
-		\yerothrouge{$3$ months}	\\ \hline
+complete training (or solution) 			&
+		\yerothvert{$5$ days}				&
+		\yerothrouge{at least $3$ months}	&	
+		\yerothrouge{at least $3$ months}	\\ \hline
 
 difficulty in navigation			&
-		\yerothfacile				&
-		\yerothdifficile			&
+		\yerothtresfacile			&
+		\yerothtresdifficile		&
 		\yerothtresdifficile		\\  \hline
 		
 usage language in software					&
@@ -242,7 +243,7 @@ internet connection				&
 		\yerothvert{optional}	&
 		\yerothrouge{mandatory}	&
 		\yerothvert{optional}	\\ 
-\end{tabular}
+\end{tabular}}
 \caption{Comparison between \yerotherpblack and $2$ top tier--1
 	full featured ERP software--systems\\}
 \label{tab:comparison-against-others-erp-software-systems}
