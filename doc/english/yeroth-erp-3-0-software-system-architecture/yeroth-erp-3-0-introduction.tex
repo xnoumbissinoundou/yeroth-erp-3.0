@@ -14,12 +14,33 @@ following reasons:
 \begin{enumerate}[1.]
 
 	\item the implementation language \cplusplus
-		offers much flexibility (use of macro, 
-		multiple inheritance, etc.).
+		offers much flexibility:
 		
-		\emph{The drawback of the multiple inheritance
-		feature of \cplusplus is it can sometimes
-		be very difficult to build it using "\gplusplus" !}
+		\begin{enumerate}[1.]
+			\item \emph{MULTIPLE INHERITENCE:}
+			
+			It allows developers to abstract as much as possible
+			business code away from downwards implementation
+			classes. For instance,  in \yerotherpblack,
+			GUI--Qt-windows inherits for instance
+			\emph{search filtering feature, and print capability
+			from $2$ different classes}.
+
+			\emph{Print capability couldn't be inherited from the
+			same class where search filtering is abstracted and
+			partially implemented (interface in \Java for instance
+			doesn't allow any method body code), because it works
+			in its pure abstract class (\cplusplus class with at
+			least $1$ empty method body) together with feature
+			\textbf{database column filtering for printing.}}
+			\newline
+			
+			\emph{\yerothrouge{The drawback of the multiple inheritance
+			in \cplusplus is it sometimes can be very
+			difficult to build it using "\gplusplus~\cite{gcc:2020}" !}}
+		
+			\item \emph{MACROS:}
+		\end{enumerate}						
 		
 	\item the availability of \texttt{'WHAT YOU SEE IS WHAT YOU GET'}
 		(\wy) tools for fast and useful
@@ -34,6 +55,9 @@ following reasons:
 		logical software architecture ).
 	
 \end{enumerate}
+
+
+\newpage
 
 
 \section{Thick--Client VS Web--Browser--based
