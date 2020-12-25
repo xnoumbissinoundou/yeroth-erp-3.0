@@ -71,9 +71,11 @@
 
 \newcommand{\yerotherpblack}{YEROTH--ERP--$3.0$\xspace}
 
-\newcommand{\yerotherp}{\textsc{\textcolor{yerothColorBlue}{YEROTH--ERP--$3.0$}}\xspace}
+\newcommand{\erpcustombuiltIESAPone}{Custom--built (i.e.: SAP Business One)\xspace}
 
-\newcommand{\saperp}{SAP Business One\xspace}
+\newcommand{\erpcustombuiltIESAP}{Custom--built (i.e.: SAP)\xspace}
+
+\newcommand{\yerotherp}{\textsc{\textcolor{yerothColorBlue}{YEROTH--ERP--$3.0$}}\xspace}
 
 \newcommand{\sageerp}{Sage Gescom i$7$\xspace}
 
@@ -107,19 +109,6 @@
 
 \newcommand{\mysql}{MySQL\xspace}
 \newcommand{\mysqlcolored}{\textcolor{yerothColorBlue}{My}\textcolor{yerothColorOrange}{SQL}\xspace}
-
-\newcommand{\admin}{<< Administrator >>\xspace}
-\newcommand{\manager}{<< Manager >>\xspace}
-\newcommand{\seller}{<< Seller >>\xspace}
-\newcommand{\inventorystockmanager}{<< InventoryStockManager >>\xspace}
-\newcommand{\storekeeper}{<< StoreKeeper >>\xspace}
-\newcommand{\cashier}{<< Cashier >>\xspace}
-
-\newcommand{\adminb}{\textbf{<< Administrator >>}\xspace}
-\newcommand{\managerb}{\textbf{<< Manager >>}\xspace}
-\newcommand{\inventorystockmanagerb}{\textbf{<< InventoryStockManager >>}\xspace}
-\newcommand{\storekeeperb}{\textbf{<< StoreKeeper >>}\xspace}
-\newcommand{\cashierb}{\textbf{<< Cashier >>}\xspace}
 
 \newcommand{\yerothvert}[1]{\textcolor{yerothColorGreen}{#1}\xspace}
 \newcommand{\yerothorange}[1]{\textcolor{yerothColorOrange}{#1}\xspace}
@@ -201,9 +190,9 @@ software--system because of its characteristics:
 Table~\ref{tab:comparison-against-others-erp-software-systems}
 pictures the 'effectiveness' and 'simplicity' of \yerotherpblack, 
 compared to top tier--1 ERP software--systems ''\sageerp'',
-and ''\saperp''.\\
+and ''\erpcustombuiltIESAPone''.\\
 
-\vspace{0em}
+\vspace{-1.2em}
 
 \begin{table}[!htbp]
 \centering
@@ -212,49 +201,54 @@ and ''\saperp''.\\
 \multicolumn{1}{c}{}			&
 \yerotherpblack 				& 
 \sageerp						&
-\saperp		\\ \hline
+\erpcustombuiltIESAP 			\\ \hline
 
 separate views per user role	&
 		\yerothvert{YES}		&
-		\yerothrouge{NO}		&						
+		\yerothrouge{NO}		&
 		\yerothvert{YES}		\\ \hline
+
+reusable for multiple purposes	&
+		\yerothvert{yes}		&
+		\yerothvert{yes}		&	
+		\yerothrouge{no}		\\ \hline
 
 complete training					&
 		\yerothvert{$5$ days}		&
-		\yerothorange{$2$ months}	&						
+		\yerothorange{$2$ months}	&	
 		\yerothrouge{$3$ months}	\\ \hline
 
 difficulty in navigation			&
 		\yerothfacile				&
-		\yerothdifficile			&						
+		\yerothdifficile			&
 		\yerothtresdifficile		\\  \hline
 		
 usage language in software					&
 		\yerothvert{easy everyday English}	&
-		\yerothorange{simple}				&						
+		\yerothorange{simple}				&
 		\yerothrouge{technical}				\\ \hline			
 		
 financial accounting knowledge	&
 		\yerothvert{no}			&
-		\yerothvert{no}			&						
+		\yerothvert{no}			&
 		\yerothorange{useful}	\\ \hline		
 
 advanced marketing knowledge	&
 		\yerothvert{no}			&
-		\yerothorange{useful}	&						
+		\yerothorange{useful}	&
 		\yerothorange{useful}	\\ \hline
 		
 internet connection				&
-		\yerothvert{optional}			&
-		\yerothrouge{mandatory}	&						
-		\yerothrouge{mandatory}	\\ 
+		\yerothvert{optional}	&
+		\yerothrouge{mandatory}	&
+		\yerothvert{optional}	\\ 
 \end{tabular}
 \caption{Comparison between \yerotherpblack and $2$ top tier--1
 	full featured ERP software--systems\\}
 \label{tab:comparison-against-others-erp-software-systems}
 \end{table}
 
-\vspace{-1.4em}
+\vspace{-1.6em}
 
 {\large \bf OPERATIONS}
 
