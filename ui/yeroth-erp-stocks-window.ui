@@ -1310,7 +1310,7 @@ un
 stock (service)</string>
     </property>
    </widget>
-   <widget class="YerothPushButton" name="pushButton_sortir">
+   <widget class="YerothPushButton" name="pushButton_achats_stocks">
     <property name="geometry">
      <rect>
       <x>677</x>
@@ -1325,63 +1325,63 @@ stock (service)</string>
        <colorrole role="WindowText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>255</green>
-          <blue>0</blue>
+          <red>2</red>
+          <green>160</green>
+          <blue>170</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Light">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>255</green>
-          <blue>127</blue>
+          <red>3</red>
+          <green>240</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Midlight">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>255</green>
-          <blue>63</blue>
+          <red>2</red>
+          <green>200</green>
+          <blue>212</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Dark">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>127</red>
-          <green>127</green>
-          <blue>0</blue>
+          <red>1</red>
+          <green>80</green>
+          <blue>85</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Mid">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>170</red>
-          <green>170</green>
-          <blue>0</blue>
+          <red>1</red>
+          <green>107</green>
+          <blue>113</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Text">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
@@ -1397,9 +1397,9 @@ stock (service)</string>
        <colorrole role="ButtonText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
@@ -1415,9 +1415,9 @@ stock (service)</string>
        <colorrole role="Window">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>255</green>
-          <blue>0</blue>
+          <red>2</red>
+          <green>160</green>
+          <blue>170</blue>
          </color>
         </brush>
        </colorrole>
@@ -1433,9 +1433,9 @@ stock (service)</string>
        <colorrole role="AlternateBase">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>255</green>
-          <blue>127</blue>
+          <red>128</red>
+          <green>207</green>
+          <blue>212</blue>
          </color>
         </brush>
        </colorrole>
@@ -1462,63 +1462,63 @@ stock (service)</string>
        <colorrole role="WindowText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>255</green>
-          <blue>0</blue>
+          <red>2</red>
+          <green>160</green>
+          <blue>170</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Light">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>255</green>
-          <blue>127</blue>
+          <red>3</red>
+          <green>240</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Midlight">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>255</green>
-          <blue>63</blue>
+          <red>2</red>
+          <green>200</green>
+          <blue>212</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Dark">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>127</red>
-          <green>127</green>
-          <blue>0</blue>
+          <red>1</red>
+          <green>80</green>
+          <blue>85</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Mid">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>170</red>
-          <green>170</green>
-          <blue>0</blue>
+          <red>1</red>
+          <green>107</green>
+          <blue>113</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Text">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
@@ -1534,9 +1534,9 @@ stock (service)</string>
        <colorrole role="ButtonText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
@@ -1552,9 +1552,9 @@ stock (service)</string>
        <colorrole role="Window">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>255</green>
-          <blue>0</blue>
+          <red>2</red>
+          <green>160</green>
+          <blue>170</blue>
          </color>
         </brush>
        </colorrole>
@@ -1570,9 +1570,9 @@ stock (service)</string>
        <colorrole role="AlternateBase">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>255</green>
-          <blue>127</blue>
+          <red>128</red>
+          <green>207</green>
+          <blue>212</blue>
          </color>
         </brush>
        </colorrole>
@@ -1599,63 +1599,63 @@ stock (service)</string>
        <colorrole role="WindowText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>121</red>
+          <red>1</red>
           <green>80</green>
-          <blue>0</blue>
+          <blue>85</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>255</green>
-          <blue>0</blue>
+          <red>2</red>
+          <green>160</green>
+          <blue>170</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Light">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>255</green>
-          <blue>127</blue>
+          <red>3</red>
+          <green>240</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Midlight">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>255</green>
-          <blue>63</blue>
+          <red>2</red>
+          <green>200</green>
+          <blue>212</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Dark">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>127</red>
-          <green>127</green>
-          <blue>0</blue>
+          <red>1</red>
+          <green>80</green>
+          <blue>85</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Mid">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>170</red>
-          <green>170</green>
-          <blue>0</blue>
+          <red>1</red>
+          <green>107</green>
+          <blue>113</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Text">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>121</red>
+          <red>1</red>
           <green>80</green>
-          <blue>0</blue>
+          <blue>85</blue>
          </color>
         </brush>
        </colorrole>
@@ -1671,27 +1671,27 @@ stock (service)</string>
        <colorrole role="ButtonText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>121</red>
+          <red>1</red>
           <green>80</green>
-          <blue>0</blue>
+          <blue>85</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Base">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>255</green>
-          <blue>0</blue>
+          <red>2</red>
+          <green>160</green>
+          <blue>170</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Window">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>255</green>
-          <blue>0</blue>
+          <red>2</red>
+          <green>160</green>
+          <blue>170</blue>
          </color>
         </brush>
        </colorrole>
@@ -1707,9 +1707,9 @@ stock (service)</string>
        <colorrole role="AlternateBase">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>255</green>
-          <blue>0</blue>
+          <red>2</red>
+          <green>160</green>
+          <blue>170</blue>
          </color>
         </brush>
        </colorrole>
@@ -1742,9 +1742,8 @@ stock (service)</string>
      </font>
     </property>
     <property name="text">
-     <string>Sortir
-ou
-Transférer</string>
+     <string>Achats 
+ STOCKS</string>
     </property>
    </widget>
    <widget class="YerothERPStocksTableView" name="tableView_stocks">
@@ -16326,7 +16325,7 @@ background-color: rgb(0, 0, 0); </string>
     <addaction name="separator"/>
     <addaction name="actionEntrer"/>
     <addaction name="actionMarchandises"/>
-    <addaction name="actionSortir"/>
+    <addaction name="actionAchatsStocks"/>
     <addaction name="separator"/>
     <addaction name="actionMenu_Principal"/>
     <addaction name="separator"/>
@@ -17473,9 +17472,12 @@ background-color: rgb(0, 0, 0); </string>
     </font>
    </property>
   </action>
-  <action name="actionSortir">
+  <action name="actionAchatsStocks">
    <property name="text">
-    <string>Sortir des articles</string>
+    <string>Lister les achats de stocks</string>
+   </property>
+   <property name="toolTip">
+    <string>Lister les achats de stocks</string>
    </property>
    <property name="font">
     <font>
@@ -17635,7 +17637,7 @@ background-color: rgb(0, 0, 0); </string>
   <tabstop>pushButton_afficher</tabstop>
   <tabstop>pushButton_entrer</tabstop>
   <tabstop>pushButton_menu_principal</tabstop>
-  <tabstop>pushButton_sortir</tabstop>
+  <tabstop>pushButton_achats_stocks</tabstop>
   <tabstop>tableView_stocks</tabstop>
  </tabstops>
  <resources>

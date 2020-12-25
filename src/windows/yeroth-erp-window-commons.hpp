@@ -169,7 +169,9 @@ public slots:
 
 	virtual void infosEntreprise();
 
-	virtual void achats();
+	virtual void achats_aux_fournisseurs();
+
+	virtual void achats_de_stocks();
 
 	virtual void afficherStocks();
 

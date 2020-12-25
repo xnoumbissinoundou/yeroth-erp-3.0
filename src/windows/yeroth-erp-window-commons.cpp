@@ -370,7 +370,14 @@ void YerothWindowsCommons::infosEntreprise()
 }
 
 
-void YerothWindowsCommons::achats()
+void YerothWindowsCommons::achats_aux_fournisseurs()
+{
+    rendreInvisible();
+    _allWindows->_achatsWindow->rendreVisible(_curStocksTableModel);
+}
+
+
+void YerothWindowsCommons::achats_de_stocks()
 {
     rendreInvisible();
     _allWindows->_achatsWindow->rendreVisible(_curStocksTableModel);

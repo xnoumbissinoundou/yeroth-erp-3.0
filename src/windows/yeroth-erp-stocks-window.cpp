@@ -103,7 +103,7 @@ YerothStocksWindow::YerothStocksWindow()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, false);
 	YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_lhistorique_de_ce_stock, false);
 	YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMarchandises, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchatsStocks, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier_ce_stock, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer_ce_stock, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
@@ -118,7 +118,7 @@ YerothStocksWindow::YerothStocksWindow()
     pushButton_afficher->disable(this);
     pushButton_menu_principal->disable(this);
     pushButton_supprimer->disable(this);
-    pushButton_sortir->disable(this);
+    pushButton_achats_stocks->disable(this);
     pushButton_reinitialiser->disable(this);
 
     //Menu actions
@@ -128,7 +128,7 @@ YerothStocksWindow::YerothStocksWindow()
     connect(actionMenu_Principal, SIGNAL(triggered()), this, SLOT(menu()));
     connect(actionEntrer, SIGNAL(triggered()), this, SLOT(entrer()));
     connect(actionMarchandises, SIGNAL(triggered()), this, SLOT(afficherMarchandises()));
-    connect(actionSortir, SIGNAL(triggered()), this, SLOT(sortir()));
+    connect(actionAchatsStocks, SIGNAL(triggered()), this, SLOT(achats_de_stocks()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
 
     connect(actionReinitialiserChampsDBVisible, SIGNAL(triggered()), this, SLOT(slot_reinitialiser_champs_db_visibles()));
@@ -776,7 +776,7 @@ void YerothStocksWindow::definirCaissier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_lhistorique_de_ce_stock, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMarchandises, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchatsStocks, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier_ce_stock, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer_ce_stock, false);
@@ -795,7 +795,7 @@ void YerothStocksWindow::definirCaissier()
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_menu_principal->disable(this);
     pushButton_supprimer->disable(this);
-    pushButton_sortir->disable(this);
+    pushButton_achats_stocks->disable(this);
 }
 
 void YerothStocksWindow::definirManager()
@@ -808,7 +808,7 @@ void YerothStocksWindow::definirManager()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_lhistorique_de_ce_stock, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMarchandises, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchatsStocks, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier_ce_stock, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer_ce_stock, true);
@@ -832,7 +832,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_supprimer->enable(this, SLOT(supprimer_ce_stock()));
-    pushButton_sortir->enable(this, SLOT(sortir()));
+    pushButton_achats_stocks->enable(this, SLOT(achats_de_stocks()));
 }
 
 
@@ -846,7 +846,7 @@ void YerothStocksWindow::definirVendeur()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_lhistorique_de_ce_stock, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMarchandises, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchatsStocks, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier_ce_stock, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer_ce_stock, false);
@@ -870,7 +870,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_supprimer->disable(this);
-    pushButton_sortir->disable(this);
+    pushButton_achats_stocks->disable(this);
 }
 
 
@@ -884,7 +884,7 @@ void YerothStocksWindow::definirGestionaireDesStocks()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_lhistorique_de_ce_stock, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMarchandises, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchatsStocks, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier_ce_stock, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer_ce_stock, false);
@@ -908,7 +908,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_supprimer->disable(this);
-    pushButton_sortir->enable(this, SLOT(sortir()));
+    pushButton_achats_stocks->enable(this, SLOT(achats_de_stocks()));
 }
 
 void YerothStocksWindow::definirMagasinier()
@@ -921,7 +921,7 @@ void YerothStocksWindow::definirMagasinier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_lhistorique_de_ce_stock, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMarchandises, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchatsStocks, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier_ce_stock, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer_ce_stock, false);
@@ -938,7 +938,7 @@ void YerothStocksWindow::definirMagasinier()
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_supprimer->disable(this);
-    pushButton_sortir->enable(this, SLOT(sortir()));
+    pushButton_achats_stocks->enable(this, SLOT(achats_de_stocks()));
 }
 
 void YerothStocksWindow::definirPasDeRole()
@@ -949,7 +949,7 @@ void YerothStocksWindow::definirPasDeRole()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_lhistorique_de_ce_stock, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMarchandises, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchatsStocks, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier_ce_stock, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer_ce_stock, false);
@@ -968,7 +968,7 @@ void YerothStocksWindow::definirPasDeRole()
     pushButton_entrer->disable(this);
     pushButton_afficher->disable(this);
     pushButton_supprimer->disable(this);
-    pushButton_sortir->disable(this);
+    pushButton_achats_stocks->disable(this);
     pushButton_menu_principal->disable(this);
 }
 

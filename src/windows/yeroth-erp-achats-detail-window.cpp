@@ -150,7 +150,7 @@ void YerothAchatsDetailWindow::definirManager()
     pushButton_entrer->enable(this, SLOT(entrer()));
     pushButton_lister->enable(this, SLOT(afficherStocks()));
     pushButton_menu->enable(this, SLOT(menu()));
-    pushButton_retour->enable(this, SLOT(achats()));
+    pushButton_retour->enable(this, SLOT(achats_de_stocks()));
 }
 
 
@@ -178,7 +178,7 @@ void YerothAchatsDetailWindow::definirVendeur()
     pushButton_entrer->enable(this, SLOT(entrer()));
     pushButton_lister->enable(this, SLOT(afficherStocks()));
     pushButton_menu->enable(this, SLOT(menu()));
-    pushButton_retour->enable(this, SLOT(achats()));
+    pushButton_retour->enable(this, SLOT(achats_de_stocks()));
 }
 
 
