@@ -356,12 +356,6 @@ void YerothEntrerWindow::definirVendeur()
 {
     _logger->log("definirVendeur");
 
-    radioButton_SERVICE_VENTE_CLIENT->setChecked(true);
-
-    radioButton_AUCUN_SERVICE->setVisible(false);
-    radioButton_SERVICE_VENTE_CLIENT->setVisible(true);
-    radioButton_SERVICE_ACHAT_FOURNISSEUR->setVisible(false);
-
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, true);
@@ -1209,20 +1203,52 @@ void YerothEntrerWindow::rendreInvisible()
 
 void YerothEntrerWindow::rendreVisible(YerothSqlTableModel * stocksTableModel, bool aShowItem)
 {
+	groupBox_SERVICE_ACHAT_ET_VENTE_CHOIX->setVisible(false);
+
+    radioButton_AUCUN_SERVICE->setEnabled(false);
+    radioButton_SERVICE_VENTE_CLIENT->setEnabled(false);
+    radioButton_SERVICE_ACHAT_FOURNISSEUR->setEnabled(false);
+
+    radioButton_AUCUN_SERVICE->setVisible(false);
+    radioButton_SERVICE_VENTE_CLIENT->setVisible(false);
+    radioButton_SERVICE_ACHAT_FOURNISSEUR->setVisible(false);
+
+	radioButton_AUCUN_SERVICE->setChecked(true);
+
     YerothPOSUser *aCurrentUser = _allWindows->getUser();
 
     if (0 != aCurrentUser)
     {
-    	if (aCurrentUser->isManager() ||
-    		aCurrentUser->isVendeur())
+    	if (aCurrentUser->isManager())
     	{
     		groupBox_SERVICE_ACHAT_ET_VENTE_CHOIX->setVisible(true);
-    	}
-    	else
-    	{
-    		groupBox_SERVICE_ACHAT_ET_VENTE_CHOIX->setVisible(false);
 
-    		radioButton_AUCUN_SERVICE->setChecked(true);
+    	    radioButton_AUCUN_SERVICE->setVisible(true);
+    	    radioButton_SERVICE_VENTE_CLIENT->setVisible(true);
+    	    radioButton_SERVICE_ACHAT_FOURNISSEUR->setVisible(true);
+
+    	    radioButton_AUCUN_SERVICE->setEnabled(true);
+    	    radioButton_SERVICE_VENTE_CLIENT->setEnabled(true);
+    	    radioButton_SERVICE_ACHAT_FOURNISSEUR->setEnabled(true);
+    	}
+    	else if (aCurrentUser->isVendeur())
+    	{
+    		groupBox_SERVICE_ACHAT_ET_VENTE_CHOIX->setVisible(true);
+
+    	    radioButton_SERVICE_VENTE_CLIENT->setVisible(true);
+    	    radioButton_SERVICE_ACHAT_FOURNISSEUR->setVisible(true);
+
+    	    radioButton_AUCUN_SERVICE->setEnabled(false);
+    	    radioButton_SERVICE_VENTE_CLIENT->setEnabled(true);
+    	    radioButton_SERVICE_ACHAT_FOURNISSEUR->setEnabled(true);
+
+    	    radioButton_SERVICE_VENTE_CLIENT->setChecked(true);
+    	}
+    	else if (aCurrentUser->isGestionaireDesStocks())
+    	{
+    		radioButton_AUCUN_SERVICE->setEnabled(true);
+
+    	    radioButton_AUCUN_SERVICE->setChecked(true);
     	}
     }
 
