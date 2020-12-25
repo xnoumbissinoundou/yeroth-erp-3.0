@@ -11,7 +11,7 @@ We chose to design and implement \yerotherpblack as
 a \thickclient software--system because of the
 following reasons:
 
-\begin{enumerate}[1)]
+\begin{enumerate}[1.]
 
 	\item the implementation language \cplusplus
 		offers much flexibility (use of macro, 
@@ -31,8 +31,38 @@ following reasons:
 	
 \end{enumerate}
 
-\section{Definitions}
 
-\subsection{Logical software--system architecture}
+\section{Thick--Client VS Web--Browser--based
+	Software--System Architecture}
 
-\subsection{Physical software--system architecture}
+\input{yeroth-erp-3-0-architecture-comparison-table}
+
+\begin{center}
+\includegraphics[scale=0.52]{images/yeroth-thickclient-application-two-tier-architecture.png}
+\captionof{figure}{$2$--layers logical 
+architecture of \thickclient software--system 
+(Image copied from \cite{securityboulevarddotcom:2020}).}
+\label{fig:yeroth-thickclient-application-two-tier-architecture}
+\end{center}
+
+Figure~\ref{fig:yeroth-thickclient-application-two-tier-architecture}
+illustrates an example of a \thickclient
+software--system with a $2$--layers
+logical architecture.
+
+\begin{center}
+\includegraphics[scale=0.39]{images/yeroth-three-tier-architecture.png}
+\captionof{figure}{$4$--layers logical architecture
+of \webbrowserbased software--system
+(Image copied from \cite{trevor:2006}).}
+\label{fig:yeroth-three-tier-architecture}
+\end{center}
+
+Figure~\ref{fig:yeroth-three-tier-architecture}
+illustrates an example of a \webbrowserbased
+software--system with a $3$--layers
+logical architecture.
+
+Table~\ref{tab:thickclient-application-againts-webbrowserbased-application}
+compares \thickclient software--systems against
+\webbrowserbased software--systems.
