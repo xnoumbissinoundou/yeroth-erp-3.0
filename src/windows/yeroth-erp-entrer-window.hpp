@@ -112,7 +112,7 @@ public slots:
     		   !lineEdit_prix_dachat->text().isEmpty();
     }
 
-    void enregistrer_achat();
+    void enregistrer_achat_au_fournisseur();
 
     void enregistrer_produit();
 
