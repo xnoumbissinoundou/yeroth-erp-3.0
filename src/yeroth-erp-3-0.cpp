@@ -656,13 +656,6 @@ int main(int argc, char *argv[])
 
 #endif
 
-
-    QApplication::setFont(QFont(STRING_APPLICATION_WIDE_FONT_TYPE_YEROTH_ERP_3_0,
-                                INT_APPLICATION_WIDE_FONT_SIZE_YEROTH_ERP_3_0));
-
-    QApplication::setWindowIcon(QIcon(":yeroth-erp-3-0-images/yeroth-erp-3.0-icon.png"));
-
-
     bool yerothCmdLineParser_isUsed = false;
 
     YerothCommandLineParser yerothCmdLineParser;
@@ -741,6 +734,13 @@ int main(int argc, char *argv[])
     readTexTemplateFiles(logger);
 
     allWindows.createAllYerothPosUserWindows();
+
+
+    QApplication::setFont(QFont(STRING_APPLICATION_WIDE_FONT_TYPE_YEROTH_ERP_3_0,
+                                INT_APPLICATION_WIDE_FONT_SIZE_YEROTH_ERP_3_0));
+
+    QApplication::setWindowIcon(QIcon(":yeroth-erp-3-0-images/yeroth-erp-3.0-icon.png"));
+
 
     YerothERPConfig::_connectedSite = allWindows.getInfoEntreprise().getLocalisation();
 
