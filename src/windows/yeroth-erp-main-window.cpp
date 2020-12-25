@@ -244,7 +244,7 @@ void YerothMainWindow::definirVendeur()
     pushButton_clients->enable(this, SLOT(clients()));
     pushButton_paiements->enable(this, SLOT(paiements()));
     pushButton_achats->disable(this);
-    pushButton_entrer->disable(this);
+    pushButton_entrer->enable(this, SLOT(entrer()));
     pushButton_afficher_stocks->enable(this, SLOT(afficherStocks()));
     pushButton_marchandises->enable(this, SLOT(afficherMarchandises()));
     pushButton_sortir->disable(this);
@@ -491,7 +491,7 @@ void YerothMainWindow::rendreVisibleLocalTOCLASS(bool isDatabaseOpened /* = fals
 
 void YerothMainWindow::help()
 {
-//#define YEROTH_DEVEL_TARGET
+#define YEROTH_DEVEL_TARGET
 
 #ifndef YEROTH_DEVEL_TARGET
 	YerothPOSUser * currentUser = _allWindows->getUser();

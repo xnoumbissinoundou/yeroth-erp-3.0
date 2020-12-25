@@ -356,21 +356,31 @@ void YerothEntrerWindow::definirVendeur()
 {
     _logger->log("definirVendeur");
 
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, false);
+    radioButton_SERVICE_VENTE_CLIENT->setChecked(true);
+
+    radioButton_AUCUN_SERVICE->setVisible(false);
+    radioButton_SERVICE_VENTE_CLIENT->setVisible(true);
+    radioButton_SERVICE_ACHAT_FOURNISSEUR->setVisible(false);
+
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);    ;
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEnregisterStock, false);
+
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAnnuler, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEnregisterStock, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerImage, false);
 
-    pushButton_supprimer_limage_du_stock->disable(this);
-    pushButton_afficher_stocks->disable(this);
-    pushButton_sortir->disable(this);
-    pushButton_annuler->disable(this);
-    pushButton_selectionner_image->setEnabled(false);
-    pushButton_enregistrer_produit->setEnabled(false);
+    pushButton_supprimer_limage_du_stock->enable(this, SLOT(supprimer_image_stock()));
+    pushButton_afficher_stocks->enable(this, SLOT(afficherStocks()));
+    pushButton_menu_principal->enable(this, SLOT(menu()));
+    pushButton_sortir->enable(this, SLOT(sortir()));
+    pushButton_annuler->enable(this, SLOT(menu()));
+    pushButton_selectionner_image->enable(this, SLOT(selectionner_image_produit()));
+    pushButton_enregistrer_produit->enable(this, SLOT(handle_enregistrer()));
 }
 
 
@@ -1210,6 +1220,8 @@ void YerothEntrerWindow::rendreVisible(YerothSqlTableModel * stocksTableModel, b
     	}
     	else
     	{
+    		groupBox_SERVICE_ACHAT_ET_VENTE_CHOIX->setVisible(false);
+
     		radioButton_AUCUN_SERVICE->setChecked(true);
     	}
     }
