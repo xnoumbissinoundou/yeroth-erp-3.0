@@ -29,19 +29,20 @@
     
     <file>yeroth-erp-3-0-templates/1a.tex</file>
 		
-		<file>yeroth-erp-3-0-sql/create_table_services_completes.sql</file>
-	  <file>yeroth-erp-3-0-sql/create_table_comptabilite_comptes.sql</file>
-		<file>yeroth-erp-3-0-sql/create_table_comptes_bancaires.sql</file>
-		<file>yeroth-erp-3-0-sql/create_table_entreprise_info.sql</file>
-		<file>yeroth-erp-3-0-sql/create_table_typedevente.sql</file>
-		<file>yeroth-erp-3-0-sql/create_table_typedepaiement.sql</file>
-		<file>yeroth-erp-3-0-sql/create_table_paiements.sql</file>
+    <file>yeroth-erp-3-0-sql/create_table_services_completes.sql</file>
+    <file>yeroth-erp-3-0-sql/create_table_comptabilite_comptes.sql</file>
+    <file>yeroth-erp-3-0-sql/create_table_comptes_bancaires.sql</file>
+    <file>yeroth-erp-3-0-sql/create_table_entreprise_info.sql</file>
+    <file>yeroth-erp-3-0-sql/create_table_typedevente.sql</file>
+    <file>yeroth-erp-3-0-sql/create_table_typedepaiement.sql</file>
+    <file>yeroth-erp-3-0-sql/create_table_paiements.sql</file>
     <file>yeroth-erp-3-0-sql/create_table_credit_card_issuing_company.sql</file>
     <file>yeroth-erp-3-0-sql/create_table_init_configurations.sql</file>
     <file>yeroth-erp-3-0-sql/create_table_configurations.sql</file>
     <file>yeroth-erp-3-0-sql/create_table_roles.sql</file>
     <file>yeroth-erp-3-0-sql/create_table_users.sql</file>
     <file>yeroth-erp-3-0-sql/create_table_titres.sql</file>
+    <file>yeroth-erp-3-0-sql/create_table_achats_fournisseurs.sql</file>
     <file>yeroth-erp-3-0-sql/create_table_achats.sql</file>
     <file>yeroth-erp-3-0-sql/create_table_stocks.sql</file>
     <file>yeroth-erp-3-0-sql/create_table_stocks_vendu.sql</file>
