@@ -5,11 +5,13 @@
 %====================================================
 \documentclass[a4paper, 12pt]{report}
 \NeedsTeXFormat{LaTeX2e}
+\makeindex
 
 %---------------------------- PACKAGE INCLUSION -------------------------------
 % This group renders characters clearer and more precise
 
 \RequirePackage[bitstream-charter,cal,expert]{mathdesign}
+\RequirePackage{makeidx}
 \RequirePackage{latexsym}
 
 \usepackage[numbib]{tocbibind}
@@ -129,7 +131,7 @@
 
 \newcommand{\Odoo}{\texttt{Odoo}\xspace}
 
-\newcommand{\lxqtsudo}{\texttt{lxqtsudo}\xspace}
+\newcommand{\lxqtsudo}{\texttt{lxqt--sudo}\xspace}
 
 \newcommand{\logFourJ}{\texttt{Log$4$j}\xspace}
 
@@ -255,13 +257,16 @@
 \bibliographystyle{alpha}
 \bibliography{yeroth-erp-3-0-bibliography}
 
-\begin{comment}
 \cleardoublepage
 \phantomsection
 \addcontentsline{toc}{chapter}{\textsc{Appendix}}
 \appendix
-\include{}
-\end{comment}
+\include{yeroth-erp-3-0-appendix}
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Index}
+\printindex
 
 \end{document}
 
