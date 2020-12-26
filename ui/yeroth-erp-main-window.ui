@@ -910,8 +910,7 @@
     </property>
     <property name="text">
      <string>Achats 
- aux 
- Fournisseurs</string>
+ (SERVICES)</string>
     </property>
     <property name="autoDefault">
      <bool>false</bool>
