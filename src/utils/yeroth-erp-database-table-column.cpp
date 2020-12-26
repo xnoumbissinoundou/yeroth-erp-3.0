@@ -72,6 +72,8 @@ const QString YerothDatabaseTableColumn::IMAGE_FOURNISSEUR				("image_fournisseu
 const QString YerothDatabaseTableColumn::IMAGE_COMPTE_CLIENT			("image_compte_client");
 const QString YerothDatabaseTableColumn::IMAGE_PRODUIT					("image_produit");
 const QString YerothDatabaseTableColumn::DATE_PEREMPTION				("date_peremption");
+const QString YerothDatabaseTableColumn::DATE_DE_RECEPTION				("date_de_reception");
+const QString YerothDatabaseTableColumn::DATE_DE_COMMANDE				("date_de_commande");
 const QString YerothDatabaseTableColumn::DATE_ENTREE					("date_entree");
 const QString YerothDatabaseTableColumn::PRENOM							("prenom");
 const QString YerothDatabaseTableColumn::NOM							("nom");
@@ -266,6 +268,10 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::IMAGE_PRODUIT,	QObject::tr("Image produit"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::DATE_PEREMPTION,	QObject::trUtf8("Date péremption"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::DATE_DE_RECEPTION,	QObject::trUtf8("Date réception"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::DATE_DE_COMMANDE,	QObject::trUtf8("Date commande"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::DATE_ENTREE,		QObject::trUtf8("Date entrée"));
 

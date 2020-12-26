@@ -89,6 +89,7 @@ FORMS = ui/yeroth-erp-main-window.ui \
 			ui/yeroth-erp-clients-detail-window.ui \
 		  ui/yeroth-erp-fournisseurs-window.ui \
 			ui/yeroth-erp-clients-window.ui \
+			ui/yeroth-erp-achats-aux-fournisseurs-window.ui \
 			ui/yeroth-erp-achats-detail-window.ui \
 			ui/yeroth-erp-achats-window.ui \
 		  ui/yeroth-erp-paiements-window.ui \
@@ -150,6 +151,7 @@ HEADERS = src/include/yeroth-erp-3-0-precompiled-header.hpp \
 		  src/widgets/table-view/yeroth-erp-fournisseurs-table-view.hpp \
 		  src/widgets/table-view/yeroth-erp-clients-table-view.hpp \
 		  src/widgets/table-view/yeroth-erp-alertes-table-view.hpp \
+		  src/widgets/table-view/yeroth-erp-achats-aux-fournisseurs-table-view.hpp \
 		  src/widgets/table-view/yeroth-erp-achats-table-view.hpp \
 		  src/widgets/table-view/yeroth-erp-marchandises-table-view.hpp \
 			src/widgets/yeroth-erp-qtable-widget-item.hpp \
@@ -195,6 +197,7 @@ HEADERS = src/include/yeroth-erp-3-0-precompiled-header.hpp \
 		  src/windows/yeroth-erp-tableau-des-transactions-du-fournisseur-window.hpp \
 		  src/windows/yeroth-erp-tableau-des-transactions-du-client-window.hpp \
 		  src/windows/yeroth-erp-historique-du-stock-window.hpp \
+		  src/windows/yeroth-erp-achats-aux-fournisseurs-window.hpp \
 		  src/windows/yeroth-erp-achats-detail-window.hpp \
 		  src/windows/yeroth-erp-achats-window.hpp \
 		  src/windows/yeroth-erp-stocks-window.hpp \
@@ -268,6 +271,7 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/widgets/table-view/yeroth-erp-fournisseurs-table-view.cpp \
 		  src/widgets/table-view/yeroth-erp-clients-table-view.cpp \
 		  src/widgets/table-view/yeroth-erp-alertes-table-view.cpp \
+		  src/widgets/table-view/yeroth-erp-achats-aux-fournisseurs-table-view.cpp \
 		  src/widgets/table-view/yeroth-erp-achats-table-view.cpp \
 		  src/widgets/table-view/yeroth-erp-marchandises-table-view.cpp \
 			src/widgets/yeroth-erp-qtable-widget-item.cpp \
@@ -313,6 +317,7 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/windows/yeroth-erp-tableau-des-transactions-du-fournisseur-window.cpp \
 			src/windows/yeroth-erp-tableau-des-transactions-du-client-window.cpp \
 			src/windows/yeroth-erp-historique-du-stock-window.cpp \
+		  src/windows/yeroth-erp-achats-aux-fournisseurs-window.cpp \
 		  src/windows/yeroth-erp-achats-detail-window.cpp \
 		  src/windows/yeroth-erp-achats-window.cpp \
 		  src/windows/yeroth-erp-stocks-window.cpp \

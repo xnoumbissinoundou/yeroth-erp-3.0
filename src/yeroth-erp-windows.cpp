@@ -79,6 +79,8 @@ const QString YerothERPWindows::YerothERPWindows::CONDITIONS_ALERTES				("condit
 
 const QString YerothERPWindows::YerothERPWindows::COURRIERS_ALERTES				("courriers_alertes");
 
+const QString YerothERPWindows::YerothERPWindows::ACHATS_AUX_FOURNISSEURS		("achats_aux_fournisseurs");
+
 const QString YerothERPWindows::YerothERPWindows::ACHATS							("achats");
 
 const QString YerothERPWindows::YerothERPWindows::STOCKS							("stocks");
@@ -130,6 +132,7 @@ YerothERPWindows::YerothERPWindows(QDesktopWidget *desktopWidget)
      _pdVenteWindow(0),
 	 _fournisseurDetailsWindow(0),
 	 _clientsDetailWindow(0),
+	 _achats_aux_fournisseursWindow(0),
 	 _achatsDetailWindow(0),
 	 _detailWindow(0),
      _entrerWindow(0),
@@ -161,6 +164,7 @@ YerothERPWindows::YerothERPWindows(QDesktopWidget *desktopWidget)
 	 _tableModel_remises(0),
      _tableModel_conditions_alertes(0),
      _tableModel_courriers_alertes(0),
+	 _tableModel_achats_aux_fournisseurs(0),
 	 _tableModel_achats(0),
      _tableModel_stocks(0),
 	 _tableModel_services_completes(0),
@@ -203,6 +207,7 @@ YerothERPWindows::YerothERPWindows(QDesktopWidget *desktopWidget)
     setupSqlTableModelFromName(YerothERPWindows::REMISES, &_tableModel_remises);
     setupSqlTableModelFromName(YerothERPWindows::CONDITIONS_ALERTES, &_tableModel_conditions_alertes);
     setupSqlTableModelFromName(YerothERPWindows::COURRIERS_ALERTES, &_tableModel_courriers_alertes);
+    setupSqlTableModelFromName(YerothERPWindows::ACHATS_AUX_FOURNISSEURS, &_tableModel_achats_aux_fournisseurs);
     setupSqlTableModelFromName(YerothERPWindows::ACHATS, &_tableModel_achats);
     setupSqlTableModelFromName(YerothERPWindows::STOCKS, &_tableModel_stocks);
     setupSqlTableModelFromName(YerothERPWindows::SERVICES_COMPLETES, &_tableModel_services_completes);
@@ -240,6 +245,7 @@ YerothERPWindows::~YerothERPWindows()
     delete _pdVenteWindow;
     delete _detailWindow;
     delete _achatsDetailWindow;
+    delete _achats_aux_fournisseursWindow;
     delete _clientsDetailWindow;
     delete _fournisseurDetailsWindow;
     delete _modifierWindow;
@@ -329,6 +335,7 @@ void YerothERPWindows::createAllYerothPosUserWindows()
     _pdVenteWindow 					= new YerothPointDeVenteWindow;
     _fournisseurDetailsWindow 		= new YerothFournisseurDetailsWindow;
     _clientsDetailWindow 			= new YerothClientsDetailWindow;
+    _achats_aux_fournisseursWindow 	= new YerothAchatsAUXFournisseursWindow;
     _achatsDetailWindow 			= new YerothAchatsDetailWindow;
     _detailWindow 					= new YerothStockDetailWindow;
     _modifierWindow 				= new YerothModifierWindow;
@@ -473,6 +480,7 @@ void YerothERPWindows::definirMagasinier()
     _pdVenteWindow->definirMagasinier();
     _fournisseurDetailsWindow->definirMagasinier();
     _clientsDetailWindow->definirMagasinier();
+    _achats_aux_fournisseursWindow->definirMagasinier();
     _achatsDetailWindow->definirMagasinier();
     _detailWindow->definirMagasinier();
     _modifierWindow->definirMagasinier();
@@ -506,6 +514,7 @@ void YerothERPWindows::definirCaissier()
     _pdVenteWindow->definirCaissier();
     _fournisseurDetailsWindow->definirCaissier();
     _clientsDetailWindow->definirCaissier();
+    _achats_aux_fournisseursWindow->definirCaissier();
     _achatsDetailWindow->definirCaissier();
     _detailWindow->definirCaissier();
     _modifierWindow->definirCaissier();
@@ -539,6 +548,7 @@ void YerothERPWindows::definirManager()
     _pdVenteWindow->definirManager();
     _fournisseurDetailsWindow->definirManager();
     _clientsDetailWindow->definirManager();
+    _achats_aux_fournisseursWindow->definirManager();
     _achatsDetailWindow->definirManager();
     _detailWindow->definirManager();
     _modifierWindow->definirManager();
@@ -579,6 +589,7 @@ void YerothERPWindows::definirVendeur()
     _pdVenteWindow->definirVendeur();
     _fournisseurDetailsWindow->definirVendeur();
     _clientsDetailWindow->definirVendeur();
+    _achats_aux_fournisseursWindow->definirVendeur();
     _achatsDetailWindow->definirVendeur();
     _detailWindow->definirVendeur();
     _modifierWindow->definirVendeur();
@@ -619,6 +630,7 @@ void YerothERPWindows::definirGestionaireDesStocks()
     _pdVenteWindow->definirGestionaireDesStocks();
     _fournisseurDetailsWindow->definirGestionaireDesStocks();
     _clientsDetailWindow->definirGestionaireDesStocks();
+    _achats_aux_fournisseursWindow->definirGestionaireDesStocks();
     _achatsDetailWindow->definirGestionaireDesStocks();
     _detailWindow->definirGestionaireDesStocks();
     _modifierWindow->definirGestionaireDesStocks();
@@ -664,6 +676,7 @@ void YerothERPWindows::definirPasDeRole()
     _pdVenteWindow->definirPasDeRole();
     _fournisseurDetailsWindow->definirPasDeRole();
     _clientsDetailWindow->definirPasDeRole();
+    _achats_aux_fournisseursWindow->definirPasDeRole();
     _achatsDetailWindow->definirPasDeRole();
     _detailWindow->definirPasDeRole();
     _modifierWindow->definirPasDeRole();
@@ -710,6 +723,7 @@ void YerothERPWindows::hideAllWindows()
     _sortirListStocksWindow->rendreInvisible();
     _fournisseurDetailsWindow->rendreInvisible();
     _clientsDetailWindow->rendreInvisible();
+    _achats_aux_fournisseursWindow->rendreInvisible();
     _achatsDetailWindow->rendreInvisible();
     _detailWindow->rendreInvisible();
     _creerFournisseurWindow->rendreInvisible();
@@ -825,6 +839,13 @@ YerothSqlTableModel &YerothERPWindows::getSqlTableModel_fournisseurs()
 {
     _tableModel_fournisseurs->resetFilter();
     return *_tableModel_fournisseurs;
+}
+
+
+YerothSqlTableModel &YerothERPWindows::getSqlTableModel_achats_aux_fournisseurs()
+{
+	_tableModel_achats_aux_fournisseurs->resetFilter();
+    return *_tableModel_achats_aux_fournisseurs;
 }
 
 

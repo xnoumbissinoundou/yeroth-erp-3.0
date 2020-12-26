@@ -42,7 +42,7 @@
     <file>yeroth-erp-3-0-sql/create_table_roles.sql</file>
     <file>yeroth-erp-3-0-sql/create_table_users.sql</file>
     <file>yeroth-erp-3-0-sql/create_table_titres.sql</file>
-    <file>yeroth-erp-3-0-sql/create_table_achats_fournisseurs.sql</file>
+    <file>yeroth-erp-3-0-sql/create_table_achats_aux_fournisseurs.sql</file>
     <file>yeroth-erp-3-0-sql/create_table_achats.sql</file>
     <file>yeroth-erp-3-0-sql/create_table_stocks.sql</file>
     <file>yeroth-erp-3-0-sql/create_table_stocks_vendu.sql</file>

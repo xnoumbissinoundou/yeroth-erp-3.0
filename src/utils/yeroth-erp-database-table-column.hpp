@@ -141,6 +141,10 @@ public:
 
 	static const QString DATE_PEREMPTION;
 
+	static const QString DATE_DE_RECEPTION;
+
+	static const QString DATE_DE_COMMANDE;
+
 	static const QString DATE_ENTREE;
 
 	static const QString PRENOM;

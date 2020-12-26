@@ -27,6 +27,7 @@
 #include "src/windows/yeroth-erp-mouvements_de_stocks-window.hpp"
 #include "src/windows/yeroth-erp-fournisseur-details-window.hpp"
 #include "src/windows/yeroth-erp-clients-detail-window.hpp"
+#include "src/windows/yeroth-erp-achats-aux-fournisseurs-window.hpp"
 #include "src/windows/yeroth-erp-achats-detail-window.hpp"
 #include "src/windows/yeroth-erp-stock-detail-window.hpp"
 #include "src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp"
@@ -97,6 +98,7 @@ class YerothPOSVenteMethodePaiementComptantEntreeDialog;
 class YerothPOSVenteMethodePaiementDialog;
 class YerothFournisseurDetailsWindow;
 class YerothClientsDetailWindow;
+class YerothAchatsAUXFournisseursWindow;
 class YerothAchatsDetailWindow;
 class YerothStockDetailWindow;
 class YerothEntrerWindow;
@@ -172,6 +174,8 @@ public:
 	YerothSqlTableModel &getSqlTableModel_clients();
 
 	YerothSqlTableModel &getSqlTableModel_fournisseurs();
+
+	YerothSqlTableModel &getSqlTableModel_achats_aux_fournisseurs();
 
 	YerothSqlTableModel &getSqlTableModel_achats();
 
@@ -267,6 +271,12 @@ public:
 	{
 		return YerothERPWindows::getNextIdFromTable(YerothERPWindows::COMPTES_BANCAIRES);
 	}
+
+	static inline int getNextIdSqlTableModel_achats_aux_fournisseurs()
+	{
+		return YerothERPWindows::getNextIdFromTable(YerothERPWindows::ACHATS);
+	}
+
 
 	static inline int getNextIdSqlTableModel_achats()
 	{
@@ -375,6 +385,7 @@ public:
 	static const QString FOURNISSEURS;
 	static const QString ALERTES;
 	static const QString REMISES;
+	static const QString ACHATS_AUX_FOURNISSEURS;
 	static const QString ACHATS;
 	static const QString STOCKS;
 	static const QString SERVICES_COMPLETES;
@@ -414,10 +425,11 @@ public:
 	YerothModifierWindow 								*_modifierWindow;
 	YerothSortirWindow 									*_sortirWindow;
 	YerothTableauxDeBordWindow 							*_statistiquesWindow;
-	YerothMouvementsDeStocksWindow 							*_mouvementsDeStocksWindow;
+	YerothMouvementsDeStocksWindow 						*_mouvementsDeStocksWindow;
 	YerothPointDeVenteWindow 							*_pdVenteWindow;
 	YerothFournisseurDetailsWindow 						*_fournisseurDetailsWindow;
 	YerothClientsDetailWindow 							*_clientsDetailWindow;
+	YerothAchatsAUXFournisseursWindow 					*_achats_aux_fournisseursWindow;
 	YerothAchatsDetailWindow 							*_achatsDetailWindow;
 	YerothStockDetailWindow 							*_detailWindow;
 	YerothEntrerWindow 									*_entrerWindow;
@@ -459,6 +471,7 @@ private:
 	YerothSqlTableModel 	*_tableModel_remises;
 	YerothSqlTableModel 	*_tableModel_conditions_alertes;
 	YerothSqlTableModel 	*_tableModel_courriers_alertes;
+	YerothSqlTableModel 	*_tableModel_achats_aux_fournisseurs;
 	YerothSqlTableModel 	*_tableModel_achats;
 	YerothSqlTableModel 	*_tableModel_stocks;
 	YerothSqlTableModel 	*_tableModel_services_completes;
