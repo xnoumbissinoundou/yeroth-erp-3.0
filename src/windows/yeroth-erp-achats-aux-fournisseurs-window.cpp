@@ -65,7 +65,7 @@ YerothAchatsAUXFournisseursWindow::YerothAchatsAUXFournisseursWindow()
 {
     _windowName = QString("%1 - %2")
     				.arg(YEROTH_ERP_WINDOW_TITLE,
-    					 QObject::trUtf8("fiche des achats-aux-fournisseurs"));
+    					 QObject::trUtf8("fiche des achats aux fournisseurs"));
 
     setupUi(this);
 
@@ -132,7 +132,7 @@ YerothAchatsAUXFournisseursWindow::YerothAchatsAUXFournisseursWindow()
     connect(actionAppeler_aide, SIGNAL(triggered()), this, SLOT(help()));
     connect(actionDeconnecter_utilisateur, SIGNAL(triggered()), this, SLOT(deconnecter_utilisateur()));
     connect(actionMenu_Principal, SIGNAL(triggered()), this, SLOT(menu()));
-    connect(actionEntrer, SIGNAL(triggered()), this, SLOT(achats_de_stocks()));
+    connect(actionSupprimerUnAchatAuFournisseur, SIGNAL(triggered()), this, SLOT(supprimer_un_achat_au_fournisseur()));
     connect(actionStocks, SIGNAL(triggered()), this, SLOT(afficherStocks()));
     connect(actionVentes, SIGNAL(triggered()), this, SLOT(ventes()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));

@@ -431,7 +431,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>Yeroth-erp-3.0 - fiche des achats_aux_fournisseurs</string>
+   <string>Yeroth-erp-3.0 - fiche des achats aux fournisseurs</string>
   </property>
   <property name="locale">
    <locale language="French" country="France"/>
@@ -15480,7 +15480,6 @@ background-color: rgb(0, 0, 0); </string>
     <addaction name="actionAfficher_achat_au_detail"/>
     <addaction name="actionSupprimerUnAchatAuFournisseur"/>
     <addaction name="separator"/>
-    <addaction name="actionEntrer"/>
     <addaction name="actionStocks"/>
     <addaction name="actionVentes"/>
     <addaction name="separator"/>
@@ -16408,18 +16407,6 @@ background-color: rgb(0, 0, 0); </string>
     </font>
    </property>
   </action>
-  <action name="actionEntrer">
-   <property name="text">
-    <string>Entrer un stock</string>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-    </font>
-   </property>
-  </action>
   <action name="actionFermeture">
    <property name="text">
     <string>Fermeture</string>
@@ -16453,10 +16440,10 @@ background-color: rgb(0, 0, 0); </string>
      <normaloff>:/yeroth-erp-3-0-images/yeroth-erp-3-0-pdf-print-icon.svg</normaloff>:/yeroth-erp-3-0-images/yeroth-erp-3-0-pdf-print-icon.svg</iconset>
    </property>
    <property name="text">
-    <string>Imprimer la fiche des achats_aux_fournisseurs aux fournisseurs</string>
+    <string>Imprimer la fiche des achats aux fournisseurs</string>
    </property>
    <property name="toolTip">
-    <string>Imprimer la fiche des achats_aux_fournisseurs aux fournisseurs</string>
+    <string>Imprimer la fiche des achats aux fournisseurs</string>
    </property>
    <property name="font">
     <font>
