@@ -9794,6 +9794,11 @@ Transférer</source>
         <translation>Stock (service) item image</translation>
     </message>
     <message>
+        <location filename="ui/yeroth-erp-entrer-window.ui" line="12904"/>
+        <source>aucun service (entrer 1 stock physique)</source>
+        <translation>no service (enter a physical stock)</translation>
+    </message>
+    <message>
         <location filename="ui/yeroth-erp-entrer-window.ui" line="13335"/>
         <source>service (vente au compte client)</source>
         <translation>service (selling on customer account)</translation>
@@ -9915,11 +9920,6 @@ Transférer</source>
         <location filename="ui/yeroth-erp-entrer-window.ui" line="12474"/>
         <source>SERVICE (ACHAT ET VENTE), CHOIX</source>
         <translation>SERVICE (SUPPLIER BUYINGS AND CUSTOMER ACCOUNT SALES), CHOICE</translation>
-    </message>
-    <message>
-        <location filename="ui/yeroth-erp-entrer-window.ui" line="12904"/>
-        <source>aucun service</source>
-        <translation>no service</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-entrer-window.ui" line="14648"/>

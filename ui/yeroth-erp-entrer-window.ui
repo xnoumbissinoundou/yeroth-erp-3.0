@@ -12024,7 +12024,7 @@ background-color: rgb(0, 0, 0); </string>
       <rect>
        <x>3</x>
        <y>18</y>
-       <width>241</width>
+       <width>257</width>
        <height>100</height>
       </rect>
      </property>
@@ -12476,9 +12476,9 @@ background-color: rgb(0, 0, 0); </string>
      <widget class="QRadioButton" name="radioButton_AUCUN_SERVICE">
       <property name="geometry">
        <rect>
-        <x>5</x>
+        <x>7</x>
         <y>20</y>
-        <width>230</width>
+        <width>246</width>
         <height>19</height>
        </rect>
       </property>
@@ -12901,15 +12901,15 @@ background-color: rgb(0, 0, 0); </string>
        <enum>Qt::RightToLeft</enum>
       </property>
       <property name="text">
-       <string>aucun service</string>
+       <string>aucun service (entrer 1 stock physique)</string>
       </property>
      </widget>
      <widget class="QRadioButton" name="radioButton_SERVICE_VENTE_CLIENT">
       <property name="geometry">
        <rect>
-        <x>5</x>
+        <x>7</x>
         <y>44</y>
-        <width>230</width>
+        <width>246</width>
         <height>19</height>
        </rect>
       </property>
@@ -13338,9 +13338,9 @@ background-color: rgb(0, 0, 0); </string>
      <widget class="QRadioButton" name="radioButton_SERVICE_ACHAT_FOURNISSEUR">
       <property name="geometry">
        <rect>
-        <x>5</x>
+        <x>7</x>
         <y>70</y>
-        <width>230</width>
+        <width>246</width>
         <height>19</height>
        </rect>
       </property>
