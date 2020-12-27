@@ -602,24 +602,24 @@ void YerothAchatsWindow::definirGestionaireDesStocks()
 {
     _logger->log("definirGestionaireDesStocks");
 
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVentes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, true);
 
-    MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS
+    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(this, _curAchatSqlTableModel)
 
     pushButton_achats_filtrer->disable(this);
     pushButton_achats_reinitialiser_filtre->disable(this);
 
-    pushButton_entrer->disable(this);
-    pushButton_afficher->disable(this);
-    pushButton_stocks->disable(this);
+    pushButton_entrer->enable(this, SLOT(entrer()));
+    pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
+    pushButton_menu_principal->enable(this, SLOT(menu()));
+    pushButton_stocks->enable(this, SLOT(afficherStocks()));
     pushButton_ventes->disable(this);
-    pushButton_menu_principal->disable(this);
 }
 
 void YerothAchatsWindow::definirMagasinier()
