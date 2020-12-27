@@ -80,7 +80,7 @@ YerothAdminCreateWindow::YerothAdminCreateWindow()
     connect(actionQui_suis_je, SIGNAL(triggered()), this, SLOT(qui_suis_je()));
 
 
-    connect(comboBox_creer_alerte_designation, SIGNAL(currentTextChanged(const QString &)), this,
+    connect(lineEdit_creer_alerte_designation, SIGNAL(textChanged(const QString &)), this,
             SLOT(showProduitInfo(const QString &)));
 
     connect(comboBox_creer_alerte_destinataire, SIGNAL(currentTextChanged(const QString &)), this,
@@ -158,6 +158,11 @@ void YerothAdminCreateWindow::rendreVisible(unsigned selectedSujetAction)
     clear_alerte_all_fields();
 
     clear_remise_all_fields();
+
+	lineEdit_creer_alerte_designation->setupMyStaticQCompleter(_allWindows->STOCKS,
+												  	  	  	   YerothDatabaseTableColumn::DESIGNATION,
+															   false,
+															   false);
 
     lineEdit_creer_remise_designation_article->setupMyStaticQCompleter(_allWindows->STOCKS, YerothDatabaseTableColumn::DESIGNATION);
 

@@ -42,7 +42,7 @@ bool YerothAdminCreateWindow::creer_alerte()
 
         stocksTableModel.yerothSetFilter_WITH_where_clause(
         		GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::DESIGNATION,
-        							 comboBox_creer_alerte_designation->currentText()));
+        							 lineEdit_creer_alerte_designation->text()));
 
         int stocksTableModelRowCount = stocksTableModel.easySelect();
 
@@ -62,7 +62,7 @@ bool YerothAdminCreateWindow::creer_alerte()
         record.setValue(YerothDatabaseTableColumn::DESIGNATION_ALERTE, lineEdit_creer_alerte_nom->text());
         record.setValue(YerothDatabaseTableColumn::DESTINATAIRE, comboBox_creer_alerte_destinataire->currentText());
         record.setValue(YerothDatabaseTableColumn::NOM_COMPLET_DESTINATAIRE, lineEdit_creer_alerte_nom_destinataire->text());
-        record.setValue(YerothDatabaseTableColumn::DESIGNATION, comboBox_creer_alerte_designation->currentText());
+        record.setValue(YerothDatabaseTableColumn::DESIGNATION, lineEdit_creer_alerte_designation->text());
         record.setValue(YerothDatabaseTableColumn::STOCKS_ID, GET_SQL_RECORD_DATA(stocksRecord, YerothDatabaseTableColumn::ID));
         record.setValue(YerothDatabaseTableColumn::ALERTE_RESOLUE, 0);
 
@@ -128,9 +128,6 @@ void YerothAdminCreateWindow::populateAlerteComboBoxes()
 							.arg(YerothDatabaseTableColumn::ROLE,
 								 QString::number(YerothUtils::ROLE_ADMINISTRATEUR)));
 
-	comboBox_creer_alerte_designation->populateComboBoxRawString(_allWindows->STOCKS,
-																  YerothDatabaseTableColumn::DESIGNATION);
-
     comboBox_creer_alerte_destinataire->populateComboBoxRawString(_allWindows->USERS,
 																  YerothDatabaseTableColumn::NOM_UTILISATEUR,
 																  aConditionStr);
@@ -142,7 +139,7 @@ void YerothAdminCreateWindow::populateAlerteComboBoxes()
 
 void YerothAdminCreateWindow::creer_alerte_check_fields_entry()
 {
-	comboBox_creer_alerte_designation->checkField();
+	lineEdit_creer_alerte_designation->checkField();
 	comboBox_creer_alerte_destinataire->checkField();
 
 	lineEdit_creer_alerte_nom->checkField();
@@ -199,7 +196,7 @@ void YerothAdminCreateWindow::creer_alerte_check_fields_entry()
 bool YerothAdminCreateWindow::creer_alerte_check_fields()
 {
     bool alerte_nom = lineEdit_creer_alerte_nom->checkField();
-    bool produit = comboBox_creer_alerte_designation->checkField();
+    bool produit = lineEdit_creer_alerte_designation->checkField();
     bool message = textEdit_creer_alerte_message->checkField();
     bool destinataire = comboBox_creer_alerte_destinataire->checkField();
 
@@ -219,6 +216,7 @@ bool YerothAdminCreateWindow::creer_alerte_check_fields()
                                  aMsg);
 
         comboBox_creer_alerte_condition->checkField();
+
         lineEdit_creer_alerte_quantite->setPalette(YerothUtils::YEROTH_RED_PALETTE);
         dateEdit_creer_alerte_date_debut->setPalette(YerothUtils::YEROTH_RED_PALETTE);
         dateEdit_creer_alerte_date_fin->setPalette(YerothUtils::YEROTH_RED_PALETTE);
@@ -305,8 +303,8 @@ void YerothAdminCreateWindow::clear_alerte_all_fields()
 {
     lineEdit_creer_alerte_nom->clearField();
     lineEdit_creer_alerte_quantite->clearField();
+    lineEdit_creer_alerte_designation->clearField();
 
-    comboBox_creer_alerte_designation->resetYerothComboBox();
     comboBox_creer_alerte_destinataire->resetYerothComboBox();
 
     lineEdit_creer_alerte_stock_dalerte->clear();
