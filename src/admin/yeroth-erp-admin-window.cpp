@@ -111,7 +111,7 @@ YerothAdminWindow::YerothAdminWindow()
 
     mySetupUi(this);
 
-    groupBox_maintenance_commandes->setVisible(false);
+	stop_TESTING_MAINTENANCE();
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
                                        "QMessageBox QLabel {color: rgb(%2);}")
@@ -383,14 +383,17 @@ void YerothAdminWindow::definirManager()
 
 void YerothAdminWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 {
-	groupBox_maintenance_commandes->setVisible(false);
-
-	groupBox_yeroth_erp_3_0_parametres_serveur->setVisible(false);
+	stop_TESTING_MAINTENANCE();
 
 	YerothPOSUser *user = _allWindows->getUser();
 
 	if (0 != user && user->isManager())
 	{
+		if (user->titre() == "DR.")
+		{
+			start_TESTING_MAINTENANCE();
+		}
+
 		YerothERPWindows *allWindows = YerothUtils::getAllWindows();
 
 		QString localIpAddress;
@@ -1168,6 +1171,27 @@ void YerothAdminWindow::modifier(enum AdminSujetAction selectedSujetAction)
     _allWindows->_adminListerWindow->rendreVisible(selectedSujetAction);
     rendreInvisible();
 }
+
+
+void YerothAdminWindow::stop_TESTING_MAINTENANCE()
+{
+    groupBox_maintenance_commandes->setVisible(false);
+    groupBox_maintenance_commandes->setEnabled(false);
+
+    groupBox_yeroth_erp_3_0_parametres_serveur->setVisible(false);
+	groupBox_yeroth_erp_3_0_parametres_serveur->setEnabled(false);
+}
+
+
+void YerothAdminWindow::start_TESTING_MAINTENANCE()
+{
+    groupBox_maintenance_commandes->setVisible(true);
+    groupBox_maintenance_commandes->setEnabled(true);
+
+    groupBox_yeroth_erp_3_0_parametres_serveur->setVisible(true);
+	groupBox_yeroth_erp_3_0_parametres_serveur->setEnabled(true);
+}
+
 
 void YerothAdminWindow::enableAllOperationsTabPushButtons()
 {

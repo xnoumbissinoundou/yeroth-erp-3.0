@@ -512,6 +512,9 @@ void YerothMainWindow::help()
 	                                    "2) Recevez un message d'aide en cliquant sur le deuxieme icone !"));
 	}
 #else
+
+	_allWindows->_adminWindow->start_TESTING_MAINTENANCE();
+
     //YerothUserLAdministrateur *u = new YerothUserLAdministrateur(_allWindows);
     //YerothUserLeCaissier *u = new YerothUserLeCaissier(_allWindows);
     //YerothUserLeMagasinier *u = new YerothUserLeMagasinier(_allWindows);
@@ -528,7 +531,7 @@ void YerothMainWindow::help()
     u->set_nom("NOUMBISSI NOUNDOU");
     u->set_nom_utilisateur("xavierp");
     u->set_localisation("Yaoundé");
-    u->set_nom_complet("Xavier NOUMBISSI-NOUNDOU");
+    u->set_nom_complet("DR. XAVIER NOUMBISSI-NOUNDOU");
 
     _allWindows->setUser(u);
 

@@ -79,6 +79,10 @@ public:
 
 public slots:
 
+	void stop_TESTING_MAINTENANCE();
+
+	void start_TESTING_MAINTENANCE();
+
 	void enableAllOperationsTabPushButtons();
 
 	void disableAllOperationsTabPushButtons();
