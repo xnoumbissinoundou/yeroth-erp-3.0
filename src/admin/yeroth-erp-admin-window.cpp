@@ -142,7 +142,7 @@ YerothAdminWindow::YerothAdminWindow()
 
 
     lineEdit_administration_maintenance_commandes_exporter_yerotherp3_0->
-		setText(QString("mysqldump -u '%1' -p '%2'"));
+		setText(QString("mysqldump --databases -u '%1' -p '%2'"));
 
     lineEdit_administration_maintenance_commandes_effacer_un_tableau->
 		setText(QString("mysql -u '%1' -p --execute=\"truncate table %2\""));
@@ -537,6 +537,9 @@ void YerothAdminWindow::EXECUTER_COMMANDE_MAINTENANCE()
 
 	QString progArgsString(maintenanceCommand.remove(0, lenToRemoveFromMAINTENANCE_COMMAND).trimmed());
 
+	progArgsString.replace("--databases", QString("--databases %1")
+									.arg(YerothERPConfig::_db_name));
+
 	progArgsString.replace("-p", QString("-p%1")
 									.arg(YerothERPConfig::_db_user_pwd));
 
@@ -554,6 +557,14 @@ void YerothAdminWindow::EXECUTER_COMMANDE_MAINTENANCE()
 																 	 	 	  YerothERPConfig::sqlBackupDir,
 																			  yeroth_erp_3_0_restore_backup_sql_file,
 																			  progArguments);
+
+	if (progArgsString.contains("--databases"))
+	{
+		YerothUtils::GZIP_YEROTH_FILE(YerothERPConfig::sqlBackupDir,
+									  QString("%1/%2")
+									  	  .arg(YerothERPConfig::sqlBackupDir,
+									  		   yeroth_erp_3_0_restore_backup_sql_file));
+	}
 
 	QString userViewPrettyCommand(QString("%1 %2")
 									.arg(comboBox_operations_maintenance->currentText(),

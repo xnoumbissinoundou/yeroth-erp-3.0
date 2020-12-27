@@ -829,6 +829,23 @@ bool YerothUtils::GREP_YEROTH_FILE_CONTENT(const QString &file_full_path,
 }
 
 
+bool YerothUtils::GZIP_YEROTH_FILE(const QString &program_working_directory_full_path,
+								   const QString &file_full_path)
+{
+	QStringList gzipPROG_ARGS;
+
+	gzipPROG_ARGS.append(file_full_path);
+
+	int file_size = YerothERPProcess::
+					start_PROCESS_AND_READ_PROCESS_output_INTO_FILE("/usr/bin/gzip",
+																	program_working_directory_full_path,
+																	QString("%1.gz")
+																		.arg(file_full_path),
+																	gzipPROG_ARGS);
+	return (file_size >= 0);
+}
+
+
 enum service_stock_already_exist_type
 	YerothUtils::IS_STOCK_DESIGNATION_OR_REFERENCE_UNIQUE(const QString &aStockServiceReference,
 														  const QString &aStockServiceCategory,
