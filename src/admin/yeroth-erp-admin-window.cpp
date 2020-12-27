@@ -385,6 +385,8 @@ void YerothAdminWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 {
 	stop_TESTING_MAINTENANCE();
 
+	groupBox_yeroth_erp_3_0_parametres_serveur->setVisible(false);
+
 	YerothPOSUser *user = _allWindows->getUser();
 
 	if (0 != user && user->isManager())
@@ -1188,9 +1190,6 @@ void YerothAdminWindow::stop_TESTING_MAINTENANCE()
 {
     groupBox_maintenance_commandes->setVisible(false);
     groupBox_maintenance_commandes->setEnabled(false);
-
-    groupBox_yeroth_erp_3_0_parametres_serveur->setVisible(false);
-	groupBox_yeroth_erp_3_0_parametres_serveur->setEnabled(false);
 }
 
 
@@ -1198,9 +1197,6 @@ void YerothAdminWindow::start_TESTING_MAINTENANCE()
 {
     groupBox_maintenance_commandes->setVisible(true);
     groupBox_maintenance_commandes->setEnabled(true);
-
-    groupBox_yeroth_erp_3_0_parametres_serveur->setVisible(true);
-	groupBox_yeroth_erp_3_0_parametres_serveur->setEnabled(true);
 }
 
 
