@@ -60,30 +60,30 @@
         <translation>administration ~ main</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="407"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="409"/>
         <source>paramètres serveur [ &quot;%1&quot; ]</source>
         <translation>server parameters [ &quot;%1&quot; ]</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="503"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="532"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="576"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="590"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="505"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="534"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="578"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="592"/>
         <source>EXÉCUTER COMMANDE MAINTENANCE</source>
         <translation>RUN MAINTENANCE BINARY EXECUTABLE</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="504"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="506"/>
         <source>Sélectionner 1 commande à exécuter !</source>
         <translation>Select 1 command to execute !</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="533"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="535"/>
         <source>Commande à exécuter INVALIDE !</source>
         <translation>INVALID program to run !</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="577"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="579"/>
         <source>Commande non exécutable: &quot;%1&quot; (%2) !
 
 Répertoire d&apos;exécution: &quot;%3&quot;.</source>
@@ -97,7 +97,7 @@ Répertoire d&apos;exécution: &quot;%4&quot;.</oldsource>
 Program executing directory: &quot;%3&quot;.</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="591"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="593"/>
         <source>La commande &quot;%1&quot; a été exécuter avec succès !
 
 Répertoire d&apos;exécution: &quot;%2&quot;.</source>
@@ -111,104 +111,104 @@ Répertoire d&apos;exécution: &quot;%3&quot;.</oldsource>
 Program executing directory: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="859"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="861"/>
         <source>&apos;%1&apos; entrée(s) du fichier CSV ont été importée(s) avec succès !</source>
         <translation>&apos;%1&apos; CSV file input(s) have been successfully imported into the database !</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="865"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="875"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="867"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="877"/>
         <source>résultat importation fichier CSV</source>
         <translation>CSV file importation result</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="870"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="872"/>
         <source>AUCUNE DONNÉE DU FICHIER (.csv) n&apos;a été importée !</source>
         <translation>NO DATA FROM CSV FILE (.csv) has been imported !</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1488"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1484"/>
         <source>Choisir le chemin qui mène au fichier au format (.csv)</source>
         <translation>Select CSV import file path</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1490"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1486"/>
         <source>.csv (*.csv)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1506"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1502"/>
         <source>Choisir le chemin qui mène au répertoire de base de &apos;MariaDB-client&apos;</source>
         <oldsource>Choisir le chemin qui mène au rpertoire de base de &apos;MariaDB-client&apos;</oldsource>
         <translation>Select full path to &apos;MariaDB-client&apos; base folder</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1520"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1516"/>
         <source>Choisir le chemin qui mène au lecteur de fichiers PDF</source>
         <translation>Select file path to PDF reader program</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1532"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1528"/>
         <source>Chemin jusqu&apos;au fichier système représentant l&apos;imprimante thermique</source>
         <translation>Full path to thermal printer device driver file</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1545"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1541"/>
         <source>Choisir le chemin jusqu&apos;au répertoire du système de documentation Latex</source>
         <translation>Select full path to Latex system root folder</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1561"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1557"/>
         <source>Choisir le chemin qui mène au répertoire des sauvegardes</source>
         <translation>Select SQL backup folder</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1576"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1572"/>
         <source>Choisir le chemin qui mène au répertoire des fichiers temporaires</source>
         <translation>Select temporary file folder</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1720"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1716"/>
         <source>Réinitialiser les données de l&apos;entreprise avec les paramètres par défaut ?</source>
         <translation>Reinitialize company data with default values?</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1724"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1926"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1941"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1720"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1922"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1937"/>
         <source>réinitialiser</source>
         <translation>reset</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1924"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1920"/>
         <source>Réinitialiser la configuration du système d&apos;alertes avec les paramètres par défaut ?</source>
         <translation>Reinitialize alert system configuration data with default values?</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1939"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1935"/>
         <source>Réinitialiser la configuration (générale) avec les paramètres par défaut ?</source>
         <translation>Reinitialize general configuration data with default values?</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1957"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1953"/>
         <source>Enregistrer les données de l&apos;entreprise (modifiées) ?</source>
         <translation>Save modified company data?</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1961"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2022"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2147"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1957"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2018"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2143"/>
         <source>enregistrer</source>
         <translation>save</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2018"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2014"/>
         <source>Enregistrer la configuration (système d&apos;alertes) modifiée ?</source>
         <oldsource>Enregistrer la configuration (système d&apos;alertes) modifiée de Yeroth ?</oldsource>
         <translation>Save the modified configuration of the alert system ?</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2145"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2141"/>
         <source>Enregistrer la configuration (générale) modifiée ?</source>
         <oldsource>Enregistrer la configuration (générale) modifiée de Yeroth ?</oldsource>
         <translation>Save the modified general configuration ?</translation>
@@ -2102,7 +2102,7 @@ Continue with update of the stock ?</translation>
         <translation>&apos; couldn&apos;t be created!</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1993"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1989"/>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="626"/>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="708"/>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="791"/>
@@ -2164,7 +2164,7 @@ Continue with update of the stock ?</translation>
         <translation>&apos; has been successfully created !</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1999"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1995"/>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="609"/>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="691"/>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="774"/>
