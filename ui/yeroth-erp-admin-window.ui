@@ -42736,7 +42736,7 @@
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
-      <string>Système d'alertes</string>
+      <string>Alertes sur les stocks</string>
      </attribute>
      <widget class="QLabel" name="label_5">
       <property name="geometry">
