@@ -1450,6 +1450,15 @@ int YerothUtils::execQueryRowCount(const QString &strQuery, YerothLogger *logger
 }
 
 
+void YerothUtils::qDebugStrings(const QString 	 &firstString,
+								const QStringList &aStringList)
+{
+		qDebug() << QString("++ %1: ")
+						.arg(firstString)
+				 << aStringList;
+}
+
+
 void YerothUtils::qDebugStrings(const QString &firstString,
 								const QString &secondString /* = YerothUtils::EMPTY_STRING */)
 {

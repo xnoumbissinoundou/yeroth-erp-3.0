@@ -142,19 +142,10 @@ YerothAdminWindow::YerothAdminWindow()
 
 
     lineEdit_administration_maintenance_commandes_exporter_yerotherp3_0->
-		setText(QString("mysqldump --databases -u '%1' -p '%2'"));
-
-    lineEdit_administration_maintenance_commandes_effacer_un_tableau->
-		setText(QString("mysql -u '%1' -p --execute=\"truncate table %2\""));
+		setText(QString("mysqldump --databases -u '%1' -p"));
 
     lineEdit_administration_maintenance_commandes_exporter_un_tableau->
-		setText(QString("mysqldump -u '%1' -p '%3' > '%2'"));
-
-    lineEdit_administration_maintenance_commandes_importer_un_tableau->
-		setText(QString("mysql -u '%1' -p '%3' < '%2'"));
-
-    lineEdit_administration_maintenance_commandes_supprimer_un_tableau->
-		setText(QString("mysql -u '%1' -p --execute=\"drop table %2\""));
+		setText(QString("mysqldump db -u '%1' -p"));
 
 
     dateEdit_date_derniere_sauvegarde_yeroth_erp_3->setDate(GET_CURRENT_DATE);
@@ -391,7 +382,7 @@ void YerothAdminWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 
 	if (0 != user && user->isManager())
 	{
-		if (user->titre() == "DR.")
+		if (user->titre() == "M." && user->nom_complet().startsWith("DR. "))
 		{
 			start_TESTING_MAINTENANCE();
 		}
@@ -537,15 +528,41 @@ void YerothAdminWindow::EXECUTER_COMMANDE_MAINTENANCE()
 		return ;
 	}
 
+	QDEBUG_STRINGS_OUTPUT_2("maintenanceCommand", maintenanceCommand);
+
 	QString progArgsString(maintenanceCommand.remove(0, lenToRemoveFromMAINTENANCE_COMMAND).trimmed());
 
 	progArgsString.replace("--databases", QString("--databases %1")
-									.arg(YerothERPConfig::_db_name));
+											.arg(YerothERPConfig::_db_name));
+
+	progArgsString.replace("db", QString("%1 %2")
+									.arg(YerothERPConfig::_db_name,
+										 comboBox_sujets_maintenance->currentText()));
 
 	progArgsString.replace("-p", QString("-p%1")
 									.arg(YerothERPConfig::_db_user_pwd));
 
-	QStringList progArguments(progArgsString.split(YerothUtils::EMPTY_SPACE_REGEXP));
+	QDEBUG_STRINGS_OUTPUT_2("progArgsString", progArgsString);
+
+
+	QString progArgString_NOT_TO_SPLIT;
+
+	QString progArgString_TO_SPLIT(progArgsString);
+
+	if (progArgsString.contains("--execute"))
+	{
+		QStringList splitted_cmd_string(progArgsString.split("--execute"));
+
+		progArgString_TO_SPLIT = splitted_cmd_string.at(0).trimmed();
+
+		progArgString_NOT_TO_SPLIT = splitted_cmd_string.at(1).trimmed();
+
+		QDEBUG_STRINGS_OUTPUT_2("progArgString_NOT_TO_SPLIT", progArgString_NOT_TO_SPLIT);
+
+		QDEBUG_STRINGS_OUTPUT_2("progArgString_TO_SPLIT", progArgString_TO_SPLIT);
+	}
+
+	QStringList progArguments(progArgString_TO_SPLIT.split(YerothUtils::EMPTY_SPACE_REGEXP));
 
 	QString yeroth_erp_3_0_restore_backup_sql_file(QString("%1.sql")
 					.arg(FILE_NAME_USERID_CURRENT_TIME("yeroth_erp_3_0_BACKUP_RESTORE")));
@@ -554,13 +571,21 @@ void YerothAdminWindow::EXECUTER_COMMANDE_MAINTENANCE()
 									.arg(YerothERPConfig::pathToMARIA_DB_BASE_DIR,
 										 currentProgram_mysql_mysqldump));
 
+	if (progArgsString.contains("--execute"))
+	{
+		progArguments.append(QString("--execute%1")
+								.arg(progArgString_NOT_TO_SPLIT));
+	}
+
+	QDEBUG_STRINGS_OUTPUT_QSTRINGLIST("progArguments", progArguments);
+
 	int output_file_size =
 			YerothERPProcess::start_PROCESS_AND_READ_PROCESS_output_INTO_FILE(mysqlProcessProgram,
 																 	 	 	  YerothERPConfig::sqlBackupDir,
 																			  yeroth_erp_3_0_restore_backup_sql_file,
 																			  progArguments);
 
-	if (progArgsString.contains("--databases"))
+	if (! progArgsString.contains("--execute"))
 	{
 		YerothUtils::GZIP_YEROTH_FILE(YerothERPConfig::sqlBackupDir,
 									  QString("%1/%2")
@@ -568,11 +593,13 @@ void YerothAdminWindow::EXECUTER_COMMANDE_MAINTENANCE()
 									  		   yeroth_erp_3_0_restore_backup_sql_file));
 	}
 
+
 	QString userViewPrettyCommand(QString("%1 %2")
-									.arg(comboBox_operations_maintenance->currentText(),
+			.arg(comboBox_operations_maintenance->currentText(),
 										 comboBox_sujets_maintenance->currentText()));
 
-	if (output_file_size <= 0)
+	if (output_file_size <= 0 			&&
+	    ! progArgsString.contains("--execute"))
 	{
 		YerothQMessageBox::warning(this,
 				QObject::trUtf8("EXÉCUTER COMMANDE MAINTENANCE"),
@@ -647,6 +674,7 @@ void YerothAdminWindow::handle_changer_commande_MAINTENANCE_OPERATION_SUJET_for_
 									  sqlTableName);
 
 	label_administration_exporter_yeroth_erp_3->setVisible(true);
+
 	lineEdit_administration_maintenance_commandes_exporter_yerotherp3_0->setVisible(true);
 
 	cacher_autres_commandes_YEROTH_LINE_EDIT(lineEdit_administration_maintenance_commandes_exporter_yerotherp3_0);
@@ -1195,8 +1223,18 @@ void YerothAdminWindow::stop_TESTING_MAINTENANCE()
 
 void YerothAdminWindow::start_TESTING_MAINTENANCE()
 {
-    groupBox_maintenance_commandes->setVisible(true);
-    groupBox_maintenance_commandes->setEnabled(true);
+	lineEdit_administration_maintenance_commandes_importer_un_tableau->
+		setText(QString("mysql -u '%1' -p < '%2'"));
+
+	lineEdit_administration_maintenance_commandes_effacer_un_tableau->
+		setText(QString("mysql -u '%1' -p --execute=truncate table %2"));
+
+	lineEdit_administration_maintenance_commandes_supprimer_un_tableau->
+		setText(QString("mysql -u '%1' -p --execute=drop table %2"));
+
+	groupBox_maintenance_commandes->setVisible(true);
+
+	groupBox_maintenance_commandes->setEnabled(true);
 }
 
 
