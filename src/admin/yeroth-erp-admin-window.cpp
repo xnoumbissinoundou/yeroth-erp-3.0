@@ -1216,13 +1216,32 @@ void YerothAdminWindow::modifier(enum AdminSujetAction selectedSujetAction)
 
 void YerothAdminWindow::stop_TESTING_MAINTENANCE()
 {
-    groupBox_maintenance_commandes->setVisible(false);
+	int indexEffacer = comboBox_operations_maintenance->findText(EFFACER);
+
+	if (indexEffacer > -1)
+	{
+		comboBox_operations_maintenance->removeItem(indexEffacer);
+	}
+
+	int indexSupprimer = comboBox_operations_maintenance->findText(SUPPRIMER);
+
+	if (indexSupprimer > -1)
+	{
+		comboBox_operations_maintenance->removeItem(indexSupprimer);
+	}
+
+	groupBox_maintenance_commandes->setVisible(false);
+
     groupBox_maintenance_commandes->setEnabled(false);
 }
 
 
 void YerothAdminWindow::start_TESTING_MAINTENANCE()
 {
+	comboBox_operations_maintenance->addItem(EFFACER);
+
+	comboBox_operations_maintenance->addItem(SUPPRIMER);
+
 	lineEdit_administration_maintenance_commandes_importer_un_tableau->
 		setText(QString("mysql -u '%1' -p < '%2'"));
 
