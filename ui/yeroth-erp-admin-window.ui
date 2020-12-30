@@ -24971,7 +24971,7 @@
         <string/>
        </property>
        <property name="text">
-        <string>sauvegarde de yeroth_erp_3 (heures)</string>
+        <string>sauvegarde de yeroth_erp_3 (secondes)</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
