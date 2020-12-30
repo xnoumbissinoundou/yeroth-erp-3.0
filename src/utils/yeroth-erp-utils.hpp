@@ -683,6 +683,8 @@ public:
 
 	static const QIntValidator nbre_de_LINE_FEED_POUR_IMPRESSION_PETIT_THERMIQUE_Validator;
 
+	static const QIntValidator Int_BACKUP_YEROTH_ERP_3_Validator;
+
 	static const QIntValidator IntValidator;
 
 	static const QDoubleValidator DoubleValidator;

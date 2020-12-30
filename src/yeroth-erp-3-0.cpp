@@ -526,6 +526,12 @@ void read_yeroth_configuration(YerothLogger &logger, YerothERPWindows &allWindow
     configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_PAGINATION_PAGE_BEGIN_YEAR);
     QString pageBeginYearValue(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
 
+    configurationRecord = configurationsTableModel.
+    		record(YerothERPConfig::CONFIG_BACKUP_DATABASE_YEROTH_ERP_3_TIME_INTERVAL);
+
+    QString BACKUP_DATABASE_YEROTH_ERP_3_TIME_INTERVAL_VALUE
+		(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
+
     /*
      * Now setting the configuration values
      */
@@ -534,6 +540,17 @@ void read_yeroth_configuration(YerothLogger &logger, YerothERPWindows &allWindow
     YerothERPConfig::alert_quantity_time_interval = alertQuantityTimeIntervalValue.toUInt();
     YerothERPConfig::tva_value = (tvaValue.toDouble() / 100.0);
     YerothERPConfig::salesStrategy = salesStrategyValue;
+
+
+    if (BACKUP_DATABASE_YEROTH_ERP_3_TIME_INTERVAL_VALUE.isEmpty())
+    {
+    	YerothERPConfig::backup_restore_yeroth_erp_3_time_interval = 169200;
+    }
+    else
+    {
+    	YerothERPConfig::backup_restore_yeroth_erp_3_time_interval =
+    			BACKUP_DATABASE_YEROTH_ERP_3_TIME_INTERVAL_VALUE.toUInt();
+    }
 
     if (!pageBeginYearValue.isEmpty())
     {

@@ -213,6 +213,8 @@ YerothAdminWindow::YerothAdminWindow()
     pushButton_operation_go->disable(this);
 
 
+    pushButton_maintenance_enregistrer->enable(this, SLOT(enregistrer_BACKUP_DATABASE_YEROTH_ERP_3_TIME_INTERVAL()));
+
     pushButton_maintenance_valider->enable(this, SLOT(EXECUTER_COMMANDE_MAINTENANCE()));
 
     pushButton_maintenance_reinitialiser->enable(this, SLOT(reinitialiser_AFFICHAGE_COMMANDE_MAINTENANCE()));
@@ -312,6 +314,9 @@ YerothAdminWindow::~YerothAdminWindow()
 
 void YerothAdminWindow::setupValidators()
 {
+	lineEdit_sauvegarde_de_yeroth_erp_3_secondes->
+		setValidator(&YerothUtils::Int_BACKUP_YEROTH_ERP_3_Validator);
+
     lineEdit_alert_period_time_interval->setValidator(&YerothUtils::IntValidator);
 
     lineEdit_alert_quantity_time_interval->setValidator(&YerothUtils::IntValidator);
@@ -629,6 +634,8 @@ void YerothAdminWindow::EXECUTER_COMMANDE_MAINTENANCE()
 
 void YerothAdminWindow::reinitialiser_AFFICHAGE_COMMANDE_MAINTENANCE()
 {
+	read_BACKUP_DATABASE_YEROTH_ERP_3_TIME_INTERVAL_configuration();
+
 	comboBox_sujets_maintenance->setCurrentIndex(0);
 	comboBox_operations_maintenance->setCurrentIndex(0);
 
@@ -1659,6 +1666,9 @@ void YerothAdminWindow::read_configuration()
 
 	lineEdit_repertoire_systeme_latex->setText(YerothERPConfig::pathToLatexSystemRootFolder);
 
+	lineEdit_sauvegarde_de_yeroth_erp_3_secondes->
+		setText(QString::number(YerothERPConfig::backup_restore_yeroth_erp_3_time_interval));
+
     lineEdit_alert_period_time_interval->setText(QString::number(YerothERPConfig::alert_period_time_interval));
 
     lineEdit_alert_quantity_time_interval->setText(QString::number(YerothERPConfig::alert_quantity_time_interval));
@@ -1846,21 +1856,51 @@ void YerothAdminWindow::read_entreprise_info_database_table(bool initalizationVa
 }
 
 
+void YerothAdminWindow::read_BACKUP_DATABASE_YEROTH_ERP_3_TIME_INTERVAL_configuration()
+{
+    YerothSqlTableModel & initConfigurationsTableModel = _allWindows->getSqlTableModel_init_configurations();
+
+    QSqlRecord initConfigurationRecord =
+        initConfigurationsTableModel.record(YerothERPConfig::CONFIG_BACKUP_DATABASE_YEROTH_ERP_3_TIME_INTERVAL);
+
+    QString BACKUP_RESTORE_DATABASE_YEROTH_ERP_3_IntervalValue(
+    		GET_SQL_RECORD_DATA(initConfigurationRecord, "valeur_configuration"));
+
+    lineEdit_sauvegarde_de_yeroth_erp_3_secondes->
+		setText(BACKUP_RESTORE_DATABASE_YEROTH_ERP_3_IntervalValue);
+}
+
+
 void YerothAdminWindow::read_alert_system_init_configuration()
 {
     YerothSqlTableModel & initConfigurationsTableModel = _allWindows->getSqlTableModel_init_configurations();
 
     QSqlRecord initConfigurationRecord =
+        initConfigurationsTableModel.record(YerothERPConfig::CONFIG_BACKUP_DATABASE_YEROTH_ERP_3_TIME_INTERVAL);
+
+    QString BACKUP_RESTORE_DATABASE_YEROTH_ERP_3_IntervalValue(
+    		GET_SQL_RECORD_DATA(initConfigurationRecord, "valeur_configuration"));
+
+
+    initConfigurationRecord =
         initConfigurationsTableModel.record(YerothERPConfig::CONFIG_ALERT_PERIOD_TIME_INTERVAL);
 
     QString alertPeriodTimeIntervalValue(GET_SQL_RECORD_DATA(initConfigurationRecord, "valeur_configuration"));
+
+
     initConfigurationRecord =
         initConfigurationsTableModel.record(YerothERPConfig::CONFIG_ALERT_QUANTITY_TIME_INTERVAL);
 
     QString alertQuantityTimeIntervalValue(GET_SQL_RECORD_DATA(initConfigurationRecord, "valeur_configuration"));
+
+
     initConfigurationRecord = initConfigurationsTableModel.record(YerothERPConfig::CONFIG_SALES_STRATEGY);
 
     QString salesStrategyValue(GET_SQL_RECORD_DATA(initConfigurationRecord, "valeur_configuration"));
+
+
+
+    lineEdit_sauvegarde_de_yeroth_erp_3_secondes->setText(BACKUP_RESTORE_DATABASE_YEROTH_ERP_3_IntervalValue);
 
     lineEdit_alert_period_time_interval->setText(alertPeriodTimeIntervalValue);
 
@@ -1984,8 +2024,10 @@ void YerothAdminWindow::read_app_parameters_init_configuration()
 void YerothAdminWindow::reinitialiser_alert_system_configuration()
 {
     _logger->log("reinitialiser_configuration");
+
     QString msgReinit(QObject::trUtf8("Réinitialiser la configuration du système d'alertes "
                                       "avec les paramètres par défaut ?"));
+
     if (QMessageBox::Ok == YerothQMessageBox::question(this, QObject::trUtf8("réinitialiser"), msgReinit,
             QMessageBox::Cancel, QMessageBox::Ok))
     {
@@ -1999,8 +2041,10 @@ void YerothAdminWindow::reinitialiser_alert_system_configuration()
 void YerothAdminWindow::reinitialiser_app_parameters_configuration()
 {
     _logger->log("reinitialiser_configuration");
+
     QString msgReinit(QObject::trUtf8("Réinitialiser la configuration (générale) "
                                       "avec les paramètres par défaut ?"));
+
     if (QMessageBox::Ok == YerothQMessageBox::question(this, QObject::trUtf8("réinitialiser"),
             msgReinit, QMessageBox::Cancel, QMessageBox::Ok))
     {
@@ -2073,6 +2117,48 @@ void YerothAdminWindow::enregistrer_entreprise_info_database_table()
 }
 
 
+void YerothAdminWindow::enregistrer_BACKUP_DATABASE_YEROTH_ERP_3_TIME_INTERVAL()
+{
+	_logger->log("enregistrer_BACKUP_DATABASE_YEROTH_ERP_3_TIME_INTERVAL");
+
+    QString msgEnregistrer(QObject::trUtf8("Enregistrer la configuration"
+    									   " d'intervalle de temps de sauvegarde automatique"
+    									   " de YEROTH-ERP-3.0 (modifiée) ?"));
+
+    if (QMessageBox::Ok ==
+            YerothQMessageBox::question(this,
+                                  QObject::
+                                  trUtf8("enregistrer"),
+                                  msgEnregistrer, QMessageBox::Cancel, QMessageBox::Ok))
+    {
+        YerothSqlTableModel & configurationsTableModel = _allWindows->getSqlTableModel_configurations();
+
+        QSqlRecord configurationsRecord;
+
+        if (lineEdit_sauvegarde_de_yeroth_erp_3_secondes->checkField())
+        {
+            configurationsRecord =
+                configurationsTableModel.record(YerothERPConfig::CONFIG_BACKUP_DATABASE_YEROTH_ERP_3_TIME_INTERVAL);
+
+            configurationsRecord.setValue("valeur_configuration", lineEdit_sauvegarde_de_yeroth_erp_3_secondes->text());
+
+            bool success =
+                configurationsTableModel.updateRecord(YerothERPConfig::CONFIG_BACKUP_DATABASE_YEROTH_ERP_3_TIME_INTERVAL,
+                        configurationsRecord);
+
+            if (success)
+            {
+                YerothERPConfig::backup_restore_yeroth_erp_3_time_interval =
+                		lineEdit_sauvegarde_de_yeroth_erp_3_secondes->text().toUInt();
+            }
+        }
+    }
+    else
+    {
+    }
+}
+
+
 void YerothAdminWindow::enregistrer_alert_system_configuration()
 {
     _logger->log("enregistrer_alert_system_configuration");
@@ -2086,34 +2172,45 @@ void YerothAdminWindow::enregistrer_alert_system_configuration()
                                   msgEnregistrer, QMessageBox::Cancel, QMessageBox::Ok))
     {
         YerothSqlTableModel & configurationsTableModel = _allWindows->getSqlTableModel_configurations();
+
         QSqlRecord configurationsRecord;
+
         if (lineEdit_alert_period_time_interval->checkField())
         {
             configurationsRecord =
                 configurationsTableModel.record(YerothERPConfig::CONFIG_ALERT_PERIOD_TIME_INTERVAL);
+
             configurationsRecord.setValue("valeur_configuration", lineEdit_alert_period_time_interval->text());
+
             bool success =
                 configurationsTableModel.updateRecord(YerothERPConfig::CONFIG_ALERT_PERIOD_TIME_INTERVAL,
                         configurationsRecord);
+
             if (success)
             {
                 YerothERPConfig::alert_period_time_interval = lineEdit_alert_period_time_interval->text().toUInt();
             }
         }
+
+
         if (lineEdit_alert_quantity_time_interval->checkField())
         {
             configurationsRecord =
                 configurationsTableModel.record(YerothERPConfig::CONFIG_ALERT_QUANTITY_TIME_INTERVAL);
+
             configurationsRecord.setValue("valeur_configuration", lineEdit_alert_quantity_time_interval->text());
+
             bool success =
                 configurationsTableModel.updateRecord(YerothERPConfig::CONFIG_ALERT_QUANTITY_TIME_INTERVAL,
                         configurationsRecord);
+
             if (success)
             {
                 YerothERPConfig::alert_quantity_time_interval =
                     lineEdit_alert_quantity_time_interval->text().toUInt();
             }
         }
+
     }
     else
     {

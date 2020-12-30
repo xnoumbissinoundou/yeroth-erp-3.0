@@ -64,6 +64,8 @@ QString YerothERPConfig::YEROTH_ERP_3_0_SYSTEM_DAEMON_ID_STR("yeroth-erp-3-0-");
 
 QString YerothERPConfig::YEROTH_ERP_3_0_SYSTEM_DAEMON_ID("yeroth-erp-3-0-system-daemon");
 
+uint YerothERPConfig::backup_restore_yeroth_erp_3_time_interval(0);
+
 uint YerothERPConfig::alert_period_time_interval(0);
 
 uint YerothERPConfig::alert_quantity_time_interval(0);
@@ -126,6 +128,8 @@ const unsigned int YerothERPConfig::CONFIG_SALES_STRATEGY (3);
 const unsigned int YerothERPConfig::CONFIG_CURRENCY (4);
 
 const unsigned int YerothERPConfig::CONFIG_PAGINATION_PAGE_BEGIN_YEAR (5);
+
+const unsigned int YerothERPConfig::CONFIG_BACKUP_DATABASE_YEROTH_ERP_3_TIME_INTERVAL (6);
 
 
 void YerothERPConfig::initYerothConfig(QString initCfg)

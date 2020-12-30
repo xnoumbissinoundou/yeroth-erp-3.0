@@ -127,6 +127,8 @@ public slots:
 
     void read_entreprise_info_database_table(bool initalizationValues = true);
 
+    void read_BACKUP_DATABASE_YEROTH_ERP_3_TIME_INTERVAL_configuration();
+
     void read_alert_system_init_configuration();
 
     void read_app_parameters_init_configuration();
@@ -136,6 +138,8 @@ public slots:
     void reinitialiser_app_parameters_configuration();
 
     void enregistrer_entreprise_info_database_table();
+
+    void enregistrer_BACKUP_DATABASE_YEROTH_ERP_3_TIME_INTERVAL();
 
     void enregistrer_alert_system_configuration();
 

@@ -74,6 +74,8 @@ public:
 
 	static QString FILE_ABSOLUTEPATH_YEROTH_ERP_3_0_MANUEL__DE_LUTILISATEUR_ADMINISTRATEUR;
 
+	static uint backup_restore_yeroth_erp_3_time_interval;
+
 	static uint alert_period_time_interval;
 
 	static uint alert_quantity_time_interval;
@@ -129,6 +131,8 @@ public:
 	static const unsigned int CONFIG_CURRENCY;
 
 	static const unsigned int CONFIG_PAGINATION_PAGE_BEGIN_YEAR;
+
+	static const unsigned int CONFIG_BACKUP_DATABASE_YEROTH_ERP_3_TIME_INTERVAL;
 
 	//static const SALES_STRATEGY getSalesStrategy(QString salesStrategyValue);
 
