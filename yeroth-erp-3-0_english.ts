@@ -127,88 +127,88 @@ Program executing directory: &quot;%2&quot;.</translation>
         <translation>NO DATA FROM CSV FILE (.csv) has been imported !</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1522"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1551"/>
         <source>Choisir le chemin qui mène au fichier au format (.csv)</source>
         <translation>Select CSV import file path</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1524"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1553"/>
         <source>.csv (*.csv)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1540"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1569"/>
         <source>Choisir le chemin qui mène au répertoire de base de &apos;MariaDB-client&apos;</source>
         <oldsource>Choisir le chemin qui mène au rpertoire de base de &apos;MariaDB-client&apos;</oldsource>
         <translation>Select full path to &apos;MariaDB-client&apos; base folder</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1554"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1583"/>
         <source>Choisir le chemin qui mène au lecteur de fichiers PDF</source>
         <translation>Select file path to PDF reader program</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1566"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1595"/>
         <source>Chemin jusqu&apos;au fichier système représentant l&apos;imprimante thermique</source>
         <translation>Full path to thermal printer device driver file</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1579"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1608"/>
         <source>Choisir le chemin jusqu&apos;au répertoire du système de documentation Latex</source>
         <translation>Select full path to Latex system root folder</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1595"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1624"/>
         <source>Choisir le chemin qui mène au répertoire des sauvegardes</source>
         <translation>Select SQL backup folder</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1610"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1639"/>
         <source>Choisir le chemin qui mène au répertoire des fichiers temporaires</source>
         <translation>Select temporary file folder</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1754"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1783"/>
         <source>Réinitialiser les données de l&apos;entreprise avec les paramètres par défaut ?</source>
         <translation>Reinitialize company data with default values?</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1758"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1960"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1975"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1787"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1989"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2004"/>
         <source>réinitialiser</source>
         <translation>reset</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1958"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1987"/>
         <source>Réinitialiser la configuration du système d&apos;alertes avec les paramètres par défaut ?</source>
         <translation>Reinitialize alert system configuration data with default values?</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1973"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2002"/>
         <source>Réinitialiser la configuration (générale) avec les paramètres par défaut ?</source>
         <translation>Reinitialize general configuration data with default values?</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1991"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2020"/>
         <source>Enregistrer les données de l&apos;entreprise (modifiées) ?</source>
         <translation>Save modified company data?</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1995"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2056"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2181"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2024"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2085"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2210"/>
         <source>enregistrer</source>
         <translation>save</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2052"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2081"/>
         <source>Enregistrer la configuration (système d&apos;alertes) modifiée ?</source>
         <oldsource>Enregistrer la configuration (système d&apos;alertes) modifiée de Yeroth ?</oldsource>
         <translation>Save the modified configuration of the alert system ?</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2179"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2208"/>
         <source>Enregistrer la configuration (générale) modifiée ?</source>
         <oldsource>Enregistrer la configuration (générale) modifiée de Yeroth ?</oldsource>
         <translation>Save the modified general configuration ?</translation>
@@ -2102,7 +2102,7 @@ Continue with update of the stock ?</translation>
         <translation>&apos; couldn&apos;t be created!</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2027"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2056"/>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="626"/>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="708"/>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="791"/>
@@ -2164,7 +2164,7 @@ Continue with update of the stock ?</translation>
         <translation>&apos; has been successfully created !</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2033"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2062"/>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="609"/>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="691"/>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="774"/>
@@ -4469,7 +4469,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
 <context>
     <name>YerothAchatsAUXFournisseursWindow</name>
     <message>
-        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16359"/>
+        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16856"/>
         <source>Yeroth-erp-3.0 - fiche des achats_aux_fournisseurs</source>
         <translation>Yeroth-erp-3.0 - purchase to supplier listing</translation>
     </message>
@@ -4570,137 +4570,137 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>Begin</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="15050"/>
+        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="15547"/>
         <source>Aide</source>
         <translation>Help</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="15475"/>
+        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="15972"/>
         <source>Actions</source>
         <translation>Functions</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="15907"/>
+        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16404"/>
         <source>Outils</source>
         <translation>Tools</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16384"/>
+        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16881"/>
         <source>À propos</source>
         <translation>About Yeroth-erp-3.0</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16400"/>
+        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16897"/>
         <source>Changer d&apos;utilisateur</source>
         <translation>Sign in</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16412"/>
+        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16909"/>
         <source>Fermeture</source>
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16424"/>
-        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16427"/>
+        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16921"/>
+        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16924"/>
         <source>Menu principal</source>
         <translation>Main menu</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16443"/>
-        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16446"/>
+        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16940"/>
+        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16943"/>
         <source>Imprimer la fiche des achats aux fournisseurs</source>
         <oldsource>Imprimer la fiche des achats_aux_fournisseurs aux fournisseurs</oldsource>
         <translation>Print purchases to supplier listing</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16462"/>
+        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16959"/>
         <source>Message d&apos;aide</source>
         <translation>User tip</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16465"/>
+        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16962"/>
         <source>Appeler l&apos;aide</source>
         <translation>Help</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16481"/>
-        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16484"/>
+        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16978"/>
+        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16981"/>
         <source>Déconnecter l&apos;utilisateur</source>
         <translation>Sign out</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16502"/>
-        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16505"/>
+        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16999"/>
+        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="17002"/>
         <source>Alertes</source>
         <translation>Alerts</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16517"/>
+        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="17014"/>
         <source>Réinitialiser la recherche</source>
         <translation>Reset search</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16534"/>
+        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="17031"/>
         <source>Administration</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16546"/>
-        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16549"/>
+        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="17043"/>
+        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="17046"/>
         <source>Informations sur l&apos;entreprise</source>
         <translation>Company info</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16561"/>
+        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="17058"/>
         <source>Qui suis je ?</source>
         <translation>Who am I ?</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16578"/>
+        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="17075"/>
         <source>Exporter au format csv</source>
         <translation>Export as csv file</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16588"/>
+        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="17085"/>
         <source>Réinitialiser les éléments de fitrage</source>
         <translation>reset filter</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16598"/>
+        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="17095"/>
         <source>Afficher les détails de cet achat</source>
         <translation>Show purchase details</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16601"/>
+        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="17098"/>
         <source>Afficher les détails de ce stock</source>
         <translation>Show stock details</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16618"/>
-        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16621"/>
+        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="17115"/>
+        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="17118"/>
         <source>Sélectionner les  champs (base de données) visible</source>
         <translation>Select &apos;visible&apos; database table fields</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16636"/>
-        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16639"/>
+        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="17133"/>
+        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="17136"/>
         <source>Réinitialiser les  champs (base de données) visible</source>
         <translation>Reset &apos;visible&apos; database table fields</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16649"/>
-        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16652"/>
+        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="17146"/>
+        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="17149"/>
         <source>Lister les ventes</source>
         <translation>View sales</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16664"/>
+        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="17161"/>
         <source>Lister les stocks</source>
         <translation>List stocks</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16674"/>
-        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16677"/>
+        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="17171"/>
+        <location filename="ui/yeroth-erp-achats-aux-fournisseurs-window.ui" line="17174"/>
         <source>Supprimer 1 achat au fournisseur</source>
         <translation>Remove a purchase to supplier</translation>
     </message>
