@@ -1238,9 +1238,19 @@ void YerothAdminWindow::stop_TESTING_MAINTENANCE()
 
 void YerothAdminWindow::start_TESTING_MAINTENANCE()
 {
-	comboBox_operations_maintenance->addItem(EFFACER);
+	int indexEffacer = comboBox_operations_maintenance->findText(EFFACER);
 
-	comboBox_operations_maintenance->addItem(SUPPRIMER);
+	if (indexEffacer < 0)
+	{
+		comboBox_operations_maintenance->addItem(EFFACER);
+	}
+
+	int indexSupprimer = comboBox_operations_maintenance->findText(SUPPRIMER);
+
+	if (indexSupprimer < 0)
+	{
+		comboBox_operations_maintenance->addItem(SUPPRIMER);
+	}
 
 	lineEdit_administration_maintenance_commandes_importer_un_tableau->
 		setText(QString("mysql -u '%1' -p < '%2'"));
