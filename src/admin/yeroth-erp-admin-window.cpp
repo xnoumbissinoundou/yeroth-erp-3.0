@@ -2133,14 +2133,20 @@ void YerothAdminWindow::enregistrer_YEROTH_ERP_3_0_SYSTEM_DAEMON_configuration()
 
     QString msgEnregistrer(QObject::
                            trUtf8("Enregistrer la configuration (système d'alertes) modifiée ?"));
-    if (QMessageBox::Ok ==
+    if (QMessageBox::Cancel ==
             YerothQMessageBox::question(this,
-                                  QObject::
-                                  trUtf8("enregistrer"),
-                                  msgEnregistrer, QMessageBox::Cancel, QMessageBox::Ok))
+                                  	    QObject::trUtf8("enregistrer"),
+										msgEnregistrer,
+										QMessageBox::Cancel,
+										QMessageBox::Ok))
     {
-
+    	return ;
+    }
+    else
+    {
         YerothSqlTableModel & configurationsTableModel = _allWindows->getSqlTableModel_configurations();
+
+        bool success = false;
 
         QSqlRecord configurationsRecord;
 
@@ -2151,7 +2157,7 @@ void YerothAdminWindow::enregistrer_YEROTH_ERP_3_0_SYSTEM_DAEMON_configuration()
 
     		configurationsRecord.setValue("valeur_configuration", lineEdit_sauvegarde_de_yeroth_erp_3_secondes->text());
 
-    		bool success =
+    		success = success ||
     				configurationsTableModel.updateRecord(YerothERPConfig::CONFIG_BACKUP_DATABASE_YEROTH_ERP_3_TIME_INTERVAL,
     						configurationsRecord);
 
@@ -2171,7 +2177,7 @@ void YerothAdminWindow::enregistrer_YEROTH_ERP_3_0_SYSTEM_DAEMON_configuration()
 
             configurationsRecord.setValue("valeur_configuration", lineEdit_alert_period_time_interval->text());
 
-            bool success =
+            success = success ||
                 configurationsTableModel.updateRecord(YerothERPConfig::CONFIG_ALERT_PERIOD_TIME_INTERVAL,
                         configurationsRecord);
 
@@ -2190,7 +2196,7 @@ void YerothAdminWindow::enregistrer_YEROTH_ERP_3_0_SYSTEM_DAEMON_configuration()
 
             configurationsRecord.setValue("valeur_configuration", lineEdit_alert_quantity_time_interval->text());
 
-            bool success =
+            success = success ||
                 configurationsTableModel.updateRecord(YerothERPConfig::CONFIG_ALERT_QUANTITY_TIME_INTERVAL,
                         configurationsRecord);
 
@@ -2201,9 +2207,14 @@ void YerothAdminWindow::enregistrer_YEROTH_ERP_3_0_SYSTEM_DAEMON_configuration()
             }
         }
 
-    }
-    else
-    {
+        QDEBUG_STRINGS_OUTPUT_2("success", BOOL_TO_STRING(success));
+
+        if (success)
+        {
+        	stop_alert_daemon_process();
+
+        	start_alert_daemon_process();
+        }
     }
 }
 
