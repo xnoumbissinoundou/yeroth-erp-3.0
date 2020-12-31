@@ -46200,7 +46200,7 @@
         <x>7</x>
         <y>120</y>
         <width>465</width>
-        <height>76</height>
+        <height>52</height>
        </rect>
       </property>
       <property name="font">
@@ -46233,58 +46233,6 @@
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_derniere_sauvegarde_de_yeroth_erp_3_date">
-       <property name="geometry">
-        <rect>
-         <x>2</x>
-         <y>44</y>
-         <width>261</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="toolTip">
-        <string/>
-       </property>
-       <property name="text">
-        <string>dernière sauvegarde de yeroth_erp_3 (date)</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="YerothDateTimeEdit" name="dateEdit_date_derniere_sauvegarde_yeroth_erp_3">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <property name="geometry">
-        <rect>
-         <x>269</x>
-         <y>45</y>
-         <width>141</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="displayFormat">
-        <string>dd/MM/yyyy</string>
-       </property>
-       <property name="date">
-        <date>
-         <year>2016</year>
-         <month>1</month>
-         <day>1</day>
-        </date>
        </property>
       </widget>
       <widget class="YerothLineEdit" name="lineEdit_sauvegarde_de_yeroth_erp_3_secondes">
@@ -49159,11 +49107,6 @@
    <class>YerothComboBox</class>
    <extends>QComboBox</extends>
    <header>src/widgets/yeroth-erp-combo-box.hpp</header>
-  </customwidget>
-  <customwidget>
-   <class>YerothDateTimeEdit</class>
-   <extends>QDateEdit</extends>
-   <header>src/widgets/yeroth-erp-datetime-edit.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>
