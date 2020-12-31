@@ -45312,7 +45312,7 @@
         <string/>
        </property>
        <property name="text">
-        <string>sauvegarde de yeroth_erp_3 (secondes)</string>
+        <string>intervalle de sauvegarde en secondes</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -45773,6 +45773,9 @@
         <font>
          <pointsize>10</pointsize>
         </font>
+       </property>
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;H heures = H x 3600 secondes !&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_repertoire_des_sauvegardes">
