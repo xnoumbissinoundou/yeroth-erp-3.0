@@ -174,47 +174,47 @@ Program executing directory: &quot;%2&quot;.</translation>
     </message>
     <message>
         <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1797"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2031"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2048"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2043"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2060"/>
         <source>réinitialiser</source>
         <translation>reset</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2028"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2040"/>
         <source>Réinitialiser la configuration du système d&apos;alertes avec les paramètres par défaut ?</source>
         <translation>Reinitialize alert system configuration data with default values?</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2045"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2057"/>
         <source>Réinitialiser la configuration (générale) avec les paramètres par défaut ?</source>
         <translation>Reinitialize general configuration data with default values?</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2064"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2076"/>
         <source>Enregistrer les données de l&apos;entreprise (modifiées) ?</source>
         <translation>Save modified company data?</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2068"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2131"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2171"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2307"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2080"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2143"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2183"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2314"/>
         <source>enregistrer</source>
         <translation>save</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2124"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2136"/>
         <source>Enregistrer la configuration d&apos;intervalle de temps de sauvegarde automatique de YEROTH-ERP-3.0 (modifiée) ?</source>
         <translation>SAVE (MODIFIED) DATABASE YEROTH_ERP_3 BACKUP TIME INTERVAL ?</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2167"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2179"/>
         <source>Enregistrer la configuration (système d&apos;alertes) modifiée ?</source>
         <oldsource>Enregistrer la configuration (système d&apos;alertes) modifiée de Yeroth ?</oldsource>
         <translation>Save the modified configuration of the alert system ?</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2305"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2312"/>
         <source>Enregistrer la configuration (générale) modifiée ?</source>
         <oldsource>Enregistrer la configuration (générale) modifiée de Yeroth ?</oldsource>
         <translation>Save the modified general configuration ?</translation>
@@ -2108,7 +2108,7 @@ Continue with update of the stock ?</translation>
         <translation>&apos; couldn&apos;t be created!</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2100"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2112"/>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="628"/>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="710"/>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="793"/>
@@ -2170,7 +2170,7 @@ Continue with update of the stock ?</translation>
         <translation>&apos; has been successfully created !</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2106"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2118"/>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="611"/>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="693"/>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="776"/>
