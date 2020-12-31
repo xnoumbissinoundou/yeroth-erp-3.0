@@ -24,18 +24,6 @@ const unsigned int YerothPointDeVenteTableWidget::QTE_COLUMN(3);
 const unsigned int YerothPointDeVenteTableWidget::QTE_TOTAL_STOCK(4);
 
 
-void YerothPointDeVenteTableWidget::setQStandardItemFlags(Qt::ItemFlags &flags)
-{
-    _stockReferenceItem->setFlags	(flags);
-    _stockNameItem->setFlags		(flags);
-    _stockCategorieItem->setFlags	(flags);
-    _prixUnitaireItem->setFlags		(flags);
-    _montantTvaItem->setFlags		(flags);
-    _prixVenteItem->setFlags		(flags);
-    _qteTotalStockItem->setFlags	(flags);
-}
-
-
 int YerothPointDeVenteTableWidget::addArticleAfter(YerothArticleVenteInfo &articleVenteInfo)
 {
     _logger->log("addArticleAfter(YerothArticleVenteInfo &)");
@@ -58,9 +46,6 @@ int YerothPointDeVenteTableWidget::addArticleAfter(YerothArticleVenteInfo &artic
     _qteItem 			= new YerothQTableWidgetItem(articleVenteInfo.quantiteAVendre());
     _qteTotalStockItem 	= new YerothQTableWidgetItem(articleVenteInfo.quantiteEnStock());
 
-    Qt::ItemFlags qStandardItemFlags = Qt::ItemIsSelectable | Qt::ItemIsEnabled;
-
-    setQStandardItemFlags(qStandardItemFlags);
 
     _mapListIdxToElement_db_ID.insert(_curRow, articleVenteInfo._stockID);
 
@@ -76,7 +61,11 @@ int YerothPointDeVenteTableWidget::addArticleAfter(YerothArticleVenteInfo &artic
     setItem(_curRow, idx++, _montantTvaItem);
     setItem(_curRow, idx,   _prixVenteItem);
 
-    setColoursQStandardItem();
+    set_MY_QStandardItemFlags();
+
+    setColours_QTE_QStandardItem();
+
+    _qteItem->setFlags(_myQStandardItemFlags | Qt::ItemIsEditable);
 
     resizeColumnsToContents();
 
@@ -91,14 +80,14 @@ int YerothPointDeVenteTableWidget::addArticleAfter(YerothArticleVenteInfo &artic
 
 
 int YerothPointDeVenteTableWidget::addArticle(QString stockID,
-                                  QString stockReference,
-								  QString stockName,
-								  QString stockCategorie,
-								  QString prix_unitaire,
-								  QString montant_tva,
-								  QString prix_vente,
-								  QString quantite_a_vendre,
-								  QString quantite_total_stock)
+                                  	  	  	  QString stockReference,
+											  QString stockName,
+											  QString stockCategorie,
+											  QString prix_unitaire,
+											  QString montant_tva,
+											  QString prix_vente,
+											  QString quantite_a_vendre,
+											  QString quantite_total_stock)
 {
     _logger->log("addArticle");
 
@@ -113,9 +102,6 @@ int YerothPointDeVenteTableWidget::addArticle(QString stockID,
     _qteItem 			= new YerothQTableWidgetItem(quantite_a_vendre);
     _qteTotalStockItem 	= new YerothQTableWidgetItem(quantite_total_stock);
 
-    Qt::ItemFlags qStandardItemFlags = Qt::ItemIsSelectable | Qt::ItemIsEnabled;
-
-    setQStandardItemFlags(qStandardItemFlags);
 
     _mapListIdxToElement_db_ID.insert(_curRow, stockID);
 
@@ -131,7 +117,11 @@ int YerothPointDeVenteTableWidget::addArticle(QString stockID,
     setItem(_curRow, idx++, _montantTvaItem);
     setItem(_curRow, idx,   _prixVenteItem);
 
-    setColoursQStandardItem();
+    set_MY_QStandardItemFlags();
+
+    setColours_QTE_QStandardItem();
+
+    _qteItem->setFlags(_myQStandardItemFlags | Qt::ItemIsEditable);
 
     resizeColumnsToContents();
 

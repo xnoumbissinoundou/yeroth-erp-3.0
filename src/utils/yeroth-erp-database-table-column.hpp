@@ -33,6 +33,8 @@ public:
 
 	static const QString ID;
 
+	static const QString PERSONNE_AYANT_REFERER;
+
 	static const QString GROUPES_DU_CLIENT;
 
 	static const QString HISTORIQUE_STOCK;

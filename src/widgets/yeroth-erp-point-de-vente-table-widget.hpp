@@ -36,12 +36,10 @@ public:
 	{
 	}
 
-	inline void setColoursQStandardItem()
+	inline void setColours_QTE_QStandardItem()
 	{
 		_qteItem->setForeground(YerothUtils::YEROTH_QBRUSH_ORANGE);
 	}
-
-	virtual void setQStandardItemFlags(Qt::ItemFlags &flags);
 
 	int addArticleAfter(YerothArticleVenteInfo &articleVenteInfo);
 

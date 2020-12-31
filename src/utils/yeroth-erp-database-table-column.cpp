@@ -18,6 +18,7 @@ const QString YerothDatabaseTableColumn::IS_SERVICE						("is_service");
 const QString YerothDatabaseTableColumn::IS_VENTE_EN_GROS				("is_vente_en_gros");
 const QString YerothDatabaseTableColumn::ID_ALERTE						("id_alerte");
 const QString YerothDatabaseTableColumn::ID								("id");
+const QString YerothDatabaseTableColumn::PERSONNE_AYANT_REFERER			("personne_ayant_referer");
 const QString YerothDatabaseTableColumn::GROUPES_DU_CLIENT				("groupes_du_client");
 const QString YerothDatabaseTableColumn::HISTORIQUE_STOCK				("historique_stock");
 const QString YerothDatabaseTableColumn::CLIENTS_ID						("clients_id");
@@ -161,6 +162,8 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::ID_ALERTE, 		QObject::tr("ID ALERTE"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::ID, 				QObject::tr("ID"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::PERSONNE_AYANT_REFERER,	QObject::trUtf8("Référeur"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::GROUPES_DU_CLIENT,	QObject::tr("Groupes du client"));
 

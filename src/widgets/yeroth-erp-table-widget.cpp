@@ -22,9 +22,11 @@ YerothTableWidget::YerothTableWidget(QWidget *parent)
 :QTableWidget(parent),
  _logger(0)
 {
+	_logger = new YerothLogger("YerothTableWidget");
+
     _curRow = 0;
 
-    _logger = new YerothLogger("YerothTableWidget");
+    _myQStandardItemFlags = Qt::ItemIsSelectable | Qt::ItemIsEnabled;
 
     setFrameShadow(QFrame::Plain);
 
@@ -33,25 +35,6 @@ YerothTableWidget::YerothTableWidget(QWidget *parent)
     setSelectionBehavior(QAbstractItemView::SelectRows);
 
     setSelectionMode(QAbstractItemView::SingleSelection);
-}
-
-
-void YerothTableWidget::setQStandardItemFlags(Qt::ItemFlags &flags)
-{
-	QTableWidgetItem *curItem = 0;
-
-	for (int i = 0; i < this->rowCount(); ++i)
-	{
-		for (int j = 0; j < this->columnCount(); ++j)
-		{
-			curItem = item(i, j);
-
-			if (0 != curItem)
-			{
-				curItem->setFlags(flags);
-			}
-		}
-	}
 }
 
 
@@ -105,3 +88,26 @@ void YerothTableWidget::removeArticle(int tableWidgetRow)
     _mapListIdxToElement_db_ID.clear();
     _mapListIdxToElement_db_ID = newMapListIdxToItems;
 }
+
+
+void YerothTableWidget::setQStandardItemFlags(Qt::ItemFlags &flags)
+{
+	QTableWidgetItem *curItem = 0;
+
+	for (int i = 0; i < rowCount(); ++i)
+	{
+		for (int j = 0; j < columnCount(); ++j)
+		{
+			curItem = item(i, j);
+
+			if (0 != curItem)
+			{
+				curItem->setFlags(flags);
+			}
+		}
+	}
+}
+
+
+
+

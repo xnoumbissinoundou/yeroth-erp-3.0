@@ -69,6 +69,8 @@ YerothGroupesDunClientWindow::YerothGroupesDunClientWindow()
 
 
     setupShortcuts();
+
+    lineEdit_groupes_dun_client_recherche->setFocus();
 }
 
 

@@ -35,8 +35,6 @@ public:
 	    delete _logger;
 	}
 
-	virtual void setQStandardItemFlags(Qt::ItemFlags &flags);
-
 	virtual void myClear();
 
 	virtual void removeArticle(int tableWidgetRow);
@@ -51,7 +49,16 @@ public:
 		return _mapListIdxToElement_db_ID.size();
 	}
 
+	virtual void setQStandardItemFlags(Qt::ItemFlags &flags);
+
 	static const QString QTE_1;
+
+protected:
+
+	inline virtual void set_MY_QStandardItemFlags()
+	{
+		setQStandardItemFlags(_myQStandardItemFlags);
+	}
 
 signals:
 
@@ -62,6 +69,8 @@ signals:
 protected:
 
 	int 					_curRow;
+
+	Qt::ItemFlags 			_myQStandardItemFlags;
 
 	QMap<int, QString> 		_mapListIdxToElement_db_ID;
 
