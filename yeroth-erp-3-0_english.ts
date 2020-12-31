@@ -181,8 +181,9 @@ Program executing directory: &quot;%2&quot;.</translation>
     </message>
     <message>
         <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2034"/>
-        <source>Réinitialiser la configuration du système d&apos;alertes avec les paramètres par défaut ?</source>
-        <translation>Reinitialize alert system configuration data with default values?</translation>
+        <source>Réinitialiser la configuration du &apos;SYSTEM DAEMON&apos; avec les paramètres par défaut ?</source>
+        <oldsource>Réinitialiser la configuration du système d&apos;alertes avec les paramètres par défaut ?</oldsource>
+        <translation>Reinitialize &apos;YEROTH-ERP-3.0 SYSTEM DAEMON&apos; configuration data with default values?</translation>
     </message>
     <message>
         <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2051"/>
@@ -203,9 +204,9 @@ Program executing directory: &quot;%2&quot;.</translation>
     </message>
     <message>
         <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2131"/>
-        <source>Enregistrer la configuration (système d&apos;alertes) modifiée ?</source>
-        <oldsource>Enregistrer la configuration (système d&apos;alertes) modifiée de Yeroth ?</oldsource>
-        <translation>Save the modified configuration of the alert system ?</translation>
+        <source>Enregistrer la configuration (SYSTEM DAEMON) modifiée ?</source>
+        <oldsource>Enregistrer la configuration (système d&apos;alertes) modifiée ?</oldsource>
+        <translation>Save the modified configuration of &apos;YEROTH-ERP-3.0 SYSTEM DAEMON&apos; ?</translation>
     </message>
     <message>
         <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2297"/>
@@ -6872,7 +6873,7 @@ stock (service)</translation>
         <location filename="ui/yeroth-erp-admin-window.ui" line="35566"/>
         <location filename="ui/yeroth-erp-admin-window.ui" line="36483"/>
         <location filename="ui/yeroth-erp-admin-window.ui" line="37885"/>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="40693"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="46684"/>
         <source>Supprimer un article</source>
         <translation>Remove stock</translation>
     </message>
@@ -6885,14 +6886,14 @@ stock (service)</translation>
     <message>
         <location filename="ui/yeroth-erp-admin-window.ui" line="12389"/>
         <location filename="ui/yeroth-erp-admin-window.ui" line="30960"/>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="43923"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="43006"/>
         <source>réinitialiser</source>
         <translation>reset</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-admin-window.ui" line="11955"/>
         <location filename="ui/yeroth-erp-admin-window.ui" line="31394"/>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="44357"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="43440"/>
         <source>enregistrer</source>
         <translation>save</translation>
     </message>
@@ -6946,37 +6947,37 @@ stock (service)</translation>
         <translation>latex system root folder</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="44785"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="43868"/>
         <source>OFF</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="45252"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="44335"/>
         <source>alertes sur la période (s)</source>
         <translation>alert over time frame</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="42621"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="41704"/>
         <source>arrêter</source>
         <translation>stop</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="45276"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="44359"/>
         <source>alertes sur le quantité (s)</source>
         <translation>alert over stock quantity</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="45216"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="44299"/>
         <source>ON</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="43055"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="42138"/>
         <source>démarrer</source>
         <translation>start</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="43489"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="42572"/>
         <source>rafraîchir le statut</source>
         <translation>refresh status</translation>
     </message>
@@ -7215,7 +7216,12 @@ stock (service)</translation>
         <translation>thermal printer system device file</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="40722"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="45295"/>
+        <source>PARAMÈTRES DE SAUVEGARDE DE LA BASE DE DONNÉES YEROTH_ERP_3</source>
+        <translation>YEROTH_ERP_3 DATABASE BACKUP PARAMETERS</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="45796"/>
         <source>répertoire des sauvegardes</source>
         <translation>backup folder</translation>
     </message>
@@ -7237,23 +7243,23 @@ stock (service)</translation>
         <translation>server parameters </translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="41220"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="40303"/>
         <source>paramètres client - 2 [ &quot;localhost&quot; ]</source>
         <oldsource>paramètres client - 2  [ &quot;localhost&quot; ]</oldsource>
         <translation>client computer parameters - 2 [ &quot;localhost&quot; ]</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="42178"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="41261"/>
         <source>long. max. d&apos;affichage &apos;string&apos;</source>
         <translation>max. &apos;string&apos; length display</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="41240"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="40323"/>
         <source>taille de pagination par défaut</source>
         <translation>default pagination size</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="46232"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="45315"/>
         <source>sauvegarde de yeroth_erp_3 (secondes)</source>
         <translation>backup time interval of yerorh_erp_3 (seconds)</translation>
     </message>
@@ -7263,24 +7269,19 @@ stock (service)</translation>
         <translation>mariadb-client base directory</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="41203"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="40286"/>
         <source>pagination (année départ)</source>
         <translation>paging (begin year)</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="42188"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="41271"/>
         <source>SYSTEM DAEMON</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="45232"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="44315"/>
         <source>ALERTES SUR LES STOCKS (PÉRIODE ET QUANTITÉ)</source>
         <translation>INVENTORY STOCK ALERT (TIME INTERVAL AND QUANTITY)</translation>
-    </message>
-    <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="46212"/>
-        <source>INTERVALLE DE SAUVEGARDE DE LA BASE DE DONNÉES YEROTH_ERP_3</source>
-        <translation>YEROTH_ERP_3 DATABASE BACKUP TIME INTERVAL</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-admin-window.ui" line="47156"/>

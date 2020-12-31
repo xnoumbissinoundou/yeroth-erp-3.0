@@ -241,7 +241,7 @@ YerothAdminWindow::YerothAdminWindow()
 
     pushButton_choose_repertoire_fichiers_temporaires->enable(this, SLOT(choose_repertoire_fichiers_temporaires()));
 
-    pushButton_yeroth_erp_3_0_system_daemon_parameters_reinitialiser->enable(this, SLOT(reinitialiser_alert_system_configuration()));
+    pushButton_yeroth_erp_3_0_system_daemon_parameters_reinitialiser->enable(this, SLOT(reinitialiser_YEROTH_ERP_3_0_SYSTEM_DAEMON_configuration()));
 
     pushButton_yeroth_erp_3_0_system_daemon_parameters_enregistrer->enable(this, SLOT(enregistrer_YEROTH_ERP_3_0_SYSTEM_DAEMON_configuration()));
 
@@ -1865,7 +1865,7 @@ void YerothAdminWindow::read_BACKUP_DATABASE_YEROTH_ERP_3_TIME_INTERVAL_configur
 }
 
 
-void YerothAdminWindow::read_alert_system_init_configuration()
+void YerothAdminWindow::read_YEROTH_ERP_3_0_SYSTEM_DAEMON_init_configuration()
 {
     YerothSqlTableModel & initConfigurationsTableModel = _allWindows->getSqlTableModel_init_configurations();
 
@@ -2027,17 +2027,17 @@ void YerothAdminWindow::read_app_parameters_init_configuration()
     }
 }
 
-void YerothAdminWindow::reinitialiser_alert_system_configuration()
+void YerothAdminWindow::reinitialiser_YEROTH_ERP_3_0_SYSTEM_DAEMON_configuration()
 {
     _logger->log("reinitialiser_configuration");
 
-    QString msgReinit(QObject::trUtf8("Réinitialiser la configuration du système d'alertes "
+    QString msgReinit(QObject::trUtf8("Réinitialiser la configuration du 'SYSTEM DAEMON' "
                                       "avec les paramètres par défaut ?"));
 
     if (QMessageBox::Ok == YerothQMessageBox::question(this, QObject::trUtf8("réinitialiser"), msgReinit,
             QMessageBox::Cancel, QMessageBox::Ok))
     {
-        read_alert_system_init_configuration();
+        read_YEROTH_ERP_3_0_SYSTEM_DAEMON_init_configuration();
     }
     else
     {
@@ -2128,7 +2128,7 @@ void YerothAdminWindow::enregistrer_YEROTH_ERP_3_0_SYSTEM_DAEMON_configuration()
     _logger->log("enregistrer_YEROTH_ERP_3_0_SYSTEM_DAEMON_configuration");
 
     QString msgEnregistrer(QObject::
-                           trUtf8("Enregistrer la configuration (système d'alertes) modifiée ?"));
+                           trUtf8("Enregistrer la configuration (SYSTEM DAEMON) modifiée ?"));
     if (QMessageBox::Cancel ==
             YerothQMessageBox::question(this,
                                   	    QObject::trUtf8("enregistrer"),

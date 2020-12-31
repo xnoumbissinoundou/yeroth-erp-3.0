@@ -129,11 +129,11 @@ public slots:
 
     void read_BACKUP_DATABASE_YEROTH_ERP_3_TIME_INTERVAL_configuration();
 
-    void read_alert_system_init_configuration();
+    void read_YEROTH_ERP_3_0_SYSTEM_DAEMON_init_configuration();
 
     void read_app_parameters_init_configuration();
 
-    void reinitialiser_alert_system_configuration();
+    void reinitialiser_YEROTH_ERP_3_0_SYSTEM_DAEMON_configuration();
 
     void reinitialiser_app_parameters_configuration();
 
