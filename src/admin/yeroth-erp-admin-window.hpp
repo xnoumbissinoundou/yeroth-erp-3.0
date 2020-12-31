@@ -139,9 +139,7 @@ public slots:
 
     void enregistrer_entreprise_info_database_table();
 
-    void enregistrer_BACKUP_DATABASE_YEROTH_ERP_3_TIME_INTERVAL();
-
-    void enregistrer_alert_system_configuration();
+    void enregistrer_YEROTH_ERP_3_0_SYSTEM_DAEMON_configuration();
 
     void enregistrer_system_local_app_parameters_configuration();
 
