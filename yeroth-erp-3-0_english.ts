@@ -60,30 +60,30 @@
         <translation>administration ~ main</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="405"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="403"/>
         <source>paramètres serveur [ &quot;%1&quot; ]</source>
         <translation>server parameters [ &quot;%1&quot; ]</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="501"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="530"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="610"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="624"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="499"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="528"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="608"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="622"/>
         <source>EXÉCUTER COMMANDE MAINTENANCE</source>
         <translation>RUN MAINTENANCE BINARY EXECUTABLE</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="502"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="500"/>
         <source>Sélectionner 1 commande à exécuter !</source>
         <translation>Select 1 command to execute !</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="531"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="529"/>
         <source>Commande à exécuter INVALIDE !</source>
         <translation>INVALID program to run !</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="611"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="609"/>
         <source>Commande non exécutable: &quot;%1&quot; (%2) !
 
 Répertoire d&apos;exécution: &quot;%3&quot;.</source>
@@ -97,7 +97,7 @@ Répertoire d&apos;exécution: &quot;%4&quot;.</oldsource>
 Program executing directory: &quot;%3&quot;.</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="625"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="623"/>
         <source>La commande &quot;%1&quot; a été exécuter avec succès !
 
 Répertoire d&apos;exécution: &quot;%2&quot;.</source>
@@ -111,110 +111,104 @@ Répertoire d&apos;exécution: &quot;%3&quot;.</oldsource>
 Program executing directory: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="896"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="894"/>
         <source>&apos;%1&apos; entrée(s) du fichier CSV ont été importée(s) avec succès !</source>
         <translation>&apos;%1&apos; CSV file input(s) have been successfully imported into the database !</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="902"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="912"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="900"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="910"/>
         <source>résultat importation fichier CSV</source>
         <translation>CSV file importation result</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="907"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="905"/>
         <source>AUCUNE DONNÉE DU FICHIER (.csv) n&apos;a été importée !</source>
         <translation>NO DATA FROM CSV FILE (.csv) has been imported !</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1558"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1556"/>
         <source>Choisir le chemin qui mène au fichier au format (.csv)</source>
         <translation>Select CSV import file path</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1560"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1558"/>
         <source>.csv (*.csv)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1576"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1574"/>
         <source>Choisir le chemin qui mène au répertoire de base de &apos;MariaDB-client&apos;</source>
         <oldsource>Choisir le chemin qui mène au rpertoire de base de &apos;MariaDB-client&apos;</oldsource>
         <translation>Select full path to &apos;MariaDB-client&apos; base folder</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1590"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1588"/>
         <source>Choisir le chemin qui mène au lecteur de fichiers PDF</source>
         <translation>Select file path to PDF reader program</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1602"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1600"/>
         <source>Chemin jusqu&apos;au fichier système représentant l&apos;imprimante thermique</source>
         <translation>Full path to thermal printer device driver file</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1615"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1613"/>
         <source>Choisir le chemin jusqu&apos;au répertoire du système de documentation Latex</source>
         <translation>Select full path to Latex system root folder</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1631"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1629"/>
         <source>Choisir le chemin qui mène au répertoire des sauvegardes</source>
         <translation>Select SQL backup folder</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1646"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1644"/>
         <source>Choisir le chemin qui mène au répertoire des fichiers temporaires</source>
         <translation>Select temporary file folder</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1793"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1791"/>
         <source>Réinitialiser les données de l&apos;entreprise avec les paramètres par défaut ?</source>
         <translation>Reinitialize company data with default values?</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1797"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2043"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2060"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1795"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2041"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2058"/>
         <source>réinitialiser</source>
         <translation>reset</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2040"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2038"/>
         <source>Réinitialiser la configuration du système d&apos;alertes avec les paramètres par défaut ?</source>
         <translation>Reinitialize alert system configuration data with default values?</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2057"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2055"/>
         <source>Réinitialiser la configuration (générale) avec les paramètres par défaut ?</source>
         <translation>Reinitialize general configuration data with default values?</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2076"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2074"/>
         <source>Enregistrer les données de l&apos;entreprise (modifiées) ?</source>
         <translation>Save modified company data?</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2080"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2143"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2183"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2314"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2078"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2139"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2292"/>
         <source>enregistrer</source>
         <translation>save</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2136"/>
-        <source>Enregistrer la configuration d&apos;intervalle de temps de sauvegarde automatique de YEROTH-ERP-3.0 (modifiée) ?</source>
-        <translation>SAVE (MODIFIED) DATABASE YEROTH_ERP_3 BACKUP TIME INTERVAL ?</translation>
-    </message>
-    <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2179"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2135"/>
         <source>Enregistrer la configuration (système d&apos;alertes) modifiée ?</source>
         <oldsource>Enregistrer la configuration (système d&apos;alertes) modifiée de Yeroth ?</oldsource>
         <translation>Save the modified configuration of the alert system ?</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2312"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2290"/>
         <source>Enregistrer la configuration (générale) modifiée ?</source>
         <oldsource>Enregistrer la configuration (générale) modifiée de Yeroth ?</oldsource>
         <translation>Save the modified general configuration ?</translation>
@@ -2108,7 +2102,7 @@ Continue with update of the stock ?</translation>
         <translation>&apos; couldn&apos;t be created!</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2112"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2110"/>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="628"/>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="710"/>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="793"/>
@@ -2170,7 +2164,7 @@ Continue with update of the stock ?</translation>
         <translation>&apos; has been successfully created !</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2118"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2116"/>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="611"/>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="693"/>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="776"/>
@@ -6733,36 +6727,36 @@ stock (service)</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-admin-window.ui" line="872"/>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="49513"/>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="49516"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="49092"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="49095"/>
         <source>Go</source>
         <translation></translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-admin-window.ui" line="1307"/>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="49453"/>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="49456"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="49032"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="49035"/>
         <source>Lister</source>
         <translation>List</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-admin-window.ui" line="1742"/>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="49468"/>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="49471"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="49047"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="49050"/>
         <source>Créer</source>
         <translation>Create</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-admin-window.ui" line="2177"/>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="49498"/>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="49501"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="49077"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="49080"/>
         <source>Supprimer</source>
         <translation>Delete</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-admin-window.ui" line="2612"/>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="49483"/>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="49486"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="49062"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="49065"/>
         <source>Modifier</source>
         <translation>Modify</translation>
     </message>
@@ -6827,184 +6821,172 @@ stock (service)</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="24497"/>
-        <source>période de temps</source>
-        <translation>time frame</translation>
-    </message>
-    <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="24541"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="46256"/>
         <source>dernière sauvegarde de yeroth_erp_3 (date)</source>
         <translation>last backup (SQL) of yeroth_erp_3 (date)</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="24565"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="46280"/>
         <source>dd/MM/yyyy</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="25898"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="24913"/>
         <source>valider</source>
         <oldsource>Valider</oldsource>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="26787"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="25802"/>
         <source>sujets</source>
         <translation>subjects</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="26808"/>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="31072"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="25823"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="30087"/>
         <source>opérations</source>
         <translation>operations</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="27267"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="26282"/>
         <source>commandes (terminal &apos;Bash&apos;)</source>
         <oldsource>commandes (terminal Bash)</oldsource>
         <translation>&apos;Bash&apos; terminal commands</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="30159"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="29174"/>
         <source>Opérations</source>
         <translation>Actions</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="30613"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="29628"/>
         <source>objets</source>
         <translation>subjects</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="31512"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="30527"/>
         <source>Paramètres de l&apos;application</source>
         <oldsource>paramètres de l&apos;application</oldsource>
         <translation>Application parameters</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="38438"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="37453"/>
         <source>répertoire des 
  fichiers temporaires</source>
         <translation>temporary file folder</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-admin-window.ui" line="22184"/>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="33300"/>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="33736"/>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="36551"/>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="37468"/>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="38870"/>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="41678"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="32315"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="32751"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="35566"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="36483"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="37885"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="40693"/>
         <source>Supprimer un article</source>
         <translation>Remove stock</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="34721"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="33736"/>
         <source>format de reçus</source>
         <oldsource>format de facture</oldsource>
         <translation>receipt size</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-admin-window.ui" line="12389"/>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="31945"/>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="45870"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="30960"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="43923"/>
         <source>réinitialiser</source>
         <translation>reset</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-admin-window.ui" line="11955"/>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="25006"/>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="32379"/>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="46304"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="31394"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="44357"/>
         <source>enregistrer</source>
         <translation>save</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="32869"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="31884"/>
         <source>lecteur de fichiers &quot;.pdf&quot;</source>
         <oldsource>lecteur de PDF</oldsource>
         <translation>PDF file reader</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="39850"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="38865"/>
         <source>TVA (%)</source>
         <oldsource>TVA %</oldsource>
         <translation>Tax (%)</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="38899"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="37914"/>
         <source>tableau de bord (année départ)</source>
         <oldsource>année de départ (rapports)</oldsource>
         <translation>business dashboard begin year</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="40309"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="39324"/>
         <source>statégie de vente/sortie</source>
         <translation>stock movement strategy</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="34769"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="33784"/>
         <source>imprimante thermique</source>
         <translation>thermal printer</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="34681"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="33696"/>
         <source>ouvrir le régistre de caisse</source>
         <oldsource>activer le régistre de caisse</oldsource>
         <translation>open cash drawer</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="40790"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="39805"/>
         <source>devise</source>
         <translation>currency</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="34745"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="33760"/>
         <source>type de reçu</source>
         <translation>receipt type</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="33765"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="32780"/>
         <source>répertoire système latex</source>
         <translation>latex system root folder</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="43173"/>
-        <source>Alertes sur les stocks</source>
-        <oldsource>Système d&apos;alertes</oldsource>
-        <translation>Alert over inventory stock</translation>
-    </message>
-    <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="46732"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="44785"/>
         <source>OFF</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="43193"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="45252"/>
         <source>alertes sur la période (s)</source>
         <translation>alert over time frame</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="43630"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="42621"/>
         <source>arrêter</source>
         <translation>stop</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="44108"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="45276"/>
         <source>alertes sur le quantité (s)</source>
         <translation>alert over stock quantity</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="47163"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="45216"/>
         <source>ON</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="44545"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="43055"/>
         <source>démarrer</source>
         <translation>start</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="45436"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="43489"/>
         <source>rafraîchir le statut</source>
         <translation>refresh status</translation>
     </message>
@@ -7160,7 +7142,7 @@ stock (service)</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-admin-window.ui" line="21756"/>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="26332"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="25347"/>
         <source>reinitialiser</source>
         <translation>reset</translation>
     </message>
@@ -7196,177 +7178,192 @@ stock (service)</translation>
         <translation>verbose</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="27744"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="26759"/>
         <source>exporter &apos;yeroth_erp_3&apos;</source>
         <translation>export &apos;yeroth_erp_3&apos;</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="27768"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="26783"/>
         <source>effacer 1 tableau</source>
         <translation>truncate table</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="28706"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="27721"/>
         <source>exporter 1 tableau</source>
         <translation>export table</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="29187"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="28202"/>
         <source>importer 1 tableau</source>
         <translation>import table</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="29668"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="28683"/>
         <source>supprimer 1 tableau</source>
         <translation>delete table</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="29692"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="28707"/>
         <source>COMMANDE ACTUELLE</source>
         <translation>ACTUAL COMMAND</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="31506"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="30521"/>
         <source>go</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="32392"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="31407"/>
         <source>paramètres client [ &quot;localhost&quot; ]</source>
         <oldsource>paramètres client (cet ordinateur)</oldsource>
         <translation>client computer parameters [ &quot;localhost&quot; ]</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="35663"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="34678"/>
         <source>fichier système imprimante thermique</source>
         <oldsource>fichier sys. imprimante therm.</oldsource>
         <translation>thermal printer system device file</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="41707"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="40722"/>
         <source>répertoire des sauvegardes</source>
         <translation>backup folder</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="37494"/>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="37960"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="36509"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="36975"/>
         <source>de &apos;1&apos; - &apos;12&apos;.</source>
         <translation>from &apos;1&apos; - &apos;12&apos;.</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="37497"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="36512"/>
         <source>nbre de &apos;\n&apos; pour l&apos;impression (petit)</source>
         <translation>&apos;\n&apos; count for thermal print (small)</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="39373"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="38388"/>
         <source>paramètres serveur </source>
         <oldsource>paramètres serveur</oldsource>
         <translation>server parameters </translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="42205"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="41220"/>
         <source>paramètres client - 2 [ &quot;localhost&quot; ]</source>
         <oldsource>paramètres client - 2  [ &quot;localhost&quot; ]</oldsource>
         <translation>client computer parameters - 2 [ &quot;localhost&quot; ]</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="43163"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="42178"/>
         <source>long. max. d&apos;affichage &apos;string&apos;</source>
         <translation>max. &apos;string&apos; length display</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="42225"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="41240"/>
         <source>taille de pagination par défaut</source>
         <translation>default pagination size</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="24517"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="46232"/>
         <source>sauvegarde de yeroth_erp_3 (secondes)</source>
         <translation>backup time interval of yerorh_erp_3 (seconds)</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="36580"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="35595"/>
         <source>répertoire de base (mariadb-client)</source>
         <translation>mariadb-client base directory</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="42188"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="41203"/>
         <source>pagination (année départ)</source>
         <translation>paging (begin year)</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="47629"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="42188"/>
+        <source>SYSTEM DAEMON</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="45232"/>
+        <source>ALERTES SUR LES STOCKS (PÉRIODE ET QUANTITÉ)</source>
+        <translation>INVENTORY STOCK ALERT (TIME INTERVAL AND QUANTITY)</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="46212"/>
+        <source>INTERVALLE DE SAUVEGARDE DE LA BASE DE DONNÉES YEROTH_ERP_3</source>
+        <translation>YEROTH_ERP_3 DATABASE BACKUP TIME INTERVAL</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="47208"/>
         <source>YEROTH-ERP-3.0</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="48065"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="47644"/>
         <source>Aide</source>
         <oldsource>Aide</oldsource>
         <translation>Help</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="48492"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="48071"/>
         <source>Actions</source>
         <oldsource>Actions</oldsource>
         <translation>Functions</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="48928"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="48507"/>
         <source>Outils</source>
         <oldsource>Outils</oldsource>
         <translation>Tools</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="49360"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="48939"/>
         <source>toolBar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="49381"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="48960"/>
         <source>À propos</source>
         <oldsource>À propos</oldsource>
         <translation>About Yeroth-erp-3.0</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="49397"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="48976"/>
         <source>Changer d&apos;utilisateur</source>
         <oldsource>Changer d&apos;utilisateur</oldsource>
         <translation>Sign in</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="49413"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="48992"/>
         <source>Déconnecter l&apos;utilisateur</source>
         <oldsource>Déconnecter l&apos;utilisateur</oldsource>
         <translation>Sign out</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="49429"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="49008"/>
         <source>Appeler l&apos;aide</source>
         <translation>Help</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="49441"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="49020"/>
         <source>Fermeture</source>
         <oldsource>Fermeture</oldsource>
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="49527"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="49106"/>
         <source>Menu principal</source>
         <oldsource>Menu principal</oldsource>
         <translation>Main menu</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="49539"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="49118"/>
         <source>Qui suis je ?</source>
         <oldsource>Qui suis je ?</oldsource>
         <translation>Who am I?</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="49551"/>
-        <location filename="ui/yeroth-erp-admin-window.ui" line="49554"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="49130"/>
+        <location filename="ui/yeroth-erp-admin-window.ui" line="49133"/>
         <source>Guide de l&apos;utilisateur (PDF)</source>
         <oldsource>Manuel de l&apos;utilisateur (PDF)</oldsource>
         <translation>User guide (PDF)</translation>
