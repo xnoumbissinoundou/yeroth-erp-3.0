@@ -1,5 +1,5 @@
 /*
- * yeroth-erp-list-widget.hpp
+ * yeroth-erp-table-widget.hpp
  *
  *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
@@ -30,57 +30,26 @@ public:
 
 	YerothTableWidget(QWidget *parent = 0);
 
-	inline ~YerothTableWidget()
+	inline virtual ~YerothTableWidget()
 	{
 	    delete _logger;
 	}
 
-	inline void setColoursQStandardItem()
+	virtual void setQStandardItemFlags(Qt::ItemFlags &flags);
+
+	virtual void myClear();
+
+	virtual void removeArticle(int tableWidgetRow);
+
+	inline virtual QString getStockID(int aRow)
 	{
-		_qteItem->setForeground(YerothUtils::YEROTH_QBRUSH_ORANGE);
+		return _mapListIdxToElement_db_ID.value(aRow);
 	}
 
-	void setQStandardItemFlags(Qt::ItemFlags &flags);
-
-	void myClear();
-
-	int addArticleAfter(YerothArticleVenteInfo &articleVenteInfo);
-
-	int addArticle(QString stockID,
-	               QString stockReference,
-				   QString stockName,
-				   QString stockCategorie,
-				   QString prix_unitaire,
-				   QString montant_tva,
-				   QString prix_vente,
-				   QString quantite_a_vendre,
-				   QString quantite_total_stock);
-
-	void removeArticle(int tableWidgetRow);
-
-	inline QString getStockID(int aRow)
+	inline virtual int itemCount()
 	{
-		return _mapListIdxToStockID.value(aRow);
+		return _mapListIdxToElement_db_ID.size();
 	}
-
-	inline int itemCount()
-	{
-		return _mapListIdxToStockID.size();
-	}
-
-    static const unsigned int REFERENCE_COLUMN;
-
-    static const unsigned int CATEGORIE_COLUMN;
-
-    static const unsigned int DESIGNATION_COLUMN;
-
-	static const unsigned int TOTAL_TVA_COLUMN;
-
-	static const unsigned int TOTAL_COLUMN;
-
-	static const unsigned int QTE_COLUMN;
-
-	static const unsigned int QTE_TOTAL_STOCK;
 
 	static const QString QTE_1;
 
@@ -90,27 +59,11 @@ signals:
 
 	void emptiedYerothTableWidget();
 
-private:
+protected:
 
 	int 					_curRow;
 
-	QMap<int, QString> 		_mapListIdxToStockID;
-
-	YerothQTableWidgetItem 	*_stockReferenceItem;
-
-	YerothQTableWidgetItem 	*_stockNameItem;
-
-	YerothQTableWidgetItem 	*_stockCategorieItem;
-
-	YerothQTableWidgetItem 	*_prixUnitaireItem;
-
-	YerothQTableWidgetItem 	*_montantTvaItem;
-
-	YerothQTableWidgetItem 	*_prixVenteItem;
-
-	YerothQTableWidgetItem 	*_qteItem;
-
-	YerothQTableWidgetItem 	*_qteTotalStockItem;
+	QMap<int, QString> 		_mapListIdxToElement_db_ID;
 
 	YerothLogger		 	*_logger;
 };

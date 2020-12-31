@@ -4430,7 +4430,7 @@ background-color: rgb(0, 0, 0); </string>
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="YerothTableWidget" name="tableWidget_articles">
+     <widget class="YerothPointDeVenteTableWidget" name="tableWidget_articles">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -22345,9 +22345,9 @@ background-color: rgb(0, 0, 0); </string>
    <header>src/widgets/yeroth-erp-line-edit.hpp</header>
   </customwidget>
   <customwidget>
-   <class>YerothTableWidget</class>
+   <class>YerothPointDeVenteTableWidget</class>
    <extends>QTableWidget</extends>
-   <header>src/widgets/yeroth-erp-table-widget.hpp</header>
+   <header>src/widgets/yeroth-erp-point-de-vente-table-widget.hpp</header>
   </customwidget>
   <customwidget>
    <class>YerothERPQCheckBox</class>

@@ -86,6 +86,7 @@ FORMS = ui/yeroth-erp-main-window.ui \
 			ui/yeroth-erp-creer-fournisseur-window.ui \
 			ui/yeroth-erp-creer-compte-client-window.ui \
 			ui/yeroth-erp-fournisseur-details-window.ui \
+			ui/yeroth-erp-groupes-dun-client-window.ui \
 			ui/yeroth-erp-clients-detail-window.ui \
 		  ui/yeroth-erp-fournisseurs-window.ui \
 			ui/yeroth-erp-clients-window.ui \
@@ -141,6 +142,7 @@ HEADERS = src/include/yeroth-erp-3-0-precompiled-header.hpp \
 		  src/include/yeroth-erp-3-0-definition-shortcut.hpp \
 		  src/include/yeroth-erp-3-0-software.text-configuration.hpp \
 		  src/widgets/yeroth-erp-progress-bar.hpp \
+	  	src/widgets/yeroth-erp-qcolumn-view.hpp \
 	  	src/widgets/yeroth-erp-qtabwidget.hpp \
 			src/widgets/table-view/yeroth-erp-table-view-with-pagination.hpp \
 			src/widgets/table-view/yeroth-erp-table-view.hpp \
@@ -166,6 +168,8 @@ HEADERS = src/include/yeroth-erp-3-0-precompiled-header.hpp \
 		  src/widgets/yeroth-erp-datetime-edit.hpp \
 		  src/widgets/yeroth-erp-qcheckbox.hpp \
 		  src/widgets/yeroth-erp-select-db-qcheckbox.hpp \
+			src/widgets/yeroth-erp-groupes-dun-client-table-widget.hpp \
+			src/widgets/yeroth-erp-point-de-vente-table-widget.hpp \
 		  src/widgets/yeroth-erp-table-widget.hpp \
 		  src/process/yeroth-erp-process-info.hpp \
 		  src/process/yeroth-erp-process.hpp \
@@ -183,6 +187,7 @@ HEADERS = src/include/yeroth-erp-3-0-precompiled-header.hpp \
 			src/windows/yeroth-erp-creer-fournisseur-window.hpp \
 			src/windows/yeroth-erp-creer-compte-client-window.hpp \
 		  src/windows/yeroth-erp-fournisseur-details-window.hpp \
+		  src/windows/yeroth-erp-groupes-dun-client-window.hpp \
 		  src/windows/yeroth-erp-clients-detail-window.hpp \
 		  src/windows/yeroth-erp-fournisseurs-window.hpp \
 		  src/windows/yeroth-erp-clients-window.hpp \
@@ -261,6 +266,7 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 			src/imports/yeroth-erp-marchandise-import.cpp \
 		  src/imports/yeroth-erp-stock-import.cpp \
 		  src/widgets/yeroth-erp-progress-bar.cpp \
+	  	src/widgets/yeroth-erp-qcolumn-view.cpp \
 		  src/widgets/yeroth-erp-qtabwidget.cpp \
 			src/widgets/table-view/yeroth-erp-table-view-with-pagination.cpp \
 			src/widgets/table-view/yeroth-erp-table-view.cpp \
@@ -286,7 +292,9 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/widgets/yeroth-erp-datetime-edit.cpp \
 		  src/widgets/yeroth-erp-qcheckbox.cpp \
 		  src/widgets/yeroth-erp-select-db-qcheckbox.cpp \
-		  src/widgets/yeroth-erp-table-widget.cpp \
+			src/widgets/yeroth-erp-groupes-dun-client-table-widget.cpp \
+			src/widgets/yeroth-erp-point-de-vente-table-widget.cpp \
+			src/widgets/yeroth-erp-table-widget.cpp \
 		  src/process/yeroth-erp-process-info.cpp \
 		  src/process/yeroth-erp-process.cpp \
 		  src/dialogs/yeroth-erp-dialog-commons.cpp \
@@ -303,6 +311,7 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 			src/windows/yeroth-erp-creer-fournisseur-window.cpp \
 			src/windows/yeroth-erp-creer-compte-client-window.cpp \
 		  src/windows/yeroth-erp-fournisseur-details-window.cpp \
+		  src/windows/yeroth-erp-groupes-dun-client-window.cpp \
 		  src/windows/yeroth-erp-clients-detail-window.cpp \
 		  src/windows/yeroth-erp-fournisseurs-window.cpp \
 		  src/windows/yeroth-erp-clients-window.cpp \

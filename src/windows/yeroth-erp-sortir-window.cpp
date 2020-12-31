@@ -1600,7 +1600,7 @@ void YerothSortirWindow::afficher_sortie_detail(const int tableWidgetRow)
 
 void YerothSortirWindow::handleQteChange(QTableWidgetItem * itemChanged)
 {
-    if (itemChanged && itemChanged->column() == YerothTableWidget::QTE_COLUMN)
+    if (itemChanged && itemChanged->column() == YerothPointDeVenteTableWidget::QTE_COLUMN)
     {
         _updateItemConversionError = false;
 
@@ -1706,7 +1706,7 @@ void YerothSortirWindow::handleQteChange(QTableWidgetItem * itemChanged)
         }
         else
         {
-            itemChanged->setText(YerothTableWidget::QTE_1);
+            itemChanged->setText(YerothPointDeVenteTableWidget::QTE_1);
         }
     }
 
@@ -1722,15 +1722,15 @@ bool YerothSortirWindow::article_exist(const QString codeBar, const QString desi
 
     for (int k = 0; k < maxItems; ++k)
     {
-        anItem = tableWidget_articles->item(k, YerothTableWidget::REFERENCE_COLUMN);
+        anItem = tableWidget_articles->item(k, YerothPointDeVenteTableWidget::REFERENCE_COLUMN);
 
         if (anItem && YerothUtils::isEqualCaseInsensitive(codeBar, anItem->text()))
         {
-            anItem = tableWidget_articles->item(k, YerothTableWidget::DESIGNATION_COLUMN);
+            anItem = tableWidget_articles->item(k, YerothPointDeVenteTableWidget::DESIGNATION_COLUMN);
 
             if (anItem && YerothUtils::isEqualCaseInsensitive(designation, anItem->text()))
             {
-                anItem = tableWidget_articles->item(k, YerothTableWidget::QTE_COLUMN);
+                anItem = tableWidget_articles->item(k, YerothPointDeVenteTableWidget::QTE_COLUMN);
 
                 int previousItemQty = anItem->text().toInt();
                 int newItemQty = previousItemQty + 1;
@@ -1798,7 +1798,7 @@ void YerothSortirWindow::ajouter_article(const QString & text)
 
     double prix_unitaire = prixVente - montantTva;
 
-    //Each call to YerothTableWidget::setItem in method 'YerothTableWidget::addArticle'
+    //Each call to YerothPointDeVenteTableWidget::setItem in method 'YerothPointDeVenteTableWidget::addArticle'
     //triggers a call to YerothSortirWindow::handleQteChange
     int lastCurRow =
         tableWidget_articles->addArticle(stockID,
@@ -1808,7 +1808,7 @@ void YerothSortirWindow::ajouter_article(const QString & text)
                                          QString::number(prix_unitaire, 'f', 2),
 										 QString::number(montantTva, 'f', 2),
 										 QString::number(prixVente, 'f', 2),
-										 YerothTableWidget::QTE_1,
+										 YerothPointDeVenteTableWidget::QTE_1,
 										 QString::number(qteEnStock));
 
     if (lastCurRow > -1)
@@ -1871,7 +1871,7 @@ void YerothSortirWindow::ajouter_article_codebar(const QString & text)
 
     double prix_unitaire = prixVente - montantTva;
 
-    //Each call to YerothTableWidget::setItem in method 'YerothTableWidget::addArticle'
+    //Each call to YerothPointDeVenteTableWidget::setItem in method 'YerothPointDeVenteTableWidget::addArticle'
     //triggers a call to YerothSortirWindow::handleQteChange
     int lastCurRow =
         tableWidget_articles->addArticle(stockID,
@@ -1881,7 +1881,7 @@ void YerothSortirWindow::ajouter_article_codebar(const QString & text)
                                          QString::number(prix_unitaire, 'f', 2),
 										 QString::number(montantTva, 'f', 2),
 										 QString::number(prixVente, 'f', 2),
-										 YerothTableWidget::QTE_1,
+										 YerothPointDeVenteTableWidget::QTE_1,
 										 QString::number(qteEnStock));
     if (lastCurRow > -1)
     {
@@ -1910,7 +1910,7 @@ void YerothSortirWindow::actualiser_articles(int row, unsigned newItemQte)
 
         if (row != k)
         {
-            curTableWidgetItem = tableWidget_articles->item(k, YerothTableWidget::QTE_COLUMN);
+            curTableWidgetItem = tableWidget_articles->item(k, YerothPointDeVenteTableWidget::QTE_COLUMN);
             curTableWidgetItemQte = curTableWidgetItem->text().toDouble();
         }
         else
@@ -1919,9 +1919,9 @@ void YerothSortirWindow::actualiser_articles(int row, unsigned newItemQte)
             curTableWidgetItemQte = newItemQte;
 
             QTableWidgetItem *totalTvaWidgetItem =
-                tableWidget_articles->item(k, YerothTableWidget::TOTAL_TVA_COLUMN);
+                tableWidget_articles->item(k, YerothPointDeVenteTableWidget::TOTAL_TVA_COLUMN);
 
-            QTableWidgetItem *totalWidgetItem = tableWidget_articles->item(k, YerothTableWidget::TOTAL_COLUMN);
+            QTableWidgetItem *totalWidgetItem = tableWidget_articles->item(k, YerothPointDeVenteTableWidget::TOTAL_COLUMN);
 
             if (totalTvaWidgetItem)
             {
@@ -1970,7 +1970,7 @@ void YerothSortirWindow::actualiser_articles_codebar(int row, unsigned newItemQt
 
         if (row != k)
         {
-            curTableWidgetItem = tableWidget_articles->item(k, YerothTableWidget::QTE_COLUMN);
+            curTableWidgetItem = tableWidget_articles->item(k, YerothPointDeVenteTableWidget::QTE_COLUMN);
             curTableWidgetItemQte = curTableWidgetItem->text().toDouble();
         }
         else
@@ -1979,9 +1979,9 @@ void YerothSortirWindow::actualiser_articles_codebar(int row, unsigned newItemQt
             curTableWidgetItemQte = newItemQte;
 
             QTableWidgetItem *totalTvaWidgetItem =
-                tableWidget_articles->item(k, YerothTableWidget::TOTAL_TVA_COLUMN);
+                tableWidget_articles->item(k, YerothPointDeVenteTableWidget::TOTAL_TVA_COLUMN);
 
-            QTableWidgetItem *totalWidgetItem = tableWidget_articles->item(k, YerothTableWidget::TOTAL_COLUMN);
+            QTableWidgetItem *totalWidgetItem = tableWidget_articles->item(k, YerothPointDeVenteTableWidget::TOTAL_COLUMN);
 
             if (totalTvaWidgetItem)
             {
@@ -2028,7 +2028,7 @@ void YerothSortirWindow::actualiser_tableau_sortie()
     {
         YerothArticleVenteInfo *articleVenteInfo = articleItemToVenteInfo.value(k);
 
-        curTableWidgetItem = tableWidget_articles->item(k, YerothTableWidget::QTE_COLUMN);
+        curTableWidgetItem = tableWidget_articles->item(k, YerothPointDeVenteTableWidget::QTE_COLUMN);
         curTableWidgetItemQte = curTableWidgetItem->text().toDouble();
 
         quantiteVendue += curTableWidgetItemQte;

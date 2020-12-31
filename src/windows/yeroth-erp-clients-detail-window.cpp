@@ -49,7 +49,7 @@ YerothClientsDetailWindow::YerothClientsDetailWindow()
 
 
     pushButton_clients->disable(this);
-    pushButton_menu->disable(this);
+    pushButton_groupes_du_client->disable(this);
     pushButton_modifier->disable(this);
     pushButton_supprimer->disable(this);
     pushButton_payer_au_compteclient->disable(this);
@@ -80,6 +80,15 @@ YerothClientsDetailWindow::YerothClientsDetailWindow()
 #endif
 
     setupShortcuts();
+}
+
+
+void YerothClientsDetailWindow::afficher_groupes_dun_client()
+{
+	rendreInvisible();
+
+	_allWindows->_groupesDunClientWindow->rendreVisible(_curClientTableModel,
+														_curStocksTableModel);
 }
 
 
@@ -183,7 +192,7 @@ void YerothClientsDetailWindow::definirPasDeRole()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
     pushButton_clients->disable(this);
-    pushButton_menu->disable(this);
+    pushButton_groupes_du_client->disable(this);
     pushButton_modifier->disable(this);
     pushButton_supprimer->disable(this);
     pushButton_payer_au_compteclient->disable(this);
@@ -203,7 +212,7 @@ void YerothClientsDetailWindow::definirCaissier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
     pushButton_clients->disable(this);
-    pushButton_menu->disable(this);
+    pushButton_groupes_du_client->disable(this);
     pushButton_modifier->disable(this);
     pushButton_supprimer->disable(this);
     pushButton_payer_au_compteclient->disable(this);
@@ -223,7 +232,7 @@ void YerothClientsDetailWindow::definirManager()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
     pushButton_clients->enable(this, SLOT(clients()));
-    pushButton_menu->enable(this, SLOT(menu()));
+    pushButton_groupes_du_client->enable(this, SLOT(afficher_groupes_dun_client()));
     pushButton_modifier->enable(this, SLOT(modifierCompteClient()));
     pushButton_supprimer->enable(this, SLOT(supprimerCompteClient()));
 
@@ -253,7 +262,7 @@ void YerothClientsDetailWindow::definirVendeur()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
     pushButton_clients->enable(this, SLOT(clients()));
-    pushButton_menu->enable(this, SLOT(menu()));
+    pushButton_groupes_du_client->enable(this, SLOT(afficher_groupes_dun_client()));
     pushButton_modifier->enable(this, SLOT(modifierCompteClient()));
     pushButton_supprimer->enable(this, SLOT(supprimerCompteClient()));
 }
@@ -273,7 +282,7 @@ void YerothClientsDetailWindow::definirGestionaireDesStocks()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
     pushButton_clients->disable(this);
-    pushButton_menu->disable(this);
+    pushButton_groupes_du_client->disable(this);
     pushButton_modifier->disable(this);
     pushButton_supprimer->disable(this);
     pushButton_payer_au_compteclient->disable(this);
@@ -293,7 +302,7 @@ void YerothClientsDetailWindow::definirMagasinier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
     pushButton_clients->disable(this);
-    pushButton_menu->disable(this);
+    pushButton_groupes_du_client->disable(this);
     pushButton_modifier->disable(this);
     pushButton_supprimer->disable(this);
     pushButton_payer_au_compteclient->disable(this);

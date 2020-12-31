@@ -12833,6 +12833,7 @@ background-color: rgb(0, 0, 0); </string>
     <addaction name="actionDeconnecter_utilisateur"/>
     <addaction name="separator"/>
     <addaction name="actionAfficherDetailsClient"/>
+    <addaction name="action_afficher_groupes_du_client"/>
     <addaction name="actionPayerAuCompteClient"/>
     <addaction name="separator"/>
     <addaction name="actionCreerCompteClient"/>
@@ -14065,6 +14066,14 @@ background-color: rgb(0, 0, 0); </string>
      <weight>50</weight>
      <bold>false</bold>
     </font>
+   </property>
+  </action>
+  <action name="action_afficher_groupes_du_client">
+   <property name="text">
+    <string>Afficher les groupes du client</string>
+   </property>
+   <property name="toolTip">
+    <string>Afficher les groupes du client</string>
    </property>
   </action>
  </widget>

@@ -116,6 +116,7 @@ YerothERPClientsWindow::YerothERPClientsWindow()
     connect(actionCreerCompteClient, SIGNAL(triggered()), this, SLOT(creerCompteClient()));
     connect(actionModifierCompteClient, SIGNAL(triggered()), this, SLOT(modifierCompteClient()));
     connect(actionSupprimerCompteClient, SIGNAL(triggered()), this, SLOT(supprimerCompteClient()));
+    connect(action_afficher_groupes_du_client, SIGNAL(triggered()), this, SLOT(afficher_groupes_dun_client()));
     connect(actionAfficherDetailsClient, SIGNAL(triggered()), this, SLOT(afficher_au_detail()));
     connect(actionExporter_au_format_csv, SIGNAL(triggered()), this, SLOT(export_csv_file()));
     connect(actionMenu_Principal, SIGNAL(triggered()), this, SLOT(menu()));
@@ -173,6 +174,7 @@ void YerothERPClientsWindow::contextMenuEvent(QContextMenuEvent * event)
 	QMenu menu(this);
 	menu.setPalette(toolBar_clientsWindow->palette());
 	menu.addAction(actionAfficherDetailsClient);
+	menu.addAction(action_afficher_groupes_du_client);
 	menu.addAction(actionPayerAuCompteClient);
 	menu.addAction(actionModifierCompteClient);
 	menu.addAction(actionSupprimerCompteClient);
@@ -310,6 +312,15 @@ void YerothERPClientsWindow::textChangedSearchLineEditsQCompleters()
         qDebug() << QString("++ YerothERPClientsWindow::textChangedSearchLineEditsQCompleters(): %1")
         				.arg(_yerothSqlTableModel->lastError().text());
     }
+}
+
+
+void YerothERPClientsWindow::afficher_groupes_dun_client()
+{
+	rendreInvisible();
+
+	_allWindows->_groupesDunClientWindow->rendreVisible(_curClientsTableModel,
+														_curStocksTableModel);
 }
 
 

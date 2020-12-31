@@ -16,7 +16,7 @@
 
 #include "src/windows/yeroth-erp-window-commons.hpp"
 
-#include "src/widgets/yeroth-erp-table-widget.hpp"
+#include "src/widgets/yeroth-erp-point-de-vente-table-widget.hpp"
 
 #include "src/widgets/yeroth-erp-line-edit.hpp"
 
@@ -2598,18 +2598,18 @@ void YerothUtils::getFactureTexTableString(QString &texTable_IN_OUT,
     //Tex table header
     for (int k = 0; k < texTableColumnCount; ++k)
     {
-        if (k == YerothTableWidget::QTE_TOTAL_STOCK)
+        if (k == YerothPointDeVenteTableWidget::QTE_TOTAL_STOCK)
         {
             continue;
         }
 
-        if (YerothTableWidget::TOTAL_COLUMN == k   	||
-            YerothTableWidget::TOTAL_TVA_COLUMN == k )
+        if (YerothPointDeVenteTableWidget::TOTAL_COLUMN == k   	||
+            YerothPointDeVenteTableWidget::TOTAL_TVA_COLUMN == k )
         {
             texTable_IN_OUT.append("r|");
         }
-        else if (YerothTableWidget::DESIGNATION_COLUMN == k  ||
-        		 YerothTableWidget::CATEGORIE_COLUMN == k )
+        else if (YerothPointDeVenteTableWidget::DESIGNATION_COLUMN == k  ||
+        		 YerothPointDeVenteTableWidget::CATEGORIE_COLUMN == k )
         {
             texTable_IN_OUT.append("l|");
         }
@@ -2625,7 +2625,7 @@ void YerothUtils::getFactureTexTableString(QString &texTable_IN_OUT,
 
     for (int k = 0; k < tableStandardItemModel.columnCount(); ++k)
     {
-        if (k == YerothTableWidget::QTE_TOTAL_STOCK)
+        if (k == YerothPointDeVenteTableWidget::QTE_TOTAL_STOCK)
         {
             continue;
         }
@@ -2642,7 +2642,7 @@ void YerothUtils::getFactureTexTableString(QString &texTable_IN_OUT,
     }
     for (int k = 0; k < tableStandardItemModel.columnCount(); ++k)
     {
-        if (k == YerothTableWidget::QTE_TOTAL_STOCK)
+        if (k == YerothPointDeVenteTableWidget::QTE_TOTAL_STOCK)
         {
             continue;
         }
@@ -2659,7 +2659,7 @@ void YerothUtils::getFactureTexTableString(QString &texTable_IN_OUT,
     }
     for (int k = 0; k < tableStandardItemModel.columnCount(); ++k)
     {
-        if (k == YerothTableWidget::QTE_TOTAL_STOCK)
+        if (k == YerothPointDeVenteTableWidget::QTE_TOTAL_STOCK)
         {
             continue;
         }
@@ -2685,7 +2685,7 @@ void YerothUtils::getFactureTexTableString(QString &texTable_IN_OUT,
     {
         for (int k = 0; k < tableStandardItemModel.columnCount(); ++k)
         {
-            if (k == YerothTableWidget::QTE_TOTAL_STOCK)
+            if (k == YerothPointDeVenteTableWidget::QTE_TOTAL_STOCK)
             {
                 continue;
             }
@@ -2776,9 +2776,9 @@ void YerothUtils::getFactureSmallTexTableString(QString &texTable_IN_OUT,
     QTableWidgetItem *item = 0;
     for (int k = 0; k < tableColumnCount; ++k)
     {
-        if (k == YerothTableWidget::DESIGNATION_COLUMN ||
-            k == YerothTableWidget::QTE_COLUMN 		   ||
-            k == YerothTableWidget::TOTAL_COLUMN)
+        if (k == YerothPointDeVenteTableWidget::DESIGNATION_COLUMN ||
+            k == YerothPointDeVenteTableWidget::QTE_COLUMN 		   ||
+            k == YerothPointDeVenteTableWidget::TOTAL_COLUMN)
         {
             item = tableStandardItemModel.horizontalHeaderItem(k);
             if (item)
@@ -2806,9 +2806,9 @@ void YerothUtils::getFactureSmallTexTableString(QString &texTable_IN_OUT,
 
     for (int k = 0; k < tableRowCount; ++k)
     {
-        articleNameItem = tableStandardItemModel.item(k, YerothTableWidget::DESIGNATION_COLUMN);
-        articleQteItem = tableStandardItemModel.item(k, YerothTableWidget::QTE_COLUMN);
-        totalTtcItem = tableStandardItemModel.item(k, YerothTableWidget::TOTAL_COLUMN);
+        articleNameItem = tableStandardItemModel.item(k, YerothPointDeVenteTableWidget::DESIGNATION_COLUMN);
+        articleQteItem = tableStandardItemModel.item(k, YerothPointDeVenteTableWidget::QTE_COLUMN);
+        totalTtcItem = tableStandardItemModel.item(k, YerothPointDeVenteTableWidget::TOTAL_COLUMN);
 
         if (articleNameItem && articleQteItem && totalTtcItem)
         {

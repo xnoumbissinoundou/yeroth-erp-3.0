@@ -132,6 +132,8 @@ protected slots:
 
 private slots:
 
+	void afficher_groupes_dun_client();
+
 	void private_payer_au_compteclient();
 
 	void private_payer_au_compteclient(const QModelIndex & aModelIndex);

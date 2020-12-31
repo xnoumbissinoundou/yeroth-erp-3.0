@@ -412,7 +412,6 @@ void YerothWindowsCommons::fournisseurs()
 }
 
 
-
 void YerothWindowsCommons::clients()
 {
 	rendreInvisible();

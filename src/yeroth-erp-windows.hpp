@@ -7,50 +7,59 @@
 #ifndef SRC_YEROTH_WINDOWS_HPP_
 #define SRC_YEROTH_WINDOWS_HPP_
 
+#include "src/windows/yeroth-erp-main-window.hpp"
+
+#include "src/windows/yeroth-erp-mouvements_de_stocks-window.hpp"
+#include "src/windows/yeroth-erp-historique-du-stock-window.hpp"
+#include "src/windows/yeroth-erp-modifier-window.hpp"
+#include "src/windows/yeroth-erp-stock-detail-window.hpp"
+#include "src/windows/yeroth-erp-sortir-liststocks-window.hpp"
+#include "src/windows/yeroth-erp-stocks-window.hpp"
+#include "src/windows/yeroth-erp-entrer-window.hpp"
+#include "src/windows/yeroth-erp-sortir-window.hpp"
 
 #include "src/dialogs/yeroth-erp-pointdevente-methode-paiement-carte-credit-dialog.hpp"
-
 #include "src/dialogs/yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.hpp"
 #include "src/dialogs/yeroth-erp-pointdevente-methode-paiement-dialog.hpp"
-
-#include "src/windows/yeroth-erp-main-window.hpp"
-#include "src/windows/yeroth-erp-entrer-window.hpp"
-
+#include "src/windows/yeroth-erp-pointdevente-liststocks-window.hpp"
 #include "src/windows/yeroth-erp-pointdevente-window.hpp"
 
 #include "src/windows/yeroth-erp-paiements-window.hpp"
-#include "src/windows/yeroth-erp-tableau-des-transactions-du-fournisseur-window.hpp"
-#include "src/windows/yeroth-erp-tableau-des-transactions-du-client-window.hpp"
-#include "src/windows/yeroth-erp-historique-du-stock-window.hpp"
-#include "src/windows/yeroth-erp-sortir-window.hpp"
+
 #include "src/windows/yeroth-erp-tableaux-de-bord-window.hpp"
-#include "src/windows/yeroth-erp-mouvements_de_stocks-window.hpp"
-#include "src/windows/yeroth-erp-fournisseur-details-window.hpp"
-#include "src/windows/yeroth-erp-clients-detail-window.hpp"
+
+#include "src/windows/yeroth-erp-achats-window.hpp"
 #include "src/windows/yeroth-erp-achats-aux-fournisseurs-window.hpp"
 #include "src/windows/yeroth-erp-achats-detail-window.hpp"
-#include "src/windows/yeroth-erp-stock-detail-window.hpp"
+
 #include "src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp"
-#include "src/windows/yeroth-erp-creer-fournisseur-window.hpp"
-#include "src/windows/yeroth-erp-creer-compte-client-window.hpp"
-#include "src/windows/yeroth-erp-modifier-fournisseur-window.hpp"
-#include "src/windows/yeroth-erp-modifier-compte-client-window.hpp"
-#include "src/windows/yeroth-erp-creer-nouveau-client-window.hpp"
-#include "src/windows/yeroth-erp-creer-nouveau-fournisseur-window.hpp"
-#include "src/windows/yeroth-erp-creer-nouvelle-categorie-window.hpp"
-#include "src/windows/yeroth-erp-achats-window.hpp"
-#include "src/windows/yeroth-erp-stocks-window.hpp"
-#include "src/windows/yeroth-erp-marchandises-window.hpp"
-#include "src/windows/yeroth-erp-configuration-comptabilite-window.hpp"
-#include "src/windows/yeroth-erp-alertes-window.hpp"
-#include "src/windows/yeroth-erp-ventes-window.hpp"
-#include "src/windows/yeroth-erp-modifier-window.hpp"
-#include "src/windows/yeroth-erp-pointdevente-liststocks-window.hpp"
-#include "src/windows/yeroth-erp-fournisseurs-window.hpp"
-#include "src/windows/yeroth-erp-clients-window.hpp"
+
+#include "src/windows/yeroth-erp-tableau-des-transactions-du-fournisseur-window.hpp"
 #include "src/windows/yeroth-erp-payer-fournisseur-window.hpp"
+#include "src/windows/yeroth-erp-fournisseur-details-window.hpp"
+#include "src/windows/yeroth-erp-fournisseurs-window.hpp"
+#include "src/windows/yeroth-erp-creer-nouveau-fournisseur-window.hpp"
+#include "src/windows/yeroth-erp-creer-fournisseur-window.hpp"
+#include "src/windows/yeroth-erp-modifier-fournisseur-window.hpp"
+
+#include "src/windows/yeroth-erp-groupes-dun-client-window.hpp"
+#include "src/windows/yeroth-erp-clients-detail-window.hpp"
+#include "src/windows/yeroth-erp-clients-window.hpp"
+#include "src/windows/yeroth-erp-tableau-des-transactions-du-client-window.hpp"
 #include "src/windows/yeroth-erp-payer-compte-client-window.hpp"
-#include "src/windows/yeroth-erp-sortir-liststocks-window.hpp"
+#include "src/windows/yeroth-erp-creer-nouveau-client-window.hpp"
+#include "src/windows/yeroth-erp-creer-compte-client-window.hpp"
+#include "src/windows/yeroth-erp-modifier-compte-client-window.hpp"
+
+#include "src/windows/yeroth-erp-creer-nouvelle-categorie-window.hpp"
+
+#include "src/windows/yeroth-erp-marchandises-window.hpp"
+
+#include "src/windows/yeroth-erp-configuration-comptabilite-window.hpp"
+
+#include "src/windows/yeroth-erp-alertes-window.hpp"
+
+#include "src/windows/yeroth-erp-ventes-window.hpp"
 
 #include "src/admin/yeroth-erp-admin-window.hpp"
 #include "src/admin/creer/yeroth-erp-admin-create-window.hpp"
@@ -58,10 +67,13 @@
 #include "src/admin/detail/yeroth-erp-admin-detail-window.hpp"
 #include "src/admin/modifier/yeroth-erp-admin-modifier-window.hpp"
 
-#include "src/utils/yeroth-erp-database-table-column.hpp"
-#include "src/utils/yeroth-erp-sqltable-model.hpp"
-#include "src/utils/yeroth-erp-info-entreprise.hpp"
 #include "src/utils/yeroth-erp-database.hpp"
+#include "src/utils/yeroth-erp-database-table-column.hpp"
+
+#include "src/utils/yeroth-erp-sqltable-model.hpp"
+
+#include "src/utils/yeroth-erp-info-entreprise.hpp"
+
 #include "src/utils/yeroth-erp-utils.hpp"
 
 
@@ -97,6 +109,7 @@ class YerothPOSVenteMethodePaiementCarteCreditDialog;
 class YerothPOSVenteMethodePaiementComptantEntreeDialog;
 class YerothPOSVenteMethodePaiementDialog;
 class YerothFournisseurDetailsWindow;
+class YerothGroupesDunClientWindow;
 class YerothClientsDetailWindow;
 class YerothAchatsAUXFournisseursWindow;
 class YerothAchatsDetailWindow;
@@ -428,6 +441,7 @@ public:
 	YerothMouvementsDeStocksWindow 						*_mouvementsDeStocksWindow;
 	YerothPointDeVenteWindow 							*_pdVenteWindow;
 	YerothFournisseurDetailsWindow 						*_fournisseurDetailsWindow;
+	YerothGroupesDunClientWindow							*_groupesDunClientWindow;
 	YerothClientsDetailWindow 							*_clientsDetailWindow;
 	YerothAchatsAUXFournisseursWindow 					*_achats_aux_fournisseursWindow;
 	YerothAchatsDetailWindow 							*_achatsDetailWindow;
