@@ -533,7 +533,7 @@ void YerothAdminWindow::EXECUTER_COMMANDE_MAINTENANCE()
 		return ;
 	}
 
-	QDEBUG_STRINGS_OUTPUT_2("maintenanceCommand", maintenanceCommand);
+//	QDEBUG_STRINGS_OUTPUT_2("maintenanceCommand", maintenanceCommand);
 
 	QString progArgsString(maintenanceCommand.remove(0, lenToRemoveFromMAINTENANCE_COMMAND).trimmed());
 
@@ -547,7 +547,7 @@ void YerothAdminWindow::EXECUTER_COMMANDE_MAINTENANCE()
 	progArgsString.replace("-p", QString("-p%1")
 									.arg(YerothERPConfig::_db_user_pwd));
 
-	QDEBUG_STRINGS_OUTPUT_2("progArgsString", progArgsString);
+//	QDEBUG_STRINGS_OUTPUT_2("progArgsString", progArgsString);
 
 
 	QString progArgString_NOT_TO_SPLIT;
@@ -562,9 +562,9 @@ void YerothAdminWindow::EXECUTER_COMMANDE_MAINTENANCE()
 
 		progArgString_NOT_TO_SPLIT = splitted_cmd_string.at(1).trimmed();
 
-		QDEBUG_STRINGS_OUTPUT_2("progArgString_NOT_TO_SPLIT", progArgString_NOT_TO_SPLIT);
+//		QDEBUG_STRINGS_OUTPUT_2("progArgString_NOT_TO_SPLIT", progArgString_NOT_TO_SPLIT);
 
-		QDEBUG_STRINGS_OUTPUT_2("progArgString_TO_SPLIT", progArgString_TO_SPLIT);
+//		QDEBUG_STRINGS_OUTPUT_2("progArgString_TO_SPLIT", progArgString_TO_SPLIT);
 	}
 
 	QStringList progArguments(progArgString_TO_SPLIT.split(YerothUtils::EMPTY_SPACE_REGEXP));
@@ -582,19 +582,19 @@ void YerothAdminWindow::EXECUTER_COMMANDE_MAINTENANCE()
 								.arg(progArgString_NOT_TO_SPLIT));
 	}
 
-	QDEBUG_STRINGS_OUTPUT_QSTRINGLIST("progArguments", progArguments);
+//	QDEBUG_STRINGS_OUTPUT_QSTRINGLIST("progArguments", progArguments);
 
 	int output_file_size =
 			YerothERPProcess::start_PROCESS_AND_READ_PROCESS_output_INTO_FILE(mysqlProcessProgram,
-																 	 	 	  YerothERPConfig::sqlBackupDir,
+																 	 	 	  YerothERPConfig::fullpathToBACKUP_YEROTH_ERP_3_DIRECTORY,
 																			  yeroth_erp_3_0_restore_backup_sql_file,
 																			  progArguments);
 
 	if (! progArgsString.contains("--execute"))
 	{
-		YerothUtils::GZIP_YEROTH_FILE(YerothERPConfig::sqlBackupDir,
+		YerothUtils::GZIP_YEROTH_FILE(YerothERPConfig::fullpathToBACKUP_YEROTH_ERP_3_DIRECTORY,
 									  QString("%1/%2")
-									  	  .arg(YerothERPConfig::sqlBackupDir,
+									  	  .arg(YerothERPConfig::fullpathToBACKUP_YEROTH_ERP_3_DIRECTORY,
 									  		   yeroth_erp_3_0_restore_backup_sql_file));
 	}
 
@@ -614,7 +614,7 @@ void YerothAdminWindow::EXECUTER_COMMANDE_MAINTENANCE()
 							.arg(mysqlProcessProgram,
 								 userViewPrettyCommand,
 //								 lineEdit_administration_maintenance_commandes_COMMANDE_ACTUELLE->text(),
-								 YerothERPConfig::sqlBackupDir));
+								 YerothERPConfig::fullpathToBACKUP_YEROTH_ERP_3_DIRECTORY));
 		return ;
 	}
 
@@ -627,7 +627,7 @@ void YerothAdminWindow::EXECUTER_COMMANDE_MAINTENANCE()
 								"Répertoire d'exécution: \"%2\".")
 							.arg(userViewPrettyCommand,
 //								 lineEdit_administration_maintenance_commandes_COMMANDE_ACTUELLE->text(),
-								 YerothERPConfig::sqlBackupDir));
+								 YerothERPConfig::fullpathToBACKUP_YEROTH_ERP_3_DIRECTORY));
 	}
 }
 
@@ -1680,13 +1680,13 @@ void YerothAdminWindow::read_configuration()
 
     lineEdit_taille_de_pagination_par_defaut->setText(QString::number(YerothERPConfig::standard_pagination_number));
 
-    lineEdit_repertoire_des_sauvegardes->setText(YerothERPConfig::sqlBackupDir);
-
     lineEdit_repertoire_fichiers_temporaires->setText(YerothERPConfig::temporaryFilesDir);
 
     lineEdit_tva_value->setText(YerothUtils::getTvaString());
 
     lineEdit_annee_depart_rapports_chiffre_affaire->setText(YerothERPConfig::annee_depart_rapports_chiffre_affaire_value);
+
+    lineEdit_repertoire_des_sauvegardes->setText(YerothERPConfig::fullpathToBACKUP_YEROTH_ERP_3_DIRECTORY);
 
     lineEdit_annee_de_depart_pour_la_pagination->setText(YerothERPConfig::annee_depart_pour_la_pagination);
 
@@ -1911,26 +1911,32 @@ void YerothAdminWindow::read_app_parameters_init_configuration()
 {
     YerothSqlTableModel & initConfigurationsTableModel = _allWindows->getSqlTableModel_init_configurations();
 
+    //***
     QSqlRecord initConfigurationRecord = initConfigurationsTableModel.record(YerothERPConfig::CONFIG_TVA_VALUE);
     QString tvaValue(GET_SQL_RECORD_DATA(initConfigurationRecord, "valeur_configuration"));
 
+
+    //***
     initConfigurationRecord = initConfigurationsTableModel.record(YerothERPConfig::CONFIG_SALES_STRATEGY);
     QString salesStrategyValue(GET_SQL_RECORD_DATA(initConfigurationRecord, "valeur_configuration"));
 
+
+    //***
     initConfigurationRecord = initConfigurationsTableModel.record(YerothERPConfig::CONFIG_CURRENCY);
     QString currencyValue(GET_SQL_RECORD_DATA(initConfigurationRecord, "valeur_configuration"));
 
+
+    //***
+    initConfigurationRecord = initConfigurationsTableModel
+    		.record(YerothERPConfig::CONFIG_DIRECTORY_FULL_PATH_FOR_BACKUP_DATABASE_YEROTH_ERP_3);
+
+    QString CONFIG_DIRECTORY_FULL_PATH_FOR_BACKUP_DATABASE_YEROTH_ERP_3_VALUE
+		(GET_SQL_RECORD_DATA(initConfigurationRecord, "valeur_configuration"));
+
+
+    //***
     initConfigurationRecord = initConfigurationsTableModel.record(YerothERPConfig::CONFIG_PAGINATION_PAGE_BEGIN_YEAR);
     QString pageBeginYearValue(GET_SQL_RECORD_DATA(initConfigurationRecord, "valeur_configuration"));
-
-    if (!pageBeginYearValue.isEmpty())
-    {
-    	YerothERPConfig::annee_depart_pour_la_pagination = pageBeginYearValue;
-    }
-    else
-    {
-    	YerothERPConfig::annee_depart_pour_la_pagination = GET_CURRENT_DATE_YEAR;
-    }
 
     QString userLanguageReceiptFormatValue(
     		YerothUtils::getCurrentAdminWindowReceiptsFormatAccordingToLanguage(YerothERPConfig::receiptFormat));
@@ -1996,14 +2002,20 @@ void YerothAdminWindow::read_app_parameters_init_configuration()
 
     lineEdit_repertoire_systeme_latex->setText(YerothERPConfig::pathToLatexSystemRootFolder);
 
-    lineEdit_repertoire_des_sauvegardes->setText(YerothERPConfig::sqlBackupDir);
-
     lineEdit_repertoire_fichiers_temporaires->setText(YerothERPConfig::temporaryFilesDir);
 
     lineEdit_tva_value->setText(tvaValue);
 
+    lineEdit_repertoire_des_sauvegardes->setText(CONFIG_DIRECTORY_FULL_PATH_FOR_BACKUP_DATABASE_YEROTH_ERP_3_VALUE);
 
-    lineEdit_annee_de_depart_pour_la_pagination->setText(YerothERPConfig::annee_depart_pour_la_pagination);
+    if (!pageBeginYearValue.isEmpty())
+    {
+        lineEdit_annee_de_depart_pour_la_pagination->setText(pageBeginYearValue);
+    }
+    else
+    {
+        lineEdit_annee_de_depart_pour_la_pagination->setText(GET_CURRENT_DATE_YEAR);
+    }
 
     lineEdit_annee_depart_rapports_chiffre_affaire->setText(YerothERPConfig::annee_depart_rapports_chiffre_affaire_value);
 
@@ -2273,11 +2285,6 @@ void YerothAdminWindow::enregistrer_system_local_app_parameters_configuration()
                 currentText());
     }
 
-    if (lineEdit_repertoire_des_sauvegardes->checkField())
-    {
-    	YerothERPConfig::sqlBackupDir = lineEdit_repertoire_des_sauvegardes->text();
-    }
-
     if (lineEdit_repertoire_fichiers_temporaires->checkField())
     {
     	YerothERPConfig::temporaryFilesDir = lineEdit_repertoire_fichiers_temporaires->text();
@@ -2324,6 +2331,24 @@ void YerothAdminWindow::enregistrer_app_parameters_configuration()
             if (success)
             {
                 YerothERPConfig::currency = lineEdit_devise->text();
+            }
+        }
+
+        if (lineEdit_repertoire_des_sauvegardes->checkField())
+        {
+            configurationsRecord = configurationsTableModel
+            			.record(YerothERPConfig::CONFIG_DIRECTORY_FULL_PATH_FOR_BACKUP_DATABASE_YEROTH_ERP_3);
+
+            configurationsRecord.setValue("valeur_configuration", lineEdit_repertoire_des_sauvegardes->text());
+
+            bool success =
+                configurationsTableModel
+					.updateRecord(YerothERPConfig::CONFIG_DIRECTORY_FULL_PATH_FOR_BACKUP_DATABASE_YEROTH_ERP_3,
+							      configurationsRecord);
+
+            if (success)
+            {
+                YerothERPConfig::fullpathToBACKUP_YEROTH_ERP_3_DIRECTORY = lineEdit_repertoire_des_sauvegardes->text();
             }
         }
 

@@ -40,6 +40,8 @@ public:
 
 	static QString printer;
 
+	static QString fullpathToBACKUP_YEROTH_ERP_3_DIRECTORY;
+
 	static QString pathToPdfReader;
 
 	static QString pathToThermalPrinterDeviceFile;
@@ -94,8 +96,6 @@ public:
 
 	static QString pathToMARIA_DB_BASE_DIR;
 
-	static QString sqlBackupDir;
-
 	static QString temporaryFilesDir;
 
 	static bool _distantSiteConnected;
@@ -133,6 +133,8 @@ public:
 	static const unsigned int CONFIG_PAGINATION_PAGE_BEGIN_YEAR;
 
 	static const unsigned int CONFIG_BACKUP_DATABASE_YEROTH_ERP_3_TIME_INTERVAL;
+
+	static const unsigned int CONFIG_DIRECTORY_FULL_PATH_FOR_BACKUP_DATABASE_YEROTH_ERP_3;
 
 	//static const SALES_STRATEGY getSalesStrategy(QString salesStrategyValue);
 

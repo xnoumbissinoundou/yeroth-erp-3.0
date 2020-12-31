@@ -416,10 +416,6 @@ void read_system_local_yeroth_configuration()
 		{
 			YerothERPConfig::pathToMARIA_DB_BASE_DIR = list.at(1).trimmed();
 		}
-		else if (YerothUtils::isEqualCaseInsensitive("local_parameter_full_path_file_sql_backup_folder", list.at(0)))
-		{
-			YerothERPConfig::sqlBackupDir = list.at(1).trimmed();
-		}
 		else if (YerothUtils::isEqualCaseInsensitive("local_parameter_full_path_file_temporary_folder", list.at(0)))
 		{
 			YerothERPConfig::temporaryFilesDir = list.at(1).trimmed();
@@ -508,29 +504,51 @@ void read_yeroth_configuration(YerothLogger &logger, YerothERPWindows &allWindow
     YerothSqlTableModel &configurationsTableModel =
         allWindows.getSqlTableModel_configurations();
 
+    //***
     QSqlRecord configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_ALERT_PERIOD_TIME_INTERVAL);
     QString alertPeriodTimeIntervalValue(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
 
+
+    //***
     configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_ALERT_QUANTITY_TIME_INTERVAL);
     QString alertQuantityTimeIntervalValue(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
 
+
+    //***
     configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_TVA_VALUE);
     QString tvaValue(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
 
+
+    //***
     configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_SALES_STRATEGY);
     QString salesStrategyValue(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
 
+
+    //***
     configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_CURRENCY);
     QString currencyValue(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
 
+
+    //***
     configurationRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_PAGINATION_PAGE_BEGIN_YEAR);
     QString pageBeginYearValue(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
 
+
+    //***
     configurationRecord = configurationsTableModel.
     		record(YerothERPConfig::CONFIG_BACKUP_DATABASE_YEROTH_ERP_3_TIME_INTERVAL);
-
     QString BACKUP_DATABASE_YEROTH_ERP_3_TIME_INTERVAL_VALUE
 		(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
+
+
+    //***
+    configurationRecord = configurationsTableModel.
+    		record(YerothERPConfig::CONFIG_DIRECTORY_FULL_PATH_FOR_BACKUP_DATABASE_YEROTH_ERP_3);
+
+    QString DIRECTORY_FULL_PATH_FOR_BACKUP_DATABASE_YEROTH_ERP_3_VALUE
+		(GET_SQL_RECORD_DATA(configurationRecord, "valeur_configuration"));
+
+
 
     /*
      * Now setting the configuration values
@@ -540,6 +558,9 @@ void read_yeroth_configuration(YerothLogger &logger, YerothERPWindows &allWindow
     YerothERPConfig::alert_quantity_time_interval = alertQuantityTimeIntervalValue.toUInt();
     YerothERPConfig::tva_value = (tvaValue.toDouble() / 100.0);
     YerothERPConfig::salesStrategy = salesStrategyValue;
+
+    YerothERPConfig::fullpathToBACKUP_YEROTH_ERP_3_DIRECTORY =
+    		DIRECTORY_FULL_PATH_FOR_BACKUP_DATABASE_YEROTH_ERP_3_VALUE;
 
 
     if (BACKUP_DATABASE_YEROTH_ERP_3_TIME_INTERVAL_VALUE.isEmpty())
@@ -564,9 +585,9 @@ void read_yeroth_configuration(YerothLogger &logger, YerothERPWindows &allWindow
 
     logger.log("[main] read_yeroth_configuration",
                QString("Folder for backup: %1")
-			   	   .arg(YerothERPConfig::sqlBackupDir));
+			   	   .arg(YerothERPConfig::fullpathToBACKUP_YEROTH_ERP_3_DIRECTORY));
 
-    YEROTH_CREATE_FOLDER(logger, YerothERPConfig::sqlBackupDir);
+    YEROTH_CREATE_FOLDER(logger, YerothERPConfig::fullpathToBACKUP_YEROTH_ERP_3_DIRECTORY);
 
 
     logger.log("[main] read_yeroth_configuration",

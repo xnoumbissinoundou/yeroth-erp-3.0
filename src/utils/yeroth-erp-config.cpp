@@ -30,6 +30,8 @@ QString YerothERPConfig::currency("$");
 
 QString YerothERPConfig::printer("pdf");
 
+QString YerothERPConfig::fullpathToBACKUP_YEROTH_ERP_3_DIRECTORY("/opt/yeroth-erp-3.0-standalone/YEROTH_sql_backup");
+
 QString YerothERPConfig::pathToPdfReader("/usr/bin/evince");
 
 QString YerothERPConfig::pathToThermalPrinterDeviceFile("/dev/usb/lp0");
@@ -84,8 +86,6 @@ QString YerothERPConfig::annee_depart_pour_la_pagination(GET_CURRENT_DATE_YEAR);
 
 QString YerothERPConfig::pathToMARIA_DB_BASE_DIR("/usr/bin");
 
-QString YerothERPConfig::sqlBackupDir("/opt/yeroth-erp-3.0-standalone/YEROTH_sql_backup");
-
 QString YerothERPConfig::temporaryFilesDir("/home/yeroth");
 
 bool YerothERPConfig::_distantSiteConnected(false);
@@ -130,6 +130,8 @@ const unsigned int YerothERPConfig::CONFIG_CURRENCY (4);
 const unsigned int YerothERPConfig::CONFIG_PAGINATION_PAGE_BEGIN_YEAR (5);
 
 const unsigned int YerothERPConfig::CONFIG_BACKUP_DATABASE_YEROTH_ERP_3_TIME_INTERVAL (6);
+
+const unsigned int YerothERPConfig::CONFIG_DIRECTORY_FULL_PATH_FOR_BACKUP_DATABASE_YEROTH_ERP_3 (7);
 
 
 void YerothERPConfig::initYerothConfig(QString initCfg)
@@ -212,9 +214,6 @@ void YerothERPConfig::saveYerothConfig()
 
 		<< QString("local_parameter_full_path_mariadb_client_executables_root_dir=%1\n")
 				.arg(YerothERPConfig::pathToMARIA_DB_BASE_DIR)
-
-		<< QString("local_parameter_full_path_file_sql_backup_folder=%1\n")
-				.arg(YerothERPConfig::sqlBackupDir)
 
 		<< QString("local_parameter_full_path_file_temporary_folder=%1\n")
 				.arg(YerothERPConfig::temporaryFilesDir)
