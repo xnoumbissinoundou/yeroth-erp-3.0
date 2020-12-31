@@ -196,8 +196,8 @@ Program executing directory: &quot;%2&quot;.</translation>
     </message>
     <message>
         <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2078"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2139"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2292"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2138"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2303"/>
         <source>enregistrer</source>
         <translation>save</translation>
     </message>
@@ -208,7 +208,7 @@ Program executing directory: &quot;%2&quot;.</translation>
         <translation>Save the modified configuration of the alert system ?</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2290"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2301"/>
         <source>Enregistrer la configuration (générale) modifiée ?</source>
         <oldsource>Enregistrer la configuration (générale) modifiée de Yeroth ?</oldsource>
         <translation>Save the modified general configuration ?</translation>
