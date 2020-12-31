@@ -38,7 +38,7 @@ bool YerothProcessInfo::checkYerothERPAlertDaemonRunning(YerothLogger *logger /*
 
 	QString yerothpsoutput_file(QString("%1/%2")
 	    							.arg(YerothERPConfig::temporaryFilesDir,
-	    								 "yerothpsoutput"));
+	    								 ".yerothpsoutput"));
 
 	int output_file_size =
 			YerothERPProcess::start_PROCESS_AND_READ_PROCESS_output_INTO_FILE(mysqlProcessProgram,

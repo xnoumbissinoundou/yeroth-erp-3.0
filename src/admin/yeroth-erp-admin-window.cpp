@@ -628,8 +628,6 @@ void YerothAdminWindow::EXECUTER_COMMANDE_MAINTENANCE()
 
 void YerothAdminWindow::reinitialiser_AFFICHAGE_COMMANDE_MAINTENANCE()
 {
-	read_BACKUP_DATABASE_YEROTH_ERP_3_TIME_INTERVAL_configuration();
-
 	comboBox_sujets_maintenance->setCurrentIndex(0);
 	comboBox_operations_maintenance->setCurrentIndex(0);
 
@@ -1850,38 +1848,34 @@ void YerothAdminWindow::read_entreprise_info_database_table(bool initalizationVa
 }
 
 
-void YerothAdminWindow::read_BACKUP_DATABASE_YEROTH_ERP_3_TIME_INTERVAL_configuration()
-{
-    YerothSqlTableModel & initConfigurationsTableModel = _allWindows->getSqlTableModel_init_configurations();
-
-    QSqlRecord initConfigurationRecord =
-        initConfigurationsTableModel.record(YerothERPConfig::CONFIG_BACKUP_DATABASE_YEROTH_ERP_3_TIME_INTERVAL);
-
-    QString BACKUP_RESTORE_DATABASE_YEROTH_ERP_3_IntervalValue(
-    		GET_SQL_RECORD_DATA(initConfigurationRecord, "valeur_configuration"));
-
-    lineEdit_sauvegarde_de_yeroth_erp_3_secondes->
-		setText(BACKUP_RESTORE_DATABASE_YEROTH_ERP_3_IntervalValue);
-}
-
-
 void YerothAdminWindow::read_YEROTH_ERP_3_0_SYSTEM_DAEMON_init_configuration()
 {
     YerothSqlTableModel & initConfigurationsTableModel = _allWindows->getSqlTableModel_init_configurations();
 
-    QSqlRecord initConfigurationRecord =
+    //***
+    QSqlRecord initConfigurationRecord = initConfigurationsTableModel
+    		.record(YerothERPConfig::CONFIG_DIRECTORY_FULL_PATH_FOR_BACKUP_DATABASE_YEROTH_ERP_3);
+
+    QString CONFIG_DIRECTORY_FULL_PATH_FOR_BACKUP_DATABASE_YEROTH_ERP_3_VALUE
+		(GET_SQL_RECORD_DATA(initConfigurationRecord, "valeur_configuration"));
+
+
+    //***
+    initConfigurationRecord =
         initConfigurationsTableModel.record(YerothERPConfig::CONFIG_BACKUP_DATABASE_YEROTH_ERP_3_TIME_INTERVAL);
 
     QString BACKUP_RESTORE_DATABASE_YEROTH_ERP_3_IntervalValue(
     		GET_SQL_RECORD_DATA(initConfigurationRecord, "valeur_configuration"));
 
 
+    //***
     initConfigurationRecord =
         initConfigurationsTableModel.record(YerothERPConfig::CONFIG_ALERT_PERIOD_TIME_INTERVAL);
 
     QString alertPeriodTimeIntervalValue(GET_SQL_RECORD_DATA(initConfigurationRecord, "valeur_configuration"));
 
 
+    //***
     initConfigurationRecord =
         initConfigurationsTableModel.record(YerothERPConfig::CONFIG_ALERT_QUANTITY_TIME_INTERVAL);
 
@@ -1893,6 +1887,7 @@ void YerothAdminWindow::read_YEROTH_ERP_3_0_SYSTEM_DAEMON_init_configuration()
     QString salesStrategyValue(GET_SQL_RECORD_DATA(initConfigurationRecord, "valeur_configuration"));
 
 
+    lineEdit_repertoire_des_sauvegardes->setText(CONFIG_DIRECTORY_FULL_PATH_FOR_BACKUP_DATABASE_YEROTH_ERP_3_VALUE);
 
     lineEdit_sauvegarde_de_yeroth_erp_3_secondes->setText(BACKUP_RESTORE_DATABASE_YEROTH_ERP_3_IntervalValue);
 
@@ -1918,14 +1913,6 @@ void YerothAdminWindow::read_app_parameters_init_configuration()
     //***
     initConfigurationRecord = initConfigurationsTableModel.record(YerothERPConfig::CONFIG_CURRENCY);
     QString currencyValue(GET_SQL_RECORD_DATA(initConfigurationRecord, "valeur_configuration"));
-
-
-    //***
-    initConfigurationRecord = initConfigurationsTableModel
-    		.record(YerothERPConfig::CONFIG_DIRECTORY_FULL_PATH_FOR_BACKUP_DATABASE_YEROTH_ERP_3);
-
-    QString CONFIG_DIRECTORY_FULL_PATH_FOR_BACKUP_DATABASE_YEROTH_ERP_3_VALUE
-		(GET_SQL_RECORD_DATA(initConfigurationRecord, "valeur_configuration"));
 
 
     //***
@@ -1999,8 +1986,6 @@ void YerothAdminWindow::read_app_parameters_init_configuration()
     lineEdit_repertoire_fichiers_temporaires->setText(YerothERPConfig::temporaryFilesDir);
 
     lineEdit_tva_value->setText(tvaValue);
-
-    lineEdit_repertoire_des_sauvegardes->setText(CONFIG_DIRECTORY_FULL_PATH_FOR_BACKUP_DATABASE_YEROTH_ERP_3_VALUE);
 
     if (!pageBeginYearValue.isEmpty())
     {
@@ -2164,6 +2149,24 @@ void YerothAdminWindow::enregistrer_YEROTH_ERP_3_0_SYSTEM_DAEMON_configuration()
     		}
     	}
 
+        if (lineEdit_repertoire_des_sauvegardes->checkField())
+        {
+            configurationsRecord = configurationsTableModel
+            			.record(YerothERPConfig::CONFIG_DIRECTORY_FULL_PATH_FOR_BACKUP_DATABASE_YEROTH_ERP_3);
+
+            configurationsRecord.setValue("valeur_configuration", lineEdit_repertoire_des_sauvegardes->text());
+
+            bool success =
+                configurationsTableModel
+					.updateRecord(YerothERPConfig::CONFIG_DIRECTORY_FULL_PATH_FOR_BACKUP_DATABASE_YEROTH_ERP_3,
+							      configurationsRecord);
+
+            if (success)
+            {
+                YerothERPConfig::fullpathToBACKUP_YEROTH_ERP_3_DIRECTORY = lineEdit_repertoire_des_sauvegardes->text();
+            }
+        }
+
         if (lineEdit_alert_period_time_interval->checkField())
         {
         	configurationsRecord.clear();
@@ -2203,7 +2206,7 @@ void YerothAdminWindow::enregistrer_YEROTH_ERP_3_0_SYSTEM_DAEMON_configuration()
             }
         }
 
-        QDEBUG_STRINGS_OUTPUT_2("success", BOOL_TO_STRING(success));
+//        QDEBUG_STRINGS_OUTPUT_2("success", BOOL_TO_STRING(success));
 
         if (success)
         {
@@ -2316,24 +2319,6 @@ void YerothAdminWindow::enregistrer_app_parameters_configuration()
             if (success)
             {
                 YerothERPConfig::currency = lineEdit_devise->text();
-            }
-        }
-
-        if (lineEdit_repertoire_des_sauvegardes->checkField())
-        {
-            configurationsRecord = configurationsTableModel
-            			.record(YerothERPConfig::CONFIG_DIRECTORY_FULL_PATH_FOR_BACKUP_DATABASE_YEROTH_ERP_3);
-
-            configurationsRecord.setValue("valeur_configuration", lineEdit_repertoire_des_sauvegardes->text());
-
-            bool success =
-                configurationsTableModel
-					.updateRecord(YerothERPConfig::CONFIG_DIRECTORY_FULL_PATH_FOR_BACKUP_DATABASE_YEROTH_ERP_3,
-							      configurationsRecord);
-
-            if (success)
-            {
-                YerothERPConfig::fullpathToBACKUP_YEROTH_ERP_3_DIRECTORY = lineEdit_repertoire_des_sauvegardes->text();
             }
         }
 

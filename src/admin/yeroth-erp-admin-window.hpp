@@ -127,8 +127,6 @@ public slots:
 
     void read_entreprise_info_database_table(bool initalizationValues = true);
 
-    void read_BACKUP_DATABASE_YEROTH_ERP_3_TIME_INTERVAL_configuration();
-
     void read_YEROTH_ERP_3_0_SYSTEM_DAEMON_init_configuration();
 
     void read_app_parameters_init_configuration();
