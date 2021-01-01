@@ -18,46 +18,6 @@
 
 #include "src/utils/yeroth-erp-sqltable-model.hpp"
 
-QString YerothPOSUser::getRole()
-{
-    QString role;
-
-    switch(_role)
-    {
-    case YerothUtils::ROLE_ADMINISTRATEUR:
-        role.append(YerothUtils::_roleToUserViewString.value(YerothUtils::ROLE_ADMINISTRATEUR));
-        break;
-
-    case YerothUtils::ROLE_MANAGER:
-        role.append(YerothUtils::_roleToUserViewString.value(YerothUtils::ROLE_MANAGER));
-        break;
-
-    case YerothUtils::ROLE_MAGASINIER:
-        role.append(YerothUtils::_roleToUserViewString.value(YerothUtils::ROLE_MAGASINIER));
-        break;
-
-    case YerothUtils::ROLE_VENDEUR:
-        role.append(YerothUtils::_roleToUserViewString.value(YerothUtils::ROLE_VENDEUR));
-        break;
-
-    case YerothUtils::ROLE_GESTIONNAIREDESTOCK:
-        role.append(YerothUtils::_roleToUserViewString.value(YerothUtils::ROLE_GESTIONNAIREDESTOCK));
-        break;
-
-    case YerothUtils::ROLE_CAISSIER:
-        role.append(YerothUtils::_roleToUserViewString.value(YerothUtils::ROLE_CAISSIER));
-        break;
-
-    case YerothUtils::ROLE_INDEFINI:
-        role.append(YerothUtils::_roleToUserViewString.value(YerothUtils::ROLE_INDEFINI));
-        break;
-
-    default:
-        break;
-    }
-
-    return role;
-}
 
 QString YerothPOSUser::toString()
 {
@@ -107,3 +67,60 @@ QString YerothPOSUser::toString()
 
     return userInfo;
 }
+
+
+QString YerothPOSUser::getRole()
+{
+    QString role;
+
+    switch(_role)
+    {
+    case YerothUtils::ROLE_ADMINISTRATEUR:
+        role.append(YerothUtils::_roleToUserViewString.value(YerothUtils::ROLE_ADMINISTRATEUR));
+        break;
+
+    case YerothUtils::ROLE_MANAGER:
+        role.append(YerothUtils::_roleToUserViewString.value(YerothUtils::ROLE_MANAGER));
+        break;
+
+    case YerothUtils::ROLE_MAGASINIER:
+        role.append(YerothUtils::_roleToUserViewString.value(YerothUtils::ROLE_MAGASINIER));
+        break;
+
+    case YerothUtils::ROLE_VENDEUR:
+        role.append(YerothUtils::_roleToUserViewString.value(YerothUtils::ROLE_VENDEUR));
+        break;
+
+    case YerothUtils::ROLE_GESTIONNAIREDESTOCK:
+        role.append(YerothUtils::_roleToUserViewString.value(YerothUtils::ROLE_GESTIONNAIREDESTOCK));
+        break;
+
+    case YerothUtils::ROLE_CAISSIER:
+        role.append(YerothUtils::_roleToUserViewString.value(YerothUtils::ROLE_CAISSIER));
+        break;
+
+    case YerothUtils::ROLE_INDEFINI:
+        role.append(YerothUtils::_roleToUserViewString.value(YerothUtils::ROLE_INDEFINI));
+        break;
+
+    default:
+        break;
+    }
+
+    return role;
+}
+
+
+QString YerothPOSUser::nom_complet_truncated_FOR_SMALL_RECEIPT()
+{
+    QString nom_complet_truncated(nom_complet().trimmed());
+
+    if (nom_complet_truncated.length() > 23)
+     {
+    	nom_complet_truncated.truncate(23);
+    	nom_complet_truncated.append(".");
+     }
+
+	return nom_complet_truncated;
+}
+

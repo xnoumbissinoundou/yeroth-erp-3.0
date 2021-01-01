@@ -19,7 +19,13 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-	YerothGroupesDunClientTableWidget(QWidget *parent = 0);
+	inline YerothGroupesDunClientTableWidget(QWidget *parent = 0)
+	:YerothTableWidget(parent),
+	 _groupDesignationItem(0),
+	 _groupReferenceItem(0),
+	 _groupNumberItem(0)
+	{
+	}
 
 	inline virtual ~YerothGroupesDunClientTableWidget()
 	{
@@ -37,7 +43,6 @@ private:
     YerothQTableWidgetItem 	*_groupReferenceItem;
 
 	YerothQTableWidgetItem 	*_groupNumberItem;
-
 };
 
 

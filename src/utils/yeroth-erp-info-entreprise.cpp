@@ -81,3 +81,18 @@ QString YerothInfoEntreprise::toString()
 
     return result;
 }
+
+
+QString YerothInfoEntreprise::getNomCommercial_truncated_FOR_SMALL_RECEIPT()
+{
+    QString NomCommercial_truncated(getNomCommercial().trimmed());
+
+    if (NomCommercial_truncated.length() > 31)
+    {
+        NomCommercial_truncated.truncate(31);
+        NomCommercial_truncated.append(".");
+    }
+
+	return NomCommercial_truncated;
+}
+

@@ -73,6 +73,8 @@ public:
 
 	static const QString QUANTITE_SORTIE;
 
+	static const QString DESCRIPTION_GROUPE;
+
 	static const QString DESCRIPTION_FOURNISSEUR;
 
 	static const QString DESCRIPTION_PRODUIT;

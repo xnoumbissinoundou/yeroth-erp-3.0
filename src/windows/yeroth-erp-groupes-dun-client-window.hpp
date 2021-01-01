@@ -120,10 +120,7 @@ private slots:
 
 private:
 
-	inline void setupLineEdits()
-	{
-		lineEdit_groupes_dun_client_nombre_de_groupes->setYerothEnabled(false);
-	}
+	void setupLineEdits();
 
     void setupLineEditsQCompleters();
 

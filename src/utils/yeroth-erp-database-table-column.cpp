@@ -38,6 +38,7 @@ const QString YerothDatabaseTableColumn::STOCK_MAXIMUM					("stock_maximum");
 const QString YerothDatabaseTableColumn::QUANTITE_VENDUE				("quantite_vendue");
 const QString YerothDatabaseTableColumn::QUANTITE_TOTALE				("quantite_totale");
 const QString YerothDatabaseTableColumn::QUANTITE_SORTIE				("quantite_sortie");
+const QString YerothDatabaseTableColumn::DESCRIPTION_GROUPE				("description_groupe");
 const QString YerothDatabaseTableColumn::DESCRIPTION_FOURNISSEUR		("description_fournisseur");
 const QString YerothDatabaseTableColumn::DESCRIPTION_PRODUIT			("description_produit");
 const QString YerothDatabaseTableColumn::PRIX_UNITAIRE					("prix_unitaire");
@@ -202,6 +203,8 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::QUANTITE_TOTALE,	QObject::trUtf8("Qté totale"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::QUANTITE_SORTIE,	QObject::trUtf8("Qté sortie"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::DESCRIPTION_GROUPE, QObject::tr("Description groupe"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::DESCRIPTION_FOURNISSEUR, QObject::tr("Description fournisseur"));
 

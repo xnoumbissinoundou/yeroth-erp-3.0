@@ -82,6 +82,8 @@ public:
 		_secteurs_activites = activite_entreprise;
 	}
 
+	QString getNomCommercial_truncated_FOR_SMALL_RECEIPT();
+
 	inline QString getNomCommercial() const
 	{
 		return _nom_commercial;
@@ -90,6 +92,12 @@ public:
 	inline QString getNomCommercialTex() const
 	{
 		return YerothUtils::LATEX_IN_OUT_handleForeignAccents(_nom_commercial);
+	}
+
+	inline QString getNomCommercial_truncated_FOR_SMALL_RECEIPT_Tex()
+	{
+		return YerothUtils::LATEX_IN_OUT_handleForeignAccents
+					(getNomCommercial_truncated_FOR_SMALL_RECEIPT());
 	}
 
 	inline QString getLocalisation() const

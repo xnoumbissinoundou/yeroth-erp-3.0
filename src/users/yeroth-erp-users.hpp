@@ -75,9 +75,17 @@ public:
 		return _nom_complet;
 	}
 
+	QString nom_complet_truncated_FOR_SMALL_RECEIPT();
+
 	inline QString nom_completTex()
 	{
 		return YerothUtils::LATEX_IN_OUT_handleForeignAccents(_nom_complet);
+	}
+
+	inline QString nom_complet_truncated_FOR_SMALL_RECEIPT_Tex()
+	{
+		return YerothUtils::LATEX_IN_OUT_handleForeignAccents
+				(nom_complet_truncated_FOR_SMALL_RECEIPT());
 	}
 
 	inline QString localisation()

@@ -8,15 +8,6 @@
 #include "src/widgets/yeroth-erp-groupes-dun-client-table-widget.hpp"
 
 
-YerothGroupesDunClientTableWidget::YerothGroupesDunClientTableWidget(QWidget *parent  /* = 0 */)
-:YerothTableWidget(parent),
- _groupDesignationItem(0),
- _groupReferenceItem(0),
- _groupNumberItem(0)
-{
-}
-
-
 int YerothGroupesDunClientTableWidget::insert_group(const QString &group_db_ID,
 													const QString &groupDesignation,
 											   	    const QString &groupReference,
@@ -45,11 +36,10 @@ int YerothGroupesDunClientTableWidget::insert_group(const QString &group_db_ID,
 
     ++_curRow;
 
-    Qt::ItemFlags qStandardItemFlags = Qt::ItemIsSelectable | Qt::ItemIsEnabled;
-
-    setQStandardItemFlags(qStandardItemFlags);
+    set_MY_QStandardItemFlags();
 
     emit addedYerothTableWidget();
 
     return lastCurRow;
 }
+

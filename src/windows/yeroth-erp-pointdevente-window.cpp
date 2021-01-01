@@ -479,7 +479,9 @@ void YerothPointDeVenteWindow::setupLineEdits()
 
 void YerothPointDeVenteWindow::setupLineEditsQCompleters()
 {
-	lineEdit_articles_nom_client->setupMyStaticQCompleter(_allWindows->CLIENTS, YerothDatabaseTableColumn::NOM_ENTREPRISE);
+	lineEdit_articles_nom_client->
+		setupMyStaticQCompleter(_allWindows->CLIENTS,
+								YerothDatabaseTableColumn::NOM_ENTREPRISE);
 }
 
 
@@ -1043,14 +1045,14 @@ QString YerothPointDeVenteWindow::imprimer_recu_vendu_petit(QString referenceRec
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
-    factureTexTable.append(QString("MERCI!\\\\"));
+    factureTexTable.append(QString("MERCI!"));
     YerothUtils::getFactureSmallFRTexDocumentString(factureTexDocument, factureTexTable);
 
 #endif
 
 #ifdef YEROTH_ENGLISH_LANGUAGE
 
-    factureTexTable.append(QString("Thank you!\\\\"));
+    factureTexTable.append(QString("Thank you!"));
     YerothUtils::getFactureSmallENTexDocumentString(factureTexDocument, factureTexTable);
 
 #endif
@@ -1083,7 +1085,7 @@ QString YerothPointDeVenteWindow::imprimer_recu_vendu_petit(QString referenceRec
 
 	factureTexDocument.replace("YEROTHPAIEMENT", YerothUtils::LATEX_IN_OUT_handleForeignAccents(typeDeVenteStr));
     factureTexDocument.replace("YEROTHFACTURESMALLPAPERHEIGHT", minPaperHeight);
-    factureTexDocument.replace("YEROTHENTREPRISE", infoEntreprise.getNomCommercialTex());
+    factureTexDocument.replace("YEROTHENTREPRISE", infoEntreprise.getNomCommercial_truncated_FOR_SMALL_RECEIPT_Tex());
     factureTexDocument.replace("YEROTHACTIVITESENTREPRISE", infoEntreprise.getSecteursActivitesTex());
     factureTexDocument.replace("YEROTHCONTRIBUABLENR", infoEntreprise.getNumeroDeContribuable());
     factureTexDocument.replace("YEROTHBOITEPOSTALE", infoEntreprise.getBoitePostal());
@@ -1092,7 +1094,7 @@ QString YerothPointDeVenteWindow::imprimer_recu_vendu_petit(QString referenceRec
     factureTexDocument.replace("YEROTHEMAIL", infoEntreprise.getEmailTex());
     factureTexDocument.replace("YEROTHTELEPHONE", infoEntreprise.getTelephone());
     factureTexDocument.replace("YEROTHDATE", factureDate);
-    factureTexDocument.replace("YEROTHVENDEUR", yerothUser->nom_completTex());
+    factureTexDocument.replace("YEROTHVENDEUR", yerothUser->nom_complet_truncated_FOR_SMALL_RECEIPT_Tex());
 
     QString nomClient(lineEdit_articles_nom_client->text());
 
