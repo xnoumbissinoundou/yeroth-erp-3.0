@@ -134,7 +134,7 @@ void YerothGroupesDunClientWindow::afficher_tous_les_groupes_du_client()
 void YerothGroupesDunClientWindow::setupLineEdits()
 {
 	lineEdit_groupes_dun_client_recherche->
-		enableForSearch(QObject::trUtf8("sélectioner un groupe dans lequel le client sera membre)"));
+		enableForSearch(QObject::trUtf8("sélectioner un groupe dans lequel le client sera membre"));
 
 	lineEdit_groupes_dun_client_nombre_de_groupes->setYerothEnabled(false);
 }
