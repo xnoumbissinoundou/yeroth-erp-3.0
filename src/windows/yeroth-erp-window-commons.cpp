@@ -412,6 +412,13 @@ void YerothWindowsCommons::fournisseurs()
 }
 
 
+void YerothWindowsCommons::groupes_de_clients()
+{
+	rendreInvisible();
+    _allWindows->_groupesDeClientsWindow->rendreVisible(_curStocksTableModel);
+}
+
+
 void YerothWindowsCommons::clients()
 {
 	rendreInvisible();

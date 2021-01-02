@@ -96,7 +96,7 @@ YerothERPClientsWindow::YerothERPClientsWindow()
     pushButton_afficher->disable(this);
     pushButton_menu_principal->disable(this);
     pushButton_creer_compte_client->disable(this);
-    pushButton_modifier->disable(this);
+    pushButton_groupes_de_clients->disable(this);
     pushButton_supprimer->disable(this);
 
     pushButton_reinitialiser->disable(this);
@@ -740,7 +740,7 @@ void YerothERPClientsWindow::definirCaissier()
     pushButton_afficher->disable(this);
     pushButton_menu_principal->disable(this);
     pushButton_creer_compte_client->disable(this);
-    pushButton_modifier->disable(this);
+    pushButton_groupes_de_clients->disable(this);
     pushButton_supprimer->disable(this);
 
     pushButton_reinitialiser->disable(this);
@@ -776,7 +776,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_creer_compte_client->enable(this, SLOT(creerCompteClient()));
-    pushButton_modifier->enable(this, SLOT(modifierCompteClient()));
+    pushButton_groupes_de_clients->enable(this, SLOT(groupes_de_clients()));
     pushButton_supprimer->enable(this, SLOT(supprimerCompteClient()));
 
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
@@ -812,7 +812,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_creer_compte_client->enable(this, SLOT(creerCompteClient()));
-    pushButton_modifier->enable(this, SLOT(modifierCompteClient()));
+    pushButton_groupes_de_clients->enable(this, SLOT(groupes_de_clients()));
     pushButton_supprimer->enable(this, SLOT(supprimerCompteClient()));
 
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
@@ -848,7 +848,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     pushButton_afficher->disable(this);
     pushButton_menu_principal->disable(this);
     pushButton_creer_compte_client->disable(this);
-    pushButton_modifier->disable(this);
+    pushButton_groupes_de_clients->disable(this);
     pushButton_supprimer->disable(this);
 
     pushButton_reinitialiser->disable(this);
@@ -878,7 +878,7 @@ void YerothERPClientsWindow::definirMagasinier()
     pushButton_afficher->disable(this);
     pushButton_menu_principal->disable(this);
     pushButton_creer_compte_client->disable(this);
-    pushButton_modifier->disable(this);
+    pushButton_groupes_de_clients->disable(this);
     pushButton_supprimer->disable(this);
 
     pushButton_reinitialiser->disable(this);
@@ -908,7 +908,7 @@ void YerothERPClientsWindow::definirPasDeRole()
     pushButton_afficher->disable(this);
     pushButton_menu_principal->disable(this);
     pushButton_creer_compte_client->disable(this);
-    pushButton_modifier->disable(this);
+    pushButton_groupes_de_clients->disable(this);
     pushButton_supprimer->disable(this);
 
     pushButton_reinitialiser->disable(this);

@@ -86,6 +86,7 @@ FORMS = ui/yeroth-erp-main-window.ui \
 			ui/yeroth-erp-creer-fournisseur-window.ui \
 			ui/yeroth-erp-creer-compte-client-window.ui \
 			ui/yeroth-erp-fournisseur-details-window.ui \
+			ui/yeroth-erp-groupes-de-clients-window.ui \
 			ui/yeroth-erp-groupes-dun-client-window.ui \
 			ui/yeroth-erp-clients-detail-window.ui \
 		  ui/yeroth-erp-fournisseurs-window.ui \
@@ -151,6 +152,7 @@ HEADERS = src/include/yeroth-erp-3-0-precompiled-header.hpp \
 		  src/widgets/table-view/yeroth-erp-ventes-table-view.hpp \
 		  src/widgets/table-view/yeroth-erp-mouvements_de_stocks-table-view.hpp \
 		  src/widgets/table-view/yeroth-erp-fournisseurs-table-view.hpp \
+			src/widgets/table-view/yeroth-erp-groupes-de-clients-table-view.hpp \
 		  src/widgets/table-view/yeroth-erp-clients-table-view.hpp \
 		  src/widgets/table-view/yeroth-erp-alertes-table-view.hpp \
 		  src/widgets/table-view/yeroth-erp-achats-aux-fournisseurs-table-view.hpp \
@@ -187,6 +189,7 @@ HEADERS = src/include/yeroth-erp-3-0-precompiled-header.hpp \
 			src/windows/yeroth-erp-creer-fournisseur-window.hpp \
 			src/windows/yeroth-erp-creer-compte-client-window.hpp \
 		  src/windows/yeroth-erp-fournisseur-details-window.hpp \
+		  src/windows/yeroth-erp-groupes-de-clients-window.hpp \
 		  src/windows/yeroth-erp-groupes-dun-client-window.hpp \
 		  src/windows/yeroth-erp-clients-detail-window.hpp \
 		  src/windows/yeroth-erp-fournisseurs-window.hpp \
@@ -275,6 +278,7 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 			src/widgets/table-view/yeroth-erp-ventes-table-view.cpp \
 		  src/widgets/table-view/yeroth-erp-mouvements_de_stocks-table-view.cpp \
 		  src/widgets/table-view/yeroth-erp-fournisseurs-table-view.cpp \
+			src/widgets/table-view/yeroth-erp-groupes-de-clients-table-view.cpp \
 		  src/widgets/table-view/yeroth-erp-clients-table-view.cpp \
 		  src/widgets/table-view/yeroth-erp-alertes-table-view.cpp \
 		  src/widgets/table-view/yeroth-erp-achats-aux-fournisseurs-table-view.cpp \
@@ -311,6 +315,7 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 			src/windows/yeroth-erp-creer-fournisseur-window.cpp \
 			src/windows/yeroth-erp-creer-compte-client-window.cpp \
 		  src/windows/yeroth-erp-fournisseur-details-window.cpp \
+		  src/windows/yeroth-erp-groupes-de-clients-window.cpp \
 		  src/windows/yeroth-erp-groupes-dun-client-window.cpp \
 		  src/windows/yeroth-erp-clients-detail-window.cpp \
 		  src/windows/yeroth-erp-fournisseurs-window.cpp \

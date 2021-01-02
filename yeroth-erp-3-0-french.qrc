@@ -54,6 +54,7 @@
     <file>yeroth-erp-3-0-sql/create_table_remises.sql</file>
     <file>yeroth-erp-3-0-sql/create_table_conditions_alertes.sql</file>
     <file>yeroth-erp-3-0-sql/create_table_courriers_alertes.sql</file>
+    <file>yeroth-erp-3-0-sql/create_table_groupes_de_clients.sql</file>
     <file>yeroth-erp-3-0-sql/create_table_clients.sql</file>
     <file>yeroth-erp-3-0-sql/create_table_fournisseurs.sql</file>
     <file>yeroth-erp-3-0-sql/create_table_dbms.sql</file>

@@ -186,6 +186,8 @@ public slots:
 
 	virtual void fournisseurs();
 
+	virtual void groupes_de_clients();
+
 	virtual void clients();
 
 	inline virtual void courrier()

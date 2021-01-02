@@ -734,6 +734,7 @@ int main(int argc, char *argv[])
     logger.log("main", "Database connection could be opened successfully");
 
     QStringList sql_table_list;
+
     sql_table_list
 			<< FILE_YEROTH_ERP_3_0_SQL_TABLE_COMPTES_BANCAIRES
 			<< FILE_YEROTH_ERP_3_0_SQL_TABLE_ENTREPRISE_INFO
@@ -758,7 +759,8 @@ int main(int argc, char *argv[])
 			<< FILE_YEROTH_ERP_3_0_SQL_TABLE_REMISES
             << FILE_YEROTH_ERP_3_0_SQL_TABLE_CONDITIONS_ALERTES
             << FILE_YEROTH_ERP_3_0_SQL_TABLE_COURRIERS_ALERTES
-            << FILE_YEROTH_ERP_3_0_SQL_TABLE_CLIENTS
+			<< FILE_YEROTH_ERP_3_0_SQL_TABLE_GROUPES_DE_CLIENTS
+			<< FILE_YEROTH_ERP_3_0_SQL_TABLE_CLIENTS
             << FILE_YEROTH_ERP_3_0_SQL_TABLE_FOURNISSEURS
             << FILE_YEROTH_ERP_3_0_SQL_TABLE_DBMS
             << FILE_YEROTH_ERP_3_0_SQL_TABLE_CATEGORIES;

@@ -142,11 +142,11 @@ void YerothGroupesDunClientWindow::setupLineEdits()
 
 void YerothGroupesDunClientWindow::setupLineEditsQCompleters()
 {
-//	lineEdit_groupes_dun_client_recherche->
-//		setupMyStaticQCompleter(_dbYerothSqlTableName,
-//								correspondingDBFieldKeyValue,
-//								false,
-//								true);
+	lineEdit_groupes_dun_client_recherche->
+		setupMyStaticQCompleter(_allWindows->GROUPES_DE_CLIENTS,
+								YerothDatabaseTableColumn::DESIGNATION,
+								false,
+								true);
 }
 
 
@@ -200,7 +200,7 @@ void YerothGroupesDunClientWindow::definirCaissier()
 void YerothGroupesDunClientWindow::definirManager()
 {
     pushButton_clients->enable(this, SLOT(clients()));
-	pushButton_groupes_de_clients->enable(this, SLOT(groupe_de_clients()));
+	pushButton_groupes_de_clients->enable(this, SLOT(groupes_de_clients()));
 	pushButton_menu_principal->enable(this, SLOT(menu()));
 	pushButton_detail_client->enable(this, SLOT(afficher_au_detail()));
 	pushButton_supprimer->enable(this, SLOT(supprimer_appartenance()));
@@ -210,7 +210,7 @@ void YerothGroupesDunClientWindow::definirManager()
 void YerothGroupesDunClientWindow::definirVendeur()
 {
     pushButton_clients->enable(this, SLOT(clients()));
-	pushButton_groupes_de_clients->enable(this, SLOT(groupe_de_clients()));
+	pushButton_groupes_de_clients->enable(this, SLOT(groupes_de_clients()));
 	pushButton_menu_principal->enable(this, SLOT(menu()));
 	pushButton_detail_client->enable(this, SLOT(afficher_au_detail()));
 	pushButton_supprimer->enable(this, SLOT(supprimer_appartenance()));

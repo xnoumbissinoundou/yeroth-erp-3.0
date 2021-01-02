@@ -39,6 +39,14 @@ public:
 
 	static const QString HISTORIQUE_STOCK;
 
+	static const QString MEMBRES_DU_GROUPE_db_ID;
+
+	static const QString POURCENTAGE_DU_RABAIS;
+
+	static const QString MONTANT_DU_RABAIS;
+
+	static const QString MAXIMUM_DE_MEMBRES;
+
 	static const QString CLIENTS_ID;
 
 	static const QString REFERENCE_RECU_PAIEMENT_CLIENT;
@@ -192,6 +200,8 @@ public:
 	static const QString EMAIL;
 
 	static const QString REFERENCE_FOURNISSEUR;
+
+	static const QString REFERENCE_GROUPE;
 
 	static const QString REFERENCE_CLIENT;
 

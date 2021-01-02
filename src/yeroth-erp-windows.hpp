@@ -42,6 +42,7 @@
 #include "src/windows/yeroth-erp-creer-fournisseur-window.hpp"
 #include "src/windows/yeroth-erp-modifier-fournisseur-window.hpp"
 
+#include "src/windows/yeroth-erp-groupes-de-clients-window.hpp"
 #include "src/windows/yeroth-erp-groupes-dun-client-window.hpp"
 #include "src/windows/yeroth-erp-clients-detail-window.hpp"
 #include "src/windows/yeroth-erp-clients-window.hpp"
@@ -185,6 +186,8 @@ public:
 	YerothSqlTableModel &getSqlTableModel_courriers_alertes();
 
 	YerothSqlTableModel &getSqlTableModel_clients();
+
+	YerothSqlTableModel &getSqlTableModel_groupes_de_clients();
 
 	YerothSqlTableModel &getSqlTableModel_fournisseurs();
 
@@ -395,6 +398,7 @@ public:
 	static const QString LOCALISATIONS;
 	static const QString CATEGORIES;
 	static const QString CLIENTS;
+	static const QString GROUPES_DE_CLIENTS;
 	static const QString FOURNISSEURS;
 	static const QString ALERTES;
 	static const QString REMISES;
@@ -441,7 +445,8 @@ public:
 	YerothMouvementsDeStocksWindow 						*_mouvementsDeStocksWindow;
 	YerothPointDeVenteWindow 							*_pdVenteWindow;
 	YerothFournisseurDetailsWindow 						*_fournisseurDetailsWindow;
-	YerothGroupesDunClientWindow							*_groupesDunClientWindow;
+	YerothGroupesDeClientsWindow						*_groupesDeClientsWindow;
+	YerothGroupesDunClientWindow						*_groupesDunClientWindow;
 	YerothClientsDetailWindow 							*_clientsDetailWindow;
 	YerothAchatsAUXFournisseursWindow 					*_achats_aux_fournisseursWindow;
 	YerothAchatsDetailWindow 							*_achatsDetailWindow;
@@ -480,6 +485,7 @@ private:
 	YerothSqlTableModel 	*_tableModel_localisations;
 	YerothSqlTableModel 	*_tableModel_categories;
 	YerothSqlTableModel 	*_tableModel_clients;
+	YerothSqlTableModel 	*_tableModel_groupes_de_clients;
 	YerothSqlTableModel 	*_tableModel_fournisseurs;
 	YerothSqlTableModel 	*_tableModel_alertes;
 	YerothSqlTableModel 	*_tableModel_remises;

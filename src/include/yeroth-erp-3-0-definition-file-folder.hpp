@@ -43,6 +43,7 @@
 # define FILE_YEROTH_ERP_3_0_SQL_TABLE_REMISES 										FOLDER_YEROTH_ERP_3_0_SQL"/create_table_remises.sql"
 # define FILE_YEROTH_ERP_3_0_SQL_TABLE_CONDITIONS_ALERTES 				FOLDER_YEROTH_ERP_3_0_SQL"/create_table_conditions_alertes.sql"
 # define FILE_YEROTH_ERP_3_0_SQL_TABLE_COURRIERS_ALERTES 					FOLDER_YEROTH_ERP_3_0_SQL"/create_table_courriers_alertes.sql"
+# define FILE_YEROTH_ERP_3_0_SQL_TABLE_GROUPES_DE_CLIENTS 				FOLDER_YEROTH_ERP_3_0_SQL"/create_table_groupes_de_clients.sql"
 # define FILE_YEROTH_ERP_3_0_SQL_TABLE_CLIENTS 										FOLDER_YEROTH_ERP_3_0_SQL"/create_table_clients.sql"
 # define FILE_YEROTH_ERP_3_0_SQL_TABLE_FOURNISSEURS 							FOLDER_YEROTH_ERP_3_0_SQL"/create_table_fournisseurs.sql"
 # define FILE_YEROTH_ERP_3_0_SQL_TABLE_DBMS 											FOLDER_YEROTH_ERP_3_0_SQL"/create_table_dbms.sql"
