@@ -15377,10 +15377,10 @@
   </action>
   <action name="actionAnnuler">
    <property name="text">
-    <string>Annuler la création du compte client</string>
+    <string>Annuler la création du client</string>
    </property>
    <property name="toolTip">
-    <string>Annuler l'entrée en stock</string>
+    <string>Annuler la création du client</string>
    </property>
    <property name="font">
     <font>
