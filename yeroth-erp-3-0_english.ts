@@ -8260,9 +8260,16 @@ Client Account</translation>
         <translation>city</translation>
     </message>
     <message>
+        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="13467"/>
+        <source>Achats 
+ (SERVICES)</source>
+        <translation>Purchases 
+ (SERVICES)</translation>
+    </message>
+    <message>
         <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="1312"/>
-        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="14465"/>
-        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="14468"/>
+        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="15365"/>
+        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="15368"/>
         <source>Enregistrer</source>
         <translation>Save</translation>
     </message>
@@ -8295,115 +8302,111 @@ Client Account</translation>
         <translation>delete image</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="12104"/>
+        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="12592"/>
+        <source>personne ayant référer</source>
+        <translation>referer</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="13032"/>
         <source>Annuler</source>
         <translation>Cancel</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="12566"/>
-        <source>Achats 
- aux 
- Fournisseurs</source>
-        <translation>Purchases 
- to 
- Suppliers</translation>
-    </message>
-    <message>
-        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="13012"/>
+        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="13912"/>
         <source>Aide</source>
         <translation>Help</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="13443"/>
+        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="14343"/>
         <source>Actions</source>
         <translation>Functions</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="13883"/>
+        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="14783"/>
         <source>Outils</source>
         <translation>Tools</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="14311"/>
+        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="15211"/>
         <source>toolBar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="14331"/>
+        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="15231"/>
         <source>À propos</source>
         <translation>About Yeroth-erp-3.0</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="14347"/>
+        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="15247"/>
         <source>Changer d&apos;utilisateur</source>
         <translation>Sign in</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="14359"/>
+        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="15259"/>
         <source>Fermeture</source>
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="14371"/>
-        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="14374"/>
+        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="15271"/>
+        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="15274"/>
         <source>Menu principal</source>
         <translation>Main menu</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="14390"/>
+        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="15290"/>
         <source>Message d&apos;aide</source>
         <translation>User tip</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="14393"/>
+        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="15293"/>
         <source>Appeler l&apos;aide</source>
         <translation>Help</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="14409"/>
-        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="14412"/>
+        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="15309"/>
+        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="15312"/>
         <source>Déconnecter l&apos;utilisateur</source>
         <translation>Sign out</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="14429"/>
+        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="15329"/>
         <source>Administration</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="14441"/>
+        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="15341"/>
         <source>Informations sur l&apos;entreprise</source>
         <translation>Company info</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="14453"/>
+        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="15353"/>
         <source>Qui suis je ?</source>
         <translation>Who am I?</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="14480"/>
+        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="15380"/>
         <source>Annuler la création du compte client</source>
         <translation>Cancel client creation</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="14483"/>
+        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="15383"/>
         <source>Annuler l&apos;entrée en stock</source>
         <translation>Cancel stock item insertion</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="14495"/>
-        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="14498"/>
+        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="15395"/>
+        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="15398"/>
         <source>Lister les achats aux fournisseurs</source>
         <translation>View purchases to suppliers</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="14510"/>
+        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="15410"/>
         <source>Lister les clients</source>
         <translation>View clients</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="14522"/>
-        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="14525"/>
+        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="15422"/>
+        <location filename="ui/yeroth-erp-creer-compte-client-window.ui" line="15425"/>
         <source>Supprimer l&apos;image de ce compte client</source>
         <translation>Delete client image</translation>
     </message>
