@@ -161,6 +161,7 @@ void YerothERPClientsWindow::reinitialiser_champs_db_visibles()
 	_visibleDBFieldColumnStrList.clear();
 
     _visibleDBFieldColumnStrList
+			<< YerothDatabaseTableColumn::PERSONNE_AYANT_REFERER
 			<< YerothDatabaseTableColumn::REFERENCE_CLIENT
 			<< YerothDatabaseTableColumn::NOM_ENTREPRISE
 			<< YerothDatabaseTableColumn::VILLE
