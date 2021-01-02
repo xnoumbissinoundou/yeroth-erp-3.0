@@ -33,7 +33,9 @@ public:
 
 	static const QString ID;
 
-	static const QString PERSONNE_AYANT_REFERER;
+	static const QString REFEREUR_CLIENT;
+
+	static const QString REFEREUR_CLIENT_ID;
 
 	static const QString GROUPES_DU_CLIENT;
 

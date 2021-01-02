@@ -190,6 +190,9 @@ void YerothGroupesDeClientsWindow::setupLineEdits()
 {
 	lineEdit_groupes_de_clients_terme_recherche->setFocus();
 
+	lineEdit_groupes_de_clients_terme_recherche->
+		enableForSearch(QObject::trUtf8("terme à rechercher (nom du client)"));
+
 	MACRO_TO_BIND_PAGING_WITH_QLINEEDIT(lineEdit_groupes_de_clients_nombre_de_lignes_par_page,
 										tableView_groupes_de_clients);
 }

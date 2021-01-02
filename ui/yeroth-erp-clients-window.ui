@@ -13294,8 +13294,6 @@ background-color: rgb(0, 0, 0); </string>
     </property>
     <addaction name="actionAdministration"/>
     <addaction name="separator"/>
-    <addaction name="actionAlertes"/>
-    <addaction name="separator"/>
     <addaction name="actionReinitialiserChampsDBVisible"/>
     <addaction name="actionChampsDBVisible"/>
     <addaction name="separator"/>
@@ -13763,7 +13761,6 @@ background-color: rgb(0, 0, 0); </string>
    <addaction name="actionReinitialiserChampsDBVisible"/>
    <addaction name="actionExporter_au_format_csv"/>
    <addaction name="actionAfficherPDF"/>
-   <addaction name="actionAlertes"/>
   </widget>
   <action name="actionA_propos">
    <property name="text">
@@ -13849,27 +13846,6 @@ background-color: rgb(0, 0, 0); </string>
    </property>
    <property name="toolTip">
     <string>Déconnecter l'utilisateur</string>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-  </action>
-  <action name="actionAlertes">
-   <property name="icon">
-    <iconset>
-     <normalon>:/yeroth-erp-3-0-images/yeroth-erp-3.0-alert-good.png</normalon>
-     <selectedoff>:/yeroth-erp-3-0-images/yeroth-erp-3.0-alert-signaling.png</selectedoff>
-    </iconset>
-   </property>
-   <property name="text">
-    <string>Alertes</string>
-   </property>
-   <property name="toolTip">
-    <string>Alertes</string>
    </property>
    <property name="font">
     <font>
