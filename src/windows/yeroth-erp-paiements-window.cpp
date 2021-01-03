@@ -11,7 +11,7 @@
 
 #include "src/yeroth-erp-windows.hpp"
 
-#include "src/windows/yeroth-erp-stock-detail-window.hpp"
+#include "src/windows/stocks/yeroth-erp-stock-detail-window.hpp"
 
 #include "src/users/yeroth-erp-users.hpp"
 

@@ -181,42 +181,42 @@ HEADERS = src/include/yeroth-erp-3-0-precompiled-header.hpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-carte-credit-dialog.hpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.hpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-dialog.hpp \
-			src/windows/yeroth-erp-configuration-comptabilite-window.hpp \
-			src/windows/yeroth-erp-modifier-fournisseur-window.hpp \
-			src/windows/yeroth-erp-modifier-compte-client-window.hpp \
-			src/windows/yeroth-erp-payer-fournisseur-window.hpp \
-			src/windows/yeroth-erp-payer-compte-client-window.hpp \
-			src/windows/yeroth-erp-creer-fournisseur-window.hpp \
-			src/windows/yeroth-erp-creer-compte-client-window.hpp \
-		  src/windows/yeroth-erp-fournisseur-details-window.hpp \
-		  src/windows/yeroth-erp-groupes-de-clients-window.hpp \
-		  src/windows/yeroth-erp-groupes-dun-client-window.hpp \
-		  src/windows/yeroth-erp-clients-detail-window.hpp \
-		  src/windows/yeroth-erp-fournisseurs-window.hpp \
-		  src/windows/yeroth-erp-clients-window.hpp \
+			src/windows/crm/yeroth-erp-creer-compte-client-window.hpp \
+		  src/windows/crm/yeroth-erp-groupes-de-clients-window.hpp \
+		  src/windows/crm/yeroth-erp-groupes-dun-client-window.hpp \
+			src/windows/crm/yeroth-erp-modifier-compte-client-window.hpp \
+		  src/windows/crm/yeroth-erp-clients-window.hpp \
+			src/windows/crm/yeroth-erp-payer-compte-client-window.hpp \
+		  src/windows/crm/yeroth-erp-tableau-des-transactions-du-client-window.hpp \
+		  src/windows/crm/yeroth-erp-clients-detail-window.hpp \
+		  src/windows/stocks/yeroth-erp-modifier-window.hpp \
+		  src/windows/stocks/yeroth-erp-sortir-liststocks-window.hpp \
+		  src/windows/stocks/yeroth-erp-sortir-window.hpp \
+		  src/windows/stocks/yeroth-erp-historique-du-stock-window.hpp \
+		  src/windows/stocks/yeroth-erp-stock-detail-window.hpp \
+		  src/windows/stocks/yeroth-erp-stocks-window.hpp \
+			src/windows/purchase/yeroth-erp-achats-aux-fournisseurs-window.hpp \
+		  src/windows/purchase/yeroth-erp-achats-detail-window.hpp \
+		  src/windows/purchase/yeroth-erp-achats-window.hpp \
+		  src/windows/pos/yeroth-erp-pointdevente-window.hpp \
+		  src/windows/pos/yeroth-erp-pointdevente-liststocks-window.hpp \
+		  src/windows/supplier/yeroth-erp-tableau-des-transactions-du-fournisseur-window.hpp \
+			src/windows/supplier/yeroth-erp-payer-fournisseur-window.hpp \
+			src/windows/supplier/yeroth-erp-modifier-fournisseur-window.hpp \
+			src/windows/supplier/yeroth-erp-fournisseurs-window.hpp \
+			src/windows/supplier/yeroth-erp-creer-fournisseur-window.hpp \
+			src/windows/supplier/yeroth-erp-fournisseur-details-window.hpp \
+		  src/windows/yeroth-erp-configuration-comptabilite-window.hpp \
 		  src/windows/yeroth-erp-window-commons.hpp \
-		  src/windows/yeroth-erp-pointdevente-liststocks-window.hpp \
-		  src/windows/yeroth-erp-sortir-liststocks-window.hpp \
 		  src/windows/yeroth-erp-main-window.hpp \
 		  src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
 		  src/windows/yeroth-erp-creer-nouveau-fournisseur-window.hpp \
 		  src/windows/yeroth-erp-creer-nouvelle-categorie-window.hpp \
 		  src/windows/yeroth-erp-marchandises-window.hpp \
-		  src/windows/yeroth-erp-tableau-des-transactions-du-fournisseur-window.hpp \
-		  src/windows/yeroth-erp-tableau-des-transactions-du-client-window.hpp \
-		  src/windows/yeroth-erp-historique-du-stock-window.hpp \
-		  src/windows/yeroth-erp-achats-aux-fournisseurs-window.hpp \
-		  src/windows/yeroth-erp-achats-detail-window.hpp \
-		  src/windows/yeroth-erp-achats-window.hpp \
-		  src/windows/yeroth-erp-stocks-window.hpp \
 		  src/windows/yeroth-erp-alertes-window.hpp \
-		  src/windows/yeroth-erp-modifier-window.hpp \
 		  src/windows/yeroth-erp-entrer-window.hpp \
-		  src/windows/yeroth-erp-pointdevente-window.hpp \
-		  src/windows/yeroth-erp-sortir-window.hpp \
 		  src/windows/yeroth-erp-tableaux-de-bord-window.hpp \
 		  src/windows/yeroth-erp-mouvements_de_stocks-window.hpp \
-		  src/windows/yeroth-erp-stock-detail-window.hpp \
 		  src/windows/yeroth-erp-paiements-window.hpp \
 		  src/windows/yeroth-erp-ventes-window.hpp \
 		  src/tests/yeroth-erp-test-yeroth-erp-table-view.hpp \
@@ -308,41 +308,41 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.cpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-dialog.cpp \
 			src/windows/yeroth-erp-configuration-comptabilite-window.cpp \
-			src/windows/yeroth-erp-modifier-fournisseur-window.cpp \
-			src/windows/yeroth-erp-modifier-compte-client-window.cpp \
-			src/windows/yeroth-erp-payer-fournisseur-window.cpp \
-			src/windows/yeroth-erp-payer-compte-client-window.cpp \
-			src/windows/yeroth-erp-creer-fournisseur-window.cpp \
-			src/windows/yeroth-erp-creer-compte-client-window.cpp \
-		  src/windows/yeroth-erp-fournisseur-details-window.cpp \
-		  src/windows/yeroth-erp-groupes-de-clients-window.cpp \
-		  src/windows/yeroth-erp-groupes-dun-client-window.cpp \
-		  src/windows/yeroth-erp-clients-detail-window.cpp \
-		  src/windows/yeroth-erp-fournisseurs-window.cpp \
-		  src/windows/yeroth-erp-clients-window.cpp \
+		  src/windows/crm/yeroth-erp-creer-compte-client-window.cpp \
+		  src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp \
+		  src/windows/crm/yeroth-erp-groupes-dun-client-window.cpp \
+			src/windows/crm/yeroth-erp-modifier-compte-client-window.cpp \
+		  src/windows/crm/yeroth-erp-clients-window.cpp \
+			src/windows/crm/yeroth-erp-payer-compte-client-window.cpp \
+		  src/windows/crm/yeroth-erp-tableau-des-transactions-du-client-window.cpp \
+		  src/windows/crm/yeroth-erp-clients-detail-window.cpp \
+		  src/windows/stocks/yeroth-erp-modifier-window.cpp \
+			src/windows/stocks/yeroth-erp-sortir-liststocks-window.cpp \
+		  src/windows/stocks/yeroth-erp-sortir-window.cpp \
+			src/windows/stocks/yeroth-erp-historique-du-stock-window.cpp \
+		  src/windows/stocks/yeroth-erp-stock-detail-window.cpp \
+		  src/windows/stocks/yeroth-erp-stocks-window.cpp \
+		  src/windows/purchase/yeroth-erp-achats-aux-fournisseurs-window.cpp \
+		  src/windows/purchase/yeroth-erp-achats-detail-window.cpp \
+		  src/windows/purchase/yeroth-erp-achats-window.cpp \
+		  src/windows/pos/yeroth-erp-pointdevente-window.cpp \
+		  src/windows/pos/yeroth-erp-pointdevente-liststocks-window.cpp \
+			src/windows/supplier/yeroth-erp-tableau-des-transactions-du-fournisseur-window.cpp \
+			src/windows/supplier/yeroth-erp-payer-fournisseur-window.cpp \
+			src/windows/supplier/yeroth-erp-modifier-fournisseur-window.cpp \
+			src/windows/supplier/yeroth-erp-fournisseurs-window.cpp \
+			src/windows/supplier/yeroth-erp-creer-fournisseur-window.cpp \
+			src/windows/supplier/yeroth-erp-fournisseur-details-window.cpp \
 		  src/windows/yeroth-erp-window-commons.cpp \
-		  src/windows/yeroth-erp-pointdevente-liststocks-window.cpp \
-		  src/windows/yeroth-erp-sortir-liststocks-window.cpp \
 		  src/windows/yeroth-erp-main-window.cpp \
 		  src/windows/yeroth-erp-creer-nouveau-client-window.cpp \
 		  src/windows/yeroth-erp-creer-nouveau-fournisseur-window.cpp \
 		  src/windows/yeroth-erp-creer-nouvelle-categorie-window.cpp \
 		  src/windows/yeroth-erp-marchandises-window.cpp \
-		  src/windows/yeroth-erp-tableau-des-transactions-du-fournisseur-window.cpp \
-			src/windows/yeroth-erp-tableau-des-transactions-du-client-window.cpp \
-			src/windows/yeroth-erp-historique-du-stock-window.cpp \
-		  src/windows/yeroth-erp-achats-aux-fournisseurs-window.cpp \
-		  src/windows/yeroth-erp-achats-detail-window.cpp \
-		  src/windows/yeroth-erp-achats-window.cpp \
-		  src/windows/yeroth-erp-stocks-window.cpp \
 		  src/windows/yeroth-erp-alertes-window.cpp \
-		  src/windows/yeroth-erp-modifier-window.cpp \
 		  src/windows/yeroth-erp-entrer-window.cpp \
-		  src/windows/yeroth-erp-pointdevente-window.cpp \
-		  src/windows/yeroth-erp-sortir-window.cpp \
 		  src/windows/yeroth-erp-tableaux-de-bord-window.cpp \
 		  src/windows/yeroth-erp-mouvements_de_stocks-window.cpp \
-		  src/windows/yeroth-erp-stock-detail-window.cpp \
 		  src/windows/yeroth-erp-paiements-window.cpp \
 		  src/windows/yeroth-erp-ventes-window.cpp \
 		  src/tests/yeroth-erp-test-yeroth-erp-table-view.cpp \
