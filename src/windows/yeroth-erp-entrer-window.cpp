@@ -1408,6 +1408,8 @@ bool YerothEntrerWindow::handle_stocks_vendu_table(int stockID,
 
         record.setValue(YerothDatabaseTableColumn::TYPE_DE_VENTE, typeDeVente);
 
+        record.setValue(YerothDatabaseTableColumn::IS_VENTE_EN_GROS, false);
+
         record.setValue(YerothDatabaseTableColumn::ID, stocksVenduID);
 
         record.setValue(YerothDatabaseTableColumn::REFERENCE, aServiceInfo.reference);
