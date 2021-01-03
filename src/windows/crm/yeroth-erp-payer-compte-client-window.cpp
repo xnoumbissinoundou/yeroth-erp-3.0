@@ -665,6 +665,8 @@ void YerothPayerCompteClientWindow::setupLineEdits()
 
 	lineEdit_comptes_clients_designation_de_lentreprise->setYerothEnabled(false);
 
+	lineEdit_comptes_clients_valeur_compte_client_FIDELITE->setYerothEnabled(false);
+
     lineEdit_comptes_clients_valeur_compte_client->setYerothEnabled(false);
 
 	lineEdit_comptes_clients_valeur_dette_maximale->setYerothEnabled(false);
@@ -740,6 +742,8 @@ void YerothPayerCompteClientWindow::updateLineEdits()
 
 		_allWindows->_clientsWindow->
 			SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(aQSqlRecord);
+
+		lineEdit_comptes_clients_valeur_compte_client_FIDELITE->setText(GET_CURRENCY_STRING_NUM(0.0));
 
 		double compteClient = GET_SQL_RECORD_DATA(aQSqlRecord, YerothDatabaseTableColumn::COMPTE_CLIENT).toDouble();
 

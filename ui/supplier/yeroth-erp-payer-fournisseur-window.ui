@@ -17873,7 +17873,7 @@ background-color: rgb(0, 0, 0); </string>
   </action>
   <action name="actionChanger_utilisateur">
    <property name="icon">
-    <iconset resource="../yeroth-erp-3-0.qrc">
+    <iconset resource="../../yeroth-erp-3-0.qrc">
      <normaloff>:/yeroth-erp-3-0-images/log-in.png</normaloff>:/yeroth-erp-3-0-images/log-in.png</iconset>
    </property>
    <property name="text">
@@ -17916,7 +17916,7 @@ background-color: rgb(0, 0, 0); </string>
   </action>
   <action name="actionDeconnecter_utilisateur">
    <property name="icon">
-    <iconset resource="../yeroth-erp-3-0.qrc">
+    <iconset resource="../../yeroth-erp-3-0.qrc">
      <normaloff>:/yeroth-erp-3-0-images/log-out.png</normaloff>:/yeroth-erp-3-0-images/log-out.png</iconset>
    </property>
    <property name="text">
@@ -18031,7 +18031,7 @@ background-color: rgb(0, 0, 0); </string>
   <tabstop>pushButton_paiements</tabstop>
  </tabstops>
  <resources>
-  <include location="../yeroth-erp-3-0.qrc"/>
+  <include location="../../yeroth-erp-3-0.qrc"/>
  </resources>
  <connections/>
 </ui>

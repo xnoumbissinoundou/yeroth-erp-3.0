@@ -15190,7 +15190,7 @@ Groupe de clients</string>
   </widget>
   <action name="actionChanger_utilisateur">
    <property name="icon">
-    <iconset resource="../yeroth-erp-3-0.qrc">
+    <iconset resource="../../yeroth-erp-3-0.qrc">
      <normaloff>:/yeroth-erp-3-0-images/log-in.png</normaloff>:/yeroth-erp-3-0-images/log-in.png</iconset>
    </property>
    <property name="text">
@@ -15233,7 +15233,7 @@ Groupe de clients</string>
   </action>
   <action name="actionAfficherPDF">
    <property name="icon">
-    <iconset resource="../yeroth-erp-3-0.qrc">
+    <iconset resource="../../yeroth-erp-3-0.qrc">
      <normaloff>:/yeroth-erp-3-0-images/yeroth-erp-3-0-pdf-print-icon.svg</normaloff>:/yeroth-erp-3-0-images/yeroth-erp-3-0-pdf-print-icon.svg</iconset>
    </property>
    <property name="text">
@@ -15252,7 +15252,7 @@ Groupe de clients</string>
   </action>
   <action name="actionAppeler_aide">
    <property name="icon">
-    <iconset resource="../yeroth-erp-3-0.qrc">
+    <iconset resource="../../yeroth-erp-3-0.qrc">
      <normaloff>:/yeroth-erp-3-0-images/question.png</normaloff>:/yeroth-erp-3-0-images/question.png</iconset>
    </property>
    <property name="text">
@@ -15271,7 +15271,7 @@ Groupe de clients</string>
   </action>
   <action name="actionDeconnecter_utilisateur">
    <property name="icon">
-    <iconset resource="../yeroth-erp-3-0.qrc">
+    <iconset resource="../../yeroth-erp-3-0.qrc">
      <normaloff>:/yeroth-erp-3-0-images/log-out.png</normaloff>:/yeroth-erp-3-0-images/log-out.png</iconset>
    </property>
    <property name="text">
@@ -15504,7 +15504,7 @@ Groupe de clients</string>
   <tabstop>tableView_groupes_de_clients</tabstop>
  </tabstops>
  <resources>
-  <include location="../yeroth-erp-3-0.qrc"/>
+  <include location="../../yeroth-erp-3-0.qrc"/>
  </resources>
  <connections/>
 </ui>
