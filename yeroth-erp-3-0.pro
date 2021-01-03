@@ -79,29 +79,36 @@ OBJECTS_DIR = obj
 
 FORMS = ui/yeroth-erp-main-window.ui \
 			ui/yeroth-erp-configuration-comptabilite-window.ui \
-			ui/yeroth-erp-modifier-fournisseur-window.ui \
-			ui/yeroth-erp-modifier-compte-client-window.ui \
-			ui/yeroth-erp-payer-fournisseur-window.ui \
-			ui/yeroth-erp-payer-compte-client-window.ui \
-			ui/yeroth-erp-creer-fournisseur-window.ui \
-			ui/yeroth-erp-creer-compte-client-window.ui \
-			ui/yeroth-erp-fournisseur-details-window.ui \
-			ui/yeroth-erp-groupes-de-clients-window.ui \
-			ui/yeroth-erp-groupes-dun-client-window.ui \
-			ui/yeroth-erp-clients-detail-window.ui \
-		  ui/yeroth-erp-fournisseurs-window.ui \
-			ui/yeroth-erp-clients-window.ui \
-			ui/yeroth-erp-achats-aux-fournisseurs-window.ui \
-			ui/yeroth-erp-achats-detail-window.ui \
-			ui/yeroth-erp-achats-window.ui \
-		  ui/yeroth-erp-paiements-window.ui \
+			ui/stocks/yeroth-erp-sortir-window.ui \
+		  ui/stocks/yeroth-erp-modifier-window.ui \
+			ui/stocks/yeroth-erp-historique-du-stock-window.ui \
+			ui/stocks/yeroth-erp-stocks-window.ui \
+		  ui/stocks/yeroth-erp-sortir-liststocks-window.ui \
+		  ui/stocks/yeroth-erp-stock-detail-window.ui \
+			ui/pos/yeroth-erp-pointdevente-liststocks-window.ui \
+		  ui/pos/yeroth-erp-pointdevente-window.ui \
+		  ui/pos/yeroth-erp-pointdevente-methode-paiement-carte-credit-dialog.ui \
+		  ui/pos/yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.ui \
+		  ui/pos/yeroth-erp-pointdevente-methode-paiement-dialog.ui \
+			ui/purchase/yeroth-erp-achats-detail-window.ui \
+			ui/purchase/yeroth-erp-achats-window.ui \
+			ui/purchase/yeroth-erp-achats-aux-fournisseurs-window.ui \
+			ui/supplier/yeroth-erp-payer-fournisseur-window.ui \
+			ui/supplier/yeroth-erp-tableau-des-transactions-du-fournisseur-window.ui \
+			ui/supplier/yeroth-erp-modifier-fournisseur-window.ui \
+			ui/supplier/yeroth-erp-creer-fournisseur-window.ui \
+			ui/supplier/yeroth-erp-fournisseur-details-window.ui \
+		  ui/supplier/yeroth-erp-fournisseurs-window.ui \
+			ui/crm/yeroth-erp-tableau-des-transactions-du-client-window.ui \
+			ui/crm/yeroth-erp-modifier-compte-client-window.ui \
+			ui/crm/yeroth-erp-payer-compte-client-window.ui \
+			ui/crm/yeroth-erp-creer-compte-client-window.ui \
+			ui/crm/yeroth-erp-groupes-de-clients-window.ui \
+			ui/crm/yeroth-erp-groupes-dun-client-window.ui \
+			ui/crm/yeroth-erp-clients-detail-window.ui \
+			ui/crm/yeroth-erp-clients-window.ui \
+			ui/yeroth-erp-paiements-window.ui \
 		  ui/yeroth-erp-ventes-window.ui \
-		  ui/yeroth-erp-pointdevente-window.ui \
-		  ui/yeroth-erp-pointdevente-window.ui \
-		  ui/yeroth-erp-pointdevente-methode-paiement-carte-credit-dialog.ui \
-		  ui/yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.ui \
-		  ui/yeroth-erp-pointdevente-methode-paiement-dialog.ui \
-		  ui/yeroth-erp-sortir-window.ui \
 		  ui/yeroth-erp-tableaux-de-bord-window.ui \
 		  ui/yeroth-erp-mouvements_de_stocks-window.ui \
 		  ui/yeroth-erp-entrer-window.ui \
@@ -109,22 +116,14 @@ FORMS = ui/yeroth-erp-main-window.ui \
 		  ui/yeroth-erp-creer-nouveau-fournisseur-window.ui \
 		  ui/yeroth-erp-creer-nouvelle-categorie-window.ui \
 		  ui/yeroth-erp-marchandises-window.ui \
-			ui/yeroth-erp-tableau-des-transactions-du-fournisseur-window.ui \
-			ui/yeroth-erp-tableau-des-transactions-du-client-window.ui \
-			ui/yeroth-erp-historique-du-stock-window.ui \
-			ui/yeroth-erp-stocks-window.ui \
-		  ui/yeroth-erp-alertes-window.ui \
-		  ui/yeroth-erp-modifier-window.ui \
-		  ui/yeroth-erp-stock-detail-window.ui \
+			ui/yeroth-erp-alertes-window.ui \
 		  ui/yeroth-erp-changer-utilisateur-dialog.ui \
 		  ui/yeroth-erp-admin-window.ui \
 		  ui/yeroth-erp-admin-search-form.ui \
 		  ui/yeroth-erp-admin-create-window.ui \
 		  ui/yeroth-erp-admin-lister-window.ui \
 		  ui/yeroth-erp-admin-detail-window.ui \
-		  ui/yeroth-erp-admin-modifier-window.ui \
-		  ui/yeroth-erp-pointdevente-liststocks-window.ui \
-		  ui/yeroth-erp-sortir-liststocks-window.ui
+			ui/yeroth-erp-admin-modifier-window.ui
 
 PRECOMPILED_HEADER  = src/include/yeroth-erp-3-0-precompiled-header.hpp
 
