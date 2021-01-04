@@ -828,6 +828,12 @@ void YerothAchatsAUXFournisseursWindow::set_filtrer_font()
 }
 
 
+bool YerothAchatsAUXFournisseursWindow::supprimer_un_achat_au_fournisseur()
+{
+	return false;
+}
+
+
 bool YerothAchatsAUXFournisseursWindow::export_csv_file()
 {
     _logger->log("export_csv_file");

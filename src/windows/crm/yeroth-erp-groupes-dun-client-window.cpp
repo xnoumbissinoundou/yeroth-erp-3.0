@@ -90,6 +90,12 @@ void YerothGroupesDunClientWindow::setupShortcuts()
 }
 
 
+void YerothGroupesDunClientWindow::supprimer_appartenance()
+{
+
+}
+
+
 void YerothGroupesDunClientWindow::afficher_au_detail()
 {
     if (_curClientsTableModel->rowCount() > 0)

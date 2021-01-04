@@ -104,6 +104,8 @@ public slots:
 
     void set_filtrer_font();
 
+    bool supprimer_un_achat_au_fournisseur();
+
 protected:
 
 	virtual void reinitialiser_champs_db_visibles();

@@ -114,6 +114,8 @@ protected slots:
 
 private slots:
 
+	void supprimer_appartenance();
+
 	void afficher_au_detail();
 
 	void afficher_tous_les_groupes_du_client();

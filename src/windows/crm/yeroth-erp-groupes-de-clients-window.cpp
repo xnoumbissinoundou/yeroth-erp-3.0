@@ -340,8 +340,8 @@ void YerothGroupesDeClientsWindow::definirManager()
     pushButton_clients->enable(this, SLOT(clients()));
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
-    pushButton_creer_groupe->enable(this, SLOT());
-    pushButton_modifier->enable(this, SLOT());
+    pushButton_creer_groupe->enable(this, SLOT(menu()));
+    pushButton_modifier->enable(this, SLOT(menu()));
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
 }
 
@@ -366,8 +366,8 @@ void YerothGroupesDeClientsWindow::definirVendeur()
     pushButton_clients->enable(this, SLOT(clients()));
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
-    pushButton_creer_groupe->enable(this, SLOT());
-    pushButton_modifier->enable(this, SLOT());
+    pushButton_creer_groupe->enable(this, SLOT(menu()));
+    pushButton_modifier->enable(this, SLOT(menu()));
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
 }
 
