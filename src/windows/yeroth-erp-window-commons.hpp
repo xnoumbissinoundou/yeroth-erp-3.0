@@ -131,7 +131,7 @@ public:
 
     inline int getDBTableFieldColumnIndex(const QString &aDBTableColumnName)
     {
-        return _dbtablefieldNameToDBColumnIndex.value(aDBTableColumnName);
+        return _dbtablecolumnNameToDBColumnIndex.value(aDBTableColumnName);
     }
 
     virtual void rendreVisible(YerothSqlTableModel *stocksTableModel);
@@ -375,11 +375,13 @@ protected:
 
 	QString								_dbYerothSqlTableName_WINDOWS_TABLE_VIEW_FOR_SEARCH;
 
-    QMap<QString, int>					_dbtablefieldNameToDBColumnIndex;
+	QMap<QString, QString>				_db_VIEW_STRING_ALPHABETIC_ORDER_To_dbtablecolumnName;
 
-    QSet<QString>						_varchar_dbtable_column_list;
+	QMap<QString, int>					_dbtablecolumnNameToDBColumnIndex;
 
-    QStringList							_visibleDBFieldColumnStrList;
+    QSet<QString>						_varchar_dbtable_column_name_list;
+
+    QStringList							_visibleDBColumnNameStrList;
 
     QSet<int>							_DBFieldNamesToPrintCenterAligned;
 
