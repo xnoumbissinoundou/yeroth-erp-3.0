@@ -244,9 +244,9 @@ bool YerothGroupesDeClientsWindow::filtrer_groupes_de_clients()
 
 void YerothGroupesDeClientsWindow::reinitialiser_champs_db_visibles()
 {
-	_visibleDBFieldColumnStrList.clear();
+	_visibleDBColumnNameStrList.clear();
 
-    _visibleDBFieldColumnStrList
+    _visibleDBColumnNameStrList
 			<< YerothDatabaseTableColumn::DATE_CREATION
 			<< YerothDatabaseTableColumn::DESIGNATION
 			<< YerothDatabaseTableColumn::REFERENCE_GROUPE

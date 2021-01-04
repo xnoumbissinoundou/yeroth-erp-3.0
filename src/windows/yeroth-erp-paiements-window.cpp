@@ -241,7 +241,7 @@ bool YerothPaiementsWindow::filtrer_paiements()
 
 void YerothPaiementsWindow::populateComboBoxes()
 {
-	int columnIndexTypeDePaiement = _dbtablefieldNameToDBColumnIndex
+	int columnIndexTypeDePaiement = _dbtablecolumnNameToDBColumnIndex
 			.value(YerothDatabaseTableColumn::TYPE_DE_PAIEMENT);
 
 	_DBFieldNamesToPrintLeftAligned.insert(columnIndexTypeDePaiement);
@@ -259,7 +259,7 @@ void YerothPaiementsWindow::populateComboBoxes()
 
 	QStringList aQStringList;
 
-	aQStringList.append(_varchar_dbtable_column_list.values());
+	aQStringList.append(_varchar_dbtable_column_name_list.values());
 
 	aQStringList.removeAll(YerothDatabaseTableColumn::NOTES);
 	aQStringList.removeAll(YerothDatabaseTableColumn::INTITULE_DU_COMPTE_BANCAIRE);
@@ -546,9 +546,9 @@ void YerothPaiementsWindow::textChangedSearchLineEditsQCompleters()
 
 void YerothPaiementsWindow::reinitialiser_champs_db_visibles()
 {
-	_visibleDBFieldColumnStrList.clear();
+	_visibleDBColumnNameStrList.clear();
 
-    _visibleDBFieldColumnStrList
+    _visibleDBColumnNameStrList
     		<< YerothDatabaseTableColumn::DATE_PAIEMENT
 			<< YerothDatabaseTableColumn::NOM_ENTREPRISE
 			<< YerothDatabaseTableColumn::MONTANT_PAYE

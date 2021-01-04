@@ -233,9 +233,9 @@ void YerothMouvementsDeStocksWindow::textChangedSearchLineEditsQCompleters()
 
 void YerothMouvementsDeStocksWindow::reinitialiser_champs_db_visibles()
 {
-	_visibleDBFieldColumnStrList.clear();
+	_visibleDBColumnNameStrList.clear();
 
-    _visibleDBFieldColumnStrList
+    _visibleDBColumnNameStrList
 			<< YerothDatabaseTableColumn::DATE_SORTIE
 			<< YerothDatabaseTableColumn::HEURE_SORTIE
 			<< YerothDatabaseTableColumn::REFERENCE
@@ -667,9 +667,9 @@ void YerothMouvementsDeStocksWindow::lister_les_elements_du_tableau(const QStrin
 
     if (SUJET_ACTION_SORTIES_STOCKS == tabWidget_mouvementsDeStocks->currentIndex())
     {
-        if (_visibleDBFieldColumnStrList.contains(YerothDatabaseTableColumn::LOCALISATION_ENTREE))
+        if (_visibleDBColumnNameStrList.contains(YerothDatabaseTableColumn::LOCALISATION_ENTREE))
         {
-        	_visibleDBFieldColumnStrList.removeAll(YerothDatabaseTableColumn::LOCALISATION_ENTREE);
+        	_visibleDBColumnNameStrList.removeAll(YerothDatabaseTableColumn::LOCALISATION_ENTREE);
         }
 
         tableView_sorties_articles->lister_les_elements_du_tableau(*_curMouvementsDeStocksTableModel);
@@ -678,9 +678,9 @@ void YerothMouvementsDeStocksWindow::lister_les_elements_du_tableau(const QStrin
     }
     else if (SUJET_ACTION_TRANSFERTS_STOCKS == tabWidget_mouvementsDeStocks->currentIndex())
     {
-        if (!_visibleDBFieldColumnStrList.contains(YerothDatabaseTableColumn::LOCALISATION_ENTREE))
+        if (!_visibleDBColumnNameStrList.contains(YerothDatabaseTableColumn::LOCALISATION_ENTREE))
         {
-        	_visibleDBFieldColumnStrList.append(YerothDatabaseTableColumn::LOCALISATION_ENTREE);
+        	_visibleDBColumnNameStrList.append(YerothDatabaseTableColumn::LOCALISATION_ENTREE);
         }
 
         tableView_transferts_articles->lister_les_elements_du_tableau(*_curMouvementsDeStocksTableModel);

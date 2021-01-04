@@ -1015,7 +1015,7 @@ void YerothVentesWindow::populateComboBoxes()
 
 	QStringList aQStringList;
 
-	aQStringList.append(_varchar_dbtable_column_list.values());
+	aQStringList.append(_varchar_dbtable_column_name_list.values());
 
 	aQStringList.removeAll(YerothDatabaseTableColumn::REFERENCE);
 	aQStringList.removeAll(YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR);
@@ -1322,9 +1322,9 @@ void YerothVentesWindow::textChangedSearchLineEditsQCompleters()
 
 void YerothVentesWindow::reinitialiser_champs_db_visibles()
 {
-	_visibleDBFieldColumnStrList.clear();
+	_visibleDBColumnNameStrList.clear();
 
-    _visibleDBFieldColumnStrList
+    _visibleDBColumnNameStrList
 			<< YerothDatabaseTableColumn::DATE_VENTE
 			<< YerothDatabaseTableColumn::DESIGNATION
 			<< YerothDatabaseTableColumn::QUANTITE_VENDUE

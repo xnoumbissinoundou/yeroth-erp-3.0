@@ -157,9 +157,9 @@ YerothERPClientsWindow::~YerothERPClientsWindow()
 
 void YerothERPClientsWindow::reinitialiser_champs_db_visibles()
 {
-	_visibleDBFieldColumnStrList.clear();
+	_visibleDBColumnNameStrList.clear();
 
-    _visibleDBFieldColumnStrList
+    _visibleDBColumnNameStrList
 			<< YerothDatabaseTableColumn::REFERENCE_CLIENT
 			<< YerothDatabaseTableColumn::NOM_ENTREPRISE
 			<< YerothDatabaseTableColumn::VILLE
@@ -633,7 +633,7 @@ void YerothERPClientsWindow::populateClientsComboBoxes()
 
 	QStringList aQStringList;
 
-	aQStringList.append(_varchar_dbtable_column_list.values());
+	aQStringList.append(_varchar_dbtable_column_name_list.values());
 
 	aQStringList.removeAll(YerothDatabaseTableColumn::DESCRIPTION_CLIENT);
 	aQStringList.removeAll(YerothDatabaseTableColumn::NUMERO_TELEPHONE_1);

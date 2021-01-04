@@ -409,7 +409,7 @@ void YerothAlertesWindow::populateComboBoxes()
 
 	QStringList aQStringList;
 
-	aQStringList.append(_varchar_dbtable_column_list.values());
+	aQStringList.append(_varchar_dbtable_column_name_list.values());
 
 	aQStringList.removeAll(YerothDatabaseTableColumn::ID);
 	aQStringList.removeAll(YerothDatabaseTableColumn::ID_ALERTE);
@@ -647,9 +647,9 @@ void YerothAlertesWindow::handleComboBoxClients_courriers_alertes_resolue_oui_OU
 
 void YerothAlertesWindow::reinitialiser_champs_db_visibles()
 {
-	_visibleDBFieldColumnStrList.clear();
+	_visibleDBColumnNameStrList.clear();
 
-	_visibleDBFieldColumnStrList
+	_visibleDBColumnNameStrList
 		<< YerothDatabaseTableColumn::DESIGNATION_ALERTE
 		<< YerothDatabaseTableColumn::DESIGNATION
 		<< YerothDatabaseTableColumn::CONDITION_ALERTE

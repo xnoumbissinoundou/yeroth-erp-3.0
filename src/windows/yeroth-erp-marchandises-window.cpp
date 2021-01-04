@@ -216,9 +216,9 @@ double YerothMarchandisesWindow::getQuantiteTotaleEnStock(const QModelIndex &aQM
 
 void YerothMarchandisesWindow::reinitialiser_champs_db_visibles()
 {
-	_visibleDBFieldColumnStrList.clear();
+	_visibleDBColumnNameStrList.clear();
 
-    _visibleDBFieldColumnStrList
+    _visibleDBColumnNameStrList
 		<< YerothDatabaseTableColumn::DESIGNATION
 		<< YerothDatabaseTableColumn::CATEGORIE
 		<< YerothDatabaseTableColumn::PRIX_DACHAT_PRECEDENT
@@ -638,7 +638,7 @@ void YerothMarchandisesWindow::populateMarchandisesComboBoxes()
 {
 	QStringList aQStringList;
 
-	aQStringList.append(_varchar_dbtable_column_list.values());
+	aQStringList.append(_varchar_dbtable_column_name_list.values());
 
 	aQStringList.removeAll(YerothDatabaseTableColumn::DESCRIPTION_PRODUIT);
 

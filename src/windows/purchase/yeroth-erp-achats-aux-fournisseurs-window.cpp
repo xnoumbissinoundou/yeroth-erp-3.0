@@ -232,7 +232,7 @@ void YerothAchatsAUXFournisseursWindow::populateComboBoxes()
 {
 	QStringList aQStringList;
 
-	aQStringList.append(_varchar_dbtable_column_list.values());
+	aQStringList.append(_varchar_dbtable_column_name_list.values());
 
 	aQStringList.removeAll(YerothDatabaseTableColumn::ENREGISTREUR_STOCK);
 	aQStringList.removeAll(YerothDatabaseTableColumn::LOCALISATION);
@@ -471,9 +471,9 @@ void YerothAchatsAUXFournisseursWindow::textChangedSearchLineEditsQCompleters()
 
 void YerothAchatsAUXFournisseursWindow::reinitialiser_champs_db_visibles()
 {
-	_visibleDBFieldColumnStrList.clear();
+	_visibleDBColumnNameStrList.clear();
 
-	_visibleDBFieldColumnStrList
+	_visibleDBColumnNameStrList
 		<< YerothDatabaseTableColumn::DESIGNATION
 		<< YerothDatabaseTableColumn::CATEGORIE
 		<< YerothDatabaseTableColumn::PRIX_DACHAT
