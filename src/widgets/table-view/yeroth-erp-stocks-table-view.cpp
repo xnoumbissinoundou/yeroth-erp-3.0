@@ -114,16 +114,17 @@ void YerothERPStocksTableView::lister_les_elements_du_tableau(YerothSqlTableMode
         s = tableModel.yerothSetQuery(curStrategyQueryString);
     }
 
+    int rows = tableModel.rowCount();
+    int columns = tableModel.columnCount();
+
+    _stdItemModel->setRowCount(rows);
+    _stdItemModel->setColumnCount(columns);
 
     YerothUtils::createTableModelHeaders(tableModel,
     									 *_stdItemModel,
 										 *_tableModelHeaders,
 										 _tableModelRawHeaders_IN_OUT);
 
-    int rows = tableModel.rowCount();
-    int columns = tableModel.columnCount();
-
-    _stdItemModel->setRowCount(rows);
     _stdItemModel->setColumnCount(_tableModelRawHeaders_IN_OUT.size());
 
     if (!s)

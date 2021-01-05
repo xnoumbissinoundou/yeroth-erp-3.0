@@ -54,12 +54,12 @@ void YerothERPAchatsTableView::lister_les_elements_du_tableau(YerothSqlTableMode
 	_stdItemModel->setRowCount(rows);
 	_stdItemModel->setColumnCount(columns);
 
-	QStringList	tableModelRawHeaders;
-
     YerothUtils::createTableModelHeaders(tableModel,
     									 *_stdItemModel,
 										 *_tableModelHeaders,
-										 tableModelRawHeaders);
+										 _tableModelRawHeaders_IN_OUT);
+
+    _stdItemModel->setColumnCount(_tableModelRawHeaders_IN_OUT.size());
 
     if (!s)
     {
@@ -82,7 +82,12 @@ void YerothERPAchatsTableView::lister_les_elements_du_tableau(YerothSqlTableMode
 
 		for (int k = 0; k < columns; ++k)
 		{
-			curTableModelRawHdr = tableModelRawHeaders.at(k);
+    		curTableModelRawHdr = tableModel.record(i).fieldName(k);
+
+    		if (!_tableModelRawHeaders_IN_OUT.contains(curTableModelRawHdr))
+    		{
+    			continue;
+    		}
 
 			qv.setValue(tableModel.record(i).value(k));
 
