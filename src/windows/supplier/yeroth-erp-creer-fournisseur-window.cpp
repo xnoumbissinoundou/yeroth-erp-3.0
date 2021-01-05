@@ -70,7 +70,7 @@ YerothCreerFournisseurWindow::YerothCreerFournisseurWindow()
     connect(actionAppeler_aide, SIGNAL(triggered()), this, SLOT(help()));
     connect(actionDeconnecter_utilisateur, SIGNAL(triggered()), this, SLOT(deconnecter_utilisateur()));
     connect(actionMenu_principal, SIGNAL(triggered()), this, SLOT(menu()));
-    connect(actionAchatsAUXFournisseurs, SIGNAL(triggered()), this, SLOT(achats_de_stocks()));
+    connect(actionAchatsAUXFournisseurs, SIGNAL(triggered()), this, SLOT(achats_aux_fournisseurs()));
     connect(actionFournisseurs, SIGNAL(triggered()), this, SLOT(fournisseurs()));
     connect(actionAnnuler, SIGNAL(triggered()), this, SLOT(menu()));
     connect(actionSupprimerImage, SIGNAL(triggered()), this, SLOT(supprimer_image_fournisseur()));
@@ -199,7 +199,7 @@ void YerothCreerFournisseurWindow::definirManager()
 
 #endif
 
-    pushButton_achats_aux_fournisseurs->enable(this, SLOT(achats_de_stocks()));
+    pushButton_achats_aux_fournisseurs->enable(this, SLOT(achats_aux_fournisseurs()));
     pushButton_fournisseurs->enable(this, SLOT(fournisseurs()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_annuler->enable(this, SLOT(fournisseurs()));
@@ -236,7 +236,7 @@ void YerothCreerFournisseurWindow::definirVendeur()
 
 #endif
 
-    pushButton_achats_aux_fournisseurs->enable(this, SLOT(achats_de_stocks()));
+    pushButton_achats_aux_fournisseurs->enable(this, SLOT(achats_aux_fournisseurs()));
     pushButton_fournisseurs->enable(this, SLOT(fournisseurs()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_annuler->enable(this, SLOT(fournisseurs()));

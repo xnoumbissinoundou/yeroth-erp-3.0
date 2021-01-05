@@ -80,6 +80,12 @@ YerothVentesWindow::YerothVentesWindow()
 
     _retourVenteTabWidget = tabWidget_ventes->widget(RetourDuneVente);
 
+
+    _NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME
+		<< YerothDatabaseTableColumn::MONTANT_A_REMBOURSER
+    	<< YerothDatabaseTableColumn::HISTORIQUE_STOCK;
+
+
     setup_select_configure_dbcolumn(_allWindows->STOCKS_VENDU);
 
 
