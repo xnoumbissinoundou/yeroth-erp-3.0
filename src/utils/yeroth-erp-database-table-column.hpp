@@ -39,6 +39,8 @@ public:
 
 	static const QString GROUPES_DU_CLIENT;
 
+	static const QString GROUPES_DU_CLIENT_ID;
+
 	static const QString HISTORIQUE_STOCK;
 
 	static const QString MEMBRES_DU_GROUPE_db_ID;

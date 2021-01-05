@@ -21,6 +21,7 @@ const QString YerothDatabaseTableColumn::ID								("id");
 const QString YerothDatabaseTableColumn::REFEREUR_CLIENT				("refereur_client");
 const QString YerothDatabaseTableColumn::REFEREUR_CLIENT_ID				("refereur_client_ID");
 const QString YerothDatabaseTableColumn::GROUPES_DU_CLIENT				("groupes_du_client");
+const QString YerothDatabaseTableColumn::GROUPES_DU_CLIENT_ID			("groupes_du_client_ID");
 const QString YerothDatabaseTableColumn::HISTORIQUE_STOCK				("historique_stock");
 const QString YerothDatabaseTableColumn::MEMBRES_DU_GROUPE_db_ID		("membres_du_groupe_db_ID");
 const QString YerothDatabaseTableColumn::POURCENTAGE_DU_RABAIS			("pourcentage_du_rabais");
@@ -175,6 +176,8 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REFEREUR_CLIENT_ID,	QObject::trUtf8("ID Référeur client"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::GROUPES_DU_CLIENT,	QObject::tr("Groupes du client"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::GROUPES_DU_CLIENT_ID,	QObject::tr("Groupes du client (ID)"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::HISTORIQUE_STOCK,	QObject::tr("Historique stock"));
 

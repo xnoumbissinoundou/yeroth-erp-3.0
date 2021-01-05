@@ -55,6 +55,13 @@ YerothERPClientsWindow::YerothERPClientsWindow()
         QString("QMessageBox {background-color: rgb(%1);}")
 			.arg(COLOUR_RGB_STRING_YEROTH_YELLOW_254_254_0);
 
+
+    _NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME
+		<< YerothDatabaseTableColumn::GROUPES_DU_CLIENT
+		<< YerothDatabaseTableColumn::GROUPES_DU_CLIENT_ID
+		<< YerothDatabaseTableColumn::IMAGE_COMPTE_CLIENT;
+
+
     setup_select_configure_dbcolumn(_allWindows->CLIENTS);
 
 

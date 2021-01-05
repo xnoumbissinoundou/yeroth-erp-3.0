@@ -59,6 +59,14 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
                                    .arg(COLOUR_RGB_STRING_YEROTH_FIREBRICK_RED_255_48_48,
                                 		COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
+
+    _NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME
+		<< YerothDatabaseTableColumn::STOCK_MINIMUM
+		<< YerothDatabaseTableColumn::STOCK_MAXIMUM
+		<< YerothDatabaseTableColumn::STOCK_DALERTE
+    	<< YerothDatabaseTableColumn::IS_SERVICE;
+
+
     setup_select_configure_dbcolumn(_allWindows->MARCHANDISES);
 
 
