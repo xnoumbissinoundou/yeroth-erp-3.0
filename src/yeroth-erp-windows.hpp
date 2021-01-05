@@ -11,9 +11,6 @@
 
 #include "src/windows/yeroth-erp-paiements-window.hpp"
 #include "src/windows/yeroth-erp-tableaux-de-bord-window.hpp"
-#include "src/windows/yeroth-erp-creer-nouveau-fournisseur-window.hpp"
-#include "src/windows/yeroth-erp-creer-nouveau-client-window.hpp"
-#include "src/windows/yeroth-erp-creer-nouvelle-categorie-window.hpp"
 #include "src/windows/yeroth-erp-marchandises-window.hpp"
 #include "src/windows/yeroth-erp-configuration-comptabilite-window.hpp"
 #include "src/windows/yeroth-erp-alertes-window.hpp"
@@ -86,9 +83,6 @@ class YerothCreerFournisseurWindow;
 class YerothCreerCompteClientWindow;
 class YerothModifierFournisseurWindow;
 class YerothModifierCompteClientWindow;
-class YerothCreerNouveauClientWindow;
-class YerothCreerNouveauFournisseurWindow;
-class YerothCreerNouvelleCategorieWindow;
 class YerothAchatsWindow;
 class YerothStocksWindow;
 class YerothMarchandisesWindow;
@@ -423,9 +417,6 @@ public:
 	YerothCreerCompteClientWindow 						*_creerCompteClientWindow;
 	YerothModifierFournisseurWindow 					*_modifierFournisseurWindow;
 	YerothModifierCompteClientWindow 					*_modifierCompteClientWindow;
-	YerothCreerNouveauClientWindow 						*_creerNouveauClientWindow;
-	YerothCreerNouveauFournisseurWindow 				*_creerNouveauFournisseurWindow;
-	YerothCreerNouvelleCategorieWindow 					*_creerNouvelleCategorieWindow;
 	YerothAchatsWindow 									*_achatsWindow;
 	YerothStocksWindow 									*_stocksWindow;
 	YerothMarchandisesWindow 							*_marchandisesWindow;
