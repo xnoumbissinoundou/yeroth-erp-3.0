@@ -76,7 +76,6 @@ YerothStocksWindow::YerothStocksWindow()
                                     		COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
     _NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME
-		<< YerothDatabaseTableColumn::REFERENCE
 		<< YerothDatabaseTableColumn::IMAGE_PRODUIT
 		<< YerothDatabaseTableColumn::IS_SERVICE
     	<< YerothDatabaseTableColumn::HISTORIQUE_STOCK
