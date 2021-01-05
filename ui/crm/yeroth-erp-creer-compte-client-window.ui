@@ -12589,7 +12589,7 @@
       <enum>Qt::LeftToRight</enum>
      </property>
      <property name="text">
-      <string>personne ayant référer</string>
+      <string>référeur</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
