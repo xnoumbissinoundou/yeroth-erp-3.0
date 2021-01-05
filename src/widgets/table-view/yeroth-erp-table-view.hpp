@@ -51,6 +51,8 @@ public:
 		return _writeEnabled;
 	}
 
+	const QStringList &get_NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME();
+
 	void setupSelectionOptions();
 
 	inline virtual void lister_les_elements_du_tableau(YerothSqlTableModel &tableModel)
@@ -133,6 +135,11 @@ public:
 	inline void setLastSelectedRow__ID(const QString &aLastSelectedRow__ID)
 	{
 		_lastSelected_Row__ID = aLastSelectedRow__ID;
+	}
+
+	inline const QStringList &getTableModelRawHeaders()
+	{
+		return _tableModelRawHeaders_IN_OUT;
 	}
 
 	inline YerothPOSQStandardItemModel *getStandardItemModel()

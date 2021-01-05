@@ -33,6 +33,7 @@
 
 YerothERPWindows *YerothWindowsCommons::_allWindows(0);
 
+
 QString YerothWindowsCommons::_yerothTableView_FROM_WINDOWS_COMMONS_LAST_SELECTED_ROW__ID;
 
 QPoint *YerothWindowsCommons::_centerPosition(new QPoint);
@@ -514,7 +515,7 @@ void YerothWindowsCommons::setup_select_configure_dbcolumn(const QString &aSqlTa
 {
 	_selectExportDBQDialog = new YerothERPGenericSelectDBFieldDialog(_allWindows, this);
 
-	if ( 0!= getQMainWindowToolBar())
+	if ( 0 != getQMainWindowToolBar())
 	{
 		_selectExportDBQDialog->setPalette(getQMainWindowToolBar()->palette());
 	}
@@ -527,9 +528,6 @@ void YerothWindowsCommons::setup_select_configure_dbcolumn(const QString &aSqlTa
 	QSqlQuery query;
 
 	int querySize = YerothUtils::execQuery(query, strShowColumnQuery);
-
-//	qDebug() << QString("++ size: %1")
-//					.arg(QString::number(querySize));
 
 	unsigned int columnIdx = -1;
 
@@ -557,11 +555,6 @@ void YerothWindowsCommons::setup_select_configure_dbcolumn(const QString &aSqlTa
 		{
 			_DBFieldNamesToPrintRightAligned.insert(columnIdx);
 		}
-
-//		qDebug() << QString("++ aSqlTableName: %1, fieldName: %2, columnIdx: %3")
-//						.arg(aSqlTableName,
-//							 fieldName,
-//						     QString::number(columnIdx));
 
 		_dbtablecolumnNameToDBColumnIndex.insert(fieldName, columnIdx);
 	}
@@ -668,6 +661,12 @@ void YerothWindowsCommons::setYerothLineEditQCompleterSearchFilter(QString &aYer
 
 void YerothWindowsCommons::tableView_show_or_hide_columns(YerothTableView &tableView_in_out)
 {
+	const QStringList &NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME =
+			get_NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME();
+
+	const QStringList &tableView_in_out_RAW_HEADERS =
+			tableView_in_out.getTableModelRawHeaders();
+
     QMapIterator<QString, int> it(_dbtablecolumnNameToDBColumnIndex);
 
     QString db_table_column_name;
@@ -677,9 +676,12 @@ void YerothWindowsCommons::tableView_show_or_hide_columns(YerothTableView &table
     	it.next();
 
     	db_table_column_name.clear();
+
     	db_table_column_name.append(it.key());
 
-    	if (_visibleDBColumnNameStrList.contains(db_table_column_name))
+    	if (!NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME.contains(db_table_column_name) &&
+    		tableView_in_out_RAW_HEADERS.contains(db_table_column_name)			  	  &&
+			_visibleDBColumnNameStrList.contains(db_table_column_name))
     	{
     		tableView_in_out.showColumn(it.value());
     	}
@@ -688,6 +690,8 @@ void YerothWindowsCommons::tableView_show_or_hide_columns(YerothTableView &table
     		tableView_in_out.hideColumn(it.value());
     	}
     }
+
+    tableView_in_out.resizeColumnsToContents();
 
     handleSOMEToolsEnabled();
 }
@@ -736,8 +740,6 @@ int YerothWindowsCommons::getDialogBox_Xn_coordinate(unsigned int n)
 
 void YerothWindowsCommons::selectionner_champs_db_visibles()
 {
-	int toSelectDBFieldNameStrSize = _dbtablecolumnNameToDBColumnIndex.size();
-
 	if (_visibleDBColumnNameStrList.size() >= 0)
 	{
 		_visibleQCheckboxs.clear();
@@ -749,14 +751,22 @@ void YerothWindowsCommons::selectionner_champs_db_visibles()
 
 	QString aDBColumnName_VIEW_STRING;
 
-	for(int k = 0; k < toSelectDBFieldNameStrSize; ++k)
+	for(unsigned k = 0; k < _dbtablecolumnNameToDBColumnIndex.size(); ++k)
 	{
 		aDBColumnName = _dbtablecolumnNameToDBColumnIndex.key(k);
 
+		if (_NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME.contains(aDBColumnName))
+		{
+			continue ;
+		}
+
 		aDBColumnName_VIEW_STRING = YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(aDBColumnName);
 
-		_db_VIEW_STRING_ALPHABETIC_ORDER_To_dbtablecolumnName.insert(aDBColumnName_VIEW_STRING,
-											   	   	   	   	     	 aDBColumnName);
+		if (!aDBColumnName_VIEW_STRING.isEmpty())
+		{
+			_db_VIEW_STRING_ALPHABETIC_ORDER_To_dbtablecolumnName.insert(aDBColumnName_VIEW_STRING,
+												   	   	   	   	     	 aDBColumnName);
+		}
 	}
 
 
@@ -768,18 +778,15 @@ void YerothWindowsCommons::selectionner_champs_db_visibles()
 
 	YerothSelectDBQCheckBox *aQCheckBox = 0;
 
-	for(int k = 0; k < toSelectDBFieldNameStrSize; ++k)
+	for(unsigned k = 0; k < all_dbfieldColumnName_IN_ALPHABETIC_ORDER.size(); ++k)
 	{
 		aQCheckBox = new YerothSelectDBQCheckBox(_selectExportDBQDialog,
 												 &_visibleDBColumnNameStrList);
 
+
 		aDBColumnName_VIEW_STRING = all_dbfieldColumnName_IN_ALPHABETIC_ORDER.at(k);
 
 		aDBColumnName = _db_VIEW_STRING_ALPHABETIC_ORDER_To_dbtablecolumnName.value(aDBColumnName_VIEW_STRING);
-
-//		QDEBUG_STRINGS_OUTPUT_1(QString("%1 <==> %2")
-//									.arg(aDBColumnName_VIEW_STRING,
-//											aDBColumnName));
 
 		aQCheckBox->setObjectName(aDBColumnName);
 
@@ -806,9 +813,9 @@ void YerothWindowsCommons::selectionner_champs_db_visibles()
 	_selectExportDBQDialog->setWindowTitle(QString(QObject::trUtf8("%1 - sélectionner les colones "
 																   "visibles ('%2' colones)"))
 												.arg(YEROTH_ERP_WINDOW_TITLE,
-													 QString::number(toSelectDBFieldNameStrSize)));
+													 QString::number(all_dbfieldColumnName_IN_ALPHABETIC_ORDER.size())));
 
-	_selectExportDBQDialog->setFixedSize(getDialogBox_LONGUEUR(toSelectDBFieldNameStrSize), 255);
+	_selectExportDBQDialog->setFixedSize(getDialogBox_LONGUEUR(all_dbfieldColumnName_IN_ALPHABETIC_ORDER.size()), 255);
 
 	_selectExportDBQDialog->showAsModalDialogWithParent(*this);
 }

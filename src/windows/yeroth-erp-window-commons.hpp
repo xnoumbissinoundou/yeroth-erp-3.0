@@ -255,6 +255,11 @@ public slots:
 
 	virtual void updateYerothLineEditQCompleter(const QString &currentDBColumnString);
 
+	inline virtual const QStringList &get_NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME()
+	{
+		return _NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME;
+	}
+
 	void getQModelIndex_dbID_from_MODEL_INDEX(const QModelIndex &modelIndex, QString &db_ID_in_out);
 
 	virtual void setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID();
@@ -380,6 +385,9 @@ protected:
 	QMap<QString, int>					_dbtablecolumnNameToDBColumnIndex;
 
     QSet<QString>						_varchar_dbtable_column_name_list;
+
+
+    QStringList							_NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME;
 
     QStringList							_visibleDBColumnNameStrList;
 

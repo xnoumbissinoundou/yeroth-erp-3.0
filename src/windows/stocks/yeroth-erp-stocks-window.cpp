@@ -75,6 +75,14 @@ YerothStocksWindow::YerothStocksWindow()
                                     .arg(COLOUR_RGB_STRING_YEROTH_ORANGE_243_162_0,
                                     		COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
+    _NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME
+		<< YerothDatabaseTableColumn::REFERENCE
+		<< YerothDatabaseTableColumn::IMAGE_PRODUIT
+		<< YerothDatabaseTableColumn::IS_SERVICE
+    	<< YerothDatabaseTableColumn::HISTORIQUE_STOCK
+		<< YerothDatabaseTableColumn::LOTS_ENTRANT
+		<< YerothDatabaseTableColumn::QUANTITE_PAR_LOT;
+
     setup_select_configure_dbcolumn(_allWindows->STOCKS);
 
 
@@ -174,6 +182,7 @@ connect(actionAdministration, SIGNAL(triggered()), this, SLOT(administration()))
 
     connect(actionAfficher_les_stocks_perimes, SIGNAL(triggered()),
     		this, SLOT(filtrer_stocks_perimes_seulement()));
+
 
     setupShortcuts();
 }

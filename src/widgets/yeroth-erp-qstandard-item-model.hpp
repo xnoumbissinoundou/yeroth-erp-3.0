@@ -52,6 +52,11 @@ public:
 
 	QModelIndex create_ZERO_ZERO_MODEL_INDEX_FOR_TABLE_VIEWING();
 
+	inline const YerothSqlTableModel *get_yeroth_sql_table_model()
+	{
+		return _curSqlTableModel;
+	}
+
 	virtual void sort(int column, Qt::SortOrder order = Qt::AscendingOrder);
 
 public:

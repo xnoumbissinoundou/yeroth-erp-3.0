@@ -115,18 +115,16 @@ void YerothERPStocksTableView::lister_les_elements_du_tableau(YerothSqlTableMode
     }
 
 
+    YerothUtils::createTableModelHeaders(tableModel,
+    									 *_stdItemModel,
+										 *_tableModelHeaders,
+										 _tableModelRawHeaders_IN_OUT);
+
     int rows = tableModel.rowCount();
     int columns = tableModel.columnCount();
 
     _stdItemModel->setRowCount(rows);
-    _stdItemModel->setColumnCount(columns);
-
-    QStringList	tableModelRawHeaders;
-
-    YerothUtils::createTableModelHeaders(tableModel,
-    									 *_stdItemModel,
-										 *_tableModelHeaders,
-										 tableModelRawHeaders);
+    _stdItemModel->setColumnCount(_tableModelRawHeaders_IN_OUT.size());
 
     if (!s)
     {
@@ -155,7 +153,12 @@ void YerothERPStocksTableView::lister_les_elements_du_tableau(YerothSqlTableMode
 
     	for (int k = 0; k < columns; ++k)
     	{
-    		curTableModelRawHdr = tableModelRawHeaders.at(k);
+    		curTableModelRawHdr = tableModel.record(i).fieldName(k);
+
+    		if (!_tableModelRawHeaders_IN_OUT.contains(curTableModelRawHdr))
+    		{
+    			continue;
+    		}
 
     		qv.setValue(tableModel.record(i).value(k));
 

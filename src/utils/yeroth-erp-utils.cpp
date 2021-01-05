@@ -1748,18 +1748,22 @@ void YerothUtils::createTableModelHeaders(QSqlTableModel 		&tableModel,
 
     tableModelHeaders.clear();
 
+    QString viewStrHdr;
+
+    QString strHdr;
+
     //Nous mettons les noms des colones
     for (unsigned k = 0; k < tableModel.columnCount(); ++k)
     {
-        QString strHdr(tableModel.record(0).fieldName(k));
+        strHdr = tableModel.record(0).fieldName(k);
+
+        viewStrHdr = YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(strHdr);
 
         tableModelRawHeaders_IN_OUT.append(strHdr);
 
-        strHdr = YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(strHdr);
+        tableModelHeaders.append(viewStrHdr);
 
-        tableModelHeaders.append(strHdr);
-
-        stdItemModel.setHeaderData(k, Qt::Horizontal, strHdr);
+        stdItemModel.setHeaderData(k, Qt::Horizontal, viewStrHdr);
     }
 }
 

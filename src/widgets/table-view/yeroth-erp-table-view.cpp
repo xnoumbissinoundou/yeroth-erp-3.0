@@ -89,6 +89,13 @@ YerothTableView::~YerothTableView()
 }
 
 
+const QStringList &YerothTableView::get_NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME()
+{
+	return ((YerothWindowsCommons *) parent()->parent())->
+				get_NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME();
+}
+
+
 void YerothTableView::setupSelectionOptions()
 {
     setFrameShadow(QFrame::Plain);
