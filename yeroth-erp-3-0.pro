@@ -80,6 +80,7 @@ OBJECTS_DIR = obj
 FORMS = ui/yeroth-erp-main-window.ui \
 			ui/yeroth-erp-configuration-comptabilite-window.ui \
 			ui/stocks/yeroth-erp-sortir-window.ui \
+		  ui/stocks/yeroth-erp-marchandises-window.ui \
 		  ui/stocks/yeroth-erp-modifier-window.ui \
 			ui/stocks/yeroth-erp-historique-du-stock-window.ui \
 			ui/stocks/yeroth-erp-stocks-window.ui \
@@ -103,6 +104,7 @@ FORMS = ui/yeroth-erp-main-window.ui \
 			ui/crm/yeroth-erp-modifier-compte-client-window.ui \
 			ui/crm/yeroth-erp-payer-compte-client-window.ui \
 			ui/crm/yeroth-erp-creer-compte-client-window.ui \
+			ui/crm/yeroth-erp-creer-groupe-de-clients-window.ui \
 			ui/crm/yeroth-erp-groupes-de-clients-window.ui \
 			ui/crm/yeroth-erp-groupes-dun-client-window.ui \
 			ui/crm/yeroth-erp-clients-detail-window.ui \
@@ -112,10 +114,6 @@ FORMS = ui/yeroth-erp-main-window.ui \
 		  ui/yeroth-erp-tableaux-de-bord-window.ui \
 		  ui/yeroth-erp-mouvements_de_stocks-window.ui \
 		  ui/yeroth-erp-entrer-window.ui \
-		  ui/yeroth-erp-creer-nouveau-client-window.ui \
-		  ui/yeroth-erp-creer-nouveau-fournisseur-window.ui \
-		  ui/yeroth-erp-creer-nouvelle-categorie-window.ui \
-		  ui/yeroth-erp-marchandises-window.ui \
 			ui/yeroth-erp-alertes-window.ui \
 		  ui/yeroth-erp-changer-utilisateur-dialog.ui \
 		  ui/yeroth-erp-admin-window.ui \
@@ -181,6 +179,7 @@ HEADERS = src/include/yeroth-erp-3-0-precompiled-header.hpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.hpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-dialog.hpp \
 			src/windows/crm/yeroth-erp-creer-compte-client-window.hpp \
+		  src/windows/crm/yeroth-erp-creer-groupe-de-clients-window.hpp \
 		  src/windows/crm/yeroth-erp-groupes-de-clients-window.hpp \
 		  src/windows/crm/yeroth-erp-groupes-dun-client-window.hpp \
 			src/windows/crm/yeroth-erp-modifier-compte-client-window.hpp \
@@ -189,6 +188,7 @@ HEADERS = src/include/yeroth-erp-3-0-precompiled-header.hpp \
 		  src/windows/crm/yeroth-erp-tableau-des-transactions-du-client-window.hpp \
 		  src/windows/crm/yeroth-erp-clients-detail-window.hpp \
 		  src/windows/stocks/yeroth-erp-modifier-window.hpp \
+		  src/windows/stocks/yeroth-erp-marchandises-window.hpp \
 		  src/windows/stocks/yeroth-erp-sortir-liststocks-window.hpp \
 		  src/windows/stocks/yeroth-erp-sortir-window.hpp \
 		  src/windows/stocks/yeroth-erp-historique-du-stock-window.hpp \
@@ -208,10 +208,6 @@ HEADERS = src/include/yeroth-erp-3-0-precompiled-header.hpp \
 		  src/windows/yeroth-erp-configuration-comptabilite-window.hpp \
 		  src/windows/yeroth-erp-window-commons.hpp \
 		  src/windows/yeroth-erp-main-window.hpp \
-		  src/windows/yeroth-erp-creer-nouveau-client-window.hpp \
-		  src/windows/yeroth-erp-creer-nouveau-fournisseur-window.hpp \
-		  src/windows/yeroth-erp-creer-nouvelle-categorie-window.hpp \
-		  src/windows/yeroth-erp-marchandises-window.hpp \
 		  src/windows/yeroth-erp-alertes-window.hpp \
 		  src/windows/yeroth-erp-entrer-window.hpp \
 		  src/windows/yeroth-erp-tableaux-de-bord-window.hpp \
@@ -311,11 +307,13 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp \
 		  src/windows/crm/yeroth-erp-groupes-dun-client-window.cpp \
 			src/windows/crm/yeroth-erp-modifier-compte-client-window.cpp \
-		  src/windows/crm/yeroth-erp-clients-window.cpp \
+		  src/windows/crm/yeroth-erp-creer-groupe-de-clients-window.cpp \
+			src/windows/crm/yeroth-erp-clients-window.cpp \
 			src/windows/crm/yeroth-erp-payer-compte-client-window.cpp \
 		  src/windows/crm/yeroth-erp-tableau-des-transactions-du-client-window.cpp \
 		  src/windows/crm/yeroth-erp-clients-detail-window.cpp \
 		  src/windows/stocks/yeroth-erp-modifier-window.cpp \
+		  src/windows/stocks/yeroth-erp-marchandises-window.cpp \
 			src/windows/stocks/yeroth-erp-sortir-liststocks-window.cpp \
 		  src/windows/stocks/yeroth-erp-sortir-window.cpp \
 			src/windows/stocks/yeroth-erp-historique-du-stock-window.cpp \
@@ -334,10 +332,6 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 			src/windows/supplier/yeroth-erp-fournisseur-details-window.cpp \
 		  src/windows/yeroth-erp-window-commons.cpp \
 		  src/windows/yeroth-erp-main-window.cpp \
-		  src/windows/yeroth-erp-creer-nouveau-client-window.cpp \
-		  src/windows/yeroth-erp-creer-nouveau-fournisseur-window.cpp \
-		  src/windows/yeroth-erp-creer-nouvelle-categorie-window.cpp \
-		  src/windows/yeroth-erp-marchandises-window.cpp \
 		  src/windows/yeroth-erp-alertes-window.cpp \
 		  src/windows/yeroth-erp-entrer-window.cpp \
 		  src/windows/yeroth-erp-tableaux-de-bord-window.cpp \

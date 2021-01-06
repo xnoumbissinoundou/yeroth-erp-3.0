@@ -205,6 +205,8 @@ public slots:
 
 	virtual void creerCompteClient();
 
+	virtual void creerUnGroupeDeClients();
+
 	virtual void entrer();
 
 	virtual void paiements();

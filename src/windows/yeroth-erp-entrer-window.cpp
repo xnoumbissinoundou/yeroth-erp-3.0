@@ -143,10 +143,6 @@ YerothEntrerWindow::YerothEntrerWindow()
 
     connect(lineEdit_prix_vente_en_gros, SIGNAL(editingFinished()), this, SLOT(display_prix_vente_en_gros()));
 
-    connect(lineEdit_categorie_produit,
-    		SIGNAL(textChanged(const QString &)),
-			this,
-            SLOT(handleCategorieName(const QString &)));
 
     connect(lineEdit_designation,
     		SIGNAL(editingFinished()),
@@ -842,35 +838,6 @@ void YerothEntrerWindow::handleTVACheckBox(int state)
     calculate_and_display_benefit_buying_price_percentage();
 
     calculate_and_display_benefit_buying_price_percentage_EN_GROS();
-}
-
-
-void YerothEntrerWindow::handleCategorieName(const QString &text)
-{
-    //_logger->log("handleCategorieName(QString &)");
-
-	//qDebug() << QString("handleCategorieName()");
-
-    QString proposedCategorieName = lineEdit_categorie_produit->text();
-
-    if (proposedCategorieName.isEmpty())
-    {
-    	return ;
-    }
-
-    _createNewCategorie = true;
-
-    _createNewFournisseur = false;
-
-    if (YerothUtils::isEqualCaseInsensitive(proposedCategorieName,
-        								   YerothUtils::NOUVELLE_CATEGORIE))
-    {
-    	_allWindows->_creerNouvelleCategorieWindow->rendreVisible(_curStocksTableModel);
-
-    	rendreInvisibleAvecConservation();
-    }
-
-    return ;
 }
 
 

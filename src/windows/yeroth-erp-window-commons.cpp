@@ -462,6 +462,13 @@ void YerothWindowsCommons::creerCompteClient()
 }
 
 
+void YerothWindowsCommons::creerUnGroupeDeClients()
+{
+	rendreInvisible();
+    _allWindows->_creerGroupeDeClientsWindow->rendreVisible(_curStocksTableModel);
+}
+
+
 void YerothWindowsCommons::entrer()
 {
 	rendreInvisible();

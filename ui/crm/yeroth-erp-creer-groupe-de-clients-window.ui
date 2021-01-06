@@ -439,8 +439,8 @@
   <property name="locale">
    <locale language="French" country="France"/>
   </property>
-  <widget class="QWidget" name="centralwidget_creerCompteClientWindow">
-   <widget class="YerothPushButton" name="pushButton_clients">
+  <widget class="QWidget" name="centralwidget_creerUnGroupeDeClientsWindow">
+   <widget class="YerothPushButton" name="pushButton_groupes_de_clients">
     <property name="geometry">
      <rect>
       <x>527</x>
@@ -4146,7 +4146,7 @@
        <x>8</x>
        <y>201</y>
        <width>393</width>
-       <height>195</height>
+       <height>169</height>
       </rect>
      </property>
      <property name="font">
@@ -4165,7 +4165,7 @@
         <x>3</x>
         <y>20</y>
         <width>387</width>
-        <height>172</height>
+        <height>146</height>
        </rect>
       </property>
       <property name="palette">
@@ -5083,9 +5083,9 @@
       <property name="geometry">
        <rect>
         <x>3</x>
-        <y>52</y>
+        <y>54</y>
         <width>358</width>
-        <height>273</height>
+        <height>271</height>
        </rect>
       </property>
       <property name="palette">
@@ -6399,9 +6399,9 @@ background-color: rgb(0, 0, 0); </string>
      <widget class="YerothLineEdit" name="lineEdit_creer_groupe_clients_recherche_client_initiaux">
       <property name="geometry">
        <rect>
-        <x>3</x>
+        <x>4</x>
         <y>24</y>
-        <width>359</width>
+        <width>357</width>
         <height>25</height>
        </rect>
       </property>
@@ -8133,7 +8133,7 @@ background-color: rgb(0, 0, 0);</string>
      <string>Annuler</string>
     </property>
    </widget>
-   <widget class="YerothPushButton" name="pushButton_achats_aux_fournisseurs">
+   <widget class="YerothPushButton" name="pushButton_clients">
     <property name="geometry">
      <rect>
       <x>11</x>
@@ -9447,9 +9447,10 @@ background-color: rgb(0, 0, 0);</string>
     <addaction name="separator"/>
     <addaction name="actionAnnuler"/>
     <addaction name="actionEnregistrer"/>
+    <addaction name="actionSupprimerUnMembreDuGroupeDeClients"/>
     <addaction name="separator"/>
-    <addaction name="actionAchatsAUXFournisseurs"/>
     <addaction name="actionClients"/>
+    <addaction name="actionListerLesGroupesDeClients"/>
     <addaction name="separator"/>
     <addaction name="actionMenu_principal"/>
     <addaction name="separator"/>
@@ -9890,7 +9891,7 @@ background-color: rgb(0, 0, 0);</string>
    <addaction name="menuAide"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <widget class="QToolBar" name="toolBar_creerGroupesDeClientsWindow">
+  <widget class="QToolBar" name="toolBar_creerGroupeDeClientsWindow">
    <property name="palette">
     <palette>
      <active>
@@ -10418,23 +10419,6 @@ background-color: rgb(0, 0, 0);</string>
     </font>
    </property>
   </action>
-  <action name="actionAdministration">
-   <property name="icon">
-    <iconset>
-     <normalon>:/yeroth-erp-3-0-images/yeroth-erp-3-0-administration-icon.png</normalon>
-    </iconset>
-   </property>
-   <property name="text">
-    <string>Administration</string>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-    </font>
-   </property>
-  </action>
   <action name="actionInformationEntreprise">
    <property name="text">
     <string>Informations sur l'entreprise</string>
@@ -10489,12 +10473,9 @@ background-color: rgb(0, 0, 0);</string>
     </font>
    </property>
   </action>
-  <action name="actionAchatsAUXFournisseurs">
+  <action name="actionClients">
    <property name="text">
-    <string>Lister les achats aux fournisseurs</string>
-   </property>
-   <property name="toolTip">
-    <string>Lister les achats aux fournisseurs</string>
+    <string>Lister les clients</string>
    </property>
    <property name="font">
     <font>
@@ -10504,9 +10485,44 @@ background-color: rgb(0, 0, 0);</string>
     </font>
    </property>
   </action>
-  <action name="actionClients">
+  <action name="actionListerLesGroupesDeClients">
    <property name="text">
-    <string>Lister les clients</string>
+    <string>Lister les groupes de clients</string>
+   </property>
+   <property name="toolTip">
+    <string>Lister les groupes de clients</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+  </action>
+  <action name="actionAdministration">
+   <property name="icon">
+    <iconset>
+     <normalon>:/yeroth-erp-3-0-images/yeroth-erp-3-0-administration-icon.png</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>Administration</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+  </action>
+  <action name="actionSupprimerUnMembreDuGroupeDeClients">
+   <property name="text">
+    <string>Supprimer 1 membre du groupe de clients</string>
+   </property>
+   <property name="toolTip">
+    <string>Supprimer 1 membre du groupe de clients</string>
    </property>
    <property name="font">
     <font>
@@ -10547,10 +10563,10 @@ background-color: rgb(0, 0, 0);</string>
   <tabstop>lineEdit_creer_groupe_clients_designation</tabstop>
   <tabstop>lineEdit_creer_groupe_clients_maximum_de_membres</tabstop>
   <tabstop>textEdit_creer_groupe_clients_description_groupe</tabstop>
-  <tabstop>pushButton_achats_aux_fournisseurs</tabstop>
+  <tabstop>pushButton_clients</tabstop>
   <tabstop>pushButton_annuler</tabstop>
   <tabstop>pushButton_menu_principal</tabstop>
-  <tabstop>pushButton_clients</tabstop>
+  <tabstop>pushButton_groupes_de_clients</tabstop>
   <tabstop>pushButton_enregistrer</tabstop>
  </tabstops>
  <resources>

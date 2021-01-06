@@ -11,7 +11,6 @@
 
 #include "src/windows/yeroth-erp-paiements-window.hpp"
 #include "src/windows/yeroth-erp-tableaux-de-bord-window.hpp"
-#include "src/windows/yeroth-erp-marchandises-window.hpp"
 #include "src/windows/yeroth-erp-configuration-comptabilite-window.hpp"
 #include "src/windows/yeroth-erp-alertes-window.hpp"
 #include "src/windows/yeroth-erp-ventes-window.hpp"
@@ -19,6 +18,7 @@
 #include "src/windows/yeroth-erp-mouvements_de_stocks-window.hpp"
 
 #include "src/windows/stocks/yeroth-erp-historique-du-stock-window.hpp"
+#include "src/windows/stocks/yeroth-erp-marchandises-window.hpp"
 #include "src/windows/stocks/yeroth-erp-modifier-window.hpp"
 #include "src/windows/stocks/yeroth-erp-stock-detail-window.hpp"
 #include "src/windows/stocks/yeroth-erp-sortir-liststocks-window.hpp"
@@ -44,6 +44,7 @@
 #include "src/windows/supplier/yeroth-erp-creer-fournisseur-window.hpp"
 #include "src/windows/supplier/yeroth-erp-modifier-fournisseur-window.hpp"
 
+#include "src/windows/crm/yeroth-erp-creer-groupe-de-clients-window.hpp"
 #include "src/windows/crm/yeroth-erp-groupes-de-clients-window.hpp"
 #include "src/windows/crm/yeroth-erp-groupes-dun-client-window.hpp"
 #include "src/windows/crm/yeroth-erp-clients-detail-window.hpp"
@@ -80,6 +81,7 @@ class YerothTableauDesTransactionsDuClientWindow;
 class YerothHistoriqueDuStockWindow;
 class YerothPOSChangerUtilisateurDialog;
 class YerothCreerFournisseurWindow;
+class YerothCreerGroupeDeClientsWindow;
 class YerothCreerCompteClientWindow;
 class YerothModifierFournisseurWindow;
 class YerothModifierCompteClientWindow;
@@ -266,6 +268,11 @@ public:
 		return YerothERPWindows::getNextIdFromTable(YerothERPWindows::CLIENTS);
 	}
 
+	static inline int getNextIdSqlTableModel_groupes_de_clients()
+	{
+		return YerothERPWindows::getNextIdFromTable(YerothERPWindows::GROUPES_DE_CLIENTS);
+	}
+
 	static inline int getNextIdSqlTableModel_fournisseurs()
 	{
 		return YerothERPWindows::getNextIdFromTable(YerothERPWindows::FOURNISSEURS);
@@ -414,6 +421,7 @@ public:
 	YerothTableauDesTransactionsDuClientWindow			*_transactionsDunClientWindow;
 	YerothHistoriqueDuStockWindow						*_historiqueDuStockWindow;
 	YerothCreerFournisseurWindow 						*_creerFournisseurWindow;
+	YerothCreerGroupeDeClientsWindow 					*_creerGroupeDeClientsWindow;
 	YerothCreerCompteClientWindow 						*_creerCompteClientWindow;
 	YerothModifierFournisseurWindow 					*_modifierFournisseurWindow;
 	YerothModifierCompteClientWindow 					*_modifierCompteClientWindow;

@@ -195,8 +195,6 @@ private slots:
 
 	void handleTVACheckBox(int state);
 
-	void handleCategorieName(const QString &text);
-
 	bool check_fields_mandatory_buying();
 
 private:

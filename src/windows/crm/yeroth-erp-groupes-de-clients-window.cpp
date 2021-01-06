@@ -320,6 +320,7 @@ void YerothGroupesDeClientsWindow::definirCaissier()
     pushButton_reinitialiser->disable(this);
 }
 
+
 void YerothGroupesDeClientsWindow::definirManager()
 {
     _logger->log("definirManager");
@@ -340,7 +341,7 @@ void YerothGroupesDeClientsWindow::definirManager()
     pushButton_clients->enable(this, SLOT(clients()));
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
-    pushButton_creer_groupe->enable(this, SLOT(menu()));
+    pushButton_creer_groupe->enable(this, SLOT(creerUnGroupeDeClients()));
     pushButton_modifier->enable(this, SLOT(menu()));
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
 }
@@ -366,7 +367,7 @@ void YerothGroupesDeClientsWindow::definirVendeur()
     pushButton_clients->enable(this, SLOT(clients()));
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
-    pushButton_creer_groupe->enable(this, SLOT(menu()));
+    pushButton_creer_groupe->enable(this, SLOT(creerUnGroupeDeClients()));
     pushButton_modifier->enable(this, SLOT(menu()));
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
 }
@@ -374,53 +375,19 @@ void YerothGroupesDeClientsWindow::definirVendeur()
 
 void YerothGroupesDeClientsWindow::definirGestionaireDesStocks()
 {
-    _logger->log("definirGestionaireDesStocks");
+    _logger->log("definirGestionaireDesStocks - definirPasDeRole()");
 
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
-	YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_ce_groupe_au_detail, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerGroupesDeClients, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
-
-
-    MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS
-
-
-    pushButton_groupes_de_clients_filtrer->disable(this);
-    pushButton_clients->disable(this);
-    pushButton_afficher->disable(this);
-    pushButton_menu_principal->disable(this);
-    pushButton_creer_groupe->disable(this);
-    pushButton_modifier->disable(this);
-    pushButton_reinitialiser->disable(this);
+    definirPasDeRole();
 }
+
 
 void YerothGroupesDeClientsWindow::definirMagasinier()
 {
-    _logger->log("definirMagasinier");
+    _logger->log("definirMagasinier - definirPasDeRole()");
 
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
-	YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_ce_groupe_au_detail, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerGroupesDeClients, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
-
-
-    MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS
-
-
-    pushButton_groupes_de_clients_filtrer->disable(this);
-    pushButton_clients->disable(this);
-    pushButton_afficher->disable(this);
-    pushButton_menu_principal->disable(this);
-    pushButton_creer_groupe->disable(this);
-    pushButton_modifier->disable(this);
-    pushButton_reinitialiser->disable(this);
+    definirPasDeRole();
 }
+
 
 void YerothGroupesDeClientsWindow::definirPasDeRole()
 {

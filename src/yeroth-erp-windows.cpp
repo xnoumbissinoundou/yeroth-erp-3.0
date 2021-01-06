@@ -114,6 +114,7 @@ YerothERPWindows::YerothERPWindows(QDesktopWidget *desktopWidget)
 	 _historiqueDuStockWindow(0),
      _changerUtilisateurDialog(0),
 	 _creerFournisseurWindow(0),
+	 _creerGroupeDeClientsWindow(0),
 	 _creerCompteClientWindow(0),
 	 _modifierFournisseurWindow(0),
 	 _modifierCompteClientWindow(0),
@@ -256,6 +257,7 @@ YerothERPWindows::~YerothERPWindows()
     delete _modifierWindow;
     delete _entrerWindow;
     delete _creerCompteClientWindow;
+    delete _creerGroupeDeClientsWindow;
     delete _creerFournisseurWindow;
     delete _modifierCompteClientWindow;
     delete _modifierFournisseurWindow;
@@ -345,6 +347,7 @@ void YerothERPWindows::createAllYerothPosUserWindows()
     _modifierWindow 				= new YerothModifierWindow;
     _entrerWindow 					= new YerothEntrerWindow;
     _creerFournisseurWindow			= new YerothCreerFournisseurWindow;
+    _creerGroupeDeClientsWindow		= new YerothCreerGroupeDeClientsWindow;
     _creerCompteClientWindow		= new YerothCreerCompteClientWindow;
     _modifierFournisseurWindow		= new YerothModifierFournisseurWindow;
     _modifierCompteClientWindow		= new YerothModifierCompteClientWindow;
@@ -491,6 +494,7 @@ void YerothERPWindows::definirMagasinier()
     _modifierWindow->definirMagasinier();
     _entrerWindow->definirMagasinier();
     _creerFournisseurWindow->definirMagasinier();
+    _creerGroupeDeClientsWindow->definirMagasinier();
     _creerCompteClientWindow->definirMagasinier();
     _modifierFournisseurWindow->definirMagasinier();
     _modifierCompteClientWindow->definirMagasinier();
@@ -524,6 +528,7 @@ void YerothERPWindows::definirCaissier()
     _modifierWindow->definirCaissier();
     _entrerWindow->definirCaissier();
     _creerFournisseurWindow->definirCaissier();
+    _creerGroupeDeClientsWindow->definirCaissier();
     _creerCompteClientWindow->definirCaissier();
     _modifierFournisseurWindow->definirCaissier();
     _modifierCompteClientWindow->definirCaissier();
@@ -557,6 +562,7 @@ void YerothERPWindows::definirManager()
     _modifierWindow->definirManager();
     _entrerWindow->definirManager();
     _creerFournisseurWindow->definirManager();
+    _creerGroupeDeClientsWindow->definirManager();
     _creerCompteClientWindow->definirManager();
     _modifierFournisseurWindow->definirManager();
     _modifierCompteClientWindow->definirManager();
@@ -597,6 +603,7 @@ void YerothERPWindows::definirVendeur()
     _modifierWindow->definirVendeur();
     _entrerWindow->definirVendeur();
     _creerFournisseurWindow->definirVendeur();
+    _creerGroupeDeClientsWindow->definirVendeur();
     _creerCompteClientWindow->definirVendeur();
     _modifierFournisseurWindow->definirVendeur();
     _modifierCompteClientWindow->definirVendeur();
@@ -637,6 +644,7 @@ void YerothERPWindows::definirGestionaireDesStocks()
     _modifierWindow->definirGestionaireDesStocks();
     _entrerWindow->definirGestionaireDesStocks();
     _creerFournisseurWindow->definirGestionaireDesStocks();
+    _creerGroupeDeClientsWindow->definirGestionaireDesStocks();
     _creerCompteClientWindow->definirGestionaireDesStocks();
     _modifierFournisseurWindow->definirGestionaireDesStocks();
     _modifierCompteClientWindow->definirGestionaireDesStocks();
@@ -682,6 +690,7 @@ void YerothERPWindows::definirPasDeRole()
     _modifierWindow->definirPasDeRole();
     _entrerWindow->definirPasDeRole();
     _creerFournisseurWindow->definirPasDeRole();
+    _creerGroupeDeClientsWindow->definirPasDeRole();
     _creerCompteClientWindow->definirPasDeRole();
     _modifierFournisseurWindow->definirPasDeRole();
     _modifierCompteClientWindow->definirPasDeRole();
@@ -726,6 +735,7 @@ void YerothERPWindows::hideAllWindows()
     _achatsDetailWindow->rendreInvisible();
     _detailWindow->rendreInvisible();
     _creerFournisseurWindow->rendreInvisible();
+    _creerGroupeDeClientsWindow->rendreInvisible();
     _creerCompteClientWindow->rendreInvisible();
     _modifierFournisseurWindow->rendreInvisible();
     _modifierCompteClientWindow->rendreInvisible();

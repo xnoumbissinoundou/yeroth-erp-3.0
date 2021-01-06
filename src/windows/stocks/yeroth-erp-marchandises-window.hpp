@@ -7,7 +7,7 @@
 #ifndef YEROTH_ERP_MARCHANDISES_WINDOW_HPP_
 #define YEROTH_ERP_MARCHANDISES_WINDOW_HPP_
 
-#include "../../ui_yeroth-erp-marchandises-window.h"
+#include "../../../ui_yeroth-erp-marchandises-window.h"
 
 
 #include <QtCore/QDebug>
@@ -17,7 +17,7 @@
 #include <QtGui/QContextMenuEvent>
 
 
-#include "yeroth-erp-window-commons.hpp"
+#include "src/windows/yeroth-erp-window-commons.hpp"
 
 
 class QStandardItemModel;
