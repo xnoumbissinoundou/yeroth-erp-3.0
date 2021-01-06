@@ -101,29 +101,24 @@ void YerothERPClientsTableView::lister_les_elements_du_tableau(YerothSqlTableMod
 			switch (qv.type())
 			{
 			case QVariant::UInt:
-
-				if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID))
-				{
-					anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toUInt()));
-				}
-				else
-				{
-					YEROTH_SAVE_ID_TO_ROW_NUMBER_FOR_YEROTH_TABLE_VIEW(tmpQvString, qv.toUInt(), i)
-					anItem = new YerothQStandardItem(tmpQvString);
-				}
-
+				anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toUInt()));
 				_stdItemModel->setItem(i, k, anItem);
 				break;
 
 			case QVariant::Int:
 
-				if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID))
+				if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID) &&
+					!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::REFEREUR_CLIENT_ID))
 				{
 					anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
 				}
-				else
+				else if (YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID))
 				{
 					YEROTH_SAVE_ID_TO_ROW_NUMBER_FOR_YEROTH_TABLE_VIEW(tmpQvString, qv.toInt(), i)
+					anItem = new YerothQStandardItem(tmpQvString);
+				}
+				else //YerothDatabaseTableColumn::REFEREUR_CLIENT_ID
+				{
 					anItem = new YerothQStandardItem(tmpQvString);
 				}
 

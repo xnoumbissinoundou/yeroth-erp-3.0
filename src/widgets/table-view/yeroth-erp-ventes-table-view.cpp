@@ -105,35 +105,37 @@ void YerothERPVentesTableView::lister_les_elements_du_tableau(YerothSqlTableMode
     		switch (qv.type())
     		{
     		case QVariant::UInt:
-
-    			if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID))
-    			{
-    				anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toUInt()));
-    			}
-    			else
-    			{
-    				YEROTH_SAVE_ID_TO_ROW_NUMBER_FOR_YEROTH_TABLE_VIEW(tmpQvString, qv.toUInt(), i)
-    				anItem = new YerothQStandardItem(tmpQvString);
-    			}
-
+    			anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toUInt()));
     			_stdItemModel->setItem(i, k, anItem);
     			break;
 
     		case QVariant::Int:
 
-    			if (YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::TYPE_DE_VENTE))
+    			if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::TYPE_DE_VENTE) &&
+    				!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID) 			&&
+    			    !YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::CLIENTS_ID) 	&&
+    			    !YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::STOCKS_ID) )
+    			{
+    				anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
+    			}
+    			else if (YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::TYPE_DE_VENTE))
     			{
     				tmpQvString = YerothUtils::_typedeventeToUserViewString.value(qv.toInt());
     				anItem = new YerothQStandardItem(tmpQvString, false);
     			}
-    			else if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID))
+    			else if (YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::CLIENTS_ID) ||
+    					 YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::STOCKS_ID))
     			{
-    				anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
+    				anItem = new YerothQStandardItem(tmpQvString);
     			}
-    			else
+    			else if (YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID))
     			{
     				YEROTH_SAVE_ID_TO_ROW_NUMBER_FOR_YEROTH_TABLE_VIEW(tmpQvString, qv.toInt(), i)
     				anItem = new YerothQStandardItem(tmpQvString);
+    			}
+    			else //I have this just as a safe alternative. IT SHALL NEVER BE RUN !
+    			{
+    				anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
     			}
 
     			_stdItemModel->setItem(i, k, anItem);

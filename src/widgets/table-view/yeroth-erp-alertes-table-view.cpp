@@ -95,16 +95,7 @@ void YerothERPAlertesTableView::lister_les_elements_du_tableau(YerothSqlTableMod
     		switch (qv.type())
     		{
     		case QVariant::UInt:
-
-            	if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID))
-            	{
-            		anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toUInt()));
-            	}
-            	else
-            	{
-            		anItem = new YerothQStandardItem(QString::number(qv.toUInt()));
-            	}
-
+            	anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toUInt()));
     			_stdItemModel->setItem(i, k, anItem);
     			break;
 
@@ -116,7 +107,8 @@ void YerothERPAlertesTableView::lister_les_elements_du_tableau(YerothSqlTableMod
 
     				anItem = new YerothQStandardItem(tmpQvString);
     			}
-    			else if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID))
+    			else if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID) &&
+    					 !YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::STOCKS_ID))
             	{
             		anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
             	}
