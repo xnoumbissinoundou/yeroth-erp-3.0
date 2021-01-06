@@ -4133,32 +4133,32 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>%1 - select visible columns (&apos;%2&apos; columns)</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-marchandises-table-view.cpp" line="318"/>
+        <location filename="src/widgets/table-view/yeroth-erp-marchandises-table-view.cpp" line="308"/>
         <source>modification non possible</source>
         <translation>modification not possible</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-marchandises-table-view.cpp" line="319"/>
+        <location filename="src/widgets/table-view/yeroth-erp-marchandises-table-view.cpp" line="309"/>
         <source>modification non possible de la colone &apos;%1&apos; !</source>
         <translation>column &apos;%1&apos; can&apos;t be modified !</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-marchandises-table-view.cpp" line="411"/>
+        <location filename="src/widgets/table-view/yeroth-erp-marchandises-table-view.cpp" line="401"/>
         <source>succès modification (%1) </source>
         <translation>modification success (%1) </translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-marchandises-table-view.cpp" line="416"/>
+        <location filename="src/widgets/table-view/yeroth-erp-marchandises-table-view.cpp" line="406"/>
         <source>Succès de la modification de la colone &apos;%1 (%2)&apos; de la marchandise &apos;%3&apos; !</source>
         <translation>Column &apos;%1 (%2)&apos; of merchandise &apos;%3&apos; could be successfully modified !</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-marchandises-table-view.cpp" line="430"/>
+        <location filename="src/widgets/table-view/yeroth-erp-marchandises-table-view.cpp" line="420"/>
         <source>Échec de la modification de la colone &apos;%1 (%2)&apos; de la marchandise &apos;%3&apos; !</source>
         <translation>Modification of column &apos;%1 (%2)&apos; of merchandise &apos;%3&apos; failed !</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-marchandises-table-view.cpp" line="425"/>
+        <location filename="src/widgets/table-view/yeroth-erp-marchandises-table-view.cpp" line="415"/>
         <source>échec modification (%1) </source>
         <translation>modification failure (%1) </translation>
     </message>
