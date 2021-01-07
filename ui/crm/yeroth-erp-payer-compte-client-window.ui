@@ -20181,7 +20181,7 @@ background-color: rgb(0, 0, 0); </string>
     <string>Imprimer les données financières du client</string>
    </property>
    <property name="toolTip">
-    <string>Imprimer les données financières du clientt</string>
+    <string>Imprimer les données financières du client</string>
    </property>
    <property name="font">
     <font>
