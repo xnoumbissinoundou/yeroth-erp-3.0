@@ -471,7 +471,7 @@ bool YerothCreerCompteClientWindow::creerEnregistrerCompteClient()
             retMsg.append(QObject::trUtf8("' n'a pas pu être créer !"));
 
             YerothQMessageBox::warning(this,
-                                 QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ créer ~ client"),
+                                 QObject::trUtf8("créer 1 compte client"),
                                  retMsg);
             return false;
         }
@@ -481,7 +481,7 @@ bool YerothCreerCompteClientWindow::creerEnregistrerCompteClient()
         retMsg.append(QObject::trUtf8("' a été créer avec succès !"));
 
         YerothQMessageBox::information(this,
-                                 QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ créer ~ client"),
+                                 QObject::trUtf8("créer 1 compte client"),
                                  retMsg);
 
         clear_all_fields();
