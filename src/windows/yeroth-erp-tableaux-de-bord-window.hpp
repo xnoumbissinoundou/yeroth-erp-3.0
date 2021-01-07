@@ -274,14 +274,8 @@ private:
 	static const QString OPERATION_GENERER_CHIFFRE_DAFFAIRE;
 	static const QString OPERATION_GENERER_BILAN_COMPTABLE;
 
-	static const QString QUANTITE_2;
-	static const QString QUANTITE_3;
-	static const QString QUANTITE_4;
-	static const QString QUANTITE_5;
-	static const QString QUANTITE_6;
-	static const QString QUANTITE_7;
-	static const QString QUANTITE_8;
-	static const QString QUANTITE_9;
+
+	static const unsigned int QUANTITE_9;
 
 	static const QString MOIS_1;
 	static const QString MOIS_2;

@@ -71,14 +71,9 @@
 		const QString YerothTableauxDeBordWindow::OPERATION_GENERER_CHIFFRE_DAFFAIRE("generate the business turnover");
 #endif
 
-const QString YerothTableauxDeBordWindow::QUANTITE_2("2");
-const QString YerothTableauxDeBordWindow::QUANTITE_3("3");
-const QString YerothTableauxDeBordWindow::QUANTITE_4("4");
-const QString YerothTableauxDeBordWindow::QUANTITE_5("5");
-const QString YerothTableauxDeBordWindow::QUANTITE_6("6");
-const QString YerothTableauxDeBordWindow::QUANTITE_7("7");
-const QString YerothTableauxDeBordWindow::QUANTITE_8("8");
-const QString YerothTableauxDeBordWindow::QUANTITE_9("9");
+
+const unsigned int YerothTableauxDeBordWindow::QUANTITE_9 = 9;
+
 
 # ifdef YEROTH_FRANCAIS_LANGUAGE
 
@@ -328,15 +323,6 @@ void YerothTableauxDeBordWindow::setupTab_COMPARAISON_DES_CHIFFRES_DAFFAIRES()
 {
     comboBox_operations->addItem(YerothTableauxDeBordWindow::OPERATION_GENERER);
 
-    comboBox_quantite->addItem(YerothTableauxDeBordWindow::QUANTITE_2);
-    comboBox_quantite->addItem(YerothTableauxDeBordWindow::QUANTITE_3);
-    comboBox_quantite->addItem(YerothTableauxDeBordWindow::QUANTITE_4);
-    comboBox_quantite->addItem(YerothTableauxDeBordWindow::QUANTITE_5);
-    comboBox_quantite->addItem(YerothTableauxDeBordWindow::QUANTITE_6);
-    comboBox_quantite->addItem(YerothTableauxDeBordWindow::QUANTITE_7);
-    comboBox_quantite->addItem(YerothTableauxDeBordWindow::QUANTITE_8);
-    comboBox_quantite->addItem(YerothTableauxDeBordWindow::QUANTITE_9);
-
     comboBox_qualite->addItem(YerothTableauxDeBordWindow::QUALITE_MEILLEURS);
     comboBox_qualite->addItem(YerothTableauxDeBordWindow::QUALITE_ZERO);
     comboBox_qualite->addItem(YerothTableauxDeBordWindow::QUALITE_DERNIERS);
@@ -548,7 +534,8 @@ void YerothTableauxDeBordWindow::reinitialiser()
 {
     _logger->log("reinitialiser");
 
-    comboBox_quantite->resetYerothComboBox();
+    lineEdit_quantite->clear();
+
     comboBox_objets->resetYerothComboBox();
     comboBox_qualite->resetYerothComboBox();
     comboBox_type_graphes->resetYerothComboBox();
@@ -620,6 +607,8 @@ void YerothTableauxDeBordWindow::meilleursStats(QString fileName,
     }
 
     QSqlQuery query;
+
+    unsigned int SIZE_FOR_CSV_FILE_CONTENT = (size > QUANTITE_9) ? QUANTITE_9 : size;
 
     int querySize = YerothUtils::execQuery(query, strQuery, _logger);
 
@@ -717,8 +706,12 @@ void YerothTableauxDeBordWindow::meilleursStats(QString fileName,
         label.append(QString("\"%1\"")
         				.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(nomEntrepriseFournisseurToVentes.at(j)->_itemName)));
 
-        csvFileContent.prepend(QString("%1, %2\n")
-        						.arg(label, pourcentageStr));
+        if (k < SIZE_FOR_CSV_FILE_CONTENT)
+        {
+        	csvFileContent.prepend(QString("%1, %2\n")
+        							.arg(label, pourcentageStr));
+            ++_csvFileItemSize;
+        }
 
         _reportTexFileEndString.append(QString("\\item %1: %2\n")
         									.arg(label,
@@ -727,7 +720,6 @@ void YerothTableauxDeBordWindow::meilleursStats(QString fileName,
         //qDebug() << "++ reportTexFileEndString: " << _reportTexFileEndString;
 
         pourcentage = 0;
-        ++_csvFileItemSize;
     }
 
     _reportTexFileEndString.append("\\end{enumerate}");
@@ -1114,6 +1106,8 @@ void YerothTableauxDeBordWindow::derniersStats(QString fileName,
 
     QSqlQuery query;
 
+    unsigned int SIZE_FOR_CSV_FILE_CONTENT = (size > QUANTITE_9) ? QUANTITE_9 : size;
+
     int querySize = YerothUtils::execQuery(query, strQuery, _logger);
 
 //    qDebug() << "++ query: " << query.executedQuery() << ", querySize: " << querySize;
@@ -1224,8 +1218,12 @@ void YerothTableauxDeBordWindow::derniersStats(QString fileName,
         label.append(QString("\"%1\"")
         				.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(caissierToVentes.at(j)->_itemName)));
 
-        csvFileContent.append(QString("%1, %2\n")
-        						.arg(label, (pourcentage <= 0.001 ? "0.001" : pourcentageStr)));
+        if (k < SIZE_FOR_CSV_FILE_CONTENT)
+        {
+        	csvFileContent.append(QString("%1, %2\n")
+        							.arg(label, (pourcentage <= 0.001 ? "0.001" : pourcentageStr)));
+            ++_csvFileItemSize;
+        }
 
         _reportTexFileEndString.append(QString("\\item %1: %2\n")
         									.arg(label,
@@ -1237,7 +1235,6 @@ void YerothTableauxDeBordWindow::derniersStats(QString fileName,
         curValueStr.clear();
         label.clear();
         ++k;
-        ++_csvFileItemSize;
     }
 
     _reportTexFileEndString.append("\\end{enumerate}\n");
@@ -1271,7 +1268,7 @@ void YerothTableauxDeBordWindow::rechercher()
 
     QString objet(comboBox_objets->currentText());
 
-    int size = comboBox_quantite->currentText().toInt();
+    int size = lineEdit_quantite->text().toInt();
 
     QStringList progArguments;
     QString tmpFilePrefix;
@@ -1286,12 +1283,12 @@ void YerothTableauxDeBordWindow::rechercher()
     {
 #ifdef YEROTH_FRANCAIS_LANGUAGE
     	pdfFileTitle.append(QString("Les %1 ")
-    							.arg(QString::number(size)));
+    							.arg(lineEdit_quantite->text()));
 #endif
 
 #ifdef YEROTH_ENGLISH_LANGUAGE
     	pdfFileTitle.append(QString("The %1 ")
-    							.arg(QString::number(size)));
+    							.arg(lineEdit_quantite->text()));
 #endif
     }
     else
@@ -1309,7 +1306,7 @@ void YerothTableauxDeBordWindow::rechercher()
     {
         if (YerothTableauxDeBordWindow::OBJET_SERVICES == objet)
         {
-            pdfFileTitle = YerothTableauxDeBordWindow::OBJET_SERVICES;
+            pdfFileTitle.append(YerothTableauxDeBordWindow::OBJET_SERVICES);
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
             tmpFilePrefix = FILE_NAME_USERID_CURRENT_TIME("meilleurs-services");
@@ -1329,7 +1326,7 @@ void YerothTableauxDeBordWindow::rechercher()
         }
         else if (YerothTableauxDeBordWindow::OBJET_ARTICLES == objet)
         {
-            pdfFileTitle = YerothTableauxDeBordWindow::OBJET_ARTICLES;
+        	pdfFileTitle.append(YerothTableauxDeBordWindow::OBJET_ARTICLES);
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
             tmpFilePrefix = FILE_NAME_USERID_CURRENT_TIME("meilleurs-articles");
@@ -1357,7 +1354,7 @@ void YerothTableauxDeBordWindow::rechercher()
             pdfFileTitle.replace(YerothTableauxDeBordWindow::QUALITE_MEILLEURS, "best");
 #endif
 
-            pdfFileTitle = YerothTableauxDeBordWindow::OBJET_CATEGORIES;
+            pdfFileTitle.append(YerothTableauxDeBordWindow::OBJET_CATEGORIES);
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
             tmpFilePrefix = FILE_NAME_USERID_CURRENT_TIME("meilleures-categories");
@@ -1901,7 +1898,7 @@ void YerothTableauxDeBordWindow::remove_BAR_PIE_CHART_OPTION_FOR_ZERO_BUSINESS_T
 
 		label_comparaison_chiffres_daffaires_quantite->setVisible(false);
 
-		comboBox_quantite->setVisible(false);
+		lineEdit_quantite->setVisible(false);
 		comboBox_type_graphes->setVisible(false);
 	}
 	else
@@ -1926,7 +1923,7 @@ void YerothTableauxDeBordWindow::remove_BAR_PIE_CHART_OPTION_FOR_ZERO_BUSINESS_T
 
 		label_comparaison_chiffres_daffaires_quantite->setVisible(true);
 
-		comboBox_quantite->setVisible(true);
+		lineEdit_quantite->setVisible(true);
 		comboBox_type_graphes->setVisible(true);
 	}
 }
