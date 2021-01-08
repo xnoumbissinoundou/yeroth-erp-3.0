@@ -75,6 +75,11 @@ YerothGroupesDeClientsWindow::YerothGroupesDeClientsWindow()
         QString("QMessageBox {background-color: rgb(%1);}")
 			.arg(COLOUR_RGB_STRING_YEROTH_YELLOW_254_254_0);
 
+
+    _NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME
+		<< YerothDatabaseTableColumn::MEMBRES_DU_GROUPE_db_ID;
+
+
     setup_select_configure_dbcolumn(_allWindows->GROUPES_DE_CLIENTS);
 
 

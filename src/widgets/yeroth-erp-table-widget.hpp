@@ -37,11 +37,14 @@ public:
 
 	virtual void myClear();
 
-	virtual void removeArticle(int tableWidgetRow);
-
 	inline virtual QString getStockID(int aRow)
 	{
 		return _mapListIdxToElement_db_ID.value(aRow);
+	}
+
+	inline const QMap<int, QString> &get_mapListIdxToElement_db_ID()
+	{
+		return _mapListIdxToElement_db_ID;
 	}
 
 	inline virtual int itemCount()
@@ -52,6 +55,10 @@ public:
 	virtual void setQStandardItemFlags(Qt::ItemFlags &flags);
 
 	static const QString QTE_1;
+
+public slots:
+
+	virtual void removeArticle(int tableWidgetRow);
 
 protected:
 

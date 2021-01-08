@@ -75,18 +75,25 @@ protected:
 
 private slots:
 
-	void ajouter_un_membre_au_groupe_de_clients(const QString &aClientGroupMember);
-
-	inline void annuler_la_creation_dun_groupe_de_clients()
+	inline void handle_select_table_widget_row(QTableWidgetItem *anItem)
 	{
-		groupes_de_clients();
+		_last_selected_table_widget_row = anItem->row();
 	}
+
+	void ajouter_un_membre_au_groupe_de_clients(const QString &aClientGroupMemberName);
+
+	void annuler_la_creation_dun_groupe_de_clients();
 
 	void supprimerUnMembreDunGroupeDeClients();
 
 	bool creerEnregistrerUnGroupeDeClients();
 
 private:
+
+	void setLastSelectedTableWidgetRow(int lastSelectedTableWidgetRow)
+	{
+		_last_selected_table_widget_row = lastSelectedTableWidgetRow;
+	}
 
 	bool clientGroupAlreadyExists();
 
@@ -99,7 +106,9 @@ private:
     void setupLineEditsQCompleters();
 
 
-    YerothLogger				*_logger;
+    int				_last_selected_table_widget_row;
+
+    YerothLogger	*_logger;
 };
 
 

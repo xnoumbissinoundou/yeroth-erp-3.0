@@ -34,8 +34,15 @@ public:
 	{
 	}
 
-	void addAClientGroupMember(const QString& aClientGroupMemberNomDuClient,
-							   const QString& aClientGroupMemberReferenceClient);
+	unsigned int addAClientGroupMember(const QString& aClientGroupMember_db_ID,
+									   const QString& aClientGroupMemberReferenceClient,
+							   	   	   const QString& aClientGroupMemberNomDuClient);
+
+private:
+
+	YerothQTableWidgetItem 	*_clientReferenceItem;
+
+	YerothQTableWidgetItem 	*_clientNameItem;
 };
 
 

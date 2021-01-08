@@ -88,10 +88,22 @@ YerothCreerGroupeDeClientsWindow::YerothCreerGroupeDeClientsWindow()
     connect(actionQui_suis_je, SIGNAL(triggered()), this, SLOT(qui_suis_je()));
     connect(actionAdministration, SIGNAL(triggered()), this, SLOT(administration()));
 
-//    connect(lineEdit_creer_groupe_clients_recherche_client_initiaux->getMyQCompleter(),
-//    		SIGNAL(activated(const QString &)),
-//			this,
-//            SLOT(ajouter_un_membre_au_groupe_de_clients(const QString &)));
+
+    connect(tableWidget_creer_groupe_clients_membres_initiaux_du_groupe,
+    		SIGNAL(itemClicked(QTableWidgetItem *)),
+			this,
+            SLOT(handle_select_table_widget_row(QTableWidgetItem *)));
+
+    connect(tableWidget_creer_groupe_clients_membres_initiaux_du_groupe,
+    		SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
+			this,
+            SLOT(handle_select_table_widget_row(QTableWidgetItem *)));
+
+
+    connect((QObject *)lineEdit_creer_groupe_clients_recherche_client_initiaux->getMyQCompleter(),
+    		SIGNAL(activated(const QString &)),
+			this,
+            SLOT(ajouter_un_membre_au_groupe_de_clients(const QString &)));
 
 #ifdef YEROTH_CLIENT
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
@@ -278,9 +290,9 @@ bool YerothCreerGroupeDeClientsWindow::check_fields()
 {
     bool result;
 
-    bool nom_du_groupe_de_clients_cree = lineEdit_creer_groupe_clients_designation->checkField();
+    bool nom_du_groupe_de_clients_creer = lineEdit_creer_groupe_clients_designation->checkField();
 
-    result = nom_du_groupe_de_clients_cree;
+    result = nom_du_groupe_de_clients_creer;
 
     return result;
 }
@@ -297,7 +309,7 @@ void YerothCreerGroupeDeClientsWindow::clear_all_fields()
 
 	textEdit_creer_groupe_clients_description_groupe->clear();
 
-	tableWidget_creer_groupe_clients_membres_initiaux_du_groupe->clearContents();
+	tableWidget_creer_groupe_clients_membres_initiaux_du_groupe->myClear();
 }
 
 
@@ -317,16 +329,43 @@ void YerothCreerGroupeDeClientsWindow::rendreVisible(YerothSqlTableModel * stock
 }
 
 
-void YerothCreerGroupeDeClientsWindow::ajouter_un_membre_au_groupe_de_clients(const QString &aClientGroupMember)
+void YerothCreerGroupeDeClientsWindow::ajouter_un_membre_au_groupe_de_clients(const QString &aClientGroupMemberName)
 {
-//	tableWidget_creer_groupe_clients_membres_initiaux_du_groupe
-//		->addAClientGroupMember();
+	YerothSqlTableModel &aClientSqlTableModel = _allWindows->getSqlTableModel_clients();
+
+	aClientSqlTableModel.setFilter(QString("%1='%2'")
+										.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
+												aClientGroupMemberName));
+
+	QSqlRecord aClientRecord = aClientSqlTableModel.record(0);
+
+	QString aClient_db_ID = GET_SQL_RECORD_DATA(aClientRecord, YerothDatabaseTableColumn::ID);
+	QString aClientReference = GET_SQL_RECORD_DATA(aClientRecord, YerothDatabaseTableColumn::REFERENCE_CLIENT);
+
+
+	tableWidget_creer_groupe_clients_membres_initiaux_du_groupe
+		->addAClientGroupMember(aClient_db_ID,
+								aClientReference,
+								aClientGroupMemberName);
+
+	aClientSqlTableModel.resetFilter();
+
+	lineEdit_creer_groupe_clients_recherche_client_initiaux->myClear();
+}
+
+
+void YerothCreerGroupeDeClientsWindow::annuler_la_creation_dun_groupe_de_clients()
+{
+	clear_all_fields();
+
+	groupes_de_clients();
 }
 
 
 void YerothCreerGroupeDeClientsWindow::supprimerUnMembreDunGroupeDeClients()
 {
-
+	tableWidget_creer_groupe_clients_membres_initiaux_du_groupe
+		->removeArticle(_last_selected_table_widget_row);
 }
 
 
@@ -359,6 +398,7 @@ bool YerothCreerGroupeDeClientsWindow::creerEnregistrerUnGroupeDeClients()
 	QSqlRecord record = clientGroupTableModel.record();
 
 	record.setValue(YerothDatabaseTableColumn::ID, YerothERPWindows::getNextIdSqlTableModel_groupes_de_clients());
+
 	record.setValue(YerothDatabaseTableColumn::DATE_CREATION,
 			DATE_TO_DB_FORMAT_STRING(GET_CURRENT_DATE));
 
@@ -374,7 +414,23 @@ bool YerothCreerGroupeDeClientsWindow::creerEnregistrerUnGroupeDeClients()
 	record.setValue(YerothDatabaseTableColumn::MAXIMUM_DE_MEMBRES,
 			lineEdit_creer_groupe_clients_maximum_de_membres->text().toInt());
 
-//	record.setValue(YerothDatabaseTableColumn::MEMBRES_DU_GROUPE_db_ID, ->text());
+
+	QMapIterator<int, QString> 	it_MapListIdxToElement_db_ID(
+			tableWidget_creer_groupe_clients_membres_initiaux_du_groupe->get_mapListIdxToElement_db_ID());
+
+	QString membres_du_groupe_db_ID;
+
+	while(it_MapListIdxToElement_db_ID.hasNext())
+	{
+		it_MapListIdxToElement_db_ID.next();
+
+		membres_du_groupe_db_ID.append(QString("%1%2")
+										.arg(it_MapListIdxToElement_db_ID.value(),
+											 "*"));
+
+	}
+
+	record.setValue(YerothDatabaseTableColumn::MEMBRES_DU_GROUPE_db_ID, membres_du_groupe_db_ID);
 
 
 	retMsg.append(lineEdit_creer_groupe_clients_designation->text());
