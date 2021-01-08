@@ -600,9 +600,11 @@ void YerothTableauxDeBordWindow::quantite_max_stats(QString fileName,
 
     if (!service)
     {
-    	strQuery.append(QString("SELECT %1, %2 FROM %3 WHERE %4 >= '%5' AND %6 <= '%7'")
+    	strQuery.append(QString("SELECT %1, %2, (round(%3, 2) - round(%4, 2)) FROM %5 WHERE %6 >= '%7' AND %8 <= '%9'")
     					.arg(fieldId,
     						 YerothDatabaseTableColumn::QUANTITE_VENDUE,
+							 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
+							 YerothDatabaseTableColumn::MONTANT_TVA,
     						 _allWindows->STOCKS_VENDU,
 							 YerothDatabaseTableColumn::DATE_VENTE,
 							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_debut->date()),
@@ -611,11 +613,12 @@ void YerothTableauxDeBordWindow::quantite_max_stats(QString fileName,
     }
     else //service == true
     {
-    	strQuery.append(QString("SELECT %1, %2 FROM %3 WHERE (%4 >= '%5' AND %6 <= '%7') AND %8=1")
+    	strQuery.append(QString("SELECT %1, %2, (round(%3, 2) - round(%4, 2)) FROM %5 WHERE (date_vente >= '%6' AND %7 <= '%8') AND %9=1")
     					.arg(fieldId,
     						 YerothDatabaseTableColumn::QUANTITE_VENDUE,
+							 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
+							 YerothDatabaseTableColumn::MONTANT_TVA,
     						 _allWindows->SERVICES_COMPLETES,
-    						 YerothDatabaseTableColumn::DATE_VENTE,
 							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_debut->date()),
 							 YerothDatabaseTableColumn::DATE_VENTE,
 							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_fin->date()),
@@ -629,8 +632,11 @@ void YerothTableauxDeBordWindow::quantite_max_stats(QString fileName,
     int querySize = YerothUtils::execQuery(query, strQuery, _logger);
 
     QString fieldIdValue;
-    double total = 0.0;
+    double total_quantite_vendue= 0.0;
     double quantite_vendue = 0.0;
+
+    double montant_total_vente = 0.0;
+    double montant_total_TOUTES_vente = 0.0;
 
     QList<YerothStatsItem *> nomEntrepriseFournisseurToVentes;
 
@@ -640,6 +646,7 @@ void YerothTableauxDeBordWindow::quantite_max_stats(QString fileName,
     	{
     		fieldIdValue = query.value(0).toString();
     		quantite_vendue = query.value(1).toDouble();
+    		montant_total_vente = query.value(2).toDouble();
 
     		int idx = -1;
     		for(int i = 0; i < nomEntrepriseFournisseurToVentes.size(); ++i)
@@ -653,18 +660,24 @@ void YerothTableauxDeBordWindow::quantite_max_stats(QString fileName,
 
     		if (-1 == idx)
     		{
-    			YerothStatsItem *aNewItem = new YerothStatsItem(fieldIdValue, quantite_vendue);
-    			nomEntrepriseFournisseurToVentes.push_back(aNewItem);
+    			YerothStatsItem *aNewItem = new YerothStatsItem(fieldIdValue,
+    														    quantite_vendue,
+																montant_total_vente);
 
-    			total += quantite_vendue;
+    			nomEntrepriseFournisseurToVentes.push_back(aNewItem);
     		}
     		else
     		{
     			YerothStatsItem *anItem = nomEntrepriseFournisseurToVentes.value(idx);
+
     			anItem->_itemValue += quantite_vendue;
 
-    			total += quantite_vendue;
+    			anItem->_itemSecondValue += montant_total_vente;
     		}
+
+    		montant_total_TOUTES_vente += montant_total_vente;
+
+    		total_quantite_vendue += quantite_vendue;
     	}
     }
 
@@ -682,6 +695,7 @@ void YerothTableauxDeBordWindow::quantite_max_stats(QString fileName,
     QString csvFileContent;
     QString label;
     QString curValueStr;
+    QString curSecondValueStr;
     QString pourcentageStr;
 
     _reportTexFileEndString.clear();
@@ -701,10 +715,11 @@ void YerothTableauxDeBordWindow::quantite_max_stats(QString fileName,
     {
     	curValue = nomEntrepriseFournisseurToVentes.value(j)->_itemValue;
 
-    	curValueStr.clear();
-    	curValueStr.append(GET_DOUBLE_STRING(curValue));
+    	curValueStr = GET_DOUBLE_STRING(curValue);
 
-    	pourcentage = (curValue / total) * 100.0;
+    	curSecondValueStr = GET_CURRENCY_STRING_NUM(nomEntrepriseFournisseurToVentes.value(j)->_itemSecondValue);
+
+    	pourcentage = (curValue / total_quantite_vendue) * 100.0;
     	pourcentageStr = QString::number(pourcentage, 'f', 3);
 
     	/*qDebug() << QString("++ value: %1, name %2, total: %3, pourcentage: %4")
@@ -713,9 +728,8 @@ void YerothTableauxDeBordWindow::quantite_max_stats(QString fileName,
             					 QString::number(total, 'f', 9),
             					 QString::number(pourcentage, 'f', 9));*/
 
-    	label.clear();
-    	label.append(QString("\"%1\"")
-    			.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(nomEntrepriseFournisseurToVentes.at(j)->_itemName)));
+    	label = QString("\"%1\"")
+    				.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(nomEntrepriseFournisseurToVentes.at(j)->_itemName));
 
     	if (k < SIZE_FOR_CSV_FILE_CONTENT)
     	{
@@ -724,9 +738,10 @@ void YerothTableauxDeBordWindow::quantite_max_stats(QString fileName,
     		++_csvFileItemSize;
     	}
 
-    	_reportTexFileEndString.append(QString("\\item %1: %2\n")
+    	_reportTexFileEndString.append(QString("\\item %1: %2 (chiffre d'affaire: %3)\n")
     			.arg(label,
-    					YerothUtils::LATEX_IN_OUT_handleForeignAccents(curValueStr)));
+    				 YerothUtils::LATEX_IN_OUT_handleForeignAccents(curValueStr),
+					 YerothUtils::LATEX_IN_OUT_handleForeignAccents(curSecondValueStr)));
 
     	//qDebug() << "++ reportTexFileEndString: " << _reportTexFileEndString;
 
@@ -775,9 +790,11 @@ void YerothTableauxDeBordWindow::quantite_moindre_stats(QString fileName,
 
     if (!service)
     {
-    	strQuery.append(QString("SELECT %1, %2 FROM %3 WHERE %4 >= '%5' AND %6 <= '%7'")
+    	strQuery.append(QString("SELECT %1, %2, (round(%3, 2) - round(%4, 2)) FROM %5 WHERE %6 >= '%7' AND %8 <= '%9'")
     					.arg(fieldId,
     						 YerothDatabaseTableColumn::QUANTITE_VENDUE,
+							 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
+							 YerothDatabaseTableColumn::MONTANT_TVA,
     						 _allWindows->STOCKS_VENDU,
 							 YerothDatabaseTableColumn::DATE_VENTE,
 							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_debut->date()),
@@ -786,11 +803,12 @@ void YerothTableauxDeBordWindow::quantite_moindre_stats(QString fileName,
     }
     else //service == true
     {
-    	strQuery.append(QString("SELECT %1, %2 FROM %3 WHERE (%4 >= '%5' AND %6 <= '%7') AND %8=1")
+    	strQuery.append(QString("SELECT %1, %2, (round(%3, 2) - round(%4, 2)) FROM %5 WHERE (date_vente >= '%6' AND %7 <= '%8') AND %9=1")
     					.arg(fieldId,
     						 YerothDatabaseTableColumn::QUANTITE_VENDUE,
+							 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
+							 YerothDatabaseTableColumn::MONTANT_TVA,
     						 _allWindows->SERVICES_COMPLETES,
-    						 YerothDatabaseTableColumn::DATE_VENTE,
 							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_debut->date()),
 							 YerothDatabaseTableColumn::DATE_VENTE,
 							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_fin->date()),
@@ -804,8 +822,11 @@ void YerothTableauxDeBordWindow::quantite_moindre_stats(QString fileName,
     int querySize = YerothUtils::execQuery(query, strQuery, _logger);
 
     QString fieldIdValue;
-    double total = 0.0;
+    double total_quantite_vendue= 0.0;
     double quantite_vendue = 0.0;
+
+    double montant_total_vente = 0.0;
+    double montant_total_TOUTES_vente = 0.0;
 
     QList<YerothStatsItem *> nomEntrepriseFournisseurToVentes;
 
@@ -815,6 +836,7 @@ void YerothTableauxDeBordWindow::quantite_moindre_stats(QString fileName,
     	{
     		fieldIdValue = query.value(0).toString();
     		quantite_vendue = query.value(1).toDouble();
+    		montant_total_vente = query.value(2).toDouble();
 
     		int idx = -1;
     		for(int i = 0; i < nomEntrepriseFournisseurToVentes.size(); ++i)
@@ -828,18 +850,24 @@ void YerothTableauxDeBordWindow::quantite_moindre_stats(QString fileName,
 
     		if (-1 == idx)
     		{
-    			YerothStatsItem *aNewItem = new YerothStatsItem(fieldIdValue, quantite_vendue);
-    			nomEntrepriseFournisseurToVentes.push_back(aNewItem);
+    			YerothStatsItem *aNewItem = new YerothStatsItem(fieldIdValue,
+    														    quantite_vendue,
+																montant_total_vente);
 
-    			total += quantite_vendue;
+    			nomEntrepriseFournisseurToVentes.push_back(aNewItem);
     		}
     		else
     		{
     			YerothStatsItem *anItem = nomEntrepriseFournisseurToVentes.value(idx);
+
     			anItem->_itemValue += quantite_vendue;
 
-    			total += quantite_vendue;
+    			anItem->_itemSecondValue += montant_total_vente;
     		}
+
+    		montant_total_TOUTES_vente += montant_total_vente;
+
+    		total_quantite_vendue += quantite_vendue;
     	}
     }
 
@@ -857,6 +885,7 @@ void YerothTableauxDeBordWindow::quantite_moindre_stats(QString fileName,
     QString csvFileContent;
     QString label;
     QString curValueStr;
+    QString curSecondValueStr;
     QString pourcentageStr;
 
     _reportTexFileEndString.clear();
@@ -876,10 +905,11 @@ void YerothTableauxDeBordWindow::quantite_moindre_stats(QString fileName,
     {
     	curValue = nomEntrepriseFournisseurToVentes.value(j)->_itemValue;
 
-    	curValueStr.clear();
-    	curValueStr.append(GET_DOUBLE_STRING(curValue));
+    	curValueStr = GET_DOUBLE_STRING(curValue);
 
-    	pourcentage = (curValue / total) * 100.0;
+    	curSecondValueStr = GET_CURRENCY_STRING_NUM(nomEntrepriseFournisseurToVentes.value(j)->_itemSecondValue);
+
+    	pourcentage = (curValue / total_quantite_vendue) * 100.0;
     	pourcentageStr = QString::number(pourcentage, 'f', 3);
 
     	/*qDebug() << QString("++ value: %1, name %2, total: %3, pourcentage: %4")
@@ -888,9 +918,8 @@ void YerothTableauxDeBordWindow::quantite_moindre_stats(QString fileName,
             					 QString::number(total, 'f', 9),
             					 QString::number(pourcentage, 'f', 9));*/
 
-    	label.clear();
-    	label.append(QString("\"%1\"")
-    			.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(nomEntrepriseFournisseurToVentes.at(j)->_itemName)));
+    	label = QString("\"%1\"")
+    				.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(nomEntrepriseFournisseurToVentes.at(j)->_itemName));
 
     	if (k < SIZE_FOR_CSV_FILE_CONTENT)
     	{
@@ -899,9 +928,10 @@ void YerothTableauxDeBordWindow::quantite_moindre_stats(QString fileName,
     		++_csvFileItemSize;
     	}
 
-    	_reportTexFileEndString.append(QString("\\item %1: %2\n")
+    	_reportTexFileEndString.append(QString("\\item %1: %2 (chiffre d'affaire: %3)\n")
     			.arg(label,
-    					YerothUtils::LATEX_IN_OUT_handleForeignAccents(curValueStr)));
+    				 YerothUtils::LATEX_IN_OUT_handleForeignAccents(curValueStr),
+					 YerothUtils::LATEX_IN_OUT_handleForeignAccents(curSecondValueStr)));
 
     	//qDebug() << "++ reportTexFileEndString: " << _reportTexFileEndString;
 
@@ -950,8 +980,9 @@ void YerothTableauxDeBordWindow::meilleursStats(QString fileName,
 
     if (!service)
     {
-    	strQuery.append(QString("SELECT %1, (round(%2, 2) - round(%3, 2)) FROM %4 WHERE %5 >= '%6' AND %7 <= '%8'")
+    	strQuery.append(QString("SELECT %1, %2, (round(%3, 2) - round(%4, 2)) FROM %5 WHERE %6 >= '%7' AND %8 <= '%9'")
     					.arg(fieldId,
+    						 YerothDatabaseTableColumn::QUANTITE_VENDUE,
     						 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
     						 YerothDatabaseTableColumn::MONTANT_TVA,
 							 _allWindows->STOCKS_VENDU,
@@ -962,15 +993,15 @@ void YerothTableauxDeBordWindow::meilleursStats(QString fileName,
     }
     else //service == true
     {
-    	strQuery.append(QString("SELECT %1, (round(%2, 2) - round(%3, 2)) FROM %4"
-    							" WHERE date_vente >= '%5' AND %6 <= '%7' AND"
+    	strQuery.append(QString("SELECT %1, %2, (round(%3, 2) - round(%4, 2)) FROM %5"
+    							" WHERE date_vente >= '%6' AND date_vente <= '%7' AND"
     							" %8=0 AND %9=1")
     					.arg(fieldId,
+    						 YerothDatabaseTableColumn::QUANTITE_VENDUE,
     						 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
     						 YerothDatabaseTableColumn::MONTANT_TVA,
 							 _allWindows->SERVICES_COMPLETES,
 							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_debut->date()),
-							 YerothDatabaseTableColumn::DATE_VENTE,
 							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_fin->date()),
 							 YerothDatabaseTableColumn::MONTANT_A_REMBOURSER,
 							 YerothDatabaseTableColumn::IS_SERVICE));
@@ -990,6 +1021,8 @@ void YerothTableauxDeBordWindow::meilleursStats(QString fileName,
     double montant_total_vente = 0.0;
     double total = 0.0;
 
+    double quantite_vendue = 0.0;
+
     QList<YerothStatsItem *> nomEntrepriseFournisseurToVentes;
 
     if (querySize > 0)
@@ -997,7 +1030,8 @@ void YerothTableauxDeBordWindow::meilleursStats(QString fileName,
         while(query.next())
         {
             fieldIdValue = query.value(0).toString();
-            montant_total_vente = query.value(1).toDouble();
+            quantite_vendue = query.value(1).toDouble();
+            montant_total_vente = query.value(2).toDouble();
 
             int idx = -1;
             for(int i = 0; i < nomEntrepriseFournisseurToVentes.size(); ++i)
@@ -1011,18 +1045,19 @@ void YerothTableauxDeBordWindow::meilleursStats(QString fileName,
 
             if (-1 == idx)
             {
-                YerothStatsItem *aNewItem = new YerothStatsItem(fieldIdValue, montant_total_vente);
+                YerothStatsItem *aNewItem = new YerothStatsItem(fieldIdValue,
+                												montant_total_vente,
+																quantite_vendue);
                 nomEntrepriseFournisseurToVentes.push_back(aNewItem);
-
-                total += montant_total_vente;
             }
             else
             {
                 YerothStatsItem *anItem = nomEntrepriseFournisseurToVentes.value(idx);
                 anItem->_itemValue += montant_total_vente;
-
-                total += montant_total_vente;
+                anItem->_itemSecondValue += quantite_vendue;
             }
+
+            total += montant_total_vente;
         }
     }
 
@@ -1040,6 +1075,7 @@ void YerothTableauxDeBordWindow::meilleursStats(QString fileName,
     QString csvFileContent;
     QString label;
     QString curValueStr;
+    QString curSecondValueStr;
     QString pourcentageStr;
 
     _reportTexFileEndString.clear();
@@ -1060,8 +1096,9 @@ void YerothTableauxDeBordWindow::meilleursStats(QString fileName,
     {
         curValue = nomEntrepriseFournisseurToVentes.value(j)->_itemValue;
 
-        curValueStr.clear();
-        curValueStr.append(GET_CURRENCY_STRING_NUM(curValue));
+        curValueStr = GET_CURRENCY_STRING_NUM(curValue);
+
+        curSecondValueStr = GET_DOUBLE_STRING(nomEntrepriseFournisseurToVentes.value(j)->_itemSecondValue);
 
         pourcentage = (curValue / total) * 100.0;
         pourcentageStr = QString::number(pourcentage, 'f', 3);
@@ -1072,9 +1109,8 @@ void YerothTableauxDeBordWindow::meilleursStats(QString fileName,
         					 QString::number(total, 'f', 9),
         					 QString::number(pourcentage, 'f', 9));*/
 
-        label.clear();
-        label.append(QString("\"%1\"")
-        				.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(nomEntrepriseFournisseurToVentes.at(j)->_itemName)));
+        label = QString("\"%1\"")
+        			.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(nomEntrepriseFournisseurToVentes.at(j)->_itemName));
 
         if (k < SIZE_FOR_CSV_FILE_CONTENT)
         {
@@ -1083,9 +1119,10 @@ void YerothTableauxDeBordWindow::meilleursStats(QString fileName,
             ++_csvFileItemSize;
         }
 
-        _reportTexFileEndString.append(QString("\\item %1: %2\n")
+        _reportTexFileEndString.append(QString("\\item %1: %2 (quantit\\'e vendue: %3)\n")
         									.arg(label,
-        										 YerothUtils::LATEX_IN_OUT_handleForeignAccents(curValueStr)));
+        										 YerothUtils::LATEX_IN_OUT_handleForeignAccents(curValueStr),
+												 YerothUtils::LATEX_IN_OUT_handleForeignAccents(curSecondValueStr)));
 
         //qDebug() << "++ reportTexFileEndString: " << _reportTexFileEndString;
 
@@ -1382,15 +1419,11 @@ void YerothTableauxDeBordWindow::ZERO_stats(QString fileName,
 
     for(int j = allItems.size() - 1, k = 0; j > -1; --j, ++k)
     {
-        label.clear();
+        label = QString("\"%1\"")
+        			.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(allItems.at(j)->_itemName));
 
-        label.append(QString("\"%1\"")
-        				.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(allItems.at(j)->_itemName)));
-
-        value.clear();
-
-        value.append(YerothUtils::LATEX_IN_OUT_handleForeignAccents(
-        		GET_DOUBLE_STRING(allItems.at(j)->_itemValue)));
+        value = YerothUtils::LATEX_IN_OUT_handleForeignAccents(
+        			GET_DOUBLE_STRING(allItems.at(j)->_itemValue));
 
         csvFileContent.prepend(QString("%1; %2; %3\n")
         						.arg(label,
@@ -1448,8 +1481,9 @@ void YerothTableauxDeBordWindow::derniersStats(QString fileName,
 
     if (!service)
     {
-    	strQuery.append(QString("SELECT %1, (round(%2, 2) - round(%3, 2)) FROM %4 WHERE %5 >= '%6' AND %7 <= '%8'")
+    	strQuery.append(QString("SELECT %1, %2, (round(%3, 2) - round(%4, 2)) FROM %5 WHERE %6 >= '%7' AND %8 <= '%9'")
     					.arg(fieldId,
+    						 YerothDatabaseTableColumn::QUANTITE_VENDUE,
     						 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
     						 YerothDatabaseTableColumn::MONTANT_TVA,
 							 _allWindows->STOCKS_VENDU,
@@ -1460,15 +1494,15 @@ void YerothTableauxDeBordWindow::derniersStats(QString fileName,
     }
     else
     {
-    	strQuery.append(QString("SELECT %1, (round(%2, 2) - round(%3, 2)) FROM %4"
-    							" WHERE date_vente >= '%5' AND %6 <= '%7' AND"
+    	strQuery.append(QString("SELECT %1, %2, (round(%3, 2) - round(%4, 2)) FROM %5"
+    							" WHERE date_vente >= '%6' AND date_vente <= '%7' AND"
     							" %8=0 AND %9=1")
     					.arg(fieldId,
+    						 YerothDatabaseTableColumn::QUANTITE_VENDUE,
     						 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
     						 YerothDatabaseTableColumn::MONTANT_TVA,
 							 _allWindows->SERVICES_COMPLETES,
 							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_debut->date()),
-							 YerothDatabaseTableColumn::DATE_VENTE,
 							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_fin->date()),
 							 YerothDatabaseTableColumn::MONTANT_A_REMBOURSER,
 							 YerothDatabaseTableColumn::IS_SERVICE));
@@ -1487,6 +1521,8 @@ void YerothTableauxDeBordWindow::derniersStats(QString fileName,
     double montant_total_vente = 0.0;
     double total = 0.0;
 
+    double quantite_vendue = 0.0;
+
     QList<YerothStatsItem *> caissierToVentes;
 
     if (querySize > 0)
@@ -1494,7 +1530,10 @@ void YerothTableauxDeBordWindow::derniersStats(QString fileName,
         while(query.next())
         {
             fieldIdValue = query.value(0).toString();
-            montant_total_vente = query.value(1).toDouble();
+
+            quantite_vendue = query.value(1).toDouble();
+
+            montant_total_vente = query.value(2).toDouble();
 
             if (fieldIdValue.isEmpty())
             {
@@ -1513,10 +1552,10 @@ void YerothTableauxDeBordWindow::derniersStats(QString fileName,
 
             if (-1 == idx)
             {
-                YerothStatsItem *aNewItem = new YerothStatsItem(fieldIdValue, montant_total_vente);
+                YerothStatsItem *aNewItem = new YerothStatsItem(fieldIdValue,
+                												montant_total_vente,
+																quantite_vendue);
                 caissierToVentes.push_back(aNewItem);
-
-                total += montant_total_vente;
             }
             else
             {
@@ -1524,8 +1563,10 @@ void YerothTableauxDeBordWindow::derniersStats(QString fileName,
 
                 anItem->_itemValue += montant_total_vente;
 
-                total += montant_total_vente;//tmpTotal;
+                anItem->_itemSecondValue += quantite_vendue;
             }
+
+            total += montant_total_vente;
         }
     }
 
@@ -1547,6 +1588,7 @@ void YerothTableauxDeBordWindow::derniersStats(QString fileName,
     QString label;
     QString pourcentageStr;
     QString curValueStr;
+    QString curSecondValueStr;
 
     double pourcentage = 0;
     double curValue = 0;
@@ -1566,6 +1608,7 @@ void YerothTableauxDeBordWindow::derniersStats(QString fileName,
     for(int j = 0, k = 0; j < caissierToVentes.size() && k < size; ++j)
     {
         curValue = caissierToVentes.value(j)->_itemValue;
+
         pourcentage = (curValue / total) * 100.0;
 
 //        qDebug() << QString("++ j:%1. value: %2, total: %3, pourcentage: %4")
@@ -1581,12 +1624,14 @@ void YerothTableauxDeBordWindow::derniersStats(QString fileName,
             continue;
         }
 
-        pourcentageStr.append(QString::number(pourcentage, 'f', 3));
+        pourcentageStr = QString::number(pourcentage, 'f', 3);
 
-        curValueStr.append(GET_CURRENCY_STRING_NUM(curValue));
+        curValueStr = GET_CURRENCY_STRING_NUM(curValue);
 
-        label.append(QString("\"%1\"")
-        				.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(caissierToVentes.at(j)->_itemName)));
+        curSecondValueStr = GET_DOUBLE_STRING(caissierToVentes.value(j)->_itemSecondValue);
+
+        label = QString("\"%1\"")
+        			.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(caissierToVentes.at(j)->_itemName));
 
         if (k < SIZE_FOR_CSV_FILE_CONTENT)
         {
@@ -1595,15 +1640,12 @@ void YerothTableauxDeBordWindow::derniersStats(QString fileName,
             ++_csvFileItemSize;
         }
 
-        _reportTexFileEndString.append(QString("\\item %1: %2\n")
+        _reportTexFileEndString.append(QString("\\item %1: %2 (quantit\\'e vendue: %3)\n")
         									.arg(label,
-        										 YerothUtils::LATEX_IN_OUT_handleForeignAccents(curValueStr)));
+        										 YerothUtils::LATEX_IN_OUT_handleForeignAccents(curValueStr),
+												 YerothUtils::LATEX_IN_OUT_handleForeignAccents(curSecondValueStr)));
 
         //qDebug() << "++ reportTexFileEndString: " << _reportTexFileEndString;
-
-        pourcentageStr.clear();
-        curValueStr.clear();
-        label.clear();
         ++k;
     }
 

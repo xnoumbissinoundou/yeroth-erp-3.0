@@ -325,7 +325,17 @@ private:
     	double  _itemValue;
     	double  _itemSecondValue;
 
-    	inline YerothStatsItem(QString itemName, double itemValue)
+    	inline YerothStatsItem(QString itemName,
+    						   double itemValue,
+							   double itemSecondValue)
+    	:_itemName(itemName),
+		 _itemValue(itemValue),
+		 _itemSecondValue(itemSecondValue)
+    	{
+    	}
+
+    	inline YerothStatsItem(QString itemName,
+    						   double itemValue)
     	:_itemName(itemName),
 		 _itemValue(itemValue),
 		 _itemSecondValue(0.0)
