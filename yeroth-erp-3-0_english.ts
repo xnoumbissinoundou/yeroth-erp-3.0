@@ -1393,7 +1393,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <translation>supplier purchase listing</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="562"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="567"/>
         <location filename="src/windows/purchase/yeroth-erp-achats-aux-fournisseurs-window.cpp" line="179"/>
         <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="179"/>
         <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="559"/>
@@ -1406,7 +1406,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <translation>Type in a numeric value for search !</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="565"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="570"/>
         <location filename="src/windows/purchase/yeroth-erp-achats-aux-fournisseurs-window.cpp" line="182"/>
         <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="182"/>
         <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="562"/>
@@ -1431,7 +1431,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <translation>merchandise</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="698"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="703"/>
         <location filename="src/windows/purchase/yeroth-erp-achats-aux-fournisseurs-window.cpp" line="297"/>
         <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="297"/>
         <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="704"/>
@@ -1491,7 +1491,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
     </message>
     <message>
         <location filename="src/windows/crm/yeroth-erp-clients-detail-window.cpp" line="125"/>
-        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="480"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="485"/>
         <source>suppression d&apos;un compte client</source>
         <translation>deletion of a client</translation>
     </message>
@@ -1516,102 +1516,107 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <translation>client couldn&apos;t be deleted</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-detail-window.cpp" line="343"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-detail-window.cpp" line="344"/>
         <source>Référence client: </source>
         <translation>Client ref.: </translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-detail-window.cpp" line="346"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-detail-window.cpp" line="347"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseur-details-window.cpp" line="338"/>
         <source>Nom de l&apos;entreprise: </source>
         <translation>Company name: </translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-detail-window.cpp" line="349"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-detail-window.cpp" line="350"/>
+        <source>Référeur: </source>
+        <translation>Referrer: </translation>
+    </message>
+    <message>
+        <location filename="src/windows/crm/yeroth-erp-clients-detail-window.cpp" line="353"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseur-details-window.cpp" line="341"/>
         <source>Nom du Représentant: </source>
         <translation>Representant name: </translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-detail-window.cpp" line="352"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-detail-window.cpp" line="356"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseur-details-window.cpp" line="344"/>
         <source>Quartier: </source>
         <translation>Location: </translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-detail-window.cpp" line="355"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-detail-window.cpp" line="359"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseur-details-window.cpp" line="347"/>
         <source>Ville: </source>
         <translation>City: </translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-detail-window.cpp" line="358"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-detail-window.cpp" line="362"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseur-details-window.cpp" line="350"/>
         <source>Province / État: </source>
         <translation>Province / State: </translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-detail-window.cpp" line="361"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-detail-window.cpp" line="365"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseur-details-window.cpp" line="353"/>
         <source>Pays: </source>
         <translation>Country: </translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-detail-window.cpp" line="364"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-detail-window.cpp" line="368"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseur-details-window.cpp" line="356"/>
         <source>Boîte postale: </source>
         <translation>Postal code (or P.O. box): </translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-detail-window.cpp" line="367"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-detail-window.cpp" line="371"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseur-details-window.cpp" line="359"/>
         <source>Siège social: </source>
         <translation>Headquarters: </translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-detail-window.cpp" line="370"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-detail-window.cpp" line="374"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseur-details-window.cpp" line="362"/>
         <source>Émail: </source>
         <translation>E-mail: </translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-detail-window.cpp" line="373"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-detail-window.cpp" line="377"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseur-details-window.cpp" line="365"/>
         <source>Numéro de téléphone 1: </source>
         <translation>Phone number (1): </translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-detail-window.cpp" line="376"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-detail-window.cpp" line="380"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseur-details-window.cpp" line="368"/>
         <source>Numéro de téléphone 2: </source>
         <translation>Phone number (2): </translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-detail-window.cpp" line="379"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-detail-window.cpp" line="383"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseur-details-window.cpp" line="371"/>
         <source>Numéro de contribuable: </source>
         <translation>Tax payer identification nr: </translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-detail-window.cpp" line="382"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-detail-window.cpp" line="386"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseur-details-window.cpp" line="374"/>
         <source>RCCM N\textsuperscript{o}: </source>
         <oldsource>RCCN N\textsuperscript{o}: </oldsource>
         <translation>RCCM N\textsuperscript{o}: </translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-detail-window.cpp" line="385"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-detail-window.cpp" line="389"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseur-details-window.cpp" line="377"/>
         <source>Dette maximale: </source>
         <translation>Maximal debt: </translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-detail-window.cpp" line="388"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-detail-window.cpp" line="392"/>
         <source>Compte client: </source>
         <translation>Client: </translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-detail-window.cpp" line="393"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-detail-window.cpp" line="397"/>
         <source>DESCRIPTION CLIENT:</source>
         <translation>CUSTOMER BUSINESS INFORMATION:</translation>
     </message>
@@ -1846,7 +1851,7 @@ Continue with update of the stock ?</translation>
         <location filename="src/admin/lister/yeroth-erp-admin-lister-window.cpp" line="823"/>
         <location filename="src/admin/lister/yeroth-erp-admin-lister-window.cpp" line="880"/>
         <location filename="src/admin/lister/yeroth-erp-admin-lister-window.cpp" line="943"/>
-        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="499"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="504"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseurs-window.cpp" line="481"/>
         <source>&apos; a été supprimée de la base de données !</source>
         <oldsource>&apos; a été supprimée de la base de données!</oldsource>
@@ -1857,7 +1862,7 @@ Continue with update of the stock ?</translation>
         <location filename="src/admin/lister/yeroth-erp-admin-lister-window.cpp" line="832"/>
         <location filename="src/admin/lister/yeroth-erp-admin-lister-window.cpp" line="889"/>
         <location filename="src/admin/lister/yeroth-erp-admin-lister-window.cpp" line="954"/>
-        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="508"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="513"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseurs-window.cpp" line="490"/>
         <source> n&apos;a pas été supprimée de la base de données !</source>
         <oldsource> n&apos;a pas été supprimée de la base de données!</oldsource>
@@ -1896,12 +1901,12 @@ Continue with update of the stock ?</translation>
         <translation>Bank account with reference &apos;%1</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="475"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="480"/>
         <source>Supprimer le client &apos;%1&apos; ?</source>
         <translation>Continue with deletion of client &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="488"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="493"/>
         <source>Le client &apos;%1</source>
         <translation>Client &apos;%1</translation>
     </message>
@@ -2188,14 +2193,14 @@ Continue with update of the stock ?</translation>
         <translation>Client &apos;</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-creer-compte-client-window.cpp" line="474"/>
-        <location filename="src/windows/crm/yeroth-erp-creer-compte-client-window.cpp" line="484"/>
+        <location filename="src/windows/crm/yeroth-erp-creer-compte-client-window.cpp" line="475"/>
+        <location filename="src/windows/crm/yeroth-erp-creer-compte-client-window.cpp" line="485"/>
         <source>créer 1 compte client</source>
         <translation>create a client account</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-creer-compte-client-window.cpp" line="481"/>
-        <location filename="src/windows/crm/yeroth-erp-creer-groupe-de-clients-window.cpp" line="396"/>
+        <location filename="src/windows/crm/yeroth-erp-creer-compte-client-window.cpp" line="482"/>
+        <location filename="src/windows/crm/yeroth-erp-creer-groupe-de-clients-window.cpp" line="452"/>
         <location filename="src/windows/supplier/yeroth-erp-creer-fournisseur-window.cpp" line="482"/>
         <source>&apos; a été créer avec succès !</source>
         <oldsource>&apos; a été créer avec succès!</oldsource>
@@ -2411,52 +2416,52 @@ Continue with update of the stock (service) ?</translation>
         <translation>business dashboard</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1048"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1559"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1084"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1601"/>
         <source>D\&apos;etails en %1:</source>
         <translation>Details in %1:</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2063"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3583"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2105"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3625"/>
         <source>rankings - pas de données !</source>
         <oldsource>Yeroth - rapports - rankings - pas de données !</oldsource>
         <translation>rankings - no data !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2796"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3161"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3811"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="4117"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2838"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3203"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3853"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="4159"/>
         <source>aucun filtre !</source>
         <translation>no filter !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2335"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2377"/>
         <source>bilan comptable</source>
         <translation>financial accounting report</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1248"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1285"/>
         <source>\item %1 | Qté en stock: &quot;%2&quot; | Valeur d&apos;inventaire: &quot;%3&quot;
 </source>
         <translation>\item %1 | Stock qty: &quot;%2&quot; | Inventory value: &quot;%3&quot;
 </translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1262"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1299"/>
         <source>\underline{\textbf{SOMME (VALEUR D&apos;INVENTAIRE TOUT STOCK): %1}}</source>
         <translation>\underline{\textbf{SUM (INVENTORY VALUE OF ALL STOCKS): %1}}</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1413"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1446"/>
         <source>Nom; Quantité totale en stock; Total chiffre d&apos;affaire
 </source>
         <translation>Name; Total stock quantity; Business turnover
 </translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1400"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1433"/>
         <source>\item %1 | Qté en stock: &quot;%2&quot;
 </source>
         <translation>\item %1 | Stock qty: &quot;%2&quot;
@@ -2478,81 +2483,81 @@ Continue with update of the stock (service) ?</translation>
         <translation>%1 - business turnover progress</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="690"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="704"/>
         <source>D\&apos;etails par quantit\&apos;es les plus vendues:</source>
         <translation>Details by maximum sold quantity:</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="865"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="894"/>
         <source>D\&apos;etails par quantit\&apos;es les moins vendues:</source>
         <translation>Details by least sold quantity:</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1267"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="1304"/>
         <source>Nom; Quantité totale en stock; Valeur d&apos;inventaire (%1); Total chiffre d&apos;affaire
 </source>
         <translation>Name; Total stock quantity; Inventory value (%1); Business turnover
 </translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2232"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2274"/>
         <source>Saisir le nom du fichier &apos;.csv&apos;</source>
         <translation>Enter CSV file name</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2234"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2276"/>
         <source>articles avec chiffre d&apos;affaire nul &quot;*.csv&quot; (*.csv)</source>
         <translation>articles with 0 business turnover &quot;*.csv* (*.csv)</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2336"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2378"/>
         <source>La date de &apos;début&apos; doit être antérieure à la date de &apos;fin&apos; !</source>
         <oldsource>La date de &apos;début&apos; doit être antérieur à la date de &apos;fin&apos; !</oldsource>
         <translation>The &apos;begin&apos; date must be anterior to the &apos;end&apos; date !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2688"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2914"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2730"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2956"/>
         <source>analyse comparée</source>
         <translation>compared analysis</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2880"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3893"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2922"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3935"/>
         <source>paramètre manquant</source>
         <translation>missing parameter</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2881"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3894"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2923"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3936"/>
         <source>Vous devez spécifier un paramètre dans le champs de texte &apos;nom&apos; !</source>
         <translation>Please enter a string in field &apos;name&apos; !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3922"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3964"/>
         <source>pas de données</source>
         <translation>no data</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3923"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3965"/>
         <source>Il n&apos;y a pas de données correspondante à la requête !
 Vérifier que les dates de début et de fin, ainsi que l&apos;année sont correctes !</source>
         <translation>There is no data associated with this request!
 Please check that begin and end dates are correct!</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3169"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3211"/>
         <source>[analyse compar\&apos;ee]</source>
         <translation>[compared analysis]</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3733"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3775"/>
         <source>évolution du chiffre d&apos;affaire</source>
         <translation>business turnover progress</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2059"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3579"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2101"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3621"/>
         <source>Il n&apos;y a pas de données correspondante à la requête !
 Vérifier que les dates de début et de fin sont correctes !</source>
         <oldsource>Il n&apos;y a pas de données correspondante à la requête !Vérifier que les dates de début et de fin sont correctes !</oldsource>
@@ -2560,8 +2565,8 @@ Vérifier que les dates de début et de fin sont correctes !</source>
 Please check that begin and end dates are correct!</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2689"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3734"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2731"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3776"/>
         <source>Le mois de &apos;début&apos; doit être antérieur au mois de &apos;fin&apos; !</source>
         <translation>The &apos;begin&apos; month must be anterior to the &apos;end&apos; month!</translation>
     </message>
@@ -3201,8 +3206,8 @@ Please contact an administrator</translation>
     </message>
     <message>
         <location filename="src/admin/creer/creer-localisation.cpp" line="61"/>
-        <location filename="src/windows/crm/yeroth-erp-creer-compte-client-window.cpp" line="471"/>
-        <location filename="src/windows/crm/yeroth-erp-creer-groupe-de-clients-window.cpp" line="386"/>
+        <location filename="src/windows/crm/yeroth-erp-creer-compte-client-window.cpp" line="472"/>
+        <location filename="src/windows/crm/yeroth-erp-creer-groupe-de-clients-window.cpp" line="442"/>
         <location filename="src/windows/supplier/yeroth-erp-creer-fournisseur-window.cpp" line="472"/>
         <source>&apos; n&apos;a pas pu être créer !</source>
         <translation>&apos; couldn&apos;t be created !</translation>
@@ -3637,15 +3642,15 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>client</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="344"/>
-        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="361"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="349"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="366"/>
         <source>payer à un compte client</source>
         <oldsource>comptes clients</oldsource>
         <translation>pay to this client</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="345"/>
-        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="362"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="350"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="367"/>
         <source>Sélectionnez un compte client afin d&apos;effectuer un paiement !</source>
         <translation>Select a client to submit a payment to it !</translation>
     </message>
@@ -3657,78 +3662,78 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>There are no financial transactions for this client to display !</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="378"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="383"/>
         <source>modifier un compte client</source>
         <translation>modify client</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="379"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="384"/>
         <source>Sélectionnez un client à modifier !</source>
         <translation>Select a client to modify its details !</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="401"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="406"/>
         <source>Supprimer les clients sélectionés ?</source>
         <translation>Delete selected clients ?</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="405"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="410"/>
         <source>suppression de plusieurs clients</source>
         <translation>deletion of several clients</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="412"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="417"/>
         <source>Les clients sélectionés</source>
         <translation>Selected clients</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="418"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="423"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseurs-window.cpp" line="400"/>
         <source> ont été supprimés de la base de données !</source>
         <translation> have been deleted !</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="421"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="426"/>
         <source>suppression de clients - succès</source>
         <translation>deletion of clients - success</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="427"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="432"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseurs-window.cpp" line="409"/>
         <source> n&apos;ont pas pu être supprimés de la base de données !</source>
         <translation> coulnd&apos;t be deleted !</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="430"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="435"/>
         <source>suppression de clients - échec</source>
         <translation>deletion of clients - failure</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="502"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="507"/>
         <source>suppression d&apos;un compte client - succès</source>
         <translation>deletion of a client - success</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="511"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="516"/>
         <source>suppression d&apos;un compte client - échec</source>
         <translation>deletion of a client - failure</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="533"/>
-        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="550"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="538"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="555"/>
         <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.cpp" line="111"/>
         <source>détails d&apos;un compte client</source>
         <translation>client details</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="534"/>
-        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="551"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="539"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="556"/>
         <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.cpp" line="112"/>
         <source>Sélectionnez un compte client à afficher les détails !</source>
         <translation>Select a client to view its details !</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="696"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="701"/>
         <source>terme à rechercher (émail, réprésentant, et description de l&apos;entreprise cliente)</source>
         <oldsource>terme à rechercher (nom de l&apos;entreprise, réprésentant, et description de l&apos;entreprise cliente)</oldsource>
         <translation>keyword to search for (email, representant, and client company description)</translation>
@@ -4483,7 +4488,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>client group</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="194"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="199"/>
         <source>terme à rechercher (nom du client)</source>
         <translation>keyword to search for (client name)</translation>
     </message>
@@ -4498,18 +4503,18 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>create a client group</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-creer-groupe-de-clients-window.cpp" line="339"/>
+        <location filename="src/windows/crm/yeroth-erp-creer-groupe-de-clients-window.cpp" line="378"/>
         <source>Remplisser tous les champs obligatoires !</source>
         <translation>Please, fill out all mandatory text fields!</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-creer-groupe-de-clients-window.cpp" line="355"/>
+        <location filename="src/windows/crm/yeroth-erp-creer-groupe-de-clients-window.cpp" line="394"/>
         <source>Le groupe de clients &apos;</source>
         <translation>Client group &apos;</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-creer-groupe-de-clients-window.cpp" line="389"/>
-        <location filename="src/windows/crm/yeroth-erp-creer-groupe-de-clients-window.cpp" line="399"/>
+        <location filename="src/windows/crm/yeroth-erp-creer-groupe-de-clients-window.cpp" line="445"/>
+        <location filename="src/windows/crm/yeroth-erp-creer-groupe-de-clients-window.cpp" line="455"/>
         <source>créer 1 groupe de clients</source>
         <translation>create a client group</translation>
     </message>
@@ -7835,38 +7840,43 @@ alert messages</translation>
         <translation>tax payer identification nr</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="6413"/>
+        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="10618"/>
         <source>dette maximale</source>
         <translation>maximal debt</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="6875"/>
+        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="6436"/>
         <source>description du client</source>
         <translation>client business information</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="7331"/>
+        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="5974"/>
+        <source>référeur</source>
+        <translation>referrer</translation>
+    </message>
+    <message>
+        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="6892"/>
         <source>compte client</source>
         <translation>client</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="7794"/>
+        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="7355"/>
         <source>référence</source>
         <translation>reference</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="10559"/>
+        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="10120"/>
         <source>réf. régistre du commerce</source>
         <oldsource>régistre de commerce</oldsource>
         <translation>trade registry ref.</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="10582"/>
+        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="10143"/>
         <source>Image du compte client</source>
         <translation>Client image</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="11038"/>
+        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="11527"/>
         <source>Payer 
  Au 
  Compte Client</source>
@@ -7874,98 +7884,98 @@ alert messages</translation>
 Client Account</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="11484"/>
+        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="11973"/>
         <source>Aide</source>
         <translation>Help</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="11914"/>
+        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="12403"/>
         <source>Actions</source>
         <translation>Functions</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="12345"/>
+        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="12834"/>
         <source>Outils</source>
         <translation>Tools</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="12776"/>
+        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="13265"/>
         <source>toolBar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="12797"/>
+        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="13286"/>
         <source>À propos</source>
         <translation>About Yeroth-erp-3.0</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="12813"/>
+        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="13302"/>
         <source>Changer d&apos;utilisateur</source>
         <translation>Sign in</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="12825"/>
+        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="13314"/>
         <source>Fermeture</source>
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="12837"/>
-        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="12840"/>
+        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="13326"/>
+        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="13329"/>
         <source>Menu principal</source>
         <translation>Main menu</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="12856"/>
+        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="13345"/>
         <source>Message d&apos;aide</source>
         <translation>User tip</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="12859"/>
+        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="13348"/>
         <source>Appeler l&apos;aide</source>
         <translation>Help</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="12875"/>
-        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="12878"/>
+        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="13364"/>
+        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="13367"/>
         <source>Déconnecter l&apos;utilisateur</source>
         <translation>Sign out</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="12895"/>
+        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="13384"/>
         <source>Administration</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="12907"/>
+        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="13396"/>
         <source>Informations sur l&apos;entreprise</source>
         <translation>Company info</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="12919"/>
+        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="13408"/>
         <source>Qui suis je ?</source>
         <translation>Who am I?</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="12935"/>
-        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="12938"/>
+        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="13424"/>
+        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="13427"/>
         <source>Imprimer les données du client</source>
         <translation>Print client data</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="12950"/>
-        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="12953"/>
+        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="13439"/>
+        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="13442"/>
         <source>Lister les clients</source>
         <translation>View clients</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="12958"/>
-        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="12961"/>
+        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="13447"/>
+        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="13450"/>
         <source>Modifier ce compte client</source>
         <translation>Modify client</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="12966"/>
-        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="12969"/>
+        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="13455"/>
+        <location filename="ui/crm/yeroth-erp-clients-detail-window.ui" line="13458"/>
         <source>Supprimer ce compte client</source>
         <translation>Delete this client</translation>
     </message>
@@ -8839,14 +8849,9 @@ Compte client</source>
 Client Account</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="2180"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="2182"/>
         <source>Menu</source>
         <translation></translation>
-    </message>
-    <message>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="1745"/>
-        <source>Supprimer</source>
-        <translation>Delete</translation>
     </message>
     <message>
         <location filename="ui/crm/yeroth-erp-clients-window.ui" line="872"/>
@@ -8854,179 +8859,188 @@ Client Account</translation>
         <translation>Show</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="3894"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="1745"/>
+        <source>CRÉER UN
+PROGRAMME DE 
+FIDÉLITÉ</source>
+        <translation>CREATE A
+CLIENT ROYALTY 
+PROGRAM</translation>
+    </message>
+    <message>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="3896"/>
         <source>réinitialiser filtre</source>
         <translation>reset filter</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="4328"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="4330"/>
         <source>filtrer</source>
         <translation>filter</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="6959"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="6961"/>
         <source>réinitialiser</source>
         <translation>reset</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="7767"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="7769"/>
         <source>LAST PAGE NR</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="8128"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="8130"/>
         <source>/</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="9393"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="9395"/>
         <source>CURRENT PAGE NR</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="9856"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="9858"/>
         <source>Allant de 1 à 999.</source>
         <translation>From 1 to 999.</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="10668"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="10670"/>
         <source># lignes</source>
         <translation># rows</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="12434"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="12436"/>
         <source>Aide</source>
         <translation>Help</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="12859"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="12861"/>
         <source>Actions</source>
         <translation>Functions</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13293"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13295"/>
         <source>Outils</source>
         <translation>Tools</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13743"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13745"/>
         <source>Yeroth-erp-3.0 - effectuer un paiment comptant.</source>
         <translation>Yeroth-erp-3.0 - make a cash payment.</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13767"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13769"/>
         <source>À propos</source>
         <translation>About Yeroth-erp-3.0</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13783"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13785"/>
         <source>Changer d&apos;utilisateur</source>
         <translation>Sign in</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13795"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13797"/>
         <source>Fermeture</source>
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13807"/>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13810"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13809"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13812"/>
         <source>Menu principal</source>
         <translation>Main menu</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13826"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13828"/>
         <source>Message d&apos;aide</source>
         <translation>User tip</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13829"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13831"/>
         <source>Appeler l&apos;aide</source>
         <translation>Help</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13845"/>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13848"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13847"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13850"/>
         <source>Déconnecter l&apos;utilisateur</source>
         <translation>Sign out</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13988"/>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13991"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13990"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13993"/>
         <source>Supprimer un compte client</source>
         <translation>Delete this client</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="14001"/>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="14004"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="14003"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="14006"/>
         <source>Modifier compte client</source>
         <translation>Modify client</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="14014"/>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="14017"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="14016"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="14019"/>
         <source>Afficher les détails de ce client</source>
         <translation>View client details</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="14032"/>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="14035"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="14034"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="14037"/>
         <source>Sélectionner les  champs (base de données) visible</source>
         <translation>Select &apos;visible&apos; database table fields</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="14050"/>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="14053"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="14052"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="14055"/>
         <source>Réinitialiser les  champs (base de données) visible</source>
         <translation>Reset &apos;visible&apos; database table fields</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="14063"/>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="14066"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="14065"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="14068"/>
         <source>Payer à ce compte client</source>
         <translation>Pay to this client</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="14078"/>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="14081"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="14080"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="14083"/>
         <source>Afficher les groupes du client</source>
         <translation>View client groups</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13865"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13867"/>
         <source>Administration</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="6025"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="6027"/>
         <source># clients</source>
         <oldsource># comptes clients</oldsource>
         <translation># clients</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13877"/>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13880"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13879"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13882"/>
         <source>Informations sur l&apos;entreprise</source>
         <translation>Company info</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13892"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13894"/>
         <source>Qui suis je ?</source>
         <translation>Who am I?</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13973"/>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13976"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13975"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13978"/>
         <source>Créer un compte client</source>
         <translation>Create a client</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13908"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13910"/>
         <source>Imprimer la fiche des clients</source>
         <translation>Print client list</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="2642"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="2644"/>
         <source>GROUPES 
  DE 
  CLIENTS</source>
@@ -9034,28 +9048,28 @@ Client Account</translation>
  GROUP</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13918"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13920"/>
         <source>Réinitialiser les éléments de fitrage</source>
         <translation>reset filter</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13933"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13935"/>
         <source>Exporter au format csv</source>
         <translation>Export as csv file</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13943"/>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13946"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13945"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13948"/>
         <source>Afficher les détails d&apos;un client</source>
         <translation>View client details</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13958"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13960"/>
         <source>Réinitialiser la recherche</source>
         <translation>Reset search</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13961"/>
+        <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13963"/>
         <source>réinitialiser la recherche</source>
         <translation>reset search</translation>
     </message>
