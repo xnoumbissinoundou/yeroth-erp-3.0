@@ -91,10 +91,11 @@ public slots:
         _curStocksVenduTableModel->yerothSetFilter_WITH_where_clause(_searchFilter);
     }
 
-    inline void generer()
-    {
-        rechercher();
-    }
+    void generer();
+
+    void quantite_max_stats(QString fileName, QString fieldId, int size, bool service = false);
+
+    void quantite_moindre_stats(QString fileName, QString fieldId, int size, bool service = false);
 
     void meilleursStats(QString fileName, QString fieldId, int size, bool service = false);
 
@@ -104,6 +105,72 @@ public slots:
 
     void derniersStats(QString fileName, QString fieldId, int size, bool service = false);
 
+
+    //** statsQuantiteMax*
+    inline void statsQuantiteMaxServices(QString fileName, int size)
+    {
+    	quantite_max_stats(fileName, YerothDatabaseTableColumn::DESIGNATION, size, true);
+    }
+
+    inline void statsQuantiteMaxClients(QString fileName, int size, bool service = false)
+    {
+    	quantite_max_stats(fileName, YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT, size);
+    }
+
+    inline void statsQuantiteMaxFournisseursVentes(QString fileName, int size, bool service = false)
+    {
+    	quantite_max_stats(fileName, YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR, size);
+    }
+
+    inline void statsQuantiteMaxCaissiers(QString fileName, int size, bool service = false)
+    {
+    	quantite_max_stats(fileName, YerothDatabaseTableColumn::NOM_CAISSIER, size);
+    }
+
+    inline void statsQuantiteMaxCategories(QString fileName, int size, bool service = false)
+    {
+    	quantite_max_stats(fileName, YerothDatabaseTableColumn::CATEGORIE, size);
+    }
+
+    inline void statsQuantiteMaxArticles(QString fileName, int size, bool service = false)
+    {
+    	quantite_max_stats(fileName, YerothDatabaseTableColumn::DESIGNATION, size);
+    }
+
+
+    //** statsQuantiteMoindre*
+    inline void statsQuantiteMoindreServices(QString fileName, int size)
+    {
+    	quantite_moindre_stats(fileName, YerothDatabaseTableColumn::DESIGNATION, size, true);
+    }
+
+    inline void statsQuantiteMoindreClients(QString fileName, int size, bool service = false)
+    {
+    	quantite_moindre_stats(fileName, YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT, size);
+    }
+
+    inline void statsQuantiteMoindreFournisseursVentes(QString fileName, int size, bool service = false)
+    {
+    	quantite_moindre_stats(fileName, YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR, size);
+    }
+
+    inline void statsQuantiteMoindreCaissiers(QString fileName, int size, bool service = false)
+    {
+    	quantite_moindre_stats(fileName, YerothDatabaseTableColumn::NOM_CAISSIER, size);
+    }
+
+    inline void statsQuantiteMoindreCategories(QString fileName, int size, bool service = false)
+    {
+    	quantite_moindre_stats(fileName, YerothDatabaseTableColumn::CATEGORIE, size);
+    }
+
+    inline void statsQuantiteMoindreArticles(QString fileName, int size, bool service = false)
+    {
+    	quantite_moindre_stats(fileName, YerothDatabaseTableColumn::DESIGNATION, size);
+    }
+
+
+    //** statsMeilleurs*
     inline void statsMeilleursClients(QString fileName, int size, bool service = false)
     {
     	meilleursStats(fileName, YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT, size);
@@ -134,6 +201,8 @@ public slots:
     	meilleursStats(fileName, YerothDatabaseTableColumn::CATEGORIE, size);
     }
 
+
+    //** ZERO_stat_*
     inline void statsZERO_Clients(QString fileName)
     {
 //    	ZERO_stats(fileName, YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT);
@@ -159,6 +228,8 @@ public slots:
     	ZERO_stats(fileName, YerothDatabaseTableColumn::CATEGORIE);
     }
 
+
+    //** statsDerniers*
     inline void statsDerniersClients(QString fileName, int size)
     {
     	derniersStats(fileName, YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT, size);
@@ -200,6 +271,8 @@ public slots:
     void bilanComptable();
 
     void analyseComparee();
+
+    void compterLesArticlesVendusParQuantite();
 
     void calculerChiffresDaffaireMois();
 
@@ -290,6 +363,8 @@ private:
 	static const QString MOIS_11;
 	static const QString MOIS_12;
 
+	static const QString QUALITE_PLUS_VENDU_PAR_QUANTITE;
+	static const QString QUALITE_MOINS_VENDU_PAR_QUANTITE;
 	static const QString QUALITE_MEILLEURS;
 	static const QString QUALITE_ZERO;
 	static const QString QUALITE_DERNIERS;
@@ -312,6 +387,9 @@ private:
 	YerothLogger			*_logger;
 
 	QString					_searchFilter;
+
+	QString					_curDetailPDFFileTitleString;
+
 	QString 				_reportTexFileEndString;
 
 	QMap<QString, int> 		_moisToNombre;

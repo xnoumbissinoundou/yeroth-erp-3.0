@@ -33,9 +33,11 @@
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 		const QString YerothTableauxDeBordWindow::OPERATION_GENERER("générer les");
-		const QString YerothTableauxDeBordWindow::QUALITE_MEILLEURS("les chiffres d'affaires les plus élevés");
-		const QString YerothTableauxDeBordWindow::QUALITE_ZERO("les chiffres d'affaires zéro");
-		const QString YerothTableauxDeBordWindow::QUALITE_DERNIERS("les chiffres d'affaires les moins élevés");
+		const QString YerothTableauxDeBordWindow::QUALITE_PLUS_VENDU_PAR_QUANTITE("avec les quantités les plus vendues");
+		const QString YerothTableauxDeBordWindow::QUALITE_MOINS_VENDU_PAR_QUANTITE("avec les quantités les moins vendues");
+		const QString YerothTableauxDeBordWindow::QUALITE_MEILLEURS("avec les chiffres d'affaires les plus élevés");
+		const QString YerothTableauxDeBordWindow::QUALITE_ZERO("avec les chiffres d'affaires zéro");
+		const QString YerothTableauxDeBordWindow::QUALITE_DERNIERS("avec les chiffres d'affaires les moins élevés");
 		const QString YerothTableauxDeBordWindow::OBJET_SERVICES("services");
 		const QString YerothTableauxDeBordWindow::OBJET_ARTICLES("articles");
 		const QString YerothTableauxDeBordWindow::OBJET_CATEGORIES("catégories");
@@ -48,6 +50,8 @@
 
 #ifdef YEROTH_ENGLISH_LANGUAGE
 		const QString YerothTableauxDeBordWindow::OPERATION_GENERER("generate the");
+		const QString YerothTableauxDeBordWindow::QUALITE_PLUS_VENDU_PAR_QUANTITE("highest sold quantity");
+		const QString YerothTableauxDeBordWindow::QUALITE_MOINS_VENDU_PAR_QUANTITE("lowest sold quantity");
 		const QString YerothTableauxDeBordWindow::QUALITE_MEILLEURS("best business turnover");
 		const QString YerothTableauxDeBordWindow::QUALITE_ZERO("zero business turnover");
 		const QString YerothTableauxDeBordWindow::QUALITE_DERNIERS("least business turnover");
@@ -323,6 +327,8 @@ void YerothTableauxDeBordWindow::setupTab_COMPARAISON_DES_CHIFFRES_DAFFAIRES()
 {
     comboBox_operations->addItem(YerothTableauxDeBordWindow::OPERATION_GENERER);
 
+    comboBox_qualite->addItem(YerothTableauxDeBordWindow::QUALITE_PLUS_VENDU_PAR_QUANTITE);
+    comboBox_qualite->addItem(YerothTableauxDeBordWindow::QUALITE_MOINS_VENDU_PAR_QUANTITE);
     comboBox_qualite->addItem(YerothTableauxDeBordWindow::QUALITE_MEILLEURS);
     comboBox_qualite->addItem(YerothTableauxDeBordWindow::QUALITE_ZERO);
     comboBox_qualite->addItem(YerothTableauxDeBordWindow::QUALITE_DERNIERS);
@@ -566,6 +572,370 @@ void YerothTableauxDeBordWindow::reinitialiser_bilan_comptable()
 
     dateEdit_bilan_comptable_debut->reset();
     dateEdit_bilan_comptable_fin->reset();
+}
+
+
+void YerothTableauxDeBordWindow::generer()
+{
+    if (YerothTableauxDeBordWindow::QUALITE_PLUS_VENDU_PAR_QUANTITE == comboBox_qualite->currentText() ||
+    	YerothTableauxDeBordWindow::QUALITE_MOINS_VENDU_PAR_QUANTITE == comboBox_qualite->currentText() )
+    {
+    	compterLesArticlesVendusParQuantite();
+    }
+    else
+    {
+        rechercher();
+    }
+}
+
+
+void YerothTableauxDeBordWindow::quantite_max_stats(QString fileName,
+													QString fieldId,
+													int size,
+													bool service /* = false */)
+{
+    _logger->log("quantite_max_stats");
+
+    QString strQuery;
+
+    if (!service)
+    {
+    	strQuery.append(QString("SELECT %1, %2 FROM %3 WHERE %4 >= '%5' AND %6 <= '%7'")
+    					.arg(fieldId,
+    						 YerothDatabaseTableColumn::QUANTITE_VENDUE,
+    						 _allWindows->STOCKS_VENDU,
+							 YerothDatabaseTableColumn::DATE_VENTE,
+							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_debut->date()),
+							 YerothDatabaseTableColumn::DATE_VENTE,
+							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_fin->date())));
+    }
+    else //service == true
+    {
+    	strQuery.append(QString("SELECT %1, %2 FROM %3 WHERE (%4 >= '%5' AND %6 <= '%7') AND %8=1")
+    					.arg(fieldId,
+    						 YerothDatabaseTableColumn::QUANTITE_VENDUE,
+    						 _allWindows->SERVICES_COMPLETES,
+    						 YerothDatabaseTableColumn::DATE_VENTE,
+							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_debut->date()),
+							 YerothDatabaseTableColumn::DATE_VENTE,
+							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_fin->date()),
+							 YerothDatabaseTableColumn::IS_SERVICE));
+    }
+
+    QSqlQuery query;
+
+    unsigned int SIZE_FOR_CSV_FILE_CONTENT = (size > QUANTITE_9) ? QUANTITE_9 : size;
+
+    int querySize = YerothUtils::execQuery(query, strQuery, _logger);
+
+    QString fieldIdValue;
+    double total = 0.0;
+    double quantite_vendue = 0.0;
+
+    QList<YerothStatsItem *> nomEntrepriseFournisseurToVentes;
+
+    if (querySize > 0)
+    {
+    	while(query.next())
+    	{
+    		fieldIdValue = query.value(0).toString();
+    		quantite_vendue = query.value(1).toDouble();
+
+    		int idx = -1;
+    		for(int i = 0; i < nomEntrepriseFournisseurToVentes.size(); ++i)
+    		{
+    			if (YerothUtils::isEqualCaseInsensitive(nomEntrepriseFournisseurToVentes.value(i)->_itemName, fieldIdValue))
+    			{
+    				idx = i;
+    				break;
+    			}
+    		}
+
+    		if (-1 == idx)
+    		{
+    			YerothStatsItem *aNewItem = new YerothStatsItem(fieldIdValue, quantite_vendue);
+    			nomEntrepriseFournisseurToVentes.push_back(aNewItem);
+
+    			total += quantite_vendue;
+    		}
+    		else
+    		{
+    			YerothStatsItem *anItem = nomEntrepriseFournisseurToVentes.value(idx);
+    			anItem->_itemValue += quantite_vendue;
+
+    			total += quantite_vendue;
+    		}
+    	}
+    }
+
+    qSort(nomEntrepriseFournisseurToVentes.begin(), nomEntrepriseFournisseurToVentes.end(), YerothStatsItem::lessThan);
+
+    //Remove all items with a zero value
+	for(int j = 0; j < nomEntrepriseFournisseurToVentes.size(); ++j)
+	{
+		if (0 == nomEntrepriseFournisseurToVentes.at(j)->_itemValue)
+		{
+			nomEntrepriseFournisseurToVentes.removeAt(j);
+		}
+	}
+
+    QString csvFileContent;
+    QString label;
+    QString curValueStr;
+    QString pourcentageStr;
+
+    _reportTexFileEndString.clear();
+
+    _reportTexFileEndString.append(YerothUtils::LATEX_IN_OUT_handleForeignAccents(
+    		QObject::trUtf8("D\\'etails par quantit\\'es les plus vendues:")))
+        			.prepend("\\textbf{").append("}\n");
+
+    _reportTexFileEndString.append("\\begin{enumerate}[1)]\n");
+
+    _csvFileItemSize = 0;
+
+    double pourcentage = 0;
+    double curValue = 0;
+
+    for(int j = nomEntrepriseFournisseurToVentes.size() - 1, k = 0; j > -1 && k < size; --j, ++k)
+    {
+    	curValue = nomEntrepriseFournisseurToVentes.value(j)->_itemValue;
+
+    	curValueStr.clear();
+    	curValueStr.append(GET_DOUBLE_STRING(curValue));
+
+    	pourcentage = (curValue / total) * 100.0;
+    	pourcentageStr = QString::number(pourcentage, 'f', 3);
+
+    	/*qDebug() << QString("++ value: %1, name %2, total: %3, pourcentage: %4")
+            				.arg(QString::number(caissierToVentes.value(j)->_itemValue, 'f', 9),
+            					 caissierToVentes.value(j)->_itemName,
+            					 QString::number(total, 'f', 9),
+            					 QString::number(pourcentage, 'f', 9));*/
+
+    	label.clear();
+    	label.append(QString("\"%1\"")
+    			.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(nomEntrepriseFournisseurToVentes.at(j)->_itemName)));
+
+    	if (k < SIZE_FOR_CSV_FILE_CONTENT)
+    	{
+    		csvFileContent.prepend(QString("%1, %2\n")
+    				.arg(label, pourcentageStr));
+    		++_csvFileItemSize;
+    	}
+
+    	_reportTexFileEndString.append(QString("\\item %1: %2\n")
+    			.arg(label,
+    					YerothUtils::LATEX_IN_OUT_handleForeignAccents(curValueStr)));
+
+    	//qDebug() << "++ reportTexFileEndString: " << _reportTexFileEndString;
+
+    	pourcentage = 0;
+    }
+
+    _reportTexFileEndString.append("\\end{enumerate}");
+
+    //qDebug() << "++ test, _csvFileItemSize: " << caissierToVentes.size();
+
+    csvFileContent.prepend("Nom, Total\n");
+
+    //clean up
+    for (int k = 0; k < nomEntrepriseFournisseurToVentes.size(); ++k)
+    {
+    	delete nomEntrepriseFournisseurToVentes.value(k);
+    }
+
+    QFile csvFile(fileName);
+
+    if (!csvFile.open(QIODevice::WriteOnly | QIODevice::Truncate))
+    {
+    	_logger->log("quantite_max_stats", csvFile.errorString());
+    }
+    else
+    {
+    	QTextStream outCsvFile(&csvFile);
+
+    	outCsvFile << csvFileContent;
+
+    	//qDebug() << QString("\t%1: \n%2").arg(fileName, csvFileContent);
+
+    	csvFile.close();
+    }
+}
+
+
+void YerothTableauxDeBordWindow::quantite_moindre_stats(QString fileName,
+														QString fieldId,
+														int size,
+														bool service /* = false */)
+{
+    _logger->log("quantite_moindre_stats");
+
+    QString strQuery;
+
+    if (!service)
+    {
+    	strQuery.append(QString("SELECT %1, %2 FROM %3 WHERE %4 >= '%5' AND %6 <= '%7'")
+    					.arg(fieldId,
+    						 YerothDatabaseTableColumn::QUANTITE_VENDUE,
+    						 _allWindows->STOCKS_VENDU,
+							 YerothDatabaseTableColumn::DATE_VENTE,
+							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_debut->date()),
+							 YerothDatabaseTableColumn::DATE_VENTE,
+							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_fin->date())));
+    }
+    else //service == true
+    {
+    	strQuery.append(QString("SELECT %1, %2 FROM %3 WHERE (%4 >= '%5' AND %6 <= '%7') AND %8=1")
+    					.arg(fieldId,
+    						 YerothDatabaseTableColumn::QUANTITE_VENDUE,
+    						 _allWindows->SERVICES_COMPLETES,
+    						 YerothDatabaseTableColumn::DATE_VENTE,
+							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_debut->date()),
+							 YerothDatabaseTableColumn::DATE_VENTE,
+							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_fin->date()),
+							 YerothDatabaseTableColumn::IS_SERVICE));
+    }
+
+    QSqlQuery query;
+
+    unsigned int SIZE_FOR_CSV_FILE_CONTENT = (size > QUANTITE_9) ? QUANTITE_9 : size;
+
+    int querySize = YerothUtils::execQuery(query, strQuery, _logger);
+
+    QString fieldIdValue;
+    double total = 0.0;
+    double quantite_vendue = 0.0;
+
+    QList<YerothStatsItem *> nomEntrepriseFournisseurToVentes;
+
+    if (querySize > 0)
+    {
+    	while(query.next())
+    	{
+    		fieldIdValue = query.value(0).toString();
+    		quantite_vendue = query.value(1).toDouble();
+
+    		int idx = -1;
+    		for(int i = 0; i < nomEntrepriseFournisseurToVentes.size(); ++i)
+    		{
+    			if (YerothUtils::isEqualCaseInsensitive(nomEntrepriseFournisseurToVentes.value(i)->_itemName, fieldIdValue))
+    			{
+    				idx = i;
+    				break;
+    			}
+    		}
+
+    		if (-1 == idx)
+    		{
+    			YerothStatsItem *aNewItem = new YerothStatsItem(fieldIdValue, quantite_vendue);
+    			nomEntrepriseFournisseurToVentes.push_back(aNewItem);
+
+    			total += quantite_vendue;
+    		}
+    		else
+    		{
+    			YerothStatsItem *anItem = nomEntrepriseFournisseurToVentes.value(idx);
+    			anItem->_itemValue += quantite_vendue;
+
+    			total += quantite_vendue;
+    		}
+    	}
+    }
+
+    qSort(nomEntrepriseFournisseurToVentes.begin(), nomEntrepriseFournisseurToVentes.end(), YerothStatsItem::lessThan);
+
+    //Remove all items with a zero value
+	for(int j = 0; j < nomEntrepriseFournisseurToVentes.size(); ++j)
+	{
+		if (0 == nomEntrepriseFournisseurToVentes.at(j)->_itemValue)
+		{
+			nomEntrepriseFournisseurToVentes.removeAt(j);
+		}
+	}
+
+    QString csvFileContent;
+    QString label;
+    QString curValueStr;
+    QString pourcentageStr;
+
+    _reportTexFileEndString.clear();
+
+    _reportTexFileEndString.append(YerothUtils::LATEX_IN_OUT_handleForeignAccents(
+    		QObject::trUtf8("D\\'etails par quantit\\'es les moins vendues:")))
+        			.prepend("\\textbf{").append("}\n");
+
+    _reportTexFileEndString.append("\\begin{enumerate}[1)]\n");
+
+    _csvFileItemSize = 0;
+
+    double pourcentage = 0;
+    double curValue = 0;
+
+    for(int j = 0, k = 0; j < nomEntrepriseFournisseurToVentes.size() && k < size; ++j, ++k)
+    {
+    	curValue = nomEntrepriseFournisseurToVentes.value(j)->_itemValue;
+
+    	curValueStr.clear();
+    	curValueStr.append(GET_DOUBLE_STRING(curValue));
+
+    	pourcentage = (curValue / total) * 100.0;
+    	pourcentageStr = QString::number(pourcentage, 'f', 3);
+
+    	/*qDebug() << QString("++ value: %1, name %2, total: %3, pourcentage: %4")
+            				.arg(QString::number(caissierToVentes.value(j)->_itemValue, 'f', 9),
+            					 caissierToVentes.value(j)->_itemName,
+            					 QString::number(total, 'f', 9),
+            					 QString::number(pourcentage, 'f', 9));*/
+
+    	label.clear();
+    	label.append(QString("\"%1\"")
+    			.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(nomEntrepriseFournisseurToVentes.at(j)->_itemName)));
+
+    	if (k < SIZE_FOR_CSV_FILE_CONTENT)
+    	{
+    		csvFileContent.prepend(QString("%1, %2\n")
+    				.arg(label, pourcentageStr));
+    		++_csvFileItemSize;
+    	}
+
+    	_reportTexFileEndString.append(QString("\\item %1: %2\n")
+    			.arg(label,
+    					YerothUtils::LATEX_IN_OUT_handleForeignAccents(curValueStr)));
+
+    	//qDebug() << "++ reportTexFileEndString: " << _reportTexFileEndString;
+
+    	pourcentage = 0;
+    }
+
+    _reportTexFileEndString.append("\\end{enumerate}");
+
+    //qDebug() << "++ test, _csvFileItemSize: " << caissierToVentes.size();
+
+    csvFileContent.prepend("Nom, Total\n");
+
+    //clean up
+    for (int k = 0; k < nomEntrepriseFournisseurToVentes.size(); ++k)
+    {
+    	delete nomEntrepriseFournisseurToVentes.value(k);
+    }
+
+    QFile csvFile(fileName);
+
+    if (!csvFile.open(QIODevice::WriteOnly | QIODevice::Truncate))
+    {
+    	_logger->log("quantite_moindre_stats", csvFile.errorString());
+    }
+    else
+    {
+    	QTextStream outCsvFile(&csvFile);
+
+    	outCsvFile << csvFileContent;
+
+    	//qDebug() << QString("\t%1: \n%2").arg(fileName, csvFileContent);
+
+    	csvFile.close();
+    }
 }
 
 
@@ -2885,12 +3255,480 @@ void YerothTableauxDeBordWindow::analyseComparee()
 }
 
 
+void YerothTableauxDeBordWindow::compterLesArticlesVendusParQuantite()
+{
+	QString objet(comboBox_objets->currentText());
+
+	int size = lineEdit_quantite->text().toInt();
+
+	QStringList progArguments;
+	QString tmpFilePrefix;
+
+	QDir tempDir(YerothERPConfig::temporaryFilesDir);
+
+	QString csvFile;
+	QString pdfFileTitle;
+
+	if (YerothTableauxDeBordWindow::QUALITE_PLUS_VENDU_PAR_QUANTITE == comboBox_qualite->currentText() ||
+		YerothTableauxDeBordWindow::QUALITE_MOINS_VENDU_PAR_QUANTITE == comboBox_qualite->currentText() )
+	{
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+		pdfFileTitle.append(QString("Les %1 ")
+				.arg(lineEdit_quantite->text()));
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+		pdfFileTitle.append(QString("The %1 ")
+				.arg(lineEdit_quantite->text()));
+#endif
+	}
+	else
+	{
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+		pdfFileTitle.append("Les ");
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+		pdfFileTitle.append("The ");
+#endif
+	}
+
+	if (YerothTableauxDeBordWindow::QUALITE_PLUS_VENDU_PAR_QUANTITE == comboBox_qualite->currentText())
+	{
+		if (YerothTableauxDeBordWindow::OBJET_SERVICES == objet)
+		{
+			pdfFileTitle.append(YerothTableauxDeBordWindow::OBJET_SERVICES);
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+			tmpFilePrefix = FILE_NAME_USERID_CURRENT_TIME("les-plus-vendus-par-quantite-services");
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+			tmpFilePrefix = FILE_NAME_USERID_CURRENT_TIME("best-sold-by-quantity-services");
+#endif
+
+			csvFile = tmpFilePrefix + ".csv";
+
+			csvFile.prepend(YerothERPConfig::temporaryFilesDir + "/");
+
+			tempDir.remove(csvFile);
+
+			statsQuantiteMaxServices(csvFile, size);
+		}
+		else if (YerothTableauxDeBordWindow::OBJET_ARTICLES == objet)
+		{
+			pdfFileTitle.append(YerothTableauxDeBordWindow::OBJET_ARTICLES);
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+			tmpFilePrefix = FILE_NAME_USERID_CURRENT_TIME("les-plus-vendus-par-quantite-articles");
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+			tmpFilePrefix = FILE_NAME_USERID_CURRENT_TIME("best-sold-by-quantity-articles");
+#endif
+
+			csvFile = tmpFilePrefix + ".csv";
+
+			csvFile.prepend(YerothERPConfig::temporaryFilesDir + "/");
+
+			tempDir.remove(csvFile);
+
+			statsQuantiteMaxArticles(csvFile, size);
+		}
+		else if (YerothTableauxDeBordWindow::OBJET_CATEGORIES == objet)
+		{
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+			pdfFileTitle.replace(YerothTableauxDeBordWindow::QUALITE_MEILLEURS, "meilleures");
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+			pdfFileTitle.replace(YerothTableauxDeBordWindow::QUALITE_MEILLEURS, "best");
+#endif
+
+			pdfFileTitle.append(YerothTableauxDeBordWindow::OBJET_CATEGORIES);
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+			tmpFilePrefix = FILE_NAME_USERID_CURRENT_TIME("les-plus-vendus-par-quantite-categories");
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+			tmpFilePrefix = FILE_NAME_USERID_CURRENT_TIME("best-sold-by-quantity-categories");
+#endif
+
+			csvFile = tmpFilePrefix + ".csv";
+
+			csvFile.prepend(YerothERPConfig::temporaryFilesDir + "/");
+
+			tempDir.remove(csvFile);
+
+			statsQuantiteMaxCategories(csvFile, size);
+		}
+		else if (YerothTableauxDeBordWindow::OBJET_CAISSIERS == objet)
+		{
+			pdfFileTitle.append(YerothTableauxDeBordWindow::OBJET_CAISSIERS);
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+			tmpFilePrefix = FILE_NAME_USERID_CURRENT_TIME("les-plus-vendus-par-quantite-caissiers");
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+			tmpFilePrefix = FILE_NAME_USERID_CURRENT_TIME("best-sold-by-quantity-cashiers");
+#endif
+
+			csvFile = tmpFilePrefix + ".csv";
+
+			csvFile.prepend(YerothERPConfig::temporaryFilesDir + "/");
+
+			tempDir.remove(csvFile);
+
+			statsQuantiteMaxCaissiers(csvFile, size);
+		}
+		else if (YerothTableauxDeBordWindow::OBJET_CLIENTS == objet)
+		{
+			pdfFileTitle.append(YerothTableauxDeBordWindow::OBJET_CLIENTS);
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+			tmpFilePrefix = FILE_NAME_USERID_CURRENT_TIME("les-plus-vendus-par-quantite-clients");
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+			tmpFilePrefix = FILE_NAME_USERID_CURRENT_TIME("best-sold-by-quantity-customers");
+#endif
+
+			csvFile = tmpFilePrefix + ".csv";
+
+			csvFile.prepend(YerothERPConfig::temporaryFilesDir + "/");
+
+			tempDir.remove(csvFile);
+
+			statsQuantiteMaxClients(csvFile, size);
+		}
+		else if (YerothTableauxDeBordWindow::OBJET_FOURNISSEURS == objet)
+		{
+			pdfFileTitle.append(YerothTableauxDeBordWindow::OBJET_FOURNISSEURS);
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+			tmpFilePrefix = FILE_NAME_USERID_CURRENT_TIME("les-plus-vendus-par-quantite-fournisseurs-ventes");
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+			tmpFilePrefix = FILE_NAME_USERID_CURRENT_TIME("best-sold-by-quantity-supplier-sale");
+#endif
+
+			csvFile = tmpFilePrefix + ".csv";
+
+			csvFile.prepend(YerothERPConfig::temporaryFilesDir + "/");
+
+			tempDir.remove(csvFile);
+
+			statsQuantiteMaxFournisseursVentes(csvFile, size);
+		}
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+		pdfFileTitle.append(" avec les quantit\\'es vendues les plus \\'elev\\'ees");
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+		pdfFileTitle.append(" giving the best sold by quantity");
+#endif
+
+	}
+	else if (YerothTableauxDeBordWindow::QUALITE_MOINS_VENDU_PAR_QUANTITE == comboBox_qualite->currentText())
+	{
+		if (YerothTableauxDeBordWindow::OBJET_SERVICES == objet)
+		{
+			pdfFileTitle.append(YerothTableauxDeBordWindow::OBJET_SERVICES);
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+			tmpFilePrefix = FILE_NAME_USERID_CURRENT_TIME("les-moins-vendus-par-quantite-services");
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+			tmpFilePrefix = FILE_NAME_USERID_CURRENT_TIME("least-sold-by-quantity-services");
+#endif
+
+			csvFile = tmpFilePrefix + ".csv";
+
+			csvFile.prepend(YerothERPConfig::temporaryFilesDir + "/");
+
+			tempDir.remove(csvFile);
+
+			statsQuantiteMoindreServices(csvFile, size);
+		}
+		else if (YerothTableauxDeBordWindow::OBJET_ARTICLES == objet)
+		{
+			pdfFileTitle.append(YerothTableauxDeBordWindow::OBJET_ARTICLES);
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+			tmpFilePrefix = FILE_NAME_USERID_CURRENT_TIME("les-moins-vendus-par-quantite-articles");
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+			tmpFilePrefix = FILE_NAME_USERID_CURRENT_TIME("least-sold-by-quantity-articles");
+#endif
+
+			csvFile = tmpFilePrefix + ".csv";
+
+			csvFile.prepend(YerothERPConfig::temporaryFilesDir + "/");
+
+			tempDir.remove(csvFile);
+
+			statsQuantiteMoindreArticles(csvFile, size);
+		}
+		else if (YerothTableauxDeBordWindow::OBJET_CATEGORIES == objet)
+		{
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+			pdfFileTitle.replace(YerothTableauxDeBordWindow::QUALITE_MOINS_VENDU_PAR_QUANTITE, "les moins");
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+			pdfFileTitle.replace(YerothTableauxDeBordWindow::QUALITE_MOINS_VENDU_PAR_QUANTITE, "least");
+#endif
+
+			pdfFileTitle.append(YerothTableauxDeBordWindow::OBJET_CATEGORIES);
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+			tmpFilePrefix = FILE_NAME_USERID_CURRENT_TIME("les-moins-vendus-par-quantite-categories");
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+			tmpFilePrefix = FILE_NAME_USERID_CURRENT_TIME("least-sold-by-quantity-categories");
+#endif
+
+			csvFile = tmpFilePrefix + ".csv";
+
+			csvFile.prepend(YerothERPConfig::temporaryFilesDir + "/");
+
+			tempDir.remove(csvFile);
+
+			statsQuantiteMoindreCategories(csvFile, size);
+		}
+		else if (YerothTableauxDeBordWindow::OBJET_CAISSIERS == objet)
+		{
+			pdfFileTitle.append(YerothTableauxDeBordWindow::OBJET_CAISSIERS);
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+			tmpFilePrefix = FILE_NAME_USERID_CURRENT_TIME("les-moins-vendus-par-quantite-caissiers");
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+			tmpFilePrefix = FILE_NAME_USERID_CURRENT_TIME("least-sold-by-quantity-cashiers");
+#endif
+
+			csvFile = tmpFilePrefix + ".csv";
+
+			csvFile.prepend(YerothERPConfig::temporaryFilesDir + "/");
+
+			tempDir.remove(csvFile);
+
+			statsQuantiteMoindreCaissiers(csvFile, size);
+		}
+		else if (YerothTableauxDeBordWindow::OBJET_CLIENTS == objet)
+		{
+			pdfFileTitle.append(YerothTableauxDeBordWindow::OBJET_CLIENTS);
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+			tmpFilePrefix = FILE_NAME_USERID_CURRENT_TIME("les-moins-vendus-par-quantite-clients");
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+			tmpFilePrefix = FILE_NAME_USERID_CURRENT_TIME("least-sold-by-quantity-customers");
+#endif
+
+			csvFile = tmpFilePrefix + ".csv";
+
+			csvFile.prepend(YerothERPConfig::temporaryFilesDir + "/");
+
+			tempDir.remove(csvFile);
+
+			statsQuantiteMoindreClients(csvFile, size);
+		}
+		else if (YerothTableauxDeBordWindow::OBJET_FOURNISSEURS == objet)
+		{
+			pdfFileTitle.append(YerothTableauxDeBordWindow::OBJET_FOURNISSEURS);
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+			tmpFilePrefix = FILE_NAME_USERID_CURRENT_TIME("les-moins-vendus-par-quantite-fournisseurs-ventes");
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+			tmpFilePrefix = FILE_NAME_USERID_CURRENT_TIME("least-sold-by-quantity-supplier-sale");
+#endif
+
+			csvFile = tmpFilePrefix + ".csv";
+
+			csvFile.prepend(YerothERPConfig::temporaryFilesDir + "/");
+
+			tempDir.remove(csvFile);
+
+			statsQuantiteMoindreFournisseursVentes(csvFile, size);
+		}
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+		pdfFileTitle.append(" avec les quantit\\'es vendues les moins \\'elev\\'ees");
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+		pdfFileTitle.append(" giving the least sold by quantity");
+#endif
+
+	}
+
+	if (_csvFileItemSize <= 0)
+	{
+		QString retMsg(QObject::trUtf8("Il n'y a pas de données correspondante à la requête !\n"
+				"Vérifier que les dates de début et de fin sont correctes !"));
+
+		YerothQMessageBox::information(this,
+				QObject::trUtf8("rankings - pas de données !"),
+				retMsg);
+		_csvFileItemSize = 0;
+
+		return ;
+	}
+
+	QString latexChartTemplate;
+	QString latexChartFileNamePrefix;
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+	if (YerothTableauxDeBordWindow::QUALITE_ZERO == comboBox_qualite->currentText())
+	{
+		latexChartTemplate.append(YerothUtils::FR_ZERO_ventes_tex);
+
+		latexChartFileNamePrefix.append(YerothERPConfig::temporaryFilesDir + "/" + tmpFilePrefix + "_ZERO");
+	}
+	else if (YerothTableauxDeBordWindow::GRAPHE_BAR_CHART == comboBox_type_graphes->currentText())
+	{
+		latexChartTemplate.append(YerothUtils::FR_bar_chart_tex);
+
+		latexChartFileNamePrefix.append(YerothERPConfig::temporaryFilesDir + "/" + tmpFilePrefix + "-bar-chart");
+	}
+	else if (YerothTableauxDeBordWindow::GRAPHE_PIE_CHART == comboBox_type_graphes->currentText())
+	{
+		latexChartTemplate.append(YerothUtils::FR_pie_chart_tex);
+
+		latexChartFileNamePrefix.append(YerothERPConfig::temporaryFilesDir + "/" + tmpFilePrefix + "-pie-chart");
+	}
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+	if (YerothTableauxDeBordWindow::QUALITE_ZERO == comboBox_qualite->currentText())
+	{
+		latexChartTemplate.append(YerothUtils::EN_ZERO_ventes_tex);
+
+		latexChartFileNamePrefix.append(YerothERPConfig::temporaryFilesDir + "/" + tmpFilePrefix + "_ZERO");
+	}
+	else if (YerothTableauxDeBordWindow::GRAPHE_BAR_CHART == comboBox_type_graphes->currentText())
+	{
+		latexChartTemplate.append(YerothUtils::EN_bar_chart_tex);
+
+		latexChartFileNamePrefix.append(YerothERPConfig::temporaryFilesDir + "/" + tmpFilePrefix + "-bar-chart");
+	}
+	else if (YerothTableauxDeBordWindow::GRAPHE_PIE_CHART == comboBox_type_graphes->currentText())
+	{
+		latexChartTemplate.append(YerothUtils::EN_pie_chart_tex);
+
+		latexChartFileNamePrefix.append(YerothERPConfig::temporaryFilesDir + "/" + tmpFilePrefix + "-pie-chart");
+	}
+#endif
+
+	QString pdfFile(latexChartFileNamePrefix + ".pdf");
+	tempDir.remove(pdfFile);
+
+	//qDebug() << "++ csvFile: " << csvFile;
+
+	if (YerothTableauxDeBordWindow::GRAPHE_PIE_CHART == comboBox_type_graphes->currentText())
+	{
+		QString YEROTHCUTAWAY;
+
+		for(int k = 1; k <= _csvFileItemSize; ++k)
+		{
+			YEROTHCUTAWAY.append(QString::number(k)).append(",");
+			//qDebug() << "++ YEROTHCUTAWAY: " << YEROTHCUTAWAY;
+		}
+
+		YEROTHCUTAWAY.remove(YEROTHCUTAWAY.length()-1, 1);
+
+		latexChartTemplate.replace("YEROTHCUTAWAY", YEROTHCUTAWAY);
+	}
+
+	YerothInfoEntreprise &infoEntreprise = _allWindows->getInfoEntreprise();
+
+	QString statsDate(YerothUtils::LATEX_IN_OUT_handleForeignAccents(infoEntreprise.getVilleTex()));
+
+	YerothUtils::getCurrentLocaleDate(statsDate);
+
+	//qDebug() << "++ type fact. rapports: " << YerothConfig::typeOfFacturation;
+
+	latexChartTemplate.replace("YEROTHPAPERSPEC", "a4paper");
+
+	latexChartTemplate.replace("YEROTHCSVFILE", 					tmpFilePrefix + ".csv");
+	latexChartTemplate.replace("YEROTHCHARTFIN", 				_reportTexFileEndString);
+
+	latexChartTemplate.replace("YEROTHUTILISATEUR", QString("%1 %2")
+			.arg(YerothUtils::getAllWindows()->getUser()->titreTex(),
+					YerothUtils::getAllWindows()->getUser()->nom_completTex()));
+
+	latexChartTemplate.replace("YEROTHENTREPRISE", 				infoEntreprise.getNomCommercialTex());
+	latexChartTemplate.replace("YEROTHBARCHARTTITLE", 			YerothUtils::LATEX_IN_OUT_handleForeignAccents(pdfFileTitle));
+	latexChartTemplate.replace("YEROTHENTREPRISE", 				infoEntreprise.getNomCommercialTex());
+	latexChartTemplate.replace("YEROTHACTIVITESENTREPRISE", 		infoEntreprise.getSecteursActivitesTex());
+	latexChartTemplate.replace("YEROTHBOITEPOSTALE", 			infoEntreprise.getBoitePostal());
+	latexChartTemplate.replace("YEROTHVILLE", 					infoEntreprise.getVilleTex());
+	latexChartTemplate.replace("YEROTHPAYS", 					infoEntreprise.getPaysTex());
+	latexChartTemplate.replace("YEROTHEMAIL", 					infoEntreprise.getEmailTex());
+	latexChartTemplate.replace("YEROTHTELEPHONE", 				infoEntreprise.getTelephone());
+	latexChartTemplate.replace("YEROTHDATE", 					statsDate);
+	latexChartTemplate.replace("YEROTHVENTESDEBUT", 				DATE_TO_STRING(dateEdit_rapports_debut->date()));
+	latexChartTemplate.replace("YEROTHVENTESFIN", 				DATE_TO_STRING(dateEdit_rapports_fin->date()));
+	latexChartTemplate.replace("YEROTHHEUREGENERATION",			CURRENT_TIME);
+	latexChartTemplate.replace("YEROTHCOMPTEBANCAIRENR", 		infoEntreprise.getNumeroCompteBancaire());
+	latexChartTemplate.replace("YEROTHCONTRIBUABLENR", 			infoEntreprise.getNumeroDeContribuable());
+	latexChartTemplate.replace("YEROTHAGENCECOMPTEBANCAIRE",		infoEntreprise.getAgenceCompteBancaireTex());
+
+	QFile latexChartFile(latexChartFileNamePrefix + ".tex");
+
+	if (latexChartFile.open(QFile::WriteOnly))
+	{
+		latexChartFile.write(latexChartTemplate.toUtf8());
+	}
+
+	latexChartFile.close();
+
+
+	progArguments << "-interaction";
+	progArguments << "nonstopmode";
+	progArguments << latexChartFile.fileName();
+
+	//qDebug() << "++ -> " << latexChartFile.fileName();
+
+	if (!progArguments.empty())
+	{
+		QProcess aProcess;
+
+		aProcess.setWorkingDirectory(YerothERPConfig::temporaryFilesDir);
+
+		aProcess.start(YerothERPConfig::pathToPdfLatex(), progArguments);
+
+		aProcess.waitForFinished(-1);
+
+		progArguments.clear();
+		progArguments << pdfFile;
+
+		aProcess.startDetached(YerothERPConfig::pathToPdfReader, progArguments);
+		aProcess.waitForFinished();
+	}
+
+	_csvFileItemSize = 0;
+}
+
+
 void YerothTableauxDeBordWindow::calculerChiffresDaffaireMois()
 {
     _logger->log("calculerChiffresDaffaireMois");
 
     if (comboBox_mois_debut_chiffre_affaire->currentIndex() >
-            comboBox_mois_fin_chiffre_affaire->currentIndex())
+        comboBox_mois_fin_chiffre_affaire->currentIndex())
     {
         YerothQMessageBox::warning(this, QObject::trUtf8("évolution du chiffre d'affaire"),
                                   QObject::trUtf8("Le mois de 'début' doit être"

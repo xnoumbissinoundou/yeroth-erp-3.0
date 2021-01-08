@@ -167,6 +167,7 @@ HEADERS = src/include/yeroth-erp-3-0-precompiled-header.hpp \
 		  src/widgets/yeroth-erp-datetime-edit.hpp \
 		  src/widgets/yeroth-erp-qcheckbox.hpp \
 		  src/widgets/yeroth-erp-select-db-qcheckbox.hpp \
+			src/widgets/yeroth-erp-creer-un-groupe-de-clients-table-widget.hpp \
 			src/widgets/yeroth-erp-groupes-dun-client-table-widget.hpp \
 			src/widgets/yeroth-erp-point-de-vente-table-widget.hpp \
 		  src/widgets/yeroth-erp-table-widget.hpp \
@@ -291,6 +292,7 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/widgets/yeroth-erp-datetime-edit.cpp \
 		  src/widgets/yeroth-erp-qcheckbox.cpp \
 		  src/widgets/yeroth-erp-select-db-qcheckbox.cpp \
+			src/widgets/yeroth-erp-creer-un-groupe-de-clients-table-widget.cpp \
 			src/widgets/yeroth-erp-groupes-dun-client-table-widget.cpp \
 			src/widgets/yeroth-erp-point-de-vente-table-widget.cpp \
 			src/widgets/yeroth-erp-table-widget.cpp \

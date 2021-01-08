@@ -50,7 +50,7 @@ public:
 
     virtual void rendreInvisible();
 
-    void rendreVisible(YerothSqlTableModel *stocksTableModel);
+    virtual void rendreVisible(YerothSqlTableModel *stocksTableModel);
 
 public slots:
 
@@ -74,6 +74,8 @@ protected:
     virtual void setupShortcuts();
 
 private slots:
+
+	void ajouter_un_membre_au_groupe_de_clients(const QString &aClientGroupMember);
 
 	inline void annuler_la_creation_dun_groupe_de_clients()
 	{

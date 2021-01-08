@@ -88,6 +88,11 @@ YerothCreerGroupeDeClientsWindow::YerothCreerGroupeDeClientsWindow()
     connect(actionQui_suis_je, SIGNAL(triggered()), this, SLOT(qui_suis_je()));
     connect(actionAdministration, SIGNAL(triggered()), this, SLOT(administration()));
 
+//    connect(lineEdit_creer_groupe_clients_recherche_client_initiaux->getMyQCompleter(),
+//    		SIGNAL(activated(const QString &)),
+//			this,
+//            SLOT(ajouter_un_membre_au_groupe_de_clients(const QString &)));
+
 #ifdef YEROTH_CLIENT
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 #endif
@@ -312,6 +317,13 @@ void YerothCreerGroupeDeClientsWindow::rendreVisible(YerothSqlTableModel * stock
 }
 
 
+void YerothCreerGroupeDeClientsWindow::ajouter_un_membre_au_groupe_de_clients(const QString &aClientGroupMember)
+{
+//	tableWidget_creer_groupe_clients_membres_initiaux_du_groupe
+//		->addAClientGroupMember();
+}
+
+
 void YerothCreerGroupeDeClientsWindow::supprimerUnMembreDunGroupeDeClients()
 {
 
@@ -336,73 +348,60 @@ bool YerothCreerGroupeDeClientsWindow::creerEnregistrerUnGroupeDeClients()
 
 	if (clientGroupAlreadyExists())
 	{
-		QDEBUG_STRINGS_OUTPUT_1("++ TEST TRUE EXISTS ALREADY");
 		return false;
 	}
 
-	QDEBUG_STRINGS_OUTPUT_1("++ TEST FALSE DOESN'T EXISTS");
+
+	QString retMsg(QObject::tr("Le groupe de clients '"));
+
+	YerothSqlTableModel &clientGroupTableModel = _allWindows->getSqlTableModel_groupes_de_clients();
+
+	QSqlRecord record = clientGroupTableModel.record();
+
+	record.setValue(YerothDatabaseTableColumn::ID, YerothERPWindows::getNextIdSqlTableModel_groupes_de_clients());
+	record.setValue(YerothDatabaseTableColumn::DATE_CREATION,
+			DATE_TO_DB_FORMAT_STRING(GET_CURRENT_DATE));
+
+	record.setValue(YerothDatabaseTableColumn::REFERENCE_GROUPE,
+			lineEdit_creer_groupe_clients_reference_groupe->text());
+
+	record.setValue(YerothDatabaseTableColumn::DESIGNATION,
+			lineEdit_creer_groupe_clients_designation->text());
+
+	record.setValue(YerothDatabaseTableColumn::DESCRIPTION_GROUPE,
+			textEdit_creer_groupe_clients_description_groupe->toPlainText());
+
+	record.setValue(YerothDatabaseTableColumn::MAXIMUM_DE_MEMBRES,
+			lineEdit_creer_groupe_clients_maximum_de_membres->text().toInt());
+
+//	record.setValue(YerothDatabaseTableColumn::MEMBRES_DU_GROUPE_db_ID, ->text());
 
 
-//        QString retMsg(QObject::tr("Le client '"));
-//
-//        YerothSqlTableModel &clientsTableModel = _allWindows->getSqlTableModel_clients();
-//
-//        QSqlRecord record = clientsTableModel.record();
-//
-//        record.setValue(YerothDatabaseTableColumn::ID, YerothERPWindows::getNextIdSqlTableModel_clients());
-//        record.setValue(YerothDatabaseTableColumn::REFERENCE_CLIENT, lineEdit_compte_client_reference_client->text());
-//        record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE, lineEdit_compte_client_nom_de_lentreprise->text());
-//        record.setValue(YerothDatabaseTableColumn::NOM_REPRESENTANT, lineEdit_compte_client_nom_du_representant->text());
-//        record.setValue(YerothDatabaseTableColumn::QUARTIER, lineEdit_compte_client_quartier->text());
-//        record.setValue(YerothDatabaseTableColumn::VILLE, lineEdit_compte_client_ville->text());
-//        record.setValue(YerothDatabaseTableColumn::PROVINCE_ETAT, lineEdit_compte_client_province_etat->text());
-//        record.setValue(YerothDatabaseTableColumn::PAYS, lineEdit_compte_client_pays->text());
-//        record.setValue(YerothDatabaseTableColumn::BOITE_POSTALE, lineEdit_compte_client_boite_postale->text());
-//        record.setValue(YerothDatabaseTableColumn::SIEGE_SOCIAL, lineEdit_compte_client_siege_social->text());
-//        record.setValue(YerothDatabaseTableColumn::EMAIL, lineEdit_compte_client_email->text());
-//        record.setValue(YerothDatabaseTableColumn::NUMERO_TELEPHONE_1, lineEdit_compte_client_numero_telephone_1->text());
-//        record.setValue(YerothDatabaseTableColumn::NUMERO_TELEPHONE_2, lineEdit_compte_client_numero_telephone_2->text());
-//        record.setValue(YerothDatabaseTableColumn::REFERENCE_REGISTRE_DU_COMMERCE, lineEdit_compte_client_reference_du_registre_du_commerce->text());
-//        record.setValue(YerothDatabaseTableColumn::NUMERO_CONTRIBUABLE, lineEdit_compte_client_numero_de_contribuable->text());
-//		record.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT, 0.0);
-//		record.setValue(YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT, 0.0);
-//
-//        record.setValue(YerothDatabaseTableColumn::DESCRIPTION_CLIENT, textEdit_creer_compte_client_description_client->toPlainText());
-//
-//        if (0 != label_image_produit 	&&
-//        	label_image_produit->pixmap())
-//        {
-//        	QByteArray bytes;
-//        	YerothUtils::savePixmapToByteArray(bytes, *label_image_produit->pixmap(), "JPG");
-//        	record.setValue(YerothDatabaseTableColumn::IMAGE_COMPTE_CLIENT, bytes);
-//        }
-//
-//        retMsg.append(lineEdit_compte_client_nom_de_lentreprise->text());
-//
-//        bool success = clientsTableModel.insertNewRecord(record);
-//
-//        if (!success)
-//        {
-//            retMsg.append(QObject::trUtf8("' n'a pas pu être créer !"));
-//
-//            YerothQMessageBox::warning(this,
-//                                 QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ créer ~ client"),
-//                                 retMsg);
-//            return false;
-//        }
-//
-//        clientsTableModel.select();
-//
-//        retMsg.append(QObject::trUtf8("' a été créer avec succès !"));
-//
-//        YerothQMessageBox::information(this,
-//                                 QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ créer ~ client"),
-//                                 retMsg);
-//
-//        clear_all_fields();
-//
-//        clients();
-//    }
+	retMsg.append(lineEdit_creer_groupe_clients_designation->text());
+
+	bool success = clientGroupTableModel.insertNewRecord(record);
+
+	if (!success)
+	{
+		retMsg.append(QObject::trUtf8("' n'a pas pu être créer !"));
+
+		YerothQMessageBox::warning(this,
+				QObject::trUtf8("créer 1 groupe de clients"),
+				retMsg);
+		return false;
+	}
+
+	clientGroupTableModel.select();
+
+	retMsg.append(QObject::trUtf8("' a été créer avec succès !"));
+
+	YerothQMessageBox::information(this,
+			QObject::trUtf8("créer 1 groupe de clients"),
+			retMsg);
+
+	clear_all_fields();
+
+	groupes_de_clients();
 
     return true;
 }
