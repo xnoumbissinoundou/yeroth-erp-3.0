@@ -984,9 +984,10 @@ int YerothERPWindows::NEXT_TABLE_ID_MYSQL_FOR_STOCKS()
 int YerothERPWindows::getNextIdFromTable(const QString &tableName)
 {
     //qDebug() << "[YerothUtils::getLastIdFromTable()] : next id from table '" << tableName << "'";
-    QString strQuery(QString("SELECT %1 FROM %2")
+    QString strQuery(QString("SELECT %1 FROM %2 ORDER BY %3 DESC LIMIT 0, 1")
     					.arg(YerothDatabaseTableColumn::ID,
-    						 tableName));
+    						 tableName,
+							 YerothDatabaseTableColumn::ID));
 
     QSqlQuery query(strQuery);
     QSqlRecord rec = query.record();
@@ -995,7 +996,7 @@ int YerothERPWindows::getNextIdFromTable(const QString &tableName)
     {
         int lastId = query.value(0).toInt();
         ++lastId;
-        //qDebug() << "\t next id 1: " << lastId;
+//        qDebug() << "\t next id 1: " << lastId;
         return lastId;
     }
 
