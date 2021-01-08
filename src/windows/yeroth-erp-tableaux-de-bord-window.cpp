@@ -330,8 +330,8 @@ void YerothTableauxDeBordWindow::setupTab_COMPARAISON_DES_CHIFFRES_DAFFAIRES()
     comboBox_qualite->addItem(YerothTableauxDeBordWindow::QUALITE_PLUS_VENDU_PAR_QUANTITE);
     comboBox_qualite->addItem(YerothTableauxDeBordWindow::QUALITE_MOINS_VENDU_PAR_QUANTITE);
     comboBox_qualite->addItem(YerothTableauxDeBordWindow::QUALITE_MEILLEURS);
-    comboBox_qualite->addItem(YerothTableauxDeBordWindow::QUALITE_ZERO);
     comboBox_qualite->addItem(YerothTableauxDeBordWindow::QUALITE_DERNIERS);
+    comboBox_qualite->addItem(YerothTableauxDeBordWindow::QUALITE_ZERO);
 
     comboBox_objets->addItem(YerothTableauxDeBordWindow::OBJET_SERVICES);
     comboBox_objets->addItem(YerothTableauxDeBordWindow::OBJET_ARTICLES);
