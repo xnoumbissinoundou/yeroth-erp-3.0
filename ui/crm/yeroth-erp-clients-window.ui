@@ -1310,7 +1310,7 @@ Un
 Compte client</string>
     </property>
    </widget>
-   <widget class="YerothPushButton" name="pushButton_supprimer">
+   <widget class="YerothPushButton" name="pushButton_creer_un_programme_de_fidelite_client">
     <property name="geometry">
      <rect>
       <x>677</x>
@@ -1742,7 +1742,9 @@ Compte client</string>
      </font>
     </property>
     <property name="text">
-     <string>Supprimer</string>
+     <string>CRÉER UN
+PROGRAMME DE 
+FIDÉLITÉ</string>
     </property>
    </widget>
    <widget class="YerothPushButton" name="pushButton_menu_principal">
@@ -14118,7 +14120,7 @@ background-color: rgb(0, 0, 0); </string>
   <tabstop>pushButton_creer_compte_client</tabstop>
   <tabstop>pushButton_menu_principal</tabstop>
   <tabstop>pushButton_groupes_de_clients</tabstop>
-  <tabstop>pushButton_supprimer</tabstop>
+  <tabstop>pushButton_creer_un_programme_de_fidelite_client</tabstop>
   <tabstop>tableView_clients</tabstop>
  </tabstops>
  <resources>

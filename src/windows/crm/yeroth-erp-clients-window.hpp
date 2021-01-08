@@ -132,6 +132,8 @@ protected slots:
 
 private slots:
 
+	void creer_un_programme_de_fidelite();
+
 	void afficher_groupes_dun_client();
 
 	void private_payer_au_compteclient();

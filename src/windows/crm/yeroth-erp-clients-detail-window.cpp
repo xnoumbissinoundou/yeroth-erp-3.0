@@ -172,6 +172,7 @@ void YerothClientsDetailWindow::setupLineEdits()
 	lineEdit_clients_details_email->setYerothEnabled(false);
 	lineEdit_clients_details_numero_telephone_1->setYerothEnabled(false);
 	lineEdit_clients_details_numero_telephone_2->setYerothEnabled(false);
+	lineEdit_clients_details_refereur->setYerothEnabled(false);
 	lineEdit_clients_details_numero_contribuable->setYerothEnabled(false);
 	lineEdit_clients_details_dette_maximale->setYerothEnabled(false);
 	lineEdit_clients_details_compte_client->setYerothEnabled(false);
@@ -346,6 +347,9 @@ bool YerothClientsDetailWindow::imprimer_pdf_document()
     data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Nom de l'entreprise: ")));
     data.append(QString("%1\\\\\n").arg(lineEdit_clients_details_nom_entreprise->textForLatex()));
 
+    data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Référeur: ")));
+    data.append(QString("%1\\\\\n").arg(lineEdit_clients_details_refereur->textForLatex()));
+
     data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Nom du Représentant: ")));
     data.append(QString("%1\\\\\n").arg(lineEdit_clients_details_nom_representant->textForLatex()));
 
@@ -472,6 +476,7 @@ void YerothClientsDetailWindow::rendreInvisible()
 	lineEdit_clients_details_email->clear();
 	lineEdit_clients_details_numero_telephone_1->clear();
 	lineEdit_clients_details_numero_telephone_2->clear();
+	lineEdit_clients_details_refereur->clear();
 	lineEdit_clients_details_numero_contribuable->clear();
 	lineEdit_clients_details_dette_maximale->clear();
 	lineEdit_clients_details_compte_client->clear();
@@ -532,6 +537,8 @@ void YerothClientsDetailWindow::showClientDetail()
 	lineEdit_clients_details_numero_telephone_1->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NUMERO_TELEPHONE_1));
 
 	lineEdit_clients_details_numero_telephone_2->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NUMERO_TELEPHONE_2));
+
+	lineEdit_clients_details_refereur->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFEREUR_CLIENT));
 
 	lineEdit_clients_details_numero_contribuable->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NUMERO_CONTRIBUABLE));
 
