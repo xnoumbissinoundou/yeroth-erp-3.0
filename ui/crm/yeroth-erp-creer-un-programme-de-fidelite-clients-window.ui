@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>YerothCreerProgrammeDeFideliteClientsWindow</class>
- <widget class="QMainWindow" name="YerothCreerProgrammeDeFideliteClientsWindow">
+ <class>YerothCreerUnProgrammeDeFideliteClientsWindow</class>
+ <widget class="QMainWindow" name="YerothCreerUnProgrammeDeFideliteClientsWindow">
   <property name="enabled">
    <bool>true</bool>
   </property>
@@ -2184,7 +2184,7 @@
     <property name="title">
      <string>Données du programme de fidélité de clients</string>
     </property>
-    <widget class="QLabel" name="label_creer_programme_de_fidelite_clients_reference_groupe">
+    <widget class="QLabel" name="label_creer_un_programme_de_fidelite_clients_reference_groupe">
      <property name="geometry">
       <rect>
        <x>8</x>
@@ -2625,7 +2625,7 @@
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="label_creer_programme_de_fidelite_clients_designation">
+    <widget class="QLabel" name="label_creer_un_programme_de_fidelite_clients_designation">
      <property name="geometry">
       <rect>
        <x>8</x>
@@ -2651,7 +2651,7 @@
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="YerothLineEdit" name="lineEdit_creer_programme_de_fidelite_clients_reference_groupe">
+    <widget class="YerothLineEdit" name="lineEdit_creer_un_programme_de_fidelite_clients_reference_groupe">
      <property name="geometry">
       <rect>
        <x>196</x>
@@ -3138,7 +3138,7 @@
       <string notr="true">border: 1px solid rgb(60, 60, 60);</string>
      </property>
     </widget>
-    <widget class="YerothLineEdit" name="lineEdit_creer_programme_de_fidelite_clients_designation">
+    <widget class="YerothLineEdit" name="lineEdit_creer_un_programme_de_fidelite_clients_designation">
      <property name="geometry">
       <rect>
        <x>196</x>
@@ -3625,7 +3625,7 @@
       <string notr="true">border: 1px solid rgb(60, 60, 60);</string>
      </property>
     </widget>
-    <widget class="QGroupBox" name="groupBox_creer_programme_de_fidelite_clients_description_groupe">
+    <widget class="QGroupBox" name="groupBox_creer_un_programme_de_fidelite_clients_description_groupe">
      <property name="geometry">
       <rect>
        <x>8</x>
@@ -3644,7 +3644,7 @@
      <property name="title">
       <string>description du programme de fidélité de clients</string>
      </property>
-     <widget class="YerothTextEdit" name="textEdit_creer_programme_de_fidelite_clients_description_groupe">
+     <widget class="YerothTextEdit" name="textEdit_creer_un_programme_de_fidelite_clients_description_groupe">
       <property name="geometry">
        <rect>
         <x>3</x>
@@ -4132,7 +4132,7 @@
       </property>
      </widget>
     </widget>
-    <widget class="YerothLineEdit" name="lineEdit_creer_programme_de_fidelite_clients_montant_du_rabais">
+    <widget class="YerothLineEdit" name="lineEdit_creer_un_programme_de_fidelite_clients_montant_du_rabais">
      <property name="geometry">
       <rect>
        <x>196</x>
@@ -4619,7 +4619,7 @@
       <string notr="true">border: 1px solid rgb(60, 60, 60);</string>
      </property>
     </widget>
-    <widget class="YerothSpinBox" name="doubleSpinBox_creer_programme_de_fidelite_clients_pourcentage_du_rabais">
+    <widget class="YerothSpinBox" name="doubleSpinBox_creer_un_programme_de_fidelite_clients_pourcentage_du_rabais">
      <property name="geometry">
       <rect>
        <x>196</x>
@@ -5948,7 +5948,7 @@ background-color: rgb(255, 255, 255);</string>
       <string>pourcentage du rabais</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="checkBox_refereur_creer_programme_de_fidelite_clients_pourcentage_rabais">
+    <widget class="QCheckBox" name="checkBox_refereur_creer_un_programme_de_fidelite_clients_pourcentage_rabais">
      <property name="geometry">
       <rect>
        <x>8</x>
@@ -6389,7 +6389,7 @@ background-color: rgb(255, 255, 255);</string>
       <string>référeur (client) - rabais (%)</string>
      </property>
     </widget>
-    <widget class="YerothSpinBox" name="doubleSpinBox_creer_programme_de_fidelite_clients_pourcentage_du_rabais_du_refereur">
+    <widget class="YerothSpinBox" name="doubleSpinBox_creer_un_programme_de_fidelite_clients_pourcentage_du_rabais_du_refereur">
      <property name="geometry">
       <rect>
        <x>196</x>
@@ -6856,7 +6856,7 @@ background-color: rgb(255, 255, 255);</string>
       <double>1.000000000000000</double>
      </property>
     </widget>
-    <widget class="QCheckBox" name="checkBox_creer_programme_de_fidelite_clients_rabais_en_cascade_par_le_haut_tous_refereurs">
+    <widget class="QCheckBox" name="checkBox_creer_un_programme_de_fidelite_clients_rabais_en_cascade_par_le_haut_tous_refereurs">
      <property name="geometry">
       <rect>
        <x>8</x>
@@ -7297,7 +7297,7 @@ background-color: rgb(255, 255, 255);</string>
       <string>rabais en cascade par le haut (tous les référeurs)</string>
      </property>
     </widget>
-    <widget class="YerothLineEdit" name="lineEdit_creer_programme_de_fidelite_clients_pourcentage_rabais_refereur_condition_element">
+    <widget class="YerothLineEdit" name="lineEdit_creer_un_programme_de_fidelite_clients_pourcentage_rabais_refereur_condition_element">
      <property name="geometry">
       <rect>
        <x>334</x>
@@ -7775,7 +7775,7 @@ background-color: rgb(0, 0, 0); </string>
       <enum>Qt::LogicalMoveStyle</enum>
      </property>
     </widget>
-    <widget class="YerothComboBox" name="comboBox_creer_programme_de_fidelite_clients_pourcentage_rabais_refereur_condition">
+    <widget class="YerothComboBox" name="comboBox_creer_un_programme_de_fidelite_clients_pourcentage_rabais_refereur_condition">
      <property name="geometry">
       <rect>
        <x>265</x>
@@ -10402,7 +10402,7 @@ background-color: rgb(0, 0, 0); </string>
    <addaction name="menuAide"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <widget class="QToolBar" name="toolBar_creerGroupesDeClientsWindow">
+  <widget class="QToolBar" name="toolBar_YerothCreerProgrammeDeFideliteClientsWindow">
    <property name="palette">
     <palette>
      <active>
@@ -10988,10 +10988,10 @@ background-color: rgb(0, 0, 0); </string>
   </action>
   <action name="actionAnnuler">
    <property name="text">
-    <string>Annuler la création du groupe de clients</string>
+    <string>Annuler la création du programme de fidélité clients</string>
    </property>
    <property name="toolTip">
-    <string>Annuler la création du groupe de clients</string>
+    <string>Annuler la création du programme de fidélité clients</string>
    </property>
    <property name="font">
     <font>
@@ -11060,10 +11060,10 @@ background-color: rgb(0, 0, 0); </string>
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>lineEdit_creer_programme_de_fidelite_clients_reference_groupe</tabstop>
-  <tabstop>lineEdit_creer_programme_de_fidelite_clients_designation</tabstop>
-  <tabstop>lineEdit_creer_programme_de_fidelite_clients_montant_du_rabais</tabstop>
-  <tabstop>textEdit_creer_programme_de_fidelite_clients_description_groupe</tabstop>
+  <tabstop>lineEdit_creer_un_programme_de_fidelite_clients_reference_groupe</tabstop>
+  <tabstop>lineEdit_creer_un_programme_de_fidelite_clients_designation</tabstop>
+  <tabstop>lineEdit_creer_un_programme_de_fidelite_clients_montant_du_rabais</tabstop>
+  <tabstop>textEdit_creer_un_programme_de_fidelite_clients_description_groupe</tabstop>
   <tabstop>pushButton_achats_aux_fournisseurs</tabstop>
   <tabstop>pushButton_annuler</tabstop>
   <tabstop>pushButton_menu_principal</tabstop>

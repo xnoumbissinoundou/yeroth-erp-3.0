@@ -420,6 +420,13 @@ void YerothWindowsCommons::groupes_de_clients()
 }
 
 
+void YerothWindowsCommons::creer_un_programme_de_fidelite_clients()
+{
+	rendreInvisible();
+    _allWindows->_creerUnProgrammeDeFideliteClientsWindow->rendreVisible(_curStocksTableModel);
+}
+
+
 void YerothWindowsCommons::clients()
 {
 	rendreInvisible();

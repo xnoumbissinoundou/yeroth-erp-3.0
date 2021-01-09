@@ -44,6 +44,7 @@
 #include "src/windows/supplier/yeroth-erp-creer-fournisseur-window.hpp"
 #include "src/windows/supplier/yeroth-erp-modifier-fournisseur-window.hpp"
 
+#include "src/windows/crm/yeroth-erp-creer-un-programme-de-fidelite-clients-window.hpp"
 #include "src/windows/crm/yeroth-erp-creer-groupe-de-clients-window.hpp"
 #include "src/windows/crm/yeroth-erp-groupes-de-clients-window.hpp"
 #include "src/windows/crm/yeroth-erp-groupes-dun-client-window.hpp"
@@ -81,6 +82,7 @@ class YerothTableauDesTransactionsDuClientWindow;
 class YerothHistoriqueDuStockWindow;
 class YerothPOSChangerUtilisateurDialog;
 class YerothCreerFournisseurWindow;
+class YerothCreerUnProgrammeDeFideliteClientsWindow;
 class YerothCreerGroupeDeClientsWindow;
 class YerothCreerCompteClientWindow;
 class YerothModifierFournisseurWindow;
@@ -392,6 +394,7 @@ public:
 	static const QString TITRES;
 	static const QString LOCALISATIONS;
 	static const QString CATEGORIES;
+	static const QString PROGRAMMES_DE_FIDELITE_CLIENTS;
 	static const QString CLIENTS;
 	static const QString GROUPES_DE_CLIENTS;
 	static const QString FOURNISSEURS;
@@ -421,6 +424,7 @@ public:
 	YerothTableauDesTransactionsDuClientWindow			*_transactionsDunClientWindow;
 	YerothHistoriqueDuStockWindow						*_historiqueDuStockWindow;
 	YerothCreerFournisseurWindow 						*_creerFournisseurWindow;
+	YerothCreerUnProgrammeDeFideliteClientsWindow 		*_creerUnProgrammeDeFideliteClientsWindow;
 	YerothCreerGroupeDeClientsWindow 					*_creerGroupeDeClientsWindow;
 	YerothCreerCompteClientWindow 						*_creerCompteClientWindow;
 	YerothModifierFournisseurWindow 					*_modifierFournisseurWindow;

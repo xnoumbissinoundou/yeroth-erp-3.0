@@ -51,61 +51,63 @@ bool YerothERPWindows::CURRENTLY_CHANGING_USER(false);
 QMap<QString, YerothSqlTableModel *> YerothERPWindows::_sqltablenameTOsqltablemodel;
 
 
-const QString YerothERPWindows::COMPTES_BANCAIRES				("comptes_bancaires");
+const QString YerothERPWindows::COMPTES_BANCAIRES			("comptes_bancaires");
 
-const QString YerothERPWindows::ENTREPRISE_INFO					("entreprise_info");
+const QString YerothERPWindows::ENTREPRISE_INFO				("entreprise_info");
 
-const QString YerothERPWindows::PAIEMENTS						("paiements");
+const QString YerothERPWindows::PAIEMENTS					("paiements");
 
-const QString YerothERPWindows::YerothERPWindows::USERS			("users");
+const QString YerothERPWindows::USERS						("users");
 
-const QString YerothERPWindows::YerothERPWindows::TITRES		("titres");
+const QString YerothERPWindows::TITRES						("titres");
 
-const QString YerothERPWindows::YerothERPWindows::LOCALISATIONS	("localisations");
+const QString YerothERPWindows::LOCALISATIONS				("localisations");
 
-const QString YerothERPWindows::YerothERPWindows::CATEGORIES	("categories");
+const QString YerothERPWindows::CATEGORIES					("categories");
 
-const QString YerothERPWindows::YerothERPWindows::CLIENTS		("clients");
+const QString YerothERPWindows::PROGRAMMES_DE_FIDELITE_CLIENTS	("programmes_de_fidelite_clients");
 
-const QString YerothERPWindows::YerothERPWindows::GROUPES_DE_CLIENTS	("groupes_de_clients");
+const QString YerothERPWindows::CLIENTS						("clients");
 
-const QString YerothERPWindows::YerothERPWindows::FOURNISSEURS	("fournisseurs");
+const QString YerothERPWindows::GROUPES_DE_CLIENTS			("groupes_de_clients");
 
-const QString YerothERPWindows::YerothERPWindows::ALERTES		("alertes");
+const QString YerothERPWindows::FOURNISSEURS				("fournisseurs");
 
-const QString YerothERPWindows::YerothERPWindows::REMISES		("remises");
+const QString YerothERPWindows::ALERTES						("alertes");
 
-const QString YerothERPWindows::CREDIT_CARD_ISSUING_COMPANY		("credit_card_issuing_company");
+const QString YerothERPWindows::REMISES						("remises");
 
-const QString YerothERPWindows::YerothERPWindows::CONDITIONS_ALERTES				("conditions_alertes");
+const QString YerothERPWindows::CREDIT_CARD_ISSUING_COMPANY	("credit_card_issuing_company");
 
-const QString YerothERPWindows::YerothERPWindows::COURRIERS_ALERTES				("courriers_alertes");
+const QString YerothERPWindows::CONDITIONS_ALERTES			("conditions_alertes");
 
-const QString YerothERPWindows::YerothERPWindows::ACHATS_AUX_FOURNISSEURS		("achats_aux_fournisseurs");
+const QString YerothERPWindows::COURRIERS_ALERTES			("courriers_alertes");
 
-const QString YerothERPWindows::YerothERPWindows::ACHATS							("achats");
+const QString YerothERPWindows::ACHATS_AUX_FOURNISSEURS		("achats_aux_fournisseurs");
 
-const QString YerothERPWindows::YerothERPWindows::STOCKS							("stocks");
+const QString YerothERPWindows::ACHATS						("achats");
 
-const QString YerothERPWindows::YerothERPWindows::SERVICES_COMPLETES				("services_completes");
+const QString YerothERPWindows::STOCKS						("stocks");
 
-const QString YerothERPWindows::YerothERPWindows::STOCKS_VENDU					("stocks_vendu");
+const QString YerothERPWindows::SERVICES_COMPLETES			("services_completes");
 
-const QString YerothERPWindows::YerothERPWindows::STOCKS_SORTIES					("stocks_sorties");
+const QString YerothERPWindows::STOCKS_VENDU				("stocks_vendu");
 
-const QString YerothERPWindows::YerothERPWindows::MARCHANDISES				("marchandises");
+const QString YerothERPWindows::STOCKS_SORTIES				("stocks_sorties");
 
-const QString YerothERPWindows::YerothERPWindows::CONFIGURATIONS					("configurations");
+const QString YerothERPWindows::MARCHANDISES				("marchandises");
 
-const QString YerothERPWindows::YerothERPWindows::INIT_CONFIGURATIONS				("init_configurations");
+const QString YerothERPWindows::CONFIGURATIONS				("configurations");
 
-const QString YerothERPWindows::TYPE_DE_VENTE					("type_de_vente");
+const QString YerothERPWindows::INIT_CONFIGURATIONS			("init_configurations");
 
-const QString YerothERPWindows::TYPE_DE_PAIEMENT				("type_de_paiement");
+const QString YerothERPWindows::TYPE_DE_VENTE				("type_de_vente");
 
-const QString YerothERPWindows::ROLES							("roles");
+const QString YerothERPWindows::TYPE_DE_PAIEMENT			("type_de_paiement");
 
-const QString YerothERPWindows::DBMS							("dbms");
+const QString YerothERPWindows::ROLES						("roles");
+
+const QString YerothERPWindows::DBMS						("dbms");
 
 YerothERPWindows::YerothERPWindows(QDesktopWidget *desktopWidget)
     :_mainWindow(0),
@@ -114,6 +116,7 @@ YerothERPWindows::YerothERPWindows(QDesktopWidget *desktopWidget)
 	 _historiqueDuStockWindow(0),
      _changerUtilisateurDialog(0),
 	 _creerFournisseurWindow(0),
+	 _creerUnProgrammeDeFideliteClientsWindow(0),
 	 _creerGroupeDeClientsWindow(0),
 	 _creerCompteClientWindow(0),
 	 _modifierFournisseurWindow(0),
@@ -258,6 +261,7 @@ YerothERPWindows::~YerothERPWindows()
     delete _entrerWindow;
     delete _creerCompteClientWindow;
     delete _creerGroupeDeClientsWindow;
+    delete _creerUnProgrammeDeFideliteClientsWindow;
     delete _creerFournisseurWindow;
     delete _modifierCompteClientWindow;
     delete _modifierFournisseurWindow;
@@ -347,6 +351,7 @@ void YerothERPWindows::createAllYerothPosUserWindows()
     _modifierWindow 				= new YerothModifierWindow;
     _entrerWindow 					= new YerothEntrerWindow;
     _creerFournisseurWindow			= new YerothCreerFournisseurWindow;
+    _creerUnProgrammeDeFideliteClientsWindow		= new YerothCreerUnProgrammeDeFideliteClientsWindow;
     _creerGroupeDeClientsWindow		= new YerothCreerGroupeDeClientsWindow;
     _creerCompteClientWindow		= new YerothCreerCompteClientWindow;
     _modifierFournisseurWindow		= new YerothModifierFournisseurWindow;
@@ -494,6 +499,7 @@ void YerothERPWindows::definirMagasinier()
     _modifierWindow->definirMagasinier();
     _entrerWindow->definirMagasinier();
     _creerFournisseurWindow->definirMagasinier();
+    _creerUnProgrammeDeFideliteClientsWindow->definirMagasinier();
     _creerGroupeDeClientsWindow->definirMagasinier();
     _creerCompteClientWindow->definirMagasinier();
     _modifierFournisseurWindow->definirMagasinier();
@@ -528,6 +534,7 @@ void YerothERPWindows::definirCaissier()
     _modifierWindow->definirCaissier();
     _entrerWindow->definirCaissier();
     _creerFournisseurWindow->definirCaissier();
+    _creerUnProgrammeDeFideliteClientsWindow->definirCaissier();
     _creerGroupeDeClientsWindow->definirCaissier();
     _creerCompteClientWindow->definirCaissier();
     _modifierFournisseurWindow->definirCaissier();
@@ -562,6 +569,7 @@ void YerothERPWindows::definirManager()
     _modifierWindow->definirManager();
     _entrerWindow->definirManager();
     _creerFournisseurWindow->definirManager();
+    _creerUnProgrammeDeFideliteClientsWindow->definirManager();
     _creerGroupeDeClientsWindow->definirManager();
     _creerCompteClientWindow->definirManager();
     _modifierFournisseurWindow->definirManager();
@@ -603,6 +611,7 @@ void YerothERPWindows::definirVendeur()
     _modifierWindow->definirVendeur();
     _entrerWindow->definirVendeur();
     _creerFournisseurWindow->definirVendeur();
+    _creerUnProgrammeDeFideliteClientsWindow->definirVendeur();
     _creerGroupeDeClientsWindow->definirVendeur();
     _creerCompteClientWindow->definirVendeur();
     _modifierFournisseurWindow->definirVendeur();
@@ -644,6 +653,7 @@ void YerothERPWindows::definirGestionaireDesStocks()
     _modifierWindow->definirGestionaireDesStocks();
     _entrerWindow->definirGestionaireDesStocks();
     _creerFournisseurWindow->definirGestionaireDesStocks();
+    _creerUnProgrammeDeFideliteClientsWindow->definirGestionaireDesStocks();
     _creerGroupeDeClientsWindow->definirGestionaireDesStocks();
     _creerCompteClientWindow->definirGestionaireDesStocks();
     _modifierFournisseurWindow->definirGestionaireDesStocks();
@@ -690,6 +700,7 @@ void YerothERPWindows::definirPasDeRole()
     _modifierWindow->definirPasDeRole();
     _entrerWindow->definirPasDeRole();
     _creerFournisseurWindow->definirPasDeRole();
+    _creerUnProgrammeDeFideliteClientsWindow->definirPasDeRole();
     _creerGroupeDeClientsWindow->definirPasDeRole();
     _creerCompteClientWindow->definirPasDeRole();
     _modifierFournisseurWindow->definirPasDeRole();
@@ -735,6 +746,7 @@ void YerothERPWindows::hideAllWindows()
     _achatsDetailWindow->rendreInvisible();
     _detailWindow->rendreInvisible();
     _creerFournisseurWindow->rendreInvisible();
+    _creerUnProgrammeDeFideliteClientsWindow->rendreInvisible();
     _creerGroupeDeClientsWindow->rendreInvisible();
     _creerCompteClientWindow->rendreInvisible();
     _modifierFournisseurWindow->rendreInvisible();
