@@ -106,6 +106,9 @@ public:
 	static bool GZIP_YEROTH_FILE(const QString &program_working_directory_full_path,
 								 const QString &file_full_path);
 
+	static void APPEND_NEW_ELEMENT_TO_STAR_SEPARATED_DB_STRING(const QString &aNewValue,
+															   QString &aCur_db_STRING_STAR_SEPARATED_VALUE_IN_OUT);
+
 	static
 	enum service_stock_already_exist_type
 		IS_STOCK_DESIGNATION_OR_REFERENCE_UNIQUE(const QString &aStockServiceReference,

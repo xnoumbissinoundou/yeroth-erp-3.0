@@ -255,9 +255,7 @@ void YerothGroupesDeClientsWindow::reinitialiser_champs_db_visibles()
 			<< YerothDatabaseTableColumn::DATE_CREATION
 			<< YerothDatabaseTableColumn::DESIGNATION
 			<< YerothDatabaseTableColumn::REFERENCE_GROUPE
-			<< YerothDatabaseTableColumn::MAXIMUM_DE_MEMBRES
-			<< YerothDatabaseTableColumn::MONTANT_DU_RABAIS
-			<< YerothDatabaseTableColumn::POURCENTAGE_DU_RABAIS;
+			<< YerothDatabaseTableColumn::MAXIMUM_DE_MEMBRES;
 }
 
 

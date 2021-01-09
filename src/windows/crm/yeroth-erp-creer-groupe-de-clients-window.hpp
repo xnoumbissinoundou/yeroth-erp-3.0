@@ -90,6 +90,10 @@ private slots:
 
 private:
 
+	void update_client_group_member_data(const QString &new_client_group_designation,
+										 const QString &new_client_group_db_ID,
+										 const QString &client_db_ID);
+
 	void setLastSelectedTableWidgetRow(int lastSelectedTableWidgetRow)
 	{
 		_last_selected_table_widget_row = lastSelectedTableWidgetRow;

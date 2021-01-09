@@ -123,16 +123,28 @@ void YerothGroupesDunClientWindow::afficher_tous_les_groupes_du_client()
 
     _curClientDBID = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ID).toInt();
 
+//    QDEBUG_STRINGS_OUTPUT_2_N("_curClientDBID", _curClientDBID);
+
+    QString reference_client(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE_CLIENT));
+
     QString groupes_du_client(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::GROUPES_DU_CLIENT));
+
+    QString maximum_de_membres(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::MAXIMUM_DE_MEMBRES));
+
 
     QStringList allClientGroups(groupes_du_client.split("*"));
 
     for (int k = 0; k < allClientGroups.size(); ++k)
     {
     	tableWidget_groupes_dun_client->insert_group(QString::number(_curClientDBID),
-    												 allClientGroups.at(k),
-													 "",
-													 "");
+    												 allClientGroups.at(k).trimmed(),
+													 reference_client,
+													 maximum_de_membres);
+    }
+
+    if (tableWidget_groupes_dun_client->rowCount() > 0)
+    {
+    	tableWidget_groupes_dun_client->selectRow(0);
     }
 }
 

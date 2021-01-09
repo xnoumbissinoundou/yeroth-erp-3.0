@@ -848,6 +848,30 @@ bool YerothUtils::GZIP_YEROTH_FILE(const QString &program_working_directory_full
 }
 
 
+void YerothUtils::APPEND_NEW_ELEMENT_TO_STAR_SEPARATED_DB_STRING
+														(const QString &aNewValue,
+														 QString &aCur_db_STRING_STAR_SEPARATED_VALUE_IN_OUT)
+{
+    if (!aCur_db_STRING_STAR_SEPARATED_VALUE_IN_OUT.isEmpty())
+    {
+        if (aCur_db_STRING_STAR_SEPARATED_VALUE_IN_OUT.endsWith("*"))
+        {
+        	aCur_db_STRING_STAR_SEPARATED_VALUE_IN_OUT.append(aNewValue);
+        }
+        else
+        {
+        	aCur_db_STRING_STAR_SEPARATED_VALUE_IN_OUT.append(QString("%1%2")
+        														.arg("*",
+        															 aNewValue));
+        }
+    }
+    else
+    {
+    	aCur_db_STRING_STAR_SEPARATED_VALUE_IN_OUT.append(aNewValue);
+    }
+}
+
+
 enum service_stock_already_exist_type
 	YerothUtils::IS_STOCK_DESIGNATION_OR_REFERENCE_UNIQUE(const QString &aStockServiceReference,
 														  const QString &aStockServiceCategory,
