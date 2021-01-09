@@ -114,9 +114,7 @@ YerothCreerGroupeDeClientsWindow::YerothCreerGroupeDeClientsWindow()
 void YerothCreerGroupeDeClientsWindow::deconnecter_utilisateur()
 {
     clear_all_fields();
-    _allWindows->definirPasDeRole();
-    _allWindows->_mainWindow->show();
-    rendreInvisible();
+    YerothWindowsCommons::deconnecter_utilisateur();
 }
 
 void YerothCreerGroupeDeClientsWindow::setupLineEdits()
