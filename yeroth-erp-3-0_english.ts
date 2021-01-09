@@ -8862,7 +8862,10 @@ Client Account</translation>
         <location filename="ui/crm/yeroth-erp-clients-window.ui" line="1745"/>
         <source>CRÉER UN
 PROGRAMME DE 
-FIDÉLITÉ</source>
+FIDÉLITÉ CLIENT</source>
+        <oldsource>CRÉER UN
+PROGRAMME DE 
+FIDÉLITÉ</oldsource>
         <translation>CREATE A
 CLIENT ROYALTY 
 PROGRAM</translation>
