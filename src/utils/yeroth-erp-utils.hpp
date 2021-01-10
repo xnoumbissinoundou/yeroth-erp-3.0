@@ -516,6 +516,13 @@ public:
 		return _logFileName;
 	}
 
+	static bool checkIf_KEYWORD_ALREADY_EXISTS(YerothWindowsCommons &aCallingWindow,
+											   YerothSqlTableModel  &aClientTableModel,
+											   YerothLineEdit 		&aYerothLineEdit_nom_entreprise,
+											   const QString 		&for_user_view_db_column_description,
+											   const QString 		&aDB_TABLE_COLUMN_NAME,
+											   int aCurrentClientDetailDBID = YerothUtils::CURRENT_CLIENT_DB_ID_UNDEFINED);
+
 	static bool checkIfCustomerAccountAlreadyExist_NOMENTREPRISE(YerothWindowsCommons &aCallingWindow,
 																 YerothSqlTableModel &aClientTableModel,
 																 YerothLineEdit &aYerothLineEdit_nom_entreprise,

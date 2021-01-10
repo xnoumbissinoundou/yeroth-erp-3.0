@@ -177,6 +177,8 @@ public:
 
 	YerothSqlTableModel &getSqlTableModel_courriers_alertes();
 
+	YerothSqlTableModel &getSqlTableModel_programmes_de_fidelite_clients();
+
 	YerothSqlTableModel &getSqlTableModel_clients();
 
 	YerothSqlTableModel &getSqlTableModel_groupes_de_clients();
@@ -263,6 +265,11 @@ public:
 	static inline int getNextIdSqlTableModel_courriers_alertes()
 	{
 		return YerothERPWindows::getNextIdFromTable(YerothERPWindows::COURRIERS_ALERTES);
+	}
+
+	static inline int getNextIdSqlTableModel_programme_de_fidelite_clients()
+	{
+		return YerothERPWindows::getNextIdFromTable(YerothERPWindows::PROGRAMMES_DE_FIDELITE_CLIENTS);
 	}
 
 	static inline int getNextIdSqlTableModel_clients()
@@ -481,6 +488,7 @@ private:
 	YerothSqlTableModel 	*_tableModel_titres;
 	YerothSqlTableModel 	*_tableModel_localisations;
 	YerothSqlTableModel 	*_tableModel_categories;
+	YerothSqlTableModel 	*_tableModel_programmes_de_fidelite_clients;
 	YerothSqlTableModel 	*_tableModel_clients;
 	YerothSqlTableModel 	*_tableModel_groupes_de_clients;
 	YerothSqlTableModel 	*_tableModel_fournisseurs;

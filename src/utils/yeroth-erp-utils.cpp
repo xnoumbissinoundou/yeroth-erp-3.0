@@ -1912,6 +1912,75 @@ void YerothUtils::getColumnListString(QStringList &columnStringList,
 }
 
 
+bool YerothUtils::checkIf_KEYWORD_ALREADY_EXISTS(YerothWindowsCommons &aCallingWindow,
+												 YerothSqlTableModel  &aSqlTableModel,
+												 YerothLineEdit 	  &aYerothLineEdit_DB_TO_SEARCH_COLUMN_NAME,
+												 const QString 		  &for_user_view_db_column_description,
+												 const QString 		  &aDB_TABLE_COLUMN_NAME,
+												 int 				  aCurrentClientDetailDBID /* = YerothUtils::CURRENT_CLIENT_DB_ID_UNDEFINED*/)
+{
+	// ** check if customer account with same name exist
+	QString nom_entreprise_filter(QString("LOWER(%1) = LOWER('%2')")
+									.arg(aDB_TABLE_COLUMN_NAME,
+										 aYerothLineEdit_DB_TO_SEARCH_COLUMN_NAME.text()));
+
+	//		qDebug() << QString("++ nom_entreprise_filter: %1")
+	//						.arg(nom_entreprise_filter);
+
+	aSqlTableModel.yerothSetFilter_WITH_where_clause(nom_entreprise_filter);
+
+	int clientsTableModelRowCount = aSqlTableModel.rowCount();
+
+	if (clientsTableModelRowCount > 0)
+	{
+		if (YerothUtils::CURRENT_CLIENT_DB_ID_UNDEFINED != aCurrentClientDetailDBID)
+		{
+			for (int k = 0; k < clientsTableModelRowCount; ++k)
+			{
+
+				QSqlRecord clientRecord = aSqlTableModel.record(k);
+				int clientRecordDBID(GET_SQL_RECORD_DATA(clientRecord, YerothDatabaseTableColumn::ID).toInt());
+
+				if (aCurrentClientDetailDBID != clientRecordDBID)
+				{
+					aSqlTableModel.resetFilter();
+
+					QString retMsg(QObject::trUtf8("Une %1 nommé(e) '%2' existe déjà "
+												   "dans la base de données !")
+										.arg(for_user_view_db_column_description,
+											 aYerothLineEdit_DB_TO_SEARCH_COLUMN_NAME.text()));
+
+					YerothQMessageBox::warning(&aCallingWindow,
+							QObject::trUtf8("%1 déjà existant(e)")
+									.arg(for_user_view_db_column_description),
+							retMsg);
+
+					return true;
+				}
+			}
+		}
+		else
+		{
+			QString retMsg(QObject::trUtf8("Une %1 nommé(e) '%2' existe déjà "
+										   "dans la base de données !")
+								.arg(for_user_view_db_column_description,
+									 aYerothLineEdit_DB_TO_SEARCH_COLUMN_NAME.text()));
+
+			YerothQMessageBox::warning(&aCallingWindow,
+					QObject::trUtf8("%1 déjà existant(e)")
+							.arg(for_user_view_db_column_description),
+					retMsg);
+
+			return true;
+		}
+	}
+
+	aSqlTableModel.resetFilter();
+
+	return false;
+}
+
+
 bool YerothUtils::checkIfCustomerAccountAlreadyExist_NOMENTREPRISE(YerothWindowsCommons &aCallingWindow,
 																   YerothSqlTableModel &aClientTableModel,
 															 	   YerothLineEdit &aYerothLineEdit_nom_entreprise,

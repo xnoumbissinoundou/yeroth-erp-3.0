@@ -77,6 +77,10 @@ private slots:
 
 	void annuler_la_creation_dun_programme_de_fidelite_de_clients();
 
+	void activateLineEdit_MONTANT_DU_RABAIS(bool toggled);
+
+	void activateLineEdit_POURCENTAGE_DU_RABAIS(bool toggled);
+
 	bool creerEnregistrerUnProgrammeDeFideliteClients();
 
 private:
@@ -86,6 +90,8 @@ private:
 	bool check_fields();
 
     void clear_all_fields();
+
+    void populateComboBoxes();
 
     void setupLineEdits();
 

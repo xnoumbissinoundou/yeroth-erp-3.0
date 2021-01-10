@@ -2651,7 +2651,7 @@
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="YerothLineEdit" name="lineEdit_creer_un_programme_de_fidelite_clients_reference_groupe">
+    <widget class="YerothLineEdit" name="lineEdit_creer_un_programme_de_fidelite_clients_reference">
      <property name="geometry">
       <rect>
        <x>196</x>
@@ -3644,7 +3644,7 @@
      <property name="title">
       <string>description du programme de fidélité de clients</string>
      </property>
-     <widget class="YerothTextEdit" name="textEdit_creer_un_programme_de_fidelite_clients_description_groupe">
+     <widget class="YerothTextEdit" name="textEdit_creer_un_programme_de_fidelite_clients_description">
       <property name="geometry">
        <rect>
         <x>3</x>
@@ -7297,7 +7297,7 @@ background-color: rgb(255, 255, 255);</string>
       <string>rabais en cascade par le haut (tous les référeurs)</string>
      </property>
     </widget>
-    <widget class="YerothLineEdit" name="lineEdit_creer_un_programme_de_fidelite_clients_pourcentage_rabais_refereur_condition_element">
+    <widget class="YerothLineEdit" name="lineEdit_creer_un_programme_de_fidelite_clients_valeur_condition_beneficiaire_du_refereur">
      <property name="geometry">
       <rect>
        <x>334</x>
@@ -11060,10 +11060,10 @@ background-color: rgb(0, 0, 0); </string>
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>lineEdit_creer_un_programme_de_fidelite_clients_reference_groupe</tabstop>
+  <tabstop>lineEdit_creer_un_programme_de_fidelite_clients_reference</tabstop>
   <tabstop>lineEdit_creer_un_programme_de_fidelite_clients_designation</tabstop>
   <tabstop>lineEdit_creer_un_programme_de_fidelite_clients_montant_du_rabais</tabstop>
-  <tabstop>textEdit_creer_un_programme_de_fidelite_clients_description_groupe</tabstop>
+  <tabstop>textEdit_creer_un_programme_de_fidelite_clients_description</tabstop>
   <tabstop>pushButton_achats_aux_fournisseurs</tabstop>
   <tabstop>pushButton_annuler</tabstop>
   <tabstop>pushButton_menu_principal</tabstop>

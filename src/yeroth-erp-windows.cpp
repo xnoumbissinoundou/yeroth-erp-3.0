@@ -163,6 +163,7 @@ YerothERPWindows::YerothERPWindows(QDesktopWidget *desktopWidget)
      _tableModel_titres(0),
      _tableModel_localisations(0),
      _tableModel_categories(0),
+	 _tableModel_programmes_de_fidelite_clients(0),
 	 _tableModel_clients(0),
 	 _tableModel_groupes_de_clients(0),
      _tableModel_fournisseurs(0),
@@ -207,6 +208,7 @@ YerothERPWindows::YerothERPWindows(QDesktopWidget *desktopWidget)
     setupSqlTableModelFromName(YerothERPWindows::TITRES, &_tableModel_titres);
     setupSqlTableModelFromName(YerothERPWindows::LOCALISATIONS, &_tableModel_localisations);
     setupSqlTableModelFromName(YerothERPWindows::CATEGORIES, &_tableModel_categories);
+    setupSqlTableModelFromName(YerothERPWindows::PROGRAMMES_DE_FIDELITE_CLIENTS, &_tableModel_programmes_de_fidelite_clients);
     setupSqlTableModelFromName(YerothERPWindows::CLIENTS, &_tableModel_clients);
     setupSqlTableModelFromName(YerothERPWindows::GROUPES_DE_CLIENTS, &_tableModel_groupes_de_clients);
     setupSqlTableModelFromName(YerothERPWindows::FOURNISSEURS, &_tableModel_fournisseurs);
@@ -382,6 +384,7 @@ void YerothERPWindows::reinitialiseSqlTableModels()
     delete _tableModel_titres;
     delete _tableModel_localisations;
     delete _tableModel_categories;
+    delete _tableModel_programmes_de_fidelite_clients;
     delete _tableModel_clients;
     delete _tableModel_groupes_de_clients;
     delete _tableModel_fournisseurs;
@@ -405,6 +408,7 @@ void YerothERPWindows::reinitialiseSqlTableModels()
     _tableModel_titres 						= new YerothSqlTableModel(YerothERPWindows::TITRES);
     _tableModel_localisations 				= new YerothSqlTableModel(YerothERPWindows::LOCALISATIONS);
     _tableModel_categories 					= new YerothSqlTableModel(YerothERPWindows::CATEGORIES);
+    _tableModel_programmes_de_fidelite_clients = new YerothSqlTableModel(YerothERPWindows::PROGRAMMES_DE_FIDELITE_CLIENTS);
     _tableModel_clients						= new YerothSqlTableModel(YerothERPWindows::CLIENTS);
     _tableModel_groupes_de_clients 			= new YerothSqlTableModel(YerothERPWindows::GROUPES_DE_CLIENTS);
     _tableModel_fournisseurs 				= new YerothSqlTableModel(YerothERPWindows::FOURNISSEURS);
@@ -845,6 +849,12 @@ YerothSqlTableModel &YerothERPWindows::getSqlTableModel_courriers_alertes()
 {
     _tableModel_courriers_alertes->resetFilter();
     return *_tableModel_courriers_alertes;
+}
+
+YerothSqlTableModel &YerothERPWindows::getSqlTableModel_programmes_de_fidelite_clients()
+{
+    _tableModel_programmes_de_fidelite_clients->resetFilter();
+    return *_tableModel_programmes_de_fidelite_clients;
 }
 
 YerothSqlTableModel &YerothERPWindows::getSqlTableModel_clients()

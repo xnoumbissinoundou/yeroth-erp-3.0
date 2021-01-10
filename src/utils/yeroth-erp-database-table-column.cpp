@@ -24,6 +24,12 @@ const QString YerothDatabaseTableColumn::GROUPES_DU_CLIENT				("groupes_du_clien
 const QString YerothDatabaseTableColumn::GROUPES_DU_CLIENT_ID			("groupes_du_client_ID");
 const QString YerothDatabaseTableColumn::HISTORIQUE_STOCK				("historique_stock");
 const QString YerothDatabaseTableColumn::MEMBRES_DU_GROUPE_db_ID		("membres_du_groupe_db_ID");
+
+const QString YerothDatabaseTableColumn::POURCENTAGE_DU_RABAIS_REFEREUR	("pourcentage_du_rabais_refereur");
+
+const QString YerothDatabaseTableColumn::RABAIS_EN_CASCADE_TOUS_REFEREUR_PAR_LE_HAUT
+	("rabais_en_cascade_tous_refereurs_par_le_haut");
+
 const QString YerothDatabaseTableColumn::POURCENTAGE_DU_RABAIS			("pourcentage_du_rabais");
 const QString YerothDatabaseTableColumn::MONTANT_DU_RABAIS				("montant_du_rabais");
 const QString YerothDatabaseTableColumn::MAXIMUM_DE_MEMBRES				("maximum_de_membres");
@@ -104,6 +110,7 @@ const QString YerothDatabaseTableColumn::ROLE							("role");
 const QString YerothDatabaseTableColumn::NOM_ROLE						("nom_role");
 const QString YerothDatabaseTableColumn::EMAIL							("email");
 const QString YerothDatabaseTableColumn::REFERENCE_FOURNISSEUR			("reference_fournisseur");
+const QString YerothDatabaseTableColumn::REFERENCE_PROGRAMME_DE_FIDELITE_CLIENTS	("reference_programme_de_fidelite_clients");
 const QString YerothDatabaseTableColumn::REFERENCE_GROUPE				("reference_groupe");
 const QString YerothDatabaseTableColumn::REFERENCE_CLIENT				("reference_client");
 const QString YerothDatabaseTableColumn::NUMERO_TELEPHONE_1				("numero_telephone_1");
@@ -127,10 +134,13 @@ const QString YerothDatabaseTableColumn::NUMERO_CONTRIBUABLE			("numero_contribu
 const QString YerothDatabaseTableColumn::NOM_REPRESENTANT				("nom_representant");
 const QString YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT			("nom_entreprise_client");
 const QString YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR		("nom_entreprise_fournisseur");
+const QString YerothDatabaseTableColumn::DESCRIPTION_PROGRAMME_DE_FIDELITE_CLIENTS	("description_programme_de_fidelite_clients");
 const QString YerothDatabaseTableColumn::DESCRIPTION_CLIENT				("description_client");
 const QString YerothDatabaseTableColumn::DESIGNATION					("designation");
 const QString YerothDatabaseTableColumn::DESIGNATION_REMISE				("designation_remise");
 const QString YerothDatabaseTableColumn::DESIGNATION_ALERTE				("designation_alerte");
+const QString YerothDatabaseTableColumn::VALEUR_DE_LA_CONDITION_BENEFICIARE	("valeur_de_la_condition_beneficiaire");
+const QString YerothDatabaseTableColumn::CONDITION_DU_BENEFICE			("condition_du_benefice");
 const QString YerothDatabaseTableColumn::CONDITION_ALERTE				("condition_alerte");
 const QString YerothDatabaseTableColumn::NOM_ENCAISSEUR					("nom_encaisseur");
 const QString YerothDatabaseTableColumn::DATE_PAIEMENT					("date_paiement");
@@ -182,6 +192,11 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::HISTORIQUE_STOCK,	QObject::tr("Historique stock"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::MEMBRES_DU_GROUPE_db_ID,	QObject::tr("Membres du groupe (leurs ID)"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::POURCENTAGE_DU_RABAIS_REFEREUR,	QObject::trUtf8("Rabais référeur (%)"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::RABAIS_EN_CASCADE_TOUS_REFEREUR_PAR_LE_HAUT,
+			QObject::trUtf8("Rabais référeur (cascade haut, (%))"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::POURCENTAGE_DU_RABAIS,	QObject::tr("Rabais (%)"));
 
@@ -343,6 +358,8 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REFERENCE_FOURNISSEUR,	QObject::trUtf8("Référence fourn."));
 
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REFERENCE_PROGRAMME_DE_FIDELITE_CLIENTS,	QObject::trUtf8("Référence fidélité clients"));
+
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REFERENCE_GROUPE,	QObject::trUtf8("Référence groupe"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REFERENCE_CLIENT,	QObject::trUtf8("Référence client"));
@@ -386,6 +403,8 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT,	QObject::tr("Client"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR,	QObject::tr("Fournisseur"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::DESCRIPTION_PROGRAMME_DE_FIDELITE_CLIENTS,	QObject::trUtf8("Description programme de fidélité clients"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::DESCRIPTION_CLIENT,	QObject::tr("Description client"));
 

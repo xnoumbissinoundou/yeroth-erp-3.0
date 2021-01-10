@@ -125,9 +125,9 @@ void YerothCreerGroupeDeClientsWindow::setupLineEdits()
 
 void YerothCreerGroupeDeClientsWindow::setupLineEditsQCompleters()
 {
-//	lineEdit_creer_groupe_clients_programme_de_fidelite_de_clients->
-//		setupMyStaticQCompleter(_allWindows->,
-//								YerothDatabaseTableColumn::);
+	lineEdit_creer_groupe_clients_programme_de_fidelite_de_clients->
+		setupMyStaticQCompleter(_allWindows->PROGRAMMES_DE_FIDELITE_CLIENTS,
+								YerothDatabaseTableColumn::DESIGNATION);
 
 	lineEdit_creer_groupe_clients_recherche_client_initiaux->
 		setupMyStaticQCompleter(_allWindows->CLIENTS,

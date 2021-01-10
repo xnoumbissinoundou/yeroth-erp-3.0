@@ -45,6 +45,10 @@ public:
 
 	static const QString MEMBRES_DU_GROUPE_db_ID;
 
+	static const QString POURCENTAGE_DU_RABAIS_REFEREUR;
+
+	static const QString RABAIS_EN_CASCADE_TOUS_REFEREUR_PAR_LE_HAUT;
+
 	static const QString POURCENTAGE_DU_RABAIS;
 
 	static const QString MONTANT_DU_RABAIS;
@@ -205,6 +209,8 @@ public:
 
 	static const QString REFERENCE_FOURNISSEUR;
 
+	static const QString REFERENCE_PROGRAMME_DE_FIDELITE_CLIENTS;
+
 	static const QString REFERENCE_GROUPE;
 
 	static const QString REFERENCE_CLIENT;
@@ -251,6 +257,8 @@ public:
 
 	static const QString NOM_ENTREPRISE_FOURNISSEUR;
 
+	static const QString DESCRIPTION_PROGRAMME_DE_FIDELITE_CLIENTS;
+
 	static const QString DESCRIPTION_CLIENT;
 
 	static const QString DESIGNATION;
@@ -258,6 +266,10 @@ public:
 	static const QString DESIGNATION_REMISE;
 
 	static const QString DESIGNATION_ALERTE;
+
+	static const QString VALEUR_DE_LA_CONDITION_BENEFICIARE;
+
+	static const QString CONDITION_DU_BENEFICE;
 
 	static const QString CONDITION_ALERTE;
 
