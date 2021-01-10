@@ -38,12 +38,12 @@
 		const QString YerothTableauxDeBordWindow::QUALITE_MEILLEURS("avec les chiffres d'affaires les plus élevés");
 		const QString YerothTableauxDeBordWindow::QUALITE_ZERO("avec les chiffres d'affaires zéro");
 		const QString YerothTableauxDeBordWindow::QUALITE_DERNIERS("avec les chiffres d'affaires les moins élevés");
-		const QString YerothTableauxDeBordWindow::OBJET_SERVICES("services");
 		const QString YerothTableauxDeBordWindow::OBJET_ARTICLES("articles");
 		const QString YerothTableauxDeBordWindow::OBJET_CATEGORIES("catégories");
 		const QString YerothTableauxDeBordWindow::OBJET_CAISSIERS("caissiers");
 		const QString YerothTableauxDeBordWindow::OBJET_CLIENTS("clients");
 		const QString YerothTableauxDeBordWindow::OBJET_FOURNISSEURS("fournisseurs");
+		const QString YerothTableauxDeBordWindow::OBJET_SERVICES("services");
 		const QString YerothTableauxDeBordWindow::GRAPHE_BAR_CHART("diagramme en bandes");
 		const QString YerothTableauxDeBordWindow::GRAPHE_PIE_CHART("diagramme circulaire");
 #endif
@@ -55,12 +55,12 @@
 		const QString YerothTableauxDeBordWindow::QUALITE_MEILLEURS("best business turnover");
 		const QString YerothTableauxDeBordWindow::QUALITE_ZERO("zero business turnover");
 		const QString YerothTableauxDeBordWindow::QUALITE_DERNIERS("least business turnover");
-		const QString YerothTableauxDeBordWindow::OBJET_SERVICES("services");
 		const QString YerothTableauxDeBordWindow::OBJET_ARTICLES("products");
 		const QString YerothTableauxDeBordWindow::OBJET_CATEGORIES("categories");
 		const QString YerothTableauxDeBordWindow::OBJET_CAISSIERS("cashiers");
 		const QString YerothTableauxDeBordWindow::OBJET_CLIENTS("customers");
 		const QString YerothTableauxDeBordWindow::OBJET_FOURNISSEURS("suppliers");
+		const QString YerothTableauxDeBordWindow::OBJET_SERVICES("services");
 		const QString YerothTableauxDeBordWindow::GRAPHE_BAR_CHART("bar chart");
 		const QString YerothTableauxDeBordWindow::GRAPHE_PIE_CHART("pie chart");
 #endif
@@ -333,12 +333,12 @@ void YerothTableauxDeBordWindow::setupTab_COMPARAISON_DES_CHIFFRES_DAFFAIRES()
     comboBox_qualite->addItem(YerothTableauxDeBordWindow::QUALITE_DERNIERS);
     comboBox_qualite->addItem(YerothTableauxDeBordWindow::QUALITE_ZERO);
 
-    comboBox_objets->addItem(YerothTableauxDeBordWindow::OBJET_SERVICES);
     comboBox_objets->addItem(YerothTableauxDeBordWindow::OBJET_ARTICLES);
     comboBox_objets->addItem(YerothTableauxDeBordWindow::OBJET_CAISSIERS);
     comboBox_objets->addItem(YerothTableauxDeBordWindow::OBJET_CATEGORIES);
     comboBox_objets->addItem(YerothTableauxDeBordWindow::OBJET_CLIENTS);
     comboBox_objets->addItem(YerothTableauxDeBordWindow::OBJET_FOURNISSEURS);
+    comboBox_objets->addItem(YerothTableauxDeBordWindow::OBJET_SERVICES);
 
     comboBox_type_graphes->addItem(YerothTableauxDeBordWindow::GRAPHE_BAR_CHART);
     comboBox_type_graphes->addItem(YerothTableauxDeBordWindow::GRAPHE_PIE_CHART);
@@ -681,7 +681,9 @@ void YerothTableauxDeBordWindow::quantite_max_stats(QString fileName,
     	}
     }
 
-    qSort(nomEntrepriseFournisseurToVentes.begin(), nomEntrepriseFournisseurToVentes.end(), YerothStatsItem::lessThan);
+    qSort(nomEntrepriseFournisseurToVentes.begin(),
+    	  nomEntrepriseFournisseurToVentes.end(),
+		  YerothStatsItem::lessThan);
 
     //Remove all items with a zero value
 	for(int j = 0; j < nomEntrepriseFournisseurToVentes.size(); ++j)
@@ -738,7 +740,7 @@ void YerothTableauxDeBordWindow::quantite_max_stats(QString fileName,
     		++_csvFileItemSize;
     	}
 
-    	_reportTexFileEndString.append(QString("\\item %1: %2 (chiffre d'affaire: %3)\n")
+    	_reportTexFileEndString.append(QString("\\item %1: \\textbf{%2} (chiffre d'affaire: %3)\n")
     			.arg(label,
     				 YerothUtils::LATEX_IN_OUT_handleForeignAccents(curValueStr),
 					 YerothUtils::LATEX_IN_OUT_handleForeignAccents(curSecondValueStr)));
@@ -871,7 +873,9 @@ void YerothTableauxDeBordWindow::quantite_moindre_stats(QString fileName,
     	}
     }
 
-    qSort(nomEntrepriseFournisseurToVentes.begin(), nomEntrepriseFournisseurToVentes.end(), YerothStatsItem::lessThan);
+    qSort(nomEntrepriseFournisseurToVentes.begin(),
+    	  nomEntrepriseFournisseurToVentes.end(),
+		  YerothStatsItem::lessThan);
 
     //Remove all items with a zero value
 	for(int j = 0; j < nomEntrepriseFournisseurToVentes.size(); ++j)
@@ -928,7 +932,7 @@ void YerothTableauxDeBordWindow::quantite_moindre_stats(QString fileName,
     		++_csvFileItemSize;
     	}
 
-    	_reportTexFileEndString.append(QString("\\item %1: %2 (chiffre d'affaire: %3)\n")
+    	_reportTexFileEndString.append(QString("\\item %1: \\textbf{%2} (chiffre d'affaire: %3)\n")
     			.arg(label,
     				 YerothUtils::LATEX_IN_OUT_handleForeignAccents(curValueStr),
 					 YerothUtils::LATEX_IN_OUT_handleForeignAccents(curSecondValueStr)));
@@ -1061,7 +1065,9 @@ void YerothTableauxDeBordWindow::meilleursStats(QString fileName,
         }
     }
 
-    qSort(nomEntrepriseFournisseurToVentes.begin(), nomEntrepriseFournisseurToVentes.end(), YerothStatsItem::lessThan);
+    qSort(nomEntrepriseFournisseurToVentes.begin(),
+    	  nomEntrepriseFournisseurToVentes.end(),
+		  YerothStatsItem::lessThan);
 
     //Remove all items with a zero value
     for(int j = 0; j < nomEntrepriseFournisseurToVentes.size(); ++j)
@@ -1119,7 +1125,7 @@ void YerothTableauxDeBordWindow::meilleursStats(QString fileName,
             ++_csvFileItemSize;
         }
 
-        _reportTexFileEndString.append(QString("\\item %1: %2 (quantit\\'e vendue: %3)\n")
+        _reportTexFileEndString.append(QString("\\item %1: \\textbf{%2} (quantit\\'e vendue: %3)\n")
         									.arg(label,
         										 YerothUtils::LATEX_IN_OUT_handleForeignAccents(curValueStr),
 												 YerothUtils::LATEX_IN_OUT_handleForeignAccents(curSecondValueStr)));
@@ -1570,7 +1576,9 @@ void YerothTableauxDeBordWindow::derniersStats(QString fileName,
         }
     }
 
-    qSort(caissierToVentes.begin(), caissierToVentes.end(), YerothStatsItem::lessThan);
+    qSort(caissierToVentes.begin(),
+    	  caissierToVentes.end(),
+		  YerothStatsItem::lessThan);
 
     //Remove all items with a zero value
     for(int j = 0; j < caissierToVentes.size(); ++j)
@@ -1640,7 +1648,7 @@ void YerothTableauxDeBordWindow::derniersStats(QString fileName,
             ++_csvFileItemSize;
         }
 
-        _reportTexFileEndString.append(QString("\\item %1: %2 (quantit\\'e vendue: %3)\n")
+        _reportTexFileEndString.append(QString("\\item %1: \\textbf{%2} (quantit\\'e vendue: %3)\n")
         									.arg(label,
         										 YerothUtils::LATEX_IN_OUT_handleForeignAccents(curValueStr),
 												 YerothUtils::LATEX_IN_OUT_handleForeignAccents(curSecondValueStr)));
