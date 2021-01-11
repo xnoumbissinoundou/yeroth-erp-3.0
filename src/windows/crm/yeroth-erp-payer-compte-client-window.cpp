@@ -787,6 +787,17 @@ void YerothPayerCompteClientWindow::rendreVisible(YerothSqlTableModel *clientTab
 
     updateLineEdits();
 
+    QVariant img(aQSqlRecord.value(YerothDatabaseTableColumn::IMAGE_COMPTE_CLIENT));
+
+    if (!img.isNull())
+    {
+        YerothUtils::loadPixmapFromDB(*label_image_client, img, "JPG");
+    }
+    else
+    {
+    	label_image_client->setAutoFillBackground(false);
+    }
+
     connect(comboBox_comptes_clients_reference,
     		SIGNAL(currentTextChanged(const QString &)),
     		this,
