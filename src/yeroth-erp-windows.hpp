@@ -57,6 +57,7 @@
 
 
 //** CRM
+#include "src/windows/crm/details/yeroth-erp-details-dun-programme-de-fidelite-clients-window.hpp"
 #include "src/windows/crm/details/yeroth-erp-clients-detail-window.hpp"
 
 #include "src/windows/crm/yeroth-erp-creer-un-programme-de-fidelite-clients-window.hpp"
@@ -100,6 +101,7 @@ class YerothTableauDesTransactionsDuClientWindow;
 class YerothHistoriqueDuStockWindow;
 class YerothPOSChangerUtilisateurDialog;
 class YerothCreerFournisseurWindow;
+class YerothDetailsDunProgrammeDeFideliteClientsWindow;
 class YerothCreerUnProgrammeDeFideliteClientsWindow;
 class YerothCreerGroupeDeClientsWindow;
 class YerothCreerCompteClientWindow;
@@ -449,6 +451,7 @@ public:
 	YerothTableauDesTransactionsDuClientWindow			*_transactionsDunClientWindow;
 	YerothHistoriqueDuStockWindow						*_historiqueDuStockWindow;
 	YerothCreerFournisseurWindow 						*_creerFournisseurWindow;
+	YerothDetailsDunProgrammeDeFideliteClientsWindow 	*_detailsDunProgrammeDeFideliteClientsWindow;
 	YerothCreerUnProgrammeDeFideliteClientsWindow 		*_creerUnProgrammeDeFideliteClientsWindow;
 	YerothCreerGroupeDeClientsWindow 					*_creerGroupeDeClientsWindow;
 	YerothCreerCompteClientWindow 						*_creerCompteClientWindow;

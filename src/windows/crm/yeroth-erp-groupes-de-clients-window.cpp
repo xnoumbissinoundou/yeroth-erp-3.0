@@ -420,11 +420,20 @@ void YerothGroupesDeClientsWindow::definirPasDeRole()
 
 void YerothGroupesDeClientsWindow::afficher_au_detail()
 {
-}
+    if (_curClientGroupTableModel->rowCount() > 0)
+    {
+    	//qDebug() << "++ test" << modelIndex.row();
+        _allWindows->_detailsDunProgrammeDeFideliteClientsWindow
+							->rendreVisible(_curClientGroupTableModel,
+											_curStocksTableModel);
 
-
-void YerothGroupesDeClientsWindow::afficher_au_detail(const QModelIndex & modelIndex)
-{
+        rendreInvisible();
+    }
+    else
+    {
+        YerothQMessageBox::warning(this, QObject::trUtf8("détails d'un groupe de clients"),
+                                  QObject::trUtf8("Sélectionnez un groupe de clients à afficher les détails !"));
+    }
 }
 
 

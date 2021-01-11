@@ -146,7 +146,10 @@ private slots:
 
 	void afficher_au_detail();
 
-	void afficher_au_detail(const QModelIndex & modelIndex);
+	inline void afficher_au_detail(const QModelIndex & modelIndex)
+	{
+		afficher_au_detail();
+	}
 
 	bool filtrer();
 

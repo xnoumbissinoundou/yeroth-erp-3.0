@@ -536,23 +536,6 @@ void YerothERPClientsWindow::afficher_au_detail()
 }
 
 
-void YerothERPClientsWindow::afficher_au_detail(const QModelIndex & modelIndex)
-{
-    if (_curClientsTableModel->rowCount() > 0)
-    {
-    	rendreInvisible();
-
-        _allWindows->_clientsDetailWindow->rendreVisible(_curClientsTableModel,
-														 _curStocksTableModel);
-    }
-    else
-    {
-        YerothQMessageBox::warning(this, QObject::trUtf8("détails d'un compte client"),
-                                  QObject::trUtf8("Sélectionnez un compte client à afficher les détails !"));
-    }
-}
-
-
 bool YerothERPClientsWindow::filtrer()
 {
 	QString stockTableColumnValue(lineEdit_resultat_filtre->text());

@@ -116,6 +116,7 @@ YerothERPWindows::YerothERPWindows(QDesktopWidget *desktopWidget)
 	 _historiqueDuStockWindow(0),
      _changerUtilisateurDialog(0),
 	 _creerFournisseurWindow(0),
+	 _detailsDunProgrammeDeFideliteClientsWindow(0),
 	 _creerUnProgrammeDeFideliteClientsWindow(0),
 	 _creerGroupeDeClientsWindow(0),
 	 _creerCompteClientWindow(0),
@@ -264,6 +265,7 @@ YerothERPWindows::~YerothERPWindows()
     delete _creerCompteClientWindow;
     delete _creerGroupeDeClientsWindow;
     delete _creerUnProgrammeDeFideliteClientsWindow;
+    delete _detailsDunProgrammeDeFideliteClientsWindow;
     delete _creerFournisseurWindow;
     delete _modifierCompteClientWindow;
     delete _modifierFournisseurWindow;
@@ -353,6 +355,7 @@ void YerothERPWindows::createAllYerothPosUserWindows()
     _modifierWindow 				= new YerothModifierWindow;
     _entrerWindow 					= new YerothEntrerWindow;
     _creerFournisseurWindow			= new YerothCreerFournisseurWindow;
+    _detailsDunProgrammeDeFideliteClientsWindow		= new YerothDetailsDunProgrammeDeFideliteClientsWindow;
     _creerUnProgrammeDeFideliteClientsWindow		= new YerothCreerUnProgrammeDeFideliteClientsWindow;
     _creerGroupeDeClientsWindow		= new YerothCreerGroupeDeClientsWindow;
     _creerCompteClientWindow		= new YerothCreerCompteClientWindow;
@@ -503,6 +506,7 @@ void YerothERPWindows::definirMagasinier()
     _modifierWindow->definirMagasinier();
     _entrerWindow->definirMagasinier();
     _creerFournisseurWindow->definirMagasinier();
+    _detailsDunProgrammeDeFideliteClientsWindow->definirMagasinier();
     _creerUnProgrammeDeFideliteClientsWindow->definirMagasinier();
     _creerGroupeDeClientsWindow->definirMagasinier();
     _creerCompteClientWindow->definirMagasinier();
@@ -538,6 +542,7 @@ void YerothERPWindows::definirCaissier()
     _modifierWindow->definirCaissier();
     _entrerWindow->definirCaissier();
     _creerFournisseurWindow->definirCaissier();
+    _detailsDunProgrammeDeFideliteClientsWindow->definirCaissier();
     _creerUnProgrammeDeFideliteClientsWindow->definirCaissier();
     _creerGroupeDeClientsWindow->definirCaissier();
     _creerCompteClientWindow->definirCaissier();
@@ -573,6 +578,7 @@ void YerothERPWindows::definirManager()
     _modifierWindow->definirManager();
     _entrerWindow->definirManager();
     _creerFournisseurWindow->definirManager();
+    _detailsDunProgrammeDeFideliteClientsWindow->definirManager();
     _creerUnProgrammeDeFideliteClientsWindow->definirManager();
     _creerGroupeDeClientsWindow->definirManager();
     _creerCompteClientWindow->definirManager();
@@ -615,6 +621,7 @@ void YerothERPWindows::definirVendeur()
     _modifierWindow->definirVendeur();
     _entrerWindow->definirVendeur();
     _creerFournisseurWindow->definirVendeur();
+    _detailsDunProgrammeDeFideliteClientsWindow->definirVendeur();
     _creerUnProgrammeDeFideliteClientsWindow->definirVendeur();
     _creerGroupeDeClientsWindow->definirVendeur();
     _creerCompteClientWindow->definirVendeur();
@@ -657,6 +664,7 @@ void YerothERPWindows::definirGestionaireDesStocks()
     _modifierWindow->definirGestionaireDesStocks();
     _entrerWindow->definirGestionaireDesStocks();
     _creerFournisseurWindow->definirGestionaireDesStocks();
+    _detailsDunProgrammeDeFideliteClientsWindow->definirGestionaireDesStocks();
     _creerUnProgrammeDeFideliteClientsWindow->definirGestionaireDesStocks();
     _creerGroupeDeClientsWindow->definirGestionaireDesStocks();
     _creerCompteClientWindow->definirGestionaireDesStocks();
@@ -704,6 +712,7 @@ void YerothERPWindows::definirPasDeRole()
     _modifierWindow->definirPasDeRole();
     _entrerWindow->definirPasDeRole();
     _creerFournisseurWindow->definirPasDeRole();
+    _detailsDunProgrammeDeFideliteClientsWindow->definirPasDeRole();
     _creerUnProgrammeDeFideliteClientsWindow->definirPasDeRole();
     _creerGroupeDeClientsWindow->definirPasDeRole();
     _creerCompteClientWindow->definirPasDeRole();
@@ -750,6 +759,7 @@ void YerothERPWindows::hideAllWindows()
     _achatsDetailWindow->rendreInvisible();
     _detailWindow->rendreInvisible();
     _creerFournisseurWindow->rendreInvisible();
+    _detailsDunProgrammeDeFideliteClientsWindow->rendreInvisible();
     _creerUnProgrammeDeFideliteClientsWindow->rendreInvisible();
     _creerGroupeDeClientsWindow->rendreInvisible();
     _creerCompteClientWindow->rendreInvisible();
