@@ -7,7 +7,7 @@
 #ifndef SRC_WINDOWS_YEROTH_CLIENTS_DETAIL_WINDOW_HPP_
 #define SRC_WINDOWS_YEROTH_CLIENTS_DETAIL_WINDOW_HPP_
 
-#include "../../../ui_yeroth-erp-clients-detail-window.h"
+#include "../../../../ui_yeroth-erp-clients-detail-window.h"
 
 #include "src/utils/yeroth-erp-logger.hpp"
 
@@ -42,22 +42,22 @@ public:
 		return toolBar_clientsDetailWindow;
 	}
 
-    void definirCaissier();
+	virtual void definirCaissier();
 
-    void definirManager();
+    virtual void definirManager();
 
     virtual void definirVendeur();
 
     virtual void definirGestionaireDesStocks();
 
-    void definirMagasinier();
+    virtual void definirMagasinier();
 
-    void definirPasDeRole();
+    virtual void definirPasDeRole();
 
-    void rendreInvisible();
+    virtual void rendreInvisible();
 
-    void rendreVisible(YerothSqlTableModel *clientTableModel,
-					   YerothSqlTableModel *stocksTableModel);
+    virtual void rendreVisible(YerothSqlTableModel *clientTableModel,
+					   	   	   YerothSqlTableModel *stocksTableModel);
 
 public slots:
 

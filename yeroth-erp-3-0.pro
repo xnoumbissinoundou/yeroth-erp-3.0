@@ -100,6 +100,8 @@ FORMS = ui/yeroth-erp-main-window.ui \
 			ui/supplier/yeroth-erp-creer-fournisseur-window.ui \
 			ui/supplier/yeroth-erp-fournisseur-details-window.ui \
 		  ui/supplier/yeroth-erp-fournisseurs-window.ui \
+			ui/crm/details/yeroth-erp-clients-detail-window.ui \
+			ui/crm/details/yeroth-erp-details-dun-programme-de-fidelite-clients-window.ui \
 			ui/crm/yeroth-erp-tableau-des-transactions-du-client-window.ui \
 			ui/crm/yeroth-erp-modifier-compte-client-window.ui \
 			ui/crm/yeroth-erp-payer-compte-client-window.ui \
@@ -108,7 +110,6 @@ FORMS = ui/yeroth-erp-main-window.ui \
 			ui/crm/yeroth-erp-creer-groupe-de-clients-window.ui \
 			ui/crm/yeroth-erp-groupes-de-clients-window.ui \
 			ui/crm/yeroth-erp-groupes-dun-client-window.ui \
-			ui/crm/yeroth-erp-clients-detail-window.ui \
 			ui/crm/yeroth-erp-clients-window.ui \
 			ui/yeroth-erp-paiements-window.ui \
 		  ui/yeroth-erp-ventes-window.ui \
@@ -180,6 +181,8 @@ HEADERS = src/include/yeroth-erp-3-0-precompiled-header.hpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-carte-credit-dialog.hpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.hpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-dialog.hpp \
+		  src/windows/crm/details/yeroth-erp-clients-detail-window.hpp \
+			src/windows/crm/details/yeroth-erp-details-dun-programme-de-fidelite-clients-window.hpp \
 			src/windows/crm/yeroth-erp-creer-un-programme-de-fidelite-clients-window.hpp \
 			src/windows/crm/yeroth-erp-creer-compte-client-window.hpp \
 		  src/windows/crm/yeroth-erp-creer-groupe-de-clients-window.hpp \
@@ -189,7 +192,6 @@ HEADERS = src/include/yeroth-erp-3-0-precompiled-header.hpp \
 		  src/windows/crm/yeroth-erp-clients-window.hpp \
 			src/windows/crm/yeroth-erp-payer-compte-client-window.hpp \
 		  src/windows/crm/yeroth-erp-tableau-des-transactions-du-client-window.hpp \
-		  src/windows/crm/yeroth-erp-clients-detail-window.hpp \
 		  src/windows/stocks/yeroth-erp-modifier-window.hpp \
 		  src/windows/stocks/yeroth-erp-marchandises-window.hpp \
 		  src/windows/stocks/yeroth-erp-sortir-liststocks-window.hpp \
@@ -307,6 +309,8 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.cpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-dialog.cpp \
 			src/windows/yeroth-erp-configuration-comptabilite-window.cpp \
+		  src/windows/crm/details/yeroth-erp-clients-detail-window.cpp \
+			src/windows/crm/details/yeroth-erp-details-dun-programme-de-fidelite-clients-window.cpp \
 			src/windows/crm/yeroth-erp-creer-un-programme-de-fidelite-clients-window.cpp \
 		  src/windows/crm/yeroth-erp-creer-compte-client-window.cpp \
 		  src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp \
@@ -316,7 +320,6 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 			src/windows/crm/yeroth-erp-clients-window.cpp \
 			src/windows/crm/yeroth-erp-payer-compte-client-window.cpp \
 		  src/windows/crm/yeroth-erp-tableau-des-transactions-du-client-window.cpp \
-		  src/windows/crm/yeroth-erp-clients-detail-window.cpp \
 		  src/windows/stocks/yeroth-erp-modifier-window.cpp \
 		  src/windows/stocks/yeroth-erp-marchandises-window.cpp \
 			src/windows/stocks/yeroth-erp-sortir-liststocks-window.cpp \
