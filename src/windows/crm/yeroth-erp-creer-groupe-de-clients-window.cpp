@@ -329,9 +329,11 @@ bool YerothCreerGroupeDeClientsWindow::clientGroupAlreadyExists()
 
 	// ** check if customer account with same name exist
 	result =
-		YerothUtils::checkIfCustomerAccountAlreadyExist_NOMENTREPRISE(*this,
-																	  groupes_de_clients_TableModel,
-																	  *lineEdit_creer_groupe_clients_recherche_client_initiaux);
+		YerothUtils::checkIf_KEYWORD_ALREADY_EXISTS(*this,
+													groupes_de_clients_TableModel,
+													*lineEdit_creer_groupe_clients_recherche_client_initiaux,
+													QObject::tr("Un groupe de client"),
+													YerothDatabaseTableColumn::NOM_ENTREPRISE);
 
 	return result;
 }
@@ -382,8 +384,34 @@ void YerothCreerGroupeDeClientsWindow::rendreVisible(YerothSqlTableModel * stock
 }
 
 
+bool YerothCreerGroupeDeClientsWindow::IS_client_present_dans_un_groupe_de_clients(const QString &aClientGroupMemberName)
+{
+	QTableWidgetItem *anItem = 0;
+
+	for (unsigned int k = 0; k < tableWidget_creer_groupe_clients_membres_initiaux_du_groupe->rowCount(); ++k)
+	{
+		anItem = tableWidget_creer_groupe_clients_membres_initiaux_du_groupe->item(k, 1);
+
+		if (0 != anItem)
+		{
+			if (YerothUtils::isEqualCaseInsensitive(aClientGroupMemberName, anItem->text()))
+			{
+				return true;
+			}
+		}
+	}
+
+	return false;
+}
+
+
 void YerothCreerGroupeDeClientsWindow::ajouter_un_membre_au_groupe_de_clients(const QString &aClientGroupMemberName)
 {
+	if (IS_client_present_dans_un_groupe_de_clients(aClientGroupMemberName))
+	{
+		return ;
+	}
+
 	YerothSqlTableModel &aClientSqlTableModel = _allWindows->getSqlTableModel_clients();
 
 	aClientSqlTableModel.setFilter(QString("%1='%2'")
@@ -393,6 +421,7 @@ void YerothCreerGroupeDeClientsWindow::ajouter_un_membre_au_groupe_de_clients(co
 	QSqlRecord aClientRecord = aClientSqlTableModel.record(0);
 
 	QString aClient_db_ID = GET_SQL_RECORD_DATA(aClientRecord, YerothDatabaseTableColumn::ID);
+
 	QString aClientReference = GET_SQL_RECORD_DATA(aClientRecord, YerothDatabaseTableColumn::REFERENCE_CLIENT);
 
 

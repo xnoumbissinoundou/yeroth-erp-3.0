@@ -125,21 +125,48 @@ void YerothGroupesDunClientWindow::afficher_tous_les_groupes_du_client()
 
 //    QDEBUG_STRINGS_OUTPUT_2_N("_curClientDBID", _curClientDBID);
 
-    QString reference_client(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE_CLIENT));
-
     QString groupes_du_client(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::GROUPES_DU_CLIENT));
-
-    QString maximum_de_membres(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::MAXIMUM_DE_MEMBRES));
 
 
     QStringList allClientGroups(groupes_du_client.split("*"));
 
+    QString maximum_de_membres;
+
+    QString current_client_group_reference;
+
+    int curQuerySize = -1;
+
+    QSqlQuery aSqlGroupTableModelQUERY;
+
+    QString clientGroupTableModelQUERY_STR;
+
     for (int k = 0; k < allClientGroups.size(); ++k)
     {
-    	tableWidget_groupes_dun_client->insert_group(QString::number(_curClientDBID),
-    												 allClientGroups.at(k).trimmed(),
-													 reference_client,
-													 maximum_de_membres);
+        clientGroupTableModelQUERY_STR = QString("select %1, %2 from %3 where %4='%5'")
+        										.arg(YerothDatabaseTableColumn::REFERENCE_GROUPE,
+        											 YerothDatabaseTableColumn::MAXIMUM_DE_MEMBRES,
+													 _allWindows->GROUPES_DE_CLIENTS,
+													 YerothDatabaseTableColumn::DESIGNATION,
+													 allClientGroups.at(k).trimmed());
+
+        aSqlGroupTableModelQUERY.clear();
+
+        curQuerySize = YerothUtils::execQuery(aSqlGroupTableModelQUERY, clientGroupTableModelQUERY_STR, _logger);
+
+        if (curQuerySize > 0)
+        {
+        	if (aSqlGroupTableModelQUERY.next())
+        	{
+        		current_client_group_reference = aSqlGroupTableModelQUERY.value(0).toString();
+
+        		maximum_de_membres = aSqlGroupTableModelQUERY.value(1).toString();
+
+            	tableWidget_groupes_dun_client->insert_group(QString::number(_curClientDBID),
+            												 allClientGroups.at(k).trimmed(),
+															 current_client_group_reference,
+        													 maximum_de_membres);
+        	}
+        }
     }
 
     if (tableWidget_groupes_dun_client->rowCount() > 0)

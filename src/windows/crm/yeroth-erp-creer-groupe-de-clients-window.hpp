@@ -80,6 +80,8 @@ private slots:
 		_last_selected_table_widget_row = anItem->row();
 	}
 
+	bool IS_client_present_dans_un_groupe_de_clients(const QString &aClientGroupMemberName);
+
 	void ajouter_un_membre_au_groupe_de_clients(const QString &aClientGroupMemberName);
 
 	void annuler_la_creation_dun_groupe_de_clients();
