@@ -876,7 +876,7 @@
      <string>Clients</string>
     </property>
    </widget>
-   <widget class="YerothPushButton" name="pushButton_enregistrer">
+   <widget class="YerothPushButton" name="pushButton_modifier">
     <property name="geometry">
      <rect>
       <x>677</x>
@@ -1309,7 +1309,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Enregistrer</string>
+     <string>Modifier</string>
     </property>
    </widget>
    <widget class="YerothPushButton" name="pushButton_menu_principal">
@@ -10851,7 +10851,7 @@ background-color: rgb(0, 0, 0); </string>
   </action>
   <action name="actionChanger_utilisateur">
    <property name="icon">
-    <iconset resource="../../yeroth-erp-3-0.qrc">
+    <iconset resource="../../../yeroth-erp-3-0.qrc">
      <normaloff>:/yeroth-erp-3-0-images/log-in.png</normaloff>:/yeroth-erp-3-0-images/log-in.png</iconset>
    </property>
    <property name="text">
@@ -10894,7 +10894,7 @@ background-color: rgb(0, 0, 0); </string>
   </action>
   <action name="actionAppeler_aide">
    <property name="icon">
-    <iconset resource="../../yeroth-erp-3-0.qrc">
+    <iconset resource="../../../yeroth-erp-3-0.qrc">
      <normaloff>:/yeroth-erp-3-0-images/question.png</normaloff>:/yeroth-erp-3-0-images/question.png</iconset>
    </property>
    <property name="text">
@@ -10913,7 +10913,7 @@ background-color: rgb(0, 0, 0); </string>
   </action>
   <action name="actionDeconnecter_utilisateur">
    <property name="icon">
-    <iconset resource="../../yeroth-erp-3-0.qrc">
+    <iconset resource="../../../yeroth-erp-3-0.qrc">
      <normaloff>:/yeroth-erp-3-0-images/log-out.png</normaloff>:/yeroth-erp-3-0-images/log-out.png</iconset>
    </property>
    <property name="text">
@@ -11068,10 +11068,10 @@ background-color: rgb(0, 0, 0); </string>
   <tabstop>pushButton_annuler</tabstop>
   <tabstop>pushButton_menu_principal</tabstop>
   <tabstop>pushButton_clients</tabstop>
-  <tabstop>pushButton_enregistrer</tabstop>
+  <tabstop>pushButton_modifier</tabstop>
  </tabstops>
  <resources>
-  <include location="../../yeroth-erp-3-0.qrc"/>
+  <include location="../../../yeroth-erp-3-0.qrc"/>
  </resources>
  <connections/>
 </ui>
