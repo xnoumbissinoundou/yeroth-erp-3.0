@@ -103,7 +103,7 @@ YerothERPClientsWindow::YerothERPClientsWindow()
     pushButton_menu_principal->disable(this);
     pushButton_creer_compte_client->disable(this);
     pushButton_groupes_de_clients->disable(this);
-    pushButton_creer_un_programme_de_fidelite_client->disable(this);
+    pushButton_programmes_de_fidelite_clients->disable(this);
 
     pushButton_reinitialiser->disable(this);
     pushButton_filtrer->disable(this);
@@ -729,7 +729,7 @@ void YerothERPClientsWindow::definirCaissier()
     pushButton_menu_principal->disable(this);
     pushButton_creer_compte_client->disable(this);
     pushButton_groupes_de_clients->disable(this);
-    pushButton_creer_un_programme_de_fidelite_client->disable(this);
+    pushButton_programmes_de_fidelite_clients->disable(this);
 
     pushButton_reinitialiser->disable(this);
     pushButton_filtrer->disable(this);
@@ -764,7 +764,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_creer_compte_client->enable(this, SLOT(creerCompteClient()));
     pushButton_groupes_de_clients->enable(this, SLOT(groupes_de_clients()));
-    pushButton_creer_un_programme_de_fidelite_client->enable(this, SLOT(creer_un_programme_de_fidelite_clients()));
+    pushButton_programmes_de_fidelite_clients->enable(this, SLOT(programmes_de_fidelite_clients()));
 
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
     pushButton_filtrer->enable(this, SLOT(filtrer()));
@@ -799,7 +799,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_creer_compte_client->enable(this, SLOT(creerCompteClient()));
     pushButton_groupes_de_clients->enable(this, SLOT(groupes_de_clients()));
-    pushButton_creer_un_programme_de_fidelite_client->enable(this, SLOT(creer_un_programme_de_fidelite_clients()));
+    pushButton_programmes_de_fidelite_clients->enable(this, SLOT(programmes_de_fidelite_clients()));
 
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
     pushButton_filtrer->enable(this, SLOT(filtrer()));
@@ -834,7 +834,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     pushButton_menu_principal->disable(this);
     pushButton_creer_compte_client->disable(this);
     pushButton_groupes_de_clients->disable(this);
-    pushButton_creer_un_programme_de_fidelite_client->disable(this);
+    pushButton_programmes_de_fidelite_clients->disable(this);
 
     pushButton_reinitialiser->disable(this);
     pushButton_filtrer->disable(this);
@@ -863,7 +863,7 @@ void YerothERPClientsWindow::definirMagasinier()
     pushButton_menu_principal->disable(this);
     pushButton_creer_compte_client->disable(this);
     pushButton_groupes_de_clients->disable(this);
-    pushButton_creer_un_programme_de_fidelite_client->disable(this);
+    pushButton_programmes_de_fidelite_clients->disable(this);
 
     pushButton_reinitialiser->disable(this);
     pushButton_filtrer->disable(this);
@@ -892,7 +892,7 @@ void YerothERPClientsWindow::definirPasDeRole()
     pushButton_menu_principal->disable(this);
     pushButton_creer_compte_client->disable(this);
     pushButton_groupes_de_clients->disable(this);
-    pushButton_creer_un_programme_de_fidelite_client->disable(this);
+    pushButton_programmes_de_fidelite_clients->disable(this);
 
     pushButton_reinitialiser->disable(this);
     pushButton_filtrer->disable(this);

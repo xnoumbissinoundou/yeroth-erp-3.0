@@ -105,6 +105,7 @@ FORMS = ui/yeroth-erp-main-window.ui \
 			ui/crm/yeroth-erp-tableau-des-transactions-du-client-window.ui \
 			ui/crm/yeroth-erp-modifier-compte-client-window.ui \
 			ui/crm/yeroth-erp-payer-compte-client-window.ui \
+			ui/crm/yeroth-erp-programmes-de-fidelite-clients-window.ui \
 			ui/crm/yeroth-erp-creer-un-programme-de-fidelite-clients-window.ui \
 			ui/crm/yeroth-erp-creer-compte-client-window.ui \
 			ui/crm/yeroth-erp-creer-groupe-de-clients-window.ui \
@@ -151,6 +152,7 @@ HEADERS = src/include/yeroth-erp-3-0-precompiled-header.hpp \
 		  src/widgets/table-view/yeroth-erp-ventes-table-view.hpp \
 		  src/widgets/table-view/yeroth-erp-mouvements_de_stocks-table-view.hpp \
 		  src/widgets/table-view/yeroth-erp-fournisseurs-table-view.hpp \
+			src/widgets/table-view/yeroth-erp-programmes-de-fidelite-clients-table-view.hpp \
 			src/widgets/table-view/yeroth-erp-groupes-de-clients-table-view.hpp \
 		  src/widgets/table-view/yeroth-erp-clients-table-view.hpp \
 		  src/widgets/table-view/yeroth-erp-alertes-table-view.hpp \
@@ -183,6 +185,7 @@ HEADERS = src/include/yeroth-erp-3-0-precompiled-header.hpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-dialog.hpp \
 		  src/windows/crm/details/yeroth-erp-clients-detail-window.hpp \
 			src/windows/crm/details/yeroth-erp-details-dun-programme-de-fidelite-clients-window.hpp \
+			src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.hpp \
 			src/windows/crm/yeroth-erp-creer-un-programme-de-fidelite-clients-window.hpp \
 			src/windows/crm/yeroth-erp-creer-compte-client-window.hpp \
 		  src/windows/crm/yeroth-erp-creer-groupe-de-clients-window.hpp \
@@ -284,6 +287,7 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/widgets/table-view/yeroth-erp-achats-aux-fournisseurs-table-view.cpp \
 		  src/widgets/table-view/yeroth-erp-achats-table-view.cpp \
 		  src/widgets/table-view/yeroth-erp-marchandises-table-view.cpp \
+			src/widgets/table-view/yeroth-erp-programmes-de-fidelite-clients-table-view.cpp \
 			src/widgets/yeroth-erp-qtable-widget-item.cpp \
 		  src/widgets/yeroth-erp-line-edit.cpp \
 		  src/widgets/yeroth-erp-push-button.cpp \
@@ -311,6 +315,7 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 			src/windows/yeroth-erp-configuration-comptabilite-window.cpp \
 		  src/windows/crm/details/yeroth-erp-clients-detail-window.cpp \
 			src/windows/crm/details/yeroth-erp-details-dun-programme-de-fidelite-clients-window.cpp \
+			src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp \
 			src/windows/crm/yeroth-erp-creer-un-programme-de-fidelite-clients-window.cpp \
 		  src/windows/crm/yeroth-erp-creer-compte-client-window.cpp \
 		  src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp \

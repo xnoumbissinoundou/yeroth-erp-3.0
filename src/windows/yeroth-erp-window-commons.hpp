@@ -188,6 +188,8 @@ public slots:
 
 	virtual void groupes_de_clients();
 
+	virtual void programmes_de_fidelite_clients();
+
 	virtual void creer_un_programme_de_fidelite_clients();
 
 	virtual void clients();

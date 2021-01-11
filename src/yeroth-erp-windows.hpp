@@ -60,6 +60,7 @@
 #include "src/windows/crm/details/yeroth-erp-details-dun-programme-de-fidelite-clients-window.hpp"
 #include "src/windows/crm/details/yeroth-erp-clients-detail-window.hpp"
 
+#include "src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.hpp"
 #include "src/windows/crm/yeroth-erp-creer-un-programme-de-fidelite-clients-window.hpp"
 #include "src/windows/crm/yeroth-erp-creer-groupe-de-clients-window.hpp"
 #include "src/windows/crm/yeroth-erp-groupes-de-clients-window.hpp"
@@ -470,6 +471,7 @@ public:
 	YerothMouvementsDeStocksWindow 						*_mouvementsDeStocksWindow;
 	YerothPointDeVenteWindow 							*_pdVenteWindow;
 	YerothFournisseurDetailsWindow 						*_fournisseurDetailsWindow;
+	YerothERPProgrammesDeFideliteClientsWindow			*_programmesDeFideliteClientsWindow;
 	YerothGroupesDeClientsWindow						*_groupesDeClientsWindow;
 	YerothGroupesDunClientWindow						*_groupesDunClientWindow;
 	YerothClientsDetailWindow 							*_clientsDetailWindow;

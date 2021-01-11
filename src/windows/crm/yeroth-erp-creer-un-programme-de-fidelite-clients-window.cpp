@@ -462,7 +462,7 @@ bool YerothCreerUnProgrammeDeFideliteClientsWindow::creerEnregistrerUnProgrammeD
 
 	clear_all_fields();
 
-	clients();
+	programmes_de_fidelite_clients();
 
     return true;
 }
