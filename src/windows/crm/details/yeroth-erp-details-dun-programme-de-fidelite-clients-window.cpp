@@ -211,9 +211,6 @@ void YerothDetailsDunProgrammeDeFideliteClientsWindow::showClientROYALTY_PROGRAM
 	lineEdit_details_dun_programme_de_fidelite_clients_reference
 		->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE_GROUPE));
 
-	QDEBUG_STRINGS_OUTPUT_2("designation",
-			GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
-
 	lineEdit_details_dun_programme_de_fidelite_clients_designation
 		->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
 
