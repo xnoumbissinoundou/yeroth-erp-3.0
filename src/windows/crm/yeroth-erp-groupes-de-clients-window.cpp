@@ -300,27 +300,9 @@ void YerothGroupesDeClientsWindow::rendreVisible(YerothSqlTableModel * stocksTab
 
 void YerothGroupesDeClientsWindow::definirCaissier()
 {
-    _logger->log("definirCaissier");
+    _logger->log("definirCaissier - definirPasDeRole()");
 
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
-	YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_ce_groupe_au_detail, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerGroupesDeClients, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
-
-
-    MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS
-
-
-    pushButton_groupes_de_clients_filtrer->disable(this);
-    pushButton_clients->disable(this);
-    pushButton_afficher->disable(this);
-    pushButton_menu_principal->disable(this);
-    pushButton_creer_groupe->disable(this);
-    pushButton_modifier->disable(this);
-    pushButton_reinitialiser->disable(this);
+    definirPasDeRole();
 }
 
 
