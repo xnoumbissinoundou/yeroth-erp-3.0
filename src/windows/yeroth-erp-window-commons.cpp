@@ -38,6 +38,8 @@ QString YerothWindowsCommons::_yerothTableView_FROM_WINDOWS_COMMONS_LAST_SELECTE
 
 QPoint *YerothWindowsCommons::_centerPosition(new QPoint);
 
+const uint	YerothWindowsCommons::CHECKBOX_YEROTH_FOR_DB_TABLE_COLUMN_FILTERING_WIDTH_SIZE = 282;
+
 
 YerothWindowsCommons::~YerothWindowsCommons()
 {
@@ -727,7 +729,7 @@ void YerothWindowsCommons::supprimer_image(QLabel &aLabel_image_produit)
 
 int YerothWindowsCommons::getDialogBox_LONGUEUR(unsigned int n)
 {
-	static unsigned int delta = 218;
+	static unsigned int delta = 300;
 
 	int result = qCeil(n/8.0);
 
@@ -749,7 +751,7 @@ int YerothWindowsCommons::getDialogBox_Yn_coordinate(unsigned int n)
 
 int YerothWindowsCommons::getDialogBox_Xn_coordinate(unsigned int n)
 {
-	static unsigned int w = 200;
+	static unsigned int w = YerothWindowsCommons::CHECKBOX_YEROTH_FOR_DB_TABLE_COLUMN_FILTERING_WIDTH_SIZE;
 
 	static unsigned int X_0 = 7;
 
@@ -813,7 +815,7 @@ void YerothWindowsCommons::selectionner_champs_db_visibles()
 
 		aQCheckBox->setGeometry(QRect(getDialogBox_Xn_coordinate(k),
 									  getDialogBox_Yn_coordinate(k),
-									  200,
+									  YerothWindowsCommons::CHECKBOX_YEROTH_FOR_DB_TABLE_COLUMN_FILTERING_WIDTH_SIZE,
 									  25));
 
 		aQCheckBox->setText(aDBColumnName_VIEW_STRING);
