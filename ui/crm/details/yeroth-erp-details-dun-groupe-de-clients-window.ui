@@ -8226,9 +8226,8 @@ CLIENTS</string>
     <addaction name="actionChanger_utilisateur"/>
     <addaction name="actionDeconnecter_utilisateur"/>
     <addaction name="separator"/>
-    <addaction name="actionAnnuler"/>
-    <addaction name="actionEnregistrer"/>
-    <addaction name="actionSupprimerUnMembreDuGroupeDeClients"/>
+    <addaction name="actionProgrammesDeFideliteClients"/>
+    <addaction name="actionRETOUR"/>
     <addaction name="separator"/>
     <addaction name="actionMenuClients"/>
     <addaction name="separator"/>
@@ -9221,36 +9220,6 @@ CLIENTS</string>
     </font>
    </property>
   </action>
-  <action name="actionEnregistrer">
-   <property name="text">
-    <string>Enregistrer</string>
-   </property>
-   <property name="toolTip">
-    <string>Enregistrer</string>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-    </font>
-   </property>
-  </action>
-  <action name="actionAnnuler">
-   <property name="text">
-    <string>Annuler la création du groupe de clients</string>
-   </property>
-   <property name="toolTip">
-    <string>Annuler la création du groupe de clients</string>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-    </font>
-   </property>
-  </action>
   <action name="actionAdministration">
    <property name="icon">
     <iconset>
@@ -9268,12 +9237,12 @@ CLIENTS</string>
     </font>
    </property>
   </action>
-  <action name="actionSupprimerUnMembreDuGroupeDeClients">
+  <action name="actionRETOUR">
    <property name="text">
-    <string>Supprimer 1 membre du groupe de clients</string>
+    <string>RETOUR</string>
    </property>
    <property name="toolTip">
-    <string>Supprimer 1 membre du groupe de clients</string>
+    <string>RETOUR</string>
    </property>
    <property name="font">
     <font>
@@ -9283,12 +9252,19 @@ CLIENTS</string>
     </font>
    </property>
   </action>
-  <action name="actionRETOUR">
+  <action name="actionProgrammesDeFideliteClients">
    <property name="text">
-    <string>RETOUR</string>
+    <string>Lister les programmes de fidélité clients</string>
    </property>
    <property name="toolTip">
-    <string>RETOUR</string>
+    <string>Lister les programmes de fidélité clients</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
    </property>
   </action>
  </widget>
