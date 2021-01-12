@@ -66,7 +66,7 @@ YerothCreerUnProgrammeDeFideliteClientsWindow::YerothCreerUnProgrammeDeFideliteC
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEnregistrer, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionFermeture, false);
 
-    pushButton_achats_aux_fournisseurs->disable(this);
+
 	pushButton_annuler->disable(this);
 	pushButton_menu_principal->disable(this);
 	pushButton_clients->disable(this);
@@ -106,6 +106,9 @@ YerothCreerUnProgrammeDeFideliteClientsWindow::YerothCreerUnProgrammeDeFideliteC
 #endif
 
     setupShortcuts();
+
+	radioButton_montant_du_rabais->setText(QString("montant du rabais (%1)")
+											.arg(YerothERPConfig::currency));
 
     radioButton_pourcentage_du_rabais->setChecked(true);
 
@@ -167,7 +170,6 @@ void YerothCreerUnProgrammeDeFideliteClientsWindow::definirPasDeRole()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEnregistrer, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionFermeture, false);
 
-    pushButton_achats_aux_fournisseurs->disable(this);
 	pushButton_annuler->disable(this);
 	pushButton_menu_principal->disable(this);
 	pushButton_clients->disable(this);
@@ -201,7 +203,6 @@ void YerothCreerUnProgrammeDeFideliteClientsWindow::definirManager()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionFermeture, true);
 
 
-    pushButton_achats_aux_fournisseurs->enable(this, SLOT(achats_aux_fournisseurs()));
 	pushButton_annuler->enable(this, SLOT(annuler_la_creation_dun_programme_de_fidelite_de_clients()));
 	pushButton_menu_principal->enable(this, SLOT(menu()));
 	pushButton_clients->enable(this, SLOT(clients()));
@@ -227,7 +228,6 @@ void YerothCreerUnProgrammeDeFideliteClientsWindow::definirVendeur()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionFermeture, true);
 
 
-    pushButton_achats_aux_fournisseurs->enable(this, SLOT(achats_aux_fournisseurs()));
 	pushButton_annuler->enable(this, SLOT(annuler_la_creation_dun_programme_de_fidelite_de_clients()));
 	pushButton_menu_principal->enable(this, SLOT(menu()));
 	pushButton_clients->enable(this, SLOT(clients()));
@@ -327,7 +327,7 @@ void YerothCreerUnProgrammeDeFideliteClientsWindow::annuler_la_creation_dun_prog
 {
 	clear_all_fields();
 
-	clients();
+	programmes_de_fidelite_clients();
 }
 
 

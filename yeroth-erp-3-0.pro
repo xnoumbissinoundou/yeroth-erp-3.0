@@ -100,6 +100,7 @@ FORMS = ui/yeroth-erp-main-window.ui \
 			ui/supplier/yeroth-erp-creer-fournisseur-window.ui \
 			ui/supplier/yeroth-erp-fournisseur-details-window.ui \
 		  ui/supplier/yeroth-erp-fournisseurs-window.ui \
+			ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui \
 			ui/crm/details/yeroth-erp-clients-detail-window.ui \
 			ui/crm/details/yeroth-erp-details-dun-programme-de-fidelite-clients-window.ui \
 			ui/crm/yeroth-erp-tableau-des-transactions-du-client-window.ui \

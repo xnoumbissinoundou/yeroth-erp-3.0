@@ -36,14 +36,25 @@ YerothDetailsDunProgrammeDeFideliteClientsWindow::YerothDetailsDunProgrammeDeFid
 
     setupLineEdits();
 
+
+	radioButton_montant_du_rabais->setText(QString("montant du rabais (%1)")
+											.arg(YerothERPConfig::currency));
+
+
 	radioButton_montant_du_rabais->setVisible(false);
 	radioButton_pourcentage_du_rabais->setVisible(false);
 
+
 	checkBox_refereur_details_dun_programme_de_fidelite_clients_pourcentage_rabais->setVisible(false);
+
 	checkBox_details_dun_programme_de_fidelite_clients_rabais_en_cascade_par_le_haut_tous_refereurs->setVisible(false);
 
+
 	doubleSpinBox_details_dun_programme_de_fidelite_clients_pourcentage_du_rabais->setVisible(false);
+	doubleSpinBox_details_dun_programme_de_fidelite_clients_pourcentage_du_rabais->setEnabled(false);
+
 	doubleSpinBox_details_dun_programme_de_fidelite_clients_pourcentage_du_rabais_du_refereur->setVisible(false);
+	doubleSpinBox_details_dun_programme_de_fidelite_clients_pourcentage_du_rabais_du_refereur->setEnabled(false);
 
 	comboBox_details_dun_programme_de_fidelite_clients_pourcentage_rabais_refereur_condition->setVisible(false);
 
@@ -242,7 +253,8 @@ void YerothDetailsDunProgrammeDeFideliteClientsWindow::showClientROYALTY_PROGRAM
 			->setVisible(false);
 
 		lineEdit_details_dun_programme_de_fidelite_clients_montant_du_rabais
-			->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::MONTANT_DU_RABAIS));
+		  ->setText(GET_CURRENCY_STRING_NUM(
+				  GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::MONTANT_DU_RABAIS).toDouble()));
 
 		lineEdit_details_dun_programme_de_fidelite_clients_montant_du_rabais->setVisible(true);
 	}
@@ -282,9 +294,6 @@ void YerothDetailsDunProgrammeDeFideliteClientsWindow::showClientROYALTY_PROGRAM
 		doubleSpinBox_details_dun_programme_de_fidelite_clients_pourcentage_du_rabais_du_refereur
 			->setVisible(true);
 
-
-		QDEBUG_STRINGS_OUTPUT_2("YEROTH CONDITION",
-				GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::CONDITION_DU_BENEFICE));
 
 		comboBox_details_dun_programme_de_fidelite_clients_pourcentage_rabais_refereur_condition
 			->addItem(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::CONDITION_DU_BENEFICE));
