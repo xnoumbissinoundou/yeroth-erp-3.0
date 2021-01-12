@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>YerothCreerGroupeDeClientsWindow</class>
- <widget class="QMainWindow" name="YerothCreerGroupeDeClientsWindow">
+ <class>YerothDetailsDunGroupeDeClientsWindow</class>
+ <widget class="QMainWindow" name="YerothDetailsDunGroupeDeClientsWindow">
   <property name="enabled">
    <bool>true</bool>
   </property>
@@ -8230,10 +8230,7 @@ CLIENTS</string>
     <addaction name="actionEnregistrer"/>
     <addaction name="actionSupprimerUnMembreDuGroupeDeClients"/>
     <addaction name="separator"/>
-    <addaction name="actionClients"/>
-    <addaction name="actionListerLesGroupesDeClients"/>
-    <addaction name="separator"/>
-    <addaction name="actionMenu_principal"/>
+    <addaction name="actionMenuClients"/>
     <addaction name="separator"/>
     <addaction name="actionFermeture"/>
    </widget>
@@ -8672,7 +8669,7 @@ CLIENTS</string>
    <addaction name="menuAide"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <widget class="QToolBar" name="toolBar_creerGroupeDeClientsWindow">
+  <widget class="QToolBar" name="toolBar_detailsDunGroupeDeClientsWindow">
    <property name="palette">
     <palette>
      <active>
@@ -9147,12 +9144,12 @@ CLIENTS</string>
     </font>
    </property>
   </action>
-  <action name="actionMenu_principal">
+  <action name="actionMenuClients">
    <property name="text">
-    <string>Menu principal</string>
+    <string>Menu clients</string>
    </property>
    <property name="toolTip">
-    <string>Menu principal</string>
+    <string>Menu clients</string>
    </property>
    <property name="font">
     <font>
@@ -9254,33 +9251,6 @@ CLIENTS</string>
     </font>
    </property>
   </action>
-  <action name="actionClients">
-   <property name="text">
-    <string>Lister les clients</string>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-    </font>
-   </property>
-  </action>
-  <action name="actionListerLesGroupesDeClients">
-   <property name="text">
-    <string>Lister les groupes de clients</string>
-   </property>
-   <property name="toolTip">
-    <string>Lister les groupes de clients</string>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-    </font>
-   </property>
-  </action>
   <action name="actionAdministration">
    <property name="icon">
     <iconset>
@@ -9311,6 +9281,14 @@ CLIENTS</string>
      <weight>50</weight>
      <bold>false</bold>
     </font>
+   </property>
+  </action>
+  <action name="actionRETOUR">
+   <property name="text">
+    <string>RETOUR</string>
+   </property>
+   <property name="toolTip">
+    <string>RETOUR</string>
    </property>
   </action>
  </widget>

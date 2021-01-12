@@ -117,10 +117,10 @@ YerothGroupesDeClientsWindow::YerothGroupesDeClientsWindow()
     MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS
 
     pushButton_groupes_de_clients_filtrer->disable(this);
-    pushButton_clients->disable(this);
-    pushButton_afficher->disable(this);
-    pushButton_menu_principal->disable(this);
     pushButton_creer_groupe->disable(this);
+    pushButton_afficher->disable(this);
+    pushButton_menu_clients->disable(this);
+    pushButton_programmes_de_fidelite_clients->disable(this);
     pushButton_modifier->disable(this);
     pushButton_reinitialiser->disable(this);
 
@@ -323,9 +323,9 @@ void YerothGroupesDeClientsWindow::definirManager()
 
 
     pushButton_groupes_de_clients_filtrer->enable(this, SLOT(filtrer_groupes_de_clients()));
-    pushButton_clients->enable(this, SLOT(clients()));
+    pushButton_programmes_de_fidelite_clients->enable(this, SLOT(programmes_de_fidelite_clients()));
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
-    pushButton_menu_principal->enable(this, SLOT(menu()));
+    pushButton_menu_clients->enable(this, SLOT(clients()));
     pushButton_creer_groupe->enable(this, SLOT(creerUnGroupeDeClients()));
     pushButton_modifier->enable(this, SLOT(menu()));
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
@@ -349,9 +349,9 @@ void YerothGroupesDeClientsWindow::definirVendeur()
 
 
     pushButton_groupes_de_clients_filtrer->enable(this, SLOT(filtrer_groupes_de_clients()));
-    pushButton_clients->enable(this, SLOT(clients()));
+    pushButton_programmes_de_fidelite_clients->enable(this, SLOT(programmes_de_fidelite_clients()));
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
-    pushButton_menu_principal->enable(this, SLOT(menu()));
+    pushButton_menu_clients->enable(this, SLOT(clients()));
     pushButton_creer_groupe->enable(this, SLOT(creerUnGroupeDeClients()));
     pushButton_modifier->enable(this, SLOT(menu()));
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
@@ -391,9 +391,9 @@ void YerothGroupesDeClientsWindow::definirPasDeRole()
 
 
     pushButton_groupes_de_clients_filtrer->disable(this);
-    pushButton_clients->disable(this);
+    pushButton_programmes_de_fidelite_clients->disable(this);
     pushButton_afficher->disable(this);
-    pushButton_menu_principal->disable(this);
+    pushButton_menu_clients->disable(this);
     pushButton_creer_groupe->disable(this);
     pushButton_modifier->disable(this);
     pushButton_reinitialiser->disable(this);

@@ -66,10 +66,8 @@ YerothCreerGroupeDeClientsWindow::YerothCreerGroupeDeClientsWindow()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEnregistrer, false);
 
 
-    pushButton_clients->disable(this);
     pushButton_annuler->disable(this);
-    pushButton_menu_principal->disable(this);
-    pushButton_groupes_de_clients->disable(this);
+    pushButton_menu_clients->disable(this);
     pushButton_supprimer_membre_du_groupe_de_clients->disable(this);
     pushButton_enregistrer->disable(this);
 
@@ -77,10 +75,10 @@ YerothCreerGroupeDeClientsWindow::YerothCreerGroupeDeClientsWindow()
     connect(actionChanger_utilisateur, SIGNAL(triggered()), this, SLOT(changer_utilisateur()));
     connect(actionAppeler_aide, SIGNAL(triggered()), this, SLOT(help()));
     connect(actionDeconnecter_utilisateur, SIGNAL(triggered()), this, SLOT(deconnecter_utilisateur()));
-    connect(actionMenu_principal, SIGNAL(triggered()), this, SLOT(menu()));
+    connect(actionMenu_principal, SIGNAL(triggered()), this, SLOT(clients()));
     connect(actionListerLesGroupesDeClients, SIGNAL(triggered()), this, SLOT(groupes_de_clients()));
     connect(actionClients, SIGNAL(triggered()), this, SLOT(clients()));
-    connect(actionAnnuler, SIGNAL(triggered()), this, SLOT(menu()));
+    connect(actionAnnuler, SIGNAL(triggered()), this, SLOT(clients()));
     connect(actionSupprimerUnMembreDuGroupeDeClients, SIGNAL(triggered()), this, SLOT(supprimerUnMembreDunGroupeDeClients()));
     connect(actionEnregistrer, SIGNAL(triggered()), this, SLOT(creerEnregistrerUnGroupeDeClients()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
@@ -165,10 +163,8 @@ void YerothCreerGroupeDeClientsWindow::definirPasDeRole()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEnregistrer, false);
 
 
-    pushButton_clients->disable(this);
     pushButton_annuler->disable(this);
-    pushButton_menu_principal->disable(this);
-    pushButton_groupes_de_clients->disable(this);
+    pushButton_menu_clients->disable(this);
     pushButton_supprimer_membre_du_groupe_de_clients->disable(this);
     pushButton_enregistrer->disable(this);
 }
@@ -208,10 +204,8 @@ void YerothCreerGroupeDeClientsWindow::definirManager()
 
 #endif
 
-    pushButton_clients->enable(this, SLOT(clients()));
     pushButton_annuler->enable(this, SLOT(annuler_la_creation_dun_groupe_de_clients()));
-    pushButton_menu_principal->enable(this, SLOT(menu()));
-    pushButton_groupes_de_clients->enable(this, SLOT(groupes_de_clients()));
+    pushButton_menu_clients->enable(this, SLOT(clients()));
     pushButton_supprimer_membre_du_groupe_de_clients->enable(this, SLOT(supprimerUnMembreDunGroupeDeClients()));
     pushButton_enregistrer->enable(this, SLOT(creerEnregistrerUnGroupeDeClients()));
 }
@@ -244,10 +238,8 @@ void YerothCreerGroupeDeClientsWindow::definirVendeur()
 
 #endif
 
-    pushButton_clients->enable(this, SLOT(clients()));
     pushButton_annuler->enable(this, SLOT(annuler_la_creation_dun_groupe_de_clients()));
-    pushButton_menu_principal->enable(this, SLOT(menu()));
-    pushButton_groupes_de_clients->enable(this, SLOT(groupes_de_clients()));
+    pushButton_menu_clients->enable(this, SLOT(clients()));
     pushButton_supprimer_membre_du_groupe_de_clients->enable(this, SLOT(supprimerUnMembreDunGroupeDeClients()));
     pushButton_enregistrer->enable(this, SLOT(creerEnregistrerUnGroupeDeClients()));
 }

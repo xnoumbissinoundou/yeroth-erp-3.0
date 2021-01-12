@@ -184,7 +184,8 @@ HEADERS = src/include/yeroth-erp-3-0-precompiled-header.hpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-carte-credit-dialog.hpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.hpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-dialog.hpp \
-		  src/windows/crm/details/yeroth-erp-clients-detail-window.hpp \
+		  src/windows/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.hpp \
+			src/windows/crm/details/yeroth-erp-clients-detail-window.hpp \
 			src/windows/crm/details/yeroth-erp-details-dun-programme-de-fidelite-clients-window.hpp \
 			src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.hpp \
 			src/windows/crm/yeroth-erp-creer-un-programme-de-fidelite-clients-window.hpp \
@@ -314,7 +315,8 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.cpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-dialog.cpp \
 			src/windows/yeroth-erp-configuration-comptabilite-window.cpp \
-		  src/windows/crm/details/yeroth-erp-clients-detail-window.cpp \
+		  src/windows/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.cpp \
+			src/windows/crm/details/yeroth-erp-clients-detail-window.cpp \
 			src/windows/crm/details/yeroth-erp-details-dun-programme-de-fidelite-clients-window.cpp \
 			src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp \
 			src/windows/crm/yeroth-erp-creer-un-programme-de-fidelite-clients-window.cpp \
