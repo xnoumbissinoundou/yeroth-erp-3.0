@@ -1771,7 +1771,7 @@ Groupe de clients</string>
      <string>Modifier</string>
     </property>
    </widget>
-   <widget class="YerothERPGroupesDeClientsTableView" name="tableView_programmes_de_fidelite_clients">
+   <widget class="YerothERPProgrammesDeFideliteClientsTableView" name="tableView_programmes_de_fidelite_clients">
     <property name="geometry">
      <rect>
       <x>11</x>
@@ -15454,9 +15454,9 @@ FIDÉLITÉ CLIENT</string>
    <header>src/widgets/yeroth-erp-combo-box.hpp</header>
   </customwidget>
   <customwidget>
-   <class>YerothERPGroupesDeClientsTableView</class>
+   <class>YerothERPProgrammesDeFideliteClientsTableView</class>
    <extends>QTableView</extends>
-   <header>src/widgets/table-view/yeroth-erp-groupes-de-clients-table-view.hpp</header>
+   <header>src/widgets/table-view/yeroth-erp-programmes-de-fidelite-clients-table-view.hpp</header>
   </customwidget>
   <customwidget>
    <class>YerothDateTimeEdit</class>
