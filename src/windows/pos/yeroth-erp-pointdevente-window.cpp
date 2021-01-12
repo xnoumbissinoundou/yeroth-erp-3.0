@@ -1357,8 +1357,8 @@ void YerothPointDeVenteWindow::rendreVisible(YerothSqlTableModel * stocksTableMo
 {
     _logger->log("rendreVisible");
 
-    radioButton_article_detail_remise_prix->setText(QString(QObject::trUtf8("remise (%1)"))
-    													.arg(YerothERPConfig::currency));
+    radioButton_article_detail_remise_prix->setText(QObject::trUtf8("remise (%1)")
+    																									.arg(YerothERPConfig::currency));
 
     lineEdit_articles_imprimante->setText(YerothERPConfig::printer);
 
