@@ -5616,9 +5616,7 @@ background-color: rgb(0, 0, 0);</string>
     <addaction name="actionChanger_utilisateur"/>
     <addaction name="actionDeconnecter_utilisateur"/>
     <addaction name="separator"/>
-    <addaction name="actionModifierCompteClient"/>
-    <addaction name="actionSupprimerCompteClient"/>
-    <addaction name="separator"/>
+    <addaction name="actionAfficher_ce_groupe_au_detail"/>
     <addaction name="actionClients"/>
     <addaction name="separator"/>
     <addaction name="actionMenu"/>
@@ -6656,22 +6654,6 @@ background-color: rgb(0, 0, 0);</string>
     <string>Lister les clients</string>
    </property>
   </action>
-  <action name="actionModifierCompteClient">
-   <property name="text">
-    <string>Modifier ce compte client</string>
-   </property>
-   <property name="toolTip">
-    <string>Modifier ce compte client</string>
-   </property>
-  </action>
-  <action name="actionSupprimerCompteClient">
-   <property name="text">
-    <string>Supprimer ce compte client</string>
-   </property>
-   <property name="toolTip">
-    <string>Supprimer ce compte client</string>
-   </property>
-  </action>
   <action name="actionExporter_au_format_csv">
    <property name="icon">
     <iconset>
@@ -6684,6 +6666,21 @@ background-color: rgb(0, 0, 0);</string>
    <property name="font">
     <font>
      <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionAfficher_ce_groupe_au_detail">
+   <property name="text">
+    <string>Afficher les détails de ce groupe</string>
+   </property>
+   <property name="toolTip">
+    <string>Afficher les détails de ce groupe</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
     </font>
    </property>
   </action>

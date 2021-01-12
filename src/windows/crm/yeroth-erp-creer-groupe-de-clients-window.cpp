@@ -494,6 +494,9 @@ bool YerothCreerGroupeDeClientsWindow::creerEnregistrerUnGroupeDeClients()
 	record.setValue(YerothDatabaseTableColumn::MAXIMUM_DE_MEMBRES,
 			lineEdit_creer_groupe_clients_maximum_de_membres->text().toInt());
 
+	record.setValue(YerothDatabaseTableColumn::PROGRAMME_DE_FIDELITE_CLIENTS,
+			lineEdit_creer_groupe_clients_programme_de_fidelite_de_clients->text());
+
 
 	QMapIterator<int, QString> 	it_MapListIdxToElement_db_ID(
 			tableWidget_creer_groupe_clients_membres_initiaux_du_groupe->get_mapListIdxToElement_db_ID());

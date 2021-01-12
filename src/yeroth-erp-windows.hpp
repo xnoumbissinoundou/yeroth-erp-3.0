@@ -57,6 +57,7 @@
 
 
 //** CRM
+#include "src/windows/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.hpp"
 #include "src/windows/crm/details/yeroth-erp-details-dun-programme-de-fidelite-clients-window.hpp"
 #include "src/windows/crm/details/yeroth-erp-clients-detail-window.hpp"
 
@@ -118,6 +119,7 @@ class YerothModifierWindow;
 class YerothSortirWindow;
 class YerothTableauxDeBordWindow;
 class YerothMouvementsDeStocksWindow;
+class YerothDetailsDunGroupeDeClientsWindow;
 class YerothPointDeVenteWindow;
 class YerothPOSVenteMethodePaiementCarteCreditDialog;
 class YerothPOSVenteMethodePaiementComptantEntreeDialog;
@@ -472,6 +474,7 @@ public:
 	YerothPointDeVenteWindow 							*_pdVenteWindow;
 	YerothFournisseurDetailsWindow 						*_fournisseurDetailsWindow;
 	YerothERPProgrammesDeFideliteClientsWindow			*_programmesDeFideliteClientsWindow;
+	YerothDetailsDunGroupeDeClientsWindow				*_detailsGroupeDeClientsWindow;
 	YerothGroupesDeClientsWindow						*_groupesDeClientsWindow;
 	YerothGroupesDunClientWindow						*_groupesDunClientWindow;
 	YerothClientsDetailWindow 							*_clientsDetailWindow;

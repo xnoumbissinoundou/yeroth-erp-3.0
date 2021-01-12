@@ -1,1 +1,1 @@
-create table groupes_de_clients (id int primary key, date_creation date, reference_groupe varchar(256), designation varchar(256) NOT NULL UNIQUE, description_groupe varchar(256) NOT NULL, maximum_de_membres int(3), membres_du_groupe_db_ID varchar(5000));
+create table groupes_de_clients (id int primary key, date_creation date, reference_groupe varchar(256), designation varchar(256) NOT NULL UNIQUE, description_groupe varchar(256) NOT NULL, programme_de_fidelite_clients varchar(256), maximum_de_membres int(3), membres_du_groupe_db_ID varchar(5000));

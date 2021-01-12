@@ -101,6 +101,8 @@ public:
 
 	static const QString REFERENCE_RECU_DACHAT;
 
+	static const QString PROGRAMME_DE_FIDELITE_CLIENTS;
+
 	static const QString PRIX_DACHAT_PRECEDENT;
 
 	static const QString PRIX_DACHAT;

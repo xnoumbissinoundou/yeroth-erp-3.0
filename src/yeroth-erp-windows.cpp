@@ -136,6 +136,7 @@ YerothERPWindows::YerothERPWindows(QDesktopWidget *desktopWidget)
      _pdVenteWindow(0),
 	 _fournisseurDetailsWindow(0),
 	 _programmesDeFideliteClientsWindow(0),
+	 _detailsGroupeDeClientsWindow(0),
 	 _groupesDeClientsWindow(0),
 	 _groupesDunClientWindow(0),
 	 _clientsDetailWindow(0),
@@ -260,6 +261,7 @@ YerothERPWindows::~YerothERPWindows()
     delete _clientsDetailWindow;
     delete _groupesDunClientWindow;
     delete _groupesDeClientsWindow;
+    delete _detailsGroupeDeClientsWindow;
     delete _programmesDeFideliteClientsWindow;
     delete _fournisseurDetailsWindow;
     delete _modifierWindow;
@@ -349,6 +351,7 @@ void YerothERPWindows::createAllYerothPosUserWindows()
     _pdVenteWindow 					= new YerothPointDeVenteWindow;
     _fournisseurDetailsWindow 		= new YerothFournisseurDetailsWindow;
     _programmesDeFideliteClientsWindow = new YerothERPProgrammesDeFideliteClientsWindow;
+    _detailsGroupeDeClientsWindow	= new YerothDetailsDunGroupeDeClientsWindow;
     _groupesDeClientsWindow			= new YerothGroupesDeClientsWindow;
     _groupesDunClientWindow			= new YerothGroupesDunClientWindow;
     _clientsDetailWindow 			= new YerothClientsDetailWindow;
@@ -501,6 +504,7 @@ void YerothERPWindows::definirMagasinier()
     _pdVenteWindow->definirMagasinier();
     _fournisseurDetailsWindow->definirMagasinier();
     _programmesDeFideliteClientsWindow->definirMagasinier();
+    _detailsGroupeDeClientsWindow->definirMagasinier();
     _groupesDeClientsWindow->definirMagasinier();
     _groupesDunClientWindow->definirMagasinier();
     _clientsDetailWindow->definirMagasinier();
@@ -538,6 +542,7 @@ void YerothERPWindows::definirCaissier()
     _pdVenteWindow->definirCaissier();
     _fournisseurDetailsWindow->definirCaissier();
     _programmesDeFideliteClientsWindow->definirCaissier();
+    _detailsGroupeDeClientsWindow->definirCaissier();
     _groupesDeClientsWindow->definirCaissier();
     _groupesDunClientWindow->definirCaissier();
     _clientsDetailWindow->definirCaissier();
@@ -575,6 +580,7 @@ void YerothERPWindows::definirManager()
     _pdVenteWindow->definirManager();
     _fournisseurDetailsWindow->definirManager();
     _programmesDeFideliteClientsWindow->definirManager();
+    _detailsGroupeDeClientsWindow->definirManager();
     _groupesDeClientsWindow->definirManager();
     _groupesDunClientWindow->definirManager();
     _clientsDetailWindow->definirManager();
@@ -619,6 +625,7 @@ void YerothERPWindows::definirVendeur()
     _pdVenteWindow->definirVendeur();
     _fournisseurDetailsWindow->definirVendeur();
     _programmesDeFideliteClientsWindow->definirVendeur();
+    _detailsGroupeDeClientsWindow->definirVendeur();
     _groupesDeClientsWindow->definirVendeur();
     _groupesDunClientWindow->definirVendeur();
     _clientsDetailWindow->definirVendeur();
@@ -663,6 +670,7 @@ void YerothERPWindows::definirGestionaireDesStocks()
     _pdVenteWindow->definirGestionaireDesStocks();
     _fournisseurDetailsWindow->definirGestionaireDesStocks();
     _programmesDeFideliteClientsWindow->definirGestionaireDesStocks();
+    _detailsGroupeDeClientsWindow->definirGestionaireDesStocks();
     _groupesDeClientsWindow->definirGestionaireDesStocks();
     _groupesDunClientWindow->definirGestionaireDesStocks();
     _clientsDetailWindow->definirGestionaireDesStocks();
@@ -712,6 +720,7 @@ void YerothERPWindows::definirPasDeRole()
     _pdVenteWindow->definirPasDeRole();
     _fournisseurDetailsWindow->definirPasDeRole();
     _programmesDeFideliteClientsWindow->definirPasDeRole();
+    _detailsGroupeDeClientsWindow->definirPasDeRole();
     _groupesDeClientsWindow->definirPasDeRole();
     _groupesDunClientWindow->definirPasDeRole();
     _clientsDetailWindow->definirPasDeRole();
@@ -762,6 +771,7 @@ void YerothERPWindows::hideAllWindows()
     _sortirListStocksWindow->rendreInvisible();
     _fournisseurDetailsWindow->rendreInvisible();
     _programmesDeFideliteClientsWindow->rendreInvisible();
+    _detailsGroupeDeClientsWindow->rendreInvisible();
     _groupesDeClientsWindow->rendreInvisible();
     _groupesDunClientWindow->rendreInvisible();
     _clientsDetailWindow->rendreInvisible();

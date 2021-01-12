@@ -116,7 +116,12 @@ private slots:
 
 	void supprimer_appartenance();
 
-	void afficher_au_detail();
+	void afficher_au_detail(const QModelIndex &modelIndex);
+
+	inline void afficher_au_detail()
+	{
+		afficher_au_detail(tableWidget_groupes_dun_client->currentIndex());
+	}
 
 	void afficher_tous_les_groupes_du_client();
 

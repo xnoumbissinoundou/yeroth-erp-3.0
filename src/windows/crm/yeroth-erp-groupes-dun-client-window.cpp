@@ -60,12 +60,13 @@ YerothGroupesDunClientWindow::YerothGroupesDunClientWindow()
 	pushButton_supprimer->disable(this);
 
 
+	connect(actionAfficher_ce_groupe_au_detail, SIGNAL(triggered()), this, SLOT(afficher_au_detail()));
 	connect(actionQui_suis_je, SIGNAL(triggered()), this, SLOT(qui_suis_je()));
 
-    //	connect(tableWidget_groupes_dun_client,
-    //			SIGNAL(doubleClicked(const QModelIndex &)),
-    //			this,
-    //			SLOT());
+	connect(tableWidget_groupes_dun_client,
+			SIGNAL(doubleClicked(const QModelIndex &)),
+			this,
+			SLOT(afficher_au_detail(const QModelIndex &)));
 
 
     setupShortcuts();
@@ -78,6 +79,7 @@ void YerothGroupesDunClientWindow::contextMenuEvent(QContextMenuEvent * event)
 {
 	QMenu menu(this);
 	menu.setPalette(toolBar_menuGroupesDunClientWindow->palette());
+	menu.addAction(actionAfficher_ce_groupe_au_detail);
 	menu.exec(event->globalPos());
 }
 
@@ -96,26 +98,33 @@ void YerothGroupesDunClientWindow::supprimer_appartenance()
 }
 
 
-void YerothGroupesDunClientWindow::afficher_au_detail()
+void YerothGroupesDunClientWindow::afficher_au_detail(const QModelIndex &modelIndex)
 {
     if (_curClientsTableModel->rowCount() > 0)
     {
-    	//qDebug() << "++ test" << modelIndex.row();
-        _allWindows->_clientsDetailWindow->rendreVisible(_curClientsTableModel,
-														 _curStocksTableModel);
+    	const QString &curClient_db_ID =
+    			tableWidget_groupes_dun_client
+					->get_mapListIdxToElement_db_ID().value(modelIndex.row());
+
+        _allWindows->_detailsGroupeDeClientsWindow
+							->rendreVisible(_curClientsTableModel,
+											_curStocksTableModel,
+											curClient_db_ID);
 
         rendreInvisible();
     }
     else
     {
-        YerothQMessageBox::warning(this, QObject::trUtf8("détails d'un compte client"),
-                                  QObject::trUtf8("Sélectionnez un compte client à afficher les détails !"));
+        YerothQMessageBox::warning(this, QObject::trUtf8("détails d'un groupe de clients"),
+                                  QObject::trUtf8("Sélectionnez un groupe de clients à afficher les détails !"));
     }
 }
 
 
 void YerothGroupesDunClientWindow::afficher_tous_les_groupes_du_client()
 {
+	tableWidget_groupes_dun_client->myClear();
+
 	QSqlRecord record;
 
 	_allWindows->_clientsWindow->
@@ -123,12 +132,12 @@ void YerothGroupesDunClientWindow::afficher_tous_les_groupes_du_client()
 
     _curClientDBID = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ID).toInt();
 
-//    QDEBUG_STRINGS_OUTPUT_2_N("_curClientDBID", _curClientDBID);
-
     QString groupes_du_client(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::GROUPES_DU_CLIENT));
 
 
     QStringList allClientGroups(groupes_du_client.split("*"));
+
+    QString current_group_db_ID;
 
     QString maximum_de_membres;
 
@@ -142,8 +151,9 @@ void YerothGroupesDunClientWindow::afficher_tous_les_groupes_du_client()
 
     for (int k = 0; k < allClientGroups.size(); ++k)
     {
-        clientGroupTableModelQUERY_STR = QString("select %1, %2 from %3 where %4='%5'")
-        										.arg(YerothDatabaseTableColumn::REFERENCE_GROUPE,
+        clientGroupTableModelQUERY_STR = QString("select %1, %2, %3 from %4 where %5='%6'")
+        										.arg(YerothDatabaseTableColumn::ID,
+        											 YerothDatabaseTableColumn::REFERENCE_GROUPE,
         											 YerothDatabaseTableColumn::MAXIMUM_DE_MEMBRES,
 													 _allWindows->GROUPES_DE_CLIENTS,
 													 YerothDatabaseTableColumn::DESIGNATION,
@@ -157,15 +167,19 @@ void YerothGroupesDunClientWindow::afficher_tous_les_groupes_du_client()
         {
         	if (aSqlGroupTableModelQUERY.next())
         	{
-        		current_client_group_reference = aSqlGroupTableModelQUERY.value(0).toString();
+        		current_group_db_ID = QString::number(aSqlGroupTableModelQUERY.value(0).toInt());
 
-        		maximum_de_membres = aSqlGroupTableModelQUERY.value(1).toString();
+        		current_client_group_reference = aSqlGroupTableModelQUERY.value(1).toString();
 
-            	tableWidget_groupes_dun_client->insert_group(QString::number(_curClientDBID),
-            												 allClientGroups.at(k).trimmed(),
+        		maximum_de_membres = aSqlGroupTableModelQUERY.value(2).toString();
+
+        		tableWidget_groupes_dun_client->insert_group(current_group_db_ID,
+        													 allClientGroups.at(k).trimmed(),
 															 current_client_group_reference,
-        													 maximum_de_membres);
+															 maximum_de_membres);
         	}
+
+//        	qDebug() << tableWidget_groupes_dun_client->get_mapListIdxToElement_db_ID();
         }
     }
 
@@ -210,11 +224,11 @@ void YerothGroupesDunClientWindow::rendreVisible(YerothSqlTableModel *clientTabl
 
     tableWidget_groupes_dun_client->resizeColumnsToContents();
 
-	setVisible(true);
-
 	afficher_tous_les_groupes_du_client();
 
 	int tableRowCount = tableWidget_groupes_dun_client->rowCount();
+
+	setVisible(true);
 
 	lineEdit_groupes_dun_client_nombre_de_groupes->
 		setText(GET_NUM_STRING(tableRowCount));

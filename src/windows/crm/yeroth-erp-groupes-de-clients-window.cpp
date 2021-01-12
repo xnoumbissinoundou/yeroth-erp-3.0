@@ -261,6 +261,12 @@ void YerothGroupesDeClientsWindow::reinitialiser_champs_db_visibles()
 
 void YerothGroupesDeClientsWindow::contextMenuEvent(QContextMenuEvent * event)
 {
+	QMenu menu(this);
+	menu.setPalette(toolBar_groupes_de_clientsWindow->palette());
+
+	menu.addAction(actionAfficher_ce_groupe_au_detail);
+
+	menu.exec(event->globalPos());
 }
 
 
@@ -405,8 +411,9 @@ void YerothGroupesDeClientsWindow::afficher_au_detail()
     if (_curClientGroupTableModel->rowCount() > 0)
     {
     	//qDebug() << "++ test" << modelIndex.row();
-        _allWindows->_detailsDunProgrammeDeFideliteClientsWindow
-							->rendreVisible(_curClientGroupTableModel,
+        _allWindows->_detailsGroupeDeClientsWindow
+							->rendreVisible(0,
+											_curClientGroupTableModel,
 											_curStocksTableModel);
 
         rendreInvisible();

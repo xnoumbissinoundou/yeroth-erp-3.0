@@ -57,8 +57,14 @@ public:
 
     virtual void rendreInvisible();
 
-    virtual void rendreVisible(YerothSqlTableModel *aClientGroupTableModel,
-					   	   	   YerothSqlTableModel *stocksTableModel);
+    virtual void rendreVisible(YerothSqlTableModel *aClientTableModel,
+    						   YerothSqlTableModel *aClientGroupTableModel,
+					   	   	   YerothSqlTableModel *stocksTableModel,
+							   const QString &clientGroup_db_ID = YerothUtils::EMPTY_STRING);
+
+    virtual void rendreVisible(YerothSqlTableModel *clientTableModel,
+    						   YerothSqlTableModel *stocksTableModel,
+							   const QString &clientGroup_db_ID = YerothUtils::EMPTY_STRING);
 
 public slots:
 
@@ -81,16 +87,20 @@ protected:
 
 private slots:
 
-	void modifier_un_programme_de_fidelite_clients();
+	void afficher_groupes_dun_client();
+
+	void modifier_un_groupe_de_clients();
 
 private:
 
     void setupLineEdits();
 
-    void showClientGroup_DETAIL();
+    void showClientGroup_DETAIL(const QString &clientGroup_db_ID = YerothUtils::EMPTY_STRING);
 
 
     YerothLogger			*_logger;
+
+    YerothSqlTableModel 	*_curClientTableModel;
 
     YerothSqlTableModel 	*_curClientGroupTableModel;
 };

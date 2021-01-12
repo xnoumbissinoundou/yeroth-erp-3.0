@@ -76,7 +76,23 @@ YerothDetailsDunGroupeDeClientsWindow::YerothDetailsDunGroupeDeClientsWindow()
 }
 
 
-void YerothDetailsDunGroupeDeClientsWindow::modifier_un_programme_de_fidelite_clients()
+void YerothDetailsDunGroupeDeClientsWindow::afficher_groupes_dun_client()
+{
+	qDebug() << "_curClientTableModel" << _curClientTableModel;
+
+	if (0 == _curClientTableModel)
+	{
+		groupes_de_clients();
+	}
+
+	rendreInvisible();
+
+	_allWindows->_groupesDunClientWindow->rendreVisible(_curClientTableModel,
+														_curStocksTableModel);
+}
+
+
+void YerothDetailsDunGroupeDeClientsWindow::modifier_un_groupe_de_clients()
 {
 
 }
@@ -84,6 +100,10 @@ void YerothDetailsDunGroupeDeClientsWindow::modifier_un_programme_de_fidelite_cl
 
 void YerothDetailsDunGroupeDeClientsWindow::setupLineEdits()
 {
+	lineEdit_details_dun_groupe_de_clients_reference_groupe->setYerothEnabled(false);
+	lineEdit_details_dun_groupe_de_clients_designation->setYerothEnabled(false);
+	lineEdit_details_dun_groupe_de_clients_maximum_de_membres->setYerothEnabled(false);
+	lineEdit_details_dun_groupe_de_clients_programme_de_fidelite_de_clients->setYerothEnabled(false);
 }
 
 
@@ -163,28 +183,94 @@ void YerothDetailsDunGroupeDeClientsWindow::rendreInvisible()
 }
 
 
-void YerothDetailsDunGroupeDeClientsWindow::rendreVisible(YerothSqlTableModel * aClientGroupTableModel,
-											  	  	  	  YerothSqlTableModel * stocksTableModel)
+void YerothDetailsDunGroupeDeClientsWindow::rendreVisible(YerothSqlTableModel *aClientTableModel,
+														  YerothSqlTableModel *aClientGroupTableModel,
+											  	  	  	  YerothSqlTableModel *stocksTableModel,
+														  const QString &clientGroup_db_ID /* = YerothUtils::EMPTY_STRING */)
 {
+	disconnect(actionRETOUR, 0, 0, 0);
+
+	pushButton_RETOUR->disable(this, true);
+
+	connect(actionRETOUR, SIGNAL(triggered()), this, SLOT(groupes_de_clients()));
+
+	pushButton_RETOUR->enable(this, SLOT(groupes_de_clients()));
+
+
+	_curClientTableModel = 0;
+
 	_curStocksTableModel = stocksTableModel;
 
 	_curClientGroupTableModel = aClientGroupTableModel;
 
-    //qDebug() << "++ last selected row: " << YerothERPWindows::get_last_lister_selected_row_ID();
-
 	setVisible(true);
 
-    showClientGroup_DETAIL();
+    showClientGroup_DETAIL(clientGroup_db_ID);
 }
 
 
-void YerothDetailsDunGroupeDeClientsWindow::showClientGroup_DETAIL()
+void YerothDetailsDunGroupeDeClientsWindow::rendreVisible(YerothSqlTableModel *clientTableModel,
+														  YerothSqlTableModel *stocksTableModel,
+							   	   	  	  	  	  	  	  const QString &clientGroup_db_ID /* = YerothUtils::EMPTY_STRING */)
+ {
+	disconnect(actionRETOUR, 0, 0, 0);
+
+	pushButton_RETOUR->disable(this, true);
+
+	connect(actionRETOUR, SIGNAL(triggered()), this, SLOT(afficher_groupes_dun_client()));
+
+	pushButton_RETOUR->enable(this, SLOT(afficher_groupes_dun_client()));
+
+
+	_curClientTableModel = clientTableModel;
+
+	_curStocksTableModel = stocksTableModel;
+
+	_curClientGroupTableModel = &_allWindows->getSqlTableModel_groupes_de_clients();
+
+	setVisible(true);
+
+    showClientGroup_DETAIL(clientGroup_db_ID);
+ }
+
+
+void YerothDetailsDunGroupeDeClientsWindow::showClientGroup_DETAIL(const QString &clientGroup_db_ID /* = YerothUtils::EMPTY_STRING */)
 {
 	QSqlRecord record;
 
-	_allWindows->_groupesDeClientsWindow
-		->SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
+	if (clientGroup_db_ID.isEmpty())
+	{
+		_allWindows->_groupesDeClientsWindow
+			->SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
+	}
+	else
+	{
+		_curClientGroupTableModel->setFilter(QString("%1='%2'")
+												.arg(YerothDatabaseTableColumn::ID,
+													 clientGroup_db_ID));
 
+		record = _curClientGroupTableModel->record(0);
+
+		_curClientGroupTableModel->resetFilter();
+	}
+
+//	QDEBUG_STRINGS_OUTPUT_2("designation",
+//			GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
+
+	lineEdit_details_dun_groupe_de_clients_reference_groupe
+		->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE_GROUPE));
+
+	lineEdit_details_dun_groupe_de_clients_designation
+		->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
+
+	lineEdit_details_dun_groupe_de_clients_maximum_de_membres
+		->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::MAXIMUM_DE_MEMBRES));
+
+	lineEdit_details_dun_groupe_de_clients_programme_de_fidelite_de_clients
+		->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::PROGRAMME_DE_FIDELITE_CLIENTS));
+
+	textEdit_details_dun_groupe_de_clients_description_groupe
+		->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESCRIPTION_GROUPE));
 }
 
 

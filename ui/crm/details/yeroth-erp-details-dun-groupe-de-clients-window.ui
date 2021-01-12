@@ -2725,7 +2725,7 @@
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 1px solid rgb(60, 60, 60);</string>
+      <string notr="true"/>
      </property>
     </widget>
     <widget class="YerothLineEdit" name="lineEdit_details_dun_groupe_de_clients_maximum_de_membres">
@@ -3212,7 +3212,7 @@
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 1px solid rgb(60, 60, 60);</string>
+      <string notr="true"/>
      </property>
     </widget>
     <widget class="YerothLineEdit" name="lineEdit_details_dun_groupe_de_clients_designation">
@@ -3699,7 +3699,7 @@
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 1px solid rgb(60, 60, 60);</string>
+      <string notr="true"/>
      </property>
     </widget>
     <widget class="QGroupBox" name="groupBox_details_dun_groupe_de_clients_description_groupe">
@@ -6907,7 +6907,7 @@ background-color: rgb(0, 0, 0); </string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 1px solid rgb(60, 60, 60);</string>
+      <string notr="true"/>
      </property>
     </widget>
    </widget>

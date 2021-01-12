@@ -56,6 +56,7 @@ const QString YerothDatabaseTableColumn::DESCRIPTION_PRODUIT			("description_pro
 const QString YerothDatabaseTableColumn::PRIX_UNITAIRE					("prix_unitaire");
 const QString YerothDatabaseTableColumn::PRIX_UNITAIRE_EN_GROS			("prix_unitaire_en_gros");
 const QString YerothDatabaseTableColumn::REFERENCE_RECU_DACHAT			("reference_recu_dachat");
+const QString YerothDatabaseTableColumn::PROGRAMME_DE_FIDELITE_CLIENTS  ("programme_de_fidelite_clients");
 const QString YerothDatabaseTableColumn::PRIX_DACHAT_PRECEDENT			("prix_dachat_precedent");
 const QString YerothDatabaseTableColumn::PRIX_DACHAT					("prix_dachat");
 const QString YerothDatabaseTableColumn::PRIX_VENTE_PRECEDENT			("prix_vente_precedent");
@@ -249,6 +250,8 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::PRIX_UNITAIRE_EN_GROS, 	QObject::tr("Prix unitaire (en gros)"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REFERENCE_RECU_DACHAT, 		QObject::trUtf8("Référence achat"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::PROGRAMME_DE_FIDELITE_CLIENTS, 	QObject::trUtf8("Programme de fidélité clients"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::PRIX_DACHAT_PRECEDENT, 	QObject::tr("Prix d'achat précédent"));
 
