@@ -569,7 +569,7 @@ Click Cancel to exit.</source>
 </translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.hpp" line="481"/>
+        <location filename="src/utils/yeroth-erp-utils.hpp" line="487"/>
         <source>Informations sur l&apos;entreprise</source>
         <translation>Company info</translation>
     </message>
@@ -2749,25 +2749,25 @@ Please contact an administrator of %1</translation>
         <translation>reference</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.hpp" line="471"/>
+        <location filename="src/utils/yeroth-erp-utils.hpp" line="477"/>
         <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1853"/>
         <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1855"/>
         <source>TVA (%1)</source>
         <translation>Tax (%1)</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.hpp" line="959"/>
+        <location filename="src/utils/yeroth-erp-utils.hpp" line="965"/>
         <source>Il y&apos;a eu</source>
         <translation>There is</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.hpp" line="960"/>
+        <location filename="src/utils/yeroth-erp-utils.hpp" line="966"/>
         <source> %1 résultat(s) à votre filtre !</source>
         <oldsource> %1 résultat à votre filtre !</oldsource>
         <translation> %1 result(s) to your filter !</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.hpp" line="965"/>
+        <location filename="src/utils/yeroth-erp-utils.hpp" line="971"/>
         <source>Il ny&apos;a eu aucun résultat à votre filtre !</source>
         <oldsource>Il ny&apos;a eu aucun résultat à votre filtre!</oldsource>
         <translation>There is no associated data to your filter !</translation>
@@ -4534,7 +4534,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>keyword to search for (client name)</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.cpp" line="27"/>
+        <location filename="src/windows/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.cpp" line="29"/>
         <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="423"/>
         <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.cpp" line="118"/>
         <source>détails d&apos;un groupe de clients</source>
@@ -9096,8 +9096,8 @@ Client Account</translation>
     </message>
     <message>
         <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="876"/>
-        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="9242"/>
-        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="9245"/>
+        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="8804"/>
+        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="8807"/>
         <source>RETOUR</source>
         <translation>BACK</translation>
     </message>
@@ -9152,22 +9152,12 @@ Client Account</translation>
         <translation># groups</translation>
     </message>
     <message>
-        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="6393"/>
-        <source>Poursuivre avec la vente</source>
-        <translation>Continue checkout</translation>
-    </message>
-    <message>
-        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="6396"/>
-        <source>supprimer un client</source>
-        <translation>Remove a client</translation>
-    </message>
-    <message>
-        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="6420"/>
+        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="5982"/>
         <source>programme de fidélité client</source>
         <translation>royalty client program</translation>
     </message>
     <message>
-        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="7347"/>
+        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="6909"/>
         <source>PROGRAMMES 
 DE FIDÉLITÉ 
 CLIENTS</source>
@@ -9175,80 +9165,80 @@ CLIENTS</source>
 PROGRAM</translation>
     </message>
     <message>
-        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="7793"/>
+        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="7355"/>
         <source>Aide</source>
         <translation>Help</translation>
     </message>
     <message>
-        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="8224"/>
+        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="7786"/>
         <source>Actions</source>
         <translation>Functions</translation>
     </message>
     <message>
-        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="8660"/>
+        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="8222"/>
         <source>Outils</source>
         <translation>Tools</translation>
     </message>
     <message>
-        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="9088"/>
+        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="8650"/>
         <source>toolBar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="9108"/>
+        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="8670"/>
         <source>À propos</source>
         <translation>About Yeroth-erp-3.0</translation>
     </message>
     <message>
-        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="9124"/>
+        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="8686"/>
         <source>Changer d&apos;utilisateur</source>
         <translation>Sign in</translation>
     </message>
     <message>
-        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="9136"/>
+        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="8698"/>
         <source>Fermeture</source>
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="9148"/>
-        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="9151"/>
+        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="8710"/>
+        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="8713"/>
         <source>Menu clients</source>
         <translation>Client menu</translation>
     </message>
     <message>
-        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="9167"/>
+        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="8729"/>
         <source>Message d&apos;aide</source>
         <translation>User tip</translation>
     </message>
     <message>
-        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="9170"/>
+        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="8732"/>
         <source>Appeler l&apos;aide</source>
         <translation>Help</translation>
     </message>
     <message>
-        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="9186"/>
-        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="9189"/>
+        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="8748"/>
+        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="8751"/>
         <source>Déconnecter l&apos;utilisateur</source>
         <translation>Sign out</translation>
     </message>
     <message>
-        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="9201"/>
+        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="8763"/>
         <source>Informations sur l&apos;entreprise</source>
         <translation>Company info</translation>
     </message>
     <message>
-        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="9213"/>
+        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="8775"/>
         <source>Qui suis je ?</source>
         <translation>Who am I ?</translation>
     </message>
     <message>
-        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="9257"/>
-        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="9260"/>
+        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="8819"/>
+        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="8822"/>
         <source>Lister les programmes de fidélité clients</source>
         <translation>View client ROYALTY programs</translation>
     </message>
     <message>
-        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="9230"/>
+        <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="8792"/>
         <source>Administration</source>
         <translation></translation>
     </message>
