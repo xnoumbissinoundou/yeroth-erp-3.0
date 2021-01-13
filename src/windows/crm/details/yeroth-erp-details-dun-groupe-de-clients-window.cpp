@@ -78,8 +78,6 @@ YerothDetailsDunGroupeDeClientsWindow::YerothDetailsDunGroupeDeClientsWindow()
 
 void YerothDetailsDunGroupeDeClientsWindow::afficher_groupes_dun_client()
 {
-	qDebug() << "_curClientTableModel" << _curClientTableModel;
-
 	if (0 == _curClientTableModel)
 	{
 		groupes_de_clients();
