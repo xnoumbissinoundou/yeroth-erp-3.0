@@ -398,6 +398,13 @@ void YerothERPProgrammesDeFideliteClientsWindow::reinitialiser_champs_db_visible
 
 void YerothERPProgrammesDeFideliteClientsWindow::contextMenuEvent(QContextMenuEvent * event)
 {
+	QMenu menu(this);
+	menu.setPalette(toolBar_programmes_de_fidelite_clientsWindow->palette());
+
+	menu.addAction(actionAfficher_ce_programmeDeFideliteClients_au_detail);
+	menu.addAction(actionSupprimerUnProgrammeDeFideliteClients);
+
+	menu.exec(event->globalPos());
 }
 
 

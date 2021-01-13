@@ -399,6 +399,7 @@ void YerothGroupesDeClientsWindow::contextMenuEvent(QContextMenuEvent * event)
 	menu.setPalette(toolBar_groupes_de_clientsWindow->palette());
 
 	menu.addAction(actionAfficher_ce_groupe_au_detail);
+	menu.addAction(actionSupprimerGroupeDeClients);
 
 	menu.exec(event->globalPos());
 }
