@@ -9587,10 +9587,10 @@ background-color: rgb(0, 0, 0);</string>
   </action>
   <action name="actionAnnuler">
    <property name="text">
-    <string>Annuler la création du groupe de clients</string>
+    <string>Annuler la modification du groupe de clients</string>
    </property>
    <property name="toolTip">
-    <string>Annuler la création du groupe de clients</string>
+    <string>Annuler la modification du groupe de clients</string>
    </property>
    <property name="font">
     <font>
