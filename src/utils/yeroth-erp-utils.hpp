@@ -106,6 +106,12 @@ public:
 	static bool GZIP_YEROTH_FILE(const QString &program_working_directory_full_path,
 								 const QString &file_full_path);
 
+	inline static void SPLIT_STAR_SEPARATED_DB_STRING(QStringList &SEPARATED_RESULTING_QSTRINGLIST_IN_OUT,
+													  const QString &aCur_db_STRING_STAR_SEPARATED_VALUE)
+	{
+		SEPARATED_RESULTING_QSTRINGLIST_IN_OUT.append(aCur_db_STRING_STAR_SEPARATED_VALUE.split("*"));
+	}
+
 	static void APPEND_NEW_ELEMENT_TO_STAR_SEPARATED_DB_STRING(const QString &aNewValue,
 															   QString &aCur_db_STRING_STAR_SEPARATED_VALUE_IN_OUT);
 

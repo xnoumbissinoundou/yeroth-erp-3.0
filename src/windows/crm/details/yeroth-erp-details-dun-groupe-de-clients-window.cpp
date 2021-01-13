@@ -15,6 +15,8 @@
 #include "src/utils/yeroth-erp-sqltable-model.hpp"
 
 
+#include <QtSql/QSqlQuery>
+
 #include <QtSql/QSqlRecord>
 
 
@@ -234,6 +236,8 @@ void YerothDetailsDunGroupeDeClientsWindow::rendreVisible(YerothSqlTableModel *c
 
 void YerothDetailsDunGroupeDeClientsWindow::showClientGroup_DETAIL(const QString &clientGroup_db_ID /* = YerothUtils::EMPTY_STRING */)
 {
+	tableWidget_details_dun_groupe_de_clients_membres_initiaux_du_groupe->myClear();
+
 	QSqlRecord record;
 
 	if (clientGroup_db_ID.isEmpty())
@@ -250,6 +254,60 @@ void YerothDetailsDunGroupeDeClientsWindow::showClientGroup_DETAIL(const QString
 		record = _curClientGroupTableModel->record(0);
 
 		_curClientGroupTableModel->resetFilter();
+	}
+
+
+	QString membres_du_groupe_db_ID =
+			GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::MEMBRES_DU_GROUPE_db_ID);
+
+	QStringList membres_du_groupe_db_ID_LIST;
+
+	YerothUtils::SPLIT_STAR_SEPARATED_DB_STRING(membres_du_groupe_db_ID_LIST,
+											    membres_du_groupe_db_ID);
+
+
+    int curQuerySize = -1;
+
+    QSqlQuery aSqlClientTableModelQUERY;
+
+    QString clientTableModelQUERY_STR;
+
+
+    QString aClientMember_nom_entreprise;
+
+    QString aClientMember_reference;
+
+	QString aClientMember_db_ID;
+
+	for (unsigned int i = 0; i < membres_du_groupe_db_ID_LIST.size(); ++i)
+	{
+		aClientMember_db_ID = membres_du_groupe_db_ID_LIST.at(i).trimmed();
+
+        clientTableModelQUERY_STR = QString("select %1, %2 from %3 where %4='%5'")
+        										.arg(YerothDatabaseTableColumn::REFERENCE_CLIENT,
+        											 YerothDatabaseTableColumn::NOM_ENTREPRISE,
+													 _allWindows->CLIENTS,
+													 YerothDatabaseTableColumn::ID,
+													 aClientMember_db_ID);
+
+        aSqlClientTableModelQUERY.clear();
+
+        curQuerySize = YerothUtils::execQuery(aSqlClientTableModelQUERY, clientTableModelQUERY_STR, _logger);
+
+        if (curQuerySize > 0)
+        {
+        	if (aSqlClientTableModelQUERY.next())
+        	{
+        		aClientMember_reference = aSqlClientTableModelQUERY.value(0).toString();
+
+        		aClientMember_nom_entreprise = aSqlClientTableModelQUERY.value(1).toString();
+
+        		tableWidget_details_dun_groupe_de_clients_membres_initiaux_du_groupe
+					->addAClientGroupMember(aClientMember_db_ID,
+											aClientMember_reference,
+											aClientMember_nom_entreprise);
+        	}
+        }
 	}
 
 //	QDEBUG_STRINGS_OUTPUT_2("designation",
