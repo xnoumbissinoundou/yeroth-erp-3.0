@@ -14211,6 +14211,7 @@ CLIENTS</string>
     <addaction name="actionDeconnecter_utilisateur"/>
     <addaction name="separator"/>
     <addaction name="actionAfficher_ce_groupe_au_detail"/>
+    <addaction name="actionAfficher_les_membres_de_ce_groupe"/>
     <addaction name="actionModifier"/>
     <addaction name="actionSupprimerGroupeDeClients"/>
     <addaction name="separator"/>
@@ -15430,6 +15431,21 @@ CLIENTS</string>
    <property name="font">
     <font>
      <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionAfficher_les_membres_de_ce_groupe">
+   <property name="text">
+    <string>Afficher les membres de ce groupe</string>
+   </property>
+   <property name="toolTip">
+    <string>Afficher les membres de ce groupe</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
     </font>
    </property>
   </action>

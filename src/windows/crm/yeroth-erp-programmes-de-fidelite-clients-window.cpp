@@ -129,6 +129,7 @@ YerothERPProgrammesDeFideliteClientsWindow::YerothERPProgrammesDeFideliteClients
     connect(actionAppeler_aide, SIGNAL(triggered()), this, SLOT(help()));
     connect(actionDeconnecter_utilisateur, SIGNAL(triggered()), this, SLOT(deconnecter_utilisateur()));
     connect(actionMenuClients, SIGNAL(triggered()), this, SLOT(menu()));
+    connect(actionModifier, SIGNAL(triggered()), this, SLOT(modifier_un_programme_de_fidelite_clients()));
     connect(actionAfficher_ce_programmeDeFideliteClients_au_detail, SIGNAL(triggered()), this, SLOT(afficher_au_detail()));
     connect(actionSupprimerUnProgrammeDeFideliteClients, SIGNAL(triggered()), this, SLOT(supprimer_un_programme_de_fidelite_clients()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
@@ -223,6 +224,12 @@ void YerothERPProgrammesDeFideliteClientsWindow::setupDateTimeEdits()
     		SIGNAL(dateChanged(const QDate &)),
 			this,
 			SLOT(refineYerothLineEdits()));
+}
+
+
+void YerothERPProgrammesDeFideliteClientsWindow::modifier_un_programme_de_fidelite_clients()
+{
+
 }
 
 
@@ -470,7 +477,7 @@ void YerothERPProgrammesDeFideliteClientsWindow::definirManager()
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_groupe_de_clients->enable(this, SLOT(groupes_de_clients()));
     pushButton_creer_un_programme_de_fidelite_clients->enable(this, SLOT(creer_un_programme_de_fidelite_clients()));
-    pushButton_modifier->enable(this, SLOT(menu()));
+    pushButton_modifier->enable(this, SLOT(modifier_un_programme_de_fidelite_clients()));
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
 }
 
@@ -496,7 +503,7 @@ void YerothERPProgrammesDeFideliteClientsWindow::definirVendeur()
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_groupe_de_clients->enable(this, SLOT(groupes_de_clients()));
     pushButton_creer_un_programme_de_fidelite_clients->enable(this, SLOT(creer_un_programme_de_fidelite_clients()));
-    pushButton_modifier->enable(this, SLOT(menu()));
+    pushButton_modifier->enable(this, SLOT(modifier_un_programme_de_fidelite_clients()));
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
 }
 

@@ -103,6 +103,8 @@ public slots:
 
 private slots:
 
+	void modifier_un_programme_de_fidelite_clients();
+
 	void supprimer_PLUSIEURS_programmes_de_fidelite_clients(YerothSqlTableModel &a_ROYALTY_PROGRAM_TableModel);
 
 	void supprimer_un_programme_de_fidelite_clients();

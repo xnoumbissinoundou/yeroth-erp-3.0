@@ -107,7 +107,8 @@ YerothGroupesDeClientsWindow::YerothGroupesDeClientsWindow()
     tableView_groupes_de_clients->setSqlTableName(&YerothERPWindows::GROUPES_DE_CLIENTS);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
-	YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_ce_groupe_au_detail, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_les_membres_de_ce_groupe, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_ce_groupe_au_detail, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerGroupeDeClients, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
@@ -129,6 +130,8 @@ YerothGroupesDeClientsWindow::YerothGroupesDeClientsWindow()
     connect(actionAppeler_aide, SIGNAL(triggered()), this, SLOT(help()));
     connect(actionDeconnecter_utilisateur, SIGNAL(triggered()), this, SLOT(deconnecter_utilisateur()));
     connect(actionMenu_Principal, SIGNAL(triggered()), this, SLOT(menu()));
+    connect(actionModifier, SIGNAL(triggered()), this, SLOT(modifier_un_groupe_de_clients()));
+    connect(actionAfficher_les_membres_de_ce_groupe, SIGNAL(triggered()), this, SLOT(afficher_au_detail()));
     connect(actionAfficher_ce_groupe_au_detail, SIGNAL(triggered()), this, SLOT(afficher_au_detail()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
 
@@ -222,6 +225,11 @@ void YerothGroupesDeClientsWindow::setupDateTimeEdits()
     		SIGNAL(dateChanged(const QDate &)),
 			this,
 			SLOT(refineYerothLineEdits()));
+}
+
+
+void YerothGroupesDeClientsWindow::modifier_un_groupe_de_clients()
+{
 }
 
 
@@ -399,6 +407,7 @@ void YerothGroupesDeClientsWindow::contextMenuEvent(QContextMenuEvent * event)
 	menu.setPalette(toolBar_groupes_de_clientsWindow->palette());
 
 	menu.addAction(actionAfficher_ce_groupe_au_detail);
+	menu.addAction(actionAfficher_les_membres_de_ce_groupe);
 	menu.addAction(actionSupprimerGroupeDeClients);
 
 	menu.exec(event->globalPos());
@@ -468,7 +477,7 @@ void YerothGroupesDeClientsWindow::definirManager()
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_menu_clients->enable(this, SLOT(clients()));
     pushButton_creer_groupe->enable(this, SLOT(creerUnGroupeDeClients()));
-    pushButton_modifier->enable(this, SLOT(menu()));
+    pushButton_modifier->enable(this, SLOT(modifier_un_groupe_de_clients()));
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
 }
 
@@ -494,7 +503,7 @@ void YerothGroupesDeClientsWindow::definirVendeur()
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_menu_clients->enable(this, SLOT(clients()));
     pushButton_creer_groupe->enable(this, SLOT(creerUnGroupeDeClients()));
-    pushButton_modifier->enable(this, SLOT(menu()));
+    pushButton_modifier->enable(this, SLOT(modifier_un_groupe_de_clients()));
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
 }
 
