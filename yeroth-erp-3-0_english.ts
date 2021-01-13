@@ -1529,7 +1529,6 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
     </message>
     <message>
         <location filename="src/windows/crm/details/yeroth-erp-clients-detail-window.cpp" line="125"/>
-        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="480"/>
         <source>suppression d&apos;un compte client</source>
         <translation>deletion of a client</translation>
     </message>
@@ -1770,6 +1769,12 @@ Continue with update of the stock ?</translation>
         <translation>insertion of 1 new purchase</translation>
     </message>
     <message>
+        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="405"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="480"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="249"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="330"/>
+        <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="251"/>
+        <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="332"/>
         <location filename="src/windows/stocks/yeroth-erp-modifier-window.cpp" line="992"/>
         <source>suppression</source>
         <translation>deletion</translation>
@@ -1890,6 +1895,8 @@ Continue with update of the stock ?</translation>
         <location filename="src/admin/lister/yeroth-erp-admin-lister-window.cpp" line="880"/>
         <location filename="src/admin/lister/yeroth-erp-admin-lister-window.cpp" line="943"/>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="499"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="349"/>
+        <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="351"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseurs-window.cpp" line="481"/>
         <source>&apos; a été supprimée de la base de données !</source>
         <oldsource>&apos; a été supprimée de la base de données!</oldsource>
@@ -1901,6 +1908,8 @@ Continue with update of the stock ?</translation>
         <location filename="src/admin/lister/yeroth-erp-admin-lister-window.cpp" line="889"/>
         <location filename="src/admin/lister/yeroth-erp-admin-lister-window.cpp" line="954"/>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="508"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="358"/>
+        <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="360"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseurs-window.cpp" line="490"/>
         <source> n&apos;a pas été supprimée de la base de données !</source>
         <oldsource> n&apos;a pas été supprimée de la base de données!</oldsource>
@@ -3722,46 +3731,47 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>Delete selected clients ?</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="405"/>
-        <source>suppression de plusieurs clients</source>
-        <translation>deletion of several clients</translation>
-    </message>
-    <message>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="412"/>
         <source>Les clients sélectionés</source>
         <translation>Selected clients</translation>
     </message>
     <message>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="418"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="262"/>
+        <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="264"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseurs-window.cpp" line="400"/>
         <source> ont été supprimés de la base de données !</source>
         <translation> have been deleted !</translation>
     </message>
     <message>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="421"/>
-        <source>suppression de clients - succès</source>
-        <translation>deletion of clients - success</translation>
+        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="502"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="265"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="352"/>
+        <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="267"/>
+        <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="354"/>
+        <source>suppression - succès</source>
+        <oldsource>suppression de clients - succès</oldsource>
+        <translation>removal - success</translation>
     </message>
     <message>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="427"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="271"/>
+        <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="273"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseurs-window.cpp" line="409"/>
         <source> n&apos;ont pas pu être supprimés de la base de données !</source>
         <translation> coulnd&apos;t be deleted !</translation>
     </message>
     <message>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="430"/>
-        <source>suppression de clients - échec</source>
-        <translation>deletion of clients - failure</translation>
-    </message>
-    <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="502"/>
-        <source>suppression d&apos;un compte client - succès</source>
-        <translation>deletion of a client - success</translation>
-    </message>
-    <message>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="511"/>
-        <source>suppression d&apos;un compte client - échec</source>
-        <translation>deletion of a client - failure</translation>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="274"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="361"/>
+        <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="276"/>
+        <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="363"/>
+        <source>suppression - échec</source>
+        <oldsource>suppression de clients - échec</oldsource>
+        <translation>removal - failure</translation>
     </message>
     <message>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="533"/>
@@ -4529,19 +4539,39 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>client group</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="199"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="195"/>
         <source>terme à rechercher (nom du client)</source>
         <translation>keyword to search for (client name)</translation>
     </message>
     <message>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="245"/>
+        <source>Supprimer les groupes de clients sélectionés ?</source>
+        <translation>Delete selected client groups ?</translation>
+    </message>
+    <message>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="256"/>
+        <source>Les groupes de clients sélectionés</source>
+        <translation>Selected client groups</translation>
+    </message>
+    <message>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="325"/>
+        <source>Supprimer le groupe de clients &apos;%1&apos; ?</source>
+        <translation>Delete client group &apos;%1&apos; ?</translation>
+    </message>
+    <message>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="338"/>
+        <source>Le groupe de clients &apos;%1</source>
+        <translation>Client group &apos;%1</translation>
+    </message>
+    <message>
         <location filename="src/windows/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.cpp" line="29"/>
-        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="423"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="560"/>
         <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.cpp" line="118"/>
         <source>détails d&apos;un groupe de clients</source>
         <translation>client group details</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="424"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="561"/>
         <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.cpp" line="119"/>
         <source>Sélectionnez un groupe de clients à afficher les détails !</source>
         <translation>Select a client group to view its details !</translation>
@@ -4601,7 +4631,6 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     </message>
     <message>
         <location filename="src/windows/crm/details/yeroth-erp-details-dun-programme-de-fidelite-clients-window.cpp" line="27"/>
-        <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="417"/>
         <source>détails d&apos;un programme de fidélité clients</source>
         <translation>cient royalty program details</translation>
     </message>
@@ -4617,14 +4646,39 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>ROYALTY client program</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="199"/>
+        <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="196"/>
         <source>terme à rechercher (désignation du programme fidélité de clients)</source>
         <translation>keyword to search for (client ROYALTY program designation)</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="418"/>
-        <source>Sélectionnez un programme de fidélité clients à afficher les détails !</source>
-        <translation>Select a client ROYALTY program to view its details !</translation>
+        <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="247"/>
+        <source>Supprimer les programmes de fidélité clients sélectionés ?</source>
+        <translation>Delete selected client royalty program groups ?</translation>
+    </message>
+    <message>
+        <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="258"/>
+        <source>Les programmes fidélité de clients sélectionés</source>
+        <translation>Selected client royalty programs</translation>
+    </message>
+    <message>
+        <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="327"/>
+        <source>Supprimer le programme de fidélité clients &apos;%1&apos; ?</source>
+        <translation>Delete client royalty program &apos;%1&apos; ?</translation>
+    </message>
+    <message>
+        <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="340"/>
+        <source>Le programme de fidélité clients &apos;%1</source>
+        <translation>Client royalty program &apos;%1</translation>
+    </message>
+    <message>
+        <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="556"/>
+        <source>détails d&apos;un &quot;programme de fidélité clients&quot;</source>
+        <translation>client royalty program details</translation>
+    </message>
+    <message>
+        <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="557"/>
+        <source>Sélectionnez un &quot;programme de fidélité clients&quot; à afficher les détails !</source>
+        <translation>Select a client royalty program to view its details !</translation>
     </message>
     <message>
         <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.hpp" line="79"/>
@@ -10515,8 +10569,9 @@ PROGRAM</translation>
     <message>
         <location filename="ui/crm/yeroth-erp-programmes-de-fidelite-clients-window.ui" line="15269"/>
         <location filename="ui/crm/yeroth-erp-programmes-de-fidelite-clients-window.ui" line="15272"/>
-        <source>Afficher les détails de ce groupe</source>
-        <translation>Show this client group details</translation>
+        <source>Afficher les détails de ce programme fidélité de clients</source>
+        <oldsource>Afficher les détails de ce groupe</oldsource>
+        <translation>Show this client royalty program details</translation>
     </message>
     <message>
         <location filename="ui/crm/yeroth-erp-programmes-de-fidelite-clients-window.ui" line="15284"/>
@@ -10575,8 +10630,9 @@ PROGRAM</translation>
     <message>
         <location filename="ui/crm/yeroth-erp-programmes-de-fidelite-clients-window.ui" line="15426"/>
         <location filename="ui/crm/yeroth-erp-programmes-de-fidelite-clients-window.ui" line="15429"/>
-        <source>Supprimer un groupe de clients</source>
-        <translation>Delete client group</translation>
+        <source>Supprimer un programme fidélité de clients</source>
+        <oldsource>Supprimer un groupe de clients</oldsource>
+        <translation>Delete a client royalty program</translation>
     </message>
 </context>
 <context>
@@ -12233,39 +12289,39 @@ Sale</translation>
     <message>
         <location filename="ui/crm/modifier/yeroth-erp-modifier-un-programme-de-fidelite-clients-window.ui" line="437"/>
         <source>Yeroth-erp-3.0 - créer un programme de fidélité de clients</source>
-        <translation type="unfinished">Yeroth-erp-3.0 - create a client royalty program</translation>
+        <translation>Yeroth-erp-3.0 - create a client royalty program</translation>
     </message>
     <message>
         <location filename="ui/crm/modifier/yeroth-erp-modifier-un-programme-de-fidelite-clients-window.ui" line="876"/>
         <source>Clients</source>
-        <translation type="unfinished">Clients</translation>
+        <translation>Clients</translation>
     </message>
     <message>
         <location filename="ui/crm/modifier/yeroth-erp-modifier-un-programme-de-fidelite-clients-window.ui" line="1312"/>
         <location filename="ui/crm/modifier/yeroth-erp-modifier-un-programme-de-fidelite-clients-window.ui" line="10542"/>
         <location filename="ui/crm/modifier/yeroth-erp-modifier-un-programme-de-fidelite-clients-window.ui" line="10545"/>
         <source>Enregistrer</source>
-        <translation type="unfinished">Save</translation>
+        <translation>Save</translation>
     </message>
     <message>
         <location filename="ui/crm/modifier/yeroth-erp-modifier-un-programme-de-fidelite-clients-window.ui" line="1747"/>
         <source>Menu</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="ui/crm/modifier/yeroth-erp-modifier-un-programme-de-fidelite-clients-window.ui" line="2185"/>
         <source>Données du programme de fidélité de clients</source>
-        <translation type="unfinished">Cient ROYALTY PROGRAM DATA</translation>
+        <translation>Cient ROYALTY PROGRAM DATA</translation>
     </message>
     <message>
         <location filename="ui/crm/modifier/yeroth-erp-modifier-un-programme-de-fidelite-clients-window.ui" line="2622"/>
         <source>référence</source>
-        <translation type="unfinished">reference</translation>
+        <translation>reference</translation>
     </message>
     <message>
         <location filename="ui/crm/modifier/yeroth-erp-modifier-un-programme-de-fidelite-clients-window.ui" line="2648"/>
         <source>désignation</source>
-        <translation type="unfinished"></translation>
+        <translation>designation</translation>
     </message>
     <message>
         <location filename="ui/crm/modifier/yeroth-erp-modifier-un-programme-de-fidelite-clients-window.ui" line="3645"/>

@@ -109,7 +109,7 @@ YerothGroupesDeClientsWindow::YerothGroupesDeClientsWindow()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
 	YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_ce_groupe_au_detail, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerGroupesDeClients, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerGroupeDeClients, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
@@ -129,8 +129,7 @@ YerothGroupesDeClientsWindow::YerothGroupesDeClientsWindow()
     connect(actionAppeler_aide, SIGNAL(triggered()), this, SLOT(help()));
     connect(actionDeconnecter_utilisateur, SIGNAL(triggered()), this, SLOT(deconnecter_utilisateur()));
     connect(actionMenu_Principal, SIGNAL(triggered()), this, SLOT(menu()));
-    connect(actionAfficher_ce_groupe_au_detail, SIGNAL(triggered()), this, SLOT(clients()));
-    connect(actionSupprimerGroupesDeClients, SIGNAL(triggered()), this, SLOT(clients()));
+    connect(actionAfficher_ce_groupe_au_detail, SIGNAL(triggered()), this, SLOT(afficher_au_detail()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
 
     connect(actionReinitialiserChampsDBVisible, SIGNAL(triggered()), this, SLOT(slot_reinitialiser_champs_db_visibles()));
@@ -152,11 +151,8 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 connect(actionAdministration, SIGNAL(triggered()), this, SLOT(administration()));
 #endif
 
-    connect(actionAfficher_ce_groupe_au_detail, SIGNAL(triggered()),
-    		this, SLOT(afficher_au_detail()));
-
-    connect(actionSupprimerGroupesDeClients, SIGNAL(triggered()),
-    		this, SLOT(clients()));
+    connect(actionSupprimerGroupeDeClients, SIGNAL(triggered()),
+    		this, SLOT(supprimer_groupe_de_clients()));
 
     connect(tableView_groupes_de_clients, SIGNAL(doubleClicked(const QModelIndex &)), this,
             SLOT(afficher_au_detail(const QModelIndex &)));
@@ -229,9 +225,147 @@ void YerothGroupesDeClientsWindow::setupDateTimeEdits()
 }
 
 
-void YerothGroupesDeClientsWindow::afficher_groupes_de_clients(YerothSqlTableModel &clientGroupTableModel)
+void YerothGroupesDeClientsWindow::supprimer_PLUSIEURS_groupes_de_clients(YerothSqlTableModel &aClientGroupTableModel)
 {
-	tableView_groupes_de_clients->queryYerothTableViewCurrentPageContentRow(clientGroupTableModel);
+	QString YEROTH_TABLE_VIEW_DELETE_SELECTED_ROWS_QUERY_STRING;
+
+	QMapIterator<QString, QString> j(tableView_groupes_de_clients->lastSelected_Rows__IDs());
+
+	while (j.hasNext())
+	{
+		j.next();
+
+		YEROTH_TABLE_VIEW_DELETE_SELECTED_ROWS_QUERY_STRING
+			.append(QString("DELETE FROM %1 WHERE %2 = '%3';")
+				.arg(_allWindows->GROUPES_DE_CLIENTS,
+					 YerothDatabaseTableColumn::ID,
+					 j.value()));
+	}
+
+    QString msgConfirmation(QObject::trUtf8("Supprimer les groupes de clients sélectionés ?"));
+
+    if (QMessageBox::Ok ==
+            YerothQMessageBox::question(this,
+            							QObject::trUtf8("suppression"),
+            							msgConfirmation,
+										QMessageBox::Cancel,
+										QMessageBox::Ok))
+    {
+    	bool success = YerothUtils::execQuery(YEROTH_TABLE_VIEW_DELETE_SELECTED_ROWS_QUERY_STRING);
+
+    	QString msg(QObject::trUtf8("Les groupes de clients sélectionés"));
+
+    	if (success && aClientGroupTableModel.select())
+    	{
+    		setupLineEditsQCompleters((QObject *)this);
+
+    		msg.append(QObject::trUtf8(" ont été supprimés de la base de données !"));
+
+    		YerothQMessageBox::information(this,
+    				QObject::trUtf8("suppression - succès"),
+    				msg,
+    				QMessageBox::Ok);
+    	}
+    	else
+    	{
+    		msg.append(QObject::trUtf8(" n'ont pas pu être supprimés de la base de données !"));
+
+    		YerothQMessageBox::information(this,
+    				QObject::trUtf8("suppression - échec"),
+    				msg,
+    				QMessageBox::Ok);
+    	}
+    }
+}
+
+
+void YerothGroupesDeClientsWindow::supprimer_groupe_de_clients()
+{
+    YerothSqlTableModel *groupeDeClientsTableModel = 0;
+
+    if (_curClientGroupTableModel &&
+    	YerothUtils::isEqualCaseInsensitive(_allWindows->GROUPES_DE_CLIENTS,
+    										_curClientGroupTableModel->sqlTableName()))
+    {
+        groupeDeClientsTableModel = _curClientGroupTableModel;
+    }
+    else
+    {
+        return ;
+    }
+
+
+    if (tableView_groupes_de_clients->lastSelected_Rows__IDs_INT_SIZE() > 1)
+    {
+        supprimer_PLUSIEURS_groupes_de_clients(*groupeDeClientsTableModel);
+
+	    tableView_groupes_de_clients->clearSelection();
+
+	    afficher_groupes_de_clients();
+
+    	return ;
+    }
+
+
+    QSqlRecord record;
+
+    _allWindows->_groupesDeClientsWindow->
+		SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
+
+    if (record.isEmpty() || record.isNull(YerothDatabaseTableColumn::DESIGNATION))
+    {
+        return;
+    }
+
+    QString designation(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
+
+    QString msgConfirmation(QObject::trUtf8("Supprimer le groupe de clients '%1' ?")
+    							.arg(designation));
+
+    if (QMessageBox::Ok ==
+            YerothQMessageBox::question(this,
+            							QObject::trUtf8("suppression"),
+            							msgConfirmation,
+										QMessageBox::Cancel,
+										QMessageBox::Ok))
+    {
+    	 bool success = _allWindows->_groupesDeClientsWindow->
+    			 SQL_DELETE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW();
+
+        QString msg(QObject::trUtf8("Le groupe de clients '%1")
+        				.arg(designation));
+
+        if (success && groupeDeClientsTableModel->select())
+        {
+        	setupLineEditsQCompleters((QObject *)this);
+
+            tableView_groupes_de_clients->clearSelection();
+
+            afficher_groupes_de_clients();
+
+            msg.append(QObject::trUtf8("' a été supprimée de la base de données !"));
+
+            YerothQMessageBox::information(this,
+            							   QObject::trUtf8("suppression - succès"),
+            							   msg,
+										   QMessageBox::Ok);
+        }
+        else
+        {
+            msg.append(QObject::trUtf8(" n'a pas été supprimée de la base de données !"));
+
+            YerothQMessageBox::information(this,
+            							   QObject::trUtf8("suppression - échec"),
+										   msg,
+										   QMessageBox::Ok);
+        }
+    }
+}
+
+
+void YerothGroupesDeClientsWindow::afficher_groupes_de_clients(YerothSqlTableModel &aClientGroupTableModel)
+{
+	tableView_groupes_de_clients->queryYerothTableViewCurrentPageContentRow(aClientGroupTableModel);
 
     tableView_show_or_hide_columns(*tableView_groupes_de_clients);
 
@@ -319,7 +453,7 @@ void YerothGroupesDeClientsWindow::definirManager()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, true);
 	YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_ce_groupe_au_detail, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerGroupesDeClients, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerGroupeDeClients, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
@@ -345,7 +479,7 @@ void YerothGroupesDeClientsWindow::definirVendeur()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, true);
 	YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_ce_groupe_au_detail, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerGroupesDeClients, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerGroupeDeClients, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
@@ -387,7 +521,7 @@ void YerothGroupesDeClientsWindow::definirPasDeRole()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
 	YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_ce_groupe_au_detail, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerGroupesDeClients, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerGroupeDeClients, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);

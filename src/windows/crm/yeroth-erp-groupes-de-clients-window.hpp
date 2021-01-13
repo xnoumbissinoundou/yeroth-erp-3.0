@@ -103,7 +103,16 @@ public slots:
 
 private slots:
 
-	virtual void afficher_groupes_de_clients(YerothSqlTableModel &clientGroupTableModel);
+	void supprimer_PLUSIEURS_groupes_de_clients(YerothSqlTableModel &aClientGroupTableModel);
+
+	void supprimer_groupe_de_clients();
+
+	void afficher_groupes_de_clients(YerothSqlTableModel &aClientGroupTableModel);
+
+	inline void afficher_groupes_de_clients()
+	{
+		afficher_groupes_de_clients(*_curClientGroupTableModel);
+	}
 
 	bool filtrer_groupes_de_clients();
 

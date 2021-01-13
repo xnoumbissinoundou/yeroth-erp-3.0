@@ -14212,7 +14212,7 @@ CLIENTS</string>
     <addaction name="separator"/>
     <addaction name="actionAfficher_ce_groupe_au_detail"/>
     <addaction name="actionModifier"/>
-    <addaction name="actionSupprimerGroupesDeClients"/>
+    <addaction name="actionSupprimerGroupeDeClients"/>
     <addaction name="separator"/>
     <addaction name="actionMenu_Principal"/>
     <addaction name="separator"/>
@@ -15420,7 +15420,7 @@ CLIENTS</string>
     </font>
    </property>
   </action>
-  <action name="actionSupprimerGroupesDeClients">
+  <action name="actionSupprimerGroupeDeClients">
    <property name="text">
     <string>Supprimer un groupe de clients</string>
    </property>

@@ -299,9 +299,6 @@ void YerothERPProgrammesDeFideliteClientsWindow::supprimer_un_programme_de_fidel
 
     if (tableView_programmes_de_fidelite_clients->lastSelected_Rows__IDs_INT_SIZE() > 1)
     {
-        QDEBUG_STRINGS_OUTPUT_2_N("lastSelected_Rows__IDs_INT_SIZE() - 1",
-        						  tableView_programmes_de_fidelite_clients->lastSelected_Rows__IDs_INT_SIZE());
-
     	supprimer_PLUSIEURS_programmes_de_fidelite_clients(*programmeDeFideliteClientsTableModel);
 
 	    tableView_programmes_de_fidelite_clients->clearSelection();
