@@ -499,7 +499,7 @@ void YerothERPClientsWindow::supprimerCompteClient()
             msg.append(QObject::trUtf8("' a été supprimée de la base de données !"));
 
             YerothQMessageBox::information(this,
-            							   QObject::tr("suppression d'un compte client - succès"),
+            							   QObject::trUtf8("suppression d'un compte client - succès"),
             							   msg,
 										   QMessageBox::Ok);
         }
@@ -508,7 +508,7 @@ void YerothERPClientsWindow::supprimerCompteClient()
             msg.append(QObject::trUtf8(" n'a pas été supprimée de la base de données !"));
 
             YerothQMessageBox::information(this,
-            							   QObject::tr("suppression d'un compte client - échec"),
+            							   QObject::trUtf8("suppression d'un compte client - échec"),
 										   msg,
 										   QMessageBox::Ok);
         }
