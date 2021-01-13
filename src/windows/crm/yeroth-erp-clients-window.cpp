@@ -472,7 +472,7 @@ void YerothERPClientsWindow::supprimerCompteClient()
 
     QString nom_entreprise(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE));
 
-    QString msgConfirmation(QString(QObject::trUtf8("Supprimer le client '%1' ?"))
+    QString msgConfirmation(QObject::trUtf8("Supprimer le client '%1' ?")
     							.arg(nom_entreprise));
 
     if (QMessageBox::Ok ==
@@ -485,7 +485,7 @@ void YerothERPClientsWindow::supprimerCompteClient()
     	 bool success = _allWindows->_clientsWindow->
     			 SQL_DELETE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW();
 
-        QString msg(QString(QObject::trUtf8("Le client '%1"))
+        QString msg(QObject::trUtf8("Le client '%1")
         				.arg(nom_entreprise));
 
         if (success && clientsTableModel->select())

@@ -103,7 +103,16 @@ public slots:
 
 private slots:
 
-	virtual void afficher_programmes_de_fidelite_clients(YerothSqlTableModel &client_ROYALTY_PROGRAM_TableModel);
+	void supprimer_PLUSIEURS_programmes_de_fidelite_clients(YerothSqlTableModel &a_ROYALTY_PROGRAM_TableModel);
+
+	void supprimer_un_programme_de_fidelite_clients();
+
+	void afficher_programmes_de_fidelite_clients(YerothSqlTableModel &client_ROYALTY_PROGRAM_TableModel);
+
+	inline void afficher_programmes_de_fidelite_clients()
+	{
+		afficher_programmes_de_fidelite_clients(*_curClient_ROYALTY_PROGRAM_TableModel);
+	}
 
 	bool filtrer_programmes_de_fidelite_client();
 

@@ -107,9 +107,9 @@ YerothERPProgrammesDeFideliteClientsWindow::YerothERPProgrammesDeFideliteClients
     tableView_programmes_de_fidelite_clients->setSqlTableName(&YerothERPWindows::PROGRAMMES_DE_FIDELITE_CLIENTS);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenuClients, false);
-	YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_ce_groupe_au_detail, false);
+	YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_ce_programmeDeFideliteClients_au_detail, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerGroupesDeClients, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerUnProgrammeDeFideliteClients, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
@@ -129,8 +129,8 @@ YerothERPProgrammesDeFideliteClientsWindow::YerothERPProgrammesDeFideliteClients
     connect(actionAppeler_aide, SIGNAL(triggered()), this, SLOT(help()));
     connect(actionDeconnecter_utilisateur, SIGNAL(triggered()), this, SLOT(deconnecter_utilisateur()));
     connect(actionMenuClients, SIGNAL(triggered()), this, SLOT(menu()));
-    connect(actionAfficher_ce_groupe_au_detail, SIGNAL(triggered()), this, SLOT(clients()));
-    connect(actionSupprimerGroupesDeClients, SIGNAL(triggered()), this, SLOT(clients()));
+    connect(actionAfficher_ce_programmeDeFideliteClients_au_detail, SIGNAL(triggered()), this, SLOT(afficher_au_detail()));
+    connect(actionSupprimerUnProgrammeDeFideliteClients, SIGNAL(triggered()), this, SLOT(supprimer_un_programme_de_fidelite_clients()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
 
     connect(actionReinitialiserChampsDBVisible, SIGNAL(triggered()), this, SLOT(slot_reinitialiser_champs_db_visibles()));
@@ -152,11 +152,8 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 connect(actionAdministration, SIGNAL(triggered()), this, SLOT(administration()));
 #endif
 
-    connect(actionAfficher_ce_groupe_au_detail, SIGNAL(triggered()),
+    connect(actionAfficher_ce_programmeDeFideliteClients_au_detail, SIGNAL(triggered()),
     		this, SLOT(afficher_au_detail()));
-
-    connect(actionSupprimerGroupesDeClients, SIGNAL(triggered()),
-    		this, SLOT(clients()));
 
     connect(tableView_programmes_de_fidelite_clients, SIGNAL(doubleClicked(const QModelIndex &)), this,
             SLOT(afficher_au_detail(const QModelIndex &)));
@@ -226,6 +223,148 @@ void YerothERPProgrammesDeFideliteClientsWindow::setupDateTimeEdits()
     		SIGNAL(dateChanged(const QDate &)),
 			this,
 			SLOT(refineYerothLineEdits()));
+}
+
+
+void YerothERPProgrammesDeFideliteClientsWindow::
+	supprimer_PLUSIEURS_programmes_de_fidelite_clients(YerothSqlTableModel &a_ROYALTY_PROGRAM_TableModel)
+{
+	QString YEROTH_TABLE_VIEW_DELETE_SELECTED_ROWS_QUERY_STRING;
+
+	QMapIterator<QString, QString> j(tableView_programmes_de_fidelite_clients->lastSelected_Rows__IDs());
+
+	while (j.hasNext())
+	{
+		j.next();
+
+		YEROTH_TABLE_VIEW_DELETE_SELECTED_ROWS_QUERY_STRING
+			.append(QString("DELETE FROM %1 WHERE %2 = '%3';")
+				.arg(_allWindows->PROGRAMMES_DE_FIDELITE_CLIENTS,
+					 YerothDatabaseTableColumn::ID,
+					 j.value()));
+	}
+
+    QString msgConfirmation(QObject::trUtf8("Supprimer les programmes de fidélité clients sélectionés ?"));
+
+    if (QMessageBox::Ok ==
+            YerothQMessageBox::question(this,
+            							QObject::trUtf8("suppression"),
+            							msgConfirmation,
+										QMessageBox::Cancel,
+										QMessageBox::Ok))
+    {
+    	bool success = YerothUtils::execQuery(YEROTH_TABLE_VIEW_DELETE_SELECTED_ROWS_QUERY_STRING);
+
+    	QString msg(QObject::trUtf8("Les programmes fidélité de clients sélectionés"));
+
+    	if (success && a_ROYALTY_PROGRAM_TableModel.select())
+    	{
+    		setupLineEditsQCompleters((QObject *)this);
+
+    		msg.append(QObject::trUtf8(" ont été supprimés de la base de données !"));
+
+    		YerothQMessageBox::information(this,
+    				QObject::trUtf8("suppression - succès"),
+    				msg,
+    				QMessageBox::Ok);
+    	}
+    	else
+    	{
+    		msg.append(QObject::trUtf8(" n'ont pas pu être supprimés de la base de données !"));
+
+    		YerothQMessageBox::information(this,
+    				QObject::trUtf8("suppression - échec"),
+    				msg,
+    				QMessageBox::Ok);
+    	}
+    }
+}
+
+
+void YerothERPProgrammesDeFideliteClientsWindow::supprimer_un_programme_de_fidelite_clients()
+{
+    YerothSqlTableModel *programmeDeFideliteClientsTableModel = 0;
+
+    if (_curClient_ROYALTY_PROGRAM_TableModel &&
+    	YerothUtils::isEqualCaseInsensitive(_allWindows->PROGRAMMES_DE_FIDELITE_CLIENTS,
+    										_curClient_ROYALTY_PROGRAM_TableModel->sqlTableName()))
+    {
+        programmeDeFideliteClientsTableModel = _curClient_ROYALTY_PROGRAM_TableModel;
+    }
+    else
+    {
+        return ;
+    }
+
+
+    if (tableView_programmes_de_fidelite_clients->lastSelected_Rows__IDs_INT_SIZE() > 1)
+    {
+        QDEBUG_STRINGS_OUTPUT_2_N("lastSelected_Rows__IDs_INT_SIZE() - 1",
+        						  tableView_programmes_de_fidelite_clients->lastSelected_Rows__IDs_INT_SIZE());
+
+    	supprimer_PLUSIEURS_programmes_de_fidelite_clients(*programmeDeFideliteClientsTableModel);
+
+	    tableView_programmes_de_fidelite_clients->clearSelection();
+
+	    afficher_programmes_de_fidelite_clients();
+
+    	return ;
+    }
+
+
+    QSqlRecord record;
+
+    _allWindows->_programmesDeFideliteClientsWindow->
+		SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
+
+    if (record.isEmpty() || record.isNull(YerothDatabaseTableColumn::DESIGNATION))
+    {
+        return;
+    }
+
+    QString designation(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
+
+    QString msgConfirmation(QObject::trUtf8("Supprimer le programme de fidélité clients '%1' ?")
+    							.arg(designation));
+
+    if (QMessageBox::Ok ==
+            YerothQMessageBox::question(this,
+            							QObject::trUtf8("suppression"),
+            							msgConfirmation,
+										QMessageBox::Cancel,
+										QMessageBox::Ok))
+    {
+    	 bool success = _allWindows->_programmesDeFideliteClientsWindow->
+    			 SQL_DELETE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW();
+
+        QString msg(QObject::trUtf8("Le programme de fidélité clients '%1")
+        				.arg(designation));
+
+        if (success && programmeDeFideliteClientsTableModel->select())
+        {
+        	setupLineEditsQCompleters((QObject *)this);
+
+            tableView_programmes_de_fidelite_clients->clearSelection();
+
+            afficher_programmes_de_fidelite_clients();
+
+            msg.append(QObject::trUtf8("' a été supprimée de la base de données !"));
+
+            YerothQMessageBox::information(this,
+            							   QObject::trUtf8("suppression - succès"),
+            							   msg,
+										   QMessageBox::Ok);
+        }
+        else
+        {
+            msg.append(QObject::trUtf8(" n'a pas été supprimée de la base de données !"));
+
+            YerothQMessageBox::information(this,
+            							   QObject::trUtf8("suppression - échec"),
+										   msg,
+										   QMessageBox::Ok);
+        }
+    }
 }
 
 
@@ -312,9 +451,9 @@ void YerothERPProgrammesDeFideliteClientsWindow::definirManager()
     _logger->log("definirManager");
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenuClients, true);
-	YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_ce_groupe_au_detail, true);
+	YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_ce_programmeDeFideliteClients_au_detail, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerGroupesDeClients, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerUnProgrammeDeFideliteClients, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
@@ -338,9 +477,9 @@ void YerothERPProgrammesDeFideliteClientsWindow::definirVendeur()
     _logger->log("definirVendeur");
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenuClients, true);
-	YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_ce_groupe_au_detail, true);
+	YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_ce_programmeDeFideliteClients_au_detail, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerGroupesDeClients, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerUnProgrammeDeFideliteClients, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
@@ -380,9 +519,9 @@ void YerothERPProgrammesDeFideliteClientsWindow::definirPasDeRole()
     _logger->log("definirPasDeRole");
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenuClients, false);
-	YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_ce_groupe_au_detail, false);
+	YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_ce_programmeDeFideliteClients_au_detail, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerGroupesDeClients, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerUnProgrammeDeFideliteClients, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
@@ -414,8 +553,8 @@ void YerothERPProgrammesDeFideliteClientsWindow::afficher_au_detail()
     }
     else
     {
-        YerothQMessageBox::warning(this, QObject::trUtf8("détails d'un programme de fidélité clients"),
-                                  QObject::trUtf8("Sélectionnez un programme de fidélité clients à afficher les détails !"));
+        YerothQMessageBox::warning(this, QObject::trUtf8("détails d'un \"programme de fidélité clients\""),
+                                  QObject::trUtf8("Sélectionnez un \"programme de fidélité clients\" à afficher les détails !"));
     }
 }
 
