@@ -402,7 +402,7 @@ void YerothERPClientsWindow::supprimer_PLUSIEURS_Clients(YerothSqlTableModel &aC
 
     if (QMessageBox::Ok ==
             YerothQMessageBox::question(this,
-            							QObject::tr("suppression de plusieurs clients"),
+            							QObject::tr("suppression"),
             							msgConfirmation,
 										QMessageBox::Cancel,
 										QMessageBox::Ok))
@@ -418,7 +418,7 @@ void YerothERPClientsWindow::supprimer_PLUSIEURS_Clients(YerothSqlTableModel &aC
     		msg.append(QObject::trUtf8(" ont été supprimés de la base de données !"));
 
     		YerothQMessageBox::information(this,
-    				QObject::trUtf8("suppression de clients - succès"),
+    				QObject::trUtf8("suppression - succès"),
     				msg,
     				QMessageBox::Ok);
     	}
@@ -427,7 +427,7 @@ void YerothERPClientsWindow::supprimer_PLUSIEURS_Clients(YerothSqlTableModel &aC
     		msg.append(QObject::trUtf8(" n'ont pas pu être supprimés de la base de données !"));
 
     		YerothQMessageBox::information(this,
-    				QObject::trUtf8("suppression de clients - échec"),
+    				QObject::trUtf8("suppression - échec"),
     				msg,
     				QMessageBox::Ok);
     	}
@@ -477,7 +477,7 @@ void YerothERPClientsWindow::supprimerCompteClient()
 
     if (QMessageBox::Ok ==
             YerothQMessageBox::question(this,
-            							QObject::tr("suppression d'un compte client"),
+            							QObject::tr("suppression"),
             							msgConfirmation,
 										QMessageBox::Cancel,
 										QMessageBox::Ok))
@@ -499,7 +499,7 @@ void YerothERPClientsWindow::supprimerCompteClient()
             msg.append(QObject::trUtf8("' a été supprimée de la base de données !"));
 
             YerothQMessageBox::information(this,
-            							   QObject::trUtf8("suppression d'un compte client - succès"),
+            							   QObject::trUtf8("suppression - succès"),
             							   msg,
 										   QMessageBox::Ok);
         }
@@ -508,7 +508,7 @@ void YerothERPClientsWindow::supprimerCompteClient()
             msg.append(QObject::trUtf8(" n'a pas été supprimée de la base de données !"));
 
             YerothQMessageBox::information(this,
-            							   QObject::trUtf8("suppression d'un compte client - échec"),
+            							   QObject::trUtf8("suppression - échec"),
 										   msg,
 										   QMessageBox::Ok);
         }
