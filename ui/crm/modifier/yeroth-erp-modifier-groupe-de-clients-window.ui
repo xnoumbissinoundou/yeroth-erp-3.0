@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>YerothCreerGroupeDeClientsWindow</class>
- <widget class="QMainWindow" name="YerothCreerGroupeDeClientsWindow">
+ <class>YerothModifierGroupeDeClientsWindow</class>
+ <widget class="QMainWindow" name="YerothModifierGroupeDeClientsWindow">
   <property name="enabled">
    <bool>true</bool>
   </property>
@@ -434,12 +434,12 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>Yeroth-erp-3.0 - créer un groupe de clients</string>
+   <string>Yeroth-erp-3.0 - modifier un groupe de clients</string>
   </property>
   <property name="locale">
    <locale language="French" country="France"/>
   </property>
-  <widget class="QWidget" name="centralwidget_creerUnGroupeDeClientsWindow">
+  <widget class="QWidget" name="centralwidget_modifierUnGroupeDeClientsWindow">
    <widget class="YerothPushButton" name="pushButton_enregistrer">
     <property name="geometry">
      <rect>
@@ -1748,7 +1748,7 @@
     <property name="title">
      <string>Données du groupe de clients</string>
     </property>
-    <widget class="QLabel" name="label_creer_groupe_clients_reference_groupe">
+    <widget class="QLabel" name="label_modifier_groupe_clients_reference_groupe">
      <property name="geometry">
       <rect>
        <x>8</x>
@@ -2189,7 +2189,7 @@
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="label_creer_groupe_clients_maximum_de_membres">
+    <widget class="QLabel" name="label_modifier_groupe_clients_maximum_de_membres">
      <property name="geometry">
       <rect>
        <x>8</x>
@@ -2215,7 +2215,7 @@
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="label_creer_groupe_clients_designation">
+    <widget class="QLabel" name="label_modifier_groupe_clients_designation">
      <property name="geometry">
       <rect>
        <x>8</x>
@@ -2241,7 +2241,7 @@
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="YerothLineEdit" name="lineEdit_creer_groupe_clients_reference_groupe">
+    <widget class="YerothLineEdit" name="lineEdit_modifier_groupe_clients_reference_groupe">
      <property name="geometry">
       <rect>
        <x>196</x>
@@ -2728,7 +2728,7 @@
       <string notr="true">border: 1px solid rgb(60, 60, 60);</string>
      </property>
     </widget>
-    <widget class="YerothLineEdit" name="lineEdit_creer_groupe_clients_maximum_de_membres">
+    <widget class="YerothLineEdit" name="lineEdit_modifier_groupe_clients_maximum_de_membres">
      <property name="geometry">
       <rect>
        <x>196</x>
@@ -3215,7 +3215,7 @@
       <string notr="true">border: 1px solid rgb(60, 60, 60);</string>
      </property>
     </widget>
-    <widget class="YerothLineEdit" name="lineEdit_creer_groupe_clients_designation">
+    <widget class="YerothLineEdit" name="lineEdit_modifier_groupe_clients_designation">
      <property name="geometry">
       <rect>
        <x>196</x>
@@ -3702,7 +3702,7 @@
       <string notr="true">border: 1px solid rgb(60, 60, 60);</string>
      </property>
     </widget>
-    <widget class="QGroupBox" name="groupBox_creer_groupe_clients_description_groupe">
+    <widget class="QGroupBox" name="groupBox_modifier_groupe_clients_description_groupe">
      <property name="geometry">
       <rect>
        <x>8</x>
@@ -3721,7 +3721,7 @@
      <property name="title">
       <string>description du groupe de clients</string>
      </property>
-     <widget class="YerothTextEdit" name="textEdit_creer_groupe_clients_description_groupe">
+     <widget class="YerothTextEdit" name="textEdit_modifier_groupe_clients_description_groupe">
       <property name="geometry">
        <rect>
         <x>3</x>
@@ -4641,7 +4641,7 @@
      <property name="title">
       <string>membres initiaux du groupe de clients</string>
      </property>
-     <widget class="YerothCreerUnGroupeDeClientsTableWidget" name="tableWidget_creer_groupe_clients_membres_initiaux_du_groupe">
+     <widget class="YerothModifierUnGroupeDeClientsTableWidget" name="tableWidget_modifier_groupe_clients_membres_initiaux_du_groupe">
       <property name="geometry">
        <rect>
         <x>4</x>
@@ -5958,7 +5958,7 @@ background-color: rgb(0, 0, 0); </string>
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="YerothLineEdit" name="lineEdit_creer_groupe_clients_recherche_client_initiaux">
+     <widget class="YerothLineEdit" name="lineEdit_modifier_groupe_clients_recherche_client_initiaux">
       <property name="geometry">
        <rect>
         <x>4</x>
@@ -6745,7 +6745,7 @@ background-color: rgb(0, 0, 0);</string>
       </property>
      </widget>
     </widget>
-    <widget class="QLabel" name="label_creer_groupe_clients_programme_de_fidelite_de_clients">
+    <widget class="QLabel" name="label_modifier_groupe_clients_programme_de_fidelite_de_clients">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -6771,7 +6771,7 @@ background-color: rgb(0, 0, 0);</string>
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="YerothLineEdit" name="lineEdit_creer_groupe_clients_programme_de_fidelite_de_clients">
+    <widget class="YerothLineEdit" name="lineEdit_modifier_groupe_clients_programme_de_fidelite_de_clients">
      <property name="geometry">
       <rect>
        <x>196</x>
@@ -9018,7 +9018,7 @@ background-color: rgb(0, 0, 0);</string>
    <addaction name="menuAide"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <widget class="QToolBar" name="toolBar_creerGroupeDeClientsWindow">
+  <widget class="QToolBar" name="toolBar_modifierGroupeDeClientsWindow">
    <property name="palette">
     <palette>
      <active>
@@ -9467,7 +9467,7 @@ background-color: rgb(0, 0, 0);</string>
   </action>
   <action name="actionChanger_utilisateur">
    <property name="icon">
-    <iconset resource="../../yeroth-erp-3-0.qrc">
+    <iconset resource="../../../yeroth-erp-3-0.qrc">
      <normaloff>:/yeroth-erp-3-0-images/log-in.png</normaloff>:/yeroth-erp-3-0-images/log-in.png</iconset>
    </property>
    <property name="text">
@@ -9510,7 +9510,7 @@ background-color: rgb(0, 0, 0);</string>
   </action>
   <action name="actionAppeler_aide">
    <property name="icon">
-    <iconset resource="../../yeroth-erp-3-0.qrc">
+    <iconset resource="../../../yeroth-erp-3-0.qrc">
      <normaloff>:/yeroth-erp-3-0-images/question.png</normaloff>:/yeroth-erp-3-0-images/question.png</iconset>
    </property>
    <property name="text">
@@ -9529,7 +9529,7 @@ background-color: rgb(0, 0, 0);</string>
   </action>
   <action name="actionDeconnecter_utilisateur">
    <property name="icon">
-    <iconset resource="../../yeroth-erp-3-0.qrc">
+    <iconset resource="../../../yeroth-erp-3-0.qrc">
      <normaloff>:/yeroth-erp-3-0-images/log-out.png</normaloff>:/yeroth-erp-3-0-images/log-out.png</iconset>
    </property>
    <property name="text">
@@ -9680,22 +9680,22 @@ background-color: rgb(0, 0, 0);</string>
    <header>src/widgets/yeroth-erp-text-edit.hpp</header>
   </customwidget>
   <customwidget>
-   <class>YerothCreerUnGroupeDeClientsTableWidget</class>
+   <class>YerothModifierUnGroupeDeClientsTableWidget</class>
    <extends>QTableWidget</extends>
-   <header>src/widgets/yeroth-erp-creer-un-groupe-de-clients-table-widget.hpp</header>
+   <header>src/widgets/yeroth-erp-modifier-un-groupe-de-clients-table-widget.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>lineEdit_creer_groupe_clients_reference_groupe</tabstop>
-  <tabstop>lineEdit_creer_groupe_clients_designation</tabstop>
-  <tabstop>lineEdit_creer_groupe_clients_maximum_de_membres</tabstop>
-  <tabstop>textEdit_creer_groupe_clients_description_groupe</tabstop>
+  <tabstop>lineEdit_modifier_groupe_clients_reference_groupe</tabstop>
+  <tabstop>lineEdit_modifier_groupe_clients_designation</tabstop>
+  <tabstop>lineEdit_modifier_groupe_clients_maximum_de_membres</tabstop>
+  <tabstop>textEdit_modifier_groupe_clients_description_groupe</tabstop>
   <tabstop>pushButton_annuler</tabstop>
   <tabstop>pushButton_menu_clients</tabstop>
   <tabstop>pushButton_enregistrer</tabstop>
  </tabstops>
  <resources>
-  <include location="../../yeroth-erp-3-0.qrc"/>
+  <include location="../../../yeroth-erp-3-0.qrc"/>
  </resources>
  <connections/>
 </ui>

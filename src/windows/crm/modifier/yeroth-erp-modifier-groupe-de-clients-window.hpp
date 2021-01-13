@@ -1,22 +1,27 @@
 /*
- * yeroth-erp-creer-groupe-de-clients-window.hpp
+ * yeroth-erp-modifier-groupe-de-clients-window.hpp
  *
  *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
-#ifndef YEROTH_CREER_GROUPE_DE_CLIENTS_WINDOW_HPP_
-#define YEROTH_CREER_GROUPE_DE_CLIENTS_WINDOW_HPP_
+#ifndef YEROTH_MODIFIER_GROUPE_DE_CLIENTS_WINDOW_HPP_
+#define YEROTH_MODIFIER_GROUPE_DE_CLIENTS_WINDOW_HPP_
 
-#include "../../../ui_yeroth-erp-creer-groupe-de-clients-window.h"
 
-# include <QtWidgets/QMessageBox>
+#include "../../../../ui_yeroth-erp-modifier-groupe-de-clients-window.h"
+
+
 #include "src/windows/yeroth-erp-window-commons.hpp"
+
+
+#include <QtWidgets/QMessageBox>
+
 
 class YerothERPWindows;
 class YerothSqlTableModel;
 
-class YerothCreerGroupeDeClientsWindow : public YerothWindowsCommons,
-									     private Ui_YerothCreerGroupeDeClientsWindow
+class YerothModifierGroupeDeClientsWindow : public YerothWindowsCommons,
+									        private Ui_YerothModifierGroupeDeClientsWindow
 {
     Q_OBJECT
 
@@ -24,16 +29,16 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-    YerothCreerGroupeDeClientsWindow();
+    YerothModifierGroupeDeClientsWindow();
 
-    inline ~YerothCreerGroupeDeClientsWindow()
+    inline ~YerothModifierGroupeDeClientsWindow()
     {
     	delete _logger;
     }
 
     inline QToolBar * getQMainWindowToolBar()
     {
-    	return toolBar_creerGroupeDeClientsWindow;
+    	return toolBar_modifierGroupeDeClientsWindow;
     }
 
     virtual void definirCaissier();
@@ -88,7 +93,7 @@ private slots:
 
 	void supprimerUnMembreDunGroupeDeClients();
 
-	bool creerEnregistrerUnGroupeDeClients();
+	bool modifierEnregistrerUnGroupeDeClients();
 
 private:
 
@@ -118,4 +123,4 @@ private:
 };
 
 
-#endif /* YEROTH_CREER_GROUPE_DE_CLIENTS_WINDOW_HPP_ */
+#endif /* YEROTH_MODIFIER_GROUPE_DE_CLIENTS_WINDOW_HPP_ */

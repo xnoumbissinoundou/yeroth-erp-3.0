@@ -57,20 +57,24 @@
 
 
 //** CRM
+#include "src/windows/crm/creer/yeroth-erp-creer-un-programme-de-fidelite-clients-window.hpp"
+#include "src/windows/crm/creer/yeroth-erp-creer-groupe-de-clients-window.hpp"
+#include "src/windows/crm/creer/yeroth-erp-creer-compte-client-window.hpp"
+
 #include "src/windows/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.hpp"
 #include "src/windows/crm/details/yeroth-erp-details-dun-programme-de-fidelite-clients-window.hpp"
 #include "src/windows/crm/details/yeroth-erp-clients-detail-window.hpp"
 
+#include "src/windows/crm/modifier/yeroth-erp-modifier-compte-client-window.hpp"
+
 #include "src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.hpp"
-#include "src/windows/crm/yeroth-erp-creer-un-programme-de-fidelite-clients-window.hpp"
-#include "src/windows/crm/yeroth-erp-creer-groupe-de-clients-window.hpp"
 #include "src/windows/crm/yeroth-erp-groupes-de-clients-window.hpp"
 #include "src/windows/crm/yeroth-erp-groupes-dun-client-window.hpp"
 #include "src/windows/crm/yeroth-erp-clients-window.hpp"
 #include "src/windows/crm/yeroth-erp-tableau-des-transactions-du-client-window.hpp"
 #include "src/windows/crm/yeroth-erp-payer-compte-client-window.hpp"
-#include "src/windows/crm/yeroth-erp-creer-compte-client-window.hpp"
-#include "src/windows/crm/yeroth-erp-modifier-compte-client-window.hpp"
+
+
 
 
 //** ADMINISTRATION

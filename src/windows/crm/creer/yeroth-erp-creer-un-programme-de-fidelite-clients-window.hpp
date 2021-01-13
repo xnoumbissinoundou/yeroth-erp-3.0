@@ -7,7 +7,7 @@
 #ifndef YEROTH_CREER_UN_PROGRAMME_DE_FIDELITE_CLIENTS_WINDOW_HPP_
 #define YEROTH_CREER_UN_PROGRAMME_DE_FIDELITE_CLIENTS_WINDOW_HPP_
 
-#include "../../../ui_yeroth-erp-creer-un-programme-de-fidelite-clients-window.h"
+#include "../../../../ui_yeroth-erp-creer-un-programme-de-fidelite-clients-window.h"
 
 # include <QtWidgets/QMessageBox>
 #include "src/windows/yeroth-erp-window-commons.hpp"
