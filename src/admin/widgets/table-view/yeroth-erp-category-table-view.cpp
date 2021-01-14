@@ -143,6 +143,6 @@ void YerothERPCategoryTableView::lister_les_elements_du_tableau(YerothSqlTableMo
 			}
 		}
 
-		this->resizeColumnsToContents();
+		 resizeColumnsToContents();
 	}
 }

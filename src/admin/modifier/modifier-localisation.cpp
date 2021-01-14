@@ -77,7 +77,7 @@ void YerothAdminModifierWindow::modifier_localisation()
 
         bool success = localisationsTableModel->updateRecord(lw->lastSelectedItemForModification(), record);
 
-        QString retMsg(QString(QObject::trUtf8("Les données de la localisation '%1'"))
+        QString retMsg(QObject::trUtf8("Les données de la localisation '%1'")
         					.arg(lineEdit_modifier_localisation_nom->text()));
 
         if (success)
@@ -90,7 +90,7 @@ void YerothAdminModifierWindow::modifier_localisation()
 
             _allWindows->_adminListerWindow->rendreVisible(SUJET_ACTION_LOCALISATION);
 
-            this->rendreInvisible();
+             rendreInvisible();
         }
         else
         {

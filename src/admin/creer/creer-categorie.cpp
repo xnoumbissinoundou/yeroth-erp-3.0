@@ -23,7 +23,7 @@ bool YerothAdminCreateWindow::creer_categorie()
 
             //qDebug() << "++ duplicate categorie: " << duplicateCategorie;
 
-            retMsg.append(QString(QObject::trUtf8("%1' existe déjà ! "))
+            retMsg.append(QObject::trUtf8("%1' existe déjà ! ")
             				.arg(duplicateCategorie));
 
             YerothQMessageBox::warning(this,
@@ -46,7 +46,7 @@ bool YerothAdminCreateWindow::creer_categorie()
 
         if (!success)
         {
-            retMsg.append(QString(QObject::trUtf8("%1' n'a pas pu être créer ! "))
+            retMsg.append(QObject::trUtf8("%1' n'a pas pu être créer ! ")
             				.arg(lineEdit_creer_categorie_nom->text()));
 
             YerothQMessageBox::warning(this,
@@ -55,7 +55,7 @@ bool YerothAdminCreateWindow::creer_categorie()
             return false;
         }
 
-        retMsg.append(QString(QObject::trUtf8("%1' a été créer avec succès ! "))
+        retMsg.append(QObject::trUtf8("%1' a été créer avec succès ! ")
         				.arg(lineEdit_creer_categorie_nom->text()));
 
         YerothQMessageBox::information(this,
@@ -63,7 +63,7 @@ bool YerothAdminCreateWindow::creer_categorie()
                                  retMsg);
 
         clear_categorie_all_fields();
-        this->rendreInvisible();
+         rendreInvisible();
 
         _allWindows->_adminListerWindow->rendreVisible(SUJET_ACTION_CATEGORIE);
 

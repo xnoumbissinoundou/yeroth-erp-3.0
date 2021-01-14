@@ -53,7 +53,7 @@ public:
 
 	inline void changeEditStrategy(QSqlTableModel::EditStrategy strategy)
 	{
-		this->setEditStrategy(strategy);
+		 setEditStrategy(strategy);
 	}
 
 	int Is_SearchQSqlTable(QString tableColumn,
@@ -98,7 +98,7 @@ public:
 
 	/*inline bool removeRow(int row)
 	{
-		return this->removeRow(row);
+		return  removeRow(row);
 	}*/
 
 	void resetFilter();

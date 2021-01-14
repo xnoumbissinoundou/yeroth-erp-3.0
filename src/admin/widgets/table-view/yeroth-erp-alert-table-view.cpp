@@ -143,6 +143,6 @@ void YerothERPAlertTableView::lister_les_elements_du_tableau(YerothSqlTableModel
 			}
 		}
 
-		this->resizeColumnsToContents();
+		 resizeColumnsToContents();
 	}
 }

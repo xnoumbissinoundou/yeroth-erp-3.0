@@ -80,7 +80,7 @@ bool YerothAdminCreateWindow::creer_remise()
 
             //qDebug() << "++ duplicate remise: " << duplicateAlerte;
 
-            retMsg.append(QString(QObject::trUtf8("%1' existe déjà ! "))
+            retMsg.append(QObject::trUtf8("%1' existe déjà ! ")
             				.arg(duplicateRemise));
 
             YerothQMessageBox::warning(this,
@@ -138,7 +138,7 @@ bool YerothAdminCreateWindow::creer_remise()
 
         if (!success)
         {
-        	retMsg.append(QString(QObject::trUtf8("%1' n'a pas pu être créer !"))
+        	retMsg.append(QObject::trUtf8("%1' n'a pas pu être créer !")
         					.arg(lineEdit_creer_remise_nom->text()));
 
             YerothQMessageBox::warning(this,
@@ -147,15 +147,15 @@ bool YerothAdminCreateWindow::creer_remise()
             return false;
         }
 
-        retMsg.append(QString(QObject::trUtf8("%1' a été créer avec succès !"))
+        retMsg.append(QObject::trUtf8("%1' a été créer avec succès !")
     					.arg(lineEdit_creer_remise_nom->text()));
 
         YerothQMessageBox::information(this,
         							   QObject::trUtf8("Yeroth-erp-3.0 - créer"),
                                  	   retMsg);
 
-        this->clear_remise_all_fields();
-        this->rendreInvisible();
+         clear_remise_all_fields();
+         rendreInvisible();
 
         stocksTableModel.resetFilter();
 

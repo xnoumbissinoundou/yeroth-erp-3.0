@@ -40,7 +40,7 @@ YerothStockDetailWindow::YerothStockDetailWindow()
 
     checkBox_achat->setReadOnly(true);
 
-    this->setupLineEdits();
+     setupLineEdits();
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, false);
@@ -80,7 +80,7 @@ YerothStockDetailWindow::YerothStockDetailWindow()
 
 #endif
 
-    this->setupShortcuts();
+     setupShortcuts();
 }
 
 void YerothStockDetailWindow::setupLineEdits()
@@ -249,7 +249,7 @@ void YerothStockDetailWindow::definirMagasinier()
 
 void YerothStockDetailWindow::modifier_les_articles()
 {
-    this->rendreInvisible();
+     rendreInvisible();
     _allWindows->_modifierWindow->rendreVisible(_curStocksTableModel);
 }
 
@@ -464,8 +464,8 @@ void YerothStockDetailWindow::showItem_YerothERPAbstractClassDetailViewFOR_WINDO
 
 void YerothStockDetailWindow::setupShortcuts()
 {
-    this->setupShortcutActionMessageDaide 	(*actionAppeler_aide);
-    this->setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
+     setupShortcutActionMessageDaide 	(*actionAppeler_aide);
+     setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
 }
 
 

@@ -146,9 +146,9 @@ enum import_csv_entry_row_return_status
 					if (!YerothUtils::execQuery(queryCategoryStr))
 					{
 						QString infoMesg =
-								QString(QObject::trUtf8("La catégorie '%1' ne pouvait pas "
-										"être créée !"))
-										.arg(curColumnRowEntry);
+								QObject::trUtf8("La catégorie '%1' ne pouvait pas "
+										"être créée !")
+									.arg(curColumnRowEntry);
 
 						if (0 != _callingWindow)
 						{
@@ -216,8 +216,8 @@ enum import_csv_entry_row_return_status
     {
     	if (!curExistingReferenceDesignationCategory_PRODUCT_in_out.isEmpty())
     	{
-			infoMesg = QString(QObject::trUtf8("Cette référence ('%1') "
-											"est déjà utilisée par la marchandise '%2' !"))
+			infoMesg = QObject::trUtf8("Cette référence ('%1') "
+									   "est déjà utilisée par la marchandise '%2' !")
 							.arg(productReference,
 								 curExistingReferenceDesignationCategory_PRODUCT_in_out);
     	}
@@ -225,13 +225,13 @@ enum import_csv_entry_row_return_status
     else if (SERVICE_STOCK_CATEGORY_EXIST == SERVICE_REFERENCE_STOCK_DESIGNATION_EXIST)
     {
 		QString infoMesg =
-				QString(QObject::trUtf8("La marchandise '%1' est déjà dans la catégorie ('%2') !"))
+				QObject::trUtf8("La marchandise '%1' est déjà dans la catégorie ('%2') !")
 					.arg(productCategorie,
 						 curExistingReferenceDesignationCategory_PRODUCT_in_out);
     }
     else if (SERVICE_STOCK_DESIGNATION_EXIST == SERVICE_REFERENCE_STOCK_DESIGNATION_EXIST)
     {
-		infoMesg = QString(QObject::trUtf8("La marchandise ('%1') utilise déjà la référence '%2' !"))
+		infoMesg = QObject::trUtf8("La marchandise ('%1') utilise déjà la référence '%2' !")
 						.arg(productName,
 							 curExistingReferenceDesignationCategory_PRODUCT_in_out);
     }

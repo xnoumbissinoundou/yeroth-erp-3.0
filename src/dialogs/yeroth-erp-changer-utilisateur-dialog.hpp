@@ -39,7 +39,7 @@ public slots:
 
 	inline void annuler()
 	{
-		this->close();
+		 close();
 	}
 
 	void valider();

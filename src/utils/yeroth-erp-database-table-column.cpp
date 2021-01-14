@@ -172,7 +172,7 @@ const QString YerothDatabaseTableColumn::LOCALISATION_ENTREE_ID			("localisation
 
 YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 {
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REMISE_PRIX, 	QString(QObject::trUtf8("Remise (%1)")).arg(YerothERPConfig::currency));
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REMISE_PRIX, 	QObject::trUtf8("Remise (%1)").arg(YerothERPConfig::currency));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::IS_SERVICE, 		QObject::tr("Service"));
 

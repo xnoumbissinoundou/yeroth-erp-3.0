@@ -79,7 +79,7 @@ void YerothAdminModifierWindow::modifier_alerte()
 
         bool success = alertesTableModel->updateRecord(lw->lastSelectedItemForModification(), record);
 
-        QString retMsg(QString(QObject::trUtf8("Le message de l'alerte '%1' "))
+        QString retMsg(QObject::trUtf8("Le message de l'alerte '%1' ")
         					.arg(lineEdit_modifier_alerte_designation_alerte->text()));
 
         if (success)
@@ -91,7 +91,7 @@ void YerothAdminModifierWindow::modifier_alerte()
                                      retMsg);
 
             _allWindows->_adminListerWindow->rendreVisible(SUJET_ACTION_ALERTE);
-            this->rendreInvisible();
+             rendreInvisible();
         }
         else
         {

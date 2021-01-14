@@ -396,7 +396,7 @@ void YerothAdminWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 		}
 
 		groupBox_yeroth_erp_3_0_parametres_serveur
-			->setTitle(QString(QObject::trUtf8("paramètres serveur [ \"%1\" ]"))
+			->setTitle(QObject::trUtf8("paramètres serveur [ \"%1\" ]")
 							.arg(localIpAddress));
 
 		groupBox_yeroth_erp_3_0_parametres_serveur->setVisible(true);
@@ -493,7 +493,7 @@ void YerothAdminWindow::EXECUTER_COMMANDE_MAINTENANCE()
 	{
 		YerothQMessageBox::warning(this,
 				QObject::trUtf8("EXÉCUTER COMMANDE MAINTENANCE"),
-				QString(QObject::trUtf8("Sélectionner 1 commande à exécuter !")));
+				QObject::trUtf8("Sélectionner 1 commande à exécuter !"));
 
 		return ;
 	}
@@ -885,23 +885,22 @@ void YerothAdminWindow::import_current_selected_csv_file()
 
 	if (successImportCount > 0)
 	{
-		msg = QString(QObject::trUtf8("'%1' entrée(s) du fichier CSV ont "
-										   "été importée(s) avec succès !"))
-							 .arg(QString::number(successImportCount));
+		msg = QObject::trUtf8("'%1' entrée(s) du fichier CSV ont "
+										   "été importée(s) avec succès !")
+					.arg(QString::number(successImportCount));
 
 
 		YerothQMessageBox::information(this,
-								   QObject::tr("résultat importation fichier CSV"),
+								   QObject::trUtf8("résultat importation fichier CSV"),
 								   msg);
 	}
 	else
 	{
-		msg = QString(QObject::trUtf8("AUCUNE DONNÉE DU FICHIER (.csv) n'a "
-										   "été importée !"));
+		msg = QObject::trUtf8("AUCUNE DONNÉE DU FICHIER (.csv) n'a été importée !");
 
 
 		YerothQMessageBox::information(this,
-								   QObject::tr("résultat importation fichier CSV"),
+								   QObject::trUtf8("résultat importation fichier CSV"),
 								   msg);
 	}
 }

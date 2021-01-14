@@ -26,12 +26,12 @@ QString YerothDatabase::_db_connection_options("");
 
 YerothDatabase::YerothDatabase()
 {
-    this->set_db_name(YerothERPConfig::_db_name);
-    this->set_db_ip_address(YerothERPConfig::_db_ip_address);
-    this->set_db_user_name(YerothERPConfig::_db_user_name);
-    this->set_db_user_pwd(YerothERPConfig::_db_user_pwd);
-    this->set_db_type(YerothERPConfig::_db_type);
-    this->set_db_connection_options(YerothERPConfig::_db_connection_options);
+     set_db_name(YerothERPConfig::_db_name);
+     set_db_ip_address(YerothERPConfig::_db_ip_address);
+     set_db_user_name(YerothERPConfig::_db_user_name);
+     set_db_user_pwd(YerothERPConfig::_db_user_pwd);
+     set_db_type(YerothERPConfig::_db_type);
+     set_db_connection_options(YerothERPConfig::_db_connection_options);
 
     if (YerothUtils::isEqualCaseInsensitive(YerothDatabase::MYSQL, YerothERPConfig::_db_type))
     {

@@ -3,7 +3,7 @@ bool YerothAdminCreateWindow::creer_localisation()
 {
     if (creer_localisation_check_fields())
     {
-        QString retMsg(QString(QObject::tr("La localisation '%1'"))
+        QString retMsg(QObject::tr("La localisation '%1'")
         				.arg(lineEdit_creer_localisation_nom->text()));
 
         YerothSqlTableModel &localisationsTableModel = _allWindows->getSqlTableModel_localisations();
@@ -22,7 +22,7 @@ bool YerothAdminCreateWindow::creer_localisation()
 
             //qDebug() << "++ duplicate localisation: " << duplicateLocalisation;
 
-            retMsg.append(QString(QObject::trUtf8("%1' existe déjà !"))
+            retMsg.append(QObject::trUtf8("%1' existe déjà !")
             				.arg(duplicateLocalisation));
 
             YerothQMessageBox::warning(this,
@@ -75,7 +75,7 @@ bool YerothAdminCreateWindow::creer_localisation()
         clear_localisation_all_fields();
 
         _allWindows->_adminListerWindow->rendreVisible(SUJET_ACTION_LOCALISATION);
-        this->rendreInvisible();
+         rendreInvisible();
     }
 
     return true;

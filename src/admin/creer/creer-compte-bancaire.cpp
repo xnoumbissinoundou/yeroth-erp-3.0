@@ -18,7 +18,7 @@ bool YerothAdminCreateWindow::creer_compte_bancaire()
             QSqlRecord record = compteBancaireSqlTableModel.record(0);
             QString duplicateCompteBancaire(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE_DU_COMPTE_BANCAIRE));
 
-            retMsg.append(QString(QObject::trUtf8("%1' existe déjà ! "))
+            retMsg.append(QObject::trUtf8("%1' existe déjà ! ")
             				.arg(duplicateCompteBancaire));
 
             YerothQMessageBox::warning(this,
@@ -44,7 +44,7 @@ bool YerothAdminCreateWindow::creer_compte_bancaire()
 
         if (!success)
         {
-            retMsg.append(QString(QObject::trUtf8("%1' n'a pas pu être créer ! "))
+            retMsg.append(QObject::trUtf8("%1' n'a pas pu être créer ! ")
             				.arg(lineEdit_creer_compte_bancaire_reference_du_compte_bancaire->text()));
 
             YerothQMessageBox::warning(this,
@@ -53,7 +53,7 @@ bool YerothAdminCreateWindow::creer_compte_bancaire()
             return false;
         }
 
-        retMsg.append(QString(QObject::trUtf8("%1' a été créer avec succès ! "))
+        retMsg.append(QObject::trUtf8("%1' a été créer avec succès ! ")
         				.arg(lineEdit_creer_compte_bancaire_reference_du_compte_bancaire->text()));
 
         YerothQMessageBox::information(this,

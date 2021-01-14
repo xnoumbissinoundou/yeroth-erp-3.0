@@ -24,7 +24,7 @@ YerothDBusClient::YerothDBusClient(YerothERPWindows *allWindows)
     :_dbusServerInterface(0),
      _allWindows(allWindows)
 {
-    this->connect_to_dbus_server();
+     connect_to_dbus_server();
 }
 
 YerothDBusClient::~YerothDBusClient()

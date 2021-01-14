@@ -597,7 +597,7 @@ bool YerothUtils::creerNouveauClient(QString 			  &proposedCustomerName,
 		record.setValue(YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT, 0.0);
 		record.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT, 0.0);
 
-		QString retMsg(QString(QObject::trUtf8("L'entreprise cliente '%1'"))
+		QString retMsg(QObject::trUtf8("L'entreprise cliente '%1'")
 							.arg(proposedCustomerName));
 
 		bool success = customerSqlTableModel.insertNewRecord(record);
@@ -642,7 +642,7 @@ bool YerothUtils::creerNouveauClient(QString 			  &proposedCustomerName,
 }
 
 
-bool YerothUtils::creerNouveauFournisseur(QString 			  &proposedFournisseurName,
+bool YerothUtils::creerNouveauFournisseur(QString 			   &proposedFournisseurName,
 		 	 	 	 	 	 	 	 	  YerothWindowsCommons *_callingWindow /* = 0 */)
 {
 	if (proposedFournisseurName.isEmpty())
@@ -679,7 +679,7 @@ bool YerothUtils::creerNouveauFournisseur(QString 			  &proposedFournisseurName,
 		record.setValue(YerothDatabaseTableColumn::ID, YerothERPWindows::getNextIdSqlTableModel_fournisseurs());
 		record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE, proposedFournisseurName);
 
-		QString retMsg(QString(QObject::trUtf8("L'entreprise fournisseur '%1'"))
+		QString retMsg(QObject::trUtf8("L'entreprise fournisseur '%1'")
 							.arg(proposedFournisseurName));
 
 		bool success = fournisseurSqlTableModel.insertNewRecord(record);

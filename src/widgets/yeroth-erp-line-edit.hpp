@@ -41,7 +41,7 @@ public:
 
 	inline bool isEmpty()
 	{
-		return this->text().isEmpty();
+		return  text().isEmpty();
 	}
 
 	void enableForSearch(QString placeHoderText);
@@ -54,7 +54,7 @@ public:
 
 	inline void setRed()
 	{
-		this->setPalette(YerothUtils::YEROTH_RED_PALETTE);
+		 setPalette(YerothUtils::YEROTH_RED_PALETTE);
 	}
 
 	void setYerothERPQLineEditDisplayFormat();

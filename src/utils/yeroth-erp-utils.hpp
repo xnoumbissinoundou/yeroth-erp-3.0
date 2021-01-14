@@ -474,7 +474,7 @@ public:
 
 	inline static const QString getTVALabelStringWithPercent()
 	{
-	    return QString(QObject::tr("TVA (%1)")).arg(YerothUtils::getTvaStringWithPercent());
+	    return QObject::tr("TVA (%1)").arg(YerothUtils::getTvaStringWithPercent());
 	}
 
 	static void infosEntreprise(YerothPOSAdminWindowsCommons &aYerothPOSAdminQMainWindow,
@@ -963,7 +963,7 @@ bool YerothUtils::instanceOf__YerothTableViewWITHpagination(aTableViewClassType 
 
 #define YEROTH_QMESSAGE_BOX_QUELQUE_RESULTAT_FILTRE(THIS, NOMBRE, DIALOG_BOX_TITLE) \
 { QString msg(QObject::trUtf8("Il y'a eu")); \
-msg.append(QString(QObject::trUtf8(" %1 résultat(s) à votre filtre !")).arg(NOMBRE)); \
+msg.append(QObject::trUtf8(" %1 résultat(s) à votre filtre !").arg(NOMBRE)); \
 YerothQMessageBox::information(this, QObject::trUtf8(DIALOG_BOX_TITLE), msg); }
 
 

@@ -143,6 +143,6 @@ void YerothERPBankAccountTableView::lister_les_elements_du_tableau(YerothSqlTabl
 			}
 		}
 
-		this->resizeColumnsToContents();
+		 resizeColumnsToContents();
 	}
 }

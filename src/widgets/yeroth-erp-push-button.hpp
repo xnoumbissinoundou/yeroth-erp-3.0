@@ -65,7 +65,7 @@ public:
 
 	inline void emptyEnable()
 	{
-		this->setEnabled(true);
+		 setEnabled(true);
 	}
 
 public slots:

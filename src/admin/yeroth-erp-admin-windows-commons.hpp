@@ -88,7 +88,7 @@ public:
 
 	inline virtual void rendreInvisible()
 	{
-		this->setVisible(false);
+		 setVisible(false);
 	}
 
 	inline static YerothERPWindows *getAllWindows()
@@ -118,7 +118,7 @@ public slots:
 
     inline virtual void fermeture()
     {
-    	this->close();
+    	 close();
     }
 
     inline virtual void apropos()

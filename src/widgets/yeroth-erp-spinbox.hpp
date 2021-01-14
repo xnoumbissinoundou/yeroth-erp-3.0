@@ -41,7 +41,7 @@ public:
 
 	inline double valueMultiplyBy(double aValue)
 	{
-		return this->value() * aValue;
+		return  value() * aValue;
 	}
 
 	void setEnabled(bool enabled);

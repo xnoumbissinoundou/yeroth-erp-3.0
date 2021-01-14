@@ -120,7 +120,7 @@ void YerothAdminModifierWindow::modifier_compte_bancaire_main()
 //        YerothUtils::execQuery(stocksVenduQuery, 0);
 //    }
 //
-//    QString retMsg(QString(QObject::trUtf8("Les données de la catégorie '%1'"))
+//    QString retMsg(QObject::trUtf8("Les données de la catégorie '%1'")
 //    					.arg(lineEdit_modifier_categorie_nom->text()));
 //
 //    if (successCategorieTable)
@@ -132,7 +132,7 @@ void YerothAdminModifierWindow::modifier_compte_bancaire_main()
 //                                 retMsg);
 //
 //        _allWindows->_adminListerWindow->rendreVisible(SUJET_ACTION_CATEGORIE);
-//        this->rendreInvisible();
+//         rendreInvisible();
 //    }
 //    else
 //    {

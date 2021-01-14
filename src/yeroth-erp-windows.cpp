@@ -443,27 +443,27 @@ void YerothERPWindows::setUser(YerothPOSUser *user)
     {
 
     case YerothUtils::ROLE_ADMINISTRATEUR:
-        this->definirAdministrateur();
+         definirAdministrateur();
         break;
 
     case YerothUtils::ROLE_MANAGER:
-        this->definirManager();
+         definirManager();
         break;
 
     case YerothUtils::ROLE_VENDEUR:
-        this->definirVendeur();
+         definirVendeur();
         break;
 
     case YerothUtils::ROLE_GESTIONNAIREDESTOCK:
-        this->definirGestionaireDesStocks();
+         definirGestionaireDesStocks();
         break;
 
     case YerothUtils::ROLE_MAGASINIER:
-        this->definirMagasinier();
+         definirMagasinier();
         break;
 
     case YerothUtils::ROLE_CAISSIER:
-        this->definirCaissier();
+         definirCaissier();
         break;
 
     default:

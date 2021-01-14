@@ -108,7 +108,7 @@ void YerothAdminModifierWindow::modifier_categorie_main()
         YerothUtils::execQuery(stocksVenduQuery, 0);
     }
 
-    QString retMsg(QString(QObject::trUtf8("Les données de la catégorie '%1'"))
+    QString retMsg(QObject::trUtf8("Les données de la catégorie '%1'")
     					.arg(lineEdit_modifier_categorie_nom->text()));
 
     if (successCategorieTable)
@@ -120,12 +120,14 @@ void YerothAdminModifierWindow::modifier_categorie_main()
                                  retMsg);
 
         _allWindows->_adminListerWindow->rendreVisible(SUJET_ACTION_CATEGORIE);
-        this->rendreInvisible();
+         rendreInvisible();
     }
     else
     {
         qDebug() << "\t[reason for failing] " << categoriesTableModel->lastError();
+
         retMsg.append(QObject::trUtf8(" n'ont pas pu être modifiées !"));
+
         YerothQMessageBox::warning(this,
                              QObject::trUtf8("Yeroth-erp-3.0 ~ admin-modifier-catégorie"),
                              retMsg);

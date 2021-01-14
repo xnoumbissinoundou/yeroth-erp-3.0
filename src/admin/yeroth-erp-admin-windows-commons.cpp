@@ -22,13 +22,13 @@ QPoint *YerothPOSAdminWindowsCommons::_centerPosition(new QPoint);
 void YerothPOSAdminWindowsCommons::menu()
 {
     _allWindows->_adminWindow->rendreVisible();
-    this->rendreInvisible();
+     rendreInvisible();
 }
 
 void YerothPOSAdminWindowsCommons::retour_menu_principal()
 {
     _allWindows->_mainWindow->rendreVisible(_allWindows->_adminWindow->getStocksTableModel());
-    this->rendreInvisible();
+     rendreInvisible();
 }
 
 void YerothPOSAdminWindowsCommons::infosEntreprise()
@@ -74,11 +74,11 @@ void YerothPOSAdminWindowsCommons::deconnecter_utilisateur()
 {
     _allWindows->definirPasDeRole();
     _allWindows->_mainWindow->rendreVisible(&_allWindows->getSqlTableModel_stocks());
-    this->setVisible(false);
+     setVisible(false);
 }
 
 void YerothPOSAdminWindowsCommons::rendreVisible(YerothSqlTableModel * stocksTableModel)
 {
     _curStocksTableModel = stocksTableModel;
-    this->setVisible(true);
+     setVisible(true);
 }

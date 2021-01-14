@@ -39,7 +39,7 @@ public:
 
 	inline virtual void rendreInvisible()
 	{
-		this->close();
+		 close();
 	}
 
 	inline QString getDialogName()

@@ -389,7 +389,7 @@ public:
 
 	inline YerothInfoEntreprise &getInfoEntreprise()
 	{
-		return *this->_infoEntreprise;
+		return * _infoEntreprise;
 	}
 
 	static inline YerothSqlTableModel * getSqlTableModelFromName(const QString &aSqlTableName)

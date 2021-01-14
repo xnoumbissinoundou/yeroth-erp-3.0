@@ -278,11 +278,11 @@ void YerothPOSChangerUtilisateurDialog::checkCourriersAlertes()
     {
         QApplication::beep();
 
-        QString aMsg(QString(QObject::trUtf8("Vous avez '%1' alertes non résolues !"))
+        QString aMsg(QObject::trUtf8("Vous avez '%1' alertes non résolues !")
         				.arg(QString::number(courriersAlertesTable.rowCount())));
 
         YerothQMessageBox::information(_allWindows->_listerAlertesWindow,
-                                      QObject::tr("changer d'utilisateur - alertes"),
+                                       QObject::tr("changer d'utilisateur - alertes"),
 									   aMsg);
     }
 }

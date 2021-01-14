@@ -22,7 +22,7 @@ bool YerothAdminCreateWindow::creer_alerte()
 
             //qDebug() << "++ duplicate alerte: " << duplicateAlerte;
 
-            retMsg.append(QString(QObject::trUtf8("%1' existe déjà ! "))
+            retMsg.append(QObject::trUtf8("%1' existe déjà ! ")
             				.arg(duplicateAlerte));
 
             YerothQMessageBox::warning(this,
@@ -90,7 +90,7 @@ bool YerothAdminCreateWindow::creer_alerte()
 
         if (!success)
         {
-        	retMsg.append(QString(QObject::trUtf8("%1' n'a pas pu être créer !"))
+        	retMsg.append(QObject::trUtf8("%1' n'a pas pu être créer !")
         					.arg(lineEdit_creer_alerte_nom->text()));
 
             YerothQMessageBox::warning(this,
@@ -99,15 +99,15 @@ bool YerothAdminCreateWindow::creer_alerte()
             return false;
         }
 
-        retMsg.append(QString(QObject::trUtf8("%1' a été créer avec succès !"))
+        retMsg.append(QObject::trUtf8("%1' a été créer avec succès !")
     					.arg(lineEdit_creer_alerte_nom->text()));
 
         YerothQMessageBox::information(this,
         							   QObject::trUtf8("Yeroth-erp-3.0 - créer"),
                                  	   retMsg);
 
-        this->clear_alerte_all_fields();
-        this->rendreInvisible();
+         clear_alerte_all_fields();
+         rendreInvisible();
 
         stocksTableModel.resetFilter();
 

@@ -119,7 +119,7 @@ void YerothAdminModifierWindow::modifier_client()
 
         bool success = clientsTableModel->updateRecord(lw->lastSelectedItemForModification(), record);
 
-        QString retMsg(QString(QObject::trUtf8("Les données du client '%1'"))
+        QString retMsg(QObject::trUtf8("Les données du client '%1'")
         					.arg(lineEdit_modifier_client_nom_entreprise->text()));
 
         if (success)
@@ -131,7 +131,8 @@ void YerothAdminModifierWindow::modifier_client()
                                      retMsg);
 
             _allWindows->_adminListerWindow->rendreVisible(SUJET_ACTION_CLIENT);
-            this->rendreInvisible();
+
+             rendreInvisible();
         }
         else
         {

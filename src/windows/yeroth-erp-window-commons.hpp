@@ -179,7 +179,7 @@ public slots:
 
 	inline virtual void modifier_les_articles()
 	{
-		this->afficherStocks();
+		 afficherStocks();
 	}
 
 	virtual void alertes();
@@ -196,7 +196,7 @@ public slots:
 
 	inline virtual void courrier()
 	{
-		this->alertes();
+		 alertes();
 	}
 
 	virtual void sortir();
@@ -244,7 +244,7 @@ public slots:
 
     inline void fermeture()
     {
-    	this->close();
+    	 close();
     }
 
     inline virtual void help(){}

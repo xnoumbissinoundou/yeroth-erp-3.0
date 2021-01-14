@@ -60,7 +60,7 @@ public:
 
 	inline void resetYerothComboBox()
 	{
-		this->setCurrentIndex(0);
+		 setCurrentIndex(0);
 	}
 
 	inline QString currentText() const

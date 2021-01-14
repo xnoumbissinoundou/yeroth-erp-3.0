@@ -26,7 +26,7 @@ bool YerothAdminCreateWindow::creer_utilisateur()
 
             //qDebug() << "++ duplicate utilisateur: " << duplicateUtilisateur;
 
-            retMsg.append(QString(QObject::trUtf8("%1' existe déjà !"))
+            retMsg.append(QObject::trUtf8("%1' existe déjà !")
             				.arg(duplicateUtilisateur));
 
             lineEdit_creer_utilisateur_id->setPalette(YerothUtils::YEROTH_RED_PALETTE);
@@ -89,7 +89,7 @@ bool YerothAdminCreateWindow::creer_utilisateur()
 
         record.setValue("mot_passe", md5Hash_mot_passe);
 
-        retMsg.append(QString(QObject::tr("%1' pour '%2 %3"))
+        retMsg.append(QObject::tr("%1' pour '%2 %3")
         				.arg(nom_utilisateur,
         					 lineEdit_creer_utilisateur_prenom->text(),
 							 lineEdit_creer_utilisateur_nom->text()));
@@ -112,10 +112,10 @@ bool YerothAdminCreateWindow::creer_utilisateur()
         							   QObject::trUtf8("Yeroth-erp-3.0 - créer"),
                                  	   retMsg);
 
-        this->clear_utilisateur_all_fields();
+         clear_utilisateur_all_fields();
 
         _allWindows->_adminListerWindow->rendreVisible(SUJET_ACTION_COMPTE_UTILISATEUR);
-        this->rendreInvisible();
+         rendreInvisible();
     }
 
     return true;

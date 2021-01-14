@@ -11,7 +11,7 @@
 
 bool YerothTextEdit::checkField()
 {
-    if (this->toPlainText().isEmpty())
+    if ( toPlainText().isEmpty())
     {
         setPalette(YerothUtils::YEROTH_RED_PALETTE);
 

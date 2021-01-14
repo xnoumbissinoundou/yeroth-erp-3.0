@@ -34,7 +34,7 @@ YerothAdminSearchForm::YerothAdminSearchForm(YerothERPWindows * allWindows, QWid
 {
     setupUi(this);
     _logger = new YerothLogger("YerothAdminSearchForm");
-    setFixedSize(this->width(), this->height());
+    setFixedSize( width(),  height());
     pushButton_annuler->enable(this, SLOT(reinitialiser()));
 }
 

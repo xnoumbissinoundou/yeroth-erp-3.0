@@ -80,8 +80,8 @@ YerothModifierFournisseurWindow::YerothModifierFournisseurWindow()
 
 void YerothModifierFournisseurWindow::setupShortcuts()
 {
-    this->setupShortcutActionMessageDaide 	(*actionAppeler_aide);
-    this->setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
+     setupShortcutActionMessageDaide 	(*actionAppeler_aide);
+     setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
 }
 
 void YerothModifierFournisseurWindow::setupLineEdits()

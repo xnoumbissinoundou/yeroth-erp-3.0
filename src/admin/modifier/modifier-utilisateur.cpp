@@ -112,7 +112,7 @@ void YerothAdminModifierWindow::modifier_utilisateur_main()
 
         bool success = userTableModel->updateRecord(lw->lastSelectedItemForModification(), record);
 
-        QString retMsg(QString(QObject::trUtf8("Les données de l'utilisateur '%1'"))
+        QString retMsg(QObject::trUtf8("Les données de l'utilisateur '%1'")
         					.arg(lineEdit_modifier_utilisateur_id->text()));
 
         if (success)
@@ -124,7 +124,7 @@ void YerothAdminModifierWindow::modifier_utilisateur_main()
                                      retMsg);
 
             _allWindows->_adminListerWindow->rendreVisible(SUJET_ACTION_COMPTE_UTILISATEUR);
-            this->rendreInvisible();
+             rendreInvisible();
         }
         else
         {
