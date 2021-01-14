@@ -2198,7 +2198,7 @@
      </font>
     </property>
     <property name="title">
-     <string>Groupes d'appartenance du client</string>
+     <string>Groupes d'appartenance du client (NOM DU CLIENT)</string>
     </property>
     <widget class="YerothGroupesDunClientTableWidget" name="tableWidget_groupes_dun_client">
      <property name="geometry">
