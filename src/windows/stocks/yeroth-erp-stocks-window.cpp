@@ -1080,21 +1080,20 @@ void YerothStocksWindow::supprimer_ce_stock(QString aStockID /* = YerothUtils::E
     if (is_service)
     {
     	serviceOuArticle = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE);
-        msgSupprimer.append(QString(QObject::trUtf8("Poursuivre avec la suppression du service '%1' ?"))
+        msgSupprimer.append(QObject::trUtf8("Poursuivre avec la suppression du service '%1' ?")
         						.arg(serviceOuArticle));
     }
     else
     {
     	serviceOuArticle = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION);
 
-        msgSupprimer.append(QString(QObject::trUtf8("Poursuivre avec la suppression du stock '%1' ?"))
+        msgSupprimer.append(QObject::trUtf8("Poursuivre avec la suppression du stock '%1' ?")
         						.arg(serviceOuArticle));
     }
 
     if (QMessageBox::Ok ==
             YerothQMessageBox::question(this,
-                                       QObject::trUtf8
-                                       ("suppression d'un stock (service)"), msgSupprimer,
+                                       QObject::tr("suppression d'un stock (service)"), msgSupprimer,
                                        QMessageBox::Cancel, QMessageBox::Ok))
     {
     	bool resRemoved =  false;
@@ -1163,10 +1162,8 @@ void YerothStocksWindow::supprimer_ce_stock(QString aStockID /* = YerothUtils::E
 //        		}
         	}
 
-            msgSupprimer.clear();
-
-            msgSupprimer.append(QString(QObject::trUtf8("Le stock (service) '%1' a été supprimé !"))
-            						.arg(serviceOuArticle));
+            msgSupprimer = QObject::trUtf8("Le stock (service) '%1' a été supprimé !")
+            						.arg(serviceOuArticle);
 
             YerothQMessageBox::information(this,
                                           QObject::tr("suppression d'un stock (service)"),
@@ -1174,13 +1171,11 @@ void YerothStocksWindow::supprimer_ce_stock(QString aStockID /* = YerothUtils::E
         }
         else
         {
-            msgSupprimer.clear();
-
-            msgSupprimer.append(QString(QObject::trUtf8("Le stock (service) '%1' ne pouvait pas être supprimé !"))
-            						.arg(serviceOuArticle));
+            msgSupprimer = QObject::trUtf8("Le stock (service) '%1' ne pouvait pas être supprimé !")
+            						.arg(serviceOuArticle);
 
             YerothQMessageBox::warning(this,
-                                       QObject::trUtf8("suppression d'un stock (service)"),
+                                       QObject::tr("suppression d'un stock (service)"),
                                        msgSupprimer);
         }
 

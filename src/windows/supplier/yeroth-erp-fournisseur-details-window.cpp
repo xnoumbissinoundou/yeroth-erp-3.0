@@ -108,12 +108,12 @@ void YerothFournisseurDetailsWindow::supprimerFournisseur()
 	_allWindows->_fournisseursWindow->
 		SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
 
-    QString msgSupprimer(QString(QObject::trUtf8("Poursuivre avec la suppression du compte fournisseur '%1' ?"))
+    QString msgSupprimer(QObject::trUtf8("Poursuivre avec la suppression du compte fournisseur '%1' ?")
     						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE)));
 
     if (QMessageBox::Ok ==
             YerothQMessageBox::question(this,
-                                       QObject::tr("suppression d'un compte fournisseur"), msgSupprimer,
+                                       QObject::tr("suppression"), msgSupprimer,
                                        QMessageBox::Cancel, QMessageBox::Ok))
     {
     	bool resRemoved = _allWindows->_fournisseursWindow->
@@ -123,22 +123,20 @@ void YerothFournisseurDetailsWindow::supprimerFournisseur()
         fournisseurs();
         if (resRemoved)
         {
-            msgSupprimer.clear();
-            msgSupprimer.append(QString(QObject::trUtf8("Le compte fournisseur '%1' a été supprimé !"))
-            						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE)));
+            msgSupprimer = QObject::trUtf8("Le compte fournisseur '%1' a été supprimé !")
+            						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE));
 
             YerothQMessageBox::information(this,
-            							   QObject::trUtf8("suppression d'un compte fournisseur avec succès"),
+            							   QObject::trUtf8("suppression - succès"),
                                            msgSupprimer);
         }
         else
         {
-            msgSupprimer.clear();
-            msgSupprimer.append(QString(QObject::trUtf8("Le compte fournisseur '%1' ne pouvait pas être supprimé !"))
-            						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE)));
+            msgSupprimer = QObject::trUtf8("Le compte fournisseur '%1' ne pouvait pas être supprimé !")
+            						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE));
 
             YerothQMessageBox::information(this,
-            							   QObject::trUtf8("échec de la suppression d'un compte fournisseur"),
+            							   QObject::trUtf8("suppression - échec"),
                                            msgSupprimer);
         }
     }

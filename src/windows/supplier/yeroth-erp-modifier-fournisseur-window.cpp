@@ -323,11 +323,11 @@ void YerothModifierFournisseurWindow::supprimer_image_fournisseur()
 
     if (image_produit.toByteArray().isEmpty())
     {
-        QString msg(QString(QObject::trUtf8("Le fournisseur '%1' n'a pas d'image enregistrée !"))
+        QString msg(QObject::trUtf8("Le fournisseur '%1' n'a pas d'image enregistrée !")
         				.arg(nomEntreprise));
 
         YerothQMessageBox::information(this,
-        							   QObject::tr("suppression de l'image d'un fournisseur"),
+        							   QObject::tr("suppression de l'image"),
                                        msg);
 
         label_image_produit->clear();
@@ -343,7 +343,7 @@ void YerothModifierFournisseurWindow::supprimer_image_fournisseur()
     msgSupprimer.append("\" ?");
 
     if (QMessageBox::Ok ==
-            YerothQMessageBox::question(this, QObject::tr("suppression de l'image ce fournisseur"),
+            YerothQMessageBox::question(this, QObject::tr("suppression de l'image"),
                                        msgSupprimer, QMessageBox::Cancel, QMessageBox::Ok))
     {
         record.setValue(YerothDatabaseTableColumn::IMAGE_FOURNISSEUR, QVariant(QVariant::ByteArray));
@@ -363,7 +363,7 @@ void YerothModifierFournisseurWindow::supprimer_image_fournisseur()
             msgSupprimer.append(QObject::trUtf8("\" a été supprimée !"));
 
             YerothQMessageBox::information(this,
-                                          QObject::trUtf8("suppression de l'image du fournisseur avec succès"),
+                                          QObject::trUtf8("suppression de l'image - succès"),
                                           msgSupprimer);
         }
         else
@@ -374,7 +374,7 @@ void YerothModifierFournisseurWindow::supprimer_image_fournisseur()
             msgSupprimer.append(QObject::trUtf8("\" ne pouvait pas être supprimée !"));
 
             YerothQMessageBox::information(this,
-                                          QObject::trUtf8("échec de la suppression de l'image d'un fournisseur"),
+                                          QObject::trUtf8("suppression de l'image - échec"),
                                           msgSupprimer);
         }
     }
@@ -514,7 +514,7 @@ void YerothModifierFournisseurWindow::actualiserFournisseur()
         }
 
 
-        QString retMsg(QString(QObject::trUtf8("Les données du fournisseur '%1'"))
+        QString retMsg(QObject::trUtf8("Les données du fournisseur '%1'")
         					.arg(lineEdit_modifier_fournisseur_nom_entreprise->text()));
 
         if (success)
@@ -522,7 +522,7 @@ void YerothModifierFournisseurWindow::actualiserFournisseur()
             retMsg.append(QObject::trUtf8(" ont été modifiées avec succès !"));
 
             YerothQMessageBox::information(this,
-                                     QObject::trUtf8("modification d'un fournisseur- succès"),
+                                     QObject::trUtf8("modification - succès"),
                                      retMsg);
 
             fournisseurs();
@@ -536,7 +536,7 @@ void YerothModifierFournisseurWindow::actualiserFournisseur()
             retMsg.append(QObject::trUtf8(" n'ont pas pu être modifiées !"));
 
             YerothQMessageBox::warning(this,
-                                 QObject::trUtf8("modification d'un fournisseur- échec"),
+                                 QObject::trUtf8("modification - échec"),
                                  retMsg);
         }
     }
@@ -550,11 +550,11 @@ void YerothModifierFournisseurWindow::supprimerFournisseur()
 	_allWindows->_fournisseursWindow->
 			SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
 
-    QString msgSupprimer(QString(QObject::trUtf8("Poursuivre avec la suppression du fournisseur '%1' ?"))
+    QString msgSupprimer(QObject::trUtf8("Poursuivre avec la suppression du fournisseur '%1' ?")
     						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE)));
 
     if (QMessageBox::Ok ==
-            YerothQMessageBox::question(this, QObject::tr("suppression d'un fournisseur"),
+            YerothQMessageBox::question(this, QObject::tr("suppression"),
             							msgSupprimer,
                                         QMessageBox::Cancel, QMessageBox::Ok))
     {
@@ -566,11 +566,11 @@ void YerothModifierFournisseurWindow::supprimerFournisseur()
         if (resRemoved)
         {
             msgSupprimer.clear();
-            msgSupprimer.append(QString(QObject::trUtf8("Le fournisseur '%1' a été supprimé !"))
+            msgSupprimer.append(QObject::trUtf8("Le fournisseur '%1' a été supprimé !")
             						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE)));
 
             YerothQMessageBox::information(this,
-            							   QObject::trUtf8("suppression d'un fournisseur avec succès"),
+            							   QObject::trUtf8("suppression - succès"),
 										   msgSupprimer);
 
             fournisseurs();
@@ -578,11 +578,11 @@ void YerothModifierFournisseurWindow::supprimerFournisseur()
         else
         {
             msgSupprimer.clear();
-            msgSupprimer.append(QString(QObject::trUtf8("Le fournisseur '%1' ne pouvait pas être supprimé !"))
+            msgSupprimer.append(QObject::trUtf8("Le fournisseur '%1' ne pouvait pas être supprimé !")
             						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE)));
 
             YerothQMessageBox::information(this,
-            							   QObject::trUtf8("échec de la suppression d'un fournisseur"),
+            							   QObject::trUtf8("suppression - échec"),
 										   msgSupprimer);
         }
     }

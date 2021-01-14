@@ -833,8 +833,8 @@ void YerothWindowsCommons::selectionner_champs_db_visibles()
 		_visibleQCheckboxs.append(aQCheckBox);
 	}
 
-	_selectExportDBQDialog->setWindowTitle(QString(QObject::trUtf8("%1 - sélectionner les colones "
-																   "visibles ('%2' colones)"))
+	_selectExportDBQDialog->setWindowTitle(QObject::trUtf8("%1 - sélectionner les colones "
+														   "visibles ('%2' colones)")
 												.arg(YEROTH_ERP_WINDOW_TITLE,
 													 QString::number(all_dbfieldColumnName_IN_ALPHABETIC_ORDER.size())));
 

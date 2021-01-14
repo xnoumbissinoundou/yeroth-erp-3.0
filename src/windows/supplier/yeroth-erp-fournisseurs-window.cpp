@@ -454,12 +454,12 @@ void YerothERPFournisseursWindow::supprimerFournisseur()
 
     QString nom_entreprise(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE));
 
-    QString msgConfirmation(QString(QObject::trUtf8("Supprimer le fournisseur '%1' ?"))
+    QString msgConfirmation(QObject::trUtf8("Supprimer le fournisseur '%1' ?")
     							.arg(nom_entreprise));
 
     if (QMessageBox::Ok ==
             YerothQMessageBox::question(this,
-            							QObject::tr("suppression d'un fournisseur"),
+            							QObject::tr("suppression"),
             							msgConfirmation,
 										QMessageBox::Cancel,
 										QMessageBox::Ok))
@@ -467,7 +467,7 @@ void YerothERPFournisseursWindow::supprimerFournisseur()
     	bool success = _allWindows->_fournisseursWindow->
 				SQL_DELETE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW();
 
-        QString msg(QString(QObject::trUtf8("Le fournisseur '%1"))
+        QString msg(QObject::tr("Le fournisseur '%1")
         				.arg(nom_entreprise));
 
         if (success && fournisseursTableModel->select())
@@ -481,7 +481,7 @@ void YerothERPFournisseursWindow::supprimerFournisseur()
             msg.append(QObject::trUtf8("' a été supprimée de la base de données !"));
 
             YerothQMessageBox::information(this,
-            							   QObject::tr("suppression d'un fournisseur - succès"),
+            							   QObject::trUtf8("suppression - succès"),
             							   msg,
 										   QMessageBox::Ok);
         }
@@ -490,7 +490,7 @@ void YerothERPFournisseursWindow::supprimerFournisseur()
             msg.append(QObject::trUtf8(" n'a pas été supprimée de la base de données !"));
 
             YerothQMessageBox::information(this,
-            							   QObject::tr("suppression d'un fournisseur - échec"),
+            							   QObject::trUtf8("suppression - échec"),
 										   msg,
 										   QMessageBox::Ok);
         }
@@ -510,7 +510,7 @@ void YerothERPFournisseursWindow::afficher_au_detail()
     }
     else
     {
-        YerothQMessageBox::warning(this, QObject::trUtf8("détails d'un fournisseur"),
+        YerothQMessageBox::warning(this, QObject::trUtf8("détails"),
                                   QObject::trUtf8("Sélectionnez un fournisseur à afficher les détails !"));
     }
 }
@@ -529,7 +529,7 @@ void YerothERPFournisseursWindow::afficher_au_detail(const QModelIndex & modelIn
     }
     else
     {
-        YerothQMessageBox::warning(this, QObject::trUtf8("détails d'un fournisseur"),
+        YerothQMessageBox::warning(this, QObject::trUtf8("détails"),
                                   QObject::trUtf8("Sélectionnez un fournisseur à afficher les détails !"));
     }
 }
@@ -544,7 +544,7 @@ bool YerothERPFournisseursWindow::filtrer()
 		QString msg(QObject::trUtf8("Veuillez saisir une valeur numérique pour la recherche !"));
 
 		YerothQMessageBox::information(this,
-									  QObject::trUtf8("filtrer"),
+									  QObject::tr("filtrer"),
 									  msg);
 		return false;
 	}
@@ -576,13 +576,13 @@ bool YerothERPFournisseursWindow::filtrer()
 
 		afficherFournisseurs(*_curFournisseursTableModel);
 
-		YEROTH_QMESSAGE_BOX_QUELQUE_RESULTAT_FILTRE(this, resultRows, "fournisseurs - filtrer");
+		YEROTH_QMESSAGE_BOX_QUELQUE_RESULTAT_FILTRE(this, resultRows, "filtrer");
 
 		return true;
 	}
 	else
 	{
-		YEROTH_QMESSAGE_BOX_AUCUN_RESULTAT_FILTRE(this, "fournisseurs - filtrer");
+		YEROTH_QMESSAGE_BOX_AUCUN_RESULTAT_FILTRE(this, "filtrer");
 	}
 
 	return false;

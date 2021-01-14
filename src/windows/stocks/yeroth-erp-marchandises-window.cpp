@@ -1022,12 +1022,12 @@ void YerothMarchandisesWindow::supprimer_cette_marchandise(QString aMarchandiseI
     			SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
     }
 
-    QString msgSupprimer(QString(QObject::trUtf8("Poursuivre avec la suppression de la marchandise '%1' ?"))
+    QString msgSupprimer(QObject::trUtf8("Poursuivre avec la suppression de la marchandise '%1' ?")
     						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION)));
 
     if (QMessageBox::Ok ==
             YerothQMessageBox::question(this,
-                                       QObject::tr("suppression d'une marchandise"),
+                                       QObject::tr("suppression"),
                                        msgSupprimer,
 									   QMessageBox::Cancel,
 									   QMessageBox::Ok))
@@ -1058,10 +1058,8 @@ void YerothMarchandisesWindow::supprimer_cette_marchandise(QString aMarchandiseI
         //qDebug() << "YerothInventaireDesStocksWindow::supprimer_ce_stock() " << resRemoved;
         if (resRemoved && _curMarchandisesTableModel->select())
         {
-            msgSupprimer.clear();
-
-            msgSupprimer.append(QString(QObject::trUtf8("La marchandise '%1' a été supprimée."))
-            						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION)));
+            msgSupprimer = QObject::trUtf8("La marchandise '%1' a été supprimée.")
+            						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
 
             if (!_reEntrant)
             {
@@ -1074,10 +1072,8 @@ void YerothMarchandisesWindow::supprimer_cette_marchandise(QString aMarchandiseI
         }
         else
         {
-            msgSupprimer.clear();
-
-            msgSupprimer.append(QString(QObject::trUtf8("L'article \"%1\" ne pouvait pas être supprimé !"))
-            						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION)));
+            msgSupprimer = QObject::trUtf8("L'article \"%1\" ne pouvait pas être supprimé !")
+            						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
 
             YerothQMessageBox::warning(this,
                                        QObject::trUtf8("échec"),

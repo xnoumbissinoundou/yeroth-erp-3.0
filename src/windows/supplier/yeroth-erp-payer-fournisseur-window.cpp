@@ -508,11 +508,11 @@ bool YerothPayerFournisseurWindow::putCashIntoCustomerAccount()
     	if (cashPaymentAmount <= 0)
     	{
     		msg.clear();
-    		msg.append(QString(QObject::trUtf8("Le montant donné doit être supérieur "
-    										   "à %1 !"))
+    		msg.append(QObject::trUtf8("Le montant donné doit être supérieur "
+    										   "à %1 !")
     					 .arg(GET_CURRENCY_STRING_NUM(cashPaymentAmount)));
 
-    		YerothQMessageBox::information(this, QObject::trUtf8("annulation du paiement"),
+    		YerothQMessageBox::information(this, QObject::tr("annulation du paiement"),
     									   msg,
 										   QMessageBox::Ok);
 
@@ -521,12 +521,11 @@ bool YerothPayerFournisseurWindow::putCashIntoCustomerAccount()
 
     	if (cashPaymentAmount > _curReferenceEngagementResteAPayer)
     	{
-    		msg.clear();
-    		msg.append(QString(QObject::trUtf8("Le montant donné (%1) ne doit pas être supérieur "
-    										   "à la dette restante !"))
-    					 .arg(GET_CURRENCY_STRING_NUM(cashPaymentAmount)));
+    		msg = QObject::trUtf8("Le montant donné (%1) ne doit pas être supérieur "
+    										   "à la dette restante !")
+    					 .arg(GET_CURRENCY_STRING_NUM(cashPaymentAmount));
 
-    		YerothQMessageBox::information(this, QObject::trUtf8("annulation du paiement"),
+    		YerothQMessageBox::information(this, QObject::tr("annulation du paiement"),
     									   msg,
 										   QMessageBox::Ok);
 
@@ -534,12 +533,11 @@ bool YerothPayerFournisseurWindow::putCashIntoCustomerAccount()
     	}
     	else
     	{
-    		msg.clear();
-    		msg.append(QString(QObject::trUtf8("Poursuivre avec le paiement de %1 ?"))
-    	    				.arg(GET_CURRENCY_STRING_NUM(cashPaymentAmount)));
+    		msg = QObject::tr("Poursuivre avec le paiement de %1 ?")
+    	    			.arg(GET_CURRENCY_STRING_NUM(cashPaymentAmount));
 
     	    if (QMessageBox::Cancel ==
-    	            YerothQMessageBox::question(this, QObject::trUtf8("paiement"),
+    	            YerothQMessageBox::question(this, QObject::tr("paiement"),
     	    									msg,
     											QMessageBox::Cancel,
     											QMessageBox::Ok))
@@ -615,7 +613,7 @@ bool YerothPayerFournisseurWindow::putCashIntoCustomerAccount()
     }
     else
     {
-    	QString msg(QString(QObject::trUtf8("l'entreprise '%1' n'existe pas dans la base de données !"))
+    	QString msg(QObject::trUtf8("l'entreprise '%1' n'existe pas dans la base de données !")
     					.arg(_curCompanyName));
 
     	YerothQMessageBox::information(this, QObject::trUtf8("entreprise non existante"), msg);
@@ -623,7 +621,7 @@ bool YerothPayerFournisseurWindow::putCashIntoCustomerAccount()
 
     if (true == success)
     {
-    	QString msg(QString(QObject::trUtf8("%1 (%2) a été ajouté au fournisseur %3"))
+    	QString msg(QObject::trUtf8("%1 (%2) a été ajouté au fournisseur %3")
     					.arg(lineEdit_montant_a_payer->text(),
     						 YerothERPConfig::currency,
 							 _curCompanyName));
@@ -647,7 +645,7 @@ bool YerothPayerFournisseurWindow::putCashIntoCustomerAccount()
     }
     else
     {
-    	QString msg(QString(QObject::trUtf8("Erreur lors du paiement '%1 (%2)' pour le fournisseur '%3'"))
+    	QString msg(QObject::trUtf8("Erreur lors du paiement '%1 (%2)' pour le fournisseur '%3'")
     					.arg(lineEdit_montant_a_payer->text(),
     						 YerothERPConfig::currency,
 							 _curCompanyName));

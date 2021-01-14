@@ -695,30 +695,30 @@ void YerothAdminListerWindow::supprimer_utilisateur()
     				.arg(nom,
     					 id));
 
-    QString msgConfirmation(QString(QObject::trUtf8("Supprimer l'utilisateur '%1' ?'"))
+    QString msgConfirmation(QObject::trUtf8("Supprimer l'utilisateur '%1' ?'")
     							.arg(prenom));
 
     if (QMessageBox::Ok ==
-            YerothQMessageBox::question(this, QObject::tr("admin-lister-supprimer-utilisateur"),
+            YerothQMessageBox::question(this, QObject::tr("supprimer"),
                                   msgConfirmation, QMessageBox::Cancel, QMessageBox::Ok))
     {
         bool success = usersTableModel->removeRow(lastSelectedItemForModification());
         if (success)
         {
-            QString msg(QString(QObject::trUtf8("L'utilisateur '%1' a été supprimée de la base de données !"))
+            QString msg(QObject::trUtf8("L'utilisateur '%1' a été supprimée de la base de données !")
             				.arg(prenom));
 
-            YerothQMessageBox::information(this, QObject::tr("admin-lister-supprimer-utilisateur"),
+            YerothQMessageBox::information(this, QObject::tr("supprimer"),
                                      msg, QMessageBox::Ok);
 
             self_reset_view(SUJET_ACTION_COMPTE_UTILISATEUR);
         }
         else
         {
-            QString msg(QString(QObject::trUtf8("L'utilisateur '%1 %2' n'a pas été supprimée de la base de données !"))
+            QString msg(QObject::trUtf8("L'utilisateur '%1 %2' n'a pas été supprimée de la base de données !")
             				.arg(prenom, nom));
 
-            YerothQMessageBox::information(this, QObject::tr("admin-lister-supprimer-utilisateur"),
+            YerothQMessageBox::information(this, QObject::tr("supprimer"),
                                      msg, QMessageBox::Ok);
         }
     }
@@ -750,23 +750,23 @@ void YerothAdminListerWindow::supprimer_localisation()
 
     QString nom_localisation(GET_SQL_RECORD_DATA(record, "nom_localisation"));
 
-    QString msgConfirmation(QString(QObject::tr("Supprimer la localisation '%1' ?"))
+    QString msgConfirmation(QObject::tr("Supprimer la localisation '%1' ?")
     							.arg(nom_localisation));
 
     if (QMessageBox::Ok ==
-            YerothQMessageBox::question(this, QObject::tr("admin-lister-supprimer-localisation"),
+            YerothQMessageBox::question(this, QObject::tr("supprimer"),
                                   msgConfirmation, QMessageBox::Cancel, QMessageBox::Ok))
     {
         bool success = localisationsTableModel->removeRow(lastSelectedItemForModification());
 
-        QString msg(QString(QObject::tr("La localisation '%1"))
+        QString msg(QObject::tr("La localisation '%1")
         				.arg(nom_localisation));
 
         if (success)
         {
             msg.append(QObject::trUtf8("' a été supprimée de la base de données !"));
 
-            YerothQMessageBox::information(this, QObject::tr("admin-lister-supprimer-localisation"),
+            YerothQMessageBox::information(this, QObject::tr("supprimer"),
                                      msg, QMessageBox::Ok);
 
             self_reset_view(SUJET_ACTION_LOCALISATION);
@@ -775,7 +775,7 @@ void YerothAdminListerWindow::supprimer_localisation()
         {
             msg.append(QObject::trUtf8(" n'a pas été supprimée de la base de données !"));
 
-            YerothQMessageBox::information(this, QObject::tr("admin-lister-supprimer-localisation"),
+            YerothQMessageBox::information(this, QObject::tr("supprimer"),
                                      msg, QMessageBox::Ok);
         }
     }
@@ -806,23 +806,23 @@ void YerothAdminListerWindow::supprimer_categorie()
 
     QString nom_categorie(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_CATEGORIE));
 
-    QString msgConfirmation(QString(QObject::trUtf8("Supprimer la catégorie '%1' ?"))
+    QString msgConfirmation(QObject::trUtf8("Supprimer la catégorie '%1' ?")
     							.arg(nom_categorie));
 
     if (QMessageBox::Ok ==
-            YerothQMessageBox::question(this, QObject::trUtf8("admin-lister-supprimer-catégorie"),
+            YerothQMessageBox::question(this, QObject::tr("supprimer"),
                                   msgConfirmation, QMessageBox::Cancel, QMessageBox::Ok))
     {
         bool success = categoriesTableModel->removeRow(lastSelectedItemForModification());
 
-        QString msg(QString(QObject::trUtf8("La catégorie '%1"))
+        QString msg(QObject::trUtf8("La catégorie '%1")
         				.arg(nom_categorie));
 
         if (success)
         {
             msg.append(QObject::trUtf8("' a été supprimée de la base de données !"));
 
-            YerothQMessageBox::information(this, QObject::trUtf8("admin-lister-supprimer-catégorie"),
+            YerothQMessageBox::information(this, QObject::tr("supprimer"),
                                      msg, QMessageBox::Ok);
 
             self_reset_view(SUJET_ACTION_CATEGORIE);
@@ -831,7 +831,7 @@ void YerothAdminListerWindow::supprimer_categorie()
         {
             msg.append(QObject::trUtf8(" n'a pas été supprimée de la base de données !"));
 
-            YerothQMessageBox::information(this, tr("admin-lister-supprimer-catégorie"), msg,
+            YerothQMessageBox::information(this, tr("supprimer"), msg,
                                      QMessageBox::Ok);
         }
     }
@@ -863,23 +863,23 @@ void YerothAdminListerWindow::supprimer_compte_bancaire()
 
     QString reference_du_compte_bancaire(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE_DU_COMPTE_BANCAIRE));
 
-    QString msgConfirmation(QString(QObject::trUtf8("Supprimer le compte bancaire avec la référence '%1' ?"))
+    QString msgConfirmation(QObject::trUtf8("Supprimer le compte bancaire avec la référence '%1' ?")
     							.arg(reference_du_compte_bancaire));
 
     if (QMessageBox::Ok ==
-            YerothQMessageBox::question(this, QObject::trUtf8("admin-lister-supprimer-compte-bancaire"),
+            YerothQMessageBox::question(this, QObject::tr("supprimer"),
                                   msgConfirmation, QMessageBox::Cancel, QMessageBox::Ok))
     {
         bool success = comptesBancairesTableModel->removeRow(lastSelectedItemForModification());
 
-        QString msg(QString(QObject::trUtf8("Le compte bancaire avec la référence '%1"))
+        QString msg(QObject::trUtf8("Le compte bancaire avec la référence '%1")
         				.arg(reference_du_compte_bancaire));
 
         if (success)
         {
             msg.append(QObject::trUtf8("' a été supprimée de la base de données !"));
 
-            YerothQMessageBox::information(this, QObject::trUtf8("admin-lister-supprimer-compte-bancaire"),
+            YerothQMessageBox::information(this, QObject::tr("supprimer"),
                                      msg, QMessageBox::Ok);
 
             self_reset_view(SUJET_ACTION_COMPTE_BANCAIRE);
@@ -888,7 +888,7 @@ void YerothAdminListerWindow::supprimer_compte_bancaire()
         {
             msg.append(QObject::trUtf8(" n'a pas été supprimée de la base de données !"));
 
-            YerothQMessageBox::information(this, tr("admin-lister-supprimer-compte-bancaire"), msg,
+            YerothQMessageBox::information(this, QObject::tr("supprimer"), msg,
                                      QMessageBox::Ok);
         }
     }
@@ -925,25 +925,27 @@ void YerothAdminListerWindow::supprimer_alerte()
 
     QString designation_alerte(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION_ALERTE));
 
-    QString msgConfirmation(QString(QObject::tr("Supprimer l'alerte '%1' ?"))
+    QString msgConfirmation(QObject::tr("Supprimer l'alerte '%1' ?")
     							.arg(designation_alerte));
 
     if (QMessageBox::Ok ==
             YerothQMessageBox::question(this,
-            							QObject::tr("admin-lister-supprimer-alerte"),
+            							QObject::tr("supprimer"),
 										msgConfirmation,
 										QMessageBox::Cancel,
 										QMessageBox::Ok))
     {
         bool success = alertesTableModel->removeRow(lastSelectedItemForModification());
+
         QString msg("L'alerte '");
         msg.append(designation_alerte);
+
         if (success)
         {
             msg.append(QObject::trUtf8("' a été supprimée de la base de données !"));
 
             YerothQMessageBox::information(this,
-            							   QObject::tr("admin-lister-supprimer-alerte"),
+            							   QObject::tr("supprimer"),
 										   msg,
 										   QMessageBox::Ok);
 
@@ -954,7 +956,7 @@ void YerothAdminListerWindow::supprimer_alerte()
             msg.append(QObject::trUtf8(" n'a pas été supprimée de la base de données !"));
 
             YerothQMessageBox::information(this,
-            							   QObject::tr("admin-lister-supprimer-alerte"),
+            							   QObject::tr("supprimer"),
 										   msg,
 										   QMessageBox::Ok);
         }
