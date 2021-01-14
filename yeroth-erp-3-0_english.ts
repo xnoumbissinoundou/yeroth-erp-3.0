@@ -11201,8 +11201,9 @@ Transférer</source>
     </message>
     <message>
         <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="2201"/>
-        <source>Groupes d&apos;appartenance du client</source>
-        <translation>Client group</translation>
+        <source>Groupes d&apos;appartenance du client (NOM DU CLIENT)</source>
+        <oldsource>Groupes d&apos;appartenance du client</oldsource>
+        <translation>Client group (CLIENT NAME)</translation>
     </message>
     <message>
         <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="2656"/>
