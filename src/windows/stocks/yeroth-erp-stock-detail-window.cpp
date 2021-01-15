@@ -477,7 +477,7 @@ void YerothStockDetailWindow::supprimer_ce_stock()
 
     QSqlRecord record = _curStocksTableModel->record(0);
 
-    QString msgSupprimer(QString(QObject::trUtf8("Poursuivre avec la suppression de l'article '%1' ?"))
+    QString msgSupprimer(QObject::trUtf8("Poursuivre avec la suppression de l'article '%1' ?")
     						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION)));
 
     if (QMessageBox::Ok ==
@@ -492,22 +492,21 @@ void YerothStockDetailWindow::supprimer_ce_stock()
         afficherStocks();
         if (resRemoved)
         {
-            msgSupprimer.clear();
-            msgSupprimer.append(QString(QObject::trUtf8("Le stock '%1' a été supprimé !"))
-            						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION)));
+            msgSupprimer =
+            		QObject::trUtf8("Le stock '%1' a été supprimé !")
+            				.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
 
             YerothQMessageBox::information(this,
-            							   QObject::trUtf8("suppression d'un stock avec succès"),
+            							   QObject::trUtf8("supprimer - succès"),
                                            msgSupprimer);
         }
         else
         {
-            msgSupprimer.clear();
-            msgSupprimer.append(QString(QObject::trUtf8("Le stock '%1' ne pouvait pas être supprimé !"))
-            						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION)));
+            msgSupprimer = QObject::trUtf8("Le stock '%1' ne pouvait pas être supprimé !")
+            					.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
 
             YerothQMessageBox::information(this,
-            							   QObject::trUtf8("échec de la suppression d'un stock"),
+            							   QObject::trUtf8("supprimer - échec"),
                                            msgSupprimer);
         }
     }

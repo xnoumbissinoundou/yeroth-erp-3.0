@@ -323,11 +323,11 @@ void YerothModifierCompteClientWindow::supprimer_image_compte_client()
 
     if (image_produit.toByteArray().isEmpty())
     {
-        QString msg(QString(QObject::trUtf8("Le client '%1' n'a pas d'image enregistrée !"))
+        QString msg(QObject::trUtf8("Le client '%1' n'a pas d'image enregistrée !")
         				.arg(nomEntreprise));
 
         YerothQMessageBox::information(this,
-        							   QObject::tr("suppression de l'image d'un client"),
+        							   QObject::tr("suppression de l'image"),
                                        msg);
 
         label_image_produit->clear();
@@ -514,7 +514,7 @@ void YerothModifierCompteClientWindow::actualiserCompteClient()
         }
 
 
-        QString retMsg(QString(QObject::trUtf8("Les données du client '%1'"))
+        QString retMsg(QObject::trUtf8("Les données du client '%1'")
         					.arg(lineEdit_modifier_compteclient_nom_entreprise->text()));
 
         if (success)
@@ -522,7 +522,7 @@ void YerothModifierCompteClientWindow::actualiserCompteClient()
             retMsg.append(QObject::trUtf8(" ont été modifiées avec succès !"));
 
             YerothQMessageBox::information(this,
-                                     QObject::trUtf8("modification d'un client - succès"),
+                                     QObject::trUtf8("modification - succès"),
                                      retMsg);
 
             clients();
@@ -536,7 +536,7 @@ void YerothModifierCompteClientWindow::actualiserCompteClient()
             retMsg.append(QObject::trUtf8(" n'ont pas pu être modifiées !"));
 
             YerothQMessageBox::warning(this,
-                                 QObject::trUtf8("modification d'un client - échec"),
+                                 QObject::trUtf8("modification - échec"),
                                  retMsg);
         }
     }
@@ -550,11 +550,11 @@ void YerothModifierCompteClientWindow::supprimerCompteClient()
 	bool success = _allWindows->_clientsWindow->
 			SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
 
-    QString msgSupprimer(QString(QObject::trUtf8("Poursuivre avec la suppression du client '%1' ?"))
+    QString msgSupprimer(QObject::trUtf8("Poursuivre avec la suppression du client '%1' ?")
     						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE)));
 
     if (QMessageBox::Ok ==
-            YerothQMessageBox::question(this, QObject::tr("suppression d'un client"),
+            YerothQMessageBox::question(this, QObject::tr("supprimer"),
             							msgSupprimer,
                                         QMessageBox::Cancel, QMessageBox::Ok))
     {
@@ -565,21 +565,19 @@ void YerothModifierCompteClientWindow::supprimerCompteClient()
 
         if (resRemoved && _curClientTableModel->select())
         {
-            msgSupprimer.clear();
-            msgSupprimer.append(QString(QObject::trUtf8("Le client '%1' a été supprimé !"))
-            						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE)));
+            msgSupprimer = QObject::trUtf8("Le client '%1' a été supprimé !")
+            					.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE));
 
             YerothQMessageBox::information(this,
-            							   QObject::trUtf8("suppression d'un client avec succès"),
+            							   QObject::trUtf8("supprimer - succès"),
 										   msgSupprimer);
 
             clients();
         }
         else
         {
-            msgSupprimer.clear();
-            msgSupprimer.append(QString(QObject::trUtf8("Le client '%1' ne pouvait pas être supprimé !"))
-            						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE)));
+            msgSupprimer = QObject::trUtf8("Le client '%1' ne pouvait pas être supprimé !")
+            					.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE));
 
             YerothQMessageBox::information(this,
             							   QObject::trUtf8("échec de la suppression d'un client"),

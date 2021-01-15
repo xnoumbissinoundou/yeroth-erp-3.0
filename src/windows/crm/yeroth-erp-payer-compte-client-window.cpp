@@ -507,12 +507,10 @@ bool YerothPayerCompteClientWindow::putCashIntoCustomerAccount()
 
     	if (cashPaymentAmount <= 0)
     	{
-    		msg.clear();
-    		msg.append(QString(QObject::trUtf8("Le montant donné doit être supérieur "
-    										   "à %1 !"))
-    					 .arg(GET_CURRENCY_STRING_NUM(cashPaymentAmount)));
+    		msg = QObject::trUtf8("Le montant donné doit être supérieur à %1 !")
+    					.arg(GET_CURRENCY_STRING_NUM(cashPaymentAmount));
 
-    		YerothQMessageBox::information(this, QObject::trUtf8("annulation du paiement"),
+    		YerothQMessageBox::information(this, QObject::tr("annulation du paiement"),
     									   msg,
 										   QMessageBox::Ok);
 
@@ -521,12 +519,10 @@ bool YerothPayerCompteClientWindow::putCashIntoCustomerAccount()
 
     	if (cashPaymentAmount > _curReferenceEngagementResteAPayer)
     	{
-    		msg.clear();
-    		msg.append(QString(QObject::trUtf8("Le montant donné (%1) ne doit pas être supérieur "
-    										   "à la dette restante !"))
-    					 .arg(GET_CURRENCY_STRING_NUM(cashPaymentAmount)));
+    		msg = QObject::trUtf8("Le montant donné (%1) ne doit pas être supérieur à la dette restante !")
+    					.arg(GET_CURRENCY_STRING_NUM(cashPaymentAmount));
 
-    		YerothQMessageBox::information(this, QObject::trUtf8("annulation du paiement"),
+    		YerothQMessageBox::information(this, QObject::tr("annulation du paiement"),
     									   msg,
 										   QMessageBox::Ok);
 
@@ -534,9 +530,8 @@ bool YerothPayerCompteClientWindow::putCashIntoCustomerAccount()
     	}
     	else
     	{
-    		msg.clear();
-    		msg.append(QString(QObject::trUtf8("Poursuivre avec le paiement de %1 ?"))
-    	    				.arg(GET_CURRENCY_STRING_NUM(cashPaymentAmount)));
+    		msg = QObject::trUtf8("Poursuivre avec le paiement de %1 ?")
+    	    			.arg(GET_CURRENCY_STRING_NUM(cashPaymentAmount));
 
     	    if (QMessageBox::Cancel ==
     	            YerothQMessageBox::question(this, QObject::trUtf8("paiement"),
@@ -544,7 +539,7 @@ bool YerothPayerCompteClientWindow::putCashIntoCustomerAccount()
     											QMessageBox::Cancel,
     											QMessageBox::Ok))
     	    {
-    	    	YerothQMessageBox::information(this, QObject::trUtf8("annulation du paiement"),
+    	    	YerothQMessageBox::information(this, QObject::tr("annulation du paiement"),
     	    								    QObject::trUtf8("Vous avez annulé le paiement en cours !"),
 												QMessageBox::Ok);
 
@@ -615,15 +610,15 @@ bool YerothPayerCompteClientWindow::putCashIntoCustomerAccount()
     }
     else
     {
-    	QString msg(QString(QObject::trUtf8("l'entreprise '%1' n'existe pas dans la base de données !"))
+    	QString msg(QObject::trUtf8("l'entreprise '%1' n'existe pas dans la base de données !")
     					.arg(_curCompanyName));
 
-    	YerothQMessageBox::information(this, QObject::trUtf8("entreprise non existante"), msg);
+    	YerothQMessageBox::information(this, QObject::tr("entreprise non existante"), msg);
     }
 
     if (true == success)
     {
-    	QString msg(QString(QObject::trUtf8("%1 (%2) a été ajouté au compte client %3"))
+    	QString msg(QObject::trUtf8("%1 (%2) a été ajouté au compte client %3")
     					.arg(lineEdit_montant_a_payer->text(),
     						 YerothERPConfig::currency,
 							 _curCompanyName));
@@ -647,7 +642,7 @@ bool YerothPayerCompteClientWindow::putCashIntoCustomerAccount()
     }
     else
     {
-    	QString msg(QString(QObject::trUtf8("Erreur lors du paiement '%1 (%2)' pour le compte client '%3'"))
+    	QString msg(QObject::trUtf8("Erreur lors du paiement '%1 (%2)' pour le compte client '%3'")
     					.arg(lineEdit_montant_a_payer->text(),
     						 YerothERPConfig::currency,
 							 _curCompanyName));

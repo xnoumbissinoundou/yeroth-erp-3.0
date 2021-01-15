@@ -310,9 +310,9 @@ bool YerothVentesWindow::annuler_cette_vente()
 
 	QString curStocksVenduDesignation(GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::DESIGNATION));
 
-	msg = QString(QObject::trUtf8("Poursuivre avec l'annulation de "
-								  "la vente avec la désignation '%1', et "
-								  "avec la référence 'reçu de vente %2' ?"))
+	msg = QObject::trUtf8("Poursuivre avec l'annulation de "
+						  "la vente avec la désignation '%1', et "
+						  "avec la référence 'reçu de vente %2' ?")
 	    	.arg(curStocksVenduDesignation,
 	    		 curVenteReferenceRecuVendu);
 
@@ -554,18 +554,18 @@ bool YerothVentesWindow::annuler_cette_vente()
 	{
 		if (rembourserAuCompteClient)
 		{
-			msg = QString(QObject::trUtf8("La vente (avec référence 'reçu de vente %1') a été "
-										  "annulée avec succès !\n\n"
-					"(Montant crédité au compte du client '%2': '%3' !)"))
+			msg = QObject::trUtf8("La vente (avec référence 'reçu de vente %1') a été "
+								  "annulée avec succès !\n\n"
+								  "(Montant crédité au compte du client '%2': '%3' !)")
 						.arg(curVenteReferenceRecuVendu,
 							 curNomDuClient,
 							 GET_CURRENCY_STRING_NUM(curMontantARembourserAuClient));
 		}
 		else
 		{
-			msg = QString(QObject::trUtf8("La vente (avec référence 'reçu de vente %1') a été "
-										  "annulée avec succès !\n\n"
-										  "(Montant à rembourser au client (comptant): '%2' !)"))
+			msg = QObject::trUtf8("La vente (avec référence 'reçu de vente %1') a été "
+								  "annulée avec succès !\n\n"
+								  "(Montant à rembourser au client (comptant): '%2' !)")
 						.arg(curVenteReferenceRecuVendu,
 							 GET_CURRENCY_STRING_NUM(curMontantARembourserAuClient));
 		}
@@ -582,8 +582,8 @@ bool YerothVentesWindow::annuler_cette_vente()
 	}
 	else
 	{
-		msg = QString(QObject::trUtf8("Échec de l'annulation de la vente "
-									  "(avec référence '%1') !"))
+		msg = QObject::trUtf8("Échec de l'annulation de la vente "
+							  "(avec référence '%1') !")
 				.arg(curVenteReferenceRecuVendu);
 
 		YerothQMessageBox::information(this,
@@ -614,7 +614,7 @@ bool YerothVentesWindow::annuler_cette_vente()
 //		return false;
 //	}
 //
-//    msg = QString(QObject::trUtf8("Poursuivre avec l'annulation de "
+//    msg = QObject::trUtf8("Poursuivre avec l'annulation de "
 //    							  "la vente avec la référence 'reçu de vente "
 //    							  "%1' ?"))
 //    		.arg(curVenteReferenceRecuVendu);
@@ -848,7 +848,7 @@ bool YerothVentesWindow::annuler_cette_vente()
 //	{
 //		if (rembourserAuCompteClient)
 //		{
-//			msg = QString(QObject::trUtf8("La vente (avec référence 'reçu de vente %1') a été "
+//			msg = QObject::trUtf8("La vente (avec référence 'reçu de vente %1') a été "
 //										  "annulée avec succès !\n\n"
 //					"(Montant crédité au compte du client '%2': '%3' !)"))
 //						.arg(curVenteReferenceRecuVendu,
@@ -857,7 +857,7 @@ bool YerothVentesWindow::annuler_cette_vente()
 //		}
 //		else
 //		{
-//			msg = QString(QObject::trUtf8("La vente (avec référence 'reçu de vente %1') a été "
+//			msg = QObject::trUtf8("La vente (avec référence 'reçu de vente %1') a été "
 //										  "annulée avec succès !\n\n"
 //										  "(Montant à rembourser au client (comptant): '%2' !)"))
 //						.arg(curVenteReferenceRecuVendu,
@@ -872,7 +872,7 @@ bool YerothVentesWindow::annuler_cette_vente()
 //	}
 //	else
 //	{
-//		msg = QString(QObject::trUtf8("Échec de l'annulation de la vente "
+//		msg = QObject::trUtf8("Échec de l'annulation de la vente "
 //									  "(avec référence '%1') !"))
 //				.arg(curVenteReferenceRecuVendu);
 //
@@ -894,7 +894,7 @@ bool YerothVentesWindow::filtrer_ventes()
 		QString msg(QObject::trUtf8("Veuillez saisir une valeur numérique pour la recherche !"));
 
 		YerothQMessageBox::information(this,
-									   QObject::trUtf8("filtrer"),
+									   QObject::tr("filtrer"),
 									   msg);
 		return false;
 
@@ -1850,13 +1850,13 @@ void YerothVentesWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 
     tabWidget_ventes->setCurrentIndex(TableauDesVentes);
 
-    label_ventes_tva->setText(QString(QObject::tr("TVA (%1)")).arg(YerothERPConfig::currency));
+    label_ventes_tva->setText(QObject::tr("TVA (%1)").arg(YerothERPConfig::currency));
 
-    label_details_tva->setText(QString(QObject::tr("TVA (%1)")).arg(YerothERPConfig::currency));
+    label_details_tva->setText(QObject::tr("TVA (%1)").arg(YerothERPConfig::currency));
 
-    label_details_remise_prix->setText(QString(QObject::tr("remise (%1)")).arg(YerothERPConfig::currency));
+    label_details_remise_prix->setText(QObject::tr("remise (%1)").arg(YerothERPConfig::currency));
 
-    label_retour_vente_remise_prix->setText(QString(QObject::tr("remise (%1)")).arg(YerothERPConfig::currency));
+    label_retour_vente_remise_prix->setText(QObject::tr("remise (%1)").arg(YerothERPConfig::currency));
 
 
     YerothPOSUser *aUser = _allWindows->getUser();

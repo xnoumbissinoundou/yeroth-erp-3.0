@@ -2020,12 +2020,12 @@ void YerothPointDeVenteWindow::ajouter_article(const QString &aStockID)
 
 	if (prix_unitaire < 0)
 	{
-		QString warningMsg(QString(QObject::trUtf8("Prix unitaire inférieur à zéro pour l'article '%1' !"))
-				.arg(stockName));
+		QString warningMsg(QObject::trUtf8("Prix unitaire inférieur à zéro pour l'article '%1' !")
+								.arg(stockName));
 
 		if (QMessageBox::Ok ==
 				YerothQMessageBox::warning(this,
-						QObject::trUtf8("prix unitaire d'un article"),
+						QObject::tr("prix unitaire d'un article"),
 						warningMsg))
 		{
 			return;
@@ -2684,7 +2684,7 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
 			QString sMsg(QObject::trUtf8("La quantité en stock de l'article '"));
 
 			sMsg.append(articleVenteInfo->_stockName).append("'")
-                		.append(QString(QObject::trUtf8(" (%1 pièce(s))"))
+                		.append(QObject::trUtf8(" (%1 pièce(s))")
                 				.arg(articleVenteInfo->_quantite_a_vendre));
 
 			if (success2)
@@ -3001,7 +3001,7 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
 			QString sMsg(QObject::trUtf8("La quantité en stock de l'article '"));
 
 			sMsg.append(articleVenteInfo->_stockName).append("'")
-                		.append(QString(QObject::trUtf8(" (%1 pièce(s))"))
+                		.append(QObject::trUtf8(" (%1 pièce(s))")
                 				.arg(articleVenteInfo->_quantite_a_vendre));
 
 			if (success2)
@@ -3023,7 +3023,7 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
 
     emit SELLING();
 
-    QString vMsg(QString(QObject::trUtf8("La vente de '%1' articles a été éffectuée avec succès !"))
+    QString vMsg(QObject::trUtf8("La vente de '%1' articles a été éffectuée avec succès !")
     				.arg(QString::number(_quantiteAVendre)));
 
     if (QMessageBox::Ok ==

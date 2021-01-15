@@ -117,7 +117,7 @@ void YerothClientsDetailWindow::supprimerCompteClient()
 	_allWindows->_clientsWindow->
 		SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
 
-    QString msgSupprimer(QString(QObject::trUtf8("Poursuivre avec la suppression du compte client '%1' ?"))
+    QString msgSupprimer(QObject::trUtf8("Poursuivre avec la suppression du compte client '%1' ?")
     						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE)));
 
     if (QMessageBox::Ok ==
@@ -132,22 +132,20 @@ void YerothClientsDetailWindow::supprimerCompteClient()
         clients();
         if (resRemoved)
         {
-            msgSupprimer.clear();
-            msgSupprimer.append(QString(QObject::trUtf8("Le compte client '%1' a été supprimé !"))
-            						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE)));
+            msgSupprimer = QObject::trUtf8("Le compte client '%1' a été supprimé !")
+            					.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE));
 
             YerothQMessageBox::information(this,
-            							   QObject::trUtf8("suppression d'un compte client avec succès"),
+            							   QObject::trUtf8("supprimmer - succès"),
                                            msgSupprimer);
         }
         else
         {
-            msgSupprimer.clear();
-            msgSupprimer.append(QString(QObject::trUtf8("Le compte client '%1' ne pouvait pas être supprimé !"))
-            						.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE)));
+            msgSupprimer = QObject::trUtf8("Le compte client '%1' ne pouvait pas être supprimé !")
+            					.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE));
 
             YerothQMessageBox::information(this,
-            							   QObject::trUtf8("échec de la suppression d'un compte client"),
+            							   QObject::trUtf8("supprimer - échec"),
                                            msgSupprimer);
         }
     }

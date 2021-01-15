@@ -314,12 +314,12 @@ void YerothAlertesWindow::supprimer()
 
     if (!designation_alerte.isEmpty() && !designation_alerte.isNull())
     {
-        QString msgSupprimer(QString(QObject::trUtf8("Poursuivre avec la suppression de l'alerte '%1' ?"))
+        QString msgSupprimer(QObject::tr("Poursuivre avec la suppression de l'alerte '%1' ?")
         						.arg(designation_alerte));
 
         if (QMessageBox::Ok ==
                 YerothQMessageBox::question(this,
-                							QObject::tr("suppression d'une alerte"),
+                							QObject::tr("suppression"),
                 							msgSupprimer,
 											QMessageBox::Cancel,
 											QMessageBox::Ok))
@@ -339,22 +339,20 @@ void YerothAlertesWindow::supprimer()
 
             if (resRemoved)
             {
-                msgSupprimer.clear();
-                msgSupprimer.append(QString(QObject::trUtf8("L'alerte '%1' a été supprimée !"))
-                						.arg(designation_alerte));
+                msgSupprimer = QObject::trUtf8("L'alerte '%1' a été supprimée !")
+                					.arg(designation_alerte);
 
                 YerothQMessageBox::information(this,
-                							   QObject::tr("suppression d'une alerte"),
+                							   QObject::tr("supprimer"),
 											   msgSupprimer);
             }
             else
             {
-                msgSupprimer.clear();
-                msgSupprimer.append(QString(QObject::trUtf8("L'alerte '%1' ne pouvait pas être supprimée !"))
-                						.arg(designation_alerte));
+                msgSupprimer = QObject::trUtf8("L'alerte '%1' ne pouvait pas être supprimée !")
+                					.arg(designation_alerte);
 
                 YerothQMessageBox::information(this,
-                							   QObject::trUtf8("suppression d'une alerte"),
+                							   QObject::trUtf8("supprimer"),
 											   msgSupprimer);
             }
         }

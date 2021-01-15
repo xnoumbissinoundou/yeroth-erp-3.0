@@ -925,7 +925,7 @@ bool YerothEntrerWindow::insertStockItemInProductList()
     	stockOuService = lineEdit_reference_produit->text();
     }
 
-    QString retMsg(QString(QObject::tr("Le stock (service) '%1'"))
+    QString retMsg(QObject::tr("Le stock (service) '%1'")
     					.arg(stockOuService));
 
     if (success)
@@ -933,7 +933,7 @@ bool YerothEntrerWindow::insertStockItemInProductList()
         retMsg.append(QObject::trUtf8(" a été enregistré dans la liste des marchandises !"));
 
         YerothQMessageBox::information(this,
-        							   QObject::trUtf8("enregistrement de l'article type dans la liste des marchandises"),
+        							   QObject::trUtf8("enregistrement - liste des marchandises - succès"),
         							   retMsg);
     }
     else
@@ -941,7 +941,7 @@ bool YerothEntrerWindow::insertStockItemInProductList()
         retMsg.append(QObject::trUtf8(" n'a pas pu être enregistré dans la liste des marchandises !"));
 
         YerothQMessageBox::warning(this,
-        						   QObject::trUtf8("échec de l'enregistrement de l'article type dans la liste des marchandises"),
+        						   QObject::trUtf8("enregistrement - liste des marchandises - échec"),
         						   retMsg);
     }
 
@@ -1091,7 +1091,7 @@ bool YerothEntrerWindow::check_fields(bool withClearAllServiceMandatoryFields /*
     	if (lineEdit_quantite_par_lot->text().toDouble() <= 0)
     	{
     		YerothQMessageBox::information(this,
-    				QObject::trUtf8("enregistrer article"),
+    				QObject::tr("enregistrer article"),
 					QObject::trUtf8("La quantité par lot doit être supérieure à zéro !"));
 
     		lineEdit_quantite_par_lot->clear();
@@ -1662,10 +1662,10 @@ void YerothEntrerWindow::enregistrer_produit()
     		if (!curExistingReferenceDesignation_PRODUCT_in_out.isEmpty())
     		{
     			QString infoMesg =
-    					QString(QObject::trUtf8("Cette référence ('%1') "
-    							"est déjà utilisée par la marchandise '%2' !"))
+    					QObject::trUtf8("Cette référence ('%1') "
+    							"est déjà utilisée par la marchandise '%2' !")
 								.arg(lineEdit_reference_produit->text(),
-										curExistingReferenceDesignation_PRODUCT_in_out);
+									 curExistingReferenceDesignation_PRODUCT_in_out);
 
     			YerothQMessageBox::warning(this, "enregistrer", infoMesg);
     		}
@@ -1675,9 +1675,9 @@ void YerothEntrerWindow::enregistrer_produit()
     	else if (SERVICE_STOCK_DESIGNATION_EXIST == SERVICE_REFERENCE_STOCK_DESIGNATION_EXIST)
     	{
     		QString infoMesg =
-    				QString(QObject::trUtf8("La marchandise '%1' utilise déjà la référence ('%2') !"))
-					.arg(lineEdit_designation->text(),
-							curExistingReferenceDesignation_PRODUCT_in_out);
+    				QObject::trUtf8("La marchandise '%1' utilise déjà la référence ('%2') !")
+						.arg(lineEdit_designation->text(),
+							 curExistingReferenceDesignation_PRODUCT_in_out);
 
     		YerothQMessageBox::warning(this, "enregistrer", infoMesg);
 
@@ -1686,9 +1686,9 @@ void YerothEntrerWindow::enregistrer_produit()
     	else if (SERVICE_STOCK_CATEGORY_EXIST == SERVICE_REFERENCE_STOCK_DESIGNATION_EXIST)
     	{
     		QString infoMesg =
-    				QString(QObject::trUtf8("La marchandise '%1' est déjà dans la catégorie ('%2') !"))
+    				QObject::trUtf8("La marchandise '%1' est déjà dans la catégorie ('%2') !")
 					.arg(lineEdit_designation->text(),
-							curExistingReferenceDesignation_PRODUCT_in_out);
+						 curExistingReferenceDesignation_PRODUCT_in_out);
 
     		YerothQMessageBox::warning(this, "enregistrer", infoMesg);
 
@@ -1970,8 +1970,8 @@ void YerothEntrerWindow::enregistrer_produit()
 
     bool successInsertStock = _curStocksTableModel->insertNewRecord(record);
 
-    QString achatRetMsg(QString(QObject::tr("L'achat du stock '%1'"))
-    		.arg(lineEdit_designation->text()));
+    QString achatRetMsg(QObject::tr("L'achat du stock '%1'")
+    						.arg(lineEdit_designation->text()));
 
 
     if (!radioButton_SERVICE_VENTE_CLIENT->isChecked() && hasBuying())
@@ -1981,7 +1981,7 @@ void YerothEntrerWindow::enregistrer_produit()
     		achatRetMsg.append(QObject::trUtf8(" a été enregistré dans la base de données !"));
 
     		YerothQMessageBox::information(this,
-    				QObject::trUtf8("enregistrement du stock (service) avec succès"),
+    				QObject::trUtf8("enregistrement - succès"),
 					achatRetMsg);
     	}
     	else
@@ -1989,7 +1989,7 @@ void YerothEntrerWindow::enregistrer_produit()
     		achatRetMsg.append(QObject::trUtf8(" n'a pas pu être enregistré dans la base de données !"));
 
     		YerothQMessageBox::warning(this,
-    				QObject::trUtf8("échec de l'enregistrement du stock (service)"),
+    				QObject::trUtf8("enregistrement - échec"),
 					achatRetMsg);
     	}
     }
@@ -1998,12 +1998,12 @@ void YerothEntrerWindow::enregistrer_produit()
 
     if (radioButton_SERVICE_VENTE_CLIENT->isChecked())
     {
-        retMsg.append(QString(QObject::tr("Le service '%1'"))
+        retMsg.append(QObject::tr("Le service '%1'")
         				.arg(lineEdit_reference_produit->text()));
     }
     else
     {
-        retMsg.append(QString(QObject::tr("Le stock '%1'"))
+        retMsg.append(QObject::tr("Le stock '%1'")
         				.arg(lineEdit_designation->text()));
     }
 
@@ -2018,7 +2018,7 @@ void YerothEntrerWindow::enregistrer_produit()
     	retMsg.append(QObject::trUtf8(" a été enregistré dans la base de données !"));
 
     	YerothQMessageBox::information(this,
-    			QObject::trUtf8("enregistrement du stock (service) avec succès"),
+    			QObject::trUtf8("enregistrement - succès"),
 				retMsg);
     }
     else
@@ -2026,7 +2026,7 @@ void YerothEntrerWindow::enregistrer_produit()
     	retMsg.append(QObject::trUtf8(" n'a pas pu être enregistré dans la base de données !"));
 
     	YerothQMessageBox::warning(this,
-    			QObject::trUtf8("échec de l'enregistrement du stock"),
+    			QObject::trUtf8("enregistrement - échec"),
 				retMsg);
     }
 

@@ -1087,7 +1087,7 @@ void YerothTableauxDeBordWindow::meilleursStats(QString fileName,
     _reportTexFileEndString.clear();
 
     _reportTexFileEndString.append(YerothUtils::LATEX_IN_OUT_handleForeignAccents(
-                                       QString(QObject::trUtf8("D\\'etails en %1:"))
+                                       QObject::trUtf8("D\\'etails en %1:")
                                        	   .arg(YerothERPConfig::currency)))
     					   .prepend("\\textbf{").append("}\n");
 
@@ -1603,11 +1603,9 @@ void YerothTableauxDeBordWindow::derniersStats(QString fileName,
 
     _csvFileItemSize = 0;
 
-    _reportTexFileEndString.clear();
-
-    _reportTexFileEndString.append(YerothUtils::LATEX_IN_OUT_handleForeignAccents(
-                                       QString(QObject::trUtf8("D\\'etails en %1:"))
-                                       	   .arg(YerothERPConfig::currency)));
+    _reportTexFileEndString = YerothUtils::LATEX_IN_OUT_handleForeignAccents(
+                                       QObject::trUtf8("D\\'etails en %1:")
+                                       	   .arg(YerothERPConfig::currency));
 
     _reportTexFileEndString.prepend("\\textbf{").append("}\n");
 
