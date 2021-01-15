@@ -136,7 +136,7 @@ void YerothClientsDetailWindow::supprimerCompteClient()
             					.arg(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE));
 
             YerothQMessageBox::information(this,
-            							   QObject::trUtf8("supprimmer - succès"),
+            							   QObject::trUtf8("supprimer - succès"),
                                            msgSupprimer);
         }
         else

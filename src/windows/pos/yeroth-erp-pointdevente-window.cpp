@@ -1505,7 +1505,7 @@ void YerothPointDeVenteWindow::calculate_details_window_remise_pourcentage()
             lineEdit_article_detail_remise_pourcentage->setText(QString::number(0.0, 'f', 2));
 
             YerothQMessageBox::warning(this, QObject::tr("montant d'une remise"),
-            								 QObject::trUtf8("Le montant d'une remise sur un article doit être supérieure "
+            								 QObject::trUtf8("Le montant d'une remise sur un article doit être inférieur "
             										 	 	 "au prix unitaire de cet article !"));
             return;
         }
