@@ -12569,3 +12569,41 @@ INSERT INTO `users` (`id`, `prenom`, `nom`, `nom_complet`, `nom_utilisateur`, `t
 (4,	'NAPOLEON',	'Ebong',	'NAPOLEON Ebong',	'napoleon',	180,	75,	'MAKEPE-DOUALA',	'',	'',	'',	'EKONAH BAJOH',	'',	'',	'',	'',	'2020-09-02',	'd}0ëØµè∏™RçãÍ');
 
 -- 2020-12-25 02:28:13
+alter table clients ADD column `groupes_du_client` varchar(3000) AFTER dette_maximale_compte_client;
+alter table clients ADD column `personne_ayant_referer` varchar(256) AFTER id;
+alter table clients DROP column `personne_ayant_referer`;
+alter table clients ADD column `refereur_client` varchar(256) AFTER compte_client;
+alter table clients ADD column `refereur_client_ID` int AFTER refereur_client;
+alter table clients ADD column `groupes_client_ID` varchar(5000) AFTER refereur_client_ID;
+alter table clients change column `groupes_client_ID` groupes_du_client_ID varchar(5000);
+alter table clients modify column `groupes_du_client` varchar(5000) AFTER refereur_client_ID;
+
+alter table alertes change column `quantite` quantite double;
+
+alter table courriers_alertes change column `quantite` quantite double;
+
+UPDATE init_configurations SET description_configuration='Intervalle de temps de v√©rification du daemon pour les alertes sur la p√©riode de temps (en secondes)' WHERE nom_configuration='ALERT_PERIOD_TIME_INTERVAL';
+
+UPDATE init_configurations SET description_configuration='Intervalle de temps de v√©rification du daemon pour les alertes sur la quantit√© en stock (en secondes)' WHERE nom_configuration='ALERT_QUANTITY_TIME_INTERVAL';
+
+UPDATE configurations SET description_configuration='Intervalle de temps de v√©rification du daemon pour les alertes sur la p√©riode de temps (en secondes)' WHERE nom_configuration='ALERT_PERIOD_TIME_INTERVAL';
+
+UPDATE configurations SET description_configuration='Intervalle de temps de v√©rification du daemon pour les alertes sur la quantit√© en stock (en secondes)' WHERE nom_configuration='ALERT_QUANTITY_TIME_INTERVAL';
+
+create table programmes_de_fidelite_clients (id int primary key, date_creation date, reference_programme_de_fidelite_clients varchar(256), designation varchar(256) NOT NULL UNIQUE, description_programme_de_fidelite_clients varchar(256) NOT NULL, montant_du_rabais double, pourcentage_du_rabais double, pourcentage_du_rabais_refereur int(2), rabais_en_cascade_tous_refereurs_par_le_haut boolean, condition_du_benefice varchar(2), valeur_de_la_condition_beneficiaire varchar(256));
+
+create table groupes_de_clients (id int primary key, date_creation date, reference_groupe varchar(256), designation varchar(256) NOT NULL UNIQUE, description_groupe varchar(256) NOT NULL, programme_de_fidelite_clients varchar(256), maximum_de_membres int(3), membres_du_groupe_db_ID varchar(5000));
+
+alter table alertes change column `quantite` quantite double;
+
+alter table courriers_alertes change column `quantite` quantite double;
+
+UPDATE init_configurations SET description_configuration='Intervalle de temps de v√©rification du daemon pour les alertes sur la p√©riode de temps (en secondes)' WHERE nom_configuration='ALERT_PERIOD_TIME_INTERVAL';
+
+UPDATE init_configurations SET description_configuration='Intervalle de temps de v√©rification du daemon pour les alertes sur la quantit√© en stock (en secondes)' WHERE nom_configuration='ALERT_QUANTITY_TIME_INTERVAL';
+
+UPDATE configurations SET description_configuration='Intervalle de temps de v√©rification du daemon pour les alertes sur la p√©riode de temps (en secondes)' WHERE nom_configuration='ALERT_PERIOD_TIME_INTERVAL';
+
+UPDATE configurations SET description_configuration='Intervalle de temps de v√©rification du daemon pour les alertes sur la quantit√© en stock (en secondes)' WHERE nom_configuration='ALERT_QUANTITY_TIME_INTERVAL';
+
+
