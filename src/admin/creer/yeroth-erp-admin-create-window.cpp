@@ -161,10 +161,10 @@ void YerothAdminCreateWindow::rendreVisible(unsigned selectedSujetAction)
 
 	lineEdit_creer_alerte_designation->setupMyStaticQCompleter(_allWindows->STOCKS,
 												  	  	  	   YerothDatabaseTableColumn::DESIGNATION,
-															   false,
 															   false);
 
-    lineEdit_creer_remise_designation_article->setupMyStaticQCompleter(_allWindows->STOCKS, YerothDatabaseTableColumn::DESIGNATION);
+    lineEdit_creer_remise_designation_article->setupMyStaticQCompleter(_allWindows->STOCKS,
+    																   YerothDatabaseTableColumn::DESIGNATION);
 
     lineEdit_creer_utilisateur_localisation->setYerothEnabled(false);
 

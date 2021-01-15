@@ -73,15 +73,6 @@
 
 #define STRING_TVA_0_PERCENT						"0 %"
 
-#define STRING_NEW_CLIENT_EN						"new customer (*)"
-#define STRING_NEW_CLIENT_FR						"nouveau client (*)"
-
-#define STRING_NEW_CATEGORY_EN						"new category (*)"
-#define STRING_NEW_CATEGORY_FR						"nouvelle catégorie (*)"
-
-#define STRING_NEW_SUPPLIER_EN						"new supplier (*)"
-#define STRING_NEW_SUPPLIER_FR						"nouveau fournisseur (*)"
-
 #define STRING_TEXT_YES_EN						"yes"
 #define STRING_TEXT_YES_FR						"oui"
 

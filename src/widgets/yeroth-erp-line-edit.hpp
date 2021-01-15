@@ -89,7 +89,6 @@ public:
 
 	void setupMyStaticQCompleter(QString sqlTableName,
 								 QString fieldName,
-								 bool enableNewCreation = false,
 								 bool returnPressedSignalActivated = true,
 								 QString aQSqlConditionStr = YerothUtils::EMPTY_STRING);
 
@@ -99,7 +98,6 @@ public:
 	{
 		setupMyStaticQCompleter(sqlTableName,
 								fieldName,
-								false,
 								true,
 								aQSqlConditionStr);
 	}

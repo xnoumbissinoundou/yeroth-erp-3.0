@@ -213,12 +213,10 @@ void YerothEntrerWindow::setupLineEditsQCompleters__FOR_STOCK_INVENTORY()
     	lineEdit_reference_produit->setupMyStaticQCompleter(_allWindows->MARCHANDISES,
     														YerothDatabaseTableColumn::REFERENCE,
     														false,
-    														false,
     														aConditionStr);
 
     	lineEdit_designation->setupMyStaticQCompleter(_allWindows->MARCHANDISES,
     												  YerothDatabaseTableColumn::DESIGNATION,
-    												  false,
     												  false,
     												  aConditionStr);
 	}

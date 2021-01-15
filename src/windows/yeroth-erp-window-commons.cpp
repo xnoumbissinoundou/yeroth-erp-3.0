@@ -614,7 +614,6 @@ void YerothWindowsCommons::updateYerothLineEditQCompleter(const QString &current
 			_yeroth_QLineEdit_SearchDBFieldColumnString
 				->setupMyStaticQCompleter(_dbYerothSqlTableName_WINDOWS_TABLE_VIEW_FOR_SEARCH,
 										  correspondingDBFieldKeyValue,
-										  false,
 										  true);
 		}
 		else
@@ -622,7 +621,6 @@ void YerothWindowsCommons::updateYerothLineEditQCompleter(const QString &current
 			_yeroth_QLineEdit_SearchDBFieldColumnString
 				->setupMyStaticQCompleter(_dbYerothSqlTableName_WINDOWS_TABLE_VIEW_FOR_SEARCH,
 										  correspondingDBFieldKeyValue,
-										  false,
 										  false);
 		}
 	}

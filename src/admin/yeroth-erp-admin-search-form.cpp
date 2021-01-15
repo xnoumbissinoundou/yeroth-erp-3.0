@@ -66,8 +66,9 @@ void YerothAdminSearchForm::setupLineEditsQCompleters(int tabWidjetListerIdx)
     case SUJET_ACTION_ALERTE:
 
         lineEdit_terme_recherche->enableForSearch(QObject::trUtf8("nom de l'alerte"));
-        lineEdit_terme_recherche->setupMyStaticQCompleter(_allWindows->ALERTES, YerothDatabaseTableColumn::DESIGNATION_ALERTE, false,
-                false);
+        lineEdit_terme_recherche->setupMyStaticQCompleter(_allWindows->ALERTES,
+        												  YerothDatabaseTableColumn::DESIGNATION_ALERTE,
+														  false);
         _curSujetAction = SUJET_ACTION_ALERTE;
         _curSqlTableModel = &_allWindows->getSqlTableModel_alertes();
         break;
@@ -80,7 +81,9 @@ void YerothAdminSearchForm::setupLineEditsQCompleters(int tabWidjetListerIdx)
     case SUJET_ACTION_CATEGORIE:
 
         lineEdit_terme_recherche->enableForSearch(QObject::trUtf8("nom de la catégorie"));
-        lineEdit_terme_recherche->setupMyStaticQCompleter(_allWindows->CATEGORIES, YerothDatabaseTableColumn::NOM_CATEGORIE, false, false);
+        lineEdit_terme_recherche->setupMyStaticQCompleter(_allWindows->CATEGORIES,
+        												  YerothDatabaseTableColumn::NOM_CATEGORIE,
+														  false);
         _curSujetAction = SUJET_ACTION_CATEGORIE;
         _curSqlTableModel = &_allWindows->getSqlTableModel_categories();
         break;
@@ -88,7 +91,9 @@ void YerothAdminSearchForm::setupLineEditsQCompleters(int tabWidjetListerIdx)
     case SUJET_ACTION_COMPTE_BANCAIRE:
 
         lineEdit_terme_recherche->enableForSearch(QObject::trUtf8("référence du compte bancaire"));
-        lineEdit_terme_recherche->setupMyStaticQCompleter(_allWindows->COMPTES_BANCAIRES, YerothDatabaseTableColumn::REFERENCE_DU_COMPTE_BANCAIRE, false, false);
+        lineEdit_terme_recherche->setupMyStaticQCompleter(_allWindows->COMPTES_BANCAIRES,
+        												  YerothDatabaseTableColumn::REFERENCE_DU_COMPTE_BANCAIRE,
+														  false);
         _curSujetAction = SUJET_ACTION_COMPTE_BANCAIRE;
         _curSqlTableModel = &_allWindows->getSqlTableModel_comptes_bancaires();
         break;
@@ -96,7 +101,9 @@ void YerothAdminSearchForm::setupLineEditsQCompleters(int tabWidjetListerIdx)
     case SUJET_ACTION_COMPTE_UTILISATEUR:
 
         lineEdit_terme_recherche->enableForSearch(QObject::trUtf8("nom de l'utilisateur"));
-        lineEdit_terme_recherche->setupMyStaticQCompleter(_allWindows->USERS, "nom_complet", false, false);
+        lineEdit_terme_recherche->setupMyStaticQCompleter(_allWindows->USERS,
+        												  YerothDatabaseTableColumn::NOM_COMPLET,
+														  false);
         _curSujetAction = SUJET_ACTION_COMPTE_UTILISATEUR;
         _curSqlTableModel = &_allWindows->getSqlTableModel_users();
         break;
@@ -104,8 +111,9 @@ void YerothAdminSearchForm::setupLineEditsQCompleters(int tabWidjetListerIdx)
     case SUJET_ACTION_LOCALISATION:
 
         lineEdit_terme_recherche->enableForSearch(QObject::trUtf8("nom de la localisation"));
-        lineEdit_terme_recherche->setupMyStaticQCompleter(_allWindows->LOCALISATIONS, "nom_localisation", false,
-                false);
+        lineEdit_terme_recherche->setupMyStaticQCompleter(_allWindows->LOCALISATIONS,
+        												  YerothDatabaseTableColumn::NOM_LOCALISATION,
+														  false);
         _curSujetAction = SUJET_ACTION_LOCALISATION;
         _curSqlTableModel = &_allWindows->getSqlTableModel_localisations();
         break;
@@ -113,8 +121,9 @@ void YerothAdminSearchForm::setupLineEditsQCompleters(int tabWidjetListerIdx)
     case SUJET_ACTION_REMISE:
 
         lineEdit_terme_recherche->enableForSearch(QObject::trUtf8("désignation de la remise"));
-        lineEdit_terme_recherche->setupMyStaticQCompleter(_allWindows->REMISES, YerothDatabaseTableColumn::DESIGNATION_REMISE, false,
-                false);
+        lineEdit_terme_recherche->setupMyStaticQCompleter(_allWindows->REMISES,
+        												  YerothDatabaseTableColumn::DESIGNATION_REMISE,
+														  false);
         _curSujetAction = SUJET_ACTION_REMISE;
         _curSqlTableModel = &_allWindows->getSqlTableModel_remises();
         break;

@@ -204,7 +204,6 @@ void YerothGroupesDunClientWindow::setupLineEditsQCompleters()
 	lineEdit_groupes_dun_client_recherche->
 		setupMyStaticQCompleter(_allWindows->GROUPES_DE_CLIENTS,
 								YerothDatabaseTableColumn::DESIGNATION,
-								false,
 								true);
 }
 

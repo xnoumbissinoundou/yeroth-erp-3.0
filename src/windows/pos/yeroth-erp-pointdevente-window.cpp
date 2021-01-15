@@ -825,7 +825,7 @@ QString YerothPointDeVenteWindow::imprimer_recu_vendu_grand(QString referenceRec
 
     if (tableWidget_articles->rowCount() <= 0)
     {
-        YerothQMessageBox::information(this, QObject::trUtf8("impression"),
+        YerothQMessageBox::information(this, QObject::tr("impression"),
                                       QObject::trUtf8("Il n'y a pas de données à imprimer !"));
 
         return YerothUtils::EMPTY_STRING;
@@ -1020,7 +1020,7 @@ QString YerothPointDeVenteWindow::imprimer_recu_vendu_petit(QString referenceRec
 
     if (tableWidget_articles->rowCount() <= 0)
     {
-        YerothQMessageBox::information(this, QObject::trUtf8("impression"),
+        YerothQMessageBox::information(this, QObject::tr("impression"),
                                       QObject::trUtf8("Il n'y a pas de données à imprimer !"));
         return YerothUtils::EMPTY_STRING;
     }
@@ -1154,7 +1154,7 @@ void YerothPointDeVenteWindow::annuler()
 
         setRechercheLineEditFocus();
 
-        YerothQMessageBox::information(this, QObject::trUtf8("annulation de la vente"),
+        YerothQMessageBox::information(this, QObject::tr("annulation de la vente"),
                                       QObject::trUtf8("Vous avez annulé la vente !"), QMessageBox::Ok);
     }
 
@@ -1357,8 +1357,8 @@ void YerothPointDeVenteWindow::rendreVisible(YerothSqlTableModel * stocksTableMo
 {
     _logger->log("rendreVisible");
 
-    radioButton_article_detail_remise_prix->setText(QObject::trUtf8("remise (%1)")
-    																									.arg(YerothERPConfig::currency));
+    radioButton_article_detail_remise_prix->setText(QObject::tr("remise (%1)")
+    													.arg(YerothERPConfig::currency));
 
     lineEdit_articles_imprimante->setText(YerothERPConfig::printer);
 
@@ -1463,10 +1463,9 @@ void YerothPointDeVenteWindow::calculate_details_window_remise_prix()
 
             lineEdit_article_detail_remise_pourcentage->setText(QString::number(0.0, 'f', 2));
 
-            YerothQMessageBox::warning(this, QObject::trUtf8("montant d'une remise"),
-                                      QString::
-                                      fromUtf8("Le montant d'une remise sur un article doit être inférieur"
-                                               " au prix unitaire de cet article !"));
+            YerothQMessageBox::warning(this, QObject::tr("montant d'une remise"),
+                                       QObject::trUtf8("Le montant d'une remise sur un article doit être inférieur "
+                                               	   	   "au prix unitaire de cet article !"));
             return;
         }
 
@@ -1504,10 +1503,10 @@ void YerothPointDeVenteWindow::calculate_details_window_remise_pourcentage()
         {
             lineEdit_article_detail_remise_prix->setText(QString::number(0.0, 'f', 2));
             lineEdit_article_detail_remise_pourcentage->setText(QString::number(0.0, 'f', 2));
-            YerothQMessageBox::warning(this, QObject::trUtf8("montant d'une remise"),
-                                      QString::
-                                      fromUtf8("Le montant d'une remise sur un article doit être supérieure"
-                                               " au prix unitaire de cet article !"));
+
+            YerothQMessageBox::warning(this, QObject::tr("montant d'une remise"),
+            								 QObject::trUtf8("Le montant d'une remise sur un article doit être supérieure "
+            										 	 	 "au prix unitaire de cet article !"));
             return;
         }
 
@@ -1652,8 +1651,8 @@ void YerothPointDeVenteWindow::updateQuantiteAVendre()
 
     if (articleVenteInfo->_quantite_en_stock < itemNewQteDouble)
     {
-        YerothQMessageBox::warning(this, QObject::trUtf8("articles en stock"),
-                                  QObject::trUtf8("Il n'y a pas assez de articles en stock |"));
+        YerothQMessageBox::warning(this, QObject::tr("articles en stock"),
+                                  QObject::tr("Il n'y a pas assez de articles en stock |"));
     }
     else
     {
@@ -2338,8 +2337,9 @@ void YerothPointDeVenteWindow::handleMontantRecu()
 void YerothPointDeVenteWindow::enlever_article()
 {
     _logger->log("enlever_article");
+
     int tableWidgetRow = tableWidget_articles->currentRow();
-    _logger->log("enlever_article", QString("row: %1").arg(tableWidgetRow));
+
     if (tableWidgetRow > -1)
     {
         tableWidget_articles->removeArticle(tableWidgetRow);
@@ -2349,9 +2349,12 @@ void YerothPointDeVenteWindow::enlever_article()
             delete article;
         }
 
-        QMap < int, YerothArticleVenteInfo * >newArticleItemToVenteInfo;
+        QMap<int, YerothArticleVenteInfo *> newArticleItemToVenteInfo;
+
         QMapIterator < int, YerothArticleVenteInfo * >i(articleItemToVenteInfo);
+
         int k = 0;
+
         while (i.hasNext())
         {
             i.next();
@@ -2360,9 +2363,13 @@ void YerothPointDeVenteWindow::enlever_article()
                            QString("key: %1, value: %2").arg(QString::number(k), i.value()->_stockName));
             ++k;
         }
+
         articleItemToVenteInfo.clear();
+
         articleItemToVenteInfo = newArticleItemToVenteInfo;
+
         actualiser_tableau_vente();
+
         setRechercheLineEditFocus();
     }
 }
@@ -2378,7 +2385,7 @@ void YerothPointDeVenteWindow::choisir_methode_paiment()
 
     if (tableWidget_articles->itemCount() <= 0)
     {
-        YerothQMessageBox::warning(this, QObject::trUtf8("vendre"),
+        YerothQMessageBox::warning(this, QObject::tr("vendre"),
                                   QObject::trUtf8("Vous n'avez pas choisi d'articles à vendre !"));
         return;
     }
@@ -2399,8 +2406,8 @@ void YerothPointDeVenteWindow::choisir_methode_paiment()
     {
     	if (lineEdit_articles_nom_client->text().isEmpty())
 		{
-			YerothQMessageBox::warning(this, QObject::trUtf8("vendre"),
-					QObject::trUtf8("VEUILLEZ ENTRER LE NOM D'1 CLIENT !"));
+			YerothQMessageBox::warning(this, QObject::tr("vendre"),
+					QObject::tr("VEUILLEZ ENTRER LE NOM D'1 CLIENT !"));
 
 			return ;
 		}
@@ -2639,7 +2646,7 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
         	else
         	{
         		stocksVenduRecord.setValue(YerothDatabaseTableColumn::CLIENTS_ID, -1);
-        		stocksVenduRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT, "DIVERS");
+        		stocksVenduRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT, YerothUtils::STRING_FRENCH_DIVERS);
         	}
         }
         else

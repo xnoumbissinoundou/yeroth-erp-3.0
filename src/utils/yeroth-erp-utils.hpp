@@ -647,12 +647,6 @@ public:
 
 	static const QString DB_DATE_FORMAT;
 
-	static const QString NOUVEAU_CLIENT;
-
-	static const QString NOUVEAU_FOURNISSEUR;
-
-	static const QString NOUVELLE_CATEGORIE;
-
 	static const QString MAGELAN_CLIENT;
 
 	static const QString MAGELAN_CLIENT_OBJECT;
@@ -690,6 +684,8 @@ public:
 	static const QString MYSQL_FALSE_LITERAL;
 
 	static const QString CSV_FILE_SEPARATION_SEMI_COLON_STRING_CHAR;
+
+	static const QString STRING_FRENCH_DIVERS;
 
 	static const QString EMPTY_STRING;
 

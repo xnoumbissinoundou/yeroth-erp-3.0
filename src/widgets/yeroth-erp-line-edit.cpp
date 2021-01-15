@@ -260,7 +260,6 @@ void YerothLineEdit::setupMyQCompleter(QString sqlTableName,
 
 void YerothLineEdit::setupMyStaticQCompleter(QString sqlTableName,
         									 const QString fieldName,
-											 bool enableNewCreation /* = false */,
 											 bool returnPressedSignalActivated /* = true */,
 											 QString aQSqlConditionStr /* = YerothUtils::EMPTY_STRING */)
 {
@@ -272,34 +271,6 @@ void YerothLineEdit::setupMyStaticQCompleter(QString sqlTableName,
     if (0 != _searchQCompleter)
     {
         delete _searchQCompleter;
-    }
-
-    if (enableNewCreation)
-    {
-        if (YerothUtils::isEqualCaseInsensitive("CATEGORIES", sqlTableName))
-        {
-# ifdef YEROTH_FRANCAIS_LANGUAGE
-            _currentStaticStringList.append(QObject::trUtf8(STRING_NEW_CATEGORY_FR));
-# else //YEROTH_ENGLISH_LANGUAGE
-            _currentStaticStringList.append(STRING_NEW_CATEGORY_EN);
-# endif
-        }
-        else if (YerothUtils::isEqualCaseInsensitive("FOURNISSEURS", sqlTableName))
-        {
-# ifdef YEROTH_FRANCAIS_LANGUAGE
-            _currentStaticStringList.append(QObject::trUtf8(STRING_NEW_SUPPLIER_FR));
-# else //YEROTH_ENGLISH_LANGUAGE
-            _currentStaticStringList.append(STRING_NEW_SUPPLIER_EN);
-# endif
-        }
-        else if (YerothUtils::isEqualCaseInsensitive("CLIENTS", sqlTableName))
-        {
-# ifdef YEROTH_FRANCAIS_LANGUAGE
-            _currentStaticStringList.append(QObject::trUtf8(STRING_NEW_CLIENT_FR));
-# else //YEROTH_ENGLISH_LANGUAGE
-            _currentStaticStringList.append(STRING_NEW_CLIENT_EN);
-# endif
-        }
     }
 
     _searchQCompleter = new QCompleter(_currentStaticStringList, this);

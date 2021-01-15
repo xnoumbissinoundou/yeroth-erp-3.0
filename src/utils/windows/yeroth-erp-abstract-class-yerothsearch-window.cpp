@@ -47,7 +47,6 @@ void YerothAbstractClassYerothSearchWindow::setupLineEditsQCompleters(QObject *a
     					aYerothLineEdit->
 						setupMyStaticQCompleter(_dbYerothSqlTableName,
 								correspondingDBFieldKeyValue,
-								false,
 								true,
 								aConditionStr);
     				}
@@ -56,7 +55,6 @@ void YerothAbstractClassYerothSearchWindow::setupLineEditsQCompleters(QObject *a
     					aYerothLineEdit->
 						setupMyStaticQCompleter(_dbYerothSqlTableName,
 								correspondingDBFieldKeyValue,
-								false,
 								false);
     				}
     			}

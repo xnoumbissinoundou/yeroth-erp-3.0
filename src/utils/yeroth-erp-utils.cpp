@@ -315,12 +315,6 @@ const QString YerothUtils::DB_DATE_FORMAT(FORMAT_DATE_DATABASE);
 
 # ifdef YEROTH_FRANCAIS_LANGUAGE
 
-const QString YerothUtils::NOUVEAU_CLIENT(QObject::trUtf8(STRING_NEW_CLIENT_FR));
-
-const QString YerothUtils::NOUVEAU_FOURNISSEUR(QObject::trUtf8(STRING_NEW_SUPPLIER_FR));
-
-const QString YerothUtils::NOUVELLE_CATEGORIE(QObject::trUtf8(STRING_NEW_CATEGORY_FR));
-
 const QString YerothUtils::STRING_OUI(STRING_TEXT_YES_FR);
 const QString YerothUtils::STRING_NON(STRING_TEXT_NO_FR);
 
@@ -328,12 +322,6 @@ const QString YerothUtils::INFERIEUR_OU_EGAL(QObject::trUtf8(STRING_MATH_INFERIO
 const QString YerothUtils::SUPERIEUR(QObject::trUtf8(STRING_MATH_SUPERIOR_FR));
 
 # else //YEROTH_ENGLISH_LANGUAGE
-
-const QString YerothUtils::NOUVEAU_CLIENT(QObject::trUtf8(STRING_NEW_CLIENT_EN));
-
-const QString YerothUtils::NOUVEAU_FOURNISSEUR(QObject::trUtf8(STRING_NEW_SUPPLIER_EN));
-
-const QString YerothUtils::NOUVELLE_CATEGORIE(QObject::trUtf8(STRING_NEW_CATEGORY_EN));
 
 const QString YerothUtils::STRING_OUI(STRING_TEXT_YES_EN);
 const QString YerothUtils::STRING_NON(STRING_TEXT_NO_EN);
@@ -409,6 +397,8 @@ const QString YerothUtils::MYSQL_TRUE_LITERAL("1");
 const QString YerothUtils::MYSQL_FALSE_LITERAL("0");
 
 const QString YerothUtils::CSV_FILE_SEPARATION_SEMI_COLON_STRING_CHAR(";");
+
+const QString YerothUtils::STRING_FRENCH_DIVERS("DIVERS");
 
 const QString YerothUtils::EMPTY_STRING("");
 
