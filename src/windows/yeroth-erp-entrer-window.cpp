@@ -261,6 +261,9 @@ void YerothEntrerWindow::setupLineEditsQCompleters()
 {
     setupLineEditsQCompleters__FOR_STOCK_INVENTORY();
 
+	lineEdit_sous_categorie_produit->setupMyStaticQCompleter(_allWindows->CATEGORIES,
+															 YerothDatabaseTableColumn::NOM_CATEGORIE);
+
 	lineEdit_categorie_produit->setupMyStaticQCompleter(_allWindows->CATEGORIES,
 														YerothDatabaseTableColumn::NOM_CATEGORIE);
 }

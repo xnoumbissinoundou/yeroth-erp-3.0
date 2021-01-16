@@ -69,6 +69,7 @@ const QString YerothDatabaseTableColumn::INTITULE_DU_COMPTE_BANCAIRE	("intitule_
 const QString YerothDatabaseTableColumn::INSTITUT_BANCAIRE				("institut_bancaire");
 const QString YerothDatabaseTableColumn::DESCRIPTION_DU_COMPTE_BANCAIRE	("description_du_compte_bancaire");
 const QString YerothDatabaseTableColumn::DESCRIPTION_CATEGORIE			("description_categorie");
+const QString YerothDatabaseTableColumn::IS_SOUS_CATEGORIE				("is_sous_categorie");
 const QString YerothDatabaseTableColumn::NOM_CATEGORIE					("nom_categorie");
 const QString YerothDatabaseTableColumn::MONTANT_TVA					("montant_tva");
 const QString YerothDatabaseTableColumn::MONTANT_TVA_EN_GROS			("montant_tva_en_gros");
@@ -277,7 +278,9 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::DESCRIPTION_CATEGORIE, 		QObject::trUtf8("Description"));
 
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NOM_CATEGORIE, 		QObject::trUtf8("Nom"));
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::IS_SOUS_CATEGORIE, 	QObject::trUtf8("EST 1 catégorie"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NOM_CATEGORIE, 		QObject::trUtf8("Nom Catégorie"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::MONTANT_TVA, 		QObject::tr("Montant TVA"));
 

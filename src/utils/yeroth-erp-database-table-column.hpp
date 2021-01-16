@@ -127,6 +127,8 @@ public:
 
 	static const QString DESCRIPTION_CATEGORIE;
 
+	static const QString IS_SOUS_CATEGORIE;
+
 	static const QString NOM_CATEGORIE;
 
 	static const QString MONTANT_TVA;
