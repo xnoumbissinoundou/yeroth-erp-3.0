@@ -8,7 +8,7 @@
 # define YEROTH_ENTRER_WINDOW_HPP_
 
 
-# include "../../ui_yeroth-erp-entrer-window.h"
+# include "../../../ui_yeroth-erp-entrer-window.h"
 
 
 # include <QtWidgets/QMessageBox>

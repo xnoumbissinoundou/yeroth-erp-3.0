@@ -73,6 +73,8 @@ public:
 
 	static const QString DETTE_MAXIMALE_COMPTE_CLIENT;
 
+	static const QString SOUS_CATEGORIE;
+
 	static const QString CATEGORIE;
 
 	static const QString QUANTITE;

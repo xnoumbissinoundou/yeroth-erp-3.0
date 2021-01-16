@@ -15,11 +15,11 @@
 #include "src/windows/yeroth-erp-configuration-comptabilite-window.hpp"
 #include "src/windows/yeroth-erp-alertes-window.hpp"
 #include "src/windows/yeroth-erp-ventes-window.hpp"
-#include "src/windows/yeroth-erp-entrer-window.hpp"
 #include "src/windows/yeroth-erp-mouvements_de_stocks-window.hpp"
 
 
 //** STOCKS
+#include "src/windows/stocks/yeroth-erp-entrer-window.hpp"
 #include "src/windows/stocks/yeroth-erp-historique-du-stock-window.hpp"
 #include "src/windows/stocks/yeroth-erp-marchandises-window.hpp"
 #include "src/windows/stocks/yeroth-erp-modifier-window.hpp"

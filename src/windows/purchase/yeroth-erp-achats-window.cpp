@@ -476,8 +476,8 @@ void YerothAchatsWindow::reinitialiser_champs_db_visibles()
 	_visibleDBColumnNameStrList
 		<< YerothDatabaseTableColumn::DESIGNATION
 		<< YerothDatabaseTableColumn::CATEGORIE
+		<< YerothDatabaseTableColumn::SOUS_CATEGORIE
 		<< YerothDatabaseTableColumn::PRIX_DACHAT
-		<< YerothDatabaseTableColumn::MONTANT_TVA
 		<< YerothDatabaseTableColumn::PRIX_VENTE
 		<< YerothDatabaseTableColumn::MARGE_BENEFICIAIRE
 		<< YerothDatabaseTableColumn::DATE_ENTREE

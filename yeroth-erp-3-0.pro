@@ -199,6 +199,7 @@ HEADERS = src/include/yeroth-erp-3-0-precompiled-header.hpp \
 		  src/windows/crm/yeroth-erp-clients-window.hpp \
 			src/windows/crm/yeroth-erp-payer-compte-client-window.hpp \
 		  src/windows/crm/yeroth-erp-tableau-des-transactions-du-client-window.hpp \
+		  src/windows/stocks/yeroth-erp-entrer-window.hpp \
 		  src/windows/stocks/yeroth-erp-modifier-window.hpp \
 		  src/windows/stocks/yeroth-erp-marchandises-window.hpp \
 		  src/windows/stocks/yeroth-erp-sortir-liststocks-window.hpp \
@@ -221,7 +222,6 @@ HEADERS = src/include/yeroth-erp-3-0-precompiled-header.hpp \
 		  src/windows/yeroth-erp-window-commons.hpp \
 		  src/windows/yeroth-erp-main-window.hpp \
 		  src/windows/yeroth-erp-alertes-window.hpp \
-		  src/windows/yeroth-erp-entrer-window.hpp \
 		  src/windows/yeroth-erp-tableaux-de-bord-window.hpp \
 		  src/windows/yeroth-erp-mouvements_de_stocks-window.hpp \
 		  src/windows/yeroth-erp-paiements-window.hpp \
@@ -330,6 +330,7 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 			src/windows/crm/yeroth-erp-clients-window.cpp \
 			src/windows/crm/yeroth-erp-payer-compte-client-window.cpp \
 		  src/windows/crm/yeroth-erp-tableau-des-transactions-du-client-window.cpp \
+		  src/windows/stocks/yeroth-erp-entrer-window.cpp \
 		  src/windows/stocks/yeroth-erp-modifier-window.cpp \
 		  src/windows/stocks/yeroth-erp-marchandises-window.cpp \
 			src/windows/stocks/yeroth-erp-sortir-liststocks-window.cpp \
@@ -351,7 +352,6 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/windows/yeroth-erp-window-commons.cpp \
 		  src/windows/yeroth-erp-main-window.cpp \
 		  src/windows/yeroth-erp-alertes-window.cpp \
-		  src/windows/yeroth-erp-entrer-window.cpp \
 		  src/windows/yeroth-erp-tableaux-de-bord-window.cpp \
 		  src/windows/yeroth-erp-mouvements_de_stocks-window.cpp \
 		  src/windows/yeroth-erp-paiements-window.cpp \
