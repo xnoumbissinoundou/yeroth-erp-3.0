@@ -380,6 +380,7 @@ void YerothCreerCompteClientWindow::clear_all_fields()
     lineEdit_compte_client_reference_du_registre_du_commerce->clear();
     lineEdit_compte_client_numero_de_contribuable->clear();
     lineEdit_compte_client_dette_maximale->clear();
+    lineEdit_compte_client_refereur->clear();
     textEdit_creer_compte_client_description_client->clear();
     label_image_produit->clear();
     label_image_produit->setAutoFillBackground(false);

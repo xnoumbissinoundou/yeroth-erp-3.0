@@ -650,7 +650,6 @@ void YerothStocksWindow::reinitialiser_champs_db_visibles()
     _visibleDBColumnNameStrList
 			<< YerothDatabaseTableColumn::DESIGNATION
 			<< YerothDatabaseTableColumn::CATEGORIE
-			<< YerothDatabaseTableColumn::SOUS_CATEGORIE
 			<< YerothDatabaseTableColumn::PRIX_VENTE
 			<< YerothDatabaseTableColumn::QUANTITE_TOTALE
 			<< YerothDatabaseTableColumn::LOCALISATION_STOCK

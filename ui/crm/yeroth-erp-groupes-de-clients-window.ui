@@ -15210,7 +15210,7 @@ CLIENTS</string>
   <action name="actionAfficherPDF">
    <property name="icon">
     <iconset resource="../../yeroth-erp-3-0.qrc">
-     <normaloff>:/yeroth-erp-3-0-images/yeroth-erp-3-0-pdf-print-icon.svg</normaloff>:/yeroth-erp-3-0-images/yeroth-erp-3-0-pdf-print-icon.svg</iconset>
+     <normaloff>:/yeroth-erp-3-0-images/yeroth-erp-3-0-pdf-print-icon.png</normaloff>:/yeroth-erp-3-0-images/yeroth-erp-3-0-pdf-print-icon.png</iconset>
    </property>
    <property name="text">
     <string>Imprimer la liste des groupes</string>
