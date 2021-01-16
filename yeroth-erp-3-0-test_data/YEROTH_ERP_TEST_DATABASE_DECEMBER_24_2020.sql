@@ -12607,3 +12607,4 @@ UPDATE configurations SET description_configuration='Intervalle de temps de vér
 UPDATE configurations SET description_configuration='Intervalle de temps de vérification du daemon pour les alertes sur la quantité en stock (en secondes)' WHERE nom_configuration='ALERT_QUANTITY_TIME_INTERVAL';
 
 
+create table achats_aux_fournisseurs (id int primary key NOT NULL, statut_de_lachat_au_fournisseur int(12), reference varchar(256), categorie varchar(256) NOT NULL, reference_recu_dachat varchar(256), prix_dachat double NOT NULL, prix_unitaire double NOT NULL, montant_tva double NOT NULL, date_de_commande date NOT NULL, date_de_reception date, localisation varchar(256), nom_entreprise_fournisseur varchar(256), quantite_totale double NOT NULL, nom_utilisateur_du_commandeur_de_lachat varchar(256));
