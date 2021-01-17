@@ -153,6 +153,29 @@ QString YerothERPProcess::compileLatex(QString prefixFileName)
 }
 
 
+QString YerothERPProcess::compileWITH_LUATEX_Latex(QString prefixFileName)
+{
+    QStringList progArguments;
+
+    progArguments << "-interaction";
+
+    progArguments << "nonstopmode";
+
+    progArguments << QString("%1tex")
+    					.arg(prefixFileName);
+
+    YerothERPProcess::startAndWaitForFinished(YerothERPConfig::pathToLualatex(),
+    										 progArguments,
+											 -1);
+    progArguments.clear();
+
+    QString pdfResultFile = QString("%1pdf")
+    							.arg(prefixFileName);
+
+    return pdfResultFile;
+}
+
+
 QString YerothERPProcess::startPdfViewerProcess(QString aPDFFileName)
 {
     QStringList progArguments(aPDFFileName);

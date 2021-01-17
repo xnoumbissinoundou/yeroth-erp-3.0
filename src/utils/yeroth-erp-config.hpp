@@ -162,6 +162,12 @@ public:
 				.arg(pathToLatexSystemRootFolder);
 	}
 
+	inline static QString pathToLualatex()
+	{
+		return QString("%1/lualatex")
+				.arg(pathToLatexSystemRootFolder);
+	}
+
 	inline static QDate GET_YEROTH_PAGING_DEFAULT_START_DATE()
 	{
 		return QDate(YerothERPConfig::annee_depart_pour_la_pagination.toInt(), 1, 1);

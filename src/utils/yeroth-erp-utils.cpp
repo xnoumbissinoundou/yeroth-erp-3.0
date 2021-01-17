@@ -3185,25 +3185,24 @@ bool YerothUtils::import_csv_file_content(QString aCsvFileFullPath,
 
 void YerothUtils::getLatexCLIENT_ROYALTY_CARD_template(QString &texDocumentString_in_out)
 {
+	texDocumentString_in_out.clear();
     texDocumentString_in_out.append(YerothUtils::template_carte_de_fidelite_client_TEMPLATE_tex);
-    texDocumentString_in_out.append("\n");
-    texDocumentString_in_out.append("\\end{document}");
 }
 
 
 void YerothUtils::getLatexSupplierData(QString &texDocumentString_in_out)
 {
-    texDocumentString_in_out.append(YerothUtils::template_fiche_dun_fournisseur_tex);
-    texDocumentString_in_out.append("\n");
-    texDocumentString_in_out.append("\\end{document}");
+	texDocumentString_in_out.clear();
+	texDocumentString_in_out.append(QString("%1\n\\end{document}")
+										.arg(YerothUtils::template_fiche_dun_fournisseur_tex));
 }
 
 
 void YerothUtils::getLatexCustomerData(QString &texDocumentString_in_out)
 {
-    texDocumentString_in_out.append(YerothUtils::template_fiche_client_tex);
-    texDocumentString_in_out.append("\n");
-    texDocumentString_in_out.append("\\end{document}");
+	texDocumentString_in_out.clear();
+	texDocumentString_in_out.append(QString("%1\n\\end{document}")
+										.arg(YerothUtils::template_fiche_client_tex));
 }
 
 
@@ -3211,9 +3210,9 @@ void YerothUtils::getSortieDesStocksFRTexDocumentString(QString &texDocumentStri
         QString &printString)
 {
     texDocumentString_in_out.clear();
-    texDocumentString_in_out.append(FR_template_sortie_des_stocks_grand_tex);
-    texDocumentString_in_out.append(printString).append("\n");
-    texDocumentString_in_out.append("\\end{document}");
+	texDocumentString_in_out.append(QString("%1%2\n\\end{document}")
+										.arg(YerothUtils::FR_template_sortie_des_stocks_grand_tex,
+											 printString));
 }
 
 
@@ -3221,9 +3220,9 @@ void YerothUtils::getSortieDesStocksENTexDocumentString(QString &texDocumentStri
         QString &printString)
 {
     texDocumentString_in_out.clear();
-    texDocumentString_in_out.append(EN_template_sortie_des_stocks_grand_tex);
-    texDocumentString_in_out.append(printString).append("\n");
-    texDocumentString_in_out.append("\\end{document}");
+	texDocumentString_in_out.append(QString("%1%2\n\\end{document}")
+										.arg(YerothUtils::EN_template_sortie_des_stocks_grand_tex,
+											 printString));
 }
 
 
@@ -3231,9 +3230,9 @@ void YerothUtils::getSortieDesStocksSmallFRTexDocumentString(QString &texDocumen
         QString &printString)
 {
     texDocumentString_in_out.clear();
-    texDocumentString_in_out.append(FR_template_sortie_des_stocks_petit_tex);
-    texDocumentString_in_out.append(printString).append("\n");
-    texDocumentString_in_out.append("\\end{document}");
+	texDocumentString_in_out.append(QString("%1%2\n\\end{document}")
+										.arg(YerothUtils::FR_template_sortie_des_stocks_petit_tex,
+											 printString));
 }
 
 
@@ -3241,9 +3240,9 @@ void YerothUtils::getSortieDesStocksSmallENTexDocumentString(QString &texDocumen
         QString &printString)
 {
     texDocumentString_in_out.clear();
-    texDocumentString_in_out.append(EN_template_sortie_des_stocks_petit_tex);
-    texDocumentString_in_out.append(printString).append("\n");
-    texDocumentString_in_out.append("\\end{document}");
+	texDocumentString_in_out.append(QString("%1%2\n\\end{document}")
+										.arg(YerothUtils::EN_template_sortie_des_stocks_petit_tex,
+											 printString));
 }
 
 

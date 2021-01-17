@@ -12836,6 +12836,8 @@
     <addaction name="separator"/>
     <addaction name="actionAdministration"/>
     <addaction name="separator"/>
+    <addaction name="actionGenererCARTE_DE_FIDELITE_ClIENTS"/>
+    <addaction name="separator"/>
     <addaction name="actionAfficherPDF"/>
     <addaction name="separator"/>
     <addaction name="actionQui_suis_je"/>
@@ -13279,6 +13281,7 @@
    <addaction name="actionChanger_utilisateur"/>
    <addaction name="actionDeconnecter_utilisateur"/>
    <addaction name="actionAppeler_aide"/>
+   <addaction name="actionGenererCARTE_DE_FIDELITE_ClIENTS"/>
    <addaction name="actionAfficherPDF"/>
   </widget>
   <action name="actionA_propos">
@@ -13456,6 +13459,24 @@
    </property>
    <property name="toolTip">
     <string>Supprimer ce compte client</string>
+   </property>
+  </action>
+  <action name="actionGenererCARTE_DE_FIDELITE_ClIENTS">
+   <property name="icon">
+    <iconset>
+     <normalon>:/yeroth-erp-3-0-images/yeroth-erp-3-0-generate-client-royalty-card.png</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>Générer 1 carte de fidélité client</string>
+   </property>
+   <property name="toolTip">
+    <string>Générer 1 carte de fidélité client</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
   </action>
  </widget>

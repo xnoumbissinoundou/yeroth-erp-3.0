@@ -40,6 +40,7 @@ YerothClientsDetailWindow::YerothClientsDetailWindow()
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionGenererCARTE_DE_FIDELITE_ClIENTS, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierCompteClient, false);
@@ -58,6 +59,7 @@ YerothClientsDetailWindow::YerothClientsDetailWindow()
     connect(actionChanger_utilisateur, SIGNAL(triggered()), this, SLOT(changer_utilisateur()));
     connect(actionAppeler_aide, SIGNAL(triggered()), this, SLOT(help()));
     connect(actionDeconnecter_utilisateur, SIGNAL(triggered()), this, SLOT(deconnecter_utilisateur()));
+    connect(actionGenererCARTE_DE_FIDELITE_ClIENTS, SIGNAL(triggered()), this, SLOT(generer_la_carte_de_fidelite_du_client()));
     connect(actionMenu, SIGNAL(triggered()), this, SLOT(menu()));
     connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_pdf_document()));
     connect(actionClients, SIGNAL(triggered()), this, SLOT(clients()));
@@ -80,6 +82,111 @@ YerothClientsDetailWindow::YerothClientsDetailWindow()
 #endif
 
     setupShortcuts();
+}
+
+
+bool YerothClientsDetailWindow::generer_la_carte_de_fidelite_du_client()
+{
+    _logger->log("generer_la_carte_de_fidelite_du_client");
+
+    QString yerothCustomerAccountImage("yeroth");
+
+    QString yerothCustomerAccountImageTmpFile(QString("%1JPG")
+    		.arg(YerothUtils::getUniquePrefixFileInTemporaryFilesDir(yerothCustomerAccountImage)));
+
+    const QPixmap *label_image_produit_pixmap = label_image_produit->pixmap();
+
+    if (0 != label_image_produit_pixmap)
+    {
+        YerothUtils::savePixmapToFile(yerothCustomerAccountImageTmpFile,
+        							  *label_image_produit_pixmap,
+                                      "JPG");
+    }
+
+    QString latexFileNamePrefix("yeroth-erp-carte-de-fidelite-client-ROYALTY");
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+    latexFileNamePrefix.clear();
+    latexFileNamePrefix.append("yeroth-erp-client-ROYALTY-program-card");
+#endif
+
+    QString texDocument;
+
+    YerothUtils::getLatexCLIENT_ROYALTY_CARD_template(texDocument);
+
+    if (0 != label_image_produit_pixmap)
+    {
+    	texDocument.replace("YEROTHCARTEDEFIDELITELOGO", yerothCustomerAccountImageTmpFile);
+    }
+    else
+    {
+    	texDocument.replace("YEROTHCARTEDEFIDELITELOGO", "");
+    }
+
+    if (0 != label_image_produit_pixmap)
+    {
+    	texDocument.replace("YEROTHCHEMINCOMPLETIMAGECOMPTECLIENT", yerothCustomerAccountImageTmpFile);
+    }
+    else
+    {
+    	texDocument.replace("YEROTHCHEMINCOMPLETIMAGECOMPTECLIENT", "");
+    }
+
+
+    YerothInfoEntreprise & infoEntreprise = YerothUtils::getAllWindows()->getInfoEntreprise();
+
+    QString fileDate(YerothUtils::LATEX_IN_OUT_handleForeignAccents(infoEntreprise.getVilleTex()));
+
+    YerothUtils::getCurrentLocaleDate(fileDate);
+
+    texDocument.replace("YEROTHENTREPRISE", infoEntreprise.getNomCommercialTex());
+
+    texDocument.replace("YEROTHNOMDUCLIENT",
+    		QString("%1").arg(lineEdit_clients_details_nom_entreprise->textForLatex()));
+
+    texDocument.replace("YEROTHNOMDUPROGRAMMEDEFIDELITE", "");
+
+    texDocument.replace("YEROTHCLIENTNUMEROCOMPTE", "");
+
+    texDocument.replace("YEROTHCLIENTVILLE", "");
+
+    texDocument.replace("YEROTHCLIENTRUE", "");
+
+    texDocument.replace("YEROTHCLIENTSCC", "");
+
+    texDocument.replace("YEROTHCLIENTTELEPHONE", "$7\\ 77\\ 77\\ 77$");
+
+    texDocument.replace("YEROTHSERVICEGESTIONRELATIONCLIENTELLE", "\"\"");
+
+    texDocument.replace("YEROTHSERVICEDUPROGRAMMEDEFIDELITECLIENTS", "\"\"");
+
+    texDocument.replace("YEROTHSIEGEDUSERVICEGESTIONRELATIONCLIENTELLE", "\"\"");
+
+    texDocument.replace("YEROTHEMAILDUSERVICEGESTIONRELATIONCLIENTELLE", "\"\"");
+
+    texDocument.replace("YEROTHTELEPHONEDUSERVICEGESTIONRELATIONCLIENTELLE", "$7\\ 77\\ 77\\ 77$");
+
+    QString yerothPrefixFileName;
+
+    yerothPrefixFileName.append(YerothUtils::getUniquePrefixFileInTemporaryFilesDir(latexFileNamePrefix));
+
+	//qDebug() << "++\n" << texDocument;
+
+    QFile tmpLatexFile(QString("%1tex")
+    					.arg(yerothPrefixFileName));
+
+    YerothUtils::writeStringToQFilewithUTF8Encoding(tmpLatexFile, texDocument);
+
+    QString pdfCustomerDataFileName(YerothERPProcess::compileWITH_LUATEX_Latex(yerothPrefixFileName));
+
+    if (pdfCustomerDataFileName.isEmpty())
+    {
+    	return false;
+    }
+
+    YerothERPProcess::startPdfViewerProcess(pdfCustomerDataFileName);
+
+    return true;
 }
 
 
@@ -183,6 +290,7 @@ void YerothClientsDetailWindow::definirPasDeRole()
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionGenererCARTE_DE_FIDELITE_ClIENTS, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierCompteClient, false);
@@ -199,22 +307,9 @@ void YerothClientsDetailWindow::definirPasDeRole()
 
 void YerothClientsDetailWindow::definirCaissier()
 {
-    _logger->log("definirCaissier");
+    _logger->log("definirCaissier - definirPasDeRole");
 
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierCompteClient, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
-
-    pushButton_clients->disable(this);
-    pushButton_groupes_du_client->disable(this);
-    pushButton_modifier->disable(this);
-    pushButton_supprimer->disable(this);
-    pushButton_payer_au_compteclient->disable(this);
+    definirPasDeRole();
 }
 
 void YerothClientsDetailWindow::definirManager()
@@ -224,6 +319,7 @@ void YerothClientsDetailWindow::definirManager()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionGenererCARTE_DE_FIDELITE_ClIENTS, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierCompteClient, true);
@@ -254,6 +350,7 @@ void YerothClientsDetailWindow::definirVendeur()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionGenererCARTE_DE_FIDELITE_ClIENTS, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierCompteClient, true);
@@ -269,42 +366,16 @@ void YerothClientsDetailWindow::definirVendeur()
 
 void YerothClientsDetailWindow::definirGestionaireDesStocks()
 {
-    _logger->log("definirGestionaireDesStocks");
+    _logger->log("definirGestionaireDesStocks - definirPasDeRole");
 
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierCompteClient, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
-
-    pushButton_clients->disable(this);
-    pushButton_groupes_du_client->disable(this);
-    pushButton_modifier->disable(this);
-    pushButton_supprimer->disable(this);
-    pushButton_payer_au_compteclient->disable(this);
+    definirPasDeRole();
 }
 
 void YerothClientsDetailWindow::definirMagasinier()
 {
-    _logger->log("definirMagasinier");
+    _logger->log("definirMagasinier - definirPasDeRole");
 
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierCompteClient, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
-
-    pushButton_clients->disable(this);
-    pushButton_groupes_du_client->disable(this);
-    pushButton_modifier->disable(this);
-    pushButton_supprimer->disable(this);
-    pushButton_payer_au_compteclient->disable(this);
+    definirPasDeRole();
 }
 
 

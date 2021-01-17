@@ -68,6 +68,8 @@ public:
 	 */
 	static QString compileLatex(QString prefixFileName);
 
+	static QString compileWITH_LUATEX_Latex(QString prefixFileName);
+
 	static QString startPdfViewerProcess(QString aPDFFileName);
 
 	static bool startDetached(QProcess &aProcess,

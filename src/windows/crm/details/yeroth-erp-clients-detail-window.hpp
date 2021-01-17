@@ -82,6 +82,8 @@ protected:
 
 private slots:
 
+	bool generer_la_carte_de_fidelite_du_client();
+
 	void afficher_groupes_dun_client();
 
 	void private_payer_au_compteclient();
