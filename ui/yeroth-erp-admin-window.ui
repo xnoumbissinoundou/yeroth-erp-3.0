@@ -14343,7 +14343,7 @@
         <string/>
        </property>
        <property name="text">
-        <string>Émail (service de gestion de la clientèle)</string>
+        <string>émail (service de gestion de la clientèle)</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
