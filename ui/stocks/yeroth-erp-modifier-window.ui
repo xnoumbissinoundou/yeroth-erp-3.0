@@ -10219,9 +10219,9 @@ stock (service)</string>
         <colorrole role="WindowText">
          <brush brushstyle="SolidPattern">
           <color alpha="255">
-           <red>255</red>
-           <green>255</green>
-           <blue>255</blue>
+           <red>242</red>
+           <green>161</green>
+           <blue>0</blue>
           </color>
          </brush>
         </colorrole>
@@ -10356,9 +10356,9 @@ stock (service)</string>
         <colorrole role="WindowText">
          <brush brushstyle="SolidPattern">
           <color alpha="255">
-           <red>255</red>
-           <green>255</green>
-           <blue>255</blue>
+           <red>242</red>
+           <green>161</green>
+           <blue>0</blue>
           </color>
          </brush>
         </colorrole>
@@ -14927,6 +14927,11 @@ stock (service)</string>
    <header>src/widgets/yeroth-erp-line-edit.hpp</header>
   </customwidget>
   <customwidget>
+   <class>YerothERPQCheckBox</class>
+   <extends>QCheckBox</extends>
+   <header>src/widgets/yeroth-erp-qcheckbox.hpp</header>
+  </customwidget>
+  <customwidget>
    <class>YerothDateTimeEdit</class>
    <extends>QDateEdit</extends>
    <header>src/widgets/yeroth-erp-datetime-edit.hpp</header>
@@ -14935,11 +14940,6 @@ stock (service)</string>
    <class>YerothTextEdit</class>
    <extends>QTextEdit</extends>
    <header>src/widgets/yeroth-erp-text-edit.hpp</header>
-  </customwidget>
-  <customwidget>
-   <class>YerothERPQCheckBox</class>
-   <extends>QCheckBox</extends>
-   <header>src/widgets/yeroth-erp-qcheckbox.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

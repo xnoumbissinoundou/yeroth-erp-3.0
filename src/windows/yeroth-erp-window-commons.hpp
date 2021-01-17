@@ -163,6 +163,10 @@ public:
 
     const QString & getLastListerSelectedRow__ID();
 
+signals:
+
+    void SIGNAL_INCREMENT_PROGRESS_BAR(int countSuccess);
+
 public slots:
 
 	virtual void getManuelUtilisateurPDF();

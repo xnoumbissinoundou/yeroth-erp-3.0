@@ -22,7 +22,8 @@ class YerothERPWindows;
 class YerothSqlTableModel;
 class YerothLogger;
 
-class YerothClientsDetailWindow : public YerothWindowsCommons, private Ui_YerothClientsDetailWindow
+class YerothClientsDetailWindow : public YerothWindowsCommons,
+								  private Ui_YerothClientsDetailWindow
 {
     Q_OBJECT
 
@@ -78,9 +79,11 @@ public slots:
 
 protected:
 
-    virtual void setupShortcuts();
+	virtual void setupShortcuts();
 
 private slots:
+
+	bool YEROTH_PROGRESS_BAR_generer_la_carte_de_fidelite_du_client();
 
 	bool generer_la_carte_de_fidelite_du_client();
 

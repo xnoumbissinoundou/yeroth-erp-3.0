@@ -11,6 +11,8 @@
 
 #include "src/users/yeroth-erp-users.hpp"
 
+#include "src/widgets/yeroth-erp-progress-bar.hpp"
+
 #include "src/utils/yeroth-erp-sqltable-model.hpp"
 
 
@@ -59,7 +61,7 @@ YerothClientsDetailWindow::YerothClientsDetailWindow()
     connect(actionChanger_utilisateur, SIGNAL(triggered()), this, SLOT(changer_utilisateur()));
     connect(actionAppeler_aide, SIGNAL(triggered()), this, SLOT(help()));
     connect(actionDeconnecter_utilisateur, SIGNAL(triggered()), this, SLOT(deconnecter_utilisateur()));
-    connect(actionGenererCARTE_DE_FIDELITE_ClIENTS, SIGNAL(triggered()), this, SLOT(generer_la_carte_de_fidelite_du_client()));
+    connect(actionGenererCARTE_DE_FIDELITE_ClIENTS, SIGNAL(triggered()), this, SLOT(YEROTH_PROGRESS_BAR_generer_la_carte_de_fidelite_du_client()));
     connect(actionMenu, SIGNAL(triggered()), this, SLOT(menu()));
     connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_pdf_document()));
     connect(actionClients, SIGNAL(triggered()), this, SLOT(clients()));
@@ -85,6 +87,18 @@ YerothClientsDetailWindow::YerothClientsDetailWindow()
 }
 
 
+bool YerothClientsDetailWindow::YEROTH_PROGRESS_BAR_generer_la_carte_de_fidelite_du_client()
+{
+	bool aRetValue = false;
+
+	YerothProgressBar(this)(this,
+							&YerothClientsDetailWindow::generer_la_carte_de_fidelite_du_client,
+							&aRetValue);
+
+	return aRetValue;
+}
+
+
 bool YerothClientsDetailWindow::generer_la_carte_de_fidelite_du_client()
 {
     _logger->log("generer_la_carte_de_fidelite_du_client");
@@ -102,6 +116,8 @@ bool YerothClientsDetailWindow::generer_la_carte_de_fidelite_du_client()
         							  *label_image_produit_pixmap,
                                       "JPG");
     }
+
+    emit SIGNAL_INCREMENT_PROGRESS_BAR(12);
 
     QString latexFileNamePrefix("yeroth-erp-carte-de-fidelite-client-ROYALTY");
 
@@ -175,7 +191,11 @@ bool YerothClientsDetailWindow::generer_la_carte_de_fidelite_du_client()
     QFile tmpLatexFile(QString("%1tex")
     					.arg(yerothPrefixFileName));
 
+    emit SIGNAL_INCREMENT_PROGRESS_BAR(48);
+
     YerothUtils::writeStringToQFilewithUTF8Encoding(tmpLatexFile, texDocument);
+
+    emit SIGNAL_INCREMENT_PROGRESS_BAR(96);
 
     QString pdfCustomerDataFileName(YerothERPProcess::compileWITH_LUATEX_Latex(yerothPrefixFileName));
 
@@ -185,6 +205,8 @@ bool YerothClientsDetailWindow::generer_la_carte_de_fidelite_du_client()
     }
 
     YerothERPProcess::startPdfViewerProcess(pdfCustomerDataFileName);
+
+    emit SIGNAL_INCREMENT_PROGRESS_BAR(98);
 
     return true;
 }
