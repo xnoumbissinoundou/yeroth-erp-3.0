@@ -114,6 +114,18 @@ void readTexTemplateFiles(YerothLogger &logger)
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
+    QFile fileClientROYALTYprogramTemplateEN(FILE_YEROTH_ROYALTY_MEMBERSHIP_CARD_TEMPLATE_EN);
+    yeroth_read_file(fileClientROYALTYprogramTemplateEN, YerothUtils::template_fiche_dun_fournisseur_tex);
+
+#else //YEROTH_ENGLISH_LANGUAGE
+
+    QFile fileClientROYALTYprogramTemplateFR(FILE_YEROTH_ROYALTY_MEMBERSHIP_CARD_TEMPLATE_FR );
+    yeroth_read_file(fileClientROYALTYprogramTemplateFR, YerothUtils::template_fiche_dun_fournisseur_tex);
+
+#endif
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+
     QFile fileSupplierDataTemplate(FILE_YEROTH_ERP_3_0_TEMPLATE_SUPPLIER_DATA_FR);
     yeroth_read_file(fileSupplierDataTemplate, YerothUtils::template_fiche_dun_fournisseur_tex);
 

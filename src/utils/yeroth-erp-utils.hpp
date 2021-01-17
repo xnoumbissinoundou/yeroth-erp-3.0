@@ -402,6 +402,8 @@ public:
     static bool import_csv_file_content(QString aCsvFileFullPath,
     									QStringList &wordList_IN_OUT);
 
+    static void getLatexCLIENT_ROYALTY_CARD_template(QString &texDocumentString_in_out);
+
     static void getLatexSupplierData(QString &texDocumentString_in_out);
 
     static void getLatexCustomerData(QString &texDocumentString_in_out);
@@ -716,6 +718,8 @@ public:
 	static QString _1a_tex;
 
 	static QString template_bilan_comptable_tex;
+
+	static QString template_carte_de_fidelite_client_TEMPLATE_tex;
 
 	static QString template_fiche_dun_fournisseur_tex;
 

@@ -91,6 +91,8 @@ QString YerothUtils::_1a_tex("");
 
 QString YerothUtils::template_bilan_comptable_tex("");
 
+QString YerothUtils::template_carte_de_fidelite_client_TEMPLATE_tex("");
+
 QString YerothUtils::template_fiche_dun_fournisseur_tex("");
 
 QString YerothUtils::template_fiche_client_tex("");
@@ -3178,6 +3180,14 @@ bool YerothUtils::import_csv_file_content(QString aCsvFileFullPath,
 			.split(YerothUtils::LINE_ENDING_STRING_REGEXP));
 
 	return true;
+}
+
+
+void YerothUtils::getLatexCLIENT_ROYALTY_CARD_template(QString &texDocumentString_in_out)
+{
+    texDocumentString_in_out.append(YerothUtils::template_carte_de_fidelite_client_TEMPLATE_tex);
+    texDocumentString_in_out.append("\n");
+    texDocumentString_in_out.append("\\end{document}");
 }
 
 
