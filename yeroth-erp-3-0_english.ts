@@ -7220,7 +7220,8 @@ stock (service)</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-admin-window.ui" line="14346"/>
-        <source>Émail (service de gestion de la clientèle)</source>
+        <source>émail (service de gestion de la clientèle)</source>
+        <oldsource>Émail (service de gestion de la clientèle)</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
