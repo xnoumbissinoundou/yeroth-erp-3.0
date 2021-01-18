@@ -402,11 +402,11 @@ void YerothAdminDetailWindow::rendreVisibleAlerte(int sqlTableRow)
 
     YerothSqlTableModel *alertesTableModel = lw->getCurSearchSqlTableModel();
 
-    if (!alertesTableModel)
+    if (0 == alertesTableModel)
     {
         alertesTableModel = &_allWindows->getSqlTableModel_alertes();
     }
-    else if (alertesTableModel &&
+    else if ((0 != alertesTableModel) &&
     		 !YerothUtils::isEqualCaseInsensitive(alertesTableModel->sqlTableName(), _allWindows->ALERTES))
     {
         alertesTableModel = &_allWindows->getSqlTableModel_alertes();
@@ -429,17 +429,21 @@ void YerothAdminDetailWindow::rendreVisibleAlerte(int sqlTableRow)
 
     comboBox_detail_alerte_condition->addItem(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::CONDITION_ALERTE));
 
-    int quantite = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::QUANTITE).toInt();
+    double quantite = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::QUANTITE).toDouble();
+
     if (quantite > -1)
     {
         radioButton_detail_alerte_quantite->setChecked(true);
+
         lineEdit_detail_alerte_quantite->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::QUANTITE));
     }
     else
     {
         radioButton_detail_alerte_date_periode_temps->setChecked(true);
+
         QString date_debut(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DATE_DEBUT));
         dateEdit_detail_alerte_date_debut->setDate(GET_DATE_FROM_STRING(date_debut));
+
         QString date_fin(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DATE_FIN));
         dateEdit_detail_alerte_date_fin->setDate(GET_DATE_FROM_STRING(date_fin));
     }
@@ -447,6 +451,7 @@ void YerothAdminDetailWindow::rendreVisibleAlerte(int sqlTableRow)
     textEdit_detail_alerte_message->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::MESSAGE_ALERTE));
 
    enableOtherTabs(SUJET_ACTION_ALERTE, false);
+
    setVisible(true);
 }
 
