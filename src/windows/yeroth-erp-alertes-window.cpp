@@ -902,7 +902,7 @@ bool YerothAlertesWindow::afficher_au_detail()
 
     comboBox_alertes_condition->addItem(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::CONDITION_ALERTE));
 
-    int quantite = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::QUANTITE).toInt();
+    double quantite = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::QUANTITE).toDouble();
 
     if (quantite > -1)
     {
@@ -917,12 +917,15 @@ bool YerothAlertesWindow::afficher_au_detail()
     else
     {
     	QString date_debut(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DATE_DEBUT));
+
     	QString date_fin(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DATE_FIN));
 
-    	//qDebug() << "++ date_debut " << date_debut;
     	dateEdit_alertes_date_debut->setDate(GET_DATE_FROM_STRING(date_debut));
+
     	dateEdit_alertes_date_fin->setDate(GET_DATE_FROM_STRING(date_fin));
+
     	radioButton_alertes_quantite->setChecked(false);
+
     	radioButton_alertes_periode_temps->setChecked(true);
 
     	groupBox_alertes_quantite->setVisible(false);
