@@ -13847,9 +13847,9 @@
          <colorrole role="WindowText">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>242</red>
-            <green>161</green>
-            <blue>0</blue>
+            <red>2</red>
+            <green>160</green>
+            <blue>170</blue>
            </color>
           </brush>
          </colorrole>
@@ -13858,9 +13858,9 @@
          <colorrole role="WindowText">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>242</red>
-            <green>161</green>
-            <blue>0</blue>
+            <red>2</red>
+            <green>160</green>
+            <blue>170</blue>
            </color>
           </brush>
          </colorrole>
