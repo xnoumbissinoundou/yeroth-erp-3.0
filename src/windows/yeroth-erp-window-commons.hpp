@@ -235,7 +235,12 @@ public slots:
 
 	virtual void qui_suis_je();
 
-	virtual bool imprimer_pdf_document(QMap<QString, QString> *documentSpecificElements = 0);
+	virtual bool imprimer_pdf_document(QMap<QString, QString> *documentSpecificElements);
+
+	virtual inline bool imprimer_pdf_document()
+	{
+		return imprimer_pdf_document(0);
+	}
 
     virtual void changer_utilisateur();
 
@@ -282,7 +287,8 @@ protected slots:
 
 	inline virtual void imprimer_pdf_document_WITH_A_YEROTH_PROGRESS_BAR()
 	{
-
+		YerothProgressBar(this)(this,
+								&YerothWindowsCommons::imprimer_pdf_document);
 	}
 
 	void handleSOMEToolsEnabled();

@@ -150,7 +150,7 @@ YerothStocksWindow::YerothStocksWindow()
     connect(actionModifier_ce_stock, SIGNAL(triggered()),
     		this, SLOT(modifier_les_articles()));
 
-    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_pdf_document()));
+    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_pdf_document_WITH_A_YEROTH_PROGRESS_BAR()));
     connect(actionA_propos, SIGNAL(triggered()), this, SLOT(apropos()));
     connect(actionAlertes, SIGNAL(triggered()), this, SLOT(alertes()));
     connect(actionReinitialiserRecherche, SIGNAL(triggered()), this, SLOT(reinitialiser_recherche()));

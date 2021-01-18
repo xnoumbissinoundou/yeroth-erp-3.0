@@ -848,7 +848,7 @@ void YerothWindowsCommons::qui_suis_je()
 }
 
 
-bool YerothWindowsCommons::imprimer_pdf_document(QMap<QString, QString> *documentSpecificElements /* = 0 */)
+bool YerothWindowsCommons::imprimer_pdf_document(QMap<QString, QString> *documentSpecificElements)
 {
 	if (_latex_template_print_pdf_content.isEmpty() ||
 		0 == _yerothTableView_FROM_WINDOWS_COMMONS)

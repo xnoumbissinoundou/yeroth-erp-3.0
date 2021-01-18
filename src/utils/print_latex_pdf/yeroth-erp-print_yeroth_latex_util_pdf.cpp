@@ -99,6 +99,10 @@ QString YerothTableViewPRINT_UTILITIES_TEX_TABLE::
 												 (20 >= tableModelRowCount) ? tableModelRowCount : 20,
 												 tableModelRowCount <= 20);
 
+	int currentProgressBarCount = abs(((2.0 / pageNumber) * 50) - 4);
+
+	emit _yerothWindowTableOutputView->SIGNAL_INCREMENT_PROGRESS_BAR(currentProgressBarCount);
+
     if (tableModelRowCount >= 20)
     {
         fromRowIndex = 20;
@@ -123,6 +127,12 @@ QString YerothTableViewPRINT_UTILITIES_TEX_TABLE::
 
             toRowIndex =
                 (fromRowIndex >= tableModelRowCount) ? (fromRowIndex + 1) : fromRowIndex + MAX_TABLE_ROW_COUNT;
+
+            currentProgressBarCount += abs( (((k+1) / pageNumber) * 100) - 4 );
+
+            currentProgressBarCount = (currentProgressBarCount > 98) ? 97 : currentProgressBarCount;
+
+            emit _yerothWindowTableOutputView->SIGNAL_INCREMENT_PROGRESS_BAR(currentProgressBarCount);
 
             ++k;
         }
@@ -183,6 +193,8 @@ QString YerothTableViewPRINT_UTILITIES_TEX_TABLE::
     					.arg(yerothPrefixFileName));
 
     YerothUtils::writeStringToQFilewithUTF8Encoding(tmpLatexFile, texDocument);
+
+    emit _yerothWindowTableOutputView->SIGNAL_INCREMENT_PROGRESS_BAR(94);
 
     return YerothERPProcess::compileLatex(yerothPrefixFileName);
 }
