@@ -63,7 +63,7 @@ YerothClientsDetailWindow::YerothClientsDetailWindow()
     connect(actionDeconnecter_utilisateur, SIGNAL(triggered()), this, SLOT(deconnecter_utilisateur()));
     connect(actionGenererCARTE_DE_FIDELITE_ClIENTS, SIGNAL(triggered()), this, SLOT(YEROTH_PROGRESS_BAR_generer_la_carte_de_fidelite_du_client()));
     connect(actionMenu, SIGNAL(triggered()), this, SLOT(menu()));
-    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_pdf_document()));
+    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_pdf_document_WITH_A_YEROTH_PROGRESS_BAR()));
     connect(actionClients, SIGNAL(triggered()), this, SLOT(clients()));
     connect(actionModifierCompteClient, SIGNAL(triggered()), this, SLOT(modifierCompteClient()));
     connect(actionSupprimerCompteClient, SIGNAL(triggered()), this, SLOT(supprimerCompteClient()));
@@ -84,18 +84,6 @@ YerothClientsDetailWindow::YerothClientsDetailWindow()
 #endif
 
     setupShortcuts();
-}
-
-
-bool YerothClientsDetailWindow::YEROTH_PROGRESS_BAR_generer_la_carte_de_fidelite_du_client()
-{
-	bool aRetValue = false;
-
-	YerothProgressBar(this)(this,
-							&YerothClientsDetailWindow::generer_la_carte_de_fidelite_du_client,
-							&aRetValue);
-
-	return aRetValue;
 }
 
 
@@ -419,6 +407,8 @@ bool YerothClientsDetailWindow::imprimer_pdf_document()
                                       "JPG");
     }
 
+    emit SIGNAL_INCREMENT_PROGRESS_BAR(12);
+
     QString latexFileNamePrefix("yeroth-erp-fiche-client");
 
 #ifdef YEROTH_ENGLISH_LANGUAGE
@@ -504,6 +494,7 @@ bool YerothClientsDetailWindow::imprimer_pdf_document()
     	texDocument.replace("YEROTHCHEMINCOMPLETIMAGECOMPTECLIENT", "");
     }
 
+    emit SIGNAL_INCREMENT_PROGRESS_BAR(24);
 
     YerothInfoEntreprise & infoEntreprise = YerothUtils::getAllWindows()->getInfoEntreprise();
 
@@ -539,6 +530,8 @@ bool YerothClientsDetailWindow::imprimer_pdf_document()
 
     YerothUtils::writeStringToQFilewithUTF8Encoding(tmpLatexFile, texDocument);
 
+    emit SIGNAL_INCREMENT_PROGRESS_BAR(92);
+
     QString pdfCustomerDataFileName(YerothERPProcess::compileLatex(yerothPrefixFileName));
 
     if (pdfCustomerDataFileName.isEmpty())
@@ -547,6 +540,8 @@ bool YerothClientsDetailWindow::imprimer_pdf_document()
     }
 
     YerothERPProcess::startPdfViewerProcess(pdfCustomerDataFileName);
+
+    emit SIGNAL_INCREMENT_PROGRESS_BAR(98);
 
     return true;
 }

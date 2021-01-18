@@ -9,12 +9,12 @@
 
 #include "src/utils/yeroth-erp-utils.hpp"
 
-
-#include <QtWidgets/QMainWindow>
-
 #include <QtCore/qmath.h>
 
 #include <QtWidgets/QProgressBar>
+
+
+class YerothWindowsCommons;
 
 
 class YerothProgressBar : public QProgressBar
@@ -25,7 +25,9 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-	YerothProgressBar(QMainWindow *aParentWindow);
+	YerothProgressBar(YerothPOSAdminWindowsCommons *aYerothParentAdminWindow);
+
+	YerothProgressBar(YerothWindowsCommons *aYerothParentWindow);
 
 	inline virtual ~YerothProgressBar()
 	{
@@ -34,7 +36,7 @@ public:
 	template <class classType, typename returnType>
 	inline void operator()(classType *erpStockImport,
 						   returnType (classType::*func)(),
-						   returnType *aRetValue,
+						   returnType *aRetValue = 0,
 						   unsigned int progressBarMaximum = 100)
 	{
 		call_funtion_with_progress_bar_updates(erpStockImport,

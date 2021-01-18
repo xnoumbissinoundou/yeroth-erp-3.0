@@ -11,6 +11,8 @@
 
 #include "src/utils/yeroth-erp-logger.hpp"
 
+#include "src/widgets/yeroth-erp-progress-bar.hpp"
+
 #include "src/widgets/yeroth-erp-qmessage-box.hpp"
 
 #include "src/utils/yeroth-erp-utils.hpp"
@@ -277,6 +279,11 @@ public slots:
 	virtual void setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(const QModelIndex &modelIndex);
 
 protected slots:
+
+	inline virtual void imprimer_pdf_document_WITH_A_YEROTH_PROGRESS_BAR()
+	{
+
+	}
 
 	void handleSOMEToolsEnabled();
 

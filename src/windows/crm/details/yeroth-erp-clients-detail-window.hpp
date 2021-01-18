@@ -83,7 +83,17 @@ protected:
 
 private slots:
 
-	bool YEROTH_PROGRESS_BAR_generer_la_carte_de_fidelite_du_client();
+	inline virtual void imprimer_pdf_document_WITH_A_YEROTH_PROGRESS_BAR()
+	{
+		YerothProgressBar(this)(this,
+								&YerothClientsDetailWindow::imprimer_pdf_document);
+	}
+
+	inline void YEROTH_PROGRESS_BAR_generer_la_carte_de_fidelite_du_client()
+	{
+		YerothProgressBar(this)(this,
+						  	    &YerothClientsDetailWindow::generer_la_carte_de_fidelite_du_client);
+	}
 
 	bool generer_la_carte_de_fidelite_du_client();
 
