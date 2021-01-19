@@ -252,9 +252,22 @@ bool YerothWindowsCommons::SQL_UPDATE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(QSqlRe
 //								.arg(QString::number(lastSelectRecord_ROW_NUMBER),
 //									 GET_SQL_RECORD_DATA(resultRecord_IN,
 //											 	 	 	 YerothDatabaseTableColumn::ID)));
+	QString db_ID =
+			_yerothTableView_FROM_WINDOWS_COMMONS->
+				_MAP_lastSelected_Row__TO__DB_ID.
+					value(QString::number(lastSelectRecord_ROW_NUMBER));
+
+	int dbtableOriginalRowID =
+			_yerothTableView_FROM_WINDOWS_COMMONS->
+				_MAP_ORIGINAL_NON_FILTERED_DB_ID__TO__ORIGINAL_DB_ROW.
+					value(db_ID.toInt());
+
+//	QDEBUG_STRINGS_OUTPUT_2("db_ID <--> db_ROW", QString("%1 <--> %2")
+//									.arg(db_ID,
+//										 QString::number(dbtableOriginalRowID)));
 
 	bool success = yerothTableViewSQL_TABLE_MODEL->
-			updateRecord(resultRecord_IN);
+			updateRecord(dbtableOriginalRowID, resultRecord_IN);
 
 //	QDEBUG_STRINGS_OUTPUT_2(QString("update of SQL TABLE VIEW: %1")
 //								.arg(_yerothTableView_FROM_WINDOWS_COMMONS->getSqlTableName()),

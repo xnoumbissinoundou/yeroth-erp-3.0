@@ -125,6 +125,51 @@ void YerothTableView::selectionChanged (const QItemSelection & selected,
 }
 
 
+void YerothTableView::construire_le_MAPPING_ORIGINAL_db_ID_VERS_db_row_Nr(YerothSqlTableModel &tableModel)
+{
+	_MAP_ORIGINAL_NON_FILTERED_DB_ID__TO__ORIGINAL_DB_ROW.clear();
+
+    int rows = tableModel.rowCount();
+
+    QString curTableModelRawHdr;
+
+    QVariant qv;
+
+    QSqlRecord record;
+
+    int db_ID_row_column_number = 0;
+
+    for (int i = 0; i < rows; ++i)
+    {
+    	record = tableModel.record(i);
+
+    	curTableModelRawHdr = tableModel.record(i).fieldName(db_ID_row_column_number);
+
+    	qv.setValue(tableModel.record(i).value(db_ID_row_column_number));
+
+    	switch (qv.type())
+    	{
+    	case QVariant::Int:
+
+    		if (YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID))
+    		{
+//    			QDEBUG_STRINGS_OUTPUT_2("YerothTableView::construire_le_MAPPING_ORIGINAL_db_ID_VERS_db_row_Nr db_ID <--> db_ROW", QString("%1 <--> %2")
+//    					.arg(QString::number(qv.toInt()),
+//    							QString::number(i)));
+
+    			_MAP_ORIGINAL_NON_FILTERED_DB_ID__TO__ORIGINAL_DB_ROW.insert(qv.toInt(), i);
+    		}
+
+    		break;
+
+    	default:
+    		break;
+    	}
+
+    }
+}
+
+
 void YerothTableView::lister_les_transactions_dun_fournisseur(QSqlQuery &sqlFournisseurTransactionsUnionQuery)
 {
     QString dateHdr(QObject::tr("Date"));

@@ -65,6 +65,8 @@ public:
 	{
 	}
 
+	virtual void construire_le_MAPPING_ORIGINAL_db_ID_VERS_db_row_Nr(YerothSqlTableModel &tableModel);
+
 	void lister_les_transactions_dun_fournisseur(QSqlQuery &sqlFournisseurTransactionsUnionQuery);
 
 	void lister_les_transactions_dun_client(QSqlQuery &sqlClientTransactionsUnionQuery);
@@ -154,11 +156,16 @@ public:
 
 	static YerothERPWindows *YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER;
 
+
+	QMap<int, int>		_MAP_ORIGINAL_NON_FILTERED_DB_ID__TO__ORIGINAL_DB_ROW;
+
 	/**
 	 * This map must be filled during execution of method
 	 * 'lister_les_elements_du_tableau'.
 	 */
 	QMap<QString, int>			_map_dbID_TO_yeroth_table_view_ROW_NUMBER;
+
+	QMap<QString, QString>		_MAP_lastSelected_Row__TO__DB_ID;
 
 signals:
 
@@ -170,8 +177,6 @@ protected:
 								  const QItemSelection & deselected);
 
 	bool 						_writeEnabled;
-
-	QMap<QString, QString>		_MAP_lastSelected_Row__TO__DB_ID;
 
 	QString 					_lastSelected_Row__ID;
 

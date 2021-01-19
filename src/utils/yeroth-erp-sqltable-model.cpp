@@ -243,72 +243,72 @@ bool YerothSqlTableModel::insertNewRecord(QSqlRecord &record, QMainWindow *paren
 }
 
 
-bool YerothSqlTableModel::updateRecord(QSqlRecord &record)
-{
-    _logger->log("updateRecord",
-                 QString("Table name: %1").arg(sqlTableName()));
-
-    bool success = false;
-
-    QString aCurFieldValue;
-
-    QString dbFieldIDValue;
-
-    QString aCurFieldName;
-
-    QString SQL_UPDATE_STRING_COMMAND = QString("UPDATE %1 SET ")
-    										.arg(_sqlTableName);
-
-    for (int k = 0; k < record.count(); ++k)
-    {
-    	aCurFieldName.clear();
-
-    	aCurFieldName.append(record.fieldName(k));
-
-    	if (!YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::ID, aCurFieldName))
-    	{
-    		if (!aCurFieldName.contains("date_"))
-    		{
-        		aCurFieldValue = YerothUtils::get_text(record.value(aCurFieldName));
-
-            	SQL_UPDATE_STRING_COMMAND.append(QString("%1='%2', ")
-            										.arg(aCurFieldName,
-            											 aCurFieldValue));
-    		}
-    		else
-    		{
-    			aCurFieldValue = DATE_TO_DB_FORMAT_STRING(record.value(aCurFieldName).toDate());
-
-//    			QDEBUG_STRINGS_OUTPUT_2("aCurFieldValue (DATE_TO_DB_FORMAT_STRING)", aCurFieldValue);
-
-    			if (!aCurFieldValue.isEmpty())
-    			{
-    				SQL_UPDATE_STRING_COMMAND.append(QString("%1='%2', ")
-    													.arg(aCurFieldName,
-    														 aCurFieldValue));
-    			}
-    		}
-    	}
-    	else
-    	{
-    		dbFieldIDValue = YerothUtils::get_text(record.value(aCurFieldName));
-    	}
-    }
-
-    int len = SQL_UPDATE_STRING_COMMAND.length();
-
-    SQL_UPDATE_STRING_COMMAND.remove(len - 2, 2);
-
-	SQL_UPDATE_STRING_COMMAND.append(QString(" WHERE %1 = '%2';")
-										.arg(YerothDatabaseTableColumn::ID,
-											 dbFieldIDValue));
-
-//    QDEBUG_STRINGS_OUTPUT_2("SQL_UPDATE_STRING_COMMAND", SQL_UPDATE_STRING_COMMAND);
-
-    success = YerothUtils::execQuery(SQL_UPDATE_STRING_COMMAND);
-
-    return success;
-}
+//bool YerothSqlTableModel::updateRecord(QSqlRecord &record)
+//{
+//    _logger->log("updateRecord",
+//                 QString("Table name: %1").arg(sqlTableName()));
+//
+//    bool success = false;
+//
+//    QString aCurFieldValue;
+//
+//    QString dbFieldIDValue;
+//
+//    QString aCurFieldName;
+//
+//    QString SQL_UPDATE_STRING_COMMAND = QString("UPDATE %1 SET ")
+//    										.arg(_sqlTableName);
+//
+//    for (int k = 0; k < record.count(); ++k)
+//    {
+//    	aCurFieldName.clear();
+//
+//    	aCurFieldName.append(record.fieldName(k));
+//
+//    	if (!YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::ID, aCurFieldName))
+//    	{
+//    		if (!aCurFieldName.contains("date_"))
+//    		{
+//        		aCurFieldValue = YerothUtils::get_text(record.value(aCurFieldName));
+//
+//            	SQL_UPDATE_STRING_COMMAND.append(QString("%1='%2', ")
+//            										.arg(aCurFieldName,
+//            											 aCurFieldValue));
+//    		}
+//    		else
+//    		{
+//    			aCurFieldValue = DATE_TO_DB_FORMAT_STRING(record.value(aCurFieldName).toDate());
+//
+////    			QDEBUG_STRINGS_OUTPUT_2("aCurFieldValue (DATE_TO_DB_FORMAT_STRING)", aCurFieldValue);
+//
+//    			if (!aCurFieldValue.isEmpty())
+//    			{
+//    				SQL_UPDATE_STRING_COMMAND.append(QString("%1='%2', ")
+//    													.arg(aCurFieldName,
+//    														 aCurFieldValue));
+//    			}
+//    		}
+//    	}
+//    	else
+//    	{
+//    		dbFieldIDValue = YerothUtils::get_text(record.value(aCurFieldName));
+//    	}
+//    }
+//
+//    int len = SQL_UPDATE_STRING_COMMAND.length();
+//
+//    SQL_UPDATE_STRING_COMMAND.remove(len - 2, 2);
+//
+//	SQL_UPDATE_STRING_COMMAND.append(QString(" WHERE %1 = '%2';")
+//										.arg(YerothDatabaseTableColumn::ID,
+//											 dbFieldIDValue));
+//
+////    QDEBUG_STRINGS_OUTPUT_2("SQL_UPDATE_STRING_COMMAND", SQL_UPDATE_STRING_COMMAND);
+//
+//    success = YerothUtils::execQuery(SQL_UPDATE_STRING_COMMAND);
+//
+//    return success;
+//}
 
 
 bool YerothSqlTableModel::updateRecord(unsigned row, QSqlRecord &record)

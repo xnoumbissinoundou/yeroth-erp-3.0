@@ -1339,6 +1339,11 @@ void YerothStocksWindow::lister_les_elements_du_tableau(YerothSqlTableModel & sq
     tableView_show_or_hide_columns(*tableView_stocks);
 
 
+	comboBox_strategie_de_stocks
+		->setCurrentIndex(YerothUtils::getComboBoxDatabaseQueryValue(localVisibleStrategy,
+						  YerothUtils::_strategieindexToUserViewString));
+
+
     setWindowTitle(YerothUtils::getWindowTitleWithStrategy(this, localVisibleStrategy));
 }
 

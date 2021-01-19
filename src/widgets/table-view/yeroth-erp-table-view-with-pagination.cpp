@@ -103,6 +103,8 @@ void YerothTableViewWITHpagination::displayYerothTableViewPageContentRowLimit(Ye
 
 	curYerothSqlTableModel_IN.yeroth_RESET_specify_filter_FROM_SELECT_STATEMENT(aCurYerothTableViewPageFilter);
 
+	construire_le_MAPPING_ORIGINAL_db_ID_VERS_db_row_Nr(curYerothSqlTableModel_IN);
+
 	if (0 == _currentViewWindow)
 	{
 		return ;

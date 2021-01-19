@@ -92,7 +92,7 @@ public:
 
 	bool insertNewRecord(QSqlRecord &record, QMainWindow *parent = 0);
 
-	bool updateRecord(QSqlRecord &record);
+//	bool updateRecord(QSqlRecord &record);
 
 	bool updateRecord(unsigned row, QSqlRecord &record);
 
