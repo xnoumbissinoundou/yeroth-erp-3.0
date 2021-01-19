@@ -3603,68 +3603,68 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>Alert system &quot;yeroth-erp-3-0-system-daemon&quot; is already running !</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="130"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="282"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="436"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="175"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="327"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="481"/>
         <source>Date</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="131"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="283"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="437"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="176"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="328"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="482"/>
         <source>Heure</source>
         <translation>Time</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="133"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="285"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="178"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="330"/>
         <source>Montant total</source>
         <translation>Total amount</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="134"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="286"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="179"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="331"/>
         <source>Compte client (après)</source>
         <translation>Client (after)</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="132"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="284"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="439"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="177"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="329"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="484"/>
         <source>Type d&apos;opération</source>
         <oldsource>Type de paiement</oldsource>
         <translation>Operation</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="135"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="287"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="180"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="332"/>
         <source>Référence article (service)</source>
         <translation>Article (service) reference</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="136"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="288"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="181"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="333"/>
         <source>Référence reçu</source>
         <translation>Receipt ref.</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="438"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="483"/>
         <source>ID de l&apos;opération</source>
         <translation>Operation id</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="440"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="485"/>
         <source>Qté initiale en stock</source>
         <translation>Initial stock qty</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="441"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="486"/>
         <source>Qté en mouvement</source>
         <translation>Moved qty</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="442"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="487"/>
         <source>Qté restante en stock</source>
         <translation>Remaining stock qty</translation>
     </message>
@@ -3983,7 +3983,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-historique-stock.cpp" line="93"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="500"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="545"/>
         <source>ENTRÉE</source>
         <oldsource>ENTREE</oldsource>
         <translation>ENTRANCE</translation>
@@ -4005,13 +4005,13 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-historique-stock.cpp" line="109"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="499"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="544"/>
         <source>RETOUR VENTE</source>
         <translation>SALE RETURN</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-historique-stock.cpp" line="113"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="498"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="543"/>
         <source>RÉ-APPROVISIONNEMENT</source>
         <oldsource>RÉ-APPROVISIONEMENT</oldsource>
         <translation>RESTOCK</translation>
@@ -4023,7 +4023,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     </message>
     <message>
         <location filename="src/admin/yeroth-erp-admin-windows-commons.cpp" line="63"/>
-        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="847"/>
+        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="860"/>
         <source>qui suis je ?</source>
         <translation>who am I ?</translation>
     </message>
@@ -4199,7 +4199,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>missing MANDATORY column</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="834"/>
+        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="847"/>
         <source>%1 - sélectionner les colones visibles (&apos;%2&apos; colones)</source>
         <translation>%1 - select visible columns (&apos;%2&apos; columns)</translation>
     </message>
@@ -7211,33 +7211,33 @@ stock (service)</translation>
     <message>
         <location filename="ui/yeroth-erp-admin-window.ui" line="13882"/>
         <source>paramètres de génération de la carte de fidélité clients</source>
-        <translation type="unfinished"></translation>
+        <translation>client ROYALTY program membership card generation data</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-admin-window.ui" line="14359"/>
         <source>service du programme de fidélité clients</source>
-        <translation type="unfinished"></translation>
+        <translation>client ROYALTY program company service</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-admin-window.ui" line="14383"/>
         <source>émail (service de gestion de la clientèle)</source>
         <oldsource>Émail (service de gestion de la clientèle)</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>email (client relationship management service)</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-admin-window.ui" line="15321"/>
         <source>service de gestion de la clientèle (SIÈGE)</source>
-        <translation type="unfinished"></translation>
+        <translation>client relationship management service (HEAD OFFICE)</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-admin-window.ui" line="15802"/>
         <source>service de gestion de la clientèle</source>
-        <translation type="unfinished"></translation>
+        <translation>client relationship management service</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-admin-window.ui" line="15826"/>
         <source>Tél. (service de gestion de la clientèle)</source>
-        <translation type="unfinished"></translation>
+        <translation>Tel. (client relationship management service)</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-admin-window.ui" line="16774"/>
@@ -8101,7 +8101,7 @@ Client Account</translation>
         <location filename="ui/crm/details/yeroth-erp-clients-detail-window.ui" line="13430"/>
         <source>Imprimer les carte de fidélité du client</source>
         <oldsource>Imprimer les données du client</oldsource>
-        <translation type="unfinished">Print client data</translation>
+        <translation>Print client membership card</translation>
     </message>
     <message>
         <location filename="ui/crm/details/yeroth-erp-clients-detail-window.ui" line="13442"/>
@@ -8125,7 +8125,7 @@ Client Account</translation>
         <location filename="ui/crm/details/yeroth-erp-clients-detail-window.ui" line="13471"/>
         <location filename="ui/crm/details/yeroth-erp-clients-detail-window.ui" line="13474"/>
         <source>Générer 1 carte de fidélité client</source>
-        <translation type="unfinished"></translation>
+        <translation>Generate 1 client royalty membership card</translation>
     </message>
 </context>
 <context>
