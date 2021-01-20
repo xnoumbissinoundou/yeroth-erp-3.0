@@ -16201,7 +16201,7 @@
         <string/>
        </property>
        <property name="text">
-        <string>Tél. (service de gestion de la clientèle)</string>
+        <string>tél. (service de gestion de la clientèle)</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
