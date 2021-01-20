@@ -154,20 +154,15 @@ bool YerothClientsDetailWindow::generer_la_carte_de_fidelite_du_client()
     		YerothUtils::GET_STRING_WITH_NUMBERS_WITHIN_KEPT_FOR_LATEX(
     				lineEdit_clients_details_reference_client->text()));
 
-    texDocument.replace("YEROTHCLIENTVILLE", lineEdit_clients_details_ville->text());
-
     texDocument.replace("YEROTHCLIENTRUEOUQUARTIER",
     		YerothUtils::GET_STRING_WITH_NUMBERS_WITHIN_KEPT_FOR_LATEX(
     				lineEdit_clients_details_quartier->text()));
 
-    texDocument.replace("YEROTHBOITEPOSTALE",
-    		YerothUtils::GET_STRING_WITH_NUMBERS_WITHIN_KEPT_FOR_LATEX(
-    				lineEdit_clients_details_boite_postale->text()));
+    texDocument.replace("YEROTHCLIENTVILLE", lineEdit_clients_details_ville->text());
 
-    texDocument.replace("YEROTHCLIENTTELEPHONE",
-    		QString("$%1$")
-				.arg(YerothUtils::GET_STRING_WITH_BLANK_SPACE_WITHIN_KEPT_FOR_LATEX(
-						lineEdit_clients_details_numero_telephone_1->text())));
+    texDocument.replace("YEROTHCLIENTETATOUPROVINCE", lineEdit_clients_details_province_etat->text());
+
+    texDocument.replace("YEROTHCLIENTPAYS", lineEdit_clients_details_pays->text());
 
     texDocument.replace("YEROTHSERVICEGESTIONRELATIONCLIENTELLE", "\"\"");
 
