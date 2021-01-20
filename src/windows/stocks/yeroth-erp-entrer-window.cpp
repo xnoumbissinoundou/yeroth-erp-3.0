@@ -454,12 +454,13 @@ bool YerothEntrerWindow::product_search_with_designation()
 
     if (!productName.isEmpty() && 1 == productNameRowCount)
     {
-        QString strQuery(QString("select * from %1 where %2 = '%3';")
+        QString strQuery(QString("select * from %1 where %2='%3';")
         					.arg(productListSqlTableModel.sqlTableName(),
 								 YerothDatabaseTableColumn::DESIGNATION,
 								 productName));
 
         QSqlQuery query;
+
         query.prepare(strQuery);
 
         bool success = query.exec();

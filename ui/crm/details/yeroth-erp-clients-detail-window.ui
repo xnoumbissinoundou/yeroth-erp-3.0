@@ -13424,10 +13424,10 @@
      <normaloff>:/yeroth-erp-3-0-images/yeroth-erp-3-0-pdf-print-icon.svg</normaloff>:/yeroth-erp-3-0-images/yeroth-erp-3-0-pdf-print-icon.svg</iconset>
    </property>
    <property name="text">
-    <string>Imprimer les carte de fidélité du client</string>
+    <string>Imprimer la fiche des détails du client</string>
    </property>
    <property name="toolTip">
-    <string>Imprimer les carte de fidélité du client</string>
+    <string>Imprimer la fiche des détails du client</string>
    </property>
    <property name="font">
     <font>
