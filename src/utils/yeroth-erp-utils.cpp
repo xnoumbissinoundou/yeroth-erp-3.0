@@ -1187,6 +1187,33 @@ QString YerothUtils::YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(const QString &
 }
 
 
+QString YerothUtils::GET_STRING_WITH_NUMBERS_WITHIN_KEPT_FOR_LATEX(const QString &aStringWITHBLANKSPACEWITHIN)
+{
+	QString resultString(aStringWITHBLANKSPACEWITHIN);
+
+	unsigned int nextPosIn_RESULT_STRING = 0;
+
+	for (unsigned int k = 0; k < aStringWITHBLANKSPACEWITHIN.length(); ++k)
+	{
+		if (aStringWITHBLANKSPACEWITHIN.at(k).isDigit())
+		{
+			resultString.replace(nextPosIn_RESULT_STRING,
+					             1,
+								 QString("$%1$")
+									.arg(aStringWITHBLANKSPACEWITHIN.at(k)));
+
+			nextPosIn_RESULT_STRING += 3;
+		}
+		else
+		{
+			nextPosIn_RESULT_STRING += 1;
+		}
+	}
+
+	return resultString;
+}
+
+
 double YerothUtils::get_prix_dachat_wheter_exists(const QString &stocksID)
 {
     QString prixDachatQueryString(QString("SELECT %1 FROM %2 WHERE %3='%4'")

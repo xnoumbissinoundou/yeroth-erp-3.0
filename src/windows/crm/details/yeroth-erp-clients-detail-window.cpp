@@ -150,15 +150,24 @@ bool YerothClientsDetailWindow::generer_la_carte_de_fidelite_du_client()
 
     texDocument.replace("YEROTHNOMDUPROGRAMMEDEFIDELITE", "");
 
-    texDocument.replace("YEROTHCLIENTNUMEROCOMPTE", "");
+    texDocument.replace("YEROTHCLIENTNUMEROCOMPTE",
+    		YerothUtils::GET_STRING_WITH_NUMBERS_WITHIN_KEPT_FOR_LATEX(
+    				lineEdit_clients_details_reference_client->text()));
 
-    texDocument.replace("YEROTHCLIENTVILLE", "");
+    texDocument.replace("YEROTHCLIENTVILLE", lineEdit_clients_details_ville->text());
 
-    texDocument.replace("YEROTHCLIENTRUE", "");
+    texDocument.replace("YEROTHCLIENTRUEOUQUARTIER",
+    		YerothUtils::GET_STRING_WITH_NUMBERS_WITHIN_KEPT_FOR_LATEX(
+    				lineEdit_clients_details_quartier->text()));
 
-    texDocument.replace("YEROTHCLIENTSCC", "");
+    texDocument.replace("YEROTHBOITEPOSTALE",
+    		YerothUtils::GET_STRING_WITH_NUMBERS_WITHIN_KEPT_FOR_LATEX(
+    				lineEdit_clients_details_boite_postale->text()));
 
-    texDocument.replace("YEROTHCLIENTTELEPHONE", "$7\\ 77\\ 77\\ 77$");
+    texDocument.replace("YEROTHCLIENTTELEPHONE",
+    		QString("$%1$")
+				.arg(YerothUtils::GET_STRING_WITH_BLANK_SPACE_WITHIN_KEPT_FOR_LATEX(
+						lineEdit_clients_details_numero_telephone_1->text())));
 
     texDocument.replace("YEROTHSERVICEGESTIONRELATIONCLIENTELLE", "\"\"");
 

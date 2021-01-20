@@ -133,6 +133,14 @@ public:
 
 	static QString YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(const QString &aString_IN);
 
+	static QString GET_STRING_WITH_NUMBERS_WITHIN_KEPT_FOR_LATEX(const QString &aStringWITHBLANKSPACEWITHIN);
+
+	inline static QString GET_STRING_WITH_BLANK_SPACE_WITHIN_KEPT_FOR_LATEX(const QString &aStringWITHBLANKSPACEWITHIN)
+	{
+		return QString(aStringWITHBLANKSPACEWITHIN)
+					.replace(YerothUtils::EMPTY_SPACE_REGEXP, "\\ ");
+	}
+
 	static double get_prix_dachat_wheter_exists(const QString &stocksID);
 
     inline static double getMargeBeneficiaire(double prix_vente,
