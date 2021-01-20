@@ -7213,8 +7213,8 @@ stock (service)</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-admin-window.ui" line="14260"/>
-        <source>PARAMÈTRES DE GÉNÉRATION DE LA CARTE FIDÉLITÉ CLIENT</source>
-        <oldsource>paramètres de génération de la carte de fidélité clients</oldsource>
+        <source>PARAMÈTRES DE GÉNÉRATION DE LA CARTE DE FIDÉLITÉ CLIENT</source>
+        <oldsource>PARAMÈTRES DE GÉNÉRATION DE LA CARTE FIDÉLITÉ CLIENT</oldsource>
         <translation>CLIENT ROYALTY MEMBERSHIP CARD GENERATION DATA</translation>
     </message>
     <message>

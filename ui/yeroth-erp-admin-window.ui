@@ -14257,7 +14257,7 @@
        </palette>
       </property>
       <property name="title">
-       <string>PARAMÈTRES DE GÉNÉRATION DE LA CARTE FIDÉLITÉ CLIENT</string>
+       <string>PARAMÈTRES DE GÉNÉRATION DE LA CARTE DE FIDÉLITÉ CLIENT</string>
       </property>
       <widget class="YerothLineEdit" name="lineEdit_entreprise_service_de_gestion_de_la_clientele">
        <property name="geometry">
