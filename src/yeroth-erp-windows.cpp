@@ -63,6 +63,8 @@ const QString YerothERPWindows::TITRES						("titres");
 
 const QString YerothERPWindows::LOCALISATIONS				("localisations");
 
+const QString YerothERPWindows::DEPARTEMENTS_PRODUITS		("departements_produits");
+
 const QString YerothERPWindows::CATEGORIES					("categories");
 
 const QString YerothERPWindows::PROGRAMMES_DE_FIDELITE_CLIENTS	("programmes_de_fidelite_clients");
@@ -165,7 +167,8 @@ YerothERPWindows::YerothERPWindows(QDesktopWidget *desktopWidget)
      _tableModel_users(0),
      _tableModel_titres(0),
      _tableModel_localisations(0),
-     _tableModel_categories(0),
+	 _tableModel_departements_produits(0),
+	 _tableModel_categories(0),
 	 _tableModel_programmes_de_fidelite_clients(0),
 	 _tableModel_clients(0),
 	 _tableModel_groupes_de_clients(0),
@@ -210,6 +213,7 @@ YerothERPWindows::YerothERPWindows(QDesktopWidget *desktopWidget)
     setupSqlTableModelFromName(YerothERPWindows::USERS, &_tableModel_users);
     setupSqlTableModelFromName(YerothERPWindows::TITRES, &_tableModel_titres);
     setupSqlTableModelFromName(YerothERPWindows::LOCALISATIONS, &_tableModel_localisations);
+    setupSqlTableModelFromName(YerothERPWindows::DEPARTEMENTS_PRODUITS, &_tableModel_departements_produits);
     setupSqlTableModelFromName(YerothERPWindows::CATEGORIES, &_tableModel_categories);
     setupSqlTableModelFromName(YerothERPWindows::PROGRAMMES_DE_FIDELITE_CLIENTS, &_tableModel_programmes_de_fidelite_clients);
     setupSqlTableModelFromName(YerothERPWindows::CLIENTS, &_tableModel_clients);
@@ -392,6 +396,7 @@ void YerothERPWindows::reinitialiseSqlTableModels()
     delete _tableModel_users;
     delete _tableModel_titres;
     delete _tableModel_localisations;
+    delete _tableModel_departements_produits;
     delete _tableModel_categories;
     delete _tableModel_programmes_de_fidelite_clients;
     delete _tableModel_clients;
@@ -416,6 +421,7 @@ void YerothERPWindows::reinitialiseSqlTableModels()
     _tableModel_users 						= new YerothSqlTableModel(YerothERPWindows::USERS);
     _tableModel_titres 						= new YerothSqlTableModel(YerothERPWindows::TITRES);
     _tableModel_localisations 				= new YerothSqlTableModel(YerothERPWindows::LOCALISATIONS);
+    _tableModel_departements_produits 		= new YerothSqlTableModel(YerothERPWindows::DEPARTEMENTS_PRODUITS);
     _tableModel_categories 					= new YerothSqlTableModel(YerothERPWindows::CATEGORIES);
     _tableModel_programmes_de_fidelite_clients = new YerothSqlTableModel(YerothERPWindows::PROGRAMMES_DE_FIDELITE_CLIENTS);
     _tableModel_clients						= new YerothSqlTableModel(YerothERPWindows::CLIENTS);
@@ -849,6 +855,12 @@ YerothSqlTableModel &YerothERPWindows::getSqlTableModel_localisations()
     return *_tableModel_localisations;
 }
 
+YerothSqlTableModel &YerothERPWindows::getSqlTableModel_departements_produits()
+{
+	_tableModel_departements_produits->resetFilter();
+    return *_tableModel_departements_produits;
+}
+
 YerothSqlTableModel &YerothERPWindows::getSqlTableModel_categories()
 {
     _tableModel_categories->resetFilter();
@@ -860,7 +872,6 @@ YerothSqlTableModel &YerothERPWindows::getSqlTableModel_alertes()
     _tableModel_alertes->resetFilter();
     return *_tableModel_alertes;
 }
-
 
 YerothSqlTableModel &YerothERPWindows::getSqlTableModel_remises()
 {

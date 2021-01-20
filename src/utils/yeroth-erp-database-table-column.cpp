@@ -42,7 +42,7 @@ const QString YerothDatabaseTableColumn::REFERENCE						("reference");
 const QString YerothDatabaseTableColumn::COMPTE_FOURNISSEUR				("compte_fournisseur");
 const QString YerothDatabaseTableColumn::COMPTE_CLIENT					("compte_client");
 const QString YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT	("dette_maximale_compte_client");
-const QString YerothDatabaseTableColumn::SOUS_CATEGORIE					("sous_categorie");
+const QString YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT		("nom_departement_produit");
 const QString YerothDatabaseTableColumn::CATEGORIE						("categorie");
 const QString YerothDatabaseTableColumn::QUANTITE						("quantite");
 const QString YerothDatabaseTableColumn::STOCK_DALERTE					("stock_dalerte");
@@ -225,7 +225,7 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT,		QObject::tr("Dette maximale"));
 
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::SOUS_CATEGORIE,	QObject::trUtf8("Sous catégorie"));
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,	QObject::trUtf8("département produit"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::CATEGORIE,		QObject::trUtf8("Catégorie"));
 

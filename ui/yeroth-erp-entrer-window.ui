@@ -3549,7 +3549,7 @@ Transférer</string>
       <string notr="true">border: 1px solid rgb(60, 60, 60);</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_categorie">
+    <widget class="QLabel" name="label_nom_departement_produit">
      <property name="geometry">
       <rect>
        <x>7</x>
@@ -3569,7 +3569,7 @@ Transférer</string>
       <enum>Qt::LeftToRight</enum>
      </property>
      <property name="text">
-      <string>catégorie</string>
+      <string>département produit</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -6320,7 +6320,7 @@ Transférer</string>
       <string>TVA</string>
      </property>
     </widget>
-    <widget class="YerothLineEdit" name="lineEdit_categorie_produit">
+    <widget class="YerothLineEdit" name="lineEdit_nom_departement_produit">
      <property name="geometry">
       <rect>
        <x>183</x>
@@ -13767,7 +13767,7 @@ background-color: rgb(0, 0, 0); </string>
       </property>
      </widget>
     </widget>
-    <widget class="YerothLineEdit" name="lineEdit_sous_categorie_produit">
+    <widget class="YerothLineEdit" name="lineEdit_categorie_produit">
      <property name="enabled">
       <bool>true</bool>
      </property>
@@ -14230,7 +14230,7 @@ background-color: rgb(0, 0, 0); </string>
       <string notr="true">border: 1px solid rgb(60, 60, 60);</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_sous_categorie_produit">
+    <widget class="QLabel" name="label_categorie">
      <property name="geometry">
       <rect>
        <x>7</x>
@@ -14250,7 +14250,7 @@ background-color: rgb(0, 0, 0); </string>
       <enum>Qt::LeftToRight</enum>
      </property>
      <property name="text">
-      <string>sous catégorie</string>
+      <string>catégorie</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -16719,7 +16719,7 @@ background-color: rgb(0, 0, 0); </string>
   <tabstop>lineEdit_reference_produit</tabstop>
   <tabstop>lineEdit_designation</tabstop>
   <tabstop>lineEdit_nom_entreprise_fournisseur</tabstop>
-  <tabstop>lineEdit_categorie_produit</tabstop>
+  <tabstop>lineEdit_nom_departement_produit</tabstop>
   <tabstop>doubleSpinBox_lots_entrant</tabstop>
   <tabstop>lineEdit_prix_dachat</tabstop>
   <tabstop>lineEdit_prix_vente</tabstop>

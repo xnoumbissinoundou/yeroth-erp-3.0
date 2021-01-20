@@ -80,7 +80,7 @@ OBJECTS_DIR = obj
 FORMS = ui/yeroth-erp-main-window.ui \
 			ui/yeroth-erp-configuration-comptabilite-window.ui \
 			ui/stocks/yeroth-erp-sortir-window.ui \
-		  ui/stocks/yeroth-erp-entrer-window.ui \
+		  ui/yeroth-erp-entrer-window.ui \
 		  ui/stocks/yeroth-erp-mouvements_de_stocks-window.ui \
 		  ui/stocks/yeroth-erp-marchandises-window.ui \
 		  ui/stocks/yeroth-erp-modifier-window.ui \
@@ -199,7 +199,7 @@ HEADERS = src/include/yeroth-erp-3-0-precompiled-header.hpp \
 		  src/windows/crm/yeroth-erp-clients-window.hpp \
 			src/windows/crm/yeroth-erp-payer-compte-client-window.hpp \
 		  src/windows/crm/yeroth-erp-tableau-des-transactions-du-client-window.hpp \
-		  src/windows/stocks/yeroth-erp-entrer-window.hpp \
+		  src/windows/yeroth-erp-entrer-window.hpp \
 		  src/windows/stocks/yeroth-erp-mouvements_de_stocks-window.hpp \
 		  src/windows/stocks/yeroth-erp-modifier-window.hpp \
 		  src/windows/stocks/yeroth-erp-marchandises-window.hpp \
@@ -330,7 +330,7 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 			src/windows/crm/yeroth-erp-clients-window.cpp \
 			src/windows/crm/yeroth-erp-payer-compte-client-window.cpp \
 		  src/windows/crm/yeroth-erp-tableau-des-transactions-du-client-window.cpp \
-		  src/windows/stocks/yeroth-erp-entrer-window.cpp \
+		  src/windows/yeroth-erp-entrer-window.cpp \
 		  src/windows/stocks/yeroth-erp-mouvements_de_stocks-window.cpp \
 		  src/windows/stocks/yeroth-erp-modifier-window.cpp \
 		  src/windows/stocks/yeroth-erp-marchandises-window.cpp \

@@ -19,7 +19,7 @@
 
 //** STOCKS
 #include "src/windows/stocks/yeroth-erp-mouvements_de_stocks-window.hpp"
-#include "src/windows/stocks/yeroth-erp-entrer-window.hpp"
+#include "src/windows/yeroth-erp-entrer-window.hpp"
 #include "src/windows/stocks/yeroth-erp-historique-du-stock-window.hpp"
 #include "src/windows/stocks/yeroth-erp-marchandises-window.hpp"
 #include "src/windows/stocks/yeroth-erp-modifier-window.hpp"
@@ -194,6 +194,8 @@ public:
 
 	YerothSqlTableModel &getSqlTableModel_localisations();
 
+	YerothSqlTableModel &getSqlTableModel_departements_produits();
+
 	YerothSqlTableModel &getSqlTableModel_categories();
 
 	YerothSqlTableModel &getSqlTableModel_alertes();
@@ -272,6 +274,11 @@ public:
 	static inline int getNextIdSqlTableModel_localisations()
 	{
 		return YerothERPWindows::getNextIdFromTable(YerothERPWindows::LOCALISATIONS);
+	}
+
+	static inline int getNextIdSqlTableModel_departements_produits()
+	{
+		return YerothERPWindows::getNextIdFromTable(YerothERPWindows::DEPARTEMENTS_PRODUITS);
 	}
 
 	static inline int getNextIdSqlTableModel_categories()
@@ -427,6 +434,7 @@ public:
 	static const QString USERS;
 	static const QString TITRES;
 	static const QString LOCALISATIONS;
+	static const QString DEPARTEMENTS_PRODUITS;
 	static const QString CATEGORIES;
 	static const QString PROGRAMMES_DE_FIDELITE_CLIENTS;
 	static const QString CLIENTS;
@@ -517,6 +525,7 @@ private:
 	YerothSqlTableModel 	*_tableModel_users;
 	YerothSqlTableModel 	*_tableModel_titres;
 	YerothSqlTableModel 	*_tableModel_localisations;
+	YerothSqlTableModel 	*_tableModel_departements_produits;
 	YerothSqlTableModel 	*_tableModel_categories;
 	YerothSqlTableModel 	*_tableModel_programmes_de_fidelite_clients;
 	YerothSqlTableModel 	*_tableModel_clients;
