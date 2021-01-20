@@ -8,10 +8,10 @@
 #define MOUVEMENTSDESTOCKS_WINDOW_HPP_
 
 
-# include "../../ui_yeroth-erp-mouvements_de_stocks-window.h"
+# include "../../../ui_yeroth-erp-mouvements_de_stocks-window.h"
 
 
-#include "yeroth-erp-window-commons.hpp"
+#include "src/windows/yeroth-erp-window-commons.hpp"
 
 
 # include <QtWidgets/QMessageBox>
