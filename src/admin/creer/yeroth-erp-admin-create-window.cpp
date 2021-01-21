@@ -149,6 +149,8 @@ void YerothAdminCreateWindow::rendreVisible(unsigned selectedSujetAction)
 
     clear_utilisateur_all_fields();
 
+    clear_departements_de_produits_all_fields();
+
     clear_categorie_all_fields();
 
     clear_compte_bancaire_all_fields();
@@ -179,6 +181,8 @@ void YerothAdminCreateWindow::rendreVisible(unsigned selectedSujetAction)
     populateLocalisationComboBoxes();
 
     creer_utilisateur_check_fields_entry();
+
+    creer_departements_de_produits_check_fields();
 
     creer_categorie_check_fields();
 
@@ -349,6 +353,8 @@ void YerothAdminCreateWindow::annuler()
 {
     clear_utilisateur_all_fields();
 
+    clear_departements_de_produits_all_fields();
+
     clear_categorie_all_fields();
 
     clear_compte_bancaire_all_fields();
@@ -398,6 +404,8 @@ void YerothAdminCreateWindow::handleCurrentChanged()
 
     clear_localisation_all_fields();
 
+    clear_departements_de_produits_all_fields();
+
     clear_categorie_all_fields();
 
     clear_compte_bancaire_all_fields();
@@ -413,6 +421,8 @@ void YerothAdminCreateWindow::handleCurrentChanged()
     populateLocalisationComboBoxes();
 
     creer_utilisateur_check_fields_entry();
+
+    creer_departements_de_produits_check_fields();
 
     creer_categorie_check_fields();
 
@@ -438,6 +448,8 @@ void YerothAdminCreateWindow::hideEvent(QHideEvent * hideEvent)
 #include "creer-utilisateur.cpp"
 
 #include "creer-localisation.cpp"
+
+#include "creer-departements-de-produits.cpp"
 
 #include "creer-categorie.cpp"
 

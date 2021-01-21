@@ -64,6 +64,8 @@ public slots:
 
 	bool creer_localisation();
 
+	bool creer_departements_de_produits();
+
 	bool creer_categorie();
 
 	bool creer_compte_bancaire();
@@ -106,6 +108,8 @@ private:
 
     void clear_utilisateur_all_fields();
 
+    void clear_departements_de_produits_all_fields();
+
     void clear_categorie_all_fields();
 
     void clear_localisation_all_fields();
@@ -117,6 +121,8 @@ private:
     void clear_remise_all_fields();
 
     bool creer_utilisateur_check_fields();
+
+    bool creer_departements_de_produits_check_fields();
 
     bool creer_categorie_check_fields();
 

@@ -74,6 +74,8 @@ public slots:
 
     void retourListerLocalisation();
 
+    void retourListerDepartementsDeProduits();
+
     void retourListerCategorie();
 
     void retourListerCompteBancaire();

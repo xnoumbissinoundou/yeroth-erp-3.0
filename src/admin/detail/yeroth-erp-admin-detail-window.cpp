@@ -25,6 +25,7 @@ YerothAdminDetailWindow::YerothAdminDetailWindow():YerothPOSAdminWindowsCommons(
 
     dateEdit_detail_utilisateur_date_naissance->setEnabled(false);
     dateEdit_detail_localisation_date_ouverture->setEnabled(false);
+    textEdit_detail_departements_de_produits_description->setYerothEnabled(false);
     textEdit_detail_categorie_description->setYerothEnabled(false);
     textEdit_detail_compte_bancaire_description_du_compte->setYerothEnabled(false);
     textEdit_detail_localisation_description_lieu->setYerothEnabled(false);
@@ -82,6 +83,8 @@ void YerothAdminDetailWindow::setupLineEdits()
     lineEdit_detail_utilisateur_numero_telephone_2->setYerothEnabled(false);
     lineEdit_detail_utilisateur_id->setYerothEnabled(false);
     lineEdit_detail_utilisateur_mot_passe->setYerothEnabled(false);
+
+    lineEdit_detail_departements_de_produits_nom->setYerothEnabled(false);
 
     lineEdit_detail_categorie_nom->setYerothEnabled(false);
 
@@ -148,6 +151,9 @@ void YerothAdminDetailWindow::modifier()
         break;
     case SUJET_ACTION_LOCALISATION:
         _allWindows->_adminModifierWindow->rendreVisible(SUJET_ACTION_LOCALISATION);
+        break;
+    case SUJET_ACTION_DEPARTEMENTS_DE_PRODUITS:
+        _allWindows->_adminModifierWindow->rendreVisible(SUJET_ACTION_DEPARTEMENTS_DE_PRODUITS);
         break;
     case SUJET_ACTION_CATEGORIE:
         _allWindows->_adminModifierWindow->rendreVisible(SUJET_ACTION_CATEGORIE);
@@ -473,6 +479,14 @@ void YerothAdminDetailWindow::retourListerLocalisation()
     _allWindows->_adminListerWindow->rendreVisible(SUJET_ACTION_LOCALISATION);
    rendreInvisible();
 }
+
+
+void YerothAdminDetailWindow::retourListerDepartementsDeProduits()
+{
+    _allWindows->_adminListerWindow->rendreVisible(SUJET_ACTION_DEPARTEMENTS_DE_PRODUITS);
+   rendreInvisible();
+}
+
 
 void YerothAdminDetailWindow::retourListerCategorie()
 {
