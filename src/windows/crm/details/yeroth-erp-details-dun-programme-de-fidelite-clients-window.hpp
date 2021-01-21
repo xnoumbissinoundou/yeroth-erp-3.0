@@ -57,7 +57,7 @@ public:
 
     virtual void rendreInvisible();
 
-    virtual void rendreVisible(YerothSqlTableModel *curClient_ROYALTY_PROGRAM_TableModel,
+    virtual void rendreVisible(YerothSqlTableModel *curClient_LOYALTY_PROGRAM_TableModel,
 					   	   	   YerothSqlTableModel *stocksTableModel);
 
 public slots:
@@ -87,12 +87,12 @@ private:
 
     void setupLineEdits();
 
-    void showClientROYALTY_PROGRAM_DETAIL();
+    void showClientLOYALTY_PROGRAM_DETAIL();
 
 
     YerothLogger			*_logger;
 
-    YerothSqlTableModel 	*_curClient_ROYALTY_PROGRAM_TableModel;
+    YerothSqlTableModel 	*_curClient_LOYALTY_PROGRAM_TableModel;
 };
 
 

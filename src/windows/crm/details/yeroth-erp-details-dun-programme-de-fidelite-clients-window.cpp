@@ -189,22 +189,22 @@ void YerothDetailsDunProgrammeDeFideliteClientsWindow::rendreInvisible()
 }
 
 
-void YerothDetailsDunProgrammeDeFideliteClientsWindow::rendreVisible(YerothSqlTableModel * curClient_ROYALTY_PROGRAM_TableModel,
+void YerothDetailsDunProgrammeDeFideliteClientsWindow::rendreVisible(YerothSqlTableModel * curClient_LOYALTY_PROGRAM_TableModel,
 											  	  	  	  	  	  	 YerothSqlTableModel * stocksTableModel)
 {
 	_curStocksTableModel = stocksTableModel;
 
-	_curClient_ROYALTY_PROGRAM_TableModel = curClient_ROYALTY_PROGRAM_TableModel;
+	_curClient_LOYALTY_PROGRAM_TableModel = curClient_LOYALTY_PROGRAM_TableModel;
 
     //qDebug() << "++ last selected row: " << YerothERPWindows::get_last_lister_selected_row_ID();
 
 	setVisible(true);
 
-    showClientROYALTY_PROGRAM_DETAIL();
+    showClientLOYALTY_PROGRAM_DETAIL();
 }
 
 
-void YerothDetailsDunProgrammeDeFideliteClientsWindow::showClientROYALTY_PROGRAM_DETAIL()
+void YerothDetailsDunProgrammeDeFideliteClientsWindow::showClientLOYALTY_PROGRAM_DETAIL()
 {
 	QSqlRecord record;
 

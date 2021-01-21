@@ -958,7 +958,7 @@ Press m &apos;Cancel&apos; to exit %2</translation>
     <message>
         <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="259"/>
         <source>Programme de fidélité clients</source>
-        <translation>ROYALTY client program</translation>
+        <translation>LOYALTY client program</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="261"/>
@@ -1177,7 +1177,7 @@ Press m &apos;Cancel&apos; to exit %2</translation>
     <message>
         <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="373"/>
         <source>Référence fidélité clients</source>
-        <translation>ROYALTY client program reference</translation>
+        <translation>LOYALTY client program reference</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="375"/>
@@ -1248,7 +1248,7 @@ Press m &apos;Cancel&apos; to exit %2</translation>
     <message>
         <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="419"/>
         <source>Description programme de fidélité clients</source>
-        <translation>Cient ROYALTY PROGRAM DESCRIPTION</translation>
+        <translation>Cient LOYALTY PROGRAM DESCRIPTION</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="421"/>
@@ -4581,79 +4581,79 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     <message>
         <location filename="src/windows/crm/creer/yeroth-erp-creer-un-programme-de-fidelite-clients-window.cpp" line="32"/>
         <source>créer un programme de fidélité clients</source>
-        <translation>create a client royalty program</translation>
+        <translation>create a client loyalty program</translation>
     </message>
     <message>
         <location filename="src/windows/crm/creer/yeroth-erp-creer-un-programme-de-fidelite-clients-window.cpp" line="266"/>
         <source>programme de fidélité clients</source>
-        <translation>ROYALTY client program</translation>
+        <translation>LOYALTY client program</translation>
     </message>
     <message>
         <location filename="src/windows/crm/creer/yeroth-erp-creer-un-programme-de-fidelite-clients-window.cpp" line="381"/>
         <source>Le programme de fidélité de clients &apos;</source>
-        <translation>client royalty program &apos;</translation>
+        <translation>client loyalty program &apos;</translation>
     </message>
     <message>
         <location filename="src/windows/crm/creer/yeroth-erp-creer-un-programme-de-fidelite-clients-window.cpp" line="450"/>
         <location filename="src/windows/crm/creer/yeroth-erp-creer-un-programme-de-fidelite-clients-window.cpp" line="460"/>
         <source>créer 1 programme de fidélité clients</source>
-        <translation>create a client royalty program</translation>
+        <translation>create a client loyalty program</translation>
     </message>
     <message>
         <location filename="src/windows/crm/details/yeroth-erp-details-dun-programme-de-fidelite-clients-window.cpp" line="27"/>
         <source>détails d&apos;un programme de fidélité clients</source>
-        <translation>cient royalty program details</translation>
+        <translation>cient loyalty program details</translation>
     </message>
     <message>
         <location filename="src/windows/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.hpp" line="80"/>
         <location filename="src/windows/crm/details/yeroth-erp-details-dun-programme-de-fidelite-clients-window.hpp" line="74"/>
         <source>Vous pouvez modifier les détails de ce programme de fidélité clients en cliquant sur &apos;Modifier&apos; !</source>
-        <translation>Details of this client ROYALTY PROGRAM could be modify by pressing button &apos;Modify&apos; !</translation>
+        <translation>Details of this client LOYALTY PROGRAM could be modify by pressing button &apos;Modify&apos; !</translation>
     </message>
     <message>
         <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="64"/>
         <source>programmes de fidélité clients</source>
-        <translation>ROYALTY client program</translation>
+        <translation>LOYALTY client program</translation>
     </message>
     <message>
         <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="197"/>
         <source>terme à rechercher (désignation du programme fidélité de clients)</source>
-        <translation>keyword to search for (client ROYALTY program designation)</translation>
+        <translation>keyword to search for (client LOYALTY program designation)</translation>
     </message>
     <message>
         <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="254"/>
         <source>Supprimer les programmes de fidélité clients sélectionés ?</source>
-        <translation>Delete selected client royalty program groups ?</translation>
+        <translation>Delete selected client loyalty program groups ?</translation>
     </message>
     <message>
         <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="265"/>
         <source>Les programmes fidélité de clients sélectionés</source>
-        <translation>Selected client royalty programs</translation>
+        <translation>Selected client loyalty programs</translation>
     </message>
     <message>
         <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="331"/>
         <source>Supprimer le programme de fidélité clients &apos;%1&apos; ?</source>
-        <translation>Delete client royalty program &apos;%1&apos; ?</translation>
+        <translation>Delete client loyalty program &apos;%1&apos; ?</translation>
     </message>
     <message>
         <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="344"/>
         <source>Le programme de fidélité clients &apos;%1</source>
-        <translation>Client royalty program &apos;%1</translation>
+        <translation>Client loyalty program &apos;%1</translation>
     </message>
     <message>
         <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="566"/>
         <source>détails d&apos;un &quot;programme de fidélité clients&quot;</source>
-        <translation>client royalty program details</translation>
+        <translation>client loyalty program details</translation>
     </message>
     <message>
         <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="567"/>
         <source>Sélectionnez un &quot;programme de fidélité clients&quot; à afficher les détails !</source>
-        <translation>Select a client royalty program to view its details !</translation>
+        <translation>Select a client loyalty program to view its details !</translation>
     </message>
     <message>
         <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.hpp" line="79"/>
         <source>1) Sélectionner un &apos;programme de fidélité clients&apos; dans le tableau de cette page, ensuite cliquer sur l&apos;opération que vous souhaitez réaliser !</source>
-        <translation>Select a &apos;client ROYALTY program&apos; in table listing, and then press the button of the action you would like to perform !</translation>
+        <translation>Select a &apos;client LOYALTY program&apos; in table listing, and then press the button of the action you would like to perform !</translation>
     </message>
 </context>
 <context>
@@ -7320,12 +7320,12 @@ stock (service)</translation>
         <location filename="ui/yeroth-erp-admin-window.ui" line="14260"/>
         <source>PARAMÈTRES DE GÉNÉRATION DE LA CARTE DE FIDÉLITÉ CLIENT</source>
         <oldsource>PARAMÈTRES DE GÉNÉRATION DE LA CARTE FIDÉLITÉ CLIENT</oldsource>
-        <translation>CLIENT ROYALTY MEMBERSHIP CARD GENERATION DATA</translation>
+        <translation>CLIENT LOYALTY MEMBERSHIP CARD GENERATION DATA</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-admin-window.ui" line="14737"/>
         <source>service du programme de fidélité clients</source>
-        <translation>client ROYALTY program company service</translation>
+        <translation>client LOYALTY program company service</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-admin-window.ui" line="14761"/>
@@ -8240,7 +8240,7 @@ Client Account</translation>
         <location filename="ui/crm/details/yeroth-erp-clients-detail-window.ui" line="13471"/>
         <location filename="ui/crm/details/yeroth-erp-clients-detail-window.ui" line="13474"/>
         <source>Générer 1 carte de fidélité client</source>
-        <translation>Generate 1 client royalty membership card</translation>
+        <translation>Generate 1 client loyalty membership card</translation>
     </message>
 </context>
 <context>
@@ -8975,7 +8975,7 @@ Client Account</translation>
     <message>
         <location filename="ui/crm/creer/yeroth-erp-creer-groupe-de-clients-window.ui" line="6768"/>
         <source>programme de fidélité client</source>
-        <translation>ROYALTY client program</translation>
+        <translation>LOYALTY client program</translation>
     </message>
     <message>
         <location filename="ui/crm/creer/yeroth-erp-creer-groupe-de-clients-window.ui" line="7695"/>
@@ -9088,7 +9088,7 @@ Client Account</translation>
     <message>
         <location filename="ui/crm/creer/yeroth-erp-creer-un-programme-de-fidelite-clients-window.ui" line="437"/>
         <source>Yeroth-erp-3.0 - créer un programme de fidélité de clients</source>
-        <translation>Yeroth-erp-3.0 - create a client royalty program</translation>
+        <translation>Yeroth-erp-3.0 - create a client loyalty program</translation>
     </message>
     <message>
         <location filename="ui/crm/creer/yeroth-erp-creer-un-programme-de-fidelite-clients-window.ui" line="876"/>
@@ -9110,7 +9110,7 @@ Client Account</translation>
     <message>
         <location filename="ui/crm/creer/yeroth-erp-creer-un-programme-de-fidelite-clients-window.ui" line="2185"/>
         <source>Données du programme de fidélité de clients</source>
-        <translation>Cient ROYALTY PROGRAM DATA</translation>
+        <translation>Cient LOYALTY PROGRAM DATA</translation>
     </message>
     <message>
         <location filename="ui/crm/creer/yeroth-erp-creer-un-programme-de-fidelite-clients-window.ui" line="2622"/>
@@ -9125,7 +9125,7 @@ Client Account</translation>
     <message>
         <location filename="ui/crm/creer/yeroth-erp-creer-un-programme-de-fidelite-clients-window.ui" line="3645"/>
         <source>description du programme de fidélité de clients</source>
-        <translation>Cient ROYALTY PROGRAM DESCRIPTION</translation>
+        <translation>Cient LOYALTY PROGRAM DESCRIPTION</translation>
     </message>
     <message>
         <location filename="ui/crm/creer/yeroth-erp-creer-un-programme-de-fidelite-clients-window.ui" line="6392"/>
@@ -9229,7 +9229,7 @@ Client Account</translation>
         <location filename="ui/crm/creer/yeroth-erp-creer-un-programme-de-fidelite-clients-window.ui" line="10560"/>
         <source>Annuler la création du programme de fidélité clients</source>
         <oldsource>Annuler la création du groupe de clients</oldsource>
-        <translation>Cancel client royalty program creation</translation>
+        <translation>Cancel client loyalty program creation</translation>
     </message>
     <message>
         <location filename="ui/crm/creer/yeroth-erp-creer-un-programme-de-fidelite-clients-window.ui" line="10572"/>
@@ -9304,14 +9304,14 @@ Client Account</translation>
     <message>
         <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="5982"/>
         <source>programme de fidélité client</source>
-        <translation>royalty client program</translation>
+        <translation>loyalty client program</translation>
     </message>
     <message>
         <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="6909"/>
         <source>PROGRAMMES 
 DE FIDÉLITÉ 
 CLIENTS</source>
-        <translation>CLIENT ROYALTY
+        <translation>CLIENT LOYALTY
 PROGRAM</translation>
     </message>
     <message>
@@ -9385,7 +9385,7 @@ PROGRAM</translation>
         <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="8819"/>
         <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="8822"/>
         <source>Lister les programmes de fidélité clients</source>
-        <translation>View client ROYALTY programs</translation>
+        <translation>View client LOYALTY programs</translation>
     </message>
     <message>
         <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="8792"/>
@@ -9398,7 +9398,7 @@ PROGRAM</translation>
     <message>
         <location filename="ui/crm/details/yeroth-erp-details-dun-programme-de-fidelite-clients-window.ui" line="437"/>
         <source>Yeroth-erp-3.0 - détails d&apos;un programme de fidélité clients</source>
-        <translation>Yeroth-erp-3.0 - client royalty program details</translation>
+        <translation>Yeroth-erp-3.0 - client loyalty program details</translation>
     </message>
     <message>
         <location filename="ui/crm/details/yeroth-erp-details-dun-programme-de-fidelite-clients-window.ui" line="876"/>
@@ -9413,7 +9413,7 @@ PROGRAM</translation>
     <message>
         <location filename="ui/crm/details/yeroth-erp-details-dun-programme-de-fidelite-clients-window.ui" line="1749"/>
         <source>Données du programme de fidélité de clients</source>
-        <translation>Cient ROYALTY PROGRAM DATA</translation>
+        <translation>Cient LOYALTY PROGRAM DATA</translation>
     </message>
     <message>
         <location filename="ui/crm/details/yeroth-erp-details-dun-programme-de-fidelite-clients-window.ui" line="2186"/>
@@ -9428,7 +9428,7 @@ PROGRAM</translation>
     <message>
         <location filename="ui/crm/details/yeroth-erp-details-dun-programme-de-fidelite-clients-window.ui" line="2235"/>
         <source>description du programme de fidélité de clients</source>
-        <translation>client royalty program description</translation>
+        <translation>client loyalty program description</translation>
     </message>
     <message>
         <location filename="ui/crm/details/yeroth-erp-details-dun-programme-de-fidelite-clients-window.ui" line="3620"/>
@@ -9464,7 +9464,7 @@ PROGRAM</translation>
         <location filename="ui/crm/details/yeroth-erp-details-dun-programme-de-fidelite-clients-window.ui" line="10045"/>
         <location filename="ui/crm/details/yeroth-erp-details-dun-programme-de-fidelite-clients-window.ui" line="10048"/>
         <source>Lister les programmes de fidélité clients</source>
-        <translation>View client ROYALTY programs</translation>
+        <translation>View client LOYALTY programs</translation>
     </message>
     <message>
         <location filename="ui/crm/details/yeroth-erp-details-dun-programme-de-fidelite-clients-window.ui" line="10060"/>
@@ -9578,7 +9578,7 @@ CLIENTS</source>
         <oldsource>CRÉER UN
 PROGRAMME DE 
 FIDÉLITÉ CLIENT</oldsource>
-        <translation>CLIENT ROYALTY
+        <translation>CLIENT LOYALTY
 PROGRAM</translation>
     </message>
     <message>
@@ -10117,7 +10117,7 @@ Client group</translation>
         <source>PROGRAMMES 
 DE FIDÉLITÉ 
 CLIENTS</source>
-        <translation>CLIENT ROYALTY
+        <translation>CLIENT LOYALTY
 PROGRAM</translation>
     </message>
     <message>
@@ -10513,7 +10513,7 @@ Transférer</source>
     <message>
         <location filename="ui/crm/yeroth-erp-programmes-de-fidelite-clients-window.ui" line="434"/>
         <source>Yeroth-erp-3.0 - programmes de fidélité clients</source>
-        <translation>Yeroth-erp-3.0 - client royalty program</translation>
+        <translation>Yeroth-erp-3.0 - client loyalty program</translation>
     </message>
     <message>
         <location filename="ui/crm/yeroth-erp-programmes-de-fidelite-clients-window.ui" line="872"/>
@@ -10528,7 +10528,7 @@ FIDÉLITÉ CLIENT</source>
         <oldsource>Créer Un
 Groupe de clients</oldsource>
         <translation>CREATE A
-CLIENT ROYALTY 
+CLIENT LOYALTY 
 PROGRAM</translation>
     </message>
     <message>
@@ -10673,7 +10673,7 @@ PROGRAM</translation>
         <location filename="ui/crm/yeroth-erp-programmes-de-fidelite-clients-window.ui" line="15272"/>
         <source>Afficher les détails de ce programme fidélité de clients</source>
         <oldsource>Afficher les détails de ce groupe</oldsource>
-        <translation>Show this client royalty program details</translation>
+        <translation>Show this client loyalty program details</translation>
     </message>
     <message>
         <location filename="ui/crm/yeroth-erp-programmes-de-fidelite-clients-window.ui" line="15284"/>
@@ -10734,7 +10734,7 @@ PROGRAM</translation>
         <location filename="ui/crm/yeroth-erp-programmes-de-fidelite-clients-window.ui" line="15429"/>
         <source>Supprimer un programme fidélité de clients</source>
         <oldsource>Supprimer un groupe de clients</oldsource>
-        <translation>Delete a client royalty program</translation>
+        <translation>Delete a client loyalty program</translation>
     </message>
 </context>
 <context>
@@ -12288,7 +12288,7 @@ Sale</translation>
     <message>
         <location filename="ui/crm/modifier/yeroth-erp-modifier-groupe-de-clients-window.ui" line="6768"/>
         <source>programme de fidélité client</source>
-        <translation>ROYALTY client program</translation>
+        <translation>LOYALTY client program</translation>
     </message>
     <message>
         <location filename="ui/crm/modifier/yeroth-erp-modifier-groupe-de-clients-window.ui" line="7695"/>
@@ -12397,7 +12397,7 @@ Sale</translation>
     <message>
         <location filename="ui/crm/modifier/yeroth-erp-modifier-un-programme-de-fidelite-clients-window.ui" line="437"/>
         <source>Yeroth-erp-3.0 - créer un programme de fidélité de clients</source>
-        <translation>Yeroth-erp-3.0 - create a client royalty program</translation>
+        <translation>Yeroth-erp-3.0 - create a client loyalty program</translation>
     </message>
     <message>
         <location filename="ui/crm/modifier/yeroth-erp-modifier-un-programme-de-fidelite-clients-window.ui" line="876"/>
@@ -12419,7 +12419,7 @@ Sale</translation>
     <message>
         <location filename="ui/crm/modifier/yeroth-erp-modifier-un-programme-de-fidelite-clients-window.ui" line="2185"/>
         <source>Données du programme de fidélité de clients</source>
-        <translation>Cient ROYALTY PROGRAM DATA</translation>
+        <translation>Cient LOYALTY PROGRAM DATA</translation>
     </message>
     <message>
         <location filename="ui/crm/modifier/yeroth-erp-modifier-un-programme-de-fidelite-clients-window.ui" line="2622"/>
@@ -12434,7 +12434,7 @@ Sale</translation>
     <message>
         <location filename="ui/crm/modifier/yeroth-erp-modifier-un-programme-de-fidelite-clients-window.ui" line="3645"/>
         <source>description du programme de fidélité de clients</source>
-        <translation type="unfinished">client royalty program description</translation>
+        <translation type="unfinished">client loyalty program description</translation>
     </message>
     <message>
         <location filename="ui/crm/modifier/yeroth-erp-modifier-un-programme-de-fidelite-clients-window.ui" line="5520"/>
@@ -12537,7 +12537,7 @@ Sale</translation>
         <location filename="ui/crm/modifier/yeroth-erp-modifier-un-programme-de-fidelite-clients-window.ui" line="10557"/>
         <location filename="ui/crm/modifier/yeroth-erp-modifier-un-programme-de-fidelite-clients-window.ui" line="10560"/>
         <source>Annuler la création du programme de fidélité clients</source>
-        <translation type="unfinished">Cancel client royalty program creation</translation>
+        <translation type="unfinished">Cancel client loyalty program creation</translation>
     </message>
     <message>
         <location filename="ui/crm/modifier/yeroth-erp-modifier-un-programme-de-fidelite-clients-window.ui" line="10572"/>
@@ -13564,7 +13564,7 @@ Account
     <message>
         <location filename="ui/crm/yeroth-erp-payer-compte-client-window.ui" line="9875"/>
         <source>valeur compte client FIDÉLITÉ</source>
-        <translation>ROYALTY client account value</translation>
+        <translation>LOYALTY client account value</translation>
     </message>
     <message>
         <location filename="ui/crm/yeroth-erp-payer-compte-client-window.ui" line="10313"/>

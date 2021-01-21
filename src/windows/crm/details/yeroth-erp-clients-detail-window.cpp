@@ -107,16 +107,16 @@ bool YerothClientsDetailWindow::generer_la_carte_de_fidelite_du_client()
 
     emit SIGNAL_INCREMENT_PROGRESS_BAR(12);
 
-    QString latexFileNamePrefix("yeroth-erp-carte-de-fidelite-client-ROYALTY");
+    QString latexFileNamePrefix("yeroth-erp-carte-de-fidelite-client-LOYALTY");
 
 #ifdef YEROTH_ENGLISH_LANGUAGE
     latexFileNamePrefix.clear();
-    latexFileNamePrefix.append("yeroth-erp-client-ROYALTY-program-card");
+    latexFileNamePrefix.append("yeroth-erp-client-LOYALTY-program-card");
 #endif
 
     QString texDocument;
 
-    YerothUtils::getLatexCLIENT_ROYALTY_CARD_template(texDocument);
+    YerothUtils::getLatexCLIENT_LOYALTY_CARD_template(texDocument);
 
     if (0 != label_image_produit_pixmap)
     {

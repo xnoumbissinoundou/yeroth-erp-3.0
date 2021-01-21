@@ -57,7 +57,7 @@ YerothERPProgrammesDeFideliteClientsWindow::YerothERPProgrammesDeFideliteClients
  YerothAbstractClassYerothSearchWindow(_allWindows->PROGRAMMES_DE_FIDELITE_CLIENTS),
  _logger(new YerothLogger("YerothERPProgrammesDeFideliteClientsWindow")),
  _pushButton_programmes_de_fidelite_clients_filtrer_font(0),
- _curClient_ROYALTY_PROGRAM_TableModel(0)
+ _curClient_LOYALTY_PROGRAM_TableModel(0)
 {
     _windowName = QString("%1 - %2")
     				.arg(YEROTH_ERP_WINDOW_TITLE,
@@ -92,7 +92,7 @@ YerothERPProgrammesDeFideliteClientsWindow::YerothERPProgrammesDeFideliteClients
 
     reinitialiser_champs_db_visibles();
 
-    _curClient_ROYALTY_PROGRAM_TableModel = &_allWindows->getSqlTableModel_programmes_de_fidelite_clients();
+    _curClient_LOYALTY_PROGRAM_TableModel = &_allWindows->getSqlTableModel_programmes_de_fidelite_clients();
 
     populateComboBoxes();
 
@@ -175,7 +175,7 @@ void YerothERPProgrammesDeFideliteClientsWindow::slot_reinitialiser_champs_db_vi
 {
 	reinitialiser_champs_db_visibles();
 	resetTableViewHorizontalHeader_DEFAULT_ORDERING();
-	afficher_programmes_de_fidelite_clients(*_curClient_ROYALTY_PROGRAM_TableModel);
+	afficher_programmes_de_fidelite_clients(*_curClient_LOYALTY_PROGRAM_TableModel);
 }
 
 
@@ -207,9 +207,9 @@ void YerothERPProgrammesDeFideliteClientsWindow::setupDateTimeEdits()
 
 	dateEdit_programmes_de_fidelite_clients_fin->setStartDate(GET_CURRENT_DATE);
 
-	_client_ROYALTY_PROGRAM_DateCreationFilter.clear();
+	_client_LOYALTY_PROGRAM_DateCreationFilter.clear();
 
-    _client_ROYALTY_PROGRAM_DateCreationFilter.append(QString(" ( %1 >= '%2' AND %3 <= '%4' ) ")
+    _client_LOYALTY_PROGRAM_DateCreationFilter.append(QString(" ( %1 >= '%2' AND %3 <= '%4' ) ")
     										.arg(YerothDatabaseTableColumn::DATE_CREATION,
     										     DATE_TO_DB_FORMAT_STRING(dateEdit_programmes_de_fidelite_clients_debut->date()),
 												 YerothDatabaseTableColumn::DATE_CREATION,
@@ -234,7 +234,7 @@ void YerothERPProgrammesDeFideliteClientsWindow::modifier_un_programme_de_fideli
 
 
 void YerothERPProgrammesDeFideliteClientsWindow::
-	supprimer_PLUSIEURS_programmes_de_fidelite_clients(YerothSqlTableModel &a_ROYALTY_PROGRAM_TableModel)
+	supprimer_PLUSIEURS_programmes_de_fidelite_clients(YerothSqlTableModel &a_LOYALTY_PROGRAM_TableModel)
 {
 	QString YEROTH_TABLE_VIEW_DELETE_SELECTED_ROWS_QUERY_STRING;
 
@@ -264,7 +264,7 @@ void YerothERPProgrammesDeFideliteClientsWindow::
 
     	QString msg(QObject::trUtf8("Les programmes fidélité de clients sélectionés"));
 
-    	if (success && a_ROYALTY_PROGRAM_TableModel.select())
+    	if (success && a_LOYALTY_PROGRAM_TableModel.select())
     	{
     		setupLineEditsQCompleters((QObject *)this);
 
@@ -292,11 +292,11 @@ void YerothERPProgrammesDeFideliteClientsWindow::supprimer_un_programme_de_fidel
 {
     YerothSqlTableModel *programmeDeFideliteClientsTableModel = 0;
 
-    if (_curClient_ROYALTY_PROGRAM_TableModel &&
+    if (_curClient_LOYALTY_PROGRAM_TableModel &&
     	YerothUtils::isEqualCaseInsensitive(_allWindows->PROGRAMMES_DE_FIDELITE_CLIENTS,
-    										_curClient_ROYALTY_PROGRAM_TableModel->sqlTableName()))
+    										_curClient_LOYALTY_PROGRAM_TableModel->sqlTableName()))
     {
-        programmeDeFideliteClientsTableModel = _curClient_ROYALTY_PROGRAM_TableModel;
+        programmeDeFideliteClientsTableModel = _curClient_LOYALTY_PROGRAM_TableModel;
     }
     else
     {
@@ -372,9 +372,9 @@ void YerothERPProgrammesDeFideliteClientsWindow::supprimer_un_programme_de_fidel
 }
 
 
-void YerothERPProgrammesDeFideliteClientsWindow::afficher_programmes_de_fidelite_clients(YerothSqlTableModel &client_ROYALTY_PROGRAM_TableModel)
+void YerothERPProgrammesDeFideliteClientsWindow::afficher_programmes_de_fidelite_clients(YerothSqlTableModel &client_LOYALTY_PROGRAM_TableModel)
 {
-	tableView_programmes_de_fidelite_clients->queryYerothTableViewCurrentPageContentRow(client_ROYALTY_PROGRAM_TableModel);
+	tableView_programmes_de_fidelite_clients->queryYerothTableViewCurrentPageContentRow(client_LOYALTY_PROGRAM_TableModel);
 
     tableView_show_or_hide_columns(*tableView_programmes_de_fidelite_clients);
 
@@ -438,13 +438,13 @@ void YerothERPProgrammesDeFideliteClientsWindow::rendreVisible(YerothSqlTableMod
 
     setupLineEditsQCompleters((QObject *)this);
 
-    setYerothSqlTableModel(_curClient_ROYALTY_PROGRAM_TableModel);
+    setYerothSqlTableModel(_curClient_LOYALTY_PROGRAM_TableModel);
 
     _curStocksTableModel = stocksTableModel;
 
 	setVisible(true);
 
-    afficher_programmes_de_fidelite_clients(*_curClient_ROYALTY_PROGRAM_TableModel);
+    afficher_programmes_de_fidelite_clients(*_curClient_LOYALTY_PROGRAM_TableModel);
 }
 
 
@@ -469,7 +469,7 @@ void YerothERPProgrammesDeFideliteClientsWindow::definirManager()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
 
-    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(this, _curClient_ROYALTY_PROGRAM_TableModel)
+    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(this, _curClient_LOYALTY_PROGRAM_TableModel)
 
 
     pushButton_programmes_de_fidelite_clients_filtrer->enable(this, SLOT(filtrer_programmes_de_fidelite_client()));
@@ -495,7 +495,7 @@ void YerothERPProgrammesDeFideliteClientsWindow::definirVendeur()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
 
-    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(this, _curClient_ROYALTY_PROGRAM_TableModel)
+    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(this, _curClient_LOYALTY_PROGRAM_TableModel)
 
 
     pushButton_programmes_de_fidelite_clients_filtrer->enable(this, SLOT(filtrer_programmes_de_fidelite_client()));
@@ -552,11 +552,11 @@ void YerothERPProgrammesDeFideliteClientsWindow::definirPasDeRole()
 
 void YerothERPProgrammesDeFideliteClientsWindow::afficher_au_detail()
 {
-    if (_curClient_ROYALTY_PROGRAM_TableModel->rowCount() > 0)
+    if (_curClient_LOYALTY_PROGRAM_TableModel->rowCount() > 0)
     {
     	//qDebug() << "++ test" << modelIndex.row();
         _allWindows->_detailsDunProgrammeDeFideliteClientsWindow
-							->rendreVisible(_curClient_ROYALTY_PROGRAM_TableModel,
+							->rendreVisible(_curClient_LOYALTY_PROGRAM_TableModel,
 											_curStocksTableModel);
 
         rendreInvisible();
@@ -571,9 +571,9 @@ void YerothERPProgrammesDeFideliteClientsWindow::afficher_au_detail()
 
 void YerothERPProgrammesDeFideliteClientsWindow::refineYerothLineEdits()
 {
-	_client_ROYALTY_PROGRAM_DateCreationFilter.clear();
+	_client_LOYALTY_PROGRAM_DateCreationFilter.clear();
 
-	_client_ROYALTY_PROGRAM_DateCreationFilter.append(QString(" ( %1 >= '%2' AND %3 <= '%4' ) ")
+	_client_LOYALTY_PROGRAM_DateCreationFilter.append(QString(" ( %1 >= '%2' AND %3 <= '%4' ) ")
     													.arg(YerothDatabaseTableColumn::DATE_CREATION,
     														 DATE_TO_DB_FORMAT_STRING(dateEdit_programmes_de_fidelite_clients_debut->date()),
 															 YerothDatabaseTableColumn::DATE_CREATION,
@@ -581,7 +581,7 @@ void YerothERPProgrammesDeFideliteClientsWindow::refineYerothLineEdits()
 
 	setupLineEditsQCompleters((QObject *)this);
 
-	afficher_programmes_de_fidelite_clients(*_curClient_ROYALTY_PROGRAM_TableModel);
+	afficher_programmes_de_fidelite_clients(*_curClient_LOYALTY_PROGRAM_TableModel);
 }
 
 
@@ -635,8 +635,8 @@ bool YerothERPProgrammesDeFideliteClientsWindow::export_csv_file()
 	success = YerothUtils::export_csv_file(*this,
 										   *tableView_programmes_de_fidelite_clients,
 										   tableColumnsToIgnore,
-										   "yeroth-erp-client-ROYALTY-PROGRAM-group-listing-csv-format",
-										   "client ROYALTY PROGRAM listing");
+										   "yeroth-erp-client-LOYALTY-PROGRAM-group-listing-csv-format",
+										   "client LOYALTY PROGRAM listing");
 #endif
 
 	return success;

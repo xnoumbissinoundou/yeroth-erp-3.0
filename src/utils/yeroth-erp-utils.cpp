@@ -3330,7 +3330,7 @@ bool YerothUtils::import_csv_file_content(QString aCsvFileFullPath,
 }
 
 
-void YerothUtils::getLatexCLIENT_ROYALTY_CARD_template(QString &texDocumentString_in_out)
+void YerothUtils::getLatexCLIENT_LOYALTY_CARD_template(QString &texDocumentString_in_out)
 {
 	texDocumentString_in_out.clear();
     texDocumentString_in_out.append(YerothUtils::template_carte_de_fidelite_client_TEMPLATE_tex);

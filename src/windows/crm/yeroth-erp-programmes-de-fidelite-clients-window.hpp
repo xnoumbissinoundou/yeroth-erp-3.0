@@ -105,15 +105,15 @@ private slots:
 
 	void modifier_un_programme_de_fidelite_clients();
 
-	void supprimer_PLUSIEURS_programmes_de_fidelite_clients(YerothSqlTableModel &a_ROYALTY_PROGRAM_TableModel);
+	void supprimer_PLUSIEURS_programmes_de_fidelite_clients(YerothSqlTableModel &a_LOYALTY_PROGRAM_TableModel);
 
 	void supprimer_un_programme_de_fidelite_clients();
 
-	void afficher_programmes_de_fidelite_clients(YerothSqlTableModel &client_ROYALTY_PROGRAM_TableModel);
+	void afficher_programmes_de_fidelite_clients(YerothSqlTableModel &client_LOYALTY_PROGRAM_TableModel);
 
 	inline void afficher_programmes_de_fidelite_clients()
 	{
-		afficher_programmes_de_fidelite_clients(*_curClient_ROYALTY_PROGRAM_TableModel);
+		afficher_programmes_de_fidelite_clients(*_curClient_LOYALTY_PROGRAM_TableModel);
 	}
 
 	bool filtrer_programmes_de_fidelite_client();
@@ -168,11 +168,11 @@ private:
 
     QStringList				_historiqueStock;
 
-    QString 				_client_ROYALTY_PROGRAM_DateCreationFilter;
+    QString 				_client_LOYALTY_PROGRAM_DateCreationFilter;
 
     QFont 					*_pushButton_programmes_de_fidelite_clients_filtrer_font;
 
-    YerothSqlTableModel 	*_curClient_ROYALTY_PROGRAM_TableModel;
+    YerothSqlTableModel 	*_curClient_LOYALTY_PROGRAM_TableModel;
 };
 
 #endif /* YEROTH_ERP_PROGRAMMES_DE_FIDELITE_CLIENTS_WINDOW_HPP_ */

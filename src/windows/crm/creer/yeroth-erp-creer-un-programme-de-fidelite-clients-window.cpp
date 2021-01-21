@@ -388,10 +388,10 @@ bool YerothCreerUnProgrammeDeFideliteClientsWindow::creerEnregistrerUnProgrammeD
 
 	QString new_royalty_program_designation = lineEdit_creer_un_programme_de_fidelite_clients_designation->text();
 
-	int new_client_ROYALTY_PROGRAM_db_ID = YerothERPWindows::getNextIdSqlTableModel_programme_de_fidelite_clients();
+	int new_client_LOYALTY_PROGRAM_db_ID = YerothERPWindows::getNextIdSqlTableModel_programme_de_fidelite_clients();
 
 
-	record.setValue(YerothDatabaseTableColumn::ID, new_client_ROYALTY_PROGRAM_db_ID);
+	record.setValue(YerothDatabaseTableColumn::ID, new_client_LOYALTY_PROGRAM_db_ID);
 
 	record.setValue(YerothDatabaseTableColumn::DATE_CREATION,
 			DATE_TO_DB_FORMAT_STRING(GET_CURRENT_DATE));
