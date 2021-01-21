@@ -1510,8 +1510,8 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <location filename="src/windows/purchase/yeroth-erp-achats-aux-fournisseurs-window.cpp" line="297"/>
         <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="297"/>
         <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="706"/>
-        <location filename="src/windows/stocks/yeroth-erp-mouvements_de_stocks-window.cpp" line="326"/>
         <location filename="src/windows/stocks/yeroth-erp-mouvements_de_stocks-window.cpp" line="327"/>
+        <location filename="src/windows/stocks/yeroth-erp-mouvements_de_stocks-window.cpp" line="328"/>
         <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="497"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseurs-window.cpp" line="666"/>
         <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="442"/>
@@ -2192,8 +2192,8 @@ Continue with update of the stock ?</translation>
         <translation>payments</translation>
     </message>
     <message>
-        <location filename="src/windows/stocks/yeroth-erp-mouvements_de_stocks-window.cpp" line="323"/>
         <location filename="src/windows/stocks/yeroth-erp-mouvements_de_stocks-window.cpp" line="324"/>
+        <location filename="src/windows/stocks/yeroth-erp-mouvements_de_stocks-window.cpp" line="325"/>
         <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="332"/>
         <source>terme à rechercher (notes)</source>
         <oldsource>terme à rechercher (référence reçu de paiement client, notes)</oldsource>
@@ -2201,13 +2201,13 @@ Continue with update of the stock ?</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="3214"/>
-        <location filename="src/windows/stocks/yeroth-erp-mouvements_de_stocks-window.cpp" line="544"/>
+        <location filename="src/windows/stocks/yeroth-erp-mouvements_de_stocks-window.cpp" line="545"/>
         <source>pas de données à exporter au format csv</source>
         <translation>there are no data to export in csv format</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="3215"/>
-        <location filename="src/windows/stocks/yeroth-erp-mouvements_de_stocks-window.cpp" line="545"/>
+        <location filename="src/windows/stocks/yeroth-erp-mouvements_de_stocks-window.cpp" line="546"/>
         <source>Il n&apos;y a pas de données à exporter au format csv !</source>
         <oldsource>Il n&apos;y a pas de données à exporter au format csv!</oldsource>
         <translation>There are no data to export in csv format !</translation>
