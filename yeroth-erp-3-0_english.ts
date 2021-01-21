@@ -3398,14 +3398,14 @@ Please contact an administrator</translation>
         <translation>Alert parameter &apos;begin&apos; (date) must be anterior to alert parameter &apos;end&apos; (date) !</translation>
     </message>
     <message>
-        <location filename="src/admin/creer/yeroth-erp-admin-create-window.hpp" line="81"/>
+        <location filename="src/admin/creer/yeroth-erp-admin-create-window.hpp" line="83"/>
         <location filename="src/admin/modifier/yeroth-erp-admin-modifier-window.hpp" line="104"/>
         <source>Yeroth-erp-3.0 ~ admin-créer</source>
         <oldsource>Yeroth-pos-7.0 ~ admin-créer</oldsource>
         <translation>Yeroth-erp-3.0 ~ admin-create</translation>
     </message>
     <message>
-        <location filename="src/admin/creer/yeroth-erp-admin-create-window.hpp" line="82"/>
+        <location filename="src/admin/creer/yeroth-erp-admin-create-window.hpp" line="84"/>
         <location filename="src/admin/modifier/yeroth-erp-admin-modifier-window.hpp" line="105"/>
         <source>Remplissez les informations nécessaire, et ensuite cliquer sur &apos;Valider&apos;.
 Cliquez sur &apos;Annuler&apos; si vous souhaiter annuler l&apos;opération !</source>
