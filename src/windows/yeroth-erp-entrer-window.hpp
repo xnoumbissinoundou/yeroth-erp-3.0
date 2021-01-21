@@ -37,6 +37,7 @@ public:
 
     	QString reference;
     	QString designation;
+    	QString nom_departement_produit;
     	QString nom_categorie;
     	QString nom_entreprise_client;
 	};
@@ -115,31 +116,6 @@ public slots:
     void enregistrer_achat_au_fournisseur();
 
     void enregistrer_produit();
-
-	inline void setCurrentCategorieName(QString curCategorieName)
-    {
-    	_curCategorieName = curCategorieName;
-    }
-
-    inline QString getCurrentCategorieName()
-    {
-    	return _curCategorieName;
-    }
-
-	inline void setCurrentFournisseurName(QString curCategorieName)
-    {
-    	_curFournisseurName = curCategorieName;
-    }
-
-    inline QString setCurrentFournisseurName()
-    {
-    	return _curFournisseurName;
-    }
-
-    inline QString getCurrentFournisseurName()
-    {
-    	return _curFournisseurName;
-    }
 
     void handle_achat_checkBox(int aState);
 
@@ -230,7 +206,7 @@ private:
     }
 
 
-    YerothLogger				*_logger;
+    YerothLogger			*_logger;
 
     ServiceClientInfo		*_currentServiceInfo;
 
@@ -241,14 +217,6 @@ private:
     double					_montantTva_en_gros;
 
     bool					_tvaCheckBoxPreviousState;
-
-    bool					_createNewCategorie;
-
-    bool					_createNewFournisseur;
-
-    QString 				_curCategorieName;
-
-    QString 				_curFournisseurName;
 
     QString					_lastEditedPrixVente;
 

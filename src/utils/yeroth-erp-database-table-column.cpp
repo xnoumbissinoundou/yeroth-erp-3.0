@@ -69,6 +69,7 @@ const QString YerothDatabaseTableColumn::AGENCE_DU_COMPTE_BANCAIRE		("agence_du_
 const QString YerothDatabaseTableColumn::INTITULE_DU_COMPTE_BANCAIRE	("intitule_du_compte_bancaire");
 const QString YerothDatabaseTableColumn::INSTITUT_BANCAIRE				("institut_bancaire");
 const QString YerothDatabaseTableColumn::DESCRIPTION_DU_COMPTE_BANCAIRE	("description_du_compte_bancaire");
+const QString YerothDatabaseTableColumn::DESCRIPTION_DEPARTEMENT_PRODUIT ("description_departement_produit");
 const QString YerothDatabaseTableColumn::DESCRIPTION_CATEGORIE			("description_categorie");
 const QString YerothDatabaseTableColumn::IS_SOUS_CATEGORIE				("is_sous_categorie");
 const QString YerothDatabaseTableColumn::NOM_CATEGORIE					("nom_categorie");
@@ -225,7 +226,7 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT,		QObject::tr("Dette maximale"));
 
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,	QObject::trUtf8("département produit"));
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,	QObject::trUtf8("Département produit"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::CATEGORIE,		QObject::trUtf8("Catégorie"));
 
@@ -278,6 +279,8 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::INSTITUT_BANCAIRE, 		QObject::trUtf8("Institut compte bancaire"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::DESCRIPTION_DU_COMPTE_BANCAIRE, 		QObject::trUtf8("Description"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::DESCRIPTION_DEPARTEMENT_PRODUIT, 	QObject::trUtf8("Description"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::DESCRIPTION_CATEGORIE, 		QObject::trUtf8("Description"));
 

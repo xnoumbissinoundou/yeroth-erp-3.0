@@ -94,10 +94,16 @@ public:
     static bool creerNouveauClient(QString 				&proposedCustomerName_IN_OUT,
     							   YerothWindowsCommons *_callingWindow = 0);
 
-    static bool creerNouveauFournisseur(QString 			&proposedFourisseurName_IN_OUT,
+    static bool creerNouveauFournisseur(QString 			 &proposedFourisseurName_IN_OUT,
     									YerothWindowsCommons *_callingWindow = 0);
 
+	static bool creerNouveauDepartementDeProduits(QString 			   &proposedProductDepartmentName_IN_OUT,
+									    		  YerothWindowsCommons *_callingWindow = 0);
+
+	static bool check_IF_departement_produit_exists(QString &proposedProductDepartmentName);
+
 	static bool creerNouvelleCategorie(QString 				&proposedCategorieName_IN_OUT,
+									   QString 				&proposedProductDepartmentName,
 									   YerothWindowsCommons *_callingWindow = 0);
 
 	static bool GREP_YEROTH_FILE_CONTENT(const QString &file_full_path,

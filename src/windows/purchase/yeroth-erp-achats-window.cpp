@@ -475,6 +475,7 @@ void YerothAchatsWindow::reinitialiser_champs_db_visibles()
 
 	_visibleDBColumnNameStrList
 		<< YerothDatabaseTableColumn::DESIGNATION
+		<< YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT
 		<< YerothDatabaseTableColumn::CATEGORIE
 		<< YerothDatabaseTableColumn::PRIX_DACHAT
 		<< YerothDatabaseTableColumn::PRIX_VENTE

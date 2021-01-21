@@ -44,7 +44,9 @@ public:
 
 	QString		_prix_vente_en_gros_precedent;
 
-    QString 	_categorie;
+	QString 	_nom_departement_produit;
+
+	QString 	_categorie;
 
     QString 	_reference;
 

@@ -127,6 +127,8 @@ public:
 
 	static const QString DESCRIPTION_DU_COMPTE_BANCAIRE;
 
+	static const QString DESCRIPTION_DEPARTEMENT_PRODUIT;
+
 	static const QString DESCRIPTION_CATEGORIE;
 
 	static const QString IS_SOUS_CATEGORIE;

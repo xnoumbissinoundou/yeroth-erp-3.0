@@ -9,3 +9,34 @@ alter table categories ADD column `nom_departement_produit` varchar(256) NOT NUL
 
 UPDATE categories SET nom_departement_produit='drugs_healthcare';
 
+alter table stocks ADD column `nom_departement_produit` varchar(256) NOT NULL AFTER designation;
+
+alter table stocks_sorties ADD column `nom_departement_produit` varchar(256) NOT NULL AFTER designation;
+
+alter table stocks_vendu ADD column `nom_departement_produit` varchar(256) NOT NULL AFTER reference;
+
+alter table services_completes ADD column `nom_departement_produit` varchar(256) NOT NULL AFTER reference;
+
+alter table marchandises ADD column `nom_departement_produit` varchar(256) NOT NULL AFTER designation;
+
+alter table achats ADD column `nom_departement_produit` varchar(256) NOT NULL AFTER reference;
+
+alter table achats_aux_fournisseurs ADD column `nom_departement_produit` varchar(256) NOT NULL AFTER reference;
+
+
+UPDATE stocks SET nom_departement_produit='drugs_healthcare';
+
+UPDATE stocks_sorties SET nom_departement_produit='drugs_healthcare';
+
+UPDATE stocks_vendu SET nom_departement_produit='drugs_healthcare';
+
+UPDATE services_completes SET nom_departement_produit='drugs_healthcare';
+
+UPDATE marchandises SET nom_departement_produit='drugs_healthcare';
+
+UPDATE achats SET nom_departement_produit='drugs_healthcare';
+
+UPDATE achats_aux_fournisseurs SET nom_departement_produit='drugs_healthcare';
+
+
+

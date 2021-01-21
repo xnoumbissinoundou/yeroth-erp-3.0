@@ -33,9 +33,7 @@ YerothEntrerWindow::YerothEntrerWindow()
  _stocks_id(0),
  _montantTva(0.0),
  _montantTva_en_gros(0.0),
- _tvaCheckBoxPreviousState(false),
- _createNewCategorie(false),
- _createNewFournisseur(false)
+ _tvaCheckBoxPreviousState(false)
 {
     _windowName = QString("%1 - %2")
     				.arg(YEROTH_ERP_WINDOW_TITLE,
@@ -298,6 +296,7 @@ void YerothEntrerWindow::definirPasDeRole()
     pushButton_enregistrer_produit->disable(this);
 }
 
+
 void YerothEntrerWindow::definirCaissier()
 {
     _logger->log("definirCaissier");
@@ -319,6 +318,7 @@ void YerothEntrerWindow::definirCaissier()
     pushButton_sortir->disable(this);
     pushButton_annuler->disable(this);
 }
+
 
 void YerothEntrerWindow::definirManager()
 {
@@ -470,6 +470,8 @@ bool YerothEntrerWindow::product_search_with_designation()
         {
         	lineEdit_reference_produit->setText(query.value(YerothDatabaseTableColumn::REFERENCE).toString());
 
+        	lineEdit_nom_departement_produit->setText(query.value(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT).toString());
+
         	lineEdit_categorie_produit->setText(query.value(YerothDatabaseTableColumn::CATEGORIE).toString());
 
         	textEdit_description->setText(query.value(YerothDatabaseTableColumn::DESCRIPTION_PRODUIT).toString());
@@ -506,6 +508,8 @@ bool YerothEntrerWindow::product_search_with_codebar()
         if (success && query.last())
         {
         	lineEdit_designation->setText(query.value(YerothDatabaseTableColumn::DESIGNATION).toString());
+
+        	lineEdit_nom_departement_produit->setText(query.value(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT).toString());
 
         	lineEdit_categorie_produit->setText(query.value(YerothDatabaseTableColumn::CATEGORIE).toString());
 
@@ -611,7 +615,6 @@ void YerothEntrerWindow::calculate_and_display_benefit_buying_price_percentage()
     	}
     }
 }
-
 
 
 void YerothEntrerWindow::calculate_and_display_benefit_buying_price_percentage_EN_GROS()
@@ -869,9 +872,12 @@ bool YerothEntrerWindow::check_fields_mandatory_buying()
 
 bool YerothEntrerWindow::insertStockItemInProductList()
 {
-	QString proposedNouvelleCategorie(lineEdit_categorie_produit->text());
+	QString proposedNouveauDepartementProduits(lineEdit_nom_departement_produit->text());
 
-    if (!YerothUtils::creerNouvelleCategorie(proposedNouvelleCategorie,
+    QString proposedNouvelleCategorie(lineEdit_categorie_produit->text());
+
+    if (!YerothUtils::creerNouvelleCategorie(proposedNouveauDepartementProduits,
+    										 proposedNouvelleCategorie,
     										 this))
     {
     	return false;
@@ -898,6 +904,8 @@ bool YerothEntrerWindow::insertStockItemInProductList()
     record.setValue(YerothDatabaseTableColumn::REFERENCE, lineEdit_reference_produit->text());
 
     record.setValue(YerothDatabaseTableColumn::DESIGNATION, lineEdit_designation->text());
+
+    record.setValue(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT, proposedNouveauDepartementProduits);
 
     record.setValue(YerothDatabaseTableColumn::CATEGORIE, proposedNouvelleCategorie);
 
@@ -995,6 +1003,9 @@ void YerothEntrerWindow::showItem()
     	lineEdit_prix_vente_en_gros->setText(QString::number(prix_vente_en_gros));
     }
 
+    lineEdit_nom_departement_produit->
+		setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT));
+
     lineEdit_categorie_produit->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::CATEGORIE));
 
     lineEdit_localisation_produit->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::LOCALISATION_STOCK));
@@ -1031,6 +1042,8 @@ bool YerothEntrerWindow::check_fields_service_achat()
 {
 	bool fournisseur = lineEdit_nom_entreprise_fournisseur->checkField();
 
+	bool nom_departement_produit = lineEdit_nom_departement_produit->checkField();
+
 	bool categorie_produit = lineEdit_categorie_produit->checkField();
 
 	bool reference = lineEdit_reference_produit->checkField();
@@ -1040,6 +1053,7 @@ bool YerothEntrerWindow::check_fields_service_achat()
     bool prix_vente = lineEdit_prix_vente->checkField();
 
     bool result = fournisseur &&
+    			  nom_departement_produit &&
     			  categorie_produit  &&
 				  reference 		 &&
 				  prix_vente 		 &&
@@ -1055,6 +1069,8 @@ bool YerothEntrerWindow::check_fields_service_vente()
 
 	bool client_fournisseur = lineEdit_nom_entreprise_fournisseur->checkField();
 
+	bool nom_departement_produit = lineEdit_nom_departement_produit->checkField();
+
 	bool categorie_produit = lineEdit_categorie_produit->checkField();
 
 	bool reference = lineEdit_reference_produit->checkField();
@@ -1063,11 +1079,12 @@ bool YerothEntrerWindow::check_fields_service_vente()
 
     bool prix_vente = lineEdit_prix_vente->checkField();
 
-    bool result = designation 		 &&
-    			  client_fournisseur &&
-    			  categorie_produit  &&
-				  reference 		 &&
-				  prix_vente 		 &&
+    bool result = designation 		 		&&
+    			  client_fournisseur 		&&
+				  nom_departement_produit   &&
+				  categorie_produit  		&&
+				  reference 		 		&&
+				  prix_vente 		 		&&
 				  quantite;
 
     return result;
@@ -1107,12 +1124,15 @@ bool YerothEntrerWindow::check_fields(bool withClearAllServiceMandatoryFields /*
 
     bool prix_vente = lineEdit_prix_vente->checkField();
 
+    bool nom_departement_produit = lineEdit_nom_departement_produit->checkField();
+
     bool categorie_produit = lineEdit_categorie_produit->checkField();
 
-    bool result = prix_dachat		&&
-    			  designation       &&
-    			  categorie_produit &&
-				  prix_vente 		&&
+    bool result = prix_dachat			  	&&
+    			  designation       		&&
+				  nom_departement_produit 	&&
+    			  categorie_produit		 	&&
+				  prix_vente 				&&
 				  quantite_par_lot;
 
     return result;
@@ -1132,6 +1152,7 @@ void YerothEntrerWindow::clear_all_fields()
 
     lineEdit_reference_produit->clearField();
     lineEdit_designation->clearField();
+    lineEdit_nom_departement_produit->clearField();
     lineEdit_categorie_produit->clearField();
     lineEdit_nom_entreprise_fournisseur->clearField();
 
@@ -1159,9 +1180,6 @@ void YerothEntrerWindow::clear_all_fields()
     _montantTva_en_gros = 0.0;
 
     _tvaCheckBoxPreviousState = false;
-
-    _createNewCategorie = false;
-    _createNewFournisseur = false;
 }
 
 void YerothEntrerWindow::rendreInvisible()
@@ -1223,32 +1241,6 @@ void YerothEntrerWindow::rendreVisible(YerothSqlTableModel * stocksTableModel, b
     }
 
     _curStocksTableModel = stocksTableModel;
-
-    if (_createNewCategorie)
-    {
-        if (!_curCategorieName.isEmpty())
-        {
-            lineEdit_categorie_produit->setText(_curCategorieName);
-            _curCategorieName.clear();
-        }
-        else
-        {
-            lineEdit_categorie_produit->clear();
-        }
-    }
-
-    if (_createNewFournisseur)
-    {
-        if (!_curFournisseurName.isEmpty())
-        {
-            lineEdit_nom_entreprise_fournisseur->setText(_curFournisseurName);
-            _curFournisseurName.clear();
-        }
-        else
-        {
-            lineEdit_nom_entreprise_fournisseur->clear();
-        }
-    }
 
     bool stockCheckInVisible = true;
 
@@ -1570,6 +1562,7 @@ bool YerothEntrerWindow::handle_clients_table(int stockID, double montant_total_
 
     	aServiceClientInfo.reference = lineEdit_reference_produit->text();
     	aServiceClientInfo.designation = lineEdit_designation->text();
+    	aServiceClientInfo.nom_departement_produit = lineEdit_nom_departement_produit->text();
     	aServiceClientInfo.nom_categorie = lineEdit_categorie_produit->text();
     	aServiceClientInfo.nom_entreprise_client = clientName;
     	aServiceClientInfo.nouveau_compte_client = nouveau_compte_client ;
@@ -1746,10 +1739,24 @@ void YerothEntrerWindow::enregistrer_produit()
     	}
     }
 
+    QString proposedProductDepartmentName = lineEdit_nom_departement_produit->text();
+
+	if (! YerothUtils::check_IF_departement_produit_exists(proposedProductDepartmentName))
+	{
+    	QString retMsg(QObject::trUtf8("1 département de produits '%1' N'EXISTE PAS !")
+    						.arg(proposedProductDepartmentName));
+
+    	YerothQMessageBox::warning(this, QObject::trUtf8("échec"), retMsg);
+
+		return ;
+	}
+
+
     YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
 
     YerothERPServiceStockMarchandiseData aServiceStockData;
 
+    aServiceStockData._nom_departement_produit = proposedProductDepartmentName;
     aServiceStockData._categorie = lineEdit_categorie_produit->text();
     aServiceStockData._description = textEdit_description->toPlainText();
     aServiceStockData._designation = lineEdit_designation->text();
@@ -1825,12 +1832,14 @@ void YerothEntrerWindow::enregistrer_produit()
     	achatRecord.setValue(YerothDatabaseTableColumn::STOCKS_ID, stock_id_to_save);
     	achatRecord.setValue(YerothDatabaseTableColumn::REFERENCE, lineEdit_reference_produit->text());
     	achatRecord.setValue(YerothDatabaseTableColumn::DESIGNATION, lineEdit_designation->text());
+    	achatRecord.setValue(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT, aServiceStockData._nom_departement_produit);
     	achatRecord.setValue(YerothDatabaseTableColumn::CATEGORIE, aServiceStockData._categorie);
     }
 
     record.setValue(YerothDatabaseTableColumn::ID, stock_id_to_save);
     record.setValue(YerothDatabaseTableColumn::REFERENCE, lineEdit_reference_produit->text());
     record.setValue(YerothDatabaseTableColumn::DESIGNATION, lineEdit_designation->text());
+    record.setValue(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT, aServiceStockData._nom_departement_produit);
     record.setValue(YerothDatabaseTableColumn::CATEGORIE, aServiceStockData._categorie);
     record.setValue(YerothDatabaseTableColumn::DESCRIPTION_PRODUIT, textEdit_description->toPlainText());
     record.setValue(YerothDatabaseTableColumn::LOTS_ENTRANT, doubleSpinBox_lots_entrant->value());

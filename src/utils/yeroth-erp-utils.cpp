@@ -550,10 +550,10 @@ YerothUtils::YerothUtils()
 }
 
 
-bool YerothUtils::creerNouveauClient(QString 			  &proposedCustomerName,
+bool YerothUtils::creerNouveauClient(QString 			  &proposedCustomerName_IN_OUT,
 		 	 	 	 	 	 	 	 YerothWindowsCommons *_callingWindow /* = 0 */)
 {
-	if (proposedCustomerName.isEmpty())
+	if (proposedCustomerName_IN_OUT.isEmpty())
 	{
 		return false;
 	}
@@ -562,7 +562,7 @@ bool YerothUtils::creerNouveauClient(QString 			  &proposedCustomerName,
 
 	QString customerTableFilter = QString("%1 = '%2'")
 	            					.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
-	            						 proposedCustomerName);
+	            						 proposedCustomerName_IN_OUT);
 
 	customerSqlTableModel.yerothSetFilter_WITH_where_clause(customerTableFilter);
 
@@ -570,8 +570,8 @@ bool YerothUtils::creerNouveauClient(QString 			  &proposedCustomerName,
 
 	if (rows > 0)
 	{
-		proposedCustomerName.clear();
-		proposedCustomerName.append(GET_SQL_RECORD_DATA(customerSqlTableModel.record(0),
+		proposedCustomerName_IN_OUT.clear();
+		proposedCustomerName_IN_OUT.append(GET_SQL_RECORD_DATA(customerSqlTableModel.record(0),
 									YerothDatabaseTableColumn::NOM_ENTREPRISE));
 
 		customerSqlTableModel.resetFilter();
@@ -585,12 +585,12 @@ bool YerothUtils::creerNouveauClient(QString 			  &proposedCustomerName,
 		QSqlRecord record = customerSqlTableModel.record();
 
 		record.setValue(YerothDatabaseTableColumn::ID, YerothERPWindows::getNextIdSqlTableModel_clients());
-		record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE, proposedCustomerName);
+		record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE, proposedCustomerName_IN_OUT);
 		record.setValue(YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT, 0.0);
 		record.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT, 0.0);
 
 		QString retMsg(QObject::trUtf8("L'entreprise cliente '%1'")
-							.arg(proposedCustomerName));
+							.arg(proposedCustomerName_IN_OUT));
 
 		bool success = customerSqlTableModel.insertNewRecord(record);
 
@@ -634,10 +634,10 @@ bool YerothUtils::creerNouveauClient(QString 			  &proposedCustomerName,
 }
 
 
-bool YerothUtils::creerNouveauFournisseur(QString 			   &proposedFournisseurName,
+bool YerothUtils::creerNouveauFournisseur(QString 			   &proposedFournisseurName_IN_OUT,
 		 	 	 	 	 	 	 	 	  YerothWindowsCommons *_callingWindow /* = 0 */)
 {
-	if (proposedFournisseurName.isEmpty())
+	if (proposedFournisseurName_IN_OUT.isEmpty())
 	{
 		return false;
 	}
@@ -646,7 +646,7 @@ bool YerothUtils::creerNouveauFournisseur(QString 			   &proposedFournisseurName
 
 	QString fournisseurFilter = QString("%1 = '%2'")
 	            					.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
-	            						 proposedFournisseurName);
+	            						 proposedFournisseurName_IN_OUT);
 
 	fournisseurSqlTableModel.yerothSetFilter_WITH_where_clause(fournisseurFilter);
 
@@ -654,8 +654,8 @@ bool YerothUtils::creerNouveauFournisseur(QString 			   &proposedFournisseurName
 
 	if (rows > 0)
 	{
-		proposedFournisseurName.clear();
-		proposedFournisseurName.append(GET_SQL_RECORD_DATA(fournisseurSqlTableModel.record(0),
+		proposedFournisseurName_IN_OUT.clear();
+		proposedFournisseurName_IN_OUT.append(GET_SQL_RECORD_DATA(fournisseurSqlTableModel.record(0),
 									   YerothDatabaseTableColumn::NOM_ENTREPRISE));
 
 		fournisseurSqlTableModel.resetFilter();
@@ -669,10 +669,10 @@ bool YerothUtils::creerNouveauFournisseur(QString 			   &proposedFournisseurName
 		QSqlRecord record = fournisseurSqlTableModel.record();
 
 		record.setValue(YerothDatabaseTableColumn::ID, YerothERPWindows::getNextIdSqlTableModel_fournisseurs());
-		record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE, proposedFournisseurName);
+		record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE, proposedFournisseurName_IN_OUT);
 
 		QString retMsg(QObject::trUtf8("L'entreprise fournisseur '%1'")
-							.arg(proposedFournisseurName));
+							.arg(proposedFournisseurName_IN_OUT));
 
 		bool success = fournisseurSqlTableModel.insertNewRecord(record);
 
@@ -716,19 +716,135 @@ bool YerothUtils::creerNouveauFournisseur(QString 			   &proposedFournisseurName
 }
 
 
-bool YerothUtils::creerNouvelleCategorie(QString 				&proposedCategorieName,
-										 YerothWindowsCommons 	*_callingWindow /* = 0 */)
+bool YerothUtils::creerNouveauDepartementDeProduits(QString 				&proposedProductDepartmentName_IN_OUT,
+										 	 	    YerothWindowsCommons 	*_callingWindow /* = 0 */)
 {
-	if (proposedCategorieName.isEmpty())
+	if (proposedProductDepartmentName_IN_OUT.isEmpty())
 	{
 		return false;
 	}
+
+    YerothSqlTableModel &departements_produits_SqlTableModel = _allWindows->getSqlTableModel_departements_produits();
+
+    QString productDepartmentFilter = QString("%1 = '%2'")
+    							.arg(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,
+    								 proposedProductDepartmentName_IN_OUT);
+
+    departements_produits_SqlTableModel.yerothSetFilter_WITH_where_clause(productDepartmentFilter);
+
+    int rows = departements_produits_SqlTableModel.easySelect();
+
+    if (rows > 0)
+    {
+    	proposedProductDepartmentName_IN_OUT.clear();
+		proposedProductDepartmentName_IN_OUT.append(GET_SQL_RECORD_DATA(departements_produits_SqlTableModel.record(0),
+									 	 	 	 	YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT));
+
+		departements_produits_SqlTableModel.resetFilter();
+
+    	return true;
+    }
+    else
+    {
+    	departements_produits_SqlTableModel.resetFilter();
+
+    	QSqlRecord record = departements_produits_SqlTableModel.record();
+
+    	record.setValue(YerothDatabaseTableColumn::ID, YerothERPWindows::getNextIdSqlTableModel_departements_produits());
+    	record.setValue(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT, proposedProductDepartmentName_IN_OUT);
+    	record.setValue(YerothDatabaseTableColumn::DESCRIPTION_DEPARTEMENT_PRODUIT, YerothUtils::EMPTY_STRING);
+
+    	QString retMsg(QObject::trUtf8("Le département de produits '%1'")
+    						.arg(proposedProductDepartmentName_IN_OUT));
+
+    	bool success = departements_produits_SqlTableModel.insertNewRecord(record);
+
+    	if (!success)
+    	{
+    		retMsg.append(QObject::trUtf8(" n'a pas pu être créer !"));
+
+    		if (0 != _callingWindow)
+    		{
+        		YerothQMessageBox::warning(_callingWindow, QObject::trUtf8("échec"), retMsg);
+    		}
+    		else
+    		{
+#ifdef YEROTH_ERP_3_0_TESTING_UNIT_TEST
+    		qDebug() << retMsg;
+#endif
+    		}
+
+    		return false;
+    	}
+    	else
+    	{
+    		retMsg.append(QObject::trUtf8(" a été créer avec succès !"));
+
+    		if (0 != _callingWindow)
+    		{
+        		YerothQMessageBox::information(_callingWindow, QObject::trUtf8("succès"), retMsg);
+    		}
+    		else
+    		{
+#ifdef YEROTH_ERP_3_0_TESTING_UNIT_TEST
+    		qDebug() << retMsg;
+#endif
+    		}
+
+    		return true;
+    	}
+    }
+
+    return false;
+}
+
+
+bool YerothUtils::check_IF_departement_produit_exists(QString &proposedProductDepartmentName)
+{
+	return (YerothUtils::execQueryRowCount(QString("select %1 from %2 where %3='%4'")
+										.arg(YerothDatabaseTableColumn::ID,
+											 _allWindows->DEPARTEMENTS_PRODUITS,
+											 YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,
+											 proposedProductDepartmentName)) > 0);
+}
+
+
+bool YerothUtils::creerNouvelleCategorie(QString 				&proposedCategorieName_IN_OUT,
+										 QString 				&proposedProductDepartmentName,
+										 YerothWindowsCommons 	*_callingWindow /* = 0 */)
+{
+	if (proposedCategorieName_IN_OUT.isEmpty() ||
+		proposedProductDepartmentName.isEmpty())
+	{
+		return false;
+	}
+
+
+	if (! YerothUtils::check_IF_departement_produit_exists(proposedProductDepartmentName))
+	{
+    	QString retMsg(QObject::trUtf8("1 département de produits '%1' N'EXISTE PAS !")
+    						.arg(proposedProductDepartmentName));
+
+		if (0 != _callingWindow)
+		{
+    		YerothQMessageBox::warning(_callingWindow, QObject::trUtf8("échec"), retMsg);
+		}
+		else
+		{
+#ifdef YEROTH_ERP_3_0_TESTING_UNIT_TEST
+		qDebug() << retMsg;
+#endif
+		}
+
+		return false;
+	}
+
 
     YerothSqlTableModel &categorieSqlTableModel = _allWindows->getSqlTableModel_categories();
 
     QString categorieFilter = QString("%1 = '%2'")
     							.arg(YerothDatabaseTableColumn::NOM_CATEGORIE,
-    								 proposedCategorieName);
+    								 proposedCategorieName_IN_OUT);
 
     categorieSqlTableModel.yerothSetFilter_WITH_where_clause(categorieFilter);
 
@@ -736,8 +852,8 @@ bool YerothUtils::creerNouvelleCategorie(QString 				&proposedCategorieName,
 
     if (rows > 0)
     {
-    	proposedCategorieName.clear();
-		proposedCategorieName.append(GET_SQL_RECORD_DATA(categorieSqlTableModel.record(0),
+    	proposedCategorieName_IN_OUT.clear();
+		proposedCategorieName_IN_OUT.append(GET_SQL_RECORD_DATA(categorieSqlTableModel.record(0),
 									 YerothDatabaseTableColumn::NOM_CATEGORIE));
 
 		categorieSqlTableModel.resetFilter();
@@ -751,11 +867,12 @@ bool YerothUtils::creerNouvelleCategorie(QString 				&proposedCategorieName,
     	QSqlRecord record = categorieSqlTableModel.record();
 
     	record.setValue(YerothDatabaseTableColumn::ID, YerothERPWindows::getNextIdSqlTableModel_categories());
-    	record.setValue(YerothDatabaseTableColumn::NOM_CATEGORIE, proposedCategorieName);
-    	record.setValue(YerothDatabaseTableColumn::DESCRIPTION_CATEGORIE, "");
+    	record.setValue(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT, proposedProductDepartmentName);
+    	record.setValue(YerothDatabaseTableColumn::NOM_CATEGORIE, proposedCategorieName_IN_OUT);
+    	record.setValue(YerothDatabaseTableColumn::DESCRIPTION_CATEGORIE, YerothUtils::EMPTY_STRING);
 
     	QString retMsg(QObject::trUtf8("La catégorie '%1'")
-    						.arg(proposedCategorieName));
+    						.arg(proposedCategorieName_IN_OUT));
 
     	bool success = categorieSqlTableModel.insertNewRecord(record);
 
@@ -1020,6 +1137,7 @@ bool YerothUtils::insertStockItemInProductList(YerothERPServiceStockMarchandiseD
     bool success = false;
 
     if (!YerothUtils::creerNouvelleCategorie(aServiceStockData_IN_OUT._categorie,
+    										 aServiceStockData_IN_OUT._nom_departement_produit,
     										 _callingWindow))
     {
     	QString retMsg(QObject::trUtf8("La désignation de la catégorie ne doit pas être vide !"));
@@ -1069,6 +1187,8 @@ bool YerothUtils::insertStockItemInProductList(YerothERPServiceStockMarchandiseD
     record.setValue(YerothDatabaseTableColumn::REFERENCE, aServiceStockData_IN_OUT._reference);
 
     record.setValue(YerothDatabaseTableColumn::DESIGNATION, aServiceStockData_IN_OUT._designation);
+
+    record.setValue(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT, aServiceStockData_IN_OUT._nom_departement_produit);
 
     record.setValue(YerothDatabaseTableColumn::CATEGORIE, aServiceStockData_IN_OUT._categorie);
 
