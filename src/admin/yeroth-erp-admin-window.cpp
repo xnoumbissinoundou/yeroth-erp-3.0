@@ -75,6 +75,7 @@ const QString YerothAdminWindow::SUPPRIMER(QObject::trUtf8(ACTION_ADMIN_OPERATIO
 
 const QString YerothAdminWindow::COMPTE_UTILISATEUR(QObject::trUtf8(SUBJECT_ADMIN_OPERATIONS_USER_ACCOUNT_FR));
 const QString YerothAdminWindow::LOCALISATION(QObject::trUtf8(SUBJECT_ADMIN_OPERATIONS_SITE_FR));
+const QString YerothAdminWindow::DEPARTEMENTS_DE_PRODUITS(QObject::trUtf8(SUBJECT_ADMIN_OPERATIONS_PRODUCT_DEPARTMENT_FR));
 const QString YerothAdminWindow::CATEGORIE(QObject::trUtf8(SUBJECT_ADMIN_OPERATIONS_CATEGORY_FR));
 const QString YerothAdminWindow::ALERTE(QObject::trUtf8(SUBJECT_ADMIN_OPERATIONS_ALERT_FR));
 const QString YerothAdminWindow::BON_DE_COMMANDE(QObject::trUtf8(SUBJECT_ADMIN_OPERATIONS_COMMAND_SHEET_FR));
@@ -89,6 +90,7 @@ const QString YerothAdminWindow::SUPPRIMER(QObject::tr(ACTION_ADMIN_OPERATIONS_D
 
 const QString YerothAdminWindow::COMPTE_UTILISATEUR(QObject::tr(SUBJECT_ADMIN_OPERATIONS_USER_ACCOUNT_EN));
 const QString YerothAdminWindow::LOCALISATION(QObject::tr(SUBJECT_ADMIN_OPERATIONS_SITE_EN));
+const QString YerothAdminWindow::DEPARTEMENTS_DE_PRODUITS(QObject::trUtf8(SUBJECT_ADMIN_OPERATIONS_PRODUCT_DEPARTMENT_EN));
 const QString YerothAdminWindow::CATEGORIE(QObject::tr(SUBJECT_ADMIN_OPERATIONS_CATEGORY_EN));
 const QString YerothAdminWindow::ALERTE(QObject::tr(SUBJECT_ADMIN_OPERATIONS_ALERT_EN));
 const QString YerothAdminWindow::BON_DE_COMMANDE(QObject::tr(SUBJECT_ADMIN_OPERATIONS_COMMAND_SHEET_EN));
@@ -165,6 +167,7 @@ YerothAdminWindow::YerothAdminWindow()
 
     _sujetActionsToConst->insert(ALERTE, SUJET_ACTION_ALERTE);
     _sujetActionsToConst->insert(BON_DE_COMMANDE, SUJET_ACTION_BON_DE_COMMANDE);
+    _sujetActionsToConst->insert(DEPARTEMENTS_DE_PRODUITS, SUJET_ACTION_DEPARTEMENTS_DE_PRODUITS);
     _sujetActionsToConst->insert(CATEGORIE, SUJET_ACTION_CATEGORIE);
     _sujetActionsToConst->insert(COMPTE_BANCAIRE, SUJET_ACTION_COMPTE_BANCAIRE);
     _sujetActionsToConst->insert(COMPTE_UTILISATEUR, SUJET_ACTION_COMPTE_UTILISATEUR);
@@ -176,6 +179,7 @@ YerothAdminWindow::YerothAdminWindow()
 
     comboBox_sujets_actions->addItem(ALERTE);
     comboBox_sujets_actions->addItem(BON_DE_COMMANDE);
+    comboBox_sujets_actions->addItem(DEPARTEMENTS_DE_PRODUITS);
     comboBox_sujets_actions->addItem(CATEGORIE);
     comboBox_sujets_actions->addItem(COMPTE_BANCAIRE);
     comboBox_sujets_actions->addItem(COMPTE_UTILISATEUR);
@@ -1348,6 +1352,9 @@ void YerothAdminWindow::action_creer()
     case SUJET_ACTION_LOCALISATION:
         creer(SUJET_ACTION_LOCALISATION);
         break;
+    case SUJET_ACTION_DEPARTEMENTS_DE_PRODUITS:
+        creer(SUJET_ACTION_DEPARTEMENTS_DE_PRODUITS);
+        break;
     case SUJET_ACTION_CATEGORIE:
         creer(SUJET_ACTION_CATEGORIE);
         break;
@@ -1378,6 +1385,9 @@ void YerothAdminWindow::action_lister()
         break;
     case SUJET_ACTION_LOCALISATION:
         lister(SUJET_ACTION_LOCALISATION);
+        break;
+    case SUJET_ACTION_DEPARTEMENTS_DE_PRODUITS:
+        lister(SUJET_ACTION_DEPARTEMENTS_DE_PRODUITS);
         break;
     case SUJET_ACTION_CATEGORIE:
         lister(SUJET_ACTION_CATEGORIE);
@@ -1410,6 +1420,9 @@ void YerothAdminWindow::action_modifier()
     case SUJET_ACTION_LOCALISATION:
         modifier(SUJET_ACTION_LOCALISATION);
         break;
+    case SUJET_ACTION_DEPARTEMENTS_DE_PRODUITS:
+        modifier(SUJET_ACTION_DEPARTEMENTS_DE_PRODUITS);
+        break;
     case SUJET_ACTION_CATEGORIE:
         modifier(SUJET_ACTION_CATEGORIE);
         break;
@@ -1440,6 +1453,9 @@ void YerothAdminWindow::action_supprimer()
         break;
     case SUJET_ACTION_LOCALISATION:
         modifier(SUJET_ACTION_LOCALISATION);
+        break;
+    case SUJET_ACTION_DEPARTEMENTS_DE_PRODUITS:
+        modifier(SUJET_ACTION_DEPARTEMENTS_DE_PRODUITS);
         break;
     case SUJET_ACTION_CATEGORIE:
         modifier(SUJET_ACTION_CATEGORIE);

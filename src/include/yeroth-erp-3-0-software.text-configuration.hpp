@@ -52,6 +52,9 @@
 #define SUBJECT_ADMIN_OPERATIONS_USER_ACCOUNT_EN			"a user account"
 #define SUBJECT_ADMIN_OPERATIONS_USER_ACCOUNT_FR			"un compte utilisateur"
 
+#define SUBJECT_ADMIN_OPERATIONS_PRODUCT_DEPARTMENT_EN		"a product department"
+#define SUBJECT_ADMIN_OPERATIONS_PRODUCT_DEPARTMENT_FR		"un département de produits"
+
 #define SUBJECT_ADMIN_OPERATIONS_CATEGORY_EN				"a product category"
 #define SUBJECT_ADMIN_OPERATIONS_CATEGORY_FR				"une catégorie de produits"
 

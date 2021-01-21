@@ -43,9 +43,6 @@ public:
 	inline virtual ~YerothERPUserTableView()
 	{
 	}
-
-	virtual void lister_les_elements_du_tableau(YerothSqlTableModel &clientSqlTableModel,
-												QString aStockListingStrategy = "");
 };
 
 

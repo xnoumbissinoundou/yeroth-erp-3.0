@@ -226,6 +226,7 @@ private:
 
 	static const QString COMPTE_UTILISATEUR;
 	static const QString LOCALISATION;
+	static const QString DEPARTEMENTS_DE_PRODUITS;
 	static const QString CATEGORIE;
 	static const QString FOURNISSEUR;
 	static const QString ALERTE;

@@ -55,9 +55,7 @@ public:
 
 	void setupSelectionOptions();
 
-	inline virtual void lister_les_elements_du_tableau(YerothSqlTableModel &tableModel)
-	{
-	}
+	virtual void lister_les_elements_du_tableau(YerothSqlTableModel &tableModel);
 
 	inline virtual void lister_les_elements_du_tableau(YerothSqlTableModel &tableModel,
 													   const QString &aStockListingStrategy,

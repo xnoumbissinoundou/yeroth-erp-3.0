@@ -261,7 +261,8 @@ HEADERS = src/include/yeroth-erp-3-0-precompiled-header.hpp \
 		  src/admin/yeroth-erp-admin-windows-commons.hpp \
 		  src/admin/yeroth-erp-admin-window.hpp \
 		  src/admin/yeroth-erp-admin-search-form.hpp \		  
-		  src/admin/widgets/table-view/yeroth-erp-alert-table-view.hpp \
+		  src/admin/widgets/table-view/yeroth-erp-product-department-table-view.hpp \
+			src/admin/widgets/table-view/yeroth-erp-alert-table-view.hpp \
 		  src/admin/widgets/table-view/yeroth-erp-site-table-view.hpp \
 		  src/admin/widgets/table-view/yeroth-erp-user-table-view.hpp \
 			src/admin/widgets/table-view/yeroth-erp-category-table-view.hpp \
@@ -390,7 +391,8 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/admin/yeroth-erp-admin-windows-commons.cpp \
 		  src/admin/yeroth-erp-admin-window.cpp \
 		  src/admin/yeroth-erp-admin-search-form.cpp \		  
-		  src/admin/widgets/table-view/yeroth-erp-alert-table-view.cpp \
+		  src/admin/widgets/table-view/yeroth-erp-product-department-table-view.cpp \
+			src/admin/widgets/table-view/yeroth-erp-alert-table-view.cpp \
 		  src/admin/widgets/table-view/yeroth-erp-site-table-view.cpp \
 		  src/admin/widgets/table-view/yeroth-erp-user-table-view.cpp \
 		  src/admin/widgets/table-view/yeroth-erp-category-table-view.cpp \
