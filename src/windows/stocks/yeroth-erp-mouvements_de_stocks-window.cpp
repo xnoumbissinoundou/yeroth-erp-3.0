@@ -240,6 +240,7 @@ void YerothMouvementsDeStocksWindow::reinitialiser_champs_db_visibles()
 			<< YerothDatabaseTableColumn::HEURE_SORTIE
 			<< YerothDatabaseTableColumn::REFERENCE
 			<< YerothDatabaseTableColumn::DESIGNATION
+			<< YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT
 			<< YerothDatabaseTableColumn::CATEGORIE
 			<< YerothDatabaseTableColumn::QUANTITE_SORTIE
 			<< YerothDatabaseTableColumn::LOCALISATION_ENTREE
