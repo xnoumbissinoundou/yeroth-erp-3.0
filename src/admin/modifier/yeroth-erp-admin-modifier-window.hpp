@@ -55,6 +55,8 @@ public:
 
     void setupEditLocalisation();
 
+    void setupEditDepartementsDeProduits();
+
     void setupEditCategorie();
 
     void setupEditCompteBancaire();
@@ -80,6 +82,8 @@ public slots:
 	void modifier_utilisateur_main();
 
 	void modifier_localisation();
+
+	void modifier_departements_de_produits();
 
 	void modifier_categorie();
 
@@ -111,6 +115,8 @@ private:
 
 	void setupLineEdits();
 
+	void modifier_departements_de_produits_main();
+
 	void modifier_categorie_main();
 
 	void modifier_compte_bancaire_main();
@@ -118,6 +124,8 @@ private:
 	void retourListerCompteUtilisateur();
 
 	void retourListerLocalisation();
+
+	void retourListerDepartementsDeProduits();
 
 	void retourListerCategorie();
 
@@ -128,6 +136,8 @@ private:
 	void retourListerRemise();
 
     void clear_utilisateur_all_fields();
+
+    void clear_departements_de_produits_all_fields();
 
     void clear_categorie_all_fields();
 
@@ -140,6 +150,8 @@ private:
     void clear_remise_all_fields();
 
     bool modifier_utilisateur_check_fields();
+
+    bool modifier_departements_de_produits_check_fields();
 
     bool modifier_categorie_check_fields();
 

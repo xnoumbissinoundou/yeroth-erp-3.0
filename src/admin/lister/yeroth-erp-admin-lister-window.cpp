@@ -14,6 +14,7 @@
 YerothAdminListerWindow::YerothAdminListerWindow()
 :YerothPOSAdminWindowsCommons(QObject::tr("administration ~ lister")),
  _alertCurrentlyFiltered(false),
+ _productDepartmentCurrentlyFiltered(false),
  _categoryCurrentlyFiltered(false),
  _bankAccountCurrentlyFiltered(false),
  _userCurrentlyFiltered(false),
@@ -43,6 +44,7 @@ YerothAdminListerWindow::YerothAdminListerWindow()
 
     tableView_lister_utilisateur->setSqlTableName(&YerothERPWindows::USERS);
     tableView_lister_localisation->setSqlTableName(&YerothERPWindows::LOCALISATIONS);
+    tableView_lister_departements_produits->setSqlTableName(&YerothERPWindows::DEPARTEMENTS_PRODUITS);
     tableView_lister_categorie->setSqlTableName(&YerothERPWindows::CATEGORIES);
     tableView_lister_compte_bancaire->setSqlTableName(&YerothERPWindows::COMPTES_BANCAIRES);
     tableView_lister_remise->setSqlTableName(&YerothERPWindows::REMISES);
@@ -82,6 +84,9 @@ YerothAdminListerWindow::YerothAdminListerWindow()
     connect(tableView_lister_localisation, SIGNAL(clicked(QModelIndex)), this,
             SLOT(handleItemModification(QModelIndex)));
 
+    connect(tableView_lister_departements_produits, SIGNAL(clicked(QModelIndex)), this,
+            SLOT(handleItemModification(QModelIndex)));
+
     connect(tableView_lister_categorie, SIGNAL(clicked(QModelIndex)), this,
             SLOT(handleItemModification(QModelIndex)));
 
@@ -97,8 +102,11 @@ YerothAdminListerWindow::YerothAdminListerWindow()
     connect(tableView_lister_localisation, SIGNAL(doubleClicked(const QModelIndex &)), this,
             SLOT(afficher_detail_localisation()));
 
-    connect(tableView_lister_categorie, SIGNAL(doubleClicked(const QModelIndex &)), this,
+    connect(tableView_lister_departements_produits, SIGNAL(doubleClicked(const QModelIndex &)), this,
             SLOT(afficher_detail_categorie()));
+
+    connect(tableView_lister_categorie, SIGNAL(doubleClicked(const QModelIndex &)), this,
+            SLOT(afficher_detail_departements_de_produits()));
 
     connect(tableView_lister_compte_bancaire, SIGNAL(doubleClicked(const QModelIndex &)), this,
             SLOT(afficher_detail_compte_bancaire()));
@@ -257,6 +265,10 @@ void YerothAdminListerWindow::set_admin_rechercher_font()
     	MACRO_SET_ADMIN_RECHERCHER_FONT(_siteCurrentlyFiltered)
         break;
 
+    case SUJET_ACTION_DEPARTEMENTS_DE_PRODUITS:
+    	MACRO_SET_ADMIN_RECHERCHER_FONT(_productDepartmentCurrentlyFiltered)
+        break;
+
     case SUJET_ACTION_CATEGORIE:
     	MACRO_SET_ADMIN_RECHERCHER_FONT(_categoryCurrentlyFiltered)
         break;
@@ -356,6 +368,41 @@ void YerothAdminListerWindow::lister_localisation(YerothSqlTableModel * aSqlTabl
     set_admin_rechercher_font();
 
     tableView_lister_localisation->selectRow(_lastItemSelectedForModification);
+}
+
+
+void YerothAdminListerWindow::lister_departements_de_produits(YerothSqlTableModel * aSqlTableModel)
+{
+    int toSelectRow = 0;
+
+    if (0 != aSqlTableModel &&
+        true == YerothUtils::isEqualCaseInsensitive(_allWindows->DEPARTEMENTS_PRODUITS,
+        		         	 	 	 	 	 	 	aSqlTableModel->sqlTableName()))
+    {
+    	tableView_lister_departements_produits->lister_les_elements_du_tableau(*aSqlTableModel);
+
+    	_curSearchSqlTableModel = aSqlTableModel;
+    	//qDebug() << QString("++ lister_departements_de_produits | setting new _curSearchSqlTableModel| sql table filter: %1")
+    	//				.arg(_curSearchSqlTableModel->filter());
+    }
+    else
+    {
+    	setProductDepartmentCurrentlyFiltered(false);
+
+    	tableView_lister_departements_produits->
+			lister_les_elements_du_tableau(_allWindows->getSqlTableModel_departements_produits());
+    }
+
+	//qDebug() << QString("++ lister_categorie | sql table filter: %1")
+		//			.arg(_curSearchSqlTableModel->filter());
+
+    tableView_lister_departements_produits->hideColumn(0);
+
+    _lastItemSelectedForModification = toSelectRow;
+
+    set_admin_rechercher_font();
+
+    tableView_lister_departements_produits->selectRow(_lastItemSelectedForModification);
 }
 
 
@@ -479,6 +526,7 @@ void YerothAdminListerWindow::creer()
     rendreInvisible();
 }
 
+
 void YerothAdminListerWindow::handleItemModification(const QModelIndex & index)
 {
     //_logger->debug("handleItemModification", QString("model index: %1").arg(index.row()));
@@ -504,6 +552,16 @@ void YerothAdminListerWindow::modifier()
         if (tableView_lister_localisation->rowCount() > 0)
         {
             _allWindows->_adminModifierWindow->rendreVisible(SUJET_ACTION_LOCALISATION);
+            rendreInvisible();
+        }
+        break;
+
+    case SUJET_ACTION_DEPARTEMENTS_DE_PRODUITS:
+        if (tableView_lister_departements_produits->rowCount() > 0)
+        {
+        	//qDebug() << "++ YerothAdminListerWindow::modifier | categorie";
+
+            _allWindows->_adminModifierWindow->rendreVisible(SUJET_ACTION_DEPARTEMENTS_DE_PRODUITS);
             rendreInvisible();
         }
         break;
@@ -564,6 +622,10 @@ void YerothAdminListerWindow::afficher_au_detail()
         afficher_detail_localisation();
         break;
 
+    case SUJET_ACTION_DEPARTEMENTS_DE_PRODUITS:
+    	afficher_detail_departements_de_produits();
+        break;
+
     case SUJET_ACTION_CATEGORIE:
         afficher_detail_categorie();
         break;
@@ -599,6 +661,16 @@ void YerothAdminListerWindow::afficher_detail_localisation()
     _allWindows->_adminDetailWindow->rendreVisibleLocalisation(lastSelectedItemForModification());
     rendreInvisible();
 }
+
+
+void YerothAdminListerWindow::afficher_detail_departements_de_produits()
+{
+    //_logger->debug("afficher_detail_categorie",
+    //  QString("lastSelectedItemForModification: %1").arg(lastSelectedItemForModification()));
+    _allWindows->_adminDetailWindow->rendreVisibleDepartementsDeProduits(lastSelectedItemForModification());
+    rendreInvisible();
+}
+
 
 void YerothAdminListerWindow::afficher_detail_categorie()
 {

@@ -74,6 +74,8 @@ public slots:
 
 	void lister_localisation(YerothSqlTableModel *aSqlTableModel = 0);
 
+	void lister_departements_de_produits(YerothSqlTableModel *aSqlTableModel = 0);
+
 	void lister_categorie(YerothSqlTableModel *aSqlTableModel = 0);
 
 	void lister_compte_bancaire(YerothSqlTableModel *aSqlTableModel = 0);
@@ -87,6 +89,8 @@ public slots:
     void afficher_detail_utilisateur();
 
     void afficher_detail_localisation();
+
+    void afficher_detail_departements_de_produits();
 
     void afficher_detail_categorie();
 
@@ -133,6 +137,11 @@ public slots:
 		return _alertCurrentlyFiltered;
 	}
 
+	inline bool isProductDepartmentCurrentlyFiltered() const
+	{
+		return _productDepartmentCurrentlyFiltered;
+	}
+
 	inline bool isCategoryCurrentlyFiltered() const
 	{
 		return _categoryCurrentlyFiltered;
@@ -168,6 +177,11 @@ public slots:
 		_alertCurrentlyFiltered = alertCurrentlyFiltered;
 	}
 
+	inline void setProductDepartmentCurrentlyFiltered(bool productDepartmentCurrentlyFiltered)
+	{
+		_productDepartmentCurrentlyFiltered = productDepartmentCurrentlyFiltered;
+	}
+
 	inline void setCategoryCurrentlyFiltered(bool categoryCurrentlyFiltered)
 	{
 		_categoryCurrentlyFiltered = categoryCurrentlyFiltered;
@@ -191,6 +205,8 @@ public slots:
 private:
 
     bool 					_alertCurrentlyFiltered;
+
+    bool 					_productDepartmentCurrentlyFiltered;
 
     bool 					_categoryCurrentlyFiltered;
 

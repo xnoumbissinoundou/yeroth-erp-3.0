@@ -283,6 +283,13 @@ void YerothAdminDetailWindow::rendreVisibleLocalisation(int sqlTableRow)
    setVisible(true);
 }
 
+
+void YerothAdminDetailWindow::rendreVisibleDepartementsDeProduits(int sqlTableRow)
+{
+
+}
+
+
 void YerothAdminDetailWindow::rendreVisibleCategorie(int sqlTableRow)
 {
    tabWidget_detail->setCurrentIndex(SUJET_ACTION_CATEGORIE);

@@ -78,6 +78,16 @@ void YerothAdminSearchForm::setupLineEditsQCompleters(int tabWidjetListerIdx)
         _curSujetAction = SUJET_ACTION_BON_DE_COMMANDE;
         break;
 
+    case SUJET_ACTION_DEPARTEMENTS_DE_PRODUITS:
+
+        lineEdit_terme_recherche->enableForSearch(QObject::trUtf8("nom du département de produits"));
+        lineEdit_terme_recherche->setupMyStaticQCompleter(_allWindows->DEPARTEMENTS_PRODUITS,
+        												  YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,
+														  false);
+        _curSujetAction = SUJET_ACTION_DEPARTEMENTS_DE_PRODUITS;
+        _curSqlTableModel = &_allWindows->getSqlTableModel_departements_produits();
+        break;
+
     case SUJET_ACTION_CATEGORIE:
 
         lineEdit_terme_recherche->enableForSearch(QObject::trUtf8("nom de la catégorie"));
@@ -165,6 +175,9 @@ void YerothAdminSearchForm::rechercher(const QString & itemName)
         break;
     case SUJET_ACTION_BON_DE_COMMANDE:
         break;
+    case SUJET_ACTION_DEPARTEMENTS_DE_PRODUITS:
+        filter = GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT, searchString);
+        break;
     case SUJET_ACTION_CATEGORIE:
         filter = GENERATE_SQL_IS_STMT(YerothDatabaseTableColumn::NOM_CATEGORIE, searchString);
         break;
@@ -199,6 +212,11 @@ void YerothAdminSearchForm::rechercher(const QString & itemName)
                 break;
 
             case SUJET_ACTION_BON_DE_COMMANDE:
+                break;
+
+            case SUJET_ACTION_DEPARTEMENTS_DE_PRODUITS:
+            	_allWindows->_adminListerWindow->setProductDepartmentCurrentlyFiltered(true);
+                _allWindows->_adminListerWindow->lister_departements_de_produits(_curSqlTableModel);
                 break;
 
             case SUJET_ACTION_CATEGORIE:

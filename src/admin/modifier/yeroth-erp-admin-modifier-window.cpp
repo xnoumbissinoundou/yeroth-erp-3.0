@@ -109,9 +109,11 @@ void YerothAdminModifierWindow::setupLineEdits()
 void YerothAdminModifierWindow::rendreInvisible()
 {
     clear_utilisateur_all_fields();
+    clear_departements_de_produits_all_fields();
     clear_categorie_all_fields();
     clear_localisation_all_fields();
     clear_alerte_all_fields();
+    clear_remise_all_fields();
 
     _savePassword = false;
 
@@ -133,6 +135,7 @@ void YerothAdminModifierWindow::enableOtherTabs(enum AdminSujetAction curAction,
 void YerothAdminModifierWindow::rendreVisible(enum AdminSujetAction selectedSujetAction)
 {
     clear_utilisateur_all_fields();
+    clear_departements_de_produits_all_fields();
     clear_categorie_all_fields();
     clear_compte_bancaire_all_fields();
     clear_localisation_all_fields();
@@ -151,6 +154,12 @@ void YerothAdminModifierWindow::rendreVisible(enum AdminSujetAction selectedSuje
         tabWidget_modifier->setCurrentIndex(SUJET_ACTION_LOCALISATION);
         enableOtherTabs(SUJET_ACTION_LOCALISATION, false);
         setupEditLocalisation();
+        break;
+
+    case SUJET_ACTION_DEPARTEMENTS_DE_PRODUITS:
+        tabWidget_modifier->setCurrentIndex(SUJET_ACTION_DEPARTEMENTS_DE_PRODUITS);
+        enableOtherTabs(SUJET_ACTION_DEPARTEMENTS_DE_PRODUITS, false);
+        setupEditDepartementsDeProduits();
         break;
 
     case SUJET_ACTION_CATEGORIE:
@@ -203,6 +212,14 @@ void YerothAdminModifierWindow::retourListerLocalisation()
 }
 
 
+void YerothAdminModifierWindow::retourListerDepartementsDeProduits()
+{
+    _allWindows->_adminListerWindow->rendreVisible(SUJET_ACTION_DEPARTEMENTS_DE_PRODUITS);
+    rendreInvisible();
+}
+
+
+
 void YerothAdminModifierWindow::retourListerCategorie()
 {
     _allWindows->_adminListerWindow->rendreVisible(SUJET_ACTION_CATEGORIE);
@@ -243,6 +260,11 @@ void YerothAdminModifierWindow::annuler()
     case SUJET_ACTION_LOCALISATION:
         clear_localisation_all_fields();
         retourListerLocalisation();
+        break;
+
+    case SUJET_ACTION_DEPARTEMENTS_DE_PRODUITS:
+        clear_departements_de_produits_all_fields();
+        retourListerDepartementsDeProduits();
         break;
 
     case SUJET_ACTION_CATEGORIE:
@@ -312,6 +334,8 @@ void YerothAdminModifierWindow::radioButtons_periode_temps()
 #include"modifier-utilisateur.cpp"
 
 #include"modifier-localisation.cpp"
+
+#include"modifier-departements_de_produits.cpp"
 
 #include"modifier-categorie.cpp"
 

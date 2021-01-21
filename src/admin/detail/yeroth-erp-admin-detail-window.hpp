@@ -48,6 +48,8 @@ public:
 
     void rendreVisibleLocalisation(int sqlTableRow);
 
+    void rendreVisibleDepartementsDeProduits(int sqlTableRow);
+
     void rendreVisibleCategorie(int sqlTableRow);
 
     void rendreVisibleCompteBancaire(int sqlTableRow);
