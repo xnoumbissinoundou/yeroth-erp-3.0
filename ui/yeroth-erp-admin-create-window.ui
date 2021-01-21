@@ -3517,7 +3517,7 @@
        <property name="geometry">
         <rect>
          <x>16</x>
-         <y>30</y>
+         <y>29</y>
          <width>153</width>
          <height>21</height>
         </rect>
@@ -3535,7 +3535,7 @@
          <x>173</x>
          <y>30</y>
          <width>205</width>
-         <height>25</height>
+         <height>21</height>
         </rect>
        </property>
        <property name="font">
@@ -4448,6 +4448,39 @@
          </font>
         </property>
        </widget>
+      </widget>
+      <widget class="YerothLineEdit" name="lineEdit_creer_categorie_nom_departement_produit">
+       <property name="geometry">
+        <rect>
+         <x>173</x>
+         <y>54</y>
+         <width>205</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_creer_categorie_nom_departement_produit">
+       <property name="geometry">
+        <rect>
+         <x>16</x>
+         <y>54</y>
+         <width>153</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>département de produits</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
       </widget>
      </widget>
     </widget>

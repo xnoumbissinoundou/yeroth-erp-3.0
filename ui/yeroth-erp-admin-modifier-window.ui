@@ -3394,7 +3394,7 @@
        <property name="geometry">
         <rect>
          <x>16</x>
-         <y>30</y>
+         <y>29</y>
          <width>153</width>
          <height>21</height>
         </rect>
@@ -3412,7 +3412,7 @@
          <x>173</x>
          <y>30</y>
          <width>205</width>
-         <height>25</height>
+         <height>21</height>
         </rect>
        </property>
        <property name="font">
@@ -4319,6 +4319,39 @@
          </rect>
         </property>
        </widget>
+      </widget>
+      <widget class="YerothLineEdit" name="lineEdit_modifier_categorie_nom_departement_produit">
+       <property name="geometry">
+        <rect>
+         <x>173</x>
+         <y>54</y>
+         <width>205</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_modifier_categorie_nom_departement_produit">
+       <property name="geometry">
+        <rect>
+         <x>16</x>
+         <y>54</y>
+         <width>153</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>département de produits</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
       </widget>
      </widget>
     </widget>
@@ -15577,14 +15610,14 @@ background-color: rgb(255, 255, 255);</string>
    <header>src/widgets/yeroth-erp-line-edit.hpp</header>
   </customwidget>
   <customwidget>
-   <class>YerothDateTimeEdit</class>
-   <extends>QDateEdit</extends>
-   <header>src/widgets/yeroth-erp-datetime-edit.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>YerothComboBox</class>
    <extends>QComboBox</extends>
    <header>src/widgets/yeroth-erp-combo-box.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>YerothDateTimeEdit</class>
+   <extends>QDateEdit</extends>
+   <header>src/widgets/yeroth-erp-datetime-edit.hpp</header>
   </customwidget>
   <customwidget>
    <class>YerothTextEdit</class>
