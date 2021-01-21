@@ -32,6 +32,8 @@ QString YerothERPConfig::printer("pdf");
 
 QString YerothERPConfig::fullpathToBACKUP_YEROTH_ERP_3_DIRECTORY("/opt/yeroth-erp-3.0-standalone/YEROTH_sql_backup");
 
+QString YerothERPConfig::pathToPdfCOMPANY_LOGO("");
+
 QString YerothERPConfig::pathToPdfReader("/usr/bin/evince");
 
 QString YerothERPConfig::pathToThermalPrinterDeviceFile("/dev/usb/lp0");

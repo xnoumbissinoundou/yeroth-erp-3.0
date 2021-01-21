@@ -975,6 +975,15 @@ bool YerothUtils::instanceOf__YerothTableViewWITHpagination(aTableViewClassType 
 	}
 
 
+#define YEROTH_DELETE_FREE_POINTER_NOW(P) \
+{ \
+	if (0 != P) \
+	{ \
+		delete P; \
+	} \
+}
+
+
 #define YEROTH_QMESSAGE_BOX_QUELQUE_RESULTAT_FILTRE(THIS, NOMBRE, DIALOG_BOX_TITLE) \
 { QString msg(QObject::trUtf8("Il y'a eu")); \
 msg.append(QObject::trUtf8(" %1 résultat(s) à votre filtre !").arg(NOMBRE)); \

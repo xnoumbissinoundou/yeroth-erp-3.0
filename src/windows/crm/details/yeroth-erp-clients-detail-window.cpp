@@ -91,10 +91,17 @@ bool YerothClientsDetailWindow::generer_la_carte_de_fidelite_du_client()
 {
     _logger->log("generer_la_carte_de_fidelite_du_client");
 
-    QString yerothCustomerAccountImage("yeroth");
+//	const QPixmap *a_label_company_logo_pixmap = new QPixmap;
+//
+//    if (0 != a_label_company_logo_pixmap)
+//    {
+//        YerothUtils::savePixmapToFile(YerothERPConfig::pathToPdfCOMPANY_LOGO,
+//        							  *a_label_company_logo_pixmap,
+//                                      "JPG");
+//    }
 
     QString yerothCustomerAccountImageTmpFile(QString("%1JPG")
-    		.arg(YerothUtils::getUniquePrefixFileInTemporaryFilesDir(yerothCustomerAccountImage)));
+    		.arg(YerothUtils::getUniquePrefixFileInTemporaryFilesDir("yeroth")));
 
     const QPixmap *label_image_produit_pixmap = label_image_produit->pixmap();
 
@@ -105,7 +112,9 @@ bool YerothClientsDetailWindow::generer_la_carte_de_fidelite_du_client()
                                       "JPG");
     }
 
-    emit SIGNAL_INCREMENT_PROGRESS_BAR(12);
+
+    emit SIGNAL_INCREMENT_PROGRESS_BAR(3);
+
 
     QString latexFileNamePrefix("yeroth-erp-carte-de-fidelite-client-LOYALTY");
 
@@ -118,14 +127,9 @@ bool YerothClientsDetailWindow::generer_la_carte_de_fidelite_du_client()
 
     YerothUtils::getLatexCLIENT_LOYALTY_CARD_template(texDocument);
 
-    if (0 != label_image_produit_pixmap)
-    {
-    	texDocument.replace("YEROTHCARTEDEFIDELITELOGO", yerothCustomerAccountImageTmpFile);
-    }
-    else
-    {
-    	texDocument.replace("YEROTHCARTEDEFIDELITELOGO", "");
-    }
+
+    texDocument.replace("YEROTHCARTEDEFIDELITELOGO", YerothERPConfig::pathToPdfCOMPANY_LOGO);
+
 
     if (0 != label_image_produit_pixmap)
     {
@@ -135,6 +139,9 @@ bool YerothClientsDetailWindow::generer_la_carte_de_fidelite_du_client()
     {
     	texDocument.replace("YEROTHCHEMINCOMPLETIMAGECOMPTECLIENT", "");
     }
+
+
+    emit SIGNAL_INCREMENT_PROGRESS_BAR(12);
 
 
     YerothInfoEntreprise & infoEntreprise = YerothUtils::getAllWindows()->getInfoEntreprise();
@@ -196,7 +203,11 @@ bool YerothClientsDetailWindow::generer_la_carte_de_fidelite_du_client()
     	return false;
     }
 
+//    YEROTH_DELETE_FREE_POINTER_NOW(a_label_company_logo_pixmap)
+
+
     YerothERPProcess::startPdfViewerProcess(pdfCustomerDataFileName);
+
 
     emit SIGNAL_INCREMENT_PROGRESS_BAR(98);
 

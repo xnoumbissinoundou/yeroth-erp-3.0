@@ -42,6 +42,8 @@ public:
 
 	static QString fullpathToBACKUP_YEROTH_ERP_3_DIRECTORY;
 
+	static QString pathToPdfCOMPANY_LOGO;
+
 	static QString pathToPdfReader;
 
 	static QString pathToThermalPrinterDeviceFile;
