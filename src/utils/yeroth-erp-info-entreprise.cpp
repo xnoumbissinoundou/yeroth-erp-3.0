@@ -14,6 +14,52 @@
 #include <QtCore/QDebug>
 
 
+void YerothInfoEntreprise::load_COMPANY_INFO_LOGO_FROM_DB_TABLE_ENTREPRISE_INFO()
+{
+	YerothERPWindows *allWindows = YerothUtils::getAllWindows();
+
+	if (0 == allWindows)
+	{
+		return ;
+	}
+
+	YerothSqlTableModel &entreprise_info_TableModel =
+			allWindows->getSqlTableModel_entreprise_info();
+
+	//row 0 of table corresponds to initialization company information.
+	//row 1 of table corresponds to actual company information.
+	unsigned int ROW_ONE_ACTUAL_COMPANY_INFORMATION = 1;
+
+
+	QSqlRecord entrepriseInfoRecord =
+			entreprise_info_TableModel.record(ROW_ONE_ACTUAL_COMPANY_INFORMATION);
+
+
+	QVariant img(entrepriseInfoRecord.value(YerothDatabaseTableColumn::LOGO_ENTREPRISE));
+
+
+	if (!img.isNull())
+	{
+		QLabel label_logo_entreprise_temporary;
+
+		YerothUtils::loadPixmapFromDB(label_logo_entreprise_temporary, img, "JPG");
+
+		QString yerothEntrepriseLogoImageTmpFile(QString("%1/%2")
+				.arg(YerothERPConfig::temporaryFilesDir,
+						"YEROTH-ENTREPRISE-LOGO.JPG"));
+
+		if (0 != label_logo_entreprise_temporary.pixmap())
+		{
+			YerothUtils::savePixmapToFile(yerothEntrepriseLogoImageTmpFile,
+					*label_logo_entreprise_temporary.pixmap(),
+					"JPG");
+
+			YerothERPConfig::pathToPdfCOMPANY_LOGO = yerothEntrepriseLogoImageTmpFile;
+		}
+	}
+}
+
+
 void YerothInfoEntreprise::updateInfoEntrepriseFromDB()
 {
 	YerothERPWindows *allWindows = YerothUtils::getAllWindows();
@@ -23,7 +69,11 @@ void YerothInfoEntreprise::updateInfoEntrepriseFromDB()
 		YerothSqlTableModel &entreprise_info_TableModel =
 				allWindows->getSqlTableModel_entreprise_info();
 
-		QSqlRecord entrepriseInfoRecord = entreprise_info_TableModel.record(1);
+		//row 0 of table corresponds to initialization company information.
+		//row 1 of table corresponds to actual company information.
+		unsigned int ROW_ONE_ACTUAL_COMPANY_INFORMATION = 1;
+
+		QSqlRecord entrepriseInfoRecord = entreprise_info_TableModel.record(ROW_ONE_ACTUAL_COMPANY_INFORMATION);
 
 		_nom_commercial 			= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 1) );
 		_siege_social 				= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 2) );

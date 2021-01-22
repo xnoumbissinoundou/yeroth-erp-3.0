@@ -91,14 +91,9 @@ bool YerothClientsDetailWindow::generer_la_carte_de_fidelite_du_client()
 {
     _logger->log("generer_la_carte_de_fidelite_du_client");
 
-//	const QPixmap *a_label_company_logo_pixmap = new QPixmap;
-//
-//    if (0 != a_label_company_logo_pixmap)
-//    {
-//        YerothUtils::savePixmapToFile(YerothERPConfig::pathToPdfCOMPANY_LOGO,
-//        							  *a_label_company_logo_pixmap,
-//                                      "JPG");
-//    }
+
+    YerothInfoEntreprise::load_COMPANY_INFO_LOGO_FROM_DB_TABLE_ENTREPRISE_INFO();
+
 
     QString yerothCustomerAccountImageTmpFile(QString("%1JPG")
     		.arg(YerothUtils::getUniquePrefixFileInTemporaryFilesDir("yeroth")));
@@ -113,7 +108,7 @@ bool YerothClientsDetailWindow::generer_la_carte_de_fidelite_du_client()
     }
 
 
-    emit SIGNAL_INCREMENT_PROGRESS_BAR(3);
+    emit SIGNAL_INCREMENT_PROGRESS_BAR(7);
 
 
     QString latexFileNamePrefix("yeroth-erp-carte-de-fidelite-client-LOYALTY");

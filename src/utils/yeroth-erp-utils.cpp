@@ -1730,9 +1730,6 @@ void YerothUtils::loadPixmapFromDB(QLabel &label_image,
                                    QVariant imageVariant,
                                    const char *format)
 {
-    QByteArray bytes;
-    QBuffer buffer(&bytes);
-    buffer.open(QIODevice::WriteOnly);
     QPixmap pixmap;
     pixmap.loadFromData(imageVariant.toByteArray(), format);
     label_image.setAlignment(Qt::AlignCenter);

@@ -167,6 +167,8 @@ public:
 
 	static const QString IMAGE_COMPTE_CLIENT;
 
+	static const QString LOGO_ENTREPRISE;
+
 	static const QString IMAGE_PRODUIT;
 
 	static const QString DATE_PEREMPTION;

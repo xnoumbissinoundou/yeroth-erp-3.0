@@ -89,6 +89,7 @@ const QString YerothDatabaseTableColumn::QUANTITE_PAR_LOT				("quantite_par_lot"
 const QString YerothDatabaseTableColumn::LOTS_ENTRANT					("lots_entrant");
 const QString YerothDatabaseTableColumn::IMAGE_FOURNISSEUR				("image_fournisseur");
 const QString YerothDatabaseTableColumn::IMAGE_COMPTE_CLIENT			("image_compte_client");
+const QString YerothDatabaseTableColumn::LOGO_ENTREPRISE				("logo_entreprise");
 const QString YerothDatabaseTableColumn::IMAGE_PRODUIT					("image_produit");
 const QString YerothDatabaseTableColumn::DATE_PEREMPTION				("date_peremption");
 const QString YerothDatabaseTableColumn::DATE_DE_RECEPTION				("date_de_reception");
@@ -319,6 +320,8 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::IMAGE_FOURNISSEUR,	QObject::tr("Image fournisseur"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::IMAGE_COMPTE_CLIENT,	QObject::tr("Image client"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::LOGO_ENTREPRISE,	QObject::tr("Logo de l'entreprise"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::IMAGE_PRODUIT,	QObject::tr("Image produit"));
 

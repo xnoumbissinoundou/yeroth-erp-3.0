@@ -13836,9 +13836,9 @@
       <property name="geometry">
        <rect>
         <x>360</x>
-        <y>104</y>
+        <y>111</y>
         <width>412</width>
-        <height>236</height>
+        <height>211</height>
        </rect>
       </property>
       <property name="palette">
@@ -17149,7 +17149,7 @@
        <property name="geometry">
         <rect>
          <x>219</x>
-         <y>205</y>
+         <y>180</y>
          <width>93</width>
          <height>25</height>
         </rect>
@@ -17583,7 +17583,7 @@
        <property name="geometry">
         <rect>
          <x>315</x>
-         <y>205</y>
+         <y>180</y>
          <width>93</width>
          <height>25</height>
         </rect>
@@ -18014,7 +18014,7 @@
        </property>
       </widget>
      </widget>
-     <widget class="QGroupBox" name="groupBox_image_logo_de_lentreprise">
+     <widget class="QGroupBox" name="groupBox_logo_de_lentreprise">
       <property name="geometry">
        <rect>
         <x>360</x>
@@ -18367,13 +18367,13 @@
       <property name="title">
        <string>logo de l'entreprise</string>
       </property>
-      <widget class="QLabel" name="label_image_produit">
+      <widget class="QLabel" name="label_logo_de_lentreprise">
        <property name="geometry">
         <rect>
          <x>7</x>
-         <y>24</y>
+         <y>18</y>
          <width>171</width>
-         <height>49</height>
+         <height>54</height>
         </rect>
        </property>
        <property name="text">
@@ -18384,11 +18384,11 @@
        </property>
       </widget>
      </widget>
-     <widget class="YerothPushButton" name="pushButton_selectionner_image_logo_de_lentreprise">
+     <widget class="YerothPushButton" name="pushButton_selectionner_logo_de_lentreprise">
       <property name="geometry">
        <rect>
         <x>552</x>
-        <y>39</y>
+        <y>36</y>
         <width>183</width>
         <height>21</height>
        </rect>
@@ -18822,7 +18822,7 @@
        <string>sélectionner un logo (.JPG)</string>
       </property>
      </widget>
-     <widget class="YerothPushButton" name="pushButton_supprimer_image_logo_de_lentreprise">
+     <widget class="YerothPushButton" name="pushButton_supprimer_logo_de_lentreprise">
       <property name="geometry">
        <rect>
         <x>552</x>

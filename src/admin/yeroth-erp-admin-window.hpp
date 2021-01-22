@@ -159,6 +159,13 @@ public slots:
 
 private slots:
 
+	void supprimer_logo_de_lentreprise();
+
+	inline void selectionner_logo_de_lentreprise()
+	{
+		YerothUtils::selectionner_image(this, *label_logo_de_lentreprise);
+	}
+
 	void YEROTH_ERP_3_populate_all_tables();
 
 	void EXECUTER_COMMANDE_MAINTENANCE();

@@ -28,6 +28,8 @@ public:
 	{
 	}
 
+	static void load_COMPANY_INFO_LOGO_FROM_DB_TABLE_ENTREPRISE_INFO();
+
 	void updateInfoEntrepriseFromDB();
 
 	QString toString();
