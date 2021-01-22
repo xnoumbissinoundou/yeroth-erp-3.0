@@ -836,10 +836,10 @@ void YerothAchatsAUXFournisseursWindow::set_filtrer_font()
 bool YerothAchatsAUXFournisseursWindow::supprimer_un_achat_au_fournisseur()
 {
     if (get_INT_LastListerSelectedRow__ID() <= -1 ||
-    	_curStocksTableModel->rowCount() <= 0)
+    	_curAchatAUXFournisseursSqlTableModel->rowCount() <= 0)
     {
         YerothQMessageBox::information(this, QObject::trUtf8("supprimer"),
-                                  	   QObject::trUtf8("Sélectionnez 1 achat au fournisseur à supprimer."));
+                                  	   QObject::trUtf8("Sélectionnez 1 achat (service) au fournisseur à supprimer."));
 
         return false;
     }

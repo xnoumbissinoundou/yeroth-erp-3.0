@@ -446,7 +446,7 @@ void YerothERPClientsWindow::supprimer_PLUSIEURS_Clients(YerothSqlTableModel &aC
 void YerothERPClientsWindow::supprimerCompteClient()
 {
     if (get_INT_LastListerSelectedRow__ID() <= -1 ||
-    	_curStocksTableModel->rowCount() <= 0)
+    	_curClientsTableModel->rowCount() <= 0)
     {
         YerothQMessageBox::information(this, QObject::trUtf8("supprimer"),
                                   	   QObject::trUtf8("Sélectionnez 1 compte client à supprimer."));

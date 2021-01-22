@@ -1486,7 +1486,8 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
     </message>
     <message>
         <location filename="src/windows/purchase/yeroth-erp-achats-aux-fournisseurs-window.cpp" line="842"/>
-        <source>Sélectionnez 1 achat au fournisseur à supprimer.</source>
+        <source>Sélectionnez 1 achat (service) au fournisseur à supprimer.</source>
+        <oldsource>Sélectionnez 1 achat au fournisseur à supprimer.</oldsource>
         <translation>Select a purchase (service) view to delete.</translation>
     </message>
     <message>
