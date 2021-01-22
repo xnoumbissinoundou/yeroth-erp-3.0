@@ -213,6 +213,8 @@ YerothAdminWindow::YerothAdminWindow()
     pushButton_operation_go->disable(this);
 
 
+    pushButton_reinitialiser_le_logo_de_lentreprise->disable(this);
+
     pushButton_selectionner_logo_de_lentreprise->disable(this);
 
     pushButton_supprimer_logo_de_lentreprise->disable(this);
@@ -341,6 +343,8 @@ void YerothAdminWindow::definirPasDeRole()
     YEROTH_ERP_ADMIN_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
     YEROTH_ERP_ADMIN_WRAPPER_QACTION_SET_ENABLED(actionRetournerMenuPrincipal, false);
 
+    pushButton_reinitialiser_le_logo_de_lentreprise->disable(this);
+
     pushButton_selectionner_logo_de_lentreprise->disable(this);
 
     pushButton_supprimer_logo_de_lentreprise->disable(this);
@@ -359,6 +363,8 @@ void YerothAdminWindow::definirAdministrateur()
 
     YEROTH_ERP_ADMIN_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
     YEROTH_ERP_ADMIN_WRAPPER_QACTION_SET_ENABLED(actionRetournerMenuPrincipal, false);
+
+    pushButton_reinitialiser_le_logo_de_lentreprise->disable(this);
 
     pushButton_selectionner_logo_de_lentreprise->disable(this);
 
@@ -384,6 +390,9 @@ void YerothAdminWindow::definirManager()
 
     tabWidget_administration->setCurrentIndex(OPERATIONS);
 
+
+    pushButton_reinitialiser_le_logo_de_lentreprise->
+		enable(this, SLOT(reinitialiser_la_derniere_selection_du_logo_de_lentreprise()));
 
     pushButton_selectionner_logo_de_lentreprise->enable(this, SLOT(selectionner_logo_de_lentreprise()));
 
@@ -493,6 +502,15 @@ void YerothAdminWindow::deconnecter_utilisateur()
     _allWindows->definirPasDeRole();
     _allWindows->_mainWindow->show();
     rendreInvisible();
+}
+
+
+void YerothAdminWindow::reinitialiser_la_derniere_selection_du_logo_de_lentreprise()
+{
+    if (!YerothInfoEntreprise::load_COMPANY_INFO_LOGO_FROM_DB_TABLE_ENTREPRISE_INFO(label_logo_de_lentreprise))
+    {
+    	label_logo_de_lentreprise->setAutoFillBackground(false);
+    }
 }
 
 
@@ -1921,6 +1939,16 @@ void YerothAdminWindow::read_entreprise_info_database_table(bool initalizationVa
 			row = 1;
 		}
 
+
+		if (false == initalizationValues)
+		{
+			if (!YerothInfoEntreprise::load_COMPANY_INFO_LOGO_FROM_DB_TABLE_ENTREPRISE_INFO(label_logo_de_lentreprise))
+			{
+				label_logo_de_lentreprise->setAutoFillBackground(false);
+			}
+		}
+
+
 		QSqlRecord entrepriseInfoRecord = entreprise_info_TableModel.record(row);
 
 		lineEdit_entreprise_denomination_de_lentreprise->setText(
@@ -1964,17 +1992,6 @@ void YerothAdminWindow::read_entreprise_info_database_table(bool initalizationVa
 
 		lineEdit_entreprise_reference_registre_du_commerce->setText(
 			QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 14) ));
-
-	    QVariant img_logo_entreprise(entrepriseInfoRecord.value(YerothDatabaseTableColumn::LOGO_ENTREPRISE));
-
-	    if (!img_logo_entreprise.isNull())
-	    {
-	        YerothUtils::loadPixmapFromDB(*label_logo_de_lentreprise, img_logo_entreprise, "JPG");
-	    }
-	    else
-	    {
-	    	label_logo_de_lentreprise->setAutoFillBackground(false);
-	    }
 	}
 }
 

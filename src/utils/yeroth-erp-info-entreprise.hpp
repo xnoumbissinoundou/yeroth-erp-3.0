@@ -28,7 +28,7 @@ public:
 	{
 	}
 
-	static void load_COMPANY_INFO_LOGO_FROM_DB_TABLE_ENTREPRISE_INFO();
+	static bool load_COMPANY_INFO_LOGO_FROM_DB_TABLE_ENTREPRISE_INFO(QLabel *a_temporary_label_for_company_logo = 0);
 
 	void updateInfoEntrepriseFromDB();
 

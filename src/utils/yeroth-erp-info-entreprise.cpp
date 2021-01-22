@@ -14,13 +14,13 @@
 #include <QtCore/QDebug>
 
 
-void YerothInfoEntreprise::load_COMPANY_INFO_LOGO_FROM_DB_TABLE_ENTREPRISE_INFO()
+bool YerothInfoEntreprise::load_COMPANY_INFO_LOGO_FROM_DB_TABLE_ENTREPRISE_INFO(QLabel *a_temporary_label_for_company_logo /* = 0 */)
 {
 	YerothERPWindows *allWindows = YerothUtils::getAllWindows();
 
 	if (0 == allWindows)
 	{
-		return ;
+		return false;
 	}
 
 	YerothSqlTableModel &entreprise_info_TableModel =
@@ -37,26 +37,41 @@ void YerothInfoEntreprise::load_COMPANY_INFO_LOGO_FROM_DB_TABLE_ENTREPRISE_INFO(
 
 	QVariant img(entrepriseInfoRecord.value(YerothDatabaseTableColumn::LOGO_ENTREPRISE));
 
-
-	if (!img.isNull())
+	if (img.isNull())
 	{
-		QLabel label_logo_entreprise_temporary;
-
-		YerothUtils::loadPixmapFromDB(label_logo_entreprise_temporary, img, "JPG");
-
-		QString yerothEntrepriseLogoImageTmpFile(QString("%1/%2")
-				.arg(YerothERPConfig::temporaryFilesDir,
-						"YEROTH-ENTREPRISE-LOGO.JPG"));
-
-		if (0 != label_logo_entreprise_temporary.pixmap())
-		{
-			YerothUtils::savePixmapToFile(yerothEntrepriseLogoImageTmpFile,
-					*label_logo_entreprise_temporary.pixmap(),
-					"JPG");
-
-			YerothERPConfig::pathToPdfCOMPANY_LOGO = yerothEntrepriseLogoImageTmpFile;
-		}
+		return false;
 	}
+
+	bool _apointer__CREATED_HERE = false;
+
+	if (0 == a_temporary_label_for_company_logo)
+	{
+		_apointer__CREATED_HERE = true;
+
+		a_temporary_label_for_company_logo = new QLabel;
+	}
+
+	YerothUtils::loadPixmapFromDB(*a_temporary_label_for_company_logo, img, "JPG");
+
+	QString yerothEntrepriseLogoImageTmpFile(QString("%1/%2")
+			.arg(YerothERPConfig::temporaryFilesDir,
+					"YEROTH-ENTREPRISE-LOGO.JPG"));
+
+	if (0 != a_temporary_label_for_company_logo->pixmap())
+	{
+		YerothUtils::savePixmapToFile(yerothEntrepriseLogoImageTmpFile,
+				*(a_temporary_label_for_company_logo->pixmap()),
+				"JPG");
+
+		YerothERPConfig::pathToPdfCOMPANY_LOGO = yerothEntrepriseLogoImageTmpFile;
+	}
+
+	if (_apointer__CREATED_HERE)
+	{
+		YEROTH_DELETE_FREE_POINTER_NOW(a_temporary_label_for_company_logo)
+	}
+
+	return true;
 }
 
 
@@ -64,33 +79,38 @@ void YerothInfoEntreprise::updateInfoEntrepriseFromDB()
 {
 	YerothERPWindows *allWindows = YerothUtils::getAllWindows();
 
-	if (0 != allWindows)
+	if (0 == allWindows)
 	{
-		YerothSqlTableModel &entreprise_info_TableModel =
-				allWindows->getSqlTableModel_entreprise_info();
-
-		//row 0 of table corresponds to initialization company information.
-		//row 1 of table corresponds to actual company information.
-		unsigned int ROW_ONE_ACTUAL_COMPANY_INFORMATION = 1;
-
-		QSqlRecord entrepriseInfoRecord = entreprise_info_TableModel.record(ROW_ONE_ACTUAL_COMPANY_INFORMATION);
-
-		_nom_commercial 			= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 1) );
-		_siege_social 				= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 2) );
-		_localisation 				= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 3) );
-		_boite_postale 				= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 4) );
-		_adresse 					= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 5) );
-		_ville 						= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 6) );
-		_pays 						= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 7) );
-		_email 						= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 8) );
-		_telephone 					= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 9) );
-		_numero_contribuable 		= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 10) );
-		_secteurs_activites 		= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 11) );
-		_agence_comptebancaire 		= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 12) );
-		_reference_comptebancaire	= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 13) );
-		_reference_registre_chambre_du_commerce
-									= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 14) );
+		return ;
 	}
+
+	YerothSqlTableModel &entreprise_info_TableModel =
+			allWindows->getSqlTableModel_entreprise_info();
+
+	//row 0 of table corresponds to initialization company information.
+	//row 1 of table corresponds to actual company information.
+	unsigned int ROW_ONE_ACTUAL_COMPANY_INFORMATION = 1;
+
+	QSqlRecord entrepriseInfoRecord = entreprise_info_TableModel.record(ROW_ONE_ACTUAL_COMPANY_INFORMATION);
+
+	_nom_commercial 			= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 1) );
+	_siege_social 				= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 2) );
+	_localisation 				= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 3) );
+	_boite_postale 				= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 4) );
+	_adresse 					= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 5) );
+	_ville 						= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 6) );
+	_pays 						= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 7) );
+	_email 						= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 8) );
+	_telephone 					= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 9) );
+	_numero_contribuable 		= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 10) );
+	_secteurs_activites 		= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 11) );
+	_agence_comptebancaire 		= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 12) );
+	_reference_comptebancaire	= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 13) );
+
+	_reference_registre_chambre_du_commerce
+		= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 14) );
+
+	YerothInfoEntreprise::load_COMPANY_INFO_LOGO_FROM_DB_TABLE_ENTREPRISE_INFO();
 }
 
 QString YerothInfoEntreprise::toString()

@@ -159,6 +159,8 @@ public slots:
 
 private slots:
 
+	void reinitialiser_la_derniere_selection_du_logo_de_lentreprise();
+
 	void supprimer_logo_de_lentreprise();
 
 	inline void selectionner_logo_de_lentreprise()
