@@ -91,12 +91,12 @@ public:
 		return _nom_commercial;
 	}
 
-	inline QString getNomCommercialTex() const
+	inline QString getNomCommercial_LATEX() const
 	{
 		return YerothUtils::LATEX_IN_OUT_handleForeignAccents(_nom_commercial);
 	}
 
-	inline QString getNomCommercial_truncated_FOR_SMALL_RECEIPT_Tex()
+	inline QString getNomCommercial_truncated_FOR_SMALL_RECEIPT_LATEX()
 	{
 		return YerothUtils::LATEX_IN_OUT_handleForeignAccents
 					(getNomCommercial_truncated_FOR_SMALL_RECEIPT());
@@ -107,7 +107,7 @@ public:
 		return _localisation;
 	}
 
-	inline QString getLocalisationTex() const
+	inline QString getLocalisation_LATEX() const
 	{
 		return YerothUtils::LATEX_IN_OUT_handleForeignAccents(_localisation);
 	}
@@ -115,6 +115,11 @@ public:
 	inline QString getSiegeSocial() const
 	{
 		return _siege_social;
+	}
+
+	inline QString getSiegeSocial_LATEX() const
+	{
+		return YerothUtils::LATEX_IN_OUT_handleForeignAccents(_siege_social);
 	}
 
 	inline QString getBoitePostal() const
@@ -132,7 +137,7 @@ public:
 		return _ville;
 	}
 
-	inline QString getVilleTex() const
+	inline QString getVille_LATEX() const
 	{
 		return YerothUtils::LATEX_IN_OUT_handleForeignAccents(_ville);
 	}
@@ -152,14 +157,19 @@ public:
 		return _email;
 	}
 
-	inline QString getEmailTex() const
+	inline QString getEmail_LATEX() const
 	{
-		return YerothUtils::LATEX_IN_OUT_handleForeignAccents(_email);
+		return YerothUtils::LATEX_IN_OUT_handleForeignAccents(_email.toLower());
 	}
 
 	inline QString getTelephone() const
 	{
 		return _telephone;
+	}
+
+	inline QString getTelephone_LATEX_OUT() const
+	{
+		return YerothUtils::GET_STRING_WITH_NUMBERS_WITHIN_KEPT_FOR_LATEX(_telephone);
 	}
 
 	inline QString getNumeroDeContribuable() const

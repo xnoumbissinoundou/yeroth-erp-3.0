@@ -146,7 +146,7 @@ QString YerothTableViewPRINT_UTILITIES_TEX_TABLE::
 
     get_YEROTH_ListingTex_TEMPLATE_DocumentString(texDocument, latexTable_in_out);
 
-    QString factureDate(YerothUtils::LATEX_IN_OUT_handleForeignAccents(infoEntreprise.getVilleTex()));
+    QString factureDate(YerothUtils::LATEX_IN_OUT_handleForeignAccents(infoEntreprise.getVille_LATEX()));
 
     YerothUtils::getCurrentLocaleDate(factureDate);
 
@@ -165,12 +165,12 @@ QString YerothTableViewPRINT_UTILITIES_TEX_TABLE::
 
     texDocument.replace("YEROTHPAPERSPEC", "a4paper");
 
-    texDocument.replace("YEROTHENTREPRISE", infoEntreprise.getNomCommercialTex());
+    texDocument.replace("YEROTHENTREPRISE", infoEntreprise.getNomCommercial_LATEX());
     texDocument.replace("YEROTHACTIVITESENTREPRISE", infoEntreprise.getSecteursActivitesTex());
     texDocument.replace("YEROTHBOITEPOSTALE", infoEntreprise.getBoitePostal());
-    texDocument.replace("YEROTHVILLE", infoEntreprise.getVilleTex());
+    texDocument.replace("YEROTHVILLE", infoEntreprise.getVille_LATEX());
     texDocument.replace("YEROTHPAYS", infoEntreprise.getPaysTex());
-    texDocument.replace("YEROTHEMAIL", infoEntreprise.getEmailTex());
+    texDocument.replace("YEROTHEMAIL", infoEntreprise.getEmail_LATEX());
     texDocument.replace("YEROTHTELEPHONE", infoEntreprise.getTelephone());
     texDocument.replace("YEROTHDATE", factureDate);
 

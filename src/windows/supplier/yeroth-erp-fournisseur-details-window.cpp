@@ -331,52 +331,52 @@ bool YerothFournisseurDetailsWindow::imprimer_pdf_document()
     QString data;
 
     data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Référence fournisseur: ")));
-    data.append(QString("%1\\\\\n").arg(lineEdit_fournisseur_details_reference_fournisseur->textForLatex()));
+    data.append(QString("%1\\\\\n").arg(lineEdit_fournisseur_details_reference_fournisseur->text_LATEX()));
 
     data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Nom de l'entreprise: ")));
-    data.append(QString("%1\\\\\n").arg(lineEdit_fournisseur_details_nom_entreprise->textForLatex()));
+    data.append(QString("%1\\\\\n").arg(lineEdit_fournisseur_details_nom_entreprise->text_LATEX()));
 
     data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Nom du Représentant: ")));
-    data.append(QString("%1\\\\\n").arg(lineEdit_fournisseur_details_nom_representant->textForLatex()));
+    data.append(QString("%1\\\\\n").arg(lineEdit_fournisseur_details_nom_representant->text_LATEX()));
 
     data.append(YerothUtils::get_latex_bold_text(QObject::tr("Quartier: ")));
-    data.append(QString("%1\\\\\n").arg(lineEdit_fournisseur_details_quartier->textForLatex()));
+    data.append(QString("%1\\\\\n").arg(lineEdit_fournisseur_details_quartier->text_LATEX()));
 
     data.append(YerothUtils::get_latex_bold_text(QObject::tr("Ville: ")));
-    data.append(QString("%1\\\\\n").arg(lineEdit_fournisseur_details_ville->textForLatex()));
+    data.append(QString("%1\\\\\n").arg(lineEdit_fournisseur_details_ville->text_LATEX()));
 
     data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Province / État: ")));
-    data.append(QString("%1\\\\\n").arg(lineEdit_fournisseur_details_province_etat->textForLatex()));
+    data.append(QString("%1\\\\\n").arg(lineEdit_fournisseur_details_province_etat->text_LATEX()));
 
     data.append(YerothUtils::get_latex_bold_text(QObject::tr("Pays: ")));
-    data.append(QString("%1\\\\\n").arg(lineEdit_fournisseur_details_pays->textForLatex()));
+    data.append(QString("%1\\\\\n").arg(lineEdit_fournisseur_details_pays->text_LATEX()));
 
     data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Boîte postale: ")));
-    data.append(QString("%1\\\\\n").arg(lineEdit_fournisseur_details_boite_postale->textForLatex()));
+    data.append(QString("%1\\\\\n").arg(lineEdit_fournisseur_details_boite_postale->text_LATEX()));
 
     data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Siège social: ")));
-    data.append(QString("%1\\\\\n").arg(lineEdit_fournisseur_details_siege_social->textForLatex()));
+    data.append(QString("%1\\\\\n").arg(lineEdit_fournisseur_details_siege_social->text_LATEX()));
 
     data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Émail: ")));
-    data.append(QString("%1\\\\\n").arg(lineEdit_fournisseur_details_email->textForLatex()));
+    data.append(QString("%1\\\\\n").arg(lineEdit_fournisseur_details_email->text_LATEX()));
 
     data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Numéro de téléphone 1: ")));
-    data.append(QString("%1\\\\\n").arg(lineEdit_fournisseur_details_numero_telephone_1->textForLatex()));
+    data.append(QString("%1\\\\\n").arg(lineEdit_fournisseur_details_numero_telephone_1->text_LATEX()));
 
     data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Numéro de téléphone 2: ")));
-    data.append(QString("%1\\\\\n").arg(lineEdit_fournisseur_details_numero_telephone_2->textForLatex()));
+    data.append(QString("%1\\\\\n").arg(lineEdit_fournisseur_details_numero_telephone_2->text_LATEX()));
 
     data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Numéro de contribuable: ")));
-    data.append(QString("%1\\\\\n").arg(lineEdit_fournisseur_details_numero_contribuable->textForLatex()));
+    data.append(QString("%1\\\\\n").arg(lineEdit_fournisseur_details_numero_contribuable->text_LATEX()));
 
     data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("RCCM N\\textsuperscript{o}: ")));
-    data.append(QString("%1\\\\\n").arg(lineEdit_fournisseur_details_reference_registre_du_commerce->textForLatex()));
+    data.append(QString("%1\\\\\n").arg(lineEdit_fournisseur_details_reference_registre_du_commerce->text_LATEX()));
 
     data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Dette maximale: ")));
-    data.append(QString("%1\\\\\n").arg(lineEdit_fournisseur_details_dette_maximale->textForLatex()));
+    data.append(QString("%1\\\\\n").arg(lineEdit_fournisseur_details_dette_maximale->text_LATEX()));
 
     data.append(YerothUtils::get_latex_bold_text(QObject::tr("Fournisseur: ")));
-    data.append(QString("%1\\\\\n").arg(lineEdit_fournisseur_details_fournisseur->textForLatex()));
+    data.append(QString("%1\\\\\n").arg(lineEdit_fournisseur_details_fournisseur->text_LATEX()));
 
     data.append("\n\n\\vspace{0.3cm}\n\n");
 
@@ -402,19 +402,19 @@ bool YerothFournisseurDetailsWindow::imprimer_pdf_document()
 
     YerothInfoEntreprise & infoEntreprise = YerothUtils::getAllWindows()->getInfoEntreprise();
 
-    QString fileDate(YerothUtils::LATEX_IN_OUT_handleForeignAccents(infoEntreprise.getVilleTex()));
+    QString fileDate(YerothUtils::LATEX_IN_OUT_handleForeignAccents(infoEntreprise.getVille_LATEX()));
 
     YerothUtils::getCurrentLocaleDate(fileDate);
 
     texDocument.replace("YEROTHPAPERSPEC", "a4paper");
 
-    texDocument.replace("YEROTHFOURNISSEUR", QString("%1").arg(lineEdit_fournisseur_details_nom_entreprise->textForLatex()));
-    texDocument.replace("YEROTHENTREPRISE", infoEntreprise.getNomCommercialTex());
+    texDocument.replace("YEROTHFOURNISSEUR", QString("%1").arg(lineEdit_fournisseur_details_nom_entreprise->text_LATEX()));
+    texDocument.replace("YEROTHENTREPRISE", infoEntreprise.getNomCommercial_LATEX());
     texDocument.replace("YEROTHACTIVITESENTREPRISE", infoEntreprise.getSecteursActivitesTex());
     texDocument.replace("YEROTHBOITEPOSTALE", infoEntreprise.getBoitePostal());
-    texDocument.replace("YEROTHVILLE", infoEntreprise.getVilleTex());
+    texDocument.replace("YEROTHVILLE", infoEntreprise.getVille_LATEX());
     texDocument.replace("YEROTHPAYS", infoEntreprise.getPaysTex());
-    texDocument.replace("YEROTHEMAIL", infoEntreprise.getEmailTex());
+    texDocument.replace("YEROTHEMAIL", infoEntreprise.getEmail_LATEX());
     texDocument.replace("YEROTHTELEPHONE", infoEntreprise.getTelephone());
     texDocument.replace("YEROTHDATE", fileDate);
     texDocument.replace("YEROTHNOMUTILISATEUR", _allWindows->getUser()->nom_completTex());

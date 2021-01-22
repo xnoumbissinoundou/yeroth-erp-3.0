@@ -2182,7 +2182,7 @@ void YerothTableauxDeBordWindow::rechercher()
 
     YerothInfoEntreprise &infoEntreprise = _allWindows->getInfoEntreprise();
 
-    QString statsDate(YerothUtils::LATEX_IN_OUT_handleForeignAccents(infoEntreprise.getVilleTex()));
+    QString statsDate(YerothUtils::LATEX_IN_OUT_handleForeignAccents(infoEntreprise.getVille_LATEX()));
 
     YerothUtils::getCurrentLocaleDate(statsDate);
 
@@ -2197,14 +2197,14 @@ void YerothTableauxDeBordWindow::rechercher()
        													.arg(YerothUtils::getAllWindows()->getUser()->titreTex(),
        														 YerothUtils::getAllWindows()->getUser()->nom_completTex()));
 
-    latexChartTemplate.replace("YEROTHENTREPRISE", 				infoEntreprise.getNomCommercialTex());
+    latexChartTemplate.replace("YEROTHENTREPRISE", 				infoEntreprise.getNomCommercial_LATEX());
     latexChartTemplate.replace("YEROTHBARCHARTTITLE", 			YerothUtils::LATEX_IN_OUT_handleForeignAccents(pdfFileTitle));
-    latexChartTemplate.replace("YEROTHENTREPRISE", 				infoEntreprise.getNomCommercialTex());
+    latexChartTemplate.replace("YEROTHENTREPRISE", 				infoEntreprise.getNomCommercial_LATEX());
     latexChartTemplate.replace("YEROTHACTIVITESENTREPRISE", 		infoEntreprise.getSecteursActivitesTex());
     latexChartTemplate.replace("YEROTHBOITEPOSTALE", 			infoEntreprise.getBoitePostal());
-    latexChartTemplate.replace("YEROTHVILLE", 					infoEntreprise.getVilleTex());
+    latexChartTemplate.replace("YEROTHVILLE", 					infoEntreprise.getVille_LATEX());
     latexChartTemplate.replace("YEROTHPAYS", 					infoEntreprise.getPaysTex());
-    latexChartTemplate.replace("YEROTHEMAIL", 					infoEntreprise.getEmailTex());
+    latexChartTemplate.replace("YEROTHEMAIL", 					infoEntreprise.getEmail_LATEX());
     latexChartTemplate.replace("YEROTHTELEPHONE", 				infoEntreprise.getTelephone());
     latexChartTemplate.replace("YEROTHDATE", 					statsDate);
     latexChartTemplate.replace("YEROTHVENTESDEBUT", 				DATE_TO_STRING(dateEdit_rapports_debut->date()));
@@ -2627,7 +2627,7 @@ void YerothTableauxDeBordWindow::bilanComptable()
 
     YerothInfoEntreprise & infoEntreprise = YerothUtils::getAllWindows()->getInfoEntreprise();
 
-    QString fileDate(YerothUtils::LATEX_IN_OUT_handleForeignAccents(infoEntreprise.getVilleTex()));
+    QString fileDate(YerothUtils::LATEX_IN_OUT_handleForeignAccents(infoEntreprise.getVille_LATEX()));
 
     YerothUtils::getCurrentLocaleDate(fileDate);
 
@@ -2686,12 +2686,12 @@ void YerothTableauxDeBordWindow::bilanComptable()
     texDocument.replace("YEROTHBILANCOMPTABLECHIFFREDAFFAIREDEVISE", GET_CURRENCY_STRING_NUM_FOR_LATEX(total_entrees));
 
     texDocument.replace("YEROTHPAPERSPEC", "a4paper");
-    texDocument.replace("YEROTHENTREPRISE", infoEntreprise.getNomCommercialTex());
+    texDocument.replace("YEROTHENTREPRISE", infoEntreprise.getNomCommercial_LATEX());
     texDocument.replace("YEROTHACTIVITESENTREPRISE", infoEntreprise.getSecteursActivitesTex());
     texDocument.replace("YEROTHBOITEPOSTALE", infoEntreprise.getBoitePostal());
-    texDocument.replace("YEROTHVILLE", infoEntreprise.getVilleTex());
+    texDocument.replace("YEROTHVILLE", infoEntreprise.getVille_LATEX());
     texDocument.replace("YEROTHPAYS", infoEntreprise.getPaysTex());
-    texDocument.replace("YEROTHEMAIL", infoEntreprise.getEmailTex());
+    texDocument.replace("YEROTHEMAIL", infoEntreprise.getEmail_LATEX());
     texDocument.replace("YEROTHTELEPHONE", infoEntreprise.getTelephone());
     texDocument.replace("YEROTHDATE", fileDate);
 
@@ -3172,7 +3172,7 @@ void YerothTableauxDeBordWindow::analyseComparee()
 #endif
 
 
-    QString factureDate(YerothUtils::LATEX_IN_OUT_handleForeignAccents(infoEntreprise.getVilleTex()));
+    QString factureDate(YerothUtils::LATEX_IN_OUT_handleForeignAccents(infoEntreprise.getVille_LATEX()));
     YerothUtils::getCurrentLocaleDate(factureDate);
 
     QString longDateDebut;
@@ -3221,12 +3221,12 @@ void YerothTableauxDeBordWindow::analyseComparee()
     texDocument2.replace("YEROTHCHIFFREAFFAIREDATEDEBUT",longDateDebut);
     texDocument2.replace("YEROTHCHIFFREAFFAIREDATEFIN", 	longDateFin);
     texDocument2.replace("YEROTHCHARTFIN", 				_reportTexFileEndString);
-    texDocument2.replace("YEROTHENTREPRISE", 			infoEntreprise.getNomCommercialTex());
+    texDocument2.replace("YEROTHENTREPRISE", 			infoEntreprise.getNomCommercial_LATEX());
     texDocument2.replace("YEROTHACTIVITESENTREPRISE", 	infoEntreprise.getSecteursActivitesTex());
     texDocument2.replace("YEROTHBOITEPOSTALE", 			infoEntreprise.getBoitePostal());
-    texDocument2.replace("YEROTHVILLE", 					infoEntreprise.getVilleTex());
+    texDocument2.replace("YEROTHVILLE", 					infoEntreprise.getVille_LATEX());
     texDocument2.replace("YEROTHPAYS", 					infoEntreprise.getPaysTex());
-    texDocument2.replace("YEROTHEMAIL", 					infoEntreprise.getEmailTex());
+    texDocument2.replace("YEROTHEMAIL", 					infoEntreprise.getEmail_LATEX());
     texDocument2.replace("YEROTHTELEPHONE", 				infoEntreprise.getTelephone());
     texDocument2.replace("YEROTHDATE", 					factureDate);
 
@@ -3702,7 +3702,7 @@ void YerothTableauxDeBordWindow::compterLesArticlesVendusParQuantite()
 
 	YerothInfoEntreprise &infoEntreprise = _allWindows->getInfoEntreprise();
 
-	QString statsDate(YerothUtils::LATEX_IN_OUT_handleForeignAccents(infoEntreprise.getVilleTex()));
+	QString statsDate(YerothUtils::LATEX_IN_OUT_handleForeignAccents(infoEntreprise.getVille_LATEX()));
 
 	YerothUtils::getCurrentLocaleDate(statsDate);
 
@@ -3717,14 +3717,14 @@ void YerothTableauxDeBordWindow::compterLesArticlesVendusParQuantite()
 			.arg(YerothUtils::getAllWindows()->getUser()->titreTex(),
 					YerothUtils::getAllWindows()->getUser()->nom_completTex()));
 
-	latexChartTemplate.replace("YEROTHENTREPRISE", 				infoEntreprise.getNomCommercialTex());
+	latexChartTemplate.replace("YEROTHENTREPRISE", 				infoEntreprise.getNomCommercial_LATEX());
 	latexChartTemplate.replace("YEROTHBARCHARTTITLE", 			YerothUtils::LATEX_IN_OUT_handleForeignAccents(pdfFileTitle));
-	latexChartTemplate.replace("YEROTHENTREPRISE", 				infoEntreprise.getNomCommercialTex());
+	latexChartTemplate.replace("YEROTHENTREPRISE", 				infoEntreprise.getNomCommercial_LATEX());
 	latexChartTemplate.replace("YEROTHACTIVITESENTREPRISE", 		infoEntreprise.getSecteursActivitesTex());
 	latexChartTemplate.replace("YEROTHBOITEPOSTALE", 			infoEntreprise.getBoitePostal());
-	latexChartTemplate.replace("YEROTHVILLE", 					infoEntreprise.getVilleTex());
+	latexChartTemplate.replace("YEROTHVILLE", 					infoEntreprise.getVille_LATEX());
 	latexChartTemplate.replace("YEROTHPAYS", 					infoEntreprise.getPaysTex());
-	latexChartTemplate.replace("YEROTHEMAIL", 					infoEntreprise.getEmailTex());
+	latexChartTemplate.replace("YEROTHEMAIL", 					infoEntreprise.getEmail_LATEX());
 	latexChartTemplate.replace("YEROTHTELEPHONE", 				infoEntreprise.getTelephone());
 	latexChartTemplate.replace("YEROTHDATE", 					statsDate);
 	latexChartTemplate.replace("YEROTHVENTESDEBUT", 				DATE_TO_STRING(dateEdit_rapports_debut->date()));
@@ -4128,7 +4128,7 @@ void YerothTableauxDeBordWindow::calculerChiffresDaffaireMois()
 #endif
 
 
-    QString factureDate(YerothUtils::LATEX_IN_OUT_handleForeignAccents(infoEntreprise.getVilleTex()));
+    QString factureDate(YerothUtils::LATEX_IN_OUT_handleForeignAccents(infoEntreprise.getVille_LATEX()));
     YerothUtils::getCurrentLocaleDate(factureDate);
 
     QString longDateDebut;
@@ -4177,12 +4177,12 @@ void YerothTableauxDeBordWindow::calculerChiffresDaffaireMois()
     texDocument2.replace("YEROTHCHIFFREAFFAIREDATEDEBUT",longDateDebut);
     texDocument2.replace("YEROTHCHIFFREAFFAIREDATEFIN", 	longDateFin);
     texDocument2.replace("YEROTHCHARTFIN", 				_reportTexFileEndString);
-    texDocument2.replace("YEROTHENTREPRISE", 			infoEntreprise.getNomCommercialTex());
+    texDocument2.replace("YEROTHENTREPRISE", 			infoEntreprise.getNomCommercial_LATEX());
     texDocument2.replace("YEROTHACTIVITESENTREPRISE", 	infoEntreprise.getSecteursActivitesTex());
     texDocument2.replace("YEROTHBOITEPOSTALE", 			infoEntreprise.getBoitePostal());
-    texDocument2.replace("YEROTHVILLE", 					infoEntreprise.getVilleTex());
+    texDocument2.replace("YEROTHVILLE", 					infoEntreprise.getVille_LATEX());
     texDocument2.replace("YEROTHPAYS", 					infoEntreprise.getPaysTex());
-    texDocument2.replace("YEROTHEMAIL", 					infoEntreprise.getEmailTex());
+    texDocument2.replace("YEROTHEMAIL", 					infoEntreprise.getEmail_LATEX());
     texDocument2.replace("YEROTHTELEPHONE", 				infoEntreprise.getTelephone());
     texDocument2.replace("YEROTHDATE", 					factureDate);
 

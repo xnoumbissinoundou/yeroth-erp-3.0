@@ -840,7 +840,7 @@ QString YerothPointDeVenteWindow::imprimer_recu_vendu_grand(QString referenceRec
 
     QString factureTexDocument;
 
-    QString factureDate(infoEntreprise.getVilleTex());
+    QString factureDate(infoEntreprise.getVille_LATEX());
 
     YerothUtils::getCurrentLocaleDate(factureDate);
 
@@ -875,13 +875,13 @@ QString YerothPointDeVenteWindow::imprimer_recu_vendu_grand(QString referenceRec
 
 
     factureTexDocument.replace("YEROTHPAIEMENT", YerothUtils::LATEX_IN_OUT_handleForeignAccents(typeDeVenteStr));
-    factureTexDocument.replace("YEROTHENTREPRISE", infoEntreprise.getNomCommercialTex());
+    factureTexDocument.replace("YEROTHENTREPRISE", infoEntreprise.getNomCommercial_LATEX());
     factureTexDocument.replace("YEROTHACTIVITESENTREPRISE", infoEntreprise.getSecteursActivitesTex());
     factureTexDocument.replace("YEROTHBOITEPOSTALE", infoEntreprise.getBoitePostal());
-    factureTexDocument.replace("YEROTHVILLE", infoEntreprise.getVilleTex());
-    factureTexDocument.replace("YEROTHLOCALISATION_SORTIE", infoEntreprise.getLocalisationTex());
+    factureTexDocument.replace("YEROTHVILLE", infoEntreprise.getVille_LATEX());
+    factureTexDocument.replace("YEROTHLOCALISATION_SORTIE", infoEntreprise.getLocalisation_LATEX());
     factureTexDocument.replace("YEROTHPAYS", infoEntreprise.getPaysTex());
-    factureTexDocument.replace("YEROTHEMAIL", infoEntreprise.getEmailTex());
+    factureTexDocument.replace("YEROTHEMAIL", infoEntreprise.getEmail_LATEX());
     factureTexDocument.replace("YEROTHTELEPHONE", infoEntreprise.getTelephone());
     factureTexDocument.replace("YEROTHDATE", factureDate);
     factureTexDocument.replace("YEROTHHEUREVENTE", CURRENT_TIME);
@@ -1031,7 +1031,7 @@ QString YerothPointDeVenteWindow::imprimer_recu_vendu_petit(QString referenceRec
 
     QString factureTexDocument;
 
-    QString factureDate(infoEntreprise.getVilleTex());
+    QString factureDate(infoEntreprise.getVille_LATEX());
 
 	YerothUtils::getCurrentSimplifiedDate(factureDate);
 
@@ -1085,13 +1085,13 @@ QString YerothPointDeVenteWindow::imprimer_recu_vendu_petit(QString referenceRec
 
 	factureTexDocument.replace("YEROTHPAIEMENT", YerothUtils::LATEX_IN_OUT_handleForeignAccents(typeDeVenteStr));
     factureTexDocument.replace("YEROTHFACTURESMALLPAPERHEIGHT", minPaperHeight);
-    factureTexDocument.replace("YEROTHENTREPRISE", infoEntreprise.getNomCommercial_truncated_FOR_SMALL_RECEIPT_Tex());
+    factureTexDocument.replace("YEROTHENTREPRISE", infoEntreprise.getNomCommercial_truncated_FOR_SMALL_RECEIPT_LATEX());
     factureTexDocument.replace("YEROTHACTIVITESENTREPRISE", infoEntreprise.getSecteursActivitesTex());
     factureTexDocument.replace("YEROTHCONTRIBUABLENR", infoEntreprise.getNumeroDeContribuable());
     factureTexDocument.replace("YEROTHBOITEPOSTALE", infoEntreprise.getBoitePostal());
-    factureTexDocument.replace("YEROTHVILLE", infoEntreprise.getVilleTex());
-    factureTexDocument.replace("YEROTHLOCALISATION_SORTIE", infoEntreprise.getLocalisationTex());
-    factureTexDocument.replace("YEROTHEMAIL", infoEntreprise.getEmailTex());
+    factureTexDocument.replace("YEROTHVILLE", infoEntreprise.getVille_LATEX());
+    factureTexDocument.replace("YEROTHLOCALISATION_SORTIE", infoEntreprise.getLocalisation_LATEX());
+    factureTexDocument.replace("YEROTHEMAIL", infoEntreprise.getEmail_LATEX());
     factureTexDocument.replace("YEROTHTELEPHONE", infoEntreprise.getTelephone());
     factureTexDocument.replace("YEROTHDATE", factureDate);
     factureTexDocument.replace("YEROTHVENDEUR", yerothUser->nom_complet_truncated_FOR_SMALL_RECEIPT_Tex());
