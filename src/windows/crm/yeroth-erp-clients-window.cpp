@@ -323,10 +323,18 @@ void YerothERPClientsWindow::textChangedSearchLineEditsQCompleters()
 
 void YerothERPClientsWindow::afficher_groupes_dun_client()
 {
-	rendreInvisible();
+    if (_curClientsTableModel->rowCount() > 0)
+    {
+    	rendreInvisible();
 
-	_allWindows->_groupesDunClientWindow->rendreVisible(_curClientsTableModel,
-														_curStocksTableModel);
+    	_allWindows->_groupesDunClientWindow->rendreVisible(_curClientsTableModel,
+    														_curStocksTableModel);
+    }
+    else
+    {
+        YerothQMessageBox::information(this, QObject::trUtf8("groupes d'appartenance"),
+                                  QObject::trUtf8("Sélectionnez 1 compte client afin de visualiser ses groupes d'appartenance."));
+    }
 }
 
 
@@ -341,8 +349,8 @@ void YerothERPClientsWindow::private_payer_au_compteclient()
     }
     else
     {
-        YerothQMessageBox::warning(this, QObject::trUtf8("payer à un compte client"),
-                                  QObject::trUtf8("Sélectionnez un compte client afin d'effectuer un paiement !"));
+        YerothQMessageBox::information(this, QObject::trUtf8("verser"),
+                                  QObject::trUtf8("Sélectionnez 1 compte client afin d'effectuer un versement."));
     }
 }
 
@@ -358,8 +366,8 @@ void YerothERPClientsWindow::private_payer_au_compteclient(const QModelIndex & a
     }
     else
     {
-        YerothQMessageBox::warning(this, QObject::trUtf8("payer à un compte client"),
-                                  QObject::trUtf8("Sélectionnez un compte client afin d'effectuer un paiement !"));
+        YerothQMessageBox::information(this, QObject::trUtf8("verser"),
+                                  	   QObject::trUtf8("Sélectionnez 1 compte client afin d'effectuer un versement."));
     }
 }
 
@@ -375,8 +383,8 @@ void YerothERPClientsWindow::modifierCompteClient()
     }
     else
     {
-        YerothQMessageBox::warning(this, QObject::tr("modifier un compte client"),
-                                   QObject::trUtf8("Sélectionnez un client à modifier !"));
+        YerothQMessageBox::information(this, QObject::tr("modifier"),
+                                   	   QObject::trUtf8("Sélectionnez 1 compte client à modifier."));
     }
 }
 
@@ -437,6 +445,15 @@ void YerothERPClientsWindow::supprimer_PLUSIEURS_Clients(YerothSqlTableModel &aC
 
 void YerothERPClientsWindow::supprimerCompteClient()
 {
+    if (get_INT_LastListerSelectedRow__ID() <= -1 ||
+    	_curStocksTableModel->rowCount() <= 0)
+    {
+        YerothQMessageBox::information(this, QObject::trUtf8("supprimer"),
+                                  	   QObject::trUtf8("Sélectionnez 1 compte client à supprimer."));
+
+        return ;
+    }
+
     YerothSqlTableModel *clientsTableModel = 0;
 
     if (_curClientsTableModel &&
@@ -530,8 +547,8 @@ void YerothERPClientsWindow::afficher_au_detail()
     }
     else
     {
-        YerothQMessageBox::warning(this, QObject::trUtf8("détails d'un compte client"),
-                                  QObject::trUtf8("Sélectionnez un compte client à afficher les détails !"));
+        YerothQMessageBox::information(this, QObject::trUtf8("détails"),
+                                  	  QObject::trUtf8("Sélectionnez 1 compte client à afficher les détails."));
     }
 }
 
@@ -542,7 +559,7 @@ bool YerothERPClientsWindow::filtrer()
 
 	if (stockTableColumnValue.isEmpty())
 	{
-		QString msg(QObject::trUtf8("Veuillez saisir une valeur numérique pour la recherche !"));
+		QString msg(QObject::trUtf8("Veuillez saisir une valeur numérique pour la recherche."));
 
 		YerothQMessageBox::information(this,
 									  QObject::trUtf8("filtrer"),
