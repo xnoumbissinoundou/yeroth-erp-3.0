@@ -1039,6 +1039,15 @@ void YerothStocksWindow::supprimer_PLUSIEURS_Stocks(YerothSqlTableModel &aStocks
 void YerothStocksWindow::supprimer_ce_stock(QString aStockID /* = YerothUtils::EMPTY_STRING */,
 											bool _reEntrant /* = false */)
 {
+    if (get_INT_LastListerSelectedRow__ID() <= -1 ||
+    	_curStocksTableModel->rowCount() <= 0)
+    {
+        YerothQMessageBox::information(this, QObject::trUtf8("supprimer"),
+                                  QObject::trUtf8("Sélectionnez 1 stock à supprimer."));
+
+        return ;
+    }
+
     if (!_reEntrant && tableView_stocks->lastSelected_Rows__IDs_INT_SIZE() > 1)
     {
     	supprimer_PLUSIEURS_Stocks(*_curStocksTableModel);
