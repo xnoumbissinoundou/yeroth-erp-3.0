@@ -245,10 +245,6 @@ YerothAdminWindow::YerothAdminWindow()
 
     pushButton_choose_repertoire_fichiers_temporaires->enable(this, SLOT(choose_repertoire_fichiers_temporaires()));
 
-
-    pushButton_entreprise_logo->enable(this, SLOT(choose_path_logo_entreprise()));
-
-
     pushButton_yeroth_erp_3_0_system_daemon_parameters_reinitialiser->enable(this, SLOT(reinitialiser_YEROTH_ERP_3_0_SYSTEM_DAEMON_configuration()));
 
     pushButton_yeroth_erp_3_0_system_daemon_parameters_enregistrer->enable(this, SLOT(enregistrer_YEROTH_ERP_3_0_SYSTEM_DAEMON_configuration()));
@@ -1644,22 +1640,6 @@ void YerothAdminWindow::choose_repertoire_des_sauvegardes()
     if (!backupFileDirPath.isEmpty())
     {
     	lineEdit_repertoire_des_sauvegardes->setText(backupFileDirPath);
-    }
-}
-
-
-void YerothAdminWindow::choose_path_logo_entreprise()
-{
-    QString companyLogoFileFullPath =
-        QFileDialog::getOpenFileName(this, QObject::trUtf8("Chemin jusqu'au fichier '.JPG' du "
-        												   "logo de l'entreprise"),
-                                     QString::null, QString::null);
-
-    if (!companyLogoFileFullPath.isEmpty())
-    {
-    	YerothERPConfig::pathToPdfCOMPANY_LOGO = companyLogoFileFullPath;
-
-    	lineEdit_entreprise_logo->setText(companyLogoFileFullPath);
     }
 }
 

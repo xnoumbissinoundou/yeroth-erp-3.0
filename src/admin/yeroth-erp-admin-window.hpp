@@ -119,8 +119,6 @@ public slots:
 
     void choose_repertoire_des_sauvegardes();
 
-    void choose_path_logo_entreprise();
-
     void choose_repertoire_fichiers_temporaires();
 
     void read_configuration();
