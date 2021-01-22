@@ -14688,7 +14688,7 @@ color: rgb(255, 255, 255);
 background-color: rgb(0, 0, 0); </string>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
     <property name="dragEnabled">
      <bool>false</bool>
