@@ -3085,8 +3085,8 @@ stock (service)</string>
    <widget class="YerothLineEdit" name="lineEdit_element_achats_resultat">
     <property name="geometry">
      <rect>
-      <x>244</x>
-      <y>466</y>
+      <x>245</x>
+      <y>470</y>
       <width>231</width>
       <height>21</height>
      </rect>
@@ -3563,7 +3563,7 @@ background-color: rgb(0, 0, 0); </string>
    <widget class="YerothPushButton" name="pushButton_achats_filtrer">
     <property name="geometry">
      <rect>
-      <x>167</x>
+      <x>165</x>
       <y>494</y>
       <width>151</width>
       <height>21</height>
@@ -3997,8 +3997,8 @@ background-color: rgb(0, 0, 0); </string>
    <widget class="YerothComboBox" name="comboBox_element_achats_condition">
     <property name="geometry">
      <rect>
-      <x>164</x>
-      <y>466</y>
+      <x>165</x>
+      <y>470</y>
       <width>77</width>
       <height>21</height>
      </rect>
@@ -4429,8 +4429,8 @@ background-color: rgb(0, 0, 0); </string>
    <widget class="YerothComboBox" name="comboBox_element_achats">
     <property name="geometry">
      <rect>
-      <x>11</x>
-      <y>466</y>
+      <x>12</x>
+      <y>470</y>
       <width>151</width>
       <height>21</height>
      </rect>
@@ -4861,7 +4861,7 @@ background-color: rgb(0, 0, 0); </string>
    <widget class="YerothPushButton" name="pushButton_achats_reinitialiser_filtre">
     <property name="geometry">
      <rect>
-      <x>11</x>
+      <x>12</x>
       <y>494</y>
       <width>151</width>
       <height>21</height>
@@ -6576,7 +6576,7 @@ background-color: rgb(0, 0, 0); </string>
     <property name="geometry">
      <rect>
       <x>487</x>
-      <y>399</y>
+      <y>400</y>
       <width>101</width>
       <height>21</height>
      </rect>
@@ -6933,7 +6933,7 @@ background-color: rgb(0, 0, 0); </string>
    <widget class="QLabel" name="label_achats_numero_page_derniere">
     <property name="geometry">
      <rect>
-      <x>318</x>
+      <x>319</x>
       <y>400</y>
       <width>52</width>
       <height>21</height>
@@ -7294,7 +7294,7 @@ background-color: rgb(0, 0, 0); </string>
    <widget class="YerothPushButton" name="pushButton_page_precedente">
     <property name="geometry">
      <rect>
-      <x>401</x>
+      <x>402</x>
       <y>400</y>
       <width>21</width>
       <height>21</height>
@@ -7744,7 +7744,7 @@ border: 0px rgb(255, 255, 255);</string>
    <widget class="YerothPushButton" name="pushButton_page_derniere">
     <property name="geometry">
      <rect>
-      <x>453</x>
+      <x>454</x>
       <y>400</y>
       <width>21</width>
       <height>21</height>
@@ -8198,7 +8198,7 @@ border: none;</string>
    <widget class="QLabel" name="label_achats_separation_page_precedente_ou_suivante">
     <property name="geometry">
      <rect>
-      <x>301</x>
+      <x>302</x>
       <y>400</y>
       <width>12</width>
       <height>21</height>
@@ -8559,7 +8559,7 @@ border: none;</string>
    <widget class="QLabel" name="label_nombre_de_lignes_par_page">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>141</x>
       <y>399</y>
       <width>57</width>
       <height>21</height>
@@ -8917,7 +8917,7 @@ border: none;</string>
    <widget class="YerothLineEdit" name="lineEdit_achats_nombre_de_lignes_par_page">
     <property name="geometry">
      <rect>
-      <x>202</x>
+      <x>203</x>
       <y>400</y>
       <width>40</width>
       <height>21</height>
@@ -9380,7 +9380,7 @@ border: none;</string>
    <widget class="YerothPushButton" name="pushButton_page_premiere">
     <property name="geometry">
      <rect>
-      <x>375</x>
+      <x>376</x>
       <y>400</y>
       <width>21</width>
       <height>21</height>
@@ -9830,7 +9830,7 @@ border: 0px rgb(255, 255, 255);</string>
    <widget class="QLabel" name="label_achats_numero_page_courante">
     <property name="geometry">
      <rect>
-      <x>244</x>
+      <x>245</x>
       <y>400</y>
       <width>52</width>
       <height>21</height>
@@ -10191,7 +10191,7 @@ border: 0px rgb(255, 255, 255);</string>
    <widget class="YerothPushButton" name="pushButton_page_suivante">
     <property name="geometry">
      <rect>
-      <x>427</x>
+      <x>428</x>
       <y>400</y>
       <width>21</width>
       <height>21</height>
@@ -10645,8 +10645,8 @@ border: none;</string>
    <widget class="YerothComboBox" name="comboBox_element_string_db">
     <property name="geometry">
      <rect>
-      <x>244</x>
-      <y>422</y>
+      <x>245</x>
+      <y>423</y>
       <width>231</width>
       <height>21</height>
      </rect>
@@ -11077,8 +11077,8 @@ border: none;</string>
    <widget class="YerothLineEdit" name="lineEdit_nom_element_string_db">
     <property name="geometry">
      <rect>
-      <x>244</x>
-      <y>444</y>
+      <x>245</x>
+      <y>446</y>
       <width>231</width>
       <height>21</height>
      </rect>
@@ -11556,7 +11556,7 @@ background-color: rgb(0, 0, 0); </string>
     <property name="geometry">
      <rect>
       <x>591</x>
-      <y>422</y>
+      <y>423</y>
       <width>200</width>
       <height>21</height>
      </rect>
@@ -12053,7 +12053,7 @@ background-color: rgb(0, 0, 0); </string>
     <property name="geometry">
      <rect>
       <x>487</x>
-      <y>421</y>
+      <y>423</y>
       <width>101</width>
       <height>21</height>
      </rect>
@@ -12410,8 +12410,8 @@ background-color: rgb(0, 0, 0); </string>
    <widget class="YerothDateTimeEdit" name="dateEdit_achats_debut">
     <property name="geometry">
      <rect>
-      <x>131</x>
-      <y>422</y>
+      <x>132</x>
+      <y>423</y>
       <width>111</width>
       <height>21</height>
      </rect>
@@ -12853,8 +12853,8 @@ background-color: rgb(0, 0, 0); </string>
    <widget class="YerothDateTimeEdit" name="dateEdit_achats_fin">
     <property name="geometry">
      <rect>
-      <x>131</x>
-      <y>444</y>
+      <x>132</x>
+      <y>446</y>
       <width>111</width>
       <height>21</height>
      </rect>
@@ -13297,7 +13297,7 @@ background-color: rgb(0, 0, 0); </string>
     <property name="geometry">
      <rect>
       <x>12</x>
-      <y>444</y>
+      <y>445</y>
       <width>117</width>
       <height>21</height>
      </rect>
@@ -13735,7 +13735,7 @@ background-color: rgb(0, 0, 0); </string>
     <property name="geometry">
      <rect>
       <x>12</x>
-      <y>422</y>
+      <y>423</y>
       <width>117</width>
       <height>21</height>
      </rect>
@@ -16731,14 +16731,14 @@ background-color: rgb(0, 0, 0); </string>
    <header>src/widgets/yeroth-erp-combo-box.hpp</header>
   </customwidget>
   <customwidget>
-   <class>YerothERPAchatsTableView</class>
-   <extends>QTableView</extends>
-   <header>src/widgets/table-view/yeroth-erp-achats-table-view.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>YerothDateTimeEdit</class>
    <extends>QDateEdit</extends>
    <header>src/widgets/yeroth-erp-datetime-edit.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>YerothERPAchatsTableView</class>
+   <extends>QTableView</extends>
+   <header>src/widgets/table-view/yeroth-erp-achats-table-view.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>
