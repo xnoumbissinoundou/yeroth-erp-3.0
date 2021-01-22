@@ -682,8 +682,10 @@ void YerothAchatsWindow::afficher_au_detail()
     }
     else
     {
-        YerothQMessageBox::information(this, QObject::trUtf8("détails d'un stock"),
-                                  QObject::trUtf8("Sélectionnez un stock à afficher les détails."));
+        YerothQMessageBox::information(this, QObject::trUtf8("détails"),
+                              QObject::trUtf8("Sélectionnez 1 achat à afficher les détails."));
+
+        return ;
     }
 }
 
@@ -702,8 +704,10 @@ void YerothAchatsWindow::afficher_au_detail(const QModelIndex & modelIndex)
     }
     else
     {
-        YerothQMessageBox::warning(this, QObject::trUtf8("détails d'un stock"),
-                                  QObject::trUtf8("Sélectionnez un stock à afficher les détails."));
+        YerothQMessageBox::information(this, QObject::trUtf8("détails"),
+                              QObject::trUtf8("Sélectionnez 1 achat à afficher les détails."));
+
+        return ;
     }
 }
 

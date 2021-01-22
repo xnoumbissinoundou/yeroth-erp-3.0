@@ -1652,7 +1652,7 @@ void YerothAdminWindow::choose_path_logo_entreprise()
 {
     QString companyLogoFileFullPath =
         QFileDialog::getOpenFileName(this, QObject::trUtf8("Chemin jusqu'au fichier '.JPG' du "
-        												   "logo de l'entreporise"),
+        												   "logo de l'entreprise"),
                                      QString::null, QString::null);
 
     if (!companyLogoFileFullPath.isEmpty())

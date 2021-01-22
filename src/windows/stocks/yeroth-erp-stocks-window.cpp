@@ -984,7 +984,8 @@ void YerothStocksWindow::definirPasDeRole()
 
 void YerothStocksWindow::afficher_au_detail()
 {
-    if (get_INT_LastListerSelectedRow__ID() > -1 && _curStocksTableModel->rowCount() > 0)
+    if (get_INT_LastListerSelectedRow__ID() > -1 &&
+    	_curStocksTableModel->rowCount() > 0)
     {
         _allWindows->_detailWindow->rendreVisible(_curStocksTableModel);
         rendreInvisible();
@@ -992,7 +993,9 @@ void YerothStocksWindow::afficher_au_detail()
     else
     {
         YerothQMessageBox::information(this, QObject::trUtf8("détails d'un stock"),
-                                  QObject::trUtf8("Sélectionnez un stock à afficher les détails."));
+                                  	   QObject::trUtf8("Sélectionnez un stock à afficher les détails."));
+
+    	return ;
     }
 }
 
@@ -1043,7 +1046,7 @@ void YerothStocksWindow::supprimer_ce_stock(QString aStockID /* = YerothUtils::E
     	_curStocksTableModel->rowCount() <= 0)
     {
         YerothQMessageBox::information(this, QObject::trUtf8("supprimer"),
-                                  QObject::trUtf8("Sélectionnez 1 stock à supprimer."));
+                                  	   QObject::trUtf8("Sélectionnez 1 stock à supprimer."));
 
         return ;
     }

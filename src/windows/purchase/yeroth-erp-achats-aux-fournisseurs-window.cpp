@@ -683,8 +683,10 @@ void YerothAchatsAUXFournisseursWindow::afficher_au_detail()
     }
     else
     {
-        YerothQMessageBox::information(this, QObject::trUtf8("détails d'un stock"),
-                                  QObject::trUtf8("Sélectionnez un stock à afficher les détails."));
+        YerothQMessageBox::information(this, QObject::trUtf8("détails"),
+                              QObject::trUtf8("Sélectionnez 1 achat au fournisseur à afficher les détails."));
+
+        return ;
     }
 }
 
@@ -703,8 +705,10 @@ void YerothAchatsAUXFournisseursWindow::afficher_au_detail(const QModelIndex & m
     }
     else
     {
-        YerothQMessageBox::warning(this, QObject::trUtf8("détails d'un stock"),
-                                  QObject::trUtf8("Sélectionnez un stock à afficher les détails."));
+        YerothQMessageBox::information(this, QObject::trUtf8("détails"),
+                              QObject::trUtf8("Sélectionnez 1 achat au fournisseur à afficher les détails."));
+
+        return ;
     }
 }
 
@@ -831,6 +835,15 @@ void YerothAchatsAUXFournisseursWindow::set_filtrer_font()
 
 bool YerothAchatsAUXFournisseursWindow::supprimer_un_achat_au_fournisseur()
 {
+    if (get_INT_LastListerSelectedRow__ID() <= -1 ||
+    	_curStocksTableModel->rowCount() <= 0)
+    {
+        YerothQMessageBox::information(this, QObject::trUtf8("supprimer"),
+                                  	   QObject::trUtf8("Sélectionnez 1 achat au fournisseur à supprimer."));
+
+        return false;
+    }
+
 	return false;
 }
 
