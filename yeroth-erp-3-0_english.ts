@@ -916,8 +916,9 @@ Press m &apos;Cancel&apos; to exit %2</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="230"/>
-        <source>Département produit</source>
-        <translation>Product department</translation>
+        <source>Département</source>
+        <oldsource>Département produit</oldsource>
+        <translation>Department</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="234"/>
@@ -4083,7 +4084,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     </message>
     <message>
         <location filename="src/admin/yeroth-erp-admin-windows-commons.cpp" line="64"/>
-        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="860"/>
+        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="878"/>
         <source>qui suis je ?</source>
         <translation>who am I ?</translation>
     </message>
@@ -4259,7 +4260,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>missing MANDATORY column</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="847"/>
+        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="865"/>
         <source>%1 - sélectionner les colones visibles (&apos;%2&apos; colones)</source>
         <translation>%1 - select visible columns (&apos;%2&apos; columns)</translation>
     </message>
