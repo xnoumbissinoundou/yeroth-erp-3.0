@@ -3915,7 +3915,7 @@ background-color: rgb(0, 0, 0); </string>
    <widget class="YerothComboBox" name="comboBox_inventaire_des_stocks_element_de_stock_condition">
     <property name="geometry">
      <rect>
-      <x>164</x>
+      <x>165</x>
       <y>461</y>
       <width>77</width>
       <height>21</height>
@@ -4779,7 +4779,7 @@ background-color: rgb(0, 0, 0); </string>
    <widget class="YerothPushButton" name="pushButton_filtrer">
     <property name="geometry">
      <rect>
-      <x>167</x>
+      <x>165</x>
       <y>494</y>
       <width>151</width>
       <height>21</height>
@@ -5648,7 +5648,7 @@ background-color: rgb(0, 0, 0); </string>
     <property name="geometry">
      <rect>
       <x>11</x>
-      <y>415</y>
+      <y>417</y>
       <width>77</width>
       <height>21</height>
      </rect>
@@ -8756,7 +8756,7 @@ border: none;</string>
     <property name="geometry">
      <rect>
       <x>140</x>
-      <y>415</y>
+      <y>416</y>
       <width>57</width>
       <height>21</height>
      </rect>
