@@ -170,7 +170,7 @@ bool YerothClientsDetailWindow::generer_la_carte_de_fidelite_du_client()
     		infoEntreprise.getNomCommercial_truncated_FOR_SMALL_RECEIPT_LATEX());
 
     texDocument.replace("YEROTHSERVICEDUPROGRAMMEDEFIDELITECLIENTS",
-    		YerothUtils::LATEX_IN_OUT_handleForeignAccents(infoEntreprise.getVille().toLower()));
+    		QObject::trUtf8("SERVICE À LA CLIENTÈLE"));
 
     texDocument.replace("YEROTHSIEGEDUSERVICEGESTIONRELATIONCLIENTELLE",
     		infoEntreprise.getSiegeSocial_LATEX());
