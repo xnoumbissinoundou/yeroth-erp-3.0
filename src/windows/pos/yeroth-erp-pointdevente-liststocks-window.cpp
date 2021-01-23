@@ -29,6 +29,36 @@ YerothPointDeVenteListStocksWindow::YerothPointDeVenteListStocksWindow()
 
     mySetupUi(this);
 
+
+    setYerothTableView_FROM_WINDOWS_COMMONS(tableView_PDV_list_stocks);
+
+
+    _NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME
+		<< YerothDatabaseTableColumn::ID
+		<< YerothDatabaseTableColumn::REFERENCE
+		<< YerothDatabaseTableColumn::DESCRIPTION_PRODUIT
+    	<< YerothDatabaseTableColumn::PRIX_UNITAIRE_EN_GROS
+		<< YerothDatabaseTableColumn::MONTANT_TVA_EN_GROS
+		<< YerothDatabaseTableColumn::PRIX_VENTE_EN_GROS
+		<< YerothDatabaseTableColumn::STOCK_DALERTE
+		<< YerothDatabaseTableColumn::LOCALISATION_STOCK
+		<< YerothDatabaseTableColumn::IMAGE_PRODUIT
+		<< YerothDatabaseTableColumn::DATE_ENTREE
+		<< YerothDatabaseTableColumn::DATE_PEREMPTION
+		<< YerothDatabaseTableColumn::LOCALISATION
+		<< YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR
+		<< YerothDatabaseTableColumn::LOTS_ENTRANT
+		<< YerothDatabaseTableColumn::QUANTITE_PAR_LOT
+		<< YerothDatabaseTableColumn::HISTORIQUE_STOCK
+		<< YerothDatabaseTableColumn::PRIX_DACHAT
+		<< YerothDatabaseTableColumn::REFERENCE_RECU_DACHAT
+		<< YerothDatabaseTableColumn::ENREGISTREUR_STOCK
+		<< YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT
+		<< YerothDatabaseTableColumn::IS_SERVICE;
+
+
+    setup_select_configure_dbcolumn(_allWindows->STOCKS);
+
     enableResizing();
 }
 
@@ -51,22 +81,9 @@ void YerothPointDeVenteListStocksWindow::listStocks(YerothSqlTableModel & aSqlTa
     	tableView_PDV_list_stocks->setSortingEnabled(true);
     }
 
-    tableView_PDV_list_stocks->hideColumn(0);
-    tableView_PDV_list_stocks->hideColumn(4);
-    tableView_PDV_list_stocks->hideColumn(9);
-    tableView_PDV_list_stocks->hideColumn(10);
-    tableView_PDV_list_stocks->hideColumn(11);
-    tableView_PDV_list_stocks->hideColumn(12);
-    tableView_PDV_list_stocks->hideColumn(13);
-    tableView_PDV_list_stocks->hideColumn(14);
-    tableView_PDV_list_stocks->hideColumn(16);
-    tableView_PDV_list_stocks->hideColumn(17);
-    tableView_PDV_list_stocks->hideColumn(18);
-    tableView_PDV_list_stocks->hideColumn(19);
-    tableView_PDV_list_stocks->hideColumn(20);
-    tableView_PDV_list_stocks->hideColumn(21);
-    tableView_PDV_list_stocks->hideColumn(22);
-    tableView_PDV_list_stocks->hideColumn(23);
+    yeroth_hide_columns();
+
+    tableView_PDV_list_stocks->selectRow(0);
 
     setWindowTitle(YerothUtils::getWindowTitleWithStrategy(this));
 

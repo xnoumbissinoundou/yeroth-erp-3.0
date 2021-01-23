@@ -59,6 +59,8 @@ public:
 
 	virtual ~YerothWindowsCommons();
 
+	void yeroth_hide_columns();
+
 	int get_INT_last_selected_row_number();
 
 	void setYerothTableView_FROM_WINDOWS_COMMONS(const QList<YerothTableView *> &aYerothTableView_FROM_WINDOWS_COMMONS_QLIST);

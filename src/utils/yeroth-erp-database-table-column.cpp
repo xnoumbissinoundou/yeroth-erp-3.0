@@ -227,7 +227,7 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT,		QObject::tr("Dette maximale"));
 
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,	QObject::trUtf8("Département produit"));
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,	QObject::trUtf8("Département"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::CATEGORIE,		QObject::trUtf8("Catégorie"));
 

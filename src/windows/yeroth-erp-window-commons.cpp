@@ -67,6 +67,24 @@ YerothWindowsCommons::~YerothWindowsCommons()
 }
 
 
+void YerothWindowsCommons::yeroth_hide_columns()
+{
+	if (0 == _yerothTableView_FROM_WINDOWS_COMMONS)
+	{
+		return ;
+	}
+
+	unsigned int size = _NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME.size();
+
+	for (unsigned int j = 0; j < size; ++j)
+	{
+		_yerothTableView_FROM_WINDOWS_COMMONS->
+			hideColumn(_dbtablecolumnNameToDBColumnIndex
+					.value(_NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME.at(j)));
+	}
+}
+
+
 int YerothWindowsCommons::get_INT_last_selected_row_number()
 {
 	if (0 == _yerothTableView_FROM_WINDOWS_COMMONS)
