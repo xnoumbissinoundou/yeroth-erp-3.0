@@ -1,5 +1,5 @@
 #!/usr/bin/expect
-# @author: Dipl.-Inf. Xavier NOUMBISSI NOUNDOU, Ph.D. (ABD)
+# @author: DR. XAVIER NOUMBISSI NOUNDOU
 
 spawn /usr/bin/mysql -u root
 
