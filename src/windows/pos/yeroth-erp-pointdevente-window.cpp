@@ -2414,8 +2414,8 @@ void YerothPointDeVenteWindow::choisir_methode_paiment()
     	else
     	{
     		QString proposedNonEntrepriseClient(lineEdit_articles_nom_client->text());
-         	if (!YerothUtils::creerNouveauClient(proposedNonEntrepriseClient,
-         										 this))
+
+         	if (!YerothUtils::creerNouveauClient(proposedNonEntrepriseClient))
          	{
          		return ;
          	}
@@ -3056,11 +3056,11 @@ unsigned int YerothPointDeVenteWindow::effectuer_check_out_compte_client()
 											 QMessageBox::Cancel,
 											 QMessageBox::Ok))
     {
-    	YerothUtils::startTransaction();
+    	YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
 
     	executer_la_vente_compte_client();
 
-    	YerothUtils::commitTransaction();
+    	YEROTH_ERP_3_0_COMMIT_DATABASE_TRANSACTION;
 
         cleanUpAfterVente();
     }
