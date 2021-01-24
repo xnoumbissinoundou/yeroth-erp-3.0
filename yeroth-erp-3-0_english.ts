@@ -2495,13 +2495,13 @@ Continue with update of the stock (service) ?</translation>
     </message>
     <message>
         <location filename="src/windows/stocks/yeroth-erp-stocks-window.hpp" line="81"/>
-        <source>1. Sélectionner un stock dans le tableau des stocks, ensuite cliquer sur l&apos;opération que vous souhaitez réaliser !
+        <source>1. Sélectionnez un stock dans le tableau des stocks, ensuite cliquer sur l&apos;opération que vous souhaitez réaliser !
 
 2. La valeur d&apos;inventaire d&apos;un stock (VI) est calculée comme suit:
  [VI = prix_dachat * quantite_en_stock] !</source>
-        <oldsource>1) Sélectionner un stock dans le tableau des stocks, ensuite cliquer sur l&apos;opération que vous souhaitez réaliser !
+        <oldsource>1. Sélectionner un stock dans le tableau des stocks, ensuite cliquer sur l&apos;opération que vous souhaitez réaliser !
 
-2) La valeur d&apos;inventaire d&apos;un stock (VI) est calculée comme suit:
+2. La valeur d&apos;inventaire d&apos;un stock (VI) est calculée comme suit:
  [VI = prix_dachat * quantite_en_stock] !</oldsource>
         <translation>1. Select a stock item in the table listing, and then, press the button of the action you would like to perform!
 
@@ -4720,6 +4720,15 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.hpp" line="79"/>
         <source>1) Sélectionner un &apos;programme de fidélité clients&apos; dans le tableau de cette page, ensuite cliquer sur l&apos;opération que vous souhaitez réaliser !</source>
         <translation>Select a &apos;client LOYALTY program&apos; in table listing, and then press the button of the action you would like to perform !</translation>
+    </message>
+    <message>
+        <location filename="src/windows/yeroth-erp-entrer-window.hpp" line="87"/>
+        <source>1. Choisissez le département de produits
+
+2. Remplissez le formulaire, et ensuite cliquer sur enregistrer !</source>
+        <translation>1. Select 1 product department
+
+2. Fill the form, then press button &apos;save&apos; !</translation>
     </message>
 </context>
 <context>
