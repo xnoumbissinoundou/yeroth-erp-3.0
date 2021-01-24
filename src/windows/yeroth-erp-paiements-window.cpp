@@ -69,6 +69,11 @@ YerothPaiementsWindow::YerothPaiementsWindow()
 
     mySetupUi(this);
 
+    _list_actions_to_enable_on_positive_tableview_ROW_COUNT
+		<< actionExporter_au_format_csv
+		<< actionAfficherPDF
+		<< actionAfficherPaiementAuDetail;
+
     setYerothTableView_FROM_WINDOWS_COMMONS(tableView_paiements);
 
     MACRO_TO_DEFINE_CURRENT_VIEW_WINDOW_FOR_TABLE_PAGINATION(tableView_paiements);
@@ -539,13 +544,11 @@ void YerothPaiementsWindow::textChangedSearchLineEditsQCompleters()
     }
     else
     {
-    	disableExporterAuFormatCsv();
-
-    	disableImprimer();
-
         qDebug() << QString("++ YerothPaiementsWindow::textChangedSearchLineEditsQCompleters(): %1")
         				.arg(_yerothSqlTableModel->lastError().text());
     }
+
+    handle_some_actions_tools_enabled();
 }
 
 
@@ -850,10 +853,12 @@ void YerothPaiementsWindow::handleCurrentChanged(int index)
     {
     case TableauDesPaiements:
         lister_les_elements_du_tableau();
+        enableExporterAuFormatCsv();
         enableImprimer();
         break;
     case AfficherPaiementAuDetail:
         afficher_paiements_detail();
+        disableExporterAuFormatCsv();
         disableImprimer();
         break;
     default:

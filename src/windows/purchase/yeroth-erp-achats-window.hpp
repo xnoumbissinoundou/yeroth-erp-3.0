@@ -120,26 +120,6 @@ protected:
 
     virtual void textChangedSearchLineEditsQCompleters();
 
-	inline virtual void disableExporterAuFormatCsv()
-	{
-		actionExporter_au_format_csv->setVisible(false);
-	}
-
-	inline virtual void enableExporterAuFormatCsv()
-	{
-		actionExporter_au_format_csv->setVisible(true);
-	}
-
-	inline virtual void disableImprimer()
-	{
-		actionAfficherPDF->setVisible(false);
-	}
-
-	inline virtual void enableImprimer()
-	{
-		actionAfficherPDF->setVisible(true);
-	}
-
 private slots:
 
 	inline void afficher_achats()

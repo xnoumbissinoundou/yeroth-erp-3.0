@@ -50,6 +50,12 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
 
     mySetupUi(this);
 
+    _list_actions_to_enable_on_positive_tableview_ROW_COUNT
+		<< actionExporter_au_format_csv
+		<< actionAfficherPDF
+		<< actionSupprimer_cette_marchandise
+		<< actionModifierMarchandise;
+
     setYerothTableView_FROM_WINDOWS_COMMONS(tableView_marchandises);
 
     MACRO_TO_DEFINE_CURRENT_VIEW_WINDOW_FOR_TABLE_PAGINATION(tableView_marchandises)
@@ -360,13 +366,11 @@ void YerothMarchandisesWindow::textChangedSearchLineEditsQCompleters()
     }
     else
     {
-    	disableExporterAuFormatCsv();
-
-    	disableImprimer();
-
         qDebug() << QString("++ YerothMarchandisesWindow::textChangedSearchLineEditsQCompleters(): %1")
         				.arg(_yerothSqlTableModel->lastError().text());
     }
+
+    handle_some_actions_tools_enabled();
 }
 
 

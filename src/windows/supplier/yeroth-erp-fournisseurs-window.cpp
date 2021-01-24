@@ -47,6 +47,14 @@ YerothERPFournisseursWindow::YerothERPFournisseursWindow()
 
     mySetupUi(this);
 
+    _list_actions_to_enable_on_positive_tableview_ROW_COUNT
+		<< actionExporter_au_format_csv
+		<< actionAfficherPDF
+		<< actionModifierFournisseur
+		<< actionSupprimerFournisseur
+		<< actionPayerAuFournisseur
+		<< actionAfficherDetailsFournisseur;
+
     setYerothTableView_FROM_WINDOWS_COMMONS(tableView_fournisseurs);
 
     MACRO_TO_DEFINE_CURRENT_VIEW_WINDOW_FOR_TABLE_PAGINATION(tableView_fournisseurs)
@@ -135,9 +143,6 @@ YerothERPFournisseursWindow::YerothERPFournisseursWindow()
     connect(actionAdministration, SIGNAL(triggered()), this, SLOT(administration()));
 
 #endif
-
-	connect(actionAfficher_fournisseur_au_detail, SIGNAL(triggered()),
-			this, SLOT(afficher_au_detail()));
 
     connect(tableView_fournisseurs, SIGNAL(doubleClicked(const QModelIndex &)), this,
             SLOT(private_payer_au_fournisseur(const QModelIndex &)));
@@ -302,13 +307,11 @@ void YerothERPFournisseursWindow::textChangedSearchLineEditsQCompleters()
     }
     else
     {
-    	disableExporterAuFormatCsv();
-
-    	disableImprimer();
-
         qDebug() << QString("++ YerothERPFournisseursWindow::textChangedSearchLineEditsQCompleters(): %1")
         				.arg(_yerothSqlTableModel->lastError().text());
     }
+
+    handle_some_actions_tools_enabled();
 }
 
 

@@ -658,23 +658,29 @@ void YerothWindowsCommons::updateYerothLineEditQCompleter(const QString &current
 }
 
 
-void YerothWindowsCommons::handleSOMEToolsEnabled()
+void YerothWindowsCommons::handle_some_actions_tools_enabled()
 {
 	if (0 == _yerothTableView_FROM_WINDOWS_COMMONS)
 	{
 		return ;
 	}
 
-    if (_yerothTableView_FROM_WINDOWS_COMMONS->rowCount() > 0)
-    {
-    	enableExporterAuFormatCsv();
-    	enableImprimer();
-    }
-    else
-    {
-    	disableExporterAuFormatCsv();
-    	disableImprimer();
-    }
+	unsigned int an_action_list_size =
+			_list_actions_to_enable_on_positive_tableview_ROW_COUNT.size();
+
+	QAction *anAction = 0;
+
+	bool enable_action = (_yerothTableView_FROM_WINDOWS_COMMONS->rowCount() > 0);
+
+	for (unsigned int j = 0; j < an_action_list_size; ++j)
+	{
+		anAction = _list_actions_to_enable_on_positive_tableview_ROW_COUNT.at(j);
+
+		if (0 != anAction)
+		{
+			anAction->setVisible(enable_action);
+		}
+	}
 }
 
 
@@ -745,7 +751,7 @@ void YerothWindowsCommons::tableView_show_or_hide_columns(YerothTableView &table
 
     tableView_in_out.resizeColumnsToContents();
 
-    handleSOMEToolsEnabled();
+    handle_some_actions_tools_enabled();
 }
 
 

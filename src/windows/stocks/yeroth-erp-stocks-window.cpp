@@ -66,6 +66,14 @@ YerothStocksWindow::YerothStocksWindow()
 
     mySetupUi(this);
 
+    _list_actions_to_enable_on_positive_tableview_ROW_COUNT
+		<< actionExporter_au_format_csv
+		<< actionAfficherPDF
+		<< actionModifier_ce_stock
+		<< actionAfficher_lhistorique_de_ce_stock
+		<< actionAfficher_stock_au_detail
+		<< actionSupprimer_ce_stock;
+
     setYerothTableView_FROM_WINDOWS_COMMONS(tableView_stocks);
 
     MACRO_TO_DEFINE_CURRENT_VIEW_WINDOW_FOR_TABLE_PAGINATION(tableView_stocks);
@@ -633,13 +641,11 @@ void YerothStocksWindow::textChangedSearchLineEditsQCompleters()
     }
     else
     {
-    	disableExporterAuFormatCsv();
-
-    	disableImprimer();
-
         qDebug() << QString("++ YerothStocksWindow::textChangedSearchLineEditsQCompleters(): %1")
         				.arg(_yerothSqlTableModel->lastError().text());
     }
+
+    handle_some_actions_tools_enabled();
 }
 
 

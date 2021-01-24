@@ -13940,21 +13940,6 @@ background-color: rgb(0, 0, 0); </string>
     </font>
    </property>
   </action>
-  <action name="actionAfficher_client_au_detail">
-   <property name="text">
-    <string>Afficher les détails d'un client</string>
-   </property>
-   <property name="toolTip">
-    <string>Afficher les détails d'un client</string>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-    </font>
-   </property>
-  </action>
   <action name="actionReinitialiserRecherche">
    <property name="text">
     <string>Réinitialiser la recherche</string>

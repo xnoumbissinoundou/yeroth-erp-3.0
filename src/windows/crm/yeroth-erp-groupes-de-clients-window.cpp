@@ -67,6 +67,14 @@ YerothGroupesDeClientsWindow::YerothGroupesDeClientsWindow()
 
     mySetupUi(this);
 
+    _list_actions_to_enable_on_positive_tableview_ROW_COUNT
+		<< actionExporter_au_format_csv
+		<< actionAfficherPDF
+		<< actionAfficher_les_membres_de_ce_groupe
+		<< actionSupprimerGroupeDeClients
+		<< actionModifier
+		<< actionAfficher_ce_groupe_au_detail;
+
     setYerothTableView_FROM_WINDOWS_COMMONS(tableView_groupes_de_clients);
 
     MACRO_TO_DEFINE_CURRENT_VIEW_WINDOW_FOR_TABLE_PAGINATION(tableView_groupes_de_clients);

@@ -47,6 +47,12 @@ YerothMouvementsDeStocksWindow::YerothMouvementsDeStocksWindow()
 
     mySetupUi(this);
 
+
+    _list_actions_to_enable_on_positive_tableview_ROW_COUNT
+		<< actionExporter_au_format_csv
+		<< actionAfficherPDF;
+
+
     QList<YerothTableView *> allTableViews;
 
     allTableViews.append(tableView_sorties_articles);
@@ -221,13 +227,11 @@ void YerothMouvementsDeStocksWindow::textChangedSearchLineEditsQCompleters()
     }
     else
     {
-    	disableExporterAuFormatCsv();
-
-    	disableImprimer();
-
         qDebug() << QString("++ YerothMouvementsDeStocksWindow::textChangedSearchLineEditsQCompleters(): %1")
         				.arg(_curMouvementsDeStocksTableModel->lastError().text());
     }
+
+    handle_some_actions_tools_enabled();
 }
 
 

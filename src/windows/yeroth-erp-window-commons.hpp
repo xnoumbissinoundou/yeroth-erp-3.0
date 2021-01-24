@@ -288,23 +288,7 @@ protected slots:
 								&YerothWindowsCommons::imprimer_pdf_document);
 	}
 
-	void handleSOMEToolsEnabled();
-
-	inline virtual void disableExporterAuFormatCsv()
-	{
-	}
-
-	inline virtual void enableExporterAuFormatCsv()
-	{
-	}
-
-	inline virtual void disableImprimer()
-	{
-	}
-
-	inline virtual void enableImprimer()
-	{
-	}
+	void handle_some_actions_tools_enabled();
 
 	virtual void setYerothLineEditQCompleterSearchFilter(QString &aYerothLineEditQCompleterSearchFilter_IN_OUT);
 
@@ -396,6 +380,9 @@ protected:
 	YerothComboBox 						*_yeroth_QComboBox_SearchDBFieldColumnString;
 
 	YerothLineEdit 						*_yeroth_QLineEdit_SearchDBFieldColumnString;
+
+
+	QList<QAction *>					_list_actions_to_enable_on_positive_tableview_ROW_COUNT;
 
 
 	QMap<QString, QString> 				_documentSpecificElements_FOR_PDF_LATEX_PRINTING;

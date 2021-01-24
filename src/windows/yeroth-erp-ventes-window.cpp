@@ -68,6 +68,12 @@ YerothVentesWindow::YerothVentesWindow()
 
     mySetupUi(this);
 
+    _list_actions_to_enable_on_positive_tableview_ROW_COUNT
+		<< actionExporter_au_format_csv
+		<< actionAfficherPDF
+		<< actionAnnulerCetteVente
+		<< actionAfficherVenteDetail;
+
     setYerothTableView_FROM_WINDOWS_COMMONS(tableView_ventes);
 
     MACRO_TO_DEFINE_CURRENT_VIEW_WINDOW_FOR_TABLE_PAGINATION(tableView_ventes);
@@ -1315,13 +1321,11 @@ void YerothVentesWindow::textChangedSearchLineEditsQCompleters()
     }
     else
     {
-    	disableExporterAuFormatCsv();
-
-    	disableImprimer();
-
         qDebug() << QString("++ YerothVentesWindow::textChangedSearchLineEditsQCompleters(): %1")
         				.arg(_yerothSqlTableModel->lastError().text());
     }
+
+    handle_some_actions_tools_enabled();
 }
 
 

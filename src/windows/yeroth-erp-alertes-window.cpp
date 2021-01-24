@@ -63,6 +63,11 @@ YerothAlertesWindow::YerothAlertesWindow()
 
     mySetupUi(this);
 
+    _list_actions_to_enable_on_positive_tableview_ROW_COUNT
+		<< actionAfficherPDF
+		<< actionMarquerResolue
+		<< actionAfficher_alerte_au_detail;
+
     setYerothTableView_FROM_WINDOWS_COMMONS(tableView_alertes);
 
     MACRO_TO_DEFINE_CURRENT_VIEW_WINDOW_FOR_TABLE_PAGINATION(tableView_alertes)

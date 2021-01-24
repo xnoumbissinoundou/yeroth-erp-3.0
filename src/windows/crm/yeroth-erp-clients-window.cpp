@@ -47,6 +47,15 @@ YerothERPClientsWindow::YerothERPClientsWindow()
 
     mySetupUi(this);
 
+    _list_actions_to_enable_on_positive_tableview_ROW_COUNT
+		<< actionExporter_au_format_csv
+		<< actionAfficherPDF
+		<< actionSupprimerCompteClient
+		<< actionModifierCompteClient
+		<< actionPayerAuCompteClient
+		<< action_afficher_groupes_du_client
+		<< actionAfficherDetailsClient;
+
     setYerothTableView_FROM_WINDOWS_COMMONS(tableView_clients);
 
     MACRO_TO_DEFINE_CURRENT_VIEW_WINDOW_FOR_TABLE_PAGINATION(tableView_clients)
@@ -143,9 +152,6 @@ YerothERPClientsWindow::YerothERPClientsWindow()
     connect(actionAdministration, SIGNAL(triggered()), this, SLOT(administration()));
 
 #endif
-
-	connect(actionAfficher_client_au_detail, SIGNAL(triggered()),
-			this, SLOT(afficher_au_detail()));
 
     connect(tableView_clients, SIGNAL(doubleClicked(const QModelIndex &)), this,
             SLOT(private_payer_au_compteclient(const QModelIndex &)));
@@ -311,13 +317,11 @@ void YerothERPClientsWindow::textChangedSearchLineEditsQCompleters()
     }
     else
     {
-    	disableExporterAuFormatCsv();
-
-    	disableImprimer();
-
         qDebug() << QString("++ YerothERPClientsWindow::textChangedSearchLineEditsQCompleters(): %1")
         				.arg(_yerothSqlTableModel->lastError().text());
     }
+
+    handle_some_actions_tools_enabled();
 }
 
 
