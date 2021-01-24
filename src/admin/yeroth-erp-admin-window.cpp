@@ -488,6 +488,7 @@ void YerothAdminWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
     _allWindows->_adminListerWindow->lister_compte_bancaire(&_allWindows->getSqlTableModel_comptes_bancaires());
     _allWindows->_adminListerWindow->lister_categorie(&_allWindows->getSqlTableModel_categories());
     _allWindows->_adminListerWindow->lister_utilisateur(&_allWindows->getSqlTableModel_users());
+    _allWindows->_adminListerWindow->lister_departements_de_produits(&_allWindows->getSqlTableModel_departements_produits());
     _allWindows->_adminListerWindow->lister_localisation(&_allWindows->getSqlTableModel_localisations());
 
     handleTabChanged(tabWidget_administration->currentIndex());

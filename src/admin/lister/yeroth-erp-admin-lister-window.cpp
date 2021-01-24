@@ -404,6 +404,7 @@ void YerothAdminListerWindow::lister_departements_de_produits(YerothSqlTableMode
 		//			.arg(_curSearchSqlTableModel->filter());
 
     tableView_lister_departements_produits->hideColumn(0);
+    tableView_lister_departements_produits->hideColumn(2);
 
     _lastItemSelectedForModification = toSelectRow;
 
