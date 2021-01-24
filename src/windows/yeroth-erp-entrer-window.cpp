@@ -60,6 +60,8 @@ YerothEntrerWindow::YerothEntrerWindow()
 
     setupDateTimeEdits();
 
+    populateEntrerUnStock_OU_ServiceComboBoxes();
+
 	YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, false);
@@ -259,12 +261,16 @@ void YerothEntrerWindow::setupLineEditsQCompleters()
 {
     setupLineEditsQCompleters__FOR_STOCK_INVENTORY();
 
-	lineEdit_nom_departement_produit
-		->setupMyStaticQCompleter(_allWindows->DEPARTEMENTS_PRODUITS,
-								  YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT);
-
 	lineEdit_categorie_produit->setupMyStaticQCompleter(_allWindows->CATEGORIES,
 														YerothDatabaseTableColumn::NOM_CATEGORIE);
+}
+
+
+void YerothEntrerWindow::populateEntrerUnStock_OU_ServiceComboBoxes()
+{
+	comboBox_nom_departement_produit->
+		populateComboBoxRawString(_allWindows->DEPARTEMENTS_PRODUITS,
+								  YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT);
 }
 
 
@@ -470,7 +476,9 @@ bool YerothEntrerWindow::product_search_with_designation()
         {
         	lineEdit_reference_produit->setText(query.value(YerothDatabaseTableColumn::REFERENCE).toString());
 
-        	lineEdit_nom_departement_produit->setText(query.value(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT).toString());
+        	comboBox_nom_departement_produit->
+				setCurrentIndex(comboBox_nom_departement_produit->
+						findText(query.value(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT).toString()));
 
         	lineEdit_categorie_produit->setText(query.value(YerothDatabaseTableColumn::CATEGORIE).toString());
 
@@ -509,7 +517,9 @@ bool YerothEntrerWindow::product_search_with_codebar()
         {
         	lineEdit_designation->setText(query.value(YerothDatabaseTableColumn::DESIGNATION).toString());
 
-        	lineEdit_nom_departement_produit->setText(query.value(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT).toString());
+        	comboBox_nom_departement_produit->
+        					setCurrentIndex(comboBox_nom_departement_produit->
+        							findText(query.value(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT).toString()));
 
         	lineEdit_categorie_produit->setText(query.value(YerothDatabaseTableColumn::CATEGORIE).toString());
 
@@ -872,7 +882,7 @@ bool YerothEntrerWindow::check_fields_mandatory_buying()
 
 bool YerothEntrerWindow::insertStockItemInProductList()
 {
-	QString proposedNouveauDepartementProduits(lineEdit_nom_departement_produit->text());
+	QString proposedNouveauDepartementProduits(comboBox_nom_departement_produit->currentText());
 
     QString proposedNouvelleCategorie(lineEdit_categorie_produit->text());
 
@@ -1003,8 +1013,9 @@ void YerothEntrerWindow::showItem()
     	lineEdit_prix_vente_en_gros->setText(QString::number(prix_vente_en_gros));
     }
 
-    lineEdit_nom_departement_produit->
-		setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT));
+    comboBox_nom_departement_produit->
+    				setCurrentIndex(comboBox_nom_departement_produit->
+    						findText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT)));
 
     lineEdit_categorie_produit->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::CATEGORIE));
 
@@ -1042,7 +1053,7 @@ bool YerothEntrerWindow::check_fields_service_achat()
 {
 	bool fournisseur = lineEdit_nom_entreprise_fournisseur->checkField();
 
-	bool nom_departement_produit = lineEdit_nom_departement_produit->checkField();
+	bool nom_departement_produit = comboBox_nom_departement_produit->checkField();
 
 	bool categorie_produit = lineEdit_categorie_produit->checkField();
 
@@ -1069,7 +1080,7 @@ bool YerothEntrerWindow::check_fields_service_vente()
 
 	bool client_fournisseur = lineEdit_nom_entreprise_fournisseur->checkField();
 
-	bool nom_departement_produit = lineEdit_nom_departement_produit->checkField();
+	bool nom_departement_produit = comboBox_nom_departement_produit->checkField();
 
 	bool categorie_produit = lineEdit_categorie_produit->checkField();
 
@@ -1124,7 +1135,7 @@ bool YerothEntrerWindow::check_fields(bool withClearAllServiceMandatoryFields /*
 
     bool prix_vente = lineEdit_prix_vente->checkField();
 
-    bool nom_departement_produit = lineEdit_nom_departement_produit->checkField();
+    bool nom_departement_produit = comboBox_nom_departement_produit->checkField();
 
     bool categorie_produit = lineEdit_categorie_produit->checkField();
 
@@ -1152,7 +1163,7 @@ void YerothEntrerWindow::clear_all_fields()
 
     lineEdit_reference_produit->clearField();
     lineEdit_designation->clearField();
-    lineEdit_nom_departement_produit->clearField();
+    comboBox_nom_departement_produit->clearField();
     lineEdit_categorie_produit->clearField();
     lineEdit_nom_entreprise_fournisseur->clearField();
 
@@ -1262,6 +1273,8 @@ void YerothEntrerWindow::rendreVisible(YerothSqlTableModel * stocksTableModel, b
     setStockSpecificWidgetVisible(stockCheckInVisible);
 
     setupLineEditsQCompleters();
+
+    populateEntrerUnStock_OU_ServiceComboBoxes();
 
     lineEdit_tva->setText(YerothUtils::getTvaStringWithPercent());
 
@@ -1562,7 +1575,7 @@ bool YerothEntrerWindow::handle_clients_table(int stockID, double montant_total_
 
     	aServiceClientInfo.reference = lineEdit_reference_produit->text();
     	aServiceClientInfo.designation = lineEdit_designation->text();
-    	aServiceClientInfo.nom_departement_produit = lineEdit_nom_departement_produit->text();
+    	aServiceClientInfo.nom_departement_produit = comboBox_nom_departement_produit->currentText();
     	aServiceClientInfo.nom_categorie = lineEdit_categorie_produit->text();
     	aServiceClientInfo.nom_entreprise_client = clientName;
     	aServiceClientInfo.nouveau_compte_client = nouveau_compte_client ;
@@ -1739,7 +1752,7 @@ void YerothEntrerWindow::enregistrer_produit()
     	}
     }
 
-    QString proposedProductDepartmentName = lineEdit_nom_departement_produit->text();
+    QString proposedProductDepartmentName = comboBox_nom_departement_produit->currentText();
 
 	if (! YerothUtils::check_IF_departement_produit_exists(proposedProductDepartmentName))
 	{

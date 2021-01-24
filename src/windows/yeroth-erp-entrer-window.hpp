@@ -205,6 +205,7 @@ private:
         dateEdit_date_peremption->setStartDate(GET_CURRENT_DATE);
     }
 
+    void populateEntrerUnStock_OU_ServiceComboBoxes();
 
     YerothLogger			*_logger;
 

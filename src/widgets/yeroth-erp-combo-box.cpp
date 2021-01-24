@@ -149,6 +149,8 @@ bool YerothComboBox::populateComboBoxRawString(QString aDBTableViewStringName,
 
     clear();
 
+    curItems.sort();
+
     addItems(curItems);
 
     curItems.clear();
@@ -204,6 +206,8 @@ bool YerothComboBox::populateComboBoxMissingRawString(const QString aDBFieldColu
 
     clear();
 
+    curItems.sort();
+
     addItems(curItems);
 
     curItems.clear();
@@ -255,6 +259,8 @@ bool YerothComboBox::populateComboBox()
     }
 
     clear();
+
+    curItems.sort();
 
     addItems(curItems);
 
@@ -309,6 +315,8 @@ bool YerothComboBox::populateComboBoxMissing(const int aContentINTValue)
 
     clear();
 
+    curItems.sort();
+
     addItems(curItems);
 
     curItems.clear();
@@ -360,6 +368,8 @@ bool YerothComboBox::populateComboBoxWithout(const int aContentINTValue)
     }
 
     clear();
+
+    curItems.sort();
 
     addItems(curItems);
 
