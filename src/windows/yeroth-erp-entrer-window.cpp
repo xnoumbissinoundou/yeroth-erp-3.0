@@ -102,6 +102,13 @@ YerothEntrerWindow::YerothEntrerWindow()
     connect(lineEdit_quantite_par_lot, SIGNAL(textChanged(const QString &)), this,
             SLOT(display_quantite_total(const QString &)));
 
+
+    connect(comboBox_nom_departement_produit,
+    		SIGNAL(activated(const QString &)),
+			this,
+			SLOT(handle_departement_de_produits_changement(const QString &)));
+
+
     connect(doubleSpinBox_lots_entrant, SIGNAL(valueChanged(double)),
     		this, SLOT(display_quantite_total_by_spinbox(double)));
 
@@ -198,6 +205,8 @@ void YerothEntrerWindow::setupLineEdits()
 
 void YerothEntrerWindow::setupLineEditsQCompleters__FOR_STOCK_INVENTORY()
 {
+	QString departement_de_produits_choisi = comboBox_nom_departement_produit->currentText();
+
 	if (radioButton_SERVICE_ACHAT_FOURNISSEUR->isChecked() ||
 		radioButton_SERVICE_VENTE_CLIENT->isChecked())
 	{
@@ -207,8 +216,11 @@ void YerothEntrerWindow::setupLineEditsQCompleters__FOR_STOCK_INVENTORY()
 	}
 	else
 	{
-    	QString aConditionStr(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
-    						  YerothUtils::MYSQL_FALSE_LITERAL));
+    	QString aConditionStr(QString("%1 AND %2")
+    							.arg(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,
+    															departement_de_produits_choisi),
+    								 YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
+    									    					YerothUtils::MYSQL_FALSE_LITERAL)));
 
     	lineEdit_reference_produit->setupMyStaticQCompleter(_allWindows->MARCHANDISES,
     														YerothDatabaseTableColumn::REFERENCE,
@@ -261,8 +273,14 @@ void YerothEntrerWindow::setupLineEditsQCompleters()
 {
     setupLineEditsQCompleters__FOR_STOCK_INVENTORY();
 
+    QString departement_de_produits_choisi = comboBox_nom_departement_produit->currentText();
+
+	QString aConditionStr(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,
+													 departement_de_produits_choisi));
+
 	lineEdit_categorie_produit->setupMyStaticQCompleter(_allWindows->CATEGORIES,
-														YerothDatabaseTableColumn::NOM_CATEGORIE);
+														YerothDatabaseTableColumn::NOM_CATEGORIE,
+														aConditionStr);
 }
 
 
@@ -972,6 +990,8 @@ bool YerothEntrerWindow::insertStockItemInProductList()
 
 void YerothEntrerWindow::showItem()
 {
+	populateEntrerUnStock_OU_ServiceComboBoxes();
+
 	_curStocksTableModel->yerothSetFilter_WITH_where_clause(QString("%1 = '%2'")
 																.arg(YerothDatabaseTableColumn::ID,
 																	 YerothERPWindows::get_last_lister_selected_row_ID()));

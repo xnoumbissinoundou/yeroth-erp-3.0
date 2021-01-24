@@ -78,10 +78,10 @@ public slots:
 	{
 		YerothQMessageBox::information(this,
 							 QObject::trUtf8("aide"),
-							 QObject::trUtf8("1) Sélectionner un stock dans le tableau des stocks,"
+							 QObject::trUtf8("1. Sélectionner un stock dans le tableau des stocks,"
 											 " ensuite cliquer sur l'opération que vous souhaitez"
 											 " réaliser !\n\n"
-											 "2) La valeur d'inventaire d'un stock (VI) "
+											 "2. La valeur d'inventaire d'un stock (VI) "
 											 "est calculée comme suit:\n"
 											 " [VI = prix_dachat * quantite_en_stock] !"));
 	}
