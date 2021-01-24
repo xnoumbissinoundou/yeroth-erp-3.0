@@ -4723,10 +4723,13 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-entrer-window.hpp" line="87"/>
-        <source>1. Choisissez le département de produits
+        <source>1. Choisissez le département de produits !
 
 2. Remplissez le formulaire, et ensuite cliquer sur enregistrer !</source>
-        <translation>1. Select 1 product department
+        <oldsource>1. Choisissez le département de produits
+
+2. Remplissez le formulaire, et ensuite cliquer sur enregistrer !</oldsource>
+        <translation>1. Select 1 product department !
 
 2. Fill the form, then press button &apos;save&apos; !</translation>
     </message>
