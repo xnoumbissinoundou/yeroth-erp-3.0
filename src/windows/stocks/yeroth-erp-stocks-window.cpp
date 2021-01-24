@@ -547,6 +547,7 @@ void YerothStocksWindow::setupShortcuts()
     setupShortcutActionExporterAuFormatCsv	(*actionExporter_au_format_csv);
     setupShortcutActionQuiSuisJe			(*actionQui_suis_je);
 
+    actionAfficher_lhistorique_de_ce_stock->setShortcut(Qt::Key_F2);
     actionReinitialiserRecherche->setShortcut(YerothUtils::REINITIALISER_RECHERCHE_QKEYSEQUENCE);
 }
 

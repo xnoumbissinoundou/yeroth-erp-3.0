@@ -1561,8 +1561,8 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
     </message>
     <message>
         <location filename="src/windows/stocks/yeroth-erp-stock-detail-window.cpp" line="27"/>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1001"/>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1019"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1002"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1020"/>
         <source>détails d&apos;un stock</source>
         <oldsource>stock details</oldsource>
         <translation>stock details</translation>
@@ -1937,7 +1937,7 @@ Continue with update of the stock ?</translation>
         <location filename="src/windows/crm/modifier/yeroth-erp-modifier-compte-client-window.cpp" line="557"/>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="455"/>
         <location filename="src/windows/purchase/yeroth-erp-achats-aux-fournisseurs-window.cpp" line="845"/>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1054"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1055"/>
         <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="351"/>
         <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="360"/>
         <source>supprimer</source>
@@ -2852,41 +2852,41 @@ Please contact an administrator of %1</translation>
         <translation>keyword to search for (article (or service) description)</translation>
     </message>
     <message>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1102"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1103"/>
         <source>Poursuivre avec la suppression du service &apos;%1&apos; ?</source>
         <translation>Continue with deletion of service &apos;%1&apos; ?</translation>
     </message>
     <message>
         <location filename="src/windows/stocks/yeroth-erp-modifier-window.cpp" line="988"/>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1109"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1110"/>
         <source>Poursuivre avec la suppression du stock &apos;%1&apos; ?</source>
         <translation>Continue with deletion of stock &apos;%1&apos; ?</translation>
     </message>
     <message>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1055"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1056"/>
         <source>Sélectionnez 1 stock à supprimer.</source>
         <translation>Select a stock item to delete.</translation>
     </message>
     <message>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1115"/>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1188"/>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1197"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1116"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1189"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1198"/>
         <source>suppression d&apos;un stock (service)</source>
         <translation>deletion of a stock (service)</translation>
     </message>
     <message>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1184"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1185"/>
         <source>Le stock (service) &apos;%1&apos; a été supprimé !</source>
         <translation>Stock (service) &apos;%1&apos; has been deleted !</translation>
     </message>
     <message>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1193"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1194"/>
         <source>Le stock (service) &apos;%1&apos; ne pouvait pas être supprimé !</source>
         <translation>Stock (service) &apos;%1&apos; couldn&apos;t be deleted !</translation>
     </message>
     <message>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1002"/>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1020"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1003"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1021"/>
         <source>Sélectionnez un stock à afficher les détails.</source>
         <translation>Select a stock item to view its stock details.</translation>
     </message>
@@ -3004,7 +3004,7 @@ Please contact an administrator of %1</translation>
         <translation>Inventory stock &apos;%1&apos; couldn&apos;t be deleted !</translation>
     </message>
     <message>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1287"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1288"/>
         <source>Sélectionnez un stock à modifier.</source>
         <translation>Select a stock item to modify its details.</translation>
     </message>
