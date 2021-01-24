@@ -24,9 +24,9 @@ void YerothAdminModifierWindow::modifier_categorie()
 {
 	if (modifier_categorie_check_fields())
 	{
-		YerothUtils::startTransaction();
+		YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
 		modifier_categorie_main();
-		YerothUtils::commitTransaction();
+		YEROTH_ERP_3_0_COMMIT_DATABASE_TRANSACTION;
 	}
 }
 

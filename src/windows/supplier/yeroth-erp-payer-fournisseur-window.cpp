@@ -185,7 +185,7 @@ void YerothPayerFournisseurWindow::updateStocksVeduTable(PaymentInfo &paymentInf
 	{
 		double montantPaye = paymentInfo.montant_paye;
 
-		YerothUtils::startTransaction();
+		YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
 
 		QSqlRecord stocksVenduRecord = stocksVenduTableModel.record(0);
 
@@ -245,7 +245,7 @@ void YerothPayerFournisseurWindow::updateStocksVeduTable(PaymentInfo &paymentInf
 			}
 		}
 
-		YerothUtils::commitTransaction();
+		YEROTH_ERP_3_0_COMMIT_DATABASE_TRANSACTION;
 	}
 }
 
@@ -603,13 +603,13 @@ bool YerothPayerFournisseurWindow::putCashIntoCustomerAccount()
 
     	paymentInfo.intitule_du_compte_bancaire = curEtablissementBancaire;
 
-    	YerothUtils::startTransaction();
+    	YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
 
     	success = YerothUtils::execQuery(queryStr);
 
     	success = success && createPaymentForCustomerAccount(paymentInfo);
 
-    	YerothUtils::commitTransaction();
+    	YEROTH_ERP_3_0_COMMIT_DATABASE_TRANSACTION;
     }
     else
     {

@@ -35,9 +35,9 @@ void YerothAdminModifierWindow::modifier_compte_bancaire()
 {
 	if (modifier_compte_bancaire_check_fields())
 	{
-		YerothUtils::startTransaction();
+		YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
 		modifier_compte_bancaire_main();
-		YerothUtils::commitTransaction();
+		YEROTH_ERP_3_0_COMMIT_DATABASE_TRANSACTION;
 	}
 }
 

@@ -4,11 +4,18 @@
  */
 
 #include "yeroth-erp-admin-detail-window.hpp"
+
 #include "src/yeroth-erp-windows.hpp"
+
+
 #include <QtCore/QDebug>
+
 #include <QtWidgets/QDesktopWidget>
+
 #include <QtSql/QSqlError>
+
 #include <QtSql/QSqlRecord>
+
 
 YerothAdminDetailWindow::YerothAdminDetailWindow():YerothPOSAdminWindowsCommons(QObject::tr("administration ~ détail")),
     _logger(new YerothLogger("YerothAdminDetailWindow"))
@@ -54,6 +61,7 @@ YerothAdminDetailWindow::YerothAdminDetailWindow():YerothPOSAdminWindowsCommons(
 
     pushButton_detail_utilisateur_retour->enable(this, SLOT(retourListerCompteUtilisateur()));
     pushButton_detail_localisation_retour->enable(this, SLOT(retourListerLocalisation()));
+    pushButton_detail_departements_de_produits_retour->enable(this, SLOT(retourListerDepartementsDeProduits()));
     pushButton_detail_categorie_retour->enable(this, SLOT(retourListerCategorie()));
     pushButton_detail_compte_bancaire_retour->enable(this, SLOT(retourListerCompteBancaire()));
     pushButton_detail_remise_retour->enable(this, SLOT(retourListerRemise()));
@@ -68,6 +76,7 @@ YerothAdminDetailWindow::YerothAdminDetailWindow():YerothPOSAdminWindowsCommons(
     connect(actionRetournerMenuPrincipal, SIGNAL(triggered()), this, SLOT(retour_menu_principal()));
     connect(actionQui_suis_je, SIGNAL(triggered()), this, SLOT(qui_suis_je()));
 }
+
 
 void YerothAdminDetailWindow::setupLineEdits()
 {
@@ -108,12 +117,14 @@ void YerothAdminDetailWindow::setupLineEdits()
     lineEdit_detail_alerte_quantite->setYerothEnabled(false);
 }
 
+
 void YerothAdminDetailWindow::definirPasDeRole()
 {
     _logger->log("definirPasDeRole");
     YEROTH_ERP_ADMIN_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
     YEROTH_ERP_ADMIN_WRAPPER_QACTION_SET_ENABLED(actionRetournerMenuPrincipal, false);
 }
+
 
 void YerothAdminDetailWindow::definirAdministrateur()
 {
@@ -122,6 +133,7 @@ void YerothAdminDetailWindow::definirAdministrateur()
     YEROTH_ERP_ADMIN_WRAPPER_QACTION_SET_ENABLED(actionRetournerMenuPrincipal, false);
 }
 
+
 void YerothAdminDetailWindow::definirManager()
 {
     _logger->log("definirManager");
@@ -129,17 +141,20 @@ void YerothAdminDetailWindow::definirManager()
     YEROTH_ERP_ADMIN_WRAPPER_QACTION_SET_ENABLED(actionRetournerMenuPrincipal, true);
 }
 
+
 void YerothAdminDetailWindow::creer()
 {
     _allWindows->_adminCreateWindow->rendreVisible(tabWidget_detail->currentIndex());
    rendreInvisible();
 }
 
+
 void YerothAdminDetailWindow::lister()
 {
     _allWindows->_adminListerWindow->rendreVisible(tabWidget_detail->currentIndex());
    rendreInvisible();
 }
+
 
 void YerothAdminDetailWindow::modifier()
 {
@@ -172,8 +187,10 @@ void YerothAdminDetailWindow::modifier()
     default:
         break;
     }
+
    rendreInvisible();
 }
+
 
 void YerothAdminDetailWindow::supprimer()
 {
@@ -183,15 +200,17 @@ void YerothAdminDetailWindow::supprimer()
    rendreInvisible();
 }
 
+
 void YerothAdminDetailWindow::rendreInvisible()
 {
-    _logger->log("rendreInvisible");
-    lineEdit_detail_alerte_id_destinataire->clear();
-    lineEdit_detail_alerte_nom_destinataire->clear();
-    lineEdit_detail_alerte_designation_article->clear();
-   clear_set_edit_comboBoxes();
-   setVisible(false);
+	_logger->log("rendreInvisible");
+	lineEdit_detail_alerte_id_destinataire->clear();
+	lineEdit_detail_alerte_nom_destinataire->clear();
+	lineEdit_detail_alerte_designation_article->clear();
+	clear_set_edit_comboBoxes();
+	setVisible(false);
 }
+
 
 void YerothAdminDetailWindow::enableOtherTabs(enum AdminSujetAction curAction, bool enabled)
 {
@@ -204,6 +223,7 @@ void YerothAdminDetailWindow::enableOtherTabs(enum AdminSujetAction curAction, b
         }
     }
 }
+
 
 void YerothAdminDetailWindow::rendreVisibleCompteUtilisateur(int sqlTableRow)
 {
@@ -253,69 +273,112 @@ void YerothAdminDetailWindow::rendreVisibleCompteUtilisateur(int sqlTableRow)
    setVisible(true);
 }
 
+
 void YerothAdminDetailWindow::rendreVisibleLocalisation(int sqlTableRow)
 {
-   tabWidget_detail->setCurrentIndex(SUJET_ACTION_LOCALISATION);
-    YerothAdminListerWindow *lw = _allWindows->_adminListerWindow;
-    YerothSqlTableModel *localisationSqlTableModel = lw->getCurSearchSqlTableModel();
-    if (!localisationSqlTableModel)
-    {
-        localisationSqlTableModel = &_allWindows->getSqlTableModel_localisations();
-    }
-    else if (localisationSqlTableModel
-             && !YerothUtils::isEqualCaseInsensitive(localisationSqlTableModel->sqlTableName(),
-                     _allWindows->LOCALISATIONS))
-    {
-        localisationSqlTableModel = &_allWindows->getSqlTableModel_localisations();
-    }
-    //YerothSqlTableModel &localisationSqlTableModel = _allWindows->getSqlTableModel_localisations();
-    QSqlRecord record = localisationSqlTableModel->record(sqlTableRow);
-    lineEdit_detail_localisation_adresse_ip->setText(GET_SQL_RECORD_DATA(record, "adresse_ip"));
-    lineEdit_detail_localisation_nom->setText(GET_SQL_RECORD_DATA(record, "nom_localisation"));
-    lineEdit_detail_localisation_numero_unique->setText(GET_SQL_RECORD_DATA(record, "numero_unique"));
-    lineEdit_detail_localisation_quartier->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::QUARTIER));
-    lineEdit_detail_localisation_ville->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::VILLE));
-    lineEdit_detail_localisation_province_etat->setText(GET_SQL_RECORD_DATA(record, "province_etat"));
-    lineEdit_detail_localisation_pays->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::PAYS));
-    lineEdit_detail_localisation_boite_postale->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::BOITE_POSTALE));
-    dateEdit_detail_localisation_date_ouverture->
-    setDate(QDate::fromString(GET_SQL_RECORD_DATA(record, "date_ouverture"), YerothUtils::DATE_FORMAT));
-    lineEdit_detail_localisation_email->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::EMAIL));
-    lineEdit_detail_localisation_numero_telephone_1->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NUMERO_TELEPHONE_1));
-    lineEdit_detail_localisation_numero_telephone_2->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NUMERO_TELEPHONE_2));
-    lineEdit_detail_localisation_base_donnees->setText(GET_SQL_RECORD_DATA(record, "dbms"));
-    textEdit_detail_localisation_description_lieu->setText(GET_SQL_RECORD_DATA(record, "description_lieu"));
-   enableOtherTabs(SUJET_ACTION_LOCALISATION, false);
-   setVisible(true);
+	tabWidget_detail->setCurrentIndex(SUJET_ACTION_LOCALISATION);
+
+	YerothAdminListerWindow *lw = _allWindows->_adminListerWindow;
+
+	YerothSqlTableModel *localisationSqlTableModel = lw->getCurSearchSqlTableModel();
+
+	if (!localisationSqlTableModel)
+	{
+		localisationSqlTableModel = &_allWindows->getSqlTableModel_localisations();
+	}
+	else if (localisationSqlTableModel
+			&& !YerothUtils::isEqualCaseInsensitive(localisationSqlTableModel->sqlTableName(),
+					_allWindows->LOCALISATIONS))
+	{
+		localisationSqlTableModel = &_allWindows->getSqlTableModel_localisations();
+	}
+	//YerothSqlTableModel &localisationSqlTableModel = _allWindows->getSqlTableModel_localisations();
+	QSqlRecord record = localisationSqlTableModel->record(sqlTableRow);
+
+	lineEdit_detail_localisation_adresse_ip->setText(GET_SQL_RECORD_DATA(record, "adresse_ip"));
+	lineEdit_detail_localisation_nom->setText(GET_SQL_RECORD_DATA(record, "nom_localisation"));
+	lineEdit_detail_localisation_numero_unique->setText(GET_SQL_RECORD_DATA(record, "numero_unique"));
+	lineEdit_detail_localisation_quartier->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::QUARTIER));
+	lineEdit_detail_localisation_ville->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::VILLE));
+	lineEdit_detail_localisation_province_etat->setText(GET_SQL_RECORD_DATA(record, "province_etat"));
+	lineEdit_detail_localisation_pays->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::PAYS));
+	lineEdit_detail_localisation_boite_postale->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::BOITE_POSTALE));
+
+	dateEdit_detail_localisation_date_ouverture->
+		setDate(QDate::fromString(GET_SQL_RECORD_DATA(record, "date_ouverture"), YerothUtils::DATE_FORMAT));
+
+	lineEdit_detail_localisation_email->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::EMAIL));
+	lineEdit_detail_localisation_numero_telephone_1->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NUMERO_TELEPHONE_1));
+	lineEdit_detail_localisation_numero_telephone_2->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NUMERO_TELEPHONE_2));
+	lineEdit_detail_localisation_base_donnees->setText(GET_SQL_RECORD_DATA(record, "dbms"));
+	textEdit_detail_localisation_description_lieu->setText(GET_SQL_RECORD_DATA(record, "description_lieu"));
+
+	enableOtherTabs(SUJET_ACTION_LOCALISATION, false);
+
+	setVisible(true);
 }
 
 
 void YerothAdminDetailWindow::rendreVisibleDepartementsDeProduits(int sqlTableRow)
 {
+	tabWidget_detail->setCurrentIndex(SUJET_ACTION_DEPARTEMENTS_DE_PRODUITS);
 
+	YerothAdminListerWindow *lw = _allWindows->_adminListerWindow;
+
+	YerothSqlTableModel *departementsDeProduitsTableModel = lw->getCurSearchSqlTableModel();
+
+	if (0 == departementsDeProduitsTableModel)
+	{
+		departementsDeProduitsTableModel = &_allWindows->getSqlTableModel_departements_produits();
+	}
+	else if (0 != departementsDeProduitsTableModel
+			 && !YerothUtils::isEqualCaseInsensitive(departementsDeProduitsTableModel->sqlTableName(),
+												    _allWindows->DEPARTEMENTS_PRODUITS))
+	{
+		departementsDeProduitsTableModel = &_allWindows->getSqlTableModel_departements_produits();
+	}
+
+	QSqlRecord record = departementsDeProduitsTableModel->record(sqlTableRow);
+
+	lineEdit_detail_departements_de_produits_nom->
+		setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT));
+
+	textEdit_detail_departements_de_produits_description->
+		setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESCRIPTION_DEPARTEMENT_PRODUIT));
+
+	enableOtherTabs(SUJET_ACTION_DEPARTEMENTS_DE_PRODUITS, false);
+
+	setVisible(true);
 }
 
 
 void YerothAdminDetailWindow::rendreVisibleCategorie(int sqlTableRow)
 {
-   tabWidget_detail->setCurrentIndex(SUJET_ACTION_CATEGORIE);
-    YerothAdminListerWindow *lw = _allWindows->_adminListerWindow;
-    YerothSqlTableModel *categoriesTableModel = lw->getCurSearchSqlTableModel();
-    if (!categoriesTableModel)
-    {
-        categoriesTableModel = &_allWindows->getSqlTableModel_categories();
-    }
-    else if (categoriesTableModel
-             && !YerothUtils::isEqualCaseInsensitive(categoriesTableModel->sqlTableName(),
-                     _allWindows->CATEGORIES))
-    {
-        categoriesTableModel = &_allWindows->getSqlTableModel_categories();
-    }
-    QSqlRecord record = categoriesTableModel->record(sqlTableRow);
-    lineEdit_detail_categorie_nom->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_CATEGORIE));
-    textEdit_detail_categorie_description->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESCRIPTION_CATEGORIE));
-   enableOtherTabs(SUJET_ACTION_CATEGORIE, false);
-   setVisible(true);
+	tabWidget_detail->setCurrentIndex(SUJET_ACTION_CATEGORIE);
+
+	YerothAdminListerWindow *lw = _allWindows->_adminListerWindow;
+
+	YerothSqlTableModel *categoriesTableModel = lw->getCurSearchSqlTableModel();
+
+	if (!categoriesTableModel)
+	{
+		categoriesTableModel = &_allWindows->getSqlTableModel_categories();
+	}
+	else if (categoriesTableModel
+			&& !YerothUtils::isEqualCaseInsensitive(categoriesTableModel->sqlTableName(),
+					_allWindows->CATEGORIES))
+	{
+		categoriesTableModel = &_allWindows->getSqlTableModel_categories();
+	}
+
+	QSqlRecord record = categoriesTableModel->record(sqlTableRow);
+
+	lineEdit_detail_categorie_nom->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_CATEGORIE));
+	textEdit_detail_categorie_description->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESCRIPTION_CATEGORIE));
+
+	enableOtherTabs(SUJET_ACTION_CATEGORIE, false);
+
+	setVisible(true);
 }
 
 

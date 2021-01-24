@@ -151,7 +151,10 @@ private:
 
     bool modifier_utilisateur_check_fields();
 
-    bool modifier_departements_de_produits_check_fields();
+    inline bool modifier_departements_de_produits_check_fields()
+    {
+        return lineEdit_modifier_departements_de_produits_nom->checkField();
+    }
 
     bool modifier_categorie_check_fields();
 

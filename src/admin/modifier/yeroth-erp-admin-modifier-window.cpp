@@ -42,16 +42,18 @@ _savePassword(false)
 
     pushButton_menu->enable(this, SLOT(menu()));
 
-    pushButton_modifier_utilisateur_annuler->enable(this, SLOT(annuler()));
     pushButton_modifier_localisation_annuler->enable(this, SLOT(annuler()));
     pushButton_modifier_categorie_annuler->enable(this, SLOT(annuler()));
     pushButton_modifier_compte_bancaire_annuler->enable(this, SLOT(annuler()));
+    pushButton_modifier_utilisateur_annuler->enable(this, SLOT(annuler()));
+    pushButton_modifier_departements_de_produits_annuler->enable(this, SLOT(annuler()));
     pushButton_modifier_alerte_annuler->enable(this, SLOT(annuler()));
 
     pushButton_modifier_utilisateur_valider->enable(this, SLOT(modifier_utilisateur()));
     pushButton_modifier_localisation_valider->enable(this, SLOT(modifier_localisation()));
     pushButton_modifier_categorie_valider->enable(this, SLOT(modifier_categorie()));
     pushButton_modifier_compte_bancaire_valider->enable(this, SLOT(modifier_compte_bancaire()));
+    pushButton_modifier_departements_de_produits_valider->enable(this, SLOT(modifier_departements_de_produits()));
     pushButton_modifier_alerte_valider->enable(this, SLOT(modifier_alerte()));
 
     pushButton_creer->enable(this, SLOT(creer()));

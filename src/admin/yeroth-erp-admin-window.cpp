@@ -167,10 +167,10 @@ YerothAdminWindow::YerothAdminWindow()
 
     _sujetActionsToConst->insert(ALERTE, SUJET_ACTION_ALERTE);
     _sujetActionsToConst->insert(BON_DE_COMMANDE, SUJET_ACTION_BON_DE_COMMANDE);
-    _sujetActionsToConst->insert(DEPARTEMENTS_DE_PRODUITS, SUJET_ACTION_DEPARTEMENTS_DE_PRODUITS);
     _sujetActionsToConst->insert(CATEGORIE, SUJET_ACTION_CATEGORIE);
     _sujetActionsToConst->insert(COMPTE_BANCAIRE, SUJET_ACTION_COMPTE_BANCAIRE);
     _sujetActionsToConst->insert(COMPTE_UTILISATEUR, SUJET_ACTION_COMPTE_UTILISATEUR);
+    _sujetActionsToConst->insert(DEPARTEMENTS_DE_PRODUITS, SUJET_ACTION_DEPARTEMENTS_DE_PRODUITS);
     _sujetActionsToConst->insert(LOCALISATION, SUJET_ACTION_LOCALISATION);
     _sujetActionsToConst->insert(REMISE, SUJET_ACTION_REMISE);
 
@@ -179,10 +179,10 @@ YerothAdminWindow::YerothAdminWindow()
 
     comboBox_sujets_actions->addItem(ALERTE);
     comboBox_sujets_actions->addItem(BON_DE_COMMANDE);
-    comboBox_sujets_actions->addItem(DEPARTEMENTS_DE_PRODUITS);
     comboBox_sujets_actions->addItem(CATEGORIE);
     comboBox_sujets_actions->addItem(COMPTE_BANCAIRE);
     comboBox_sujets_actions->addItem(COMPTE_UTILISATEUR);
+    comboBox_sujets_actions->addItem(DEPARTEMENTS_DE_PRODUITS);
     comboBox_sujets_actions->addItem(LOCALISATION);
     comboBox_sujets_actions->addItem(REMISE);
 

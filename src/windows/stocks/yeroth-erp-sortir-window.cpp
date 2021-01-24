@@ -2112,7 +2112,7 @@ void YerothSortirWindow::sortir()
                                        QMessageBox::Cancel,
 									   QMessageBox::Ok))
     {
-        YerothUtils::startTransaction();
+        YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
 
         int stocksSortieID = -1;
 
@@ -2309,7 +2309,7 @@ void YerothSortirWindow::sortir()
             }
         }
 
-        YerothUtils::commitTransaction();
+        YEROTH_ERP_3_0_COMMIT_DATABASE_TRANSACTION;
 
         cleanUpAfterVente();
     }

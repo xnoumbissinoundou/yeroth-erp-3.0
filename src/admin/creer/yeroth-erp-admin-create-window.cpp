@@ -46,6 +46,7 @@ YerothAdminCreateWindow::YerothAdminCreateWindow()
 
     pushButton_creer_utilisateur_annuler->enable(this, SLOT(annuler()));
     pushButton_creer_localisation_annuler->enable(this, SLOT(annuler()));
+    pushButton_creer_departements_de_produits_annuler->enable(this, SLOT(annuler()));
     pushButton_creer_categorie_annuler->enable(this, SLOT(annuler()));
     pushButton_creer_compte_bancaire_annuler->enable(this, SLOT(annuler()));
     pushButton_creer_alerte_annuler->enable(this, SLOT(annuler()));
@@ -54,6 +55,7 @@ YerothAdminCreateWindow::YerothAdminCreateWindow()
 
     pushButton_creer_utilisateur_valider->enable(this, SLOT(creer_utilisateur()));
     pushButton_creer_localisation_valider->enable(this, SLOT(creer_localisation()));
+    pushButton_creer_departements_de_produits_valider->enable(this, SLOT(creer_departements_de_produits()));
     pushButton_creer_categorie_valider->enable(this, SLOT(creer_categorie()));
     pushButton_creer_compte_bancaire_valider->enable(this, SLOT(creer_compte_bancaire()));
     pushButton_creer_alerte_valider->enable(this, SLOT(creer_alerte()));

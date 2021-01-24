@@ -103,7 +103,7 @@ YerothAdminListerWindow::YerothAdminListerWindow()
             SLOT(afficher_detail_localisation()));
 
     connect(tableView_lister_departements_produits, SIGNAL(doubleClicked(const QModelIndex &)), this,
-            SLOT(afficher_detail_categorie()));
+            SLOT(afficher_detail_departements_de_produits()));
 
     connect(tableView_lister_categorie, SIGNAL(doubleClicked(const QModelIndex &)), this,
             SLOT(afficher_detail_departements_de_produits()));
@@ -180,6 +180,13 @@ void YerothAdminListerWindow::rendreVisible(unsigned selectedSujetAction)
     	if (false == isSiteCurrentlyFiltered())
     	{
     		lister_localisation();
+    	}
+        break;
+
+    case SUJET_ACTION_DEPARTEMENTS_DE_PRODUITS:
+    	if (false == isProductDepartmentCurrentlyFiltered())
+    	{
+    		lister_departements_de_produits();
     	}
         break;
 
