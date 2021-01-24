@@ -84,8 +84,8 @@ public slots:
 	{
 		YerothQMessageBox::information(this,
 						 QObject::trUtf8("aide"),
-						 QObject::trUtf8("1. Choisisser le département de produits\n\n"
-								 	 	 "2. Remplisser le formulaire, et ensuite cliquer "
+						 QObject::trUtf8("1. Choisissez le département de produits\n\n"
+								 	 	 "2. Remplissez le formulaire, et ensuite cliquer "
 										 "sur enregistrer !"));
 	}
 
