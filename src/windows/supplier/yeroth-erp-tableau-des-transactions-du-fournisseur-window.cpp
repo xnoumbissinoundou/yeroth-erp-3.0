@@ -45,7 +45,7 @@ YerothTableauDesTransactionsDuFournisseurWindow::YerothTableauDesTransactionsDuF
 
     connect(actionExporter_au_format_csv, SIGNAL(triggered()), this, SLOT(export_csv_file()));
 
-    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_pdf_document()));
+    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_pdf_document_WITH_A_YEROTH_PROGRESS_BAR()));
 }
 
 
@@ -118,15 +118,18 @@ bool YerothTableauDesTransactionsDuFournisseurWindow::imprimer_pdf_document()
 {
 	_latex_template_print_pdf_content = YerothUtils::template_transactions_dun_fournisseur_tex;
 
-    QMap<QString, QString> documentSpecificElements;
+	_documentSpecificElements_FOR_PDF_LATEX_PRINTING.clear();
 
-    documentSpecificElements.insert("YEROTHFOURNISSEUR", YerothUtils::LATEX_IN_OUT_handleForeignAccents(_fournisseurCompanyName));
+	_documentSpecificElements_FOR_PDF_LATEX_PRINTING.
+		insert("YEROTHFOURNISSEUR", YerothUtils::LATEX_IN_OUT_handleForeignAccents(_fournisseurCompanyName));
 
-    documentSpecificElements.insert("YEROTHVENTESDEBUT", SET_DATE_TO_STRING(_curDateDebutTransactions));
+	_documentSpecificElements_FOR_PDF_LATEX_PRINTING.
+		insert("YEROTHVENTESDEBUT", SET_DATE_TO_STRING(_curDateDebutTransactions));
 
-    documentSpecificElements.insert("YEROTHVENTESFIN", SET_DATE_TO_STRING(_curDateFinTransactions));
+	_documentSpecificElements_FOR_PDF_LATEX_PRINTING.
+		insert("YEROTHVENTESFIN", SET_DATE_TO_STRING(_curDateFinTransactions));
 
-	return YerothWindowsCommons::imprimer_pdf_document(&documentSpecificElements);
+	return YerothWindowsCommons::imprimer_pdf_document();
 }
 
 

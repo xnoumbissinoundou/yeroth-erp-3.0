@@ -2144,12 +2144,12 @@ Continue with update of the stock ?</translation>
         <translation>cashier name</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1907"/>
+        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1909"/>
         <source>Cette fonctionnalité n&apos;est pas disponible pour les &apos;services&apos; !</source>
         <translation>Sale cancellation isn&apos;t possible for &apos;services&apos; !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1910"/>
+        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1912"/>
         <source>fonctionnalité pas disponible</source>
         <translation>no sale cancellation</translation>
     </message>
@@ -2173,8 +2173,8 @@ Continue with update of the stock ?</translation>
     </message>
     <message>
         <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="1360"/>
-        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1857"/>
         <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1859"/>
+        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1861"/>
         <source>remise (%1)</source>
         <translation>discount (%1)</translation>
     </message>
@@ -2812,8 +2812,8 @@ Please contact an administrator of %1</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-utils.hpp" line="493"/>
-        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1853"/>
         <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1855"/>
+        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1857"/>
         <source>TVA (%1)</source>
         <translation>Tax (%1)</translation>
     </message>

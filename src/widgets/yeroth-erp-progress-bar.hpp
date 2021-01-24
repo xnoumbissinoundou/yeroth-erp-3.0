@@ -33,6 +33,20 @@ public:
 	{
 	}
 
+	template <class classType, typename parameterType, typename returnType>
+	inline void operator()(classType *erpStockImport,
+						   parameterType *aParamValue,
+						   returnType (classType::*func)(parameterType *),
+						   returnType *aRetValue = 0,
+						   unsigned int progressBarMaximum = 100)
+	{
+		call_funtion_with_progress_bar_updates(erpStockImport,
+											   aParamValue,
+											   func,
+											   aRetValue,
+											   progressBarMaximum);
+	}
+
 	template <class classType, typename returnType>
 	inline void operator()(classType *erpStockImport,
 						   returnType (classType::*func)(),
@@ -54,6 +68,13 @@ public slots:
 
 protected:
 
+	template <class classType, typename parameterType, typename returnType>
+	void call_funtion_with_progress_bar_updates(classType *erpStockImport,
+												parameterType *aParamValue,
+											    returnType (classType::*func)(parameterType *),
+												returnType *aRetValue,
+												unsigned int progressBarMaximum);
+
 	template <class classType, typename returnType>
 	void call_funtion_with_progress_bar_updates(classType *erpStockImport,
 											    returnType (classType::*func)(),
@@ -64,6 +85,41 @@ private:
 
 	bool _setuped;
 };
+
+
+/*
+ * MUST STAY IN HEADER FILE !
+ */
+template <class classType, typename parameterType, typename returnType>
+void YerothProgressBar::call_funtion_with_progress_bar_updates(classType *aClassInstanceRef,
+															   parameterType *aParamValue,
+														       returnType (classType::*func)(parameterType *),
+															   returnType *aRetValue,
+															   unsigned int progressBarMaximum)
+{
+	if (!_setuped)
+	{
+		connect(aClassInstanceRef,
+				SIGNAL(SIGNAL_INCREMENT_PROGRESS_BAR(int)),
+				this,
+				SLOT(SLOT_UPDATE_PROGRESS_BAR_VALUE(int)));
+
+		_setuped = true;
+	}
+
+	setMaximum(progressBarMaximum);
+
+	setVisible(true);
+
+    returnType retValue = (aClassInstanceRef->*func)(aParamValue);
+
+	setVisible(false);
+
+	if (0 != aRetValue)
+	{
+		*aRetValue = retValue;
+	}
+}
 
 
 /*

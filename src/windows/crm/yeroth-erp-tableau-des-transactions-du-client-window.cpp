@@ -116,14 +116,17 @@ bool YerothTableauDesTransactionsDuClientWindow::imprimer_pdf_document()
 {
 	_latex_template_print_pdf_content = YerothUtils::template_transactions_dun_client_tex;
 
-    QMap<QString, QString> documentSpecificElements;
+	_documentSpecificElements_FOR_PDF_LATEX_PRINTING.clear();
 
-    documentSpecificElements.insert("YEROTHCLIENT", YerothUtils::LATEX_IN_OUT_handleForeignAccents(_clientCompanyName));
+	_documentSpecificElements_FOR_PDF_LATEX_PRINTING.
+		insert("YEROTHCLIENT", YerothUtils::LATEX_IN_OUT_handleForeignAccents(_clientCompanyName));
 
-    documentSpecificElements.insert("YEROTHVENTESDEBUT", SET_DATE_TO_STRING(_curDateDebutTransactions));
+	_documentSpecificElements_FOR_PDF_LATEX_PRINTING.
+		insert("YEROTHVENTESDEBUT", SET_DATE_TO_STRING(_curDateDebutTransactions));
 
-    documentSpecificElements.insert("YEROTHVENTESFIN", SET_DATE_TO_STRING(_curDateFinTransactions));
+	_documentSpecificElements_FOR_PDF_LATEX_PRINTING.
+		insert("YEROTHVENTESFIN", SET_DATE_TO_STRING(_curDateFinTransactions));
 
-	return YerothWindowsCommons::imprimer_pdf_document(&documentSpecificElements);
+	return YerothWindowsCommons::imprimer_pdf_document();
 }
 

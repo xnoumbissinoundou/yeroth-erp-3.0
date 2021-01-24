@@ -879,7 +879,7 @@ void YerothWindowsCommons::qui_suis_je()
 }
 
 
-bool YerothWindowsCommons::imprimer_pdf_document(QMap<QString, QString> *documentSpecificElements)
+bool YerothWindowsCommons::imprimer_pdf_document()
 {
 	if (_latex_template_print_pdf_content.isEmpty() ||
 		0 == _yerothTableView_FROM_WINDOWS_COMMONS)
@@ -901,10 +901,11 @@ bool YerothWindowsCommons::imprimer_pdf_document(QMap<QString, QString> *documen
 		_first_time_imprimer_pdf_document_call = false;
 	}
 
+
 	QString pdfOutputFileName =
 			_yeroth_PRINT_UTILITIES_TEX_TABLE->
 				print_YEROTH_document_from_TableView(_latex_template_print_pdf_content,
-													 documentSpecificElements);
+												     &_documentSpecificElements_FOR_PDF_LATEX_PRINTING);
 
 	if (pdfOutputFileName.isEmpty())
 	{

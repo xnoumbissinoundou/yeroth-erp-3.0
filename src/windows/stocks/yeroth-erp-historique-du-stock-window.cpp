@@ -141,17 +141,20 @@ bool YerothHistoriqueDuStockWindow::imprimer_pdf_document()
 {
 	_latex_template_print_pdf_content = YerothUtils::template_historique_dun_stock_tex;
 
-    QMap<QString, QString> documentSpecificElements;
+	_documentSpecificElements_FOR_PDF_LATEX_PRINTING.clear();
 
-    documentSpecificElements.insert("YEROTHSTOCKHISTORYREFERENCE",
-    		YerothUtils::LATEX_IN_OUT_handleForeignAccents(_currentStockReference));
+	_documentSpecificElements_FOR_PDF_LATEX_PRINTING.
+		insert("YEROTHSTOCKHISTORYREFERENCE",
+    		   YerothUtils::LATEX_IN_OUT_handleForeignAccents(_currentStockReference));
 
-    documentSpecificElements.insert("YEROTHSTOCKHISTORYDESIGNATION",
-    		YerothUtils::LATEX_IN_OUT_handleForeignAccents(_currentStockDesignation));
+	_documentSpecificElements_FOR_PDF_LATEX_PRINTING.
+		insert("YEROTHSTOCKHISTORYDESIGNATION",
+			   YerothUtils::LATEX_IN_OUT_handleForeignAccents(_currentStockDesignation));
 
-    documentSpecificElements.insert("YEROTHSTOCKHISTORYSTOCKID",
-    		YerothWindowsCommons::getLastListerSelectedRow__ID());
+	_documentSpecificElements_FOR_PDF_LATEX_PRINTING.
+		insert("YEROTHSTOCKHISTORYSTOCKID",
+			   YerothWindowsCommons::getLastListerSelectedRow__ID());
 
-	return YerothWindowsCommons::imprimer_pdf_document(&documentSpecificElements);
+	return YerothWindowsCommons::imprimer_pdf_document();
 }
 

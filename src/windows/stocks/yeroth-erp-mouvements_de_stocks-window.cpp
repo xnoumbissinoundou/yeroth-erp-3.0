@@ -87,7 +87,7 @@ YerothMouvementsDeStocksWindow::YerothMouvementsDeStocksWindow()
     connect(actionMenu, SIGNAL(triggered()), this, SLOT(menu()));
     connect(actionExporter_au_format_csv, SIGNAL(triggered()), this, SLOT(export_csv_file()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
-    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_pdf_document()));
+    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_pdf_document_WITH_A_YEROTH_PROGRESS_BAR()));
     connect(actionReinitialiserRecherche, SIGNAL(triggered()), this, SLOT(reinitialiser_recherche()));
     connect(actionA_propos, SIGNAL(triggered()), this, SLOT(apropos()));
     connect(actionAlertes, SIGNAL(triggered()), this, SLOT(alertes()));
@@ -582,17 +582,19 @@ bool YerothMouvementsDeStocksWindow::imprimer_pdf_document()
     	YerothWindowsCommons::setYerothTableView_FROM_WINDOWS_COMMONS(tableView_transferts_articles);
     }
 
-    QMap<QString, QString> documentSpecificElements;
+    _documentSpecificElements_FOR_PDF_LATEX_PRINTING.clear();
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
     if (SUJET_ACTION_SORTIES_STOCKS == tabWidget_mouvementsDeStocks->currentIndex())
     {
-    	documentSpecificElements.insert("YEROTHSUBJECT", "Journal des sorties d'articles");
+    	_documentSpecificElements_FOR_PDF_LATEX_PRINTING.
+			insert("YEROTHSUBJECT", "Journal des sorties d'articles");
     }
     else if (SUJET_ACTION_TRANSFERTS_STOCKS == tabWidget_mouvementsDeStocks->currentIndex())
     {
-    	documentSpecificElements.insert("YEROTHSUBJECT", "Journal des transferts d'articles");
+    	_documentSpecificElements_FOR_PDF_LATEX_PRINTING.
+			insert("YEROTHSUBJECT", "Journal des transferts d'articles");
     }
 
     _latex_template_print_pdf_content = YerothUtils::FR_template_liste_des_mouvements_de_stocks_tex;
@@ -603,22 +605,26 @@ bool YerothMouvementsDeStocksWindow::imprimer_pdf_document()
 
     if (SUJET_ACTION_SORTIES_STOCKS == tabWidget_mouvementsDeStocks->currentIndex())
     {
-    	documentSpecificElements.insert("YEROTHSUBJECT", "Journal of outgoing articles");
+    	_documentSpecificElements_FOR_PDF_LATEX_PRINTING.
+			insert("YEROTHSUBJECT", "Journal of outgoing articles");
     }
     else if (SUJET_ACTION_TRANSFERTS_STOCKS == tabWidget_mouvementsDeStocks->currentIndex())
     {
-    	documentSpecificElements.insert("YEROTHSUBJECT", "Journal of article transfers");
+    	_documentSpecificElements_FOR_PDF_LATEX_PRINTING.
+			insert("YEROTHSUBJECT", "Journal of article transfers");
     }
 
     _latex_template_print_pdf_content = YerothUtils::EN_template_liste_des_mouvements_de_stocks_tex;
 
 #endif
 
-    documentSpecificElements.insert("YEROTHVENTESDEBUT", DATE_TO_STRING(_curDateEdit_debut->date()));
+    _documentSpecificElements_FOR_PDF_LATEX_PRINTING.
+		insert("YEROTHVENTESDEBUT", DATE_TO_STRING(_curDateEdit_debut->date()));
 
-    documentSpecificElements.insert("YEROTHVENTESFIN", DATE_TO_STRING(_curDateEdit_fin->date()));
+    _documentSpecificElements_FOR_PDF_LATEX_PRINTING.
+		insert("YEROTHVENTESFIN", DATE_TO_STRING(_curDateEdit_fin->date()));
 
-	return YerothWindowsCommons::imprimer_pdf_document(&documentSpecificElements);
+	return YerothWindowsCommons::imprimer_pdf_document();
 }
 
 

@@ -145,7 +145,7 @@ YerothVentesWindow::YerothVentesWindow()
     connect(actionMenu, SIGNAL(triggered()), this, SLOT(menu()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
     connect(actionExporter_au_format_csv, SIGNAL(triggered()), this, SLOT(export_csv_file()));
-    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_pdf_document()));
+    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_pdf_document_WITH_A_YEROTH_PROGRESS_BAR()));
     connect(actionA_propos, SIGNAL(triggered()), this, SLOT(apropos()));
     connect(actionAlertes, SIGNAL(triggered()), this, SLOT(alertes()));
     connect(actionVendre, SIGNAL(triggered()), this, SLOT(vendre()));
@@ -1678,13 +1678,15 @@ bool YerothVentesWindow::imprimer_pdf_document()
 {
 	_latex_template_print_pdf_content = YerothUtils::template_journal_des_ventes_tex;
 
-    QMap<QString, QString> documentSpecificElements;
+    _documentSpecificElements_FOR_PDF_LATEX_PRINTING.clear();
 
-    documentSpecificElements.insert("YEROTHVENTESDEBUT", DATE_TO_STRING(dateEdit_ventes_debut->date()));
+    _documentSpecificElements_FOR_PDF_LATEX_PRINTING.
+		insert("YEROTHVENTESDEBUT", DATE_TO_STRING(dateEdit_ventes_debut->date()));
 
-    documentSpecificElements.insert("YEROTHVENTESFIN", DATE_TO_STRING(dateEdit_ventes_fin->date()));
+    _documentSpecificElements_FOR_PDF_LATEX_PRINTING.
+		insert("YEROTHVENTESFIN", DATE_TO_STRING(dateEdit_ventes_fin->date()));
 
-	return YerothWindowsCommons::imprimer_pdf_document(&documentSpecificElements);
+	return YerothWindowsCommons::imprimer_pdf_document();
 }
 
 

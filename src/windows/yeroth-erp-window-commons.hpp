@@ -68,7 +68,7 @@ public:
 	void setYerothTableView_FROM_WINDOWS_COMMONS(YerothTableView *aYerothTableView_FROM_WINDOWS_COMMONS);
 
 	inline virtual void YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(QAction *anAction,
-													   	   	  bool aBooleanValue)
+													   	   	   bool aBooleanValue)
 	{
 		anAction->setVisible(aBooleanValue);
 	}
@@ -237,12 +237,7 @@ public slots:
 
 	virtual void qui_suis_je();
 
-	virtual bool imprimer_pdf_document(QMap<QString, QString> *documentSpecificElements);
-
-	virtual inline bool imprimer_pdf_document()
-	{
-		return imprimer_pdf_document(0);
-	}
+	virtual bool imprimer_pdf_document();
 
     virtual void changer_utilisateur();
 
@@ -402,6 +397,8 @@ protected:
 
 	YerothLineEdit 						*_yeroth_QLineEdit_SearchDBFieldColumnString;
 
+
+	QMap<QString, QString> 				_documentSpecificElements_FOR_PDF_LATEX_PRINTING;
 
 	QString								_dbYerothSqlTableName_WINDOWS_TABLE_VIEW_FOR_SEARCH;
 
