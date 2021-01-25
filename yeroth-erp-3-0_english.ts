@@ -1504,8 +1504,8 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <translation>purchase listing</translation>
     </message>
     <message>
-        <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="695"/>
-        <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="717"/>
+        <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="650"/>
+        <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="672"/>
         <source>Sélectionnez 1 achat à afficher les détails.</source>
         <translation>Select a purchase to view its stock details.</translation>
     </message>
@@ -4143,7 +4143,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     </message>
     <message>
         <location filename="src/admin/yeroth-erp-admin-windows-commons.cpp" line="64"/>
-        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="899"/>
+        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="913"/>
         <source>qui suis je ?</source>
         <translation>who am I ?</translation>
     </message>
@@ -4319,7 +4319,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>missing MANDATORY column</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="886"/>
+        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="900"/>
         <source>%1 - sélectionner les colones visibles (&apos;%2&apos; colones)</source>
         <translation>%1 - select visible columns (&apos;%2&apos; columns)</translation>
     </message>
@@ -4462,8 +4462,8 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="560"/>
         <location filename="src/windows/purchase/yeroth-erp-achats-aux-fournisseurs-window.cpp" line="697"/>
         <location filename="src/windows/purchase/yeroth-erp-achats-aux-fournisseurs-window.cpp" line="719"/>
-        <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="694"/>
-        <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="716"/>
+        <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="649"/>
+        <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="671"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseurs-window.cpp" line="524"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseurs-window.cpp" line="543"/>
         <source>détails</source>
@@ -4637,13 +4637,13 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     </message>
     <message>
         <location filename="src/windows/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.cpp" line="29"/>
-        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="582"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="588"/>
         <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.cpp" line="118"/>
         <source>détails d&apos;un groupe de clients</source>
         <translation>client group details</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="583"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="589"/>
         <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.cpp" line="119"/>
         <source>Sélectionnez un groupe de clients à afficher les détails !</source>
         <translation>Select a client group to view its details !</translation>
@@ -4743,12 +4743,12 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>Client loyalty program &apos;%1</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="580"/>
+        <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="562"/>
         <source>détails d&apos;un &quot;programme de fidélité clients&quot;</source>
         <translation>client loyalty program details</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="581"/>
+        <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="563"/>
         <source>Sélectionnez un &quot;programme de fidélité clients&quot; à afficher les détails !</source>
         <translation>Select a client loyalty program to view its details !</translation>
     </message>
