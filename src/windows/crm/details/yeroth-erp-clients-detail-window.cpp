@@ -586,8 +586,7 @@ void YerothClientsDetailWindow::rendreInvisible()
 
 	textEdit_client_details_description_du_client->clear();
 
-    label_image_produit->clear();
-    label_image_produit->setAutoFillBackground(false);
+	YerothUtils::supprimer_image(*label_image_produit);
 
     YerothWindowsCommons::rendreInvisible();
 }
@@ -663,7 +662,7 @@ void YerothClientsDetailWindow::showClientDetail()
     }
     else
     {
-        label_image_produit->setAutoFillBackground(false);
+    	YerothUtils::supprimer_image(*label_image_produit);
     }
 }
 

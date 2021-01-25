@@ -16,12 +16,22 @@
 
 bool YerothInfoEntreprise::load_COMPANY_INFO_LOGO_FROM_DB_TABLE_ENTREPRISE_INFO(QLabel *a_temporary_label_for_company_logo /* = 0 */)
 {
+	QString yerothEntrepriseLogoImageFile_FULL_PATH(QString("%1/%2")
+			.arg(YerothERPConfig::temporaryFilesDir,
+					"YEROTH-ENTREPRISE-LOGO.JPG"));
+
+	YerothERPConfig::pathToPdfCOMPANY_LOGO = yerothEntrepriseLogoImageFile_FULL_PATH;
+
+	YerothUtils::CREATE_AN_EMPTY_FILE(YerothERPConfig::pathToPdfCOMPANY_LOGO);
+
+
 	YerothERPWindows *allWindows = YerothUtils::getAllWindows();
 
 	if (0 == allWindows)
 	{
 		return false;
 	}
+
 
 	YerothSqlTableModel &entreprise_info_TableModel =
 			allWindows->getSqlTableModel_entreprise_info();
@@ -36,6 +46,7 @@ bool YerothInfoEntreprise::load_COMPANY_INFO_LOGO_FROM_DB_TABLE_ENTREPRISE_INFO(
 
 
 	QVariant img(entrepriseInfoRecord.value(YerothDatabaseTableColumn::LOGO_ENTREPRISE));
+
 
 	if (img.isNull())
 	{
@@ -53,17 +64,11 @@ bool YerothInfoEntreprise::load_COMPANY_INFO_LOGO_FROM_DB_TABLE_ENTREPRISE_INFO(
 
 	YerothUtils::loadPixmapFromDB(*a_temporary_label_for_company_logo, img, "JPG");
 
-	QString yerothEntrepriseLogoImageTmpFile(QString("%1/%2")
-			.arg(YerothERPConfig::temporaryFilesDir,
-					"YEROTH-ENTREPRISE-LOGO.JPG"));
-
 	if (0 != a_temporary_label_for_company_logo->pixmap())
 	{
-		YerothUtils::savePixmapToFile(yerothEntrepriseLogoImageTmpFile,
-				*(a_temporary_label_for_company_logo->pixmap()),
-				"JPG");
-
-		YerothERPConfig::pathToPdfCOMPANY_LOGO = yerothEntrepriseLogoImageTmpFile;
+		YerothUtils::savePixmapToFile(yerothEntrepriseLogoImageFile_FULL_PATH,
+									  *(a_temporary_label_for_company_logo->pixmap()),
+									  "JPG");
 	}
 
 	if (_apointer__CREATED_HERE)

@@ -777,13 +777,6 @@ void YerothWindowsCommons::tableView_show_or_hide_columns(YerothTableView &table
 }
 
 
-void YerothWindowsCommons::supprimer_image(QLabel &aLabel_image_produit)
-{
-	aLabel_image_produit.clear();
-	aLabel_image_produit.setAutoFillBackground(false);
-}
-
-
 int YerothWindowsCommons::getDialogBox_LONGUEUR(unsigned int n)
 {
 	static unsigned int delta = 300;

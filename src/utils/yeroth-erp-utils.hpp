@@ -225,8 +225,6 @@ public:
 
 	static QString get_text(const QVariant &qv);
 
-	static void selectionner_image(QWidget *parent, QLabel &label_image);
-
 	static void loadPixmapFromDB(QLabel 	&label_image,
 								 QVariant 	imageVariant,
 								 const char *format);
@@ -238,6 +236,12 @@ public:
 	static void savePixmapToFile(const QString &aFileFullPath,
 	                             const QPixmap &pixmap,
 	                             const char *format);
+
+	static void supprimer_image(QLabel &label_image);
+
+	static void selectionner_image(QWidget *parent, QLabel &label_image);
+
+	static void CREATE_AN_EMPTY_FILE(const QString &aFileFullPath);
 
 	static void getCenterPosition(unsigned 		desktopWidth,
 			   	   	   	   	   	  unsigned 		desktopHeight,

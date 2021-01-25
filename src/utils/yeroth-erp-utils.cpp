@@ -1762,6 +1762,13 @@ void YerothUtils::savePixmapToFile(const QString &aFileFullPath,
 }
 
 
+void YerothUtils::supprimer_image(QLabel &aLabel_image_produit)
+{
+	aLabel_image_produit.clear();
+	aLabel_image_produit.setAutoFillBackground(false);
+}
+
+
 void YerothUtils::selectionner_image(QWidget *parent, QLabel &label_image)
 {
     QString path;
@@ -1781,6 +1788,16 @@ void YerothUtils::selectionner_image(QWidget *parent, QLabel &label_image)
         label_image.setPixmap(pixMap);
         label_image.setEnabled(true);
     }
+}
+
+
+void YerothUtils::CREATE_AN_EMPTY_FILE(const QString &aFileFullPath)
+{
+	QImage image(":YEROTH.JPG");
+	QPixmap pixMap( QPixmap::fromImage(image) );
+	QFile empty_jpg_yeroth_file(aFileFullPath);
+	pixMap.save(&empty_jpg_yeroth_file, "JPG");
+	empty_jpg_yeroth_file.close();
 }
 
 

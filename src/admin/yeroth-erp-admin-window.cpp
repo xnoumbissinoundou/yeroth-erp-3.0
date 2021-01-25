@@ -1,5 +1,6 @@
 /**
  * yeroth-erp-admin-window.cpp
+ *
  *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
@@ -517,83 +518,82 @@ void YerothAdminWindow::reinitialiser_la_derniere_selection_du_logo_de_lentrepri
 
 void YerothAdminWindow::supprimer_logo_de_lentreprise()
 {
-//    QSqlRecord record;
-//
-//    _allWindows->_stocksWindow->
-//		SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
-//
-//    QString stockName(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
-//
-//    QVariant image_produit(record.value(YerothDatabaseTableColumn::IMAGE_PRODUIT));
-//
-//    if (image_produit.toByteArray().isEmpty())
-//    {
-//        QString msg(QObject::trUtf8("Le stock '%1' n'a pas d'image enregistrée !")
-//        				.arg(stockName));
-//
-//        YerothQMessageBox::information(this, QObject::tr("suppression de l'image d'un stock"),
-//                                      msg);
-//
-//        label_image_produit->clear();
-//        label_image_produit->setAutoFillBackground(false);
-//
-//        return;
-//    }
-//
-//
-//    QString msgSupprimer(QObject::tr("Poursuivre avec la suppression de l'image du stock \""));
-//
-//    msgSupprimer.append(stockName);
-//    msgSupprimer.append("\" ?");
-//
-//    if (QMessageBox::Ok ==
-//            YerothQMessageBox::question(this, QObject::tr("suppression de l'image d'un stock"),
-//                                       msgSupprimer, QMessageBox::Cancel, QMessageBox::Ok))
-//    {
-//        record.setValue(YerothDatabaseTableColumn::IMAGE_PRODUIT, QVariant(QVariant::ByteArray));
-//
-//        QSqlRecord record;
-//
-//        bool resRemoved = _allWindows->_stocksWindow->
-//    		SQL_DELETE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW();
-//
-//        label_image_produit->clear();
-//
-//        label_image_produit->setAutoFillBackground(false);
-//
-//        if (resRemoved)
-//        {
-//            msgSupprimer.clear();
-//
-//            msgSupprimer.append(QObject::trUtf8("L'image du stock '%1' a été supprimée !")
-//    								.arg(stockName));
-//
-//            YerothQMessageBox::information(this,
-//                                          QObject::trUtf8("suppression de l'image du stock avec succès"),
-//                                          msgSupprimer);
-//        }
-//        else
-//        {
-//            msgSupprimer.clear();
-//
-//            msgSupprimer.append(QObject::trUtf8("L'image du stock '%1' ne pouvait pas être supprimée !")
-//    								.arg(stockName));
-//
-//            YerothQMessageBox::information(this,
-//                                          QObject::trUtf8("échec de la suppression de l'image d'un stock"),
-//                                          msgSupprimer);
-//        }
-//    }
-//    else
-//    {
-//    }
+	YerothERPWindows *allWindows = YerothUtils::getAllWindows();
+
+	if (0 == allWindows)
+	{
+		return ;
+	}
+
+	if (0 == label_logo_de_lentreprise->pixmap())
+	{
+		return ;
+	}
+
+
+	YerothSqlTableModel &entreprise_info_TableModel =
+			allWindows->getSqlTableModel_entreprise_info();
+
+	int row = 1;
+
+	QSqlRecord entrepriseInfoRecord = entreprise_info_TableModel.record(row);
+
+	if (entrepriseInfoRecord.isEmpty())
+	{
+		return ;
+	}
+
+
+    QVariant un_logo_de_lentreprise(entrepriseInfoRecord.value(YerothDatabaseTableColumn::LOGO_ENTREPRISE));
+
+    if (un_logo_de_lentreprise.toByteArray().isEmpty())
+    {
+        QString msg(QObject::trUtf8("L'entreprise n'a pas un logo enregistré !"));
+
+        YerothQMessageBox::information(this, QObject::tr("suppression"), msg);
+
+        return;
+    }
+
+
+    QString msgSupprimer(QObject::tr("Poursuivre avec la suppression du logo de l'entreprise ?"));
+
+    if (QMessageBox::Ok ==
+            YerothQMessageBox::question(this,
+            							QObject::tr("suppression d'1 logo de l'entreprise"),
+                                        msgSupprimer,
+										QMessageBox::Cancel,
+										QMessageBox::Ok))
+    {
+    	entrepriseInfoRecord.setValue(YerothDatabaseTableColumn::LOGO_ENTREPRISE,
+    								  QVariant(QVariant::ByteArray));
+
+
+    	bool recordUpdated = entreprise_info_TableModel.updateRecord(row, entrepriseInfoRecord);
+
+        if (recordUpdated)
+        {
+        	YerothUtils::supprimer_image(*label_logo_de_lentreprise);
+
+            msgSupprimer = QObject::trUtf8("1 logo de l'entreprise a été supprimée !");
+
+            YerothQMessageBox::information(this,
+                                          QObject::trUtf8("suppression d'1 logo de l'entreprise - succès"),
+                                          msgSupprimer);
+        }
+        else
+        {
+            msgSupprimer = QObject::trUtf8("1 logo de l'entreprise n'a pas pu être supprimé !");
+
+            YerothQMessageBox::information(this,
+            							   QObject::trUtf8("suppression d'1 logo de l'entreprise - échec"),
+										   msgSupprimer);
+        }
+    }
+    else
+    {
+    }
 }
-
-
-//void YerothAdminWindow::selectionner_logo_de_lentreprise()
-//{
-//
-//}
 
 
 void YerothAdminWindow::YEROTH_ERP_3_populate_all_tables()
