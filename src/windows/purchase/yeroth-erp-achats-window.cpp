@@ -529,31 +529,16 @@ void YerothAchatsWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 
 void YerothAchatsWindow::definirCaissier()
 {
-    _logger->log("definirCaissier");
+    _logger->log("definirCaissier - definirPasDeRole()");
 
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVentes, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
-
-    MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS
-
-    pushButton_achats_filtrer->disable(this);
-    pushButton_achats_reinitialiser_filtre->disable(this);
-
-    pushButton_entrer->disable(this);
-    pushButton_afficher->disable(this);
-    pushButton_stocks->disable(this);
-    pushButton_ventes->disable(this);
-    pushButton_menu_principal->disable(this);
+    definirPasDeRole();
 }
 
 void YerothAchatsWindow::definirManager()
 {
     _logger->log("definirManager");
+
+    tableView_achats->setVisible(true);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, true);
@@ -584,32 +569,17 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
 void YerothAchatsWindow::definirVendeur()
 {
-    _logger->log("definirVendeur");
+    _logger->log("definirVendeur - definirPasDeRole()");
 
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVentes, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
-
-    MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS
-
-    pushButton_achats_filtrer->disable(this);
-    pushButton_achats_reinitialiser_filtre->disable(this);
-
-    pushButton_entrer->disable(this);
-    pushButton_afficher->disable(this);
-    pushButton_stocks->disable(this);
-    pushButton_ventes->disable(this);
-    pushButton_menu_principal->disable(this);
+    definirPasDeRole();
 }
 
 
 void YerothAchatsWindow::definirGestionaireDesStocks()
 {
     _logger->log("definirGestionaireDesStocks");
+
+    tableView_achats->setVisible(true);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
@@ -633,31 +603,16 @@ void YerothAchatsWindow::definirGestionaireDesStocks()
 
 void YerothAchatsWindow::definirMagasinier()
 {
-    _logger->log("definirMagasinier");
+    _logger->log("definirMagasinier - definirPasDeRole()");
 
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVentes, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
-
-    MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS
-
-    pushButton_achats_filtrer->disable(this);
-    pushButton_achats_reinitialiser_filtre->disable(this);
-
-    pushButton_entrer->disable(this);
-    pushButton_afficher->disable(this);
-    pushButton_stocks->disable(this);
-    pushButton_ventes->disable(this);
-    pushButton_menu_principal->disable(this);
+    definirPasDeRole();
 }
 
 void YerothAchatsWindow::definirPasDeRole()
 {
     _logger->log("definirPasDeRole");
+
+    tableView_achats->setVisible(false);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);

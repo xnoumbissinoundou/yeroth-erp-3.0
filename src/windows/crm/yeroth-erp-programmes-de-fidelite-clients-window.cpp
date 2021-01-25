@@ -498,27 +498,9 @@ void YerothERPProgrammesDeFideliteClientsWindow::definirManager()
 
 void YerothERPProgrammesDeFideliteClientsWindow::definirVendeur()
 {
-    _logger->log("definirVendeur");
+    _logger->log("definirVendeur - definirPasDeRole()");
 
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenuClients, true);
-	YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_ce_programmeDeFideliteClients_au_detail, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerUnProgrammeDeFideliteClients, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
-
-
-    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(this, _curClient_LOYALTY_PROGRAM_TableModel)
-
-
-    pushButton_programmes_de_fidelite_clients_filtrer->enable(this, SLOT(filtrer_programmes_de_fidelite_client()));
-    pushButton_menu_clients->enable(this, SLOT(clients()));
-    pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
-    pushButton_groupe_de_clients->enable(this, SLOT(groupes_de_clients()));
-    pushButton_creer_un_programme_de_fidelite_clients->enable(this, SLOT(creer_un_programme_de_fidelite_clients()));
-    pushButton_modifier->enable(this, SLOT(modifier_un_programme_de_fidelite_clients()));
-    pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
+    definirPasDeRole();
 }
 
 

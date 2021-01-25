@@ -867,7 +867,7 @@ void YerothStocksWindow::definirVendeur()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_lhistorique_de_ce_stock, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_lhistorique_de_ce_stock, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMarchandises, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchatsStocks, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
@@ -905,7 +905,7 @@ void YerothStocksWindow::definirGestionaireDesStocks()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_lhistorique_de_ce_stock, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_lhistorique_de_ce_stock, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMarchandises, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchatsStocks, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
@@ -944,7 +944,7 @@ void YerothStocksWindow::definirMagasinier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_lhistorique_de_ce_stock, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMarchandises, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchatsStocks, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchatsStocks, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier_ce_stock, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer_ce_stock, false);
@@ -961,7 +961,7 @@ void YerothStocksWindow::definirMagasinier()
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_supprimer->disable(this);
-    pushButton_achats_stocks->enable(this, SLOT(achats_de_stocks()));
+    pushButton_achats_stocks->disable(this);
 }
 
 void YerothStocksWindow::definirPasDeRole()

@@ -810,7 +810,7 @@ void YerothERPClientsWindow::definirVendeur()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPayerAuCompteClient, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCreerCompteClient, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierCompteClient, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
@@ -826,7 +826,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_creer_compte_client->enable(this, SLOT(creerCompteClient()));
     pushButton_groupes_de_clients->enable(this, SLOT(groupes_de_clients()));
-    pushButton_programmes_de_fidelite_clients->enable(this, SLOT(programmes_de_fidelite_clients()));
+    pushButton_programmes_de_fidelite_clients->disable(this);
 
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
     pushButton_filtrer->enable(this, SLOT(filtrer()));

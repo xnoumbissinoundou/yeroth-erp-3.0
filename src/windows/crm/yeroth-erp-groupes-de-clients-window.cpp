@@ -475,6 +475,8 @@ void YerothGroupesDeClientsWindow::definirManager()
 {
     _logger->log("definirManager");
 
+    tableView_groupes_de_clients->setVisible(true);
+
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, true);
 	YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_ce_groupe_au_detail, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier, true);
@@ -501,10 +503,12 @@ void YerothGroupesDeClientsWindow::definirVendeur()
 {
     _logger->log("definirVendeur");
 
+    tableView_groupes_de_clients->setVisible(true);
+
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, true);
 	YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_ce_groupe_au_detail, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerGroupeDeClients, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerGroupeDeClients, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
@@ -514,11 +518,11 @@ void YerothGroupesDeClientsWindow::definirVendeur()
 
 
     pushButton_groupes_de_clients_filtrer->enable(this, SLOT(filtrer_groupes_de_clients()));
-    pushButton_programmes_de_fidelite_clients->enable(this, SLOT(programmes_de_fidelite_clients()));
+    pushButton_programmes_de_fidelite_clients->disable(this);
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_menu_clients->enable(this, SLOT(clients()));
     pushButton_creer_groupe->enable(this, SLOT(creerUnGroupeDeClients()));
-    pushButton_modifier->enable(this, SLOT(modifier_un_groupe_de_clients()));
+    pushButton_modifier->disable(this);
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
 }
 
@@ -534,6 +538,8 @@ void YerothGroupesDeClientsWindow::definirGestionaireDesStocks()
 void YerothGroupesDeClientsWindow::definirMagasinier()
 {
     _logger->log("definirMagasinier - definirPasDeRole()");
+
+    tableView_groupes_de_clients->setVisible(false);
 
     definirPasDeRole();
 }

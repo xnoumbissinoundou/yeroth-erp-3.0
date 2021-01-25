@@ -376,16 +376,16 @@ void YerothClientsDetailWindow::definirVendeur()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionGenererCARTE_DE_FIDELITE_ClIENTS, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierCompteClient, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
     pushButton_clients->enable(this, SLOT(clients()));
     pushButton_groupes_du_client->enable(this, SLOT(afficher_groupes_dun_client()));
     pushButton_modifier->enable(this, SLOT(modifierCompteClient()));
-    pushButton_supprimer->enable(this, SLOT(supprimerCompteClient()));
+    pushButton_supprimer->disable(this);
 
     pushButton_payer_au_compteclient->enable(this, SLOT(private_payer_au_compteclient()));
 }

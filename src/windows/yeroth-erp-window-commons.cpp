@@ -682,7 +682,14 @@ void YerothWindowsCommons::handle_some_actions_tools_enabled()
 
 			if (0 != anAction)
 			{
-				anAction->setVisible(enable_action);
+				if (enable_action && anAction->isEnabled())
+				{
+					anAction->setVisible(enable_action);
+				}
+				else
+				{
+					anAction->setVisible(false);
+				}
 			}
 		}
 	}
@@ -699,7 +706,14 @@ void YerothWindowsCommons::handle_some_actions_tools_enabled()
 
 			if (0 != aYerothPushButton)
 			{
-				aYerothPushButton->setVisible(enable_action);
+				if (enable_action && aYerothPushButton->isEnabled())
+				{
+					aYerothPushButton->setVisible(enable_action);
+				}
+				else
+				{
+					aYerothPushButton->setVisible(false);
+				}
 			}
 		}
 	}

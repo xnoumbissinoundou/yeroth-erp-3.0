@@ -39,6 +39,7 @@ YerothPointDeVenteListStocksWindow::YerothPointDeVenteListStocksWindow()
 		<< YerothDatabaseTableColumn::DESCRIPTION_PRODUIT
 		<< YerothDatabaseTableColumn::PRIX_UNITAIRE
 		<< YerothDatabaseTableColumn::PRIX_UNITAIRE_EN_GROS
+		<< YerothDatabaseTableColumn::MONTANT_TVA
 		<< YerothDatabaseTableColumn::MONTANT_TVA_EN_GROS
 		<< YerothDatabaseTableColumn::PRIX_VENTE_EN_GROS
 		<< YerothDatabaseTableColumn::STOCK_DALERTE
