@@ -202,6 +202,13 @@ YerothPointDeVenteWindow::YerothPointDeVenteWindow()
     connect(checkBox_effectuer_1_vente_en_gros, SIGNAL(stateChanged(int)), this,
             SLOT(handle_effectuer_vente_en_gros(int)));
 
+
+    connect(checkBox_DATE_EXTRA_VENTE,
+    		SIGNAL(stateChanged(int)),
+			this,
+            SLOT(handle_DATA_EXTRA_VENTE(int)));
+
+
     setupShortcuts();
 }
 
@@ -277,6 +284,19 @@ void YerothPointDeVenteWindow::updateLineEditQCompleterInput()
 	else
 	{
 		connect_manual_selection_of_article_item();
+	}
+}
+
+
+void YerothPointDeVenteWindow::handle_DATA_EXTRA_VENTE(int state)
+{
+	if (checkBox_DATE_EXTRA_VENTE->isChecked())
+	{
+		enable_DATA_EXTRA_VENTE(true);
+	}
+	else
+	{
+		enable_DATA_EXTRA_VENTE(false);
 	}
 }
 
@@ -482,6 +502,20 @@ void YerothPointDeVenteWindow::setupLineEditsQCompleters()
 	lineEdit_articles_nom_client->
 		setupMyStaticQCompleter(_allWindows->CLIENTS,
 								YerothDatabaseTableColumn::NOM_ENTREPRISE);
+}
+
+
+void YerothPointDeVenteWindow::setupDateTimeEdits()
+{
+	dateEdit_PDV_date_vente_extra->setMaximumDate(GET_CURRENT_DATE);
+
+	dateEdit_PDV_date_vente_extra->setStartDate(GET_CURRENT_DATE);
+
+    enable_DATA_EXTRA_VENTE(false);
+
+	dateEdit_article_detail_date_peremption->setEnabled(false);
+
+	checkBox_DATE_EXTRA_VENTE->setChecked(false);
 }
 
 
@@ -1158,6 +1192,8 @@ void YerothPointDeVenteWindow::annuler()
                                       QObject::trUtf8("Vous avez annulé la vente !"), QMessageBox::Ok);
     }
 
+    checkBox_DATE_EXTRA_VENTE->setChecked(false);
+
     disableImprimer();
 }
 
@@ -1197,11 +1233,20 @@ void YerothPointDeVenteWindow::lister()
     _allWindows->_pdVenteListStocksWindow->listStocks(*_curStocksTableModel);
 }
 
+
+void YerothPointDeVenteWindow::enable_DATA_EXTRA_VENTE(bool enable)
+{
+	dateEdit_PDV_date_vente_extra->setEnabled(enable);
+	dateEdit_PDV_date_vente_extra->setVisible(enable);
+}
+
+
 void YerothPointDeVenteWindow::retourVentes()
 {
     _currentTabView = TableauDesVentes;
     tabWidget_vente->setCurrentIndex(TableauDesVentes);
 }
+
 
 void YerothPointDeVenteWindow::handleAddedArticle()
 {
@@ -1239,6 +1284,8 @@ void YerothPointDeVenteWindow::cleanUpAfterVente()
 	set_paiement_comptant(false);
 
 	set_paiment_compte_client(false);
+
+	checkBox_enregistrer_client->setChecked(false);
 
     resetCheckboxTVA();
 
@@ -1410,6 +1457,21 @@ void YerothPointDeVenteWindow::rendreVisible(YerothSqlTableModel * stocksTableMo
     {
     	disableImprimer();
     }
+
+
+    YerothPOSUser *aUser = _allWindows->getUser();
+
+    if (0 != aUser && aUser->isManager())
+    {
+    	label_PDV_date_vente_extra->setVisible(true);
+    	checkBox_DATE_EXTRA_VENTE->setVisible(true);
+    }
+    else
+    {
+    	label_PDV_date_vente_extra->setVisible(false);
+    	checkBox_DATE_EXTRA_VENTE->setVisible(false);
+    }
+
 
     setVisible(true);
 }
@@ -2566,7 +2628,19 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
 
         stocksVenduRecord.setValue(YerothDatabaseTableColumn::NOM_CAISSIER, user->nom_complet());
         stocksVenduRecord.setValue(YerothDatabaseTableColumn::NOM_UTILISATEUR_CAISSIER, user->nom_utilisateur());
-        stocksVenduRecord.setValue(YerothDatabaseTableColumn::DATE_VENTE, GET_CURRENT_DATE);
+
+
+        if (checkBox_DATE_EXTRA_VENTE->isChecked())
+        {
+        	stocksVenduRecord.setValue(YerothDatabaseTableColumn::DATE_VENTE,
+        			dateEdit_PDV_date_vente_extra->date());
+        }
+        else
+        {
+        	stocksVenduRecord.setValue(YerothDatabaseTableColumn::DATE_VENTE, GET_CURRENT_DATE);
+        }
+
+
         stocksVenduRecord.setValue(YerothDatabaseTableColumn::HEURE_VENTE, CURRENT_TIME);
 
         stocksVenduRecord.setValue(YerothDatabaseTableColumn::STOCKS_ID, articleVenteInfo->_stockID);
@@ -2890,7 +2964,19 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
 
         stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::NOM_CAISSIER, user->nom_complet());
         stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::NOM_UTILISATEUR_CAISSIER, user->nom_utilisateur());
-        stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::DATE_VENTE, GET_CURRENT_DATE);
+
+
+        if (checkBox_DATE_EXTRA_VENTE->isChecked())
+        {
+        	stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::DATE_VENTE,
+        			dateEdit_PDV_date_vente_extra->date());
+        }
+        else
+        {
+        	stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::DATE_VENTE, GET_CURRENT_DATE);
+        }
+
+
         stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::HEURE_VENTE, CURRENT_TIME);
 
         stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::STOCKS_ID, articleVenteInfo->_stockID);

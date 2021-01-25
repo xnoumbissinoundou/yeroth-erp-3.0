@@ -247,6 +247,8 @@ public slots:
 
 private slots:
 
+	void enable_DATA_EXTRA_VENTE(bool enable);
+
 	void retourVentes();
 
 	void setBarcodeAsStandardInput();
@@ -254,6 +256,8 @@ private slots:
 	void setStockItemNameAsStandardInput();
 
 	void updateLineEditQCompleterInput();
+
+	void handle_DATA_EXTRA_VENTE(int state);
 
 	void handle_effectuer_vente_en_gros(int state);
 
@@ -301,10 +305,7 @@ private:
 
     void setupLineEditsQCompleters();
 
-    inline void setupDateTimeEdits()
-    {
-    	dateEdit_article_detail_date_peremption->setEnabled(false);
-    }
+    void setupDateTimeEdits();
 
 
     YerothLogger			*_logger;

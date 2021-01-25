@@ -790,7 +790,7 @@ void YerothPayerCompteClientWindow::rendreVisible(YerothSqlTableModel *clientTab
     }
     else
     {
-    	label_image_client->setAutoFillBackground(false);
+    	YerothWindowsCommons::supprimer_image(*label_image_client);
     }
 
     connect(comboBox_comptes_clients_reference,
