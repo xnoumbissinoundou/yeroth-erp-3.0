@@ -9807,7 +9807,7 @@ background-color: rgb(0, 0, 0); </string>
        <rect>
         <x>135</x>
         <y>310</y>
-        <width>16</width>
+        <width>18</width>
         <height>21</height>
        </rect>
       </property>
@@ -10249,9 +10249,9 @@ background-color: rgb(0, 0, 0); </string>
      <widget class="YerothDateTimeEdit" name="dateEdit_PDV_date_vente_extra">
       <property name="geometry">
        <rect>
-        <x>156</x>
+        <x>158</x>
         <y>310</y>
-        <width>203</width>
+        <width>202</width>
         <height>21</height>
        </rect>
       </property>
