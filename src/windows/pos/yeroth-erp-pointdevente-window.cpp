@@ -32,6 +32,9 @@
 
 #include "src/users/yeroth-erp-users.hpp"
 
+
+#include <QtCore/QDate>
+
 #include <QtCore/QtMath>
 
 #include <QtCore/QThread>
@@ -507,6 +510,9 @@ void YerothPointDeVenteWindow::setupLineEditsQCompleters()
 
 void YerothPointDeVenteWindow::setupDateTimeEdits()
 {
+	dateEdit_PDV_date_vente_extra->
+		setMinimumDate(QDate(GET_CURRENT_DATE_YEAR.toInt(), 1, 1));
+
 	dateEdit_PDV_date_vente_extra->setMaximumDate(GET_CURRENT_DATE);
 
 	dateEdit_PDV_date_vente_extra->setStartDate(GET_CURRENT_DATE);
