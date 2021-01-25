@@ -35,13 +35,12 @@ void YerothAdminModifierWindow::modifier_categorie_main()
     YerothAdminListerWindow *lw = _allWindows->_adminListerWindow;
     YerothSqlTableModel *categoriesTableModel = lw->getCurSearchSqlTableModel();
 
-    if (!categoriesTableModel)
+    if (0 == categoriesTableModel)
     {
         categoriesTableModel =  &_allWindows->getSqlTableModel_categories();
     }
-    else if (categoriesTableModel &&
-             !YerothUtils::isEqualCaseInsensitive(categoriesTableModel->sqlTableName(),
-                     _allWindows->CATEGORIES))
+    else if (!YerothUtils::isEqualCaseInsensitive(categoriesTableModel->sqlTableName(),
+                     	 	 	 	 	 	 	  _allWindows->CATEGORIES))
     {
         categoriesTableModel =  &_allWindows->getSqlTableModel_categories();
     }
