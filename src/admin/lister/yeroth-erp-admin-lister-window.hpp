@@ -110,6 +110,8 @@ public slots:
 
     void supprimer_compte_bancaire();
 
+    void supprimer_departement_de_produit();
+
     void supprimer_remise();
 
     void supprimer_alerte();

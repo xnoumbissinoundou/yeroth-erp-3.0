@@ -250,6 +250,8 @@ void YerothAdminListerWindow::reinitialiser()
 
     lister_compte_bancaire();
 
+    lister_departements_de_produits();
+
     lister_alerte();
 
     lister_remise();
@@ -285,7 +287,7 @@ void YerothAdminListerWindow::set_admin_rechercher_font()
         break;
 
     case SUJET_ACTION_REMISE:
-    	MACRO_SET_ADMIN_RECHERCHER_FONT(_alertCurrentlyFiltered)
+    	MACRO_SET_ADMIN_RECHERCHER_FONT(_discountCurrentlyFiltered)
         break;
 
     case SUJET_ACTION_ALERTE:
@@ -311,6 +313,20 @@ void YerothAdminListerWindow::rechercher()
 void YerothAdminListerWindow::handleCurrentChanged(int index)
 {
 	set_admin_rechercher_font();
+
+    lister_utilisateur();
+
+    lister_localisation();
+
+    lister_categorie();
+
+    lister_compte_bancaire();
+
+    lister_departements_de_produits();
+
+    lister_alerte();
+
+    lister_remise();
 }
 
 void YerothAdminListerWindow::lister_utilisateur(YerothSqlTableModel * aSqlTableModel)
@@ -728,6 +744,10 @@ void YerothAdminListerWindow::supprimer()
         supprimer_compte_bancaire();
         break;
 
+    case SUJET_ACTION_DEPARTEMENTS_DE_PRODUITS:
+    	supprimer_departement_de_produit();
+        break;
+
     case SUJET_ACTION_REMISE:
         supprimer_remise();
         break;
@@ -972,6 +992,12 @@ void YerothAdminListerWindow::supprimer_compte_bancaire()
                                      QMessageBox::Ok);
         }
     }
+}
+
+
+void YerothAdminListerWindow::supprimer_departement_de_produit()
+{
+
 }
 
 
