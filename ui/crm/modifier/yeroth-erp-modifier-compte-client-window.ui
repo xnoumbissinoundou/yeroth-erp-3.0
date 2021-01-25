@@ -2612,9 +2612,9 @@
      <property name="geometry">
       <rect>
        <x>184</x>
-       <y>57</y>
+       <y>45</y>
        <width>205</width>
-       <height>25</height>
+       <height>21</height>
       </rect>
      </property>
      <property name="palette">
@@ -3047,8 +3047,8 @@
     <widget class="QLabel" name="label_modifier_compteclient_nom_entreprise">
      <property name="geometry">
       <rect>
-       <x>8</x>
-       <y>59</y>
+       <x>9</x>
+       <y>45</y>
        <width>171</width>
        <height>21</height>
       </rect>
@@ -3071,8 +3071,8 @@
     <widget class="QLabel" name="label_modifier_compteclient_nom_entreprise">
      <property name="geometry">
       <rect>
-       <x>8</x>
-       <y>89</y>
+       <x>9</x>
+       <y>68</y>
        <width>171</width>
        <height>21</height>
       </rect>
@@ -3096,9 +3096,9 @@
      <property name="geometry">
       <rect>
        <x>184</x>
-       <y>87</y>
+       <y>69</y>
        <width>205</width>
-       <height>25</height>
+       <height>21</height>
       </rect>
      </property>
      <property name="palette">
@@ -3531,8 +3531,8 @@
     <widget class="QLabel" name="label_modifier_compteclient_quartier">
      <property name="geometry">
       <rect>
-       <x>8</x>
-       <y>119</y>
+       <x>9</x>
+       <y>92</y>
        <width>171</width>
        <height>21</height>
       </rect>
@@ -3555,9 +3555,9 @@
     <widget class="QLabel" name="label_modifier_compteclient_pays">
      <property name="geometry">
       <rect>
-       <x>58</x>
-       <y>209</y>
-       <width>121</width>
+       <x>9</x>
+       <y>164</y>
+       <width>171</width>
        <height>21</height>
       </rect>
      </property>
@@ -3580,9 +3580,9 @@
      <property name="geometry">
       <rect>
        <x>184</x>
-       <y>207</y>
+       <y>165</y>
        <width>205</width>
-       <height>25</height>
+       <height>21</height>
       </rect>
      </property>
      <property name="palette">
@@ -4018,8 +4018,8 @@
     <widget class="QLabel" name="label_modifier_compteclient_ville">
      <property name="geometry">
       <rect>
-       <x>8</x>
-       <y>149</y>
+       <x>9</x>
+       <y>117</y>
        <width>171</width>
        <height>21</height>
       </rect>
@@ -4042,8 +4042,8 @@
     <widget class="QLabel" name="label_modifier_compteclient_email">
      <property name="geometry">
       <rect>
-       <x>8</x>
-       <y>299</y>
+       <x>9</x>
+       <y>236</y>
        <width>171</width>
        <height>21</height>
       </rect>
@@ -4066,8 +4066,8 @@
     <widget class="QLabel" name="label_modifier_compteclient_numero_telephone_2">
      <property name="geometry">
       <rect>
-       <x>8</x>
-       <y>359</y>
+       <x>9</x>
+       <y>284</y>
        <width>171</width>
        <height>21</height>
       </rect>
@@ -4088,9 +4088,9 @@
      <property name="geometry">
       <rect>
        <x>184</x>
-       <y>297</y>
+       <y>237</y>
        <width>205</width>
-       <height>25</height>
+       <height>21</height>
       </rect>
      </property>
      <property name="palette">
@@ -4526,9 +4526,9 @@
     <widget class="QLabel" name="label_modifier_compteclient_province_etat">
      <property name="geometry">
       <rect>
-       <x>60</x>
-       <y>179</y>
-       <width>121</width>
+       <x>9</x>
+       <y>140</y>
+       <width>171</width>
        <height>21</height>
       </rect>
      </property>
@@ -4551,9 +4551,9 @@
      <property name="geometry">
       <rect>
        <x>184</x>
-       <y>177</y>
+       <y>141</y>
        <width>205</width>
-       <height>25</height>
+       <height>21</height>
       </rect>
      </property>
      <property name="palette">
@@ -4990,9 +4990,9 @@
      <property name="geometry">
       <rect>
        <x>184</x>
-       <y>237</y>
+       <y>189</y>
        <width>205</width>
-       <height>25</height>
+       <height>21</height>
       </rect>
      </property>
      <property name="palette">
@@ -5431,9 +5431,9 @@
      <property name="geometry">
       <rect>
        <x>184</x>
-       <y>117</y>
+       <y>93</y>
        <width>205</width>
-       <height>25</height>
+       <height>21</height>
       </rect>
      </property>
      <property name="palette">
@@ -5867,9 +5867,9 @@
      <property name="geometry">
       <rect>
        <x>184</x>
-       <y>147</y>
+       <y>117</y>
        <width>205</width>
-       <height>25</height>
+       <height>21</height>
       </rect>
      </property>
      <property name="palette">
@@ -6306,9 +6306,9 @@
      <property name="geometry">
       <rect>
        <x>184</x>
-       <y>357</y>
+       <y>285</y>
        <width>205</width>
-       <height>25</height>
+       <height>21</height>
       </rect>
      </property>
      <property name="palette">
@@ -6741,8 +6741,8 @@
     <widget class="QLabel" name="label_modifier_compteclient_numero_telephone_1">
      <property name="geometry">
       <rect>
-       <x>8</x>
-       <y>329</y>
+       <x>9</x>
+       <y>261</y>
        <width>171</width>
        <height>21</height>
       </rect>
@@ -6765,9 +6765,9 @@
      <property name="geometry">
       <rect>
        <x>184</x>
-       <y>267</y>
+       <y>213</y>
        <width>205</width>
-       <height>25</height>
+       <height>21</height>
       </rect>
      </property>
      <property name="palette">
@@ -7206,8 +7206,8 @@
     <widget class="QLabel" name="label_modifier_compteclient_siege_social">
      <property name="geometry">
       <rect>
-       <x>8</x>
-       <y>269</y>
+       <x>9</x>
+       <y>212</y>
        <width>171</width>
        <height>21</height>
       </rect>
@@ -7230,8 +7230,8 @@
     <widget class="QLabel" name="label_modifier_compteclient_boite_postale">
      <property name="geometry">
       <rect>
-       <x>8</x>
-       <y>239</y>
+       <x>9</x>
+       <y>189</y>
        <width>171</width>
        <height>21</height>
       </rect>
@@ -7254,10 +7254,10 @@
     <widget class="YerothLineEdit" name="lineEdit_modifier_compteclient_numero_contribuable">
      <property name="geometry">
       <rect>
-       <x>570</x>
-       <y>27</y>
+       <x>184</x>
+       <y>309</y>
        <width>205</width>
-       <height>25</height>
+       <height>21</height>
       </rect>
      </property>
      <property name="palette">
@@ -7690,8 +7690,8 @@
     <widget class="QLabel" name="label_modifier_compteclient_numero_contribuable">
      <property name="geometry">
       <rect>
-       <x>394</x>
-       <y>29</y>
+       <x>9</x>
+       <y>308</y>
        <width>171</width>
        <height>21</height>
       </rect>
@@ -7713,9 +7713,9 @@
     <widget class="QLabel" name="label_modifier_compteclient_dette_maximale">
      <property name="geometry">
       <rect>
-       <x>414</x>
-       <y>89</y>
-       <width>113</width>
+       <x>9</x>
+       <y>356</y>
+       <width>171</width>
        <height>21</height>
       </rect>
      </property>
@@ -7740,9 +7740,9 @@
      <property name="geometry">
       <rect>
        <x>184</x>
-       <y>327</y>
+       <y>261</y>
        <width>205</width>
-       <height>25</height>
+       <height>21</height>
       </rect>
      </property>
      <property name="palette">
@@ -8176,9 +8176,9 @@
      <property name="geometry">
       <rect>
        <x>404</x>
-       <y>118</y>
+       <y>45</y>
        <width>371</width>
-       <height>91</height>
+       <height>139</height>
       </rect>
      </property>
      <property name="font">
@@ -8197,7 +8197,7 @@
         <x>2</x>
         <y>22</y>
         <width>368</width>
-        <height>69</height>
+        <height>117</height>
        </rect>
       </property>
       <property name="palette">
@@ -8631,8 +8631,8 @@
     <widget class="QLabel" name="label_modifier_compteclient_reference_client">
      <property name="geometry">
       <rect>
-       <x>8</x>
-       <y>29</y>
+       <x>9</x>
+       <y>20</y>
        <width>171</width>
        <height>21</height>
       </rect>
@@ -8656,9 +8656,9 @@
      <property name="geometry">
       <rect>
        <x>184</x>
-       <y>27</y>
+       <y>21</y>
        <width>205</width>
-       <height>25</height>
+       <height>21</height>
       </rect>
      </property>
      <property name="palette">
@@ -9094,10 +9094,10 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>570</x>
-       <y>57</y>
+       <x>184</x>
+       <y>333</y>
        <width>205</width>
-       <height>25</height>
+       <height>21</height>
       </rect>
      </property>
      <property name="palette">
@@ -9581,8 +9581,8 @@
     <widget class="QLabel" name="label_modifier_compteclient_reference_registre_du_commerce">
      <property name="geometry">
       <rect>
-       <x>394</x>
-       <y>59</y>
+       <x>9</x>
+       <y>333</y>
        <width>171</width>
        <height>21</height>
       </rect>
@@ -9607,10 +9607,10 @@
     <widget class="YerothLineEdit" name="lineEdit_modifier_compteclient_dette_maximale">
      <property name="geometry">
       <rect>
-       <x>532</x>
-       <y>87</y>
-       <width>243</width>
-       <height>25</height>
+       <x>184</x>
+       <y>357</y>
+       <width>205</width>
+       <height>21</height>
       </rect>
      </property>
      <property name="palette">
