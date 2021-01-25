@@ -60,65 +60,65 @@
         <translation>administration ~ main</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="437"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="435"/>
         <source>paramètres serveur [ &quot;%1&quot; ]</source>
         <translation>server parameters [ &quot;%1&quot; ]</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="551"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="549"/>
         <source>L&apos;entreprise n&apos;a pas un logo enregistré !</source>
         <translation>The company doesn&apos;t have a saved logo image file !</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="559"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="557"/>
         <source>Poursuivre avec la suppression du logo de l&apos;entreprise ?</source>
         <translation>Continue with deletion of a company logo file ?</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="563"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="561"/>
         <source>suppression d&apos;1 logo de l&apos;entreprise</source>
         <translation>deletion of a company logo file</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="578"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="576"/>
         <source>1 logo de l&apos;entreprise a été supprimée !</source>
         <translation>a company logo file has been deleted !</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="581"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="579"/>
         <source>suppression d&apos;1 logo de l&apos;entreprise - succès</source>
         <translation>deletion of a company logo file - success</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="586"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="584"/>
         <source>1 logo de l&apos;entreprise n&apos;a pas pu être supprimé !</source>
         <translation>a company logo file couldn&apos;t be deleted !</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="589"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="587"/>
         <source>suppression d&apos;1 logo de l&apos;entreprise - échec</source>
         <translation>deletion of a company logo file - failure</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="623"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="652"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="732"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="746"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="621"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="650"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="730"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="744"/>
         <source>EXÉCUTER COMMANDE MAINTENANCE</source>
         <translation>RUN MAINTENANCE BINARY EXECUTABLE</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="624"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="622"/>
         <source>Sélectionner 1 commande à exécuter !</source>
         <translation>Select 1 command to execute !</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="653"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="651"/>
         <source>Commande à exécuter INVALIDE !</source>
         <translation>INVALID program to run !</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="733"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="731"/>
         <source>Commande non exécutable: &quot;%1&quot; (%2) !
 
 Répertoire d&apos;exécution: &quot;%3&quot;.</source>
@@ -132,7 +132,7 @@ Répertoire d&apos;exécution: &quot;%4&quot;.</oldsource>
 Program executing directory: &quot;%3&quot;.</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="747"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="745"/>
         <source>La commande &quot;%1&quot; a été exécuter avec succès !
 
 Répertoire d&apos;exécution: &quot;%2&quot;.</source>
@@ -146,105 +146,105 @@ Répertoire d&apos;exécution: &quot;%3&quot;.</oldsource>
 Program executing directory: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1016"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1014"/>
         <source>&apos;%1&apos; entrée(s) du fichier CSV ont été importée(s) avec succès !</source>
         <translation>&apos;%1&apos; CSV file input(s) have been successfully imported into the database !</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1022"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1031"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1020"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1029"/>
         <source>résultat importation fichier CSV</source>
         <translation>CSV file importation result</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1027"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1025"/>
         <source>AUCUNE DONNÉE DU FICHIER (.csv) n&apos;a été importée !</source>
         <translation>NO DATA FROM CSV FILE (.csv) has been imported !</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1689"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1687"/>
         <source>Choisir le chemin qui mène au fichier au format (.csv)</source>
         <translation>Select CSV import file path</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1691"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1689"/>
         <source>.csv (*.csv)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1707"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1705"/>
         <source>Choisir le chemin qui mène au répertoire de base de &apos;MariaDB-client&apos;</source>
         <oldsource>Choisir le chemin qui mène au rpertoire de base de &apos;MariaDB-client&apos;</oldsource>
         <translation>Select full path to &apos;MariaDB-client&apos; base folder</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1721"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1719"/>
         <source>Choisir le chemin qui mène au lecteur de fichiers PDF</source>
         <translation>Select file path to PDF reader program</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1733"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1731"/>
         <source>Chemin jusqu&apos;au fichier système représentant l&apos;imprimante thermique</source>
         <translation>Full path to thermal printer device driver file</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1746"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1744"/>
         <source>Choisir le chemin jusqu&apos;au répertoire du système de documentation Latex</source>
         <translation>Select full path to Latex system root folder</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1762"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1760"/>
         <source>Choisir le chemin qui mène au répertoire des sauvegardes</source>
         <translation>Select SQL backup folder</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1777"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1775"/>
         <source>Choisir le chemin qui mène au répertoire des fichiers temporaires</source>
         <translation>Select temporary file folder</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1924"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1922"/>
         <source>Réinitialiser les données de l&apos;entreprise avec les paramètres par défaut ?</source>
         <translation>Reinitialize company data with default values?</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1928"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2171"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2188"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="1926"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2169"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2186"/>
         <source>réinitialiser</source>
         <translation>reset</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2168"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2166"/>
         <source>Réinitialiser la configuration du &apos;SYSTEM DAEMON&apos; avec les paramètres par défaut ?</source>
         <oldsource>Réinitialiser la configuration du système d&apos;alertes avec les paramètres par défaut ?</oldsource>
         <translation>Reinitialize &apos;YEROTH-ERP-3.0 SYSTEM DAEMON&apos; configuration data with default values?</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2185"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2183"/>
         <source>Réinitialiser la configuration (générale) avec les paramètres par défaut ?</source>
         <translation>Reinitialize general configuration data with default values?</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2204"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2202"/>
         <source>Enregistrer les données de l&apos;entreprise (modifiées) ?</source>
         <translation>Save modified company data?</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2209"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2276"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2459"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2207"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2274"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2457"/>
         <source>enregistrer</source>
         <translation>save</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2273"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2271"/>
         <source>Enregistrer la configuration (SYSTEM DAEMON) modifiée ?</source>
         <oldsource>Enregistrer la configuration (système d&apos;alertes) modifiée ?</oldsource>
         <translation>Save the modified configuration of &apos;YEROTH-ERP-3.0 SYSTEM DAEMON&apos; ?</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2457"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2455"/>
         <source>Enregistrer la configuration (générale) modifiée ?</source>
         <oldsource>Enregistrer la configuration (générale) modifiée de Yeroth ?</oldsource>
         <translation>Save the modified general configuration ?</translation>
@@ -1481,7 +1481,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <translation>%1 (user ID)</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="553"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="551"/>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="423"/>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="507"/>
         <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="272"/>
@@ -1771,7 +1771,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <translation>user window</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-main-window.cpp" line="503"/>
+        <location filename="src/windows/yeroth-erp-main-window.cpp" line="499"/>
         <source>1) Veuillez vous enregistrer en cliquant sur le premier icône !
 
 2) Déconnectez vous en cliquant sur le deuxième icône !
@@ -1784,7 +1784,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
 3) When you are signed in, select an operation to achieve by pressing the corresponding button !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-main-window.cpp" line="511"/>
+        <location filename="src/windows/yeroth-erp-main-window.cpp" line="507"/>
         <source>1) Veuillez vous enregistrer en cliquant sur le premier icône !
 
 2) Recevez un message d&apos;aide en cliquant sur le deuxieme icone !</source>
@@ -2090,8 +2090,8 @@ Continue with update of the stock ?</translation>
         <location filename="src/windows/yeroth-erp-alertes-window.hpp" line="83"/>
         <location filename="src/windows/yeroth-erp-configuration-comptabilite-window.hpp" line="73"/>
         <location filename="src/windows/yeroth-erp-entrer-window.hpp" line="95"/>
-        <location filename="src/windows/yeroth-erp-main-window.cpp" line="502"/>
-        <location filename="src/windows/yeroth-erp-main-window.cpp" line="510"/>
+        <location filename="src/windows/yeroth-erp-main-window.cpp" line="498"/>
+        <location filename="src/windows/yeroth-erp-main-window.cpp" line="506"/>
         <location filename="src/windows/yeroth-erp-paiements-window.hpp" line="91"/>
         <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.hpp" line="77"/>
         <location filename="src/windows/yeroth-erp-ventes-window.hpp" line="93"/>
@@ -2281,7 +2281,7 @@ Continue with update of the stock ?</translation>
         <translation>&apos; couldn&apos;t be created!</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2248"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2246"/>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="620"/>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="702"/>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="785"/>
@@ -2341,7 +2341,7 @@ Continue with update of the stock ?</translation>
         <translation>&apos; has been successfully created !</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2254"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2252"/>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="603"/>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="685"/>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="768"/>
@@ -3481,14 +3481,14 @@ Please contact an administrator</translation>
     </message>
     <message>
         <location filename="src/admin/creer/yeroth-erp-admin-create-window.hpp" line="83"/>
-        <location filename="src/admin/modifier/yeroth-erp-admin-modifier-window.hpp" line="104"/>
+        <location filename="src/admin/modifier/yeroth-erp-admin-modifier-window.hpp" line="107"/>
         <source>Yeroth-erp-3.0 ~ admin-créer</source>
         <oldsource>Yeroth-pos-7.0 ~ admin-créer</oldsource>
         <translation>Yeroth-erp-3.0 ~ admin-create</translation>
     </message>
     <message>
         <location filename="src/admin/creer/yeroth-erp-admin-create-window.hpp" line="84"/>
-        <location filename="src/admin/modifier/yeroth-erp-admin-modifier-window.hpp" line="105"/>
+        <location filename="src/admin/modifier/yeroth-erp-admin-modifier-window.hpp" line="108"/>
         <source>Remplissez les informations nécessaire, et ensuite cliquer sur &apos;Valider&apos;.
 Cliquez sur &apos;Annuler&apos; si vous souhaiter annuler l&apos;opération !</source>
         <oldsource>Remplissez les informations nécessaires, et ensuite cliquer sur &apos;Valider&apos;.
@@ -3649,38 +3649,38 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     <message>
         <location filename="src/dialogs/yeroth-erp-changer-utilisateur-dialog.cpp" line="110"/>
         <location filename="src/dialogs/yeroth-erp-changer-utilisateur-dialog.cpp" line="124"/>
-        <location filename="src/dialogs/yeroth-erp-changer-utilisateur-dialog.cpp" line="187"/>
-        <location filename="src/dialogs/yeroth-erp-changer-utilisateur-dialog.cpp" line="197"/>
+        <location filename="src/dialogs/yeroth-erp-changer-utilisateur-dialog.cpp" line="188"/>
+        <location filename="src/dialogs/yeroth-erp-changer-utilisateur-dialog.cpp" line="198"/>
         <source>enregistrement de l&apos;utilisateur</source>
         <translation>saving of user</translation>
     </message>
     <message>
         <location filename="src/dialogs/yeroth-erp-changer-utilisateur-dialog.cpp" line="111"/>
         <location filename="src/dialogs/yeroth-erp-changer-utilisateur-dialog.cpp" line="125"/>
-        <location filename="src/dialogs/yeroth-erp-changer-utilisateur-dialog.cpp" line="188"/>
-        <location filename="src/dialogs/yeroth-erp-changer-utilisateur-dialog.cpp" line="198"/>
+        <location filename="src/dialogs/yeroth-erp-changer-utilisateur-dialog.cpp" line="189"/>
+        <location filename="src/dialogs/yeroth-erp-changer-utilisateur-dialog.cpp" line="199"/>
         <source>Votre nom d&apos;utilisateur ou bien votre mot de passe est incorrect !</source>
         <oldsource>Votre nom d&apos;utilisateur ou bien votre mot de passe est incorrect!
 </oldsource>
         <translation>User name or password is incorrect !</translation>
     </message>
     <message>
-        <location filename="src/dialogs/yeroth-erp-changer-utilisateur-dialog.cpp" line="233"/>
+        <location filename="src/dialogs/yeroth-erp-changer-utilisateur-dialog.cpp" line="234"/>
         <source>La version cliente de YEROTH ne vous donne pas accès à l&apos;administration !</source>
         <translation>The &apos;client&apos; version of this application doesn&apos;t give access to the administrative section of the software !</translation>
     </message>
     <message>
-        <location filename="src/dialogs/yeroth-erp-changer-utilisateur-dialog.cpp" line="236"/>
+        <location filename="src/dialogs/yeroth-erp-changer-utilisateur-dialog.cpp" line="237"/>
         <source>pas d&apos;accès à l&apos;administration</source>
         <translation>no administrative rigths</translation>
     </message>
     <message>
-        <location filename="src/dialogs/yeroth-erp-changer-utilisateur-dialog.cpp" line="281"/>
+        <location filename="src/dialogs/yeroth-erp-changer-utilisateur-dialog.cpp" line="282"/>
         <source>Vous avez &apos;%1&apos; alertes non résolues !</source>
         <translation>You have &apos;%1&apos; non resolved alerts !</translation>
     </message>
     <message>
-        <location filename="src/dialogs/yeroth-erp-changer-utilisateur-dialog.cpp" line="285"/>
+        <location filename="src/dialogs/yeroth-erp-changer-utilisateur-dialog.cpp" line="286"/>
         <source>changer d&apos;utilisateur - alertes</source>
         <translation>sign in - alerts</translation>
     </message>
