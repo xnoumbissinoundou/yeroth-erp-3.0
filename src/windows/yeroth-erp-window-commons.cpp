@@ -9,6 +9,8 @@
 
 #include "src/utils/print_latex_pdf/yeroth-erp-print_yeroth_latex_util_pdf.hpp"
 
+#include "src/widgets/yeroth-erp-push-button.hpp"
+
 #include "src/widgets/yeroth-erp-select-db-qcheckbox.hpp"
 
 #include "src/dialogs/yeroth-erp-generic-select-db-field-dialog.hpp"
@@ -665,20 +667,40 @@ void YerothWindowsCommons::handle_some_actions_tools_enabled()
 		return ;
 	}
 
-	unsigned int an_action_list_size =
+	unsigned int a_list_size =
 			_list_actions_to_enable_on_positive_tableview_ROW_COUNT.size();
-
-	QAction *anAction = 0;
 
 	bool enable_action = (_yerothTableView_FROM_WINDOWS_COMMONS->rowCount() > 0);
 
-	for (unsigned int j = 0; j < an_action_list_size; ++j)
+	// enabling QAction on positive YEROTHTABLEVIEW rowcount
 	{
-		anAction = _list_actions_to_enable_on_positive_tableview_ROW_COUNT.at(j);
+		QAction *anAction = 0;
 
-		if (0 != anAction)
+		for (unsigned int j = 0; j < a_list_size; ++j)
 		{
-			anAction->setVisible(enable_action);
+			anAction = _list_actions_to_enable_on_positive_tableview_ROW_COUNT.at(j);
+
+			if (0 != anAction)
+			{
+				anAction->setVisible(enable_action);
+			}
+		}
+	}
+
+	// enabling YerothPushButton on positive YEROTHTABLEVIEW rowcount
+	{
+		a_list_size = _list_yeroth_pushbutton_to_enable_on_positive_tableview_ROW_COUNT.size();
+
+		YerothPushButton *aYerothPushButton = 0;
+
+		for (unsigned int j = 0; j < a_list_size; ++j)
+		{
+			aYerothPushButton = _list_yeroth_pushbutton_to_enable_on_positive_tableview_ROW_COUNT.at(j);
+
+			if (0 != aYerothPushButton)
+			{
+				aYerothPushButton->setVisible(enable_action);
+			}
 		}
 	}
 }

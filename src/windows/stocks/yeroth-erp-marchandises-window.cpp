@@ -50,13 +50,19 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
 
     mySetupUi(this);
 
+    setYerothTableView_FROM_WINDOWS_COMMONS(tableView_marchandises);
+
+
+    _list_yeroth_pushbutton_to_enable_on_positive_tableview_ROW_COUNT
+		<< pushButton_supprimer;
+
+
     _list_actions_to_enable_on_positive_tableview_ROW_COUNT
 		<< actionExporter_au_format_csv
 		<< actionAfficherPDF
 		<< actionSupprimer_cette_marchandise
 		<< actionModifierMarchandise;
 
-    setYerothTableView_FROM_WINDOWS_COMMONS(tableView_marchandises);
 
     MACRO_TO_DEFINE_CURRENT_VIEW_WINDOW_FOR_TABLE_PAGINATION(tableView_marchandises)
 
@@ -125,7 +131,7 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
     connect(actionAppeler_aide, SIGNAL(triggered()), this, SLOT(help()));
     connect(actionDeconnecter_utilisateur, SIGNAL(triggered()), this, SLOT(deconnecter_utilisateur()));
     connect(actionMenu_Principal, SIGNAL(triggered()), this, SLOT(menu()));
-    connect(actionEntrer, SIGNAL(triggered()), this, SLOT(entrer()));
+    connect(actionEntrer, SIGNAL(triggered()), this, SLOT(entrer_un_stock()));
     connect(actionSortir, SIGNAL(triggered()), this, SLOT(sortir()));
     connect(actionVendre, SIGNAL(triggered()), this, SLOT(vendre()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
@@ -371,6 +377,23 @@ void YerothMarchandisesWindow::textChangedSearchLineEditsQCompleters()
     }
 
     handle_some_actions_tools_enabled();
+}
+
+
+void YerothMarchandisesWindow::entrer_un_stock()
+{
+    if (get_INT_LastListerSelectedRow__ID() > -1 &&
+    	_curMarchandisesTableModel->rowCount() > 0)
+    {
+        _allWindows->_entrerWindow->rendreVisible(_curStocksTableModel,
+        										  _curMarchandisesTableModel);
+        rendreInvisible();
+    }
+    else
+    {
+        _allWindows->_entrerWindow->rendreVisible(_curStocksTableModel);
+        rendreInvisible();
+    }
 }
 
 
@@ -806,7 +829,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     pushButton_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
     pushButton_filtrer->enable(this, SLOT(slot_filtrer()));
-    pushButton_entrer->enable(this, SLOT(entrer()));
+    pushButton_entrer->enable(this, SLOT(entrer_un_stock()));
     pushButton_rapports->enable(this, SLOT(tableaux_de_bords()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_supprimer->enable(this, SLOT(supprimer_cette_marchandise()));
@@ -874,7 +897,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     pushButton_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
     pushButton_filtrer->enable(this, SLOT(slot_filtrer()));
-    pushButton_entrer->enable(this, SLOT(entrer()));
+    pushButton_entrer->enable(this, SLOT(entrer_un_stock()));
     pushButton_rapports->disable(this);
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_supprimer->enable(this, SLOT(supprimer_cette_marchandise()));

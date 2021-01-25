@@ -71,7 +71,16 @@ public:
     virtual void rendreInvisible();
 
     void rendreVisible(YerothSqlTableModel *stocksTableModel,
-					   bool aShowItem = false);
+					   bool aShowItem = false,
+    				   YerothSqlTableModel *marchandisesTableModel = 0);
+
+    inline void rendreVisible(YerothSqlTableModel *stocksTableModel,
+    				   	      YerothSqlTableModel *marchandisesTableModel)
+    {
+    	rendreVisible(stocksTableModel,
+    				  true,
+					  marchandisesTableModel);
+    }
 
 public slots:
 
@@ -190,7 +199,7 @@ private:
 
     bool insertStockItemInProductList();
 
-    void showItem();
+    void showItem(YerothSqlTableModel *stocks_OR_marchandises_TableModel = 0);
 
     bool check_fields_service_achat();
 

@@ -68,13 +68,15 @@ YerothVentesWindow::YerothVentesWindow()
 
     mySetupUi(this);
 
+    setYerothTableView_FROM_WINDOWS_COMMONS(tableView_ventes);
+
+
     _list_actions_to_enable_on_positive_tableview_ROW_COUNT
 		<< actionExporter_au_format_csv
 		<< actionAfficherPDF
 		<< actionAnnulerCetteVente
 		<< actionAfficherVenteDetail;
 
-    setYerothTableView_FROM_WINDOWS_COMMONS(tableView_ventes);
 
     MACRO_TO_DEFINE_CURRENT_VIEW_WINDOW_FOR_TABLE_PAGINATION(tableView_ventes);
 

@@ -47,6 +47,13 @@ YerothERPClientsWindow::YerothERPClientsWindow()
 
     mySetupUi(this);
 
+    setYerothTableView_FROM_WINDOWS_COMMONS(tableView_clients);
+
+
+    _list_yeroth_pushbutton_to_enable_on_positive_tableview_ROW_COUNT
+		<< pushButton_afficher;
+
+
     _list_actions_to_enable_on_positive_tableview_ROW_COUNT
 		<< actionExporter_au_format_csv
 		<< actionAfficherPDF
@@ -56,7 +63,6 @@ YerothERPClientsWindow::YerothERPClientsWindow()
 		<< action_afficher_groupes_du_client
 		<< actionAfficherDetailsClient;
 
-    setYerothTableView_FROM_WINDOWS_COMMONS(tableView_clients);
 
     MACRO_TO_DEFINE_CURRENT_VIEW_WINDOW_FOR_TABLE_PAGINATION(tableView_clients)
 

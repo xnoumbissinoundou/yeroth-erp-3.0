@@ -988,15 +988,26 @@ bool YerothEntrerWindow::insertStockItemInProductList()
 }
 
 
-void YerothEntrerWindow::showItem()
+void YerothEntrerWindow::showItem(YerothSqlTableModel *stocks_OR_marchandises_TableModel /* = 0 */)
 {
 	populateEntrerUnStock_OU_ServiceComboBoxes();
 
-	_curStocksTableModel->yerothSetFilter_WITH_where_clause(QString("%1 = '%2'")
-																.arg(YerothDatabaseTableColumn::ID,
-																	 YerothERPWindows::get_last_lister_selected_row_ID()));
+	QString yerothSqlTableModelFilter = QString("%1 = '%2'")
+												.arg(YerothDatabaseTableColumn::ID,
+													 YerothERPWindows::get_last_lister_selected_row_ID());
 
-    QSqlRecord record = _curStocksTableModel->record(0);
+
+	if (0 == stocks_OR_marchandises_TableModel)
+	{
+		stocks_OR_marchandises_TableModel = _curStocksTableModel;
+	}
+
+
+	QSqlRecord record;
+
+	stocks_OR_marchandises_TableModel->yerothSetFilter_WITH_where_clause(yerothSqlTableModelFilter);
+
+	record = stocks_OR_marchandises_TableModel->record(0);
 
     lineEdit_reference_produit->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE));
 
@@ -1011,7 +1022,15 @@ void YerothEntrerWindow::showItem()
 
     double prix_dachat = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::PRIX_DACHAT).toDouble();
 
-    lineEdit_prix_dachat->setText(QString::number(prix_dachat));
+    if (prix_dachat > 0)
+    {
+    	lineEdit_prix_dachat->setText(QString::number(prix_dachat));
+    }
+    else
+    {
+    	lineEdit_prix_dachat->setText(YerothUtils::EMPTY_STRING);
+    }
+
 
     if (0 < montant_tva || 0 < montant_tva_en_gros)
     {
@@ -1024,13 +1043,22 @@ void YerothEntrerWindow::showItem()
         handleTVACheckBox(false);
     }
 
-    lineEdit_prix_vente->setText(QString::number(prix_vente));
-
-    lineEdit_prix_vente_en_gros->setText(QString::number(prix_vente));
+    if (prix_vente > 0)
+    {
+    	lineEdit_prix_vente->setText(QString::number(prix_vente));
+    }
+    else
+    {
+    	lineEdit_prix_vente->setText(YerothUtils::EMPTY_STRING);
+    }
 
     if (prix_vente_en_gros > 0)
     {
     	lineEdit_prix_vente_en_gros->setText(QString::number(prix_vente_en_gros));
+    }
+    else
+    {
+    	lineEdit_prix_vente_en_gros->setText(YerothUtils::EMPTY_STRING);
     }
 
     comboBox_nom_departement_produit->
@@ -1052,20 +1080,24 @@ void YerothEntrerWindow::showItem()
         label_image_produit->setAutoFillBackground(false);
     }
 
-    QString recordID = YerothERPWindows::get_last_lister_selected_row_ID();
-
-    int achatQuerySize = YerothUtils::STOCK_PURCHASE_RECORDS_QUANTITY(recordID);
-
-    if (achatQuerySize > 0)
+    if (YerothUtils::isEqualCaseInsensitive(_allWindows->STOCKS,
+    										stocks_OR_marchandises_TableModel->sqlTableName()))
     {
-    	checkBox_achat->setChecked(true);
-    }
-    else
-    {
-    	checkBox_achat->setChecked(false);
+        QString recordID = YerothERPWindows::get_last_lister_selected_row_ID();
+
+        int achatQuerySize = YerothUtils::STOCK_PURCHASE_RECORDS_QUANTITY(recordID);
+
+        if (achatQuerySize > 0)
+        {
+        	checkBox_achat->setChecked(true);
+        }
+        else
+        {
+        	checkBox_achat->setChecked(false);
+        }
     }
 
-    _curStocksTableModel->resetFilter();
+    stocks_OR_marchandises_TableModel->resetFilter();
 }
 
 
@@ -1220,7 +1252,9 @@ void YerothEntrerWindow::rendreInvisible()
     setVisible(false);
 }
 
-void YerothEntrerWindow::rendreVisible(YerothSqlTableModel * stocksTableModel, bool aShowItem)
+void YerothEntrerWindow::rendreVisible(YerothSqlTableModel *stocksTableModel,
+									   bool aShowItem /* = false */,
+									   YerothSqlTableModel *marchandisesTableModel /* = 0 */)
 {
 	groupBox_SERVICE_ACHAT_ET_VENTE_CHOIX->setVisible(false);
 
@@ -1298,6 +1332,7 @@ void YerothEntrerWindow::rendreVisible(YerothSqlTableModel * stocksTableModel, b
 
     lineEdit_tva->setText(YerothUtils::getTvaStringWithPercent());
 
+
     if (radioButton_SERVICE_ACHAT_FOURNISSEUR->isChecked())
     {
     	check_fields_service_achat();
@@ -1314,7 +1349,7 @@ void YerothEntrerWindow::rendreVisible(YerothSqlTableModel * stocksTableModel, b
 
             check_fields(true);
 
-            showItem();
+            showItem(marchandisesTableModel);
 
             lineEdit_reference_produit->clearFocus();
         }

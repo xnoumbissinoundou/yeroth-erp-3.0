@@ -27,6 +27,7 @@
 #include <QtWidgets/QMessageBox>
 
 
+class YerothPushButton;
 class YerothTableViewPRINT_UTILITIES_TEX_TABLE;
 class YerothSelectDBQCheckBox;
 class YerothERPGenericSelectDBFieldDialog;
@@ -381,6 +382,8 @@ protected:
 
 	YerothLineEdit 						*_yeroth_QLineEdit_SearchDBFieldColumnString;
 
+
+	QList<YerothPushButton *>			_list_yeroth_pushbutton_to_enable_on_positive_tableview_ROW_COUNT;
 
 	QList<QAction *>					_list_actions_to_enable_on_positive_tableview_ROW_COUNT;
 

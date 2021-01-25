@@ -66,6 +66,14 @@ YerothStocksWindow::YerothStocksWindow()
 
     mySetupUi(this);
 
+    setYerothTableView_FROM_WINDOWS_COMMONS(tableView_stocks);
+
+
+    _list_yeroth_pushbutton_to_enable_on_positive_tableview_ROW_COUNT
+		<< pushButton_afficher
+		<< pushButton_supprimer;
+
+
     _list_actions_to_enable_on_positive_tableview_ROW_COUNT
 		<< actionExporter_au_format_csv
 		<< actionAfficherPDF
@@ -74,7 +82,6 @@ YerothStocksWindow::YerothStocksWindow()
 		<< actionAfficher_stock_au_detail
 		<< actionSupprimer_ce_stock;
 
-    setYerothTableView_FROM_WINDOWS_COMMONS(tableView_stocks);
 
     MACRO_TO_DEFINE_CURRENT_VIEW_WINDOW_FOR_TABLE_PAGINATION(tableView_stocks);
 

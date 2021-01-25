@@ -47,18 +47,18 @@ YerothMouvementsDeStocksWindow::YerothMouvementsDeStocksWindow()
 
     mySetupUi(this);
 
-
-    _list_actions_to_enable_on_positive_tableview_ROW_COUNT
-		<< actionExporter_au_format_csv
-		<< actionAfficherPDF;
-
-
     QList<YerothTableView *> allTableViews;
 
     allTableViews.append(tableView_sorties_articles);
     allTableViews.append(tableView_transferts_articles);
 
     setYerothTableView_FROM_WINDOWS_COMMONS(allTableViews);
+
+
+    _list_actions_to_enable_on_positive_tableview_ROW_COUNT
+		<< actionExporter_au_format_csv
+		<< actionAfficherPDF;
+
 
     switchTableWidgetTAB_CONTENT_ELEMENTS(SUJET_ACTION_SORTIES_STOCKS);
 

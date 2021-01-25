@@ -135,6 +135,8 @@ protected slots:
 
 private slots:
 
+	virtual void entrer_un_stock();
+
 	void handle_services_checkBox(int state);
 
 	bool slot_filtrer_non_empty_product_stock();

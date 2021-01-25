@@ -69,12 +69,14 @@ YerothPaiementsWindow::YerothPaiementsWindow()
 
     mySetupUi(this);
 
+    setYerothTableView_FROM_WINDOWS_COMMONS(tableView_paiements);
+
+
     _list_actions_to_enable_on_positive_tableview_ROW_COUNT
 		<< actionExporter_au_format_csv
 		<< actionAfficherPDF
 		<< actionAfficherPaiementAuDetail;
 
-    setYerothTableView_FROM_WINDOWS_COMMONS(tableView_paiements);
 
     MACRO_TO_DEFINE_CURRENT_VIEW_WINDOW_FOR_TABLE_PAGINATION(tableView_paiements);
 
