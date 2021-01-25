@@ -89,11 +89,6 @@ void YerothComboBox::saveCurrentValueToDatabase(const QString &aDBFieldColumn,
 }
 
 
-/*
- * This is used when the argument 'aContent' must be the first
- * element of the combo box when modifying an existing set
- * of combo box elements.
- */
 bool YerothComboBox::populateComboBoxRawString(QString aDBTableViewStringName,
 		   	   	   	   	   	   	   	   	   	   QString aDBFieldColumn,
 											   QString aConditionStr /* = YerothUtils::EMPTY_STRING */)
@@ -183,13 +178,11 @@ bool YerothComboBox::populateComboBoxMissingRawString(const QString aDBFieldColu
     bool success = query.exec();
     //qDebug() << "[" << success << "]" << query.executedQuery();
 
+    QString aContent(aContentSTRINGValue);
+
     if (success)
     {
         QSqlRecord rec = query.record();
-
-        QString aContent(aContentSTRINGValue);
-
-        curItems.append(aContent);
 
         QString content;
 
@@ -208,6 +201,8 @@ bool YerothComboBox::populateComboBoxMissingRawString(const QString aDBFieldColu
 
     curItems.sort();
 
+    curItems.prepend(aContent);
+
     addItems(curItems);
 
     curItems.clear();
@@ -216,11 +211,6 @@ bool YerothComboBox::populateComboBoxMissingRawString(const QString aDBFieldColu
 }
 
 
-/*
- * This is used when the argument 'aContent' must be the first
- * element of the combo box when modifying an existing set
- * of combo box elements.
- */
 bool YerothComboBox::populateComboBox()
 {
 	if (isPopulateRaw())
@@ -292,13 +282,11 @@ bool YerothComboBox::populateComboBoxMissing(const int aContentINTValue)
     bool success = query.exec();
     //qDebug() << "[" << success << "]" << query.executedQuery();
 
+    QString aContent(_pointerToUserViewStringMAP->value(aContentINTValue));
+
     if (success)
     {
         QSqlRecord rec = query.record();
-
-        QString aContent(_pointerToUserViewStringMAP->value(aContentINTValue));
-
-        curItems.append(aContent);
 
         QString content;
 
@@ -316,6 +304,8 @@ bool YerothComboBox::populateComboBoxMissing(const int aContentINTValue)
     clear();
 
     curItems.sort();
+
+    curItems.prepend(aContent);
 
     addItems(curItems);
 

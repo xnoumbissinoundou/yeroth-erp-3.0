@@ -377,8 +377,6 @@ void YerothAdminWindow::definirAdministrateur()
     pushButton_modifier->enable(this, SLOT(action_modifier()));
     pushButton_supprimer->enable(this, SLOT(action_lister()));
     pushButton_operation_go->enable(this, SLOT(gerer_choix_action()));
-
-    _allWindows->_adminWindow->rendreVisible(_curStocksTableModel);
 }
 
 

@@ -340,10 +340,6 @@ void YerothMainWindow::definirAdministrateur()
 
     _allWindows->_adminWindow->definirAdministrateur();
 
-    _allWindows->_adminWindow->rendreVisible(_curStocksTableModel);
-
-    rendreInvisible();
-
 #endif
 
     label_display_yeroth->setVisible(false);

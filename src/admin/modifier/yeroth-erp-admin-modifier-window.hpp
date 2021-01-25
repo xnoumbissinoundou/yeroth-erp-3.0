@@ -4,22 +4,25 @@
  *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
-# ifndef YEROTH_ADMIN_MODIFIER_WINDOW_HPP_
-# define YEROTH_ADMIN_MODIFIER_WINDOW_HPP_
+#ifndef YEROTH_ADMIN_MODIFIER_WINDOW_HPP_
+#define YEROTH_ADMIN_MODIFIER_WINDOW_HPP_
 
-# include "../../../ui_yeroth-erp-admin-modifier-window.h"
+#include "../../../ui_yeroth-erp-admin-modifier-window.h"
 
-# include "src/admin/yeroth-erp-admin-windows-commons.hpp"
+#include "src/admin/yeroth-erp-admin-windows-commons.hpp"
 
-# include "../admin-actions-subjects.hpp"
+#include "src/admin/admin-actions-subjects.hpp"
 
-# include <QtWidgets/QMessageBox>
-# include <QtSql/QSqlRecord>
+
+#include <QtWidgets/QMessageBox>
+
+#include <QtSql/QSqlRecord>
+
 
 class QSqlRecord;
-
 class YerothERPWindows;
 class YerothLogger;
+
 
 class YerothAdminModifierWindow : public YerothPOSAdminWindowsCommons, private Ui_YerothAdminModifierWindow
 {

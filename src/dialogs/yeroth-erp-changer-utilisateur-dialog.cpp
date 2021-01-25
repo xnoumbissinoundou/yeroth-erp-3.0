@@ -150,6 +150,7 @@ void YerothPOSChangerUtilisateurDialog::valider()
             {
             	_allWindows->_mainWindow->rendreInvisible();
                 _allWindows->_mainWindow->definirAdministrateur();
+                _allWindows->_adminWindow->rendreVisible(&_allWindows->getSqlTableModel_stocks());
             }
             else if (YerothUtils::ROLE_CAISSIER == role)
             {

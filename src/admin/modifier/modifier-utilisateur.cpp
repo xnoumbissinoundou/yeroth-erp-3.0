@@ -17,18 +17,18 @@ void YerothAdminModifierWindow::setupEditCompteUtilisateur()
 
     QSqlRecord record = userTableModel->record(lw->lastSelectedItemForModification());
 
-    lineEdit_modifier_utilisateur_id->setText(GET_SQL_RECORD_DATA(record, "nom_utilisateur"));
+    lineEdit_modifier_utilisateur_id->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_UTILISATEUR));
     lineEdit_modifier_utilisateur_mot_passe_1->setText("*****");
     lineEdit_modifier_utilisateur_mot_passe_2->setText("*****");
-    lineEdit_modifier_utilisateur_prenom->setText(GET_SQL_RECORD_DATA(record, "prenom"));
-    lineEdit_modifier_utilisateur_nom->setText(GET_SQL_RECORD_DATA(record, "nom"));
+    lineEdit_modifier_utilisateur_prenom->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::PRENOM));
+    lineEdit_modifier_utilisateur_nom->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM));
 
-    QString date_naissance(GET_SQL_RECORD_DATA(record, "date_naissance"));
+    QString date_naissance(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DATE_NAISSANCE));
     dateEdit_modifier_utilisateur_date_naissance->setDate(GET_DATE_FROM_STRING(date_naissance));
 
-    lineEdit_modifier_utilisateur_lieu_naissance->setText(GET_SQL_RECORD_DATA(record, "lieu_naissance"));
+    lineEdit_modifier_utilisateur_lieu_naissance->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::LIEU_NAISSANCE));
     lineEdit_modifier_utilisateur_ville->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::VILLE));
-    lineEdit_modifier_utilisateur_province_etat->setText(GET_SQL_RECORD_DATA(record, "province_etat"));
+    lineEdit_modifier_utilisateur_province_etat->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::PROVINCE_ETAT));
     lineEdit_modifier_utilisateur_pays->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::PAYS));
     lineEdit_modifier_utilisateur_boite_postale->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::BOITE_POSTALE));
     lineEdit_modifier_utilisateur_email->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::EMAIL));
@@ -40,7 +40,7 @@ void YerothAdminModifierWindow::setupEditCompteUtilisateur()
 	comboBox_modifier_utilisateur_role->populateComboBoxMissing(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ROLE).toInt());
 
     lineEdit_modifier_utilisateur_localisation->
-    setText(_allWindows->getInfoEntreprise().getLocalisation());
+    	setText(_allWindows->getInfoEntreprise().getLocalisation());
 
 }
 
