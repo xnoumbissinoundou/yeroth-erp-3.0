@@ -1,15 +1,25 @@
 /**
  * yeroth-erp-admin-lister-window.cpp
+ *
  *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
+
 #include "yeroth-erp-admin-lister-window.hpp"
+
 #include "src/yeroth-erp-windows.hpp"
+
 #include "src/admin/yeroth-erp-admin-search-form.hpp"
+
 #include <QtCore/QDebug>
+
 #include <QtWidgets/QDesktopWidget>
+
 #include <QtGui/QStandardItemModel>
+
 #include <QtSql/QSqlQuery>
+
 #include <QtSql/QSqlError>
+
 
 YerothAdminListerWindow::YerothAdminListerWindow()
 :YerothPOSAdminWindowsCommons(QObject::tr("administration ~ lister")),
@@ -131,12 +141,14 @@ YerothAdminListerWindow::YerothAdminListerWindow()
     connect(actionRetournerMenuPrincipal, SIGNAL(triggered()), this, SLOT(retour_menu_principal()));
 }
 
+
 YerothAdminListerWindow::~YerothAdminListerWindow()
 {
 	delete _pushButton_admin_rechercher_font;
     delete _logger;
     delete _adminSearchForm;
 }
+
 
 void YerothAdminListerWindow::definirPasDeRole()
 {
@@ -145,12 +157,14 @@ void YerothAdminListerWindow::definirPasDeRole()
     YEROTH_ERP_ADMIN_WRAPPER_QACTION_SET_ENABLED(actionRetournerMenuPrincipal, false);
 }
 
+
 void YerothAdminListerWindow::definirAdministrateur()
 {
     _logger->log("definirAdministrateur");
     YEROTH_ERP_ADMIN_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
     YEROTH_ERP_ADMIN_WRAPPER_QACTION_SET_ENABLED(actionRetournerMenuPrincipal, false);
 }
+
 
 void YerothAdminListerWindow::definirManager()
 {
@@ -159,11 +173,13 @@ void YerothAdminListerWindow::definirManager()
     YEROTH_ERP_ADMIN_WRAPPER_QACTION_SET_ENABLED(actionRetournerMenuPrincipal, true);
 }
 
+
 void YerothAdminListerWindow::self_reset_view(int currentIndex)
 {
     rendreInvisible();
     rendreVisible(currentIndex);
 }
+
 
 void YerothAdminListerWindow::rendreVisible(unsigned selectedSujetAction)
 {
@@ -228,6 +244,13 @@ void YerothAdminListerWindow::rendreVisible(unsigned selectedSujetAction)
     tabWidget_lister->setCurrentIndex(selectedSujetAction);
     setVisible(true);
 }
+
+
+void YerothAdminListerWindow::rechercher()
+{
+    _adminSearchForm->rendreVisible(tabWidget_lister->currentIndex());
+}
+
 
 void YerothAdminListerWindow::reinitialiser()
 {
@@ -305,30 +328,6 @@ void YerothAdminListerWindow::set_admin_rechercher_font()
 }
 
 
-void YerothAdminListerWindow::rechercher()
-{
-    _adminSearchForm->rendreVisible(tabWidget_lister->currentIndex());
-}
-
-void YerothAdminListerWindow::handleCurrentChanged(int index)
-{
-	set_admin_rechercher_font();
-
-    lister_utilisateur();
-
-    lister_localisation();
-
-    lister_categorie();
-
-    lister_compte_bancaire();
-
-    lister_departements_de_produits();
-
-    lister_alerte();
-
-    lister_remise();
-}
-
 void YerothAdminListerWindow::lister_utilisateur(YerothSqlTableModel * aSqlTableModel)
 {
 	//In case, for e.g. there is filtering applied to aSqlTableModel
@@ -363,6 +362,7 @@ void YerothAdminListerWindow::lister_utilisateur(YerothSqlTableModel * aSqlTable
 
     tableView_lister_utilisateur->selectRow(_lastItemSelectedForModification);
 }
+
 
 void YerothAdminListerWindow::lister_localisation(YerothSqlTableModel * aSqlTableModel)
 {
@@ -399,8 +399,8 @@ void YerothAdminListerWindow::lister_departements_de_produits(YerothSqlTableMode
     int toSelectRow = 0;
 
     if (0 != aSqlTableModel &&
-        true == YerothUtils::isEqualCaseInsensitive(_allWindows->DEPARTEMENTS_PRODUITS,
-        		         	 	 	 	 	 	 	aSqlTableModel->sqlTableName()))
+        YerothUtils::isEqualCaseInsensitive(_allWindows->DEPARTEMENTS_PRODUITS,
+        									aSqlTableModel->sqlTableName()))
     {
     	tableView_lister_departements_produits->lister_les_elements_du_tableau(*aSqlTableModel);
 
@@ -634,6 +634,7 @@ void YerothAdminListerWindow::modifier()
     }
 }
 
+
 void YerothAdminListerWindow::afficher_au_detail()
 {
     switch (tabWidget_lister->currentIndex())
@@ -674,11 +675,13 @@ void YerothAdminListerWindow::afficher_au_detail()
     }
 }
 
+
 void YerothAdminListerWindow::afficher_detail_utilisateur()
 {
     _allWindows->_adminDetailWindow->rendreVisibleCompteUtilisateur(lastSelectedItemForModification());
     rendreInvisible();
 }
+
 
 void YerothAdminListerWindow::afficher_detail_localisation()
 {
@@ -718,11 +721,13 @@ void YerothAdminListerWindow::afficher_detail_remise()
     rendreInvisible();
 }
 
+
 void YerothAdminListerWindow::afficher_detail_alerte()
 {
     _allWindows->_adminDetailWindow->rendreVisibleAlerte(lastSelectedItemForModification());
     rendreInvisible();
 }
+
 
 void YerothAdminListerWindow::supprimer()
 {
@@ -763,6 +768,7 @@ void YerothAdminListerWindow::supprimer()
         break;
     }
 }
+
 
 void YerothAdminListerWindow::supprimer_utilisateur()
 {
@@ -824,6 +830,7 @@ void YerothAdminListerWindow::supprimer_utilisateur()
     }
 }
 
+
 void YerothAdminListerWindow::supprimer_localisation()
 {
     _logger->log("supprimer_localisation");
@@ -880,6 +887,7 @@ void YerothAdminListerWindow::supprimer_localisation()
         }
     }
 }
+
 
 void YerothAdminListerWindow::supprimer_categorie()
 {
@@ -997,7 +1005,61 @@ void YerothAdminListerWindow::supprimer_compte_bancaire()
 
 void YerothAdminListerWindow::supprimer_departement_de_produit()
 {
+    _logger->log("supprimer_departement_de_produit");
 
+//    YerothSqlTableModel *departements_produits_TableModel = 0;
+//
+//    if (0 != _curSearchSqlTableModel &&
+//        YerothUtils::isEqualCaseInsensitive(_allWindows->DEPARTEMENTS_PRODUITS,
+//        									_curSearchSqlTableModel->sqlTableName()))
+//    {
+//        departements_produits_TableModel = _curSearchSqlTableModel;
+//    }
+//    else
+//    {
+//        departements_produits_TableModel = &_allWindows->getSqlTableModel_departements_produits();
+//    }
+//
+//
+//    QSqlRecord record = departements_produits_TableModel->record(lastSelectedItemForModification());
+//
+//
+//    if (record.isEmpty() || record.isNull(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT))
+//    {
+//        return;
+//    }
+//
+//    QString nom_departement_produit(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT));
+//
+//    QString msgConfirmation(QObject::trUtf8("Supprimer le département de produits '%1' ?")
+//    							.arg(nom_departement_produit));
+//
+//    if (QMessageBox::Ok ==
+//            YerothQMessageBox::question(this, QObject::tr("supprimer"),
+//                                  msgConfirmation, QMessageBox::Cancel, QMessageBox::Ok))
+//    {
+//        bool success = departements_produits_TableModel->removeRow(lastSelectedItemForModification());
+//
+//        QString msg(QObject::trUtf8("Le département de produits '%1")
+//        				.arg(nom_departement_produit));
+//
+//        if (success)
+//        {
+//            msg.append(QObject::trUtf8("' a été supprimé de la base de données !"));
+//
+//            YerothQMessageBox::information(this, QObject::tr("supprimer"),
+//                                     msg, QMessageBox::Ok);
+//
+//            self_reset_view(SUJET_ACTION_DEPARTEMENTS_DE_PRODUITS);
+//        }
+//        else
+//        {
+//            msg.append(QObject::trUtf8(" n'a pas été supprimé de la base de données !"));
+//
+//            YerothQMessageBox::information(this, tr("supprimer"), msg,
+//                                     QMessageBox::Ok);
+//        }
+//    }
 }
 
 

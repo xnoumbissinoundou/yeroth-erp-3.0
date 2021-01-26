@@ -64,9 +64,12 @@ public:
 
 public slots:
 
-    void handleCurrentChanged(int index);
+	inline void handleCurrentChanged(int index)
+	{
+		set_admin_rechercher_font();
+	}
 
-    void creer();
+	void creer();
 
     void modifier();
 
