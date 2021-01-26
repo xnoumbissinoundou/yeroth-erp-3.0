@@ -809,6 +809,7 @@ void YerothAdminListerWindow::supprimer_utilisateur()
                                   msgConfirmation, QMessageBox::Cancel, QMessageBox::Ok))
     {
         bool success = usersTableModel->removeRow(lastSelectedItemForModification());
+
         if (success)
         {
             QString msg(QObject::trUtf8("L'utilisateur '%1' a été supprimée de la base de données !")
@@ -824,7 +825,7 @@ void YerothAdminListerWindow::supprimer_utilisateur()
             QString msg(QObject::trUtf8("L'utilisateur '%1 %2' n'a pas été supprimée de la base de données !")
             				.arg(prenom, nom));
 
-            YerothQMessageBox::information(this, QObject::tr("supprimer"),
+            YerothQMessageBox::warning(this, QObject::tr("supprimer"),
                                      msg, QMessageBox::Ok);
         }
     }
@@ -882,7 +883,7 @@ void YerothAdminListerWindow::supprimer_localisation()
         {
             msg.append(QObject::trUtf8(" n'a pas été supprimée de la base de données !"));
 
-            YerothQMessageBox::information(this, QObject::tr("supprimer"),
+            YerothQMessageBox::warning(this, QObject::tr("supprimer"),
                                      msg, QMessageBox::Ok);
         }
     }
@@ -939,7 +940,7 @@ void YerothAdminListerWindow::supprimer_categorie()
         {
             msg.append(QObject::trUtf8(" n'a pas été supprimée de la base de données !"));
 
-            YerothQMessageBox::information(this, tr("supprimer"), msg,
+            YerothQMessageBox::warning(this, tr("supprimer"), msg,
                                      QMessageBox::Ok);
         }
     }
@@ -996,7 +997,7 @@ void YerothAdminListerWindow::supprimer_compte_bancaire()
         {
             msg.append(QObject::trUtf8(" n'a pas été supprimée de la base de données !"));
 
-            YerothQMessageBox::information(this, QObject::tr("supprimer"), msg,
+            YerothQMessageBox::warning(this, QObject::tr("supprimer"), msg,
                                      QMessageBox::Ok);
         }
     }
@@ -1007,59 +1008,96 @@ void YerothAdminListerWindow::supprimer_departement_de_produit()
 {
     _logger->log("supprimer_departement_de_produit");
 
-//    YerothSqlTableModel *departements_produits_TableModel = 0;
-//
-//    if (0 != _curSearchSqlTableModel &&
-//        YerothUtils::isEqualCaseInsensitive(_allWindows->DEPARTEMENTS_PRODUITS,
-//        									_curSearchSqlTableModel->sqlTableName()))
-//    {
-//        departements_produits_TableModel = _curSearchSqlTableModel;
-//    }
-//    else
-//    {
-//        departements_produits_TableModel = &_allWindows->getSqlTableModel_departements_produits();
-//    }
-//
-//
-//    QSqlRecord record = departements_produits_TableModel->record(lastSelectedItemForModification());
-//
-//
-//    if (record.isEmpty() || record.isNull(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT))
-//    {
-//        return;
-//    }
-//
-//    QString nom_departement_produit(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT));
-//
-//    QString msgConfirmation(QObject::trUtf8("Supprimer le département de produits '%1' ?")
-//    							.arg(nom_departement_produit));
-//
-//    if (QMessageBox::Ok ==
-//            YerothQMessageBox::question(this, QObject::tr("supprimer"),
-//                                  msgConfirmation, QMessageBox::Cancel, QMessageBox::Ok))
-//    {
-//        bool success = departements_produits_TableModel->removeRow(lastSelectedItemForModification());
-//
-//        QString msg(QObject::trUtf8("Le département de produits '%1")
-//        				.arg(nom_departement_produit));
-//
-//        if (success)
-//        {
-//            msg.append(QObject::trUtf8("' a été supprimé de la base de données !"));
-//
-//            YerothQMessageBox::information(this, QObject::tr("supprimer"),
-//                                     msg, QMessageBox::Ok);
-//
-//            self_reset_view(SUJET_ACTION_DEPARTEMENTS_DE_PRODUITS);
-//        }
-//        else
-//        {
-//            msg.append(QObject::trUtf8(" n'a pas été supprimé de la base de données !"));
-//
-//            YerothQMessageBox::information(this, tr("supprimer"), msg,
-//                                     QMessageBox::Ok);
-//        }
-//    }
+    YerothSqlTableModel *departements_produits_TableModel = 0;
+
+    if (0 != _curSearchSqlTableModel &&
+        YerothUtils::isEqualCaseInsensitive(_allWindows->DEPARTEMENTS_PRODUITS,
+        									_curSearchSqlTableModel->sqlTableName()))
+    {
+        departements_produits_TableModel = _curSearchSqlTableModel;
+    }
+    else
+    {
+        departements_produits_TableModel = &_allWindows->getSqlTableModel_departements_produits();
+    }
+
+
+    QSqlRecord record = departements_produits_TableModel->record(lastSelectedItemForModification());
+
+
+    if (record.isEmpty() || record.isNull(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT))
+    {
+        return ;
+    }
+
+    QString nom_departement_produit(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT));
+
+    QString msgConfirmation(QObject::trUtf8("Supprimer le département de produits '%1' ?")
+    							.arg(nom_departement_produit));
+
+    if (QMessageBox::Ok ==
+            YerothQMessageBox::question(this, QObject::tr("supprimer"),
+                                  msgConfirmation, QMessageBox::Cancel, QMessageBox::Ok))
+    {
+    	QString SEARCH_IF_STOCK_UNDER_TO_REMOVE_DEPARTMENT_STILL_EXIST(
+    			QString("select %1 from %2 where %3='%4'")
+					.arg(YerothDatabaseTableColumn::ID,
+						 _allWindows->STOCKS,
+						 YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,
+						 nom_departement_produit));
+
+
+    	int existing_stock_row_count =
+    			YerothUtils::execQueryRowCount(SEARCH_IF_STOCK_UNDER_TO_REMOVE_DEPARTMENT_STILL_EXIST);
+
+
+    	if (existing_stock_row_count > 0)
+    	{
+            YerothQMessageBox::information(this,
+            							   QObject::tr("supprimer"),
+										   QObject::trUtf8("1. Le département de produits '%1' comporte"
+												   	   	   " encore '%2' stocks !\n\n"
+												   	   	   "2. SVP, supprimer ou ecouler d'abord"
+												   	   	   " tous ces  stocks !")
+            		        					.arg(nom_departement_produit,
+            		        						 QString::number(existing_stock_row_count)),
+										   QMessageBox::Ok);
+
+            return ;
+    	}
+
+
+        bool success = departements_produits_TableModel->removeRow(lastSelectedItemForModification());
+
+        QString STR_QUERY_REMOVE_DEPARTEMENT_DE_PRODUITS_DU_TABLEAU_MARCHANDISES(
+        		QString("DELETE FROM %1 WHERE %2='%3'")
+					.arg(_allWindows->MARCHANDISES,
+						 YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,
+						 nom_departement_produit));
+
+        success = success &&
+        		YerothUtils::execQuery(STR_QUERY_REMOVE_DEPARTEMENT_DE_PRODUITS_DU_TABLEAU_MARCHANDISES);
+
+        QString msg(QObject::trUtf8("Le département de produits '%1")
+        				.arg(nom_departement_produit));
+
+        if (success)
+        {
+            msg.append(QObject::trUtf8("' a été supprimé de la base de données !"));
+
+            YerothQMessageBox::information(this, QObject::tr("supprimer"),
+                                     msg, QMessageBox::Ok);
+
+            self_reset_view(SUJET_ACTION_DEPARTEMENTS_DE_PRODUITS);
+        }
+        else
+        {
+            msg.append(QObject::trUtf8(" n'a pas pu été supprimé de la base de données !"));
+
+            YerothQMessageBox::warning(this, tr("supprimer"), msg,
+                                     QMessageBox::Ok);
+        }
+    }
 }
 
 
@@ -1123,7 +1161,7 @@ void YerothAdminListerWindow::supprimer_alerte()
         {
             msg.append(QObject::trUtf8(" n'a pas été supprimée de la base de données !"));
 
-            YerothQMessageBox::information(this,
+            YerothQMessageBox::warning(this,
             							   QObject::tr("supprimer"),
 										   msg,
 										   QMessageBox::Ok);
