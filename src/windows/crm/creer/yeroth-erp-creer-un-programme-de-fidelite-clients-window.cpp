@@ -124,6 +124,10 @@ void YerothCreerUnProgrammeDeFideliteClientsWindow::deconnecter_utilisateur()
 
 void YerothCreerUnProgrammeDeFideliteClientsWindow::populateComboBoxes()
 {
+	comboBox_creer_nom_departement_produit->
+		populateComboBoxRawString(_allWindows->DEPARTEMENTS_PRODUITS,
+								  YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT);
+
 	QStringList aQStringList;
 
 	aQStringList.append(">=");
@@ -277,7 +281,11 @@ bool YerothCreerUnProgrammeDeFideliteClientsWindow::check_fields()
     bool programme_de_fidelite_clients_designation =
     		lineEdit_creer_un_programme_de_fidelite_clients_designation->checkField();
 
-    result = programme_de_fidelite_clients_designation;
+    bool nom_departement_produit = comboBox_creer_nom_departement_produit->checkField();
+
+
+    result = programme_de_fidelite_clients_designation &&
+    		 nom_departement_produit;
 
     return result;
 }
@@ -296,6 +304,8 @@ void YerothCreerUnProgrammeDeFideliteClientsWindow::clear_all_fields()
 	doubleSpinBox_creer_un_programme_de_fidelite_clients_pourcentage_du_rabais->setValue(0.0);
 
 	doubleSpinBox_creer_un_programme_de_fidelite_clients_pourcentage_du_rabais_du_refereur->setValue(0.0);
+
+	comboBox_creer_nom_departement_produit->resetYerothComboBox();
 
 	comboBox_creer_un_programme_de_fidelite_clients_pourcentage_rabais_refereur_condition
 		->resetYerothComboBox();
@@ -401,8 +411,11 @@ bool YerothCreerUnProgrammeDeFideliteClientsWindow::creerEnregistrerUnProgrammeD
 
 	record.setValue(YerothDatabaseTableColumn::DESIGNATION, new_royalty_program_designation);
 
+	record.setValue(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,
+					comboBox_creer_nom_departement_produit->currentText());
+
 	record.setValue(YerothDatabaseTableColumn::DESCRIPTION_PROGRAMME_DE_FIDELITE_CLIENTS,
-			textEdit_creer_un_programme_de_fidelite_clients_description->toPlainText());
+					textEdit_creer_un_programme_de_fidelite_clients_description->toPlainText());
 
 	if (radioButton_montant_du_rabais->isChecked())
 	{
