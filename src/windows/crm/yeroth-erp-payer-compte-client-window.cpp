@@ -309,7 +309,9 @@ void YerothPayerCompteClientWindow::private_slot_afficher_les_transactions_dun_c
 
 	int aClientLastSelectedRow = _allWindows->_clientsWindow->get_INT_LastListerSelectedRow__ID();
 
-	if (0 != _curClientTableModel && _curClientTableModel->rowCount() > 0 && aClientLastSelectedRow > -1)
+	if (0 != _curClientTableModel 			 &&
+		_curClientTableModel->rowCount() > 0 &&
+		aClientLastSelectedRow > -1)
 	{
 		 QSqlRecord record;
 

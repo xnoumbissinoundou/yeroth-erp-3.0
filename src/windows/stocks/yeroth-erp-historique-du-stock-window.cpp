@@ -30,7 +30,7 @@ YerothHistoriqueDuStockWindow::YerothHistoriqueDuStockWindow()
 
     enableResizing();
 
-    setYerothTableView_FROM_WINDOWS_COMMONS(tableView_historique_du_stock);
+    setYerothTableView_FROM_WINDOWS_COMMONS(tableView_historique_du_stock, false);
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
                                        "QMessageBox QLabel {color: rgb(%2);}")

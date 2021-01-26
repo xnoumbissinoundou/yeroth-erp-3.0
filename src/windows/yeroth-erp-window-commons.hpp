@@ -66,7 +66,8 @@ public:
 
 	void setYerothTableView_FROM_WINDOWS_COMMONS(const QList<YerothTableView *> &aYerothTableView_FROM_WINDOWS_COMMONS_QLIST);
 
-	void setYerothTableView_FROM_WINDOWS_COMMONS(YerothTableView *aYerothTableView_FROM_WINDOWS_COMMONS);
+	void setYerothTableView_FROM_WINDOWS_COMMONS(YerothTableView *aYerothTableView_FROM_WINDOWS_COMMONS,
+												 bool a_setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID = true);
 
 	inline virtual void YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(QAction *anAction,
 													   	   	   bool aBooleanValue)

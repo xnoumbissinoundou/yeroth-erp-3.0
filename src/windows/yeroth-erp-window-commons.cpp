@@ -136,7 +136,8 @@ void YerothWindowsCommons::
 
 
 void YerothWindowsCommons::
-	setYerothTableView_FROM_WINDOWS_COMMONS(YerothTableView *aYerothTableView_FROM_WINDOWS_COMMONS)
+	setYerothTableView_FROM_WINDOWS_COMMONS(YerothTableView *aYerothTableView_FROM_WINDOWS_COMMONS,
+											bool a_setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID /* = true */)
 {
 	if (0 == aYerothTableView_FROM_WINDOWS_COMMONS)
 	{
@@ -145,15 +146,18 @@ void YerothWindowsCommons::
 
 	_yerothTableView_FROM_WINDOWS_COMMONS = aYerothTableView_FROM_WINDOWS_COMMONS;
 
-    connect(_yerothTableView_FROM_WINDOWS_COMMONS,
-    		SIGNAL(clicked(const QModelIndex &)),
-    		this,
-            SLOT(setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(const QModelIndex &)));
+	if (a_setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID)
+	{
+		connect(_yerothTableView_FROM_WINDOWS_COMMONS,
+				SIGNAL(clicked(const QModelIndex &)),
+				this,
+				SLOT(setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(const QModelIndex &)));
 
-    connect(_yerothTableView_FROM_WINDOWS_COMMONS,
-    		SIGNAL(pressed(const QModelIndex &)),
-    		this,
-            SLOT(setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(const QModelIndex &)));
+		connect(_yerothTableView_FROM_WINDOWS_COMMONS,
+				SIGNAL(pressed(const QModelIndex &)),
+				this,
+				SLOT(setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(const QModelIndex &)));
+	}
 
     if (0 != _yeroth_PRINT_UTILITIES_TEX_TABLE)
     {
