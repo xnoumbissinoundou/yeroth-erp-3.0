@@ -221,6 +221,8 @@ void YerothGroupesDunClientWindow::rendreVisible(YerothSqlTableModel *clientTabl
 {
     _curStocksTableModel = stocksTableModel;
 
+    setupLineEditsQCompleters();
+
     tableWidget_groupes_dun_client->resizeColumnsToContents();
 
 	afficher_tous_les_groupes_du_client();
