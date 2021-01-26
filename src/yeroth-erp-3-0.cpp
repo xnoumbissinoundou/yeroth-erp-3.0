@@ -776,7 +776,8 @@ int main(int argc, char *argv[])
 			<< FILE_YEROTH_ERP_3_0_SQL_TABLE_CLIENTS
             << FILE_YEROTH_ERP_3_0_SQL_TABLE_FOURNISSEURS
             << FILE_YEROTH_ERP_3_0_SQL_TABLE_DBMS
-            << FILE_YEROTH_ERP_3_0_SQL_TABLE_CATEGORIES;
+			<< FILE_YEROTH_ERP_3_0_SQL_TABLE_DEPARTEMENTS_PRODUITS
+			<< FILE_YEROTH_ERP_3_0_SQL_TABLE_CATEGORIES;
 
     for(int k = 0; k < sql_table_list.size(); ++k)
     {

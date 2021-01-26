@@ -50,6 +50,7 @@
     <file>yeroth-erp-3-0-sql/create_table_stocks_sorties.sql</file>
     <file>yeroth-erp-3-0-sql/create_table_marchandises.sql</file>
     <file>yeroth-erp-3-0-sql/create_table_localisations.sql</file>
+    <file>yeroth-erp-3-0-sql/create_table_departements_produits.sql</file>
     <file>yeroth-erp-3-0-sql/create_table_categories.sql</file>
     <file>yeroth-erp-3-0-sql/create_table_alertes.sql</file>
     <file>yeroth-erp-3-0-sql/create_table_remises.sql</file>

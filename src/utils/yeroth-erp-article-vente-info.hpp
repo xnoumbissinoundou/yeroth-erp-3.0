@@ -137,6 +137,8 @@ public:
 
 	QString _stockName;
 
+	QString _stockNomDepartementProduits;
+
 	QString _stockCategorie;
 
 	QString _stockID;

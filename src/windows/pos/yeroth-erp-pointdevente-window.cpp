@@ -1929,6 +1929,7 @@ void YerothPointDeVenteWindow::handleQteChange(QTableWidgetItem * itemChanged)
 
             QString stockReference;
             QString stockName;
+            QString stockNomDepartementProduits;
             QString stockcategorie;
 
             int querySize = YerothUtils::execQuery(stockRecordQuery, stockRecordQueryStr, _logger);
@@ -1945,6 +1946,7 @@ void YerothPointDeVenteWindow::handleQteChange(QTableWidgetItem * itemChanged)
 
             	stockReference = stockRecordQuery.value(YerothDatabaseTableColumn::REFERENCE).toString();
                 stockName = stockRecordQuery.value(YerothDatabaseTableColumn::DESIGNATION).toString();
+                stockNomDepartementProduits = stockRecordQuery.value(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT).toString();
                 stockcategorie = stockRecordQuery.value(YerothDatabaseTableColumn::CATEGORIE).toString();
             }
 
@@ -1958,6 +1960,7 @@ void YerothPointDeVenteWindow::handleQteChange(QTableWidgetItem * itemChanged)
 
                 articleVenteInfo->_stockReference = stockReference;
                 articleVenteInfo->_stockName = stockName;
+                articleVenteInfo->_stockNomDepartementProduits = stockNomDepartementProduits;
                 articleVenteInfo->_stockCategorie = stockcategorie;
                 articleVenteInfo->_stockID = rowStockID;
                 articleVenteInfo->_quantite_en_stock = qteEnStock;
@@ -2616,9 +2619,13 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
 
         stocksVenduRecord.setValue(YerothDatabaseTableColumn::REFERENCE_RECU_VENDU, referenceRecuVendu);
         stocksVenduRecord.setValue(YerothDatabaseTableColumn::REFERENCE, articleVenteInfo->_stockReference);
+
         stocksVenduRecord.setValue(YerothDatabaseTableColumn::DESIGNATION, articleVenteInfo->_stockName);
 
         stocksVenduRecord.setValue(YerothDatabaseTableColumn::DATE_PEREMPTION, datePeremtion);
+
+        stocksVenduRecord.setValue(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,
+        		articleVenteInfo->_stockNomDepartementProduits);
 
         stocksVenduRecord.setValue(YerothDatabaseTableColumn::CATEGORIE, articleVenteInfo->_stockCategorie);
         stocksVenduRecord.setValue(YerothDatabaseTableColumn::QUANTITE_VENDUE, articleVenteInfo->_quantite_a_vendre);
@@ -2952,6 +2959,9 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
         stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::DESIGNATION, articleVenteInfo->_stockName);
 
         stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::DATE_PEREMPTION, datePeremtion);
+
+        stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,
+        		articleVenteInfo->_stockNomDepartementProduits);
 
         stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::CATEGORIE, articleVenteInfo->_stockCategorie);
         stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::QUANTITE_VENDUE, articleVenteInfo->_quantite_a_vendre);
