@@ -2871,7 +2871,7 @@ Please contact an administrator of %1</translation>
         <translation>stock listing</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="446"/>
+        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="448"/>
         <location filename="src/windows/supplier/yeroth-erp-payer-fournisseur-window.cpp" line="446"/>
         <source>référence</source>
         <oldsource>reference</oldsource>
@@ -3829,8 +3829,8 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>client</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="429"/>
-        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="436"/>
+        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="431"/>
+        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="438"/>
         <source>Il n&apos;y a pas de transactions de ce client à lister !</source>
         <oldsource>l n&apos;y a pas de transactions de ce client à lister !</oldsource>
         <translation>There are no financial transactions for this client to display !</translation>
@@ -3976,21 +3976,21 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>money transfer (payment)</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="428"/>
-        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="435"/>
+        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="430"/>
+        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="437"/>
         <source>payer au compte client - transactions d&apos;un client</source>
         <translation>pay to client - csutomer transactions</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="447"/>
+        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="449"/>
         <location filename="src/windows/supplier/yeroth-erp-payer-fournisseur-window.cpp" line="447"/>
         <source>Veuillez entrer un engagement (référence) !</source>
         <translation>Please enter a commitment (reference) !</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="455"/>
-        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="464"/>
-        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="474"/>
+        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="457"/>
+        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="466"/>
+        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="476"/>
         <location filename="src/windows/supplier/yeroth-erp-payer-fournisseur-window.cpp" line="455"/>
         <location filename="src/windows/supplier/yeroth-erp-payer-fournisseur-window.cpp" line="464"/>
         <location filename="src/windows/supplier/yeroth-erp-payer-fournisseur-window.cpp" line="474"/>
@@ -3998,36 +3998,36 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>due amount</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="456"/>
+        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="458"/>
         <location filename="src/windows/supplier/yeroth-erp-payer-fournisseur-window.cpp" line="456"/>
         <source>Veuillez entrer le montant à verser !</source>
         <translation>Please enter cash payment amount!</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="465"/>
+        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="467"/>
         <location filename="src/windows/supplier/yeroth-erp-payer-fournisseur-window.cpp" line="465"/>
         <source>Veuillez choisir le mode de paiement !</source>
         <oldsource>Veuillez entrer le mode de paiement !</oldsource>
         <translation>Please select a payment method !</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="475"/>
+        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="477"/>
         <location filename="src/windows/supplier/yeroth-erp-payer-fournisseur-window.cpp" line="475"/>
         <source>Vous n&apos;avez choisi aucun compte bancaire !</source>
         <oldsource>Vous n&apos;avez choisi aucun établissement bancaire !</oldsource>
         <translation>You haven&apos;t selected any bank account !</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="510"/>
+        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="512"/>
         <location filename="src/windows/supplier/yeroth-erp-payer-fournisseur-window.cpp" line="511"/>
         <source>Le montant donné doit être supérieur à %1 !</source>
         <oldsource>Poursuivre avec le paiement de %1 ? (montant supérieur à la dette restante !)</oldsource>
         <translation>The given amount must be greater than &apos;%1&apos; !</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="513"/>
-        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="525"/>
-        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="542"/>
+        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="515"/>
+        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="527"/>
+        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="544"/>
         <location filename="src/windows/supplier/yeroth-erp-payer-fournisseur-window.cpp" line="515"/>
         <location filename="src/windows/supplier/yeroth-erp-payer-fournisseur-window.cpp" line="528"/>
         <location filename="src/windows/supplier/yeroth-erp-payer-fournisseur-window.cpp" line="545"/>
@@ -4035,65 +4035,65 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>payment cancellation</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="522"/>
+        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="524"/>
         <location filename="src/windows/supplier/yeroth-erp-payer-fournisseur-window.cpp" line="524"/>
         <source>Le montant donné (%1) ne doit pas être supérieur à la dette restante !</source>
         <translation>The given amount (%1) must be greater than the remaining debt !</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="533"/>
+        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="535"/>
         <location filename="src/windows/supplier/yeroth-erp-payer-fournisseur-window.cpp" line="536"/>
         <source>Poursuivre avec le paiement de %1 ?</source>
         <translation>Continue with payment of &apos;%1&apos; ?</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="537"/>
+        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="539"/>
         <location filename="src/windows/supplier/yeroth-erp-payer-fournisseur-window.cpp" line="540"/>
         <source>paiement</source>
         <translation>payment</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="543"/>
+        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="545"/>
         <location filename="src/windows/supplier/yeroth-erp-payer-fournisseur-window.cpp" line="546"/>
         <source>Vous avez annulé le paiement en cours !</source>
         <translation>You have canceled the ongoing payment !</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="613"/>
+        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="615"/>
         <location filename="src/windows/supplier/yeroth-erp-payer-fournisseur-window.cpp" line="616"/>
         <source>l&apos;entreprise &apos;%1&apos; n&apos;existe pas dans la base de données !</source>
         <translation>Company &apos;%1&apos; doesn&apos;t exist in database!</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="616"/>
+        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="618"/>
         <location filename="src/windows/supplier/yeroth-erp-payer-fournisseur-window.cpp" line="619"/>
         <source>entreprise non existante</source>
         <translation>not existing company</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="621"/>
+        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="623"/>
         <source>%1 (%2) a été ajouté au compte client %3</source>
         <translation>%1 (%2) has been added to client %3</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="626"/>
+        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="628"/>
         <location filename="src/windows/supplier/yeroth-erp-payer-fournisseur-window.cpp" line="629"/>
         <source>paiement effectué</source>
         <translation>payment completed</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="645"/>
+        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="647"/>
         <source>Erreur lors du paiement &apos;%1 (%2)&apos; pour le compte client &apos;%3&apos;</source>
         <translation>Error during payment &apos;%1 (%2) for client &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="650"/>
+        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="652"/>
         <location filename="src/windows/supplier/yeroth-erp-payer-fournisseur-window.cpp" line="653"/>
         <source>paiement pas effectué</source>
         <translation>payment not completed</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="675"/>
+        <location filename="src/windows/crm/yeroth-erp-payer-compte-client-window.cpp" line="677"/>
         <location filename="src/windows/supplier/yeroth-erp-payer-fournisseur-window.cpp" line="676"/>
         <source>montant à payer</source>
         <translation>due amount</translation>
@@ -4177,7 +4177,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     </message>
     <message>
         <location filename="src/admin/yeroth-erp-admin-windows-commons.cpp" line="64"/>
-        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="913"/>
+        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="917"/>
         <source>qui suis je ?</source>
         <translation>who am I ?</translation>
     </message>
@@ -4353,7 +4353,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>missing MANDATORY column</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="900"/>
+        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="904"/>
         <source>%1 - sélectionner les colones visibles (&apos;%2&apos; colones)</source>
         <translation>%1 - select visible columns (&apos;%2&apos; columns)</translation>
     </message>
