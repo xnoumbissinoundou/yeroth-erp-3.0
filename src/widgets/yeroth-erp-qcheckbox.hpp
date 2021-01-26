@@ -24,7 +24,7 @@ public:
 
 	YerothERPQCheckBox(QWidget *parent);
 
-	virtual ~YerothERPQCheckBox(){}
+	inline virtual ~YerothERPQCheckBox(){}
 
 	void setReadOnly(bool isReadOnly);
 
