@@ -216,11 +216,8 @@ void YerothEntrerWindow::setupLineEditsQCompleters__FOR_STOCK_INVENTORY()
 	}
 	else
 	{
-    	QString aConditionStr(QString("%1 AND %2")
-    							.arg(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,
-    															departement_de_produits_choisi),
-    								 YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
-    									    					YerothUtils::MYSQL_FALSE_LITERAL)));
+    	QString aConditionStr(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
+														 YerothUtils::MYSQL_FALSE_LITERAL));
 
     	lineEdit_reference_produit->setupMyStaticQCompleter(_allWindows->MARCHANDISES,
     														YerothDatabaseTableColumn::REFERENCE,
