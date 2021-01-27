@@ -190,7 +190,7 @@ void YerothDetailsDunGroupeDeClientsWindow::rendreVisible(YerothSqlTableModel *a
 {
 	disconnect(actionRETOUR, 0, 0, 0);
 
-	pushButton_RETOUR->disable(this, true);
+	pushButton_RETOUR->disable(this);
 
 	connect(actionRETOUR, SIGNAL(triggered()), this, SLOT(groupes_de_clients()));
 
@@ -215,7 +215,7 @@ void YerothDetailsDunGroupeDeClientsWindow::rendreVisible(YerothSqlTableModel *c
  {
 	disconnect(actionRETOUR, 0, 0, 0);
 
-	pushButton_RETOUR->disable(this, true);
+	pushButton_RETOUR->disable(this);
 
 	connect(actionRETOUR, SIGNAL(triggered()), this, SLOT(afficher_groupes_dun_client()));
 

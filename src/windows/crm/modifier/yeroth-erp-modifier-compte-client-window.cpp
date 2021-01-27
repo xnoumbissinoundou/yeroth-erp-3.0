@@ -135,29 +135,9 @@ void YerothModifierCompteClientWindow::definirPasDeRole()
 
 void YerothModifierCompteClientWindow::definirCaissier()
 {
-    _logger->log("definirCaissier");
+    _logger->log("definirCaissier - definirPasDeRole()");
 
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionActualiserCompteClient, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
-
-#ifdef YEROTH_CLIENT
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
-#endif
-
-    pushButton_clients->disable(this);
-    pushButton_menu->disable(this);
-    pushButton_supprimer->disable(this);
-    pushButton_annuler->disable(this);
-    pushButton_actualiser->disable(this);
-
-    pushButton_selectionner_image->disable(this);
-    pushButton_supprimer_image->disable(this);
+    definirPasDeRole();
 }
 
 void YerothModifierCompteClientWindow::definirManager()
@@ -201,8 +181,8 @@ void YerothModifierCompteClientWindow::definirVendeur()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionActualiserCompteClient, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
 #ifdef YEROTH_SERVER
@@ -215,7 +195,7 @@ void YerothModifierCompteClientWindow::definirVendeur()
 
     pushButton_clients->enable(this, SLOT(clients()));
     pushButton_menu->enable(this, SLOT(menu()));
-    pushButton_supprimer->enable(this, SLOT(supprimerCompteClient()));
+    pushButton_supprimer->disable(this);
     pushButton_annuler->enable(this, SLOT(clients()));
     pushButton_actualiser->enable(this, SLOT(actualiserCompteClient()));
 
@@ -226,56 +206,16 @@ void YerothModifierCompteClientWindow::definirVendeur()
 
 void YerothModifierCompteClientWindow::definirGestionaireDesStocks()
 {
-    _logger->log("definirGestionaireDesStocks");
+    _logger->log("definirGestionaireDesStocks - definirPasDeRole()");
 
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionActualiserCompteClient, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
-
-#ifdef YEROTH_CLIENT
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
-#endif
-
-    pushButton_clients->disable(this);
-    pushButton_menu->disable(this);
-    pushButton_supprimer->disable(this);
-    pushButton_annuler->disable(this);
-    pushButton_actualiser->disable(this);
-
-    pushButton_selectionner_image->disable(this);
-    pushButton_supprimer_image->disable(this);
+    definirPasDeRole();
 }
 
 void YerothModifierCompteClientWindow::definirMagasinier()
 {
-    _logger->log("definirMagasinier");
+    _logger->log("definirMagasinier - definirPasDeRole()");
 
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionActualiserCompteClient, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerCompteClient, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
-
-#ifdef YEROTH_CLIENT
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
-#endif
-
-    pushButton_clients->disable(this);
-    pushButton_menu->disable(this);
-    pushButton_supprimer->disable(this);
-    pushButton_annuler->disable(this);
-    pushButton_actualiser->disable(this);
-
-    pushButton_selectionner_image->disable(this);
-    pushButton_supprimer_image->disable(this);
+    definirPasDeRole();
 }
 
 

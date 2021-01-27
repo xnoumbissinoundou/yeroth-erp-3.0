@@ -190,9 +190,11 @@ void YerothERPAchatsAUXFournisseursTableView::lister_les_elements_du_tableau(Yer
 
     static YerothERPWindows *curAllWindows = YerothUtils::getAllWindows();
 
-    YEROTH_SET_LAST_TABLE_VIEW_SELECTED_ROW_ID(curAllWindows, curAllWindows->_achatsWindow)
+    YEROTH_SET_LAST_TABLE_VIEW_SELECTED_ROW_ID(curAllWindows, curAllWindows->_achats_aux_fournisseursWindow)
 
 	resizeColumnsToContents();
+
+    curAllWindows->_achats_aux_fournisseursWindow->handle_some_actions_tools_enabled();
 }
 
 

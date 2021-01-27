@@ -100,6 +100,16 @@ int YerothWindowsCommons::get_INT_last_selected_row_number()
 }
 
 
+void YerothWindowsCommons::YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(QAction *anAction,
+												   	   	   	   	  bool aBooleanValue)
+{
+	_MAP_actions_to_enable_on_positive_tableview_ROW_COUNT__TO__AUTHORIZED_FOR_CURRENT_USER
+		.insert(anAction, aBooleanValue);
+
+	anAction->setVisible(aBooleanValue);
+}
+
+
 void YerothWindowsCommons::
 	setYerothTableView_FROM_WINDOWS_COMMONS(const QList<YerothTableView *> &aYerothTableView_FROM_WINDOWS_COMMONS_QLIST)
 {
@@ -364,6 +374,66 @@ const QString & YerothWindowsCommons::getLastListerSelectedRow__ID()
 	}
 
 	return _yerothTableView_FROM_WINDOWS_COMMONS->lastSelectedRow__ID();
+}
+
+
+void YerothWindowsCommons::handle_some_actions_tools_enabled()
+{
+	if (0 == _yerothTableView_FROM_WINDOWS_COMMONS)
+	{
+		return ;
+	}
+
+	bool enable_action = false;
+
+	// enabling QAction on positive YEROTHTABLEVIEW rowcount
+	{
+		QAction *anAction = 0;
+
+		QMapIterator<QAction *, bool>
+			j(_MAP_actions_to_enable_on_positive_tableview_ROW_COUNT__TO__AUTHORIZED_FOR_CURRENT_USER);
+
+		while (j.hasNext())
+		{
+			j.next();
+
+			anAction = j.key();
+
+			if (0 != anAction)
+			{
+				if (_list_actions_to_enable_on_positive_tableview_ROW_COUNT.contains(anAction))
+				{
+					enable_action = (_yerothTableView_FROM_WINDOWS_COMMONS->rowCount() > 0);
+				}
+				else
+				{
+					enable_action = true;
+				}
+
+				anAction->setVisible( (j.value() && enable_action) );
+			}
+		}
+	}
+
+	// enabling YerothPushButton on positive YEROTHTABLEVIEW rowcount
+	{
+		enable_action = (_yerothTableView_FROM_WINDOWS_COMMONS->rowCount() > 0);
+
+		int list_size = _list_yeroth_pushbutton_to_enable_on_positive_tableview_ROW_COUNT.size();
+
+		YerothPushButton *aYerothPushButton = 0;
+
+		for (unsigned int j = 0; j < list_size; ++j)
+		{
+			aYerothPushButton = _list_yeroth_pushbutton_to_enable_on_positive_tableview_ROW_COUNT.at(j);
+
+			if (0 != aYerothPushButton)
+			{
+				aYerothPushButton->
+					setVisible( (aYerothPushButton->isAuthorizedForCurrentUser() && enable_action) );
+			}
+		}
+	}
 }
 
 
@@ -659,66 +729,6 @@ void YerothWindowsCommons::updateYerothLineEditQCompleter(const QString &current
 				->setupMyStaticQCompleter(_dbYerothSqlTableName_WINDOWS_TABLE_VIEW_FOR_SEARCH,
 										  correspondingDBFieldKeyValue,
 										  false);
-		}
-	}
-}
-
-
-void YerothWindowsCommons::handle_some_actions_tools_enabled()
-{
-	if (0 == _yerothTableView_FROM_WINDOWS_COMMONS)
-	{
-		return ;
-	}
-
-	unsigned int a_list_size =
-			_list_actions_to_enable_on_positive_tableview_ROW_COUNT.size();
-
-	bool enable_action = (_yerothTableView_FROM_WINDOWS_COMMONS->rowCount() > 0);
-
-	// enabling QAction on positive YEROTHTABLEVIEW rowcount
-	{
-		QAction *anAction = 0;
-
-		for (unsigned int j = 0; j < a_list_size; ++j)
-		{
-			anAction = _list_actions_to_enable_on_positive_tableview_ROW_COUNT.at(j);
-
-			if (0 != anAction)
-			{
-				if (enable_action && anAction->isEnabled())
-				{
-					anAction->setVisible(enable_action);
-				}
-				else
-				{
-					anAction->setVisible(false);
-				}
-			}
-		}
-	}
-
-	// enabling YerothPushButton on positive YEROTHTABLEVIEW rowcount
-	{
-		a_list_size = _list_yeroth_pushbutton_to_enable_on_positive_tableview_ROW_COUNT.size();
-
-		YerothPushButton *aYerothPushButton = 0;
-
-		for (unsigned int j = 0; j < a_list_size; ++j)
-		{
-			aYerothPushButton = _list_yeroth_pushbutton_to_enable_on_positive_tableview_ROW_COUNT.at(j);
-
-			if (0 != aYerothPushButton)
-			{
-				if (enable_action && aYerothPushButton->isEnabled())
-				{
-					aYerothPushButton->setVisible(enable_action);
-				}
-				else
-				{
-					aYerothPushButton->setVisible(false);
-				}
-			}
 		}
 	}
 }

@@ -19,19 +19,32 @@ YerothPushButton::~YerothPushButton()
 }
 
 
-void YerothPushButton::enable(const QObject *receiver, const char *f)
+void YerothPushButton::setAuthorizedForCurrentUser(bool authorized)
 {
-    QObject::connect(this, SIGNAL(clicked()), receiver, f, Qt::UniqueConnection);
-    setEnabled(true);
-    setVisible(true);
+	_is_yeroth_pushbutton_authorized_for_current_user = authorized;
+	QWidget::setVisible(authorized);
 }
 
 
-void YerothPushButton::disable(const QObject *receiver, bool buttonVisible /*= false*/)
+void YerothPushButton::setEnabled(bool enable)
+{
+	setAuthorizedForCurrentUser(enable);
+	QWidget::setVisible(enable);
+	QPushButton::setEnabled(enable);
+}
+
+
+void YerothPushButton::enable(const QObject *receiver, const char *f)
+{
+    QObject::connect(this, SIGNAL(clicked()), receiver, f, Qt::UniqueConnection);
+    setAuthorizedForCurrentUser(true);
+}
+
+
+void YerothPushButton::disable(const QObject *receiver)
 {
     QObject::disconnect(this, SIGNAL(clicked()), receiver, 0);
-    setEnabled(false);
-    setVisible(buttonVisible);
+    setAuthorizedForCurrentUser(false);
 }
 
 
@@ -54,8 +67,6 @@ void YerothPushButton::enable_WITH_SQL_TABLE_MODEL_AS_CALL_ARGUMENT(YerothAbstra
     QObject::connect(this, SIGNAL(clicked()), this, SLOT(call_view_page_function()), Qt::UniqueConnection);
 
     setEnabled(true);
-
-    setVisible(true);
 }
 
 

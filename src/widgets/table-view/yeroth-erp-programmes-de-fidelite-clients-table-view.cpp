@@ -190,6 +190,8 @@ void YerothERPProgrammesDeFideliteClientsTableView::lister_les_elements_du_table
     YEROTH_SET_LAST_TABLE_VIEW_SELECTED_ROW_ID(curAllWindows, curAllWindows->_programmesDeFideliteClientsWindow)
 
 	resizeColumnsToContents();
+
+    curAllWindows->_programmesDeFideliteClientsWindow->handle_some_actions_tools_enabled();
 }
 
 

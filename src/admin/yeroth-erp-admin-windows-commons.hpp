@@ -17,7 +17,6 @@
 
 #include "src/utils/yeroth-erp-utils.hpp"
 
-#include <QtWidgets/QAction>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMessageBox>
 
@@ -57,7 +56,7 @@ public:
 	}
 
 	inline virtual void YEROTH_ERP_ADMIN_WRAPPER_QACTION_SET_ENABLED(QAction *anAction,
-													   	   	  	    bool aBooleanValue)
+													   	   	  	     bool aBooleanValue)
 	{
 		anAction->setVisible(aBooleanValue);
 	}

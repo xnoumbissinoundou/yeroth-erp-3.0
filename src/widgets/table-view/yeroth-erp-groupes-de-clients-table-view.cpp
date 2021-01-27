@@ -190,6 +190,8 @@ void YerothERPGroupesDeClientsTableView::lister_les_elements_du_tableau(YerothSq
     YEROTH_SET_LAST_TABLE_VIEW_SELECTED_ROW_ID(curAllWindows, curAllWindows->_groupesDeClientsWindow)
 
 	resizeColumnsToContents();
+
+    curAllWindows->_groupesDeClientsWindow->handle_some_actions_tools_enabled();
 }
 
 

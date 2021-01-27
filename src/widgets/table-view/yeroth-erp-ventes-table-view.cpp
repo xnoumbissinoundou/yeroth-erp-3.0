@@ -225,6 +225,8 @@ void YerothERPVentesTableView::lister_les_elements_du_tableau(YerothSqlTableMode
     YEROTH_SET_LAST_TABLE_VIEW_SELECTED_ROW_ID(curAllWindows, curAllWindows->_ventesWindow)
 
     resizeColumnsToContents();
+
+    curAllWindows->_ventesWindow->handle_some_actions_tools_enabled();
 }
 
 

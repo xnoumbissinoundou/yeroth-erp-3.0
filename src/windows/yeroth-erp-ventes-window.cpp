@@ -123,6 +123,8 @@ YerothVentesWindow::YerothVentesWindow()
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionExporter_au_format_csv, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherVenteDetail, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAnnulerCetteVente, false);
@@ -358,6 +360,7 @@ bool YerothVentesWindow::annuler_cette_vente()
 
 	QString curStocksVenduID;
 	QString curStocksVendu_stocksID;
+	QString curStocksVenduNomDepartementProduit;
 	QString curStocksVenduCategorie;
 
 	curStocksVenduID =
@@ -365,6 +368,9 @@ bool YerothVentesWindow::annuler_cette_vente()
 
 	curStocksVendu_stocksID =
 			GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::STOCKS_ID);
+
+	curStocksVenduNomDepartementProduit =
+			GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT);
 
 	curStocksVenduCategorie =
 			GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::CATEGORIE);
@@ -436,6 +442,8 @@ bool YerothVentesWindow::annuler_cette_vente()
 
 		curStockRecord.setValue(YerothDatabaseTableColumn::DESIGNATION, curStocksVenduDesignation);
 
+		curStockRecord.setValue(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT, curStocksVenduNomDepartementProduit);
+
 		curStockRecord.setValue(YerothDatabaseTableColumn::CATEGORIE, curStocksVenduCategorie);
 
 		curStockRecord.setValue(YerothDatabaseTableColumn::LOTS_ENTRANT, 1);
@@ -456,16 +464,32 @@ bool YerothVentesWindow::annuler_cette_vente()
 		double montant_total_tva =
 				GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::MONTANT_TVA).toDouble();
 
+		double montant_total_tva_en_gros =
+				GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::MONTANT_TVA_EN_GROS).toDouble();
+
 		double montant_tva_unitaire = montant_total_tva / curStocksVenduQuantiteVendue;
+
+		double montant_tva_unitaire_en_gros = montant_total_tva_en_gros / curStocksVenduQuantiteVendue;
 
 		double prix_unitaire =
 				GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::PRIX_UNITAIRE).toDouble();
 
+		double prix_unitaire_en_gros =
+				GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::PRIX_UNITAIRE_EN_GROS).toDouble();
+
 		double prix_vente = prix_unitaire + montant_tva_unitaire;
+
+		double prix_vente_en_gros = prix_unitaire_en_gros + montant_tva_unitaire_en_gros;
+
+		curStockRecord.setValue(YerothDatabaseTableColumn::PRIX_UNITAIRE_EN_GROS, prix_unitaire_en_gros);
 
 		curStockRecord.setValue(YerothDatabaseTableColumn::PRIX_UNITAIRE, prix_unitaire);
 
+		curStockRecord.setValue(YerothDatabaseTableColumn::PRIX_VENTE_EN_GROS, prix_vente_en_gros);
+
 		curStockRecord.setValue(YerothDatabaseTableColumn::PRIX_VENTE, prix_vente);
+
+		curStockRecord.setValue(YerothDatabaseTableColumn::MONTANT_TVA_EN_GROS, montant_tva_unitaire_en_gros);
 
 		curStockRecord.setValue(YerothDatabaseTableColumn::MONTANT_TVA, montant_tva_unitaire);
 
@@ -1445,6 +1469,8 @@ void YerothVentesWindow::definirCaissier()
     _logger->log("definirCaissier");
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionExporter_au_format_csv, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
@@ -1476,6 +1502,8 @@ void YerothVentesWindow::definirManager()
     _logger->log("definirManager");
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionExporter_au_format_csv, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, true);
 
 #ifdef YEROTH_CLIENT
@@ -1519,6 +1547,8 @@ void YerothVentesWindow::definirVendeur()
     _logger->log("definirVendeur");
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionExporter_au_format_csv, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
 #ifdef YEROTH_CLIENT
@@ -1553,69 +1583,17 @@ void YerothVentesWindow::definirVendeur()
 
 void YerothVentesWindow::definirGestionaireDesStocks()
 {
-    _logger->log("definirGestionaireDesStocks");
+    _logger->log("definirGestionaireDesStocks - definirPasDeRole()");
 
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
-
-#ifdef YEROTH_CLIENT
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
-#endif
-
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionReinitialiserRecherche, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherVenteDetail, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAnnulerCetteVente, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
-
-    tabWidget_ventes->removeTab(RetourDuneVente);
-
-    MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(tableView_ventes);
-
-    pushButton_ventes_filtrer->disable(this);
-
-    pushButton_ventes_reinitialiser_filtre->disable(this);
-
-    pushButton_reinitialiser->disable(this);
-
-    pushButton_retour_details->disable(this);
-
-    pushButton_retour_annuler->disable(this);
-
-    pushButton_annuler_vente->disable(this);
+    definirPasDeRole();
 }
 
 
 void YerothVentesWindow::definirMagasinier()
 {
-    _logger->log("definirMagasinier");
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionReinitialiserRecherche, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherVenteDetail, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAnnulerCetteVente, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
+    _logger->log("definirMagasinier - definirPasDeRole()");
 
-    tabWidget_ventes->removeTab(RetourDuneVente);
-
-    MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(tableView_ventes);
-
-    pushButton_ventes_filtrer->disable(this);
-
-    pushButton_ventes_reinitialiser_filtre->disable(this);
-
-    pushButton_reinitialiser->disable(this);
-
-    pushButton_retour_details->disable(this);
-
-    pushButton_retour_annuler->disable(this);
-
-    pushButton_annuler_vente->disable(this);
+    definirPasDeRole();
 }
 
 
@@ -1624,6 +1602,8 @@ void YerothVentesWindow::definirPasDeRole()
     _logger->log("definirPasDeRole");
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionExporter_au_format_csv, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionReinitialiserRecherche, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);

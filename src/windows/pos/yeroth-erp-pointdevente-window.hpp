@@ -343,8 +343,8 @@ private:
     int 					_quantiteAVendre;
     int 				 	_currentTabView;
 
-    QAction 				*actionRechercheArticle;
-    QAction 				*actionRechercheArticleCodebar;
+    QAction 		*actionRechercheArticle;
+    QAction 		*actionRechercheArticleCodebar;
 
     QString					_searchFilter;
 	QString					_curClientName;

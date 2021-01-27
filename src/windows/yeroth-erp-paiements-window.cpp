@@ -119,6 +119,8 @@ YerothPaiementsWindow::YerothPaiementsWindow()
 
     tableView_paiements->setSqlTableName(&YerothERPWindows::PAIEMENTS);
 
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionExporter_au_format_csv, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
@@ -631,24 +633,9 @@ void YerothPaiementsWindow::deconnecter_utilisateur()
 
 void YerothPaiementsWindow::definirCaissier()
 {
-    _logger->log("definirCaissier");
+    _logger->log("definirCaissier - definirPasDeRole()");
 
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionReinitialiserRecherche, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
-
-    MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(tableView_paiements);
-
-    pushButton_retour_paiements->disable(this);
-
-    pushButton_reinitialiser->disable(this);
-
-    pushButton_paiements_filtrer->disable(this);
-    pushButton_paiements_reinitialiser_filtre->disable(this);
+    definirPasDeRole();
 }
 
 
@@ -657,6 +644,8 @@ void YerothPaiementsWindow::definirManager()
     _logger->log("definirManager");
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionExporter_au_format_csv, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, true);
 
 #ifdef YEROTH_CLIENT
@@ -685,6 +674,8 @@ void YerothPaiementsWindow::definirVendeur()
     _logger->log("definirVendeur");
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionExporter_au_format_csv, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
 #ifdef YEROTH_CLIENT
@@ -710,52 +701,17 @@ void YerothPaiementsWindow::definirVendeur()
 
 void YerothPaiementsWindow::definirGestionaireDesStocks()
 {
-    _logger->log("definirGestionaireDesStocks");
+    _logger->log("definirGestionaireDesStocks - definirPasDeRole()");
 
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
-
-#ifdef YEROTH_CLIENT
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
-#endif
-
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionReinitialiserRecherche, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
-
-    MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(tableView_paiements);
-
-    pushButton_retour_paiements->disable(this);
-
-    pushButton_reinitialiser->disable(this);
-
-    pushButton_paiements_filtrer->disable(this);
-    pushButton_paiements_reinitialiser_filtre->disable(this);
+    definirPasDeRole();
 }
 
 
 void YerothPaiementsWindow::definirMagasinier()
 {
-    _logger->log("definirMagasinier");
+    _logger->log("definirMagasinier - definirPasDeRole()");
 
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionReinitialiserRecherche, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
-
-    MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(tableView_paiements);
-
-    pushButton_retour_paiements->disable(this);
-
-    pushButton_reinitialiser->disable(this);
-
-    pushButton_paiements_filtrer->disable(this);
-    pushButton_paiements_reinitialiser_filtre->disable(this);
+    definirPasDeRole();
 }
 
 
@@ -768,6 +724,8 @@ void YerothPaiementsWindow::definirPasDeRole()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionReinitialiserRecherche, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionExporter_au_format_csv, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 

@@ -195,6 +195,8 @@ void YerothERPClientsTableView::lister_les_elements_du_tableau(YerothSqlTableMod
     YEROTH_SET_LAST_TABLE_VIEW_SELECTED_ROW_ID(curAllWindows, curAllWindows->_clientsWindow)
 
 	resizeColumnsToContents();
+
+    curAllWindows->_clientsWindow->handle_some_actions_tools_enabled();
 }
 
 

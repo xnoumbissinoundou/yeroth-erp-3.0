@@ -251,6 +251,8 @@ void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTab
     YEROTH_SET_LAST_TABLE_VIEW_SELECTED_ROW_ID(curAllWindows, curAllWindows->_marchandisesWindow)
 
     resizeColumnsToContents();
+
+    curAllWindows->_marchandisesWindow->handle_some_actions_tools_enabled();
 }
 
 

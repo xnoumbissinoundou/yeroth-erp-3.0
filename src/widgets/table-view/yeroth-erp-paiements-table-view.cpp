@@ -192,6 +192,8 @@ void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableM
     YEROTH_SET_LAST_TABLE_VIEW_SELECTED_ROW_ID(curAllWindows, curAllWindows->_historiquePaiementsWindow)
 
     resizeColumnsToContents();
+
+    curAllWindows->_historiquePaiementsWindow->handle_some_actions_tools_enabled();
 }
 
 

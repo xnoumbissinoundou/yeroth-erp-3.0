@@ -289,6 +289,8 @@ void YerothERPStocksTableView::lister_les_elements_du_tableau(YerothSqlTableMode
     YEROTH_SET_LAST_TABLE_VIEW_SELECTED_ROW_ID(curAllWindows, curAllWindows->_stocksWindow)
 
     resizeColumnsToContents();
+
+    curAllWindows->_stocksWindow->handle_some_actions_tools_enabled();
 }
 
 

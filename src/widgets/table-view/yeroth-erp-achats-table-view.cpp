@@ -198,6 +198,8 @@ void YerothERPAchatsTableView::lister_les_elements_du_tableau(YerothSqlTableMode
     YEROTH_SET_LAST_TABLE_VIEW_SELECTED_ROW_ID(curAllWindows, curAllWindows->_achatsWindow)
 
 	resizeColumnsToContents();
+
+    curAllWindows->_achatsWindow->handle_some_actions_tools_enabled();
 }
 
 

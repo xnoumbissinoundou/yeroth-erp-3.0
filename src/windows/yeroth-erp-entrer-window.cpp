@@ -323,24 +323,9 @@ void YerothEntrerWindow::definirPasDeRole()
 
 void YerothEntrerWindow::definirCaissier()
 {
-    _logger->log("definirCaissier");
+    _logger->log("definirCaissier - definirPasDeRole()");
 
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAnnuler, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEnregisterStock, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerImage, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
-
-    pushButton_supprimer_limage_du_stock->disable(this);
-    pushButton_afficher_stocks->disable(this);
-    pushButton_menu_principal->disable(this);
-    pushButton_sortir->disable(this);
-    pushButton_annuler->disable(this);
+    definirPasDeRole();
 }
 
 
@@ -390,12 +375,12 @@ void YerothEntrerWindow::definirVendeur()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEnregisterStock, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerImage, false);
 
-    pushButton_supprimer_limage_du_stock->enable(this, SLOT(supprimer_image_stock()));
+    pushButton_supprimer_limage_du_stock->disable(this);
     pushButton_afficher_stocks->enable(this, SLOT(afficherStocks()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
-    pushButton_sortir->enable(this, SLOT(sortir()));
+    pushButton_sortir->disable(this);
     pushButton_annuler->enable(this, SLOT(menu()));
-    pushButton_selectionner_image->enable(this, SLOT(selectionner_image_produit()));
+    pushButton_selectionner_image->disable(this);
     pushButton_enregistrer_produit->enable(this, SLOT(handle_enregistrer()));
 }
 
@@ -432,26 +417,9 @@ void YerothEntrerWindow::definirGestionaireDesStocks()
 
 void YerothEntrerWindow::definirMagasinier()
 {
-    _logger->log("definirMagasinier");
+    _logger->log("definirMagasinier - definirPasDeRole()");
 
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAnnuler, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEnregisterStock, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerImage, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
-
-    pushButton_supprimer_limage_du_stock->disable(this);
-    pushButton_afficher_stocks->enable(this, SLOT(afficherStocks()));
-    pushButton_menu_principal->enable(this, SLOT(menu()));
-    pushButton_sortir->enable(this, SLOT(sortir()));
-    pushButton_annuler->enable(this, SLOT(menu()));
-    pushButton_selectionner_image->enable(this, SLOT(selectionner_image_produit()));
-    pushButton_enregistrer_produit->disable(this);
+    definirPasDeRole();
 }
 
 
@@ -1289,11 +1257,8 @@ void YerothEntrerWindow::rendreVisible(YerothSqlTableModel *stocksTableModel,
     		groupBox_SERVICE_ACHAT_ET_VENTE_CHOIX->setVisible(true);
 
     	    radioButton_SERVICE_VENTE_CLIENT->setVisible(true);
-    	    radioButton_SERVICE_ACHAT_FOURNISSEUR->setVisible(true);
 
-    	    radioButton_AUCUN_SERVICE->setEnabled(false);
     	    radioButton_SERVICE_VENTE_CLIENT->setEnabled(true);
-    	    radioButton_SERVICE_ACHAT_FOURNISSEUR->setEnabled(true);
 
     	    radioButton_SERVICE_VENTE_CLIENT->setChecked(true);
     	}

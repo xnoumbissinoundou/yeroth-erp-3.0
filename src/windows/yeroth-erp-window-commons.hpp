@@ -64,16 +64,13 @@ public:
 
 	int get_INT_last_selected_row_number();
 
+	virtual void YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(QAction *anAction,
+													   	bool aBooleanValue);
+
 	void setYerothTableView_FROM_WINDOWS_COMMONS(const QList<YerothTableView *> &aYerothTableView_FROM_WINDOWS_COMMONS_QLIST);
 
 	void setYerothTableView_FROM_WINDOWS_COMMONS(YerothTableView *aYerothTableView_FROM_WINDOWS_COMMONS,
 												 bool a_setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID = true);
-
-	inline virtual void YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(QAction *anAction,
-													   	   	   bool aBooleanValue)
-	{
-		anAction->setVisible(aBooleanValue);
-	}
 
 	inline QSet<int> &getDBFieldNamesToPrintCenterAligned()
 	{
@@ -174,6 +171,8 @@ signals:
     void SIGNAL_INCREMENT_PROGRESS_BAR(int countSuccess);
 
 public slots:
+
+	void handle_some_actions_tools_enabled();
 
 	virtual void getManuelUtilisateurPDF();
 
@@ -290,8 +289,6 @@ protected slots:
 								&YerothWindowsCommons::imprimer_pdf_document);
 	}
 
-	void handle_some_actions_tools_enabled();
-
 	virtual void setYerothLineEditQCompleterSearchFilter(QString &aYerothLineEditQCompleterSearchFilter_IN_OUT);
 
 	virtual void tableView_show_or_hide_columns(YerothTableView &tableView_in_out);
@@ -391,6 +388,7 @@ protected:
 
 	QList<QAction *>					_list_actions_to_enable_on_positive_tableview_ROW_COUNT;
 
+	QMap<QAction *, bool>				_MAP_actions_to_enable_on_positive_tableview_ROW_COUNT__TO__AUTHORIZED_FOR_CURRENT_USER;
 
 	QMap<QString, QString> 				_documentSpecificElements_FOR_PDF_LATEX_PRINTING;
 

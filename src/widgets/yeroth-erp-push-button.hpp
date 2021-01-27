@@ -31,6 +31,7 @@ public:
 
 	inline YerothPushButton(QWidget *w)
 	:QPushButton(w),
+	 _is_yeroth_pushbutton_authorized_for_current_user(false),
 	 _yerothCurWindowSqlTableModel(0),
 	 _receiver(0),
 	 _func(0)
@@ -39,6 +40,7 @@ public:
 
 	inline YerothPushButton(const QString &s, QWidget *w)
 	:QPushButton(s, w),
+	 _is_yeroth_pushbutton_authorized_for_current_user(false),
 	 _yerothCurWindowSqlTableModel(0),
 	 _receiver(0),
 	 _func(0)
@@ -47,6 +49,7 @@ public:
 
 	inline YerothPushButton(const QIcon &i, const QString &s, QWidget *w)
 	:QPushButton(i, s, w),
+	 _is_yeroth_pushbutton_authorized_for_current_user(false),
 	 _yerothCurWindowSqlTableModel(0),
 	 _receiver(0),
 	 _func(0)
@@ -55,24 +58,30 @@ public:
 
 	~YerothPushButton();
 
+	inline bool isAuthorizedForCurrentUser()
+	{
+		return _is_yeroth_pushbutton_authorized_for_current_user;
+	}
+
+	void setAuthorizedForCurrentUser(bool authorized);
+
+	virtual void setEnabled(bool enable);
+
 	void enable(const QObject *receiver, const char *f);
 
-	void disable(const QObject *receiver, bool buttonVisible = false);
+	void disable(const QObject *receiver);
 
 	void enable_WITH_SQL_TABLE_MODEL_AS_CALL_ARGUMENT(YerothAbstractClassYerothSearchWindow *receiver,
 													  YerothAbstractClassYerothSearchWindow::fptr func,
 													  YerothSqlTableModel **aYerothSqlTableModel_IN);
-
-	inline void emptyEnable()
-	{
-		 setEnabled(true);
-	}
 
 public slots:
 
 	void call_view_page_function();
 
 private:
+
+	bool											_is_yeroth_pushbutton_authorized_for_current_user;
 
 	YerothSqlTableModel 							**_yerothCurWindowSqlTableModel;
 
