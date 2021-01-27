@@ -749,6 +749,7 @@ void YerothERPClientsWindow::definirManager()
 {
     _logger->log("definirManager");
 
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(action_afficher_groupes_du_client, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, true);
@@ -786,6 +787,7 @@ void YerothERPClientsWindow::definirVendeur()
 {
     _logger->log("definirVendeur");
 
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(action_afficher_groupes_du_client, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, true);
@@ -839,7 +841,8 @@ void YerothERPClientsWindow::definirPasDeRole()
 {
     _logger->log("definirPasDeRole");
 
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
+	YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(action_afficher_groupes_du_client, false);
+	YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherDetailsClient, false);
