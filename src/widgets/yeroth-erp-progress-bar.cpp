@@ -15,7 +15,7 @@
 
 YerothProgressBar::YerothProgressBar(YerothPOSAdminWindowsCommons *aYerothParentAdminWindow)
 :QProgressBar((QWidget *)aYerothParentAdminWindow),
- _setuped(false)
+ _setup(false)
 {
 	setVisible(false);
 
@@ -63,7 +63,7 @@ YerothProgressBar::YerothProgressBar(YerothPOSAdminWindowsCommons *aYerothParent
 
 YerothProgressBar::YerothProgressBar(YerothWindowsCommons *aYerothParentWindow)
 :QProgressBar((QWidget *)aYerothParentWindow),
- _setuped(false)
+ _setup(false)
 {
 	setVisible(false);
 

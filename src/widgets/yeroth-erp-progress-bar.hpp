@@ -83,7 +83,7 @@ protected:
 
 private:
 
-	bool _setuped;
+	bool _setup;
 };
 
 
@@ -97,14 +97,14 @@ void YerothProgressBar::call_funtion_with_progress_bar_updates(classType *aClass
 															   returnType *aRetValue,
 															   unsigned int progressBarMaximum)
 {
-	if (!_setuped)
+	if (!_setup)
 	{
 		connect(aClassInstanceRef,
 				SIGNAL(SIGNAL_INCREMENT_PROGRESS_BAR(int)),
 				this,
 				SLOT(SLOT_UPDATE_PROGRESS_BAR_VALUE(int)));
 
-		_setuped = true;
+		_setup = true;
 	}
 
 	setMaximum(progressBarMaximum);
@@ -131,14 +131,14 @@ void YerothProgressBar::call_funtion_with_progress_bar_updates(classType *aClass
 															   returnType *aRetValue,
 															   unsigned int progressBarMaximum)
 {
-	if (!_setuped)
+	if (!_setup)
 	{
 		connect(aClassInstanceRef,
 				SIGNAL(SIGNAL_INCREMENT_PROGRESS_BAR(int)),
 				this,
 				SLOT(SLOT_UPDATE_PROGRESS_BAR_VALUE(int)));
 
-		_setuped = true;
+		_setup = true;
 	}
 
 	setMaximum(progressBarMaximum);
