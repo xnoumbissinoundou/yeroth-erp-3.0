@@ -103,7 +103,7 @@ YerothAchatsAUXFournisseursWindow::YerothAchatsAUXFournisseursWindow()
 
     YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(_allWindows->ACHATS_AUX_FOURNISSEURS);
 
-    reinitialiser_champs_db_visibles();
+    reinitialiser_colones_db_visibles();
 
     _curAchatAUXFournisseursSqlTableModel = &_allWindows->getSqlTableModel_achats_aux_fournisseurs();
 
@@ -137,7 +137,7 @@ YerothAchatsAUXFournisseursWindow::YerothAchatsAUXFournisseursWindow()
     pushButton_ventes->disable(this);
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
 
-    connect(actionReinitialiserChampsDBVisible, SIGNAL(triggered()), this, SLOT(slot_reinitialiser_champs_db_visibles()));
+    connect(actionReinitialiserChampsDBVisible, SIGNAL(triggered()), this, SLOT(slot_reinitialiser_colones_db_visibles()));
 
     connect(actionChampsDBVisible, SIGNAL(triggered()), this, SLOT(selectionner_champs_db_visibles()));
 
@@ -371,9 +371,9 @@ void YerothAchatsAUXFournisseursWindow::resetFilter(YerothSqlTableModel * achats
 }
 
 
-void YerothAchatsAUXFournisseursWindow::slot_reinitialiser_champs_db_visibles()
+void YerothAchatsAUXFournisseursWindow::slot_reinitialiser_colones_db_visibles()
 {
-	reinitialiser_champs_db_visibles();
+	reinitialiser_colones_db_visibles();
 	resetTableViewHorizontalHeader_DEFAULT_ORDERING();
 
 	if (0 != _curAchatAUXFournisseursSqlTableModel)
@@ -481,7 +481,7 @@ void YerothAchatsAUXFournisseursWindow::textChangedSearchLineEditsQCompleters()
 }
 
 
-void YerothAchatsAUXFournisseursWindow::reinitialiser_champs_db_visibles()
+void YerothAchatsAUXFournisseursWindow::reinitialiser_colones_db_visibles()
 {
 	_visibleDBColumnNameStrList.clear();
 
@@ -621,7 +621,7 @@ void YerothAchatsAUXFournisseursWindow::afficher_au_detail()
 {
     _logger->log("afficher_au_detail");
 
-    if (get_INT_LastListerSelectedRow__ID() > -1 && _curAchatAUXFournisseursSqlTableModel->rowCount() > 0)
+    if (getLastListerSelectedRow__ID_AS_INTEGER() > -1 && _curAchatAUXFournisseursSqlTableModel->rowCount() > 0)
     {
         _allWindows->_achatsDetailWindow->rendreVisible(_curStocksTableModel,
 														_curAchatAUXFournisseursSqlTableModel);
@@ -781,7 +781,7 @@ void YerothAchatsAUXFournisseursWindow::set_filtrer_font()
 
 bool YerothAchatsAUXFournisseursWindow::supprimer_un_achat_au_fournisseur()
 {
-    if (get_INT_LastListerSelectedRow__ID() <= -1 ||
+    if (getLastListerSelectedRow__ID_AS_INTEGER() <= -1 ||
     	_curAchatAUXFournisseursSqlTableModel->rowCount() <= 0)
     {
         YerothQMessageBox::information(this, QObject::trUtf8("supprimer"),

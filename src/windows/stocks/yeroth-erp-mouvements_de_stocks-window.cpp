@@ -80,7 +80,7 @@ YerothMouvementsDeStocksWindow::YerothMouvementsDeStocksWindow()
 
     setup_select_configure_dbcolumn(_allWindows->STOCKS_SORTIES);
 
-    reinitialiser_champs_db_visibles();
+    reinitialiser_colones_db_visibles();
 
     MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS
 
@@ -92,7 +92,7 @@ YerothMouvementsDeStocksWindow::YerothMouvementsDeStocksWindow()
 
     setupDateTimeEdits();
 
-    connect(actionReinitialiserChampsDBVisible, SIGNAL(triggered()), this, SLOT(slot_reinitialiser_champs_db_visibles()));
+    connect(actionReinitialiserChampsDBVisible, SIGNAL(triggered()), this, SLOT(slot_reinitialiser_colones_db_visibles()));
 
     connect(actionChampsDBVisible, SIGNAL(triggered()), this, SLOT(selectionner_champs_db_visibles()));
 
@@ -125,9 +125,9 @@ YerothMouvementsDeStocksWindow::YerothMouvementsDeStocksWindow()
 }
 
 
-void YerothMouvementsDeStocksWindow::slot_reinitialiser_champs_db_visibles()
+void YerothMouvementsDeStocksWindow::slot_reinitialiser_colones_db_visibles()
 {
-	reinitialiser_champs_db_visibles();
+	reinitialiser_colones_db_visibles();
 	resetTableViewHorizontalHeader_DEFAULT_ORDERING();
 	lister_les_elements_du_tableau();
 }
@@ -245,7 +245,7 @@ void YerothMouvementsDeStocksWindow::textChangedSearchLineEditsQCompleters()
 }
 
 
-void YerothMouvementsDeStocksWindow::reinitialiser_champs_db_visibles()
+void YerothMouvementsDeStocksWindow::reinitialiser_colones_db_visibles()
 {
 	_visibleDBColumnNameStrList.clear();
 

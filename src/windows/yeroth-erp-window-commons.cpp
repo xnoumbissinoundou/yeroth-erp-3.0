@@ -1,5 +1,6 @@
 /*
  * yeroth-erp-windows-commons.cpp
+ *
  *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 #include "yeroth-erp-window-commons.hpp"
@@ -358,24 +359,6 @@ bool YerothWindowsCommons::SQL_DELETE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW()
 	return YerothUtils::execQuery(REMOVE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW_QUERY_STRING);
 }
 
-int YerothWindowsCommons::get_INT_LastListerSelectedRow__ID()
-{
-	QString lastListerSelectedRow__ID = getLastListerSelectedRow__ID();
-
-	return (lastListerSelectedRow__ID.isEmpty()) ? -1 : lastListerSelectedRow__ID.toInt();
-}
-
-
-const QString & YerothWindowsCommons::getLastListerSelectedRow__ID()
-{
-	if (0 == _yerothTableView_FROM_WINDOWS_COMMONS)
-	{
-		return YerothUtils::EMPTY_STRING;
-	}
-
-	return _yerothTableView_FROM_WINDOWS_COMMONS->lastSelectedRow__ID();
-}
-
 
 void YerothWindowsCommons::handle_some_actions_tools_enabled()
 {
@@ -688,17 +671,6 @@ void YerothWindowsCommons::setup_select_configure_dbcolumn(const QString &aSqlTa
 
 		_dbtablecolumnNameToDBColumnIndex.insert(fieldName, columnIdx);
 	}
-}
-
-
-void YerothWindowsCommons::resetTableViewHorizontalHeader_DEFAULT_ORDERING()
-{
-	if (0 == _yerothTableView_FROM_WINDOWS_COMMONS)
-	{
-		return ;
-	}
-
-	//TODO: (ACHEVER L'ALGORITHME).
 }
 
 

@@ -109,7 +109,7 @@ YerothVentesWindow::YerothVentesWindow()
 
     YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(_allWindows->STOCKS_VENDU);
 
-    reinitialiser_champs_db_visibles();
+    reinitialiser_colones_db_visibles();
 
     populateComboBoxes();
 
@@ -145,7 +145,7 @@ YerothVentesWindow::YerothVentesWindow()
     pushButton_annuler_vente->disable(this);
 
 
-    connect(actionReinitialiserChampsDBVisible, SIGNAL(triggered()), this, SLOT(slot_reinitialiser_champs_db_visibles()));
+    connect(actionReinitialiserChampsDBVisible, SIGNAL(triggered()), this, SLOT(slot_reinitialiser_colones_db_visibles()));
 
     connect(actionChampsDBVisible, SIGNAL(triggered()), this, SLOT(selectionner_champs_db_visibles()));
 
@@ -1204,9 +1204,9 @@ void YerothVentesWindow::set_filtrer_font()
 }
 
 
-void YerothVentesWindow::slot_reinitialiser_champs_db_visibles()
+void YerothVentesWindow::slot_reinitialiser_colones_db_visibles()
 {
-	reinitialiser_champs_db_visibles();
+	reinitialiser_colones_db_visibles();
 	resetTableViewHorizontalHeader_DEFAULT_ORDERING();
 	lister_les_elements_du_tableau();
 }
@@ -1355,7 +1355,7 @@ void YerothVentesWindow::textChangedSearchLineEditsQCompleters()
 }
 
 
-void YerothVentesWindow::reinitialiser_champs_db_visibles()
+void YerothVentesWindow::reinitialiser_colones_db_visibles()
 {
 	_visibleDBColumnNameStrList.clear();
 

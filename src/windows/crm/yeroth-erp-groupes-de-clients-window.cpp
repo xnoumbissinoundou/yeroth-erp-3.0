@@ -105,7 +105,7 @@ YerothGroupesDeClientsWindow::YerothGroupesDeClientsWindow()
 
     YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(_allWindows->GROUPES_DE_CLIENTS);
 
-    reinitialiser_champs_db_visibles();
+    reinitialiser_colones_db_visibles();
 
     _curClientGroupTableModel = &_allWindows->getSqlTableModel_groupes_de_clients();
 
@@ -151,7 +151,7 @@ YerothGroupesDeClientsWindow::YerothGroupesDeClientsWindow()
     connect(actionAfficher_ce_groupe_au_detail, SIGNAL(triggered()), this, SLOT(afficher_au_detail()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
 
-    connect(actionReinitialiserChampsDBVisible, SIGNAL(triggered()), this, SLOT(slot_reinitialiser_champs_db_visibles()));
+    connect(actionReinitialiserChampsDBVisible, SIGNAL(triggered()), this, SLOT(slot_reinitialiser_colones_db_visibles()));
 
     connect(actionChampsDBVisible, SIGNAL(triggered()), this, SLOT(selectionner_champs_db_visibles()));
 
@@ -188,9 +188,9 @@ YerothGroupesDeClientsWindow::~YerothGroupesDeClientsWindow()
 }
 
 
-void YerothGroupesDeClientsWindow::slot_reinitialiser_champs_db_visibles()
+void YerothGroupesDeClientsWindow::slot_reinitialiser_colones_db_visibles()
 {
-	reinitialiser_champs_db_visibles();
+	reinitialiser_colones_db_visibles();
 	resetTableViewHorizontalHeader_DEFAULT_ORDERING();
 	afficher_groupes_de_clients(*_curClientGroupTableModel);
 }
@@ -405,7 +405,7 @@ bool YerothGroupesDeClientsWindow::filtrer_groupes_de_clients()
 }
 
 
-void YerothGroupesDeClientsWindow::reinitialiser_champs_db_visibles()
+void YerothGroupesDeClientsWindow::reinitialiser_colones_db_visibles()
 {
 	_visibleDBColumnNameStrList.clear();
 

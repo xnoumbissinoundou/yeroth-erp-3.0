@@ -98,7 +98,7 @@ YerothAlertesWindow::YerothAlertesWindow()
 
     YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(_allWindows->COURRIERS_ALERTES);
 
-    reinitialiser_champs_db_visibles();
+    reinitialiser_colones_db_visibles();
 
     _curAlertesSqlTableModel = &_allWindows->getSqlTableModel_courriers_alertes();
 
@@ -141,7 +141,7 @@ YerothAlertesWindow::YerothAlertesWindow()
     connect(tableView_alertes, SIGNAL(doubleClicked(const QModelIndex &)), this, SLOT(afficher_au_detail()));
 
     /** Menu actions */
-    connect(actionReinitialiserChampsDBVisible, SIGNAL(triggered()), this, SLOT(slot_reinitialiser_champs_db_visibles()));
+    connect(actionReinitialiserChampsDBVisible, SIGNAL(triggered()), this, SLOT(slot_reinitialiser_colones_db_visibles()));
 
     connect(actionChampsDBVisible, SIGNAL(triggered()), this, SLOT(selectionner_champs_db_visibles()));
 
@@ -483,9 +483,9 @@ void YerothAlertesWindow::setupShortcuts()
 }
 
 
-void YerothAlertesWindow::slot_reinitialiser_champs_db_visibles()
+void YerothAlertesWindow::slot_reinitialiser_colones_db_visibles()
 {
-	reinitialiser_champs_db_visibles();
+	reinitialiser_colones_db_visibles();
 	resetTableViewHorizontalHeader_DEFAULT_ORDERING();
 
 	if (0 != _curAlertesSqlTableModel)
@@ -657,7 +657,7 @@ void YerothAlertesWindow::handleComboBoxClients_courriers_alertes_resolue_oui_OU
 }
 
 
-void YerothAlertesWindow::reinitialiser_champs_db_visibles()
+void YerothAlertesWindow::reinitialiser_colones_db_visibles()
 {
 	_visibleDBColumnNameStrList.clear();
 

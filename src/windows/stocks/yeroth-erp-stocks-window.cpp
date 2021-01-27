@@ -107,7 +107,7 @@ YerothStocksWindow::YerothStocksWindow()
 
     YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(_allWindows->STOCKS);
 
-    reinitialiser_champs_db_visibles();
+    reinitialiser_colones_db_visibles();
 
     populateComboBoxes();
 
@@ -154,7 +154,7 @@ YerothStocksWindow::YerothStocksWindow()
     connect(actionAchatsStocks, SIGNAL(triggered()), this, SLOT(achats_de_stocks()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
 
-    connect(actionReinitialiserChampsDBVisible, SIGNAL(triggered()), this, SLOT(slot_reinitialiser_champs_db_visibles()));
+    connect(actionReinitialiserChampsDBVisible, SIGNAL(triggered()), this, SLOT(slot_reinitialiser_colones_db_visibles()));
 
     connect(actionChampsDBVisible, SIGNAL(triggered()), this, SLOT(selectionner_champs_db_visibles()));
 
@@ -395,9 +395,9 @@ void YerothStocksWindow::resetFilter()
 }
 
 
-void YerothStocksWindow::slot_reinitialiser_champs_db_visibles()
+void YerothStocksWindow::slot_reinitialiser_colones_db_visibles()
 {
-	reinitialiser_champs_db_visibles();
+	reinitialiser_colones_db_visibles();
 	resetTableViewHorizontalHeader_DEFAULT_ORDERING();
 	lister_les_elements_du_tableau();
 }
@@ -656,7 +656,7 @@ void YerothStocksWindow::textChangedSearchLineEditsQCompleters()
 }
 
 
-void YerothStocksWindow::reinitialiser_champs_db_visibles()
+void YerothStocksWindow::reinitialiser_colones_db_visibles()
 {
 	_visibleDBColumnNameStrList.clear();
 
@@ -1004,7 +1004,7 @@ void YerothStocksWindow::definirPasDeRole()
 
 void YerothStocksWindow::afficher_au_detail()
 {
-    if (get_INT_LastListerSelectedRow__ID() > -1 &&
+    if (getLastListerSelectedRow__ID_AS_INTEGER() > -1 &&
     	_curStocksTableModel->rowCount() > 0)
     {
         _allWindows->_detailWindow->rendreVisible(_curStocksTableModel);
@@ -1062,7 +1062,7 @@ void YerothStocksWindow::supprimer_PLUSIEURS_Stocks(YerothSqlTableModel &aStocks
 void YerothStocksWindow::supprimer_ce_stock(QString aStockID /* = YerothUtils::EMPTY_STRING */,
 											bool _reEntrant /* = false */)
 {
-    if (get_INT_LastListerSelectedRow__ID() <= -1 ||
+    if (getLastListerSelectedRow__ID_AS_INTEGER() <= -1 ||
     	_curStocksTableModel->rowCount() <= 0)
     {
         YerothQMessageBox::information(this, QObject::trUtf8("supprimer"),
@@ -1275,7 +1275,7 @@ void YerothStocksWindow::reinitialiser_recherche()
 
 void YerothStocksWindow::entrer()
 {
-    if (get_INT_LastListerSelectedRow__ID() > -1 && _curStocksTableModel->rowCount() > 0)
+    if (getLastListerSelectedRow__ID_AS_INTEGER() > -1 && _curStocksTableModel->rowCount() > 0)
     {
         _allWindows->_entrerWindow->rendreVisible(_curStocksTableModel, true);
         rendreInvisible();

@@ -89,7 +89,7 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
 
     YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(_allWindows->MARCHANDISES);
 
-    reinitialiser_champs_db_visibles();
+    reinitialiser_colones_db_visibles();
 
     setupLineEdits();
 
@@ -123,7 +123,7 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
     pushButton_sortir->disable(this);
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
 
-    connect(actionReinitialiserChampsDBVisible, SIGNAL(triggered()), this, SLOT(slot_reinitialiser_champs_db_visibles()));
+    connect(actionReinitialiserChampsDBVisible, SIGNAL(triggered()), this, SLOT(slot_reinitialiser_colones_db_visibles()));
 
     connect(actionChampsDBVisible, SIGNAL(triggered()), this, SLOT(selectionner_champs_db_visibles()));
 
@@ -236,7 +236,7 @@ double YerothMarchandisesWindow::getQuantiteTotaleEnStock(const QModelIndex &aQM
 }
 
 
-void YerothMarchandisesWindow::reinitialiser_champs_db_visibles()
+void YerothMarchandisesWindow::reinitialiser_colones_db_visibles()
 {
 	_visibleDBColumnNameStrList.clear();
 
@@ -286,9 +286,9 @@ void YerothMarchandisesWindow::setupShortcuts()
 }
 
 
-void YerothMarchandisesWindow::slot_reinitialiser_champs_db_visibles()
+void YerothMarchandisesWindow::slot_reinitialiser_colones_db_visibles()
 {
-	reinitialiser_champs_db_visibles();
+	reinitialiser_colones_db_visibles();
 	resetTableViewHorizontalHeader_DEFAULT_ORDERING();
 	afficherMarchandises();
 }
@@ -383,7 +383,7 @@ void YerothMarchandisesWindow::textChangedSearchLineEditsQCompleters()
 
 void YerothMarchandisesWindow::entrer_un_stock()
 {
-    if (get_INT_LastListerSelectedRow__ID() > -1 &&
+    if (getLastListerSelectedRow__ID_AS_INTEGER() > -1 &&
     	_curMarchandisesTableModel->rowCount() > 0)
     {
         _allWindows->_entrerWindow->rendreVisible(_curStocksTableModel,

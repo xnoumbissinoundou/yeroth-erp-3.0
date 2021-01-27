@@ -307,7 +307,7 @@ void YerothPayerCompteClientWindow::private_slot_afficher_les_transactions_dun_c
 //	qDebug() << QString("_clientLastSelectedRow: %1")
 //					.arg(QString::number(_clientLastSelectedRow));
 
-	int aClientLastSelectedRow = _allWindows->_clientsWindow->get_INT_LastListerSelectedRow__ID();
+	int aClientLastSelectedRow = _allWindows->_clientsWindow->getLastListerSelectedRow__ID_AS_INTEGER();
 
 	if (0 != _curClientTableModel 			 &&
 		_curClientTableModel->rowCount() > 0 &&

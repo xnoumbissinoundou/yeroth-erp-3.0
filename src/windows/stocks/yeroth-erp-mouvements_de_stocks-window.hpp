@@ -96,13 +96,13 @@ public slots:
 
 protected slots:
 
-	virtual void slot_reinitialiser_champs_db_visibles();
+	virtual void slot_reinitialiser_colones_db_visibles();
 
 	virtual void textChangedSearchLineEditsQCompleters();
 
 protected:
 
-	virtual void reinitialiser_champs_db_visibles();
+	virtual void reinitialiser_colones_db_visibles();
 
     virtual void setupShortcuts();
 

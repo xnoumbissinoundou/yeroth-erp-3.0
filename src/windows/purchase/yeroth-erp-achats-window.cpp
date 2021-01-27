@@ -101,7 +101,7 @@ YerothAchatsWindow::YerothAchatsWindow()
 
     YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(_allWindows->ACHATS);
 
-    reinitialiser_champs_db_visibles();
+    reinitialiser_colones_db_visibles();
 
     _curAchatSqlTableModel = &_allWindows->getSqlTableModel_achats();
 
@@ -135,7 +135,7 @@ YerothAchatsWindow::YerothAchatsWindow()
     pushButton_ventes->disable(this);
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
 
-    connect(actionReinitialiserChampsDBVisible, SIGNAL(triggered()), this, SLOT(slot_reinitialiser_champs_db_visibles()));
+    connect(actionReinitialiserChampsDBVisible, SIGNAL(triggered()), this, SLOT(slot_reinitialiser_colones_db_visibles()));
 
     connect(actionChampsDBVisible, SIGNAL(triggered()), this, SLOT(selectionner_champs_db_visibles()));
 
@@ -369,9 +369,9 @@ void YerothAchatsWindow::resetFilter(YerothSqlTableModel * achatsTableModel)
 }
 
 
-void YerothAchatsWindow::slot_reinitialiser_champs_db_visibles()
+void YerothAchatsWindow::slot_reinitialiser_colones_db_visibles()
 {
-	reinitialiser_champs_db_visibles();
+	reinitialiser_colones_db_visibles();
 	resetTableViewHorizontalHeader_DEFAULT_ORDERING();
 
 	if (0 != _curAchatSqlTableModel)
@@ -479,7 +479,7 @@ void YerothAchatsWindow::textChangedSearchLineEditsQCompleters()
 }
 
 
-void YerothAchatsWindow::reinitialiser_champs_db_visibles()
+void YerothAchatsWindow::reinitialiser_colones_db_visibles()
 {
 	_visibleDBColumnNameStrList.clear();
 
@@ -642,7 +642,7 @@ void YerothAchatsWindow::afficher_au_detail()
 {
     _logger->log("afficher_au_detail");
 
-    if (get_INT_LastListerSelectedRow__ID() > -1 && _curAchatSqlTableModel->rowCount() > 0)
+    if (getLastListerSelectedRow__ID_AS_INTEGER() > -1 && _curAchatSqlTableModel->rowCount() > 0)
     {
         _allWindows->_achatsDetailWindow->rendreVisible(_curStocksTableModel,
 														_curAchatSqlTableModel);

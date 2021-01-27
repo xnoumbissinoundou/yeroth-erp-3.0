@@ -104,7 +104,7 @@ YerothERPProgrammesDeFideliteClientsWindow::YerothERPProgrammesDeFideliteClients
 
     YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(_allWindows->PROGRAMMES_DE_FIDELITE_CLIENTS);
 
-    reinitialiser_champs_db_visibles();
+    reinitialiser_colones_db_visibles();
 
     _curClient_LOYALTY_PROGRAM_TableModel = &_allWindows->getSqlTableModel_programmes_de_fidelite_clients();
 
@@ -149,7 +149,7 @@ YerothERPProgrammesDeFideliteClientsWindow::YerothERPProgrammesDeFideliteClients
     connect(actionSupprimerUnProgrammeDeFideliteClients, SIGNAL(triggered()), this, SLOT(supprimer_un_programme_de_fidelite_clients()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
 
-    connect(actionReinitialiserChampsDBVisible, SIGNAL(triggered()), this, SLOT(slot_reinitialiser_champs_db_visibles()));
+    connect(actionReinitialiserChampsDBVisible, SIGNAL(triggered()), this, SLOT(slot_reinitialiser_colones_db_visibles()));
 
     connect(actionChampsDBVisible, SIGNAL(triggered()), this, SLOT(selectionner_champs_db_visibles()));
 
@@ -186,9 +186,9 @@ YerothERPProgrammesDeFideliteClientsWindow::~YerothERPProgrammesDeFideliteClient
 }
 
 
-void YerothERPProgrammesDeFideliteClientsWindow::slot_reinitialiser_champs_db_visibles()
+void YerothERPProgrammesDeFideliteClientsWindow::slot_reinitialiser_colones_db_visibles()
 {
-	reinitialiser_champs_db_visibles();
+	reinitialiser_colones_db_visibles();
 	resetTableViewHorizontalHeader_DEFAULT_ORDERING();
 	afficher_programmes_de_fidelite_clients(*_curClient_LOYALTY_PROGRAM_TableModel);
 }
@@ -405,7 +405,7 @@ bool YerothERPProgrammesDeFideliteClientsWindow::filtrer_programmes_de_fidelite_
 }
 
 
-void YerothERPProgrammesDeFideliteClientsWindow::reinitialiser_champs_db_visibles()
+void YerothERPProgrammesDeFideliteClientsWindow::reinitialiser_colones_db_visibles()
 {
 	_visibleDBColumnNameStrList.clear();
 

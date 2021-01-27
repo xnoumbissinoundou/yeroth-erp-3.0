@@ -122,15 +122,25 @@ public:
 		return _curStocksTableModel;
 	}
 
-    virtual void definirCaissier(){}
+    inline virtual void definirCaissier()
+    {
+    }
 
-    virtual void definirManager(){}
+    inline virtual void definirManager()
+    {
+    }
 
-    virtual void definirGestionaireDesStocks(){}
+    inline virtual void definirGestionaireDesStocks()
+    {
+    }
 
-    virtual void definirMagasinier(){}
+    inline virtual void definirMagasinier()
+    {
+    }
 
-    virtual void definirPasDeRole(){}
+    inline virtual void definirPasDeRole()
+    {
+    }
 
     inline int getDBTableFieldColumnIndex(const QString &aDBTableColumnName)
     {
@@ -151,20 +161,31 @@ public:
 		return _allWindows;
 	}
 
+
 	bool SQL_UPDATE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(QSqlRecord &resultRecord_IN);
+
 
 	bool SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(QSqlRecord &resultRecord_IN_OUT);
 
+
 	bool SQL_DELETE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW();
+
 
 	inline static const QString & get_last_lister_selected_row_ID()
 	{
 		return _yerothTableView_FROM_WINDOWS_COMMONS_LAST_SELECTED_ROW__ID;
 	}
 
-	int get_INT_LastListerSelectedRow__ID();
+	inline const QString & getLastListerSelectedRow__ID()
+	{
+		return (0 == _yerothTableView_FROM_WINDOWS_COMMONS) ? YerothUtils::EMPTY_STRING :
+					_yerothTableView_FROM_WINDOWS_COMMONS->lastSelectedRow__ID();
+	}
 
-    const QString & getLastListerSelectedRow__ID();
+	inline int getLastListerSelectedRow__ID_AS_INTEGER()
+	{
+		return (getLastListerSelectedRow__ID().isEmpty()) ? -1 : getLastListerSelectedRow__ID().toInt();
+	}
 
 signals:
 
@@ -256,9 +277,19 @@ public slots:
     	 close();
     }
 
-    inline virtual void help(){}
+    inline virtual void help()
+    {
+    }
 
-    void resetTableViewHorizontalHeader_DEFAULT_ORDERING();
+    inline void resetTableViewHorizontalHeader_DEFAULT_ORDERING()
+    {
+//    	if (0 == _yerothTableView_FROM_WINDOWS_COMMONS)
+//    	{
+//    		return ;
+//    	}
+//
+//    	//TODO: (ACHEVER L'ALGORITHME).
+    }
 
 	inline virtual void setYerothTableViewLastPageNumberText(const QString &aLastPageNumberText)
 	{
@@ -304,16 +335,16 @@ protected slots:
 	}
 
 	/**
-	 * Ce 'slot' est suppose reinitialiser les chanps
+	 * Ce 'slot' est suppose reinitialiser les colones
 	 * du tableau de la base de donnees et, enfin,
 	 * actualiser la nouvelle vue du tableau.
 	 *
 	 * Exemple d'implementation standard dans la classe
 	 * 'YerothStocksWindow'.
 	 */
-	inline virtual void slot_reinitialiser_champs_db_visibles()
+	inline virtual void slot_reinitialiser_colones_db_visibles()
 	{
-		reinitialiser_champs_db_visibles();
+		reinitialiser_colones_db_visibles();
 	}
 
 	static int getDialogBox_LONGUEUR(unsigned int n);
@@ -326,7 +357,7 @@ protected slots:
 
 protected:
 
-	inline virtual void reinitialiser_champs_db_visibles()
+	inline virtual void reinitialiser_colones_db_visibles()
 	{
 	}
 
@@ -346,7 +377,9 @@ protected:
 
 	void mySetupUi(QMainWindow *aWindow);
 
-    virtual void setupShortcuts(){}
+    inline virtual void setupShortcuts()
+    {
+    }
 
     inline void setupShortcutActionMessageDaide(QAction &anAction) const
     {

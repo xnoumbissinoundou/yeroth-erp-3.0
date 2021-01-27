@@ -87,7 +87,7 @@ YerothERPClientsWindow::YerothERPClientsWindow()
 
     YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(_allWindows->CLIENTS);
 
-    reinitialiser_champs_db_visibles();
+    reinitialiser_colones_db_visibles();
 
     _curClientsTableModel = &_allWindows->getSqlTableModel_clients();
 
@@ -128,7 +128,7 @@ YerothERPClientsWindow::YerothERPClientsWindow()
 
 
     //Menu actions
-    connect(actionReinitialiserChampsDBVisible, SIGNAL(triggered()), this, SLOT(slot_reinitialiser_champs_db_visibles()));
+    connect(actionReinitialiserChampsDBVisible, SIGNAL(triggered()), this, SLOT(slot_reinitialiser_colones_db_visibles()));
 
     connect(actionChampsDBVisible, SIGNAL(triggered()), this, SLOT(selectionner_champs_db_visibles()));
 
@@ -176,7 +176,7 @@ YerothERPClientsWindow::~YerothERPClientsWindow()
 }
 
 
-void YerothERPClientsWindow::reinitialiser_champs_db_visibles()
+void YerothERPClientsWindow::reinitialiser_colones_db_visibles()
 {
 	_visibleDBColumnNameStrList.clear();
 
@@ -236,9 +236,9 @@ void YerothERPClientsWindow::set_filtrer_font()
 }
 
 
-void YerothERPClientsWindow::slot_reinitialiser_champs_db_visibles()
+void YerothERPClientsWindow::slot_reinitialiser_colones_db_visibles()
 {
-	reinitialiser_champs_db_visibles();
+	reinitialiser_colones_db_visibles();
 	resetTableViewHorizontalHeader_DEFAULT_ORDERING();
 	afficherClients();
 }
@@ -457,7 +457,7 @@ void YerothERPClientsWindow::supprimer_PLUSIEURS_Clients(YerothSqlTableModel &aC
 
 void YerothERPClientsWindow::supprimerCompteClient()
 {
-    if (get_INT_LastListerSelectedRow__ID() <= -1 ||
+    if (getLastListerSelectedRow__ID_AS_INTEGER() <= -1 ||
     	_curClientsTableModel->rowCount() <= 0)
     {
         YerothQMessageBox::information(this, QObject::trUtf8("supprimer"),

@@ -80,7 +80,7 @@ YerothERPFournisseursWindow::YerothERPFournisseursWindow()
 
     YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(_allWindows->FOURNISSEURS);
 
-    reinitialiser_champs_db_visibles();
+    reinitialiser_colones_db_visibles();
 
     _curFournisseursTableModel = &_allWindows->getSqlTableModel_fournisseurs();
 
@@ -122,7 +122,7 @@ YerothERPFournisseursWindow::YerothERPFournisseursWindow()
 
 
     //Menu actions
-    connect(actionReinitialiserChampsDBVisible, SIGNAL(triggered()), this, SLOT(slot_reinitialiser_champs_db_visibles()));
+    connect(actionReinitialiserChampsDBVisible, SIGNAL(triggered()), this, SLOT(slot_reinitialiser_colones_db_visibles()));
 
     connect(actionChampsDBVisible, SIGNAL(triggered()), this, SLOT(selectionner_champs_db_visibles()));
 
@@ -169,7 +169,7 @@ YerothERPFournisseursWindow::~YerothERPFournisseursWindow()
 }
 
 
-void YerothERPFournisseursWindow::reinitialiser_champs_db_visibles()
+void YerothERPFournisseursWindow::reinitialiser_colones_db_visibles()
 {
 	_visibleDBColumnNameStrList.clear();
 
@@ -228,9 +228,9 @@ void YerothERPFournisseursWindow::set_filtrer_font()
 }
 
 
-void YerothERPFournisseursWindow::slot_reinitialiser_champs_db_visibles()
+void YerothERPFournisseursWindow::slot_reinitialiser_colones_db_visibles()
 {
-	reinitialiser_champs_db_visibles();
+	reinitialiser_colones_db_visibles();
 	resetTableViewHorizontalHeader_DEFAULT_ORDERING();
 	afficherFournisseurs();
 }
@@ -327,7 +327,7 @@ void YerothERPFournisseursWindow::textChangedSearchLineEditsQCompleters()
 
 void YerothERPFournisseursWindow::private_payer_au_fournisseur()
 {
-    if (get_INT_LastListerSelectedRow__ID() > -1 && _curFournisseursTableModel->rowCount() > 0)
+    if (getLastListerSelectedRow__ID_AS_INTEGER() > -1 && _curFournisseursTableModel->rowCount() > 0)
     {
     	rendreInvisible();
 

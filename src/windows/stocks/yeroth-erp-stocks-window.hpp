@@ -133,7 +133,7 @@ private slots:
 
 protected:
 
-	virtual void reinitialiser_champs_db_visibles();
+	virtual void reinitialiser_colones_db_visibles();
 
     void contextMenuEvent(QContextMenuEvent *event);
 
@@ -145,7 +145,7 @@ protected:
 
 protected slots:
 
-    virtual void slot_reinitialiser_champs_db_visibles();
+    virtual void slot_reinitialiser_colones_db_visibles();
 
     virtual void textChangedSearchLineEditsQCompleters();
 

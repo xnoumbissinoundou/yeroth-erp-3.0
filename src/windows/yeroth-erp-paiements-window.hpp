@@ -129,7 +129,7 @@ public slots:
 
 protected slots:
 
-   	virtual void slot_reinitialiser_champs_db_visibles();
+   	virtual void slot_reinitialiser_colones_db_visibles();
 
 	void handleComboBoxClients_Typedepaiement_TextChanged(const QString &currentText);
 
@@ -157,7 +157,7 @@ protected slots:
 
 protected:
 
-	virtual void reinitialiser_champs_db_visibles();
+	virtual void reinitialiser_colones_db_visibles();
 
     void contextMenuEvent(QContextMenuEvent *event);
 

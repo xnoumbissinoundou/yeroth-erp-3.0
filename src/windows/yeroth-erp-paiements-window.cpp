@@ -105,7 +105,7 @@ YerothPaiementsWindow::YerothPaiementsWindow()
 
     YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(_allWindows->PAIEMENTS);
 
-    reinitialiser_champs_db_visibles();
+    reinitialiser_colones_db_visibles();
 
     textEdit_description->setYerothEnabled(false);
 
@@ -136,7 +136,7 @@ YerothPaiementsWindow::YerothPaiementsWindow()
     pushButton_retour_paiements->disable(this);
 
 
-    connect(actionReinitialiserChampsDBVisible, SIGNAL(triggered()), this, SLOT(slot_reinitialiser_champs_db_visibles()));
+    connect(actionReinitialiserChampsDBVisible, SIGNAL(triggered()), this, SLOT(slot_reinitialiser_colones_db_visibles()));
 
     connect(actionChampsDBVisible, SIGNAL(triggered()), this, SLOT(selectionner_champs_db_visibles()));
 
@@ -384,9 +384,9 @@ void YerothPaiementsWindow::set_filtrer_font()
 }
 
 
-void YerothPaiementsWindow::slot_reinitialiser_champs_db_visibles()
+void YerothPaiementsWindow::slot_reinitialiser_colones_db_visibles()
 {
-	reinitialiser_champs_db_visibles();
+	reinitialiser_colones_db_visibles();
 	resetTableViewHorizontalHeader_DEFAULT_ORDERING();
 	lister_les_elements_du_tableau();
 }
@@ -556,7 +556,7 @@ void YerothPaiementsWindow::textChangedSearchLineEditsQCompleters()
 }
 
 
-void YerothPaiementsWindow::reinitialiser_champs_db_visibles()
+void YerothPaiementsWindow::reinitialiser_colones_db_visibles()
 {
 	_visibleDBColumnNameStrList.clear();
 
