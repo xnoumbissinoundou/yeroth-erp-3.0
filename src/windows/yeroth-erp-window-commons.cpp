@@ -969,22 +969,9 @@ bool YerothWindowsCommons::imprimer_pdf_document()
 
 void YerothWindowsCommons::changer_utilisateur()
 {
-    if (YerothUtils::isEqualCaseInsensitive(YerothDatabase::QSQLITE, YerothERPConfig::_db_type))
-    {
-        YerothPOSUserManager *u = new YerothPOSUserManager(_allWindows);
-        u->set_prenom("Xavier");
-        u->set_nom("NOUMBISSI-NOUNDOU");
-        u->set_nom_utilisateur("xavierp");
-        u->set_localisation("Yaoundé");
-        u->set_nom_complet("Xavier NOUMBISSI-NOUNDOU");
-        _allWindows->setUser(u);
-    }
-    else
-    {
-        _allWindows->_changerUtilisateurDialog->setParent(this, Qt::Popup | Qt::Dialog);
-        _allWindows->_changerUtilisateurDialog->show();
-        _allWindows->_changerUtilisateurDialog->activateWindow();
-    }
+    _allWindows->_changerUtilisateurDialog->setParent(this, Qt::Popup | Qt::Dialog);
+    _allWindows->_changerUtilisateurDialog->show();
+    _allWindows->_changerUtilisateurDialog->activateWindow();
 }
 
 
