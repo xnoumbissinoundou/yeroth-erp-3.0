@@ -527,6 +527,7 @@ void YerothModifierWindow::ajouter_nouveau_re_approvisionnement_achat(double qua
 	nouveauAchatRecord.setValue(YerothDatabaseTableColumn::REFERENCE, lineEdit_reference_produit->text());
 	nouveauAchatRecord.setValue(YerothDatabaseTableColumn::DESIGNATION, lineEdit_designation->text());
 	nouveauAchatRecord.setValue(YerothDatabaseTableColumn::CATEGORIE, lineEdit_categorie_produit->text());
+	nouveauAchatRecord.setValue(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT, lineEdit_nom_departement_produit->text());
 
 	nouveauAchatRecord.setValue(YerothDatabaseTableColumn::ENREGISTREUR_STOCK, utilisateurCourrantNomComplet);
 	nouveauAchatRecord.setValue(YerothDatabaseTableColumn::QUANTITE_TOTALE, quantiteEnReApprovisionement);
@@ -659,6 +660,7 @@ void YerothModifierWindow::setupLineEdits()
     lineEdit_reference_produit->setYerothEnabled(false);
     lineEdit_designation->setYerothEnabled(false);
     lineEdit_nom_entreprise_fournisseur->setYerothEnabled(false);
+    lineEdit_nom_departement_produit->setYerothEnabled(false);
     lineEdit_categorie_produit->setYerothEnabled(false);
     lineEdit_stock_dalerte->setYerothEnabled(true);
     lineEdit_tva->setYerothEnabled(false);
@@ -874,6 +876,7 @@ void YerothModifierWindow::clear_all_fields()
 
     lineEdit_reference_produit->clearField();
     lineEdit_designation->clearField();
+    lineEdit_nom_departement_produit->clearField();
     lineEdit_categorie_produit->clearField();
     lineEdit_nom_entreprise_fournisseur->clear();
     lineEdit_stock_dalerte->clearField();
@@ -1249,6 +1252,7 @@ void YerothModifierWindow::showItem()
 
     dateEdit_date_peremption->setYerothEnabled(true);
     dateEdit_date_peremption->setMyDate(GET_DATE_FROM_STRING(date_peremption));
+    lineEdit_nom_departement_produit->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT));
     lineEdit_categorie_produit->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::CATEGORIE));
     lineEdit_localisation_produit->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::LOCALISATION_STOCK));
 
