@@ -327,6 +327,8 @@ void YerothCreerUnProgrammeDeFideliteClientsWindow::rendreVisible(YerothSqlTable
 {
     _curStocksTableModel = stocksTableModel;
 
+    populateComboBoxes();
+
     check_fields();
 
     setVisible(true);
