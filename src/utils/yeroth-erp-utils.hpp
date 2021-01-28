@@ -479,7 +479,7 @@ public:
 
 	inline static QString YEROTH_REPLACE_ALL_EMPTYSPACES_WITH_UNDERSCORE_CHARACTER(const QString &aStr_in)
 	{
-		return QString(aStr_in).replace(YerothUtils::EMPTY_SPACE_REGEXP, "_");
+		return QString(aStr_in).replace(YerothUtils::EMPTY_SPACE_REGEXP, YerothUtils::YEROTH_ERP_3_0_DASH_CHAR);
 	}
 
 	inline static QString getTvaString()
@@ -708,6 +708,10 @@ public:
 	static const QString STRING_FRENCH_DIVERS;
 
 	static const QString EMPTY_STRING;
+
+	static const QChar YEROTH_ERP_3_0_STAR_CHAR;
+
+	static const QChar YEROTH_ERP_3_0_DASH_CHAR;
 
 	static const QChar SLASH_CHAR;
 

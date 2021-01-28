@@ -135,8 +135,27 @@ bool YerothClientsDetailWindow::generer_la_carte_de_fidelite_du_client()
     	texDocument.replace("YEROTHCHEMINCOMPLETIMAGECOMPTECLIENT", "");
     }
 
-
     emit SIGNAL_INCREMENT_PROGRESS_BAR(12);
+
+
+    QStringList curClientGroup_COPY(_curClientGroups);
+
+    if (curClientGroup_COPY.size() < 2)
+    {
+    	uint to_create_empty_strings = 2 - curClientGroup_COPY.size();
+
+    	for (uint j = 0; j < to_create_empty_strings; ++j)
+    	{
+    		curClientGroup_COPY.append(YerothUtils::EMPTY_STRING);
+    	}
+    }
+
+
+    texDocument.replace("YEROTHNOMDUPROGRAMMEDEFIDELITEUN",
+    		YerothUtils::LATEX_IN_OUT_handleForeignAccents(_curClientGroups.at(0).toLower().trimmed()));
+
+    texDocument.replace("YEROTHNOMDUPROGRAMMEDEFIDELITETROIS",
+    		YerothUtils::LATEX_IN_OUT_handleForeignAccents(_curClientGroups.at(1).toLower().trimmed()));
 
 
     YerothInfoEntreprise & infoEntreprise = YerothUtils::getAllWindows()->getInfoEntreprise();
@@ -613,6 +632,15 @@ void YerothClientsDetailWindow::showClientDetail()
 
 	_allWindows->_clientsWindow->
 		SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
+
+
+    QString groupes_du_client(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::GROUPES_DU_CLIENT));
+
+
+    _curClientGroups.clear();
+
+    _curClientGroups.append(groupes_du_client.split(YerothUtils::YEROTH_ERP_3_0_STAR_CHAR));
+
 
 	lineEdit_clients_details_reference_client->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE_CLIENT));
 

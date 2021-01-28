@@ -135,7 +135,7 @@ void YerothGroupesDunClientWindow::afficher_tous_les_groupes_du_client()
     QString groupes_du_client(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::GROUPES_DU_CLIENT));
 
 
-    QStringList allClientGroups(groupes_du_client.split("*"));
+    QStringList allClientGroups(groupes_du_client.split(YerothUtils::YEROTH_ERP_3_0_STAR_CHAR));
 
     QString current_group_db_ID;
 

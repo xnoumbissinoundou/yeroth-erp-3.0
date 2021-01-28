@@ -404,6 +404,10 @@ const QString YerothUtils::STRING_FRENCH_DIVERS("DIVERS");
 
 const QString YerothUtils::EMPTY_STRING("");
 
+const QChar YerothUtils::YEROTH_ERP_3_0_STAR_CHAR('*');
+
+const QChar YerothUtils::YEROTH_ERP_3_0_DASH_CHAR('_');
+
 const QChar YerothUtils::SLASH_CHAR('/');
 
 const QRegExp YerothUtils::PasswordRegExp("");
@@ -2733,6 +2737,11 @@ QString YerothUtils::colorLatexTextInput(const QString &colorSpec,
 
 QString YerothUtils::LATEX_IN_OUT_handleForeignAccents(const QString &texText_in)
 {
+	if (texText_in.isEmpty())
+	{
+		return YerothUtils::EMPTY_STRING;
+	}
+
     QString tempText(texText_in);
     tempText = tempText.isEmpty() ? "\"\"" : tempText.replace(EMPTY_SPACE_REGEXP, "\\ ");
 
