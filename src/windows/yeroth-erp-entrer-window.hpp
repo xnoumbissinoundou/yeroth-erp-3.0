@@ -147,7 +147,7 @@ private slots:
 
 	inline void handle_departement_de_produits_changement(const QString &currentProductDepartment)
 	{
-		setupLineEditsQCompleters();
+		setupLineEditsQCompleters__CATEGORIE();
 	}
 
 	void handle_enregistrer();
@@ -210,6 +210,8 @@ private:
     void setupLineEdits();
 
     void setupLineEditsQCompleters__FOR_STOCK_INVENTORY();
+
+    void setupLineEditsQCompleters__CATEGORIE();
 
     void setupLineEditsQCompleters();
 

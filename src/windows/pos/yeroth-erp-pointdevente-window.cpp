@@ -311,7 +311,7 @@ void YerothPointDeVenteWindow::handle_effectuer_vente_en_gros(int state)
 
 	if (0 == articleVenteInfo)
 	{
-		QDEBUG_STRINGS_OUTPUT_2("YerothPointDeVenteWindow::handle_effectuer_vente_en_gros(int)",
+		QDEBUG_STRING_OUTPUT_2("YerothPointDeVenteWindow::handle_effectuer_vente_en_gros(int)",
 				QString("invalid YerothArticleVenteInfo (NULL) !"));
 
 		return ;

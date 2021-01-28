@@ -839,7 +839,7 @@ void YerothAdminWindow::handle_changer_commande_MAINTENANCE_OPERATION(const QStr
 	}
 	else
 	{
-		QDEBUG_STRINGS_OUTPUT_1(" ## INVALID COMMAND FOR MAINTENANCE ##");
+		QDEBUG_STRING_OUTPUT_1(" ## INVALID COMMAND FOR MAINTENANCE ##");
 	}
 }
 
@@ -877,7 +877,7 @@ void YerothAdminWindow::handle_changer_commande_MAINTENANCE_SUJET(const QString 
 	}
 	else
 	{
-		QDEBUG_STRINGS_OUTPUT_1(" ## INVALID COMMAND FOR MAINTENANCE ##");
+		QDEBUG_STRING_OUTPUT_1(" ## INVALID COMMAND FOR MAINTENANCE ##");
 	}
 }
 

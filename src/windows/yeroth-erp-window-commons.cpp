@@ -585,7 +585,7 @@ void YerothWindowsCommons::entrer()
 void YerothWindowsCommons::paiements()
 {
 	rendreInvisible();
-    _allWindows->_historiquePaiementsWindow->rendreVisible(_curStocksTableModel);
+    _allWindows->_paiementsWindow->rendreVisible(_curStocksTableModel);
 }
 
 
@@ -1076,7 +1076,7 @@ void YerothWindowsCommons::setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(const QM
 		}
 		else
 		{
-			QDEBUG_STRINGS_OUTPUT_1("couldn't create and set a default QMODELINDEX !");
+			QDEBUG_STRING_OUTPUT_1("couldn't create and set a default QMODELINDEX !");
 		}
 	}
 

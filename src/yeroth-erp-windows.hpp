@@ -477,7 +477,7 @@ public:
 	YerothMarchandisesWindow 							*_marchandisesWindow;
 	YerothConfigurationComptabiliteWindow				*_configurationComptabiliteWindow;
 	YerothAlertesWindow									*_listerAlertesWindow;
-	YerothPaiementsWindow								*_historiquePaiementsWindow;
+	YerothPaiementsWindow								*_paiementsWindow;
 	YerothVentesWindow									*_ventesWindow;
 	YerothModifierWindow 								*_modifierWindow;
 	YerothSortirWindow 									*_sortirWindow;

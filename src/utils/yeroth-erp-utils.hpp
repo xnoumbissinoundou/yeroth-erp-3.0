@@ -273,7 +273,7 @@ public:
 		return tableModelRawHeaders.indexOf(databaseTableColumnRAW_NAME);
 	}
 
-	static void createTableModelHeaders(QSqlTableModel 		&tableModel,
+	static void createTableModelHeaders(YerothSqlTableModel &tableModel,
 			   	   	   	   	   	   	    QStandardItemModel 	&stdItemModel,
 			   	   	   	   	   	   	    QStringList			&tableModelHeaders,
 										QStringList			&tableModelRawHeaders_IN_OUT);
@@ -1031,13 +1031,13 @@ YerothQMessageBox::information(this, QObject::trUtf8(DIALOG_BOX_TITLE), msg); }
 
 #define Q_MANUAL_DEBUGGING_STRINGS_OUTPUT_TOKEN(X) YerothUtils::qDebugOutputTokenStrings_DURING_MANUAL_DEBUGGING(X)
 
-#define QDEBUG_STRINGS_OUTPUT_1(X) YerothUtils::qDebugStrings(X, YerothUtils::EMPTY_STRING)
+#define QDEBUG_STRING_OUTPUT_1(X) YerothUtils::qDebugStrings(X, YerothUtils::EMPTY_STRING)
 
-#define QDEBUG_STRINGS_OUTPUT_2_N(X, Y) YerothUtils::qDebugStrings(X, QString::number(Y))
+#define QDEBUG_STRING_OUTPUT_2_N(X, Y) YerothUtils::qDebugStrings(X, QString::number(Y))
 
-#define QDEBUG_STRINGS_OUTPUT_2(X, Y) YerothUtils::qDebugStrings(X, Y)
+#define QDEBUG_STRING_OUTPUT_2(X, Y) YerothUtils::qDebugStrings(X, Y)
 
-#define QDEBUG_STRINGS_OUTPUT_QSTRINGLIST(X, Y) YerothUtils::qDebugStrings(X, Y)
+#define QDEBUG_QSTRINGLIST_OUTPUT(X, Y) YerothUtils::qDebugStrings(X, Y)
 
 #define EXPR_IS_POSITIV(X)	(0 <= X)
 

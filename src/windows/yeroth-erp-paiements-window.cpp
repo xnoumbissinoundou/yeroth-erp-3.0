@@ -855,6 +855,10 @@ void YerothPaiementsWindow::lister_les_elements_du_tableau(YerothSqlTableModel &
     lineEdit_paiements_nombre_paiements->setText(GET_NUM_STRING(curPaiementsTableModelRowCount));
     lineEdit_paiements_total->setText(GET_CURRENCY_STRING_NUM(montant_total));
 
+    tableView_paiements->queryYerothTableViewCurrentPageContentRow(historiquePaiementsTableModel);
+
+    tableView_show_or_hide_columns(*tableView_paiements);
+
     if (tableView_paiements->rowCount() > 0)
     {
         tabWidget_historique_paiements->setTabEnabled(AfficherPaiementAuDetail, true);
@@ -863,10 +867,6 @@ void YerothPaiementsWindow::lister_les_elements_du_tableau(YerothSqlTableModel &
     {
         tabWidget_historique_paiements->setTabEnabled(AfficherPaiementAuDetail, false);
     }
-
-    tableView_paiements->queryYerothTableViewCurrentPageContentRow(historiquePaiementsTableModel);
-
-    tableView_show_or_hide_columns(*tableView_paiements);
 }
 
 
@@ -901,7 +901,7 @@ void YerothPaiementsWindow::afficher_paiements_detail()
 
     QSqlRecord record;
 
-    _allWindows->_historiquePaiementsWindow->
+    _allWindows->_paiementsWindow->
 			SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
 
     textEdit_description->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOTES));

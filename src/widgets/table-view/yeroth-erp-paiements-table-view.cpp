@@ -58,7 +58,34 @@ void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableM
 										 *_tableModelHeaders,
 										 _tableModelRawHeaders_IN_OUT);
 
+    QString compte_client_user_view_string
+		= YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::COMPTE_CLIENT);
+
+    uint index_of_compte_client_header =
+    	_tableModelRawHeaders_IN_OUT.indexOf(YerothDatabaseTableColumn::COMPTE_CLIENT);
+
+    _tableModelHeaders->replace(index_of_compte_client_header,
+    						   	QObject::trUtf8("%1 (après)")
+    								.arg(compte_client_user_view_string));
+
+//    QDEBUG_QSTRINGLIST_OUTPUT("_tableModelHeaders", *_tableModelHeaders);
+
+    for (unsigned i = 0; i < tableModel.columnCount(); ++i)
+    {
+    	if (YerothUtils::isEqualCaseInsensitive(tableModel.record(0).fieldName(i),
+    											YerothDatabaseTableColumn::COMPTE_CLIENT))
+    	{
+            _stdItemModel->setHeaderData(i,
+            						     Qt::Horizontal,
+										 QObject::trUtf8("%1 (après)")
+        								    .arg(compte_client_user_view_string));
+            break;
+    	}
+    }
+
+
     _stdItemModel->setColumnCount(_tableModelRawHeaders_IN_OUT.size());
+
 
     if (!s)
     {
@@ -189,11 +216,11 @@ void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableM
 
     static YerothERPWindows *curAllWindows = YerothUtils::getAllWindows();
 
-    YEROTH_SET_LAST_TABLE_VIEW_SELECTED_ROW_ID(curAllWindows, curAllWindows->_historiquePaiementsWindow)
+    YEROTH_SET_LAST_TABLE_VIEW_SELECTED_ROW_ID(curAllWindows, curAllWindows->_paiementsWindow)
 
     resizeColumnsToContents();
 
-    curAllWindows->_historiquePaiementsWindow->handle_some_actions_tools_enabled();
+    curAllWindows->_paiementsWindow->handle_some_actions_tools_enabled();
 }
 
 
@@ -214,7 +241,7 @@ void YerothERPPaiementsTableView::selectionChanged (const QItemSelection & selec
 
     	for (uint j = 0; j < selectedIndexes.size(); ++j)
     	{
-    		curAllWindows->_historiquePaiementsWindow->
+    		curAllWindows->_paiementsWindow->
     				getQModelIndex_dbID_from_MODEL_INDEX(selectedIndexes.at(j),
     													 db_ID_in_out);
 

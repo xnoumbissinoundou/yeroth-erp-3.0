@@ -2626,7 +2626,7 @@ Transférer</string>
      <property name="geometry">
       <rect>
        <x>7</x>
-       <y>125</y>
+       <y>173</y>
        <width>171</width>
        <height>21</height>
       </rect>
@@ -3067,7 +3067,7 @@ Transférer</string>
      <property name="geometry">
       <rect>
        <x>7</x>
-       <y>149</y>
+       <y>197</y>
        <width>171</width>
        <height>21</height>
       </rect>
@@ -3093,7 +3093,7 @@ Transférer</string>
      <property name="geometry">
       <rect>
        <x>183</x>
-       <y>150</y>
+       <y>198</y>
        <width>205</width>
        <height>21</height>
       </rect>
@@ -3553,7 +3553,7 @@ Transférer</string>
      <property name="geometry">
       <rect>
        <x>7</x>
-       <y>197</y>
+       <y>126</y>
        <width>171</width>
        <height>21</height>
       </rect>
@@ -3957,7 +3957,7 @@ Transférer</string>
      <property name="geometry">
       <rect>
        <x>7</x>
-       <y>173</y>
+       <y>221</y>
        <width>171</width>
        <height>21</height>
       </rect>
@@ -5348,7 +5348,7 @@ Transférer</string>
      <property name="geometry">
       <rect>
        <x>183</x>
-       <y>126</y>
+       <y>174</y>
        <width>205</width>
        <height>21</height>
       </rect>
@@ -6787,7 +6787,7 @@ Transférer</string>
      <property name="geometry">
       <rect>
        <x>183</x>
-       <y>174</y>
+       <y>222</y>
        <width>205</width>
        <height>21</height>
       </rect>
@@ -13314,7 +13314,7 @@ background-color: rgb(0, 0, 0); </string>
      <property name="geometry">
       <rect>
        <x>183</x>
-       <y>222</y>
+       <y>150</y>
        <width>205</width>
        <height>21</height>
       </rect>
@@ -13774,7 +13774,7 @@ background-color: rgb(0, 0, 0); </string>
      <property name="geometry">
       <rect>
        <x>7</x>
-       <y>221</y>
+       <y>149</y>
        <width>171</width>
        <height>21</height>
       </rect>
@@ -13800,7 +13800,7 @@ background-color: rgb(0, 0, 0); </string>
      <property name="geometry">
       <rect>
        <x>183</x>
-       <y>198</y>
+       <y>126</y>
        <width>205</width>
        <height>21</height>
       </rect>
@@ -16693,26 +16693,38 @@ background-color: rgb(0, 0, 0); </string>
   </customwidget>
  </customwidgets>
  <tabstops>
+  <tabstop>comboBox_nom_departement_produit</tabstop>
+  <tabstop>lineEdit_categorie_produit</tabstop>
   <tabstop>lineEdit_reference_produit</tabstop>
   <tabstop>lineEdit_designation</tabstop>
   <tabstop>lineEdit_nom_entreprise_fournisseur</tabstop>
   <tabstop>doubleSpinBox_lots_entrant</tabstop>
+  <tabstop>lineEdit_quantite_par_lot</tabstop>
   <tabstop>lineEdit_prix_dachat</tabstop>
+  <tabstop>lineEdit_service_montant_total_vente</tabstop>
   <tabstop>lineEdit_prix_vente</tabstop>
+  <tabstop>lineEdit_prix_vente_en_gros</tabstop>
   <tabstop>dateEdit_date_peremption</tabstop>
   <tabstop>lineEdit_localisation_produit</tabstop>
   <tabstop>lineEdit_stock_dalerte</tabstop>
   <tabstop>lineEdit_reference_recu_dachat</tabstop>
-  <tabstop>lineEdit_quantite_totale</tabstop>
-  <tabstop>lineEdit_tva</tabstop>
-  <tabstop>pushButton_supprimer_limage_du_stock</tabstop>
-  <tabstop>pushButton_selectionner_image</tabstop>
-  <tabstop>pushButton_annuler</tabstop>
-  <tabstop>pushButton_menu_principal</tabstop>
-  <tabstop>pushButton_afficher_stocks</tabstop>
-  <tabstop>pushButton_sortir</tabstop>
-  <tabstop>checkBox_tva</tabstop>
   <tabstop>textEdit_description</tabstop>
+  <tabstop>pushButton_sortir</tabstop>
+  <tabstop>pushButton_menu_principal</tabstop>
+  <tabstop>pushButton_supprimer_limage_du_stock</tabstop>
+  <tabstop>pushButton_afficher_stocks</tabstop>
+  <tabstop>lineEdit_pourcentage_prix_dachat_prix_de_vente</tabstop>
+  <tabstop>pushButton_annuler</tabstop>
+  <tabstop>lineEdit_pourcentage_prix_dachat_prix_de_vente_en_gros</tabstop>
+  <tabstop>radioButton_AUCUN_SERVICE</tabstop>
+  <tabstop>radioButton_SERVICE_VENTE_CLIENT</tabstop>
+  <tabstop>radioButton_SERVICE_ACHAT_FOURNISSEUR</tabstop>
+  <tabstop>checkBox_tva</tabstop>
+  <tabstop>lineEdit_tva</tabstop>
+  <tabstop>lineEdit_quantite_totale</tabstop>
+  <tabstop>checkBox_achat</tabstop>
+  <tabstop>pushButton_selectionner_image</tabstop>
+  <tabstop>pushButton_enregistrer_produit</tabstop>
  </tabstops>
  <resources>
   <include location="../yeroth-erp-3-0.qrc"/>

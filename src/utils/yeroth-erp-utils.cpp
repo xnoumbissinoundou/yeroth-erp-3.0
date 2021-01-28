@@ -1916,7 +1916,7 @@ void YerothUtils::getCenterPosition(unsigned desktopWidth,
 }
 
 
-void YerothUtils::createTableModelHeaders(QSqlTableModel 		&tableModel,
+void YerothUtils::createTableModelHeaders(YerothSqlTableModel 	&tableModel,
         								  QStandardItemModel 	&stdItemModel,
 										  QStringList 			&tableModelHeaders,
 										  QStringList			&tableModelRawHeaders_IN_OUT)

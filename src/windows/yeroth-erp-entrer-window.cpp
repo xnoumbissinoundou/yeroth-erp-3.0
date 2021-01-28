@@ -198,8 +198,6 @@ void YerothEntrerWindow::setupLineEdits()
     lineEdit_prix_vente_en_gros->setValidator(&YerothUtils::DoubleValidator);
 
     calculate_and_display_benefit_buying_price_percentage();
-
-    lineEdit_reference_produit->setFocus();
 }
 
 
@@ -266,18 +264,28 @@ void YerothEntrerWindow::setupLineEditsQCompleters__FOR_STOCK_INVENTORY()
 }
 
 
-void YerothEntrerWindow::setupLineEditsQCompleters()
+void YerothEntrerWindow::setupLineEditsQCompleters__CATEGORIE()
 {
-    setupLineEditsQCompleters__FOR_STOCK_INVENTORY();
-
-    QString departement_de_produits_choisi = comboBox_nom_departement_produit->currentText();
+	QString departement_de_produits_choisi = comboBox_nom_departement_produit->currentText();
 
 	QString aConditionStr(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,
 													 departement_de_produits_choisi));
 
+	lineEdit_categorie_produit->clearField();
+
 	lineEdit_categorie_produit->setupMyStaticQCompleter(_allWindows->CATEGORIES,
 														YerothDatabaseTableColumn::NOM_CATEGORIE,
 														aConditionStr);
+
+	lineEdit_categorie_produit->checkField();
+}
+
+
+void YerothEntrerWindow::setupLineEditsQCompleters()
+{
+    setupLineEditsQCompleters__FOR_STOCK_INVENTORY();
+
+    setupLineEditsQCompleters__CATEGORIE();
 }
 
 
@@ -286,6 +294,8 @@ void YerothEntrerWindow::populateEntrerUnStock_OU_ServiceComboBoxes()
 	comboBox_nom_departement_produit->
 		populateComboBoxRawString(_allWindows->DEPARTEMENTS_PRODUITS,
 								  YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT);
+
+	comboBox_nom_departement_produit->setFocus();
 }
 
 
@@ -1312,14 +1322,10 @@ void YerothEntrerWindow::rendreVisible(YerothSqlTableModel *stocksTableModel,
             check_fields(true);
 
             showItem(marchandisesTableModel);
-
-            lineEdit_reference_produit->clearFocus();
         }
         else
         {
         	check_fields(true);
-
-            lineEdit_reference_produit->setFocus();
         }
     }
 
@@ -1407,6 +1413,8 @@ bool YerothEntrerWindow::handle_stocks_vendu_table(int stockID,
         record.setValue(YerothDatabaseTableColumn::REFERENCE, aServiceInfo.reference);
 
         record.setValue(YerothDatabaseTableColumn::DESIGNATION, aServiceInfo.designation);
+
+        record.setValue(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT, aServiceInfo.nom_departement_produit);
 
         record.setValue(YerothDatabaseTableColumn::CATEGORIE, aServiceInfo.nom_categorie);
 
