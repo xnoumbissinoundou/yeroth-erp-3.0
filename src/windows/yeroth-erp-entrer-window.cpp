@@ -854,22 +854,41 @@ bool YerothEntrerWindow::check_fields_mandatory_buying()
 {
 	bool prix_dachat = true;
 
+	set_achat_checkBox_elements_visibility();
+
 	if (checkBox_achat->isChecked())
 	{
+		prix_dachat = lineEdit_prix_dachat->checkField();
+	}
+
+    return prix_dachat;
+}
+
+
+void YerothEntrerWindow::set_achat_checkBox_elements_visibility()
+{
+	if (checkBox_achat->isChecked())
+	{
+		label_prix_dachat->setVisible(true);
+
+		lineEdit_prix_vente->setFixedWidth(104);
+		lineEdit_prix_vente_en_gros->setFixedWidth(104);
+
 		lineEdit_prix_dachat->setVisible(true);
 		lineEdit_pourcentage_prix_dachat_prix_de_vente->setVisible(true);
 		lineEdit_pourcentage_prix_dachat_prix_de_vente_en_gros->setVisible(true);
-		prix_dachat = lineEdit_prix_dachat->checkField();
 	}
 	else
 	{
-		lineEdit_prix_dachat->clearField();
+		label_prix_dachat->setVisible(false);
+
+		lineEdit_prix_vente->setFixedWidth(205);
+		lineEdit_prix_vente_en_gros->setFixedWidth(205);
+
 		lineEdit_prix_dachat->setVisible(false);
 		lineEdit_pourcentage_prix_dachat_prix_de_vente->setVisible(false);
 		lineEdit_pourcentage_prix_dachat_prix_de_vente_en_gros->setVisible(false);
 	}
-
-    return prix_dachat;
 }
 
 
@@ -1335,18 +1354,7 @@ void YerothEntrerWindow::rendreVisible(YerothSqlTableModel *stocksTableModel,
 
 void YerothEntrerWindow::handle_achat_checkBox(int aState)
 {
-	if (checkBox_achat->isChecked())
-	{
-		lineEdit_prix_dachat->setVisible(true);
-		lineEdit_pourcentage_prix_dachat_prix_de_vente->setVisible(true);
-		lineEdit_pourcentage_prix_dachat_prix_de_vente_en_gros->setVisible(true);
-	}
-	else
-	{
-		lineEdit_prix_dachat->setVisible(false);
-		lineEdit_pourcentage_prix_dachat_prix_de_vente->setVisible(false);
-		lineEdit_pourcentage_prix_dachat_prix_de_vente_en_gros->setVisible(false);
-	}
+	set_achat_checkBox_elements_visibility();
 
 	lineEdit_pourcentage_prix_dachat_prix_de_vente->setText("0.00 %");
 	lineEdit_pourcentage_prix_dachat_prix_de_vente_en_gros->setText("0.00 %");

@@ -188,6 +188,8 @@ private slots:
 
 private:
 
+	void set_achat_checkBox_elements_visibility();
+
 	inline double get_prix_vente_en_gros()
 	{
 		return !lineEdit_prix_vente_en_gros->isEmpty() ?
