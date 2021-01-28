@@ -135,27 +135,12 @@ bool YerothClientsDetailWindow::generer_la_carte_de_fidelite_du_client()
     	texDocument.replace("YEROTHCHEMINCOMPLETIMAGECOMPTECLIENT", "");
     }
 
+
     emit SIGNAL_INCREMENT_PROGRESS_BAR(12);
-
-
-    QStringList curClientGroup_COPY(_curClientGroups);
-
-    if (curClientGroup_COPY.size() < 2)
-    {
-    	uint to_create_empty_strings = 2 - curClientGroup_COPY.size();
-
-    	for (uint j = 0; j < to_create_empty_strings; ++j)
-    	{
-    		curClientGroup_COPY.append(YerothUtils::EMPTY_STRING);
-    	}
-    }
 
 
     texDocument.replace("YEROTHNOMDUPROGRAMMEDEFIDELITEUN",
     		YerothUtils::LATEX_IN_OUT_handleForeignAccents(_curClientGroups.at(0).toLower().trimmed()));
-
-    texDocument.replace("YEROTHNOMDUPROGRAMMEDEFIDELITETROIS",
-    		YerothUtils::LATEX_IN_OUT_handleForeignAccents(_curClientGroups.at(1).toLower().trimmed()));
 
 
     YerothInfoEntreprise & infoEntreprise = YerothUtils::getAllWindows()->getInfoEntreprise();
