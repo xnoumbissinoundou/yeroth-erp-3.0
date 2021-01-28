@@ -5469,7 +5469,7 @@ stock (service)</string>
      <property name="geometry">
       <rect>
        <x>5</x>
-       <y>202</y>
+       <y>227</y>
        <width>173</width>
        <height>21</height>
       </rect>
@@ -6889,7 +6889,7 @@ stock (service)</string>
      <property name="geometry">
       <rect>
        <x>5</x>
-       <y>154</y>
+       <y>179</y>
        <width>173</width>
        <height>21</height>
       </rect>
@@ -9702,7 +9702,7 @@ stock (service)</string>
      <property name="geometry">
       <rect>
        <x>5</x>
-       <y>178</y>
+       <y>202</y>
        <width>173</width>
        <height>21</height>
       </rect>
@@ -10649,7 +10649,7 @@ stock (service)</string>
      <property name="geometry">
       <rect>
        <x>5</x>
-       <y>251</y>
+       <y>275</y>
        <width>173</width>
        <height>21</height>
       </rect>
@@ -12448,7 +12448,7 @@ stock (service)</string>
      <property name="geometry">
       <rect>
        <x>5</x>
-       <y>226</y>
+       <y>250</y>
        <width>173</width>
        <height>21</height>
       </rect>
