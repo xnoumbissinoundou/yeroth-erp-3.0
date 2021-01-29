@@ -58,6 +58,11 @@ public:
 		return _database.driver();
 	}
 
+	inline bool roolback()
+	{
+		return _database.rollback();
+	}
+
 	inline bool commit()
 	{
 		return _database.commit();

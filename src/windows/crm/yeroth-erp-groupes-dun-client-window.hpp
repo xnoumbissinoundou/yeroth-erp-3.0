@@ -132,7 +132,7 @@ private:
 
     QString					_curClient_NOM_ENTREPRISE;
 
-    int						_curClientDBID;
+    QString					_curClientDBID;
 };
 
 #endif /* SRC_WINDOWS_YEROTH_ERP_GROUPE_DUN_CLIENT_WINDOW_HPP_ */

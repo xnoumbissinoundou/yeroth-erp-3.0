@@ -158,7 +158,96 @@ void YerothGroupesDunClientWindow::executer_ajouter_appartenance(const QString &
 	if (membres_du_groupe_db_ID_LIST.size() >= maximum_de_membres)
 	{
 		 YerothQMessageBox::information(this, QObject::tr("ajouter"),
-		           QObject::trUtf8("Le groupe '%1' a déjà atteint son nombre maximum de membres !"));
+		           QObject::trUtf8("Le groupe '%1' a déjà atteint son nombre maximum de membres !")
+		 	 	 	 	 	 	 .arg(un_groupe_de_clients));
+
+		return ;
+	}
+
+
+	if (YerothUtils::APPEND_NEW_ELEMENT_TO_STAR_SEPARATED_DB_STRING(_curClientDBID,
+																	membres_du_groupe_db_ID))
+	{
+
+		QString INSERT_UPDATE_CLIENT_WITHIN_GROUP(QString("UPDATE %1 SET %2='%3' WHERE %4='%5'")
+													.arg(_allWindows->GROUPES_DE_CLIENTS,
+														 YerothDatabaseTableColumn::MEMBRES_DU_GROUPE_db_ID,
+														 membres_du_groupe_db_ID,
+														 YerothDatabaseTableColumn::DESIGNATION,
+														 un_groupe_de_clients));
+
+		bool insert_update_success = YerothUtils::execQuery(INSERT_UPDATE_CLIENT_WITHIN_GROUP);
+
+//		QDEBUG_STRING_OUTPUT_2("insert_update_success - 1", BOOL_TO_STRING(insert_update_success));
+
+		if (!insert_update_success)
+		{
+			YerothQMessageBox::information(this, QObject::tr("ajouter"),
+					QObject::trUtf8("Le client '%1' n'a pas pu être ajouté "
+							"dans le  groupe de clients '%2' !")
+			.arg(_curClient_NOM_ENTREPRISE,
+					un_groupe_de_clients));
+
+			return ;
+		}
+	}
+
+	QSqlRecord record;
+
+	_allWindows->_clientsWindow->
+		SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
+
+	QString groupes_du_client = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::GROUPES_DU_CLIENT);
+
+	bool update_DB_GROUPES_DU_CLIENT_TABLE =
+			YerothUtils::APPEND_NEW_ELEMENT_TO_STAR_SEPARATED_DB_STRING(un_groupe_de_clients,
+																		groupes_du_client);
+
+	QString groupes_du_client_id =
+			GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::GROUPES_DU_CLIENT_ID);
+
+	QString un_groupe_de_clients_db_ID =
+			GET_SQL_RECORD_DATA(aClientGroupRecordInfo, YerothDatabaseTableColumn::ID);
+
+
+	bool update_groupes_du_client_id =
+			YerothUtils::APPEND_NEW_ELEMENT_TO_STAR_SEPARATED_DB_STRING(un_groupe_de_clients_db_ID,
+																		groupes_du_client_id);
+
+	update_DB_GROUPES_DU_CLIENT_TABLE =
+			update_DB_GROUPES_DU_CLIENT_TABLE || update_groupes_du_client_id;
+
+
+	if (! update_DB_GROUPES_DU_CLIENT_TABLE)
+	{
+		 YerothQMessageBox::information(this, QObject::tr("ajouter"),
+		           QObject::trUtf8("Le client '%1' est déjà membre du groupe de clients '%2' !")
+		 	 	 	 	 	 .arg(_curClient_NOM_ENTREPRISE,
+		 	 	 	 	 		  un_groupe_de_clients));
+		 return ;
+	}
+
+
+	QString UPDATE_CLIENT_GROUP_INFORMATION(QString("UPDATE %1 SET %2='%3', %4='%5' WHERE %6='%7'")
+												.arg(_allWindows->CLIENTS,
+													 YerothDatabaseTableColumn::GROUPES_DU_CLIENT,
+													 groupes_du_client,
+													 YerothDatabaseTableColumn::GROUPES_DU_CLIENT_ID,
+													 groupes_du_client_id,
+													 YerothDatabaseTableColumn::ID,
+													 _curClientDBID));
+
+	bool update_client_group_success = YerothUtils::execQuery(UPDATE_CLIENT_GROUP_INFORMATION);
+
+	if (!update_client_group_success)
+	{
+		YerothQMessageBox::information(this, QObject::tr("ajouter"),
+				QObject::trUtf8("Le client '%1' n'a pas pu être ajouté "
+								"dans le  groupe de clients '%2' !")
+						.arg(_curClient_NOM_ENTREPRISE,
+							 un_groupe_de_clients));
+
+		YEROTH_ERP_3_0_ROLLBACK_DATABASE_TRANSACTION;
 
 		return ;
 	}
@@ -170,12 +259,10 @@ void YerothGroupesDunClientWindow::executer_ajouter_appartenance(const QString &
 										 QString::number(maximum_de_membres));
 
 
-//	membres_du_groupe_db_ID.append(QString("%1%2")
-//										.arg(YerothUtils::STAR_CHAR,
-//											 _curClientDBID));
+	lineEdit_groupes_dun_client_nombre_de_groupes->setText(QString::number(tableWidget_groupes_dun_client->rowCount()));
 
 
-	 YerothQMessageBox::information(this, QObject::tr("ajouter"),
+	YerothQMessageBox::information(this, QObject::tr("ajouter"),
 	           QObject::trUtf8("Le client '%1' a été ajouté dans le  groupe de clients '%2' !")
 	 	 	 	 	 	 .arg(_curClient_NOM_ENTREPRISE,
 	 	 	 	 	 		  un_groupe_de_clients));
@@ -217,7 +304,7 @@ void YerothGroupesDunClientWindow::afficher_tous_les_groupes_du_client()
 
 	_curClient_NOM_ENTREPRISE = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE);
 
-    _curClientDBID = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ID).toInt();
+    _curClientDBID = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ID);
 
     QString groupes_du_client(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::GROUPES_DU_CLIENT));
 

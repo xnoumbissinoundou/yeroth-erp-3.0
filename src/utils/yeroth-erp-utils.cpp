@@ -961,12 +961,21 @@ bool YerothUtils::GZIP_YEROTH_FILE(const QString &program_working_directory_full
 }
 
 
-void YerothUtils::APPEND_NEW_ELEMENT_TO_STAR_SEPARATED_DB_STRING
+/**
+ * returns true if '*' separated string has REALLY GOT UPDATED WITH A NEW STRING VALUE 'aNewValue' !
+ */
+bool YerothUtils::APPEND_NEW_ELEMENT_TO_STAR_SEPARATED_DB_STRING
 														(const QString &aNewValue,
 														 QString &aCur_db_STRING_STAR_SEPARATED_VALUE_IN_OUT)
 {
     if (!aCur_db_STRING_STAR_SEPARATED_VALUE_IN_OUT.isEmpty())
     {
+    	if (YerothUtils::CONTAINS_SPLIT_STAR_SEPARATED_DB_STRING(aCur_db_STRING_STAR_SEPARATED_VALUE_IN_OUT,
+    															 aNewValue))
+    	{
+    		return false;
+    	}
+
         if (aCur_db_STRING_STAR_SEPARATED_VALUE_IN_OUT.endsWith("*"))
         {
         	aCur_db_STRING_STAR_SEPARATED_VALUE_IN_OUT.append(aNewValue);
@@ -982,6 +991,8 @@ void YerothUtils::APPEND_NEW_ELEMENT_TO_STAR_SEPARATED_DB_STRING
     {
     	aCur_db_STRING_STAR_SEPARATED_VALUE_IN_OUT.append(aNewValue);
     }
+
+    return true;
 }
 
 
@@ -1363,7 +1374,7 @@ double YerothUtils::get_prix_dachat_wheter_exists(const QString &stocksID)
 }
 
 
-bool YerothUtils::startTransaction()
+bool YerothUtils::start_db_transaction()
 {
     QSqlDriver *driver = _allWindows->getDatabase().driver();
 
@@ -1384,7 +1395,21 @@ bool YerothUtils::startTransaction()
 }
 
 
-bool YerothUtils::commitTransaction()
+bool YerothUtils::rollback_db_transaction()
+{
+    bool could_rollback_db_transaction = _allWindows->getDatabase().roolback();
+
+    if (!could_rollback_db_transaction)
+    {
+    	qDebug() << QString("Couldn't roolback a database transaction !");
+    	qDebug() << _allWindows->getDatabase().lastError();
+    }
+
+    return could_rollback_db_transaction;
+}
+
+
+bool YerothUtils::commit_db_transaction()
 {
     bool couldCommitDBTransaction = _allWindows->getDatabase().commit();
 

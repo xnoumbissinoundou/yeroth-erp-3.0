@@ -112,6 +112,13 @@ public:
 	static bool GZIP_YEROTH_FILE(const QString &program_working_directory_full_path,
 								 const QString &file_full_path);
 
+	inline static bool CONTAINS_SPLIT_STAR_SEPARATED_DB_STRING(const QString &aCur_db_STRING_STAR_SEPARATED_VALUE,
+													  	  	   const QString &a_proposed_duplicate_to_test_string)
+	{
+		return aCur_db_STRING_STAR_SEPARATED_VALUE
+				.split(YerothUtils::STAR_CHAR).count(a_proposed_duplicate_to_test_string) > 0;
+	}
+
 	inline static void SPLIT_STAR_SEPARATED_DB_STRING(QStringList &SEPARATED_RESULTING_QSTRINGLIST_IN_OUT,
 													  const QString &aCur_db_STRING_STAR_SEPARATED_VALUE)
 	{
@@ -119,7 +126,7 @@ public:
 				aCur_db_STRING_STAR_SEPARATED_VALUE.split(YerothUtils::STAR_CHAR));
 	}
 
-	static void APPEND_NEW_ELEMENT_TO_STAR_SEPARATED_DB_STRING(const QString &aNewValue,
+	static bool APPEND_NEW_ELEMENT_TO_STAR_SEPARATED_DB_STRING(const QString &aNewValue,
 															   QString &aCur_db_STRING_STAR_SEPARATED_VALUE_IN_OUT);
 
 	static
@@ -164,9 +171,11 @@ public:
     	return YerothUtils::getMargeBeneficiaire(prix_vente, prix_dachat, montantTva) >= 0;
     }
 
-	static bool startTransaction();
+	static bool start_db_transaction();
 
-	static bool commitTransaction();
+	static bool rollback_db_transaction();
+
+	static bool commit_db_transaction();
 
 	static void setAllWindows(YerothERPWindows *allWindows);
 
@@ -1073,9 +1082,11 @@ YerothQMessageBox::information(this, QObject::trUtf8(DIALOG_BOX_TITLE), msg); }
 	YerothUtils::generateSqlIsEmpty(COLUMN)
 
 
-#define YEROTH_ERP_3_0_START_DATABASE_TRANSACTION YerothUtils::startTransaction()
+#define YEROTH_ERP_3_0_START_DATABASE_TRANSACTION YerothUtils::start_db_transaction()
 
-#define YEROTH_ERP_3_0_COMMIT_DATABASE_TRANSACTION YerothUtils::commitTransaction()
+#define YEROTH_ERP_3_0_ROLLBACK_DATABASE_TRANSACTION YerothUtils::rollback_db_transaction()
+
+#define YEROTH_ERP_3_0_COMMIT_DATABASE_TRANSACTION YerothUtils::commit_db_transaction()
 
 #define POURCENTAGE_YEROTH_GET_VALUE(X, TOTAL) ( (0 == TOTAL) ? 0 : ((X / TOTAL) * 100.0) )
 
