@@ -115,11 +115,6 @@ void YerothCreerGroupeDeClientsWindow::deconnecter_utilisateur()
     YerothWindowsCommons::deconnecter_utilisateur();
 }
 
-void YerothCreerGroupeDeClientsWindow::setupLineEdits()
-{
-	lineEdit_creer_groupe_clients_maximum_de_membres->setValidator(&YerothUtils::DoubleValidator);
-}
-
 
 void YerothCreerGroupeDeClientsWindow::setupLineEditsQCompleters()
 {

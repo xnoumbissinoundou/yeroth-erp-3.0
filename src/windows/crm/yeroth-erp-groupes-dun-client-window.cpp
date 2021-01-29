@@ -82,10 +82,17 @@ YerothGroupesDunClientWindow::YerothGroupesDunClientWindow()
 	connect(actionAfficher_ce_groupe_au_detail, SIGNAL(triggered()), this, SLOT(afficher_au_detail()));
 	connect(actionQui_suis_je, SIGNAL(triggered()), this, SLOT(qui_suis_je()));
 
+
 	connect(tableWidget_groupes_dun_client,
 			SIGNAL(doubleClicked(const QModelIndex &)),
 			this,
 			SLOT(afficher_au_detail(const QModelIndex &)));
+
+
+    connect((QObject *)lineEdit_groupes_dun_client_recherche->getMyQCompleter(),
+    		SIGNAL(activated(const QString &)),
+			this,
+            SLOT(ajouter_appartenance(const QString &)));
 
 
     setupShortcuts();
@@ -100,6 +107,12 @@ void YerothGroupesDunClientWindow::contextMenuEvent(QContextMenuEvent * event)
 	menu.setPalette(toolBar_menuGroupesDunClientWindow->palette());
 	menu.addAction(actionAfficher_ce_groupe_au_detail);
 	menu.exec(event->globalPos());
+}
+
+
+void YerothGroupesDunClientWindow::ajouter_appartenance(const QString &un_groupe_de_clients)
+{
+
 }
 
 

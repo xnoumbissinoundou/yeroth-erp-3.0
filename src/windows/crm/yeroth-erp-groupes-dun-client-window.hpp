@@ -100,6 +100,8 @@ protected:
 
 private slots:
 
+	void ajouter_appartenance(const QString &un_groupe_de_clients);
+
 	void supprimer_appartenance();
 
 	void afficher_au_detail(const QModelIndex &modelIndex);

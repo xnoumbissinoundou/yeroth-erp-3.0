@@ -96,7 +96,7 @@ private:
 										 const QString &new_client_group_db_ID,
 										 const QString &client_db_ID);
 
-	void setLastSelectedTableWidgetRow(int lastSelectedTableWidgetRow)
+	inline void setLastSelectedTableWidgetRow(int lastSelectedTableWidgetRow)
 	{
 		_last_selected_table_widget_row = lastSelectedTableWidgetRow;
 	}
@@ -107,7 +107,10 @@ private:
 
     void clear_all_fields();
 
-    void setupLineEdits();
+    inline void setupLineEdits()
+    {
+    	lineEdit_creer_groupe_clients_maximum_de_membres->setValidator(&YerothUtils::DoubleValidator);
+    }
 
     void setupLineEditsQCompleters();
 
