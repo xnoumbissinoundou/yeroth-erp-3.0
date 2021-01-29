@@ -344,7 +344,7 @@ void YerothERPClientsWindow::afficher_groupes_dun_client()
     }
     else
     {
-        YerothQMessageBox::information(this, QObject::trUtf8("groupes d'appartenance"),
+        YerothQMessageBox::information(this, QObject::tr("groupes d'appartenance"),
                                   QObject::trUtf8("Sélectionnez 1 compte client afin de visualiser ses groupes d'appartenance."));
     }
 }
