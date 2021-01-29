@@ -89,13 +89,8 @@ YerothGroupesDunClientWindow::YerothGroupesDunClientWindow()
 			SLOT(afficher_au_detail(const QModelIndex &)));
 
 
-    connect((QObject *)lineEdit_groupes_dun_client_recherche->getMyQCompleter(),
-    		SIGNAL(activated(const QString &)),
-			this,
-            SLOT(ajouter_appartenance(const QString &)));
-
-
     setupShortcuts();
+
 
     lineEdit_groupes_dun_client_recherche->setFocus();
 }
@@ -112,7 +107,78 @@ void YerothGroupesDunClientWindow::contextMenuEvent(QContextMenuEvent * event)
 
 void YerothGroupesDunClientWindow::ajouter_appartenance(const QString &un_groupe_de_clients)
 {
+	YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
 
+	executer_ajouter_appartenance(un_groupe_de_clients);
+
+	YEROTH_ERP_3_0_COMMIT_DATABASE_TRANSACTION;
+}
+
+
+void YerothGroupesDunClientWindow::executer_ajouter_appartenance(const QString &un_groupe_de_clients)
+{
+	QString SELECT_GROUP_FROM_DB_TABLE(QString("select %1, %2, %3, %4 from %5 where %6='%7'")
+											.arg(YerothDatabaseTableColumn::ID,
+												 YerothDatabaseTableColumn::REFERENCE_GROUPE,
+												 YerothDatabaseTableColumn::MEMBRES_DU_GROUPE_db_ID,
+												 YerothDatabaseTableColumn::MAXIMUM_DE_MEMBRES,
+												 _allWindows->GROUPES_DE_CLIENTS,
+												 YerothDatabaseTableColumn::DESIGNATION,
+												 un_groupe_de_clients));
+
+	QSqlQuery aQSqlQuery;
+
+	int query_size = YerothUtils::execQuery(aQSqlQuery, SELECT_GROUP_FROM_DB_TABLE);
+
+	if (query_size <= 0)
+	{
+		return ;
+	}
+
+	QSqlRecord aClientGroupRecordInfo;
+
+	if (!aQSqlQuery.next())
+	{
+		return ;
+	}
+
+	aClientGroupRecordInfo = aQSqlQuery.record();
+
+	int maximum_de_membres =
+			GET_SQL_RECORD_DATA(aClientGroupRecordInfo, YerothDatabaseTableColumn::MAXIMUM_DE_MEMBRES).toInt();
+
+	QString membres_du_groupe_db_ID =
+			GET_SQL_RECORD_DATA(aClientGroupRecordInfo, YerothDatabaseTableColumn::MEMBRES_DU_GROUPE_db_ID);
+
+	QStringList membres_du_groupe_db_ID_LIST;
+
+	YerothUtils::SPLIT_STAR_SEPARATED_DB_STRING(membres_du_groupe_db_ID_LIST,
+											    membres_du_groupe_db_ID);
+
+	if (membres_du_groupe_db_ID_LIST.size() >= maximum_de_membres)
+	{
+		 YerothQMessageBox::information(this, QObject::tr("ajouter"),
+		           QObject::trUtf8("Le groupe '%1' a déjà atteint son nombre maximum de membres !"));
+
+		return ;
+	}
+
+	tableWidget_groupes_dun_client->
+		insert_group(GET_SQL_RECORD_DATA(aClientGroupRecordInfo, YerothDatabaseTableColumn::ID),
+										 un_groupe_de_clients,
+										 GET_SQL_RECORD_DATA(aClientGroupRecordInfo, YerothDatabaseTableColumn::REFERENCE_GROUPE),
+										 QString::number(maximum_de_membres));
+
+
+//	membres_du_groupe_db_ID.append(QString("%1%2")
+//										.arg(YerothUtils::STAR_CHAR,
+//											 _curClientDBID));
+
+
+	 YerothQMessageBox::information(this, QObject::tr("ajouter"),
+	           QObject::trUtf8("Le client '%1' a été ajouté dans le  groupe de clients '%2' !")
+	 	 	 	 	 	 .arg(_curClient_NOM_ENTREPRISE,
+	 	 	 	 	 		  un_groupe_de_clients));
 }
 
 
@@ -149,12 +215,14 @@ void YerothGroupesDunClientWindow::afficher_tous_les_groupes_du_client()
 	_allWindows->_clientsWindow->
 		SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
 
+	_curClient_NOM_ENTREPRISE = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE);
+
     _curClientDBID = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ID).toInt();
 
     QString groupes_du_client(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::GROUPES_DU_CLIENT));
 
 
-    QStringList allClientGroups(groupes_du_client.split(YerothUtils::YEROTH_ERP_3_0_STAR_CHAR));
+    QStringList allClientGroups(groupes_du_client.split(YerothUtils::STAR_CHAR));
 
     QString current_group_db_ID;
 
@@ -236,8 +304,12 @@ void YerothGroupesDunClientWindow::setupLineEditsQCompleters()
 {
 	lineEdit_groupes_dun_client_recherche->
 		setupMyStaticQCompleter(_allWindows->GROUPES_DE_CLIENTS,
-								YerothDatabaseTableColumn::DESIGNATION,
-								true);
+								YerothDatabaseTableColumn::DESIGNATION);
+
+    connect(lineEdit_groupes_dun_client_recherche->getMyQCompleter(),
+    		SIGNAL(activated(const QString &)),
+			this,
+            SLOT(ajouter_appartenance(const QString &)));
 }
 
 

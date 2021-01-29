@@ -102,6 +102,8 @@ private slots:
 
 	void ajouter_appartenance(const QString &un_groupe_de_clients);
 
+	void executer_ajouter_appartenance(const QString &un_groupe_de_clients);
+
 	void supprimer_appartenance();
 
 	void afficher_au_detail(const QModelIndex &modelIndex);
@@ -127,6 +129,8 @@ private:
     YerothLogger			*_logger;
 
     YerothSqlTableModel 	*_curClientsTableModel;
+
+    QString					_curClient_NOM_ENTREPRISE;
 
     int						_curClientDBID;
 };
