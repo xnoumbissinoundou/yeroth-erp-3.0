@@ -158,7 +158,7 @@ void YerothGroupesDunClientWindow::executer_ajouter_appartenance(const QString &
 	if (membres_du_groupe_db_ID_LIST.size() >= maximum_de_membres)
 	{
 		 YerothQMessageBox::information(this, QObject::tr("ajouter"),
-		           QObject::trUtf8("Le groupe '%1' a déjà atteint son nombre maximum de membres !")
+		           QObject::trUtf8("Le groupe de clients '%1' a déjà atteint son nombre maximum de membres !")
 		 	 	 	 	 	 	 .arg(un_groupe_de_clients));
 
 		return ;
@@ -184,7 +184,7 @@ void YerothGroupesDunClientWindow::executer_ajouter_appartenance(const QString &
 		{
 			YerothQMessageBox::information(this, QObject::tr("ajouter"),
 					QObject::trUtf8("Le client '%1' n'a pas pu être ajouté "
-							"dans le  groupe de clients '%2' !")
+							"dans le groupe de clients '%2' !")
 			.arg(_curClient_NOM_ENTREPRISE,
 					un_groupe_de_clients));
 
@@ -243,7 +243,7 @@ void YerothGroupesDunClientWindow::executer_ajouter_appartenance(const QString &
 	{
 		YerothQMessageBox::information(this, QObject::tr("ajouter"),
 				QObject::trUtf8("Le client '%1' n'a pas pu être ajouté "
-								"dans le  groupe de clients '%2' !")
+								"dans le groupe de clients '%2' !")
 						.arg(_curClient_NOM_ENTREPRISE,
 							 un_groupe_de_clients));
 
@@ -263,7 +263,7 @@ void YerothGroupesDunClientWindow::executer_ajouter_appartenance(const QString &
 
 
 	YerothQMessageBox::information(this, QObject::tr("ajouter"),
-	           QObject::trUtf8("Le client '%1' a été ajouté dans le  groupe de clients '%2' !")
+	           QObject::trUtf8("Le client '%1' a été ajouté dans le groupe de clients '%2' !")
 	 	 	 	 	 	 .arg(_curClient_NOM_ENTREPRISE,
 	 	 	 	 	 		  un_groupe_de_clients));
 }
