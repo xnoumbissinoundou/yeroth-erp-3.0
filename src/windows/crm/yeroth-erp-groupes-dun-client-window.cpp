@@ -45,21 +45,40 @@ YerothGroupesDunClientWindow::YerothGroupesDunClientWindow()
         QString("QMessageBox {background-color: rgb(%1);}")
 			.arg(COLOUR_RGB_STRING_YEROTH_YELLOW_254_254_0);
 
-    setup_select_configure_dbcolumn(_allWindows->CLIENTS);
-
     _curClientsTableModel = &_allWindows->getSqlTableModel_clients();
 
     setupLineEdits();
 
     setupLineEditsQCompleters();
 
-    pushButton_clients->disable(this);
+
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionInformationEntreprise, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionListerDesGroupesDeClients, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionA_propos, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_ce_groupe_au_detail, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
+
+
 	pushButton_groupes_de_clients->disable(this);
-	pushButton_menu_principal->disable(this);
-	pushButton_detail_client->disable(this);
+	pushButton_menu_clients->disable(this);
+	pushButton_RETOUR->disable(this);
 	pushButton_supprimer->disable(this);
 
 
+    connect(actionChanger_utilisateur, SIGNAL(triggered()), this, SLOT(changer_utilisateur()));
+    connect(actionListerDesGroupesDeClients, SIGNAL(triggered()), this, SLOT(groupes_de_clients()));
+    connect(actionClients, SIGNAL(triggered()), this, SLOT(clients()));
+    connect(actionAppeler_aide, SIGNAL(triggered()), this, SLOT(help()));
+    connect(actionDeconnecter_utilisateur, SIGNAL(triggered()), this, SLOT(deconnecter_utilisateur()));
+    connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
+    connect(actionA_propos, SIGNAL(triggered()), this, SLOT(apropos()));
+    connect(actionInformationEntreprise, SIGNAL(triggered()), this, SLOT(infosEntreprise()));
+    connect(actionQui_suis_je, SIGNAL(triggered()), this, SLOT(qui_suis_je()));
 	connect(actionAfficher_ce_groupe_au_detail, SIGNAL(triggered()), this, SLOT(afficher_au_detail()));
 	connect(actionQui_suis_je, SIGNAL(triggered()), this, SLOT(qui_suis_je()));
 
@@ -84,14 +103,6 @@ void YerothGroupesDunClientWindow::contextMenuEvent(QContextMenuEvent * event)
 }
 
 
-void YerothGroupesDunClientWindow::setupShortcuts()
-{
-    setupShortcutActionQuiSuisJe			(*actionQui_suis_je);
-    setupShortcutActionExporterAuFormatCsv	(*actionExporter_au_format_csv);
-    setupShortcutActionAfficherPDF			(*actionAfficherPDF);
-}
-
-
 void YerothGroupesDunClientWindow::supprimer_appartenance()
 {
 
@@ -102,21 +113,16 @@ void YerothGroupesDunClientWindow::afficher_au_detail(const QModelIndex &modelIn
 {
     if (_curClientsTableModel->rowCount() > 0)
     {
-    	const QString &curClient_db_ID =
-    			tableWidget_groupes_dun_client
-					->get_mapListIdxToElement_db_ID().value(modelIndex.row());
-
-        _allWindows->_detailsGroupeDeClientsWindow
-							->rendreVisible(_curClientsTableModel,
-											_curStocksTableModel,
-											curClient_db_ID);
+    	//qDebug() << "++ test" << modelIndex.row();
+        _allWindows->_clientsDetailWindow->rendreVisible(_curClientsTableModel,
+														 _curStocksTableModel);
 
         rendreInvisible();
     }
     else
     {
-        YerothQMessageBox::warning(this, QObject::trUtf8("détails d'un groupe de clients"),
-                                  QObject::trUtf8("Sélectionnez un groupe de clients à afficher les détails !"));
+        YerothQMessageBox::information(this, QObject::trUtf8("détails"),
+                                  	  QObject::trUtf8("Sélectionnez 1 compte client à afficher les détails."));
     }
 }
 
@@ -190,6 +196,20 @@ void YerothGroupesDunClientWindow::afficher_tous_les_groupes_du_client()
 }
 
 
+void YerothGroupesDunClientWindow::enable_yeroth_widgets_ON_POSITIVE_QTABLE_WIDGET_ROW_COUNT()
+{
+	actionAfficher_ce_groupe_au_detail->setVisible(true);
+	pushButton_supprimer->setVisible(true);
+}
+
+
+void YerothGroupesDunClientWindow::disable_yeroth_widgets()
+{
+	actionAfficher_ce_groupe_au_detail->setVisible(false);
+	pushButton_supprimer->setVisible(false);
+}
+
+
 void YerothGroupesDunClientWindow::setupLineEdits()
 {
 	lineEdit_groupes_dun_client_recherche->
@@ -229,87 +249,78 @@ void YerothGroupesDunClientWindow::rendreVisible(YerothSqlTableModel *clientTabl
 
 	int tableRowCount = tableWidget_groupes_dun_client->rowCount();
 
+	if (tableRowCount > 0)
+	{
+		enable_yeroth_widgets_ON_POSITIVE_QTABLE_WIDGET_ROW_COUNT();
+	}
+	else
+	{
+		disable_yeroth_widgets();
+	}
+
 	setVisible(true);
 
 	lineEdit_groupes_dun_client_nombre_de_groupes->
 		setText(GET_NUM_STRING(tableRowCount));
-
-    if (tableRowCount > 0)
-    {
-    	enableExporterAuFormatCsv();
-    	enableImprimer();
-    }
-    else
-    {
-    	disableExporterAuFormatCsv();
-    	disableImprimer();
-    }
-}
-
-
-void YerothGroupesDunClientWindow::definirCaissier()
-{
-    pushButton_clients->disable(this);
-	pushButton_groupes_de_clients->disable(this);
-	pushButton_menu_principal->disable(this);
-	pushButton_detail_client->disable(this);
-	pushButton_supprimer->disable(this);
 }
 
 
 void YerothGroupesDunClientWindow::definirManager()
 {
-    pushButton_clients->enable(this, SLOT(clients()));
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionInformationEntreprise, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionListerDesGroupesDeClients, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionA_propos, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_ce_groupe_au_detail, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
+
 	pushButton_groupes_de_clients->enable(this, SLOT(groupes_de_clients()));
-	pushButton_menu_principal->enable(this, SLOT(menu()));
-	pushButton_detail_client->enable(this, SLOT(afficher_au_detail()));
+	pushButton_menu_clients->enable(this, SLOT(clients()));
+	pushButton_RETOUR->enable(this, SLOT(afficher_au_detail()));
 	pushButton_supprimer->enable(this, SLOT(supprimer_appartenance()));
 }
 
 
 void YerothGroupesDunClientWindow::definirVendeur()
 {
-    pushButton_clients->enable(this, SLOT(clients()));
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionInformationEntreprise, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionListerDesGroupesDeClients, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionA_propos, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_ce_groupe_au_detail, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
+
 	pushButton_groupes_de_clients->enable(this, SLOT(groupes_de_clients()));
-	pushButton_menu_principal->enable(this, SLOT(menu()));
-	pushButton_detail_client->enable(this, SLOT(afficher_au_detail()));
+	pushButton_menu_clients->enable(this, SLOT(clients()));
+	pushButton_RETOUR->enable(this, SLOT(afficher_au_detail()));
 	pushButton_supprimer->enable(this, SLOT(supprimer_appartenance()));
-}
-
-
-void YerothGroupesDunClientWindow::definirGestionaireDesStocks()
-{
-    pushButton_clients->disable(this);
-	pushButton_groupes_de_clients->disable(this);
-	pushButton_menu_principal->disable(this);
-	pushButton_detail_client->disable(this);
-	pushButton_supprimer->disable(this);
-}
-
-
-void YerothGroupesDunClientWindow::definirMagasinier()
-{
 }
 
 
 void YerothGroupesDunClientWindow::definirPasDeRole()
 {
-    pushButton_clients->disable(this);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionInformationEntreprise, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionListerDesGroupesDeClients, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionA_propos, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_ce_groupe_au_detail, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
+
 	pushButton_groupes_de_clients->disable(this);
-	pushButton_menu_principal->disable(this);
-	pushButton_detail_client->disable(this);
+	pushButton_menu_clients->disable(this);
+	pushButton_RETOUR->disable(this);
 	pushButton_supprimer->disable(this);
-}
-
-
-bool YerothGroupesDunClientWindow::export_csv_file()
-{
-	return false;
-}
-
-
-bool YerothGroupesDunClientWindow::imprimer_pdf_document()
-{
-	return YerothWindowsCommons::imprimer_pdf_document();
 }
 

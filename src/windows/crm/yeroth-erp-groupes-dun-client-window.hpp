@@ -47,15 +47,24 @@ public:
     	return toolBar_menuGroupesDunClientWindow;
     }
 
-    virtual void definirCaissier();
+    inline virtual void definirCaissier()
+    {
+    	definirPasDeRole();
+    }
 
     virtual void definirManager();
 
     virtual void definirVendeur();
 
-    virtual void definirGestionaireDesStocks();
+    inline virtual void definirGestionaireDesStocks()
+    {
+    	definirPasDeRole();
+    }
 
-    virtual void definirMagasinier();
+    inline virtual void definirMagasinier()
+    {
+    	definirPasDeRole();
+    }
 
     virtual void definirPasDeRole();
 
@@ -80,37 +89,14 @@ public slots:
 											 "cliquer sur l'opération que vous souhaitez réaliser !"));
 	}
 
-	bool export_csv_file();
-
-	virtual bool imprimer_pdf_document();
-
 protected:
 
     virtual void contextMenuEvent(QContextMenuEvent *event);
 
-    virtual void setupShortcuts();
-
-protected slots:
-
-	inline virtual void disableExporterAuFormatCsv()
-	{
-		actionExporter_au_format_csv->setVisible(false);
-	}
-
-	inline virtual void enableExporterAuFormatCsv()
-	{
-		actionExporter_au_format_csv->setVisible(true);
-	}
-
-	inline virtual void disableImprimer()
-	{
-		actionAfficherPDF->setVisible(false);
-	}
-
-	inline virtual void enableImprimer()
-	{
-		actionAfficherPDF->setVisible(true);
-	}
+    inline virtual void setupShortcuts()
+    {
+        setupShortcutActionQuiSuisJe(*actionQui_suis_je);
+    }
 
 private slots:
 
@@ -126,6 +112,10 @@ private slots:
 	void afficher_tous_les_groupes_du_client();
 
 private:
+
+	void enable_yeroth_widgets_ON_POSITIVE_QTABLE_WIDGET_ROW_COUNT();
+
+	void disable_yeroth_widgets();
 
 	void setupLineEdits();
 
