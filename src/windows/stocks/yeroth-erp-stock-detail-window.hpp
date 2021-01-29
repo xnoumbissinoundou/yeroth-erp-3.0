@@ -83,7 +83,7 @@ public slots:
 
 protected:
 
-    void contextMenuEvent(QContextMenuEvent *event);
+    virtual void contextMenuEvent(QContextMenuEvent *event);
 
     virtual void setupShortcuts();
 

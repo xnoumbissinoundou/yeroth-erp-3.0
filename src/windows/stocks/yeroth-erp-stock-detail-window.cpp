@@ -54,7 +54,7 @@ YerothStockDetailWindow::YerothStockDetailWindow()
     pushButton_modifier->disable(this);
     pushButton_menu->disable(this);
     pushButton_supprimer->disable(this);
-    pushButton_retour->enable(this, SLOT(afficherStocks()));
+    pushButton_retour->enable(this, SLOT(stocks()));
 
     /** Menu actions */
     connect(actionChanger_utilisateur, SIGNAL(triggered()), this, SLOT(changer_utilisateur()));
@@ -489,7 +489,7 @@ void YerothStockDetailWindow::supprimer_ce_stock()
     			SQL_DELETE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW();
 
         //qDebug() << "YerothModifierWindow::supprimer_ce_stock() " << resRemoved;
-        afficherStocks();
+        stocks();
         if (resRemoved)
         {
             msgSupprimer =

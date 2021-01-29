@@ -44,6 +44,8 @@ public slots:
 
 protected:
 
+	virtual void setupShortcuts();
+
 	inline void virtual resizeEvent(QResizeEvent *event)
 	{
 		tableView_tableau_des_transactions_du_fournisseur->resize(event->size());

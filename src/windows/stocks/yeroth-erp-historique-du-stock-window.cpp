@@ -42,6 +42,10 @@ YerothHistoriqueDuStockWindow::YerothHistoriqueDuStockWindow()
 
     connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_pdf_document_WITH_A_YEROTH_PROGRESS_BAR()));
 
+
+    setupShortcuts();
+
+
     setLeftAligned_FOR_YEROTH_PDF_LATEX_PRINTING(0);
 	setLeftAligned_FOR_YEROTH_PDF_LATEX_PRINTING(1);
 
@@ -156,5 +160,12 @@ bool YerothHistoriqueDuStockWindow::imprimer_pdf_document()
 			   YerothWindowsCommons::getLastListerSelectedRow__ID());
 
 	return YerothWindowsCommons::imprimer_pdf_document();
+}
+
+
+void YerothHistoriqueDuStockWindow::setupShortcuts()
+{
+    setupShortcutActionAfficherPDF			(*actionAfficherPDF);
+    setupShortcutActionExporterAuFormatCsv	(*actionExporter_au_format_csv);
 }
 

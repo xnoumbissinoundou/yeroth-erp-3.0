@@ -48,6 +48,8 @@ public slots:
 
 protected:
 
+	virtual void setupShortcuts();
+
 	inline void virtual resizeEvent(QResizeEvent *event)
 	{
 		tableView_historique_du_stock->resize(event->size());

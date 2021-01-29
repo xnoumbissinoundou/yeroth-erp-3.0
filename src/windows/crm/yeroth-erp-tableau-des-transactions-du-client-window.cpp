@@ -39,6 +39,10 @@ YerothTableauDesTransactionsDuClientWindow::YerothTableauDesTransactionsDuClient
 
     connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_pdf_document_WITH_A_YEROTH_PROGRESS_BAR()));
 
+
+    setupShortcuts();
+
+
     setLeftAligned_FOR_YEROTH_PDF_LATEX_PRINTING(0);
 	setLeftAligned_FOR_YEROTH_PDF_LATEX_PRINTING(1);
     setLeftAligned_FOR_YEROTH_PDF_LATEX_PRINTING(2);
@@ -128,5 +132,12 @@ bool YerothTableauDesTransactionsDuClientWindow::imprimer_pdf_document()
 		insert("YEROTHVENTESFIN", SET_DATE_TO_STRING(_curDateFinTransactions));
 
 	return YerothWindowsCommons::imprimer_pdf_document();
+}
+
+
+void YerothTableauDesTransactionsDuClientWindow::setupShortcuts()
+{
+    setupShortcutActionAfficherPDF			(*actionAfficherPDF);
+    setupShortcutActionExporterAuFormatCsv	(*actionExporter_au_format_csv);
 }
 

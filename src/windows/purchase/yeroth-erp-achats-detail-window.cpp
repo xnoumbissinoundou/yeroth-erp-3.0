@@ -54,7 +54,7 @@ YerothAchatsDetailWindow::YerothAchatsDetailWindow()
     connect(actionDeconnecter_utilisateur, SIGNAL(triggered()), this, SLOT(deconnecter_utilisateur()));
     connect(actionMenu, SIGNAL(triggered()), this, SLOT(menu()));
     connect(actionEntrer, SIGNAL(triggered()), this, SLOT(entrer()));
-    connect(actionStocks, SIGNAL(triggered()), this, SLOT(afficherStocks()));
+    connect(actionStocks, SIGNAL(triggered()), this, SLOT(stocks()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
     connect(actionA_propos, SIGNAL(triggered()), this, SLOT(apropos()));
     connect(actionInformationEntreprise, SIGNAL(triggered()), this, SLOT(infosEntreprise()));
@@ -121,7 +121,7 @@ void YerothAchatsDetailWindow::definirCaissier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
     pushButton_entrer->disable(this);
-    pushButton_lister->enable(this, SLOT(afficherStocks()));
+    pushButton_lister->enable(this, SLOT(stocks()));
     pushButton_menu->disable(this);
     pushButton_retour->disable(this);
 }
@@ -148,7 +148,7 @@ void YerothAchatsDetailWindow::definirManager()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
     pushButton_entrer->enable(this, SLOT(entrer()));
-    pushButton_lister->enable(this, SLOT(afficherStocks()));
+    pushButton_lister->enable(this, SLOT(stocks()));
     pushButton_menu->enable(this, SLOT(menu()));
     pushButton_retour->enable(this, SLOT(achats_de_stocks()));
 }
@@ -176,7 +176,7 @@ void YerothAchatsDetailWindow::definirVendeur()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
     pushButton_entrer->enable(this, SLOT(entrer()));
-    pushButton_lister->enable(this, SLOT(afficherStocks()));
+    pushButton_lister->enable(this, SLOT(stocks()));
     pushButton_menu->enable(this, SLOT(menu()));
     pushButton_retour->enable(this, SLOT(achats_de_stocks()));
 }
@@ -204,7 +204,7 @@ void YerothAchatsDetailWindow::definirGestionaireDesStocks()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
     pushButton_entrer->enable(this, SLOT(entrer()));
-    pushButton_lister->enable(this, SLOT(afficherStocks()));
+    pushButton_lister->enable(this, SLOT(stocks()));
     pushButton_menu->enable(this, SLOT(menu()));
     pushButton_retour->disable(this);
 }
@@ -222,7 +222,7 @@ void YerothAchatsDetailWindow::definirMagasinier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
     pushButton_entrer->disable(this);
-    pushButton_lister->enable(this, SLOT(afficherStocks()));
+    pushButton_lister->enable(this, SLOT(stocks()));
     pushButton_menu->enable(this, SLOT(menu()));
     pushButton_retour->disable(this);
 }

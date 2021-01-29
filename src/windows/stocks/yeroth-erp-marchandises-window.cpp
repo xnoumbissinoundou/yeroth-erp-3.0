@@ -53,8 +53,8 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
     setYerothTableView_FROM_WINDOWS_COMMONS(tableView_marchandises);
 
 
-    _list_yeroth_pushbutton_to_enable_on_positive_tableview_ROW_COUNT
-		<< pushButton_supprimer;
+//    _list_yeroth_pushbutton_to_enable_on_positive_tableview_ROW_COUNT
+//		<< ;
 
 
     _list_actions_to_enable_on_positive_tableview_ROW_COUNT
@@ -119,7 +119,7 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
     pushButton_entrer->disable(this);
     pushButton_rapports->disable(this);
     pushButton_menu_principal->disable(this);
-    pushButton_supprimer->disable(this);
+    pushButton_stocks->disable(this);
     pushButton_sortir->disable(this);
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
 
@@ -834,7 +834,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     pushButton_entrer->enable(this, SLOT(entrer_un_stock()));
     pushButton_rapports->enable(this, SLOT(tableaux_de_bords()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
-    pushButton_supprimer->enable(this, SLOT(supprimer_cette_marchandise()));
+    pushButton_stocks->enable(this, SLOT(stocks()));
     pushButton_sortir->enable(this, SLOT(sortir()));
 }
 
@@ -869,7 +869,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     pushButton_entrer->disable(this);
     pushButton_rapports->disable(this);
     pushButton_menu_principal->enable(this, SLOT(menu()));
-    pushButton_supprimer->disable(this);
+    pushButton_stocks->disable(this);
     pushButton_sortir->disable(this);
 }
 
@@ -904,7 +904,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     pushButton_entrer->enable(this, SLOT(entrer_un_stock()));
     pushButton_rapports->disable(this);
     pushButton_menu_principal->enable(this, SLOT(menu()));
-    pushButton_supprimer->enable(this, SLOT(supprimer_cette_marchandise()));
+    pushButton_stocks->enable(this, SLOT(stocks()));
     pushButton_sortir->enable(this, SLOT(sortir()));
 }
 
@@ -938,7 +938,7 @@ void YerothMarchandisesWindow::definirPasDeRole()
     pushButton_filtrer->disable(this);
     pushButton_entrer->disable(this);
     pushButton_rapports->disable(this);
-    pushButton_supprimer->disable(this);
+    pushButton_stocks->disable(this);
     pushButton_sortir->disable(this);
     pushButton_menu_principal->disable(this);
 }

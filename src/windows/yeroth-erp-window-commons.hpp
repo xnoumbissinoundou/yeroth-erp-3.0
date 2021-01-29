@@ -203,13 +203,13 @@ public slots:
 
 	virtual void achats_de_stocks();
 
-	virtual void afficherStocks();
+	virtual void stocks();
 
 	virtual void afficherMarchandises();
 
 	inline virtual void modifier_les_articles()
 	{
-		 afficherStocks();
+		 stocks();
 	}
 
 	virtual void alertes();

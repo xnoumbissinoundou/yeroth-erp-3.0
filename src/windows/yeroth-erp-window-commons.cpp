@@ -477,7 +477,7 @@ void YerothWindowsCommons::achats_de_stocks()
 }
 
 
-void YerothWindowsCommons::afficherStocks()
+void YerothWindowsCommons::stocks()
 {
     rendreInvisible();
     _allWindows->_stocksWindow->rendreVisible(_curStocksTableModel);

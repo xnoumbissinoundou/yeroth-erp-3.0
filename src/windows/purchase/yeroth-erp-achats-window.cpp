@@ -145,7 +145,7 @@ YerothAchatsWindow::YerothAchatsWindow()
     connect(actionDeconnecter_utilisateur, SIGNAL(triggered()), this, SLOT(deconnecter_utilisateur()));
     connect(actionMenu_Principal, SIGNAL(triggered()), this, SLOT(menu()));
     connect(actionEntrer, SIGNAL(triggered()), this, SLOT(entrer()));
-    connect(actionStocks, SIGNAL(triggered()), this, SLOT(afficherStocks()));
+    connect(actionStocks, SIGNAL(triggered()), this, SLOT(stocks()));
     connect(actionVentes, SIGNAL(triggered()), this, SLOT(ventes()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
     connect(actionExporter_au_format_csv, SIGNAL(triggered()), this, SLOT(export_csv_file()));
@@ -564,7 +564,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     pushButton_entrer->enable(this, SLOT(entrer()));
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
-    pushButton_stocks->enable(this, SLOT(afficherStocks()));
+    pushButton_stocks->enable(this, SLOT(stocks()));
     pushButton_ventes->enable(this, SLOT(ventes()));
 }
 
@@ -600,7 +600,7 @@ void YerothAchatsWindow::definirGestionaireDesStocks()
     pushButton_entrer->enable(this, SLOT(entrer()));
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
-    pushButton_stocks->enable(this, SLOT(afficherStocks()));
+    pushButton_stocks->enable(this, SLOT(stocks()));
     pushButton_ventes->disable(this);
 }
 

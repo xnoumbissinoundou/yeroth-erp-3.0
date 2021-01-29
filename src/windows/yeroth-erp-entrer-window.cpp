@@ -83,7 +83,7 @@ YerothEntrerWindow::YerothEntrerWindow()
     connect(actionAppeler_aide, SIGNAL(triggered()), this, SLOT(help()));
     connect(actionDeconnecter_utilisateur, SIGNAL(triggered()), this, SLOT(deconnecter_utilisateur()));
     connect(actionMenu_Principal, SIGNAL(triggered()), this, SLOT(menu()));
-    connect(actionStocks, SIGNAL(triggered()), this, SLOT(afficherStocks()));
+    connect(actionStocks, SIGNAL(triggered()), this, SLOT(stocks()));
     connect(actionSortir, SIGNAL(triggered()), this, SLOT(sortir()));
     connect(actionAnnuler, SIGNAL(triggered()), this, SLOT(menu()));
     connect(actionSupprimerImage, SIGNAL(triggered()), this, SLOT(supprimer_image_stock()));
@@ -357,7 +357,7 @@ void YerothEntrerWindow::definirManager()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerImage, true);
 
     pushButton_supprimer_limage_du_stock->enable(this, SLOT(supprimer_image_stock()));
-    pushButton_afficher_stocks->enable(this, SLOT(afficherStocks()));
+    pushButton_afficher_stocks->enable(this, SLOT(stocks()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_sortir->enable(this, SLOT(sortir()));
     pushButton_annuler->enable(this, SLOT(menu()));
@@ -383,7 +383,7 @@ void YerothEntrerWindow::definirVendeur()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerImage, false);
 
     pushButton_supprimer_limage_du_stock->disable(this);
-    pushButton_afficher_stocks->enable(this, SLOT(afficherStocks()));
+    pushButton_afficher_stocks->enable(this, SLOT(stocks()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_sortir->disable(this);
     pushButton_annuler->enable(this, SLOT(menu()));
@@ -413,7 +413,7 @@ void YerothEntrerWindow::definirGestionaireDesStocks()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerImage, true);
 
     pushButton_supprimer_limage_du_stock->enable(this, SLOT(supprimer_image_stock()));
-    pushButton_afficher_stocks->enable(this, SLOT(afficherStocks()));
+    pushButton_afficher_stocks->enable(this, SLOT(stocks()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_sortir->enable(this, SLOT(sortir()));
     pushButton_annuler->enable(this, SLOT(menu()));

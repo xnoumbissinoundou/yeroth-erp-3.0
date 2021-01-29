@@ -70,8 +70,7 @@ YerothStocksWindow::YerothStocksWindow()
 
 
     _list_yeroth_pushbutton_to_enable_on_positive_tableview_ROW_COUNT
-		<< pushButton_afficher
-		<< pushButton_supprimer;
+		<< pushButton_afficher;
 
 
     _list_actions_to_enable_on_positive_tableview_ROW_COUNT
@@ -140,7 +139,7 @@ YerothStocksWindow::YerothStocksWindow()
     pushButton_entrer->disable(this);
     pushButton_afficher->disable(this);
     pushButton_menu_principal->disable(this);
-    pushButton_supprimer->disable(this);
+    pushButton_marchandises->disable(this);
     pushButton_achats_stocks->disable(this);
     pushButton_reinitialiser->disable(this);
 
@@ -817,7 +816,7 @@ void YerothStocksWindow::definirCaissier()
     pushButton_entrer->disable(this);
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_menu_principal->disable(this);
-    pushButton_supprimer->disable(this);
+    pushButton_marchandises->disable(this);
     pushButton_achats_stocks->disable(this);
 }
 
@@ -855,7 +854,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     pushButton_entrer->enable(this, SLOT(entrer()));
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
-    pushButton_supprimer->enable(this, SLOT(supprimer_ce_stock()));
+    pushButton_marchandises->enable(this, SLOT(afficherMarchandises()));
     pushButton_achats_stocks->enable(this, SLOT(achats_de_stocks()));
 }
 
@@ -894,7 +893,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     pushButton_entrer->disable(this);
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
-    pushButton_supprimer->disable(this);
+    pushButton_marchandises->disable(this);
     pushButton_achats_stocks->disable(this);
 }
 
@@ -933,7 +932,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     pushButton_entrer->enable(this, SLOT(entrer()));
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
-    pushButton_supprimer->disable(this);
+    pushButton_marchandises->disable(this);
     pushButton_achats_stocks->enable(this, SLOT(achats_de_stocks()));
 }
 
@@ -964,7 +963,7 @@ void YerothStocksWindow::definirMagasinier()
     pushButton_entrer->disable(this);
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
-    pushButton_supprimer->disable(this);
+    pushButton_marchandises->disable(this);
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
     pushButton_achats_stocks->disable(this);
 }
@@ -996,7 +995,7 @@ void YerothStocksWindow::definirPasDeRole()
     pushButton_stocks_reinitialiser_filtre->disable(this);
     pushButton_entrer->disable(this);
     pushButton_afficher->disable(this);
-    pushButton_supprimer->disable(this);
+    pushButton_marchandises->disable(this);
     pushButton_achats_stocks->disable(this);
     pushButton_menu_principal->disable(this);
 }

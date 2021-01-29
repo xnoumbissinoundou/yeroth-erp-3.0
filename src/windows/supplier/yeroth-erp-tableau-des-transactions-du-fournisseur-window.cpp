@@ -46,6 +46,9 @@ YerothTableauDesTransactionsDuFournisseurWindow::YerothTableauDesTransactionsDuF
     connect(actionExporter_au_format_csv, SIGNAL(triggered()), this, SLOT(export_csv_file()));
 
     connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_pdf_document_WITH_A_YEROTH_PROGRESS_BAR()));
+
+
+    setupShortcuts();
 }
 
 
@@ -130,6 +133,13 @@ bool YerothTableauDesTransactionsDuFournisseurWindow::imprimer_pdf_document()
 		insert("YEROTHVENTESFIN", SET_DATE_TO_STRING(_curDateFinTransactions));
 
 	return YerothWindowsCommons::imprimer_pdf_document();
+}
+
+
+void YerothTableauDesTransactionsDuFournisseurWindow::setupShortcuts()
+{
+    setupShortcutActionAfficherPDF			(*actionAfficherPDF);
+    setupShortcutActionExporterAuFormatCsv	(*actionExporter_au_format_csv);
 }
 
 

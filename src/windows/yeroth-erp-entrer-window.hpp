@@ -103,7 +103,7 @@ public slots:
 
     inline virtual void modifier()
     {
-    	afficherStocks();
+    	stocks();
     }
 
     void deconnecter_utilisateur();

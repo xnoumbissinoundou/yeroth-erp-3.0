@@ -99,7 +99,7 @@ YerothModifierWindow::YerothModifierWindow()
     connect(actionMenu, SIGNAL(triggered()), this, SLOT(menu()));
     connect(actionActualiser, SIGNAL(triggered()), this, SLOT(actualiser_stock()));
     connect(actionEntrer, SIGNAL(triggered()), this, SLOT(entrer()));
-    connect(actionAnnuler, SIGNAL(triggered()), this, SLOT(afficherStocks()));
+    connect(actionAnnuler, SIGNAL(triggered()), this, SLOT(stocks()));
     connect(actionSupprimer, SIGNAL(triggered()), this, SLOT(supprimer_ce_stock()));
     connect(actionSupprimerImage, SIGNAL(triggered()), this, SLOT(supprimer_image_stock()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
@@ -762,7 +762,7 @@ void YerothModifierWindow::definirManager()
 
     pushButton_entrer->enable(this, SLOT(entrer()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
-    pushButton_annuler->enable(this, SLOT(afficherStocks()));
+    pushButton_annuler->enable(this, SLOT(stocks()));
     pushButton_supprimer->enable(this, SLOT(supprimer_ce_stock()));
     pushButton_enregistrer->enable(this, SLOT(actualiser_stock()));
     pushButton_supprimer_limage_du_stock->enable(this, SLOT(supprimer_image_stock()));
@@ -820,7 +820,7 @@ void YerothModifierWindow::definirGestionaireDesStocks()
     pushButton_entrer->enable(this, SLOT(entrer()));
 
     pushButton_menu_principal->enable(this, SLOT(menu()));
-    pushButton_annuler->enable(this, SLOT(afficherStocks()));
+    pushButton_annuler->enable(this, SLOT(stocks()));
     pushButton_supprimer->enable(this, SLOT(supprimer_ce_stock()));
     pushButton_enregistrer->enable(this, SLOT(actualiser_stock()));
     pushButton_supprimer_limage_du_stock->enable(this, SLOT(supprimer_image_stock()));
@@ -1000,7 +1000,7 @@ void YerothModifierWindow::supprimer_ce_stock()
 
         //qDebug() << "YerothModifierWindow::supprimer_ce_stock() " << resRemoved;
 
-        afficherStocks();
+        stocks();
 
         if (resRemoved)
         {

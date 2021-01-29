@@ -90,7 +90,7 @@ YerothMainWindow::YerothMainWindow()
     connect(actionAdministration, SIGNAL(triggered()), this, SLOT(administration()));
     connect(actionEntrer, SIGNAL(triggered()), this, SLOT(entrer()));
     connect(actionComptabilite, SIGNAL(triggered()), this, SLOT(comptabilite()));
-    connect(actionStocks, SIGNAL(triggered()), this, SLOT(afficherStocks()));
+    connect(actionStocks, SIGNAL(triggered()), this, SLOT(stocks()));
     connect(actionMarchandises, SIGNAL(triggered()), this, SLOT(afficherMarchandises()));
     connect(actionAchatsAUXFournisseurs, SIGNAL(triggered()), this, SLOT(achats_aux_fournisseurs()));
     connect(actionSortir, SIGNAL(triggered()), this, SLOT(sortir()));
@@ -146,7 +146,7 @@ void YerothMainWindow::definirCaissier()
     pushButton_paiements->disable(this);
     pushButton_achats_aux_fournisseurs->disable(this);
     pushButton_entrer->disable(this);
-    pushButton_afficher_stocks->enable(this, SLOT(afficherStocks()));
+    pushButton_afficher_stocks->enable(this, SLOT(stocks()));
     pushButton_marchandises->disable(this);
     pushButton_sortir->disable(this);
     pushButton_rapports->disable(this);
@@ -195,7 +195,7 @@ void YerothMainWindow::definirManager()
     pushButton_paiements->enable(this, SLOT(paiements()));
     pushButton_achats_aux_fournisseurs->enable(this, SLOT(achats_aux_fournisseurs()));
     pushButton_entrer->enable(this, SLOT(entrer()));
-    pushButton_afficher_stocks->enable(this, SLOT(afficherStocks()));
+    pushButton_afficher_stocks->enable(this, SLOT(stocks()));
     pushButton_marchandises->enable(this, SLOT(afficherMarchandises()));
     pushButton_sortir->enable(this, SLOT(sortir()));
     pushButton_rapports->enable(this, SLOT(tableaux_de_bords()));
@@ -245,7 +245,7 @@ void YerothMainWindow::definirVendeur()
     pushButton_paiements->enable(this, SLOT(paiements()));
     pushButton_achats_aux_fournisseurs->disable(this);
     pushButton_entrer->enable(this, SLOT(entrer()));
-    pushButton_afficher_stocks->enable(this, SLOT(afficherStocks()));
+    pushButton_afficher_stocks->enable(this, SLOT(stocks()));
     pushButton_marchandises->enable(this, SLOT(afficherMarchandises()));
     pushButton_sortir->disable(this);
     pushButton_rapports->disable(this);
@@ -295,7 +295,7 @@ void YerothMainWindow::definirGestionaireDesStocks()
     pushButton_paiements->disable(this);
     pushButton_achats_aux_fournisseurs->disable(this);
     pushButton_entrer->enable(this, SLOT(entrer()));
-    pushButton_afficher_stocks->enable(this, SLOT(afficherStocks()));
+    pushButton_afficher_stocks->enable(this, SLOT(stocks()));
     pushButton_marchandises->enable(this, SLOT(afficherMarchandises()));
     pushButton_sortir->enable(this, SLOT(sortir()));
     pushButton_mouvementsDeStocks->enable(this, SLOT(mouvements_de_stocks()));
@@ -378,7 +378,7 @@ void YerothMainWindow::definirMagasinier()
     pushButton_ventes->disable(this);
     pushButton_vendre->disable(this);
     pushButton_entrer->disable(this);
-    pushButton_afficher_stocks->enable(this, SLOT(afficherStocks()));
+    pushButton_afficher_stocks->enable(this, SLOT(stocks()));
     pushButton_sortir->enable(this, SLOT(sortir()));
     pushButton_mouvementsDeStocks->enable(this, SLOT(mouvements_de_stocks()));
     label_display_yeroth->setVisible(false);
@@ -487,7 +487,7 @@ void YerothMainWindow::rendreVisibleLocalTOCLASS(bool isDatabaseOpened /* = fals
 
 void YerothMainWindow::help()
 {
-//#define YEROTH_DEVEL_TARGET
+#define YEROTH_DEVEL_TARGET
 
 #ifndef YEROTH_DEVEL_TARGET
 	YerothPOSUser * currentUser = _allWindows->getUser();
