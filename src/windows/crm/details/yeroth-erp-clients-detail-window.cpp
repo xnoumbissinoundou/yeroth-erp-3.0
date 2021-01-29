@@ -624,7 +624,7 @@ void YerothClientsDetailWindow::showClientDetail()
 
     _curClientGroups.clear();
 
-    _curClientGroups.append(groupes_du_client.split(YerothUtils::YEROTH_ERP_3_0_STAR_CHAR));
+    _curClientGroups.append(groupes_du_client.split(YerothUtils::STAR_CHAR));
 
 
 	lineEdit_clients_details_reference_client->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE_CLIENT));

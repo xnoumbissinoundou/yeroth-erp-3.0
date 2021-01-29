@@ -14,9 +14,9 @@
 #include <QtCore/QMap>
 
 
-const QString YerothHistoriqueStock::SEPARATION_EXTERNE(YerothUtils::YEROTH_ERP_3_0_STAR_CHAR);
+const QString YerothHistoriqueStock::SEPARATION_EXTERNE(YerothUtils::STAR_CHAR);
 
-const QString YerothHistoriqueStock::SEPARATION_INTERNE(YerothUtils::YEROTH_ERP_3_0_DASH_CHAR);
+const QString YerothHistoriqueStock::SEPARATION_INTERNE(YerothUtils::DASH_CHAR);
 
 QMap<QString, enum TypeMouvementStock> YerothHistoriqueStock::_qstringToTypeMouvement;
 

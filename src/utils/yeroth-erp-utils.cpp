@@ -404,9 +404,9 @@ const QString YerothUtils::STRING_FRENCH_DIVERS("DIVERS");
 
 const QString YerothUtils::EMPTY_STRING("");
 
-const QChar YerothUtils::YEROTH_ERP_3_0_STAR_CHAR('*');
+const QChar YerothUtils::STAR_CHAR('*');
 
-const QChar YerothUtils::YEROTH_ERP_3_0_DASH_CHAR('_');
+const QChar YerothUtils::DASH_CHAR('_');
 
 const QChar YerothUtils::SLASH_CHAR('/');
 

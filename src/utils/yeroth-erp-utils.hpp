@@ -115,7 +115,8 @@ public:
 	inline static void SPLIT_STAR_SEPARATED_DB_STRING(QStringList &SEPARATED_RESULTING_QSTRINGLIST_IN_OUT,
 													  const QString &aCur_db_STRING_STAR_SEPARATED_VALUE)
 	{
-		SEPARATED_RESULTING_QSTRINGLIST_IN_OUT.append(aCur_db_STRING_STAR_SEPARATED_VALUE.split("*"));
+		SEPARATED_RESULTING_QSTRINGLIST_IN_OUT.append(
+				aCur_db_STRING_STAR_SEPARATED_VALUE.split(YerothUtils::STAR_CHAR));
 	}
 
 	static void APPEND_NEW_ELEMENT_TO_STAR_SEPARATED_DB_STRING(const QString &aNewValue,
@@ -479,7 +480,7 @@ public:
 
 	inline static QString YEROTH_REPLACE_ALL_EMPTYSPACES_WITH_UNDERSCORE_CHARACTER(const QString &aStr_in)
 	{
-		return QString(aStr_in).replace(YerothUtils::EMPTY_SPACE_REGEXP, YerothUtils::YEROTH_ERP_3_0_DASH_CHAR);
+		return QString(aStr_in).replace(YerothUtils::EMPTY_SPACE_REGEXP, YerothUtils::DASH_CHAR);
 	}
 
 	inline static QString getTvaString()
@@ -709,9 +710,9 @@ public:
 
 	static const QString EMPTY_STRING;
 
-	static const QChar YEROTH_ERP_3_0_STAR_CHAR;
+	static const QChar STAR_CHAR;
 
-	static const QChar YEROTH_ERP_3_0_DASH_CHAR;
+	static const QChar DASH_CHAR;
 
 	static const QChar SLASH_CHAR;
 
