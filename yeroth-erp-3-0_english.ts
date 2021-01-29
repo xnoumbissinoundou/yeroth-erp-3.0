@@ -4224,7 +4224,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>client financial transactions</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-tableau-des-transactions-du-client-window.cpp" line="63"/>
+        <location filename="src/windows/crm/yeroth-erp-tableau-des-transactions-du-client-window.cpp" line="67"/>
         <source>transactions d&apos;un client</source>
         <translation>client financial transactions</translation>
     </message>
@@ -4605,7 +4605,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>supplier financial transactions</translation>
     </message>
     <message>
-        <location filename="src/windows/supplier/yeroth-erp-tableau-des-transactions-du-fournisseur-window.cpp" line="65"/>
+        <location filename="src/windows/supplier/yeroth-erp-tableau-des-transactions-du-fournisseur-window.cpp" line="68"/>
         <source>transactions d&apos;un fournisseur</source>
         <translation>supplier financial transactions</translation>
     </message>
