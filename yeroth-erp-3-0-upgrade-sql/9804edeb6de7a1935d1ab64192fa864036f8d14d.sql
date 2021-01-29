@@ -24,6 +24,9 @@ alter table achats ADD column `nom_departement_produit` varchar(256) NOT NULL AF
 alter table achats_aux_fournisseurs ADD column `nom_departement_produit` varchar(256) NOT NULL AFTER reference;
 
 
+alter table programmes_de_fidelite_clients ADD column `nom_departement_produit` varchar(256) NOT NULL AFTER designation;
+
+
 UPDATE stocks SET nom_departement_produit='drugs_healthcare';
 
 UPDATE stocks_sorties SET nom_departement_produit='drugs_healthcare';
