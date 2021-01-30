@@ -67,9 +67,10 @@ YerothGroupesDunClientWindow::YerothGroupesDunClientWindow()
 	pushButton_groupes_de_clients->disable(this);
 	pushButton_menu_clients->disable(this);
 	pushButton_RETOUR->disable(this);
-	pushButton_supprimer->disable(this);
+	pushButton_retirer->disable(this);
 
 
+	connect(actionAdministration, SIGNAL(triggered()), this, SLOT(administration()));
     connect(actionChanger_utilisateur, SIGNAL(triggered()), this, SLOT(changer_utilisateur()));
     connect(actionListerDesGroupesDeClients, SIGNAL(triggered()), this, SLOT(groupes_de_clients()));
     connect(actionClients, SIGNAL(triggered()), this, SLOT(clients()));
@@ -101,6 +102,7 @@ void YerothGroupesDunClientWindow::contextMenuEvent(QContextMenuEvent * event)
 	QMenu menu(this);
 	menu.setPalette(toolBar_menuGroupesDunClientWindow->palette());
 	menu.addAction(actionAfficher_ce_groupe_au_detail);
+	menu.addAction(actionRetirer_ce_client_du_groupe_selectione);
 	menu.exec(event->globalPos());
 }
 
@@ -269,7 +271,7 @@ void YerothGroupesDunClientWindow::executer_ajouter_appartenance(const QString &
 }
 
 
-void YerothGroupesDunClientWindow::supprimer_appartenance()
+void YerothGroupesDunClientWindow::retirer_ce_client_du_groupe_selectione()
 {
 
 }
@@ -305,6 +307,11 @@ void YerothGroupesDunClientWindow::afficher_tous_les_groupes_du_client()
 	_curClient_NOM_ENTREPRISE = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE);
 
     _curClientDBID = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ID);
+
+
+    groupBox_groupes_dun_client->setTitle(QObject::tr("Groupes d'appartenance du client (%1)")
+    										.arg(_curClient_NOM_ENTREPRISE));
+
 
     QString groupes_du_client(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::GROUPES_DU_CLIENT));
 
@@ -367,14 +374,14 @@ void YerothGroupesDunClientWindow::afficher_tous_les_groupes_du_client()
 void YerothGroupesDunClientWindow::enable_yeroth_widgets_ON_POSITIVE_QTABLE_WIDGET_ROW_COUNT()
 {
 	actionAfficher_ce_groupe_au_detail->setVisible(true);
-	pushButton_supprimer->setVisible(true);
+	pushButton_retirer->setVisible(true);
 }
 
 
 void YerothGroupesDunClientWindow::disable_yeroth_widgets()
 {
 	actionAfficher_ce_groupe_au_detail->setVisible(false);
-	pushButton_supprimer->setVisible(false);
+	pushButton_retirer->setVisible(false);
 }
 
 
@@ -453,7 +460,7 @@ void YerothGroupesDunClientWindow::definirManager()
 	pushButton_groupes_de_clients->enable(this, SLOT(groupes_de_clients()));
 	pushButton_menu_clients->enable(this, SLOT(clients()));
 	pushButton_RETOUR->enable(this, SLOT(afficher_au_detail()));
-	pushButton_supprimer->enable(this, SLOT(supprimer_appartenance()));
+	pushButton_retirer->enable(this, SLOT(retirer_ce_client_du_groupe_selectione()));
 }
 
 
@@ -473,7 +480,7 @@ void YerothGroupesDunClientWindow::definirVendeur()
 	pushButton_groupes_de_clients->enable(this, SLOT(groupes_de_clients()));
 	pushButton_menu_clients->enable(this, SLOT(clients()));
 	pushButton_RETOUR->enable(this, SLOT(afficher_au_detail()));
-	pushButton_supprimer->enable(this, SLOT(supprimer_appartenance()));
+	pushButton_retirer->enable(this, SLOT(retirer_ce_client_du_groupe_selectione()));
 }
 
 
@@ -493,6 +500,6 @@ void YerothGroupesDunClientWindow::definirPasDeRole()
 	pushButton_groupes_de_clients->disable(this);
 	pushButton_menu_clients->disable(this);
 	pushButton_RETOUR->disable(this);
-	pushButton_supprimer->disable(this);
+	pushButton_retirer->disable(this);
 }
 

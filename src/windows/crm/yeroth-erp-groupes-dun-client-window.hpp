@@ -104,7 +104,7 @@ private slots:
 
 	void executer_ajouter_appartenance(const QString &un_groupe_de_clients);
 
-	void supprimer_appartenance();
+	void retirer_ce_client_du_groupe_selectione();
 
 	void afficher_au_detail(const QModelIndex &modelIndex);
 

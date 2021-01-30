@@ -3931,7 +3931,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     </message>
     <message>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="563"/>
-        <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.cpp" line="291"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.cpp" line="293"/>
         <source>Sélectionnez 1 compte client à afficher les détails.</source>
         <translation>Select a client to view its details.</translation>
     </message>
@@ -4495,7 +4495,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     </message>
     <message>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="562"/>
-        <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.cpp" line="290"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.cpp" line="292"/>
         <location filename="src/windows/purchase/yeroth-erp-achats-aux-fournisseurs-window.cpp" line="640"/>
         <location filename="src/windows/purchase/yeroth-erp-achats-aux-fournisseurs-window.cpp" line="662"/>
         <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="653"/>
@@ -4631,40 +4631,45 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>client group</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.cpp" line="160"/>
-        <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.cpp" line="185"/>
-        <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.cpp" line="223"/>
-        <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.cpp" line="244"/>
-        <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.cpp" line="265"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.cpp" line="162"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.cpp" line="187"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.cpp" line="225"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.cpp" line="246"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.cpp" line="267"/>
         <source>ajouter</source>
         <translation>add</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.cpp" line="161"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.cpp" line="163"/>
         <source>Le groupe de clients &apos;%1&apos; a déjà atteint son nombre maximum de membres !</source>
         <oldsource>Le groupe &apos;%1&apos; a déjà atteint son nombre maximum de membres !</oldsource>
         <translation>Client group &apos;%1&apos; has already reached its maximum members !</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.cpp" line="186"/>
-        <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.cpp" line="245"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.cpp" line="188"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.cpp" line="247"/>
         <source>Le client &apos;%1&apos; n&apos;a pas pu être ajouté dans le groupe de clients &apos;%2&apos; !</source>
         <oldsource>Le client &apos;%1&apos; n&apos;a pas pu être ajouté dans le  groupe de clients &apos;%2&apos; !</oldsource>
         <translation>Client &apos;%1&apos; couldn&apos;t be added to client group &apos;%2&apos; !</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.cpp" line="224"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.cpp" line="226"/>
         <source>Le client &apos;%1&apos; est déjà membre du groupe de clients &apos;%2&apos; !</source>
         <translation>Client &apos;%1&apos; is already a member of client group &apos;%2&apos; !</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.cpp" line="266"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.cpp" line="268"/>
         <source>Le client &apos;%1&apos; a été ajouté dans le groupe de clients &apos;%2&apos; !</source>
         <oldsource>Le client &apos;%1&apos; a été ajouté dans le  groupe de clients &apos;%2&apos; !</oldsource>
         <translation>Client &apos;%1&apos; has been successfully inserted to client group &apos;%2&apos; !</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.cpp" line="384"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.cpp" line="312"/>
+        <source>Groupes d&apos;appartenance du client (%1)</source>
+        <translation>Client group (%1)</translation>
+    </message>
+    <message>
+        <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.cpp" line="391"/>
         <source>sélectioner un groupe dans lequel le client sera membre</source>
         <oldsource>sélectioner un groupe dans lequel le client sera membre)</oldsource>
         <translation>select a group to add client into</translation>
@@ -11490,11 +11495,6 @@ Transférer</source>
         <translation>Yeroth-erp-3.0 - client group</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="872"/>
-        <source>Supprimer</source>
-        <translation>Remove</translation>
-    </message>
-    <message>
         <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="1305"/>
         <source>Groupes d&apos;appartenance du client (NOM DU CLIENT)</source>
         <oldsource>Groupes d&apos;appartenance du client</oldsource>
@@ -11550,76 +11550,87 @@ Transférer</source>
         <translation>Functions</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="5580"/>
+        <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="5581"/>
         <source>Outils</source>
         <translation>Tools</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="6009"/>
+        <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="6010"/>
         <source>toolBar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="6029"/>
+        <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="6030"/>
         <source>À propos</source>
         <translation>About Yeroth-erp-3.0</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="6045"/>
+        <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="6046"/>
         <source>Changer d&apos;utilisateur</source>
         <translation>Sign in</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="6057"/>
+        <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="6058"/>
         <source>Fermeture</source>
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="6171"/>
-        <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="6174"/>
+        <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="6172"/>
+        <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="6175"/>
         <source>Lister les groupes de clients</source>
         <translation>List client group</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="6073"/>
+        <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="6180"/>
+        <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="6183"/>
+        <source>Retirer ce client du groupe sélectioné</source>
+        <translation>Remove client from selected client group</translation>
+    </message>
+    <message>
+        <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="6074"/>
         <source>Message d&apos;aide</source>
         <translation>User tip</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="6076"/>
+        <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="872"/>
+        <source>Retirer</source>
+        <translation>Remove</translation>
+    </message>
+    <message>
+        <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="6077"/>
         <source>Appeler l&apos;aide</source>
         <translation>Help</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="6092"/>
-        <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="6095"/>
+        <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="6093"/>
+        <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="6096"/>
         <source>Déconnecter l&apos;utilisateur</source>
         <translation>Sign out</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="6112"/>
+        <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="6113"/>
         <source>Administration</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="6124"/>
+        <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="6125"/>
         <source>Informations sur l&apos;entreprise</source>
         <translation>Company info</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="6136"/>
+        <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="6137"/>
         <source>Qui suis je ?</source>
         <translation>who am I ?</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="6148"/>
-        <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="6151"/>
+        <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="6149"/>
+        <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="6152"/>
         <source>Lister les clients</source>
         <translation>View clients</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="6156"/>
-        <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="6159"/>
+        <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="6157"/>
+        <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="6160"/>
         <source>Afficher les détails de ce groupe</source>
         <translation>Show this client group details</translation>
     </message>

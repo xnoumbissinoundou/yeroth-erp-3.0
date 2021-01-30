@@ -437,10 +437,10 @@
    <locale language="French" country="France"/>
   </property>
   <widget class="QWidget" name="centralwidget_detailWindow">
-   <widget class="YerothPushButton" name="pushButton_supprimer">
+   <widget class="YerothPushButton" name="pushButton_retirer">
     <property name="geometry">
      <rect>
-      <x>677</x>
+      <x>527</x>
       <y>14</y>
       <width>111</width>
       <height>61</height>
@@ -869,10 +869,10 @@
      </font>
     </property>
     <property name="text">
-     <string>Supprimer</string>
+     <string>Retirer</string>
     </property>
    </widget>
-   <widget class="QGroupBox" name="groupBox">
+   <widget class="QGroupBox" name="groupBox_groupes_dun_client">
     <property name="geometry">
      <rect>
       <x>11</x>
@@ -2630,7 +2630,7 @@ background-color: rgb(0, 0, 0); </string>
    <widget class="YerothPushButton" name="pushButton_RETOUR">
     <property name="geometry">
      <rect>
-      <x>166</x>
+      <x>677</x>
       <y>14</y>
       <width>111</width>
       <height>61</height>
@@ -3066,7 +3066,7 @@ background-color: rgb(0, 0, 0); </string>
    <widget class="YerothPushButton" name="pushButton_groupes_de_clients">
     <property name="geometry">
      <rect>
-      <x>527</x>
+      <x>166</x>
       <y>14</y>
       <width>111</width>
       <height>61</height>
@@ -5155,6 +5155,7 @@ background-color: rgb(0, 0, 0);</string>
     <addaction name="separator"/>
     <addaction name="actionAfficher_ce_groupe_au_detail"/>
     <addaction name="actionListerDesGroupesDeClients"/>
+    <addaction name="actionRetirer_ce_client_du_groupe_selectione"/>
     <addaction name="separator"/>
     <addaction name="actionClients"/>
     <addaction name="separator"/>
@@ -6174,6 +6175,14 @@ background-color: rgb(0, 0, 0);</string>
     <string>Lister les groupes de clients</string>
    </property>
   </action>
+  <action name="actionRetirer_ce_client_du_groupe_selectione">
+   <property name="text">
+    <string>Retirer ce client du groupe sélectioné</string>
+   </property>
+   <property name="toolTip">
+    <string>Retirer ce client du groupe sélectioné</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -6197,7 +6206,7 @@ background-color: rgb(0, 0, 0);</string>
  </customwidgets>
  <tabstops>
   <tabstop>pushButton_groupes_de_clients</tabstop>
-  <tabstop>pushButton_supprimer</tabstop>
+  <tabstop>pushButton_retirer</tabstop>
  </tabstops>
  <resources>
   <include location="../../yeroth-erp-3-0.qrc"/>
