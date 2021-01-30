@@ -231,12 +231,13 @@ void YerothLineEdit::isInputValid()
 
 QString YerothLineEdit::text(int truncate_pos /* = -1 */) const
 {
-	if (truncate_pos < 0)
-	{
-		return QLineEdit::text().trimmed();
-	}
-
 	QString a_truncated_string(QLineEdit::text().trimmed());
+
+	if (truncate_pos < 0 						 ||
+		a_truncated_string.length() <= truncate_pos)
+	{
+		return a_truncated_string;
+	}
 
 	a_truncated_string.truncate(truncate_pos-1);
 
