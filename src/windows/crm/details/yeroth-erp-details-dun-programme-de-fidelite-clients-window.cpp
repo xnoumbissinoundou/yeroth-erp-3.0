@@ -208,14 +208,19 @@ void YerothDetailsDunProgrammeDeFideliteClientsWindow::showClientLOYALTY_PROGRAM
 {
 	QSqlRecord record;
 
+	QString designation_programme_de_fidelite_clients;
+
 	_allWindows->_programmesDeFideliteClientsWindow->
 		SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(record);
 
 	lineEdit_details_dun_programme_de_fidelite_clients_reference
 		->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::REFERENCE_PROGRAMME_DE_FIDELITE_CLIENTS));
 
+	designation_programme_de_fidelite_clients =
+			GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION);
+
 	lineEdit_details_dun_programme_de_fidelite_clients_designation
-		->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
+		->setText(designation_programme_de_fidelite_clients);
 
 	comboBox_details_nom_departement_produit
 		->addItem(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT));
@@ -350,6 +355,55 @@ void YerothDetailsDunProgrammeDeFideliteClientsWindow::showClientLOYALTY_PROGRAM
 
 	textEdit_details_dun_programme_de_fidelite_clients_description
 		->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESCRIPTION_PROGRAMME_DE_FIDELITE_CLIENTS));
+
+	tableWidget_details_dun_programe_de_fidelite_clients_groupes_de_clients_participants
+		->yerothClearTableWidgetContent();
+
+	QString SELECT_ALL_CLIENT_GROUPS_PARTICIPATING(
+			QString("select %1, %2, %3, %4 from %5 where %6='%7'")
+				.arg(YerothDatabaseTableColumn::ID,
+					 YerothDatabaseTableColumn::DESIGNATION,
+					 YerothDatabaseTableColumn::REFERENCE_GROUPE,
+					 YerothDatabaseTableColumn::MEMBRES_DU_GROUPE_db_ID,
+					 _allWindows->GROUPES_DE_CLIENTS,
+					 YerothDatabaseTableColumn::PROGRAMME_DE_FIDELITE_CLIENTS,
+					 designation_programme_de_fidelite_clients));
+
+
+	QSqlQuery aQSqlQuery;
+
+	int query_size = YerothUtils::execQuery(aQSqlQuery, SELECT_ALL_CLIENT_GROUPS_PARTICIPATING);
+
+	if (query_size <= 0)
+	{
+		return ;
+	}
+
+	QString client_group_db_ID;
+	QString designation;
+	QString reference_groupe;
+	QStringList client_group_member_db_ID;
+
+	while (aQSqlQuery.next())
+	{
+		client_group_db_ID = aQSqlQuery.value(YerothDatabaseTableColumn::ID).toString();
+
+		designation = aQSqlQuery.value(YerothDatabaseTableColumn::DESIGNATION).toString();
+
+		reference_groupe = aQSqlQuery.value(YerothDatabaseTableColumn::REFERENCE_GROUPE).toString();
+
+		client_group_member_db_ID.clear();
+
+		YerothUtils::SPLIT_STAR_SEPARATED_DB_STRING(
+								client_group_member_db_ID,
+								aQSqlQuery.value(YerothDatabaseTableColumn::MEMBRES_DU_GROUPE_db_ID).toString());
+
+		tableWidget_details_dun_programe_de_fidelite_clients_groupes_de_clients_participants
+			->insert_group(client_group_db_ID,
+						   designation,
+						   reference_groupe,
+						   QString::number(client_group_member_db_ID.size()));
+	}
 }
 
 

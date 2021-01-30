@@ -357,7 +357,7 @@ bool YerothSortirWindow::check_fields()
 
 void YerothSortirWindow::clear_all_fields()
 {
-    tableWidget_articles->myClear();
+    tableWidget_articles->yerothClearTableWidgetContent();
     lineEdit_recherche_article->myClear();
     lineEdit_recherche_article_codebar->myClear();
     lineEdit_articles_quantite_a_transferer->clear();
@@ -1099,7 +1099,7 @@ void YerothSortirWindow::cleanUpAfterVente()
 
     resetCheckboxTVA();
 
-    tableWidget_articles->myClear();
+    tableWidget_articles->yerothClearTableWidgetContent();
 
     articleItemToVenteInfo.clear();
 
@@ -1145,7 +1145,7 @@ void YerothSortirWindow::rendreInvisible()
 {
     _logger->log("rendreInvisible");
     _qteChangeCodeBar = false;
-    tableWidget_articles->myClear();
+    tableWidget_articles->yerothClearTableWidgetContent();
     articleItemToVenteInfo.clear();
     deleteArticleVenteInfos();
     lineEdit_recherche_article->clear();
@@ -1459,7 +1459,7 @@ void YerothSortirWindow::updateQuantiteAVendre()
 
 void YerothSortirWindow::afficher_tableau_sorties(const int tableWidgetRow)
 {
-    tableWidget_articles->myClear();
+    tableWidget_articles->yerothClearTableWidgetContent();
 
     QMapIterator<int, YerothArticleVenteInfo *> itArticleItemVenteInfo(articleItemToVenteInfo);
 

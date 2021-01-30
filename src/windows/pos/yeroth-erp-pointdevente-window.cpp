@@ -1175,7 +1175,7 @@ void YerothPointDeVenteWindow::annuler()
 {
     if (tableWidget_articles->rowCount() > 0)
     {
-        tableWidget_articles->myClear();
+        tableWidget_articles->yerothClearTableWidgetContent();
         lineEdit_recherche_article->myClear();
         lineEdit_recherche_article_codebar->myClear();
         lineEdit_articles_total->setText(GET_CURRENCY_STRING_NUM(0.0));
@@ -1295,7 +1295,7 @@ void YerothPointDeVenteWindow::cleanUpAfterVente()
 
     resetCheckboxTVA();
 
-    tableWidget_articles->myClear();
+    tableWidget_articles->yerothClearTableWidgetContent();
     articleItemToVenteInfo.clear();
 
     deleteArticleVenteInfos();
@@ -1351,7 +1351,7 @@ void YerothPointDeVenteWindow::rendreInvisible()
 
 	set_paiment_compte_client(false);
 
-    tableWidget_articles->myClear();
+    tableWidget_articles->yerothClearTableWidgetContent();
 
     articleItemToVenteInfo.clear();
 
@@ -1732,7 +1732,7 @@ void YerothPointDeVenteWindow::updateQuantiteAVendre()
 
 void YerothPointDeVenteWindow::afficher_tableau_ventes(const int tableWidgetRow)
 {
-    tableWidget_articles->myClear();
+    tableWidget_articles->yerothClearTableWidgetContent();
 
     QMapIterator<int, YerothArticleVenteInfo *> itArticleItemVenteInfo(articleItemToVenteInfo);
 

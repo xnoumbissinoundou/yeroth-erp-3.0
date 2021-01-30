@@ -38,7 +38,7 @@ YerothTableWidget::YerothTableWidget(QWidget *parent)
 }
 
 
-void YerothTableWidget::myClear()
+void YerothTableWidget::yerothClearTableWidgetContent()
 {
     QTableWidget::clearContents();
 

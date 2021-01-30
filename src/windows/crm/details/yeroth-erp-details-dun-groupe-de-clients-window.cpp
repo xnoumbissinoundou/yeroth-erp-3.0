@@ -236,7 +236,7 @@ void YerothDetailsDunGroupeDeClientsWindow::rendreVisible(YerothSqlTableModel *c
 
 void YerothDetailsDunGroupeDeClientsWindow::showClientGroup_DETAIL(const QString &clientGroup_db_ID /* = YerothUtils::EMPTY_STRING */)
 {
-	tableWidget_details_dun_groupe_de_clients_membres_initiaux_du_groupe->myClear();
+	tableWidget_details_dun_groupe_de_clients_membres_initiaux_du_groupe->yerothClearTableWidgetContent();
 
 	QSqlRecord record;
 

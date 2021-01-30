@@ -293,7 +293,7 @@ void YerothGroupesDunClientWindow::afficher_au_detail(const QModelIndex &modelIn
 
 void YerothGroupesDunClientWindow::afficher_tous_les_groupes_du_client()
 {
-	tableWidget_groupes_dun_client->myClear();
+	tableWidget_groupes_dun_client->yerothClearTableWidgetContent();
 
 	QSqlRecord record;
 
@@ -405,7 +405,7 @@ void YerothGroupesDunClientWindow::setupLineEditsQCompleters()
 
 void YerothGroupesDunClientWindow::rendreInvisible()
 {
-	tableWidget_groupes_dun_client->myClear();
+	tableWidget_groupes_dun_client->yerothClearTableWidgetContent();
 
 	YerothWindowsCommons::rendreInvisible();
 }

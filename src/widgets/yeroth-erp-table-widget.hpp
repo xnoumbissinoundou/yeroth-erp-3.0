@@ -35,7 +35,7 @@ public:
 	    delete _logger;
 	}
 
-	virtual void myClear();
+	virtual void yerothClearTableWidgetContent();
 
 	inline virtual QString get_DB_ELEMENT_db_ID(int aRow)
 	{

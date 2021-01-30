@@ -349,7 +349,7 @@ void YerothCreerGroupeDeClientsWindow::clear_all_fields()
 
 	textEdit_creer_groupe_clients_description_groupe->clear();
 
-	tableWidget_creer_groupe_clients_membres_initiaux_du_groupe->myClear();
+	tableWidget_creer_groupe_clients_membres_initiaux_du_groupe->yerothClearTableWidgetContent();
 }
 
 
