@@ -19,7 +19,7 @@
 #include <QtSql/QSqlRecord>
 
 
-const int YerothClientsDetailWindow::TRUNCATE_POS_FOR_NOM_ENTREPRISE = 23;
+const int YerothClientsDetailWindow::TRUNCATE_POS_FOR_NOM_ENTREPRISE = 27;
 
 
 YerothClientsDetailWindow::YerothClientsDetailWindow()
