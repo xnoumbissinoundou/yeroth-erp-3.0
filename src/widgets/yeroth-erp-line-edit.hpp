@@ -65,15 +65,17 @@ public:
 
 	void setYerothEnabled(bool enabled);
 
-	inline QString text_LATEX() const
+	inline QString text_LATEX(int truncate_pos = -1) const
 	{
-		return YerothUtils::LATEX_IN_OUT_handleForeignAccents(QLineEdit::text().trimmed());
+		return YerothUtils::LATEX_IN_OUT_handleForeignAccents(text(truncate_pos));
 	}
 
-	inline QString text() const
+	inline void setText(const QString &text)
 	{
-		return QLineEdit::text().trimmed();
+		QLineEdit::setText(QString(text.trimmed()).remove(YerothUtils::STAR_CHAR));
 	}
+
+	inline QString text(int truncate_pos = -1) const;
 
 	inline QString getLastQCompleterText()
 	{

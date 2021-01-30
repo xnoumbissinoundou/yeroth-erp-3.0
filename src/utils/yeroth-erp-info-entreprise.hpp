@@ -207,6 +207,37 @@ public:
 		return _numero_contribuable;
 	}
 
+	inline QString get_CARTE_DE_FIDELITE_nom_entreprise_FOR_LATEX() const
+	{
+		return YerothUtils::LATEX_IN_OUT_handleForeignAccents(get_CARTE_DE_FIDELITE_nom_entreprise());
+	}
+
+	inline QString get_CARTE_DE_FIDELITE_siege_FOR_LATEX() const
+	{
+		return YerothUtils::GET_STRING_WITH_NUMBERS_WITHIN_KEPT_FOR_LATEX(get_CARTE_DE_FIDELITE_siege());
+	}
+
+	inline QString get_CARTE_DE_FIDELITE_service_de_gestion_clientele_FOR_LATEX() const
+	{
+		return YerothUtils::LATEX_IN_OUT_handleForeignAccents(get_CARTE_DE_FIDELITE_service_de_gestion_clientele());
+	}
+
+	inline QString get_CARTE_DE_FIDELITE_service_du_programme_de_fidelite_clients_FOR_LATEX() const
+	{
+		return YerothUtils::LATEX_IN_OUT_handleForeignAccents(
+				get_CARTE_DE_FIDELITE_service_du_programme_de_fidelite_clients());
+	}
+
+	inline QString get_CARTE_DE_FIDELITE_email_FOR_LATEX() const
+	{
+		return YerothUtils::LATEX_IN_OUT_handleForeignAccents(get_CARTE_DE_FIDELITE_email());
+	}
+
+	inline QString get_CARTE_DE_FIDELITE_telephone_FOR_LATEX() const
+	{
+		return YerothUtils::GET_STRING_WITH_NUMBERS_WITHIN_KEPT_FOR_LATEX(get_CARTE_DE_FIDELITE_telephone());
+	}
+
 	inline QString get_CARTE_DE_FIDELITE_nom_entreprise() const
 	{
 		return _CARTE_DE_FIDELITE_nom_entreprise;
@@ -219,17 +250,21 @@ public:
 
 	inline QString get_CARTE_DE_FIDELITE_service_de_gestion_clientele() const
 	{
-		return _CARTE_DE_FIDELITE_service_de_gestion_clientele;
+		return (!_CARTE_DE_FIDELITE_service_de_gestion_clientele.isEmpty()) ?
+				_CARTE_DE_FIDELITE_service_de_gestion_clientele :
+				QObject::trUtf8("service de gestion à la clientèle");
 	}
 
 	inline QString get_CARTE_DE_FIDELITE_service_du_programme_de_fidelite_clients() const
 	{
-		return _CARTE_DE_FIDELITE_service_du_programme_de_fidelite_clients;
+		return (!_CARTE_DE_FIDELITE_service_du_programme_de_fidelite_clients.isEmpty()) ?
+				_CARTE_DE_FIDELITE_service_du_programme_de_fidelite_clients :
+				QObject::trUtf8("service du programme de fidélité clients");
 	}
 
 	inline QString get_CARTE_DE_FIDELITE_email() const
 	{
-		return _CARTE_DE_FIDELITE_email;
+		return _CARTE_DE_FIDELITE_email.toLower();
 	}
 
 	inline QString get_CARTE_DE_FIDELITE_telephone() const

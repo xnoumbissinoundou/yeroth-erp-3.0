@@ -19,6 +19,9 @@
 #include <QtSql/QSqlRecord>
 
 
+const int YerothClientsDetailWindow::TRUNCATE_POS_FOR_NOM_ENTREPRISE = 23;
+
+
 YerothClientsDetailWindow::YerothClientsDetailWindow()
 :YerothWindowsCommons(),
  _logger(new YerothLogger("YerothClientsDetailWindow"))
@@ -149,10 +152,10 @@ bool YerothClientsDetailWindow::generer_la_carte_de_fidelite_du_client()
 
     YerothUtils::getCurrentLocaleDate(fileDate);
 
-    texDocument.replace("YEROTHENTREPRISE", infoEntreprise.getNomCommercial_LATEX());
+    texDocument.replace("YEROTHENTREPRISE", infoEntreprise.get_CARTE_DE_FIDELITE_nom_entreprise());
 
     texDocument.replace("YEROTHNOMDUCLIENT",
-    		QString("%1").arg(lineEdit_clients_details_nom_entreprise->text_LATEX()));
+    		QString("%1").arg(lineEdit_clients_details_nom_entreprise->text_LATEX(TRUNCATE_POS_FOR_NOM_ENTREPRISE)));
 
     texDocument.replace("YEROTHNOMDUPROGRAMMEDEFIDELITE", "");
 
@@ -171,19 +174,19 @@ bool YerothClientsDetailWindow::generer_la_carte_de_fidelite_du_client()
     texDocument.replace("YEROTHCLIENTPAYS", lineEdit_clients_details_pays->text_LATEX());
 
     texDocument.replace("YEROTHSERVICEGESTIONRELATIONCLIENTELLE",
-    		infoEntreprise.getNomCommercial_truncated_FOR_SMALL_RECEIPT_LATEX());
+    		infoEntreprise.get_CARTE_DE_FIDELITE_service_de_gestion_clientele_FOR_LATEX());
 
     texDocument.replace("YEROTHSERVICEDUPROGRAMMEDEFIDELITECLIENTS",
-    		QObject::trUtf8("SERVICE À LA CLIENTÈLE"));
+    		infoEntreprise.get_CARTE_DE_FIDELITE_service_du_programme_de_fidelite_clients_FOR_LATEX());
 
     texDocument.replace("YEROTHSIEGEDUSERVICEGESTIONRELATIONCLIENTELLE",
-    		infoEntreprise.getSiegeSocial_LATEX());
+    		infoEntreprise.get_CARTE_DE_FIDELITE_siege_FOR_LATEX());
 
     texDocument.replace("YEROTHEMAILDUSERVICEGESTIONRELATIONCLIENTELLE",
-    		infoEntreprise.getEmail_LATEX());
+    		infoEntreprise.get_CARTE_DE_FIDELITE_email_FOR_LATEX());
 
     texDocument.replace("YEROTHTELEPHONEDUSERVICEGESTIONRELATIONCLIENTELLE",
-    		infoEntreprise.getTelephone_LATEX_OUT());
+    		infoEntreprise.get_CARTE_DE_FIDELITE_telephone_FOR_LATEX());
 
     QString yerothPrefixFileName;
 
@@ -474,7 +477,7 @@ bool YerothClientsDetailWindow::imprimer_pdf_document()
     data.append(QString("%1\\\\\n").arg(lineEdit_clients_details_siege_social->text_LATEX()));
 
     data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Émail: ")));
-    data.append(QString("%1\\\\\n").arg(lineEdit_clients_details_email->text_LATEX()));
+    data.append(QString("%1\\\\\n").arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(lineEdit_clients_details_email->text().toLower())));
 
     data.append(YerothUtils::get_latex_bold_text(QObject::trUtf8("Numéro de téléphone 1: ")));
     data.append(QString("%1\\\\\n").arg(lineEdit_clients_details_numero_telephone_1->text_LATEX()));

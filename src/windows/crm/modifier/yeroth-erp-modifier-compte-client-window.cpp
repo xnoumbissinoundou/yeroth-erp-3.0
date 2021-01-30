@@ -580,7 +580,7 @@ void YerothModifierCompteClientWindow::showClientDetail()
 
 	lineEdit_modifier_compteclient_siege_social->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::SIEGE_SOCIAL));
 
-	lineEdit_modifier_compteclient_email->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::EMAIL));
+	lineEdit_modifier_compteclient_email->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::EMAIL).toLower());
 
 	lineEdit_modifier_compteclient_numero_telephone_1->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NUMERO_TELEPHONE_1));
 
@@ -588,7 +588,8 @@ void YerothModifierCompteClientWindow::showClientDetail()
 
 	lineEdit_modifier_compteclient_numero_contribuable->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NUMERO_CONTRIBUABLE));
 
-	lineEdit_modifier_compteclient_dette_maximale->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT));
+	lineEdit_modifier_compteclient_dette_maximale->
+		setText(GET_CURRENCY_STRING_NUM(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT).toDouble()));
 
 	textEdit_modifier_compteclient_description_du_client->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESCRIPTION_CLIENT));
 

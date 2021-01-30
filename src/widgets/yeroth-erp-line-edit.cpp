@@ -35,6 +35,8 @@ YerothLineEdit::YerothLineEdit(QWidget *parent /* = 0 */)
 {
 	setMaxLength(255);
 
+	setValidator(&YerothUtils::STRING_FOR_YEROTH_ERP_3_0_VALIDATOR);
+
 	_aDefaultStyleSheet =
 			QString("QInputDialog {background-color: rgb(%1); color: rgb(%2);}")
 				.arg(COLOUR_RGB_STRING_YEROTH_DARK_GREEN_47_67_67,
@@ -49,7 +51,6 @@ YerothLineEdit::YerothLineEdit(QWidget *parent /* = 0 */)
 	_inputDialog->setTextEchoMode(QLineEdit::Normal);
 
 	_inputDialog->setOption(QInputDialog::NoButtons);
-
 
 	_originalPlaceHolderText = placeholderText();
 
@@ -227,11 +228,28 @@ void YerothLineEdit::isInputValid()
     }
 }
 
+
+QString YerothLineEdit::text(int truncate_pos /* = -1 */) const
+{
+	if (truncate_pos < 0)
+	{
+		return QLineEdit::text().trimmed();
+	}
+
+	QString a_truncated_string(QLineEdit::text().trimmed());
+
+	a_truncated_string.truncate(truncate_pos-1);
+
+	return a_truncated_string.append(YerothUtils::DOT_CHAR);
+}
+
+
 void YerothLineEdit::myClear()
 {
     QLineEdit::clear();
     QLineEdit::setText(YerothUtils::EMPTY_STRING);
 }
+
 
 void YerothLineEdit::setupMyQCompleter(QString sqlTableName,
                                       int listColumnIndex,

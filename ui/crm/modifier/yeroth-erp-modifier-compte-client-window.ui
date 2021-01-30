@@ -10038,6 +10038,9 @@
      <property name="autoFillBackground">
       <bool>true</bool>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
     </widget>
     <widget class="QGroupBox" name="groupBox_2">
      <property name="geometry">

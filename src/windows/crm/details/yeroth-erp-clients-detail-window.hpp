@@ -114,6 +114,9 @@ private:
     void checkCourrierAlerts();
 
 
+    static const int TRUNCATE_POS_FOR_NOM_ENTREPRISE;
+
+
     YerothLogger			*_logger;
 
     QStringList				_curClientGroups;

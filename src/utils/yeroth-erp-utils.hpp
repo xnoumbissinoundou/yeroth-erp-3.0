@@ -28,7 +28,11 @@
 #include <QtGui/QColor>
 #include <QtGui/QPalette>
 #include <QtGui/QStandardItemModel>
+
+#include <QtGui/QRegExpValidator>
+
 #include <QtGui/QIntValidator>
+
 #include <QtGui/QDoubleValidator>
 
 #include <QtWidgets/QToolBar>
@@ -719,6 +723,8 @@ public:
 
 	static const QString EMPTY_STRING;
 
+	static const QChar DOT_CHAR;
+
 	static const QChar STAR_CHAR;
 
 	static const QChar DASH_CHAR;
@@ -730,6 +736,8 @@ public:
 	static const QIntValidator nbre_de_LINE_FEED_POUR_IMPRESSION_PETIT_THERMIQUE_Validator;
 
 	static const QIntValidator Int_BACKUP_YEROTH_ERP_3_Validator;
+
+	static const QRegExpValidator STRING_FOR_YEROTH_ERP_3_0_VALIDATOR;
 
 	static const QIntValidator IntValidator;
 

@@ -404,6 +404,8 @@ const QString YerothUtils::STRING_FRENCH_DIVERS("DIVERS");
 
 const QString YerothUtils::EMPTY_STRING("");
 
+const QChar YerothUtils::DOT_CHAR('.');
+
 const QChar YerothUtils::STAR_CHAR('*');
 
 const QChar YerothUtils::DASH_CHAR('_');
@@ -421,6 +423,8 @@ const int YerothUtils::YEROTH_PAGINATION_INT_VALIDATOR_MAXIMAL_VALUE = 999;
 const QIntValidator YerothUtils::nbre_de_LINE_FEED_POUR_IMPRESSION_PETIT_THERMIQUE_Validator(1, 12);
 
 const QIntValidator YerothUtils::Int_BACKUP_YEROTH_ERP_3_Validator(1, 172800);
+
+const QRegExpValidator YerothUtils::STRING_FOR_YEROTH_ERP_3_0_VALIDATOR(QRegExp("[a-zA-Z0-9:;,~´`§$£#%\\.\\^\\\\(\\)\\&/\<>\\?\\!\\{\\}\\[\\]\\-\{\}=_'|]*"));
 
 const QIntValidator YerothUtils::IntValidator(0, 444444444);
 
