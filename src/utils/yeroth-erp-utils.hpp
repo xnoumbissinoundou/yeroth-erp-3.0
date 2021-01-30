@@ -92,6 +92,19 @@ public:
 
 	inline ~YerothUtils(){}
 
+	template <class classType, typename parameterType>
+	static void run_FUNCTION_ROUNDED_WITH_DB_TRANSACTION
+									(classType *aClassInstance,
+									 parameterType *aParamValue,
+									 void (classType::*func)(parameterType *));
+
+	template <class classType, typename parameterType, typename returnType>
+	static void run_FUNCTION_ROUNDED_WITH_DB_TRANSACTION
+									(classType *aClassInstance,
+									 parameterType *aParamValue,
+									 returnType (classType::*func)(parameterType *),
+									 returnType *aRetValue = 0);
+
 	template<class aTableViewClassType>
 	static bool instanceOf__YerothTableViewWITHpagination(aTableViewClassType *aTableView);
 
@@ -955,23 +968,6 @@ private:
 };
 
 
-template<class aTableViewClassType>
-bool YerothUtils::instanceOf__YerothTableViewWITHpagination(aTableViewClassType *aTableView)
-{
-	bool result = false;
-
-	YerothTableViewWITHpagination* aType =
-			dynamic_cast<YerothTableViewWITHpagination *>(aTableView);
-
-	 if (0 != aType)
-	 {
-		 result = true;
-	 }
-
-	return result;
-}
-
-
 /**
  * Macros to facilitate the use of YerothUtils static methods
  */
@@ -1152,5 +1148,69 @@ YerothQMessageBox::information(this, QObject::trUtf8(DIALOG_BOX_TITLE), msg); }
 #endif
 
 #define GET_CURRENCY_STRING_NUM_FOR_LATEX(NUM) YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_CURRENCY_STRING_NUM(NUM))
+
+
+template <class classType, typename parameterType>
+void YerothUtils::run_FUNCTION_ROUNDED_WITH_DB_TRANSACTION
+									(classType *aClassInstance,
+									 parameterType *aParamValue,
+									 void (classType::*func)(parameterType *))
+{
+	YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
+
+	if (0 == func 		 ||
+		0 == aClassInstance)
+	{
+		return ;
+	}
+
+	(aClassInstance->*func)(aParamValue);
+
+	YEROTH_ERP_3_0_COMMIT_DATABASE_TRANSACTION;
+}
+
+
+template <class classType, typename parameterType, typename returnType>
+void YerothUtils::run_FUNCTION_ROUNDED_WITH_DB_TRANSACTION
+									(classType *aClassInstance,
+									 parameterType *aParamValue,
+									 returnType (classType::*func)(parameterType *),
+									 returnType *aRetValue /* = 0 */)
+{
+	YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
+
+	if (0 == func 		 ||
+		0 == aClassInstance)
+	{
+		return ;
+	}
+
+	returnType YEROTH_retValue = (aClassInstance->*func)(aParamValue);
+
+	if (0 != aRetValue)
+	{
+		*aRetValue = YEROTH_retValue;
+	}
+
+	YEROTH_ERP_3_0_COMMIT_DATABASE_TRANSACTION;
+}
+
+
+template<class aTableViewClassType>
+bool YerothUtils::instanceOf__YerothTableViewWITHpagination(aTableViewClassType *aTableView)
+{
+	bool result = false;
+
+	YerothTableViewWITHpagination* aType =
+			dynamic_cast<YerothTableViewWITHpagination *>(aTableView);
+
+	 if (0 != aType)
+	 {
+		 result = true;
+	 }
+
+	return result;
+}
+
 
 #endif /* SRC_YEROTH_UTILS_HPP_ */

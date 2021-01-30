@@ -100,9 +100,16 @@ protected:
 
 private slots:
 
-	void ajouter_appartenance(const QString &un_groupe_de_clients);
+	inline void ajouter_appartenance(const QString &un_groupe_de_clients)
+	{
+		YerothUtils::
+			run_FUNCTION_ROUNDED_WITH_DB_TRANSACTION(
+					this,
+					&un_groupe_de_clients,
+					&YerothGroupesDunClientWindow::executer_ajouter_appartenance);
+	}
 
-	void executer_ajouter_appartenance(const QString &un_groupe_de_clients);
+	void executer_ajouter_appartenance(const QString *un_groupe_de_clients);
 
 	void retirer_ce_client_du_groupe_selectione();
 

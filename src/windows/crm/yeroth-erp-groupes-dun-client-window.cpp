@@ -107,18 +107,13 @@ void YerothGroupesDunClientWindow::contextMenuEvent(QContextMenuEvent * event)
 }
 
 
-void YerothGroupesDunClientWindow::ajouter_appartenance(const QString &un_groupe_de_clients)
+void YerothGroupesDunClientWindow::executer_ajouter_appartenance(const QString *un_groupe_de_clients)
 {
-	YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
+	if (0 == un_groupe_de_clients)
+	{
+		return ;
+	}
 
-	executer_ajouter_appartenance(un_groupe_de_clients);
-
-	YEROTH_ERP_3_0_COMMIT_DATABASE_TRANSACTION;
-}
-
-
-void YerothGroupesDunClientWindow::executer_ajouter_appartenance(const QString &un_groupe_de_clients)
-{
 	QString SELECT_GROUP_FROM_DB_TABLE(QString("select %1, %2, %3, %4 from %5 where %6='%7'")
 											.arg(YerothDatabaseTableColumn::ID,
 												 YerothDatabaseTableColumn::REFERENCE_GROUPE,
@@ -126,7 +121,7 @@ void YerothGroupesDunClientWindow::executer_ajouter_appartenance(const QString &
 												 YerothDatabaseTableColumn::MAXIMUM_DE_MEMBRES,
 												 _allWindows->GROUPES_DE_CLIENTS,
 												 YerothDatabaseTableColumn::DESIGNATION,
-												 un_groupe_de_clients));
+												 *un_groupe_de_clients));
 
 	QSqlQuery aQSqlQuery;
 
@@ -161,7 +156,7 @@ void YerothGroupesDunClientWindow::executer_ajouter_appartenance(const QString &
 	{
 		 YerothQMessageBox::information(this, QObject::tr("ajouter"),
 		           QObject::trUtf8("Le groupe de clients '%1' a déjà atteint son nombre maximum de membres !")
-		 	 	 	 	 	 	 .arg(un_groupe_de_clients));
+		 	 	 	 	 	 	 .arg(*un_groupe_de_clients));
 
 		return ;
 	}
@@ -176,7 +171,7 @@ void YerothGroupesDunClientWindow::executer_ajouter_appartenance(const QString &
 														 YerothDatabaseTableColumn::MEMBRES_DU_GROUPE_db_ID,
 														 membres_du_groupe_db_ID,
 														 YerothDatabaseTableColumn::DESIGNATION,
-														 un_groupe_de_clients));
+														 *un_groupe_de_clients));
 
 		bool insert_update_success = YerothUtils::execQuery(INSERT_UPDATE_CLIENT_WITHIN_GROUP);
 
@@ -188,7 +183,7 @@ void YerothGroupesDunClientWindow::executer_ajouter_appartenance(const QString &
 					QObject::trUtf8("Le client '%1' n'a pas pu être ajouté "
 							"dans le groupe de clients '%2' !")
 			.arg(_curClient_NOM_ENTREPRISE,
-					un_groupe_de_clients));
+				 *un_groupe_de_clients));
 
 			return ;
 		}
@@ -202,7 +197,7 @@ void YerothGroupesDunClientWindow::executer_ajouter_appartenance(const QString &
 	QString groupes_du_client = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::GROUPES_DU_CLIENT);
 
 	bool update_DB_GROUPES_DU_CLIENT_TABLE =
-			YerothUtils::APPEND_NEW_ELEMENT_TO_STAR_SEPARATED_DB_STRING(un_groupe_de_clients,
+			YerothUtils::APPEND_NEW_ELEMENT_TO_STAR_SEPARATED_DB_STRING(*un_groupe_de_clients,
 																		groupes_du_client);
 
 	QString groupes_du_client_id =
@@ -225,7 +220,7 @@ void YerothGroupesDunClientWindow::executer_ajouter_appartenance(const QString &
 		 YerothQMessageBox::information(this, QObject::tr("ajouter"),
 		           QObject::trUtf8("Le client '%1' est déjà membre du groupe de clients '%2' !")
 		 	 	 	 	 	 .arg(_curClient_NOM_ENTREPRISE,
-		 	 	 	 	 		  un_groupe_de_clients));
+		 	 	 	 	 		  *un_groupe_de_clients));
 		 return ;
 	}
 
@@ -247,7 +242,7 @@ void YerothGroupesDunClientWindow::executer_ajouter_appartenance(const QString &
 				QObject::trUtf8("Le client '%1' n'a pas pu être ajouté "
 								"dans le groupe de clients '%2' !")
 						.arg(_curClient_NOM_ENTREPRISE,
-							 un_groupe_de_clients));
+							 *un_groupe_de_clients));
 
 		YEROTH_ERP_3_0_ROLLBACK_DATABASE_TRANSACTION;
 
@@ -256,7 +251,7 @@ void YerothGroupesDunClientWindow::executer_ajouter_appartenance(const QString &
 
 	tableWidget_groupes_dun_client->
 		insert_group(GET_SQL_RECORD_DATA(aClientGroupRecordInfo, YerothDatabaseTableColumn::ID),
-										 un_groupe_de_clients,
+										 *un_groupe_de_clients,
 										 GET_SQL_RECORD_DATA(aClientGroupRecordInfo, YerothDatabaseTableColumn::REFERENCE_GROUPE),
 										 QString::number(maximum_de_membres));
 
@@ -267,7 +262,7 @@ void YerothGroupesDunClientWindow::executer_ajouter_appartenance(const QString &
 	YerothQMessageBox::information(this, QObject::tr("ajouter"),
 	           QObject::trUtf8("Le client '%1' a été ajouté dans le groupe de clients '%2' !")
 	 	 	 	 	 	 .arg(_curClient_NOM_ENTREPRISE,
-	 	 	 	 	 		  un_groupe_de_clients));
+	 	 	 	 	 		  *un_groupe_de_clients));
 }
 
 
