@@ -1991,6 +1991,24 @@ void YerothAdminWindow::read_entreprise_info_database_table(bool initalizationVa
 
 		lineEdit_entreprise_reference_registre_du_commerce->setText(
 			QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 14) ));
+
+		lineEdit_entreprise_denomination_de_lentreprise_SUR_LA_CARTE_DE_FIDELITE_CLIENT
+			->setText( GET_SQL_RECORD_DATA(entrepriseInfoRecord, YerothDatabaseTableColumn::CARTE_DE_FIDELITE_CLIENT_nom_entreprise) );
+
+		lineEdit_entreprise_service_de_gestion_de_la_clientele_SIEGE
+			->setText( GET_SQL_RECORD_DATA(entrepriseInfoRecord, YerothDatabaseTableColumn::CARTE_DE_FIDELITE_CLIENT_siege) );
+
+		lineEdit_entreprise_service_de_gestion_de_la_clientele
+			->setText( GET_SQL_RECORD_DATA(entrepriseInfoRecord, YerothDatabaseTableColumn::CARTE_DE_FIDELITE_CLIENT_service_de_gestion_clientele) );
+
+		lineEdit_entreprise_service_du_programme_de_fidelite_clients
+			->setText( GET_SQL_RECORD_DATA(entrepriseInfoRecord, YerothDatabaseTableColumn::CARTE_DE_FIDELITE_CLIENT_service_du_programme_de_fidelite_client) );
+
+		lineEdit_entreprise_email_du_service_de_gestion_de_la_clientele
+			->setText( GET_SQL_RECORD_DATA(entrepriseInfoRecord, YerothDatabaseTableColumn::CARTE_DE_FIDELITE_CLIENT_email) );
+
+		lineEdit_entreprise_telephone_du_service_de_gestion_de_la_clientele
+			->setText( GET_SQL_RECORD_DATA(entrepriseInfoRecord, YerothDatabaseTableColumn::CARTE_DE_FIDELITE_CLIENT_telephone) );
 	}
 }
 
@@ -2226,6 +2244,24 @@ void YerothAdminWindow::enregistrer_entreprise_info_database_table()
 		aNewEntrepriseInfoRecord.setValue(YerothDatabaseTableColumn::AGENCE_DU_COMPTE_BANCAIRE, lineEdit_entreprise_agence_du_compte_bancaire->text());
 		aNewEntrepriseInfoRecord.setValue(YerothDatabaseTableColumn::REFERENCE_DU_COMPTE_BANCAIRE, lineEdit_entreprise_reference_du_compte_bancaire->text());
 		aNewEntrepriseInfoRecord.setValue(YerothDatabaseTableColumn::REFERENCE_REGISTRE_DU_COMMERCE, lineEdit_entreprise_reference_registre_du_commerce->text());
+
+		aNewEntrepriseInfoRecord.setValue(YerothDatabaseTableColumn::CARTE_DE_FIDELITE_CLIENT_nom_entreprise,
+				lineEdit_entreprise_denomination_de_lentreprise_SUR_LA_CARTE_DE_FIDELITE_CLIENT->text());
+
+		aNewEntrepriseInfoRecord.setValue(YerothDatabaseTableColumn::CARTE_DE_FIDELITE_CLIENT_siege,
+				lineEdit_entreprise_service_de_gestion_de_la_clientele_SIEGE->text());
+
+		aNewEntrepriseInfoRecord.setValue(YerothDatabaseTableColumn::CARTE_DE_FIDELITE_CLIENT_service_de_gestion_clientele,
+				lineEdit_entreprise_service_de_gestion_de_la_clientele->text());
+
+		aNewEntrepriseInfoRecord.setValue(YerothDatabaseTableColumn::CARTE_DE_FIDELITE_CLIENT_service_du_programme_de_fidelite_client,
+				lineEdit_entreprise_service_du_programme_de_fidelite_clients->text());
+
+		aNewEntrepriseInfoRecord.setValue(YerothDatabaseTableColumn::CARTE_DE_FIDELITE_CLIENT_email,
+				lineEdit_entreprise_email_du_service_de_gestion_de_la_clientele->text());
+
+		aNewEntrepriseInfoRecord.setValue(YerothDatabaseTableColumn::CARTE_DE_FIDELITE_CLIENT_telephone,
+				lineEdit_entreprise_telephone_du_service_de_gestion_de_la_clientele->text());
 
 		if (label_logo_de_lentreprise->pixmap())
 		{

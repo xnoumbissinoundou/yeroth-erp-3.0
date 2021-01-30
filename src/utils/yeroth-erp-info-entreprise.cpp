@@ -115,6 +115,32 @@ void YerothInfoEntreprise::updateInfoEntrepriseFromDB()
 	_reference_registre_chambre_du_commerce
 		= QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord, 14) );
 
+
+	_CARTE_DE_FIDELITE_nom_entreprise =
+			QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord,
+					YerothDatabaseTableColumn::CARTE_DE_FIDELITE_CLIENT_nom_entreprise ));
+
+	_CARTE_DE_FIDELITE_siege =
+			QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord,
+					YerothDatabaseTableColumn::CARTE_DE_FIDELITE_CLIENT_siege ));
+
+	_CARTE_DE_FIDELITE_service_de_gestion_clientele =
+			QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord,
+					YerothDatabaseTableColumn::CARTE_DE_FIDELITE_CLIENT_service_de_gestion_clientele ));
+
+	_CARTE_DE_FIDELITE_service_du_programme_de_fidelite_clients =
+			QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord,
+					YerothDatabaseTableColumn::CARTE_DE_FIDELITE_CLIENT_service_du_programme_de_fidelite_client ));
+
+	_CARTE_DE_FIDELITE_email =
+			QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord,
+					YerothDatabaseTableColumn::CARTE_DE_FIDELITE_CLIENT_email ));
+
+	_CARTE_DE_FIDELITE_telephone =
+			QString( GET_SQL_RECORD_DATA(entrepriseInfoRecord,
+					YerothDatabaseTableColumn::CARTE_DE_FIDELITE_CLIENT_telephone ));
+
+
 	YerothInfoEntreprise::load_COMPANY_INFO_LOGO_FROM_DB_TABLE_ENTREPRISE_INFO();
 }
 

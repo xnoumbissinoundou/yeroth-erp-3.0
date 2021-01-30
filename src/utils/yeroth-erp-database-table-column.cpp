@@ -135,6 +135,19 @@ const QString YerothDatabaseTableColumn::NOTES							("notes");
 const QString YerothDatabaseTableColumn::NOM_ENTREPRISE					("nom_entreprise");
 const QString YerothDatabaseTableColumn::SECTEURS_DACTIVITES			("secteurs_dactivites");
 const QString YerothDatabaseTableColumn::REFERENCE_REGISTRE_DU_COMMERCE	("reference_registre_du_commerce");
+
+const QString YerothDatabaseTableColumn::CARTE_DE_FIDELITE_CLIENT_nom_entreprise	("CARTE_DE_FIDELITE_CLIENT_nom_entreprise");
+
+const QString YerothDatabaseTableColumn::CARTE_DE_FIDELITE_CLIENT_siege	("CARTE_DE_FIDELITE_CLIENT_siege");
+
+const QString YerothDatabaseTableColumn::CARTE_DE_FIDELITE_CLIENT_service_de_gestion_clientele	("CARTE_DE_FIDELITE_CLIENT_service_de_gestion_clientele");
+
+const QString YerothDatabaseTableColumn::CARTE_DE_FIDELITE_CLIENT_service_du_programme_de_fidelite_client	("CARTE_DE_FIDELITE_CLIENT_service_du_programme_de_fidelite_client");
+
+const QString YerothDatabaseTableColumn::CARTE_DE_FIDELITE_CLIENT_email	("CARTE_DE_FIDELITE_CLIENT_email");
+
+const QString YerothDatabaseTableColumn::CARTE_DE_FIDELITE_CLIENT_telephone	("CARTE_DE_FIDELITE_CLIENT_telephone");
+
 const QString YerothDatabaseTableColumn::NUMERO_CONTRIBUABLE			("numero_contribuable");
 const QString YerothDatabaseTableColumn::NOM_REPRESENTANT				("nom_representant");
 const QString YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT			("nom_entreprise_client");
@@ -410,6 +423,20 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::SECTEURS_DACTIVITES,	QObject::trUtf8("Secteurs d'activités"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REFERENCE_REGISTRE_DU_COMMERCE,	QObject::trUtf8("Régistre de commerce"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::CARTE_DE_FIDELITE_CLIENT_nom_entreprise,	QObject::tr("Nom de l'entreprise (carte)"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::CARTE_DE_FIDELITE_CLIENT_siege,	QObject::trUtf8("Siège (carte)"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::CARTE_DE_FIDELITE_CLIENT_service_de_gestion_clientele,
+			QObject::trUtf8("GESTION CLIENTÈLE (carte)"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::CARTE_DE_FIDELITE_CLIENT_service_du_programme_de_fidelite_client,
+			QObject::trUtf8("SERVICE DU PROGRAMME DE FIDÉLITÉ (carte)"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::CARTE_DE_FIDELITE_CLIENT_email,	QObject::trUtf8("Émail (carte)"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::CARTE_DE_FIDELITE_CLIENT_telephone,	QObject::trUtf8("Téléphone (carte)"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NUMERO_CONTRIBUABLE,	QObject::trUtf8("Numéro contribuable"));
 

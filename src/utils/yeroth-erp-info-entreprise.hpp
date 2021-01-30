@@ -74,6 +74,36 @@ public:
 		_reference_registre_chambre_du_commerce = reference_registre_chambre_du_commerce;
 	}
 
+	inline void set_CARTE_DE_FIDELITE_telephone(const QString &CARTE_DE_FIDELITE_telephone)
+	{
+		_CARTE_DE_FIDELITE_telephone = CARTE_DE_FIDELITE_telephone;
+	}
+
+	inline void set_CARTE_DE_FIDELITE_email(const QString &CARTE_DE_FIDELITE_email)
+	{
+		_CARTE_DE_FIDELITE_email = CARTE_DE_FIDELITE_email;
+	}
+
+	inline void set_CARTE_DE_FIDELITE_service_du_programme_de_fidelite_clients(const QString &CARTE_DE_FIDELITE_service_du_programme_de_fidelite_clients)
+	{
+		_CARTE_DE_FIDELITE_service_du_programme_de_fidelite_clients = CARTE_DE_FIDELITE_service_du_programme_de_fidelite_clients;
+	}
+
+	inline void set_CARTE_DE_FIDELITE_service_de_gestion_clientele(const QString &CARTE_DE_FIDELITE_service_de_gestion_clientele)
+	{
+		_CARTE_DE_FIDELITE_service_de_gestion_clientele = CARTE_DE_FIDELITE_service_de_gestion_clientele;
+	}
+
+	inline void set_CARTE_DE_FIDELITE_siege(const QString &CARTE_DE_FIDELITE_siege)
+	{
+		_CARTE_DE_FIDELITE_siege = CARTE_DE_FIDELITE_siege;
+	}
+
+	inline void set_CARTE_DE_FIDELITE_nom_entreprise(const QString &CARTE_DE_FIDELITE_nom_entreprise)
+	{
+		_CARTE_DE_FIDELITE_nom_entreprise = CARTE_DE_FIDELITE_nom_entreprise;
+	}
+
 	inline void setNumeroCompteBancaire(QString numero_comptebancaire)
 	{
 		_reference_comptebancaire = numero_comptebancaire;
@@ -177,6 +207,36 @@ public:
 		return _numero_contribuable;
 	}
 
+	inline QString get_CARTE_DE_FIDELITE_nom_entreprise() const
+	{
+		return _CARTE_DE_FIDELITE_nom_entreprise;
+	}
+
+	inline QString get_CARTE_DE_FIDELITE_siege() const
+	{
+		return _CARTE_DE_FIDELITE_siege;
+	}
+
+	inline QString get_CARTE_DE_FIDELITE_service_de_gestion_clientele() const
+	{
+		return _CARTE_DE_FIDELITE_service_de_gestion_clientele;
+	}
+
+	inline QString get_CARTE_DE_FIDELITE_service_du_programme_de_fidelite_clients() const
+	{
+		return _CARTE_DE_FIDELITE_service_du_programme_de_fidelite_clients;
+	}
+
+	inline QString get_CARTE_DE_FIDELITE_email() const
+	{
+		return _CARTE_DE_FIDELITE_email;
+	}
+
+	inline QString get_CARTE_DE_FIDELITE_telephone() const
+	{
+		return _CARTE_DE_FIDELITE_telephone;
+	}
+
 	inline QString getReferenceRegistreDuCommerce() const
 	{
 		return _reference_registre_chambre_du_commerce;
@@ -223,6 +283,13 @@ private:
 	QString _agence_comptebancaire;
 	QString _reference_comptebancaire;
 	QString _reference_registre_chambre_du_commerce;
+
+	QString _CARTE_DE_FIDELITE_nom_entreprise;
+	QString _CARTE_DE_FIDELITE_siege;
+	QString _CARTE_DE_FIDELITE_service_de_gestion_clientele;
+	QString _CARTE_DE_FIDELITE_service_du_programme_de_fidelite_clients;
+	QString _CARTE_DE_FIDELITE_email;
+	QString _CARTE_DE_FIDELITE_telephone;
 };
 
 

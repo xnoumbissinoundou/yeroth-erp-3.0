@@ -257,6 +257,18 @@ public:
 
 	static const QString SECTEURS_DACTIVITES;
 
+	static const QString CARTE_DE_FIDELITE_CLIENT_nom_entreprise;
+
+	static const QString CARTE_DE_FIDELITE_CLIENT_siege;
+
+	static const QString CARTE_DE_FIDELITE_CLIENT_service_de_gestion_clientele;
+
+	static const QString CARTE_DE_FIDELITE_CLIENT_service_du_programme_de_fidelite_client;
+
+	static const QString CARTE_DE_FIDELITE_CLIENT_email;
+
+	static const QString CARTE_DE_FIDELITE_CLIENT_telephone;
+
 	static const QString NUMERO_CONTRIBUABLE;
 
 	static const QString REFERENCE_REGISTRE_DU_COMMERCE;
