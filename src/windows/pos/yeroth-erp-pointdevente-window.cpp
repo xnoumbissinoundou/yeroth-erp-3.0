@@ -1652,7 +1652,7 @@ void YerothPointDeVenteWindow::handleTVACheckBox(bool clicked)
 
     YerothArticleVenteInfo *articleVenteInfo = articleItemToVenteInfo.value(tableWidgetRow);
 
-    QString rowStockID = tableWidget_articles->getStockID(tableWidgetRow);
+    QString rowStockID = tableWidget_articles->get_DB_ELEMENT_db_ID(tableWidgetRow);
 
     QSqlQuery stockRecordQuery;
 
@@ -1780,7 +1780,7 @@ void YerothPointDeVenteWindow::afficher_vente_detail(const int tableWidgetRow)
 
     checkBox_tva->setText(YerothUtils::getTVALabelStringWithPercent());
 
-    QString rowStockID = tableWidget_articles->getStockID(tableWidgetRow);
+    QString rowStockID = tableWidget_articles->get_DB_ELEMENT_db_ID(tableWidgetRow);
 
     /**
      * I set the stock ID of the current article
@@ -1910,7 +1910,7 @@ void YerothPointDeVenteWindow::handleQteChange(QTableWidgetItem * itemChanged)
         //No conversion error occurred.
         if (true == _updateItemConversionError)
         {
-            QString rowStockID = tableWidget_articles->getStockID(itemChanged->row());
+            QString rowStockID = tableWidget_articles->get_DB_ELEMENT_db_ID(itemChanged->row());
 
             QSqlQuery stockRecordQuery;
 

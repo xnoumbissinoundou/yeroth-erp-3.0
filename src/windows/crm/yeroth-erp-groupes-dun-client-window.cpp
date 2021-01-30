@@ -281,9 +281,10 @@ void YerothGroupesDunClientWindow::afficher_au_detail(const QModelIndex &modelIn
 {
     if (_curClientsTableModel->rowCount() > 0)
     {
-    	//qDebug() << "++ test" << modelIndex.row();
-        _allWindows->_clientsDetailWindow->rendreVisible(_curClientsTableModel,
-														 _curStocksTableModel);
+        _allWindows->_detailsGroupeDeClientsWindow->
+			rendreVisible(_curClientsTableModel,
+						   _curStocksTableModel,
+						   tableWidget_groupes_dun_client->get_DB_ELEMENT_db_ID(modelIndex.row()));
 
         rendreInvisible();
     }

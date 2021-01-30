@@ -37,7 +37,7 @@ public:
 
 	virtual void myClear();
 
-	inline virtual QString getStockID(int aRow)
+	inline virtual QString get_DB_ELEMENT_db_ID(int aRow)
 	{
 		return _mapListIdxToElement_db_ID.value(aRow);
 	}

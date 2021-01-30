@@ -1378,7 +1378,7 @@ void YerothSortirWindow::handleTVACheckBox(bool clicked)
 
     YerothArticleVenteInfo *articleVenteInfo = articleItemToVenteInfo.value(tableWidgetRow);
 
-    QString rowStockID = tableWidget_articles->getStockID(tableWidgetRow);
+    QString rowStockID = tableWidget_articles->get_DB_ELEMENT_db_ID(tableWidgetRow);
 
     QSqlQuery stockRecordQuery;
 
@@ -1503,7 +1503,7 @@ void YerothSortirWindow::afficher_sortie_detail(const int tableWidgetRow)
         return;
     }
 
-    QString rowStockID = tableWidget_articles->getStockID(tableWidgetRow);
+    QString rowStockID = tableWidget_articles->get_DB_ELEMENT_db_ID(tableWidgetRow);
 
     QSqlQuery stockRecordQuery;
 
@@ -1626,7 +1626,7 @@ void YerothSortirWindow::handleQteChange(QTableWidgetItem * itemChanged)
                 articleSqlTableModel = lineEdit_recherche_article->getMySqlTableModel();
             }
 
-            QString rowStockID = tableWidget_articles->getStockID(itemChanged->row());
+            QString rowStockID = tableWidget_articles->get_DB_ELEMENT_db_ID(itemChanged->row());
 
             QSqlQuery stockRecordQuery;
 
