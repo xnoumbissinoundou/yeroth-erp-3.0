@@ -8602,7 +8602,7 @@ background-color: rgb(0, 0, 0); </string>
       </font>
      </property>
      <property name="title">
-      <string>Groupes d'appartenance du client (NOM DU CLIENT)</string>
+      <string>Groupes de clients participants à ce programme de fidélité</string>
      </property>
      <widget class="YerothGroupesDunClientTableWidget" name="tableWidget_details_dun_programe_de_fidelite_clients_groupes_de_clients_participants">
       <property name="geometry">
