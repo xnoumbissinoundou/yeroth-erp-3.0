@@ -2296,6 +2296,8 @@ void YerothAdminWindow::enregistrer_entreprise_info_database_table()
 	else
 	{
 	}
+
+	_allWindows->getInfoEntreprise().toString();
 }
 
 

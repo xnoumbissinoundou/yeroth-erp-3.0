@@ -19,7 +19,7 @@
 #include <QtSql/QSqlRecord>
 
 
-const int YerothClientsDetailWindow::TRUNCATE_POS_FOR_NOM_ENTREPRISE = 27;
+const int YerothClientsDetailWindow::TRUNCATE_POS_FOR_NOM_ENTREPRISE = 23;
 
 
 YerothClientsDetailWindow::YerothClientsDetailWindow()
@@ -152,7 +152,7 @@ bool YerothClientsDetailWindow::generer_la_carte_de_fidelite_du_client()
 
     YerothUtils::getCurrentLocaleDate(fileDate);
 
-    texDocument.replace("YEROTHENTREPRISE", infoEntreprise.get_CARTE_DE_FIDELITE_nom_entreprise());
+    texDocument.replace("YEROTHENTREPRISE", infoEntreprise.get_CARTE_DE_FIDELITE_nom_entreprise_FOR_LATEX());
 
     texDocument.replace("YEROTHNOMDUCLIENT",
     		QString("%1").arg(lineEdit_clients_details_nom_entreprise->text_LATEX(TRUNCATE_POS_FOR_NOM_ENTREPRISE)));
@@ -165,7 +165,7 @@ bool YerothClientsDetailWindow::generer_la_carte_de_fidelite_du_client()
 
     texDocument.replace("YEROTHCLIENTRUEOUQUARTIER",
     		YerothUtils::GET_STRING_WITH_NUMBERS_WITHIN_KEPT_FOR_LATEX(
-    				lineEdit_clients_details_quartier->text()));
+    				lineEdit_clients_details_quartier->text_LATEX()));
 
     texDocument.replace("YEROTHCLIENTVILLE", lineEdit_clients_details_ville->text_LATEX());
 
