@@ -232,19 +232,19 @@ Program executing directory: &quot;%2&quot;.</translation>
     </message>
     <message>
         <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2225"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2310"/>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2493"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2312"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2495"/>
         <source>enregistrer</source>
         <translation>save</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2307"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2309"/>
         <source>Enregistrer la configuration (SYSTEM DAEMON) modifiée ?</source>
         <oldsource>Enregistrer la configuration (système d&apos;alertes) modifiée ?</oldsource>
         <translation>Save the modified configuration of &apos;YEROTH-ERP-3.0 SYSTEM DAEMON&apos; ?</translation>
     </message>
     <message>
-        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2491"/>
+        <location filename="src/admin/yeroth-erp-admin-window.cpp" line="2493"/>
         <source>Enregistrer la configuration (générale) modifiée ?</source>
         <oldsource>Enregistrer la configuration (générale) modifiée de Yeroth ?</oldsource>
         <translation>Save the modified general configuration ?</translation>
