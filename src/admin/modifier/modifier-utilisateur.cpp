@@ -18,8 +18,8 @@ void YerothAdminModifierWindow::setupEditCompteUtilisateur()
     QSqlRecord record = userTableModel->record(lw->lastSelectedItemForModification());
 
     lineEdit_modifier_utilisateur_id->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_UTILISATEUR));
-    lineEdit_modifier_utilisateur_mot_passe_1->setText("*****");
-    lineEdit_modifier_utilisateur_mot_passe_2->setText("*****");
+    lineEdit_modifier_utilisateur_mot_passe_1->setText("#####");
+    lineEdit_modifier_utilisateur_mot_passe_2->setText("#####");
     lineEdit_modifier_utilisateur_prenom->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::PRENOM));
     lineEdit_modifier_utilisateur_nom->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM));
 
@@ -145,7 +145,7 @@ bool YerothAdminModifierWindow::modifier_utilisateur_check_fields()
     QString mot_passe_1(lineEdit_modifier_utilisateur_mot_passe_1->text());
     QString mot_passe_2(lineEdit_modifier_utilisateur_mot_passe_2->text());
 
-    if (mot_passe_1 != "*****" || mot_passe_2 != "*****")
+    if (mot_passe_1 != "#####" || mot_passe_2 != "#####")
     {
         if (mot_passe_1 != mot_passe_2)
         {
