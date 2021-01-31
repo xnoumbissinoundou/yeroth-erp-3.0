@@ -46,7 +46,10 @@ public:
     	return toolBar_stocksWindow;
     }
 
-    virtual void definirCaissier();
+    inline virtual void definirCaissier()
+    {
+    	definirPasDeRole();
+    }
 
     virtual void definirManager();
 

@@ -28,6 +28,8 @@ YerothERPMarchandiseImport::YerothERPMarchandiseImport(QStringList &aCurCsvFileT
 
 	_allMandatoryTableColumns.append(YerothDatabaseTableColumn::DESIGNATION);
 
+	_allMandatoryTableColumns.append(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT);
+
 	_allMandatoryTableColumns.append(YerothDatabaseTableColumn::CATEGORIE);
 }
 
@@ -42,6 +44,8 @@ YerothERPMarchandiseImport::YerothERPMarchandiseImport(YerothPOSAdminWindowsComm
 	_allMandatoryTableColumns.clear();
 
 	_allMandatoryTableColumns.append(YerothDatabaseTableColumn::DESIGNATION);
+
+	_allMandatoryTableColumns.append(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT);
 
 	_allMandatoryTableColumns.append(YerothDatabaseTableColumn::CATEGORIE);
 }
@@ -78,6 +82,7 @@ enum import_csv_entry_row_return_status
 
 	QString productReference;
 	QString productName;
+	QString productDepartment;
 	QString productCategorie;
 
 	for (int j = 0; j < aCsvFileEntryLine.size(); ++j)
@@ -120,6 +125,52 @@ enum import_csv_entry_row_return_status
 				YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::DESIGNATION, curTableColumnName))
 			{
 				productName = curColumnRowEntry;
+			}
+
+			if (_allMandatoryTableColumns.contains(curTableColumnName)     &&
+				YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT, curTableColumnName))
+			{
+				productDepartment = curColumnRowEntry;
+
+				QString queryProductDepartmentStr(QString("select * from %1 WHERE %2 = '%3'")
+						.arg(YerothDatabase::DEPARTEMENTS_PRODUITS,
+							 YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,
+							 curColumnRowEntry));
+
+				querySize = YerothUtils::execQueryRowCount(queryProductDepartmentStr);
+
+				if (querySize <= 0)
+				{
+					queryProductDepartmentStr = QString("insert into %1 (%2, %3) values ('%4', '%5')")
+														.arg(YerothDatabase::DEPARTEMENTS_PRODUITS,
+																YerothDatabaseTableColumn::ID,
+																YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,
+																QString::number(allWindows->getNextIdSqlTableModel_departements_produits()),
+																curColumnRowEntry);
+
+					if (!YerothUtils::execQuery(queryProductDepartmentStr))
+					{
+						QString infoMesg =
+								QObject::trUtf8("Le département '%1' ne pouvait pas être créée !")
+									.arg(curColumnRowEntry);
+
+						if (0 != _callingWindow)
+						{
+							if (importerParlant)
+							{
+								YerothQMessageBox::warning(_callingWindow,
+										QObject::trUtf8("création d'1 département de produits"),
+										infoMesg);
+							}
+						}
+						else
+						{
+							qDebug() << infoMesg;
+						}
+
+						return IMPORT_DATA_CSV_INSERTION_FAILED;
+					}
+				}
 			}
 
 			if (_allMandatoryTableColumns.contains(curTableColumnName)     &&

@@ -32,6 +32,8 @@ YerothERPStockImport::YerothERPStockImport(QStringList 				  						&aCurCsvFileT
 {
 	_allMandatoryTableColumns.append(YerothDatabaseTableColumn::DESIGNATION);
 
+	_allMandatoryTableColumns.append(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT);
+
 	_allMandatoryTableColumns.append(YerothDatabaseTableColumn::CATEGORIE);
 
 	_allMandatoryTableColumns.append(YerothDatabaseTableColumn::QUANTITE_TOTALE);
@@ -48,6 +50,8 @@ YerothERPStockImport::YerothERPStockImport(YerothPOSAdminWindowsCommons 					&aC
  _callingWindow(&aCallingWindow)
 {
 	_allMandatoryTableColumns.append(YerothDatabaseTableColumn::DESIGNATION);
+
+	_allMandatoryTableColumns.append(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT);
 
 	_allMandatoryTableColumns.append(YerothDatabaseTableColumn::CATEGORIE);
 
@@ -261,6 +265,11 @@ enum import_csv_entry_row_return_status
     double montant_tva = -1.0;
     double prix_unitaire = -1.0;
     double prix_vente = -1.0;
+
+    double montant_tva_EN_GROS = -1.0;
+    double prix_unitaire_EN_GROS = -1.0;
+    double prix_vente_EN_GROS = -1.0;
+
     double quantite_totale = -1.0;
 
     int stock_id_to_save = YerothERPWindows::getNextIdSqlTableModel_stocks();
@@ -277,6 +286,7 @@ enum import_csv_entry_row_return_status
 
 	QString productReference;
 	QString productName;
+	QString productDepartment;
 	QString productCategorie;
 	QString proposedFournisseur;
 
@@ -369,25 +379,76 @@ enum import_csv_entry_row_return_status
 
 
 			if (_allMandatoryTableColumns.contains(curTableColumnName)     &&
+				YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT, curTableColumnName))
+			{
+				productDepartment = curColumnRowEntry;
+
+				QString queryProductDepartmentStr(QString("select * from %1 WHERE %2 = '%3'")
+						.arg(YerothDatabase::DEPARTEMENTS_PRODUITS,
+							 YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,
+							 curColumnRowEntry));
+
+				querySize = YerothUtils::execQueryRowCount(queryProductDepartmentStr);
+
+				if (querySize <= 0)
+				{
+					queryProductDepartmentStr = QString("insert into %1 (%2, %3) values ('%4', '%5')")
+														.arg(YerothDatabase::DEPARTEMENTS_PRODUITS,
+																YerothDatabaseTableColumn::ID,
+																YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,
+																QString::number(allWindows->getNextIdSqlTableModel_departements_produits()),
+																curColumnRowEntry);
+
+					if (!YerothUtils::execQuery(queryProductDepartmentStr))
+					{
+						QString infoMesg =
+								QObject::trUtf8("Le département '%1' ne pouvait pas être créée !")
+									.arg(curColumnRowEntry);
+
+						if (0 != _callingWindow)
+						{
+							if (importerParlant)
+							{
+								YerothQMessageBox::warning(_callingWindow,
+										QObject::trUtf8("création d'1 département de produits"),
+										infoMesg);
+							}
+						}
+						else
+						{
+							qDebug() << infoMesg;
+						}
+
+						return IMPORT_DATA_CSV_INSERTION_FAILED;
+					}
+				}
+			}
+
+
+			if (_allMandatoryTableColumns.contains(curTableColumnName)     &&
 				YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::CATEGORIE, curTableColumnName))
 			{
 				productCategorie = curColumnRowEntry;
 
-				QString queryCategoryStr(QString("select * from %1 WHERE %2 = '%3'")
+				QString queryCategoryStr(QString("select * from %1 WHERE %2='%3' AND %4='%5'")
 						.arg(YerothDatabase::CATEGORIES,
 							 YerothDatabaseTableColumn::NOM_CATEGORIE,
-							 curColumnRowEntry));
+							 curColumnRowEntry,
+							 YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,
+							 productDepartment));
 
 				querySize = YerothUtils::execQueryRowCount(queryCategoryStr);
 
 				if (querySize <= 0)
 				{
-					queryCategoryStr = QString("insert into %1 (%2, %3) values ('%4', '%5')")
+					queryCategoryStr = QString("insert into %1 (%2, %3, %4) values ('%5', '%6', '%7')")
 											.arg(YerothDatabase::CATEGORIES,
 												 YerothDatabaseTableColumn::ID,
 												 YerothDatabaseTableColumn::NOM_CATEGORIE,
+												 YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,
 												 QString::number(allWindows->getNextIdSqlTableModel_categories()),
-												 curColumnRowEntry);
+												 curColumnRowEntry,
+												 productDepartment);
 
 					if (!YerothUtils::execQuery(queryCategoryStr))
 					{
@@ -455,6 +516,16 @@ enum import_csv_entry_row_return_status
 				{
 					prix_unitaire = YerothUtils::YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(curColumnRowEntry);
 					record.setValue(curTableColumnName, prix_unitaire);
+				}
+				else if(YerothDatabaseTableColumn::MONTANT_TVA_EN_GROS == curTableColumnName)
+				{
+					montant_tva_EN_GROS = YerothUtils::YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(curColumnRowEntry);
+					record.setValue(curTableColumnName, montant_tva_EN_GROS);
+				}
+				else if(YerothDatabaseTableColumn::PRIX_UNITAIRE_EN_GROS == curTableColumnName)
+				{
+					prix_unitaire_EN_GROS = YerothUtils::YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(curColumnRowEntry);
+					record.setValue(curTableColumnName, prix_unitaire_EN_GROS);
 				}
 				else
 				{
@@ -572,9 +643,12 @@ enum import_csv_entry_row_return_status
 		QStringList allSqltableColumns = _dbTableColumnToIsNotNULL->keys();
 
 		allSqltableColumns.removeAll(YerothDatabaseTableColumn::ID);
+		allSqltableColumns.removeAll(YerothDatabaseTableColumn::PRIX_UNITAIRE_EN_GROS);
 		allSqltableColumns.removeAll(YerothDatabaseTableColumn::PRIX_DACHAT);
 		allSqltableColumns.removeAll(YerothDatabaseTableColumn::MONTANT_TVA);
+		allSqltableColumns.removeAll(YerothDatabaseTableColumn::MONTANT_TVA_EN_GROS);
 		allSqltableColumns.removeAll(YerothDatabaseTableColumn::PRIX_VENTE);
+		allSqltableColumns.removeAll(YerothDatabaseTableColumn::PRIX_VENTE_EN_GROS);
 		allSqltableColumns.removeAll(YerothDatabaseTableColumn::IS_SERVICE);
 		allSqltableColumns.removeAll(YerothDatabaseTableColumn::LOTS_ENTRANT);
 		allSqltableColumns.removeAll(YerothDatabaseTableColumn::QUANTITE_PAR_LOT);
@@ -631,6 +705,21 @@ enum import_csv_entry_row_return_status
 		}
 	}
 
+
+	if (record.isNull(YerothDatabaseTableColumn::MONTANT_TVA_EN_GROS))
+	{
+		montant_tva_EN_GROS = montant_tva;
+
+		record.setValue(YerothDatabaseTableColumn::MONTANT_TVA_EN_GROS, montant_tva_EN_GROS);
+	}
+
+	if (record.isNull(YerothDatabaseTableColumn::PRIX_UNITAIRE_EN_GROS))
+	{
+		prix_unitaire_EN_GROS = prix_unitaire;
+
+		record.setValue(YerothDatabaseTableColumn::PRIX_UNITAIRE_EN_GROS, prix_unitaire_EN_GROS);
+	}
+
 //	QDEBUG_STRINGS_OUTPUT_2_N("stock_id_to_save - 2", stock_id_to_save);
 
 	record.setValue(YerothDatabaseTableColumn::ID, stock_id_to_save);
@@ -647,10 +736,21 @@ enum import_csv_entry_row_return_status
 		a_stock_data._prix_vente_precedent = QString::number(prix_vente);
 	}
 
-	a_stock_data._prix_dachat_precedent = prix_dachat;
-	a_stock_data._categorie 			 = productCategorie;
-    a_stock_data._designation 			 = productName;
-    a_stock_data._reference 			 = productReference;
+	if (montant_tva_EN_GROS > -1 && prix_unitaire_EN_GROS > 0)
+	{
+		prix_vente_EN_GROS = prix_unitaire_EN_GROS + montant_tva_EN_GROS;
+//		qDebug() << QString("++ prix_vente: %1")
+//						.arg(QString::number(prix_vente));
+		record.setValue(YerothDatabaseTableColumn::PRIX_VENTE_EN_GROS, prix_vente_EN_GROS);
+
+		a_stock_data._prix_vente_en_gros_precedent = QString::number(prix_vente_EN_GROS);
+	}
+
+	a_stock_data._prix_dachat_precedent  	= prix_dachat;
+	a_stock_data._nom_departement_produit 	= productDepartment;
+	a_stock_data._categorie 			 	= productCategorie;
+    a_stock_data._designation 			 	= productName;
+    a_stock_data._reference 			 	= productReference;
 
     if (SERVICE_STOCK_UNDEFINED == SERVICE_REFERENCE_STOCK_DESIGNATION_EXIST)
     {
