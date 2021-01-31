@@ -463,7 +463,7 @@ void YerothGroupesDunClientWindow::definirManager()
 void YerothGroupesDunClientWindow::definirVendeur()
 {
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionInformationEntreprise, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionListerDesGroupesDeClients, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionListerDesGroupesDeClients, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionA_propos, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
@@ -473,7 +473,7 @@ void YerothGroupesDunClientWindow::definirVendeur()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_ce_groupe_au_detail, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
-	pushButton_groupes_de_clients->enable(this, SLOT(groupes_de_clients()));
+	pushButton_groupes_de_clients->disable(this);
 	pushButton_menu_clients->enable(this, SLOT(clients()));
 	pushButton_RETOUR->enable(this, SLOT(afficher_au_detail()));
 	pushButton_retirer->enable(this, SLOT(retirer_ce_client_du_groupe_selectione()));

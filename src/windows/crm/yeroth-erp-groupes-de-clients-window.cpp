@@ -464,14 +464,6 @@ void YerothGroupesDeClientsWindow::rendreVisible(YerothSqlTableModel * stocksTab
 }
 
 
-void YerothGroupesDeClientsWindow::definirCaissier()
-{
-    _logger->log("definirCaissier - definirPasDeRole()");
-
-    definirPasDeRole();
-}
-
-
 void YerothGroupesDeClientsWindow::definirManager()
 {
     _logger->log("definirManager");
@@ -501,53 +493,6 @@ void YerothGroupesDeClientsWindow::definirManager()
 }
 
 
-void YerothGroupesDeClientsWindow::definirVendeur()
-{
-    _logger->log("definirVendeur");
-
-    tableView_groupes_de_clients->setVisible(true);
-
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, true);
-	YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_ce_groupe_au_detail, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerGroupeDeClients, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionExporter_au_format_csv, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
-
-
-    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(this, _curClientGroupTableModel)
-
-
-    pushButton_groupes_de_clients_filtrer->enable(this, SLOT(filtrer_groupes_de_clients()));
-    pushButton_programmes_de_fidelite_clients->disable(this);
-    pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
-    pushButton_menu_clients->enable(this, SLOT(clients()));
-    pushButton_creer_groupe->enable(this, SLOT(creerUnGroupeDeClients()));
-    pushButton_modifier->disable(this);
-    pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
-}
-
-
-void YerothGroupesDeClientsWindow::definirGestionaireDesStocks()
-{
-    _logger->log("definirGestionaireDesStocks - definirPasDeRole()");
-
-    definirPasDeRole();
-}
-
-
-void YerothGroupesDeClientsWindow::definirMagasinier()
-{
-    _logger->log("definirMagasinier - definirPasDeRole()");
-
-    tableView_groupes_de_clients->setVisible(false);
-
-    definirPasDeRole();
-}
-
-
 void YerothGroupesDeClientsWindow::definirPasDeRole()
 {
     _logger->log("definirPasDeRole");
@@ -564,6 +509,7 @@ void YerothGroupesDeClientsWindow::definirPasDeRole()
 
     MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS
 
+	tableView_groupes_de_clients->setVisible(false);
 
     pushButton_groupes_de_clients_filtrer->disable(this);
     pushButton_programmes_de_fidelite_clients->disable(this);

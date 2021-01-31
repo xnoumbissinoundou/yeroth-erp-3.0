@@ -155,7 +155,7 @@ void YerothDetailsDunGroupeDeClientsWindow::definirVendeur()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
-	pushButton_programmes_de_fidelite_clients->enable(this, SLOT(programmes_de_fidelite_clients()));
+	pushButton_programmes_de_fidelite_clients->disable(this);
 	pushButton_menu_clients->enable(this, SLOT(clients()));
     pushButton_RETOUR->enable(this, SLOT(groupes_de_clients()));
 }

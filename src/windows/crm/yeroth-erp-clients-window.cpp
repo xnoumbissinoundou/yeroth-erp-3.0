@@ -787,7 +787,7 @@ void YerothERPClientsWindow::definirVendeur()
 {
     _logger->log("definirVendeur");
 
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(action_afficher_groupes_du_client, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(action_afficher_groupes_du_client, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, true);
@@ -812,7 +812,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_creer_compte_client->enable(this, SLOT(creerCompteClient()));
-    pushButton_groupes_de_clients->enable(this, SLOT(groupes_de_clients()));
+    pushButton_groupes_de_clients->disable(this);
     pushButton_programmes_de_fidelite_clients->disable(this);
 
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
