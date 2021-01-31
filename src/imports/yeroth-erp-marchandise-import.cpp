@@ -151,7 +151,7 @@ enum import_csv_entry_row_return_status
 					if (!YerothUtils::execQuery(queryProductDepartmentStr))
 					{
 						QString infoMesg =
-								QObject::trUtf8("Le département '%1' ne pouvait pas être créée !")
+								QObject::trUtf8("Le département de produits '%1' ne pouvait pas être créée !")
 									.arg(curColumnRowEntry);
 
 						if (0 != _callingWindow)

@@ -1633,8 +1633,8 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
     </message>
     <message>
         <location filename="src/windows/stocks/yeroth-erp-stock-detail-window.cpp" line="27"/>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1014"/>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1032"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="986"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1004"/>
         <source>détails d&apos;un stock</source>
         <oldsource>stock details</oldsource>
         <translation>stock details</translation>
@@ -2007,7 +2007,7 @@ Continue with update of the stock ?</translation>
         <location filename="src/windows/crm/modifier/yeroth-erp-modifier-compte-client-window.cpp" line="497"/>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="463"/>
         <location filename="src/windows/purchase/yeroth-erp-achats-aux-fournisseurs-window.cpp" line="795"/>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1067"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1039"/>
         <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="360"/>
         <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="369"/>
         <source>supprimer</source>
@@ -2145,7 +2145,7 @@ Continue with update of the stock ?</translation>
         <location filename="src/windows/stocks/yeroth-erp-mouvements_de_stocks-window.hpp" line="74"/>
         <location filename="src/windows/stocks/yeroth-erp-sortir-window.hpp" line="190"/>
         <location filename="src/windows/stocks/yeroth-erp-stock-detail-window.hpp" line="79"/>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.hpp" line="80"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.hpp" line="83"/>
         <location filename="src/windows/supplier/yeroth-erp-creer-fournisseur-window.hpp" line="70"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseur-details-window.hpp" line="76"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseurs-window.hpp" line="77"/>
@@ -2628,7 +2628,7 @@ Continue with update of the stock (service) ?</translation>
         <translation>Fill out the form, and then press the &apos;save&apos; button !</translation>
     </message>
     <message>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.hpp" line="81"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.hpp" line="84"/>
         <source>1. Sélectionnez un stock dans le tableau des stocks, ensuite cliquer sur l&apos;opération que vous souhaitez réaliser !
 
 2. La valeur d&apos;inventaire d&apos;un stock (VI) est calculée comme suit:
@@ -2986,41 +2986,41 @@ Please contact an administrator of %1</translation>
         <translation>keyword to search for (article (or service) description)</translation>
     </message>
     <message>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1115"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1087"/>
         <source>Poursuivre avec la suppression du service &apos;%1&apos; ?</source>
         <translation>Continue with deletion of service &apos;%1&apos; ?</translation>
     </message>
     <message>
         <location filename="src/windows/stocks/yeroth-erp-modifier-window.cpp" line="934"/>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1122"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1094"/>
         <source>Poursuivre avec la suppression du stock &apos;%1&apos; ?</source>
         <translation>Continue with deletion of stock &apos;%1&apos; ?</translation>
     </message>
     <message>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1068"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1040"/>
         <source>Sélectionnez 1 stock à supprimer.</source>
         <translation>Select a stock item to delete.</translation>
     </message>
     <message>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1128"/>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1201"/>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1210"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1100"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1173"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1182"/>
         <source>suppression d&apos;un stock (service)</source>
         <translation>deletion of a stock (service)</translation>
     </message>
     <message>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1197"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1169"/>
         <source>Le stock (service) &apos;%1&apos; a été supprimé !</source>
         <translation>Stock (service) &apos;%1&apos; has been deleted !</translation>
     </message>
     <message>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1206"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1178"/>
         <source>Le stock (service) &apos;%1&apos; ne pouvait pas être supprimé !</source>
         <translation>Stock (service) &apos;%1&apos; couldn&apos;t be deleted !</translation>
     </message>
     <message>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1015"/>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1033"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="987"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1005"/>
         <source>Sélectionnez un stock à afficher les détails.</source>
         <translation>Select a stock item to view its stock details.</translation>
     </message>
@@ -3138,7 +3138,7 @@ Please contact an administrator of %1</translation>
         <translation>Inventory stock &apos;%1&apos; couldn&apos;t be deleted !</translation>
     </message>
     <message>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1300"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1272"/>
         <source>Sélectionnez un stock à modifier.</source>
         <translation>Select a stock item to modify its details.</translation>
     </message>
@@ -4327,93 +4327,106 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>Yeroth-erp-3.0 ~ admin-create-bank account</translation>
     </message>
     <message>
-        <location filename="src/imports/yeroth-erp-stock-import.cpp" line="70"/>
+        <location filename="src/imports/yeroth-erp-stock-import.cpp" line="74"/>
         <source>Le fichier CSV n&apos;a pas de données à importer !</source>
         <translation>CSV file doesn&apos;t have any data to import !</translation>
     </message>
     <message>
-        <location filename="src/imports/yeroth-erp-stock-import.cpp" line="73"/>
+        <location filename="src/imports/yeroth-erp-stock-import.cpp" line="77"/>
         <source>fichier CSV vide</source>
         <translation>empty CSV file</translation>
     </message>
     <message>
-        <location filename="src/imports/yeroth-erp-stock-import.cpp" line="114"/>
+        <location filename="src/imports/yeroth-erp-stock-import.cpp" line="118"/>
         <source>La colone &apos;%1&apos; apparaît plusieurs fois parmis les colones d&apos;importation !</source>
         <translation>Column &apos;%1&apos; must appear once among importation columns !</translation>
     </message>
     <message>
-        <location filename="src/imports/yeroth-erp-stock-import.cpp" line="120"/>
+        <location filename="src/imports/yeroth-erp-stock-import.cpp" line="124"/>
         <source>colones d&apos;importation multiples</source>
         <translation>multiple importation columns</translation>
     </message>
     <message>
-        <location filename="src/imports/yeroth-erp-stock-import.cpp" line="176"/>
+        <location filename="src/imports/yeroth-erp-stock-import.cpp" line="180"/>
         <source>Les colones obligatoires suivantes &apos;%1&apos; sont manquantes !</source>
         <translation>The following mandatory columns &apos;%1&apos; are missing !</translation>
     </message>
     <message>
-        <location filename="src/imports/yeroth-erp-stock-import.cpp" line="181"/>
+        <location filename="src/imports/yeroth-erp-stock-import.cpp" line="185"/>
         <source>colones obligatoires manquantes</source>
         <translation>missing mandatory columns</translation>
     </message>
     <message>
-        <location filename="src/imports/yeroth-erp-stock-import.cpp" line="348"/>
+        <location filename="src/imports/yeroth-erp-stock-import.cpp" line="358"/>
         <source>L&apos;entreprise fournisseur &apos;%1&apos; ne pouvait pas être créée !</source>
         <translation>Supplier company &apos;%1&apos; couldn&apos;t be created !</translation>
     </message>
     <message>
-        <location filename="src/imports/yeroth-erp-stock-import.cpp" line="356"/>
+        <location filename="src/imports/yeroth-erp-stock-import.cpp" line="366"/>
         <source>création d&apos;une entreprise fournisseuse</source>
         <translation>creation of a supplier company</translation>
     </message>
     <message>
-        <location filename="src/imports/yeroth-erp-marchandise-import.cpp" line="149"/>
-        <location filename="src/imports/yeroth-erp-stock-import.cpp" line="395"/>
+        <location filename="src/imports/yeroth-erp-marchandise-import.cpp" line="154"/>
+        <location filename="src/imports/yeroth-erp-stock-import.cpp" line="405"/>
+        <source>Le département de produits &apos;%1&apos; ne pouvait pas être créée !</source>
+        <oldsource>Le département  de produits &apos;%1&apos; ne pouvait pas être créée !</oldsource>
+        <translation>Product department &apos;%1&apos; couldn&apos;t be created !</translation>
+    </message>
+    <message>
+        <location filename="src/imports/yeroth-erp-marchandise-import.cpp" line="162"/>
+        <location filename="src/imports/yeroth-erp-stock-import.cpp" line="413"/>
+        <source>création d&apos;1 département de produits</source>
+        <translation>product department creation</translation>
+    </message>
+    <message>
+        <location filename="src/imports/yeroth-erp-marchandise-import.cpp" line="200"/>
+        <location filename="src/imports/yeroth-erp-stock-import.cpp" line="456"/>
         <source>La catégorie &apos;%1&apos; ne pouvait pas être créée !</source>
         <oldsource>La catégorie &apos;%1&apos; ne pouvait pasêtre créée !</oldsource>
         <translation>Category &apos;%1&apos; couldn&apos;t be created !</translation>
     </message>
     <message>
-        <location filename="src/imports/yeroth-erp-marchandise-import.cpp" line="158"/>
-        <location filename="src/imports/yeroth-erp-stock-import.cpp" line="404"/>
+        <location filename="src/imports/yeroth-erp-marchandise-import.cpp" line="209"/>
+        <location filename="src/imports/yeroth-erp-stock-import.cpp" line="465"/>
         <source>création de catégorie d&apos;articles</source>
         <translation>article category creation</translation>
     </message>
     <message>
-        <location filename="src/imports/yeroth-erp-marchandise-import.cpp" line="219"/>
-        <location filename="src/imports/yeroth-erp-stock-import.cpp" line="493"/>
+        <location filename="src/imports/yeroth-erp-marchandise-import.cpp" line="270"/>
+        <location filename="src/imports/yeroth-erp-stock-import.cpp" line="564"/>
         <source>Cette référence (&apos;%1&apos;) est déjà utilisée par la marchandise &apos;%2&apos; !</source>
         <translation>This reference (&apos;%1&apos;) is already used by merchandise &apos;%2&apos; !</translation>
     </message>
     <message>
-        <location filename="src/imports/yeroth-erp-marchandise-import.cpp" line="228"/>
-        <location filename="src/imports/yeroth-erp-stock-import.cpp" line="502"/>
+        <location filename="src/imports/yeroth-erp-marchandise-import.cpp" line="279"/>
+        <location filename="src/imports/yeroth-erp-stock-import.cpp" line="573"/>
         <source>La marchandise &apos;%1&apos; est déjà dans la catégorie (&apos;%2&apos;) !</source>
         <translation>Merchandise &apos;%1&apos; is already in category (&apos;%2&apos;) !</translation>
     </message>
     <message>
-        <location filename="src/imports/yeroth-erp-marchandise-import.cpp" line="234"/>
-        <location filename="src/imports/yeroth-erp-stock-import.cpp" line="508"/>
+        <location filename="src/imports/yeroth-erp-marchandise-import.cpp" line="285"/>
+        <location filename="src/imports/yeroth-erp-stock-import.cpp" line="579"/>
         <source>La marchandise (&apos;%1&apos;) utilise déjà la référence &apos;%2&apos; !</source>
         <translation>Merchandise (&apos;%1&apos;) already uses reference &apos;%2&apos; !</translation>
     </message>
     <message>
-        <location filename="src/imports/yeroth-erp-stock-import.cpp" line="538"/>
+        <location filename="src/imports/yeroth-erp-stock-import.cpp" line="609"/>
         <source>La colone &apos;%1&apos; a une valeur (%2) &lt;= &apos;0&apos; !</source>
         <translation>Column &apos;%1&apos; has a value (%2) &lt;= &apos;0&apos; !</translation>
     </message>
     <message>
-        <location filename="src/imports/yeroth-erp-stock-import.cpp" line="547"/>
+        <location filename="src/imports/yeroth-erp-stock-import.cpp" line="618"/>
         <source>valeur incorrecte</source>
         <translation>incorrect value</translation>
     </message>
     <message>
-        <location filename="src/imports/yeroth-erp-stock-import.cpp" line="194"/>
+        <location filename="src/imports/yeroth-erp-stock-import.cpp" line="198"/>
         <source>La colone OBLIGATOIRE &apos;%1&apos; est manquante !</source>
         <translation>MANDATORY column &apos;%1&apos; is missing !</translation>
     </message>
     <message>
-        <location filename="src/imports/yeroth-erp-stock-import.cpp" line="200"/>
+        <location filename="src/imports/yeroth-erp-stock-import.cpp" line="204"/>
         <source>colone OBLIGATOIRE manquante</source>
         <translation>missing MANDATORY column</translation>
     </message>
