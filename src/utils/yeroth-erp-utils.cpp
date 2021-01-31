@@ -811,7 +811,7 @@ bool YerothUtils::check_IF_departement_produit_exists(QString &proposedProductDe
 {
 	return (YerothUtils::execQueryRowCount(QString("select %1 from %2 where %3='%4'")
 										.arg(YerothDatabaseTableColumn::ID,
-											 _allWindows->DEPARTEMENTS_PRODUITS,
+											 YerothDatabase::DEPARTEMENTS_PRODUITS,
 											 YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,
 											 proposedProductDepartmentName)) > 0);
 }
@@ -1118,7 +1118,7 @@ bool YerothUtils::UPDATE_PREVIOUS_SELLING_PRICE_IN_ProductList(const YerothERPSe
     bool success = false;
 
 	QString stockItemUpdateSellingPriceQuery(QString("UPDATE %1 SET %2='%3', %4='%5' WHERE %6='%7'")
-												.arg(_allWindows->MARCHANDISES,
+												.arg(YerothDatabase::MARCHANDISES,
 													 YerothDatabaseTableColumn::PRIX_VENTE_PRECEDENT,
 													 aServiceStockData._prix_vente_precedent,
 													 YerothDatabaseTableColumn::PRIX_VENTE_EN_GROS_PRECEDENT,
@@ -1138,7 +1138,7 @@ bool YerothUtils::UPDATE_PREVIOUS_BUYING_PRICE_IN_ProductList(const YerothERPSer
     bool success = false;
 
 	QString stockItemUpdateBuyingPriceQuery(QString("UPDATE %1 SET %2='%3' WHERE %4='%5'")
-												.arg(_allWindows->MARCHANDISES,
+												.arg(YerothDatabase::MARCHANDISES,
 													 YerothDatabaseTableColumn::PRIX_DACHAT_PRECEDENT,
 													 aServiceStockData._prix_dachat_precedent,
 													 YerothDatabaseTableColumn::DESIGNATION,
@@ -1357,7 +1357,7 @@ double YerothUtils::get_prix_dachat_wheter_exists(const QString &stocksID)
 {
     QString prixDachatQueryString(QString("SELECT %1 FROM %2 WHERE %3='%4'")
     								.arg(YerothDatabaseTableColumn::PRIX_DACHAT,
-    									 _allWindows->ACHATS,
+    									 YerothDatabase::ACHATS,
 										 YerothDatabaseTableColumn::STOCKS_ID,
 										 stocksID));
 
@@ -2041,7 +2041,7 @@ int YerothUtils::STOCK_PURCHASE_RECORDS_QUANTITY(int stockId)
 {
     QString strAchatsQuery(QString("SELECT %1 FROM %2 WHERE %3 = '%4'")
     							.arg(YerothDatabaseTableColumn::ID,
-    								 _allWindows->ACHATS,
+    								 YerothDatabase::ACHATS,
     								 YerothDatabaseTableColumn::STOCKS_ID,
 									 QString::number(stockId)));
 

@@ -217,12 +217,12 @@ void YerothEntrerWindow::setupLineEditsQCompleters__FOR_STOCK_INVENTORY()
     	QString aConditionStr(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
 														 YerothUtils::MYSQL_FALSE_LITERAL));
 
-    	lineEdit_reference_produit->setupMyStaticQCompleter(_allWindows->MARCHANDISES,
+    	lineEdit_reference_produit->setupMyStaticQCompleter(YerothDatabase::MARCHANDISES,
     														YerothDatabaseTableColumn::REFERENCE,
     														false,
     														aConditionStr);
 
-    	lineEdit_designation->setupMyStaticQCompleter(_allWindows->MARCHANDISES,
+    	lineEdit_designation->setupMyStaticQCompleter(YerothDatabase::MARCHANDISES,
     												  YerothDatabaseTableColumn::DESIGNATION,
     												  false,
     												  aConditionStr);
@@ -232,14 +232,14 @@ void YerothEntrerWindow::setupLineEditsQCompleters__FOR_STOCK_INVENTORY()
 	{
 		label_fournisseur->setText(QObject::tr("client"));
 
-		lineEdit_nom_entreprise_fournisseur->setupMyStaticQCompleter(_allWindows->CLIENTS,
+		lineEdit_nom_entreprise_fournisseur->setupMyStaticQCompleter(YerothDatabase::CLIENTS,
 				YerothDatabaseTableColumn::NOM_ENTREPRISE);
 	}
 	else
 	{
 		label_fournisseur->setText(QObject::tr("fournisseur"));
 
-        lineEdit_nom_entreprise_fournisseur->setupMyStaticQCompleter(_allWindows->FOURNISSEURS,
+        lineEdit_nom_entreprise_fournisseur->setupMyStaticQCompleter(YerothDatabase::FOURNISSEURS,
         															 YerothDatabaseTableColumn::NOM_ENTREPRISE);
 	}
 
@@ -273,7 +273,7 @@ void YerothEntrerWindow::setupLineEditsQCompleters__CATEGORIE()
 
 	lineEdit_categorie_produit->clearField();
 
-	lineEdit_categorie_produit->setupMyStaticQCompleter(_allWindows->CATEGORIES,
+	lineEdit_categorie_produit->setupMyStaticQCompleter(YerothDatabase::CATEGORIES,
 														YerothDatabaseTableColumn::NOM_CATEGORIE,
 														aConditionStr);
 
@@ -292,7 +292,7 @@ void YerothEntrerWindow::setupLineEditsQCompleters()
 void YerothEntrerWindow::populateEntrerUnStock_OU_ServiceComboBoxes()
 {
 	comboBox_nom_departement_produit->
-		populateComboBoxRawString(_allWindows->DEPARTEMENTS_PRODUITS,
+		populateComboBoxRawString(YerothDatabase::DEPARTEMENTS_PRODUITS,
 								  YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT);
 
 	comboBox_nom_departement_produit->setFocus();
@@ -1074,7 +1074,7 @@ void YerothEntrerWindow::showItem(YerothSqlTableModel *stocks_OR_marchandises_Ta
         label_image_produit->setAutoFillBackground(false);
     }
 
-    if (YerothUtils::isEqualCaseInsensitive(_allWindows->STOCKS,
+    if (YerothUtils::isEqualCaseInsensitive(YerothDatabase::STOCKS,
     										stocks_OR_marchandises_TableModel->sqlTableName()))
     {
         QString recordID = YerothERPWindows::get_last_lister_selected_row_ID();
@@ -1390,7 +1390,7 @@ bool YerothEntrerWindow::handle_stocks_vendu_table(int stockID,
 
         QString quantiteQueryStr(QString("SELECT %1 FROM %2 WHERE id = '%3'")
         							.arg(YerothDatabaseTableColumn::QUANTITE_TOTALE,
-        								 _allWindows->STOCKS,
+        								 YerothDatabase::STOCKS,
 										 QString::number(stockID)));
         QSqlQuery quantiteQuery;
 
@@ -1507,7 +1507,7 @@ bool YerothEntrerWindow::handle_stocks_vendu_table(int stockID,
         if (success1)
         {
         	QString removeRowQuery(QString("DELETE FROM %1 WHERE %2 = '%3'")
-        								.arg(_allWindows->STOCKS,
+        								.arg(YerothDatabase::STOCKS,
         									 YerothDatabaseTableColumn::ID,
 											 QString::number(stockID)));
 
@@ -1523,17 +1523,17 @@ bool YerothEntrerWindow::handle_stocks_vendu_table(int stockID,
     										 "UPDATE TempData SET id = %4;"
     										 "INSERT INTO %5 SELECT * FROM TempData;"
     										 "DROP TABLE IF EXISTS TempData;")
-    									.arg(_allWindows->STOCKS_VENDU,
-    										 _allWindows->STOCKS_VENDU,
+    									.arg(YerothDatabase::STOCKS_VENDU,
+    										 YerothDatabase::STOCKS_VENDU,
 											 QString::number(stocksVenduID),
 											 QString::number(YerothERPWindows::getNextIdSqlTableModel_services_completes()),
-											 _allWindows->SERVICES_COMPLETES));
+											 YerothDatabase::SERVICES_COMPLETES));
 
     			if (YerothUtils::execQuery(copyRowQuery))
     			{
         			//handle stocksVendu table
         			QString removeStocksVenduRowQuery(QString("DELETE FROM %1 WHERE %2 = '%3'")
-        												.arg(_allWindows->STOCKS_VENDU,
+        												.arg(YerothDatabase::STOCKS_VENDU,
         													 YerothDatabaseTableColumn::REFERENCE,
 															 aServiceInfo.reference));
 
@@ -1541,7 +1541,7 @@ bool YerothEntrerWindow::handle_stocks_vendu_table(int stockID,
         			{
         				//handle marchandise table
         				QString removeMarchandisesRowQuery(QString("DELETE FROM %1 WHERE %2 = '%3'")
-        													 .arg(_allWindows->MARCHANDISES,
+        													 .arg(YerothDatabase::MARCHANDISES,
         														  YerothDatabaseTableColumn::REFERENCE,
 																  aServiceInfo.reference));
 

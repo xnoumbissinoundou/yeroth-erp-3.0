@@ -131,6 +131,39 @@ private:
 
 public:
 
+
+	static const QString COMPTES_BANCAIRES;
+	static const QString ENTREPRISE_INFO;
+	static const QString PAIEMENTS;
+	static const QString USERS;
+	static const QString TITRES;
+	static const QString LOCALISATIONS;
+	static const QString DEPARTEMENTS_PRODUITS;
+	static const QString CATEGORIES;
+	static const QString PROGRAMMES_DE_FIDELITE_CLIENTS;
+	static const QString CLIENTS;
+	static const QString GROUPES_DE_CLIENTS;
+	static const QString FOURNISSEURS;
+	static const QString ALERTES;
+	static const QString REMISES;
+	static const QString ACHATS_AUX_FOURNISSEURS;
+	static const QString ACHATS;
+	static const QString STOCKS;
+	static const QString SERVICES_COMPLETES;
+	static const QString STOCKS_VENDU;
+	static const QString STOCKS_SORTIES;
+	static const QString MARCHANDISES;
+	static const QString CONFIGURATIONS;
+	static const QString INIT_CONFIGURATIONS;
+	static const QString TYPE_DE_VENTE;
+	static const QString TYPE_DE_PAIEMENT;
+	static const QString ROLES;
+	static const QString CREDIT_CARD_ISSUING_COMPANY;
+	static const QString CONDITIONS_ALERTES;
+	static const QString COURRIERS_ALERTES;
+	static const QString DBMS;
+
+
 	static const QString MYSQL;
 
 	static const QString QSQLITE;

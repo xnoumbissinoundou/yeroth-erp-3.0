@@ -128,11 +128,11 @@ void YerothAdminCreateWindow::populateAlerteComboBoxes()
 							.arg(YerothDatabaseTableColumn::ROLE,
 								 QString::number(YerothUtils::ROLE_ADMINISTRATEUR)));
 
-    comboBox_creer_alerte_destinataire->populateComboBoxRawString(_allWindows->USERS,
+    comboBox_creer_alerte_destinataire->populateComboBoxRawString(YerothDatabase::USERS,
 																  YerothDatabaseTableColumn::NOM_UTILISATEUR,
 																  aConditionStr);
 
-    comboBox_creer_alerte_condition->populateComboBoxRawString(_allWindows->CONDITIONS_ALERTES,
+    comboBox_creer_alerte_condition->populateComboBoxRawString(YerothDatabase::CONDITIONS_ALERTES,
     														   YerothDatabaseTableColumn::CONDITION_ALERTE);
 }
 

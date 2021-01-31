@@ -11,7 +11,7 @@ void YerothAdminModifierWindow::setupEditDepartementsDeProduits()
 		departementsDeProduitsTableModel =  &_allWindows->getSqlTableModel_departements_produits();
 	}
 	else if (false == YerothUtils::isEqualCaseInsensitive(departementsDeProduitsTableModel->sqlTableName(),
-														  _allWindows->DEPARTEMENTS_PRODUITS))
+														  YerothDatabase::DEPARTEMENTS_PRODUITS))
 	{
 		departementsDeProduitsTableModel =  &_allWindows->getSqlTableModel_departements_produits();
 	}
@@ -50,7 +50,7 @@ void YerothAdminModifierWindow::modifier_departements_de_produits_main()
         departementsDeProduitsTableModel =  &_allWindows->getSqlTableModel_departements_produits();
     }
     else if (!YerothUtils::isEqualCaseInsensitive(departementsDeProduitsTableModel->sqlTableName(),
-                     	 	 	 	 	 	 	  _allWindows->DEPARTEMENTS_PRODUITS))
+                     	 	 	 	 	 	 	  YerothDatabase::DEPARTEMENTS_PRODUITS))
     {
         departementsDeProduitsTableModel =  &_allWindows->getSqlTableModel_departements_produits();
     }
@@ -78,7 +78,7 @@ void YerothAdminModifierWindow::modifier_departements_de_produits_main()
     {
         //Handling of table "stocks"
     	QString stocksQuery(QString("UPDATE %1 SET %2='%3' WHERE %4='%5'")
-    							.arg(_allWindows->CATEGORIES,
+    							.arg(YerothDatabase::CATEGORIES,
     								 YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,
 									 new_nom_departement_produit,
 									 YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,
@@ -91,7 +91,7 @@ void YerothAdminModifierWindow::modifier_departements_de_produits_main()
     {
         //Handling of table "stocks"
     	QString stocksQuery(QString("UPDATE %1 SET %2='%3' WHERE %4='%5'")
-    							.arg(_allWindows->STOCKS,
+    							.arg(YerothDatabase::STOCKS,
     								 YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,
 									 new_nom_departement_produit,
 									 YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,
@@ -104,7 +104,7 @@ void YerothAdminModifierWindow::modifier_departements_de_produits_main()
     {
         ////Handling of table "stocks_vendu"
     	QString stocksVenduQuery(QString("UPDATE %1 SET %2='%3' WHERE %4='%5'")
-    							.arg(_allWindows->STOCKS_VENDU,
+    							.arg(YerothDatabase::STOCKS_VENDU,
     								 YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,
 									 new_nom_departement_produit,
 									 YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,
@@ -117,7 +117,7 @@ void YerothAdminModifierWindow::modifier_departements_de_produits_main()
     {
         ////Handling of table "stocks_sorties"
     	QString stocksVenduQuery(QString("UPDATE %1 SET %2='%3' WHERE %4='%5'")
-    							.arg(_allWindows->STOCKS_SORTIES,
+    							.arg(YerothDatabase::STOCKS_SORTIES,
     								 YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,
 									 new_nom_departement_produit,
 									 YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,
@@ -130,7 +130,7 @@ void YerothAdminModifierWindow::modifier_departements_de_produits_main()
     {
         ////Handling of table "inventaire_des_stocks"
     	QString stocksVenduQuery(QString("UPDATE %1 SET %2='%3' WHERE %4='%5'")
-    							.arg(_allWindows->MARCHANDISES,
+    							.arg(YerothDatabase::MARCHANDISES,
     								 YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,
 									 new_nom_departement_produit,
 									 YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,

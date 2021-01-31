@@ -371,10 +371,10 @@ void YerothSortirWindow::clear_all_fields()
 void YerothSortirWindow::setupLineEditsQCompleters()
 {
     lineEdit_articles_transfert
-		->setupMyStaticQCompleter(_allWindows->LOCALISATIONS, YerothDatabaseTableColumn::NOM_LOCALISATION);
+		->setupMyStaticQCompleter(YerothDatabase::LOCALISATIONS, YerothDatabaseTableColumn::NOM_LOCALISATION);
 
     lineEdit_articles_nom_client
-		->setupMyStaticQCompleter(_allWindows->CLIENTS, YerothDatabaseTableColumn::NOM_ENTREPRISE);
+		->setupMyStaticQCompleter(YerothDatabase::CLIENTS, YerothDatabaseTableColumn::NOM_ENTREPRISE);
 }
 
 
@@ -1198,7 +1198,7 @@ void YerothSortirWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 
     handleRefreshSaleStrategy();
 
-    lineEdit_articles_transfert->setupMyStaticQCompleter(_allWindows->LOCALISATIONS, YerothDatabaseTableColumn::NOM_LOCALISATION);
+    lineEdit_articles_transfert->setupMyStaticQCompleter(YerothDatabase::LOCALISATIONS, YerothDatabaseTableColumn::NOM_LOCALISATION);
 
     handleTabViews();
 
@@ -1384,7 +1384,7 @@ void YerothSortirWindow::handleTVACheckBox(bool clicked)
 
     QString stockRecordQueryStr(QString("SELECT %1 FROM %2 WHERE %3 = '%4'")
     								.arg(YerothDatabaseTableColumn::MONTANT_TVA,
-    									 _allWindows->STOCKS,
+    									 YerothDatabase::STOCKS,
 										 YerothDatabaseTableColumn::ID,
 										 rowStockID));
 
@@ -1508,7 +1508,7 @@ void YerothSortirWindow::afficher_sortie_detail(const int tableWidgetRow)
     QSqlQuery stockRecordQuery;
 
     QString stockRecordQueryStr(QString("SELECT * FROM %1 WHERE %2 = '%3'")
-    								.arg(_allWindows->STOCKS,
+    								.arg(YerothDatabase::STOCKS,
 										 YerothDatabaseTableColumn::ID,
 										 rowStockID));
     QVariant img;
@@ -1631,7 +1631,7 @@ void YerothSortirWindow::handleQteChange(QTableWidgetItem * itemChanged)
             QSqlQuery stockRecordQuery;
 
             QString stockRecordQueryStr(QString("SELECT * FROM %1 WHERE %2 = '%3'")
-            								.arg(_allWindows->STOCKS,
+            								.arg(YerothDatabase::STOCKS,
         										 YerothDatabaseTableColumn::ID,
         										 rowStockID));
 
@@ -1762,7 +1762,7 @@ void YerothSortirWindow::ajouter_article(const QString & text)
     QSqlQuery stockRecordQuery;
 
     QString stockRecordQueryStr(QString("SELECT * FROM %1 WHERE %2 = '%3'")
-    								.arg(_allWindows->STOCKS,
+    								.arg(YerothDatabase::STOCKS,
 										 YerothDatabaseTableColumn::ID,
 										 stockID));
 
@@ -1835,7 +1835,7 @@ void YerothSortirWindow::ajouter_article_codebar(const QString & text)
     QSqlQuery stockRecordQuery;
 
     QString stockRecordQueryStr(QString("SELECT * FROM %1 WHERE %2 = '%3'")
-    								.arg(_allWindows->STOCKS,
+    								.arg(YerothDatabase::STOCKS,
 										 YerothDatabaseTableColumn::ID,
 										 stockID));
 
@@ -2148,7 +2148,7 @@ void YerothSortirWindow::sortir()
             }
 
             quantiteQueryStr = QString("SELECT * FROM %1 WHERE %2 = '%3'")
-                                     .arg(_allWindows->STOCKS,
+                                     .arg(YerothDatabase::STOCKS,
                                           YerothDatabaseTableColumn::ID,
 										  articleVenteInfo->_stockID);
 
@@ -2258,7 +2258,7 @@ void YerothSortirWindow::sortir()
                 if (0 == nouvelle_quantite_totale)
                 {
                     QString removeRowQuery(QString("DELETE FROM %1 WHERE %2 = '%3'")
-                                           .arg(_allWindows->STOCKS,
+                                           .arg(YerothDatabase::STOCKS,
                                                 YerothDatabaseTableColumn::ID,
 												articleVenteInfo->_stockID));
                     YerothUtils::execQuery(removeRowQuery);
@@ -2266,7 +2266,7 @@ void YerothSortirWindow::sortir()
 
                 quantiteQueryStr.clear();
                 quantiteQueryStr.append(QString("UPDATE %1 SET %2 = '%3', %4 = '%5' WHERE %6 = '%7'")
-                                        .arg(_allWindows->STOCKS,
+                                        .arg(YerothDatabase::STOCKS,
                                              YerothDatabaseTableColumn::QUANTITE_TOTALE,
                                              QString::number(nouvelle_quantite_totale),
 											 YerothDatabaseTableColumn::HISTORIQUE_STOCK,

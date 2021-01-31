@@ -214,7 +214,7 @@ void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTab
 
 					sqlSearchStockTableQueryStr =
 							QString("SELECT * FROM %1 WHERE %2 = '%3' AND %4 = '%5'")
-							.arg(YerothUtils::getAllWindows()->STOCKS,
+							.arg(YerothDatabase::STOCKS,
 									YerothDatabaseTableColumn::CATEGORIE,
 									categorieStr,
 									YerothDatabaseTableColumn::DESIGNATION,
@@ -371,11 +371,11 @@ void YerothERPMarchandisesTableView::dataChanged(const QModelIndex &index,
     {
     	QStringList allToUpdateTables;
 
-    	allToUpdateTables << YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->PAIEMENTS
-    			<< YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->STOCKS
-				<< YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->STOCKS_SORTIES
-				<< YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->STOCKS_VENDU
-				<< YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->ACHATS;
+    	allToUpdateTables << YerothDatabase::PAIEMENTS
+    			<< YerothDatabase::STOCKS
+				<< YerothDatabase::STOCKS_SORTIES
+				<< YerothDatabase::STOCKS_VENDU
+				<< YerothDatabase::ACHATS;
 
     	QString strUpdateTableQuery;
 

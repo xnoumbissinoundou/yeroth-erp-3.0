@@ -52,13 +52,13 @@ YerothAdminListerWindow::YerothAdminListerWindow()
 
     YEROTH_ERP_ADMIN_WRAPPER_QACTION_SET_ENABLED(actionRetournerMenuPrincipal, false);
 
-    tableView_lister_utilisateur->setSqlTableName(&YerothERPWindows::USERS);
-    tableView_lister_localisation->setSqlTableName(&YerothERPWindows::LOCALISATIONS);
-    tableView_lister_departements_produits->setSqlTableName(&YerothERPWindows::DEPARTEMENTS_PRODUITS);
-    tableView_lister_categorie->setSqlTableName(&YerothERPWindows::CATEGORIES);
-    tableView_lister_compte_bancaire->setSqlTableName(&YerothERPWindows::COMPTES_BANCAIRES);
-    tableView_lister_remise->setSqlTableName(&YerothERPWindows::REMISES);
-    tableView_lister_alerte->setSqlTableName(&YerothERPWindows::ALERTES);
+    tableView_lister_utilisateur->setSqlTableName(&YerothDatabase::USERS);
+    tableView_lister_localisation->setSqlTableName(&YerothDatabase::LOCALISATIONS);
+    tableView_lister_departements_produits->setSqlTableName(&YerothDatabase::DEPARTEMENTS_PRODUITS);
+    tableView_lister_categorie->setSqlTableName(&YerothDatabase::CATEGORIES);
+    tableView_lister_compte_bancaire->setSqlTableName(&YerothDatabase::COMPTES_BANCAIRES);
+    tableView_lister_remise->setSqlTableName(&YerothDatabase::REMISES);
+    tableView_lister_alerte->setSqlTableName(&YerothDatabase::ALERTES);
 
     pushButton_menu->enable(this, SLOT(menu()));
 
@@ -332,7 +332,7 @@ void YerothAdminListerWindow::lister_utilisateur(YerothSqlTableModel * aSqlTable
 {
 	//In case, for e.g. there is filtering applied to aSqlTableModel
     if (0 != aSqlTableModel &&
-    	true == YerothUtils::isEqualCaseInsensitive(_allWindows->USERS, aSqlTableModel->sqlTableName()))
+    	true == YerothUtils::isEqualCaseInsensitive(YerothDatabase::USERS, aSqlTableModel->sqlTableName()))
     {
         tableView_lister_utilisateur->lister_les_elements_du_tableau(*aSqlTableModel);
         _curSearchSqlTableModel = aSqlTableModel;
@@ -367,7 +367,7 @@ void YerothAdminListerWindow::lister_utilisateur(YerothSqlTableModel * aSqlTable
 void YerothAdminListerWindow::lister_localisation(YerothSqlTableModel * aSqlTableModel)
 {
     if (aSqlTableModel
-            && YerothUtils::isEqualCaseInsensitive(_allWindows->LOCALISATIONS, aSqlTableModel->sqlTableName()))
+            && YerothUtils::isEqualCaseInsensitive(YerothDatabase::LOCALISATIONS, aSqlTableModel->sqlTableName()))
     {
         tableView_lister_localisation->lister_les_elements_du_tableau(*aSqlTableModel);
         _curSearchSqlTableModel = aSqlTableModel;
@@ -399,7 +399,7 @@ void YerothAdminListerWindow::lister_departements_de_produits(YerothSqlTableMode
     int toSelectRow = 0;
 
     if (0 != aSqlTableModel &&
-        YerothUtils::isEqualCaseInsensitive(_allWindows->DEPARTEMENTS_PRODUITS,
+        YerothUtils::isEqualCaseInsensitive(YerothDatabase::DEPARTEMENTS_PRODUITS,
         									aSqlTableModel->sqlTableName()))
     {
     	tableView_lister_departements_produits->lister_les_elements_du_tableau(*aSqlTableModel);
@@ -435,7 +435,7 @@ void YerothAdminListerWindow::lister_categorie(YerothSqlTableModel * aSqlTableMo
     int toSelectRow = 0;
 
     if (0 != aSqlTableModel &&
-        true == YerothUtils::isEqualCaseInsensitive(_allWindows->CATEGORIES, aSqlTableModel->sqlTableName()))
+        true == YerothUtils::isEqualCaseInsensitive(YerothDatabase::CATEGORIES, aSqlTableModel->sqlTableName()))
     {
     	tableView_lister_categorie->lister_les_elements_du_tableau(*aSqlTableModel);
 
@@ -467,7 +467,7 @@ void YerothAdminListerWindow::lister_compte_bancaire(YerothSqlTableModel * aSqlT
     int toSelectRow = 0;
 
     if (0 != aSqlTableModel &&
-        true == YerothUtils::isEqualCaseInsensitive(_allWindows->COMPTES_BANCAIRES, aSqlTableModel->sqlTableName()))
+        true == YerothUtils::isEqualCaseInsensitive(YerothDatabase::COMPTES_BANCAIRES, aSqlTableModel->sqlTableName()))
     {
     	tableView_lister_compte_bancaire->lister_les_elements_du_tableau(*aSqlTableModel);
 
@@ -493,7 +493,7 @@ void YerothAdminListerWindow::lister_compte_bancaire(YerothSqlTableModel * aSqlT
 void YerothAdminListerWindow::lister_alerte(YerothSqlTableModel * aSqlTableModel)
 {
     if (aSqlTableModel
-            && YerothUtils::isEqualCaseInsensitive(_allWindows->ALERTES, aSqlTableModel->sqlTableName()))
+            && YerothUtils::isEqualCaseInsensitive(YerothDatabase::ALERTES, aSqlTableModel->sqlTableName()))
     {
         tableView_lister_alerte->lister_les_elements_du_tableau(*aSqlTableModel);
         _curSearchSqlTableModel = aSqlTableModel;
@@ -519,7 +519,7 @@ void YerothAdminListerWindow::lister_alerte(YerothSqlTableModel * aSqlTableModel
 void YerothAdminListerWindow::lister_remise(YerothSqlTableModel * aSqlTableModel)
 {
     if (aSqlTableModel
-            && YerothUtils::isEqualCaseInsensitive(_allWindows->REMISES, aSqlTableModel->sqlTableName()))
+            && YerothUtils::isEqualCaseInsensitive(YerothDatabase::REMISES, aSqlTableModel->sqlTableName()))
     {
         tableView_lister_remise->lister_les_elements_du_tableau(*aSqlTableModel);
         _curSearchSqlTableModel = aSqlTableModel;
@@ -777,7 +777,7 @@ void YerothAdminListerWindow::supprimer_utilisateur()
     YerothSqlTableModel *usersTableModel = 0;
 
     if (_curSearchSqlTableModel
-            && YerothUtils::isEqualCaseInsensitive(_allWindows->USERS, _curSearchSqlTableModel->sqlTableName()))
+            && YerothUtils::isEqualCaseInsensitive(YerothDatabase::USERS, _curSearchSqlTableModel->sqlTableName()))
     {
         usersTableModel = _curSearchSqlTableModel;
     }
@@ -839,7 +839,7 @@ void YerothAdminListerWindow::supprimer_localisation()
     YerothSqlTableModel *localisationsTableModel = 0;
 
     if (_curSearchSqlTableModel
-            && YerothUtils::isEqualCaseInsensitive(_allWindows->LOCALISATIONS,
+            && YerothUtils::isEqualCaseInsensitive(YerothDatabase::LOCALISATIONS,
                     _curSearchSqlTableModel->sqlTableName()))
     {
         localisationsTableModel = _curSearchSqlTableModel;
@@ -897,7 +897,7 @@ void YerothAdminListerWindow::supprimer_categorie()
     YerothSqlTableModel *categoriesTableModel = 0;
 
     if (_curSearchSqlTableModel
-            && YerothUtils::isEqualCaseInsensitive(_allWindows->CATEGORIES, _curSearchSqlTableModel->sqlTableName()))
+            && YerothUtils::isEqualCaseInsensitive(YerothDatabase::CATEGORIES, _curSearchSqlTableModel->sqlTableName()))
     {
         categoriesTableModel = _curSearchSqlTableModel;
     }
@@ -954,7 +954,7 @@ void YerothAdminListerWindow::supprimer_compte_bancaire()
     YerothSqlTableModel *comptesBancairesTableModel = 0;
 
     if (_curSearchSqlTableModel
-            && YerothUtils::isEqualCaseInsensitive(_allWindows->COMPTES_BANCAIRES, _curSearchSqlTableModel->sqlTableName()))
+            && YerothUtils::isEqualCaseInsensitive(YerothDatabase::COMPTES_BANCAIRES, _curSearchSqlTableModel->sqlTableName()))
     {
         comptesBancairesTableModel = _curSearchSqlTableModel;
     }
@@ -1011,7 +1011,7 @@ void YerothAdminListerWindow::supprimer_departement_de_produit()
     YerothSqlTableModel *departements_produits_TableModel = 0;
 
     if (0 != _curSearchSqlTableModel &&
-        YerothUtils::isEqualCaseInsensitive(_allWindows->DEPARTEMENTS_PRODUITS,
+        YerothUtils::isEqualCaseInsensitive(YerothDatabase::DEPARTEMENTS_PRODUITS,
         									_curSearchSqlTableModel->sqlTableName()))
     {
         departements_produits_TableModel = _curSearchSqlTableModel;
@@ -1042,7 +1042,7 @@ void YerothAdminListerWindow::supprimer_departement_de_produit()
     	QString SEARCH_IF_STOCK_UNDER_TO_REMOVE_DEPARTMENT_STILL_EXIST(
     			QString("select %1 from %2 where %3='%4'")
 					.arg(YerothDatabaseTableColumn::ID,
-						 _allWindows->STOCKS,
+						 YerothDatabase::STOCKS,
 						 YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,
 						 nom_departement_produit));
 
@@ -1071,7 +1071,7 @@ void YerothAdminListerWindow::supprimer_departement_de_produit()
 
         QString STR_QUERY_REMOVE_DEPARTEMENT_DE_PRODUITS_DU_TABLEAU_MARCHANDISES(
         		QString("DELETE FROM %1 WHERE %2='%3'")
-					.arg(_allWindows->MARCHANDISES,
+					.arg(YerothDatabase::MARCHANDISES,
 						 YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,
 						 nom_departement_produit));
 
@@ -1113,7 +1113,7 @@ void YerothAdminListerWindow::supprimer_alerte()
     YerothSqlTableModel *alertesTableModel = 0;
 
     if (_curSearchSqlTableModel
-            && YerothUtils::isEqualCaseInsensitive(_allWindows->ALERTES, _curSearchSqlTableModel->sqlTableName()))
+            && YerothUtils::isEqualCaseInsensitive(YerothDatabase::ALERTES, _curSearchSqlTableModel->sqlTableName()))
     {
         alertesTableModel = _curSearchSqlTableModel;
     }

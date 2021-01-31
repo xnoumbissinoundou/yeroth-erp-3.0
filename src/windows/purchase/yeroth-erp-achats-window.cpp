@@ -58,7 +58,7 @@ unsigned int YerothAchatsWindow::PDF_LISTING_COLUMN_CATEGORIE(4);
 
 YerothAchatsWindow::YerothAchatsWindow()
 :YerothWindowsCommons("yeroth-erp-achats"),
- YerothAbstractClassYerothSearchWindow(_allWindows->ACHATS),
+ YerothAbstractClassYerothSearchWindow(YerothDatabase::ACHATS),
  _logger(new YerothLogger("YerothAchatsWindow")),
  _pushButton_achats_filtrer_font(0),
  _curAchatSqlTableModel(0)
@@ -90,7 +90,7 @@ YerothAchatsWindow::YerothAchatsWindow()
                                        "QMessageBox QLabel {color: rgb(%2);}").
                                arg(COLOUR_RGB_STRING_YEROTH_GREEN_2_160_170, COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
-    setup_select_configure_dbcolumn(_allWindows->ACHATS);
+    setup_select_configure_dbcolumn(YerothDatabase::ACHATS);
 
 
     _lineEditsToANDContentForSearch.insert(&lineEdit_achats_terme_recherche,
@@ -99,7 +99,7 @@ YerothAchatsWindow::YerothAchatsWindow()
     _yeroth_WINDOW_references_dbColumnString.insert(YerothDatabaseTableColumn::REFERENCE);
     _yeroth_WINDOW_references_dbColumnString.insert(YerothDatabaseTableColumn::REFERENCE_RECU_DACHAT);
 
-    YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(_allWindows->ACHATS);
+    YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(YerothDatabase::ACHATS);
 
     reinitialiser_colones_db_visibles();
 
@@ -115,7 +115,7 @@ YerothAchatsWindow::YerothAchatsWindow()
 
     _pushButton_achats_filtrer_font = new QFont(pushButton_achats_filtrer->font());
 
-    tableView_achats->setSqlTableName(&YerothERPWindows::ACHATS);
+    tableView_achats->setSqlTableName(&YerothDatabase::ACHATS);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionExporter_au_format_csv, false);

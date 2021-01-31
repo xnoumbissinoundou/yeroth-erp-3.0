@@ -461,7 +461,7 @@ void YerothAdminWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 
     read_configuration();
 
-    lineEdit_localisation->setupMyStaticQCompleter(_allWindows->LOCALISATIONS,
+    lineEdit_localisation->setupMyStaticQCompleter(YerothDatabase::LOCALISATIONS,
     											   YerothDatabaseTableColumn::NOM_LOCALISATION,
 												   false);
 
@@ -982,7 +982,7 @@ void YerothAdminWindow::import_current_selected_csv_file()
 	int successImportCount = 0;
 
 	if (YerothUtils::isEqualCaseInsensitive(_current_selected_import_table,
-											YerothERPWindows::STOCKS))
+											YerothDatabase::STOCKS))
 	{
 		YerothERPStockImport erpStockImport(*this,
 											 _curCsvFileToImportContentWordList,
@@ -994,7 +994,7 @@ void YerothAdminWindow::import_current_selected_csv_file()
 								_curCsvFileToImportContentWordList.size());
 	}
 	else if (YerothUtils::isEqualCaseInsensitive(_current_selected_import_table,
-												 YerothERPWindows::MARCHANDISES))
+												 YerothDatabase::MARCHANDISES))
 	{
 		YerothERPMarchandiseImport stockMarchandiseImport(*this,
 											        	  _curCsvFileToImportContentWordList,
@@ -1313,8 +1313,8 @@ void YerothAdminWindow::initialize_admin_importer_csv_tableau()
 
 	if (0 != yerothERPWindows)
 	{
-		comboBox_tableaux_mariadb_sql->addItem(yerothERPWindows->MARCHANDISES);
-		comboBox_tableaux_mariadb_sql->addItem(yerothERPWindows->STOCKS);
+		comboBox_tableaux_mariadb_sql->addItem(YerothDatabase::MARCHANDISES);
+		comboBox_tableaux_mariadb_sql->addItem(YerothDatabase::STOCKS);
 	}
 }
 

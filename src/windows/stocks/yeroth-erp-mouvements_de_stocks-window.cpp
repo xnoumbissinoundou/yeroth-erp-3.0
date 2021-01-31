@@ -34,7 +34,7 @@
 
 YerothMouvementsDeStocksWindow::YerothMouvementsDeStocksWindow()
 :YerothWindowsCommons("yeroth-erp-mouvements_de_stocks-stocks"),
- YerothAbstractClassYerothSearchWindow(_allWindows->STOCKS_SORTIES),
+ YerothAbstractClassYerothSearchWindow(YerothDatabase::STOCKS_SORTIES),
  _logger(new YerothLogger("YerothMouvementsDeStocksWindow")),
  _stocksSorties_OU_transferes_DateFilter(YerothUtils::EMPTY_STRING),
  _curMouvementsDeStocksTableModel(0)
@@ -78,7 +78,7 @@ YerothMouvementsDeStocksWindow::YerothMouvementsDeStocksWindow()
                                        "QMessageBox QLabel {color: rgb(%2);}").
                                arg(COLOUR_RGB_STRING_YEROTH_BLUE_77_93_254, COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
-    setup_select_configure_dbcolumn(_allWindows->STOCKS_SORTIES);
+    setup_select_configure_dbcolumn(YerothDatabase::STOCKS_SORTIES);
 
     reinitialiser_colones_db_visibles();
 

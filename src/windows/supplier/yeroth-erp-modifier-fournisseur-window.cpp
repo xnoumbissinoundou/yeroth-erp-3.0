@@ -490,7 +490,7 @@ void YerothModifierFournisseurWindow::actualiserFournisseur()
         	if(currentCompanyNameChanged)
         	{
             	QString stocksVenduCompanyNameQuery(QString("UPDATE %1 SET %2='%3' WHERE %4='%5'")
-            							.arg(_allWindows->STOCKS_VENDU,
+            							.arg(YerothDatabase::STOCKS_VENDU,
             								 YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT,
 											 lineEdit_modifier_fournisseur_nom_entreprise->text(),
 											 YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT,
@@ -503,7 +503,7 @@ void YerothModifierFournisseurWindow::actualiserFournisseur()
         	if(currentCompanyNameChanged)
         	{
             	QString paiementsCompanyNameQuery(QString("UPDATE %1 SET %2='%3' WHERE %4='%5'")
-            							.arg(_allWindows->PAIEMENTS,
+            							.arg(YerothDatabase::PAIEMENTS,
             								 YerothDatabaseTableColumn::NOM_ENTREPRISE,
 											 lineEdit_modifier_fournisseur_nom_entreprise->text(),
 											 YerothDatabaseTableColumn::NOM_ENTREPRISE,

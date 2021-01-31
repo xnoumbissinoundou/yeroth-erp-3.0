@@ -10,7 +10,7 @@ void YerothAdminModifierWindow::setupEditLocalisation()
     }
     else if (localisationsTableModel &&
              !YerothUtils::isEqualCaseInsensitive(localisationsTableModel->sqlTableName(),
-                     _allWindows->LOCALISATIONS))
+                     YerothDatabase::LOCALISATIONS))
     {
         localisationsTableModel =  &_allWindows->getSqlTableModel_localisations();
     }
@@ -35,7 +35,7 @@ void YerothAdminModifierWindow::setupEditLocalisation()
     lineEdit_modifier_localisation_numero_telephone_2->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NUMERO_TELEPHONE_2));
 
     comboBox_modifier_localisation_base_donnees->populateComboBoxMissingRawString("nom_dbms",
-    																			  _allWindows->DBMS,
+    																			  YerothDatabase::DBMS,
 																				  GET_SQL_RECORD_DATA(record, "dbms"));
 
     textEdit_modifier_localisation_description_lieu->setText(GET_SQL_RECORD_DATA(record, "description_lieu"));
@@ -55,7 +55,7 @@ void YerothAdminModifierWindow::modifier_localisation()
         }
         else if (localisationsTableModel &&
                  !YerothUtils::isEqualCaseInsensitive(localisationsTableModel->sqlTableName(),
-                         _allWindows->LOCALISATIONS))
+                         YerothDatabase::LOCALISATIONS))
         {
             localisationsTableModel =  &_allWindows->getSqlTableModel_localisations();
         }

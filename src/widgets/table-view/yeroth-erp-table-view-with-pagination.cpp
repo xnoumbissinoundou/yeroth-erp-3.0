@@ -90,7 +90,7 @@ void YerothTableViewWITHpagination::displayYerothTableViewPageContentRowLimit(Ye
 			curYerothSqlTableModel_IN.yeroth_specify_filter_FROM_SELECT_STATEMENT(aCurYerothTableViewPageFilter);
 
 	if (!YerothUtils::isEqualCaseInsensitive(curYerothSqlTableModel_IN.sqlTableName(),
-											 _allWindows->STOCKS))
+											 YerothDatabase::STOCKS))
 	{
 		lister_les_elements_du_tableau(curYerothSqlTableModel_IN);
 	}

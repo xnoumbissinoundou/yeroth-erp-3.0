@@ -503,7 +503,7 @@ void YerothPointDeVenteWindow::setupLineEdits()
 void YerothPointDeVenteWindow::setupLineEditsQCompleters()
 {
 	lineEdit_articles_nom_client->
-		setupMyStaticQCompleter(_allWindows->CLIENTS,
+		setupMyStaticQCompleter(YerothDatabase::CLIENTS,
 								YerothDatabaseTableColumn::NOM_ENTREPRISE);
 }
 
@@ -1658,7 +1658,7 @@ void YerothPointDeVenteWindow::handleTVACheckBox(bool clicked)
 
     QString stockRecordQueryStr(QString("SELECT %1 FROM %2 WHERE %3 = '%4'")
     								.arg(YerothDatabaseTableColumn::MONTANT_TVA,
-    									 _allWindows->STOCKS,
+    									 YerothDatabase::STOCKS,
 										 YerothDatabaseTableColumn::ID,
 										 rowStockID));
 
@@ -1791,7 +1791,7 @@ void YerothPointDeVenteWindow::afficher_vente_detail(const int tableWidgetRow)
     QSqlQuery stockRecordQuery;
 
     QString stockRecordQueryStr(QString("SELECT * FROM %1 WHERE %2 = '%3'")
-    								.arg(_allWindows->STOCKS,
+    								.arg(YerothDatabase::STOCKS,
 										 YerothDatabaseTableColumn::ID,
 										 rowStockID));
 
@@ -1915,7 +1915,7 @@ void YerothPointDeVenteWindow::handleQteChange(QTableWidgetItem * itemChanged)
             QSqlQuery stockRecordQuery;
 
             QString stockRecordQueryStr(QString("SELECT * FROM %1 WHERE %2 = '%3'")
-            								.arg(_allWindows->STOCKS,
+            								.arg(YerothDatabase::STOCKS,
         										 YerothDatabaseTableColumn::ID,
         										 rowStockID));
 
@@ -2052,7 +2052,7 @@ void YerothPointDeVenteWindow::ajouter_article(const QString &aStockID)
 	QSqlQuery stockRecordQuery;
 
 	QString stockRecordQueryStr(QString("SELECT * FROM %1 WHERE %2 = '%3'")
-			.arg(_allWindows->STOCKS,
+			.arg(YerothDatabase::STOCKS,
 					YerothDatabaseTableColumn::ID,
 					aStockID));
 
@@ -2565,7 +2565,7 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
         QSqlQuery stockRecordQuery;
 
         QString stockRecordQueryStr(QString("SELECT * FROM %1 WHERE %2 = '%3'")
-        							.arg(_allWindows->STOCKS,
+        							.arg(YerothDatabase::STOCKS,
 										 YerothDatabaseTableColumn::ID,
 										 articleVenteInfo->_stockID));
 
@@ -2754,7 +2754,7 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
             if (0 == nouvelle_quantite_totale)
             {
                 QString removeRowQuery(QString("DELETE FROM %1 WHERE %2 = '%3'")
-                                       .arg(_allWindows->STOCKS,
+                                       .arg(YerothDatabase::STOCKS,
                                             YerothDatabaseTableColumn::ID,
 											articleVenteInfo->_stockID));
                 YerothUtils::execQuery(removeRowQuery);
@@ -2762,7 +2762,7 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
 
             stockRecordQueryStr.clear();
             stockRecordQueryStr.append(QString("UPDATE %1 SET %2 = '%3', %4 = '%5' WHERE %6 = '%7'")
-                                    .arg(_allWindows->STOCKS,
+                                    .arg(YerothDatabase::STOCKS,
                                          YerothDatabaseTableColumn::QUANTITE_TOTALE,
                                          QString::number(nouvelle_quantite_totale),
 										 YerothDatabaseTableColumn::HISTORIQUE_STOCK,
@@ -2872,7 +2872,7 @@ void YerothPointDeVenteWindow::updateCompteClient(double nouveau_compte_client)
 	QString queryStr;
 
 	queryStr.append(QString("UPDATE %1 SET %2 = '%3' WHERE %4 = '%5'")
-                            .arg(_allWindows->CLIENTS,
+                            .arg(YerothDatabase::CLIENTS,
                                  YerothDatabaseTableColumn::COMPTE_CLIENT,
                                  QString::number(nouveau_compte_client),
 								 YerothDatabaseTableColumn::NOM_ENTREPRISE,
@@ -2899,7 +2899,7 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
         QSqlQuery stockRecordQuery;
 
         QString stockRecordQueryStr(QString("SELECT * FROM %1 WHERE %2 = '%3'")
-        							.arg(_allWindows->STOCKS,
+        							.arg(YerothDatabase::STOCKS,
 										 YerothDatabaseTableColumn::ID,
 										 articleVenteInfo->_stockID));
 
@@ -3086,7 +3086,7 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
             if (0 == nouvelle_quantite_totale)
             {
                 QString removeRowQuery(QString("DELETE FROM %1 WHERE %2 = '%3'")
-                                       .arg(_allWindows->STOCKS,
+                                       .arg(YerothDatabase::STOCKS,
                                             YerothDatabaseTableColumn::ID,
 											articleVenteInfo->_stockID));
                 YerothUtils::execQuery(removeRowQuery);
@@ -3094,7 +3094,7 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
 
             stockRecordQueryStr.clear();
             stockRecordQueryStr.append(QString("UPDATE %1 SET %2 = '%3', %4 = '%5' WHERE %6 = '%7'")
-                                    		.arg(_allWindows->STOCKS,
+                                    		.arg(YerothDatabase::STOCKS,
                                     			 YerothDatabaseTableColumn::QUANTITE_TOTALE,
 												 QString::number(nouvelle_quantite_totale),
 												 YerothDatabaseTableColumn::HISTORIQUE_STOCK,

@@ -125,11 +125,11 @@ void YerothAdminCreateWindow::populateUtilisateurComboBoxes()
 {
     _logger->log("populateUtilisateurComboBoxes");
 
-    comboBox_creer_utilisateur_titre->setupPopulateNORawString(_allWindows->TITRES,
+    comboBox_creer_utilisateur_titre->setupPopulateNORawString(YerothDatabase::TITRES,
     															YerothDatabaseTableColumn::APPELATION_TITRE,
 																&YerothUtils::_titreToUserViewString);
 
-    comboBox_creer_utilisateur_role->setupPopulateNORawString(_allWindows->ROLES,
+    comboBox_creer_utilisateur_role->setupPopulateNORawString(YerothDatabase::ROLES,
     															YerothDatabaseTableColumn::NOM_ROLE,
 																&YerothUtils::_roleToUserViewString);
 

@@ -46,7 +46,7 @@ YerothCreerUnProgrammeDeFideliteClientsWindow::YerothCreerUnProgrammeDeFideliteC
 		<< YerothDatabaseTableColumn::RABAIS_EN_CASCADE_TOUS_REFEREUR_PAR_LE_HAUT;
 
 
-    setup_select_configure_dbcolumn(_allWindows->PROGRAMMES_DE_FIDELITE_CLIENTS);
+    setup_select_configure_dbcolumn(YerothDatabase::PROGRAMMES_DE_FIDELITE_CLIENTS);
 
     populateComboBoxes();
 
@@ -125,7 +125,7 @@ void YerothCreerUnProgrammeDeFideliteClientsWindow::deconnecter_utilisateur()
 void YerothCreerUnProgrammeDeFideliteClientsWindow::populateComboBoxes()
 {
 	comboBox_creer_nom_departement_produit->
-		populateComboBoxRawString(_allWindows->DEPARTEMENTS_PRODUITS,
+		populateComboBoxRawString(YerothDatabase::DEPARTEMENTS_PRODUITS,
 								  YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT);
 
 	QStringList aQStringList;

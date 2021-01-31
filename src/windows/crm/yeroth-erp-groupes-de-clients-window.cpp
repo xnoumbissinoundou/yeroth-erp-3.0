@@ -54,7 +54,7 @@
 
 YerothGroupesDeClientsWindow::YerothGroupesDeClientsWindow()
 :YerothWindowsCommons("yeroth-erp-liste-groupes-de-clients"),
- YerothAbstractClassYerothSearchWindow(_allWindows->GROUPES_DE_CLIENTS),
+ YerothAbstractClassYerothSearchWindow(YerothDatabase::GROUPES_DE_CLIENTS),
  _logger(new YerothLogger("YerothGroupesDeClientsWindow")),
  _pushButton_groupes_de_clients_filtrer_font(0),
  _curClientGroupTableModel(0)
@@ -95,7 +95,7 @@ YerothGroupesDeClientsWindow::YerothGroupesDeClientsWindow()
 		<< YerothDatabaseTableColumn::MEMBRES_DU_GROUPE_db_ID;
 
 
-    setup_select_configure_dbcolumn(_allWindows->GROUPES_DE_CLIENTS);
+    setup_select_configure_dbcolumn(YerothDatabase::GROUPES_DE_CLIENTS);
 
 
     _lineEditsToANDContentForSearch.insert(&lineEdit_groupes_de_clients_terme_recherche,
@@ -103,7 +103,7 @@ YerothGroupesDeClientsWindow::YerothGroupesDeClientsWindow()
 
     _yeroth_WINDOW_references_dbColumnString.insert(YerothDatabaseTableColumn::REFERENCE_GROUPE);
 
-    YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(_allWindows->GROUPES_DE_CLIENTS);
+    YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(YerothDatabase::GROUPES_DE_CLIENTS);
 
     reinitialiser_colones_db_visibles();
 
@@ -119,7 +119,7 @@ YerothGroupesDeClientsWindow::YerothGroupesDeClientsWindow()
 
     _pushButton_groupes_de_clients_filtrer_font = new QFont(pushButton_groupes_de_clients_filtrer->font());
 
-    tableView_groupes_de_clients->setSqlTableName(&YerothERPWindows::GROUPES_DE_CLIENTS);
+    tableView_groupes_de_clients->setSqlTableName(&YerothDatabase::GROUPES_DE_CLIENTS);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_les_membres_de_ce_groupe, false);
@@ -261,7 +261,7 @@ void YerothGroupesDeClientsWindow::supprimer_PLUSIEURS_groupes_de_clients(Yeroth
 
 		YEROTH_TABLE_VIEW_DELETE_SELECTED_ROWS_QUERY_STRING
 			.append(QString("DELETE FROM %1 WHERE %2 = '%3';")
-				.arg(_allWindows->GROUPES_DE_CLIENTS,
+				.arg(YerothDatabase::GROUPES_DE_CLIENTS,
 					 YerothDatabaseTableColumn::ID,
 					 j.value()));
 	}
@@ -308,7 +308,7 @@ void YerothGroupesDeClientsWindow::supprimer_groupe_de_clients()
     YerothSqlTableModel *groupeDeClientsTableModel = 0;
 
     if (_curClientGroupTableModel &&
-    	YerothUtils::isEqualCaseInsensitive(_allWindows->GROUPES_DE_CLIENTS,
+    	YerothUtils::isEqualCaseInsensitive(YerothDatabase::GROUPES_DE_CLIENTS,
     										_curClientGroupTableModel->sqlTableName()))
     {
         groupeDeClientsTableModel = _curClientGroupTableModel;

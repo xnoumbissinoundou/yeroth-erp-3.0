@@ -10,7 +10,7 @@ void YerothAdminModifierWindow::setupEditCompteUtilisateur()
     }
     else if (userTableModel &&
              !YerothUtils::isEqualCaseInsensitive(userTableModel->sqlTableName(),
-                     _allWindows->USERS))
+                     YerothDatabase::USERS))
     {
         userTableModel =  &_allWindows->getSqlTableModel_users();
     }
@@ -67,7 +67,7 @@ void YerothAdminModifierWindow::modifier_utilisateur_main()
         }
         else if (userTableModel &&
                  !YerothUtils::isEqualCaseInsensitive(userTableModel->sqlTableName(),
-                         _allWindows->USERS))
+                         YerothDatabase::USERS))
         {
             userTableModel =  &_allWindows->getSqlTableModel_users();
         }

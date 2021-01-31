@@ -45,7 +45,7 @@ YerothCreerGroupeDeClientsWindow::YerothCreerGroupeDeClientsWindow()
 		<< YerothDatabaseTableColumn::MEMBRES_DU_GROUPE_db_ID;
 
 
-    setup_select_configure_dbcolumn(_allWindows->GROUPES_DE_CLIENTS);
+    setup_select_configure_dbcolumn(YerothDatabase::GROUPES_DE_CLIENTS);
 
     setupLineEdits();
 
@@ -119,11 +119,11 @@ void YerothCreerGroupeDeClientsWindow::deconnecter_utilisateur()
 void YerothCreerGroupeDeClientsWindow::setupLineEditsQCompleters()
 {
 	lineEdit_creer_groupe_clients_programme_de_fidelite_de_clients->
-		setupMyStaticQCompleter(_allWindows->PROGRAMMES_DE_FIDELITE_CLIENTS,
+		setupMyStaticQCompleter(YerothDatabase::PROGRAMMES_DE_FIDELITE_CLIENTS,
 								YerothDatabaseTableColumn::DESIGNATION);
 
 	lineEdit_creer_groupe_clients_recherche_client_initiaux->
-		setupMyStaticQCompleter(_allWindows->CLIENTS,
+		setupMyStaticQCompleter(YerothDatabase::CLIENTS,
 								YerothDatabaseTableColumn::NOM_ENTREPRISE);
 
     connect((QObject *)lineEdit_creer_groupe_clients_recherche_client_initiaux->getMyQCompleter(),
@@ -263,7 +263,7 @@ void YerothCreerGroupeDeClientsWindow::update_client_group_member_data(const QSt
 	QString strQueryClientGroupMemberDATA(QString("select %1, %2 from %3 where %4='%5'")
 											.arg(YerothDatabaseTableColumn::GROUPES_DU_CLIENT,
 												 YerothDatabaseTableColumn::GROUPES_DU_CLIENT_ID,
-												 _allWindows->CLIENTS,
+												 YerothDatabase::CLIENTS,
 												 YerothDatabaseTableColumn::ID,
 												 client_db_ID));
 
@@ -294,7 +294,7 @@ void YerothCreerGroupeDeClientsWindow::update_client_group_member_data(const QSt
     															groupes_du_clients_ID);
 
 	QString strQuery_UPDATE_ClientGroupMemberDATA(QString("UPDATE %1 SET %2='%3', %4='%5' WHERE %6='%7'")
-													.arg(_allWindows->CLIENTS,
+													.arg(YerothDatabase::CLIENTS,
 														 YerothDatabaseTableColumn::GROUPES_DU_CLIENT,
 														 groupes_du_clients,
 														 YerothDatabaseTableColumn::GROUPES_DU_CLIENT_ID,

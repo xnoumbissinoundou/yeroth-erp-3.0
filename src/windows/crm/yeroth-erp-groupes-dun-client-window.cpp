@@ -119,7 +119,7 @@ void YerothGroupesDunClientWindow::executer_ajouter_appartenance(const QString *
 												 YerothDatabaseTableColumn::REFERENCE_GROUPE,
 												 YerothDatabaseTableColumn::MEMBRES_DU_GROUPE_db_ID,
 												 YerothDatabaseTableColumn::MAXIMUM_DE_MEMBRES,
-												 _allWindows->GROUPES_DE_CLIENTS,
+												 YerothDatabase::GROUPES_DE_CLIENTS,
 												 YerothDatabaseTableColumn::DESIGNATION,
 												 *un_groupe_de_clients));
 
@@ -167,7 +167,7 @@ void YerothGroupesDunClientWindow::executer_ajouter_appartenance(const QString *
 	{
 
 		QString INSERT_UPDATE_CLIENT_WITHIN_GROUP(QString("UPDATE %1 SET %2='%3' WHERE %4='%5'")
-													.arg(_allWindows->GROUPES_DE_CLIENTS,
+													.arg(YerothDatabase::GROUPES_DE_CLIENTS,
 														 YerothDatabaseTableColumn::MEMBRES_DU_GROUPE_db_ID,
 														 membres_du_groupe_db_ID,
 														 YerothDatabaseTableColumn::DESIGNATION,
@@ -226,7 +226,7 @@ void YerothGroupesDunClientWindow::executer_ajouter_appartenance(const QString *
 
 
 	QString UPDATE_CLIENT_GROUP_INFORMATION(QString("UPDATE %1 SET %2='%3', %4='%5' WHERE %6='%7'")
-												.arg(_allWindows->CLIENTS,
+												.arg(YerothDatabase::CLIENTS,
 													 YerothDatabaseTableColumn::GROUPES_DU_CLIENT,
 													 groupes_du_client,
 													 YerothDatabaseTableColumn::GROUPES_DU_CLIENT_ID,
@@ -332,7 +332,7 @@ void YerothGroupesDunClientWindow::afficher_tous_les_groupes_du_client()
         										.arg(YerothDatabaseTableColumn::ID,
         											 YerothDatabaseTableColumn::REFERENCE_GROUPE,
         											 YerothDatabaseTableColumn::MAXIMUM_DE_MEMBRES,
-													 _allWindows->GROUPES_DE_CLIENTS,
+													 YerothDatabase::GROUPES_DE_CLIENTS,
 													 YerothDatabaseTableColumn::DESIGNATION,
 													 allClientGroups.at(k).trimmed());
 
@@ -393,7 +393,7 @@ void YerothGroupesDunClientWindow::setupLineEdits()
 void YerothGroupesDunClientWindow::setupLineEditsQCompleters()
 {
 	lineEdit_groupes_dun_client_recherche->
-		setupMyStaticQCompleter(_allWindows->GROUPES_DE_CLIENTS,
+		setupMyStaticQCompleter(YerothDatabase::GROUPES_DE_CLIENTS,
 								YerothDatabaseTableColumn::DESIGNATION);
 
     connect(lineEdit_groupes_dun_client_recherche->getMyQCompleter(),

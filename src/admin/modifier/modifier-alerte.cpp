@@ -10,7 +10,7 @@ void YerothAdminModifierWindow::setupEditAlerte()
     }
     else if (alertesTableModel &&
              !YerothUtils::isEqualCaseInsensitive(alertesTableModel->sqlTableName(),
-                     _allWindows->ALERTES))
+                     YerothDatabase::ALERTES))
     {
         alertesTableModel =  &_allWindows->getSqlTableModel_alertes();
     }
@@ -66,7 +66,7 @@ void YerothAdminModifierWindow::modifier_alerte()
     }
     else if (alertesTableModel &&
              !YerothUtils::isEqualCaseInsensitive(alertesTableModel->sqlTableName(),
-                     _allWindows->ALERTES))
+                     YerothDatabase::ALERTES))
     {
         alertesTableModel =  &_allWindows->getSqlTableModel_alertes();
     }

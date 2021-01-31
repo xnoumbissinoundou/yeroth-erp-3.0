@@ -11,7 +11,7 @@ void YerothAdminModifierWindow::setupEditCompteBancaire()
         comptesBancairesTableModel =  &_allWindows->getSqlTableModel_comptes_bancaires();
     }
     else if (false == YerothUtils::isEqualCaseInsensitive(comptesBancairesTableModel->sqlTableName(),
-    		 _allWindows->COMPTES_BANCAIRES))
+    		 YerothDatabase::COMPTES_BANCAIRES))
     {
         comptesBancairesTableModel =  &_allWindows->getSqlTableModel_comptes_bancaires();
     }
@@ -53,7 +53,7 @@ void YerothAdminModifierWindow::modifier_compte_bancaire_main()
 //    }
 //    else if (0 != comptesBancairesTableModel &&
 //             !YerothUtils::isEqualCaseInsensitive(comptesBancairesTableModel->sqlTableName(),
-//                     _allWindows->COMPTES_BANCAIRES))
+//                     YerothDatabase::COMPTES_BANCAIRES))
 //    {
 //        comptesBancairesTableModel =  &_allWindows->getSqlTableModel_comptes_bancaires();
 //    }
@@ -72,7 +72,7 @@ void YerothAdminModifierWindow::modifier_compte_bancaire_main()
 //    {
 //        //Handling of table "stocks"
 //    	QString stocksQuery(QString("UPDATE %1 SET %2='%3' WHERE %4='%5'")
-//    							.arg(_allWindows->STOCKS,
+//    							.arg(YerothDatabase::STOCKS,
 //    								 YerothDatabaseTableColumn::CATEGORIE,
 //									 newNomCategorie,
 //									 YerothDatabaseTableColumn::CATEGORIE,
@@ -85,7 +85,7 @@ void YerothAdminModifierWindow::modifier_compte_bancaire_main()
 //    {
 //        ////Handling of table "stocks_vendu"
 //    	QString stocksVenduQuery(QString("UPDATE %1 SET %2='%3' WHERE %4='%5'")
-//    							.arg(_allWindows->STOCKS_VENDU,
+//    							.arg(YerothDatabase::STOCKS_VENDU,
 //    								 YerothDatabaseTableColumn::CATEGORIE,
 //									 newNomCategorie,
 //									 YerothDatabaseTableColumn::CATEGORIE,
@@ -98,7 +98,7 @@ void YerothAdminModifierWindow::modifier_compte_bancaire_main()
 //    {
 //        ////Handling of table "stocks_sorties"
 //    	QString stocksVenduQuery(QString("UPDATE %1 SET %2='%3' WHERE %4='%5'")
-//    							.arg(_allWindows->STOCKS_SORTIES,
+//    							.arg(YerothDatabase::STOCKS_SORTIES,
 //    								 YerothDatabaseTableColumn::CATEGORIE,
 //									 newNomCategorie,
 //									 YerothDatabaseTableColumn::CATEGORIE,
@@ -111,7 +111,7 @@ void YerothAdminModifierWindow::modifier_compte_bancaire_main()
 //    {
 //        ////Handling of table "inventaire_des_stocks"
 //    	QString stocksVenduQuery(QString("UPDATE %1 SET %2='%3' WHERE %4='%5'")
-//    							.arg(_allWindows->MARCHANDISES,
+//    							.arg(YerothDatabase::MARCHANDISES,
 //    								 YerothDatabaseTableColumn::CATEGORIE,
 //									 newNomCategorie,
 //									 YerothDatabaseTableColumn::CATEGORIE,

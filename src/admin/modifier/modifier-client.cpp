@@ -16,7 +16,7 @@ void YerothAdminModifierWindow::setupEditClient()
     }
     else if (clientsTableModel &&
              !YerothUtils::isEqualCaseInsensitive(clientsTableModel->sqlTableName(),
-                     _allWindows->CLIENTS))
+                     YerothDatabase::CLIENTS))
     {
         clientsTableModel =  &_allWindows->getSqlTableModel_clients();
     }
@@ -82,7 +82,7 @@ void YerothAdminModifierWindow::modifier_client()
         }
         else if (clientsTableModel &&
                  !YerothUtils::isEqualCaseInsensitive(clientsTableModel->sqlTableName(),
-                         _allWindows->CLIENTS))
+                         YerothDatabase::CLIENTS))
         {
             clientsTableModel =  &_allWindows->getSqlTableModel_clients();
         }

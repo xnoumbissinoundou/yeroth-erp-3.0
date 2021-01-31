@@ -34,7 +34,7 @@
 
 YerothERPFournisseursWindow::YerothERPFournisseursWindow()
 :YerothWindowsCommons("yeroth-erp-fournisseurs"),
- YerothAbstractClassYerothSearchWindow(_allWindows->FOURNISSEURS),
+ YerothAbstractClassYerothSearchWindow(YerothDatabase::FOURNISSEURS),
  _logger(new YerothLogger("YerothERPFournisseursWindow")),
  _pushButton_filtrer_font(0),
  _curFournisseursTableModel(0)
@@ -72,13 +72,13 @@ YerothERPFournisseursWindow::YerothERPFournisseursWindow()
                                    .arg(COLOUR_RGB_STRING_YEROTH_GREEN_2_160_70,
                                 		COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
-    setup_select_configure_dbcolumn(_allWindows->FOURNISSEURS);
+    setup_select_configure_dbcolumn(YerothDatabase::FOURNISSEURS);
 
 
     _lineEditsToANDContentForSearch.insert(&lineEdit_fournisseurs_terme_recherche,
     		YerothUtils::EMPTY_STRING);
 
-    YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(_allWindows->FOURNISSEURS);
+    YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(YerothDatabase::FOURNISSEURS);
 
     reinitialiser_colones_db_visibles();
 
@@ -92,7 +92,7 @@ YerothERPFournisseursWindow::YerothERPFournisseursWindow()
 
     _pushButton_filtrer_font = new QFont(pushButton_filtrer->font());
 
-    tableView_fournisseurs->setSqlTableName(&YerothERPWindows::FOURNISSEURS);
+    tableView_fournisseurs->setSqlTableName(&YerothDatabase::FOURNISSEURS);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
@@ -388,7 +388,7 @@ void YerothERPFournisseursWindow::supprimer_PLUSIEURS_Fournisseurs(YerothSqlTabl
 
 		YEROTH_TABLE_VIEW_DELETE_SELECTED_ROWS_QUERY_STRING
 			.append(QString("DELETE FROM %1 WHERE %2 = '%3';")
-				.arg(_allWindows->FOURNISSEURS,
+				.arg(YerothDatabase::FOURNISSEURS,
 					 YerothDatabaseTableColumn::ID,
 					 j.value()));
 	}
@@ -435,7 +435,7 @@ void YerothERPFournisseursWindow::supprimerFournisseur()
     YerothSqlTableModel *fournisseursTableModel = 0;
 
     if (_curFournisseursTableModel
-            && YerothUtils::isEqualCaseInsensitive(_allWindows->FOURNISSEURS,
+            && YerothUtils::isEqualCaseInsensitive(YerothDatabase::FOURNISSEURS,
             									   _curFournisseursTableModel->sqlTableName()))
     {
         fournisseursTableModel = _curFournisseursTableModel;

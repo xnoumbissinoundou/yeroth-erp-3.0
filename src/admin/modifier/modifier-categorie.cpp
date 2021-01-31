@@ -9,7 +9,7 @@ void YerothAdminModifierWindow::setupEditCategorie()
     {
         categoriesTableModel =  &_allWindows->getSqlTableModel_categories();
     }
-    else if (false == YerothUtils::isEqualCaseInsensitive(categoriesTableModel->sqlTableName(), _allWindows->CATEGORIES))
+    else if (false == YerothUtils::isEqualCaseInsensitive(categoriesTableModel->sqlTableName(), YerothDatabase::CATEGORIES))
     {
         categoriesTableModel =  &_allWindows->getSqlTableModel_categories();
     }
@@ -40,7 +40,7 @@ void YerothAdminModifierWindow::modifier_categorie_main()
         categoriesTableModel =  &_allWindows->getSqlTableModel_categories();
     }
     else if (!YerothUtils::isEqualCaseInsensitive(categoriesTableModel->sqlTableName(),
-                     	 	 	 	 	 	 	  _allWindows->CATEGORIES))
+                     	 	 	 	 	 	 	  YerothDatabase::CATEGORIES))
     {
         categoriesTableModel =  &_allWindows->getSqlTableModel_categories();
     }
@@ -59,7 +59,7 @@ void YerothAdminModifierWindow::modifier_categorie_main()
     {
         //Handling of table "stocks"
     	QString stocksQuery(QString("UPDATE %1 SET %2='%3' WHERE %4='%5'")
-    							.arg(_allWindows->STOCKS,
+    							.arg(YerothDatabase::STOCKS,
     								 YerothDatabaseTableColumn::CATEGORIE,
 									 newNomCategorie,
 									 YerothDatabaseTableColumn::CATEGORIE,
@@ -72,7 +72,7 @@ void YerothAdminModifierWindow::modifier_categorie_main()
     {
         ////Handling of table "stocks_vendu"
     	QString stocksVenduQuery(QString("UPDATE %1 SET %2='%3' WHERE %4='%5'")
-    							.arg(_allWindows->STOCKS_VENDU,
+    							.arg(YerothDatabase::STOCKS_VENDU,
     								 YerothDatabaseTableColumn::CATEGORIE,
 									 newNomCategorie,
 									 YerothDatabaseTableColumn::CATEGORIE,
@@ -85,7 +85,7 @@ void YerothAdminModifierWindow::modifier_categorie_main()
     {
         ////Handling of table "stocks_sorties"
     	QString stocksVenduQuery(QString("UPDATE %1 SET %2='%3' WHERE %4='%5'")
-    							.arg(_allWindows->STOCKS_SORTIES,
+    							.arg(YerothDatabase::STOCKS_SORTIES,
     								 YerothDatabaseTableColumn::CATEGORIE,
 									 newNomCategorie,
 									 YerothDatabaseTableColumn::CATEGORIE,
@@ -98,7 +98,7 @@ void YerothAdminModifierWindow::modifier_categorie_main()
     {
         ////Handling of table "inventaire_des_stocks"
     	QString stocksVenduQuery(QString("UPDATE %1 SET %2='%3' WHERE %4='%5'")
-    							.arg(_allWindows->MARCHANDISES,
+    							.arg(YerothDatabase::MARCHANDISES,
     								 YerothDatabaseTableColumn::CATEGORIE,
 									 newNomCategorie,
 									 YerothDatabaseTableColumn::CATEGORIE,

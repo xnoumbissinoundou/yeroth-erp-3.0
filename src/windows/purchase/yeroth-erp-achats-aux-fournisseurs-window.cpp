@@ -58,7 +58,7 @@ unsigned int YerothAchatsAUXFournisseursWindow::PDF_LISTING_COLUMN_CATEGORIE(4);
 
 YerothAchatsAUXFournisseursWindow::YerothAchatsAUXFournisseursWindow()
 :YerothWindowsCommons("yeroth-erp-achats-aux-fournisseurs"),
- YerothAbstractClassYerothSearchWindow(_allWindows->ACHATS_AUX_FOURNISSEURS),
+ YerothAbstractClassYerothSearchWindow(YerothDatabase::ACHATS_AUX_FOURNISSEURS),
  _logger(new YerothLogger("YerothAchatsAUXFournisseursWindow")),
  _pushButton_achats_aux_fournisseurs_filtrer_font(0),
  _curAchatAUXFournisseursSqlTableModel(0)
@@ -92,7 +92,7 @@ YerothAchatsAUXFournisseursWindow::YerothAchatsAUXFournisseursWindow()
                                        "QMessageBox QLabel {color: rgb(%2);}").
                                arg(COLOUR_RGB_STRING_YEROTH_GREEN_2_160_170, COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
-    setup_select_configure_dbcolumn(_allWindows->ACHATS_AUX_FOURNISSEURS);
+    setup_select_configure_dbcolumn(YerothDatabase::ACHATS_AUX_FOURNISSEURS);
 
 
     _lineEditsToANDContentForSearch.insert(&lineEdit_achats_aux_fournisseurs_terme_recherche,
@@ -101,7 +101,7 @@ YerothAchatsAUXFournisseursWindow::YerothAchatsAUXFournisseursWindow()
     _yeroth_WINDOW_references_dbColumnString.insert(YerothDatabaseTableColumn::REFERENCE);
     _yeroth_WINDOW_references_dbColumnString.insert(YerothDatabaseTableColumn::REFERENCE_RECU_DACHAT);
 
-    YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(_allWindows->ACHATS_AUX_FOURNISSEURS);
+    YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(YerothDatabase::ACHATS_AUX_FOURNISSEURS);
 
     reinitialiser_colones_db_visibles();
 
@@ -117,7 +117,7 @@ YerothAchatsAUXFournisseursWindow::YerothAchatsAUXFournisseursWindow()
 
     _pushButton_achats_aux_fournisseurs_filtrer_font = new QFont(pushButton_achats_aux_fournisseurs_filtrer->font());
 
-    tableView_achats_aux_fournisseurs->setSqlTableName(&YerothERPWindows::ACHATS_AUX_FOURNISSEURS);
+    tableView_achats_aux_fournisseurs->setSqlTableName(&YerothDatabase::ACHATS_AUX_FOURNISSEURS);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_achat_au_detail, false);

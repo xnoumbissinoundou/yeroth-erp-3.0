@@ -365,7 +365,7 @@ void YerothDetailsDunProgrammeDeFideliteClientsWindow::showClientLOYALTY_PROGRAM
 					 YerothDatabaseTableColumn::DESIGNATION,
 					 YerothDatabaseTableColumn::REFERENCE_GROUPE,
 					 YerothDatabaseTableColumn::MEMBRES_DU_GROUPE_db_ID,
-					 _allWindows->GROUPES_DE_CLIENTS,
+					 YerothDatabase::GROUPES_DE_CLIENTS,
 					 YerothDatabaseTableColumn::PROGRAMME_DE_FIDELITE_CLIENTS,
 					 designation_programme_de_fidelite_clients));
 

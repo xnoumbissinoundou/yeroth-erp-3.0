@@ -66,7 +66,7 @@ void YerothAdminSearchForm::setupLineEditsQCompleters(int tabWidjetListerIdx)
     case SUJET_ACTION_ALERTE:
 
         lineEdit_terme_recherche->enableForSearch(QObject::trUtf8("nom de l'alerte"));
-        lineEdit_terme_recherche->setupMyStaticQCompleter(_allWindows->ALERTES,
+        lineEdit_terme_recherche->setupMyStaticQCompleter(YerothDatabase::ALERTES,
         												  YerothDatabaseTableColumn::DESIGNATION_ALERTE,
 														  false);
         _curSujetAction = SUJET_ACTION_ALERTE;
@@ -81,7 +81,7 @@ void YerothAdminSearchForm::setupLineEditsQCompleters(int tabWidjetListerIdx)
     case SUJET_ACTION_DEPARTEMENTS_DE_PRODUITS:
 
         lineEdit_terme_recherche->enableForSearch(QObject::trUtf8("nom du département de produits"));
-        lineEdit_terme_recherche->setupMyStaticQCompleter(_allWindows->DEPARTEMENTS_PRODUITS,
+        lineEdit_terme_recherche->setupMyStaticQCompleter(YerothDatabase::DEPARTEMENTS_PRODUITS,
         												  YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,
 														  false);
         _curSujetAction = SUJET_ACTION_DEPARTEMENTS_DE_PRODUITS;
@@ -91,7 +91,7 @@ void YerothAdminSearchForm::setupLineEditsQCompleters(int tabWidjetListerIdx)
     case SUJET_ACTION_CATEGORIE:
 
         lineEdit_terme_recherche->enableForSearch(QObject::trUtf8("nom de la catégorie"));
-        lineEdit_terme_recherche->setupMyStaticQCompleter(_allWindows->CATEGORIES,
+        lineEdit_terme_recherche->setupMyStaticQCompleter(YerothDatabase::CATEGORIES,
         												  YerothDatabaseTableColumn::NOM_CATEGORIE,
 														  false);
         _curSujetAction = SUJET_ACTION_CATEGORIE;
@@ -101,7 +101,7 @@ void YerothAdminSearchForm::setupLineEditsQCompleters(int tabWidjetListerIdx)
     case SUJET_ACTION_COMPTE_BANCAIRE:
 
         lineEdit_terme_recherche->enableForSearch(QObject::trUtf8("référence du compte bancaire"));
-        lineEdit_terme_recherche->setupMyStaticQCompleter(_allWindows->COMPTES_BANCAIRES,
+        lineEdit_terme_recherche->setupMyStaticQCompleter(YerothDatabase::COMPTES_BANCAIRES,
         												  YerothDatabaseTableColumn::REFERENCE_DU_COMPTE_BANCAIRE,
 														  false);
         _curSujetAction = SUJET_ACTION_COMPTE_BANCAIRE;
@@ -111,7 +111,7 @@ void YerothAdminSearchForm::setupLineEditsQCompleters(int tabWidjetListerIdx)
     case SUJET_ACTION_COMPTE_UTILISATEUR:
 
         lineEdit_terme_recherche->enableForSearch(QObject::trUtf8("nom de l'utilisateur"));
-        lineEdit_terme_recherche->setupMyStaticQCompleter(_allWindows->USERS,
+        lineEdit_terme_recherche->setupMyStaticQCompleter(YerothDatabase::USERS,
         												  YerothDatabaseTableColumn::NOM_COMPLET,
 														  false);
         _curSujetAction = SUJET_ACTION_COMPTE_UTILISATEUR;
@@ -121,7 +121,7 @@ void YerothAdminSearchForm::setupLineEditsQCompleters(int tabWidjetListerIdx)
     case SUJET_ACTION_LOCALISATION:
 
         lineEdit_terme_recherche->enableForSearch(QObject::trUtf8("nom de la localisation"));
-        lineEdit_terme_recherche->setupMyStaticQCompleter(_allWindows->LOCALISATIONS,
+        lineEdit_terme_recherche->setupMyStaticQCompleter(YerothDatabase::LOCALISATIONS,
         												  YerothDatabaseTableColumn::NOM_LOCALISATION,
 														  false);
         _curSujetAction = SUJET_ACTION_LOCALISATION;
@@ -131,7 +131,7 @@ void YerothAdminSearchForm::setupLineEditsQCompleters(int tabWidjetListerIdx)
     case SUJET_ACTION_REMISE:
 
         lineEdit_terme_recherche->enableForSearch(QObject::trUtf8("désignation de la remise"));
-        lineEdit_terme_recherche->setupMyStaticQCompleter(_allWindows->REMISES,
+        lineEdit_terme_recherche->setupMyStaticQCompleter(YerothDatabase::REMISES,
         												  YerothDatabaseTableColumn::DESIGNATION_REMISE,
 														  false);
         _curSujetAction = SUJET_ACTION_REMISE;

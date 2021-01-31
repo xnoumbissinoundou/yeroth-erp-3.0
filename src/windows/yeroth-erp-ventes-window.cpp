@@ -51,7 +51,7 @@
 
 YerothVentesWindow::YerothVentesWindow()
 :YerothWindowsCommons("yeroth-erp-journal-ventes"),
- YerothAbstractClassYerothSearchWindow(_allWindows->STOCKS_VENDU),
+ YerothAbstractClassYerothSearchWindow(YerothDatabase::STOCKS_VENDU),
  _retourVenteTabWidget(0),
  _logger(new YerothLogger("YerothVentesWindow")),
  _pushButton_ventes_filtrer_font(0),
@@ -93,7 +93,7 @@ YerothVentesWindow::YerothVentesWindow()
 		<< YerothDatabaseTableColumn::HISTORIQUE_STOCK;
 
 
-    setup_select_configure_dbcolumn(_allWindows->STOCKS_VENDU);
+    setup_select_configure_dbcolumn(YerothDatabase::STOCKS_VENDU);
 
 
     _lineEditsToANDContentForSearch.insert(&lineEdit_ventes_terme_recherche,
@@ -107,7 +107,7 @@ YerothVentesWindow::YerothVentesWindow()
     _comboBoxesToANDContentForSearch.insert(&comboBox_ventes_type_de_vente,
     		YerothDatabaseTableColumn::TYPE_DE_VENTE);
 
-    YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(_allWindows->STOCKS_VENDU);
+    YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(YerothDatabase::STOCKS_VENDU);
 
     reinitialiser_colones_db_visibles();
 
@@ -119,7 +119,7 @@ YerothVentesWindow::YerothVentesWindow()
 
     setupDateTimeEdits();
 
-    tableView_ventes->setSqlTableName(&YerothERPWindows::STOCKS_VENDU);
+    tableView_ventes->setSqlTableName(&YerothDatabase::STOCKS_VENDU);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
@@ -565,7 +565,7 @@ bool YerothVentesWindow::annuler_cette_vente()
 			curMontantARembourserAuClient = curMontantTotalVente;
 
 			QString removeRowQuery(QString("DELETE FROM %1 WHERE %2 = '%3'")
-					.arg(_allWindows->STOCKS_VENDU,
+					.arg(YerothDatabase::STOCKS_VENDU,
 							YerothDatabaseTableColumn::ID,
 							curStocksVenduID));
 
@@ -856,7 +856,7 @@ bool YerothVentesWindow::annuler_cette_vente()
 //		if (successReinsertStock)
 //		{
 //			QString removeRowQuery(QString("DELETE FROM %1 WHERE %2 = '%3'")
-//					.arg(_allWindows->STOCKS_VENDU,
+//					.arg(YerothDatabase::STOCKS_VENDU,
 //							YerothDatabaseTableColumn::ID,
 //							curStocksVenduID));
 //
@@ -1044,7 +1044,7 @@ void YerothVentesWindow::populateComboBoxes()
 {
 	_logger->log("populateComboBoxes");
 
-	comboBox_ventes_type_de_vente->setupPopulateNORawString(_allWindows->TYPE_DE_VENTE,
+	comboBox_ventes_type_de_vente->setupPopulateNORawString(YerothDatabase::TYPE_DE_VENTE,
 															YerothDatabaseTableColumn::TYPE_DE_VENTE,
 															&YerothUtils::_typedeventeToUserViewString);
 

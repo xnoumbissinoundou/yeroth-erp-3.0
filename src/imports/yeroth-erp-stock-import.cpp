@@ -327,7 +327,7 @@ enum import_csv_entry_row_return_status
 				proposedFournisseur = curColumnRowEntry;
 
 				QString queryFournisseurStr(QString("select * from %1 WHERE %2 = '%3'")
-						.arg(YerothUtils::getAllWindows()->FOURNISSEURS,
+						.arg(YerothDatabase::FOURNISSEURS,
 							 YerothDatabaseTableColumn::NOM_ENTREPRISE,
 							 curColumnRowEntry));
 
@@ -336,7 +336,7 @@ enum import_csv_entry_row_return_status
 				if (querySize <= 0)
 				{
 					queryFournisseurStr = QString("insert into %1 (%2, %3) values ('%4', '%5')")
-											.arg(YerothUtils::getAllWindows()->FOURNISSEURS,
+											.arg(YerothDatabase::FOURNISSEURS,
 												 YerothDatabaseTableColumn::ID,
 												 YerothDatabaseTableColumn::NOM_ENTREPRISE,
 												 QString::number(allWindows->getNextIdSqlTableModel_fournisseurs()),
@@ -374,7 +374,7 @@ enum import_csv_entry_row_return_status
 				productCategorie = curColumnRowEntry;
 
 				QString queryCategoryStr(QString("select * from %1 WHERE %2 = '%3'")
-						.arg(YerothUtils::getAllWindows()->CATEGORIES,
+						.arg(YerothDatabase::CATEGORIES,
 							 YerothDatabaseTableColumn::NOM_CATEGORIE,
 							 curColumnRowEntry));
 
@@ -383,7 +383,7 @@ enum import_csv_entry_row_return_status
 				if (querySize <= 0)
 				{
 					queryCategoryStr = QString("insert into %1 (%2, %3) values ('%4', '%5')")
-											.arg(YerothUtils::getAllWindows()->CATEGORIES,
+											.arg(YerothDatabase::CATEGORIES,
 												 YerothDatabaseTableColumn::ID,
 												 YerothDatabaseTableColumn::NOM_CATEGORIE,
 												 QString::number(allWindows->getNextIdSqlTableModel_categories()),

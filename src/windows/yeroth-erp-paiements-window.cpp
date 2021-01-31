@@ -52,7 +52,7 @@
 
 YerothPaiementsWindow::YerothPaiementsWindow()
 :YerothWindowsCommons("yeroth-erp-journal-paiements"),
- YerothAbstractClassYerothSearchWindow(_allWindows->PAIEMENTS),
+ YerothAbstractClassYerothSearchWindow(YerothDatabase::PAIEMENTS),
  _logger(new YerothLogger("YerothPaiementsWindow")),
  _currentTabView(0),
  _pushButton_paiements_filtrer_font(0),
@@ -89,7 +89,7 @@ YerothPaiementsWindow::YerothPaiementsWindow()
 		<< YerothDatabaseTableColumn::NOTES;
 
 
-    setup_select_configure_dbcolumn(_allWindows->PAIEMENTS);
+    setup_select_configure_dbcolumn(YerothDatabase::PAIEMENTS);
 
 
     _lineEditsToANDContentForSearch.insert(&lineEdit_paiements_terme_recherche,
@@ -103,7 +103,7 @@ YerothPaiementsWindow::YerothPaiementsWindow()
     _comboBoxesToANDContentForSearch.insert(&comboBox_paiements_type_de_paiement,
     		YerothDatabaseTableColumn::TYPE_DE_PAIEMENT);
 
-    YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(_allWindows->PAIEMENTS);
+    YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(YerothDatabase::PAIEMENTS);
 
     reinitialiser_colones_db_visibles();
 
@@ -117,7 +117,7 @@ YerothPaiementsWindow::YerothPaiementsWindow()
 
     setupDateTimeEdits();
 
-    tableView_paiements->setSqlTableName(&YerothERPWindows::PAIEMENTS);
+    tableView_paiements->setSqlTableName(&YerothDatabase::PAIEMENTS);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionExporter_au_format_csv, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
@@ -262,10 +262,10 @@ void YerothPaiementsWindow::populateComboBoxes()
 
 	comboBox_paiements_intitule_du_compte_bancaire->setYerothEnabled(false);
 
-	comboBox_paiements_intitule_du_compte_bancaire->populateComboBoxRawString(_allWindows->COMPTES_BANCAIRES,
+	comboBox_paiements_intitule_du_compte_bancaire->populateComboBoxRawString(YerothDatabase::COMPTES_BANCAIRES,
 																			  YerothDatabaseTableColumn::INTITULE_DU_COMPTE_BANCAIRE);
 
-	comboBox_paiements_type_de_paiement->setupPopulateNORawString(_allWindows->TYPE_DE_PAIEMENT,
+	comboBox_paiements_type_de_paiement->setupPopulateNORawString(YerothDatabase::TYPE_DE_PAIEMENT,
 																   YerothDatabaseTableColumn::TYPE_DE_PAIEMENT,
 																   &YerothUtils::_typedencaissementToUserViewString);
 
@@ -327,7 +327,7 @@ void YerothPaiementsWindow::updateComboBoxes()
 {
 	QString currentText = comboBox_paiements_intitule_du_compte_bancaire->currentText();
 
-	comboBox_paiements_intitule_du_compte_bancaire->populateComboBoxRawString(_allWindows->COMPTES_BANCAIRES,
+	comboBox_paiements_intitule_du_compte_bancaire->populateComboBoxRawString(YerothDatabase::COMPTES_BANCAIRES,
 																			  YerothDatabaseTableColumn::INTITULE_DU_COMPTE_BANCAIRE);
 
 	int currentTextIdx = comboBox_paiements_intitule_du_compte_bancaire->findText(currentText);

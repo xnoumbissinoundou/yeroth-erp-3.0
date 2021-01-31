@@ -49,7 +49,7 @@
 
 YerothAlertesWindow::YerothAlertesWindow()
 :YerothWindowsCommons("yeroth-erp-alertes"),
- YerothAbstractClassYerothSearchWindow(_allWindows->COURRIERS_ALERTES),
+ YerothAbstractClassYerothSearchWindow(YerothDatabase::COURRIERS_ALERTES),
  _logger(new YerothLogger("YerothAlertesWindow")),
  _curAlertesSqlTableModel(&_allWindows->getSqlTableModel_courriers_alertes())
 {
@@ -85,7 +85,7 @@ YerothAlertesWindow::YerothAlertesWindow()
                                arg(COLOUR_RGB_STRING_YEROTH_ALERT_BLUE_52_101_164,
                             	   COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
-    setup_select_configure_dbcolumn(_allWindows->COURRIERS_ALERTES);
+    setup_select_configure_dbcolumn(YerothDatabase::COURRIERS_ALERTES);
 
     _lineEditsToANDContentForSearch.insert(&lineEdit_alertes_terme_recherche,
     		YerothUtils::EMPTY_STRING);
@@ -96,7 +96,7 @@ YerothAlertesWindow::YerothAlertesWindow()
     _comboBoxesToANDContentForSearch.insert(&comboBox_alertes_resolue_oui_OU_non,
     		YerothDatabaseTableColumn::ALERTE_RESOLUE);
 
-    YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(_allWindows->COURRIERS_ALERTES);
+    YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(YerothDatabase::COURRIERS_ALERTES);
 
     reinitialiser_colones_db_visibles();
 
@@ -110,7 +110,7 @@ YerothAlertesWindow::YerothAlertesWindow()
 
     setupLineEditsQCompleters((QObject *)this);
 
-    tableView_alertes->setSqlTableName(&YerothERPWindows::COURRIERS_ALERTES);
+    tableView_alertes->setSqlTableName(&YerothDatabase::COURRIERS_ALERTES);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMarquerResolue, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
@@ -343,7 +343,7 @@ void YerothAlertesWindow::supprimer()
             //qDebug() << "YerothStocksWindow::supprimer_du_stock() " << resRemoved;
 
             QString supprimerAlerteStr(QString("DELETE FROM %1 WHERE %2 = '%3'")
-            								.arg(_allWindows->ALERTES,
+            								.arg(YerothDatabase::ALERTES,
             									 YerothDatabaseTableColumn::DESIGNATION_ALERTE,
             									 designation_alerte));
 

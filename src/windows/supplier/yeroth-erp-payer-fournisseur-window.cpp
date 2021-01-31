@@ -218,17 +218,17 @@ void YerothPayerFournisseurWindow::updateStocksVeduTable(PaymentInfo &paymentInf
 										 "UPDATE TempData SET id = %4;"
 										 "INSERT INTO %5 SELECT * FROM TempData;"
 										 "DROP TABLE IF EXISTS TempData;")
-									.arg(_allWindows->STOCKS_VENDU,
-										 _allWindows->STOCKS_VENDU,
+									.arg(YerothDatabase::STOCKS_VENDU,
+										 YerothDatabase::STOCKS_VENDU,
 										 stocksVenduID,
 										 QString::number(YerothERPWindows::getNextIdSqlTableModel_services_completes()),
-										 _allWindows->SERVICES_COMPLETES));
+										 YerothDatabase::SERVICES_COMPLETES));
 
 			if (YerothUtils::execQuery(copyRowQuery))
 			{
     			//handle stocksVendu table
     			QString removeStocksVenduRowQuery(QString("DELETE FROM %1 WHERE %2 = '%3'")
-    												.arg(_allWindows->STOCKS_VENDU,
+    												.arg(YerothDatabase::STOCKS_VENDU,
     													 YerothDatabaseTableColumn::REFERENCE,
 														 paymentInfo.reference));
 
@@ -236,7 +236,7 @@ void YerothPayerFournisseurWindow::updateStocksVeduTable(PaymentInfo &paymentInf
     			{
     				//handle marchandise table
     				QString removeMarchandisesRowQuery(QString("DELETE FROM %1 WHERE %2 = '%3'")
-    													 .arg(_allWindows->MARCHANDISES,
+    													 .arg(YerothDatabase::MARCHANDISES,
     														  YerothDatabaseTableColumn::REFERENCE,
 															  paymentInfo.reference));
 
@@ -343,7 +343,7 @@ void YerothPayerFournisseurWindow::private_slot_afficher_les_transactions_dun_fo
 														 YerothDatabaseTableColumn::TYPE_DE_PAIEMENT,
 														 YerothDatabaseTableColumn::MONTANT_PAYE,
 														 YerothDatabaseTableColumn::COMPTE_CLIENT,
-														 _allWindows->PAIEMENTS,
+														 YerothDatabase::PAIEMENTS,
 														 DATE_TO_DB_FORMAT_STRING(dateEdit_transactions_fournisseur_debut->date()),
 														 DATE_TO_DB_FORMAT_STRING(dateEdit_transactions_fournisseur_fin->date())));
 
@@ -363,7 +363,7 @@ void YerothPayerFournisseurWindow::private_slot_afficher_les_transactions_dun_fo
 														 YerothDatabaseTableColumn::TYPE_DE_VENTE,
 														 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
 														 YerothDatabaseTableColumn::COMPTE_CLIENT,
-														 _allWindows->SERVICES_COMPLETES,
+														 YerothDatabase::SERVICES_COMPLETES,
 														 DATE_TO_DB_FORMAT_STRING(dateEdit_transactions_fournisseur_debut->date()),
 														 DATE_TO_DB_FORMAT_STRING(dateEdit_transactions_fournisseur_fin->date())));
 
@@ -392,7 +392,7 @@ void YerothPayerFournisseurWindow::private_slot_afficher_les_transactions_dun_fo
 														 YerothDatabaseTableColumn::HEURE_VENTE,
 														 YerothDatabaseTableColumn::TYPE_DE_VENTE,
 														 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
-														 _allWindows->STOCKS_VENDU,
+														 YerothDatabase::STOCKS_VENDU,
 														 DATE_TO_DB_FORMAT_STRING(dateEdit_transactions_fournisseur_debut->date()),
 														 DATE_TO_DB_FORMAT_STRING(dateEdit_transactions_fournisseur_fin->date()),
 														 paiementComptantQueryStr));
@@ -567,7 +567,7 @@ bool YerothPayerFournisseurWindow::putCashIntoCustomerAccount()
     	QString queryStr;
 
     	queryStr.append(QString("UPDATE %1 SET %2 = '%3', %4 = '%5' WHERE %6 = '%7'")
-    						.arg(_allWindows->CLIENTS,
+    						.arg(YerothDatabase::CLIENTS,
     							 YerothDatabaseTableColumn::COMPTE_CLIENT,
 								 QString::number(fournisseur),
 								 YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT,
@@ -711,19 +711,19 @@ void YerothPayerFournisseurWindow::populatePayerAuFournisseursComboBoxes()
 								 _curCompanyName,
 								 YerothDatabaseTableColumn::MONTANT_A_REMBOURSER));
 
-	comboBox_fournisseurs_reference->populateComboBoxRawString(_allWindows->STOCKS_VENDU,
+	comboBox_fournisseurs_reference->populateComboBoxRawString(YerothDatabase::STOCKS_VENDU,
 																  YerothDatabaseTableColumn::REFERENCE,
 																  aConditionStr);
 
 	comboBox_fournisseurs_intitule_du_compte_bancaire->setYerothEnabled(false);
 
-	comboBox_fournisseurs_typedepaiement->setupPopulateNORawString(_allWindows->TYPE_DE_PAIEMENT,
+	comboBox_fournisseurs_typedepaiement->setupPopulateNORawString(YerothDatabase::TYPE_DE_PAIEMENT,
     															YerothDatabaseTableColumn::TYPE_DE_PAIEMENT,
 																&YerothUtils::_typedencaissementToUserViewString);
 
 	comboBox_fournisseurs_typedepaiement->populateComboBoxWithout(YerothUtils::ENCAISSEMENT_ACHAT_ANNULE);
 
-	comboBox_fournisseurs_intitule_du_compte_bancaire->populateComboBoxRawString(_allWindows->COMPTES_BANCAIRES,
+	comboBox_fournisseurs_intitule_du_compte_bancaire->populateComboBoxRawString(YerothDatabase::COMPTES_BANCAIRES,
     																   YerothDatabaseTableColumn::INTITULE_DU_COMPTE_BANCAIRE);
 }
 

@@ -59,7 +59,7 @@ YerothPointDeVenteListStocksWindow::YerothPointDeVenteListStocksWindow()
 		<< YerothDatabaseTableColumn::IS_SERVICE;
 
 
-    setup_select_configure_dbcolumn(_allWindows->STOCKS);
+    setup_select_configure_dbcolumn(YerothDatabase::STOCKS);
 
     enableResizing();
 }

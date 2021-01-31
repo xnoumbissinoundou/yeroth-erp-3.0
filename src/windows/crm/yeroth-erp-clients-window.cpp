@@ -34,7 +34,7 @@
 
 YerothERPClientsWindow::YerothERPClientsWindow()
 :YerothWindowsCommons("yeroth-erp-clients"),
- YerothAbstractClassYerothSearchWindow(_allWindows->CLIENTS),
+ YerothAbstractClassYerothSearchWindow(YerothDatabase::CLIENTS),
  _logger(new YerothLogger("YerothERPComptesClientsWindow")),
  _pushButton_filtrer_font(0),
  _curClientsTableModel(0)
@@ -77,7 +77,7 @@ YerothERPClientsWindow::YerothERPClientsWindow()
 		<< YerothDatabaseTableColumn::IMAGE_COMPTE_CLIENT;
 
 
-    setup_select_configure_dbcolumn(_allWindows->CLIENTS);
+    setup_select_configure_dbcolumn(YerothDatabase::CLIENTS);
 
 
     _lineEditsToANDContentForSearch.insert(&lineEdit_comptes_clients_terme_recherche,
@@ -85,7 +85,7 @@ YerothERPClientsWindow::YerothERPClientsWindow()
 
     _yeroth_WINDOW_references_dbColumnString.insert(YerothDatabaseTableColumn::REFERENCE_CLIENT);
 
-    YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(_allWindows->CLIENTS);
+    YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(YerothDatabase::CLIENTS);
 
     reinitialiser_colones_db_visibles();
 
@@ -99,7 +99,7 @@ YerothERPClientsWindow::YerothERPClientsWindow()
 
     _pushButton_filtrer_font = new QFont(pushButton_filtrer->font());
 
-    tableView_clients->setSqlTableName(&YerothERPWindows::CLIENTS);
+    tableView_clients->setSqlTableName(&YerothDatabase::CLIENTS);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
@@ -413,7 +413,7 @@ void YerothERPClientsWindow::supprimer_PLUSIEURS_Clients(YerothSqlTableModel &aC
 
 		YEROTH_TABLE_VIEW_DELETE_SELECTED_ROWS_QUERY_STRING
 			.append(QString("DELETE FROM %1 WHERE %2 = '%3';")
-				.arg(_allWindows->CLIENTS,
+				.arg(YerothDatabase::CLIENTS,
 					 YerothDatabaseTableColumn::ID,
 					 j.value()));
 	}
@@ -469,7 +469,7 @@ void YerothERPClientsWindow::supprimerCompteClient()
     YerothSqlTableModel *clientsTableModel = 0;
 
     if (_curClientsTableModel &&
-    	YerothUtils::isEqualCaseInsensitive(_allWindows->CLIENTS, _curClientsTableModel->sqlTableName()))
+    	YerothUtils::isEqualCaseInsensitive(YerothDatabase::CLIENTS, _curClientsTableModel->sqlTableName()))
     {
         clientsTableModel = _curClientsTableModel;
     }

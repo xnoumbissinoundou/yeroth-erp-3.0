@@ -54,7 +54,7 @@
 
 YerothStocksWindow::YerothStocksWindow()
 :YerothWindowsCommons("yeroth-erp-fichier-stocks"),
- YerothAbstractClassYerothSearchWindow(_allWindows->STOCKS),
+ YerothAbstractClassYerothSearchWindow(YerothDatabase::STOCKS),
  _logger(new YerothLogger("YerothStocksWindow")),
  _pushButton_stocks_filtrer_font(0)
 {
@@ -96,7 +96,7 @@ YerothStocksWindow::YerothStocksWindow()
 		<< YerothDatabaseTableColumn::LOTS_ENTRANT
 		<< YerothDatabaseTableColumn::QUANTITE_PAR_LOT;
 
-    setup_select_configure_dbcolumn(_allWindows->STOCKS);
+    setup_select_configure_dbcolumn(YerothDatabase::STOCKS);
 
 
     _lineEditsToANDContentForSearch.insert(&lineEdit_stock_terme_recherche,
@@ -104,7 +104,7 @@ YerothStocksWindow::YerothStocksWindow()
 
     _yeroth_WINDOW_references_dbColumnString.insert(YerothDatabaseTableColumn::REFERENCE);
 
-    YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(_allWindows->STOCKS);
+    YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(YerothDatabase::STOCKS);
 
     reinitialiser_colones_db_visibles();
 
@@ -118,7 +118,7 @@ YerothStocksWindow::YerothStocksWindow()
 
     _pushButton_stocks_filtrer_font = new QFont(pushButton_stocks_filtrer->font());
 
-    tableView_stocks->setSqlTableName(&YerothERPWindows::STOCKS);
+    tableView_stocks->setSqlTableName(&YerothDatabase::STOCKS);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, false);
@@ -1086,7 +1086,7 @@ void YerothStocksWindow::supprimer_ce_stock(QString aStockID /* = YerothUtils::E
     	query.clear();
 
     	QString QUERY_STOCK_DATA(QString("select * from %1 where %2='%3'")
-    								.arg(_allWindows->STOCKS,
+    								.arg(YerothDatabase::STOCKS,
     									 YerothDatabaseTableColumn::ID,
 										 aStockID));
 
@@ -1134,7 +1134,7 @@ void YerothStocksWindow::supprimer_ce_stock(QString aStockID /* = YerothUtils::E
     	{
     		QString DELETE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW_QUERY_STRING
 				(QString("DELETE FROM %1 WHERE %2 = '%3'")
-    				.arg(_allWindows->STOCKS,
+    				.arg(YerothDatabase::STOCKS,
     					 YerothDatabaseTableColumn::ID,
 						 aStockID));
 
@@ -1163,7 +1163,7 @@ void YerothStocksWindow::supprimer_ce_stock(QString aStockID /* = YerothUtils::E
         		{
             		deleteAchatsRowQueryStr.append
 							(QString("DELETE FROM %1 WHERE %2='%3'")
-            					.arg(_allWindows->ACHATS,
+            					.arg(YerothDatabase::ACHATS,
             						 YerothDatabaseTableColumn::STOCKS_ID,
 									 aStockID));
         		}
@@ -1171,7 +1171,7 @@ void YerothStocksWindow::supprimer_ce_stock(QString aStockID /* = YerothUtils::E
         		{
             		deleteAchatsRowQueryStr.append
 							(QString("DELETE FROM %1 WHERE %2='%3'")
-            					.arg(_allWindows->ACHATS,
+            					.arg(YerothDatabase::ACHATS,
             						 YerothDatabaseTableColumn::STOCKS_ID,
             						 GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ID)));
         		}

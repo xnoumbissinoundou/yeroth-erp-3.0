@@ -238,7 +238,7 @@ void YerothAdminDetailWindow::rendreVisibleCompteUtilisateur(int sqlTableRow)
 		usersSqlTableModel = &_allWindows->getSqlTableModel_users();
 	}
 	else if (usersSqlTableModel &&
-			 ! YerothUtils::isEqualCaseInsensitive(usersSqlTableModel->sqlTableName(), _allWindows->USERS))
+			 ! YerothUtils::isEqualCaseInsensitive(usersSqlTableModel->sqlTableName(), YerothDatabase::USERS))
 	{
 		usersSqlTableModel = &_allWindows->getSqlTableModel_users();
 	}
@@ -298,7 +298,7 @@ void YerothAdminDetailWindow::rendreVisibleLocalisation(int sqlTableRow)
 	}
 	else if (localisationSqlTableModel
 			&& !YerothUtils::isEqualCaseInsensitive(localisationSqlTableModel->sqlTableName(),
-					_allWindows->LOCALISATIONS))
+					YerothDatabase::LOCALISATIONS))
 	{
 		localisationSqlTableModel = &_allWindows->getSqlTableModel_localisations();
 	}
@@ -344,7 +344,7 @@ void YerothAdminDetailWindow::rendreVisibleDepartementsDeProduits(int sqlTableRo
 	}
 	else if (0 != departementsDeProduitsTableModel
 			 && !YerothUtils::isEqualCaseInsensitive(departementsDeProduitsTableModel->sqlTableName(),
-												    _allWindows->DEPARTEMENTS_PRODUITS))
+												    YerothDatabase::DEPARTEMENTS_PRODUITS))
 	{
 		departementsDeProduitsTableModel = &_allWindows->getSqlTableModel_departements_produits();
 	}
@@ -377,7 +377,7 @@ void YerothAdminDetailWindow::rendreVisibleCategorie(int sqlTableRow)
 	}
 	else if (categoriesTableModel
 			&& !YerothUtils::isEqualCaseInsensitive(categoriesTableModel->sqlTableName(),
-					_allWindows->CATEGORIES))
+					YerothDatabase::CATEGORIES))
 	{
 		categoriesTableModel = &_allWindows->getSqlTableModel_categories();
 	}
@@ -407,7 +407,7 @@ void YerothAdminDetailWindow::rendreVisibleCompteBancaire(int sqlTableRow)
     }
     else if (comptesBancairesTableModel
              && !YerothUtils::isEqualCaseInsensitive(comptesBancairesTableModel->sqlTableName(),
-                     	 	 	 	 	 	 	 	 _allWindows->COMPTES_BANCAIRES))
+                     	 	 	 	 	 	 	 	 YerothDatabase::COMPTES_BANCAIRES))
     {
         comptesBancairesTableModel = &_allWindows->getSqlTableModel_comptes_bancaires();
     }
@@ -445,7 +445,7 @@ void YerothAdminDetailWindow::rendreVisibleRemise(int sqlTableRow)
         remiseTableModel = &_allWindows->getSqlTableModel_remises();
     }
     else if (remiseTableModel &&
-    		 !YerothUtils::isEqualCaseInsensitive(remiseTableModel->sqlTableName(), _allWindows->REMISES))
+    		 !YerothUtils::isEqualCaseInsensitive(remiseTableModel->sqlTableName(), YerothDatabase::REMISES))
     {
         remiseTableModel = &_allWindows->getSqlTableModel_remises();
     }
@@ -494,7 +494,7 @@ void YerothAdminDetailWindow::rendreVisibleAlerte(int sqlTableRow)
         alertesTableModel = &_allWindows->getSqlTableModel_alertes();
     }
     else if ((0 != alertesTableModel) &&
-    		 !YerothUtils::isEqualCaseInsensitive(alertesTableModel->sqlTableName(), _allWindows->ALERTES))
+    		 !YerothUtils::isEqualCaseInsensitive(alertesTableModel->sqlTableName(), YerothDatabase::ALERTES))
     {
         alertesTableModel = &_allWindows->getSqlTableModel_alertes();
     }

@@ -673,7 +673,7 @@ void YerothModifierWindow::setupLineEdits()
 
 void YerothModifierWindow::setupLineEditsQCompleters()
 {
-    lineEdit_nom_entreprise_fournisseur->setupMyStaticQCompleter(_allWindows->FOURNISSEURS,
+    lineEdit_nom_entreprise_fournisseur->setupMyStaticQCompleter(YerothDatabase::FOURNISSEURS,
     															 YerothDatabaseTableColumn::NOM_ENTREPRISE);
 }
 

@@ -128,7 +128,7 @@ enum import_csv_entry_row_return_status
 				productCategorie = curColumnRowEntry;
 
 				QString queryCategoryStr(QString("select * from %1 WHERE %2 = '%3'")
-						.arg(YerothUtils::getAllWindows()->CATEGORIES,
+						.arg(YerothDatabase::CATEGORIES,
 							 YerothDatabaseTableColumn::NOM_CATEGORIE,
 							 curColumnRowEntry));
 
@@ -137,7 +137,7 @@ enum import_csv_entry_row_return_status
 				if (querySize <= 0)
 				{
 					queryCategoryStr = QString("insert into %1 (%2, %3) values ('%4', '%5')")
-											.arg(YerothUtils::getAllWindows()->CATEGORIES,
+											.arg(YerothDatabase::CATEGORIES,
 												 YerothDatabaseTableColumn::ID,
 												 YerothDatabaseTableColumn::NOM_CATEGORIE,
 												 QString::number(allWindows->getNextIdSqlTableModel_categories()),

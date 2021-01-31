@@ -204,7 +204,7 @@ QString YerothPOSVenteMethodePaiementCarteCreditDialog::getCreditCardCVCode()
 
 void YerothPOSVenteMethodePaiementCarteCreditDialog::setupLineEdits()
 {
-	comboBox_carte_credit_societe->populateComboBoxRawString(_allWindows->CREDIT_CARD_ISSUING_COMPANY,
+	comboBox_carte_credit_societe->populateComboBoxRawString(YerothDatabase::CREDIT_CARD_ISSUING_COMPANY,
     													     QString("credit_card_issuing_company"));
 
 	lineEdit_carte_credit_numero->				setInputMask("9999 - 9999 - 9999 - 9999");

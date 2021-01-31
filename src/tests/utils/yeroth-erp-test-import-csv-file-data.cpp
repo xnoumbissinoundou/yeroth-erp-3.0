@@ -48,7 +48,7 @@ void Test_YerothERPTestImportCSVFileData::test_TABLE_VIEW_lister_import_test_dat
 
     int curCsvFileColumnSize = csvHeader.size();
 
-	YerothUtils::fillDBTableColumnNameToDBTableColumnType_TEST(_allWindows->STOCKS,
+	YerothUtils::fillDBTableColumnNameToDBTableColumnType_TEST(YerothDatabase::STOCKS,
 															   _dbTableColumnToType,
 															   _dbTableColumnToIsNotNULL);
 

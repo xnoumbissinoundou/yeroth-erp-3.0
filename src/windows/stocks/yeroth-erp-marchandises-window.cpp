@@ -34,7 +34,7 @@
 
 YerothMarchandisesWindow::YerothMarchandisesWindow()
 :YerothWindowsCommons("yeroth-erp-marchandises"),
- YerothAbstractClassYerothSearchWindow(_allWindows->MARCHANDISES),
+ YerothAbstractClassYerothSearchWindow(YerothDatabase::MARCHANDISES),
  _logger(new YerothLogger("YerothMarchandisesWindow")),
  _qteTotaleDarticlesEnStock(0.0),
  _currentlyFiltered(false),
@@ -79,7 +79,7 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
     	<< YerothDatabaseTableColumn::IS_SERVICE;
 
 
-    setup_select_configure_dbcolumn(_allWindows->MARCHANDISES);
+    setup_select_configure_dbcolumn(YerothDatabase::MARCHANDISES);
 
 
     _lineEditsToANDContentForSearch.insert(&lineEdit_marchandises_terme_recherche,
@@ -87,7 +87,7 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
 
     _yeroth_WINDOW_references_dbColumnString.insert(YerothDatabaseTableColumn::REFERENCE);
 
-    YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(_allWindows->MARCHANDISES);
+    YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(YerothDatabase::MARCHANDISES);
 
     reinitialiser_colones_db_visibles();
 
@@ -99,7 +99,7 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
 
     _pushButton_filtrer_font = new QFont(pushButton_filtrer->font());
 
-    tableView_marchandises->setSqlTableName(&YerothERPWindows::MARCHANDISES);
+    tableView_marchandises->setSqlTableName(&YerothDatabase::MARCHANDISES);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, false);
@@ -183,7 +183,7 @@ double YerothMarchandisesWindow::getQuantiteTotaleEnStock(QString categorie,
 
 	QString sqlSearchStockTableQueryStr(QString("SELECT %1 FROM %2 WHERE %3 = '%4' AND %5 = '%6'")
 											.arg(YerothDatabaseTableColumn::QUANTITE_TOTALE,
-												 _allWindows->STOCKS,
+												 YerothDatabase::STOCKS,
 	                                             YerothDatabaseTableColumn::CATEGORIE,
 												 categorie,
 												 YerothDatabaseTableColumn::DESIGNATION,
@@ -202,7 +202,7 @@ double YerothMarchandisesWindow::getQuantiteTotaleEnStock(QString categorie,
 		}
 
 		QString updateQteTotalQueryStr(QString("UPDATE %1 SET %2 = '%3' WHERE (%4 = '%5') AND (%6 = '%7')")
-											.arg(_allWindows->MARCHANDISES,
+											.arg(YerothDatabase::MARCHANDISES,
 												 YerothDatabaseTableColumn::QUANTITE_TOTALE,
 												 QString::number(qteTotalEnStock),
 												 YerothDatabaseTableColumn::CATEGORIE,
@@ -1004,7 +1004,7 @@ void YerothMarchandisesWindow::supprimer_cette_marchandise(QString aMarchandiseI
     	query.clear();
 
     	QString QUERY_MARCHANDISE_DATA(QString("select * from %1 where %2='%3'")
-    										.arg(_allWindows->MARCHANDISES,
+    										.arg(YerothDatabase::MARCHANDISES,
     											 YerothDatabaseTableColumn::ID,
 												 aMarchandiseID));
 
@@ -1037,7 +1037,7 @@ void YerothMarchandisesWindow::supprimer_cette_marchandise(QString aMarchandiseI
     	{
     		QString DELETE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW_QUERY_STRING
 				(QString("DELETE FROM %1 WHERE %2 = '%3'")
-    				.arg(_allWindows->MARCHANDISES,
+    				.arg(YerothDatabase::MARCHANDISES,
     					 YerothDatabaseTableColumn::ID,
 						 aMarchandiseID));
 

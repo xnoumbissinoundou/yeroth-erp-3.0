@@ -92,7 +92,7 @@ void YerothAdminCreateWindow::populateLocalisationComboBoxes()
 {
     _logger->log("populateAlerteComboBoxes");
 
-    comboBox_creer_localisation_base_donnees->populateComboBoxRawString(_allWindows->DBMS,
+    comboBox_creer_localisation_base_donnees->populateComboBoxRawString(YerothDatabase::DBMS,
     													     	 	 	QString("nom_dbms"));
 }
 

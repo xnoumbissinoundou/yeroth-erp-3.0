@@ -605,7 +605,7 @@ void YerothTableauxDeBordWindow::quantite_max_stats(QString fileName,
     						 YerothDatabaseTableColumn::QUANTITE_VENDUE,
 							 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
 							 YerothDatabaseTableColumn::MONTANT_TVA,
-    						 _allWindows->STOCKS_VENDU,
+    						 YerothDatabase::STOCKS_VENDU,
 							 YerothDatabaseTableColumn::DATE_VENTE,
 							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_debut->date()),
 							 YerothDatabaseTableColumn::DATE_VENTE,
@@ -618,7 +618,7 @@ void YerothTableauxDeBordWindow::quantite_max_stats(QString fileName,
     						 YerothDatabaseTableColumn::QUANTITE_VENDUE,
 							 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
 							 YerothDatabaseTableColumn::MONTANT_TVA,
-    						 _allWindows->SERVICES_COMPLETES,
+    						 YerothDatabase::SERVICES_COMPLETES,
 							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_debut->date()),
 							 YerothDatabaseTableColumn::DATE_VENTE,
 							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_fin->date()),
@@ -797,7 +797,7 @@ void YerothTableauxDeBordWindow::quantite_moindre_stats(QString fileName,
     						 YerothDatabaseTableColumn::QUANTITE_VENDUE,
 							 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
 							 YerothDatabaseTableColumn::MONTANT_TVA,
-    						 _allWindows->STOCKS_VENDU,
+    						 YerothDatabase::STOCKS_VENDU,
 							 YerothDatabaseTableColumn::DATE_VENTE,
 							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_debut->date()),
 							 YerothDatabaseTableColumn::DATE_VENTE,
@@ -810,7 +810,7 @@ void YerothTableauxDeBordWindow::quantite_moindre_stats(QString fileName,
     						 YerothDatabaseTableColumn::QUANTITE_VENDUE,
 							 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
 							 YerothDatabaseTableColumn::MONTANT_TVA,
-    						 _allWindows->SERVICES_COMPLETES,
+    						 YerothDatabase::SERVICES_COMPLETES,
 							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_debut->date()),
 							 YerothDatabaseTableColumn::DATE_VENTE,
 							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_fin->date()),
@@ -989,7 +989,7 @@ void YerothTableauxDeBordWindow::meilleursStats(QString fileName,
     						 YerothDatabaseTableColumn::QUANTITE_VENDUE,
     						 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
     						 YerothDatabaseTableColumn::MONTANT_TVA,
-							 _allWindows->STOCKS_VENDU,
+							 YerothDatabase::STOCKS_VENDU,
 							 YerothDatabaseTableColumn::DATE_VENTE,
 							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_debut->date()),
 							 YerothDatabaseTableColumn::DATE_VENTE,
@@ -1004,7 +1004,7 @@ void YerothTableauxDeBordWindow::meilleursStats(QString fileName,
     						 YerothDatabaseTableColumn::QUANTITE_VENDUE,
     						 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
     						 YerothDatabaseTableColumn::MONTANT_TVA,
-							 _allWindows->SERVICES_COMPLETES,
+							 YerothDatabase::SERVICES_COMPLETES,
 							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_debut->date()),
 							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_fin->date()),
 							 YerothDatabaseTableColumn::MONTANT_A_REMBOURSER,
@@ -1179,10 +1179,10 @@ void YerothTableauxDeBordWindow::ZERO_stats_stocks(QString fileName,
     						 	 	"where sv.%6 = s.%7 "
     						 	 	"AND date_vente >= '%8' AND date_vente <= '%9')")
     					.arg(fieldId,
-							 _allWindows->STOCKS,
+							 YerothDatabase::STOCKS,
 							 fieldId,
 							 fieldId,
-							 _allWindows->STOCKS_VENDU,
+							 YerothDatabase::STOCKS_VENDU,
 							 fieldId,
 							 fieldId,
 							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_debut->date()),
@@ -1349,10 +1349,10 @@ void YerothTableauxDeBordWindow::ZERO_stats(QString fileName,
     						 	 	"where sv.%6 = s.%7 "
     						 	 	"AND date_vente >= '%8' AND date_vente <= '%9')")
     					.arg(fieldId,
-							 _allWindows->STOCKS,
+							 YerothDatabase::STOCKS,
 							 fieldId,
 							 fieldId,
-							 _allWindows->STOCKS_VENDU,
+							 YerothDatabase::STOCKS_VENDU,
 							 fieldId,
 							 fieldId,
 							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_debut->date()),
@@ -1492,7 +1492,7 @@ void YerothTableauxDeBordWindow::derniersStats(QString fileName,
     						 YerothDatabaseTableColumn::QUANTITE_VENDUE,
     						 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
     						 YerothDatabaseTableColumn::MONTANT_TVA,
-							 _allWindows->STOCKS_VENDU,
+							 YerothDatabase::STOCKS_VENDU,
 							 YerothDatabaseTableColumn::DATE_VENTE,
 							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_debut->date()),
 							 YerothDatabaseTableColumn::DATE_VENTE,
@@ -1507,7 +1507,7 @@ void YerothTableauxDeBordWindow::derniersStats(QString fileName,
     						 YerothDatabaseTableColumn::QUANTITE_VENDUE,
     						 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
     						 YerothDatabaseTableColumn::MONTANT_TVA,
-							 _allWindows->SERVICES_COMPLETES,
+							 YerothDatabase::SERVICES_COMPLETES,
 							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_debut->date()),
 							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_fin->date()),
 							 YerothDatabaseTableColumn::MONTANT_A_REMBOURSER,
@@ -2353,23 +2353,23 @@ void YerothTableauxDeBordWindow::changeLineEditEvolutionObjetsTextSetup(const QS
 	//				.arg(comboBoxEvolutionObjetsCurrentText);
 	if (YerothUtils::isEqualCaseInsensitive(comboBoxEvolutionObjetsCurrentText, YerothTableauxDeBordWindow::OBJET_ARTICLES))
 	{
-		lineEdit_evolution_objets_value->setupMyQCompleter(YerothERPWindows::MARCHANDISES, 2, Qt::AscendingOrder, false);
+		lineEdit_evolution_objets_value->setupMyQCompleter(YerothDatabase::MARCHANDISES, 2, Qt::AscendingOrder, false);
 	}
 	else if (YerothUtils::isEqualCaseInsensitive(comboBoxEvolutionObjetsCurrentText, YerothTableauxDeBordWindow::OBJET_CAISSIERS))
 	{
-		lineEdit_evolution_objets_value->setupMyQCompleter(YerothERPWindows::USERS, 3, Qt::AscendingOrder, false);
+		lineEdit_evolution_objets_value->setupMyQCompleter(YerothDatabase::USERS, 3, Qt::AscendingOrder, false);
 	}
 	else if (YerothUtils::isEqualCaseInsensitive(comboBoxEvolutionObjetsCurrentText, YerothTableauxDeBordWindow::OBJET_CATEGORIES))
 	{
-		lineEdit_evolution_objets_value->setupMyQCompleter(YerothERPWindows::CATEGORIES, 1, Qt::AscendingOrder, false);
+		lineEdit_evolution_objets_value->setupMyQCompleter(YerothDatabase::CATEGORIES, 1, Qt::AscendingOrder, false);
 	}
 	else if (YerothUtils::isEqualCaseInsensitive(comboBoxEvolutionObjetsCurrentText, YerothTableauxDeBordWindow::OBJET_CLIENTS))
 	{
-		lineEdit_evolution_objets_value->setupMyQCompleter(YerothERPWindows::CLIENTS, 2, Qt::AscendingOrder, false);
+		lineEdit_evolution_objets_value->setupMyQCompleter(YerothDatabase::CLIENTS, 2, Qt::AscendingOrder, false);
 	}
 	else if (YerothUtils::isEqualCaseInsensitive(comboBoxEvolutionObjetsCurrentText, YerothTableauxDeBordWindow::OBJET_FOURNISSEURS))
 	{
-		lineEdit_evolution_objets_value->setupMyQCompleter(YerothERPWindows::FOURNISSEURS, 1, Qt::AscendingOrder, false);
+		lineEdit_evolution_objets_value->setupMyQCompleter(YerothDatabase::FOURNISSEURS, 1, Qt::AscendingOrder, false);
 	}
 }
 
@@ -2391,7 +2391,7 @@ void YerothTableauxDeBordWindow::bilanComptable()
 
     QString strDetteClientelleQuery(QString("SELECT %1 FROM %2 WHERE %3 < '0'")
     									.arg(YerothDatabaseTableColumn::COMPTE_CLIENT,
-    										 _allWindows->CLIENTS,
+    										 YerothDatabase::CLIENTS,
 											 YerothDatabaseTableColumn::COMPTE_CLIENT));
 
 //    qDebug() << QString("++ strAchatsQuery: %1")
@@ -2421,7 +2421,7 @@ void YerothTableauxDeBordWindow::bilanComptable()
     QString strAchatsQuery(QString("SELECT %1, %2 FROM %3 WHERE %4 >= '%5' AND %6 <= '%7'")
     							.arg(YerothDatabaseTableColumn::PRIX_DACHAT,
     								 YerothDatabaseTableColumn::QUANTITE_TOTALE,
-									 _allWindows->ACHATS,
+									 YerothDatabase::ACHATS,
 									 YerothDatabaseTableColumn::DATE_ENTREE,
 									 DATE_TO_DB_FORMAT_STRING(dateEdit_bilan_comptable_debut->date()),
 									 YerothDatabaseTableColumn::DATE_ENTREE,
@@ -2529,7 +2529,7 @@ void YerothTableauxDeBordWindow::bilanComptable()
 
     QString strVersementsQuery(QString("SELECT %1 FROM %2 WHERE %3 >= '%4' AND %5 <= '%6'")
     							.arg(YerothDatabaseTableColumn::MONTANT_PAYE,
-    								 _allWindows->PAIEMENTS,
+    								 YerothDatabase::PAIEMENTS,
 									 YerothDatabaseTableColumn::DATE_PAIEMENT,
 									 DATE_TO_DB_FORMAT_STRING(dateEdit_bilan_comptable_debut->date()),
 									 YerothDatabaseTableColumn::DATE_PAIEMENT,
@@ -2580,7 +2580,7 @@ void YerothTableauxDeBordWindow::bilanComptable()
 
         strQuery = QString("SELECT %1 FROM %2 WHERE %3 = '%4'")
         				.arg(YerothDatabaseTableColumn::MARGE_BENEFICIAIRE,
-        					 _allWindows->ACHATS,
+        					 YerothDatabase::ACHATS,
     						 YerothDatabaseTableColumn::STOCKS_ID,
 							 QString::number(stocks_id));
 
@@ -2794,7 +2794,7 @@ void YerothTableauxDeBordWindow::analyseComparee()
     						.arg(YerothDatabaseTableColumn::DATE_ENTREE,
     							 YerothDatabaseTableColumn::PRIX_DACHAT,
 								 YerothDatabaseTableColumn::QUANTITE_TOTALE,
-								 _allWindows->ACHATS,
+								 YerothDatabase::ACHATS,
 								 YerothDatabaseTableColumn::DATE_ENTREE,
 								 dateDebut));
 
@@ -2823,7 +2823,7 @@ void YerothTableauxDeBordWindow::analyseComparee()
     QString strQuery(QString("SELECT date_vente, (montant_total_vente - montant_tva) "));
 
     strQuery.append("FROM ")
-    		.append(_allWindows->STOCKS_VENDU)
+    		.append(YerothDatabase::STOCKS_VENDU)
 			.append(" WHERE date_vente >= '")
 			.append(dateDebut)
 			.append("' AND ");
@@ -3837,7 +3837,7 @@ void YerothTableauxDeBordWindow::calculerChiffresDaffaireMois()
     					.arg(YerothDatabaseTableColumn::DATE_VENTE,
     						 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
 							 YerothDatabaseTableColumn::MONTANT_TVA,
-							 _allWindows->STOCKS_VENDU,
+							 YerothDatabase::STOCKS_VENDU,
 							 YerothDatabaseTableColumn::DATE_VENTE,
 							 dateDebut));
 

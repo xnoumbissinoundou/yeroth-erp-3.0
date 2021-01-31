@@ -54,7 +54,7 @@
 
 YerothERPProgrammesDeFideliteClientsWindow::YerothERPProgrammesDeFideliteClientsWindow()
 :YerothWindowsCommons("yeroth-erp-liste-programmes-de-fidelite-clients"),
- YerothAbstractClassYerothSearchWindow(_allWindows->PROGRAMMES_DE_FIDELITE_CLIENTS),
+ YerothAbstractClassYerothSearchWindow(YerothDatabase::PROGRAMMES_DE_FIDELITE_CLIENTS),
  _logger(new YerothLogger("YerothERPProgrammesDeFideliteClientsWindow")),
  _pushButton_programmes_de_fidelite_clients_filtrer_font(0),
  _curClient_LOYALTY_PROGRAM_TableModel(0)
@@ -94,7 +94,7 @@ YerothERPProgrammesDeFideliteClientsWindow::YerothERPProgrammesDeFideliteClients
 		<< YerothDatabaseTableColumn::MEMBRES_DU_GROUPE_db_ID;
 
 
-    setup_select_configure_dbcolumn(_allWindows->PROGRAMMES_DE_FIDELITE_CLIENTS);
+    setup_select_configure_dbcolumn(YerothDatabase::PROGRAMMES_DE_FIDELITE_CLIENTS);
 
 
     _lineEditsToANDContentForSearch.insert(&lineEdit_programmes_de_fidelite_clients_terme_recherche,
@@ -102,7 +102,7 @@ YerothERPProgrammesDeFideliteClientsWindow::YerothERPProgrammesDeFideliteClients
 
     _yeroth_WINDOW_references_dbColumnString.insert(YerothDatabaseTableColumn::REFERENCE_PROGRAMME_DE_FIDELITE_CLIENTS);
 
-    YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(_allWindows->PROGRAMMES_DE_FIDELITE_CLIENTS);
+    YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(YerothDatabase::PROGRAMMES_DE_FIDELITE_CLIENTS);
 
     reinitialiser_colones_db_visibles();
 
@@ -118,7 +118,7 @@ YerothERPProgrammesDeFideliteClientsWindow::YerothERPProgrammesDeFideliteClients
 
     _pushButton_programmes_de_fidelite_clients_filtrer_font = new QFont(pushButton_programmes_de_fidelite_clients_filtrer->font());
 
-    tableView_programmes_de_fidelite_clients->setSqlTableName(&YerothERPWindows::PROGRAMMES_DE_FIDELITE_CLIENTS);
+    tableView_programmes_de_fidelite_clients->setSqlTableName(&YerothDatabase::PROGRAMMES_DE_FIDELITE_CLIENTS);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenuClients, false);
 	YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_ce_programmeDeFideliteClients_au_detail, false);
@@ -261,7 +261,7 @@ void YerothERPProgrammesDeFideliteClientsWindow::
 
 		YEROTH_TABLE_VIEW_DELETE_SELECTED_ROWS_QUERY_STRING
 			.append(QString("DELETE FROM %1 WHERE %2 = '%3';")
-				.arg(_allWindows->PROGRAMMES_DE_FIDELITE_CLIENTS,
+				.arg(YerothDatabase::PROGRAMMES_DE_FIDELITE_CLIENTS,
 					 YerothDatabaseTableColumn::ID,
 					 j.value()));
 	}
@@ -308,7 +308,7 @@ void YerothERPProgrammesDeFideliteClientsWindow::supprimer_un_programme_de_fidel
     YerothSqlTableModel *programmeDeFideliteClientsTableModel = 0;
 
     if (_curClient_LOYALTY_PROGRAM_TableModel &&
-    	YerothUtils::isEqualCaseInsensitive(_allWindows->PROGRAMMES_DE_FIDELITE_CLIENTS,
+    	YerothUtils::isEqualCaseInsensitive(YerothDatabase::PROGRAMMES_DE_FIDELITE_CLIENTS,
     										_curClient_LOYALTY_PROGRAM_TableModel->sqlTableName()))
     {
         programmeDeFideliteClientsTableModel = _curClient_LOYALTY_PROGRAM_TableModel;

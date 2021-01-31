@@ -163,11 +163,11 @@ void YerothAdminCreateWindow::rendreVisible(unsigned selectedSujetAction)
 
     clear_remise_all_fields();
 
-	lineEdit_creer_alerte_designation->setupMyStaticQCompleter(_allWindows->STOCKS,
+	lineEdit_creer_alerte_designation->setupMyStaticQCompleter(YerothDatabase::STOCKS,
 												  	  	  	   YerothDatabaseTableColumn::DESIGNATION,
 															   false);
 
-    lineEdit_creer_remise_designation_article->setupMyStaticQCompleter(_allWindows->STOCKS,
+    lineEdit_creer_remise_designation_article->setupMyStaticQCompleter(YerothDatabase::STOCKS,
     																   YerothDatabaseTableColumn::DESIGNATION);
 
     lineEdit_creer_utilisateur_localisation->setYerothEnabled(false);
@@ -216,7 +216,7 @@ void YerothAdminCreateWindow::showDestinataireNomComplet(const QString & destina
 
     QString strQuery(QString("SELECT %1 FROM %2 WHERE %3 = '%4'")
     					.arg(YerothDatabaseTableColumn::NOM_COMPLET,
-    						_allWindows->USERS,
+    						YerothDatabase::USERS,
     						 YerothDatabaseTableColumn::NOM_UTILISATEUR,
 							 destinataireId));
 
@@ -244,7 +244,7 @@ void YerothAdminCreateWindow::showProduitInfo(const QString & nomProduit)
 
     QString strQuery(QString("SELECT %1 FROM %2 WHERE %3 = '%4'")
     					.arg(YerothDatabaseTableColumn::QUANTITE_TOTALE,
-    						_allWindows->STOCKS,
+    						YerothDatabase::STOCKS,
     						 YerothDatabaseTableColumn::DESIGNATION,
 							 sqlNomProduit));
 
@@ -260,7 +260,7 @@ void YerothAdminCreateWindow::showProduitInfo(const QString & nomProduit)
 
     strQuery = QString("SELECT %1 FROM %2 WHERE %3 = '%4'")
     					.arg(YerothDatabaseTableColumn::STOCK_DALERTE,
-    						_allWindows->STOCKS,
+    						YerothDatabase::STOCKS,
     						 YerothDatabaseTableColumn::DESIGNATION,
 							 sqlNomProduit);
 
@@ -300,7 +300,7 @@ void YerothAdminCreateWindow::showDatePeremption(const QString & nomProduit)
 
     QString strQuery(QString("SELECT %1 FROM %2 WHERE %3 = '%4'")
     					.arg(YerothDatabaseTableColumn::DATE_PEREMPTION,
-    						_allWindows->STOCKS,
+    						YerothDatabase::STOCKS,
     						 YerothDatabaseTableColumn::DESIGNATION,
 							 sqlNomProduit));
 

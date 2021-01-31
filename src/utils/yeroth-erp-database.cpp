@@ -8,6 +8,68 @@
 
 #include "src/utils/yeroth-erp-utils.hpp"
 
+
+const QString YerothDatabase::COMPTES_BANCAIRES			("comptes_bancaires");
+
+const QString YerothDatabase::ENTREPRISE_INFO			("entreprise_info");
+
+const QString YerothDatabase::PAIEMENTS					("paiements");
+
+const QString YerothDatabase::USERS						("users");
+
+const QString YerothDatabase::TITRES						("titres");
+
+const QString YerothDatabase::LOCALISATIONS				("localisations");
+
+const QString YerothDatabase::DEPARTEMENTS_PRODUITS		("departements_produits");
+
+const QString YerothDatabase::CATEGORIES					("categories");
+
+const QString YerothDatabase::PROGRAMMES_DE_FIDELITE_CLIENTS	("programmes_de_fidelite_clients");
+
+const QString YerothDatabase::CLIENTS						("clients");
+
+const QString YerothDatabase::GROUPES_DE_CLIENTS			("groupes_de_clients");
+
+const QString YerothDatabase::FOURNISSEURS				("fournisseurs");
+
+const QString YerothDatabase::ALERTES						("alertes");
+
+const QString YerothDatabase::REMISES						("remises");
+
+const QString YerothDatabase::CREDIT_CARD_ISSUING_COMPANY	("credit_card_issuing_company");
+
+const QString YerothDatabase::CONDITIONS_ALERTES			("conditions_alertes");
+
+const QString YerothDatabase::COURRIERS_ALERTES			("courriers_alertes");
+
+const QString YerothDatabase::ACHATS_AUX_FOURNISSEURS		("achats_aux_fournisseurs");
+
+const QString YerothDatabase::ACHATS						("achats");
+
+const QString YerothDatabase::STOCKS						("stocks");
+
+const QString YerothDatabase::SERVICES_COMPLETES			("services_completes");
+
+const QString YerothDatabase::STOCKS_VENDU				("stocks_vendu");
+
+const QString YerothDatabase::STOCKS_SORTIES				("stocks_sorties");
+
+const QString YerothDatabase::MARCHANDISES				("marchandises");
+
+const QString YerothDatabase::CONFIGURATIONS				("configurations");
+
+const QString YerothDatabase::INIT_CONFIGURATIONS			("init_configurations");
+
+const QString YerothDatabase::TYPE_DE_VENTE				("type_de_vente");
+
+const QString YerothDatabase::TYPE_DE_PAIEMENT			("type_de_paiement");
+
+const QString YerothDatabase::ROLES						("roles");
+
+const QString YerothDatabase::DBMS						("dbms");
+
+
 const QString YerothDatabase::MYSQL("MySQL");
 
 const QString YerothDatabase::QSQLITE("QSQLITE");

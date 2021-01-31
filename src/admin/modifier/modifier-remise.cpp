@@ -10,7 +10,7 @@ void YerothAdminModifierWindow::setupEditRemise()
     }
     else if (remisesTableModel &&
              !YerothUtils::isEqualCaseInsensitive(remisesTableModel->sqlTableName(),
-                     _allWindows->REMISES))
+                     YerothDatabase::REMISES))
     {
         remisesTableModel =  &_allWindows->getSqlTableModel_remises();
     }
@@ -31,7 +31,7 @@ void YerothAdminModifierWindow::modifier_remise()
     }
     else if (remisesTableModel &&
              !YerothUtils::isEqualCaseInsensitive(remisesTableModel->sqlTableName(),
-                     _allWindows->REMISES))
+                     YerothDatabase::REMISES))
     {
         remisesTableModel =  &_allWindows->getSqlTableModel_remises();
     }
