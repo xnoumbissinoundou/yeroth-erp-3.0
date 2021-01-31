@@ -65,7 +65,10 @@ public:
 
 	void setAuthorizedForCurrentUser(bool authorized);
 
-	virtual void setEnabled(bool enable);
+	inline virtual void setEnabled(bool enable)
+	{
+		setAuthorizedForCurrentUser(enable);
+	}
 
 	void enable(const QObject *receiver, const char *f);
 

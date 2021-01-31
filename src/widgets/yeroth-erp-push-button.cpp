@@ -22,14 +22,8 @@ YerothPushButton::~YerothPushButton()
 void YerothPushButton::setAuthorizedForCurrentUser(bool authorized)
 {
 	_is_yeroth_pushbutton_authorized_for_current_user = authorized;
+	QWidget::setEnabled(authorized);
 	QWidget::setVisible(authorized);
-}
-
-
-void YerothPushButton::setEnabled(bool enable)
-{
-	setAuthorizedForCurrentUser(enable);
-	QPushButton::setEnabled(enable);
 }
 
 

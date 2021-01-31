@@ -1044,7 +1044,7 @@ bool YerothAdminWindow::generate_table_header_mapping_entries_for_csv_import()
 
 	bool csvFileHasVisibleContentToImport = false;
 
-	int curCsvFileLineSize = csvHeaderContent.size();
+	int curCsvFileColumnSize = csvHeaderContent.size();
 
 	QString aCsvHeaderString;
 
@@ -1090,7 +1090,7 @@ bool YerothAdminWindow::generate_table_header_mapping_entries_for_csv_import()
 															   _dbTableColumnToType,
 															   _dbTableColumnToIsNotNULL);
 
-	for (int i = 0; i < curCsvFileLineSize; ++i)
+	for (int i = 0; i < curCsvFileColumnSize; ++i)
 	{
 		aMappedComboBox = _csvContentIdxToSQLTableImportHeader.value(i);
 
@@ -1104,7 +1104,7 @@ bool YerothAdminWindow::generate_table_header_mapping_entries_for_csv_import()
 		}
 	}
 
-	for (int j = curCsvFileLineSize; j < MAX_IMPORT_CSV_HEADER_SIZE; ++j)
+	for (int j = curCsvFileColumnSize; j < MAX_IMPORT_CSV_HEADER_SIZE; ++j)
 	{
 		aCsvHeaderLabel = _csvContentIdxToCsvFileContentImportHeader.value(j);
 
