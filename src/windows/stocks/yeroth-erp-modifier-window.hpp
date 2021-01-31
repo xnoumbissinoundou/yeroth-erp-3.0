@@ -41,15 +41,24 @@ public:
     	return toolBar_modifierWindow;
     }
 
-    virtual void definirCaissier();
+    inline virtual void definirCaissier()
+    {
+    	definirPasDeRole();
+    }
 
     virtual void definirManager();
 
-    virtual void definirVendeur();
+    inline virtual void definirVendeur()
+    {
+    	definirPasDeRole();
+    }
 
     virtual void definirGestionaireDesStocks();
 
-    virtual void definirMagasinier();
+    inline virtual void definirMagasinier()
+    {
+    	definirPasDeRole();
+    }
 
     virtual void definirPasDeRole();
 
@@ -119,7 +128,8 @@ private:
 													int stockId);
 
 	void update_achat_deja_existant(const QSqlRecord &aStockRecord,
-									double aPrixUnitaireHT);
+								    double aPrixUnitaireHT,
+									double aPrixUnitaire_EN_GROS_HT);
 
     void setupLineEdits();
 

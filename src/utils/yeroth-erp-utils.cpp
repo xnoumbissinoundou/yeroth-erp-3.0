@@ -8,10 +8,6 @@
 
 #include "src/widgets/yeroth-erp-qstandard-item.hpp"
 
-#include "src/utils/yeroth-erp-database.hpp"
-
-#include "src/utils/yeroth-erp-database-table-column.hpp"
-
 #include "yeroth-erp-logger.hpp"
 
 #include "src/windows/yeroth-erp-window-commons.hpp"
@@ -1132,24 +1128,6 @@ bool YerothUtils::UPDATE_PREVIOUS_SELLING_PRICE_IN_ProductList(const YerothERPSe
 }
 
 
-bool YerothUtils::UPDATE_PREVIOUS_BUYING_PRICE_IN_ProductList(const YerothERPServiceStockMarchandiseData &aServiceStockData,
-											   	   	   	   	  YerothWindowsCommons 		   			  *_callingWindow /* = 0 */)
-{
-    bool success = false;
-
-	QString stockItemUpdateBuyingPriceQuery(QString("UPDATE %1 SET %2='%3' WHERE %4='%5'")
-												.arg(YerothDatabase::MARCHANDISES,
-													 YerothDatabaseTableColumn::PRIX_DACHAT_PRECEDENT,
-													 aServiceStockData._prix_dachat_precedent,
-													 YerothDatabaseTableColumn::DESIGNATION,
-													 aServiceStockData._designation));
-
-    success = YerothUtils::execQuery(stockItemUpdateBuyingPriceQuery, 0);
-
-    return success;
-}
-
-
 bool YerothUtils::insertStockItemInProductList(YerothERPServiceStockMarchandiseData &aServiceStockData_IN_OUT,
 											   YerothWindowsCommons 		   	    *_callingWindow /* = 0 */)
 {
@@ -1461,14 +1439,6 @@ void YerothUtils::writeStringToQFilewithUTF8Encoding(QFile &latexContentOutputFi
     }
 
     latexContentOutputFile.close();
-}
-
-
-QString YerothUtils::getUniquePrefixFileInTemporaryFilesDir(QString aPrefixFileName)
-{
-	return QString("%1/%2.")
-				.arg(YerothERPConfig::temporaryFilesDir,
-					 FILE_NAME_USERID_CURRENT_TIME(aPrefixFileName));
 }
 
 

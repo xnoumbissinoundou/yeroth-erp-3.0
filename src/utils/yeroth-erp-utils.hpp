@@ -9,6 +9,10 @@
 
 #include "src/include/yeroth-erp-3-0-software.text-configuration.hpp"
 
+#include "src/utils/yeroth-erp-database.hpp"
+
+#include "src/utils/yeroth-erp-database-table-column.hpp"
+
 #include "src/widgets/yeroth-erp-qmessage-box.hpp"
 
 #include "src/widgets/table-view/yeroth-erp-table-view.hpp"
@@ -46,6 +50,7 @@
 class YerothLogger;
 
 class YerothTableViewWITHpagination;
+class YerothDatabaseTableColumn;
 class YerothDatabase;
 class YerothComboBox;
 class YerothQMessageBox;
@@ -156,8 +161,17 @@ public:
     static bool UPDATE_PREVIOUS_SELLING_PRICE_IN_ProductList(const YerothERPServiceStockMarchandiseData &aServiceStockData,
     										 	 	 	 	 YerothWindowsCommons 		 	 *_callingWindow = 0);
 
-    static bool UPDATE_PREVIOUS_BUYING_PRICE_IN_ProductList(const YerothERPServiceStockMarchandiseData &aServiceStockData,
-    										 	 	 	 	YerothWindowsCommons 		 	 *_callingWindow = 0);
+    inline static bool UPDATE_PREVIOUS_BUYING_PRICE_IN_ProductList(const YerothERPServiceStockMarchandiseData &aServiceStockData,
+    											   	   	   	   	   YerothWindowsCommons 		   			  *_callingWindow = 0 )
+    {
+        return YerothUtils::execQuery(QString("UPDATE %1 SET %2='%3' WHERE %4='%5'")
+										.arg(YerothDatabase::MARCHANDISES,
+											 YerothDatabaseTableColumn::PRIX_DACHAT_PRECEDENT,
+											 aServiceStockData._prix_dachat_precedent,
+											 YerothDatabaseTableColumn::DESIGNATION,
+											 aServiceStockData._designation),
+											 0);
+    }
 
     static bool insertStockItemInProductList(YerothERPServiceStockMarchandiseData &aServiceStockData_IN_OUT,
     										 YerothWindowsCommons 		 	 	  *_callingWindow = 0);
@@ -213,7 +227,12 @@ public:
 	static void writeStringToQFilewithUTF8Encoding(QFile &latexContentOutputFile,
 												   QString aLatexFileContentString);
 
-	static QString getUniquePrefixFileInTemporaryFilesDir(QString fileName);
+	inline static QString getUniquePrefixFileInTemporaryFilesDir(QString aPrefixFileName)
+	{
+		return QString("%1/%2.")
+					.arg(YerothERPConfig::temporaryFilesDir,
+						 YerothUtils::getFileNameWithUserIDAndCurrentTime(aPrefixFileName));
+	}
 
 	static const QString getCurrentAdminWindowReceiptsFormatAccordingToLanguage(const QString &currentFacturesTypeValue);
 

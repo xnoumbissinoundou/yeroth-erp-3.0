@@ -282,9 +282,17 @@ void YerothModifierWindow::actualiser_stock()
 
 	record.setValue(YerothDatabaseTableColumn::MONTANT_TVA, _montantTva);
 
+	record.setValue(YerothDatabaseTableColumn::MONTANT_TVA_EN_GROS, _montantTva_EN_GROS);
+
+
 	double prix_unitaire_ht = prix_vente - _montantTva;
 
+	double prix_unitaire_en_gros_ht = prix_vente_EN_GROS - _montantTva_EN_GROS;
+
+
 	record.setValue(YerothDatabaseTableColumn::PRIX_UNITAIRE, prix_unitaire_ht);
+
+	record.setValue(YerothDatabaseTableColumn::PRIX_UNITAIRE_EN_GROS, prix_unitaire_en_gros_ht);
 
 	record.setValue(YerothDatabaseTableColumn::PRIX_DACHAT, prix_dachat);
 
@@ -385,7 +393,9 @@ void YerothModifierWindow::actualiser_stock()
 			}
 		}
 
-		update_achat_deja_existant(record, prix_unitaire_ht);
+		update_achat_deja_existant(record,
+								   prix_unitaire_ht,
+								   prix_unitaire_en_gros_ht);
 
 
 		retMsg.append(QObject::trUtf8("' ont été actualisés avec succès !"));
@@ -538,6 +548,8 @@ void YerothModifierWindow::ajouter_nouveau_re_approvisionnement_achat(double qua
 
 	double prix_vente = lineEdit_prix_vente->text().toDouble();
 
+	double prix_vente_en_gros = lineEdit_prix_vente_EN_GROS->text().toDouble();
+
 	double prix_dachat = lineEdit_prix_dachat->text().toDouble();
 
     if (prix_dachat < 0)
@@ -546,15 +558,25 @@ void YerothModifierWindow::ajouter_nouveau_re_approvisionnement_achat(double qua
     }
 
 	nouveauAchatRecord.setValue(YerothDatabaseTableColumn::PRIX_DACHAT, prix_dachat);
-	nouveauAchatRecord.setValue(YerothDatabaseTableColumn::PRIX_VENTE, prix_vente);
-	nouveauAchatRecord.setValue(YerothDatabaseTableColumn::MONTANT_TVA, _montantTva);
 
-    double prix_unitaire_ht = prix_vente - _montantTva;
+	nouveauAchatRecord.setValue(YerothDatabaseTableColumn::PRIX_VENTE, prix_vente);
+	nouveauAchatRecord.setValue(YerothDatabaseTableColumn::PRIX_VENTE_EN_GROS, prix_vente_en_gros);
+
+	nouveauAchatRecord.setValue(YerothDatabaseTableColumn::MONTANT_TVA, _montantTva);
+	nouveauAchatRecord.setValue(YerothDatabaseTableColumn::MONTANT_TVA_EN_GROS, _montantTva_EN_GROS);
+
+	double prix_unitaire_ht = prix_vente - _montantTva;
+
+    double prix_unitaire_en_gros_ht = prix_vente_en_gros - _montantTva_EN_GROS;
 
     double marge_beneficiaire = YerothUtils::getMargeBeneficiaire(prix_vente, prix_dachat, _montantTva);
 
 	nouveauAchatRecord.setValue(YerothDatabaseTableColumn::MARGE_BENEFICIAIRE, marge_beneficiaire);
+
 	nouveauAchatRecord.setValue(YerothDatabaseTableColumn::PRIX_UNITAIRE, prix_unitaire_ht);
+
+	nouveauAchatRecord.setValue(YerothDatabaseTableColumn::PRIX_UNITAIRE_EN_GROS, prix_unitaire_en_gros_ht);
+
 	nouveauAchatRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR, lineEdit_nom_entreprise_fournisseur->text());
 	nouveauAchatRecord.setValue(YerothDatabaseTableColumn::LOCALISATION, _allWindows->getInfoEntreprise().getLocalisation());
 	nouveauAchatRecord.setValue(YerothDatabaseTableColumn::LOCALISATION_STOCK, lineEdit_localisation_produit->text());
@@ -577,7 +599,8 @@ void YerothModifierWindow::ajouter_nouveau_re_approvisionnement_achat(double qua
 
 
 void YerothModifierWindow::update_achat_deja_existant(const QSqlRecord &aStockRecord,
-													  double aPrixUnitaireHT)
+													  double aPrixUnitaireHT,
+													  double aPrixUnitaire_EN_GROS_HT)
 {
     //Handling of table "achats"
 	YerothSqlTableModel &achatSqlTableModel = _allWindows->getSqlTableModel_achats();
@@ -612,6 +635,8 @@ void YerothModifierWindow::update_achat_deja_existant(const QSqlRecord &aStockRe
 				GET_SQL_RECORD_DATA(anAchatRecord, YerothDatabaseTableColumn::PRIX_DACHAT).toDouble();
 
 		anAchatRecord.setValue(YerothDatabaseTableColumn::PRIX_UNITAIRE, aPrixUnitaireHT);
+
+		anAchatRecord.setValue(YerothDatabaseTableColumn::PRIX_UNITAIRE_EN_GROS, aPrixUnitaire_EN_GROS_HT);
 
 		anAchatRecord.setValue(YerothDatabaseTableColumn::PRIX_VENTE, prix_vente);
 
@@ -709,36 +734,6 @@ void YerothModifierWindow::definirPasDeRole()
 }
 
 
-void YerothModifierWindow::definirCaissier()
-{
-    _logger->log("definirCaissier");
-
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
-
-    actionMenu->setDisabled(false);
-
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAnnuler, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionActualiser, false);
-
-    actionEntrer->setDisabled(true);
-
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerImage, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer, false);
-
-    actionModifier->setDisabled(true);
-
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
-
-    pushButton_entrer->disable(this);
-    pushButton_menu_principal->enable(this, SLOT(menu()));
-    pushButton_supprimer->disable(this);
-    pushButton_enregistrer->disable(this);
-    pushButton_supprimer_limage_du_stock->disable(this);
-    pushButton_selectionner_image->disable(this);
-}
-
-
 void YerothModifierWindow::definirManager()
 {
     _logger->log("definirManager");
@@ -767,32 +762,6 @@ void YerothModifierWindow::definirManager()
     pushButton_enregistrer->enable(this, SLOT(actualiser_stock()));
     pushButton_supprimer_limage_du_stock->enable(this, SLOT(supprimer_image_stock()));
     pushButton_selectionner_image->enable(this, SLOT(selectionner_image_produit()));
-}
-
-
-void YerothModifierWindow::definirVendeur()
-{
-    _logger->log("definirVendeur");
-
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionActualiser, false);
-
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, false);
-
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAnnuler, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerImage, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
-
-    pushButton_entrer->disable(this);
-    pushButton_annuler->disable(this);
-    pushButton_supprimer->disable(this);
-    pushButton_enregistrer->disable(this);
-    pushButton_supprimer_limage_du_stock->disable(this);
-    pushButton_selectionner_image->disable(this);
 }
 
 
@@ -825,32 +794,6 @@ void YerothModifierWindow::definirGestionaireDesStocks()
     pushButton_enregistrer->enable(this, SLOT(actualiser_stock()));
     pushButton_supprimer_limage_du_stock->enable(this, SLOT(supprimer_image_stock()));
     pushButton_selectionner_image->enable(this, SLOT(selectionner_image_produit()));
-}
-
-
-void YerothModifierWindow::definirMagasinier()
-{
-    _logger->log("definirMagasinier");
-
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionActualiser, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, false);
-
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAnnuler, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerImage, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
-
-    pushButton_entrer->disable(this);
-    pushButton_supprimer_limage_du_stock->disable(this);
-    pushButton_menu_principal->disable(this);
-    pushButton_annuler->disable(this);
-    pushButton_supprimer->disable(this);
-    pushButton_enregistrer->disable(this);
-    pushButton_selectionner_image->disable(this);
 }
 
 
