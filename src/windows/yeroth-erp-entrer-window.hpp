@@ -121,6 +121,8 @@ public slots:
     		   !lineEdit_prix_dachat->text().isEmpty();
     }
 
+    bool IS__SERVICE_STOCK_DESIGNATION_REFERENCE__AVAILABLE(enum service_stock_already_exist_type *SERVICE_REFERENCE_STOCK_DESIGNATION_EXIST_IN_OUT);
+
     void enregistrer_achat_au_fournisseur();
 
     void enregistrer_produit();

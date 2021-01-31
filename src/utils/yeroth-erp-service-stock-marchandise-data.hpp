@@ -16,33 +16,23 @@
 #include <QtCore/QString>
 
 
-class YerothERPServiceStockMarchandiseData
+class YerothERPServiceData
 {
 
 public:
 
 	YEROTH_CLASS_OPERATORS
 
-	inline YerothERPServiceStockMarchandiseData()
-	:_isService(false),
-     _prix_dachat_precedent("0.0"),
-	 _prix_vente_precedent("0.0"),
-	 _prix_vente_en_gros_precedent("0.0")
+	inline YerothERPServiceData()
+	:_isService(true)
 	{
 	}
 
-	inline ~YerothERPServiceStockMarchandiseData()
+	inline ~YerothERPServiceData()
 	{
 	}
-
 
 	bool 		_isService;
-
-	QString		_prix_dachat_precedent;
-
-	QString		_prix_vente_precedent;
-
-	QString		_prix_vente_en_gros_precedent;
 
 	QString 	_nom_departement_produit;
 
@@ -54,5 +44,35 @@ public:
 
     QString 	_description;
 };
+
+
+class YerothERPStockMarchandiseData : public YerothERPServiceData
+{
+
+public:
+
+	YEROTH_CLASS_OPERATORS
+
+	inline YerothERPStockMarchandiseData()
+	:_prix_dachat_precedent("0.0"),
+	 _prix_vente_precedent("0.0"),
+	 _prix_vente_en_gros_precedent("0.0")
+	{
+		_isService = false;
+	}
+
+	inline ~YerothERPStockMarchandiseData()
+	{
+	}
+
+
+	QString		_prix_dachat_precedent;
+
+	QString		_prix_vente_precedent;
+
+	QString		_prix_vente_en_gros_precedent;
+};
+
+
 
 #endif /* SRC_YEROTH_SERVICE_STOCK_MARCHANDISES_DATA_HPP_ */

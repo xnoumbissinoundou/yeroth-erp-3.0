@@ -372,18 +372,18 @@ void YerothModifierWindow::actualiser_stock()
 
 	if (success)
 	{
-		YerothERPServiceStockMarchandiseData aServiceStockData;
+		YerothERPStockMarchandiseData a_stock_data;
 
-		aServiceStockData._designation = lineEdit_designation->text();
-		aServiceStockData._prix_dachat_precedent = lineEdit_prix_dachat->text();
-		aServiceStockData._prix_vente_precedent = lineEdit_prix_vente->text();
-		aServiceStockData._prix_vente_en_gros_precedent = lineEdit_prix_vente_EN_GROS->text();
+		a_stock_data._designation = lineEdit_designation->text();
+		a_stock_data._prix_dachat_precedent = lineEdit_prix_dachat->text();
+		a_stock_data._prix_vente_precedent = lineEdit_prix_vente->text();
+		a_stock_data._prix_vente_en_gros_precedent = lineEdit_prix_vente_EN_GROS->text();
 
-		YerothUtils::UPDATE_PREVIOUS_SELLING_PRICE_IN_ProductList(aServiceStockData, this);
+		YerothUtils::UPDATE_PREVIOUS_SELLING_PRICE_IN_ProductList(a_stock_data, this);
 
 		if (checkBox_achat->isChecked())
 		{
-			YerothUtils::UPDATE_PREVIOUS_BUYING_PRICE_IN_ProductList(aServiceStockData, this);
+			YerothUtils::UPDATE_PREVIOUS_BUYING_PRICE_IN_ProductList(a_stock_data, this);
 
 			if (checkBox_re_approvisionnement->isChecked() &&
 				quantite_en_re_approvisionement > 0)

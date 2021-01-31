@@ -158,11 +158,11 @@ public:
 						  	  	  	  	  	  	 const QString &aStockServiceDesignation,
 												 QString &curExistingReferenceCategoryDesignation_PRODUCT_in_out);
 
-    static bool UPDATE_PREVIOUS_SELLING_PRICE_IN_ProductList(const YerothERPServiceStockMarchandiseData &aServiceStockData,
-    										 	 	 	 	 YerothWindowsCommons 		 	 *_callingWindow = 0);
+    static bool UPDATE_PREVIOUS_SELLING_PRICE_IN_ProductList(const YerothERPStockMarchandiseData &aServiceStockData,
+    										 	 	 	 	 YerothWindowsCommons 		 	 	 *_callingWindow = 0);
 
-    inline static bool UPDATE_PREVIOUS_BUYING_PRICE_IN_ProductList(const YerothERPServiceStockMarchandiseData &aServiceStockData,
-    											   	   	   	   	   YerothWindowsCommons 		   			  *_callingWindow = 0 )
+    inline static bool UPDATE_PREVIOUS_BUYING_PRICE_IN_ProductList(const YerothERPStockMarchandiseData &aServiceStockData,
+    											   	   	   	   	   YerothWindowsCommons 		   	   *_callingWindow = 0)
     {
         return YerothUtils::execQuery(QString("UPDATE %1 SET %2='%3' WHERE %4='%5'")
 										.arg(YerothDatabase::MARCHANDISES,
@@ -173,8 +173,11 @@ public:
 											 0);
     }
 
-    static bool insertStockItemInProductList(YerothERPServiceStockMarchandiseData &aServiceStockData_IN_OUT,
-    										 YerothWindowsCommons 		 	 	  *_callingWindow = 0);
+    static bool insertStockItemInProductList(YerothERPStockMarchandiseData	&aServiceStockData_IN_OUT,
+    										 YerothWindowsCommons 			*_callingWindow = 0);
+
+    static bool insert_SERVICE_ItemInProductList(YerothERPServiceData	&aServiceStockData_IN_OUT,
+    										 	 YerothWindowsCommons 	*_callingWindow = 0);
 
 	static QString YEROTH_TRUNCATE_STRING_ACCORDING_TO_SETTING(const QString &aString_IN);
 

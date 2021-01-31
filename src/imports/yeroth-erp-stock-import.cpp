@@ -635,7 +635,7 @@ enum import_csv_entry_row_return_status
 
 	record.setValue(YerothDatabaseTableColumn::ID, stock_id_to_save);
 
-    YerothERPServiceStockMarchandiseData aServiceStockData;
+	YerothERPStockMarchandiseData a_stock_data;
 
 	if (montant_tva > -1 && prix_unitaire > 0)
 	{
@@ -644,17 +644,17 @@ enum import_csv_entry_row_return_status
 //						.arg(QString::number(prix_vente));
 		record.setValue(YerothDatabaseTableColumn::PRIX_VENTE, prix_vente);
 
-		aServiceStockData._prix_vente_precedent = QString::number(prix_vente);
+		a_stock_data._prix_vente_precedent = QString::number(prix_vente);
 	}
 
-	aServiceStockData._prix_dachat_precedent = prix_dachat;
-	aServiceStockData._categorie 			 = productCategorie;
-    aServiceStockData._designation 			 = productName;
-    aServiceStockData._reference 			 = productReference;
+	a_stock_data._prix_dachat_precedent = prix_dachat;
+	a_stock_data._categorie 			 = productCategorie;
+    a_stock_data._designation 			 = productName;
+    a_stock_data._reference 			 = productReference;
 
     if (SERVICE_STOCK_UNDEFINED == SERVICE_REFERENCE_STOCK_DESIGNATION_EXIST)
     {
-    	if (!YerothUtils::insertStockItemInProductList(aServiceStockData))
+    	if (!YerothUtils::insertStockItemInProductList(a_stock_data))
     	{
     		return IMPORT_DATA_CSV_INSERTION_FAILED;
     	}

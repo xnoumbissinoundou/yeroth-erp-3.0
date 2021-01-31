@@ -1108,8 +1108,8 @@ enum service_stock_already_exist_type
 }
 
 
-bool YerothUtils::UPDATE_PREVIOUS_SELLING_PRICE_IN_ProductList(const YerothERPServiceStockMarchandiseData &aServiceStockData,
-											   	   	   	   	   YerothWindowsCommons 		   			  *_callingWindow /* = 0 */)
+bool YerothUtils::UPDATE_PREVIOUS_SELLING_PRICE_IN_ProductList(const YerothERPStockMarchandiseData &aServiceStockData,
+											   	   	   	   	   YerothWindowsCommons 		   	   *_callingWindow /* = 0 */)
 {
     bool success = false;
 
@@ -1128,8 +1128,8 @@ bool YerothUtils::UPDATE_PREVIOUS_SELLING_PRICE_IN_ProductList(const YerothERPSe
 }
 
 
-bool YerothUtils::insertStockItemInProductList(YerothERPServiceStockMarchandiseData &aServiceStockData_IN_OUT,
-											   YerothWindowsCommons 		   	    *_callingWindow /* = 0 */)
+bool YerothUtils::insertStockItemInProductList(YerothERPStockMarchandiseData	&aServiceStockData_IN_OUT,
+											   YerothWindowsCommons 			*_callingWindow /* = 0 */)
 {
     bool success = false;
 
@@ -1161,25 +1161,18 @@ bool YerothUtils::insertStockItemInProductList(YerothERPServiceStockMarchandiseD
     QSqlRecord record = productListSqlTableModel.record();
 
     record.setValue(YerothDatabaseTableColumn::ID,
-                    YerothERPWindows::getNextIdSqlTableModel_marchandises());
+    				YerothERPWindows::getNextIdSqlTableModel_marchandises());
 
-    if (aServiceStockData_IN_OUT._isService)
-    {
-    	record.setValue(YerothDatabaseTableColumn::IS_SERVICE, YerothUtils::MYSQL_TRUE_LITERAL);
-    }
-    else
-    {
-    	record.setValue(YerothDatabaseTableColumn::IS_SERVICE, YerothUtils::MYSQL_FALSE_LITERAL);
+    record.setValue(YerothDatabaseTableColumn::IS_SERVICE, YerothUtils::MYSQL_FALSE_LITERAL);
 
-    	record.setValue(YerothDatabaseTableColumn::PRIX_DACHAT_PRECEDENT,
-    			YerothUtils::YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(aServiceStockData_IN_OUT._prix_dachat_precedent));
+    record.setValue(YerothDatabaseTableColumn::PRIX_DACHAT_PRECEDENT,
+    				YerothUtils::YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(aServiceStockData_IN_OUT._prix_dachat_precedent));
 
-    	record.setValue(YerothDatabaseTableColumn::PRIX_VENTE_EN_GROS_PRECEDENT,
-    			YerothUtils::YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(aServiceStockData_IN_OUT._prix_vente_en_gros_precedent));
+    record.setValue(YerothDatabaseTableColumn::PRIX_VENTE_EN_GROS_PRECEDENT,
+    				YerothUtils::YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(aServiceStockData_IN_OUT._prix_vente_en_gros_precedent));
 
-    	record.setValue(YerothDatabaseTableColumn::PRIX_VENTE_PRECEDENT,
-    			YerothUtils::YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(aServiceStockData_IN_OUT._prix_vente_precedent));
-    }
+    record.setValue(YerothDatabaseTableColumn::PRIX_VENTE_PRECEDENT,
+    				YerothUtils::YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(aServiceStockData_IN_OUT._prix_vente_precedent));
 
     record.setValue(YerothDatabaseTableColumn::REFERENCE, aServiceStockData_IN_OUT._reference);
 
@@ -1239,15 +1232,104 @@ bool YerothUtils::insertStockItemInProductList(YerothERPServiceStockMarchandiseD
 
     success = productListSqlTableModel.insertNewRecord(record);
 
-    QString stockOuService(aServiceStockData_IN_OUT._designation);
+    QString retMsg(QObject::tr("Le stock '%1'")
+    					.arg(aServiceStockData_IN_OUT._designation));
 
-    if (aServiceStockData_IN_OUT._isService)
+    if (success)
     {
-    	stockOuService = aServiceStockData_IN_OUT._reference;
+        retMsg.append(QObject::trUtf8(" a été enregistré dans la liste des marchandises !"));
+
+        if (0 != _callingWindow)
+        {
+            YerothQMessageBox::information(_callingWindow,
+            							   QObject::trUtf8("enregistrement de l'article type "
+            									   	   	   "dans la liste des marchandises"),
+            							   retMsg);
+        }
+        else
+        {
+#ifdef YEROTH_ERP_3_0_TESTING_UNIT_TEST
+    		qDebug() << retMsg;
+#endif
+        }
+    }
+    else
+    {
+        retMsg.append(QObject::trUtf8(" n'a pas pu être enregistré dans la liste des marchandises !"));
+
+        if (0 != _callingWindow)
+        {
+            YerothQMessageBox::warning(_callingWindow,
+            						   QObject::trUtf8("échec de l'enregistrement de "
+            								   	   	   "l'article type dans la liste des marchandises"),
+            						   retMsg);
+        }
+        else
+        {
+#ifdef YEROTH_ERP_3_0_TESTING_UNIT_TEST
+    		qDebug() << retMsg;
+#endif
+        }
     }
 
-    QString retMsg(QObject::tr("Le stock (service) '%1'")
-    					.arg(stockOuService));
+    return success;
+}
+
+
+bool YerothUtils::insert_SERVICE_ItemInProductList(YerothERPServiceData		&aServiceStockData_IN_OUT,
+											   	   YerothWindowsCommons 	*_callingWindow /* = 0 */)
+{
+    bool success = false;
+
+    if (!YerothUtils::creerNouvelleCategorie(aServiceStockData_IN_OUT._categorie,
+    										 aServiceStockData_IN_OUT._nom_departement_produit,
+    										 _callingWindow))
+    {
+    	QString retMsg(QObject::trUtf8("La désignation de la catégorie ne doit pas être vide !"));
+
+    	if (0 != _callingWindow)
+    	{
+    		YerothQMessageBox::warning(_callingWindow,
+    				QObject::trUtf8("création d'une catégorie"),
+							retMsg);
+    	}
+    	else
+    	{
+#ifdef YEROTH_ERP_3_0_TESTING_UNIT_TEST
+    		qDebug() << retMsg;
+#endif
+    	}
+
+    	return false;
+    }
+
+    YerothSqlTableModel & productListSqlTableModel =
+    		_allWindows->getSqlTableModel_marchandises();
+
+    QSqlRecord record = productListSqlTableModel.record();
+
+    record.setValue(YerothDatabaseTableColumn::ID,
+                    YerothERPWindows::getNextIdSqlTableModel_marchandises());
+
+
+    record.setValue(YerothDatabaseTableColumn::IS_SERVICE, YerothUtils::MYSQL_TRUE_LITERAL);
+
+    record.setValue(YerothDatabaseTableColumn::REFERENCE, aServiceStockData_IN_OUT._reference);
+
+    record.setValue(YerothDatabaseTableColumn::DESIGNATION, aServiceStockData_IN_OUT._designation);
+
+    record.setValue(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT, aServiceStockData_IN_OUT._nom_departement_produit);
+
+    record.setValue(YerothDatabaseTableColumn::CATEGORIE, aServiceStockData_IN_OUT._categorie);
+
+    record.setValue(YerothDatabaseTableColumn::DESCRIPTION_PRODUIT, aServiceStockData_IN_OUT._description);
+
+    success = productListSqlTableModel.insertNewRecord(record);
+
+
+    QString retMsg(QObject::tr("Le service '%1 (%2)'")
+    					.arg(aServiceStockData_IN_OUT._designation,
+    						 aServiceStockData_IN_OUT._reference));
 
     if (success)
     {
