@@ -2218,10 +2218,10 @@
     <widget class="QGroupBox" name="groupBox_details_dun_programme_de_fidelite_clients_description_groupe">
      <property name="geometry">
       <rect>
-       <x>8</x>
+       <x>9</x>
        <y>201</y>
        <width>393</width>
-       <height>195</height>
+       <height>169</height>
       </rect>
      </property>
      <property name="font">
@@ -2240,7 +2240,7 @@
         <x>3</x>
         <y>20</y>
         <width>387</width>
-        <height>172</height>
+        <height>146</height>
        </rect>
       </property>
       <property name="palette">
@@ -8607,10 +8607,10 @@ background-color: rgb(0, 0, 0); </string>
      <widget class="YerothGroupesDunClientTableWidget" name="tableWidget_details_dun_programe_de_fidelite_clients_groupes_de_clients_participants">
       <property name="geometry">
        <rect>
-        <x>3</x>
-        <y>22</y>
-        <width>772</width>
-        <height>325</height>
+        <x>4</x>
+        <y>24</y>
+        <width>358</width>
+        <height>273</height>
        </rect>
       </property>
       <property name="palette">

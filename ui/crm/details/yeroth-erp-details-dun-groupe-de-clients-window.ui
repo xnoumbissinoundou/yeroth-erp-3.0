@@ -1751,7 +1751,7 @@
     <widget class="QLabel" name="label_details_dun_groupe_de_clients_reference_groupe">
      <property name="geometry">
       <rect>
-       <x>8</x>
+       <x>9</x>
        <y>20</y>
        <width>183</width>
        <height>21</height>
@@ -2192,7 +2192,7 @@
     <widget class="QLabel" name="label_details_dun_groupe_de_clients_maximum_de_membres">
      <property name="geometry">
       <rect>
-       <x>8</x>
+       <x>9</x>
        <y>68</y>
        <width>183</width>
        <height>21</height>
@@ -2218,7 +2218,7 @@
     <widget class="QLabel" name="label_details_dun_groupe_de_clients_designation">
      <property name="geometry">
       <rect>
-       <x>8</x>
+       <x>9</x>
        <y>44</y>
        <width>183</width>
        <height>21</height>
@@ -3705,7 +3705,7 @@
     <widget class="QGroupBox" name="groupBox_details_dun_groupe_de_clients_description_groupe">
      <property name="geometry">
       <rect>
-       <x>8</x>
+       <x>9</x>
        <y>201</y>
        <width>393</width>
        <height>169</height>
@@ -5962,7 +5962,7 @@ background-color: rgb(0, 0, 0); </string>
     <widget class="QLabel" name="label_details_dun_groupe_de_clients_programme_de_fidelite_de_clients">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>9</x>
        <y>92</y>
        <width>183</width>
        <height>21</height>
