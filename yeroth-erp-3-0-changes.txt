@@ -1,2 +1,0 @@
-3) rendre 'clair' pour l'utilisateur dans 1 fenetre avec plusieurs
-   QGroupBox laquelle est actuellement active ! (ERGONOMIE DE L'APPLICATION) 
