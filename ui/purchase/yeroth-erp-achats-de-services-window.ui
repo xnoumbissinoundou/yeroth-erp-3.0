@@ -16853,7 +16853,7 @@ background-color: rgb(0, 0, 0); </string>
     </palette>
    </property>
    <property name="windowTitle">
-    <string>Yeroth-erp-3.0 - fiche des achats_de_services</string>
+    <string>Yeroth-erp-3.0 - fiche des achats de services</string>
    </property>
    <property name="autoFillBackground">
     <bool>true</bool>
