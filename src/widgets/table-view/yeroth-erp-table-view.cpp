@@ -290,8 +290,8 @@ void YerothTableView::lister_les_transactions_dun_fournisseur(QSqlQuery &sqlFour
     QString timeHdr(QObject::tr("Heure"));
     QString operationTypeHdr(QObject::tr("Type d'opération"));
     QString transactionAmountHdr(QObject::tr("Montant total"));
-    QString customerAccountValueAfterHdr(QObject::trUtf8("Compte client (après)"));
-    QString referenceHdr(QObject::trUtf8("Référence article (service)"));
+    QString customerAccountValueAfterHdr(QObject::trUtf8("Compte fournisseur de services (après)"));
+    QString referenceHdr(QObject::trUtf8("Référence service (achat)"));
     QString receiptReferenceHdr(QObject::trUtf8("Référence reçu"));
 
     _tableModelHeaders->clear();

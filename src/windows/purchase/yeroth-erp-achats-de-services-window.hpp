@@ -87,7 +87,7 @@ public slots:
 
     inline void lister_les_elements_du_tableau()
     {
-    	lister_les_elements_du_tableau(*_curAchatAUXFournisseursSqlTableModel);
+    	lister_les_elements_du_tableau(*_curAchatsDEServicesSqlTableModel);
     }
 
     void afficher_stock_selectioner(const QString &stockName);
@@ -153,7 +153,7 @@ private:
 
     QString 				_achats_de_servicesDateFilter;
 
-    YerothSqlTableModel 	*_curAchatAUXFournisseursSqlTableModel;
+    YerothSqlTableModel 	*_curAchatsDEServicesSqlTableModel;
 };
 
 #endif /* YEROTH_ERP_ACHATS_DE_SERVICES_WINDOW_HPP_ */

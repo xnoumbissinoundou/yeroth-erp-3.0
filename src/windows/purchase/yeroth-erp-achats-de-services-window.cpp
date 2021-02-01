@@ -61,7 +61,7 @@ YerothAchatsDEServicesWindow::YerothAchatsDEServicesWindow()
  YerothAbstractClassYerothSearchWindow(YerothDatabase::ACHATS_DE_SERVICES),
  _logger(new YerothLogger("YerothAchatsDEServicesWindow")),
  _pushButton_achats_de_services_filtrer_font(0),
- _curAchatAUXFournisseursSqlTableModel(0)
+ _curAchatsDEServicesSqlTableModel(0)
 {
     _windowName = QString("%1 - %2")
     				.arg(YEROTH_ERP_WINDOW_TITLE,
@@ -105,7 +105,7 @@ YerothAchatsDEServicesWindow::YerothAchatsDEServicesWindow()
 
     reinitialiser_colones_db_visibles();
 
-    _curAchatAUXFournisseursSqlTableModel = &_allWindows->getSqlTableModel_achats_de_services();
+    _curAchatsDEServicesSqlTableModel = &_allWindows->getSqlTableModel_achats_de_services();
 
     populateComboBoxes();
 
@@ -219,15 +219,15 @@ bool YerothAchatsDEServicesWindow::filtrer_achats()
 					mathOperator,
 					achatsTableColumnValue));
 
-	_curAchatAUXFournisseursSqlTableModel->yerothSetFilter_WITH_where_clause(filterString);
+	_curAchatsDEServicesSqlTableModel->yerothSetFilter_WITH_where_clause(filterString);
 
-	int resultRows = _curAchatAUXFournisseursSqlTableModel->easySelect();
+	int resultRows = _curAchatsDEServicesSqlTableModel->easySelect();
 
 	if (resultRows > 0)
 	{
 		setCurrentlyFiltered(true);
 
-		lister_les_elements_du_tableau(*_curAchatAUXFournisseursSqlTableModel);
+		lister_les_elements_du_tableau(*_curAchatsDEServicesSqlTableModel);
 
 		YEROTH_QMESSAGE_BOX_QUELQUE_RESULTAT_FILTRE(this, resultRows, "achats-de-services - filtrer");
 
@@ -361,11 +361,11 @@ void YerothAchatsDEServicesWindow::setupShortcuts()
 
 void YerothAchatsDEServicesWindow::resetFilter(YerothSqlTableModel * achatsTableModel)
 {
-	_curAchatAUXFournisseursSqlTableModel = achatsTableModel;
+	_curAchatsDEServicesSqlTableModel = achatsTableModel;
 
-    if (0 != _curAchatAUXFournisseursSqlTableModel)
+    if (0 != _curAchatsDEServicesSqlTableModel)
     {
-    	_curAchatAUXFournisseursSqlTableModel->resetFilter();
+    	_curAchatsDEServicesSqlTableModel->resetFilter();
     }
 
     lineEdit_achats_de_services_terme_recherche->myClear();
@@ -380,9 +380,9 @@ void YerothAchatsDEServicesWindow::slot_reinitialiser_colones_db_visibles()
 	reinitialiser_colones_db_visibles();
 	resetTableViewHorizontalHeader_DEFAULT_ORDERING();
 
-	if (0 != _curAchatAUXFournisseursSqlTableModel)
+	if (0 != _curAchatsDEServicesSqlTableModel)
 	{
-		lister_les_elements_du_tableau(*_curAchatAUXFournisseursSqlTableModel);
+		lister_les_elements_du_tableau(*_curAchatsDEServicesSqlTableModel);
 	}
 }
 
@@ -523,7 +523,7 @@ void YerothAchatsDEServicesWindow::rendreVisible(YerothSqlTableModel * stocksTab
 
     setupLineEditsQCompleters((QObject *)this);
 
-    setYerothSqlTableModel(_curAchatAUXFournisseursSqlTableModel);
+    setYerothSqlTableModel(_curAchatsDEServicesSqlTableModel);
 
     _curStocksTableModel = stocksTableModel;
 
@@ -563,7 +563,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
-    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(this, _curAchatAUXFournisseursSqlTableModel)
+    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(this, _curAchatsDEServicesSqlTableModel)
 
     pushButton_achats_de_services_filtrer->enable(this, SLOT(filtrer_achats()));
     pushButton_achats_de_services_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
@@ -629,10 +629,10 @@ void YerothAchatsDEServicesWindow::afficher_au_detail()
 {
     _logger->log("afficher_au_detail");
 
-    if (getLastListerSelectedRow__ID_AS_INTEGER() > -1 && _curAchatAUXFournisseursSqlTableModel->rowCount() > 0)
+    if (getLastListerSelectedRow__ID_AS_INTEGER() > -1 && _curAchatsDEServicesSqlTableModel->rowCount() > 0)
     {
         _allWindows->_achatsDetailWindow->rendreVisible(_curStocksTableModel,
-														_curAchatAUXFournisseursSqlTableModel);
+														_curAchatsDEServicesSqlTableModel);
         rendreInvisible();
     }
     else
@@ -649,11 +649,11 @@ void YerothAchatsDEServicesWindow::afficher_au_detail(const QModelIndex & modelI
 {
     _logger->log("afficher_au_detail(const QModelIndex &)");
 
-    if (_curAchatAUXFournisseursSqlTableModel->rowCount() > 0)
+    if (_curAchatsDEServicesSqlTableModel->rowCount() > 0)
     {
     	//qDebug() << "++ test" << modelIndex.row();
         _allWindows->_achatsDetailWindow->rendreVisible(_curStocksTableModel,
-														_curAchatAUXFournisseursSqlTableModel);
+														_curAchatsDEServicesSqlTableModel);
 
         rendreInvisible();
     }
@@ -742,14 +742,13 @@ void YerothAchatsDEServicesWindow::lister_les_elements_du_tableau(YerothSqlTable
 
     lineEdit_achats_de_services_total_achats->setText(GET_CURRENCY_STRING_NUM(montant_total));
 
+    int rowCount = tableView_achats_de_services->rowCount();
+
+    lineEdit_achats_de_services_nombre_dachats->setText(GET_NUM_STRING(rowCount));
 
 	tableView_achats_de_services->queryYerothTableViewCurrentPageContentRow(achatSqlTableModel);
 
     tableView_show_or_hide_columns(*tableView_achats_de_services);
-
-    int rowCount = tableView_achats_de_services->rowCount();
-
-    lineEdit_achats_de_services_nombre_dachats->setText(GET_NUM_STRING(rowCount));
 }
 
 
@@ -763,11 +762,11 @@ void YerothAchatsDEServicesWindow::afficher_stock_selectioner(const QString & st
 
     //qDebug() << QString("filter: %1").arg(filter);
 
-    _curAchatAUXFournisseursSqlTableModel->yerothSetFilter_WITH_where_clause(filter);
+    _curAchatsDEServicesSqlTableModel->yerothSetFilter_WITH_where_clause(filter);
 
-    if (_curAchatAUXFournisseursSqlTableModel->easySelect() > 0)
+    if (_curAchatsDEServicesSqlTableModel->easySelect() > 0)
     {
-        lister_les_elements_du_tableau(*_curAchatAUXFournisseursSqlTableModel);
+        lister_les_elements_du_tableau(*_curAchatsDEServicesSqlTableModel);
     }
 }
 
@@ -790,7 +789,7 @@ void YerothAchatsDEServicesWindow::set_filtrer_font()
 bool YerothAchatsDEServicesWindow::supprimer_un_achat_au_fournisseur()
 {
     if (getLastListerSelectedRow__ID_AS_INTEGER() <= -1 ||
-    	_curAchatAUXFournisseursSqlTableModel->rowCount() <= 0)
+    	_curAchatsDEServicesSqlTableModel->rowCount() <= 0)
     {
         YerothQMessageBox::information(this, QObject::trUtf8("supprimer"),
                                   	   QObject::trUtf8("Sélectionnez 1 achat (service) au fournisseur à supprimer."));
