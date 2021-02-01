@@ -1802,7 +1802,7 @@ void YerothEntrerWindow::enregistrer_achat_au_fournisseur()
     	achatRetMsg.append(QObject::trUtf8(" a été enregistré dans la base de données !"));
 
     	YerothQMessageBox::information(this,
-    			QObject::trUtf8("achat au fournisseur - succès"),
+    			QObject::trUtf8("achat d'1 service - succès"),
 				achatRetMsg);
     }
     else
@@ -1810,7 +1810,7 @@ void YerothEntrerWindow::enregistrer_achat_au_fournisseur()
     	achatRetMsg.append(QObject::trUtf8(" n'a pas pu être enregistré dans la base de données !"));
 
     	YerothQMessageBox::warning(this,
-    			QObject::trUtf8("achat au fournisseur - échec"),
+    			QObject::trUtf8("achat d'1 service - échec"),
 				achatRetMsg);
     }
 
