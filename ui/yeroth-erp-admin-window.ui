@@ -36407,9 +36407,9 @@
       <widget class="YerothLineEdit" name="lineEdit_pdfReader">
        <property name="geometry">
         <rect>
-         <x>236</x>
+         <x>238</x>
          <y>68</y>
-         <width>141</width>
+         <width>142</width>
          <height>21</height>
         </rect>
        </property>
@@ -36888,7 +36888,7 @@
       <widget class="YerothPushButton" name="pushButton_choose_pdfReader">
        <property name="geometry">
         <rect>
-         <x>382</x>
+         <x>385</x>
          <y>68</y>
          <width>25</width>
          <height>21</height>
@@ -37324,7 +37324,7 @@
       <widget class="YerothPushButton" name="pushButton_choose_repertoire_systeme_latex">
        <property name="geometry">
         <rect>
-         <x>382</x>
+         <x>385</x>
          <y>116</y>
          <width>25</width>
          <height>21</height>
@@ -37784,9 +37784,9 @@
       <widget class="YerothLineEdit" name="lineEdit_repertoire_systeme_latex">
        <property name="geometry">
         <rect>
-         <x>236</x>
+         <x>238</x>
          <y>116</y>
-         <width>141</width>
+         <width>142</width>
          <height>21</height>
         </rect>
        </property>
@@ -38241,7 +38241,7 @@
       <widget class="YerothComboBox" name="comboBox_type_de_facture">
        <property name="geometry">
         <rect>
-         <x>236</x>
+         <x>238</x>
          <y>164</y>
          <width>171</width>
          <height>21</height>
@@ -38700,7 +38700,7 @@
       <widget class="QCheckBox" name="checkBox_activer_registre_de_caisse">
        <property name="geometry">
         <rect>
-         <x>236</x>
+         <x>238</x>
          <y>212</y>
          <width>171</width>
          <height>21</height>
@@ -38788,7 +38788,7 @@
       <widget class="YerothComboBox" name="comboBox_format_de_facture">
        <property name="geometry">
         <rect>
-         <x>236</x>
+         <x>238</x>
          <y>260</y>
          <width>171</width>
          <height>21</height>
@@ -39223,7 +39223,7 @@
       <widget class="YerothComboBox" name="comboBox_impression_sur">
        <property name="geometry">
         <rect>
-         <x>236</x>
+         <x>238</x>
          <y>188</y>
          <width>171</width>
          <height>21</height>
@@ -39682,9 +39682,9 @@
       <widget class="YerothLineEdit" name="lineEdit_fichier_systeme_imprimante_thermique">
        <property name="geometry">
         <rect>
-         <x>236</x>
+         <x>238</x>
          <y>140</y>
-         <width>141</width>
+         <width>142</width>
          <height>21</height>
         </rect>
        </property>
@@ -40139,7 +40139,7 @@
       <widget class="YerothPushButton" name="pushButton_choose_fichier_systeme_imprimante_thermique">
        <property name="geometry">
         <rect>
-         <x>382</x>
+         <x>385</x>
          <y>140</y>
          <width>25</width>
          <height>21</height>
@@ -40599,9 +40599,9 @@
       <widget class="YerothLineEdit" name="lineEdit_mariadb_client_base_dir_full_path">
        <property name="geometry">
         <rect>
-         <x>236</x>
+         <x>238</x>
          <y>92</y>
-         <width>141</width>
+         <width>142</width>
          <height>21</height>
         </rect>
        </property>
@@ -41056,7 +41056,7 @@
       <widget class="YerothPushButton" name="pushButton_choose_mariadb_client_full_path_dir">
        <property name="geometry">
         <rect>
-         <x>382</x>
+         <x>385</x>
          <y>92</y>
          <width>25</width>
          <height>21</height>
@@ -41516,9 +41516,9 @@
       <widget class="YerothLineEdit" name="lineEdit_nbre_de_LINE_FEED_POUR_IMPRESSION_PETIT_THERMIQUE">
        <property name="geometry">
         <rect>
-         <x>236</x>
+         <x>238</x>
          <y>236</y>
-         <width>170</width>
+         <width>171</width>
          <height>21</height>
         </rect>
        </property>
@@ -41976,9 +41976,9 @@
       <widget class="YerothLineEdit" name="lineEdit_repertoire_fichiers_temporaires">
        <property name="geometry">
         <rect>
-         <x>236</x>
+         <x>238</x>
          <y>36</y>
-         <width>141</width>
+         <width>142</width>
          <height>21</height>
         </rect>
        </property>
@@ -42458,7 +42458,7 @@
       <widget class="YerothPushButton" name="pushButton_choose_repertoire_fichiers_temporaires">
        <property name="geometry">
         <rect>
-         <x>382</x>
+         <x>385</x>
          <y>36</y>
          <width>25</width>
          <height>21</height>
@@ -42918,9 +42918,9 @@
       <widget class="YerothLineEdit" name="lineEdit_annee_depart_rapports_chiffre_affaire">
        <property name="geometry">
         <rect>
-         <x>236</x>
+         <x>238</x>
          <y>284</y>
-         <width>170</width>
+         <width>171</width>
          <height>21</height>
         </rect>
        </property>
@@ -43388,9 +43388,9 @@
       <widget class="YerothLineEdit" name="lineEdit_tva_value">
        <property name="geometry">
         <rect>
-         <x>180</x>
+         <x>182</x>
          <y>84</y>
-         <width>172</width>
+         <width>168</width>
          <height>21</height>
         </rect>
        </property>
@@ -43869,9 +43869,9 @@
       <widget class="YerothComboBox" name="comboBox_strategie_vente_sortie">
        <property name="geometry">
         <rect>
-         <x>180</x>
+         <x>182</x>
          <y>60</y>
-         <width>172</width>
+         <width>168</width>
          <height>21</height>
         </rect>
        </property>
@@ -44328,9 +44328,9 @@
       <widget class="YerothLineEdit" name="lineEdit_devise">
        <property name="geometry">
         <rect>
-         <x>180</x>
+         <x>182</x>
          <y>108</y>
-         <width>172</width>
+         <width>168</width>
          <height>21</height>
         </rect>
        </property>
@@ -44809,9 +44809,9 @@
       <widget class="YerothLineEdit" name="lineEdit_annee_de_depart_pour_la_pagination">
        <property name="geometry">
         <rect>
-         <x>180</x>
+         <x>182</x>
          <y>36</y>
-         <width>172</width>
+         <width>168</width>
          <height>21</height>
         </rect>
        </property>
@@ -45327,9 +45327,9 @@
       <widget class="YerothLineEdit" name="lineEdit_taille_de_pagination_par_defaut">
        <property name="geometry">
         <rect>
-         <x>180</x>
+         <x>182</x>
          <y>60</y>
-         <width>170</width>
+         <width>168</width>
          <height>21</height>
         </rect>
        </property>
@@ -45784,9 +45784,9 @@
       <widget class="YerothLineEdit" name="lineEdit_longueur_maximale_string">
        <property name="geometry">
         <rect>
-         <x>180</x>
+         <x>182</x>
          <y>36</y>
-         <width>170</width>
+         <width>168</width>
          <height>21</height>
         </rect>
        </property>
