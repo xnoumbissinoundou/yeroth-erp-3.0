@@ -328,9 +328,8 @@ public:
 
 	static inline int getNextIdSqlTableModel_achats_de_services()
 	{
-		return YerothERPWindows::getNextIdFromTable(YerothDatabase::ACHATS);
+		return YerothERPWindows::getNextIdFromTable(YerothDatabase::ACHATS_DE_SERVICES);
 	}
-
 
 	static inline int getNextIdSqlTableModel_achats()
 	{
