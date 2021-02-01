@@ -1755,9 +1755,9 @@ void YerothEntrerWindow::enregistrer_achat_au_fournisseur()
 
     QSqlRecord achatRecord = achats_de_servicesSqlTableModel.record();
 
-    int achat_id_to_save = YerothERPWindows::getNextIdSqlTableModel_achats();
+    int achat_de_service_id_to_save = YerothERPWindows::getNextIdSqlTableModel_achats_de_services();
 
-    achatRecord.setValue(YerothDatabaseTableColumn::ID, achat_id_to_save);
+    achatRecord.setValue(YerothDatabaseTableColumn::ID, achat_de_service_id_to_save);
     achatRecord.setValue(YerothDatabaseTableColumn::REFERENCE, lineEdit_reference_produit->text());
     achatRecord.setValue(YerothDatabaseTableColumn::DESIGNATION, lineEdit_designation->text());
     achatRecord.setValue(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT, a_service_achat_au_fournisseur_data._nom_departement_produit);
