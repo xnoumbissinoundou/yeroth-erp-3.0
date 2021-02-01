@@ -199,7 +199,7 @@ public slots:
 
 	virtual void infosEntreprise();
 
-	virtual void achats_aux_fournisseurs();
+	virtual void achats_de_services();
 
 	virtual void achats_de_stocks();
 

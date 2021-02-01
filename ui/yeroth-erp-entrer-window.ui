@@ -2620,7 +2620,7 @@ Transférer</string>
      </font>
     </property>
     <property name="title">
-     <string>Caractéristiques du stock (service)</string>
+     <string>Caractéristiques du stock ou service</string>
     </property>
     <widget class="QLabel" name="label_reference_produit">
      <property name="geometry">
@@ -11559,12 +11559,12 @@ background-color: rgb(0, 0, 0); </string>
 background-color: rgb(0, 0, 0); </string>
      </property>
     </widget>
-    <widget class="QGroupBox" name="groupBox_SERVICE_ACHAT_ET_VENTE_CHOIX">
+    <widget class="QGroupBox" name="groupBox_choix">
      <property name="geometry">
       <rect>
        <x>3</x>
        <y>18</y>
-       <width>257</width>
+       <width>221</width>
        <height>100</height>
       </rect>
      </property>
@@ -12011,14 +12011,14 @@ background-color: rgb(0, 0, 0); </string>
       </palette>
      </property>
      <property name="title">
-      <string>SERVICE (ACHAT ET VENTE), CHOIX</string>
+      <string>Choix</string>
      </property>
-     <widget class="QRadioButton" name="radioButton_AUCUN_SERVICE">
+     <widget class="QRadioButton" name="radioButton_inserer_un_stock">
       <property name="geometry">
        <rect>
         <x>7</x>
         <y>20</y>
-        <width>246</width>
+        <width>210</width>
         <height>19</height>
        </rect>
       </property>
@@ -12441,15 +12441,15 @@ background-color: rgb(0, 0, 0); </string>
        <enum>Qt::RightToLeft</enum>
       </property>
       <property name="text">
-       <string>aucun service (entrer 1 stock physique)</string>
+       <string>insérer 1 stock</string>
       </property>
      </widget>
-     <widget class="QRadioButton" name="radioButton_SERVICE_VENTE_CLIENT">
+     <widget class="QRadioButton" name="radioButton_service_vente_client">
       <property name="geometry">
        <rect>
         <x>7</x>
         <y>44</y>
-        <width>246</width>
+        <width>210</width>
         <height>19</height>
        </rect>
       </property>
@@ -12872,15 +12872,15 @@ background-color: rgb(0, 0, 0); </string>
        <enum>Qt::RightToLeft</enum>
       </property>
       <property name="text">
-       <string>service (vente au compte client)</string>
+       <string>vente d'1 service</string>
       </property>
      </widget>
-     <widget class="QRadioButton" name="radioButton_SERVICE_ACHAT_FOURNISSEUR">
+     <widget class="QRadioButton" name="radioButton_service_achat_fournisseur">
       <property name="geometry">
        <rect>
         <x>7</x>
         <y>70</y>
-        <width>246</width>
+        <width>210</width>
         <height>19</height>
        </rect>
       </property>
@@ -13303,7 +13303,7 @@ background-color: rgb(0, 0, 0); </string>
        <enum>Qt::RightToLeft</enum>
       </property>
       <property name="text">
-       <string>service (achat à 1 fournisseur)</string>
+       <string>achat d'1 service</string>
       </property>
      </widget>
     </widget>
@@ -16716,9 +16716,9 @@ background-color: rgb(0, 0, 0); </string>
   <tabstop>lineEdit_pourcentage_prix_dachat_prix_de_vente</tabstop>
   <tabstop>pushButton_annuler</tabstop>
   <tabstop>lineEdit_pourcentage_prix_dachat_prix_de_vente_en_gros</tabstop>
-  <tabstop>radioButton_AUCUN_SERVICE</tabstop>
-  <tabstop>radioButton_SERVICE_VENTE_CLIENT</tabstop>
-  <tabstop>radioButton_SERVICE_ACHAT_FOURNISSEUR</tabstop>
+  <tabstop>radioButton_inserer_un_stock</tabstop>
+  <tabstop>radioButton_service_vente_client</tabstop>
+  <tabstop>radioButton_service_achat_fournisseur</tabstop>
   <tabstop>checkBox_tva</tabstop>
   <tabstop>lineEdit_tva</tabstop>
   <tabstop>lineEdit_quantite_totale</tabstop>

@@ -95,7 +95,7 @@ FORMS = ui/yeroth-erp-main-window.ui \
 		  ui/pos/yeroth-erp-pointdevente-methode-paiement-dialog.ui \
 			ui/purchase/yeroth-erp-achats-detail-window.ui \
 			ui/purchase/yeroth-erp-achats-window.ui \
-			ui/purchase/yeroth-erp-achats-aux-fournisseurs-window.ui \
+			ui/purchase/yeroth-erp-achats-de-services-window.ui \
 			ui/supplier/yeroth-erp-payer-fournisseur-window.ui \
 			ui/supplier/yeroth-erp-tableau-des-transactions-du-fournisseur-window.ui \
 			ui/supplier/yeroth-erp-modifier-fournisseur-window.ui \
@@ -159,7 +159,7 @@ HEADERS = src/include/yeroth-erp-3-0-precompiled-header.hpp \
 			src/widgets/table-view/yeroth-erp-groupes-de-clients-table-view.hpp \
 		  src/widgets/table-view/yeroth-erp-clients-table-view.hpp \
 		  src/widgets/table-view/yeroth-erp-alertes-table-view.hpp \
-		  src/widgets/table-view/yeroth-erp-achats-aux-fournisseurs-table-view.hpp \
+		  src/widgets/table-view/yeroth-erp-achats-de-services-table-view.hpp \
 		  src/widgets/table-view/yeroth-erp-achats-table-view.hpp \
 		  src/widgets/table-view/yeroth-erp-marchandises-table-view.hpp \
 			src/widgets/yeroth-erp-qtable-widget-item.hpp \
@@ -208,7 +208,7 @@ HEADERS = src/include/yeroth-erp-3-0-precompiled-header.hpp \
 		  src/windows/stocks/yeroth-erp-historique-du-stock-window.hpp \
 		  src/windows/stocks/yeroth-erp-stock-detail-window.hpp \
 		  src/windows/stocks/yeroth-erp-stocks-window.hpp \
-			src/windows/purchase/yeroth-erp-achats-aux-fournisseurs-window.hpp \
+			src/windows/purchase/yeroth-erp-achats-de-services-window.hpp \
 		  src/windows/purchase/yeroth-erp-achats-detail-window.hpp \
 		  src/windows/purchase/yeroth-erp-achats-window.hpp \
 		  src/windows/pos/yeroth-erp-pointdevente-window.hpp \
@@ -289,7 +289,7 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 			src/widgets/table-view/yeroth-erp-groupes-de-clients-table-view.cpp \
 		  src/widgets/table-view/yeroth-erp-clients-table-view.cpp \
 		  src/widgets/table-view/yeroth-erp-alertes-table-view.cpp \
-		  src/widgets/table-view/yeroth-erp-achats-aux-fournisseurs-table-view.cpp \
+		  src/widgets/table-view/yeroth-erp-achats-de-services-table-view.cpp \
 		  src/widgets/table-view/yeroth-erp-achats-table-view.cpp \
 		  src/widgets/table-view/yeroth-erp-marchandises-table-view.cpp \
 			src/widgets/table-view/yeroth-erp-programmes-de-fidelite-clients-table-view.cpp \
@@ -340,7 +340,7 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 			src/windows/stocks/yeroth-erp-historique-du-stock-window.cpp \
 		  src/windows/stocks/yeroth-erp-stock-detail-window.cpp \
 		  src/windows/stocks/yeroth-erp-stocks-window.cpp \
-		  src/windows/purchase/yeroth-erp-achats-aux-fournisseurs-window.cpp \
+		  src/windows/purchase/yeroth-erp-achats-de-services-window.cpp \
 		  src/windows/purchase/yeroth-erp-achats-detail-window.cpp \
 		  src/windows/purchase/yeroth-erp-achats-window.cpp \
 		  src/windows/pos/yeroth-erp-pointdevente-window.cpp \

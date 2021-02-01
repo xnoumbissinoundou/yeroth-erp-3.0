@@ -43,7 +43,7 @@
 
 //** PURCHASE
 #include "src/windows/purchase/yeroth-erp-achats-window.hpp"
-#include "src/windows/purchase/yeroth-erp-achats-aux-fournisseurs-window.hpp"
+#include "src/windows/purchase/yeroth-erp-achats-de-services-window.hpp"
 #include "src/windows/purchase/yeroth-erp-achats-detail-window.hpp"
 
 
@@ -131,7 +131,7 @@ class YerothPOSVenteMethodePaiementDialog;
 class YerothFournisseurDetailsWindow;
 class YerothGroupesDunClientWindow;
 class YerothClientsDetailWindow;
-class YerothAchatsAUXFournisseursWindow;
+class YerothAchatsDEServicesWindow;
 class YerothAchatsDetailWindow;
 class YerothStockDetailWindow;
 class YerothEntrerWindow;
@@ -214,7 +214,7 @@ public:
 
 	YerothSqlTableModel &getSqlTableModel_fournisseurs();
 
-	YerothSqlTableModel &getSqlTableModel_achats_aux_fournisseurs();
+	YerothSqlTableModel &getSqlTableModel_achats_de_services();
 
 	YerothSqlTableModel &getSqlTableModel_achats();
 
@@ -326,7 +326,7 @@ public:
 		return YerothERPWindows::getNextIdFromTable(YerothDatabase::COMPTES_BANCAIRES);
 	}
 
-	static inline int getNextIdSqlTableModel_achats_aux_fournisseurs()
+	static inline int getNextIdSqlTableModel_achats_de_services()
 	{
 		return YerothERPWindows::getNextIdFromTable(YerothDatabase::ACHATS);
 	}
@@ -460,7 +460,7 @@ public:
 	YerothGroupesDeClientsWindow						*_groupesDeClientsWindow;
 	YerothGroupesDunClientWindow						*_groupesDunClientWindow;
 	YerothClientsDetailWindow 							*_clientsDetailWindow;
-	YerothAchatsAUXFournisseursWindow 					*_achats_aux_fournisseursWindow;
+	YerothAchatsDEServicesWindow 					*_achats_de_servicesWindow;
 	YerothAchatsDetailWindow 							*_achatsDetailWindow;
 	YerothStockDetailWindow 							*_detailWindow;
 	YerothEntrerWindow 									*_entrerWindow;
@@ -505,7 +505,7 @@ private:
 	YerothSqlTableModel 	*_tableModel_remises;
 	YerothSqlTableModel 	*_tableModel_conditions_alertes;
 	YerothSqlTableModel 	*_tableModel_courriers_alertes;
-	YerothSqlTableModel 	*_tableModel_achats_aux_fournisseurs;
+	YerothSqlTableModel 	*_tableModel_achats_de_services;
 	YerothSqlTableModel 	*_tableModel_achats;
 	YerothSqlTableModel 	*_tableModel_stocks;
 	YerothSqlTableModel 	*_tableModel_services_completes;

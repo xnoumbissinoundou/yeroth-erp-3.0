@@ -1,1 +1,1 @@
-alter table achats_aux_fournisseurs ADD column `designation` varchar(256) NOT NULL UNIQUE AFTER id;
+alter table achats_de_services ADD column `designation` varchar(256) NOT NULL UNIQUE AFTER id;

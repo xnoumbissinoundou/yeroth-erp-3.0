@@ -1,13 +1,13 @@
 /*
- * yeroth-erp-achats-aux-fournisseurs-window.hpp
+ * yeroth-erp-achats-de-services-window.hpp
  *
  *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
-#ifndef YEROTH_ERP_ACHATS_AUX_FOURNISSEURS_WINDOW_HPP_
-#define YEROTH_ERP_ACHATS_AUX_FOURNISSEURS_WINDOW_HPP_
+#ifndef YEROTH_ERP_ACHATS_DE_SERVICES_WINDOW_HPP_
+#define YEROTH_ERP_ACHATS_DE_SERVICES_WINDOW_HPP_
 
-#include "../../../ui_yeroth-erp-achats-aux-fournisseurs-window.h"
+#include "../../../ui_yeroth-erp-achats-de-services-window.h"
 
 
 #include <QtCore/QDebug>
@@ -26,9 +26,9 @@ class QProcess;
 
 class YerothSqlTableModel;
 
-class YerothAchatsAUXFournisseursWindow : public YerothWindowsCommons,
-						   	   	   	   	  private Ui_YerothAchatsAUXFournisseursWindow,
-										  public YerothAbstractClassYerothSearchWindow
+class YerothAchatsDEServicesWindow : public YerothWindowsCommons,
+						   	   	   	 private Ui_YerothAchatsDEServicesWindow,
+									 public YerothAbstractClassYerothSearchWindow
 {
     Q_OBJECT
 
@@ -36,13 +36,13 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-    YerothAchatsAUXFournisseursWindow();
+    YerothAchatsDEServicesWindow();
 
-    virtual ~YerothAchatsAUXFournisseursWindow();
+    virtual ~YerothAchatsDEServicesWindow();
 
     inline virtual QToolBar * getQMainWindowToolBar()
     {
-    	return toolBar_achats_aux_fournisseursWindow;
+    	return toolBar_achats_de_servicesWindow;
     }
 
     virtual void definirCaissier();
@@ -57,14 +57,14 @@ public:
 
     virtual void definirPasDeRole();
 
-    MACRO_TO_DEFINE_VIEWING_PAGE_NUMBER_FOR_TABLEVIEW(label_achats_aux_fournisseurs_numero_page_derniere,
-    												  label_achats_aux_fournisseurs_numero_page_courante)
+    MACRO_TO_DEFINE_VIEWING_PAGE_NUMBER_FOR_TABLEVIEW(label_achats_de_services_numero_page_derniere,
+    												  label_achats_de_services_numero_page_courante)
 
     virtual void rendreVisible(YerothSqlTableModel *stocksTableModel);
 
 public slots:
 
-	MACRO_TO_DEFINE_VIEWING_POINTERS_PAGE_SLOTS(tableView_achats_aux_fournisseurs)
+	MACRO_TO_DEFINE_VIEWING_POINTERS_PAGE_SLOTS(tableView_achats_de_services)
 
 	inline virtual void apropos()
 	{
@@ -75,7 +75,7 @@ public slots:
 	{
 		YerothQMessageBox::information(this,
 							 QObject::trUtf8("aide"),
-							 QObject::trUtf8("Sélectionner un achat dans le tableau des achats aux fournisseurs, ensuite cliquer "
+							 QObject::trUtf8("Sélectionner un achat dans le tableau des achats de services, ensuite cliquer "
 											 "sur l'opération que vous souhaitez réaliser !"));
 	}
 
@@ -149,11 +149,11 @@ private:
 
     YerothLogger			*_logger;
 
-    QFont 					*_pushButton_achats_aux_fournisseurs_filtrer_font;
+    QFont 					*_pushButton_achats_de_services_filtrer_font;
 
-    QString 				_achats_aux_fournisseursDateFilter;
+    QString 				_achats_de_servicesDateFilter;
 
     YerothSqlTableModel 	*_curAchatAUXFournisseursSqlTableModel;
 };
 
-#endif /* YEROTH_ERP_ACHATS_AUX_FOURNISSEURS_WINDOW_HPP_ */
+#endif /* YEROTH_ERP_ACHATS_DE_SERVICES_WINDOW_HPP_ */

@@ -43,7 +43,7 @@ const QString YerothDatabase::CONDITIONS_ALERTES			("conditions_alertes");
 
 const QString YerothDatabase::COURRIERS_ALERTES			("courriers_alertes");
 
-const QString YerothDatabase::ACHATS_AUX_FOURNISSEURS		("achats_aux_fournisseurs");
+const QString YerothDatabase::ACHATS_DE_SERVICES		("achats_de_services");
 
 const QString YerothDatabase::ACHATS						("achats");
 

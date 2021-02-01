@@ -443,7 +443,7 @@
    <locale language="French" country="France"/>
   </property>
   <widget class="QWidget" name="centralwidget_mainWindow">
-   <widget class="YerothPushButton" name="pushButton_achats_aux_fournisseurs">
+   <widget class="YerothPushButton" name="pushButton_achats_de_services">
     <property name="enabled">
      <bool>true</bool>
     </property>
@@ -8782,10 +8782,10 @@ Vente</string>
   </action>
   <action name="actionAchatsAUXFournisseurs">
    <property name="text">
-    <string>Lister les achats aux fournisseurs</string>
+    <string>Lister les achats de services</string>
    </property>
    <property name="toolTip">
-    <string>Lister les achats aux fournisseurs</string>
+    <string>Lister les achats de services</string>
    </property>
    <property name="font">
     <font>
@@ -8855,7 +8855,7 @@ Vente</string>
  </customwidgets>
  <tabstops>
   <tabstop>pushButton_fournisseurs</tabstop>
-  <tabstop>pushButton_achats_aux_fournisseurs</tabstop>
+  <tabstop>pushButton_achats_de_services</tabstop>
   <tabstop>pushButton_entrer</tabstop>
   <tabstop>pushButton_ventes</tabstop>
   <tabstop>pushButton_clients</tabstop>

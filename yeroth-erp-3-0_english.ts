@@ -1546,25 +1546,25 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <translation>Select a purchase to view its stock details.</translation>
     </message>
     <message>
-        <location filename="src/windows/purchase/yeroth-erp-achats-aux-fournisseurs-window.cpp" line="68"/>
-        <source>fiche des achats aux fournisseurs</source>
+        <location filename="src/windows/purchase/yeroth-erp-achats-de-services-window.cpp" line="68"/>
+        <source>fiche des achats de services</source>
         <oldsource>fiche des achats-aux-fournisseurs</oldsource>
         <translation>supplier purchase listing</translation>
     </message>
     <message>
-        <location filename="src/windows/purchase/yeroth-erp-achats-aux-fournisseurs-window.cpp" line="641"/>
-        <location filename="src/windows/purchase/yeroth-erp-achats-aux-fournisseurs-window.cpp" line="663"/>
+        <location filename="src/windows/purchase/yeroth-erp-achats-de-services-window.cpp" line="641"/>
+        <location filename="src/windows/purchase/yeroth-erp-achats-de-services-window.cpp" line="663"/>
         <source>Sélectionnez 1 achat au fournisseur à afficher les détails.</source>
         <translation>Select a purchase (service) view its stock details.</translation>
     </message>
     <message>
-        <location filename="src/windows/purchase/yeroth-erp-achats-aux-fournisseurs-window.cpp" line="796"/>
+        <location filename="src/windows/purchase/yeroth-erp-achats-de-services-window.cpp" line="796"/>
         <source>Sélectionnez 1 achat (service) au fournisseur à supprimer.</source>
         <oldsource>Sélectionnez 1 achat au fournisseur à supprimer.</oldsource>
         <translation>Select a purchase (service) view to delete.</translation>
     </message>
     <message>
-        <location filename="src/windows/purchase/yeroth-erp-achats-aux-fournisseurs-window.cpp" line="197"/>
+        <location filename="src/windows/purchase/yeroth-erp-achats-de-services-window.cpp" line="197"/>
         <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="191"/>
         <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="589"/>
         <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="332"/>
@@ -1577,7 +1577,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
     </message>
     <message>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="577"/>
-        <location filename="src/windows/purchase/yeroth-erp-achats-aux-fournisseurs-window.cpp" line="200"/>
+        <location filename="src/windows/purchase/yeroth-erp-achats-de-services-window.cpp" line="200"/>
         <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="194"/>
         <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="592"/>
         <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="335"/>
@@ -1588,7 +1588,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <translation>filter</translation>
     </message>
     <message>
-        <location filename="src/windows/purchase/yeroth-erp-achats-aux-fournisseurs-window.cpp" line="313"/>
+        <location filename="src/windows/purchase/yeroth-erp-achats-de-services-window.cpp" line="313"/>
         <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="307"/>
         <source>terme à rechercher (désignation de l&apos;article)</source>
         <oldsource>terme à rechercher (désignation, et description de l&apos;article)</oldsource>
@@ -1602,7 +1602,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
     </message>
     <message>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="710"/>
-        <location filename="src/windows/purchase/yeroth-erp-achats-aux-fournisseurs-window.cpp" line="315"/>
+        <location filename="src/windows/purchase/yeroth-erp-achats-de-services-window.cpp" line="315"/>
         <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="309"/>
         <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="734"/>
         <location filename="src/windows/stocks/yeroth-erp-mouvements_de_stocks-window.cpp" line="341"/>
@@ -2006,7 +2006,7 @@ Continue with update of the stock ?</translation>
         <location filename="src/admin/lister/yeroth-erp-admin-lister-window.cpp" line="1165"/>
         <location filename="src/windows/crm/modifier/yeroth-erp-modifier-compte-client-window.cpp" line="497"/>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="463"/>
-        <location filename="src/windows/purchase/yeroth-erp-achats-aux-fournisseurs-window.cpp" line="795"/>
+        <location filename="src/windows/purchase/yeroth-erp-achats-de-services-window.cpp" line="795"/>
         <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1039"/>
         <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="360"/>
         <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="369"/>
@@ -2137,7 +2137,7 @@ Continue with update of the stock ?</translation>
         <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.hpp" line="86"/>
         <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.hpp" line="78"/>
         <location filename="src/windows/pos/yeroth-erp-pointdevente-window.hpp" line="242"/>
-        <location filename="src/windows/purchase/yeroth-erp-achats-aux-fournisseurs-window.hpp" line="77"/>
+        <location filename="src/windows/purchase/yeroth-erp-achats-de-services-window.hpp" line="77"/>
         <location filename="src/windows/purchase/yeroth-erp-achats-detail-window.hpp" line="70"/>
         <location filename="src/windows/purchase/yeroth-erp-achats-window.hpp" line="77"/>
         <location filename="src/windows/stocks/yeroth-erp-marchandises-window.hpp" line="83"/>
@@ -2162,8 +2162,8 @@ Continue with update of the stock ?</translation>
         <translation>help</translation>
     </message>
     <message>
-        <location filename="src/windows/purchase/yeroth-erp-achats-aux-fournisseurs-window.hpp" line="78"/>
-        <source>Sélectionner un achat dans le tableau des achats aux fournisseurs, ensuite cliquer sur l&apos;opération que vous souhaitez réaliser !</source>
+        <location filename="src/windows/purchase/yeroth-erp-achats-de-services-window.hpp" line="78"/>
+        <source>Sélectionner un achat dans le tableau des achats de services, ensuite cliquer sur l&apos;opération que vous souhaitez réaliser !</source>
         <translation>Select a purchase to a supplier in table listing, and then, press the button of the action you would like to perform !</translation>
     </message>
     <message>
@@ -4573,8 +4573,8 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     <message>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="562"/>
         <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.cpp" line="288"/>
-        <location filename="src/windows/purchase/yeroth-erp-achats-aux-fournisseurs-window.cpp" line="640"/>
-        <location filename="src/windows/purchase/yeroth-erp-achats-aux-fournisseurs-window.cpp" line="662"/>
+        <location filename="src/windows/purchase/yeroth-erp-achats-de-services-window.cpp" line="640"/>
+        <location filename="src/windows/purchase/yeroth-erp-achats-de-services-window.cpp" line="662"/>
         <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="653"/>
         <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="675"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseurs-window.cpp" line="526"/>
@@ -4946,7 +4946,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     <name>YerothAchatsAUXFournisseursWindow</name>
     <message>
         <location filename="ui/purchase/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16856"/>
-        <source>Yeroth-erp-3.0 - fiche des achats_aux_fournisseurs</source>
+        <source>Yeroth-erp-3.0 - fiche des achats_de_services</source>
         <translation>Yeroth-erp-3.0 - purchase to supplier listing</translation>
     </message>
     <message>
@@ -4956,7 +4956,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     </message>
     <message>
         <location filename="ui/purchase/yeroth-erp-achats-aux-fournisseurs-window.ui" line="434"/>
-        <source>Yeroth-erp-3.0 - fiche des achats aux fournisseurs</source>
+        <source>Yeroth-erp-3.0 - fiche des achats de services</source>
         <translation></translation>
     </message>
     <message>
@@ -5084,8 +5084,8 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     <message>
         <location filename="ui/purchase/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16940"/>
         <location filename="ui/purchase/yeroth-erp-achats-aux-fournisseurs-window.ui" line="16943"/>
-        <source>Imprimer la fiche des achats aux fournisseurs</source>
-        <oldsource>Imprimer la fiche des achats_aux_fournisseurs aux fournisseurs</oldsource>
+        <source>Imprimer la fiche des achats de services</source>
+        <oldsource>Imprimer la fiche des achats_de_services aux fournisseurs</oldsource>
         <translation>Print purchases to supplier listing</translation>
     </message>
     <message>
@@ -8939,7 +8939,7 @@ Client Account</translation>
     <message>
         <location filename="ui/crm/creer/yeroth-erp-creer-compte-client-window.ui" line="15395"/>
         <location filename="ui/crm/creer/yeroth-erp-creer-compte-client-window.ui" line="15398"/>
-        <source>Lister les achats aux fournisseurs</source>
+        <source>Lister les achats de services</source>
         <translation>View purchases to suppliers</translation>
     </message>
     <message>
@@ -9102,7 +9102,7 @@ Client Account</translation>
     <message>
         <location filename="ui/supplier/yeroth-erp-creer-fournisseur-window.ui" line="14467"/>
         <location filename="ui/supplier/yeroth-erp-creer-fournisseur-window.ui" line="14470"/>
-        <source>Lister les achats aux fournisseurs</source>
+        <source>Lister les achats de services</source>
         <translation>View purchases to suppliers</translation>
     </message>
     <message>
@@ -11875,7 +11875,7 @@ Dashboard</translation>
     <message>
         <location filename="ui/yeroth-erp-main-window.ui" line="8785"/>
         <location filename="ui/yeroth-erp-main-window.ui" line="8788"/>
-        <source>Lister les achats aux fournisseurs</source>
+        <source>Lister les achats de services</source>
         <translation>View purchases to suppliers</translation>
     </message>
     <message>

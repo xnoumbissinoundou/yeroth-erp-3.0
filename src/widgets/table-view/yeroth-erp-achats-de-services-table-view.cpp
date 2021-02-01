@@ -1,11 +1,11 @@
 /*
- * yeroth-erp-achats-aux-fournisseurs-table-view.cpp
+ * yeroth-erp-achats-de-services-table-view.cpp
  *
  *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
 
-#include "yeroth-erp-achats-aux-fournisseurs-table-view.hpp"
+#include "yeroth-erp-achats-de-services-table-view.hpp"
 
 #include "src/yeroth-erp-windows.hpp"
 
@@ -190,11 +190,11 @@ void YerothERPAchatsAUXFournisseursTableView::lister_les_elements_du_tableau(Yer
 
     static YerothERPWindows *curAllWindows = YerothUtils::getAllWindows();
 
-    YEROTH_SET_LAST_TABLE_VIEW_SELECTED_ROW_ID(curAllWindows, curAllWindows->_achats_aux_fournisseursWindow)
+    YEROTH_SET_LAST_TABLE_VIEW_SELECTED_ROW_ID(curAllWindows, curAllWindows->_achats_de_servicesWindow)
 
 	resizeColumnsToContents();
 
-    curAllWindows->_achats_aux_fournisseursWindow->handle_some_actions_tools_enabled();
+    curAllWindows->_achats_de_servicesWindow->handle_some_actions_tools_enabled();
 }
 
 
@@ -215,7 +215,7 @@ void YerothERPAchatsAUXFournisseursTableView::selectionChanged (const QItemSelec
 
     	for (uint j = 0; j < selectedIndexes.size(); ++j)
     	{
-    		curAllWindows->_achats_aux_fournisseursWindow->
+    		curAllWindows->_achats_de_servicesWindow->
     				getQModelIndex_dbID_from_MODEL_INDEX(selectedIndexes.at(j),
     													 db_ID_in_out);
 

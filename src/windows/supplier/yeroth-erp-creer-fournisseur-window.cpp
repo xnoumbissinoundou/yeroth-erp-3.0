@@ -57,7 +57,7 @@ YerothCreerFournisseurWindow::YerothCreerFournisseurWindow()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerImage, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEnregistrer, false);
 
-    pushButton_achats_aux_fournisseurs->disable(this);
+    pushButton_achats_de_services->disable(this);
     pushButton_fournisseurs->disable(this);
     pushButton_menu_principal->disable(this);
     pushButton_annuler->disable(this);
@@ -70,7 +70,7 @@ YerothCreerFournisseurWindow::YerothCreerFournisseurWindow()
     connect(actionAppeler_aide, SIGNAL(triggered()), this, SLOT(help()));
     connect(actionDeconnecter_utilisateur, SIGNAL(triggered()), this, SLOT(deconnecter_utilisateur()));
     connect(actionMenu_principal, SIGNAL(triggered()), this, SLOT(menu()));
-    connect(actionAchatsAUXFournisseurs, SIGNAL(triggered()), this, SLOT(achats_aux_fournisseurs()));
+    connect(actionAchatsAUXFournisseurs, SIGNAL(triggered()), this, SLOT(achats_de_services()));
     connect(actionFournisseurs, SIGNAL(triggered()), this, SLOT(fournisseurs()));
     connect(actionAnnuler, SIGNAL(triggered()), this, SLOT(menu()));
     connect(actionSupprimerImage, SIGNAL(triggered()), this, SLOT(supprimer_image_fournisseur()));
@@ -127,7 +127,7 @@ void YerothCreerFournisseurWindow::definirPasDeRole()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerImage, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEnregistrer, false);
 
-    pushButton_achats_aux_fournisseurs->disable(this);
+    pushButton_achats_de_services->disable(this);
     pushButton_fournisseurs->disable(this);
     pushButton_menu_principal->disable(this);
     pushButton_annuler->disable(this);
@@ -163,7 +163,7 @@ void YerothCreerFournisseurWindow::definirCaissier()
 
 #endif
 
-    pushButton_achats_aux_fournisseurs->disable(this);
+    pushButton_achats_de_services->disable(this);
     pushButton_fournisseurs->disable(this);
     pushButton_menu_principal->disable(this);
     pushButton_annuler->disable(this);
@@ -199,7 +199,7 @@ void YerothCreerFournisseurWindow::definirManager()
 
 #endif
 
-    pushButton_achats_aux_fournisseurs->enable(this, SLOT(achats_aux_fournisseurs()));
+    pushButton_achats_de_services->enable(this, SLOT(achats_de_services()));
     pushButton_fournisseurs->enable(this, SLOT(fournisseurs()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_annuler->enable(this, SLOT(fournisseurs()));
@@ -236,7 +236,7 @@ void YerothCreerFournisseurWindow::definirVendeur()
 
 #endif
 
-    pushButton_achats_aux_fournisseurs->enable(this, SLOT(achats_aux_fournisseurs()));
+    pushButton_achats_de_services->enable(this, SLOT(achats_de_services()));
     pushButton_fournisseurs->enable(this, SLOT(fournisseurs()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_annuler->enable(this, SLOT(fournisseurs()));
@@ -273,7 +273,7 @@ void YerothCreerFournisseurWindow::definirGestionaireDesStocks()
 
 #endif
 
-    pushButton_achats_aux_fournisseurs->disable(this);
+    pushButton_achats_de_services->disable(this);
     pushButton_fournisseurs->disable(this);
     pushButton_menu_principal->disable(this);
     pushButton_annuler->disable(this);
@@ -310,7 +310,7 @@ void YerothCreerFournisseurWindow::definirMagasinier()
 
 #endif
 
-    pushButton_achats_aux_fournisseurs->disable(this);
+    pushButton_achats_de_services->disable(this);
     pushButton_fournisseurs->disable(this);
     pushButton_menu_principal->disable(this);
     pushButton_annuler->disable(this);

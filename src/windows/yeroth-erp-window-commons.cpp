@@ -463,10 +463,10 @@ void YerothWindowsCommons::infosEntreprise()
 }
 
 
-void YerothWindowsCommons::achats_aux_fournisseurs()
+void YerothWindowsCommons::achats_de_services()
 {
     rendreInvisible();
-    _allWindows->_achats_aux_fournisseursWindow->rendreVisible(_curStocksTableModel);
+    _allWindows->_achats_de_servicesWindow->rendreVisible(_curStocksTableModel);
 }
 
 

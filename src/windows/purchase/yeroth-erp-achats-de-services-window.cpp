@@ -1,10 +1,10 @@
 /*
- * yeroth-erp-achats-aux-fournisseurs-window.cpp
+ * yeroth-erp-achats-de-services-window.cpp
  *
  *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
-#include "yeroth-erp-achats-aux-fournisseurs-window.hpp"
+#include "yeroth-erp-achats-de-services-window.hpp"
 
 
 #include "src/yeroth-erp-windows.hpp"
@@ -47,31 +47,31 @@
  */
 
 
-unsigned int YerothAchatsAUXFournisseursWindow::PDF_LISTING_COLUMN_STOCKS_ID(1);
+unsigned int YerothAchatsDEServicesWindow::PDF_LISTING_COLUMN_STOCKS_ID(1);
 
-unsigned int YerothAchatsAUXFournisseursWindow::PDF_LISTING_COLUMN_REFERENCE(3);
+unsigned int YerothAchatsDEServicesWindow::PDF_LISTING_COLUMN_REFERENCE(3);
 
-unsigned int YerothAchatsAUXFournisseursWindow::PDF_LISTING_COLUMN_DESIGNATION(2);
+unsigned int YerothAchatsDEServicesWindow::PDF_LISTING_COLUMN_DESIGNATION(2);
 
-unsigned int YerothAchatsAUXFournisseursWindow::PDF_LISTING_COLUMN_CATEGORIE(4);
+unsigned int YerothAchatsDEServicesWindow::PDF_LISTING_COLUMN_CATEGORIE(4);
 
 
-YerothAchatsAUXFournisseursWindow::YerothAchatsAUXFournisseursWindow()
-:YerothWindowsCommons("yeroth-erp-achats-aux-fournisseurs"),
- YerothAbstractClassYerothSearchWindow(YerothDatabase::ACHATS_AUX_FOURNISSEURS),
- _logger(new YerothLogger("YerothAchatsAUXFournisseursWindow")),
- _pushButton_achats_aux_fournisseurs_filtrer_font(0),
+YerothAchatsDEServicesWindow::YerothAchatsDEServicesWindow()
+:YerothWindowsCommons("yeroth-erp-achats-de-services"),
+ YerothAbstractClassYerothSearchWindow(YerothDatabase::ACHATS_DE_SERVICES),
+ _logger(new YerothLogger("YerothAchatsDEServicesWindow")),
+ _pushButton_achats_de_services_filtrer_font(0),
  _curAchatAUXFournisseursSqlTableModel(0)
 {
     _windowName = QString("%1 - %2")
     				.arg(YEROTH_ERP_WINDOW_TITLE,
-    					 QObject::trUtf8("fiche des achats aux fournisseurs"));
+    					 QObject::trUtf8("fiche des achats de services"));
 
     setupUi(this);
 
     mySetupUi(this);
 
-    setYerothTableView_FROM_WINDOWS_COMMONS(tableView_achats_aux_fournisseurs);
+    setYerothTableView_FROM_WINDOWS_COMMONS(tableView_achats_de_services);
 
 
     _list_yeroth_pushbutton_to_enable_on_positive_tableview_ROW_COUNT
@@ -82,30 +82,30 @@ YerothAchatsAUXFournisseursWindow::YerothAchatsAUXFournisseursWindow()
     _list_actions_to_enable_on_positive_tableview_ROW_COUNT
 		<< actionExporter_au_format_csv
 		<< actionAfficherPDF
-		<< actionSupprimerUnAchatAuFournisseur
+		<< actionSupprimerUnAchatDeService
 		<< actionAfficher_achat_au_detail;
 
 
-    MACRO_TO_DEFINE_CURRENT_VIEW_WINDOW_FOR_TABLE_PAGINATION(tableView_achats_aux_fournisseurs)
+    MACRO_TO_DEFINE_CURRENT_VIEW_WINDOW_FOR_TABLE_PAGINATION(tableView_achats_de_services)
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
                                        "QMessageBox QLabel {color: rgb(%2);}").
                                arg(COLOUR_RGB_STRING_YEROTH_GREEN_2_160_170, COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
-    setup_select_configure_dbcolumn(YerothDatabase::ACHATS_AUX_FOURNISSEURS);
+    setup_select_configure_dbcolumn(YerothDatabase::ACHATS_DE_SERVICES);
 
 
-    _lineEditsToANDContentForSearch.insert(&lineEdit_achats_aux_fournisseurs_terme_recherche,
+    _lineEditsToANDContentForSearch.insert(&lineEdit_achats_de_services_terme_recherche,
     		YerothUtils::EMPTY_STRING);
 
     _yeroth_WINDOW_references_dbColumnString.insert(YerothDatabaseTableColumn::REFERENCE);
     _yeroth_WINDOW_references_dbColumnString.insert(YerothDatabaseTableColumn::REFERENCE_RECU_DACHAT);
 
-    YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(YerothDatabase::ACHATS_AUX_FOURNISSEURS);
+    YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(YerothDatabase::ACHATS_DE_SERVICES);
 
     reinitialiser_colones_db_visibles();
 
-    _curAchatAUXFournisseursSqlTableModel = &_allWindows->getSqlTableModel_achats_aux_fournisseurs();
+    _curAchatAUXFournisseursSqlTableModel = &_allWindows->getSqlTableModel_achats_de_services();
 
     populateComboBoxes();
 
@@ -115,13 +115,13 @@ YerothAchatsAUXFournisseursWindow::YerothAchatsAUXFournisseursWindow()
 
     setupDateTimeEdits();
 
-    _pushButton_achats_aux_fournisseurs_filtrer_font = new QFont(pushButton_achats_aux_fournisseurs_filtrer->font());
+    _pushButton_achats_de_services_filtrer_font = new QFont(pushButton_achats_de_services_filtrer->font());
 
-    tableView_achats_aux_fournisseurs->setSqlTableName(&YerothDatabase::ACHATS_AUX_FOURNISSEURS);
+    tableView_achats_de_services->setSqlTableName(&YerothDatabase::ACHATS_DE_SERVICES);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_achat_au_detail, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerUnAchatAuFournisseur, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerUnAchatDeService, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionExporter_au_format_csv, false);
@@ -133,7 +133,7 @@ YerothAchatsAUXFournisseursWindow::YerothAchatsAUXFournisseursWindow()
 
     MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS
 
-    pushButton_achats_aux_fournisseurs_filtrer->disable(this);
+    pushButton_achats_de_services_filtrer->disable(this);
     pushButton_supprimer->disable(this);
     pushButton_afficher->disable(this);
     pushButton_menu_principal->disable(this);
@@ -150,7 +150,7 @@ YerothAchatsAUXFournisseursWindow::YerothAchatsAUXFournisseursWindow()
     connect(actionAppeler_aide, SIGNAL(triggered()), this, SLOT(help()));
     connect(actionDeconnecter_utilisateur, SIGNAL(triggered()), this, SLOT(deconnecter_utilisateur()));
     connect(actionMenu_Principal, SIGNAL(triggered()), this, SLOT(menu()));
-    connect(actionSupprimerUnAchatAuFournisseur, SIGNAL(triggered()), this, SLOT(supprimer_un_achat_au_fournisseur()));
+    connect(actionSupprimerUnAchatDeService, SIGNAL(triggered()), this, SLOT(supprimer_un_achat_au_fournisseur()));
     connect(actionStocks, SIGNAL(triggered()), this, SLOT(stocks()));
     connect(actionVentes, SIGNAL(triggered()), this, SLOT(ventes()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
@@ -172,7 +172,7 @@ YerothAchatsAUXFournisseursWindow::YerothAchatsAUXFournisseursWindow()
 	connect(actionAfficher_achat_au_detail, SIGNAL(triggered()),
 			this, SLOT(afficher_au_detail()));
 
-    connect(tableView_achats_aux_fournisseurs, SIGNAL(doubleClicked(const QModelIndex &)), this,
+    connect(tableView_achats_de_services, SIGNAL(doubleClicked(const QModelIndex &)), this,
             SLOT(afficher_au_detail(const QModelIndex &)));
 
     setCenterAligned_FOR_YEROTH_PDF_LATEX_PRINTING(YerothDatabaseTableColumn::STOCKS_ID);
@@ -180,7 +180,7 @@ YerothAchatsAUXFournisseursWindow::YerothAchatsAUXFournisseursWindow()
     setupShortcuts();
 }
 
-YerothAchatsAUXFournisseursWindow::~YerothAchatsAUXFournisseursWindow()
+YerothAchatsDEServicesWindow::~YerothAchatsDEServicesWindow()
 {
 	MACRO_TO_DELETE_PAGINATION_INTEGER_VALIDATOR
 
@@ -188,9 +188,9 @@ YerothAchatsAUXFournisseursWindow::~YerothAchatsAUXFournisseursWindow()
 }
 
 
-bool YerothAchatsAUXFournisseursWindow::filtrer_achats()
+bool YerothAchatsDEServicesWindow::filtrer_achats()
 {
-	QString achatsTableColumnValue(comboBox_element_achats_aux_fournisseurs_condition->currentText());
+	QString achatsTableColumnValue(comboBox_element_achats_de_services_condition->currentText());
 
 	if (achatsTableColumnValue.isEmpty())
 	{
@@ -205,9 +205,9 @@ bool YerothAchatsAUXFournisseursWindow::filtrer_achats()
 
 	reinitialiser_recherche();
 
-	QString achatsTableColumnProperty(comboBox_element_achats_aux_fournisseurs->currentText());
+	QString achatsTableColumnProperty(comboBox_element_achats_de_services->currentText());
 
-	QString mathOperator(comboBox_element_achats_aux_fournisseurs_condition->currentText());
+	QString mathOperator(comboBox_element_achats_de_services_condition->currentText());
 
 	QString REAL_DB_ID_NAME_achatsTableColumnProperty(
 			YerothDatabaseTableColumn::_tableColumnToUserViewString.key(achatsTableColumnProperty));
@@ -229,13 +229,13 @@ bool YerothAchatsAUXFournisseursWindow::filtrer_achats()
 
 		lister_les_elements_du_tableau(*_curAchatAUXFournisseursSqlTableModel);
 
-		YEROTH_QMESSAGE_BOX_QUELQUE_RESULTAT_FILTRE(this, resultRows, "achats-aux-fournisseurs - filtrer");
+		YEROTH_QMESSAGE_BOX_QUELQUE_RESULTAT_FILTRE(this, resultRows, "achats-de-services - filtrer");
 
 		return true;
 	}
 	else
 	{
-		YEROTH_QMESSAGE_BOX_AUCUN_RESULTAT_FILTRE(this, "achats-aux-fournisseurs - filtrer");
+		YEROTH_QMESSAGE_BOX_AUCUN_RESULTAT_FILTRE(this, "achats-de-services - filtrer");
 
 		return false;
 	}
@@ -246,7 +246,7 @@ bool YerothAchatsAUXFournisseursWindow::filtrer_achats()
 }
 
 
-void YerothAchatsAUXFournisseursWindow::populateComboBoxes()
+void YerothAchatsDEServicesWindow::populateComboBoxes()
 {
 	QStringList aQStringList;
 
@@ -289,7 +289,7 @@ void YerothAchatsAUXFournisseursWindow::populateComboBoxes()
 
 	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::QUANTITE_TOTALE));
 
-    comboBox_element_achats_aux_fournisseurs->addItems(aQStringList);
+    comboBox_element_achats_de_services->addItems(aQStringList);
 
 
 	aQStringList.clear();
@@ -304,51 +304,51 @@ void YerothAchatsAUXFournisseursWindow::populateComboBoxes()
 
 	aQStringList.append("=");
 
-    comboBox_element_achats_aux_fournisseurs_condition->addItems(aQStringList);
+    comboBox_element_achats_de_services_condition->addItems(aQStringList);
 }
 
 
-void YerothAchatsAUXFournisseursWindow::setupLineEdits()
+void YerothAchatsDEServicesWindow::setupLineEdits()
 {
-	lineEdit_achats_aux_fournisseurs_terme_recherche->enableForSearch(QObject::trUtf8("terme à rechercher (désignation de l'article)"));
+	lineEdit_achats_de_services_terme_recherche->enableForSearch(QObject::trUtf8("terme à rechercher (désignation de l'article)"));
 
 	lineEdit_nom_element_string_db->enableForSearch(QObject::trUtf8("valeur à rechercher"));
 
-	lineEdit_achats_aux_fournisseurs_nombre_dachats->setYerothEnabled(false);
+	lineEdit_achats_de_services_nombre_dachats->setYerothEnabled(false);
 
-	comboBox_element_achats_aux_fournisseurs_condition->setValidator(&YerothUtils::DoubleValidator);
+	comboBox_element_achats_de_services_condition->setValidator(&YerothUtils::DoubleValidator);
 
-	MACRO_TO_BIND_PAGING_WITH_QLINEEDIT(lineEdit_achats_aux_fournisseurs_nombre_de_lignes_par_page, tableView_achats_aux_fournisseurs);
+	MACRO_TO_BIND_PAGING_WITH_QLINEEDIT(lineEdit_achats_de_services_nombre_de_lignes_par_page, tableView_achats_de_services);
 }
 
 
-void YerothAchatsAUXFournisseursWindow::setupDateTimeEdits()
+void YerothAchatsDEServicesWindow::setupDateTimeEdits()
 {
-    dateEdit_achats_aux_fournisseurs_debut->setStartDate(YerothERPConfig::GET_YEROTH_PAGING_DEFAULT_START_DATE());
+    dateEdit_achats_de_services_debut->setStartDate(YerothERPConfig::GET_YEROTH_PAGING_DEFAULT_START_DATE());
 
-    dateEdit_achats_aux_fournisseurs_fin->setStartDate(GET_CURRENT_DATE);
+    dateEdit_achats_de_services_fin->setStartDate(GET_CURRENT_DATE);
 
-    _achats_aux_fournisseursDateFilter.clear();
+    _achats_de_servicesDateFilter.clear();
 
-    _achats_aux_fournisseursDateFilter.append(QString(" ( %1 >= '%2' AND %3 <= '%4' ) ")
+    _achats_de_servicesDateFilter.append(QString(" ( %1 >= '%2' AND %3 <= '%4' ) ")
     					.arg(YerothDatabaseTableColumn::DATE_DE_COMMANDE,
-    						 DATE_TO_DB_FORMAT_STRING(dateEdit_achats_aux_fournisseurs_debut->date()),
+    						 DATE_TO_DB_FORMAT_STRING(dateEdit_achats_de_services_debut->date()),
 							 YerothDatabaseTableColumn::DATE_DE_COMMANDE,
-							 DATE_TO_DB_FORMAT_STRING(dateEdit_achats_aux_fournisseurs_fin->date())));
+							 DATE_TO_DB_FORMAT_STRING(dateEdit_achats_de_services_fin->date())));
 
-    connect(dateEdit_achats_aux_fournisseurs_debut,
+    connect(dateEdit_achats_de_services_debut,
     		SIGNAL(dateChanged(const QDate &)),
 			this,
 			SLOT(refineYerothLineEdits()));
 
-    connect(dateEdit_achats_aux_fournisseurs_fin,
+    connect(dateEdit_achats_de_services_fin,
     		SIGNAL(dateChanged(const QDate &)),
 			this,
 			SLOT(refineYerothLineEdits()));
 }
 
 
-void YerothAchatsAUXFournisseursWindow::setupShortcuts()
+void YerothAchatsDEServicesWindow::setupShortcuts()
 {
     setupShortcutActionMessageDaide 		(*actionAppeler_aide);
     setupShortcutActionExporterAuFormatCsv	(*actionExporter_au_format_csv);
@@ -359,7 +359,7 @@ void YerothAchatsAUXFournisseursWindow::setupShortcuts()
 }
 
 
-void YerothAchatsAUXFournisseursWindow::resetFilter(YerothSqlTableModel * achatsTableModel)
+void YerothAchatsDEServicesWindow::resetFilter(YerothSqlTableModel * achatsTableModel)
 {
 	_curAchatAUXFournisseursSqlTableModel = achatsTableModel;
 
@@ -368,14 +368,14 @@ void YerothAchatsAUXFournisseursWindow::resetFilter(YerothSqlTableModel * achats
     	_curAchatAUXFournisseursSqlTableModel->resetFilter();
     }
 
-    lineEdit_achats_aux_fournisseurs_terme_recherche->myClear();
+    lineEdit_achats_de_services_terme_recherche->myClear();
 
-    dateEdit_achats_aux_fournisseurs_debut->reset();
-    dateEdit_achats_aux_fournisseurs_fin->reset();
+    dateEdit_achats_de_services_debut->reset();
+    dateEdit_achats_de_services_fin->reset();
 }
 
 
-void YerothAchatsAUXFournisseursWindow::slot_reinitialiser_colones_db_visibles()
+void YerothAchatsDEServicesWindow::slot_reinitialiser_colones_db_visibles()
 {
 	reinitialiser_colones_db_visibles();
 	resetTableViewHorizontalHeader_DEFAULT_ORDERING();
@@ -387,15 +387,15 @@ void YerothAchatsAUXFournisseursWindow::slot_reinitialiser_colones_db_visibles()
 }
 
 
-void YerothAchatsAUXFournisseursWindow::textChangedSearchLineEditsQCompleters()
+void YerothAchatsDEServicesWindow::textChangedSearchLineEditsQCompleters()
 {
-	comboBox_element_achats_aux_fournisseurs_condition->clear();
+	comboBox_element_achats_de_services_condition->clear();
 
     setCurrentlyFiltered(false);
 
     clearSearchFilter();
 
-    QString searchTerm(lineEdit_achats_aux_fournisseurs_terme_recherche->text());
+    QString searchTerm(lineEdit_achats_de_services_terme_recherche->text());
 
     if (!searchTerm.isEmpty())
     {
@@ -458,12 +458,12 @@ void YerothAchatsAUXFournisseursWindow::textChangedSearchLineEditsQCompleters()
     	}
     }
 
-    QString finalSearchFilter(_achats_aux_fournisseursDateFilter);
+    QString finalSearchFilter(_achats_de_servicesDateFilter);
 
     if (!_searchFilter.isEmpty())
     {
     	QString searchFilterWithDate(QString("%1 AND (%2)")
-    									.arg(_achats_aux_fournisseursDateFilter,
+    									.arg(_achats_de_servicesDateFilter,
     										 _searchFilter));
 
     	finalSearchFilter = searchFilterWithDate;
@@ -477,7 +477,7 @@ void YerothAchatsAUXFournisseursWindow::textChangedSearchLineEditsQCompleters()
     }
     else
     {
-        qDebug() << QString("++ YerothAchatsAUXFournisseursWindow::textChangedSearchLineEditsQCompleters(): %1")
+        qDebug() << QString("++ YerothAchatsDEServicesWindow::textChangedSearchLineEditsQCompleters(): %1")
         				.arg(_yerothSqlTableModel->lastError().text());
     }
 
@@ -485,7 +485,7 @@ void YerothAchatsAUXFournisseursWindow::textChangedSearchLineEditsQCompleters()
 }
 
 
-void YerothAchatsAUXFournisseursWindow::reinitialiser_colones_db_visibles()
+void YerothAchatsDEServicesWindow::reinitialiser_colones_db_visibles()
 {
 	_visibleDBColumnNameStrList.clear();
 
@@ -503,19 +503,19 @@ void YerothAchatsAUXFournisseursWindow::reinitialiser_colones_db_visibles()
 }
 
 
-void YerothAchatsAUXFournisseursWindow::contextMenuEvent(QContextMenuEvent * event)
+void YerothAchatsDEServicesWindow::contextMenuEvent(QContextMenuEvent * event)
 {
-    if (tableView_achats_aux_fournisseurs->rowCount() > 0)
+    if (tableView_achats_de_services->rowCount() > 0)
     {
         QMenu menu(this);
-        menu.setPalette(toolBar_achats_aux_fournisseursWindow->palette());
+        menu.setPalette(toolBar_achats_de_servicesWindow->palette());
         menu.addAction(actionAfficher_achat_au_detail);
         menu.exec(event->globalPos());
     }
 }
 
 
-void YerothAchatsAUXFournisseursWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
+void YerothAchatsDEServicesWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 {
     _logger->log("rendreVisible");
 
@@ -527,7 +527,7 @@ void YerothAchatsAUXFournisseursWindow::rendreVisible(YerothSqlTableModel * stoc
 
     _curStocksTableModel = stocksTableModel;
 
-    lineEdit_achats_aux_fournisseurs_terme_recherche->setFocus();
+    lineEdit_achats_de_services_terme_recherche->setFocus();
 
     setVisible(true);
 
@@ -535,20 +535,20 @@ void YerothAchatsAUXFournisseursWindow::rendreVisible(YerothSqlTableModel * stoc
 }
 
 
-void YerothAchatsAUXFournisseursWindow::definirCaissier()
+void YerothAchatsDEServicesWindow::definirCaissier()
 {
     _logger->log("definirCaissier -  definirPasDeRole()");
 
     definirPasDeRole();
 }
 
-void YerothAchatsAUXFournisseursWindow::definirManager()
+void YerothAchatsDEServicesWindow::definirManager()
 {
     _logger->log("definirManager");
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_achat_au_detail, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerUnAchatAuFournisseur, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerUnAchatDeService, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionExporter_au_format_csv, true);
@@ -565,8 +565,8 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(this, _curAchatAUXFournisseursSqlTableModel)
 
-    pushButton_achats_aux_fournisseurs_filtrer->enable(this, SLOT(filtrer_achats()));
-    pushButton_achats_aux_fournisseurs_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
+    pushButton_achats_de_services_filtrer->enable(this, SLOT(filtrer_achats()));
+    pushButton_achats_de_services_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
 
     pushButton_supprimer->enable(this, SLOT(supprimer_un_achat_au_fournisseur()));
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
@@ -576,7 +576,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 }
 
 
-void YerothAchatsAUXFournisseursWindow::definirVendeur()
+void YerothAchatsDEServicesWindow::definirVendeur()
 {
     _logger->log("definirVendeur - definirPasDeRole()");
 
@@ -584,27 +584,27 @@ void YerothAchatsAUXFournisseursWindow::definirVendeur()
 }
 
 
-void YerothAchatsAUXFournisseursWindow::definirGestionaireDesStocks()
+void YerothAchatsDEServicesWindow::definirGestionaireDesStocks()
 {
     _logger->log("definirGestionaireDesStocks - definirPasDeRole()");
 
     definirPasDeRole();
 }
 
-void YerothAchatsAUXFournisseursWindow::definirMagasinier()
+void YerothAchatsDEServicesWindow::definirMagasinier()
 {
     _logger->log("definirMagasinier - definirPasDeRole()");
 
     definirPasDeRole();
 }
 
-void YerothAchatsAUXFournisseursWindow::definirPasDeRole()
+void YerothAchatsDEServicesWindow::definirPasDeRole()
 {
     _logger->log("definirPasDeRole");
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_achat_au_detail, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerUnAchatAuFournisseur, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerUnAchatDeService, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionExporter_au_format_csv, false);
@@ -615,8 +615,8 @@ void YerothAchatsAUXFournisseursWindow::definirPasDeRole()
 
     MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS
 
-    pushButton_achats_aux_fournisseurs_filtrer->disable(this);
-    pushButton_achats_aux_fournisseurs_reinitialiser_filtre->disable(this);
+    pushButton_achats_de_services_filtrer->disable(this);
+    pushButton_achats_de_services_reinitialiser_filtre->disable(this);
 
     pushButton_supprimer->disable(this);
     pushButton_afficher->disable(this);
@@ -625,7 +625,7 @@ void YerothAchatsAUXFournisseursWindow::definirPasDeRole()
     pushButton_menu_principal->disable(this);
 }
 
-void YerothAchatsAUXFournisseursWindow::afficher_au_detail()
+void YerothAchatsDEServicesWindow::afficher_au_detail()
 {
     _logger->log("afficher_au_detail");
 
@@ -645,7 +645,7 @@ void YerothAchatsAUXFournisseursWindow::afficher_au_detail()
 }
 
 
-void YerothAchatsAUXFournisseursWindow::afficher_au_detail(const QModelIndex & modelIndex)
+void YerothAchatsDEServicesWindow::afficher_au_detail(const QModelIndex & modelIndex)
 {
     _logger->log("afficher_au_detail(const QModelIndex &)");
 
@@ -667,15 +667,15 @@ void YerothAchatsAUXFournisseursWindow::afficher_au_detail(const QModelIndex & m
 }
 
 
-void YerothAchatsAUXFournisseursWindow::refineYerothLineEdits()
+void YerothAchatsDEServicesWindow::refineYerothLineEdits()
 {
-	_achats_aux_fournisseursDateFilter.clear();
+	_achats_de_servicesDateFilter.clear();
 
-	_achats_aux_fournisseursDateFilter.append(QString(" ( %1 >= '%2' AND %3 <= '%4' ) ")
+	_achats_de_servicesDateFilter.append(QString(" ( %1 >= '%2' AND %3 <= '%4' ) ")
     					.arg(YerothDatabaseTableColumn::DATE_DE_COMMANDE,
-    						 DATE_TO_DB_FORMAT_STRING(dateEdit_achats_aux_fournisseurs_debut->date()),
+    						 DATE_TO_DB_FORMAT_STRING(dateEdit_achats_de_services_debut->date()),
 							 YerothDatabaseTableColumn::DATE_DE_COMMANDE,
-							 DATE_TO_DB_FORMAT_STRING(dateEdit_achats_aux_fournisseurs_fin->date())));
+							 DATE_TO_DB_FORMAT_STRING(dateEdit_achats_de_services_fin->date())));
 
 	setupLineEditsQCompleters((QObject *)this);
 
@@ -683,11 +683,11 @@ void YerothAchatsAUXFournisseursWindow::refineYerothLineEdits()
 }
 
 
-void YerothAchatsAUXFournisseursWindow::reinitialiser_elements_filtrage()
+void YerothAchatsDEServicesWindow::reinitialiser_elements_filtrage()
 {
     _logger->log("reinitialiser_elements_filtrage");
 
-    comboBox_element_achats_aux_fournisseurs_condition->clear();
+    comboBox_element_achats_de_services_condition->clear();
 
     setCurrentlyFiltered(false);
 
@@ -695,17 +695,17 @@ void YerothAchatsAUXFournisseursWindow::reinitialiser_elements_filtrage()
 }
 
 
-void YerothAchatsAUXFournisseursWindow::reinitialiser_recherche()
+void YerothAchatsDEServicesWindow::reinitialiser_recherche()
 {
     _logger->log("reinitialiser_recherche");
 
     lineEdit_nom_element_string_db->clear();
 
-    comboBox_element_achats_aux_fournisseurs_condition->clear();
+    comboBox_element_achats_de_services_condition->clear();
 
     setCurrentlyFiltered(false);
 
-    resetFilter(&_allWindows->getSqlTableModel_achats_aux_fournisseurs());
+    resetFilter(&_allWindows->getSqlTableModel_achats_de_services());
 
     resetLineEditsQCompleters((QObject *)this);
 
@@ -713,7 +713,7 @@ void YerothAchatsAUXFournisseursWindow::reinitialiser_recherche()
 }
 
 
-void YerothAchatsAUXFournisseursWindow::lister_les_elements_du_tableau(YerothSqlTableModel &achatSqlTableModel)
+void YerothAchatsDEServicesWindow::lister_les_elements_du_tableau(YerothSqlTableModel &achatSqlTableModel)
 {
     int curAchatsTableModelRowCount = achatSqlTableModel.easySelect();
 
@@ -740,20 +740,20 @@ void YerothAchatsAUXFournisseursWindow::lister_les_elements_du_tableau(YerothSql
         montant_total += montant_total_achat;
     }
 
-    lineEdit_achats_aux_fournisseurs_total_achats->setText(GET_CURRENCY_STRING_NUM(montant_total));
+    lineEdit_achats_de_services_total_achats->setText(GET_CURRENCY_STRING_NUM(montant_total));
 
 
-	tableView_achats_aux_fournisseurs->queryYerothTableViewCurrentPageContentRow(achatSqlTableModel);
+	tableView_achats_de_services->queryYerothTableViewCurrentPageContentRow(achatSqlTableModel);
 
-    tableView_show_or_hide_columns(*tableView_achats_aux_fournisseurs);
+    tableView_show_or_hide_columns(*tableView_achats_de_services);
 
-    int rowCount = tableView_achats_aux_fournisseurs->rowCount();
+    int rowCount = tableView_achats_de_services->rowCount();
 
-    lineEdit_achats_aux_fournisseurs_nombre_dachats->setText(GET_NUM_STRING(rowCount));
+    lineEdit_achats_de_services_nombre_dachats->setText(GET_NUM_STRING(rowCount));
 }
 
 
-void YerothAchatsAUXFournisseursWindow::afficher_stock_selectioner(const QString & stockName)
+void YerothAchatsDEServicesWindow::afficher_stock_selectioner(const QString & stockName)
 {
     _logger->log("afficher_stock_selectioner(const QString &)");
 
@@ -772,22 +772,22 @@ void YerothAchatsAUXFournisseursWindow::afficher_stock_selectioner(const QString
 }
 
 
-void YerothAchatsAUXFournisseursWindow::set_filtrer_font()
+void YerothAchatsDEServicesWindow::set_filtrer_font()
 {
     if (isCurrentlyFiltered())
     {
-    	_pushButton_achats_aux_fournisseurs_filtrer_font->setUnderline(true);
+    	_pushButton_achats_de_services_filtrer_font->setUnderline(true);
     }
     else
     {
-    	_pushButton_achats_aux_fournisseurs_filtrer_font->setUnderline(false);
+    	_pushButton_achats_de_services_filtrer_font->setUnderline(false);
     }
 
-    pushButton_achats_aux_fournisseurs_filtrer->setFont(*_pushButton_achats_aux_fournisseurs_filtrer_font);
+    pushButton_achats_de_services_filtrer->setFont(*_pushButton_achats_de_services_filtrer_font);
 }
 
 
-bool YerothAchatsAUXFournisseursWindow::supprimer_un_achat_au_fournisseur()
+bool YerothAchatsDEServicesWindow::supprimer_un_achat_au_fournisseur()
 {
     if (getLastListerSelectedRow__ID_AS_INTEGER() <= -1 ||
     	_curAchatAUXFournisseursSqlTableModel->rowCount() <= 0)
@@ -802,7 +802,7 @@ bool YerothAchatsAUXFournisseursWindow::supprimer_un_achat_au_fournisseur()
 }
 
 
-bool YerothAchatsAUXFournisseursWindow::export_csv_file()
+bool YerothAchatsDEServicesWindow::export_csv_file()
 {
     _logger->log("export_csv_file");
 
@@ -814,15 +814,15 @@ bool YerothAchatsAUXFournisseursWindow::export_csv_file()
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 	success = YerothUtils::export_csv_file(*this,
-										   *tableView_achats_aux_fournisseurs,
+										   *tableView_achats_de_services,
 										   tableColumnsToIgnore,
-										   "yeroth-erp-fiche-achats-aux-fournisseurs",
-										   "fiche des achats aux fournisseurs");
+										   "yeroth-erp-fiche-achats-de-services",
+										   "fiche des achats de services");
 #endif
 
 #ifdef YEROTH_ENGLISH_LANGUAGE
 	success = YerothUtils::export_csv_file(*this,
-										   *tableView_achats_aux_fournisseurs,
+										   *tableView_achats_de_services,
 										   tableColumnsToIgnore,
 										   "yeroth-erp-supplier-purchase-listing",
 										   "supplier purchase listing file");
@@ -832,7 +832,7 @@ bool YerothAchatsAUXFournisseursWindow::export_csv_file()
 }
 
 
-bool YerothAchatsAUXFournisseursWindow::imprimer_pdf_document()
+bool YerothAchatsDEServicesWindow::imprimer_pdf_document()
 {
 	_latex_template_print_pdf_content = YerothUtils::template_lister_achats_tex;
 	return YerothWindowsCommons::imprimer_pdf_document();

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>YerothAchatsAUXFournisseursWindow</class>
- <widget class="QMainWindow" name="YerothAchatsAUXFournisseursWindow">
+ <class>YerothAchatsDEServicesWindow</class>
+ <widget class="QMainWindow" name="YerothAchatsDEServicesWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -431,7 +431,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>Yeroth-erp-3.0 - fiche des achats aux fournisseurs</string>
+   <string>Yeroth-erp-3.0 - fiche des achats de services</string>
   </property>
   <property name="locale">
    <locale language="French" country="France"/>
@@ -1770,7 +1770,7 @@
      <string>Ventes</string>
     </property>
    </widget>
-   <widget class="YerothERPAchatsAUXFournisseursTableView" name="tableView_achats_aux_fournisseurs">
+   <widget class="YerothERPAchatsAUXFournisseursTableView" name="tableView_achats_de_services">
     <property name="geometry">
      <rect>
       <x>11</x>
@@ -3107,7 +3107,7 @@
      <string>réinitialiser</string>
     </property>
    </widget>
-   <widget class="YerothLineEdit" name="lineEdit_element_achats_aux_fournisseurs_resultat">
+   <widget class="YerothLineEdit" name="lineEdit_element_achats_de_services_resultat">
     <property name="geometry">
      <rect>
       <x>245</x>
@@ -3585,7 +3585,7 @@ background-color: rgb(0, 0, 0); </string>
      <enum>Qt::LogicalMoveStyle</enum>
     </property>
    </widget>
-   <widget class="YerothPushButton" name="pushButton_achats_aux_fournisseurs_filtrer">
+   <widget class="YerothPushButton" name="pushButton_achats_de_services_filtrer">
     <property name="geometry">
      <rect>
       <x>165</x>
@@ -4019,7 +4019,7 @@ background-color: rgb(0, 0, 0); </string>
      <string>filtrer</string>
     </property>
    </widget>
-   <widget class="YerothComboBox" name="comboBox_element_achats_aux_fournisseurs_condition">
+   <widget class="YerothComboBox" name="comboBox_element_achats_de_services_condition">
     <property name="geometry">
      <rect>
       <x>165</x>
@@ -4451,7 +4451,7 @@ background-color: rgb(0, 0, 0); </string>
      </font>
     </property>
    </widget>
-   <widget class="YerothComboBox" name="comboBox_element_achats_aux_fournisseurs">
+   <widget class="YerothComboBox" name="comboBox_element_achats_de_services">
     <property name="geometry">
      <rect>
       <x>12</x>
@@ -4883,7 +4883,7 @@ background-color: rgb(0, 0, 0); </string>
      </font>
     </property>
    </widget>
-   <widget class="YerothPushButton" name="pushButton_achats_aux_fournisseurs_reinitialiser_filtre">
+   <widget class="YerothPushButton" name="pushButton_achats_de_services_reinitialiser_filtre">
     <property name="geometry">
      <rect>
       <x>12</x>
@@ -5752,7 +5752,7 @@ background-color: rgb(0, 0, 0); </string>
      <string>Stocks</string>
     </property>
    </widget>
-   <widget class="YerothLineEdit" name="lineEdit_achats_aux_fournisseurs_terme_recherche">
+   <widget class="YerothLineEdit" name="lineEdit_achats_de_services_terme_recherche">
     <property name="geometry">
      <rect>
       <x>11</x>
@@ -6100,7 +6100,7 @@ background-color: rgb(0, 0, 0); </string>
 background-color: rgb(0, 0, 0);</string>
     </property>
    </widget>
-   <widget class="YerothLineEdit" name="lineEdit_achats_aux_fournisseurs_nombre_dachats">
+   <widget class="YerothLineEdit" name="lineEdit_achats_de_services_nombre_dachats">
     <property name="geometry">
      <rect>
       <x>591</x>
@@ -6597,7 +6597,7 @@ background-color: rgb(0, 0, 0); </string>
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="label_nombre_dachats_aux_fournisseurs">
+   <widget class="QLabel" name="label_nombre_dachats_de_services">
     <property name="geometry">
      <rect>
       <x>486</x>
@@ -6955,7 +6955,7 @@ background-color: rgb(0, 0, 0); </string>
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="label_achats_aux_fournisseurs_numero_page_derniere">
+   <widget class="QLabel" name="label_achats_de_services_numero_page_derniere">
     <property name="geometry">
      <rect>
       <x>319</x>
@@ -8220,7 +8220,7 @@ border: none;</string>
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="label_achats_aux_fournisseurs_separation_page_precedente_ou_suivante">
+   <widget class="QLabel" name="label_achats_de_services_separation_page_precedente_ou_suivante">
     <property name="geometry">
      <rect>
       <x>302</x>
@@ -8939,7 +8939,7 @@ border: none;</string>
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="YerothLineEdit" name="lineEdit_achats_aux_fournisseurs_nombre_de_lignes_par_page">
+   <widget class="YerothLineEdit" name="lineEdit_achats_de_services_nombre_de_lignes_par_page">
     <property name="geometry">
      <rect>
       <x>203</x>
@@ -9852,7 +9852,7 @@ border: 0px rgb(255, 255, 255);</string>
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="label_achats_aux_fournisseurs_numero_page_courante">
+   <widget class="QLabel" name="label_achats_de_services_numero_page_courante">
     <property name="geometry">
      <rect>
       <x>245</x>
@@ -11577,7 +11577,7 @@ background-color: rgb(0, 0, 0); </string>
      <enum>Qt::LogicalMoveStyle</enum>
     </property>
    </widget>
-   <widget class="YerothLineEdit" name="lineEdit_achats_aux_fournisseurs_total_achats">
+   <widget class="YerothLineEdit" name="lineEdit_achats_de_services_total_achats">
     <property name="geometry">
      <rect>
       <x>591</x>
@@ -12074,7 +12074,7 @@ background-color: rgb(0, 0, 0); </string>
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="label_achats_aux_fournisseurs_total">
+   <widget class="QLabel" name="label_achats_de_services_total">
     <property name="geometry">
      <rect>
       <x>486</x>
@@ -12432,7 +12432,7 @@ background-color: rgb(0, 0, 0); </string>
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="YerothDateTimeEdit" name="dateEdit_achats_aux_fournisseurs_debut">
+   <widget class="YerothDateTimeEdit" name="dateEdit_achats_de_services_debut">
     <property name="geometry">
      <rect>
       <x>132</x>
@@ -12875,7 +12875,7 @@ background-color: rgb(0, 0, 0); </string>
      </date>
     </property>
    </widget>
-   <widget class="YerothDateTimeEdit" name="dateEdit_achats_aux_fournisseurs_fin">
+   <widget class="YerothDateTimeEdit" name="dateEdit_achats_de_services_fin">
     <property name="geometry">
      <rect>
       <x>132</x>
@@ -13318,7 +13318,7 @@ background-color: rgb(0, 0, 0); </string>
      </date>
     </property>
    </widget>
-   <widget class="QLabel" name="label_achats_aux_fournisseurs_date_end">
+   <widget class="QLabel" name="label_achats_de_services_date_end">
     <property name="geometry">
      <rect>
       <x>12</x>
@@ -13756,7 +13756,7 @@ background-color: rgb(0, 0, 0); </string>
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="label_achats_aux_fournisseurs_date_begin">
+   <widget class="QLabel" name="label_achats_de_services_date_begin">
     <property name="geometry">
      <rect>
       <x>12</x>
@@ -14197,7 +14197,7 @@ background-color: rgb(0, 0, 0); </string>
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="YerothLineEdit" name="lineEdit_achats_aux_fournisseurs_FOURNISSEUR_EMPLOYE">
+   <widget class="YerothLineEdit" name="lineEdit_achats_de_services_FOURNISSEUR_EMPLOYE">
     <property name="geometry">
      <rect>
       <x>591</x>
@@ -15975,7 +15975,7 @@ background-color: rgb(0, 0, 0); </string>
     <addaction name="actionDeconnecter_utilisateur"/>
     <addaction name="separator"/>
     <addaction name="actionAfficher_achat_au_detail"/>
-    <addaction name="actionSupprimerUnAchatAuFournisseur"/>
+    <addaction name="actionSupprimerUnAchatDeService"/>
     <addaction name="separator"/>
     <addaction name="actionStocks"/>
     <addaction name="actionVentes"/>
@@ -16430,7 +16430,7 @@ background-color: rgb(0, 0, 0); </string>
     </font>
    </property>
   </widget>
-  <widget class="QToolBar" name="toolBar_achats_aux_fournisseursWindow">
+  <widget class="QToolBar" name="toolBar_achats_de_servicesWindow">
    <property name="sizePolicy">
     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
      <horstretch>0</horstretch>
@@ -16853,7 +16853,7 @@ background-color: rgb(0, 0, 0); </string>
     </palette>
    </property>
    <property name="windowTitle">
-    <string>Yeroth-erp-3.0 - fiche des achats_aux_fournisseurs</string>
+    <string>Yeroth-erp-3.0 - fiche des achats_de_services</string>
    </property>
    <property name="autoFillBackground">
     <bool>true</bool>
@@ -16937,10 +16937,10 @@ background-color: rgb(0, 0, 0); </string>
      <normaloff>:/yeroth-erp-3-0-images/yeroth-erp-3-0-pdf-print-icon.svg</normaloff>:/yeroth-erp-3-0-images/yeroth-erp-3-0-pdf-print-icon.svg</iconset>
    </property>
    <property name="text">
-    <string>Imprimer la fiche des achats aux fournisseurs</string>
+    <string>Imprimer la fiche des achats de services</string>
    </property>
    <property name="toolTip">
-    <string>Imprimer la fiche des achats aux fournisseurs</string>
+    <string>Imprimer la fiche des achats de services</string>
    </property>
    <property name="font">
     <font>
@@ -17166,7 +17166,7 @@ background-color: rgb(0, 0, 0); </string>
     </font>
    </property>
   </action>
-  <action name="actionSupprimerUnAchatAuFournisseur">
+  <action name="actionSupprimerUnAchatDeService">
    <property name="text">
     <string>Supprimer 1 achat au fournisseur</string>
    </property>
@@ -17202,23 +17202,23 @@ background-color: rgb(0, 0, 0); </string>
   <customwidget>
    <class>YerothERPAchatsAUXFournisseursTableView</class>
    <extends>QTableView</extends>
-   <header>src/widgets/table-view/yeroth-erp-achats-aux-fournisseurs-table-view.hpp</header>
+   <header>src/widgets/table-view/yeroth-erp-achats-de-services-table-view.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>lineEdit_achats_aux_fournisseurs_terme_recherche</tabstop>
-  <tabstop>lineEdit_element_achats_aux_fournisseurs_resultat</tabstop>
-  <tabstop>comboBox_element_achats_aux_fournisseurs_condition</tabstop>
-  <tabstop>comboBox_element_achats_aux_fournisseurs</tabstop>
-  <tabstop>pushButton_achats_aux_fournisseurs_filtrer</tabstop>
-  <tabstop>pushButton_achats_aux_fournisseurs_reinitialiser_filtre</tabstop>
+  <tabstop>lineEdit_achats_de_services_terme_recherche</tabstop>
+  <tabstop>lineEdit_element_achats_de_services_resultat</tabstop>
+  <tabstop>comboBox_element_achats_de_services_condition</tabstop>
+  <tabstop>comboBox_element_achats_de_services</tabstop>
+  <tabstop>pushButton_achats_de_services_filtrer</tabstop>
+  <tabstop>pushButton_achats_de_services_reinitialiser_filtre</tabstop>
   <tabstop>pushButton_reinitialiser</tabstop>
   <tabstop>pushButton_afficher</tabstop>
   <tabstop>pushButton_supprimer</tabstop>
   <tabstop>pushButton_menu_principal</tabstop>
   <tabstop>pushButton_stocks</tabstop>
   <tabstop>pushButton_ventes</tabstop>
-  <tabstop>tableView_achats_aux_fournisseurs</tabstop>
+  <tabstop>tableView_achats_de_services</tabstop>
  </tabstops>
  <resources>
   <include location="../../yeroth-erp-3-0.qrc"/>

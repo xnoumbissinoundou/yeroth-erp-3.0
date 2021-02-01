@@ -158,9 +158,9 @@ private slots:
 
 	bool product_search_with_codebar();
 
-	void display_quantite_total(const QString &quantite_par_lot);
+	void display_quantite_totale(const QString &quantite_par_lot);
 
-	void display_quantite_total_by_spinbox(double lots);
+	void display_quantite_totale_by_spinbox(double lots);
 
 	void calculate_and_display_ALL_benefit_buying_price_percentage();
 

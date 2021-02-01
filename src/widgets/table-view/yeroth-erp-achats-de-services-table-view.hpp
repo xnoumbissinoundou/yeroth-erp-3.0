@@ -1,11 +1,11 @@
 /*
- * yeroth-erp-achats-aux-fournisseurs-table-view.hpp
+ * yeroth-erp-achats-de-services-table-view.hpp
  *
  *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
-#ifndef SRC_YEROTH_ACHATS_AUX_FOURNISSEURS_TABLE_VIEW_HPP_
-#define SRC_YEROTH_ACHATS_AUX_FOURNISSEURS_TABLE_VIEW_HPP_
+#ifndef SRC_YEROTH_ACHATS_DE_SERVICES_TABLE_VIEW_HPP_
+#define SRC_YEROTH_ACHATS_DE_SERVICES_TABLE_VIEW_HPP_
 
 #include "src/include/yeroth-erp-3-0-software.text-configuration.hpp"
 
@@ -53,4 +53,4 @@ protected:
 };
 
 
-#endif /* SRC_YEROTH_ACHATS_AUX_FOURNISSEURS_TABLE_VIEW_HPP_ */
+#endif /* SRC_YEROTH_ACHATS_DE_SERVICES_TABLE_VIEW_HPP_ */

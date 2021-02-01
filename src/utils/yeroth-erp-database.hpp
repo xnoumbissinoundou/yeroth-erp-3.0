@@ -146,7 +146,7 @@ public:
 	static const QString FOURNISSEURS;
 	static const QString ALERTES;
 	static const QString REMISES;
-	static const QString ACHATS_AUX_FOURNISSEURS;
+	static const QString ACHATS_DE_SERVICES;
 	static const QString ACHATS;
 	static const QString STOCKS;
 	static const QString SERVICES_COMPLETES;
