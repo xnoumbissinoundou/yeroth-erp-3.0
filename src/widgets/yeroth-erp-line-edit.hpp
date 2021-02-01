@@ -41,7 +41,7 @@ public:
 
 	inline bool isEmpty()
 	{
-		return  text().isEmpty();
+		return text().isEmpty();
 	}
 
 	void enableForSearch(QString placeHoderText);
@@ -75,7 +75,7 @@ public:
 		QLineEdit::setText(QString(text.trimmed()).remove(YerothUtils::STAR_CHAR));
 	}
 
-	inline QString text(int truncate_pos = -1) const;
+	QString text(int truncate_pos = -1) const;
 
 	inline QString getLastQCompleterText()
 	{
