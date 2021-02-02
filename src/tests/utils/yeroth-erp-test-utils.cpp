@@ -24,8 +24,6 @@ void Test_YerothERPTestUtils::TEST_UTILS_truncate_database_all_tables()
 
 	QVERIFY(0 != yeroth_erp_3_0_db);
 
-	QDEBUG_STRING_OUTPUT_1("YEROTH *");
-
 	YerothUtils::executer_fichier_sql("yeroth-erp-3-0-test_data/truncate_test_yeroth_erp_3_test.sql");
 }
 
