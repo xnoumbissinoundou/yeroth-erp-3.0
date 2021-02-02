@@ -1,0 +1,21 @@
+"db_name: yeroth_erp_3_test, db_ip_address: localhost, db_connection_options: "
+********* Start testing of Test_YerothERPTableView *********
+Config: Using QtTest library 5.11.3, Qt 5.11.3 (x86_64-little_endian-lp64 shared (dynamic) release build; by GCC 8.3.0)
+QDEBUG : Test_YerothERPTableView::initTestCase() "Le stock 'test_yeroth_1' a été enregistré dans la liste des marchandises !"
+QDEBUG : Test_YerothERPTableView::initTestCase() "Le stock 'test_yeroth_2' a été enregistré dans la liste des marchandises !"
+PASS   : Test_YerothERPTableView::initTestCase()
+QDEBUG : Test_YerothERPTableView::test_TABLE_VIEW_lister_fefo() ++ stockNameToStockID_in_out:  QMap(("test_yeroth_1", "1")("test_yeroth_2", "2"))
+PASS   : Test_YerothERPTableView::test_TABLE_VIEW_lister_fefo()
+QDEBUG : Test_YerothERPTableView::test_TABLE_VIEW_lister_fifo() ++ stockNameToStockID_in_out:  QMap(("test_yeroth_1", "0")("test_yeroth_2", "2"))
+PASS   : Test_YerothERPTableView::test_TABLE_VIEW_lister_fifo()
+QDEBUG : Test_YerothERPTableView::test_TABLE_VIEW_lister_lifo() "++ aStockName: test_yeroth_1, itemEntryDate: 01.02.2021"
+QDEBUG : Test_YerothERPTableView::test_TABLE_VIEW_lister_lifo() "++ aStockName: test_yeroth_1, itemEntryDate: 01.02.2021"
+QDEBUG : Test_YerothERPTableView::test_TABLE_VIEW_lister_lifo() "++ aStockName: test_yeroth_1, itemEntryDate: 01.02.2021"
+QDEBUG : Test_YerothERPTableView::test_TABLE_VIEW_lister_lifo() "++ aStockName: test_yeroth_1, itemEntryDate: 01.02.2021"
+QDEBUG : Test_YerothERPTableView::test_TABLE_VIEW_lister_lifo() "++ aStockName: test_yeroth_1, itemEntryDate: 01.02.2021"
+QDEBUG : Test_YerothERPTableView::test_TABLE_VIEW_lister_lifo() "++ aStockName: test_yeroth_1, itemEntryDate: 01.02.2021"
+QDEBUG : Test_YerothERPTableView::test_TABLE_VIEW_lister_lifo() ++ stockNameToStockID_in_out:  QMap(("test_yeroth_1", "3")("test_yeroth_2", "2"))
+PASS   : Test_YerothERPTableView::test_TABLE_VIEW_lister_lifo()
+PASS   : Test_YerothERPTableView::cleanupTestCase()
+Totals: 5 passed, 0 failed, 0 skipped, 0 blacklisted, 2739ms
+********* Finished testing of Test_YerothERPTableView *********
