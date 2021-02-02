@@ -1,4 +1,4 @@
-reference;departement_produit;designation;categorie;prix_dachat;prix_unitaire;montant_tva;prix_vente;quantite_totale;date_entree;date_peremption
+reference;nom_departement_produit;designation;categorie;prix_dachat;prix_unitaire;montant_tva;prix_vente;quantite_totale;date_entree;date_peremption
 "123456789"; "yeroth_departement_1"; "test_yeroth_1"; "test_yeroth_categorie_1"; "150,00"; "201,00"; "0,00"; "201,00"; "7"; "01.12.2020"; "01.06.2022"
 "123456789"; "yeroth_departement_1"; "test_yeroth_1"; "test_yeroth_categorie_1"; "150,00"; "201,00"; "0,00"; "206,00"; "1"; "01.04.2021"; "01.07.2021"
 "1234567890"; "yeroth_departement_3"; "test_yeroth_2"; "test_yeroth_categorie_2"; "150,12"; "201,00"; "0,00"; "201,00"; "7"; "01.12.2020"; "01.06.2022"
