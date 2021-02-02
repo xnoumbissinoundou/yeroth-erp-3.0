@@ -11564,7 +11564,7 @@ background-color: rgb(0, 0, 0); </string>
       <rect>
        <x>3</x>
        <y>18</y>
-       <width>221</width>
+       <width>234</width>
        <height>100</height>
       </rect>
      </property>
@@ -12018,7 +12018,7 @@ background-color: rgb(0, 0, 0); </string>
        <rect>
         <x>7</x>
         <y>20</y>
-        <width>210</width>
+        <width>223</width>
         <height>19</height>
        </rect>
       </property>
@@ -12449,7 +12449,7 @@ background-color: rgb(0, 0, 0); </string>
        <rect>
         <x>7</x>
         <y>44</y>
-        <width>210</width>
+        <width>223</width>
         <height>19</height>
        </rect>
       </property>
@@ -12880,7 +12880,7 @@ background-color: rgb(0, 0, 0); </string>
        <rect>
         <x>7</x>
         <y>70</y>
-        <width>210</width>
+        <width>223</width>
         <height>19</height>
        </rect>
       </property>

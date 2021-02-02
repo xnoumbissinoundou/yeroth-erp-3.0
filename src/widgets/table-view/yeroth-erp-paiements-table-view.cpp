@@ -27,8 +27,6 @@
 
 #include <QtCore/QMap>
 
-#include <QtSql/QSqlField>
-
 #include <QtSql/QSqlQuery>
 
 #include <QtSql/QSqlRecord>
@@ -130,14 +128,10 @@ void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableM
 
     QStandardItem *anItem = 0;
 
-    QSqlField QSQLFIELD_compte_fournisseur;
-
     QVariant qv;
 
     for (int i = 0; i < rows; ++i)
     {
-    	QSQLFIELD_compte_fournisseur = tableModel.record(i).field(YerothDatabaseTableColumn::COMPTE_FOURNISSEUR);
-
     	for (int k = 0; k < columns; ++k)
     	{
     		curTableModelRawHdr = tableModel.record(i).fieldName(k);
@@ -167,19 +161,7 @@ void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableM
 
     			if (YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::TYPE_DE_PAIEMENT))
     			{
-    				if (QSQLFIELD_compte_fournisseur.isNull())
-    				{
-    					//!!! CE PAIEMENT EST CELUI D'UN CLIENT A L'ENTREPRISE !!!
-        				tmpQvString = YerothUtils::_typedencaissementToUserViewString.value(qv.toInt());
-
-    				}
-    				else
-    				{
-    					//!!! CE PAIEMENT EST CELUI DE L'ENTREPRISE A 1 FOURNISSEUR !!!
-        				tmpQvString = YerothUtils::_typededecaissementToUserViewString.value(qv.toInt());
-
-    				}
-
+    				tmpQvString = YerothUtils::_typedepaiementToUserViewString.value(qv.toInt());
     				anItem = new YerothQStandardItem(tmpQvString, false);
     			}
     			else if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID))

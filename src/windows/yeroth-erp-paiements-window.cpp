@@ -269,7 +269,7 @@ void YerothPaiementsWindow::populateComboBoxes()
 
 	comboBox_paiements_type_de_paiement->setupPopulateNORawString(YerothDatabase::TYPE_DE_PAIEMENT,
 																   YerothDatabaseTableColumn::TYPE_DE_PAIEMENT,
-																   &YerothUtils::_typedencaissementToUserViewString);
+																   &YerothUtils::_typedepaiementToUserViewString);
 
 	comboBox_paiements_type_de_paiement->populateComboBox();
 
@@ -400,11 +400,11 @@ void YerothPaiementsWindow::slot_reinitialiser_colones_db_visibles()
 void YerothPaiementsWindow::handleComboBoxClients_Typedepaiement_TextChanged(const QString &currentText)
 {
 	if (YerothUtils::isEqualCaseInsensitive(currentText,
-				YerothUtils::_typedencaissementToUserViewString.value(YerothUtils::ENCAISSEMENT_BANCAIRE)) ||
+				YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::ENCAISSEMENT_BANCAIRE)) ||
 		YerothUtils::isEqualCaseInsensitive(currentText,
-				YerothUtils::_typedencaissementToUserViewString.value(YerothUtils::ENCAISSEMENT_TELEPHONE)) ||
+				YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::ENCAISSEMENT_TELEPHONE)) ||
 		YerothUtils::isEqualCaseInsensitive(currentText,
-				YerothUtils::_typedencaissementToUserViewString.value(YerothUtils::ENCAISSEMENT_VIREMENT_BANCAIRE)))
+				YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::ENCAISSEMENT_VIREMENT_BANCAIRE)))
 	{
 		comboBox_paiements_intitule_du_compte_bancaire->setYerothEnabled(true);
 	}
@@ -522,7 +522,7 @@ void YerothPaiementsWindow::textChangedSearchLineEditsQCompleters()
     				else if (aYerothComboBox == comboBox_paiements_type_de_paiement)
     				{
         				int typedepaiement = YerothUtils::getComboBoxDatabaseQueryValue(aTableColumnFieldContentForANDSearch,
-        						YerothUtils::_typedencaissementToUserViewString);
+        						YerothUtils::_typedepaiementToUserViewString);
 
         				curSearchDBStr = QString::number(typedepaiement);
     				}
@@ -845,8 +845,12 @@ void YerothPaiementsWindow::lister_les_elements_du_tableau(YerothSqlTableModel &
     }
 
     double balance_fournisseurs_total = 0.0;
+
     double balance_clients_total = 0.0;
-    double montant_paye = 0.0;
+
+    double compte_client_apres_paiement = 0.0;
+
+    double montant_paye_au_fournisseur = 0.0;
 
 
     QSqlField QSQLFIELD_compte_fournisseur;
@@ -862,15 +866,19 @@ void YerothPaiementsWindow::lister_les_elements_du_tableau(YerothSqlTableModel &
         QSQLFIELD_compte_fournisseur =
         		aRecord.field(YerothDatabaseTableColumn::COMPTE_FOURNISSEUR);
 
-        montant_paye = GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::MONTANT_PAYE).toDouble();
-
         if (QSQLFIELD_compte_fournisseur.isNull())
         {
-        	balance_clients_total += montant_paye;
+        	compte_client_apres_paiement =
+        			GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::COMPTE_CLIENT).toDouble();
+
+        	balance_clients_total += compte_client_apres_paiement;
         }
         else
         {
-        	balance_fournisseurs_total += montant_paye;
+        	montant_paye_au_fournisseur =
+        			GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::MONTANT_PAYE).toDouble();
+
+        	balance_fournisseurs_total += montant_paye_au_fournisseur;
         }
     }
 
@@ -942,7 +950,7 @@ void YerothPaiementsWindow::afficher_paiements_detail()
 
     int typeDePaiementIntValue = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::TYPE_DE_PAIEMENT).toInt();
 
-    lineEdit_details_de_paiement_typedepaiement->setText(YerothUtils::_typedencaissementToUserViewString.value(typeDePaiementIntValue));
+    lineEdit_details_de_paiement_typedepaiement->setText(YerothUtils::_typedepaiementToUserViewString.value(typeDePaiementIntValue));
 
     double aDoubleValue = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::COMPTE_CLIENT).toDouble();
 

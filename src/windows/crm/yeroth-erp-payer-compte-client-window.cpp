@@ -105,11 +105,11 @@ void YerothPayerCompteClientWindow::hideEvent(QHideEvent * hideEvent)
 void YerothPayerCompteClientWindow::handleComboBoxClients_Typedepaiement_TextChanged(const QString &currentText)
 {
 	if (YerothUtils::isEqualCaseInsensitive(currentText,
-				YerothUtils::_typedencaissementToUserViewString.value(YerothUtils::ENCAISSEMENT_BANCAIRE)) ||
+				YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::ENCAISSEMENT_BANCAIRE)) ||
 		YerothUtils::isEqualCaseInsensitive(currentText,
-				YerothUtils::_typedencaissementToUserViewString.value(YerothUtils::ENCAISSEMENT_TELEPHONE)) ||
+				YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::ENCAISSEMENT_TELEPHONE)) ||
 		YerothUtils::isEqualCaseInsensitive(currentText,
-				YerothUtils::_typedencaissementToUserViewString.value(YerothUtils::ENCAISSEMENT_VIREMENT_BANCAIRE)))
+				YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::ENCAISSEMENT_VIREMENT_BANCAIRE)))
 	{
 		comboBox_clients_intitule_du_compte_bancaire->setYerothEnabled(true);
 	}
@@ -588,7 +588,7 @@ bool YerothPayerCompteClientWindow::putCashIntoCustomerAccount()
     	paymentInfo.reference = comboBox_comptes_clients_reference->currentText();
 
     	paymentInfo.type_de_paiement = YerothUtils::getComboBoxDatabaseQueryValue(comboBox_clients_typedepaiement->currentText(),
-    																 	 	 	  YerothUtils::_typedencaissementToUserViewString);
+    																 	 	 	  YerothUtils::_typedepaiementToUserViewString);
 
     	paymentInfo.nom_entreprise = _curCompanyName;
 
@@ -720,7 +720,7 @@ void YerothPayerCompteClientWindow::populatePayerAuCompteClientsComboBoxes()
 
 	comboBox_clients_typedepaiement->setupPopulateNORawString(YerothDatabase::TYPE_DE_PAIEMENT,
     															YerothDatabaseTableColumn::TYPE_DE_PAIEMENT,
-																&YerothUtils::_typedencaissementToUserViewString);
+																&YerothUtils::_typedepaiementToUserViewString);
 
 	comboBox_clients_typedepaiement->populateComboBoxWithout(YerothUtils::ENCAISSEMENT_ACHAT_ANNULE);
 

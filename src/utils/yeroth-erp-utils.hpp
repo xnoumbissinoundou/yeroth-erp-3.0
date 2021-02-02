@@ -955,9 +955,7 @@ public:
 
 	static QMap<int, QString> _typedeventeToUserViewString;
 
-	static QMap<int, QString> _typededecaissementToUserViewString;
-
-	static QMap<int, QString> _typedencaissementToUserViewString;
+	static QMap<int, QString> _typedepaiementToUserViewString;
 
 
 	static const QString PREFIX_RECU_PAIEMENT_CLIENT;

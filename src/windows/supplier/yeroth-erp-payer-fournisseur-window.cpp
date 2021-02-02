@@ -106,11 +106,11 @@ void YerothPayerFournisseurWindow::hideEvent(QHideEvent * hideEvent)
 void YerothPayerFournisseurWindow::handleComboBoxFournisseurs_Typedepaiement_TextChanged(const QString &currentText)
 {
 	if (YerothUtils::isEqualCaseInsensitive(currentText,
-				YerothUtils::_typedencaissementToUserViewString.value(YerothUtils::ENCAISSEMENT_BANCAIRE)) ||
+				YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::ENCAISSEMENT_BANCAIRE)) ||
 		YerothUtils::isEqualCaseInsensitive(currentText,
-				YerothUtils::_typedencaissementToUserViewString.value(YerothUtils::ENCAISSEMENT_TELEPHONE)) ||
+				YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::ENCAISSEMENT_TELEPHONE)) ||
 		YerothUtils::isEqualCaseInsensitive(currentText,
-				YerothUtils::_typedencaissementToUserViewString.value(YerothUtils::ENCAISSEMENT_VIREMENT_BANCAIRE)))
+				YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::ENCAISSEMENT_VIREMENT_BANCAIRE)))
 	{
 		comboBox_fournisseurs_intitule_du_compte_bancaire->setYerothEnabled(true);
 	}
@@ -589,7 +589,7 @@ bool YerothPayerFournisseurWindow::putCashIntoCustomerAccount()
     	paymentInfo.reference = comboBox_fournisseurs_reference->currentText();
 
     	paymentInfo.type_de_paiement = YerothUtils::getComboBoxDatabaseQueryValue(comboBox_fournisseurs_typedepaiement->currentText(),
-    																 	 	 	  YerothUtils::_typedencaissementToUserViewString);
+    																 	 	 	  YerothUtils::_typedepaiementToUserViewString);
 
     	paymentInfo.nom_entreprise = _curCompanyName;
 
@@ -719,7 +719,7 @@ void YerothPayerFournisseurWindow::populatePayerAuFournisseursComboBoxes()
 
 	comboBox_fournisseurs_typedepaiement->setupPopulateNORawString(YerothDatabase::TYPE_DE_PAIEMENT,
     															YerothDatabaseTableColumn::TYPE_DE_PAIEMENT,
-																&YerothUtils::_typedencaissementToUserViewString);
+																&YerothUtils::_typedepaiementToUserViewString);
 
 	comboBox_fournisseurs_typedepaiement->populateComboBoxWithout(YerothUtils::ENCAISSEMENT_ACHAT_ANNULE);
 

@@ -393,9 +393,9 @@ void YerothTableView::lister_les_transactions_dun_fournisseur(QSqlQuery &sqlFour
     				{
     					if (0 < keyValue)
     					{
-    						if (YerothUtils::_typedencaissementToUserViewString.contains(keyValue))
+    						if (YerothUtils::_typedepaiementToUserViewString.contains(keyValue))
     						{
-    							stringKeyValue = YerothUtils::_typedencaissementToUserViewString.value(keyValue);
+    							stringKeyValue = YerothUtils::_typedepaiementToUserViewString.value(keyValue);
     						}
     						else if (YerothUtils::_typedeventeToUserViewString.contains(keyValue))
     						{
@@ -545,9 +545,9 @@ void YerothTableView::lister_les_transactions_dun_client(QSqlQuery &sqlClientTra
     				{
     					if (0 < keyValue)
     					{
-    						if (YerothUtils::_typedencaissementToUserViewString.contains(keyValue))
+    						if (YerothUtils::_typedepaiementToUserViewString.contains(keyValue))
     						{
-    							stringKeyValue = YerothUtils::_typedencaissementToUserViewString.value(keyValue);
+    							stringKeyValue = YerothUtils::_typedepaiementToUserViewString.value(keyValue);
     						}
     						else if (YerothUtils::_typedeventeToUserViewString.contains(keyValue))
     						{
