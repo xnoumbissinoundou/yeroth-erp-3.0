@@ -22,6 +22,8 @@
 #include "src/utils/yeroth-erp-utils.hpp"
 
 
+#include <QtSql/QSqlField>
+
 #include <QtSql/QSqlQuery>
 
 #include <QtSql/QSqlError>
@@ -343,7 +345,10 @@ void YerothPaiementsWindow::setupLineEdits()
     lineEdit_nom_element_string_db->enableForSearch(QObject::trUtf8("valeur à rechercher"));
 
     lineEdit_paiements_nombre_paiements->setYerothEnabled(false);
-	lineEdit_paiements_total->setYerothEnabled(false);
+
+    lineEdit_paiements_balance_fournisseurs_total->setYerothEnabled(false);
+
+    lineEdit_paiements_balance_clients_total->setYerothEnabled(false);
 
 	MACRO_TO_BIND_PAGING_WITH_QLINEEDIT(lineEdit_paiements_nombre_de_lignes_par_page, tableView_paiements);
 
@@ -561,13 +566,12 @@ void YerothPaiementsWindow::reinitialiser_colones_db_visibles()
 	_visibleDBColumnNameStrList.clear();
 
     _visibleDBColumnNameStrList
-    		<< YerothDatabaseTableColumn::DATE_PAIEMENT
 			<< YerothDatabaseTableColumn::NOM_ENTREPRISE
 			<< YerothDatabaseTableColumn::MONTANT_PAYE
 			<< YerothDatabaseTableColumn::TYPE_DE_PAIEMENT
+			<< YerothDatabaseTableColumn::COMPTE_FOURNISSEUR
 			<< YerothDatabaseTableColumn::COMPTE_CLIENT
-			<< YerothDatabaseTableColumn::REFERENCE
-			<< YerothDatabaseTableColumn::REFERENCE_RECU_PAIEMENT_CLIENT;
+			<< YerothDatabaseTableColumn::REFERENCE;
 }
 
 
@@ -585,6 +589,10 @@ void YerothPaiementsWindow::contextMenuEvent(QContextMenuEvent * event)
 void YerothPaiementsWindow::clear_all_fields()
 {
 	textEdit_description->clear();
+
+    lineEdit_paiements_balance_fournisseurs_total->clear();
+
+    lineEdit_paiements_balance_clients_total->clear();
 
     lineEdit_details_de_paiement_reference_recu_paiement_client->clearField();
     lineEdit_details_de_paiement_nom_de_lentreprise->clearField();
@@ -836,8 +844,12 @@ void YerothPaiementsWindow::lister_les_elements_du_tableau(YerothSqlTableModel &
     	curPaiementsTableModelRowCount = 0;
     }
 
-    double montant_total = 0.0;
+    double balance_fournisseurs_total = 0.0;
+    double balance_clients_total = 0.0;
     double montant_paye = 0.0;
+
+
+    QSqlField QSQLFIELD_compte_fournisseur;
 
     QSqlRecord aRecord;
 
@@ -847,13 +859,27 @@ void YerothPaiementsWindow::lister_les_elements_du_tableau(YerothSqlTableModel &
 
         aRecord = _curPaiementsTableModel->record(k);
 
+        QSQLFIELD_compte_fournisseur =
+        		aRecord.field(YerothDatabaseTableColumn::COMPTE_FOURNISSEUR);
+
         montant_paye = GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::MONTANT_PAYE).toDouble();
 
-        montant_total += montant_paye;
+        if (QSQLFIELD_compte_fournisseur.isNull())
+        {
+        	balance_clients_total += montant_paye;
+        }
+        else
+        {
+        	balance_fournisseurs_total += montant_paye;
+        }
     }
 
     lineEdit_paiements_nombre_paiements->setText(GET_NUM_STRING(curPaiementsTableModelRowCount));
-    lineEdit_paiements_total->setText(GET_CURRENCY_STRING_NUM(montant_total));
+
+    lineEdit_paiements_balance_clients_total->setText(GET_CURRENCY_STRING_NUM(balance_clients_total));
+
+    lineEdit_paiements_balance_fournisseurs_total->setText(GET_CURRENCY_STRING_NUM(balance_fournisseurs_total));
+
 
     tableView_paiements->queryYerothTableViewCurrentPageContentRow(historiquePaiementsTableModel);
 

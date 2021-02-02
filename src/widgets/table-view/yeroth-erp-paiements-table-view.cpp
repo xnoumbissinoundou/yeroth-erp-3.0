@@ -27,6 +27,8 @@
 
 #include <QtCore/QMap>
 
+#include <QtSql/QSqlField>
+
 #include <QtSql/QSqlQuery>
 
 #include <QtSql/QSqlRecord>
@@ -58,20 +60,51 @@ void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableM
 										 *_tableModelHeaders,
 										 _tableModelRawHeaders_IN_OUT);
 
-    QString compte_client_user_view_string
-		= YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::COMPTE_CLIENT);
 
-    uint index_of_compte_client_header =
-    	_tableModelRawHeaders_IN_OUT.indexOf(YerothDatabaseTableColumn::COMPTE_CLIENT);
+    QString compte_fournisseur_user_view_string;
 
-    _tableModelHeaders->replace(index_of_compte_client_header,
-    						   	QObject::trUtf8("%1 (après)")
-    								.arg(compte_client_user_view_string));
+    {
+    	compte_fournisseur_user_view_string
+			= YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::COMPTE_FOURNISSEUR);
+
+    	uint index_of_compte_fournisseur_header =
+    			_tableModelRawHeaders_IN_OUT.indexOf(YerothDatabaseTableColumn::COMPTE_FOURNISSEUR);
+
+    	_tableModelHeaders->replace(index_of_compte_fournisseur_header,
+    			QObject::trUtf8("%1 (après)")
+    					.arg(compte_fournisseur_user_view_string));
+    }
+
+    QString compte_client_user_view_string;
+
+    {
+    	compte_client_user_view_string
+			= YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::COMPTE_CLIENT);
+
+    	uint index_of_compte_client_header =
+    			_tableModelRawHeaders_IN_OUT.indexOf(YerothDatabaseTableColumn::COMPTE_CLIENT);
+
+    	_tableModelHeaders->replace(index_of_compte_client_header,
+    			QObject::trUtf8("%1 (après)")
+    					.arg(compte_client_user_view_string));
+
+    }
+
 
 //    QDEBUG_QSTRINGLIST_OUTPUT("_tableModelHeaders", *_tableModelHeaders);
 
+
     for (unsigned i = 0; i < tableModel.columnCount(); ++i)
     {
+    	if (YerothUtils::isEqualCaseInsensitive(tableModel.record(0).fieldName(i),
+    											YerothDatabaseTableColumn::COMPTE_FOURNISSEUR))
+    	{
+            _stdItemModel->setHeaderData(i,
+            						     Qt::Horizontal,
+										 QObject::trUtf8("%1 (après)")
+        								    .arg(compte_fournisseur_user_view_string));
+    	}
+
     	if (YerothUtils::isEqualCaseInsensitive(tableModel.record(0).fieldName(i),
     											YerothDatabaseTableColumn::COMPTE_CLIENT))
     	{
@@ -79,7 +112,6 @@ void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableM
             						     Qt::Horizontal,
 										 QObject::trUtf8("%1 (après)")
         								    .arg(compte_client_user_view_string));
-            break;
     	}
     }
 
@@ -98,10 +130,14 @@ void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableM
 
     QStandardItem *anItem = 0;
 
+    QSqlField QSQLFIELD_compte_fournisseur;
+
     QVariant qv;
 
     for (int i = 0; i < rows; ++i)
     {
+    	QSQLFIELD_compte_fournisseur = tableModel.record(i).field(YerothDatabaseTableColumn::COMPTE_FOURNISSEUR);
+
     	for (int k = 0; k < columns; ++k)
     	{
     		curTableModelRawHdr = tableModel.record(i).fieldName(k);
@@ -131,7 +167,18 @@ void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableM
 
     			if (YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::TYPE_DE_PAIEMENT))
     			{
-    				tmpQvString = YerothUtils::_typedencaissementToUserViewString.value(qv.toInt());
+    				if (QSQLFIELD_compte_fournisseur.isNull())
+    				{
+    					//!!! CE PAIEMENT EST CELUI D'UN CLIENT A L'ENTREPRISE !!!
+        				tmpQvString = YerothUtils::_typedencaissementToUserViewString.value(qv.toInt());
+
+    				}
+    				else
+    				{
+    					//!!! CE PAIEMENT EST CELUI DE L'ENTREPRISE A 1 FOURNISSEUR !!!
+        				tmpQvString = YerothUtils::_typededecaissementToUserViewString.value(qv.toInt());
+
+    				}
 
     				anItem = new YerothQStandardItem(tmpQvString, false);
     			}

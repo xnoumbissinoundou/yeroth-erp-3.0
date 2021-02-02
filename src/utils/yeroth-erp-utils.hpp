@@ -110,6 +110,11 @@ public:
 									 returnType (classType::*func)(parameterType *),
 									 returnType *aRetValue = 0);
 
+	template <class classType>
+	static void run_FUNCTION_ROUNDED_WITH_DB_TRANSACTION_WITH_ROLLBACK
+									(classType *aClassInstance,
+									 bool (classType::*func)(void));
+
 	template<class aTableViewClassType>
 	static bool instanceOf__YerothTableViewWITHpagination(aTableViewClassType *aTableView);
 
@@ -1186,6 +1191,8 @@ void YerothUtils::run_FUNCTION_ROUNDED_WITH_DB_TRANSACTION
 	if (0 == func 		 ||
 		0 == aClassInstance)
 	{
+		YEROTH_ERP_3_0_ROLLBACK_DATABASE_TRANSACTION;
+
 		return ;
 	}
 
@@ -1207,6 +1214,8 @@ void YerothUtils::run_FUNCTION_ROUNDED_WITH_DB_TRANSACTION
 	if (0 == func 		 ||
 		0 == aClassInstance)
 	{
+		YEROTH_ERP_3_0_ROLLBACK_DATABASE_TRANSACTION;
+
 		return ;
 	}
 
@@ -1215,6 +1224,32 @@ void YerothUtils::run_FUNCTION_ROUNDED_WITH_DB_TRANSACTION
 	if (0 != aRetValue)
 	{
 		*aRetValue = YEROTH_retValue;
+	}
+
+	YEROTH_ERP_3_0_COMMIT_DATABASE_TRANSACTION;
+}
+
+
+template <class classType>
+void YerothUtils::run_FUNCTION_ROUNDED_WITH_DB_TRANSACTION_WITH_ROLLBACK
+								(classType *aClassInstance,
+								 bool (classType::*func)(void))
+{
+	YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
+
+	if (0 == func 		 ||
+		0 == aClassInstance)
+	{
+		YEROTH_ERP_3_0_ROLLBACK_DATABASE_TRANSACTION;
+
+		return ;
+	}
+
+	bool YEROTH_retValue = (aClassInstance->*func)();
+
+	if (!YEROTH_retValue)
+	{
+		YEROTH_ERP_3_0_ROLLBACK_DATABASE_TRANSACTION;
 	}
 
 	YEROTH_ERP_3_0_COMMIT_DATABASE_TRANSACTION;

@@ -674,6 +674,7 @@ bool YerothUtils::creerNouveauFournisseur(QString 			   &proposedFournisseurName
 
 		record.setValue(YerothDatabaseTableColumn::ID, YerothERPWindows::getNextIdSqlTableModel_fournisseurs());
 		record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE, proposedFournisseurName_IN_OUT);
+		record.setValue(YerothDatabaseTableColumn::COMPTE_FOURNISSEUR, 0.0);
 
 		QString retMsg(QObject::trUtf8("L'entreprise fournisseur '%1'")
 							.arg(proposedFournisseurName_IN_OUT));

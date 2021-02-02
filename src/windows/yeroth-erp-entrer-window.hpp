@@ -123,7 +123,15 @@ public slots:
 
     bool IS__SERVICE_STOCK_DESIGNATION_REFERENCE__AVAILABLE(enum service_stock_already_exist_type *SERVICE_REFERENCE_STOCK_DESIGNATION_EXIST_IN_OUT);
 
-    void enregistrer_achat_au_fournisseur();
+    bool executer_enregistrer_achat_de_service();
+
+    inline void enregistrer_achat_de_service()
+    {
+		YerothUtils::
+			run_FUNCTION_ROUNDED_WITH_DB_TRANSACTION_WITH_ROLLBACK(
+					this,
+					&YerothEntrerWindow::executer_enregistrer_achat_de_service);
+    }
 
     void enregistrer_produit();
 
