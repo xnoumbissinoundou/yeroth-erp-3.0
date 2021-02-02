@@ -44,15 +44,27 @@ public:
 		return toolBar_fournisseurDetailsWindow;
 	}
 
-    void definirCaissier();
+    inline virtual void definirCaissier()
+    {
+    	definirPasDeRole();
+    }
 
     void definirManager();
 
-    virtual void definirVendeur();
+    inline virtual void definirVendeur()
+    {
+    	definirPasDeRole();
+    }
 
-    virtual void definirGestionaireDesStocks();
+    inline virtual void definirGestionaireDesStocks()
+    {
+    	definirPasDeRole();
+    }
 
-    void definirMagasinier();
+    inline virtual void definirMagasinier()
+    {
+    	definirPasDeRole();
+    }
 
     void definirPasDeRole();
 
@@ -83,8 +95,6 @@ protected:
     virtual void setupShortcuts();
 
 private slots:
-
-	void private_payer_au_fournisseur();
 
 	void modifierFournisseur();
 

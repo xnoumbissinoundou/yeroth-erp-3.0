@@ -61,7 +61,6 @@ YerothERPFournisseursWindow::YerothERPFournisseursWindow()
 		<< actionAfficherPDF
 		<< actionModifierFournisseur
 		<< actionSupprimerFournisseur
-		<< actionPayerAuFournisseur
 		<< actionAfficherDetailsFournisseur;
 
 
@@ -97,7 +96,6 @@ YerothERPFournisseursWindow::YerothERPFournisseursWindow()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPayerAuFournisseur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCreerFournisseur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierFournisseur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerFournisseur, false);
@@ -129,7 +127,6 @@ YerothERPFournisseursWindow::YerothERPFournisseursWindow()
     connect(actionChanger_utilisateur, SIGNAL(triggered()), this, SLOT(changer_utilisateur()));
     connect(actionAppeler_aide, SIGNAL(triggered()), this, SLOT(help()));
     connect(actionDeconnecter_utilisateur, SIGNAL(triggered()), this, SLOT(deconnecter_utilisateur()));
-    connect(actionPayerAuFournisseur, SIGNAL(triggered()), this, SLOT(private_payer_au_fournisseur()));
     connect(actionCreerFournisseur, SIGNAL(triggered()), this, SLOT(creerFournisseur()));
     connect(actionModifierFournisseur, SIGNAL(triggered()), this, SLOT(modifierFournisseur()));
     connect(actionSupprimerFournisseur, SIGNAL(triggered()), this, SLOT(supprimerFournisseur()));
@@ -155,7 +152,7 @@ YerothERPFournisseursWindow::YerothERPFournisseursWindow()
 #endif
 
     connect(tableView_fournisseurs, SIGNAL(doubleClicked(const QModelIndex &)), this,
-            SLOT(private_payer_au_fournisseur(const QModelIndex &)));
+            SLOT(afficher_au_detail(const QModelIndex &)));
 
     setupShortcuts();
 }
@@ -187,7 +184,6 @@ void YerothERPFournisseursWindow::contextMenuEvent(QContextMenuEvent * event)
 	QMenu menu(this);
 	menu.setPalette(toolBar_fournisseursWindow->palette());
 	menu.addAction(actionAfficherDetailsFournisseur);
-	menu.addAction(actionPayerAuFournisseur);
 	menu.addAction(actionModifierFournisseur);
 	menu.addAction(actionSupprimerFournisseur);
 	menu.exec(event->globalPos());
@@ -322,40 +318,6 @@ void YerothERPFournisseursWindow::textChangedSearchLineEditsQCompleters()
     }
 
     handle_some_actions_tools_enabled();
-}
-
-
-void YerothERPFournisseursWindow::private_payer_au_fournisseur()
-{
-    if (getLastListerSelectedRow__ID_AS_INTEGER() > -1 && _curFournisseursTableModel->rowCount() > 0)
-    {
-    	rendreInvisible();
-
-    	_allWindows->_payerAuFournisseurWindow->rendreVisible(_curFournisseursTableModel,
-    														  _curStocksTableModel);
-    }
-    else
-    {
-        YerothQMessageBox::warning(this, QObject::trUtf8("payer à un fournisseur"),
-                                  QObject::trUtf8("Sélectionnez un fournisseur afin d'effectuer un paiement !"));
-    }
-}
-
-
-void YerothERPFournisseursWindow::private_payer_au_fournisseur(const QModelIndex & aModelIndex)
-{
-    if (_curFournisseursTableModel->rowCount() > 0)
-    {
-    	rendreInvisible();
-
-    	_allWindows->_payerAuFournisseurWindow->rendreVisible(_curFournisseursTableModel,
-    														  _curStocksTableModel);
-    }
-    else
-    {
-        YerothQMessageBox::warning(this, QObject::trUtf8("payer à un fournisseur"),
-                                  QObject::trUtf8("Sélectionnez un fournisseur afin d'effectuer un paiement !"));
-    }
 }
 
 
@@ -520,25 +482,6 @@ void YerothERPFournisseursWindow::afficher_au_detail()
 															  _curStocksTableModel);
 
         rendreInvisible();
-    }
-    else
-    {
-        YerothQMessageBox::warning(this, QObject::trUtf8("détails"),
-                                  QObject::trUtf8("Sélectionnez un fournisseur à afficher les détails !"));
-    }
-}
-
-
-void YerothERPFournisseursWindow::afficher_au_detail(const QModelIndex & modelIndex)
-{
-    _logger->log("afficher_au_detail(const QModelIndex &)");
-
-    if (_curFournisseursTableModel->rowCount() > 0)
-    {
-    	rendreInvisible();
-
-        _allWindows->_fournisseurDetailsWindow->rendreVisible(_curFournisseursTableModel,
-															  _curStocksTableModel);
     }
     else
     {
@@ -722,7 +665,6 @@ void YerothERPFournisseursWindow::definirManager()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherDetailsFournisseur, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPayerAuFournisseur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCreerFournisseur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierFournisseur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerFournisseur, true);
@@ -760,7 +702,6 @@ void YerothERPFournisseursWindow::definirVendeur()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherDetailsFournisseur, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPayerAuFournisseur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCreerFournisseur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierFournisseur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerFournisseur, true);
@@ -814,7 +755,6 @@ void YerothERPFournisseursWindow::definirPasDeRole()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherDetailsFournisseur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPayerAuFournisseur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCreerFournisseur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierFournisseur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerFournisseur, false);

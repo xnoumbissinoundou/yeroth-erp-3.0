@@ -97,7 +97,6 @@ FORMS = ui/yeroth-erp-main-window.ui \
 			ui/purchase/yeroth-erp-achats-detail-window.ui \
 			ui/purchase/yeroth-erp-achats-window.ui \
 			ui/purchase/yeroth-erp-achats-de-services-window.ui \
-			ui/supplier/yeroth-erp-payer-fournisseur-window.ui \
 			ui/supplier/yeroth-erp-tableau-des-transactions-du-fournisseur-window.ui \
 			ui/supplier/yeroth-erp-modifier-fournisseur-window.ui \
 			ui/supplier/yeroth-erp-creer-fournisseur-window.ui \
@@ -215,7 +214,6 @@ HEADERS = src/include/yeroth-erp-3-0-precompiled-header.hpp \
 		  src/windows/pos/yeroth-erp-pointdevente-window.hpp \
 		  src/windows/pos/yeroth-erp-pointdevente-liststocks-window.hpp \
 		  src/windows/supplier/yeroth-erp-tableau-des-transactions-du-fournisseur-window.hpp \
-			src/windows/supplier/yeroth-erp-payer-fournisseur-window.hpp \
 			src/windows/supplier/yeroth-erp-modifier-fournisseur-window.hpp \
 			src/windows/supplier/yeroth-erp-fournisseurs-window.hpp \
 			src/windows/supplier/yeroth-erp-creer-fournisseur-window.hpp \
@@ -347,7 +345,6 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/windows/pos/yeroth-erp-pointdevente-window.cpp \
 		  src/windows/pos/yeroth-erp-pointdevente-liststocks-window.cpp \
 			src/windows/supplier/yeroth-erp-tableau-des-transactions-du-fournisseur-window.cpp \
-			src/windows/supplier/yeroth-erp-payer-fournisseur-window.cpp \
 			src/windows/supplier/yeroth-erp-modifier-fournisseur-window.cpp \
 			src/windows/supplier/yeroth-erp-fournisseurs-window.cpp \
 			src/windows/supplier/yeroth-erp-creer-fournisseur-window.cpp \

@@ -49,7 +49,6 @@
 
 //** SUPPLIER
 #include "src/windows/supplier/yeroth-erp-tableau-des-transactions-du-fournisseur-window.hpp"
-#include "src/windows/supplier/yeroth-erp-payer-fournisseur-window.hpp"
 #include "src/windows/supplier/yeroth-erp-fournisseur-details-window.hpp"
 #include "src/windows/supplier/yeroth-erp-fournisseurs-window.hpp"
 #include "src/windows/supplier/yeroth-erp-creer-fournisseur-window.hpp"
@@ -469,7 +468,6 @@ public:
 	YerothPOSVenteMethodePaiementDialog					*_pdVenteMethodePaiementDialog;
 	YerothERPFournisseursWindow							*_fournisseursWindow;
 	YerothERPClientsWindow								*_clientsWindow;
-	YerothPayerFournisseurWindow						*_payerAuFournisseurWindow;
 	YerothPayerCompteClientWindow						*_payerAuCompteClientWindow;
 	YerothSortirListStocksWindow						*_sortirListStocksWindow;
 	YerothAdminWindow 									*_adminWindow;

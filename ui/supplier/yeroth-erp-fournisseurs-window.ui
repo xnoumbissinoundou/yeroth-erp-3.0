@@ -12806,7 +12806,6 @@ background-color: rgb(0, 0, 0); </string>
     <addaction name="actionDeconnecter_utilisateur"/>
     <addaction name="separator"/>
     <addaction name="actionAfficherDetailsFournisseur"/>
-    <addaction name="actionPayerAuFournisseur"/>
     <addaction name="separator"/>
     <addaction name="actionCreerFournisseur"/>
     <addaction name="actionModifierFournisseur"/>
@@ -14007,21 +14006,6 @@ background-color: rgb(0, 0, 0); </string>
    <property name="font">
     <font>
      <pointsize>10</pointsize>
-    </font>
-   </property>
-  </action>
-  <action name="actionPayerAuFournisseur">
-   <property name="text">
-    <string>Payer à ce fournisseur</string>
-   </property>
-   <property name="toolTip">
-    <string>Payer à ce fournisseur</string>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
     </font>
    </property>
   </action>

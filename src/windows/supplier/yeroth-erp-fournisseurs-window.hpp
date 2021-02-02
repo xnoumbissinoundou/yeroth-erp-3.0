@@ -112,10 +112,6 @@ protected slots:
 
 private slots:
 
-	void private_payer_au_fournisseur();
-
-	void private_payer_au_fournisseur(const QModelIndex & aModelIndex);
-
 	void modifierFournisseur();
 
 	void supprimer_PLUSIEURS_Fournisseurs(YerothSqlTableModel &aFournisseursTableModel);
@@ -124,7 +120,10 @@ private slots:
 
 	void afficher_au_detail();
 
-	void afficher_au_detail(const QModelIndex & modelIndex);
+	inline virtual void afficher_au_detail(const QModelIndex & modelIndex)
+	{
+		afficher_au_detail();
+	}
 
 	bool filtrer();
 

@@ -52,7 +52,6 @@ YerothFournisseurDetailsWindow::YerothFournisseurDetailsWindow()
     pushButton_menu->disable(this);
     pushButton_modifier->disable(this);
     pushButton_supprimer->disable(this);
-    pushButton_payer_au_fournisseur->disable(this);
 
     /** Menu actions */
     connect(actionChanger_utilisateur, SIGNAL(triggered()), this, SLOT(changer_utilisateur()));
@@ -80,15 +79,6 @@ YerothFournisseurDetailsWindow::YerothFournisseurDetailsWindow()
 #endif
 
     setupShortcuts();
-}
-
-
-void YerothFournisseurDetailsWindow::private_payer_au_fournisseur()
-{
-	rendreInvisible();
-
-	_allWindows->_payerAuFournisseurWindow->rendreVisible(_curFournisseurTableModel,
-														  _curStocksTableModel);
 }
 
 
@@ -184,28 +174,8 @@ void YerothFournisseurDetailsWindow::definirPasDeRole()
     pushButton_menu->disable(this);
     pushButton_modifier->disable(this);
     pushButton_supprimer->disable(this);
-    pushButton_payer_au_fournisseur->disable(this);
 }
 
-void YerothFournisseurDetailsWindow::definirCaissier()
-{
-    _logger->log("definirCaissier");
-
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionFournisseurs, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierFournisseur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerFournisseur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
-
-    pushButton_fournisseurs->disable(this);
-    pushButton_menu->disable(this);
-    pushButton_modifier->disable(this);
-    pushButton_supprimer->disable(this);
-    pushButton_payer_au_fournisseur->disable(this);
-}
 
 void YerothFournisseurDetailsWindow::definirManager()
 {
@@ -225,7 +195,6 @@ void YerothFournisseurDetailsWindow::definirManager()
     pushButton_modifier->enable(this, SLOT(modifierFournisseur()));
     pushButton_supprimer->enable(this, SLOT(supprimerFournisseur()));
 
-    pushButton_payer_au_fournisseur->enable(this, SLOT(private_payer_au_fournisseur()));
 
 #ifdef YEROTH_SERVER
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, true);
@@ -234,68 +203,6 @@ void YerothFournisseurDetailsWindow::definirManager()
 #ifdef YEROTH_CLIENT
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 #endif
-}
-
-
-void YerothFournisseurDetailsWindow::definirVendeur()
-{
-    _logger->log("definirVendeur");
-
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionFournisseurs, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierFournisseur, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerFournisseur, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
-
-    pushButton_fournisseurs->enable(this, SLOT(fournisseurs()));
-    pushButton_menu->enable(this, SLOT(menu()));
-    pushButton_modifier->enable(this, SLOT(modifierFournisseur()));
-    pushButton_supprimer->enable(this, SLOT(supprimerFournisseur()));
-    pushButton_payer_au_fournisseur->enable(this, SLOT(private_payer_au_fournisseur()));
-}
-
-
-void YerothFournisseurDetailsWindow::definirGestionaireDesStocks()
-{
-    _logger->log("definirGestionaireDesStocks");
-
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionFournisseurs, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierFournisseur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerFournisseur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
-
-    pushButton_fournisseurs->disable(this);
-    pushButton_menu->disable(this);
-    pushButton_modifier->disable(this);
-    pushButton_supprimer->disable(this);
-    pushButton_payer_au_fournisseur->disable(this);
-}
-
-void YerothFournisseurDetailsWindow::definirMagasinier()
-{
-    _logger->log("definirMagasinier");
-
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionFournisseurs, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierFournisseur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerFournisseur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
-
-    pushButton_fournisseurs->disable(this);
-    pushButton_menu->disable(this);
-    pushButton_modifier->disable(this);
-    pushButton_supprimer->disable(this);
-    pushButton_payer_au_fournisseur->disable(this);
 }
 
 
