@@ -3852,6 +3852,16 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>Receipt ref.</translation>
     </message>
     <message>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="293"/>
+        <source>Compte fournisseur de services (après)</source>
+        <translation>Service supplier account (after)</translation>
+    </message>
+    <message>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="294"/>
+        <source>Référence service (achat)</source>
+        <translation>Service purchase reference</translation>
+    </message>
+    <message>
         <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="597"/>
         <source>ID de l&apos;opération</source>
         <translation>Operation id</translation>
