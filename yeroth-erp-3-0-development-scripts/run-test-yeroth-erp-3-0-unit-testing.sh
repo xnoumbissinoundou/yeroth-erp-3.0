@@ -1,12 +1,14 @@
 #/bin/bash
 #@author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
 
+SCRIPTBASENAME=$(basename $0)
+
 USAGE="
        ------------------------------------------------------------
        'YEROTH-ERP-3.0' Unit Testing Running System
         @auteur: Xavier NOUMBISSI NOUNDOU, DIPL.-INF., PH.D. (ABD)
        ------------------------------------------------------------
-       Usage: $(basename $0)
+       Usage: "${SCRIPTBASENAME}"
 	[-h] : help
 	[-s] : simulate 'yeroth-erp-3.0' unit testing run
 	[-c] : run 'yeroth-erp-3.0' unit test and also generates
@@ -51,7 +53,6 @@ do
 done
 shift $(($OPTIND - 1))
 
-
 if [ $buildFlag ]; then
 		if [ $simulationFlag ]; then
 				echo "yeroth-compile_yeroth-erp-3-0-standalone.sh -j${jobsVal} -c"
@@ -75,3 +76,6 @@ if [ $coverageGenFlag ]; then
 				run-test-yeroth-erp-3-0-coverage-gen-html.sh
 		fi
 fi
+
+git checkout ${YEROTH_ERP_3_0_HOME_FOLDER}/yeroth-erp-3-0.pro
+

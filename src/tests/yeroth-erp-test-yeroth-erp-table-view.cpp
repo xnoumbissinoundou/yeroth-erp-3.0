@@ -37,7 +37,7 @@ void Test_YerothERPTableView::initTestCase()
 	Test_YerothERPTestUtils::TEST_UTILS_truncate_database_all_tables();
 
 	_yerothERPTestImportCSVFileData->
-		test_TABLE_VIEW_lister_import_test_data("yeroth_test_data_stock_1.csv");
+		test_TABLE_VIEW_lister_import_test_data("yeroth_test_data_stock_1_WITH_ID.csv");
 }
 
 
@@ -55,11 +55,11 @@ void Test_YerothERPTableView::test_TABLE_VIEW_lister_fefo()
 
 	int TEST_VAR_QMAP_STOCK_RESULT_COUNT = stockNameToStockID_in_out.size();
 
-	QVERIFY(TEST_VAR_QMAP_STOCK_RESULT_COUNT == 1);
+	QVERIFY(TEST_VAR_QMAP_STOCK_RESULT_COUNT == 2);
 
 	int stockID = stockNameToStockID_in_out.value("test_yeroth_1").toInt();
 
-	QVERIFY(stockID == 2);
+	QVERIFY(stockID == 1);
 }
 
 
@@ -77,11 +77,11 @@ void Test_YerothERPTableView::test_TABLE_VIEW_lister_fifo()
 
 	int TEST_VAR_QMAP_STOCK_RESULT_COUNT = stockNameToStockID_in_out.size();
 
-	QVERIFY(TEST_VAR_QMAP_STOCK_RESULT_COUNT == 1);
+	QVERIFY(TEST_VAR_QMAP_STOCK_RESULT_COUNT == 2);
 
 	int stockID = stockNameToStockID_in_out.value("test_yeroth_1").toInt();
 
-	QVERIFY(stockID == 1);
+	QVERIFY(stockID == 0);
 }
 
 
@@ -99,7 +99,7 @@ void Test_YerothERPTableView::test_TABLE_VIEW_lister_lifo()
 
 	int TEST_VAR_QMAP_STOCK_RESULT_COUNT = stockNameToStockID_in_out.size();
 
-	QVERIFY(TEST_VAR_QMAP_STOCK_RESULT_COUNT == 1);
+	QVERIFY(TEST_VAR_QMAP_STOCK_RESULT_COUNT == 2);
 
 	int stockID = stockNameToStockID_in_out.value("test_yeroth_1").toInt();
 

@@ -1,12 +1,14 @@
 #/bin/bash
 
+SCRIPTBASENAME=$(basename $0)
+
 USAGE="
        ------------------------------------------------------------
        'YEROTH-ERP-3.0' Build System
         @auteur: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
 	@email:  xnoundou7@gmail.com
        ------------------------------------------------------------
-       Usage: $(basename $0)
+       Usage: "$SCRIPTBASENAME"
 	[-h] : help
 	[-t] : compile 'yeroth-erp-3.0' with QT Test library activated
 					for unit tests	
@@ -149,8 +151,14 @@ if [ ! $languageFlag ]; then
 fi
 
 if [ $qtTestLibFlag ]; then
-    qtTestLibVal="YEROTH_ERP_3_0_TESTING_UNIT_TEST"
+		echo "["$SCRIPTBASENAME"] WORKING WITH FILE: ${YEROTH_ERP_3_0_HOME_FOLDER}/yeroth-erp-3-0.pro !"
+		
+		sed -i "5s/NO_YEROTH_ERP_3_0_TESTING_UNIT_TEST/YEROTH_ERP_3_0_TESTING_UNIT_TEST/" ${YEROTH_ERP_3_0_HOME_FOLDER}/yeroth-erp-3-0.pro
+		
+		qtTestLibVal="YEROTH_ERP_3_0_TESTING_UNIT_TEST"
+
 	else
+
     qtTestLibVal="NO_YEROTH_ERP_3_0_TESTING_UNIT_TEST"
 fi
 
