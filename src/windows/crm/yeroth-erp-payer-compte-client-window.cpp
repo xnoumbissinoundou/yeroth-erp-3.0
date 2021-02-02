@@ -722,7 +722,18 @@ void YerothPayerCompteClientWindow::populatePayerAuCompteClientsComboBoxes()
     															YerothDatabaseTableColumn::TYPE_DE_PAIEMENT,
 																&YerothUtils::_typedepaiementToUserViewString);
 
-	comboBox_clients_typedepaiement->populateComboBoxWithout(YerothUtils::ENCAISSEMENT_ACHAT_ANNULE);
+	QList<int> content_to_delete_from_user_view_int_values_IN_OUT;
+
+	content_to_delete_from_user_view_int_values_IN_OUT
+		<< YerothUtils::DECAISSEMENT_CHEQUE
+		<< YerothUtils::DECAISSEMENT_COMPTANT
+		<< YerothUtils::DECAISSEMENT_TELEPHONE
+		<< YerothUtils::DECAISSEMENT_BANCAIRE
+		<< YerothUtils::DECAISSEMENT_VIREMENT_BANCAIRE
+		<< YerothUtils::DECAISSEMENT_ACHAT_ANNULE
+		<< YerothUtils::ENCAISSEMENT_ACHAT_ANNULE;
+
+	comboBox_clients_typedepaiement->populateComboBoxWithout(content_to_delete_from_user_view_int_values_IN_OUT);
 
 	comboBox_clients_intitule_du_compte_bancaire->populateComboBoxRawString(YerothDatabase::COMPTES_BANCAIRES,
     																   YerothDatabaseTableColumn::INTITULE_DU_COMPTE_BANCAIRE);

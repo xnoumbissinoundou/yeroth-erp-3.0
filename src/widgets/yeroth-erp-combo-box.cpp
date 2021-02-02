@@ -319,6 +319,66 @@ bool YerothComboBox::populateComboBoxMissing(const int aContentINTValue)
  * This is used when the argument 'aContent' must not be
  * present in the combo box.
  */
+bool YerothComboBox::populateComboBoxWithout(const QList<int> &content_to_delete_from_user_view_int_values_IN_OUT)
+{
+	if (isPopulateRaw())
+	{
+		return false;
+	}
+
+    static QStringList curItems;
+
+    QString strQuery(QString("select %1 from %2")
+    					.arg(_dbFieldColumn, _dbTableViewStringName));
+
+    QSqlQuery query;
+    query.prepare(strQuery);
+    bool success = query.exec();
+    //qDebug() << "[" << success << "]" << query.executedQuery();
+
+    if (success)
+    {
+    	QStringList content_to_delete_from_user_view_string_values;
+
+    	for (uint i = 0; i < content_to_delete_from_user_view_int_values_IN_OUT.size(); ++i)
+    	{
+    		content_to_delete_from_user_view_string_values
+				.append(_pointerToUserViewStringMAP->value(content_to_delete_from_user_view_int_values_IN_OUT.at(i)));
+    	}
+
+        QSqlRecord rec = query.record();
+
+        curItems.append(YerothUtils::EMPTY_STRING);
+
+        QString content;
+
+        while (query.next())
+        {
+            content = _pointerToUserViewStringMAP->value(query.value(0).toInt());
+
+            if (!content_to_delete_from_user_view_string_values.contains(content))
+            {
+                curItems.append(content);
+            }
+        }
+    }
+
+    clear();
+
+    curItems.sort();
+
+    addItems(curItems);
+
+    curItems.clear();
+
+    return true;
+}
+
+
+/*
+ * This is used when the argument 'aContent' must not be
+ * present in the combo box.
+ */
 bool YerothComboBox::populateComboBoxWithout(const int aContentINTValue)
 {
 	if (isPopulateRaw())

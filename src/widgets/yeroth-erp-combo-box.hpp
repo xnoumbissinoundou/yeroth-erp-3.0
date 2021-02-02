@@ -101,6 +101,8 @@ public:
 
 	bool populateComboBoxMissing(const int aContentINTValue);
 
+	bool populateComboBoxWithout(const QList<int> &content_to_delete_from_user_view_int_values_IN_OUT);
+
 	bool populateComboBoxWithout(const int aContentINTValue);
 
 
