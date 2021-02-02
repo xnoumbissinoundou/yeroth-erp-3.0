@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-test-yeroth-erp-windows.cpp
  *
- *      Author: XAVIER NOUMBISSI NOUNDOU, DR., PH.D. (ABD)
+ *      @author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifdef YEROTH_ERP_3_0_TESTING_UNIT_TEST
