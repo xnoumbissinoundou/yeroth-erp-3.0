@@ -418,7 +418,7 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NOTES,				QObject::tr("Notes"));
 
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NOM_ENTREPRISE,		QObject::tr("Nom entreprise"));
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NOM_ENTREPRISE,		QObject::tr("Entreprise"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::SECTEURS_DACTIVITES,	QObject::trUtf8("Secteurs d'activités"));
 
