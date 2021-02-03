@@ -131,8 +131,6 @@ protected slots:
 
    	virtual void slot_reinitialiser_colones_db_visibles();
 
-	void handleComboBoxClients_Typedepaiement_TextChanged(const QString &currentText);
-
 	virtual void textChangedSearchLineEditsQCompleters();
 
 	inline virtual void disableExporterAuFormatCsv()
@@ -167,9 +165,15 @@ protected:
 
 private slots:
 
+	void handleComboBoxClients_Typedepaiement_TextChanged(const QString &currentText);
+
+	void handle_combobox_type_dentreprise(const QString &text);
+
 	bool filtrer_paiements();
 
 private:
+
+	const QString &get_current_table_column_for_company_type_to_HIDE();
 
     void populateComboBoxes();
 
@@ -180,6 +184,11 @@ private:
     void clear_all_fields();
 
     void setupDateTimeEdits();
+
+
+    static const QString	CLIENT_TEXT_STRING;
+
+    static const QString	FOURNISSEUR_TEXT_STRING;
 
 
     YerothLogger			*_logger;

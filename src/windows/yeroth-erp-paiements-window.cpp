@@ -52,6 +52,11 @@
 #include <unistd.h>
 
 
+const QString	YerothPaiementsWindow::CLIENT_TEXT_STRING(QObject::tr("client"));
+
+const QString	YerothPaiementsWindow::FOURNISSEUR_TEXT_STRING(QObject::tr("fournisseur"));
+
+
 YerothPaiementsWindow::YerothPaiementsWindow()
 :YerothWindowsCommons("yeroth-erp-journal-paiements"),
  YerothAbstractClassYerothSearchWindow(YerothDatabase::PAIEMENTS),
@@ -170,6 +175,13 @@ YerothPaiementsWindow::YerothPaiementsWindow()
     connect(tableView_paiements, SIGNAL(activated(const QModelIndex &)),
     		this, SLOT(afficher_paiements_detail()));
 
+
+    connect(comboBox_paiements_type_dentreprise,
+    		SIGNAL(currentTextChanged(const QString &)),
+			this,
+			SLOT(handle_combobox_type_dentreprise(const QString &)));
+
+
     connect(comboBox_paiements_type_de_paiement,
     		SIGNAL(currentTextChanged(const QString &)),
 			this,
@@ -184,6 +196,32 @@ YerothPaiementsWindow::~YerothPaiementsWindow()
 	MACRO_TO_DELETE_PAGINATION_INTEGER_VALIDATOR
 
 	delete _logger;
+}
+
+
+void YerothPaiementsWindow::handleComboBoxClients_Typedepaiement_TextChanged(const QString &currentText)
+{
+	if (YerothUtils::isEqualCaseInsensitive(currentText,
+				YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::ENCAISSEMENT_BANCAIRE)) ||
+		YerothUtils::isEqualCaseInsensitive(currentText,
+				YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::ENCAISSEMENT_TELEPHONE)) ||
+		YerothUtils::isEqualCaseInsensitive(currentText,
+				YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::ENCAISSEMENT_VIREMENT_BANCAIRE)))
+	{
+		comboBox_paiements_intitule_du_compte_bancaire->setYerothEnabled(true);
+	}
+	else
+	{
+		comboBox_paiements_intitule_du_compte_bancaire->setYerothEnabled(false);
+	}
+}
+
+
+void YerothPaiementsWindow::handle_combobox_type_dentreprise(const QString &text)
+{
+	get_current_table_column_for_company_type_to_HIDE();
+
+	textChangedSearchLineEditsQCompleters();
 }
 
 
@@ -255,6 +293,27 @@ bool YerothPaiementsWindow::filtrer_paiements()
 }
 
 
+const QString &YerothPaiementsWindow::get_current_table_column_for_company_type_to_HIDE()
+{
+	if (YerothUtils::isEqualCaseInsensitive(FOURNISSEUR_TEXT_STRING, comboBox_paiements_type_dentreprise->currentText()))
+	{
+		_NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME.removeAll(YerothDatabaseTableColumn::COMPTE_FOURNISSEUR);
+
+		_NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME.append(YerothDatabaseTableColumn::COMPTE_CLIENT);
+
+		return YerothDatabaseTableColumn::COMPTE_CLIENT;
+	}
+	else
+	{
+		_NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME.removeAll(YerothDatabaseTableColumn::COMPTE_CLIENT);
+
+		_NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME.append(YerothDatabaseTableColumn::COMPTE_FOURNISSEUR);
+
+		return YerothDatabaseTableColumn::COMPTE_FOURNISSEUR;
+	}
+}
+
+
 void YerothPaiementsWindow::populateComboBoxes()
 {
 	int columnIndexTypeDePaiement = _dbtablecolumnNameToDBColumnIndex
@@ -265,8 +324,8 @@ void YerothPaiementsWindow::populateComboBoxes()
 
 	QStringList aQStringList;
 
-	aQStringList.append(QObject::tr("client"));
-	aQStringList.append(QObject::tr("fournisseur"));
+	aQStringList.append(YerothPaiementsWindow::CLIENT_TEXT_STRING);
+	aQStringList.append(YerothPaiementsWindow::FOURNISSEUR_TEXT_STRING);
 
 	comboBox_paiements_type_dentreprise->addItems(aQStringList);
 
@@ -406,24 +465,6 @@ void YerothPaiementsWindow::slot_reinitialiser_colones_db_visibles()
 }
 
 
-void YerothPaiementsWindow::handleComboBoxClients_Typedepaiement_TextChanged(const QString &currentText)
-{
-	if (YerothUtils::isEqualCaseInsensitive(currentText,
-				YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::ENCAISSEMENT_BANCAIRE)) ||
-		YerothUtils::isEqualCaseInsensitive(currentText,
-				YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::ENCAISSEMENT_TELEPHONE)) ||
-		YerothUtils::isEqualCaseInsensitive(currentText,
-				YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::ENCAISSEMENT_VIREMENT_BANCAIRE)))
-	{
-		comboBox_paiements_intitule_du_compte_bancaire->setYerothEnabled(true);
-	}
-	else
-	{
-		comboBox_paiements_intitule_du_compte_bancaire->setYerothEnabled(false);
-	}
-}
-
-
 void YerothPaiementsWindow::textChangedSearchLineEditsQCompleters()
 {
 	lineEdit_paiements_element_de_paiements_resultat->clear();
@@ -545,6 +586,21 @@ void YerothPaiementsWindow::textChangedSearchLineEditsQCompleters()
 
     QString finalSearchFilter(_paiementsDateFilter);
 
+    QString companyType_TOHIDE_FILTER(QString("(%1 IS NULL)")
+    									.arg(get_current_table_column_for_company_type_to_HIDE()));
+
+
+    if (!_searchFilter.isEmpty())
+    {
+    	_searchFilter.append(QString(" AND %1")
+    							.arg(companyType_TOHIDE_FILTER));
+    }
+    else
+    {
+    	_searchFilter = companyType_TOHIDE_FILTER;
+    }
+
+
     if (!_searchFilter.isEmpty())
     {
     	QString searchFilterWithDate(QString("%1 AND (%2)")
@@ -554,7 +610,9 @@ void YerothPaiementsWindow::textChangedSearchLineEditsQCompleters()
     	finalSearchFilter = searchFilterWithDate;
     }
 
-	_yerothSqlTableModel->yerothSetFilter_WITH_where_clause(finalSearchFilter);
+
+		_yerothSqlTableModel->yerothSetFilter_WITH_where_clause(finalSearchFilter);
+
 
     if (_yerothSqlTableModel->select())
     {
@@ -575,6 +633,7 @@ void YerothPaiementsWindow::reinitialiser_colones_db_visibles()
 	_visibleDBColumnNameStrList.clear();
 
     _visibleDBColumnNameStrList
+			<< YerothDatabaseTableColumn::DATE_PAIEMENT
 			<< YerothDatabaseTableColumn::NOM_ENTREPRISE
 			<< YerothDatabaseTableColumn::MONTANT_PAYE
 			<< YerothDatabaseTableColumn::TYPE_DE_PAIEMENT
