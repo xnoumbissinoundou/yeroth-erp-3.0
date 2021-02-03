@@ -455,7 +455,7 @@ void YerothGroupesDunClientWindow::definirManager()
 
 	pushButton_groupes_de_clients->enable(this, SLOT(groupes_de_clients()));
 	pushButton_menu_clients->enable(this, SLOT(clients()));
-	pushButton_RETOUR->enable(this, SLOT(afficher_au_detail()));
+	pushButton_RETOUR->enable(this, SLOT(clients()));
 	pushButton_retirer->enable(this, SLOT(retirer_ce_client_du_groupe_selectione()));
 }
 
@@ -475,7 +475,7 @@ void YerothGroupesDunClientWindow::definirVendeur()
 
 	pushButton_groupes_de_clients->disable(this);
 	pushButton_menu_clients->enable(this, SLOT(clients()));
-	pushButton_RETOUR->enable(this, SLOT(afficher_au_detail()));
+	pushButton_RETOUR->enable(this, SLOT(clients()));
 	pushButton_retirer->enable(this, SLOT(retirer_ce_client_du_groupe_selectione()));
 }
 
