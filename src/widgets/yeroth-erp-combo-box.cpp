@@ -89,6 +89,16 @@ void YerothComboBox::saveCurrentValueToDatabase(const QString &aDBFieldColumn,
 }
 
 
+void YerothComboBox::addItems(const QStringList &texts)
+{
+	QStringList new_texts(texts);
+
+	new_texts.sort();
+
+	QComboBox::addItems(new_texts);
+}
+
+
 bool YerothComboBox::populateComboBoxRawString(QString aDBTableViewStringName,
 		   	   	   	   	   	   	   	   	   	   QString aDBFieldColumn,
 											   QString aConditionStr /* = YerothUtils::EMPTY_STRING */)

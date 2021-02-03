@@ -262,6 +262,15 @@ void YerothPaiementsWindow::populateComboBoxes()
 
 	_DBFieldNamesToPrintLeftAligned.insert(columnIndexTypeDePaiement);
 
+
+	QStringList aQStringList;
+
+	aQStringList.append(QObject::tr("client"));
+	aQStringList.append(QObject::tr("fournisseur"));
+
+	comboBox_paiements_type_dentreprise->addItems(aQStringList);
+
+
 	comboBox_paiements_intitule_du_compte_bancaire->setYerothEnabled(false);
 
 	comboBox_paiements_intitule_du_compte_bancaire->populateComboBoxRawString(YerothDatabase::COMPTES_BANCAIRES,
@@ -273,7 +282,7 @@ void YerothPaiementsWindow::populateComboBoxes()
 
 	comboBox_paiements_type_de_paiement->populateComboBox();
 
-	QStringList aQStringList;
+	aQStringList.clear();
 
 	aQStringList.append(_varchar_dbtable_column_name_list.values());
 

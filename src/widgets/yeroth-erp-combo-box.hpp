@@ -89,6 +89,8 @@ public:
 		_pointerToUserViewStringMAP = pointerToUserViewStringMAP;
 	}
 
+	virtual void addItems(const QStringList &texts);
+
 	bool populateComboBoxRawString(QString aDBTableViewStringName,
 								   QString aDBFieldColumn,
 								   QString aConditionStr = "");
