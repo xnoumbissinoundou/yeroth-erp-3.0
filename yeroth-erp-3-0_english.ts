@@ -2319,8 +2319,8 @@ Continue with update of the stock ?</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="73"/>
-        <source>paiements</source>
-        <translation>payments</translation>
+        <source>paiements clients et fournisseurs</source>
+        <translation>clients and suppliers payments</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="308"/>
@@ -13464,8 +13464,9 @@ stock item (service)</translation>
     <name>YerothPaiementsWindow</name>
     <message>
         <location filename="ui/yeroth-erp-paiements-window.ui" line="435"/>
-        <source>Yeroth-erp-3.0 - paiements</source>
-        <translation>Yeroth-erp-3.0 - payments</translation>
+        <source>Yeroth-erp-3.0 - paiements clients et fournisseurs</source>
+        <oldsource>Yeroth-erp-3.0 - paiements clients et fournisseurs </oldsource>
+        <translation>Yeroth-erp-3.0 - clients and suppliers payments</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-paiements-window.ui" line="878"/>

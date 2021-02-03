@@ -70,7 +70,7 @@ YerothPaiementsWindow::YerothPaiementsWindow()
 
     _windowName = QString("%1 - %2")
     				.arg(YEROTH_ERP_WINDOW_TITLE,
-    					 QObject::trUtf8("paiements"));
+    					 QObject::tr("paiements clients et fournisseurs"));
 
     setupUi(this);
 
