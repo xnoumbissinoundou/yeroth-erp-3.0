@@ -7612,7 +7612,7 @@ stock (service)</translation>
     <message>
         <location filename="ui/yeroth-erp-admin-window.ui" line="16445"/>
         <source>émail (service de gestion de la clientèle)</source>
-        <translation>email (client relationship management service)</translation>
+        <translation>email (client rel management service)</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-admin-window.ui" line="17383"/>
@@ -7627,7 +7627,7 @@ stock (service)</translation>
     <message>
         <location filename="ui/yeroth-erp-admin-window.ui" line="17888"/>
         <source>tél. (service de gestion de la clientèle)</source>
-        <translation>tel. (client relationship management service)</translation>
+        <translation>tel. (client rel management service)</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-admin-window.ui" line="18836"/>
