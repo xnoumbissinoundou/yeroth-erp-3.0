@@ -11,4 +11,3 @@ insert into type_de_paiement (id, type_de_paiement) values (8, 605);
 insert into type_de_paiement (id, type_de_paiement) values (9, 606);
 insert into type_de_paiement (id, type_de_paiement) values (10, 607);
 insert into type_de_paiement (id, type_de_paiement) values (11, 608);
-

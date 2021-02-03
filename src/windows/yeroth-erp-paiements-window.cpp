@@ -999,9 +999,10 @@ void YerothPaiementsWindow::lister_les_elements_du_tableau(YerothSqlTableModel &
     	curPaiementsTableModelRowCount = 0;
     }
 
-    double balance_fournisseurs_total = 0.0;
 
-    double balance_clients_total = 0.0;
+    QMap<QString, double> company_client_name_TO_financial_account_payment;
+
+    QMap<QString, double> supplier_company_name_TO_financial_account_payment;
 
     double compte_client_apres_paiement = 0.0;
 
@@ -1026,31 +1027,58 @@ void YerothPaiementsWindow::lister_les_elements_du_tableau(YerothSqlTableModel &
         	compte_client_apres_paiement =
         			GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::COMPTE_CLIENT).toDouble();
 
-        	balance_clients_total += compte_client_apres_paiement;
+        	company_client_name_TO_financial_account_payment
+				.insert(GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::NOM_ENTREPRISE),
+						 compte_client_apres_paiement);
         }
         else
         {
         	montant_paye_au_fournisseur =
         			GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::MONTANT_PAYE).toDouble();
 
-        	balance_fournisseurs_total += montant_paye_au_fournisseur;
+        	supplier_company_name_TO_financial_account_payment
+				.insert(GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::NOM_ENTREPRISE),
+						montant_paye_au_fournisseur);
         }
     }
 
-
     lineEdit_paiements_nombre_paiements->setText(GET_NUM_STRING(curPaiementsTableModelRowCount));
+
+    {
+    	compte_client_apres_paiement = 0.0;
+
+    	QMapIterator<QString, double> itClient(company_client_name_TO_financial_account_payment);
+
+    	while (itClient.hasNext())
+    	{
+    		itClient.next();
+    		compte_client_apres_paiement += itClient.value();
+    	}
+    }
+
+    {
+    	montant_paye_au_fournisseur = 0.0;
+
+    	QMapIterator<QString, double> itSupplier(supplier_company_name_TO_financial_account_payment);
+
+    	while (itSupplier.hasNext())
+    	{
+    		itSupplier.next();
+    		montant_paye_au_fournisseur += itSupplier.value();
+    	}
+    }
 
 
     if (YerothUtils::isEqualCaseInsensitive(YerothPaiementsWindow::CLIENT_TEXT_STRING,
     										comboBox_paiements_type_dentreprise->currentText()))
     {
     	lineEdit_paiements_balance_clients_fournisseurs_total
-			->setText(GET_CURRENCY_STRING_NUM(balance_clients_total));
+			->setText(GET_CURRENCY_STRING_NUM(compte_client_apres_paiement));
     }
     else
     {
     	lineEdit_paiements_balance_clients_fournisseurs_total
-			->setText(GET_CURRENCY_STRING_NUM(balance_fournisseurs_total));
+			->setText(GET_CURRENCY_STRING_NUM(montant_paye_au_fournisseur));
     }
 
 
