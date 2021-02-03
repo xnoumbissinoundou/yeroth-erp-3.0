@@ -1279,8 +1279,9 @@ Press m &apos;Cancel&apos; to exit %2</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="421"/>
-        <source>Nom entreprise</source>
-        <translation>Company name</translation>
+        <source>Entreprise</source>
+        <oldsource>Nom entreprise</oldsource>
+        <translation>Company</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="425"/>
