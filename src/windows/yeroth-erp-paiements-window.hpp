@@ -173,6 +173,10 @@ private slots:
 
 private:
 
+	void update_clients_specific_payments_type();
+
+	void update_suppliers_specific_payments_type();
+
 	const QString &get_current_table_column_for_company_type_to_HIDE();
 
     void populateComboBoxes();

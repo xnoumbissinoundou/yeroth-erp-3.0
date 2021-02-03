@@ -518,8 +518,8 @@ YerothUtils::YerothUtils()
     YerothUtils::_typedepaiementToUserViewString.insert(YerothUtils::ENCAISSEMENT_VIREMENT_BANCAIRE,
 			QObject::trUtf8("versement (virement bancaire)"));
 
-    YerothUtils::_typedepaiementToUserViewString.insert(YerothUtils::ENCAISSEMENT_ACHAT_ANNULE,
-			QObject::trUtf8("versement (retour achat (annulé))"));
+    YerothUtils::_typedepaiementToUserViewString.insert(YerothUtils::ENCAISSEMENT_ACHAT_DE_SERVICE_ANNULE,
+			QObject::trUtf8("versement (achat de service (annulé))"));
 
     YerothUtils::_typedepaiementToUserViewString.insert(YerothUtils::ENCAISSEMENT_INDEFINI,
 			QObject::trUtf8("versement indéfini"));
@@ -539,8 +539,8 @@ YerothUtils::YerothUtils()
     YerothUtils::_typedepaiementToUserViewString.insert(YerothUtils::DECAISSEMENT_VIREMENT_BANCAIRE,
 			QObject::trUtf8("décaissement (virement bancaire)"));
 
-    YerothUtils::_typedepaiementToUserViewString.insert(YerothUtils::DECAISSEMENT_ACHAT_ANNULE,
-			QObject::trUtf8("décaissement (retour achat (annulé))"));
+    YerothUtils::_typedepaiementToUserViewString.insert(YerothUtils::DECAISSEMENT_RETOUR_ACHAT_DUN_CLIENT,
+			QObject::trUtf8("décaissement (retour achat d'1 client)"));
 
     YerothUtils::_typedepaiementToUserViewString.insert(YerothUtils::DECAISSEMENT_INDEFINI,
 			QObject::trUtf8("décaissement indéfini"));

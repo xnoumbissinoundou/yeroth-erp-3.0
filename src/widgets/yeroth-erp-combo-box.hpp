@@ -89,6 +89,11 @@ public:
 		_pointerToUserViewStringMAP = pointerToUserViewStringMAP;
 	}
 
+	inline void yeroth_remove_item(const QString &text)
+	{
+		removeItem(findText(text));
+	}
+
 	virtual void addItems(const QStringList &texts);
 
 	bool populateComboBoxRawString(QString aDBTableViewStringName,

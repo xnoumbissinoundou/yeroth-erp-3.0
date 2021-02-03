@@ -219,6 +219,16 @@ void YerothPaiementsWindow::handleComboBoxClients_Typedepaiement_TextChanged(con
 
 void YerothPaiementsWindow::handle_combobox_type_dentreprise(const QString &text)
 {
+	if (YerothUtils::isEqualCaseInsensitive(YerothPaiementsWindow::FOURNISSEUR_TEXT_STRING,
+											comboBox_paiements_type_dentreprise->currentText()))
+	{
+		update_suppliers_specific_payments_type();
+	}
+	else
+	{
+		update_clients_specific_payments_type();
+	}
+
 	get_current_table_column_for_company_type_to_HIDE();
 
 	textChangedSearchLineEditsQCompleters();
@@ -293,9 +303,93 @@ bool YerothPaiementsWindow::filtrer_paiements()
 }
 
 
+void YerothPaiementsWindow::update_clients_specific_payments_type()
+{
+	label_paiements_balance_clients_fournisseurs_total->setText(QObject::tr("Balance clients"));
+
+	QStringList clients_payment_types;
+
+	clients_payment_types
+		<< YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::ENCAISSEMENT_COMPTANT)
+		<< YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::ENCAISSEMENT_CHEQUE)
+		<< YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::ENCAISSEMENT_TELEPHONE)
+		<< YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::ENCAISSEMENT_VIREMENT_BANCAIRE)
+		<< YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::DECAISSEMENT_RETOUR_ACHAT_DUN_CLIENT);
+
+
+	comboBox_paiements_type_de_paiement->addItems(clients_payment_types);
+
+
+	comboBox_paiements_type_de_paiement->
+			yeroth_remove_item(YerothUtils::_typedepaiementToUserViewString
+						.value(YerothUtils::ENCAISSEMENT_ACHAT_DE_SERVICE_ANNULE));
+
+	comboBox_paiements_type_de_paiement->
+			yeroth_remove_item(YerothUtils::_typedepaiementToUserViewString
+						.value(YerothUtils::DECAISSEMENT_COMPTANT));
+
+	comboBox_paiements_type_de_paiement->
+			yeroth_remove_item(YerothUtils::_typedepaiementToUserViewString
+						.value(YerothUtils::DECAISSEMENT_CHEQUE));
+
+	comboBox_paiements_type_de_paiement->
+			yeroth_remove_item(YerothUtils::_typedepaiementToUserViewString
+						.value(YerothUtils::DECAISSEMENT_TELEPHONE));
+
+	comboBox_paiements_type_de_paiement->
+		yeroth_remove_item(YerothUtils::_typedepaiementToUserViewString
+					.value(YerothUtils::DECAISSEMENT_BANCAIRE));
+
+	comboBox_paiements_type_de_paiement->
+			yeroth_remove_item(YerothUtils::_typedepaiementToUserViewString
+						.value(YerothUtils::DECAISSEMENT_VIREMENT_BANCAIRE));
+}
+
+
+void YerothPaiementsWindow::update_suppliers_specific_payments_type()
+{
+	label_paiements_balance_clients_fournisseurs_total->setText(QObject::tr("Balance fournisseurs"));
+
+	QStringList suppliers_payment_types;
+
+	suppliers_payment_types
+		<< YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::DECAISSEMENT_COMPTANT)
+		<< YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::DECAISSEMENT_CHEQUE)
+		<< YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::DECAISSEMENT_TELEPHONE)
+		<< YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::DECAISSEMENT_BANCAIRE)
+		<< YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::DECAISSEMENT_VIREMENT_BANCAIRE)
+		<< YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::ENCAISSEMENT_ACHAT_DE_SERVICE_ANNULE);
+
+
+	comboBox_paiements_type_de_paiement->addItems(suppliers_payment_types);
+
+
+	comboBox_paiements_type_de_paiement->
+		yeroth_remove_item(YerothUtils::_typedepaiementToUserViewString
+			.value(YerothUtils::ENCAISSEMENT_COMPTANT));
+
+	comboBox_paiements_type_de_paiement->
+		yeroth_remove_item(YerothUtils::_typedepaiementToUserViewString
+			.value(YerothUtils::ENCAISSEMENT_CHEQUE));
+
+	comboBox_paiements_type_de_paiement->
+		yeroth_remove_item(YerothUtils::_typedepaiementToUserViewString
+			.value(YerothUtils::ENCAISSEMENT_TELEPHONE));
+
+	comboBox_paiements_type_de_paiement->
+		yeroth_remove_item(YerothUtils::_typedepaiementToUserViewString
+			.value(YerothUtils::ENCAISSEMENT_VIREMENT_BANCAIRE));
+
+	comboBox_paiements_type_de_paiement->
+		yeroth_remove_item(YerothUtils::_typedepaiementToUserViewString
+			.value(YerothUtils::DECAISSEMENT_RETOUR_ACHAT_DUN_CLIENT));
+}
+
+
 const QString &YerothPaiementsWindow::get_current_table_column_for_company_type_to_HIDE()
 {
-	if (YerothUtils::isEqualCaseInsensitive(FOURNISSEUR_TEXT_STRING, comboBox_paiements_type_dentreprise->currentText()))
+	if (YerothUtils::isEqualCaseInsensitive(YerothPaiementsWindow::FOURNISSEUR_TEXT_STRING,
+											comboBox_paiements_type_dentreprise->currentText()))
 	{
 		_NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME.removeAll(YerothDatabaseTableColumn::COMPTE_FOURNISSEUR);
 
@@ -322,6 +416,9 @@ void YerothPaiementsWindow::populateComboBoxes()
 	_DBFieldNamesToPrintLeftAligned.insert(columnIndexTypeDePaiement);
 
 
+	comboBox_paiements_type_de_paiement->addItem(YerothUtils::EMPTY_STRING);
+
+
 	QStringList aQStringList;
 
 	aQStringList.append(YerothPaiementsWindow::CLIENT_TEXT_STRING);
@@ -334,12 +431,6 @@ void YerothPaiementsWindow::populateComboBoxes()
 
 	comboBox_paiements_intitule_du_compte_bancaire->populateComboBoxRawString(YerothDatabase::COMPTES_BANCAIRES,
 																			  YerothDatabaseTableColumn::INTITULE_DU_COMPTE_BANCAIRE);
-
-	comboBox_paiements_type_de_paiement->setupPopulateNORawString(YerothDatabase::TYPE_DE_PAIEMENT,
-																   YerothDatabaseTableColumn::TYPE_DE_PAIEMENT,
-																   &YerothUtils::_typedepaiementToUserViewString);
-
-	comboBox_paiements_type_de_paiement->populateComboBox();
 
 	aQStringList.clear();
 
@@ -414,9 +505,7 @@ void YerothPaiementsWindow::setupLineEdits()
 
     lineEdit_paiements_nombre_paiements->setYerothEnabled(false);
 
-    lineEdit_paiements_balance_fournisseurs_total->setYerothEnabled(false);
-
-    lineEdit_paiements_balance_clients_total->setYerothEnabled(false);
+    lineEdit_paiements_balance_clients_fournisseurs_total->setYerothEnabled(false);
 
 	MACRO_TO_BIND_PAGING_WITH_QLINEEDIT(lineEdit_paiements_nombre_de_lignes_par_page, tableView_paiements);
 
@@ -658,9 +747,7 @@ void YerothPaiementsWindow::clear_all_fields()
 {
 	textEdit_description->clear();
 
-    lineEdit_paiements_balance_fournisseurs_total->clear();
-
-    lineEdit_paiements_balance_clients_total->clear();
+	lineEdit_paiements_balance_clients_fournisseurs_total->clear();
 
     lineEdit_details_de_paiement_reference_recu_paiement_client->clearField();
     lineEdit_details_de_paiement_nom_de_lentreprise->clearField();
@@ -676,7 +763,7 @@ void YerothPaiementsWindow::setupDateTimeEdits()
 {
 	dateEdit_details_de_paiement_date_paiement->setYerothEnabled(false);
 
-    dateEdit_paiements_debut->setStartDate(GET_CURRENT_DATE);
+    dateEdit_paiements_debut->setStartDate(YerothERPConfig::GET_YEROTH_PAGING_DEFAULT_START_DATE());
 
     dateEdit_paiements_fin->setStartDate(GET_CURRENT_DATE);
 
@@ -950,11 +1037,21 @@ void YerothPaiementsWindow::lister_les_elements_du_tableau(YerothSqlTableModel &
         }
     }
 
+
     lineEdit_paiements_nombre_paiements->setText(GET_NUM_STRING(curPaiementsTableModelRowCount));
 
-    lineEdit_paiements_balance_clients_total->setText(GET_CURRENCY_STRING_NUM(balance_clients_total));
 
-    lineEdit_paiements_balance_fournisseurs_total->setText(GET_CURRENCY_STRING_NUM(balance_fournisseurs_total));
+    if (YerothUtils::isEqualCaseInsensitive(YerothPaiementsWindow::CLIENT_TEXT_STRING,
+    										comboBox_paiements_type_dentreprise->currentText()))
+    {
+    	lineEdit_paiements_balance_clients_fournisseurs_total
+			->setText(GET_CURRENCY_STRING_NUM(balance_clients_total));
+    }
+    else
+    {
+    	lineEdit_paiements_balance_clients_fournisseurs_total
+			->setText(GET_CURRENCY_STRING_NUM(balance_fournisseurs_total));
+    }
 
 
     tableView_paiements->queryYerothTableViewCurrentPageContentRow(historiquePaiementsTableModel);
@@ -987,6 +1084,8 @@ void YerothPaiementsWindow::rendreVisible(YerothSqlTableModel * stocksTableModel
     tabWidget_historique_paiements->setCurrentIndex(TableauDesPaiements);
 
     setVisible(true);
+
+    handle_combobox_type_dentreprise(comboBox_paiements_type_dentreprise->currentText());
 
     afficher_paiements();
 

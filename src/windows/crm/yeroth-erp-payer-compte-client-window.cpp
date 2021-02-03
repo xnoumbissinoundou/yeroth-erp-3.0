@@ -730,8 +730,8 @@ void YerothPayerCompteClientWindow::populatePayerAuCompteClientsComboBoxes()
 		<< YerothUtils::DECAISSEMENT_TELEPHONE
 		<< YerothUtils::DECAISSEMENT_BANCAIRE
 		<< YerothUtils::DECAISSEMENT_VIREMENT_BANCAIRE
-		<< YerothUtils::DECAISSEMENT_ACHAT_ANNULE
-		<< YerothUtils::ENCAISSEMENT_ACHAT_ANNULE;
+		<< YerothUtils::DECAISSEMENT_RETOUR_ACHAT_DUN_CLIENT
+		<< YerothUtils::ENCAISSEMENT_ACHAT_DE_SERVICE_ANNULE;
 
 	comboBox_clients_typedepaiement->populateComboBoxWithout(content_to_delete_from_user_view_int_values_IN_OUT);
 
