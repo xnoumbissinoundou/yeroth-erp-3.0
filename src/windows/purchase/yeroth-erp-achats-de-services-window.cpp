@@ -491,15 +491,12 @@ void YerothAchatsDEServicesWindow::reinitialiser_colones_db_visibles()
 
 	_visibleDBColumnNameStrList
 		<< YerothDatabaseTableColumn::DESIGNATION
+		<< YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR
 		<< YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT
-		<< YerothDatabaseTableColumn::CATEGORIE
 		<< YerothDatabaseTableColumn::PRIX_DACHAT
-		<< YerothDatabaseTableColumn::MONTANT_TVA
 		<< YerothDatabaseTableColumn::PRIX_VENTE
 		<< YerothDatabaseTableColumn::MARGE_BENEFICIAIRE
-		<< YerothDatabaseTableColumn::DATE_DE_COMMANDE
-		<< YerothDatabaseTableColumn::QUANTITE_TOTALE;
-
+		<< YerothDatabaseTableColumn::DATE_DE_COMMANDE;
 }
 
 
