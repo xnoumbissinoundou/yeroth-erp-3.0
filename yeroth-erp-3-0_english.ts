@@ -2338,7 +2338,7 @@ Continue with update of the stock ?</translation>
         <translation>Paid amount (credited)</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="1081"/>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="1085"/>
         <source>Total payé (débité)</source>
         <translation>Paid amount (debited)</translation>
     </message>
