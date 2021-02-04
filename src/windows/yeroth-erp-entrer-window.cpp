@@ -159,7 +159,7 @@ YerothEntrerWindow::YerothEntrerWindow()
     connect(lineEdit_reference_produit,
     		SIGNAL(editingFinished()),
 			this,
-            SLOT(product_search_with_codebar()));
+            SLOT(product_search_with_reference()));
 
 
     radioButton_inserer_un_stock->setChecked(true);
@@ -448,9 +448,11 @@ bool YerothEntrerWindow::product_search_with_designation()
 
     if (!productName.isEmpty() && 1 == productNameRowCount)
     {
-        QString strQuery(QString("select * from %1 where %2='%3';")
+        QString strQuery(QString("select * from %1 where %2='%3' AND %4='%5'")
         					.arg(productListSqlTableModel.sqlTableName(),
-								 YerothDatabaseTableColumn::DESIGNATION,
+        						 YerothDatabaseTableColumn::IS_SERVICE,
+								 YerothUtils::MYSQL_FALSE_LITERAL,
+        						 YerothDatabaseTableColumn::DESIGNATION,
 								 productName));
 
         QSqlQuery query;
@@ -479,7 +481,7 @@ bool YerothEntrerWindow::product_search_with_designation()
 }
 
 
-bool YerothEntrerWindow::product_search_with_codebar()
+bool YerothEntrerWindow::product_search_with_reference()
 {
     YerothSqlTableModel & productListSqlTableModel = _allWindows->getSqlTableModel_marchandises();
 
@@ -490,8 +492,10 @@ bool YerothEntrerWindow::product_search_with_codebar()
 
     if (!aCodebar.isEmpty() && 1 == codebarRowCount)
     {
-        QString strQuery(QString("select * from %1 where %2 = '%3';")
+        QString strQuery(QString("select * from %1 where %2='%3' AND %4='%5'")
         					.arg(productListSqlTableModel.sqlTableName(),
+        						 YerothDatabaseTableColumn::IS_SERVICE,
+								 YerothUtils::MYSQL_FALSE_LITERAL,
 								 YerothDatabaseTableColumn::REFERENCE,
 								 aCodebar));
 
@@ -2002,6 +2006,10 @@ void YerothEntrerWindow::enregistrer_produit()
 
     YerothERPStockMarchandiseData a_stock_data;
 
+    a_stock_data._isService =
+    		radioButton_service_vente_de_service_au_client->isChecked() ||
+			radioButton_service_achat_de_service->isChecked();
+
     a_stock_data._nom_departement_produit = comboBox_nom_departement_produit->currentText();
     a_stock_data._categorie = lineEdit_categorie_produit->text();
     a_stock_data._description = textEdit_description->toPlainText();
@@ -2081,6 +2089,7 @@ void YerothEntrerWindow::enregistrer_produit()
     	achatRecord.setValue(YerothDatabaseTableColumn::CATEGORIE, a_stock_data._categorie);
     }
 
+    record.setValue(YerothDatabaseTableColumn::IS_SERVICE, a_stock_data._isService);
     record.setValue(YerothDatabaseTableColumn::ID, stock_id_to_save);
     record.setValue(YerothDatabaseTableColumn::REFERENCE, lineEdit_reference_produit->text());
     record.setValue(YerothDatabaseTableColumn::DESIGNATION, lineEdit_designation->text());
@@ -2180,16 +2189,14 @@ void YerothEntrerWindow::enregistrer_produit()
     	achatRecord.setValue(YerothDatabaseTableColumn::DATE_PEREMPTION, dateEdit_date_peremption->date());
     }
 
-    if (!radioButton_service_vente_de_service_au_client->isChecked())
+    if (radioButton_inserer_un_stock->isChecked())
     {
-    	record.setValue(YerothDatabaseTableColumn::IS_SERVICE, YerothUtils::MYSQL_FALSE_LITERAL);
     	record.setValue(YerothDatabaseTableColumn::LOCALISATION_STOCK, lineEdit_localisation_produit->text());
     	record.setValue(YerothDatabaseTableColumn::DATE_PEREMPTION, dateEdit_date_peremption->date());
     	record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR, proposed_Fournisseur_Client_Name);
     }
     else
     {
-    	record.setValue(YerothDatabaseTableColumn::IS_SERVICE, YerothUtils::MYSQL_TRUE_LITERAL);
     	record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT, proposed_Fournisseur_Client_Name);
     }
 

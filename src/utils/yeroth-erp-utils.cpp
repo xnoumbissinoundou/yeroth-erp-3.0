@@ -414,7 +414,7 @@ const QIntValidator YerothUtils::nbre_de_LINE_FEED_POUR_IMPRESSION_PETIT_THERMIQ
 
 const QIntValidator YerothUtils::Int_BACKUP_YEROTH_ERP_3_Validator(1, 172800);
 
-const QRegExpValidator YerothUtils::STRING_FOR_YEROTH_ERP_3_0_VALIDATOR(QRegExp("[a-zA-Z0-9:;,~´`@§$£#%\\s*\\.\\^\\\\(\\)\\&/\<>\\?\\!\\{\\}\\[\\]\\+\\-\{\}=_'|]*"));
+const QRegExpValidator YerothUtils::STRING_FOR_YEROTH_ERP_3_0_VALIDATOR(QRegExp("[a-zA-Z0-9º:;,~´`@§$£#%\\s*\\.\\^\\\\(\\)\\&/\<>\\?\\!\\{\\}\\[\\]\\+\\-\{\}=_'|]*"));
 
 const QIntValidator YerothUtils::IntValidator(0, 444444444);
 

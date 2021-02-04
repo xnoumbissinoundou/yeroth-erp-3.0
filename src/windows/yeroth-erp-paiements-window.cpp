@@ -678,7 +678,6 @@ void YerothPaiementsWindow::textChangedSearchLineEditsQCompleters()
     QString companyType_TOHIDE_FILTER(QString("(%1 IS NULL)")
     									.arg(get_current_table_column_for_company_type_to_HIDE()));
 
-
     if (!_searchFilter.isEmpty())
     {
     	_searchFilter.append(QString(" AND %1")
@@ -692,7 +691,7 @@ void YerothPaiementsWindow::textChangedSearchLineEditsQCompleters()
 
     if (!_searchFilter.isEmpty())
     {
-    	QString searchFilterWithDate(QString("%1 AND (%2)")
+    	QString searchFilterWithDate(QString("(%1) AND (%2)")
     									.arg(_paiementsDateFilter,
     										 _searchFilter));
 
@@ -1123,9 +1122,29 @@ void YerothPaiementsWindow::rendreVisible(YerothSqlTableModel * stocksTableModel
 
     tabWidget_historique_paiements->setCurrentIndex(TableauDesPaiements);
 
-    setVisible(true);
+
+    YerothPOSUser *aUser = _allWindows->getUser();
+
+    if (0 != aUser)
+    {
+    	if (aUser->isManager())
+    	{
+    		comboBox_paiements_type_dentreprise->setEnabled(true);
+    	}
+    	else
+    	{
+    		comboBox_paiements_type_dentreprise->
+				setCurrentIndex(comboBox_paiements_type_dentreprise
+						->findText(YerothPaiementsWindow::CLIENT_TEXT_STRING));
+
+    		comboBox_paiements_type_dentreprise->setEnabled(false);
+    	}
+    }
+
 
     handle_combobox_type_dentreprise(comboBox_paiements_type_dentreprise->currentText());
+
+    setVisible(true);
 
     afficher_paiements();
 

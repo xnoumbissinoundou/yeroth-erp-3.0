@@ -1,5 +1,5 @@
 /*
- * yeroth-erp-marchandises-window.cpp
+ * yeroth-erp-payer-compte-client-window.cpp
  *
  *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
@@ -226,18 +226,20 @@ void YerothPayerCompteClientWindow::updateStocksVeduTable(PaymentInfo &paymentIn
 			if (YerothUtils::execQuery(copyRowQuery))
 			{
     			//handle stocksVendu table
-    			QString removeStocksVenduRowQuery(QString("DELETE FROM %1 WHERE %2 = '%3'")
+    			QString removeStocksVenduRowQuery(QString("DELETE FROM %1 WHERE %2='%3'")
     												.arg(YerothDatabase::STOCKS_VENDU,
-    													 YerothDatabaseTableColumn::REFERENCE,
-														 paymentInfo.reference));
+    													 YerothDatabaseTableColumn::ID,
+														 stocksVenduID));
 
     			if (YerothUtils::execQuery(removeStocksVenduRowQuery))
     			{
     				//handle marchandise table
-    				QString removeMarchandisesRowQuery(QString("DELETE FROM %1 WHERE %2 = '%3'")
+    				QString removeMarchandisesRowQuery(QString("DELETE FROM %1 WHERE %2='%3' AND %4='%5'")
     													 .arg(YerothDatabase::MARCHANDISES,
     														  YerothDatabaseTableColumn::REFERENCE,
-															  paymentInfo.reference));
+															  paymentInfo.reference,
+															  YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT,
+															  paymentInfo.nom_entreprise));
 
     				YerothUtils::execQuery(removeMarchandisesRowQuery);
     			}

@@ -164,7 +164,7 @@ private slots:
 
 	bool product_search_with_designation();
 
-	bool product_search_with_codebar();
+	bool product_search_with_reference();
 
 	void display_quantite_totale(const QString &quantite_par_lot);
 

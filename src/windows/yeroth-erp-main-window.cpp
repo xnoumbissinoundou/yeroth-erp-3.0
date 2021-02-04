@@ -216,7 +216,7 @@ void YerothMainWindow::definirVendeur()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPaiements, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVente, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMouvementsDeStocks, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionFournisseurs, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionFournisseurs, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionComptabilite, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchatsAUXFournisseurs, false);
@@ -240,7 +240,7 @@ void YerothMainWindow::definirVendeur()
 
 #endif
 
-    pushButton_fournisseurs->enable(this, SLOT(fournisseurs()));
+    pushButton_fournisseurs->disable(this);
     pushButton_clients->enable(this, SLOT(clients()));
     pushButton_paiements->enable(this, SLOT(paiements()));
     pushButton_achats_de_services->disable(this);

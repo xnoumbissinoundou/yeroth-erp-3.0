@@ -649,14 +649,6 @@ void YerothERPFournisseursWindow::rendreVisible(YerothSqlTableModel * stocksTabl
 }
 
 
-void YerothERPFournisseursWindow::definirCaissier()
-{
-    _logger->log("definirCaissier - definirPasDeRole()");
-
-    definirPasDeRole();
-}
-
-
 void YerothERPFournisseursWindow::definirManager()
 {
     _logger->log("definirManager");
@@ -691,59 +683,6 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
     pushButton_filtrer->enable(this, SLOT(filtrer()));
     pushButton_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
-}
-
-
-void YerothERPFournisseursWindow::definirVendeur()
-{
-    _logger->log("definirVendeur");
-
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherDetailsFournisseur, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCreerFournisseur, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifierFournisseur, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerFournisseur, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionExporter_au_format_csv, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
-
-#ifdef YEROTH_CLIENT
-YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
-#endif
-
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
-
-    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(this, _curFournisseursTableModel)
-
-    pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
-    pushButton_menu_principal->enable(this, SLOT(menu()));
-    pushButton_creer_fournisseur->enable(this, SLOT(creerFournisseur()));
-    pushButton_modifier->enable(this, SLOT(modifierFournisseur()));
-    pushButton_supprimer->enable(this, SLOT(supprimerFournisseur()));
-
-    pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
-    pushButton_filtrer->enable(this, SLOT(filtrer()));
-    pushButton_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
-}
-
-
-void YerothERPFournisseursWindow::definirGestionaireDesStocks()
-{
-    _logger->log("definirGestionaireDesStocks - definirPasDeRole()");
-
-    definirPasDeRole();
-}
-
-
-void YerothERPFournisseursWindow::definirMagasinier()
-{
-    _logger->log("definirMagasinier - definirPasDeRole()");
-
-    definirPasDeRole();
 }
 
 
