@@ -745,6 +745,10 @@ void YerothPaiementsWindow::contextMenuEvent(QContextMenuEvent * event)
 
 void YerothPaiementsWindow::clear_all_fields()
 {
+	comboBox_paiements_type_de_paiement->clear();
+
+	comboBox_paiements_type_de_paiement->addItem(YerothUtils::EMPTY_STRING);
+
 	textEdit_description->clear();
 
 	lineEdit_paiements_balance_clients_fournisseurs_total->clear();
@@ -1095,6 +1099,14 @@ void YerothPaiementsWindow::lister_les_elements_du_tableau(YerothSqlTableModel &
         tabWidget_historique_paiements->setTabEnabled(AfficherPaiementAuDetail, false);
     }
 }
+
+
+void YerothPaiementsWindow::rendreInvisible()
+{
+	clear_all_fields();
+    YerothWindowsCommons::rendreInvisible();
+}
+
 
 
 void YerothPaiementsWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
