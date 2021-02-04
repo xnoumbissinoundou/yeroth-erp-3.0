@@ -2333,12 +2333,12 @@ Continue with update of the stock ?</translation>
         <translation>Suppliers balance</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="1064"/>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="1096"/>
         <source>Total payé (crédité)</source>
         <translation>Paid amount (credited)</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="1085"/>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="1117"/>
         <source>Total payé (débité)</source>
         <translation>Paid amount (debited)</translation>
     </message>

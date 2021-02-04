@@ -948,7 +948,39 @@ bool YerothPaiementsWindow::imprimer_pdf_document()
 	_documentSpecificElements_FOR_PDF_LATEX_PRINTING.
 		insert("YEROTHVENTESFIN", DATE_TO_STRING(dateEdit_paiements_fin->date()));
 
-	return YerothWindowsCommons::imprimer_pdf_document();
+
+	QString client_fournisseur_visible_string;
+
+	uint client_fournisseur_current_visible_index = -1;
+
+	if (YerothUtils::isEqualCaseInsensitive(YerothPaiementsWindow::CLIENT_TEXT_STRING,
+			comboBox_paiements_type_dentreprise->currentText()))
+	{
+		client_fournisseur_visible_string = YerothDatabaseTableColumn::COMPTE_FOURNISSEUR;
+
+		client_fournisseur_current_visible_index =
+				_visibleDBColumnNameStrList.indexOf(YerothDatabaseTableColumn::COMPTE_FOURNISSEUR);
+
+		_visibleDBColumnNameStrList.removeAll(YerothDatabaseTableColumn::COMPTE_FOURNISSEUR);
+	}
+	else
+	{
+		client_fournisseur_visible_string = YerothDatabaseTableColumn::COMPTE_CLIENT;
+
+		client_fournisseur_current_visible_index =
+				_visibleDBColumnNameStrList.indexOf(YerothDatabaseTableColumn::COMPTE_CLIENT);
+
+		_visibleDBColumnNameStrList.removeAll(YerothDatabaseTableColumn::COMPTE_CLIENT);
+	}
+
+	bool retValue = YerothWindowsCommons::imprimer_pdf_document();
+
+
+	_visibleDBColumnNameStrList.insert(client_fournisseur_current_visible_index,
+									   client_fournisseur_visible_string);
+
+
+	return retValue;
 }
 
 
