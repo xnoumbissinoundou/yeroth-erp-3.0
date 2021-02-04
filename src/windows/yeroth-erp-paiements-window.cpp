@@ -1061,6 +1061,8 @@ void YerothPaiementsWindow::lister_les_elements_du_tableau(YerothSqlTableModel &
     if (YerothUtils::isEqualCaseInsensitive(YerothPaiementsWindow::CLIENT_TEXT_STRING,
     										comboBox_paiements_type_dentreprise->currentText()))
     {
+    	label_paiements_montant_paye_total->setText(QObject::trUtf8("Total payé (crédité)"));
+
     	double balance_clients_total = 0.0;
 
     	QMapIterator<QString, double> itClient(company_client_name_TO_financial_account_payment);
@@ -1076,6 +1078,8 @@ void YerothPaiementsWindow::lister_les_elements_du_tableau(YerothSqlTableModel &
     }
     else
     {
+    	label_paiements_montant_paye_total->setText(QObject::trUtf8("Total payé (débité)"));
+
     	double balance_fournisseurs_total = 0.0;
 
     	QMapIterator<QString, double> itSupplier(supplier_company_name_TO_financial_account_payment);
