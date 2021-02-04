@@ -324,7 +324,7 @@ void YerothAchatsDEServicesWindow::setupLineEdits()
 
 void YerothAchatsDEServicesWindow::setupDateTimeEdits()
 {
-    dateEdit_achats_de_services_debut->setStartDate(YerothERPConfig::GET_YEROTH_PAGING_DEFAULT_START_DATE());
+    dateEdit_achats_de_services_debut->setStartDate(YerothUtils::YEROTH_PAGING_DEFAULT_START_DATE);
 
     dateEdit_achats_de_services_fin->setStartDate(GET_CURRENT_DATE);
 

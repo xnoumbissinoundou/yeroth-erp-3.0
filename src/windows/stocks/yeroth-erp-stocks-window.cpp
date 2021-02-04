@@ -523,7 +523,7 @@ void YerothStocksWindow::setupLineEdits()
 
 void YerothStocksWindow::setupDateTimeEdits()
 {
-    dateEdit_stocks_debut->setStartDate(YerothERPConfig::GET_YEROTH_PAGING_DEFAULT_START_DATE());
+    dateEdit_stocks_debut->setStartDate(YerothUtils::YEROTH_PAGING_DEFAULT_START_DATE);
 
     dateEdit_stocks_fin->setStartDate(GET_CURRENT_DATE);
 
@@ -1112,7 +1112,7 @@ void YerothStocksWindow::supprimer_ce_stock(QString aStockID /* = YerothUtils::E
 
     		resRemoved = YerothUtils::execQuery(DELETE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW_QUERY_STRING);
 
-//    		QDEBUG_STRINGS_OUTPUT_2(QString("resRemoved: %1, stocksID: %2")
+//    		QDEBUG_STRING_OUTPUT_2(QString("resRemoved: %1, stocksID: %2")
 //    									.arg(BOOL_TO_STRING(resRemoved),
 //    										 aStockID),
 //											 DELETE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW_QUERY_STRING);
@@ -1152,14 +1152,14 @@ void YerothStocksWindow::supprimer_ce_stock(QString aStockID /* = YerothUtils::E
 
 //        		if (!aStockID.isEmpty())
 //        		{
-//            		QDEBUG_STRINGS_OUTPUT_2(QString("deletedBuyings: %1, stocksID: %2")
+//            		QDEBUG_STRING_OUTPUT_2(QString("deletedBuyings: %1, stocksID: %2")
 //            									.arg(BOOL_TO_STRING(deletedBuyings),
 //            										 aStockID),
 //    												 deleteAchatsRowQueryStr);
 //        		}
 //        		else
 //        		{
-//            		QDEBUG_STRINGS_OUTPUT_2(QString("deletedBuyings: %1, stocksID: %2")
+//            		QDEBUG_STRING_OUTPUT_2(QString("deletedBuyings: %1, stocksID: %2")
 //            									.arg(BOOL_TO_STRING(deletedBuyings),
 //            										 GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ID)),
 //    												 deleteAchatsRowQueryStr);

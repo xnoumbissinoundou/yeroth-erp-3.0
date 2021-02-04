@@ -274,7 +274,7 @@ void YerothERPMarchandisesTableView::dataChanged(const QModelIndex &index,
                                   	  	  	  	 const QModelIndex &bottomRight,
 												 const QVector<int> &roles /*= QVector<int>()*/)
 {
-//	QDEBUG_STRINGS_OUTPUT_2_N("bottomRight.column()", bottomRight.column());
+//	QDEBUG_STRING_OUTPUT_2_N("bottomRight.column()", bottomRight.column());
 
     if (index != bottomRight)
     {
@@ -361,7 +361,7 @@ void YerothERPMarchandisesTableView::dataChanged(const QModelIndex &index,
     	mySqlQuery.clear();
     }
 
-    //    		QDEBUG_STRINGS_OUTPUT_2(QString::number(mySqlQuerySize), strUpdateMarchandisesTableQuery);
+    //    		QDEBUG_STRING_OUTPUT_2(QString::number(mySqlQuerySize), strUpdateMarchandisesTableQuery);
 
     success = YerothUtils::execQuery(strUpdateMarchandisesTableQuery);
 

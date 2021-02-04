@@ -310,7 +310,7 @@ void YerothDetailsDunGroupeDeClientsWindow::showClientGroup_DETAIL(const QString
         }
 	}
 
-//	QDEBUG_STRINGS_OUTPUT_2("designation",
+//	QDEBUG_STRING_OUTPUT_2("designation",
 //			GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESIGNATION));
 
 	lineEdit_details_dun_groupe_de_clients_reference_groupe

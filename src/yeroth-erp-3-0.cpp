@@ -414,7 +414,7 @@ void read_system_local_yeroth_configuration()
 
 		list = line.split(YEROTH_ERP_3_0_CONFIGURATION_FILE_SEPARATION_OPERATOR);
 
-//		QDEBUG_STRINGS_OUTPUT_2("line", line);
+//		QDEBUG_STRING_OUTPUT_2("line", line);
 
 		if (YerothUtils::isEqualCaseInsensitive("local_parameter_full_path_pdf_reader", list.at(0)))
 		{

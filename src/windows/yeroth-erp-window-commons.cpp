@@ -263,7 +263,7 @@ bool YerothWindowsCommons::SQL_UPDATE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(QSqlRe
 {
 	if (0 == _yerothTableView_FROM_WINDOWS_COMMONS)
 	{
-//		QDEBUG_STRINGS_OUTPUT_2("YerothWindowsCommons::SQL_UPDATE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW",
+//		QDEBUG_STRING_OUTPUT_2("YerothWindowsCommons::SQL_UPDATE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW",
 //				QString("There is no SQL TABLE VIEW associated !"));
 
 		return false;
@@ -276,7 +276,7 @@ bool YerothWindowsCommons::SQL_UPDATE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(QSqlRe
 
 	if (0 == yerothTableViewSQL_TABLE_MODEL)
 	{
-//		QDEBUG_STRINGS_OUTPUT_2("YerothWindowsCommons::SQL_UPDATE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW",
+//		QDEBUG_STRING_OUTPUT_2("YerothWindowsCommons::SQL_UPDATE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW",
 //				QString("There is no SQL TABLE MODEL for table view: %1")
 //					.arg(_yerothTableView_FROM_WINDOWS_COMMONS->getSqlTableName()));
 
@@ -297,14 +297,14 @@ bool YerothWindowsCommons::SQL_UPDATE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(QSqlRe
 				_MAP_ORIGINAL_NON_FILTERED_DB_ID__TO__ORIGINAL_DB_ROW.
 					value(db_ID.toInt());
 
-//	QDEBUG_STRINGS_OUTPUT_2("db_ID <--> db_ROW", QString("%1 <--> %2")
+//	QDEBUG_STRING_OUTPUT_2("db_ID <--> db_ROW", QString("%1 <--> %2")
 //									.arg(db_ID,
 //										 QString::number(dbtableOriginalRowID)));
 
 	bool success = yerothTableViewSQL_TABLE_MODEL->
 			updateRecord(dbtableOriginalRowID, resultRecord_IN);
 
-//	QDEBUG_STRINGS_OUTPUT_2(QString("update of SQL TABLE VIEW: %1")
+//	QDEBUG_STRING_OUTPUT_2(QString("update of SQL TABLE VIEW: %1")
 //								.arg(_yerothTableView_FROM_WINDOWS_COMMONS->getSqlTableName()),
 //							BOOL_TO_STRING(success));
 
@@ -324,7 +324,7 @@ bool YerothWindowsCommons::SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(QSqlRec
 																			 YerothDatabaseTableColumn::ID,
 																			 YerothWindowsCommons::get_last_lister_selected_row_ID()));
 
-//	QDEBUG_STRINGS_OUTPUT_2("QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW_QUERY_STRING",
+//	QDEBUG_STRING_OUTPUT_2("QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW_QUERY_STRING",
 //			QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW_QUERY_STRING);
 
 	QSqlQuery query;
@@ -335,7 +335,7 @@ bool YerothWindowsCommons::SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(QSqlRec
 	{
 		resultRecord_IN_OUT = query.record();
 
-//		QDEBUG_STRINGS_OUTPUT_2("ID", GET_SQL_RECORD_DATA(resultRecord_IN_OUT, YerothDatabaseTableColumn::ID));
+//		QDEBUG_STRING_OUTPUT_2("ID", GET_SQL_RECORD_DATA(resultRecord_IN_OUT, YerothDatabaseTableColumn::ID));
 
 		return true;
 	}
@@ -1050,7 +1050,7 @@ void YerothWindowsCommons::setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(const QM
 
 	getQModelIndex_dbID_from_MODEL_INDEX(modelIndex, db_ID);
 
-//	QDEBUG_STRINGS_OUTPUT_2("db_ID - 1", db_ID);
+//	QDEBUG_STRING_OUTPUT_2("db_ID - 1", db_ID);
 
 	if (!db_ID.isEmpty() 		&&
 		modelIndex.row() >= 0 	&&
@@ -1069,7 +1069,7 @@ void YerothWindowsCommons::setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(const QM
 
 			getQModelIndex_dbID_from_MODEL_INDEX(aYerothTableViewIndex_2, db_ID);
 
-//			QDEBUG_STRINGS_OUTPUT_2("db_ID - 2", db_ID);
+//			QDEBUG_STRING_OUTPUT_2("db_ID - 2", db_ID);
 //			qDebug() << "++ aYerothTableViewIndex_2:" << aYerothTableViewIndex_2;
 
 			_yerothTableView_FROM_WINDOWS_COMMONS->setCurrentIndex(aYerothTableViewIndex_2);

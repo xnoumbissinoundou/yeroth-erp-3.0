@@ -277,9 +277,9 @@ void YerothAlertesWindow::marquer_resolue()
     bool successCourriersAlertes = _allWindows->_listerAlertesWindow->
     		SQL_UPDATE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(courriersAlertesRecord);
 
-//    QDEBUG_STRINGS_OUTPUT_2("successCourriersAlertes", BOOL_TO_STRING(successCourriersAlertes));
+//    QDEBUG_STRING_OUTPUT_2("successCourriersAlertes", BOOL_TO_STRING(successCourriersAlertes));
 
-//    QDEBUG_STRINGS_OUTPUT_2("successAlertes", BOOL_TO_STRING(successAlertes));
+//    QDEBUG_STRING_OUTPUT_2("successAlertes", BOOL_TO_STRING(successAlertes));
 
     if (successAlertes && successCourriersAlertes)
     {
@@ -608,7 +608,7 @@ void YerothAlertesWindow::textChangedSearchLineEditsQCompleters()
 
     QString finalSearchFilter(_searchFilter);
 
-//    QDEBUG_STRINGS_OUTPUT_2("finalSearchFilter", finalSearchFilter);
+//    QDEBUG_STRING_OUTPUT_2("finalSearchFilter", finalSearchFilter);
 
     _yerothSqlTableModel->yerothSetFilter_WITH_where_clause(finalSearchFilter);
 

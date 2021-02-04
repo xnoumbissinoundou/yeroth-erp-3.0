@@ -501,7 +501,7 @@ bool YerothMarchandisesWindow::slot_filtrer_empty_product_stock()
 	QString designationStr;
 	QString filterString;
 
-//	QDEBUG_STRINGS_OUTPUT_2("stdItemModel->rowCount()", QString::number(stdItemModel->rowCount()));
+//	QDEBUG_STRING_OUTPUT_2("stdItemModel->rowCount()", QString::number(stdItemModel->rowCount()));
 
 	for (int k = 0; k < stdItemModel->rowCount(); ++k)
 	{
@@ -615,7 +615,7 @@ bool YerothMarchandisesWindow::slot_filtrer()
 
 	_curMarchandisesTableModel->yerothSetFilter_WITH_where_clause(filterString);
 
-//	QDEBUG_STRINGS_OUTPUT_2("_curMarchandisesTableModel->yerothSelectStatement()",
+//	QDEBUG_STRING_OUTPUT_2("_curMarchandisesTableModel->yerothSelectStatement()",
 //			_curMarchandisesTableModel->yerothSelectStatement());
 
 	int resultRows = _curMarchandisesTableModel->easySelect();
@@ -788,7 +788,7 @@ void YerothMarchandisesWindow::rendreVisible(YerothSqlTableModel * stocksTableMo
 
 	_curMarchandisesTableModel->yerothSetFilter_WITH_where_clause(currentFilter);
 
-//	QDEBUG_STRINGS_OUTPUT_2("currentFilter", currentFilter);
+//	QDEBUG_STRING_OUTPUT_2("currentFilter", currentFilter);
 
 	afficherMarchandises();
 
@@ -1043,7 +1043,7 @@ void YerothMarchandisesWindow::supprimer_cette_marchandise(QString aMarchandiseI
 
     		resRemoved = YerothUtils::execQuery(DELETE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW_QUERY_STRING);
 
-//    		QDEBUG_STRINGS_OUTPUT_2(QString("resRemoved: %1, stocksID: %2")
+//    		QDEBUG_STRING_OUTPUT_2(QString("resRemoved: %1, stocksID: %2")
 //    									.arg(BOOL_TO_STRING(resRemoved),
 //    										 aStockID),
 //											 DELETE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW_QUERY_STRING);

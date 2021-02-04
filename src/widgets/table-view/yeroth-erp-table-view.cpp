@@ -267,7 +267,7 @@ void YerothTableView::construire_le_MAPPING_ORIGINAL_db_ID_VERS_db_row_Nr(Yeroth
 
     		if (YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID))
     		{
-//    			QDEBUG_STRINGS_OUTPUT_2("YerothTableView::construire_le_MAPPING_ORIGINAL_db_ID_VERS_db_row_Nr db_ID <--> db_ROW", QString("%1 <--> %2")
+//    			QDEBUG_STRING_OUTPUT_2("YerothTableView::construire_le_MAPPING_ORIGINAL_db_ID_VERS_db_row_Nr db_ID <--> db_ROW", QString("%1 <--> %2")
 //    					.arg(QString::number(qv.toInt()),
 //    							QString::number(i)));
 
@@ -520,6 +520,8 @@ void YerothTableView::lister_les_transactions_dun_client(QSqlQuery &sqlClientTra
     					aYerothQStandardItem = new YerothQStandardItem(GET_DOUBLE_STRING(qv.toDouble()), Qt::AlignRight);
     				}
 
+    				aYerothQStandardItem->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
+
     				_stdItemModel->setItem(i, j, aYerothQStandardItem);
     				break;
 
@@ -534,6 +536,8 @@ void YerothTableView::lister_les_transactions_dun_client(QSqlQuery &sqlClientTra
     				{
         				aYerothQStandardItem = new YerothQStandardItem(qv.toString(), false);
     				}
+
+    				aYerothQStandardItem->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
 
     				_stdItemModel->setItem(i, j, aYerothQStandardItem);
     				break;
@@ -560,9 +564,11 @@ void YerothTableView::lister_les_transactions_dun_client(QSqlQuery &sqlClientTra
     				}
     				else
     				{
-    					aYerothQStandardItem = new YerothQStandardItem(keyValue, Qt::AlignRight);
+    					aYerothQStandardItem = new YerothQStandardItem(keyValue);
     					_stdItemModel->setItem(i, j, aYerothQStandardItem);
     				}
+
+    				aYerothQStandardItem->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
 
     				break;
 

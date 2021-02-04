@@ -307,7 +307,7 @@ void YerothModifierGroupeDeClientsWindow::update_client_group_member_data(const 
 														 YerothDatabaseTableColumn::ID,
 														 client_db_ID));
 
-//	QDEBUG_STRINGS_OUTPUT_2("strQuery_UPDATE_ClientGroupMemberDATA", strQuery_UPDATE_ClientGroupMemberDATA);
+//	QDEBUG_STRING_OUTPUT_2("strQuery_UPDATE_ClientGroupMemberDATA", strQuery_UPDATE_ClientGroupMemberDATA);
 
 	YerothUtils::execQuery(query, strQuery_UPDATE_ClientGroupMemberDATA, _logger);
 }

@@ -64,7 +64,7 @@ public:
 
     virtual void definirPasDeRole();
 
-    void lister_les_elements_du_tableau(YerothSqlTableModel &historiquePaiementsTableModel);
+    void lister_les_elements_du_tableau(YerothSqlTableModel &paiementsTableModel);
 
     inline void lister_les_elements_du_tableau()
     {

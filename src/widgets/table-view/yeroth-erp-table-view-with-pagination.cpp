@@ -82,12 +82,23 @@ void YerothTableViewWITHpagination::displayYerothTableViewPageContentRowLimit(Ye
 		return ;
 	}
 
-	QString aCurYerothTableViewPageFilter = QString("limit %2, %3")
+	QString aCurYerothTableViewPageFilter = QString("limit %1, %2")
 												.arg(QString::number(curPageFromRowNumber),
 													 QString::number(_yerothTableViewPageRowCount));
 
-	int querySize  =
+
+	if (YerothUtils::isEqualCaseInsensitive(YerothDatabase::PAIEMENTS,
+											curYerothSqlTableModel_IN.sqlTableName()))
+	{
+		aCurYerothTableViewPageFilter.prepend(QString(" ORDER BY %1 DESC, %2 DESC ")
+												.arg(YerothDatabaseTableColumn::DATE_PAIEMENT,
+													 YerothDatabaseTableColumn::HEURE_PAIEMENT));
+	}
+
+
+	int querySize =
 			curYerothSqlTableModel_IN.yeroth_specify_filter_FROM_SELECT_STATEMENT(aCurYerothTableViewPageFilter);
+
 
 	if (!YerothUtils::isEqualCaseInsensitive(curYerothSqlTableModel_IN.sqlTableName(),
 											 YerothDatabase::STOCKS))

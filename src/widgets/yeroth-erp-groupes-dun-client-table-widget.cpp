@@ -13,7 +13,7 @@ int YerothGroupesDunClientTableWidget::insert_group(const QString &group_db_ID,
 											   	    const QString &groupReference,
 													const QString &groupNumber)
 {
-//	QDEBUG_STRINGS_OUTPUT_2("YerothGroupesDunClientWindow::insert_group", groupDesignation);
+//	QDEBUG_STRING_OUTPUT_2("YerothGroupesDunClientWindow::insert_group", groupDesignation);
 
     setRowCount(_curRow + 1);
 

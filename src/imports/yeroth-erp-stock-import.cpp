@@ -274,7 +274,7 @@ enum import_csv_entry_row_return_status
 
     int stock_id_to_save = YerothERPWindows::getNextIdSqlTableModel_stocks();
 
-//    QDEBUG_STRINGS_OUTPUT_2_N("stock_id_to_save - init", stock_id_to_save);
+//    QDEBUG_STRING_OUTPUT_2_N("stock_id_to_save - init", stock_id_to_save);
 
     int querySize = -1;
 
@@ -720,7 +720,7 @@ enum import_csv_entry_row_return_status
 		record.setValue(YerothDatabaseTableColumn::PRIX_UNITAIRE_EN_GROS, prix_unitaire_EN_GROS);
 	}
 
-//	QDEBUG_STRINGS_OUTPUT_2_N("stock_id_to_save - 2", stock_id_to_save);
+//	QDEBUG_STRING_OUTPUT_2_N("stock_id_to_save - 2", stock_id_to_save);
 
 	record.setValue(YerothDatabaseTableColumn::ID, stock_id_to_save);
 

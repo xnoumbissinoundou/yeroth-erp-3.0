@@ -110,11 +110,11 @@ enum import_csv_entry_row_return_status
 
 			curTableColumnName = curDatabaseTableColumnInfo->getColumnName();
 
-//			QDEBUG_STRINGS_OUTPUT_2("curTableColumnName", curTableColumnName);
+//			QDEBUG_STRING_OUTPUT_2("curTableColumnName", curTableColumnName);
 //
-//			QDEBUG_STRINGS_OUTPUT_2("curTableColumnType", curTableColumnType);
+//			QDEBUG_STRING_OUTPUT_2("curTableColumnType", curTableColumnType);
 //
-//			QDEBUG_STRINGS_OUTPUT_2("curColumnRowEntry", curColumnRowEntry);
+//			QDEBUG_STRING_OUTPUT_2("curColumnRowEntry", curColumnRowEntry);
 
 			if (YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::REFERENCE, curTableColumnName))
 			{

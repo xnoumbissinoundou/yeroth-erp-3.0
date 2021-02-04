@@ -170,11 +170,6 @@ public:
 				.arg(pathToLatexSystemRootFolder);
 	}
 
-	inline static QDate GET_YEROTH_PAGING_DEFAULT_START_DATE()
-	{
-		return QDate(YerothERPConfig::annee_depart_pour_la_pagination.toInt(), 1, 1);
-	}
-
 	static void initYerothConfig(QString initCfg);
 
 	static void saveYerothConfig();

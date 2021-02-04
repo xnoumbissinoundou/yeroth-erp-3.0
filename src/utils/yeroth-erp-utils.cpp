@@ -211,6 +211,9 @@ const QKeySequence YerothUtils::REINITIALISER_QUI_SUI_JE_QKEYSEQUENCE(QObject::t
 const QKeySequence YerothUtils::LISTER_STOCKS_QKEYSEQUENCE(QObject::tr(SHORTCUT_LIST_STOCKS));
 
 
+QDate YerothUtils::YEROTH_PAGING_DEFAULT_START_DATE(YerothERPConfig::annee_depart_pour_la_pagination.toInt(), 1, 1);
+
+
 QString YerothUtils::YEROTH_ERP_3_0_SERVER_PARAMETERS_DISPLAY("");
 
 
@@ -1416,7 +1419,7 @@ double YerothUtils::get_prix_dachat_wheter_exists(const QString &stocksID)
 										 YerothDatabaseTableColumn::STOCKS_ID,
 										 stocksID));
 
-//    QDEBUG_STRINGS_OUTPUT_2("prixDachatQueryString", prixDachatQueryString);
+//    QDEBUG_STRING_OUTPUT_2("prixDachatQueryString", prixDachatQueryString);
 
     QSqlQuery prixDachatQuery;
 
@@ -3357,7 +3360,7 @@ bool YerothUtils::export_csv_file(YerothWindowsCommons &aCallingWindow,
             {
                 anItemText = anItem->get_rawUNMODIFIED_FOR_USER_VIEWING_text();
 
-//                QDEBUG_STRINGS_OUTPUT_2("anItemText", anItemText);
+//                QDEBUG_STRING_OUTPUT_2("anItemText", anItemText);
 
                 csvFileContent.append( QString("\"%1\"%2 ")
                 						 .arg(anItemText,

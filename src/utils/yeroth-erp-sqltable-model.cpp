@@ -74,7 +74,7 @@ int YerothSqlTableModel::yeroth_RESET_specify_filter_FROM_SELECT_STATEMENT(const
 
 	curYerothSelectStatement.remove(filter);
 
-//	QDEBUG_STRINGS_OUTPUT_2("RESET filter", curYerothSelectStatement);
+//	QDEBUG_STRING_OUTPUT_2("RESET filter", curYerothSelectStatement);
 
 	int queryResultSize = yerothSetQueryRowCount(curYerothSelectStatement);
 
@@ -89,7 +89,7 @@ int YerothSqlTableModel::yeroth_specify_filter_FROM_SELECT_STATEMENT(const QStri
 	curYerothSelectStatement.append(QString(" %1")
 										.arg(filter));
 
-//	QDEBUG_STRINGS_OUTPUT_2("filter", curYerothSelectStatement);
+//	QDEBUG_STRING_OUTPUT_2("filter", curYerothSelectStatement);
 
 	int queryResultSize = yerothSetQueryRowCount(curYerothSelectStatement);
 
@@ -281,7 +281,7 @@ bool YerothSqlTableModel::insertNewRecord(QSqlRecord &record, QMainWindow *paren
 //    		{
 //    			aCurFieldValue = DATE_TO_DB_FORMAT_STRING(record.value(aCurFieldName).toDate());
 //
-////    			QDEBUG_STRINGS_OUTPUT_2("aCurFieldValue (DATE_TO_DB_FORMAT_STRING)", aCurFieldValue);
+////    			QDEBUG_STRING_OUTPUT_2("aCurFieldValue (DATE_TO_DB_FORMAT_STRING)", aCurFieldValue);
 //
 //    			if (!aCurFieldValue.isEmpty())
 //    			{
@@ -305,7 +305,7 @@ bool YerothSqlTableModel::insertNewRecord(QSqlRecord &record, QMainWindow *paren
 //										.arg(YerothDatabaseTableColumn::ID,
 //											 dbFieldIDValue));
 //
-////    QDEBUG_STRINGS_OUTPUT_2("SQL_UPDATE_STRING_COMMAND", SQL_UPDATE_STRING_COMMAND);
+////    QDEBUG_STRING_OUTPUT_2("SQL_UPDATE_STRING_COMMAND", SQL_UPDATE_STRING_COMMAND);
 //
 //    success = YerothUtils::execQuery(SQL_UPDATE_STRING_COMMAND);
 //

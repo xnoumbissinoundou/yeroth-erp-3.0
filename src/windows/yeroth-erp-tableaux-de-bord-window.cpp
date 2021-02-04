@@ -1189,13 +1189,13 @@ void YerothTableauxDeBordWindow::ZERO_stats_stocks(QString fileName,
 							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_fin->date())));
 
 
-//    QDEBUG_STRINGS_OUTPUT_2("YerothTableauxDeBordWindow::ZERO_stats, strQuery", strQuery);
+//    QDEBUG_STRING_OUTPUT_2("YerothTableauxDeBordWindow::ZERO_stats, strQuery", strQuery);
 
     QSqlQuery query;
 
     int querySize = YerothUtils::execQuery(query, strQuery, _logger);
 
-//    QDEBUG_STRINGS_OUTPUT_2_N("querySize", querySize);
+//    QDEBUG_STRING_OUTPUT_2_N("querySize", querySize);
 
     double prix_dachat = 0.0;
 
@@ -1359,7 +1359,7 @@ void YerothTableauxDeBordWindow::ZERO_stats(QString fileName,
 							 DATE_TO_DB_FORMAT_STRING(dateEdit_rapports_fin->date())));
 
 
-//    QDEBUG_STRINGS_OUTPUT_2("YerothTableauxDeBordWindow::ZERO_stats, strQuery", strQuery);
+//    QDEBUG_STRING_OUTPUT_2("YerothTableauxDeBordWindow::ZERO_stats, strQuery", strQuery);
 
     QSqlQuery query;
 

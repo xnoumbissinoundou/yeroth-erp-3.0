@@ -653,7 +653,7 @@ void YerothAdminWindow::EXECUTER_COMMANDE_MAINTENANCE()
 		return ;
 	}
 
-//	QDEBUG_STRINGS_OUTPUT_2("maintenanceCommand", maintenanceCommand);
+//	QDEBUG_STRING_OUTPUT_2("maintenanceCommand", maintenanceCommand);
 
 	QString progArgsString(maintenanceCommand.remove(0, lenToRemoveFromMAINTENANCE_COMMAND).trimmed());
 
@@ -667,7 +667,7 @@ void YerothAdminWindow::EXECUTER_COMMANDE_MAINTENANCE()
 	progArgsString.replace("-p", QString("-p%1")
 									.arg(YerothERPConfig::_db_user_pwd));
 
-//	QDEBUG_STRINGS_OUTPUT_2("progArgsString", progArgsString);
+//	QDEBUG_STRING_OUTPUT_2("progArgsString", progArgsString);
 
 
 	QString progArgString_NOT_TO_SPLIT;
@@ -682,9 +682,9 @@ void YerothAdminWindow::EXECUTER_COMMANDE_MAINTENANCE()
 
 		progArgString_NOT_TO_SPLIT = splitted_cmd_string.at(1).trimmed();
 
-//		QDEBUG_STRINGS_OUTPUT_2("progArgString_NOT_TO_SPLIT", progArgString_NOT_TO_SPLIT);
+//		QDEBUG_STRING_OUTPUT_2("progArgString_NOT_TO_SPLIT", progArgString_NOT_TO_SPLIT);
 
-//		QDEBUG_STRINGS_OUTPUT_2("progArgString_TO_SPLIT", progArgString_TO_SPLIT);
+//		QDEBUG_STRING_OUTPUT_2("progArgString_TO_SPLIT", progArgString_TO_SPLIT);
 	}
 
 	QStringList progArguments(progArgString_TO_SPLIT.split(YerothUtils::EMPTY_SPACE_REGEXP));
@@ -1211,7 +1211,7 @@ void YerothAdminWindow::changer_commande_YEROTH_LINE_EDIT(YerothLineEdit &aYerot
 											 sqlTableName));
 	}
 
-//	QDEBUG_STRINGS_OUTPUT_2("cur_COMMAND_string", curCOMMANDString);
+//	QDEBUG_STRING_OUTPUT_2("cur_COMMAND_string", curCOMMANDString);
 
 	lineEdit_administration_maintenance_commandes_COMMANDE_ACTUELLE->setText(curCOMMANDString);
 }
@@ -2399,7 +2399,7 @@ void YerothAdminWindow::enregistrer_YEROTH_ERP_3_0_SYSTEM_DAEMON_configuration()
             }
         }
 
-//        QDEBUG_STRINGS_OUTPUT_2("success", BOOL_TO_STRING(success));
+//        QDEBUG_STRING_OUTPUT_2("success", BOOL_TO_STRING(success));
 
         if (success)
         {
