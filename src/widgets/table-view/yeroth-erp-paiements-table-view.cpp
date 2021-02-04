@@ -179,6 +179,14 @@ void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableM
 
     		case QVariant::Double:
     			anItem = new YerothQStandardItem(GET_DOUBLE_STRING(qv.toDouble()));
+
+    			if (YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::MONTANT_PAYE)||
+    				YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::COMPTE_CLIENT)||
+    				YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::COMPTE_FOURNISSEUR))
+    			{
+    				anItem->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
+    			}
+
     			_stdItemModel->setItem(i, k, anItem);
     			break;
 
@@ -202,7 +210,7 @@ void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableM
     			tmpQvString.append(qv.toString());
 
     			if (!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::REFERENCE) &&
-    					!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::REFERENCE_RECU_PAIEMENT_CLIENT))
+    				!YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::REFERENCE_RECU_PAIEMENT_CLIENT))
     			{
     				anItem = new YerothQStandardItem(tmpQvString, false);
     			}
