@@ -1073,25 +1073,20 @@ void YerothPaiementsWindow::lister_les_elements_du_tableau(YerothSqlTableModel &
     		balance_clients_total += itClient.value();
     	}
 
+    	label_paiements_balance_clients_fournisseurs_total->setVisible(true);
+
     	lineEdit_paiements_balance_clients_fournisseurs_total
 			->setText(GET_CURRENCY_STRING_NUM(balance_clients_total));
+
+    	lineEdit_paiements_balance_clients_fournisseurs_total->setVisible(true);
     }
     else
     {
     	label_paiements_montant_paye_total->setText(QObject::trUtf8("Total payé (débité)"));
 
-    	double balance_fournisseurs_total = 0.0;
+    	label_paiements_balance_clients_fournisseurs_total->setVisible(false);
 
-    	QMapIterator<QString, double> itSupplier(supplier_company_name_TO_financial_account_payment);
-
-    	while (itSupplier.hasNext())
-    	{
-    		itSupplier.next();
-    		balance_fournisseurs_total += itSupplier.value();
-    	}
-
-    	lineEdit_paiements_balance_clients_fournisseurs_total
-			->setText(GET_CURRENCY_STRING_NUM(balance_fournisseurs_total));
+    	lineEdit_paiements_balance_clients_fournisseurs_total->setVisible(false);
     }
 
 
