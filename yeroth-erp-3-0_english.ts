@@ -2158,7 +2158,7 @@ Continue with update of the stock ?</translation>
         <location filename="src/windows/yeroth-erp-entrer-window.hpp" line="95"/>
         <location filename="src/windows/yeroth-erp-main-window.cpp" line="498"/>
         <location filename="src/windows/yeroth-erp-main-window.cpp" line="506"/>
-        <location filename="src/windows/yeroth-erp-paiements-window.hpp" line="91"/>
+        <location filename="src/windows/yeroth-erp-paiements-window.hpp" line="93"/>
         <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.hpp" line="77"/>
         <location filename="src/windows/yeroth-erp-ventes-window.hpp" line="93"/>
         <source>aide</source>
@@ -4189,7 +4189,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>due amount</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-paiements-window.hpp" line="92"/>
+        <location filename="src/windows/yeroth-erp-paiements-window.hpp" line="94"/>
         <source>1) Vous avez accès aux informations sur les paiements en utilisant le nom de l&apos;entreprise. Ceci se fait dans le 1er champ de recherche de cette l&apos;interface graphique !
 
 2) Vous pouvez filtrer les résultats de la recherche, sur les informations de paiements, en paramétrant celle-ci avec des dates de &apos;Début&apos;, et de &apos;Fin&apos;.
