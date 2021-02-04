@@ -86,16 +86,6 @@ void YerothTableViewWITHpagination::displayYerothTableViewPageContentRowLimit(Ye
 												.arg(QString::number(curPageFromRowNumber),
 													 QString::number(_yerothTableViewPageRowCount));
 
-
-	if (YerothUtils::isEqualCaseInsensitive(YerothDatabase::PAIEMENTS,
-											curYerothSqlTableModel_IN.sqlTableName()))
-	{
-		aCurYerothTableViewPageFilter.prepend(QString(" ORDER BY %1 DESC, %2 DESC ")
-												.arg(YerothDatabaseTableColumn::DATE_PAIEMENT,
-													 YerothDatabaseTableColumn::HEURE_PAIEMENT));
-	}
-
-
 	int querySize =
 			curYerothSqlTableModel_IN.yeroth_specify_filter_FROM_SELECT_STATEMENT(aCurYerothTableViewPageFilter);
 

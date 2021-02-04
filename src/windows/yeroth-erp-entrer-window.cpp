@@ -915,7 +915,8 @@ bool YerothEntrerWindow::insertStockItemInProductList()
     record.setValue(YerothDatabaseTableColumn::ID,
                     YerothERPWindows::getNextIdSqlTableModel_marchandises());
 
-    if (radioButton_service_vente_de_service_au_client->isChecked())
+    if (radioButton_service_vente_de_service_au_client->isChecked() ||
+    	radioButton_service_achat_de_service->isChecked())
     {
     	record.setValue(YerothDatabaseTableColumn::IS_SERVICE, YerothUtils::MYSQL_TRUE_LITERAL);
     }
