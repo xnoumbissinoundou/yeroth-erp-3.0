@@ -1572,7 +1572,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="589"/>
         <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="332"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseurs-window.cpp" line="500"/>
-        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="244"/>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="245"/>
         <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="926"/>
         <source>Veuillez saisir une valeur numérique pour la recherche !</source>
         <oldsource>Veuillez saisir une valeur numérique pour la recherche!</oldsource>
@@ -1585,7 +1585,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="592"/>
         <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="335"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseurs-window.cpp" line="503"/>
-        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="247"/>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="248"/>
         <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="929"/>
         <source>filtrer</source>
         <translation>filter</translation>
@@ -1613,7 +1613,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="512"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseurs-window.cpp" line="622"/>
         <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="456"/>
-        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="504"/>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="531"/>
         <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1126"/>
         <source>valeur à rechercher</source>
         <translation>value to search for</translation>
@@ -2318,34 +2318,34 @@ Continue with update of the stock ?</translation>
         <translation>discount designation</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="73"/>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="74"/>
         <source>paiements clients et fournisseurs</source>
         <translation>clients and suppliers payments</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="308"/>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="335"/>
         <source>Balance clients</source>
         <translation>Clients balance</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="351"/>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="378"/>
         <source>Balance fournisseurs</source>
         <translation>Suppliers balance</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="1096"/>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="1102"/>
         <source>Total payé (crédité)</source>
         <translation>Paid amount (credited)</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="1117"/>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="1123"/>
         <source>Total payé (débité)</source>
         <translation>Paid amount (debited)</translation>
     </message>
     <message>
         <location filename="src/windows/stocks/yeroth-erp-mouvements_de_stocks-window.cpp" line="338"/>
         <location filename="src/windows/stocks/yeroth-erp-mouvements_de_stocks-window.cpp" line="339"/>
-        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="502"/>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="529"/>
         <source>terme à rechercher (notes)</source>
         <oldsource>terme à rechercher (référence reçu de paiement client, notes)</oldsource>
         <translation>keyword to search for (memo)</translation>
