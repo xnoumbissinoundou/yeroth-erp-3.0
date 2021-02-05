@@ -61,6 +61,7 @@ YerothPaiementsWindow::YerothPaiementsWindow()
 :YerothWindowsCommons("yeroth-erp-journal-paiements"),
  YerothAbstractClassYerothSearchWindow(YerothDatabase::PAIEMENTS),
  _logger(new YerothLogger("YerothPaiementsWindow")),
+ _client_fournisseur_current_visible_index_EXPORT_AND_PRINT_PDF(-1),
  _currentTabView(0),
  _pushButton_paiements_filtrer_font(0),
  _paiementsDateFilter(YerothUtils::EMPTY_STRING),
@@ -300,6 +301,32 @@ bool YerothPaiementsWindow::filtrer_paiements()
 	set_filtrer_font();
 
 	return false;
+}
+
+
+void YerothPaiementsWindow::prepare__IN__for_export_and_printing()
+{
+	if (YerothUtils::isEqualCaseInsensitive(YerothPaiementsWindow::CLIENT_TEXT_STRING,
+			comboBox_paiements_type_dentreprise->currentText()))
+	{
+		_client_fournisseur_visible_string_EXPORT_AND_PRINT_PDF =
+				YerothDatabaseTableColumn::COMPTE_FOURNISSEUR;
+
+		_client_fournisseur_current_visible_index_EXPORT_AND_PRINT_PDF =
+				_visibleDBColumnNameStrList.indexOf(YerothDatabaseTableColumn::COMPTE_FOURNISSEUR);
+
+		_visibleDBColumnNameStrList.removeAll(YerothDatabaseTableColumn::COMPTE_FOURNISSEUR);
+	}
+	else
+	{
+		_client_fournisseur_visible_string_EXPORT_AND_PRINT_PDF =
+				YerothDatabaseTableColumn::COMPTE_CLIENT;
+
+		_client_fournisseur_current_visible_index_EXPORT_AND_PRINT_PDF =
+				_visibleDBColumnNameStrList.indexOf(YerothDatabaseTableColumn::COMPTE_CLIENT);
+
+		_visibleDBColumnNameStrList.removeAll(YerothDatabaseTableColumn::COMPTE_CLIENT);
+	}
 }
 
 
@@ -912,6 +939,8 @@ bool YerothPaiementsWindow::export_csv_file()
 {
 	bool success = false;
 
+	prepare__IN__for_export_and_printing();
+
 	QList<int> tableColumnsToIgnore;
 
 	fill_table_columns_to_ignore(tableColumnsToIgnore);
@@ -932,6 +961,8 @@ bool YerothPaiementsWindow::export_csv_file()
 										   "payments listing file");
 #endif
 
+	prepare__OUT__for_export_and_printing();
+
 	return success;
 }
 
@@ -949,36 +980,11 @@ bool YerothPaiementsWindow::imprimer_pdf_document()
 		insert("YEROTHVENTESFIN", DATE_TO_STRING(dateEdit_paiements_fin->date()));
 
 
-	QString client_fournisseur_visible_string;
-
-	uint client_fournisseur_current_visible_index = -1;
-
-	if (YerothUtils::isEqualCaseInsensitive(YerothPaiementsWindow::CLIENT_TEXT_STRING,
-			comboBox_paiements_type_dentreprise->currentText()))
-	{
-		client_fournisseur_visible_string = YerothDatabaseTableColumn::COMPTE_FOURNISSEUR;
-
-		client_fournisseur_current_visible_index =
-				_visibleDBColumnNameStrList.indexOf(YerothDatabaseTableColumn::COMPTE_FOURNISSEUR);
-
-		_visibleDBColumnNameStrList.removeAll(YerothDatabaseTableColumn::COMPTE_FOURNISSEUR);
-	}
-	else
-	{
-		client_fournisseur_visible_string = YerothDatabaseTableColumn::COMPTE_CLIENT;
-
-		client_fournisseur_current_visible_index =
-				_visibleDBColumnNameStrList.indexOf(YerothDatabaseTableColumn::COMPTE_CLIENT);
-
-		_visibleDBColumnNameStrList.removeAll(YerothDatabaseTableColumn::COMPTE_CLIENT);
-	}
+	prepare__IN__for_export_and_printing();
 
 	bool retValue = YerothWindowsCommons::imprimer_pdf_document();
 
-
-	_visibleDBColumnNameStrList.insert(client_fournisseur_current_visible_index,
-									   client_fournisseur_visible_string);
-
+	prepare__OUT__for_export_and_printing();
 
 	return retValue;
 }
