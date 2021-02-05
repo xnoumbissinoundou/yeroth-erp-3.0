@@ -12426,7 +12426,7 @@ background-color: rgb(0, 0, 0); </string>
      </font>
     </property>
     <property name="text">
-     <string>Montant total</string>
+     <string>Total (débité)</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

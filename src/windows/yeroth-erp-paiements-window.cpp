@@ -532,6 +532,8 @@ void YerothPaiementsWindow::setupLineEdits()
 
     lineEdit_paiements_montant_paye_total->setYerothEnabled(false);
 
+    lineEdit_paiements_nombre_de_clients_fournisseurs->setYerothEnabled(false);
+
     lineEdit_paiements_nombre_paiements->setYerothEnabled(false);
 
     lineEdit_paiements_balance_clients_fournisseurs_total->setYerothEnabled(false);
@@ -1043,7 +1045,7 @@ void YerothPaiementsWindow::lister_les_elements_du_tableau(YerothSqlTableModel &
     }
 
 
-    QMap<QString, double> company_client_name_TO_financial_account_payment;
+    QMap<QString, double> client_company_name_TO_financial_account_payment;
 
     QMap<QString, double> supplier_company_name_TO_financial_account_payment;
 
@@ -1075,7 +1077,7 @@ void YerothPaiementsWindow::lister_les_elements_du_tableau(YerothSqlTableModel &
         	compte_client_apres_paiement =
         			GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::COMPTE_CLIENT).toDouble();
 
-        	company_client_name_TO_financial_account_payment
+        	client_company_name_TO_financial_account_payment
 				.insert(GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::NOM_ENTREPRISE),
 						 compte_client_apres_paiement);
         }
@@ -1099,11 +1101,16 @@ void YerothPaiementsWindow::lister_les_elements_du_tableau(YerothSqlTableModel &
     if (YerothUtils::isEqualCaseInsensitive(YerothPaiementsWindow::CLIENT_TEXT_STRING,
     										comboBox_paiements_type_dentreprise->currentText()))
     {
+    	lineEdit_paiements_nombre_de_clients_fournisseurs->
+			setText(GET_NUM_STRING(client_company_name_TO_financial_account_payment.keys().size()));
+
+    	label_paiements_nombre_de_clients_fournisseurs->setText(QObject::trUtf8("# clients"));
+
     	label_paiements_montant_paye_total->setText(QObject::trUtf8("Total payé (crédité)"));
 
     	double balance_clients_total = 0.0;
 
-    	QMapIterator<QString, double> itClient(company_client_name_TO_financial_account_payment);
+    	QMapIterator<QString, double> itClient(client_company_name_TO_financial_account_payment);
 
     	while (itClient.hasNext())
     	{
@@ -1120,6 +1127,11 @@ void YerothPaiementsWindow::lister_les_elements_du_tableau(YerothSqlTableModel &
     }
     else
     {
+    	label_paiements_nombre_de_clients_fournisseurs->setText(QObject::trUtf8("# fournisseurs"));
+
+    	lineEdit_paiements_nombre_de_clients_fournisseurs->
+    				setText(GET_NUM_STRING(supplier_company_name_TO_financial_account_payment.keys().size()));
+
     	label_paiements_montant_paye_total->setText(QObject::trUtf8("Total payé (débité)"));
 
     	label_paiements_balance_clients_fournisseurs_total->setVisible(false);
