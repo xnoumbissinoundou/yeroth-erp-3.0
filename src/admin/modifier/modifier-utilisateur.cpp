@@ -35,15 +35,27 @@ void YerothAdminModifierWindow::setupEditCompteUtilisateur()
     lineEdit_modifier_utilisateur_numero_telephone_1->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NUMERO_TELEPHONE_1));
     lineEdit_modifier_utilisateur_numero_telephone_2->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NUMERO_TELEPHONE_2));
 
-    comboBox_modifier_utilisateur_titre->populateComboBoxMissing(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::TITRE).toInt());
+    int a_temp_code = -1;
 
-    int a_user_role_code = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ROLE).toInt();
+    {
+    	a_temp_code = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::TITRE).toInt();
 
-	comboBox_modifier_utilisateur_role->populateComboBoxMissing(a_user_role_code);
+    	comboBox_modifier_utilisateur_titre->populateComboBoxMissing(a_temp_code);
 
-	comboBox_modifier_utilisateur_role->setCurrentIndex(
-			comboBox_modifier_utilisateur_role->
-				findText(YerothUtils::_roleToUserViewString.value(a_user_role_code)));
+    	comboBox_modifier_utilisateur_titre->setCurrentIndex(
+    			comboBox_modifier_utilisateur_titre->
+					findText(YerothUtils::_titreToUserViewString.value(a_temp_code)));
+    }
+
+    {
+    	a_temp_code = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ROLE).toInt();
+
+    	comboBox_modifier_utilisateur_role->populateComboBoxMissing(a_temp_code);
+
+    	comboBox_modifier_utilisateur_role->setCurrentIndex(
+    			comboBox_modifier_utilisateur_role->
+					findText(YerothUtils::_roleToUserViewString.value(a_temp_code)));
+    }
 
     lineEdit_modifier_utilisateur_localisation->
     	setText(_allWindows->getInfoEntreprise().getLocalisation());
