@@ -562,9 +562,19 @@ public:
 	                                  infos);
 	}
 
-	static void getCurrentSimplifiedDate(QString &date_IN_OUT);
+	static void getCurrentSimplifiedDate(QString &date_IN_OUT, const QDate &aDate);
 
-	static void getCurrentLocaleDate(QString &date_IN_OUT);
+	inline static void getCurrentSimplifiedDate(QString &date_IN_OUT)
+	{
+		YerothUtils::getCurrentSimplifiedDate(date_IN_OUT, QDate::currentDate());
+	}
+
+	static void getCurrentLocaleDate(QString &date_IN_OUT, const QDate &aDate);
+
+	inline static void getCurrentLocaleDate(QString &date_IN_OUT)
+	{
+		YerothUtils::getCurrentLocaleDate(date_IN_OUT, QDate::currentDate());
+	}
 
 	inline static bool isEqualCaseSensitive(const QString &str1, const QString &str2)
 	{

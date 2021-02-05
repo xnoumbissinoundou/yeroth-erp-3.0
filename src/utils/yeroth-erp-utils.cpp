@@ -2620,36 +2620,36 @@ void YerothUtils::infosEntreprise(YerothPOSAdminWindowsCommons &aYerothPOSAdminQ
 }
 
 
-void YerothUtils::getCurrentSimplifiedDate(QString &date_IN_OUT)
+void YerothUtils::getCurrentSimplifiedDate(QString &date_IN_OUT, const QDate &aDate)
 {
 #ifdef YEROTH_FRANCAIS_LANGUAGE
     date_IN_OUT.append(QString(", Le %1 à %2")
-    				.arg(QDate::currentDate().toString("dd-MM-yyyy"),
+    				.arg(aDate.toString("dd-MM-yyyy"),
     					 CURRENT_TIME));
     date_IN_OUT = YerothUtils::LATEX_IN_OUT_handleForeignAccents(date_IN_OUT);
 #endif
 
 #ifdef YEROTH_ENGLISH_LANGUAGE
     date_IN_OUT.append(QString(", The %1 at %2")
-    				.arg(QDate::currentDate().toString("dd-MM-yyyy"),
+    				.arg(aDate.toString("dd-MM-yyyy"),
     					 CURRENT_TIME));
     date_IN_OUT = YerothUtils::LATEX_IN_OUT_handleForeignAccents(date_IN_OUT);
 #endif
 }
 
 
-void YerothUtils::getCurrentLocaleDate(QString &date_IN_OUT)
+void YerothUtils::getCurrentLocaleDate(QString &date_IN_OUT, const QDate &aDate)
 {
 #ifdef YEROTH_FRANCAIS_LANGUAGE
     date_IN_OUT.append(", le ")
-    .append(YerothUtils::frenchLocale.toString(GET_CURRENT_DATE));
+    .append(YerothUtils::frenchLocale.toString(aDate));
     //qDebug() << "++ before date: " << date_IN_OUT << " (" << date_IN_OUT.indexOf(QString::fromUtf8("û")) << ")";
     date_IN_OUT = YerothUtils::LATEX_IN_OUT_handleForeignAccents(date_IN_OUT);
     //qDebug() << "++ after date: " << date_IN_OUT << " (" << date_IN_OUT.indexOf(QString::fromUtf8("û")) << ")";
 #endif
 
 #ifdef YEROTH_ENGLISH_LANGUAGE
-    QString d(YerothUtils::englishLocale.toString(GET_CURRENT_DATE));
+    QString d(YerothUtils::englishLocale.toString(aDate));
     int firstCommaIndex = d.indexOf(",", 0);
     d.replace(firstCommaIndex, 1, " ");
     date_IN_OUT.append(", ")

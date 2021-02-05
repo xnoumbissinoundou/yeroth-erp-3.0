@@ -882,7 +882,16 @@ QString YerothPointDeVenteWindow::imprimer_recu_vendu_grand(QString referenceRec
 
     QString factureDate(infoEntreprise.getVille_LATEX());
 
-    YerothUtils::getCurrentLocaleDate(factureDate);
+
+    if (!checkBox_DATE_EXTRA_VENTE->isChecked())
+    {
+    	YerothUtils::getCurrentLocaleDate(factureDate);
+    }
+    else
+    {
+    	YerothUtils::getCurrentLocaleDate(factureDate, dateEdit_PDV_date_vente_extra->date());
+    }
+
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
     YerothUtils::getFactureFRTexDocumentString(factureTexDocument, factureTexTable);
@@ -1073,7 +1082,16 @@ QString YerothPointDeVenteWindow::imprimer_recu_vendu_petit(QString referenceRec
 
     QString factureDate(infoEntreprise.getVille_LATEX());
 
-	YerothUtils::getCurrentSimplifiedDate(factureDate);
+
+    if (!checkBox_DATE_EXTRA_VENTE->isChecked())
+    {
+    	YerothUtils::getCurrentSimplifiedDate(factureDate);
+    }
+    else
+    {
+    	YerothUtils::getCurrentSimplifiedDate(factureDate, dateEdit_PDV_date_vente_extra->date());
+    }
+
 
 	YerothUtils::getFactureSmallTexTableString(factureTexTable,
 											  *tableWidget_articles,
