@@ -37,11 +37,16 @@ void YerothAdminModifierWindow::setupEditCompteUtilisateur()
 
     comboBox_modifier_utilisateur_titre->populateComboBoxMissing(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::TITRE).toInt());
 
-	comboBox_modifier_utilisateur_role->populateComboBoxMissing(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ROLE).toInt());
+    int a_user_role_code = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::ROLE).toInt();
+
+	comboBox_modifier_utilisateur_role->populateComboBoxMissing(a_user_role_code);
+
+	comboBox_modifier_utilisateur_role->setCurrentIndex(
+			comboBox_modifier_utilisateur_role->
+				findText(YerothUtils::_roleToUserViewString.value(a_user_role_code)));
 
     lineEdit_modifier_utilisateur_localisation->
     	setText(_allWindows->getInfoEntreprise().getLocalisation());
-
 }
 
 void YerothAdminModifierWindow::modifier_utilisateur()
