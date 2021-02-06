@@ -1613,7 +1613,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="512"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseurs-window.cpp" line="622"/>
         <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="456"/>
-        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="531"/>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="539"/>
         <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1126"/>
         <source>valeur à rechercher</source>
         <translation>value to search for</translation>
@@ -2323,39 +2323,55 @@ Continue with update of the stock ?</translation>
         <translation>clients and suppliers payments</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="335"/>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="313"/>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="327"/>
+        <source>Journal des paiements</source>
+        <translation>Journal of payments</translation>
+    </message>
+    <message>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="314"/>
+        <source>Journal des paiements (versements clients)</source>
+        <translation>Journal of payments (clients in-payments)</translation>
+    </message>
+    <message>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="328"/>
+        <source>Journal des paiements (versés aux fournisseurs)</source>
+        <translation>Journal of payments (given to suppliers)</translation>
+    </message>
+    <message>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="343"/>
         <source>Balance clients</source>
         <translation>Clients balance</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="378"/>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="386"/>
         <source>Balance fournisseurs</source>
         <translation>Suppliers balance</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="1107"/>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="1115"/>
         <source># clients</source>
         <translation># clients</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="1109"/>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="1117"/>
         <source>Total payé (crédité)</source>
         <translation>Paid amount (credited)</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="1130"/>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="1138"/>
         <source># fournisseurs</source>
         <translation># suppliers</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="1135"/>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="1143"/>
         <source>Total payé (débité)</source>
         <translation>Paid amount (debited)</translation>
     </message>
     <message>
         <location filename="src/windows/stocks/yeroth-erp-mouvements_de_stocks-window.cpp" line="338"/>
         <location filename="src/windows/stocks/yeroth-erp-mouvements_de_stocks-window.cpp" line="339"/>
-        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="529"/>
+        <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="537"/>
         <source>terme à rechercher (notes)</source>
         <oldsource>terme à rechercher (référence reçu de paiement client, notes)</oldsource>
         <translation>keyword to search for (memo)</translation>

@@ -309,6 +309,10 @@ void YerothPaiementsWindow::prepare__IN__for_export_and_printing()
 	if (YerothUtils::isEqualCaseInsensitive(YerothPaiementsWindow::CLIENT_TEXT_STRING,
 			comboBox_paiements_type_dentreprise->currentText()))
 	{
+		_latex_template_print_pdf_content
+			.replace(QObject::trUtf8("Journal des paiements"),
+					 QObject::trUtf8("Journal des paiements (versements clients)"));
+
 		_client_fournisseur_visible_string_EXPORT_AND_PRINT_PDF =
 				YerothDatabaseTableColumn::COMPTE_FOURNISSEUR;
 
@@ -319,6 +323,10 @@ void YerothPaiementsWindow::prepare__IN__for_export_and_printing()
 	}
 	else
 	{
+		_latex_template_print_pdf_content
+			.replace(QObject::trUtf8("Journal des paiements"),
+					 QObject::trUtf8("Journal des paiements (versés aux fournisseurs)"));
+
 		_client_fournisseur_visible_string_EXPORT_AND_PRINT_PDF =
 				YerothDatabaseTableColumn::COMPTE_CLIENT;
 
