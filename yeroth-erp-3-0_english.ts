@@ -3650,12 +3650,12 @@ Cliquez sur &apos;Annuler&apos; si vous souhaiter interrompre l&apos;opération.
 Press &apos;Cancel&apos; if you wish to stop this process!</translation>
     </message>
     <message>
-        <location filename="src/admin/modifier/modifier-utilisateur.cpp" line="120"/>
+        <location filename="src/admin/modifier/modifier-utilisateur.cpp" line="132"/>
         <source>Les données de l&apos;utilisateur &apos;%1&apos;</source>
         <translation>Data for user &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="src/admin/modifier/modifier-utilisateur.cpp" line="125"/>
+        <location filename="src/admin/modifier/modifier-utilisateur.cpp" line="137"/>
         <location filename="src/admin/modifier/modifier-localisation.cpp" line="85"/>
         <location filename="src/admin/modifier/modifier-departements_de_produits.cpp" line="147"/>
         <location filename="src/admin/modifier/modifier-categorie.cpp" line="115"/>
@@ -3666,14 +3666,14 @@ Press &apos;Cancel&apos; if you wish to stop this process!</translation>
         <translation> have been successfully modified!</translation>
     </message>
     <message>
-        <location filename="src/admin/modifier/modifier-utilisateur.cpp" line="128"/>
-        <location filename="src/admin/modifier/modifier-utilisateur.cpp" line="142"/>
+        <location filename="src/admin/modifier/modifier-utilisateur.cpp" line="140"/>
+        <location filename="src/admin/modifier/modifier-utilisateur.cpp" line="154"/>
         <source>Yeroth-erp-3.0 ~ admin-modifier-utilisateur</source>
         <oldsource>Yeroth-pos-7.0 ~ admin-modifier-utilisateur</oldsource>
         <translation>Yeroth-erp-3.0 ~ admin-modify-user</translation>
     </message>
     <message>
-        <location filename="src/admin/modifier/modifier-utilisateur.cpp" line="139"/>
+        <location filename="src/admin/modifier/modifier-utilisateur.cpp" line="151"/>
         <location filename="src/admin/modifier/modifier-localisation.cpp" line="99"/>
         <location filename="src/admin/modifier/modifier-departements_de_produits.cpp" line="161"/>
         <location filename="src/admin/modifier/modifier-categorie.cpp" line="128"/>
@@ -3684,13 +3684,13 @@ Press &apos;Cancel&apos; if you wish to stop this process!</translation>
     </message>
     <message>
         <location filename="src/admin/creer/creer-utilisateur.cpp" line="184"/>
-        <location filename="src/admin/modifier/modifier-utilisateur.cpp" line="157"/>
+        <location filename="src/admin/modifier/modifier-utilisateur.cpp" line="169"/>
         <source>Les deux mot de passe sont différents !</source>
         <oldsource>Les deux mot de passe sont différents!</oldsource>
         <translation>The entered passwords are different!</translation>
     </message>
     <message>
-        <location filename="src/admin/modifier/modifier-utilisateur.cpp" line="160"/>
+        <location filename="src/admin/modifier/modifier-utilisateur.cpp" line="172"/>
         <source>Yeroth-erp-3.0 -  administration ~ modifier ~ utilisateur</source>
         <oldsource>Yeroth-pos-7.0 -  administration ~ modifier ~ utilisateur</oldsource>
         <translation>Yeroth-erp-3.0 -  administration ~ modify ~ user</translation>
