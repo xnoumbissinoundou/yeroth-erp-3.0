@@ -273,14 +273,14 @@ void YerothTableauxDeBordWindow::handleTabChanged(int index)
 
 void YerothTableauxDeBordWindow::setupDateTimeEdits_COMPARAISON_DES_CHIFFRES_DAFFAIRES()
 {
-    dateEdit_rapports_debut->setStartDate(GET_CURRENT_DATE);
+    dateEdit_rapports_debut->setStartDate(YerothUtils::YEROTH_PAGING_DEFAULT_START_DATE);
     dateEdit_rapports_fin->setStartDate(GET_CURRENT_DATE);
 }
 
 
 void YerothTableauxDeBordWindow::setupDateTimeEdits_BILAN_COMPTABLE()
 {
-	dateEdit_bilan_comptable_debut->setStartDate(GET_CURRENT_DATE);
+	dateEdit_bilan_comptable_debut->setStartDate(YerothUtils::YEROTH_PAGING_DEFAULT_START_DATE);
 	dateEdit_bilan_comptable_fin->setStartDate(GET_CURRENT_DATE);
 }
 
@@ -2527,9 +2527,10 @@ void YerothTableauxDeBordWindow::bilanComptable()
 
     query.clear();
 
-    QString strVersementsQuery(QString("SELECT %1 FROM %2 WHERE %3 >= '%4' AND %5 <= '%6'")
+    QString strVersementsQuery(QString("SELECT %1 FROM %2 WHERE (%3 IS NOT NULL) AND (%4 >= '%5') AND (%6 <= '%7')")
     							.arg(YerothDatabaseTableColumn::MONTANT_PAYE,
     								 YerothDatabase::PAIEMENTS,
+    								 YerothDatabaseTableColumn::COMPTE_CLIENT,
 									 YerothDatabaseTableColumn::DATE_PAIEMENT,
 									 DATE_TO_DB_FORMAT_STRING(dateEdit_bilan_comptable_debut->date()),
 									 YerothDatabaseTableColumn::DATE_PAIEMENT,
@@ -2557,12 +2558,49 @@ void YerothTableauxDeBordWindow::bilanComptable()
 
     query.clear();
 
+    QString strPaiementsAuComptesFournisseursQuery(QString("SELECT %1 FROM %2 WHERE (%3 IS NOT NULL) AND (%4 >= '%5') AND (%6 <= '%7')")
+    							.arg(YerothDatabaseTableColumn::MONTANT_PAYE,
+    								 YerothDatabase::PAIEMENTS,
+    								 YerothDatabaseTableColumn::COMPTE_FOURNISSEUR,
+									 YerothDatabaseTableColumn::DATE_PAIEMENT,
+									 DATE_TO_DB_FORMAT_STRING(dateEdit_bilan_comptable_debut->date()),
+									 YerothDatabaseTableColumn::DATE_PAIEMENT,
+									 DATE_TO_DB_FORMAT_STRING(dateEdit_bilan_comptable_fin->date())));
+
+//    qDebug() << QString("++ strVersementsQuery: %1")
+//    				.arg(strVersementsQuery);
+
+	int paiementsAuComptesFournisseursQuerySize =
+			YerothUtils::execQuery(query,
+								   strPaiementsAuComptesFournisseursQuery,
+								   _logger);
+
+	double montant_paye_au_fournisseur = 0.0;
+
+    double montant_total_paiements_aux_fournisseurs = 0.0;
+
+    for( int k = 0; k < paiementsAuComptesFournisseursQuerySize && query.next(); ++k)
+    {
+    	montant_paye_au_fournisseur = query.value(0).toDouble();
+
+    	montant_total_paiements_aux_fournisseurs = montant_total_paiements_aux_fournisseurs + montant_paye_au_fournisseur;
+    }
+
+//    qDebug() << QString("++ paiementsAuComptesFournisseursQuerySize: %1, montant_total_paiements_aux_fournisseurs: %2")
+//    				.arg(QString::number(paiementsAuComptesFournisseursQuerySize),
+//    					 QString::number(montant_total_paiements_aux_fournisseurs, 'f', 2));
+
+    query.clear();
+
     double total_entrees = montant_total_vente + montant_total_versements;
 
-    double total_sorties = montant_total_achat + montant_total_dette_clientelle;
+    double total_sorties = montant_total_achat + montant_total_paiements_aux_fournisseurs + montant_total_dette_clientelle;
+
+
+    double achats_depenses_financieres_effectues = montant_total_paiements_aux_fournisseurs;
+
 
     double balance = 0.0;
-    double achats_depenses_financieres_effectues = 0.0;
     double benefice_sur_vente_effectuees = 0.0;
     double chiffre_daffaire = 0.0;
 
