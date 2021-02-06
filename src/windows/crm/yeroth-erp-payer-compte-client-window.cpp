@@ -340,7 +340,7 @@ void YerothPayerCompteClientWindow::private_slot_afficher_les_transactions_dun_c
 	    			    									"reference as 'Raison', "
 	    			    									"reference_recu_paiement_client as 'Recu', "
 	    			    									"CONCAT(date_paiement,' ',heure_paiement) as 'Temps' from %7 "
-	    			    									"where date_paiement >= '%8' and date_paiement <= '%9'")
+	    			    									"WHERE compte_client IS NOT NULL AND date_paiement >= '%8' AND date_paiement <= '%9'")
 	    											.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
 	    												 YerothDatabaseTableColumn::DATE_PAIEMENT,
 														 YerothDatabaseTableColumn::HEURE_PAIEMENT,
