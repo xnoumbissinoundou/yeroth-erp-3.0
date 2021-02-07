@@ -315,6 +315,7 @@ bool YerothVentesWindow::annuler_cette_vente()
 		return false;
 	}
 
+	QString curVenteReference = GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::REFERENCE);
 
 	QString curVenteReferenceRecuVendu(GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::REFERENCE_RECU_VENDU));
 
@@ -572,39 +573,124 @@ bool YerothVentesWindow::annuler_cette_vente()
 			bool successRemoveRowQuery = YerothUtils::execQuery(removeRowQuery);
 		}
 
-		if (-1 != clients_id 	&&
-			YerothUtils::VENTE_COMPTE_CLIENT == typeDeVente)
-		{
-			rembourserAuCompteClient = handleCompteClient(QString::number(clients_id),
-														  curMontantARembourserAuClient);
-		}
+		rembourserAuCompteClient =
+				handleCompteClient(QString::number(clients_id),
+								   curMontantARembourserAuClient);
 	}
-
-	YEROTH_ERP_3_0_COMMIT_DATABASE_TRANSACTION;
 
 	if (successReinsertStock)
 	{
 		if (rembourserAuCompteClient)
 		{
-			msg = QObject::trUtf8("La vente (avec référence 'reçu de vente %1') a été "
-								  "annulée avec succès !\n\n"
-								  "(Montant crédité au compte du client '%2': '%3' !)")
-						.arg(curVenteReferenceRecuVendu,
-							 curNomDuClient,
-							 GET_CURRENCY_STRING_NUM(curMontantARembourserAuClient));
-		}
-		else
-		{
-			msg = QObject::trUtf8("La vente (avec référence 'reçu de vente %1') a été "
-								  "annulée avec succès !\n\n"
-								  "(Montant à rembourser au client (comptant): '%2' !)")
-						.arg(curVenteReferenceRecuVendu,
-							 GET_CURRENCY_STRING_NUM(curMontantARembourserAuClient));
-		}
+			if (-1 != clients_id)
+			{
+				msg = QObject::trUtf8("La vente (avec référence 'reçu de vente %1') a été "
+									  "annulée avec succès !\n\n"
+									  "(Montant remis (crédité) au compte du client '%2': '%3' !)")
+							.arg(curVenteReferenceRecuVendu,
+								 curNomDuClient,
+								 GET_CURRENCY_STRING_NUM(curMontantARembourserAuClient));
+			}
+			else
+			{
+				msg = QObject::trUtf8("La vente (avec référence 'reçu de vente %1') a été "
+									  "annulée avec succès !\n\n"
+									   "(Montant à rembourser au client (comptant): '%2' !)")
+							.arg(curVenteReferenceRecuVendu,
+								 GET_CURRENCY_STRING_NUM(curMontantARembourserAuClient));
+			}
 
-		YerothQMessageBox::information(this,
-									   QObject::trUtf8("succès"),
-									   msg);
+			YerothQMessageBox::information(this,
+					QObject::trUtf8("succès"),
+					msg);
+
+			//J'ajoute 1 entree dans le tableau de paiements afin d'indiquer
+			//la somme remboursee au au compte client
+
+			bool successPaiementsInsert = false;
+
+			YerothSqlTableModel & paiementsSqlTableModel = _allWindows->getSqlTableModel_paiements();
+
+			QSqlRecord paiementsRecord = paiementsSqlTableModel.record();
+
+			paiementsRecord.setValue(YerothDatabaseTableColumn::DATE_PAIEMENT, GET_CURRENT_DATE);
+			paiementsRecord.setValue(YerothDatabaseTableColumn::HEURE_PAIEMENT, CURRENT_TIME);
+			paiementsRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE, curNomDuClient);
+
+			QString utilisateurCourantNomComplet;
+
+			YerothPOSUser *aUser = _allWindows->getUser();
+
+			if (0 != aUser)
+			{
+				utilisateurCourantNomComplet = aUser->nom_complet();
+
+				paiementsRecord.setValue(YerothDatabaseTableColumn::NOM_ENCAISSEUR, utilisateurCourantNomComplet);
+			}
+			else
+			{
+				paiementsRecord.setValue(YerothDatabaseTableColumn::NOM_ENCAISSEUR, QObject::tr("inconnu(e)"));
+			}
+
+			paiementsRecord.setValue(YerothDatabaseTableColumn::MONTANT_PAYE, curMontantARembourserAuClient);
+
+			paiementsRecord.setValue(YerothDatabaseTableColumn::TYPE_DE_PAIEMENT, YerothUtils::DECAISSEMENT_RETOUR_ACHAT_DUN_CLIENT);
+
+			if (-1 != clients_id)
+			{
+				paiementsRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE, curNomDuClient);
+			}
+			else
+			{
+				paiementsRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE, QObject::tr("DIVERS"));
+			}
+
+			paiementsRecord.setValue(YerothDatabaseTableColumn::REFERENCE, curVenteReference);
+
+			int paiements_id_to_save = YerothERPWindows::getNextIdSqlTableModel_paiements();
+
+			paiementsRecord.setValue(YerothDatabaseTableColumn::ID, paiements_id_to_save);
+
+			YerothSqlTableModel &clientsTableModel = _allWindows->getSqlTableModel_clients();
+
+			QString clientsTableFilter = QString("%1 = '%2'")
+				    	            						.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
+				    	            								utilisateurCourantNomComplet);
+
+			clientsTableModel.yerothSetFilter_WITH_where_clause(clientsTableFilter);
+
+			double nouveau_compte_client = curMontantARembourserAuClient;
+
+			int rows = clientsTableModel.easySelect();
+
+			if (rows > 0)
+			{
+				QSqlRecord clientsRecord = clientsTableModel.record(0);
+
+				//The client new account value has been updated previously in
+				// method 'bool handleCompteClient(QString client_id,
+				//								   double curMontantARembourserAuClient)
+				nouveau_compte_client = GET_SQL_RECORD_DATA(clientsRecord, YerothDatabaseTableColumn::COMPTE_CLIENT).toDouble();
+			}
+
+			clientsTableModel.resetFilter();
+
+
+			paiementsRecord.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT, nouveau_compte_client);
+
+			successPaiementsInsert = paiementsSqlTableModel.insertNewRecord(paiementsRecord);
+
+			if (!successPaiementsInsert)
+			{
+				YerothQMessageBox::warning(this,
+						QObject::trUtf8("paiements - échec"),
+						QObject::trUtf8("1 entrée dans le tableau des paiements n'a pas pu "
+								"être faites pour la vente annulée (du client %1), "
+								"avec référence 'reçu de vente %2' !")
+				.arg(curNomDuClient,
+						curVenteReferenceRecuVendu));
+			}
+		}
 
 		tabWidget_ventes->setCurrentIndex(TableauDesVentes);
 
@@ -615,13 +701,15 @@ bool YerothVentesWindow::annuler_cette_vente()
 	else
 	{
 		msg = QObject::trUtf8("Échec de l'annulation de la vente "
-							  "(avec référence '%1') !")
-				.arg(curVenteReferenceRecuVendu);
+				"(avec référence '%1') !")
+		.arg(curVenteReferenceRecuVendu);
 
 		YerothQMessageBox::information(this,
-									   QObject::trUtf8("échec"),
-									   msg);
+				QObject::trUtf8("échec"),
+				msg);
 	}
+
+	YEROTH_ERP_3_0_COMMIT_DATABASE_TRANSACTION;
 
 	return successReinsertStock;
 }
@@ -1019,20 +1107,48 @@ bool YerothVentesWindow::handleCompteClient(QString client_id,
 
 	clientsSqlTableModel.yerothSetFilter_WITH_where_clause(clientsFilter);
 
+	QString a_new_client = QObject::tr("DIVERS");
+
+	bool new_client_record_created = false;
+
 	int clientsRowCount = clientsSqlTableModel.easySelect();
 
-	if (clientsRowCount > 0)
+	if (clientsRowCount <= 0)
 	{
-		QSqlRecord clientsRecord = clientsSqlTableModel.record(0);
+		new_client_record_created = YerothUtils::creerNouveauClient(a_new_client, this);
 
-		double curCompteClient = clientsRecord.value(YerothDatabaseTableColumn::COMPTE_CLIENT).toDouble();
-
-		double nouveauCompteClient = curCompteClient + curMontantARembourserAuClient;
-
-		clientsRecord.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT, nouveauCompteClient);
-
-		result = clientsSqlTableModel.updateRecord(0, clientsRecord);
+		assert (true == new_client_record_created);
 	}
+
+	if (new_client_record_created)
+	{
+		clientsSqlTableModel.resetFilter();
+
+		QString aNewClientsFilter(QString("%1 = '%2'")
+									.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
+										 a_new_client));
+
+		clientsSqlTableModel.yerothSetFilter_WITH_where_clause(aNewClientsFilter);
+
+		int newClientsRowCount = clientsSqlTableModel.easySelect();
+
+		assert (newClientsRowCount > 0);
+	}
+
+
+	QSqlRecord clientsRecord = clientsSqlTableModel.record(0);
+
+
+	double curCompteClient = clientsRecord.value(YerothDatabaseTableColumn::COMPTE_CLIENT).toDouble();
+
+	double nouveauCompteClient = curCompteClient + curMontantARembourserAuClient;
+
+
+	clientsRecord.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT, nouveauCompteClient);
+
+
+	result = clientsSqlTableModel.updateRecord(0, clientsRecord);
+
 
 	clientsSqlTableModel.resetFilter();
 
