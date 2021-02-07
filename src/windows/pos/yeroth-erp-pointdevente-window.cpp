@@ -2724,40 +2724,42 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
         //qDebug() << QString("++ test: %1")
          //       		.arg(historiqueStock);
 
+        QString nom_entreprise_client = lineEdit_articles_nom_client->text();
 
         if (checkBox_enregistrer_client->isChecked())
+        {
+        	YerothUtils::creerNouveauClient(nom_entreprise_client, this);
+        }
+
+        if (!nom_entreprise_client.isEmpty())
         {
         	YerothSqlTableModel & clientsTableModel = _allWindows->getSqlTableModel_clients();
 
         	QString clientFilter(QString("%1 = '%2'")
         			.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
-        					lineEdit_articles_nom_client->text()));
+        				 nom_entreprise_client));
 
         	clientsTableModel.yerothSetFilter_WITH_where_clause(clientFilter);
 
         	int clientsTableModelRowCount = clientsTableModel.easySelect();
 
-        	if (clientsTableModelRowCount > 0)
-        	{
-        		QSqlRecord clientsRecord = clientsTableModel.record(0);
+        	QDEBUG_STRING_OUTPUT_2_N("clientsTableModelRowCount", clientsTableModelRowCount);
 
-        		QString clients_id(GET_SQL_RECORD_DATA(clientsRecord, YerothDatabaseTableColumn::ID));
+        	QSqlRecord clientsRecord = clientsTableModel.record(0);
 
-        		stocksVenduRecord.setValue(YerothDatabaseTableColumn::CLIENTS_ID, clients_id);
-        		stocksVenduRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT, lineEdit_articles_nom_client->text());
+        	QString clients_id(GET_SQL_RECORD_DATA(clientsRecord, YerothDatabaseTableColumn::ID));
 
-        		clientsTableModel.resetFilter();
-        	}
-        	else
-        	{
-        		stocksVenduRecord.setValue(YerothDatabaseTableColumn::CLIENTS_ID, -1);
-        		stocksVenduRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT, YerothUtils::STRING_FRENCH_DIVERS);
-        	}
+        	QDEBUG_STRING_OUTPUT_2("clients_id", clients_id);
+
+        	stocksVenduRecord.setValue(YerothDatabaseTableColumn::CLIENTS_ID, clients_id);
+        	stocksVenduRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT, lineEdit_articles_nom_client->text());
+
+        	clientsTableModel.resetFilter();
         }
         else
         {
     		stocksVenduRecord.setValue(YerothDatabaseTableColumn::CLIENTS_ID, -1);
-    		stocksVenduRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT, lineEdit_articles_nom_client->text());
+    		stocksVenduRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT, YerothUtils::STRING_FRENCH_DIVERS);
         }
 
         bool success1 = stocksVenduTableModel.insertNewRecord(stocksVenduRecord, this);
@@ -3089,7 +3091,7 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
         else
         {
             stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::CLIENTS_ID, -1);
-            stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT, "DIVERS");
+            stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT, YerothUtils::STRING_FRENCH_DIVERS);
         }
 
         bool success1 = stocksVenduTableModel.insertNewRecord(stocksVenduCompteClientRecord, this);

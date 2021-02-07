@@ -575,121 +575,129 @@ bool YerothVentesWindow::annuler_cette_vente()
 
 		rembourserAuCompteClient =
 				handleCompteClient(QString::number(clients_id),
+								   typeDeVente,
 								   curMontantARembourserAuClient);
 	}
 
 	if (successReinsertStock)
 	{
-		if (rembourserAuCompteClient)
+		if (YerothUtils::VENTE_COMPTE_CLIENT &&
+			rembourserAuCompteClient 		 &&
+			-1 != clients_id)
 		{
-			if (-1 != clients_id)
-			{
-				msg = QObject::trUtf8("La vente (avec référence 'reçu de vente %1') a été "
-									  "annulée avec succès !\n\n"
-									  "(Montant remis (crédité) au compte du client '%2': '%3' !)")
-							.arg(curVenteReferenceRecuVendu,
-								 curNomDuClient,
-								 GET_CURRENCY_STRING_NUM(curMontantARembourserAuClient));
-			}
-			else
-			{
-				msg = QObject::trUtf8("La vente (avec référence 'reçu de vente %1') a été "
-									  "annulée avec succès !\n\n"
-									   "(Montant à rembourser au client (comptant): '%2' !)")
-							.arg(curVenteReferenceRecuVendu,
-								 GET_CURRENCY_STRING_NUM(curMontantARembourserAuClient));
-			}
+			msg = QObject::trUtf8("La vente (avec référence 'reçu de vente %1') a été "
+								  "annulée avec succès !\n\n"
+								  "(Montant remis (crédité) au compte du client '%2': '%3' !)")
+						.arg(curVenteReferenceRecuVendu,
+							 curNomDuClient,
+							 GET_CURRENCY_STRING_NUM(curMontantARembourserAuClient));
+		}
+		else
+		{
+			msg = QObject::trUtf8("La vente (avec référence 'reçu de vente %1') a été "
+								  "annulée avec succès !\n\n"
+								  "(Montant à rembourser au client (comptant): '%2' !)")
+						.arg(curVenteReferenceRecuVendu,
+							 GET_CURRENCY_STRING_NUM(curMontantARembourserAuClient));
+		}
 
-			YerothQMessageBox::information(this,
-					QObject::trUtf8("succès"),
-					msg);
+		YerothQMessageBox::information(this,
+				QObject::trUtf8("succès"),
+				msg);
 
-			//J'ajoute 1 entree dans le tableau de paiements afin d'indiquer
-			//la somme remboursee au au compte client
+		//J'ajoute 1 entree dans le tableau de paiements afin d'indiquer
+		//la somme remboursee au au compte client
 
-			bool successPaiementsInsert = false;
+		bool successPaiementsInsert = false;
 
-			YerothSqlTableModel & paiementsSqlTableModel = _allWindows->getSqlTableModel_paiements();
+		YerothSqlTableModel & paiementsSqlTableModel = _allWindows->getSqlTableModel_paiements();
 
-			QSqlRecord paiementsRecord = paiementsSqlTableModel.record();
+		QSqlRecord paiementsRecord = paiementsSqlTableModel.record();
 
-			paiementsRecord.setValue(YerothDatabaseTableColumn::DATE_PAIEMENT, GET_CURRENT_DATE);
-			paiementsRecord.setValue(YerothDatabaseTableColumn::HEURE_PAIEMENT, CURRENT_TIME);
+		paiementsRecord.setValue(YerothDatabaseTableColumn::DATE_PAIEMENT, GET_CURRENT_DATE);
+		paiementsRecord.setValue(YerothDatabaseTableColumn::HEURE_PAIEMENT, CURRENT_TIME);
+		paiementsRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE, curNomDuClient);
+
+		QString utilisateurCourantNomComplet;
+
+		YerothPOSUser *aUser = _allWindows->getUser();
+
+		if (0 != aUser)
+		{
+			utilisateurCourantNomComplet = aUser->nom_complet();
+
+			paiementsRecord.setValue(YerothDatabaseTableColumn::NOM_ENCAISSEUR, utilisateurCourantNomComplet);
+		}
+		else
+		{
+			paiementsRecord.setValue(YerothDatabaseTableColumn::NOM_ENCAISSEUR, QObject::tr("inconnu(e)"));
+		}
+
+		paiementsRecord.setValue(YerothDatabaseTableColumn::MONTANT_PAYE, curMontantARembourserAuClient);
+
+		paiementsRecord.setValue(YerothDatabaseTableColumn::TYPE_DE_PAIEMENT, YerothUtils::DECAISSEMENT_RETOUR_ACHAT_DUN_CLIENT);
+
+//		QDEBUG_STRING_OUTPUT_2("curNomDuClient", curNomDuClient);
+//
+//		QDEBUG_STRING_OUTPUT_2_N("clients_id", clients_id);
+
+		if (-1 != clients_id)
+		{
 			paiementsRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE, curNomDuClient);
+		}
+		else
+		{
+			paiementsRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE, YerothUtils::STRING_FRENCH_DIVERS);
+		}
 
-			QString utilisateurCourantNomComplet;
-
-			YerothPOSUser *aUser = _allWindows->getUser();
-
-			if (0 != aUser)
-			{
-				utilisateurCourantNomComplet = aUser->nom_complet();
-
-				paiementsRecord.setValue(YerothDatabaseTableColumn::NOM_ENCAISSEUR, utilisateurCourantNomComplet);
-			}
-			else
-			{
-				paiementsRecord.setValue(YerothDatabaseTableColumn::NOM_ENCAISSEUR, QObject::tr("inconnu(e)"));
-			}
-
-			paiementsRecord.setValue(YerothDatabaseTableColumn::MONTANT_PAYE, curMontantARembourserAuClient);
-
-			paiementsRecord.setValue(YerothDatabaseTableColumn::TYPE_DE_PAIEMENT, YerothUtils::DECAISSEMENT_RETOUR_ACHAT_DUN_CLIENT);
-
-			if (-1 != clients_id)
-			{
-				paiementsRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE, curNomDuClient);
-			}
-			else
-			{
-				paiementsRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE, QObject::tr("DIVERS"));
-			}
-
-			paiementsRecord.setValue(YerothDatabaseTableColumn::REFERENCE, curVenteReference);
-
-			int paiements_id_to_save = YerothERPWindows::getNextIdSqlTableModel_paiements();
-
-			paiementsRecord.setValue(YerothDatabaseTableColumn::ID, paiements_id_to_save);
-
-			YerothSqlTableModel &clientsTableModel = _allWindows->getSqlTableModel_clients();
-
-			QString clientsTableFilter = QString("%1 = '%2'")
-				    	            						.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
-				    	            								utilisateurCourantNomComplet);
-
-			clientsTableModel.yerothSetFilter_WITH_where_clause(clientsTableFilter);
-
-			double nouveau_compte_client = curMontantARembourserAuClient;
-
-			int rows = clientsTableModel.easySelect();
-
-			if (rows > 0)
-			{
-				QSqlRecord clientsRecord = clientsTableModel.record(0);
-
-				//The client new account value has been updated previously in
-				// method 'bool handleCompteClient(QString client_id,
-				//								   double curMontantARembourserAuClient)
-				nouveau_compte_client = GET_SQL_RECORD_DATA(clientsRecord, YerothDatabaseTableColumn::COMPTE_CLIENT).toDouble();
-			}
-
-			clientsTableModel.resetFilter();
+		paiementsRecord.setValue(YerothDatabaseTableColumn::REFERENCE, curVenteReference);
 
 
-			paiementsRecord.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT, nouveau_compte_client);
+		YerothSqlTableModel &clientsTableModel = _allWindows->getSqlTableModel_clients();
 
-			successPaiementsInsert = paiementsSqlTableModel.insertNewRecord(paiementsRecord);
+		QString clientsTableFilter = QString("%1 = '%2'")
+				    	            	.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
+				    	            		 curNomDuClient);
 
-			if (!successPaiementsInsert)
-			{
-				YerothQMessageBox::warning(this,
-						QObject::trUtf8("paiements - échec"),
-						QObject::trUtf8("1 entrée dans le tableau des paiements n'a pas pu "
-								"être faites pour la vente annulée (du client %1), "
-								"avec référence 'reçu de vente %2' !")
-				.arg(curNomDuClient,
-						curVenteReferenceRecuVendu));
-			}
+		clientsTableModel.yerothSetFilter_WITH_where_clause(clientsTableFilter);
+
+		double nouveau_compte_client = curMontantARembourserAuClient;
+
+		int rows = clientsTableModel.easySelect();
+
+		if (rows > 0)
+		{
+			QSqlRecord clientsRecord = clientsTableModel.record(0);
+
+			//The client new account value has been updated previously in
+			// method 'bool handleCompteClient(QString client_id,
+			//								   double curMontantARembourserAuClient)
+			nouveau_compte_client = GET_SQL_RECORD_DATA(clientsRecord, YerothDatabaseTableColumn::COMPTE_CLIENT).toDouble();
+		}
+
+		clientsTableModel.resetFilter();
+
+
+//		QDEBUG_STRING_OUTPUT_2_N("nouveau_compte_client", nouveau_compte_client);
+
+
+		paiementsRecord.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT, nouveau_compte_client);
+
+		int paiements_id_to_save = YerothERPWindows::getNextIdSqlTableModel_paiements();
+
+		paiementsRecord.setValue(YerothDatabaseTableColumn::ID, paiements_id_to_save);
+
+		successPaiementsInsert = paiementsSqlTableModel.insertNewRecord(paiementsRecord);
+
+		if (!successPaiementsInsert)
+		{
+			YerothQMessageBox::warning(this,
+					QObject::trUtf8("paiements - échec"),
+					QObject::trUtf8("1 entrée dans le tableau des paiements n'a pas pu "
+							"être faites pour la vente annulée (du client %1), "
+							"avec référence 'reçu de vente %2' !")
+			.arg(curNomDuClient,
+					curVenteReferenceRecuVendu));
 		}
 
 		tabWidget_ventes->setCurrentIndex(TableauDesVentes);
@@ -1094,8 +1102,9 @@ void YerothVentesWindow::enableNomCaissier_ONLY_MANAGER()
 }
 
 
-bool YerothVentesWindow::handleCompteClient(QString client_id,
-											double curMontantARembourserAuClient)
+bool YerothVentesWindow::handleCompteClient(const QString &client_id,
+											int 		   type_de_vente,
+											double 		   curMontantARembourserAuClient)
 {
 	bool result = false;
 
@@ -1107,7 +1116,7 @@ bool YerothVentesWindow::handleCompteClient(QString client_id,
 
 	clientsSqlTableModel.yerothSetFilter_WITH_where_clause(clientsFilter);
 
-	QString a_new_client = QObject::tr("DIVERS");
+	QString a_new_client = YerothUtils::STRING_FRENCH_DIVERS;
 
 	bool new_client_record_created = false;
 
@@ -1138,17 +1147,22 @@ bool YerothVentesWindow::handleCompteClient(QString client_id,
 
 	QSqlRecord clientsRecord = clientsSqlTableModel.record(0);
 
+	QString a_client_to_be_reimbursed =
+			GET_SQL_RECORD_DATA(clientsRecord, YerothDatabaseTableColumn::NOM_ENTREPRISE);
 
-	double curCompteClient = clientsRecord.value(YerothDatabaseTableColumn::COMPTE_CLIENT).toDouble();
+	bool client_account_to_be_updated = (type_de_vente == YerothUtils::VENTE_COMPTE_CLIENT);
 
-	double nouveauCompteClient = curCompteClient + curMontantARembourserAuClient;
+	if (client_account_to_be_updated ||
+		YerothUtils::isEqualCaseInsensitive(a_client_to_be_reimbursed, YerothUtils::STRING_FRENCH_DIVERS) )
+	{
+		double curCompteClient = clientsRecord.value(YerothDatabaseTableColumn::COMPTE_CLIENT).toDouble();
 
+		double nouveauCompteClient = curCompteClient + curMontantARembourserAuClient;
 
-	clientsRecord.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT, nouveauCompteClient);
+		clientsRecord.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT, nouveauCompteClient);
 
-
-	result = clientsSqlTableModel.updateRecord(0, clientsRecord);
-
+		result = clientsSqlTableModel.updateRecord(0, clientsRecord);
+	}
 
 	clientsSqlTableModel.resetFilter();
 

@@ -187,8 +187,9 @@ private:
 
     void enableNomCaissier_ONLY_MANAGER();
 
-    bool handleCompteClient(QString client_id,
-							double curMontantARembourserAuClient);
+    bool handleCompteClient(const QString &client_id,
+    						int 		   type_de_vente,
+							double 		   curMontantARembourserAuClient);
 
     void populateComboBoxes();
 

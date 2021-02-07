@@ -393,7 +393,7 @@ const QString YerothUtils::MYSQL_FALSE_LITERAL("0");
 
 const QString YerothUtils::CSV_FILE_SEPARATION_SEMI_COLON_STRING_CHAR(";");
 
-const QString YerothUtils::STRING_FRENCH_DIVERS("DIVERS");
+const QString YerothUtils::STRING_FRENCH_DIVERS(QObject::tr("DIVERS"));
 
 const QString YerothUtils::EMPTY_STRING("");
 
