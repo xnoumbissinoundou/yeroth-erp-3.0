@@ -336,7 +336,7 @@ bool YerothVentesWindow::annuler_cette_vente()
 		return false;
 	}
 
-	int typeDeVente = YerothUtils::VENTE_INDEFINI;
+	int typeDeVente = YerothUtils::VENTE_COMPTANT;
 
 	QString curNomDuClient;
 
