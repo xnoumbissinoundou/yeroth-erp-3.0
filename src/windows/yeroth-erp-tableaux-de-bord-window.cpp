@@ -2527,8 +2527,9 @@ void YerothTableauxDeBordWindow::bilanComptable()
 
     query.clear();
 
-    QString strVersementsQuery(QString("SELECT %1 FROM %2 WHERE (%3 IS NOT NULL) AND (%4 >= '%5') AND (%6 <= '%7')")
+    QString strVersementsQuery(QString("SELECT %1, %2 FROM %3 WHERE (%4 IS NOT NULL) AND (%5 >= '%6') AND (%7 <= '%8')")
     							.arg(YerothDatabaseTableColumn::MONTANT_PAYE,
+    								 YerothDatabaseTableColumn::TYPE_DE_PAIEMENT,
     								 YerothDatabase::PAIEMENTS,
     								 YerothDatabaseTableColumn::COMPTE_CLIENT,
 									 YerothDatabaseTableColumn::DATE_PAIEMENT,
@@ -2541,15 +2542,22 @@ void YerothTableauxDeBordWindow::bilanComptable()
 
 	int versementsQuerySize = YerothUtils::execQuery(query, strVersementsQuery, _logger);
 
+	int type_de_paiement = YerothUtils::ENCAISSEMENT_INDEFINI;
+
 	double montant_paye = 0.0;
 
     double montant_total_versements = 0.0;
 
     for( int k = 0; k < versementsQuerySize && query.next(); ++k)
     {
-    	montant_paye = query.value(0).toDouble();
+    	type_de_paiement = query.value(YerothDatabaseTableColumn::TYPE_DE_PAIEMENT).toInt();
 
-    	montant_total_versements = montant_total_versements + montant_paye;
+    	if (YerothUtils::is_montant_payer_par_le_client_valide(type_de_paiement))
+    	{
+    		montant_paye = query.value(YerothDatabaseTableColumn::MONTANT_PAYE).toDouble();
+
+    		montant_total_versements = montant_total_versements + montant_paye;
+    	}
     }
 
 //    qDebug() << QString("++ versementsQuerySize: %1, montant_total_versements: %2")
@@ -2558,8 +2566,9 @@ void YerothTableauxDeBordWindow::bilanComptable()
 
     query.clear();
 
-    QString strPaiementsAuComptesFournisseursQuery(QString("SELECT %1 FROM %2 WHERE (%3 IS NOT NULL) AND (%4 >= '%5') AND (%6 <= '%7')")
+    QString strPaiementsAuComptesFournisseursQuery(QString("SELECT %1, %2 FROM %3 WHERE (%4 IS NOT NULL) AND (%5 >= '%6') AND (%7 <= '%8')")
     							.arg(YerothDatabaseTableColumn::MONTANT_PAYE,
+    								 YerothDatabaseTableColumn::TYPE_DE_PAIEMENT,
     								 YerothDatabase::PAIEMENTS,
     								 YerothDatabaseTableColumn::COMPTE_FOURNISSEUR,
 									 YerothDatabaseTableColumn::DATE_PAIEMENT,
@@ -2575,15 +2584,22 @@ void YerothTableauxDeBordWindow::bilanComptable()
 								   strPaiementsAuComptesFournisseursQuery,
 								   _logger);
 
+	type_de_paiement = YerothUtils::DECAISSEMENT_INDEFINI;
+
 	double montant_paye_au_fournisseur = 0.0;
 
     double montant_total_paiements_aux_fournisseurs = 0.0;
 
     for( int k = 0; k < paiementsAuComptesFournisseursQuerySize && query.next(); ++k)
     {
-    	montant_paye_au_fournisseur = query.value(0).toDouble();
+    	type_de_paiement = query.value(YerothDatabaseTableColumn::TYPE_DE_PAIEMENT).toInt();
 
-    	montant_total_paiements_aux_fournisseurs = montant_total_paiements_aux_fournisseurs + montant_paye_au_fournisseur;
+    	if (YerothUtils::is_montant_payer_au_fournisseur_valide(type_de_paiement))
+    	{
+    		montant_paye_au_fournisseur = query.value(YerothDatabaseTableColumn::MONTANT_PAYE).toDouble();
+
+    		montant_total_paiements_aux_fournisseurs = montant_total_paiements_aux_fournisseurs + montant_paye_au_fournisseur;
+    	}
     }
 
 //    qDebug() << QString("++ paiementsAuComptesFournisseursQuerySize: %1, montant_total_paiements_aux_fournisseurs: %2")

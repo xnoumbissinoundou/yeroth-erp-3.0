@@ -628,6 +628,40 @@ public:
 																   YerothLineEdit &aYerothLineEdit_reference_client,
 																   int aCurrentClientDetailDBID = YerothUtils::CURRENT_CLIENT_DB_ID_UNDEFINED);
 
+	inline static bool is_montant_payer_par_le_client_valide(int typeDePaiement)
+	{
+		return (YerothUtils::ENCAISSEMENT_INDEFINI 			!= typeDePaiement &&
+				YerothUtils::DECAISSEMENT_COMPTANT 			!= typeDePaiement &&
+		    	YerothUtils::DECAISSEMENT_CHEQUE 			!= typeDePaiement &&
+				YerothUtils::DECAISSEMENT_TELEPHONE 		!= typeDePaiement &&
+				YerothUtils::DECAISSEMENT_BANCAIRE 			!= typeDePaiement &&
+				YerothUtils::DECAISSEMENT_VIREMENT_BANCAIRE != typeDePaiement &&
+				YerothUtils::DECAISSEMENT_RETOUR_ACHAT_DUN_CLIENT != typeDePaiement &&
+				YerothUtils::DECAISSEMENT_INDEFINI 			!= typeDePaiement) 			?
+
+				true :
+				false;
+	}
+
+	inline static bool is_montant_payer_au_fournisseur_valide(int typeDePaiement)
+	{
+		return (YerothUtils::DECAISSEMENT_INDEFINI 					!= typeDePaiement &&
+				YerothUtils::ENCAISSEMENT_COMPTANT 					!= typeDePaiement &&
+		    	YerothUtils::ENCAISSEMENT_CHEQUE 					!= typeDePaiement &&
+				YerothUtils::ENCAISSEMENT_TELEPHONE 				!= typeDePaiement &&
+				YerothUtils::ENCAISSEMENT_BANCAIRE 					!= typeDePaiement &&
+				YerothUtils::ENCAISSEMENT_VIREMENT_BANCAIRE 		!= typeDePaiement &&
+				YerothUtils::ENCAISSEMENT_ACHAT_DE_SERVICE_ANNULE 	!= typeDePaiement &&
+				YerothUtils::ENCAISSEMENT_INDEFINI 					!= typeDePaiement) 			?
+
+				true :
+				false;
+	}
+
+	inline static double montant_paye_par_le_client(const QSqlRecord &aPaymentRecord);
+
+	inline static double montant_paye_au_fournisseur(const QSqlRecord &aPaymentRecord);
+
 	inline static void yerothSetWidgetColor(QWidget *aWidget)
 	{
 		return ;
@@ -1190,6 +1224,26 @@ YerothQMessageBox::information(this, QObject::trUtf8(DIALOG_BOX_TITLE), msg); }
 #endif
 
 #define GET_CURRENCY_STRING_NUM_FOR_LATEX(NUM) YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_CURRENCY_STRING_NUM(NUM))
+
+
+inline double YerothUtils::montant_paye_par_le_client(const QSqlRecord &aPaymentRecord)
+{
+	return (YerothUtils::is_montant_payer_par_le_client_valide(
+				GET_SQL_RECORD_DATA(aPaymentRecord,YerothDatabaseTableColumn::TYPE_DE_PAIEMENT).toInt())) ?
+
+			GET_SQL_RECORD_DATA(aPaymentRecord, YerothDatabaseTableColumn::MONTANT_PAYE).toDouble() :
+			0.0 ;
+}
+
+
+inline double YerothUtils::montant_paye_au_fournisseur(const QSqlRecord &aPaymentRecord)
+{
+	return (YerothUtils::is_montant_payer_au_fournisseur_valide(
+				GET_SQL_RECORD_DATA(aPaymentRecord,YerothDatabaseTableColumn::TYPE_DE_PAIEMENT).toInt())) ?
+
+			GET_SQL_RECORD_DATA(aPaymentRecord, YerothDatabaseTableColumn::MONTANT_PAYE).toDouble() :
+			0.0 ;
+}
 
 
 template <class classType, typename parameterType>

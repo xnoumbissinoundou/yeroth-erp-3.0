@@ -1057,12 +1057,18 @@ void YerothPaiementsWindow::lister_les_elements_du_tableau(YerothSqlTableModel &
 
     QMap<QString, double> supplier_company_name_TO_financial_account_payment;
 
-    double montant_total_paye = 0.0;
+    double montant_total_paye_par_les_clients = 0.0;
+
+    double montant_total_paye_aux_fournisseurs = 0.0;
 
     double compte_client_apres_paiement = 0.0;
 
+    double montant_paye_par_le_client = 0.0;
+
     double montant_paye_au_fournisseur = 0.0;
 
+
+    int type_de_paiement = YerothUtils::ENCAISSEMENT_INDEFINI;
 
     QSqlField QSQLFIELD_compte_fournisseur;
 
@@ -1077,38 +1083,49 @@ void YerothPaiementsWindow::lister_les_elements_du_tableau(YerothSqlTableModel &
         QSQLFIELD_compte_fournisseur =
         		aRecord.field(YerothDatabaseTableColumn::COMPTE_FOURNISSEUR);
 
-        montant_total_paye +=
-        		GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::MONTANT_PAYE).toDouble();
+        type_de_paiement =
+        		GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::TYPE_DE_PAIEMENT).toInt();
 
         if (QSQLFIELD_compte_fournisseur.isNull())
         {
-        	compte_client_apres_paiement =
-        			GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::COMPTE_CLIENT).toDouble();
+        	montant_paye_par_le_client = YerothUtils::montant_paye_par_le_client(aRecord);
 
-        	client_company_name_TO_financial_account_payment
-				.insert(GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::NOM_ENTREPRISE),
-						 compte_client_apres_paiement);
+            if (montant_paye_par_le_client > 0)
+            {
+            	montant_total_paye_par_les_clients += montant_paye_par_le_client;
+
+            	compte_client_apres_paiement =
+            			GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::COMPTE_CLIENT).toDouble();
+
+            	client_company_name_TO_financial_account_payment
+    				.insert(GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::NOM_ENTREPRISE),
+    						 compte_client_apres_paiement);
+            }
         }
         else
         {
-        	montant_paye_au_fournisseur =
-        			GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::MONTANT_PAYE).toDouble();
+        	montant_paye_au_fournisseur = YerothUtils::montant_paye_au_fournisseur(aRecord);
 
-        	supplier_company_name_TO_financial_account_payment
-				.insert(GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::NOM_ENTREPRISE),
-						montant_paye_au_fournisseur);
+            if (montant_paye_au_fournisseur > 0)
+            {
+            	montant_total_paye_aux_fournisseurs += montant_paye_au_fournisseur;
+
+            	supplier_company_name_TO_financial_account_payment
+    				.insert(GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::NOM_ENTREPRISE),
+    						montant_paye_au_fournisseur);
+            }
         }
     }
 
-
     lineEdit_paiements_nombre_paiements->setText(GET_NUM_STRING(curPaiementsTableModelRowCount));
-
-    lineEdit_paiements_montant_paye_total->setText(GET_CURRENCY_STRING_NUM(montant_total_paye));
 
 
     if (YerothUtils::isEqualCaseInsensitive(YerothPaiementsWindow::CLIENT_TEXT_STRING,
     										comboBox_paiements_type_dentreprise->currentText()))
     {
+    	lineEdit_paiements_montant_paye_total->
+			setText(GET_CURRENCY_STRING_NUM(montant_total_paye_par_les_clients));
+
     	lineEdit_paiements_nombre_de_clients_fournisseurs->
 			setText(GET_NUM_STRING(client_company_name_TO_financial_account_payment.keys().size()));
 
@@ -1135,6 +1152,9 @@ void YerothPaiementsWindow::lister_les_elements_du_tableau(YerothSqlTableModel &
     }
     else
     {
+    	lineEdit_paiements_montant_paye_total->
+			setText(GET_CURRENCY_STRING_NUM(montant_total_paye_aux_fournisseurs));
+
     	label_paiements_nombre_de_clients_fournisseurs->setText(QObject::trUtf8("# fournisseurs"));
 
     	lineEdit_paiements_nombre_de_clients_fournisseurs->
