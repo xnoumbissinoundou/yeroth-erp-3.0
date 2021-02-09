@@ -228,11 +228,54 @@ void YerothTableViewPRINT_UTILITIES_TEX_TABLE::
         return ;
     }
 
-    latexTable_in_out.append("\\begin{table*}[!htbp]").append("\n")
-    			   .append("\\centering").append("\n")
-				   .append("\\resizebox{\\textwidth}{!}{\\centering").append("\n")
-				   .append("\\begin{tabular}")
-				   .append("{|");
+
+    bool USE_RESIZE_BOX_FOR_COLUMN_PRINTING = false;
+
+    static bool first_time_execution = true;
+
+    if (first_time_execution &&
+    	0 == fromRowIndex)
+    {
+    	uint table_column_count = _yerothTableView->horizontalHeader()->count();
+    	uint table_column_to_ignore_count = aDBTableColumnsToIgnore_in_out.size();
+
+    	uint table_column_visible_columns_count = table_column_count - table_column_to_ignore_count;
+
+    	if (table_column_visible_columns_count >= 7)
+    	{
+    		USE_RESIZE_BOX_FOR_COLUMN_PRINTING = true;
+    	}
+    	else
+    	{
+    		USE_RESIZE_BOX_FOR_COLUMN_PRINTING = false;
+    	}
+
+    	first_time_execution = false;
+    }
+
+
+    if (lastPage)
+    {
+    	first_time_execution = true;
+    }
+
+
+    if (USE_RESIZE_BOX_FOR_COLUMN_PRINTING)
+    {
+    	latexTable_in_out.append("\\begin{table*}[!htbp]").append("\n")
+    	    			 .append("\\centering").append("\n")
+    					 .append("\\resizebox{\\textwidth}{!}{\\centering").append("\n")
+    					 .append("\\begin{tabular}")
+    					 .append("{|");
+    }
+    else
+    {
+    	latexTable_in_out.append("\\begin{table*}[!htbp]").append("\n")
+    	    			 .append("\\centering").append("\n")
+    					 .append("\\begin{tabular}")
+    					 .append("{|");
+    }
+
 
     QStandardItemModel &tableStandardItemModel =
     		*(static_cast<QStandardItemModel *> (_yerothTableView->model()));
@@ -366,8 +409,17 @@ void YerothTableViewPRINT_UTILITIES_TEX_TABLE::
     //Removes the empty character "" from Latex output
     latexTable_in_out.replace("\"\"", "");
 
-    latexTable_in_out.append("\\end{tabular}}").append("\n")
-    			   .append("\\end{table*}").append("\n");
+    if (USE_RESIZE_BOX_FOR_COLUMN_PRINTING)
+    {
+    	latexTable_in_out.append("\\end{tabular}}").append("\n")
+    	    			 .append("\\end{table*}").append("\n");
+    }
+    else
+    {
+    	latexTable_in_out.append("\\end{tabular}").append("\n")
+    	    			 .append("\\end{table*}").append("\n");
+    }
+
 
     //qDebug() << "++ latexTable_in_out in get_YEROTH_TableViewListingTexDocumentString: " << latexTable_in_out;
 }
