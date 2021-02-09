@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-print_yeroth_latex_util_pdf.hpp
  *
- *      Author: Xavier NOUMBISSI NOUNDOU, DR., PH.D. (ABD)
+ *      DR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef YEROTH_ERP_PRINT_YEROTH_LATEX_UTIL_PDF_HPP_
