@@ -1297,6 +1297,8 @@ void YerothVentesWindow::setupLineEdits()
     lineEdit_retour_vente_nom_caissier->setYerothEnabled(false);
     lineEdit_retour_vente_localisation->setYerothEnabled(false);
     lineEdit_retour_vente_quantite_vendue->setYerothEnabled(false);
+    lineEdit_retour_vente_numero_de_telephone_client->setYerothEnabled(true);
+    lineEdit_retour_vente_nom_client->setYerothEnabled(true);
     lineEdit_retour_vente_quantite_a_retourner->setYerothEnabled(true);
     lineEdit_retour_vente_heure_vente->setYerothEnabled(false);
     lineEdit_retour_vente_reference_recu_de_vente->setYerothEnabled(false);
@@ -1527,6 +1529,10 @@ void YerothVentesWindow::clear_all_fields()
     lineEdit_details_heure_vente->clearField();
     lineEdit_details_prix_unitaire->clearField();
 
+
+    lineEdit_retour_vente_numero_de_telephone_client->clear();
+
+    lineEdit_retour_vente_nom_client->clear();
 
     lineEdit_retour_vente_quantite_a_retourner->clear();
 
@@ -2086,7 +2092,10 @@ bool YerothVentesWindow::afficher_retour_vente()
     clientsTableModel.resetFilter();
 
     lineEdit_retour_vente_nom_client->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT));
-    lineEdit_retour_vente_type_de_vente->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::TYPE_DE_VENTE));
+
+    int typeDeVente = GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::TYPE_DE_VENTE).toInt();
+
+    lineEdit_retour_vente_type_de_vente->setText(YerothUtils::_typedeventeToUserViewString.value(typeDeVente));
 
     tabWidget_ventes->setCurrentIndex(RetourDuneVente);
 
