@@ -220,7 +220,7 @@ void YerothGroupesDeClientsWindow::setupLineEdits()
 
 void YerothGroupesDeClientsWindow::setupDateTimeEdits()
 {
-	dateEdit_groupes_de_clients_debut->setStartDate(YerothUtils::YEROTH_PAGING_DEFAULT_START_DATE);
+	dateEdit_groupes_de_clients_debut->setStartDate(YerothERPConfig::GET_YEROTH_PAGING_DEFAULT_START_DATE());
 
 	dateEdit_groupes_de_clients_fin->setStartDate(GET_CURRENT_DATE);
 

@@ -403,11 +403,11 @@ void YerothMouvementsDeStocksWindow::switchTableWidgetTAB_CONTENT_ELEMENTS(enum 
 
 void YerothMouvementsDeStocksWindow::setupDateTimeEdits()
 {
-    dateEdit_mouvementsDeStocks_debut->setStartDate(YerothUtils::YEROTH_PAGING_DEFAULT_START_DATE);
+    dateEdit_mouvementsDeStocks_debut->setStartDate(YerothERPConfig::GET_YEROTH_PAGING_DEFAULT_START_DATE());
 
     dateEdit_mouvementsDeStocks_fin->setStartDate(GET_CURRENT_DATE);
 
-    dateEdit_mouvementsDeStocks_debut_2->setStartDate(YerothUtils::YEROTH_PAGING_DEFAULT_START_DATE);
+    dateEdit_mouvementsDeStocks_debut_2->setStartDate(YerothERPConfig::GET_YEROTH_PAGING_DEFAULT_START_DATE());
 
     dateEdit_mouvementsDeStocks_fin_2->setStartDate(GET_CURRENT_DATE);
 

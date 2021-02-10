@@ -218,7 +218,7 @@ void YerothERPProgrammesDeFideliteClientsWindow::setupLineEdits()
 
 void YerothERPProgrammesDeFideliteClientsWindow::setupDateTimeEdits()
 {
-	dateEdit_programmes_de_fidelite_clients_debut->setStartDate(YerothUtils::YEROTH_PAGING_DEFAULT_START_DATE);
+	dateEdit_programmes_de_fidelite_clients_debut->setStartDate(YerothERPConfig::GET_YEROTH_PAGING_DEFAULT_START_DATE());
 
 	dateEdit_programmes_de_fidelite_clients_fin->setStartDate(GET_CURRENT_DATE);
 

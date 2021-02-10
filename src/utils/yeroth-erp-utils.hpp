@@ -677,9 +677,6 @@ public:
 	}
 
 
-	static QDate YEROTH_PAGING_DEFAULT_START_DATE;
-
-
 	static QString YEROTH_ERP_3_0_SERVER_PARAMETERS_DISPLAY;
 
 

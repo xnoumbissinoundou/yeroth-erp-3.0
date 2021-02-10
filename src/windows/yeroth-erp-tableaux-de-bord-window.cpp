@@ -273,14 +273,14 @@ void YerothTableauxDeBordWindow::handleTabChanged(int index)
 
 void YerothTableauxDeBordWindow::setupDateTimeEdits_COMPARAISON_DES_CHIFFRES_DAFFAIRES()
 {
-    dateEdit_rapports_debut->setStartDate(YerothUtils::YEROTH_PAGING_DEFAULT_START_DATE);
+    dateEdit_rapports_debut->setStartDate(YerothERPConfig::GET_YEROTH_BUSINESS_DASHBOARD_DEFAULT_START_DATE());
     dateEdit_rapports_fin->setStartDate(GET_CURRENT_DATE);
 }
 
 
 void YerothTableauxDeBordWindow::setupDateTimeEdits_BILAN_COMPTABLE()
 {
-	dateEdit_bilan_comptable_debut->setStartDate(YerothUtils::YEROTH_PAGING_DEFAULT_START_DATE);
+	dateEdit_bilan_comptable_debut->setStartDate(YerothERPConfig::GET_YEROTH_BUSINESS_DASHBOARD_DEFAULT_START_DATE());
 	dateEdit_bilan_comptable_fin->setStartDate(GET_CURRENT_DATE);
 }
 

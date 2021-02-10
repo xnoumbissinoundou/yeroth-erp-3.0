@@ -211,8 +211,6 @@ const QKeySequence YerothUtils::REINITIALISER_QUI_SUI_JE_QKEYSEQUENCE(QObject::t
 const QKeySequence YerothUtils::LISTER_STOCKS_QKEYSEQUENCE(QObject::tr(SHORTCUT_LIST_STOCKS));
 
 
-QDate YerothUtils::YEROTH_PAGING_DEFAULT_START_DATE(YerothERPConfig::annee_depart_pour_la_pagination.toInt(), 1, 1);
-
 
 QString YerothUtils::YEROTH_ERP_3_0_SERVER_PARAMETERS_DISPLAY("");
 

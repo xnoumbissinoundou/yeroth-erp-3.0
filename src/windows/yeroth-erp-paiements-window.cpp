@@ -805,7 +805,7 @@ void YerothPaiementsWindow::setupDateTimeEdits()
 {
 	dateEdit_details_de_paiement_date_paiement->setYerothEnabled(false);
 
-    dateEdit_paiements_debut->setStartDate(YerothUtils::YEROTH_PAGING_DEFAULT_START_DATE);
+    dateEdit_paiements_debut->setStartDate(YerothERPConfig::GET_YEROTH_PAGING_DEFAULT_START_DATE());
 
     dateEdit_paiements_fin->setStartDate(GET_CURRENT_DATE);
 

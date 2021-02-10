@@ -698,7 +698,7 @@ void YerothPayerCompteClientWindow::setupLineEditsQCompleters()
 
 void YerothPayerCompteClientWindow::setupDateTimeEdits()
 {
-	dateEdit_transactions_compte_client_debut->setStartDate(YerothUtils::YEROTH_PAGING_DEFAULT_START_DATE);
+	dateEdit_transactions_compte_client_debut->setStartDate(YerothERPConfig::GET_YEROTH_PAGING_DEFAULT_START_DATE());
 
 	dateEdit_transactions_compte_client_fin->setStartDate(GET_CURRENT_DATE);
 }

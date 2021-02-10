@@ -2519,8 +2519,10 @@ void YerothAdminWindow::enregistrer_app_parameters_configuration()
         {
             configurationsRecord = configurationsTableModel.record(YerothERPConfig::CONFIG_PAGINATION_PAGE_BEGIN_YEAR);
             configurationsRecord.setValue("valeur_configuration", lineEdit_annee_de_depart_pour_la_pagination->text());
+
             bool success =
                 configurationsTableModel.updateRecord(YerothERPConfig::CONFIG_PAGINATION_PAGE_BEGIN_YEAR, configurationsRecord);
+
             if (success)
             {
                 YerothERPConfig::annee_depart_pour_la_pagination = lineEdit_annee_de_depart_pour_la_pagination->text();
