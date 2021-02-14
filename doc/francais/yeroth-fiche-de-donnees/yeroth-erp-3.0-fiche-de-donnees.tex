@@ -44,12 +44,12 @@
 \newcommand{\mathbold}[1]{\text{\textbf{#1}}}
 
 \usepackage{xcolor}
-\definecolor{yerenColorOrange}{RGB}{242, 161, 0}   
-\definecolor{yerenColorBlue}{RGB}{77 , 93 , 254}
-\definecolor{yerenColorRed}{RGB}{254, 48 , 48}
-\definecolor{yerenColorDarkgray}{RGB}{60, 60 , 60}
-\definecolor{yerenColorIndigo}{RGB}{83, 0, 125}
-\definecolor{yerenColorGreen}{RGB}{2  , 160, 70}
+\definecolor{yerothColorOrange}{RGB}{242, 161, 0}   
+\definecolor{yerothColorBlue}{RGB}{77 , 93 , 254}
+\definecolor{yerothColorRed}{RGB}{254, 48 , 48}
+\definecolor{yerothColorDarkgray}{RGB}{60, 60 , 60}
+\definecolor{yerothColorIndigo}{RGB}{83, 0, 125}
+\definecolor{yerothColorGreen}{RGB}{2, 160, 70}
 \definecolor{forestgreen}{RGB}{2,160,70}    
 \definecolor{mediumblue}{RGB}{7,43,205}    
 \definecolor{firebrickred}{RGB}{178,34,34}
@@ -67,9 +67,12 @@
 
 \newcommand{\pos}{syst\`eme--logiciel ERP\xspace}
 
-\newcommand{\yerothlabs}{\textsc{YEROTH~R\&D}\xspace}
+\newcommand{\yerothrd}{\textcolor{yerothColorGreen}
+			{\textsc{\textcolor{yerothColorRed}{YEROTH}}$_{\text{r\&d}}$\xspace}}
 
-\newcommand{\yerothpos}{\textcolor{yerenColorBlue}{\sc YEROTH--ERP--$3.0$}\xspace}
+\newcommand{\yerotherpblack}{YEROTH--ERP--$3.0$\xspace}
+
+\newcommand{\yerothpos}{\textcolor{yerothColorBlue}{\sc YEROTH--ERP--$3.0$}\xspace}
 
 \newcommand{\myfullacademicname}{DR. XAVIER NOUMBISSI NOUNDOU\xspace}
 
@@ -102,7 +105,7 @@
 \newcommand{\yerothalert}{\emph{yeroth-erp-3-0-system-daemon}\xspace}
 
 \newcommand{\mysql}{MySQL\xspace}
-\newcommand{\mysqlcolored}{\textcolor{yerenColorBlue}{My}\textcolor{yerenColorOrange}{SQL}\xspace}
+\newcommand{\mysqlcolored}{\textcolor{yerothColorBlue}{My}\textcolor{yerothColorOrange}{SQL}\xspace}
 
 \newcommand{\role}{r\^ole\xspace}
 \newcommand{\roles}{r\^oles\xspace}
@@ -165,9 +168,15 @@
 
 \begin{document}
 
-{\bf \LARGE \yerothpos} {| \sc \scriptsize Fiche de donn\'ees du syst\`eme--logiciel }
+{\bf \Large \yerothrd} {| \sc \scriptsize \yerotherpblack Fiche de donn\'ees du syst\`eme--logiciel}
 
-\vspace{2.15em}
+
+\vspace{1em}
+
+
+\parbox{27em}{\LARGE \yerotherpblack Fiche de Donn\'ees du Syst\`eme--Logiciel}
+
+\vspace{1.0em}
 
 \begin{table}[!htbp]
 \begin{tabular}{ll}
@@ -175,8 +184,7 @@
 
 \yerothpos est un \textbf{\pos (Enterprise Resource Planing)}
 qui a $6$ \textbf{types d'utilisateurs, et, r\^oles}:
-\vspace{0.25em}
-\begin{enumerate}
+\begin{enumerate}[1.]
 	\itemsep -0.05em
 	\item \administrateur
 	\item \caissier
@@ -187,29 +195,26 @@ qui a $6$ \textbf{types d'utilisateurs, et, r\^oles}:
 \end{enumerate}
 
 \yerothpos \textbf{a les fonctions suivantes}:
-\vspace{0.25em}
-\begin{enumerate}
+\begin{enumerate}[1.]
 	\itemsep -0.05em
 	\item administration des utilisateurs, et, des r\^oles
 	\item alertes sur les quantit\'es en stocks,
 			et sur les p\'eriodes de temps	
-	\item gestion des clients			
+	\item gestion des clients (CRM)			
 	\item gestion des stocks
 	\item gestion des ventes (caisse, etc.)
-	\item tableaux de bords.
-\\
+	\item tableaux de bords.\\
 \end{enumerate}
 
 \yerothpos \textbf{est}:
-\vspace{0.25em}
-\begin{enumerate}
+\begin{enumerate}[1.]
 	\itemsep -0.05em
 	\item l\'eger, et tr\`es rapide
 	\item multi--sites (optionel)
 	\item simple, et, intuitif.\\
 \end{enumerate}
 
-\vspace{0em}
+\vspace{-0.75em}
 
 Les tests d'utilisations de la m\'emoire sont
 r\'ealis\'es avec l'outil \textbf{valgrind}.\\
@@ -231,11 +236,11 @@ r\'ealis\'es avec l'outil \textbf{valgrind}.\\
 \end{tabular}
 \end{table}
 
-\vspace{0em}
+\vspace{-1.25em}
 
 {\large \bf OP\'ERATIONS}
 
-\vspace{0em}
+\vspace{-0.25em}
 
 \begin{table}[!htbp]
 \begin{tabular}{lll}
@@ -247,7 +252,7 @@ r\'ealis\'es avec l'outil \textbf{valgrind}.\\
 \vspace{0.25em}
 \begin{itemize}[]
 	\itemsep 0em
-	\item[\mycheckmark{yerenColorDarkgray}] Lecteur de code--barres, etc.\\
+	\item[\mycheckmark{yerothColorDarkgray}] Lecteur de code--barres, etc.\\
 \end{itemize}
 \begin{center}
 \includegraphics[scale=0.24]{images/xfox-fj-5-usb-plug-and-play-automatic-barcode-scanner.png}
@@ -263,7 +268,7 @@ r\'ealis\'es avec l'outil \textbf{valgrind}.\\
 \vspace{0.25em}
 \begin{itemize}[]
 	\itemsep 0em
-	\item[\mycheckmark{yerenColorBlue}] \mysqlcolored\\
+	\item[\mycheckmark{yerothColorBlue}] \mysqlcolored\\
 \end{itemize}
 \begin{center}
 \includegraphics[scale=0.164]{images/free-reuse-dbms-logo}
@@ -279,7 +284,7 @@ r\'ealis\'es avec l'outil \textbf{valgrind}.\\
 \vspace{0.25em}
 \begin{itemize}[]
 	\itemsep 0em
-	\item[\mycheckmark{yerenColorRed}] Debian--Linux\\
+	\item[\mycheckmark{yerothColorRed}] Debian--Linux\\
 \end{itemize}
 \begin{center}
 \includegraphics[scale=0.53]{images/free-reuse-stretch-logo}
