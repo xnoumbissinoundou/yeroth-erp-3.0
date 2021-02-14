@@ -68,7 +68,10 @@
 
 \newcommand{\logicielerp}{syst\`eme--logiciel ERP\xspace}
 
-\newcommand{\yerothlabs}{\textsc{YEROTH~R\&D}\xspace}
+\newcommand{\yerothrd}{\textcolor{yerothColorGreen}
+			{\textsc{\textcolor{yerothColorRed}{YEROTH}}$_{\text{r\&d}}$\xspace}}
+
+\newcommand{\yerotherpblack}{YEROTH--ERP--$3.0$\xspace}
 
 \newcommand{\yerotherp}{\textcolor{yerothColorBlue}{\sc YEROTH--ERP--$3.0$}\xspace}
 
@@ -173,9 +176,16 @@
 
 \begin{document}
 
-{\bf \LARGE \yerotherp} {| \sc \scriptsize Comparaisons avec quelques logiciels ERP}
+{\bf \Large \yerothrd} {| \sc \scriptsize Comparaisons avec quelques logiciels ERP}			
 
-\vspace{2.15em}
+
+\vspace{1.15em}
+
+
+\parbox{27em}{\LARGE Avantages de \yerotherpblack Comparativement
+				\`a \sageerp, et \saperp}
+
+\vspace{1em}
 
 \begin{table}[!htbp]
 \begin{tabular}{ll}
@@ -184,7 +194,9 @@
 facile d'utilisation \`a cause de ses
 caract\'eristiques suivantes:
 
-\begin{enumerate}
+\begin{enumerate}[1.]
+	\itemsep -0.1em
+	\item vue du logiciel d\'ependante du \role de l'utilisateur
 	\item formation compl\`ete en $5$ jours
 	\item interface du logiciel tr\`es facile \`a utiliser
 	\item pas de connection internet requise
@@ -205,11 +217,19 @@ caract\'eristiques suivantes:
 \end{tabular}
 \end{table}
 
-\vspace{0.7cm}
+\vspace{0cm}
+
+Le tableau~\ref{tab:comparaisons-avec-quelques-logiciels-erp}
+illustre \`a merveille la simplicit\'e et l'efficacit\'e
+de \yerotherp, en comparaison avec les logiciels ERP ''\sageerp'',
+et ''\saperp''.\\
+
+\vspace{-1em}
 
 \begin{table}[!htbp]
 \selectlanguage{french}
 \centering
+\resizebox{\textwidth}{!}{%to fit the table within the text width
 \begin{tabular}{cccc}
 
 \multicolumn{1}{c}{}			&
@@ -217,10 +237,15 @@ caract\'eristiques suivantes:
 \sageerp						&
 \saperp		\\ \hline
 
+\textbf{vue du logiciel d\'ependante du \role}	&
+		\yerothvert{OUI}				&
+		\yerothrouge{NON}				&
+		\yerothvert{OUI}				\\ \hline
+		
 \textbf{formation compl\`ete}		&
 		\yerothvert{$5$ jours}			&
-		\yerothorange{$2$ mois}			&						
-		\yerothrouge{$3$ mois}			\\ \hline
+		\yerothorange{au moins $2$ mois}			&						
+		\yerothrouge{au moins $3$ mois}			\\ \hline
 
 \textbf{interface du logiciel}			&
 		\yerothevident					&
@@ -246,24 +271,16 @@ caract\'eristiques suivantes:
 		\yerothvert{optionel}		&
 		\yerothrouge{obligatoire}	&						
 		\yerothrouge{obligatoire}	\\		
-\end{tabular}
+\end{tabular}}
 \caption{Comparaison entre \yerotherp et quelques autres logiciels ERP\\}
 \label{tab:comparaisons-avec-quelques-logiciels-erp}
 \end{table}
 
-\vspace{0.5cm}
-
-Le tableau~\ref{tab:comparaisons-avec-quelques-logiciels-erp}
-illustre \`a merveille la simplicit\'e et l'efficacit\'e
-de \yerotherp, en comparaison avec les logiciels ERP ''\sageerp'',
-et ''\saperp''.\\
-
-
-\vspace{1cm}
+\vspace{1em}
 
 {\large \bf OP\'ERATIONS}
 
-\vspace{0em}
+\vspace{-0.05em}
 
 \begin{table}[!htbp]
 \begin{tabular}{lll}
