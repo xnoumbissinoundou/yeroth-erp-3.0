@@ -1,0 +1,201 @@
+%====================================================
+%
+% Author: DR. XAVIER NOUMBISSI NOUNDOU
+%
+%====================================================
+\documentclass[10pt, a4paper]{article}
+\NeedsTeXFormat{LaTeX2e}
+
+%---------------------------- PACKAGE INCLUSION -------------------------------
+% This group renders characters clearer and more precise
+
+\RequirePackage[bitstream-charter,cal,expert]{mathdesign}
+\RequirePackage{latexsym}
+
+\usepackage[french]{babel}
+
+\usepackage{geometry}
+\geometry{a4paper,
+		  %showframe=true,
+		  %margin=2.75em,
+		  %a4paper,
+		  %total={170mm,257mm},
+		  top=3.5em,
+		  left=3em,
+		  right=3em,
+		  bottom=3.39em
+		  }
+
+\usepackage[french]{datenumber}
+\usepackage[default]{cantarell}
+\usepackage{graphicx}
+\usepackage{xspace}
+\usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{listings} % for lstset definitions
+\usepackage{url}
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+\usepackage{epsfig}
+\usepackage{booktabs}
+%\usepackage{enumitem} %funny itemize icons
+\usepackage{verbatim}
+\usepackage{tcolorbox}
+
+\usepackage{pagecolor}
+
+\usepackage{amsmath}
+\newcommand{\mathbold}[1]{\text{\textbf{#1}}}
+
+\usepackage{xcolor}
+\definecolor{yerothColorOrange}{RGB}{242, 161, 0}   
+\definecolor{yerothColorBlue}{RGB}{77, 93 , 254}
+\definecolor{yerothColorRed}{RGB}{254, 48 , 48}
+\definecolor{yerothColorGray}{RGB}{198, 198, 198}
+\definecolor{yerothColorDarkgray}{RGB}{60, 60 , 60}
+\definecolor{yerothColorIndigo}{RGB}{83, 0, 125}
+\definecolor{yerothColorGreen}{RGB}{2, 160, 70}
+\definecolor{forestgreen}{RGB}{2,160,70}    
+\definecolor{mediumblue}{RGB}{7,43,205}    
+\definecolor{firebrickred}{RGB}{178,34,34}
+\definecolor{listingray}{gray}{0.9}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+\definecolor{darkgreen}{rgb}{0,0.35,0}
+\definecolor{medgreen}{rgb}{0,0.5,0}
+\definecolor{lightgreen}{rgb}{0.5,0.7,0.5}
+\definecolor{pmcolour}{rgb}{0.5,0.7,0.5}
+\definecolor{medgrey}{rgb}{0.6,0.6,0.6}
+\definecolor{purplish}{rgb}{0.4,0,0.6}
+\definecolor{brightred}{rgb}{1,0.2,0.2}
+
+\newcommand{\diplinfn}{DR.\xspace}
+
+\newcommand{\yerothrdnoir}{yerothrd\xspace}
+
+\newcommand{\yerothrc}{\textcolor{yerothColorGreen}
+			{\textsc{\textcolor{yerothColorRed}{YEROTH}}$_{\text{r\&c}}$\xspace}}
+
+\newcommand{\yerotherptroiszero}{\textsc{YEROTH--ERP--$3.0$}\xspace}
+
+\newcommand{\myfullacademicname}{DR. XAVIER NOUMBISSI NOUNDOU\xspace}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+	pagebackref,
+    citecolor=medgreen,
+    linkcolor=purplish,
+    breaklinks,
+    pdftex,
+    bookmarks,
+    plainpages=false,
+    pdfauthor={DR. XAVIER NOUMBISSI NOUNDOU}
+}
+
+%--------------------------------------------------------------------------------
+
+%---------------------------- COMMANDS DEFINITION -------------------------------
+\newcommand{\diplinf}{\emph{Dipl.-Inf.}\xspace}
+\newcommand{\mycheckmark}[1]{\textcolor{#1}{$\checkmark$}\xspace}
+
+\newcommand{\myenumitem}[1]{\emph{#1}\xspace}
+\newcommand{\yerotherpsystemdaemon}{\emph{yeroth-erp-3-0-system-daemon}\xspace}
+
+\newcommand{\erp}{ERP~software--system\xspace}
+
+\newcommand{\mysql}{MySQL\xspace}
+\newcommand{\mysqlcolored}{\textcolor{yerothColorBlue}{My}\textcolor{yerothColorOrange}{SQL}\xspace}
+
+\newcommand{\featuresummary}[2]{\textbf{\textcolor{#1}{\textsc{#2}}}}
+
+%--------------------------------------------------------------------------------
+
+\usepackage[T1]{fontenc}
+\newcommand{\changefont}[3]{
+\fontfamily{#1} \fontseries{#2} \fontshape{#3} \selectfont}
+\changefont{cmss}{m}{n}
+
+\renewcommand\labelenumi{\theenumi)}
+
+\pagenumbering{gobble}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\rhead{}
+\lhead{}
+\lfoot{Auteur: \myfullacademicname}
+\rfoot{{\small Version du --~\datedayname, le \today~--}}
+\cfoot{}
+
+\clubpenalty = 10000
+\widowpenalty = 10000
+\displaywidowpenalty = 10000
+
+
+\newcommand{\yerothmiseenplace}{mise--en--place\xspace}
+
+\newcommand{\yerothdebianlinuxdix}{'SE~debian--linux~$10.0.0$'\xspace}
+\newcommand{\yerothachat}[1]{$\mathit{#1}\ \text{cfa}$\xspace}
+\newcommand{\yerothachatb}[1]{\textbf{$\mathbf{#1}\ \text{FCFA}$}\xspace}
+\newcommand{\yerothapc}{'APC'\xspace}
+\newcommand{\yerothlenovo}{'LENOVO'\xspace}
+\newcommand{\yerothyaounde}{\textbf{Yaound\'e}\xspace}
+\newcommand{\yerothdouala}{\textbf{Douala}\xspace}
+
+\AtBeginDocument{
+% ce 'hook' est utilise ici parce que
+% qu'avant ici, '\today' est toujours
+% affiche en Anglais.
+  \hypersetup{pdftitle={"MISE--EN--PLACE POUR CLIENT À REVENU CERTIFIÉ"
+   	par: ''\myfullacademicname''.}}
+}
+
+\begin{document}
+
+{\bf \Large \yerothrc} {| \sc \scriptsize \yerotherptroiszero \yerothmiseenplace pour client à
+ revenu certifié}
+
+
+\vspace{3.5em}
+
+
+\parbox{27em}{\LARGE \yerotherptroiszero MISE--EN--PLACE POUR CLIENT À REVENU CERTIFIÉ.}
+
+{\hfill \datedayname, Le \today}
+
+\vspace{2.0em}
+
+\begin{center}
+\textbf{AUTEUR: \myfullacademicname}
+\end{center}
+
+\vspace{2.5em}
+
+
+\paragraph{FOURNITURE DE SERVICE:\\}
+\parbox{36.999em}{
+\vspace{1em}
+\yerothrc s'engage formellement à aider le client
+à revenu certifié à lui fournir les prestations
+de service suivantes:\\
+
+\begin{enumerate}[1.]
+	\item Emploi de personnels temporaire pour la
+		r\'ecup\'eration et l'entr\'ee des donn\'ees
+		des stocks et des marchandises des magasins
+		du client \`a revenu certifi\'e, dans son
+		serveur \textcolor{yerothColorGreen}{\yerotherptroiszero}
+		
+	\item \yerothrc s'engage formellement \`a investir
+		dans le processus du point $1)$
+		
+	\item Le client à revenu certifié s'engage à
+		débourser mensuellement au moins $12\%$ du montant
+		investi par \yerothrc dans le processus décrit
+		au point $1)$.
+\end{enumerate}
+}
+
+	
+\end{document}
+
