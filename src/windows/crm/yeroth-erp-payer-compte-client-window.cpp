@@ -166,7 +166,7 @@ void YerothPayerCompteClientWindow::afficher_detail_client()
 }
 
 
-void YerothPayerCompteClientWindow::updateStocksVeduTable(PaymentInfo &paymentInfo)
+void YerothPayerCompteClientWindow::updateStocksVenduTable(PaymentInfo &paymentInfo)
 {
 	YerothSqlTableModel & stocksVenduTableModel = _allWindows->getSqlTableModel_stocks_vendu();
 
@@ -280,7 +280,7 @@ bool YerothPayerCompteClientWindow::createPaymentForCustomerAccount(PaymentInfo 
 
 	if (success)
 	{
-		updateStocksVeduTable(paymentInfo);
+		updateStocksVenduTable(paymentInfo);
 	}
 
 	return success;

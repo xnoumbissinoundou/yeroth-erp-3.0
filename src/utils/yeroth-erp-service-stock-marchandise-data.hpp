@@ -34,6 +34,8 @@ public:
 
 	bool 		_isService;
 
+	QString 	_nom_entreprise_client;
+
 	QString 	_nom_departement_produit;
 
 	QString 	_categorie;

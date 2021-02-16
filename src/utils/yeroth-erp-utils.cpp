@@ -1161,6 +1161,12 @@ bool YerothUtils::insertStockItemInProductList(YerothERPStockMarchandiseData	&aS
 
     record.setValue(YerothDatabaseTableColumn::IS_SERVICE, aServiceStockData_IN_OUT._isService);
 
+    if (aServiceStockData_IN_OUT._isService)
+    {
+    	record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT,
+    			aServiceStockData_IN_OUT._nom_entreprise_client);
+    }
+
     record.setValue(YerothDatabaseTableColumn::PRIX_DACHAT_PRECEDENT,
     				YerothUtils::YEROTH_CONVERT_QSTRING_TO_DOUBLE_LOCALIZED(aServiceStockData_IN_OUT._prix_dachat_precedent));
 

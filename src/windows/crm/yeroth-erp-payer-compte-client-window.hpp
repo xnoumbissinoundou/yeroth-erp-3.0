@@ -116,7 +116,7 @@ private slots:
 
 	void afficher_detail_client();
 
-	void updateStocksVeduTable(PaymentInfo &paymentInfo);
+	void updateStocksVenduTable(PaymentInfo &paymentInfo);
 
 	bool createPaymentForCustomerAccount(PaymentInfo &paymentInfo);
 

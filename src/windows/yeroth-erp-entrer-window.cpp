@@ -2011,6 +2011,11 @@ void YerothEntrerWindow::enregistrer_produit()
     		radioButton_service_vente_de_service_au_client->isChecked() ||
 			radioButton_service_achat_de_service->isChecked();
 
+    if (radioButton_service_vente_de_service_au_client->isChecked())
+    {
+    	a_stock_data._nom_entreprise_client = lineEdit_nom_entreprise_fournisseur->text();
+    }
+
     a_stock_data._nom_departement_produit = comboBox_nom_departement_produit->currentText();
     a_stock_data._categorie = lineEdit_categorie_produit->text();
     a_stock_data._description = textEdit_description->toPlainText();
