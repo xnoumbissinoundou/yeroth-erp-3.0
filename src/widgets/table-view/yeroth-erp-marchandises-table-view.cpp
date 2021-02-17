@@ -258,6 +258,33 @@ void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTab
 
 void YerothERPMarchandisesTableView::startEditingModeSelection()
 {
+	int lastSelectRecord_ROW_NUMBER =
+			YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->_marchandisesWindow->
+			get_INT_last_selected_row_number();
+
+	QStandardItem *anItem = _stdItemModel->item(lastSelectRecord_ROW_NUMBER,
+			 YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->_marchandisesWindow
+			 	 ->getDBTableFieldColumnIndex(YerothDatabaseTableColumn::REFERENCE));
+
+	anItem->setForeground(YerothUtils::YEROTH_BLACK_COLOR);
+	anItem->setBackground(Qt::white);
+
+
+	anItem = _stdItemModel->item(lastSelectRecord_ROW_NUMBER,
+			 YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->_marchandisesWindow
+			 	 ->getDBTableFieldColumnIndex(YerothDatabaseTableColumn::PRIX_DACHAT_PRECEDENT));
+
+	anItem->setForeground(YerothUtils::YEROTH_BLACK_COLOR);
+	anItem->setBackground(Qt::white);
+
+
+	anItem = _stdItemModel->item(lastSelectRecord_ROW_NUMBER,
+			 YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->_marchandisesWindow
+			 	 ->getDBTableFieldColumnIndex(YerothDatabaseTableColumn::PRIX_VENTE_PRECEDENT));
+
+	anItem->setForeground(YerothUtils::YEROTH_BLACK_COLOR);
+	anItem->setBackground(Qt::white);
+
 	setEditTriggers(QAbstractItemView::SelectedClicked |
 					QAbstractItemView::DoubleClicked);
 
@@ -472,6 +499,11 @@ void YerothERPMarchandisesTableView::selectionChanged (const QItemSelection & se
 
 void YerothERPMarchandisesTableView::stopEditingModeSelection()
 {
+	if (!_writeEnabled)
+	{
+		return ;
+	}
+
 	setWriteEnabled(false);
 
 	setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -480,4 +512,31 @@ void YerothERPMarchandisesTableView::stopEditingModeSelection()
 			   	   	    SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)),
 						this,
 						SLOT(dataChanged(const QModelIndex &, const QModelIndex &)));
+
+	int lastSelectRecord_ROW_NUMBER =
+			YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->_marchandisesWindow->
+			get_INT_last_selected_row_number();
+
+	QStandardItem *anItem = _stdItemModel->item(lastSelectRecord_ROW_NUMBER,
+			 YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->_marchandisesWindow
+			 	 ->getDBTableFieldColumnIndex(YerothDatabaseTableColumn::REFERENCE));
+
+	anItem->setForeground(Qt::white);
+	anItem->setBackground(YerothUtils::YEROTH_BLACK_COLOR);
+
+
+	anItem = _stdItemModel->item(lastSelectRecord_ROW_NUMBER,
+			 YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->_marchandisesWindow
+			 	 ->getDBTableFieldColumnIndex(YerothDatabaseTableColumn::PRIX_DACHAT_PRECEDENT));
+
+	anItem->setForeground(Qt::white);
+	anItem->setBackground(YerothUtils::YEROTH_BLACK_COLOR);
+
+
+	anItem = _stdItemModel->item(lastSelectRecord_ROW_NUMBER,
+			 YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->_marchandisesWindow
+			 	 ->getDBTableFieldColumnIndex(YerothDatabaseTableColumn::PRIX_VENTE_PRECEDENT));
+
+	anItem->setForeground(Qt::white);
+	anItem->setBackground(YerothUtils::YEROTH_BLACK_COLOR);
 }

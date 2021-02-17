@@ -66,6 +66,8 @@ public:
     MACRO_TO_DEFINE_VIEWING_PAGE_NUMBER_FOR_TABLEVIEW(label_marchandises_numero_page_derniere,
     												  label_marchandises_numero_page_courante)
 
+    virtual void rendreInvisible();
+
     virtual void rendreVisible(YerothSqlTableModel *stocksTableModel);
 
 public slots:
