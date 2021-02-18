@@ -8057,6 +8057,7 @@ Vente</string>
     </property>
     <addaction name="actionAdministration"/>
     <addaction name="separator"/>
+    <addaction name="action_acceder_aux_comptes_de_lentreprise"/>
     <addaction name="separator"/>
     <addaction name="actionAlertes"/>
     <addaction name="separator"/>
@@ -8831,6 +8832,14 @@ Vente</string>
     <font>
      <pointsize>10</pointsize>
     </font>
+   </property>
+  </action>
+  <action name="action_acceder_aux_comptes_de_lentreprise">
+   <property name="text">
+    <string>Accéder aux comptes de l'entreprise</string>
+   </property>
+   <property name="toolTip">
+    <string>Accéder aux comptes de l'entreprise</string>
    </property>
   </action>
  </widget>

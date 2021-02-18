@@ -1,10 +1,10 @@
 /*
- * yeroth-erp-configuration-comptabilite-window.cpp
+ * yeroth-erp-acceder-aux-comptes-de-lentreprise-window.cpp
  *
  *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
-#include "yeroth-erp-configuration-comptabilite-window.hpp"
+#include "yeroth-erp-acceder-aux-comptes-de-lentreprise-window.hpp"
 
 #include "src/yeroth-erp-windows.hpp"
 
@@ -29,13 +29,13 @@
 #include <QtSql/QSqlRecord>
 
 
-YerothConfigurationComptabiliteWindow::YerothConfigurationComptabiliteWindow()
+YerothAccederAuxComptesDeLentrepriseWindow::YerothAccederAuxComptesDeLentrepriseWindow()
 :YerothWindowsCommons(),
- _logger(new YerothLogger("YerothConfigurationComptabiliteWindow"))
+ _logger(new YerothLogger("YerothAccederAuxComptesDeLentrepriseWindow"))
 {
     _windowName = QString("%1 - %2")
     				.arg(YEROTH_ERP_WINDOW_TITLE,
-    					 QObject::trUtf8("fenêtre du comptable"));
+    					 QObject::trUtf8("accéder aux comptes de l'entreprise"));
 
     setupUi(this);
 
@@ -70,14 +70,14 @@ YerothConfigurationComptabiliteWindow::YerothConfigurationComptabiliteWindow()
 }
 
 
-void YerothConfigurationComptabiliteWindow::setupShortcuts()
+void YerothAccederAuxComptesDeLentrepriseWindow::setupShortcuts()
 {
     setupShortcutActionMessageDaide 	(*actionAppeler_aide);
     setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
 }
 
 
-void YerothConfigurationComptabiliteWindow::definirCaissier()
+void YerothAccederAuxComptesDeLentrepriseWindow::definirCaissier()
 {
     _logger->log("definirCaissier");
 
@@ -88,7 +88,7 @@ void YerothConfigurationComptabiliteWindow::definirCaissier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 }
 
-void YerothConfigurationComptabiliteWindow::definirManager()
+void YerothAccederAuxComptesDeLentrepriseWindow::definirManager()
 {
     _logger->log("definirManager");
 
@@ -100,7 +100,7 @@ void YerothConfigurationComptabiliteWindow::definirManager()
 }
 
 
-void YerothConfigurationComptabiliteWindow::definirVendeur()
+void YerothAccederAuxComptesDeLentrepriseWindow::definirVendeur()
 {
     _logger->log("definirVendeur");
 
@@ -112,7 +112,7 @@ void YerothConfigurationComptabiliteWindow::definirVendeur()
 }
 
 
-void YerothConfigurationComptabiliteWindow::definirGestionaireDesStocks()
+void YerothAccederAuxComptesDeLentrepriseWindow::definirGestionaireDesStocks()
 {
     _logger->log("definirGestionaireDesStocks");
 
@@ -123,7 +123,7 @@ void YerothConfigurationComptabiliteWindow::definirGestionaireDesStocks()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 }
 
-void YerothConfigurationComptabiliteWindow::definirAdministrateur()
+void YerothAccederAuxComptesDeLentrepriseWindow::definirAdministrateur()
 {
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
@@ -132,7 +132,7 @@ void YerothConfigurationComptabiliteWindow::definirAdministrateur()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 }
 
-void YerothConfigurationComptabiliteWindow::definirMagasinier()
+void YerothAccederAuxComptesDeLentrepriseWindow::definirMagasinier()
 {
     _logger->log("definirMagasinier");
 
@@ -144,7 +144,7 @@ void YerothConfigurationComptabiliteWindow::definirMagasinier()
 }
 
 
-void YerothConfigurationComptabiliteWindow::definirPasDeRole()
+void YerothAccederAuxComptesDeLentrepriseWindow::definirPasDeRole()
 {
     _logger->log("definirPasDeRole");
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
@@ -156,7 +156,7 @@ void YerothConfigurationComptabiliteWindow::definirPasDeRole()
 }
 
 
-void YerothConfigurationComptabiliteWindow::deconnecter_utilisateur()
+void YerothAccederAuxComptesDeLentrepriseWindow::deconnecter_utilisateur()
 {
     _allWindows->definirPasDeRole();
 

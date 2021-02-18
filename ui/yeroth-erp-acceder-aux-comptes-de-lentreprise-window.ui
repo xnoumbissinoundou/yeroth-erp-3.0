@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>YerothConfigurationComptabiliteWindow</class>
- <widget class="QMainWindow" name="YerothConfigurationComptabiliteWindow">
+ <class>YerothAccederAuxComptesDeLentrepriseWindow</class>
+ <widget class="QMainWindow" name="YerothAccederAuxComptesDeLentrepriseWindow">
   <property name="windowModality">
    <enum>Qt::NonModal</enum>
   </property>
@@ -434,7 +434,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>Yeroth-erp-3.0 - fenêtre de la configuration comptable</string>
+   <string>Yeroth-erp-3.0 - accéder aux comptes de l'entreprise</string>
   </property>
   <property name="autoFillBackground">
    <bool>true</bool>

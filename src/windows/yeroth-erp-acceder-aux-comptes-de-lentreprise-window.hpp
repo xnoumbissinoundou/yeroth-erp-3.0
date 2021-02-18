@@ -1,13 +1,13 @@
 /*
- * yeroth-erp-configuration-comptabilite-window.hpp
+ * yeroth-erp-acceder-aux-comptes-de-lentreprise-window.hpp
  *
  *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
-#ifndef SRC_YEROTH_CONFIGURATION_COMPTABILITE_WINDOW_HPP_
-#define SRC_YEROTH_CONFIGURATION_COMPTABILITE_WINDOW_HPP_
+#ifndef SRC_YEROTH_ACCEDER_AUX_COMPTES_DE_LENTREPRISE_WINDOW_HPP_
+#define SRC_YEROTH_ACCEDER_AUX_COMPTES_DE_LENTREPRISE_WINDOW_HPP_
 
-#include "../../ui_yeroth-erp-configuration-comptabilite-window.h"
+#include "../../ui_yeroth-erp-acceder-aux-comptes-de-lentreprise-window.h"
 
 #include "src/include/yeroth-erp-3-0-software.text-configuration.hpp"
 
@@ -26,7 +26,8 @@ class YerothUtils;
 class YerothWindowsCommons;
 class YerothPOSUser;
 
-class YerothConfigurationComptabiliteWindow : public YerothWindowsCommons, public Ui_YerothConfigurationComptabiliteWindow
+class YerothAccederAuxComptesDeLentrepriseWindow : public YerothWindowsCommons,
+												   public Ui_YerothAccederAuxComptesDeLentrepriseWindow
 {
     Q_OBJECT
 
@@ -34,9 +35,9 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-    YerothConfigurationComptabiliteWindow();
+    YerothAccederAuxComptesDeLentrepriseWindow();
 
-	inline ~YerothConfigurationComptabiliteWindow()
+	inline ~YerothAccederAuxComptesDeLentrepriseWindow()
 	{
 	    delete _logger;
 	}
@@ -95,4 +96,4 @@ private:
     YerothLogger				*_logger;
 };
 
-#endif /* SRC_YEROTH_CONFIGURATION_COMPTABILITE_WINDOW_HPP_ */
+#endif /* SRC_YEROTH_ACCEDER_AUX_COMPTES_DE_LENTREPRISE_WINDOW_HPP_ */

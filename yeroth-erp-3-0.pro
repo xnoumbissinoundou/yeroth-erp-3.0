@@ -79,7 +79,7 @@ MOC_DIR  = moc
 OBJECTS_DIR = obj
 
 FORMS = ui/yeroth-erp-main-window.ui \
-			ui/yeroth-erp-configuration-comptabilite-window.ui \
+			ui/yeroth-erp-acceder-aux-comptes-de-lentreprise-window.ui \
 			ui/stocks/yeroth-erp-sortir-window.ui \
 		  ui/yeroth-erp-entrer-window.ui \
 		  ui/stocks/yeroth-erp-mouvements_de_stocks-window.ui \
@@ -218,7 +218,7 @@ HEADERS = src/include/yeroth-erp-3-0-precompiled-header.hpp \
 			src/windows/supplier/yeroth-erp-fournisseurs-window.hpp \
 			src/windows/supplier/yeroth-erp-creer-fournisseur-window.hpp \
 			src/windows/supplier/yeroth-erp-fournisseur-details-window.hpp \
-		  src/windows/yeroth-erp-configuration-comptabilite-window.hpp \
+		  src/windows/yeroth-erp-acceder-aux-comptes-de-lentreprise-window.hpp \
 		  src/windows/yeroth-erp-window-commons.hpp \
 		  src/windows/yeroth-erp-main-window.hpp \
 		  src/windows/yeroth-erp-alertes-window.hpp \
@@ -316,7 +316,7 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-carte-credit-dialog.cpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.cpp \
 		  src/dialogs/yeroth-erp-pointdevente-methode-paiement-dialog.cpp \
-			src/windows/yeroth-erp-configuration-comptabilite-window.cpp \
+			src/windows/yeroth-erp-acceder-aux-comptes-de-lentreprise-window.cpp \
 		  src/windows/crm/creer/yeroth-erp-creer-groupe-de-clients-window.cpp \
 			src/windows/crm/creer/yeroth-erp-creer-un-programme-de-fidelite-clients-window.cpp \
 		  src/windows/crm/creer/yeroth-erp-creer-compte-client-window.cpp \
