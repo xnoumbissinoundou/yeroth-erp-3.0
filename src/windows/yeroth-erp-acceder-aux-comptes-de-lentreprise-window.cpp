@@ -31,6 +31,7 @@
 
 YerothAccederAuxComptesDeLentrepriseWindow::YerothAccederAuxComptesDeLentrepriseWindow()
 :YerothWindowsCommons(),
+// YerothAbstractClassYerothSearchWindow(YerothDatabase::COMPTES_BANCAIRES),
  _logger(new YerothLogger("YerothAccederAuxComptesDeLentrepriseWindow"))
 {
     _windowName = QString("%1 - %2")
@@ -41,6 +42,9 @@ YerothAccederAuxComptesDeLentrepriseWindow::YerothAccederAuxComptesDeLentreprise
 
     mySetupUi(this);
 
+    setYerothTableView_FROM_WINDOWS_COMMONS(tableView_comptes_de_lentreprise);
+
+
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
                                        "QMessageBox QLabel {color: rgb(%2);}")
                                     .arg(COLOUR_RGB_STRING_YEROTH_GREEN_2_160_70,
@@ -49,12 +53,14 @@ YerothAccederAuxComptesDeLentrepriseWindow::YerothAccederAuxComptesDeLentreprise
     _curStocksTableModel = &_allWindows->getSqlTableModel_stocks();
 
 
+    tableView_comptes_de_lentreprise->setSqlTableName(&YerothDatabase::COMPTES_BANCAIRES);
+
+
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionInformationEntreprise, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
-
 
 
     connect(actionMenu, SIGNAL(triggered()), this, SLOT(menu()));
@@ -77,17 +83,6 @@ void YerothAccederAuxComptesDeLentrepriseWindow::setupShortcuts()
 }
 
 
-void YerothAccederAuxComptesDeLentrepriseWindow::definirCaissier()
-{
-    _logger->log("definirCaissier");
-
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionInformationEntreprise, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
-}
-
 void YerothAccederAuxComptesDeLentrepriseWindow::definirManager()
 {
     _logger->log("definirManager");
@@ -100,59 +95,25 @@ void YerothAccederAuxComptesDeLentrepriseWindow::definirManager()
 }
 
 
-void YerothAccederAuxComptesDeLentrepriseWindow::definirVendeur()
-{
-    _logger->log("definirVendeur");
-
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionInformationEntreprise, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
-}
-
-
-void YerothAccederAuxComptesDeLentrepriseWindow::definirGestionaireDesStocks()
-{
-    _logger->log("definirGestionaireDesStocks");
-
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionInformationEntreprise, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
-}
-
-void YerothAccederAuxComptesDeLentrepriseWindow::definirAdministrateur()
-{
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionInformationEntreprise, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
-}
-
-void YerothAccederAuxComptesDeLentrepriseWindow::definirMagasinier()
-{
-    _logger->log("definirMagasinier");
-
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionInformationEntreprise, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
-}
-
-
 void YerothAccederAuxComptesDeLentrepriseWindow::definirPasDeRole()
 {
     _logger->log("definirPasDeRole");
+
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionInformationEntreprise, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
+}
 
+
+void YerothAccederAuxComptesDeLentrepriseWindow::rendreVisible(YerothSqlTableModel *stocksTableModel)
+{
+//	setYerothSqlTableModel(_curComptesBancairesSqlTableModel);
+
+	_curStocksTableModel = stocksTableModel;
+
+	setVisible(true);
 }
 
 

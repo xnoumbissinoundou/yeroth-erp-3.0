@@ -8509,6 +8509,7 @@ Vente</string>
    <addaction name="actionDeconnecter_utilisateur"/>
    <addaction name="actionAppeler_aide"/>
    <addaction name="actionAlertes"/>
+   <addaction name="action_acceder_aux_comptes_de_lentreprise"/>
    <addaction name="actionAdministration"/>
   </widget>
   <action name="actionA_propos">
@@ -8835,6 +8836,11 @@ Vente</string>
    </property>
   </action>
   <action name="action_acceder_aux_comptes_de_lentreprise">
+   <property name="icon">
+    <iconset>
+     <normalon>:/yeroth-erp-3-0-images/yeroth-erp-3-0-financial-account-icon.png</normalon>
+    </iconset>
+   </property>
    <property name="text">
     <string>Accéder aux comptes de l'entreprise</string>
    </property>

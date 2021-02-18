@@ -44,22 +44,39 @@ public:
 
     inline virtual QToolBar * getQMainWindowToolBar()
     {
-    	return toolBar_configurationComptabiliteWindow;
+    	return toolBar_acceder_aux_comptes_de_lentrepriseWindow;
     }
 
-    virtual void definirCaissier();
+    inline virtual void definirCaissier()
+    {
+    	definirPasDeRole();
+    }
 
     virtual void definirManager();
 
-    virtual void definirVendeur();
+    inline virtual void definirVendeur()
+    {
+    	definirPasDeRole();
+    }
 
-    virtual void definirGestionaireDesStocks();
+    inline virtual void definirGestionaireDesStocks()
+    {
+    	definirPasDeRole();
+    }
 
-    virtual void definirAdministrateur();
+    inline virtual void definirAdministrateur()
+    {
+    	definirPasDeRole();
+    }
 
-    virtual void definirMagasinier();
+    inline virtual void definirMagasinier()
+    {
+    	definirPasDeRole();
+    }
 
     virtual void definirPasDeRole();
+
+    virtual void rendreVisible(YerothSqlTableModel *stocksTableModel);
 
 public slots:
 
@@ -93,7 +110,9 @@ protected:
 
 private:
 
-    YerothLogger				*_logger;
+    YerothLogger			*_logger;
+
+    YerothSqlTableModel 	*_curComptesBancairesSqlTableModel;
 };
 
 #endif /* SRC_YEROTH_ACCEDER_AUX_COMPTES_DE_LENTREPRISE_WINDOW_HPP_ */
