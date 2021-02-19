@@ -1618,6 +1618,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="512"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseurs-window.cpp" line="622"/>
         <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="456"/>
+        <location filename="src/windows/yeroth-erp-comptes-bancaires-window.cpp" line="295"/>
         <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="539"/>
         <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1256"/>
         <source>valeur à rechercher</source>
@@ -1641,8 +1642,8 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
     </message>
     <message>
         <location filename="src/windows/stocks/yeroth-erp-stock-detail-window.cpp" line="27"/>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="986"/>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1004"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="984"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1002"/>
         <source>détails d&apos;un stock</source>
         <oldsource>stock details</oldsource>
         <translation>stock details</translation>
@@ -2015,7 +2016,7 @@ Continue with update of the stock ?</translation>
         <location filename="src/windows/crm/modifier/yeroth-erp-modifier-compte-client-window.cpp" line="497"/>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="463"/>
         <location filename="src/windows/purchase/yeroth-erp-achats-de-services-window.cpp" line="791"/>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1039"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1037"/>
         <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="360"/>
         <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="369"/>
         <source>supprimer</source>
@@ -2158,8 +2159,8 @@ Continue with update of the stock ?</translation>
         <location filename="src/windows/supplier/yeroth-erp-fournisseur-details-window.hpp" line="88"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseurs-window.hpp" line="89"/>
         <location filename="src/windows/supplier/yeroth-erp-modifier-fournisseur-window.hpp" line="74"/>
-        <location filename="src/windows/yeroth-erp-acceder-aux-comptes-de-lentreprise-window.hpp" line="91"/>
         <location filename="src/windows/yeroth-erp-alertes-window.hpp" line="83"/>
+        <location filename="src/windows/yeroth-erp-comptes-bancaires-window.hpp" line="94"/>
         <location filename="src/windows/yeroth-erp-entrer-window.hpp" line="95"/>
         <location filename="src/windows/yeroth-erp-main-window.cpp" line="498"/>
         <location filename="src/windows/yeroth-erp-main-window.cpp" line="506"/>
@@ -3077,41 +3078,41 @@ Please contact an administrator of %1</translation>
         <translation>keyword to search for (article (or service) description)</translation>
     </message>
     <message>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1087"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1085"/>
         <source>Poursuivre avec la suppression du service &apos;%1&apos; ?</source>
         <translation>Continue with deletion of service &apos;%1&apos; ?</translation>
     </message>
     <message>
         <location filename="src/windows/stocks/yeroth-erp-modifier-window.cpp" line="934"/>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1094"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1092"/>
         <source>Poursuivre avec la suppression du stock &apos;%1&apos; ?</source>
         <translation>Continue with deletion of stock &apos;%1&apos; ?</translation>
     </message>
     <message>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1040"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1038"/>
         <source>Sélectionnez 1 stock à supprimer.</source>
         <translation>Select a stock item to delete.</translation>
     </message>
     <message>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1100"/>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1173"/>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1182"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1098"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1171"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1180"/>
         <source>suppression d&apos;un stock (service)</source>
         <translation>deletion of a stock (service)</translation>
     </message>
     <message>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1169"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1167"/>
         <source>Le stock (service) &apos;%1&apos; a été supprimé !</source>
         <translation>Stock (service) &apos;%1&apos; has been deleted !</translation>
     </message>
     <message>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1178"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1176"/>
         <source>Le stock (service) &apos;%1&apos; ne pouvait pas être supprimé !</source>
         <translation>Stock (service) &apos;%1&apos; couldn&apos;t be deleted !</translation>
     </message>
     <message>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="987"/>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1005"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="985"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1003"/>
         <source>Sélectionnez un stock à afficher les détails.</source>
         <translation>Select a stock item to view its stock details.</translation>
     </message>
@@ -3229,7 +3230,7 @@ Please contact an administrator of %1</translation>
         <translation>Inventory stock &apos;%1&apos; couldn&apos;t be deleted !</translation>
     </message>
     <message>
-        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1272"/>
+        <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1270"/>
         <source>Sélectionnez un stock à modifier.</source>
         <translation>Select a stock item to modify its details.</translation>
     </message>
@@ -4263,7 +4264,6 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
  You could also filter search results by giving values for filter parameters down this user interface (e.g.: payment receipt nr., etc.) !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-acceder-aux-comptes-de-lentreprise-window.hpp" line="92"/>
         <location filename="src/windows/yeroth-erp-ventes-window.hpp" line="94"/>
         <source>1) Vous avez accès aux informations des ventes en utilisant la référence d&apos;un article. Ceci se fait dans le 1er champ de recherche de cette l&apos;interface graphique !
 
@@ -4977,138 +4977,20 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>client loyalty program service</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-acceder-aux-comptes-de-lentreprise-window.cpp" line="39"/>
-        <source>accéder aux comptes de l&apos;entreprise</source>
-        <translation>access company financial accounts</translation>
-    </message>
-</context>
-<context>
-    <name>YerothAccederAuxComptesDeLentrepriseWindow</name>
-    <message>
-        <location filename="ui/yeroth-erp-acceder-aux-comptes-de-lentreprise-window.ui" line="437"/>
-        <source>Yeroth-erp-3.0 - accéder aux comptes de l&apos;entreprise</source>
-        <oldsource>Yeroth-erp-3.0 - fenêtre de la configuration comptable</oldsource>
-        <translation>Yeroth-erp-3.0 - access company financial accounts</translation>
+        <location filename="src/windows/yeroth-erp-comptes-bancaires-window.cpp" line="44"/>
+        <source>comptes bancaires</source>
+        <translation>bank accounts</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-acceder-aux-comptes-de-lentreprise-window.ui" line="4557"/>
-        <source>Supprimer un article</source>
-        <translation>Delete a stock item</translation>
+        <location filename="src/windows/yeroth-erp-comptes-bancaires-window.cpp" line="293"/>
+        <source>terme à rechercher (description du compte bancaire)</source>
+        <translation>keyword to search for (bank account description)</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-acceder-aux-comptes-de-lentreprise-window.ui" line="875"/>
-        <source>lister des comptes</source>
-        <translation>list accounts</translation>
-    </message>
-    <message>
-        <location filename="ui/yeroth-erp-acceder-aux-comptes-de-lentreprise-window.ui" line="2704"/>
-        <source>réinitialiser</source>
-        <translation>reset</translation>
-    </message>
-    <message>
-        <location filename="ui/yeroth-erp-acceder-aux-comptes-de-lentreprise-window.ui" line="2713"/>
-        <source>configurer des marchandises - comptes</source>
-        <translation>configure merchandise - account correspondance</translation>
-    </message>
-    <message>
-        <location filename="ui/yeroth-erp-acceder-aux-comptes-de-lentreprise-window.ui" line="3653"/>
-        <source>marchandise</source>
-        <translation>merchandise</translation>
-    </message>
-    <message>
-        <location filename="ui/yeroth-erp-acceder-aux-comptes-de-lentreprise-window.ui" line="3669"/>
-        <source>compte</source>
-        <translation>account</translation>
-    </message>
-    <message>
-        <location filename="ui/yeroth-erp-acceder-aux-comptes-de-lentreprise-window.ui" line="3685"/>
-        <source>Liste des marchandises - compte CCC</source>
-        <translation>Merchandise List -  account CCC</translation>
-    </message>
-    <message>
-        <location filename="ui/yeroth-erp-acceder-aux-comptes-de-lentreprise-window.ui" line="5013"/>
-        <source>Aide</source>
-        <translation>Help</translation>
-    </message>
-    <message>
-        <location filename="ui/yeroth-erp-acceder-aux-comptes-de-lentreprise-window.ui" line="5444"/>
-        <source>Actions</source>
-        <translation>Functions</translation>
-    </message>
-    <message>
-        <location filename="ui/yeroth-erp-acceder-aux-comptes-de-lentreprise-window.ui" line="5884"/>
-        <source>Outils</source>
-        <translation>Tools</translation>
-    </message>
-    <message>
-        <location filename="ui/yeroth-erp-acceder-aux-comptes-de-lentreprise-window.ui" line="6317"/>
-        <source>toolBar</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="ui/yeroth-erp-acceder-aux-comptes-de-lentreprise-window.ui" line="6338"/>
-        <source>À propos</source>
-        <translation>About Yeroth-erp-3.0</translation>
-    </message>
-    <message>
-        <location filename="ui/yeroth-erp-acceder-aux-comptes-de-lentreprise-window.ui" line="6354"/>
-        <source>Changer d&apos;utilisateur</source>
-        <translation>Sign in</translation>
-    </message>
-    <message>
-        <location filename="ui/yeroth-erp-acceder-aux-comptes-de-lentreprise-window.ui" line="6366"/>
-        <source>Fermeture</source>
-        <translation>Close</translation>
-    </message>
-    <message>
-        <location filename="ui/yeroth-erp-acceder-aux-comptes-de-lentreprise-window.ui" line="6378"/>
-        <location filename="ui/yeroth-erp-acceder-aux-comptes-de-lentreprise-window.ui" line="6381"/>
-        <source>Menu principal</source>
-        <translation>Main menu</translation>
-    </message>
-    <message>
-        <location filename="ui/yeroth-erp-acceder-aux-comptes-de-lentreprise-window.ui" line="6397"/>
-        <source>Déconnecter l&apos;utilisateur</source>
-        <translation>Sign out</translation>
-    </message>
-    <message>
-        <location filename="ui/yeroth-erp-acceder-aux-comptes-de-lentreprise-window.ui" line="6413"/>
-        <source>Message d&apos;aide</source>
-        <translation>User tip</translation>
-    </message>
-    <message>
-        <location filename="ui/yeroth-erp-acceder-aux-comptes-de-lentreprise-window.ui" line="6425"/>
-        <source>Informations sur l&apos;entreprise</source>
-        <translation>Company info</translation>
-    </message>
-    <message>
-        <location filename="ui/yeroth-erp-acceder-aux-comptes-de-lentreprise-window.ui" line="6437"/>
-        <source>Qui suis je ?</source>
-        <translation>Who am I?</translation>
-    </message>
-    <message>
-        <location filename="ui/yeroth-erp-acceder-aux-comptes-de-lentreprise-window.ui" line="6449"/>
-        <location filename="ui/yeroth-erp-acceder-aux-comptes-de-lentreprise-window.ui" line="6452"/>
-        <source>Créer un compte</source>
-        <translation>Create an account</translation>
-    </message>
-    <message>
-        <location filename="ui/yeroth-erp-acceder-aux-comptes-de-lentreprise-window.ui" line="6462"/>
-        <location filename="ui/yeroth-erp-acceder-aux-comptes-de-lentreprise-window.ui" line="6465"/>
-        <source>Lister des comptes comptables</source>
-        <translation>list accounts</translation>
-    </message>
-    <message>
-        <location filename="ui/yeroth-erp-acceder-aux-comptes-de-lentreprise-window.ui" line="6475"/>
-        <location filename="ui/yeroth-erp-acceder-aux-comptes-de-lentreprise-window.ui" line="6478"/>
-        <source>Modifier un compte comptable</source>
-        <translation>Modify account</translation>
-    </message>
-    <message>
-        <location filename="ui/yeroth-erp-acceder-aux-comptes-de-lentreprise-window.ui" line="6488"/>
-        <location filename="ui/yeroth-erp-acceder-aux-comptes-de-lentreprise-window.ui" line="6491"/>
-        <source>Supprimer un compte comptable</source>
-        <translation>Delete account</translation>
+        <location filename="src/windows/yeroth-erp-comptes-bancaires-window.hpp" line="95"/>
+        <source>1) Vous avez accès aux informations sur tous les comptes bancaires enregistrés dans YEROTH-ERP-3.0, ainsi que toutes les transactions financières éffectuées sur ses comptes bancaires !</source>
+        <oldsource>1) Vous avez accès aux informations sur tous les comptes bancaires enregistrés dans YEROTH-ERP-3.0, ainsi que toutes les transactions éffectuées sur ses comptes bancaires !</oldsource>
+        <translation>1) You have access to all data about all with YEROTH-ERP-3.0 registered bank accounts, as well as all financial transactions on them !</translation>
     </message>
 </context>
 <context>
@@ -8702,6 +8584,206 @@ Client Account</translation>
         <location filename="ui/crm/details/yeroth-erp-clients-detail-window.ui" line="13474"/>
         <source>Générer 1 carte de fidélité client</source>
         <translation>Generate 1 client loyalty membership card</translation>
+    </message>
+</context>
+<context>
+    <name>YerothComptesBancairesWindow</name>
+    <message>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="437"/>
+        <source>Yeroth-erp-3.0 -comptes bancaires</source>
+        <translation>Yeroth-erp-3.0 -bank accounts</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="875"/>
+        <source>comptes bancaires</source>
+        <translation>bank accounts</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="2982"/>
+        <source># lignes</source>
+        <translation># rows</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="3421"/>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="7467"/>
+        <source>dd/MM/yyyy</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="6594"/>
+        <source>LAST PAGE NR</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="7031"/>
+        <source>réinitialiser filtre</source>
+        <translation>reset filter</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="7832"/>
+        <source>/</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="8193"/>
+        <source>CURRENT PAGE NR</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="9001"/>
+        <source># comptes</source>
+        <oldsource># comptes_bancaires</oldsource>
+        <translation># bank accounts</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="9438"/>
+        <source>réinitialiser</source>
+        <translation>reset</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="10783"/>
+        <source>Fin</source>
+        <translation>End</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="1695"/>
+        <source>déboursé (débité)</source>
+        <translation>out payment (debited)</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="11595"/>
+        <source>encaissé (crédité)</source>
+        <translation>in payment (credited)</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="12032"/>
+        <source>filtrer</source>
+        <translation>filter</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="12470"/>
+        <source>Début</source>
+        <translation>Begin</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="12933"/>
+        <source>Allant de 1 à 999.</source>
+        <translation>From 1 to 999.</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="13376"/>
+        <source>configurer des marchandises - comptes</source>
+        <translation>configure merchandise - account correspondance</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="14316"/>
+        <source>marchandise</source>
+        <translation>merchandise</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="14332"/>
+        <source>compte</source>
+        <translation>account</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="14348"/>
+        <source>Liste des marchandises - compte CCC</source>
+        <translation>Merchandise List -  account CCC</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="15220"/>
+        <source>Supprimer un article</source>
+        <translation>Remove stock</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="15676"/>
+        <source>Aide</source>
+        <translation>Help</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="16107"/>
+        <source>Actions</source>
+        <translation>Functions</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="16542"/>
+        <source>Outils</source>
+        <translation>Tools</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="16984"/>
+        <source>toolBar</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="17009"/>
+        <source>À propos</source>
+        <translation>About Yeroth-erp-3.0</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="17025"/>
+        <source>Changer d&apos;utilisateur</source>
+        <translation>Sign in</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="17037"/>
+        <source>Fermeture</source>
+        <translation>Close</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="17049"/>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="17052"/>
+        <source>Menu principal</source>
+        <translation>Main menu</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="17068"/>
+        <source>Déconnecter l&apos;utilisateur</source>
+        <translation>Sign out</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="17084"/>
+        <source>Message d&apos;aide</source>
+        <translation>User tip</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="17096"/>
+        <source>Informations sur l&apos;entreprise</source>
+        <translation>Company info</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="17108"/>
+        <source>Qui suis je ?</source>
+        <translation>Who am I ?</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="17124"/>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="17127"/>
+        <source>Imprimer les comptes bancaires affichés</source>
+        <oldsource>Imprimer la fiche des stocks</oldsource>
+        <translation>Print all visible bank accounts</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="17144"/>
+        <source>Exporter au format csv</source>
+        <translation>Export as csv file</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="17159"/>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="17162"/>
+        <source>Sélectionner les  champs (base de données) visible</source>
+        <translation>Select &apos;visible&apos; database table fields</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="17177"/>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="17180"/>
+        <source>Réinitialiser les  champs (base de données) visible</source>
+        <translation>Reset &apos;visible&apos; database table fields</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-comptes-bancaires-window.ui" line="17195"/>
+        <source>Administration</source>
+        <translation></translation>
     </message>
 </context>
 <context>

@@ -735,8 +735,6 @@ void YerothStocksWindow::hideEvent(QHideEvent * hideEvent)
 
 void YerothStocksWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 {
-    setupLineEdits();
-
     setupLineEditsQCompleters((QObject *)this);
 
     setYerothSqlTableModel(stocksTableModel);

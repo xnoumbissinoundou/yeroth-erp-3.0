@@ -67,7 +67,7 @@ YerothERPWindows::YerothERPWindows(QDesktopWidget *desktopWidget)
 	 _achatsWindow(0),
      _stocksWindow(0),
      _marchandisesWindow(0),
-	 _configurationComptabiliteWindow(0),
+	 _comptesBancairesWindow(0),
      _listerAlertesWindow(0),
 	 _paiementsWindow(0),
      _ventesWindow(0),
@@ -219,7 +219,7 @@ YerothERPWindows::~YerothERPWindows()
     delete _stocksWindow;
     delete _achatsWindow;
     delete _marchandisesWindow;
-    delete _configurationComptabiliteWindow;
+    delete _comptesBancairesWindow;
     delete _listerAlertesWindow;
     delete _paiementsWindow;
     delete _ventesWindow;
@@ -312,7 +312,7 @@ void YerothERPWindows::createAllYerothPosUserWindows()
     _achatsWindow 					= new YerothAchatsWindow;
     _stocksWindow 					= new YerothStocksWindow;
     _marchandisesWindow 			= new YerothMarchandisesWindow;
-    _configurationComptabiliteWindow = new YerothAccederAuxComptesDeLentrepriseWindow;
+    _comptesBancairesWindow = new YerothComptesBancairesWindow;
     _listerAlertesWindow			= new YerothAlertesWindow;
     _paiementsWindow		= new YerothPaiementsWindow;
     _ventesWindow					= new YerothVentesWindow;
@@ -466,7 +466,7 @@ void YerothERPWindows::definirMagasinier()
     _achatsWindow->definirMagasinier();
     _stocksWindow->definirMagasinier();
     _marchandisesWindow->definirMagasinier();
-    _configurationComptabiliteWindow->definirMagasinier();
+    _comptesBancairesWindow->definirMagasinier();
     _listerAlertesWindow->definirMagasinier();
     _paiementsWindow->definirMagasinier();
     _ventesWindow->definirMagasinier();
@@ -503,7 +503,7 @@ void YerothERPWindows::definirCaissier()
     _achatsWindow->definirCaissier();
     _stocksWindow->definirCaissier();
     _marchandisesWindow->definirCaissier();
-    _configurationComptabiliteWindow->definirCaissier();
+    _comptesBancairesWindow->definirCaissier();
     _listerAlertesWindow->definirCaissier();
     _paiementsWindow->definirCaissier();
     _ventesWindow->definirCaissier();
@@ -540,7 +540,7 @@ void YerothERPWindows::definirManager()
     _achatsWindow->definirManager();
     _stocksWindow->definirManager();
     _marchandisesWindow->definirManager();
-    _configurationComptabiliteWindow->definirManager();
+    _comptesBancairesWindow->definirManager();
     _listerAlertesWindow->definirManager();
     _paiementsWindow->definirManager();
     _ventesWindow->definirManager();
@@ -584,7 +584,7 @@ void YerothERPWindows::definirVendeur()
     _achatsWindow->definirVendeur();
     _stocksWindow->definirVendeur();
     _marchandisesWindow->definirVendeur();
-    _configurationComptabiliteWindow->definirVendeur();
+    _comptesBancairesWindow->definirVendeur();
     _listerAlertesWindow->definirVendeur();
     _paiementsWindow->definirVendeur();
     _ventesWindow->definirVendeur();
@@ -628,7 +628,7 @@ void YerothERPWindows::definirGestionaireDesStocks()
     _achatsWindow->definirGestionaireDesStocks();
     _stocksWindow->definirGestionaireDesStocks();
     _marchandisesWindow->definirGestionaireDesStocks();
-    _configurationComptabiliteWindow->definirGestionaireDesStocks();
+    _comptesBancairesWindow->definirGestionaireDesStocks();
     _listerAlertesWindow->definirGestionaireDesStocks();
     _paiementsWindow->definirGestionaireDesStocks();
     _ventesWindow->definirGestionaireDesStocks();
@@ -677,7 +677,7 @@ void YerothERPWindows::definirPasDeRole()
     _achatsWindow->definirPasDeRole();
     _stocksWindow->definirPasDeRole();
     _marchandisesWindow->definirPasDeRole();
-    _configurationComptabiliteWindow->definirPasDeRole();
+    _comptesBancairesWindow->definirPasDeRole();
     _listerAlertesWindow->definirPasDeRole();
     _paiementsWindow->definirPasDeRole();
     _ventesWindow->definirPasDeRole();
@@ -725,7 +725,7 @@ void YerothERPWindows::hideAllWindows()
     _achatsWindow->rendreInvisible();
     _stocksWindow->rendreInvisible();
     _marchandisesWindow->rendreInvisible();
-    _configurationComptabiliteWindow->rendreInvisible();
+    _comptesBancairesWindow->rendreInvisible();
     _listerAlertesWindow->rendreInvisible();
     _paiementsWindow->rendreInvisible();
     _ventesWindow->rendreInvisible();

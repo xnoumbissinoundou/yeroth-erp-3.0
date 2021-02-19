@@ -12,7 +12,7 @@
 
 #include "src/windows/yeroth-erp-paiements-window.hpp"
 #include "src/windows/yeroth-erp-tableaux-de-bord-window.hpp"
-#include "src/windows/yeroth-erp-acceder-aux-comptes-de-lentreprise-window.hpp"
+#include "src/windows/yeroth-erp-comptes-bancaires-window.hpp"
 #include "src/windows/yeroth-erp-alertes-window.hpp"
 #include "src/windows/yeroth-erp-ventes-window.hpp"
 
@@ -115,7 +115,7 @@ class YerothModifierCompteClientWindow;
 class YerothAchatsWindow;
 class YerothStocksWindow;
 class YerothMarchandisesWindow;
-class YerothAccederAuxComptesDeLentrepriseWindow;
+class YerothComptesBancairesWindow;
 class YerothAlertesWindow;
 class YerothVentesWindow;
 class YerothModifierWindow;
@@ -443,7 +443,7 @@ public:
 	YerothAchatsWindow 									*_achatsWindow;
 	YerothStocksWindow 									*_stocksWindow;
 	YerothMarchandisesWindow 							*_marchandisesWindow;
-	YerothAccederAuxComptesDeLentrepriseWindow				*_configurationComptabiliteWindow;
+	YerothComptesBancairesWindow						*_comptesBancairesWindow;
 	YerothAlertesWindow									*_listerAlertesWindow;
 	YerothPaiementsWindow								*_paiementsWindow;
 	YerothVentesWindow									*_ventesWindow;
