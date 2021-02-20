@@ -1278,13 +1278,9 @@ QDate YerothTableView::getLatestDate(QMultiMap<QString, QDate> allElements,
 
     QDate latestDate = defaultDate;
 
-    //qDebug() << "++ check date: " << latestDate;
-
-    //qDebug() << QString("++ YerothTableView::getLatestDate. aDesignation: %1")
-    //				.arg(aDesignation);
-
-    //qDebug() << "++ YerothTableView::getLatestDate. allElements: "
-    //		 << allElements;
+//    qDebug() << QString("++ YerothTableView::getLatestDate. aDesignation: %1 - allElements: ")
+//    				.arg(aDesignation)
+//    		 << allElements;
 
     //Let's only keep the stock with the latest date
     //of stock entry
@@ -1302,6 +1298,8 @@ QDate YerothTableView::getLatestDate(QMultiMap<QString, QDate> allElements,
 
     	++itAllReadyUsed;
     }
+
+//    QDEBUG_STRING_OUTPUT_2("latestDate", DATE_TO_STRING(latestDate));
 
     return latestDate;
 }
@@ -1337,8 +1335,6 @@ void YerothTableView::lister_LIFO(YerothSqlTableModel &tableModel,
 
     QString curTableModelRawHdr;
 
-    QMap<QString, QStandardItem *> designationTopreviousLIFOGreenItems;
-
     QStandardItem *aPreviousLIFOGreenItem = 0;
     QStandardItem *anItem = 0;
     QVariant qv;
@@ -1353,8 +1349,6 @@ void YerothTableView::lister_LIFO(YerothSqlTableModel &tableModel,
 
     QDate curDate = defaultDate;
     QDate prevDate = defaultDate;
-
-    bool testDateEntreeOK = false;
 
     QSqlRecord record;
 
@@ -1467,31 +1461,36 @@ void YerothTableView::lister_LIFO(YerothSqlTableModel &tableModel,
 
     			if (YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::DATE_ENTREE))
     			{
-    				prevDate = curDate;
     				curDate = qv.toDate();
+
+//    				QDEBUG_STRING_OUTPUT_2("prevDate", DATE_TO_STRING(prevDate));
+//    				QDEBUG_STRING_OUTPUT_2("curDate", DATE_TO_STRING(curDate));
 
     				if (curDate >= prevDate)
     				{
-    					testDateEntreeOK = true;
+    					prevDate = curDate;
+
     					designationToDateEntree.insert(curStockName, curDate);
     					stockNameToStockID_in_out.insert(curStockName, curStockID);
     					allElements.insert(curStockName, curDate);
-    					//                            qDebug() << QString("++ LIFO. 1) curDesignation: %1, curDate: %2")
-    					//                            			.arg(curDesignation, DATE_TO_STRING(designationToDateEntree[curDesignation]));
+
+//    					qDebug() << QString("++ LIFO. 1) curDesignation: %1, prevDate: %2, curDate: %3")
+//    					                .arg(curStockName,
+//    					                	 DATE_TO_STRING(prevDate),
+//    					                	 DATE_TO_STRING(designationToDateEntree[curStockName]));
     				}
     				else
     				{
     					if (!designationToDateEntree.contains(curStockName))
     					{
-    						testDateEntreeOK = true;
-    						designationToDateEntree.insert(curStockName, curDate);
+    						designationToDateEntree.insert(curStockName, prevDate);
     						stockNameToStockID_in_out.insert(curStockName, curStockID);
-    						allElements.insert(curStockName, curDate);
+    						allElements.insert(curStockName, prevDate);
+
+//    						qDebug() << QString("++ LIFO. 2) curDesignation: %1, curDate: %2")
+//    						    			.arg(curStockName, DATE_TO_STRING(designationToDateEntree[curStockName]));
     					}
     				}
-    				//qDebug() << "++ 1. test, curDesignation: " << curDesignation
-    				//	 << ", t date: " << designationToDateEntree[curDesignation]
-    				// << ", i row: " << i;
     			}
 
     			anItem = new YerothQStandardItem(DATE_TO_STRING(qv.toDate()));;
@@ -1508,93 +1507,12 @@ void YerothTableView::lister_LIFO(YerothSqlTableModel &tableModel,
     			//qDebug() << "YerothTableView::lister_LIFO(): undecoded QVariant -> " << qv.type();
     			break;
     		}
-
-    		if (0 != anItem)
-    		{
-    			anItem->setForeground(Qt::white);
-
-    			if (testDateEntreeOK &&
-    				YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::DATE_ENTREE))
-    			{
-    				QDate latestDate = getLatestDate(allElements, curStockName);
-
-    				//                		qDebug() << QString("++ 1, LATEST: designation %1, latestDate: %2")
-    				//                            			.arg(curDesignation, DATE_TO_STRING(latestDate));
-
-    				QStandardItem *itemDateOfStockEntry;
-    				QString aStockName;
-    				QDate itemEntryDate;
-
-    				for(int h = 0; h < i; ++h)
-    				{
-    					itemDateOfStockEntry = _stdItemModel->item(h,
-    							YerothUtils::get_index_of_table_raw_column(tableModelRawHeaders,
-    																	   YerothDatabaseTableColumn::DATE_ENTREE));
-
-    					aStockName = _stdItemModel->item(h,
-    							YerothUtils::get_index_of_table_raw_column(tableModelRawHeaders,
-    							    									   YerothDatabaseTableColumn::DESIGNATION))->text();
-
-    					                                qDebug() << QString("++ aStockName: %1, itemEntryDate: %2")
-    					                                				.arg(aStockName, itemDateOfStockEntry->text());
-
-    					if (0 != itemDateOfStockEntry &&
-    							YerothUtils::isEqualCaseInsensitive(aStockName, curStockName))
-    					{
-    						itemEntryDate = GET_DATE_FROM_STRING(itemDateOfStockEntry->text());
-
-    						//                                    qDebug() << QString("++ designation %1, itemEntryDate: %2")
-    						//                                    		.arg(aDesignation, itemDateOfStockEntry->text());
-
-    						if (itemEntryDate != latestDate)
-    						{
-    							itemDateOfStockEntry->setForeground(Qt::white);
-    							//                					qDebug() << QString("++ item: %1, itemDateOfStockEntry: %2 <==> white")
-    							//                                        		.arg(aDesignation, itemDateOfStockEntry->text());
-    						}
-    					}
-    				}
-
-    				if (latestDate == designationToDateEntree.value(curStockName))
-    				{
-    					//                			qDebug() << QString("++ YES, designation %1, latestDate: %2")
-    					//                                						.arg(curDesignation, DATE_TO_STRING(latestDate));
-
-    					aPreviousLIFOGreenItem = designationTopreviousLIFOGreenItems.value(curStockName);
-
-    					if (0 != aPreviousLIFOGreenItem)
-    					{
-    						aPreviousLIFOGreenItem->setForeground(Qt::white);
-    					}
-
-    					anItem->setForeground(YerothUtils::YEROTH_GREEN_COLOR);
-
-    					aPreviousLIFOGreenItem = anItem;
-
-    					designationTopreviousLIFOGreenItems.insert(curStockName, aPreviousLIFOGreenItem);
-    				}
-
-    				testDateEntreeOK = false;
-    			}
-
-    			if (YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::DATE_PEREMPTION) &&
-    					date_premption.toDate() <= GET_CURRENT_DATE)
-    			{
-    				anItem->setForeground(YerothUtils::YEROTH_RED_COLOR);
-    			}
-
-    			if (YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::QUANTITE_TOTALE) &&
-    					quantite_totale.toDouble() <= stock_dalerte.toDouble())
-    			{
-    				anItem->setForeground(YerothUtils::YEROTH_RED_COLOR);
-    			}
-    		}
     	}
     }
 
     resizeColumnsToContents();
 
-    //    qDebug() << "++ LIFO, designationToTableRows_in_out: " << designationToTableRows_in_out;
+//    qDebug() << "++ LIFO, stockNameToStockID_in_out: " << stockNameToStockID_in_out;
 }
 
 
