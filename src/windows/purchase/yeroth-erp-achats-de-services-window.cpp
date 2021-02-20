@@ -127,7 +127,7 @@ YerothAchatsDEServicesWindow::YerothAchatsDEServicesWindow()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionExporter_au_format_csv, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVentes, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPaiements, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
 
@@ -138,7 +138,7 @@ YerothAchatsDEServicesWindow::YerothAchatsDEServicesWindow()
     pushButton_afficher->disable(this);
     pushButton_menu_principal->disable(this);
     pushButton_stocks->disable(this);
-    pushButton_ventes->disable(this);
+    pushButton_paiements->disable(this);
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
 
     connect(actionReinitialiserChampsDBVisible, SIGNAL(triggered()), this, SLOT(slot_reinitialiser_colones_db_visibles()));
@@ -152,7 +152,7 @@ YerothAchatsDEServicesWindow::YerothAchatsDEServicesWindow()
     connect(actionMenu_Principal, SIGNAL(triggered()), this, SLOT(menu()));
     connect(actionSupprimerUnAchatDeService, SIGNAL(triggered()), this, SLOT(supprimer_un_achat_au_fournisseur()));
     connect(actionStocks, SIGNAL(triggered()), this, SLOT(stocks()));
-    connect(actionVentes, SIGNAL(triggered()), this, SLOT(ventes()));
+    connect(actionPaiements, SIGNAL(triggered()), this, SLOT(paiements()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
     connect(actionExporter_au_format_csv, SIGNAL(triggered()), this, SLOT(export_csv_file()));
     connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_pdf_document_WITH_A_YEROTH_PROGRESS_BAR()));
@@ -491,6 +491,7 @@ void YerothAchatsDEServicesWindow::reinitialiser_colones_db_visibles()
 
 	_visibleDBColumnNameStrList
 		<< YerothDatabaseTableColumn::DESIGNATION
+		<< YerothDatabaseTableColumn::CATEGORIE
 		<< YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR
 		<< YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT
 		<< YerothDatabaseTableColumn::PRIX_DACHAT
@@ -532,13 +533,6 @@ void YerothAchatsDEServicesWindow::rendreVisible(YerothSqlTableModel * stocksTab
 }
 
 
-void YerothAchatsDEServicesWindow::definirCaissier()
-{
-    _logger->log("definirCaissier -  definirPasDeRole()");
-
-    definirPasDeRole();
-}
-
 void YerothAchatsDEServicesWindow::definirManager()
 {
     _logger->log("definirManager");
@@ -551,7 +545,7 @@ void YerothAchatsDEServicesWindow::definirManager()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionExporter_au_format_csv, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVentes, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPaiements, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, true);
 
 #ifdef YEROTH_CLIENT
@@ -569,31 +563,9 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_stocks->enable(this, SLOT(stocks()));
-    pushButton_ventes->enable(this, SLOT(ventes()));
+    pushButton_paiements->enable(this, SLOT(paiements()));
 }
 
-
-void YerothAchatsDEServicesWindow::definirVendeur()
-{
-    _logger->log("definirVendeur - definirPasDeRole()");
-
-    definirPasDeRole();
-}
-
-
-void YerothAchatsDEServicesWindow::definirGestionaireDesStocks()
-{
-    _logger->log("definirGestionaireDesStocks - definirPasDeRole()");
-
-    definirPasDeRole();
-}
-
-void YerothAchatsDEServicesWindow::definirMagasinier()
-{
-    _logger->log("definirMagasinier - definirPasDeRole()");
-
-    definirPasDeRole();
-}
 
 void YerothAchatsDEServicesWindow::definirPasDeRole()
 {
@@ -607,7 +579,7 @@ void YerothAchatsDEServicesWindow::definirPasDeRole()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionExporter_au_format_csv, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVentes, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPaiements, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS
@@ -618,7 +590,7 @@ void YerothAchatsDEServicesWindow::definirPasDeRole()
     pushButton_supprimer->disable(this);
     pushButton_afficher->disable(this);
     pushButton_stocks->disable(this);
-    pushButton_ventes->disable(this);
+    pushButton_paiements->disable(this);
     pushButton_menu_principal->disable(this);
 }
 

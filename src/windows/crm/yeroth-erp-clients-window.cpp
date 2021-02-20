@@ -181,11 +181,12 @@ void YerothERPClientsWindow::reinitialiser_colones_db_visibles()
 	_visibleDBColumnNameStrList.clear();
 
     _visibleDBColumnNameStrList
-			<< YerothDatabaseTableColumn::REFERENCE_CLIENT
-			<< YerothDatabaseTableColumn::NOM_ENTREPRISE
-			<< YerothDatabaseTableColumn::VILLE
-			<< YerothDatabaseTableColumn::EMAIL
-			<< YerothDatabaseTableColumn::NUMERO_TELEPHONE_1;
+		<< YerothDatabaseTableColumn::REFERENCE_CLIENT
+		<< YerothDatabaseTableColumn::COMPTE_CLIENT
+		<< YerothDatabaseTableColumn::NOM_ENTREPRISE
+		<< YerothDatabaseTableColumn::VILLE
+		<< YerothDatabaseTableColumn::EMAIL
+		<< YerothDatabaseTableColumn::NUMERO_TELEPHONE_1;
 }
 
 

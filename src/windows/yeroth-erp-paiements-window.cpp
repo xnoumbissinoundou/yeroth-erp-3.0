@@ -340,8 +340,6 @@ void YerothPaiementsWindow::prepare__IN__for_export_and_printing()
 
 void YerothPaiementsWindow::update_clients_specific_payments_type()
 {
-	label_paiements_balance_clients_fournisseurs_total->setText(QObject::tr("Balance clients"));
-
 	QStringList clients_payment_types;
 
 	clients_payment_types
@@ -383,8 +381,6 @@ void YerothPaiementsWindow::update_clients_specific_payments_type()
 
 void YerothPaiementsWindow::update_suppliers_specific_payments_type()
 {
-	label_paiements_balance_clients_fournisseurs_total->setText(QObject::tr("Balance fournisseurs"));
-
 	QStringList suppliers_payment_types;
 
 	suppliers_payment_types
@@ -546,7 +542,6 @@ void YerothPaiementsWindow::setupLineEdits()
 
     lineEdit_paiements_nombre_paiements->setYerothEnabled(false);
 
-    lineEdit_paiements_balance_clients_fournisseurs_total->setYerothEnabled(false);
 
 	MACRO_TO_BIND_PAGING_WITH_QLINEEDIT(lineEdit_paiements_nombre_de_lignes_par_page, tableView_paiements);
 
@@ -790,8 +785,6 @@ void YerothPaiementsWindow::clear_all_fields()
 	comboBox_paiements_type_de_paiement->addItem(YerothUtils::EMPTY_STRING);
 
 	textEdit_description->clear();
-
-	lineEdit_paiements_balance_clients_fournisseurs_total->clear();
 
     lineEdit_details_de_paiement_reference_recu_paiement_client->clearField();
     lineEdit_details_de_paiement_nom_de_lentreprise->clearField();
@@ -1185,23 +1178,6 @@ void YerothPaiementsWindow::lister_les_elements_du_tableau(YerothSqlTableModel &
 			setText(GET_NUM_STRING(client_company_name_TO_financial_account_payment.keys().size()));
 
     	label_paiements_nombre_de_clients_fournisseurs->setText(QObject::tr("# clients"));
-
-    	double balance_clients_total = 0.0;
-
-    	QMapIterator<QString, double> itClient(client_company_name_TO_financial_account_payment);
-
-    	while (itClient.hasNext())
-    	{
-    		itClient.next();
-    		balance_clients_total += itClient.value();
-    	}
-
-    	label_paiements_balance_clients_fournisseurs_total->setVisible(true);
-
-    	lineEdit_paiements_balance_clients_fournisseurs_total
-			->setText(GET_CURRENCY_STRING_NUM(balance_clients_total));
-
-    	lineEdit_paiements_balance_clients_fournisseurs_total->setVisible(true);
     }
     else
     {
@@ -1209,10 +1185,6 @@ void YerothPaiementsWindow::lister_les_elements_du_tableau(YerothSqlTableModel &
 
     	lineEdit_paiements_nombre_de_clients_fournisseurs->
     				setText(GET_NUM_STRING(supplier_company_name_TO_financial_account_payment.keys().size()));
-
-    	label_paiements_balance_clients_fournisseurs_total->setVisible(false);
-
-    	lineEdit_paiements_balance_clients_fournisseurs_total->setVisible(false);
     }
 
 

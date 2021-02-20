@@ -1335,7 +1335,7 @@
      <string>Supprimer</string>
     </property>
    </widget>
-   <widget class="YerothPushButton" name="pushButton_ventes">
+   <widget class="YerothPushButton" name="pushButton_paiements">
     <property name="geometry">
      <rect>
       <x>677</x>
@@ -1767,7 +1767,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Ventes</string>
+     <string>Paiements</string>
     </property>
    </widget>
    <widget class="YerothERPAchatsAUXFournisseursTableView" name="tableView_achats_de_services">
@@ -15977,8 +15977,8 @@ background-color: rgb(0, 0, 0); </string>
     <addaction name="actionAfficher_achat_au_detail"/>
     <addaction name="actionSupprimerUnAchatDeService"/>
     <addaction name="separator"/>
+    <addaction name="actionPaiements"/>
     <addaction name="actionStocks"/>
-    <addaction name="actionVentes"/>
     <addaction name="separator"/>
     <addaction name="actionMenu_Principal"/>
     <addaction name="separator"/>
@@ -17141,12 +17141,12 @@ background-color: rgb(0, 0, 0); </string>
     </font>
    </property>
   </action>
-  <action name="actionVentes">
+  <action name="actionPaiements">
    <property name="text">
-    <string>Lister les ventes</string>
+    <string>Lister les paiements</string>
    </property>
    <property name="toolTip">
-    <string>Lister les ventes</string>
+    <string>Lister les paiements</string>
    </property>
    <property name="font">
     <font>
@@ -17217,7 +17217,7 @@ background-color: rgb(0, 0, 0); </string>
   <tabstop>pushButton_supprimer</tabstop>
   <tabstop>pushButton_menu_principal</tabstop>
   <tabstop>pushButton_stocks</tabstop>
-  <tabstop>pushButton_ventes</tabstop>
+  <tabstop>pushButton_paiements</tabstop>
   <tabstop>tableView_achats_de_services</tabstop>
  </tabstops>
  <resources>

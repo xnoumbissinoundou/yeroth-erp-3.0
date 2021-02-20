@@ -45,15 +45,27 @@ public:
     	return toolBar_achats_de_servicesWindow;
     }
 
-    virtual void definirCaissier();
+    inline virtual void definirCaissier()
+    {
+    	definirPasDeRole();
+    }
 
     virtual void definirManager();
 
-    virtual void definirVendeur();
+    inline virtual void definirVendeur()
+    {
+    	definirPasDeRole();
+    }
 
-    virtual void definirGestionaireDesStocks();
+    inline virtual void definirGestionaireDesStocks()
+    {
+    	definirPasDeRole();
+    }
 
-    virtual void definirMagasinier();
+    inline virtual void definirMagasinier()
+    {
+    	definirPasDeRole();
+    }
 
     virtual void definirPasDeRole();
 
