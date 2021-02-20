@@ -2389,7 +2389,7 @@ void YerothTableauxDeBordWindow::bilanComptable()
 
 	QSqlQuery query;
 
-    QString strDetteClientelleQuery(QString("SELECT %1 FROM %2 WHERE %3 < '0'")
+    QString strDetteClientelleQuery(QString("SELECT %1 FROM %2 WHERE %3 < 0")
     									.arg(YerothDatabaseTableColumn::COMPTE_CLIENT,
     										 YerothDatabase::CLIENTS,
 											 YerothDatabaseTableColumn::COMPTE_CLIENT));
@@ -2409,8 +2409,6 @@ void YerothTableauxDeBordWindow::bilanComptable()
 
     	montant_total_dette_clientelle = montant_total_dette_clientelle + dette_clientelle;
     }
-
-    montant_total_dette_clientelle = qFabs(montant_total_dette_clientelle);
 
 //    qDebug() << QString("++ detteClientelleSize: %1, montant_total_dette_clientelle: %2")
 //    				.arg(QString::number(detteClientelleSize),
@@ -2451,6 +2449,10 @@ void YerothTableauxDeBordWindow::bilanComptable()
     	montant_total_achat = montant_total_achat + total_achat;
     }
 
+    // We negate stock item buying amount because it is
+    // an expense of the company !
+    montant_total_achat = -1 * montant_total_achat;
+
 //    qDebug() << QString("++ achatQuerySize: %1, montant_total_achat: %2")
 //    				.arg(QString::number(achatQuerySize),
 //    					 QString::number(montant_total_achat, 'f', 2));
@@ -2489,11 +2491,11 @@ void YerothTableauxDeBordWindow::bilanComptable()
 
     for( int k = 0; k < ventesQuerySize && query.next(); ++k)
     {
-    	stocks_id = query.value(0).toDouble();
+    	stocks_id = query.value(YerothDatabaseTableColumn::STOCKS_ID).toInt();
 
-    	qte_vendue = query.value(1).toDouble();
+    	qte_vendue = query.value(YerothDatabaseTableColumn::QUANTITE_VENDUE).toDouble();
 
-    	remise_prix_vente = query.value(2).toDouble();
+    	remise_prix_vente = query.value(YerothDatabaseTableColumn::REMISE_PRIX).toDouble();
 
     	total_remise = qte_vendue * remise_prix_vente;
 
@@ -2608,9 +2610,14 @@ void YerothTableauxDeBordWindow::bilanComptable()
 
     query.clear();
 
-    double total_entrees = montant_total_vente + montant_total_versements;
 
-    double total_sorties = montant_total_achat + montant_total_paiements_aux_fournisseurs + montant_total_dette_clientelle;
+    double total_entrees = montant_total_vente +
+    					   montant_total_versements;
+
+
+    double total_sorties = montant_total_achat +
+    					   montant_total_paiements_aux_fournisseurs +
+						   montant_total_dette_clientelle;
 
 
     double achats_depenses_financieres_effectues = montant_total_paiements_aux_fournisseurs;
@@ -2661,7 +2668,7 @@ void YerothTableauxDeBordWindow::bilanComptable()
 
     chiffre_daffaire = montant_total_vente;
 
-    balance = total_entrees - total_sorties;
+    balance = total_entrees - qFabs(total_sorties);
 
 //    qDebug() << QString("++ benefice: %1, chiffre_daffaire: %2, balance: %3")
 //    				.arg(QString::number(benefice, 'f', 2),

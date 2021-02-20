@@ -1580,7 +1580,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="332"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseurs-window.cpp" line="500"/>
         <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="245"/>
-        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1022"/>
+        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1024"/>
         <source>Veuillez saisir une valeur numérique pour la recherche !</source>
         <oldsource>Veuillez saisir une valeur numérique pour la recherche!</oldsource>
         <translation>Type in a numeric value for search !</translation>
@@ -1593,7 +1593,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="335"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseurs-window.cpp" line="503"/>
         <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="248"/>
-        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1025"/>
+        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1027"/>
         <source>filtrer</source>
         <translation>filter</translation>
     </message>
@@ -1622,7 +1622,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="456"/>
         <location filename="src/windows/yeroth-erp-comptes-bancaires-window.cpp" line="295"/>
         <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="535"/>
-        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1256"/>
+        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1258"/>
         <source>valeur à rechercher</source>
         <translation>value to search for</translation>
     </message>
@@ -2244,37 +2244,37 @@ Continue with update of the stock ?</translation>
         <translation>unknown</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="695"/>
+        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="697"/>
         <source>paiements - échec</source>
         <translation>payment - failure</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="696"/>
+        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="698"/>
         <source>1 entrée dans le tableau des paiements n&apos;a pas pu être faites pour la vente annulée (du client %1), avec référence &apos;reçu de vente %2&apos; !</source>
         <translation>An entry couldn&apos;t be inserted into payment table for cancelled sale (of client %1), with &apos;sale receipt reference %2&apos; !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="711"/>
+        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="713"/>
         <source>Échec de l&apos;annulation de la vente (avec référence &apos;%1&apos;) !</source>
         <translation>Cancellation of sale (with reference &apos;%1&apos;) unsuccessful !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1254"/>
+        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1256"/>
         <source>terme à rechercher (référence, fournisseur)</source>
         <translation>keyword to search for (reference, supplier)</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1258"/>
+        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1260"/>
         <source>nom du caissier (caissière)</source>
         <translation>cashier name</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="2031"/>
+        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="2033"/>
         <source>Cette fonctionnalité n&apos;est pas disponible pour les &apos;services&apos; !</source>
         <translation>Sale cancellation isn&apos;t possible for &apos;services&apos; !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="2034"/>
+        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="2036"/>
         <source>fonctionnalité pas disponible</source>
         <translation>no sale cancellation</translation>
     </message>
@@ -2300,8 +2300,8 @@ Continue with update of the stock ?</translation>
     </message>
     <message>
         <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="1431"/>
-        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1981"/>
         <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1983"/>
+        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1985"/>
         <source>remise (%1)</source>
         <translation>discount (%1)</translation>
     </message>
@@ -2469,7 +2469,7 @@ Continue with update of the stock ?</translation>
         <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="1086"/>
         <location filename="src/windows/stocks/yeroth-erp-modifier-window.cpp" line="358"/>
         <location filename="src/windows/stocks/yeroth-erp-modifier-window.cpp" line="409"/>
-        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="716"/>
+        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="718"/>
         <source>échec</source>
         <translation>failed</translation>
     </message>
@@ -2739,16 +2739,16 @@ Continue with update of the stock (service) ?</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2111"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3685"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3692"/>
         <source>rankings - pas de données !</source>
         <oldsource>Yeroth - rapports - rankings - pas de données !</oldsource>
         <translation>rankings - no data !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2898"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3263"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3913"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="4219"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2905"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3270"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3920"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="4226"/>
         <source>aucun filtre !</source>
         <translation>no filter !</translation>
     </message>
@@ -2832,48 +2832,48 @@ Continue with update of the stock (service) ?</translation>
         <translation>The &apos;begin&apos; date must be anterior to the &apos;end&apos; date !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2790"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3016"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2797"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3023"/>
         <source>analyse comparée</source>
         <translation>compared analysis</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2982"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3995"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2989"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="4002"/>
         <source>paramètre manquant</source>
         <translation>missing parameter</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2983"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3996"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2990"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="4003"/>
         <source>Vous devez spécifier un paramètre dans le champs de texte &apos;nom&apos; !</source>
         <translation>Please enter a string in field &apos;name&apos; !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="4024"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="4031"/>
         <source>pas de données</source>
         <translation>no data</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="4025"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="4032"/>
         <source>Il n&apos;y a pas de données correspondante à la requête !
 Vérifier que les dates de début et de fin, ainsi que l&apos;année sont correctes !</source>
         <translation>There is no data associated with this request!
 Please check that begin and end dates are correct!</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3271"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3278"/>
         <source>[analyse compar\&apos;ee]</source>
         <translation>[compared analysis]</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3835"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3842"/>
         <source>évolution du chiffre d&apos;affaire</source>
         <translation>business turnover progress</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2107"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3681"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3688"/>
         <source>Il n&apos;y a pas de données correspondante à la requête !
 Vérifier que les dates de début et de fin sont correctes !</source>
         <oldsource>Il n&apos;y a pas de données correspondante à la requête !Vérifier que les dates de début et de fin sont correctes !</oldsource>
@@ -2881,8 +2881,8 @@ Vérifier que les dates de début et de fin sont correctes !</source>
 Please check that begin and end dates are correct!</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2791"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3836"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2798"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3843"/>
         <source>Le mois de &apos;début&apos; doit être antérieur au mois de &apos;fin&apos; !</source>
         <translation>The &apos;begin&apos; month must be anterior to the &apos;end&apos; month!</translation>
     </message>
@@ -3021,8 +3021,8 @@ Please contact an administrator of %1</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-utils.hpp" line="554"/>
-        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1977"/>
         <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1979"/>
+        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1981"/>
         <source>TVA (%1)</source>
         <translation>Tax (%1)</translation>
     </message>
