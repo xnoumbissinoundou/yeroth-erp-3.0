@@ -633,7 +633,9 @@ bool YerothVentesWindow::annuler_cette_vente()
 			paiementsRecord.setValue(YerothDatabaseTableColumn::NOM_ENCAISSEUR, QObject::tr("inconnu(e)"));
 		}
 
-		paiementsRecord.setValue(YerothDatabaseTableColumn::MONTANT_PAYE, curMontantARembourserAuClient);
+		//This amount is debited from company account to client account;
+		//that is why we negate its value into the payments table.
+		paiementsRecord.setValue(YerothDatabaseTableColumn::MONTANT_PAYE, -1 * curMontantARembourserAuClient);
 
 		paiementsRecord.setValue(YerothDatabaseTableColumn::TYPE_DE_PAIEMENT, YerothUtils::DECAISSEMENT_RETOUR_ACHAT_DUN_CLIENT);
 

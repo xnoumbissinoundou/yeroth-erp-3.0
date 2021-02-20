@@ -1760,7 +1760,7 @@ bool YerothEntrerWindow::executer_enregistrer_achat_de_service()
 
 	double quantite_totale = doubleSpinBox_lots_entrant->value();
 
-	double prix_unitaire = lineEdit_prix_vente->text().toDouble();
+	double prix_unitaire = -1 * lineEdit_prix_vente->text().toDouble();
 
 	double prix_dachat_du_service = quantite_totale * prix_unitaire;
 

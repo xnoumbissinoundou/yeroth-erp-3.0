@@ -1113,7 +1113,7 @@ void YerothPaiementsWindow::lister_les_elements_du_tableau(YerothSqlTableModel &
             {
             	montant_paye_AU_CLIENT = YerothUtils::montant_paye_AU_CLIENT(aRecord);
 
-            	if (montant_paye_AU_CLIENT > 0)
+            	if (montant_paye_AU_CLIENT < 0)
                 {
                 	montant_total_paye_AUX_CLIENTS += montant_paye_AU_CLIENT;
 
@@ -1130,7 +1130,7 @@ void YerothPaiementsWindow::lister_les_elements_du_tableau(YerothSqlTableModel &
         {
         	montant_paye_au_fournisseur = YerothUtils::montant_paye_au_fournisseur(aRecord);
 
-            if (montant_paye_au_fournisseur > 0)
+            if (montant_paye_au_fournisseur < 0)
             {
             	montant_total_paye_aux_fournisseurs += montant_paye_au_fournisseur;
 
