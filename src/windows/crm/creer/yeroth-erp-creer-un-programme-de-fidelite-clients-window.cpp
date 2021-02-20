@@ -281,11 +281,7 @@ bool YerothCreerUnProgrammeDeFideliteClientsWindow::check_fields()
     bool programme_de_fidelite_clients_designation =
     		lineEdit_creer_un_programme_de_fidelite_clients_designation->checkField();
 
-    bool nom_departement_produit = comboBox_creer_nom_departement_produit->checkField();
-
-
-    result = programme_de_fidelite_clients_designation &&
-    		 nom_departement_produit;
+    result = programme_de_fidelite_clients_designation;
 
     return result;
 }
@@ -413,8 +409,11 @@ bool YerothCreerUnProgrammeDeFideliteClientsWindow::creerEnregistrerUnProgrammeD
 
 	record.setValue(YerothDatabaseTableColumn::DESIGNATION, new_royalty_program_designation);
 
-	record.setValue(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,
-					comboBox_creer_nom_departement_produit->currentText());
+	if (!comboBox_creer_nom_departement_produit->isEmpty())
+	{
+		record.setValue(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,
+				comboBox_creer_nom_departement_produit->currentText());
+	}
 
 	record.setValue(YerothDatabaseTableColumn::DESCRIPTION_PROGRAMME_DE_FIDELITE_CLIENTS,
 					textEdit_creer_un_programme_de_fidelite_clients_description->toPlainText());

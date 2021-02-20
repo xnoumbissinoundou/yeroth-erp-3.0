@@ -146,6 +146,9 @@ public:
 				.split(YerothUtils::STAR_CHAR).count(a_proposed_duplicate_to_test_string) > 0;
 	}
 
+	static void REMOVE_STRING_FROM_SPLIT_STAR_SEPARATED_DB_STRING(QString &SEPARATED_RESULTING_QSTRING_IN_OUT,
+													  	  	  	  const QString &aCur_db_STRING);
+
 	inline static void SPLIT_STAR_SEPARATED_DB_STRING(QStringList &SEPARATED_RESULTING_QSTRINGLIST_IN_OUT,
 													  const QString &aCur_db_STRING_STAR_SEPARATED_VALUE)
 	{

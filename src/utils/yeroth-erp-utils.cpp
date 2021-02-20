@@ -957,6 +957,36 @@ bool YerothUtils::GZIP_YEROTH_FILE(const QString &program_working_directory_full
 }
 
 
+void YerothUtils::REMOVE_STRING_FROM_SPLIT_STAR_SEPARATED_DB_STRING(QString &SEPARATED_RESULTING_QSTRING_IN_OUT,
+												  	  	  	  	  	const QString &aCur_db_STRING)
+{
+	QStringList separated_resulting_qstringlist;
+
+	YerothUtils::SPLIT_STAR_SEPARATED_DB_STRING(separated_resulting_qstringlist,
+												SEPARATED_RESULTING_QSTRING_IN_OUT);
+
+	SEPARATED_RESULTING_QSTRING_IN_OUT.clear();
+
+	separated_resulting_qstringlist.removeAll(aCur_db_STRING);
+
+	uint SIZE = separated_resulting_qstringlist.size();
+
+	for (uint i = 0; i < SIZE; ++i)
+	{
+		if(i < SIZE -1)
+		{
+			SEPARATED_RESULTING_QSTRING_IN_OUT.append(QString("%1%2")
+														.arg(separated_resulting_qstringlist.at(i),
+															 YerothUtils::STAR_CHAR));
+		}
+		else
+		{
+			SEPARATED_RESULTING_QSTRING_IN_OUT.append(separated_resulting_qstringlist.at(i));
+		}
+	}
+}
+
+
 /**
  * returns true if '*' separated string has REALLY GOT UPDATED WITH A NEW STRING VALUE 'aNewValue' !
  */
@@ -1743,7 +1773,8 @@ bool YerothUtils::execQuery(const QString &strQuery, YerothLogger *logger)
         }
         else
         {
-            qDebug() << "\t\t[reason for failing] " << query.lastError();
+        	qDebug() << "\t\t" << strQuery;
+        	qDebug() << "\t\t[reason for failing] " << query.lastError().text();
         }
     }
 
@@ -1770,11 +1801,12 @@ int YerothUtils::execQuery(QSqlQuery &query, const QString &strQuery, YerothLogg
     {
         if (logger)
         {
-            *logger << "\t\t[reason for failing] " << query.lastError().text() << "\n";
+            *logger << strQuery << "\t\t[reason for failing] " << query.lastError().text() << "\n";
         }
         else
         {
-            qDebug() << "\t\t[reason for failing] " << query.lastError();
+        	qDebug() << "\t\t" << strQuery;
+        	qDebug() << "\t\t[reason for failing] " << query.lastError().text();
         }
         return -1;
     }
@@ -1804,7 +1836,7 @@ int YerothUtils::execQuery(QSqlQuery &query, YerothLogger *logger)
         }
         else
         {
-            qDebug() << "\t\t[reason for failing] " << query.lastError();
+        	qDebug() << "\t\t[reason for failing] " << query.lastError().text();
         }
         return -1;
     }

@@ -111,7 +111,15 @@ private slots:
 
 	void executer_ajouter_appartenance(const QString *un_groupe_de_clients);
 
-	void retirer_ce_client_du_groupe_selectione();
+	inline void retirer_ce_client_du_groupe_selectionne()
+	{
+		YerothUtils::
+			run_FUNCTION_ROUNDED_WITH_DB_TRANSACTION_WITH_ROLLBACK(
+					this,
+					&YerothGroupesDunClientWindow::EXECUTER_retirer_ce_client_du_groupe_selectionne);
+	}
+
+	bool EXECUTER_retirer_ce_client_du_groupe_selectionne();
 
 	void afficher_au_detail(const QModelIndex &modelIndex);
 

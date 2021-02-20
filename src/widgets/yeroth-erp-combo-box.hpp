@@ -68,6 +68,11 @@ public:
 		return QComboBox::currentText().trimmed();
 	}
 
+	inline bool isEmpty()
+	{
+		return currentText().isEmpty();
+	}
+
 	void setYerothEnabled(bool enabled);
 
 	inline void saveRawCurrentValueToDatabase(const QString &aDBFieldColumn,

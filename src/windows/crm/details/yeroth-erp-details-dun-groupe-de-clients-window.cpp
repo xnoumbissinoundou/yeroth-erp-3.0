@@ -283,6 +283,11 @@ void YerothDetailsDunGroupeDeClientsWindow::showClientGroup_DETAIL(const QString
 	{
 		aClientMember_db_ID = membres_du_groupe_db_ID_LIST.at(i).trimmed();
 
+		if (aClientMember_db_ID.isEmpty())
+		{
+			continue;
+		}
+
         clientTableModelQUERY_STR = QString("select %1, %2 from %3 where %4='%5'")
         										.arg(YerothDatabaseTableColumn::REFERENCE_CLIENT,
         											 YerothDatabaseTableColumn::NOM_ENTREPRISE,

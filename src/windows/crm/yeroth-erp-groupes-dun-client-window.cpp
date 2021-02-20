@@ -266,9 +266,98 @@ void YerothGroupesDunClientWindow::executer_ajouter_appartenance(const QString *
 }
 
 
-void YerothGroupesDunClientWindow::retirer_ce_client_du_groupe_selectione()
+bool YerothGroupesDunClientWindow::EXECUTER_retirer_ce_client_du_groupe_selectionne()
 {
+	QString SELECT_GROUP_DU_CLIENT_INFO(QString("select %1, %2 from %3 where %4='%5'")
+											.arg(YerothDatabaseTableColumn::GROUPES_DU_CLIENT,
+												 YerothDatabaseTableColumn::GROUPES_DU_CLIENT_ID,
+												 YerothDatabase::CLIENTS,
+												 YerothDatabaseTableColumn::ID,
+												 _curClientDBID));
 
+	QSqlQuery aQSqlQuery;
+
+	int query_size = YerothUtils::execQuery(aQSqlQuery, SELECT_GROUP_DU_CLIENT_INFO);
+
+	if (query_size <= 0)
+	{
+		return false;
+	}
+
+	QSqlRecord aClientRecordGroupInfo;
+
+	if (!aQSqlQuery.next())
+	{
+		return false;
+	}
+
+	aClientRecordGroupInfo = aQSqlQuery.record();
+
+	QString groupes_du_client_ID =
+				GET_SQL_RECORD_DATA(aClientRecordGroupInfo, YerothDatabaseTableColumn::GROUPES_DU_CLIENT_ID);
+
+	QString groupes_du_client =
+			GET_SQL_RECORD_DATA(aClientRecordGroupInfo, YerothDatabaseTableColumn::GROUPES_DU_CLIENT);
+
+	int currentRow = tableWidget_groupes_dun_client->currentRow();
+
+
+	QString clientGroup_db_ID = tableWidget_groupes_dun_client->get_DB_ELEMENT_db_ID(currentRow);
+
+	YerothUtils::REMOVE_STRING_FROM_SPLIT_STAR_SEPARATED_DB_STRING(groupes_du_client_ID,
+																   clientGroup_db_ID);
+
+	QString clientGroup_designation = tableWidget_groupes_dun_client->item(currentRow, 0)->text().trimmed();
+
+	YerothUtils::REMOVE_STRING_FROM_SPLIT_STAR_SEPARATED_DB_STRING(groupes_du_client,
+																   clientGroup_designation);
+
+	bool result = true;
+
+	{
+		QString UPDATE_GROUPES_DU_CLIENT_INFO(QString("UPDATE %1 SET %2='%3', %4='%5' WHERE %6='%7'")
+												.arg(YerothDatabase::CLIENTS,
+													 YerothDatabaseTableColumn::GROUPES_DU_CLIENT,
+													 groupes_du_client,
+													 YerothDatabaseTableColumn::GROUPES_DU_CLIENT_ID,
+													 groupes_du_client_ID,
+													 YerothDatabaseTableColumn::ID,
+													 _curClientDBID));
+
+		result = result && YerothUtils::execQuery(UPDATE_GROUPES_DU_CLIENT_INFO);
+	}
+
+	{
+		SELECT_GROUP_DU_CLIENT_INFO.clear();
+
+		SELECT_GROUP_DU_CLIENT_INFO = QString("select %1 from %2 where %3='%4'")
+													.arg(YerothDatabaseTableColumn::MEMBRES_DU_GROUPE_db_ID,
+														 YerothDatabase::GROUPES_DE_CLIENTS,
+														 YerothDatabaseTableColumn::DESIGNATION,
+														 clientGroup_designation);
+
+		QString membres_du_groupe_db_ID =
+				GET_SQL_RECORD_DATA(aClientRecordGroupInfo, YerothDatabaseTableColumn::MEMBRES_DU_GROUPE_db_ID);
+
+		YerothUtils::REMOVE_STRING_FROM_SPLIT_STAR_SEPARATED_DB_STRING(membres_du_groupe_db_ID, _curClientDBID);
+
+
+		QString UPDATE_GROUPES_DE_CLIENT_DB_TABLE(QString("UPDATE %1 SET %2='%3' WHERE %4='%5'")
+													.arg(YerothDatabase::GROUPES_DE_CLIENTS,
+														 YerothDatabaseTableColumn::MEMBRES_DU_GROUPE_db_ID,
+														 membres_du_groupe_db_ID,
+														 YerothDatabaseTableColumn::DESIGNATION,
+														 clientGroup_designation));
+
+		result = result && YerothUtils::execQuery(UPDATE_GROUPES_DE_CLIENT_DB_TABLE);
+	}
+
+	if (result)
+	{
+		tableWidget_groupes_dun_client->removeArticle(currentRow);
+	}
+
+	return result;
 }
 
 
@@ -456,7 +545,7 @@ void YerothGroupesDunClientWindow::definirManager()
 	pushButton_groupes_de_clients->enable(this, SLOT(groupes_de_clients()));
 	pushButton_menu_clients->enable(this, SLOT(clients()));
 	pushButton_RETOUR->enable(this, SLOT(clients()));
-	pushButton_retirer->enable(this, SLOT(retirer_ce_client_du_groupe_selectione()));
+	pushButton_retirer->enable(this, SLOT(retirer_ce_client_du_groupe_selectionne()));
 }
 
 
@@ -476,7 +565,7 @@ void YerothGroupesDunClientWindow::definirVendeur()
 	pushButton_groupes_de_clients->disable(this);
 	pushButton_menu_clients->enable(this, SLOT(clients()));
 	pushButton_RETOUR->enable(this, SLOT(clients()));
-	pushButton_retirer->enable(this, SLOT(retirer_ce_client_du_groupe_selectione()));
+	pushButton_retirer->enable(this, SLOT(retirer_ce_client_du_groupe_selectionne()));
 }
 
 
