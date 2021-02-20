@@ -631,16 +631,34 @@ public:
 																   YerothLineEdit &aYerothLineEdit_reference_client,
 																   int aCurrentClientDetailDBID = YerothUtils::CURRENT_CLIENT_DB_ID_UNDEFINED);
 
+	inline static bool is_montant_payer_AU_CLIENT_valide(int typeDePaiement)
+	{
+		return (YerothUtils::DECAISSEMENT_RETOUR_ACHAT_DUN_CLIENT 			== typeDePaiement ||
+				YerothUtils::DECAISSEMENT_POUR_PROGRAMME_DE_FIDELITE_CLIENT == typeDePaiement) 	?
+
+				true :
+				false;
+	}
+
 	inline static bool is_montant_payer_par_le_client_valide(int typeDePaiement)
 	{
-		return (YerothUtils::ENCAISSEMENT_INDEFINI 			!= typeDePaiement &&
-				YerothUtils::DECAISSEMENT_COMPTANT 			!= typeDePaiement &&
-		    	YerothUtils::DECAISSEMENT_CHEQUE 			!= typeDePaiement &&
-				YerothUtils::DECAISSEMENT_TELEPHONE 		!= typeDePaiement &&
-				YerothUtils::DECAISSEMENT_BANCAIRE 			!= typeDePaiement &&
-				YerothUtils::DECAISSEMENT_VIREMENT_BANCAIRE != typeDePaiement &&
-				YerothUtils::DECAISSEMENT_RETOUR_ACHAT_DUN_CLIENT != typeDePaiement &&
-				YerothUtils::DECAISSEMENT_INDEFINI 			!= typeDePaiement) 			?
+		return (YerothUtils::ENCAISSEMENT_INDEFINI 							!= typeDePaiement &&
+				YerothUtils::DECAISSEMENT_COMPTANT 							!= typeDePaiement &&
+		    	YerothUtils::DECAISSEMENT_CHEQUE 							!= typeDePaiement &&
+				YerothUtils::DECAISSEMENT_TELEPHONE 						!= typeDePaiement &&
+				YerothUtils::DECAISSEMENT_BANCAIRE 							!= typeDePaiement &&
+				YerothUtils::DECAISSEMENT_VIREMENT_BANCAIRE 				!= typeDePaiement &&
+				YerothUtils::DECAISSEMENT_RETOUR_ACHAT_DUN_CLIENT 			!= typeDePaiement &&
+				YerothUtils::DECAISSEMENT_INDEFINI 							!= typeDePaiement &&
+				YerothUtils::DECAISSEMENT_POUR_PROGRAMME_DE_FIDELITE_CLIENT != typeDePaiement) 	?
+
+				true :
+				false;
+	}
+
+	inline static bool is_montant_payer_PAR_LE_FOURNISSEUR_valide(int typeDePaiement)
+	{
+		return (YerothUtils::ENCAISSEMENT_ACHAT_DE_SERVICE_ANNULE == typeDePaiement) ?
 
 				true :
 				false;
@@ -648,18 +666,23 @@ public:
 
 	inline static bool is_montant_payer_au_fournisseur_valide(int typeDePaiement)
 	{
-		return (YerothUtils::DECAISSEMENT_INDEFINI 					!= typeDePaiement &&
-				YerothUtils::ENCAISSEMENT_COMPTANT 					!= typeDePaiement &&
-		    	YerothUtils::ENCAISSEMENT_CHEQUE 					!= typeDePaiement &&
-				YerothUtils::ENCAISSEMENT_TELEPHONE 				!= typeDePaiement &&
-				YerothUtils::ENCAISSEMENT_BANCAIRE 					!= typeDePaiement &&
-				YerothUtils::ENCAISSEMENT_VIREMENT_BANCAIRE 		!= typeDePaiement &&
-				YerothUtils::ENCAISSEMENT_ACHAT_DE_SERVICE_ANNULE 	!= typeDePaiement &&
-				YerothUtils::ENCAISSEMENT_INDEFINI 					!= typeDePaiement) 			?
+		return (YerothUtils::DECAISSEMENT_INDEFINI 							!= typeDePaiement &&
+				YerothUtils::DECAISSEMENT_POUR_PROGRAMME_DE_FIDELITE_CLIENT	!= typeDePaiement &&
+				YerothUtils::ENCAISSEMENT_COMPTANT 							!= typeDePaiement &&
+		    	YerothUtils::ENCAISSEMENT_CHEQUE 							!= typeDePaiement &&
+				YerothUtils::ENCAISSEMENT_TELEPHONE 						!= typeDePaiement &&
+				YerothUtils::ENCAISSEMENT_BANCAIRE 							!= typeDePaiement &&
+				YerothUtils::ENCAISSEMENT_VIREMENT_BANCAIRE 				!= typeDePaiement &&
+				YerothUtils::ENCAISSEMENT_ACHAT_DE_SERVICE_ANNULE 			!= typeDePaiement &&
+				YerothUtils::ENCAISSEMENT_INDEFINI 							!= typeDePaiement) 			?
 
 				true :
 				false;
 	}
+
+	inline static double montant_paye_AU_CLIENT(const QSqlRecord &aPaymentRecord);
+
+	inline static double montant_paye_PAR_LE_FOURNISSEUR(const QSqlRecord &aPaymentRecord);
 
 	inline static double montant_paye_par_le_client(const QSqlRecord &aPaymentRecord);
 
@@ -983,13 +1006,14 @@ public:
 
 	enum TYPEDEDECAISSEMENT
 	{
-		DECAISSEMENT_COMPTANT 					= 603,
-		DECAISSEMENT_CHEQUE 					= 604,
-		DECAISSEMENT_TELEPHONE 					= 605,
-		DECAISSEMENT_BANCAIRE 					= 606,
-		DECAISSEMENT_VIREMENT_BANCAIRE 			= 607,
-		DECAISSEMENT_RETOUR_ACHAT_DUN_CLIENT 	= 608,
-		DECAISSEMENT_INDEFINI 					= 609
+		DECAISSEMENT_COMPTANT 							= 603,
+		DECAISSEMENT_CHEQUE 							= 604,
+		DECAISSEMENT_TELEPHONE 							= 605,
+		DECAISSEMENT_BANCAIRE 							= 606,
+		DECAISSEMENT_VIREMENT_BANCAIRE 					= 607,
+		DECAISSEMENT_RETOUR_ACHAT_DUN_CLIENT 			= 608,
+		DECAISSEMENT_INDEFINI 							= 609,
+		DECAISSEMENT_POUR_PROGRAMME_DE_FIDELITE_CLIENT	= 610,
 	};
 
 
@@ -1226,9 +1250,29 @@ YerothQMessageBox::information(this, QObject::trUtf8(DIALOG_BOX_TITLE), msg); }
 #define GET_CURRENCY_STRING_NUM_FOR_LATEX(NUM) YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_CURRENCY_STRING_NUM(NUM))
 
 
+inline double YerothUtils::montant_paye_AU_CLIENT(const QSqlRecord &aPaymentRecord)
+{
+	return (YerothUtils::is_montant_payer_AU_CLIENT_valide(
+				GET_SQL_RECORD_DATA(aPaymentRecord,YerothDatabaseTableColumn::TYPE_DE_PAIEMENT).toInt())) ?
+
+			GET_SQL_RECORD_DATA(aPaymentRecord, YerothDatabaseTableColumn::MONTANT_PAYE).toDouble() :
+			0.0 ;
+}
+
+
 inline double YerothUtils::montant_paye_par_le_client(const QSqlRecord &aPaymentRecord)
 {
 	return (YerothUtils::is_montant_payer_par_le_client_valide(
+				GET_SQL_RECORD_DATA(aPaymentRecord,YerothDatabaseTableColumn::TYPE_DE_PAIEMENT).toInt())) ?
+
+			GET_SQL_RECORD_DATA(aPaymentRecord, YerothDatabaseTableColumn::MONTANT_PAYE).toDouble() :
+			0.0 ;
+}
+
+
+inline double YerothUtils::montant_paye_PAR_LE_FOURNISSEUR(const QSqlRecord &aPaymentRecord)
+{
+	return (YerothUtils::is_montant_payer_PAR_LE_FOURNISSEUR_valide(
 				GET_SQL_RECORD_DATA(aPaymentRecord,YerothDatabaseTableColumn::TYPE_DE_PAIEMENT).toInt())) ?
 
 			GET_SQL_RECORD_DATA(aPaymentRecord, YerothDatabaseTableColumn::MONTANT_PAYE).toDouble() :

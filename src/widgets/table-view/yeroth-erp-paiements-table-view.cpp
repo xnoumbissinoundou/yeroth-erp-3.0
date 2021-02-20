@@ -59,6 +59,16 @@ void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableM
 										 _tableModelRawHeaders_IN_OUT);
 
 
+    QString REFERENCE_user_view_string(QObject::trUtf8("Référence (article ou service)"));
+
+	uint index_of_reference_article_OU_service_header =
+			_tableModelRawHeaders_IN_OUT.indexOf(YerothDatabaseTableColumn::REFERENCE);
+
+
+	_tableModelHeaders->replace(index_of_reference_article_OU_service_header,
+								REFERENCE_user_view_string);
+
+
     QString compte_fournisseur_user_view_string;
 
     {
@@ -68,9 +78,10 @@ void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableM
     	uint index_of_compte_fournisseur_header =
     			_tableModelRawHeaders_IN_OUT.indexOf(YerothDatabaseTableColumn::COMPTE_FOURNISSEUR);
 
+    	compte_fournisseur_user_view_string.append(QObject::trUtf8(" (après)"));
+
     	_tableModelHeaders->replace(index_of_compte_fournisseur_header,
-    			QObject::trUtf8("%1 (après)")
-    					.arg(compte_fournisseur_user_view_string));
+    								compte_fournisseur_user_view_string);
     }
 
     QString compte_client_user_view_string;
@@ -82,9 +93,10 @@ void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableM
     	uint index_of_compte_client_header =
     			_tableModelRawHeaders_IN_OUT.indexOf(YerothDatabaseTableColumn::COMPTE_CLIENT);
 
+    	compte_client_user_view_string.append(QObject::trUtf8(" (après)"));
+
     	_tableModelHeaders->replace(index_of_compte_client_header,
-    			QObject::trUtf8("%1 (après)")
-    					.arg(compte_client_user_view_string));
+    								compte_client_user_view_string);
 
     }
 
@@ -95,12 +107,19 @@ void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableM
     for (unsigned i = 0; i < tableModel.columnCount(); ++i)
     {
     	if (YerothUtils::isEqualCaseInsensitive(tableModel.record(0).fieldName(i),
+    											YerothDatabaseTableColumn::REFERENCE))
+    	{
+            _stdItemModel->setHeaderData(i,
+            						     Qt::Horizontal,
+										 REFERENCE_user_view_string);
+    	}
+
+    	if (YerothUtils::isEqualCaseInsensitive(tableModel.record(0).fieldName(i),
     											YerothDatabaseTableColumn::COMPTE_FOURNISSEUR))
     	{
             _stdItemModel->setHeaderData(i,
             						     Qt::Horizontal,
-										 QObject::trUtf8("%1 (après)")
-        								    .arg(compte_fournisseur_user_view_string));
+										 compte_fournisseur_user_view_string);
     	}
 
     	if (YerothUtils::isEqualCaseInsensitive(tableModel.record(0).fieldName(i),
@@ -108,8 +127,7 @@ void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableM
     	{
             _stdItemModel->setHeaderData(i,
             						     Qt::Horizontal,
-										 QObject::trUtf8("%1 (après)")
-        								    .arg(compte_client_user_view_string));
+										 compte_client_user_view_string);
     	}
     }
 

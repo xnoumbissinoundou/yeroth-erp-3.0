@@ -488,9 +488,9 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::DATE_CREATION	,		QObject::trUtf8("Date de création"));
 
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::TYPE_DE_PAIEMENT,		QObject::tr("Type paiement"));
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::TYPE_DE_PAIEMENT,		QObject::tr("Type de paiement"));
 
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::TYPE_DE_VENTE,		QObject::tr("Type vente"));
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::TYPE_DE_VENTE,		QObject::tr("Type de vente"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NOTIFICATIONS,		QObject::tr("Notifications"));
 

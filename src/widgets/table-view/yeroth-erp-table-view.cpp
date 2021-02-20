@@ -443,7 +443,7 @@ void YerothTableView::lister_les_transactions_dun_client(QSqlQuery &sqlClientTra
     QString operationTypeHdr(QObject::tr("Type d'opération"));
     QString transactionAmountHdr(QObject::tr("Montant total"));
     QString customerAccountValueAfterHdr(QObject::trUtf8("Compte client (après)"));
-    QString referenceHdr(QObject::trUtf8("Référence article (service)"));
+    QString referenceHdr(QObject::trUtf8("Référence (article ou service)"));
     QString receiptReferenceHdr(QObject::trUtf8("Référence reçu"));
 
     _tableModelHeaders->clear();

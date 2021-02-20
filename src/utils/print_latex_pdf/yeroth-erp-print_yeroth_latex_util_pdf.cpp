@@ -340,6 +340,8 @@ void YerothTableViewPRINT_UTILITIES_TEX_TABLE::
 
         	itemText.prepend("\\textbf{").append("}");
 
+        	itemText.prepend("\\multicolumn{1}{c|}{").append("}");
+
             YerothUtils::handleTexTableItemText(texTableColumnCount,
                                    latexTable_in_out,
                                    realK_pos,

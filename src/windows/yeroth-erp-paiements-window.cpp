@@ -311,7 +311,7 @@ void YerothPaiementsWindow::prepare__IN__for_export_and_printing()
 	{
 		_latex_template_print_pdf_content
 			.replace(QObject::trUtf8("Journal des paiements"),
-					 QObject::trUtf8("Journal des paiements (versements clients)"));
+					 QObject::trUtf8("Journal des paiements (versements et déboursements aux clients)"));
 
 		_client_fournisseur_visible_string_EXPORT_AND_PRINT_PDF =
 				YerothDatabaseTableColumn::COMPTE_FOURNISSEUR;
@@ -325,7 +325,7 @@ void YerothPaiementsWindow::prepare__IN__for_export_and_printing()
 	{
 		_latex_template_print_pdf_content
 			.replace(QObject::trUtf8("Journal des paiements"),
-					 QObject::trUtf8("Journal des paiements (versés aux fournisseurs)"));
+					 QObject::trUtf8("Journal des paiements (versements et déboursements aux fournisseurs)"));
 
 		_client_fournisseur_visible_string_EXPORT_AND_PRINT_PDF =
 				YerothDatabaseTableColumn::COMPTE_CLIENT;
@@ -538,7 +538,9 @@ void YerothPaiementsWindow::setupLineEdits()
 
     lineEdit_nom_element_string_db->enableForSearch(QObject::trUtf8("valeur à rechercher"));
 
-    lineEdit_paiements_montant_paye_total->setYerothEnabled(false);
+    lineEdit_paiements_montant_decaisse_debite->setYerothEnabled(false);
+
+    lineEdit_paiements_montant_encaisse_credite->setYerothEnabled(false);
 
     lineEdit_paiements_nombre_de_clients_fournisseurs->setYerothEnabled(false);
 
@@ -1057,11 +1059,24 @@ void YerothPaiementsWindow::lister_les_elements_du_tableau(YerothSqlTableModel &
 
     QMap<QString, double> supplier_company_name_TO_financial_account_payment;
 
+
+    double montant_total_paye_AUX_CLIENTS = 0.0;
+
+    double montant_total_paye_PAR_LES_FOURNISSEURS = 0.0;
+
+
     double montant_total_paye_par_les_clients = 0.0;
 
     double montant_total_paye_aux_fournisseurs = 0.0;
 
+
     double compte_client_apres_paiement = 0.0;
+
+
+    double montant_paye_AU_CLIENT = 0.0;
+
+    double montant_paye_PAR_LE_FOURNISSEUR = 0.0;
+
 
     double montant_paye_par_le_client = 0.0;
 
@@ -1090,7 +1105,7 @@ void YerothPaiementsWindow::lister_les_elements_du_tableau(YerothSqlTableModel &
         {
         	montant_paye_par_le_client = YerothUtils::montant_paye_par_le_client(aRecord);
 
-            if (montant_paye_par_le_client > 0)
+        	if (montant_paye_par_le_client > 0)
             {
             	montant_total_paye_par_les_clients += montant_paye_par_le_client;
 
@@ -1100,6 +1115,22 @@ void YerothPaiementsWindow::lister_les_elements_du_tableau(YerothSqlTableModel &
             	client_company_name_TO_financial_account_payment
     				.insert(GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::NOM_ENTREPRISE),
     						 compte_client_apres_paiement);
+            }
+            else
+            {
+            	montant_paye_AU_CLIENT = YerothUtils::montant_paye_AU_CLIENT(aRecord);
+
+            	if (montant_paye_AU_CLIENT > 0)
+                {
+                	montant_total_paye_AUX_CLIENTS += montant_paye_AU_CLIENT;
+
+                	compte_client_apres_paiement =
+                			GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::COMPTE_CLIENT).toDouble();
+
+                	client_company_name_TO_financial_account_payment
+        				.insert(GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::NOM_ENTREPRISE),
+        						 compte_client_apres_paiement);
+                }
             }
         }
         else
@@ -1114,24 +1145,46 @@ void YerothPaiementsWindow::lister_les_elements_du_tableau(YerothSqlTableModel &
     				.insert(GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::NOM_ENTREPRISE),
     						montant_paye_au_fournisseur);
             }
+            else
+            {
+            	montant_paye_PAR_LE_FOURNISSEUR = YerothUtils::montant_paye_PAR_LE_FOURNISSEUR(aRecord);
+
+                if (montant_paye_PAR_LE_FOURNISSEUR > 0)
+                {
+                	montant_total_paye_PAR_LES_FOURNISSEURS += montant_paye_PAR_LE_FOURNISSEUR;
+
+                	supplier_company_name_TO_financial_account_payment
+        				.insert(GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::NOM_ENTREPRISE),
+        						montant_paye_PAR_LE_FOURNISSEUR);
+                }
+            }
         }
     }
 
     lineEdit_paiements_nombre_paiements->setText(GET_NUM_STRING(curPaiementsTableModelRowCount));
 
 
+    double TOTAL_ENCAISSE_CREDITE =
+    		montant_total_paye_par_les_clients + montant_total_paye_PAR_LES_FOURNISSEURS;
+
+	double TOTAL_DECAISSE_DEDITE =
+			montant_total_paye_AUX_CLIENTS + montant_total_paye_aux_fournisseurs;
+
+
+	lineEdit_paiements_montant_encaisse_credite->
+		setText(GET_CURRENCY_STRING_NUM(TOTAL_ENCAISSE_CREDITE));
+
+	lineEdit_paiements_montant_decaisse_debite->
+		setText(GET_CURRENCY_STRING_NUM(TOTAL_DECAISSE_DEDITE));
+
+
     if (YerothUtils::isEqualCaseInsensitive(YerothPaiementsWindow::CLIENT_TEXT_STRING,
     										comboBox_paiements_type_dentreprise->currentText()))
     {
-    	lineEdit_paiements_montant_paye_total->
-			setText(GET_CURRENCY_STRING_NUM(montant_total_paye_par_les_clients));
-
     	lineEdit_paiements_nombre_de_clients_fournisseurs->
 			setText(GET_NUM_STRING(client_company_name_TO_financial_account_payment.keys().size()));
 
-    	label_paiements_nombre_de_clients_fournisseurs->setText(QObject::trUtf8("# clients"));
-
-    	label_paiements_montant_paye_total->setText(QObject::trUtf8("Total payé (crédité)"));
+    	label_paiements_nombre_de_clients_fournisseurs->setText(QObject::tr("# clients"));
 
     	double balance_clients_total = 0.0;
 
@@ -1152,15 +1205,10 @@ void YerothPaiementsWindow::lister_les_elements_du_tableau(YerothSqlTableModel &
     }
     else
     {
-    	lineEdit_paiements_montant_paye_total->
-			setText(GET_CURRENCY_STRING_NUM(montant_total_paye_aux_fournisseurs));
-
-    	label_paiements_nombre_de_clients_fournisseurs->setText(QObject::trUtf8("# fournisseurs"));
+    	label_paiements_nombre_de_clients_fournisseurs->setText(QObject::tr("# fournisseurs"));
 
     	lineEdit_paiements_nombre_de_clients_fournisseurs->
     				setText(GET_NUM_STRING(supplier_company_name_TO_financial_account_payment.keys().size()));
-
-    	label_paiements_montant_paye_total->setText(QObject::trUtf8("Total payé (débité)"));
 
     	label_paiements_balance_clients_fournisseurs_total->setVisible(false);
 
