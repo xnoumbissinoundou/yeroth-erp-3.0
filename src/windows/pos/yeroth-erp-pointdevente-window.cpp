@@ -2743,13 +2743,13 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
 
         	int clientsTableModelRowCount = clientsTableModel.easySelect();
 
-        	QDEBUG_STRING_OUTPUT_2_N("clientsTableModelRowCount", clientsTableModelRowCount);
+        	//QDEBUG_STRING_OUTPUT_2_N("clientsTableModelRowCount", clientsTableModelRowCount);
 
         	QSqlRecord clientsRecord = clientsTableModel.record(0);
 
         	QString clients_id(GET_SQL_RECORD_DATA(clientsRecord, YerothDatabaseTableColumn::ID));
 
-        	QDEBUG_STRING_OUTPUT_2("clients_id", clients_id);
+        	//QDEBUG_STRING_OUTPUT_2("clients_id", clients_id);
 
         	stocksVenduRecord.setValue(YerothDatabaseTableColumn::CLIENTS_ID, clients_id);
         	stocksVenduRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT, lineEdit_articles_nom_client->text());
