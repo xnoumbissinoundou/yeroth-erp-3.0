@@ -310,8 +310,8 @@ void YerothPaiementsWindow::prepare__IN__for_export_and_printing()
 			comboBox_paiements_type_dentreprise->currentText()))
 	{
 		_latex_template_print_pdf_content
-			.replace(QObject::trUtf8("Journal des paiements"),
-					 QObject::trUtf8("Journal des paiements (versements et déboursements aux clients)"));
+			.replace(QObject::tr("Journal des paiements"),
+					 QObject::tr("Journal des paiements (clients)"));
 
 		_client_fournisseur_visible_string_EXPORT_AND_PRINT_PDF =
 				YerothDatabaseTableColumn::COMPTE_FOURNISSEUR;
@@ -324,8 +324,8 @@ void YerothPaiementsWindow::prepare__IN__for_export_and_printing()
 	else
 	{
 		_latex_template_print_pdf_content
-			.replace(QObject::trUtf8("Journal des paiements"),
-					 QObject::trUtf8("Journal des paiements (versements et déboursements aux fournisseurs)"));
+			.replace(QObject::tr("Journal des paiements"),
+					 QObject::tr("Journal des paiements (fournisseurs)"));
 
 		_client_fournisseur_visible_string_EXPORT_AND_PRINT_PDF =
 				YerothDatabaseTableColumn::COMPTE_CLIENT;

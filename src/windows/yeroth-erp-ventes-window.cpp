@@ -362,7 +362,6 @@ bool YerothVentesWindow::annuler_cette_vente()
 	QString curStocksVenduID;
 	QString curStocksVendu_stocksID;
 	QString curStocksVenduNomDepartementProduit;
-	QString curStocksVenduDesignation;
 	QString curStocksVenduCategorie;
 
 	curStocksVenduID =
@@ -400,6 +399,7 @@ bool YerothVentesWindow::annuler_cette_vente()
 
 	typeDeVente =
 			GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::TYPE_DE_VENTE).toInt();
+
 
 	if (1 == curStocksTableRowCount)
 	{
@@ -602,8 +602,7 @@ bool YerothVentesWindow::annuler_cette_vente()
 
 	if (successReinsertStock)
 	{
-		if (YerothUtils::VENTE_COMPTE_CLIENT &&
-			rembourserAuCompteClient 		 &&
+		if (rembourserAuCompteClient &&
 			-1 != clients_id)
 		{
 			msg = QObject::trUtf8("La vente (avec référence 'reçu de vente %1') a été "
@@ -697,7 +696,7 @@ bool YerothVentesWindow::annuler_cette_vente()
 
 		clientsTableModel.yerothSetFilter_WITH_where_clause(clientsTableFilter);
 
-		double nouveau_compte_client = curMontantARembourserAuClient;
+		double nouveau_compte_client = 0.0;
 
 		int rows = clientsTableModel.easySelect();
 
@@ -712,7 +711,6 @@ bool YerothVentesWindow::annuler_cette_vente()
 		}
 
 		clientsTableModel.resetFilter();
-
 
 //		QDEBUG_STRING_OUTPUT_2_N("nouveau_compte_client", nouveau_compte_client);
 
@@ -733,7 +731,7 @@ bool YerothVentesWindow::annuler_cette_vente()
 							"être faites pour la vente annulée (du client %1), "
 							"avec référence 'reçu de vente %2' !")
 			.arg(curNomDuClient,
-					curVenteReferenceRecuVendu));
+				 curVenteReferenceRecuVendu));
 		}
 
 		tabWidget_ventes->setCurrentIndex(TableauDesVentes);
@@ -1188,8 +1186,7 @@ bool YerothVentesWindow::handleCompteClient(const QString &client_id,
 
 	bool client_account_to_be_updated = (type_de_vente == YerothUtils::VENTE_COMPTE_CLIENT);
 
-	if (client_account_to_be_updated ||
-		YerothUtils::isEqualCaseInsensitive(a_client_to_be_reimbursed, YerothUtils::STRING_FRENCH_DIVERS) )
+	if (client_account_to_be_updated)
 	{
 		double curCompteClient = clientsRecord.value(YerothDatabaseTableColumn::COMPTE_CLIENT).toDouble();
 
