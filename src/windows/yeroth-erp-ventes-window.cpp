@@ -537,6 +537,23 @@ bool YerothVentesWindow::annuler_cette_vente()
 
 			double curStocksVenduNouveauMontantTotalVente = curMontantTotalVente - curMontantARembourserAuClient;
 
+			double curStocksVendu_MARGE_BENEFICIAIRE =
+					GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::MARGE_BENEFICIAIRE).toDouble();
+
+			if (curStocksVendu_MARGE_BENEFICIAIRE > 0)
+			{
+				double marge_beneficiaire_unitaire =
+						curStocksVendu_MARGE_BENEFICIAIRE /
+						curStocksVenduQuantiteVendue;
+
+				double curStocksVendu_nouvelle_MARGE_BENEFICIAIRE =
+						marge_beneficiaire_unitaire *
+						curStocksVenduNouvelleQteVendue;
+
+				curStocksVenduRecord.setValue(YerothDatabaseTableColumn::MARGE_BENEFICIAIRE,
+											  curStocksVendu_nouvelle_MARGE_BENEFICIAIRE);
+			}
+
 			double curStocksVenduMontantTVA =
 					GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::MONTANT_TVA).toDouble();
 
@@ -651,6 +668,16 @@ bool YerothVentesWindow::annuler_cette_vente()
 		{
 			paiementsRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE, YerothUtils::STRING_FRENCH_DIVERS);
 		}
+
+		paiementsRecord.setValue(YerothDatabaseTableColumn::NOTES,
+								 QObject::trUtf8("RETOUR VENTE AYANT EU POUR NUMÉRO DE REÇU: '%1' !")
+								 	 .arg(curVenteReferenceRecuVendu));
+
+		int IDforReceipt = YerothERPWindows::getNextIdSqlTableModel_paiements();
+
+		QString referenceRecuPaiementClient(YerothUtils::GET_REFERENCE_RECU_PAIEMENT_CLIENT(QString::number(IDforReceipt)));
+
+		paiementsRecord.setValue(YerothDatabaseTableColumn::REFERENCE_RECU_PAIEMENT_CLIENT, referenceRecuPaiementClient);
 
 		paiementsRecord.setValue(YerothDatabaseTableColumn::REFERENCE, curVenteReference);
 
