@@ -39,7 +39,10 @@ public:
 
 	YerothTableView(QWidget * parent);
 
-	virtual ~YerothTableView();
+	inline virtual ~YerothTableView()
+	{
+	    delete _stdItemModel;
+	}
 
 	inline void setWriteEnabled(bool w)
 	{
@@ -184,7 +187,7 @@ protected:
 
 	QStringList					_tableModelRawHeaders_IN_OUT;
 
-	QStringList 				*_tableModelHeaders;
+	QStringList 				_tableModelHeaders;
 };
 
 

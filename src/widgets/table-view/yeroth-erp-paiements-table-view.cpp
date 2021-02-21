@@ -55,9 +55,14 @@ void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableM
 
     YerothUtils::createTableModelHeaders(tableModel,
     									 *_stdItemModel,
-										 *_tableModelHeaders,
+										 _tableModelHeaders,
 										 _tableModelRawHeaders_IN_OUT);
 
+
+    if (!s || (0 == _tableModelHeaders.size()) || (0 == _tableModelRawHeaders_IN_OUT.size()))
+    {
+    	return ;
+    }
 
     QString REFERENCE_user_view_string(QObject::trUtf8("Référence (article ou service)"));
 
@@ -65,7 +70,7 @@ void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableM
 			_tableModelRawHeaders_IN_OUT.indexOf(YerothDatabaseTableColumn::REFERENCE);
 
 
-	_tableModelHeaders->replace(index_of_reference_article_OU_service_header,
+	_tableModelHeaders.replace(index_of_reference_article_OU_service_header,
 								REFERENCE_user_view_string);
 
 
@@ -80,7 +85,7 @@ void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableM
 
     	compte_fournisseur_user_view_string.append(QObject::trUtf8(" (après)"));
 
-    	_tableModelHeaders->replace(index_of_compte_fournisseur_header,
+    	_tableModelHeaders.replace(index_of_compte_fournisseur_header,
     								compte_fournisseur_user_view_string);
     }
 
@@ -95,13 +100,13 @@ void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableM
 
     	compte_client_user_view_string.append(QObject::trUtf8(" (après)"));
 
-    	_tableModelHeaders->replace(index_of_compte_client_header,
+    	_tableModelHeaders.replace(index_of_compte_client_header,
     								compte_client_user_view_string);
 
     }
 
 
-//    QDEBUG_QSTRINGLIST_OUTPUT("_tableModelHeaders", *_tableModelHeaders);
+//    QDEBUG_QSTRINGLIST_OUTPUT("_tableModelHeaders", _tableModelHeaders);
 
 
     for (unsigned i = 0; i < tableModel.columnCount(); ++i)
@@ -134,11 +139,6 @@ void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableM
 
     _stdItemModel->setColumnCount(_tableModelRawHeaders_IN_OUT.size());
 
-
-    if (!s)
-    {
-    	return ;
-    }
 
     QString curTableModelRawHdr;
 

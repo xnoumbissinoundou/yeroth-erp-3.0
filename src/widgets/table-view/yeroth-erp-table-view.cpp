@@ -46,7 +46,6 @@ YerothTableView::YerothTableView()
     _writeEnabled = false;
     _tableName = 0;
 
-    _tableModelHeaders = new QStringList;
     _stdItemModel = new YerothPOSQStandardItemModel;
 
     setModel(_stdItemModel);
@@ -60,6 +59,7 @@ YerothTableView::YerothTableView()
     	qHeaderView->setSectionsMovable(true);
     }
 }
+
 
 YerothTableView::YerothTableView(QWidget * parent)
 :QTableView(parent)
@@ -67,7 +67,6 @@ YerothTableView::YerothTableView(QWidget * parent)
     _writeEnabled = false;
     _tableName = 0;
 
-    _tableModelHeaders = new QStringList;
     _stdItemModel = new YerothPOSQStandardItemModel;
 
     setModel(_stdItemModel);
@@ -80,12 +79,6 @@ YerothTableView::YerothTableView(QWidget * parent)
     {
     	qHeaderView->setSectionsMovable(true);
     }
-}
-
-YerothTableView::~YerothTableView()
-{
-    delete _stdItemModel;
-    delete _tableModelHeaders;
 }
 
 
@@ -143,7 +136,7 @@ void YerothTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableM
 
     YerothUtils::createTableModelHeaders(tableModel,
     									 *_stdItemModel,
-										 *_tableModelHeaders,
+										 _tableModelHeaders,
 										 tableModelRawHeaders);
 
 	QStandardItem *anItem = 0;
@@ -294,29 +287,29 @@ void YerothTableView::lister_les_transactions_dun_fournisseur(QSqlQuery &sqlFour
     QString referenceHdr(QObject::trUtf8("Référence service (achat)"));
     QString receiptReferenceHdr(QObject::trUtf8("Référence reçu"));
 
-    _tableModelHeaders->clear();
+    _tableModelHeaders.clear();
 
-    _tableModelHeaders->append(dateHdr);
-    _tableModelHeaders->append(timeHdr);
-    _tableModelHeaders->append(operationTypeHdr);
-    _tableModelHeaders->append(transactionAmountHdr);
-    _tableModelHeaders->append(customerAccountValueAfterHdr);
-    _tableModelHeaders->append(referenceHdr);
-    _tableModelHeaders->append(receiptReferenceHdr);
+    _tableModelHeaders.append(dateHdr);
+    _tableModelHeaders.append(timeHdr);
+    _tableModelHeaders.append(operationTypeHdr);
+    _tableModelHeaders.append(transactionAmountHdr);
+    _tableModelHeaders.append(customerAccountValueAfterHdr);
+    _tableModelHeaders.append(referenceHdr);
+    _tableModelHeaders.append(receiptReferenceHdr);
 
 
     int querySize = sqlFournisseurTransactionsUnionQuery.size();
 
 	_stdItemModel->yerothPOSClear();
 
-    _stdItemModel->setColumnCount(_tableModelHeaders->size());
+    _stdItemModel->setColumnCount(_tableModelHeaders.size());
 
     _stdItemModel->setRowCount(querySize);
 
     //Nous mettons les noms des colones
-    for(int k = 0; k < _tableModelHeaders->size(); ++k)
+    for(int k = 0; k < _tableModelHeaders.size(); ++k)
     {
-    	_stdItemModel->setHeaderData(k, Qt::Horizontal, _tableModelHeaders->at(k));
+    	_stdItemModel->setHeaderData(k, Qt::Horizontal, _tableModelHeaders.at(k));
     }
 
     YerothQStandardItem *aYerothQStandardItem = 0;
@@ -446,29 +439,29 @@ void YerothTableView::lister_les_transactions_dun_client(QSqlQuery &sqlClientTra
     QString referenceHdr(QObject::trUtf8("Référence (article ou service)"));
     QString receiptReferenceHdr(QObject::trUtf8("Référence reçu"));
 
-    _tableModelHeaders->clear();
+    _tableModelHeaders.clear();
 
-    _tableModelHeaders->append(dateHdr);
-    _tableModelHeaders->append(timeHdr);
-    _tableModelHeaders->append(operationTypeHdr);
-    _tableModelHeaders->append(transactionAmountHdr);
-    _tableModelHeaders->append(customerAccountValueAfterHdr);
-    _tableModelHeaders->append(referenceHdr);
-    _tableModelHeaders->append(receiptReferenceHdr);
+    _tableModelHeaders.append(dateHdr);
+    _tableModelHeaders.append(timeHdr);
+    _tableModelHeaders.append(operationTypeHdr);
+    _tableModelHeaders.append(transactionAmountHdr);
+    _tableModelHeaders.append(customerAccountValueAfterHdr);
+    _tableModelHeaders.append(referenceHdr);
+    _tableModelHeaders.append(receiptReferenceHdr);
 
 
     int querySize = sqlClientTransactionsUnionQuery.size();
 
 	_stdItemModel->yerothPOSClear();
 
-    _stdItemModel->setColumnCount(_tableModelHeaders->size());
+    _stdItemModel->setColumnCount(_tableModelHeaders.size());
 
     _stdItemModel->setRowCount(querySize);
 
     //Nous mettons les noms des colones
-    for(int k = 0; k < _tableModelHeaders->size(); ++k)
+    for(int k = 0; k < _tableModelHeaders.size(); ++k)
     {
-    	_stdItemModel->setHeaderData(k, Qt::Horizontal, _tableModelHeaders->at(k));
+    	_stdItemModel->setHeaderData(k, Qt::Horizontal, _tableModelHeaders.at(k));
     }
 
     YerothQStandardItem *aYerothQStandardItem = 0;
@@ -606,28 +599,28 @@ void YerothTableView::lister_lhistorique_du_stock(const QStringList &aMouvementS
     QString qteRetireeHdr(QObject::trUtf8("Qté en mouvement"));
     QString qteRestanteHdr(QObject::trUtf8("Qté restante en stock"));
 
-    _tableModelHeaders->clear();
+    _tableModelHeaders.clear();
 
-    _tableModelHeaders->append(dateHdr);
-    _tableModelHeaders->append(timeHdr);
-    _tableModelHeaders->append(operationHdr);
-    _tableModelHeaders->append(idHdr);
-    _tableModelHeaders->append(qteInitialeHdr);
-    _tableModelHeaders->append(qteRetireeHdr);
-    _tableModelHeaders->append(qteRestanteHdr);
+    _tableModelHeaders.append(dateHdr);
+    _tableModelHeaders.append(timeHdr);
+    _tableModelHeaders.append(operationHdr);
+    _tableModelHeaders.append(idHdr);
+    _tableModelHeaders.append(qteInitialeHdr);
+    _tableModelHeaders.append(qteRetireeHdr);
+    _tableModelHeaders.append(qteRestanteHdr);
 
 	int rowSize = aMouvementStockList.size();
 
 	_stdItemModel->yerothPOSClear();
 
-    _stdItemModel->setColumnCount(_tableModelHeaders->size());
+    _stdItemModel->setColumnCount(_tableModelHeaders.size());
 
     _stdItemModel->setRowCount(rowSize);
 
     //Nous mettons les noms des colones
-    for(int k = 0; k < _tableModelHeaders->size(); ++k)
+    for(int k = 0; k < _tableModelHeaders.size(); ++k)
     {
-    	_stdItemModel->setHeaderData(k, Qt::Horizontal, _tableModelHeaders->at(k));
+    	_stdItemModel->setHeaderData(k, Qt::Horizontal, _tableModelHeaders.at(k));
     }
 
     QString strOut;
@@ -707,7 +700,7 @@ void YerothTableView::lister(YerothSqlTableModel &tableModel,
 
     YerothUtils::createTableModelHeaders(tableModel,
     									 *_stdItemModel,
-										 *_tableModelHeaders,
+										 _tableModelHeaders,
 										 tableModelRawHeaders);
     if (!s)
     {
@@ -850,7 +843,7 @@ void YerothTableView::lister_ALL(YerothSqlTableModel &tableModel,
 
     YerothUtils::createTableModelHeaders(tableModel,
     									 *_stdItemModel,
-										 *_tableModelHeaders,
+										 _tableModelHeaders,
 										 tableModelRawHeaders);
 
     if (!s)
@@ -1016,7 +1009,7 @@ void YerothTableView::lister_FIFO(YerothSqlTableModel &tableModel,
 
     YerothUtils::createTableModelHeaders(tableModel,
     									 *_stdItemModel,
-										 *_tableModelHeaders,
+										 _tableModelHeaders,
 										 tableModelRawHeaders);
 
     if (!s)
@@ -1325,7 +1318,7 @@ void YerothTableView::lister_LIFO(YerothSqlTableModel &tableModel,
 
     YerothUtils::createTableModelHeaders(tableModel,
     									 *_stdItemModel,
-										 *_tableModelHeaders,
+										 _tableModelHeaders,
 										 tableModelRawHeaders);
 
     if (!s)
@@ -1537,7 +1530,7 @@ void YerothTableView::lister_FEFO(YerothSqlTableModel &tableModel,
 
     YerothUtils::createTableModelHeaders(tableModel,
     									 *_stdItemModel,
-										 *_tableModelHeaders,
+										 _tableModelHeaders,
 										 tableModelRawHeaders);
 
     if (!s)
@@ -1824,7 +1817,7 @@ void YerothTableView::lister_codebar_ALL(YerothSqlTableModel &tableModel,
 
     YerothUtils::createTableModelHeaders(tableModel,
     									 *_stdItemModel,
-										 *_tableModelHeaders,
+										 _tableModelHeaders,
 										 tableModelRawHeaders);
 
     if (!s)
@@ -1984,7 +1977,7 @@ void YerothTableView::lister_codebar_FIFO(YerothSqlTableModel &tableModel,
 
     YerothUtils::createTableModelHeaders(tableModel,
     									 *_stdItemModel,
-										 *_tableModelHeaders,
+										 _tableModelHeaders,
 										 tableModelRawHeaders);
 
     if (!s)
@@ -2165,7 +2158,7 @@ void YerothTableView::lister_codebar_LIFO(YerothSqlTableModel &tableModel,
 
     YerothUtils::createTableModelHeaders(tableModel,
     									 *_stdItemModel,
-										 *_tableModelHeaders,
+										 _tableModelHeaders,
 										 tableModelRawHeaders);
 
     if (!s)
@@ -2351,7 +2344,7 @@ void YerothTableView::lister_codebar_FEFO(YerothSqlTableModel &tableModel,
 
     YerothUtils::createTableModelHeaders(tableModel,
     									 *_stdItemModel,
-										 *_tableModelHeaders,
+										 _tableModelHeaders,
 										 tableModelRawHeaders);
 
     if (!s)

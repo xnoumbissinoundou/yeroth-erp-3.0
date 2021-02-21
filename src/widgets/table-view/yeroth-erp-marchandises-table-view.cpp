@@ -67,12 +67,12 @@ void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTab
 
     YerothUtils::createTableModelHeaders(tableModel,
     									 *_stdItemModel,
-										 *_tableModelHeaders,
+										 _tableModelHeaders,
 										 _tableModelRawHeaders_IN_OUT);
 
     _stdItemModel->setColumnCount(_tableModelRawHeaders_IN_OUT.size());
 
-    if (!s)
+    if (!s || (0 == _tableModelHeaders.size()) || (0 == _tableModelRawHeaders_IN_OUT.size()))
     {
     	return ;
     }
@@ -320,7 +320,7 @@ void YerothERPMarchandisesTableView::dataChanged(const QModelIndex &index,
 
     QString curIDText(_stdItemModel->item(index.row(), 0)->text());
 
-    QString columnHeaderText_VISIBLE(_tableModelHeaders->at(index.column()));
+    QString columnHeaderText_VISIBLE(_tableModelHeaders.at(index.column()));
 
     QString columnHeaderText_NATIVE(_tableModelRawHeaders_IN_OUT.at(index.column()));
 

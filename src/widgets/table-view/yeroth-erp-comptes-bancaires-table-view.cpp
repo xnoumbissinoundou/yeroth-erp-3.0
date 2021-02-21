@@ -55,14 +55,14 @@ void YerothERPComptesBancairesTableView::lister_les_elements_du_tableau(YerothSq
 
     YerothUtils::createTableModelHeaders(tableModel,
     									 *_stdItemModel,
-										 *_tableModelHeaders,
+										 _tableModelHeaders,
 										 _tableModelRawHeaders_IN_OUT);
 
 
     _stdItemModel->setColumnCount(_tableModelRawHeaders_IN_OUT.size());
 
 
-    if (!s)
+    if (!s || (0 == _tableModelHeaders.size()) || (0 == _tableModelRawHeaders_IN_OUT.size()))
     {
     	return ;
     }
