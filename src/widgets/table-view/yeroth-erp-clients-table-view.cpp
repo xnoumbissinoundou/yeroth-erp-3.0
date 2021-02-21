@@ -119,7 +119,7 @@ void YerothERPClientsTableView::lister_les_elements_du_tableau(YerothSqlTableMod
 				}
 				else //YerothDatabaseTableColumn::REFEREUR_CLIENT_ID
 				{
-					anItem = new YerothQStandardItem(tmpQvString);
+					anItem = new YerothQStandardItem(QString::number(qv.toInt()));
 				}
 
 				_stdItemModel->setItem(i, k, anItem);

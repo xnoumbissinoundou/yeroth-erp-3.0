@@ -117,7 +117,7 @@ void YerothERPMouvementsDeStocksTableView::lister_les_elements_du_tableau(Yeroth
     			}
     			else // STOCKS_ID, LOCALISATION_SORTIE_ID, LOCALISATION_ENTREE_ID
     			{
-    				anItem = new YerothQStandardItem(tmpQvString);
+    				anItem = new YerothQStandardItem(QString::number(qv.toInt()));
     			}
 
     			_stdItemModel->setItem(i, k, anItem);

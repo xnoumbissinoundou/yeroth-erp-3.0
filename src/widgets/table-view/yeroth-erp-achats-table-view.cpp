@@ -121,7 +121,7 @@ void YerothERPAchatsTableView::lister_les_elements_du_tableau(YerothSqlTableMode
 				}
 				else //YerothDatabaseTableColumn::STOCKS_ID
 				{
-					anItem = new YerothQStandardItem(tmpQvString);
+					anItem = new YerothQStandardItem(QString::number(qv.toInt()));
 				}
 
 				_stdItemModel->setItem(i, k, anItem);
