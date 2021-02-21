@@ -1527,6 +1527,7 @@ void YerothVentesWindow::reinitialiser_colones_db_visibles()
     _visibleDBColumnNameStrList
 			<< YerothDatabaseTableColumn::DATE_VENTE
 			<< YerothDatabaseTableColumn::DESIGNATION
+			<< YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT
 			<< YerothDatabaseTableColumn::QUANTITE_VENDUE
 			<< YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE;
 }
