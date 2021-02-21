@@ -275,7 +275,7 @@ bool YerothVentesWindow::annuler_cette_vente()
 		return false;
 	}
 
-	double quantite_a_retourner = lineEdit_retour_vente_quantite_a_retourner->text().toInt();
+	double quantite_a_retourner = lineEdit_retour_vente_quantite_a_retourner->text().toDouble();
 
 //	qDebug() << QString("++ qte a retourner: %1")
 //					.arg(QString::number(quantite_a_retourner));
@@ -362,6 +362,7 @@ bool YerothVentesWindow::annuler_cette_vente()
 	QString curStocksVenduID;
 	QString curStocksVendu_stocksID;
 	QString curStocksVenduNomDepartementProduit;
+	QString curStocksVenduDesignation;
 	QString curStocksVenduCategorie;
 
 	curStocksVenduID =
@@ -372,6 +373,9 @@ bool YerothVentesWindow::annuler_cette_vente()
 
 	curStocksVenduNomDepartementProduit =
 			GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT);
+
+	curStocksVenduDesignation =
+				GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::DESIGNATION);
 
 	curStocksVenduCategorie =
 			GET_SQL_RECORD_DATA(curStocksVenduRecord, YerothDatabaseTableColumn::CATEGORIE);
@@ -670,8 +674,11 @@ bool YerothVentesWindow::annuler_cette_vente()
 		}
 
 		paiementsRecord.setValue(YerothDatabaseTableColumn::NOTES,
-								 QObject::trUtf8("RETOUR D'ACHAT AYANT EU POUR RÉFÉRENCE DE REÇU DE VENTE: '%1' !")
-								 	 .arg(curVenteReferenceRecuVendu));
+								 QObject::trUtf8("RETOUR D'ACHAT de L'ARTICLE '%1' (quantité retournée: '%2') AYANT "
+										 	 	 "EU POUR RÉFÉRENCE DE REÇU DE VENTE: '%3' !")
+								 	 	 .arg(curStocksVenduDesignation,
+								 	 		  QString::number(quantite_a_retourner),
+											  curVenteReferenceRecuVendu));
 
 		int IDforReceipt = YerothERPWindows::getNextIdSqlTableModel_paiements();
 
