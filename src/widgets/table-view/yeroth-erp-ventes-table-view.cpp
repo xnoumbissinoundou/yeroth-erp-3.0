@@ -126,7 +126,7 @@ void YerothERPVentesTableView::lister_les_elements_du_tableau(YerothSqlTableMode
     			else if (YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::CLIENTS_ID) ||
     					 YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::STOCKS_ID))
     			{
-    				anItem = new YerothQStandardItem(tmpQvString);
+    				anItem = new YerothQStandardItem(QString::number(qv.toInt()));
     			}
     			else if (YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::ID))
     			{
