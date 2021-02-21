@@ -133,7 +133,7 @@ void YerothERPVentesTableView::lister_les_elements_du_tableau(YerothSqlTableMode
     				YEROTH_SAVE_ID_TO_ROW_NUMBER_FOR_YEROTH_TABLE_VIEW(tmpQvString, qv.toInt(), i)
     				anItem = new YerothQStandardItem(tmpQvString);
     			}
-    			else //I have this just as a safe alternative. IT SHALL NEVER BE RUN !
+    			else //I have this just as a safe alternative. IT SHALL NEVER BE EXECUTED !
     			{
     				anItem = new YerothQStandardItem(GET_NUM_STRING(qv.toInt()));
     			}
