@@ -670,7 +670,7 @@ bool YerothVentesWindow::annuler_cette_vente()
 		}
 
 		paiementsRecord.setValue(YerothDatabaseTableColumn::NOTES,
-								 QObject::trUtf8("RETOUR VENTE AYANT EU POUR NUMÉRO DE REÇU: '%1' !")
+								 QObject::trUtf8("RETOUR D'ACHAT AYANT EU POUR RÉFÉRENCE DE REÇU DE VENTE: '%1' !")
 								 	 .arg(curVenteReferenceRecuVendu));
 
 		int IDforReceipt = YerothERPWindows::getNextIdSqlTableModel_paiements();
