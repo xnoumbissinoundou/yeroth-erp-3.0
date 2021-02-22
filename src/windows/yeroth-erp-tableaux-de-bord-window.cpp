@@ -2552,9 +2552,25 @@ void YerothTableauxDeBordWindow::bilanComptable()
 
     double montant_total_versements = 0.0;
 
+
+	double montant_paye__PAR_FIDELITE_CLIENTS = 0.0;
+
+    double montant_total_versements__PAR_FIDELITE_CLIENTS = 0.0;
+
+
     for( int k = 0; k < versementsQuerySize && query.next(); ++k)
     {
     	type_de_paiement = query.value(YerothDatabaseTableColumn::TYPE_DE_PAIEMENT).toInt();
+
+    	if (YerothUtils::is_montant_payer_AU_CLIENT__PAR_FIDELITE__valide(type_de_paiement))
+    	{
+    		montant_paye__PAR_FIDELITE_CLIENTS =
+    				query.value(YerothDatabaseTableColumn::MONTANT_PAYE).toDouble();
+
+    		montant_total_versements__PAR_FIDELITE_CLIENTS =
+    				montant_total_versements__PAR_FIDELITE_CLIENTS +
+					montant_paye__PAR_FIDELITE_CLIENTS;
+    	}
 
     	if (YerothUtils::is_montant_payer_par_le_client_valide(type_de_paiement))
     	{
@@ -2617,7 +2633,8 @@ void YerothTableauxDeBordWindow::bilanComptable()
     					   montant_total_versements;
 
 
-    double total_sorties = montant_total_achat +
+    double total_sorties = montant_total_versements__PAR_FIDELITE_CLIENTS +
+    					   montant_total_achat +
     					   montant_total_paiements_aux_fournisseurs +
 						   montant_total_dette_clientelle;
 
@@ -2742,7 +2759,10 @@ void YerothTableauxDeBordWindow::bilanComptable()
 
     texDocument.replace("YEROTHBILANCOMPTABLEBALANCEDEVISE", balanceDeviseLatexStr);
 
-    texDocument.replace("YEROTHBILANCOMPTABLECHARGESDEPENSESFINANCIERES", GET_CURRENCY_STRING_NUM_FOR_LATEX(achats_depenses_financieres_effectues));
+	texDocument.replace("YEROTHBILANCOMPTABLEPROGRAMMEFIDELITECLIENTS",
+			GET_CURRENCY_STRING_NUM_FOR_LATEX(montant_total_versements__PAR_FIDELITE_CLIENTS));
+
+	texDocument.replace("YEROTHBILANCOMPTABLECHARGESDEPENSESFINANCIERES", GET_CURRENCY_STRING_NUM_FOR_LATEX(achats_depenses_financieres_effectues));
 
     texDocument.replace("YEROTHBILANCOMPTABLEBENEFICEDEVISE", GET_CURRENCY_STRING_NUM_FOR_LATEX(benefice_sur_vente_effectuees));
 

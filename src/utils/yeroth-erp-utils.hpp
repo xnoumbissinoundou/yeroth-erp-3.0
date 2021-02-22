@@ -631,6 +631,14 @@ public:
 																   YerothLineEdit &aYerothLineEdit_reference_client,
 																   int aCurrentClientDetailDBID = YerothUtils::CURRENT_CLIENT_DB_ID_UNDEFINED);
 
+	inline static bool is_montant_payer_AU_CLIENT__PAR_FIDELITE__valide(int typeDePaiement)
+	{
+		return (YerothUtils::DECAISSEMENT_POUR_PROGRAMME_DE_FIDELITE_CLIENT == typeDePaiement) 	?
+
+				true :
+				false;
+	}
+
 	inline static bool is_montant_payer_AU_CLIENT_valide(int typeDePaiement)
 	{
 		return (YerothUtils::DECAISSEMENT_RETOUR_ACHAT_DUN_CLIENT 			== typeDePaiement ||
