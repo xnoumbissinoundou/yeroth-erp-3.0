@@ -52,9 +52,11 @@
 #include <unistd.h>
 
 
-const QString	YerothPaiementsWindow::CLIENT_TEXT_STRING(QObject::tr("client"));
+const QString	YerothPaiementsWindow::CLIENT_TEXT_STRING("client");
 
-const QString	YerothPaiementsWindow::FOURNISSEUR_TEXT_STRING(QObject::tr("fournisseur"));
+const QString	YerothPaiementsWindow::FOURNISSEUR_TEXT_STRING_ENGLISH("supplier");
+
+const QString	YerothPaiementsWindow::FOURNISSEUR_TEXT_STRING_FRENCH("fournisseur");
 
 
 YerothPaiementsWindow::YerothPaiementsWindow()
@@ -64,6 +66,7 @@ YerothPaiementsWindow::YerothPaiementsWindow()
  _client_fournisseur_current_visible_index_EXPORT_AND_PRINT_PDF(-1),
  _currentTabView(0),
  _pushButton_paiements_filtrer_font(0),
+ _curSupplierText(YerothPaiementsWindow::FOURNISSEUR_TEXT_STRING_FRENCH),
  _paiementsDateFilter(YerothUtils::EMPTY_STRING),
  _curPaiementsTableModel(&_allWindows->getSqlTableModel_paiements())
 {
@@ -220,7 +223,7 @@ void YerothPaiementsWindow::handleComboBoxClients_Typedepaiement_TextChanged(con
 
 void YerothPaiementsWindow::handle_combobox_type_dentreprise(const QString &text)
 {
-	if (YerothUtils::isEqualCaseInsensitive(YerothPaiementsWindow::FOURNISSEUR_TEXT_STRING,
+	if (YerothUtils::isEqualCaseInsensitive(_curSupplierText,
 											comboBox_paiements_type_dentreprise->currentText()))
 	{
 		update_suppliers_specific_payments_type();
@@ -346,6 +349,7 @@ void YerothPaiementsWindow::update_clients_specific_payments_type()
 		<< YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::ENCAISSEMENT_COMPTANT)
 		<< YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::ENCAISSEMENT_CHEQUE)
 		<< YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::ENCAISSEMENT_TELEPHONE)
+		<< YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::ENCAISSEMENT_BANCAIRE)
 		<< YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::ENCAISSEMENT_VIREMENT_BANCAIRE)
 		<< YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::DECAISSEMENT_RETOUR_ACHAT_DUN_CLIENT);
 
@@ -409,6 +413,10 @@ void YerothPaiementsWindow::update_suppliers_specific_payments_type()
 
 	comboBox_paiements_type_de_paiement->
 		yeroth_remove_item(YerothUtils::_typedepaiementToUserViewString
+			.value(YerothUtils::ENCAISSEMENT_BANCAIRE));
+
+	comboBox_paiements_type_de_paiement->
+		yeroth_remove_item(YerothUtils::_typedepaiementToUserViewString
 			.value(YerothUtils::ENCAISSEMENT_VIREMENT_BANCAIRE));
 
 	comboBox_paiements_type_de_paiement->
@@ -419,7 +427,7 @@ void YerothPaiementsWindow::update_suppliers_specific_payments_type()
 
 const QString &YerothPaiementsWindow::get_current_table_column_for_company_type_to_HIDE()
 {
-	if (YerothUtils::isEqualCaseInsensitive(YerothPaiementsWindow::FOURNISSEUR_TEXT_STRING,
+	if (YerothUtils::isEqualCaseInsensitive(_curSupplierText,
 											comboBox_paiements_type_dentreprise->currentText()))
 	{
 		_NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME.removeAll(YerothDatabaseTableColumn::COMPTE_FOURNISSEUR);
@@ -453,7 +461,20 @@ void YerothPaiementsWindow::populateComboBoxes()
 	QStringList aQStringList;
 
 	aQStringList.append(YerothPaiementsWindow::CLIENT_TEXT_STRING);
-	aQStringList.append(YerothPaiementsWindow::FOURNISSEUR_TEXT_STRING);
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+
+	_curSupplierText = YerothPaiementsWindow::FOURNISSEUR_TEXT_STRING_FRENCH;
+
+	aQStringList.append(YerothPaiementsWindow::FOURNISSEUR_TEXT_STRING_FRENCH);
+
+#else //YEROTH_ENGLISH_LANGUAGE
+
+	_curSupplierText = YerothPaiementsWindow::FOURNISSEUR_TEXT_STRING_ENGLISH;
+
+	aQStringList.append(YerothPaiementsWindow::FOURNISSEUR_TEXT_STRING_ENGLISH);
+
+#endif
 
 	comboBox_paiements_type_dentreprise->addItems(aQStringList);
 
@@ -495,6 +516,8 @@ void YerothPaiementsWindow::populateComboBoxes()
 	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::MONTANT_PAYE));
 
 	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::COMPTE_CLIENT));
+
+	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::COMPTE_FOURNISSEUR));
 
 	comboBox_paiements_element_de_paiements->addItems(aQStringList);
 

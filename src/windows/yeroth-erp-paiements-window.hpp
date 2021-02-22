@@ -202,7 +202,9 @@ private:
 
     static const QString	CLIENT_TEXT_STRING;
 
-    static const QString	FOURNISSEUR_TEXT_STRING;
+    static const QString	FOURNISSEUR_TEXT_STRING_ENGLISH;
+
+    static const QString	FOURNISSEUR_TEXT_STRING_FRENCH;
 
 
     YerothLogger			*_logger;
@@ -214,6 +216,8 @@ private:
     int 				 	_currentTabView;
 
     QFont 					*_pushButton_paiements_filtrer_font;
+
+    QString					_curSupplierText;
 
     QString					_paiementsDateFilter;
 
