@@ -2759,16 +2759,16 @@ Continue with update of the stock (service) ?</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2113"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3694"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3714"/>
         <source>rankings - pas de données !</source>
         <oldsource>Yeroth - rapports - rankings - pas de données !</oldsource>
         <translation>rankings - no data !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2907"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3272"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3922"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="4228"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2927"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3292"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3942"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="4248"/>
         <source>aucun filtre !</source>
         <translation>no filter !</translation>
     </message>
@@ -2852,48 +2852,48 @@ Continue with update of the stock (service) ?</translation>
         <translation>The &apos;begin&apos; date must be anterior to the &apos;end&apos; date !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2799"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3025"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2819"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3045"/>
         <source>analyse comparée</source>
         <translation>compared analysis</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2991"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="4004"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3011"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="4024"/>
         <source>paramètre manquant</source>
         <translation>missing parameter</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2992"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="4005"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3012"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="4025"/>
         <source>Vous devez spécifier un paramètre dans le champs de texte &apos;nom&apos; !</source>
         <translation>Please enter a string in field &apos;name&apos; !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="4033"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="4053"/>
         <source>pas de données</source>
         <translation>no data</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="4034"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="4054"/>
         <source>Il n&apos;y a pas de données correspondante à la requête !
 Vérifier que les dates de début et de fin, ainsi que l&apos;année sont correctes !</source>
         <translation>There is no data associated with this request!
 Please check that begin and end dates are correct!</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3280"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3300"/>
         <source>[analyse compar\&apos;ee]</source>
         <translation>[compared analysis]</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3844"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3864"/>
         <source>évolution du chiffre d&apos;affaire</source>
         <translation>business turnover progress</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2109"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3690"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3710"/>
         <source>Il n&apos;y a pas de données correspondante à la requête !
 Vérifier que les dates de début et de fin sont correctes !</source>
         <oldsource>Il n&apos;y a pas de données correspondante à la requête !Vérifier que les dates de début et de fin sont correctes !</oldsource>
@@ -2901,8 +2901,8 @@ Vérifier que les dates de début et de fin sont correctes !</source>
 Please check that begin and end dates are correct!</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2800"/>
-        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3845"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="2820"/>
+        <location filename="src/windows/yeroth-erp-tableaux-de-bord-window.cpp" line="3865"/>
         <source>Le mois de &apos;début&apos; doit être antérieur au mois de &apos;fin&apos; !</source>
         <translation>The &apos;begin&apos; month must be anterior to the &apos;end&apos; month!</translation>
     </message>
@@ -3047,18 +3047,18 @@ Please contact an administrator of %1</translation>
         <translation>Tax (%1)</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.hpp" line="1110"/>
+        <location filename="src/utils/yeroth-erp-utils.hpp" line="1118"/>
         <source>Il y&apos;a eu</source>
         <translation>There is</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.hpp" line="1111"/>
+        <location filename="src/utils/yeroth-erp-utils.hpp" line="1119"/>
         <source> %1 résultat(s) à votre filtre !</source>
         <oldsource> %1 résultat à votre filtre !</oldsource>
         <translation> %1 result(s) to your filter !</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.hpp" line="1116"/>
+        <location filename="src/utils/yeroth-erp-utils.hpp" line="1124"/>
         <source>Il ny&apos;a eu aucun résultat à votre filtre !</source>
         <oldsource>Il ny&apos;a eu aucun résultat à votre filtre!</oldsource>
         <translation>There is no associated data to your filter !</translation>
