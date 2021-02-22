@@ -81,6 +81,7 @@ const QString YerothDatabaseTableColumn::MARGE_BENEFICIAIRE_EN_GROS		("marge_ben
 const QString YerothDatabaseTableColumn::MONTANT_RECU					("montant_recu");
 const QString YerothDatabaseTableColumn::MONTANT_A_REMBOURSER			("montant_a_rembourser");
 const QString YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE			("montant_total_vente");
+const QString YerothDatabaseTableColumn::MONTANT_RABAIS_PROGRAMME_DE_FIDELITE_CLIENTS ("montant_rabais_programme_de_fidelite_clients");
 const QString YerothDatabaseTableColumn::REMISE_PRIX					("remise_prix");
 const QString YerothDatabaseTableColumn::REMISE_POURCENTAGE				("remise_pourcentage");
 const QString YerothDatabaseTableColumn::LOCALISATION					("localisation");
@@ -189,6 +190,9 @@ const QString YerothDatabaseTableColumn::LOCALISATION_ENTREE_ID			("localisation
 
 YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 {
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::MONTANT_RABAIS_PROGRAMME_DE_FIDELITE_CLIENTS,
+			QObject::trUtf8("Rabais FIÉLITÉ CLIENTS (%1)").arg(YerothERPConfig::currency));
+
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REMISE_PRIX, 	QObject::trUtf8("Remise (%1)").arg(YerothERPConfig::currency));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::IS_SERVICE, 		QObject::tr("Service"));

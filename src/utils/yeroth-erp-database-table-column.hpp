@@ -151,6 +151,8 @@ public:
 
 	static const QString MONTANT_TOTAL_VENTE;
 
+	static const QString MONTANT_RABAIS_PROGRAMME_DE_FIDELITE_CLIENTS;
+
 	static const QString REMISE_PRIX;
 
 	static const QString REMISE_POURCENTAGE;
