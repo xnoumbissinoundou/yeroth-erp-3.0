@@ -16,6 +16,8 @@
 
 #include "src/utils/yeroth-erp-config.hpp"
 
+#include "src/utils/yeroth-erp-map-COMPLEX-ITEM.hpp"
+
 #include "src/utils/yeroth-erp-utils.hpp"
 
 
@@ -638,7 +640,7 @@ void YerothTableauxDeBordWindow::quantite_max_stats(QString fileName,
     double montant_total_vente = 0.0;
     double montant_total_TOUTES_vente = 0.0;
 
-    QList<YerothStatsItem *> nomEntrepriseFournisseurToVentes;
+    QList<Yeroth_MAP_COMPLEX_Item *> nomEntrepriseFournisseurToVentes;
 
     if (querySize > 0)
     {
@@ -660,7 +662,7 @@ void YerothTableauxDeBordWindow::quantite_max_stats(QString fileName,
 
     		if (-1 == idx)
     		{
-    			YerothStatsItem *aNewItem = new YerothStatsItem(fieldIdValue,
+    			Yeroth_MAP_COMPLEX_Item *aNewItem = new Yeroth_MAP_COMPLEX_Item(fieldIdValue,
     														    quantite_vendue,
 																montant_total_vente);
 
@@ -668,7 +670,7 @@ void YerothTableauxDeBordWindow::quantite_max_stats(QString fileName,
     		}
     		else
     		{
-    			YerothStatsItem *anItem = nomEntrepriseFournisseurToVentes.value(idx);
+    			Yeroth_MAP_COMPLEX_Item *anItem = nomEntrepriseFournisseurToVentes.value(idx);
 
     			anItem->_itemValue += quantite_vendue;
 
@@ -683,7 +685,7 @@ void YerothTableauxDeBordWindow::quantite_max_stats(QString fileName,
 
     qSort(nomEntrepriseFournisseurToVentes.begin(),
     	  nomEntrepriseFournisseurToVentes.end(),
-		  YerothStatsItem::lessThan);
+		  Yeroth_MAP_COMPLEX_Item::lessThan);
 
     //Remove all items with a zero value
 	for(int j = 0; j < nomEntrepriseFournisseurToVentes.size(); ++j)
@@ -830,7 +832,7 @@ void YerothTableauxDeBordWindow::quantite_moindre_stats(QString fileName,
     double montant_total_vente = 0.0;
     double montant_total_TOUTES_vente = 0.0;
 
-    QList<YerothStatsItem *> nomEntrepriseFournisseurToVentes;
+    QList<Yeroth_MAP_COMPLEX_Item *> nomEntrepriseFournisseurToVentes;
 
     if (querySize > 0)
     {
@@ -852,7 +854,7 @@ void YerothTableauxDeBordWindow::quantite_moindre_stats(QString fileName,
 
     		if (-1 == idx)
     		{
-    			YerothStatsItem *aNewItem = new YerothStatsItem(fieldIdValue,
+    			Yeroth_MAP_COMPLEX_Item *aNewItem = new Yeroth_MAP_COMPLEX_Item(fieldIdValue,
     														    quantite_vendue,
 																montant_total_vente);
 
@@ -860,7 +862,7 @@ void YerothTableauxDeBordWindow::quantite_moindre_stats(QString fileName,
     		}
     		else
     		{
-    			YerothStatsItem *anItem = nomEntrepriseFournisseurToVentes.value(idx);
+    			Yeroth_MAP_COMPLEX_Item *anItem = nomEntrepriseFournisseurToVentes.value(idx);
 
     			anItem->_itemValue += quantite_vendue;
 
@@ -875,7 +877,7 @@ void YerothTableauxDeBordWindow::quantite_moindre_stats(QString fileName,
 
     qSort(nomEntrepriseFournisseurToVentes.begin(),
     	  nomEntrepriseFournisseurToVentes.end(),
-		  YerothStatsItem::lessThan);
+		  Yeroth_MAP_COMPLEX_Item::lessThan);
 
     //Remove all items with a zero value
 	for(int j = 0; j < nomEntrepriseFournisseurToVentes.size(); ++j)
@@ -1027,7 +1029,7 @@ void YerothTableauxDeBordWindow::meilleursStats(QString fileName,
 
     double quantite_vendue = 0.0;
 
-    QList<YerothStatsItem *> nomEntrepriseFournisseurToVentes;
+    QList<Yeroth_MAP_COMPLEX_Item *> nomEntrepriseFournisseurToVentes;
 
     if (querySize > 0)
     {
@@ -1049,14 +1051,14 @@ void YerothTableauxDeBordWindow::meilleursStats(QString fileName,
 
             if (-1 == idx)
             {
-                YerothStatsItem *aNewItem = new YerothStatsItem(fieldIdValue,
+                Yeroth_MAP_COMPLEX_Item *aNewItem = new Yeroth_MAP_COMPLEX_Item(fieldIdValue,
                 												montant_total_vente,
 																quantite_vendue);
                 nomEntrepriseFournisseurToVentes.push_back(aNewItem);
             }
             else
             {
-                YerothStatsItem *anItem = nomEntrepriseFournisseurToVentes.value(idx);
+                Yeroth_MAP_COMPLEX_Item *anItem = nomEntrepriseFournisseurToVentes.value(idx);
                 anItem->_itemValue += montant_total_vente;
                 anItem->_itemSecondValue += quantite_vendue;
             }
@@ -1067,7 +1069,7 @@ void YerothTableauxDeBordWindow::meilleursStats(QString fileName,
 
     qSort(nomEntrepriseFournisseurToVentes.begin(),
     	  nomEntrepriseFournisseurToVentes.end(),
-		  YerothStatsItem::lessThan);
+		  Yeroth_MAP_COMPLEX_Item::lessThan);
 
     //Remove all items with a zero value
     for(int j = 0; j < nomEntrepriseFournisseurToVentes.size(); ++j)
@@ -1205,9 +1207,9 @@ void YerothTableauxDeBordWindow::ZERO_stats_stocks(QString fileName,
 
     QString fieldIdValue;
 
-    YerothStatsItem *anItem = 0;
+    Yeroth_MAP_COMPLEX_Item *anItem = 0;
 
-    QList<YerothStatsItem *> allItems;
+    QList<Yeroth_MAP_COMPLEX_Item *> allItems;
 
     if (querySize > 0)
     {
@@ -1232,7 +1234,7 @@ void YerothTableauxDeBordWindow::ZERO_stats_stocks(QString fileName,
 
             if (-1 == idx)
             {
-            	anItem = new YerothStatsItem(fieldIdValue, 0.0);
+            	anItem = new Yeroth_MAP_COMPLEX_Item(fieldIdValue, 0.0);
 
             	anItem->_itemName = fieldIdValue;
 
@@ -1251,7 +1253,7 @@ void YerothTableauxDeBordWindow::ZERO_stats_stocks(QString fileName,
         }
     }
 
-    qSort(allItems.begin(), allItems.end(), YerothStatsItem::lessThan_second_value);
+    qSort(allItems.begin(), allItems.end(), Yeroth_MAP_COMPLEX_Item::lessThan_second_value);
 
     QString csvFileContent;
 
@@ -1369,9 +1371,9 @@ void YerothTableauxDeBordWindow::ZERO_stats(QString fileName,
 
     QString fieldIdValue;
 
-    YerothStatsItem *anItem = 0;
+    Yeroth_MAP_COMPLEX_Item *anItem = 0;
 
-    QList<YerothStatsItem *> allItems;
+    QList<Yeroth_MAP_COMPLEX_Item *> allItems;
 
     if (querySize > 0)
     {
@@ -1393,7 +1395,7 @@ void YerothTableauxDeBordWindow::ZERO_stats(QString fileName,
 
             if (-1 == idx)
             {
-            	anItem = new YerothStatsItem(fieldIdValue, 0.0);
+            	anItem = new Yeroth_MAP_COMPLEX_Item(fieldIdValue, 0.0);
 
                 anItem->_itemName = fieldIdValue;
 
@@ -1408,7 +1410,7 @@ void YerothTableauxDeBordWindow::ZERO_stats(QString fileName,
         }
     }
 
-    qSort(allItems.begin(), allItems.end(), YerothStatsItem::lessThan);
+    qSort(allItems.begin(), allItems.end(), Yeroth_MAP_COMPLEX_Item::lessThan);
 
     QString csvFileContent;
 
@@ -1529,7 +1531,7 @@ void YerothTableauxDeBordWindow::derniersStats(QString fileName,
 
     double quantite_vendue = 0.0;
 
-    QList<YerothStatsItem *> caissierToVentes;
+    QList<Yeroth_MAP_COMPLEX_Item *> caissierToVentes;
 
     if (querySize > 0)
     {
@@ -1558,14 +1560,14 @@ void YerothTableauxDeBordWindow::derniersStats(QString fileName,
 
             if (-1 == idx)
             {
-                YerothStatsItem *aNewItem = new YerothStatsItem(fieldIdValue,
+                Yeroth_MAP_COMPLEX_Item *aNewItem = new Yeroth_MAP_COMPLEX_Item(fieldIdValue,
                 												montant_total_vente,
 																quantite_vendue);
                 caissierToVentes.push_back(aNewItem);
             }
             else
             {
-                YerothStatsItem *anItem = caissierToVentes.value(idx);
+                Yeroth_MAP_COMPLEX_Item *anItem = caissierToVentes.value(idx);
 
                 anItem->_itemValue += montant_total_vente;
 
@@ -1578,7 +1580,7 @@ void YerothTableauxDeBordWindow::derniersStats(QString fileName,
 
     qSort(caissierToVentes.begin(),
     	  caissierToVentes.end(),
-		  YerothStatsItem::lessThan);
+		  Yeroth_MAP_COMPLEX_Item::lessThan);
 
     //Remove all items with a zero value
     for(int j = 0; j < caissierToVentes.size(); ++j)

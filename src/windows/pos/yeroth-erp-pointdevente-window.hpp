@@ -13,6 +13,8 @@
 
 #include "src/windows/yeroth-erp-window-commons.hpp"
 
+#include "src/utils/yeroth-erp-LIST-map-COMPLEX-ITEM.hpp"
+
 #include "src/utils/credit-card/yeroth-erp-carte-credit-info.hpp"
 
 
@@ -165,6 +167,8 @@ public slots:
 
 	void actualiser_toutes_valeurs();
 
+	void actualiser_toutes_valeurs(const QString &a_client_nom_entreprise);
+
 	void update_lineedits_and_labels(double total);
 
 	inline void setMontantComptantRecu(double unMontantRecu)
@@ -216,6 +220,13 @@ public slots:
 	unsigned int effectuer_check_out_comptant();
 
 	void updateCompteClient(double nouveau_compte_client);
+
+	double GET_BEST_CURRENT_LOYALTY_PROGRAM_MONEY_BENEFITS();
+
+	double calculate_LOYALTY_PROGRAM_MONEY_BENEFITS(const QString& a_loyalty_program);
+
+	void updateCompteClient_PROGRAMME_DE_FIDELITE_LOYALTY(const QString &a_nom_entreprise_client,
+														  bool CALL_update_lineedits_and_labels = false);
 
 	void executer_la_vente_compte_client();
 
@@ -295,6 +306,8 @@ private:
     	AfficherVenteAuDetail
     };
 
+    virtual double GET_CURRENT_CLIENT_AMOUNT_TO_BE_PAID();
+
     void disconnect_all_objects_for_stock_article_item_selection();
 
 	void connect_manual_selection_of_article_item();
@@ -334,20 +347,31 @@ private:
 
     QString 				_currentStocksID;
 
+    double					_sommeTotal_HORS_TAXES;
+
     double 					_sommeTotal;
+
     double 					_remise_somme_total_prix;
+
     double 					_remise_somme_total_pourcentage;
+
     double					_tva;
+
     double					_montantRecu;
+
     double					_montantARembourser;
+
     int 					_quantiteAVendre;
+
     int 				 	_currentTabView;
 
-    QAction 		*actionRechercheArticle;
-    QAction 		*actionRechercheArticleCodebar;
+    QAction 				*actionRechercheArticle;
+    QAction 				*actionRechercheArticleCodebar;
 
     QString					_searchFilter;
 	QString					_curClientName;
+
+	Yeroth_LIST_map_COMPLEX_ITEM 		_client_group_program_TO_money_benefit;
 
     QMap<int, YerothArticleVenteInfo *> articleItemToVenteInfo;
 };

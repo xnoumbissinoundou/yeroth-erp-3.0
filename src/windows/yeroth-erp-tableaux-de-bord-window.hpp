@@ -16,6 +16,8 @@
 #include "src/utils/yeroth-erp-database-table-column.hpp"
 
 
+class Yeroth_MAP_COMPLEX_Item;
+
 class QProcess;
 
 class YerothUtils;
@@ -318,40 +320,6 @@ private:
 
     void setupDateTimeEdits_BILAN_COMPTABLE();
 
-    class YerothStatsItem
-	{
-	public:
-    	QString _itemName;
-    	double  _itemValue;
-    	double  _itemSecondValue;
-
-    	inline YerothStatsItem(QString itemName,
-    						   double itemValue,
-							   double itemSecondValue)
-    	:_itemName(itemName),
-		 _itemValue(itemValue),
-		 _itemSecondValue(itemSecondValue)
-    	{
-    	}
-
-    	inline YerothStatsItem(QString itemName,
-    						   double itemValue)
-    	:_itemName(itemName),
-		 _itemValue(itemValue),
-		 _itemSecondValue(0.0)
-    	{
-    	}
-
-    	inline static bool lessThan(const YerothStatsItem *anItem1, const YerothStatsItem *anItem2)
-    	{
-    		return anItem1->_itemValue < anItem2->_itemValue;
-    	}
-
-    	inline static bool lessThan_second_value(const YerothStatsItem *anItem1, const YerothStatsItem *anItem2)
-    	{
-    		return anItem1->_itemSecondValue < anItem2->_itemSecondValue;
-    	}
-	};
 
 	static const QString OPERATION_GENERER;
 	static const QString OPERATION_GENERER_CHIFFRE_DAFFAIRE;

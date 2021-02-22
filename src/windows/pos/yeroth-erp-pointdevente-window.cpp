@@ -20,6 +20,8 @@
 
 #include "src/widgets/table-view/yeroth-erp-table-view.hpp"
 
+#include "src/utils/yeroth-erp-map-COMPLEX-ITEM.hpp"
+
 #include "src/utils/yeroth-erp-config.hpp"
 
 #include "src/utils/yeroth-erp-historique-stock.hpp"
@@ -68,6 +70,7 @@ YerothPointDeVenteWindow::YerothPointDeVenteWindow()
  _previousPressedQteValue("1"),
  _tvaCheckBoxPreviousState(false),
  _currentStocksID(YerothUtils::EMPTY_STRING),
+ _sommeTotal_HORS_TAXES(0.0),
  _sommeTotal(0.0),
  _remise_somme_total_prix(0.0),
  _remise_somme_total_pourcentage(0.0),
@@ -181,10 +184,14 @@ YerothPointDeVenteWindow::YerothPointDeVenteWindow()
     /* Signals-slots connection for the second tab 'Article au détail' */
     connect(checkBox_tva, SIGNAL(clicked(bool)), this, SLOT(handleTVACheckBox(bool)));
 
-    connect(lineEdit_article_detail_quantite_a_vendre, SIGNAL(textEdited(const QString &)), this,
+    connect(lineEdit_article_detail_quantite_a_vendre,
+    		SIGNAL(textEdited(const QString &)),
+			this,
             SLOT(updateQuantiteAVendre()));
 
-    connect(lineEdit_article_detail_remise_prix, SIGNAL(textEdited(const QString)), this,
+    connect(lineEdit_article_detail_remise_prix,
+    		SIGNAL(textEdited(const QString)),
+			this,
             SLOT(calculate_details_window_remise_prix()));
 
     connect(lineEdit_article_detail_remise_pourcentage, SIGNAL(textEdited(const QString)), this,
@@ -280,13 +287,13 @@ void YerothPointDeVenteWindow::setStockItemNameAsStandardInput()
 
 void YerothPointDeVenteWindow::updateLineEditQCompleterInput()
 {
-	if (_barcodeReaderActivated)
+	if (!_barcodeReaderActivated)
 	{
-		connect_barcode_reader_selection_of_article_item();
+		connect_manual_selection_of_article_item();
 	}
 	else
 	{
-		connect_manual_selection_of_article_item();
+		connect_barcode_reader_selection_of_article_item();
 	}
 }
 
@@ -354,6 +361,21 @@ void YerothPointDeVenteWindow::handleRefreshSaleStrategy()
                                      lineEdit_recherche_article_codebar);
 
     updateLineEditQCompleterInput();
+}
+
+
+double YerothPointDeVenteWindow::GET_CURRENT_CLIENT_AMOUNT_TO_BE_PAID()
+{
+	double somme_total_SANS_TVA = _sommeTotal;
+
+	if (checkBox_tva->isChecked())
+	{
+		somme_total_SANS_TVA = _sommeTotal - _tva;
+	}
+
+	return (_remise_somme_total_prix < somme_total_SANS_TVA) ?
+		   (somme_total_SANS_TVA - _remise_somme_total_prix) :
+		   _sommeTotal;
 }
 
 
@@ -471,6 +493,9 @@ void YerothPointDeVenteWindow::setupLineEdits()
 
     lineEdit_recherche_article_codebar->enableForSearch(QObject::trUtf8("référence [ focus avec F11 ]"));
 
+    lineEdit_articles_FIDELITE_RABAIS->setYerothEnabled(false);
+    lineEdit_articles_FIDELITE_RABAIS->clear();
+
     lineEdit_articles_imprimante->setText(YerothERPConfig::printer);
     lineEdit_articles_imprimante->setReadOnly(true);
 
@@ -505,6 +530,16 @@ void YerothPointDeVenteWindow::setupLineEditsQCompleters()
 	lineEdit_articles_nom_client->
 		setupMyStaticQCompleter(YerothDatabase::CLIENTS,
 								YerothDatabaseTableColumn::NOM_ENTREPRISE);
+
+    connect(lineEdit_articles_nom_client,
+    		SIGNAL(textEdited(const QString &)),
+			this,
+            SLOT(actualiser_toutes_valeurs(const QString &)));
+
+    connect(lineEdit_articles_nom_client->getMyQCompleter(),
+    		SIGNAL(activated(const QString &)),
+			this,
+            SLOT(actualiser_toutes_valeurs(const QString &)));
 }
 
 
@@ -1191,6 +1226,8 @@ QString YerothPointDeVenteWindow::imprimer_recu_vendu_petit(QString referenceRec
 
 void YerothPointDeVenteWindow::annuler()
 {
+	lineEdit_articles_nom_client->clear();
+
     if (tableWidget_articles->rowCount() > 0)
     {
         tableWidget_articles->yerothClearTableWidgetContent();
@@ -1201,7 +1238,6 @@ void YerothPointDeVenteWindow::annuler()
         label_total_ttc->setText(GET_CURRENCY_STRING_NUM(0.0));
         lineEdit_articles_quantite_a_vendre->clear();
         lineEdit_articles_tva->setText(GET_CURRENCY_STRING_NUM(0.0));
-        lineEdit_articles_nom_client->clear();
         lineEdit_articles_montant_a_rembourser->setText(GET_CURRENCY_STRING_NUM(0.0));
 
         tableWidget_articles->resizeColumnsToContents();
@@ -1329,14 +1365,20 @@ void YerothPointDeVenteWindow::cleanUpAfterVente()
 
     _typeDeVente= YerothUtils::VENTE_INDEFINI;
 
+
+    lineEdit_articles_FIDELITE_RABAIS->clear();
+
+
     lineEdit_articles_montant_a_rembourser->setText(GET_CURRENCY_STRING_NUM(0.0));
     lineEdit_articles_tva->setText(GET_CURRENCY_STRING_NUM(0.0));
     lineEdit_articles_total->setText(GET_CURRENCY_STRING_NUM(0.0));
     lineEdit_articles_somme_total->setText(GET_CURRENCY_STRING_NUM(0.0));
     label_total_ttc->setText(GET_CURRENCY_STRING_NUM(0.0));
+
     lineEdit_articles_quantite_a_vendre->setText(GET_DOUBLE_STRING(0.0));
 
     lineEdit_articles_nom_client->clear();
+
     lineEdit_article_detail_reference_produit->clear();
     lineEdit_article_detail_designation->clear();
     lineEdit_article_detail_nom_entreprise_fournisseur->clear();
@@ -1391,6 +1433,10 @@ void YerothPointDeVenteWindow::rendreInvisible()
 
     _qteChangeCodeBar = false;
 
+    _curClientName.clear();
+
+    _sommeTotal_HORS_TAXES = 0.0;
+
     _sommeTotal = 0.0;
 
     _tva = 0.0;
@@ -1427,6 +1473,8 @@ void YerothPointDeVenteWindow::handleTabViews()
 void YerothPointDeVenteWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 {
     _logger->log("rendreVisible");
+
+    _client_group_program_TO_money_benefit.clear();
 
     radioButton_article_detail_remise_prix->setText(QObject::tr("remise (%1)")
     													.arg(YerothERPConfig::currency));
@@ -2393,11 +2441,24 @@ void YerothPointDeVenteWindow::actualiser_toutes_valeurs()
     update_lineedits_and_labels(total);
 }
 
+
+void YerothPointDeVenteWindow::actualiser_toutes_valeurs(const QString &a_client_nom_entreprise)
+{
+	_curClientName = a_client_nom_entreprise;
+
+	actualiser_toutes_valeurs();
+}
+
+
 void YerothPointDeVenteWindow::update_lineedits_and_labels(double total)
 {
+	_sommeTotal_HORS_TAXES = total;
+
+	updateCompteClient_PROGRAMME_DE_FIDELITE_LOYALTY(_curClientName);
+
     lineEdit_articles_quantite_a_vendre->setText(GET_NUM_STRING(_quantiteAVendre));
     lineEdit_articles_tva->setText(GET_CURRENCY_STRING_NUM(_tva));
-    lineEdit_articles_total->setText(GET_CURRENCY_STRING_NUM(total));
+    lineEdit_articles_total->setText(GET_CURRENCY_STRING_NUM(_sommeTotal_HORS_TAXES));
     lineEdit_articles_somme_total->setText(GET_CURRENCY_STRING_NUM(_sommeTotal));
     label_total_ttc->setText(GET_CURRENCY_STRING_NUM(_sommeTotal));
 
@@ -2899,6 +2960,220 @@ void YerothPointDeVenteWindow::updateCompteClient(double nouveau_compte_client)
 								 lineEdit_articles_nom_client->text()));
 
     bool success = YerothUtils::execQuery(queryStr, _logger);
+}
+
+
+double YerothPointDeVenteWindow::GET_BEST_CURRENT_LOYALTY_PROGRAM_MONEY_BENEFITS()
+{
+	Yeroth_MAP_COMPLEX_Item *a_map_COMPLEX_item =
+			_client_group_program_TO_money_benefit.q_list().last();
+
+	if (0 == a_map_COMPLEX_item)
+	{
+		return 0.0;
+	}
+
+	lineEdit_articles_FIDELITE_RABAIS->
+		setText(QString("%1   (%2)")
+					.arg(a_map_COMPLEX_item->_itemName,
+						 GET_CURRENCY_STRING_NUM(a_map_COMPLEX_item->_itemValue)));
+
+	return a_map_COMPLEX_item->_itemValue;
+}
+
+
+double YerothPointDeVenteWindow::calculate_LOYALTY_PROGRAM_MONEY_BENEFITS(const QString& a_loyalty_program)
+{
+	double money_BENEFITS = 0.0;
+
+	QString SELECT_PROGRAMME_DE_FIDELITE_CLIENTS(
+			QString("select * from %1 where %2='%3'")
+				.arg(YerothDatabase::PROGRAMMES_DE_FIDELITE_CLIENTS,
+					 YerothDatabaseTableColumn::DESIGNATION,
+					 a_loyalty_program));
+
+//	QDEBUG_STRING_OUTPUT_2("SELECT_PROGRAMME_DE_FIDELITE_CLIENTS", SELECT_PROGRAMME_DE_FIDELITE_CLIENTS);
+
+	QSqlQuery a_qsql_query;
+
+	int query_size = YerothUtils::execQuery(a_qsql_query, SELECT_PROGRAMME_DE_FIDELITE_CLIENTS);
+
+	if (query_size <= 0)
+	{
+		return 0.0;
+	}
+
+	a_qsql_query.next();
+
+	QSqlRecord aQSqlRecord = a_qsql_query.record();
+
+	double AMOUNT_TO_BE_PAID_BY_CLIENT__NO__MONEY_BENEFITS =
+			GET_CURRENT_CLIENT_AMOUNT_TO_BE_PAID();
+
+//    QDEBUG_STRING_OUTPUT_2_N("original amount to be paid by client", _sommeTotal);
+
+	if (aQSqlRecord.isNull(YerothDatabaseTableColumn::MONTANT_DU_RABAIS))
+	{
+		double pourcentage_rabais =
+				GET_SQL_RECORD_DATA(aQSqlRecord, YerothDatabaseTableColumn::POURCENTAGE_DU_RABAIS).toDouble();
+
+		money_BENEFITS =
+				(pourcentage_rabais *
+				 AMOUNT_TO_BE_PAID_BY_CLIENT__NO__MONEY_BENEFITS) / 100.0;
+
+	}
+	else if (aQSqlRecord.isNull(YerothDatabaseTableColumn::POURCENTAGE_DU_RABAIS))
+	{
+		double montant_du_rabais =
+				GET_SQL_RECORD_DATA(aQSqlRecord, YerothDatabaseTableColumn::MONTANT_DU_RABAIS).toDouble();
+
+		money_BENEFITS = montant_du_rabais;
+	}
+
+//	QDEBUG_STRING_OUTPUT_1(QString("MONEY BENEFITS FOR client loyalty program '%1': %2 (ORIGINAL AMOUNT: %3)")
+//								.arg(a_loyalty_program,
+//									 QString::number(money_BENEFITS),
+//									 QString::number(AMOUNT_TO_BE_PAID_BY_CLIENT__NO__MONEY_BENEFITS)));
+
+	return money_BENEFITS;
+}
+
+
+void YerothPointDeVenteWindow::updateCompteClient_PROGRAMME_DE_FIDELITE_LOYALTY(const QString &a_nom_entreprise_client,
+																				bool CALL_update_lineedits_and_labels /* = false */)
+{
+	if (a_nom_entreprise_client.isEmpty())
+	{
+		lineEdit_articles_FIDELITE_RABAIS->clear();
+
+		return ;
+	}
+
+	/*
+	 * I search all client group of customer 'a_nom_entreprise_client'.
+	 */
+	QString SELECT_CLIENT_GROUPS(QString("select %1 from %2 where %3='%4'")
+									.arg(YerothDatabaseTableColumn::GROUPES_DU_CLIENT_ID,
+										 YerothDatabase::CLIENTS,
+										 YerothDatabaseTableColumn::NOM_ENTREPRISE,
+										 a_nom_entreprise_client));
+
+	QSqlQuery a_qsql_query;
+
+	int query_size = YerothUtils::execQuery(a_qsql_query, SELECT_CLIENT_GROUPS);
+
+	if (query_size <= 0)
+	{
+		lineEdit_articles_FIDELITE_RABAIS->clear();
+
+		return ;
+	}
+
+
+	QString client_group_id;
+
+	QStringList clientGroupId_list;
+
+	a_qsql_query.next();
+
+	client_group_id = a_qsql_query.value(YerothDatabaseTableColumn::GROUPES_DU_CLIENT_ID).toString();
+
+
+	YerothUtils::SPLIT_STAR_SEPARATED_DB_STRING(clientGroupId_list, client_group_id);
+
+
+//	QDEBUG_QSTRINGLIST_OUTPUT("clientGroupId_list", clientGroupId_list);
+
+
+	/*
+	 * select the best client fidelity program for this customer (i.e.:
+	 * the 'client fidelity program' where this customer earns maximal
+	 * money !
+	 */
+	_client_group_program_TO_money_benefit.clear();
+
+
+	QString client_group_loyalty_program;
+
+	QString cur_select_client_loyalty_program;
+
+
+	double cur_client_group_loyalty_program_money_BENEFITS = 0.0;
+
+
+	for (uint k = 0; k < clientGroupId_list.size(); ++k)
+	{
+		cur_select_client_loyalty_program =
+				QString("select %1 from %2 where %3='%4'")
+					.arg(YerothDatabaseTableColumn::PROGRAMME_DE_FIDELITE_CLIENTS,
+						 YerothDatabase::GROUPES_DE_CLIENTS,
+						 YerothDatabaseTableColumn::ID,
+						 clientGroupId_list.at(k));
+
+
+//		QDEBUG_STRING_OUTPUT_2("cur_select_client_loyalty_program",
+//							   cur_select_client_loyalty_program);
+
+
+		a_qsql_query.clear();
+
+		query_size = YerothUtils::execQuery(a_qsql_query, cur_select_client_loyalty_program);
+
+		if (query_size > 0 && a_qsql_query.next())
+		{
+			client_group_loyalty_program = a_qsql_query.value(0).toString();
+
+//			QDEBUG_STRING_OUTPUT_1(QString("clientGroup ID (%1), client_group_loyalty_program => %2")
+//										.arg(clientGroupId_list.at(k),
+//											 client_group_loyalty_program));
+
+			cur_client_group_loyalty_program_money_BENEFITS =
+					calculate_LOYALTY_PROGRAM_MONEY_BENEFITS(client_group_loyalty_program);
+
+			_client_group_program_TO_money_benefit.insert_item(client_group_loyalty_program,
+														  	   cur_client_group_loyalty_program_money_BENEFITS);
+		}
+	}
+
+	_client_group_program_TO_money_benefit.q_sort();
+
+//	_client_group_program_TO_money_benefit.print("_client_group_program_TO_money_benefit");
+
+	double best_current_lotaly_program_money_benefits =
+			GET_BEST_CURRENT_LOYALTY_PROGRAM_MONEY_BENEFITS();
+
+	double somme_TOTAL_SANS_TVA = GET_CURRENT_CLIENT_AMOUNT_TO_BE_PAID();
+
+//	QDEBUG_STRING_OUTPUT_2_N("somme_TOTAL_SANS_TVA **", somme_TOTAL_SANS_TVA);
+
+	if (somme_TOTAL_SANS_TVA > best_current_lotaly_program_money_benefits)
+	{
+		somme_TOTAL_SANS_TVA = somme_TOTAL_SANS_TVA - best_current_lotaly_program_money_benefits;
+	}
+
+//	QDEBUG_STRING_OUTPUT_2_N(QString("somme_TOTAL_SANS_TVA - best_current_lotaly_program_money_benefits (%1)")
+//								.arg(best_current_lotaly_program_money_benefits),
+//							 somme_TOTAL_SANS_TVA);
+
+//	QDEBUG_STRING_OUTPUT_2_N("_sommeTotal *", _sommeTotal);
+
+	double _TVA_SOMME_TOTAL_MONEY_BENEFITS = 0.0;
+
+	if (checkBox_tva->isChecked())
+	{
+		_TVA_SOMME_TOTAL_MONEY_BENEFITS = somme_TOTAL_SANS_TVA * YerothERPConfig::tva_value;
+	}
+
+//	QDEBUG_STRING_OUTPUT_2_N("_TVA_SOMME_TOTAL_MONEY_BENEFITS",
+//							 _TVA_SOMME_TOTAL_MONEY_BENEFITS);
+
+	_sommeTotal_HORS_TAXES = somme_TOTAL_SANS_TVA;
+
+	_tva = _TVA_SOMME_TOTAL_MONEY_BENEFITS;
+
+	_sommeTotal = somme_TOTAL_SANS_TVA + _TVA_SOMME_TOTAL_MONEY_BENEFITS;
+
+//	QDEBUG_STRING_OUTPUT_2_N("_sommeTotal ***", _sommeTotal);
 }
 
 
