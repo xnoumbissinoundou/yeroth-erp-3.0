@@ -10729,9 +10729,9 @@ background-color: rgb(0, 0, 0); </string>
          <colorrole role="WindowText">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>178</red>
-            <green>34</green>
-            <blue>34</blue>
+            <red>255</red>
+            <green>215</green>
+            <blue>0</blue>
            </color>
           </brush>
          </colorrole>
@@ -10783,9 +10783,9 @@ background-color: rgb(0, 0, 0); </string>
          <colorrole role="Text">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>178</red>
-            <green>34</green>
-            <blue>34</blue>
+            <red>255</red>
+            <green>215</green>
+            <blue>0</blue>
            </color>
           </brush>
          </colorrole>
@@ -10801,9 +10801,9 @@ background-color: rgb(0, 0, 0); </string>
          <colorrole role="ButtonText">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>178</red>
-            <green>34</green>
-            <blue>34</blue>
+            <red>255</red>
+            <green>215</green>
+            <blue>0</blue>
            </color>
           </brush>
          </colorrole>
@@ -10893,9 +10893,9 @@ background-color: rgb(0, 0, 0); </string>
          <colorrole role="WindowText">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>178</red>
-            <green>34</green>
-            <blue>34</blue>
+            <red>255</red>
+            <green>215</green>
+            <blue>0</blue>
            </color>
           </brush>
          </colorrole>
@@ -10947,9 +10947,9 @@ background-color: rgb(0, 0, 0); </string>
          <colorrole role="Text">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>178</red>
-            <green>34</green>
-            <blue>34</blue>
+            <red>255</red>
+            <green>215</green>
+            <blue>0</blue>
            </color>
           </brush>
          </colorrole>
@@ -10965,9 +10965,9 @@ background-color: rgb(0, 0, 0); </string>
          <colorrole role="ButtonText">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>178</red>
-            <green>34</green>
-            <blue>34</blue>
+            <red>255</red>
+            <green>215</green>
+            <blue>0</blue>
            </color>
           </brush>
          </colorrole>
@@ -11057,9 +11057,9 @@ background-color: rgb(0, 0, 0); </string>
          <colorrole role="WindowText">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>178</red>
-            <green>34</green>
-            <blue>34</blue>
+            <red>255</red>
+            <green>215</green>
+            <blue>0</blue>
            </color>
           </brush>
          </colorrole>
@@ -11111,9 +11111,9 @@ background-color: rgb(0, 0, 0); </string>
          <colorrole role="Text">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>178</red>
-            <green>34</green>
-            <blue>34</blue>
+            <red>255</red>
+            <green>215</green>
+            <blue>0</blue>
            </color>
           </brush>
          </colorrole>
@@ -11129,9 +11129,9 @@ background-color: rgb(0, 0, 0); </string>
          <colorrole role="ButtonText">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>178</red>
-            <green>34</green>
-            <blue>34</blue>
+            <red>255</red>
+            <green>215</green>
+            <blue>0</blue>
            </color>
           </brush>
          </colorrole>
@@ -11227,7 +11227,8 @@ background-color: rgb(0, 0, 0); </string>
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">border: 1px solid rgb(60, 60, 60);
+       <string notr="true">color: rgb(255, 215, 0);
+border: 1px solid rgb(60, 60, 60);
 background-color: rgb(0, 0, 0); </string>
       </property>
       <property name="alignment">
