@@ -89,9 +89,15 @@ public:
 
     virtual void definirVendeur();
 
-    virtual void definirGestionaireDesStocks();
+    inline virtual void definirGestionaireDesStocks()
+    {
+    	definirPasDeRole();
+    }
 
-    virtual void definirMagasinier();
+    inline virtual void definirMagasinier()
+    {
+    	definirPasDeRole();
+    }
 
     virtual void definirPasDeRole();
 
@@ -118,6 +124,8 @@ public slots:
 	void handleAddedArticle();
 
 	void handleCurrentTABChanged(int index);
+
+	void CLEAR_LOYALTY_PROGRAM_DATA_FOR_CURRENT_SESSION_SALE();
 
 	void annuler();
 

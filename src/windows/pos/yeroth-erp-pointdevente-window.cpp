@@ -716,47 +716,6 @@ void YerothPointDeVenteWindow::definirVendeur()
 }
 
 
-void YerothPointDeVenteWindow::definirGestionaireDesStocks()
-{
-    _logger->log("definirGestionaireDesStocks");
-
-    setupRemises(false);
-
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
-
-#ifdef YEROTH_CLIENT
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
-#endif
-
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
-
-    pushButton_article_detail_retour_ventes->enable(this, SLOT(retourVentes()));
-    pushButton_annuler->enable(this, SLOT(annuler()));
-    pushButton_vendre->enable(this, SLOT(choisir_methode_paiment()));
-}
-
-void YerothPointDeVenteWindow::definirMagasinier()
-{
-    _logger->log("definirMagasinier");
-
-    setupRemises(false);
-
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
-
-    pushButton_article_detail_retour_ventes->disable(this);
-    pushButton_annuler->disable(this);
-    pushButton_vendre->disable(this);
-}
-
 void YerothPointDeVenteWindow::definirPasDeRole()
 {
     _logger->log("definirPasDeRole");
@@ -1098,6 +1057,7 @@ QString YerothPointDeVenteWindow::imprimer_recu_vendu_grand(QString referenceRec
     return YerothERPProcess::compileLatex(prefixFileName);
 }
 
+
 QString YerothPointDeVenteWindow::imprimer_recu_vendu_petit(QString referenceRecuPETIT /* = QString("") */)
 {
     _logger->log("imprimer_facture_petit");
@@ -1226,11 +1186,24 @@ QString YerothPointDeVenteWindow::imprimer_recu_vendu_petit(QString referenceRec
     return YerothERPProcess::compileLatex(prefixFileName);
 }
 
-void YerothPointDeVenteWindow::annuler()
+
+void YerothPointDeVenteWindow::CLEAR_LOYALTY_PROGRAM_DATA_FOR_CURRENT_SESSION_SALE()
 {
+	_curClientName.clear();
+
+	lineEdit_articles_FIDELITE_RABAIS->clear();
+
+	_client_group_program_TO_money_benefit.clear();
+
 	_vente_LOYALTY_PROGRAM_NOUVEAU_COMPTE_CLIENT = 0.0;
 
 	lineEdit_articles_nom_client->clear();
+}
+
+
+void YerothPointDeVenteWindow::annuler()
+{
+	CLEAR_LOYALTY_PROGRAM_DATA_FOR_CURRENT_SESSION_SALE();
 
     if (tableWidget_articles->rowCount() > 0)
     {
@@ -1261,6 +1234,7 @@ void YerothPointDeVenteWindow::annuler()
     disableImprimer();
 }
 
+
 void YerothPointDeVenteWindow::setRechercheLineEditFocus()
 {
     lineEdit_recherche_article->clearQCompleterText();
@@ -1278,11 +1252,13 @@ void YerothPointDeVenteWindow::setRechercheLineEditFocus()
     }
 }
 
+
 void YerothPointDeVenteWindow::setRechercheDesignationArticleFocus()
 {
     _currentFocusSearchBar = lineEdit_recherche_article;
     setRechercheLineEditFocus();
 }
+
 
 void YerothPointDeVenteWindow::setRechercheCodebarArticleFocus()
 {
@@ -1339,6 +1315,7 @@ void YerothPointDeVenteWindow::handleCurrentTABChanged(int index)
     }
 }
 
+
 void YerothPointDeVenteWindow::cleanUpAfterVente()
 {
     _logger->log("cleanUpAfterVente");
@@ -1358,6 +1335,8 @@ void YerothPointDeVenteWindow::cleanUpAfterVente()
 
     deleteArticleVenteInfos();
 
+    CLEAR_LOYALTY_PROGRAM_DATA_FOR_CURRENT_SESSION_SALE();
+
     lineEdit_recherche_article->myClear();
     lineEdit_recherche_article_codebar->myClear();
 
@@ -1370,9 +1349,6 @@ void YerothPointDeVenteWindow::cleanUpAfterVente()
     _typeDeVente= YerothUtils::VENTE_INDEFINI;
 
 
-    lineEdit_articles_FIDELITE_RABAIS->clear();
-
-
     lineEdit_articles_montant_a_rembourser->setText(GET_CURRENCY_STRING_NUM(0.0));
     lineEdit_articles_tva->setText(GET_CURRENCY_STRING_NUM(0.0));
     lineEdit_articles_total->setText(GET_CURRENCY_STRING_NUM(0.0));
@@ -1380,8 +1356,6 @@ void YerothPointDeVenteWindow::cleanUpAfterVente()
     label_total_ttc->setText(GET_CURRENCY_STRING_NUM(0.0));
 
     lineEdit_articles_quantite_a_vendre->setText(GET_DOUBLE_STRING(0.0));
-
-    lineEdit_articles_nom_client->clear();
 
     lineEdit_article_detail_reference_produit->clear();
     lineEdit_article_detail_designation->clear();
@@ -1427,8 +1401,6 @@ void YerothPointDeVenteWindow::rendreInvisible()
 
     _allWindows->_pdVenteMethodePaiementComptantEntreeDialog->clearLineEditValue();
 
-    _vente_LOYALTY_PROGRAM_NOUVEAU_COMPTE_CLIENT = 0.0;
-
     _remise_somme_total_prix = 0.0;
 
     _remise_somme_total_pourcentage = 0.0;
@@ -1439,8 +1411,6 @@ void YerothPointDeVenteWindow::rendreInvisible()
 
     _qteChangeCodeBar = false;
 
-    _curClientName.clear();
-
     _sommeTotal_HORS_TAXES = 0.0;
 
     _sommeTotal = 0.0;
@@ -1448,6 +1418,8 @@ void YerothPointDeVenteWindow::rendreInvisible()
     _tva = 0.0;
 
     _quantiteAVendre = 0;
+
+    CLEAR_LOYALTY_PROGRAM_DATA_FOR_CURRENT_SESSION_SALE();
 
     lineEdit_articles_total->clear();
 

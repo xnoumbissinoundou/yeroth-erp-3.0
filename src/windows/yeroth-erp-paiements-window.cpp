@@ -351,6 +351,7 @@ void YerothPaiementsWindow::update_clients_specific_payments_type()
 		<< YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::ENCAISSEMENT_TELEPHONE)
 		<< YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::ENCAISSEMENT_BANCAIRE)
 		<< YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::ENCAISSEMENT_VIREMENT_BANCAIRE)
+		<< YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::DECAISSEMENT_POUR_PROGRAMME_DE_FIDELITE_CLIENT)
 		<< YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::DECAISSEMENT_RETOUR_ACHAT_DUN_CLIENT);
 
 
@@ -418,6 +419,10 @@ void YerothPaiementsWindow::update_suppliers_specific_payments_type()
 	comboBox_paiements_type_de_paiement->
 		yeroth_remove_item(YerothUtils::_typedepaiementToUserViewString
 			.value(YerothUtils::ENCAISSEMENT_VIREMENT_BANCAIRE));
+
+	comboBox_paiements_type_de_paiement->
+		yeroth_remove_item(YerothUtils::_typedepaiementToUserViewString
+			.value(YerothUtils::DECAISSEMENT_POUR_PROGRAMME_DE_FIDELITE_CLIENT));
 
 	comboBox_paiements_type_de_paiement->
 		yeroth_remove_item(YerothUtils::_typedepaiementToUserViewString
