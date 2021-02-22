@@ -91,6 +91,13 @@ private:
 
     void clear_all_fields();
 
+    inline void updatePopulateComboBoxes()
+    {
+    	comboBox_creer_nom_departement_produit->
+    		populateComboBoxRawString(YerothDatabase::DEPARTEMENTS_PRODUITS,
+    								  YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT);
+    }
+
     void populateComboBoxes();
 
     void setupLineEdits();
