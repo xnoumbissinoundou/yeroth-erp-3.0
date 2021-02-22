@@ -717,9 +717,7 @@ bool YerothVentesWindow::annuler_cette_vente()
 
 		paiementsRecord.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT, nouveau_compte_client);
 
-		int paiements_id_to_save = YerothERPWindows::getNextIdSqlTableModel_paiements();
-
-		paiementsRecord.setValue(YerothDatabaseTableColumn::ID, paiements_id_to_save);
+		paiementsRecord.setValue(YerothDatabaseTableColumn::ID, IDforReceipt);
 
 		successPaiementsInsert = paiementsSqlTableModel.insertNewRecord(paiementsRecord);
 
