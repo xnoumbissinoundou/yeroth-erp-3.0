@@ -40,6 +40,7 @@ const QString YerothDatabaseTableColumn::REFERENCE_RECU_SORTIE			("reference_rec
 const QString YerothDatabaseTableColumn::ENREGISTREUR_STOCK				("enregistreur_stock");
 const QString YerothDatabaseTableColumn::REFERENCE						("reference");
 const QString YerothDatabaseTableColumn::COMPTE_FOURNISSEUR				("compte_fournisseur");
+const QString YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS  ("compte_client_PROGRAMME_DE_FIDELITE_CLIENTS");
 const QString YerothDatabaseTableColumn::COMPTE_CLIENT					("compte_client");
 const QString YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT	("dette_maximale_compte_client");
 const QString YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT		("nom_departement_produit");
@@ -191,7 +192,7 @@ const QString YerothDatabaseTableColumn::LOCALISATION_ENTREE_ID			("localisation
 YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 {
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::MONTANT_RABAIS_PROGRAMME_DE_FIDELITE_CLIENTS,
-			QObject::trUtf8("Rabais FIÉLITÉ CLIENTS (%1)").arg(YerothERPConfig::currency));
+			QObject::trUtf8("Rabais FIDÉLITÉ CLIENTS (%1)").arg(YerothERPConfig::currency));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REMISE_PRIX, 	QObject::trUtf8("Remise (%1)").arg(YerothERPConfig::currency));
 
@@ -239,6 +240,8 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REFERENCE,			QObject::trUtf8("Référence"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::COMPTE_FOURNISSEUR,		QObject::tr("Compte fournisseur"));
+
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS,	QObject::trUtf8("Compte client (fidélité)"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::COMPTE_CLIENT,			QObject::tr("Compte client"));
 

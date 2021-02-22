@@ -18,6 +18,8 @@
 
 #include "src/process/yeroth-erp-process.hpp"
 
+#include "src/utils/yeroth-erp-payment-processing.hpp"
+
 #include "src/utils/yeroth-erp-config.hpp"
 
 #include "src/utils/yeroth-erp-sqltable-model.hpp"
@@ -546,6 +548,8 @@ YerothUtils::YerothUtils()
     YerothUtils::_typedepaiementToUserViewString.insert(YerothUtils::DECAISSEMENT_INDEFINI,
 			QObject::trUtf8("décaissement indéfini"));
 
+    YerothUtils::_typedepaiementToUserViewString.insert(YerothUtils::DECAISSEMENT_POUR_PROGRAMME_DE_FIDELITE_CLIENT,
+			QObject::trUtf8("décaissement (fidélité clients)"));
 }
 
 

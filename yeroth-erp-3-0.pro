@@ -244,7 +244,8 @@ HEADERS = src/include/yeroth-erp-3-0-precompiled-header.hpp \
 		  src/utils/yeroth-erp-sqltable-model.hpp \
 		  src/utils/yeroth-erp-LIST-map-COMPLEX-ITEM.hpp \
 		  src/utils/yeroth-erp-map-COMPLEX-ITEM.hpp \
-		  src/utils/yeroth-erp-config.hpp \
+		  src/utils/yeroth-erp-payment-processing.hpp \
+			src/utils/yeroth-erp-config.hpp \
 		  src/utils/yeroth-erp-service-stock-marchandise-data.hpp \
 			src/utils/yeroth-erp-utils.hpp \
 		  src/utils/yeroth-erp-database.hpp \
@@ -377,6 +378,7 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/utils/yeroth-erp-sqltable-model.cpp \
 		  src/utils/yeroth-erp-LIST-map-COMPLEX-ITEM.cpp \
 		  src/utils/yeroth-erp-map-COMPLEX-ITEM.cpp \
+		  src/utils/yeroth-erp-payment-processing.cpp \
 		  src/utils/yeroth-erp-config.cpp \
 		  src/utils/yeroth-erp-utils.cpp \
 		  src/utils/yeroth-erp-database.cpp \		  

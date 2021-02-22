@@ -182,6 +182,7 @@ void YerothERPClientsWindow::reinitialiser_colones_db_visibles()
 
     _visibleDBColumnNameStrList
 		<< YerothDatabaseTableColumn::REFERENCE_CLIENT
+		<< YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS
 		<< YerothDatabaseTableColumn::COMPTE_CLIENT
 		<< YerothDatabaseTableColumn::NOM_ENTREPRISE
 		<< YerothDatabaseTableColumn::VILLE

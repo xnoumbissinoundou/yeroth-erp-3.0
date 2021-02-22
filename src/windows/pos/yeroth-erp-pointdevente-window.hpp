@@ -223,10 +223,14 @@ public slots:
 
 	double GET_BEST_CURRENT_LOYALTY_PROGRAM_MONEY_BENEFITS();
 
+	double GET_BEST_CURRENT_LOYALTY_PROGRAM_MONEY_BENEFITS(QString &client_best_loyalty_program_IN_OUT);
+
 	double calculate_LOYALTY_PROGRAM_MONEY_BENEFITS(const QString& a_loyalty_program);
 
 	void updateCompteClient_PROGRAMME_DE_FIDELITE_LOYALTY(const QString &a_nom_entreprise_client,
 														  bool CALL_update_lineedits_and_labels = false);
+
+	void handle_CLIENT_LOYALTY_PROGRAM(const QString &a_product_reference);
 
 	void executer_la_vente_compte_client();
 
@@ -346,6 +350,8 @@ private:
     bool					_tvaCheckBoxPreviousState;
 
     QString 				_currentStocksID;
+
+    double 					_vente_LOYALTY_PROGRAM_NOUVEAU_COMPTE_CLIENT;
 
     double					_sommeTotal_HORS_TAXES;
 
