@@ -101,18 +101,6 @@ OPT_INSTALLATION_TARGET_DIR="${TARGET_INSTALLATION_FOLDER}/opt/${YEROTH_ERP_3_0_
 
 mkdir -p "${OPT_INSTALLATION_TARGET_DIR}"
 
-YEROTH_CONFIGURATIONS_DATA_FOLDER_NAME="YEROTH_configurations_data"
-
-YEROTH_SQL_BACKUP_FOLDER_NAME="YEROTH_sql_backup"
-
-TARGET_INSTALLATION_CONFIGURATIONS_DATA_FOLDER="${OPT_INSTALLATION_TARGET_DIR}/${YEROTH_CONFIGURATIONS_DATA_FOLDER_NAME}"
-
-TARGET_INSTALLATION_SQL_BACKUP_FOLDER="${OPT_INSTALLATION_TARGET_DIR}/${YEROTH_SQL_BACKUP_FOLDER_NAME}"
-
-mkdir -p "${TARGET_INSTALLATION_CONFIGURATIONS_DATA_FOLDER}"
-
-mkdir -p "${TARGET_INSTALLATION_SQL_BACKUP_FOLDER}"
-
 TARGET_INSTALLATION_FOLDER_BIN="${OPT_INSTALLATION_TARGET_DIR}/bin"
 
 mkdir -p "${TARGET_INSTALLATION_FOLDER_BIN}"
@@ -144,25 +132,9 @@ fi
 echo -e "${YEROTH_ERP_3_0_DEB_PACKAGE_INFORMATION}$(cat ${TARGET_INSTALLATION_FOLDER}/DEBIAN/control)" > ${TARGET_INSTALLATION_FOLDER}/DEBIAN/control
 
 
-if [ ! "$qsqlite3Flag" ]; then
-	${CP} ${YEROTH_ERP_3_0_HOME_FOLDER}/yeroth-erp-3-0-deployment-configuration-scripts/yeroth-erp-3-0.properties \
-		"${TARGET_INSTALLATION_CONFIGURATIONS_DATA_FOLDER}"
-
-	${CP} ${YEROTH_ERP_3_0_HOME_FOLDER}/yeroth-erp-3-0-deployment-configuration-scripts/yeroth-erp-3-0-system-local-configuration.properties \
-			"${TARGET_INSTALLATION_CONFIGURATIONS_DATA_FOLDER}"
-else
-	${CP} ${YEROTH_ERP_3_0_HOME_FOLDER}/yeroth-erp-3-0-deployment-configuration-scripts/yeroth-erp-3-0-qsqlite3.properties \
-			"${TARGET_INSTALLATION_CONFIGURATIONS_DATA_FOLDER}"
-
-	${CP} ${YEROTH_ERP_3_0_HOME_FOLDER}/yeroth-erp-3-0-deployment-configuration-scripts/yeroth-erp-3-0-system-local-configuration.properties \
-			"${TARGET_INSTALLATION_CONFIGURATIONS_DATA_FOLDER}"
-fi
-
 YEROTH_ERP_3_0_POSTRM_STR="#!/bin/bash
 sed -i '/YEROTH_ERP_3_0_HOME_FOLDER/d' /etc/environment
-sed -i '/YEROTH_ERP_3_0_PROPERTIES_CONFIGURATION_FOLDER/d' /etc/environment
-sed -i '/YEROTH_ERP_3_0_SYSTEM_DAEMON_HOME_FOLDER/d' /etc/environment
-"
+sed -i '/YEROTH_ERP_3_0_SYSTEM_DAEMON_HOME_FOLDER/d' /etc/environment"
 
 echo -e "${YEROTH_ERP_3_0_POSTRM_STR}$(cat ${TARGET_INSTALLATION_FOLDER}/DEBIAN/postrm)" > ${TARGET_INSTALLATION_FOLDER}/DEBIAN/postrm
 
@@ -171,12 +143,8 @@ chmod 755 ${TARGET_INSTALLATION_FOLDER}/DEBIAN/postrm
 
 YEROTH_ERP_3_0_POSTINST_STR="#!/bin/bash
 echo -e \"export YEROTH_ERP_3_0_HOME_FOLDER=/opt/${YEROTH_ERP_3_0_BINARY_NAME}\" >> /etc/environment
-echo -e \"export YEROTH_ERP_3_0_PROPERTIES_CONFIGURATION_FOLDER=/opt/${YEROTH_ERP_3_0_BINARY_NAME}/YEROTH_configurations_data\" >> /etc/environment
 echo -e \"export YEROTH_ERP_3_0_SYSTEM_DAEMON_HOME_FOLDER=/opt/yeroth-erp-3-0-system-daemon\" >> /etc/environment
-chmod go+rwx /opt/${YEROTH_ERP_3_0_BINARY_NAME}/${YEROTH_CONFIGURATIONS_DATA_FOLDER_NAME}
-chmod go+rwx /opt/${YEROTH_ERP_3_0_BINARY_NAME}/${YEROTH_SQL_BACKUP_FOLDER_NAME}
-chmod go+w /opt/${YEROTH_ERP_3_0_BINARY_NAME}/yeroth-erp-3-0.log
-chmod go+w /opt/${YEROTH_ERP_3_0_BINARY_NAME}/${YEROTH_CONFIGURATIONS_DATA_FOLDER_NAME}/yeroth-erp-3-0-system-local-configuration.properties"
+chmod go+w /opt/${YEROTH_ERP_3_0_BINARY_NAME}/yeroth-erp-3-0.log"
 
 echo -e "${YEROTH_ERP_3_0_POSTINST_STR}$(cat ${TARGET_INSTALLATION_FOLDER}/DEBIAN/postinst)" > ${TARGET_INSTALLATION_FOLDER}/DEBIAN/postinst
 
