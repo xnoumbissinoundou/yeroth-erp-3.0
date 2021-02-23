@@ -228,8 +228,7 @@ void YerothTableViewPRINT_UTILITIES_TEX_TABLE::
         return ;
     }
 
-
-    bool USE_RESIZE_BOX_FOR_COLUMN_PRINTING = false;
+    bool USE_RESIZE_BOX_FOR_COLUMN_PRINTING = true;
 
     static bool first_time_execution = true;
 
@@ -396,7 +395,7 @@ void YerothTableViewPRINT_UTILITIES_TEX_TABLE::
                 }
                 else
                 {
-                    latexTable_in_out.append("\"\"").append("\\hline\n");
+                    latexTable_in_out.append("\"\"").append("\n");
                 }
             }
         }
@@ -425,4 +424,3 @@ void YerothTableViewPRINT_UTILITIES_TEX_TABLE::
 
 //    qDebug() << "++ latexTable_in_out in get_YEROTH_TableViewListingTexDocumentString: " << latexTable_in_out;
 }
-
