@@ -3083,12 +3083,20 @@ void YerothPointDeVenteWindow::updateCompteClient_PROGRAMME_DE_FIDELITE_LOYALTY(
 
 	QString client_group_id;
 
-	QStringList clientGroupId_list;
-
 	a_qsql_query.next();
 
 	client_group_id = a_qsql_query.value(YerothDatabaseTableColumn::GROUPES_DU_CLIENT_ID).toString();
 
+//	QDEBUG_STRING_OUTPUT_2("client_group_id", client_group_id);
+
+	if (client_group_id.isEmpty())
+	{
+		lineEdit_articles_FIDELITE_RABAIS->clear();
+
+		return ;
+	}
+
+	QStringList clientGroupId_list;
 
 	YerothUtils::SPLIT_STAR_SEPARATED_DB_STRING(clientGroupId_list, client_group_id);
 
@@ -3104,45 +3112,55 @@ void YerothPointDeVenteWindow::updateCompteClient_PROGRAMME_DE_FIDELITE_LOYALTY(
 	_client_group_program_TO_money_benefit.clear();
 
 
+	QString clientGroup_db_ID;
+
 	QString client_group_loyalty_program;
 
-	QString cur_select_client_loyalty_program;
-
+	QString CUR_SELECT_CLIENT_LOYALTY_PROGRAM;
 
 	double cur_client_group_loyalty_program_money_BENEFITS = 0.0;
 
-
 	for (uint k = 0; k < clientGroupId_list.size(); ++k)
 	{
-		cur_select_client_loyalty_program =
+		clientGroup_db_ID = clientGroupId_list.at(k);
+
+		if (clientGroup_db_ID.isEmpty())
+		{
+			continue;
+		}
+
+		CUR_SELECT_CLIENT_LOYALTY_PROGRAM =
 				QString("select %1 from %2 where %3='%4'")
 					.arg(YerothDatabaseTableColumn::PROGRAMME_DE_FIDELITE_CLIENTS,
 						 YerothDatabase::GROUPES_DE_CLIENTS,
 						 YerothDatabaseTableColumn::ID,
-						 clientGroupId_list.at(k));
-
+						 clientGroup_db_ID);
 
 //		QDEBUG_STRING_OUTPUT_2("cur_select_client_loyalty_program",
 //							   cur_select_client_loyalty_program);
 
-
 		a_qsql_query.clear();
 
-		query_size = YerothUtils::execQuery(a_qsql_query, cur_select_client_loyalty_program);
+		query_size = YerothUtils::execQuery(a_qsql_query, CUR_SELECT_CLIENT_LOYALTY_PROGRAM);
 
 		if (query_size > 0 && a_qsql_query.next())
 		{
 			client_group_loyalty_program = a_qsql_query.value(0).toString();
 
-//			QDEBUG_STRING_OUTPUT_1(QString("clientGroup ID (%1), client_group_loyalty_program => %2")
-//										.arg(clientGroupId_list.at(k),
-//											 client_group_loyalty_program));
+			if (client_group_loyalty_program.isEmpty())
+			{
+				continue;
+			}
+
+			//			QDEBUG_STRING_OUTPUT_1(QString("clientGroup ID (%1), client_group_loyalty_program => %2")
+			//										.arg(clientGroup_db_ID,
+			//											 client_group_loyalty_program));
 
 			cur_client_group_loyalty_program_money_BENEFITS =
 					calculate_LOYALTY_PROGRAM_MONEY_BENEFITS(client_group_loyalty_program);
 
 			_client_group_program_TO_money_benefit.insert_item(client_group_loyalty_program,
-														  	   cur_client_group_loyalty_program_money_BENEFITS);
+					cur_client_group_loyalty_program_money_BENEFITS);
 		}
 	}
 
@@ -3190,6 +3208,12 @@ void YerothPointDeVenteWindow::updateCompteClient_PROGRAMME_DE_FIDELITE_LOYALTY(
 
 void YerothPointDeVenteWindow::handle_CLIENT_LOYALTY_PROGRAM(const QString &a_product_reference)
 {
+	if (_curClientName.isEmpty() ||
+		_client_group_program_TO_money_benefit.isEmpty())
+	{
+		return ;
+	}
+
 	/*
 	 * WE FIRST CREATE A PAYMENT ENTRY.
 	 */

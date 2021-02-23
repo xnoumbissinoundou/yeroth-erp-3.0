@@ -47,6 +47,16 @@ public:
 			  Yeroth_MAP_COMPLEX_Item::lessThan);
 	}
 
+	inline virtual int isEmpty()
+	{
+		return (_my_list_complex_items.size() <= 0);
+	}
+
+	inline virtual int size()
+	{
+		return _my_list_complex_items.size();
+	}
+
 	inline virtual const QList<Yeroth_MAP_COMPLEX_Item *> &q_list()
 	{
 		return _my_list_complex_items;

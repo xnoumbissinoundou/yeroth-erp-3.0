@@ -786,6 +786,7 @@ void YerothPaiementsWindow::reinitialiser_colones_db_visibles()
 
     _visibleDBColumnNameStrList
 			<< YerothDatabaseTableColumn::DATE_PAIEMENT
+			<< YerothDatabaseTableColumn::HEURE_PAIEMENT
 			<< YerothDatabaseTableColumn::NOM_ENTREPRISE
 			<< YerothDatabaseTableColumn::MONTANT_PAYE
 			<< YerothDatabaseTableColumn::TYPE_DE_PAIEMENT
