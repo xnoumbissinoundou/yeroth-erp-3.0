@@ -2678,7 +2678,11 @@ void YerothTableauxDeBordWindow::bilanComptable()
     	delete curValue;
     }
 
-    benefice_sur_vente_effectuees = benefice_sur_vente_effectuees - montant_total_dette_clientelle;
+    benefice_sur_vente_effectuees = benefice_sur_vente_effectuees -
+    								montant_total_dette_clientelle;
+
+    benefice_sur_vente_effectuees = benefice_sur_vente_effectuees -
+    								qFabs(montant_total_versements__PAR_FIDELITE_CLIENTS);
 
     if (benefice_sur_vente_effectuees <= 0)
     {
