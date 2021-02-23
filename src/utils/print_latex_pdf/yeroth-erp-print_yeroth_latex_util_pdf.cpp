@@ -409,7 +409,7 @@ void YerothTableViewPRINT_UTILITIES_TEX_TABLE::
     }
 
     //Removes the empty character "" from Latex output
-    latexTable_in_out.replace("\"\"", "");
+    latexTable_in_out.replace("\"\"", YerothUtils::EMPTY_STRING);
 
     if (USE_RESIZE_BOX_FOR_COLUMN_PRINTING)
     {
@@ -423,6 +423,6 @@ void YerothTableViewPRINT_UTILITIES_TEX_TABLE::
     }
 
 
-    //qDebug() << "++ latexTable_in_out in get_YEROTH_TableViewListingTexDocumentString: " << latexTable_in_out;
+//    qDebug() << "++ latexTable_in_out in get_YEROTH_TableViewListingTexDocumentString: " << latexTable_in_out;
 }
 
