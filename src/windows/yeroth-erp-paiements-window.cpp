@@ -80,6 +80,8 @@ YerothPaiementsWindow::YerothPaiementsWindow()
 
     mySetupUi(this);
 
+    enableResizing();
+
     setYerothTableView_FROM_WINDOWS_COMMONS(tableView_paiements);
 
 
@@ -171,7 +173,7 @@ YerothPaiementsWindow::YerothPaiementsWindow()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 #endif
 
-    connect(tabWidget_historique_paiements, SIGNAL(currentChanged(int)), this, SLOT(handleCurrentChanged(int)));
+    connect(tabWidget_paiements, SIGNAL(currentChanged(int)), this, SLOT(handleCurrentChanged(int)));
 
     connect(tableView_paiements, SIGNAL(doubleClicked(const QModelIndex &)),
     		this, SLOT(afficher_paiements_detail()));
@@ -796,6 +798,16 @@ void YerothPaiementsWindow::reinitialiser_colones_db_visibles()
 }
 
 
+void YerothPaiementsWindow::resizeEvent(QResizeEvent *event)
+{
+	lineEdit_paiements_terme_recherche->setFixedWidth(event->size().width() - 4);
+
+	tabWidget_paiements->setFixedWidth(event->size().width() - 4);
+
+	tableView_paiements->setFixedWidth(tabWidget_paiements->width() - 4);
+}
+
+
 void YerothPaiementsWindow::contextMenuEvent(QContextMenuEvent * event)
 {
     if (tableView_paiements->rowCount() > 0)
@@ -806,6 +818,7 @@ void YerothPaiementsWindow::contextMenuEvent(QContextMenuEvent * event)
         menu.exec(event->globalPos());
     }
 }
+
 
 void YerothPaiementsWindow::clear_all_fields()
 {
@@ -1041,7 +1054,7 @@ void YerothPaiementsWindow::resetFilter(YerothSqlTableModel *historiquePaiements
 void YerothPaiementsWindow::retourPaiements()
 {
     _currentTabView = TableauDesPaiements;
-    tabWidget_historique_paiements->setCurrentIndex(TableauDesPaiements);
+    tabWidget_paiements->setCurrentIndex(TableauDesPaiements);
 }
 
 
@@ -1223,11 +1236,11 @@ void YerothPaiementsWindow::lister_les_elements_du_tableau(YerothSqlTableModel &
 
     if (tableView_paiements->rowCount() > 0)
     {
-        tabWidget_historique_paiements->setTabEnabled(AfficherPaiementAuDetail, true);
+        tabWidget_paiements->setTabEnabled(AfficherPaiementAuDetail, true);
     }
     else
     {
-        tabWidget_historique_paiements->setTabEnabled(AfficherPaiementAuDetail, false);
+        tabWidget_paiements->setTabEnabled(AfficherPaiementAuDetail, false);
     }
 }
 
@@ -1252,7 +1265,7 @@ void YerothPaiementsWindow::rendreVisible(YerothSqlTableModel * stocksTableModel
 
     setupLineEditsQCompleters((QObject *)this);
 
-    tabWidget_historique_paiements->setCurrentIndex(TableauDesPaiements);
+    tabWidget_paiements->setCurrentIndex(TableauDesPaiements);
 
 
     YerothPOSUser *aUser = _allWindows->getUser();
@@ -1320,7 +1333,7 @@ void YerothPaiementsWindow::afficher_paiements_detail()
 
     dateEdit_details_de_paiement_date_paiement->setDate(GET_DATE_FROM_STRING(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DATE_PAIEMENT)));
 
-    tabWidget_historique_paiements->setCurrentIndex(AfficherPaiementAuDetail);
+    tabWidget_paiements->setCurrentIndex(AfficherPaiementAuDetail);
 }
 
 

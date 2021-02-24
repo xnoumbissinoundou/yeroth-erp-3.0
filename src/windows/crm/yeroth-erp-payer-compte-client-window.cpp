@@ -753,7 +753,10 @@ void YerothPayerCompteClientWindow::updateLineEdits()
 		_allWindows->_clientsWindow->
 			SQL_QUERY_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(aQSqlRecord);
 
-		lineEdit_comptes_clients_valeur_compte_client_FIDELITE->setText(GET_CURRENCY_STRING_NUM(0.0));
+		double compteClient_LOYALTY =
+				GET_SQL_RECORD_DATA(aQSqlRecord, YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS).toDouble();
+
+		lineEdit_comptes_clients_valeur_compte_client_FIDELITE->setText(GET_CURRENCY_STRING_NUM(compteClient_LOYALTY));
 
 		double compteClient = GET_SQL_RECORD_DATA(aQSqlRecord, YerothDatabaseTableColumn::COMPTE_CLIENT).toDouble();
 

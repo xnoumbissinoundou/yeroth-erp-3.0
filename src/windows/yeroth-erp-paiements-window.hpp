@@ -159,7 +159,9 @@ protected:
 
 	virtual void reinitialiser_colones_db_visibles();
 
-    virtual void contextMenuEvent(QContextMenuEvent *event);
+	virtual void resizeEvent(QResizeEvent *event);
+
+	virtual void contextMenuEvent(QContextMenuEvent *event);
 
     virtual void setupShortcuts();
 

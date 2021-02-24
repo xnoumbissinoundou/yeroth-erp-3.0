@@ -438,7 +438,7 @@
    <locale language="French" country="France"/>
   </property>
   <widget class="QWidget" name="centralwidget_caisseWindow">
-   <widget class="QTabWidget" name="tabWidget_ventes">
+   <widget class="YerothERPTabWidget" name="tabWidget_ventes">
     <property name="geometry">
      <rect>
       <x>1</x>
@@ -44885,6 +44885,12 @@ cette Vente</string>
    <class>YerothERPVentesTableView</class>
    <extends>QTableView</extends>
    <header>src/widgets/table-view/yeroth-erp-ventes-table-view.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>YerothERPTabWidget</class>
+   <extends>QTabWidget</extends>
+   <header>src/widgets/yeroth-erp-tab-widget.hpp</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <tabstops>

@@ -147,7 +147,7 @@ HEADERS = src/include/yeroth-erp-3-0-precompiled-header.hpp \
 		  src/include/yeroth-erp-3-0-software.text-configuration.hpp \
 		  src/widgets/yeroth-erp-progress-bar.hpp \
 	  	src/widgets/yeroth-erp-qcolumn-view.hpp \
-	  	src/widgets/yeroth-erp-qtabwidget.hpp \
+	  	src/widgets/yeroth-erp-tab-widget.hpp \
 			src/widgets/table-view/yeroth-erp-table-view-with-pagination.hpp \
 			src/widgets/table-view/yeroth-erp-table-view.hpp \
 			src/widgets/table-view/yeroth-erp-comptes-bancaires-table-view.hpp \
@@ -281,7 +281,7 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/imports/yeroth-erp-stock-import.cpp \
 		  src/widgets/yeroth-erp-progress-bar.cpp \
 	  	src/widgets/yeroth-erp-qcolumn-view.cpp \
-		  src/widgets/yeroth-erp-qtabwidget.cpp \
+		  src/widgets/yeroth-erp-tab-widget.cpp \
 			src/widgets/table-view/yeroth-erp-table-view-with-pagination.cpp \
 			src/widgets/table-view/yeroth-erp-table-view.cpp \
 			src/widgets/table-view/yeroth-erp-comptes-bancaires-table-view.cpp \

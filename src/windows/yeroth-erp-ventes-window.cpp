@@ -68,6 +68,8 @@ YerothVentesWindow::YerothVentesWindow()
 
     mySetupUi(this);
 
+    enableResizing();
+
     setYerothTableView_FROM_WINDOWS_COMMONS(tableView_ventes);
 
 
@@ -1528,6 +1530,16 @@ void YerothVentesWindow::reinitialiser_colones_db_visibles()
 			<< YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT
 			<< YerothDatabaseTableColumn::QUANTITE_VENDUE
 			<< YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE;
+}
+
+
+void YerothVentesWindow::resizeEvent(QResizeEvent *event)
+{
+	lineEdit_ventes_terme_recherche->setFixedWidth(event->size().width() - 4);
+
+	tabWidget_ventes->setFixedWidth(event->size().width() - 4);
+
+	tableView_ventes->setFixedWidth(tabWidget_ventes->width() - 4);
 }
 
 

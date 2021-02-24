@@ -413,6 +413,7 @@ void YerothGroupesDeClientsWindow::reinitialiser_colones_db_visibles()
 			<< YerothDatabaseTableColumn::DATE_CREATION
 			<< YerothDatabaseTableColumn::DESIGNATION
 			<< YerothDatabaseTableColumn::REFERENCE_GROUPE
+			<< YerothDatabaseTableColumn::PROGRAMME_DE_FIDELITE_CLIENTS
 			<< YerothDatabaseTableColumn::MAXIMUM_DE_MEMBRES;
 }
 

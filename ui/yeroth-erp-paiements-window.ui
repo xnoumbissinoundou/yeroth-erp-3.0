@@ -438,7 +438,7 @@
    <locale language="French" country="France"/>
   </property>
   <widget class="QWidget" name="centralwidget_caisseWindow">
-   <widget class="QTabWidget" name="tabWidget_historique_paiements">
+   <widget class="YerothERPTabWidget" name="tabWidget_paiements">
     <property name="geometry">
      <rect>
       <x>1</x>
@@ -27447,6 +27447,12 @@ background-color: rgb(0, 0, 0); </string>
    <extends>QTableView</extends>
    <header>src/widgets/table-view/yeroth-erp-paiements-table-view.hpp</header>
   </customwidget>
+  <customwidget>
+   <class>YerothERPTabWidget</class>
+   <extends>QTabWidget</extends>
+   <header>src/widgets/yeroth-erp-tab-widget.hpp</header>
+   <container>1</container>
+  </customwidget>
  </customwidgets>
  <tabstops>
   <tabstop>lineEdit_paiements_terme_recherche</tabstop>
@@ -27459,7 +27465,7 @@ background-color: rgb(0, 0, 0); </string>
   <tabstop>pushButton_paiements_filtrer</tabstop>
   <tabstop>pushButton_reinitialiser</tabstop>
   <tabstop>tableView_paiements</tabstop>
-  <tabstop>tabWidget_historique_paiements</tabstop>
+  <tabstop>tabWidget_paiements</tabstop>
   <tabstop>dateEdit_details_de_paiement_date_paiement</tabstop>
   <tabstop>pushButton_retour_paiements</tabstop>
   <tabstop>lineEdit_details_de_paiement_montant_paye</tabstop>
