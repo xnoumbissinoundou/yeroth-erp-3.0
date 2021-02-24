@@ -5,7 +5,7 @@
 [ -f /etc/environment ] && . /etc/environment
 
 if [ $YEROTH_ERP_3_0_HOME_FOLDER ]; then
-    "$YEROTH_ERP_3_0_HOME_FOLDER"/bin/yeroth-erp-3.0-academic --gui --style cde
+    "$YEROTH_ERP_3_0_HOME_FOLDER"/bin/yeroth-erp-3-0-academic --gui --style cde
 else
     echo "Please set the environment variable: 
     		YEROTH_ERP_3_0_HOME_FOLDER (file '/etc/environment' or
