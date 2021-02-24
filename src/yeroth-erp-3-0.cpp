@@ -653,8 +653,8 @@ int main(int argc, char *argv[])
 
 #else //YEROTH_ENGLISH_LANGUAGE
 
-    QString path(QString("%1/%2")
-    				.arg(YerothERPConfig::YEROTH_ERP_3_0_PROPERTIES_CONFIGURATION_FOLDER,
+    QString path(QString("%1/bin/%2")
+    				.arg(YerothERPConfig::YEROTH_ERP_3_0_HOME_FOLDER,
     					 TRANSLATION_FILE_ENGLISH));
 
     QTranslator translator;

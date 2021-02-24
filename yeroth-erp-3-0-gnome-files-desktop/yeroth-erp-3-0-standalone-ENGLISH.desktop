@@ -1,9 +1,9 @@
 [Desktop Entry]
-Name=yeroth-erp-3.0-standalone-ENGLISH
-Exec=/opt/yeroth-erp-3.0-standalone/bin/yeroth-erp-3.0-standalone-ENGLISH.sh
+Name=yeroth-erp-3-0-standalone-ENGLISH
+Exec=/opt/yeroth-erp-3-0-standalone-ENGLISH/bin/yeroth-erp-3-0-standalone-ENGLISH.sh
 Icon=yeroth-erp-3-0
 Terminal=false
 Type=Application
 StartupNotify=true
 Hidden=false
-Categories=utils;
+Categories=Utility;

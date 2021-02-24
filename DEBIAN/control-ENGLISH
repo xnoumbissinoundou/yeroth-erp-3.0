@@ -3,6 +3,6 @@ Architecture: all
 Maintainer: DR XAVIER NOUMBISSI NOUNDOU <yerotherp30@gmail.com>
 Priority: optional
 Version: 3.0
-Description: Yeroth-erp-3.0 is the best ERP software-system in the universe (French language) !
+Description: Yeroth-erp-3.0 is the best ERP software-system in the universe (English language) !
 Section: utils
 Pre-Depends: cups, mawk, xvfb, findutils, lxqt-sudo, libusb-1.0-0, libqt5core5a, libqt5gui5, libqt5widgets5, libqt5sql5-mysql, libqt5sql5, libqt5network5, libqt5dbus5, libqt5test5, texlive-luatex, texlive, texlive-base, texlive-extra-utils, texlive-font-utils, texlive-fonts-extra, texlive-fonts-recommended, texlive-generic-extra, texlive-generic-recommended, texlive-latex-base, texlive-latex-extra, texlive-latex-recommended, texlive-science

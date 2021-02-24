@@ -3,6 +3,6 @@ Architecture: all
 Maintainer: DR XAVIER NOUMBISSI NOUNDOU <yerotherp30@gmail.com>
 Priority: optional
 Version: 3.0
-Description: Yeroth-erp-3.0-standalone-configurations-data contains all configurations data for BEST OF THE UNIVERSE SOFTWARE SYSTEM ERP Yeroth-erp-3.0-standalone.
-Conflicts: yeroth-erp-3.0-standalone-configurations-data-ENGLISH
+Description: Yeroth-erp-3.0-standalone-configurations-data contains all configurations data for BEST OF THE UNIVERSE SOFTWARE SYSTEM ERP Yeroth-erp-3.0-standalone in French language.
+Conflicts: yeroth-erp-3-0-standalone-configurations-data-ENGLISH
 Section: Utility
