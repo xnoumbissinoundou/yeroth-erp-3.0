@@ -301,11 +301,25 @@ void YerothTableViewPRINT_UTILITIES_TEX_TABLE::
      * in the Tex table. */
     unsigned int id = fromRowIndex + 1;
 
-    latexTable_in_out.append("\\textbf{n\\textsuperscript{o}} & ");
-
     QStandardItem *item;
 
-    for (int k = 0; k < headerViewModelIndex.count(); ++k)
+    int max_headerViewModelIndex_count = headerViewModelIndex.count() + 1;
+
+    int max_headerViewModelIndex_count_FOR_SEPARATION_CHAR = max_headerViewModelIndex_count - 1;
+
+//    QDEBUG_STRING_OUTPUT_2_N("max_headerViewModelIndex_count", max_headerViewModelIndex_count);
+
+    for (int k = 0; k < max_headerViewModelIndex_count_FOR_SEPARATION_CHAR; ++k)
+    {
+    	latexTable_in_out.append(" & ");
+    }
+
+    latexTable_in_out.append("\\\\ \n");
+
+    latexTable_in_out.append("\\textbf{n\\textsuperscript{o}} & ");
+
+
+    for (int k = 0; k < max_headerViewModelIndex_count; ++k)
     {
     	realK_pos = headerViewModelIndex.at(k);
 
@@ -313,23 +327,35 @@ void YerothTableViewPRINT_UTILITIES_TEX_TABLE::
 
         if (0 != item)
         {
-        	QString itemText(item->text());
+        	QString itemText(item->text().toUpper().trimmed());
 
         	itemText.prepend("\\textbf{").append("}");
 
         	itemText.prepend("\\multicolumn{1}{c|}{").append("}");
 
-            YerothUtils::handleTexTableItemText(texTableColumnCount,
-                                   latexTable_in_out,
-                                   realK_pos,
-                                   itemText);
+        	latexTable_in_out.append(itemText);
+
+            if (k < max_headerViewModelIndex_count_FOR_SEPARATION_CHAR - 1)
+            {
+            	latexTable_in_out.append(" &");
+            }
         }
     }
 
-    /** Closing Tex table header */
+    latexTable_in_out.append(" \\\\").append("\n");
+
     YerothUtils::cleanUpTexTableLastString(latexTable_in_out);
 
-    latexTable_in_out.append(" \\\\ \\hline\n");
+    for (int k = 0; k < max_headerViewModelIndex_count_FOR_SEPARATION_CHAR; ++k)
+    {
+    	latexTable_in_out.append(" & ");
+    }
+
+    latexTable_in_out.append("\\\\ \\hline \n");
+
+    /** Closing Tex table header */
+
+//    latexTable_in_out.append(" \\\\ \\hline\n");
 
     //qDebug() << QString("++ fromRowIndex: %1, toRowIndex: %2")
     //			.arg(QString::number(fromRowIndex), QString::number(toRowIndex));
@@ -342,7 +368,7 @@ void YerothTableViewPRINT_UTILITIES_TEX_TABLE::
 
         realK_pos = 0;
 
-        for (int k = 0; k < headerViewModelIndex.count(); ++k)
+        for (int k = 0; k < max_headerViewModelIndex_count; ++k)
         {
         	realK_pos = headerViewModelIndex.at(k);
 
@@ -350,20 +376,19 @@ void YerothTableViewPRINT_UTILITIES_TEX_TABLE::
 
             if (item)
             {
-                QString itemText(item->text());
+                QString itemText(YerothUtils::LATEX_IN_OUT_handleForeignAccents(item->text()));
 
             	if (YerothUtils::YEROTH_RED_COLOR == item->foreground().color())
     			{
             		itemText.prepend("\\textcolor{yerothColorRed}{").append("}");
     			}
 
-                YerothUtils::handleTexTableItemText(texTableColumnCount,
-                                              	  	latexTable_in_out,
-													realK_pos,
-													itemText);
+            	latexTable_in_out.append(itemText);
 
-//                qDebug() << QString("++ itemText: %1")
-//                				.arg(itemText);
+                if (k < max_headerViewModelIndex_count_FOR_SEPARATION_CHAR - 1)
+                {
+                	latexTable_in_out.append(" &");
+                }
             }
             else
             {
