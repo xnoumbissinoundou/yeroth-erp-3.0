@@ -1,0 +1,342 @@
+\documentclass[a4paper, 10pt]{article}
+
+\NeedsTeXFormat{LaTeX2e}
+
+%---------------------------- PACKAGE INCLUSION -------------------------------
+% This group renders characters clearer and more precise
+
+\RequirePackage[bitstream-charter,cal,expert]{mathdesign}
+\RequirePackage{latexsym}
+
+\usepackage{geometry} % to change the page dimensions
+\geometry{a4paper,
+		  %showframe=true,
+		  %margin=3em,
+		  %a4paper,
+		  %total={170mm,257mm},
+		  top=4.15em,
+		  left=3em,
+		  right=3em,
+		  bottom=3.39em
+		  }
+		  
+\usepackage[default]{cantarell}
+\usepackage{xspace}
+\usepackage{paralist}
+\usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{listings} % for lstset definitions
+
+\usepackage{graphicx} % support the \includegraphics command and options
+
+\usepackage{multicol}  
+
+\usepackage{verbatim}		  
+		  
+\usepackage{epsfig}
+\usepackage{booktabs}
+\usepackage{relsize}
+\usepackage{appendix}
+\usepackage{tabularx,caption} 
+
+\usepackage{url}
+
+\usepackage{amsmath}
+
+\usepackage{xcolor}
+\definecolor{yerothColorOrange}{RGB}{242, 161, 0}   
+\definecolor{yerothColorBlue}{RGB}{77 , 93 , 254}
+\definecolor{yerothColorRed}{RGB}{254, 48 , 48}
+\definecolor{yerothColorDarkgray}{RGB}{60, 60 , 60}
+\definecolor{yerothColorIndigo}{RGB}{83, 0, 125}
+\definecolor{yerothColorGreen}{RGB}{2, 160, 70}
+\definecolor{forestgreen}{RGB}{2,160,70}    
+\definecolor{mediumblue}{RGB}{7,43,205}    
+\definecolor{firebrickred}{RGB}{178,34,34}
+\definecolor{listingray}{gray}{0.9}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+\definecolor{darkgreen}{rgb}{0,0.35,0}
+\definecolor{medgreen}{rgb}{0,0.5,0}
+\definecolor{lightgreen}{rgb}{0.5,0.7,0.5}
+\definecolor{pmcolour}{rgb}{0.5,0.7,0.5}
+\definecolor{medgrey}{rgb}{0.6,0.6,0.6}
+\definecolor{purplish}{rgb}{0.4,0,0.6}
+\definecolor{brightred}{rgb}{1,0.2,0.2}
+
+\usepackage{pagecolor}
+
+\newcommand{\diplominformatiker}{Diplom--Informatiker\xspace}
+
+\newcommand{\diplinfn}{DR.\xspace}
+
+\newcommand{\pos}{syst\`eme--logiciel~ERP\xspace}
+
+\newcommand{\yerothrd}{\textcolor{yerothColorGreen}
+			{\textsc{\textcolor{yerothColorRed}{YEROTH}}$_{\text{r\&d}}$\xspace}}
+
+\newcommand{\yerotherpblack}{YEROTH--ERP--$3.0$\xspace}
+
+\newcommand{\yerotherp}{\textcolor{yerothColorBlue}{\sc YEROTH--ERP--$3.0$}\xspace}
+
+\newcommand{\myfullacademicname}{DR.~XAVIER NOUMBISSI NOUNDOU\xspace}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+	pagebackref,
+    citecolor=medgreen,
+    linkcolor=purplish,
+    breaklinks,
+    pdftex,
+    bookmarks,
+    plainpages=false,
+	pdftitle={Brochure d'information du \pos \yerotherp par: ''\myfullacademicname''},
+    pdfauthor={\myfullacademicname}
+}
+
+
+\newcommand{\yeroth}{\textsc{yeroth-erp-3.0}\xspace}
+
+\newcommand{\cmup}{<< CMUP >>\xspace}
+\newcommand{\defdeo}{<< DEF\_DEO >>\xspace}
+\newcommand{\fifo}{<< FIFO >>\xspace}
+\newcommand{\lifo}{<< LIFO >>\xspace}
+
+\newcommand{\manager}{<< Manager >>\xspace}
+\newcommand{\caissier}{<< Caissier >>\xspace}
+\newcommand{\administrateur}{<< Administrateur >>\xspace}
+\newcommand{\magasinier}{<< Magasinier >>\xspace}
+\newcommand{\vendeur}{<< Vendeur >>\xspace}
+\newcommand{\gestionairedestocks}{<< Gestionnaire de stock >>\xspace}
+
+
+\newcommand{\managerb}{\textbf{<< Manager >>}\xspace}
+\newcommand{\caissierb}{\textbf{<< Caissier >>}\xspace}
+\newcommand{\administrateurb}{\textbf{<< Administrateur >>}\xspace}
+\newcommand{\magasinierb}{\textbf{<< Magasinier >>}\xspace}
+\newcommand{\vendeurb}{\textbf{<< Vendeur >>}\xspace}
+\newcommand{\gestionairedestocksb}{\textbf{<< Gestionnaire de stock >>}\xspace}
+
+\newcommand{\diplinf}{\textsc{\diplinfn}}
+\newcommand{\saint}{\textbf{saint}\xspace}
+
+\newcommand{\emphbf}[1]{\emph{\textbf{#1}}\xspace}
+\newcommand{\emphit}[1]{\emph{\textit{#1}}\xspace}
+\newcommand{\mycheckmark}[1]{\textcolor{#1}{$\checkmark$}\xspace}
+\newcommand{\mytimes}[1]{\textcolor{#1}{$\times$}\xspace}
+\newcommand{\mytimespartial}[1]{\textcolor{#1}{partiel}\xspace}
+\newcommand{\boldsc}[1]{\textbf{\textsc{#1}}\xspace}
+
+\newcommand{\cplusplus}{C$++$\xspace}
+
+\newcommand{\unibremen}{Universit\'e de Br\^eme\xspace}
+
+\newcommand{\bergmann}{Bergmann Automaten GmbH\xspace}
+\newcommand{\siemens}{\textsc{SIEMENS} Medical Solutions\xspace}
+\newcommand{\bremenu}{Universit\'e de Br\^eme\xspace}
+
+\newcommand{\mariadb}{\texttt{'MariaDB'}\xspace}
+
+\usepackage[T1]{fontenc}
+\newcommand{\changefont}[3]{
+\fontfamily{#1} \fontseries{#2} \fontshape{#3} \selectfont}
+\changefont{cmss}{m}{n}
+
+% Set font to avant-garde
+%\renewcommand*\rmdefault{pag}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\rhead{\textbf{\yerothrd}}
+\lhead{Brochure D'information du \pos \yerotherpblack}
+\lfoot{{\small Auteur: \myfullacademicname}}
+\rfoot{{\small Version du --~$14$~F\'evrier~$2021$~--}}
+\cfoot{\thepage}
+
+%Remove widows and orphants
+\clubpenalty = 10000
+\widowpenalty = 10000
+\displaywidowpenalty = 10000
+
+\fancypagestyle{OnlyFirstPage}{%
+	\lhead{}
+	\rhead{}
+    \lfoot{}
+}
+
+\begin{document}
+
+\thispagestyle{OnlyFirstPage}
+
+\pagenumbering{arabic}
+
+{\bf \LARGE \yerothrd} {| \sc \scriptsize brochure d'information du \pos \yerotherpblack}
+
+\vspace{2.0em}
+
+\begin{center}
+{\LARGE Brochure D'information du \\
+    \vspace{0.3em}
+    \pos \\
+    \vspace{0.5em}
+    \yerotherpblack}
+\end{center}
+
+\vspace{2.0em}
+
+\begin{center}
+{\large \myfullacademicname}
+\end{center}
+
+\vspace{1.0em}
+
+\begin{multicols}{2}
+
+\input{yeroth-erp-3-0-taches-utilisateurs-table}
+
+\input{biographie-xavier}
+
+\vspace{-1.3em}
+\section{Introduction}
+\vspace{-0.3em}
+\yeroth est un syst\`eme--logiciel ERP (Enterprise Resource Planing).
+
+Apr\`es son installation, \yeroth est accessible \`a
+toute personne qui poss\`ede un compte d'utilisateur.
+
+Les utilisateurs de \yeroth ont les r\^oles ou 
+niveaux d'acc\`es suivants:
+\begin{enumerate}[1.]
+	\itemsep -0.6em
+	\item \administrateur
+	\item \caissier	
+	\item \gestionairedestocks
+	\item \magasinier	
+	\item \manager
+	\item \vendeur.
+\end{enumerate}
+
+\yeroth permet de r\'ealiser les t\^aches de gestion
+commerciales illustr\'ees dans
+le Tableau~\ref{tachesEtFonctions} \`a la page suivante,
+en fonction du r\^ole de l'utilisateur.
+
+\vspace{-1.9em}
+\section{Les atouts de \yeroth}
+\vspace{-0.3em}
+\begin{enumerate}[1.]
+	\itemsep -0.3em
+	\item $1$ tr\`es grande stabilit\'e de l'application
+	\item des utilisateurs avec des r\^oles bien sp\'ecifi\'es
+	\item $1$ syst\`eme d'alerte comportant des alertes
+	      param\'etr\'ees en fonction des quantit\'es en stock
+	      ou des p\'eriodes de temps
+	\item la possibilit\'e de g\'en\'er\'er des re\c{c}us au
+	      petit format pour des imprimantes thermiques, ou bien
+	      de g\'en\'er\'er des documents au format ''A4''
+	\item Linux--Debian comme syst\`eme d'exploitation, car
+	      tr\`es stable, performant, et moins vuln\'erable
+	      aux attaques des pirates informatiques en comparaison
+	      aux autres syst\`emes d'exploitation
+	\item $1$ interface ''ventes'' qui permet au \manager
+	      d'avoir une vue d'ensemble des 
+	      ventes~(voir la Figure~\ref{fig:fenetre-de-la-vente}),
+	      et aussi d'effectuer des ''retours sur ventes''
+	\item $1$ interface ''tableaux de bords'' qui
+		  g\'en\`ere des rapports financiers,
+		  pour l'aide \`a la d\'ecision manag\'eriale
+		  du ''business''.
+\end{enumerate}
+
+\begin{center}
+\includegraphics[scale=0.32]{../images/yeren-fenetre-caisse.png}
+\captionof{figure}{La fen\^etre des ventes.}
+\label{fig:fenetre-de-la-vente}
+\end{center}
+
+
+\vspace{-1em}
+\section{Le syst\`eme d'alerte}
+\vspace{-0.5em}
+Les utilisateurs aux r\^oles \administrateur ou
+\manager sont ceux capable de cr\'eer des
+alertes dans \yeroth.
+\yeroth permet  de cr\'eer des alertes pour:
+\begin{enumerate}[1.]
+	\itemsep -0.5em
+	\item $1$ quantit\'e d'articles restante en stock
+	\item $1$ p\'eriode de temps.
+\end{enumerate}
+
+\vspace{-1em}
+
+\subsection{Alertes sur une quantit\'e en stock}
+\vspace{-0.1em}
+$1$ alerte sur la quantit\'e en stock (X) d'$1$ produit
+est un message qui est g\'en\'er\'e lorsque la
+quantit\'e en stock de ce produit atteint X.
+
+Par exemple Xavier (\manager) cr\'ee une alerte sur le
+produit ''mangue'' qui se d\'eclenche d\`es que sa quantit\'e
+en stock atteint $100$; $1$ message est g\'en\'er\'e et
+envoy\'e \`a l'utilisateur Jean (\magasinier).
+
+\vspace{-1em}
+
+\subsection{Alertes sur une p\'eriode de temps}
+\vspace{-0.1em}
+$1$ p\'eriode de temps est d\'efinie par $1$ date
+de d\'ebut de p\'eriode, et $1$ date de fin
+de p\'eriode.
+
+$1$ alerte sur une p\'eriode de temps pour un
+produit est un message qui est g\'en\'er\'e et 
+qui reste existant dans \yeroth durant toute la
+dur\'ee de cette p\'eriode de temps.
+
+Par exemple, un message d'alerte doit \^etre envoy\'e
+a l'utilisateur Paul (\caissier) d\`es que
+la date du $05$~Mai est atteinte afin que celui-ci
+applique un rabais de $20\%$ sur chaque vente de
+yaourt 'tr\`esbon' durant une p\'eriode de $2$ semaines.
+
+\vspace{-1.8em}
+\section{Le syst\`eme de gestion de base--de--donn\'ees}
+\vspace{-0.3em}
+\mariadb est utilis\'e comme syst\`eme de gestion
+de base de donn\'ees. \mariadb est tr\`es stable,
+tr\`es performant, et source--libre.
+
+Des copies ex\'ecutables de \mariadb peuvent \^etre
+accessible \`a tr\`es moindre co\^ut (ex.: $0$).
+
+\vspace{-2em}
+\section{Conclusion}
+\vspace{-1.3em}
+\begin{center}
+\includegraphics[scale=0.33]{images/yeroth-erp-3-0-fiche-stocks.png}
+\captionof{figure}{La fen\^etre de visualisation de stocks.}
+\label{fig:fenetre-de-visualisation-de-stocks}
+\end{center}
+
+
+La Figure~\ref{fig:fenetre-de-visualisation-de-stocks} illustre la
+fen\^etre de visualisation de stocks.
+
+\vspace{-0.5em}
+
+\begin{center}
+\includegraphics[scale=0.33]{../images/yeren-fenetre-caissier.png}
+\captionof{figure}{La fen\^etre de vente.}
+\label{fig:fenetre-de-vente}
+\end{center}
+
+
+La Figure~\ref{fig:fenetre-de-vente} illustre la
+fen\^etre pour faire les ventes d'articles.
+
+\yeroth est disponible dans les langues Anglais et Fran\c{c}ais. 
+
+\end{multicols}
+
+\end{document}

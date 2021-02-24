@@ -1,0 +1,295 @@
+%====================================================
+%
+% Author: DR. XAVIER NOUMBISSI NOUNDOU
+%
+%====================================================
+\documentclass[10pt, a4paper]{bookest}
+\NeedsTeXFormat{LaTeX2e}
+\makeindex
+
+%---------------------------- PACKAGE INCLUSION -------------------------------
+% This group renders characters clearer and more precise
+
+\RequirePackage[bitstream-charter,cal,expert]{mathdesign}
+\RequirePackage{makeidx}
+\RequirePackage{latexsym}
+
+\usepackage{geometry} % to change the page dimensions
+\geometry{a4paper,
+		  %showframe=true,
+		  %margin=3cm,
+		  %a4paper,
+		  %total={170mm,257mm},
+		  top=4.15em,
+		  left=5.5em,
+		  right=5.5em,
+		  bottom=3.39em
+		  }
+
+\usepackage[default]{cantarell}
+\usepackage{graphicx}
+\usepackage[french]{babel}
+\usepackage{xspace}
+\usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{listings} % for lstset definitions
+\usepackage{url}
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+\usepackage{epsfig}
+\usepackage{booktabs}
+%\usepackage{enumitem} %funny itemize icons
+\usepackage{verbatim}
+
+\usepackage{amsmath}
+\newcommand{\mathbold}[1]{\text{\textbf{#1}}}
+
+\usepackage{xcolor}
+\definecolor{yerothColorOrange}{RGB}{242, 161, 0}   
+\definecolor{yerothColorBlue}{RGB}{77 , 93 , 254}
+\definecolor{yerothColorRed}{RGB}{254, 48 , 48}
+\definecolor{yerothColorGray}{RGB}{198, 198, 198}
+\definecolor{yerothColorDarkgray}{RGB}{60, 60 , 60}
+\definecolor{yerothColorIndigo}{RGB}{83, 0, 125}
+\definecolor{yerothColorGreen}{RGB}{2  , 160, 70}
+\definecolor{forestgreen}{RGB}{2,160,70}    
+\definecolor{mediumblue}{RGB}{7,43,205}    
+\definecolor{firebrickred}{RGB}{178,34,34}
+\definecolor{listingray}{gray}{0.9}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+\definecolor{darkgreen}{rgb}{0,0.35,0}
+\definecolor{medgreen}{rgb}{0,0.5,0}
+\definecolor{lightgreen}{rgb}{0.5,0.7,0.5}
+\definecolor{pmcolour}{rgb}{0.5,0.7,0.5}
+\definecolor{medgrey}{rgb}{0.6,0.6,0.6}
+\definecolor{purplish}{rgb}{0.4,0,0.6}
+\definecolor{brightred}{rgb}{1,0.2,0.2}
+
+\usepackage{pagecolor}
+
+\newcommand{\diplominformatiker}{Diplom--Informatiker\xspace}
+
+\newcommand{\diplinfn}{DR.\xspace}
+
+\newcommand{\pos}{syst\`eme--logiciel ERP\xspace}
+
+\newcommand{\yerothlabs}{\textsc{Yeroth--R\&D}\xspace}
+
+\newcommand{\yerotherptitle}{Yeroth--erp--$3.0$\xspace}
+
+\newcommand{\yerotherpalerttroiszero}{\textcolor{yerothColorBlue}{\sc YEROTH--ERP--ALERT--$3.0$}\xspace}
+
+\newcommand{\yerothpos}{\textcolor{yerothColorBlue}{\sc YEROTH--ERP--$3.0$}\xspace}
+
+\newcommand{\myfullacademicname}{DR. XAVIER NOUMBISSI NOUNDOU\xspace}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+	pagebackref,
+    citecolor=medgreen,
+    linkcolor=purplish,
+    breaklinks,
+    pdftex,
+    bookmarks,
+    plainpages=false,
+	pdftitle={Guide de l'Utilisateur ''Manager'' de \yerothpos par \myfullacademicname},
+    pdfauthor={DR. XAVIER NOUMBISSI NOUNDOU}
+}
+
+%--------------------------------------------------------------------------------
+
+%---------------------------- COMMANDS DEFINITION -------------------------------
+
+\newcommand{\junit}{\texttt{\textbf{JUnit}}\xspace}
+\newcommand{\company}[1]{\textbf{#1}\xspace}
+\newcommand{\diplinf}{\textsc{Dipl.-Inf.}\xspace}
+
+\newcommand{\emphbf}[1]{\textbf{#1}\xspace}
+\newcommand{\emphit}[1]{\emph{\textit{#1}}\xspace}
+\newcommand{\mycheckmark}[1]{\textcolor{#1}{$\checkmark$}\xspace}
+\newcommand{\mytimes}[1]{\textcolor{#1}{$\times$}\xspace}
+\newcommand{\mytimespartial}[1]{\textcolor{#1}{partiel}\xspace}
+\newcommand{\boldsc}[1]{\textbf{\textsc{#1}}\xspace}
+
+\newcommand{\myenumitem}[1]{\emph{#1}\xspace}
+
+\newcommand{\bergmann}{Bergmann Automaten GmbH\xspace}
+\newcommand{\siemens}{\textsc{Siemens} Medical Solutions\xspace}
+\newcommand{\watformlab}{Watform Lab\xspace}
+\newcommand{\uwaterloo}{University of Waterloo\xspace}
+
+\newcommand{\yeroth}{\textcolor{yerothColorBlue}{\sc YEROTH--ERP--$3.0$}\xspace}
+\newcommand{\yerothalert}{\emph{yeroth--erp--alert--3.0}\xspace}
+\newcommand{\mysql}{MySQL\xspace}
+\newcommand{\depot}{d\'ep\^ot\xspace}
+\newcommand{\depots}{d\'ep\^ots\xspace}
+\newcommand{\bouton}[1]{"\textbf{#1}"\xspace}
+\newcommand{\field}[1]{"\emph{\textbf{#1}}"\xspace}
+
+\newcommand{\role}{r\^ole\xspace}
+\newcommand{\roles}{r\^oles\xspace}
+\newcommand{\manager}{\emph{Manager}\xspace}
+\newcommand{\gestionairedestocks}{\emph{GestionaireDeStocks}\xspace}
+\newcommand{\magasinier}{\emph{Magasinier}\xspace}
+\newcommand{\caissier}{\emph{Caissier}\xspace}
+\newcommand{\vendeur}{\emph{Vendeur}\xspace}
+\newcommand{\admin}{\emph{Administrateur}\xspace}
+
+\newcommand{\qt}{Qt$5.11$\xspace}
+
+\newcommand{\managerb}{\emph{\textbf{Manager}}\xspace}
+\newcommand{\gestionairedestocksb}{\emph{\textbf{GestionaireDeStocks}}\xspace}
+\newcommand{\vendeurb}{\emph{\textbf{Vendeur}}\xspace}
+\newcommand{\caissierb}{\emph{\textbf{Caissier}}\xspace}
+\newcommand{\administrateurb}{\emph{\textbf{Administrateur}}\xspace}
+\newcommand{\magasinierb}{\emph{\textbf{Magasinier}}\xspace}
+
+\newcommand{\utilisateurs}
+	{\textcolor{blue}{\textbf{\emph{R\^oles ayant acc\`es \`a la fonctionalit\'e}}}\xspace}
+
+\newcommand{\facon}{fa\c{c}on\xspace}
+
+\newcommand{\obligatoire}{\textcolor{firebrickred}{\textbf{\emph{[obligatoire]}}}\xspace}
+
+\newcommand{\lienadmin}{\admin~\ref{sec:utilisateurs-ladministrateur}\xspace}
+\newcommand{\liencaissier}{\caissier~\ref{sec:utilisateurs-lecaissier}\xspace}
+\newcommand{\liengestionnairedesstocks}{\gestionairedestocks~\ref{sec:utilisateurs-gestionairedestocks}\xspace}
+\newcommand{\lienmagasinier}{\magasinier~\ref{sec:utilisateurs-lemagasinier}\xspace}
+\newcommand{\lienmanager}{\manager~\ref{sec:utilisateurs-lepatron}\xspace}
+\newcommand{\lienvendeur}{\vendeur~\ref{sec:utilisateurs-vendeur}\xspace}
+
+\newcommand{\deja}{d\'ej\`a\xspace}
+
+\newcommand{\yerothfield}[1]{\textbf{\emph{#1}}\xspace}
+
+\newcommand{\procparagraph}[1]
+	{\paragraph{ \mycheckmark{forestgreen} \emph{\textcolor{forestgreen}{#1}}}}
+
+\newcommand{\xavier}{Xavier NOUMBISSI NOUNDOU\xspace}
+
+\newcommand{\reference}{r\'ef\'erence\xspace}
+
+\newcommand{\cmup}{\textbf{CMUP}\xspace}
+\newcommand{\dpfdpo}{\textbf{DEF\_DEO}\xspace}
+\newcommand{\fifo}{\textbf{FIFO}\xspace}
+\newcommand{\lifo}{\textbf{LIFO}\xspace}
+
+\newcommand{\fenetre}{fen\^etre\xspace}
+\newcommand{\uielemone}[1]{\textcolor{medgreen}{\emph{#1}}\xspace}
+\newcommand{\uielemtwo}[1]{\textcolor{mediumblue}{\texttt{#1}}\xspace}
+
+\newcommand{\nxsection}[1]{\section{#1}\xspace}
+\newcommand{\nxsubsection}[1]{\subsection{#1}\xspace}
+
+\newcommand{\chapintro}[1]{
+\begin{center}
+\parbox{35em}{
+\textcolor{yerothColorIndigo}{#1}
+}\xspace
+\end{center}}
+
+%\usepackage{makeidx} % Used to generate the index
+%\makeindex % Generate the index which is printed at the end of the document
+
+%--------------------------------------------------------------------------------
+
+% Set font to avant-garde
+%\renewcommand*\rmdefault{pag}
+
+\usepackage[T1]{fontenc}
+
+%Remove widows and orphants
+\clubpenalty = 10000
+\widowpenalty = 10000
+\displaywidowpenalty = 10000
+
+\begin{document}
+\frontmatter\pagestyle{plain}
+\title{\textcolor{medgreen}{\textsc{Syst\`eme--Logiciel ERP
+		\\ \vspace*{1.5cm}(\yeroth)\\}
+		\vspace*{3cm}
+	Guide de l'Utilisateur\\ \vspace{1em} << Manager >> \\
+	\vspace*{0.1cm}}
+	{\small Version du --~$07$ Juin $2018$~--}}
+
+\begin{titlepage}
+\maketitle
+\vspace{\stretch{2}}
+\centering
+\copyright\ \textsc{\myfullacademicname}
+\end{titlepage}
+
+% TABLE OF CONTENTS
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\contentsname}
+\begingroup
+\color{medgreen}
+\tableofcontents
+\endgroup
+
+% LIST OF FIGURES
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\listfigurename}
+\begingroup
+\color{medgreen}
+\listoffigures
+\endgroup
+
+% LIST OF TABLES
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\listtablename}
+\begingroup
+\color{medgreen}
+\listoftables
+\endgroup
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\`A propos de l'auteur}
+\input{../noundou-biography}
+
+\mainmatter
+
+\input{../introduction}
+\input{../utilisateurs}
+\input{../gestion-des-stocks}
+\input{../gestion-des-clients}
+\input{../gestion-des-achats}
+\input{../systeme-des-alertes-stocks}
+\input{../point-de-vente}
+\input{../sortir-articles}
+\input{../ventes}
+\input{../mouvements-de-stocks}
+\input{../tableaux-de-bord}
+\input{../information-generales}
+\input{../administration-du-logiciel}
+\input{../problemes-connues}
+\input{../conclusion}
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\textsc{Annexes}}
+\appendix
+\input{../raccourcis}
+\input{../environnement-hardware-requis}
+\input{../environnement-logiciel-requis}
+\input{../configurations-yeren}
+
+
+% BACK MATTER
+\backmatter
+%\phantomsection
+%\addcontentsline{toc}{chapter}{Bibliography}
+%\bibliographystyle{alpha}
+%\bibliography{yeren-pos-7-0-manuel-de-lutilisateur}
+
+%\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Index}
+\printindex
+
+\end{document}
+
