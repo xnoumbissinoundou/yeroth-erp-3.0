@@ -21,7 +21,9 @@ YerothTableViewPRINT_UTILITIES_TEX_TABLE::
 	YerothTableViewPRINT_UTILITIES_TEX_TABLE(const QString &output_pdf_file_name_out,
 											 YerothWindowsCommons &aYerothWindowTableOutputView,
 											 YerothTableView &aYerothTableView)
-:_output_pdf_file_name(output_pdf_file_name_out),
+:_MAX_TABLE_ROW_COUNT(63),
+ _MAX_TABLE_ROW_COUNT_first_page(59),
+ _output_pdf_file_name(output_pdf_file_name_out),
  _yerothWindowTableOutputView(&aYerothWindowTableOutputView),
  _yerothTableView(&aYerothTableView)
 {
@@ -86,9 +88,7 @@ QString YerothTableViewPRINT_UTILITIES_TEX_TABLE::
 
     QString latexTable_in_out;
 
-    double MAX_TABLE_ROW_COUNT = 35.0;
-
-    int pageNumber = qCeil(tableModelRowCount / MAX_TABLE_ROW_COUNT);
+    int pageNumber = qCeil(tableModelRowCount / _MAX_TABLE_ROW_COUNT);
 
     //qDebug() << QString("number of pages to print: %1").arg(pageNumber);
     //_logger->log("imprimer_pdf_document",
@@ -96,18 +96,18 @@ QString YerothTableViewPRINT_UTILITIES_TEX_TABLE::
 	get_YEROTH_TableViewListingTexDocumentString(dbTableColumnsToIgnore_in_out,
 												 latexTable_in_out,
 												 0,
-												 (20 >= tableModelRowCount) ? tableModelRowCount : 20,
-												 tableModelRowCount <= 20);
+												 (_MAX_TABLE_ROW_COUNT_first_page >= tableModelRowCount) ? tableModelRowCount : _MAX_TABLE_ROW_COUNT_first_page,
+												 tableModelRowCount <= _MAX_TABLE_ROW_COUNT_first_page);
 
 	int currentProgressBarCount = abs(((2.0 / pageNumber) * 50) - 4);
 
 	emit _yerothWindowTableOutputView->SIGNAL_INCREMENT_PROGRESS_BAR(currentProgressBarCount);
 
-    if (tableModelRowCount >= 20)
+    if (tableModelRowCount >= _MAX_TABLE_ROW_COUNT_first_page)
     {
-        fromRowIndex = 20;
+        fromRowIndex = _MAX_TABLE_ROW_COUNT_first_page;
 
-        toRowIndex = (fromRowIndex >= tableModelRowCount) ? fromRowIndex : fromRowIndex + MAX_TABLE_ROW_COUNT;
+        toRowIndex = (fromRowIndex >= tableModelRowCount) ? fromRowIndex : fromRowIndex + _MAX_TABLE_ROW_COUNT;
 
         int k = 1;
 
@@ -126,7 +126,7 @@ QString YerothTableViewPRINT_UTILITIES_TEX_TABLE::
             fromRowIndex = toRowIndex;
 
             toRowIndex =
-                (fromRowIndex >= tableModelRowCount) ? (fromRowIndex + 1) : fromRowIndex + MAX_TABLE_ROW_COUNT;
+                (fromRowIndex >= tableModelRowCount) ? (fromRowIndex + 1) : fromRowIndex + _MAX_TABLE_ROW_COUNT;
 
             currentProgressBarCount += abs( (((k+1) / pageNumber) * 100) - 4 );
 
@@ -218,7 +218,7 @@ void YerothTableViewPRINT_UTILITIES_TEX_TABLE::
 												 int toRowIndex,
 												 bool lastPage)
 {
-    if (lastPage && toRowIndex > 20)
+    if (lastPage && toRowIndex > _MAX_TABLE_ROW_COUNT_first_page)
     {
         toRowIndex -= 1;
     }
@@ -228,53 +228,31 @@ void YerothTableViewPRINT_UTILITIES_TEX_TABLE::
         return ;
     }
 
-    bool USE_RESIZE_BOX_FOR_COLUMN_PRINTING = true;
+    static bool first_run = true;
 
-    static bool first_time_execution = true;
-
-    if (first_time_execution &&
-    	0 == fromRowIndex)
-    {
-    	uint table_column_count = _yerothTableView->horizontalHeader()->count();
-    	uint table_column_to_ignore_count = aDBTableColumnsToIgnore_in_out.size();
-
-    	uint table_column_visible_columns_count = table_column_count - table_column_to_ignore_count;
-
-    	if (table_column_visible_columns_count >= 7)
-    	{
-    		USE_RESIZE_BOX_FOR_COLUMN_PRINTING = true;
-    	}
-    	else
-    	{
-    		USE_RESIZE_BOX_FOR_COLUMN_PRINTING = false;
-    	}
-
-    	first_time_execution = false;
-    }
-
-
-    if (lastPage)
-    {
-    	first_time_execution = true;
-    }
-
-
-    if (USE_RESIZE_BOX_FOR_COLUMN_PRINTING)
+    if (first_run)
     {
     	latexTable_in_out.append("\\begin{table*}[!htbp]").append("\n")
-    	    			 .append("\\centering").append("\n")
-    					 .append("\\resizebox{\\textwidth}{!}{\\centering").append("\n")
+    		    		 .append("\\centering").append("\n")
+    					 .append("\\begin{adjustbox}{width={\\textwidth},{totalheight=\\textheight-(\\textheight/3)},keepaspectratio}").append("\n")
     					 .append("\\begin{tabular}")
     					 .append("{|");
+
+    	first_run = false;
     }
     else
     {
     	latexTable_in_out.append("\\begin{table*}[!htbp]").append("\n")
-    	    			 .append("\\centering").append("\n")
+    		    		 .append("\\centering").append("\n")
+    					 .append("\\begin{adjustbox}{width={\\textwidth},{totalheight=\\textheight-(\\textheight/3)},keepaspectratio}").append("\n")
     					 .append("\\begin{tabular}")
     					 .append("{|");
     }
 
+    if (lastPage)
+    {
+    	first_run = true;
+    }
 
     QStandardItemModel &tableStandardItemModel =
     		*(static_cast<QStandardItemModel *> (_yerothTableView->model()));
@@ -410,17 +388,8 @@ void YerothTableViewPRINT_UTILITIES_TEX_TABLE::
     //Removes the empty character "" from Latex output
     latexTable_in_out.replace("\"\"", YerothUtils::EMPTY_STRING);
 
-    if (USE_RESIZE_BOX_FOR_COLUMN_PRINTING)
-    {
-    	latexTable_in_out.append("\\end{tabular}}").append("\n")
-    	    			 .append("\\end{table*}").append("\n");
-    }
-    else
-    {
-    	latexTable_in_out.append("\\end{tabular}").append("\n")
-    	    			 .append("\\end{table*}").append("\n");
-    }
-
+	latexTable_in_out.append("\\end{tabular}\\end{adjustbox}").append("\n")
+	    			 .append("\\end{table*}").append("\n");
 
 //    qDebug() << "++ latexTable_in_out in get_YEROTH_TableViewListingTexDocumentString: " << latexTable_in_out;
 }

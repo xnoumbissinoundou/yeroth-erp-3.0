@@ -47,6 +47,10 @@ protected:
 
 protected:
 
+	double 					_MAX_TABLE_ROW_COUNT;
+
+	uint 					_MAX_TABLE_ROW_COUNT_first_page;
+
 	QString					_output_pdf_file_name;
 
 	QString					_tex_template_document_string;
