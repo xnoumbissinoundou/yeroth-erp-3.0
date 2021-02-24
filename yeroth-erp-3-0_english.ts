@@ -3239,7 +3239,7 @@ Please contact an administrator of %1</translation>
         <translation>Select a stock item to modify its details.</translation>
     </message>
     <message>
-        <location filename="src/utils/print_latex_pdf/yeroth-erp-print_yeroth_latex_util_pdf.cpp" line="78"/>
+        <location filename="src/utils/print_latex_pdf/yeroth-erp-print_yeroth_latex_util_pdf.cpp" line="80"/>
         <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="864"/>
         <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="1069"/>
         <location filename="src/windows/stocks/yeroth-erp-sortir-window.cpp" line="818"/>
@@ -3247,7 +3247,7 @@ Please contact an administrator of %1</translation>
         <translation>print</translation>
     </message>
     <message>
-        <location filename="src/utils/print_latex_pdf/yeroth-erp-print_yeroth_latex_util_pdf.cpp" line="79"/>
+        <location filename="src/utils/print_latex_pdf/yeroth-erp-print_yeroth_latex_util_pdf.cpp" line="81"/>
         <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="865"/>
         <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="1070"/>
         <location filename="src/windows/stocks/yeroth-erp-sortir-window.cpp" line="667"/>
