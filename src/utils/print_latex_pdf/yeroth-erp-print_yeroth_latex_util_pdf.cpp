@@ -121,7 +121,15 @@ QString YerothTableViewPRINT_UTILITIES_TEX_TABLE::
 														 (toRowIndex >= tableModelRowCount) ? (tableModelRowCount + 1) : toRowIndex,
         												 k == pageNumber);
 
-        	latexTable_in_out.append(QString("\\newpage \n"));
+        	/*
+        	 * Don't allow LATEX 'newpage' command after
+        	 * last end table of this document, since this
+        	 * creates a malformed LATEX document.
+        	 */
+        	if (k < pageNumber && fromRowIndex <= toRowIndex)
+        	{
+        		latexTable_in_out.append(QString("\\newpage \n"));
+        	}
 
             fromRowIndex = toRowIndex;
 
@@ -303,11 +311,9 @@ void YerothTableViewPRINT_UTILITIES_TEX_TABLE::
 
     QStandardItem *item;
 
-    int max_headerViewModelIndex_count = headerViewModelIndex.count() + 1;
 
-    int max_headerViewModelIndex_count_FOR_SEPARATION_CHAR = max_headerViewModelIndex_count - 1;
+    int max_headerViewModelIndex_count_FOR_SEPARATION_CHAR = headerViewModelIndex.count();
 
-//    QDEBUG_STRING_OUTPUT_2_N("max_headerViewModelIndex_count", max_headerViewModelIndex_count);
 
     for (int k = 0; k < max_headerViewModelIndex_count_FOR_SEPARATION_CHAR; ++k)
     {
@@ -319,7 +325,7 @@ void YerothTableViewPRINT_UTILITIES_TEX_TABLE::
     latexTable_in_out.append("\\textbf{n\\textsuperscript{o}} & ");
 
 
-    for (int k = 0; k < max_headerViewModelIndex_count; ++k)
+    for (int k = 0; k < headerViewModelIndex.count(); ++k)
     {
     	realK_pos = headerViewModelIndex.at(k);
 
@@ -352,6 +358,8 @@ void YerothTableViewPRINT_UTILITIES_TEX_TABLE::
     }
 
     latexTable_in_out.append("\\\\ \\hline \n");
+
+//    QDEBUG_STRING_OUTPUT_2("YEROTH HEADER *", latexTable_in_out);
 
     /** Closing Tex table header */
 
@@ -386,13 +394,13 @@ void YerothTableViewPRINT_UTILITIES_TEX_TABLE::
 
         realK_pos = 0;
 
-        for (int k = 0; k < max_headerViewModelIndex_count; ++k)
+        for (int k = 0; k < headerViewModelIndex.count(); ++k)
         {
         	realK_pos = headerViewModelIndex.at(k);
 
             item = tableStandardItemModel.item(j, realK_pos);
 
-            if (item)
+            if (0 != item)
             {
                 QString itemText(YerothUtils::LATEX_IN_OUT_handleForeignAccents(item->text()));
 
@@ -407,7 +415,7 @@ void YerothTableViewPRINT_UTILITIES_TEX_TABLE::
 
             	latexTable_in_out.append(itemText);
 
-                if (k < max_headerViewModelIndex_count_FOR_SEPARATION_CHAR - 1)
+                if (k < max_headerViewModelIndex_count_FOR_SEPARATION_CHAR)
                 {
                 	latexTable_in_out.append(" &");
                 }
