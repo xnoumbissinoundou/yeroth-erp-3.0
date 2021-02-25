@@ -144,6 +144,15 @@ QString YerothERPProcess::compileLatex(QString prefixFileName)
     YerothERPProcess::startAndWaitForFinished(YerothERPConfig::pathToPdfLatex(),
     										 progArguments,
 											 -1);
+
+    QThread::sleep(0.3);
+
+    YerothERPProcess::startAndWaitForFinished(YerothERPConfig::pathToPdfLatex(),
+        										 progArguments,
+    											 -1);
+
+    QThread::sleep(0.3);
+
     progArguments.clear();
 
     QString pdfResultFile = QString("%1pdf")
