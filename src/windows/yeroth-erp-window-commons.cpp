@@ -652,7 +652,8 @@ void YerothWindowsCommons::setup_select_configure_dbcolumn(const QString &aSqlTa
 
 		columnIdx = columnIdx + 1;
 
-		if (type.contains(YerothUtils::DATABASE_MYSQL_VARCHAR_TYPE_STRING))
+		if (type.contains(YerothUtils::DATABASE_MYSQL_VARCHAR_TYPE_STRING) 				||
+			YerothUtils::isEqualCaseInsensitive(fieldName, YerothDatabaseTableColumn::ID))
 		{
 			_varchar_dbtable_column_name_list.insert(fieldName);
 		}
