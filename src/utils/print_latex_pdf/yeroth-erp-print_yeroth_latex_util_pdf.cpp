@@ -250,7 +250,7 @@ void YerothTableViewPRINT_UTILITIES_TEX_TABLE::
     }
     else
     {
-    	latexTable_in_out.append("\\begin{table*}[!htbp]").append("\n")
+    	latexTable_in_out.append("\\begin{table*}").append("\n")
     		    		 .append("\\centering").append("\n")
     					 .append("\\begin{adjustbox}{width={\\textwidth},{totalheight=\\textheight-(\\textheight/3)},keepaspectratio}").append("\n")
     					 .append("\\begin{tabular}")
