@@ -148,6 +148,8 @@ void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableM
 
     QVariant qv;
 
+    double a_double_value = 0.0;
+
     for (int i = 0; i < rows; ++i)
     {
     	for (int k = 0; k < columns; ++k)
@@ -196,7 +198,10 @@ void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableM
     			break;
 
     		case QVariant::Double:
-    			anItem = new YerothQStandardItem(GET_DOUBLE_STRING(qv.toDouble()));
+
+    			a_double_value = qv.toDouble();
+
+    			anItem = new YerothQStandardItem(GET_DOUBLE_STRING(a_double_value));
 
     			if (YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::MONTANT_PAYE)||
     				YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::COMPTE_CLIENT)||
@@ -265,7 +270,17 @@ void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableM
     		if (anItem)
     		{
     			anItem->setForeground(Qt::white);
+
+				if (a_double_value > 0)
+				{
+					anItem->setForeground(YerothUtils::YEROTH_YEROTHGREEN_COLOR);
+				}
+				else if (a_double_value < 0)
+				{
+					anItem->setForeground(YerothUtils::YEROTH_RED_COLOR);
+				}
     		}
+
     	}
     }
 

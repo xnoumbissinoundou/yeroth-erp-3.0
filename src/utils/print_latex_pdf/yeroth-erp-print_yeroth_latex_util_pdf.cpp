@@ -360,8 +360,26 @@ void YerothTableViewPRINT_UTILITIES_TEX_TABLE::
     //qDebug() << QString("++ fromRowIndex: %1, toRowIndex: %2")
     //			.arg(QString::number(fromRowIndex), QString::number(toRowIndex));
 
+    bool color_next_row = true;
+
     for (int j = fromRowIndex; j < toRowIndex; ++j)
     {
+    	/*
+    	 * WE COLOR TABLE CELL ROW ALTERNATIVELY.
+    	 */
+    	if (color_next_row)
+    	{
+    		latexTable_in_out.append("\\rowcolor{yerothColorGray} \n");
+
+    		color_next_row = false;
+    	}
+    	else
+    	{
+    		latexTable_in_out.append("\\rowcolor{white} \n");
+
+    		color_next_row = true;
+    	}
+
         latexTable_in_out.append(QString::number(id));
         latexTable_in_out.append(" &");
         ++id;
@@ -378,7 +396,11 @@ void YerothTableViewPRINT_UTILITIES_TEX_TABLE::
             {
                 QString itemText(YerothUtils::LATEX_IN_OUT_handleForeignAccents(item->text()));
 
-            	if (YerothUtils::YEROTH_RED_COLOR == item->foreground().color())
+            	if (YerothUtils::YEROTH_YEROTHGREEN_COLOR == item->foreground().color())
+    			{
+            		itemText.prepend("\\textcolor{yerothColorGreen}{").append("}");
+    			}
+            	else if (YerothUtils::YEROTH_RED_COLOR == item->foreground().color())
     			{
             		itemText.prepend("\\textcolor{yerothColorRed}{").append("}");
     			}
