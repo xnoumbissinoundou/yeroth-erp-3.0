@@ -435,7 +435,7 @@ void YerothTableViewPRINT_UTILITIES_TEX_TABLE::
     //Removes the empty character "" from Latex output
     latexTable_in_out.replace("\"\"", YerothUtils::EMPTY_STRING);
 
-	latexTable_in_out.append("\\end{tabular}\\end{adjustbox}").append("\n")
+	latexTable_in_out.append("\\end{tabular}\n\\end{adjustbox}").append("\n")
 	    			 .append("\\end{table*}").append("\n");
 
 //    qDebug() << "++ latexTable_in_out in get_YEROTH_TableViewListingTexDocumentString: " << latexTable_in_out;
