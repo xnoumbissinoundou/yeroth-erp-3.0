@@ -179,11 +179,7 @@ private:
 
 	void prepare__IN__for_export_and_printing();
 
-	inline void prepare__OUT__for_export_and_printing()
-	{
-		_visibleDBColumnNameStrList.insert(_client_fournisseur_current_visible_index_EXPORT_AND_PRINT_PDF,
-										   _client_fournisseur_visible_string_EXPORT_AND_PRINT_PDF);
-	}
+	void prepare__OUT__for_export_and_printing();
 
 	void update_clients_specific_payments_type();
 
@@ -211,9 +207,7 @@ private:
 
     YerothLogger			*_logger;
 
-	QString 				_client_fournisseur_visible_string_EXPORT_AND_PRINT_PDF;
-
-	uint 					_client_fournisseur_current_visible_index_EXPORT_AND_PRINT_PDF;
+    QMap<QString, uint>		_client_fournisseur_visible_string_EXPORT_AND_PRINT_PDF__TO__visible_index;
 
     int 				 	_currentTabView;
 

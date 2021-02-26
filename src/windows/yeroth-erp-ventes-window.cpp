@@ -1528,6 +1528,8 @@ void YerothVentesWindow::reinitialiser_colones_db_visibles()
 			<< YerothDatabaseTableColumn::DATE_VENTE
 			<< YerothDatabaseTableColumn::DESIGNATION
 			<< YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT
+			<< YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS
+			<< YerothDatabaseTableColumn::COMPTE_CLIENT
 			<< YerothDatabaseTableColumn::QUANTITE_VENDUE
 			<< YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE;
 }

@@ -23,6 +23,8 @@ class QStandardItemModel;
 class QContextMenuEvent;
 class QProcess;
 
+
+class YerothERPPaymentProcessingInformation;
 class YerothSqlTableModel;
 
 
@@ -31,35 +33,6 @@ class YerothPayerCompteClientWindow : public YerothWindowsCommons,
 									  private Ui_YerothPayerCompteClientWindow
 {
     Q_OBJECT
-
-	class PaymentInfo
-	{
-	public:
-
-		YEROTH_CLASS_OPERATORS
-
-		inline PaymentInfo()
-		:type_de_paiement(0),
-		 compte_client(0.0),
-		 montant_paye(0.0)
-		{
-		}
-
-		inline ~PaymentInfo()
-		{
-		}
-
-		QString intitule_du_compte_bancaire;
-		QString nom_entreprise;
-		QString nom_encaisseur;
-		int type_de_paiement;
-		QString notes;
-		QString reference;
-		QDate date_paiement;
-
-		double compte_client;
-		double montant_paye;
-	};
 
 public:
 
@@ -116,9 +89,9 @@ private slots:
 
 	void afficher_detail_client();
 
-	void updateStocksVenduTable(PaymentInfo &paymentInfo);
+	void updateStocksVenduTable(YerothERPPaymentProcessingInformation &payment_processing_info);
 
-	bool createPaymentForCustomerAccount(PaymentInfo &paymentInfo);
+	bool createPaymentForCustomerAccount(YerothERPPaymentProcessingInformation &payment_processing_info);
 
 	void reinitialiser_donnees_de_paiement_au_compteclient();
 

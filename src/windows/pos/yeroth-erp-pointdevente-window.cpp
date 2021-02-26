@@ -20,9 +20,9 @@
 
 #include "src/widgets/table-view/yeroth-erp-table-view.hpp"
 
-#include "src/utils/yeroth-erp-map-COMPLEX-ITEM.hpp"
+#include "src/utils/yeroth-erp-payment-processing-information.hpp"
 
-#include "src/utils/yeroth-erp-payment-processing.hpp"
+#include "src/utils/yeroth-erp-map-COMPLEX-ITEM.hpp"
 
 #include "src/utils/yeroth-erp-config.hpp"
 
@@ -2807,6 +2807,9 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
 
             _vente_LOYALTY_PROGRAM_NOUVEAU_COMPTE_CLIENT = nouveau_compteClient_FIDELITE;
 
+            stocksVenduRecord.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS,
+                        		_vente_LOYALTY_PROGRAM_NOUVEAU_COMPTE_CLIENT);
+
             clientsRecord.setValue(
             		YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS,
 					nouveau_compteClient_FIDELITE);
@@ -3219,7 +3222,7 @@ void YerothPointDeVenteWindow::handle_CLIENT_LOYALTY_PROGRAM_PAYMENTS_ENTRIES(co
 	 */
 	QString client_loyalty_best_program;
 
-	YerothERPPaymentProcessing a_payment_info_record_FOR_CLIENT_LOYALTY_PAYMENT;
+	YerothERPPaymentProcessingInformation a_payment_info_record_FOR_CLIENT_LOYALTY_PAYMENT;
 
 	a_payment_info_record_FOR_CLIENT_LOYALTY_PAYMENT._nom_entreprise =
 			_curClientName;
@@ -3232,6 +3235,9 @@ void YerothPointDeVenteWindow::handle_CLIENT_LOYALTY_PROGRAM_PAYMENTS_ENTRIES(co
 
 	a_payment_info_record_FOR_CLIENT_LOYALTY_PAYMENT._type_de_paiement =
 			YerothUtils::DECAISSEMENT_POUR_PROGRAMME_DE_FIDELITE_CLIENT;
+
+	a_payment_info_record_FOR_CLIENT_LOYALTY_PAYMENT._nouveau_compteClient_PROGRAMME_DE_FIDELITE_CLIENTS =
+			_vente_LOYALTY_PROGRAM_NOUVEAU_COMPTE_CLIENT;
 
 	{
 		QString compte_client_inchange =
@@ -3444,14 +3450,14 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
             		GET_SQL_RECORD_DATA(clientsRecord,
             				YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS).toDouble();
 
-            double nouveau_compteClient_FIDELITE = compteClient_FIDELITE -
+            double nouveau_compteClient_PROGRAMME_DE_FIDELITE_CLIENTS = compteClient_FIDELITE -
             							   (-1 * GET_BEST_CURRENT_LOYALTY_PROGRAM_MONEY_BENEFITS());
 
-            _vente_LOYALTY_PROGRAM_NOUVEAU_COMPTE_CLIENT = nouveau_compteClient_FIDELITE;
+            _vente_LOYALTY_PROGRAM_NOUVEAU_COMPTE_CLIENT = nouveau_compteClient_PROGRAMME_DE_FIDELITE_CLIENTS;
 
             clientsRecord.setValue(
             		YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS,
-					nouveau_compteClient_FIDELITE);
+					nouveau_compteClient_PROGRAMME_DE_FIDELITE_CLIENTS);
 
             clientsTableModel.updateRecord(0, clientsRecord);
 
@@ -3459,6 +3465,9 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
             double compteClient = GET_SQL_RECORD_DATA(clientsRecord, YerothDatabaseTableColumn::COMPTE_CLIENT).toDouble();
 
             double nouveau_compte_client = compteClient - total_prix_vente;
+
+            stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS,
+            		_vente_LOYALTY_PROGRAM_NOUVEAU_COMPTE_CLIENT);
 
             stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT, nouveau_compte_client);
             stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::CLIENTS_ID, clients_id);

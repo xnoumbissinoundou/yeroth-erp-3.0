@@ -63,7 +63,6 @@ YerothPaiementsWindow::YerothPaiementsWindow()
 :YerothWindowsCommons("yeroth-erp-journal-paiements"),
  YerothAbstractClassYerothSearchWindow(YerothDatabase::PAIEMENTS),
  _logger(new YerothLogger("YerothPaiementsWindow")),
- _client_fournisseur_current_visible_index_EXPORT_AND_PRINT_PDF(-1),
  _currentTabView(0),
  _pushButton_paiements_filtrer_font(0),
  _curSupplierText(YerothPaiementsWindow::FOURNISSEUR_TEXT_STRING_FRENCH),
@@ -318,11 +317,11 @@ void YerothPaiementsWindow::prepare__IN__for_export_and_printing()
 			.replace(QObject::tr("Journal des paiements"),
 					 QObject::tr("Journal des paiements (clients)"));
 
-		_client_fournisseur_visible_string_EXPORT_AND_PRINT_PDF =
-				YerothDatabaseTableColumn::COMPTE_FOURNISSEUR;
 
-		_client_fournisseur_current_visible_index_EXPORT_AND_PRINT_PDF =
-				_visibleDBColumnNameStrList.indexOf(YerothDatabaseTableColumn::COMPTE_FOURNISSEUR);
+		_client_fournisseur_visible_string_EXPORT_AND_PRINT_PDF__TO__visible_index
+			.insert(YerothDatabaseTableColumn::COMPTE_FOURNISSEUR,
+					_visibleDBColumnNameStrList.indexOf(YerothDatabaseTableColumn::COMPTE_FOURNISSEUR));
+
 
 		_visibleDBColumnNameStrList.removeAll(YerothDatabaseTableColumn::COMPTE_FOURNISSEUR);
 	}
@@ -332,13 +331,33 @@ void YerothPaiementsWindow::prepare__IN__for_export_and_printing()
 			.replace(QObject::tr("Journal des paiements"),
 					 QObject::tr("Journal des paiements (fournisseurs)"));
 
-		_client_fournisseur_visible_string_EXPORT_AND_PRINT_PDF =
-				YerothDatabaseTableColumn::COMPTE_CLIENT;
 
-		_client_fournisseur_current_visible_index_EXPORT_AND_PRINT_PDF =
-				_visibleDBColumnNameStrList.indexOf(YerothDatabaseTableColumn::COMPTE_CLIENT);
+		_client_fournisseur_visible_string_EXPORT_AND_PRINT_PDF__TO__visible_index
+			.insert(YerothDatabaseTableColumn::COMPTE_CLIENT,
+					_visibleDBColumnNameStrList.indexOf(YerothDatabaseTableColumn::COMPTE_CLIENT));
+
+		_client_fournisseur_visible_string_EXPORT_AND_PRINT_PDF__TO__visible_index
+			.insert(YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS,
+					_visibleDBColumnNameStrList.indexOf(YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS));
+
+
 
 		_visibleDBColumnNameStrList.removeAll(YerothDatabaseTableColumn::COMPTE_CLIENT);
+
+		_visibleDBColumnNameStrList.removeAll(YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS);
+	}
+}
+
+
+void YerothPaiementsWindow::prepare__OUT__for_export_and_printing()
+{
+	QMapIterator<QString, uint> it(_client_fournisseur_visible_string_EXPORT_AND_PRINT_PDF__TO__visible_index);
+
+	while(it.hasNext())
+	{
+		it.next();
+
+		_visibleDBColumnNameStrList.insert(it.value(), it.key());
 	}
 }
 
@@ -437,17 +456,24 @@ const QString &YerothPaiementsWindow::get_current_table_column_for_company_type_
 	if (YerothUtils::isEqualCaseInsensitive(_curSupplierText,
 											comboBox_paiements_type_dentreprise->currentText()))
 	{
-		_NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME.removeAll(YerothDatabaseTableColumn::COMPTE_FOURNISSEUR);
+		_NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME.append(YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS);
 
 		_NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME.append(YerothDatabaseTableColumn::COMPTE_CLIENT);
 
+
+		_NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME.removeAll(YerothDatabaseTableColumn::COMPTE_FOURNISSEUR);
+
 		return YerothDatabaseTableColumn::COMPTE_CLIENT;
+
 	}
 	else
 	{
-		_NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME.removeAll(YerothDatabaseTableColumn::COMPTE_CLIENT);
-
 		_NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME.append(YerothDatabaseTableColumn::COMPTE_FOURNISSEUR);
+
+
+		_NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME.removeAll(YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS);
+
+		_NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME.removeAll(YerothDatabaseTableColumn::COMPTE_CLIENT);
 
 		return YerothDatabaseTableColumn::COMPTE_FOURNISSEUR;
 	}
@@ -788,10 +814,10 @@ void YerothPaiementsWindow::reinitialiser_colones_db_visibles()
 
     _visibleDBColumnNameStrList
 			<< YerothDatabaseTableColumn::DATE_PAIEMENT
-			<< YerothDatabaseTableColumn::HEURE_PAIEMENT
 			<< YerothDatabaseTableColumn::NOM_ENTREPRISE
 			<< YerothDatabaseTableColumn::MONTANT_PAYE
 			<< YerothDatabaseTableColumn::TYPE_DE_PAIEMENT
+			<< YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS
 			<< YerothDatabaseTableColumn::COMPTE_FOURNISSEUR
 			<< YerothDatabaseTableColumn::COMPTE_CLIENT
 			<< YerothDatabaseTableColumn::REFERENCE;

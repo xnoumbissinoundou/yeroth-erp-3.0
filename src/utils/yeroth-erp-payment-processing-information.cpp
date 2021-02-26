@@ -1,18 +1,17 @@
 /*
- * yeroth-erp-payment-processing.cpp
+ * yeroth-erp-payment-processing-information.cpp
  *
  *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
-#include "src/utils/yeroth-erp-payment-processing.hpp"
-
+#include "yeroth-erp-payment-processing-information.hpp"
 
 #include "src/yeroth-erp-windows.hpp"
 
 #include "src/users/yeroth-erp-users.hpp"
 
 
-bool YerothERPPaymentProcessing::save_payment_info_record()
+bool YerothERPPaymentProcessingInformation::save_payment_info_record()
 {
 	YerothERPWindows *_allWindows = YerothUtils::getAllWindows();
 
@@ -44,12 +43,27 @@ bool YerothERPPaymentProcessing::save_payment_info_record()
 		paiementsRecord.setValue(YerothDatabaseTableColumn::NOM_ENCAISSEUR, QObject::tr("inconnu(e)"));
 	}
 
-	//This amount is debited from company account to client account;
-	//that is why we negate its value into the payments table.
-	paiementsRecord.setValue(YerothDatabaseTableColumn::MONTANT_PAYE, (-1 * _montant_paye));
 
 	paiementsRecord.setValue(YerothDatabaseTableColumn::TYPE_DE_PAIEMENT, _type_de_paiement);
 
+
+	if (YerothUtils::ENCAISSEMENT_COMPTANT 			== _type_de_paiement 	||
+		YerothUtils::ENCAISSEMENT_CHEQUE 			== _type_de_paiement 	||
+		YerothUtils::ENCAISSEMENT_TELEPHONE 		== _type_de_paiement 	||
+		YerothUtils::ENCAISSEMENT_BANCAIRE 			== _type_de_paiement 	||
+		YerothUtils::ENCAISSEMENT_VIREMENT_BANCAIRE == _type_de_paiement 	||
+		YerothUtils::ENCAISSEMENT_ACHAT_DE_SERVICE_ANNULE == _type_de_paiement)
+	{
+		paiementsRecord.setValue(YerothDatabaseTableColumn::MONTANT_PAYE, _montant_paye);
+	}
+	else
+	{
+		paiementsRecord.setValue(YerothDatabaseTableColumn::MONTANT_PAYE, (-1 * _montant_paye));
+	}
+
+
+	paiementsRecord.setValue(YerothDatabaseTableColumn::INTITULE_DU_COMPTE_BANCAIRE,
+			_paiement_intitule_compte_bancaire);
 
 	paiementsRecord.setValue(YerothDatabaseTableColumn::NOTES, _NOTES);
 
@@ -60,6 +74,9 @@ bool YerothERPPaymentProcessing::save_payment_info_record()
 	paiementsRecord.setValue(YerothDatabaseTableColumn::REFERENCE_RECU_PAIEMENT_CLIENT, referenceRecuPaiementClient);
 
 	paiementsRecord.setValue(YerothDatabaseTableColumn::REFERENCE, _reference);
+
+	paiementsRecord.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS,
+			_nouveau_compteClient_PROGRAMME_DE_FIDELITE_CLIENTS);
 
 	paiementsRecord.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT, _nouveau_compte_client);
 

@@ -3899,7 +3899,7 @@ background-color: rgb(0, 0, 0); </string>
        <rect>
         <x>636</x>
         <y>426</y>
-        <width>157</width>
+        <width>155</width>
         <height>21</height>
        </rect>
       </property>
@@ -8485,7 +8485,7 @@ background-color: rgb(0, 0, 0); </string>
        <rect>
         <x>593</x>
         <y>352</y>
-        <width>200</width>
+        <width>198</width>
         <height>21</height>
        </rect>
       </property>
@@ -8982,7 +8982,7 @@ background-color: rgb(0, 0, 0); </string>
        <rect>
         <x>593</x>
         <y>286</y>
-        <width>200</width>
+        <width>198</width>
         <height>21</height>
        </rect>
       </property>
@@ -14101,7 +14101,7 @@ border: 0px rgb(255, 255, 255);</string>
        <rect>
         <x>593</x>
         <y>400</y>
-        <width>200</width>
+        <width>198</width>
         <height>21</height>
        </rect>
       </property>
@@ -15249,7 +15249,7 @@ border: 0px rgb(255, 255, 255);</string>
        <rect>
         <x>593</x>
         <y>308</y>
-        <width>200</width>
+        <width>198</width>
         <height>21</height>
        </rect>
       </property>
@@ -15746,7 +15746,7 @@ background-color: rgb(0, 0, 0); </string>
        <rect>
         <x>593</x>
         <y>330</y>
-        <width>200</width>
+        <width>198</width>
         <height>21</height>
        </rect>
       </property>
@@ -27428,6 +27428,11 @@ background-color: rgb(0, 0, 0); </string>
    <header>src/widgets/yeroth-erp-line-edit.hpp</header>
   </customwidget>
   <customwidget>
+   <class>YerothTextEdit</class>
+   <extends>QTextEdit</extends>
+   <header>src/widgets/yeroth-erp-text-edit.hpp</header>
+  </customwidget>
+  <customwidget>
    <class>YerothComboBox</class>
    <extends>QComboBox</extends>
    <header>src/widgets/yeroth-erp-combo-box.hpp</header>
@@ -27436,11 +27441,6 @@ background-color: rgb(0, 0, 0); </string>
    <class>YerothDateTimeEdit</class>
    <extends>QDateEdit</extends>
    <header>src/widgets/yeroth-erp-datetime-edit.hpp</header>
-  </customwidget>
-  <customwidget>
-   <class>YerothTextEdit</class>
-   <extends>QTextEdit</extends>
-   <header>src/widgets/yeroth-erp-text-edit.hpp</header>
   </customwidget>
   <customwidget>
    <class>YerothERPPaiementsTableView</class>

@@ -89,6 +89,26 @@ void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableM
     								compte_fournisseur_user_view_string);
     }
 
+
+    QString compte_client_PROGRAMME_DE_FIDELITE_CLIENTS_user_view_string;
+
+    {
+    	compte_client_PROGRAMME_DE_FIDELITE_CLIENTS_user_view_string
+			= YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(
+					YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS);
+
+    	uint index_of_compte_client_PROGRAMME_DE_FIDELITE_CLIENTS_header =
+    			_tableModelRawHeaders_IN_OUT.indexOf(
+    					YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS);
+
+    	compte_client_PROGRAMME_DE_FIDELITE_CLIENTS_user_view_string.append(QObject::trUtf8(" (après)"));
+
+    	_tableModelHeaders.replace(index_of_compte_client_PROGRAMME_DE_FIDELITE_CLIENTS_header,
+    							   compte_client_PROGRAMME_DE_FIDELITE_CLIENTS_user_view_string);
+
+    }
+
+
     QString compte_client_user_view_string;
 
     {
@@ -128,6 +148,14 @@ void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableM
     	}
 
     	if (YerothUtils::isEqualCaseInsensitive(tableModel.record(0).fieldName(i),
+    											YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS))
+    	{
+    		_stdItemModel->setHeaderData(i,
+    									 Qt::Horizontal,
+										 compte_client_PROGRAMME_DE_FIDELITE_CLIENTS_user_view_string);
+    	}
+
+    	if (YerothUtils::isEqualCaseInsensitive(tableModel.record(0).fieldName(i),
     											YerothDatabaseTableColumn::COMPTE_CLIENT))
     	{
             _stdItemModel->setHeaderData(i,
@@ -154,6 +182,8 @@ void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableM
     {
     	for (int k = 0; k < columns; ++k)
     	{
+    		a_double_value = 0.0;
+
     		curTableModelRawHdr = tableModel.record(i).fieldName(k);
 
     		if (!_tableModelRawHeaders_IN_OUT.contains(curTableModelRawHdr))

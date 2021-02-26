@@ -4284,7 +4284,7 @@ background-color: rgb(0, 0, 0); </string>
        <rect>
         <x>593</x>
         <y>426</y>
-        <width>200</width>
+        <width>198</width>
         <height>21</height>
        </rect>
       </property>
@@ -7648,7 +7648,7 @@ background-color: rgb(0, 0, 0); </string>
        <rect>
         <x>593</x>
         <y>374</y>
-        <width>200</width>
+        <width>198</width>
         <height>21</height>
        </rect>
       </property>
@@ -8145,7 +8145,7 @@ background-color: rgb(0, 0, 0); </string>
        <rect>
         <x>593</x>
         <y>352</y>
-        <width>200</width>
+        <width>198</width>
         <height>21</height>
        </rect>
       </property>
@@ -8642,7 +8642,7 @@ background-color: rgb(0, 0, 0); </string>
        <rect>
         <x>593</x>
         <y>330</y>
-        <width>200</width>
+        <width>198</width>
         <height>21</height>
        </rect>
       </property>
@@ -9139,7 +9139,7 @@ background-color: rgb(0, 0, 0); </string>
        <rect>
         <x>593</x>
         <y>308</y>
-        <width>200</width>
+        <width>198</width>
         <height>21</height>
        </rect>
       </property>
@@ -15048,7 +15048,7 @@ border: none;</string>
        <rect>
         <x>593</x>
         <y>400</y>
-        <width>200</width>
+        <width>198</width>
         <height>21</height>
        </rect>
       </property>
@@ -44882,15 +44882,15 @@ cette Vente</string>
    <header>src/widgets/yeroth-erp-datetime-edit.hpp</header>
   </customwidget>
   <customwidget>
-   <class>YerothERPVentesTableView</class>
-   <extends>QTableView</extends>
-   <header>src/widgets/table-view/yeroth-erp-ventes-table-view.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>YerothERPTabWidget</class>
    <extends>QTabWidget</extends>
    <header>src/widgets/yeroth-erp-tab-widget.hpp</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>YerothERPVentesTableView</class>
+   <extends>QTableView</extends>
+   <header>src/widgets/table-view/yeroth-erp-ventes-table-view.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

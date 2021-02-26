@@ -241,7 +241,7 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::COMPTE_FOURNISSEUR,		QObject::tr("Compte fournisseur"));
 
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS,	QObject::trUtf8("Compte client (fidélité)"));
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS,	QObject::trUtf8("Compte FIDÉLITÉ CLIENT"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::COMPTE_CLIENT,			QObject::tr("Compte client"));
 

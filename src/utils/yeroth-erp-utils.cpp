@@ -18,7 +18,7 @@
 
 #include "src/process/yeroth-erp-process.hpp"
 
-#include "src/utils/yeroth-erp-payment-processing.hpp"
+#include "src/utils/yeroth-erp-payment-processing-information.hpp"
 
 #include "src/utils/yeroth-erp-config.hpp"
 
@@ -76,7 +76,6 @@
 #include <QtCore/QLibraryInfo>
 
 #include <QtCore/QtPlugin>
-
 
 
 YerothERPWindows *YerothUtils::_allWindows(0);

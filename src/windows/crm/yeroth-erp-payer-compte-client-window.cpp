@@ -12,6 +12,8 @@
 
 #include "src/users/yeroth-erp-users.hpp"
 
+#include "src/utils/yeroth-erp-payment-processing-information.hpp"
+
 #include "src/utils/yeroth-erp-database-table-column.hpp"
 
 #include "src/utils/yeroth-erp-style.hpp"
@@ -166,15 +168,15 @@ void YerothPayerCompteClientWindow::afficher_detail_client()
 }
 
 
-void YerothPayerCompteClientWindow::updateStocksVenduTable(PaymentInfo &paymentInfo)
+void YerothPayerCompteClientWindow::updateStocksVenduTable(YerothERPPaymentProcessingInformation &payment_processing_info)
 {
 	YerothSqlTableModel & stocksVenduTableModel = _allWindows->getSqlTableModel_stocks_vendu();
 
 	QString stocksVenduFilter(QString("%1 = '%2' AND %3 = '%4' ")
 								.arg(YerothDatabaseTableColumn::REFERENCE,
-									 paymentInfo.reference,
+									 payment_processing_info._reference,
 									 YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT,
-									 paymentInfo.nom_entreprise));
+									 payment_processing_info._nom_entreprise));
 
 	stocksVenduTableModel.yerothSetFilter_WITH_where_clause(stocksVenduFilter);
 
@@ -182,7 +184,7 @@ void YerothPayerCompteClientWindow::updateStocksVenduTable(PaymentInfo &paymentI
 
 	if (rowCount > 0)
 	{
-		double montantPaye = paymentInfo.montant_paye;
+		double montantPaye = payment_processing_info._montant_paye;
 
 		YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
 
@@ -237,9 +239,9 @@ void YerothPayerCompteClientWindow::updateStocksVenduTable(PaymentInfo &paymentI
     				QString removeMarchandisesRowQuery(QString("DELETE FROM %1 WHERE %2='%3' AND %4='%5'")
     													 .arg(YerothDatabase::MARCHANDISES,
     														  YerothDatabaseTableColumn::REFERENCE,
-															  paymentInfo.reference,
+															  payment_processing_info._reference,
 															  YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT,
-															  paymentInfo.nom_entreprise));
+															  payment_processing_info._nom_entreprise));
 
     				YerothUtils::execQuery(removeMarchandisesRowQuery);
     			}
@@ -251,36 +253,13 @@ void YerothPayerCompteClientWindow::updateStocksVenduTable(PaymentInfo &paymentI
 }
 
 
-bool YerothPayerCompteClientWindow::createPaymentForCustomerAccount(PaymentInfo &paymentInfo)
+bool YerothPayerCompteClientWindow::createPaymentForCustomerAccount(YerothERPPaymentProcessingInformation &payment_processing_info)
 {
-	YerothSqlTableModel & paiementsTableModel = _allWindows->getSqlTableModel_paiements();
-
-	QSqlRecord record = paiementsTableModel.record();
-
-	record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE, 		paymentInfo.nom_entreprise);
-	record.setValue(YerothDatabaseTableColumn::NOM_ENCAISSEUR, 		paymentInfo.nom_encaisseur);
-	record.setValue(YerothDatabaseTableColumn::DATE_PAIEMENT, 		paymentInfo.date_paiement);
-	record.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT, 		paymentInfo.compte_client);
-	record.setValue(YerothDatabaseTableColumn::TYPE_DE_PAIEMENT, 	paymentInfo.type_de_paiement);
-	record.setValue(YerothDatabaseTableColumn::NOTES, 				paymentInfo.notes);
-	record.setValue(YerothDatabaseTableColumn::REFERENCE, 			paymentInfo.reference);
-	record.setValue(YerothDatabaseTableColumn::MONTANT_PAYE, 		paymentInfo.montant_paye);
-	record.setValue(YerothDatabaseTableColumn::HEURE_PAIEMENT, 		CURRENT_TIME);
-
-	record.setValue(YerothDatabaseTableColumn::INTITULE_DU_COMPTE_BANCAIRE,
-			paymentInfo.intitule_du_compte_bancaire);
-
-	int IDforReceipt = YerothERPWindows::getNextIdSqlTableModel_paiements();
-
-	QString referenceRecuPaiementClient(YerothUtils::GET_REFERENCE_RECU_PAIEMENT_CLIENT(QString::number(IDforReceipt)));
-
-	record.setValue(YerothDatabaseTableColumn::REFERENCE_RECU_PAIEMENT_CLIENT, referenceRecuPaiementClient);
-
-	bool success = paiementsTableModel.insertNewRecord(record, this);
+	bool success = payment_processing_info.save_payment_info_record();
 
 	if (success)
 	{
-		updateStocksVenduTable(paymentInfo);
+		updateStocksVenduTable(payment_processing_info);
 	}
 
 	return success;
@@ -576,39 +555,51 @@ bool YerothPayerCompteClientWindow::putCashIntoCustomerAccount()
 								 YerothDatabaseTableColumn::NOM_ENTREPRISE,
 								 _curCompanyName));
 
-    	PaymentInfo paymentInfo;
+    	YerothERPPaymentProcessingInformation payment_processing_info;
 
-    	YerothPOSUser *currentUser = _allWindows->getUser();
+    	payment_processing_info._NOTES = textEdit_description->toPlainText();
 
-    	if (0 != currentUser)
-    	{
-    		paymentInfo.nom_encaisseur = currentUser->nom_complet();
-    	}
+    	payment_processing_info._reference = comboBox_comptes_clients_reference->currentText();
 
-    	paymentInfo.notes = textEdit_description->toPlainText();
-
-    	paymentInfo.reference = comboBox_comptes_clients_reference->currentText();
-
-    	paymentInfo.type_de_paiement = YerothUtils::getComboBoxDatabaseQueryValue(comboBox_clients_typedepaiement->currentText(),
+    	payment_processing_info._type_de_paiement = YerothUtils::getComboBoxDatabaseQueryValue(comboBox_clients_typedepaiement->currentText(),
     																 	 	 	  YerothUtils::_typedepaiementToUserViewString);
 
-    	paymentInfo.nom_entreprise = _curCompanyName;
+    	payment_processing_info._nom_entreprise = _curCompanyName;
 
-    	paymentInfo.date_paiement = GET_CURRENT_DATE;
 
-    	paymentInfo.compte_client = compte_client;
+    	{
+    		QString compteClient_PROGRAMME_DE_FIDELITE_CLIENTS_inchange =
+    					QString("select %1 from %2 where %3='%4'")
+    					   .arg(YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS,
+    							YerothDatabase::CLIENTS,
+								YerothDatabaseTableColumn::NOM_ENTREPRISE,
+								_curCompanyName);
 
-    	paymentInfo.montant_paye = cashPaymentAmount;
+    		QSqlQuery a_qsql_query;
 
-    	QString curEtablissementBancaire(comboBox_clients_intitule_du_compte_bancaire->currentText());
+    		int query_size = YerothUtils::execQuery(a_qsql_query,
+    				compteClient_PROGRAMME_DE_FIDELITE_CLIENTS_inchange);
 
-    	paymentInfo.intitule_du_compte_bancaire = curEtablissementBancaire;
+    		if (query_size > 0 && a_qsql_query.next())
+    		{
+    			payment_processing_info._nouveau_compteClient_PROGRAMME_DE_FIDELITE_CLIENTS
+					= a_qsql_query.value(YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS).toDouble();
+    		}
+    	}
+
+
+    	payment_processing_info._nouveau_compte_client = compte_client;
+
+    	payment_processing_info._montant_paye = cashPaymentAmount;
+
+    	payment_processing_info._paiement_intitule_compte_bancaire =
+    			comboBox_clients_intitule_du_compte_bancaire->currentText();
 
     	YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
 
     	success = YerothUtils::execQuery(queryStr);
 
-    	success = success && createPaymentForCustomerAccount(paymentInfo);
+    	success = success && createPaymentForCustomerAccount(payment_processing_info);
 
     	YEROTH_ERP_3_0_COMMIT_DATABASE_TRANSACTION;
     }

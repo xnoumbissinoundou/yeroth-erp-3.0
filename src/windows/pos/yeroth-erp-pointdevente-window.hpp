@@ -238,7 +238,7 @@ public slots:
 	void updateCompteClient_PROGRAMME_DE_FIDELITE_LOYALTY(const QString &a_nom_entreprise_client,
 														  bool CALL_update_lineedits_and_labels = false);
 
-	void handle_CLIENT_LOYALTY_PROGRAM(const QString &a_product_reference);
+	void handle_CLIENT_LOYALTY_PROGRAM_PAYMENTS_ENTRIES(const QString &a_product_reference);
 
 	void executer_la_vente_compte_client();
 

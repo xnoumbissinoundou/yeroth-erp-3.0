@@ -1,5 +1,5 @@
 /*
- * yeroth-erp-payment-processing.hpp
+ * yeroth-erp-payment-processing-information.hpp
  *
  *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
@@ -13,20 +13,21 @@
 #include <QtCore/QString>
 
 
-class YerothERPPaymentProcessing
+class YerothERPPaymentProcessingInformation
 {
 public:
 
 	YEROTH_CLASS_OPERATORS
 
-	inline YerothERPPaymentProcessing()
+	inline YerothERPPaymentProcessingInformation()
 	:_type_de_paiement(YerothUtils::DECAISSEMENT_INDEFINI),
+	 _nouveau_compteClient_PROGRAMME_DE_FIDELITE_CLIENTS(0.0),
 	 _nouveau_compte_client(0.0),
 	 _montant_paye(0.0)
 	{
 	}
 
-	inline ~YerothERPPaymentProcessing()
+	inline ~YerothERPPaymentProcessingInformation()
 	{
 	}
 
@@ -36,9 +37,13 @@ public:
 
 	int _type_de_paiement;
 
+	double _nouveau_compteClient_PROGRAMME_DE_FIDELITE_CLIENTS;
+
 	double _nouveau_compte_client;
 
 	double _montant_paye;
+
+	QString _paiement_intitule_compte_bancaire;
 
 	QString _nom_entreprise;
 
