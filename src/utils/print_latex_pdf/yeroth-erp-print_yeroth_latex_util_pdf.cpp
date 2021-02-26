@@ -99,6 +99,7 @@ QString YerothTableViewPRINT_UTILITIES_TEX_TABLE::
 												 (_MAX_TABLE_ROW_COUNT_first_page >= tableModelRowCount) ? tableModelRowCount : _MAX_TABLE_ROW_COUNT_first_page,
 												 tableModelRowCount <= _MAX_TABLE_ROW_COUNT_first_page);
 
+
 	int currentProgressBarCount = abs(((2.0 / pageNumber) * 50) - 4);
 
 	emit _yerothWindowTableOutputView->SIGNAL_INCREMENT_PROGRESS_BAR(currentProgressBarCount);
@@ -120,16 +121,6 @@ QString YerothTableViewPRINT_UTILITIES_TEX_TABLE::
 														 (fromRowIndex >= tableModelRowCount) ? tableModelRowCount : fromRowIndex,
 														 (toRowIndex >= tableModelRowCount) ? (tableModelRowCount + 1) : toRowIndex,
         												 k == pageNumber);
-
-        	/*
-        	 * Don't allow LATEX 'newpage' command after
-        	 * last end table of this document, since this
-        	 * creates a malformed LATEX document.
-        	 */
-        	if (k < pageNumber && fromRowIndex <= toRowIndex)
-        	{
-        		latexTable_in_out.append(QString("\\newpage \n"));
-        	}
 
             fromRowIndex = toRowIndex;
 
@@ -236,31 +227,23 @@ void YerothTableViewPRINT_UTILITIES_TEX_TABLE::
         return ;
     }
 
-    static bool first_run = true;
-
-    if (first_run)
+    if (0 == fromRowIndex)
     {
-    	latexTable_in_out.append("\\begin{table*}[!htbp]").append("\n")
+    	latexTable_in_out.append("\\begin{table*}[!hbp]").append("\n")
     		    		 .append("\\centering").append("\n")
     					 .append("\\begin{adjustbox}{width={\\textwidth},{totalheight=\\textheight-(\\textheight/3)},keepaspectratio}").append("\n")
     					 .append("\\begin{tabular}")
     					 .append("{|");
-
-    	first_run = false;
     }
     else
     {
-    	latexTable_in_out.append("\\begin{table*}").append("\n")
+    	latexTable_in_out.append("\\begin{table*}[!b]").append("\n")
     		    		 .append("\\centering").append("\n")
     					 .append("\\begin{adjustbox}{width={\\textwidth},{totalheight=\\textheight-(\\textheight/3)},keepaspectratio}").append("\n")
     					 .append("\\begin{tabular}")
     					 .append("{|");
     }
 
-    if (lastPage)
-    {
-    	first_run = true;
-    }
 
     QStandardItemModel &tableStandardItemModel =
     		*(static_cast<QStandardItemModel *> (_yerothTableView->model()));
@@ -333,7 +316,7 @@ void YerothTableViewPRINT_UTILITIES_TEX_TABLE::
 
         if (0 != item)
         {
-        	QString itemText(item->text().toUpper().trimmed());
+        	QString itemText(YerothUtils::LATEX_IN_OUT_handleForeignAccents(item->text()).toUpper().trimmed());
 
         	itemText.prepend("\\textbf{").append("}");
 
@@ -443,8 +426,11 @@ void YerothTableViewPRINT_UTILITIES_TEX_TABLE::
     //Removes the empty character "" from Latex output
     latexTable_in_out.replace("\"\"", YerothUtils::EMPTY_STRING);
 
-	latexTable_in_out.append("\\end{tabular}\n\\end{adjustbox}").append("\n")
-	    			 .append("\\end{table*}").append("\n");
+
+    latexTable_in_out.append("\\end{tabular}\n\\end{adjustbox}").append("\n")
+        		     .append("\\end{table*}").append("\n");
+
+    latexTable_in_out.append("\\clearpage \n");
 
 //    qDebug() << "++ latexTable_in_out in get_YEROTH_TableViewListingTexDocumentString: " << latexTable_in_out;
 }
