@@ -2878,7 +2878,7 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
 		}
     }
 
-    handle_CLIENT_LOYALTY_PROGRAM(referenceRecuVendu);
+    handle_CLIENT_LOYALTY_PROGRAM_PAYMENTS_ENTRIES(referenceRecuVendu);
 
     emit SELLING();
 
@@ -3206,7 +3206,7 @@ void YerothPointDeVenteWindow::updateCompteClient_PROGRAMME_DE_FIDELITE_LOYALTY(
 }
 
 
-void YerothPointDeVenteWindow::handle_CLIENT_LOYALTY_PROGRAM(const QString &a_product_reference)
+void YerothPointDeVenteWindow::handle_CLIENT_LOYALTY_PROGRAM_PAYMENTS_ENTRIES(const QString &a_product_reference)
 {
 	if (_curClientName.isEmpty() ||
 		_client_group_program_TO_money_benefit.isEmpty())
@@ -3530,7 +3530,7 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
 		}
     }
 
-    handle_CLIENT_LOYALTY_PROGRAM(referenceRecuVenduCompteClient);
+    handle_CLIENT_LOYALTY_PROGRAM_PAYMENTS_ENTRIES(referenceRecuVenduCompteClient);
 
     emit SELLING();
 
