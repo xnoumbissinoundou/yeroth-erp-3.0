@@ -601,7 +601,14 @@ bool YerothPayerCompteClientWindow::putCashIntoCustomerAccount()
 
     	success = success && createPaymentForCustomerAccount(payment_processing_info);
 
-    	YEROTH_ERP_3_0_COMMIT_DATABASE_TRANSACTION;
+    	if (success)
+    	{
+    		YEROTH_ERP_3_0_COMMIT_DATABASE_TRANSACTION;
+    	}
+    	else
+    	{
+    		YEROTH_ERP_3_0_ROLLBACK_DATABASE_TRANSACTION;
+    	}
     }
     else
     {

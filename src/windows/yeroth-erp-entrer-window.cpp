@@ -8,6 +8,8 @@
 
 #include "src/yeroth-erp-windows.hpp"
 
+#include "src/utils/yeroth-erp-payment-processing-information.hpp"
+
 #include "src/utils/yeroth-erp-service-stock-marchandise-data.hpp"
 
 #include "src/utils/yeroth-erp-database-table-column.hpp"
@@ -1369,7 +1371,8 @@ void YerothEntrerWindow::handle_achat_checkBox(int aState)
 bool YerothEntrerWindow::handle_stocks_vendu_table(int stockID,
 							   	   	   	   	   	   ServiceClientInfo &aServiceInfo,
 												   double montant_total_vente,
-												   double nouveau_compte_client)
+												   double nouveau_compte_client,
+												   double compteClient_PROGRAMME_DE_FIDELITE_CLIENTS)
 {
 	QString clientName = lineEdit_nom_entreprise_fournisseur->text();
 
@@ -1501,7 +1504,11 @@ bool YerothEntrerWindow::handle_stocks_vendu_table(int stockID,
         							.arg(YerothHistoriqueStock::SEPARATION_EXTERNE,
         								 historiqueStockVendu));
 
+        record.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS,
+        		compteClient_PROGRAMME_DE_FIDELITE_CLIENTS);
+
         record.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT, aServiceInfo.nouveau_compte_client);
+
         record.setValue(YerothDatabaseTableColumn::CLIENTS_ID, aServiceInfo.ID_client);
         record.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT, aServiceInfo.nom_entreprise_client);
 
@@ -1581,6 +1588,9 @@ bool YerothEntrerWindow::handle_clients_table(int stockID, double montant_total_
 	{
 		QSqlRecord clientsRecord = clientsTableModel.record(0);
 
+		double compteClient_PROGRAMME_DE_FIDELITE_CLIENTS =
+			GET_SQL_RECORD_DATA(clientsRecord, YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS).toDouble();
+
         double compteClient =
         	GET_SQL_RECORD_DATA(clientsRecord, YerothDatabaseTableColumn::COMPTE_CLIENT).toDouble();
 
@@ -1626,7 +1636,8 @@ bool YerothEntrerWindow::handle_clients_table(int stockID, double montant_total_
     		success_stocksVendu = handle_stocks_vendu_table(stockID,
     								  	  	  	  	  	    aServiceClientInfo,
 															montant_total_vente,
-															nouveau_compte_client);
+															nouveau_compte_client,
+															compteClient_PROGRAMME_DE_FIDELITE_CLIENTS);
     	}
 
 		return success_stocksVendu && true;
@@ -1802,68 +1813,27 @@ bool YerothEntrerWindow::executer_enregistrer_achat_de_service()
     	successAchatDeServiceInsert = achats_de_servicesSqlTableModel.insertNewRecord(achatRecord);
     }
 
-    double nouveau_compte_fournisseur = 0.0;
-
-    bool success_update_compte_fournisseur = false;
-
-    {
-    	YerothSqlTableModel &fournisseursTableModel = _allWindows->getSqlTableModel_fournisseurs();
-
-    	QString fournisseursTableFilter = QString("%1 = '%2'")
-        	            								.arg(YerothDatabaseTableColumn::NOM_ENTREPRISE,
-        	            										proposed_Fournisseur_Client_Name);
-
-    	fournisseursTableModel.yerothSetFilter_WITH_where_clause(fournisseursTableFilter);
-
-    	int rows = fournisseursTableModel.easySelect();
-
-    	if (rows > 0)
-    	{
-    		QSqlRecord fournisseursRecord = fournisseursTableModel.record(0);
-
-    		double compte_fournisseur =
-    				GET_SQL_RECORD_DATA(fournisseursRecord, YerothDatabaseTableColumn::COMPTE_FOURNISSEUR).toDouble();
-
-    		nouveau_compte_fournisseur = compte_fournisseur + prix_dachat_du_service;
-
-    		fournisseursRecord.setValue(YerothDatabaseTableColumn::COMPTE_FOURNISSEUR, nouveau_compte_fournisseur);
-
-    		success_update_compte_fournisseur = fournisseursTableModel.updateRecord(0, fournisseursRecord);
-
-    		fournisseursTableModel.resetFilter();
-    	}
-    }
-
     bool successPaiementsInsert = false;
 
     {
-    	YerothSqlTableModel & paiementsSqlTableModel = _allWindows->getSqlTableModel_paiements();
+    	YerothERPPaymentProcessingInformation payment_processing_info;
 
-    	QSqlRecord paiementsRecord = paiementsSqlTableModel.record();
+    	payment_processing_info._nom_entreprise = proposed_Fournisseur_Client_Name;
 
-    	paiementsRecord.setValue(YerothDatabaseTableColumn::DATE_PAIEMENT, GET_CURRENT_DATE);
-    	paiementsRecord.setValue(YerothDatabaseTableColumn::HEURE_PAIEMENT, CURRENT_TIME);
-    	paiementsRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE, proposed_Fournisseur_Client_Name);
-    	paiementsRecord.setValue(YerothDatabaseTableColumn::NOM_ENCAISSEUR, utilisateurCourantNomComplet);
-    	paiementsRecord.setValue(YerothDatabaseTableColumn::COMPTE_FOURNISSEUR, nouveau_compte_fournisseur);
-    	paiementsRecord.setValue(YerothDatabaseTableColumn::MONTANT_PAYE, prix_dachat_du_service);
+    	payment_processing_info._type_de_paiement = YerothUtils::DECAISSEMENT_COMPTANT;
 
-    	paiementsRecord.setValue(YerothDatabaseTableColumn::TYPE_DE_PAIEMENT, YerothUtils::DECAISSEMENT_COMPTANT);
-    	paiementsRecord.setValue(YerothDatabaseTableColumn::REFERENCE, a_service_achat_au_fournisseur_data._reference);
-    	//    paiementsRecord.setValue(YerothDatabaseTableColumn::NOTES, );
-    	//    paiementsRecord.setValue(YerothDatabaseTableColumn::INTITULE_DU_COMPTE_BANCAIRE, );
+    	payment_processing_info._montant_paye = prix_dachat_du_service;
 
-    	int paiements_id_to_save = YerothERPWindows::getNextIdSqlTableModel_paiements();
+    	payment_processing_info._reference = a_service_achat_au_fournisseur_data._reference;
 
-    	paiementsRecord.setValue(YerothDatabaseTableColumn::ID, paiements_id_to_save);
+    	bool is_supplier_payment = true;
 
-    	successPaiementsInsert = paiementsSqlTableModel.insertNewRecord(paiementsRecord);
+    	successPaiementsInsert = payment_processing_info.save_payment_info_record(is_supplier_payment);
     }
 
 
     if (!successAchatDeServiceInsert ||
-    	!successPaiementsInsert ||
-    	!success_update_compte_fournisseur )
+    	!successPaiementsInsert)
     {
     	return false;
     }

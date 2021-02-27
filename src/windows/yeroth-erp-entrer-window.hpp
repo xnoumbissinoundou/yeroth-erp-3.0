@@ -111,7 +111,8 @@ public slots:
     bool handle_stocks_vendu_table(int stockID,
     							   ServiceClientInfo &aServiceInfo,
 								   double montant_total_vente,
-								   double nouveau_compte_client);
+								   double nouveau_compte_client,
+								   double compteClient_PROGRAMME_DE_FIDELITE_CLIENTS);
 
     bool handle_clients_table(int stockID, double montant_total_vente);
 
