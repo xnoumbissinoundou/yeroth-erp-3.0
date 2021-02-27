@@ -3,7 +3,10 @@
  *
  *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
+
 #include "src/include/yeroth-erp-3-0-software.text-configuration.hpp"
+
+#include "src/users/yeroth-erp-user-manager.hpp"
 
 #include "src/utils/yeroth-erp-command-line-parser.hpp"
 
@@ -797,7 +800,16 @@ int main(int argc, char *argv[])
     QApplication::setWindowIcon(QIcon(":yeroth-erp-3-0-images/yeroth-erp-3-0-icon.png"));
 
 
-    YerothERPConfig::_connectedSite = allWindows.getInfoEntreprise().getLocalisation();
+//#define YEROTH_DEVEL_TARGET
+
+#ifdef YEROTH_DEVEL_TARGET
+
+    YerothERPConfig::THIS_SITE_LOCALISATION_NAME = "YEROTH_ERP_3_0_TESTING_RD_BUILDING";
+
+#endif
+
+//	QDEBUG_STRING_OUTPUT_2("YerothERPConfig::THIS_SITE_LOCALISATION_NAME",
+//						   YerothERPConfig::THIS_SITE_LOCALISATION_NAME);
 
 #ifndef YEROTH_ERP_3_0_TESTING_UNIT_TEST
 

@@ -91,12 +91,7 @@ private:
 
     void clear_all_fields();
 
-    inline void updatePopulateComboBoxes()
-    {
-    	comboBox_creer_un_programme_de_fidelite_clients_localisation->
-    		populateComboBoxRawString(YerothDatabase::LOCALISATIONS,
-    								  YerothDatabaseTableColumn::LOCALISATION);
-    }
+    void updatePopulateComboBoxes();
 
     void populateComboBoxes();
 

@@ -2839,9 +2839,7 @@ bool YerothUtils::slot_deconnecter_localisation(YerothERPWindows *allWindows)
 
     YerothERPConfig::_distantSiteConnected = false;
 
-    YerothERPConfig::_connectedSite.clear();
-
-    YerothERPConfig::_connectedSite = allWindows->getInfoEntreprise().getLocalisation();
+    YerothERPConfig::_connectedSite.clear();    
 
     database.set_db_ip_address(YerothERPConfig::_db_ip_address);
 

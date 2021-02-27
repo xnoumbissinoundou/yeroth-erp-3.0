@@ -63,6 +63,11 @@ public:
 		 setCurrentIndex(0);
 	}
 
+	inline virtual bool contains(const QString &a_text)
+	{
+		return (-1 != findText(a_text));
+	}
+
 	inline QString currentText() const
 	{
 		return QComboBox::currentText().trimmed();
@@ -98,6 +103,8 @@ public:
 	{
 		removeItem(findText(text));
 	}
+
+	virtual void addItem_AFTER_POPULATE(const QStringList &texts);
 
 	virtual void addItems(const QStringList &texts);
 

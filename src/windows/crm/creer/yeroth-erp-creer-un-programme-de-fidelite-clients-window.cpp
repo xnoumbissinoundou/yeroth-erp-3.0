@@ -122,6 +122,25 @@ void YerothCreerUnProgrammeDeFideliteClientsWindow::deconnecter_utilisateur()
 }
 
 
+void YerothCreerUnProgrammeDeFideliteClientsWindow::updatePopulateComboBoxes()
+{
+	QStringList new_items;
+
+	new_items.append(YerothUtils::EMPTY_STRING);
+
+	new_items.append(YerothERPConfig::THIS_SITE_LOCALISATION_NAME);
+
+
+	comboBox_creer_un_programme_de_fidelite_clients_localisation->
+		populateComboBoxRawString(YerothDatabase::LOCALISATIONS,
+								  YerothDatabaseTableColumn::NOM_LOCALISATION);
+
+
+	comboBox_creer_un_programme_de_fidelite_clients_localisation->
+		addItem_AFTER_POPULATE(new_items);
+}
+
+
 void YerothCreerUnProgrammeDeFideliteClientsWindow::populateComboBoxes()
 {
 	comboBox_creer_un_programme_de_fidelite_clients_localisation->

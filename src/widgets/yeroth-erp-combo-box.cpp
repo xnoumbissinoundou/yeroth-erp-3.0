@@ -89,6 +89,30 @@ void YerothComboBox::saveCurrentValueToDatabase(const QString &aDBFieldColumn,
 }
 
 
+void YerothComboBox::addItem_AFTER_POPULATE(const QStringList &texts)
+{
+	QSet<QString> cur_items;
+
+	for( uint i = 0; i < count(); ++i)
+	{
+		cur_items.insert(itemText(i));
+	}
+
+	for( uint j = 0; j < texts.size(); ++j)
+	{
+		cur_items.insert(texts.at(j));
+	}
+
+	QStringList result_items_sorted = cur_items.toList();
+
+	result_items_sorted.sort(Qt::CaseSensitive);
+
+	clear();
+
+	QComboBox::addItems(result_items_sorted);
+}
+
+
 void YerothComboBox::addItems(const QStringList &texts)
 {
 	QStringList new_texts(texts);
