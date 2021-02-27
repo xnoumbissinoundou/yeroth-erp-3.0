@@ -7714,7 +7714,7 @@ background-color: rgb(0, 0, 0); </string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="YerothComboBox" name="comboBox_details_nom_departement_produit">
+    <widget class="YerothComboBox" name="comboBox_details_un_programme_de_fidelite_clients_localisation">
      <property name="geometry">
       <rect>
        <x>196</x>
@@ -8146,7 +8146,7 @@ background-color: rgb(0, 0, 0); </string>
       </font>
      </property>
     </widget>
-    <widget class="QLabel" name="label_details_un_programme_de_fidelite_clients_nom_departement_produit">
+    <widget class="QLabel" name="label_details_un_programme_de_fidelite_clients_localisation">
      <property name="geometry">
       <rect>
        <x>9</x>
@@ -8166,7 +8166,7 @@ background-color: rgb(0, 0, 0); </string>
       <enum>Qt::LeftToRight</enum>
      </property>
      <property name="text">
-      <string>département de produits</string>
+      <string>succursale de validité</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

@@ -90,6 +90,10 @@ QString YerothERPConfig::pathToMARIA_DB_BASE_DIR("/usr/bin");
 
 QString YerothERPConfig::temporaryFilesDir("/home/yeroth");
 
+#ifndef YEROTH_DEVEL_TARGET
+QString YerothERPConfig::THIS_SITE_LOCALISATION_NAME("THIS_SITE_LOCALISATION_HARD_CODED_BY_DEVELOPER_FOR_MAXIMUM_BENEFIT_FOR_CLIENT");
+#endif //YEROTH_DEVEL_TARGET
+
 bool YerothERPConfig::_distantSiteConnected(false);
 
 QString YerothERPConfig::_connectedSite;

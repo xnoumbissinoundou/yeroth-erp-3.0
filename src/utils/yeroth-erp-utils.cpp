@@ -346,6 +346,7 @@ const QString YerothUtils::APROPOS_MSG(QObject::trUtf8("YEROTH-ERP-3.0-SERVER"
 													   "\n(VERSION du YEROTH_BUILD_DATE à YEROTH_BUILD_DATE_TIMESTAMP)"
 													   "\n\n par \n\n"
 		   	   	   	   	   	   	   	   	   	   	   	   "(c) (2015 - ...) DR. XAVIER NOUMBISSI NOUNDOU.\n\n"
+													   "CLIENT DEDICATED COMPANY LOCALISATION SITE: ''.\n\n"
 		   	   	   	   	   	   	   	   	   	   	   	   "LAST BUILD ID: ''.\n\n"
 		   	   	   	   	   	   	   	   	   	   	   	   "ON BUILD_COMPUTER: ''."));
 const QString YerothUtils::APPLICATION_NAME(QObject::trUtf8("YEROTH-ERP-3.0-SERVER"));
@@ -356,6 +357,7 @@ const QString YerothUtils::APROPOS_MSG(QObject::trUtf8("YEROTH-ERP-3.0-CLIENT"
 													   "\n(VERSION du YEROTH_BUILD_DATE à YEROTH_BUILD_DATE_TIMESTAMP)"
 													   "\n\n par \n\n"
 													   "(c) (2015 - ...) DR. XAVIER NOUMBISSI NOUNDOU.\n\n"
+													   "CLIENT DEDICATED COMPANY LOCALISATION SITE: ''.\n\n"
 													   "LAST BUILD ID: ''.\n\n"
 													   "ON BUILD_COMPUTER: ''."));
 const QString YerothUtils::APPLICATION_NAME(QObject::trUtf8("YEROTH-ERP-3.0-CLIENT"));
@@ -366,6 +368,7 @@ const QString YerothUtils::APROPOS_MSG(QObject::trUtf8("YEROTH-ERP-3.0-STANDALON
 													   "\n(VERSION du YEROTH_BUILD_DATE à YEROTH_BUILD_DATE_TIMESTAMP)"
 													   "\n\n par \n\n"
 		   	   	   	   	   	   	   	   	   	   	   	   "(c) (2015 - ...) DR. XAVIER NOUMBISSI NOUNDOU.\n\n"
+													   "CLIENT DEDICATED COMPANY LOCALISATION SITE: ''.\n\n"
 		   	   	   	   	   	   	   	   	   	   	   	   "LAST BUILD ID: ''.\n\n"
 		   	   	   	   	   	   	   	   	   	   	   	   "ON BUILD_COMPUTER: ''."));
 const QString YerothUtils::APPLICATION_NAME(QObject::trUtf8("YEROTH-ERP-3.0-STANDALONE"));
@@ -376,6 +379,7 @@ const QString YerothUtils::APROPOS_MSG(QObject::trUtf8("YEROTH-ERP-3.0-ACADEMIC_
 													   "\n(VERSION du YEROTH_BUILD_DATE à YEROTH_BUILD_DATE_TIMESTAMP)"
 													   "\n\n par \n\n"
 		   	   	   	   	   	   	   	   	   	   	   	   "(c) (2015 - ...) DR. XAVIER NOUMBISSI NOUNDOU.\n\n"
+													   "CLIENT DEDICATED COMPANY LOCALISATION SITE: ''.\n\n"
 		   	   	   	   	   	   	   	   	   	   	   	   "LAST BUILD ID: ''.\n\n"
 		   	   	   	   	   	   	   	   	   	   	   	   "ON BUILD_COMPUTER: ''."));
 const QString YerothUtils::APPLICATION_NAME(QObject::trUtf8("YEROTH-ERP-3.0-ACADEMIC_EVALUATION"));
@@ -2563,6 +2567,29 @@ QString YerothUtils::appendPDFReceiptFormat(QString aStr)
     }
 
     return resultStr;
+}
+
+
+QString YerothUtils::GET_LOCALISATION_FOR_CLIENT_LOYALTY_PROGRAM(const QString &client_loyalty_program)
+{
+	QString CUR_GET_CLIENT_LOYALTY_PROGRAM_LOCALISATION_ONLY =
+			QString("select %1 from %2 where %3='%4'")
+			   .arg(YerothDatabaseTableColumn::LOCALISATION,
+					YerothDatabase::PROGRAMMES_DE_FIDELITE_CLIENTS,
+					YerothDatabaseTableColumn::DESIGNATION,
+					client_loyalty_program);
+
+
+	QSqlQuery a_qsql_query;
+
+	int query_size = YerothUtils::execQuery(a_qsql_query, CUR_GET_CLIENT_LOYALTY_PROGRAM_LOCALISATION_ONLY);
+
+	if (query_size > 0 && a_qsql_query.next())
+	{
+		return a_qsql_query.value(0).toString();
+	}
+
+	return YerothUtils::EMPTY_STRING;
 }
 
 

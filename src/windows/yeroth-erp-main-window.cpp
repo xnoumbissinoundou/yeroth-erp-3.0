@@ -509,6 +509,8 @@ void YerothMainWindow::help()
 	}
 #else
 
+	YerothERPConfig::THIS_SITE_LOCALISATION_NAME = "YEROTH_ERP_3_0_TESTING_RD_BUILDING";
+
 	_allWindows->_adminWindow->start_TESTING_MAINTENANCE();
 
     //YerothUserLAdministrateur *u = new YerothUserLAdministrateur(_allWindows);

@@ -380,10 +380,12 @@ private:
     int 				 	_currentTabView;
 
     QAction 				*actionRechercheArticle;
+
     QAction 				*actionRechercheArticleCodebar;
 
     QString					_searchFilter;
-	QString					_curClientName;
+
+    QString					_curClientName;
 
 	Yeroth_LIST_map_COMPLEX_ITEM 		_client_group_program_TO_money_benefit;
 

@@ -100,6 +100,8 @@ public:
 
 	static QString temporaryFilesDir;
 
+	static QString THIS_SITE_LOCALISATION_NAME;
+
 	static bool _distantSiteConnected;
 
 	static QString _connectedSite;

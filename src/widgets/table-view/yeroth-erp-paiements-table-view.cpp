@@ -105,7 +105,6 @@ void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableM
 
     	_tableModelHeaders.replace(index_of_compte_client_PROGRAMME_DE_FIDELITE_CLIENTS_header,
     							   compte_client_PROGRAMME_DE_FIDELITE_CLIENTS_user_view_string);
-
     }
 
 
@@ -233,7 +232,8 @@ void YerothERPPaiementsTableView::lister_les_elements_du_tableau(YerothSqlTableM
 
     			anItem = new YerothQStandardItem(GET_DOUBLE_STRING(a_double_value));
 
-    			if (YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::MONTANT_PAYE)||
+    			if (YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::MONTANT_PAYE) ||
+    				YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS)||
     				YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::COMPTE_CLIENT)||
     				YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::COMPTE_FOURNISSEUR))
     			{

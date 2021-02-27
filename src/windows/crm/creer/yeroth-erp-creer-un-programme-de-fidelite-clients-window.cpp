@@ -124,7 +124,7 @@ void YerothCreerUnProgrammeDeFideliteClientsWindow::deconnecter_utilisateur()
 
 void YerothCreerUnProgrammeDeFideliteClientsWindow::populateComboBoxes()
 {
-	comboBox_creer_nom_departement_produit->
+	comboBox_creer_un_programme_de_fidelite_clients_localisation->
 		populateComboBoxRawString(YerothDatabase::DEPARTEMENTS_PRODUITS,
 								  YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT);
 
@@ -301,7 +301,7 @@ void YerothCreerUnProgrammeDeFideliteClientsWindow::clear_all_fields()
 
 	doubleSpinBox_creer_un_programme_de_fidelite_clients_pourcentage_du_rabais_du_refereur->setValue(0.0);
 
-	comboBox_creer_nom_departement_produit->resetYerothComboBox();
+	comboBox_creer_un_programme_de_fidelite_clients_localisation->resetYerothComboBox();
 
 	comboBox_creer_un_programme_de_fidelite_clients_pourcentage_rabais_refereur_condition
 		->resetYerothComboBox();
@@ -409,10 +409,10 @@ bool YerothCreerUnProgrammeDeFideliteClientsWindow::creerEnregistrerUnProgrammeD
 
 	record.setValue(YerothDatabaseTableColumn::DESIGNATION, new_royalty_program_designation);
 
-	if (!comboBox_creer_nom_departement_produit->isEmpty())
+	if (!comboBox_creer_un_programme_de_fidelite_clients_localisation->isEmpty())
 	{
-		record.setValue(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,
-				comboBox_creer_nom_departement_produit->currentText());
+		record.setValue(YerothDatabaseTableColumn::LOCALISATION,
+				comboBox_creer_un_programme_de_fidelite_clients_localisation->currentText());
 	}
 
 	record.setValue(YerothDatabaseTableColumn::DESCRIPTION_PROGRAMME_DE_FIDELITE_CLIENTS,
@@ -480,5 +480,4 @@ bool YerothCreerUnProgrammeDeFideliteClientsWindow::creerEnregistrerUnProgrammeD
 
     return true;
 }
-
 

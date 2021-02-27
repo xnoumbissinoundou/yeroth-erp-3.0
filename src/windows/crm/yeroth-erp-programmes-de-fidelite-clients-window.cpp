@@ -251,7 +251,22 @@ void YerothERPProgrammesDeFideliteClientsWindow::modifier_un_programme_de_fideli
 void YerothERPProgrammesDeFideliteClientsWindow::
 	supprimer_PLUSIEURS_programmes_de_fidelite_clients(YerothSqlTableModel &a_LOYALTY_PROGRAM_TableModel)
 {
+	YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
+
+
+	QString cur_client_group_designation;
+
+	QString SELECT_CURRENT_CLIENT_GROUP_DESIGNATION;
+
 	QString YEROTH_TABLE_VIEW_DELETE_SELECTED_ROWS_QUERY_STRING;
+
+	QString UPDATE_CLIENT_GROUP_SELECTED_ROWS_QUERY_STRING;
+
+
+	int cur_query_size = -1;
+
+	QSqlQuery a_sql_query;
+
 
 	QMapIterator<QString, QString> j(tableView_programmes_de_fidelite_clients->lastSelected_Rows__IDs());
 
@@ -259,11 +274,35 @@ void YerothERPProgrammesDeFideliteClientsWindow::
 	{
 		j.next();
 
+
 		YEROTH_TABLE_VIEW_DELETE_SELECTED_ROWS_QUERY_STRING
-			.append(QString("DELETE FROM %1 WHERE %2 = '%3';")
-				.arg(YerothDatabase::PROGRAMMES_DE_FIDELITE_CLIENTS,
-					 YerothDatabaseTableColumn::ID,
-					 j.value()));
+			.append(QString("DELETE FROM %1 WHERE %2 = '%3'; ")
+						.arg(YerothDatabase::PROGRAMMES_DE_FIDELITE_CLIENTS,
+							 YerothDatabaseTableColumn::ID,
+							 j.value()));
+
+
+		SELECT_CURRENT_CLIENT_GROUP_DESIGNATION
+			= QString("select %1 from %2 where %3='%4'")
+						.arg(YerothDatabaseTableColumn::DESIGNATION,
+							 YerothDatabase::PROGRAMMES_DE_FIDELITE_CLIENTS,
+							 YerothDatabaseTableColumn::ID,
+							 j.value());
+
+		cur_query_size = YerothUtils::execQuery(a_sql_query, SELECT_CURRENT_CLIENT_GROUP_DESIGNATION);
+
+		if (cur_query_size > 0 && a_sql_query.next())
+		{
+			cur_client_group_designation =
+					a_sql_query.value(YerothDatabaseTableColumn::DESIGNATION).toString();
+
+			UPDATE_CLIENT_GROUP_SELECTED_ROWS_QUERY_STRING
+				.append(QString("UPDATE %1 SET %2='' WHERE %3='%4'; ")
+							.arg(YerothDatabase::GROUPES_DE_CLIENTS,
+								 YerothDatabaseTableColumn::PROGRAMME_DE_FIDELITE_CLIENTS,
+								 YerothDatabaseTableColumn::PROGRAMME_DE_FIDELITE_CLIENTS,
+								 cur_client_group_designation));
+		}
 	}
 
     QString msgConfirmation(QObject::trUtf8("Supprimer les programmes de fidélité clients sélectionés ?"));
@@ -281,6 +320,12 @@ void YerothERPProgrammesDeFideliteClientsWindow::
 
     	if (success && a_LOYALTY_PROGRAM_TableModel.select())
     	{
+//    		QDEBUG_STRING_OUTPUT_2("UPDATE_CLIENT_GROUP_SELECTED_ROWS_QUERY_STRING",
+//    							   UPDATE_CLIENT_GROUP_SELECTED_ROWS_QUERY_STRING);
+
+    		bool success_update_client_group =
+    				YerothUtils::execQuery(UPDATE_CLIENT_GROUP_SELECTED_ROWS_QUERY_STRING);
+
     		setupLineEditsQCompleters((QObject *)this);
 
     		msg.append(QObject::trUtf8(" ont été supprimés de la base de données !"));
@@ -289,6 +334,18 @@ void YerothERPProgrammesDeFideliteClientsWindow::
     				QObject::trUtf8("suppression - succès"),
     				msg,
     				QMessageBox::Ok);
+
+    		if (!success_update_client_group)
+    		{
+    			YerothQMessageBox::warning(this,
+    					QObject::trUtf8("actualisation - échec"),
+						QObject::trUtf8("les données des groupes de clients "
+								"N'ONT pas pu être actualisées avec succès !"));
+
+    			YEROTH_ERP_3_0_ROLLBACK_DATABASE_TRANSACTION;
+
+    			return ;
+    		}
     	}
     	else
     	{
@@ -300,6 +357,8 @@ void YerothERPProgrammesDeFideliteClientsWindow::
     				QMessageBox::Ok);
     	}
     }
+
+    YEROTH_ERP_3_0_COMMIT_DATABASE_TRANSACTION;
 }
 
 
@@ -331,6 +390,8 @@ void YerothERPProgrammesDeFideliteClientsWindow::supprimer_un_programme_de_fidel
     }
 
 
+    YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
+
     QSqlRecord record;
 
     _allWindows->_programmesDeFideliteClientsWindow->
@@ -361,6 +422,16 @@ void YerothERPProgrammesDeFideliteClientsWindow::supprimer_un_programme_de_fidel
 
         if (success && programmeDeFideliteClientsTableModel->select())
         {
+        	QString UPDATE_FROM_CLIENT_GROUP_QUERY_STRING(
+        			QString("UPDATE %1 SET %2='' WHERE %3='%4'")
+						.arg(YerothDatabase::GROUPES_DE_CLIENTS,
+						     YerothDatabaseTableColumn::PROGRAMME_DE_FIDELITE_CLIENTS,
+							 YerothDatabaseTableColumn::PROGRAMME_DE_FIDELITE_CLIENTS,
+							 designation));
+
+        	bool success_update_client_group =
+        			YerothUtils::execQuery(UPDATE_FROM_CLIENT_GROUP_QUERY_STRING);
+
         	setupLineEditsQCompleters((QObject *)this);
 
             tableView_programmes_de_fidelite_clients->clearSelection();
@@ -373,6 +444,17 @@ void YerothERPProgrammesDeFideliteClientsWindow::supprimer_un_programme_de_fidel
             							   QObject::trUtf8("suppression - succès"),
             							   msg,
 										   QMessageBox::Ok);
+
+            if (!success_update_client_group)
+            {
+            	msg = QObject::trUtf8("les données du groupe de client ('%1') "
+            						  "N'ONT pas pu être actualisées avec succès !")
+            				.arg(designation);
+
+                YerothQMessageBox::warning(this,
+                						   QObject::trUtf8("actualisation - échec"),
+                						   msg);
+            }
         }
         else
         {
@@ -384,6 +466,8 @@ void YerothERPProgrammesDeFideliteClientsWindow::supprimer_un_programme_de_fidel
 										   QMessageBox::Ok);
         }
     }
+
+    YEROTH_ERP_3_0_COMMIT_DATABASE_TRANSACTION;
 }
 
 

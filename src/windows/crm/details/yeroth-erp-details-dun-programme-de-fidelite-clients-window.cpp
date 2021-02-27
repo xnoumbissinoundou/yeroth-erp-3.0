@@ -184,7 +184,7 @@ void YerothDetailsDunProgrammeDeFideliteClientsWindow::definirMagasinier()
 
 void YerothDetailsDunProgrammeDeFideliteClientsWindow::rendreInvisible()
 {
-	comboBox_details_nom_departement_produit->clear();
+	comboBox_details_un_programme_de_fidelite_clients_localisation->clear();
     YerothWindowsCommons::rendreInvisible();
 }
 
@@ -222,8 +222,8 @@ void YerothDetailsDunProgrammeDeFideliteClientsWindow::showClientLOYALTY_PROGRAM
 	lineEdit_details_dun_programme_de_fidelite_clients_designation
 		->setText(designation_programme_de_fidelite_clients);
 
-	comboBox_details_nom_departement_produit
-		->addItem(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT));
+	comboBox_details_un_programme_de_fidelite_clients_localisation
+		->addItem(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::LOCALISATION));
 
 
 	double pourcentage_du_rabais =

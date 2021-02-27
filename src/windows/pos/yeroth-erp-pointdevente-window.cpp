@@ -3115,7 +3115,13 @@ void YerothPointDeVenteWindow::updateCompteClient_PROGRAMME_DE_FIDELITE_LOYALTY(
 	_client_group_program_TO_money_benefit.clear();
 
 
+	QDEBUG_STRING_OUTPUT_2("YerothERPConfig::THIS_SITE_LOCALISATION_NAME",
+						   YerothERPConfig::THIS_SITE_LOCALISATION_NAME);
+
+
 	QString clientGroup_db_ID;
+
+	QString client_group_loyalty_program_LOCALISATION;
 
 	QString client_group_loyalty_program;
 
@@ -3155,9 +3161,22 @@ void YerothPointDeVenteWindow::updateCompteClient_PROGRAMME_DE_FIDELITE_LOYALTY(
 				continue;
 			}
 
-			//			QDEBUG_STRING_OUTPUT_1(QString("clientGroup ID (%1), client_group_loyalty_program => %2")
-			//										.arg(clientGroup_db_ID,
-			//											 client_group_loyalty_program));
+			client_group_loyalty_program_LOCALISATION =
+					YerothUtils::GET_LOCALISATION_FOR_CLIENT_LOYALTY_PROGRAM(client_group_loyalty_program);
+
+			QDEBUG_STRING_OUTPUT_2("client_group_loyalty_program_LOCALISATION",
+								   client_group_loyalty_program_LOCALISATION);
+
+			if (!client_group_loyalty_program_LOCALISATION.isEmpty() &&
+				!YerothUtils::isEqualCaseInsensitive(YerothERPConfig::THIS_SITE_LOCALISATION_NAME,
+													 client_group_loyalty_program_LOCALISATION))
+			{
+				continue;
+			}
+
+			QDEBUG_STRING_OUTPUT_1(QString("clientGroup ID (%1), client_group_loyalty_program => %2")
+									.arg(clientGroup_db_ID,
+										 client_group_loyalty_program));
 
 			cur_client_group_loyalty_program_money_BENEFITS =
 					calculate_LOYALTY_PROGRAM_MONEY_BENEFITS(client_group_loyalty_program);
