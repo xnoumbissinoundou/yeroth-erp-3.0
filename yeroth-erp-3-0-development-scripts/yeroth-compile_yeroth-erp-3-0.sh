@@ -245,5 +245,6 @@ BUILD_SUCCESSFUL="$?"
 
 if [ ${BUILD_SUCCESSFUL} -eq 0 ] && [ $releaseBuildFlag ]; then
 		git checkout src/utils/yeroth-erp-utils.cpp
+		git checkout src/utils/yeroth-erp-config.cpp
 fi
 
