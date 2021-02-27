@@ -273,11 +273,13 @@ Program executing directory: &quot;%2&quot;.</translation>
 
 (c) (2015 - ...) DR. XAVIER NOUMBISSI NOUNDOU.
 
-CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;&apos;.
-
 LAST BUILD ID: &apos;&apos;.
 
-ON BUILD_COMPUTER: &apos;&apos;.</source>
+ON BUILD_COMPUTER: &apos;&apos;.
+
+CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;&apos;.
+
+</source>
         <oldsource>YEROTH-ERP-3.0-SERVER
 (VERSION du YEROTH_BUILD_DATE à YEROTH_BUILD_DATE_TIMESTAMP)
 
@@ -285,10 +287,12 @@ ON BUILD_COMPUTER: &apos;&apos;.</source>
 
 (c) (2015 - ...) DR. XAVIER NOUMBISSI NOUNDOU.
 
+CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;&apos;.
+
 LAST BUILD ID: &apos;&apos;.
 
 ON BUILD_COMPUTER: &apos;&apos;.</oldsource>
-        <translation type="unfinished">YEROTH-ERP-3.0-SERVER
+        <translation>YEROTH-ERP-3.0-SERVER
 (VERSION of YEROTH_BUILD_DATE at YEROTH_BUILD_DATE_TIMESTAMP)
 
  by 
@@ -465,12 +469,26 @@ ON BUILD_COMPUTER: &apos;&apos;.</translation>
 
 (c) (2015 - ...) DR. XAVIER NOUMBISSI NOUNDOU.
 
+LAST BUILD ID: &apos;&apos;.
+
+ON BUILD_COMPUTER: &apos;&apos;.
+
+CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;&apos;.
+
+</source>
+        <oldsource>YEROTH-ERP-3.0-CLIENT
+(VERSION du YEROTH_BUILD_DATE à YEROTH_BUILD_DATE_TIMESTAMP)
+
+ par 
+
+(c) (2015 - ...) DR. XAVIER NOUMBISSI NOUNDOU.
+
 CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;&apos;.
 
 LAST BUILD ID: &apos;&apos;.
 
-ON BUILD_COMPUTER: &apos;&apos;.</source>
-        <translation type="unfinished"></translation>
+ON BUILD_COMPUTER: &apos;&apos;.</oldsource>
+        <translation></translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="367"/>
@@ -481,16 +499,14 @@ ON BUILD_COMPUTER: &apos;&apos;.</source>
 
 (c) (2015 - ...) DR. XAVIER NOUMBISSI NOUNDOU.
 
-CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;&apos;.
-
 LAST BUILD ID: &apos;&apos;.
 
-ON BUILD_COMPUTER: &apos;&apos;.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="378"/>
-        <source>YEROTH-ERP-3.0-ACADEMIC_EVALUATION
+ON BUILD_COMPUTER: &apos;&apos;.
+
+CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;&apos;.
+
+</source>
+        <oldsource>YEROTH-ERP-3.0-STANDALONE
 (VERSION du YEROTH_BUILD_DATE à YEROTH_BUILD_DATE_TIMESTAMP)
 
  par 
@@ -501,8 +517,37 @@ CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;&apos;.
 
 LAST BUILD ID: &apos;&apos;.
 
-ON BUILD_COMPUTER: &apos;&apos;.</source>
-        <translation type="unfinished"></translation>
+ON BUILD_COMPUTER: &apos;&apos;.</oldsource>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="378"/>
+        <source>YEROTH-ERP-3.0-ACADEMIC_EVALUATION
+(VERSION du YEROTH_BUILD_DATE à YEROTH_BUILD_DATE_TIMESTAMP)
+
+ par 
+
+(c) (2015 - ...) DR. XAVIER NOUMBISSI NOUNDOU.
+
+LAST BUILD ID: &apos;&apos;.
+
+ON BUILD_COMPUTER: &apos;&apos;.
+
+CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;&apos;.
+</source>
+        <oldsource>YEROTH-ERP-3.0-ACADEMIC_EVALUATION
+(VERSION du YEROTH_BUILD_DATE à YEROTH_BUILD_DATE_TIMESTAMP)
+
+ par 
+
+(c) (2015 - ...) DR. XAVIER NOUMBISSI NOUNDOU.
+
+CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;&apos;.
+
+LAST BUILD ID: &apos;&apos;.
+
+ON BUILD_COMPUTER: &apos;&apos;.</oldsource>
+        <translation></translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="555"/>
@@ -564,21 +609,21 @@ Click Cancel to exit.</source>
         <translation>	[ pdf receipt size: &apos;%1&apos; ]</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="3267"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="3265"/>
         <source>dont total TVA: &amp; &amp; %1\\ 
 </source>
         <translation>with total ATC: &amp; &amp; %1\\ 
 </translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="3269"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="3267"/>
         <source>Montant re\c{c}u: &amp; &amp; %1\\ 
 </source>
         <translation>Received amount: &amp; &amp; %1\\ 
 </translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="3271"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="3269"/>
         <source>Montant remi: &amp; &amp; %1\ 
 </source>
         <translation>Due amount: &amp; &amp; %1\ 
@@ -626,7 +671,7 @@ Click Cancel to exit.</source>
         <translation>%1 - no connection to site !</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="2850"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="2848"/>
         <source>Impossible de se connecter au serveur &apos;%1&apos; de base de données !
 Contacter l&apos;administrateur de yeroth
 
@@ -2354,13 +2399,13 @@ Continue with update of the stock ?</translation>
         <translation>keyword to search for (memo)</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="3383"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="3381"/>
         <location filename="src/windows/stocks/yeroth-erp-mouvements_de_stocks-window.cpp" line="576"/>
         <source>pas de données à exporter au format csv</source>
         <translation>there are no data to export in csv format</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.cpp" line="3384"/>
+        <location filename="src/utils/yeroth-erp-utils.cpp" line="3382"/>
         <location filename="src/windows/stocks/yeroth-erp-mouvements_de_stocks-window.cpp" line="577"/>
         <source>Il n&apos;y a pas de données à exporter au format csv !</source>
         <oldsource>Il n&apos;y a pas de données à exporter au format csv!</oldsource>
@@ -2425,7 +2470,7 @@ Continue with update of the stock ?</translation>
     <message>
         <location filename="src/windows/crm/creer/yeroth-erp-creer-compte-client-window.cpp" line="483"/>
         <location filename="src/windows/crm/creer/yeroth-erp-creer-groupe-de-clients-window.cpp" line="537"/>
-        <location filename="src/windows/crm/creer/yeroth-erp-creer-un-programme-de-fidelite-clients-window.cpp" line="471"/>
+        <location filename="src/windows/crm/creer/yeroth-erp-creer-un-programme-de-fidelite-clients-window.cpp" line="490"/>
         <location filename="src/windows/supplier/yeroth-erp-creer-fournisseur-window.cpp" line="482"/>
         <source>&apos; a été créer avec succès !</source>
         <oldsource>&apos; a été créer avec succès!</oldsource>
@@ -3491,7 +3536,7 @@ Please contact an administrator</translation>
         <location filename="src/admin/creer/creer-localisation.cpp" line="61"/>
         <location filename="src/windows/crm/creer/yeroth-erp-creer-compte-client-window.cpp" line="473"/>
         <location filename="src/windows/crm/creer/yeroth-erp-creer-groupe-de-clients-window.cpp" line="527"/>
-        <location filename="src/windows/crm/creer/yeroth-erp-creer-un-programme-de-fidelite-clients-window.cpp" line="461"/>
+        <location filename="src/windows/crm/creer/yeroth-erp-creer-un-programme-de-fidelite-clients-window.cpp" line="480"/>
         <location filename="src/windows/supplier/yeroth-erp-creer-fournisseur-window.cpp" line="472"/>
         <source>&apos; n&apos;a pas pu être créer !</source>
         <translation>&apos; couldn&apos;t be created !</translation>
@@ -4817,7 +4862,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     </message>
     <message>
         <location filename="src/windows/crm/creer/yeroth-erp-creer-groupe-de-clients-window.cpp" line="447"/>
-        <location filename="src/windows/crm/creer/yeroth-erp-creer-un-programme-de-fidelite-clients-window.cpp" line="374"/>
+        <location filename="src/windows/crm/creer/yeroth-erp-creer-un-programme-de-fidelite-clients-window.cpp" line="393"/>
         <source>Remplisser tous les champs obligatoires !</source>
         <translation>Please, fill out all mandatory text fields!</translation>
     </message>
@@ -4838,18 +4883,18 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>create a client loyalty program</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/creer/yeroth-erp-creer-un-programme-de-fidelite-clients-window.cpp" line="270"/>
+        <location filename="src/windows/crm/creer/yeroth-erp-creer-un-programme-de-fidelite-clients-window.cpp" line="289"/>
         <source>programme de fidélité clients</source>
         <translation>LOYALTY client program</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/creer/yeroth-erp-creer-un-programme-de-fidelite-clients-window.cpp" line="389"/>
+        <location filename="src/windows/crm/creer/yeroth-erp-creer-un-programme-de-fidelite-clients-window.cpp" line="408"/>
         <source>Le programme de fidélité de clients &apos;</source>
         <translation>client loyalty program &apos;</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/creer/yeroth-erp-creer-un-programme-de-fidelite-clients-window.cpp" line="464"/>
-        <location filename="src/windows/crm/creer/yeroth-erp-creer-un-programme-de-fidelite-clients-window.cpp" line="474"/>
+        <location filename="src/windows/crm/creer/yeroth-erp-creer-un-programme-de-fidelite-clients-window.cpp" line="483"/>
+        <location filename="src/windows/crm/creer/yeroth-erp-creer-un-programme-de-fidelite-clients-window.cpp" line="493"/>
         <source>créer 1 programme de fidélité clients</source>
         <translation>create a client loyalty program</translation>
     </message>
@@ -4911,12 +4956,12 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>client group &apos;%1&apos; data couldn&apos;t be updated successfully !</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="649"/>
+        <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="650"/>
         <source>détails d&apos;un &quot;programme de fidélité clients&quot;</source>
         <translation>client loyalty program details</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="650"/>
+        <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="651"/>
         <source>Sélectionnez un &quot;programme de fidélité clients&quot; à afficher les détails !</source>
         <translation>Select a client loyalty program to view its details !</translation>
     </message>
