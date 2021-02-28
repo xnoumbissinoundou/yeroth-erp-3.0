@@ -197,6 +197,14 @@ if [ $releaseBuildFlag ]; then
 			src/utils/yeroth-erp-utils.cpp
 		sed -i "s/CLIENT DEDICATED COMPANY LOCALISATION SITE: .*/${YEROTH_ERP_3_0_STANDALONE_CURRENT_LOCALISATION_FOR_BUILD_RELEASE}/g" src/utils/yeroth-erp-utils.cpp
 		sed -i "s/THIS_SITE_LOCALISATION_HARD_CODED_BY_DEVELOPER_FOR_MAXIMUM_BENEFIT_FOR_CLIENT/${YEROTH_ERP_3_0_STANDALONE_CURRENT_LOCALISATION_FOR_BUILD_RELEASE_CONFIG_CPP}/g" src/utils/yeroth-erp-config.cpp
+
+		if [ "$languageVal" == YEROTH_FRANCAIS_LANGUAGE ]; then
+			sed -i "s/\bYEROTH_ERP_3_0_BINARY_FULL_PATH\b/\/opt\/yeroth-erp-3-0-standalone\/bin\/yeroth-erp-3-0-standalone/g" yeroth-erp-3-0-sql/create_table_configurations.sql
+			sed -i "s/\bYEROTH_ERP_3_0_BINARY_FULL_PATH\b/\/opt\/yeroth-erp-3-0-standalone\/bin\/yeroth-erp-3-0-standalone/g" yeroth-erp-3-0-sql/create_table_init_configurations.sql
+		else
+			sed -i "s/\bYEROTH_ERP_3_0_BINARY_FULL_PATH\b/\/opt\/yeroth-erp-3-0-standalone\/bin\/yeroth-erp-3-0-standalone-ENGLISH/g" yeroth-erp-3-0-sql/create_table_configurations.sql
+			sed -i "s/\bYEROTH_ERP_3_0_BINARY_FULL_PATH\b/\/opt\/yeroth-erp-3-0-standalone\/bin\/yeroth-erp-3-0-standalone-ENGLISH/g" yeroth-erp-3-0-sql/create_table_init_configurations.sql
+		fi
 fi
 
 
