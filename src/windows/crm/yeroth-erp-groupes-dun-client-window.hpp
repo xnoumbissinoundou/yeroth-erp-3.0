@@ -130,9 +130,11 @@ private slots:
 
 	void afficher_tous_les_groupes_du_client();
 
-private:
+private slots:
 
 	void enable_yeroth_widgets_ON_POSITIVE_QTABLE_WIDGET_ROW_COUNT();
+
+private:
 
 	void disable_yeroth_widgets();
 

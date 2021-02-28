@@ -34,6 +34,11 @@ int YerothGroupesDunClientTableWidget::insert_group(const QString &group_db_ID,
 
     int lastCurRow = _curRow;
 
+    if (_curRow >= 0)
+    {
+    	selectRow(_curRow);
+    }
+
     ++_curRow;
 
     set_MY_QStandardItemFlags();

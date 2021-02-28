@@ -5155,7 +5155,6 @@ background-color: rgb(0, 0, 0);</string>
     <addaction name="separator"/>
     <addaction name="actionAfficher_ce_groupe_au_detail"/>
     <addaction name="actionListerDesGroupesDeClients"/>
-    <addaction name="actionRetirer_ce_client_du_groupe_selectione"/>
     <addaction name="separator"/>
     <addaction name="actionClients"/>
     <addaction name="separator"/>
@@ -6173,14 +6172,6 @@ background-color: rgb(0, 0, 0);</string>
    </property>
    <property name="toolTip">
     <string>Lister les groupes de clients</string>
-   </property>
-  </action>
-  <action name="actionRetirer_ce_client_du_groupe_selectione">
-   <property name="text">
-    <string>Retirer ce client du groupe sélectioné</string>
-   </property>
-   <property name="toolTip">
-    <string>Retirer ce client du groupe sélectioné</string>
    </property>
   </action>
  </widget>

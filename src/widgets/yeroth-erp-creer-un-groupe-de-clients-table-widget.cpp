@@ -42,6 +42,11 @@ unsigned int YerothCreerUnGroupeDeClientsTableWidget::addAClientGroupMember(cons
 
     int lastCurRow = _curRow;
 
+    if (_curRow >= 0)
+    {
+    	selectRow(_curRow);
+    }
+
     ++_curRow;
 
     return lastCurRow;

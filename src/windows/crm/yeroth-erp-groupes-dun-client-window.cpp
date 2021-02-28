@@ -19,6 +19,8 @@
 #include "src/widgets/yeroth-erp-qmessage-box.hpp"
 
 
+#include <QtWidgets/QTableWidgetItem>
+
 #include <QtSql/QSqlRelationalTableModel>
 
 #include <QtSql/QSqlQuery>
@@ -85,6 +87,12 @@ YerothGroupesDunClientWindow::YerothGroupesDunClientWindow()
 
 
 	connect(tableWidget_groupes_dun_client,
+			SIGNAL(addedYerothTableWidget()),
+			this,
+			SLOT(enable_yeroth_widgets_ON_POSITIVE_QTABLE_WIDGET_ROW_COUNT()));
+
+
+	connect(tableWidget_groupes_dun_client,
 			SIGNAL(doubleClicked(const QModelIndex &)),
 			this,
 			SLOT(afficher_au_detail(const QModelIndex &)));
@@ -102,7 +110,6 @@ void YerothGroupesDunClientWindow::contextMenuEvent(QContextMenuEvent * event)
 	QMenu menu(this);
 	menu.setPalette(toolBar_menuGroupesDunClientWindow->palette());
 	menu.addAction(actionAfficher_ce_groupe_au_detail);
-	menu.addAction(actionRetirer_ce_client_du_groupe_selectione);
 	menu.exec(event->globalPos());
 }
 
@@ -301,13 +308,31 @@ bool YerothGroupesDunClientWindow::EXECUTER_retirer_ce_client_du_groupe_selectio
 
 	int currentRow = tableWidget_groupes_dun_client->currentRow();
 
+//	QDEBUG_STRING_OUTPUT_1(QString("groupes_du_client_ID: %1, currentRow: %2")
+//								.arg(groupes_du_client_ID,
+//									 QString::number(currentRow)));
 
 	QString clientGroup_db_ID = tableWidget_groupes_dun_client->get_DB_ELEMENT_db_ID(currentRow);
+
+//	QDEBUG_STRING_OUTPUT_1(QString("clientGroup_db_ID: %1, groupes_du_client_ID: %2")
+//								.arg(clientGroup_db_ID,
+//									 groupes_du_client_ID));
 
 	YerothUtils::REMOVE_STRING_FROM_SPLIT_STAR_SEPARATED_DB_STRING(groupes_du_client_ID,
 																   clientGroup_db_ID);
 
-	QString clientGroup_designation = tableWidget_groupes_dun_client->item(currentRow, 0)->text().trimmed();
+//	QDEBUG_STRING_OUTPUT_1(QString("clientGroup_db_ID: %1, groupes_du_client_ID: %2")
+//								.arg(clientGroup_db_ID,
+//									 groupes_du_client_ID));
+
+	QTableWidgetItem *item = tableWidget_groupes_dun_client->item(currentRow, 0);
+
+	if (0 == item)
+	{
+		return false;
+	}
+
+	QString clientGroup_designation = item->text().trimmed();
 
 	YerothUtils::REMOVE_STRING_FROM_SPLIT_STAR_SEPARATED_DB_STRING(groupes_du_client,
 																   clientGroup_designation);
@@ -459,6 +484,7 @@ void YerothGroupesDunClientWindow::afficher_tous_les_groupes_du_client()
 void YerothGroupesDunClientWindow::enable_yeroth_widgets_ON_POSITIVE_QTABLE_WIDGET_ROW_COUNT()
 {
 	actionAfficher_ce_groupe_au_detail->setVisible(true);
+
 	pushButton_retirer->setVisible(true);
 }
 
@@ -466,6 +492,7 @@ void YerothGroupesDunClientWindow::enable_yeroth_widgets_ON_POSITIVE_QTABLE_WIDG
 void YerothGroupesDunClientWindow::disable_yeroth_widgets()
 {
 	actionAfficher_ce_groupe_au_detail->setVisible(false);
+
 	pushButton_retirer->setVisible(false);
 }
 
