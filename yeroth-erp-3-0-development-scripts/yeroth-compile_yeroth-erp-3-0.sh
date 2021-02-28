@@ -252,6 +252,8 @@ fi
 BUILD_SUCCESSFUL="$?"
 
 if [ ${BUILD_SUCCESSFUL} -eq 0 ] && [ $releaseBuildFlag ]; then
+		git checkout yeroth-erp-3-0-sql/create_table_configurations.sql
+		git checkout yeroth-erp-3-0-sql/create_table_init_configurations.sql
 		git checkout src/utils/yeroth-erp-utils.cpp
 		git checkout src/utils/yeroth-erp-config.cpp
 fi
