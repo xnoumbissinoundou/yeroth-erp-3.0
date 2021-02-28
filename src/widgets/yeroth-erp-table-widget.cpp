@@ -67,19 +67,23 @@ void YerothTableWidget::removeArticle(int tableWidgetRow)
 
     QMapIterator<int, QString> i(_mapListIdxToElement_db_ID);
 
+    int next_pos = 0;
+
     int k = 0;
+
     while (i.hasNext())
     {
         i.next();
 
         if (k != tableWidgetRow)
         {
-            newMapListIdxToItems.insert(k, i.value());
+            newMapListIdxToItems.insert(next_pos, i.value());
 
             _logger->debug("enlever_article",
                            QString("key: %1, value: %2")
 						   	   .arg(QString::number(k),
 						   			i.value()));
+            ++next_pos;
         }
 
         ++k;

@@ -35,8 +35,6 @@ public:
 	    delete _logger;
 	}
 
-	virtual void yerothClearTableWidgetContent();
-
 	inline virtual QString get_DB_ELEMENT_db_ID(int aRow)
 	{
 		return _mapListIdxToElement_db_ID.value(aRow);
@@ -57,6 +55,8 @@ public:
 	static const QString QTE_1;
 
 public slots:
+
+	virtual void yerothClearTableWidgetContent();
 
 	virtual void removeArticle(int tableWidgetRow);
 
