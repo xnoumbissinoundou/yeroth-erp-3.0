@@ -341,12 +341,15 @@ bool YerothCreerFournisseurWindow::supplierAlreadyExist()
 	result = result || resultReferenceRegistreDuCommerce;
 
 
-	// ** check if customer account with same reference exist
-	bool resultReferenceClient =
-			YerothUtils::checkIfCustomerAccountAlreadyExist_REFERENCECLIENT(*this, fournisseursTableModel,
-																	*lineEdit_fournisseur_reference_fournisseur);
+	// ** check if SUPPLIER account with same reference exist
+	bool resultReference_FOURNISSEUR =
+			YerothUtils::checkIf_KEYWORD_ALREADY_EXISTS(*this,
+													    fournisseursTableModel,
+														*lineEdit_fournisseur_reference_du_registre_du_commerce,
+														QObject::trUtf8("la référence du fournisseur"),
+														YerothDatabaseTableColumn::REFERENCE_FOURNISSEUR);
 
-	result = result || resultReferenceClient;
+	result = result || resultReference_FOURNISSEUR;
 
 	return result;
 }
@@ -450,17 +453,17 @@ bool YerothCreerFournisseurWindow::creerEnregistrerFournisseur()
         record.setValue(YerothDatabaseTableColumn::NUMERO_TELEPHONE_2, lineEdit_fournisseur_numero_telephone_2->text());
         record.setValue(YerothDatabaseTableColumn::REFERENCE_REGISTRE_DU_COMMERCE, lineEdit_fournisseur_reference_du_registre_du_commerce->text());
         record.setValue(YerothDatabaseTableColumn::NUMERO_CONTRIBUABLE, lineEdit_fournisseur_numero_de_contribuable->text());
-		record.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT, 0.0);
-		record.setValue(YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT, 0.0);
+		record.setValue(YerothDatabaseTableColumn::COMPTE_FOURNISSEUR, 0.0);
 
-        record.setValue(YerothDatabaseTableColumn::DESCRIPTION_CLIENT, textEdit_creer_fournisseur_description_fournisseur->toPlainText());
+        record.setValue(YerothDatabaseTableColumn::DESCRIPTION_FOURNISSEUR,
+        		textEdit_creer_fournisseur_description_fournisseur->toPlainText());
 
         if (0 != label_image_produit 	&&
         	label_image_produit->pixmap())
         {
         	QByteArray bytes;
         	YerothUtils::savePixmapToByteArray(bytes, *label_image_produit->pixmap(), "JPG");
-        	record.setValue(YerothDatabaseTableColumn::IMAGE_COMPTE_CLIENT, bytes);
+        	record.setValue(YerothDatabaseTableColumn::IMAGE_FOURNISSEUR, bytes);
         }
 
         retMsg.append(lineEdit_fournisseur_nom_de_lentreprise->text());

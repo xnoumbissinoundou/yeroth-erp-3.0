@@ -109,7 +109,7 @@ private:
 
     inline void setupLineEdits()
     {
-    	lineEdit_creer_groupe_clients_maximum_de_membres->setValidator(&YerothUtils::DoubleValidator);
+    	lineEdit_creer_groupe_clients_maximum_de_membres->setValidator(&YerothUtils::IntValidator);
     }
 
     void setupLineEditsQCompleters();

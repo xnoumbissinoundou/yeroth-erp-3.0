@@ -399,6 +399,19 @@ void YerothCreerGroupeDeClientsWindow::ajouter_un_membre_au_groupe_de_clients(co
 		return ;
 	}
 
+	int MAXIMUM_DE_MEMBRES_DU_GROUPE =
+			lineEdit_creer_groupe_clients_maximum_de_membres->text().toInt();
+
+	if (tableWidget_creer_groupe_clients_membres_initiaux_du_groupe->rowCount() ==
+		MAXIMUM_DE_MEMBRES_DU_GROUPE)
+	{
+		YerothQMessageBox::information(this, QObject::tr("NOMBRE MAXIMUM DE MEMBRES"),
+									   QObject::tr("NOMBRE MAXIMUM DE MEMBRES ('%1') INITIAUX ATTEINT !")
+											.arg(QString::number(MAXIMUM_DE_MEMBRES_DU_GROUPE)));
+
+		return ;
+	}
+
 	YerothSqlTableModel &aClientSqlTableModel = _allWindows->getSqlTableModel_clients();
 
 	aClientSqlTableModel.setFilter(QString("%1='%2'")
@@ -443,7 +456,7 @@ bool YerothCreerGroupeDeClientsWindow::creerEnregistrerUnGroupeDeClients()
 	if (!check_fields())
 	{
 		if (QMessageBox::Ok ==
-				YerothQMessageBox::warning(this, "stock (service)",
+				YerothQMessageBox::warning(this, QObject::trUtf8("groupe de FIDÉLITÉ clients"),
 										   QObject::tr("Remplisser tous les champs obligatoires !")))
 		{
 		}
@@ -453,6 +466,34 @@ bool YerothCreerGroupeDeClientsWindow::creerEnregistrerUnGroupeDeClients()
 
 		return false;
 	}
+
+
+	int NOMBRE_DE_MEMBRES_INITIAUX_DU_GROUPE_DE_FIDELITE_CLIENTS =
+			tableWidget_creer_groupe_clients_membres_initiaux_du_groupe->rowCount();
+
+	int MAXIMUM_DE_MEMBRES_DU_GROUPE =
+			lineEdit_creer_groupe_clients_maximum_de_membres->text().toInt();
+
+	if (NOMBRE_DE_MEMBRES_INITIAUX_DU_GROUPE_DE_FIDELITE_CLIENTS >=
+		MAXIMUM_DE_MEMBRES_DU_GROUPE)
+	{
+		uint difference = (uint) qFabs(NOMBRE_DE_MEMBRES_INITIAUX_DU_GROUPE_DE_FIDELITE_CLIENTS -
+							           MAXIMUM_DE_MEMBRES_DU_GROUPE);
+
+		YerothQMessageBox::information(this,
+				QObject::tr("NOMBRE MAXIMUM DE MEMBRES"),
+				QObject::trUtf8("NOMBRE MAXIMUM DE MEMBRES: %1\n\n"
+							    "NOMBRE DE MEMBRES INITIAUX DU GROUPE DE FIDÉLITÉ CLIENT: %2\n\n"
+							    "Veuillez corriger le nombre maximum de membres à '%3' ou "
+							    "diminuer son nombre de membres initiaux de ('%4 MEMBRES') !")
+					.arg(QString::number(MAXIMUM_DE_MEMBRES_DU_GROUPE),
+						 QString::number(NOMBRE_DE_MEMBRES_INITIAUX_DU_GROUPE_DE_FIDELITE_CLIENTS),
+						 QString::number(NOMBRE_DE_MEMBRES_INITIAUX_DU_GROUPE_DE_FIDELITE_CLIENTS),
+						 QString::number(difference)));
+
+		return false;
+	}
+
 
 	if (clientGroupAlreadyExists())
 	{
