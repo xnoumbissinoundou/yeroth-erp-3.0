@@ -42,15 +42,12 @@ YerothCreerUnProgrammeDeFideliteClientsWindow::YerothCreerUnProgrammeDeFideliteC
 
 
     _NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME
-		<< YerothDatabaseTableColumn::CONDITION_DU_BENEFICE
 		<< YerothDatabaseTableColumn::RABAIS_EN_CASCADE_TOUS_REFEREUR_PAR_LE_HAUT;
 
 
     setup_select_configure_dbcolumn(YerothDatabase::PROGRAMMES_DE_FIDELITE_CLIENTS);
 
     populateComboBoxes();
-
-    setupLineEdits();
 
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionInformationEntreprise, false);
@@ -113,7 +110,6 @@ YerothCreerUnProgrammeDeFideliteClientsWindow::YerothCreerUnProgrammeDeFideliteC
             SLOT(activateLineEdit_POURCENTAGE_DU_RABAIS(bool)));
 
 
-
 #ifdef YEROTH_CLIENT
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 #endif
@@ -154,28 +150,6 @@ void YerothCreerUnProgrammeDeFideliteClientsWindow::updatePopulateComboBoxes()
 }
 
 
-void YerothCreerUnProgrammeDeFideliteClientsWindow::populateComboBoxes()
-{
-	comboBox_creer_un_programme_de_fidelite_clients_localisation->
-		populateComboBoxRawString(YerothDatabase::DEPARTEMENTS_PRODUITS,
-								  YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT);
-
-	QStringList aQStringList;
-
-	aQStringList.append("=");
-
-	aQStringList.append(">=");
-
-	comboBox_creer_un_programme_de_fidelite_clients_pourcentage_rabais_refereur_condition
-		->addItems(aQStringList);
-}
-
-
-void YerothCreerUnProgrammeDeFideliteClientsWindow::setupLineEdits()
-{
-}
-
-
 void YerothCreerUnProgrammeDeFideliteClientsWindow::setupShortcuts()
 {
     setupShortcutActionMessageDaide 	(*actionAppeler_aide);
@@ -208,13 +182,6 @@ void YerothCreerUnProgrammeDeFideliteClientsWindow::definirPasDeRole()
 }
 
 
-void YerothCreerUnProgrammeDeFideliteClientsWindow::definirCaissier()
-{
-    _logger->log("definirCaissier - definirPasDeRole()");
-
-   definirPasDeRole();
-}
-
 void YerothCreerUnProgrammeDeFideliteClientsWindow::definirManager()
 {
     _logger->log("definirManager");
@@ -237,47 +204,6 @@ void YerothCreerUnProgrammeDeFideliteClientsWindow::definirManager()
 	pushButton_menu_principal->enable(this, SLOT(menu()));
 	pushButton_clients->enable(this, SLOT(clients()));
 	pushButton_enregistrer->enable(this, SLOT(creerEnregistrerUnProgrammeDeFideliteClients()));
-}
-
-
-void YerothCreerUnProgrammeDeFideliteClientsWindow::definirVendeur()
-{
-    _logger->log("definirVendeur");
-
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionInformationEntreprise, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionA_propos, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_principal, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAppeler_aide, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAnnuler, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEnregistrer, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionFermeture, true);
-
-
-	pushButton_annuler->enable(this, SLOT(annuler_la_creation_dun_programme_de_fidelite_de_clients()));
-	pushButton_menu_principal->enable(this, SLOT(menu()));
-	pushButton_clients->enable(this, SLOT(clients()));
-	pushButton_enregistrer->enable(this, SLOT(creerEnregistrerUnProgrammeDeFideliteClients()));
-}
-
-
-void YerothCreerUnProgrammeDeFideliteClientsWindow::definirGestionaireDesStocks()
-{
-    _logger->log("definirGestionaireDesStocks - definirPasDeRole()");
-
-    definirPasDeRole();
-}
-
-
-void YerothCreerUnProgrammeDeFideliteClientsWindow::definirMagasinier()
-{
-    _logger->log("definirMagasinier - definirPasDeRole()");
-
-    definirPasDeRole();
 }
 
 
@@ -345,9 +271,6 @@ void YerothCreerUnProgrammeDeFideliteClientsWindow::clear_all_fields()
 
 	comboBox_creer_un_programme_de_fidelite_clients_localisation->resetYerothComboBox();
 
-	comboBox_creer_un_programme_de_fidelite_clients_pourcentage_rabais_refereur_condition
-		->resetYerothComboBox();
-
 	checkBox_refereur_creer_un_programme_de_fidelite_clients_pourcentage_rabais->setChecked(false);
 
 	checkBox_creer_un_programme_de_fidelite_clients_rabais_en_cascade_par_le_haut_tous_refereurs
@@ -357,6 +280,7 @@ void YerothCreerUnProgrammeDeFideliteClientsWindow::clear_all_fields()
 
 void YerothCreerUnProgrammeDeFideliteClientsWindow::rendreInvisible()
 {
+	clear_all_fields();
     setVisible(false);
 }
 
@@ -488,9 +412,6 @@ bool YerothCreerUnProgrammeDeFideliteClientsWindow::creerEnregistrerUnProgrammeD
 
 	if (checkBox_refereur_creer_un_programme_de_fidelite_clients_pourcentage_rabais->isChecked())
 	{
-		record.setValue(YerothDatabaseTableColumn::CONDITION_DU_BENEFICE,
-				comboBox_creer_un_programme_de_fidelite_clients_pourcentage_rabais_refereur_condition->currentText());
-
 		record.setValue(YerothDatabaseTableColumn::VALEUR_DE_LA_CONDITION_BENEFICIARE,
 				lineEdit_creer_un_programme_de_fidelite_clients_valeur_condition_beneficiaire_du_refereur->text());
 

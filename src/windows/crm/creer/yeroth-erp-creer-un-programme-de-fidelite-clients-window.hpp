@@ -31,20 +31,32 @@ public:
     	delete _logger;
     }
 
-    inline QToolBar * getQMainWindowToolBar()
+    inline virtual QToolBar * getQMainWindowToolBar()
     {
     	return toolBar_YerothCreerProgrammeDeFideliteClientsWindow;
     }
 
-    virtual void definirCaissier();
+    inline virtual void definirCaissier()
+    {
+       definirPasDeRole();
+    }
 
     virtual void definirManager();
 
-    virtual void definirVendeur();
+    inline virtual void definirVendeur()
+    {
+       definirPasDeRole();
+    }
 
-    virtual void definirGestionaireDesStocks();
+    inline virtual void definirGestionaireDesStocks()
+    {
+       definirPasDeRole();
+    }
 
-    virtual void definirMagasinier();
+    inline virtual void definirMagasinier()
+    {
+       definirPasDeRole();
+    }
 
     virtual void definirPasDeRole();
 
@@ -95,9 +107,12 @@ private:
 
     void updatePopulateComboBoxes();
 
-    void populateComboBoxes();
-
-    void setupLineEdits();
+    inline void populateComboBoxes()
+    {
+    	comboBox_creer_un_programme_de_fidelite_clients_localisation->
+    		populateComboBoxRawString(YerothDatabase::LOCALISATIONS,
+    								  YerothDatabaseTableColumn::NOM_LOCALISATION);
+    }
 
 
     int				_last_selected_table_widget_row;

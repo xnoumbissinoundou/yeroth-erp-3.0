@@ -57,8 +57,6 @@ YerothDetailsDunProgrammeDeFideliteClientsWindow::YerothDetailsDunProgrammeDeFid
 	doubleSpinBox_details_dun_programme_de_fidelite_clients_pourcentage_du_rabais_du_refereur->setVisible(false);
 	doubleSpinBox_details_dun_programme_de_fidelite_clients_pourcentage_du_rabais_du_refereur->setEnabled(false);
 
-	comboBox_details_dun_programme_de_fidelite_clients_pourcentage_rabais_refereur_condition->setVisible(false);
-
     textEdit_details_dun_programme_de_fidelite_clients_description->setYerothEnabled(false);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
@@ -106,6 +104,9 @@ void YerothDetailsDunProgrammeDeFideliteClientsWindow::modifier_un_programme_de_
 
 void YerothDetailsDunProgrammeDeFideliteClientsWindow::setupLineEdits()
 {
+	label_details_dun_programme_de_fidelite_clients_pourcentage_rabais_refereur_condition->
+		setVisible(false);
+
 	lineEdit_details_dun_programme_de_fidelite_clients_reference->setYerothEnabled(false);
 	lineEdit_details_dun_programme_de_fidelite_clients_designation->setYerothEnabled(false);
 	lineEdit_details_dun_programme_de_fidelite_clients_montant_du_rabais->setYerothEnabled(false);
@@ -277,9 +278,6 @@ void YerothDetailsDunProgrammeDeFideliteClientsWindow::showClientLOYALTY_PROGRAM
 		doubleSpinBox_details_dun_programme_de_fidelite_clients_pourcentage_du_rabais_du_refereur
 			->setVisible(false);
 
-		comboBox_details_dun_programme_de_fidelite_clients_pourcentage_rabais_refereur_condition
-			->setVisible(false);
-
 		lineEdit_details_dun_programme_de_fidelite_clients_valeur_condition_beneficiaire_du_refereur
 			->setVisible(false);
 
@@ -302,13 +300,6 @@ void YerothDetailsDunProgrammeDeFideliteClientsWindow::showClientLOYALTY_PROGRAM
 			->setValue(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::POURCENTAGE_DU_RABAIS_REFEREUR).toDouble());
 
 		doubleSpinBox_details_dun_programme_de_fidelite_clients_pourcentage_du_rabais_du_refereur
-			->setVisible(true);
-
-
-		comboBox_details_dun_programme_de_fidelite_clients_pourcentage_rabais_refereur_condition
-			->addItem(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::CONDITION_DU_BENEFICE));
-
-		comboBox_details_dun_programme_de_fidelite_clients_pourcentage_rabais_refereur_condition
 			->setVisible(true);
 
 
@@ -352,6 +343,10 @@ void YerothDetailsDunProgrammeDeFideliteClientsWindow::showClientLOYALTY_PROGRAM
 				->setVisible(false);
 		}
 	}
+
+
+	label_details_dun_programme_de_fidelite_clients_pourcentage_rabais_refereur_condition->
+		setVisible(checkBox_refereur_details_dun_programme_de_fidelite_clients_pourcentage_rabais->isChecked());
 
 	textEdit_details_dun_programme_de_fidelite_clients_description
 		->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESCRIPTION_PROGRAMME_DE_FIDELITE_CLIENTS));
