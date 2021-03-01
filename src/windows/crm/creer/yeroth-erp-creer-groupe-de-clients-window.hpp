@@ -36,15 +36,24 @@ public:
     	return toolBar_creerGroupeDeClientsWindow;
     }
 
-    virtual void definirCaissier();
+    inline virtual void definirCaissier()
+    {
+       definirPasDeRole();
+    }
 
     virtual void definirManager();
 
     virtual void definirVendeur();
 
-    virtual void definirGestionaireDesStocks();
+    inline virtual void definirGestionaireDesStocks()
+    {
+       definirPasDeRole();
+    }
 
-    virtual void definirMagasinier();
+    inline virtual void definirMagasinier()
+    {
+       definirPasDeRole();
+    }
 
     virtual void definirPasDeRole();
 
@@ -107,7 +116,7 @@ private:
 
     void clear_all_fields();
 
-    inline void setupLineEdits()
+    inline virtual void setupLineEdits()
     {
     	lineEdit_creer_groupe_clients_maximum_de_membres->setValidator(&YerothUtils::IntValidator);
     }

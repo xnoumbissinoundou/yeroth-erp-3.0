@@ -165,13 +165,6 @@ void YerothCreerGroupeDeClientsWindow::definirPasDeRole()
 }
 
 
-void YerothCreerGroupeDeClientsWindow::definirCaissier()
-{
-    _logger->log("definirCaissier - definirPasDeRole()");
-
-   definirPasDeRole();
-}
-
 void YerothCreerGroupeDeClientsWindow::definirManager()
 {
     _logger->log("definirManager");
@@ -237,22 +230,6 @@ void YerothCreerGroupeDeClientsWindow::definirVendeur()
     pushButton_menu_clients->enable(this, SLOT(clients()));
     pushButton_supprimer_membre_du_groupe_de_clients->enable(this, SLOT(supprimerUnMembreDunGroupeDeClients()));
     pushButton_enregistrer->enable(this, SLOT(creerEnregistrerUnGroupeDeClients()));
-}
-
-
-void YerothCreerGroupeDeClientsWindow::definirGestionaireDesStocks()
-{
-    _logger->log("definirGestionaireDesStocks - definirPasDeRole()");
-
-    definirPasDeRole();
-}
-
-
-void YerothCreerGroupeDeClientsWindow::definirMagasinier()
-{
-    _logger->log("definirMagasinier - definirPasDeRole()");
-
-    definirPasDeRole();
 }
 
 
@@ -332,7 +309,15 @@ bool YerothCreerGroupeDeClientsWindow::check_fields()
 
     bool nom_du_groupe_de_clients_creer = lineEdit_creer_groupe_clients_designation->checkField();
 
-    result = nom_du_groupe_de_clients_creer;
+    bool nombre_maximum_de_membres = lineEdit_creer_groupe_clients_maximum_de_membres->checkField();
+
+    bool programme_de_fidelite_clients =
+    		lineEdit_creer_groupe_clients_programme_de_fidelite_de_clients->checkField();
+
+
+    result = nom_du_groupe_de_clients_creer &&
+    		 nombre_maximum_de_membres 		&&
+			 programme_de_fidelite_clients;
 
     return result;
 }
@@ -344,7 +329,7 @@ void YerothCreerGroupeDeClientsWindow::clear_all_fields()
 
 	lineEdit_creer_groupe_clients_reference_groupe->clear();
 	lineEdit_creer_groupe_clients_designation->clearField();
-	lineEdit_creer_groupe_clients_maximum_de_membres->clear();
+	lineEdit_creer_groupe_clients_maximum_de_membres->clearField();
 	lineEdit_creer_groupe_clients_programme_de_fidelite_de_clients->clearField();
 
 	textEdit_creer_groupe_clients_description_groupe->clear();
@@ -355,7 +340,8 @@ void YerothCreerGroupeDeClientsWindow::clear_all_fields()
 
 void YerothCreerGroupeDeClientsWindow::rendreInvisible()
 {
-    setVisible(false);
+	clear_all_fields();
+    YerothWindowsCommons::rendreInvisible();
 }
 
 
@@ -587,5 +573,3 @@ bool YerothCreerGroupeDeClientsWindow::creerEnregistrerUnGroupeDeClients()
 
     return true;
 }
-
-

@@ -2149,7 +2149,7 @@ Continue with update of the stock ?</translation>
     </message>
     <message>
         <location filename="src/windows/crm/creer/yeroth-erp-creer-compte-client-window.hpp" line="65"/>
-        <location filename="src/windows/crm/creer/yeroth-erp-creer-groupe-de-clients-window.hpp" line="65"/>
+        <location filename="src/windows/crm/creer/yeroth-erp-creer-groupe-de-clients-window.hpp" line="74"/>
         <location filename="src/windows/crm/creer/yeroth-erp-creer-un-programme-de-fidelite-clients-window.hpp" line="65"/>
         <location filename="src/windows/crm/details/yeroth-erp-clients-detail-window.hpp" line="75"/>
         <location filename="src/windows/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.hpp" line="79"/>
@@ -2469,7 +2469,7 @@ Continue with update of the stock ?</translation>
     </message>
     <message>
         <location filename="src/windows/crm/creer/yeroth-erp-creer-compte-client-window.cpp" line="483"/>
-        <location filename="src/windows/crm/creer/yeroth-erp-creer-groupe-de-clients-window.cpp" line="578"/>
+        <location filename="src/windows/crm/creer/yeroth-erp-creer-groupe-de-clients-window.cpp" line="564"/>
         <location filename="src/windows/crm/creer/yeroth-erp-creer-un-programme-de-fidelite-clients-window.cpp" line="490"/>
         <location filename="src/windows/supplier/yeroth-erp-creer-fournisseur-window.cpp" line="485"/>
         <source>&apos; a été créer avec succès !</source>
@@ -2714,7 +2714,7 @@ Continue with update of the stock (service) ?</translation>
     </message>
     <message>
         <location filename="src/windows/crm/creer/yeroth-erp-creer-compte-client-window.hpp" line="66"/>
-        <location filename="src/windows/crm/creer/yeroth-erp-creer-groupe-de-clients-window.hpp" line="66"/>
+        <location filename="src/windows/crm/creer/yeroth-erp-creer-groupe-de-clients-window.hpp" line="75"/>
         <location filename="src/windows/crm/creer/yeroth-erp-creer-un-programme-de-fidelite-clients-window.hpp" line="66"/>
         <location filename="src/windows/supplier/yeroth-erp-creer-fournisseur-window.hpp" line="71"/>
         <source>Remplisser le formulaire, et ensuite cliquer sur enregistrer !</source>
@@ -3535,7 +3535,7 @@ Please contact an administrator</translation>
     <message>
         <location filename="src/admin/creer/creer-localisation.cpp" line="61"/>
         <location filename="src/windows/crm/creer/yeroth-erp-creer-compte-client-window.cpp" line="473"/>
-        <location filename="src/windows/crm/creer/yeroth-erp-creer-groupe-de-clients-window.cpp" line="568"/>
+        <location filename="src/windows/crm/creer/yeroth-erp-creer-groupe-de-clients-window.cpp" line="554"/>
         <location filename="src/windows/crm/creer/yeroth-erp-creer-un-programme-de-fidelite-clients-window.cpp" line="480"/>
         <location filename="src/windows/supplier/yeroth-erp-creer-fournisseur-window.cpp" line="475"/>
         <source>&apos; n&apos;a pas pu être créer !</source>
@@ -4861,34 +4861,34 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>create a client group</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/creer/yeroth-erp-creer-groupe-de-clients-window.cpp" line="322"/>
+        <location filename="src/windows/crm/creer/yeroth-erp-creer-groupe-de-clients-window.cpp" line="299"/>
         <source>Un groupe de client</source>
         <translation>A client group</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/creer/yeroth-erp-creer-groupe-de-clients-window.cpp" line="408"/>
-        <location filename="src/windows/crm/creer/yeroth-erp-creer-groupe-de-clients-window.cpp" line="484"/>
+        <location filename="src/windows/crm/creer/yeroth-erp-creer-groupe-de-clients-window.cpp" line="394"/>
+        <location filename="src/windows/crm/creer/yeroth-erp-creer-groupe-de-clients-window.cpp" line="470"/>
         <source>NOMBRE MAXIMUM DE MEMBRES</source>
         <translation>MAX MEMBERS</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/creer/yeroth-erp-creer-groupe-de-clients-window.cpp" line="409"/>
+        <location filename="src/windows/crm/creer/yeroth-erp-creer-groupe-de-clients-window.cpp" line="395"/>
         <source>NOMBRE MAXIMUM DE MEMBRES (&apos;%1&apos;) INITIAUX ATTEINT !</source>
         <translation>YOU HAVE REACHED YOUR INITIAL MAX MEMBERS VALUE (&apos;%1&apos;) !</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/creer/yeroth-erp-creer-groupe-de-clients-window.cpp" line="459"/>
+        <location filename="src/windows/crm/creer/yeroth-erp-creer-groupe-de-clients-window.cpp" line="445"/>
         <source>groupe de FIDÉLITÉ clients</source>
         <translation>CLIENT LOYALTY group</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/creer/yeroth-erp-creer-groupe-de-clients-window.cpp" line="460"/>
+        <location filename="src/windows/crm/creer/yeroth-erp-creer-groupe-de-clients-window.cpp" line="446"/>
         <location filename="src/windows/crm/creer/yeroth-erp-creer-un-programme-de-fidelite-clients-window.cpp" line="393"/>
         <source>Remplisser tous les champs obligatoires !</source>
         <translation>Please, fill out all mandatory text fields!</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/creer/yeroth-erp-creer-groupe-de-clients-window.cpp" line="485"/>
+        <location filename="src/windows/crm/creer/yeroth-erp-creer-groupe-de-clients-window.cpp" line="471"/>
         <source>NOMBRE MAXIMUM DE MEMBRES: %1
 
 NOMBRE DE MEMBRES INITIAUX DU GROUPE DE FIDÉLITÉ CLIENT: %2
@@ -4901,13 +4901,13 @@ CLIENT LOYALTY GROUP INITIAL MEMBER COUNT: %2
 Please, change the maximum member of this CLIENT LOYALTY group to &apos;%3&apos; or diminish it of (&apos;%4&apos; INITIAL MEMBERS&apos;) !</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/creer/yeroth-erp-creer-groupe-de-clients-window.cpp" line="504"/>
+        <location filename="src/windows/crm/creer/yeroth-erp-creer-groupe-de-clients-window.cpp" line="490"/>
         <source>Le groupe de clients &apos;</source>
         <translation>Client group &apos;</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/creer/yeroth-erp-creer-groupe-de-clients-window.cpp" line="571"/>
-        <location filename="src/windows/crm/creer/yeroth-erp-creer-groupe-de-clients-window.cpp" line="581"/>
+        <location filename="src/windows/crm/creer/yeroth-erp-creer-groupe-de-clients-window.cpp" line="557"/>
+        <location filename="src/windows/crm/creer/yeroth-erp-creer-groupe-de-clients-window.cpp" line="567"/>
         <source>créer 1 groupe de clients</source>
         <translation>create a client group</translation>
     </message>
