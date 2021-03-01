@@ -2615,6 +2615,10 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
 
     int stocksVenduID = -1;
 
+    double nouveau_compteClient_FIDELITE = 0.0;
+
+    bool is_compte_client_FIDELITE_calculated = false;
+
     for (int j = 0; j < tableWidget_articles->itemCount(); ++j)
     {
         YerothArticleVenteInfo *articleVenteInfo = articleItemToVenteInfo.value(j);
@@ -2797,22 +2801,36 @@ void YerothPointDeVenteWindow::executer_la_vente_comptant()
         	stocksVenduRecord.setValue(YerothDatabaseTableColumn::CLIENTS_ID, clients_id);
         	stocksVenduRecord.setValue(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT, lineEdit_articles_nom_client->text());
 
+        	if (! is_compte_client_FIDELITE_calculated)
+        	{
+        		double compteClient_FIDELITE =
+        				GET_SQL_RECORD_DATA(clientsRecord,
+        						YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS).toDouble();
 
-            double compteClient_FIDELITE =
-            		GET_SQL_RECORD_DATA(clientsRecord,
-            				YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS).toDouble();
+        		nouveau_compteClient_FIDELITE =
+        				compteClient_FIDELITE +
+        				(-1 * GET_BEST_CURRENT_LOYALTY_PROGRAM_MONEY_BENEFITS());
 
-            double nouveau_compteClient_FIDELITE = compteClient_FIDELITE -
-            							   (-1 * GET_BEST_CURRENT_LOYALTY_PROGRAM_MONEY_BENEFITS());
+        		_vente_LOYALTY_PROGRAM_NOUVEAU_COMPTE_CLIENT = nouveau_compteClient_FIDELITE;
 
-            _vente_LOYALTY_PROGRAM_NOUVEAU_COMPTE_CLIENT = nouveau_compteClient_FIDELITE;
+        		stocksVenduRecord.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS,
+        				_vente_LOYALTY_PROGRAM_NOUVEAU_COMPTE_CLIENT);
 
-            stocksVenduRecord.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS,
-                        		_vente_LOYALTY_PROGRAM_NOUVEAU_COMPTE_CLIENT);
+        		clientsRecord.setValue(
+        				YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS,
+						nouveau_compteClient_FIDELITE);
 
-            clientsRecord.setValue(
-            		YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS,
-					nouveau_compteClient_FIDELITE);
+        		is_compte_client_FIDELITE_calculated = true;
+        	}
+            else
+            {
+            	stocksVenduRecord.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS,
+                		_vente_LOYALTY_PROGRAM_NOUVEAU_COMPTE_CLIENT);
+
+            	clientsRecord.setValue(
+            			YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS,
+						nouveau_compteClient_FIDELITE);
+            }
 
             clientsTableModel.updateRecord(0, clientsRecord);
 
@@ -3294,6 +3312,10 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
 
     int stocksVenduID = -1;
 
+    double nouveau_compteClient_FIDELITE = 0.0;
+
+    bool is_compte_client_FIDELITE_calculated = false;
+
     double total_prix_vente = 0.0;
 
     for (int j = 0; j < tableWidget_articles->itemCount(); ++j)
@@ -3465,28 +3487,42 @@ void YerothPointDeVenteWindow::executer_la_vente_compte_client()
             QString clients_id(GET_SQL_RECORD_DATA(clientsRecord, YerothDatabaseTableColumn::ID));
 
 
-            double compteClient_FIDELITE =
-            		GET_SQL_RECORD_DATA(clientsRecord,
-            				YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS).toDouble();
+            if (! is_compte_client_FIDELITE_calculated)
+            {
+            	double compteClient_FIDELITE =
+            			GET_SQL_RECORD_DATA(clientsRecord,
+            					YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS).toDouble();
 
-            double nouveau_compteClient_PROGRAMME_DE_FIDELITE_CLIENTS = compteClient_FIDELITE -
-            							   (-1 * GET_BEST_CURRENT_LOYALTY_PROGRAM_MONEY_BENEFITS());
+        		nouveau_compteClient_FIDELITE =
+        				compteClient_FIDELITE +
+        				(-1 * GET_BEST_CURRENT_LOYALTY_PROGRAM_MONEY_BENEFITS());
 
-            _vente_LOYALTY_PROGRAM_NOUVEAU_COMPTE_CLIENT = nouveau_compteClient_PROGRAMME_DE_FIDELITE_CLIENTS;
+            	_vente_LOYALTY_PROGRAM_NOUVEAU_COMPTE_CLIENT = nouveau_compteClient_FIDELITE;
 
-            clientsRecord.setValue(
-            		YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS,
-					nouveau_compteClient_PROGRAMME_DE_FIDELITE_CLIENTS);
+                stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS,
+                		_vente_LOYALTY_PROGRAM_NOUVEAU_COMPTE_CLIENT);
+
+            	clientsRecord.setValue(
+            			YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS,
+						nouveau_compteClient_FIDELITE);
+
+            	is_compte_client_FIDELITE_calculated = true;
+            }
+            else
+            {
+                stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS,
+                		_vente_LOYALTY_PROGRAM_NOUVEAU_COMPTE_CLIENT);
+
+            	clientsRecord.setValue(
+            			YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS,
+						nouveau_compteClient_FIDELITE);
+            }
 
             clientsTableModel.updateRecord(0, clientsRecord);
-
 
             double compteClient = GET_SQL_RECORD_DATA(clientsRecord, YerothDatabaseTableColumn::COMPTE_CLIENT).toDouble();
 
             double nouveau_compte_client = compteClient - total_prix_vente;
-
-            stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS,
-            		_vente_LOYALTY_PROGRAM_NOUVEAU_COMPTE_CLIENT);
 
             stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT, nouveau_compte_client);
             stocksVenduCompteClientRecord.setValue(YerothDatabaseTableColumn::CLIENTS_ID, clients_id);

@@ -2288,12 +2288,12 @@ Continue with update of the stock ?</translation>
         <translation>cashier name</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="2077"/>
+        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="2112"/>
         <source>Cette fonctionnalité n&apos;est pas disponible pour les &apos;services&apos; !</source>
         <translation>Sale cancellation isn&apos;t possible for &apos;services&apos; !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="2080"/>
+        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="2115"/>
         <source>fonctionnalité pas disponible</source>
         <translation>no sale cancellation</translation>
     </message>
@@ -2317,8 +2317,8 @@ Continue with update of the stock ?</translation>
     </message>
     <message>
         <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="1457"/>
-        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="2027"/>
-        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="2029"/>
+        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="2062"/>
+        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="2064"/>
         <source>remise (%1)</source>
         <translation>discount (%1)</translation>
     </message>
@@ -3038,8 +3038,8 @@ Please contact an administrator of %1</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-utils.hpp" line="556"/>
-        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="2023"/>
-        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="2025"/>
+        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="2058"/>
+        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="2060"/>
         <source>TVA (%1)</source>
         <translation>Tax (%1)</translation>
     </message>
@@ -3271,8 +3271,8 @@ Please contact an administrator of %1</translation>
     <message>
         <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="2516"/>
         <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="2537"/>
-        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="2930"/>
-        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="3586"/>
+        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="2948"/>
+        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="3622"/>
         <source>vendre</source>
         <translation>check out</translation>
     </message>
@@ -3319,8 +3319,8 @@ Please contact an administrator of %1</translation>
     </message>
     <message>
         <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="1229"/>
-        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="2946"/>
-        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="3602"/>
+        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="2964"/>
+        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="3638"/>
         <source>Vous avez annulé la vente !</source>
         <translation>You have canceled the sale!</translation>
     </message>
@@ -3373,19 +3373,19 @@ Please contact an administrator of %1</translation>
         <translation>PLEASE, GIVE IN THE NAME OF A CUSTOMER COMPANY !</translation>
     </message>
     <message>
-        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="2861"/>
-        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="3538"/>
+        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="2879"/>
+        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="3574"/>
         <source>La quantité en stock de l&apos;article &apos;</source>
         <translation>The quantity of the stock item &apos;</translation>
     </message>
     <message>
-        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="2869"/>
-        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="3546"/>
+        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="2887"/>
+        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="3582"/>
         <source> a été actualisée avec succès.</source>
         <translation> has been successfully updated.</translation>
     </message>
     <message>
-        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="2873"/>
+        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="2891"/>
         <source> n&apos;a pas pu être actualisée!
 Contacter &apos;YEROTH&apos;</source>
         <oldsource> n&apos;a pas pu être actualisée!
@@ -3393,61 +3393,61 @@ Contacter &apos;Yeroth Labs&apos;</oldsource>
         <translation> couldn&apos;t be updated ! Contact YEROTH</translation>
     </message>
     <message>
-        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="2891"/>
+        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="2909"/>
         <source>&apos; articles a été éffectuée avec succès.</source>
         <translation>&apos; stock items could be done successfully.</translation>
     </message>
     <message>
-        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="2909"/>
+        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="2927"/>
         <source>montant reçu du client</source>
         <translation>amount received from client</translation>
     </message>
     <message>
-        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="2910"/>
+        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="2928"/>
         <source>Le montant reçu du client doit être supérieure à la somme total !</source>
         <translation>The received amount from the client must be greater than the total amount!</translation>
     </message>
     <message>
-        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="2927"/>
+        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="2945"/>
         <source> articles (comptant) ?</source>
         <translation> articles (cash) ?</translation>
     </message>
     <message>
-        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="3281"/>
+        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="3299"/>
         <source>PAYEMENT POUR PROGRAMME DE FIDÉLITÉ CLIENTS: &apos;%1&apos; (montant: %2)</source>
         <translation>PAYMENT FOR CLIENT LOYALTY PROGRAM &apos;%1&apos; (amount %2)</translation>
     </message>
     <message>
-        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="3550"/>
+        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="3586"/>
         <source> n&apos;a pas pu être actualisée !
 Contacter &apos;YEROTH&apos;</source>
         <translation> couldn&apos;t be updated !
 Please contact an administrator</translation>
     </message>
     <message>
-        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="3565"/>
+        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="3601"/>
         <source>La vente de &apos;%1&apos; articles a été éffectuée avec succès !</source>
         <translation>Selling of &apos;%1&apos; stock items could be done successfully !</translation>
     </message>
     <message>
-        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="3583"/>
+        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="3619"/>
         <source> articles (compte client) ?</source>
         <translation> articles (client) ?</translation>
     </message>
     <message>
-        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="2924"/>
-        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="3580"/>
+        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="2942"/>
+        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="3616"/>
         <source>Poursuivre avec la vente de </source>
         <translation>Continue the checkout of </translation>
     </message>
     <message>
-        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="2864"/>
-        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="3541"/>
+        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="2882"/>
+        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="3577"/>
         <source> (%1 pièce(s))</source>
         <translation> (%1 stock items)</translation>
     </message>
     <message>
-        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="2888"/>
+        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="2906"/>
         <source>La vente de &apos;</source>
         <translation>The check out of &apos;</translation>
     </message>
@@ -3457,14 +3457,14 @@ Please contact an administrator</translation>
         <translation> stock items ?</translation>
     </message>
     <message>
-        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="2895"/>
-        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="3570"/>
+        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="2913"/>
+        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="3606"/>
         <source>succès d&apos;une vente</source>
         <translation>check out success</translation>
     </message>
     <message>
-        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="2945"/>
-        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="3601"/>
+        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="2963"/>
+        <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="3637"/>
         <source>annulation d&apos;une vente</source>
         <translation>check out cancellation</translation>
     </message>

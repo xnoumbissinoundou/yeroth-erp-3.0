@@ -1953,12 +1953,25 @@ void YerothVentesWindow::lister_les_elements_du_tableau(YerothSqlTableModel &sto
 
     double quantite_vendue = 0;
     double quantite_vendue_total = 0.0;
+
+
+    QString reference_recu_vendu;
+
+    QMap<QString, double> reference_recu_vendu_TO_remise_FIDELITE_CLIENTS;
+
+    double remise_FIDELITE_CLIENTS = 0.0;
+    double remise_totale_FIDELITE_CLIENTS_fcfa = 0.0;
+
+
     double remise_prix = 0.0;
     double remise_total_fcfa = 0.0;
+
     double montant_total = 0.0;
     double montant_total_vente = 0.0;
+
     double montant_tva = 0.0;
     double total_montant_tva = 0.0;
+
 
     QSqlRecord aRecord;
 
@@ -1968,6 +1981,8 @@ void YerothVentesWindow::lister_les_elements_du_tableau(YerothSqlTableModel &sto
 
         aRecord = _curStocksVenduTableModel->record(k);
 
+        reference_recu_vendu = GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::REFERENCE_RECU_VENDU);
+
         quantite_vendue = GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::QUANTITE_VENDUE).toDouble();
 
         quantite_vendue_total += quantite_vendue;
@@ -1975,6 +1990,18 @@ void YerothVentesWindow::lister_les_elements_du_tableau(YerothSqlTableModel &sto
         montant_total_vente = GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE).toDouble();
 
         montant_total += montant_total_vente;
+
+
+        if (!reference_recu_vendu_TO_remise_FIDELITE_CLIENTS.contains(reference_recu_vendu))
+        {
+        	remise_FIDELITE_CLIENTS =
+        	      GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::MONTANT_RABAIS_PROGRAMME_DE_FIDELITE_CLIENTS).toDouble();
+
+//        	QDEBUG_STRING_OUTPUT_2_N("remise_FIDELITE_CLIENTS", remise_FIDELITE_CLIENTS);
+
+        	reference_recu_vendu_TO_remise_FIDELITE_CLIENTS.insert(reference_recu_vendu, remise_FIDELITE_CLIENTS);
+        }
+
 
         remise_prix = GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::REMISE_PRIX).toDouble();
 
@@ -1994,7 +2021,15 @@ void YerothVentesWindow::lister_les_elements_du_tableau(YerothSqlTableModel &sto
         lineEdit_ventes_tva->clear();
     }
 
-    lineEdit_ventes_compte_fidelite_clients->setText(GET_CURRENCY_STRING_NUM(remise_total_fcfa));
+    QMapIterator<QString, double> it(reference_recu_vendu_TO_remise_FIDELITE_CLIENTS);
+
+    while(it.hasNext())
+    {
+    	it.next();
+    	remise_totale_FIDELITE_CLIENTS_fcfa += it.value();
+    }
+
+    lineEdit_ventes_compte_fidelite_clients->setText(GET_CURRENCY_STRING_NUM(remise_totale_FIDELITE_CLIENTS_fcfa));
     lineEdit_ventes_quantite_vendue->setText(GET_DOUBLE_STRING(quantite_vendue_total));
     lineEdit_ventes_recette_totale->setText(GET_CURRENCY_STRING_NUM(montant_total));
 
