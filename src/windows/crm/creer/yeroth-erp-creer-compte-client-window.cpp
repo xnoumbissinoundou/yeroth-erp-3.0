@@ -239,8 +239,8 @@ void YerothCreerCompteClientWindow::definirVendeur()
     pushButton_clients->enable(this, SLOT(clients()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_annuler->enable(this, SLOT(clients()));
-    pushButton_supprimer_limage_du_stock->disable(this);
-    pushButton_selectionner_image->disable(this);
+    pushButton_supprimer_limage_du_stock->enable(this, SLOT(supprimer_image_compte_client()));
+    pushButton_selectionner_image->enable(this, SLOT(selectionner_image_compte_client()));
     pushButton_enregistrer->enable(this, SLOT(creerEnregistrerCompteClient()));
 }
 
