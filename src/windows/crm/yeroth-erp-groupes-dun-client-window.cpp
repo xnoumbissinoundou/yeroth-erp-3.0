@@ -353,6 +353,10 @@ bool YerothGroupesDunClientWindow::EXECUTER_retirer_ce_client_du_groupe_selectio
 	}
 
 	{
+		aQSqlQuery.clear();
+
+		QSqlRecord a_client_group_record_info;
+
 		SELECT_GROUP_DU_CLIENT_INFO.clear();
 
 		SELECT_GROUP_DU_CLIENT_INFO = QString("select %1 from %2 where %3='%4'")
@@ -361,10 +365,31 @@ bool YerothGroupesDunClientWindow::EXECUTER_retirer_ce_client_du_groupe_selectio
 														 YerothDatabaseTableColumn::DESIGNATION,
 														 clientGroup_designation);
 
+//		QDEBUG_STRING_OUTPUT_2("SELECT_GROUP_DU_CLIENT_INFO",
+//							   SELECT_GROUP_DU_CLIENT_INFO);
+
+		result = result && YerothUtils::execQuery(aQSqlQuery, SELECT_GROUP_DU_CLIENT_INFO);
+
+		if (!aQSqlQuery.next())
+		{
+			return false;
+		}
+
+		a_client_group_record_info = aQSqlQuery.record();
+
 		QString membres_du_groupe_db_ID =
-				GET_SQL_RECORD_DATA(aClientRecordGroupInfo, YerothDatabaseTableColumn::MEMBRES_DU_GROUPE_db_ID);
+				GET_SQL_RECORD_DATA(a_client_group_record_info, YerothDatabaseTableColumn::MEMBRES_DU_GROUPE_db_ID);
+
+
+//		QDEBUG_STRING_OUTPUT_2("membres_du_groupe_db_ID *",
+//							   membres_du_groupe_db_ID);
+
 
 		YerothUtils::REMOVE_STRING_FROM_SPLIT_STAR_SEPARATED_DB_STRING(membres_du_groupe_db_ID, _curClientDBID);
+
+
+//		QDEBUG_STRING_OUTPUT_2("membres_du_groupe_db_ID ***",
+//							   membres_du_groupe_db_ID);
 
 
 		QString UPDATE_GROUPES_DE_CLIENT_DB_TABLE(QString("UPDATE %1 SET %2='%3' WHERE %4='%5'")
