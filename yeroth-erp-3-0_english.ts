@@ -1542,8 +1542,8 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <location filename="src/admin/yeroth-erp-admin-window.cpp" line="551"/>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="427"/>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="511"/>
-        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="263"/>
-        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="341"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="275"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="353"/>
         <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="301"/>
         <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="401"/>
         <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="1037"/>
@@ -1623,7 +1623,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <translation>merchandise</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="712"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="713"/>
         <location filename="src/windows/purchase/yeroth-erp-achats-de-services-window.cpp" line="315"/>
         <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="309"/>
         <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="734"/>
@@ -2047,7 +2047,7 @@ Continue with update of the stock ?</translation>
         <location filename="src/admin/lister/yeroth-erp-admin-lister-window.cpp" line="989"/>
         <location filename="src/admin/lister/yeroth-erp-admin-lister-window.cpp" line="1151"/>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="530"/>
-        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="360"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="372"/>
         <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="430"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseurs-window.cpp" line="456"/>
         <source>&apos; a été supprimée de la base de données !</source>
@@ -2060,7 +2060,7 @@ Continue with update of the stock ?</translation>
         <location filename="src/admin/lister/yeroth-erp-admin-lister-window.cpp" line="998"/>
         <location filename="src/admin/lister/yeroth-erp-admin-lister-window.cpp" line="1162"/>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="539"/>
-        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="369"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="381"/>
         <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="450"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseurs-window.cpp" line="465"/>
         <source> n&apos;a pas été supprimée de la base de données !</source>
@@ -2155,8 +2155,8 @@ Continue with update of the stock ?</translation>
         <location filename="src/windows/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.hpp" line="79"/>
         <location filename="src/windows/crm/details/yeroth-erp-details-dun-programme-de-fidelite-clients-window.hpp" line="73"/>
         <location filename="src/windows/crm/modifier/yeroth-erp-modifier-compte-client-window.hpp" line="69"/>
-        <location filename="src/windows/crm/yeroth-erp-clients-window.hpp" line="77"/>
-        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.hpp" line="90"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-window.hpp" line="86"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.hpp" line="93"/>
         <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.hpp" line="86"/>
         <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.hpp" line="90"/>
         <location filename="src/windows/pos/yeroth-erp-pointdevente-window.hpp" line="265"/>
@@ -4061,7 +4061,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     </message>
     <message>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="440"/>
-        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="276"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="288"/>
         <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="320"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseurs-window.cpp" line="375"/>
         <source> ont été supprimés de la base de données !</source>
@@ -4070,8 +4070,8 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     <message>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="443"/>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="533"/>
-        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="279"/>
-        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="363"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="291"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="375"/>
         <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="323"/>
         <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="433"/>
         <location filename="src/windows/stocks/yeroth-erp-modifier-window.cpp" line="955"/>
@@ -4084,7 +4084,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     </message>
     <message>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="449"/>
-        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="285"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="297"/>
         <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="341"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseurs-window.cpp" line="384"/>
         <source> n&apos;ont pas pu être supprimés de la base de données !</source>
@@ -4093,8 +4093,8 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     <message>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="452"/>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="542"/>
-        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="288"/>
-        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="372"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="300"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="384"/>
         <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="344"/>
         <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="453"/>
         <location filename="src/windows/stocks/yeroth-erp-modifier-window.cpp" line="964"/>
@@ -4122,7 +4122,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>Type in a numeric value for search.</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="710"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="711"/>
         <source>terme à rechercher (émail, réprésentant, et description de l&apos;entreprise cliente)</source>
         <oldsource>terme à rechercher (nom de l&apos;entreprise, réprésentant, et description de l&apos;entreprise cliente)</oldsource>
         <translation>keyword to search for (email, representant, and client company description)</translation>
@@ -4385,7 +4385,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>client financial transactions</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-window.hpp" line="78"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-window.hpp" line="87"/>
         <source>Sélectionner un compte client dans le tableau des comptes clients, ensuite cliquer sur l&apos;opération que vous souhaitez réaliser !</source>
         <translation>Select a client in table listing, and then press the button of the action you would like to perform !</translation>
     </message>
@@ -4815,43 +4815,43 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>client group</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="209"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="217"/>
         <source>terme à rechercher (nom du client)</source>
         <translation>keyword to search for (client name)</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="259"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="271"/>
         <source>Supprimer les groupes de clients sélectionés ?</source>
         <translation>Delete selected client groups ?</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="270"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="282"/>
         <source>Les groupes de clients sélectionés</source>
         <translation>Selected client groups</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="336"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="348"/>
         <source>Supprimer le groupe de clients &apos;%1&apos; ?</source>
         <translation>Delete client group &apos;%1&apos; ?</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="349"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="361"/>
         <source>Le groupe de clients &apos;%1</source>
         <translation>Client group &apos;%1</translation>
     </message>
     <message>
         <location filename="src/windows/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.cpp" line="29"/>
-        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="525"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="625"/>
         <source>détails d&apos;un groupe de clients</source>
         <translation>client group details</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="526"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="626"/>
         <source>Sélectionnez un groupe de clients à afficher les détails !</source>
         <translation>Select a client group to view its details !</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.hpp" line="91"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.hpp" line="94"/>
         <source>1) Sélectionner un &apos;groupe de clients&apos; dans le tableau de cette page, ensuite cliquer sur l&apos;opération que vous souhaitez réaliser !</source>
         <translation>Select a &apos;client group&apos; in table listing, and then press the button of the action you would like to perform !</translation>
     </message>
@@ -10581,126 +10581,131 @@ CLIENTS</source>
 PROGRAM</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="13321"/>
+        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="13238"/>
+        <source>FIDÉLITÉ CLIENTS</source>
+        <translation>CLIENT LOYALTY</translation>
+    </message>
+    <message>
+        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="14176"/>
         <source>Aide</source>
         <translation>Help</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="13746"/>
+        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="14601"/>
         <source>Actions</source>
         <translation>Functions</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="14203"/>
+        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="15058"/>
         <source>Outils</source>
         <translation>Tools</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="14682"/>
+        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="15537"/>
         <source>toolBar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="14710"/>
+        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="15565"/>
         <source>Changer d&apos;utilisateur</source>
         <translation>Sign in</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="14722"/>
+        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="15577"/>
         <source>Fermeture</source>
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="14734"/>
-        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="14737"/>
+        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="15589"/>
+        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="15592"/>
         <source>Menu principal</source>
         <translation>Main menu</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="14753"/>
-        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="14756"/>
+        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="15608"/>
+        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="15611"/>
         <source>Imprimer la liste des groupes</source>
         <translation>Print client group listing</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="14772"/>
+        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="15627"/>
         <source>Message d&apos;aide</source>
         <translation>User tip</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="14775"/>
+        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="15630"/>
         <source>Appeler l&apos;aide</source>
         <translation>Help</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="14791"/>
-        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="14794"/>
+        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="15646"/>
+        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="15649"/>
         <source>Déconnecter l&apos;utilisateur</source>
         <translation>Sign out</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="14806"/>
-        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="14809"/>
+        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="15661"/>
+        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="15664"/>
         <source>Afficher les détails de ce groupe</source>
         <translation>Show this client group details</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="14821"/>
+        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="15676"/>
         <source>Réinitialiser la recherche</source>
         <translation>Reset search</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="14838"/>
+        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="15693"/>
         <source>Administration</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="14850"/>
-        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="14853"/>
+        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="15705"/>
+        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="15708"/>
         <source>Informations sur l&apos;entreprise</source>
         <translation>Company info</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="14865"/>
+        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="15720"/>
         <source>Qui suis je ?</source>
         <translation>who am I ?</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="14882"/>
+        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="15737"/>
         <source>Exporter au format csv</source>
         <translation>Export as csv file</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="14892"/>
+        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="15747"/>
         <source>Réinitialiser les éléments de fitrage</source>
         <translation>reset filter</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="14907"/>
-        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="14910"/>
+        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="15762"/>
+        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="15765"/>
         <source>Sélectionner les  champs (base de données) visible</source>
         <translation>Select &apos;visible&apos; database table fields</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="14925"/>
-        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="14928"/>
+        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="15780"/>
+        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="15783"/>
         <source>Réinitialiser les  champs (base de données) visible</source>
         <translation>Reset &apos;visible&apos; database table fields</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="14938"/>
+        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="15793"/>
         <source>À propos</source>
         <translation>About Yeroth-erp-3.0</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="14950"/>
-        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="14953"/>
+        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="15805"/>
+        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="15808"/>
         <source>Supprimer un groupe de clients</source>
         <translation>Delete client group</translation>
     </message>
     <message>
-        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="14963"/>
-        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="14966"/>
+        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="15818"/>
+        <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="15821"/>
         <source>Afficher les membres de ce groupe</source>
         <translation>Show group members</translation>
     </message>
@@ -15781,6 +15786,7 @@ stock (service)</translation>
     <message>
         <location filename="ui/yeroth-erp-ventes-window.ui" line="5072"/>
         <source>FIDÉLITÉ CLIENTS</source>
+        <oldsource>FIDÉLITÉ CLIENTS ($)</oldsource>
         <translation>CLIENT LOYALTY</translation>
     </message>
     <message>
