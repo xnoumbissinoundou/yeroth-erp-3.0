@@ -57,12 +57,38 @@ void YerothERPProgrammesDeFideliteClientsTableView::lister_les_elements_du_table
 										 _tableModelHeaders,
 										 _tableModelRawHeaders_IN_OUT);
 
-    _stdItemModel->setColumnCount(_tableModelRawHeaders_IN_OUT.size());
 
 	if (!s || (0 == _tableModelHeaders.size()) || (0 == _tableModelRawHeaders_IN_OUT.size()))
 	{
 		return ;
 	}
+
+
+    QString CLIENT_LOYALTY_DISCOUNT_CURRENY_user_view_string(QObject::trUtf8("RABAIS (%1)")
+    															.arg(YerothERPConfig::currency));
+
+	uint index_of_CLIENT_LOYALTY_DISCOUNT_CURRENY_header =
+			_tableModelRawHeaders_IN_OUT.indexOf(YerothDatabaseTableColumn::MONTANT_DU_RABAIS);
+
+
+	_tableModelHeaders.replace(index_of_CLIENT_LOYALTY_DISCOUNT_CURRENY_header,
+							   CLIENT_LOYALTY_DISCOUNT_CURRENY_user_view_string);
+
+
+    for (unsigned i = 0; i < tableModel.columnCount(); ++i)
+    {
+    	if (YerothUtils::isEqualCaseInsensitive(tableModel.record(0).fieldName(i),
+    											YerothDatabaseTableColumn::MONTANT_DU_RABAIS))
+    	{
+            _stdItemModel->setHeaderData(i,
+            						     Qt::Horizontal,
+										 CLIENT_LOYALTY_DISCOUNT_CURRENY_user_view_string);
+    	}
+    }
+
+
+    _stdItemModel->setColumnCount(_tableModelRawHeaders_IN_OUT.size());
+
 
     QString curTableModelRawHdr;
 
