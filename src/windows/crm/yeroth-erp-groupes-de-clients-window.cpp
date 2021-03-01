@@ -152,7 +152,7 @@ YerothGroupesDeClientsWindow::YerothGroupesDeClientsWindow()
 
     connect(actionExporter_au_format_csv, SIGNAL(triggered()), this, SLOT(export_csv_file()));
 
-    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_pdf_document()));
+    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_pdf_document_WITH_A_YEROTH_PROGRESS_BAR()));
     connect(actionA_propos, SIGNAL(triggered()), this, SLOT(apropos()));
     connect(actionReinitialiserRecherche, SIGNAL(triggered()), this, SLOT(reinitialiser_recherche()));
     connect(actionReinitialiserElementsDeFiltrage, SIGNAL(triggered()), this, SLOT(reinitialiser_elements_filtrage()));
@@ -604,6 +604,6 @@ bool YerothGroupesDeClientsWindow::export_csv_file()
 
 bool YerothGroupesDeClientsWindow::imprimer_pdf_document()
 {
-//	_latex_template_print_pdf_content = YerothUtils::template_lister_groupes_de_clients_tex;
+	_latex_template_print_pdf_content = YerothUtils::template_CLIENT_LOYALTY_GROUP_LISTING_tex;
 	return YerothWindowsCommons::imprimer_pdf_document();
 }

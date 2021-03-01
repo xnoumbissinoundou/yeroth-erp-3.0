@@ -56,6 +56,9 @@
 # define FILE_YEROTH_ERP_3_0_TEMPLATE_BAR_DIAG_EN 								FOLDER_YEROTH_ERP_3_0_TEMPLATES"/EN_bar-diag.tex"
 # define FILE_YEROTH_ERP_3_0_TEMPLATE_BAR_DIAG_FR 								FOLDER_YEROTH_ERP_3_0_TEMPLATES"/FR_bar-diag.tex"
 
+# define FILE_YEROTH_CLIENT_LOYALTY_GROUPS_LISTING_TEMPLATE_FR  		FOLDER_YEROTH_ERP_3_0_TEMPLATES"/FR_template-lister-programmes-de-fidelite-GROUPES-clients.tex"
+# define FILE_YEROTH_CLIENT_LOYALTY_GROUPS_LISTING_TEMPLATE_EN  		FOLDER_YEROTH_ERP_3_0_TEMPLATES"/EN_template-lister-programmes-de-fidelite-GROUPES-clients.tex"
+
 # define FILE_YEROTH_CLIENT_LOYALTY_PROGRAM_LISTING_TEMPLATE_FR  	FOLDER_YEROTH_ERP_3_0_TEMPLATES"/FR_template-lister-programmes-de-fidelite-clients.tex"
 # define FILE_YEROTH_CLIENT_LOYALTY_PROGRAM_LISTING_TEMPLATE_EN  	FOLDER_YEROTH_ERP_3_0_TEMPLATES"/EN_template-lister-programmes-de-fidelite-clients.tex"
 
