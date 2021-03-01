@@ -162,11 +162,9 @@ void YerothCreerUnProgrammeDeFideliteClientsWindow::populateComboBoxes()
 
 	QStringList aQStringList;
 
-	aQStringList.append(">");
-
-	aQStringList.append("<");
-
 	aQStringList.append("=");
+
+	aQStringList.append(">=");
 
 	comboBox_creer_un_programme_de_fidelite_clients_pourcentage_rabais_refereur_condition
 		->addItems(aQStringList);
