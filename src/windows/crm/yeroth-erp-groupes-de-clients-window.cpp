@@ -196,6 +196,14 @@ void YerothGroupesDeClientsWindow::textChangedSearchLineEditsQCompleters()
 }
 
 
+void YerothGroupesDeClientsWindow::clear_all_fields()
+{
+	lineEdit_groupes_de_clients_compte_fidelite_clients->clear();
+
+	_CLIENT_GROUP_TO_compte_FIDELITE_CLIENTS_total_fcfa.clear();
+}
+
+
 void YerothGroupesDeClientsWindow::populateComboBoxes()
 {
 }
@@ -207,6 +215,10 @@ void YerothGroupesDeClientsWindow::setupLineEdits()
 
 	lineEdit_groupes_de_clients_terme_recherche->
 		enableForSearch(QObject::trUtf8("terme à rechercher (nom du client)"));
+
+
+	lineEdit_groupes_de_clients_compte_fidelite_clients->setYerothEnabled(false);
+
 
 	MACRO_TO_BIND_PAGING_WITH_QLINEEDIT(lineEdit_groupes_de_clients_nombre_de_lignes_par_page,
 										tableView_groupes_de_clients);
@@ -379,6 +391,86 @@ void YerothGroupesDeClientsWindow::supprimer_groupe_de_clients()
 
 void YerothGroupesDeClientsWindow::afficher_groupes_de_clients(YerothSqlTableModel &aClientGroupTableModel)
 {
+	_CLIENT_GROUP_TO_compte_FIDELITE_CLIENTS_total_fcfa.clear();
+
+    int client_group_row_count = aClientGroupTableModel.easySelect();
+
+    QString client_group_designation;
+
+    QString client_group_members_db_ID;
+
+    QStringList client_group_members_db_ID_LIST;
+
+
+    QString SELECT_CLIENT_FOR_LOYALTY_PAYMENT_ACCOUNT;
+
+    double previous_client_group_compte_totale_FIDELITE_CLIENTS_fcfa = 0.0;
+
+    double compte_FIDELITE_CLIENTS = 0.0;
+    double compte_totale_FIDELITE_CLIENTS_fcfa = 0.0;
+
+    int querySize = -1;
+
+    QSqlQuery a_qsql_query;
+
+    QSqlRecord aClient_LOYALTY_ACCOUNT_record;
+
+    QSqlRecord aRecord;
+
+    for (int k = 0; k < client_group_row_count; ++k)
+    {
+    	querySize = -1;
+
+        aRecord.clear();
+
+        aRecord = aClientGroupTableModel.record(k);
+
+        client_group_designation = GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::DESIGNATION);
+
+        client_group_members_db_ID = GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::MEMBRES_DU_GROUPE_db_ID);
+
+        client_group_members_db_ID_LIST.clear();
+
+    	YerothUtils::SPLIT_STAR_SEPARATED_DB_STRING(client_group_members_db_ID_LIST,
+    												client_group_members_db_ID);
+
+    	compte_totale_FIDELITE_CLIENTS_fcfa = 0.0;
+
+    	for (uint j = 0; j < client_group_members_db_ID_LIST.size(); ++j)
+    	{
+    		a_qsql_query.clear();
+
+    		aClient_LOYALTY_ACCOUNT_record.clear();
+
+    		SELECT_CLIENT_FOR_LOYALTY_PAYMENT_ACCOUNT =
+    				QString("select %1 from %2 where %3='%4' AND %5!=''")
+						.arg(YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS,
+							 YerothDatabase::CLIENTS,
+							 YerothDatabaseTableColumn::ID,
+							 client_group_members_db_ID_LIST.at(j),
+							 YerothDatabaseTableColumn::GROUPES_DU_CLIENT);
+
+    		querySize = YerothUtils::execQuery(a_qsql_query, SELECT_CLIENT_FOR_LOYALTY_PAYMENT_ACCOUNT);
+
+    		if (querySize > 0 && a_qsql_query.next())
+    		{
+    			aClient_LOYALTY_ACCOUNT_record = a_qsql_query.record();
+
+        		compte_FIDELITE_CLIENTS = GET_SQL_RECORD_DATA(aClient_LOYALTY_ACCOUNT_record,
+        				YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS).toDouble();
+
+        		compte_totale_FIDELITE_CLIENTS_fcfa += compte_FIDELITE_CLIENTS;
+    		}
+    	}
+
+    	if (querySize > 0)
+    	{
+    		_CLIENT_GROUP_TO_compte_FIDELITE_CLIENTS_total_fcfa
+				.insert(client_group_designation, compte_totale_FIDELITE_CLIENTS_fcfa);
+    	}
+    }
+
+
 	tableView_groupes_de_clients->queryYerothTableViewCurrentPageContentRow(aClientGroupTableModel);
 
     tableView_show_or_hide_columns(*tableView_groupes_de_clients);
@@ -434,6 +526,14 @@ void YerothGroupesDeClientsWindow::setupShortcuts()
 
 void YerothGroupesDeClientsWindow::resetFilter()
 {
+}
+
+
+void YerothGroupesDeClientsWindow::rendreInvisible()
+{
+	clear_all_fields();
+
+	YerothWindowsCommons::rendreInvisible();
 }
 
 

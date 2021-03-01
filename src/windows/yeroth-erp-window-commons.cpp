@@ -988,6 +988,24 @@ void YerothWindowsCommons::fill_table_columns_to_ignore(QList<int> &tableColumns
 }
 
 
+void YerothWindowsCommons::getQModelIndex_db_VALUE_from_MODEL_INDEX(const QString &dbTableColumnName,
+											  	  	  	  	  	    const QModelIndex &modelIndex,
+																	QString &db_VALUE_in_out)
+{
+	db_VALUE_in_out.clear();
+
+	int yerothTableViewColumnIndex_db_VALUE =
+			_dbtablecolumnNameToDBColumnIndex.value(dbTableColumnName);
+
+	int selected_row_nr = modelIndex.row();
+
+	QModelIndex id_row_qmodelindex_sibling =
+			modelIndex.sibling(selected_row_nr, yerothTableViewColumnIndex_db_VALUE);
+
+	db_VALUE_in_out.append(YerothUtils::get_text(id_row_qmodelindex_sibling.data()));
+}
+
+
 void YerothWindowsCommons::getQModelIndex_dbID_from_MODEL_INDEX(const QModelIndex &modelIndex,
 																QString &db_ID_in_out)
 {

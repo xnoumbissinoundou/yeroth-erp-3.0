@@ -73,6 +73,9 @@ public:
     MACRO_TO_DEFINE_VIEWING_PAGE_NUMBER_FOR_TABLEVIEW(label_groupes_de_clients_numero_page_derniere,
     												  label_groupes_de_clients_numero_page_courante)
 
+
+    virtual void rendreInvisible();
+
     virtual void rendreVisible(YerothSqlTableModel *stocksTableModel);
 
 public slots:
@@ -103,6 +106,12 @@ public slots:
 	inline void afficher_au_detail(const QModelIndex &modelIndex)
 	{
 		afficher_au_detail();
+	}
+
+	inline virtual void set_lineEdit_groupes_de_clients_compte_fidelite_clients(double a_view_string_double)
+	{
+    	lineEdit_groupes_de_clients_compte_fidelite_clients
+			->setText(GET_CURRENCY_STRING_NUM(a_view_string_double));
 	}
 
     void refineYerothLineEdits();
@@ -144,7 +153,13 @@ protected slots:
 
     virtual void textChangedSearchLineEditsQCompleters();
 
+public:
+
+    QMap<QString, double> 	_CLIENT_GROUP_TO_compte_FIDELITE_CLIENTS_total_fcfa;
+
 private:
+
+    void clear_all_fields();
 
     void populateComboBoxes();
 

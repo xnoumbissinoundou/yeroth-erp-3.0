@@ -195,16 +195,32 @@ void YerothERPGroupesDeClientsTableView::lister_les_elements_du_tableau(YerothSq
 }
 
 
+void YerothERPGroupesDeClientsTableView::currentChanged(const QItemSelection & selected,
+														const QItemSelection & deselected)
+{
+	QDEBUG_STRING_OUTPUT_2_N("selected.size()", selected.size());
+}
+
+
 void YerothERPGroupesDeClientsTableView::selectionChanged (const QItemSelection & selected,
                                         		  	  	   const QItemSelection & deselected)
 {
     static YerothERPWindows *curAllWindows = YerothUtils::getAllWindows();
 
+    YerothGroupesDeClientsWindow *client_group_window =
+    		curAllWindows->_groupesDeClientsWindow;
+
     _MAP_lastSelected_Row__TO__DB_ID.clear();
+
+    double cur_client_group_total_LOYALTY_ACCOUNT_PAYMENTS = 0.0;
 
     QModelIndexList selectedIndexes = QAbstractItemView::selectedIndexes();
 
+    QString cur_client_group_designation;
+
     QString db_ID_in_out;
+
+//    QDEBUG_STRING_OUTPUT_2_N("selectedIndexes.size()", selectedIndexes.size());
 
     if (selectedIndexes.size() > 0)
     {
@@ -212,9 +228,22 @@ void YerothERPGroupesDeClientsTableView::selectionChanged (const QItemSelection 
 
     	for (uint j = 0; j < selectedIndexes.size(); ++j)
     	{
+    		client_group_window->
+				getQModelIndex_db_VALUE_from_MODEL_INDEX(YerothDatabaseTableColumn::DESIGNATION,
+														 selectedIndexes.at(j),
+														 cur_client_group_designation);
+
+    		cur_client_group_total_LOYALTY_ACCOUNT_PAYMENTS =
+    			client_group_window->_CLIENT_GROUP_TO_compte_FIDELITE_CLIENTS_total_fcfa
+					.value(cur_client_group_designation);
+
+    		client_group_window->
+				set_lineEdit_groupes_de_clients_compte_fidelite_clients(
+					cur_client_group_total_LOYALTY_ACCOUNT_PAYMENTS);
+
     		curAllWindows->_groupesDeClientsWindow->
-    				getQModelIndex_dbID_from_MODEL_INDEX(selectedIndexes.at(j),
-    													 db_ID_in_out);
+				getQModelIndex_dbID_from_MODEL_INDEX(selectedIndexes.at(j),
+					db_ID_in_out);
 
 			_MAP_lastSelected_Row__TO__DB_ID
 					.insert(QString::number(selectedIndexes.at(j).row()),

@@ -306,6 +306,10 @@ public slots:
 		return _NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME;
 	}
 
+	void getQModelIndex_db_VALUE_from_MODEL_INDEX(const QString &dbTableColumnName,
+												  const QModelIndex &modelIndex,
+												  QString &db_VALUE_in_out);
+
 	void getQModelIndex_dbID_from_MODEL_INDEX(const QModelIndex &modelIndex, QString &db_ID_in_out);
 
 	virtual void setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID();

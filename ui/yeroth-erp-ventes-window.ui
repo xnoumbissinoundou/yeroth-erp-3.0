@@ -5069,7 +5069,7 @@ background-color: rgb(0, 0, 0); </string>
        </font>
       </property>
       <property name="text">
-       <string>FIDÉLITÉ CLIENTS</string>
+       <string>FIDÉLITÉ CLIENTS ($)</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

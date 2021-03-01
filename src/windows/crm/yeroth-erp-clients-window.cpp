@@ -620,6 +620,7 @@ bool YerothERPClientsWindow::filtrer()
 	return false;
 }
 
+
 void YerothERPClientsWindow::reinitialiser_elements_filtrage()
 {
     _logger->log("reinitialiser_elements_filtrage");
@@ -739,14 +740,6 @@ void YerothERPClientsWindow::rendreVisible(YerothSqlTableModel * stocksTableMode
 }
 
 
-void YerothERPClientsWindow::definirCaissier()
-{
-    _logger->log("definirCaissier - definirPasDeRole()");
-
-    definirPasDeRole();
-}
-
-
 void YerothERPClientsWindow::definirManager()
 {
     _logger->log("definirManager");
@@ -823,22 +816,6 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 }
 
 
-void YerothERPClientsWindow::definirGestionaireDesStocks()
-{
-    _logger->log("definirGestionaireDesStocks - definirPasDeRole()");
-
-    definirPasDeRole();
-}
-
-
-void YerothERPClientsWindow::definirMagasinier()
-{
-    _logger->log("definirMagasinier - definirPasDeRole()");
-
-    definirPasDeRole();
-}
-
-
 void YerothERPClientsWindow::definirPasDeRole()
 {
     _logger->log("definirPasDeRole");
@@ -890,7 +867,7 @@ void YerothERPClientsWindow::afficher_nom_entreprise_selectioner(const QString &
 
 void YerothERPClientsWindow::afficherClients(YerothSqlTableModel &clientSqlTableModel)
 {
-	tableView_clients->queryYerothTableViewCurrentPageContentRow(clientSqlTableModel);
+    tableView_clients->queryYerothTableViewCurrentPageContentRow(clientSqlTableModel);
 
     tableView_show_or_hide_columns(*tableView_clients);
 

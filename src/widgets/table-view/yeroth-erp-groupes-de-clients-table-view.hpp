@@ -51,6 +51,9 @@ public:
 
 protected:
 
+	virtual void currentChanged(const QItemSelection & selected,
+								const QItemSelection & deselected);
+
 	virtual void selectionChanged(const QItemSelection & selected,
 								  const QItemSelection & deselected);
 };
