@@ -160,7 +160,6 @@ const QString YerothDatabaseTableColumn::DESIGNATION					("designation");
 const QString YerothDatabaseTableColumn::DESIGNATION_REMISE				("designation_remise");
 const QString YerothDatabaseTableColumn::DESIGNATION_ALERTE				("designation_alerte");
 const QString YerothDatabaseTableColumn::VALEUR_DE_LA_CONDITION_BENEFICIARE	("valeur_de_la_condition_beneficiaire");
-const QString YerothDatabaseTableColumn::CONDITION_DU_BENEFICE			("condition_du_benefice");
 const QString YerothDatabaseTableColumn::CONDITION_ALERTE				("condition_alerte");
 const QString YerothDatabaseTableColumn::NOM_ENCAISSEUR					("nom_encaisseur");
 const QString YerothDatabaseTableColumn::DATE_PAIEMENT					("date_paiement");

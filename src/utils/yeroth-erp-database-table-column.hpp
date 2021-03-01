@@ -295,8 +295,6 @@ public:
 
 	static const QString VALEUR_DE_LA_CONDITION_BENEFICIARE;
 
-	static const QString CONDITION_DU_BENEFICE;
-
 	static const QString CONDITION_ALERTE;
 
 	static const QString NOM_ENCAISSEUR;
