@@ -115,8 +115,6 @@ public slots:
 
 private slots:
 
-	void modifier_un_groupe_de_clients();
-
 	void supprimer_PLUSIEURS_groupes_de_clients(YerothSqlTableModel &aClientGroupTableModel);
 
 	void supprimer_groupe_de_clients();

@@ -71,16 +71,14 @@ YerothERPProgrammesDeFideliteClientsWindow::YerothERPProgrammesDeFideliteClients
 
 
     _list_yeroth_pushbutton_to_enable_on_positive_tableview_ROW_COUNT
-		<< pushButton_afficher
-		<< pushButton_modifier;
+		<< pushButton_afficher;
 
 
     _list_actions_to_enable_on_positive_tableview_ROW_COUNT
 		<< actionExporter_au_format_csv
 		<< actionAfficherPDF
 		<< actionAfficher_ce_programmeDeFideliteClients_au_detail
-		<< actionSupprimerUnProgrammeDeFideliteClients
-		<< actionModifier;
+		<< actionSupprimerUnProgrammeDeFideliteClients;
 
 
     MACRO_TO_DEFINE_CURRENT_VIEW_WINDOW_FOR_TABLE_PAGINATION(tableView_programmes_de_fidelite_clients);
@@ -122,7 +120,6 @@ YerothERPProgrammesDeFideliteClientsWindow::YerothERPProgrammesDeFideliteClients
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenuClients, false);
 	YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_ce_programmeDeFideliteClients_au_detail, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerUnProgrammeDeFideliteClients, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionExporter_au_format_csv, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
@@ -136,7 +133,6 @@ YerothERPProgrammesDeFideliteClientsWindow::YerothERPProgrammesDeFideliteClients
     pushButton_afficher->disable(this);
     pushButton_groupe_de_clients->disable(this);
     pushButton_creer_un_programme_de_fidelite_clients->disable(this);
-    pushButton_modifier->disable(this);
     pushButton_reinitialiser->disable(this);
 
     //Menu actions
@@ -144,7 +140,6 @@ YerothERPProgrammesDeFideliteClientsWindow::YerothERPProgrammesDeFideliteClients
     connect(actionAppeler_aide, SIGNAL(triggered()), this, SLOT(help()));
     connect(actionDeconnecter_utilisateur, SIGNAL(triggered()), this, SLOT(deconnecter_utilisateur()));
     connect(actionMenuClients, SIGNAL(triggered()), this, SLOT(menu()));
-    connect(actionModifier, SIGNAL(triggered()), this, SLOT(modifier_un_programme_de_fidelite_clients()));
     connect(actionAfficher_ce_programmeDeFideliteClients_au_detail, SIGNAL(triggered()), this, SLOT(afficher_au_detail()));
     connect(actionSupprimerUnProgrammeDeFideliteClients, SIGNAL(triggered()), this, SLOT(supprimer_un_programme_de_fidelite_clients()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
@@ -239,12 +234,6 @@ void YerothERPProgrammesDeFideliteClientsWindow::setupDateTimeEdits()
     		SIGNAL(dateChanged(const QDate &)),
 			this,
 			SLOT(refineYerothLineEdits()));
-}
-
-
-void YerothERPProgrammesDeFideliteClientsWindow::modifier_un_programme_de_fidelite_clients()
-{
-
 }
 
 
@@ -548,21 +537,12 @@ void YerothERPProgrammesDeFideliteClientsWindow::rendreVisible(YerothSqlTableMod
 }
 
 
-void YerothERPProgrammesDeFideliteClientsWindow::definirCaissier()
-{
-    _logger->log("definirCaissier - definirPasDeRole()");
-
-    definirPasDeRole();
-}
-
-
 void YerothERPProgrammesDeFideliteClientsWindow::definirManager()
 {
     _logger->log("definirManager");
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenuClients, true);
 	YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_ce_programmeDeFideliteClients_au_detail, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerUnProgrammeDeFideliteClients, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionExporter_au_format_csv, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
@@ -578,32 +558,7 @@ void YerothERPProgrammesDeFideliteClientsWindow::definirManager()
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_groupe_de_clients->enable(this, SLOT(groupes_de_clients()));
     pushButton_creer_un_programme_de_fidelite_clients->enable(this, SLOT(creer_un_programme_de_fidelite_clients()));
-    pushButton_modifier->enable(this, SLOT(modifier_un_programme_de_fidelite_clients()));
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
-}
-
-
-void YerothERPProgrammesDeFideliteClientsWindow::definirVendeur()
-{
-    _logger->log("definirVendeur - definirPasDeRole()");
-
-    definirPasDeRole();
-}
-
-
-void YerothERPProgrammesDeFideliteClientsWindow::definirGestionaireDesStocks()
-{
-    _logger->log("definirGestionaireDesStocks - definirPasDeRole()");
-
-    definirPasDeRole();
-}
-
-
-void YerothERPProgrammesDeFideliteClientsWindow::definirMagasinier()
-{
-    _logger->log("definirMagasinier - definirPasDeRole()");
-
-    definirPasDeRole();
 }
 
 
@@ -613,7 +568,6 @@ void YerothERPProgrammesDeFideliteClientsWindow::definirPasDeRole()
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenuClients, false);
 	YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_ce_programmeDeFideliteClients_au_detail, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerUnProgrammeDeFideliteClients, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionExporter_au_format_csv, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
@@ -629,7 +583,6 @@ void YerothERPProgrammesDeFideliteClientsWindow::definirPasDeRole()
     pushButton_afficher->disable(this);
     pushButton_groupe_de_clients->disable(this);
     pushButton_creer_un_programme_de_fidelite_clients->disable(this);
-    pushButton_modifier->disable(this);
     pushButton_reinitialiser->disable(this);
 }
 

@@ -46,15 +46,27 @@ public:
     	return toolBar_programmes_de_fidelite_clientsWindow;
     }
 
-    virtual void definirCaissier();
+    inline virtual void definirCaissier()
+    {
+            definirPasDeRole();
+    }
 
     virtual void definirManager();
 
-    virtual void definirVendeur();
+    inline virtual void definirVendeur()
+    {
+            definirPasDeRole();
+    }
 
-    virtual void definirGestionaireDesStocks();
+    inline virtual void definirGestionaireDesStocks()
+    {
+            definirPasDeRole();
+    }
 
-    virtual void definirMagasinier();
+    inline virtual void definirMagasinier()
+    {
+        definirPasDeRole();
+    }
 
     virtual void definirPasDeRole();
 
@@ -102,8 +114,6 @@ public slots:
     void set_filtrer_font();
 
 private slots:
-
-	void modifier_un_programme_de_fidelite_clients();
 
 	void supprimer_PLUSIEURS_programmes_de_fidelite_clients(YerothSqlTableModel &a_LOYALTY_PROGRAM_TableModel);
 

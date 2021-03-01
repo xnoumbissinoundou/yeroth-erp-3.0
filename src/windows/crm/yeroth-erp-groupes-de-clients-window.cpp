@@ -71,8 +71,7 @@ YerothGroupesDeClientsWindow::YerothGroupesDeClientsWindow()
 
 
     _list_yeroth_pushbutton_to_enable_on_positive_tableview_ROW_COUNT
-		<< pushButton_afficher
-		<< pushButton_modifier;
+		<< pushButton_afficher;
 
 
     _list_actions_to_enable_on_positive_tableview_ROW_COUNT
@@ -80,7 +79,6 @@ YerothGroupesDeClientsWindow::YerothGroupesDeClientsWindow()
 		<< actionAfficherPDF
 		<< actionAfficher_les_membres_de_ce_groupe
 		<< actionSupprimerGroupeDeClients
-		<< actionModifier
 		<< actionAfficher_ce_groupe_au_detail;
 
 
@@ -124,7 +122,6 @@ YerothGroupesDeClientsWindow::YerothGroupesDeClientsWindow()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_les_membres_de_ce_groupe, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_ce_groupe_au_detail, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerGroupeDeClients, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionExporter_au_format_csv, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
@@ -138,7 +135,6 @@ YerothGroupesDeClientsWindow::YerothGroupesDeClientsWindow()
     pushButton_afficher->disable(this);
     pushButton_menu_clients->disable(this);
     pushButton_programmes_de_fidelite_clients->disable(this);
-    pushButton_modifier->disable(this);
     pushButton_reinitialiser->disable(this);
 
     //Menu actions
@@ -146,7 +142,6 @@ YerothGroupesDeClientsWindow::YerothGroupesDeClientsWindow()
     connect(actionAppeler_aide, SIGNAL(triggered()), this, SLOT(help()));
     connect(actionDeconnecter_utilisateur, SIGNAL(triggered()), this, SLOT(deconnecter_utilisateur()));
     connect(actionMenu_Principal, SIGNAL(triggered()), this, SLOT(menu()));
-    connect(actionModifier, SIGNAL(triggered()), this, SLOT(modifier_un_groupe_de_clients()));
     connect(actionAfficher_les_membres_de_ce_groupe, SIGNAL(triggered()), this, SLOT(afficher_au_detail()));
     connect(actionAfficher_ce_groupe_au_detail, SIGNAL(triggered()), this, SLOT(afficher_au_detail()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
@@ -241,11 +236,6 @@ void YerothGroupesDeClientsWindow::setupDateTimeEdits()
     		SIGNAL(dateChanged(const QDate &)),
 			this,
 			SLOT(refineYerothLineEdits()));
-}
-
-
-void YerothGroupesDeClientsWindow::modifier_un_groupe_de_clients()
-{
 }
 
 
@@ -473,7 +463,6 @@ void YerothGroupesDeClientsWindow::definirManager()
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, true);
 	YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_ce_groupe_au_detail, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerGroupeDeClients, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionExporter_au_format_csv, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
@@ -489,7 +478,6 @@ void YerothGroupesDeClientsWindow::definirManager()
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_menu_clients->enable(this, SLOT(clients()));
     pushButton_creer_groupe->enable(this, SLOT(creerUnGroupeDeClients()));
-    pushButton_modifier->enable(this, SLOT(modifier_un_groupe_de_clients()));
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
 }
 
@@ -500,7 +488,6 @@ void YerothGroupesDeClientsWindow::definirPasDeRole()
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
 	YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_ce_groupe_au_detail, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerGroupeDeClients, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionExporter_au_format_csv, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
@@ -517,7 +504,6 @@ void YerothGroupesDeClientsWindow::definirPasDeRole()
     pushButton_afficher->disable(this);
     pushButton_menu_clients->disable(this);
     pushButton_creer_groupe->disable(this);
-    pushButton_modifier->disable(this);
     pushButton_reinitialiser->disable(this);
 }
 
