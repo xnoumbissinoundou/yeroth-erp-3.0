@@ -206,6 +206,8 @@ void YerothERPProgrammesDeFideliteClientsWindow::setupLineEdits()
 	lineEdit_programmes_de_fidelite_clients_terme_recherche->
 		enableForSearch(QObject::trUtf8("terme à rechercher (désignation du programme fidélité de clients)"));
 
+	lineEdit_nombre_de_programmes->setYerothEnabled(false);
+
 	MACRO_TO_BIND_PAGING_WITH_QLINEEDIT(lineEdit_programmes_de_fidelite_clients_nombre_de_lignes_par_page,
 										tableView_programmes_de_fidelite_clients);
 }
@@ -468,7 +470,7 @@ void YerothERPProgrammesDeFideliteClientsWindow::afficher_programmes_de_fidelite
 
     int rowCount = tableView_programmes_de_fidelite_clients->rowCount();
 
-    lineEdit_nombre_de_groupes->setText(GET_NUM_STRING(rowCount));
+    lineEdit_nombre_de_programmes->setText(GET_NUM_STRING(rowCount));
 }
 
 

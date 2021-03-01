@@ -217,6 +217,8 @@ void YerothGroupesDeClientsWindow::setupLineEdits()
 		enableForSearch(QObject::trUtf8("terme à rechercher (nom du client)"));
 
 
+	lineEdit_nombre_de_groupes->setYerothEnabled(false);
+
 	lineEdit_groupes_de_clients_compte_fidelite_clients->setYerothEnabled(false);
 
 
