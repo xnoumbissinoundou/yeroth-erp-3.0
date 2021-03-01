@@ -4717,7 +4717,7 @@ background-color: rgb(0, 0, 0); </string>
        <bool>false</bool>
       </property>
      </widget>
-     <widget class="QLabel" name="label_ventes_remise_total_currency">
+     <widget class="QLabel" name="label_ventes_compte_fidelite_clients">
       <property name="geometry">
        <rect>
         <x>479</x>
@@ -5069,7 +5069,7 @@ background-color: rgb(0, 0, 0); </string>
        </font>
       </property>
       <property name="text">
-       <string>Remise totale</string>
+       <string>FIDÉLITÉ CLIENTS</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -8140,7 +8140,7 @@ background-color: rgb(0, 0, 0); </string>
        <bool>false</bool>
       </property>
      </widget>
-     <widget class="YerothLineEdit" name="lineEdit_ventes_remise_totale_currency">
+     <widget class="YerothLineEdit" name="lineEdit_ventes_compte_fidelite_clients">
       <property name="geometry">
        <rect>
         <x>593</x>

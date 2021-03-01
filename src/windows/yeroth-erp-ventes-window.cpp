@@ -1292,7 +1292,7 @@ void YerothVentesWindow::setupLineEdits()
 
     lineEdit_ventes_quantite_vendue->setYerothEnabled(false);
 	lineEdit_ventes_tva->setYerothEnabled(false);
-	lineEdit_ventes_remise_totale_currency->setYerothEnabled(false);
+	lineEdit_ventes_compte_fidelite_clients->setYerothEnabled(false);
 	lineEdit_ventes_recette_totale->setYerothEnabled(false);
 
 	MACRO_TO_BIND_PAGING_WITH_QLINEEDIT(lineEdit_nombre_de_lignes_par_page, tableView_ventes);
@@ -1599,7 +1599,7 @@ void YerothVentesWindow::clear_all_fields()
     lineEdit_retour_vente_prix_unitaire->clearField();
 
     lineEdit_ventes_tva->clearField();
-    lineEdit_ventes_remise_totale_currency->clearField();
+    lineEdit_ventes_compte_fidelite_clients->clearField();
     lineEdit_ventes_recette_totale->clearField();
     lineEdit_ventes_quantite_vendue->clearField();
 }
@@ -1994,7 +1994,7 @@ void YerothVentesWindow::lister_les_elements_du_tableau(YerothSqlTableModel &sto
         lineEdit_ventes_tva->clear();
     }
 
-    lineEdit_ventes_remise_totale_currency->setText(GET_CURRENCY_STRING_NUM(remise_total_fcfa));
+    lineEdit_ventes_compte_fidelite_clients->setText(GET_CURRENCY_STRING_NUM(remise_total_fcfa));
     lineEdit_ventes_quantite_vendue->setText(GET_DOUBLE_STRING(quantite_vendue_total));
     lineEdit_ventes_recette_totale->setText(GET_CURRENCY_STRING_NUM(montant_total));
 
