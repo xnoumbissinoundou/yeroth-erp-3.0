@@ -880,6 +880,8 @@ public:
 
 	static QString template_bilan_comptable_tex;
 
+	static QString template_CLIENT_LOYALTY_PROGRAM_LISTING_tex;
+
 	static QString template_carte_de_fidelite_client_TEMPLATE_tex;
 
 	static QString template_fiche_dun_fournisseur_tex;

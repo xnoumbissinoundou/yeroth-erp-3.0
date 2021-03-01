@@ -88,6 +88,8 @@ QString YerothUtils::_1a_tex("");
 
 QString YerothUtils::template_bilan_comptable_tex("");
 
+QString YerothUtils::template_CLIENT_LOYALTY_PROGRAM_LISTING_tex("");
+
 QString YerothUtils::template_carte_de_fidelite_client_TEMPLATE_tex("");
 
 QString YerothUtils::template_fiche_dun_fournisseur_tex("");

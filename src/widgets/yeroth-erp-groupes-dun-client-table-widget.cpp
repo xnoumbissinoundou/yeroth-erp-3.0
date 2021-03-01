@@ -15,6 +15,8 @@ int YerothGroupesDunClientTableWidget::insert_group(const QString &group_db_ID,
 {
 //	QDEBUG_STRING_OUTPUT_2("YerothGroupesDunClientWindow::insert_group", groupDesignation);
 
+	setEditTriggers(QAbstractItemView::NoEditTriggers);
+
     setRowCount(_curRow + 1);
 
     _groupDesignationItem 	= new YerothQTableWidgetItem(groupDesignation);

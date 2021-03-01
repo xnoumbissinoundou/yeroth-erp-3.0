@@ -117,6 +117,18 @@ void readTexTemplateFiles(YerothLogger &logger)
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
+    QFile fileClientLOYALTYprogramLISTING_FR(FILE_YEROTH_CLIENT_LOYALTY_PROGRAM_LISTING_TEMPLATE_FR);
+    yeroth_read_file(fileClientLOYALTYprogramLISTING_FR, YerothUtils::template_CLIENT_LOYALTY_PROGRAM_LISTING_tex);
+
+#else //YEROTH_ENGLISH_LANGUAGE
+
+    QFile fileClientLOYALTYprogramLISTING_EN(FILE_YEROTH_CLIENT_LOYALTY_PROGRAM_LISTING_TEMPLATE_EN);
+    yeroth_read_file(fileClientLOYALTYprogramLISTING_EN, YerothUtils::template_CLIENT_LOYALTY_PROGRAM_LISTING_tex);
+
+#endif
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+
     QFile fileClientLOYALTYprogramTemplateFR(FILE_YEROTH_LOYALTY_MEMBERSHIP_CARD_TEMPLATE_FR);
     yeroth_read_file(fileClientLOYALTYprogramTemplateFR, YerothUtils::template_carte_de_fidelite_client_TEMPLATE_tex);
 
