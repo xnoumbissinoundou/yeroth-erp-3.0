@@ -3106,7 +3106,7 @@
       <property name="geometry">
        <rect>
         <x>479</x>
-        <y>375</y>
+        <y>373</y>
         <width>111</width>
         <height>21</height>
        </rect>
@@ -3925,7 +3925,7 @@ background-color: rgb(0, 0, 0); </string>
       <property name="geometry">
        <rect>
         <x>479</x>
-        <y>309</y>
+        <y>308</y>
         <width>111</width>
         <height>21</height>
        </rect>
@@ -4721,7 +4721,7 @@ background-color: rgb(0, 0, 0); </string>
       <property name="geometry">
        <rect>
         <x>479</x>
-        <y>353</y>
+        <y>351</y>
         <width>111</width>
         <height>21</height>
        </rect>
@@ -5079,7 +5079,7 @@ background-color: rgb(0, 0, 0); </string>
       <property name="geometry">
        <rect>
         <x>479</x>
-        <y>331</y>
+        <y>329</y>
         <width>111</width>
         <height>21</height>
        </rect>
