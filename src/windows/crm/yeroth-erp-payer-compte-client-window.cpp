@@ -259,7 +259,7 @@ bool YerothPayerCompteClientWindow::createPaymentForCustomerAccount(YerothERPPay
 
 	if (success)
 	{
-		updateStocksVenduTable(payment_processing_info);
+		success = success && updateStocksVenduTable(payment_processing_info);
 	}
 
 	return success;
