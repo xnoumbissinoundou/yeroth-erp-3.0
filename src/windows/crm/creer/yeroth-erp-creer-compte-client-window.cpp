@@ -42,6 +42,8 @@ YerothCreerCompteClientWindow::YerothCreerCompteClientWindow()
 
     setupLineEdits();
 
+    localSetupLineEditsQCompleters();
+
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionInformationEntreprise, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionA_propos, false);
@@ -412,6 +414,8 @@ void YerothCreerCompteClientWindow::rendreVisible(YerothSqlTableModel * stocksTa
     	}
     }
 
+    localSetupLineEditsQCompleters();
+
     check_fields();
 
     lineEdit_compte_client_nom_de_lentreprise->setFocus();
@@ -428,6 +432,8 @@ bool YerothCreerCompteClientWindow::creerEnregistrerCompteClient()
         {
         	return false;
         }
+
+        QString proposedClient = lineEdit_compte_client_refereur->text();
 
         QString retMsg(QObject::tr("Le client '"));
 
@@ -450,9 +456,10 @@ bool YerothCreerCompteClientWindow::creerEnregistrerCompteClient()
         record.setValue(YerothDatabaseTableColumn::NUMERO_TELEPHONE_2, lineEdit_compte_client_numero_telephone_2->text());
         record.setValue(YerothDatabaseTableColumn::REFERENCE_REGISTRE_DU_COMMERCE, lineEdit_compte_client_reference_du_registre_du_commerce->text());
         record.setValue(YerothDatabaseTableColumn::NUMERO_CONTRIBUABLE, lineEdit_compte_client_numero_de_contribuable->text());
-        record.setValue(YerothDatabaseTableColumn::REFEREUR_CLIENT, lineEdit_compte_client_refereur->text());
         record.setValue(YerothDatabaseTableColumn::COMPTE_CLIENT, 0.0);
 		record.setValue(YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT, 0.0);
+
+		record.setValue(YerothDatabaseTableColumn::REFEREUR_CLIENT, proposedClient);
 
         record.setValue(YerothDatabaseTableColumn::DESCRIPTION_CLIENT, textEdit_creer_compte_client_description_client->toPlainText());
 
@@ -477,6 +484,8 @@ bool YerothCreerCompteClientWindow::creerEnregistrerCompteClient()
                                  retMsg);
             return false;
         }
+
+        YerothUtils::creerNouveauClient(proposedClient, this);
 
         clientsTableModel.select();
 

@@ -97,6 +97,13 @@ private:
 
     void clear_all_fields();
 
+    inline void localSetupLineEditsQCompleters()
+    {
+    	lineEdit_compte_client_refereur->
+			setupMyStaticQCompleter(YerothDatabase::CLIENTS,
+    								YerothDatabaseTableColumn::NOM_ENTREPRISE);
+    }
+
     void setupLineEdits();
 
     YerothLogger				*_logger;
