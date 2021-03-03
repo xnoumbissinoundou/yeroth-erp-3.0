@@ -396,7 +396,7 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REFERENCE_GROUPE,	QObject::trUtf8("Référence groupe"));
 
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REFERENCE_CLIENT,	QObject::trUtf8("Référence client"));
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REFERENCE_CLIENT,	QObject::trUtf8("Référence"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NUMERO_TELEPHONE_1,	QObject::trUtf8("Numéro téléphone 1"));
 
