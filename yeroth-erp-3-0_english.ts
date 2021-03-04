@@ -909,12 +909,6 @@ Press m &apos;Cancel&apos; to exit %2</translation>
         <translation>Group member ID</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="218"/>
-        <source>Réf. reçu vente</source>
-        <oldsource>Rabais référeur (%)</oldsource>
-        <translation type="unfinished">Referrer discount (%)</translation>
-    </message>
-    <message>
         <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="210"/>
         <source>Rabais (%)</source>
         <translation>Discount (%)</translation>
