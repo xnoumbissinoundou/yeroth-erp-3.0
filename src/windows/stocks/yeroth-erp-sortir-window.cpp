@@ -1641,6 +1641,7 @@ void YerothSortirWindow::handleQteChange(QTableWidgetItem * itemChanged)
 
             QString stockReference;
             QString stockName;
+            QString stockNomDepartementProduits;
             QString stockCategorie;
 
             int querySize = YerothUtils::execQuery(stockRecordQuery, stockRecordQueryStr, _logger);
@@ -1653,6 +1654,7 @@ void YerothSortirWindow::handleQteChange(QTableWidgetItem * itemChanged)
 
             	stockReference = stockRecordQuery.value(YerothDatabaseTableColumn::REFERENCE).toString();
                 stockName = stockRecordQuery.value(YerothDatabaseTableColumn::DESIGNATION).toString();
+                stockNomDepartementProduits = stockRecordQuery.value(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT).toString();
                 stockCategorie = stockRecordQuery.value(YerothDatabaseTableColumn::CATEGORIE).toString();
             }
 
@@ -1665,6 +1667,7 @@ void YerothSortirWindow::handleQteChange(QTableWidgetItem * itemChanged)
                 articleVenteInfo = new YerothArticleVenteInfo;
                 articleVenteInfo->_stockReference = stockReference;
                 articleVenteInfo->_stockName = stockName;
+                articleVenteInfo->_stockNomDepartementProduits = stockNomDepartementProduits;
                 articleVenteInfo->_stockCategorie = stockCategorie;
                 articleVenteInfo->_stockID = rowStockID;
                 articleVenteInfo->_quantite_en_stock = qteEnStock;
@@ -2191,6 +2194,9 @@ void YerothSortirWindow::sortir()
 
             stocksSortiesRecord.setValue(YerothDatabaseTableColumn::DESIGNATION, articleVenteInfo->_stockName);
             stocksSortiesRecord.setValue(YerothDatabaseTableColumn::DATE_PEREMPTION, datePeremtion);
+
+            stocksSortiesRecord.setValue(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,
+            		articleVenteInfo->_stockNomDepartementProduits);
 
             stocksSortiesRecord.setValue(YerothDatabaseTableColumn::CATEGORIE, articleVenteInfo->_stockCategorie);
             stocksSortiesRecord.setValue(YerothDatabaseTableColumn::QUANTITE_SORTIE, articleVenteInfo->_quantite_a_vendre);
