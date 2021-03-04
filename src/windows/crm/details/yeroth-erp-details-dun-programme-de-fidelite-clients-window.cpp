@@ -202,9 +202,6 @@ void YerothDetailsDunProgrammeDeFideliteClientsWindow::showClientLOYALTY_PROGRAM
 		->addItem(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::LOCALISATION));
 
 
-	double pourcentage_du_rabais =
-			GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::POURCENTAGE_DU_RABAIS).toDouble();
-
 	doubleSpinBox_details_dun_programme_de_fidelite_clients_pourcentage_du_rabais
 		->setValue(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::POURCENTAGE_DU_RABAIS).toDouble());
 
