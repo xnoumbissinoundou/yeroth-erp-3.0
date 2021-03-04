@@ -87,13 +87,7 @@ protected:
 
 private slots:
 
-	void handle_CLIENT_LOYALTY_PROGRAM_CREATION_checkboxes(bool toggle);
-
 	void annuler_la_creation_dun_programme_de_fidelite_de_clients();
-
-	void activateLineEdit_MONTANT_DU_RABAIS(bool toggled);
-
-	void activateLineEdit_POURCENTAGE_DU_RABAIS(bool toggled);
 
 	bool creerEnregistrerUnProgrammeDeFideliteClients();
 

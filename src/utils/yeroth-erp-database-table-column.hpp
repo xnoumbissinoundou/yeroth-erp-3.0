@@ -45,13 +45,7 @@ public:
 
 	static const QString MEMBRES_DU_GROUPE_db_ID;
 
-	static const QString POURCENTAGE_DU_RABAIS_REFEREUR;
-
-	static const QString RABAIS_EN_CASCADE_TOUS_REFEREUR_PAR_LE_HAUT;
-
 	static const QString POURCENTAGE_DU_RABAIS;
-
-	static const QString MONTANT_DU_RABAIS;
 
 	static const QString MAXIMUM_DE_MEMBRES;
 
@@ -292,8 +286,6 @@ public:
 	static const QString DESIGNATION_REMISE;
 
 	static const QString DESIGNATION_ALERTE;
-
-	static const QString VALEUR_DE_LA_CONDITION_BENEFICIARE;
 
 	static const QString CONDITION_ALERTE;
 

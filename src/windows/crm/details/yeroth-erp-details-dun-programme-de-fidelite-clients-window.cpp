@@ -37,26 +37,6 @@ YerothDetailsDunProgrammeDeFideliteClientsWindow::YerothDetailsDunProgrammeDeFid
 
     setupLineEdits();
 
-
-	radioButton_montant_du_rabais->setText(QString("montant du rabais (%1)")
-											.arg(YerothERPConfig::currency));
-
-
-	radioButton_montant_du_rabais->setVisible(false);
-	radioButton_pourcentage_du_rabais->setVisible(false);
-
-
-	checkBox_refereur_details_dun_programme_de_fidelite_clients_pourcentage_rabais->setVisible(false);
-
-	checkBox_details_dun_programme_de_fidelite_clients_rabais_en_cascade_par_le_haut_tous_refereurs->setVisible(false);
-
-
-	doubleSpinBox_details_dun_programme_de_fidelite_clients_pourcentage_du_rabais->setVisible(false);
-	doubleSpinBox_details_dun_programme_de_fidelite_clients_pourcentage_du_rabais->setEnabled(false);
-
-	doubleSpinBox_details_dun_programme_de_fidelite_clients_pourcentage_du_rabais_du_refereur->setVisible(false);
-	doubleSpinBox_details_dun_programme_de_fidelite_clients_pourcentage_du_rabais_du_refereur->setEnabled(false);
-
     textEdit_details_dun_programme_de_fidelite_clients_description->setYerothEnabled(false);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
@@ -104,13 +84,8 @@ void YerothDetailsDunProgrammeDeFideliteClientsWindow::modifier_un_programme_de_
 
 void YerothDetailsDunProgrammeDeFideliteClientsWindow::setupLineEdits()
 {
-	label_details_dun_programme_de_fidelite_clients_pourcentage_rabais_refereur_condition->
-		setVisible(false);
-
 	lineEdit_details_dun_programme_de_fidelite_clients_reference->setYerothEnabled(false);
 	lineEdit_details_dun_programme_de_fidelite_clients_designation->setYerothEnabled(false);
-	lineEdit_details_dun_programme_de_fidelite_clients_montant_du_rabais->setYerothEnabled(false);
-	lineEdit_details_dun_programme_de_fidelite_clients_valeur_condition_beneficiaire_du_refereur->setYerothEnabled(false);
 }
 
 
@@ -230,123 +205,9 @@ void YerothDetailsDunProgrammeDeFideliteClientsWindow::showClientLOYALTY_PROGRAM
 	double pourcentage_du_rabais =
 			GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::POURCENTAGE_DU_RABAIS).toDouble();
 
+	doubleSpinBox_details_dun_programme_de_fidelite_clients_pourcentage_du_rabais
+		->setValue(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::POURCENTAGE_DU_RABAIS).toDouble());
 
-	if (pourcentage_du_rabais > 0)
-	{
-		radioButton_montant_du_rabais->setChecked(false);
-
-		radioButton_montant_du_rabais->setVisible(false);
-
-		radioButton_pourcentage_du_rabais->setChecked(true);
-
-		radioButton_pourcentage_du_rabais->setVisible(true);
-
-		lineEdit_details_dun_programme_de_fidelite_clients_montant_du_rabais
-			->setVisible(false);
-
-		doubleSpinBox_details_dun_programme_de_fidelite_clients_pourcentage_du_rabais
-			->setValue(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::POURCENTAGE_DU_RABAIS).toDouble());
-
-		doubleSpinBox_details_dun_programme_de_fidelite_clients_pourcentage_du_rabais
-			->setVisible(true);
-	}
-	else
-	{
-		radioButton_montant_du_rabais->setChecked(true);
-
-		radioButton_montant_du_rabais->setVisible(true);
-
-		radioButton_pourcentage_du_rabais->setChecked(false);
-
-		radioButton_pourcentage_du_rabais->setVisible(false);
-
-		doubleSpinBox_details_dun_programme_de_fidelite_clients_pourcentage_du_rabais
-			->setVisible(false);
-
-		lineEdit_details_dun_programme_de_fidelite_clients_montant_du_rabais
-		  ->setText(GET_CURRENCY_STRING_NUM(
-				  GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::MONTANT_DU_RABAIS).toDouble()));
-
-		lineEdit_details_dun_programme_de_fidelite_clients_montant_du_rabais->setVisible(true);
-	}
-
-	double pourcentage_du_rabais_refereur =
-			GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::POURCENTAGE_DU_RABAIS_REFEREUR).toDouble();
-
-	if (pourcentage_du_rabais_refereur <= 0)
-	{
-		doubleSpinBox_details_dun_programme_de_fidelite_clients_pourcentage_du_rabais_du_refereur
-			->setVisible(false);
-
-		lineEdit_details_dun_programme_de_fidelite_clients_valeur_condition_beneficiaire_du_refereur
-			->setVisible(false);
-
-		checkBox_refereur_details_dun_programme_de_fidelite_clients_pourcentage_rabais
-			->setChecked(false);
-
-		checkBox_refereur_details_dun_programme_de_fidelite_clients_pourcentage_rabais
-			->setVisible(false);
-
-		checkBox_details_dun_programme_de_fidelite_clients_rabais_en_cascade_par_le_haut_tous_refereurs
-			->setChecked(false);
-
-		checkBox_details_dun_programme_de_fidelite_clients_rabais_en_cascade_par_le_haut_tous_refereurs
-			->setVisible(false);
-	}
-	else
-	{
-
-		doubleSpinBox_details_dun_programme_de_fidelite_clients_pourcentage_du_rabais_du_refereur
-			->setValue(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::POURCENTAGE_DU_RABAIS_REFEREUR).toDouble());
-
-		doubleSpinBox_details_dun_programme_de_fidelite_clients_pourcentage_du_rabais_du_refereur
-			->setVisible(true);
-
-
-		lineEdit_details_dun_programme_de_fidelite_clients_valeur_condition_beneficiaire_du_refereur
-			->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::VALEUR_DE_LA_CONDITION_BENEFICIARE));
-
-		lineEdit_details_dun_programme_de_fidelite_clients_valeur_condition_beneficiaire_du_refereur
-			->setVisible(true);
-
-
-		checkBox_refereur_details_dun_programme_de_fidelite_clients_pourcentage_rabais
-			->setChecked(true);
-
-		checkBox_refereur_details_dun_programme_de_fidelite_clients_pourcentage_rabais
-			->setVisible(true);
-
-
-		bool rabais_en_cascade_par_le_haut_tous_refereurs =
-				GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::RABAIS_EN_CASCADE_TOUS_REFEREUR_PAR_LE_HAUT).toInt();
-
-		if (rabais_en_cascade_par_le_haut_tous_refereurs)
-		{
-			checkBox_refereur_details_dun_programme_de_fidelite_clients_pourcentage_rabais
-				->setChecked(true);
-
-			checkBox_refereur_details_dun_programme_de_fidelite_clients_pourcentage_rabais
-				->setVisible(true);
-
-			checkBox_details_dun_programme_de_fidelite_clients_rabais_en_cascade_par_le_haut_tous_refereurs
-				->setChecked(true);
-
-			checkBox_details_dun_programme_de_fidelite_clients_rabais_en_cascade_par_le_haut_tous_refereurs
-				->setVisible(true);
-		}
-		else
-		{
-			checkBox_details_dun_programme_de_fidelite_clients_rabais_en_cascade_par_le_haut_tous_refereurs
-				->setChecked(false);
-
-			checkBox_details_dun_programme_de_fidelite_clients_rabais_en_cascade_par_le_haut_tous_refereurs
-				->setVisible(false);
-		}
-	}
-
-
-	label_details_dun_programme_de_fidelite_clients_pourcentage_rabais_refereur_condition->
-		setVisible(checkBox_refereur_details_dun_programme_de_fidelite_clients_pourcentage_rabais->isChecked());
 
 	textEdit_details_dun_programme_de_fidelite_clients_description
 		->setText(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::DESCRIPTION_PROGRAMME_DE_FIDELITE_CLIENTS));
@@ -407,4 +268,3 @@ void YerothDetailsDunProgrammeDeFideliteClientsWindow::setupShortcuts()
     setupShortcutActionMessageDaide 	(*actionAppeler_aide);
     setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
 }
-

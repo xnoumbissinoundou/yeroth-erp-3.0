@@ -24,14 +24,7 @@ const QString YerothDatabaseTableColumn::GROUPES_DU_CLIENT				("groupes_du_clien
 const QString YerothDatabaseTableColumn::GROUPES_DU_CLIENT_ID			("groupes_du_client_ID");
 const QString YerothDatabaseTableColumn::HISTORIQUE_STOCK				("historique_stock");
 const QString YerothDatabaseTableColumn::MEMBRES_DU_GROUPE_db_ID		("membres_du_groupe_db_ID");
-
-const QString YerothDatabaseTableColumn::POURCENTAGE_DU_RABAIS_REFEREUR	("pourcentage_du_rabais_refereur");
-
-const QString YerothDatabaseTableColumn::RABAIS_EN_CASCADE_TOUS_REFEREUR_PAR_LE_HAUT
-	("rabais_en_cascade_tous_refereurs_par_le_haut");
-
 const QString YerothDatabaseTableColumn::POURCENTAGE_DU_RABAIS			("pourcentage_du_rabais");
-const QString YerothDatabaseTableColumn::MONTANT_DU_RABAIS				("montant_du_rabais");
 const QString YerothDatabaseTableColumn::MAXIMUM_DE_MEMBRES				("maximum_de_membres");
 const QString YerothDatabaseTableColumn::CLIENTS_ID						("clients_id");
 const QString YerothDatabaseTableColumn::REFERENCE_RECU_PAIEMENT_CLIENT	("reference_recu_paiement_client");
@@ -159,7 +152,6 @@ const QString YerothDatabaseTableColumn::DESCRIPTION_CLIENT				("description_cli
 const QString YerothDatabaseTableColumn::DESIGNATION					("designation");
 const QString YerothDatabaseTableColumn::DESIGNATION_REMISE				("designation_remise");
 const QString YerothDatabaseTableColumn::DESIGNATION_ALERTE				("designation_alerte");
-const QString YerothDatabaseTableColumn::VALEUR_DE_LA_CONDITION_BENEFICIARE	("valeur_de_la_condition_beneficiaire");
 const QString YerothDatabaseTableColumn::CONDITION_ALERTE				("condition_alerte");
 const QString YerothDatabaseTableColumn::NOM_ENCAISSEUR					("nom_encaisseur");
 const QString YerothDatabaseTableColumn::DATE_PAIEMENT					("date_paiement");
@@ -215,14 +207,7 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::MEMBRES_DU_GROUPE_db_ID,	QObject::tr("Membres du groupe (leurs ID)"));
 
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::POURCENTAGE_DU_RABAIS_REFEREUR,	QObject::trUtf8("Rabais référeur (%)"));
-
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::RABAIS_EN_CASCADE_TOUS_REFEREUR_PAR_LE_HAUT,
-			QObject::trUtf8("Rabais référeur (cascade haut, (%))"));
-
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::POURCENTAGE_DU_RABAIS,	QObject::tr("Rabais (%)"));
-
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::MONTANT_DU_RABAIS,	QObject::tr("Rabais"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::MAXIMUM_DE_MEMBRES,	QObject::tr("MAX membres"));
 

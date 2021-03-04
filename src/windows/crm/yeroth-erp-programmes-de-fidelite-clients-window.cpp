@@ -488,9 +488,7 @@ void YerothERPProgrammesDeFideliteClientsWindow::reinitialiser_colones_db_visibl
 			<< YerothDatabaseTableColumn::DATE_CREATION
 			<< YerothDatabaseTableColumn::DESIGNATION
 			<< YerothDatabaseTableColumn::LOCALISATION
-			<< YerothDatabaseTableColumn::MONTANT_DU_RABAIS
-			<< YerothDatabaseTableColumn::POURCENTAGE_DU_RABAIS
-			<< YerothDatabaseTableColumn::POURCENTAGE_DU_RABAIS_REFEREUR;
+			<< YerothDatabaseTableColumn::POURCENTAGE_DU_RABAIS;
 }
 
 

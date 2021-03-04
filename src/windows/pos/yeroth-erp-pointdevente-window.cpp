@@ -3044,23 +3044,12 @@ double YerothPointDeVenteWindow::calculate_LOYALTY_PROGRAM_MONEY_BENEFITS(const 
 
 //    QDEBUG_STRING_OUTPUT_2_N("original amount to be paid by client", _sommeTotal);
 
-	if (aQSqlRecord.isNull(YerothDatabaseTableColumn::MONTANT_DU_RABAIS))
-	{
-		double pourcentage_rabais =
-				GET_SQL_RECORD_DATA(aQSqlRecord, YerothDatabaseTableColumn::POURCENTAGE_DU_RABAIS).toDouble();
+	double pourcentage_rabais =
+			GET_SQL_RECORD_DATA(aQSqlRecord, YerothDatabaseTableColumn::POURCENTAGE_DU_RABAIS).toDouble();
 
-		money_BENEFITS =
-				(pourcentage_rabais *
-				 AMOUNT_TO_BE_PAID_BY_CLIENT__NO__MONEY_BENEFITS) / 100.0;
-
-	}
-	else if (aQSqlRecord.isNull(YerothDatabaseTableColumn::POURCENTAGE_DU_RABAIS))
-	{
-		double montant_du_rabais =
-				GET_SQL_RECORD_DATA(aQSqlRecord, YerothDatabaseTableColumn::MONTANT_DU_RABAIS).toDouble();
-
-		money_BENEFITS = montant_du_rabais;
-	}
+	money_BENEFITS =
+			(pourcentage_rabais *
+			 AMOUNT_TO_BE_PAID_BY_CLIENT__NO__MONEY_BENEFITS) / 100.0;
 
 //	QDEBUG_STRING_OUTPUT_1(QString("MONEY BENEFITS FOR client loyalty program '%1': %2 (ORIGINAL AMOUNT: %3)")
 //								.arg(a_loyalty_program,

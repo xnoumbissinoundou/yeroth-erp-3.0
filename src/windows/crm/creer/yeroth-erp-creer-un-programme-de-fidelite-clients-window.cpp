@@ -41,8 +41,8 @@ YerothCreerUnProgrammeDeFideliteClientsWindow::YerothCreerUnProgrammeDeFideliteC
                                     	 COLOUR_RGB_STRING_YEROTH_BLACK_0_0_0);
 
 
-    _NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME
-		<< YerothDatabaseTableColumn::RABAIS_EN_CASCADE_TOUS_REFEREUR_PAR_LE_HAUT;
+//    _NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME
+//		<< ;
 
 
     setup_select_configure_dbcolumn(YerothDatabase::PROGRAMMES_DE_FIDELITE_CLIENTS);
@@ -85,30 +85,6 @@ YerothCreerUnProgrammeDeFideliteClientsWindow::YerothCreerUnProgrammeDeFideliteC
     connect(actionAdministration, SIGNAL(triggered()), this, SLOT(administration()));
 
 
-    connect(checkBox_creer_un_programme_de_fidelite_clients_rabais_en_cascade_par_le_haut_tous_refereurs,
-        	SIGNAL(toggled(bool)),
-    		this,
-            SLOT(handle_CLIENT_LOYALTY_PROGRAM_CREATION_checkboxes(bool)));
-
-
-    connect(checkBox_refereur_creer_un_programme_de_fidelite_clients_pourcentage_rabais,
-        	SIGNAL(toggled(bool)),
-    		this,
-            SLOT(handle_CLIENT_LOYALTY_PROGRAM_CREATION_checkboxes(bool)));
-
-
-
-    connect(radioButton_montant_du_rabais,
-    		SIGNAL(toggled(bool)),
-			this,
-            SLOT(activateLineEdit_MONTANT_DU_RABAIS(bool)));
-
-
-    connect(radioButton_pourcentage_du_rabais,
-    		SIGNAL(toggled(bool)),
-			this,
-            SLOT(activateLineEdit_POURCENTAGE_DU_RABAIS(bool)));
-
 
 #ifdef YEROTH_CLIENT
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
@@ -116,13 +92,9 @@ YerothCreerUnProgrammeDeFideliteClientsWindow::YerothCreerUnProgrammeDeFideliteC
 
     setupShortcuts();
 
-	radioButton_montant_du_rabais->setText(QString("montant du rabais (%1)")
-											.arg(YerothERPConfig::currency));
-
-    radioButton_pourcentage_du_rabais->setChecked(true);
-
     lineEdit_creer_un_programme_de_fidelite_clients_designation->setFocus();
 }
+
 
 void YerothCreerUnProgrammeDeFideliteClientsWindow::deconnecter_utilisateur()
 {
@@ -235,22 +207,6 @@ bool YerothCreerUnProgrammeDeFideliteClientsWindow::check_fields()
 
     result = programme_de_fidelite_clients_designation;
 
-
-    if (checkBox_creer_un_programme_de_fidelite_clients_rabais_en_cascade_par_le_haut_tous_refereurs->isChecked())
-    {
-    	lineEdit_creer_un_programme_de_fidelite_clients_valeur_condition_beneficiaire_du_refereur->checkField();
-
-    	result = result &&
-    		checkBox_refereur_creer_un_programme_de_fidelite_clients_pourcentage_rabais->isChecked();
-    }
-
-
-    if (checkBox_refereur_creer_un_programme_de_fidelite_clients_pourcentage_rabais->isChecked())
-    {
-    	result = result &&
-    			lineEdit_creer_un_programme_de_fidelite_clients_valeur_condition_beneficiaire_du_refereur->checkField();
-    }
-
     return result;
 }
 
@@ -261,20 +217,9 @@ void YerothCreerUnProgrammeDeFideliteClientsWindow::clear_all_fields()
 
 	lineEdit_creer_un_programme_de_fidelite_clients_designation->clearField();
 
-	lineEdit_creer_un_programme_de_fidelite_clients_valeur_condition_beneficiaire_du_refereur->clearField();
-
-	lineEdit_creer_un_programme_de_fidelite_clients_montant_du_rabais->clear();
-
 	doubleSpinBox_creer_un_programme_de_fidelite_clients_pourcentage_du_rabais->setValue(0.0);
 
-	doubleSpinBox_creer_un_programme_de_fidelite_clients_pourcentage_du_rabais_du_refereur->setValue(0.0);
-
 	comboBox_creer_un_programme_de_fidelite_clients_localisation->resetYerothComboBox();
-
-	checkBox_refereur_creer_un_programme_de_fidelite_clients_pourcentage_rabais->setChecked(false);
-
-	checkBox_creer_un_programme_de_fidelite_clients_rabais_en_cascade_par_le_haut_tous_refereurs
-		->setChecked(false);
 }
 
 
@@ -297,51 +242,11 @@ void YerothCreerUnProgrammeDeFideliteClientsWindow::rendreVisible(YerothSqlTable
 }
 
 
-void YerothCreerUnProgrammeDeFideliteClientsWindow::handle_CLIENT_LOYALTY_PROGRAM_CREATION_checkboxes(bool toggle)
-{
-	if (checkBox_creer_un_programme_de_fidelite_clients_rabais_en_cascade_par_le_haut_tous_refereurs->isChecked())
-	{
-		checkBox_refereur_creer_un_programme_de_fidelite_clients_pourcentage_rabais->setChecked(true);
-	}
-
-	if (!checkBox_refereur_creer_un_programme_de_fidelite_clients_pourcentage_rabais->isChecked())
-	{
-		checkBox_creer_un_programme_de_fidelite_clients_rabais_en_cascade_par_le_haut_tous_refereurs->setChecked(false);
-	}
-}
-
-
 void YerothCreerUnProgrammeDeFideliteClientsWindow::annuler_la_creation_dun_programme_de_fidelite_de_clients()
 {
 	clear_all_fields();
 
 	programmes_de_fidelite_clients();
-}
-
-
-void YerothCreerUnProgrammeDeFideliteClientsWindow::activateLineEdit_MONTANT_DU_RABAIS(bool toggled)
-{
-    if (toggled)
-    {
-    	lineEdit_creer_un_programme_de_fidelite_clients_montant_du_rabais->setEnabled(true);
-    }
-    else
-    {
-    	lineEdit_creer_un_programme_de_fidelite_clients_montant_du_rabais->setEnabled(false);
-    }
-}
-
-
-void YerothCreerUnProgrammeDeFideliteClientsWindow::activateLineEdit_POURCENTAGE_DU_RABAIS(bool toggled)
-{
-    if (toggled)
-    {
-    	doubleSpinBox_creer_un_programme_de_fidelite_clients_pourcentage_du_rabais->setEnabled(true);
-    }
-    else
-    {
-    	doubleSpinBox_creer_un_programme_de_fidelite_clients_pourcentage_du_rabais->setEnabled(false);
-    }
 }
 
 
@@ -398,35 +303,8 @@ bool YerothCreerUnProgrammeDeFideliteClientsWindow::creerEnregistrerUnProgrammeD
 	record.setValue(YerothDatabaseTableColumn::DESCRIPTION_PROGRAMME_DE_FIDELITE_CLIENTS,
 					textEdit_creer_un_programme_de_fidelite_clients_description->toPlainText());
 
-	if (radioButton_montant_du_rabais->isChecked())
-	{
-		record.setValue(YerothDatabaseTableColumn::MONTANT_DU_RABAIS,
-				lineEdit_creer_un_programme_de_fidelite_clients_montant_du_rabais->text().toDouble());
-	}
-	else
-	{
-		record.setValue(YerothDatabaseTableColumn::POURCENTAGE_DU_RABAIS,
-				doubleSpinBox_creer_un_programme_de_fidelite_clients_pourcentage_du_rabais->value());
-	}
-
-
-	if (checkBox_refereur_creer_un_programme_de_fidelite_clients_pourcentage_rabais->isChecked())
-	{
-		record.setValue(YerothDatabaseTableColumn::VALEUR_DE_LA_CONDITION_BENEFICIARE,
-				lineEdit_creer_un_programme_de_fidelite_clients_valeur_condition_beneficiaire_du_refereur->text());
-
-		record.setValue(YerothDatabaseTableColumn::POURCENTAGE_DU_RABAIS_REFEREUR,
-				doubleSpinBox_creer_un_programme_de_fidelite_clients_pourcentage_du_rabais_du_refereur->value());
-
-		if (checkBox_creer_un_programme_de_fidelite_clients_rabais_en_cascade_par_le_haut_tous_refereurs->isChecked())
-		{
-			record.setValue(YerothDatabaseTableColumn::RABAIS_EN_CASCADE_TOUS_REFEREUR_PAR_LE_HAUT, true);
-		}
-		else
-		{
-			record.setValue(YerothDatabaseTableColumn::RABAIS_EN_CASCADE_TOUS_REFEREUR_PAR_LE_HAUT, false);
-		}
-	}
+	record.setValue(YerothDatabaseTableColumn::POURCENTAGE_DU_RABAIS,
+			doubleSpinBox_creer_un_programme_de_fidelite_clients_pourcentage_du_rabais->value());
 
 
 	retMsg.append(lineEdit_creer_un_programme_de_fidelite_clients_designation->text());
