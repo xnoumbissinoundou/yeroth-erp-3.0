@@ -724,6 +724,19 @@ void YerothEntrerWindow::setStockSpecificWidgetVisible(bool visible)
 		}
 	}
 
+
+    if (radioButton_service_achat_de_service->isChecked())
+    {
+    	checkBox_tva->setVisible(false);
+    	lineEdit_tva->setVisible(false);
+    }
+    else
+    {
+    	checkBox_tva->setVisible(true);
+    	lineEdit_tva->setVisible(true);
+    }
+
+
 	label_description->setVisible(visible);
 
 	textEdit_description->setVisible(visible);
@@ -1304,6 +1317,7 @@ void YerothEntrerWindow::rendreVisible(YerothSqlTableModel *stocksTableModel,
     _curStocksTableModel = stocksTableModel;
 
     bool stockCheckInVisible = true;
+
 
     if (radioButton_service_achat_de_service->isChecked() ||
     	radioButton_service_vente_de_service_au_client->isChecked())

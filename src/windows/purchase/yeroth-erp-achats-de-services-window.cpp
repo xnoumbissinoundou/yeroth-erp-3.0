@@ -494,6 +494,7 @@ void YerothAchatsDEServicesWindow::reinitialiser_colones_db_visibles()
 		<< YerothDatabaseTableColumn::CATEGORIE
 		<< YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR
 		<< YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT
+		<< YerothDatabaseTableColumn::QUANTITE_TOTALE
 		<< YerothDatabaseTableColumn::PRIX_DACHAT
 		<< YerothDatabaseTableColumn::PRIX_VENTE
 		<< YerothDatabaseTableColumn::MARGE_BENEFICIAIRE
