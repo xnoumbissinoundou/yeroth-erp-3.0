@@ -63,10 +63,14 @@ double YerothERPPaymentProcessingInformation::montant_paye(int type_de_paiement)
 		YerothUtils::ENCAISSEMENT_VIREMENT_BANCAIRE == _type_de_paiement 	||
 		YerothUtils::ENCAISSEMENT_ACHAT_DE_SERVICE_ANNULE == _type_de_paiement)
 	{
-		return _montant_paye;
+		return (_montant_paye < 0) ?
+			   qFabs(_montant_paye) :
+			   _montant_paye;
 	}
 
-	return (-1 * _montant_paye);
+	return (_montant_paye < 0) ?
+			_montant_paye :
+		   (-1 * _montant_paye);
 }
 
 
