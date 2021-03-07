@@ -4395,7 +4395,7 @@ Transférer</string>
       <enum>Qt::LeftToRight</enum>
      </property>
      <property name="text">
-      <string>prix de vente</string>
+      <string>prix de vente (ttc)</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -11440,7 +11440,7 @@ background-color: rgb(0, 0, 0); </string>
       <enum>Qt::LeftToRight</enum>
      </property>
      <property name="text">
-      <string>prix de vente en gros</string>
+      <string>prix de vente en gros (ttc)</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

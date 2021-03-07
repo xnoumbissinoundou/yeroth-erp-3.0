@@ -4965,7 +4965,7 @@ stock (service)</string>
       <enum>Qt::LeftToRight</enum>
      </property>
      <property name="text">
-      <string>prix de vente</string>
+      <string>prix de vente (ttc)</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -10383,7 +10383,7 @@ stock (service)</string>
       <enum>Qt::LeftToRight</enum>
      </property>
      <property name="text">
-      <string>prix de vente en gros</string>
+      <string>prix de vente en gros (ttc)</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -12335,14 +12335,14 @@ stock (service)</string>
    <header>src/widgets/yeroth-erp-line-edit.hpp</header>
   </customwidget>
   <customwidget>
-   <class>YerothDateTimeEdit</class>
-   <extends>QDateEdit</extends>
-   <header>src/widgets/yeroth-erp-datetime-edit.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>YerothTextEdit</class>
    <extends>QTextEdit</extends>
    <header>src/widgets/yeroth-erp-text-edit.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>YerothDateTimeEdit</class>
+   <extends>QDateEdit</extends>
+   <header>src/widgets/yeroth-erp-datetime-edit.hpp</header>
   </customwidget>
   <customwidget>
    <class>YerothERPQCheckBox</class>
