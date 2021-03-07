@@ -253,7 +253,7 @@ void YerothEntrerWindow::setupLineEditsQCompleters__FOR_STOCK_INVENTORY()
 	}
 	else
 	{
-		label_prix_vente->setText(QObject::tr("prix de vente"));
+		label_prix_vente->setText(QObject::tr("prix de vente (TTC)"));
 
 		label_montant_total_vente_service->setText(QObject::tr("montant total vente"));
 	}

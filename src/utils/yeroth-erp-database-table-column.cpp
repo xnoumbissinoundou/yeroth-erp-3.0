@@ -271,9 +271,9 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::PRIX_VENTE_EN_GROS_PRECEDENT, 	QObject::trUtf8("P.V. (en gros) précédent"));
 
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::PRIX_VENTE, 		QObject::tr("Prix vente"));
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::PRIX_VENTE, 		QObject::tr("Prix vente (TTC)"));
 
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::PRIX_VENTE_EN_GROS, 		QObject::tr("Prix vente (en gros)"));
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::PRIX_VENTE_EN_GROS, 		QObject::tr("Prix vente TTC (en gros)"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::REFERENCE_DU_COMPTE_BANCAIRE, 		QObject::trUtf8("Réf. compte bancaire"));
 
