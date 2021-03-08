@@ -1024,13 +1024,15 @@ Press m &apos;Cancel&apos; to exit %2</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="274"/>
-        <source>Prix vente</source>
-        <translation>Selling price</translation>
+        <source>Prix vente (TTC)</source>
+        <oldsource>Prix vente</oldsource>
+        <translation>Selling price (ATC)</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="276"/>
-        <source>Prix vente (en gros)</source>
-        <translation>Selling price (whole sale)</translation>
+        <source>Prix vente TTC (en gros)</source>
+        <oldsource>Prix vente (en gros)</oldsource>
+        <translation>Selling price ATC (whole sale)</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-database-table-column.cpp" line="278"/>
@@ -2232,7 +2234,7 @@ Continue with update of the stock ?</translation>
 (Total amount to be reimbursed to client: &apos;%2&apos; !)</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-payment-processing-information.cpp" line="104"/>
+        <location filename="src/utils/yeroth-erp-payment-processing-information.cpp" line="108"/>
         <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="655"/>
         <source>inconnu(e)</source>
         <translation>unknown</translation>
@@ -2578,8 +2580,9 @@ Continue with update of the stock (service) ?</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="256"/>
-        <source>prix de vente</source>
-        <translation>selling price</translation>
+        <source>prix de vente (TTC)</source>
+        <oldsource>prix de vente</oldsource>
+        <translation>selling price (ATC)</translation>
     </message>
     <message>
         <location filename="src/windows/yeroth-erp-entrer-window.cpp" line="258"/>
@@ -11219,8 +11222,9 @@ Transférer</source>
     </message>
     <message>
         <location filename="ui/yeroth-erp-entrer-window.ui" line="4398"/>
-        <source>prix de vente</source>
-        <translation>selling price</translation>
+        <source>prix de vente (TTC)</source>
+        <oldsource>prix de vente</oldsource>
+        <translation>selling price (ATC)</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-entrer-window.ui" line="4421"/>
@@ -11314,8 +11318,9 @@ Transférer</source>
     </message>
     <message>
         <location filename="ui/yeroth-erp-entrer-window.ui" line="11443"/>
-        <source>prix de vente en gros</source>
-        <translation>whole sale selling price</translation>
+        <source>prix de vente en gros (TTC)</source>
+        <oldsource>prix de vente en gros</oldsource>
+        <translation>whole sale selling price (ATC)</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-entrer-window.ui" line="3572"/>
@@ -15075,9 +15080,9 @@ stock (service)</translation>
     </message>
     <message>
         <location filename="ui/stocks/yeroth-erp-stock-detail-window.ui" line="4968"/>
-        <source>prix de vente</source>
-        <oldsource>prix de vente (p.v.)</oldsource>
-        <translation>selling price</translation>
+        <source>prix de vente (TTC)</source>
+        <oldsource>prix de vente</oldsource>
+        <translation>selling price (ATC)</translation>
     </message>
     <message>
         <location filename="ui/stocks/yeroth-erp-stock-detail-window.ui" line="4989"/>
@@ -15133,8 +15138,9 @@ stock (service)</translation>
     </message>
     <message>
         <location filename="ui/stocks/yeroth-erp-stock-detail-window.ui" line="10386"/>
-        <source>prix de vente en gros</source>
-        <translation>whole sale selling price</translation>
+        <source>prix de vente en gros (TTC)</source>
+        <oldsource>prix de vente en gros</oldsource>
+        <translation>whole sale selling price (ATC)</translation>
     </message>
     <message>
         <location filename="ui/stocks/yeroth-erp-stock-detail-window.ui" line="10828"/>
