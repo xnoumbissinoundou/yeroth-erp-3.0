@@ -316,6 +316,8 @@ void YerothAchatsDEServicesWindow::setupLineEdits()
 
 	lineEdit_achats_de_services_nombre_dachats->setYerothEnabled(false);
 
+	lineEdit_achats_de_services_total_achats->setYerothEnabled(false);
+
 	comboBox_element_achats_de_services_condition->setValidator(&YerothUtils::DoubleValidator);
 
 	MACRO_TO_BIND_PAGING_WITH_QLINEEDIT(lineEdit_achats_de_services_nombre_de_lignes_par_page, tableView_achats_de_services);
@@ -687,9 +689,7 @@ void YerothAchatsDEServicesWindow::lister_les_elements_du_tableau(YerothSqlTable
 {
     int curAchatsTableModelRowCount = achatSqlTableModel.easySelect();
 
-    double quantite_totale = 0.0;
     double prix_dachat = 0.0;
-    double montant_total_achat = 0.0;
 
     double montant_total = 0.0;
 
@@ -701,13 +701,9 @@ void YerothAchatsDEServicesWindow::lister_les_elements_du_tableau(YerothSqlTable
 
         aRecord = achatSqlTableModel.record(k);
 
-        quantite_totale = GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::QUANTITE_TOTALE).toDouble();
-
         prix_dachat = GET_SQL_RECORD_DATA(aRecord, YerothDatabaseTableColumn::PRIX_DACHAT).toDouble();
 
-        montant_total_achat = prix_dachat * quantite_totale;
-
-        montant_total += montant_total_achat;
+        montant_total += prix_dachat;
     }
 
     lineEdit_achats_de_services_total_achats->setText(GET_CURRENCY_STRING_NUM(montant_total));
