@@ -708,13 +708,14 @@ void YerothAchatsDEServicesWindow::lister_les_elements_du_tableau(YerothSqlTable
 
     lineEdit_achats_de_services_total_achats->setText(GET_CURRENCY_STRING_NUM(montant_total));
 
-    int rowCount = tableView_achats_de_services->rowCount();
-
-    lineEdit_achats_de_services_nombre_dachats->setText(GET_NUM_STRING(rowCount));
 
 	tableView_achats_de_services->queryYerothTableViewCurrentPageContentRow(achatSqlTableModel);
 
     tableView_show_or_hide_columns(*tableView_achats_de_services);
+
+    int rowCount = tableView_achats_de_services->rowCount();
+
+    lineEdit_achats_de_services_nombre_dachats->setText(GET_NUM_STRING(rowCount));
 }
 
 
