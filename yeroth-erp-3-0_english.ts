@@ -1557,13 +1557,13 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <translation>supplier purchase listing</translation>
     </message>
     <message>
-        <location filename="src/windows/purchase/yeroth-erp-achats-de-services-window.cpp" line="611"/>
-        <location filename="src/windows/purchase/yeroth-erp-achats-de-services-window.cpp" line="633"/>
+        <location filename="src/windows/purchase/yeroth-erp-achats-de-services-window.cpp" line="613"/>
+        <location filename="src/windows/purchase/yeroth-erp-achats-de-services-window.cpp" line="635"/>
         <source>Sélectionnez 1 achat au fournisseur à afficher les détails.</source>
         <translation>Select a purchase (service) view its stock details.</translation>
     </message>
     <message>
-        <location filename="src/windows/purchase/yeroth-erp-achats-de-services-window.cpp" line="765"/>
+        <location filename="src/windows/purchase/yeroth-erp-achats-de-services-window.cpp" line="761"/>
         <source>Sélectionnez 1 achat (service) au fournisseur à supprimer.</source>
         <oldsource>Sélectionnez 1 achat au fournisseur à supprimer.</oldsource>
         <translation>Select a purchase (service) view to delete.</translation>
@@ -2012,7 +2012,7 @@ Continue with update of the stock ?</translation>
         <location filename="src/admin/lister/yeroth-erp-admin-lister-window.cpp" line="1165"/>
         <location filename="src/windows/crm/modifier/yeroth-erp-modifier-compte-client-window.cpp" line="497"/>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="465"/>
-        <location filename="src/windows/purchase/yeroth-erp-achats-de-services-window.cpp" line="764"/>
+        <location filename="src/windows/purchase/yeroth-erp-achats-de-services-window.cpp" line="760"/>
         <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1037"/>
         <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="360"/>
         <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="369"/>
@@ -4639,8 +4639,8 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     <message>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="564"/>
         <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.cpp" line="427"/>
-        <location filename="src/windows/purchase/yeroth-erp-achats-de-services-window.cpp" line="610"/>
-        <location filename="src/windows/purchase/yeroth-erp-achats-de-services-window.cpp" line="632"/>
+        <location filename="src/windows/purchase/yeroth-erp-achats-de-services-window.cpp" line="612"/>
+        <location filename="src/windows/purchase/yeroth-erp-achats-de-services-window.cpp" line="634"/>
         <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="653"/>
         <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="675"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseurs-window.cpp" line="488"/>
