@@ -176,66 +176,6 @@ YerothMarchandisesWindow::~YerothMarchandisesWindow()
 }
 
 
-double YerothMarchandisesWindow::getQuantiteTotaleEnStock(QString categorie,
-							   	   	   	   	   	   	   	 QString designation)
-{
-	double qteTotalEnStock = 0.0;
-
-	QString sqlSearchStockTableQueryStr(QString("SELECT %1 FROM %2 WHERE %3 = '%4' AND %5 = '%6'")
-											.arg(YerothDatabaseTableColumn::QUANTITE_TOTALE,
-												 YerothDatabase::STOCKS,
-	                                             YerothDatabaseTableColumn::CATEGORIE,
-												 categorie,
-												 YerothDatabaseTableColumn::DESIGNATION,
-												 designation));
-
-	//qDebug() << "++ str: " << sqlSearchStockTableQueryStr;
-	QSqlQuery sqlSearchStockTableQuery;
-
-	int querySize = YerothUtils::execQuery(sqlSearchStockTableQuery, sqlSearchStockTableQueryStr);
-
-	if (querySize > 0)
-	{
-		while(sqlSearchStockTableQuery.next())
-		{
-			qteTotalEnStock += sqlSearchStockTableQuery.value(YerothDatabaseTableColumn::QUANTITE_TOTALE).toDouble();
-		}
-
-		QString updateQteTotalQueryStr(QString("UPDATE %1 SET %2 = '%3' WHERE (%4 = '%5') AND (%6 = '%7')")
-											.arg(YerothDatabase::MARCHANDISES,
-												 YerothDatabaseTableColumn::QUANTITE_TOTALE,
-												 QString::number(qteTotalEnStock),
-												 YerothDatabaseTableColumn::CATEGORIE,
-												 categorie,
-												 YerothDatabaseTableColumn::DESIGNATION,
-												 designation));
-
-		YerothUtils::execQuery(updateQteTotalQueryStr);
-	}
-
-	return qteTotalEnStock;
-}
-
-
-double YerothMarchandisesWindow::getQuantiteTotaleEnStock(const QModelIndex &aQModelIndex)
-{
-	double qteTotalEnStock = 0.0;
-
-	_lastSelectedRow__ID = aQModelIndex.row();
-
-	if (_lastSelectedRow__ID > -1)
-	{
-		QString designation(YerothUtils::get_text(aQModelIndex.sibling(_lastSelectedRow__ID, 2).data()));
-
-		QString categorie(YerothUtils::get_text(aQModelIndex.sibling(_lastSelectedRow__ID, 3).data()));
-
-		qteTotalEnStock = YerothMarchandisesWindow::getQuantiteTotaleEnStock(categorie, designation);
-	}
-
-	return qteTotalEnStock;
-}
-
-
 void YerothMarchandisesWindow::reinitialiser_colones_db_visibles()
 {
 	_visibleDBColumnNameStrList.clear();
@@ -246,7 +186,6 @@ void YerothMarchandisesWindow::reinitialiser_colones_db_visibles()
 		<< YerothDatabaseTableColumn::CATEGORIE
 		<< YerothDatabaseTableColumn::PRIX_DACHAT_PRECEDENT
 		<< YerothDatabaseTableColumn::PRIX_VENTE_PRECEDENT
-		<< YerothDatabaseTableColumn::QUANTITE_TOTALE
 		<< YerothDatabaseTableColumn::REFERENCE;
 }
 

@@ -112,10 +112,6 @@ public slots:
 
     void reinitialiser_recherche();
 
-    static double getQuantiteTotaleEnStock(QString categorie, QString designation);
-
-	double getQuantiteTotaleEnStock(const QModelIndex &aQModelIndex);
-
 	inline YerothLogger *getLogger()
 	{
 		return _logger;
