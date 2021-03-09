@@ -74,6 +74,11 @@ public slots:
 
 	MACRO_TO_DEFINE_VIEWING_POINTERS_PAGE_SLOTS(tableView_marchandises)
 
+	inline virtual void set_quantite_totale_label_string(double a_view_string_double)
+	{
+		lineEdit_nombre_darticles->setText(QString::number(a_view_string_double));
+	}
+
 	inline virtual void apropos()
 	{
 		YerothWindowsCommons::apropos(this);

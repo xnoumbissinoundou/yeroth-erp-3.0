@@ -386,6 +386,10 @@ public:
 	static void GET_YEROTH_VIEW_RECORD_WIDTH_LAST_SELECTED_ID(YerothSqlTableModel &aYerothSqlTableModel_in_out,
 															  QSqlRecord &resultSQL_RECORD_in_out);
 
+	static double GET_QUANTITE_TOTALE_EN_STOCK(const QString &nom_departement_produit,
+											   const QString &nom_categorie,
+											   const QString &designation_produit);
+
 	inline static QString GET_REFERENCE_RECU_SORTIE(QString fixedNumber)
 	{
 		return  YerothUtils::GET_REFERENCE_RECU_SUFFIX(YerothUtils::PREFIX_RECU_SORTIE, fixedNumber);

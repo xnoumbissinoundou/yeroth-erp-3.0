@@ -2134,6 +2134,36 @@ void YerothUtils::GET_YEROTH_VIEW_RECORD_WIDTH_LAST_SELECTED_ID(YerothSqlTableMo
 }
 
 
+double YerothUtils::GET_QUANTITE_TOTALE_EN_STOCK(const QString &nom_departement_produit,
+										   	     const QString &nom_categorie,
+												 const QString &designation_produit)
+{
+	double quantite_totale_en_stock = 0.0;
+
+
+	QString QUERY_QUANTITE_TOTALE_STOCK =
+			QString("select * from %1 where %2='%3' AND %4='%5' AND %6='%7'")
+				.arg(YerothDatabase::STOCKS,
+					 YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,
+					 nom_departement_produit,
+					 YerothDatabaseTableColumn::CATEGORIE,
+					 nom_categorie,
+					 YerothDatabaseTableColumn::DESIGNATION,
+					 designation_produit);
+
+	QSqlQuery a_qsql_query;
+
+	int query_size = YerothUtils::execQuery(a_qsql_query, QUERY_QUANTITE_TOTALE_STOCK);
+
+	for (uint i = 0; i < query_size && a_qsql_query.next(); ++i)
+	{
+		quantite_totale_en_stock += a_qsql_query.value(YerothDatabaseTableColumn::QUANTITE_TOTALE).toDouble();
+	}
+
+	return quantite_totale_en_stock;
+}
+
+
 int YerothUtils::STOCK_PURCHASE_RECORDS_QUANTITY(int stockId)
 {
     QString strAchatsQuery(QString("SELECT %1 FROM %2 WHERE %3 = '%4'")

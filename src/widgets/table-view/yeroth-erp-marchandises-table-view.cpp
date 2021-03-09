@@ -230,17 +230,6 @@ void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTab
 							.arg(categorieStr,
 									designationStr));
 				}
-
-				if (YerothUtils::isEqualCaseInsensitive(curTableModelRawHdr, YerothDatabaseTableColumn::QUANTITE_TOTALE))
-				{
-					double qteTotalEnStock =
-							YerothMarchandisesWindow::getQuantiteTotaleEnStock(categorieStr,
-									designationStr);
-
-					YEROTH_TABLE_VIEW_ALL_WINDOWS_POINTER->_marchandisesWindow->_qteTotaleDarticlesEnStock += qteTotalEnStock;
-
-					anItem->setText(GET_DOUBLE_STRING(qteTotalEnStock));
-				}
     		} //if (0 != item)
     	}
     }
@@ -463,9 +452,22 @@ void YerothERPMarchandisesTableView::selectionChanged (const QItemSelection & se
 {
     static YerothERPWindows *curAllWindows = YerothUtils::getAllWindows();
 
+    YerothMarchandisesWindow *marchandises_window =
+    		curAllWindows->_marchandisesWindow;
+
     _MAP_lastSelected_Row__TO__DB_ID.clear();
 
     QModelIndexList selectedIndexes = QAbstractItemView::selectedIndexes();
+
+
+    QString cur_marchandise_departement_produit;
+
+    QString cur_marchandise_categorie;
+
+    QString cur_marchandise_designation;
+
+
+    double cur_marchandises_quantite_totale = 0.0;
 
     QString db_ID_in_out;
 
@@ -475,9 +477,33 @@ void YerothERPMarchandisesTableView::selectionChanged (const QItemSelection & se
 
     	for (uint j = 0; j < selectedIndexes.size(); ++j)
     	{
-    		curAllWindows->_marchandisesWindow->
-    				getQModelIndex_dbID_from_MODEL_INDEX(selectedIndexes.at(j),
-    													 db_ID_in_out);
+    		marchandises_window->
+				getQModelIndex_db_VALUE_from_MODEL_INDEX(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,
+														 selectedIndexes.at(j),
+														 cur_marchandise_departement_produit);
+
+    		marchandises_window->
+				getQModelIndex_db_VALUE_from_MODEL_INDEX(YerothDatabaseTableColumn::CATEGORIE,
+														 selectedIndexes.at(j),
+														 cur_marchandise_categorie);
+
+    		marchandises_window->
+				getQModelIndex_db_VALUE_from_MODEL_INDEX(YerothDatabaseTableColumn::DESIGNATION,
+														 selectedIndexes.at(j),
+														 cur_marchandise_designation);
+
+    		cur_marchandises_quantite_totale =
+    				YerothUtils::GET_QUANTITE_TOTALE_EN_STOCK(cur_marchandise_departement_produit,
+    														  cur_marchandise_categorie,
+															  cur_marchandise_designation);
+
+    		marchandises_window->
+				set_quantite_totale_label_string(cur_marchandises_quantite_totale);
+
+
+    		marchandises_window->
+				getQModelIndex_dbID_from_MODEL_INDEX(selectedIndexes.at(j),
+    												 db_ID_in_out);
 
 			_MAP_lastSelected_Row__TO__DB_ID
 					.insert(QString::number(selectedIndexes.at(j).row()),
@@ -496,6 +522,7 @@ void YerothERPMarchandisesTableView::selectionChanged (const QItemSelection & se
      */
     clearFocus();
 }
+
 
 void YerothERPMarchandisesTableView::stopEditingModeSelection()
 {
@@ -540,3 +567,4 @@ void YerothERPMarchandisesTableView::stopEditingModeSelection()
 	anItem->setForeground(Qt::white);
 	anItem->setBackground(YerothUtils::YEROTH_BLACK_COLOR);
 }
+
