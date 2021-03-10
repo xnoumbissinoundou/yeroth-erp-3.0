@@ -8,7 +8,7 @@
 #define SRC_WIDGETS_YEROTH_POINT_DE_VENTE_TABLE_WIDGET_HPP_
 
 
-#include "src/widgets/yeroth-erp-table-widget.hpp"
+#include "src/widgets/widgets-table/yeroth-erp-table-widget.hpp"
 
 
 class YerothPointDeVenteTableWidget : public YerothTableWidget

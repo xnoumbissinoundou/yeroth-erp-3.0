@@ -5,7 +5,7 @@
  */
 
 
-#include "src/widgets/yeroth-erp-groupes-dun-client-table-widget.hpp"
+#include "src/widgets/widgets-table/yeroth-erp-groupes-dun-client-table-widget.hpp"
 
 
 int YerothGroupesDunClientTableWidget::insert_group(const QString &group_db_ID,

@@ -12,7 +12,7 @@
 
 #include "src/windows/yeroth-erp-window-commons.hpp"
 
-#include "src/widgets/yeroth-erp-point-de-vente-table-widget.hpp"
+#include "src/widgets/widgets-table/yeroth-erp-point-de-vente-table-widget.hpp"
 
 #include "src/widgets/yeroth-erp-line-edit.hpp"
 

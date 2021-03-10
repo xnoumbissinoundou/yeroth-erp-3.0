@@ -7,6 +7,8 @@
 #include "yeroth-erp-creer-un-groupe-de-clients-table-widget.hpp"
 
 
+#include "src/widgets/widgets-table/yeroth-erp-table-widget.hpp"
+
 #include "src/utils/yeroth-erp-logger.hpp"
 
 

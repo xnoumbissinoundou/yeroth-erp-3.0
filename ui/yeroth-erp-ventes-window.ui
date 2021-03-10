@@ -44884,7 +44884,7 @@ cette Vente</string>
   <customwidget>
    <class>YerothERPTabWidget</class>
    <extends>QTabWidget</extends>
-   <header>src/widgets/yeroth-erp-tab-widget.hpp</header>
+	 <header>src/widgets/widgets-table/yeroth-erp-tab-widget.hpp</header>
    <container>1</container>
   </customwidget>
   <customwidget>

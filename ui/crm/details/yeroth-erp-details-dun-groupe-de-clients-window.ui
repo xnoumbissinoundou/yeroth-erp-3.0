@@ -8852,7 +8852,7 @@ CLIENTS</string>
   <customwidget>
    <class>YerothCreerUnGroupeDeClientsTableWidget</class>
    <extends>QTableWidget</extends>
-   <header>src/widgets/yeroth-erp-creer-un-groupe-de-clients-table-widget.hpp</header>
+	 <header>src/widgets/widgets-table/yeroth-erp-creer-un-groupe-de-clients-table-widget.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

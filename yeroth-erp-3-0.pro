@@ -147,7 +147,13 @@ HEADERS = src/include/yeroth-erp-3-0-precompiled-header.hpp \
 		  src/include/yeroth-erp-3-0-software.text-configuration.hpp \
 		  src/widgets/yeroth-erp-progress-bar.hpp \
 	  	src/widgets/yeroth-erp-qcolumn-view.hpp \
-	  	src/widgets/yeroth-erp-tab-widget.hpp \
+	  	src/widgets/widgets-table/yeroth-erp-tab-widget.hpp \
+			src/widgets/widgets-table/yeroth-erp-creer-un-groupe-de-clients-table-widget.hpp \
+			src/widgets/widgets-table/yeroth-erp-groupes-dun-client-table-widget.hpp \
+			src/widgets/widgets-table/yeroth-erp-point-de-vente-table-widget.hpp \
+			src/widgets/widgets-table/yeroth-erp-table-widget.hpp \
+			src/widgets/widgets-table/yeroth-erp-qtable-widget-item.hpp \
+			src/widgets/widgets-table/yeroth-erp-tab-widget.hpp \
 			src/widgets/table-view/yeroth-erp-table-view-with-pagination.hpp \
 			src/widgets/table-view/yeroth-erp-table-view.hpp \
 			src/widgets/table-view/yeroth-erp-comptes-bancaires-table-view.hpp \
@@ -163,7 +169,6 @@ HEADERS = src/include/yeroth-erp-3-0-precompiled-header.hpp \
 		  src/widgets/table-view/yeroth-erp-achats-de-services-table-view.hpp \
 		  src/widgets/table-view/yeroth-erp-achats-table-view.hpp \
 		  src/widgets/table-view/yeroth-erp-marchandises-table-view.hpp \
-			src/widgets/yeroth-erp-qtable-widget-item.hpp \
 		  src/widgets/yeroth-erp-line-edit.hpp \
 		  src/widgets/yeroth-erp-qmessage-box.hpp \
 		  src/widgets/yeroth-erp-push-button.hpp \
@@ -175,10 +180,6 @@ HEADERS = src/include/yeroth-erp-3-0-precompiled-header.hpp \
 		  src/widgets/yeroth-erp-datetime-edit.hpp \
 		  src/widgets/yeroth-erp-qcheckbox.hpp \
 		  src/widgets/yeroth-erp-select-db-qcheckbox.hpp \
-			src/widgets/yeroth-erp-creer-un-groupe-de-clients-table-widget.hpp \
-			src/widgets/yeroth-erp-groupes-dun-client-table-widget.hpp \
-			src/widgets/yeroth-erp-point-de-vente-table-widget.hpp \
-		  src/widgets/yeroth-erp-table-widget.hpp \
 		  src/process/yeroth-erp-process-info.hpp \
 		  src/process/yeroth-erp-process.hpp \
 		  src/dialogs/yeroth-erp-dialog-commons.hpp \
@@ -281,7 +282,6 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/imports/yeroth-erp-stock-import.cpp \
 		  src/widgets/yeroth-erp-progress-bar.cpp \
 	  	src/widgets/yeroth-erp-qcolumn-view.cpp \
-		  src/widgets/yeroth-erp-tab-widget.cpp \
 			src/widgets/table-view/yeroth-erp-table-view-with-pagination.cpp \
 			src/widgets/table-view/yeroth-erp-table-view.cpp \
 			src/widgets/table-view/yeroth-erp-comptes-bancaires-table-view.cpp \
@@ -297,7 +297,6 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/widgets/table-view/yeroth-erp-achats-table-view.cpp \
 		  src/widgets/table-view/yeroth-erp-marchandises-table-view.cpp \
 			src/widgets/table-view/yeroth-erp-programmes-de-fidelite-clients-table-view.cpp \
-			src/widgets/yeroth-erp-qtable-widget-item.cpp \
 		  src/widgets/yeroth-erp-line-edit.cpp \
 		  src/widgets/yeroth-erp-push-button.cpp \
 		  src/widgets/yeroth-erp-text-edit.cpp \
@@ -309,10 +308,13 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 		  src/widgets/yeroth-erp-datetime-edit.cpp \
 		  src/widgets/yeroth-erp-qcheckbox.cpp \
 		  src/widgets/yeroth-erp-select-db-qcheckbox.cpp \
-			src/widgets/yeroth-erp-creer-un-groupe-de-clients-table-widget.cpp \
-			src/widgets/yeroth-erp-groupes-dun-client-table-widget.cpp \
-			src/widgets/yeroth-erp-point-de-vente-table-widget.cpp \
-			src/widgets/yeroth-erp-table-widget.cpp \
+			src/widgets/widgets-table/yeroth-erp-tab-widget.cpp \
+			src/widgets/widgets-table/yeroth-erp-creer-un-groupe-de-clients-table-widget.cpp \
+			src/widgets/widgets-table/yeroth-erp-groupes-dun-client-table-widget.cpp \
+			src/widgets/widgets-table/yeroth-erp-point-de-vente-table-widget.cpp \
+			src/widgets/widgets-table/yeroth-erp-table-widget.cpp \
+			src/widgets/widgets-table/yeroth-erp-qtable-widget-item.cpp \
+			src/widgets/widgets-table/yeroth-erp-tab-widget.cpp \
 		  src/process/yeroth-erp-process-info.cpp \
 		  src/process/yeroth-erp-process.cpp \
 		  src/dialogs/yeroth-erp-dialog-commons.cpp \

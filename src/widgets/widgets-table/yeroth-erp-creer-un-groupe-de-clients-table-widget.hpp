@@ -17,6 +17,7 @@
 
 #include <QtCore/QMap>
 
+class YerothTableWidget;
 class YerothQTableWidgetItem;
 class YerothLogger;
 

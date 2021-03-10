@@ -24523,7 +24523,7 @@ background-color: rgb(0, 0, 0); </string>
   <customwidget>
    <class>YerothPointDeVenteTableWidget</class>
    <extends>QTableWidget</extends>
-   <header>src/widgets/yeroth-erp-point-de-vente-table-widget.hpp</header>
+	 <header>src/widgets/widgets-table/yeroth-erp-point-de-vente-table-widget.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>
