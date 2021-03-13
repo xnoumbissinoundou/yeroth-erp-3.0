@@ -47,10 +47,10 @@ YerothComptesBancairesWindow::YerothComptesBancairesWindow()
 
     mySetupUi(this);
 
-    setYerothTableView_FROM_WINDOWS_COMMONS(tableView_comptes_bancaires);
+    setYerothTableView_FROM_WINDOWS_COMMONS(tableView_comptes_doperations_comptables);
 
 
-    MACRO_TO_DEFINE_CURRENT_VIEW_WINDOW_FOR_TABLE_PAGINATION(tableView_comptes_bancaires);
+    MACRO_TO_DEFINE_CURRENT_VIEW_WINDOW_FOR_TABLE_PAGINATION(tableView_comptes_doperations_comptables);
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
                                        "QMessageBox QLabel {color: rgb(%2);}")
@@ -72,7 +72,7 @@ YerothComptesBancairesWindow::YerothComptesBancairesWindow()
 
     _pushButton_comptes_bancaires_filtrer_font = new QFont(pushButton_comptes_bancaires_filtrer->font());
 
-    tableView_comptes_bancaires->setSqlTableName(&YerothDatabase::COMPTES_BANCAIRES);
+    tableView_comptes_doperations_comptables->setSqlTableName(&YerothDatabase::COMPTES_BANCAIRES);
 
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
@@ -114,11 +114,11 @@ YerothComptesBancairesWindow::~YerothComptesBancairesWindow()
 
 void YerothComptesBancairesWindow::afficher_comptes_bancaires(YerothSqlTableModel &aYerothSqlTableModel)
 {
-	tableView_comptes_bancaires->queryYerothTableViewCurrentPageContentRow(aYerothSqlTableModel);
+	tableView_comptes_doperations_comptables->queryYerothTableViewCurrentPageContentRow(aYerothSqlTableModel);
 
-    tableView_show_or_hide_columns(*tableView_comptes_bancaires);
+    tableView_show_or_hide_columns(*tableView_comptes_doperations_comptables);
 
-    int rowCount = tableView_comptes_bancaires->getYerothSqlTableModelTotalRowCount();
+    int rowCount = tableView_comptes_doperations_comptables->getYerothSqlTableModelTotalRowCount();
 
     lineEdit_nombre_de_comptes_bancaires->setText(GET_NUM_STRING(rowCount));
 }
@@ -300,7 +300,7 @@ void YerothComptesBancairesWindow::setupLineEdits()
     lineEdit_comptes_bancaires_encaisse->setYerothEnabled(false);
     lineEdit_comptes_bancaires_debourse->setYerothEnabled(false);
 
-	MACRO_TO_BIND_PAGING_WITH_QLINEEDIT(lineEdit_comptes_bancaires_nombre_de_lignes_par_page, tableView_comptes_bancaires);
+	MACRO_TO_BIND_PAGING_WITH_QLINEEDIT(lineEdit_comptes_bancaires_nombre_de_lignes_par_page, tableView_comptes_doperations_comptables);
 }
 
 
@@ -387,7 +387,7 @@ bool YerothComptesBancairesWindow::export_csv_file()
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 	success = YerothUtils::export_csv_file(*this,
-										   *tableView_comptes_bancaires,
+										   *tableView_comptes_doperations_comptables,
 										   tableColumnsToIgnore,
 										   "yeroth-erp-fichier-comptes-bancaires-format-csv",
 										   "fiche des stocks");
@@ -395,7 +395,7 @@ bool YerothComptesBancairesWindow::export_csv_file()
 
 #ifdef YEROTH_ENGLISH_LANGUAGE
 	success = YerothUtils::export_csv_file(*this,
-										   *tableView_comptes_bancaires,
+										   *tableView_comptes_doperations_comptables,
 										   tableColumnsToIgnore,
 										   "yeroth-erp-bank-account-listing-csv-format",
 										   "stock listing");

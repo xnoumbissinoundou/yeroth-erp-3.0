@@ -81,7 +81,7 @@ public:
 
 public slots:
 
-	MACRO_TO_DEFINE_VIEWING_POINTERS_PAGE_SLOTS(tableView_comptes_bancaires)
+	MACRO_TO_DEFINE_VIEWING_POINTERS_PAGE_SLOTS(tableView_comptes_doperations_comptables)
 
 	inline virtual void apropos()
 	{
