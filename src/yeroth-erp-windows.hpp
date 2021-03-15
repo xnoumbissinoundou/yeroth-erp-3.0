@@ -43,7 +43,7 @@
 
 //** PURCHASE
 #include "src/windows/purchase/yeroth-erp-achats-window.hpp"
-#include "src/windows/purchase/yeroth-erp-achats-de-services-window.hpp"
+#include "src/windows/purchase/yeroth-erp-charges-window.hpp"
 #include "src/windows/purchase/yeroth-erp-achats-detail-window.hpp"
 
 

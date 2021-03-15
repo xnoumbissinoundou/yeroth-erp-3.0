@@ -1551,25 +1551,25 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <translation>Select a purchase to view its stock details.</translation>
     </message>
     <message>
-        <location filename="src/windows/purchase/yeroth-erp-achats-de-services-window.cpp" line="68"/>
+        <location filename="src/windows/purchase/yeroth-erp-charges-window.cpp" line="68"/>
         <source>fiche des achats de services</source>
         <oldsource>fiche des achats-aux-fournisseurs</oldsource>
         <translation>supplier purchase listing</translation>
     </message>
     <message>
-        <location filename="src/windows/purchase/yeroth-erp-achats-de-services-window.cpp" line="613"/>
-        <location filename="src/windows/purchase/yeroth-erp-achats-de-services-window.cpp" line="635"/>
+        <location filename="src/windows/purchase/yeroth-erp-charges-window.cpp" line="613"/>
+        <location filename="src/windows/purchase/yeroth-erp-charges-window.cpp" line="635"/>
         <source>Sélectionnez 1 achat au fournisseur à afficher les détails.</source>
         <translation>Select a purchase (service) view its stock details.</translation>
     </message>
     <message>
-        <location filename="src/windows/purchase/yeroth-erp-achats-de-services-window.cpp" line="762"/>
+        <location filename="src/windows/purchase/yeroth-erp-charges-window.cpp" line="762"/>
         <source>Sélectionnez 1 achat (service) au fournisseur à supprimer.</source>
         <oldsource>Sélectionnez 1 achat au fournisseur à supprimer.</oldsource>
         <translation>Select a purchase (service) view to delete.</translation>
     </message>
     <message>
-        <location filename="src/windows/purchase/yeroth-erp-achats-de-services-window.cpp" line="197"/>
+        <location filename="src/windows/purchase/yeroth-erp-charges-window.cpp" line="197"/>
         <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="191"/>
         <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="528"/>
         <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="332"/>
@@ -1582,7 +1582,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
     </message>
     <message>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="579"/>
-        <location filename="src/windows/purchase/yeroth-erp-achats-de-services-window.cpp" line="200"/>
+        <location filename="src/windows/purchase/yeroth-erp-charges-window.cpp" line="200"/>
         <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="194"/>
         <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="531"/>
         <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="335"/>
@@ -1593,7 +1593,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <translation>filter</translation>
     </message>
     <message>
-        <location filename="src/windows/purchase/yeroth-erp-achats-de-services-window.cpp" line="313"/>
+        <location filename="src/windows/purchase/yeroth-erp-charges-window.cpp" line="313"/>
         <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="307"/>
         <source>terme à rechercher (désignation de l&apos;article)</source>
         <oldsource>terme à rechercher (désignation, et description de l&apos;article)</oldsource>
@@ -1607,7 +1607,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
     </message>
     <message>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="713"/>
-        <location filename="src/windows/purchase/yeroth-erp-achats-de-services-window.cpp" line="315"/>
+        <location filename="src/windows/purchase/yeroth-erp-charges-window.cpp" line="315"/>
         <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="309"/>
         <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="673"/>
         <location filename="src/windows/stocks/yeroth-erp-mouvements_de_stocks-window.cpp" line="341"/>
@@ -2012,7 +2012,7 @@ Continue with update of the stock ?</translation>
         <location filename="src/admin/lister/yeroth-erp-admin-lister-window.cpp" line="1165"/>
         <location filename="src/windows/crm/modifier/yeroth-erp-modifier-compte-client-window.cpp" line="497"/>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="465"/>
-        <location filename="src/windows/purchase/yeroth-erp-achats-de-services-window.cpp" line="761"/>
+        <location filename="src/windows/purchase/yeroth-erp-charges-window.cpp" line="761"/>
         <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1037"/>
         <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="360"/>
         <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="369"/>
@@ -2143,7 +2143,7 @@ Continue with update of the stock ?</translation>
         <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.hpp" line="86"/>
         <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.hpp" line="90"/>
         <location filename="src/windows/pos/yeroth-erp-pointdevente-window.hpp" line="265"/>
-        <location filename="src/windows/purchase/yeroth-erp-achats-de-services-window.hpp" line="89"/>
+        <location filename="src/windows/purchase/yeroth-erp-charges-window.hpp" line="89"/>
         <location filename="src/windows/purchase/yeroth-erp-achats-detail-window.hpp" line="70"/>
         <location filename="src/windows/purchase/yeroth-erp-achats-window.hpp" line="77"/>
         <location filename="src/windows/stocks/yeroth-erp-marchandises-window.hpp" line="90"/>
@@ -2168,7 +2168,7 @@ Continue with update of the stock ?</translation>
         <translation>help</translation>
     </message>
     <message>
-        <location filename="src/windows/purchase/yeroth-erp-achats-de-services-window.hpp" line="90"/>
+        <location filename="src/windows/purchase/yeroth-erp-charges-window.hpp" line="90"/>
         <source>Sélectionner un achat dans le tableau des achats de services, ensuite cliquer sur l&apos;opération que vous souhaitez réaliser !</source>
         <translation>Select a purchase to a supplier in table listing, and then, press the button of the action you would like to perform !</translation>
     </message>
@@ -4639,8 +4639,8 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     <message>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="564"/>
         <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.cpp" line="427"/>
-        <location filename="src/windows/purchase/yeroth-erp-achats-de-services-window.cpp" line="612"/>
-        <location filename="src/windows/purchase/yeroth-erp-achats-de-services-window.cpp" line="634"/>
+        <location filename="src/windows/purchase/yeroth-erp-charges-window.cpp" line="612"/>
+        <location filename="src/windows/purchase/yeroth-erp-charges-window.cpp" line="634"/>
         <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="653"/>
         <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="675"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseurs-window.cpp" line="488"/>
@@ -5037,235 +5037,235 @@ Please, change the maximum member of this CLIENT LOYALTY group to &apos;%3&apos;
 <context>
     <name>YerothAchatsDEServicesWindow</name>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="434"/>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="16359"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="434"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="16359"/>
         <source>Yeroth-erp-3.0 - fiche des achats de services</source>
         <translation>Yeroth-erp-3.0 - supplier services purchase listing</translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="872"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="872"/>
         <source>Afficher</source>
         <translation>Show</translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="1335"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="1335"/>
         <source>Supprimer</source>
         <translation>Delete</translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="1770"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="1770"/>
         <source>Paiements</source>
         <translation>Payments</translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="2673"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="2673"/>
         <source>Menu</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="3107"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="3107"/>
         <source>réinitialiser</source>
         <translation>reset</translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="4019"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="4019"/>
         <source>filtrer</source>
         <translation>filter</translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="5317"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="5317"/>
         <source>réinitialiser filtre</source>
         <translation>reset filter</translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="5752"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="5752"/>
         <source>Stocks</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="6952"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="6952"/>
         <source># achats</source>
         <translation># purchases</translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="7313"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="7313"/>
         <source>LAST PAGE NR</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="8578"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="8578"/>
         <source>/</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="8936"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="8936"/>
         <source># lignes</source>
         <translation># rows</translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="9399"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="9399"/>
         <source>Allant de 1 à 999.</source>
         <translation>From 1 to 999.</translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="10210"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="10210"/>
         <source>CURRENT PAGE NR</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="12429"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="12429"/>
         <source>Total (débité)</source>
         <oldsource>Montant total</oldsource>
         <translation>Total (debited)</translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="12868"/>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="13311"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="12868"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="13311"/>
         <source>dd/MM/yyyy</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="13753"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="13753"/>
         <source>Fin</source>
         <translation>End</translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="14194"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="14194"/>
         <source>Début</source>
         <translation>Begin</translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="15050"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="15050"/>
         <source>Aide</source>
         <translation>Help</translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="15475"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="15475"/>
         <source>Actions</source>
         <translation>Functions</translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="15907"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="15907"/>
         <source>Outils</source>
         <translation>Tools</translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="16384"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="16384"/>
         <source>À propos</source>
         <translation>About Yeroth-erp-3.0</translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="16400"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="16400"/>
         <source>Changer d&apos;utilisateur</source>
         <translation>Sign in</translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="16412"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="16412"/>
         <source>Fermeture</source>
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="16424"/>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="16427"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="16424"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="16427"/>
         <source>Menu principal</source>
         <translation>Main menu</translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="16443"/>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="16446"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="16443"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="16446"/>
         <source>Imprimer la fiche des achats de services</source>
         <translation>Print supplier services purchases</translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="16462"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="16462"/>
         <source>Message d&apos;aide</source>
         <translation>User tip</translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="16465"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="16465"/>
         <source>Appeler l&apos;aide</source>
         <translation>Help</translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="16481"/>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="16484"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="16481"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="16484"/>
         <source>Déconnecter l&apos;utilisateur</source>
         <translation>Sign out</translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="16502"/>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="16505"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="16502"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="16505"/>
         <source>Alertes</source>
         <translation>Alerts</translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="16517"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="16517"/>
         <source>Réinitialiser la recherche</source>
         <translation>Reset search</translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="16534"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="16534"/>
         <source>Administration</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="16546"/>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="16549"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="16546"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="16549"/>
         <source>Informations sur l&apos;entreprise</source>
         <translation>Company info</translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="16561"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="16561"/>
         <source>Qui suis je ?</source>
         <translation>Who am I ?</translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="16578"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="16578"/>
         <source>Exporter au format csv</source>
         <translation>Export as csv file</translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="16588"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="16588"/>
         <source>Réinitialiser les éléments de fitrage</source>
         <translation>Reset filter</translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="16598"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="16598"/>
         <source>Afficher les détails de cet achat</source>
         <translation>Show supplier service purchase details</translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="16601"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="16601"/>
         <source>Afficher les détails de ce stock</source>
         <translation>Show stock details</translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="16618"/>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="16621"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="16618"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="16621"/>
         <source>Sélectionner les  champs (base de données) visible</source>
         <translation>Select &apos;visible&apos; database table fields</translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="16636"/>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="16639"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="16636"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="16639"/>
         <source>Réinitialiser les  champs (base de données) visible</source>
         <translation>Reset &apos;visible&apos; database table fields</translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="16649"/>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="16652"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="16649"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="16652"/>
         <source>Lister les paiements</source>
         <oldsource>Lister les ventes</oldsource>
         <translation>View payments</translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="16664"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="16664"/>
         <source>Lister les stocks</source>
         <translation>List stocks</translation>
     </message>
     <message>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="16674"/>
-        <location filename="ui/purchase/yeroth-erp-achats-de-services-window.ui" line="16677"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="16674"/>
+        <location filename="ui/purchase/yeroth-erp-charges-window.ui" line="16677"/>
         <source>Supprimer 1 achat au fournisseur</source>
         <translation>Remove a supplier service purchase</translation>
     </message>

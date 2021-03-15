@@ -1,10 +1,10 @@
 /*
- * yeroth-erp-achats-de-services-window.cpp
+ * yeroth-erp-charges-window.cpp
  *
  *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
-#include "yeroth-erp-achats-de-services-window.hpp"
+#include "yeroth-erp-charges-window.hpp"
 
 
 #include "src/yeroth-erp-windows.hpp"
