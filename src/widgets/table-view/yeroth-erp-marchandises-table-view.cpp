@@ -235,6 +235,14 @@ void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTab
     }
 
 
+    QItemSelectionModel *a_selection_model = selectionModel();
+
+    if (0 != a_selection_model)
+    {
+    	selectionChanged(a_selection_model->selection(), a_selection_model->selection());
+    }
+
+
     static YerothERPWindows *curAllWindows = YerothUtils::getAllWindows();
 
     YEROTH_SET_LAST_TABLE_VIEW_SELECTED_ROW_ID(curAllWindows, curAllWindows->_marchandisesWindow)
