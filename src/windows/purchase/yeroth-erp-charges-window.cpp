@@ -60,12 +60,12 @@ YerothAchatsDEServicesWindow::YerothAchatsDEServicesWindow()
 :YerothWindowsCommons("yeroth-erp-achats-de-services"),
  YerothAbstractClassYerothSearchWindow(YerothDatabase::ACHATS_DE_SERVICES),
  _logger(new YerothLogger("YerothAchatsDEServicesWindow")),
- _pushButton_achats_de_services_filtrer_font(0),
+ _pushButton_charges_financieres_filtrer_font(0),
  _curAchatsDEServicesSqlTableModel(0)
 {
     _windowName = QString("%1 - %2")
     				.arg(YEROTH_ERP_WINDOW_TITLE,
-    					 QObject::trUtf8("fiche des achats de services"));
+    					 QObject::trUtf8("fiche des charges financières"));
 
     setupUi(this);
 
@@ -115,7 +115,7 @@ YerothAchatsDEServicesWindow::YerothAchatsDEServicesWindow()
 
     setupDateTimeEdits();
 
-    _pushButton_achats_de_services_filtrer_font = new QFont(pushButton_achats_de_services_filtrer->font());
+    _pushButton_charges_financieres_filtrer_font = new QFont(pushButton_charges_financieres_filtrer->font());
 
     tableView_achats_de_services->setSqlTableName(&YerothDatabase::ACHATS_DE_SERVICES);
 
@@ -133,7 +133,7 @@ YerothAchatsDEServicesWindow::YerothAchatsDEServicesWindow()
 
     MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS
 
-    pushButton_achats_de_services_filtrer->disable(this);
+    pushButton_charges_financieres_filtrer->disable(this);
     pushButton_supprimer->disable(this);
     pushButton_afficher->disable(this);
     pushButton_menu_principal->disable(this);
@@ -559,8 +559,8 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 
     MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(this, _curAchatsDEServicesSqlTableModel)
 
-    pushButton_achats_de_services_filtrer->enable(this, SLOT(filtrer_achats()));
-    pushButton_achats_de_services_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
+    pushButton_charges_financieres_filtrer->enable(this, SLOT(filtrer_achats()));
+    pushButton_charges_financieres_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
 
     pushButton_supprimer->enable(this, SLOT(supprimer_un_achat_au_fournisseur()));
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
@@ -587,8 +587,8 @@ void YerothAchatsDEServicesWindow::definirPasDeRole()
 
     MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS
 
-    pushButton_achats_de_services_filtrer->disable(this);
-    pushButton_achats_de_services_reinitialiser_filtre->disable(this);
+    pushButton_charges_financieres_filtrer->disable(this);
+    pushButton_charges_financieres_reinitialiser_filtre->disable(this);
 
     pushButton_supprimer->disable(this);
     pushButton_afficher->disable(this);
@@ -742,14 +742,14 @@ void YerothAchatsDEServicesWindow::set_filtrer_font()
 {
     if (isCurrentlyFiltered())
     {
-    	_pushButton_achats_de_services_filtrer_font->setUnderline(true);
+    	_pushButton_charges_financieres_filtrer_font->setUnderline(true);
     }
     else
     {
-    	_pushButton_achats_de_services_filtrer_font->setUnderline(false);
+    	_pushButton_charges_financieres_filtrer_font->setUnderline(false);
     }
 
-    pushButton_achats_de_services_filtrer->setFont(*_pushButton_achats_de_services_filtrer_font);
+    pushButton_charges_financieres_filtrer->setFont(*_pushButton_charges_financieres_filtrer_font);
 }
 
 
@@ -783,7 +783,7 @@ bool YerothAchatsDEServicesWindow::export_csv_file()
 										   *tableView_achats_de_services,
 										   tableColumnsToIgnore,
 										   "yeroth-erp-fiche-achats-de-services",
-										   "fiche des achats de services");
+										   "fiche des charges financières");
 #endif
 
 #ifdef YEROTH_ENGLISH_LANGUAGE

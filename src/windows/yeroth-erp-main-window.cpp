@@ -73,7 +73,7 @@ YerothMainWindow::YerothMainWindow()
     pushButton_fournisseurs->disable(this);
     pushButton_clients->disable(this);
     pushButton_paiements->disable(this);
-    pushButton_achats_de_services->disable(this);
+    pushButton_charges_financieres->disable(this);
     pushButton_entrer->disable(this);
     pushButton_afficher_stocks->disable(this);
     pushButton_marchandises->disable(this);
@@ -144,7 +144,7 @@ void YerothMainWindow::definirCaissier()
     pushButton_fournisseurs->disable(this);
     pushButton_clients->disable(this);
     pushButton_paiements->disable(this);
-    pushButton_achats_de_services->disable(this);
+    pushButton_charges_financieres->disable(this);
     pushButton_entrer->disable(this);
     pushButton_afficher_stocks->enable(this, SLOT(stocks()));
     pushButton_marchandises->disable(this);
@@ -193,7 +193,7 @@ void YerothMainWindow::definirManager()
     pushButton_fournisseurs->enable(this, SLOT(fournisseurs()));
     pushButton_clients->enable(this, SLOT(clients()));
     pushButton_paiements->enable(this, SLOT(paiements()));
-    pushButton_achats_de_services->enable(this, SLOT(achats_de_services()));
+    pushButton_charges_financieres->enable(this, SLOT(achats_de_services()));
     pushButton_entrer->enable(this, SLOT(entrer()));
     pushButton_afficher_stocks->enable(this, SLOT(stocks()));
     pushButton_marchandises->enable(this, SLOT(afficherMarchandises()));
@@ -243,7 +243,7 @@ void YerothMainWindow::definirVendeur()
     pushButton_fournisseurs->disable(this);
     pushButton_clients->enable(this, SLOT(clients()));
     pushButton_paiements->enable(this, SLOT(paiements()));
-    pushButton_achats_de_services->disable(this);
+    pushButton_charges_financieres->disable(this);
     pushButton_entrer->enable(this, SLOT(entrer()));
     pushButton_afficher_stocks->enable(this, SLOT(stocks()));
     pushButton_marchandises->enable(this, SLOT(afficherMarchandises()));
@@ -293,7 +293,7 @@ void YerothMainWindow::definirGestionaireDesStocks()
     pushButton_fournisseurs->disable(this);
     pushButton_clients->disable(this);
     pushButton_paiements->disable(this);
-    pushButton_achats_de_services->disable(this);
+    pushButton_charges_financieres->disable(this);
     pushButton_entrer->enable(this, SLOT(entrer()));
     pushButton_afficher_stocks->enable(this, SLOT(stocks()));
     pushButton_marchandises->enable(this, SLOT(afficherMarchandises()));
@@ -372,7 +372,7 @@ void YerothMainWindow::definirMagasinier()
     pushButton_fournisseurs->disable(this);
     pushButton_clients->disable(this);
     pushButton_paiements->disable(this);
-    pushButton_achats_de_services->disable(this);
+    pushButton_charges_financieres->disable(this);
     pushButton_marchandises->disable(this);
     pushButton_rapports->disable(this);
     pushButton_ventes->disable(this);
@@ -412,7 +412,7 @@ void YerothMainWindow::definirPasDeRole()
     pushButton_fournisseurs->disable(this);
     pushButton_clients->disable(this);
     pushButton_paiements->disable(this);
-    pushButton_achats_de_services->disable(this);
+    pushButton_charges_financieres->disable(this);
     pushButton_entrer->disable(this);
     pushButton_afficher_stocks->disable(this);
     pushButton_marchandises->disable(this);

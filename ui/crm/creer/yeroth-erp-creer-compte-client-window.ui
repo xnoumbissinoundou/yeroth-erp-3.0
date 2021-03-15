@@ -13032,7 +13032,7 @@
      <string>Annuler</string>
     </property>
    </widget>
-   <widget class="YerothPushButton" name="pushButton_achats_de_services">
+   <widget class="YerothPushButton" name="pushButton_charges_financieres">
     <property name="geometry">
      <rect>
       <x>11</x>
@@ -13464,8 +13464,8 @@
      </font>
     </property>
     <property name="text">
-     <string>Achats 
- (SERVICES)</string>
+     <string>CHARGES 
+ FINANCIÈRES</string>
     </property>
    </widget>
   </widget>
@@ -15392,10 +15392,10 @@
   </action>
   <action name="actionAchatsAUXFournisseurs">
    <property name="text">
-    <string>Lister les achats de services</string>
+    <string>Lister les charges financières</string>
    </property>
    <property name="toolTip">
-    <string>Lister les achats de services</string>
+    <string>Lister les charges financières</string>
    </property>
    <property name="font">
     <font>
@@ -15468,7 +15468,7 @@
   <tabstop>lineEdit_compte_client_numero_telephone_2</tabstop>
   <tabstop>lineEdit_compte_client_numero_de_contribuable</tabstop>
   <tabstop>textEdit_creer_compte_client_description_client</tabstop>
-  <tabstop>pushButton_achats_de_services</tabstop>
+  <tabstop>pushButton_charges_financieres</tabstop>
   <tabstop>pushButton_annuler</tabstop>
   <tabstop>pushButton_menu_principal</tabstop>
   <tabstop>pushButton_clients</tabstop>

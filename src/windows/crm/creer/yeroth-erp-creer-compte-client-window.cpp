@@ -58,7 +58,7 @@ YerothCreerCompteClientWindow::YerothCreerCompteClientWindow()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerImage, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEnregistrer, false);
 
-    pushButton_achats_de_services->disable(this);
+    pushButton_charges_financieres->disable(this);
     pushButton_clients->disable(this);
     pushButton_menu_principal->disable(this);
     pushButton_annuler->disable(this);
@@ -128,7 +128,7 @@ void YerothCreerCompteClientWindow::definirPasDeRole()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerImage, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEnregistrer, false);
 
-    pushButton_achats_de_services->disable(this);
+    pushButton_charges_financieres->disable(this);
     pushButton_clients->disable(this);
     pushButton_menu_principal->disable(this);
     pushButton_annuler->disable(this);
@@ -164,7 +164,7 @@ void YerothCreerCompteClientWindow::definirCaissier()
 
 #endif
 
-    pushButton_achats_de_services->disable(this);
+    pushButton_charges_financieres->disable(this);
     pushButton_clients->disable(this);
     pushButton_menu_principal->disable(this);
     pushButton_annuler->disable(this);
@@ -200,7 +200,7 @@ void YerothCreerCompteClientWindow::definirManager()
 
 #endif
 
-    pushButton_achats_de_services->enable(this, SLOT(achats_de_services()));
+    pushButton_charges_financieres->enable(this, SLOT(achats_de_services()));
     pushButton_clients->enable(this, SLOT(clients()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_annuler->enable(this, SLOT(clients()));
@@ -237,7 +237,7 @@ void YerothCreerCompteClientWindow::definirVendeur()
 
 #endif
 
-    pushButton_achats_de_services->enable(this, SLOT(achats_de_services()));
+    pushButton_charges_financieres->enable(this, SLOT(achats_de_services()));
     pushButton_clients->enable(this, SLOT(clients()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_annuler->enable(this, SLOT(clients()));
@@ -274,7 +274,7 @@ void YerothCreerCompteClientWindow::definirGestionaireDesStocks()
 
 #endif
 
-    pushButton_achats_de_services->disable(this);
+    pushButton_charges_financieres->disable(this);
     pushButton_clients->disable(this);
     pushButton_menu_principal->disable(this);
     pushButton_annuler->disable(this);
@@ -311,7 +311,7 @@ void YerothCreerCompteClientWindow::definirMagasinier()
 
 #endif
 
-    pushButton_achats_de_services->disable(this);
+    pushButton_charges_financieres->disable(this);
     pushButton_clients->disable(this);
     pushButton_menu_principal->disable(this);
     pushButton_annuler->disable(this);

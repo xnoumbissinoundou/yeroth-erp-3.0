@@ -87,7 +87,7 @@ public slots:
 	{
 		YerothQMessageBox::information(this,
 							 QObject::trUtf8("aide"),
-							 QObject::trUtf8("Sélectionner un achat dans le tableau des achats de services, ensuite cliquer "
+							 QObject::trUtf8("Sélectionner un achat dans le tableau des charges financières, ensuite cliquer "
 											 "sur l'opération que vous souhaitez réaliser !"));
 	}
 
@@ -161,7 +161,7 @@ private:
 
     YerothLogger			*_logger;
 
-    QFont 					*_pushButton_achats_de_services_filtrer_font;
+    QFont 					*_pushButton_charges_financieres_filtrer_font;
 
     QString 				_achats_de_servicesDateFilter;
 

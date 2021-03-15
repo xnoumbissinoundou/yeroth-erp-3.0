@@ -431,7 +431,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>Yeroth-erp-3.0 - fiche des achats de services</string>
+   <string>Yeroth-erp-3.0 - fiche des charges financières</string>
   </property>
   <property name="locale">
    <locale language="French" country="France"/>
@@ -3585,7 +3585,7 @@ background-color: rgb(0, 0, 0); </string>
      <enum>Qt::LogicalMoveStyle</enum>
     </property>
    </widget>
-   <widget class="YerothPushButton" name="pushButton_achats_de_services_filtrer">
+   <widget class="YerothPushButton" name="pushButton_charges_financieres_filtrer">
     <property name="geometry">
      <rect>
       <x>166</x>
@@ -4883,7 +4883,7 @@ background-color: rgb(0, 0, 0); </string>
      </font>
     </property>
    </widget>
-   <widget class="YerothPushButton" name="pushButton_achats_de_services_reinitialiser_filtre">
+   <widget class="YerothPushButton" name="pushButton_charges_financieres_reinitialiser_filtre">
     <property name="geometry">
      <rect>
       <x>12</x>
@@ -16356,7 +16356,7 @@ background-color: rgb(0, 0, 0); </string>
     </palette>
    </property>
    <property name="windowTitle">
-    <string>Yeroth-erp-3.0 - fiche des achats de services</string>
+    <string>Yeroth-erp-3.0 - fiche des charges financières</string>
    </property>
    <property name="autoFillBackground">
     <bool>true</bool>
@@ -16440,10 +16440,10 @@ background-color: rgb(0, 0, 0); </string>
      <normaloff>:/yeroth-erp-3-0-images/yeroth-erp-3-0-pdf-print-icon.svg</normaloff>:/yeroth-erp-3-0-images/yeroth-erp-3-0-pdf-print-icon.svg</iconset>
    </property>
    <property name="text">
-    <string>Imprimer la fiche des achats de services</string>
+    <string>Imprimer la fiche des charges financières</string>
    </property>
    <property name="toolTip">
-    <string>Imprimer la fiche des achats de services</string>
+    <string>Imprimer la fiche des charges financières</string>
    </property>
    <property name="font">
     <font>
@@ -16713,8 +16713,8 @@ background-color: rgb(0, 0, 0); </string>
   <tabstop>lineEdit_element_achats_de_services_resultat</tabstop>
   <tabstop>comboBox_element_achats_de_services_condition</tabstop>
   <tabstop>comboBox_element_achats_de_services</tabstop>
-  <tabstop>pushButton_achats_de_services_filtrer</tabstop>
-  <tabstop>pushButton_achats_de_services_reinitialiser_filtre</tabstop>
+  <tabstop>pushButton_charges_financieres_filtrer</tabstop>
+  <tabstop>pushButton_charges_financieres_reinitialiser_filtre</tabstop>
   <tabstop>pushButton_reinitialiser</tabstop>
   <tabstop>pushButton_afficher</tabstop>
   <tabstop>pushButton_supprimer</tabstop>
