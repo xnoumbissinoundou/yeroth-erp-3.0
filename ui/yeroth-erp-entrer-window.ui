@@ -12444,7 +12444,7 @@ background-color: rgb(0, 0, 0); </string>
        <string>insérer 1 stock</string>
       </property>
      </widget>
-     <widget class="QRadioButton" name="radioButton_service_vente_de_service_au_client">
+     <widget class="QRadioButton" name="radioButton_service_achat_de_service">
       <property name="geometry">
        <rect>
         <x>7</x>
@@ -12872,10 +12872,10 @@ background-color: rgb(0, 0, 0); </string>
        <enum>Qt::RightToLeft</enum>
       </property>
       <property name="text">
-       <string>vente d'1 service à un client</string>
+       <string>insérer 1 charge financière</string>
       </property>
      </widget>
-     <widget class="QRadioButton" name="radioButton_service_achat_de_service">
+     <widget class="QRadioButton" name="radioButton_service_vente_de_service_au_client">
       <property name="geometry">
        <rect>
         <x>7</x>
@@ -13303,7 +13303,7 @@ background-color: rgb(0, 0, 0); </string>
        <enum>Qt::RightToLeft</enum>
       </property>
       <property name="text">
-       <string>achat d'1 service à un fournisseur</string>
+       <string>vente d'1 service à un client</string>
       </property>
      </widget>
     </widget>
