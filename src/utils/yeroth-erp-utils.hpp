@@ -924,6 +924,8 @@ public:
 
 	static QString template_lister_alertes_tex;
 
+	static QString template_CHARGES_FINANCIERES_tex;
+
 	static QString template_lister_achats_tex;
 
 	static QString template_lister_stock_tex;

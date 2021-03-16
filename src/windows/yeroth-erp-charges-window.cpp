@@ -782,7 +782,7 @@ bool YerothAchatsDEServicesWindow::export_csv_file()
 	success = YerothUtils::export_csv_file(*this,
 										   *tableView_achats_de_services,
 										   tableColumnsToIgnore,
-										   "yeroth-erp-fiche-achats-de-services",
+										   "yeroth-erp-charges-financieres",
 										   "fiche des charges financières");
 #endif
 
@@ -790,8 +790,8 @@ bool YerothAchatsDEServicesWindow::export_csv_file()
 	success = YerothUtils::export_csv_file(*this,
 										   *tableView_achats_de_services,
 										   tableColumnsToIgnore,
-										   "yeroth-erp-supplier-purchase-listing",
-										   "supplier purchase listing file");
+										   "yeroth-erp-FINANCIAL-EXPENSES-listing",
+										   "financial expenses file");
 #endif
 
 	return success;
@@ -800,7 +800,7 @@ bool YerothAchatsDEServicesWindow::export_csv_file()
 
 bool YerothAchatsDEServicesWindow::imprimer_pdf_document()
 {
-	_latex_template_print_pdf_content = YerothUtils::template_lister_achats_tex;
+	_latex_template_print_pdf_content = YerothUtils::template_CHARGES_FINANCIERES_tex;
 	return YerothWindowsCommons::imprimer_pdf_document();
 }
 

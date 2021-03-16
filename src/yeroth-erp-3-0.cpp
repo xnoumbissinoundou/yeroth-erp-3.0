@@ -369,6 +369,18 @@ void readTexTemplateFiles(YerothLogger &logger)
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
+    QFile fileListe_CHARGES_FINANCIERES_FR(FILE_YEROTH_ERP_3_0_TEMPLATE_CHARGES_FINANCIERES_FR);
+    yeroth_read_file(fileListe_CHARGES_FINANCIERES_FR, YerothUtils::template_CHARGES_FINANCIERES_tex);
+
+#else //YEROTH_ENGLISH_LANGUAGE
+
+    QFile fileListe_FINANCIAL_EXPENSES_EN(FILE_YEROTH_ERP_3_0_TEMPLATE_CHARGES_FINANCIERES_EN);
+    yeroth_read_file(fileListe_FINANCIAL_EXPENSES_EN, YerothUtils::template_CHARGES_FINANCIERES_tex);
+
+#endif
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+
     QFile fileListeAchatsFr(FILE_YEROTH_ERP_3_0_TEMPLATE_LISTE_ACHATS_FR);
     yeroth_read_file(fileListeAchatsFr, YerothUtils::template_lister_achats_tex);
 

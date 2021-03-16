@@ -96,7 +96,7 @@ FORMS = ui/yeroth-erp-main-window.ui \
 		  ui/pos/yeroth-erp-pointdevente-methode-paiement-dialog.ui \
 			ui/purchase/yeroth-erp-achats-detail-window.ui \
 			ui/purchase/yeroth-erp-achats-window.ui \
-			ui/purchase/yeroth-erp-charges-window.ui \
+			ui/yeroth-erp-charges-window.ui \
 			ui/supplier/yeroth-erp-tableau-des-transactions-du-fournisseur-window.ui \
 			ui/supplier/yeroth-erp-modifier-fournisseur-window.ui \
 			ui/supplier/yeroth-erp-creer-fournisseur-window.ui \
@@ -210,7 +210,7 @@ HEADERS = src/include/yeroth-erp-3-0-precompiled-header.hpp \
 		  src/windows/stocks/yeroth-erp-historique-du-stock-window.hpp \
 		  src/windows/stocks/yeroth-erp-stock-detail-window.hpp \
 		  src/windows/stocks/yeroth-erp-stocks-window.hpp \
-			src/windows/purchase/yeroth-erp-charges-window.hpp \
+			src/windows/yeroth-erp-charges-window.hpp \
 		  src/windows/purchase/yeroth-erp-achats-detail-window.hpp \
 		  src/windows/purchase/yeroth-erp-achats-window.hpp \
 		  src/windows/pos/yeroth-erp-pointdevente-window.hpp \
@@ -346,7 +346,7 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 			src/windows/stocks/yeroth-erp-historique-du-stock-window.cpp \
 		  src/windows/stocks/yeroth-erp-stock-detail-window.cpp \
 		  src/windows/stocks/yeroth-erp-stocks-window.cpp \
-		  src/windows/purchase/yeroth-erp-charges-window.cpp \
+		  src/windows/yeroth-erp-charges-window.cpp \
 		  src/windows/purchase/yeroth-erp-achats-detail-window.cpp \
 		  src/windows/purchase/yeroth-erp-achats-window.cpp \
 		  src/windows/pos/yeroth-erp-pointdevente-window.cpp \

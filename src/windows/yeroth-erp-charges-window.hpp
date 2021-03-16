@@ -7,7 +7,7 @@
 #ifndef YEROTH_ERP_ACHATS_DE_SERVICES_WINDOW_HPP_
 #define YEROTH_ERP_ACHATS_DE_SERVICES_WINDOW_HPP_
 
-#include "../../../ui_yeroth-erp-charges-window.h"
+#include "../../ui_yeroth-erp-charges-window.h"
 
 
 #include <QtCore/QDebug>

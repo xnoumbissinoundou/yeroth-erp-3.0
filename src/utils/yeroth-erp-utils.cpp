@@ -128,6 +128,8 @@ QString YerothUtils::template_marchandises_tex("");
 
 QString YerothUtils::template_lister_alertes_tex("");
 
+QString YerothUtils::template_CHARGES_FINANCIERES_tex("");
+
 QString YerothUtils::template_lister_achats_tex("");
 
 QString YerothUtils::template_lister_stock_tex("");
