@@ -360,14 +360,14 @@ bool YerothSqlTableModel::yerothSetSort(int column, Qt::SortOrder order)
     return select();
 }
 
-int YerothSqlTableModel::yerothSetQueryRowCount(const QString &aSqlQuery)
+int YerothSqlTableModel::yerothSetQueryRowCount(const QString &STRING_aSqlQuery)
 {
-	QSqlQueryModel::setQuery(aSqlQuery);
+	QSqlQueryModel::setQuery(STRING_aSqlQuery);
 
    	if (lastError().isValid())
    	{
    		qDebug() << "++ YerothSqlTableModel::yerothSetQuery(QString): \n\t"
-   				 << aSqlQuery
+   				 << STRING_aSqlQuery
 				 << "\n"
 				 << lastError();
 

@@ -117,7 +117,7 @@ public:
 
 	bool yerothSetSort(int column, Qt::SortOrder order);
 
-	int yerothSetQueryRowCount(const QString &aSqlQuery);
+	int yerothSetQueryRowCount(const QString &STRING_aSqlQuery);
 
 	bool yerothSetQuery(const QString &aSqlQuery);
 
