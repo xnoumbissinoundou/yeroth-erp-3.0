@@ -862,6 +862,8 @@ public:
 
 	static const QIntValidator Int_BACKUP_YEROTH_ERP_3_Validator;
 
+	static const QRegExp STRING_FOR_YEROTH_ERP_3_0_VALIDATOR_DB_COLUMN_NAME;
+
 	static const QRegExpValidator STRING_FOR_YEROTH_ERP_3_0_VALIDATOR;
 
 	static const QIntValidator IntValidator;
