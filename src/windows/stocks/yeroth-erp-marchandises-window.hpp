@@ -151,7 +151,7 @@ private slots:
 
 	bool slot_filtrer_non_empty_product_stock();
 
-	bool slot_filtrer_empty_product_stock();
+	bool slot_filter_empty_product_stock();
 
 	bool slot_filtrer();
 
