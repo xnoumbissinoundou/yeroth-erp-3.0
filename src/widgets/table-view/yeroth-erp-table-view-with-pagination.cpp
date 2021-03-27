@@ -86,8 +86,21 @@ void YerothTableViewWITHpagination::displayYerothTableViewPageContentRowLimit(Ye
 												.arg(QString::number(curPageFromRowNumber),
 													 QString::number(_yerothTableViewPageRowCount));
 
-	int querySize =
-			curYerothSqlTableModel_IN.yeroth_specify_filter_FROM_SELECT_STATEMENT(aCurYerothTableViewPageFilter);
+	int querySize = 0;
+
+	if (!YerothUtils::isEqualCaseInsensitive(curYerothSqlTableModel_IN.sqlTableName(),
+											 YerothDatabase::MARCHANDISES))
+	{
+		querySize = curYerothSqlTableModel_IN.yeroth_specify_filter_FROM_SELECT_STATEMENT(aCurYerothTableViewPageFilter);
+	}
+	else if (YerothUtils::isEqualCaseInsensitive(curYerothSqlTableModel_IN.sqlTableName(),
+											 YerothDatabase::MARCHANDISES))
+	{
+		if (!_allWindows->_marchandisesWindow->IS__CURRENTLY__CHECKING__NON__EMPTY__STOCKS())
+		{
+			querySize = curYerothSqlTableModel_IN.yeroth_specify_filter_FROM_SELECT_STATEMENT(aCurYerothTableViewPageFilter);
+		}
+	}
 
 
 	if (!YerothUtils::isEqualCaseInsensitive(curYerothSqlTableModel_IN.sqlTableName(),
