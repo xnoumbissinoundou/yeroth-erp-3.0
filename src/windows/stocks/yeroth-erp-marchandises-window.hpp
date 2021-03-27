@@ -159,8 +159,6 @@ public:
 
     double 					_qteTotaleDarticlesEnStock;
 
-    QString 				_current_filtering_non_empty_stock_SQL_QUERY;
-
 private:
 
 	void localSetupLineEditsQCompleters();
@@ -174,9 +172,13 @@ private:
 
     YerothLogger			*_logger;
 
+    bool 					_NON_TERMINEES_MARCHANDISE_RE_ENTRANT;
+
     bool					_currentlyFiltered;
 
     int 					_lastSelectedRow__ID;
+
+    QString 				_current_filtering_non_empty_stock_SQL_QUERY;
 
     QFont 					*_pushButton_filtrer_font;
 

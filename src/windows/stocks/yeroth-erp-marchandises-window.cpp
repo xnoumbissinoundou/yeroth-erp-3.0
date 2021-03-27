@@ -36,6 +36,7 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
 :YerothWindowsCommons("yeroth-erp-marchandises"),
  YerothAbstractClassYerothSearchWindow(YerothDatabase::MARCHANDISES),
  _logger(new YerothLogger("YerothMarchandisesWindow")),
+ _NON_TERMINEES_MARCHANDISE_RE_ENTRANT(false),
  _qteTotaleDarticlesEnStock(0.0),
  _currentlyFiltered(false),
  _lastSelectedRow__ID(0),
@@ -449,7 +450,12 @@ bool YerothMarchandisesWindow::slot_filtrer_non_empty_product_stock()
 
 		setCurrentlyFiltered(true);
 
-		YEROTH_QMESSAGE_BOX_QUELQUE_RESULTAT_FILTRE(this, resultRows, "non terminées");
+		if (!_NON_TERMINEES_MARCHANDISE_RE_ENTRANT)
+		{
+			YEROTH_QMESSAGE_BOX_QUELQUE_RESULTAT_FILTRE(this, resultRows, "non terminées");
+		}
+
+		_NON_TERMINEES_MARCHANDISE_RE_ENTRANT = true;
 
 		return true;
 	}
@@ -767,6 +773,8 @@ void YerothMarchandisesWindow::rendreVisible(YerothSqlTableModel * stocksTableMo
 
 	if (!IS__CURRENTLY__CHECKING__NON__EMPTY__STOCKS())
 	{
+		reinitialiser__FILTRE__MARCHANDISES__NON__TERMINEES();
+
 		QString currentFilter(_curMarchandisesTableModel->filter());
 
 		if (!currentFilter.isEmpty())
@@ -1099,6 +1107,8 @@ void YerothMarchandisesWindow::supprimer_cette_marchandise(QString aMarchandiseI
 
 void YerothMarchandisesWindow::reinitialiser__FILTRE__MARCHANDISES__NON__TERMINEES()
 {
+	_NON_TERMINEES_MARCHANDISE_RE_ENTRANT = false;
+
 	setWindowTitle(QObject::tr("les marchandises"));
 
 	_current_filtering_non_empty_stock_SQL_QUERY.clear();
