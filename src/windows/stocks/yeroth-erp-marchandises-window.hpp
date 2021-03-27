@@ -58,6 +58,11 @@ public:
 
     virtual void definirPasDeRole();
 
+	inline bool IS__CURRENTLY__CHECKING__NON__EMPTY__STOCKS()
+	{
+		return !_current_filtering_non_empty_stock_SQL_QUERY.isEmpty();
+	}
+
     inline void setCheckBoxServices(bool checked)
     {
     	checkBox_services->setChecked(checked);
@@ -113,6 +118,8 @@ public slots:
     void supprimer_cette_marchandise(QString aMarchandiseID = YerothUtils::EMPTY_STRING,
 									 bool _reEntrant = false);
 
+    void reinitialiser__FILTRE__MARCHANDISES__NON__TERMINEES();
+
     void reinitialiser_elements_filtrage();
 
     void reinitialiser_recherche();
@@ -151,6 +158,8 @@ private slots:
 public:
 
     double 					_qteTotaleDarticlesEnStock;
+
+    QString 				_current_filtering_non_empty_stock_SQL_QUERY;
 
 private:
 

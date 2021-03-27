@@ -44,7 +44,7 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
 {
     _windowName = QString("%1 - %2")
     				.arg(YEROTH_ERP_WINDOW_TITLE,
-    					 QObject::trUtf8("les marchandises"));
+    					 QObject::tr("les marchandises"));
 
     setupUi(this);
 
@@ -237,9 +237,12 @@ void YerothMarchandisesWindow::textChangedSearchLineEditsQCompleters()
 {
 	lineEdit_marchandises_element_de_stock_resultat->clear();
 
-    setCurrentlyFiltered(false);
+	if (!_current_filtering_non_empty_stock_SQL_QUERY.isEmpty())
+	{
+		setCurrentlyFiltered(false);
 
-    clearSearchFilter();
+		clearSearchFilter();
+	}
 
     QString searchTerm(lineEdit_marchandises_terme_recherche->text());
 
@@ -304,16 +307,23 @@ void YerothMarchandisesWindow::textChangedSearchLineEditsQCompleters()
     	}
     }
 
-    _yerothSqlTableModel->yerothSetFilter_WITH_where_clause(_searchFilter);
-
-    if (_yerothSqlTableModel->select())
+    if (_current_filtering_non_empty_stock_SQL_QUERY.isEmpty())
     {
-    	afficherMarchandises(*_yerothSqlTableModel);
+    	_yerothSqlTableModel->yerothSetFilter_WITH_where_clause(_searchFilter);
+
+    	if (_yerothSqlTableModel->select())
+    	{
+    		afficherMarchandises(*_yerothSqlTableModel);
+    	}
+    	else
+    	{
+    		qDebug() << QString("++ YerothMarchandisesWindow::textChangedSearchLineEditsQCompleters(): %1")
+        						.arg(_yerothSqlTableModel->lastError().text());
+    	}
     }
     else
     {
-        qDebug() << QString("++ YerothMarchandisesWindow::textChangedSearchLineEditsQCompleters(): %1")
-        				.arg(_yerothSqlTableModel->lastError().text());
+    	afficherMarchandises(*_yerothSqlTableModel);
     }
 
     handle_some_actions_tools_enabled();
@@ -367,39 +377,77 @@ void YerothMarchandisesWindow::handle_services_checkBox(int state)
 
 bool YerothMarchandisesWindow::slot_filtrer_non_empty_product_stock()
 {
-	QStandardItem *anItem = 0;
+	_curMarchandisesTableModel->resetFilter();
 
-	//This is clear from the way our project is organized
-	QStandardItemModel *stdItemModel =
-			(QStandardItemModel *) tableView_marchandises->model();
+	QString cur_select_stmt = _curMarchandisesTableModel->yerothSelectStatement();
 
-	if (0 == stdItemModel)
+	QString SELECT__FILTERING__NON_EMPTY_PRODUCT_STOCKS =
+			QString(" ((SELECT DISTINCT stocks.reference, "
+					"stocks.designation FROM stocks WHERE %1 > 0)) T "
+					"INNER JOIN marchandises ON marchandises.%2 = T.%3")
+					.arg(YerothDatabaseTableColumn::QUANTITE_TOTALE,
+							YerothDatabaseTableColumn::DESIGNATION,
+							YerothDatabaseTableColumn::DESIGNATION);
+
+
+	int from_index = cur_select_stmt.indexOf("from", 0, Qt::CaseInsensitive);
+
+	cur_select_stmt.remove(from_index, cur_select_stmt.length());
+
+	QStringList cur_select_stmt_string_list_splitted = cur_select_stmt.split(',');
+
+	cur_select_stmt.clear();
+
+	QString a_cur_element_split;
+
+	uint cur_select_stmt_string_list_splitted__SIZE = cur_select_stmt_string_list_splitted.size();
+
+	for (uint k = 0; k < cur_select_stmt_string_list_splitted__SIZE; ++k)
 	{
-		YEROTH_QMESSAGE_BOX_AUCUN_RESULTAT_FILTRE(this, "non terminées");
+		a_cur_element_split = cur_select_stmt_string_list_splitted.at(k).trimmed();
 
-		return false;
+		if (0 == k)
+		{
+			QStringList select_splitted =
+					a_cur_element_split.split(YerothUtils::EMPTY_SPACE_REGEXP);
+
+			cur_select_stmt.append(QString("SELECT %1.%2, ")
+					.arg(YerothDatabase::MARCHANDISES,
+							select_splitted.at(1)));
+		}
+		else if (k < cur_select_stmt_string_list_splitted__SIZE - 1)
+		{
+			cur_select_stmt.append(QString("%1.%2, ")
+					.arg(YerothDatabase::MARCHANDISES,
+							a_cur_element_split));
+		}
+		else if (k < cur_select_stmt_string_list_splitted__SIZE)
+		{
+			cur_select_stmt.append(QString("%1.%2 FROM ")
+					.arg(YerothDatabase::MARCHANDISES,
+							a_cur_element_split));
+		}
 	}
 
-	QString data;
-	QString categorieStr;
-	QString designationStr;
 
-	QString filterString(QString("%1 > 0")
-							.arg(YerothDatabaseTableColumn::QUANTITE_TOTALE));
+	cur_select_stmt.append(SELECT__FILTERING__NON_EMPTY_PRODUCT_STOCKS);
 
-//	qDebug() << QString("++ filterString: %1")
-//					.arg(filterString);
+	_current_filtering_non_empty_stock_SQL_QUERY = cur_select_stmt;
 
 
-	_curMarchandisesTableModel->yerothSetFilter_WITH_where_clause(filterString);
+	int resultRows = _curMarchandisesTableModel->yerothSetQueryRowCount(cur_select_stmt);
 
-	int resultRows = _curMarchandisesTableModel->easySelect();
+
+//	QDEBUG_STRING_OUTPUT_2("_curMarchandisesTableModel", _curMarchandisesTableModel->query().lastQuery());
+
 
 	if (resultRows >= 0)
 	{
-		setCurrentlyFiltered(true);
+		textChangedSearchLineEditsQCompleters();
 
-		afficherMarchandises(*_curMarchandisesTableModel);
+		setWindowTitle(QObject::trUtf8("les marchandises NON TERMINÉES"));
+
+		setCurrentlyFiltered(true);
 
 		YEROTH_QMESSAGE_BOX_QUELQUE_RESULTAT_FILTRE(this, resultRows, "non terminées");
 
@@ -407,6 +455,8 @@ bool YerothMarchandisesWindow::slot_filtrer_non_empty_product_stock()
 	}
 	else
 	{
+		setWindowTitle(QObject::tr("les marchandises"));
+
 		YEROTH_QMESSAGE_BOX_AUCUN_RESULTAT_FILTRE(this, "non terminées");
 	}
 
@@ -715,33 +765,42 @@ void YerothMarchandisesWindow::rendreVisible(YerothSqlTableModel * stocksTableMo
 
 	setVisible(true);
 
-	QString currentFilter(_curMarchandisesTableModel->filter());
-
-	if (!currentFilter.isEmpty())
+	if (!IS__CURRENTLY__CHECKING__NON__EMPTY__STOCKS())
 	{
-		currentFilter.append(QString(" AND "));
-	}
+		QString currentFilter(_curMarchandisesTableModel->filter());
 
-	if (checkBox_services->isChecked())
+		if (!currentFilter.isEmpty())
+		{
+			currentFilter.append(QString(" AND "));
+		}
+
+		if (checkBox_services->isChecked())
+		{
+			currentFilter.append(QString("%1")
+					.arg(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
+							YerothUtils::MYSQL_TRUE_LITERAL)));
+		}
+		else
+		{
+			currentFilter.append(QString("%1")
+					.arg(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
+							YerothUtils::MYSQL_FALSE_LITERAL)));
+		}
+
+		_curMarchandisesTableModel->yerothSetFilter_WITH_where_clause(currentFilter);
+
+		//	QDEBUG_STRING_OUTPUT_2("currentFilter", currentFilter);
+
+		afficherMarchandises();
+
+		localSetupLineEditsQCompleters();
+	}
+	else
 	{
-		currentFilter.append(QString("%1")
-								.arg(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
-    										  	  	  	   	    YerothUtils::MYSQL_TRUE_LITERAL)));
-    }
-    else
-    {
-		currentFilter.append(QString("%1")
-								.arg(YerothUtils::generateSqlIs(YerothDatabaseTableColumn::IS_SERVICE,
-    										  	  	  	   	    YerothUtils::MYSQL_FALSE_LITERAL)));
+		setCurrentlyFiltered(true);
+
+		slot_filtrer_non_empty_product_stock();
 	}
-
-	_curMarchandisesTableModel->yerothSetFilter_WITH_where_clause(currentFilter);
-
-//	QDEBUG_STRING_OUTPUT_2("currentFilter", currentFilter);
-
-	afficherMarchandises();
-
-	localSetupLineEditsQCompleters();
 }
 
 
@@ -1038,8 +1097,18 @@ void YerothMarchandisesWindow::supprimer_cette_marchandise(QString aMarchandiseI
 }
 
 
+void YerothMarchandisesWindow::reinitialiser__FILTRE__MARCHANDISES__NON__TERMINEES()
+{
+	setWindowTitle(QObject::tr("les marchandises"));
+
+	_current_filtering_non_empty_stock_SQL_QUERY.clear();
+}
+
+
 void YerothMarchandisesWindow::reinitialiser_elements_filtrage()
 {
+	reinitialiser__FILTRE__MARCHANDISES__NON__TERMINEES();
+
     lineEdit_marchandises_element_de_stock_resultat->clear();
 
     setCurrentlyFiltered(false);
@@ -1050,6 +1119,8 @@ void YerothMarchandisesWindow::reinitialiser_elements_filtrage()
 
 void YerothMarchandisesWindow::reinitialiser_recherche()
 {
+	reinitialiser__FILTRE__MARCHANDISES__NON__TERMINEES();
+
 	lineEdit_nom_element_string_db->clear();
 
     setCurrentlyFiltered(false);
