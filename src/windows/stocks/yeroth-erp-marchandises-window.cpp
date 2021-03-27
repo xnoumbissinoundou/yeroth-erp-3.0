@@ -1188,6 +1188,19 @@ bool YerothMarchandisesWindow::export_csv_file()
 bool YerothMarchandisesWindow::imprimer_pdf_document()
 {
 	_latex_template_print_pdf_content = YerothUtils::template_marchandises_tex;
+
+
+	if (!IS__CURRENTLY__CHECKING__NON__EMPTY__STOCKS())
+	{
+		_latex_template_print_pdf_content.replace("YEROTHMARCHANDISESNOMTERMINEES",
+				YerothUtils::EMPTY_STRING);
+	}
+	else
+	{
+		_latex_template_print_pdf_content.replace("YEROTHMARCHANDISESNOMTERMINEES",
+				QObject::trUtf8("NON TERMINÉES"));
+	}
+
 	return YerothWindowsCommons::imprimer_pdf_document();
 }
 
