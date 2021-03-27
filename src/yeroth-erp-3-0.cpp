@@ -514,7 +514,7 @@ void read_system_local_yeroth_configuration()
 		}
 		else if (YerothUtils::isEqualCaseInsensitive("local_parameter_length_standard_pagination_number", list.at(0)))
 		{
-			YerothERPConfig::standard_pagination_number = list.at(1).trimmed().toInt();
+			YerothERPConfig::pagination_number_of_table_rows = list.at(1).trimmed().toInt();
 		}
 	}
 	while(!line.isNull());

@@ -221,7 +221,8 @@ void YerothMarchandisesWindow::setupShortcuts()
     setupShortcutActionExporterAuFormatCsv	(*actionExporter_au_format_csv);
     setupShortcutActionAfficherPDF			(*actionAfficherPDF);
 
-    actionAfficher_les_marchandises_terminees->setShortcut(YerothUtils::AFFICHER_LES_STOCKS_TERMINES_QKEYSEQUENCE);
+    actionAfficher_les_marchandises_non_terminees->setShortcut(YerothUtils::AFFICHER_LES_MARCHANDISES_NON_TERMINES_QKEYSEQUENCE);
+    actionAfficher_les_marchandises_terminees->setShortcut(YerothUtils::AFFICHER_LES_MARCHANDISES_TERMINES_QKEYSEQUENCE);
     actionReinitialiserRecherche->setShortcut(YerothUtils::REINITIALISER_RECHERCHE_QKEYSEQUENCE);
 }
 
@@ -384,11 +385,12 @@ bool YerothMarchandisesWindow::slot_filtrer_non_empty_product_stock()
 
 	QString SELECT__FILTERING__NON_EMPTY_PRODUCT_STOCKS =
 			QString(" ((SELECT DISTINCT stocks.reference, "
-					"stocks.designation FROM stocks WHERE %1 > 0)) T "
-					"INNER JOIN marchandises ON marchandises.%2 = T.%3")
-					.arg(YerothDatabaseTableColumn::QUANTITE_TOTALE,
-							YerothDatabaseTableColumn::DESIGNATION,
-							YerothDatabaseTableColumn::DESIGNATION);
+					"stocks.designation FROM stocks WHERE %1 > 0) limit 0, %2) T "
+					"INNER JOIN marchandises ON marchandises.%3 = T.%4")
+				.arg(YerothDatabaseTableColumn::QUANTITE_TOTALE,
+					 QString::number(YerothERPConfig::pagination_number_of_table_rows),
+					 YerothDatabaseTableColumn::DESIGNATION,
+					 YerothDatabaseTableColumn::DESIGNATION);
 
 
 	int from_index = cur_select_stmt.indexOf("from", 0, Qt::CaseInsensitive);
@@ -1107,6 +1109,8 @@ void YerothMarchandisesWindow::supprimer_cette_marchandise(QString aMarchandiseI
 
 void YerothMarchandisesWindow::reinitialiser__FILTRE__MARCHANDISES__NON__TERMINEES()
 {
+	MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(this, _curMarchandisesTableModel)
+
 	_NON_TERMINEES_MARCHANDISE_RE_ENTRANT = false;
 
 	setWindowTitle(QObject::tr("les marchandises"));

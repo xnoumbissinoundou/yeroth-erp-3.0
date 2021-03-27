@@ -31,7 +31,7 @@ public:
 	 _yerothTableViewLastPageNumber(1),
 	 _yerothTableViewCurPageNumber(1),
 	 _yerothTableViewPageCount(1),
-	 _yerothTableViewPageRowCount(YerothERPConfig::standard_pagination_number),
+	 _yerothTableViewPageRowCount(YerothERPConfig::pagination_number_of_table_rows),
 	 _allWindows(YerothUtils::getAllWindows()),
 	 _curYerothSqlTableModel(0)
 	{
@@ -46,7 +46,7 @@ public:
 	 _yerothTableViewLastPageNumber(1),
 	 _yerothTableViewCurPageNumber(1),
 	 _yerothTableViewPageCount(1),
-	 _yerothTableViewPageRowCount(YerothERPConfig::standard_pagination_number),
+	 _yerothTableViewPageRowCount(YerothERPConfig::pagination_number_of_table_rows),
 	 _allWindows(YerothUtils::getAllWindows()),
 	 _curYerothSqlTableModel(0)
 	{

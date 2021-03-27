@@ -84,7 +84,7 @@ public:
 
 	static uint alert_quantity_time_interval;
 
-	static uint standard_pagination_number;
+	static uint pagination_number_of_table_rows;
 
 	static uint LINE_FEED_CHARACTER_COUNT_FOR_THERMAL_SMALL_PRINTING;
 

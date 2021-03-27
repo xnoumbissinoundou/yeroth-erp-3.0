@@ -74,7 +74,7 @@ uint YerothERPConfig::alert_period_time_interval(0);
 
 uint YerothERPConfig::alert_quantity_time_interval(0);
 
-uint YerothERPConfig::standard_pagination_number(12);
+uint YerothERPConfig::pagination_number_of_table_rows(12);
 
 uint YerothERPConfig::LINE_FEED_CHARACTER_COUNT_FOR_THERMAL_SMALL_PRINTING(9);
 
@@ -249,7 +249,7 @@ void YerothERPConfig::saveYerothConfig()
 				.arg(QString::number(YerothERPConfig::LINE_FEED_CHARACTER_COUNT_FOR_THERMAL_SMALL_PRINTING))
 
 		<< QString("local_parameter_length_standard_pagination_number=%1\n")
-				.arg(QString::number(YerothERPConfig::standard_pagination_number));
+				.arg(QString::number(YerothERPConfig::pagination_number_of_table_rows));
 
 	file.close();
 }
