@@ -7,11 +7,54 @@ This chapter explains why \yerotherpblack is modular
 in its uses, and fits any industrial setting !
 }
 
+
+\vspace{1em}
+
+
+\begin{table*}[!htbp]
+\centering
+\resizebox{\textwidth}{!}{%to fit the table within the text width
+\begin{tabular}{cccc} 
+
+\multicolumn{1}{c}{}										&
+Thick--client application \mycheckmark{yerothColorBlue}		& 
+Web--browser--based application								\\ \hline
+
+business code								&
+		\yerothvert{user interface}			&						
+		\yerothrouge{application server}	\\ \hline
+		
+co--related software--systems		&
+		\yerothvert{$1$ (DBMS)}		&						
+		\yerothrouge{at least $3$ (DBMS, web~/~application server)}	\\ \hline
+						
+number of logical layers									&
+		\yerothvert{$2$ (client and data)}					&						
+		\yerothrouge{$4$ (client, presentation, logic, and data)}\\ \hline
+				
+rapid prototyping (\wy tools)		&
+		\yerothvert{yes}			&						
+		\yerothrouge{very limited}	\\ \hline				
+				
+software security vulnerability										&
+		\yerothvert{low ($1$ programming language)}					&					
+		\yerothrouge{high (\emph{several} programming languages)}	\\ \hline
+
+user interface 														&
+		\yerothvert{all computers (GUI with \emph{BUSINESS CODE})}	&						
+		\yerothvert{all computers (web--browser)}					\\ 		
+
+
+\end{tabular}}
+\caption{Thick--client application VS Web--browser--based application.\\}
+\label{tab:TWO-thickclient-application-againts-webbrowserbased-application}
+\end{table*}
+
 \vspace{1em}
 
 \section{Business and user interface code deployment}
 
-Table~\ref{tab:thickclient-application-againts-webbrowserbased-application}
+Table~\ref{tab:TWO-thickclient-application-againts-webbrowserbased-application}
 depicts the issue of business and user
 interface code deployment on all computers
 participating in the functioning of \yerotherpblack,
@@ -25,12 +68,14 @@ software--system on '\debianlinux'.
 
 \section{Databases}
 
+DBMS \MySQL is used for storing and managing huge
+data accross globe.
 
-\section{Sample technical configurations}
+\section{NUMBER OF LOGICAL SOFTWARE--SYSTEM LAYERS: E.G. Sample technical configurations}
 
 This section illustrates $2$ different possible
-technical computer network configurations that
-could prevail in the industry. 
+computer network configurations that
+could prevail in industry. 
 
 \newpage
 

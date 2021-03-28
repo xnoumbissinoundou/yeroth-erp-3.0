@@ -37,17 +37,17 @@ following reasons:
 			\emph{search filtering feature, and print capability
 			from $2$ different classes}.
 
-			\emph{Print capability couldn't be inherited from the
+			\emph{\textbf{Print capability} couldn't be inherited from the
 			same class where search filtering is abstracted and
 			partially implemented (interface in \Java for instance
 			doesn't allow any method body code), because it works
 			in its pure abstract class (\cplusplus class with at
-			least $1$ empty method body) together with feature
-			\textbf{database column filtering for printing.}}
+			least $1$ empty method body), together with feature
+			\textbf{database column filtering for viewing and printing.}}
 			\newline
 			
 			\emph{\yerothrouge{The drawback of the multiple inheritance
-			in \cplusplus is it sometimes can be very
+			in \cplusplus is: it sometimes can be very
 			difficult to build it using "\gplusplus~\cite{gcc:2020}" !}}
 			\newline
 		
@@ -70,6 +70,8 @@ following reasons:
 	\item The low number of logical software--system architecture
 		layer (i.e.: $2$.) involved with the use
 		of a \thickclient software--system architecture, as
-		opposed to a \webbrowserbased software--system (i.e.: $4$).
+		opposed to a \webbrowserbased software--system (i.e.: $4$,
+		\emph{client user interface}, \emph{presentation layer},
+		\emph{business logic}, and \emph{data (DBMS)}).
 	
 \end{enumerate}
