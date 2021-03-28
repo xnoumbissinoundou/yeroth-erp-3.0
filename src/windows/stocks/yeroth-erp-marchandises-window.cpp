@@ -450,6 +450,8 @@ bool YerothMarchandisesWindow::slot_filtrer_non_empty_product_stock()
 
 		setWindowTitle(QObject::trUtf8("les marchandises NON TERMINÉES"));
 
+		MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS;
+
 		setCurrentlyFiltered(true);
 
 		if (!_NON_TERMINEES_MARCHANDISE_RE_ENTRANT)
