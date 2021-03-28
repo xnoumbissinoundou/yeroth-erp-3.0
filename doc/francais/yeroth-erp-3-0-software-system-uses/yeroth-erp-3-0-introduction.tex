@@ -1,0 +1,77 @@
+\chapter{Introduction}
+
+\vspace{-2em}
+
+\YEROTHCHAPINTRO{
+This introduction motivates why I created \yerotherpblack,
+and why it uses the best software programming language
+of its time !
+}
+
+\vspace{1em}
+
+\section{Motivation}
+\index{motivation for creating \yerotherpblack}
+
+\yerotherpblack is an \textbf{Enterprise Resource Planing (ERP)}
+software--system that aims 'effectiveness' and 'simplicity',
+compared to other high ranked ERP software--systems
+(e.g.: \sageerp, \saperp, etc.).
+
+We chose to design and implement \yerotherpblack as
+a \thickclient software--system because of the
+following reasons:
+
+\begin{enumerate}[1.]
+
+	\item The implementation language \cplusplus
+		offers much flexibility:
+		
+		\begin{enumerate}[1.]
+			\item \emph{\yerothvert{MULTIPLE INHERITANCE:}}
+			
+			It allows developers to abstract as much as possible
+			business code upwards, away from downwards implementation
+			classes. For instance,  in \yerotherpblack,
+			GUI--Qt--windows inherits for instance
+			\emph{search filtering feature, and print capability
+			from $2$ different classes}.
+
+			\emph{\textbf{Print capability} couldn't be inherited from the
+			same class where search filtering is abstracted and
+			partially implemented (interface in \Java for instance
+			doesn't allow any method body code), because it works
+			in its pure abstract class (\cplusplus class with at
+			least $1$ empty method body), together with feature
+			\textbf{database column filtering for viewing and printing.}}
+			\newline
+			
+			\emph{\yerothrouge{The drawback of the multiple inheritance
+			in \cplusplus is: it sometimes can be very
+			difficult to build it using "\gplusplus~\cite{gcc:2020}" !}}
+			\newline
+		
+			\item \emph{\yerothvert{MACROS:}}
+
+			They enable developers to create TEXT TEMPLATE in their code.	
+					
+			For instance, I use macros in some parts of my code
+			to increase execution time, and reduce stack activation for
+			method or function calls in \yerotherpblack\ !						
+			\newline
+						
+		\end{enumerate}						
+		
+	\item The availability of \texttt{'WHAT YOU SEE IS WHAT YOU GET'}
+		(\wy) tools for fast and useful
+		user interface design (e.g.: \qtdesigner~\cite{qtdesigner:2020},
+		\ministudio~\cite{miniStudio:2020}, etc.)
+		
+	\item The low number of logical software--system architecture
+		layer (i.e.: $2$.) involved with the use
+		of a \thickclient software--system architecture, as
+		opposed to a \webbrowserbased software--system (i.e.: $4$,
+		\emph{client user interface}, \emph{presentation layer},
+		\emph{business logic}, and \emph{data (DBMS)}).
+	
+\end{enumerate}

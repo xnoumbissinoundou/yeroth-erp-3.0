@@ -1,0 +1,289 @@
+%====================================================
+%
+% Author: PR. XAVIER NOUMBISSI NOUNDOU
+%
+%====================================================
+\documentclass[a4paper, 12pt]{report}
+\NeedsTeXFormat{LaTeX2e}
+\makeindex
+
+%---------------------------- PACKAGE INCLUSION -------------------------------
+% This group renders characters clearer and more precise
+
+\RequirePackage[bitstream-charter,cal,expert]{mathdesign}
+\RequirePackage{makeidx}
+\RequirePackage{latexsym}
+
+\usepackage[numbib]{tocbibind}
+
+\usepackage{geometry}
+\geometry{a4paper,
+		  %showframe=true,
+		  %margin=2.75em,
+		  %a4paper,
+		  %total={170mm,257mm},
+		  top=4.3em,
+		  left=3em,
+		  right=3em,
+		  bottom=3.39em
+		  }
+
+\usepackage{graphicx}  
+
+\usepackage{multicol}  	  
+
+\usepackage{caption}
+
+\usepackage[default]{cantarell}
+\usepackage{graphicx}
+\usepackage{xspace}
+\usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{listings} % for lstset definitions
+\usepackage{url}
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+\usepackage{epsfig}
+\usepackage{booktabs}
+%\usepackage{enumitem} %funny itemize icons
+\usepackage{verbatim}
+\usepackage{tcolorbox}
+
+\usepackage{pagecolor}
+
+\usepackage{amsmath}
+\newcommand{\mathbold}[1]{\text{\textbf{#1}}}
+
+\usepackage{xcolor}
+\definecolor{yerothColorOrange}{RGB}{242, 161, 0}   
+\definecolor{yerothColorBlue}{RGB}{77 , 93 , 254}
+\definecolor{yerothColorRed}{RGB}{254, 48 , 48}
+\definecolor{yerothColorGray}{RGB}{198, 198, 198}
+\definecolor{yerothColorDarkgray}{RGB}{60, 60 , 60}
+\definecolor{yerothColorIndigo}{RGB}{83, 0, 125}
+\definecolor{yerothColorGreen}{RGB}{2  , 160, 70}
+\definecolor{forestgreen}{RGB}{2,160,70}    
+\definecolor{mediumblue}{RGB}{7,43,205}    
+\definecolor{firebrickred}{RGB}{178,34,34}
+\definecolor{listingray}{gray}{0.9}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+\definecolor{darkgreen}{rgb}{0,0.35,0}
+\definecolor{medgreen}{rgb}{0,0.5,0}
+\definecolor{lightgreen}{rgb}{0.5,0.7,0.5}
+\definecolor{pmcolour}{rgb}{0.5,0.7,0.5}
+\definecolor{medgrey}{rgb}{0.6,0.6,0.6}
+\definecolor{purplish}{rgb}{0.4,0,0.6}
+\definecolor{brightred}{rgb}{1,0.2,0.2}
+
+\newcommand{\diplinfn}{DR.\xspace}
+
+\newcommand{\yerothrd}{\textcolor{yerothColorGreen}
+			{\textsc{\textcolor{yerothColorRed}{YEROTH}}$_{\text{r\&d}}$\xspace}}
+
+\newcommand{\mytime}[2]{$#1$:$#2$\xspace}
+
+\newcommand{\debianlinux}{\texttt{Debian--Linux}\xspace}
+
+\newcommand{\windowsten}{\texttt{MS Windows $10$}\xspace}
+
+\newcommand{\webbrowserbased}{web--browser--based\xspace}
+
+\newcommand{\yerotherpblack}{YEROTH--ERP--$3.0$\xspace}
+
+\newcommand{\yerotherp}{\textsc{\textcolor{yerothColorBlue}{YEROTH--ERP--$3.0$}}\xspace}
+
+\newcommand{\saperp}{'SAP Business One'\xspace}
+
+\newcommand{\sageerp}{'Sage Gescom i$7$'\xspace}
+
+\newcommand{\myfullacademicname}{PR. XAVIER NOUMBISSI NOUNDOU\xspace}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+	pagebackref,
+    citecolor=medgreen,
+    linkcolor=purplish,
+    breaklinks,
+    pdftex,
+    bookmarks,
+    plainpages=false,
+	pdftitle={\yerotherpblack Software--System Architecture.
+			Authored by: ''\myfullacademicname''.},
+    pdfauthor={\myfullacademicname}
+}
+
+%--------------------------------------------------------------------------------
+
+%---------------------------- COMMANDS DEFINITION -------------------------------
+\newcommand{\diplinf}{\emph{Dipl.-Inf.}\xspace}
+\newcommand{\mycheckmark}[1]{\textcolor{#1}{$\checkmark$}\xspace}
+
+\newcommand{\myenumitem}[1]{\emph{#1}\xspace}
+\newcommand{\yerenalert}{\emph{yeren-alert}\xspace}
+
+\newcommand{\erpsoftware}{ERP~software--system\xspace}
+
+\newcommand{\wy}{WYSIWYG\xspace}
+
+\newcommand{\thickclient}{thick--client\xspace}
+
+\newcommand{\ministudio}{\texttt{miniStudio (vxWorks)}\xspace}
+
+\newcommand{\ERPNext}{\texttt{ERPNext}\xspace}
+
+\newcommand{\Odoo}{\texttt{Odoo}\xspace}
+
+\newcommand{\lxqtsudo}{\texttt{lxqt--sudo}\xspace}
+
+\newcommand{\logFourJ}{\texttt{Log$4$j}\xspace}
+
+\newcommand{\qtdesigner}{\texttt{Qt designer}\xspace}
+
+\newcommand{\YEROTHCHAPINTRO}[1]{
+\begin{center}
+\parbox{35em}{
+\textcolor{yerothColorIndigo}{#1}
+}\xspace
+\end{center}}
+
+\newcommand{\gplusplus}{\texttt{gcc~(g$++$)}\xspace}
+
+\newcommand{\cplusplus}{\texttt{C$++$}\xspace}
+
+\newcommand{\ERPNextProgrammingLanguages}{\texttt{JavaScript, Python}\xspace}
+
+\newcommand{\OdooLibraries}{\texttt{python--lxml, etc.}\xspace}
+
+\newcommand{\OdooProgrammingLanguages}{\texttt{Python, JavaScript, XML}\xspace}
+
+\newcommand{\Java}{\texttt{Java}\xspace}
+
+\newcommand{\apache}{\texttt{Apache web server}\xspace}
+
+\newcommand{\Werkzeug}{\texttt{Werkzeug}\xspace}
+
+\newcommand{\PostgreSQL}{\texttt{PostgreSQL}\xspace}
+
+\newcommand{\MySQL}{\texttt{MySQL}\xspace}
+
+\newcommand{\JBoss}{\texttt{JBoss}\xspace}
+
+\newcommand{\unibremen}{University of Bremen}
+
+\newcommand{\definition}[1]{\textbf{\textcolor{yerothColorBlue}{\section{#1}}}\xspace}
+
+\newcommand{\yerothvert}[1]{\textcolor{yerothColorGreen}{#1}\xspace}
+\newcommand{\yerothrouge}[1]{\textcolor{yerothColorRed}{#1}\xspace}
+
+\newcommand{\featuresummary}[2]{\textbf{\textcolor{#1}{\textsc{#2}}}}
+
+%--------------------------------------------------------------------------------
+
+\usepackage[T1]{fontenc}
+\newcommand{\changefont}[3]{
+\fontfamily{#1} \fontseries{#2} \fontshape{#3} \selectfont}
+\changefont{cmss}{m}{n}
+
+\renewcommand\labelenumi{\theenumi)}
+
+\pagenumbering{arabic}
+
+%%%%%%%%%%%%%%%%%%%%SETTING HEADER AND FOOTER FOR 'REPORT CLASS'.%%%%%%%%%%%%%%%%%%%%%
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhf{}
+
+\fancypagestyle{plain}{% copies "fancy" over "plain"
+  \fancyfoot[C]{\thepage}% you can add edits that won't affect "fancy" but only "plain"
+}
+
+\fancypagestyle{OnlyFirstPage}{%
+	\lhead{}
+	\rhead{}
+    \lfoot{}
+}
+
+\rhead{\yerotherpblack Software--System Architecture}
+\lhead{\textbf{\yerothrd}}
+\lfoot{}
+\rfoot{}
+\cfoot{\thepage}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\clubpenalty = 10000
+\widowpenalty = 10000
+\displaywidowpenalty = 10000
+
+\pdfminorversion=7
+
+\begin{document}
+
+\thispagestyle{OnlyFirstPage}
+
+{\bf \Large \yerothrd} {| \sc \scriptsize \yerotherpblack guide pratique du SYSTÈME--LOGICIEL YEROTH-ERP-3.0}
+\\ \line(1,0){540}
+
+\vspace{2.0em}
+
+\begin{center}
+{\LARGE \yerotherpblack | GUIDE PRATIQUE}
+\end{center}
+
+\vspace{2.0em}
+
+\begin{center}
+{\large \myfullacademicname}
+\end{center}
+
+\vspace{4.0em}
+
+\input{yeroth-erp-3-0-abstract}
+
+% TABLE OF CONTENTS
+\phantomsection
+%\addcontentsline{toc}{chapter}{\contentsname}
+\begingroup
+\tableofcontents
+\endgroup
+
+% LIST OF FIGURES
+\phantomsection
+%\addcontentsline{toc}{chapter}{\listfigurename}
+\begingroup
+\color{medgreen}
+\listoffigures
+\endgroup
+
+% LIST OF TABLES
+\phantomsection
+%\addcontentsline{toc}{chapter}{\listtablename}
+\begingroup
+\color{medgreen}
+\listoftables
+\endgroup
+
+\cleardoublepage
+
+\input{yeroth-erp-3-0-introduction}
+
+\input{yeroth-erp-3-0-conclusion}
+
+\cleardoublepage
+\bibliographystyle{alpha}
+\bibliography{yeroth-erp-3-0-bibliography}
+
+\cleardoublepage
+\phantomsection
+\printindex
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\textsc{Appendix}}
+\appendix
+\include{yeroth-erp-3-0-appendix}
+
+\end{document}
+
