@@ -493,12 +493,17 @@ bool YerothMarchandisesWindow::slot_filter_empty_product_stock()
 
 	afficherMarchandises();
 
-	QStringList filterStrings;
+	QString filter_string;
+
+	QStringList filter_string_list;
+
 	QStringList splittedData;
+
 	QString data;
-	QString categorieStr;
-	QString designationStr;
-	QString filterString;
+
+	QString nom_departement_str;
+	QString categorie_str;
+	QString designation_str;
 
 //	QDEBUG_STRING_OUTPUT_2("stdItemModel->rowCount()", QString::number(stdItemModel->rowCount()));
 
@@ -512,51 +517,46 @@ bool YerothMarchandisesWindow::slot_filter_empty_product_stock()
 			{
 				data = anItem->accessibleText();
 
+//				QDEBUG_STRING_OUTPUT_2("data", data);
+
 				splittedData = data.split("|");
 
 				if (splittedData.size() > 1)
 				{
-					categorieStr = splittedData.at(0);
-					designationStr = splittedData.at(1);
+					nom_departement_str = splittedData.at(0);
+					categorie_str 		= splittedData.at(1);
+					designation_str 	= splittedData.at(2);
 
-					filterStrings
-						.append(QString("(categorie = '%1' AND designation = '%2')")
-									.arg(categorieStr, designationStr));
+					filter_string_list
+						.append(QString("(nom_departement_produit = '%1' AND categorie = '%2' AND designation = '%3')")
+								 .arg(nom_departement_str,
+									  categorie_str,
+									  designation_str));
 
 					if (k + 1 < stdItemModel->rowCount())
 					{
-						filterStrings.append(" OR ");
+						filter_string_list.append(" OR ");
 					}
 				}
 			}
 		}
 	}
 
-	if (0 >= filterStrings.size())
+	if (YerothUtils::isEqualCaseInsensitive(filter_string_list.last(), " OR "))
+	{
+		filter_string_list.removeLast();
+	}
+
+	filter_string = filter_string_list.join(" ");
+
+	if (filter_string.isEmpty())
 	{
 		YEROTH_QMESSAGE_BOX_AUCUN_RESULTAT_FILTRE(this, "terminées");
 
 		return false;
 	}
 
-	if (YerothUtils::isEqualCaseInsensitive(filterStrings.last(), " OR "))
-	{
-		filterStrings.removeLast();
-	}
-
-	filterString = filterStrings.join(" ");
-
-	//qDebug() << QString("++ filterString: %1")
-	//				.arg(filterString);
-
-	if (filterString.isEmpty())
-	{
-		YEROTH_QMESSAGE_BOX_AUCUN_RESULTAT_FILTRE(this, "terminées");
-
-		return false;
-	}
-
-	_curMarchandisesTableModel->yerothSetFilter_WITH_where_clause(filterString);
+	_curMarchandisesTableModel->yerothSetFilter_WITH_where_clause(filter_string);
 
 	int resultRows = _curMarchandisesTableModel->easySelect();
 

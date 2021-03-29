@@ -87,8 +87,9 @@ void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTab
 
     int querySize = 0;
 
-    QString designationStr;
-    QString categorieStr;
+    QString nom_departement_produit_str;
+    QString designation_str;
+    QString categorie_str;
 
     QStringList aStringList;
 
@@ -96,12 +97,16 @@ void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTab
     QSqlQuery sqlSearchStockTableQuery;
 
     QSqlRecord record;
+
+    QVariant nom_department_produit;
     QVariant designation;
     QVariant categorie;
 
     for (int i = 0; i < rows; ++i)
     {
     	record = tableModel.record(i);
+
+    	nom_department_produit = record.value(YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT);
 
     	designation = record.value(YerothDatabaseTableColumn::DESIGNATION);
 
@@ -138,7 +143,7 @@ void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTab
     			else
     			{
     				YEROTH_SAVE_ID_TO_ROW_NUMBER_FOR_YEROTH_TABLE_VIEW(tmpQvString, qv.toInt(), i)
-                	anItem = new YerothQStandardItem(tmpQvString);
+                			anItem = new YerothQStandardItem(tmpQvString);
     			}
 
     			_stdItemModel->setItem(i, k, anItem);
@@ -204,32 +209,44 @@ void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTab
 
     		if (0 != anItem)
     		{
-    			//We query the database once, only at the first column of a row
-				if (0 == k)
-				{
-					sqlSearchStockTableQuery.clear();
+    			sqlSearchStockTableQuery.clear();
 
-					designationStr = designation.toString();
-					categorieStr = categorie.toString();
+    			nom_departement_produit_str = nom_department_produit.toString();
+    			designation_str = designation.toString();
+    			categorie_str = categorie.toString();
 
-					sqlSearchStockTableQueryStr =
-							QString("SELECT * FROM %1 WHERE %2 = '%3' AND %4 = '%5'")
-							.arg(YerothDatabase::STOCKS,
-									YerothDatabaseTableColumn::CATEGORIE,
-									categorieStr,
-									YerothDatabaseTableColumn::DESIGNATION,
-									designationStr);
+    			sqlSearchStockTableQueryStr =
+    					QString("SELECT * FROM %1 WHERE %2='%3' AND %4='%5' AND %6='%7'")
+						.arg(YerothDatabase::STOCKS,
+							 YerothDatabaseTableColumn::NOM_DEPARTEMENT_PRODUIT,
+							 nom_departement_produit_str,
+							 YerothDatabaseTableColumn::CATEGORIE,
+							 categorie_str,
+							 YerothDatabaseTableColumn::DESIGNATION,
+							 designation_str);
 
-					querySize = YerothUtils::execQuery(sqlSearchStockTableQuery,
-							sqlSearchStockTableQueryStr);
-				}
+    			//					QDEBUG_STRING_OUTPUT_2("sqlSearchStockTableQueryStr", sqlSearchStockTableQueryStr);
 
-				if (0 >= querySize)
-				{
-					anItem->setAccessibleText(QString("%1|%2")
-							.arg(categorieStr,
-									designationStr));
-				}
+    			querySize = YerothUtils::execQuery(sqlSearchStockTableQuery,
+    					sqlSearchStockTableQueryStr);
+
+    			//					QDEBUG_STRING_OUTPUT_2_N("querySize", querySize);
+
+    			/**
+    			 * WE USE THIS INFORMATION ABOUT PRODUCT NAME AND
+    			 * CATEGORY TO FILTER EMPTY MERCHANDISE OUT !
+    			 *
+    			 * !!! DO NOT MODIFY IT !!!
+    			 */
+    			if (querySize <= 0)
+    			{
+    				anItem->setForeground(YerothUtils::YEROTH_RED_COLOR);
+
+    				anItem->setAccessibleText(QString("%1|%2|%3")
+    						.arg(nom_departement_produit_str,
+    								categorie_str,
+									designation_str));
+    			}
     		} //if (0 != item)
     	}
     }
