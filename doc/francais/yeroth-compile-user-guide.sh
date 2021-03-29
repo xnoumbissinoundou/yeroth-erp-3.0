@@ -1,5 +1,5 @@
 #!/bin/bash
-# @author: DR. XAVIER NOUMBISSI NOUNDOU
+# @author: PR. XAVIER NOUMBISSI NOUNDOU
 
 echo "yeroth-erp-3.0 | compilation des manuels des utilisateurs de yeroth-erp-3.0"
 
