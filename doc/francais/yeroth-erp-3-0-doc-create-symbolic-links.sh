@@ -18,4 +18,3 @@ rm -f yeroth-erp-3.0-guide-de-lutilisateur-manager.pdf
 
 
 ln -s "$PWD"/guide-de-lutilisateur-manager/yeroth-erp-3-0-guide-de-lutilisateur-manager.pdf yeroth-erp-3.0-guide-de-lutilisateur-manager.pdf
-
