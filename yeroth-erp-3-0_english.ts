@@ -1529,7 +1529,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="355"/>
         <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="303"/>
         <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="403"/>
-        <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="1047"/>
+        <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="1049"/>
         <location filename="src/windows/stocks/yeroth-erp-modifier-window.cpp" line="938"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseur-details-window.cpp" line="106"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseurs-window.cpp" line="437"/>
@@ -1570,7 +1570,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
     </message>
     <message>
         <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="191"/>
-        <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="586"/>
+        <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="588"/>
         <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="332"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseurs-window.cpp" line="500"/>
         <location filename="src/windows/yeroth-erp-charges-window.cpp" line="197"/>
@@ -1583,7 +1583,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
     <message>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="579"/>
         <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="194"/>
-        <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="589"/>
+        <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="591"/>
         <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="335"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseurs-window.cpp" line="503"/>
         <location filename="src/windows/yeroth-erp-charges-window.cpp" line="200"/>
@@ -1601,8 +1601,8 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
     </message>
     <message>
         <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="48"/>
-        <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="466"/>
-        <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="1116"/>
+        <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="468"/>
+        <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="1118"/>
         <source>les marchandises</source>
         <oldsource>Marchandises</oldsource>
         <translation>merchandise</translation>
@@ -1610,7 +1610,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
     <message>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="713"/>
         <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="309"/>
-        <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="731"/>
+        <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="733"/>
         <location filename="src/windows/stocks/yeroth-erp-mouvements_de_stocks-window.cpp" line="341"/>
         <location filename="src/windows/stocks/yeroth-erp-mouvements_de_stocks-window.cpp" line="342"/>
         <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="512"/>
@@ -1629,23 +1629,23 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <translation>NON FINISHED MERCHANDISE</translation>
     </message>
     <message>
-        <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="1042"/>
+        <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="1044"/>
         <source>Poursuivre avec la suppression de la marchandise &apos;%1&apos; ?</source>
         <oldsource>Poursuivre avec la suppression de l&apos;article &quot;%1&quot; ?</oldsource>
         <translation>Continue with deletion of merchandise &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="1078"/>
+        <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="1080"/>
         <source>La marchandise &apos;%1&apos; a été supprimée.</source>
         <translation>Merchandise &apos;%1&apos; has been deleted !</translation>
     </message>
     <message>
-        <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="1092"/>
+        <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="1094"/>
         <source>L&apos;article &quot;%1&quot; ne pouvait pas être supprimé !</source>
         <translation>Article &quot;%1&quot; couldn&apos;t be deleted !</translation>
     </message>
     <message>
-        <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="1201"/>
+        <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="1203"/>
         <source>NON TERMINÉES</source>
         <translation>NON FINISHED</translation>
     </message>
@@ -2417,7 +2417,7 @@ Continue with update of the stock ?</translation>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="719"/>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="802"/>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="919"/>
-        <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="1087"/>
+        <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="1089"/>
         <location filename="src/windows/stocks/yeroth-erp-modifier-window.cpp" line="403"/>
         <location filename="src/windows/stocks/yeroth-erp-sortir-window.cpp" line="2311"/>
         <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="627"/>
@@ -2478,7 +2478,7 @@ Continue with update of the stock ?</translation>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="785"/>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="847"/>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="902"/>
-        <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="1096"/>
+        <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="1098"/>
         <location filename="src/windows/stocks/yeroth-erp-modifier-window.cpp" line="358"/>
         <location filename="src/windows/stocks/yeroth-erp-modifier-window.cpp" line="409"/>
         <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="750"/>
@@ -3068,7 +3068,7 @@ Please contact an administrator of %1</translation>
         <translation>There is currently no stock listed !</translation>
     </message>
     <message>
-        <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="729"/>
+        <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="731"/>
         <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="510"/>
         <source>terme à rechercher (description de l&apos;article (ou service))</source>
         <oldsource>terme à rechercher (désignation, et description de l&apos;article (ou service))</oldsource>
@@ -4521,32 +4521,32 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>%1 - select visible columns (&apos;%2&apos; columns)</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-marchandises-table-view.cpp" line="334"/>
+        <location filename="src/widgets/table-view/yeroth-erp-marchandises-table-view.cpp" line="351"/>
         <source>modification non possible</source>
         <translation>modification not possible</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-marchandises-table-view.cpp" line="335"/>
+        <location filename="src/widgets/table-view/yeroth-erp-marchandises-table-view.cpp" line="352"/>
         <source>modification non possible de la colone &apos;%1&apos; !</source>
         <translation>column &apos;%1&apos; can&apos;t be modified !</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-marchandises-table-view.cpp" line="427"/>
+        <location filename="src/widgets/table-view/yeroth-erp-marchandises-table-view.cpp" line="444"/>
         <source>succès modification (%1) </source>
         <translation>modification success (%1) </translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-marchandises-table-view.cpp" line="432"/>
+        <location filename="src/widgets/table-view/yeroth-erp-marchandises-table-view.cpp" line="449"/>
         <source>Succès de la modification de la colone &apos;%1 (%2)&apos; de la marchandise &apos;%3&apos; !</source>
         <translation>Column &apos;%1 (%2)&apos; of merchandise &apos;%3&apos; could be successfully modified !</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-marchandises-table-view.cpp" line="446"/>
+        <location filename="src/widgets/table-view/yeroth-erp-marchandises-table-view.cpp" line="463"/>
         <source>Échec de la modification de la colone &apos;%1 (%2)&apos; de la marchandise &apos;%3&apos; !</source>
         <translation>Modification of column &apos;%1 (%2)&apos; of merchandise &apos;%3&apos; failed !</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-marchandises-table-view.cpp" line="441"/>
+        <location filename="src/widgets/table-view/yeroth-erp-marchandises-table-view.cpp" line="458"/>
         <source>échec modification (%1) </source>
         <translation>modification failure (%1) </translation>
     </message>
