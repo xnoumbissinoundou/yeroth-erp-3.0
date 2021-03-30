@@ -542,6 +542,14 @@ bool YerothMarchandisesWindow::slot_filter_empty_product_stock()
 		}
 	}
 
+
+	if (filter_string_list.isEmpty())
+	{
+		YEROTH_QMESSAGE_BOX_AUCUN_RESULTAT_FILTRE(this, "terminées");
+
+		return false;
+	}
+
 	if (YerothUtils::isEqualCaseInsensitive(filter_string_list.last(), " OR "))
 	{
 		filter_string_list.removeLast();
