@@ -45,10 +45,11 @@ void YerothPOSAdminWindowsCommons::getManuelUtilisateurPDF()
         QStringList progArguments;
         QProcess aProcess;
 
-        if (user->isAdmin())
+        if (user->isAdmin() ||
+        	user->isManager())
         {
-            progArguments << FILE_YEROTH_ERP_3_0_MANUEL_DE_LUTILISATEUR_ADMINISTRATEUR;
-            aProcess.startDetached(YerothERPConfig::pathToPdfReader, progArguments);
+        	progArguments << YerothERPConfig::FILE_ABSOLUTEPATH_YEROTH_ERP_3_0_MANUEL_DE_LUTILISATEUR_MANAGER;
+        	aProcess.startDetached(YerothERPConfig::pathToPdfReader, progArguments);
         }
     }
 }

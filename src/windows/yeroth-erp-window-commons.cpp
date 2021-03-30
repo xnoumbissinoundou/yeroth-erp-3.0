@@ -428,27 +428,7 @@ void YerothWindowsCommons::getManuelUtilisateurPDF()
         QStringList progArguments;
         QProcess aProcess;
 
-        if (user->isAdmin())
-        {
-            progArguments << YerothERPConfig::FILE_ABSOLUTEPATH_YEROTH_ERP_3_0_MANUEL__DE_LUTILISATEUR_ADMINISTRATEUR;
-            aProcess.startDetached(YerothERPConfig::pathToPdfReader, progArguments);
-        }
-        else if (user->isCaissier())
-        {
-            progArguments << YerothERPConfig::FILE_ABSOLUTEPATH_YEROTH_ERP_3_0_MANUEL_DE_LUTILISATEUR_CAISSIER;
-            aProcess.startDetached(YerothERPConfig::pathToPdfReader, progArguments);
-        }
-        else if (user->isGestionaireDesStocks())
-        {
-            progArguments << YerothERPConfig::FILE_ABSOLUTEPATH_YEROTH_ERP_3_0_MANUEL_DE_LUTILISATEUR_GESTIONAIREDESTOCKS;
-            aProcess.startDetached(YerothERPConfig::pathToPdfReader, progArguments);
-        }
-        else if (user->isMagasinier())
-        {
-            progArguments << YerothERPConfig::FILE_ABSOLUTEPATH_YEROTH_ERP_3_0_MANUEL_DE_LUTILISATEUR_MAGASINIER;
-            aProcess.startDetached(YerothERPConfig::pathToPdfReader, progArguments);
-        }
-        else if (user->isManager())
+        if (user->isManager())
         {
             progArguments << YerothERPConfig::FILE_ABSOLUTEPATH_YEROTH_ERP_3_0_MANUEL_DE_LUTILISATEUR_MANAGER;
             aProcess.startDetached(YerothERPConfig::pathToPdfReader, progArguments);
