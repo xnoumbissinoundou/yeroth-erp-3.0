@@ -2407,7 +2407,7 @@ void YerothTableauxDeBordWindow::bilanComptable()
 
     for( int k = 0; k < detteClientelleSize && query.next(); ++k)
     {
-    	dette_clientelle = query.value(0).toDouble();
+    	dette_clientelle = query.value(YerothDatabaseTableColumn::COMPTE_CLIENT).toDouble();
 
     	montant_total_dette_clientelle = montant_total_dette_clientelle + dette_clientelle;
     }
@@ -2459,6 +2459,41 @@ void YerothTableauxDeBordWindow::bilanComptable()
 //    				.arg(QString::number(achatQuerySize),
 //    					 QString::number(montant_total_achat, 'f', 2));
 
+
+    //CALCUL TVA ENGRANGE POUR SERVICES NON STOCKES.
+
+    query.clear();
+
+    QString strVentes__SERVICES_NON_STOCKES_charge_TVA__Query =
+    		QString("SELECT %1 FROM %2 WHERE %3 >= '%4' AND %5 <= '%6'")
+			.arg(YerothDatabaseTableColumn::MONTANT_TVA,
+					YerothDatabase::SERVICES_COMPLETES,
+					YerothDatabaseTableColumn::DATE_VENTE,
+					DATE_TO_DB_FORMAT_STRING(dateEdit_bilan_comptable_debut->date()),
+					YerothDatabaseTableColumn::DATE_VENTE,
+					DATE_TO_DB_FORMAT_STRING(dateEdit_bilan_comptable_fin->date()));
+
+    //    qDebug() << QString("++ strVentesQuery: %1")
+    //    				.arg(strVentesQuery);
+
+    int ventes__SERVICES_NON_STOCKES_TVA_QuerySize =
+    		YerothUtils::execQuery(query, strVentes__SERVICES_NON_STOCKES_charge_TVA__Query, _logger);
+
+
+    double montant_tva = 0.0;
+
+    double montant_TOTAL_TVA_COLLECTE = 0.0;
+
+    for( int k = 0; k < ventes__SERVICES_NON_STOCKES_TVA_QuerySize && query.next(); ++k)
+    {
+    	montant_tva = query.value(YerothDatabaseTableColumn::MONTANT_TVA).toDouble();
+
+    	montant_TOTAL_TVA_COLLECTE = montant_TOTAL_TVA_COLLECTE + montant_tva;
+    }
+
+
+
+    //VENTES D'ARTICLES PHYSIQUES
     query.clear();
 
     QString strVentesQuery(QString("SELECT %1, %2, %3, (%4 - %5) FROM stocks_vendu WHERE %6 >= '%7' AND %8 <= '%9'")
@@ -2606,6 +2641,7 @@ void YerothTableauxDeBordWindow::bilanComptable()
 
 	type_de_paiement = YerothUtils::DECAISSEMENT_INDEFINI;
 
+
 	double montant_paye_au_fournisseur = 0.0;
 
     double montant_total_paiements_aux_fournisseurs = 0.0;
@@ -2634,8 +2670,9 @@ void YerothTableauxDeBordWindow::bilanComptable()
 
 
     double total_sorties = montant_total_versements__PAR_FIDELITE_CLIENTS +
-    					   montant_total_achat +
-    					   montant_total_paiements_aux_fournisseurs +
+    					   montant_TOTAL_TVA_COLLECTE 					  +
+    					   montant_total_achat 							  +
+    					   montant_total_paiements_aux_fournisseurs 	  +
 						   montant_total_dette_clientelle;
 
 
@@ -2747,6 +2784,8 @@ void YerothTableauxDeBordWindow::bilanComptable()
     texDocument.replace("YEROTHBILANCOMPTABLEDETTECLIENTELLEDEVISE", GET_CURRENCY_STRING_NUM_FOR_LATEX(montant_total_dette_clientelle));
 
     texDocument.replace("YEROTHBILANCOMPTABLEACHATSDEVISE", GET_CURRENCY_STRING_NUM_FOR_LATEX(montant_total_achat));
+
+    texDocument.replace("YEROTHBILANCOMPTABLETVAENGRANGE", GET_CURRENCY_STRING_NUM_FOR_LATEX(montant_TOTAL_TVA_COLLECTE));
 
     texDocument.replace("YEROTHBILANCOMPTABLETOTALSORTIESDEVISE", GET_CURRENCY_STRING_NUM_FOR_LATEX(total_sorties));
 
