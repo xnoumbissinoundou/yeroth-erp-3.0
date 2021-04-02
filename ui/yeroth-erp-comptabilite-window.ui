@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>YerothComptesBancairesWindow</class>
- <widget class="QMainWindow" name="YerothComptesBancairesWindow">
+ <class>YerothComptabiliteWindow</class>
+ <widget class="QMainWindow" name="YerothComptabiliteWindow">
   <property name="windowModality">
    <enum>Qt::NonModal</enum>
   </property>
@@ -434,7 +434,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>Yeroth-erp-3.0 - comptes d'opérations comptables</string>
+   <string>Yeroth-erp-3.0 - comptabilite</string>
   </property>
   <property name="autoFillBackground">
    <bool>true</bool>
@@ -560,6 +560,15 @@
           <red>0</red>
           <green>0</green>
           <blue>0</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="HighlightedText">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>2</red>
+          <green>160</green>
+          <blue>70</blue>
          </color>
         </brush>
        </colorrole>
@@ -700,6 +709,15 @@
          </color>
         </brush>
        </colorrole>
+       <colorrole role="HighlightedText">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>2</red>
+          <green>160</green>
+          <blue>70</blue>
+         </color>
+        </brush>
+       </colorrole>
        <colorrole role="AlternateBase">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
@@ -837,6 +855,15 @@
          </color>
         </brush>
        </colorrole>
+       <colorrole role="HighlightedText">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>2</red>
+          <green>160</green>
+          <blue>70</blue>
+         </color>
+        </brush>
+       </colorrole>
        <colorrole role="AlternateBase">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
@@ -874,7 +901,7 @@
      <attribute name="title">
       <string>comptes d'opérations comptables</string>
      </attribute>
-     <widget class="YerothERPComptesBancairesTableView" name="tableView_comptes_doperations_comptables">
+     <widget class="YerothERPComptabiliteTableView" name="tableView_comptes_doperations_comptables">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -991,15 +1018,6 @@
             <red>0</red>
             <green>0</green>
             <blue>0</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="HighlightedText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>2</red>
-            <green>160</green>
-            <blue>70</blue>
            </color>
           </brush>
          </colorrole>
@@ -1137,15 +1155,6 @@
             <red>0</red>
             <green>0</green>
             <blue>0</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="HighlightedText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>2</red>
-            <green>160</green>
-            <blue>70</blue>
            </color>
           </brush>
          </colorrole>
@@ -1286,15 +1295,6 @@
            </color>
           </brush>
          </colorrole>
-         <colorrole role="HighlightedText">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>2</red>
-            <green>160</green>
-            <blue>70</blue>
-           </color>
-          </brush>
-         </colorrole>
          <colorrole role="AlternateBase">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
@@ -1340,7 +1340,7 @@
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QLabel" name="label_comptes_bancaires_debourse">
+     <widget class="QLabel" name="label_comptabilite_debourse">
       <property name="geometry">
        <rect>
         <x>472</x>
@@ -1418,9 +1418,9 @@
          <colorrole role="ButtonText">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>255</red>
-            <green>255</green>
-            <blue>255</blue>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
            </color>
           </brush>
          </colorrole>
@@ -1528,9 +1528,9 @@
          <colorrole role="ButtonText">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>255</red>
-            <green>255</green>
-            <blue>255</blue>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
            </color>
           </brush>
          </colorrole>
@@ -1698,7 +1698,7 @@
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="YerothComboBox" name="comboBox_comptes_bancaires_element_de_stock_condition">
+     <widget class="YerothComboBox" name="comboBox_comptabilite_element_de_stock_condition">
       <property name="geometry">
        <rect>
         <x>156</x>
@@ -2705,9 +2705,9 @@ background-color: rgb(0, 0, 0); </string>
          <colorrole role="ButtonText">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>255</red>
-            <green>255</green>
-            <blue>255</blue>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
            </color>
           </brush>
          </colorrole>
@@ -2815,9 +2815,9 @@ background-color: rgb(0, 0, 0); </string>
          <colorrole role="ButtonText">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>255</red>
-            <green>255</green>
-            <blue>255</blue>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
            </color>
           </brush>
          </colorrole>
@@ -2985,7 +2985,7 @@ background-color: rgb(0, 0, 0); </string>
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="YerothDateTimeEdit" name="dateEdit_comptes_bancaires_fin">
+     <widget class="YerothDateTimeEdit" name="dateEdit_comptabilite_fin">
       <property name="geometry">
        <rect>
         <x>122</x>
@@ -3428,7 +3428,7 @@ background-color: rgb(0, 0, 0); </string>
        </date>
       </property>
      </widget>
-     <widget class="YerothLineEdit" name="lineEdit_comptes_bancaires_encaisse">
+     <widget class="YerothLineEdit" name="lineEdit_comptabilite_encaisse">
       <property name="geometry">
        <rect>
         <x>593</x>
@@ -4379,7 +4379,7 @@ border: none;</string>
        <bool>false</bool>
       </property>
      </widget>
-     <widget class="YerothLineEdit" name="lineEdit_comptes_bancaires_element_resultat">
+     <widget class="YerothLineEdit" name="lineEdit_comptabilite_element_resultat">
       <property name="geometry">
        <rect>
         <x>236</x>
@@ -5307,7 +5307,7 @@ border: 0px rgb(255, 255, 255);</string>
        <bool>false</bool>
       </property>
      </widget>
-     <widget class="YerothLineEdit" name="lineEdit_comptes_bancaires_debourse">
+     <widget class="YerothLineEdit" name="lineEdit_comptabilite_debourse">
       <property name="geometry">
        <rect>
         <x>593</x>
@@ -5804,7 +5804,7 @@ background-color: rgb(0, 0, 0); </string>
        <bool>false</bool>
       </property>
      </widget>
-     <widget class="YerothComboBox" name="comboBox_comptes_bancaires_element_de_stock">
+     <widget class="YerothComboBox" name="comboBox_comptabilite_element_de_stock">
       <property name="geometry">
        <rect>
         <x>3</x>
@@ -6236,7 +6236,7 @@ background-color: rgb(0, 0, 0); </string>
        </font>
       </property>
      </widget>
-     <widget class="QLabel" name="label_comptes_bancaires_numero_page_derniere">
+     <widget class="QLabel" name="label_comptabilite_numero_page_derniere">
       <property name="geometry">
        <rect>
         <x>311</x>
@@ -6314,9 +6314,9 @@ background-color: rgb(0, 0, 0); </string>
          <colorrole role="ButtonText">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>255</red>
-            <green>255</green>
-            <blue>255</blue>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
            </color>
           </brush>
          </colorrole>
@@ -6424,9 +6424,9 @@ background-color: rgb(0, 0, 0); </string>
          <colorrole role="ButtonText">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>255</red>
-            <green>255</green>
-            <blue>255</blue>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
            </color>
           </brush>
          </colorrole>
@@ -6597,7 +6597,7 @@ background-color: rgb(0, 0, 0); </string>
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="YerothPushButton" name="pushButton_comptes_bancaires_reinitialiser_filtre">
+     <widget class="YerothPushButton" name="pushButton_comptabilite_reinitialiser_filtre">
       <property name="geometry">
        <rect>
         <x>3</x>
@@ -7031,7 +7031,7 @@ background-color: rgb(0, 0, 0); </string>
        <string>réinitialiser filtre</string>
       </property>
      </widget>
-     <widget class="YerothDateTimeEdit" name="dateEdit_comptes_bancaires_debut">
+     <widget class="YerothDateTimeEdit" name="dateEdit_comptabilite_debut">
       <property name="geometry">
        <rect>
         <x>122</x>
@@ -7474,7 +7474,7 @@ background-color: rgb(0, 0, 0); </string>
        </date>
       </property>
      </widget>
-     <widget class="QLabel" name="label_comptes_bancaires_separation_page_precedente_ou_suivante">
+     <widget class="QLabel" name="label_comptabilite_separation_page_precedente_ou_suivante">
       <property name="geometry">
        <rect>
         <x>294</x>
@@ -7835,7 +7835,7 @@ background-color: rgb(0, 0, 0); </string>
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="label_comptes_bancaires_numero_page_courante">
+     <widget class="QLabel" name="label_comptabilite_numero_page_courante">
       <property name="geometry">
        <rect>
         <x>237</x>
@@ -7913,9 +7913,9 @@ background-color: rgb(0, 0, 0); </string>
          <colorrole role="ButtonText">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>255</red>
-            <green>255</green>
-            <blue>255</blue>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
            </color>
           </brush>
          </colorrole>
@@ -8023,9 +8023,9 @@ background-color: rgb(0, 0, 0); </string>
          <colorrole role="ButtonText">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>255</red>
-            <green>255</green>
-            <blue>255</blue>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
            </color>
           </brush>
          </colorrole>
@@ -8724,9 +8724,9 @@ border: 0px rgb(255, 255, 255);</string>
          <colorrole role="ButtonText">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>255</red>
-            <green>255</green>
-            <blue>255</blue>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
            </color>
           </brush>
          </colorrole>
@@ -8834,9 +8834,9 @@ border: 0px rgb(255, 255, 255);</string>
          <colorrole role="ButtonText">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>255</red>
-            <green>255</green>
-            <blue>255</blue>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
            </color>
           </brush>
          </colorrole>
@@ -10348,7 +10348,7 @@ background-color: rgb(0, 0, 0); </string>
        <enum>Qt::LogicalMoveStyle</enum>
       </property>
      </widget>
-     <widget class="QLabel" name="label_comptes_bancaires_date_end">
+     <widget class="QLabel" name="label_comptabilite_date_end">
       <property name="geometry">
        <rect>
         <x>2</x>
@@ -10435,9 +10435,9 @@ background-color: rgb(0, 0, 0); </string>
          <colorrole role="ButtonText">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>255</red>
-            <green>255</green>
-            <blue>255</blue>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
            </color>
           </brush>
          </colorrole>
@@ -10572,9 +10572,9 @@ background-color: rgb(0, 0, 0); </string>
          <colorrole role="ButtonText">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>255</red>
-            <green>255</green>
-            <blue>255</blue>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
            </color>
           </brush>
          </colorrole>
@@ -11240,7 +11240,7 @@ border: none;</string>
        <bool>false</bool>
       </property>
      </widget>
-     <widget class="QLabel" name="label_comptes_bancaires_encaisse">
+     <widget class="QLabel" name="label_comptabilite_encaisse">
       <property name="geometry">
        <rect>
         <x>472</x>
@@ -11318,9 +11318,9 @@ border: none;</string>
          <colorrole role="ButtonText">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>255</red>
-            <green>255</green>
-            <blue>255</blue>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
            </color>
           </brush>
          </colorrole>
@@ -11428,9 +11428,9 @@ border: none;</string>
          <colorrole role="ButtonText">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>255</red>
-            <green>255</green>
-            <blue>255</blue>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
            </color>
           </brush>
          </colorrole>
@@ -11598,7 +11598,7 @@ border: none;</string>
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="YerothPushButton" name="pushButton_comptes_bancaires_filtrer">
+     <widget class="YerothPushButton" name="pushButton_comptabilite_filtrer">
       <property name="geometry">
        <rect>
         <x>156</x>
@@ -12032,7 +12032,7 @@ border: none;</string>
        <string>filtrer</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_comptes_bancaires_date_begin">
+     <widget class="QLabel" name="label_comptabilite_date_begin">
       <property name="geometry">
        <rect>
         <x>2</x>
@@ -12119,9 +12119,9 @@ border: none;</string>
          <colorrole role="ButtonText">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>255</red>
-            <green>255</green>
-            <blue>255</blue>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
            </color>
           </brush>
          </colorrole>
@@ -12256,9 +12256,9 @@ border: none;</string>
          <colorrole role="ButtonText">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>255</red>
-            <green>255</green>
-            <blue>255</blue>
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
            </color>
           </brush>
          </colorrole>
@@ -12473,7 +12473,7 @@ border: none;</string>
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="YerothLineEdit" name="lineEdit_comptes_bancaires_nombre_de_lignes_par_page">
+     <widget class="YerothLineEdit" name="lineEdit_comptabilite_nombre_de_lignes_par_page">
       <property name="geometry">
        <rect>
         <x>193</x>
@@ -12936,7 +12936,7 @@ border: none;</string>
        <string notr="true">border: 1px solid rgb(60, 60, 60);</string>
       </property>
      </widget>
-     <widget class="YerothLineEdit" name="lineEdit_comptes_bancaires_terme_recherche">
+     <widget class="YerothLineEdit" name="lineEdit_comptabilite_terme_recherche">
       <property name="geometry">
        <rect>
         <x>2</x>
@@ -13375,7 +13375,7 @@ background-color: rgb(0, 0, 0); </string>
      <attribute name="title">
       <string>configuration des associations, types d'opérations comptables - comptes d'opérations comptables</string>
      </attribute>
-     <widget class="QLabel" name="label_comptes_bancaires_comptes">
+     <widget class="QLabel" name="label_comptabilite_comptes">
       <property name="geometry">
        <rect>
         <x>388</x>
@@ -13391,7 +13391,7 @@ background-color: rgb(0, 0, 0); </string>
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="label_comptes_bancaires_types_doperations">
+     <widget class="QLabel" name="label_comptabilite_types_doperations">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -13419,7 +13419,7 @@ background-color: rgb(0, 0, 0); </string>
       <property name="title">
        <string>ASSOCIATIONS types d'opérations - comptes d'opérations</string>
       </property>
-      <widget class="YerothERPComptesBancairesTableView" name="tableView_lister_des_marchandises_comptes">
+      <widget class="YerothERPComptabiliteTableView" name="tableView_lister_des_marchandises_comptes">
        <property name="geometry">
         <rect>
          <x>3</x>
@@ -16494,7 +16494,7 @@ background-color: rgb(0, 0, 0); </string>
    <addaction name="menuA_propos"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <widget class="QToolBar" name="toolBar_comptes_bancaires_Window">
+  <widget class="QToolBar" name="toolBar_comptabilite_Window">
    <property name="palette">
     <palette>
      <active>
@@ -16603,6 +16603,15 @@ background-color: rgb(0, 0, 0); </string>
          <red>0</red>
          <green>0</green>
          <blue>0</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="HighlightedText">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>2</red>
+         <green>160</green>
+         <blue>70</blue>
         </color>
        </brush>
       </colorrole>
@@ -16743,6 +16752,15 @@ background-color: rgb(0, 0, 0); </string>
         </color>
        </brush>
       </colorrole>
+      <colorrole role="HighlightedText">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>2</red>
+         <green>160</green>
+         <blue>70</blue>
+        </color>
+       </brush>
+      </colorrole>
       <colorrole role="AlternateBase">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
@@ -16877,6 +16895,15 @@ background-color: rgb(0, 0, 0); </string>
          <red>0</red>
          <green>0</green>
          <blue>0</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="HighlightedText">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>2</red>
+         <green>160</green>
+         <blue>70</blue>
         </color>
        </brush>
       </colorrole>
@@ -17154,9 +17181,9 @@ background-color: rgb(0, 0, 0); </string>
    <header>src/widgets/yeroth-erp-line-edit.hpp</header>
   </customwidget>
   <customwidget>
-   <class>YerothERPComptesBancairesTableView</class>
+   <class>YerothERPComptabiliteTableView</class>
    <extends>QTableView</extends>
-   <header>src/widgets/table-view/yeroth-erp-comptes-bancaires-table-view.hpp</header>
+   <header>src/widgets/table-view/yeroth-erp-comptabilite-table-view.hpp</header>
   </customwidget>
   <customwidget>
    <class>YerothComboBox</class>

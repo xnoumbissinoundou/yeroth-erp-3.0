@@ -312,7 +312,7 @@ void YerothERPWindows::createAllYerothPosUserWindows()
     _achatsWindow 					= new YerothAchatsWindow;
     _stocksWindow 					= new YerothStocksWindow;
     _marchandisesWindow 			= new YerothMarchandisesWindow;
-    _comptesBancairesWindow = new YerothComptesBancairesWindow;
+    _comptesBancairesWindow = new YerothComptabiliteWindow;
     _listerAlertesWindow			= new YerothAlertesWindow;
     _paiementsWindow		= new YerothPaiementsWindow;
     _ventesWindow					= new YerothVentesWindow;

@@ -1,5 +1,5 @@
 /*
- * yeroth-erp-comptes-bancaires-window.hpp
+ * yeroth-erp-comptabilite-window.hpp
  *
  *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
@@ -7,7 +7,7 @@
 #ifndef SRC_YEROTH_COMPTES_BANCAIRES_WINDOW_HPP_
 #define SRC_YEROTH_COMPTES_BANCAIRES_WINDOW_HPP_
 
-#include "../../ui_yeroth-erp-comptes-bancaires-window.h"
+#include "../../ui_yeroth-erp-comptabilite-window.h"
 
 #include "src/include/yeroth-erp-3-0-software.text-configuration.hpp"
 
@@ -26,8 +26,8 @@ class YerothUtils;
 class YerothWindowsCommons;
 class YerothPOSUser;
 
-class YerothComptesBancairesWindow : public YerothWindowsCommons,
-									 private Ui_YerothComptesBancairesWindow,
+class YerothComptabiliteWindow : public YerothWindowsCommons,
+									 private Ui_YerothComptabiliteWindow,
 									 public YerothAbstractClassYerothSearchWindow
 {
     Q_OBJECT
@@ -36,13 +36,13 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-    YerothComptesBancairesWindow();
+    YerothComptabiliteWindow();
 
-	virtual ~YerothComptesBancairesWindow();
+	virtual ~YerothComptabiliteWindow();
 
     inline virtual QToolBar * getQMainWindowToolBar()
     {
-    	return toolBar_comptes_bancaires_Window;
+    	return toolBar_comptabilite_Window;
     }
 
     inline virtual void definirCaissier()
@@ -74,8 +74,8 @@ public:
 
     virtual void definirPasDeRole();
 
-    MACRO_TO_DEFINE_VIEWING_PAGE_NUMBER_FOR_TABLEVIEW(label_comptes_bancaires_numero_page_derniere,
-    												  label_comptes_bancaires_numero_page_courante)
+    MACRO_TO_DEFINE_VIEWING_PAGE_NUMBER_FOR_TABLEVIEW(label_comptabilite_numero_page_derniere,
+    												  label_comptabilite_numero_page_courante)
 
     virtual void rendreVisible(YerothSqlTableModel *stocksTableModel);
 
@@ -142,9 +142,9 @@ private:
 
     YerothLogger			*_logger;
 
-    YerothSqlTableModel 	*_curComptesBancairesSqlTableModel;
+    YerothSqlTableModel 	*_curComptabiliteSqlTableModel;
 
-    QFont 					*_pushButton_comptes_bancaires_filtrer_font;
+    QFont 					*_pushButton_comptabilite_filtrer_font;
 };
 
 #endif /* SRC_YEROTH_COMPTES_BANCAIRES_WINDOW_HPP_ */

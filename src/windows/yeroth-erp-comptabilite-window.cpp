@@ -1,10 +1,10 @@
 /*
- * yeroth-erp-comptes-bancaires-window.cpp
+ * yeroth-erp-comptabilite-window.cpp
  *
  *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
-#include "yeroth-erp-comptes-bancaires-window.hpp"
+#include "yeroth-erp-comptabilite-window.hpp"
 
 #include "src/yeroth-erp-windows.hpp"
 
@@ -31,17 +31,17 @@
 #include <QtSql/QSqlRecord>
 
 
-YerothComptesBancairesWindow::YerothComptesBancairesWindow()
-:YerothWindowsCommons("yeroth-erp-listing-comptes-bancaires"),
+YerothComptabiliteWindow::YerothComptabiliteWindow()
+:YerothWindowsCommons("yeroth-erp-listing-comptabilite"),
  YerothAbstractClassYerothSearchWindow(YerothDatabase::COMPTES_BANCAIRES),
  _comptesBancairesDateDebutTransactionFilter(YerothUtils::EMPTY_STRING),
- _logger(new YerothLogger("YerothComptesBancairesWindow")),
- _curComptesBancairesSqlTableModel(&_allWindows->getSqlTableModel_comptes_bancaires()),
- _pushButton_comptes_bancaires_filtrer_font(0)
+ _logger(new YerothLogger("YerothComptabiliteWindow")),
+ _curComptabiliteSqlTableModel(&_allWindows->getSqlTableModel_comptes_bancaires()),
+ _pushButton_comptabilite_filtrer_font(0)
 {
     _windowName = QString("%1 - %2")
     				.arg(YEROTH_ERP_WINDOW_TITLE,
-    					 QObject::trUtf8("comptes bancaires"));
+    					 QObject::trUtf8("comptabilité"));
 
     setupUi(this);
 
@@ -70,7 +70,7 @@ YerothComptesBancairesWindow::YerothComptesBancairesWindow()
 
     setupDateTimeEdits();
 
-    _pushButton_comptes_bancaires_filtrer_font = new QFont(pushButton_comptes_bancaires_filtrer->font());
+    _pushButton_comptabilite_filtrer_font = new QFont(pushButton_comptabilite_filtrer->font());
 
     tableView_comptes_doperations_comptables->setSqlTableName(&YerothDatabase::COMPTES_BANCAIRES);
 
@@ -104,7 +104,7 @@ YerothComptesBancairesWindow::YerothComptesBancairesWindow()
 }
 
 
-YerothComptesBancairesWindow::~YerothComptesBancairesWindow()
+YerothComptabiliteWindow::~YerothComptabiliteWindow()
 {
 	MACRO_TO_DELETE_PAGINATION_INTEGER_VALIDATOR
 
@@ -112,7 +112,7 @@ YerothComptesBancairesWindow::~YerothComptesBancairesWindow()
 }
 
 
-void YerothComptesBancairesWindow::afficher_comptes_bancaires(YerothSqlTableModel &aYerothSqlTableModel)
+void YerothComptabiliteWindow::afficher_comptes_bancaires(YerothSqlTableModel &aYerothSqlTableModel)
 {
 	tableView_comptes_doperations_comptables->queryYerothTableViewCurrentPageContentRow(aYerothSqlTableModel);
 
@@ -124,7 +124,7 @@ void YerothComptesBancairesWindow::afficher_comptes_bancaires(YerothSqlTableMode
 }
 
 
-void YerothComptesBancairesWindow::reinitialiser_colones_db_visibles()
+void YerothComptabiliteWindow::reinitialiser_colones_db_visibles()
 {
 	_visibleDBColumnNameStrList.clear();
 
@@ -136,13 +136,13 @@ void YerothComptesBancairesWindow::reinitialiser_colones_db_visibles()
 }
 
 
-void YerothComptesBancairesWindow::hideEvent(QHideEvent * hideEvent)
+void YerothComptabiliteWindow::hideEvent(QHideEvent * hideEvent)
 {
 	_selectExportDBQDialog->close();
 }
 
 
-void YerothComptesBancairesWindow::setupShortcuts()
+void YerothComptabiliteWindow::setupShortcuts()
 {
     setupShortcutActionMessageDaide 		(*actionAppeler_aide);
     setupShortcutActionAfficherPDF			(*actionAfficherPDF);
@@ -151,7 +151,7 @@ void YerothComptesBancairesWindow::setupShortcuts()
 }
 
 
-void YerothComptesBancairesWindow::slot_reinitialiser_colones_db_visibles()
+void YerothComptabiliteWindow::slot_reinitialiser_colones_db_visibles()
 {
 	reinitialiser_colones_db_visibles();
 	resetTableViewHorizontalHeader_DEFAULT_ORDERING();
@@ -159,15 +159,15 @@ void YerothComptesBancairesWindow::slot_reinitialiser_colones_db_visibles()
 }
 
 
-void YerothComptesBancairesWindow::textChangedSearchLineEditsQCompleters()
+void YerothComptabiliteWindow::textChangedSearchLineEditsQCompleters()
 {
-	lineEdit_comptes_bancaires_element_resultat->clear();
+	lineEdit_comptabilite_element_resultat->clear();
 
     setCurrentlyFiltered(false);
 
     clearSearchFilter();
 
-    QString searchTerm(lineEdit_comptes_bancaires_terme_recherche->text());
+    QString searchTerm(lineEdit_comptabilite_terme_recherche->text());
 
     if (!searchTerm.isEmpty())
     {
@@ -257,30 +257,30 @@ void YerothComptesBancairesWindow::textChangedSearchLineEditsQCompleters()
 }
 
 
-void YerothComptesBancairesWindow::set_filtrer_font()
+void YerothComptabiliteWindow::set_filtrer_font()
 {
     if (isCurrentlyFiltered())
     {
-    	_pushButton_comptes_bancaires_filtrer_font->setUnderline(true);
+    	_pushButton_comptabilite_filtrer_font->setUnderline(true);
     }
     else
     {
-    	_pushButton_comptes_bancaires_filtrer_font->setUnderline(false);
+    	_pushButton_comptabilite_filtrer_font->setUnderline(false);
     }
 
-    pushButton_comptes_bancaires_filtrer->setFont(*_pushButton_comptes_bancaires_filtrer_font);
+    pushButton_comptabilite_filtrer->setFont(*_pushButton_comptabilite_filtrer_font);
 }
 
 
-void YerothComptesBancairesWindow::refineYerothLineEdits()
+void YerothComptabiliteWindow::refineYerothLineEdits()
 {
 	_comptesBancairesDateDebutTransactionFilter.clear();
 
 //	_comptesBancairesDateDebutTransactionFilter.append(QString(" ( %1 >= '%2' AND %3 <= '%4' ) ")
 //    													.arg(YerothDatabaseTableColumn::DATE_PAIEMENT,
-//    														 DATE_TO_DB_FORMAT_STRING(dateEdit_comptes_bancaires_debut->date()),
+//    														 DATE_TO_DB_FORMAT_STRING(dateEdit_comptabilite_debut->date()),
 //															 YerothDatabaseTableColumn::DATE_PAIEMENT,
-//															 DATE_TO_DB_FORMAT_STRING(dateEdit_comptes_bancaires_fin->date())));
+//															 DATE_TO_DB_FORMAT_STRING(dateEdit_comptabilite_fin->date())));
 //
 //	setupLineEditsQCompleters((QObject *)this);
 
@@ -288,42 +288,42 @@ void YerothComptesBancairesWindow::refineYerothLineEdits()
 }
 
 
-void YerothComptesBancairesWindow::setupLineEdits()
+void YerothComptabiliteWindow::setupLineEdits()
 {
-	lineEdit_comptes_bancaires_terme_recherche->enableForSearch(QObject::trUtf8("terme à rechercher (description du compte bancaire)"));
+	lineEdit_comptabilite_terme_recherche->enableForSearch(QObject::trUtf8("terme à rechercher (description du compte bancaire)"));
 
     lineEdit_nom_element_string_db->enableForSearch(QObject::trUtf8("valeur à rechercher"));
 
-    lineEdit_comptes_bancaires_element_resultat->setValidator(&YerothUtils::DoubleValidator);
+    lineEdit_comptabilite_element_resultat->setValidator(&YerothUtils::DoubleValidator);
 
     lineEdit_nombre_de_comptes_bancaires->setYerothEnabled(false);
-    lineEdit_comptes_bancaires_encaisse->setYerothEnabled(false);
-    lineEdit_comptes_bancaires_debourse->setYerothEnabled(false);
+    lineEdit_comptabilite_encaisse->setYerothEnabled(false);
+    lineEdit_comptabilite_debourse->setYerothEnabled(false);
 
-	MACRO_TO_BIND_PAGING_WITH_QLINEEDIT(lineEdit_comptes_bancaires_nombre_de_lignes_par_page, tableView_comptes_doperations_comptables);
+	MACRO_TO_BIND_PAGING_WITH_QLINEEDIT(lineEdit_comptabilite_nombre_de_lignes_par_page, tableView_comptes_doperations_comptables);
 }
 
 
-void YerothComptesBancairesWindow::setupDateTimeEdits()
+void YerothComptabiliteWindow::setupDateTimeEdits()
 {
-    dateEdit_comptes_bancaires_debut->setStartDate(YerothERPConfig::GET_YEROTH_PAGING_DEFAULT_START_DATE());
+    dateEdit_comptabilite_debut->setStartDate(YerothERPConfig::GET_YEROTH_PAGING_DEFAULT_START_DATE());
 
-    dateEdit_comptes_bancaires_fin->setStartDate(GET_CURRENT_DATE);
+    dateEdit_comptabilite_fin->setStartDate(GET_CURRENT_DATE);
 
     _comptesBancairesDateDebutTransactionFilter.clear();
 
 //	_comptesBancairesDateDebutTransactionFilter.append(QString(" ( %1 >= '%2' AND %3 <= '%4' ) ")
 //    													.arg(YerothDatabaseTableColumn::DATE_PAIEMENT,
-//    														 DATE_TO_DB_FORMAT_STRING(dateEdit_comptes_bancaires_debut->date()),
+//    														 DATE_TO_DB_FORMAT_STRING(dateEdit_comptabilite_debut->date()),
 //															 YerothDatabaseTableColumn::DATE_PAIEMENT,
-//															 DATE_TO_DB_FORMAT_STRING(dateEdit_comptes_bancaires_fin->date())));
+//															 DATE_TO_DB_FORMAT_STRING(dateEdit_comptabilite_fin->date())));
 //
-//    connect(dateEdit_comptes_bancaires_debut,
+//    connect(dateEdit_comptabilite_debut,
 //    		SIGNAL(dateChanged(const QDate &)),
 //			this,
 //			SLOT(refineYerothLineEdits()));
 //
-//    connect(dateEdit_comptes_bancaires_fin,
+//    connect(dateEdit_comptabilite_fin,
 //    		SIGNAL(dateChanged(const QDate &)),
 //			this,
 //			SLOT(refineYerothLineEdits()));
@@ -331,7 +331,7 @@ void YerothComptesBancairesWindow::setupDateTimeEdits()
 
 
 
-void YerothComptesBancairesWindow::definirManager()
+void YerothComptabiliteWindow::definirManager()
 {
     _logger->log("definirManager");
 
@@ -342,11 +342,11 @@ void YerothComptesBancairesWindow::definirManager()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionInformationEntreprise, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
-    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(this, _curComptesBancairesSqlTableModel)
+    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(this, _curComptabiliteSqlTableModel)
 }
 
 
-void YerothComptesBancairesWindow::definirPasDeRole()
+void YerothComptabiliteWindow::definirPasDeRole()
 {
     _logger->log("definirPasDeRole");
 
@@ -361,23 +361,23 @@ void YerothComptesBancairesWindow::definirPasDeRole()
 }
 
 
-void YerothComptesBancairesWindow::rendreVisible(YerothSqlTableModel *stocksTableModel)
+void YerothComptabiliteWindow::rendreVisible(YerothSqlTableModel *stocksTableModel)
 {
 	_curStocksTableModel = stocksTableModel;
 
-	_curComptesBancairesSqlTableModel = &_allWindows->getSqlTableModel_comptes_bancaires();
+	_curComptabiliteSqlTableModel = &_allWindows->getSqlTableModel_comptes_bancaires();
 
-    setYerothSqlTableModel(_curComptesBancairesSqlTableModel);
+    setYerothSqlTableModel(_curComptabiliteSqlTableModel);
 
 	setVisible(true);
 
 	afficher_comptes_bancaires();
 
-	lineEdit_comptes_bancaires_terme_recherche->setFocus();
+	lineEdit_comptabilite_terme_recherche->setFocus();
 }
 
 
-bool YerothComptesBancairesWindow::export_csv_file()
+bool YerothComptabiliteWindow::export_csv_file()
 {
 	bool success = false;
 
@@ -389,7 +389,7 @@ bool YerothComptesBancairesWindow::export_csv_file()
 	success = YerothUtils::export_csv_file(*this,
 										   *tableView_comptes_doperations_comptables,
 										   tableColumnsToIgnore,
-										   "yeroth-erp-fichier-comptes-bancaires-format-csv",
+										   "yeroth-erp-fichier-comptabilite-format-csv",
 										   "fiche des stocks");
 #endif
 
@@ -405,14 +405,14 @@ bool YerothComptesBancairesWindow::export_csv_file()
 }
 
 
-bool YerothComptesBancairesWindow::imprimer_pdf_document()
+bool YerothComptabiliteWindow::imprimer_pdf_document()
 {
 //	_latex_template_print_pdf_content = YerothUtils::template_lister_stock_tex;
 	return YerothWindowsCommons::imprimer_pdf_document();
 }
 
 
-void YerothComptesBancairesWindow::deconnecter_utilisateur()
+void YerothComptabiliteWindow::deconnecter_utilisateur()
 {
     _allWindows->definirPasDeRole();
 

@@ -1,10 +1,10 @@
 /*
- * yeroth-erp-comptes-bancaires-table-view.cpp
+ * yeroth-erp-comptabilite-table-view.cpp
  *
  *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
-#include "src/widgets/table-view/yeroth-erp-comptes-bancaires-table-view.hpp"
+#include "src/widgets/table-view/yeroth-erp-comptabilite-table-view.hpp"
 
 #include "src/yeroth-erp-windows.hpp"
 
@@ -34,7 +34,7 @@
 #include <QtSql/QSqlError>
 
 
-void YerothERPComptesBancairesTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel)
+void YerothERPComptabiliteTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel)
 {
 	_stdItemModel->_curSqlTableModel = &tableModel;
 
@@ -205,7 +205,7 @@ void YerothERPComptesBancairesTableView::lister_les_elements_du_tableau(YerothSq
 }
 
 
-void YerothERPComptesBancairesTableView::selectionChanged (const QItemSelection & selected,
+void YerothERPComptabiliteTableView::selectionChanged (const QItemSelection & selected,
                                         		  	const QItemSelection & deselected)
 {
     static YerothERPWindows *curAllWindows = YerothUtils::getAllWindows();

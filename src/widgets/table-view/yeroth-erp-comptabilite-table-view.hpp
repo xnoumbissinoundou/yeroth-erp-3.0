@@ -1,5 +1,5 @@
 /*
- * yeroth-erp-comptes-bancaires-table-view.hpp
+ * yeroth-erp-comptabilite-table-view.hpp
  *
  *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
@@ -20,7 +20,7 @@ class YerothSqlTableModel;
 
 class YerothPOSQStandardItemModel;
 
-class YerothERPComptesBancairesTableView : public YerothTableViewWITHpagination
+class YerothERPComptabiliteTableView : public YerothTableViewWITHpagination
 {
 	Q_OBJECT
 
@@ -28,19 +28,19 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-	inline YerothERPComptesBancairesTableView()
+	inline YerothERPComptabiliteTableView()
 	:YerothTableViewWITHpagination()
 	{
 		_stdItemModel->_curTableView = this;
 	}
 
-	inline YerothERPComptesBancairesTableView(QWidget * parent)
+	inline YerothERPComptabiliteTableView(QWidget * parent)
 	:YerothTableViewWITHpagination(parent)
 	{
 		_stdItemModel->_curTableView = this;
 	}
 
-	inline virtual ~YerothERPComptesBancairesTableView()
+	inline virtual ~YerothERPComptabiliteTableView()
 	{
 	}
 
