@@ -138,11 +138,11 @@ private:
 	void setupDateTimeEdits();
 
 
-	QString 				_comptesBancairesDateDebutTransactionFilter;
+	QString 				_comptesDoperationsComptablesTransactionFilter;
 
     YerothLogger			*_logger;
 
-    YerothSqlTableModel 	*_curComptabiliteSqlTableModel;
+    YerothSqlTableModel 	*_curCompte_DOPERATIONS_COMPTABLES_SqlTableModel;
 
     QFont 					*_pushButton_comptabilite_filtrer_font;
 };

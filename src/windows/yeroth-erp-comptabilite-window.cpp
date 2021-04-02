@@ -33,10 +33,10 @@
 
 YerothComptabiliteWindow::YerothComptabiliteWindow()
 :YerothWindowsCommons("yeroth-erp-listing-comptabilite"),
- YerothAbstractClassYerothSearchWindow(YerothDatabase::COMPTES_BANCAIRES),
- _comptesBancairesDateDebutTransactionFilter(YerothUtils::EMPTY_STRING),
+ YerothAbstractClassYerothSearchWindow(YerothDatabase::COMPTES_DOPERATIONS_COMPTABLES),
+ _comptesDoperationsComptablesTransactionFilter(YerothUtils::EMPTY_STRING),
  _logger(new YerothLogger("YerothComptabiliteWindow")),
- _curComptabiliteSqlTableModel(&_allWindows->getSqlTableModel_comptes_doperations_comptables()),
+ _curCompte_DOPERATIONS_COMPTABLES_SqlTableModel(&_allWindows->getSqlTableModel_comptes_doperations_comptables()),
  _pushButton_comptabilite_filtrer_font(0)
 {
     _windowName = QString("%1 - %2")
@@ -58,11 +58,9 @@ YerothComptabiliteWindow::YerothComptabiliteWindow()
                                     	 COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
 
-    setup_select_configure_dbcolumn(YerothDatabase::COMPTES_BANCAIRES);
+    setup_select_configure_dbcolumn(YerothDatabase::COMPTES_DOPERATIONS_COMPTABLES);
 
-    _yeroth_WINDOW_references_dbColumnString.insert(YerothDatabaseTableColumn::REFERENCE_DU_COMPTE_BANCAIRE);
-
-    YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(YerothDatabase::COMPTES_BANCAIRES);
+    YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(YerothDatabase::COMPTES_DOPERATIONS_COMPTABLES);
 
     reinitialiser_colones_db_visibles();
 
@@ -72,7 +70,7 @@ YerothComptabiliteWindow::YerothComptabiliteWindow()
 
     _pushButton_comptabilite_filtrer_font = new QFont(pushButton_comptabilite_filtrer->font());
 
-    tableView_comptes_doperations_comptables->setSqlTableName(&YerothDatabase::COMPTES_BANCAIRES);
+    tableView_comptes_doperations_comptables->setSqlTableName(&YerothDatabase::COMPTES_DOPERATIONS_COMPTABLES);
 
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu, false);
@@ -129,10 +127,10 @@ void YerothComptabiliteWindow::reinitialiser_colones_db_visibles()
 	_visibleDBColumnNameStrList.clear();
 
     _visibleDBColumnNameStrList
-		<< YerothDatabaseTableColumn::REFERENCE_DU_COMPTE_BANCAIRE
-		<< YerothDatabaseTableColumn::INTITULE_DU_COMPTE_BANCAIRE
-		<< YerothDatabaseTableColumn::INSTITUT_BANCAIRE
-		<< YerothDatabaseTableColumn::DESCRIPTION_DU_COMPTE_BANCAIRE;
+		<< YerothDatabaseTableColumn::TYPE_DOPERATION_COMPTABLE
+		<< YerothDatabaseTableColumn::NUMERO_DU_COMPTE_DOPERATION_COMPTABLE
+		<< YerothDatabaseTableColumn::RAISON_DOPERATION_COMPTABLE
+		<< YerothDatabaseTableColumn::DESCRIPTION_DU_TYPE_DOPERATION_COMPTABLE;
 }
 
 
@@ -183,7 +181,7 @@ void YerothComptabiliteWindow::textChangedSearchLineEditsQCompleters()
         	//qDebug() << "++ searchTermList: " << partSearchTerm;
 
         	_searchFilter.append(QString("%1")
-        							.arg(GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::DESCRIPTION_DU_COMPTE_BANCAIRE, partSearchTerm)));
+        							.arg(GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::DESCRIPTION_DU_TYPE_DOPERATION_COMPTABLE, partSearchTerm)));
 
         	if (k != lastIdx)
         	{
@@ -230,12 +228,12 @@ void YerothComptabiliteWindow::textChangedSearchLineEditsQCompleters()
     	}
     }
 
-    QString finalSearchFilter(_comptesBancairesDateDebutTransactionFilter);
+    QString finalSearchFilter(_comptesDoperationsComptablesTransactionFilter);
 
     if (!_searchFilter.isEmpty())
     {
     	QString searchFilterWithDate(QString("%1 AND (%2)")
-    									.arg(_comptesBancairesDateDebutTransactionFilter,
+    									.arg(_comptesDoperationsComptablesTransactionFilter,
     										 _searchFilter));
 
     	finalSearchFilter = searchFilterWithDate;
@@ -274,9 +272,9 @@ void YerothComptabiliteWindow::set_filtrer_font()
 
 void YerothComptabiliteWindow::refineYerothLineEdits()
 {
-	_comptesBancairesDateDebutTransactionFilter.clear();
+	_comptesDoperationsComptablesTransactionFilter.clear();
 
-//	_comptesBancairesDateDebutTransactionFilter.append(QString(" ( %1 >= '%2' AND %3 <= '%4' ) ")
+//	_comptesDoperationsComptablesTransactionFilter.append(QString(" ( %1 >= '%2' AND %3 <= '%4' ) ")
 //    													.arg(YerothDatabaseTableColumn::DATE_PAIEMENT,
 //    														 DATE_TO_DB_FORMAT_STRING(dateEdit_comptabilite_debut->date()),
 //															 YerothDatabaseTableColumn::DATE_PAIEMENT,
@@ -310,9 +308,9 @@ void YerothComptabiliteWindow::setupDateTimeEdits()
 
     dateEdit_comptabilite_fin->setStartDate(GET_CURRENT_DATE);
 
-    _comptesBancairesDateDebutTransactionFilter.clear();
+    _comptesDoperationsComptablesTransactionFilter.clear();
 
-//	_comptesBancairesDateDebutTransactionFilter.append(QString(" ( %1 >= '%2' AND %3 <= '%4' ) ")
+//	_comptesDoperationsComptablesTransactionFilter.append(QString(" ( %1 >= '%2' AND %3 <= '%4' ) ")
 //    													.arg(YerothDatabaseTableColumn::DATE_PAIEMENT,
 //    														 DATE_TO_DB_FORMAT_STRING(dateEdit_comptabilite_debut->date()),
 //															 YerothDatabaseTableColumn::DATE_PAIEMENT,
@@ -342,7 +340,7 @@ void YerothComptabiliteWindow::definirManager()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionInformationEntreprise, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
-    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(this, _curComptabiliteSqlTableModel)
+    MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(this, _curCompte_DOPERATIONS_COMPTABLES_SqlTableModel)
 }
 
 
@@ -365,9 +363,9 @@ void YerothComptabiliteWindow::rendreVisible(YerothSqlTableModel *stocksTableMod
 {
 	_curStocksTableModel = stocksTableModel;
 
-	_curComptabiliteSqlTableModel = &_allWindows->getSqlTableModel_comptes_doperations_comptables();
+	_curCompte_DOPERATIONS_COMPTABLES_SqlTableModel = &_allWindows->getSqlTableModel_comptes_doperations_comptables();
 
-    setYerothSqlTableModel(_curComptabiliteSqlTableModel);
+    setYerothSqlTableModel(_curCompte_DOPERATIONS_COMPTABLES_SqlTableModel);
 
 	setVisible(true);
 
@@ -389,16 +387,16 @@ bool YerothComptabiliteWindow::export_csv_file()
 	success = YerothUtils::export_csv_file(*this,
 										   *tableView_comptes_doperations_comptables,
 										   tableColumnsToIgnore,
-										   "yeroth-erp-fichier-comptabilite-format-csv",
-										   "fiche des stocks");
+										   "yeroth-erp-fichier-comptes-doperations-comptables-format-csv",
+										   "liste des comptes opérations comptables");
 #endif
 
 #ifdef YEROTH_ENGLISH_LANGUAGE
 	success = YerothUtils::export_csv_file(*this,
 										   *tableView_comptes_doperations_comptables,
 										   tableColumnsToIgnore,
-										   "yeroth-erp-bank-account-listing-csv-format",
-										   "stock listing");
+										   "yeroth-erp-financial-accounting-operation-listing-csv-format",
+										   "financial accounting operation listing");
 #endif
 
 	return success;

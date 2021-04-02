@@ -329,6 +329,16 @@ public:
 		return YerothERPWindows::getNextIdFromTable(YerothDatabase::COMPTES_BANCAIRES);
 	}
 
+	static inline int getNextIdSqlTableModel_operations_comptables()
+	{
+		return YerothERPWindows::getNextIdFromTable(YerothDatabase::OPERATIONS_COMPTABLES);
+	}
+
+	static inline int getNextIdSqlTableModel_comptes_doperations_comptables()
+	{
+		return YerothERPWindows::getNextIdFromTable(YerothDatabase::COMPTES_DOPERATIONS_COMPTABLES);
+	}
+
 	static inline int getNextIdSqlTableModel_achats_de_services()
 	{
 		return YerothERPWindows::getNextIdFromTable(YerothDatabase::ACHATS_DE_SERVICES);
