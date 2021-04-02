@@ -100,6 +100,8 @@ YerothERPWindows::YerothERPWindows(QDesktopWidget *desktopWidget)
      _adminDetailWindow(0),
      _adminModifierWindow(0),
      _database(0),
+	 _tableModel_operations_comptables(0),
+	 _tableModel_comptes_doperations_comptables(0),
 	 _tableModel_comptes_bancaires(0),
 	 _tableModel_entreprise_info(0),
 	 _tableModel_historique_paiements(0),
@@ -146,6 +148,8 @@ YerothERPWindows::YerothERPWindows(QDesktopWidget *desktopWidget)
 
     static YerothDatabaseTableColumn aYerothDatabaseTableColumnStaticInstance;
 
+    setupSqlTableModelFromName(YerothDatabase::OPERATIONS_COMPTABLES, &_tableModel_operations_comptables);
+    setupSqlTableModelFromName(YerothDatabase::COMPTES_BANCAIRES, &_tableModel_comptes_doperations_comptables);
     setupSqlTableModelFromName(YerothDatabase::COMPTES_BANCAIRES, &_tableModel_comptes_bancaires);
     setupSqlTableModelFromName(YerothDatabase::ENTREPRISE_INFO, &_tableModel_entreprise_info);
     setupSqlTableModelFromName(YerothDatabase::PAIEMENTS, &_tableModel_historique_paiements);
@@ -741,6 +745,20 @@ void YerothERPWindows::hideAllWindows()
     _adminModifierWindow->rendreInvisible();
 
     _mainWindow->rendreInvisible();
+}
+
+
+YerothSqlTableModel &YerothERPWindows::getSqlTableModel_operations_comptables()
+{
+    _tableModel_operations_comptables->resetFilter();
+    return *_tableModel_operations_comptables;
+}
+
+
+YerothSqlTableModel &YerothERPWindows::getSqlTableModel_comptes_doperations_comptables()
+{
+    _tableModel_comptes_doperations_comptables->resetFilter();
+    return *_tableModel_comptes_doperations_comptables;
 }
 
 

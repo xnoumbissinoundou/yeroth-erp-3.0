@@ -1,0 +1,1 @@
+create table operations_comptables (id int auto_increment primary key, date_doperation_comptable date NOT NULL, montant_au_debit double NOT NULL, montant_au_credit double, intitule_operation_comptable varchar(256), numero_piece_justificative_doperation_comptable varchar(256)); 

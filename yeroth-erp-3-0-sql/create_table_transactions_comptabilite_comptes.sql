@@ -1,1 +1,0 @@
-create table transactions_comptabilite_comptes (id int auto_increment primary key, date_paiement date NOT NULL, heure_paiement time NOT NULL, nom_entreprise varchar(256) NOT NULL, type_de_transaction varchar(256) NOT NULL, montant_transaction double NOT NULL, solde_comptabilite_compte double NOT NULL);

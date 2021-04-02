@@ -181,6 +181,10 @@ public:
 
 	void setupConfiguration();
 
+	YerothSqlTableModel &getSqlTableModel_operations_comptables();
+
+	YerothSqlTableModel &getSqlTableModel_comptes_doperations_comptables();
+
 	YerothSqlTableModel &getSqlTableModel_comptes_bancaires();
 
 	YerothSqlTableModel &getSqlTableModel_entreprise_info();
@@ -486,6 +490,8 @@ private:
 
 	static QMap<QString, YerothSqlTableModel *> _sqltablenameTOsqltablemodel;
 
+	YerothSqlTableModel 	*_tableModel_operations_comptables;
+	YerothSqlTableModel 	*_tableModel_comptes_doperations_comptables;
 	YerothSqlTableModel 	*_tableModel_comptes_bancaires;
 	YerothSqlTableModel 	*_tableModel_entreprise_info;
 	YerothSqlTableModel 	*_tableModel_historique_paiements;

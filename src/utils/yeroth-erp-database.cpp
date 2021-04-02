@@ -11,13 +11,17 @@
 
 const QString YerothDatabase::COMPTES_BANCAIRES			("comptes_bancaires");
 
+const QString YerothDatabase::OPERATIONS_COMPTABLES		("operations_comptables");
+
+const QString YerothDatabase::COMPTES_DOPERATIONS_COMPTABLES	("comptes_doperations_comptables");
+
 const QString YerothDatabase::ENTREPRISE_INFO			("entreprise_info");
 
 const QString YerothDatabase::PAIEMENTS					("paiements");
 
 const QString YerothDatabase::USERS						("users");
 
-const QString YerothDatabase::TITRES						("titres");
+const QString YerothDatabase::TITRES					("titres");
 
 const QString YerothDatabase::LOCALISATIONS				("localisations");
 
