@@ -778,7 +778,7 @@ int main(int argc, char *argv[])
 
     QStringList sql_table_list;
 
-#ifdef YEROTH_FEATURE_COMPTABILITE
+#ifdef YEROTH_FEATURES_COMPTABILITE_yes
     sql_table_list
 			<< FILE_YEROTH_ERP_3_0_SQL_TABLE_OPERATIONS_COMPTABLES
 			<< FILE_YEROTH_ERP_3_0_SQL_TABLE_COMPTES_DOPERATIONS_COMPTABLES;

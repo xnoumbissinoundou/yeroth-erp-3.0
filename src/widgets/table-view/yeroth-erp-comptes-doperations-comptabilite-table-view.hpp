@@ -1,11 +1,11 @@
 /*
- * yeroth-erp-comptabilite-table-view.hpp
+ * yeroth-erp-comptes-doperations-comptabilite-table-view.hpp
  *
  *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
-#ifndef SRC_YEROTH_COMPTES_BANCAIRES_TABLE_VIEW_HPP_
-#define SRC_YEROTH_COMPTES_BANCAIRES_TABLE_VIEW_HPP_
+#ifndef SRC_YEROTH_COMPTES_DOPERATIONS_COMPTABLE_TABLE_VIEW_HPP_
+#define SRC_YEROTH_COMPTES_DOPERATIONS_COMPTABLE_TABLE_VIEW_HPP_
 
 #include "src/include/yeroth-erp-3-0-software.text-configuration.hpp"
 
@@ -20,7 +20,7 @@ class YerothSqlTableModel;
 
 class YerothPOSQStandardItemModel;
 
-class YerothERPComptabiliteTableView : public YerothTableViewWITHpagination
+class YerothERPComptes_doperations_comptabilite_TableView : public YerothTableViewWITHpagination
 {
 	Q_OBJECT
 
@@ -28,19 +28,19 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-	inline YerothERPComptabiliteTableView()
+	inline YerothERPComptes_doperations_comptabilite_TableView()
 	:YerothTableViewWITHpagination()
 	{
 		_stdItemModel->_curTableView = this;
 	}
 
-	inline YerothERPComptabiliteTableView(QWidget * parent)
+	inline YerothERPComptes_doperations_comptabilite_TableView(QWidget * parent)
 	:YerothTableViewWITHpagination(parent)
 	{
 		_stdItemModel->_curTableView = this;
 	}
 
-	inline virtual ~YerothERPComptabiliteTableView()
+	inline virtual ~YerothERPComptes_doperations_comptabilite_TableView()
 	{
 	}
 
@@ -53,4 +53,4 @@ protected:
 };
 
 
-#endif /* SRC_YEROTH_COMPTES_BANCAIRES_TABLE_VIEW_HPP_ */
+#endif /* SRC_YEROTH_COMPTES_DOPERATIONS_COMPTABLE_TABLE_VIEW_HPP_ */

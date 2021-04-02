@@ -36,7 +36,7 @@ YerothComptabiliteWindow::YerothComptabiliteWindow()
  YerothAbstractClassYerothSearchWindow(YerothDatabase::COMPTES_BANCAIRES),
  _comptesBancairesDateDebutTransactionFilter(YerothUtils::EMPTY_STRING),
  _logger(new YerothLogger("YerothComptabiliteWindow")),
- _curComptabiliteSqlTableModel(&_allWindows->getSqlTableModel_comptes_bancaires()),
+ _curComptabiliteSqlTableModel(&_allWindows->getSqlTableModel_comptes_doperations_comptables()),
  _pushButton_comptabilite_filtrer_font(0)
 {
     _windowName = QString("%1 - %2")
@@ -365,7 +365,7 @@ void YerothComptabiliteWindow::rendreVisible(YerothSqlTableModel *stocksTableMod
 {
 	_curStocksTableModel = stocksTableModel;
 
-	_curComptabiliteSqlTableModel = &_allWindows->getSqlTableModel_comptes_bancaires();
+	_curComptabiliteSqlTableModel = &_allWindows->getSqlTableModel_comptes_doperations_comptables();
 
     setYerothSqlTableModel(_curComptabiliteSqlTableModel);
 

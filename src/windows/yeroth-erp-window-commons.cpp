@@ -593,7 +593,7 @@ void YerothWindowsCommons::menu()
 void YerothWindowsCommons::comptabilite()
 {
     rendreInvisible();
-    _allWindows->_comptesBancairesWindow->rendreVisible(_curStocksTableModel);
+    _allWindows->_comptabiliteWindow->rendreVisible(_curStocksTableModel);
 }
 
 

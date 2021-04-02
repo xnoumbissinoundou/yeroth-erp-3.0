@@ -447,7 +447,7 @@ public:
 	YerothAchatsWindow 									*_achatsWindow;
 	YerothStocksWindow 									*_stocksWindow;
 	YerothMarchandisesWindow 							*_marchandisesWindow;
-	YerothComptabiliteWindow						*_comptesBancairesWindow;
+	YerothComptabiliteWindow							*_comptabiliteWindow;
 	YerothAlertesWindow									*_listerAlertesWindow;
 	YerothPaiementsWindow								*_paiementsWindow;
 	YerothVentesWindow									*_ventesWindow;

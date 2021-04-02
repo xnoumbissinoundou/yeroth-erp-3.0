@@ -901,7 +901,7 @@
      <attribute name="title">
       <string>comptes d'opérations comptables</string>
      </attribute>
-     <widget class="YerothERPComptabiliteTableView" name="tableView_comptes_doperations_comptables">
+     <widget class="YerothERPComptes_doperations_comptabilite_TableView" name="tableView_comptes_doperations_comptables">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -13419,7 +13419,7 @@ background-color: rgb(0, 0, 0); </string>
       <property name="title">
        <string>ASSOCIATIONS types d'opérations - comptes d'opérations</string>
       </property>
-      <widget class="YerothERPComptabiliteTableView" name="tableView_lister_des_marchandises_comptes">
+      <widget class="YerothERPComptes_doperations_comptabilite_TableView" name="tableView_lister_des_marchandises_comptes">
        <property name="geometry">
         <rect>
          <x>3</x>
@@ -17181,9 +17181,9 @@ background-color: rgb(0, 0, 0); </string>
    <header>src/widgets/yeroth-erp-line-edit.hpp</header>
   </customwidget>
   <customwidget>
-   <class>YerothERPComptabiliteTableView</class>
+   <class>YerothERPComptes_doperations_comptabilite_TableView</class>
    <extends>QTableView</extends>
-   <header>src/widgets/table-view/yeroth-erp-comptabilite-table-view.hpp</header>
+   <header>src/widgets/table-view/yeroth-erp-comptes-doperations-comptabilite-table-view.hpp</header>
   </customwidget>
   <customwidget>
    <class>YerothComboBox</class>

@@ -17,6 +17,7 @@ USAGE="
 	[-s] : simulate 'yeroth-erp-3.0' compilation
 	[-t] : compile 'yeroth-erp-3.0' with QT Test library activated
 					for unit tests
+	[-a] : compile 'yeroth-erp-3.0' using financial accounting feature
 	[-k] : compile 'yeroth-erp-3.0' to use with virtual keyboard
 	[-c] : continue previous stopped compilation
 	[-g] : compiles 'yeroth-erp-3.0' with debug information
@@ -34,6 +35,7 @@ NUMBER_OF_JOBS=4
 
 yerothCheckMemoryFlag=
 qtTestLibFlag=
+financial_accounting_flag=
 virtualKeyboardFlag=
 simulationFlag=
 jobsFlag=
@@ -44,7 +46,7 @@ continueFlag=
 releaseBuildFlag=
 
 
-while getopts 'mtkhsgv:fecj:r' OPTION
+while getopts 'mtakhsgv:fecj:r' OPTION
 do
   case $OPTION in
 
@@ -61,7 +63,11 @@ do
         echo "QT testlib incluse."
 		;;
 
-    k)	virtualKeyboardFlag=1
+    a)	financial_accounting_flag=1
+        echo "COMPTABILITÉ ACTIVÉE"
+		;;
+
+		k)	virtualKeyboardFlag=1
         echo "clavier virtuel activé."
 		;;
 
@@ -162,6 +168,12 @@ if [ $qtTestLibFlag ]; then
     qtTestLibVal="NO_YEROTH_ERP_3_0_TESTING_UNIT_TEST"
 fi
 
+if [ $financial_accounting_flag ]; then
+	financial_accounting_value="YEROTH_FEATURES_COMPTABILITE_yes"
+else
+	financial_accounting_value="YEROTH_FEATURES_COMPTABILITE_no"
+fi
+
 if [ $virtualKeyboardFlag ]; then
     virtualKeyboardVal="YEROTH_ERP_3_0_TOUCH_SCREEN"
 	else
@@ -209,9 +221,9 @@ fi
 
 
 if [ $continueFlag ]; then
-	echo "make -j$jobsVal YEROTH_ERP_3_0_TEST=$qtTestLibVal YEROTH_VIRTUAL_KEYBOARD_OPTIONS=$virtualKeyboardVal YEROTH_DEBUG_LOG=$debugVal YEROTH_VERSION=$yerothVersionVal YEROTH_LANGUAGE=$languageVal YEROTH_CHECK_MEMORY=$yerothCheckMemoryVal > ${yerothVersionVal}.out.log	2> ${yerothVersionVal}.error.log"
+	echo "make -j$jobsVal YEROTH_ERP_3_0_TEST=$qtTestLibVal YEROTH_FEATURES_COMPTABILITE_VALUE=$financial_accounting_value YEROTH_VIRTUAL_KEYBOARD_OPTIONS=$virtualKeyboardVal YEROTH_DEBUG_LOG=$debugVal YEROTH_VERSION=$yerothVersionVal YEROTH_LANGUAGE=$languageVal YEROTH_CHECK_MEMORY=$yerothCheckMemoryVal > ${yerothVersionVal}.out.log	2> ${yerothVersionVal}.error.log"
 else
-	echo "make clean &&  make -j$jobsVal YEROTH_ERP_3_0_TEST=$qtTestLibVal YEROTH_VIRTUAL_KEYBOARD_OPTIONS=$virtualKeyboardVal YEROTH_DEBUG_LOG=$debugVal YEROTH_VERSION=$yerothVersionVal YEROTH_LANGUAGE=$languageVal YEROTH_CHECK_MEMORY=$yerothCheckMemoryVal > ${yerothVersionVal}.out.log	2> ${yerothVersionVal}.error.log"
+	echo "make clean &&  make -j$jobsVal YEROTH_ERP_3_0_TEST=$qtTestLibVal YEROTH_FEATURES_COMPTABILITE_VALUE=$financial_accounting_value YEROTH_VIRTUAL_KEYBOARD_OPTIONS=$virtualKeyboardVal YEROTH_DEBUG_LOG=$debugVal YEROTH_VERSION=$yerothVersionVal YEROTH_LANGUAGE=$languageVal YEROTH_CHECK_MEMORY=$yerothCheckMemoryVal > ${yerothVersionVal}.out.log	2> ${yerothVersionVal}.error.log"
 fi
 
 
@@ -231,6 +243,7 @@ qmake
 if [ $continueFlag ]; then
 	make -j$jobsVal \
 		YEROTH_ERP_3_0_TEST=$qtTestLibVal \
+		YEROTH_FEATURES_COMPTABILITE_VALUE=$financial_accounting_value \
 		YEROTH_VIRTUAL_KEYBOARD_OPTIONS=$virtualKeyboardVal \
 		YEROTH_CHECK_MEMORY=$yerothCheckMemoryVal \
 		YEROTH_DEBUG_LOG=$debugVal \
@@ -241,6 +254,7 @@ else
 	make clean && \
 	make -j$jobsVal \
 		YEROTH_ERP_3_0_TEST=$qtTestLibVal \
+		YEROTH_FEATURES_COMPTABILITE_VALUE=$financial_accounting_value \
 		YEROTH_VIRTUAL_KEYBOARD_OPTIONS=$virtualKeyboardVal \
 		YEROTH_CHECK_MEMORY=$yerothCheckMemoryVal \
 		YEROTH_DEBUG_LOG=$debugVal \

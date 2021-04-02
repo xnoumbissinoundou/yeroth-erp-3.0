@@ -1,10 +1,10 @@
 /*
- * yeroth-erp-comptabilite-table-view.cpp
+ * yeroth-erp-comptes-doperations-comptabilite-table-view.hpp.cpp
  *
  *      Author: DR. XAVIER NOUMBISSI NOUNDOU
  */
 
-#include "src/widgets/table-view/yeroth-erp-comptabilite-table-view.hpp"
+#include "yeroth-erp-comptes-doperations-comptabilite-table-view.hpp"
 
 #include "src/yeroth-erp-windows.hpp"
 
@@ -34,7 +34,7 @@
 #include <QtSql/QSqlError>
 
 
-void YerothERPComptabiliteTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel)
+void YerothERPComptes_doperations_comptabilite_TableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableModel)
 {
 	_stdItemModel->_curSqlTableModel = &tableModel;
 
@@ -197,15 +197,15 @@ void YerothERPComptabiliteTableView::lister_les_elements_du_tableau(YerothSqlTab
 
     static YerothERPWindows *curAllWindows = YerothUtils::getAllWindows();
 
-    YEROTH_SET_LAST_TABLE_VIEW_SELECTED_ROW_ID(curAllWindows, curAllWindows->_comptesBancairesWindow)
+    YEROTH_SET_LAST_TABLE_VIEW_SELECTED_ROW_ID(curAllWindows, curAllWindows->_comptabiliteWindow)
 
     resizeColumnsToContents();
 
-    curAllWindows->_comptesBancairesWindow->handle_some_actions_tools_enabled();
+    curAllWindows->_comptabiliteWindow->handle_some_actions_tools_enabled();
 }
 
 
-void YerothERPComptabiliteTableView::selectionChanged (const QItemSelection & selected,
+void YerothERPComptes_doperations_comptabilite_TableView::selectionChanged (const QItemSelection & selected,
                                         		  	const QItemSelection & deselected)
 {
     static YerothERPWindows *curAllWindows = YerothUtils::getAllWindows();
@@ -222,7 +222,7 @@ void YerothERPComptabiliteTableView::selectionChanged (const QItemSelection & se
 
     	for (uint j = 0; j < selectedIndexes.size(); ++j)
     	{
-    		curAllWindows->_comptesBancairesWindow->
+    		curAllWindows->_comptabiliteWindow->
     				getQModelIndex_dbID_from_MODEL_INDEX(selectedIndexes.at(j),
     													 db_ID_in_out);
 

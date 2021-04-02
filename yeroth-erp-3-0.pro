@@ -9,6 +9,7 @@ YEROTH_ERP_3_0_TOUCH_SCREEN = "NO_YEROTH_ERP_3_0_TOUCH_SCREEN_SET"
 DEFINES += $${YEROTH_ERP_3_0_CONFIG_BUILD}
 DEFINES += $${YEROTH_ERP_3_0_TOUCH_SCREEN}
 DEFINES += ${YEROTH_VIRTUAL_KEYBOARD_OPTIONS}
+DEFINES += ${YEROTH_FEATURES_COMPTABILITE_VALUE}
 DEFINES += ${YEROTH_LANGUAGE}
 DEFINES += ${YEROTH_DEBUG_LOG}
 DEFINES += ${YEROTH_VERSION}
@@ -156,7 +157,7 @@ HEADERS = src/include/yeroth-erp-3-0-precompiled-header.hpp \
 			src/widgets/widgets-table/yeroth-erp-tab-widget.hpp \
 			src/widgets/table-view/yeroth-erp-table-view-with-pagination.hpp \
 			src/widgets/table-view/yeroth-erp-table-view.hpp \
-			src/widgets/table-view/yeroth-erp-comptabilite-table-view.hpp \
+			src/widgets/table-view/yeroth-erp-comptes-doperations-comptabilite-table-view.hpp \
 			src/widgets/table-view/yeroth-erp-paiements-table-view.hpp \
 		  src/widgets/table-view/yeroth-erp-stocks-table-view.hpp \
 		  src/widgets/table-view/yeroth-erp-ventes-table-view.hpp \
@@ -284,7 +285,7 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 	  	src/widgets/yeroth-erp-qcolumn-view.cpp \
 			src/widgets/table-view/yeroth-erp-table-view-with-pagination.cpp \
 			src/widgets/table-view/yeroth-erp-table-view.cpp \
-			src/widgets/table-view/yeroth-erp-comptabilite-table-view.cpp \
+			src/widgets/table-view/yeroth-erp-comptes-doperations-comptabilite-table-view.cpp \
 		  src/widgets/table-view/yeroth-erp-paiements-table-view.cpp \
 		  src/widgets/table-view/yeroth-erp-stocks-table-view.cpp \
 			src/widgets/table-view/yeroth-erp-ventes-table-view.cpp \
