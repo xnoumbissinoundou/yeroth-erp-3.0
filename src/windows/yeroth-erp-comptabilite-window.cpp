@@ -47,6 +47,7 @@ YerothComptabiliteWindow::YerothComptabiliteWindow()
 
     mySetupUi(this);
 
+#ifdef YEROTH_FEATURES_COMPTABILITE_yes
     setYerothTableView_FROM_WINDOWS_COMMONS(tableView_comptes_doperations_comptables);
 
 
@@ -99,6 +100,8 @@ YerothComptabiliteWindow::YerothComptabiliteWindow()
     connect(actionQui_suis_je, SIGNAL(triggered()), this, SLOT(qui_suis_je()));
 
     setupShortcuts();
+
+#endif //#ifdef YEROTH_FEATURES_COMPTABILITE_yes
 }
 
 

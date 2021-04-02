@@ -316,9 +316,9 @@ void YerothERPWindows::createAllYerothPosUserWindows()
     _achatsWindow 					= new YerothAchatsWindow;
     _stocksWindow 					= new YerothStocksWindow;
     _marchandisesWindow 			= new YerothMarchandisesWindow;
-    _comptabiliteWindow = new YerothComptabiliteWindow;
+    _comptabiliteWindow 			= new YerothComptabiliteWindow;
     _listerAlertesWindow			= new YerothAlertesWindow;
-    _paiementsWindow		= new YerothPaiementsWindow;
+    _paiementsWindow				= new YerothPaiementsWindow;
     _ventesWindow					= new YerothVentesWindow;
     _pdVenteListStocksWindow		= new YerothPointDeVenteListStocksWindow;
     _fournisseursWindow				= new YerothERPFournisseursWindow;
@@ -474,7 +474,6 @@ void YerothERPWindows::definirMagasinier()
     _achatsWindow->definirMagasinier();
     _stocksWindow->definirMagasinier();
     _marchandisesWindow->definirMagasinier();
-    _comptabiliteWindow->definirMagasinier();
     _listerAlertesWindow->definirMagasinier();
     _paiementsWindow->definirMagasinier();
     _ventesWindow->definirMagasinier();
@@ -511,7 +510,6 @@ void YerothERPWindows::definirCaissier()
     _achatsWindow->definirCaissier();
     _stocksWindow->definirCaissier();
     _marchandisesWindow->definirCaissier();
-    _comptabiliteWindow->definirCaissier();
     _listerAlertesWindow->definirCaissier();
     _paiementsWindow->definirCaissier();
     _ventesWindow->definirCaissier();
@@ -556,6 +554,10 @@ void YerothERPWindows::definirManager()
     _clientsWindow->definirManager();
     _payerAuCompteClientWindow->definirManager();
 
+#ifdef YEROTH_FEATURES_COMPTABILITE_yes
+    _comptabiliteWindow->definirManager();
+#endif
+
     _adminWindow->definirManager();
     _adminCreateWindow->definirManager();
     _adminListerWindow->definirManager();
@@ -592,7 +594,6 @@ void YerothERPWindows::definirVendeur()
     _achatsWindow->definirVendeur();
     _stocksWindow->definirVendeur();
     _marchandisesWindow->definirVendeur();
-    _comptabiliteWindow->definirVendeur();
     _listerAlertesWindow->definirVendeur();
     _paiementsWindow->definirVendeur();
     _ventesWindow->definirVendeur();
@@ -636,7 +637,6 @@ void YerothERPWindows::definirGestionaireDesStocks()
     _achatsWindow->definirGestionaireDesStocks();
     _stocksWindow->definirGestionaireDesStocks();
     _marchandisesWindow->definirGestionaireDesStocks();
-    _comptabiliteWindow->definirGestionaireDesStocks();
     _listerAlertesWindow->definirGestionaireDesStocks();
     _paiementsWindow->definirGestionaireDesStocks();
     _ventesWindow->definirGestionaireDesStocks();
