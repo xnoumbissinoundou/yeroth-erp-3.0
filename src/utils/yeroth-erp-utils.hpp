@@ -166,6 +166,8 @@ public:
 						  	  	  	  	  	  	 const QString &aStockServiceDesignation,
 												 QString &curExistingReferenceCategoryDesignation_PRODUCT_in_out);
 
+	static QString GET_DAYOFWEEK_FROM_QT_INT_CONSTANT(int day_of_week);
+
     static bool UPDATE_PREVIOUS_SELLING_PRICE_IN_ProductList(const YerothERPStockMarchandiseData &aServiceStockData,
     										 	 	 	 	 YerothWindowsCommons 		 	 	 *_callingWindow = 0);
 
@@ -753,6 +755,22 @@ public:
     static const QString STRING_STYLESHEETS_YEROTH_ERP_3_0;
 
 	static const QString STRING_STYLESHEET_COLOR_YEROTHGREEN;
+
+
+	static const QString STRING_MONDAY;
+
+	static const QString STRING_TUESDAY;
+
+	static const QString STRING_WEDNESDAY;
+
+	static const QString STRING_THURSDAY;
+
+	static const QString STRING_FRIDAY;
+
+	static const QString STRING_SATURDAY;
+
+	static const QString STRING_SUNDAY;
+
 
 	static const QColor YEROTH_WHITE_COLOR;
 

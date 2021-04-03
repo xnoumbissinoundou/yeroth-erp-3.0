@@ -259,6 +259,22 @@ const QString YerothUtils::STRING_STYLESHEETS_YEROTH_ERP_3_0("QLabel { font-size
 
 const QString YerothUtils::STRING_STYLESHEET_COLOR_YEROTHGREEN("QLabel { color : rgb(0, 255, 100); }");
 
+
+const QString YerothUtils::STRING_MONDAY("MONDAY");
+
+const QString YerothUtils::STRING_TUESDAY("TUESDAY");
+
+const QString YerothUtils::STRING_WEDNESDAY("WEDNESDAY");
+
+const QString YerothUtils::STRING_THURSDAY("THURSDAY");
+
+const QString YerothUtils::STRING_FRIDAY("FRIDAY");
+
+const QString YerothUtils::STRING_SATURDAY("SATURDAY");
+
+const QString YerothUtils::STRING_SUNDAY("SUNDAY");
+
+
 const QColor YerothUtils::YEROTH_WHITE_COLOR(QColor(COLOUR_RGB_YEROTH_WHITE_255_255_255));
 
 const QColor YerothUtils::YEROTH_BLACK_COLOR(QColor(COLOUR_RGB_YEROTH_BLACK_0_0_0));
@@ -1148,6 +1164,29 @@ enum service_stock_already_exist_type
     marchandisesTableModel.resetFilter();
 
     return SERVICE_STOCK_UNDEFINED;
+}
+
+
+QString YerothUtils::GET_DAYOFWEEK_FROM_QT_INT_CONSTANT(int day_of_week)
+{
+	switch(day_of_week)
+	{
+		case 1: return YerothUtils::STRING_MONDAY;
+
+		case 2: return YerothUtils::STRING_TUESDAY;
+
+		case 3: return YerothUtils::STRING_WEDNESDAY;
+
+		case 4: return YerothUtils::STRING_THURSDAY;
+
+		case 5: return YerothUtils::STRING_FRIDAY;
+
+		case 6: return YerothUtils::STRING_SATURDAY;
+
+		case 7: return YerothUtils::STRING_SUNDAY;
+
+		default: return YerothUtils::EMPTY_STRING;
+	}
 }
 
 

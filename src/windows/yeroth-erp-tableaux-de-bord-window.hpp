@@ -293,7 +293,6 @@ protected:
 
     virtual void setupShortcuts();
 
-
 private slots:
 
 	void handle_tab_business_turnover_progress_radio_button(bool);
@@ -327,10 +326,11 @@ private:
 		SUJET_ACTION_BUSINESS_TURNOVER_PROGRESS				= 2
     };
 
+    void setupDateTimeEdits_EVOLUTION_DES_CHIFFRES_DAFFAIRES();
+
     void setupDateTimeEdits_COMPARAISON_DES_CHIFFRES_DAFFAIRES();
 
     void setupDateTimeEdits_BILAN_COMPTABLE();
-
 
 	static const QString OPERATION_GENERER;
 	static const QString OPERATION_GENERER_CHIFFRE_DAFFAIRE;

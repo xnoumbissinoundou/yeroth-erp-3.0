@@ -9191,7 +9191,7 @@
        <rect>
         <x>97</x>
         <y>165</y>
-        <width>311</width>
+        <width>108</width>
         <height>21</height>
        </rect>
       </property>
@@ -10554,7 +10554,7 @@
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
-     <widget class="QRadioButton" name="radioButton_mensuelle">
+     <widget class="QRadioButton" name="radioButton_mensuel">
       <property name="geometry">
        <rect>
         <x>97</x>
@@ -10564,13 +10564,13 @@
        </rect>
       </property>
       <property name="text">
-       <string>mensuelle</string>
+       <string>mensuel</string>
       </property>
      </widget>
      <widget class="QRadioButton" name="radioButton_jour_semaine">
       <property name="geometry">
        <rect>
-        <x>254</x>
+        <x>255</x>
         <y>93</y>
         <width>150</width>
         <height>21</height>

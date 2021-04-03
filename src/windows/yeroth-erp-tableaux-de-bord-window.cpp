@@ -25,6 +25,8 @@
 
 #include <QtWidgets/QFileDialog>
 
+#include <QtCore/QDateTime>
+
 #include <QtCore/QtMath>
 
 #include <QtCore/QPair>
@@ -137,12 +139,18 @@ YerothTableauxDeBordWindow::YerothTableauxDeBordWindow()
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
                                        "QMessageBox QLabel {color: rgb(%2);}")
-                               .arg(COLOUR_RGB_STRING_YEROTH_INDIGO_83_0_125,
-                                    COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
+                            		.arg(COLOUR_RGB_STRING_YEROTH_INDIGO_83_0_125,
+                            			 COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
+
+
+    setupDateTimeEdits_EVOLUTION_DES_CHIFFRES_DAFFAIRES();
+
 
     setupDateTimeEdits_COMPARAISON_DES_CHIFFRES_DAFFAIRES();
 
+
     setupDateTimeEdits_BILAN_COMPTABLE();
+
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionExporter_au_format_csv, false);
@@ -173,13 +181,6 @@ YerothTableauxDeBordWindow::YerothTableauxDeBordWindow()
     _moisToNombre[MOIS_12] = 12;
 
 
-    setupTab_BILAN_COMPTABLE();
-
-    setupTab_COMPARAISON_DES_CHIFFRES_DAFFAIRES();
-
-    setupTab_EVOLUTION_DU_CHIFFRE_DAFFAIRE();
-
-
     // Menu actions
     connect( actionExporter_au_format_csv, SIGNAL(triggered()), this, SLOT(export_csv_file()));
     connect( actionChanger_utilisateur, SIGNAL( triggered() ), this, SLOT( changer_utilisateur() ) );
@@ -193,7 +194,7 @@ YerothTableauxDeBordWindow::YerothTableauxDeBordWindow()
     connect( actionQui_suis_je, SIGNAL(triggered()), this, SLOT(qui_suis_je()) );
 
 
-    connect(radioButton_mensuelle,
+    connect(radioButton_mensuel,
     		SIGNAL(toggled(bool)),
 			this,
 			SLOT(handle_tab_business_turnover_progress_radio_button(bool)));
@@ -216,6 +217,13 @@ YerothTableauxDeBordWindow::YerothTableauxDeBordWindow()
     		 SIGNAL(currentTextChanged(const QString &)),
     		 this,
 			 SLOT(changeLineEditEvolutionObjetsTextSetup(const QString &)));
+
+
+    setupTab_BILAN_COMPTABLE();
+
+    setupTab_COMPARAISON_DES_CHIFFRES_DAFFAIRES();
+
+    setupTab_EVOLUTION_DU_CHIFFRE_DAFFAIRE();
 
 
 #ifdef YEROTH_CLIENT
@@ -241,14 +249,18 @@ YerothTableauxDeBordWindow::YerothTableauxDeBordWindow()
 
 void YerothTableauxDeBordWindow::handle_tab_business_turnover_progress_radio_button(bool toggled)
 {
-	if (radioButton_mensuelle->isChecked())
+	if (radioButton_mensuel->isChecked())
 	{
+		checkBox_analyse_comparee->setEnabled(true);
+
 		handle_enabled_chiffre_daffaire_mois(true);
 
 		handle_enabled_chiffre_daffaire_jour_semaine(false);
 	}
 	else if (radioButton_jour_semaine->isChecked())
 	{
+		checkBox_analyse_comparee->setEnabled(false);
+
 		handle_enabled_chiffre_daffaire_jour_semaine(true);
 
 		handle_enabled_chiffre_daffaire_mois(false);
@@ -293,6 +305,13 @@ void YerothTableauxDeBordWindow::handleTabChanged(int index)
     	connect( actionGenererPDF, SIGNAL(triggered()), this, SLOT(choisirEvolutionDuChiffreDaffaire()) );
     	connect( actionReinitialiserRecherche, SIGNAL(triggered()), this, SLOT(reinitialiser_chiffre_affaire()) );
     }
+}
+
+
+void YerothTableauxDeBordWindow::setupDateTimeEdits_EVOLUTION_DES_CHIFFRES_DAFFAIRES()
+{
+	dateEdit_chiffre_daffaire_jour_semaine_debut->setStartDate(GET_CURRENT_DATE);
+	dateEdit_chiffre_daffaire_jour_semaine_fin->setStartDate(GET_CURRENT_DATE);
 }
 
 
@@ -3950,13 +3969,88 @@ void YerothTableauxDeBordWindow::handle_enabled_chiffre_daffaire_mois(bool enabl
 
 void YerothTableauxDeBordWindow::calculer_chiffre_daffaire_jour_semaine()
 {
+//	QDEBUG_STRING_OUTPUT_1("calculer_chiffre_daffaire_jour_semaine");
+
 	_logger->log("calculer_chiffre_daffaire_jour_semaine");
+
+	if (dateEdit_chiffre_daffaire_jour_semaine_fin <
+		dateEdit_chiffre_daffaire_jour_semaine_debut)
+	{
+        YerothQMessageBox::warning(this, QObject::trUtf8("évolution du chiffre d'affaire"),
+                                   QObject::trUtf8("Le jour de 'début' doit être "
+                                		   	   	   "antérieur au jour de la 'fin' !"));
+        return ;
+	}
+
+	QMap<QString, double> dayOfWeek__TO__businessturnover;
+
+	qint64 dates_range = dateEdit_chiffre_daffaire_jour_semaine_debut->
+			date().daysTo(dateEdit_chiffre_daffaire_jour_semaine_fin->date()) + 1;
+
+
+	QString string_chiffre_daffaire_semaine_query;
+
+	int current_day_of_week;
+
+	QSqlQuery qsql_query;
+
+	QDateTime current_day_date = dateEdit_chiffre_daffaire_jour_semaine_debut->dateTime();
+
+	double a_temp_day_of_week_business_turnover = 0.0;
+
+	double current_day_business_turnover = 0.0;
+
+	int current_query_size;
+
+	qint64 i = 0;
+
+	do
+	{
+		current_day_of_week = current_day_date.date().dayOfWeek();
+
+		string_chiffre_daffaire_semaine_query =
+				QString("SELECT (%1 - %2) FROM %3 WHERE %4='%5'")
+				.arg(YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
+						YerothDatabaseTableColumn::MONTANT_TVA,
+						YerothDatabase::STOCKS_VENDU,
+						YerothDatabaseTableColumn::DATE_VENTE,
+						DATE_TO_DB_FORMAT_STRING(current_day_date));
+
+		qsql_query.clear();
+
+		current_query_size = YerothUtils::execQuery(qsql_query, string_chiffre_daffaire_semaine_query);
+
+		while (current_query_size > 0 && qsql_query.next())
+		{
+			current_day_business_turnover = qsql_query.value(0).toDouble();
+
+			QString STRING_current_day_of_week =
+					YerothUtils::GET_DAYOFWEEK_FROM_QT_INT_CONSTANT(current_day_of_week);
+
+			if (! YerothUtils::isEqualCaseInsensitive(YerothUtils::EMPTY_STRING, STRING_current_day_of_week))
+			{
+				a_temp_day_of_week_business_turnover =
+						dayOfWeek__TO__businessturnover[STRING_current_day_of_week];
+
+				dayOfWeek__TO__businessturnover.insert(STRING_current_day_of_week,
+						current_day_business_turnover +
+						a_temp_day_of_week_business_turnover);
+			}
+		}
+
+		current_day_date = current_day_date.addDays(1);
+
+		++i;
+	}
+	while(i < dates_range);
+
+//	qDebug() << dayOfWeek__TO__businessturnover;
 }
 
 
 void YerothTableauxDeBordWindow::calculer_chiffre_daffaire_mois()
 {
-    _logger->log("calculerChiffresDaffaireMois");
+    _logger->log("calculer_chiffre_daffaire_mois");
 
     if (comboBox_mois_debut_chiffre_affaire->currentIndex() >
         comboBox_mois_fin_chiffre_affaire->currentIndex())
@@ -4445,13 +4539,14 @@ void YerothTableauxDeBordWindow::calculer_chiffre_daffaire_mois()
 
 void YerothTableauxDeBordWindow::choisirEvolutionDuChiffreDaffaire()
 {
-	if (checkBox_analyse_comparee->isChecked())
+	if (checkBox_analyse_comparee->isEnabled() &&
+		checkBox_analyse_comparee->isChecked())
 	{
 		analyseComparee();
 	}
 	else
 	{
-		if (radioButton_mensuelle->isChecked())
+		if (radioButton_mensuel->isChecked())
 		{
 			calculer_chiffre_daffaire_mois();
 		}
