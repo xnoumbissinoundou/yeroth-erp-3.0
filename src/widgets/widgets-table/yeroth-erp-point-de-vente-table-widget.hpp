@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-point-de-vente-table-widget.hpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef SRC_WIDGETS_YEROTH_POINT_DE_VENTE_TABLE_WIDGET_HPP_

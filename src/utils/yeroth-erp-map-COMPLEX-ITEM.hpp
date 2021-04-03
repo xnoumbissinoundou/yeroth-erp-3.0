@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-map-COMPLEX-ITEM.hpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef SRC_YEROTH_MAP_COMPLEX_ITEM_HPP_

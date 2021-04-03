@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-sqltable-model.hpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef YEROTH_SQLTABLE_MODEL_HPP_

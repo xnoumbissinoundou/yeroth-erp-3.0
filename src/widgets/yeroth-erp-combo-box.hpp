@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-combo-box.hpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef YEROTH_COMBO_BOX_HPP_

@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-process-info.cpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "yeroth-erp-process-info.hpp"

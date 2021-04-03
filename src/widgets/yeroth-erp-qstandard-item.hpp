@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-qstandard-item.hpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef YEROTH_QSTANDARD_ITEM_HPP_

@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-utils.cpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "yeroth-erp-utils.hpp"
@@ -353,7 +353,7 @@ const QString YerothUtils::MYSQL_DUMP("mysqldump");
 const QString YerothUtils::APROPOS_MSG(QObject::trUtf8("YEROTH-ERP-3.0-SERVER"
 													   "\n(VERSION du YEROTH_BUILD_DATE à YEROTH_BUILD_DATE_TIMESTAMP)"
 													   "\n\n par \n\n"
-		   	   	   	   	   	   	   	   	   	   	   	   "(c) (2015 - ...) DR. XAVIER NOUMBISSI NOUNDOU.\n\n"													   
+		   	   	   	   	   	   	   	   	   	   	   	   "(c) (2015 - ...) PR. XAVIER NOUMBISSI NOUNDOU.\n\n"													   
 		   	   	   	   	   	   	   	   	   	   	   	   "LAST BUILD ID: ''.\n\n"
 		   	   	   	   	   	   	   	   	   	   	   	   "ON BUILD_COMPUTER: ''.\n\n"
 													   "CLIENT DEDICATED COMPANY LOCALISATION SITE: ''.\n\n"));
@@ -364,7 +364,7 @@ const QString YerothUtils::APPLICATION_NAME(QObject::trUtf8("YEROTH-ERP-3.0-SERV
 const QString YerothUtils::APROPOS_MSG(QObject::trUtf8("YEROTH-ERP-3.0-CLIENT"
 													   "\n(VERSION du YEROTH_BUILD_DATE à YEROTH_BUILD_DATE_TIMESTAMP)"
 													   "\n\n par \n\n"
-													   "(c) (2015 - ...) DR. XAVIER NOUMBISSI NOUNDOU.\n\n"													   
+													   "(c) (2015 - ...) PR. XAVIER NOUMBISSI NOUNDOU.\n\n"													   
 													   "LAST BUILD ID: ''.\n\n"
 													   "ON BUILD_COMPUTER: ''.\n\n"
 													   "CLIENT DEDICATED COMPANY LOCALISATION SITE: ''.\n\n"));
@@ -375,7 +375,7 @@ const QString YerothUtils::APPLICATION_NAME(QObject::trUtf8("YEROTH-ERP-3.0-CLIE
 const QString YerothUtils::APROPOS_MSG(QObject::trUtf8("YEROTH-ERP-3.0-STANDALONE"
 													   "\n(VERSION du YEROTH_BUILD_DATE à YEROTH_BUILD_DATE_TIMESTAMP)"
 													   "\n\n par \n\n"
-		   	   	   	   	   	   	   	   	   	   	   	   "(c) (2015 - ...) DR. XAVIER NOUMBISSI NOUNDOU.\n\n"													   
+		   	   	   	   	   	   	   	   	   	   	   	   "(c) (2015 - ...) PR. XAVIER NOUMBISSI NOUNDOU.\n\n"													   
 		   	   	   	   	   	   	   	   	   	   	   	   "LAST BUILD ID: ''.\n\n"
 		   	   	   	   	   	   	   	   	   	   	   	   "ON BUILD_COMPUTER: ''.\n\n"
 													   "CLIENT DEDICATED COMPANY LOCALISATION SITE: ''.\n\n"));
@@ -386,7 +386,7 @@ const QString YerothUtils::APPLICATION_NAME(QObject::trUtf8("YEROTH-ERP-3.0-STAN
 const QString YerothUtils::APROPOS_MSG(QObject::trUtf8("YEROTH-ERP-3.0-ACADEMIC_EVALUATION"
 													   "\n(VERSION du YEROTH_BUILD_DATE à YEROTH_BUILD_DATE_TIMESTAMP)"
 													   "\n\n par \n\n"
-		   	   	   	   	   	   	   	   	   	   	   	   "(c) (2015 - ...) DR. XAVIER NOUMBISSI NOUNDOU.\n\n"													   
+		   	   	   	   	   	   	   	   	   	   	   	   "(c) (2015 - ...) PR. XAVIER NOUMBISSI NOUNDOU.\n\n"													   
 		   	   	   	   	   	   	   	   	   	   	   	   "LAST BUILD ID: ''.\n\n"
 		   	   	   	   	   	   	   	   	   	   	   	   "ON BUILD_COMPUTER: ''.\n\n"
 													   "CLIENT DEDICATED COMPANY LOCALISATION SITE: ''.\n"));

@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-product-department-table-view.hpp
  *
- * Author: DR. XAVIER NOUMBISSI NOUNDOU
+ * Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef SRC_YEROTH_ADMIN_PRODUCT_DEPARTMENT_TABLE_VIEW_HPP_

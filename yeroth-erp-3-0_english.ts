@@ -271,7 +271,7 @@ Program executing directory: &quot;%2&quot;.</translation>
 
  par 
 
-(c) (2015 - ...) DR. XAVIER NOUMBISSI NOUNDOU.
+(c) (2015 - ...) PR. XAVIER NOUMBISSI NOUNDOU.
 
 LAST BUILD ID: &apos;&apos;.
 
@@ -285,7 +285,7 @@ CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;&apos;.
 
  par 
 
-(c) (2015 - ...) DR. XAVIER NOUMBISSI NOUNDOU.
+(c) (2015 - ...) PR. XAVIER NOUMBISSI NOUNDOU.
 
 CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;&apos;.
 
@@ -467,7 +467,7 @@ ON BUILD_COMPUTER: &apos;&apos;.</translation>
 
  par 
 
-(c) (2015 - ...) DR. XAVIER NOUMBISSI NOUNDOU.
+(c) (2015 - ...) PR. XAVIER NOUMBISSI NOUNDOU.
 
 LAST BUILD ID: &apos;&apos;.
 
@@ -481,7 +481,7 @@ CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;&apos;.
 
  par 
 
-(c) (2015 - ...) DR. XAVIER NOUMBISSI NOUNDOU.
+(c) (2015 - ...) PR. XAVIER NOUMBISSI NOUNDOU.
 
 CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;&apos;.
 
@@ -497,7 +497,7 @@ ON BUILD_COMPUTER: &apos;&apos;.</oldsource>
 
  par 
 
-(c) (2015 - ...) DR. XAVIER NOUMBISSI NOUNDOU.
+(c) (2015 - ...) PR. XAVIER NOUMBISSI NOUNDOU.
 
 LAST BUILD ID: &apos;&apos;.
 
@@ -511,7 +511,7 @@ CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;&apos;.
 
  par 
 
-(c) (2015 - ...) DR. XAVIER NOUMBISSI NOUNDOU.
+(c) (2015 - ...) PR. XAVIER NOUMBISSI NOUNDOU.
 
 CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;&apos;.
 
@@ -527,7 +527,7 @@ ON BUILD_COMPUTER: &apos;&apos;.</oldsource>
 
  par 
 
-(c) (2015 - ...) DR. XAVIER NOUMBISSI NOUNDOU.
+(c) (2015 - ...) PR. XAVIER NOUMBISSI NOUNDOU.
 
 LAST BUILD ID: &apos;&apos;.
 
@@ -540,7 +540,7 @@ CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;&apos;.
 
  par 
 
-(c) (2015 - ...) DR. XAVIER NOUMBISSI NOUNDOU.
+(c) (2015 - ...) PR. XAVIER NOUMBISSI NOUNDOU.
 
 CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;&apos;.
 

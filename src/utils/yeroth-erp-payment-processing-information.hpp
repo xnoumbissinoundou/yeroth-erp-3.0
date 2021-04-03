@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-payment-processing-information.hpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef YEROTH_ERP_PAYMENT_PROCESSING_HPP_

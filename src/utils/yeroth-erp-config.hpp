@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-config.hpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef SRC_YEROTH_CONFIG_HPP_

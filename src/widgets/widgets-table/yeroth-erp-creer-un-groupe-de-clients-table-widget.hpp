@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-creer-un-groupe-de-clients-table-widget.hpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef SRC_WIDGETS_YEROTH_CREER_UN_GROUPE_DE_CLIENTS_TABLE_WIDGET_HPP_

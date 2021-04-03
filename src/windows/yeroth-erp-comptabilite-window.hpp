@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-comptabilite-window.hpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef SRC_YEROTH_COMPTES_BANCAIRES_WINDOW_HPP_

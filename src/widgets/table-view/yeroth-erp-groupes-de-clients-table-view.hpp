@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-groupes-de-clients-table-view.hpp
  *
- * Author: DR. XAVIER NOUMBISSI NOUNDOU
+ * Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef SRC_YEROTH_GROUPES_DE_CLIENTS_TABLE_VIEW_HPP_

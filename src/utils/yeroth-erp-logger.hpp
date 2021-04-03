@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-logger.hpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef SRC_YEROTH_LOGGER_HPP_

@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-marchandises-window.hpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef YEROTH_ERP_MARCHANDISES_WINDOW_HPP_

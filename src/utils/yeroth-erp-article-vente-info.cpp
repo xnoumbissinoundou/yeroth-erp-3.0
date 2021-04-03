@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-article-vente-info.cpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "yeroth-erp-article-vente-info.hpp"

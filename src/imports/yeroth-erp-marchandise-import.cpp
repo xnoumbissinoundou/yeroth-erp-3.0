@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-marchandise-import.hpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "yeroth-erp-marchandise-import.hpp"

@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-programmes-de-fidelite-clients-window.cpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "yeroth-erp-programmes-de-fidelite-clients-window.hpp"

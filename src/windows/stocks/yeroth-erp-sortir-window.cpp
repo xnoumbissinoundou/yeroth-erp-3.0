@@ -1,6 +1,6 @@
 /*
  * yeroth-erp-sortir-window.cpp
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "yeroth-erp-sortir-window.hpp"

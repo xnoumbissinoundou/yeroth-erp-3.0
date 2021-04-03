@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-user-manager.hpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef SRC_YEROTH_ERP_USER_MANAGER_HPP_

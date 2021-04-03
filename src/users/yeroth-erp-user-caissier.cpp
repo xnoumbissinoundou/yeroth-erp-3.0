@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-user-caissier.cpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "yeroth-erp-user-caissier.hpp"

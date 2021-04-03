@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-text-edit.hpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef SRC_WIDGETS_YEROTH_TEXT_EDIT_HPP_

@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-fournisseurs-window.cpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "yeroth-erp-fournisseurs-window.hpp"

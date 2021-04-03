@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-stock-marchandise.hpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 # ifndef YEROTH_MARCHANDISE_IMPORT_WINDOW_HPP_

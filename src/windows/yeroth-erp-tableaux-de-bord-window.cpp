@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-tableaux-de-bord-window.cpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 #include "yeroth-erp-tableaux-de-bord-window.hpp"
 

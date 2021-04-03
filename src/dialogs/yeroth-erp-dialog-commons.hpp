@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-dialogs-commons.hpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 # ifndef YEROTH_ERP_DIALOGS_COMMONS_HPP_

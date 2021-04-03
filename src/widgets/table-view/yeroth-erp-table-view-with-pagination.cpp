@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-table-view-with-pagination.cpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 

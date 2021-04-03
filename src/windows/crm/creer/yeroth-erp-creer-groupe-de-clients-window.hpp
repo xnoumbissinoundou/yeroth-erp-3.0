@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-creer-groupe-de-clients-window.hpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef YEROTH_CREER_GROUPE_DE_CLIENTS_WINDOW_HPP_

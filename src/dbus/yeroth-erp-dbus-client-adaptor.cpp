@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-dbus-client-adaptor.cpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "yeroth-erp-dbus-client-adaptor.hpp"

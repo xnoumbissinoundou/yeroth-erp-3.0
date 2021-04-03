@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.cpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.hpp"

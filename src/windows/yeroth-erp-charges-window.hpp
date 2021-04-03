@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-charges-window.hpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef YEROTH_ERP_ACHATS_DE_SERVICES_WINDOW_HPP_

@@ -1,6 +1,6 @@
 /*
  * yeroth-erp-mouvements_de_stocks-window.cpp
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 #include "yeroth-erp-mouvements_de_stocks-window.hpp"
 

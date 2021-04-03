@@ -1,6 +1,6 @@
 /*
  * yeroth-erp-stock-detail-window.cpp
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "src/yeroth-erp-windows.hpp"

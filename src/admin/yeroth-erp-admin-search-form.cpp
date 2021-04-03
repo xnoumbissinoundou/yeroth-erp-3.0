@@ -1,6 +1,6 @@
 /**
  * yeroth-erp-admin-search-form.cpp
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "yeroth-erp-admin-search-form.hpp"

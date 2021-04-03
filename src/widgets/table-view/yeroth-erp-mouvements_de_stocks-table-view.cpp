@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-mouvements_de_stocks-table-view.cpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 

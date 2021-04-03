@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-tableaux-de-bord-window.hpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef YEROTH_BUSINESS_REPORTS_WINDOW_HPP_

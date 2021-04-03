@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-groupes-de-clients-window.cpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "yeroth-erp-groupes-de-clients-window.hpp"

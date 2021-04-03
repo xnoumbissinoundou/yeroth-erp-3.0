@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-datetime-edit.cpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "yeroth-erp-datetime-edit.hpp"

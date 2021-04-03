@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-map-COMPLEX-ITEM.cpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "yeroth-erp-map-COMPLEX-ITEM.hpp"

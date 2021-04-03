@@ -1,7 +1,7 @@
 /*
    * yeroth-erp-ventes-window.cpp
    *
-   *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+   *      Author: PR. XAVIER NOUMBISSI NOUNDOU
    */
 #include "yeroth-erp-ventes-window.hpp"
 

@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-achats-de-services-table-view.hpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef SRC_YEROTH_ACHATS_DE_SERVICES_TABLE_VIEW_HPP_

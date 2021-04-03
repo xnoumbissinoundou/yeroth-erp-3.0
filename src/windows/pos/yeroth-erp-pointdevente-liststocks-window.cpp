@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-pointdevente-liststocks-window.cpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "yeroth-erp-pointdevente-liststocks-window.hpp"

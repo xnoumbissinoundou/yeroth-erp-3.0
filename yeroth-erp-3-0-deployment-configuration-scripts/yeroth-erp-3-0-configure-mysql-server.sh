@@ -1,5 +1,5 @@
 #!/bin/bash
-# @author: DR. XAVIER NOUMBISSI NOUNDOU
+# @author: PR. XAVIER NOUMBISSI NOUNDOU
 
 sudo /etc/init.d/mysql stop
 

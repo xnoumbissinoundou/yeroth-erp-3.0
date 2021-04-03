@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-creer-un-groupe-de-clients-table-widget.cpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "yeroth-erp-creer-un-groupe-de-clients-table-widget.hpp"

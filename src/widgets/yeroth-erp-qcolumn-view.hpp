@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-qcolumn-view.hpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #ifndef YEROTH_QCOLUMN_VIEW_HPP_

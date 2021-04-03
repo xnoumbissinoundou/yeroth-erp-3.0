@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-table-widget.cpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "yeroth-erp-table-widget.hpp"

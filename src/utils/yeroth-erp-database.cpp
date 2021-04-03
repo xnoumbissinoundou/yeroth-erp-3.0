@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-database.cpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "yeroth-erp-database.hpp"

@@ -1,7 +1,7 @@
 /*
  * yeroth-erp-charges-window.cpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 #include "yeroth-erp-charges-window.hpp"

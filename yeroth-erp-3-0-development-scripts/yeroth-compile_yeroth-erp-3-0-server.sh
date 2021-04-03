@@ -1,6 +1,6 @@
 #!/bin/bash
 # @file: yeroth-compile_yeroth-erp-3-0-server.sh
-# @author: DR. XAVIER NOUMBISSI NOUNDOU
+# @author: PR. XAVIER NOUMBISSI NOUNDOU
 # @email: xnoundou7@gmail.com
 
 yeroth-compile_yeroth-erp-3-0.sh -v YEROTH_SERVER "${@}" 2> server.error.log && \

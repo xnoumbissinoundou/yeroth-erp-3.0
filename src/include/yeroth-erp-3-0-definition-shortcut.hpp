@@ -3,7 +3,7 @@
  *
  * yeroth-erp-3-0-definition-shortcut.hpp
  *
- *      Author: DR. XAVIER NOUMBISSI NOUNDOU
+ *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 # ifndef _YEROTH_ERP_3_0_DEFINITION_SHORTCUT_HPP_
