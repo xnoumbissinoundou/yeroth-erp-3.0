@@ -3928,21 +3928,21 @@ void YerothTableauxDeBordWindow::compterLesArticlesVendusParQuantite()
 
 void YerothTableauxDeBordWindow::handle_enabled_chiffre_daffaire_jour_semaine(bool enabled)
 {
-	label_mois_chiffre_affaire->setVisible(enabled);
 	label_jour_semaine_debut_chiffre_affaire->setVisible(enabled);
 	label_jour_semaine_fin_chiffre_affaire->setVisible(enabled);
 
-	comboBox_jour_semaine_debut_chiffre_affaire->setVisible(enabled);
-	comboBox_jour_semaine_fin_chiffre_affaire->setVisible(enabled);
-	comboBox_mois_chiffre_affaire->setVisible(enabled);
+	dateEdit_chiffre_daffaire_jour_semaine_debut->setVisible(enabled);
+	dateEdit_chiffre_daffaire_jour_semaine_fin->setVisible(enabled);
 }
 
 
 void YerothTableauxDeBordWindow::handle_enabled_chiffre_daffaire_mois(bool enabled)
 {
+	label_annee_chiffre_affaire->setVisible(enabled);
 	label_mois_debut_chiffre_affaire->setVisible(enabled);
 	label_mois_fin_chiffre_affaire->setVisible(enabled);
 
+	comboBox_annee_chiffre_affaire->setVisible(enabled);
 	comboBox_mois_debut_chiffre_affaire->setVisible(enabled);
 	comboBox_mois_fin_chiffre_affaire->setVisible(enabled);
 }
