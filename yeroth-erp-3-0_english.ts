@@ -14562,6 +14562,16 @@ Account
         <translation>financial accounting report</translation>
     </message>
     <message>
+        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="6882"/>
+        <source>fin (jour)</source>
+        <translation>end (day)</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="7362"/>
+        <source>début (jour)</source>
+        <translation>begin (day)</translation>
+    </message>
+    <message>
         <location filename="ui/yeroth-erp-tableaux-de-bord-window.ui" line="10567"/>
         <source>mensuelle</source>
         <translation>monthly</translation>
