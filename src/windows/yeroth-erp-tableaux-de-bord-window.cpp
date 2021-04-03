@@ -193,6 +193,17 @@ YerothTableauxDeBordWindow::YerothTableauxDeBordWindow()
     connect( actionQui_suis_je, SIGNAL(triggered()), this, SLOT(qui_suis_je()) );
 
 
+    connect(radioButton_mensuelle,
+    		SIGNAL(toggled(bool)),
+			this,
+			SLOT(handle_tab_business_turnover_progress_radio_button(bool)));
+
+    connect(radioButton_jour_semaine,
+    		SIGNAL(toggled(bool)),
+			this,
+			SLOT(handle_tab_business_turnover_progress_radio_button(bool)));
+
+
     connect( comboBox_qualite,
     		 SIGNAL(currentTextChanged(const QString &)),
     		 this,
@@ -227,9 +238,21 @@ YerothTableauxDeBordWindow::YerothTableauxDeBordWindow()
     setupShortcuts();
 }
 
-YerothTableauxDeBordWindow::~YerothTableauxDeBordWindow ()
+
+void YerothTableauxDeBordWindow::handle_tab_business_turnover_progress_radio_button(bool toggled)
 {
-    delete _logger;
+	if (radioButton_mensuelle->isChecked())
+	{
+		handle_enabled_chiffre_daffaire_mois(true);
+
+		handle_enabled_chiffre_daffaire_jour_semaine(false);
+	}
+	else if (radioButton_jour_semaine->isChecked())
+	{
+		handle_enabled_chiffre_daffaire_jour_semaine(true);
+
+		handle_enabled_chiffre_daffaire_mois(false);
+	}
 }
 
 
@@ -289,6 +312,12 @@ void YerothTableauxDeBordWindow::setupDateTimeEdits_BILAN_COMPTABLE()
 
 void YerothTableauxDeBordWindow::setupTab_EVOLUTION_DU_CHIFFRE_DAFFAIRE()
 {
+	radioButton_jour_semaine->setChecked(true);
+
+	handle_enabled_chiffre_daffaire_mois(false);
+
+	handle_enabled_chiffre_daffaire_jour_semaine(true);
+
     comboBox_operations_chiffre->addItem(YerothTableauxDeBordWindow::OPERATION_GENERER_CHIFFRE_DAFFAIRE);
 
     comboBox_evolution_objets->addItem(YerothTableauxDeBordWindow::OBJET_ARTICLES);
@@ -3897,7 +3926,35 @@ void YerothTableauxDeBordWindow::compterLesArticlesVendusParQuantite()
 }
 
 
-void YerothTableauxDeBordWindow::calculerChiffresDaffaireMois()
+void YerothTableauxDeBordWindow::handle_enabled_chiffre_daffaire_jour_semaine(bool enabled)
+{
+	label_mois_chiffre_affaire->setVisible(enabled);
+	label_jour_semaine_debut_chiffre_affaire->setVisible(enabled);
+	label_jour_semaine_fin_chiffre_affaire->setVisible(enabled);
+
+	comboBox_jour_semaine_debut_chiffre_affaire->setVisible(enabled);
+	comboBox_jour_semaine_fin_chiffre_affaire->setVisible(enabled);
+	comboBox_mois_chiffre_affaire->setVisible(enabled);
+}
+
+
+void YerothTableauxDeBordWindow::handle_enabled_chiffre_daffaire_mois(bool enabled)
+{
+	label_mois_debut_chiffre_affaire->setVisible(enabled);
+	label_mois_fin_chiffre_affaire->setVisible(enabled);
+
+	comboBox_mois_debut_chiffre_affaire->setVisible(enabled);
+	comboBox_mois_fin_chiffre_affaire->setVisible(enabled);
+}
+
+
+void YerothTableauxDeBordWindow::calculer_chiffre_daffaire_jour_semaine()
+{
+	_logger->log("calculer_chiffre_daffaire_jour_semaine");
+}
+
+
+void YerothTableauxDeBordWindow::calculer_chiffre_daffaire_mois()
 {
     _logger->log("calculerChiffresDaffaireMois");
 
@@ -4394,7 +4451,14 @@ void YerothTableauxDeBordWindow::choisirEvolutionDuChiffreDaffaire()
 	}
 	else
 	{
-		calculerChiffresDaffaireMois();
+		if (radioButton_mensuelle->isChecked())
+		{
+			calculer_chiffre_daffaire_mois();
+		}
+		else if (radioButton_jour_semaine->isChecked())
+		{
+			calculer_chiffre_daffaire_jour_semaine();
+		}
 	}
 }
 

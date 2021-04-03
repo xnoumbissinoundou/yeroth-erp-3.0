@@ -36,7 +36,10 @@ public:
 
 	YerothTableauxDeBordWindow();
 
-    virtual ~YerothTableauxDeBordWindow();
+	inline virtual ~YerothTableauxDeBordWindow()
+	{
+	    delete _logger;
+	}
 
     inline virtual QToolBar * getQMainWindowToolBar()
     {
@@ -276,7 +279,13 @@ public slots:
 
     void compterLesArticlesVendusParQuantite();
 
-    void calculerChiffresDaffaireMois();
+    void handle_enabled_chiffre_daffaire_jour_semaine(bool enabled);
+
+    void handle_enabled_chiffre_daffaire_mois(bool enabled);
+
+    void calculer_chiffre_daffaire_jour_semaine();
+
+    void calculer_chiffre_daffaire_mois();
 
     void choisirEvolutionDuChiffreDaffaire();
 
@@ -286,6 +295,8 @@ protected:
 
 
 private slots:
+
+	void handle_tab_business_turnover_progress_radio_button(bool);
 
 	void handleTabChanged(int index);
 
