@@ -275,7 +275,9 @@ public slots:
 
     void bilanComptable();
 
-    void analyseComparee();
+    void analyse_comparee_jour_semaine();
+
+    void analyse_comparee_mensuelle();
 
     void compterLesArticlesVendusParQuantite();
 

@@ -253,7 +253,7 @@ void YerothTableauxDeBordWindow::handle_tab_business_turnover_progress_radio_but
 {
 	if (radioButton_mensuel->isChecked())
 	{
-		checkBox_analyse_comparee->setEnabled(true);
+//		checkBox_analyse_comparee->setEnabled(true);
 
 		handle_enabled_chiffre_daffaire_mois(true);
 
@@ -261,7 +261,7 @@ void YerothTableauxDeBordWindow::handle_tab_business_turnover_progress_radio_but
 	}
 	else if (radioButton_jour_semaine->isChecked())
 	{
-		checkBox_analyse_comparee->setEnabled(false);
+//		checkBox_analyse_comparee->setEnabled(false);
 
 		handle_enabled_chiffre_daffaire_jour_semaine(true);
 
@@ -2905,7 +2905,1075 @@ void YerothTableauxDeBordWindow::bilanComptable()
 }
 
 
-void YerothTableauxDeBordWindow::analyseComparee()
+void YerothTableauxDeBordWindow::analyse_comparee_jour_semaine()
+{
+	_logger->log("analyse_comparee_jour_semaine");
+
+	if (dateEdit_chiffre_daffaire_jour_semaine_fin->date() <
+		dateEdit_chiffre_daffaire_jour_semaine_debut->date())
+	{
+		YerothQMessageBox::warning(this, QObject::trUtf8("évolution du chiffre d'affaire"),
+				QObject::trUtf8("Le jour de 'début' doit être "
+						"antérieur au jour de la 'fin' !"));
+		return ;
+	}
+
+	QMap<int, double> dayOfWeek__TO__purchases;
+
+	QMap<int, double> dayOfWeek__TO__businessturnover;
+
+	qint64 dates_range = dateEdit_chiffre_daffaire_jour_semaine_debut->date()
+    					.daysTo(dateEdit_chiffre_daffaire_jour_semaine_fin->date()) + 1;
+
+
+	QString string_achats_semaine_query;
+
+	QString string_chiffre_daffaire_semaine_query;
+
+	int current_day_of_week;
+
+	QSqlQuery qsql_query;
+
+	QDateTime current_day_date = dateEdit_chiffre_daffaire_jour_semaine_debut->dateTime();
+
+	double a_temp_day_of_week_purchases = 0.0;
+
+	double a_temp_day_of_week_business_turnover = 0.0;
+
+	double current_day_purchases = 0.0;
+
+	double current_day_business_turnover = 0.0;
+
+	int current_query_size;
+
+	qint64 i = 0;
+
+	bool filtreActif = false;
+
+	QString AUCUN_FILTRE(QObject::tr("aucun filtre !"));
+
+	QString yerothFiltre;
+
+	QString databaseTableColumn;
+
+	QString comboBoxEvolutionObjetsCurrentText(comboBox_evolution_objets->currentText());
+
+	QString textFromLineEditEvolutionSujets(lineEdit_evolution_objets_value->text());
+
+	do
+	{
+		current_day_of_week = current_day_date.date().dayOfWeek();
+
+		string_achats_semaine_query =
+				QString("SELECT (%1 * %2) FROM %3 WHERE %4='%5'")
+				.arg(YerothDatabaseTableColumn::PRIX_DACHAT,
+					 YerothDatabaseTableColumn::QUANTITE_TOTALE,
+					 YerothDatabase::ACHATS,
+					 YerothDatabaseTableColumn::DATE_ENTREE,
+					 DATE_TO_DB_FORMAT_STRING(current_day_date));
+
+
+		string_chiffre_daffaire_semaine_query =
+				QString("SELECT (%1 - %2) FROM %3 WHERE %4='%5'")
+				.arg(YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
+						YerothDatabaseTableColumn::MONTANT_TVA,
+						YerothDatabase::STOCKS_VENDU,
+						YerothDatabaseTableColumn::DATE_VENTE,
+						DATE_TO_DB_FORMAT_STRING(current_day_date));
+
+
+		bool filtreActif = false;
+
+		AUCUN_FILTRE = QObject::tr("aucun filtre !");
+
+		yerothFiltre.clear();
+
+		databaseTableColumn.clear();
+
+		comboBoxEvolutionObjetsCurrentText = comboBox_evolution_objets->currentText();
+
+		textFromLineEditEvolutionSujets = lineEdit_evolution_objets_value->text();
+
+
+		if (YerothUtils::isEqualCaseInsensitive(comboBoxEvolutionObjetsCurrentText, YerothTableauxDeBordWindow::OBJET_CAISSIERS))
+		{
+			filtreActif = true;
+
+			yerothFiltre.append(QString("filtre: %1 = %2")
+					.arg(YerothTableauxDeBordWindow::OBJET_CAISSIERS,
+							YerothUtils::LATEX_IN_OUT_handleForeignAccents(textFromLineEditEvolutionSujets)));
+
+			databaseTableColumn = YerothDatabaseTableColumn::NOM_CAISSIER;
+		}
+		else if (YerothUtils::isEqualCaseInsensitive(comboBoxEvolutionObjetsCurrentText, YerothTableauxDeBordWindow::OBJET_CATEGORIES))
+		{
+			filtreActif = true;
+
+			yerothFiltre.append(QString("filtre: %1 = %2")
+					.arg(YerothTableauxDeBordWindow::OBJET_CATEGORIES,
+							YerothUtils::LATEX_IN_OUT_handleForeignAccents(textFromLineEditEvolutionSujets)));
+
+			databaseTableColumn = YerothDatabaseTableColumn::CATEGORIE;
+		}
+		else if (YerothUtils::isEqualCaseInsensitive(comboBoxEvolutionObjetsCurrentText, YerothTableauxDeBordWindow::OBJET_CLIENTS))
+		{
+			filtreActif = true;
+
+			yerothFiltre.append(QString("filtre: %1 = %2")
+					.arg(YerothTableauxDeBordWindow::OBJET_CLIENTS,
+							YerothUtils::LATEX_IN_OUT_handleForeignAccents(textFromLineEditEvolutionSujets)));
+
+			databaseTableColumn = YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT;
+
+		}
+		else if (YerothUtils::isEqualCaseInsensitive(comboBoxEvolutionObjetsCurrentText, YerothTableauxDeBordWindow::OBJET_ARTICLES))
+		{
+			if (textFromLineEditEvolutionSujets.isEmpty())
+			{
+				filtreActif = false;
+
+				yerothFiltre.append(AUCUN_FILTRE);
+			}
+			else
+			{
+				filtreActif = true;
+
+				yerothFiltre.append(QString("filtre: %1 = %2")
+						.arg(YerothTableauxDeBordWindow::OBJET_ARTICLES,
+								YerothUtils::LATEX_IN_OUT_handleForeignAccents(textFromLineEditEvolutionSujets)));
+
+				databaseTableColumn = YerothDatabaseTableColumn::DESIGNATION;
+			}
+		}
+		else if (YerothUtils::isEqualCaseInsensitive(comboBoxEvolutionObjetsCurrentText, YerothTableauxDeBordWindow::OBJET_FOURNISSEURS))
+		{
+
+			filtreActif = true;
+
+			yerothFiltre.append(QString("filtre: %1 = %2")
+					.arg(YerothTableauxDeBordWindow::OBJET_FOURNISSEURS,
+							YerothUtils::LATEX_IN_OUT_handleForeignAccents(textFromLineEditEvolutionSujets)));
+
+			databaseTableColumn = YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR;
+
+		}
+
+		//		qDebug() << QString("databaseTableColumn: %1, currentTextFromComboBoxEvolutionSujets: %2")
+		//						.arg(databaseTableColumn, comboBox_evolution_objets->currentText());
+
+		if (true == filtreActif)
+		{
+			if (textFromLineEditEvolutionSujets.isEmpty())
+			{
+				YerothQMessageBox::warning(this, QObject::trUtf8("paramètre manquant"),
+						QObject::trUtf8("Vous devez spécifier un paramètre dans"
+								" le champs de texte 'nom' !"));
+				return ;
+			}
+			else
+			{
+				if (!databaseTableColumn.isEmpty())
+				{
+					string_achats_semaine_query.append(QString(" AND %1='%2'")
+							.arg(databaseTableColumn,
+								 textFromLineEditEvolutionSujets));
+
+					string_chiffre_daffaire_semaine_query.append(QString(" AND %1='%2'")
+							.arg(databaseTableColumn,
+								 textFromLineEditEvolutionSujets));
+				}
+			}
+		}
+
+//		qDebug() << "++ string_achats_semaine_query: " << string_achats_semaine_query;
+
+		qsql_query.clear();
+
+		current_query_size = YerothUtils::execQuery(qsql_query, string_achats_semaine_query);
+
+		if (current_query_size > 0)
+		{
+			while (qsql_query.next())
+			{
+				current_day_purchases = qsql_query.value(0).toDouble();
+
+				QString STRING_current_day_of_week =
+						YerothUtils::GET_DAYOFWEEK_FROM_QT_INT_CONSTANT(current_day_of_week);
+
+				if (! YerothUtils::isEqualCaseInsensitive(YerothUtils::EMPTY_STRING, STRING_current_day_of_week))
+				{
+					a_temp_day_of_week_purchases =
+							dayOfWeek__TO__purchases[current_day_of_week];
+
+					dayOfWeek__TO__purchases.insert(current_day_of_week,
+							current_day_purchases +
+							a_temp_day_of_week_purchases);
+				}
+			}
+		}
+		else
+		{
+
+	    	YerothQMessageBox::information(this,
+	    			QObject::trUtf8("analyse comparée"),
+					QObject::trUtf8(("Il n'y a pas de données correspondante à la requête !\n"
+									 "Vérifier que les dates de début et de fin, "
+									 "ainsi que l'année sont correctes !")));
+	    	return ;
+		}
+
+		//	qDebug() << "++ string_chiffre_daffaire_semaine_query: " << string_chiffre_daffaire_semaine_query;
+
+		qsql_query.clear();
+
+		current_query_size = YerothUtils::execQuery(qsql_query, string_chiffre_daffaire_semaine_query);
+
+		if (current_query_size > 0)
+		{
+			while (qsql_query.next())
+			{
+				current_day_business_turnover = qsql_query.value(0).toDouble();
+
+				QString STRING_current_day_of_week =
+						YerothUtils::GET_DAYOFWEEK_FROM_QT_INT_CONSTANT(current_day_of_week);
+
+				if (! YerothUtils::isEqualCaseInsensitive(YerothUtils::EMPTY_STRING, STRING_current_day_of_week))
+				{
+					a_temp_day_of_week_business_turnover =
+							dayOfWeek__TO__businessturnover[current_day_of_week];
+
+					dayOfWeek__TO__businessturnover.insert(current_day_of_week,
+							current_day_business_turnover +
+							a_temp_day_of_week_business_turnover);
+				}
+			}
+		}
+		else
+		{
+			YerothQMessageBox::information(this,
+					QObject::trUtf8("analyse comparée"),
+					QObject::trUtf8(("Il n'y a pas de données correspondante à la requête !\n"
+							"Vérifier que les dates de début et de fin, "
+							"ainsi que l'année sont correctes !")));
+			return ;
+		}
+
+		current_day_date = current_day_date.addDays(1);
+
+		++i;
+	}
+	while(i < dates_range);
+
+	//	qDebug() << dayOfWeek__TO__businessturnover;
+
+	if (dayOfWeek__TO__purchases.isEmpty() ||
+		dayOfWeek__TO__businessturnover.isEmpty())
+	{
+		YerothQMessageBox::information(this,
+				QObject::trUtf8("pas de données"),
+				QObject::trUtf8("Il n'y a pas de données correspondante à la requête !\n"
+								"Vérifier que les dates de début et de fin, "
+								"sont correctes !"));
+		return ;
+	}
+
+	_reportTexFileEndString.clear();
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+	_reportTexFileEndString.append(YerothUtils::LATEX_IN_OUT_handleForeignAccents(
+			QString("D\\'etails en %1:")
+			.arg(YerothERPConfig::currency)));
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+	_reportTexFileEndString.append(YerothUtils::LATEX_IN_OUT_handleForeignAccents(
+			QString("Details in %1:")
+			.arg(YerothERPConfig::currency)));
+#endif
+
+	_reportTexFileEndString.prepend("\\textbf{").append("}\n");
+	_reportTexFileEndString.append("\\begin{enumerate}[1.]\n");
+
+	//Fill in the PDF file which amount of money for each day of week.
+
+	double somme_totale_ventes_jour_semaine = 0.0;
+
+	QMapIterator<int, double> it(dayOfWeek__TO__businessturnover);
+
+	while(it.hasNext())
+	{
+		it.next();
+
+		somme_totale_ventes_jour_semaine += it.value();
+
+		_reportTexFileEndString.append("\\item \\textbf{")
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+				.append(QString("%1}: ventes $\\rightarrow %2$, ")
+						.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(YerothUtils::GET_DAYOFWEEK_FROM_QT_INT_CONSTANT(it.key())),
+								YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_CURRENCY_STRING_NUM(it.value()))));
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+		.append(QString("%1}: sales $\\rightarrow %2$, ")
+				.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(YerothUtils::GET_DAYOFWEEK_FROM_QT_INT_CONSTANT(it.key())),
+						YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_CURRENCY_STRING_NUM(it.value()))));
+#endif
+	}
+	//	    QDEBUG_STRING_OUTPUT_2_N("somme_totale_ventes_jour_semaine", somme_totale_ventes_jour_semaine);
+
+
+	double somme_totale_achats_jour_semaine = 0.0;
+
+	QMapIterator<int, double> it_achats(dayOfWeek__TO__purchases);
+
+	while(it_achats.hasNext())
+	{
+		it_achats.next();
+
+		somme_totale_achats_jour_semaine += it_achats.value();
+
+		_reportTexFileEndString
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+							.append(QString("achats $\\rightarrow %1$\n")
+									.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_CURRENCY_STRING_NUM(it_achats.value()))));
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+		.append(QString("purchases $\\rightarrow %1$\n")
+				.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_CURRENCY_STRING_NUM(it_achats.value()))));
+#endif
+	}
+
+	_reportTexFileEndString.append("\\end{enumerate}\n");
+
+	QMap<int, QString> barItems;
+
+	double MAX_AMOUNT_ACHATS_VENTES = somme_totale_achats_jour_semaine +
+									  somme_totale_ventes_jour_semaine;
+
+	double ratio_achats = 0.0;
+
+	double ratio_ventes = 0.0;
+
+	const int TICKS = 100;
+
+	const double MAX_RATIO = 900.0;
+
+	it.toFront();
+
+	for (int x = 0; it.hasNext() && x < dayOfWeek__TO__businessturnover.size(); ++x)
+	{
+		it.next();
+
+		ratio_ventes = (it.value() * MAX_RATIO) / MAX_AMOUNT_ACHATS_VENTES;
+
+				barItems.insert(x, QString("\\baritem{%1}{%2}{gray}\n")
+									.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(YerothUtils::GET_DAYOFWEEK_FROM_QT_INT_CONSTANT(it.key())),
+										 QString::number(ratio_ventes, 'f', 2)));
+	}
+
+//	QDEBUG_QSTRINGLIST_OUTPUT("barItems - VENTES", barItems.values().join(" "));
+
+	int j_it_achats = 0;
+
+	int max_size = barItems.size();
+
+	it_achats.toFront();
+
+	QString sub_bar_achat;
+
+	for (int l = 0; it_achats.hasNext() && l < dayOfWeek__TO__businessturnover.size(); ++l)
+	{
+		it_achats.next();
+
+		ratio_achats = (it_achats.value() * MAX_RATIO) / MAX_AMOUNT_ACHATS_VENTES;
+
+		sub_bar_achat = QString(" \\subbaritem{}{%1}{purplish}\n")
+													.arg(QString::number(ratio_achats, 'f', 2));
+
+		barItems.insert(l, QString("%1%2")
+							.arg(barItems.value(l),
+								 sub_bar_achat));
+
+	}
+
+//	qDebug() << "++ barItems: " << barItems.values().join(YerothUtils::EMPTY_STRING);
+
+	QProcess aProcess;
+
+	aProcess.setWorkingDirectory(YerothERPConfig::temporaryFilesDir);
+
+	QString texDocument;
+	texDocument.append(YerothUtils::_1a_tex);
+
+
+	texDocument.replace("YEROTHBARPERGROUP", "");
+	texDocument.replace("YEROTHBARITEMS", 				barItems.values().join(YerothUtils::EMPTY_STRING));
+	texDocument.replace("YEROTHTICKS", 					QString::number(TICKS));
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+	texDocument.replace("YEROTHLEGENDANALYSECOMPAREE", 	"");
+	texDocument.replace("YEROTHDIAGRAMMETITRE", 		"Ratio du chiffre d'affaire des journées de travail.");
+	texDocument.replace("YEROTHNIVEAUCHIFFREAFFAIRE", 	"Niveau du chiffre d'affaire");
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+	texDocument.replace("YEROTHLEGENDANALYSECOMPAREE", 	"");
+	texDocument.replace("YEROTHDIAGRAMMETITRE", 		"Ratio of days of week income.");
+	texDocument.replace("YEROTHNIVEAUCHIFFREAFFAIRE", 	"Income Level");
+#endif
+
+	QString fileName1(YerothERPConfig::temporaryFilesDir + "/1a.tex");
+
+	QFile tmpFile1(fileName1);
+
+	if (tmpFile1.open(QFile::WriteOnly))
+	{
+		tmpFile1.write(texDocument.toUtf8());
+	}
+	tmpFile1.close();
+
+	YerothInfoEntreprise &infoEntreprise = _allWindows->getInfoEntreprise();
+
+	QString texDocument2;
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+texDocument2.append(YerothUtils::FR_bar_diag_tex);
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+texDocument2.append(YerothUtils::EN_bar_diag_tex);
+#endif
+
+
+QString factureDate(YerothUtils::LATEX_IN_OUT_handleForeignAccents(infoEntreprise.getVille_LATEX()));
+YerothUtils::getCurrentLocaleDate(factureDate);
+
+QString longDateDebut;
+QString longDateFin;
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+longDateDebut = QString("'%1'")
+    	                    		.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(
+    	                    				YerothUtils::frenchLocale.toString(dateEdit_chiffre_daffaire_jour_semaine_debut->date())));
+
+longDateFin = QString("'%1'")
+    	                		  .arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(
+    	                				  YerothUtils::frenchLocale.toString(dateEdit_chiffre_daffaire_jour_semaine_fin->date())));
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+longDateDebut = QString("'%1'")
+    	                    		.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(
+    	                    				YerothUtils::englishLocale.toString(dateEdit_chiffre_daffaire_jour_semaine_debut->date())));
+
+longDateFin = QString("'%1'")
+    	                		  .arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(
+    	                				  YerothUtils::englishLocale.toString(dateEdit_chiffre_daffaire_jour_semaine_fin->date())));
+#endif
+
+//qDebug() << "++ type fact. rapports - chiffe affaire: " << YerothConfig::typeOfFacturation;
+
+
+texDocument2.replace("YEROTHPAPERSPEC", "a4paper");
+
+if (YerothUtils::isEqualCaseInsensitive(comboBoxEvolutionObjetsCurrentText, YerothTableauxDeBordWindow::OBJET_CAISSIERS)  ||
+		YerothUtils::isEqualCaseInsensitive(comboBoxEvolutionObjetsCurrentText, YerothTableauxDeBordWindow::OBJET_CATEGORIES) ||
+		YerothUtils::isEqualCaseInsensitive(comboBoxEvolutionObjetsCurrentText, YerothTableauxDeBordWindow::OBJET_CLIENTS))
+{
+	if (textFromLineEditEvolutionSujets.isEmpty())
+	{
+		yerothFiltre.clear();
+		yerothFiltre.append(QObject::tr("aucun filtre !"));
+	}
+}
+else
+{
+	yerothFiltre = YerothUtils::LATEX_IN_OUT_handleForeignAccents(yerothFiltre);
+}
+
+texDocument2.replace("YEROTHMENTION", "");
+
+texDocument2.replace("YEROTHFILTRE", yerothFiltre.prepend("''").append("''"));
+
+texDocument2.replace("YEROTHCHIFFREAFFAIREDATEDEBUT",	longDateDebut);
+texDocument2.replace("YEROTHCHIFFREAFFAIREDATEFIN", 	longDateFin);
+texDocument2.replace("YEROTHCHARTFIN", 					_reportTexFileEndString);
+texDocument2.replace("YEROTHENTREPRISE", 				infoEntreprise.getNomCommercial_LATEX());
+texDocument2.replace("YEROTHACTIVITESENTREPRISE", 		infoEntreprise.getSecteursActivitesTex());
+texDocument2.replace("YEROTHBOITEPOSTALE", 				infoEntreprise.getBoitePostal());
+texDocument2.replace("YEROTHVILLE", 					infoEntreprise.getVille_LATEX());
+texDocument2.replace("YEROTHPAYS", 						infoEntreprise.getPaysTex());
+texDocument2.replace("YEROTHEMAIL", 					infoEntreprise.getEmail_LATEX());
+texDocument2.replace("YEROTHTELEPHONE", 				infoEntreprise.getTelephone());
+texDocument2.replace("YEROTHDATE", 						factureDate);
+
+texDocument2.replace("YEROTHNOMUTILISATEUR", QString("%1 %2")
+		.arg(YerothUtils::getAllWindows()->getUser()->titreTex(),
+				YerothUtils::getAllWindows()->getUser()->nom_completTex()));
+
+texDocument2.replace("YEROTHHEUREDIMPRESSION",		CURRENT_TIME);
+texDocument2.replace("YEROTHCOMPTEBANCAIRENR", 		infoEntreprise.getNumeroCompteBancaire());
+texDocument2.replace("YEROTHCONTRIBUABLENR", 		infoEntreprise.getNumeroDeContribuable());
+texDocument2.replace("YEROTHAGENCECOMPTEBANCAIRE",	infoEntreprise.getAgenceCompteBancaireTex());
+
+texDocument2.replace("1a.tex", fileName1);
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+texDocument2.replace("YEROTHTITREDOCUMENT",
+		QString("Diagramme r\\'epr\\'esentatif des chiffres"
+				" d'affaire par jour de la semaine du %1 au %2.").arg(longDateDebut, longDateFin));
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+texDocument2.replace("YEROTHTITREDOCUMENT",
+		QString("Chart illustrating days of week income from %1 to %2.")
+		.arg(longDateDebut, longDateFin));
+#endif
+
+//qDebug() << "++ test: " << texDocument2;
+
+YerothUtils::LATEX_IN_OUT_handleForeignAccents(texDocument2);
+
+QString fileName(FILE_NAME_USERID_CURRENT_TIME("evolution-chiffre-affaire-jour-semaine"));
+fileName.append(".");
+
+QString tmpFilePrefix(YerothERPConfig::temporaryFilesDir + "/" + fileName);
+
+QFile tmpFile(tmpFilePrefix + "tex");
+if (tmpFile.open(QFile::WriteOnly))
+{
+	tmpFile.write(texDocument2.toUtf8());
+}
+tmpFile.close();
+
+//qDebug() << "++ tmpFile: " << tmpFile.fileName();
+
+QStringList progArguments;
+QString texRm(tmpFile.fileName().remove(".tex"));
+progArguments << texRm;
+
+//	    qDebug() << "++ file name to latex compile bar diag: " << texRm;
+
+aProcess.start(YerothERPConfig::pathToLatex(), progArguments);
+aProcess.waitForFinished(-1);
+
+progArguments.clear();
+progArguments << QString("%1.dvi").arg(texRm);
+
+aProcess.start(YerothERPConfig::pathToDvips(), progArguments);
+aProcess.waitForFinished(-1);
+
+progArguments.clear();
+progArguments << QString("%1.ps").arg(texRm);
+progArguments << QString("%1.pdf").arg(texRm);
+
+aProcess.start(YerothERPConfig::pathToPs2Pdf(), progArguments);
+aProcess.waitForFinished(-1);
+
+progArguments.clear();
+progArguments << tmpFilePrefix + "pdf";
+
+//	    qDebug() << "++ test it: " << tmpFilePrefix + "pdf";
+
+aProcess.startDetached(YerothERPConfig::pathToPdfReader, progArguments);
+
+//qDebug() << "\texit status evince: " << _aProcess->exitStatus();
+}
+
+
+//void YerothTableauxDeBordWindow::calculer_chiffre_daffaire_mois()
+//{
+//	_logger->log("calculer_chiffre_daffaire_mois");
+//
+//	if (comboBox_mois_debut_chiffre_affaire->currentIndex() >
+//	comboBox_mois_fin_chiffre_affaire->currentIndex())
+//	{
+//		YerothQMessageBox::warning(this, QObject::trUtf8("évolution du chiffre d'affaire"),
+//				QObject::trUtf8("Le mois de 'début' doit être"
+//						" antérieur au mois de 'fin' !"));
+//	}
+//
+//	//"yyyy-MM-dd"; D.toString(YerothUtils::DB_DATE_FORMAT)
+//
+//	QString annee = comboBox_annee_chiffre_affaire->currentText();
+//	QString mois_debut = comboBox_mois_debut_chiffre_affaire->currentText();
+//	QString mois_fin = comboBox_mois_fin_chiffre_affaire->currentText();
+//
+//	int moisDebut = _moisToNombre[mois_debut];
+//	int moisFin = _moisToNombre[mois_fin];
+//
+//	QString dateDebut;
+//	dateDebut.append(annee)
+//        		.append("-")
+//				.append(QString::number(moisDebut))
+//				.append("-01");
+//
+//	QDate qDateDebut(annee.toInt(), moisDebut, 1);
+//	QDate qDateFin;
+//
+//	QString dateFin;
+//	bool moisFinAjuster = false;
+//
+//	if (_moisToNombre[YerothTableauxDeBordWindow::MOIS_12] == moisFin)
+//	{
+//		dateFin.append(annee)
+//            		.append("-")
+//					.append(QString::number(moisFin))
+//					.append("-31");
+//
+//		qDateFin.setDate(annee.toInt(), moisFin, 31);
+//	}
+//	else
+//	{
+//		moisFin += 1;
+//		moisFinAjuster = true;
+//
+//		dateFin.append(annee)
+//            		.append("-")
+//					.append(QString::number(moisFin))
+//					.append("-01");
+//
+//		qDateFin.setDate(annee.toInt(), moisFin, 1);
+//	}
+//
+//	//    qDebug() << "calculerChiffresDaffaireMois\n\t" <<
+//	//    				QString("annee: %1, mois_debut: %2, mois fin ajuster: %3, mois_fin: %4")
+//	//    					.arg(annee,
+//	//    						 QString::number(moisDebut),
+//	//    						 BOOL_TO_STRING(moisFinAjuster),
+//	//    						 QString::number(moisFin));
+//
+//	QString strQuery(QString("SELECT %1, (%2 - %3) FROM %4 WHERE %5 >= '%6' AND ")
+//			.arg(YerothDatabaseTableColumn::DATE_VENTE,
+//					YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
+//					YerothDatabaseTableColumn::MONTANT_TVA,
+//					YerothDatabase::STOCKS_VENDU,
+//					YerothDatabaseTableColumn::DATE_VENTE,
+//					dateDebut));
+//
+//	if (moisFinAjuster)
+//	{
+//		strQuery.append(QString("%1 < '%2'")
+//				.arg(YerothDatabaseTableColumn::DATE_VENTE,
+//						dateFin));
+//	}
+//	else
+//	{
+//		strQuery.append(QString("%1 <= '%2'")
+//				.arg(YerothDatabaseTableColumn::DATE_VENTE,
+//						dateFin));
+//	}
+//
+//	bool filtreActif = false;
+//
+//	QString AUCUN_FILTRE(QObject::tr("aucun filtre !"));
+//
+//	QString yerothFiltre;
+//
+//	QString databaseTableColumn;
+//
+//	QString comboBoxEvolutionObjetsCurrentText(comboBox_evolution_objets->currentText());
+//
+//	QString textFromLineEditEvolutionSujets(lineEdit_evolution_objets_value->text());
+//
+//	if (YerothUtils::isEqualCaseInsensitive(comboBoxEvolutionObjetsCurrentText, YerothTableauxDeBordWindow::OBJET_CAISSIERS))
+//	{
+//		filtreActif = true;
+//
+//		yerothFiltre.append(QString("filtre: %1 = %2")
+//				.arg(YerothTableauxDeBordWindow::OBJET_CAISSIERS,
+//						YerothUtils::LATEX_IN_OUT_handleForeignAccents(textFromLineEditEvolutionSujets)));
+//
+//		databaseTableColumn = YerothDatabaseTableColumn::NOM_CAISSIER;
+//	}
+//	else if (YerothUtils::isEqualCaseInsensitive(comboBoxEvolutionObjetsCurrentText, YerothTableauxDeBordWindow::OBJET_CATEGORIES))
+//	{
+//		filtreActif = true;
+//
+//		yerothFiltre.append(QString("filtre: %1 = %2")
+//				.arg(YerothTableauxDeBordWindow::OBJET_CATEGORIES,
+//						YerothUtils::LATEX_IN_OUT_handleForeignAccents(textFromLineEditEvolutionSujets)));
+//
+//		databaseTableColumn = YerothDatabaseTableColumn::CATEGORIE;
+//	}
+//	else if (YerothUtils::isEqualCaseInsensitive(comboBoxEvolutionObjetsCurrentText, YerothTableauxDeBordWindow::OBJET_CLIENTS))
+//	{
+//		filtreActif = true;
+//
+//		yerothFiltre.append(QString("filtre: %1 = %2")
+//				.arg(YerothTableauxDeBordWindow::OBJET_CLIENTS,
+//						YerothUtils::LATEX_IN_OUT_handleForeignAccents(textFromLineEditEvolutionSujets)));
+//
+//		databaseTableColumn = YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT;
+//
+//	}
+//	else if (YerothUtils::isEqualCaseInsensitive(comboBoxEvolutionObjetsCurrentText, YerothTableauxDeBordWindow::OBJET_ARTICLES))
+//	{
+//		if (textFromLineEditEvolutionSujets.isEmpty())
+//		{
+//			filtreActif = false;
+//
+//			yerothFiltre.append(AUCUN_FILTRE);
+//		}
+//		else
+//		{
+//			filtreActif = true;
+//
+//			yerothFiltre.append(QString("filtre: %1 = %2")
+//					.arg(YerothTableauxDeBordWindow::OBJET_ARTICLES,
+//							YerothUtils::LATEX_IN_OUT_handleForeignAccents(textFromLineEditEvolutionSujets)));
+//
+//			databaseTableColumn = YerothDatabaseTableColumn::DESIGNATION;
+//		}
+//	}
+//	else if (YerothUtils::isEqualCaseInsensitive(comboBoxEvolutionObjetsCurrentText, YerothTableauxDeBordWindow::OBJET_FOURNISSEURS))
+//	{
+//
+//		filtreActif = true;
+//
+//		yerothFiltre.append(QString("filtre: %1 = %2")
+//				.arg(YerothTableauxDeBordWindow::OBJET_FOURNISSEURS,
+//						YerothUtils::LATEX_IN_OUT_handleForeignAccents(textFromLineEditEvolutionSujets)));
+//
+//		databaseTableColumn = YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR;
+//
+//	}
+//
+//	//qDebug() << QString("databaseTableColumn: %1, currentTextFromComboBoxEvolutionSujets: %2")
+//	//				.arg(databaseTableColumn, comboBox_evolution_objets->currentText());
+//
+//
+//
+//	if (true == filtreActif)
+//	{
+//		if (textFromLineEditEvolutionSujets.isEmpty())
+//		{
+//			YerothQMessageBox::warning(this, QObject::trUtf8("paramètre manquant"),
+//					QObject::trUtf8("Vous devez spécifier un paramètre dans"
+//							" le champs de texte 'nom' !"));
+//			return ;
+//		}
+//		else
+//		{
+//			if (!databaseTableColumn.isEmpty())
+//			{
+//				strQuery.append(QString(" AND %1 = '%2'")
+//						.arg(databaseTableColumn,
+//								YerothUtils::LATEX_IN_OUT_handleForeignAccents(textFromLineEditEvolutionSujets)));
+//			}
+//		}
+//	}
+//
+//
+//	qDebug() << "++ query: " << strQuery;
+//
+//	QSqlQuery query;
+//
+//	double montant_total_vente = 0.0;
+//
+//	int querySize = YerothUtils::execQuery(query, strQuery, _logger);
+//
+//	if (0 >= querySize)
+//	{
+//
+//		YerothQMessageBox::information(this,
+//				QObject::trUtf8("pas de données"),
+//				QObject::trUtf8("Il n'y a pas de données correspondante à la requête !\n"
+//						"Vérifier que les dates de début et de fin, "
+//						"ainsi que l'année sont correctes !"));
+//		return ;
+//	}
+//
+//	QMap<int, double> monthToVentesTotalAmount;
+//
+//	int curMonth = 0;
+//	QDate curDate;
+//
+//	double maxAmount = 0.0;
+//
+//	for( int k = 0; k < querySize && query.next(); ++k)
+//	{
+//		curDate = query.value(0).toDate();
+//		curMonth = curDate.month();
+//
+//		montant_total_vente = query.value(1).toDouble();
+//
+//		//qDebug() << "++ curDate: " << curDate
+//				//		 << ", curMonth: " << curMonth
+//		//		 << ", montant_total_vente: " << montant_total_vente;
+//
+//		if (0 != curMonth)
+//		{
+//			monthToVentesTotalAmount[curMonth] += montant_total_vente;
+//
+//			if (maxAmount < monthToVentesTotalAmount[curMonth])
+//			{
+//				maxAmount = monthToVentesTotalAmount[curMonth];
+//			}
+//			/*qDebug() << ", curMonth: " << curMonth
+//                		 << ", montant_total_vente: " << monthToVentesTotalAmount[curMonth];*/
+//		}
+//	}
+//
+//	_reportTexFileEndString.clear();
+//
+//#ifdef YEROTH_FRANCAIS_LANGUAGE
+//	_reportTexFileEndString.append(YerothUtils::LATEX_IN_OUT_handleForeignAccents(
+//			QString("D\\'etails en %1:")
+//			.arg(YerothERPConfig::currency)));
+//#endif
+//
+//#ifdef YEROTH_ENGLISH_LANGUAGE
+//	_reportTexFileEndString.append(YerothUtils::LATEX_IN_OUT_handleForeignAccents(
+//			QString("Details in %1:")
+//			.arg(YerothERPConfig::currency)));
+//#endif
+//
+//	_reportTexFileEndString.prepend("\\textbf{").append("}\n");
+//	_reportTexFileEndString.append("\\begin{enumerate}[1.]\n");
+//
+//	//Fill in the PDF file which amount of money for which month.
+//
+//	if (moisFinAjuster)
+//	{
+//		moisFin -= 1;
+//	}
+//
+//	for( int k = moisDebut; k <= moisFin; ++k)
+//	{
+//		_reportTexFileEndString.append("\\item ")
+//#ifdef YEROTH_FRANCAIS_LANGUAGE
+//            		.append(YerothUtils::LATEX_IN_OUT_handleForeignAccents(YerothUtils::frenchLocale.monthName(k)))
+//#endif
+//
+//#ifdef YEROTH_ENGLISH_LANGUAGE
+//					.append(YerothUtils::LATEX_IN_OUT_handleForeignAccents(YerothUtils::englishLocale.monthName(k)))
+//#endif
+//					.append(": $")
+//					.append(YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_CURRENCY_STRING_NUM(monthToVentesTotalAmount[k])))
+//					.append("$\n");
+//	}
+//
+//	_reportTexFileEndString.append("\\end{enumerate}\n");
+//
+//	//qDebug() << "++ END";
+//
+//	QString barItems;
+//
+//	double ratio = 0;
+//
+//	double sommeTotalMois = 0.0;
+//
+//	const int TICKS = 100;
+//	const double MAX_RATIO = 900.0;
+//
+//	for(int k = moisDebut; k <= moisFin; ++k)
+//	{
+//		sommeTotalMois += monthToVentesTotalAmount[k];
+//	}
+//
+//	for(int k = moisDebut; k <= moisFin; ++k)
+//	{
+//		if (monthToVentesTotalAmount.contains(k))
+//		{
+//			ratio = (monthToVentesTotalAmount[k] * MAX_RATIO) / sommeTotalMois;
+//
+//			//qDebug() << QString("++ mois(k): %1, max amount: %2, ratio: %3")
+//        				//				.arg(QString::number(k),
+//			//						QString::number(monthToVentesTotalAmount[k], 'f', 2),
+//			//						QString::number(ratio, 'f', 2));
+//
+//			barItems.append(QString("\\baritem{%1}{%2}{gray}\n")
+//					.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_MONTH_NAME_LOCALIZED(k)),
+//							QString::number(ratio, 'f', 2)));
+//		}
+//	}
+//
+//	//qDebug() << "++ barItems: " << barItems;
+//
+//	QProcess aProcess;
+//
+//	aProcess.setWorkingDirectory(YerothERPConfig::temporaryFilesDir);
+//
+//	QString texDocument;
+//	texDocument.append(YerothUtils::_1a_tex);
+//
+//
+//	texDocument.replace("YEROTHBARPERGROUP", "");
+//	texDocument.replace("YEROTHBARITEMS", 				barItems);
+//	texDocument.replace("YEROTHTICKS", 					QString::number(TICKS));
+//
+//#ifdef YEROTH_FRANCAIS_LANGUAGE
+//	texDocument.replace("YEROTHLEGENDANALYSECOMPAREE", 	"");
+//	texDocument.replace("YEROTHDIAGRAMMETITRE", 		"Ratio du chiffre d'affaire du mois.");
+//	texDocument.replace("YEROTHNIVEAUCHIFFREAFFAIRE", 	"Niveau du chiffre d'affaire");
+//#endif
+//
+//#ifdef YEROTH_ENGLISH_LANGUAGE
+//	texDocument.replace("YEROTHLEGENDANALYSECOMPAREE", 	"");
+//	texDocument.replace("YEROTHDIAGRAMMETITRE", 			"Ratio of the monthly income.");
+//	texDocument.replace("YEROTHNIVEAUCHIFFREAFFAIRE", 	"Income Level");
+//#endif
+//
+//	QString fileName1(YerothERPConfig::temporaryFilesDir + "/1a.tex");
+//
+//	QFile tmpFile1(fileName1);
+//
+//	if (tmpFile1.open(QFile::WriteOnly))
+//	{
+//		tmpFile1.write(texDocument.toUtf8());
+//	}
+//	tmpFile1.close();
+//
+//	YerothInfoEntreprise &infoEntreprise = _allWindows->getInfoEntreprise();
+//
+//	QString texDocument2;
+//
+//#ifdef YEROTH_FRANCAIS_LANGUAGE
+//texDocument2.append(YerothUtils::FR_bar_diag_tex);
+//#endif
+//
+//#ifdef YEROTH_ENGLISH_LANGUAGE
+//texDocument2.append(YerothUtils::EN_bar_diag_tex);
+//#endif
+//
+//
+//QString factureDate(YerothUtils::LATEX_IN_OUT_handleForeignAccents(infoEntreprise.getVille_LATEX()));
+//YerothUtils::getCurrentLocaleDate(factureDate);
+//
+//QString longDateDebut;
+//QString longDateFin;
+//
+//#ifdef YEROTH_FRANCAIS_LANGUAGE
+//longDateDebut = QString("'%1'")
+//                        		.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(YerothUtils::frenchLocale.toString(qDateDebut)));
+//
+//longDateFin = QString("'%1'")
+//                    		  .arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(YerothUtils::frenchLocale.toString(qDateFin)));
+//#endif
+//
+//#ifdef YEROTH_ENGLISH_LANGUAGE
+//longDateDebut = QString("'%1'")
+//                        		.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(YerothUtils::englishLocale.toString(qDateDebut)));
+//
+//longDateFin = QString("'%1'")
+//                    		  .arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(YerothUtils::englishLocale.toString(qDateFin)));
+//#endif
+//
+////qDebug() << "++ type fact. rapports - chiffe affaire: " << YerothConfig::typeOfFacturation;
+//
+//
+//texDocument2.replace("YEROTHPAPERSPEC", "a4paper");
+//
+//if (YerothUtils::isEqualCaseInsensitive(comboBoxEvolutionObjetsCurrentText, YerothTableauxDeBordWindow::OBJET_CAISSIERS)  ||
+//		YerothUtils::isEqualCaseInsensitive(comboBoxEvolutionObjetsCurrentText, YerothTableauxDeBordWindow::OBJET_CATEGORIES) ||
+//		YerothUtils::isEqualCaseInsensitive(comboBoxEvolutionObjetsCurrentText, YerothTableauxDeBordWindow::OBJET_CLIENTS))
+//{
+//	if (textFromLineEditEvolutionSujets.isEmpty())
+//	{
+//		yerothFiltre.clear();
+//		yerothFiltre.append(QObject::tr("aucun filtre !"));
+//	}
+//}
+//else
+//{
+//	yerothFiltre = YerothUtils::LATEX_IN_OUT_handleForeignAccents(yerothFiltre);
+//}
+//
+//texDocument2.replace("YEROTHMENTION", "");
+//
+//texDocument2.replace("YEROTHFILTRE", yerothFiltre.prepend("''").append("''"));
+//
+//texDocument2.replace("YEROTHCHIFFREAFFAIREDATEDEBUT",longDateDebut);
+//texDocument2.replace("YEROTHCHIFFREAFFAIREDATEFIN", 	longDateFin);
+//texDocument2.replace("YEROTHCHARTFIN", 				_reportTexFileEndString);
+//texDocument2.replace("YEROTHENTREPRISE", 			infoEntreprise.getNomCommercial_LATEX());
+//texDocument2.replace("YEROTHACTIVITESENTREPRISE", 	infoEntreprise.getSecteursActivitesTex());
+//texDocument2.replace("YEROTHBOITEPOSTALE", 			infoEntreprise.getBoitePostal());
+//texDocument2.replace("YEROTHVILLE", 					infoEntreprise.getVille_LATEX());
+//texDocument2.replace("YEROTHPAYS", 					infoEntreprise.getPaysTex());
+//texDocument2.replace("YEROTHEMAIL", 					infoEntreprise.getEmail_LATEX());
+//texDocument2.replace("YEROTHTELEPHONE", 				infoEntreprise.getTelephone());
+//texDocument2.replace("YEROTHDATE", 					factureDate);
+//
+//texDocument2.replace("YEROTHNOMUTILISATEUR", QString("%1 %2")
+//		.arg(YerothUtils::getAllWindows()->getUser()->titreTex(),
+//				YerothUtils::getAllWindows()->getUser()->nom_completTex()));
+//
+//texDocument2.replace("YEROTHHEUREDIMPRESSION",		CURRENT_TIME);
+//texDocument2.replace("YEROTHCOMPTEBANCAIRENR", 		infoEntreprise.getNumeroCompteBancaire());
+//texDocument2.replace("YEROTHCONTRIBUABLENR", 		infoEntreprise.getNumeroDeContribuable());
+//texDocument2.replace("YEROTHAGENCECOMPTEBANCAIRE",	infoEntreprise.getAgenceCompteBancaireTex());
+//
+//texDocument2.replace("1a.tex", fileName1);
+//
+//#ifdef YEROTH_FRANCAIS_LANGUAGE
+//texDocument2.replace("YEROTHTITREDOCUMENT",
+//		QString("Diagramme r\\'epr\\'esentatif des chiffres"
+//				" d'affaire du %1 au %2.").arg(longDateDebut, longDateFin));
+//#endif
+//
+//#ifdef YEROTH_ENGLISH_LANGUAGE
+//texDocument2.replace("YEROTHTITREDOCUMENT",
+//		QString("Chart illustrating the income from %1 to %2.")
+//		.arg(longDateDebut, longDateFin));
+//#endif
+//
+////qDebug() << "++ test: " << texDocument2;
+//
+//YerothUtils::LATEX_IN_OUT_handleForeignAccents(texDocument2);
+//
+//QString fileName(FILE_NAME_USERID_CURRENT_TIME("evolution-chiffre-affaire"));
+//fileName.append(".");
+//
+//QString tmpFilePrefix(YerothERPConfig::temporaryFilesDir + "/" + fileName);
+//
+//QFile tmpFile(tmpFilePrefix + "tex");
+//if (tmpFile.open(QFile::WriteOnly))
+//{
+//	tmpFile.write(texDocument2.toUtf8());
+//}
+//tmpFile.close();
+//
+////qDebug() << "++ tmpFile: " << tmpFile.fileName();
+//
+//QStringList progArguments;
+//QString texRm(tmpFile.fileName().remove(".tex"));
+//progArguments << texRm;
+//
+////qDebug() << "++ file name to latex compile bar diag: " << texRm;
+//
+//aProcess.start(YerothERPConfig::pathToLatex(), progArguments);
+//aProcess.waitForFinished(-1);
+//
+//progArguments.clear();
+//progArguments << QString("%1.dvi").arg(texRm);
+//
+//aProcess.start(YerothERPConfig::pathToDvips(), progArguments);
+//aProcess.waitForFinished(-1);
+//
+//progArguments.clear();
+//progArguments << QString("%1.ps").arg(texRm);
+//progArguments << QString("%1.pdf").arg(texRm);
+//
+//aProcess.start(YerothERPConfig::pathToPs2Pdf(), progArguments);
+//aProcess.waitForFinished(-1);
+//
+//progArguments.clear();
+//progArguments << tmpFilePrefix + "pdf";
+//
+////qDebug() << "++ test it: " << tmpFilePrefix + "pdf";
+//
+//aProcess.startDetached(YerothERPConfig::pathToPdfReader, progArguments);
+//
+////qDebug() << "\texit status evince: " << _aProcess->exitStatus();
+//}
+
+
+void YerothTableauxDeBordWindow::analyse_comparee_mensuelle()
 {
     _logger->log("analyseComparee");
 
@@ -4197,7 +5265,7 @@ void YerothTableauxDeBordWindow::calculer_chiffre_daffaire_jour_semaine()
 
 	    //Fill in the PDF file which amount of money for each day of week.
 
-	    double somme_totale_jour_semaine = 0.0;
+	    double somme_totale_ventes_jour_semaine = 0.0;
 
 	    QMapIterator<int, double> it(dayOfWeek__TO__businessturnover);
 
@@ -4205,7 +5273,7 @@ void YerothTableauxDeBordWindow::calculer_chiffre_daffaire_jour_semaine()
 	    {
 	    	it.next();
 
-	    	somme_totale_jour_semaine += it.value();
+	    	somme_totale_ventes_jour_semaine += it.value();
 
 	    	_reportTexFileEndString.append("\\item ")
 
@@ -4239,7 +5307,7 @@ void YerothTableauxDeBordWindow::calculer_chiffre_daffaire_jour_semaine()
 	    {
 	    	it.next();
 
-	    	ratio = (it.value() * MAX_RATIO) / somme_totale_jour_semaine;
+	    	ratio = (it.value() * MAX_RATIO) / somme_totale_ventes_jour_semaine;
 
 //	    	qDebug() << QString("++ jour semaine: %1, max amount: %2, ratio: %3")
 //	    					.arg(YerothUtils::GET_DAYOFWEEK_FROM_QT_INT_CONSTANT(it.key()),
@@ -4929,20 +5997,26 @@ void YerothTableauxDeBordWindow::calculer_chiffre_daffaire_mois()
 
 void YerothTableauxDeBordWindow::choisirEvolutionDuChiffreDaffaire()
 {
-	if (checkBox_analyse_comparee->isEnabled() &&
-		checkBox_analyse_comparee->isChecked())
+	if (checkBox_analyse_comparee->isChecked())
 	{
-		analyseComparee();
+		if (radioButton_jour_semaine->isChecked())
+		{
+			analyse_comparee_jour_semaine();
+		}
+		else if (radioButton_mensuel->isChecked())
+		{
+			analyse_comparee_mensuelle();
+		}
 	}
 	else
 	{
-		if (radioButton_mensuel->isChecked())
-		{
-			calculer_chiffre_daffaire_mois();
-		}
-		else if (radioButton_jour_semaine->isChecked())
+		if (radioButton_jour_semaine->isChecked())
 		{
 			calculer_chiffre_daffaire_jour_semaine();
+		}
+		else if (radioButton_mensuel->isChecked())
+		{
+			calculer_chiffre_daffaire_mois();
 		}
 	}
 }
