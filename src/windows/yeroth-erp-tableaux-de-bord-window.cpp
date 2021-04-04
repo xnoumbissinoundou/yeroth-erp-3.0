@@ -27,6 +27,8 @@
 
 #include <QtCore/QDateTime>
 
+#include <QtCore/QMapIterator>
+
 #include <QtCore/QtMath>
 
 #include <QtCore/QPair>
@@ -3973,8 +3975,8 @@ void YerothTableauxDeBordWindow::calculer_chiffre_daffaire_jour_semaine()
 
 	_logger->log("calculer_chiffre_daffaire_jour_semaine");
 
-	if (dateEdit_chiffre_daffaire_jour_semaine_fin <
-		dateEdit_chiffre_daffaire_jour_semaine_debut)
+	if (dateEdit_chiffre_daffaire_jour_semaine_fin->date() <
+		dateEdit_chiffre_daffaire_jour_semaine_debut->date())
 	{
         YerothQMessageBox::warning(this, QObject::trUtf8("évolution du chiffre d'affaire"),
                                    QObject::trUtf8("Le jour de 'début' doit être "
@@ -3984,8 +3986,8 @@ void YerothTableauxDeBordWindow::calculer_chiffre_daffaire_jour_semaine()
 
 	QMap<QString, double> dayOfWeek__TO__businessturnover;
 
-	qint64 dates_range = dateEdit_chiffre_daffaire_jour_semaine_debut->
-			date().daysTo(dateEdit_chiffre_daffaire_jour_semaine_fin->date()) + 1;
+	qint64 dates_range = dateEdit_chiffre_daffaire_jour_semaine_debut->date()
+			.daysTo(dateEdit_chiffre_daffaire_jour_semaine_fin->date()) + 1;
 
 
 	QString string_chiffre_daffaire_semaine_query;
@@ -4045,6 +4047,248 @@ void YerothTableauxDeBordWindow::calculer_chiffre_daffaire_jour_semaine()
 	while(i < dates_range);
 
 //	qDebug() << dayOfWeek__TO__businessturnover;
+
+	_reportTexFileEndString.clear();
+
+	#ifdef YEROTH_FRANCAIS_LANGUAGE
+	    _reportTexFileEndString.append(YerothUtils::LATEX_IN_OUT_handleForeignAccents(
+	                                       QString("D\\'etails en %1:")
+	                                       .arg(YerothERPConfig::currency)));
+	#endif
+
+	#ifdef YEROTH_ENGLISH_LANGUAGE
+	    _reportTexFileEndString.append(YerothUtils::LATEX_IN_OUT_handleForeignAccents(
+	                                       QString("Details in %1:")
+	                                       .arg(YerothERPConfig::currency)));
+	#endif
+
+	    _reportTexFileEndString.prepend("\\textbf{").append("}\n");
+	    _reportTexFileEndString.append("\\begin{enumerate}[1)]\n");
+
+	    //Fill in the PDF file which amount of money for each day of week.
+
+	    double somme_totale_jour_semaine = 0.0;
+
+	    QMapIterator<QString, double> it(dayOfWeek__TO__businessturnover);
+
+	    while(it.hasNext())
+	    {
+	    	it.next();
+
+	    	somme_totale_jour_semaine += it.value();
+
+	    	_reportTexFileEndString.append("\\item ")
+
+			#ifdef YEROTH_FRANCAIS_LANGUAGE
+	    	    .append(YerothUtils::LATEX_IN_OUT_handleForeignAccents(it.key()))
+			#endif
+
+			#ifdef YEROTH_ENGLISH_LANGUAGE
+				.append(YerothUtils::LATEX_IN_OUT_handleForeignAccents(it.key()))
+			#endif
+				.append(QString(": $%1$\n")
+							.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_CURRENCY_STRING_NUM(it.value()))));
+
+	    }
+
+//	    QDEBUG_STRING_OUTPUT_2_N("somme_totale_jour_semaine", somme_totale_jour_semaine);
+
+	    _reportTexFileEndString.append("\\end{enumerate}\n");
+
+	    QString barItems;
+
+	    double ratio = 0;
+
+	    const int TICKS = 100;
+	    const double MAX_RATIO = 900.0;
+
+	    it.toFront();
+
+	    while(it.hasNext())
+	    {
+	    	it.next();
+
+	    	ratio = (it.value() * MAX_RATIO) / somme_totale_jour_semaine;
+
+	    	//qDebug() << QString("++ mois(k): %1, max amount: %2, ratio: %3")
+	    	//				.arg(QString::number(k),
+	    	//						QString::number(monthToVentesTotalAmount[k], 'f', 2),
+	    	//						QString::number(ratio, 'f', 2));
+
+	    	barItems.append(QString("\\baritem{%1}{%2}{gray}\n")
+	    			.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(it.key()),
+	    					QString::number(ratio, 'f', 2)));
+	    }
+
+
+//	    qDebug() << "++ barItems: " << barItems;
+
+	    QProcess aProcess;
+
+	    aProcess.setWorkingDirectory(YerothERPConfig::temporaryFilesDir);
+
+	    QString texDocument;
+	    texDocument.append(YerothUtils::_1a_tex);
+
+
+	    texDocument.replace("YEROTHBARPERGROUP", "");
+	    texDocument.replace("YEROTHBARITEMS", 				barItems);
+	    texDocument.replace("YEROTHTICKS", 					QString::number(TICKS));
+
+	#ifdef YEROTH_FRANCAIS_LANGUAGE
+	    texDocument.replace("YEROTHLEGENDANALYSECOMPAREE", 	"");
+	    texDocument.replace("YEROTHDIAGRAMMETITRE", 		"Ratio du chiffre d'affaire des journées de travail.");
+	    texDocument.replace("YEROTHNIVEAUCHIFFREAFFAIRE", 	"Niveau du chiffre d'affaire");
+	#endif
+
+	#ifdef YEROTH_ENGLISH_LANGUAGE
+	    texDocument.replace("YEROTHLEGENDANALYSECOMPAREE", 	"");
+	    texDocument.replace("YEROTHDIAGRAMMETITRE", 		"Ratio of days of week income.");
+	    texDocument.replace("YEROTHNIVEAUCHIFFREAFFAIRE", 	"Income Level");
+	#endif
+
+	    QString fileName1(YerothERPConfig::temporaryFilesDir + "/1a.tex");
+
+	    QFile tmpFile1(fileName1);
+
+	    if (tmpFile1.open(QFile::WriteOnly))
+	    {
+	        tmpFile1.write(texDocument.toUtf8());
+	    }
+	    tmpFile1.close();
+
+	    YerothInfoEntreprise &infoEntreprise = _allWindows->getInfoEntreprise();
+
+	    QString texDocument2;
+
+	#ifdef YEROTH_FRANCAIS_LANGUAGE
+	    texDocument2.append(YerothUtils::FR_bar_diag_tex);
+	#endif
+
+	#ifdef YEROTH_ENGLISH_LANGUAGE
+	    texDocument2.append(YerothUtils::EN_bar_diag_tex);
+	#endif
+
+
+	    QString factureDate(YerothUtils::LATEX_IN_OUT_handleForeignAccents(infoEntreprise.getVille_LATEX()));
+	    YerothUtils::getCurrentLocaleDate(factureDate);
+
+	    QString longDateDebut;
+	    QString longDateFin;
+
+	#ifdef YEROTH_FRANCAIS_LANGUAGE
+	    longDateDebut = QString("'%1'")
+	                    .arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(
+	                    		YerothUtils::frenchLocale.toString(dateEdit_chiffre_daffaire_jour_semaine_debut->date())));
+
+	    longDateFin = QString("'%1'")
+	                  .arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(
+	                		  YerothUtils::frenchLocale.toString(dateEdit_chiffre_daffaire_jour_semaine_fin->date())));
+	#endif
+
+	#ifdef YEROTH_ENGLISH_LANGUAGE
+	    longDateDebut = QString("'%1'")
+	                    .arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(
+	                    		YerothUtils::englishLocale.toString(dateEdit_chiffre_daffaire_jour_semaine_debut->date())));
+
+	    longDateFin = QString("'%1'")
+	                  .arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(
+	                		  YerothUtils::englishLocale.toString(dateEdit_chiffre_daffaire_jour_semaine_fin->date())));
+	#endif
+
+	    //qDebug() << "++ type fact. rapports - chiffe affaire: " << YerothConfig::typeOfFacturation;
+
+
+	    texDocument2.replace("YEROTHPAPERSPEC", "a4paper");
+
+
+		texDocument2.replace("YEROTHMENTION", "");
+
+	    texDocument2.replace("YEROTHFILTRE", YerothUtils::EMPTY_STRING);
+
+	    texDocument2.replace("YEROTHCHIFFREAFFAIREDATEDEBUT",	longDateDebut);
+	    texDocument2.replace("YEROTHCHIFFREAFFAIREDATEFIN", 	longDateFin);
+	    texDocument2.replace("YEROTHCHARTFIN", 					_reportTexFileEndString);
+	    texDocument2.replace("YEROTHENTREPRISE", 				infoEntreprise.getNomCommercial_LATEX());
+	    texDocument2.replace("YEROTHACTIVITESENTREPRISE", 		infoEntreprise.getSecteursActivitesTex());
+	    texDocument2.replace("YEROTHBOITEPOSTALE", 				infoEntreprise.getBoitePostal());
+	    texDocument2.replace("YEROTHVILLE", 					infoEntreprise.getVille_LATEX());
+	    texDocument2.replace("YEROTHPAYS", 						infoEntreprise.getPaysTex());
+	    texDocument2.replace("YEROTHEMAIL", 					infoEntreprise.getEmail_LATEX());
+	    texDocument2.replace("YEROTHTELEPHONE", 				infoEntreprise.getTelephone());
+	    texDocument2.replace("YEROTHDATE", 						factureDate);
+
+	    texDocument2.replace("YEROTHNOMUTILISATEUR", QString("%1 %2")
+	       												.arg(YerothUtils::getAllWindows()->getUser()->titreTex(),
+	       													 YerothUtils::getAllWindows()->getUser()->nom_completTex()));
+
+	    texDocument2.replace("YEROTHHEUREDIMPRESSION",		CURRENT_TIME);
+	    texDocument2.replace("YEROTHCOMPTEBANCAIRENR", 		infoEntreprise.getNumeroCompteBancaire());
+	    texDocument2.replace("YEROTHCONTRIBUABLENR", 		infoEntreprise.getNumeroDeContribuable());
+	    texDocument2.replace("YEROTHAGENCECOMPTEBANCAIRE",	infoEntreprise.getAgenceCompteBancaireTex());
+
+	    texDocument2.replace("1a.tex", fileName1);
+
+	#ifdef YEROTH_FRANCAIS_LANGUAGE
+	    texDocument2.replace("YEROTHTITREDOCUMENT",
+	                         QString("Diagramme r\\'epr\\'esentatif des chiffres"
+	                                 " d'affaire par jour de la semaine du %1 au %2.").arg(longDateDebut, longDateFin));
+	#endif
+
+	#ifdef YEROTH_ENGLISH_LANGUAGE
+	    texDocument2.replace("YEROTHTITREDOCUMENT",
+	                         QString("Chart illustrating days of week income from %1 to %2.")
+	                         .arg(longDateDebut, longDateFin));
+	#endif
+
+	    //qDebug() << "++ test: " << texDocument2;
+
+	    YerothUtils::LATEX_IN_OUT_handleForeignAccents(texDocument2);
+
+	    QString fileName(FILE_NAME_USERID_CURRENT_TIME("evolution-chiffre-affaire-jour-semaine"));
+	    fileName.append(".");
+
+	    QString tmpFilePrefix(YerothERPConfig::temporaryFilesDir + "/" + fileName);
+
+	    QFile tmpFile(tmpFilePrefix + "tex");
+	    if (tmpFile.open(QFile::WriteOnly))
+	    {
+	        tmpFile.write(texDocument2.toUtf8());
+	    }
+	    tmpFile.close();
+
+	    //qDebug() << "++ tmpFile: " << tmpFile.fileName();
+
+	    QStringList progArguments;
+	    QString texRm(tmpFile.fileName().remove(".tex"));
+	    progArguments << texRm;
+
+	    //qDebug() << "++ file name to latex compile bar diag: " << texRm;
+
+		aProcess.start(YerothERPConfig::pathToLatex(), progArguments);
+		aProcess.waitForFinished(-1);
+
+		progArguments.clear();
+		progArguments << QString("%1.dvi").arg(texRm);
+
+		aProcess.start(YerothERPConfig::pathToDvips(), progArguments);
+		aProcess.waitForFinished(-1);
+
+		progArguments.clear();
+		progArguments << QString("%1.ps").arg(texRm);
+		progArguments << QString("%1.pdf").arg(texRm);
+
+		aProcess.start(YerothERPConfig::pathToPs2Pdf(), progArguments);
+		aProcess.waitForFinished(-1);
+
+	    progArguments.clear();
+	    progArguments << tmpFilePrefix + "pdf";
+
+	    //qDebug() << "++ test it: " << tmpFilePrefix + "pdf";
+
+	    aProcess.startDetached(YerothERPConfig::pathToPdfReader, progArguments);
+
+	    //qDebug() << "\texit status evince: " << _aProcess->exitStatus();
 }
 
 
