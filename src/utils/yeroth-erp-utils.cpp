@@ -260,19 +260,39 @@ const QString YerothUtils::STRING_STYLESHEETS_YEROTH_ERP_3_0("QLabel { font-size
 const QString YerothUtils::STRING_STYLESHEET_COLOR_YEROTHGREEN("QLabel { color : rgb(0, 255, 100); }");
 
 
-const QString YerothUtils::STRING_MONDAY("MONDAY");
+#ifdef YEROTH_FRANCAIS_LANGUAGE
 
-const QString YerothUtils::STRING_TUESDAY("TUESDAY");
+	const QString YerothUtils::STRING_MONDAY("lundi");
 
-const QString YerothUtils::STRING_WEDNESDAY("WEDNESDAY");
+	const QString YerothUtils::STRING_TUESDAY("mardi");
 
-const QString YerothUtils::STRING_THURSDAY("THURSDAY");
+	const QString YerothUtils::STRING_WEDNESDAY("mercredi");
 
-const QString YerothUtils::STRING_FRIDAY("FRIDAY");
+	const QString YerothUtils::STRING_THURSDAY("jeudi");
 
-const QString YerothUtils::STRING_SATURDAY("SATURDAY");
+	const QString YerothUtils::STRING_FRIDAY("vendredi");
 
-const QString YerothUtils::STRING_SUNDAY("SUNDAY");
+	const QString YerothUtils::STRING_SATURDAY("samedi");
+
+	const QString YerothUtils::STRING_SUNDAY("dimanche");
+
+#else //YEROTH_ENGLISH_LANGUAGE
+
+	const QString YerothUtils::STRING_MONDAY("MONDAY");
+
+	const QString YerothUtils::STRING_TUESDAY("TUESDAY");
+
+	const QString YerothUtils::STRING_WEDNESDAY("WEDNESDAY");
+
+	const QString YerothUtils::STRING_THURSDAY("THURSDAY");
+
+	const QString YerothUtils::STRING_FRIDAY("FRIDAY");
+
+	const QString YerothUtils::STRING_SATURDAY("SATURDAY");
+
+	const QString YerothUtils::STRING_SUNDAY("SUNDAY");
+
+#endif
 
 
 const QColor YerothUtils::YEROTH_WHITE_COLOR(QColor(COLOUR_RGB_YEROTH_WHITE_255_255_255));

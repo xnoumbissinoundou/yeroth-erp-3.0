@@ -758,7 +758,7 @@ void YerothTableauxDeBordWindow::quantite_max_stats(QString fileName,
     		QObject::trUtf8("D\\'etails par quantit\\'es les plus vendues:")))
         			.prepend("\\textbf{").append("}\n");
 
-    _reportTexFileEndString.append("\\begin{enumerate}[1)]\n");
+    _reportTexFileEndString.append("\\begin{enumerate}[1.]\n");
 
     _csvFileItemSize = 0;
 
@@ -950,7 +950,7 @@ void YerothTableauxDeBordWindow::quantite_moindre_stats(QString fileName,
     		QObject::trUtf8("D\\'etails par quantit\\'es les moins vendues:")))
         			.prepend("\\textbf{").append("}\n");
 
-    _reportTexFileEndString.append("\\begin{enumerate}[1)]\n");
+    _reportTexFileEndString.append("\\begin{enumerate}[1.]\n");
 
     _csvFileItemSize = 0;
 
@@ -1143,7 +1143,7 @@ void YerothTableauxDeBordWindow::meilleursStats(QString fileName,
                                        	   .arg(YerothERPConfig::currency)))
     					   .prepend("\\textbf{").append("}\n");
 
-    _reportTexFileEndString.append("\\begin{enumerate}[1)]\n");
+    _reportTexFileEndString.append("\\begin{enumerate}[1.]\n");
 
     _csvFileItemSize = 0;
 
@@ -1309,7 +1309,7 @@ void YerothTableauxDeBordWindow::ZERO_stats_stocks(QString fileName,
 
     _reportTexFileEndString.clear();
 
-    _reportTexFileEndString.append("\\begin{enumerate}[1)]\n");
+    _reportTexFileEndString.append("\\begin{enumerate}[1.]\n");
 
     _csvFileItemSize = 0;
 
@@ -1466,7 +1466,7 @@ void YerothTableauxDeBordWindow::ZERO_stats(QString fileName,
 
     _reportTexFileEndString.clear();
 
-    _reportTexFileEndString.append("\\begin{enumerate}[1)]\n");
+    _reportTexFileEndString.append("\\begin{enumerate}[1.]\n");
 
     _csvFileItemSize = 0;
 
@@ -1661,7 +1661,7 @@ void YerothTableauxDeBordWindow::derniersStats(QString fileName,
 
     _reportTexFileEndString.prepend("\\textbf{").append("}\n");
 
-    _reportTexFileEndString.append("\\begin{enumerate}[1)]\n");
+    _reportTexFileEndString.append("\\begin{enumerate}[1.]\n");
 
     for(int j = 0, k = 0; j < caissierToVentes.size() && k < size; ++j)
     {
@@ -3232,7 +3232,7 @@ void YerothTableauxDeBordWindow::analyseComparee()
 #endif
 
     _reportTexFileEndString.prepend("\\textbf{").append("}\n");
-    _reportTexFileEndString.append("\\begin{enumerate}[1)]\n");
+    _reportTexFileEndString.append("\\begin{enumerate}[1.]\n");
 
     //Fill in the PDF file which amount of money for which month.
 
@@ -3984,7 +3984,7 @@ void YerothTableauxDeBordWindow::calculer_chiffre_daffaire_jour_semaine()
         return ;
 	}
 
-	QMap<QString, double> dayOfWeek__TO__businessturnover;
+	QMap<int, double> dayOfWeek__TO__businessturnover;
 
 	qint64 dates_range = dateEdit_chiffre_daffaire_jour_semaine_debut->date()
 			.daysTo(dateEdit_chiffre_daffaire_jour_semaine_fin->date()) + 1;
@@ -4032,9 +4032,9 @@ void YerothTableauxDeBordWindow::calculer_chiffre_daffaire_jour_semaine()
 			if (! YerothUtils::isEqualCaseInsensitive(YerothUtils::EMPTY_STRING, STRING_current_day_of_week))
 			{
 				a_temp_day_of_week_business_turnover =
-						dayOfWeek__TO__businessturnover[STRING_current_day_of_week];
+						dayOfWeek__TO__businessturnover[current_day_of_week];
 
-				dayOfWeek__TO__businessturnover.insert(STRING_current_day_of_week,
+				dayOfWeek__TO__businessturnover.insert(current_day_of_week,
 						current_day_business_turnover +
 						a_temp_day_of_week_business_turnover);
 			}
@@ -4063,13 +4063,13 @@ void YerothTableauxDeBordWindow::calculer_chiffre_daffaire_jour_semaine()
 	#endif
 
 	    _reportTexFileEndString.prepend("\\textbf{").append("}\n");
-	    _reportTexFileEndString.append("\\begin{enumerate}[1)]\n");
+	    _reportTexFileEndString.append("\\begin{enumerate}[1.]\n");
 
 	    //Fill in the PDF file which amount of money for each day of week.
 
 	    double somme_totale_jour_semaine = 0.0;
 
-	    QMapIterator<QString, double> it(dayOfWeek__TO__businessturnover);
+	    QMapIterator<int, double> it(dayOfWeek__TO__businessturnover);
 
 	    while(it.hasNext())
 	    {
@@ -4080,15 +4080,16 @@ void YerothTableauxDeBordWindow::calculer_chiffre_daffaire_jour_semaine()
 	    	_reportTexFileEndString.append("\\item ")
 
 			#ifdef YEROTH_FRANCAIS_LANGUAGE
-	    	    .append(YerothUtils::LATEX_IN_OUT_handleForeignAccents(it.key()))
+	    	    .append(YerothUtils::LATEX_IN_OUT_handleForeignAccents(
+	    	    		YerothUtils::GET_DAYOFWEEK_FROM_QT_INT_CONSTANT(it.key())))
 			#endif
 
 			#ifdef YEROTH_ENGLISH_LANGUAGE
-				.append(YerothUtils::LATEX_IN_OUT_handleForeignAccents(it.key()))
+				.append(YerothUtils::LATEX_IN_OUT_handleForeignAccents(
+						YerothUtils::GET_DAYOFWEEK_FROM_QT_INT_CONSTANT(it.key())))
 			#endif
 				.append(QString(": $%1$\n")
 							.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_CURRENCY_STRING_NUM(it.value()))));
-
 	    }
 
 //	    QDEBUG_STRING_OUTPUT_2_N("somme_totale_jour_semaine", somme_totale_jour_semaine);
@@ -4116,7 +4117,8 @@ void YerothTableauxDeBordWindow::calculer_chiffre_daffaire_jour_semaine()
 	    	//						QString::number(ratio, 'f', 2));
 
 	    	barItems.append(QString("\\baritem{%1}{%2}{gray}\n")
-	    			.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(it.key()),
+	    			.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(
+	    				 YerothUtils::GET_DAYOFWEEK_FROM_QT_INT_CONSTANT(it.key())),
 	    					QString::number(ratio, 'f', 2)));
 	    }
 
@@ -4541,7 +4543,7 @@ void YerothTableauxDeBordWindow::calculer_chiffre_daffaire_mois()
 #endif
 
     _reportTexFileEndString.prepend("\\textbf{").append("}\n");
-    _reportTexFileEndString.append("\\begin{enumerate}[1)]\n");
+    _reportTexFileEndString.append("\\begin{enumerate}[1.]\n");
 
     //Fill in the PDF file which amount of money for which month.
 
