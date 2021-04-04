@@ -612,6 +612,9 @@ void YerothTableauxDeBordWindow::reinitialiser_chiffre_affaire()
 
     comboBox_operations_chiffre->resetYerothComboBox();
 
+    dateEdit_chiffre_daffaire_jour_semaine_debut->reset();
+    dateEdit_chiffre_daffaire_jour_semaine_fin->reset();
+
     comboBox_mois_debut_chiffre_affaire->resetYerothComboBox();
     comboBox_mois_fin_chiffre_affaire->resetYerothComboBox();
     comboBox_annee_chiffre_affaire->resetYerothComboBox();
