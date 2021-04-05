@@ -1,0 +1,236 @@
+\documentclass[9pt,a4paper]{article} % use larger type; default would be 10pt
+\NeedsTeXFormat{LaTeX2e}
+\makeindex
+
+%---------------------------- PACKAGE INCLUSION -------------------------------
+% This group renders characters clearer and more precise
+
+\RequirePackage[bitstream-charter,cal,expert]{mathdesign}
+\RequirePackage{charter}
+\RequirePackage{helvet}
+\RequirePackage{makeidx}
+\RequirePackage{latexsym}
+
+\usepackage{geometry}
+\geometry{a4paper,
+		  top=3.5em,
+		  left=3em,
+		  right=3em,
+		  bottom=3.39em
+		  }
+
+\usepackage{array,multirow,booktabs}
+\usepackage{graphicx}
+\usepackage{adjustbox}
+\usepackage{xspace}
+\usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{listings} % for lstset definitions
+\usepackage{url}
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+\usepackage{epsfig}
+\usepackage{gensymb}
+\usepackage{textcomp}
+\usepackage{booktabs}
+
+\usepackage{amsmath}
+\newcommand{\mathbold}[1]{\text{\textbf{#1}}}
+
+\usepackage{xcolor}
+\definecolor{yerothColorOrange}{RGB}{242, 161, 0}   
+\definecolor{yerothColorBlue}{RGB}{77 , 93 , 254}
+\definecolor{yerothColorRed}{RGB}{254, 48 , 48}
+\definecolor{yerothColorGray}{RGB}{198, 198, 198}
+\definecolor{yerothColorDarkgray}{RGB}{60, 60 , 60}
+\definecolor{yerothColorIndigo}{RGB}{83, 0, 125}
+\definecolor{yerothColorGreen}{RGB}{2  , 160, 70}
+\definecolor{forestgreen}{RGB}{2,160,70}    
+\definecolor{mediumblue}{RGB}{7,43,205}    
+\definecolor{firebrickred}{RGB}{178,34,34}
+\definecolor{listingray}{gray}{0.9}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+\definecolor{darkgreen}{rgb}{0,0.35,0}
+\definecolor{medgreen}{rgb}{0,0.5,0}
+\definecolor{lightgreen}{rgb}{0.5,0.7,0.5}
+\definecolor{pmcolour}{rgb}{0.5,0.7,0.5}
+\definecolor{medgrey}{rgb}{0.6,0.6,0.6}
+\definecolor{purplish}{rgb}{0.4,0,0.6}
+\definecolor{brightred}{rgb}{1,0.2,0.2}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    pagebackref,
+    citecolor=medgreen,
+    linkcolor=purplish,
+    breaklinks,
+    pdftex,
+    bookmarks,
+    plainpages=false,
+    pdftitle={CURRICULUM VITAE DU PROFESSEUR PLEIN (YEROTH~R\&D) XAVIER NOUMBISSI NOUNDOU.},
+    pdfauthor={PR. XAVIER NOUMBISSI NOUNDOU (@YEROTH~R\&D)}
+}
+
+% format two pieces of text, one left aligned and one right aligned
+\newcommand{\headerrow}[2]
+{\begin{tabular*}{\linewidth}{l@{\extracolsep{\fill}}r}
+	#1 &
+	#2 \\
+\end{tabular*}}
+
+\newcommand{\headerrowONE}[1]{\headerrow{#1}{}}
+
+\newcommand{\emphbold}[1]{\textbf{\emph{#1}}\xspace}
+
+\newcommand{\ms}{\texttt{Windows~XP, $2000$}\xspace}
+\newcommand{\css}{\texttt{CSS}\xspace}
+\newcommand{\php}{\texttt{PHP}\xspace}
+\newcommand{\mysql}{\texttt{MySQL}\xspace}
+\newcommand{\redhat}{\texttt{RedHat~OS}\xspace}
+\newcommand{\html}{\texttt{HTML}\xspace}
+\newcommand{\java}{\texttt{Java}\xspace}
+\newcommand{\jtwoee}{J$2$EE\xspace}
+\newcommand{\cplusplus}{C$++$\xspace}
+\newcommand{\cvitemdate}[2]{#1~$#2$\xspace}
+\newcommand{\cvitempositionheld}[1]{\textbf{#1}\xspace}
+
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\headrulewidth}{0pt}
+
+\pagenumbering{gobble}
+%\cfoot{\thepage\ DE \pageref{LastPage}}
+
+
+\begin{document}
+\bigskip
+
+
+\headerrow
+	{\Large \textbf{PR. XAVIER NOUMBISSI NOUNDOU}}	
+	{\large \textbf{yeroth.rd.30@gmail.com}}
+
+\vspace{1em}
+
+
+\hrule
+\begin{center}
+{\large \textbf{PARCOURS ACADÉMIQUE}}
+\end{center}
+
+\vspace{0.5em}
+
+\headerrowONE{\textbf{Doctor of Philosophy in Computer Engineering (''Doctorat/Ph.D en Génie informatique'')}}	
+\headerrowONE{\href{http://watform.uwaterloo.ca/}{WatForm Lab, Université de Waterloo, Waterloo, Ontario, CANADA}}
+\headerrowONE{\href{http://archive.org/details/yeroth-saint}{Ph.D.~Thesis: Context-Sensitive Staged Static Taint Analysis for C using LLVM}}
+\headerrowONE{\cvitemdate{Octobre}{2009} -- \cvitemdate{Mars}{2015} (abandon avec $1$ MOYENNE DE $17.50~/~20$)}	
+	
+\vspace{0.3em}
+	
+\headerrowONE{\href{http://www.informatik.uni-bremen.de/agbs/qualifikationsarbeiten/diplomarbeiten_e.html}{\textbf{Diplom--Informatiker (Dipl.--Inf. ou encore ''Diplôme de Master II en Génie informatique'')}}}
+\headerrowONE{\href{http://www.informatik.uni-bremen.de/agbs/}{AGBS, Université de Brême, Brême, Bremen, ALLEMAGNE}}	
+\headerrowONE{Master's degree Thesis: Statistical test case generation for reactive systems}
+\headerrowONE{\cvitemdate{$01$~Octobre}{2002} -- \cvitemdate{$25$~Mai}{2007} (succès avec $1$ MOYENNE DE $17.50~/~20$)}	
+
+\vspace{1em}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hrule
+\begin{center}
+{\large \textbf{INVENTIONS EN GÉNIE INFORMATIQUE}}
+\end{center}
+
+\vspace{0.5em}
+
+\headerrowONE{\href{http://archive.org/details/yeroth-erp-3-0-info-english}{\textbf{SYSTÈME--LOGICIEL ERP '\texttt{YEROTH--ERP--3.0--STANDALONE}'}}}		
+\headerrowONE{\cvitemdate{Octobre}{2015} -- En cours | Code source libre et gratuit: \url{http://github.com/xnoumbissinoundou/yeroth-erp-3.0}}
+
+\vspace{0.3em}
+
+\headerrowONE{\href{http://archive.org/details/yeroth-saint}{\textbf{CONTEXT-SENSITIVE STAGED STATIC TAINT ANALYSIS FOR C USING LLVM (\texttt{'YEROTH--SAINT'})}}}
+\headerrowONE{\cvitemdate{Octobre}{2009} -- \cvitemdate{Octobre}{2015} | Code source libre et gratuit: \url{http://github.com/xnoumbissinoundou/yeroth.rd.saint}}
+	
+\vspace{1em}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\hrule
+\begin{center}
+{\large \textbf{EXPÉRIENCE PROFESSIONNELLE}}
+\end{center}
+
+\vspace{0.5em}
+
+\headerrowONE{\textbf{YEROTH~R\&D, Douala, LITTORAL, CAMEROUN}}
+\headerrowONE{\cvitempositionheld{PROFESSEUR PLEIN de génie informatique, CEO}}
+\headerrowONE{\cvitemdate{Octobre}{2015} -- Présent}	
+
+\vspace{0.3em}
+
+\headerrowONE{\textbf{WatForm Lab, Université de Waterloo, Waterloo, ON, CANADA}}	
+\headerrowONE{\cvitempositionheld{ASSISTANT D'ENSEIGNEMENT} (test et qualité du logiciel)}
+\headerrowONE{\cvitemdate{Octobre}{2009} -- \cvitemdate{Mars}{2015}}
+	
+\vspace{0.3em}
+
+\headerrowONE{\textbf{IBM Toronto Software Lab, Markham, ON, CANADA}}	
+\headerrowONE{\cvitempositionheld{DÉVELOPPEUR LOGICIEL \cplusplus} (optimisation de la compilation JAVA--JIT--J$9$), DOCTORANT/PH.D.}
+\headerrowONE{\cvitemdate{Janvier}{2012} -- \cvitemdate{Août}{2012}}	
+
+\vspace{0.3em}
+
+\headerrowONE{\textbf{SIEMENS Medical Solutions, Erlangen, Bavière, ALLEMAGNE}}	
+\headerrowONE{\cvitempositionheld{DÉVELOPPEUR LOGICIEL JUNIOR \cplusplus} (protocole 
+de communication '\texttt{DMIP}' pour la radiothérapie avec '\texttt{LINAC}--Siemens')}
+\headerrowONE{\cvitemdate{Novembre}{2007} -- \cvitemdate{Juillet}{2009}}	
+	
+\vspace{0.3em}
+
+\headerrowONE{\textbf{Greenpeace e.V, Hambourg, Hambourg, ALLEMAGNE}}	
+\headerrowONE{\cvitempositionheld{TESTEUR MANUEL DE LOGICIEL} 
+(logiciel '\texttt{MOVE}' développé par la société '\texttt{sd\&m}' pour la gestion de Greenpeace e.V)}
+\headerrowONE{\cvitemdate{Mars}{2007} -- \cvitemdate{Avril}{2007}}	
+
+\vspace{0.3em}
+
+\headerrowONE{\textbf{Bergmann Automaten GmbH, Rellingen, Hambourg, ALLEMAGNE}}	
+\headerrowONE{\cvitempositionheld{DÉVELOPPEUR LOGICIEL} \cplusplus, \jtwoee (protocoles de
+communication (ex.: '\texttt{SIPv$2$}'), serveurs '\texttt{JAVA-servlets}'\\
+ pour automates de payements dans des mairies ou libraries en ALLEMAGNE}
+\headerrowONE{\cvitemdate{Avril}{2005} -- \cvitemdate{Avril}{2007}}	
+	
+\vspace{0.3em}
+
+\headerrowONE{\textbf{AGBS--Université de Brême, Brême, Brême, ALLEMAGNE}}	
+\headerrowONE{\cvitempositionheld{DÉVÉLOPPEUR LOGICIEL \cplusplus} (plugin de 
+génération de classes \cplusplus modélisant des 'statecharts (\texttt{UML})', '\texttt{Borland-Together}'.}
+\headerrowONE{\cvitemdate{Septembre}{2006} -- \cvitemdate{Février}{2007}}	
+
+\vspace{0.3em}
+
+\headerrowONE{\textbf{ZMML--Université de Brême, Brême, Brême, ALLEMAGNE}}	
+\headerrowONE{\cvitempositionheld{DÉVELOPPEUR WEB} \html, \css (programmation de pages web,
+et de tests d'évaluations personnelles pour étudiants.)}
+\headerrowONE{\cvitemdate{Février}{2003} -- \cvitemdate{Mars}{2005}}	
+
+\vspace{0.3em}
+
+\headerrowONE{\textbf{We$4$IT GmbH, Brême, Brême, ALLEMAGNE}}	
+\headerrowONE{\cvitempositionheld{STAGIAIRE--DÉVELOPPEUR LOGICIEL} \mysql, \jtwoee
+(application web pour gestion des formations du personnel hospitalier.)}
+\headerrowONE{\cvitemdate{Juin}{2005} -- \cvitemdate{Juillet}{2005}}
+	
+\vspace{0.3em}
+
+\headerrowONE{\textbf{bremen$4$u GmbH, Brême, Brême, ALLEMAGNE}}	
+\headerrowONE{\cvitempositionheld{STAGIAIRE--DÉVELOPPEUR WEB, ADMINISTRATION--SYSTÈME} \mysql, \redhat, \php,
+\html, \css}
+\headerrowONE{\cvitemdate{Mars}{2004}}	
+
+\vspace{2em}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+
+\end{document}
