@@ -3111,18 +3111,8 @@ void YerothTableauxDeBordWindow::analyse_comparee_jour_semaine()
 				}
 			}
 		}
-		else
-		{
 
-	    	YerothQMessageBox::information(this,
-	    			QObject::trUtf8("analyse comparée"),
-					QObject::trUtf8(("Il n'y a pas de données correspondante à la requête !\n"
-									 "Vérifier que les dates de début et de fin, "
-									 "ainsi que l'année sont correctes !")));
-	    	return ;
-		}
-
-		//	qDebug() << "++ string_chiffre_daffaire_semaine_query: " << string_chiffre_daffaire_semaine_query;
+//		qDebug() << "++ string_chiffre_daffaire_semaine_query: " << string_chiffre_daffaire_semaine_query;
 
 		qsql_query.clear();
 
@@ -3147,15 +3137,6 @@ void YerothTableauxDeBordWindow::analyse_comparee_jour_semaine()
 							a_temp_day_of_week_business_turnover);
 				}
 			}
-		}
-		else
-		{
-			YerothQMessageBox::information(this,
-					QObject::trUtf8("analyse comparée"),
-					QObject::trUtf8(("Il n'y a pas de données correspondante à la requête !\n"
-							"Vérifier que les dates de début et de fin, "
-							"ainsi que l'année sont correctes !")));
-			return ;
 		}
 
 		current_day_date = current_day_date.addDays(1);
@@ -3198,6 +3179,8 @@ void YerothTableauxDeBordWindow::analyse_comparee_jour_semaine()
 
 	double somme_totale_ventes_jour_semaine = 0.0;
 
+	QMap<int, QString> ventes_achats_info;
+
 	QMapIterator<int, double> it(dayOfWeek__TO__businessturnover);
 
 	while(it.hasNext())
@@ -3206,44 +3189,54 @@ void YerothTableauxDeBordWindow::analyse_comparee_jour_semaine()
 
 		somme_totale_ventes_jour_semaine += it.value();
 
-		_reportTexFileEndString.append("\\item \\textbf{")
+//		_reportTexFileEndString.append("\\item \\textbf{")
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
-				.append(QString("%1}: ventes $\\rightarrow %2$, ")
-						.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(YerothUtils::GET_DAYOFWEEK_FROM_QT_INT_CONSTANT(it.key())),
-								YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_CURRENCY_STRING_NUM(it.value()))));
-#endif
-
-#ifdef YEROTH_ENGLISH_LANGUAGE
-		.append(QString("%1}: sales $\\rightarrow %2$, ")
-				.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(YerothUtils::GET_DAYOFWEEK_FROM_QT_INT_CONSTANT(it.key())),
-						YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_CURRENCY_STRING_NUM(it.value()))));
+		ventes_achats_info.insert(it.key(),
+								  QString("\\item \\textbf{%1}: ventes $\\rightarrow %2$, ")
+									 .arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(YerothUtils::GET_DAYOFWEEK_FROM_QT_INT_CONSTANT(it.key())),
+										  YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_CURRENCY_STRING_NUM(it.value()))));
+#else //YEROTH_ENGLISH_LANGUAGE
+		ventes_achats_info.insert(it.key(),
+								   QString("\\item \\textbf{%1}: sales $\\rightarrow %2$, ")
+								   	   .arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(YerothUtils::GET_DAYOFWEEK_FROM_QT_INT_CONSTANT(it.key())),
+								   			YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_CURRENCY_STRING_NUM(it.value()))));
 #endif
 	}
-	//	    QDEBUG_STRING_OUTPUT_2_N("somme_totale_ventes_jour_semaine", somme_totale_ventes_jour_semaine);
 
+//	QDEBUG_STRING_OUTPUT_2_N("somme_totale_ventes_jour_semaine", somme_totale_ventes_jour_semaine);
 
 	double somme_totale_achats_jour_semaine = 0.0;
 
+	QString current_prefix_string_vente_info;
+
 	QMapIterator<int, double> it_achats(dayOfWeek__TO__purchases);
 
-	while(it_achats.hasNext())
+	for (int z = 0; z < ventes_achats_info.size(); ++z)
 	{
-		it_achats.next();
+		if (it_achats.hasNext())
+		{
+			it_achats.next();
 
-		somme_totale_achats_jour_semaine += it_achats.value();
+			somme_totale_achats_jour_semaine += it_achats.value();
 
-		_reportTexFileEndString
+			current_prefix_string_vente_info = ventes_achats_info.value(it_achats.key());
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
-							.append(QString("achats $\\rightarrow %1$\n")
-									.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_CURRENCY_STRING_NUM(it_achats.value()))));
+			current_prefix_string_vente_info.append(
+					QString("achats $\\rightarrow %1$\n")
+					.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_CURRENCY_STRING_NUM(it_achats.value()))));
+
+#else //YEROTH_ENGLISH_LANGUAGE
+			current_prefix_string_vente_info.append(
+					QString("sales $\\rightarrow %1$\n")
+					.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_CURRENCY_STRING_NUM(it_achats.value()))));
 #endif
 
-#ifdef YEROTH_ENGLISH_LANGUAGE
-		.append(QString("purchases $\\rightarrow %1$\n")
-				.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(GET_CURRENCY_STRING_NUM(it_achats.value()))));
-#endif
+			ventes_achats_info.insert(it_achats.key(), current_prefix_string_vente_info);
+
+			_reportTexFileEndString.append(ventes_achats_info.value(it_achats.key()));
+		}
 	}
 
 	_reportTexFileEndString.append("\\end{enumerate}\n");
@@ -3263,15 +3256,18 @@ void YerothTableauxDeBordWindow::analyse_comparee_jour_semaine()
 
 	it.toFront();
 
-	for (int x = 0; it.hasNext() && x < dayOfWeek__TO__businessturnover.size(); ++x)
+	for (int x = 0; x < dayOfWeek__TO__businessturnover.size(); ++x)
 	{
-		it.next();
+		if (it.hasNext())
+		{
+			it.next();
 
-		ratio_ventes = (it.value() * MAX_RATIO) / MAX_AMOUNT_ACHATS_VENTES;
+			ratio_ventes = (it.value() * MAX_RATIO) / MAX_AMOUNT_ACHATS_VENTES;
 
-				barItems.insert(x, QString("\\baritem{%1}{%2}{gray}\n")
-									.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(YerothUtils::GET_DAYOFWEEK_FROM_QT_INT_CONSTANT(it.key())),
-										 QString::number(ratio_ventes, 'f', 2)));
+			barItems.insert(it.key(), QString("\\baritem{%1}{%2}{gray}\n")
+					.arg(YerothUtils::LATEX_IN_OUT_handleForeignAccents(YerothUtils::GET_DAYOFWEEK_FROM_QT_INT_CONSTANT(it.key())),
+							QString::number(ratio_ventes, 'f', 2)));
+		}
 	}
 
 //	QDEBUG_QSTRINGLIST_OUTPUT("barItems - VENTES", barItems.values().join(" "));
@@ -3284,19 +3280,21 @@ void YerothTableauxDeBordWindow::analyse_comparee_jour_semaine()
 
 	QString sub_bar_achat;
 
-	for (int l = 0; it_achats.hasNext() && l < dayOfWeek__TO__businessturnover.size(); ++l)
+	for (int l = 0; l < dayOfWeek__TO__businessturnover.size(); ++l)
 	{
-		it_achats.next();
+		if (it_achats.hasNext())
+		{
+			it_achats.next();
 
-		ratio_achats = (it_achats.value() * MAX_RATIO) / MAX_AMOUNT_ACHATS_VENTES;
+			ratio_achats = (it_achats.value() * MAX_RATIO) / MAX_AMOUNT_ACHATS_VENTES;
 
-		sub_bar_achat = QString(" \\subbaritem{}{%1}{purplish}\n")
-													.arg(QString::number(ratio_achats, 'f', 2));
+			sub_bar_achat = QString(" \\subbaritem{}{%1}{purplish}\n")
+															.arg(QString::number(ratio_achats, 'f', 2));
 
-		barItems.insert(l, QString("%1%2")
-							.arg(barItems.value(l),
-								 sub_bar_achat));
-
+			barItems.insert(it_achats.key(), QString("%1%2")
+												.arg(barItems.value(it_achats.key()),
+													 sub_bar_achat));
+		}
 	}
 
 //	qDebug() << "++ barItems: " << barItems.values().join(YerothUtils::EMPTY_STRING);
