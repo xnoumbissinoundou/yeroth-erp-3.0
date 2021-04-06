@@ -13,7 +13,7 @@
 
 \usepackage{geometry}
 \geometry{a4paper,
-		  top=3.5em,
+		  top=4em,
 		  left=3em,
 		  right=3em,
 		  bottom=3.39em
@@ -82,21 +82,58 @@
 
 \newcommand{\emphbold}[1]{\textbf{\emph{#1}}\xspace}
 
-\newcommand{\ms}{\texttt{Windows~XP, $2000$}\xspace}
+\newcommand{\cplusplus}{C$++$\xspace}
+\newcommand{\java}{\texttt{Java}\xspace}
+
+\newcommand{\jtwoee}{J$2$EE\xspace}
 \newcommand{\css}{\texttt{CSS}\xspace}
 \newcommand{\php}{\texttt{PHP}\xspace}
+
+\newcommand{\dpkgmanager}{\texttt{dpkg (debian package manager)}\xspace}
+\newcommand{\innosetuppackagemanager}{\texttt{Inno Setup package manager (for MS~WINDOWS)}\xspace}
+
+\newcommand{\AWK}{\texttt{AWK}\xspace}
+\newcommand{\bash}{\texttt{BASH}\xspace}
+\newcommand{\python}{\texttt{Python}\xspace}
+
+\newcommand{\scala}{\texttt{Scala}\xspace}
+\newcommand{\haskell}{\texttt{Haskell}\xspace}
+\newcommand{\ml}{\texttt{ML}\xspace}
+
+
+
+\newcommand{\yerothdebian}{\texttt{DEBIAN LINUX}\xspace}
+\newcommand{\ms}{\texttt{Windows~XP, $2000$}\xspace}
+\newcommand{\redhat}{\texttt{RedHat~linux}\xspace}
+
 \newcommand{\mysql}{\texttt{MySQL}\xspace}
-\newcommand{\redhat}{\texttt{RedHat~OS}\xspace}
+
 \newcommand{\html}{\texttt{HTML}\xspace}
-\newcommand{\java}{\texttt{Java}\xspace}
-\newcommand{\jtwoee}{J$2$EE\xspace}
-\newcommand{\cplusplus}{C$++$\xspace}
+
 \newcommand{\cvitemdate}[2]{#1~$#2$\xspace}
 \newcommand{\cvitempositionheld}[1]{\textbf{#1}\xspace}
 
-\usepackage{lastpage}
+%%%%%%%%%%%%%%%%%%%%SETTING HEADER AND FOOTER FOR 'REPORT CLASS'.%%%%%%%%%%%%%%%%%%%%%
 \usepackage{fancyhdr}
 \pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhf{}
+
+\fancypagestyle{plain}{% copies "fancy" over "plain"
+  \fancyfoot[C]{\thepage}% you can add edits that won't affect "fancy" but only "plain"
+}
+
+\fancypagestyle{OnlyFirstPage}{%
+	\lhead{}
+	\rhead{}
+    \lfoot{}
+}
+
+\rhead{CURRICULUM VITAE OF PR. XAVIER NOUMBISSI NOUNDOU}
+\lhead{YEROTH R\&D}
+\lfoot{}
+\rfoot{}
+\cfoot{\thepage}
 
 \renewcommand{\headrulewidth}{0pt}
 
@@ -105,6 +142,9 @@
 
 
 \begin{document}
+
+\thispagestyle{OnlyFirstPage}
+
 \bigskip
 
 
@@ -170,7 +210,7 @@
 \vspace{0.3em}
 
 \headerrowONE{\textbf{WatForm Lab, Université de Waterloo, Waterloo, ON, CANADA}}	
-\headerrowONE{\cvitempositionheld{ASSISTANT D'ENSEIGNEMENT} (test et qualité du logiciel)}
+\headerrowONE{\cvitempositionheld{ASSISTANT D'ENSEIGNEMENT}}
 \headerrowONE{\cvitemdate{Octobre}{2009} -- \cvitemdate{Mars}{2015}}
 	
 \vspace{0.3em}
@@ -230,7 +270,132 @@ et de tests d'évaluations personnelles pour étudiants)}
 \headerrowONE{\cvitemdate{Mars}{2004}}	
 
 \vspace{2em}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%% 2EME PAGE DU CV %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vspace{0em}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{center}
+{\large \textbf{EXPÉRIENCE D'UNITÉS D'ENSEIGNEMENT DONNÉES}}
+\end{center}
+
+\vspace{0.5em}
+
+\headerrowONE{\textbf{IAI CAMEROUN, NKOL ANGA'A, YAOUNDÉ, CAMEROUN (Octobre~$2015$, $3$~semaines)}}
+\begin{enumerate}
+	\item Computer Architecture for Software Engineering
+\end{enumerate}
+
+\vspace{0.5em}
+
+\headerrowONE{\textbf{UNIVERSITÉ DE WATERLOO, WATERLOO, ON, CANADA (Octobre~$2009$ -- Mars~$2015$)}}
+
+\begin{enumerate}
+	\itemsep -0.3em
+	\item Compilers
+	\item Computer Networks Programming
+	\item Foundations of Software Engineering
+	\item Methods and Tools for Software Engineering
+	\item Programming for Performance
+	\item Software Testing, Quality Assurance \& Maintenance
+\end{enumerate}
+
+
+\vspace{1em}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hrule
+\begin{center}
+{\large \textbf{OUTILS DE DÉVELOPPEMENT}}
+\end{center}
+
+\vspace{0.5em}
+
+\headerrowONE{\textbf{\underline{SYSTÈMES D'EXPLOITATION}}}
+\headerrowONE{'\textbf{\yerothdebian}', '\textbf{MICROSOFT WINDOWS OS (08, 10, ETC.)}'}
+
+\vspace{0.3em}
+
+\headerrowONE{\textbf{\underline{LANGAGES DE PROGRAMMATION OBJET ORIENTÉ}}}
+\headerrowONE{\textbf{C~/~\cplusplus}, \textbf{\java}, \textbf{\jtwoee}}
+
+\vspace{0.3em}
+
+\headerrowONE{\textbf{\underline{LANGAGES DE PROGRAMMATION FONCTIONNELLE}}}
+\headerrowONE{\textbf{\textbf{\haskell}, \textbf{\ml}, \scala}}
+
+\vspace{0.3em}
+
+\headerrowONE{\textbf{\underline{LANGAGES DE PROGRAMMATION SCRIPTÉS}}}
+\headerrowONE{\textbf{\AWK}, \textbf{\bash}, \textbf{\python}}
+
+\vspace{0.3em}
+
+\headerrowONE{\textbf{\underline{SYSTÈME DE CRÉATION D'EXÉCUTABLES}}}
+\headerrowONE{\textbf{\dpkgmanager}, \textbf{\innosetuppackagemanager}}
+
+\vspace{0.3em}
+
+\headerrowONE{\textbf{\underline{SYSTÈMES DE GESTION DE BASE DE DONNÉES}}}
+\headerrowONE{\textbf{\mysql}}
+
+
+\vspace{1em}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hrule
+\begin{center}
+{\large \textbf{PUBLICATIONS}}
+\end{center}
+
+\vspace{0.5em}
+
+\headerrowONE{\textbf{UNIVERSITÉ DE BRÊME, BRÊME, BRÊME, ALLEMAGNE}}
+
+\vspace{0.3em}
+
+\begin{enumerate}
+\item \headerrowONE{\textbf{A SEMANTIC COMPARISON BETWEEN TIMED--CSP AND TIMED--AUTOMATA},\\
+	INDEPENDENT STUDY, UNIVERSITÉ DE BRÊME, ALLEMAGNE, \textbf{JANVIER~$2005$},\\
+	\textbf{SUPERVISÉ PAR PROF. DR. RER. NAT. HABIL. JAN PELESKA.}}
+ 
+\item \headerrowONE{\textbf{STATISTICAL TEST CASE GENERATION FOR REACTIVE SYSTEMS},\\
+	MÉMOIRE DE MASTER II EN GÉNIE INFORMATIQUE, UNIVERSITÉ DE BRÊME, \textbf{$25$~MAI~$2007$},\\
+	\textbf{SUPERVISÉ PAR PROF. DR. RER. NAT. HABIL. JAN PELESKA}, ET\\
+	\textbf{PROF. DR. RER. NAT. HABIL. ROLF DRECHSLER.}}
+\end{enumerate}
+
+\vspace{1em}
+
+\headerrowONE{\textbf{UNIVERSITÉ DE WATERLOO, WATERLOO, ONTARIO, CANADA}}
+
+\vspace{0.3em}
+
+\begin{enumerate}
+\item \headerrowONE{\textbf{JUNIT~$4$ TUTORIAL}, NOTES DE COURS POUR L'UNITÉ D'ENSEIGNEMENT \\
+	'Software Testing, Quality Assurance \& Maintenance',\\
+	UNIVERSITÉ DE WATERLOO, ON, CANADA, \textbf{$31$~OCTOBRE~$2009$},\\
+	\textbf{SUPERVISÉ PAR ASSISTANT PROF. PATRICK LAM, PH.D..}}
+ 
+\item \headerrowONE{\textbf{STATICALLY VERIFYING API USAGE RULES USING TRACEMATCHES},\\
+	THÈSE DE DOCTORAT/PH.D. EN GÉNIE INFORMATIQUE (GÉNIE LOGICIEL),\\
+	UNIVERSITÉ DE WATERLOO, ON, CANADA, \textbf{$20$~DÉCEMBRE~$2011$},\\
+	\textbf{SUPERVISÉ PAR ASSISTANT PROF. PATRICK LAM, PH.D..}}
+
+\item \headerrowONE{\textbf{DYNAMIC ANALYSIS FOR PHP IN QUERCUS},\\
+	PROJET DU COURS 'program analysis for web applications',\\
+	UNIVERSITÉ DE WATERLOO, ON, CANADA, \textbf{$30$~AVRIL~$2013$},\\
+	\textbf{SUPERVISÉ PAR FULL PROF. FRANK TIP, PH.D..}}
+
+
+\item \headerrowONE{\textbf{CONTEXT-SENSITIVE STAGED STATIC TAINT ANALYSIS FOR C USING LLVM},\\
+	THÈSE DE DOCTORAT/PH.D. EN GÉNIE INFORMATIQUE (GÉNIE LOGICIEL),\\
+	UNIVERSITÉ DE WATERLOO, ON, CANADA, \textbf{$10$~MARS~$2015$},\\
+	\textbf{SUPERVISÉ PAR ASSISTANT PROF. PATRICK LAM, PH.D.}, ET\\
+	\textbf{ASSISTANT PROF. VIJAY GANESH, PH.D..}}
+\end{enumerate}
 
 \end{document}
