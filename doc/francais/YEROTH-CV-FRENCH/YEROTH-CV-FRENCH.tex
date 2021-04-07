@@ -112,6 +112,7 @@
 \newcommand{\cvitempositionheld}[1]{\textbf{#1}\xspace}
 
 %%%%%%%%%%%%%%%%%%%%SETTING HEADER AND FOOTER FOR 'REPORT CLASS'.%%%%%%%%%%%%%%%%%%%%%
+\usepackage{lastpage}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \renewcommand{\headrulewidth}{0pt}
@@ -131,12 +132,12 @@
 \lhead{YEROTH R\&D}
 \lfoot{}
 \rfoot{}
-\cfoot{\thepage}
+%\cfoot{\thepage}
 
 \renewcommand{\headrulewidth}{0pt}
 
-\pagenumbering{gobble}
-%\cfoot{\thepage\ DE \pageref{LastPage}}
+%\pagenumbering{gobble}
+\cfoot{\thepage\ DE \pageref{LastPage}}
 
 
 \begin{document}
@@ -242,7 +243,8 @@ communication (ex.: '\texttt{SIPv$2$}'), serveurs '\texttt{JAVA-servlets}'\\
 \vspace{0.3em}
 
 \headerrowONE{\textbf{AGBS--Université de Brême, Brême, Brême, ALLEMAGNE}}	
-\headerrowONE{\cvitempositionheld{DÉVÉLOPPEUR LOGICIEL \cplusplus} (plugin de 
+\headerrowONE{\href{http://www.informatik.uni-bremen.de/agbs/jp/papers/peleska_et_al_soqua2006.pdf}
+	{\cvitempositionheld{DÉVÉLOPPEUR LOGICIEL \cplusplus}} (plugin de 
 génération de classes \cplusplus modélisant des 'statecharts (\texttt{UML})', '\texttt{Borland-Together}')}
 \headerrowONE{\cvitemdate{Septembre}{2006} -- \cvitemdate{Février}{2007}}	
 
@@ -275,37 +277,6 @@ et de tests d'évaluations personnelles pour étudiants)}
 
 \vspace{0em}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{center}
-{\large \textbf{EXPÉRIENCE D'UNITÉS D'ENSEIGNEMENT}}
-\end{center}
-
-\vspace{0.5em}
-
-\headerrowONE{\href{http://iaicameroun.com}{\textbf{IAI CAMEROUN}, NKOL ANGA'A, YAOUNDÉ, CENTRE, CAMEROUN (Octobre~$2015$, $3$~semaines)}}
-\begin{enumerate}
-	\item Computer Architecture for Software Engineering
-\end{enumerate}
-
-\vspace{0.5em}
-
-\headerrowONE{\href{http://ece.uwaterloo.ca}{\textbf{UNIVERSITÉ DE WATERLOO}, WATERLOO, ON, CANADA (Octobre~$2009$ -- Mars~$2015$)}}
-
-\begin{enumerate}
-	\itemsep -0.3em
-	\item Compilers
-	\item Computer Networks Programming
-	\item Foundations of Software Engineering
-	\item Methods and Tools for Software Engineering
-	\item Programming for Performance
-	\item Software Testing, Quality Assurance \& Maintenance
-\end{enumerate}
-
-
-\vspace{1em}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\hrule
 \begin{center}
 {\large \textbf{OUTILS DE DÉVELOPPEMENT}}
 \end{center}
@@ -344,6 +315,53 @@ et de tests d'évaluations personnelles pour étudiants)}
 
 \headerrowONE{\textbf{\underline{SYSTÈMES DE GESTION DE BASE DE DONNÉES}}}
 \headerrowONE{\textbf{\mysql}, \textbf{\sqlite}}
+
+\vspace{1em}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hrule
+\begin{center}
+{\large \textbf{ÉCOLES D'ÉTÉ}}
+\end{center}
+
+\vspace{0.5em}
+
+\begin{enumerate}
+	\item \headerrowONE{\href{http://fm.csl.sri.com/SSFT11/}{\textbf{NATIONAL SCIENCE FOUNDATION, SRI INTERNATIONAL, First Summer School on Formal Techniques},}}
+			\headerrowONE{\href{http://fm.csl.sri.com/SSFT11}{\ \hfill  MENLO COLLEGE, ATHERTON, 
+			CALIFORNIA, USA (\cvitemdate{$22$ Mai}{2011} -- \cvitemdate{$27$ Mai}{2011})}}
+
+\end{enumerate}
+
+\vspace{1em}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hrule
+\begin{center}
+{\large \textbf{EXPÉRIENCE D'UNITÉS D'ENSEIGNEMENT}}
+\end{center}
+
+\vspace{0.5em}
+
+\headerrowONE{\href{http://iaicameroun.com}{\textbf{IAI CAMEROUN}, NKOL ANGA'A, YAOUNDÉ, CENTRE, CAMEROUN (Octobre~$2015$, $3$~semaines)}}
+\begin{enumerate}
+	\item Computer Architecture for Software Engineering
+\end{enumerate}
+
+\vspace{0.5em}
+
+\headerrowONE{\href{http://ece.uwaterloo.ca}{\textbf{UNIVERSITÉ DE WATERLOO}, WATERLOO, ON, CANADA (Octobre~$2009$ -- Mars~$2015$)}}
+
+\begin{enumerate}
+	\itemsep -0.3em
+	\item Compilers
+	\item Computer Networks Programming
+	\item Foundations of Software Engineering
+	\item Methods and Tools for Software Engineering
+	\item Programming for Performance
+	\item Software Testing, Quality Assurance \& Maintenance
+\end{enumerate}
 
 
 \vspace{1em}
