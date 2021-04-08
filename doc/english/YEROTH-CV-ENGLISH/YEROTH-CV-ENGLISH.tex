@@ -82,15 +82,32 @@
 
 \newcommand{\emphbold}[1]{\textbf{\emph{#1}}\xspace}
 
-\newcommand{\ms}{\texttt{Windows~XP, $2000$}\xspace}
-\newcommand{\css}{\texttt{CSS}\xspace}
-\newcommand{\php}{\texttt{PHP}\xspace}
-\newcommand{\mysql}{\texttt{MySQL}\xspace}
-\newcommand{\redhat}{\texttt{RedHat--LINUX}\xspace}
-\newcommand{\html}{\texttt{HTML}\xspace}
-\newcommand{\java}{\texttt{Java}\xspace}
-\newcommand{\jtwoee}{J$2$EE\xspace}
 \newcommand{\cplusplus}{C$++$\xspace}
+\newcommand{\java}{\texttt{Java}\xspace}
+
+\newcommand{\css}{\texttt{CSS}\xspace}
+\newcommand{\html}{\texttt{HTML$5$}\xspace}
+\newcommand{\jtwoee}{J$2$EE\xspace}
+\newcommand{\php}{\texttt{PHP}\xspace}
+
+\newcommand{\dpkgmanager}{\texttt{dpkg (debian package manager)}\xspace}
+\newcommand{\innosetuppackagemanager}{\texttt{Inno Setup package manager (for MS~WINDOWS)}\xspace}
+
+\newcommand{\AWK}{\texttt{AWK}\xspace}
+\newcommand{\bash}{\texttt{BASH}\xspace}
+\newcommand{\python}{\texttt{Python}\xspace}
+
+\newcommand{\scala}{\texttt{Scala}\xspace}
+\newcommand{\haskell}{\texttt{Haskell}\xspace}
+\newcommand{\ml}{\texttt{ML}\xspace}
+
+\newcommand{\mysql}{\texttt{MySQL}\xspace}
+\newcommand{\sqlite}{\texttt{SQLite}\xspace}
+
+\newcommand{\yerothdebian}{\texttt{DEBIAN LINUX}\xspace}
+\newcommand{\ms}{\texttt{Windows~XP, $2000$}\xspace}
+\newcommand{\redhat}{\texttt{RedHat~linux}\xspace}
+
 \newcommand{\cvitemdate}[2]{#1~$#2$\xspace}
 \newcommand{\cvitempositionheld}[1]{\textbf{#1}\xspace}
 
@@ -100,8 +117,8 @@
 
 \renewcommand{\headrulewidth}{0pt}
 
-\pagenumbering{gobble}
-%\cfoot{\thepage\ DE \pageref{LastPage}}
+%\pagenumbering{gobble}
+\cfoot{\thepage\ DE \pageref{LastPage}}
 
 
 \begin{document}
@@ -123,7 +140,7 @@
 \vspace{0.5em}
 
 \headerrowONE{\textbf{Doctor of Philosophy in Computer Engineering (Ph.D.)}}	
-\headerrowONE{\href{http://watform.uwaterloo.ca/}{WatForm Lab, University of Waterloo, Waterloo, ON, CANADA}}
+\headerrowONE{\href{http://watform.uwaterloo.ca/}{WatForm Lab, University of Waterloo, Waterloo, ONTARIO, CANADA}}
 \headerrowONE{\href{http://archive.org/details/yeroth-saint}{Ph.D.~Thesis: Context-Sensitive Staged Static Taint Analysis for C using LLVM}}
 \headerrowONE{\cvitemdate{October}{2009} -- \cvitemdate{March}{2015} (resigned with a GPA--$88\%$)}	
 	
@@ -144,7 +161,7 @@
 
 \vspace{0.5em}
 
-\headerrowONE{\href{http://archive.org/details/yeroth-erp-3-0-info-english}{\textbf{SYSTÈME--LOGICIEL ERP '\texttt{YEROTH--ERP--3.0--STANDALONE}'}}}		
+\headerrowONE{\href{http://archive.org/details/yeroth-erp-3-0-info-english}{\textbf{ERP SOFTWARE SYSTEM '\texttt{YEROTH--ERP--3.0--STANDALONE}'}}}		
 \headerrowONE{\cvitemdate{October}{2015} -- Currently | Free open source code: \url{http://github.com/xnoumbissinoundou/yeroth-erp-3.0}}
 
 \vspace{0.3em}
@@ -169,13 +186,13 @@
 
 \vspace{0.3em}
 
-\headerrowONE{\textbf{WatForm Lab, University of Waterloo, Waterloo, ON, CANADA}}	
+\headerrowONE{\textbf{WatForm Lab, University of Waterloo, Waterloo, ONTARIO, CANADA}}	
 \headerrowONE{\cvitempositionheld{TEACHING ASSISTANT} (Software quality assurance, and testing)}
 \headerrowONE{\cvitemdate{October}{2009} -- \cvitemdate{March}{2015}}
 	
 \vspace{0.3em}
 
-\headerrowONE{\textbf{IBM Toronto Software Lab, Markham, ON, CANADA}}	
+\headerrowONE{\textbf{IBM Toronto Software Lab, Markham, ONTARIO, CANADA}}	
 \headerrowONE{\cvitempositionheld{\cplusplus SOFTWARE DEVELOPER} (JAVA--J$9$ Just--In--Time compilation
 optimization)}
 \headerrowONE{\cvitemdate{January}{2012} -- \cvitemdate{August}{2012}}	
@@ -231,7 +248,161 @@ and self evaluation test creation for students)}
 \headerrowONE{\cvitemdate{March}{2004}}	
 
 \vspace{2em}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	
 
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%% 2EME PAGE DU CV %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vspace{0em}
+
+\begin{center}
+{\large \textbf{SOFTWARE ENGINEERING TOOLS COMPETENCES}}
+\end{center}
+
+\vspace{0.5em}
+
+\headerrowONE{\textbf{\underline{FUNCTIONAL PROGRAMMING LANGUAGES}}}
+\headerrowONE{\textbf{\textbf{\haskell}, \textbf{\ml}, \scala}}
+
+\vspace{0.3em}
+
+\headerrowONE{\textbf{\underline{OBJECT ORIENTED PROGRAMMING LANGUAGES}}}
+\headerrowONE{\textbf{C~/~\cplusplus}, \textbf{\java}}
+
+\vspace{0.3em}
+
+
+\headerrowONE{\textbf{\underline{OPERATING SYSTEMS}}}
+\headerrowONE{'\textbf{\yerothdebian}', '\textbf{MICROSOFT WINDOWS OS (08, 10, ETC.)}'}
+
+\vspace{0.3em}
+
+\headerrowONE{\textbf{\underline{PROGRAM EXECUTABLE PACKAGE MANAGERS}}}
+\headerrowONE{\textbf{\dpkgmanager}, \textbf{\innosetuppackagemanager}}
+
+\vspace{0.3em}
+
+\headerrowONE{\textbf{\underline{RELATIONAL DATABASE MANAGEMENT SYSTEMS}}}
+\headerrowONE{\textbf{\mysql}, \textbf{\sqlite}}
+
+\vspace{0.3em}
+
+\headerrowONE{\textbf{\underline{SCRIPTING PROGRAMMING LANGUAGES}}}
+\headerrowONE{\textbf{\AWK}, \textbf{\bash}, \textbf{\python}}
+
+\vspace{0.3em}
+
+\headerrowONE{\textbf{\underline{WEB APPLICATIONS DEVELOPMENT PROGRAMMING LANGUAGES}}}
+\headerrowONE{\textbf{\css}, \textbf{\html}, \textbf{\jtwoee}, \textbf{\php}}
+
+\vspace{1em}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hrule
+\begin{center}
+{\large \textbf{SUMMER SCHOOLS PARTICIPATION}}
+\end{center}
+
+\vspace{0.5em}
+
+\begin{enumerate}
+	\item \headerrowONE{\href{http://fm.csl.sri.com/SSFT11/}{\textbf{NATIONAL SCIENCE FOUNDATION, SRI INTERNATIONAL, First Summer School on Formal Techniques},}}
+			\headerrowONE{\href{http://fm.csl.sri.com/SSFT11}{\ \hfill  MENLO COLLEGE, ATHERTON, 
+			CALIFORNIA, USA (\cvitemdate{May $22$,}{2011} -- \cvitemdate{May $27$,}{2011})}}
+
+\end{enumerate}
+
+\vspace{1em}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hrule
+\begin{center}
+{\large \textbf{TEACHING ASSISTANTSHIP EXPERIENCE}}
+\end{center}
+
+\vspace{0.5em}
+
+\headerrowONE{\href{http://iaicameroun.com}{\textbf{IAI CAMEROUN}, NKOL ANGA'A, YAOUNDÉ, CENTER, CAMEROON (Octobre~$2015$, $3$~semaines)}}
+\begin{enumerate}
+	\item COMPUTER ARCHITECTURE FOR COMPUTER SOFTWARE ENGINEERING
+\end{enumerate}
+
+\vspace{0.5em}
+
+\headerrowONE{\href{http://ece.uwaterloo.ca}{\textbf{UNIVERSITY OF WATERLOO}, WATERLOO, ONTARIO, CANADA (Octobre~$2009$ -- Mars~$2015$)}}
+
+\begin{enumerate}
+	\itemsep -0.3em
+	\item COMPILERS (DEREK RAYSIDE, PH.D.)
+	\item COMPUTER NETWORKS (MAHESH TRIPUNITARA, PH.D.)
+	\item FOUNDATIONS OF SOFTWARE ENGINEERING (IGOR IVKOVIC, PH.D., deceased in NOVEMBER~$2020$)
+	\item METHODS AND TOOLS FOR SOFTWARE ENGINEERING (IGOR IVKOVIC, PH.D., deceased in NOVEMBER~$2020$)
+	\item PROGRAMMING FOR PERFORMANCE (PATRICK LAM, PH.D.)
+	\item SOFTWARE TESTING, QUALITY ASSURANCE AND TESTING (PATRICK LAM, PH.D.)
+\end{enumerate}
+
+
+\vspace{1em}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hrule
+\begin{center}
+{\large \textbf{PUBLICATIONS}}
+\end{center}
+
+\vspace{0.5em}
+
+\headerrowONE{\href{http://www.informatik.uni-bremen.de/agbs}{
+	\textbf{AGBS, UNIVERSITY OF BREMEN, BREMEN, BREMEN, GERMANY}}}
+
+\vspace{0.3em}
+
+\begin{enumerate}
+\item \headerrowONE{\textbf{A SEMANTIC COMPARISON BETWEEN TIMED--CSP AND TIMED--AUTOMATA},\\
+	INDEPENDENT STUDY, UNIVERSITY OF BREMEN, GERMANY, \textbf{JANUARY~$2005$},\\
+	\textbf{SUPERVISED BY \href{http://www.informatik.uni-bremen.de/agbs/jp}
+		{PROF. DR. RER. NAT. HABIL. JAN PELESKA.}}}
+ 
+\item \headerrowONE{\textbf{STATISTICAL TEST CASE GENERATION FOR REACTIVE SYSTEMS},\\
+	MASTER'S DEGREE IN COMPUTER ENGINEERING THESIS, UNIVERSITY OF BREMEN, \textbf{MAY $25$, $2007$},\\
+	\textbf{SUPERVISED BY \href{http://www.informatik.uni-bremen.de/agbs/jp}{
+	PROF. DR. RER. NAT. HABIL. JAN PELESKA}}, AND\\
+	\href{http://www.rolfdrechsler.de}{\textbf{PROF. DR. PHIL. NAT. ROLF DRECHSLER}.}}
+\end{enumerate}
+
+\vspace{1em}
+
+\headerrowONE{\href{http://watform.uwaterloo.ca}{
+	\textbf{WATFORM LAB, UNIVERSITY OF WATERLOO, WATERLOO, ONTARIO, CANADA}}}
+
+\vspace{0.3em}
+
+\begin{enumerate}
+\item \headerrowONE{\href{http://archive.org/details/junit-by-xavier-noumbissi-noundou}{
+	\textbf{JUNIT~$4$ TUTORIAL}}, UNDERGRADUATE COURSE LECTURES NOTES \\
+	'SOFTWARE TESTING, QUALITY ASSURANCE AND TESTING',\\
+	UNIVERSITY OF WATERLOO, ONTARIO, CANADA, \textbf{OCTOBER $31$, $2009$},\\
+	\textbf{SUPERVISED BY \href{http://patricklam.ca}{ASSISTANT PROFESSOR PATRICK LAM, PH.D.}.}}
+ 
+\item \headerrowONE{\textbf{STATICALLY VERIFYING API USAGE RULES USING TRACEMATCHES},\\
+	PH.D. DOCTORAL THESIS IN COMPUTER ENGINEERING (COMPUTER SOFTWARE ENGINEERING),\\
+	UNIVERSITY OF WATERLOO, ONTARIO, CANADA, \textbf{DECEMBER $20$, $2011$},\\
+	\textbf{SUPERVISED BY \href{http://patricklam.ca}{ASSISTANT PROFESSOR PATRICK LAM, PH.D.}.}}
+
+\item \headerrowONE{\href{http://archive.org/details/cs846-nnoumbissi}{
+	\textbf{DYNAMIC TAINT ANALYSIS FOR PHP IN QUERCUS}},\\
+	PH.D. GRADUATE COURSE PROJECT 'program analysis for web applications',\\
+UNIVERSITY OF WATERLOO, ONTARIO, CANADA, \textbf{APRIL $30$, $2013$},\\
+	\textbf{SUPERVISED BY \href{http://www.franktip.org}{FULL PROFESSOR FRANK TIP, PH.D.}.}}
+
+
+\item \headerrowONE{\href{http://archive.org/details/saint_201507}{
+	\textbf{CONTEXT-SENSITIVE STAGED STATIC TAINT ANALYSIS FOR C USING LLVM}},\\
+	PH.D. DOCTORAL THESIS IN COMPUTER ENGINEERING (COMPUTER SOFTWARE ENGINEERING),\\
+	UNIVERSITY OF WATERLOO, ONTARIO, CANADA, \textbf{MARCH $10$, $2015$},\\
+	\textbf{SUPERVISED BY \href{http://patricklam.ca}{ASSOCIATE PROFESSOR PATRICK LAM, PH.D.}}, AND\\
+	\textbf{\href{http://ece.uwaterloo.ca/~vganesh}{ASSISTANT PROFESSOR VIJAY GANESH, PH.D.}.}}
+\end{enumerate}
+	
 \end{document}
