@@ -388,10 +388,12 @@ bool YerothMarchandisesWindow::slot_filtrer_non_empty_product_stock()
 					"stocks.designation FROM stocks WHERE %1 > 0) limit 0, %2) T "
 					"INNER JOIN marchandises ON marchandises.%3 = T.%4")
 				.arg(YerothDatabaseTableColumn::QUANTITE_TOTALE,
-					 QString::number(YerothERPConfig::pagination_number_of_table_rows),
+					 lineEdit_marchandises_nombre_de_lignes_par_page->text(),
 					 YerothDatabaseTableColumn::DESIGNATION,
 					 YerothDatabaseTableColumn::DESIGNATION);
 
+//	QDEBUG_STRING_OUTPUT_2("SELECT__FILTERING__NON_EMPTY_PRODUCT_STOCKS",
+//						   SELECT__FILTERING__NON_EMPTY_PRODUCT_STOCKS);
 
 	int from_index = cur_select_stmt.indexOf("from", 0, Qt::CaseInsensitive);
 
