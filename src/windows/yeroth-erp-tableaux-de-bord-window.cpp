@@ -2549,8 +2549,8 @@ void YerothTableauxDeBordWindow::bilanComptable()
     //VENTES D'ARTICLES PHYSIQUES
     query.clear();
 
-    QString strVentesQuery(QString("SELECT %1, %2, %3, (%4 - %5) FROM stocks_vendu WHERE %6 >= '%7' AND %8 <= '%9'")
-    							.arg(YerothDatabaseTableColumn::STOCKS_ID,
+    QString strVentesQuery(QString("SELECT stocks_id, %1, %2, %3, (%4 - %5) FROM stocks_vendu WHERE %6 >= '%7' AND %8 <= '%9'")
+    							.arg(YerothDatabaseTableColumn::MONTANT_TVA,
     								 YerothDatabaseTableColumn::QUANTITE_VENDUE,
 									 YerothDatabaseTableColumn::REMISE_PRIX,
     								 YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE,
@@ -2589,7 +2589,11 @@ void YerothTableauxDeBordWindow::bilanComptable()
 
     	total_remise = qte_vendue * remise_prix_vente;
 
-    	total_vente = query.value(3).toDouble();
+    	total_vente = query.value(4).toDouble();
+
+    	montant_tva = query.value(YerothDatabaseTableColumn::MONTANT_TVA).toDouble();
+
+    	montant_TOTAL_TVA_COLLECTE = montant_TOTAL_TVA_COLLECTE + montant_tva;
 
     	if (stocksidToqtevendue.contains(stocks_id))
     	{
@@ -2613,9 +2617,13 @@ void YerothTableauxDeBordWindow::bilanComptable()
     	montant_total_vente = montant_total_vente + total_vente;
     }
 
-//    qDebug() << QString("++ ventesQuerySize: %1, montant_total_vente: %2")
-//    				.arg(QString::number(ventesQuerySize),
-//    					 QString::number(montant_total_vente, 'f', 2));
+    // We negate COLLECTED V.A.T because it doesn't belong to company !
+    montant_TOTAL_TVA_COLLECTE = -1 * montant_TOTAL_TVA_COLLECTE;
+
+
+    //    qDebug() << QString("++ ventesQuerySize: %1, montant_total_vente: %2")
+    //    				.arg(QString::number(ventesQuerySize),
+    //    					 QString::number(montant_total_vente, 'f', 2));
 
     query.clear();
 
