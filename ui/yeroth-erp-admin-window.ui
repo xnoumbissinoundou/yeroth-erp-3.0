@@ -27667,7 +27667,7 @@
        <string/>
       </property>
       <property name="text">
-       <string>fichier (.csv) à impoter</string>
+       <string>fichier (.csv) à importer</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
