@@ -31,6 +31,16 @@ public:
 
 	void setYerothTableView(YerothTableView *aYerothTableView);
 
+	inline void SET_VERTICAL_PRINT_POSITION()
+	{
+		_LATEX_A4_PAPER_SPEC = "a4paper";
+	}
+
+	inline void SET_HORIZONTAL_PRINT_POSITION()
+	{
+		_LATEX_A4_PAPER_SPEC = "a4paper, landscape";
+	}
+
 	QString print_YEROTH_document_from_TableView(const QString &aLatex_template_document_string,
 												 QMap<QString, QString> *documentSpecificElements = 0);
 
@@ -44,6 +54,11 @@ protected:
 													  int fromRowIndex,
 													  int toRowIndex,
 													  bool lastPage);
+
+public:
+
+	QString					_LATEX_A4_PAPER_SPEC;
+
 
 protected:
 

@@ -21,7 +21,8 @@ YerothTableViewPRINT_UTILITIES_TEX_TABLE::
 	YerothTableViewPRINT_UTILITIES_TEX_TABLE(const QString &output_pdf_file_name_out,
 											 YerothWindowsCommons &aYerothWindowTableOutputView,
 											 YerothTableView &aYerothTableView)
-:_MAX_TABLE_ROW_COUNT(63),
+:_LATEX_A4_PAPER_SPEC("a4paper"),
+ _MAX_TABLE_ROW_COUNT(63),
  _MAX_TABLE_ROW_COUNT_first_page(59),
  _output_pdf_file_name(output_pdf_file_name_out),
  _yerothWindowTableOutputView(&aYerothWindowTableOutputView),
@@ -162,7 +163,7 @@ QString YerothTableViewPRINT_UTILITIES_TEX_TABLE::
     }
 
 
-    texDocument.replace("YEROTHPAPERSPEC", "a4paper");
+    texDocument.replace("YEROTHPAPERSPEC", _LATEX_A4_PAPER_SPEC);
 
     texDocument.replace("YEROTHENTREPRISE", infoEntreprise.getNomCommercial_LATEX());
     texDocument.replace("YEROTHACTIVITESENTREPRISE", infoEntreprise.getSecteursActivitesTex());

@@ -165,7 +165,7 @@ YerothStocksWindow::YerothStocksWindow()
     connect(actionModifier_ce_stock, SIGNAL(triggered()),
     		this, SLOT(modifier_les_articles()));
 
-    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_pdf_document_WITH_A_YEROTH_PROGRESS_BAR()));
+    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(setup_print()));
     connect(actionA_propos, SIGNAL(triggered()), this, SLOT(apropos()));
     connect(actionAlertes, SIGNAL(triggered()), this, SLOT(alertes()));
     connect(actionReinitialiserRecherche, SIGNAL(triggered()), this, SLOT(reinitialiser_recherche()));
@@ -1411,8 +1411,20 @@ bool YerothStocksWindow::export_csv_file()
 }
 
 
+void YerothStocksWindow::setup_print()
+{
+	_allWindows->_impressionDeDocumentDialog->
+		groupBox_IMPRESSION_DE_DOCUMENT->setPalette(YerothUtils::YEROTH_ORANGE_COLOR);
+
+	_allWindows->_impressionDeDocumentDialog->_current_window_to_print = this;
+
+	_allWindows->_impressionDeDocumentDialog->showAsModalDialogWithParent(*this);
+}
+
+
 bool YerothStocksWindow::imprimer_pdf_document()
 {
 	_latex_template_print_pdf_content = YerothUtils::template_lister_stock_tex;
+
 	return YerothWindowsCommons::imprimer_pdf_document();
 }

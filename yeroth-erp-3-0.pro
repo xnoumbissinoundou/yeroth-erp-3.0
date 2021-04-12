@@ -80,6 +80,7 @@ MOC_DIR  = moc
 OBJECTS_DIR = obj
 
 FORMS = ui/yeroth-erp-main-window.ui \
+			ui/yeroth-erp-imprimer-dialog.ui \
 			ui/yeroth-erp-comptabilite-window.ui \
 			ui/stocks/yeroth-erp-sortir-window.ui \
 		  ui/yeroth-erp-entrer-window.ui \
@@ -183,6 +184,7 @@ HEADERS = src/include/yeroth-erp-3-0-precompiled-header.hpp \
 		  src/widgets/yeroth-erp-select-db-qcheckbox.hpp \
 		  src/process/yeroth-erp-process-info.hpp \
 		  src/process/yeroth-erp-process.hpp \
+			src/dialogs/yeroth-erp-IMPRESSION_DE_DOCUMENT-dialog.hpp \
 		  src/dialogs/yeroth-erp-dialog-commons.hpp \
 		  src/dialogs/yeroth-erp-generic-select-db-field-dialog.hpp \
 		  src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp \
@@ -318,6 +320,7 @@ SOURCES = src/yeroth-erp-3-0.cpp \
 			src/widgets/widgets-table/yeroth-erp-tab-widget.cpp \
 		  src/process/yeroth-erp-process-info.cpp \
 		  src/process/yeroth-erp-process.cpp \
+			src/dialogs/yeroth-erp-IMPRESSION_DE_DOCUMENT-dialog.cpp \
 		  src/dialogs/yeroth-erp-dialog-commons.cpp \
 		  src/dialogs/yeroth-erp-generic-select-db-field-dialog.cpp \
 		  src/dialogs/yeroth-erp-changer-utilisateur-dialog.cpp \

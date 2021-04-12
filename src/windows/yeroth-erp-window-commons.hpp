@@ -67,6 +67,10 @@ public:
 	virtual void YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(QAction *anAction,
 													   	bool aBooleanValue);
 
+	inline virtual void setup_print()
+	{
+	}
+
 	void setYerothTableView_FROM_WINDOWS_COMMONS(const QList<YerothTableView *> &aYerothTableView_FROM_WINDOWS_COMMONS_QLIST);
 
 	void setYerothTableView_FROM_WINDOWS_COMMONS(YerothTableView *aYerothTableView_FROM_WINDOWS_COMMONS,
@@ -316,13 +320,13 @@ public slots:
 
 	virtual void setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(const QModelIndex &modelIndex);
 
-protected slots:
-
 	inline virtual void imprimer_pdf_document_WITH_A_YEROTH_PROGRESS_BAR()
 	{
 		YerothProgressBar(this)(this,
 								&YerothWindowsCommons::imprimer_pdf_document);
 	}
+
+protected slots:
 
 	virtual void setYerothLineEditQCompleterSearchFilter(QString &aYerothLineEditQCompleterSearchFilter_IN_OUT);
 

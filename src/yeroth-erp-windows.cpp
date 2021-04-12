@@ -87,6 +87,7 @@ YerothERPWindows::YerothERPWindows(QDesktopWidget *desktopWidget)
 	 _detailWindow(0),
      _entrerWindow(0),
      _pdVenteListStocksWindow(0),
+	 _impressionDeDocumentDialog(0),
 	 _pdVenteMethodePaiementCarteCreditDialog(0),
 	 _pdVenteMethodePaiementComptantEntreeDialog(0),
 	 _pdVenteMethodePaiementDialog(0),
@@ -198,6 +199,7 @@ YerothERPWindows::~YerothERPWindows()
     delete _sortirWindow;
     delete _statistiquesWindow;
     delete _mouvementsDeStocksWindow;
+    delete _impressionDeDocumentDialog;
     delete _pdVenteMethodePaiementCarteCreditDialog;
     delete _pdVenteMethodePaiementComptantEntreeDialog;
     delete _pdVenteMethodePaiementDialog;
@@ -285,6 +287,8 @@ void YerothERPWindows::createAllYerothPosUserWindows()
     _sortirWindow 					= new YerothSortirWindow;
     _statistiquesWindow				= new YerothTableauxDeBordWindow;
     _mouvementsDeStocksWindow				= new YerothMouvementsDeStocksWindow;
+
+    _impressionDeDocumentDialog		= new YerothIMPRESSION_DE_DOCUMENT_Dialog;
 
     _pdVenteMethodePaiementCarteCreditDialog
 									= new YerothPOSVenteMethodePaiementCarteCreditDialog(_pdVenteWindow);
@@ -710,6 +714,7 @@ void YerothERPWindows::hideAllWindows()
     _mouvementsDeStocksWindow->rendreInvisible();
     _pdVenteWindow->rendreInvisible();
     _pdVenteListStocksWindow->rendreInvisible();
+    _impressionDeDocumentDialog->rendreInvisible();
     _pdVenteMethodePaiementCarteCreditDialog->rendreInvisible();
     _pdVenteMethodePaiementComptantEntreeDialog->rendreInvisible();
     _pdVenteMethodePaiementDialog->rendreInvisible();

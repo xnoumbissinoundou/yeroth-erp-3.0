@@ -974,6 +974,12 @@ public:
 
 	static QString EN_bar_diag_tex;
 
+	enum PRINT_SHAPE
+	{
+		_VERTICAL = 0,
+		_HORIZONTAL
+	};
+
 
     enum ALERTE_RESOLUE_OUI_NON_INDEX
 	{

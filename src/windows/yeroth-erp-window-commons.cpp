@@ -903,6 +903,12 @@ bool YerothWindowsCommons::imprimer_pdf_document()
 		_first_time_imprimer_pdf_document_call = false;
 	}
 
+	if (0 != _yeroth_PRINT_UTILITIES_TEX_TABLE &&
+		0 != _allWindows->_impressionDeDocumentDialog)
+		{
+			_allWindows->_impressionDeDocumentDialog->_yeroth_CURRENT_DOCUMENT_PRINT_UTILITIES_TEX_TABLE =
+					_yeroth_PRINT_UTILITIES_TEX_TABLE;
+		}
 
 	QString pdfOutputFileName =
 			_yeroth_PRINT_UTILITIES_TEX_TABLE->

@@ -31,6 +31,7 @@
 
 //** DIALOGS
 #include "src/dialogs/yeroth-erp-changer-utilisateur-dialog.hpp"
+#include "src/dialogs/yeroth-erp-IMPRESSION_DE_DOCUMENT-dialog.hpp"
 #include "src/dialogs/yeroth-erp-pointdevente-methode-paiement-carte-credit-dialog.hpp"
 #include "src/dialogs/yeroth-erp-pointdevente-methode-paiement-comptant-entree-dialog.hpp"
 #include "src/dialogs/yeroth-erp-pointdevente-methode-paiement-dialog.hpp"
@@ -476,6 +477,7 @@ public:
 	YerothAchatsDetailWindow 							*_achatsDetailWindow;
 	YerothStockDetailWindow 							*_detailWindow;
 	YerothEntrerWindow 									*_entrerWindow;
+	YerothIMPRESSION_DE_DOCUMENT_Dialog					*_impressionDeDocumentDialog;
 	YerothPointDeVenteListStocksWindow					*_pdVenteListStocksWindow;
 	YerothPOSVenteMethodePaiementCarteCreditDialog		*_pdVenteMethodePaiementCarteCreditDialog;
 	YerothPOSVenteMethodePaiementComptantEntreeDialog	*_pdVenteMethodePaiementComptantEntreeDialog;

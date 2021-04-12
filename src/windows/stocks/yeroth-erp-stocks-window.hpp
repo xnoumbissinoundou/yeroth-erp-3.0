@@ -91,6 +91,8 @@ public slots:
 
 	bool export_csv_file();
 
+	virtual void setup_print();
+
 	virtual bool imprimer_pdf_document();
 
     virtual void entrer();
