@@ -3086,18 +3086,18 @@ Please contact an administrator of %1</translation>
         <translation>Tax (%1)</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.hpp" line="1152"/>
+        <location filename="src/utils/yeroth-erp-utils.hpp" line="1158"/>
         <source>Il y&apos;a eu</source>
         <translation>There is</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.hpp" line="1153"/>
+        <location filename="src/utils/yeroth-erp-utils.hpp" line="1159"/>
         <source> %1 résultat(s) à votre filtre !</source>
         <oldsource> %1 résultat à votre filtre !</oldsource>
         <translation> %1 result(s) to your filter !</translation>
     </message>
     <message>
-        <location filename="src/utils/yeroth-erp-utils.hpp" line="1158"/>
+        <location filename="src/utils/yeroth-erp-utils.hpp" line="1164"/>
         <source>Il ny&apos;a eu aucun résultat à votre filtre !</source>
         <oldsource>Il ny&apos;a eu aucun résultat à votre filtre!</oldsource>
         <translation>There is no associated data to your filter !</translation>
@@ -3278,7 +3278,7 @@ Please contact an administrator of %1</translation>
         <translation>Select a stock item to modify its details.</translation>
     </message>
     <message>
-        <location filename="src/utils/print_latex_pdf/yeroth-erp-print_yeroth_latex_util_pdf.cpp" line="80"/>
+        <location filename="src/utils/print_latex_pdf/yeroth-erp-print_yeroth_latex_util_pdf.cpp" line="81"/>
         <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="864"/>
         <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="1069"/>
         <location filename="src/windows/stocks/yeroth-erp-sortir-window.cpp" line="818"/>
@@ -3286,7 +3286,7 @@ Please contact an administrator of %1</translation>
         <translation>print</translation>
     </message>
     <message>
-        <location filename="src/utils/print_latex_pdf/yeroth-erp-print_yeroth_latex_util_pdf.cpp" line="81"/>
+        <location filename="src/utils/print_latex_pdf/yeroth-erp-print_yeroth_latex_util_pdf.cpp" line="82"/>
         <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="865"/>
         <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="1070"/>
         <location filename="src/windows/stocks/yeroth-erp-sortir-window.cpp" line="667"/>
@@ -5090,6 +5090,11 @@ Please, change the maximum member of this CLIENT LOYALTY group to &apos;%3&apos;
         <source>1) Vous avez accès aux informations sur tous les comptes bancaires enregistrés dans YEROTH-ERP-3.0, ainsi que toutes les transactions financières éffectuées sur ses comptes bancaires !</source>
         <oldsource>1) Vous avez accès aux informations sur tous les comptes bancaires enregistrés dans YEROTH-ERP-3.0, ainsi que toutes les transactions éffectuées sur ses comptes bancaires !</oldsource>
         <translation>1) You have access to all data about all with YEROTH-ERP-3.0 registered bank accounts, as well as all financial transactions on them !</translation>
+    </message>
+    <message>
+        <location filename="src/dialogs/yeroth-erp-IMPRESSION_DE_DOCUMENT-dialog.cpp" line="21"/>
+        <source>IMPRESSION DE DOCUMENT</source>
+        <translation>DOCUMENT PRINTING</translation>
     </message>
 </context>
 <context>
@@ -11890,6 +11895,54 @@ Transférer</source>
         <location filename="ui/stocks/yeroth-erp-historique-du-stock-window.ui" line="1803"/>
         <source>Exporter au format csv</source>
         <translation>Export as csv file</translation>
+    </message>
+</context>
+<context>
+    <name>YerothIMPRESSION_DE_DOCUMENT_Dialog</name>
+    <message>
+        <location filename="ui/yeroth-erp-imprimer-dialog.ui" line="443"/>
+        <source>Yeroth-erp-3.0 - IMPRESSION DE DOCUMENT</source>
+        <translation>Yeroth-erp-3.0 - DOCUMENT PRINTING</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-imprimer-dialog.ui" line="879"/>
+        <source>impression de document</source>
+        <translation>document printing</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-imprimer-dialog.ui" line="891"/>
+        <source>PAGES</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-imprimer-dialog.ui" line="1325"/>
+        <source>VERTICAL</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-imprimer-dialog.ui" line="1756"/>
+        <source>HORIZONTAL</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-imprimer-dialog.ui" line="1977"/>
+        <source>de</source>
+        <translation>from</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-imprimer-dialog.ui" line="1993"/>
+        <source>à</source>
+        <translation>to</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-imprimer-dialog.ui" line="2424"/>
+        <source>valider</source>
+        <translation>OK</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-imprimer-dialog.ui" line="2852"/>
+        <source>annuler</source>
+        <translation>cancel</translation>
     </message>
 </context>
 <context>
