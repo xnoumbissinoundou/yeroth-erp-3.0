@@ -514,9 +514,9 @@
       <colorrole role="Text">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>0</red>
-         <green>0</green>
-         <blue>0</blue>
+         <red>255</red>
+         <green>255</green>
+         <blue>255</blue>
         </color>
        </brush>
       </colorrole>
@@ -532,9 +532,9 @@
       <colorrole role="ButtonText">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>0</red>
-         <green>0</green>
-         <blue>0</blue>
+         <red>255</red>
+         <green>255</green>
+         <blue>255</blue>
         </color>
        </brush>
       </colorrole>
@@ -559,9 +559,9 @@
       <colorrole role="Shadow">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>0</red>
-         <green>0</green>
-         <blue>0</blue>
+         <red>255</red>
+         <green>255</green>
+         <blue>255</blue>
         </color>
        </brush>
       </colorrole>
@@ -651,9 +651,9 @@
       <colorrole role="Text">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>0</red>
-         <green>0</green>
-         <blue>0</blue>
+         <red>255</red>
+         <green>255</green>
+         <blue>255</blue>
         </color>
        </brush>
       </colorrole>
@@ -669,9 +669,9 @@
       <colorrole role="ButtonText">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>0</red>
-         <green>0</green>
-         <blue>0</blue>
+         <red>255</red>
+         <green>255</green>
+         <blue>255</blue>
         </color>
        </brush>
       </colorrole>
@@ -696,9 +696,9 @@
       <colorrole role="Shadow">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>0</red>
-         <green>0</green>
-         <blue>0</blue>
+         <red>255</red>
+         <green>255</green>
+         <blue>255</blue>
         </color>
        </brush>
       </colorrole>
@@ -833,9 +833,9 @@
       <colorrole role="Shadow">
        <brush brushstyle="SolidPattern">
         <color alpha="255">
-         <red>0</red>
-         <green>0</green>
-         <blue>0</blue>
+         <red>255</red>
+         <green>255</green>
+         <blue>255</blue>
         </color>
        </brush>
       </colorrole>
@@ -882,7 +882,7 @@
     <property name="geometry">
      <rect>
       <x>12</x>
-      <y>39</y>
+      <y>30</y>
       <width>121</width>
       <height>21</height>
      </rect>
@@ -898,7 +898,7 @@
     <property name="geometry">
      <rect>
       <x>12</x>
-      <y>70</y>
+      <y>60</y>
       <width>121</width>
       <height>21</height>
      </rect>
@@ -1329,7 +1329,7 @@
     <property name="geometry">
      <rect>
       <x>12</x>
-      <y>101</y>
+      <y>90</y>
       <width>121</width>
       <height>21</height>
      </rect>
@@ -1760,7 +1760,7 @@
     <property name="geometry">
      <rect>
       <x>174</x>
-      <y>39</y>
+      <y>30</y>
       <width>70</width>
       <height>21</height>
      </rect>
@@ -1864,7 +1864,7 @@
     <property name="geometry">
      <rect>
       <x>285</x>
-      <y>39</y>
+      <y>30</y>
       <width>70</width>
       <height>21</height>
      </rect>
@@ -1968,7 +1968,7 @@
     <property name="geometry">
      <rect>
       <x>138</x>
-      <y>39</y>
+      <y>30</y>
       <width>30</width>
       <height>21</height>
      </rect>
@@ -1984,7 +1984,7 @@
     <property name="geometry">
      <rect>
       <x>249</x>
-      <y>39</y>
+      <y>30</y>
       <width>30</width>
       <height>21</height>
      </rect>
@@ -2000,9 +2000,9 @@
     <property name="geometry">
      <rect>
       <x>252</x>
-      <y>113</y>
+      <y>102</y>
       <width>104</width>
-      <height>25</height>
+      <height>35</height>
      </rect>
     </property>
     <property name="palette">
@@ -2428,9 +2428,9 @@
     <property name="geometry">
      <rect>
       <x>141</x>
-      <y>113</y>
+      <y>102</y>
       <width>104</width>
-      <height>25</height>
+      <height>35</height>
      </rect>
     </property>
     <property name="palette">

@@ -1416,6 +1416,12 @@ void YerothStocksWindow::setup_print()
 	_allWindows->_impressionDeDocumentDialog->
 		groupBox_IMPRESSION_DE_DOCUMENT->setPalette(YerothUtils::YEROTH_ORANGE_COLOR);
 
+	_allWindows->_impressionDeDocumentDialog->
+		radioButton_IMPRESSION_VERTICAL->setPalette(getQMainWindowToolBar()->palette());
+
+	_allWindows->_impressionDeDocumentDialog->
+		radioButton_IMPRESSION_HORIZONTAL->setPalette(getQMainWindowToolBar()->palette());
+
 	_allWindows->_impressionDeDocumentDialog->_current_window_to_print = this;
 
 	_allWindows->_impressionDeDocumentDialog->showAsModalDialogWithParent(*this);
