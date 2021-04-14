@@ -263,6 +263,9 @@ public slots:
 
 	virtual void qui_suis_je();
 
+	virtual bool imprimer_pdf_document_WITH_PAGES_SPECIFICATION(int *pageFROM,
+									   	   	   	   	   	   	    int *pageTO);
+
 	virtual bool imprimer_pdf_document();
 
     virtual void changer_utilisateur();
@@ -319,6 +322,15 @@ public slots:
 	virtual void setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID();
 
 	virtual void setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(const QModelIndex &modelIndex);
+
+	inline virtual void imprimer_pdf_document_WITH_A_YEROTH_PROGRESS_BAR(int pageFROM,
+																		 int pageTO)
+	{
+		YerothProgressBar(this)(this,
+								&pageFROM,
+								&pageTO,
+								&YerothWindowsCommons::imprimer_pdf_document_WITH_PAGES_SPECIFICATION);
+	}
 
 	inline virtual void imprimer_pdf_document_WITH_A_YEROTH_PROGRESS_BAR()
 	{

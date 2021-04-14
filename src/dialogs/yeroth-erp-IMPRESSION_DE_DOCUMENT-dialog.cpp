@@ -49,7 +49,8 @@ YerothIMPRESSION_DE_DOCUMENT_Dialog::YerothIMPRESSION_DE_DOCUMENT_Dialog()
 
 void YerothIMPRESSION_DE_DOCUMENT_Dialog::setupLineEdits()
 {
-
+	lineEdit_pageFROM->setValidator(&YerothUtils::IntValidator);
+	lineEdit_pageTO->setValidator(&YerothUtils::IntValidator);
 }
 
 void YerothIMPRESSION_DE_DOCUMENT_Dialog::reset_all_fields()
@@ -92,7 +93,34 @@ void YerothIMPRESSION_DE_DOCUMENT_Dialog::valider()
 
 	if (0 != _current_window_to_print)
 	{
-		_current_window_to_print->imprimer_pdf_document_WITH_A_YEROTH_PROGRESS_BAR();
+		QString string_pageFROM = lineEdit_pageFROM->text();
+
+		QString string_pageTO = lineEdit_pageTO->text();
+
+		if (string_pageFROM.isEmpty() &&
+			string_pageTO.isEmpty())
+		{
+			_current_window_to_print->imprimer_pdf_document_WITH_A_YEROTH_PROGRESS_BAR();
+		}
+		else
+		{
+			uint pageFROM = string_pageFROM.toUInt();
+			uint pageTO = string_pageTO.toUInt();
+
+			if (pageFROM >=
+				pageTO)
+			{
+				YerothQMessageBox::warning(_current_window_to_print,
+						QObject::trUtf8("IMPRESSION, NUMÉRO DE PAGES"),
+						QObject::trUtf8("La numéro de la page de départ doit "
+										"être inférieur au numéro de la page terminale"));
+
+				return ;
+			}
+
+			_current_window_to_print->imprimer_pdf_document_WITH_A_YEROTH_PROGRESS_BAR(pageFROM,
+																					   pageTO);
+		}
 	}
 }
 

@@ -41,6 +41,11 @@ public:
 		_LATEX_A4_PAPER_SPEC = "a4paper, landscape";
 	}
 
+	QString print_YEROTH_document_from_TableView(uint pageFROM,
+												 uint pageTO,
+												 const QString &aLatex_template_document_string,
+												 QMap<QString, QString> *documentSpecificElements = 0);
+
 	QString print_YEROTH_document_from_TableView(const QString &aLatex_template_document_string,
 												 QMap<QString, QString> *documentSpecificElements = 0);
 

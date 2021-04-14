@@ -1756,7 +1756,7 @@
      <string>HORIZONTAL</string>
     </property>
    </widget>
-   <widget class="YerothLineEdit" name="lineEdit_quantite_par_lot">
+   <widget class="YerothLineEdit" name="lineEdit_pageFROM">
     <property name="geometry">
      <rect>
       <x>168</x>
@@ -1860,7 +1860,7 @@
      <string notr="true">border: 1px solid rgb(60, 60, 60);</string>
     </property>
    </widget>
-   <widget class="YerothLineEdit" name="lineEdit_quantite_par_lot_2">
+   <widget class="YerothLineEdit" name="lineEdit_pageTO">
     <property name="geometry">
      <rect>
       <x>279</x>

@@ -881,8 +881,14 @@ void YerothWindowsCommons::qui_suis_je()
 }
 
 
-bool YerothWindowsCommons::imprimer_pdf_document()
+bool YerothWindowsCommons::imprimer_pdf_document_WITH_PAGES_SPECIFICATION(int *pageFROM,
+		   	   	   	   	   	   	   	   	   	     	 	 	 	 	 	  int *pageTO)
 {
+	if (0 == pageFROM || 0 == pageTO)
+	{
+		return false;
+	}
+
 	if (_latex_template_print_pdf_content.isEmpty() ||
 		0 == _yerothTableView_FROM_WINDOWS_COMMONS)
 	{
@@ -919,10 +925,28 @@ bool YerothWindowsCommons::imprimer_pdf_document()
 		return false;
 	}
 
-	QString pdfOutputFileName =
-			_yeroth_PRINT_UTILITIES_TEX_TABLE->
-				print_YEROTH_document_from_TableView(_latex_template_print_pdf_content,
-												     &_documentSpecificElements_FOR_PDF_LATEX_PRINTING);
+
+	QString pdfOutputFileName;
+
+
+	if (-1 == *pageFROM ||
+		-1 == *pageTO)
+	{
+		pdfOutputFileName =
+					_yeroth_PRINT_UTILITIES_TEX_TABLE->
+						print_YEROTH_document_from_TableView(_latex_template_print_pdf_content,
+														     &_documentSpecificElements_FOR_PDF_LATEX_PRINTING);
+	}
+	else
+	{
+		pdfOutputFileName =
+					_yeroth_PRINT_UTILITIES_TEX_TABLE->
+						print_YEROTH_document_from_TableView(*pageFROM,
+															 *pageTO,
+															 _latex_template_print_pdf_content,
+														     &_documentSpecificElements_FOR_PDF_LATEX_PRINTING);
+	}
+
 
 	if (pdfOutputFileName.isEmpty())
 	{
@@ -932,6 +956,16 @@ bool YerothWindowsCommons::imprimer_pdf_document()
 	YerothERPProcess::startPdfViewerProcess(pdfOutputFileName);
 
     return true;
+}
+
+
+bool YerothWindowsCommons::imprimer_pdf_document()
+{
+	int pageFROM = -1;
+
+	int pageTO = -1;
+
+	return imprimer_pdf_document_WITH_PAGES_SPECIFICATION(&pageFROM, &pageTO);
 }
 
 

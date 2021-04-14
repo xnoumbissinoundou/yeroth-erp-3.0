@@ -48,6 +48,160 @@ void YerothTableViewPRINT_UTILITIES_TEX_TABLE::setYerothTableView(YerothTableVie
 
 
 QString YerothTableViewPRINT_UTILITIES_TEX_TABLE::
+	print_YEROTH_document_from_TableView(uint pageFROM,
+										 uint pageTO,
+										 const QString &aLatex_template_document_string,
+										 QMap<QString, QString> *documentSpecificElements /* = 0 */)
+{
+	_tex_template_document_string.clear();
+	_tex_template_document_string.append(aLatex_template_document_string);
+
+    QString latexFileNamePrefix(_output_pdf_file_name);
+
+    QList<int> dbTableColumnsToIgnore_in_out;
+
+    _yerothWindowTableOutputView->fill_table_columns_to_ignore(dbTableColumnsToIgnore_in_out);
+
+    QString pdfBuyingsFileName;
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+    latexFileNamePrefix.append("_french");
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+    latexFileNamePrefix.append("_english");
+#endif
+
+    QStandardItemModel *tableModel = _yerothTableView->getStandardItemModel();
+
+    int tableModelRowCount = tableModel->rowCount();
+
+    if (tableModelRowCount <= 0  ||
+    	tableModel->columnCount() <= dbTableColumnsToIgnore_in_out.count())
+    {
+        YerothQMessageBox::information(_yerothWindowTableOutputView,
+                                       QObject::tr("impression"),
+                                       QObject::trUtf8("Il n'y a pas de données à imprimer !"));
+        return YerothUtils::EMPTY_STRING;
+    }
+
+    int fromRowIndex = 0;
+
+    int toRowIndex = tableModelRowCount;
+
+    QString latexTable_in_out;
+
+    int pageNumber = qCeil(tableModelRowCount / _MAX_TABLE_ROW_COUNT);
+
+    //qDebug() << QString("number of pages to print: %1").arg(pageNumber);
+    //_logger->log("imprimer_pdf_document",
+    //                  QString("number of pages to print: %1").arg(pageNumber));
+
+    int currentProgressBarCount = abs(((2.0 / pageNumber) * 50) - 4);
+
+	emit _yerothWindowTableOutputView->SIGNAL_INCREMENT_PROGRESS_BAR(currentProgressBarCount);
+
+    if (tableModelRowCount >= _MAX_TABLE_ROW_COUNT_first_page)
+    {
+        fromRowIndex = 0;
+
+        toRowIndex = fromRowIndex + _MAX_TABLE_ROW_COUNT;
+
+        int k = 1;
+
+        do
+        {
+        	if (pageFROM   <= k &&
+        		k <= pageTO)
+        	{
+        		//qDebug() << QString("## fromRowIndex: %1, toRowIndex: %2")
+        		//          .arg(QString::number(fromRowIndex), QString::number(toRowIndex));
+        		get_YEROTH_TableViewListingTexDocumentString(dbTableColumnsToIgnore_in_out,
+        													 latexTable_in_out,
+															 (fromRowIndex >= tableModelRowCount) ? tableModelRowCount : fromRowIndex,
+															 (toRowIndex >= tableModelRowCount) ? (tableModelRowCount + 1) : toRowIndex,
+															 k == pageNumber);
+
+   			}
+
+        	fromRowIndex = toRowIndex;
+
+        	toRowIndex =
+        			(fromRowIndex >= tableModelRowCount) ? (fromRowIndex + 1) : fromRowIndex + _MAX_TABLE_ROW_COUNT;
+
+        	currentProgressBarCount += abs( (((k+1) / pageNumber) * 100) - 4 );
+
+        	currentProgressBarCount = (currentProgressBarCount > 98) ? 97 : currentProgressBarCount;
+
+        	emit _yerothWindowTableOutputView->SIGNAL_INCREMENT_PROGRESS_BAR(currentProgressBarCount);
+
+        	++k;
+        }
+
+        while (k <= pageNumber && fromRowIndex <= toRowIndex);
+    }
+
+    YerothInfoEntreprise & infoEntreprise = YerothUtils::getAllWindows()->getInfoEntreprise();
+
+    QString texDocument;
+
+    get_YEROTH_ListingTex_TEMPLATE_DocumentString(texDocument, latexTable_in_out);
+
+    QString factureDate(YerothUtils::LATEX_IN_OUT_handleForeignAccents(infoEntreprise.getVille_LATEX()));
+
+    YerothUtils::getCurrentLocaleDate(factureDate);
+
+
+    if ( 0 != documentSpecificElements )
+    {
+    	QMapIterator<QString, QString> itDocumentSpecificElements(*documentSpecificElements);
+
+    	while (itDocumentSpecificElements.hasNext())
+    	{
+    		itDocumentSpecificElements.next();
+    		texDocument.replace(itDocumentSpecificElements.key(), itDocumentSpecificElements.value());
+    	}
+    }
+
+
+    texDocument.replace("YEROTHPAPERSPEC", _LATEX_A4_PAPER_SPEC);
+
+    texDocument.replace("YEROTHENTREPRISE", infoEntreprise.getNomCommercial_LATEX());
+    texDocument.replace("YEROTHACTIVITESENTREPRISE", infoEntreprise.getSecteursActivitesTex());
+    texDocument.replace("YEROTHBOITEPOSTALE", infoEntreprise.getBoitePostal());
+    texDocument.replace("YEROTHVILLE", infoEntreprise.getVille_LATEX());
+    texDocument.replace("YEROTHPAYS", infoEntreprise.getPaysTex());
+    texDocument.replace("YEROTHEMAIL", infoEntreprise.getEmail_LATEX());
+    texDocument.replace("YEROTHTELEPHONE", infoEntreprise.getTelephone());
+    texDocument.replace("YEROTHDATE", factureDate);
+
+    texDocument.replace("YEROTHNOMUTILISATEUR", QString("%1 %2")
+    												.arg(YerothUtils::getAllWindows()->getUser()->titre(),
+    													 YerothUtils::getAllWindows()->getUser()->nom_completTex()));
+
+    texDocument.replace("YEROTHHEUREDIMPRESSION", CURRENT_TIME);
+    texDocument.replace("YEROTHCOMPTEBANCAIRENR", infoEntreprise.getNumeroCompteBancaire());
+    texDocument.replace("YEROTHCONTRIBUABLENR", infoEntreprise.getNumeroDeContribuable());
+    texDocument.replace("YEROTHAGENCECOMPTEBANCAIRE", infoEntreprise.getAgenceCompteBancaireTex());
+
+    QString yerothPrefixFileName;
+
+    yerothPrefixFileName.append(YerothUtils::getUniquePrefixFileInTemporaryFilesDir(latexFileNamePrefix));
+
+	//qDebug() << "++\n" << texDocument;
+
+    QFile tmpLatexFile(QString("%1tex")
+    					.arg(yerothPrefixFileName));
+
+    YerothUtils::writeStringToQFilewithUTF8Encoding(tmpLatexFile, texDocument);
+
+    emit _yerothWindowTableOutputView->SIGNAL_INCREMENT_PROGRESS_BAR(94);
+
+    return YerothERPProcess::compileLatex(yerothPrefixFileName);
+}
+
+
+QString YerothTableViewPRINT_UTILITIES_TEX_TABLE::
 	print_YEROTH_document_from_TableView(const QString &aLatex_template_document_string,
 										 QMap<QString, QString> *documentSpecificElements /* = 0 */)
 {
@@ -94,14 +248,15 @@ QString YerothTableViewPRINT_UTILITIES_TEX_TABLE::
     //qDebug() << QString("number of pages to print: %1").arg(pageNumber);
     //_logger->log("imprimer_pdf_document",
     //                  QString("number of pages to print: %1").arg(pageNumber));
-	get_YEROTH_TableViewListingTexDocumentString(dbTableColumnsToIgnore_in_out,
-												 latexTable_in_out,
+
+    get_YEROTH_TableViewListingTexDocumentString(dbTableColumnsToIgnore_in_out,
+    											 latexTable_in_out,
 												 0,
 												 (_MAX_TABLE_ROW_COUNT_first_page >= tableModelRowCount) ? tableModelRowCount : _MAX_TABLE_ROW_COUNT_first_page,
 												 tableModelRowCount <= _MAX_TABLE_ROW_COUNT_first_page);
 
 
-	int currentProgressBarCount = abs(((2.0 / pageNumber) * 50) - 4);
+    int currentProgressBarCount = abs(((2.0 / pageNumber) * 50) - 4);
 
 	emit _yerothWindowTableOutputView->SIGNAL_INCREMENT_PROGRESS_BAR(currentProgressBarCount);
 
@@ -115,26 +270,26 @@ QString YerothTableViewPRINT_UTILITIES_TEX_TABLE::
 
         do
         {
-            //qDebug() << QString("## fromRowIndex: %1, toRowIndex: %2")
-            //          .arg(QString::number(fromRowIndex), QString::number(toRowIndex));
+        	//qDebug() << QString("## fromRowIndex: %1, toRowIndex: %2")
+        	//          .arg(QString::number(fromRowIndex), QString::number(toRowIndex));
         	get_YEROTH_TableViewListingTexDocumentString(dbTableColumnsToIgnore_in_out,
         												 latexTable_in_out,
 														 (fromRowIndex >= tableModelRowCount) ? tableModelRowCount : fromRowIndex,
 														 (toRowIndex >= tableModelRowCount) ? (tableModelRowCount + 1) : toRowIndex,
-        												 k == pageNumber);
+														 k == pageNumber);
 
-            fromRowIndex = toRowIndex;
+        	fromRowIndex = toRowIndex;
 
-            toRowIndex =
-                (fromRowIndex >= tableModelRowCount) ? (fromRowIndex + 1) : fromRowIndex + _MAX_TABLE_ROW_COUNT;
+        	toRowIndex =
+        			(fromRowIndex >= tableModelRowCount) ? (fromRowIndex + 1) : fromRowIndex + _MAX_TABLE_ROW_COUNT;
 
-            currentProgressBarCount += abs( (((k+1) / pageNumber) * 100) - 4 );
+        	currentProgressBarCount += abs( (((k+1) / pageNumber) * 100) - 4 );
 
-            currentProgressBarCount = (currentProgressBarCount > 98) ? 97 : currentProgressBarCount;
+        	currentProgressBarCount = (currentProgressBarCount > 98) ? 97 : currentProgressBarCount;
 
-            emit _yerothWindowTableOutputView->SIGNAL_INCREMENT_PROGRESS_BAR(currentProgressBarCount);
+        	emit _yerothWindowTableOutputView->SIGNAL_INCREMENT_PROGRESS_BAR(currentProgressBarCount);
 
-            ++k;
+        	++k;
         }
 
         while (k <= pageNumber && fromRowIndex <= toRowIndex);
