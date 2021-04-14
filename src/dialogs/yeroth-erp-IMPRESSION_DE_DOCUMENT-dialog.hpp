@@ -36,7 +36,10 @@ public:
 
 	YerothIMPRESSION_DE_DOCUMENT_Dialog();
 
-    ~YerothIMPRESSION_DE_DOCUMENT_Dialog();
+	inline virtual ~YerothIMPRESSION_DE_DOCUMENT_Dialog()
+	{
+		delete _currentPosition;
+	}
 
     virtual QPoint * getCurrentPosition()
     {
@@ -54,7 +57,10 @@ public slots:
 
 	virtual void show();
 
-	virtual void rendreInvisible();
+	inline virtual void rendreInvisible()
+	{
+		setVisible(false);
+	}
 
 	void valider();
 
@@ -71,7 +77,10 @@ public:
 
 protected:
 
-	virtual void closeEvent(QCloseEvent * closeEvent);
+	inline virtual void closeEvent(QCloseEvent * closeEvent)
+	{
+	    YerothPOSDialogCommons::closeEvent(closeEvent);
+	}
 
 private:
 

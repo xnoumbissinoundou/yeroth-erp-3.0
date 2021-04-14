@@ -1759,7 +1759,7 @@
    <widget class="YerothLineEdit" name="lineEdit_quantite_par_lot">
     <property name="geometry">
      <rect>
-      <x>174</x>
+      <x>168</x>
       <y>30</y>
       <width>70</width>
       <height>21</height>
@@ -1863,7 +1863,7 @@
    <widget class="YerothLineEdit" name="lineEdit_quantite_par_lot_2">
     <property name="geometry">
      <rect>
-      <x>285</x>
+      <x>279</x>
       <y>30</y>
       <width>70</width>
       <height>21</height>
@@ -1969,7 +1969,7 @@
      <rect>
       <x>138</x>
       <y>30</y>
-      <width>30</width>
+      <width>24</width>
       <height>21</height>
      </rect>
     </property>
@@ -1985,7 +1985,7 @@
      <rect>
       <x>249</x>
       <y>30</y>
-      <width>30</width>
+      <width>24</width>
       <height>21</height>
      </rect>
     </property>

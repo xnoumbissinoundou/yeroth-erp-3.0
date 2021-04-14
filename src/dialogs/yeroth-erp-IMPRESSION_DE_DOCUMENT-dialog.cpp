@@ -29,6 +29,8 @@ YerothIMPRESSION_DE_DOCUMENT_Dialog::YerothIMPRESSION_DE_DOCUMENT_Dialog()
 {
     setupUi(this);
 
+	radioButton_IMPRESSION_VERTICAL->setChecked(true);
+
     QDesktopWidget &desktopWidget = _allWindows->desktopWidget();
 
 	YerothUtils::getCenterPosition(desktopWidget.width(),
@@ -42,12 +44,6 @@ YerothIMPRESSION_DE_DOCUMENT_Dialog::YerothIMPRESSION_DE_DOCUMENT_Dialog()
 
     connect(pushButton_annuler, SIGNAL(clicked()), this, SLOT(annuler()));
     connect(pushButton_valider, SIGNAL(clicked()), this, SLOT(valider()));
-}
-
-
-YerothIMPRESSION_DE_DOCUMENT_Dialog::~YerothIMPRESSION_DE_DOCUMENT_Dialog()
-{
-	delete _currentPosition;
 }
 
 
@@ -70,20 +66,16 @@ void YerothIMPRESSION_DE_DOCUMENT_Dialog::show()
 }
 
 
-void YerothIMPRESSION_DE_DOCUMENT_Dialog::closeEvent(QCloseEvent * closeEvent)
-{
-    YerothPOSDialogCommons::closeEvent(closeEvent);
-}
-
-
-void YerothIMPRESSION_DE_DOCUMENT_Dialog::rendreInvisible()
-{
-	setVisible(false);
-}
-
-
 void YerothIMPRESSION_DE_DOCUMENT_Dialog::valider()
 {
+	if (0 == _yeroth_CURRENT_DOCUMENT_PRINT_UTILITIES_TEX_TABLE)
+	{
+		if (0 != _current_window_to_print)
+		{
+			((YerothWindowsCommons *)_current_window_to_print)->imprimer_pdf_document();
+		}
+	}
+
 	if (0 != _yeroth_CURRENT_DOCUMENT_PRINT_UTILITIES_TEX_TABLE)
 	{
 		if (radioButton_IMPRESSION_VERTICAL->isChecked())

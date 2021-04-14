@@ -1414,7 +1414,7 @@ bool YerothStocksWindow::export_csv_file()
 void YerothStocksWindow::setup_print()
 {
 	_allWindows->_impressionDeDocumentDialog->
-		groupBox_IMPRESSION_DE_DOCUMENT->setPalette(YerothUtils::YEROTH_ORANGE_COLOR);
+		groupBox_IMPRESSION_DE_DOCUMENT->setPalette(getQMainWindowToolBar()->palette());
 
 	_allWindows->_impressionDeDocumentDialog->
 		radioButton_IMPRESSION_VERTICAL->setPalette(getQMainWindowToolBar()->palette());

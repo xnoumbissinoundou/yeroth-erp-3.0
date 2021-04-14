@@ -889,6 +889,8 @@ bool YerothWindowsCommons::imprimer_pdf_document()
 		return false;
 	}
 
+	static bool first_time_call = true;
+
 	if (_first_time_imprimer_pdf_document_call && 0 != _yerothTableView_FROM_WINDOWS_COMMONS)
 	{
 		if (_output_print_pdf_latexFileNamePrefix.isEmpty())
@@ -908,6 +910,13 @@ bool YerothWindowsCommons::imprimer_pdf_document()
 	{
 			_allWindows->_impressionDeDocumentDialog->_yeroth_CURRENT_DOCUMENT_PRINT_UTILITIES_TEX_TABLE =
 					_yeroth_PRINT_UTILITIES_TEX_TABLE;
+	}
+
+	if (first_time_call)
+	{
+		first_time_call = false;
+
+		return false;
 	}
 
 	QString pdfOutputFileName =
