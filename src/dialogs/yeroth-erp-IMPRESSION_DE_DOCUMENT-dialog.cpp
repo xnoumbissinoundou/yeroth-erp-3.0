@@ -107,13 +107,15 @@ void YerothIMPRESSION_DE_DOCUMENT_Dialog::valider()
 			uint pageFROM = string_pageFROM.toUInt();
 			uint pageTO = string_pageTO.toUInt();
 
-			if (pageFROM >=
+			if (pageFROM >
 				pageTO)
 			{
 				YerothQMessageBox::warning(_current_window_to_print,
 						QObject::trUtf8("IMPRESSION, NUMÉRO DE PAGES"),
 						QObject::trUtf8("La numéro de la page de départ doit "
 										"être inférieur au numéro de la page terminale"));
+
+				show();
 
 				return ;
 			}
