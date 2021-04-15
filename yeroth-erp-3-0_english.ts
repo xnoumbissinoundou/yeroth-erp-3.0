@@ -4382,7 +4382,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     </message>
     <message>
         <location filename="src/admin/yeroth-erp-admin-windows-commons.cpp" line="65"/>
-        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="880"/>
+        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="900"/>
         <source>qui suis je ?</source>
         <translation>who am I ?</translation>
     </message>
@@ -4564,7 +4564,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>missing MANDATORY column</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="867"/>
+        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="887"/>
         <source>%1 - sélectionner les colones visibles (&apos;%2&apos; colones)</source>
         <translation>%1 - select visible columns (&apos;%2&apos; columns)</translation>
     </message>
