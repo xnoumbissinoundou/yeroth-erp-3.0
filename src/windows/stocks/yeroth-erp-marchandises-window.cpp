@@ -140,7 +140,7 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
     connect(actionExporter_au_format_csv, SIGNAL(triggered()), this, SLOT(export_csv_file()));
     connect(actionAfficher_les_marchandises_non_terminees, SIGNAL(triggered()), this, SLOT(slot_filtrer_non_empty_product_stock()));
     connect(actionAfficher_les_marchandises_terminees, SIGNAL(triggered()), this, SLOT(slot_filter_empty_product_stock()));
-    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_pdf_document_WITH_A_YEROTH_PROGRESS_BAR()));
+    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(setup_print()));
     connect(actionA_propos, SIGNAL(triggered()), this, SLOT(apropos()));
     connect(actionAlertes, SIGNAL(triggered()), this, SLOT(alertes()));
     connect(actionReinitialiserRecherche, SIGNAL(triggered()), this, SLOT(reinitialiser_recherche()));

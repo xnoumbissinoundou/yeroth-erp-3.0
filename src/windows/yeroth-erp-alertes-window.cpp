@@ -152,7 +152,7 @@ YerothAlertesWindow::YerothAlertesWindow()
     connect(actionAlertes, SIGNAL(triggered()), this, SLOT(afficher_alertes()));
     connect(actionSupprimer, SIGNAL(triggered()), this, SLOT(supprimer()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
-    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_pdf_document_WITH_A_YEROTH_PROGRESS_BAR()));
+    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(setup_print()));
     connect(actionA_propos, SIGNAL(triggered()), this, SLOT(apropos()));
     connect(actionVendre, SIGNAL(triggered()), this, SLOT(vendre()));
     connect(actionAfficher_au_detail, SIGNAL(triggered()), this, SLOT(afficher_au_detail()));

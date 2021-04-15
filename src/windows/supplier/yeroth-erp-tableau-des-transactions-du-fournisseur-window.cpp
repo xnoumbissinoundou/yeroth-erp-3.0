@@ -45,7 +45,7 @@ YerothTableauDesTransactionsDuFournisseurWindow::YerothTableauDesTransactionsDuF
 
     connect(actionExporter_au_format_csv, SIGNAL(triggered()), this, SLOT(export_csv_file()));
 
-    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(imprimer_pdf_document_WITH_A_YEROTH_PROGRESS_BAR()));
+    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(setup_print()));
 
 
     setupShortcuts();
