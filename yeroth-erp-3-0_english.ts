@@ -3278,8 +3278,8 @@ Please contact an administrator of %1</translation>
         <translation>Select a stock item to modify its details.</translation>
     </message>
     <message>
-        <location filename="src/utils/print_latex_pdf/yeroth-erp-print_yeroth_latex_util_pdf.cpp" line="83"/>
-        <location filename="src/utils/print_latex_pdf/yeroth-erp-print_yeroth_latex_util_pdf.cpp" line="235"/>
+        <location filename="src/utils/print_latex_pdf/yeroth-erp-print_yeroth_latex_util_pdf.cpp" line="123"/>
+        <location filename="src/utils/print_latex_pdf/yeroth-erp-print_yeroth_latex_util_pdf.cpp" line="275"/>
         <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="864"/>
         <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="1069"/>
         <location filename="src/windows/stocks/yeroth-erp-sortir-window.cpp" line="818"/>
@@ -3287,8 +3287,8 @@ Please contact an administrator of %1</translation>
         <translation>print</translation>
     </message>
     <message>
-        <location filename="src/utils/print_latex_pdf/yeroth-erp-print_yeroth_latex_util_pdf.cpp" line="84"/>
-        <location filename="src/utils/print_latex_pdf/yeroth-erp-print_yeroth_latex_util_pdf.cpp" line="236"/>
+        <location filename="src/utils/print_latex_pdf/yeroth-erp-print_yeroth_latex_util_pdf.cpp" line="124"/>
+        <location filename="src/utils/print_latex_pdf/yeroth-erp-print_yeroth_latex_util_pdf.cpp" line="276"/>
         <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="865"/>
         <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="1070"/>
         <location filename="src/windows/stocks/yeroth-erp-sortir-window.cpp" line="667"/>
@@ -5099,12 +5099,14 @@ Please, change the maximum member of this CLIENT LOYALTY group to &apos;%3&apos;
         <translation>DOCUMENT PRINTING</translation>
     </message>
     <message>
-        <location filename="src/dialogs/yeroth-erp-IMPRESSION_DE_DOCUMENT-dialog.cpp" line="114"/>
+        <location filename="src/dialogs/yeroth-erp-IMPRESSION_DE_DOCUMENT-dialog.cpp" line="188"/>
+        <location filename="src/dialogs/yeroth-erp-IMPRESSION_DE_DOCUMENT-dialog.cpp" line="260"/>
         <source>IMPRESSION, NUMÉRO DE PAGES</source>
         <translation>PRINTING, PAGE NUMBERING</translation>
     </message>
     <message>
-        <location filename="src/dialogs/yeroth-erp-IMPRESSION_DE_DOCUMENT-dialog.cpp" line="115"/>
+        <location filename="src/dialogs/yeroth-erp-IMPRESSION_DE_DOCUMENT-dialog.cpp" line="189"/>
+        <location filename="src/dialogs/yeroth-erp-IMPRESSION_DE_DOCUMENT-dialog.cpp" line="261"/>
         <source>La numéro de la page de départ doit être inférieur au numéro de la page terminale</source>
         <translation>starting page number  must be inferior to ending PAGE NUMBER</translation>
     </message>
@@ -11955,6 +11957,11 @@ Transférer</source>
         <location filename="ui/yeroth-erp-imprimer-dialog.ui" line="2852"/>
         <source>annuler</source>
         <translation>cancel</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-imprimer-dialog.ui" line="2865"/>
+        <source>NOMBRE DE LIGNES</source>
+        <translation>ROW COUNT</translation>
     </message>
 </context>
 <context>
