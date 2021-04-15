@@ -54,12 +54,12 @@ YerothIMPRESSION_DE_DOCUMENT_Dialog::YerothIMPRESSION_DE_DOCUMENT_Dialog()
 
 
     connect(lineEdit_pageFROM,
-    		SIGNAL(textChanged(const QString &)),
+    		SIGNAL(editingFinished()),
 			this,
 			SLOT(enable_MAX_TABLE_ROW_COUNT()));
 
     connect(lineEdit_pageTO,
-    		SIGNAL(textChanged(const QString &)),
+    		SIGNAL(editingFinished()),
 			this,
 			SLOT(enable_MAX_TABLE_ROW_COUNT()));
 
