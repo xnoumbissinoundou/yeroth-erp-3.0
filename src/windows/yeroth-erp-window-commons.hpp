@@ -332,11 +332,7 @@ public slots:
 								&YerothWindowsCommons::imprimer_pdf_document_WITH_PAGES_SPECIFICATION);
 	}
 
-	inline virtual void imprimer_pdf_document_WITH_A_YEROTH_PROGRESS_BAR()
-	{
-		YerothProgressBar(this)(this,
-								&YerothWindowsCommons::imprimer_pdf_document);
-	}
+	virtual void imprimer_pdf_document_WITH_A_YEROTH_PROGRESS_BAR();
 
 protected slots:
 

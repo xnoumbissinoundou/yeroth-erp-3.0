@@ -1135,3 +1135,16 @@ void YerothWindowsCommons::setLast_YEROTH_TABLE_VIEW_SelectedRow__db_ID(const QM
 	_yerothTableView_FROM_WINDOWS_COMMONS_LAST_SELECTED_ROW__ID = db_ID;
 }
 
+
+void YerothWindowsCommons::imprimer_pdf_document_WITH_A_YEROTH_PROGRESS_BAR()
+{
+	if (0 != _yeroth_PRINT_UTILITIES_TEX_TABLE)
+	{
+		_yeroth_PRINT_UTILITIES_TEX_TABLE->
+			RESET_NOMBRE_DE_LIGNES_TABLEAU_STANDARD();
+	}
+
+	YerothProgressBar(this)(this,
+							&YerothWindowsCommons::imprimer_pdf_document);
+}
+

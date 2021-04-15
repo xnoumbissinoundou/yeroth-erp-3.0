@@ -17,13 +17,22 @@
 #include <QtCore/qmath.h>
 
 
+const double YerothTableViewPRINT_UTILITIES_TEX_TABLE::_STANDARD_INITIAL_MAX_TABLE_ROW_COUNT_A4PORTRAIT(63);
+
+const double YerothTableViewPRINT_UTILITIES_TEX_TABLE::_STANDARD_INITIAL_MAX_TABLE_ROW_COUNT_A4LANDSCAPE(20);
+
+
+const QString YerothTableViewPRINT_UTILITIES_TEX_TABLE::_A4PAGE_PORTRAIT_SPECIFICATION("a4paper");
+
+const QString YerothTableViewPRINT_UTILITIES_TEX_TABLE::_A4PAGE_LANDSCAPE_SPECIFICATION("a4paper, landscape");
+
+
 YerothTableViewPRINT_UTILITIES_TEX_TABLE::
 	YerothTableViewPRINT_UTILITIES_TEX_TABLE(const QString &output_pdf_file_name_out,
 											 YerothWindowsCommons &aYerothWindowTableOutputView,
 											 YerothTableView &aYerothTableView)
-:_LATEX_A4_PAPER_SPEC("a4paper"),
+:_LATEX_A4_PAPER_SPEC(_A4PAGE_PORTRAIT_SPECIFICATION),
  _MAX_TABLE_ROW_COUNT(63),
- _MAX_TABLE_ROW_COUNT_first_page(59),
  _output_pdf_file_name(output_pdf_file_name_out),
  _yerothWindowTableOutputView(&aYerothWindowTableOutputView),
  _yerothTableView(&aYerothTableView)
@@ -44,6 +53,37 @@ void YerothTableViewPRINT_UTILITIES_TEX_TABLE::setYerothTableView(YerothTableVie
 	}
 
 	_yerothTableView = aYerothTableView;
+}
+
+
+void YerothTableViewPRINT_UTILITIES_TEX_TABLE::RESET_NOMBRE_DE_LIGNES_TABLEAU_STANDARD()
+{
+	if (YerothUtils::isEqualCaseInsensitive(_LATEX_A4_PAPER_SPEC, _A4PAGE_PORTRAIT_SPECIFICATION))
+	{
+		_MAX_TABLE_ROW_COUNT =
+			YerothTableViewPRINT_UTILITIES_TEX_TABLE::_STANDARD_INITIAL_MAX_TABLE_ROW_COUNT_A4PORTRAIT;
+
+	}
+	else if (YerothUtils::isEqualCaseInsensitive(_LATEX_A4_PAPER_SPEC, _A4PAGE_LANDSCAPE_SPECIFICATION))
+	{
+		_MAX_TABLE_ROW_COUNT =
+			YerothTableViewPRINT_UTILITIES_TEX_TABLE::_STANDARD_INITIAL_MAX_TABLE_ROW_COUNT_A4LANDSCAPE;
+	}
+}
+
+
+uint YerothTableViewPRINT_UTILITIES_TEX_TABLE::MAX_TABLE_ROW_COUNT_first_page()
+{
+	if (YerothUtils::isEqualCaseInsensitive(_LATEX_A4_PAPER_SPEC, _A4PAGE_PORTRAIT_SPECIFICATION))
+	{
+		return 59;
+	}
+	else if (YerothUtils::isEqualCaseInsensitive(_LATEX_A4_PAPER_SPEC, _A4PAGE_LANDSCAPE_SPECIFICATION))
+	{
+		return 20;
+	}
+
+	return 20;
 }
 
 
@@ -91,21 +131,21 @@ QString YerothTableViewPRINT_UTILITIES_TEX_TABLE::
 
     QString latexTable_in_out;
 
-    int pageNumber = qCeil(tableModelRowCount / _MAX_TABLE_ROW_COUNT);
+//    qDebug() << QString("number of pages to print: %1").arg(pageNumber);
+//    _logger->log("imprimer_pdf_document",
+//                      QString("number of pages to print: %1").arg(pageNumber));
 
-    //qDebug() << QString("number of pages to print: %1").arg(pageNumber);
-    //_logger->log("imprimer_pdf_document",
-    //                  QString("number of pages to print: %1").arg(pageNumber));
-
-    int currentProgressBarCount = abs(((2.0 / pageNumber) * 50) - 4);
+    int currentProgressBarCount = 25;
 
 	emit _yerothWindowTableOutputView->SIGNAL_INCREMENT_PROGRESS_BAR(currentProgressBarCount);
 
-    if (tableModelRowCount >= _MAX_TABLE_ROW_COUNT_first_page)
+    if (tableModelRowCount >= MAX_TABLE_ROW_COUNT_first_page())
     {
         fromRowIndex = 0;
 
-        toRowIndex = fromRowIndex + _MAX_TABLE_ROW_COUNT;
+        toRowIndex = fromRowIndex + MAX_TABLE_ROW_COUNT_first_page();
+
+        int pageNumber = qCeil((tableModelRowCount - MAX_TABLE_ROW_COUNT_first_page()) / _MAX_TABLE_ROW_COUNT);
 
         int k = 1;
 
@@ -245,24 +285,26 @@ QString YerothTableViewPRINT_UTILITIES_TEX_TABLE::
 
     int pageNumber = qCeil(tableModelRowCount / _MAX_TABLE_ROW_COUNT);
 
-    //qDebug() << QString("number of pages to print: %1").arg(pageNumber);
-    //_logger->log("imprimer_pdf_document",
-    //                  QString("number of pages to print: %1").arg(pageNumber));
+//    QDEBUG_STRING_OUTPUT_2_N("pageNumber", pageNumber);
+//
+//    QDEBUG_STRING_OUTPUT_2_N("_MAX_TABLE_ROW_COUNT", _MAX_TABLE_ROW_COUNT);
+//
+//    QDEBUG_STRING_OUTPUT_2_N("tableModelRowCount", tableModelRowCount);
 
     get_YEROTH_TableViewListingTexDocumentString(dbTableColumnsToIgnore_in_out,
     											 latexTable_in_out,
 												 0,
-												 (_MAX_TABLE_ROW_COUNT_first_page >= tableModelRowCount) ? tableModelRowCount : _MAX_TABLE_ROW_COUNT_first_page,
-												 tableModelRowCount <= _MAX_TABLE_ROW_COUNT_first_page);
+												 (MAX_TABLE_ROW_COUNT_first_page() >= tableModelRowCount) ? tableModelRowCount : MAX_TABLE_ROW_COUNT_first_page(),
+												 tableModelRowCount <= MAX_TABLE_ROW_COUNT_first_page());
 
 
     int currentProgressBarCount = abs(((2.0 / pageNumber) * 50) - 4);
 
 	emit _yerothWindowTableOutputView->SIGNAL_INCREMENT_PROGRESS_BAR(currentProgressBarCount);
 
-    if (tableModelRowCount >= _MAX_TABLE_ROW_COUNT_first_page)
+    if (tableModelRowCount >= MAX_TABLE_ROW_COUNT_first_page())
     {
-        fromRowIndex = _MAX_TABLE_ROW_COUNT_first_page;
+        fromRowIndex = MAX_TABLE_ROW_COUNT_first_page();
 
         toRowIndex = (fromRowIndex >= tableModelRowCount) ? fromRowIndex : fromRowIndex + _MAX_TABLE_ROW_COUNT;
 
@@ -373,7 +415,7 @@ void YerothTableViewPRINT_UTILITIES_TEX_TABLE::
 												 int toRowIndex,
 												 bool lastPage)
 {
-    if (lastPage && toRowIndex > _MAX_TABLE_ROW_COUNT_first_page)
+    if (lastPage && toRowIndex > MAX_TABLE_ROW_COUNT_first_page())
     {
         toRowIndex -= 1;
     }

@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>369</width>
-    <height>154</height>
+    <height>185</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -451,7 +451,7 @@
      <x>3</x>
      <y>7</y>
      <width>363</width>
-     <height>142</height>
+     <height>172</height>
     </rect>
    </property>
    <property name="palette">
@@ -878,7 +878,7 @@
    <property name="title">
     <string>impression de document</string>
    </property>
-   <widget class="QLabel" name="label_nom_utilisateur_3">
+   <widget class="QLabel" name="label_IMPRESSION_PAGES">
     <property name="geometry">
      <rect>
       <x>12</x>
@@ -898,7 +898,7 @@
     <property name="geometry">
      <rect>
       <x>12</x>
-      <y>60</y>
+      <y>90</y>
       <width>121</width>
       <height>21</height>
      </rect>
@@ -1329,7 +1329,7 @@
     <property name="geometry">
      <rect>
       <x>12</x>
-      <y>90</y>
+      <y>120</y>
       <width>121</width>
       <height>21</height>
      </rect>
@@ -2000,7 +2000,7 @@
     <property name="geometry">
      <rect>
       <x>252</x>
-      <y>102</y>
+      <y>132</y>
       <width>104</width>
       <height>35</height>
      </rect>
@@ -2428,7 +2428,7 @@
     <property name="geometry">
      <rect>
       <x>141</x>
-      <y>102</y>
+      <y>132</y>
       <width>104</width>
       <height>35</height>
      </rect>
@@ -2850,6 +2850,35 @@
     </property>
     <property name="text">
      <string>annuler</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_IMPRESSION_LIGNES">
+    <property name="geometry">
+     <rect>
+      <x>12</x>
+      <y>60</y>
+      <width>131</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>NOMBRE DE LIGNES</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="YerothLineEdit" name="lineEdit_IMPRESSION_LIGNES">
+    <property name="geometry">
+     <rect>
+      <x>168</x>
+      <y>60</y>
+      <width>181</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
     </property>
    </widget>
   </widget>

@@ -31,6 +31,25 @@ public:
 
 	void setYerothTableView(YerothTableView *aYerothTableView);
 
+	void RESET_NOMBRE_DE_LIGNES_TABLEAU_STANDARD();
+
+	uint MAX_TABLE_ROW_COUNT_first_page();
+
+	inline double GET_NOMBRE_DE_LIGNES()
+	{
+		return _MAX_TABLE_ROW_COUNT;
+	}
+
+	inline void SET_NOMBRE_DE_LIGNES(uint nbre_de_lignes)
+	{
+		_MAX_TABLE_ROW_COUNT = nbre_de_lignes;
+	}
+
+	inline QString GET_PRINT_POSITION_PAPER_SPECIFICATION()
+	{
+		return _LATEX_A4_PAPER_SPEC;
+	}
+
 	inline void SET_VERTICAL_PRINT_POSITION()
 	{
 		_LATEX_A4_PAPER_SPEC = "a4paper";
@@ -64,12 +83,17 @@ public:
 
 	QString					_LATEX_A4_PAPER_SPEC;
 
+	static const double		_STANDARD_INITIAL_MAX_TABLE_ROW_COUNT_A4PORTRAIT;
+
+	static const double		_STANDARD_INITIAL_MAX_TABLE_ROW_COUNT_A4LANDSCAPE;
 
 protected:
 
-	double 					_MAX_TABLE_ROW_COUNT;
+	static const QString	_A4PAGE_PORTRAIT_SPECIFICATION;
 
-	uint 					_MAX_TABLE_ROW_COUNT_first_page;
+	static const QString	_A4PAGE_LANDSCAPE_SPECIFICATION;
+
+	double 					_MAX_TABLE_ROW_COUNT;
 
 	QString					_output_pdf_file_name;
 

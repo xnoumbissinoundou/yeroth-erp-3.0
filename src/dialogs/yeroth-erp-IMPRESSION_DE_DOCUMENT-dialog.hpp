@@ -62,6 +62,14 @@ public slots:
 		setVisible(false);
 	}
 
+private slots:
+
+	void SET_NOMBRE_DE_LIGNES_PAR_DEFAUT_after_RADIOBUTTON_TOGGLE();
+
+	void SET_NOMBRE_DE_LIGNES_PAR_DEFAUT();
+
+	void enable_MAX_TABLE_ROW_COUNT();
+
 	void valider();
 
 	inline void annuler()
