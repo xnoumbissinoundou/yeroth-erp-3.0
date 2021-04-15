@@ -85,11 +85,6 @@ void YerothIMPRESSION_DE_DOCUMENT_Dialog::setupLineEdits()
 	lineEdit_pageTO->setValidator(&YerothUtils::IntValidator);
 }
 
-void YerothIMPRESSION_DE_DOCUMENT_Dialog::reset_all_fields()
-{
-
-}
-
 
 void YerothIMPRESSION_DE_DOCUMENT_Dialog::show()
 {

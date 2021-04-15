@@ -46,12 +46,9 @@ public:
     	return _currentPosition;
     }
 
-
 public:
 
     void setupLineEdits();
-
-    void reset_all_fields();
 
 public slots:
 
