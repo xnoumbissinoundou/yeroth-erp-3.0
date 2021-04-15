@@ -180,6 +180,22 @@ QString YerothTableViewPRINT_UTILITIES_TEX_TABLE::
 
         while (k <= pageNumber && fromRowIndex <= toRowIndex);
     }
+    else
+    {
+    	fromRowIndex = 0;
+
+    	toRowIndex = fromRowIndex + MAX_TABLE_ROW_COUNT_first_page();
+
+    	int pageNumber = 1;
+
+    	int k = 1;
+
+    	get_YEROTH_TableViewListingTexDocumentString(dbTableColumnsToIgnore_in_out,
+    	    										 latexTable_in_out,
+													 (fromRowIndex >= tableModelRowCount) ? tableModelRowCount : fromRowIndex,
+													 (toRowIndex >= tableModelRowCount) ? (tableModelRowCount + 1) : toRowIndex,
+													 k == pageNumber);
+    }
 
     YerothInfoEntreprise & infoEntreprise = YerothUtils::getAllWindows()->getInfoEntreprise();
 
