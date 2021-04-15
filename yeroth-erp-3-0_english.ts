@@ -3279,7 +3279,7 @@ Please contact an administrator of %1</translation>
     </message>
     <message>
         <location filename="src/utils/print_latex_pdf/yeroth-erp-print_yeroth_latex_util_pdf.cpp" line="123"/>
-        <location filename="src/utils/print_latex_pdf/yeroth-erp-print_yeroth_latex_util_pdf.cpp" line="275"/>
+        <location filename="src/utils/print_latex_pdf/yeroth-erp-print_yeroth_latex_util_pdf.cpp" line="291"/>
         <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="864"/>
         <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="1069"/>
         <location filename="src/windows/stocks/yeroth-erp-sortir-window.cpp" line="818"/>
@@ -3288,7 +3288,7 @@ Please contact an administrator of %1</translation>
     </message>
     <message>
         <location filename="src/utils/print_latex_pdf/yeroth-erp-print_yeroth_latex_util_pdf.cpp" line="124"/>
-        <location filename="src/utils/print_latex_pdf/yeroth-erp-print_yeroth_latex_util_pdf.cpp" line="276"/>
+        <location filename="src/utils/print_latex_pdf/yeroth-erp-print_yeroth_latex_util_pdf.cpp" line="292"/>
         <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="865"/>
         <location filename="src/windows/pos/yeroth-erp-pointdevente-window.cpp" line="1070"/>
         <location filename="src/windows/stocks/yeroth-erp-sortir-window.cpp" line="667"/>
