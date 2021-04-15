@@ -1411,23 +1411,6 @@ bool YerothStocksWindow::export_csv_file()
 }
 
 
-void YerothStocksWindow::setup_print()
-{
-	_allWindows->_impressionDeDocumentDialog->
-		groupBox_IMPRESSION_DE_DOCUMENT->setPalette(getQMainWindowToolBar()->palette());
-
-	_allWindows->_impressionDeDocumentDialog->
-		radioButton_IMPRESSION_VERTICAL->setPalette(getQMainWindowToolBar()->palette());
-
-	_allWindows->_impressionDeDocumentDialog->
-		radioButton_IMPRESSION_HORIZONTAL->setPalette(getQMainWindowToolBar()->palette());
-
-	_allWindows->_impressionDeDocumentDialog->_current_window_to_print = this;
-
-	_allWindows->_impressionDeDocumentDialog->showAsModalDialogWithParent(*this);
-}
-
-
 bool YerothStocksWindow::imprimer_pdf_document()
 {
 	_latex_template_print_pdf_content = YerothUtils::template_lister_stock_tex;

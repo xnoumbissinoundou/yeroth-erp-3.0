@@ -687,6 +687,26 @@ void YerothWindowsCommons::updateYerothLineEditQCompleter(const QString &current
 }
 
 
+void YerothWindowsCommons::setup_print()
+{
+	if (0 != getQMainWindowToolBar())
+	{
+		_allWindows->_impressionDeDocumentDialog->
+			groupBox_IMPRESSION_DE_DOCUMENT->setPalette(getQMainWindowToolBar()->palette());
+
+		_allWindows->_impressionDeDocumentDialog->
+			radioButton_IMPRESSION_VERTICAL->setPalette(getQMainWindowToolBar()->palette());
+
+		_allWindows->_impressionDeDocumentDialog->
+			radioButton_IMPRESSION_HORIZONTAL->setPalette(getQMainWindowToolBar()->palette());
+	}
+
+	_allWindows->_impressionDeDocumentDialog->_current_window_to_print = this;
+
+	_allWindows->_impressionDeDocumentDialog->showAsModalDialogWithParent(*this);
+}
+
+
 void YerothWindowsCommons::setYerothLineEditQCompleterSearchFilter(QString &aYerothLineEditQCompleterSearchFilter_IN_OUT)
 {
 	if (0 == _yeroth_QComboBox_SearchDBFieldColumnString ||
