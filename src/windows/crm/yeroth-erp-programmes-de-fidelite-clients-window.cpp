@@ -123,6 +123,7 @@ YerothERPProgrammesDeFideliteClientsWindow::YerothERPProgrammesDeFideliteClients
 	YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_ce_programmeDeFideliteClients_au_detail, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerUnProgrammeDeFideliteClients, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionExporter_au_format_csv, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(action_parametrer_les_impressions, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
@@ -548,6 +549,7 @@ void YerothERPProgrammesDeFideliteClientsWindow::definirManager()
 	YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_ce_programmeDeFideliteClients_au_detail, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerUnProgrammeDeFideliteClients, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionExporter_au_format_csv, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(action_parametrer_les_impressions, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
@@ -573,6 +575,7 @@ void YerothERPProgrammesDeFideliteClientsWindow::definirPasDeRole()
 	YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_ce_programmeDeFideliteClients_au_detail, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimerUnProgrammeDeFideliteClients, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionExporter_au_format_csv, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(action_parametrer_les_impressions, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
