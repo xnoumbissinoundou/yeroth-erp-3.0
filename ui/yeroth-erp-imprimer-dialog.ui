@@ -883,7 +883,7 @@
      <rect>
       <x>12</x>
       <y>30</y>
-      <width>121</width>
+      <width>117</width>
       <height>21</height>
      </rect>
     </property>
@@ -1967,9 +1967,9 @@
    <widget class="QLabel" name="label_IMPRESSION_DE">
     <property name="geometry">
      <rect>
-      <x>138</x>
+      <x>132</x>
       <y>30</y>
-      <width>24</width>
+      <width>32</width>
       <height>21</height>
      </rect>
     </property>
@@ -1983,9 +1983,9 @@
    <widget class="QLabel" name="label_IMPRESSION_DE_2">
     <property name="geometry">
      <rect>
-      <x>249</x>
+      <x>244</x>
       <y>30</y>
-      <width>24</width>
+      <width>32</width>
       <height>21</height>
      </rect>
     </property>
