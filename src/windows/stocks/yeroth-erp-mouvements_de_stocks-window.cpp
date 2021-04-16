@@ -57,6 +57,7 @@ YerothMouvementsDeStocksWindow::YerothMouvementsDeStocksWindow()
 
     _list_actions_to_enable_on_positive_tableview_ROW_COUNT
 		<< actionExporter_au_format_csv
+		<< action_parametrer_les_impressions
 		<< actionAfficherPDF;
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);

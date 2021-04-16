@@ -60,6 +60,7 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
 
     _list_actions_to_enable_on_positive_tableview_ROW_COUNT
 		<< actionExporter_au_format_csv
+		<< action_parametrer_les_impressions
 		<< actionAfficherPDF
 		<< actionSupprimer_cette_marchandise
 		<< actionModifierMarchandise;
