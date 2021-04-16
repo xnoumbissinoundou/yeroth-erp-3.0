@@ -88,6 +88,18 @@ void YerothWindowsCommons::yeroth_hide_columns()
 }
 
 
+void YerothWindowsCommons::PRINT_OUTPUT_PRINTING_DEBUG_PARAMETERS()
+{
+	qDebug() << QString("_pageFROM: %1 - _pageTO: %2, | "
+						"_print_table_row_count: %3 | "
+						"_a4paper_printing_position: %4")
+					.arg(QString::number(_page_from),
+						 QString::number(_page_to),
+						 QString::number(_print_table_row_count),
+						 _a4paper_printing_position);
+}
+
+
 int YerothWindowsCommons::get_INT_last_selected_row_number()
 {
 	if (0 == _yerothTableView_FROM_WINDOWS_COMMONS)
@@ -689,6 +701,13 @@ void YerothWindowsCommons::updateYerothLineEditQCompleter(const QString &current
 
 void YerothWindowsCommons::setup_print()
 {
+	if (!_is_pdf_printing_initialized)
+	{
+		INITIALIZE_PDF_PRINTING_AT_ONCE();
+
+		_is_pdf_printing_initialized = true;
+	}
+
 	if (0 != getQMainWindowToolBar())
 	{
 		_allWindows->_impressionDeDocumentDialog->
@@ -711,8 +730,8 @@ void YerothWindowsCommons::print_PDF_PREVIOUSLY_SETUP()
 {
 	if (0 == _yeroth_PRINT_UTILITIES_TEX_TABLE)
 	{
-		imprimer_pdf_document();
-		return ;
+		INITIALIZE_PDF_PRINTING_AT_ONCE();
+//		return ;
 	}
 
 	if (0 != _yeroth_PRINT_UTILITIES_TEX_TABLE)
@@ -939,6 +958,38 @@ void YerothWindowsCommons::qui_suis_je()
 }
 
 
+void YerothWindowsCommons::INITIALIZE_PDF_PRINTING_AT_ONCE()
+{
+	if (0 == _yerothTableView_FROM_WINDOWS_COMMONS)
+	{
+		return ;
+	}
+
+	if (_first_time_imprimer_pdf_document_call && 0 != _yerothTableView_FROM_WINDOWS_COMMONS)
+	{
+		if (_output_print_pdf_latexFileNamePrefix.isEmpty())
+		{
+			_output_print_pdf_latexFileNamePrefix.append(_windowName);
+		}
+
+		_yeroth_PRINT_UTILITIES_TEX_TABLE =
+				new YerothTableViewPRINT_UTILITIES_TEX_TABLE(_output_print_pdf_latexFileNamePrefix,
+						*this,
+						*_yerothTableView_FROM_WINDOWS_COMMONS);
+		_first_time_imprimer_pdf_document_call = false;
+	}
+
+	if (0 != _yeroth_PRINT_UTILITIES_TEX_TABLE &&
+			0 != _allWindows->_impressionDeDocumentDialog)
+	{
+		_allWindows->_impressionDeDocumentDialog->_yeroth_CURRENT_DOCUMENT_PRINT_UTILITIES_TEX_TABLE =
+				_yeroth_PRINT_UTILITIES_TEX_TABLE;
+	}
+
+	return ;
+}
+
+
 bool YerothWindowsCommons::imprimer_pdf_document_WITH_PAGES_SPECIFICATION(int *pageFROM,
 		   	   	   	   	   	   	   	   	   	     	 	 	 	 	 	  int *pageTO)
 {
@@ -979,8 +1030,7 @@ bool YerothWindowsCommons::imprimer_pdf_document_WITH_PAGES_SPECIFICATION(int *p
 	if (first_time_call)
 	{
 		first_time_call = false;
-
-		return false;
+		return imprimer_pdf_document_WITH_PAGES_SPECIFICATION(pageFROM, pageTO);
 	}
 
 

@@ -29,7 +29,7 @@ YerothIMPRESSION_DE_DOCUMENT_Dialog::YerothIMPRESSION_DE_DOCUMENT_Dialog()
 {
     setupUi(this);
 
-	radioButton_IMPRESSION_VERTICAL->setChecked(true);
+	radioButton_IMPRESSION_HORIZONTAL->setChecked(true);
 
     QDesktopWidget &desktopWidget = _allWindows->desktopWidget();
 
@@ -88,6 +88,38 @@ void YerothIMPRESSION_DE_DOCUMENT_Dialog::setupLineEdits()
 
 void YerothIMPRESSION_DE_DOCUMENT_Dialog::show()
 {
+	if (0 != _current_window_to_print)
+	{
+		if (YerothUtils::isEqualCaseInsensitive(_current_window_to_print->get_PRINTING_PARAMETER_printing_position(),
+				YerothTableViewPRINT_UTILITIES_TEX_TABLE::_A4PAGE_PORTRAIT_SPECIFICATION))
+		{
+			radioButton_IMPRESSION_VERTICAL->setChecked(true);
+		}
+		else if (YerothUtils::isEqualCaseInsensitive(_current_window_to_print->get_PRINTING_PARAMETER_printing_position(),
+				YerothTableViewPRINT_UTILITIES_TEX_TABLE::_A4PAGE_LANDSCAPE_SPECIFICATION))
+		{
+			radioButton_IMPRESSION_HORIZONTAL->setChecked(true);
+		}
+
+		if (-1 != _current_window_to_print->get_PRINTING_PARAMETER_pageFROM())
+		{
+			lineEdit_pageFROM->setText(QString::number(_current_window_to_print->get_PRINTING_PARAMETER_pageFROM()));
+		}
+		else
+		{
+			lineEdit_pageFROM->setText(YerothUtils::EMPTY_STRING);
+		}
+
+		if (-1 != _current_window_to_print->get_PRINTING_PARAMETER_pageTO())
+		{
+			lineEdit_pageTO->setText(QString::number(_current_window_to_print->get_PRINTING_PARAMETER_pageTO()));
+		}
+		else
+		{
+			lineEdit_pageTO->setText(YerothUtils::EMPTY_STRING);
+		}
+	}
+
 	SET_NOMBRE_DE_LIGNES_PAR_DEFAUT();
 
 	move(*_currentPosition);
@@ -98,6 +130,21 @@ void YerothIMPRESSION_DE_DOCUMENT_Dialog::show()
 
 void YerothIMPRESSION_DE_DOCUMENT_Dialog::SET_NOMBRE_DE_LIGNES_PAR_DEFAUT_after_RADIOBUTTON_TOGGLE()
 {
+	if (radioButton_IMPRESSION_VERTICAL->isChecked())
+	{
+		if (0 != _yeroth_CURRENT_DOCUMENT_PRINT_UTILITIES_TEX_TABLE)
+		{
+			_yeroth_CURRENT_DOCUMENT_PRINT_UTILITIES_TEX_TABLE->SET_VERTICAL_PRINT_POSITION();
+		}
+	}
+	else if (radioButton_IMPRESSION_HORIZONTAL->isChecked())
+	{
+		if (0 != _yeroth_CURRENT_DOCUMENT_PRINT_UTILITIES_TEX_TABLE)
+		{
+			_yeroth_CURRENT_DOCUMENT_PRINT_UTILITIES_TEX_TABLE->SET_HORIZONTAL_PRINT_POSITION();
+		}
+	}
+
 	if (lineEdit_IMPRESSION_LIGNES->isReadOnly())
 	{
 		if (radioButton_IMPRESSION_VERTICAL->isChecked())
@@ -141,8 +188,16 @@ void YerothIMPRESSION_DE_DOCUMENT_Dialog::SET_NOMBRE_DE_LIGNES_PAR_DEFAUT()
 	{
 		if (0 != _yeroth_CURRENT_DOCUMENT_PRINT_UTILITIES_TEX_TABLE)
 		{
-			lineEdit_IMPRESSION_LIGNES->
-				setText(QString::number(_yeroth_CURRENT_DOCUMENT_PRINT_UTILITIES_TEX_TABLE->GET_NOMBRE_DE_LIGNES()));
+			if (0 != _current_window_to_print)
+			{
+				lineEdit_IMPRESSION_LIGNES->
+					setText(QString::number(_current_window_to_print->get_PRINTING_PARAMETER_print_table_row_count()));
+			}
+			else
+			{
+				lineEdit_IMPRESSION_LIGNES->
+					setText(QString::number(_yeroth_CURRENT_DOCUMENT_PRINT_UTILITIES_TEX_TABLE->GET_NOMBRE_DE_LIGNES()));
+			}
 		}
 		else
 		{
@@ -199,15 +254,40 @@ void YerothIMPRESSION_DE_DOCUMENT_Dialog::enable_MAX_TABLE_ROW_COUNT()
 }
 
 
-void YerothIMPRESSION_DE_DOCUMENT_Dialog::valider()
+void YerothIMPRESSION_DE_DOCUMENT_Dialog::SET_CURRENT_WINDOW_TO_PRINT_PRINTING_PARAMETERS_AND_POSITION(int pageFROM,
+																									   int pageTO)
 {
-	if (0 == _yeroth_CURRENT_DOCUMENT_PRINT_UTILITIES_TEX_TABLE)
+	if (0 != _current_window_to_print)
 	{
-		if (0 != _current_window_to_print)
+		_current_window_to_print->set_PRINTING_PARAMETER_pageFROM(pageFROM);
+
+		_current_window_to_print->set_PRINTING_PARAMETER_pageTO(pageTO);
+
+		if (radioButton_IMPRESSION_VERTICAL->isChecked())
 		{
-			((YerothWindowsCommons *)_current_window_to_print)->imprimer_pdf_document();
+			_current_window_to_print->set_PRINTING_PARAMETER_printing_position(
+					YerothTableViewPRINT_UTILITIES_TEX_TABLE::_A4PAGE_PORTRAIT_SPECIFICATION);
+		}
+		else if (radioButton_IMPRESSION_HORIZONTAL->isChecked())
+		{
+			_current_window_to_print->set_PRINTING_PARAMETER_printing_position(
+					YerothTableViewPRINT_UTILITIES_TEX_TABLE::_A4PAGE_LANDSCAPE_SPECIFICATION);
 		}
 	}
+}
+
+
+void YerothIMPRESSION_DE_DOCUMENT_Dialog::valider()
+{
+//	if (0 == _yeroth_CURRENT_DOCUMENT_PRINT_UTILITIES_TEX_TABLE)
+//	{
+//		if (0 != _current_window_to_print)
+//		{
+//			// THIS CALL ONLY INITIALIZES VARIABLE '_yeroth_CURRENT_DOCUMENT_PRINT_UTILITIES_TEX_TABLE'
+//			// AND DOESN'T REALLY PRINT PDF DOCUMENT.
+//			((YerothWindowsCommons *)_current_window_to_print)->INITIALIZE_PDF_PRINTING_AT_ONCE();
+//		}
+//	}
 
 	if (0 != _yeroth_CURRENT_DOCUMENT_PRINT_UTILITIES_TEX_TABLE)
 	{
@@ -241,14 +321,14 @@ void YerothIMPRESSION_DE_DOCUMENT_Dialog::valider()
 		if (string_pageFROM.isEmpty() &&
 			string_pageTO.isEmpty())
 		{
-			_current_window_to_print->_page_from = -1;
-			_current_window_to_print->_page_to = -1;
-
 			_current_window_to_print->imprimer_pdf_document_WITH_A_YEROTH_PROGRESS_BAR();
 			SET_NOMBRE_DE_LIGNES_PAR_DEFAUT();
 
-			_current_window_to_print->_print_table_row_count =
-					lineEdit_IMPRESSION_LIGNES->text().toUInt();
+			SET_CURRENT_WINDOW_TO_PRINT_PRINTING_PARAMETERS_AND_POSITION(-1, -1);
+
+			_current_window_to_print->
+				set_PRINTING_PARAMETER_print_table_row_count(
+						lineEdit_IMPRESSION_LIGNES->text().toUInt());
 		}
 		else
 		{
@@ -268,14 +348,14 @@ void YerothIMPRESSION_DE_DOCUMENT_Dialog::valider()
 				return ;
 			}
 
-			_current_window_to_print->_page_from = pageFROM;
-			_current_window_to_print->_page_to = pageTO;
-
-			_current_window_to_print->_print_table_row_count =
-					lineEdit_IMPRESSION_LIGNES->text().toUInt();
+			_current_window_to_print->
+				set_PRINTING_PARAMETER_print_table_row_count(
+					lineEdit_IMPRESSION_LIGNES->text().toUInt());
 
 			_current_window_to_print->imprimer_pdf_document_WITH_A_YEROTH_PROGRESS_BAR(pageFROM,
 																					   pageTO);
+
+			SET_CURRENT_WINDOW_TO_PRINT_PRINTING_PARAMETERS_AND_POSITION(pageFROM, pageTO);
 		}
 	}
 }

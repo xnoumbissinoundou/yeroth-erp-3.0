@@ -81,11 +81,11 @@ public:
 
 	static const double		_STANDARD_INITIAL_MAX_TABLE_ROW_COUNT_A4LANDSCAPE;
 
-protected:
-
 	static const QString	_A4PAGE_PORTRAIT_SPECIFICATION;
 
 	static const QString	_A4PAGE_LANDSCAPE_SPECIFICATION;
+
+protected:
 
 	double 					_MAX_TABLE_ROW_COUNT;
 

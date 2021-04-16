@@ -44,6 +44,7 @@ public:
 
 	inline YerothWindowsCommons(const QString &anOutput_print_pdf_latexFileNamePrefix = "")
 	:_selectExportDBQDialog(0),
+	 _is_pdf_printing_initialized(false),
 	 _yeroth_PRINT_UTILITIES_TEX_TABLE(0),
 	 _output_print_pdf_latexFileNamePrefix(anOutput_print_pdf_latexFileNamePrefix),
 	 _yeroth_QComboBox_SearchDBFieldColumnString(0),
@@ -54,7 +55,7 @@ public:
 	 _page_from(-1),
 	 _page_to(-1),
 	 _print_table_row_count(20),
-	 _a4paper_printing_position(QString("a4paper")),
+	 _a4paper_printing_position(QString("a4paper, landscape")),
 	 _first_time_imprimer_pdf_document_call(true),
 	 QMESSAGE_BOX_STYLE_SHEET(QString("QMessageBox {background-color: rgb(%1);}")
 								.arg(COLOUR_RGB_STRING_YEROTH_ORANGE_243_162_0)),
@@ -65,6 +66,8 @@ public:
 	virtual ~YerothWindowsCommons();
 
 	void yeroth_hide_columns();
+
+	void PRINT_OUTPUT_PRINTING_DEBUG_PARAMETERS();
 
 	int get_INT_last_selected_row_number();
 
@@ -153,10 +156,10 @@ public:
 
     virtual void rendreVisible(YerothSqlTableModel *stocksTableModel);
 
-	inline virtual void rendreInvisible()
-	{
-		setVisible(false);
-	}
+    inline virtual void rendreInvisible()
+    {
+    	setVisible(false);
+    }
 
 	virtual void fill_table_columns_to_ignore(QList<int> &tableColumnsToIgnore_in_out);
 
@@ -189,6 +192,46 @@ public:
 	inline int getLastListerSelectedRow__ID_AS_INTEGER()
 	{
 		return (getLastListerSelectedRow__ID().isEmpty()) ? -1 : getLastListerSelectedRow__ID().toInt();
+	}
+
+    inline void set_PRINTING_PARAMETER_printing_position(const QString &an_a4_printing_position)
+    {
+    	_a4paper_printing_position = an_a4_printing_position;
+    }
+
+    inline QString get_PRINTING_PARAMETER_printing_position()
+    {
+    	return _a4paper_printing_position;
+    }
+
+    inline uint get_PRINTING_PARAMETER_print_table_row_count()
+    {
+    	return _print_table_row_count;
+    }
+
+    inline void set_PRINTING_PARAMETER_print_table_row_count(uint a_print_table_row_count)
+    {
+    	_print_table_row_count = a_print_table_row_count;
+    }
+
+	inline int get_PRINTING_PARAMETER_pageFROM()
+	{
+		return _page_from;
+	}
+
+	inline void set_PRINTING_PARAMETER_pageFROM(int a_page_from)
+	{
+		_page_from = a_page_from;
+	}
+
+	inline int get_PRINTING_PARAMETER_pageTO()
+	{
+		return _page_to;
+	}
+
+	inline void set_PRINTING_PARAMETER_pageTO(int a_page_to)
+	{
+		_page_to = a_page_to;
 	}
 
 signals:
@@ -265,6 +308,8 @@ public slots:
 
 	virtual bool imprimer_pdf_document_WITH_PAGES_SPECIFICATION(int *pageFROM,
 									   	   	   	   	   	   	    int *pageTO);
+
+	virtual void INITIALIZE_PDF_PRINTING_AT_ONCE();
 
 	virtual bool imprimer_pdf_document();
 
@@ -476,6 +521,8 @@ protected:
 
     static YerothERPWindows				 *_allWindows;
 
+    bool 								_is_pdf_printing_initialized;
+
     YerothTableViewPRINT_UTILITIES_TEX_TABLE *_yeroth_PRINT_UTILITIES_TEX_TABLE;
 
     QString								_latex_template_print_pdf_content;
@@ -493,9 +540,6 @@ protected:
     QString 							_windowName;
 
     YerothTableView 					*_yerothTableView_FROM_WINDOWS_COMMONS;
-
-
-public:
 
     //PRINTING SETUP PARAMETERS FOR EACH WINDOW.
     int		_page_from;

@@ -31,8 +31,8 @@ YerothTableViewPRINT_UTILITIES_TEX_TABLE::
 	YerothTableViewPRINT_UTILITIES_TEX_TABLE(const QString &output_pdf_file_name_out,
 											 YerothWindowsCommons &aYerothWindowTableOutputView,
 											 YerothTableView &aYerothTableView)
-:_LATEX_A4_PAPER_SPEC(_A4PAGE_PORTRAIT_SPECIFICATION),
- _MAX_TABLE_ROW_COUNT(63),
+:_LATEX_A4_PAPER_SPEC(_A4PAGE_LANDSCAPE_SPECIFICATION),
+ _MAX_TABLE_ROW_COUNT(20),
  _output_pdf_file_name(output_pdf_file_name_out),
  _yerothWindowTableOutputView(&aYerothWindowTableOutputView),
  _yerothTableView(&aYerothTableView)
@@ -89,23 +89,23 @@ uint YerothTableViewPRINT_UTILITIES_TEX_TABLE::MAX_TABLE_ROW_COUNT_first_page()
 
 void YerothTableViewPRINT_UTILITIES_TEX_TABLE::SET_VERTICAL_PRINT_POSITION()
 {
-	_LATEX_A4_PAPER_SPEC = "a4paper";
+	_LATEX_A4_PAPER_SPEC = _A4PAGE_PORTRAIT_SPECIFICATION;
 
 	if (0 != _yerothWindowTableOutputView)
 	{
-		_yerothWindowTableOutputView->_a4paper_printing_position =
-				_LATEX_A4_PAPER_SPEC;
+		_yerothWindowTableOutputView->
+			set_PRINTING_PARAMETER_printing_position(_LATEX_A4_PAPER_SPEC);
 	}
 }
 
 void YerothTableViewPRINT_UTILITIES_TEX_TABLE::SET_HORIZONTAL_PRINT_POSITION()
 {
-	_LATEX_A4_PAPER_SPEC = "a4paper, landscape";
+	_LATEX_A4_PAPER_SPEC = _A4PAGE_LANDSCAPE_SPECIFICATION;
 
 	if (0 != _yerothWindowTableOutputView)
 	{
-		_yerothWindowTableOutputView->_a4paper_printing_position =
-				_LATEX_A4_PAPER_SPEC;
+		_yerothWindowTableOutputView->
+			set_PRINTING_PARAMETER_printing_position(_LATEX_A4_PAPER_SPEC);
 	}
 }
 

@@ -152,7 +152,8 @@ YerothAlertesWindow::YerothAlertesWindow()
     connect(actionAlertes, SIGNAL(triggered()), this, SLOT(afficher_alertes()));
     connect(actionSupprimer, SIGNAL(triggered()), this, SLOT(supprimer()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
-    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(setup_print()));
+    connect(action_parametrer_les_impressions, SIGNAL(triggered()), this, SLOT(setup_print()));
+    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(print_PDF_PREVIOUSLY_SETUP()));
     connect(actionA_propos, SIGNAL(triggered()), this, SLOT(apropos()));
     connect(actionVendre, SIGNAL(triggered()), this, SLOT(vendre()));
     connect(actionAfficher_au_detail, SIGNAL(triggered()), this, SLOT(afficher_au_detail()));
@@ -476,8 +477,11 @@ void YerothAlertesWindow::setupLineEdits()
 
 void YerothAlertesWindow::setupShortcuts()
 {
-    setupShortcutActionMessageDaide 	(*actionAppeler_aide);
-    setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
+    setupShortcutActionMessageDaide 				(*actionAppeler_aide);
+    setupShortcutActionPARAMETRER_IMPRESSION_PDF	(*action_parametrer_les_impressions);
+    setupShortcutActionAfficherPDF					(*actionAfficherPDF);
+    setupShortcutActionExporterAuFormatCsv			(*actionExporter_au_format_csv);
+    setupShortcutActionQuiSuisJe					(*actionQui_suis_je);
 
     actionReinitialiserRecherche->setShortcut(YerothUtils::REINITIALISER_RECHERCHE_QKEYSEQUENCE);
 }
@@ -1006,6 +1010,34 @@ void YerothAlertesWindow::reinitialiser_recherche()
     afficher_alertes();
 
     lineEdit_alertes_terme_recherche->setFocus();
+}
+
+
+bool YerothAlertesWindow::export_csv_file()
+{
+	bool success = false;
+
+	QList<int> tableColumnsToIgnore;
+
+	fill_table_columns_to_ignore(tableColumnsToIgnore);
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+	success = YerothUtils::export_csv_file(*this,
+										   *tableView_alertes,
+										   tableColumnsToIgnore,
+										   "yeroth-erp-fichier-alertes-de-stocks-format-csv",
+										   "fichier des alertes");
+#endif
+
+#ifdef YEROTH_ENGLISH_LANGUAGE
+	success = YerothUtils::export_csv_file(*this,
+										   *tableView_alertes,
+										   tableColumnsToIgnore,
+										   "yeroth-erp-stock-alert-listing-csv-format",
+										   "stock alert listing");
+#endif
+
+	return success;
 }
 
 

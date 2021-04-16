@@ -17314,6 +17314,8 @@ background-color: rgb(0, 0, 0); </string>
     <addaction name="actionChampsDBVisible"/>
     <addaction name="actionReinitialiserChampsDBVisible"/>
     <addaction name="separator"/>
+    <addaction name="actionExporter_au_format_csv"/>
+    <addaction name="separator"/>
     <addaction name="actionAfficherPDF"/>
     <addaction name="action_parametrer_les_impressions"/>
     <addaction name="separator"/>
@@ -17797,6 +17799,7 @@ background-color: rgb(0, 0, 0); </string>
    <addaction name="actionChampsDBVisible"/>
    <addaction name="actionReinitialiserChampsDBVisible"/>
    <addaction name="action_parametrer_les_impressions"/>
+   <addaction name="actionExporter_au_format_csv"/>
    <addaction name="actionAfficherPDF"/>
   </widget>
   <action name="actionA_propos">
@@ -18108,6 +18111,21 @@ background-color: rgb(0, 0, 0); </string>
    </property>
    <property name="toolTip">
     <string>Paramétrer les impressions PDF</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionExporter_au_format_csv">
+   <property name="icon">
+    <iconset>
+     <normalon>:/yeroth-erp-3-0-images/yeroth-erp-3.0-export-csv-data-icon.png</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>Exporter au format csv</string>
    </property>
    <property name="font">
     <font>

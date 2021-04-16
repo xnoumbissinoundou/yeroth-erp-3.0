@@ -67,6 +67,9 @@ private slots:
 
 	void enable_MAX_TABLE_ROW_COUNT();
 
+	void SET_CURRENT_WINDOW_TO_PRINT_PRINTING_PARAMETERS_AND_POSITION(int pageFROM,
+																	  int pageTO);
+
 	void valider();
 
 	inline void annuler()
