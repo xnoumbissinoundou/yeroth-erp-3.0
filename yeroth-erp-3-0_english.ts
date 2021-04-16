@@ -4382,7 +4382,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     </message>
     <message>
         <location filename="src/admin/yeroth-erp-admin-windows-commons.cpp" line="65"/>
-        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="935"/>
+        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="938"/>
         <source>qui suis je ?</source>
         <translation>who am I ?</translation>
     </message>
@@ -4564,7 +4564,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>missing MANDATORY column</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="922"/>
+        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="925"/>
         <source>%1 - sélectionner les colones visibles (&apos;%2&apos; colones)</source>
         <translation>%1 - select visible columns (&apos;%2&apos; columns)</translation>
     </message>
@@ -5101,14 +5101,14 @@ Please, change the maximum member of this CLIENT LOYALTY group to &apos;%3&apos;
     <message>
         <location filename="src/dialogs/yeroth-erp-IMPRESSION_DE_DOCUMENT-dialog.cpp" line="183"/>
         <location filename="src/dialogs/yeroth-erp-IMPRESSION_DE_DOCUMENT-dialog.cpp" line="262"/>
-        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="733"/>
+        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="735"/>
         <source>IMPRESSION, NUMÉRO DE PAGES</source>
         <translation>PRINTING, PAGE NUMBERING</translation>
     </message>
     <message>
         <location filename="src/dialogs/yeroth-erp-IMPRESSION_DE_DOCUMENT-dialog.cpp" line="184"/>
         <location filename="src/dialogs/yeroth-erp-IMPRESSION_DE_DOCUMENT-dialog.cpp" line="263"/>
-        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="734"/>
+        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="736"/>
         <source>La numéro de la page de départ doit être inférieur au numéro de la page terminale</source>
         <translation>starting page number  must be inferior to ending PAGE NUMBER</translation>
     </message>
