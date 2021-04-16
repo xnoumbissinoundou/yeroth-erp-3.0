@@ -87,6 +87,29 @@ uint YerothTableViewPRINT_UTILITIES_TEX_TABLE::MAX_TABLE_ROW_COUNT_first_page()
 }
 
 
+void YerothTableViewPRINT_UTILITIES_TEX_TABLE::SET_VERTICAL_PRINT_POSITION()
+{
+	_LATEX_A4_PAPER_SPEC = "a4paper";
+
+	if (0 != _yerothWindowTableOutputView)
+	{
+		_yerothWindowTableOutputView->_a4paper_printing_position =
+				_LATEX_A4_PAPER_SPEC;
+	}
+}
+
+void YerothTableViewPRINT_UTILITIES_TEX_TABLE::SET_HORIZONTAL_PRINT_POSITION()
+{
+	_LATEX_A4_PAPER_SPEC = "a4paper, landscape";
+
+	if (0 != _yerothWindowTableOutputView)
+	{
+		_yerothWindowTableOutputView->_a4paper_printing_position =
+				_LATEX_A4_PAPER_SPEC;
+	}
+}
+
+
 QString YerothTableViewPRINT_UTILITIES_TEX_TABLE::
 	print_YEROTH_document_from_TableView(uint pageFROM,
 										 uint pageTO,
@@ -139,7 +162,7 @@ QString YerothTableViewPRINT_UTILITIES_TEX_TABLE::
 
 	emit _yerothWindowTableOutputView->SIGNAL_INCREMENT_PROGRESS_BAR(currentProgressBarCount);
 
-    if (tableModelRowCount >= MAX_TABLE_ROW_COUNT_first_page())
+    if (tableModelRowCount > MAX_TABLE_ROW_COUNT_first_page())
     {
         fromRowIndex = 0;
 

@@ -215,6 +215,7 @@ void YerothERPClientsWindow::setupShortcuts()
     setupShortcutActionMessageDaide 		(*actionAppeler_aide);
     setupShortcutActionExporterAuFormatCsv	(*actionExporter_au_format_csv);
     setupShortcutActionQuiSuisJe			(*actionQui_suis_je);
+    setupShortcutActionPARAMETRER_IMPRESSION_PDF(*action_parametrer_les_impressions);
     setupShortcutActionAfficherPDF			(*actionAfficherPDF);
 
     actionReinitialiserRecherche->setShortcut(YerothUtils::REINITIALISER_RECHERCHE_QKEYSEQUENCE);

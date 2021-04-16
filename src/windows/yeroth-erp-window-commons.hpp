@@ -51,6 +51,10 @@ public:
 	 _curStocksTableModel(0),
 	 _pagination_nombre_de_ligne_IntValidator(0),
 	 _yerothTableView_FROM_WINDOWS_COMMONS(0),
+	 _page_from(-1),
+	 _page_to(-1),
+	 _print_table_row_count(20),
+	 _a4paper_printing_position(QString("a4paper")),
 	 _first_time_imprimer_pdf_document_call(true),
 	 QMESSAGE_BOX_STYLE_SHEET(QString("QMessageBox {background-color: rgb(%1);}")
 								.arg(COLOUR_RGB_STRING_YEROTH_ORANGE_243_162_0)),
@@ -334,6 +338,8 @@ protected slots:
 
 	virtual void setup_print();
 
+	virtual void print_PDF_PREVIOUSLY_SETUP();
+
 	virtual void setYerothLineEditQCompleterSearchFilter(QString &aYerothLineEditQCompleterSearchFilter_IN_OUT);
 
 	virtual void tableView_show_or_hide_columns(YerothTableView &tableView_in_out);
@@ -403,6 +409,11 @@ protected:
     inline void setupShortcutActionExporterAuFormatCsv(QAction &anAction) const
     {
     	anAction.setShortcut(YerothUtils::EXPORTER_AU_FORMAT_CSV_QKEYSEQUENCE);
+    }
+
+    inline void setupShortcutActionPARAMETRER_IMPRESSION_PDF(QAction &anAction) const
+    {
+    	anAction.setShortcut(YerothUtils::PARAMETRER_IMPRESSION_QKEYSEQUENCE);
     }
 
     inline void setupShortcutActionAfficherPDF(QAction &anAction) const
@@ -482,6 +493,17 @@ protected:
     QString 							_windowName;
 
     YerothTableView 					*_yerothTableView_FROM_WINDOWS_COMMONS;
+
+
+public:
+
+    //PRINTING SETUP PARAMETERS FOR EACH WINDOW.
+    int		_page_from;
+    int 	_page_to;
+    uint	_print_table_row_count;
+
+    QString	_a4paper_printing_position;
+
 
 private:
 

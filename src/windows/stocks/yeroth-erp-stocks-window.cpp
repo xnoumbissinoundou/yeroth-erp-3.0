@@ -165,7 +165,9 @@ YerothStocksWindow::YerothStocksWindow()
     connect(actionModifier_ce_stock, SIGNAL(triggered()),
     		this, SLOT(modifier_les_articles()));
 
-    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(setup_print()));
+    connect(action_parametrer_les_impressions, SIGNAL(triggered()), this, SLOT(setup_print()));
+
+    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(print_PDF_PREVIOUSLY_SETUP()));
     connect(actionA_propos, SIGNAL(triggered()), this, SLOT(apropos()));
     connect(actionAlertes, SIGNAL(triggered()), this, SLOT(alertes()));
     connect(actionReinitialiserRecherche, SIGNAL(triggered()), this, SLOT(reinitialiser_recherche()));
@@ -549,10 +551,11 @@ void YerothStocksWindow::setupDateTimeEdits()
 
 void YerothStocksWindow::setupShortcuts()
 {
-    setupShortcutActionMessageDaide 		(*actionAppeler_aide);
-    setupShortcutActionAfficherPDF			(*actionAfficherPDF);
-    setupShortcutActionExporterAuFormatCsv	(*actionExporter_au_format_csv);
-    setupShortcutActionQuiSuisJe			(*actionQui_suis_je);
+    setupShortcutActionMessageDaide 				(*actionAppeler_aide);
+    setupShortcutActionPARAMETRER_IMPRESSION_PDF	(*action_parametrer_les_impressions);
+    setupShortcutActionAfficherPDF					(*actionAfficherPDF);
+    setupShortcutActionExporterAuFormatCsv			(*actionExporter_au_format_csv);
+    setupShortcutActionQuiSuisJe					(*actionQui_suis_je);
 
     actionAfficher_lhistorique_de_ce_stock->setShortcut(Qt::Key_F2);
     actionReinitialiserRecherche->setShortcut(YerothUtils::REINITIALISER_RECHERCHE_QKEYSEQUENCE);

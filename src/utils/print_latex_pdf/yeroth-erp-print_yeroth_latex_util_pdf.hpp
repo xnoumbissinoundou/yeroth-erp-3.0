@@ -50,15 +50,9 @@ public:
 		return _LATEX_A4_PAPER_SPEC;
 	}
 
-	inline void SET_VERTICAL_PRINT_POSITION()
-	{
-		_LATEX_A4_PAPER_SPEC = "a4paper";
-	}
+	void SET_VERTICAL_PRINT_POSITION();
 
-	inline void SET_HORIZONTAL_PRINT_POSITION()
-	{
-		_LATEX_A4_PAPER_SPEC = "a4paper, landscape";
-	}
+	void SET_HORIZONTAL_PRINT_POSITION();
 
 	QString print_YEROTH_document_from_TableView(uint pageFROM,
 												 uint pageTO,

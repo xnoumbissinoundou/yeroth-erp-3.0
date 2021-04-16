@@ -26715,6 +26715,7 @@ background-color: rgb(0, 0, 0); </string>
     <addaction name="actionReinitialiserRecherche"/>
     <addaction name="separator"/>
     <addaction name="actionAfficherPDF"/>
+    <addaction name="action_parametrer_les_impressions"/>
     <addaction name="separator"/>
     <addaction name="actionQui_suis_je"/>
    </widget>
@@ -27159,6 +27160,7 @@ background-color: rgb(0, 0, 0); </string>
    <addaction name="actionAppeler_aide"/>
    <addaction name="actionChampsDBVisible"/>
    <addaction name="actionReinitialiserChampsDBVisible"/>
+   <addaction name="action_parametrer_les_impressions"/>
    <addaction name="actionExporter_au_format_csv"/>
    <addaction name="actionAfficherPDF"/>
    <addaction name="actionAlertes"/>
@@ -27412,6 +27414,24 @@ background-color: rgb(0, 0, 0); </string>
     </font>
    </property>
   </action>
+  <action name="action_parametrer_les_impressions">
+   <property name="icon">
+    <iconset>
+     <normalon>:/yeroth-erp-3-0-images/yeroth-erp-3-0-printing-settings.png</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>Paramétrer les impressions PDF</string>
+   </property>
+   <property name="toolTip">
+    <string>Paramétrer les impressions PDF</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -27428,11 +27448,6 @@ background-color: rgb(0, 0, 0); </string>
    <header>src/widgets/yeroth-erp-line-edit.hpp</header>
   </customwidget>
   <customwidget>
-   <class>YerothTextEdit</class>
-   <extends>QTextEdit</extends>
-   <header>src/widgets/yeroth-erp-text-edit.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>YerothComboBox</class>
    <extends>QComboBox</extends>
    <header>src/widgets/yeroth-erp-combo-box.hpp</header>
@@ -27443,15 +27458,20 @@ background-color: rgb(0, 0, 0); </string>
    <header>src/widgets/yeroth-erp-datetime-edit.hpp</header>
   </customwidget>
   <customwidget>
-   <class>YerothERPPaiementsTableView</class>
-   <extends>QTableView</extends>
-   <header>src/widgets/table-view/yeroth-erp-paiements-table-view.hpp</header>
+   <class>YerothTextEdit</class>
+   <extends>QTextEdit</extends>
+   <header>src/widgets/yeroth-erp-text-edit.hpp</header>
   </customwidget>
   <customwidget>
    <class>YerothERPTabWidget</class>
    <extends>QTabWidget</extends>
-	 <header>src/widgets/widgets-table/yeroth-erp-tab-widget.hpp</header>
+   <header>src/widgets/widgets-table/yeroth-erp-tab-widget.hpp</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>YerothERPPaiementsTableView</class>
+   <extends>QTableView</extends>
+   <header>src/widgets/table-view/yeroth-erp-paiements-table-view.hpp</header>
   </customwidget>
  </customwidgets>
  <tabstops>

@@ -16766,6 +16766,7 @@ background-color: rgb(0, 0, 0); </string>
     <addaction name="actionReinitialiserElementsDeFiltrage"/>
     <addaction name="separator"/>
     <addaction name="actionAfficherPDF"/>
+    <addaction name="action_parametrer_les_impressions"/>
     <addaction name="separator"/>
     <addaction name="actionQui_suis_je"/>
    </widget>
@@ -17222,6 +17223,7 @@ background-color: rgb(0, 0, 0); </string>
    <addaction name="actionAppeler_aide"/>
    <addaction name="actionChampsDBVisible"/>
    <addaction name="actionReinitialiserChampsDBVisible"/>
+   <addaction name="action_parametrer_les_impressions"/>
    <addaction name="actionExporter_au_format_csv"/>
    <addaction name="actionAfficherPDF"/>
    <addaction name="actionAlertes"/>
@@ -17587,6 +17589,24 @@ background-color: rgb(0, 0, 0); </string>
    </property>
    <property name="toolTip">
     <string>Afficher les stocks en état d'alerte de stock</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="action_parametrer_les_impressions">
+   <property name="icon">
+    <iconset>
+     <normalon>:/yeroth-erp-3-0-images/yeroth-erp-3-0-printing-settings.png</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>Paramétrer les impressions PDF</string>
+   </property>
+   <property name="toolTip">
+    <string>Paramétrer les impressions PDF</string>
    </property>
    <property name="font">
     <font>

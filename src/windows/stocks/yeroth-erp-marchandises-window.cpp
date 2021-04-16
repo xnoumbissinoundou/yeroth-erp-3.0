@@ -219,6 +219,7 @@ void YerothMarchandisesWindow::setupShortcuts()
     setupShortcutActionMessageDaide 		(*actionAppeler_aide);
     setupShortcutActionQuiSuisJe			(*actionQui_suis_je);
     setupShortcutActionExporterAuFormatCsv	(*actionExporter_au_format_csv);
+    setupShortcutActionPARAMETRER_IMPRESSION_PDF(*action_parametrer_les_impressions);
     setupShortcutActionAfficherPDF			(*actionAfficherPDF);
 
     actionAfficher_les_marchandises_non_terminees->setShortcut(YerothUtils::AFFICHER_LES_MARCHANDISES_NON_TERMINES_QKEYSEQUENCE);

@@ -506,6 +506,7 @@ void YerothERPProgrammesDeFideliteClientsWindow::contextMenuEvent(QContextMenuEv
 void YerothERPProgrammesDeFideliteClientsWindow::setupShortcuts()
 {
     setupShortcutActionMessageDaide 		(*actionAppeler_aide);
+    setupShortcutActionPARAMETRER_IMPRESSION_PDF(*action_parametrer_les_impressions);
     setupShortcutActionAfficherPDF			(*actionAfficherPDF);
     setupShortcutActionExporterAuFormatCsv	(*actionExporter_au_format_csv);
     setupShortcutActionQuiSuisJe			(*actionQui_suis_je);

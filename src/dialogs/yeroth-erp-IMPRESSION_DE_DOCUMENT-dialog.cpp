@@ -237,11 +237,18 @@ void YerothIMPRESSION_DE_DOCUMENT_Dialog::valider()
 
 		QString string_pageTO = lineEdit_pageTO->text();
 
+
 		if (string_pageFROM.isEmpty() &&
 			string_pageTO.isEmpty())
 		{
+			_current_window_to_print->_page_from = -1;
+			_current_window_to_print->_page_to = -1;
+
 			_current_window_to_print->imprimer_pdf_document_WITH_A_YEROTH_PROGRESS_BAR();
 			SET_NOMBRE_DE_LIGNES_PAR_DEFAUT();
+
+			_current_window_to_print->_print_table_row_count =
+					lineEdit_IMPRESSION_LIGNES->text().toUInt();
 		}
 		else
 		{
@@ -260,6 +267,12 @@ void YerothIMPRESSION_DE_DOCUMENT_Dialog::valider()
 
 				return ;
 			}
+
+			_current_window_to_print->_page_from = pageFROM;
+			_current_window_to_print->_page_to = pageTO;
+
+			_current_window_to_print->_print_table_row_count =
+					lineEdit_IMPRESSION_LIGNES->text().toUInt();
 
 			_current_window_to_print->imprimer_pdf_document_WITH_A_YEROTH_PROGRESS_BAR(pageFROM,
 																					   pageTO);

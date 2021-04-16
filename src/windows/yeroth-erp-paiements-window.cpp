@@ -618,6 +618,7 @@ void YerothPaiementsWindow::setupShortcuts()
 {
     setupShortcutActionMessageDaide 		(*actionAppeler_aide);
     setupShortcutActionExporterAuFormatCsv	(*actionExporter_au_format_csv);
+    setupShortcutActionPARAMETRER_IMPRESSION_PDF(*action_parametrer_les_impressions);
     setupShortcutActionAfficherPDF			(*actionAfficherPDF);
     setupShortcutActionQuiSuisJe			(*actionQui_suis_je);
 }

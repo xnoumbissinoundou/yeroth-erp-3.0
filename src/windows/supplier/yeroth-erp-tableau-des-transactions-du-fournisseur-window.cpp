@@ -138,6 +138,7 @@ bool YerothTableauDesTransactionsDuFournisseurWindow::imprimer_pdf_document()
 
 void YerothTableauDesTransactionsDuFournisseurWindow::setupShortcuts()
 {
+    setupShortcutActionPARAMETRER_IMPRESSION_PDF(*action_parametrer_les_impressions);
     setupShortcutActionAfficherPDF			(*actionAfficherPDF);
     setupShortcutActionExporterAuFormatCsv	(*actionExporter_au_format_csv);
 }

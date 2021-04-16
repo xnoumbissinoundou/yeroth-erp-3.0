@@ -707,6 +707,41 @@ void YerothWindowsCommons::setup_print()
 }
 
 
+void YerothWindowsCommons::print_PDF_PREVIOUSLY_SETUP()
+{
+	if (0 == _yeroth_PRINT_UTILITIES_TEX_TABLE)
+	{
+		imprimer_pdf_document();
+	}
+
+	if (0 != _yeroth_PRINT_UTILITIES_TEX_TABLE)
+	{
+		_yeroth_PRINT_UTILITIES_TEX_TABLE->SET_NOMBRE_DE_LIGNES(_print_table_row_count);
+		_yeroth_PRINT_UTILITIES_TEX_TABLE->_LATEX_A4_PAPER_SPEC = _a4paper_printing_position;
+
+		if (-1 == _page_from ||
+			-1 == _page_to)
+		{
+			imprimer_pdf_document_WITH_A_YEROTH_PROGRESS_BAR();
+		}
+		else
+		{
+			if (_page_from >
+				_page_to)
+			{
+				YerothQMessageBox::warning(this,
+						QObject::trUtf8("IMPRESSION, NUMÉRO DE PAGES"),
+						QObject::trUtf8("La numéro de la page de départ doit "
+								"être inférieur au numéro de la page terminale"));
+				return ;
+			}
+
+			imprimer_pdf_document_WITH_A_YEROTH_PROGRESS_BAR(_page_from, _page_to);
+		}
+	}
+}
+
+
 void YerothWindowsCommons::setYerothLineEditQCompleterSearchFilter(QString &aYerothLineEditQCompleterSearchFilter_IN_OUT)
 {
 	if (0 == _yeroth_QComboBox_SearchDBFieldColumnString ||

@@ -265,6 +265,7 @@ void YerothMouvementsDeStocksWindow::reinitialiser_colones_db_visibles()
 void YerothMouvementsDeStocksWindow::setupShortcuts()
 {
     setupShortcutActionMessageDaide 	(*actionAppeler_aide);
+    setupShortcutActionPARAMETRER_IMPRESSION_PDF(*action_parametrer_les_impressions);
     setupShortcutActionAfficherPDF		(*actionAfficherPDF);
     setupShortcutActionQuiSuisJe		(*actionQui_suis_je);
 }
