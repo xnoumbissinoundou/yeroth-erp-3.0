@@ -40,7 +40,8 @@ YerothHistoriqueDuStockWindow::YerothHistoriqueDuStockWindow()
 
     connect(actionExporter_au_format_csv, SIGNAL(triggered()), this, SLOT(export_csv_file()));
 
-    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(setup_print()));
+    connect(action_parametrer_les_impressions, SIGNAL(triggered()), this, SLOT(setup_print()));
+    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(print_PDF_PREVIOUSLY_SETUP()));
 
 
     setupShortcuts();

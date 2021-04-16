@@ -85,7 +85,8 @@ YerothComptabiliteWindow::YerothComptabiliteWindow()
     MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS
 
 
-	connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(setup_print()));
+	connect(action_parametrer_les_impressions, SIGNAL(triggered()), this, SLOT(setup_print()));
+    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(print_PDF_PREVIOUSLY_SETUP()));
     connect(actionReinitialiserChampsDBVisible, SIGNAL(triggered()), this, SLOT(slot_reinitialiser_colones_db_visibles()));
     connect(actionChampsDBVisible, SIGNAL(triggered()), this, SLOT(selectionner_champs_db_visibles()));
     connect(actionExporter_au_format_csv, SIGNAL(triggered()), this, SLOT(export_csv_file()));

@@ -103,7 +103,8 @@ YerothMouvementsDeStocksWindow::YerothMouvementsDeStocksWindow()
     connect(actionMenu, SIGNAL(triggered()), this, SLOT(menu()));
     connect(actionExporter_au_format_csv, SIGNAL(triggered()), this, SLOT(export_csv_file()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
-    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(setup_print()));
+    connect(action_parametrer_les_impressions, SIGNAL(triggered()), this, SLOT(setup_print()));
+    connect(actionAfficherPDF, SIGNAL(triggered()), this, SLOT(print_PDF_PREVIOUSLY_SETUP()));
     connect(actionReinitialiserRecherche, SIGNAL(triggered()), this, SLOT(reinitialiser_recherche()));
     connect(actionA_propos, SIGNAL(triggered()), this, SLOT(apropos()));
     connect(actionAlertes, SIGNAL(triggered()), this, SLOT(alertes()));
