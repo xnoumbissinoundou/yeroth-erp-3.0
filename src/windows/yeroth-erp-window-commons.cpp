@@ -712,6 +712,7 @@ void YerothWindowsCommons::print_PDF_PREVIOUSLY_SETUP()
 	if (0 == _yeroth_PRINT_UTILITIES_TEX_TABLE)
 	{
 		imprimer_pdf_document();
+		return ;
 	}
 
 	if (0 != _yeroth_PRINT_UTILITIES_TEX_TABLE)
@@ -723,6 +724,7 @@ void YerothWindowsCommons::print_PDF_PREVIOUSLY_SETUP()
 			-1 == _page_to)
 		{
 			imprimer_pdf_document_WITH_A_YEROTH_PROGRESS_BAR();
+			return ;
 		}
 		else
 		{
@@ -737,6 +739,7 @@ void YerothWindowsCommons::print_PDF_PREVIOUSLY_SETUP()
 			}
 
 			imprimer_pdf_document_WITH_A_YEROTH_PROGRESS_BAR(_page_from, _page_to);
+			return ;
 		}
 	}
 }
