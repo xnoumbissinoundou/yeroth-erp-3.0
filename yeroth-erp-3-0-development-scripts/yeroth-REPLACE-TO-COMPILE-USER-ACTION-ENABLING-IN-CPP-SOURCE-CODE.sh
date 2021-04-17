@@ -1,7 +1,7 @@
 #!/bin/bash
 # @author: DR. XAVIER NOUMBISSI NOUNDOU
 
-ALL_YEROTH_CODEBASE_CPP_FILES="yeroth-ALL-USER-ENABLING-ACTIONS-WINDOWS.TXT"
+ALL_YEROTH_CODEBASE_CPP_FILES="${YEROTH_ERP_3_0_HOME_FOLDER}/yeroth-ALL-USER-ENABLING-ACTIONS-WINDOWS.TXT"
 
 function generate_init_user_action_rights_txt 
 {
@@ -23,7 +23,7 @@ function generate_init_user_action_rights_txt
 }
 
 while read LINE; do
+	LINE="${YEROTH_ERP_3_0_HOME_FOLDER}/${LINE}"
 	generate_init_user_action_rights_txt "${LINE%%".cpp"}"
 done < "$ALL_YEROTH_CODEBASE_CPP_FILES"
-
 

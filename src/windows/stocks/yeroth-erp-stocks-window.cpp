@@ -121,19 +121,19 @@ YerothStocksWindow::YerothStocksWindow()
 
     tableView_stocks->setSqlTableName(&YerothDatabase::STOCKS);
 
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer, false);
-	YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_lhistorique_de_ce_stock, false);
-	YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMarchandises, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchatsStocks, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier_ce_stock, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer_ce_stock, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionExporter_au_format_csv, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(action_parametrer_les_impressions, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_Principal,false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionEntrer,false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_lhistorique_de_ce_stock,false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMarchandises,false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchatsStocks,false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionModifier_ce_stock,false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSupprimer_ce_stock,false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionExporter_au_format_csv,false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(action_parametrer_les_impressions,false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficherPDF,false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes,false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration,false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je,false);
 
     MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS
 

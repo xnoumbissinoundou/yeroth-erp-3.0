@@ -113,8 +113,11 @@ do
 done
 shift $(($OPTIND - 1))
 
-set +x
 
+yeroth-REPLACE-TO-COMPILE-USER-ACTION-ENABLING-IN-CPP-SOURCE-CODE.sh
+
+
+set +x
 
 if [ ! $yerothCheckMemoryFlag ]; then
   yerothCheckMemoryVal="NO_YEROTH_CHECK_MEMORY"
