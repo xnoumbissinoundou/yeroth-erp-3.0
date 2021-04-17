@@ -1,0 +1,13 @@
+actionMenu_Principal,false
+actionEntrer,false
+actionAfficher_lhistorique_de_ce_stock,false
+actionMarchandises,false
+actionAchatsStocks,false
+actionModifier_ce_stock,false
+actionSupprimer_ce_stock,false
+actionExporter_au_format_csv,false
+action_parametrer_les_impressions,false
+actionAfficherPDF,false
+actionAlertes,false
+actionAdministration,false
+actionQui_suis_je,false
