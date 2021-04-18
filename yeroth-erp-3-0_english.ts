@@ -1577,13 +1577,13 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <translation>supplier purchase listing</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-charges-window.cpp" line="619"/>
-        <location filename="src/windows/yeroth-erp-charges-window.cpp" line="641"/>
+        <location filename="src/windows/yeroth-erp-charges-window.cpp" line="618"/>
+        <location filename="src/windows/yeroth-erp-charges-window.cpp" line="640"/>
         <source>Sélectionnez 1 achat au fournisseur à afficher les détails.</source>
         <translation>Select a purchase (service) view its stock details.</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-charges-window.cpp" line="768"/>
+        <location filename="src/windows/yeroth-erp-charges-window.cpp" line="767"/>
         <source>Sélectionnez 1 achat (service) au fournisseur à supprimer.</source>
         <oldsource>Sélectionnez 1 achat au fournisseur à supprimer.</oldsource>
         <translation>Select a purchase (service) view to delete.</translation>
@@ -2047,7 +2047,7 @@ Continue with update of the stock ?</translation>
         <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1046"/>
         <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="363"/>
         <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="372"/>
-        <location filename="src/windows/yeroth-erp-charges-window.cpp" line="767"/>
+        <location filename="src/windows/yeroth-erp-charges-window.cpp" line="766"/>
         <source>supprimer</source>
         <translation>remove</translation>
     </message>
@@ -4702,8 +4702,8 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="660"/>
         <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="682"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseurs-window.cpp" line="492"/>
-        <location filename="src/windows/yeroth-erp-charges-window.cpp" line="618"/>
-        <location filename="src/windows/yeroth-erp-charges-window.cpp" line="640"/>
+        <location filename="src/windows/yeroth-erp-charges-window.cpp" line="617"/>
+        <location filename="src/windows/yeroth-erp-charges-window.cpp" line="639"/>
         <source>détails</source>
         <translation>details</translation>
     </message>
