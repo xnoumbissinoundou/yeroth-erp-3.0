@@ -58,6 +58,9 @@
 \definecolor{brightred}{rgb}{1,0.2,0.2}
 
 
+\newcommand{\yerothrdCOLOR}{\textcolor{yerothColorGreen}
+			{\textsc{\textcolor{yerothColorRed}{YEROTH}}$_{\text{r\&d}}$\xspace}}
+
 \newcommand{\yerothrd}{YEROTH~R\&D\xspace}
 
 \newcommand{\myfullacademicname}{PR. XAVIER NOUMBISSI NOUNDOU\xspace}
@@ -90,7 +93,23 @@
 
 \newcommand{\git}{Git\xspace}
 
-\newcommand{\yerotherptroiszero}{YEROTH--ERP--$3$.$0$\xspace}
+\newcommand{\yerothitem}[1]
+{
+	\item \includegraphics[scale=0.03]{yeroth-erp-3-0.png} #1
+}
+
+\newcommand{\yerothUNIBREMENitem}[1]
+{
+	\item \includegraphics[scale=0.05]{YEROTH-LOGO-UNI-BREMEN-2021.png} #1
+}
+
+
+\newcommand{\yerothUWATERLOOWATFORMitem}[1]
+{
+	\item \includegraphics[scale=0.07]{YEROTH-LOGO-UWATERLOO-WATFORM.jpg} #1
+}
+
+\newcommand{\yerotherptroispointzero}{YEROTH--ERP--$3$.$0$\xspace}
 
 \newcommand{\cplusplus}{C$++$\xspace}
 \newcommand{\java}{\texttt{Java}\xspace}
@@ -377,7 +396,7 @@ et de tests d'évaluations personnelles pour étudiants)}
 
 \headerrowONE{\href{http://iaicameroun.com}{\textbf{IAI CAMEROUN}, NKOL ANGA'A, YAOUNDÉ, CENTRE, CAMEROUN (Octobre~$2015$, $3$~semaines)}}
 \begin{enumerate}
-	\item ARCHITECTURE DES ORDINATEURS POUR ÉTUDIANTS DE GÉNIE LOGICIEL
+	\item ARCHITECTURE DES ORDINATEURS POUR ÉTUDIANTS DE GÉNIE LOGICIEL (SECTION ANGLOPHONE)
 \end{enumerate}
 
 \vspace{0.5em}
@@ -400,33 +419,11 @@ et de tests d'évaluations personnelles pour étudiants)}
 
 \newpage
 
-\hrule
 \begin{center}
 {\large \textbf{PUBLICATIONS}}
 \end{center}
 
 \vspace{0.5em}
-
-\headerrowONE{\textbf{\yerothrd, DOUALA, LITTORAL, CAMEROUN}}
-
-\vspace{0.3em}
-
-\begin{enumerate}
-
-	\item \headerrowONE{\textbf{\yerotherptroiszero SOFTWARE--SYSTEM ARCHITECTURE},\\
-		TECHNICAL REPORT, \yerothrd, CAMEROUN, \textbf{MARS~$2021$}.}
-
-	\item \headerrowONE{\textbf{FICHE DE DONNÉES DU SYSTÈME--LOGICIEL YEROTH--ERP--3.0},\\
-		TECHNICAL REPORT, \yerothrd, CAMEROUN, \textbf{MARS~$2021$}.}
-	
-	\item \headerrowONE{\textbf{AVANTAGES DE \yerotherptroiszero COMPARATIVEMENT
-						À SAGE GESCOM I$7$, ET À SAP BUSINESS ONE},\\
-		TECHNICAL REPORT, \yerothrd, CAMEROUN, \textbf{MARS~$2021$}.}
- 
-\end{enumerate}
-
-
-\vspace{1em}
 
 
 \headerrowONE{\href{http://www.informatik.uni-bremen.de/agbs}{
@@ -435,12 +432,14 @@ et de tests d'évaluations personnelles pour étudiants)}
 \vspace{0.3em}
 
 \begin{enumerate}
-\item \headerrowONE{\textbf{A SEMANTIC COMPARISON BETWEEN TIMED--CSP AND TIMED--AUTOMATA},\\
+	\yerothUNIBREMENitem
+		\headerrowONE{\textbf{A SEMANTIC COMPARISON BETWEEN TIMED--CSP AND TIMED--AUTOMATA},\\
 	INDEPENDENT STUDY, UNIVERSITÉ DE BRÊME, ALLEMAGNE, \textbf{JANVIER~$2005$},\\
 	\textbf{SUPERVISÉ PAR \href{http://www.informatik.uni-bremen.de/agbs/jp}
 		{PROF. DR. RER. NAT. HABIL. JAN PELESKA.}}}
  
-\item \headerrowONE{\textbf{STATISTICAL TEST CASE GENERATION FOR REACTIVE SYSTEMS},\\
+	\yerothUNIBREMENitem
+		 \headerrowONE{\textbf{STATISTICAL TEST CASE GENERATION FOR REACTIVE SYSTEMS},\\
 	MÉMOIRE DE MASTER II EN GÉNIE INFORMATIQUE, UNIVERSITÉ DE BRÊME, \textbf{$25$~MAI~$2007$},\\
 	\textbf{SUPERVISÉ PAR \href{http://www.informatik.uni-bremen.de/agbs/jp}{
 	PROF. DR. RER. NAT. HABIL. JAN PELESKA}}, ET\\
@@ -457,30 +456,81 @@ et de tests d'évaluations personnelles pour étudiants)}
 \vspace{0.3em}
 
 \begin{enumerate}
-\item \headerrowONE{\href{http://archive.org/details/junit-by-xavier-noumbissi-noundou}{
+\yerothUWATERLOOWATFORMitem
+ \headerrowONE{\href{http://archive.org/details/junit-by-xavier-noumbissi-noundou}{
 	\textbf{JUNIT~$4$ TUTORIAL}}, NOTES DE COURS POUR L'UNITÉ D'ENSEIGNEMENT \\
 	'Software Testing, Quality Assurance \& Maintenance',\\
 	UNIVERSITÉ DE WATERLOO, ON, CANADA, \textbf{$31$~OCTOBRE~$2009$},\\
 	\textbf{SUPERVISÉ PAR \href{http://patricklam.ca}{ASSISTANT PROFESSOR PATRICK LAM, PH.D.}.}}
  
-\item \headerrowONE{\textbf{STATICALLY VERIFYING API USAGE RULES USING TRACEMATCHES},\\
+\yerothUWATERLOOWATFORMitem
+ \headerrowONE{\textbf{STATICALLY VERIFYING API USAGE RULES USING TRACEMATCHES},\\
 	THÈSE DE DOCTORAT/PH.D. EN GÉNIE INFORMATIQUE (GÉNIE LOGICIEL),\\
 	UNIVERSITÉ DE WATERLOO, ON, CANADA, \textbf{$20$~DÉCEMBRE~$2011$},\\
 	\textbf{SUPERVISÉ PAR \href{http://patricklam.ca}{ASSISTANT PROFESSOR PATRICK LAM, PH.D.}.}}
 
-\item \headerrowONE{\href{http://archive.org/details/cs846-nnoumbissi}{
+\yerothUWATERLOOWATFORMitem
+ 	\headerrowONE{\href{http://archive.org/details/cs846-nnoumbissi}{
 	\textbf{DYNAMIC TAINT ANALYSIS FOR PHP IN QUERCUS}},\\
 	PROJET DU COURS 'program analysis for web applications',\\
 	UNIVERSITÉ DE WATERLOO, ON, CANADA, \textbf{$30$~AVRIL~$2013$},\\
 	\textbf{SUPERVISÉ PAR \href{http://www.franktip.org}{FULL PROFESSOR FRANK TIP, PH.D.}.}}
 
 
-\item \headerrowONE{\href{http://archive.org/details/saint_201507}{
+\yerothUWATERLOOWATFORMitem
+	 \headerrowONE{\href{http://archive.org/details/saint_201507}{
 	\textbf{CONTEXT-SENSITIVE STAGED STATIC TAINT ANALYSIS FOR C USING LLVM}},\\
 	THÈSE DE DOCTORAT/PH.D. EN GÉNIE INFORMATIQUE (GÉNIE LOGICIEL),\\
 	UNIVERSITÉ DE WATERLOO, ON, CANADA, \textbf{$10$~MARS~$2015$},\\
 	\textbf{SUPERVISÉ PAR \href{http://patricklam.ca}{ASSOCIATE PROFESSOR PATRICK LAM, PH.D.}}, ET\\
 	\textbf{\href{http://ece.uwaterloo.ca/~vganesh}{ASSISTANT PROFESSOR VIJAY GANESH, PH.D.}.}}
 \end{enumerate}
+
+\vspace{1em}
+
+\headerrowONE{\textbf{\yerothrd, DOUALA, LITTORAL, CAMEROUN}}
+
+\vspace{0.3em}
+
+\begin{enumerate}
+
+	\yerothitem
+	  \headerrowONE{\href{http://archive.org/details/yeroth-erp-3-0-guide-de-lutilisateur-manager}
+						{\textbf{GUIDE DE L'UTILISATEUR 'MANAGER', SYSTÈME LOGICIEL ERP \yerotherptroispointzero}},\\
+		TECHNICAL REPORT, \yerothrd, CAMEROUN, \textbf{MARS~$2021$}.}
+
+	\yerothitem
+	 \headerrowONE{\href{http://archive.org/details/yeroth-erp-3-0-brochure}
+		{\textbf{BROCHURE D'INFORMATION DU SYSTÈME--LOGICIEL \yerotherptroispointzero}},\\
+		TECHNICAL REPORT, \yerothrd, CAMEROUN, \textbf{MARS~$2021$}.}
+		
+	\yerothitem
+	 \headerrowONE{\href{http://archive.org/details/yeroth-erp-3-0-fiche-de-donnees}
+		{\textbf{FICHE DE DONNÉES DU SYSTÈME--LOGICIEL \yerotherptroispointzero}},\\
+		TECHNICAL REPORT, \yerothrd, CAMEROUN, \textbf{MARS~$2021$}.}
+
+	\yerothitem
+	 \headerrowONE{\href{http://archive.org/details/yeroth-erp-3-0-document-comparaisons}
+		{\textbf{AVANTAGES DE \yerotherptroispointzero COMPARATIVEMENT
+			À SAGE GESCOM I$7$, ET À SAP BUSINESS ONE}},\\
+		TECHNICAL REPORT, \yerothrd, CAMEROUN, \textbf{MARS~$2021$}.}
+
+	\yerothitem
+	 \headerrowONE{\href{http://archive.org/details/yeroth-erp-3-0-PDV-materiel-informatique-recommande}
+						{\textbf{MATÉRIEL INFORMATIQUE RECOMMANDÉ POUR LE POINT-DE-VENTE \yerotherptroispointzero}},\\
+		TECHNICAL REPORT, \yerothrd, CAMEROUN, \textbf{MARS~$2021$}.}
+		
+	\yerothitem
+	 \headerrowONE{\href{http://archive.org/details/yeroth-erp-3-0-guide-dinstallation-standalone}
+						{\textbf{GUIDE D'INSTALLATION POUR LE SYSTÈME--LOGICIEL \yerotherptroispointzero}},\\
+		TECHNICAL REPORT, \yerothrd, CAMEROUN, \textbf{MARS~$2021$}.}
+						
+	\yerothitem
+	 \headerrowONE{\href{http://archive.org/details/yeroth-erp-3-0-software-system-architecture_202104}
+	{\textbf{SOFTWARE--SYSTEM ARCHITECTURE OF \yerotherptroispointzero}},\\
+		TECHNICAL REPORT, \yerothrd, CAMEROUN, \textbf{MARS~$2021$}.}	
+ 
+\end{enumerate}
+
 
 \end{document}
