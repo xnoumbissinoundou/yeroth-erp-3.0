@@ -1,11 +1,11 @@
 /*
- * yeroth-erp-3-0-user-settings.cpp
+ * yeroth-erp-user-settings.cpp
  *
  * @author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
 
-#include "yeroth-erp-3-0-user-settings.hpp"
+#include "yeroth-erp-user-settings.hpp"
 
 
 bool YerothERPUserSettings::enregistrer_les_parametres_serveurs()

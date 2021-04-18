@@ -1,5 +1,5 @@
 /*
- * yeroth-erp-3-0-user-settings.hpp
+ * yeroth-erp-user-settings.hpp
  *
  * @author: PR. XAVIER NOUMBISSI NOUNDOU
  */
@@ -8,7 +8,7 @@
 #define SRC_USER_YEROTH_ERP_3_0_USER_SETTINGS_HPP_
 
 
-#include "yeroth-erp-3-0-definition-oo-class-operators.hpp"
+#include "src/include/yeroth-erp-3-0-definition-oo-class-operators.hpp"
 
 
 #include <QtCore/QString>
