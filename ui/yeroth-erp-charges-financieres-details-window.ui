@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>YerothAchatsDetailWindow</class>
- <widget class="QMainWindow" name="YerothAchatsDetailWindow">
+ <class>YerothChargesFinancieresDetailsWindow</class>
+ <widget class="QMainWindow" name="YerothChargesFinancieresDetailsWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -431,7 +431,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>Yeroth-erp-3.0 - afficher au détail</string>
+   <string>Yeroth-erp-3.0 - détails d'1 charge financière</string>
   </property>
   <property name="locale">
    <locale language="French" country="France"/>
@@ -8973,7 +8973,7 @@ stock (service)</string>
   </action>
   <action name="actionChanger_utilisateur">
    <property name="icon">
-    <iconset resource="../../yeroth-erp-3-0.qrc">
+    <iconset resource="../yeroth-erp-3-0.qrc">
      <normaloff>:/yeroth-erp-3-0-images/log-in.png</normaloff>:/yeroth-erp-3-0-images/log-in.png</iconset>
    </property>
    <property name="text">
@@ -9043,7 +9043,7 @@ stock (service)</string>
   </action>
   <action name="actionAppeler_aide">
    <property name="icon">
-    <iconset resource="../../yeroth-erp-3-0.qrc">
+    <iconset resource="../yeroth-erp-3-0.qrc">
      <normaloff>:/yeroth-erp-3-0-images/question.png</normaloff>:/yeroth-erp-3-0-images/question.png</iconset>
    </property>
    <property name="text">
@@ -9062,7 +9062,7 @@ stock (service)</string>
   </action>
   <action name="actionDeconnecter_utilisateur">
    <property name="icon">
-    <iconset resource="../../yeroth-erp-3-0.qrc">
+    <iconset resource="../yeroth-erp-3-0.qrc">
      <normaloff>:/yeroth-erp-3-0-images/log-out.png</normaloff>:/yeroth-erp-3-0-images/log-out.png</iconset>
    </property>
    <property name="text">
@@ -9182,7 +9182,7 @@ stock (service)</string>
   <tabstop>pushButton_lister</tabstop>
  </tabstops>
  <resources>
-  <include location="../../yeroth-erp-3-0.qrc"/>
+  <include location="../yeroth-erp-3-0.qrc"/>
  </resources>
  <connections/>
 </ui>

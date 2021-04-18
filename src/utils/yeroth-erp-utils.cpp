@@ -468,7 +468,11 @@ const QIntValidator YerothUtils::Int_BACKUP_YEROTH_ERP_3_Validator(1, 172800);
 
 const QRegExp YerothUtils::STRING_FOR_YEROTH_ERP_3_0_VALIDATOR_DB_COLUMN_NAME("a-zA-Z0-9_");
 
-const QRegExpValidator YerothUtils::STRING_FOR_YEROTH_ERP_3_0_VALIDATOR(QRegExp("[a-zA-Z0-9º:;,~´`@§$£#%\\s*\\.\\^\\\\(\\)\\&/\<>\\?\\!\\{\\}\\[\\]\\+\\-\{\}=_'|]*"));
+const QRegExpValidator YerothUtils::STRING_FOR_YEROTH_ERP_3_0_VALIDATOR(
+		QRegExp(QString("[%1%2%3]*")
+					.arg("a-zA-Z0-9º:;,~´`@§$£#%\\s\\.\\^\\\\(\\)\\&/\<>\\?\\!\\{\\}\\[\\]\\+\\-\{\}=_'|",
+						 "àéèêôîûÀÉÈÊÔÛÎ",
+						 "äëöïüÄËÖÏÜ")));
 
 const QIntValidator YerothUtils::IntValidator(0, 444444444);
 
