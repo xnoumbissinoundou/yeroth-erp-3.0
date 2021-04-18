@@ -4,19 +4,22 @@
  *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
-#include <QtCore/QDate>
+#include "yeroth-erp-users.hpp"
 
-#include <QtCore/QString>
+#include "yeroth-erp-user-settings.hpp"
 
 #include "src/include/yeroth-erp-3-0-software.text-configuration.hpp"
-
-#include "yeroth-erp-users.hpp"
 
 #include "src/yeroth-erp-windows.hpp"
 
 #include "src/utils/yeroth-erp-utils.hpp"
 
 #include "src/utils/yeroth-erp-sqltable-model.hpp"
+
+
+#include <QtCore/QDate>
+
+#include <QtCore/QString>
 
 
 QString YerothPOSUser::toString()
@@ -123,4 +126,13 @@ QString YerothPOSUser::nom_complet_truncated_FOR_SMALL_RECEIPT()
 
 	return nom_complet_truncated;
 }
+
+
+void YerothPOSUser::create_user_personal_settings_file()
+{
+
+}
+
+
+
 

@@ -17,11 +17,7 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-	inline YerothERPUserVendeur(YerothERPWindows *allWindows)
-	:YerothPOSUser(allWindows)
-	{
-		_role = YerothUtils::ROLE_VENDEUR;
-	}
+	YerothERPUserVendeur(YerothERPWindows *allWindows);
 
 	inline virtual ~YerothERPUserVendeur(){}
 };

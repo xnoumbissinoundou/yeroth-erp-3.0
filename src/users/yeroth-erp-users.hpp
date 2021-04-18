@@ -21,6 +21,7 @@ class QDate;
 class YerothERPWindows;
 class YerothSqlTableModel;
 
+class YerothERPUserSettings;
 class YerothPOSUserAdministrateur;
 class YerothPOSUserManager;
 class YerothERPVendeur;
@@ -38,11 +39,15 @@ public:
 
 	inline YerothPOSUser(YerothERPWindows *allWindows)
 	:_role(YerothUtils::ROLE_INDEFINI),
+	 _user_personal_settings(0),
 	 _allWindows(allWindows)
 	{
 	}
 
-	inline virtual ~YerothPOSUser(){}
+	inline virtual ~YerothPOSUser()
+	{
+		YEROTH_DELETE_FREE_POINTER_NOW(_user_personal_settings);
+	}
 
 	enum YerothUtils::USER_ROLE role(){ return _role; }
 
@@ -220,6 +225,8 @@ public:
 
 protected:
 
+	void create_user_personal_settings_file();
+
 	enum YerothUtils::USER_ROLE _role;
 
 	QString _prenom;
@@ -233,6 +240,8 @@ protected:
 	QString _date_naissance;
 	QString _titre;
 	QString _nom_complet;
+
+	YerothERPUserSettings *_user_personal_settings;
 
 private:
 

@@ -17,11 +17,7 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-	inline YerothPOSUserManager(YerothERPWindows *allWindows)
-	:YerothPOSUser(allWindows)
-	{
-		_role = YerothUtils::ROLE_MANAGER;
-	}
+	YerothPOSUserManager(YerothERPWindows *allWindows);
 
 	inline virtual ~YerothPOSUserManager(){}
 };
