@@ -57,6 +57,12 @@
 \definecolor{purplish}{rgb}{0.4,0,0.6}
 \definecolor{brightred}{rgb}{1,0.2,0.2}
 
+
+\newcommand{\yerothrd}{YEROTH~R\&D\xspace}
+
+\newcommand{\myfullacademicname}{PR. XAVIER NOUMBISSI NOUNDOU\xspace}
+
+
 \usepackage{hyperref}
 \hypersetup{
     colorlinks,
@@ -67,8 +73,8 @@
     pdftex,
     bookmarks,
     plainpages=false,
-    pdftitle={CURRICULUM VITAE DU PROFESSEUR PLEIN (YEROTH~R\&D) XAVIER NOUMBISSI NOUNDOU.},
-    pdfauthor={PR. XAVIER NOUMBISSI NOUNDOU (@YEROTH~R\&D)}
+    pdftitle={CURRICULUM VITAE DU PROFESSEUR PLEIN (\yerothrd) XAVIER NOUMBISSI NOUNDOU.},
+    pdfauthor={PR. XAVIER NOUMBISSI NOUNDOU (@\yerothrd)}
 }
 
 % format two pieces of text, one left aligned and one right aligned
@@ -81,6 +87,10 @@
 \newcommand{\headerrowONE}[1]{\headerrow{#1}{}}
 
 \newcommand{\emphbold}[1]{\textbf{\emph{#1}}\xspace}
+
+\newcommand{\git}{Git\xspace}
+
+\newcommand{\yerotherptroiszero}{YEROTH--ERP--$3$.$0$\xspace}
 
 \newcommand{\cplusplus}{C$++$\xspace}
 \newcommand{\java}{\texttt{Java}\xspace}
@@ -128,7 +138,7 @@
     \lfoot{}
 }
 
-\rhead{CURRICULUM VITAE OF PR. XAVIER NOUMBISSI NOUNDOU}
+\rhead{CURRICULUM VITAE OF \myfullacademicname}
 \lhead{YEROTH R\&D}
 \lfoot{}
 \rfoot{}
@@ -147,9 +157,8 @@
 \bigskip
 
 
-\headerrow
-	{\Large \textbf{PR. XAVIER NOUMBISSI NOUNDOU}}	
-	{\large \textbf{yeroth.rd.30@gmail.com}}
+\headerrow{\Large \textbf{\myfullacademicname}}
+{\Large \textbf{yeroth.rd.3@gmail.com}}
 
 \vspace{1em}
 
@@ -183,13 +192,31 @@
 
 \vspace{0.5em}
 
-\headerrowONE{\href{http://archive.org/details/yeroth-erp-3-0-info-english}{\textbf{SYSTÈME--LOGICIEL ERP '\texttt{YEROTH--ERP--3.0--STANDALONE}'}}}		
-\headerrowONE{\cvitemdate{Octobre}{2015} -- En cours | Code source libre et gratuit: \url{http://github.com/xnoumbissinoundou/yeroth-erp-3.0}}
+\headerrowONE{\href{http://archive.org/details/yeroth-erp-3-0-info-francais}{\textbf{SYSTÈME--LOGICIEL ERP '\texttt{YEROTH--ERP--3.0--STANDALONE}'}}}		
+\headerrowONE{\cvitemdate{Octobre}{2015} -- En cours}
+\headerrowONE{Code source libre et gratuit: \url{http://github.com/xnoumbissinoundou/yeroth-erp-3.0}}
+
+\vspace{0.3em}
+
+\headerrowONE{'YEROTH-ERP-3.0--SYSTEM--DAEMON': ALERTES ET SAUVEGARDE AUTOMATISÉE
+  POUR \textbf{'\texttt{YEROTH--ERP--3.0--STANDALONE}'}}
+  \headerrowONE{\cvitemdate{Octobre}{2015} -- En cours}
+\headerrowONE{Code source libre et gratuit: \url{http://github.com/xnoumbissinoundou/yeroth-erp-3.0-system-daemon}}
+
+\vspace{0.3em}
+
+\headerrowONE{\textbf{SCRIPTS DE DÉVELOPPEMENT ET D'INSTALLATION
+  POUR 
+  \href{http://github.com/xnoumbissinoundou/yeroth-erp-3.0}{\textbf{YEROTH--ERP--3.0--STANDALONE}}}}
+  \headerrowONE{\cvitemdate{Octobre}{2015} -- En cours}
+\headerrowONE{Code source libre et gratuit: \url{http://github.com/xnoumbissinoundou/yeroth-rd-binaries-folder-scripts}}
 
 \vspace{0.3em}
 
 \headerrowONE{\href{http://archive.org/details/saint_201507}{\textbf{CONTEXT-SENSITIVE STAGED STATIC TAINT ANALYSIS FOR C USING LLVM (\texttt{'YEROTH--SAINT'})}}}
-\headerrowONE{\cvitemdate{Octobre}{2009} -- \cvitemdate{Octobre}{2015} | Code source libre et gratuit: \url{http://github.com/xnoumbissinoundou/yeroth.rd.saint}}
+\headerrowONE{\cvitemdate{Octobre}{2009} -- \cvitemdate{Octobre}{2015}}
+\headerrowONE{Code source libre et gratuit: \url{http://github.com/xnoumbissinoundou/yeroth.rd.saint}}
+	
 	
 \vspace{1em}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -202,7 +229,7 @@
 
 \vspace{0.5em}
 
-\headerrowONE{\textbf{YEROTH~R\&D, Douala, LITTORAL, CAMEROUN}}
+\headerrowONE{\textbf{\yerothrd, Douala, LITTORAL, CAMEROUN}}
 \headerrowONE{\cvitempositionheld{PROFESSEUR PLEIN de génie informatique, CEO}}
 \headerrowONE{\cvitemdate{Octobre}{2015} -- Présent}	
 
@@ -270,13 +297,11 @@ et de tests d'évaluations personnelles pour étudiants)}
 \html, \css}
 \headerrowONE{\cvitemdate{Mars}{2004}}	
 
-\vspace{2em}
+\vspace{1em}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newpage
 
-%%%%%%%%%%%%%%%%%%%%%%%%% 2EME PAGE DU CV %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\vspace{0em}
+\hrule
 
 \begin{center}
 {\large \textbf{OUTILS DE COMPÉTENCES EN DÉVELOPPEMENT LOGICIEL}}
@@ -286,6 +311,11 @@ et de tests d'évaluations personnelles pour étudiants)}
 
 \headerrowONE{\textbf{\underline{SYSTÈMES D'EXPLOITATION}}}
 \headerrowONE{'\textbf{\yerothdebian}', '\textbf{MICROSOFT WINDOWS OS (08, 10, ETC.)}'}
+
+\vspace{0.3em}
+
+\headerrowONE{\textbf{\underline{OUTILS DE GESTION DE CODE SOURCE}}}
+\headerrowONE{\textbf{\git}}
 
 \vspace{0.3em}
 
@@ -368,12 +398,36 @@ et de tests d'évaluations personnelles pour étudiants)}
 \vspace{1em}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\newpage
+
 \hrule
 \begin{center}
 {\large \textbf{PUBLICATIONS}}
 \end{center}
 
 \vspace{0.5em}
+
+\headerrowONE{\textbf{\yerothrd, DOUALA, LITTORAL, CAMEROUN}}
+
+\vspace{0.3em}
+
+\begin{enumerate}
+
+	\item \headerrowONE{\textbf{\yerotherptroiszero SOFTWARE--SYSTEM ARCHITECTURE},\\
+		TECHNICAL REPORT, \yerothrd, CAMEROUN, \textbf{MARS~$2021$}.}
+
+	\item \headerrowONE{\textbf{FICHE DE DONNÉES DU SYSTÈME--LOGICIEL YEROTH--ERP--3.0},\\
+		TECHNICAL REPORT, \yerothrd, CAMEROUN, \textbf{MARS~$2021$}.}
+	
+	\item \headerrowONE{\textbf{AVANTAGES DE \yerotherptroiszero COMPARATIVEMENT
+						À SAGE GESCOM I$7$, ET À SAP BUSINESS ONE},\\
+		TECHNICAL REPORT, \yerothrd, CAMEROUN, \textbf{MARS~$2021$}.}
+ 
+\end{enumerate}
+
+
+\vspace{1em}
+
 
 \headerrowONE{\href{http://www.informatik.uni-bremen.de/agbs}{
 	\textbf{AGBS, UNIVERSITÉ DE BRÊME, BRÊME, BRÊME, ALLEMAGNE}}}
@@ -393,7 +447,9 @@ et de tests d'évaluations personnelles pour étudiants)}
 	\href{http://www.rolfdrechsler.de}{\textbf{PROF. DR. PHIL. NAT. ROLF DRECHSLER}.}}
 \end{enumerate}
 
+
 \vspace{1em}
+
 
 \headerrowONE{\href{http://watform.uwaterloo.ca}{
 	\textbf{WATFORM LAB, UNIVERSITÉ DE WATERLOO, WATERLOO, ONTARIO, CANADA}}}
