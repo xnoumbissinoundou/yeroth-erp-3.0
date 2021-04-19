@@ -8,6 +8,11 @@
 #include "yeroth-erp-user-settings.hpp"
 
 
+#include <QtCore/QTextStream>
+
+#include <QtCore/QFile>
+
+
 bool YerothERPUserSettings::enregistrer_les_parametres_serveurs()
 {
 
@@ -19,8 +24,22 @@ bool YerothERPUserSettings::enregistrer_les_parametres_serveurs()
 //	local_parameter_YerothStocksWindow_page_from_int=-1
 //	local_parameter_YerothStocksWindow_page_to_int=-1
 
-bool YerothERPUserSettings::enregistrer_les_parametres_locaux()
+bool YerothERPUserSettings::enregistrer_les_parametres_locaux(const QString &user_local_personal_setting_full_file_path)
 {
+	QFile file(user_local_personal_setting_full_file_path);
+
+	if (!file.open(QFile::WriteOnly))
+	{
+		return false;
+	}
+
+	QTextStream textStream(&file);
+
+//	textStream
+//		<< QString("local_parameter_full_path_pdf_reader=%1\n")
+//				.arg("YEROTH");
+
+	file.close();
 
 	return false;
 }

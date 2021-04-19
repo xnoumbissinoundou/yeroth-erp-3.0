@@ -136,6 +136,9 @@ public:
 	static bool GREP_YEROTH_FILE_CONTENT(const QString &file_full_path,
 										 const QString &keyword_IN);
 
+	static bool YEROTH_CREATE_FOLDER(const QString &aFullPathDir,
+									 YerothLogger *aLogger = 0);
+
 	static bool GZIP_YEROTH_FILE(const QString &program_working_directory_full_path,
 								 const QString &file_full_path);
 

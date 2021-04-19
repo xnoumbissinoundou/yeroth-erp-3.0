@@ -7,13 +7,18 @@
 #ifndef SRC_YEROTH_ERP_USERS_HPP_
 #define SRC_YEROTH_ERP_USERS_HPP_
 
+
+#include "src/users/yeroth-erp-user-settings.hpp"
+
+#include "src/utils/yeroth-erp-utils.hpp"
+
+
 #include <QtCore/QString>
 
 #include <QtCore/QDate>
 
 #include <QtSql/QSqlRecord>
 
-#include "src/utils/yeroth-erp-utils.hpp"
 
 class QString;
 class QDate;
@@ -42,6 +47,7 @@ public:
 	 _user_personal_settings(0),
 	 _allWindows(allWindows)
 	{
+		_user_personal_settings = new YerothERPUserSettings;
 	}
 
 	inline virtual ~YerothPOSUser()
@@ -240,6 +246,8 @@ protected:
 	QString _date_naissance;
 	QString _titre;
 	QString _nom_complet;
+
+	QString _user_setting_disk_saving_file_name_FROM_MD5_HEX_USER_ID;
 
 	YerothERPUserSettings *_user_personal_settings;
 

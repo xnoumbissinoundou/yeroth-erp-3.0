@@ -23,7 +23,7 @@ public:
 
 	bool enregistrer_les_parametres_serveurs();
 
-	bool enregistrer_les_parametres_locaux();
+	bool enregistrer_les_parametres_locaux(const QString &user_local_personal_setting_full_file_path);
 
 protected:
 	// local user settings

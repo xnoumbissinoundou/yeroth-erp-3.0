@@ -999,6 +999,52 @@ bool YerothUtils::GREP_YEROTH_FILE_CONTENT(const QString &file_full_path,
 }
 
 
+bool YerothUtils::YEROTH_CREATE_FOLDER(const QString &aFullPathDir,
+									   YerothLogger *aLogger /* = 0*/)
+{
+    QFileInfo aFullPathDirInfo(aFullPathDir);
+
+    if (!aFullPathDirInfo.exists())
+    {
+    	if (0 != aLogger)
+    	{
+            aLogger->log("YerothUtils::YEROTH_CREATE_FOLDER | read_yeroth_configuration",
+                       	 QString("Folder '%1' for temporary files does not exist!")
+    				   	   .arg(aFullPathDir));
+    	}
+
+        QDir tempFileDir;
+
+        if (tempFileDir.mkpath(aFullPathDir))
+        {
+        	if (0 != aLogger)
+        	{
+                aLogger->log("YerothUtils::YEROTH_CREATE_FOLDER | read_yeroth_configuration",
+                           	 QString("Created folder '%1' for temporary files")
+    					   	   .arg(aFullPathDir));
+        	}
+
+        	return true;
+        }
+        else
+        {
+        	if (0 != aLogger)
+        	{
+                aLogger->log("YerothUtils::YEROTH_CREATE_FOLDER | read_yeroth_configuration",
+                			 QString("Could not Create folder '%1' for temporary files!")
+    					   	   .arg(aFullPathDir));
+        	}
+        }
+    }
+    else
+    {
+    	return true;
+    }
+
+    return false;
+}
+
+
 bool YerothUtils::GZIP_YEROTH_FILE(const QString &program_working_directory_full_path,
 								   const QString &file_full_path)
 {

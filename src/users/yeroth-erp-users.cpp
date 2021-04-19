@@ -17,6 +17,8 @@
 #include "src/utils/yeroth-erp-sqltable-model.hpp"
 
 
+#include <QtCore/QTextCodec>
+
 #include <QtCore/QDate>
 
 #include <QtCore/QString>
@@ -130,11 +132,24 @@ QString YerothPOSUser::nom_complet_truncated_FOR_SMALL_RECEIPT()
 
 void YerothPOSUser::create_user_personal_settings_file()
 {
-//	QByteArray md5Hash_mot_passe(MD5_HASH(_nom_utilisateur));
-//
-//	qDebug() << QString("%1: ")
-//					.arg(_nom_utilisateur)
-//			 << md5Hash_mot_passe;
+	QByteArray md5Hash_mot_passe(MD5_HASH(_nom_utilisateur));
+
+	_user_setting_disk_saving_file_name_FROM_MD5_HEX_USER_ID
+		= QString("%1/%2")
+			.arg(YerothERPConfig::YEROTH_ERP_3_0_USER_LOCAL_SETTINGS_FOLDER,
+				 QString(md5Hash_mot_passe.toHex()));
+
+//	QDEBUG_STRING_OUTPUT_2("_user_setting_disk_saving_file_name_FROM_MD5_HEX_USER_ID",
+//						   _user_setting_disk_saving_file_name_FROM_MD5_HEX_USER_ID);
+
+	if (0 != _user_personal_settings)
+	{
+		_user_personal_settings->enregistrer_les_parametres_locaux(
+				_user_setting_disk_saving_file_name_FROM_MD5_HEX_USER_ID);
+
+		//	QDEBUG_STRING_OUTPUT_2("_user_setting_disk_saving_file_name_FROM_MD5_HEX_USER_ID",
+		//						   _user_setting_disk_saving_file_name_FROM_MD5_HEX_USER_ID);
+	}
 }
 
 
