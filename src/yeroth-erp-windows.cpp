@@ -394,6 +394,11 @@ void YerothERPWindows::setUser(YerothPOSUser *user)
 {
     _user = user;
 
+    if (0 != _user)
+    {
+    	_user->create_user_personal_settings_file();
+    }
+
     switch(_user->role())
     {
 
