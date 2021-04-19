@@ -17,7 +17,11 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-	YerothPOSUserCaissier(YerothERPWindows *allWindows);
+	inline YerothPOSUserCaissier(YerothERPWindows *allWindows)
+	:YerothPOSUser(allWindows)
+	{
+		_role = YerothUtils::ROLE_CAISSIER;
+	}
 
 	inline virtual ~YerothPOSUserCaissier(){}
 };

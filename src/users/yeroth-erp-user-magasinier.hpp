@@ -17,7 +17,11 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-	YerothPOSUserMagasinier(YerothERPWindows *allWindows);
+	inline YerothPOSUserMagasinier(YerothERPWindows *allWindows)
+	:YerothPOSUser(allWindows)
+	{
+		_role = YerothUtils::ROLE_MAGASINIER;
+	}
 
 	inline virtual ~YerothPOSUserMagasinier(){}
 };

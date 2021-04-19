@@ -223,9 +223,9 @@ public:
 		return _role == YerothUtils::ROLE_CAISSIER;
 	}
 
-protected:
-
 	void create_user_personal_settings_file();
+
+protected:
 
 	enum YerothUtils::USER_ROLE _role;
 

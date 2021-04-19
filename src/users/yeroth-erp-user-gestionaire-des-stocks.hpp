@@ -17,7 +17,11 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-	YerothPOSUserGestionaireDesStocks(YerothERPWindows *allWindows);
+	inline YerothPOSUserGestionaireDesStocks(YerothERPWindows *allWindows)
+	:YerothPOSUser(allWindows)
+	{
+		_role = YerothUtils::ROLE_GESTIONNAIREDESTOCK;
+	}
 
 	inline virtual ~YerothPOSUserGestionaireDesStocks(){}
 };

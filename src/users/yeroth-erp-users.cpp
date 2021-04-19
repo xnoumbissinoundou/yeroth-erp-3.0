@@ -130,7 +130,11 @@ QString YerothPOSUser::nom_complet_truncated_FOR_SMALL_RECEIPT()
 
 void YerothPOSUser::create_user_personal_settings_file()
 {
+	QByteArray md5Hash_mot_passe(MD5_HASH(_nom_utilisateur));
 
+	qDebug() << QString("%1: ")
+					.arg(_nom_utilisateur)
+			 << md5Hash_mot_passe;
 }
 
 
