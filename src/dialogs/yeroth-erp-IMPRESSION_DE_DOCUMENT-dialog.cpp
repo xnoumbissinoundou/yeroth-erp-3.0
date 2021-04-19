@@ -279,16 +279,6 @@ void YerothIMPRESSION_DE_DOCUMENT_Dialog::SET_CURRENT_WINDOW_TO_PRINT_PRINTING_P
 
 void YerothIMPRESSION_DE_DOCUMENT_Dialog::valider()
 {
-//	if (0 == _yeroth_CURRENT_DOCUMENT_PRINT_UTILITIES_TEX_TABLE)
-//	{
-//		if (0 != _current_window_to_print)
-//		{
-//			// THIS CALL ONLY INITIALIZES VARIABLE '_yeroth_CURRENT_DOCUMENT_PRINT_UTILITIES_TEX_TABLE'
-//			// AND DOESN'T REALLY PRINT PDF DOCUMENT.
-//			((YerothWindowsCommons *)_current_window_to_print)->INITIALIZE_PDF_PRINTING_AT_ONCE();
-//		}
-//	}
-
 	if (0 != _yeroth_CURRENT_DOCUMENT_PRINT_UTILITIES_TEX_TABLE)
 	{
 		QString nbre_de_lignes_string = lineEdit_IMPRESSION_LIGNES->text();
