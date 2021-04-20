@@ -1565,8 +1565,8 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <translation>purchase listing</translation>
     </message>
     <message>
-        <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="661"/>
-        <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="683"/>
+        <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="663"/>
+        <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="685"/>
         <source>Sélectionnez 1 achat à afficher les détails.</source>
         <translation>Select a purchase to view its stock details.</translation>
     </message>
@@ -1577,13 +1577,13 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <translation>supplier purchase listing</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-charges-window.cpp" line="618"/>
-        <location filename="src/windows/yeroth-erp-charges-window.cpp" line="640"/>
+        <location filename="src/windows/yeroth-erp-charges-window.cpp" line="620"/>
+        <location filename="src/windows/yeroth-erp-charges-window.cpp" line="642"/>
         <source>Sélectionnez 1 achat au fournisseur à afficher les détails.</source>
         <translation>Select a purchase (service) view its stock details.</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-charges-window.cpp" line="767"/>
+        <location filename="src/windows/yeroth-erp-charges-window.cpp" line="769"/>
         <source>Sélectionnez 1 achat (service) au fournisseur à supprimer.</source>
         <oldsource>Sélectionnez 1 achat au fournisseur à supprimer.</oldsource>
         <translation>Select a purchase (service) view to delete.</translation>
@@ -1631,8 +1631,8 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="717"/>
         <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="312"/>
         <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="747"/>
-        <location filename="src/windows/stocks/yeroth-erp-mouvements_de_stocks-window.cpp" line="345"/>
-        <location filename="src/windows/stocks/yeroth-erp-mouvements_de_stocks-window.cpp" line="346"/>
+        <location filename="src/windows/stocks/yeroth-erp-mouvements_de_stocks-window.cpp" line="347"/>
+        <location filename="src/windows/stocks/yeroth-erp-mouvements_de_stocks-window.cpp" line="348"/>
         <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="516"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseurs-window.cpp" line="626"/>
         <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="459"/>
@@ -2047,7 +2047,7 @@ Continue with update of the stock ?</translation>
         <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1048"/>
         <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="363"/>
         <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="372"/>
-        <location filename="src/windows/yeroth-erp-charges-window.cpp" line="766"/>
+        <location filename="src/windows/yeroth-erp-charges-window.cpp" line="768"/>
         <source>supprimer</source>
         <translation>remove</translation>
     </message>
@@ -2303,12 +2303,12 @@ Continue with update of the stock ?</translation>
         <translation>cashier name</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="2118"/>
+        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="2120"/>
         <source>Cette fonctionnalité n&apos;est pas disponible pour les &apos;services&apos; !</source>
         <translation>Sale cancellation isn&apos;t possible for &apos;services&apos; !</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="2121"/>
+        <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="2123"/>
         <source>fonctionnalité pas disponible</source>
         <translation>no sale cancellation</translation>
     </message>
@@ -2406,8 +2406,8 @@ Continue with update of the stock ?</translation>
         <translation># suppliers</translation>
     </message>
     <message>
-        <location filename="src/windows/stocks/yeroth-erp-mouvements_de_stocks-window.cpp" line="342"/>
-        <location filename="src/windows/stocks/yeroth-erp-mouvements_de_stocks-window.cpp" line="343"/>
+        <location filename="src/windows/stocks/yeroth-erp-mouvements_de_stocks-window.cpp" line="344"/>
+        <location filename="src/windows/stocks/yeroth-erp-mouvements_de_stocks-window.cpp" line="345"/>
         <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="592"/>
         <source>terme à rechercher (notes)</source>
         <oldsource>terme à rechercher (référence reçu de paiement client, notes)</oldsource>
@@ -2415,13 +2415,13 @@ Continue with update of the stock ?</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="3532"/>
-        <location filename="src/windows/stocks/yeroth-erp-mouvements_de_stocks-window.cpp" line="584"/>
+        <location filename="src/windows/stocks/yeroth-erp-mouvements_de_stocks-window.cpp" line="586"/>
         <source>pas de données à exporter au format csv</source>
         <translation>there are no data to export in csv format</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="3533"/>
-        <location filename="src/windows/stocks/yeroth-erp-mouvements_de_stocks-window.cpp" line="585"/>
+        <location filename="src/windows/stocks/yeroth-erp-mouvements_de_stocks-window.cpp" line="587"/>
         <source>Il n&apos;y a pas de données à exporter au format csv !</source>
         <oldsource>Il n&apos;y a pas de données à exporter au format csv!</oldsource>
         <translation>There are no data to export in csv format !</translation>
@@ -4699,11 +4699,11 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     <message>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="568"/>
         <location filename="src/windows/crm/yeroth-erp-groupes-dun-client-window.cpp" line="427"/>
-        <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="660"/>
-        <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="682"/>
+        <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="662"/>
+        <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="684"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseurs-window.cpp" line="492"/>
-        <location filename="src/windows/yeroth-erp-charges-window.cpp" line="617"/>
-        <location filename="src/windows/yeroth-erp-charges-window.cpp" line="639"/>
+        <location filename="src/windows/yeroth-erp-charges-window.cpp" line="619"/>
+        <location filename="src/windows/yeroth-erp-charges-window.cpp" line="641"/>
         <source>détails</source>
         <translation>details</translation>
     </message>
@@ -4885,12 +4885,12 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     </message>
     <message>
         <location filename="src/windows/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.cpp" line="29"/>
-        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="633"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="635"/>
         <source>détails d&apos;un groupe de clients</source>
         <translation>client group details</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="634"/>
+        <location filename="src/windows/crm/yeroth-erp-groupes-de-clients-window.cpp" line="636"/>
         <source>Sélectionnez un groupe de clients à afficher les détails !</source>
         <translation>Select a client group to view its details !</translation>
     </message>
@@ -5034,12 +5034,12 @@ Please, change the maximum member of this CLIENT LOYALTY group to &apos;%3&apos;
         <translation>client group &apos;%1&apos; data couldn&apos;t be updated successfully !</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="609"/>
+        <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="611"/>
         <source>détails d&apos;un &quot;programme de fidélité clients&quot;</source>
         <translation>client loyalty program details</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="610"/>
+        <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="612"/>
         <source>Sélectionnez un &quot;programme de fidélité clients&quot; à afficher les détails !</source>
         <translation>Select a client loyalty program to view its details !</translation>
     </message>
