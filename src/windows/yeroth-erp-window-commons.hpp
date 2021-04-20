@@ -55,7 +55,7 @@ public:
 	 _page_from(-1),
 	 _page_to(-1),
 	 _print_table_row_count(20),
-	 _a4paper_printing_position(QString("a4paper, landscape")),
+	 _a4paper_printing_position(QString("a4paper,landscape")),
 	 _first_time_imprimer_pdf_document_call(true),
 	 QMESSAGE_BOX_STYLE_SHEET(QString("QMessageBox {background-color: rgb(%1);}")
 								.arg(COLOUR_RGB_STRING_YEROTH_ORANGE_243_162_0)),

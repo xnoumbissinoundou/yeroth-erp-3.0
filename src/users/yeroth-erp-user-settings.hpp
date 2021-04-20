@@ -14,6 +14,9 @@
 #include <QtCore/QString>
 
 
+#include "src/utils/print_latex_pdf/yeroth-erp-print_yeroth_latex_util_pdf.hpp"
+
+
 class YerothERPUserSettings
 {
 
@@ -21,7 +24,15 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-	bool enregistrer_les_parametres_serveurs();
+	inline YerothERPUserSettings()
+	:_page_from(-1),
+	 _page_to(-1),
+	 _print_table_row_count(YerothTableViewPRINT_UTILITIES_TEX_TABLE::_STANDARD_INITIAL_MAX_TABLE_ROW_COUNT_A4LANDSCAPE),
+	 _a4paper_printing_position(YerothTableViewPRINT_UTILITIES_TEX_TABLE::_A4PAGE_LANDSCAPE_SPECIFICATION)
+	{
+	}
+
+	bool lire_les_parametres_locaux(const QString &user_local_personal_setting_full_file_path);
 
 	bool enregistrer_les_parametres_locaux(const QString &user_local_personal_setting_full_file_path);
 

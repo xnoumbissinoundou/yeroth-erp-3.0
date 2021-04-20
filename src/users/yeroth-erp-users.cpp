@@ -130,6 +130,19 @@ QString YerothPOSUser::nom_complet_truncated_FOR_SMALL_RECEIPT()
 }
 
 
+void YerothPOSUser::save_user_personal_PRINTING_PARAMETER_settings()
+{
+	if (0 != _user_personal_settings)
+	{
+		QDEBUG_STRING_OUTPUT_2("_user_setting_disk_saving_file_name_FROM_MD5_HEX_USER_ID",
+				_user_setting_disk_saving_file_name_FROM_MD5_HEX_USER_ID);
+
+		_user_personal_settings->enregistrer_les_parametres_locaux(
+				_user_setting_disk_saving_file_name_FROM_MD5_HEX_USER_ID);
+	}
+}
+
+
 void YerothPOSUser::create_user_personal_settings_file()
 {
 	QByteArray md5Hash_mot_passe(MD5_HASH(_nom_utilisateur));
@@ -144,9 +157,12 @@ void YerothPOSUser::create_user_personal_settings_file()
 
 	if (0 != _user_personal_settings)
 	{
-		_user_personal_settings->enregistrer_les_parametres_locaux(
+		if (! _user_personal_settings->lire_les_parametres_locaux(
+				_user_setting_disk_saving_file_name_FROM_MD5_HEX_USER_ID))
+		{
+			_user_personal_settings->enregistrer_les_parametres_locaux(
 				_user_setting_disk_saving_file_name_FROM_MD5_HEX_USER_ID);
-
+		}
 		//	QDEBUG_STRING_OUTPUT_2("_user_setting_disk_saving_file_name_FROM_MD5_HEX_USER_ID",
 		//						   _user_setting_disk_saving_file_name_FROM_MD5_HEX_USER_ID);
 	}

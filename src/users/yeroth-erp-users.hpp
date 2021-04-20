@@ -229,6 +229,8 @@ public:
 		return _role == YerothUtils::ROLE_CAISSIER;
 	}
 
+	void save_user_personal_PRINTING_PARAMETER_settings();
+
 	void create_user_personal_settings_file();
 
 protected:

@@ -347,6 +347,13 @@ void YerothIMPRESSION_DE_DOCUMENT_Dialog::valider()
 
 			SET_CURRENT_WINDOW_TO_PRINT_PRINTING_PARAMETERS_AND_POSITION(pageFROM, pageTO);
 		}
+
+		YerothPOSUser *aUser = _allWindows->getUser();
+
+		if (0 != aUser)
+		{
+			aUser->save_user_personal_PRINTING_PARAMETER_settings();
+		}
 	}
 }
 
