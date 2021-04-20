@@ -19,14 +19,59 @@
 #include <QtCore/QFile>
 
 
-bool YerothERPUserSettings::lire_les_parametres_locaux(const QString &user_local_personal_setting_full_file_path)
+RESULT_PRINTING_PARAMETER YerothERPUserSettings::lire_les_parametres_locaux(const QString &user_local_personal_setting_full_file_path,
+																			YerothWindowsCommons *a_current_window_to_table_print_as_parameter /* = 0 */)
 {
+	YerothERPWindows *allWindows = YerothUtils::getAllWindows();
+
+	if (0 == allWindows)
+	{
+//		QDEBUG_STRING_OUTPUT_1("YEROTH-PP-0-failed");
+		return READ_PRINTING_PARAMETER_FAILED;
+	}
+
+	YerothIMPRESSION_DE_DOCUMENT_Dialog *impressionDeDocumentDialog =
+			allWindows->_impressionDeDocumentDialog;
+
+	if (0 == impressionDeDocumentDialog)
+	{
+//		QDEBUG_STRING_OUTPUT_1("YEROTH-PP-1-failed");
+		return READ_PRINTING_PARAMETER_FAILED;
+	}
+
+	YerothWindowsCommons *a_current_window_to_print_table =
+			impressionDeDocumentDialog->_current_window_to_print;
+
+	if (0 == a_current_window_to_print_table)
+	{
+		if (0 != a_current_window_to_table_print_as_parameter)
+		{
+//			QDEBUG_STRING_OUTPUT_1("YEROTH-PP-2-success-initialization");
+			a_current_window_to_print_table = a_current_window_to_table_print_as_parameter;
+		}
+		else
+		{
+//			QDEBUG_STRING_OUTPUT_1("YEROTH-PP-2-failed");
+			return READ_PRINTING_PARAMETER_FAILED;
+		}
+	}
+
+	QString a_current_window_object_name = a_current_window_to_print_table->objectName();
+
+	if (_window_printing_parameter_key__TO__its_value.contains(
+			GET_WINDOWS_TABLE_ROW_COUNT_KEY_TO_STORE(a_current_window_object_name)))
+	{
+		return READ_PRINTING_PARAMETER_SUCCESSFUL;
+	}
+
+
 	QFile file(user_local_personal_setting_full_file_path);
 
 	if (!file.open(QFile::ReadOnly))
 	{
-		return false;
+		return PRINTING_PARAMETER_FILE_DOESNT_EXIT;
 	}
+
 
 	QTextStream init_cfg(&file);
 	QString aValue;
@@ -39,36 +84,55 @@ bool YerothERPUserSettings::lire_les_parametres_locaux(const QString &user_local
 
 		list = line.split(YEROTH_ERP_3_0_CONFIGURATION_FILE_SEPARATION_OPERATOR);
 
-		QDEBUG_STRING_OUTPUT_2("line", line);
+//		QDEBUG_STRING_OUTPUT_2("line", line);
 
-		if (YerothUtils::isEqualCaseInsensitive("local_parameter_table_row_count", list.at(0)))
+		if (YerothUtils::isEqualCaseInsensitive(GET_WINDOWS_TABLE_ROW_COUNT_KEY_TO_STORE(a_current_window_object_name), list.at(0)))
 		{
+			_window_printing_parameter_key__TO__its_value.insert(
+					GET_WINDOWS_TABLE_ROW_COUNT_KEY_TO_STORE(a_current_window_object_name),
+					list.at(1).trimmed());
+
 			_print_table_row_count = list.at(1).trimmed().toUInt();
+
+			a_current_window_to_print_table->set_PRINTING_PARAMETER_print_table_row_count(_print_table_row_count);
 		}
-		else if (YerothUtils::isEqualCaseInsensitive("local_parameter_printing_position", list.at(0)))
+		else if (YerothUtils::isEqualCaseInsensitive(GET_WINDOWS_A4_PRINTING_POSITION_KEY_TO_STORE(a_current_window_object_name), list.at(0)))
 		{
+			_window_printing_parameter_key__TO__its_value.insert(
+					GET_WINDOWS_A4_PRINTING_POSITION_KEY_TO_STORE(a_current_window_object_name),
+					list.at(1).trimmed());
+
 			_a4paper_printing_position = list.at(1).trimmed();
+
+			a_current_window_to_print_table->set_PRINTING_PARAMETER_printing_position(_a4paper_printing_position);
 		}
-		else if (YerothUtils::isEqualCaseInsensitive("local_parameter_page_from", list.at(0)))
+		else if (YerothUtils::isEqualCaseInsensitive(GET_WINDOWS_PAGE_FROM_KEY_TO_STORE(a_current_window_object_name), list.at(0)))
 		{
+			_window_printing_parameter_key__TO__its_value.insert(
+					GET_WINDOWS_PAGE_FROM_KEY_TO_STORE(a_current_window_object_name),
+					list.at(1).trimmed());
+
 			_page_from = list.at(1).trimmed().toInt();
+
+			a_current_window_to_print_table->set_PRINTING_PARAMETER_pageFROM(_page_from);
 		}
-		else if (YerothUtils::isEqualCaseInsensitive("local_parameter_page_to", list.at(0)))
+		else if (YerothUtils::isEqualCaseInsensitive(GET_WINDOWS_PAGE_TO_KEY_TO_STORE(a_current_window_object_name), list.at(0)))
 		{
+			_window_printing_parameter_key__TO__its_value.insert(
+					GET_WINDOWS_PAGE_TO_KEY_TO_STORE(a_current_window_object_name),
+					list.at(1).trimmed());
+
 			_page_to = list.at(1).trimmed().toInt();
+
+			a_current_window_to_print_table->set_PRINTING_PARAMETER_pageTO(_page_to);
 		}
 	}
 	while(!line.isNull());
 
 
-	return true;
+	return READ_PRINTING_PARAMETER_SUCCESSFUL;
 }
 
-
-//	local_parameter_YerothStocksWindow_table_row_count=20
-//	local_parameter_YerothStocksWindow_printing_position=horizontal
-//	local_parameter_YerothStocksWindow_page_from_int=-1
-//	local_parameter_YerothStocksWindow_page_to_int=-1
 
 bool YerothERPUserSettings::enregistrer_les_parametres_locaux(const QString &user_local_personal_setting_full_file_path)
 {
@@ -95,18 +159,49 @@ bool YerothERPUserSettings::enregistrer_les_parametres_locaux(const QString &use
 
 			if (0 != a_current_window_to_print_table)
 			{
-				textStream
-				<< QString("local_parameter_table_row_count=%2\n")
-					.arg(QString::number(a_current_window_to_print_table->get_PRINTING_PARAMETER_print_table_row_count()))
+				QString a_current_window_object_name =
+						a_current_window_to_print_table->objectName();
 
-				<< QString("local_parameter_printing_position=%2\n")
-					.arg(a_current_window_to_print_table->get_PRINTING_PARAMETER_printing_position())
+				QString aPageTO_STRING =
+						QString::number(a_current_window_to_print_table->get_PRINTING_PARAMETER_pageTO());
 
-				<< QString("local_parameter_page_from=%2\n")
-					.arg(QString::number(a_current_window_to_print_table->get_PRINTING_PARAMETER_pageFROM()))
+				QString aPageFROM_STRING =
+						QString::number(a_current_window_to_print_table->get_PRINTING_PARAMETER_pageFROM());
 
-				<< QString("local_parameter_page_to=%2\n")
-					.arg(QString::number(a_current_window_to_print_table->get_PRINTING_PARAMETER_pageTO()));
+				QString aPrintingPosition_STRING =
+						a_current_window_to_print_table->get_PRINTING_PARAMETER_printing_position();
+
+				QString aTableRowCount_STRING =
+						QString::number(a_current_window_to_print_table->get_PRINTING_PARAMETER_print_table_row_count());
+
+				_window_printing_parameter_key__TO__its_value.insert(
+						GET_WINDOWS_TABLE_ROW_COUNT_KEY_TO_STORE(a_current_window_object_name),
+						aTableRowCount_STRING);
+
+				_window_printing_parameter_key__TO__its_value.insert(
+						GET_WINDOWS_A4_PRINTING_POSITION_KEY_TO_STORE(a_current_window_object_name),
+						aPrintingPosition_STRING);
+
+				_window_printing_parameter_key__TO__its_value.insert(
+						GET_WINDOWS_PAGE_FROM_KEY_TO_STORE(a_current_window_object_name),
+						aPageFROM_STRING);
+
+				_window_printing_parameter_key__TO__its_value.insert(
+						GET_WINDOWS_PAGE_TO_KEY_TO_STORE(a_current_window_object_name),
+						aPageTO_STRING);
+
+
+				QMapIterator<QString, QString> it(_window_printing_parameter_key__TO__its_value);
+
+				while(it.hasNext())
+				{
+					it.next();
+
+					textStream
+					<< QString("%1=%2\n")
+						.arg(it.key(),
+							 it.value());
+				}
 			}
 			else //in user settings file initialization
 			{
@@ -128,5 +223,5 @@ bool YerothERPUserSettings::enregistrer_les_parametres_locaux(const QString &use
 
 	file.close();
 
-	return false;
+	return true;
 }

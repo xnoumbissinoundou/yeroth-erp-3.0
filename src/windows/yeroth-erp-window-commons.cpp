@@ -189,6 +189,47 @@ void YerothWindowsCommons::
 }
 
 
+void YerothWindowsCommons::APPLY_USER_LOCAL_SETTINGS_PARAMETERS()
+{
+	YerothERPWindows *allWindows = YerothUtils::getAllWindows();
+
+	if (0 != allWindows)
+	{
+		YerothPOSUser *aUser = allWindows->getUser();
+
+		if (0 != aUser)
+		{
+			aUser->read_user_personal_PRINTING_PARAMETER_settings(this);
+
+			QString pageFrom_STRING = aUser->get_PRINTING_PARAMETER_VALUE_page_from(objectName());
+			QString pageTo_STRING = aUser->get_PRINTING_PARAMETER_VALUE_page_to(objectName());
+			QString pageTableRowCount_STRING = aUser->get_PRINTING_PARAMETER_VALUE_table_row_count(objectName());
+			QString pagePagePrinting_STRING = aUser->get_PRINTING_PARAMETER_VALUE_printing_position(objectName());
+
+			if (!pageFrom_STRING.isEmpty())
+			{
+				_page_from = pageFrom_STRING.toInt();
+			}
+
+			if (!pageTo_STRING.isEmpty())
+			{
+				_page_to = pageTo_STRING.toInt();
+			}
+
+			if (!pageTableRowCount_STRING.isEmpty())
+			{
+				_print_table_row_count = pageTableRowCount_STRING.toUInt();
+			}
+
+			if (!pagePagePrinting_STRING.isEmpty())
+			{
+				_a4paper_printing_position = pagePagePrinting_STRING;
+			}
+		}
+	}
+}
+
+
 void YerothWindowsCommons::setLeftAligned_FOR_YEROTH_PDF_LATEX_PRINTING(const QString &dbtableColumnString)
 {
 	int columnIndexStocksID = _dbtablecolumnNameToDBColumnIndex.value(dbtableColumnString);
@@ -721,6 +762,8 @@ void YerothWindowsCommons::setup_print()
 	}
 
 	_allWindows->_impressionDeDocumentDialog->_current_window_to_print = this;
+
+//	QDEBUG_STRING_OUTPUT_2("setup_print, setting setup_print to: ", objectName());
 
 	_allWindows->_impressionDeDocumentDialog->showAsModalDialogWithParent(*this);
 }

@@ -422,6 +422,8 @@ protected slots:
 
 protected:
 
+	void APPLY_USER_LOCAL_SETTINGS_PARAMETERS();
+
 	inline virtual void reinitialiser_colones_db_visibles()
 	{
 	}

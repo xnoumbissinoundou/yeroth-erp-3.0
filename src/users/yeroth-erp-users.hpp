@@ -229,6 +229,72 @@ public:
 		return _role == YerothUtils::ROLE_CAISSIER;
 	}
 
+	void PRINT_PARAMETERS_TO_STRING();
+
+	inline QString GET_WINDOWS_PAGE_FROM_KEY_TO_STORE(const QString &a_window_object_name)
+	{
+		return (0 !=_user_personal_settings) ? _user_personal_settings->GET_WINDOWS_PAGE_FROM_KEY_TO_STORE(a_window_object_name) :
+				YerothUtils::EMPTY_STRING;
+	}
+
+	inline QString GET_WINDOWS_PAGE_TO_KEY_TO_STORE(const QString &a_window_object_name)
+	{
+		return (0 !=_user_personal_settings) ? _user_personal_settings->GET_WINDOWS_PAGE_TO_KEY_TO_STORE(a_window_object_name) :
+				YerothUtils::EMPTY_STRING;
+	}
+
+	inline QString GET_WINDOWS_A4_PRINTING_POSITION_KEY_TO_STORE(const QString &a_window_object_name)
+	{
+		return (0 !=_user_personal_settings) ? _user_personal_settings->GET_WINDOWS_A4_PRINTING_POSITION_KEY_TO_STORE(a_window_object_name) :
+				YerothUtils::EMPTY_STRING;
+	}
+
+	inline QString GET_WINDOWS_TABLE_ROW_COUNT_KEY_TO_STORE(const QString &a_window_object_name)
+	{
+		return (0 !=_user_personal_settings) ? _user_personal_settings->GET_WINDOWS_TABLE_ROW_COUNT_KEY_TO_STORE(a_window_object_name) :
+				YerothUtils::EMPTY_STRING;
+	}
+
+	inline QString get_PRINTING_PARAMETER_VALUE(const QString &a_key)
+	{
+		return (0 !=_user_personal_settings) ? _user_personal_settings->GET_PRINTING_PARAMETER_VALUE_FROM_KEY(a_key) :
+				YerothUtils::EMPTY_STRING;
+	}
+
+	inline QString get_PRINTING_PARAMETER_VALUE_page_from(const QString &a_window_object_name)
+	{
+		return (0 !=_user_personal_settings) ?
+				_user_personal_settings->GET_PRINTING_PARAMETER_VALUE_FROM_KEY(
+						GET_WINDOWS_PAGE_FROM_KEY_TO_STORE(a_window_object_name)) :
+				YerothUtils::EMPTY_STRING ;
+	}
+
+	inline QString get_PRINTING_PARAMETER_VALUE_page_to(const QString &a_window_object_name)
+	{
+		return (0 !=_user_personal_settings) ?
+				_user_personal_settings->GET_PRINTING_PARAMETER_VALUE_FROM_KEY(
+						GET_WINDOWS_PAGE_TO_KEY_TO_STORE(a_window_object_name)) :
+				YerothUtils::EMPTY_STRING ;
+	}
+
+	inline QString get_PRINTING_PARAMETER_VALUE_printing_position(const QString &a_window_object_name)
+	{
+		return (0 !=_user_personal_settings) ?
+				_user_personal_settings->GET_PRINTING_PARAMETER_VALUE_FROM_KEY(
+						GET_WINDOWS_A4_PRINTING_POSITION_KEY_TO_STORE(a_window_object_name)) :
+				YerothUtils::EMPTY_STRING ;
+	}
+
+	inline QString get_PRINTING_PARAMETER_VALUE_table_row_count(const QString &a_window_object_name)
+	{
+		return (0 !=_user_personal_settings) ?
+				_user_personal_settings->GET_PRINTING_PARAMETER_VALUE_FROM_KEY(
+						GET_WINDOWS_TABLE_ROW_COUNT_KEY_TO_STORE(a_window_object_name)) :
+				YerothUtils::EMPTY_STRING ;
+	}
+
+	void read_user_personal_PRINTING_PARAMETER_settings(YerothWindowsCommons *a_current_window_to_table_print_as_parameter = 0);
+
 	void save_user_personal_PRINTING_PARAMETER_settings();
 
 	void create_user_personal_settings_file();

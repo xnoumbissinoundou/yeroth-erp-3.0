@@ -130,13 +130,40 @@ QString YerothPOSUser::nom_complet_truncated_FOR_SMALL_RECEIPT()
 }
 
 
+void YerothPOSUser::PRINT_PARAMETERS_TO_STRING()
+{
+	if (0 != _user_personal_settings)
+	{
+		_user_personal_settings->PRINT_PARAMETERS_TO_STRING();
+	}
+}
+
+
+void YerothPOSUser::read_user_personal_PRINTING_PARAMETER_settings(YerothWindowsCommons *a_current_window_to_table_print_as_parameter /* = 0 */)
+{
+	if (0 != _user_personal_settings)
+	{
+		enum RESULT_PRINTING_PARAMETER resultat_lecture_des_parametres_locaux =
+				_user_personal_settings->lire_les_parametres_locaux(
+						_user_setting_disk_saving_file_name_FROM_MD5_HEX_USER_ID,
+						a_current_window_to_table_print_as_parameter);
+
+//		if (READ_PRINTING_PARAMETER_SUCCESSFUL != resultat_lecture_des_parametres_locaux)
+//		{
+//			QDEBUG_STRING_OUTPUT_2("read_user_personal_PRINTING_PARAMETER_settings", "READ_PRINTING_PARAMETER_SUCCESSFUL");
+//		}
+//		else
+//		{
+//			QDEBUG_STRING_OUTPUT_2("read_user_personal_PRINTING_PARAMETER_settings", "! READ_PRINTING_PARAMETER_SUCCESSFUL");
+//		}
+	}
+}
+
+
 void YerothPOSUser::save_user_personal_PRINTING_PARAMETER_settings()
 {
 	if (0 != _user_personal_settings)
 	{
-//		QDEBUG_STRING_OUTPUT_2("_user_setting_disk_saving_file_name_FROM_MD5_HEX_USER_ID",
-//				_user_setting_disk_saving_file_name_FROM_MD5_HEX_USER_ID);
-
 		_user_personal_settings->enregistrer_les_parametres_locaux(
 				_user_setting_disk_saving_file_name_FROM_MD5_HEX_USER_ID);
 	}
@@ -157,8 +184,13 @@ void YerothPOSUser::create_user_personal_settings_file()
 
 	if (0 != _user_personal_settings)
 	{
-		if (! _user_personal_settings->lire_les_parametres_locaux(
-				_user_setting_disk_saving_file_name_FROM_MD5_HEX_USER_ID))
+		enum RESULT_PRINTING_PARAMETER resultat_lecture_des_parametres_locaux;
+
+		resultat_lecture_des_parametres_locaux =
+				_user_personal_settings->lire_les_parametres_locaux(
+						_user_setting_disk_saving_file_name_FROM_MD5_HEX_USER_ID);
+
+		if (PRINTING_PARAMETER_FILE_DOESNT_EXIT == resultat_lecture_des_parametres_locaux)
 		{
 			_user_personal_settings->enregistrer_les_parametres_locaux(
 				_user_setting_disk_saving_file_name_FROM_MD5_HEX_USER_ID);
