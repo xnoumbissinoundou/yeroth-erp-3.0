@@ -738,6 +738,8 @@ void YerothERPClientsWindow::rendreVisible(YerothSqlTableModel * stocksTableMode
 
 	setVisible(true);
 
+	APPLY_USER_LOCAL_SETTINGS_PARAMETERS();
+
 	afficherClients(*_curClientsTableModel);
 
 	lineEdit_comptes_clients_terme_recherche->setFocus();

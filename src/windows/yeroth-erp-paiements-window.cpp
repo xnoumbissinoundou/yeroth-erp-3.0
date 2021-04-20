@@ -1324,6 +1324,8 @@ void YerothPaiementsWindow::rendreVisible(YerothSqlTableModel * stocksTableModel
 
     setVisible(true);
 
+    APPLY_USER_LOCAL_SETTINGS_PARAMETERS();
+
     afficher_paiements();
 
     lineEdit_paiements_terme_recherche->setFocus();
