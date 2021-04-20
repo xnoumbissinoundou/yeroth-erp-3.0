@@ -1130,6 +1130,13 @@ void YerothWindowsCommons::changer_utilisateur()
 
 void YerothWindowsCommons::deconnecter_utilisateur()
 {
+	YerothPOSUser *aUser = _allWindows->getUser();
+
+	if (0 != aUser)
+	{
+		aUser->cleanup_user_personal_PRINTING_PARAMETER_settings();
+	}
+
     _allWindows->definirPasDeRole();
     _allWindows->_mainWindow->show();
     rendreInvisible();

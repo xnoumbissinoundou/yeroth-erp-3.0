@@ -293,6 +293,8 @@ public:
 				YerothUtils::EMPTY_STRING ;
 	}
 
+	void cleanup_user_personal_PRINTING_PARAMETER_settings();
+
 	void read_user_personal_PRINTING_PARAMETER_settings(YerothWindowsCommons *a_current_window_to_table_print_as_parameter = 0);
 
 	void save_user_personal_PRINTING_PARAMETER_settings();

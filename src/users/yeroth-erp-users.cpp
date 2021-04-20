@@ -139,6 +139,15 @@ void YerothPOSUser::PRINT_PARAMETERS_TO_STRING()
 }
 
 
+void YerothPOSUser::cleanup_user_personal_PRINTING_PARAMETER_settings()
+{
+	if (0 != _user_personal_settings)
+	{
+		_user_personal_settings->cleanup_user_settings();
+	}
+}
+
+
 void YerothPOSUser::read_user_personal_PRINTING_PARAMETER_settings(YerothWindowsCommons *a_current_window_to_table_print_as_parameter /* = 0 */)
 {
 	if (0 != _user_personal_settings)

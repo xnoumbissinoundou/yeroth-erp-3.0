@@ -41,6 +41,16 @@ public:
 	{
 	}
 
+	inline virtual ~YerothERPUserSettings()
+	{
+		cleanup_user_settings();
+	}
+
+	inline void cleanup_user_settings()
+	{
+		_window_printing_parameter_key__TO__its_value.clear();
+	}
+
 	inline QString GET_WINDOWS_PAGE_FROM_KEY_TO_STORE(const QString &a_window_object_name)
 	{
 		return QString("%1_page_from")
