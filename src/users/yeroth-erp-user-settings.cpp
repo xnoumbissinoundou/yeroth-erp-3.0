@@ -82,49 +82,15 @@ RESULT_PRINTING_PARAMETER YerothERPUserSettings::lire_les_parametres_locaux(cons
 	{
 		line = init_cfg.readLine();
 
-		list = line.split(YEROTH_ERP_3_0_CONFIGURATION_FILE_SEPARATION_OPERATOR);
-
-//		QDEBUG_STRING_OUTPUT_2("line", line);
-
-		if (YerothUtils::isEqualCaseInsensitive(GET_WINDOWS_TABLE_ROW_COUNT_KEY_TO_STORE(a_current_window_object_name), list.at(0)))
+		if (!line.isEmpty())
 		{
+			list = line.split(YEROTH_ERP_3_0_CONFIGURATION_FILE_SEPARATION_OPERATOR);
+
+//			QDEBUG_STRING_OUTPUT_2("line", line);
+
 			_window_printing_parameter_key__TO__its_value.insert(
-					GET_WINDOWS_TABLE_ROW_COUNT_KEY_TO_STORE(a_current_window_object_name),
+					list.at(0).trimmed(),
 					list.at(1).trimmed());
-
-			_print_table_row_count = list.at(1).trimmed().toUInt();
-
-			a_current_window_to_print_table->set_PRINTING_PARAMETER_print_table_row_count(_print_table_row_count);
-		}
-		else if (YerothUtils::isEqualCaseInsensitive(GET_WINDOWS_A4_PRINTING_POSITION_KEY_TO_STORE(a_current_window_object_name), list.at(0)))
-		{
-			_window_printing_parameter_key__TO__its_value.insert(
-					GET_WINDOWS_A4_PRINTING_POSITION_KEY_TO_STORE(a_current_window_object_name),
-					list.at(1).trimmed());
-
-			_a4paper_printing_position = list.at(1).trimmed();
-
-			a_current_window_to_print_table->set_PRINTING_PARAMETER_printing_position(_a4paper_printing_position);
-		}
-		else if (YerothUtils::isEqualCaseInsensitive(GET_WINDOWS_PAGE_FROM_KEY_TO_STORE(a_current_window_object_name), list.at(0)))
-		{
-			_window_printing_parameter_key__TO__its_value.insert(
-					GET_WINDOWS_PAGE_FROM_KEY_TO_STORE(a_current_window_object_name),
-					list.at(1).trimmed());
-
-			_page_from = list.at(1).trimmed().toInt();
-
-			a_current_window_to_print_table->set_PRINTING_PARAMETER_pageFROM(_page_from);
-		}
-		else if (YerothUtils::isEqualCaseInsensitive(GET_WINDOWS_PAGE_TO_KEY_TO_STORE(a_current_window_object_name), list.at(0)))
-		{
-			_window_printing_parameter_key__TO__its_value.insert(
-					GET_WINDOWS_PAGE_TO_KEY_TO_STORE(a_current_window_object_name),
-					list.at(1).trimmed());
-
-			_page_to = list.at(1).trimmed().toInt();
-
-			a_current_window_to_print_table->set_PRINTING_PARAMETER_pageTO(_page_to);
 		}
 	}
 	while(!line.isNull());
@@ -150,12 +116,12 @@ bool YerothERPUserSettings::enregistrer_les_parametres_locaux(const QString &use
 		YerothIMPRESSION_DE_DOCUMENT_Dialog *impressionDeDocumentDialog =
 				allWindows->_impressionDeDocumentDialog;
 
+		QTextStream textStream(&file);
+
 		if (0 != impressionDeDocumentDialog)
 		{
 			YerothWindowsCommons *a_current_window_to_print_table =
 					impressionDeDocumentDialog->_current_window_to_print;
-
-			QTextStream textStream(&file);
 
 			if (0 != a_current_window_to_print_table)
 			{
@@ -189,19 +155,6 @@ bool YerothERPUserSettings::enregistrer_les_parametres_locaux(const QString &use
 				_window_printing_parameter_key__TO__its_value.insert(
 						GET_WINDOWS_PAGE_TO_KEY_TO_STORE(a_current_window_object_name),
 						aPageTO_STRING);
-
-
-				QMapIterator<QString, QString> it(_window_printing_parameter_key__TO__its_value);
-
-				while(it.hasNext())
-				{
-					it.next();
-
-					textStream
-					<< QString("%1=%2\n")
-						.arg(it.key(),
-							 it.value());
-				}
 			}
 			else //in user settings file initialization
 			{
@@ -218,6 +171,21 @@ bool YerothERPUserSettings::enregistrer_les_parametres_locaux(const QString &use
 				<< QString("local_parameter_page_to=%2\n")
 					.arg(QString::number(_page_to));
 			}
+		}
+
+		qDebug() << _window_printing_parameter_key__TO__its_value;
+
+
+		QMapIterator<QString, QString> it(_window_printing_parameter_key__TO__its_value);
+
+		while(it.hasNext())
+		{
+			it.next();
+
+			textStream
+			<< QString("%1=%2\n")
+				.arg(it.key(),
+					 it.value());
 		}
 	}
 
