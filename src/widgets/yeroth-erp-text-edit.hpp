@@ -50,10 +50,7 @@ public:
 
 	void setYerothEnabled(bool enabled);
 
-	inline QString toPlainTextForLatex() const
-	{
-		return YerothUtils::LATEX_IN_OUT_handleForeignAccents(QTextEdit::toPlainText().trimmed());
-	}
+	QString toPlainTextForLatex() const;
 
 	inline QString toPlainText() const
 	{

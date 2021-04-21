@@ -9,6 +9,9 @@
 #include "src/utils/yeroth-erp-utils.hpp"
 
 
+#include <QtGui/QTextBlock>
+
+
 bool YerothTextEdit::checkField()
 {
     if ( toPlainText().isEmpty())
@@ -67,3 +70,30 @@ void YerothTextEdit::setYerothEnabled(bool enabled)
 
     YerothUtils::yerothSetWidgetColor(this);
 }
+
+
+QString YerothTextEdit::toPlainTextForLatex() const
+{
+	QTextDocument *aTextDocument = document();
+
+	if (0 == aTextDocument)
+	{
+		return YerothUtils::EMPTY_STRING;
+	}
+
+	QString result;
+
+	QTextBlock it = aTextDocument->begin();
+
+    while (it != aTextDocument->end())
+    {
+    	result.append(QString("%1\\\\")
+    					.arg(it.text()));
+
+    	it = it.next();
+    }
+
+	return YerothUtils::LATEX_IN_OUT_handleForeignAccents(result);
+}
+
+
