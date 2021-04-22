@@ -1,6 +1,6 @@
 #!/bin/bash
 # @file: yeroth-erp-3-0-generate-upgrade-sql-script.sh
-# @author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
+# @author: PR. XAVIER NOUMBISSI NOUNDOU
 
 APP="$(basename $0)"
 
