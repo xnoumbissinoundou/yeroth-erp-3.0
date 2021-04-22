@@ -1,5 +1,5 @@
 #/bin/bash
-#@author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
+#@author: PR. XAVIER NOUMBISSI NOUNDOU
 
 SCRIPTBASENAME=$(basename $0)
 

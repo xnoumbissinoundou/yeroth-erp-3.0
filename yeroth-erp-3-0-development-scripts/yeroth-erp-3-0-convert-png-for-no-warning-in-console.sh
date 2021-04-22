@@ -1,5 +1,5 @@
 #!/bin/bash
-#@author: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
+#@author: PR. XAVIER NOUMBISSI NOUNDOU
 
 YEROTH_ERP_3_0_IMAGES=${YEROTH_ERP_3_0_HOME_FOLDER}/yeroth-erp-3-0-images
 

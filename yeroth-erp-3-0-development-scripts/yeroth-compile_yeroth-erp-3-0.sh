@@ -5,7 +5,7 @@ SCRIPTBASENAME=$(basename $0)
 USAGE="
        ------------------------------------------------------------
        'YEROTH-ERP-3.0' Build System
-        @auteur: Xavier NOUMBISSI NOUNDOU, Dipl.-Inf., Ph.D. (ABD)
+        @auteur: PR. XAVIER NOUMBISSI NOUNDOU
 	@email:  xnoundou7@gmail.com
        ------------------------------------------------------------
        Usage: "$SCRIPTBASENAME"
