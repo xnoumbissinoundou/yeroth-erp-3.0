@@ -1637,7 +1637,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <location filename="src/windows/supplier/yeroth-erp-fournisseurs-window.cpp" line="626"/>
         <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="459"/>
         <location filename="src/windows/yeroth-erp-charges-window.cpp" line="318"/>
-        <location filename="src/windows/yeroth-erp-comptabilite-window.cpp" line="298"/>
+        <location filename="src/windows/yeroth-erp-comptabilite-window.cpp" line="309"/>
         <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="594"/>
         <location filename="src/windows/yeroth-erp-ventes-window.cpp" line="1292"/>
         <source>valeur à rechercher</source>
@@ -5084,7 +5084,7 @@ Please, change the maximum member of this CLIENT LOYALTY group to &apos;%3&apos;
         <translation>financial accounting</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-comptabilite-window.cpp" line="296"/>
+        <location filename="src/windows/yeroth-erp-comptabilite-window.cpp" line="307"/>
         <source>terme à rechercher (description du compte bancaire)</source>
         <translation>keyword to search for (bank account description)</translation>
     </message>
