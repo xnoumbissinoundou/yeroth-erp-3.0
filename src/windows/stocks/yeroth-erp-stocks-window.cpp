@@ -1422,9 +1422,10 @@ bool YerothStocksWindow::export_csv_file()
 }
 
 
-bool YerothStocksWindow::imprimer_pdf_document()
+QString YerothStocksWindow::get_latex_template_print_pdf_content()
 {
 	_latex_template_print_pdf_content = YerothUtils::template_lister_stock_tex;
 
-	return YerothWindowsCommons::imprimer_pdf_document();
+	return _latex_template_print_pdf_content;
 }
+

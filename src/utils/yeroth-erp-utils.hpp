@@ -887,6 +887,8 @@ public:
 
 	static const QRegExpValidator STRING_FOR_YEROTH_ERP_3_0_VALIDATOR;
 
+	static const QIntValidator INT_VALIDATOR_GREATER_THAN_ZERO;
+
 	static const QIntValidator IntValidator;
 
 	static const QDoubleValidator DoubleValidator;

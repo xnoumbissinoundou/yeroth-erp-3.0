@@ -612,7 +612,7 @@ bool YerothMouvementsDeStocksWindow::export_csv_file()
 }
 
 
-bool YerothMouvementsDeStocksWindow::imprimer_pdf_document()
+QString YerothMouvementsDeStocksWindow::get_latex_template_print_pdf_content()
 {
     if (SUJET_ACTION_SORTIES_STOCKS == tabWidget_mouvementsDeStocks->currentIndex())
     {
@@ -665,7 +665,7 @@ bool YerothMouvementsDeStocksWindow::imprimer_pdf_document()
     _documentSpecificElements_FOR_PDF_LATEX_PRINTING.
 		insert("YEROTHVENTESFIN", DATE_TO_STRING(_curDateEdit_fin->date()));
 
-	return YerothWindowsCommons::imprimer_pdf_document();
+	return _latex_template_print_pdf_content;
 }
 
 

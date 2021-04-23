@@ -377,6 +377,11 @@ public slots:
 								&YerothWindowsCommons::imprimer_pdf_document_WITH_PAGES_SPECIFICATION);
 	}
 
+	inline virtual QString get_latex_template_print_pdf_content()
+	{
+		return _latex_template_print_pdf_content;
+	}
+
 	virtual void imprimer_pdf_document_WITH_A_YEROTH_PROGRESS_BAR();
 
 protected slots:

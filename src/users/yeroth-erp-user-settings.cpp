@@ -52,7 +52,7 @@ RESULT_PRINTING_PARAMETER YerothERPUserSettings::lire_les_parametres_locaux(cons
 		else
 		{
 //			QDEBUG_STRING_OUTPUT_1("YEROTH-PP-2-failed");
-			return READ_PRINTING_PARAMETER_FAILED;
+			return PRINTING_PRAMATER_WINDOW_NOT_YET_DEFINED;
 		}
 	}
 
@@ -100,9 +100,18 @@ RESULT_PRINTING_PARAMETER YerothERPUserSettings::lire_les_parametres_locaux(cons
 }
 
 
-bool YerothERPUserSettings::enregistrer_les_parametres_locaux(const QString &user_local_personal_setting_full_file_path)
+bool YerothERPUserSettings::enregistrer_les_parametres_locaux(const QString &user_local_personal_setting_full_file_path,
+															  enum RESULT_PRINTING_PARAMETER a_result_printing_parameter/* = READ_PRINTING_PARAMETER_SUCCESSFUL*/)
 {
 	QFile file(user_local_personal_setting_full_file_path);
+
+	if (PRINTING_PRAMATER_WINDOW_NOT_YET_DEFINED == a_result_printing_parameter)
+	{
+		if (file.exists())
+		{
+			return true;
+		}
+	}
 
 	if (!file.open(QFile::WriteOnly))
 	{
@@ -173,7 +182,8 @@ bool YerothERPUserSettings::enregistrer_les_parametres_locaux(const QString &use
 			}
 		}
 
-		qDebug() << _window_printing_parameter_key__TO__its_value;
+
+//		qDebug() << _window_printing_parameter_key__TO__its_value;
 
 
 		QMapIterator<QString, QString> it(_window_printing_parameter_key__TO__its_value);

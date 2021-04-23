@@ -1047,7 +1047,7 @@ bool YerothPaiementsWindow::export_csv_file()
 }
 
 
-bool YerothPaiementsWindow::imprimer_pdf_document()
+QString YerothPaiementsWindow::get_latex_template_print_pdf_content()
 {
 	_latex_template_print_pdf_content = YerothUtils::template_journal_des_paiements_tex;
 
@@ -1059,6 +1059,13 @@ bool YerothPaiementsWindow::imprimer_pdf_document()
 	_documentSpecificElements_FOR_PDF_LATEX_PRINTING.
 		insert("YEROTHVENTESFIN", DATE_TO_STRING(dateEdit_paiements_fin->date()));
 
+	return _latex_template_print_pdf_content;
+}
+
+
+bool YerothPaiementsWindow::imprimer_pdf_document()
+{
+	get_latex_template_print_pdf_content();
 
 	prepare__IN__for_export_and_printing();
 

@@ -199,10 +199,12 @@ void YerothPOSUser::create_user_personal_settings_file()
 				_user_personal_settings->lire_les_parametres_locaux(
 						_user_setting_disk_saving_file_name_FROM_MD5_HEX_USER_ID);
 
-		if (PRINTING_PARAMETER_FILE_DOESNT_EXIT == resultat_lecture_des_parametres_locaux)
+		if (PRINTING_PRAMATER_WINDOW_NOT_YET_DEFINED == resultat_lecture_des_parametres_locaux ||
+			PRINTING_PARAMETER_FILE_DOESNT_EXIT == resultat_lecture_des_parametres_locaux)
 		{
 			_user_personal_settings->enregistrer_les_parametres_locaux(
-				_user_setting_disk_saving_file_name_FROM_MD5_HEX_USER_ID);
+				_user_setting_disk_saving_file_name_FROM_MD5_HEX_USER_ID,
+				PRINTING_PRAMATER_WINDOW_NOT_YET_DEFINED);
 		}
 		//	QDEBUG_STRING_OUTPUT_2("_user_setting_disk_saving_file_name_FROM_MD5_HEX_USER_ID",
 		//						   _user_setting_disk_saving_file_name_FROM_MD5_HEX_USER_ID);

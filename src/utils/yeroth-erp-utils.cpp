@@ -474,6 +474,8 @@ const QRegExpValidator YerothUtils::STRING_FOR_YEROTH_ERP_3_0_VALIDATOR(
 						 "àéèêôîûÀÉÈÊÔÛÎ",
 						 "äëöïüÄËÖÏÜ")));
 
+const QIntValidator YerothUtils::INT_VALIDATOR_GREATER_THAN_ZERO(1, 444444444);
+
 const QIntValidator YerothUtils::IntValidator(0, 444444444);
 
 const QDoubleValidator YerothUtils::DoubleValidator(0, 444444444, 2);

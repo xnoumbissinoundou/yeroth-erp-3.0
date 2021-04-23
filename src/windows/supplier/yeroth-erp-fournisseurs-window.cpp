@@ -784,9 +784,10 @@ bool YerothERPFournisseursWindow::export_csv_file()
 }
 
 
-bool YerothERPFournisseursWindow::imprimer_pdf_document()
+QString YerothERPFournisseursWindow::get_latex_template_print_pdf_content()
 {
 	_latex_template_print_pdf_content = YerothUtils::template_fournisseurs_tex;
-	return YerothWindowsCommons::imprimer_pdf_document();
+
+	return _latex_template_print_pdf_content;
 }
 

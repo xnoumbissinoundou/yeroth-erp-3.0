@@ -1848,7 +1848,7 @@ bool YerothVentesWindow::export_csv_file()
 }
 
 
-bool YerothVentesWindow::imprimer_pdf_document()
+QString YerothVentesWindow::get_latex_template_print_pdf_content()
 {
 	_latex_template_print_pdf_content = YerothUtils::template_journal_des_ventes_tex;
 
@@ -1860,7 +1860,7 @@ bool YerothVentesWindow::imprimer_pdf_document()
     _documentSpecificElements_FOR_PDF_LATEX_PRINTING.
 		insert("YEROTHVENTESFIN", DATE_TO_STRING(dateEdit_ventes_fin->date()));
 
-	return YerothWindowsCommons::imprimer_pdf_document();
+	return _latex_template_print_pdf_content;
 }
 
 

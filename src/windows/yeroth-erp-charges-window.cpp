@@ -805,9 +805,10 @@ bool YerothAchatsDEServicesWindow::export_csv_file()
 }
 
 
-bool YerothAchatsDEServicesWindow::imprimer_pdf_document()
+QString YerothAchatsDEServicesWindow::get_latex_template_print_pdf_content()
 {
 	_latex_template_print_pdf_content = YerothUtils::template_CHARGES_FINANCIERES_tex;
-	return YerothWindowsCommons::imprimer_pdf_document();
+
+	return _latex_template_print_pdf_content;
 }
 

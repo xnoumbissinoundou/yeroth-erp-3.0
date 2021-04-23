@@ -916,9 +916,10 @@ bool YerothERPClientsWindow::export_csv_file()
 }
 
 
-bool YerothERPClientsWindow::imprimer_pdf_document()
+QString YerothERPClientsWindow::get_latex_template_print_pdf_content()
 {
 	_latex_template_print_pdf_content = YerothUtils::template_comptes_clients_tex;
-	return YerothWindowsCommons::imprimer_pdf_document();
+
+	return _latex_template_print_pdf_content;
 }
 

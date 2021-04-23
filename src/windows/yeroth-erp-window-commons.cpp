@@ -800,6 +800,8 @@ void YerothWindowsCommons::print_PDF_PREVIOUSLY_SETUP()
 				return ;
 			}
 
+//			QDEBUG_STRING_OUTPUT_1("YerothWindowsCommons::print_PDF_PREVIOUSLY_SETUP");
+
 			imprimer_pdf_document_WITH_A_YEROTH_PROGRESS_BAR(_page_from, _page_to);
 			return ;
 		}
@@ -1041,11 +1043,21 @@ bool YerothWindowsCommons::imprimer_pdf_document_WITH_PAGES_SPECIFICATION(int *p
 		return false;
 	}
 
+	if (_latex_template_print_pdf_content.isEmpty())
+	{
+//		QDEBUG_STRING_OUTPUT_1("YEROTH *");
+
+		_latex_template_print_pdf_content = get_latex_template_print_pdf_content();
+	}
+
+
 	if (_latex_template_print_pdf_content.isEmpty() ||
 		0 == _yerothTableView_FROM_WINDOWS_COMMONS)
 	{
 		return false;
 	}
+
+//	QDEBUG_STRING_OUTPUT_1("YEROTH ***");
 
 	static bool first_time_call = true;
 
@@ -1070,6 +1082,8 @@ bool YerothWindowsCommons::imprimer_pdf_document_WITH_PAGES_SPECIFICATION(int *p
 					_yeroth_PRINT_UTILITIES_TEX_TABLE;
 	}
 
+//	QDEBUG_STRING_OUTPUT_1("YEROTH *****");
+
 	if (first_time_call)
 	{
 		first_time_call = false;
@@ -1079,6 +1093,7 @@ bool YerothWindowsCommons::imprimer_pdf_document_WITH_PAGES_SPECIFICATION(int *p
 
 	QString pdfOutputFileName;
 
+//	QDEBUG_STRING_OUTPUT_1("YEROTH YEROTH YEROTH");
 
 	if (-1 == *pageFROM ||
 		-1 == *pageTO)
@@ -1115,6 +1130,8 @@ bool YerothWindowsCommons::imprimer_pdf_document()
 	int pageFROM = -1;
 
 	int pageTO = -1;
+
+	get_latex_template_print_pdf_content();
 
 	return imprimer_pdf_document_WITH_PAGES_SPECIFICATION(&pageFROM, &pageTO);
 }

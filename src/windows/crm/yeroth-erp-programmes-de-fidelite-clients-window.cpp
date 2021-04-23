@@ -688,8 +688,10 @@ bool YerothERPProgrammesDeFideliteClientsWindow::export_csv_file()
 }
 
 
-bool YerothERPProgrammesDeFideliteClientsWindow::imprimer_pdf_document()
+QString YerothERPProgrammesDeFideliteClientsWindow::get_latex_template_print_pdf_content()
 {
 	_latex_template_print_pdf_content = YerothUtils::template_CLIENT_LOYALTY_PROGRAM_LISTING_tex;
-	return YerothWindowsCommons::imprimer_pdf_document();
+
+	return _latex_template_print_pdf_content;
 }
+

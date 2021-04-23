@@ -100,6 +100,8 @@ public slots:
 
 	bool export_csv_file();
 
+	virtual QString get_latex_template_print_pdf_content();
+
 	virtual bool imprimer_pdf_document();
 
     virtual void afficherMarchandises(YerothSqlTableModel &aYerothSqlTableModel);

@@ -22,7 +22,8 @@ enum RESULT_PRINTING_PARAMETER
 {
 	PRINTING_PARAMETER_FILE_DOESNT_EXIT = 0,
 	READ_PRINTING_PARAMETER_SUCCESSFUL,
-	READ_PRINTING_PARAMETER_FAILED
+	READ_PRINTING_PARAMETER_FAILED,
+	PRINTING_PRAMATER_WINDOW_NOT_YET_DEFINED
 };
 
 
@@ -87,7 +88,8 @@ public:
 	enum RESULT_PRINTING_PARAMETER lire_les_parametres_locaux(const QString &user_local_personal_setting_full_file_path,
 															  YerothWindowsCommons *a_current_window_to_table_print_as_parameter = 0);
 
-	bool enregistrer_les_parametres_locaux(const QString &user_local_personal_setting_full_file_path);
+	bool enregistrer_les_parametres_locaux(const QString &user_local_personal_setting_full_file_path,
+										   enum RESULT_PRINTING_PARAMETER a_result_printing_parameter = READ_PRINTING_PARAMETER_SUCCESSFUL);
 
 	inline void PRINT_PARAMETERS_TO_STRING()
 	{

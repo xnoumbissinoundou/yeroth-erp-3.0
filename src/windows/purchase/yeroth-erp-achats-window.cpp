@@ -839,9 +839,10 @@ bool YerothAchatsWindow::export_csv_file()
 }
 
 
-bool YerothAchatsWindow::imprimer_pdf_document()
+QString YerothAchatsWindow::get_latex_template_print_pdf_content()
 {
 	_latex_template_print_pdf_content = YerothUtils::template_lister_achats_tex;
-	return YerothWindowsCommons::imprimer_pdf_document();
+
+	return _latex_template_print_pdf_content;
 }
 

@@ -54,12 +54,12 @@ YerothIMPRESSION_DE_DOCUMENT_Dialog::YerothIMPRESSION_DE_DOCUMENT_Dialog()
 
 
     connect(lineEdit_pageFROM,
-    		SIGNAL(textEdited(const QString &)),
+    		SIGNAL(textChanged(const QString &)),
 			this,
 			SLOT(enable_MAX_TABLE_ROW_COUNT()));
 
     connect(lineEdit_pageTO,
-    		SIGNAL(textEdited(const QString &)),
+    		SIGNAL(textChanged(const QString &)),
 			this,
 			SLOT(enable_MAX_TABLE_ROW_COUNT()));
 
@@ -81,8 +81,8 @@ void YerothIMPRESSION_DE_DOCUMENT_Dialog::setupLineEdits()
 	lineEdit_IMPRESSION_LIGNES->setPalette(YerothUtils::YEROTH_BLACK_PALETTE);
 	lineEdit_IMPRESSION_LIGNES->setYerothEnabled(false);
 
-	lineEdit_pageFROM->setValidator(&YerothUtils::IntValidator);
-	lineEdit_pageTO->setValidator(&YerothUtils::IntValidator);
+	lineEdit_pageFROM->setValidator(&YerothUtils::INT_VALIDATOR_GREATER_THAN_ZERO);
+	lineEdit_pageTO->setValidator(&YerothUtils::INT_VALIDATOR_GREATER_THAN_ZERO);
 }
 
 
@@ -307,10 +307,13 @@ void YerothIMPRESSION_DE_DOCUMENT_Dialog::valider()
 
 		QString string_pageTO = lineEdit_pageTO->text();
 
+//		QDEBUG_STRING_OUTPUT_1("YEROTH-1");
 
 		if (string_pageFROM.isEmpty() &&
 			string_pageTO.isEmpty())
 		{
+//			QDEBUG_STRING_OUTPUT_1("YEROTH-2");
+
 			_current_window_to_print->imprimer_pdf_document_WITH_A_YEROTH_PROGRESS_BAR();
 			SET_NOMBRE_DE_LIGNES_PAR_DEFAUT();
 
@@ -342,10 +345,16 @@ void YerothIMPRESSION_DE_DOCUMENT_Dialog::valider()
 				set_PRINTING_PARAMETER_print_table_row_count(
 					lineEdit_IMPRESSION_LIGNES->text().toUInt());
 
+//			QDEBUG_STRING_OUTPUT_1("YEROTH-3");
+
 			_current_window_to_print->imprimer_pdf_document_WITH_A_YEROTH_PROGRESS_BAR(pageFROM,
 																					   pageTO);
 
 			SET_CURRENT_WINDOW_TO_PRINT_PRINTING_PARAMETERS_AND_POSITION(pageFROM, pageTO);
+
+			_current_window_to_print->
+				set_PRINTING_PARAMETER_print_table_row_count(
+					lineEdit_IMPRESSION_LIGNES->text().toUInt());
 		}
 
 		YerothPOSUser *aUser = _allWindows->getUser();

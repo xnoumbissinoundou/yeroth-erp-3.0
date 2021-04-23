@@ -1051,10 +1051,11 @@ bool YerothAlertesWindow::export_csv_file()
 }
 
 
-bool YerothAlertesWindow::imprimer_pdf_document()
+QString YerothAlertesWindow::get_latex_template_print_pdf_content()
 {
 	_latex_template_print_pdf_content = YerothUtils::template_lister_alertes_tex;
-	return YerothWindowsCommons::imprimer_pdf_document();
+
+	return _latex_template_print_pdf_content;
 }
 
 
