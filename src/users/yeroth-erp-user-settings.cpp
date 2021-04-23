@@ -56,7 +56,8 @@ RESULT_PRINTING_PARAMETER YerothERPUserSettings::lire_les_parametres_locaux(cons
 		}
 	}
 
-	QString a_current_window_object_name = a_current_window_to_print_table->objectName();
+
+	QString a_current_window_object_name = YEROTH_QT_OBJECT_NAME(a_current_window_to_print_table);
 
 	if (_window_printing_parameter_key__TO__its_value.contains(
 			GET_WINDOWS_TABLE_ROW_COUNT_KEY_TO_STORE(a_current_window_object_name)))
@@ -135,7 +136,7 @@ bool YerothERPUserSettings::enregistrer_les_parametres_locaux(const QString &use
 			if (0 != a_current_window_to_print_table)
 			{
 				QString a_current_window_object_name =
-						a_current_window_to_print_table->objectName();
+						YEROTH_QT_OBJECT_NAME(a_current_window_to_print_table);
 
 				QString aPageTO_STRING =
 						QString::number(a_current_window_to_print_table->get_PRINTING_PARAMETER_pageTO());

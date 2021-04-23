@@ -201,10 +201,12 @@ void YerothWindowsCommons::APPLY_USER_LOCAL_SETTINGS_PARAMETERS()
 		{
 			aUser->read_user_personal_PRINTING_PARAMETER_settings(this);
 
-			QString pageFrom_STRING = aUser->get_PRINTING_PARAMETER_VALUE_page_from(objectName());
-			QString pageTo_STRING = aUser->get_PRINTING_PARAMETER_VALUE_page_to(objectName());
-			QString pageTableRowCount_STRING = aUser->get_PRINTING_PARAMETER_VALUE_table_row_count(objectName());
-			QString pagePagePrinting_STRING = aUser->get_PRINTING_PARAMETER_VALUE_printing_position(objectName());
+			QString yeroth_qt_THIS_object_name = YEROTH_QT_OBJECT_NAME(this);
+
+			QString pageFrom_STRING = aUser->get_PRINTING_PARAMETER_VALUE_page_from(yeroth_qt_THIS_object_name);
+			QString pageTo_STRING = aUser->get_PRINTING_PARAMETER_VALUE_page_to(yeroth_qt_THIS_object_name);
+			QString pageTableRowCount_STRING = aUser->get_PRINTING_PARAMETER_VALUE_table_row_count(yeroth_qt_THIS_object_name);
+			QString pagePagePrinting_STRING = aUser->get_PRINTING_PARAMETER_VALUE_printing_position(yeroth_qt_THIS_object_name);
 
 			if (!pageFrom_STRING.isEmpty())
 			{
@@ -763,7 +765,7 @@ void YerothWindowsCommons::setup_print()
 
 	_allWindows->_impressionDeDocumentDialog->_current_window_to_print = this;
 
-//	QDEBUG_STRING_OUTPUT_2("setup_print, setting setup_print to: ", objectName());
+//	QDEBUG_STRING_OUTPUT_2("setup_print, setting setup_print to: ", YEROTH_QT_OBJECT_NAME(this));
 
 	_allWindows->_impressionDeDocumentDialog->showAsModalDialogWithParent(*this);
 }

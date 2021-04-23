@@ -1214,6 +1214,8 @@ YerothQMessageBox::information(this, QObject::trUtf8(DIALOG_BOX_TITLE), msg); }
 
 #define EXPR_IS_POSITIV(X)	(0 <= X)
 
+#define YEROTH_QT_OBJECT_NAME(X) ((0 != X) ? X->objectName().toUpper() : YerothUtils::EMPTY_STRING)
+
 #define BOOLEAN_STRING_TRUE "True"
 
 #define BOOLEAN_STRING_FALSE "False"
