@@ -7,8 +7,8 @@ yeroth-erp-3-0-document-comparaisons.pdf: clean yeroth-erp-3-0-document-comparai
 	pdflatex yeroth-erp-3-0-document-comparaisons-3
 	pdfjoin yeroth-erp-3-0-document-comparaisons-1.pdf \
 		yeroth-erp-3-0-document-comparaisons-3.pdf \
-		--outfile yeroth-erp-3-0-document-comparaisons-FINAL.pdf&
-	evince yeroth-erp-3-0-document-comparaisons-FINAL.pdf&
+		--outfile yeroth-erp-3-0-document-comparaisons.pdf&
+	evince yeroth-erp-3-0-document-comparaisons.pdf&
 
 clean:
 	rm -f *~ *.glo *.aux *.bbl *.brf *.idx *.bak *.ilg *.ind *.lof \

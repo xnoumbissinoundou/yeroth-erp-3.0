@@ -71,13 +71,15 @@
 \newcommand{\yerothrd}{\textcolor{yerothColorGreen}
 			{\textsc{\textcolor{yerothColorRed}{YEROTH}}$_{\text{r\&d}}$\xspace}}
 
-\newcommand{\yerotherpblack}{YEROTH--ERP--$3.0$\xspace}
+\newcommand{\yerotherpblack}{\texttt{YEROTH--ERP--$3.0$}\xspace}
 
 \newcommand{\yerotherp}{\textcolor{yerothColorBlue}{\sc YEROTH--ERP--$3.0$}\xspace}
 
 \newcommand{\saperp}{SAP Business One\xspace}
 
 \newcommand{\sageerp}{Sage Gescom i$7$\xspace}
+
+\newcommand{\yerothtableur}{\texttt{TABLEUR}\xspace}
 
 \newcommand{\myfullacademicname}{PR. XAVIER NOUMBISSI NOUNDOU\xspace}
 
@@ -115,8 +117,6 @@
 
 \newcommand{\role}{r\^ole\xspace}
 \newcommand{\roles}{r\^oles\xspace}
-
-\newcommand{\yerothexcelfeuille}{\texttt{EXCEL}\xspace}
 
 \newcommand{\manager}{<< Manager >>\xspace}
 \newcommand{\magasinier}{<< Magasinier >>\xspace}
@@ -178,7 +178,7 @@
 
 \begin{document}
 
-{\bf \Large \yerothrd} {| \sc \scriptsize Comparaisons avec quelques logiciels ERP}			
+{\bf \Large \yerothrd} {| \sc \scriptsize Comparaisons \yerotherpblack, et autres solutions de gestion de stocks}			
 \\ \line(1,0){540}
 
 \vspace{1.15em}
@@ -192,19 +192,14 @@
 \begin{table}[!htbp]
 \begin{tabular}{ll}
 \parbox{27em}{
-\yerotherp est un \logicielerp (Enterprise Resource Planing)
-facile d'utilisation \`a cause de ses
-caract\'eristiques suivantes:
+\yerotherp est un \logicielerp (Progiciel de Gestion Intégré (\textbf{PGI}))
+avantageux par rapport aux autres méthodes de 
+gestion de stocks\`a cause des raisons suivantes:
 
 \begin{enumerate}[1.]
 	\itemsep -0.1em
-	\item vue du logiciel d\'ependante du \role de l'utilisateur
-	\item formation compl\`ete en $5$ jours
-	\item interface du logiciel tr\`es facile \`a utiliser
-	\item pas de connection internet requise
-	\item pas de formation commerciale requise
-	\item pas de formation comptable requise
-	\item pas de formation universitaire requise. \\
+	\item système-logiciel ERP, PGI, réseau compris
+	\item utilisation de \mysql comme moteur de base de données. \\
 \end{enumerate}
 }
 
@@ -213,7 +208,7 @@ caract\'eristiques suivantes:
 \parbox{15em}{
 \begin{center}
 \includegraphics[scale=0.25]{images/yeroth-fenetre-stocks.png}
-\caption*{La fiche des stocks}
+\caption*{La fiche des stocks (SOLUTION INFORMATISÉE 'YEROTH--ERP--3.0'}
 \end{center}
 }
 \end{tabular}
@@ -221,10 +216,9 @@ caract\'eristiques suivantes:
 
 \vspace{0cm}
 
-Le tableau~\ref{tab:comparaisons-avec-quelques-logiciels-erp}
-illustre \`a merveille la simplicit\'e et l'efficacit\'e
-de \yerotherp, en comparaison avec les logiciels ERP ''\sageerp'',
-et ''\saperp''.\\
+Le tableau~\ref{tab:comparaison-yerotherptroiszero-autres-solutions-de-gestions-de-stocks}
+illustre la complexité d'assumer efficacement des tâches
+de gestion de stocks \textbf{SANS OUTILS INFORMATIQUE}.\\
 
 \vspace{-1em}
 
@@ -232,110 +226,43 @@ et ''\saperp''.\\
 \selectlanguage{french}
 \centering
 \resizebox{\textwidth}{!}{%to fit the table within the text width
-\begin{tabular}{cccc}
+\begin{tabular}{lccc}
 
-\multicolumn{1}{c}{}			&
-SANS INFORMATIQUE 				& 
-\yerothexcelfeuille				&
+\multicolumn{1}{c}{}	&
+SANS INFORMATIQUE		& 
+\yerothtableur			&
 \yerotherpblack			\\ \hline
 
-\textbf{vue du logiciel d\'ependante du \role}	&
-		\yerothvert{OUI}				&
-		\yerothvert{OUI}				&
-		\yerothvert{OUI}				\\ \hline
+\textbf{1. (nombres de succursales élevée)}		&
+		\yerothrouge{extrênement difficile}		&
+		\yerothrouge{extrênement difficile}		&						
+		\yerothvert{facile}	\\ \hline
 		
-\textbf{formation compl\`ete}		&
-		\yerothvert{$5$ jours}			&
-		\yerothorange{au moins $2$ mois}			&						
-		\yerothrouge{au moins $3$ mois}			\\ \hline
+\textbf{1. (large dimension géographique de l'organisation)}&
+		\yerothrouge{extrênement difficile}					&
+		\yerothrouge{extrênement difficile}					&
+		\yerothvert{facile}					   	   \\  \hline 	
 
-\textbf{interface du logiciel}			&
-		\yerothevident					&
-		\yerothcompliquee				&						
-		\yerothtrescompliquee				\\  \hline
-		
-\textbf{langage dans le logiciel}				&
-		\yerothvert{usuel de tous les jours}	&
-		\yerothorange{simple}					&						
-		\yerothrouge{technique}					\\ \hline			
-		
-\textbf{formation comptable}	&
-		\yerothvert{jamais}		&
-		\yerothvert{jamais}		&						
-		\yerothorange{utile}	\\ \hline		
-
-\textbf{formation en marketing}	&
-		\yerothvert{jamais}		&
-		\yerothorange{utile}	&						
-		\yerothorange{utile}	\\ \hline
-		
-\textbf{connection internet}		&
-		\yerothvert{optionel}		&
-		\yerothvert{optionel}		&						
-		\yerothrouge{obligatoire}	\\		
+\textbf{1. (quantité totale d'articles à vendre, transférer)}&
+		\yerothorange{très difficile}					&
+		\yerothorange{très difficile}					&						
+		\yerothvert{facile}						\\ \hline
+				
+\textbf{2. (travail simultanée et coordonées sur les données)}	&
+		\yerothrouge{extrênement difficile}						&
+		\yerothorange{très difficile}							&						
+		\yerothvert{facile}				   					   \\
 \end{tabular}}
-\caption{Comparaison entre \yerotherp et quelques autres logiciels ERP\\}
-\label{tab:comparaisons-avec-quelques-logiciels-erp}
+\caption{Comparaison entre \yerotherp et les autres solutions de gestion de stocks\\}
+\label{tab:comparaison-yerotherptroiszero-autres-solutions-de-gestions-de-stocks}
 \end{table}
 
-\vspace{1em}
+\paragraph{CONCLUSION:}
 
-{\large \bf OP\'ERATIONS}
-
-\vspace{-0.05em}
-
-\begin{table}[!htbp]
-\begin{tabular}{lll}
-
-\begin{tcolorbox}[width=14.3em, boxrule=0.01em, colback=white]
-\textbf{Mat\'eriels~Point--de--Vente}
-\vspace{0.1em}
-\hrule
-\vspace{0.25em}
-\begin{itemize}[]
-	\itemsep 0em
-	\item[\mycheckmark{yerothColorDarkgray}] Lecteur de code--barres, etc.\\
-\end{itemize}
-\begin{center}
-\includegraphics[scale=0.24]{images/xfox-fj-5-usb-plug-and-play-automatic-barcode-scanner.png}
-\end{center}
-\end{tcolorbox}
-
-&
-
-\begin{tcolorbox}[width=14.3em, boxrule=0.01em, colback=white]
-\textbf{Syst\`emes--de--Gestion de Base--de--Donn\'ees}
-\vspace{0.1em}
-\hrule
-\vspace{0.25em}
-\begin{itemize}[]
-	\itemsep 0em
-	\item[\mycheckmark{yerothColorBlue}] \mysqlcolored\\
-\end{itemize}
-\begin{center}
-\includegraphics[scale=0.164]{images/free-reuse-dbms-logo}
-\end{center}
-\end{tcolorbox}
-
-&
-
-\begin{tcolorbox}[width=14.3em, boxrule=0.01em, colback=white]
-\textbf{Syst\`emes d'Exploitations}
-\vspace{0.1em}
-\hrule
-\vspace{0.25em}
-\begin{itemize}[]
-	\itemsep 0em
-	\item[\mycheckmark{yerothColorRed}] Debian--Linux\\
-\end{itemize}
-\begin{center}
-\includegraphics[scale=0.53]{images/free-reuse-stretch-logo}
-\end{center}
-\end{tcolorbox}
-
-\end{tabular}
-\end{table}
-
+\yerothvert{PLUS L'ORGANISATION EST GRANDE EN ACTIVITÉS, ET EN
+SUPERFICIE, PLUS IL EST EXTRÊNEMENT IMPORTANT DE FAIRE
+USAGE D'1 PROGICIEL INTÉGRÉ DE GESTION POUR 1 RENTABILITÉ
+EFFICACE !}
 
 \end{document}
 
