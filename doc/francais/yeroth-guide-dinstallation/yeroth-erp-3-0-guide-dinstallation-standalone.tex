@@ -82,11 +82,11 @@
 \newcommand{\yerothrd}{\textcolor{yerothColorGreen}
 			{\textsc{\textcolor{yerothColorRed}{YEROTH}}$_{\text{r\&d}}$\xspace}}
 
-\newcommand{\yerotherptroiszero}{\textcolor{yerothColorBlue}{\sc YEROTH--ERP--$3.0$}\xspace}
+\newcommand{\yerothpgitroiszero}{\textcolor{yerothColorBlue}{\sc YEROTH--PGI--$3.0$}\xspace}
 
-\newcommand{\yerotherpblack}{YEROTH--ERP--$3.0$\xspace}
+\newcommand{\yerothpgiblack}{YEROTH--PGI--$3.0$\xspace}
 
-\newcommand{\yerotherp}{\textcolor{yerothColorBlue}{\sc YEROTH--ERP--$3.0$}\xspace}
+\newcommand{\yerothpgi}{\textcolor{yerothColorBlue}{\sc YEROTH--PGI--$3.0$}\xspace}
 
 \newcommand{\erp}{syst\`eme--logiciel ERP\xspace}
 
@@ -102,7 +102,7 @@
     pdftex,
     bookmarks,
     plainpages=false,
-	pdftitle={Guide d'installation pour le \erp \yerotherp (standalone) par: ''\myfullacademicname''},
+	pdftitle={Guide d'installation pour le \erp \yerothpgi (standalone) par: ''\myfullacademicname''},
     pdfauthor={PR. XAVIER NOUMBISSI NOUNDOU}
 }
 
@@ -151,7 +151,7 @@
     \lfoot{}
 }
 
-\rhead{Guide d'installation pour le \erp \yerotherpblack}
+\rhead{Guide d'installation pour le \erp \yerothpgiblack}
 \lhead{\textbf{\yerothrd}}
 \lfoot{}
 \rfoot{}
@@ -170,13 +170,13 @@
 
 \thispagestyle{OnlyFirstPage}
 
-{\bf \Large \yerothrd} {| \sc \scriptsize guide d'installation de \yerotherpblack}
+{\bf \Large \yerothrd} {| \sc \scriptsize guide d'installation de \yerothpgiblack}
 \\ \line(1,0){540}
 
 \vspace{2.0em}
 
 \begin{center}
-{\LARGE Guide D'installation pour le Système--Logiciel ERP \yerotherpblack}
+{\LARGE Guide D'installation pour le Système--Logiciel ERP \yerothpgiblack}
 \end{center}
 
 \vspace{2.0em}
@@ -230,7 +230,7 @@ $5.11.3$			\\ \hline
 \texlive			&
 $2018.20190227-2$	\\ 			
 \end{tabular}
-\caption{Logiciels requis pour l'installation de \yerotherptroiszero.}
+\caption{Logiciels requis pour l'installation de \yerothpgitroiszero.}
 \label{tab:dependance-logiciel}
 \end{table}
 
@@ -244,17 +244,17 @@ yeroth-erp-3.0-standalone.deb							\\ \hline
 yeroth-erp-3-0-configure-mysql-server.sh				\\ \hline	
 yeroth-erp-3-0-configure-mysql-server-set-root-pwd.exp	\\ \hline	
 \end{tabular}
-\caption{Fichiers requis pour l'installation de \yerotherptroiszero.}
+\caption{Fichiers requis pour l'installation de \yerothpgitroiszero.}
 \label{tab:required-files}
 \end{table}
 
 Le tableau~\ref{tab:required-files} illustre les fichiers
-requis pour l'installation de \yerotherp.
+requis pour l'installation de \yerothpgi.
 
 \section{Proc\'edure D'installation}
 
 Il faut suivre les \'etapes suivantes pour obtenir
-une installation de \yerotherptroiszero qui fonctionne
+une installation de \yerothpgitroiszero qui fonctionne
 sans probl\`emes:
 
 \begin{enumerate} [1)]
@@ -262,7 +262,7 @@ sans probl\`emes:
 	\item installer les logiciels \gdebi et \expect
 	\item installer les logiciels \mariadbserver et \mariadbclient
 	\item configurer le logiciel \mariadbserver
-	\item installer enfin \yerotherptroiszero (\qt et \texlive sont install\'e automatiquement).
+	\item installer enfin \yerothpgitroiszero (\qt et \texlive sont install\'e automatiquement).
 \end{enumerate}
 
 \subsection{Installation de \gdebi et \expect}
@@ -288,17 +288,17 @@ sans probl\`emes:
 \subsection{Configuration de \mariadbserver}
 
 \begin{enumerate}[1)]
-	\item Editer le fichier (donn\'e avec \yerotherptroiszero)
+	\item Editer le fichier (donn\'e avec \yerothpgitroiszero)
 		''yeroth-erp-3-0-configure-mysql-server-set-root-pwd.exp''
 		et entrer y le mot de passe souhait\'e pour
 		l'utilisateur ''root'' (l'administrateur) du logiciel \mariadbserver
 		\`a la place du mot de passe ''admin1''
 		
-	\item enfin ex\'ecuter le fichier \bash (donn\'e avec \yerotherptroiszero)
+	\item enfin ex\'ecuter le fichier \bash (donn\'e avec \yerothpgitroiszero)
 		''yeroth-erp-3-0-configure-mysql-server.sh''.\\	
 \end{enumerate}
 
-\subsection{Installation de \qt, \texlive, et de \yerotherptroiszero}
+\subsection{Installation de \qt, \texlive, et de \yerothpgitroiszero}
 
 \begin{enumerate}[1)]
 	\item Ouvrir un terminal ''\bash''
@@ -320,7 +320,7 @@ sans probl\`emes:
 
 \section{L'utilisateur Standard (Administrateur) 'admin'}
 
-Apr\`es l'installation avec succ\`es de \yerotherptroiszero,
+Apr\`es l'installation avec succ\`es de \yerothpgitroiszero,
 l'application est accessible par l'utilisation
 d'un compte utilisateur standard avec le r\^ole
 d'administrateur en utilisant les donn\'ees suivantes:
