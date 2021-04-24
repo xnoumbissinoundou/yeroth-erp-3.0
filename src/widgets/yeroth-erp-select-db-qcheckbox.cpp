@@ -23,18 +23,16 @@ void YerothSelectDBQCheckBox::handle_visible_db_field_checkBox(bool checkBoxClic
 {
 	if (0 != _visibleDBFieldColumnStrList)
 	{
-		QString yeroth_qt_THIS_object_name = YEROTH_QT_OBJECT_NAME(this);
-
 		if (checkBoxClicked)
 		{
-			if (!_visibleDBFieldColumnStrList->contains(yeroth_qt_THIS_object_name))
+			if (!_visibleDBFieldColumnStrList->contains(objectName()))
 			{
-				_visibleDBFieldColumnStrList->append(yeroth_qt_THIS_object_name);
+				_visibleDBFieldColumnStrList->append(objectName());
 			}
 		}
 		else
 		{
-			_visibleDBFieldColumnStrList->removeAll(yeroth_qt_THIS_object_name);
+			_visibleDBFieldColumnStrList->removeAll(objectName());
 		}
 	}
 }
