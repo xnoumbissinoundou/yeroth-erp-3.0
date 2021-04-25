@@ -189,6 +189,23 @@ void YerothWindowsCommons::
 }
 
 
+void YerothWindowsCommons::YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED_AUTOMATIC_CONSTRUCTOR_ONLY()
+{
+	QAction *current_qaction = 0;
+
+	for (uint i = 0; i < _list_actions_to_enable_on_positive_tableview_ROW_COUNT.size(); ++i)
+	{
+		current_qaction =
+				_list_actions_to_enable_on_positive_tableview_ROW_COUNT.at(i);
+
+		if (0 != current_qaction)
+		{
+			YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(current_qaction,false);
+		}
+	}
+}
+
+
 void YerothWindowsCommons::APPLY_USER_LOCAL_SETTINGS_PARAMETERS()
 {
 	YerothERPWindows *allWindows = YerothUtils::getAllWindows();

@@ -427,6 +427,8 @@ protected slots:
 
 protected:
 
+	void YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED_AUTOMATIC_CONSTRUCTOR_ONLY();
+
 	void APPLY_USER_LOCAL_SETTINGS_PARAMETERS();
 
 	inline virtual void reinitialiser_colones_db_visibles()
@@ -613,8 +615,10 @@ private:
 	}
 
 
-#define MACRO_TO_DEFINE_CURRENT_VIEW_WINDOW_FOR_TABLE_PAGINATION(X) \
-		X->_currentViewWindow = this;
+#define MACRO_TO_DEFINE_CURRENT_VIEW_WINDOW_FOR_TABLE_PAGINATION(X) {		 \
+		YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED_AUTOMATIC_CONSTRUCTOR_ONLY(); \
+		X->_currentViewWindow = this;										 \
+}
 
 
 #define MACRO_TO_DELETE_PAGINATION_INTEGER_VALIDATOR 		\
