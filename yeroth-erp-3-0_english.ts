@@ -1478,27 +1478,27 @@ Press m &apos;Cancel&apos; to exit %2</translation>
         <translation>Site reference (incoming)</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="267"/>
+        <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="268"/>
         <source>L&apos;alerte &apos;%1&apos; est déjà marquée résolue !</source>
         <translation>Alert &apos;%1&apos; has already been set as resolved!</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="266"/>
+        <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="267"/>
         <source>marquer résolue</source>
         <translation>set as resolved</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="293"/>
+        <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="294"/>
         <source>L&apos;alerte &apos;%1&apos; a été marquée résolue !</source>
         <translation>Alert &apos;%1&apos; has been set as resolved!</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="292"/>
+        <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="293"/>
         <source>marquer résolue - succès</source>
         <translation>set alert message as resolved - success</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="301"/>
+        <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="302"/>
         <source>L&apos;alerte &apos;%1&apos; n&apos;a pas pu être marquée résolue !
  Contacter l&apos;administrateur de &apos;%2&apos; !</source>
         <oldsource>&apos; n&apos;a pas pu être marquée résolue!
@@ -1507,7 +1507,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
  Please contact &apos;%2&apos; administrator!</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="300"/>
+        <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="301"/>
         <source>marquer résolue - échec</source>
         <translation>set alert message as resolved - failed</translation>
     </message>
@@ -1517,27 +1517,27 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <translation>alert trigger listing</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="334"/>
+        <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="335"/>
         <source>Poursuivre avec la suppression de l&apos;alerte &apos;%1&apos; ?</source>
         <translation>Continue with deletion of alert &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="359"/>
+        <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="360"/>
         <source>L&apos;alerte &apos;%1&apos; a été supprimée !</source>
         <translation>Alert &apos;%1&apos; has been deleted!</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="368"/>
+        <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="369"/>
         <source>L&apos;alerte &apos;%1&apos; ne pouvait pas être supprimée !</source>
         <translation>Alert &apos;%1&apos; couldn&apos;t be deleted!</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="457"/>
+        <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="458"/>
         <source>terme à rechercher (message d&apos;alerte)</source>
         <translation>keyword to search for (alert trigger message)</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="461"/>
+        <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="462"/>
         <source>%1 (nom d&apos;utilisateur)</source>
         <translation>%1 (user ID)</translation>
     </message>
@@ -1554,7 +1554,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <location filename="src/windows/supplier/yeroth-erp-fournisseur-details-window.cpp" line="106"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseurs-window.cpp" line="441"/>
         <location filename="src/windows/supplier/yeroth-erp-modifier-fournisseur-window.cpp" line="557"/>
-        <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="339"/>
+        <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="340"/>
         <source>suppression</source>
         <oldsource>suppression d&apos;une alerte</oldsource>
         <translation>removal</translation>
@@ -1635,7 +1635,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <location filename="src/windows/stocks/yeroth-erp-mouvements_de_stocks-window.cpp" line="348"/>
         <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="516"/>
         <location filename="src/windows/supplier/yeroth-erp-fournisseurs-window.cpp" line="626"/>
-        <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="459"/>
+        <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="460"/>
         <location filename="src/windows/yeroth-erp-charges-window.cpp" line="318"/>
         <location filename="src/windows/yeroth-erp-comptabilite-window.cpp" line="309"/>
         <location filename="src/windows/yeroth-erp-paiements-window.cpp" line="594"/>
@@ -2046,8 +2046,8 @@ Continue with update of the stock ?</translation>
         <location filename="src/windows/crm/modifier/yeroth-erp-modifier-compte-client-window.cpp" line="497"/>
         <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="469"/>
         <location filename="src/windows/stocks/yeroth-erp-stocks-window.cpp" line="1048"/>
-        <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="363"/>
-        <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="372"/>
+        <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="364"/>
+        <location filename="src/windows/yeroth-erp-alertes-window.cpp" line="373"/>
         <location filename="src/windows/yeroth-erp-charges-window.cpp" line="768"/>
         <source>supprimer</source>
         <translation>remove</translation>
@@ -4383,7 +4383,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     </message>
     <message>
         <location filename="src/admin/yeroth-erp-admin-windows-commons.cpp" line="65"/>
-        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="1004"/>
+        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="1021"/>
         <source>qui suis je ?</source>
         <translation>who am I ?</translation>
     </message>
@@ -4565,7 +4565,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>missing MANDATORY column</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="991"/>
+        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="1008"/>
         <source>%1 - sélectionner les colones visibles (&apos;%2&apos; colones)</source>
         <translation>%1 - select visible columns (&apos;%2&apos; columns)</translation>
     </message>
@@ -5102,14 +5102,14 @@ Please, change the maximum member of this CLIENT LOYALTY group to &apos;%3&apos;
     <message>
         <location filename="src/dialogs/yeroth-erp-IMPRESSION_DE_DOCUMENT-dialog.cpp" line="238"/>
         <location filename="src/dialogs/yeroth-erp-IMPRESSION_DE_DOCUMENT-dialog.cpp" line="335"/>
-        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="799"/>
+        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="816"/>
         <source>IMPRESSION, NUMÉRO DE PAGES</source>
         <translation>PRINTING, PAGE NUMBERING</translation>
     </message>
     <message>
         <location filename="src/dialogs/yeroth-erp-IMPRESSION_DE_DOCUMENT-dialog.cpp" line="239"/>
         <location filename="src/dialogs/yeroth-erp-IMPRESSION_DE_DOCUMENT-dialog.cpp" line="336"/>
-        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="800"/>
+        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="817"/>
         <source>La numéro de la page de départ doit être inférieur au numéro de la page terminale</source>
         <translation>starting page number  must be inferior to ending PAGE NUMBER</translation>
     </message>
