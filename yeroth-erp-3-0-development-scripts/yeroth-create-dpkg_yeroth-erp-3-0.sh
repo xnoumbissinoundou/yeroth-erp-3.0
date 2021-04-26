@@ -29,17 +29,17 @@ do
   case $OPTION in
     s)	yerothpos7VersionFlag=1
 			  yerothpos7VersionVal="$OPTARG"
-       	echo "Creating .deb file, for ${yerothpos7VersionVal} version of Yeroth-erp-3.0"
+       	echo "Creating .deb file, for ${yerothpos7VersionVal} version of Yeroth-erp-3-0"
         ;;
 
     c)	yerothpos7VersionFlag=1
 			  yerothpos7VersionVal="$OPTARG"
-       	echo "Creating .deb file, for ${yerothpos7VersionVal} version of Yeroth-erp-3.0"
+       	echo "Creating .deb file, for ${yerothpos7VersionVal} version of Yeroth-erp-3-0"
         ;;
 
     v)	yerothpos7VersionFlag=1
 			  yerothpos7VersionVal="$OPTARG"
-       	echo "Creating .deb file, for ${yerothpos7VersionVal} version of Yeroth-erp-3.0"
+       	echo "Creating .deb file, for ${yerothpos7VersionVal} version of Yeroth-erp-3-0"
         ;;
     e)	qsqlite3Flag=1
        	echo "Creating evaluation .deb file, using qsqlite3"
@@ -65,7 +65,7 @@ elif [ "$yerothpos7VersionVal" == "standalone" ]; then
 elif [ "$yerothpos7VersionVal" == "academic" ]; then
 	echo "yerothpos7VersionVal: academic"
 else
-	echo "$(basename $0) | please, give a correct Yeroth-erp-3.0 version"
+	echo "$(basename $0) | please, give a correct Yeroth-erp-3-0 version"
 	echo "${USAGE}"	
 	exit 4
 fi
@@ -73,6 +73,8 @@ fi
 set -x
 
 USR_SHARE="/usr/share"
+
+YEROTH_ERP_3_0_USER_LOCAL_SETTINGS_FOLDER=".yeroth_erp_3_0"
 
 YEROTH_ERP_3_0_DEB_FILE_FOLDER="${YEROTH_ERP_3_0_HOME_FOLDER}/$yeroth-erp-3-0-deb-file-repository"
 
@@ -103,7 +105,11 @@ TARGET_INSTALLATION_FOLDER_BIN="${OPT_INSTALLATION_TARGET_DIR}/bin"
 
 mkdir -p "${TARGET_INSTALLATION_FOLDER_BIN}"
 
-TARGET_INSTALLATION_FOLDER_DOC="${TARGET_INSTALLATION_FOLDER}${USR_SHARE}/doc/yeroth-erp-3.0"
+TARGET_INSTALLATION_USER_LOCAL_SETTINGS_FOLDER="${OPT_INSTALLATION_TARGET_DIR}/${YEROTH_ERP_3_0_USER_LOCAL_SETTINGS_FOLDER}"
+
+mkdir -p --mode=777 "${TARGET_INSTALLATION_USER_LOCAL_SETTINGS_FOLDER}"
+
+TARGET_INSTALLATION_FOLDER_DOC="${TARGET_INSTALLATION_FOLDER}${USR_SHARE}/doc/yeroth-erp-3-0"
 
 mkdir -p "${TARGET_INSTALLATION_FOLDER_DOC}"
 
@@ -149,6 +155,8 @@ chmod go+w /opt/${YEROTH_ERP_3_0_BINARY_NAME}/yeroth-erp-3-0.log"
 ${ECHO} -e "${YEROTH_ERP_3_0_POSTINST_STR}$(cat ${TARGET_INSTALLATION_FOLDER}/DEBIAN/postinst)" > ${TARGET_INSTALLATION_FOLDER}/DEBIAN/postinst
 
 chmod 755 ${TARGET_INSTALLATION_FOLDER}/DEBIAN/postinst
+
+mount -t tmpfs -o size=1G yerotherpthreedotzero_ramdisk "/opt/${YEROTH_ERP_3_0_BINARY_NAME}/${YEROTH_ERP_3_0_USER_LOCAL_SETTINGS_FOLDER}"
 
 ${ECHO} "*** YEROTH *** ${YEROTH_ERP_3_0_BINARY_FILE_PATH}"
 

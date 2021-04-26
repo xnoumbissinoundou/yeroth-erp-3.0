@@ -605,9 +605,6 @@ void read_yeroth_configuration(YerothLogger &logger, YerothERPWindows &allWindow
     }
 
 
-    YerothUtils::YEROTH_CREATE_FOLDER(YerothERPConfig::YEROTH_ERP_3_0_USER_LOCAL_SETTINGS_FOLDER);
-
-
     logger.log("[main] read_yeroth_configuration",
                QString("Folder for backup: %1")
 			   	   .arg(YerothERPConfig::fullpathToBACKUP_YEROTH_ERP_3_DIRECTORY));
@@ -641,13 +638,16 @@ int main(int argc, char *argv[])
 
     YerothERPConfig::YEROTH_ERP_3_0_SYSTEM_DAEMON_HOME_FOLDER = QString(std::getenv("YEROTH_ERP_3_0_SYSTEM_DAEMON_HOME_FOLDER")).trimmed();
 
+    YerothERPConfig::YEROTH_ERP_3_0_HOME_FOLDER = QString(std::getenv("YEROTH_ERP_3_0_HOME_FOLDER")).trimmed();
 
     YerothERPConfig::YEROTH_ERP_3_0_USER_LOCAL_SETTINGS_FOLDER =
     		QString("%1/.yeroth_erp_3_0")
-				.arg(QString(std::getenv("HOME")).trimmed());
+				.arg(YerothERPConfig::YEROTH_ERP_3_0_HOME_FOLDER);
 
 
-    YerothERPConfig::YEROTH_ERP_3_0_HOME_FOLDER = QString(std::getenv("YEROTH_ERP_3_0_HOME_FOLDER")).trimmed();
+//    QDEBUG_STRING_OUTPUT_2("YerothERPConfig::YEROTH_ERP_3_0_USER_LOCAL_SETTINGS_FOLDER",
+//    			YerothERPConfig::YEROTH_ERP_3_0_USER_LOCAL_SETTINGS_FOLDER);
+
 
     YerothERPConfig::FILE_ABSOLUTEPATH_YEROTH_ERP_3_0_SYSTEM_LOCAL_CONFIGURATION_PROPERTIES
 		=	QString("%1/%2")
