@@ -628,6 +628,10 @@ void YerothTableViewPRINT_UTILITIES_TEX_TABLE::
     			{
             		itemText.prepend("\\textcolor{yerothColorGreen}{").append("}");
     			}
+            	else if (YerothUtils::YEROTH_BLUE_COLOR == item->foreground().color())
+    			{
+            		itemText.prepend("\\textcolor{yerothColorBlue}{").append("}");
+    			}
             	else if (YerothUtils::YEROTH_RED_COLOR == item->foreground().color())
     			{
             		itemText.prepend("\\textcolor{yerothColorRed}{").append("}");

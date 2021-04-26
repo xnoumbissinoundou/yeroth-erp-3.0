@@ -206,6 +206,8 @@ void YerothERPProgrammesDeFideliteClientsWindow::setupLineEdits()
 {
 	lineEdit_programmes_de_fidelite_clients_terme_recherche->setFocus();
 
+	_QLINEEDIT_nombre_de_lignes_par_page = lineEdit_programmes_de_fidelite_clients_nombre_de_lignes_par_page;
+
 	lineEdit_programmes_de_fidelite_clients_terme_recherche->
 		enableForSearch(QObject::trUtf8("terme à rechercher (désignation du programme fidélité de clients)"));
 

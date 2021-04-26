@@ -589,6 +589,8 @@ void YerothPaiementsWindow::updateComboBoxes()
 
 void YerothPaiementsWindow::setupLineEdits()
 {
+	_QLINEEDIT_nombre_de_lignes_par_page = lineEdit_paiements_nombre_de_lignes_par_page;
+
     lineEdit_paiements_terme_recherche->enableForSearch(QObject::trUtf8("terme à rechercher (notes)"));
 
     lineEdit_nom_element_string_db->enableForSearch(QObject::trUtf8("valeur à rechercher"));

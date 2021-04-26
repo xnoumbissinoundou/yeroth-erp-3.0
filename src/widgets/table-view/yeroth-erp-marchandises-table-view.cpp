@@ -240,12 +240,16 @@ void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTab
     			 */
     			if (querySize <= 0)
     			{
-    				anItem->setForeground(YerothUtils::YEROTH_RED_COLOR);
+    				anItem->setForeground(YerothUtils::YEROTH_WHITE_COLOR_FOR_EMPTY_MERCHANDISE_FILTERING);
 
     				anItem->setAccessibleText(QString("%1|%2|%3")
     						.arg(nom_departement_produit_str,
     								categorie_str,
 									designation_str));
+    			}
+    			else
+    			{
+    				anItem->setForeground(YerothUtils::YEROTH_BLUE_COLOR);
     			}
     		} //if (0 != item)
     	}

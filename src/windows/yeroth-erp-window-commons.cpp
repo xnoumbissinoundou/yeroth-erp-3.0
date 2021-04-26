@@ -216,13 +216,20 @@ void YerothWindowsCommons::APPLY_USER_LOCAL_SETTINGS_PARAMETERS()
 
 		if (0 != aUser)
 		{
+			allWindows->_impressionDeDocumentDialog->_current_window_to_print = this;
+
 			aUser->read_user_personal_PRINTING_PARAMETER_settings(this);
 
 			QString yeroth_qt_THIS_object_name = YEROTH_QT_OBJECT_NAME(this);
 
 			QString pageFrom_STRING = aUser->get_PRINTING_PARAMETER_VALUE_page_from(yeroth_qt_THIS_object_name);
+
 			QString pageTo_STRING = aUser->get_PRINTING_PARAMETER_VALUE_page_to(yeroth_qt_THIS_object_name);
-			QString pageTableRowCount_STRING = aUser->get_PRINTING_PARAMETER_VALUE_table_row_count(yeroth_qt_THIS_object_name);
+
+			QString pageTablePrintRowCount_STRING = aUser->get_PRINTING_PARAMETER_VALUE_print_table_row_count(yeroth_qt_THIS_object_name);
+
+			QString pageTableRowCount_STRING = aUser->get_PRINTING_PARAMETER_VALUE_USERSQL_table_row_count(yeroth_qt_THIS_object_name);
+
 			QString pagePagePrinting_STRING = aUser->get_PRINTING_PARAMETER_VALUE_printing_position(yeroth_qt_THIS_object_name);
 
 			if (!pageFrom_STRING.isEmpty())
@@ -237,7 +244,17 @@ void YerothWindowsCommons::APPLY_USER_LOCAL_SETTINGS_PARAMETERS()
 
 			if (!pageTableRowCount_STRING.isEmpty())
 			{
-				_print_table_row_count = pageTableRowCount_STRING.toUInt();
+				_USERSQL_table_row_count = pageTableRowCount_STRING.toUInt();
+
+				if (0 != _QLINEEDIT_nombre_de_lignes_par_page)
+				{
+					_QLINEEDIT_nombre_de_lignes_par_page->setText(pageTableRowCount_STRING);
+				}
+			}
+
+			if (!pageTablePrintRowCount_STRING.isEmpty())
+			{
+				_print_table_row_count = pageTablePrintRowCount_STRING.toUInt();
 			}
 
 			if (!pagePagePrinting_STRING.isEmpty())

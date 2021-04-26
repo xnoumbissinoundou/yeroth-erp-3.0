@@ -60,7 +60,7 @@ RESULT_PRINTING_PARAMETER YerothERPUserSettings::lire_les_parametres_locaux(cons
 	QString a_current_window_object_name = YEROTH_QT_OBJECT_NAME(a_current_window_to_print_table);
 
 	if (_window_printing_parameter_key__TO__its_value.contains(
-			GET_WINDOWS_TABLE_ROW_COUNT_KEY_TO_STORE(a_current_window_object_name)))
+			GET_WINDOWS_PRINT_TABLE_ROW_COUNT_KEY_TO_STORE(a_current_window_object_name)))
 	{
 		return READ_PRINTING_PARAMETER_SUCCESSFUL;
 	}
@@ -135,6 +135,22 @@ bool YerothERPUserSettings::enregistrer_les_parametres_locaux(const QString &use
 
 			if (0 != a_current_window_to_print_table)
 			{
+				YerothLineEdit *a_yeroth_line_edit_nombre_de_pages =
+						a_current_window_to_print_table->get_QLINEEDIT_nombre_de_lignes_par_page();
+
+				int a_user_sql_table_row_count =
+						a_current_window_to_print_table->get_PRINTING_PARAMETER_USERSQL_table_row_count();
+
+				QString aUserSQLTableRowCount_STRING = QString::number(a_user_sql_table_row_count);
+
+				if (0 != a_yeroth_line_edit_nombre_de_pages)
+				{
+					aUserSQLTableRowCount_STRING = a_yeroth_line_edit_nombre_de_pages->text();
+
+					a_current_window_to_print_table->
+						set_PRINTING_PARAMETER_USERSQL_table_row_count(a_user_sql_table_row_count);
+				}
+
 				QString a_current_window_object_name =
 						YEROTH_QT_OBJECT_NAME(a_current_window_to_print_table);
 
@@ -147,12 +163,16 @@ bool YerothERPUserSettings::enregistrer_les_parametres_locaux(const QString &use
 				QString aPrintingPosition_STRING =
 						a_current_window_to_print_table->get_PRINTING_PARAMETER_printing_position();
 
-				QString aTableRowCount_STRING =
+				QString aPrintTableRowCount_STRING =
 						QString::number(a_current_window_to_print_table->get_PRINTING_PARAMETER_print_table_row_count());
 
 				_window_printing_parameter_key__TO__its_value.insert(
-						GET_WINDOWS_TABLE_ROW_COUNT_KEY_TO_STORE(a_current_window_object_name),
-						aTableRowCount_STRING);
+						GET_WINDOWS_USERSQL_TABLE_ROW_COUNT_KEY_TO_STORE(a_current_window_object_name),
+						aUserSQLTableRowCount_STRING);
+
+				_window_printing_parameter_key__TO__its_value.insert(
+						GET_WINDOWS_PRINT_TABLE_ROW_COUNT_KEY_TO_STORE(a_current_window_object_name),
+						aPrintTableRowCount_STRING);
 
 				_window_printing_parameter_key__TO__its_value.insert(
 						GET_WINDOWS_A4_PRINTING_POSITION_KEY_TO_STORE(a_current_window_object_name),
@@ -168,18 +188,7 @@ bool YerothERPUserSettings::enregistrer_les_parametres_locaux(const QString &use
 			}
 			else //in user settings file initialization
 			{
-				textStream
-				<< QString("local_parameter_table_row_count=%2\n")
-					.arg(QString::number(_print_table_row_count))
-
-				<< QString("local_parameter_printing_position=%2\n")
-					.arg(_a4paper_printing_position)
-
-				<< QString("local_parameter_page_from=%2\n")
-					.arg(QString::number(_page_from))
-
-				<< QString("local_parameter_page_to=%2\n")
-					.arg(QString::number(_page_to));
+				textStream << QString("");
 			}
 		}
 

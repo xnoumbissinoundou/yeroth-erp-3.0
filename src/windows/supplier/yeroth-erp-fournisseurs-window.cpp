@@ -621,6 +621,8 @@ void YerothERPFournisseursWindow::populateFournisseursComboBoxes()
 
 void YerothERPFournisseursWindow::setupLineEdits()
 {
+	_QLINEEDIT_nombre_de_lignes_par_page = lineEdit_fournisseurs_nombre_de_lignes_par_page;
+
 	lineEdit_fournisseurs_terme_recherche->enableForSearch(QObject::trUtf8("terme à rechercher (émail, réprésentant, description de l'entreprise fournisseure)"));
 
 	lineEdit_nom_element_string_db->enableForSearch(QObject::trUtf8("valeur à rechercher"));

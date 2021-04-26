@@ -1286,6 +1286,8 @@ void YerothVentesWindow::setupLineEdits()
 {
     _logger->log("setupLineEdits");
 
+    _QLINEEDIT_nombre_de_lignes_par_page = lineEdit_nombre_de_lignes_par_page;
+
     lineEdit_ventes_terme_recherche->enableForSearch(
     		QObject::trUtf8("terme à rechercher (référence, fournisseur)"));
 

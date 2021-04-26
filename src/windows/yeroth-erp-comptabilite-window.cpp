@@ -304,6 +304,8 @@ void YerothComptabiliteWindow::refineYerothLineEdits()
 
 void YerothComptabiliteWindow::setupLineEdits()
 {
+	_QLINEEDIT_nombre_de_lignes_par_page = lineEdit_comptabilite_nombre_de_lignes_par_page;
+
 	lineEdit_comptabilite_terme_recherche->enableForSearch(QObject::trUtf8("terme à rechercher (description du compte bancaire)"));
 
     lineEdit_nom_element_string_db->enableForSearch(QObject::trUtf8("valeur à rechercher"));

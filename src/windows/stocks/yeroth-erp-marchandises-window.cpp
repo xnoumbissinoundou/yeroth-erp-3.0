@@ -519,7 +519,7 @@ bool YerothMarchandisesWindow::slot_filter_empty_product_stock()
 
 		if (0 != anItem)
 		{
-			if (YerothUtils::YEROTH_RED_COLOR == anItem->foreground().color())
+			if (YerothUtils::YEROTH_WHITE_COLOR_FOR_EMPTY_MERCHANDISE_FILTERING == anItem->foreground().color())
 			{
 				data = anItem->accessibleText();
 
@@ -742,6 +742,8 @@ void YerothMarchandisesWindow::populateMarchandisesComboBoxes()
 
 void YerothMarchandisesWindow::setupLineEdits()
 {
+	_QLINEEDIT_nombre_de_lignes_par_page = lineEdit_marchandises_nombre_de_lignes_par_page;
+
 	lineEdit_marchandises_terme_recherche->enableForSearch(QObject::trUtf8("terme à rechercher (description de l'article (ou service))"));
 
 	lineEdit_nom_element_string_db->enableForSearch(QObject::trUtf8("valeur à rechercher"));

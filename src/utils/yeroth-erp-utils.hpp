@@ -775,6 +775,8 @@ public:
 	static const QString STRING_SUNDAY;
 
 
+	static const QColor YEROTH_WHITE_COLOR_FOR_EMPTY_MERCHANDISE_FILTERING;
+
 	static const QColor YEROTH_WHITE_COLOR;
 
 	static const QColor YEROTH_BLACK_COLOR;

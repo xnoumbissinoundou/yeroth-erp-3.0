@@ -35,7 +35,8 @@ public:
 	YEROTH_CLASS_OPERATORS
 
 	inline YerothERPUserSettings()
-	:_page_from(-1),
+	:_USERSQL_TABLE_ROW_COUNT(59),
+	 _page_from(-1),
 	 _page_to(-1),
 	 _print_table_row_count(YerothTableViewPRINT_UTILITIES_TEX_TABLE::_STANDARD_INITIAL_MAX_TABLE_ROW_COUNT_A4LANDSCAPE),
 	 _a4paper_printing_position(YerothTableViewPRINT_UTILITIES_TEX_TABLE::_A4PAGE_LANDSCAPE_SPECIFICATION)
@@ -73,9 +74,16 @@ public:
 						.arg(a_window_object_name));
 	}
 
-	inline QString GET_WINDOWS_TABLE_ROW_COUNT_KEY_TO_STORE(const QString &a_window_object_name)
+	inline QString GET_WINDOWS_USERSQL_TABLE_ROW_COUNT_KEY_TO_STORE(const QString &a_window_object_name)
 	{
-		return QString("%1_table_row_count")
+		return QString("%1_usersql_table_row_count")
+				.arg(QString("local_parameter_%1")
+						.arg(a_window_object_name));
+	}
+
+	inline QString GET_WINDOWS_PRINT_TABLE_ROW_COUNT_KEY_TO_STORE(const QString &a_window_object_name)
+	{
+		return QString("%1_print_table_row_count")
 				.arg(QString("local_parameter_%1")
 						.arg(a_window_object_name));
 	}
@@ -107,6 +115,8 @@ protected:
 
 	// local user settings
 	// PDF PRINTING PARAMETERS
+	uint					_USERSQL_TABLE_ROW_COUNT;
+
     int						_page_from;
     int 					_page_to;
     uint					_print_table_row_count;

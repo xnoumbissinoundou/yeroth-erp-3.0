@@ -454,6 +454,8 @@ void YerothAlertesWindow::populateComboBoxes()
 
 void YerothAlertesWindow::setupLineEdits()
 {
+	_QLINEEDIT_nombre_de_lignes_par_page = lineEdit_alertes_nombre_de_lignes_par_page;
+
     lineEdit_alertes_terme_recherche->enableForSearch(
     		QObject::trUtf8("terme à rechercher (message d'alerte)"));
 

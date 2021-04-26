@@ -511,6 +511,8 @@ void YerothStocksWindow::populateComboBoxes()
 
 void YerothStocksWindow::setupLineEdits()
 {
+	_QLINEEDIT_nombre_de_lignes_par_page = lineEdit_stocks_nombre_de_lignes_par_page;
+
     lineEdit_stock_terme_recherche->enableForSearch(QObject::trUtf8("terme à rechercher (description de l'article (ou service))"));
 
     lineEdit_nom_element_string_db->enableForSearch(QObject::trUtf8("valeur à rechercher"));

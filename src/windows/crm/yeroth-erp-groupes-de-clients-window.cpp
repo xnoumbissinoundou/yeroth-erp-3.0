@@ -216,6 +216,8 @@ void YerothGroupesDeClientsWindow::setupLineEdits()
 {
 	lineEdit_groupes_de_clients_terme_recherche->setFocus();
 
+	_QLINEEDIT_nombre_de_lignes_par_page = lineEdit_groupes_de_clients_nombre_de_lignes_par_page;
+
 	lineEdit_groupes_de_clients_terme_recherche->
 		enableForSearch(QObject::trUtf8("terme à rechercher (nom du client)"));
 

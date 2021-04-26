@@ -130,6 +130,8 @@ void YerothTableViewWITHpagination::displayYerothTableViewPageContentRowLimit(Ye
 		{
 			if (_yerothTableViewCurPageNumber != _yerothTableViewLastPageNumber)
 			{
+				_yerothTableViewCurPageNumber = (0 == _yerothTableViewCurPageNumber) ? 1 : _yerothTableViewCurPageNumber;
+
 				_currentViewWindow->setYerothTableViewCurrentPageNumberText(QString::number(_yerothTableViewCurPageNumber));
 			}
 			else
@@ -159,6 +161,16 @@ void YerothTableViewWITHpagination::queryYerothTableViewCurrentPageContentRow(Ye
 
 void YerothTableViewWITHpagination::slot_set_page_view_row_count(const QString &pageTableViewRowCountText)
 {
+	if (0 != _allWindows)
+	{
+		YerothPOSUser *anERPUser = _allWindows->getUser();
+
+		if (0 != anERPUser)
+		{
+			anERPUser->save_user_personal_PRINTING_PARAMETER_settings();
+		}
+	}
+
 	if (pageTableViewRowCountText.isEmpty())
 	{
 		setYerothTableViewPageRowCount(1);

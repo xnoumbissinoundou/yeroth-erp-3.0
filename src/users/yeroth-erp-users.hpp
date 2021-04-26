@@ -249,9 +249,15 @@ public:
 				YerothUtils::EMPTY_STRING;
 	}
 
-	inline QString GET_WINDOWS_TABLE_ROW_COUNT_KEY_TO_STORE(const QString &a_window_object_name)
+	inline QString GET_WINDOWS_USERSQL_TABLE_ROW_COUNT_KEY_TO_STORE(const QString &a_window_object_name)
 	{
-		return (0 !=_user_personal_settings) ? _user_personal_settings->GET_WINDOWS_TABLE_ROW_COUNT_KEY_TO_STORE(a_window_object_name) :
+		return (0 !=_user_personal_settings) ? _user_personal_settings->GET_WINDOWS_USERSQL_TABLE_ROW_COUNT_KEY_TO_STORE(a_window_object_name) :
+				YerothUtils::EMPTY_STRING;
+	}
+
+	inline QString GET_WINDOWS_PRINT_TABLE_ROW_COUNT_KEY_TO_STORE(const QString &a_window_object_name)
+	{
+		return (0 !=_user_personal_settings) ? _user_personal_settings->GET_WINDOWS_PRINT_TABLE_ROW_COUNT_KEY_TO_STORE(a_window_object_name) :
 				YerothUtils::EMPTY_STRING;
 	}
 
@@ -285,11 +291,19 @@ public:
 				YerothUtils::EMPTY_STRING ;
 	}
 
-	inline QString get_PRINTING_PARAMETER_VALUE_table_row_count(const QString &a_window_object_name)
+	inline QString get_PRINTING_PARAMETER_VALUE_USERSQL_table_row_count(const QString &a_window_object_name)
 	{
 		return (0 !=_user_personal_settings) ?
 				_user_personal_settings->GET_PRINTING_PARAMETER_VALUE_FROM_KEY(
-						GET_WINDOWS_TABLE_ROW_COUNT_KEY_TO_STORE(a_window_object_name)) :
+						GET_WINDOWS_USERSQL_TABLE_ROW_COUNT_KEY_TO_STORE(a_window_object_name)) :
+				YerothUtils::EMPTY_STRING ;
+	}
+
+	inline QString get_PRINTING_PARAMETER_VALUE_print_table_row_count(const QString &a_window_object_name)
+	{
+		return (0 !=_user_personal_settings) ?
+				_user_personal_settings->GET_PRINTING_PARAMETER_VALUE_FROM_KEY(
+						GET_WINDOWS_PRINT_TABLE_ROW_COUNT_KEY_TO_STORE(a_window_object_name)) :
 				YerothUtils::EMPTY_STRING ;
 	}
 

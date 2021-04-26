@@ -54,7 +54,9 @@ public:
 	 _yerothTableView_FROM_WINDOWS_COMMONS(0),
 	 _page_from(-1),
 	 _page_to(-1),
+	 _USERSQL_table_row_count(59),
 	 _print_table_row_count(20),
+	 _QLINEEDIT_nombre_de_lignes_par_page(0),
 	 _a4paper_printing_position(QString("a4paper,landscape")),
 	 _first_time_imprimer_pdf_document_call(true),
 	 QMESSAGE_BOX_STYLE_SHEET(QString("QMessageBox {background-color: rgb(%1);}")
@@ -194,6 +196,11 @@ public:
 		return (getLastListerSelectedRow__ID().isEmpty()) ? -1 : getLastListerSelectedRow__ID().toInt();
 	}
 
+	inline YerothLineEdit *get_QLINEEDIT_nombre_de_lignes_par_page()
+	{
+		return _QLINEEDIT_nombre_de_lignes_par_page;
+	}
+
     inline void set_PRINTING_PARAMETER_printing_position(const QString &an_a4_printing_position)
     {
     	_a4paper_printing_position = an_a4_printing_position;
@@ -202,6 +209,16 @@ public:
     inline QString get_PRINTING_PARAMETER_printing_position()
     {
     	return _a4paper_printing_position;
+    }
+
+    inline uint get_PRINTING_PARAMETER_USERSQL_table_row_count()
+    {
+    	return _USERSQL_table_row_count;
+    }
+
+    inline void set_PRINTING_PARAMETER_USERSQL_table_row_count(uint a_USERSQLt_table_row_count)
+    {
+    	_USERSQL_table_row_count = a_USERSQLt_table_row_count;
     }
 
     inline uint get_PRINTING_PARAMETER_print_table_row_count()
@@ -553,9 +570,12 @@ protected:
     //PRINTING SETUP PARAMETERS FOR EACH WINDOW.
     int		_page_from;
     int 	_page_to;
+    uint	_USERSQL_table_row_count;
     uint	_print_table_row_count;
 
     QString	_a4paper_printing_position;
+
+    YerothLineEdit *_QLINEEDIT_nombre_de_lignes_par_page;
 
 
 private:
@@ -642,7 +662,7 @@ private:
 			X->setText(QString::number(Y->getYerothTableViewPageRowCount())); 	\
 																				\
 			connect(X,															\
-					SIGNAL(textEdited(const QString &)),	  					\
+					SIGNAL(textChanged(const QString &)),	  					\
 					Y,						  									\
 					SLOT(slot_set_page_view_row_count(const QString &))); 		\
 	}
