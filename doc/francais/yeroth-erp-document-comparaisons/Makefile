@@ -8,6 +8,7 @@ yeroth-erp-3-0-document-comparaisons.pdf: clean yeroth-erp-3-0-document-comparai
 	pdfjoin yeroth-erp-3-0-document-comparaisons-1.pdf \
 		yeroth-erp-3-0-document-comparaisons-3.pdf \
 		--outfile yeroth-erp-3-0-document-comparaisons.pdf&
+	chmod go+r yeroth-erp-3-0-document-comparaisons.pdf
 	evince yeroth-erp-3-0-document-comparaisons.pdf&
 
 clean:
