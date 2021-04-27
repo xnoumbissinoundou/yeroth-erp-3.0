@@ -56,7 +56,7 @@ YerothGroupesDeClientsWindow::YerothGroupesDeClientsWindow()
 :YerothWindowsCommons("yeroth-erp-liste-groupes-de-clients"),
  YerothAbstractClassYerothSearchWindow(YerothDatabase::GROUPES_DE_CLIENTS),
  _logger(new YerothLogger("YerothGroupesDeClientsWindow")),
- _pushButton_groupes_de_clients_filtrer_font(0),
+ _pushButton_filtrer_font(0),
  _curClientGroupTableModel(0)
 {
     _windowName = QString("%1 - %2")
@@ -116,7 +116,7 @@ YerothGroupesDeClientsWindow::YerothGroupesDeClientsWindow()
 
     setupDateTimeEdits();
 
-    _pushButton_groupes_de_clients_filtrer_font = new QFont(pushButton_groupes_de_clients_filtrer->font());
+    _pushButton_filtrer_font = new QFont(pushButton_filtrer->font());
 
     tableView_groupes_de_clients->setSqlTableName(&YerothDatabase::GROUPES_DE_CLIENTS);
 
@@ -132,12 +132,14 @@ YerothGroupesDeClientsWindow::YerothGroupesDeClientsWindow()
 
     MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS
 
-    pushButton_groupes_de_clients_filtrer->disable(this);
+    pushButton_filtrer->disable(this);
     pushButton_creer_groupe->disable(this);
     pushButton_afficher->disable(this);
     pushButton_menu_clients->disable(this);
     pushButton_programmes_de_fidelite_clients->disable(this);
     pushButton_reinitialiser->disable(this);
+    pushButton_filtrer->disable(this);
+    pushButton_reinitialiser_filtre->disable(this);
 
     //Menu actions
     connect(actionChanger_utilisateur, SIGNAL(triggered()), this, SLOT(changer_utilisateur()));
@@ -196,6 +198,88 @@ void YerothGroupesDeClientsWindow::slot_reinitialiser_colones_db_visibles()
 
 void YerothGroupesDeClientsWindow::textChangedSearchLineEditsQCompleters()
 {
+	lineEdit_resultat_filtre->clear();
+
+    setCurrentlyFiltered(false);
+
+    clearSearchFilter();
+
+    QString searchTerm(lineEdit_groupes_de_clients_terme_recherche->text());
+
+    if (!searchTerm.isEmpty())
+    {
+        QStringList searchTermList = searchTerm.split(QRegExp("\\s+"));
+
+        QString partSearchTerm;
+
+        int lastIdx = searchTermList.size() - 1;
+
+        for (int k = 0; k < searchTermList.size(); ++k)
+        {
+        	partSearchTerm = searchTermList.at(k);
+        	//qDebug() << "++ searchTermList: " << partSearchTerm;
+
+        	_searchFilter.append(QString("(%1)")
+        							.arg(GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::DESCRIPTION_GROUPE, partSearchTerm)));
+
+        	if (k != lastIdx)
+        	{
+        		_searchFilter.append(" AND ");
+        	}
+        }
+    }
+
+
+    YerothWindowsCommons::setYerothLineEditQCompleterSearchFilter(_searchFilter);
+
+
+    YerothLineEdit *aYerothLineEdit = 0;
+
+    QString correspondingDBFieldKeyValue;
+
+    QString aTableColumnFieldContentForANDSearch;
+
+    QMapIterator <YerothLineEdit **, QString> it(_lineEditsToANDContentForSearch);
+
+    while (it.hasNext())
+    {
+    	it.next();
+
+    	aYerothLineEdit = *it.key();
+
+    	correspondingDBFieldKeyValue = it.value();
+
+    	if (0 != aYerothLineEdit)
+    	{
+    		aTableColumnFieldContentForANDSearch = aYerothLineEdit->text();
+
+    		if (!correspondingDBFieldKeyValue.isEmpty() &&
+    				!aTableColumnFieldContentForANDSearch.isEmpty()	)
+    		{
+    			if (!_searchFilter.isEmpty())
+    			{
+    				_searchFilter.append(" AND ");
+    			}
+
+    			_searchFilter.append(GENERATE_SQL_IS_STMT(correspondingDBFieldKeyValue,
+    					aTableColumnFieldContentForANDSearch));
+    		}
+    	}
+    }
+
+    _yerothSqlTableModel->yerothSetFilter_WITH_where_clause(_searchFilter);
+
+    if (_yerothSqlTableModel->select())
+    {
+    	afficher_groupes_de_clients(*_yerothSqlTableModel);
+    }
+    else
+    {
+        qDebug() << QString("++ YerothGroupesDeClientsWindow::textChangedSearchLineEditsQCompleters(): %1")
+        				.arg(_yerothSqlTableModel->lastError().text());
+    }
+
+    handle_some_actions_tools_enabled();
 }
 
 
@@ -209,6 +293,53 @@ void YerothGroupesDeClientsWindow::clear_all_fields()
 
 void YerothGroupesDeClientsWindow::populateComboBoxes()
 {
+    _logger->log("populateClientsComboBoxes");
+
+	QStringList aQStringList;
+
+	aQStringList.append(_varchar_dbtable_column_name_list.values());
+
+	aQStringList.removeAll(YerothDatabaseTableColumn::DATE_CREATION);
+	aQStringList.removeAll(YerothDatabaseTableColumn::DESCRIPTION_GROUPE);
+	aQStringList.removeAll(YerothDatabaseTableColumn::MAXIMUM_DE_MEMBRES);
+	aQStringList.removeAll(YerothDatabaseTableColumn::MEMBRES_DU_GROUPE_db_ID);
+
+//	qDebug() << "++ test: " << aQStringList;
+
+	QString aDBColumnElementString;
+
+	for (int k = 0; k < aQStringList.size(); ++k)
+	{
+		aDBColumnElementString = aQStringList.at(k);
+
+		if (!YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::NOM_ENTREPRISE, aDBColumnElementString))
+		{
+			comboBox_element_string_db
+				->addItem(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(aDBColumnElementString));
+		}
+	}
+
+	comboBox_element_string_db->setCurrentIndex(0);
+
+	aQStringList.clear();
+
+	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::MAXIMUM_DE_MEMBRES));
+
+    comboBox_element->addItems(aQStringList);
+
+	aQStringList.clear();
+
+	aQStringList.append(">=");
+
+	aQStringList.append("<=");
+
+	aQStringList.append(">");
+
+	aQStringList.append("<");
+
+	aQStringList.append("=");
+
+    comboBox_condition->addItems(aQStringList);
 }
 
 
@@ -219,7 +350,7 @@ void YerothGroupesDeClientsWindow::setupLineEdits()
 	_QLINEEDIT_nombre_de_lignes_par_page = lineEdit_groupes_de_clients_nombre_de_lignes_par_page;
 
 	lineEdit_groupes_de_clients_terme_recherche->
-		enableForSearch(QObject::trUtf8("terme à rechercher (nom du client)"));
+		enableForSearch(QObject::trUtf8("terme à rechercher (description du groupe de clients)"));
 
 
 	lineEdit_nombre_de_groupes->setYerothEnabled(false);
@@ -584,12 +715,15 @@ void YerothGroupesDeClientsWindow::definirManager()
     MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(this, _curClientGroupTableModel)
 
 
-    pushButton_groupes_de_clients_filtrer->enable(this, SLOT(filtrer_groupes_de_clients()));
+    pushButton_filtrer->enable(this, SLOT(filtrer_groupes_de_clients()));
     pushButton_programmes_de_fidelite_clients->enable(this, SLOT(programmes_de_fidelite_clients()));
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_menu_clients->enable(this, SLOT(clients()));
     pushButton_creer_groupe->enable(this, SLOT(creerUnGroupeDeClients()));
+
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
+    pushButton_filtrer->enable(this, SLOT(filtrer()));
+    pushButton_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
 }
 
 
@@ -611,12 +745,15 @@ void YerothGroupesDeClientsWindow::definirPasDeRole()
 
 	tableView_groupes_de_clients->setVisible(false);
 
-    pushButton_groupes_de_clients_filtrer->disable(this);
+    pushButton_filtrer->disable(this);
     pushButton_programmes_de_fidelite_clients->disable(this);
     pushButton_afficher->disable(this);
     pushButton_menu_clients->disable(this);
     pushButton_creer_groupe->disable(this);
+
     pushButton_reinitialiser->disable(this);
+    pushButton_filtrer->disable(this);
+    pushButton_reinitialiser_filtre->disable(this);
 }
 
 
@@ -656,9 +793,63 @@ void YerothGroupesDeClientsWindow::refineYerothLineEdits()
 }
 
 
+bool YerothGroupesDeClientsWindow::filtrer()
+{
+	QString groupes_de_clients_TableColumnValue(lineEdit_resultat_filtre->text());
+
+	if (groupes_de_clients_TableColumnValue.isEmpty())
+	{
+		QString msg(QObject::trUtf8("Veuillez saisir une valeur numérique pour la recherche."));
+
+		YerothQMessageBox::information(this,
+									  QObject::trUtf8("filtrer"),
+									  msg);
+		return false;
+	}
+
+	QString groupes_de_clients_TableColumnProperty(comboBox_element->currentText());
+
+	QString mathOperator(comboBox_condition->currentText());
+
+	QString filterString;
+
+	QString REAL_DB_ID_NAME_groupes_de_clients_TableColumnProperty(
+			YerothDatabaseTableColumn::_tableColumnToUserViewString.key(groupes_de_clients_TableColumnProperty));
+
+	filterString.append(QString("%2 %3 '%4'")
+							.arg(REAL_DB_ID_NAME_groupes_de_clients_TableColumnProperty,
+								 mathOperator,
+								 groupes_de_clients_TableColumnValue));
+
+	//qDebug() << QString("filterString: %1")
+	//				.arg(filterString);
+
+	_curClientGroupTableModel->yerothSetFilter_WITH_where_clause(filterString);
+
+	int resultRows = _curClientGroupTableModel->easySelect();
+
+	if (resultRows >= 0)
+	{
+		setCurrentlyFiltered(true);
+
+		afficher_groupes_de_clients(*_curClientGroupTableModel);
+
+		YEROTH_QMESSAGE_BOX_QUELQUE_RESULTAT_FILTRE(this, resultRows, "clients - filtrer");
+
+		return true;
+	}
+	else
+	{
+		YEROTH_QMESSAGE_BOX_AUCUN_RESULTAT_FILTRE(this, "clients - filtrer");
+	}
+
+	return false;
+}
+
+
 void YerothGroupesDeClientsWindow::reinitialiser_elements_filtrage()
 {
-    lineEdit_groupes_de_clients_resultat->clear();
+	lineEdit_resultat_filtre->clear();
 
     setCurrentlyFiltered(false);
 
@@ -668,6 +859,15 @@ void YerothGroupesDeClientsWindow::reinitialiser_elements_filtrage()
 
 void YerothGroupesDeClientsWindow::reinitialiser_recherche()
 {
+	lineEdit_nom_element_string_db->clear();
+
+    lineEdit_resultat_filtre->clear();
+
+    setCurrentlyFiltered(false);
+
+    resetLineEditsQCompleters((QObject *)this);
+
+    afficher_groupes_de_clients();
 }
 
 
@@ -675,14 +875,14 @@ void YerothGroupesDeClientsWindow::set_filtrer_font()
 {
     if (isCurrentlyFiltered())
     {
-    	_pushButton_groupes_de_clients_filtrer_font->setUnderline(true);
+    	_pushButton_filtrer_font->setUnderline(true);
     }
     else
     {
-    	_pushButton_groupes_de_clients_filtrer_font->setUnderline(false);
+    	_pushButton_filtrer_font->setUnderline(false);
     }
 
-    pushButton_groupes_de_clients_filtrer->setFont(*_pushButton_groupes_de_clients_filtrer_font);
+    pushButton_filtrer->setFont(*_pushButton_filtrer_font);
 }
 
 

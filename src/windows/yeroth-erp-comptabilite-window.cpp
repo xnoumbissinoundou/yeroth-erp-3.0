@@ -310,7 +310,7 @@ void YerothComptabiliteWindow::setupLineEdits()
 
     lineEdit_nom_element_string_db->enableForSearch(QObject::trUtf8("valeur à rechercher"));
 
-    lineEdit_comptabilite_element_resultat->setValidator(&YerothUtils::DoubleValidator);
+    lineEdit_comptabilite_element_resultat->setValidator(&YerothUtils::POSITIVE_DoubleValidator);
 
     lineEdit_nombre_de_comptes_bancaires->setYerothEnabled(false);
     lineEdit_comptabilite_encaisse->setYerothEnabled(false);

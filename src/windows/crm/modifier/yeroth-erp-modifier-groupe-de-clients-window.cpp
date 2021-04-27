@@ -117,7 +117,7 @@ void YerothModifierGroupeDeClientsWindow::deconnecter_utilisateur()
 
 void YerothModifierGroupeDeClientsWindow::setupLineEdits()
 {
-	lineEdit_modifier_groupe_clients_maximum_de_membres->setValidator(&YerothUtils::DoubleValidator);
+	lineEdit_modifier_groupe_clients_maximum_de_membres->setValidator(&YerothUtils::POSITIVE_DoubleValidator);
 }
 
 

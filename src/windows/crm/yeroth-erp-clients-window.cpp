@@ -627,8 +627,6 @@ bool YerothERPClientsWindow::filtrer()
 
 void YerothERPClientsWindow::reinitialiser_elements_filtrage()
 {
-    _logger->log("reinitialiser_elements_filtrage");
-
     lineEdit_resultat_filtre->clear();
 
     setCurrentlyFiltered(false);
@@ -639,8 +637,6 @@ void YerothERPClientsWindow::reinitialiser_elements_filtrage()
 
 void YerothERPClientsWindow::reinitialiser_recherche()
 {
-    _logger->log("reinitialiser_recherche");
-
 	lineEdit_nom_element_string_db->clear();
 
     lineEdit_resultat_filtre->clear();
@@ -689,6 +685,8 @@ void YerothERPClientsWindow::populateClientsComboBoxes()
 	aQStringList.clear();
 
 	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::COMPTE_CLIENT));
+
+	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS));
 
 	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT));
 

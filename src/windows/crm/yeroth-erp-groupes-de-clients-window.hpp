@@ -116,6 +116,8 @@ public slots:
 
     void refineYerothLineEdits();
 
+    bool filtrer();
+
     void reinitialiser_elements_filtrage();
 
     void reinitialiser_recherche();
@@ -175,7 +177,7 @@ private:
 
     QString 				_clientGroupDateCreationFilter;
 
-    QFont 					*_pushButton_groupes_de_clients_filtrer_font;
+    QFont 					*_pushButton_filtrer_font;
 
     YerothSqlTableModel 	*_curClientGroupTableModel;
 };

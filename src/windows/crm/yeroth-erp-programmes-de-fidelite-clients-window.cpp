@@ -56,7 +56,7 @@ YerothERPProgrammesDeFideliteClientsWindow::YerothERPProgrammesDeFideliteClients
 :YerothWindowsCommons("yeroth-erp-liste-programmes-de-fidelite-clients"),
  YerothAbstractClassYerothSearchWindow(YerothDatabase::PROGRAMMES_DE_FIDELITE_CLIENTS),
  _logger(new YerothLogger("YerothERPProgrammesDeFideliteClientsWindow")),
- _pushButton_programmes_de_fidelite_clients_filtrer_font(0),
+ _pushButton_filtrer_font(0),
  _curClient_LOYALTY_PROGRAM_TableModel(0)
 {
     _windowName = QString("%1 - %2")
@@ -115,7 +115,7 @@ YerothERPProgrammesDeFideliteClientsWindow::YerothERPProgrammesDeFideliteClients
 
     setupDateTimeEdits();
 
-    _pushButton_programmes_de_fidelite_clients_filtrer_font = new QFont(pushButton_programmes_de_fidelite_clients_filtrer->font());
+    _pushButton_filtrer_font = new QFont(pushButton_filtrer->font());
 
     tableView_programmes_de_fidelite_clients->setSqlTableName(&YerothDatabase::PROGRAMMES_DE_FIDELITE_CLIENTS);
 
@@ -130,12 +130,13 @@ YerothERPProgrammesDeFideliteClientsWindow::YerothERPProgrammesDeFideliteClients
 
     MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS
 
-    pushButton_programmes_de_fidelite_clients_filtrer->disable(this);
     pushButton_menu_clients->disable(this);
     pushButton_afficher->disable(this);
     pushButton_groupe_de_clients->disable(this);
     pushButton_creer_un_programme_de_fidelite_clients->disable(this);
     pushButton_reinitialiser->disable(this);
+    pushButton_filtrer->disable(this);
+    pushButton_reinitialiser_filtre->disable(this);
 
     //Menu actions
     connect(actionChanger_utilisateur, SIGNAL(triggered()), this, SLOT(changer_utilisateur()));
@@ -562,12 +563,15 @@ void YerothERPProgrammesDeFideliteClientsWindow::definirManager()
     MACRO_TO_ENABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS(this, _curClient_LOYALTY_PROGRAM_TableModel)
 
 
-    pushButton_programmes_de_fidelite_clients_filtrer->enable(this, SLOT(filtrer_programmes_de_fidelite_client()));
+    pushButton_filtrer->enable(this, SLOT(filtrer_programmes_de_fidelite_client()));
     pushButton_menu_clients->enable(this, SLOT(clients()));
     pushButton_afficher->enable(this, SLOT(afficher_au_detail()));
     pushButton_groupe_de_clients->enable(this, SLOT(groupes_de_clients()));
     pushButton_creer_un_programme_de_fidelite_clients->enable(this, SLOT(creer_un_programme_de_fidelite_clients()));
+
     pushButton_reinitialiser->enable(this, SLOT(reinitialiser_recherche()));
+    pushButton_filtrer->enable(this, SLOT(filtrer()));
+    pushButton_reinitialiser_filtre->enable(this, SLOT(reinitialiser_elements_filtrage()));
 }
 
 
@@ -588,12 +592,15 @@ void YerothERPProgrammesDeFideliteClientsWindow::definirPasDeRole()
     MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS
 
 
-    pushButton_programmes_de_fidelite_clients_filtrer->disable(this);
+    pushButton_filtrer->disable(this);
     pushButton_menu_clients->disable(this);
     pushButton_afficher->disable(this);
     pushButton_groupe_de_clients->disable(this);
     pushButton_creer_un_programme_de_fidelite_clients->disable(this);
+
     pushButton_reinitialiser->disable(this);
+    pushButton_filtrer->disable(this);
+    pushButton_reinitialiser_filtre->disable(this);
 }
 
 
@@ -632,9 +639,63 @@ void YerothERPProgrammesDeFideliteClientsWindow::refineYerothLineEdits()
 }
 
 
+bool YerothERPProgrammesDeFideliteClientsWindow::filtrer()
+{
+	QString client_group_TableColumnValue(lineEdit_resultat_filtre->text());
+
+	if (client_group_TableColumnValue.isEmpty())
+	{
+		QString msg(QObject::trUtf8("Veuillez saisir une valeur numérique pour la recherche."));
+
+		YerothQMessageBox::information(this,
+									  QObject::trUtf8("filtrer"),
+									  msg);
+		return false;
+	}
+
+	QString client_group_TableColumnProperty(comboBox_element->currentText());
+
+	QString mathOperator(comboBox_condition->currentText());
+
+	QString filterString;
+
+	QString REAL_DB_ID_NAME_client_group_TableColumnProperty(
+			YerothDatabaseTableColumn::_tableColumnToUserViewString.key(client_group_TableColumnProperty));
+
+	filterString.append(QString("%2 %3 '%4'")
+							.arg(REAL_DB_ID_NAME_client_group_TableColumnProperty,
+								 mathOperator,
+								 client_group_TableColumnValue));
+
+	//qDebug() << QString("filterString: %1")
+	//				.arg(filterString);
+
+	_curClient_LOYALTY_PROGRAM_TableModel->yerothSetFilter_WITH_where_clause(filterString);
+
+	int resultRows = _curClient_LOYALTY_PROGRAM_TableModel->easySelect();
+
+	if (resultRows >= 0)
+	{
+		setCurrentlyFiltered(true);
+
+		afficher_programmes_de_fidelite_clients(*_curClient_LOYALTY_PROGRAM_TableModel);
+
+		YEROTH_QMESSAGE_BOX_QUELQUE_RESULTAT_FILTRE(this, resultRows, "clients - filtrer");
+
+		return true;
+	}
+	else
+	{
+		YEROTH_QMESSAGE_BOX_AUCUN_RESULTAT_FILTRE(this, "clients - filtrer");
+	}
+
+	return false;
+}
+
+
 void YerothERPProgrammesDeFideliteClientsWindow::reinitialiser_elements_filtrage()
 {
-	lineEdit_programmes_de_fidelite_clients_resultat->clear();
+	lineEdit_resultat_filtre->clear();
 
     setCurrentlyFiltered(false);
 
@@ -644,6 +705,15 @@ void YerothERPProgrammesDeFideliteClientsWindow::reinitialiser_elements_filtrage
 
 void YerothERPProgrammesDeFideliteClientsWindow::reinitialiser_recherche()
 {
+	lineEdit_nom_element_string_db->clear();
+
+    lineEdit_resultat_filtre->clear();
+
+    setCurrentlyFiltered(false);
+
+    resetLineEditsQCompleters((QObject *)this);
+
+    afficher_programmes_de_fidelite_clients();
 }
 
 
@@ -651,14 +721,14 @@ void YerothERPProgrammesDeFideliteClientsWindow::set_filtrer_font()
 {
     if (isCurrentlyFiltered())
     {
-    	_pushButton_programmes_de_fidelite_clients_filtrer_font->setUnderline(true);
+    	_pushButton_filtrer_font->setUnderline(true);
     }
     else
     {
-    	_pushButton_programmes_de_fidelite_clients_filtrer_font->setUnderline(false);
+    	_pushButton_filtrer_font->setUnderline(false);
     }
 
-    pushButton_programmes_de_fidelite_clients_filtrer->setFont(*_pushButton_programmes_de_fidelite_clients_filtrer_font);
+    pushButton_filtrer->setFont(*_pushButton_filtrer_font);
 }
 
 

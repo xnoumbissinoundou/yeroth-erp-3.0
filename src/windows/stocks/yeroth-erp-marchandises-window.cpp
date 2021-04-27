@@ -754,7 +754,7 @@ void YerothMarchandisesWindow::setupLineEdits()
 
 	MACRO_TO_BIND_PAGING_WITH_QLINEEDIT(lineEdit_marchandises_nombre_de_lignes_par_page, tableView_marchandises);
 
-	lineEdit_marchandises_element_de_stock_resultat->setValidator(&YerothUtils::DoubleValidator);
+	lineEdit_marchandises_element_de_stock_resultat->setValidator(&YerothUtils::POSITIVE_DoubleValidator);
 }
 
 

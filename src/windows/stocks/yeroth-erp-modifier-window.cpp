@@ -656,8 +656,8 @@ void YerothModifierWindow::update_achat_deja_existant(const QSqlRecord &aStockRe
 void YerothModifierWindow::setupLineEdits()
 {
     lineEdit_quantite_restante->setValidator(&YerothUtils::IntValidator);
-    lineEdit_stock_dalerte->setValidator(&YerothUtils::DoubleValidator);
-    lineEdit_prix_vente->setValidator(&YerothUtils::DoubleValidator);
+    lineEdit_stock_dalerte->setValidator(&YerothUtils::POSITIVE_DoubleValidator);
+    lineEdit_prix_vente->setValidator(&YerothUtils::POSITIVE_DoubleValidator);
 
     if (checkBox_re_approvisionnement->isChecked())
     {

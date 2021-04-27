@@ -517,7 +517,7 @@ void YerothStocksWindow::setupLineEdits()
 
     lineEdit_nom_element_string_db->enableForSearch(QObject::trUtf8("valeur à rechercher"));
 
-	lineEdit_stocks_element_de_stock_resultat->setValidator(&YerothUtils::DoubleValidator);
+	lineEdit_stocks_element_de_stock_resultat->setValidator(&YerothUtils::POSITIVE_DoubleValidator);
 
     lineEdit_stocks_nombre_darticles->setYerothEnabled(false);
     lineEdit_stocks_valeur_totale_dinventaire->setYerothEnabled(false);

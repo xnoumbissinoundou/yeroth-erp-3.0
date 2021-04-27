@@ -192,12 +192,12 @@ void YerothEntrerWindow::setupLineEdits()
 
     lineEdit_tva->setText(YerothUtils::getTvaStringWithPercent());
 
-    lineEdit_quantite_totale->setValidator(&YerothUtils::DoubleValidator);
+    lineEdit_quantite_totale->setValidator(&YerothUtils::POSITIVE_DoubleValidator);
     lineEdit_quantite_par_lot->setValidator(&YerothUtils::IntValidator);
-    lineEdit_stock_dalerte->setValidator(&YerothUtils::DoubleValidator);
-    lineEdit_prix_dachat->setValidator(&YerothUtils::DoubleValidator);
-    lineEdit_prix_vente->setValidator(&YerothUtils::DoubleValidator);
-    lineEdit_prix_vente_en_gros->setValidator(&YerothUtils::DoubleValidator);
+    lineEdit_stock_dalerte->setValidator(&YerothUtils::POSITIVE_DoubleValidator);
+    lineEdit_prix_dachat->setValidator(&YerothUtils::POSITIVE_DoubleValidator);
+    lineEdit_prix_vente->setValidator(&YerothUtils::POSITIVE_DoubleValidator);
+    lineEdit_prix_vente_en_gros->setValidator(&YerothUtils::POSITIVE_DoubleValidator);
 
     calculate_and_display_benefit_buying_price_percentage();
 }

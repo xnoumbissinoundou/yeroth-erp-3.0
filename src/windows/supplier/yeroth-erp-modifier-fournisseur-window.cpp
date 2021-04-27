@@ -87,7 +87,7 @@ void YerothModifierFournisseurWindow::setupShortcuts()
 void YerothModifierFournisseurWindow::setupLineEdits()
 {
 	lineEdit_modifier_fournisseur_dette_maximale->setYerothEnabled(false);
-	lineEdit_modifier_fournisseur_dette_maximale->setValidator(&YerothUtils::DoubleValidator);
+	lineEdit_modifier_fournisseur_dette_maximale->setValidator(&YerothUtils::POSITIVE_DoubleValidator);
 }
 
 

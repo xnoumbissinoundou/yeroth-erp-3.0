@@ -480,7 +480,9 @@ const QIntValidator YerothUtils::INT_VALIDATOR_GREATER_THAN_ZERO(1, 444444444);
 
 const QIntValidator YerothUtils::IntValidator(0, 444444444);
 
-const QDoubleValidator YerothUtils::DoubleValidator(0, 444444444, 2);
+const QDoubleValidator YerothUtils::DoubleValidator(-444444444, 444444444, 2);
+
+const QDoubleValidator YerothUtils::POSITIVE_DoubleValidator(0, 444444444, 2);
 
 const QRegExpValidator YerothUtils::PasswordValidator(PasswordRegExp);
 

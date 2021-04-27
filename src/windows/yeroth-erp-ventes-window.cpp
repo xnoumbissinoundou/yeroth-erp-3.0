@@ -1320,7 +1320,7 @@ void YerothVentesWindow::setupLineEdits()
     lineEdit_details_reference_recu_de_vente->setYerothEnabled(false);
     lineEdit_details_prix_unitaire->setYerothEnabled(false);
 
-    lineEdit_retour_vente_quantite_a_retourner->setValidator(&YerothUtils::DoubleValidator);
+    lineEdit_retour_vente_quantite_a_retourner->setValidator(&YerothUtils::POSITIVE_DoubleValidator);
 
     lineEdit_retour_vente_type_de_vente->setYerothEnabled(false);
     lineEdit_retour_vente_nom_client->setYerothEnabled(false);

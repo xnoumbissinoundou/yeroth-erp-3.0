@@ -349,8 +349,8 @@ void YerothMouvementsDeStocksWindow::setupLineEdits()
 	lineEdit_nom_element_string_db->enableForSearch(QObject::trUtf8("valeur à rechercher"));
     lineEdit_nom_element_string_db_2->enableForSearch(QObject::trUtf8("valeur à rechercher"));
 
-    lineEdit_mouvementsDeStocks_element_de_sortiestocks_resultat->setValidator(&YerothUtils::DoubleValidator);
-    lineEdit_mouvementsDeStocks_element_de_transfertstocks_resultat->setValidator(&YerothUtils::DoubleValidator);
+    lineEdit_mouvementsDeStocks_element_de_sortiestocks_resultat->setValidator(&YerothUtils::POSITIVE_DoubleValidator);
+    lineEdit_mouvementsDeStocks_element_de_transfertstocks_resultat->setValidator(&YerothUtils::POSITIVE_DoubleValidator);
 
     lineEdit_mouvementsDeStocks_quantite_sortie->setYerothEnabled(false);
 

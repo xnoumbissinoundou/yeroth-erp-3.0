@@ -323,7 +323,7 @@ void YerothAchatsDEServicesWindow::setupLineEdits()
 
 	lineEdit_achats_de_services_total_achats->setYerothEnabled(false);
 
-	comboBox_element_achats_de_services_condition->setValidator(&YerothUtils::DoubleValidator);
+	comboBox_element_achats_de_services_condition->setValidator(&YerothUtils::POSITIVE_DoubleValidator);
 
 	MACRO_TO_BIND_PAGING_WITH_QLINEEDIT(lineEdit_achats_de_services_nombre_de_lignes_par_page, tableView_achats_de_services);
 }

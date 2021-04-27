@@ -315,7 +315,7 @@ void YerothAchatsWindow::setupLineEdits()
 
 	lineEdit_achats_nombre_dachats->setYerothEnabled(false);
 
-	lineEdit_element_achats_resultat->setValidator(&YerothUtils::DoubleValidator);
+	lineEdit_element_achats_resultat->setValidator(&YerothUtils::POSITIVE_DoubleValidator);
 
 	MACRO_TO_BIND_PAGING_WITH_QLINEEDIT(lineEdit_achats_nombre_de_lignes_par_page, tableView_achats);
 }

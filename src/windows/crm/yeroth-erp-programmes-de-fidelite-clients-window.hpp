@@ -107,6 +107,8 @@ public slots:
 
     void refineYerothLineEdits();
 
+    bool filtrer();
+
     void reinitialiser_elements_filtrage();
 
     void reinitialiser_recherche();
@@ -160,7 +162,7 @@ private:
 
     QString 				_client_LOYALTY_PROGRAM_DateCreationFilter;
 
-    QFont 					*_pushButton_programmes_de_fidelite_clients_filtrer_font;
+    QFont 					*_pushButton_filtrer_font;
 
     YerothSqlTableModel 	*_curClient_LOYALTY_PROGRAM_TableModel;
 };

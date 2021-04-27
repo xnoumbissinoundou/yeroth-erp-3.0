@@ -87,7 +87,7 @@ void YerothModifierCompteClientWindow::setupShortcuts()
 void YerothModifierCompteClientWindow::setupLineEdits()
 {
 	lineEdit_modifier_compteclient_dette_maximale->setYerothEnabled(false);
-	lineEdit_modifier_compteclient_dette_maximale->setValidator(&YerothUtils::DoubleValidator);
+	lineEdit_modifier_compteclient_dette_maximale->setValidator(&YerothUtils::POSITIVE_DoubleValidator);
 }
 
 

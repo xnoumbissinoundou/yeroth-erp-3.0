@@ -895,6 +895,8 @@ public:
 
 	static const QDoubleValidator DoubleValidator;
 
+	static const QDoubleValidator POSITIVE_DoubleValidator;
+
 	static const QRegExp PasswordRegExp;
 
 	static const QRegExpValidator PasswordValidator;

@@ -676,7 +676,7 @@ void YerothPayerCompteClientWindow::setupLineEdits()
 
 	lineEdit_montant_a_payer->setPlaceholderText(QObject::trUtf8("montant à payer"));
 
-	lineEdit_montant_a_payer->setValidator(&YerothUtils::DoubleValidator);
+	lineEdit_montant_a_payer->setValidator(&YerothUtils::POSITIVE_DoubleValidator);
 
 	lineEdit_comptes_clients_designation_de_lentreprise->setText(_curCompanyName);
 }

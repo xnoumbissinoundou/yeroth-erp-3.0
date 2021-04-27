@@ -519,9 +519,9 @@ void YerothPointDeVenteWindow::setupLineEdits()
     lineEdit_articles_quantite_a_vendre->setYerothEnabled(false);
     lineEdit_articles_montant_a_rembourser->setYerothEnabled(false);
     lineEdit_articles_montant_a_rembourser->setText(GET_CURRENCY_STRING_NUM(0.0));
-    lineEdit_article_detail_quantite_a_vendre->setValidator(&YerothUtils::DoubleValidator);
-    lineEdit_article_detail_remise_prix->setValidator(&YerothUtils::DoubleValidator);
-    lineEdit_article_detail_remise_pourcentage->setValidator(&YerothUtils::DoubleValidator);
+    lineEdit_article_detail_quantite_a_vendre->setValidator(&YerothUtils::POSITIVE_DoubleValidator);
+    lineEdit_article_detail_remise_prix->setValidator(&YerothUtils::POSITIVE_DoubleValidator);
+    lineEdit_article_detail_remise_pourcentage->setValidator(&YerothUtils::POSITIVE_DoubleValidator);
     lineEdit_article_detail_remise_prix->setEnabled(false);
     lineEdit_article_detail_remise_pourcentage->setEnabled(false);
 }

@@ -2995,7 +2995,7 @@ background-color: rgb(0, 0, 0);</string>
      <string>réinitialiser</string>
     </property>
    </widget>
-   <widget class="YerothLineEdit" name="lineEdit_programmes_de_fidelite_clients_resultat">
+   <widget class="YerothLineEdit" name="lineEdit_resultat_filtre">
     <property name="geometry">
      <rect>
       <x>244</x>
@@ -3473,7 +3473,7 @@ background-color: rgb(0, 0, 0); </string>
      <enum>Qt::LogicalMoveStyle</enum>
     </property>
    </widget>
-   <widget class="YerothPushButton" name="pushButton_programmes_de_fidelite_clients_filtrer">
+   <widget class="YerothPushButton" name="pushButton_filtrer">
     <property name="geometry">
      <rect>
       <x>164</x>
@@ -3907,7 +3907,7 @@ background-color: rgb(0, 0, 0); </string>
      <string>filtrer</string>
     </property>
    </widget>
-   <widget class="YerothComboBox" name="comboBox_programmes_de_fidelite_clients_element_de_programmes_de_fidelite_clients_condition">
+   <widget class="YerothComboBox" name="comboBox_condition">
     <property name="geometry">
      <rect>
       <x>164</x>
@@ -4339,7 +4339,7 @@ background-color: rgb(0, 0, 0); </string>
      </font>
     </property>
    </widget>
-   <widget class="YerothComboBox" name="comboBox_programmes_de_fidelite_clients_element_de_stock">
+   <widget class="YerothComboBox" name="comboBox_element">
     <property name="geometry">
      <rect>
       <x>11</x>
@@ -4771,7 +4771,7 @@ background-color: rgb(0, 0, 0); </string>
      </font>
     </property>
    </widget>
-   <widget class="YerothPushButton" name="pushButton_programmes_de_fidelite_clients_reinitialiser_filtre">
+   <widget class="YerothPushButton" name="pushButton_reinitialiser_filtre">
     <property name="geometry">
      <rect>
       <x>11</x>
@@ -14992,14 +14992,14 @@ background-color: rgb(0, 0, 0); </string>
    <header>src/widgets/yeroth-erp-line-edit.hpp</header>
   </customwidget>
   <customwidget>
-   <class>YerothComboBox</class>
-   <extends>QComboBox</extends>
-   <header>src/widgets/yeroth-erp-combo-box.hpp</header>
-  </customwidget>
-  <customwidget>
    <class>YerothDateTimeEdit</class>
    <extends>QDateEdit</extends>
    <header>src/widgets/yeroth-erp-datetime-edit.hpp</header>
+  </customwidget>
+  <customwidget>
+   <class>YerothComboBox</class>
+   <extends>QComboBox</extends>
+   <header>src/widgets/yeroth-erp-combo-box.hpp</header>
   </customwidget>
   <customwidget>
    <class>YerothERPProgrammesDeFideliteClientsTableView</class>
@@ -15009,11 +15009,11 @@ background-color: rgb(0, 0, 0); </string>
  </customwidgets>
  <tabstops>
   <tabstop>lineEdit_programmes_de_fidelite_clients_terme_recherche</tabstop>
-  <tabstop>comboBox_programmes_de_fidelite_clients_element_de_stock</tabstop>
-  <tabstop>comboBox_programmes_de_fidelite_clients_element_de_programmes_de_fidelite_clients_condition</tabstop>
-  <tabstop>lineEdit_programmes_de_fidelite_clients_resultat</tabstop>
-  <tabstop>pushButton_programmes_de_fidelite_clients_reinitialiser_filtre</tabstop>
-  <tabstop>pushButton_programmes_de_fidelite_clients_filtrer</tabstop>
+  <tabstop>comboBox_element</tabstop>
+  <tabstop>comboBox_condition</tabstop>
+  <tabstop>lineEdit_resultat_filtre</tabstop>
+  <tabstop>pushButton_reinitialiser_filtre</tabstop>
+  <tabstop>pushButton_filtrer</tabstop>
   <tabstop>pushButton_reinitialiser</tabstop>
   <tabstop>pushButton_afficher</tabstop>
   <tabstop>pushButton_creer_un_programme_de_fidelite_clients</tabstop>

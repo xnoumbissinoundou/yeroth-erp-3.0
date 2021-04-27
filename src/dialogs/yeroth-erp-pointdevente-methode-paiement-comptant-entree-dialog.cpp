@@ -42,7 +42,7 @@ YerothPOSVenteMethodePaiementComptantEntreeDialog::YerothPOSVenteMethodePaiement
 
 	setFixedSize(width(), height());
 
-	lineEdit_vente_montant_recu->setValidator(&YerothUtils::DoubleValidator);
+	lineEdit_vente_montant_recu->setValidator(&YerothUtils::POSITIVE_DoubleValidator);
 }
 
 void YerothPOSVenteMethodePaiementComptantEntreeDialog::valider()

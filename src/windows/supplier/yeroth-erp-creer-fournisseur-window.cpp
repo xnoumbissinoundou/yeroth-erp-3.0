@@ -99,7 +99,7 @@ void YerothCreerFournisseurWindow::deconnecter_utilisateur()
 void YerothCreerFournisseurWindow::setupLineEdits()
 {
 	lineEdit_fournisseur_dette_maximale->setYerothEnabled(false);
-    lineEdit_fournisseur_dette_maximale->setValidator(&YerothUtils::DoubleValidator);
+    lineEdit_fournisseur_dette_maximale->setValidator(&YerothUtils::POSITIVE_DoubleValidator);
 }
 
 

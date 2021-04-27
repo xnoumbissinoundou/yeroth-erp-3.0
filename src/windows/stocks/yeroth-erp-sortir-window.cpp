@@ -402,9 +402,9 @@ void YerothSortirWindow::setupLineEdits()
     lineEdit_articles_quantite_a_transferer->setText(GET_DOUBLE_STRING(0.0));
     //qDebug() << "++ YerothSortirWindow::setupLineEdits(): " << YerothConfig::salesStrategy;
 
-    lineEdit_article_detail_quantite_a_vendre->setValidator(&YerothUtils::DoubleValidator);
-    lineEdit_article_detail_remise_prix->setValidator(&YerothUtils::DoubleValidator);
-    lineEdit_article_detail_remise_pourcentage->setValidator(&YerothUtils::DoubleValidator);
+    lineEdit_article_detail_quantite_a_vendre->setValidator(&YerothUtils::POSITIVE_DoubleValidator);
+    lineEdit_article_detail_remise_prix->setValidator(&YerothUtils::POSITIVE_DoubleValidator);
+    lineEdit_article_detail_remise_pourcentage->setValidator(&YerothUtils::POSITIVE_DoubleValidator);
     lineEdit_article_detail_remise_prix->setYerothEnabled(false);
     lineEdit_article_detail_remise_pourcentage->setYerothEnabled(false);
 }
