@@ -195,11 +195,137 @@ void YerothERPProgrammesDeFideliteClientsWindow::slot_reinitialiser_colones_db_v
 
 void YerothERPProgrammesDeFideliteClientsWindow::textChangedSearchLineEditsQCompleters()
 {
+	lineEdit_resultat_filtre->clear();
+
+    setCurrentlyFiltered(false);
+
+    clearSearchFilter();
+
+    QString searchTerm(lineEdit_programmes_de_fidelite_clients_terme_recherche->text());
+
+    if (!searchTerm.isEmpty())
+    {
+        QStringList searchTermList = searchTerm.split(QRegExp("\\s+"));
+
+        QString partSearchTerm;
+
+        int lastIdx = searchTermList.size() - 1;
+
+        for (int k = 0; k < searchTermList.size(); ++k)
+        {
+        	partSearchTerm = searchTermList.at(k);
+        	//qDebug() << "++ searchTermList: " << partSearchTerm;
+
+        	_searchFilter.append(QString("(%1 OR %2 OR %3)")
+        							.arg(GENERATE_SQL_LIKE_STMT(YerothDatabaseTableColumn::DESCRIPTION_PROGRAMME_DE_FIDELITE_CLIENTS, partSearchTerm)));
+
+        	if (k != lastIdx)
+        	{
+        		_searchFilter.append(" AND ");
+        	}
+        }
+    }
+
+
+    YerothWindowsCommons::setYerothLineEditQCompleterSearchFilter(_searchFilter);
+
+
+    YerothLineEdit *aYerothLineEdit = 0;
+
+    QString correspondingDBFieldKeyValue;
+
+    QString aTableColumnFieldContentForANDSearch;
+
+    QMapIterator <YerothLineEdit **, QString> it(_lineEditsToANDContentForSearch);
+
+    while (it.hasNext())
+    {
+    	it.next();
+
+    	aYerothLineEdit = *it.key();
+
+    	correspondingDBFieldKeyValue = it.value();
+
+    	if (0 != aYerothLineEdit)
+    	{
+    		aTableColumnFieldContentForANDSearch = aYerothLineEdit->text();
+
+    		if (!correspondingDBFieldKeyValue.isEmpty() &&
+    				!aTableColumnFieldContentForANDSearch.isEmpty()	)
+    		{
+    			if (!_searchFilter.isEmpty())
+    			{
+    				_searchFilter.append(" AND ");
+    			}
+
+    			_searchFilter.append(GENERATE_SQL_IS_STMT(correspondingDBFieldKeyValue,
+    					aTableColumnFieldContentForANDSearch));
+    		}
+    	}
+    }
+
+    _yerothSqlTableModel->yerothSetFilter_WITH_where_clause(_searchFilter);
+
+    if (_yerothSqlTableModel->select())
+    {
+    	afficher_programmes_de_fidelite_clients(*_yerothSqlTableModel);
+    }
+    else
+    {
+        qDebug() << QString("++ YerothERPProgrammesDeFideliteClientsWindow::textChangedSearchLineEditsQCompleters(): %1")
+        				.arg(_yerothSqlTableModel->lastError().text());
+    }
+
+    handle_some_actions_tools_enabled();
 }
 
 
 void YerothERPProgrammesDeFideliteClientsWindow::populateComboBoxes()
 {
+    _logger->log("populateClientsComboBoxes");
+
+	QStringList aQStringList;
+
+	aQStringList.append(_varchar_dbtable_column_name_list.values());
+
+	aQStringList.removeAll(YerothDatabaseTableColumn::DATE_CREATION);
+	aQStringList.removeAll(YerothDatabaseTableColumn::DESCRIPTION_PROGRAMME_DE_FIDELITE_CLIENTS);
+	aQStringList.removeAll(YerothDatabaseTableColumn::POURCENTAGE_DU_RABAIS);
+
+//	qDebug() << "++ test: " << aQStringList;
+
+	QString aDBColumnElementString;
+
+	for (int k = 0; k < aQStringList.size(); ++k)
+	{
+		aDBColumnElementString = aQStringList.at(k);
+
+		comboBox_element_string_db
+			->addItem(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(aDBColumnElementString));
+	}
+
+	comboBox_element_string_db->setCurrentIndex(0);
+
+
+	aQStringList.clear();
+
+	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::POURCENTAGE_DU_RABAIS));
+
+    comboBox_element->addItems(aQStringList);
+
+	aQStringList.clear();
+
+	aQStringList.append(">=");
+
+	aQStringList.append("<=");
+
+	aQStringList.append(">");
+
+	aQStringList.append("<");
+
+	aQStringList.append("=");
+
+    comboBox_condition->addItems(aQStringList);
 }
 
 
@@ -210,7 +336,7 @@ void YerothERPProgrammesDeFideliteClientsWindow::setupLineEdits()
 	_QLINEEDIT_nombre_de_lignes_par_page = lineEdit_programmes_de_fidelite_clients_nombre_de_lignes_par_page;
 
 	lineEdit_programmes_de_fidelite_clients_terme_recherche->
-		enableForSearch(QObject::trUtf8("terme à rechercher (désignation du programme fidélité de clients)"));
+		enableForSearch(QObject::trUtf8("terme à rechercher (description du programme fidélité de clients)"));
 
 	lineEdit_nombre_de_programmes->setYerothEnabled(false);
 

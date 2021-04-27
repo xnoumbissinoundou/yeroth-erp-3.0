@@ -312,11 +312,8 @@ void YerothGroupesDeClientsWindow::populateComboBoxes()
 	{
 		aDBColumnElementString = aQStringList.at(k);
 
-		if (!YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::NOM_ENTREPRISE, aDBColumnElementString))
-		{
-			comboBox_element_string_db
-				->addItem(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(aDBColumnElementString));
-		}
+		comboBox_element_string_db
+			->addItem(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(aDBColumnElementString));
 	}
 
 	comboBox_element_string_db->setCurrentIndex(0);
