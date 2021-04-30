@@ -172,6 +172,12 @@ signals:
 
 	void signal_lister(YerothSqlTableModel &sqlTableModel);
 
+protected slots:
+
+	void handle_yeroth_header_view_position_changed(int logicalIndex,
+													int oldVisualIndex,
+													int newVisualIndex);
+
 protected:
 
 	virtual void selectionChanged(const QItemSelection & selected,

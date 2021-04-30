@@ -303,6 +303,8 @@ void YerothIMPRESSION_DE_DOCUMENT_Dialog::valider()
 
 	if (0 != _current_window_to_print)
 	{
+		_current_window_to_print->set_PARAMETER_TABLE_COLUMN_ORDER();
+
 		QString string_pageFROM = lineEdit_pageFROM->text();
 
 		QString string_pageTO = lineEdit_pageTO->text();

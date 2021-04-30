@@ -57,6 +57,7 @@ public:
 	 _USERSQL_table_row_count(59),
 	 _print_table_row_count(20),
 	 _QLINEEDIT_nombre_de_lignes_par_page(0),
+	 _table_COLUMN_ORDER(""),
 	 _a4paper_printing_position(QString("a4paper,landscape")),
 	 _first_time_imprimer_pdf_document_call(true),
 	 QMESSAGE_BOX_STYLE_SHEET(QString("QMessageBox {background-color: rgb(%1);}")
@@ -171,6 +172,17 @@ public:
 	}
 
 
+	inline void set_visible_DB_column_name_str_list(QStringList &a_visible_column_str_list)
+	{
+		_visibleDBColumnNameStrList = a_visible_column_str_list;
+	}
+
+	inline QStringList get_visible_DB_column_name_str_list()
+	{
+		return _visibleDBColumnNameStrList;
+	}
+
+
 	bool SQL_UPDATE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW(QSqlRecord &resultRecord_IN);
 
 
@@ -200,6 +212,23 @@ public:
 	{
 		return _QLINEEDIT_nombre_de_lignes_par_page;
 	}
+
+	inline YerothTableView *GET_YEROTH_TABLE_VIEW()
+	{
+		return _yerothTableView_FROM_WINDOWS_COMMONS;
+	}
+
+	inline void set_PARAMETER_TABLE_COLUMN_ORDER(const QString &a_PRINTING_PARAMETER_table_column_order)
+	{
+		_table_COLUMN_ORDER = a_PRINTING_PARAMETER_table_column_order;
+	}
+
+    void set_PARAMETER_TABLE_COLUMN_ORDER();
+
+    inline QString get_PARAMETER_TABLE_COLUMN_ORDER()
+    {
+    	return _table_COLUMN_ORDER;
+    }
 
     inline void set_PRINTING_PARAMETER_printing_position(const QString &an_a4_printing_position)
     {
@@ -446,6 +475,8 @@ protected:
 
 	void YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED_AUTOMATIC_CONSTRUCTOR_ONLY();
 
+	void APPLY_USER_LOCAL_SETTINGS_PARAMETERS_TABLE_COLUMN_ORDER_from_settings_parameters(const QString &pageTableColumnOrder_STRING);
+
 	void APPLY_USER_LOCAL_SETTINGS_PARAMETERS();
 
 	inline virtual void reinitialiser_colones_db_visibles()
@@ -573,6 +604,7 @@ protected:
     uint	_USERSQL_table_row_count;
     uint	_print_table_row_count;
 
+    QString	_table_COLUMN_ORDER;
     QString	_a4paper_printing_position;
 
     YerothLineEdit *_QLINEEDIT_nombre_de_lignes_par_page;

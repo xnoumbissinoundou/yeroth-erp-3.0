@@ -206,6 +206,60 @@ void YerothWindowsCommons::YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED_AUTOMATIC_CONS
 }
 
 
+void YerothWindowsCommons::APPLY_USER_LOCAL_SETTINGS_PARAMETERS_TABLE_COLUMN_ORDER_from_settings_parameters(const QString &pageTableColumnOrder_STRING)
+{
+	QStringList print_table_column_order = pageTableColumnOrder_STRING.split(";");
+
+	if (print_table_column_order.size() > 0)
+	{
+		YerothTableView *a_yeroth_table_view = GET_YEROTH_TABLE_VIEW();
+
+		if (0 != a_yeroth_table_view)
+		{
+			QHeaderView *header_view = a_yeroth_table_view->horizontalHeader();
+
+			if (0 != header_view)
+			{
+				int a_logical_index = 0;
+
+				QStringList a_tmp_list;
+
+				int saved_VISUAL_INDEX;
+
+				QString headerColumnData;
+
+				for (uint k = 0; k < print_table_column_order.size(); ++k)
+				{
+					if (!print_table_column_order.at(k).isEmpty())
+					{
+						a_tmp_list = print_table_column_order.at(k).split(":");
+
+//						QDEBUG_QSTRINGLIST_OUTPUT("a_tmp_list", a_tmp_list);
+
+						headerColumnData = a_tmp_list.at(0);
+
+						saved_VISUAL_INDEX = a_tmp_list.at(1).toInt();
+
+						a_logical_index = _dbtablecolumnNameToDBColumnIndex.value(headerColumnData);
+
+//						QDEBUG_STRING_OUTPUT_1(QString("a_logical_index: %1, headerColumnData: %2, "
+//								"current visualIndex: %3, "
+//								"save_VISUAL_INDEX: %4")
+//								.arg(QString::number(a_logical_index),
+//									 headerColumnData,
+//									 QString::number(header_view->visualIndex(a_logical_index)),
+//									 QString::number(saved_VISUAL_INDEX)));
+
+						header_view->moveSection(header_view->visualIndex(a_logical_index),
+								saved_VISUAL_INDEX);
+					}
+				}
+			}
+		}
+	}
+}
+
+
 void YerothWindowsCommons::APPLY_USER_LOCAL_SETTINGS_PARAMETERS()
 {
 	YerothERPWindows *allWindows = YerothUtils::getAllWindows();
@@ -229,6 +283,8 @@ void YerothWindowsCommons::APPLY_USER_LOCAL_SETTINGS_PARAMETERS()
 			QString pageTablePrintRowCount_STRING = aUser->get_PRINTING_PARAMETER_VALUE_print_table_row_count(yeroth_qt_THIS_object_name);
 
 			QString pageTableRowCount_STRING = aUser->get_PRINTING_PARAMETER_VALUE_USERSQL_table_row_count(yeroth_qt_THIS_object_name);
+
+			QString pageTableColumnOrder_STRING = aUser->get_PARAMETER_VALUE_table_column_order(yeroth_qt_THIS_object_name);
 
 			QString pagePagePrinting_STRING = aUser->get_PRINTING_PARAMETER_VALUE_printing_position(yeroth_qt_THIS_object_name);
 
@@ -255,6 +311,11 @@ void YerothWindowsCommons::APPLY_USER_LOCAL_SETTINGS_PARAMETERS()
 			if (!pageTablePrintRowCount_STRING.isEmpty())
 			{
 				_print_table_row_count = pageTablePrintRowCount_STRING.toUInt();
+			}
+
+			if (!pageTableColumnOrder_STRING.isEmpty())
+			{
+				APPLY_USER_LOCAL_SETTINGS_PARAMETERS_TABLE_COLUMN_ORDER_from_settings_parameters(pageTableColumnOrder_STRING);
 			}
 
 			if (!pagePagePrinting_STRING.isEmpty())
@@ -446,6 +507,48 @@ bool YerothWindowsCommons::SQL_DELETE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW()
 																			 YerothWindowsCommons::get_last_lister_selected_row_ID()));
 
 	return YerothUtils::execQuery(REMOVE_YEROTH_TABLE_VIEW_LAST_SELECTED_ROW_QUERY_STRING);
+}
+
+
+void YerothWindowsCommons::set_PARAMETER_TABLE_COLUMN_ORDER()
+{
+	QHeaderView *a_current_print_table_header_view =
+			_yerothTableView_FROM_WINDOWS_COMMONS->horizontalHeader();
+
+	if (0 == a_current_print_table_header_view)
+	{
+		return ;
+	}
+
+	_table_COLUMN_ORDER.clear();
+
+
+	QStringList yerothTableView_model_raw_visible_headers =
+			_yerothTableView_FROM_WINDOWS_COMMONS->getTableModelRawHeaders();
+
+//	QDEBUG_QSTRINGLIST_OUTPUT("_yerothTableView_model_raw_visible_headers",
+//							  _yerothTableView_model_raw_visible_headers);
+
+	QString headerColumnData;
+
+	for (uint i = 0; i < yerothTableView_model_raw_visible_headers.size(); ++i)
+	{
+		headerColumnData = yerothTableView_model_raw_visible_headers.at(i);
+
+		if (!headerColumnData.isEmpty())
+		{
+//			QDEBUG_STRING_OUTPUT_2("headerColumnData", headerColumnData);
+
+			if (_visibleDBColumnNameStrList.contains(headerColumnData))
+			{
+				_table_COLUMN_ORDER.append(QString("%1:%2;")
+						.arg(headerColumnData,
+							 QString::number(a_current_print_table_header_view->visualIndex(i))));
+			}
+		}
+	}
+
+//	QDEBUG_STRING_OUTPUT_2("headerColumnData", headerColumnData);
 }
 
 

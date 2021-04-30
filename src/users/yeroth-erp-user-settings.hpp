@@ -39,6 +39,7 @@ public:
 	 _page_from(-1),
 	 _page_to(-1),
 	 _print_table_row_count(YerothTableViewPRINT_UTILITIES_TEX_TABLE::_STANDARD_INITIAL_MAX_TABLE_ROW_COUNT_A4LANDSCAPE),
+	 _print_table_column_order(""),
 	 _a4paper_printing_position(YerothTableViewPRINT_UTILITIES_TEX_TABLE::_A4PAGE_LANDSCAPE_SPECIFICATION)
 	{
 	}
@@ -88,6 +89,13 @@ public:
 						.arg(a_window_object_name));
 	}
 
+	inline QString GET_WINDOWS_TABLE_COLUMN_ORDER_KEY_TO_STORE(const QString &a_window_object_name)
+	{
+		return QString("%1_table_column_order")
+				.arg(QString("local_parameter_%1")
+						.arg(a_window_object_name));
+	}
+
 	inline QString GET_PRINTING_PARAMETER_VALUE_FROM_KEY(const QString &a_key)
 	{
 		return _window_printing_parameter_key__TO__its_value.value(a_key);
@@ -120,6 +128,7 @@ protected:
     int						_page_from;
     int 					_page_to;
     uint					_print_table_row_count;
+    QString					_print_table_column_order;
     QString					_a4paper_printing_position;
 
     QMap<QString, QString> 	_window_printing_parameter_key__TO__its_value;

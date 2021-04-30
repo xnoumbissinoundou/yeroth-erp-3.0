@@ -157,7 +157,7 @@ void YerothPOSUser::read_user_personal_PRINTING_PARAMETER_settings(YerothWindows
 						_user_setting_disk_saving_file_name_FROM_MD5_HEX_USER_ID,
 						a_current_window_to_table_print_as_parameter);
 
-//		if (READ_PRINTING_PARAMETER_SUCCESSFUL != resultat_lecture_des_parametres_locaux)
+//		if (READ_PRINTING_PARAMETER_SUCCESSFUL == resultat_lecture_des_parametres_locaux)
 //		{
 //			QDEBUG_STRING_OUTPUT_2("read_user_personal_PRINTING_PARAMETER_settings", "READ_PRINTING_PARAMETER_SUCCESSFUL");
 //		}

@@ -58,6 +58,11 @@ YerothTableView::YerothTableView()
     {
     	qHeaderView->setSectionsMovable(true);
     }
+
+    connect(qHeaderView,
+    		SIGNAL(sectionMoved(int, int, int)),
+			this,
+			SLOT(handle_yeroth_header_view_position_changed(int, int, int)));
 }
 
 
@@ -79,6 +84,11 @@ YerothTableView::YerothTableView(QWidget * parent)
     {
     	qHeaderView->setSectionsMovable(true);
     }
+
+    connect(qHeaderView,
+    		SIGNAL(sectionMoved(int, int, int)),
+			this,
+			SLOT(handle_yeroth_header_view_position_changed(int, int, int)));
 }
 
 
@@ -95,6 +105,76 @@ void YerothTableView::setupSelectionOptions()
     setEditTriggers(QAbstractItemView::NoEditTriggers);
     setSelectionBehavior(QAbstractItemView::SelectRows);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
+}
+
+
+void YerothTableView::handle_yeroth_header_view_position_changed(int logicalIndex,
+																 int oldVisualIndex,
+																 int newVisualIndex)
+{
+//	QDEBUG_QSTRINGLIST_OUTPUT("_tableModelRawHeaders_IN_OUT",
+//							   _tableModelRawHeaders_IN_OUT);
+
+//	QDEBUG_STRING_OUTPUT_1(QString("handle_yeroth_header_view_position_changed, "
+//						   	   	   "logicalIndex: %1,"
+//						   	   	   "oldVisualIndex: %2, "
+//						   	   	   "newVisualIndex: %3")
+//								.arg(QString::number(logicalIndex),
+//									 QString::number(oldVisualIndex),
+//									 QString::number(newVisualIndex)));
+
+	YerothWindowsCommons *a_yeroth_window = 0;
+
+	if (0 != parent())
+	{
+		a_yeroth_window = (YerothWindowsCommons *) parent()->parent();
+
+		if (0 != a_yeroth_window)
+		{
+			QHeaderView *header_view = horizontalHeader();
+
+			if (0 != header_view)
+			{
+				QString pageTableColumnOrder_STRING;
+
+				QStringList yerothTableView_model_raw_visible_headers = _tableModelRawHeaders_IN_OUT;
+
+				QStringList a_visible_DB_columnname_string_List = a_yeroth_window->get_visible_DB_column_name_str_list();
+
+				QString headerColumnData;
+
+				for (uint i = 0; i < yerothTableView_model_raw_visible_headers.size(); ++i)
+				{
+					headerColumnData = yerothTableView_model_raw_visible_headers.at(i);
+
+					if (!headerColumnData.isEmpty())
+					{
+//						QDEBUG_STRING_OUTPUT_2("headerColumnData", headerColumnData);
+						if (a_visible_DB_columnname_string_List.contains(headerColumnData))
+						{
+							pageTableColumnOrder_STRING.append(QString("%1:%2;")
+									.arg(headerColumnData,
+											QString::number(header_view->visualIndex(i))));
+						}
+					}
+				}
+
+				a_yeroth_window->set_PARAMETER_TABLE_COLUMN_ORDER(pageTableColumnOrder_STRING);
+
+				YerothERPWindows *allWindows = YerothUtils::getAllWindows();
+
+				if (0 != allWindows)
+				{
+					YerothPOSUser *aUser = allWindows->getUser();
+
+					if (0 != aUser)
+					{
+						aUser->save_user_personal_PRINTING_PARAMETER_settings();
+					}
+				}
+			}
+		}
+	}
 }
 
 

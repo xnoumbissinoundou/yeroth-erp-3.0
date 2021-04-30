@@ -162,6 +162,9 @@ bool YerothERPUserSettings::enregistrer_les_parametres_locaux(const QString &use
 				QString aPageFROM_STRING =
 						QString::number(a_current_window_to_print_table->get_PRINTING_PARAMETER_pageFROM());
 
+				QString aTableColumnOrder_STRING =
+						a_current_window_to_print_table->get_PARAMETER_TABLE_COLUMN_ORDER();
+
 				QString aPrintingPosition_STRING =
 						a_current_window_to_print_table->get_PRINTING_PARAMETER_printing_position();
 
@@ -175,6 +178,10 @@ bool YerothERPUserSettings::enregistrer_les_parametres_locaux(const QString &use
 				_window_printing_parameter_key__TO__its_value.insert(
 						GET_WINDOWS_PRINT_TABLE_ROW_COUNT_KEY_TO_STORE(a_current_window_object_name),
 						aPrintTableRowCount_STRING);
+
+				_window_printing_parameter_key__TO__its_value.insert(
+						GET_WINDOWS_TABLE_COLUMN_ORDER_KEY_TO_STORE(a_current_window_object_name),
+						aTableColumnOrder_STRING);
 
 				_window_printing_parameter_key__TO__its_value.insert(
 						GET_WINDOWS_A4_PRINTING_POSITION_KEY_TO_STORE(a_current_window_object_name),
