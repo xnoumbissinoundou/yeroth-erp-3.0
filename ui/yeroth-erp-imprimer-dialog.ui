@@ -2862,7 +2862,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>NOMBRE DE LIGNES</string>
+     <string># LIGNES PAR PAGE</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
