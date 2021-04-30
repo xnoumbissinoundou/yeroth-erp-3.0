@@ -220,6 +220,8 @@ void YerothWindowsCommons::APPLY_USER_LOCAL_SETTINGS_PARAMETERS_TABLE_COLUMN_ORD
 
 			if (0 != header_view)
 			{
+				_visibleDBColumnNameStrList.clear();
+
 				int a_logical_index = 0;
 
 				QStringList a_tmp_list;
@@ -237,6 +239,8 @@ void YerothWindowsCommons::APPLY_USER_LOCAL_SETTINGS_PARAMETERS_TABLE_COLUMN_ORD
 //						QDEBUG_QSTRINGLIST_OUTPUT("a_tmp_list", a_tmp_list);
 
 						headerColumnData = a_tmp_list.at(0);
+
+						_visibleDBColumnNameStrList.append(headerColumnData);
 
 						saved_VISUAL_INDEX = a_tmp_list.at(1).toInt();
 

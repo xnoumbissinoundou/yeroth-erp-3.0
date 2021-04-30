@@ -49,6 +49,20 @@ void YerothERPGenericSelectDBFieldDialog::closeEvent(QCloseEvent * closeEvent)
 	 */
 	if (isVisible() && 0 != _associatedWindow)
 	{
+		_associatedWindow->set_PARAMETER_TABLE_COLUMN_ORDER();
+
+		YerothERPWindows *allWindows = YerothUtils::getAllWindows();
+
+		if (0 != allWindows)
+		{
+			YerothPOSUser *aUser = allWindows->getUser();
+
+			if (0 != aUser)
+			{
+				aUser->save_user_personal_PRINTING_PARAMETER_settings();
+			}
+		}
+
 		_associatedWindow->rendreVisible(_associatedWindow->getCurStocksTableModel());
 	}
 
