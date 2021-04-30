@@ -1297,6 +1297,9 @@ void YerothWindowsCommons::deconnecter_utilisateur()
 		aUser->cleanup_user_personal_PRINTING_PARAMETER_settings();
 	}
 
+	// This enables user settings privacy.
+	slot_reinitialiser_colones_db_visibles();
+
     _allWindows->definirPasDeRole();
     _allWindows->_mainWindow->show();
     rendreInvisible();
