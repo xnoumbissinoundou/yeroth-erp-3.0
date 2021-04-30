@@ -3944,41 +3944,41 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>Alert system &quot;yeroth-erp-3-0-system-daemon&quot; is already running !</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="282"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="434"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="594"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="362"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="514"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="674"/>
         <source>Date</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="283"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="435"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="595"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="363"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="515"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="675"/>
         <source>Heure</source>
         <translation>Time</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="285"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="437"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="365"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="517"/>
         <source>Montant total</source>
         <translation>Total amount</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="438"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="518"/>
         <source>Compte client (après)</source>
         <translation>Client (after)</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="284"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="436"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="597"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="364"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="516"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="677"/>
         <source>Type d&apos;opération</source>
         <oldsource>Type de paiement</oldsource>
         <translation>Operation</translation>
     </message>
     <message>
         <location filename="src/widgets/table-view/yeroth-erp-paiements-table-view.cpp" line="67"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="439"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="519"/>
         <source>Référence (article ou service)</source>
         <oldsource>Référence article (service)</oldsource>
         <translation>Reference (article or service)</translation>
@@ -3991,38 +3991,38 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation> (after)</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="288"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="440"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="368"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="520"/>
         <source>Référence reçu</source>
         <translation>Receipt ref.</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="286"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="366"/>
         <source>Compte fournisseur de services (après)</source>
         <translation>Service supplier account (after)</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="287"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="367"/>
         <source>Référence service (achat)</source>
         <translation>Service purchase reference</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="596"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="676"/>
         <source>ID de l&apos;opération</source>
         <translation>Operation id</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="598"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="678"/>
         <source>Qté initiale en stock</source>
         <translation>Initial stock qty</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="599"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="679"/>
         <source>Qté en mouvement</source>
         <translation>Moved qty</translation>
     </message>
     <message>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="600"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="680"/>
         <source>Qté restante en stock</source>
         <translation>Remaining stock qty</translation>
     </message>
@@ -4338,7 +4338,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-historique-stock.cpp" line="93"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="658"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="738"/>
         <source>ENTRÉE</source>
         <oldsource>ENTREE</oldsource>
         <translation>ENTRANCE</translation>
@@ -4360,13 +4360,13 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-historique-stock.cpp" line="109"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="657"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="737"/>
         <source>RETOUR VENTE</source>
         <translation>SALE RETURN</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-historique-stock.cpp" line="113"/>
-        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="656"/>
+        <location filename="src/widgets/table-view/yeroth-erp-table-view.cpp" line="736"/>
         <source>RÉ-APPROVISIONNEMENT</source>
         <oldsource>RÉ-APPROVISIONEMENT</oldsource>
         <translation>RESTOCK</translation>
@@ -4378,7 +4378,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     </message>
     <message>
         <location filename="src/admin/yeroth-erp-admin-windows-commons.cpp" line="65"/>
-        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="1038"/>
+        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="1141"/>
         <source>qui suis je ?</source>
         <translation>who am I ?</translation>
     </message>
@@ -4560,7 +4560,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>missing MANDATORY column</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="1025"/>
+        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="1128"/>
         <source>%1 - sélectionner les colones visibles (&apos;%2&apos; colones)</source>
         <translation>%1 - select visible columns (&apos;%2&apos; columns)</translation>
     </message>
@@ -4989,6 +4989,11 @@ Please, change the maximum member of this CLIENT LOYALTY group to &apos;%3&apos;
         <translation>LOYALTY client program</translation>
     </message>
     <message>
+        <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="339"/>
+        <source>terme à rechercher (description du programme fidélité de clients)</source>
+        <translation>keyword to search for (client LOYALTY program description)</translation>
+    </message>
+    <message>
         <location filename="src/windows/crm/yeroth-erp-programmes-de-fidelite-clients-window.cpp" line="431"/>
         <source>Supprimer les programmes de fidélité clients sélectionés ?</source>
         <translation>Delete selected client loyalty program groups ?</translation>
@@ -5091,15 +5096,15 @@ Please, change the maximum member of this CLIENT LOYALTY group to &apos;%3&apos;
     </message>
     <message>
         <location filename="src/dialogs/yeroth-erp-IMPRESSION_DE_DOCUMENT-dialog.cpp" line="238"/>
-        <location filename="src/dialogs/yeroth-erp-IMPRESSION_DE_DOCUMENT-dialog.cpp" line="335"/>
-        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="833"/>
+        <location filename="src/dialogs/yeroth-erp-IMPRESSION_DE_DOCUMENT-dialog.cpp" line="337"/>
+        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="936"/>
         <source>IMPRESSION, NUMÉRO DE PAGES</source>
         <translation>PRINTING, PAGE NUMBERING</translation>
     </message>
     <message>
         <location filename="src/dialogs/yeroth-erp-IMPRESSION_DE_DOCUMENT-dialog.cpp" line="239"/>
-        <location filename="src/dialogs/yeroth-erp-IMPRESSION_DE_DOCUMENT-dialog.cpp" line="336"/>
-        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="834"/>
+        <location filename="src/dialogs/yeroth-erp-IMPRESSION_DE_DOCUMENT-dialog.cpp" line="338"/>
+        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="937"/>
         <source>La numéro de la page de départ doit être inférieur au numéro de la page terminale</source>
         <translation>starting page number  must be inferior to ending PAGE NUMBER</translation>
     </message>
