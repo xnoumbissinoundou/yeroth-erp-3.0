@@ -495,6 +495,18 @@ protected:
 
     void setRightAligned_FOR_YEROTH_PDF_LATEX_PRINTING(int dbtableColumnIndex);
 
+    void on_print_actions_visibility_SET(bool isVisible);
+
+    inline void enable_on_print_actions_SET_VISIBILITY()
+    {
+    	on_print_actions_visibility_SET(true);
+    }
+
+    inline void disable_on_print_actions_SET_VISIBILITY()
+    {
+    	on_print_actions_visibility_SET(false);
+    }
+
 	void enableResizing();
 
 	void mySetupUi(QMainWindow *aWindow);
@@ -564,6 +576,8 @@ protected:
     QStringList							_NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME;
 
     QStringList							_visibleDBColumnNameStrList;
+
+    QSet<QAction *>						_ACTIONS_TO_DISABLE_WHEN_NOT_PRINT_ACTION;
 
     QSet<int>							_DBFieldNamesToPrintCenterAligned;
 

@@ -397,6 +397,24 @@ void YerothWindowsCommons::setRightAligned_FOR_YEROTH_PDF_LATEX_PRINTING(int dbt
 }
 
 
+void YerothWindowsCommons::on_print_actions_visibility_SET(bool isVisible)
+{
+	QAction *a_current_action = 0;
+
+	QSetIterator<QAction *> a_set_iterator(_ACTIONS_TO_DISABLE_WHEN_NOT_PRINT_ACTION);
+
+	while(a_set_iterator.hasNext())
+	{
+		a_current_action = a_set_iterator.next();
+
+		if (0 != a_current_action)
+		{
+			a_current_action->setVisible(isVisible);
+		}
+	}
+}
+
+
 void YerothWindowsCommons::enableResizing()
 {
     setMaximumSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX);

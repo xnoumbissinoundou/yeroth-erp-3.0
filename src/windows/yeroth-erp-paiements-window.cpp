@@ -84,6 +84,12 @@ YerothPaiementsWindow::YerothPaiementsWindow()
     setYerothTableView_FROM_WINDOWS_COMMONS(tableView_paiements);
 
 
+    _ACTIONS_TO_DISABLE_WHEN_NOT_PRINT_ACTION
+		<< action_parametrer_les_impressions
+		<< actionExporter_au_format_csv
+		<< actionAfficherPDF;
+
+
     _list_actions_to_enable_on_positive_tableview_ROW_COUNT
 		<< actionExporter_au_format_csv
 		<< action_parametrer_les_impressions
@@ -1108,13 +1114,11 @@ void YerothPaiementsWindow::handleCurrentChanged(int index)
     {
     case TableauDesPaiements:
         lister_les_elements_du_tableau();
-        enableExporterAuFormatCsv();
-        enableImprimer();
+        enable_on_print_actions_SET_VISIBILITY();
         break;
     case AfficherPaiementAuDetail:
         afficher_paiements_detail();
-        disableExporterAuFormatCsv();
-        disableImprimer();
+        disable_on_print_actions_SET_VISIBILITY();
         break;
     default:
         break;
