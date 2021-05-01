@@ -41,9 +41,12 @@
 
 const int YerothAdminWindow::MAX_IMPORT_CSV_HEADER_SIZE(16);
 
-
 const QString YerothAdminWindow::DATABASE_YEROTH_ERP_3_0_KEYWORD("* database * ");
 
+
+QStringList YerothAdminWindow::comboBox_impression_sur_CHOICE_list;
+
+QStringList YerothAdminWindow::comboBox_format_de_facture_CHOICE_list;
 
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
@@ -113,6 +116,18 @@ YerothAdminWindow::YerothAdminWindow()
     setupUi(this);
 
     mySetupUi(this);
+
+
+    comboBox_impression_sur_CHOICE_list
+		<< YerothUtils::IMPRIMANTE_PDF
+		<< YerothUtils::IMPRIMANTE_EPSON_TM_T20ii
+		<< YerothUtils::IMPRIMANTE_EPSON_TM_T20ii_RESEAU;
+
+
+    comboBox_format_de_facture_CHOICE_list
+		<< YerothERPConfig::RECEIPT_FORMAT_PETIT
+		<< YerothERPConfig::RECEIPT_FORMAT_GRAND_A4PAPER;
+
 
 	stop_TESTING_MAINTENANCE();
 
@@ -1850,18 +1865,9 @@ void YerothAdminWindow::read_configuration()
         comboBox_strategie_vente_sortie->setCurrentIndex(YerothUtils::STRATEGIE_LIFO_COMBOBOX_INDEX);
     }
 
-    comboBox_impression_sur->clear();
-    comboBox_impression_sur->addItem(YerothERPConfig::printer);
-
-    if (YerothUtils::
-            isEqualCaseInsensitive(YerothERPConfig::printer, YerothUtils::IMPRIMANTE_PDF))
-    {
-        comboBox_impression_sur->addItem(YerothUtils::IMPRIMANTE_EPSON_TM_T20ii);
-    }
-    else
-    {
-        comboBox_impression_sur->addItem(YerothUtils::IMPRIMANTE_PDF);
-    }
+    comboBox_impression_sur->addItems_AS_INITIALIZATION(YerothERPConfig::printer,
+    													YerothERPConfig::printer,
+														comboBox_impression_sur_CHOICE_list);
 }
 
 
@@ -1879,23 +1885,23 @@ void YerothAdminWindow::handleThermalPrinterConfiguration(const QString &addedPr
 
 		lineEdit_nbre_de_LINE_FEED_POUR_IMPRESSION_PETIT_THERMIQUE->setVisible(true);
 	}
-	else
+	else if (YerothUtils::isEqualCaseInsensitive(YerothUtils::IMPRIMANTE_EPSON_TM_T20ii_RESEAU, addedPrinterValue))
 	{
 		comboBox_format_de_facture->clear();
+        comboBox_format_de_facture->addItem(YerothERPConfig::RECEIPT_FORMAT_PETIT);
+        comboBox_format_de_facture->setYerothEnabled(false);
 
-		comboBox_format_de_facture->addItem(YerothERPConfig::receiptFormat);
+        YerothERPConfig::receiptFormat = YerothERPConfig::RECEIPT_FORMAT_PETIT;
 
-	    if (YerothUtils::
-	            isEqualCaseInsensitive(YerothERPConfig::RECEIPT_FORMAT_PETIT, YerothERPConfig::receiptFormat))
-	    {
-	        comboBox_format_de_facture->addItem(YerothERPConfig::RECEIPT_FORMAT_GRAND_A4PAPER);
-	    }
-	    else if (YerothUtils::
-	             isEqualCaseInsensitive(YerothERPConfig::RECEIPT_FORMAT_GRAND_A4PAPER,
-	                                    YerothERPConfig::receiptFormat))
-	    {
-	        comboBox_format_de_facture->addItem(YerothERPConfig::RECEIPT_FORMAT_PETIT);
-	    }
+		label_nbre_de_LINE_FEED_POUR_IMPRESSION_PETIT_THERMIQUE->setVisible(false);
+
+		lineEdit_nbre_de_LINE_FEED_POUR_IMPRESSION_PETIT_THERMIQUE->setVisible(false);
+	}
+	else
+	{
+		comboBox_format_de_facture->addItems_AS_INITIALIZATION(YerothERPConfig::receiptFormat,
+	    													YerothERPConfig::receiptFormat,
+															comboBox_format_de_facture_CHOICE_list);
 
         comboBox_format_de_facture->setYerothEnabled(true);
 
@@ -2102,34 +2108,13 @@ void YerothAdminWindow::read_app_parameters_init_configuration()
     /*
      * PRINTER INITIALIZATION CONFIGURATION
      */
-    comboBox_impression_sur->clear();
+    comboBox_impression_sur->addItems_AS_INITIALIZATION(YerothERPConfig::printer,
+    												    YerothUtils::IMPRIMANTE_PDF,
+														comboBox_impression_sur_CHOICE_list);
 
-    comboBox_impression_sur->addItem(YerothUtils::IMPRIMANTE_PDF);
-
-    if (YerothUtils::isEqualCaseInsensitive(YerothUtils::IMPRIMANTE_PDF, YerothERPConfig::printer))
-    {
-        comboBox_impression_sur->addItem(YerothUtils::IMPRIMANTE_EPSON_TM_T20ii);
-    }
-    else
-    {
-        comboBox_impression_sur->addItem(YerothUtils::IMPRIMANTE_PDF);
-    }
-
-    comboBox_format_de_facture->clear();
-
-    comboBox_format_de_facture->addItem(userLanguageReceiptFormatValue);
-
-    if (YerothUtils::
-            isEqualCaseInsensitive(YerothERPConfig::RECEIPT_FORMAT_PETIT, userLanguageReceiptFormatValue))
-    {
-        comboBox_format_de_facture->addItem(YerothERPConfig::RECEIPT_FORMAT_GRAND_A4PAPER);
-        comboBox_format_de_facture->addItem(YerothERPConfig::RECEIPT_FORMAT_PETIT);
-    }
-    else
-    {
-        comboBox_format_de_facture->addItem(YerothERPConfig::RECEIPT_FORMAT_PETIT);
-        comboBox_format_de_facture->addItem(YerothERPConfig::RECEIPT_FORMAT_GRAND_A4PAPER);
-    }
+    comboBox_format_de_facture->addItems_AS_INITIALIZATION(userLanguageReceiptFormatValue,
+    													   userLanguageReceiptFormatValue,
+														   comboBox_format_de_facture_CHOICE_list);
 
     lineEdit_devise->setText(currencyValue);
 

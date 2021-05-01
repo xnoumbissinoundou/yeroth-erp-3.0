@@ -245,6 +245,11 @@ private:
 	static const QString DB;
 	static const QString TABLEAU;
 
+
+	static QStringList comboBox_impression_sur_CHOICE_list;
+
+	static QStringList comboBox_format_de_facture_CHOICE_list;
+
 	QString _currentWindowTitle;
 	QString _yerothAdminWindowTitleStart;
 

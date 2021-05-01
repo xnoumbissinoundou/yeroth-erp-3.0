@@ -89,6 +89,45 @@ void YerothComboBox::saveCurrentValueToDatabase(const QString &aDBFieldColumn,
 }
 
 
+void YerothComboBox::addItems_AS_INITIALIZATION(const QString &current_configured_item,
+											    const QString &first_item_to_add,
+											    const QStringList &items_to_add_as_CHOICE)
+{
+    clear();
+
+//    QDEBUG_STRING_OUTPUT_2("first_item_to_add", first_item_to_add);
+
+    addItem(first_item_to_add);
+
+    QString a_matching_item;
+
+    QString a_current_item;
+
+    for (unsigned int k = 0; k < items_to_add_as_CHOICE.size(); ++k)
+    {
+    	a_current_item = items_to_add_as_CHOICE.at(k);
+
+        if (YerothUtils::isEqualCaseInsensitive(a_current_item, current_configured_item))
+        {
+        	a_matching_item = a_current_item;
+        	break;
+        }
+    }
+
+//    QDEBUG_STRING_OUTPUT_2("a_matching_item", a_matching_item);
+
+//    QDEBUG_QSTRINGLIST_OUTPUT("items_to_add_as_CHOICE", items_to_add_as_CHOICE);
+
+    QStringList items_to_add_as_CHOICE_without_ALLREADY_ADDED_ITEM(items_to_add_as_CHOICE);
+
+    items_to_add_as_CHOICE_without_ALLREADY_ADDED_ITEM.removeAll(first_item_to_add);
+
+//    QDEBUG_QSTRINGLIST_OUTPUT("items_to_add_as_CHOICE_without_ALLREADY_ADDED_ITEM", items_to_add_as_CHOICE_without_ALLREADY_ADDED_ITEM);
+
+    addItems(items_to_add_as_CHOICE_without_ALLREADY_ADDED_ITEM);
+}
+
+
 void YerothComboBox::addItem_AFTER_POPULATE(const QStringList &texts)
 {
 	QSet<QString> cur_items;
