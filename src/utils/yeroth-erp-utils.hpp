@@ -753,6 +753,8 @@ public:
 
 	static const QString IMPRIMANTE_EPSON_TM_T20ii;
 
+	static const QString IMPRIMANTE_EPSON_TM_T20ii_RESEAU;
+
     static const unsigned int PRINT_TIMEOUT;
 
     static const QString STRING_STYLESHEETS_YEROTH_ERP_3_0;

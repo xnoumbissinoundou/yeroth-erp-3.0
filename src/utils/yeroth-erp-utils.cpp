@@ -254,6 +254,17 @@ const QString YerothUtils::IMPRIMANTE_PDF("pdf");
 
 const QString YerothUtils::IMPRIMANTE_EPSON_TM_T20ii("epson TM-T20ii");
 
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+
+	const QString YerothUtils::IMPRIMANTE_EPSON_TM_T20ii_RESEAU("epson TM-T20ii (réseau)");
+
+#else
+
+	const QString YerothUtils::IMPRIMANTE_EPSON_TM_T20ii_RESEAU("epson TM-T20ii (on NETWORK)");
+
+#endif
+
+
 //This is 3 seconds (3000 milliseconds)
 const unsigned int YerothUtils::PRINT_TIMEOUT(TIMEOUT_PRINT);
 
