@@ -64,6 +64,7 @@
     <file>yeroth-erp-3-0-sql/create_table_groupes_de_clients.sql</file>
     <file>yeroth-erp-3-0-sql/create_table_clients.sql</file>
     <file>yeroth-erp-3-0-sql/create_table_fournisseurs.sql</file>
+    <file>yeroth-erp-3-0-sql/create_table_imprimantereseau_recus_petits.sql</file>
     <file>yeroth-erp-3-0-sql/create_table_dbms.sql</file>
     
 		<file>YEROTH.JPG</file>
