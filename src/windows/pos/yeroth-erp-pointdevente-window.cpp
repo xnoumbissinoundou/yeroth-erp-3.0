@@ -782,7 +782,8 @@ QString YerothPointDeVenteWindow::imprimer_recu_vendu(QString referenceRecu)
     	return YerothERPProcess::startPdfViewerProcess(pdfReceiptFileName);
     }
 
-    if (false == YerothUtils::isEqualCaseInsensitive(YerothUtils::IMPRIMANTE_PDF, YerothERPConfig::printer))
+    if (YerothUtils::isEqualCaseInsensitive(YerothUtils::IMPRIMANTE_EPSON_TM_T20ii, YerothERPConfig::printer) 	||
+    	YerothUtils::isEqualCaseInsensitive(YerothUtils::IMPRIMANTE_EPSON_TM_T20ii_RESEAU, YerothERPConfig::printer))
     {
     	QString thermalPrinterTxtFileEnding("yeroth-erp-3-0-txt");
 
@@ -796,15 +797,21 @@ QString YerothPointDeVenteWindow::imprimer_recu_vendu(QString referenceRecu)
     	progOptions << pdfReceiptFileName;
     	progOptions << pdfReceiptFileName_txt;
 
-    	if (YerothERPProcess::startAndWaitForFinished("/usr/bin/pdftotext",
-    												  progOptions,
-													  YerothUtils::PRINT_TIMEOUT))
+    	bool pdftotext_RETURN_VALUE =
+    			YerothERPProcess::startAndWaitForFinished("/usr/bin/pdftotext",
+    													  progOptions,
+														  YerothUtils::PRINT_TIMEOUT);
+
+    	bool pdfReceiptFileName_txt_CREATED = false;
+
+    	if (true == pdftotext_RETURN_VALUE)
     	{
     		QThread::sleep(0.5);
 
     		progOptions.clear();
 
     		QString LINE_FEED_CHARACTERS_FOR_THERMAL_SMALL_PRINTING;
+
     		for (unsigned int k = 0; k < YerothERPConfig::LINE_FEED_CHARACTER_COUNT_FOR_THERMAL_SMALL_PRINTING; ++k)
     		{
     			LINE_FEED_CHARACTERS_FOR_THERMAL_SMALL_PRINTING.append("\n");
@@ -815,34 +822,48 @@ QString YerothPointDeVenteWindow::imprimer_recu_vendu(QString referenceRecu)
     							 .arg(LINE_FEED_CHARACTERS_FOR_THERMAL_SMALL_PRINTING,
     								  pdfReceiptFileName_txt);
 
-    		YerothERPProcess::startAndWaitForFinished("/bin/bash",
-    												  progOptions,
-													  YerothUtils::PRINT_TIMEOUT);
+    		pdfReceiptFileName_txt_CREATED =
+    				YerothERPProcess::startAndWaitForFinished("/bin/bash",
+    												  	  	  progOptions,
+															  YerothUtils::PRINT_TIMEOUT);
 
     		QThread::sleep(0.1);
+    	}
 
-    		progOptions.clear();
-
-    		progOptions << "-c";
-    		progOptions << QString("/bin/cat %1 >> %2")
-    				    		 .arg(pdfReceiptFileName_txt,
-    				    			  YerothERPConfig::pathToThermalPrinterDeviceFile);
-
-    		YerothERPProcess::startAndWaitForFinished("/bin/bash",
-    												  progOptions,
-													  YerothUtils::PRINT_TIMEOUT);
-
-    		if (YerothERPConfig::ouvrirRegistreDeCaisse)
+    	if (true == pdfReceiptFileName_txt_CREATED)
+    	{
+    		if (YerothUtils::isEqualCaseInsensitive(YerothUtils::IMPRIMANTE_EPSON_TM_T20ii,
+    												YerothERPConfig::printer))
     		{
-    			QThread::sleep(0.5);
-
     			progOptions.clear();
 
     			progOptions << "-c";
-    			progOptions << QString("/bin/echo -e -n \"\\x1b\\x70\\x00\\x19\\xfa\" >> %1")
+    			progOptions << QString("/bin/cat %1 >> %2")
+    				    				 .arg(pdfReceiptFileName_txt,
+    				    					  YerothERPConfig::pathToThermalPrinterDeviceFile);
+
+    			YerothERPProcess::startAndWaitForFinished("/bin/bash",
+    													  progOptions,
+														  YerothUtils::PRINT_TIMEOUT);
+
+    			if (YerothERPConfig::ouvrirRegistreDeCaisse)
+    			{
+    				QThread::sleep(0.5);
+
+    				progOptions.clear();
+
+    				progOptions << "-c";
+    				progOptions << QString("/bin/echo -e -n \"\\x1b\\x70\\x00\\x19\\xfa\" >> %1")
     								.arg(YerothERPConfig::pathToThermalPrinterDeviceFile);
 
-    			QProcess::startDetached("/bin/bash", progOptions, YerothERPConfig::temporaryFilesDir);
+    				QProcess::startDetached("/bin/bash", progOptions, YerothERPConfig::temporaryFilesDir);
+    			}
+    		}
+    		else if (YerothUtils::isEqualCaseInsensitive(YerothUtils::IMPRIMANTE_EPSON_TM_T20ii_RESEAU,
+					 	 	 	 	 	 	 	 	 	 YerothERPConfig::printer))
+    		{
+    			// now we send text file content to database table
+    			// for network printer spooling thread.
     		}
 
     		return pdfReceiptFileName;
