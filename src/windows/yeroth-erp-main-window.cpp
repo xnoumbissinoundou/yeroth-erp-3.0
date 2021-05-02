@@ -533,7 +533,7 @@ void YerothMainWindow::help()
 
 	YerothERPConfig::currency = "FCFA";
 
-	YerothERPConfig::printer = YerothUtils::IMPRIMANTE_EPSON_TM_T20ii;
+	YerothERPConfig::printer = YerothUtils::IMPRIMANTE_EPSON_TM_T20ii_RESEAU;
 
     YerothPOSUserManager *u = new YerothPOSUserManager(_allWindows);
     u->set_titre("M.");
