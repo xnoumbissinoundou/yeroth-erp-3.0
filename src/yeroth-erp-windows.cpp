@@ -101,6 +101,7 @@ YerothERPWindows::YerothERPWindows(QDesktopWidget *desktopWidget)
      _adminDetailWindow(0),
      _adminModifierWindow(0),
      _database(0),
+	 _tableModel_imprimantereseau_recus_petits(0),
 	 _tableModel_operations_comptables(0),
 	 _tableModel_comptes_doperations_comptables(0),
 	 _tableModel_comptes_bancaires(0),
@@ -149,6 +150,7 @@ YerothERPWindows::YerothERPWindows(QDesktopWidget *desktopWidget)
 
     static YerothDatabaseTableColumn aYerothDatabaseTableColumnStaticInstance;
 
+    setupSqlTableModelFromName(YerothDatabase::IMPRIMANTERESEAU_RECUS_PETITS, &_tableModel_imprimantereseau_recus_petits);
     setupSqlTableModelFromName(YerothDatabase::OPERATIONS_COMPTABLES, &_tableModel_operations_comptables);
     setupSqlTableModelFromName(YerothDatabase::COMPTES_DOPERATIONS_COMPTABLES, &_tableModel_comptes_doperations_comptables);
     setupSqlTableModelFromName(YerothDatabase::COMPTES_BANCAIRES, &_tableModel_comptes_bancaires);
@@ -169,9 +171,9 @@ YerothERPWindows::YerothERPWindows(QDesktopWidget *desktopWidget)
     setupSqlTableModelFromName(YerothDatabase::COURRIERS_ALERTES, &_tableModel_courriers_alertes);
     setupSqlTableModelFromName(YerothDatabase::ACHATS_DE_SERVICES, &_tableModel_achats_de_services);
     setupSqlTableModelFromName(YerothDatabase::ACHATS, &_tableModel_achats);
-    setupSqlTableModelFromName(YerothDatabase::YerothDatabase::STOCKS, &_tableModel_stocks);
-    setupSqlTableModelFromName(YerothDatabase::YerothDatabase::SERVICES_COMPLETES, &_tableModel_services_completes);
-    setupSqlTableModelFromName(YerothDatabase::YerothDatabase::STOCKS_VENDU, &_tableModel_stocks_vendu);
+    setupSqlTableModelFromName(YerothDatabase::STOCKS, &_tableModel_stocks);
+    setupSqlTableModelFromName(YerothDatabase::SERVICES_COMPLETES, &_tableModel_services_completes);
+    setupSqlTableModelFromName(YerothDatabase::STOCKS_VENDU, &_tableModel_stocks_vendu);
     setupSqlTableModelFromName(YerothDatabase::STOCKS_SORTIES, &_tableModel_stocks_sorties);
     setupSqlTableModelFromName(YerothDatabase::MARCHANDISES, &_tableModel_marchandises);
     setupSqlTableModelFromName(YerothDatabase::CONFIGURATIONS, &_tableModel_configurations);
@@ -335,6 +337,7 @@ void YerothERPWindows::createAllYerothPosUserWindows()
 
 void YerothERPWindows::reinitialiseSqlTableModels()
 {
+	delete _tableModel_imprimantereseau_recus_petits;
 	delete _tableModel_comptes_doperations_comptables;
 	delete _tableModel_operations_comptables;
 	delete _tableModel_comptes_bancaires;
@@ -362,6 +365,7 @@ void YerothERPWindows::reinitialiseSqlTableModels()
     delete _tableModel_configurations;
     delete _tableModel_init_configurations;
 
+    _tableModel_imprimantereseau_recus_petits 	= new YerothSqlTableModel(YerothDatabase::IMPRIMANTERESEAU_RECUS_PETITS);
 	_tableModel_operations_comptables 		= new YerothSqlTableModel(YerothDatabase::OPERATIONS_COMPTABLES);
 	_tableModel_comptes_doperations_comptables = new YerothSqlTableModel(YerothDatabase::COMPTES_DOPERATIONS_COMPTABLES);
     _tableModel_comptes_bancaires			= new YerothSqlTableModel(YerothDatabase::COMPTES_BANCAIRES);
@@ -381,10 +385,10 @@ void YerothERPWindows::reinitialiseSqlTableModels()
     _tableModel_conditions_alertes 			= new YerothSqlTableModel(YerothDatabase::CONDITIONS_ALERTES);
     _tableModel_courriers_alertes 			= new YerothSqlTableModel(YerothDatabase::COURRIERS_ALERTES);
     _tableModel_achats 						= new YerothSqlTableModel(YerothDatabase::ACHATS);
-    _tableModel_stocks 						= new YerothSqlTableModel(YerothDatabase::YerothDatabase::STOCKS);
-    _tableModel_services_completes			= new YerothSqlTableModel(YerothDatabase::YerothDatabase::SERVICES_COMPLETES);
+    _tableModel_stocks 						= new YerothSqlTableModel(YerothDatabase::STOCKS);
+    _tableModel_services_completes			= new YerothSqlTableModel(YerothDatabase::SERVICES_COMPLETES);
     _tableModel_marchandises				= new YerothSqlTableModel(YerothDatabase::MARCHANDISES);
-    _tableModel_stocks_vendu 				= new YerothSqlTableModel(YerothDatabase::YerothDatabase::STOCKS_VENDU);
+    _tableModel_stocks_vendu 				= new YerothSqlTableModel(YerothDatabase::STOCKS_VENDU);
     _tableModel_stocks_sorties 				= new YerothSqlTableModel(YerothDatabase::STOCKS_SORTIES);
     _tableModel_configurations 				= new YerothSqlTableModel(YerothDatabase::CONFIGURATIONS);
     _tableModel_init_configurations 		= new YerothSqlTableModel(YerothDatabase::INIT_CONFIGURATIONS);
@@ -759,6 +763,13 @@ void YerothERPWindows::hideAllWindows()
     _adminModifierWindow->rendreInvisible();
 
     _mainWindow->rendreInvisible();
+}
+
+
+YerothSqlTableModel &YerothERPWindows::getSqlTableModel_imprimantereseau_recus_petits()
+{
+	_tableModel_imprimantereseau_recus_petits->resetFilter();
+    return *_tableModel_imprimantereseau_recus_petits;
 }
 
 

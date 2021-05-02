@@ -9,6 +9,8 @@
 #include "src/utils/yeroth-erp-utils.hpp"
 
 
+const QString YerothDatabase::IMPRIMANTERESEAU_RECUS_PETITS	("imprimantereseau_recus_petits");
+
 const QString YerothDatabase::COMPTES_BANCAIRES			("comptes_bancaires");
 
 const QString YerothDatabase::OPERATIONS_COMPTABLES		("operations_comptables");

@@ -132,6 +132,7 @@ private:
 public:
 
 
+	static const QString IMPRIMANTERESEAU_RECUS_PETITS;
 	static const QString COMPTES_BANCAIRES;
 	static const QString OPERATIONS_COMPTABLES;
 	static const QString COMPTES_DOPERATIONS_COMPTABLES;

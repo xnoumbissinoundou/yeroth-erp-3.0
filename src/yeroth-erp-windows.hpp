@@ -182,6 +182,8 @@ public:
 
 	void setupConfiguration();
 
+	YerothSqlTableModel &getSqlTableModel_imprimantereseau_recus_petits();
+
 	YerothSqlTableModel &getSqlTableModel_operations_comptables();
 
 	YerothSqlTableModel &getSqlTableModel_comptes_doperations_comptables();
@@ -502,6 +504,7 @@ private:
 
 	static QMap<QString, YerothSqlTableModel *> _sqltablenameTOsqltablemodel;
 
+	YerothSqlTableModel 	*_tableModel_imprimantereseau_recus_petits;
 	YerothSqlTableModel 	*_tableModel_operations_comptables;
 	YerothSqlTableModel 	*_tableModel_comptes_doperations_comptables;
 	YerothSqlTableModel 	*_tableModel_comptes_bancaires;
