@@ -332,6 +332,11 @@ public:
 		return YerothERPWindows::getNextIdFromTable(YerothDatabase::COMPTES_BANCAIRES);
 	}
 
+	static inline int getNextIdSqlTableModel_imprimantereseau_recus_petits()
+	{
+		return YerothERPWindows::getNextIdFromTable(YerothDatabase::IMPRIMANTERESEAU_RECUS_PETITS);
+	}
+
 	static inline int getNextIdSqlTableModel_operations_comptables()
 	{
 		return YerothERPWindows::getNextIdFromTable(YerothDatabase::OPERATIONS_COMPTABLES);

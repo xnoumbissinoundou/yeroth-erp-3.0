@@ -864,6 +864,32 @@ QString YerothPointDeVenteWindow::imprimer_recu_vendu(QString referenceRecu)
     		{
     			// now we send text file content to database table
     			// for network printer spooling thread.
+
+    			YerothPOSUser *aUser = _allWindows->getUser();
+
+    			if (0 != aUser)
+    			{
+    				YerothSqlTableModel &imprimantereseau_sql_table_model =
+    						_allWindows->getSqlTableModel_imprimantereseau_recus_petits();
+
+					QSqlRecord record = imprimantereseau_sql_table_model.record();
+
+					record.setValue(YerothDatabaseTableColumn::ID, YerothERPWindows::getNextIdSqlTableModel_imprimantereseau_recus_petits());
+					record.setValue(YerothDatabaseTableColumn::NOM_UTILISATEUR, aUser->nom_utilisateur());
+					record.setValue(YerothDatabaseTableColumn::NOM_COMPLET, aUser->nom_complet());
+    				record.setValue(YerothDatabaseTableColumn::MESSAGE_PDV_RECU_PETIT, pdfReceiptFileName_txt);
+
+//    				QDEBUG_STRING_OUTPUT_2("MESSAGE_PDV_RECU_PETIT", pdfReceiptFileName_txt);
+
+    				bool success = imprimantereseau_sql_table_model.insertNewRecord(record);
+
+    				if (!success)
+    				{
+    			        YerothQMessageBox::information(this, QObject::trUtf8("impression imprimante réseau"),
+    			                                       QObject::trUtf8("L'impression du reçu sur l'imprimante réseau "
+    			                                    		   	   	   "ne pouvait pas être réalisée !"));
+    				}
+    			}
     		}
 
     		return pdfReceiptFileName;

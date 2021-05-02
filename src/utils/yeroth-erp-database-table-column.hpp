@@ -197,6 +197,8 @@ public:
 
 	static const QString NOM_LOCALISATION;
 
+	static const QString MESSAGE_PDV_RECU_PETIT;
+
 	static const QString NOM_UTILISATEUR;
 
 	static const QString STOCKS_ID;
