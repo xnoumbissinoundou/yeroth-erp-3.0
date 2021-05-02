@@ -1,1 +1,1 @@
-create table imprimantereseau_recus_petits (id int primary key, nom_utilisateur_denvoi varchar(256), message_recu_petit varchar(256));
+create table imprimantereseau_recus_petits (id int primary key, nom_utilisateur varchar(256), message_PDV_recu_petit varchar(256));
