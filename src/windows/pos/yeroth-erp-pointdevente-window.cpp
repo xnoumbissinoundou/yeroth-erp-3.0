@@ -865,6 +865,8 @@ QString YerothPointDeVenteWindow::imprimer_recu_vendu(QString referenceRecu)
     			// now we send text file content to database table
     			// for network printer spooling thread.
 
+    			YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
+
     			YerothPOSUser *aUser = _allWindows->getUser();
 
     			if (0 != aUser)
@@ -890,6 +892,8 @@ QString YerothPointDeVenteWindow::imprimer_recu_vendu(QString referenceRecu)
     			                                    		   	   	   "ne pouvait pas être réalisée !"));
     				}
     			}
+
+    			YEROTH_ERP_3_0_COMMIT_DATABASE_TRANSACTION;
     		}
 
     		return pdfReceiptFileName;
