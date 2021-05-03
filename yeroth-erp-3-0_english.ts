@@ -8986,8 +8986,9 @@ Client Account</translation>
     </message>
     <message>
         <location filename="ui/crm/creer/yeroth-erp-creer-compte-client-window.ui" line="2648"/>
-        <source>nom de l&apos;entreprise</source>
-        <translation>company name</translation>
+        <source>nom de l&apos;entreprise - client</source>
+        <oldsource>nom de l&apos;entreprise</oldsource>
+        <translation>company - client name</translation>
     </message>
     <message>
         <location filename="ui/crm/creer/yeroth-erp-creer-compte-client-window.ui" line="3161"/>
