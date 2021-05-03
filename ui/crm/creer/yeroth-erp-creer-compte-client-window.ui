@@ -2645,7 +2645,7 @@
       <enum>Qt::LeftToRight</enum>
      </property>
      <property name="text">
-      <string>nom de l'entreprise</string>
+      <string>nom de l'entreprise - client</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
