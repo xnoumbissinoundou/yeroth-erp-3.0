@@ -889,6 +889,8 @@ public:
 
 	static const QRegExp STRING_FOR_YEROTH_ERP_3_0_VALIDATOR_DB_COLUMN_NAME;
 
+	static const QRegExpValidator STRING_FOR_YEROTH_ERP_3_0_IP_ADDRESS_VALIDATOR;
+
 	static const QRegExpValidator STRING_FOR_YEROTH_ERP_3_0_VALIDATOR;
 
 	static const QIntValidator INT_VALIDATOR_GREATER_THAN_ZERO;

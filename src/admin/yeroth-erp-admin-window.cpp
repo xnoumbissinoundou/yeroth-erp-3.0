@@ -136,6 +136,11 @@ YerothAdminWindow::YerothAdminWindow()
                                   .arg(COLOUR_RGB_STRING_YEROTH_DARK_GREEN_47_67_67,
                                 	   COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
+
+    lineEdit_ADRESSE_IP_RESEAU_IMPRIMANTE_THERMIQUE->
+		setValidator(&YerothUtils::STRING_FOR_YEROTH_ERP_3_0_IP_ADDRESS_VALIDATOR);
+
+
     lineEdit_importer_separation_csv->setYerothEnabled(false);
 
     lineEdit_importer_separation_csv->setText(YerothUtils::CSV_FILE_SEPARATION_SEMI_COLON_STRING_CHAR);
