@@ -137,6 +137,8 @@ YerothAdminWindow::YerothAdminWindow()
                                 	   COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
 
+    lineEdit_ADRESSE_IP_RESEAU_IMPRIMANTE_THERMIQUE->checkField();
+
     lineEdit_ADRESSE_IP_RESEAU_IMPRIMANTE_THERMIQUE->
 		setValidator(&YerothUtils::STRING_FOR_YEROTH_ERP_3_0_IP_ADDRESS_VALIDATOR);
 
@@ -1886,6 +1888,8 @@ void YerothAdminWindow::handleThermalPrinterConfiguration(const QString &addedPr
 
         YerothERPConfig::receiptFormat = YerothERPConfig::RECEIPT_FORMAT_PETIT;
 
+        lineEdit_ADRESSE_IP_RESEAU_IMPRIMANTE_THERMIQUE->clearField();
+
         label_ADRESSE_IP_RESEAU_IMPRIMANTE_THERMIQUE->setVisible(false);
 
         lineEdit_ADRESSE_IP_RESEAU_IMPRIMANTE_THERMIQUE->setVisible(false);
@@ -1902,6 +1906,8 @@ void YerothAdminWindow::handleThermalPrinterConfiguration(const QString &addedPr
 
         YerothERPConfig::receiptFormat = YerothERPConfig::RECEIPT_FORMAT_PETIT;
 
+        lineEdit_ADRESSE_IP_RESEAU_IMPRIMANTE_THERMIQUE->checkField();
+
         label_ADRESSE_IP_RESEAU_IMPRIMANTE_THERMIQUE->setVisible(true);
 
         lineEdit_ADRESSE_IP_RESEAU_IMPRIMANTE_THERMIQUE->setVisible(true);
@@ -1917,6 +1923,8 @@ void YerothAdminWindow::handleThermalPrinterConfiguration(const QString &addedPr
 															comboBox_format_de_facture_CHOICE_list);
 
         comboBox_format_de_facture->setYerothEnabled(true);
+
+        lineEdit_ADRESSE_IP_RESEAU_IMPRIMANTE_THERMIQUE->clearField();
 
         label_ADRESSE_IP_RESEAU_IMPRIMANTE_THERMIQUE->setVisible(false);
 
