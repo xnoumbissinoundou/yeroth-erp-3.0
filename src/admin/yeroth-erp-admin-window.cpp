@@ -1881,6 +1881,10 @@ void YerothAdminWindow::handleThermalPrinterConfiguration(const QString &addedPr
 
         YerothERPConfig::receiptFormat = YerothERPConfig::RECEIPT_FORMAT_PETIT;
 
+        label_ADRESSE_IP_RESEAU_IMPRIMANTE_THERMIQUE->setVisible(false);
+
+        lineEdit_ADRESSE_IP_RESEAU_IMPRIMANTE_THERMIQUE->setVisible(false);
+
 		label_nbre_de_LINE_FEED_POUR_IMPRESSION_PETIT_THERMIQUE->setVisible(true);
 
 		lineEdit_nbre_de_LINE_FEED_POUR_IMPRESSION_PETIT_THERMIQUE->setVisible(true);
@@ -1893,6 +1897,10 @@ void YerothAdminWindow::handleThermalPrinterConfiguration(const QString &addedPr
 
         YerothERPConfig::receiptFormat = YerothERPConfig::RECEIPT_FORMAT_PETIT;
 
+        label_ADRESSE_IP_RESEAU_IMPRIMANTE_THERMIQUE->setVisible(true);
+
+        lineEdit_ADRESSE_IP_RESEAU_IMPRIMANTE_THERMIQUE->setVisible(true);
+
 		label_nbre_de_LINE_FEED_POUR_IMPRESSION_PETIT_THERMIQUE->setVisible(false);
 
 		lineEdit_nbre_de_LINE_FEED_POUR_IMPRESSION_PETIT_THERMIQUE->setVisible(false);
@@ -1904,6 +1912,10 @@ void YerothAdminWindow::handleThermalPrinterConfiguration(const QString &addedPr
 															comboBox_format_de_facture_CHOICE_list);
 
         comboBox_format_de_facture->setYerothEnabled(true);
+
+        label_ADRESSE_IP_RESEAU_IMPRIMANTE_THERMIQUE->setVisible(false);
+
+        lineEdit_ADRESSE_IP_RESEAU_IMPRIMANTE_THERMIQUE->setVisible(false);
 
 		label_nbre_de_LINE_FEED_POUR_IMPRESSION_PETIT_THERMIQUE->setVisible(false);
 
