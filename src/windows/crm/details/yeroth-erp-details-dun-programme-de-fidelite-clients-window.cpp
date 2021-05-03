@@ -35,6 +35,8 @@ YerothDetailsDunProgrammeDeFideliteClientsWindow::YerothDetailsDunProgrammeDeFid
                             		.arg(COLOUR_RGB_STRING_YEROTH_YELLOW_254_254_0,
                             		     COLOUR_RGB_STRING_YEROTH_BLACK_0_0_0);
 
+    doubleSpinBox_details_dun_programme_de_fidelite_clients_pourcentage_du_rabais->setEnabled(false);
+
     setupLineEdits();
 
     textEdit_details_dun_programme_de_fidelite_clients_description->setYerothEnabled(false);
@@ -76,12 +78,6 @@ YerothDetailsDunProgrammeDeFideliteClientsWindow::YerothDetailsDunProgrammeDeFid
 }
 
 
-void YerothDetailsDunProgrammeDeFideliteClientsWindow::modifier_un_programme_de_fidelite_clients()
-{
-
-}
-
-
 void YerothDetailsDunProgrammeDeFideliteClientsWindow::setupLineEdits()
 {
 	lineEdit_details_dun_programme_de_fidelite_clients_reference->setYerothEnabled(false);
@@ -91,8 +87,6 @@ void YerothDetailsDunProgrammeDeFideliteClientsWindow::setupLineEdits()
 
 void YerothDetailsDunProgrammeDeFideliteClientsWindow::definirPasDeRole()
 {
-    _logger->log("definirPasDeRole");
-
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionRETOUR, false);
@@ -104,17 +98,9 @@ void YerothDetailsDunProgrammeDeFideliteClientsWindow::definirPasDeRole()
     pushButton_RETOUR->disable(this);
 }
 
-void YerothDetailsDunProgrammeDeFideliteClientsWindow::definirCaissier()
-{
-    _logger->log("definirCaissier - definirPasDeRole()");
-
-    definirPasDeRole();
-}
 
 void YerothDetailsDunProgrammeDeFideliteClientsWindow::definirManager()
 {
-    _logger->log("definirManager");
-
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionRETOUR, true);
@@ -124,37 +110,6 @@ void YerothDetailsDunProgrammeDeFideliteClientsWindow::definirManager()
 	pushButton_groupes_de_clients->enable(this, SLOT(groupes_de_clients()));
 	pushButton_menu_clients->enable(this, SLOT(clients()));
     pushButton_RETOUR->enable(this, SLOT(programmes_de_fidelite_clients()));
-}
-
-
-void YerothDetailsDunProgrammeDeFideliteClientsWindow::definirVendeur()
-{
-    _logger->log("definirVendeur");
-
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionRETOUR, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
-
-	pushButton_groupes_de_clients->enable(this, SLOT(groupes_de_clients()));
-	pushButton_menu_clients->enable(this, SLOT(clients()));
-    pushButton_RETOUR->enable(this, SLOT(programmes_de_fidelite_clients()));
-}
-
-
-void YerothDetailsDunProgrammeDeFideliteClientsWindow::definirGestionaireDesStocks()
-{
-    _logger->log("definirGestionaireDesStocks - definirPasDeRole()");
-
-    definirPasDeRole();
-}
-
-void YerothDetailsDunProgrammeDeFideliteClientsWindow::definirMagasinier()
-{
-    _logger->log("definirMagasinier - definirPasDeRole");
-
-    definirPasDeRole();
 }
 
 

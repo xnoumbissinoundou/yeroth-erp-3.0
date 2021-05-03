@@ -43,15 +43,27 @@ public:
 		return toolBar_YerothDetailsDunProgrammeDeFideliteClientsWindow;
 	}
 
-	virtual void definirCaissier();
+	inline virtual void definirCaissier()
+	{
+	    definirPasDeRole();
+	}
 
 	virtual void definirManager();
 
-    virtual void definirVendeur();
+	inline virtual void definirVendeur()
+	{
+		definirManager();
+	}
 
-    virtual void definirGestionaireDesStocks();
+    inline virtual void definirGestionaireDesStocks()
+    {
+    	definirPasDeRole();
+    }
 
-    virtual void definirMagasinier();
+    inline virtual void definirMagasinier()
+    {
+    	definirPasDeRole();
+    }
 
     virtual void definirPasDeRole();
 
@@ -78,10 +90,6 @@ public slots:
 protected:
 
     virtual void setupShortcuts();
-
-private slots:
-
-	void modifier_un_programme_de_fidelite_clients();
 
 private:
 
