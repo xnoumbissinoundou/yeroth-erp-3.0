@@ -38,6 +38,8 @@ public:
 
 	static QString currency;
 
+	static QString IP_ADDRESS_NETWORK_printer;
+
 	static QString printer;
 
 	static QString fullpathToBACKUP_YEROTH_ERP_3_DIRECTORY;

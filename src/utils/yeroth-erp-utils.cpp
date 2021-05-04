@@ -1023,6 +1023,25 @@ bool YerothUtils::GREP_YEROTH_FILE_CONTENT(const QString &file_full_path,
 }
 
 
+void YerothUtils::YEROTH_READ_FILE_CONTENT(QFile &file,
+									 	   QString &fileContentVar)
+{
+    if (file.open(QIODevice::ReadOnly))
+    {
+        QTextStream stream(&file);
+        QString line;
+
+        do
+        {
+            line = stream.readLine().trimmed();
+            fileContentVar.append(line).append("\n");
+        }
+        while (!line.isNull());
+        file.close();
+    }
+}
+
+
 bool YerothUtils::YEROTH_CREATE_FOLDER(const QString &aFullPathDir,
 									   YerothLogger *aLogger /* = 0*/)
 {

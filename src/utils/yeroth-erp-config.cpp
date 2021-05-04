@@ -28,6 +28,8 @@ bool YerothERPConfig::ouvrirRegistreDeCaisse(false);
 
 QString YerothERPConfig::currency("$");
 
+QString YerothERPConfig::IP_ADDRESS_NETWORK_printer("127.0.0.1");
+
 QString YerothERPConfig::printer("pdf");
 
 QString YerothERPConfig::fullpathToBACKUP_YEROTH_ERP_3_DIRECTORY("/opt/yeroth-erp-3.0-standalone/YEROTH_sql_backup");
@@ -223,6 +225,9 @@ void YerothERPConfig::saveYerothConfig()
 
 		<< QString("local_parameter_type_receipt=%1\n")
 				.arg(YerothERPConfig::receiptType)
+
+		<< QString("local_parameter_IP_address_network_thermal_printer=%1\n")
+				.arg(YerothERPConfig::IP_ADDRESS_NETWORK_printer)
 
 		<< QString("local_parameter_thermal_printer=%1\n")
 				.arg(YerothERPConfig::printer)

@@ -42891,6 +42891,30 @@
          <normalon>:/yeroth-erp-3-0-images/folder-sort.svg.png</normalon>../yeroth-erp-3-0-images/folder-sort.svg.png</iconset>
        </property>
       </widget>
+      <widget class="QLabel" name="label_ADRESSE_IP_RESEAU_IMPRIMANTE_THERMIQUE">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>260</y>
+         <width>233</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="toolTip">
+        <string>de '1' - '12'.</string>
+       </property>
+       <property name="text">
+        <string>ADRESSE IP RÉSEAU IMPRIMANTE</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
       <widget class="YerothLineEdit" name="lineEdit_ADRESSE_IP_RESEAU_IMPRIMANTE_THERMIQUE">
        <property name="geometry">
         <rect>
@@ -43346,33 +43370,6 @@
         <font>
          <pointsize>10</pointsize>
         </font>
-       </property>
-       <property name="toolTip">
-        <string>de '1' - '12'.</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_ADRESSE_IP_RESEAU_IMPRIMANTE_THERMIQUE">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>260</y>
-         <width>233</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="toolTip">
-        <string>de '1' - '12'.</string>
-       </property>
-       <property name="text">
-        <string>ADRESSE IP RÉSEAU IMPRIMANTE</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
       </widget>
      </widget>

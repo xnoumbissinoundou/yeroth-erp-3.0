@@ -245,6 +245,8 @@ public:
 
 	static const QString ADRESSE_IP;
 
+	static const QString ADRESSE_IP_RESEAU_IMPRIMANTE_THERMIQUE;
+
 	static const QString BOITE_POSTALE;
 
 	static const QString STATUT_RESOLU;

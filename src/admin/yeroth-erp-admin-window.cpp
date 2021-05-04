@@ -1842,6 +1842,9 @@ void YerothAdminWindow::read_configuration()
     lineEdit_annee_de_depart_pour_la_pagination->setText(YerothERPConfig::annee_depart_pour_la_pagination);
 
 
+    lineEdit_ADRESSE_IP_RESEAU_IMPRIMANTE_THERMIQUE->setText(YerothERPConfig::IP_ADDRESS_NETWORK_printer);
+
+
     comboBox_strategie_vente_sortie->clear();
     comboBox_strategie_vente_sortie->addItem(YerothERPConfig::STRATEGIE_VENTE_SORTIE_ALL);
     comboBox_strategie_vente_sortie->addItem(YerothERPConfig::STRATEGIE_VENTE_SORTIE_FEFO);
@@ -2490,6 +2493,13 @@ void YerothAdminWindow::enregistrer_system_local_app_parameters_configuration()
     if (comboBox_impression_sur->checkField())
     {
     	YerothERPConfig::printer = comboBox_impression_sur->currentText();
+
+    	if (YerothUtils::isEqualCaseInsensitive(YerothERPConfig::printer,
+    											YerothUtils::IMPRIMANTE_EPSON_TM_T20ii_RESEAU))
+    	{
+    		YerothERPConfig::IP_ADDRESS_NETWORK_printer =
+    				lineEdit_ADRESSE_IP_RESEAU_IMPRIMANTE_THERMIQUE->text();
+    	}
     }
 
 	YerothERPConfig::saveYerothConfig();

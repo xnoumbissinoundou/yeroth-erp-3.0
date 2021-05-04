@@ -876,12 +876,30 @@ QString YerothPointDeVenteWindow::imprimer_recu_vendu(QString referenceRecu)
 
 					QSqlRecord record = imprimantereseau_sql_table_model.record();
 
-					record.setValue(YerothDatabaseTableColumn::ID, YerothERPWindows::getNextIdSqlTableModel_imprimantereseau_recus_petits());
+
+					QString pdfReceiptFileName_txt_CONTENT;
+
+					QFile pdfReceiptFile(pdfReceiptFileName_txt);
+
+					YerothUtils::YEROTH_READ_FILE_CONTENT(pdfReceiptFile, pdfReceiptFileName_txt_CONTENT);
+
+
+					record.setValue(YerothDatabaseTableColumn::ID,
+							YerothERPWindows::getNextIdSqlTableModel_imprimantereseau_recus_petits());
+
 					record.setValue(YerothDatabaseTableColumn::NOM_UTILISATEUR, aUser->nom_utilisateur());
 					record.setValue(YerothDatabaseTableColumn::NOM_COMPLET, aUser->nom_complet());
-    				record.setValue(YerothDatabaseTableColumn::MESSAGE_PDV_RECU_PETIT, pdfReceiptFileName_txt);
+					record.setValue(YerothDatabaseTableColumn::MESSAGE_PDV_RECU_PETIT, pdfReceiptFileName_txt_CONTENT);
 
-//    				QDEBUG_STRING_OUTPUT_2("MESSAGE_PDV_RECU_PETIT", pdfReceiptFileName_txt);
+					record.setValue(YerothDatabaseTableColumn::ADRESSE_IP_RESEAU_IMPRIMANTE_THERMIQUE,
+									YerothERPConfig::IP_ADDRESS_NETWORK_printer);
+
+//					QDEBUG_STRING_OUTPUT_2("MESSAGE_PDV_RECU_PETIT", pdfReceiptFileName_txt);
+
+//					QDEBUG_STRING_OUTPUT_2("MESSAGE_PDV_RECU_PETIT contenu", pdfReceiptFileName_txt_CONTENT);
+//
+//    				QDEBUG_STRING_OUTPUT_2("MESSAGE_PDV_RECU_PETIT length",
+//    						QString::number(pdfReceiptFileName_txt_CONTENT.length()));
 
     				bool success = imprimantereseau_sql_table_model.insertNewRecord(record);
 

@@ -80,24 +80,6 @@ private:
 };
 
 
-void yeroth_read_file(QFile &file, QString &fileContentVar)
-{
-    if (file.open(QIODevice::ReadOnly))
-    {
-        QTextStream stream(&file);
-        QString line;
-
-        do
-        {
-            line = stream.readLine().trimmed();
-            fileContentVar.append(line).append("\n");
-        }
-        while (!line.isNull());
-        file.close();
-    }
-}
-
-
 void readTexTemplateFiles(YerothLogger &logger)
 {
     logger.log("main", "readTexTemplateFiles");
@@ -106,329 +88,329 @@ void readTexTemplateFiles(YerothLogger &logger)
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
     QFile fileFinancialAccountingReportDataTemplate(FILE_YEROTH_ERP_3_0_TEMPLATE_FINANCIAL_ACCOUNTING_REPORT_DATA_FR);
-    yeroth_read_file(fileFinancialAccountingReportDataTemplate, YerothUtils::template_bilan_comptable_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileFinancialAccountingReportDataTemplate, YerothUtils::template_bilan_comptable_tex);
 
 #else //YEROTH_ENGLISH_LANGUAGE
 
     QFile fileFinancialAccountingReportDataENTemplate(FILE_YEROTH_ERP_3_0_TEMPLATE_FINANCIAL_ACCOUNTING_REPORT_DATA_EN);
-    yeroth_read_file(fileFinancialAccountingReportDataENTemplate, YerothUtils::template_bilan_comptable_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileFinancialAccountingReportDataENTemplate, YerothUtils::template_bilan_comptable_tex);
 
 #endif
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
     QFile fileClientLOYALTY_GROUP_LISTING_FR(FILE_YEROTH_CLIENT_LOYALTY_GROUPS_LISTING_TEMPLATE_FR);
-    yeroth_read_file(fileClientLOYALTY_GROUP_LISTING_FR, YerothUtils::template_CLIENT_LOYALTY_GROUP_LISTING_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileClientLOYALTY_GROUP_LISTING_FR, YerothUtils::template_CLIENT_LOYALTY_GROUP_LISTING_tex);
 
 #else //YEROTH_ENGLISH_LANGUAGE
 
     QFile fileClientLOYALTY_GROUP_LISTING_EN(FILE_YEROTH_CLIENT_LOYALTY_GROUPS_LISTING_TEMPLATE_EN);
-    yeroth_read_file(fileClientLOYALTY_GROUP_LISTING_EN, YerothUtils::template_CLIENT_LOYALTY_GROUP_LISTING_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileClientLOYALTY_GROUP_LISTING_EN, YerothUtils::template_CLIENT_LOYALTY_GROUP_LISTING_tex);
 
 #endif
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
     QFile fileClientLOYALTYprogramLISTING_FR(FILE_YEROTH_CLIENT_LOYALTY_PROGRAM_LISTING_TEMPLATE_FR);
-    yeroth_read_file(fileClientLOYALTYprogramLISTING_FR, YerothUtils::template_CLIENT_LOYALTY_PROGRAM_LISTING_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileClientLOYALTYprogramLISTING_FR, YerothUtils::template_CLIENT_LOYALTY_PROGRAM_LISTING_tex);
 
 #else //YEROTH_ENGLISH_LANGUAGE
 
     QFile fileClientLOYALTYprogramLISTING_EN(FILE_YEROTH_CLIENT_LOYALTY_PROGRAM_LISTING_TEMPLATE_EN);
-    yeroth_read_file(fileClientLOYALTYprogramLISTING_EN, YerothUtils::template_CLIENT_LOYALTY_PROGRAM_LISTING_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileClientLOYALTYprogramLISTING_EN, YerothUtils::template_CLIENT_LOYALTY_PROGRAM_LISTING_tex);
 
 #endif
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
     QFile fileClientLOYALTYprogramTemplateFR(FILE_YEROTH_LOYALTY_MEMBERSHIP_CARD_TEMPLATE_FR);
-    yeroth_read_file(fileClientLOYALTYprogramTemplateFR, YerothUtils::template_carte_de_fidelite_client_TEMPLATE_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileClientLOYALTYprogramTemplateFR, YerothUtils::template_carte_de_fidelite_client_TEMPLATE_tex);
 
 #else //YEROTH_ENGLISH_LANGUAGE
 
     QFile fileClientLOYALTYprogramTemplateEN(FILE_YEROTH_LOYALTY_MEMBERSHIP_CARD_TEMPLATE_EN);
-    yeroth_read_file(fileClientLOYALTYprogramTemplateEN, YerothUtils::template_carte_de_fidelite_client_TEMPLATE_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileClientLOYALTYprogramTemplateEN, YerothUtils::template_carte_de_fidelite_client_TEMPLATE_tex);
 
 #endif
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
     QFile fileSupplierDataTemplate(FILE_YEROTH_ERP_3_0_TEMPLATE_SUPPLIER_DATA_FR);
-    yeroth_read_file(fileSupplierDataTemplate, YerothUtils::template_fiche_dun_fournisseur_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileSupplierDataTemplate, YerothUtils::template_fiche_dun_fournisseur_tex);
 
 #else //YEROTH_ENGLISH_LANGUAGE
 
     QFile fileSupplierDataENTemplate(FILE_YEROTH_ERP_3_0_TEMPLATE_SUPPLIER_DATA_EN );
-    yeroth_read_file(fileSupplierDataENTemplate, YerothUtils::template_fiche_dun_fournisseur_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileSupplierDataENTemplate, YerothUtils::template_fiche_dun_fournisseur_tex);
 
 #endif
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
     QFile fileCustomerDataTemplate(FILE_YEROTH_ERP_3_0_TEMPLATE_CUSTOMER_DATA_FR);
-    yeroth_read_file(fileCustomerDataTemplate, YerothUtils::template_fiche_client_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileCustomerDataTemplate, YerothUtils::template_fiche_client_tex);
 
 #else //YEROTH_ENGLISH_LANGUAGE
 
     QFile fileCustomerDataENTemplate(FILE_YEROTH_ERP_3_0_TEMPLATE_CUSTOMER_DATA_EN );
-    yeroth_read_file(fileCustomerDataENTemplate, YerothUtils::template_fiche_client_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileCustomerDataENTemplate, YerothUtils::template_fiche_client_tex);
 
 #endif
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
     QFile barDiagTemplate(FILE_YEROTH_ERP_3_0_TEMPLATE_BAR_DIAG_FR);
-    yeroth_read_file(barDiagTemplate, YerothUtils::FR_bar_diag_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(barDiagTemplate, YerothUtils::FR_bar_diag_tex);
 
 #else //YEROTH_ENGLISH_LANGUAGE
 
     QFile barDiagENTemplate(FILE_YEROTH_ERP_3_0_TEMPLATE_BAR_DIAG_EN );
-    yeroth_read_file(barDiagENTemplate, YerothUtils::EN_bar_diag_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(barDiagENTemplate, YerothUtils::EN_bar_diag_tex);
 
 #endif
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
     QFile barChartTemplate(FILE_YEROTH_ERP_3_0_TEMPLATE_BAR_CHART_FR);
-    yeroth_read_file(barChartTemplate, YerothUtils::FR_bar_chart_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(barChartTemplate, YerothUtils::FR_bar_chart_tex);
 
 #else //YEROTH_ENGLISH_LANGUAGE
 
     QFile barChartENTemplate(FILE_YEROTH_ERP_3_0_TEMPLATE_BAR_CHART_EN);
-    yeroth_read_file(barChartENTemplate, YerothUtils::EN_bar_chart_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(barChartENTemplate, YerothUtils::EN_bar_chart_tex);
 
 #endif
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
     QFile ZERO_ventes_Template(FILE_YEROTH_ERP_3_0_TEMPLATE_ZERO_VENTES_FR);
-    yeroth_read_file(ZERO_ventes_Template, YerothUtils::FR_ZERO_ventes_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(ZERO_ventes_Template, YerothUtils::FR_ZERO_ventes_tex);
 
 #else //YEROTH_ENGLISH_LANGUAGE
 
     QFile ZERO_ventes_ENTemplate(FILE_YEROTH_ERP_3_0_TEMPLATE_ZERO_VENTES_EN);
-    yeroth_read_file(ZERO_ventes_ENTemplate, YerothUtils::EN_ZERO_ventes_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(ZERO_ventes_ENTemplate, YerothUtils::EN_ZERO_ventes_tex);
 
 #endif
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
     QFile pieChartTemplate(FILE_YEROTH_ERP_3_0_TEMPLATE_PIE_CHART_FR);
-    yeroth_read_file(pieChartTemplate, YerothUtils::FR_pie_chart_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(pieChartTemplate, YerothUtils::FR_pie_chart_tex);
 
 #else //YEROTH_ENGLISH_LANGUAGE
 
     QFile pieChartENTemplate(FILE_YEROTH_ERP_3_0_TEMPLATE_PIE_CHART_EN);
-    yeroth_read_file(pieChartENTemplate, YerothUtils::EN_pie_chart_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(pieChartENTemplate, YerothUtils::EN_pie_chart_tex);
 
 #endif
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
     QFile fileFactureSmall_fr(FILE_YEROTH_ERP_3_0_TEMPLATE_RECEIPT_SMALL_FR);
-    yeroth_read_file(fileFactureSmall_fr, YerothUtils::FR_template_facture_petit_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileFactureSmall_fr, YerothUtils::FR_template_facture_petit_tex);
 
 #else //YEROTH_ENGLISH_LANGUAGE
 
     QFile fileFactureSmall_en(FILE_YEROTH_ERP_3_0_TEMPLATE_RECEIPT_SMALL_EN);
-    yeroth_read_file(fileFactureSmall_en, YerothUtils::EN_template_facture_petit_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileFactureSmall_en, YerothUtils::EN_template_facture_petit_tex);
 
 #endif
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
     QFile fileFacture(FILE_YEROTH_ERP_3_0_TEMPLATE_RECEIPT_LARGE_FR);
-    yeroth_read_file(fileFacture, YerothUtils::FR_template_facture_grand_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileFacture, YerothUtils::FR_template_facture_grand_tex);
 
 #else //YEROTH_ENGLISH_LANGUAGE
 
     QFile fileFactureEn(FILE_YEROTH_ERP_3_0_TEMPLATE_RECEIPT_LARGE_EN);
-    yeroth_read_file(fileFactureEn, YerothUtils::EN_template_facture_grand_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileFactureEn, YerothUtils::EN_template_facture_grand_tex);
 
 #endif
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
     QFile fileStockHistory(FILE_YEROTH_ERP_3_0_TEMPLATE_HISTORIQUE_DUN_STOCK_FR);
-    yeroth_read_file(fileStockHistory, YerothUtils::template_historique_dun_stock_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileStockHistory, YerothUtils::template_historique_dun_stock_tex);
 
 #else //YEROTH_ENGLISH_LANGUAGE
 
     QFile fileStockHistoryEN(FILE_YEROTH_ERP_3_0_TEMPLATE_HISTORIQUE_DUN_STOCK_EN);
-    yeroth_read_file(fileStockHistoryEN, YerothUtils::template_historique_dun_stock_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileStockHistoryEN, YerothUtils::template_historique_dun_stock_tex);
 
 #endif
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
     QFile filePayments(FILE_YEROTH_ERP_3_0_TEMPLATE_LISTING_PAYMENTS_FR);
-    yeroth_read_file(filePayments, YerothUtils::template_journal_des_paiements_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(filePayments, YerothUtils::template_journal_des_paiements_tex);
 
 #else //YEROTH_ENGLISH_LANGUAGE
 
     QFile filePaymentsEn(FILE_YEROTH_ERP_3_0_TEMPLATE_LISTING_PAYMENTS_EN);
-    yeroth_read_file(filePaymentsEn, YerothUtils::template_journal_des_paiements_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(filePaymentsEn, YerothUtils::template_journal_des_paiements_tex);
 
 #endif
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
     QFile fileLandscape(FILE_YEROTH_ERP_3_0_TEMPLATE_LISTING_SALES_FR);
-    yeroth_read_file(fileLandscape, YerothUtils::template_journal_des_ventes_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileLandscape, YerothUtils::template_journal_des_ventes_tex);
 
 #else //YEROTH_ENGLISH_LANGUAGE
 
     QFile fileLandscapeEn(FILE_YEROTH_ERP_3_0_TEMPLATE_LISTING_SALES_EN);
-    yeroth_read_file(fileLandscapeEn, YerothUtils::template_journal_des_ventes_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileLandscapeEn, YerothUtils::template_journal_des_ventes_tex);
 
 #endif
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
     QFile fileLandscapeTransactions(FILE_YEROTH_ERP_3_0_TEMPLATE_MOUVEMENTSDESTOCKS_FR);
-    yeroth_read_file(fileLandscapeTransactions, YerothUtils::FR_template_liste_des_mouvements_de_stocks_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileLandscapeTransactions, YerothUtils::FR_template_liste_des_mouvements_de_stocks_tex);
 
 #else //YEROTH_ENGLISH_LANGUAGE
 
     QFile fileLandscapeTransactionsEN(FILE_YEROTH_ERP_3_0_TEMPLATE_MOUVEMENTSDESTOCKS_EN);
-    yeroth_read_file(fileLandscapeTransactionsEN, YerothUtils::EN_template_liste_des_mouvements_de_stocks_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileLandscapeTransactionsEN, YerothUtils::EN_template_liste_des_mouvements_de_stocks_tex);
 
 #endif
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
     QFile fileSupplierTransactionListingFr(FILE_YEROTH_ERP_3_0_TEMPLATE_TRANSACTIONS_DUN_FOURNISSEUR_FR);
-    yeroth_read_file(fileSupplierTransactionListingFr, YerothUtils::template_transactions_dun_fournisseur_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileSupplierTransactionListingFr, YerothUtils::template_transactions_dun_fournisseur_tex);
 
 #else //YEROTH_ENGLISH_LANGUAGE
 
     QFile fileSupplierTransactionListingEn(FILE_YEROTH_ERP_3_0_TEMPLATE_TRANSACTIONS_DUN_FOURNISSEUR_EN);
-    yeroth_read_file(fileSupplierTransactionListingEn, YerothUtils::template_transactions_dun_fournisseur_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileSupplierTransactionListingEn, YerothUtils::template_transactions_dun_fournisseur_tex);
 
 #endif
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
     QFile fileCustomerTransactionListingFr(FILE_YEROTH_ERP_3_0_TEMPLATE_TRANSACTIONS_DUN_CLIENT_FR);
-    yeroth_read_file(fileCustomerTransactionListingFr, YerothUtils::template_transactions_dun_client_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileCustomerTransactionListingFr, YerothUtils::template_transactions_dun_client_tex);
 
 #else //YEROTH_ENGLISH_LANGUAGE
 
     QFile fileCustomerTransactionListingEn(FILE_YEROTH_ERP_3_0_TEMPLATE_TRANSACTIONS_DUN_CLIENT_EN);
-    yeroth_read_file(fileCustomerTransactionListingEn, YerothUtils::template_transactions_dun_client_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileCustomerTransactionListingEn, YerothUtils::template_transactions_dun_client_tex);
 
 #endif
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
     QFile fileSupplierListingFr(FILE_YEROTH_ERP_3_0_TEMPLATE_FOURNISSEURS_FR);
-    yeroth_read_file(fileSupplierListingFr, YerothUtils::template_fournisseurs_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileSupplierListingFr, YerothUtils::template_fournisseurs_tex);
 
 #else //YEROTH_ENGLISH_LANGUAGE
 
     QFile fileSupplierListingEn(FILE_YEROTH_ERP_3_0_TEMPLATE_FOURNISSEURS_EN);
-    yeroth_read_file(fileSupplierListingEn, YerothUtils::template_fournisseurs_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileSupplierListingEn, YerothUtils::template_fournisseurs_tex);
 
 #endif
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
     QFile fileCustomerAccountListingFr(FILE_YEROTH_ERP_3_0_TEMPLATE_COMPTES_CLIENTS_FR);
-    yeroth_read_file(fileCustomerAccountListingFr, YerothUtils::template_comptes_clients_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileCustomerAccountListingFr, YerothUtils::template_comptes_clients_tex);
 
 #else //YEROTH_ENGLISH_LANGUAGE
 
     QFile fileCustomerAccountListingEn(FILE_YEROTH_ERP_3_0_TEMPLATE_COMPTES_CLIENTS_EN);
-    yeroth_read_file(fileCustomerAccountListingEn, YerothUtils::template_comptes_clients_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileCustomerAccountListingEn, YerothUtils::template_comptes_clients_tex);
 
 #endif
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
     QFile fileStockListingFr(FILE_YEROTH_ERP_3_0_TEMPLATE_MARCHANDISES_FR);
-    yeroth_read_file(fileStockListingFr, YerothUtils::template_marchandises_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileStockListingFr, YerothUtils::template_marchandises_tex);
 
 #else //YEROTH_ENGLISH_LANGUAGE
 
     QFile fileStockListingEn(FILE_YEROTH_ERP_3_0_TEMPLATE_MARCHANDISES_EN);
-    yeroth_read_file(fileStockListingEn, YerothUtils::template_marchandises_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileStockListingEn, YerothUtils::template_marchandises_tex);
 
 #endif
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
     QFile fileListeAlertesFr(FILE_YEROTH_ERP_3_0_TEMPLATE_LISTE_ALERTES_FR);
-    yeroth_read_file(fileListeAlertesFr, YerothUtils::template_lister_alertes_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileListeAlertesFr, YerothUtils::template_lister_alertes_tex);
 
 #else //YEROTH_ENGLISH_LANGUAGE
 
     QFile fileListeAlertesEn(FILE_YEROTH_ERP_3_0_TEMPLATE_LISTE_ALERTES_EN);
-    yeroth_read_file(fileListeAlertesEn, YerothUtils::template_lister_alertes_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileListeAlertesEn, YerothUtils::template_lister_alertes_tex);
 
 #endif
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
     QFile fileListe_CHARGES_FINANCIERES_FR(FILE_YEROTH_ERP_3_0_TEMPLATE_CHARGES_FINANCIERES_FR);
-    yeroth_read_file(fileListe_CHARGES_FINANCIERES_FR, YerothUtils::template_CHARGES_FINANCIERES_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileListe_CHARGES_FINANCIERES_FR, YerothUtils::template_CHARGES_FINANCIERES_tex);
 
 #else //YEROTH_ENGLISH_LANGUAGE
 
     QFile fileListe_FINANCIAL_EXPENSES_EN(FILE_YEROTH_ERP_3_0_TEMPLATE_CHARGES_FINANCIERES_EN);
-    yeroth_read_file(fileListe_FINANCIAL_EXPENSES_EN, YerothUtils::template_CHARGES_FINANCIERES_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileListe_FINANCIAL_EXPENSES_EN, YerothUtils::template_CHARGES_FINANCIERES_tex);
 
 #endif
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
     QFile fileListeAchatsFr(FILE_YEROTH_ERP_3_0_TEMPLATE_LISTE_ACHATS_FR);
-    yeroth_read_file(fileListeAchatsFr, YerothUtils::template_lister_achats_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileListeAchatsFr, YerothUtils::template_lister_achats_tex);
 
 #else //YEROTH_ENGLISH_LANGUAGE
 
     QFile fileListeAchatsEn(FILE_YEROTH_ERP_3_0_TEMPLATE_LISTE_ACHATS_EN);
-    yeroth_read_file(fileListeAchatsEn, YerothUtils::template_lister_achats_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileListeAchatsEn, YerothUtils::template_lister_achats_tex);
 
 #endif
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
     QFile fileStockDeSecuriteFr(FILE_YEROTH_ERP_3_0_TEMPLATE_FICHE_STOCKS_FR);
-    yeroth_read_file(fileStockDeSecuriteFr, YerothUtils::template_lister_stock_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileStockDeSecuriteFr, YerothUtils::template_lister_stock_tex);
 
 #else //YEROTH_ENGLISH_LANGUAGE
 
     QFile fileStockDeSecuriteEn(FILE_YEROTH_ERP_3_0_TEMPLATE_FICHE_STOCKS_EN);
-    yeroth_read_file(fileStockDeSecuriteEn, YerothUtils::template_lister_stock_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileStockDeSecuriteEn, YerothUtils::template_lister_stock_tex);
 
 #endif
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
     QFile fileTransfertsTemplate(FILE_YEROTH_ERP_3_0_TEMPLATE_LISTING_OUTGOING_STOCKS_SMALL_FR);
-    yeroth_read_file(fileTransfertsTemplate, YerothUtils::FR_template_sortie_des_stocks_petit_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileTransfertsTemplate, YerothUtils::FR_template_sortie_des_stocks_petit_tex);
 
 #else //YEROTH_ENGLISH_LANGUAGE
 
     QFile fileTransfertsTemplateEn(FILE_YEROTH_ERP_3_0_TEMPLATE_LISTING_OUTGOING_STOCKS_SMALL_EN);
-    yeroth_read_file(fileTransfertsTemplateEn, YerothUtils::EN_template_sortie_des_stocks_petit_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileTransfertsTemplateEn, YerothUtils::EN_template_sortie_des_stocks_petit_tex);
 
 #endif
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
     QFile fileTransfertsBigTemplate(FILE_YEROTH_ERP_3_0_TEMPLATE_LISTING_OUTGOING_STOCKS_LARGE_FR);
-    yeroth_read_file(fileTransfertsBigTemplate, YerothUtils::FR_template_sortie_des_stocks_grand_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileTransfertsBigTemplate, YerothUtils::FR_template_sortie_des_stocks_grand_tex);
 
 #else //YEROTH_ENGLISH_LANGUAGE
 
     QFile fileTransfertsBigTemplateEn(FILE_YEROTH_ERP_3_0_TEMPLATE_LISTING_OUTGOING_STOCKS_LARGE_EN);
-    yeroth_read_file(fileTransfertsBigTemplateEn, YerothUtils::EN_template_sortie_des_stocks_grand_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(fileTransfertsBigTemplateEn, YerothUtils::EN_template_sortie_des_stocks_grand_tex);
 
 #endif
 
     QFile barDiagTemplate2(FILE_YEROTH_ERP_3_0_TEMPLATE_1A_TEX);
-    yeroth_read_file(barDiagTemplate2, YerothUtils::_1a_tex);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(barDiagTemplate2, YerothUtils::_1a_tex);
 
 }
 
@@ -478,6 +460,10 @@ void read_system_local_yeroth_configuration()
 		else if (YerothUtils::isEqualCaseInsensitive("local_parameter_type_receipt", list.at(0)))
 		{
 			YerothERPConfig::receiptType = list.at(1).trimmed();
+		}
+		else if (YerothUtils::isEqualCaseInsensitive("local_parameter_IP_address_network_thermal_printer", list.at(0)))
+		{
+			YerothERPConfig::IP_ADDRESS_NETWORK_printer = list.at(1).trimmed();
 		}
 		else if (YerothUtils::isEqualCaseInsensitive("local_parameter_thermal_printer", list.at(0)))
 		{

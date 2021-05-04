@@ -136,6 +136,9 @@ public:
 	static bool GREP_YEROTH_FILE_CONTENT(const QString &file_full_path,
 										 const QString &keyword_IN);
 
+	static void YEROTH_READ_FILE_CONTENT(QFile &file,
+										 QString &fileContentVar);
+
 	static bool YEROTH_CREATE_FOLDER(const QString &aFullPathDir,
 									 YerothLogger *aLogger = 0);
 
