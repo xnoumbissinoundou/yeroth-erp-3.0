@@ -131,7 +131,8 @@ else
 fi
 
 YEROTH_ERP_3_0_POSTRM_STR="#!/bin/bash
-sed -i '/YEROTH_ERP_3_0_PROPERTIES_CONFIGURATION_FOLDER/d' /etc/environment"
+sed -i '/YEROTH_ERP_3_0_PROPERTIES_CONFIGURATION_FOLDER/d' /etc/environment
+sed -i '/YEROTH_ERP_3_0_SYSTEM_LOCAL_CONFIGURATION_PROPERTY_FILE/d' /etc/environment"
 
 echo -e "${YEROTH_ERP_3_0_POSTRM_STR}$(cat ${TARGET_INSTALLATION_FOLDER}/DEBIAN/postrm)" > ${TARGET_INSTALLATION_FOLDER}/DEBIAN/postrm
 
@@ -139,6 +140,7 @@ chmod 755 ${TARGET_INSTALLATION_FOLDER}/DEBIAN/postrm
 
 YEROTH_ERP_3_0_POSTINST_STR="#!/bin/bash
 echo -e \"export YEROTH_ERP_3_0_PROPERTIES_CONFIGURATION_FOLDER=/opt/${YEROTH_ERP_3_0_BINARY_NAME}\" >> /etc/environment
+echo -e \"export YEROTH_ERP_3_0_SYSTEM_LOCAL_CONFIGURATION_PROPERTY_FILE=/opt/${YEROTH_ERP_3_0_BINARY_NAME}/yeroth-erp-3-0-system-local-configuration.properties\" >> /etc/environment
 chmod go+rw /opt/${YEROTH_SQL_BACKUP_FOLDER_NAME}
 chmod go+rw /opt/${YEROTH_ERP_3_0_BINARY_NAME}/yeroth-erp-3-0-system-local-configuration.properties"
 

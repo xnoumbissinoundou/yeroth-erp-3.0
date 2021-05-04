@@ -16,7 +16,6 @@
 
 # define FILE_YEROTH_ERP_3_0_PUBLIC_LOG_INFO 															"yeroth-erp-3-0.log"
 # define FILE_YEROTH_ERP_3_0_PUBLIC_USER_PROPERTIES 											"yeroth-erp-3-0.properties"
-# define FILE_YEROTH_ERP_3_0_PUBLIC_SYSTEM_LOCAL_CONFIGURATION_PROPERTIES "yeroth-erp-3-0-system-local-configuration.properties"
 
 # define FILE_YEROTH_ERP_3_0_USER_MANUAL_FR 											FOLDER_YEROTH_ERP_3_0_USER_DOC"/francais/yeroth-erp-3.0-manuel-de-lutilisateur.pdf"
 
