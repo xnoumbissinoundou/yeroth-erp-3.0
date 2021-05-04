@@ -124,6 +124,9 @@ void YerothAdminCreateWindow::setupLineEdits()
 {
 	lineEdit_creer_remise_montant->setYerothEnabled(false);
 
+	lineEdit_creer_localisation_adresse_ip->
+		setValidator(&YerothUtils::STRING_FOR_YEROTH_ERP_3_0_IP_ADDRESS_VALIDATOR);
+
 	lineEdit_creer_remise_montant->setValidator(&YerothUtils::POSITIVE_DoubleValidator);
     lineEdit_creer_alerte_quantite->setValidator(&YerothUtils::IntValidator);
     lineEdit_creer_utilisateur_mot_passe_1->setEchoMode(QLineEdit::Password);
