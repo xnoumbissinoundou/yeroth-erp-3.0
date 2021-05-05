@@ -31,6 +31,8 @@ const QString YerothDatabaseTableColumn::REFERENCE_RECU_PAIEMENT_CLIENT	("refere
 const QString YerothDatabaseTableColumn::REFERENCE_RECU_VENDU			("reference_recu_vendu");
 const QString YerothDatabaseTableColumn::REFERENCE_RECU_SORTIE			("reference_recu_sortie");
 const QString YerothDatabaseTableColumn::ENREGISTREUR_STOCK				("enregistreur_stock");
+const QString YerothDatabaseTableColumn::NOM_UTILISATEUR_DU_COMMANDEUR_DE_LACHAT	("nom_utilisateur_du_commandeur_de_lachat");
+const QString YerothDatabaseTableColumn::STATUT_DE_LACHAT_AU_FOURNISSEUR			("statut_de_lachat_au_fournisseur");
 const QString YerothDatabaseTableColumn::REFERENCE						("reference");
 const QString YerothDatabaseTableColumn::COMPTE_FOURNISSEUR				("compte_fournisseur");
 const QString YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS  ("compte_client_PROGRAMME_DE_FIDELITE_CLIENTS");

@@ -255,6 +255,8 @@ void YerothAchatsDEServicesWindow::populateComboBoxes()
 
 	aQStringList.append(_varchar_dbtable_column_name_list.values());
 
+	aQStringList.removeAll(YerothDatabaseTableColumn::STATUT_DE_LACHAT_AU_FOURNISSEUR);
+	aQStringList.removeAll(YerothDatabaseTableColumn::NOM_UTILISATEUR_DU_COMMANDEUR_DE_LACHAT);
 	aQStringList.removeAll(YerothDatabaseTableColumn::ENREGISTREUR_STOCK);
 	aQStringList.removeAll(YerothDatabaseTableColumn::LOCALISATION);
 	aQStringList.removeAll(YerothDatabaseTableColumn::LOCALISATION_STOCK);

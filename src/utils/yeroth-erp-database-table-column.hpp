@@ -59,6 +59,10 @@ public:
 
 	static const QString ENREGISTREUR_STOCK;
 
+	static const QString NOM_UTILISATEUR_DU_COMMANDEUR_DE_LACHAT;
+
+	static const QString STATUT_DE_LACHAT_AU_FOURNISSEUR;
+
 	static const QString REFERENCE;
 
 	static const QString COMPTE_FOURNISSEUR;
