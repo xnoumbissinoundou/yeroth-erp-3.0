@@ -397,7 +397,7 @@ void YerothAchatsDEServicesWindow::slot_reinitialiser_colones_db_visibles()
 
 void YerothAchatsDEServicesWindow::textChangedSearchLineEditsQCompleters()
 {
-	comboBox_element_achats_de_services_condition->clear();
+	lineEdit_element_achats_de_services_resultat->clear();
 
     setCurrentlyFiltered(false);
 
