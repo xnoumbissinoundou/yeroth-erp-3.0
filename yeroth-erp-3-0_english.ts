@@ -1631,7 +1631,7 @@ Contacter l&apos;administrateur de Yeroth</oldsource>
         <translation>merchandise</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="717"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="705"/>
         <location filename="src/windows/purchase/yeroth-erp-achats-window.cpp" line="314"/>
         <location filename="src/windows/stocks/yeroth-erp-marchandises-window.cpp" line="749"/>
         <location filename="src/windows/stocks/yeroth-erp-mouvements_de_stocks-window.cpp" line="349"/>
@@ -4182,7 +4182,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>Type in a numeric value for search.</translation>
     </message>
     <message>
-        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="715"/>
+        <location filename="src/windows/crm/yeroth-erp-clients-window.cpp" line="703"/>
         <source>terme à rechercher (émail, réprésentant, et description de l&apos;entreprise cliente)</source>
         <oldsource>terme à rechercher (nom de l&apos;entreprise, réprésentant, et description de l&apos;entreprise cliente)</oldsource>
         <translation>keyword to search for (email, representant, and client company description)</translation>
