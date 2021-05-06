@@ -584,18 +584,10 @@ void YerothERPFournisseursWindow::populateFournisseursComboBoxes()
 
 	aYerothQStringList.removeAll(YerothDatabaseTableColumn::DESCRIPTION_FOURNISSEUR);
 
-//	qDebug() << "++ test: " << aYerothQStringList;
+	comboBox_element_string_db->addItems(aYerothQStringList,
+			YerothDatabaseTableColumn::_tableColumnToUserViewString);
 
-	QString aDBColumnElementString;
-
-	for (int k = 0; k < aYerothQStringList.size(); ++k)
-	{
-		aDBColumnElementString = aYerothQStringList.at(k);
-
-			comboBox_element_string_db
-				->addItem(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(aDBColumnElementString));
-	}
-
+	comboBox_element_string_db->setCurrentIndex(0);
 
 	aYerothQStringList.clear();
 

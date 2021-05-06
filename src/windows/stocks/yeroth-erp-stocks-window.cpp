@@ -442,6 +442,8 @@ void YerothStocksWindow::populateComboBoxes()
 
 	aYerothQStringList.append(_varchar_dbtable_column_name_list.values());
 
+	aYerothQStringList.remove_list(_NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME);
+
 	aYerothQStringList.removeAll(YerothDatabaseTableColumn::DESCRIPTION_PRODUIT);
 	aYerothQStringList.removeAll(YerothDatabaseTableColumn::ENREGISTREUR_STOCK);
 	aYerothQStringList.removeAll(YerothDatabaseTableColumn::HISTORIQUE_STOCK);
@@ -451,21 +453,8 @@ void YerothStocksWindow::populateComboBoxes()
 
 //	qDebug() << "++ test: " << aYerothQStringList;
 
-	QString aDBColumnElementString;
-
-	for (int k = 0; k < aYerothQStringList.size(); ++k)
-	{
-		aDBColumnElementString = aYerothQStringList.at(k);
-
-		if (!YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::REFERENCE, aDBColumnElementString))
-		{
-			comboBox_element_string_db
-				->addItem(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(aDBColumnElementString));
-		}
-	}
-
-	comboBox_element_string_db
-		->insertItem(0, YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::REFERENCE));
+	comboBox_element_string_db->addItems(aYerothQStringList,
+			YerothDatabaseTableColumn::_tableColumnToUserViewString);
 
 	comboBox_element_string_db->setCurrentIndex(0);
 

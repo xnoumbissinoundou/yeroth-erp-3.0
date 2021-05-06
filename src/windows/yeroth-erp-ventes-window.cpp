@@ -1234,23 +1234,8 @@ void YerothVentesWindow::populateComboBoxes()
 	aYerothQStringList.removeAll(YerothDatabaseTableColumn::NOM_UTILISATEUR_CAISSIER);
 	aYerothQStringList.removeAll(YerothDatabaseTableColumn::NOM_CAISSIER);
 
-//	qDebug() << "++ test: " << aYerothQStringList;
-
-	QString aDBColumnElementString;
-
-	for (int k = 0; k < aYerothQStringList.size(); ++k)
-	{
-		aDBColumnElementString = aYerothQStringList.at(k);
-
-		if (!YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::REFERENCE_RECU_VENDU, aDBColumnElementString))
-		{
-			comboBox_element_string_db
-				->addItem(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(aDBColumnElementString));
-		}
-	}
-
-	comboBox_element_string_db
-		->insertItem(0, YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::REFERENCE_RECU_VENDU));
+	comboBox_element_string_db->addItems(aYerothQStringList,
+			YerothDatabaseTableColumn::_tableColumnToUserViewString);
 
 	comboBox_element_string_db->setCurrentIndex(0);
 
