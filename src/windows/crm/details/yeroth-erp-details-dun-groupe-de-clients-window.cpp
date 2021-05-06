@@ -260,7 +260,7 @@ void YerothDetailsDunGroupeDeClientsWindow::showClientGroup_DETAIL(const QString
 	QString membres_du_groupe_db_ID =
 			GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::MEMBRES_DU_GROUPE_db_ID);
 
-	QStringList membres_du_groupe_db_ID_LIST;
+	YerothQStringList membres_du_groupe_db_ID_LIST;
 
 	YerothUtils::SPLIT_STAR_SEPARATED_DB_STRING(membres_du_groupe_db_ID_LIST,
 											    membres_du_groupe_db_ID);

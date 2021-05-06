@@ -164,7 +164,7 @@ void YerothMouvementsDeStocksWindow::textChangedSearchLineEditsQCompleters()
 
     if (!searchTerm.isEmpty())
     {
-        QStringList searchTermList = searchTerm.split(QRegExp("\\s+"));
+        YerothQStringList searchTermList = searchTerm.split(QRegExp("\\s+"));
 
         QString partSearchTerm;
 

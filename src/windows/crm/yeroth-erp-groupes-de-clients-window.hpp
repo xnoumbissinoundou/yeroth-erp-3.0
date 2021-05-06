@@ -173,7 +173,7 @@ private:
 
     YerothLogger			*_logger;
 
-    QStringList				_historiqueStock;
+    YerothQStringList				_historiqueStock;
 
     QString 				_clientGroupDateCreationFilter;
 

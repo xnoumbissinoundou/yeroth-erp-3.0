@@ -31,11 +31,11 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-    YerothERPStockImport(QStringList 				  					&aCurCsvFileToImportContentWordList,
+    YerothERPStockImport(YerothQStringList 				  					&aCurCsvFileToImportContentWordList,
 						 QMap<int, YerothERPDatabaseTableColumnInfo *> 	&anIndexToDatabaseTableColumnInfo);
 
     YerothERPStockImport(YerothPOSAdminWindowsCommons 					&aCallingWindow,
-    					 QStringList 				  					&aCurCsvFileToImportContentWordList,
+    					 YerothQStringList 				  					&aCurCsvFileToImportContentWordList,
 						 QMap<int, YerothERPDatabaseTableColumnInfo *> 	&anIndexToDatabaseTableColumnInfo);
 
     inline virtual ~YerothERPStockImport()
@@ -64,14 +64,14 @@ protected:
     bool check_mandatory_item_field();
 
     virtual enum import_csv_entry_row_return_status
-		import_csv_entry_row(bool importerParlant, QStringList &aCsvFileEntryLine);
+		import_csv_entry_row(bool importerParlant, YerothQStringList &aCsvFileEntryLine);
 
 
-    QStringList 					_allSqlTableImportColumns;
+    YerothQStringList 					_allSqlTableImportColumns;
 
-    QStringList 					_allMandatoryTableColumns;
+    YerothQStringList 					_allMandatoryTableColumns;
 
-    QStringList 					*_curCsvFileToImportContentWordList;
+    YerothQStringList 					*_curCsvFileToImportContentWordList;
 
     QMap<int, YerothERPDatabaseTableColumnInfo *> 	*_csvContentIdxToDatabaseTableColumnInfo;
 

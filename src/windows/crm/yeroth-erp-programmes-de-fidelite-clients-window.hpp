@@ -158,7 +158,7 @@ private:
 
     YerothLogger			*_logger;
 
-    QStringList				_historiqueStock;
+    YerothQStringList				_historiqueStock;
 
     QString 				_client_LOYALTY_PROGRAM_DateCreationFilter;
 

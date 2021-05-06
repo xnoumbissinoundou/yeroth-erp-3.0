@@ -340,7 +340,7 @@ void YerothLineEdit::setupMyQCompleterALL(QString sqlTableName)
     _sqlTableModelView->lister_ALL(*_sqlTableModel,
                                    _stockNameToStockID);
 
-    QStringList articleDesignations;
+    YerothQStringList articleDesignations;
 
     QMapIterator<QString, QString> it(_stockNameToStockID);
 
@@ -381,7 +381,7 @@ void YerothLineEdit::setupMyQCompleterFEFO(QString sqlTableName)
     _sqlTableModelView->lister_FEFO(*_sqlTableModel,
                                     _stockNameToStockID);
 
-    QStringList articleDesignations;
+    YerothQStringList articleDesignations;
 
     QMapIterator<QString, QString> it(_stockNameToStockID);
 
@@ -427,7 +427,7 @@ void YerothLineEdit::setupMyQCompleterFIFO(QString sqlTableName)
     _sqlTableModelView->lister_FIFO(*_sqlTableModel,
                                     _stockNameToStockID);
 
-    QStringList articleDesignations;
+    YerothQStringList articleDesignations;
 
     QMapIterator<QString, QString> it(_stockNameToStockID);
 
@@ -468,7 +468,7 @@ void YerothLineEdit::setupMyQCompleterLIFO(QString sqlTableName)
     _sqlTableModelView->lister_LIFO(*_sqlTableModel,
                                     _stockNameToStockID);
 
-    QStringList articleDesignations;
+    YerothQStringList articleDesignations;
 
     QMapIterator<QString, QString> it(_stockNameToStockID);
 
@@ -512,7 +512,7 @@ void YerothLineEdit::setupMyQCompleterCodebarALL(QString sqlTableName)
     _sqlTableModelView->lister_codebar_ALL(*_sqlTableModel,
                                            _stockReferenceToStockID);
 
-    QStringList articleCodebars;
+    YerothQStringList articleCodebars;
 
     QMapIterator<QString, QString> it(_stockReferenceToStockID);
     QString aCodebarString;
@@ -560,7 +560,7 @@ void YerothLineEdit::setupMyQCompleterCodebarFEFO(QString sqlTableName)
     _sqlTableModelView->lister_codebar_FEFO(*_sqlTableModel,
             								_stockReferenceToStockID);
 
-    QStringList articleCodebars;
+    YerothQStringList articleCodebars;
 
     QMapIterator<QString, QString> it(_stockReferenceToStockID);
     QString aCodebarString;
@@ -608,7 +608,7 @@ void YerothLineEdit::setupMyQCompleterCodebarFIFO(QString sqlTableName)
     _sqlTableModelView->lister_codebar_FIFO(*_sqlTableModel,
                                             _stockReferenceToStockID);
 
-    QStringList articleCodebars;
+    YerothQStringList articleCodebars;
 
     QMapIterator<QString, QString> it(_stockReferenceToStockID);
     QString aCodebarString;
@@ -656,7 +656,7 @@ void YerothLineEdit::setupMyQCompleterCodebarLIFO(QString sqlTableName)
     _sqlTableModelView->lister_codebar_LIFO(*_sqlTableModel,
                                             _stockReferenceToStockID);
 
-    QStringList articleCodebars;
+    YerothQStringList articleCodebars;
 
     QMapIterator<QString, QString> it(_stockReferenceToStockID);
     QString aCodebarString;

@@ -6,6 +6,8 @@
 
 #include "src/include/yeroth-erp-3-0-software.text-configuration.hpp"
 
+#include "src/widgets/yeroth-erp-qstring-list.hpp"
+
 #include "src/users/yeroth-erp-user-manager.hpp"
 
 #include "src/utils/yeroth-erp-command-line-parser.hpp"
@@ -427,7 +429,7 @@ void read_system_local_yeroth_configuration()
 	QTextStream init_cfg(&file);
 	QString aValue;
 	QString line;
-	QStringList list;
+	YerothQStringList list;
 
 	do
 	{
@@ -743,7 +745,7 @@ int main(int argc, char *argv[])
 
     logger.log("main", "Database connection could be opened successfully");
 
-    QStringList sql_table_list;
+    YerothQStringList sql_table_list;
 
 #ifdef YEROTH_FEATURES_COMPTABILITE_yes
     sql_table_list

@@ -19,12 +19,12 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-	YerothERPMarchandiseImport(QStringList 									 &aCurCsvFileToImportContentWordList,
+	YerothERPMarchandiseImport(YerothQStringList 									 &aCurCsvFileToImportContentWordList,
 							   QMap<int, YerothERPDatabaseTableColumnInfo *> &aCsvContentIdxToDatabaseTableColumnInfo);
 
 
 	YerothERPMarchandiseImport(YerothPOSAdminWindowsCommons 				 &aCallingWindow,
-			 	 	 	 	   QStringList 				    				 &aCurCsvFileToImportContentWordList,
+			 	 	 	 	   YerothQStringList 				    				 &aCurCsvFileToImportContentWordList,
 							   QMap<int, YerothERPDatabaseTableColumnInfo *> &anIndexToDatabaseTableColumnInfo);
 
     inline virtual ~YerothERPMarchandiseImport()
@@ -44,7 +44,7 @@ public:
 protected:
 
     virtual enum import_csv_entry_row_return_status
-		import_csv_entry_row(bool importerParlant, QStringList &aCsvFileEntryLine);
+		import_csv_entry_row(bool importerParlant, YerothQStringList &aCsvFileEntryLine);
 };
 
 

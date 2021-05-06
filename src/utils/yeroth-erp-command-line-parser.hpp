@@ -11,7 +11,7 @@
 
 #include <QtCore/QFile>
 #include <QtCore/QString>
-#include <QtCore/QStringList>
+#include <src/widgets/yeroth-erp-qstring-list.hpp>
 #include <QtCore/QTextStream>
 
 enum YerothCommandLineArgumentType

@@ -172,12 +172,12 @@ public:
 	}
 
 
-	inline void set_visible_DB_column_name_str_list(QStringList &a_visible_column_str_list)
+	inline void set_visible_DB_column_name_str_list(YerothQStringList &a_visible_column_str_list)
 	{
 		_visibleDBColumnNameStrList = a_visible_column_str_list;
 	}
 
-	inline QStringList get_visible_DB_column_name_str_list()
+	inline YerothQStringList get_visible_DB_column_name_str_list()
 	{
 		return _visibleDBColumnNameStrList;
 	}
@@ -399,7 +399,7 @@ public slots:
 
 	virtual void updateYerothLineEditQCompleter(const QString &currentDBColumnString);
 
-	inline virtual const QStringList &get_NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME()
+	inline virtual const YerothQStringList &get_NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME()
 	{
 		return _NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME;
 	}
@@ -573,9 +573,9 @@ protected:
     QSet<QString>						_varchar_dbtable_column_name_list;
 
 
-    QStringList							_NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME;
+    YerothQStringList							_NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME;
 
-    QStringList							_visibleDBColumnNameStrList;
+    YerothQStringList							_visibleDBColumnNameStrList;
 
     QSet<QAction *>						_ACTIONS_TO_DISABLE_WHEN_NOT_PRINT_ACTION;
 

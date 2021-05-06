@@ -1002,7 +1002,7 @@ bool YerothUtils::creerNouvelleCategorie(QString 				&proposedCategorieName_IN_O
 bool YerothUtils::GREP_YEROTH_FILE_CONTENT(const QString &file_full_path,
 									 	   const QString &keyword_IN)
 {
-    QStringList progArguments;
+    YerothQStringList progArguments;
 
     progArguments << keyword_IN
     			  << file_full_path;
@@ -1091,7 +1091,7 @@ bool YerothUtils::YEROTH_CREATE_FOLDER(const QString &aFullPathDir,
 bool YerothUtils::GZIP_YEROTH_FILE(const QString &program_working_directory_full_path,
 								   const QString &file_full_path)
 {
-	QStringList gzipPROG_ARGS;
+	YerothQStringList gzipPROG_ARGS;
 
 	gzipPROG_ARGS.append(file_full_path);
 
@@ -1108,7 +1108,7 @@ bool YerothUtils::GZIP_YEROTH_FILE(const QString &program_working_directory_full
 void YerothUtils::REMOVE_STRING_FROM_SPLIT_STAR_SEPARATED_DB_STRING(QString &SEPARATED_RESULTING_QSTRING_IN_OUT,
 												  	  	  	  	  	const QString &aCur_db_STRING)
 {
-	QStringList separated_resulting_qstringlist;
+	YerothQStringList separated_resulting_qstringlist;
 
 	YerothUtils::SPLIT_STAR_SEPARATED_DB_STRING(separated_resulting_qstringlist,
 												SEPARATED_RESULTING_QSTRING_IN_OUT);
@@ -1904,7 +1904,7 @@ int YerothUtils::execQueryRowCount(const QString &strQuery, YerothLogger *logger
 
 
 void YerothUtils::qDebugStrings(const QString 	 &firstString,
-								const QStringList &aStringList)
+								const YerothQStringList &aStringList)
 {
 		qDebug() << QString("++ %1: ")
 						.arg(firstString)
@@ -2208,8 +2208,8 @@ void YerothUtils::getCenterPosition(unsigned desktopWidth,
 
 void YerothUtils::createTableModelHeaders(YerothSqlTableModel 	&tableModel,
         								  QStandardItemModel 	&stdItemModel,
-										  QStringList 			&tableModelHeaders,
-										  QStringList			&tableModelRawHeaders_IN_OUT)
+										  YerothQStringList 			&tableModelHeaders,
+										  YerothQStringList			&tableModelRawHeaders_IN_OUT)
 {
 	tableModelRawHeaders_IN_OUT.clear();
 
@@ -2340,7 +2340,7 @@ int YerothUtils::STOCK_PURCHASE_RECORDS_QUANTITY(int stockId)
 }
 
 
-void YerothUtils::getColumnListString(QStringList &columnStringList,
+void YerothUtils::getColumnListString(YerothQStringList &columnStringList,
                                       const QString &tableName,
                                       const QString &fieldName,
 									  QString conditionStr /* = YerothUtils::EMPTY_STRING */)
@@ -3671,7 +3671,7 @@ bool YerothUtils::export_csv_file(YerothWindowsCommons &aCallingWindow,
 
 
 bool YerothUtils::import_csv_file_content(QString aCsvFileFullPath,
-										  QStringList &wordList_IN_OUT)
+										  YerothQStringList &wordList_IN_OUT)
 {
 	wordList_IN_OUT.clear();
 

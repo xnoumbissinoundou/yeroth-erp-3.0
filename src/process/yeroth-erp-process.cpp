@@ -35,7 +35,7 @@ bool YerothERPProcess::stopYerothERPAlertProcess()
 
 	QString msg;
 
-	QStringList progArguments;
+	YerothQStringList progArguments;
 
 	progArguments << "/etc/init.d/yeroth-erp-3-0-system-daemon-initd.sh";
 
@@ -71,7 +71,7 @@ bool YerothERPProcess::startYerothERPAlertProcess()
 
     if (!started)
     {
-    	QStringList progArguments;
+    	YerothQStringList progArguments;
 
     	progArguments << "/etc/init.d/yeroth-erp-3-0-system-daemon-initd.sh";
 
@@ -99,7 +99,7 @@ bool YerothERPProcess::startYerothERPAlertProcess()
 int YerothERPProcess::
 	start_PROCESS_AND_READ_PROCESS_output_INTO_FILE(const QString &program_executable_location_full_path,
 													const QString &output_file_full_path,
-												    const QStringList &program_executable_args)
+												    const YerothQStringList &program_executable_args)
 {
     QProcess A_YEROTH_PROCESS;
 
@@ -132,7 +132,7 @@ int YerothERPProcess::
 
 QString YerothERPProcess::compileLatex(QString prefixFileName)
 {
-    QStringList progArguments;
+    YerothQStringList progArguments;
 
     progArguments << "-interaction";
 
@@ -164,7 +164,7 @@ QString YerothERPProcess::compileLatex(QString prefixFileName)
 
 QString YerothERPProcess::compileWITH_LUATEX_Latex(QString prefixFileName)
 {
-    QStringList progArguments;
+    YerothQStringList progArguments;
 
     progArguments << "-interaction";
 
@@ -187,7 +187,7 @@ QString YerothERPProcess::compileWITH_LUATEX_Latex(QString prefixFileName)
 
 QString YerothERPProcess::startPdfViewerProcess(QString aPDFFileName)
 {
-    QStringList progArguments(aPDFFileName);
+    YerothQStringList progArguments(aPDFFileName);
 
     QProcess::startDetached(YerothERPConfig::pathToPdfReader,
     						progArguments,
@@ -199,7 +199,7 @@ QString YerothERPProcess::startPdfViewerProcess(QString aPDFFileName)
 
 bool YerothERPProcess::startDetached(QProcess &aProcess,
 									 QString programFileAbsolutePath,
-									 QStringList programArguments)
+									 YerothQStringList programArguments)
 {
 	aProcess.setWorkingDirectory(YerothERPConfig::temporaryFilesDir);
 
@@ -210,7 +210,7 @@ bool YerothERPProcess::startDetached(QProcess &aProcess,
 
 bool YerothERPProcess::startAndWaitForFinished(QProcess &aProcess,
 											  QString programFileAbsolutePath,
-										  	  QStringList programArguments,
+										  	  YerothQStringList programArguments,
 											  int waitForFinished)
 {
 	aProcess.setWorkingDirectory(YerothERPConfig::temporaryFilesDir);
@@ -223,7 +223,7 @@ bool YerothERPProcess::startAndWaitForFinished(QProcess &aProcess,
 
 
 bool YerothERPProcess::startAndWaitForFinished(QString programFileAbsolutePath,
-										  	  QStringList programArguments,
+										  	  YerothQStringList programArguments,
 											  int waitForFinished)
 {
 	QProcess aProcess;

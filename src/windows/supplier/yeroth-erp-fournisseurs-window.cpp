@@ -248,7 +248,7 @@ void YerothERPFournisseursWindow::textChangedSearchLineEditsQCompleters()
 
     if (!searchTerm.isEmpty())
     {
-        QStringList searchTermList = searchTerm.split(QRegExp("\\s+"));
+        YerothQStringList searchTermList = searchTerm.split(QRegExp("\\s+"));
 
         QString partSearchTerm;
 
@@ -578,44 +578,44 @@ void YerothERPFournisseursWindow::populateFournisseursComboBoxes()
 {
     _logger->log("populateFournisseursComboBoxes");
 
-	QStringList aQStringList;
+	YerothQStringList aYerothQStringList;
 
-	aQStringList.append(_varchar_dbtable_column_name_list.values());
+	aYerothQStringList.append(_varchar_dbtable_column_name_list.values());
 
-	aQStringList.removeAll(YerothDatabaseTableColumn::DESCRIPTION_FOURNISSEUR);
+	aYerothQStringList.removeAll(YerothDatabaseTableColumn::DESCRIPTION_FOURNISSEUR);
 
-//	qDebug() << "++ test: " << aQStringList;
+//	qDebug() << "++ test: " << aYerothQStringList;
 
 	QString aDBColumnElementString;
 
-	for (int k = 0; k < aQStringList.size(); ++k)
+	for (int k = 0; k < aYerothQStringList.size(); ++k)
 	{
-		aDBColumnElementString = aQStringList.at(k);
+		aDBColumnElementString = aYerothQStringList.at(k);
 
 			comboBox_element_string_db
 				->addItem(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(aDBColumnElementString));
 	}
 
 
-	aQStringList.clear();
+	aYerothQStringList.clear();
 
-	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::COMPTE_FOURNISSEUR));
+	aYerothQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::COMPTE_FOURNISSEUR));
 
-    comboBox_element->addItems(aQStringList);
+    comboBox_element->addItems(aYerothQStringList);
 
-	aQStringList.clear();
+	aYerothQStringList.clear();
 
-	aQStringList.append(">=");
+	aYerothQStringList.append(">=");
 
-	aQStringList.append("<=");
+	aYerothQStringList.append("<=");
 
-	aQStringList.append(">");
+	aYerothQStringList.append(">");
 
-	aQStringList.append("<");
+	aYerothQStringList.append("<");
 
-	aQStringList.append("=");
+	aYerothQStringList.append("=");
 
-    comboBox_condition->addItems(aQStringList);
+    comboBox_condition->addItems(aYerothQStringList);
 }
 
 

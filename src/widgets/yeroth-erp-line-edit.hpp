@@ -14,7 +14,7 @@
 #include "src/widgets/table-view/yeroth-erp-table-view.hpp"
 
 
-#include <QtCore/QStringList>
+#include <src/widgets/yeroth-erp-qstring-list.hpp>
 
 #include <QtWidgets/QLineEdit>
 
@@ -149,7 +149,7 @@ public:
 		return _sqlTableModelView;
 	}
 
-	inline QStringList getCurrentStaticStringList()
+	inline YerothQStringList getCurrentStaticStringList()
 	{
 		return _currentStaticStringList;
 	}
@@ -193,7 +193,7 @@ private:
 
 	QMap<QString, QString> 	_stockReferenceToStockID;
 
-	QStringList				_currentStaticStringList;
+	YerothQStringList				_currentStaticStringList;
 
 	QString					_lastQCompleterText;
 };

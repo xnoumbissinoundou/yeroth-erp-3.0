@@ -245,21 +245,21 @@ bool YerothAchatsWindow::filtrer_achats()
 
 void YerothAchatsWindow::populateComboBoxes()
 {
-	QStringList aQStringList;
+	YerothQStringList aYerothQStringList;
 
-	aQStringList.append(_varchar_dbtable_column_name_list.values());
+	aYerothQStringList.append(_varchar_dbtable_column_name_list.values());
 
-	aQStringList.removeAll(YerothDatabaseTableColumn::ENREGISTREUR_STOCK);
-	aQStringList.removeAll(YerothDatabaseTableColumn::LOCALISATION);
-	aQStringList.removeAll(YerothDatabaseTableColumn::LOCALISATION_STOCK);
+	aYerothQStringList.removeAll(YerothDatabaseTableColumn::ENREGISTREUR_STOCK);
+	aYerothQStringList.removeAll(YerothDatabaseTableColumn::LOCALISATION);
+	aYerothQStringList.removeAll(YerothDatabaseTableColumn::LOCALISATION_STOCK);
 
-//	qDebug() << "++ test: " << aQStringList;
+//	qDebug() << "++ test: " << aYerothQStringList;
 
 	QString aDBColumnElementString;
 
-	for (int k = 0; k < aQStringList.size(); ++k)
+	for (int k = 0; k < aYerothQStringList.size(); ++k)
 	{
-		aDBColumnElementString = aQStringList.at(k);
+		aDBColumnElementString = aYerothQStringList.at(k);
 
 		if (!YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::REFERENCE, aDBColumnElementString))
 		{
@@ -274,34 +274,34 @@ void YerothAchatsWindow::populateComboBoxes()
 	comboBox_element_string_db->setCurrentIndex(0);
 
 
-	aQStringList.clear();
+	aYerothQStringList.clear();
 
-	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::MARGE_BENEFICIAIRE));
+	aYerothQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::MARGE_BENEFICIAIRE));
 
-	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::MONTANT_TVA));
+	aYerothQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::MONTANT_TVA));
 
-	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::PRIX_VENTE));
+	aYerothQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::PRIX_VENTE));
 
-	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::PRIX_UNITAIRE));
+	aYerothQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::PRIX_UNITAIRE));
 
-	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::QUANTITE_TOTALE));
+	aYerothQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::QUANTITE_TOTALE));
 
-    comboBox_element_achats->addItems(aQStringList);
+    comboBox_element_achats->addItems(aYerothQStringList);
 
 
-	aQStringList.clear();
+	aYerothQStringList.clear();
 
-	aQStringList.append(">=");
+	aYerothQStringList.append(">=");
 
-	aQStringList.append("<=");
+	aYerothQStringList.append("<=");
 
-	aQStringList.append(">");
+	aYerothQStringList.append(">");
 
-	aQStringList.append("<");
+	aYerothQStringList.append("<");
 
-	aQStringList.append("=");
+	aYerothQStringList.append("=");
 
-    comboBox_element_achats_condition->addItems(aQStringList);
+    comboBox_element_achats_condition->addItems(aYerothQStringList);
 }
 
 
@@ -399,7 +399,7 @@ void YerothAchatsWindow::textChangedSearchLineEditsQCompleters()
 
     if (!searchTerm.isEmpty())
     {
-        QStringList searchTermList = searchTerm.split(QRegExp("\\s+"));
+        YerothQStringList searchTermList = searchTerm.split(QRegExp("\\s+"));
 
         QString partSearchTerm;
 

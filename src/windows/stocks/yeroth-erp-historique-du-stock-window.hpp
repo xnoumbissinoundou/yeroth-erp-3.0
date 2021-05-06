@@ -36,7 +36,7 @@ public:
 		return toolBar_historiqueDunStock;
 	}
 
-	void listHistoriqueDuStock(const QStringList &aMouvementStockList,
+	void listHistoriqueDuStock(const YerothQStringList &aMouvementStockList,
 							   const QString	 stockReference,
 							   const QString 	 stockDesignation);
 

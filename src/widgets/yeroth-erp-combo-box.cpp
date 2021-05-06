@@ -91,7 +91,7 @@ void YerothComboBox::saveCurrentValueToDatabase(const QString &aDBFieldColumn,
 
 void YerothComboBox::addItems_AS_INITIALIZATION(const QString &current_configured_item,
 											    const QString &first_item_to_add,
-											    const QStringList &items_to_add_as_CHOICE)
+											    const YerothQStringList &items_to_add_as_CHOICE)
 {
     clear();
 
@@ -118,7 +118,7 @@ void YerothComboBox::addItems_AS_INITIALIZATION(const QString &current_configure
 
 //    QDEBUG_QSTRINGLIST_OUTPUT("items_to_add_as_CHOICE", items_to_add_as_CHOICE);
 
-    QStringList items_to_add_as_CHOICE_without_ALLREADY_ADDED_ITEM(items_to_add_as_CHOICE);
+    YerothQStringList items_to_add_as_CHOICE_without_ALLREADY_ADDED_ITEM(items_to_add_as_CHOICE);
 
     items_to_add_as_CHOICE_without_ALLREADY_ADDED_ITEM.removeAll(first_item_to_add);
 
@@ -128,7 +128,7 @@ void YerothComboBox::addItems_AS_INITIALIZATION(const QString &current_configure
 }
 
 
-void YerothComboBox::addItem_AFTER_POPULATE(const QStringList &texts)
+void YerothComboBox::addItem_AFTER_POPULATE(const YerothQStringList &texts)
 {
 	QSet<QString> cur_items;
 
@@ -142,7 +142,7 @@ void YerothComboBox::addItem_AFTER_POPULATE(const QStringList &texts)
 		cur_items.insert(texts.at(j));
 	}
 
-	QStringList result_items_sorted = cur_items.toList();
+	YerothQStringList result_items_sorted = cur_items.toList();
 
 	result_items_sorted.sort(Qt::CaseSensitive);
 
@@ -152,9 +152,9 @@ void YerothComboBox::addItem_AFTER_POPULATE(const QStringList &texts)
 }
 
 
-void YerothComboBox::addItems(const QStringList &texts)
+void YerothComboBox::addItems(const YerothQStringList &texts)
 {
-	QStringList new_texts(texts);
+	YerothQStringList new_texts(texts);
 
 	new_texts.sort();
 
@@ -171,7 +171,7 @@ bool YerothComboBox::populateComboBoxRawString(QString aDBTableViewStringName,
 		return false;
 	}
 
-    static QStringList curItems;
+    static YerothQStringList curItems;
 
     clear();
 
@@ -241,7 +241,7 @@ bool YerothComboBox::populateComboBoxMissingRawString(const QString aDBFieldColu
 		return false;
 	}
 
-    static QStringList curItems;
+    static YerothQStringList curItems;
 
     QString strQuery(QString("select %1 from %2")
     					.arg(aDBFieldColumn, aDBTableViewString));
@@ -291,7 +291,7 @@ bool YerothComboBox::populateComboBox()
 		return false;
 	}
 
-    static QStringList curItems;
+    static YerothQStringList curItems;
 
     clear();
 
@@ -345,7 +345,7 @@ bool YerothComboBox::populateComboBoxMissing(const int aContentINTValue)
 		return false;
 	}
 
-    static QStringList curItems;
+    static YerothQStringList curItems;
 
     QString strQuery(QString("select %1 from %2")
     					.arg(_dbFieldColumn, _dbTableViewStringName));
@@ -399,7 +399,7 @@ bool YerothComboBox::populateComboBoxWithout(const QList<int> &content_to_delete
 		return false;
 	}
 
-    static QStringList curItems;
+    static YerothQStringList curItems;
 
     QString strQuery(QString("select %1 from %2")
     					.arg(_dbFieldColumn, _dbTableViewStringName));
@@ -411,7 +411,7 @@ bool YerothComboBox::populateComboBoxWithout(const QList<int> &content_to_delete
 
     if (success)
     {
-    	QStringList content_to_delete_from_user_view_string_values;
+    	YerothQStringList content_to_delete_from_user_view_string_values;
 
     	for (uint i = 0; i < content_to_delete_from_user_view_int_values_IN_OUT.size(); ++i)
     	{
@@ -459,7 +459,7 @@ bool YerothComboBox::populateComboBoxWithout(const int aContentINTValue)
 		return false;
 	}
 
-    static QStringList curItems;
+    static YerothQStringList curItems;
 
     QString strQuery(QString("select %1 from %2")
     					.arg(_dbFieldColumn, _dbTableViewStringName));

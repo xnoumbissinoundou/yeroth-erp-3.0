@@ -42,7 +42,7 @@ void YerothPOSAdminWindowsCommons::getManuelUtilisateurPDF()
     YerothPOSUser *user = _allWindows->getUser();
     if (user)
     {
-        QStringList progArguments;
+        YerothQStringList progArguments;
         QProcess aProcess;
 
         if (user->isAdmin() ||

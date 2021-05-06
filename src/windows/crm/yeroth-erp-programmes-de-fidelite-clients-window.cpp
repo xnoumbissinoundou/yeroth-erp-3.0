@@ -205,7 +205,7 @@ void YerothERPProgrammesDeFideliteClientsWindow::textChangedSearchLineEditsQComp
 
     if (!searchTerm.isEmpty())
     {
-        QStringList searchTermList = searchTerm.split(QRegExp("\\s+"));
+        YerothQStringList searchTermList = searchTerm.split(QRegExp("\\s+"));
 
         QString partSearchTerm;
 
@@ -284,21 +284,21 @@ void YerothERPProgrammesDeFideliteClientsWindow::populateComboBoxes()
 {
     _logger->log("populateClientsComboBoxes");
 
-	QStringList aQStringList;
+	YerothQStringList aYerothQStringList;
 
-	aQStringList.append(_varchar_dbtable_column_name_list.values());
+	aYerothQStringList.append(_varchar_dbtable_column_name_list.values());
 
-	aQStringList.removeAll(YerothDatabaseTableColumn::DATE_CREATION);
-	aQStringList.removeAll(YerothDatabaseTableColumn::DESCRIPTION_PROGRAMME_DE_FIDELITE_CLIENTS);
-	aQStringList.removeAll(YerothDatabaseTableColumn::POURCENTAGE_DU_RABAIS);
+	aYerothQStringList.removeAll(YerothDatabaseTableColumn::DATE_CREATION);
+	aYerothQStringList.removeAll(YerothDatabaseTableColumn::DESCRIPTION_PROGRAMME_DE_FIDELITE_CLIENTS);
+	aYerothQStringList.removeAll(YerothDatabaseTableColumn::POURCENTAGE_DU_RABAIS);
 
-//	qDebug() << "++ test: " << aQStringList;
+//	qDebug() << "++ test: " << aYerothQStringList;
 
 	QString aDBColumnElementString;
 
-	for (int k = 0; k < aQStringList.size(); ++k)
+	for (int k = 0; k < aYerothQStringList.size(); ++k)
 	{
-		aDBColumnElementString = aQStringList.at(k);
+		aDBColumnElementString = aYerothQStringList.at(k);
 
 		comboBox_element_string_db
 			->addItem(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(aDBColumnElementString));
@@ -307,25 +307,25 @@ void YerothERPProgrammesDeFideliteClientsWindow::populateComboBoxes()
 	comboBox_element_string_db->setCurrentIndex(0);
 
 
-	aQStringList.clear();
+	aYerothQStringList.clear();
 
-	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::POURCENTAGE_DU_RABAIS));
+	aYerothQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::POURCENTAGE_DU_RABAIS));
 
-    comboBox_element->addItems(aQStringList);
+    comboBox_element->addItems(aYerothQStringList);
 
-	aQStringList.clear();
+	aYerothQStringList.clear();
 
-	aQStringList.append(">=");
+	aYerothQStringList.append(">=");
 
-	aQStringList.append("<=");
+	aYerothQStringList.append("<=");
 
-	aQStringList.append(">");
+	aYerothQStringList.append(">");
 
-	aQStringList.append("<");
+	aYerothQStringList.append("<");
 
-	aQStringList.append("=");
+	aYerothQStringList.append("=");
 
-    comboBox_condition->addItems(aQStringList);
+    comboBox_condition->addItems(aYerothQStringList);
 }
 
 

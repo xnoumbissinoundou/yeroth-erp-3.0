@@ -19,7 +19,7 @@
 #include <QtCore/QDebug>
 
 
-YerothERPMarchandiseImport::YerothERPMarchandiseImport(QStringList &aCurCsvFileToImportContentWordList,
+YerothERPMarchandiseImport::YerothERPMarchandiseImport(YerothQStringList &aCurCsvFileToImportContentWordList,
 						  	  	  	  	  	  	  	   QMap<int, YerothERPDatabaseTableColumnInfo *> &aCsvContentIdxToDatabaseTableColumnInfo)
 :YerothERPStockImport(aCurCsvFileToImportContentWordList,
 					  aCsvContentIdxToDatabaseTableColumnInfo)
@@ -35,7 +35,7 @@ YerothERPMarchandiseImport::YerothERPMarchandiseImport(QStringList &aCurCsvFileT
 
 
 YerothERPMarchandiseImport::YerothERPMarchandiseImport(YerothPOSAdminWindowsCommons &aCallingWindow,
-													   QStringList 				    &aCurCsvFileToImportContentWordList,
+													   YerothQStringList 				    &aCurCsvFileToImportContentWordList,
 													   QMap<int, YerothERPDatabaseTableColumnInfo *> &anIndexToDatabaseTableColumnInfo)
 :YerothERPStockImport(aCallingWindow,
 					  aCurCsvFileToImportContentWordList,
@@ -52,7 +52,7 @@ YerothERPMarchandiseImport::YerothERPMarchandiseImport(YerothPOSAdminWindowsComm
 
 
 enum import_csv_entry_row_return_status
-	YerothERPMarchandiseImport::import_csv_entry_row(bool importerParlant, QStringList &aCsvFileEntryLine)
+	YerothERPMarchandiseImport::import_csv_entry_row(bool importerParlant, YerothQStringList &aCsvFileEntryLine)
 {
 
 	enum import_csv_entry_row_return_status insertionReturnStatus = IMPORT_DATA_CSV_INSERTION_FAILED;
@@ -74,7 +74,7 @@ enum import_csv_entry_row_return_status
 
     int querySize = -1;
 
-	QStringList allImportedTableColumns;
+	YerothQStringList allImportedTableColumns;
 
 	QString curTableColumnType;
 	QString curTableColumnName;
@@ -316,7 +316,7 @@ enum import_csv_entry_row_return_status
 	{
 		QString aCurSqlTableImportColumn;
 
-		QStringList allSqltableColumns = _dbTableColumnToIsNotNULL->keys();
+		YerothQStringList allSqltableColumns = _dbTableColumnToIsNotNULL->keys();
 
 		allSqltableColumns.removeAll(YerothDatabaseTableColumn::ID);
 		allSqltableColumns.removeAll(YerothDatabaseTableColumn::IS_SERVICE);

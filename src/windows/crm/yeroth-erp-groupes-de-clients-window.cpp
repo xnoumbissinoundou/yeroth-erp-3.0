@@ -208,7 +208,7 @@ void YerothGroupesDeClientsWindow::textChangedSearchLineEditsQCompleters()
 
     if (!searchTerm.isEmpty())
     {
-        QStringList searchTermList = searchTerm.split(QRegExp("\\s+"));
+        YerothQStringList searchTermList = searchTerm.split(QRegExp("\\s+"));
 
         QString partSearchTerm;
 
@@ -295,22 +295,22 @@ void YerothGroupesDeClientsWindow::populateComboBoxes()
 {
     _logger->log("populateClientsComboBoxes");
 
-	QStringList aQStringList;
+	YerothQStringList aYerothQStringList;
 
-	aQStringList.append(_varchar_dbtable_column_name_list.values());
+	aYerothQStringList.append(_varchar_dbtable_column_name_list.values());
 
-	aQStringList.removeAll(YerothDatabaseTableColumn::DATE_CREATION);
-	aQStringList.removeAll(YerothDatabaseTableColumn::DESCRIPTION_GROUPE);
-	aQStringList.removeAll(YerothDatabaseTableColumn::MAXIMUM_DE_MEMBRES);
-	aQStringList.removeAll(YerothDatabaseTableColumn::MEMBRES_DU_GROUPE_db_ID);
+	aYerothQStringList.removeAll(YerothDatabaseTableColumn::DATE_CREATION);
+	aYerothQStringList.removeAll(YerothDatabaseTableColumn::DESCRIPTION_GROUPE);
+	aYerothQStringList.removeAll(YerothDatabaseTableColumn::MAXIMUM_DE_MEMBRES);
+	aYerothQStringList.removeAll(YerothDatabaseTableColumn::MEMBRES_DU_GROUPE_db_ID);
 
-//	qDebug() << "++ test: " << aQStringList;
+//	qDebug() << "++ test: " << aYerothQStringList;
 
 	QString aDBColumnElementString;
 
-	for (int k = 0; k < aQStringList.size(); ++k)
+	for (int k = 0; k < aYerothQStringList.size(); ++k)
 	{
-		aDBColumnElementString = aQStringList.at(k);
+		aDBColumnElementString = aYerothQStringList.at(k);
 
 		comboBox_element_string_db
 			->addItem(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(aDBColumnElementString));
@@ -318,25 +318,25 @@ void YerothGroupesDeClientsWindow::populateComboBoxes()
 
 	comboBox_element_string_db->setCurrentIndex(0);
 
-	aQStringList.clear();
+	aYerothQStringList.clear();
 
-	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::MAXIMUM_DE_MEMBRES));
+	aYerothQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::MAXIMUM_DE_MEMBRES));
 
-    comboBox_element->addItems(aQStringList);
+    comboBox_element->addItems(aYerothQStringList);
 
-	aQStringList.clear();
+	aYerothQStringList.clear();
 
-	aQStringList.append(">=");
+	aYerothQStringList.append(">=");
 
-	aQStringList.append("<=");
+	aYerothQStringList.append("<=");
 
-	aQStringList.append(">");
+	aYerothQStringList.append(">");
 
-	aQStringList.append("<");
+	aYerothQStringList.append("<");
 
-	aQStringList.append("=");
+	aYerothQStringList.append("=");
 
-    comboBox_condition->addItems(aQStringList);
+    comboBox_condition->addItems(aYerothQStringList);
 }
 
 
@@ -534,7 +534,7 @@ void YerothGroupesDeClientsWindow::afficher_groupes_de_clients(YerothSqlTableMod
 
     QString client_group_members_db_ID;
 
-    QStringList client_group_members_db_ID_LIST;
+    YerothQStringList client_group_members_db_ID_LIST;
 
 
     QString SELECT_CLIENT_FOR_LOYALTY_PAYMENT_ACCOUNT;

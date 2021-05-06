@@ -154,7 +154,7 @@ void YerothGroupesDunClientWindow::executer_ajouter_appartenance(const QString *
 	QString membres_du_groupe_db_ID =
 			GET_SQL_RECORD_DATA(aClientGroupRecordInfo, YerothDatabaseTableColumn::MEMBRES_DU_GROUPE_db_ID);
 
-	QStringList membres_du_groupe_db_ID_LIST;
+	YerothQStringList membres_du_groupe_db_ID_LIST;
 
 	YerothUtils::SPLIT_STAR_SEPARATED_DB_STRING(membres_du_groupe_db_ID_LIST,
 											    membres_du_groupe_db_ID);
@@ -451,7 +451,7 @@ void YerothGroupesDunClientWindow::afficher_tous_les_groupes_du_client()
     QString groupes_du_client(GET_SQL_RECORD_DATA(record, YerothDatabaseTableColumn::GROUPES_DU_CLIENT));
 
 
-    QStringList allClientGroups(groupes_du_client.split(YerothUtils::STAR_CHAR));
+    YerothQStringList allClientGroups(groupes_du_client.split(YerothUtils::STAR_CHAR));
 
     QString current_group_db_ID;
 

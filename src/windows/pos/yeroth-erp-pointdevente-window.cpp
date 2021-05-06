@@ -791,7 +791,7 @@ QString YerothPointDeVenteWindow::imprimer_recu_vendu(QString referenceRecu)
     			.arg(pdfReceiptFileName,
     					thermalPrinterTxtFileEnding));
 
-    	QStringList progOptions;
+    	YerothQStringList progOptions;
 
     	progOptions << "-layout";
     	progOptions << pdfReceiptFileName;
@@ -3175,7 +3175,7 @@ void YerothPointDeVenteWindow::updateCompteClient_PROGRAMME_DE_FIDELITE_LOYALTY(
 		return ;
 	}
 
-	QStringList clientGroupId_list;
+	YerothQStringList clientGroupId_list;
 
 	YerothUtils::SPLIT_STAR_SEPARATED_DB_STRING(clientGroupId_list, client_group_id);
 

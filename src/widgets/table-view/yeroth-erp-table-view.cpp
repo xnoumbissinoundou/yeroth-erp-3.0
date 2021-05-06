@@ -92,7 +92,7 @@ YerothTableView::YerothTableView(QWidget * parent)
 }
 
 
-const QStringList &YerothTableView::get_NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME()
+const YerothQStringList &YerothTableView::get_NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME()
 {
 	return ((YerothWindowsCommons *) parent()->parent())->
 				get_NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME();
@@ -137,9 +137,9 @@ void YerothTableView::handle_yeroth_header_view_position_changed(int logicalInde
 			{
 				QString pageTableColumnOrder_STRING;
 
-				QStringList yerothTableView_model_raw_visible_headers = _tableModelRawHeaders_IN_OUT;
+				YerothQStringList yerothTableView_model_raw_visible_headers = _tableModelRawHeaders_IN_OUT;
 
-				QStringList a_visible_DB_columnname_string_List = a_yeroth_window->get_visible_DB_column_name_str_list();
+				YerothQStringList a_visible_DB_columnname_string_List = a_yeroth_window->get_visible_DB_column_name_str_list();
 
 				QString headerColumnData;
 
@@ -212,7 +212,7 @@ void YerothTableView::lister_les_elements_du_tableau(YerothSqlTableModel &tableM
 	_stdItemModel->setRowCount(rows);
 	_stdItemModel->setColumnCount(columns);
 
-	QStringList	tableModelRawHeaders;
+	YerothQStringList	tableModelRawHeaders;
 
     YerothUtils::createTableModelHeaders(tableModel,
     									 *_stdItemModel,
@@ -667,9 +667,9 @@ void YerothTableView::lister_les_transactions_dun_client(QSqlQuery &sqlClientTra
 }
 
 
-void YerothTableView::lister_lhistorique_du_stock(const QStringList &aMouvementStockList)
+void YerothTableView::lister_lhistorique_du_stock(const YerothQStringList &aMouvementStockList)
 {
-	//qDebug() << QString("YerothTableView::lister_lhistorique_du_stock(const QStringList &)");
+	//qDebug() << QString("YerothTableView::lister_lhistorique_du_stock(const YerothQStringList &)");
 
     QString dateHdr(QObject::tr("Date"));
     QString timeHdr(QObject::tr("Heure"));
@@ -705,7 +705,7 @@ void YerothTableView::lister_lhistorique_du_stock(const QStringList &aMouvementS
 
     QString strOut;
 
-    QStringList anEntry;
+    YerothQStringList anEntry;
 
     QString curTypeMouvementStock;
 
@@ -776,7 +776,7 @@ void YerothTableView::lister(YerothSqlTableModel &tableModel,
     _stdItemModel->setRowCount(rows);
     _stdItemModel->setColumnCount(columns);
 
-    QStringList	tableModelRawHeaders;
+    YerothQStringList	tableModelRawHeaders;
 
     YerothUtils::createTableModelHeaders(tableModel,
     									 *_stdItemModel,
@@ -919,7 +919,7 @@ void YerothTableView::lister_ALL(YerothSqlTableModel &tableModel,
     _stdItemModel->setRowCount(rows);
     _stdItemModel->setColumnCount(columns);
 
-    QStringList	tableModelRawHeaders;
+    YerothQStringList	tableModelRawHeaders;
 
     YerothUtils::createTableModelHeaders(tableModel,
     									 *_stdItemModel,
@@ -1085,7 +1085,7 @@ void YerothTableView::lister_FIFO(YerothSqlTableModel &tableModel,
     _stdItemModel->setRowCount(rows);
     _stdItemModel->setColumnCount(columns);
 
-    QStringList	tableModelRawHeaders;
+    YerothQStringList	tableModelRawHeaders;
 
     YerothUtils::createTableModelHeaders(tableModel,
     									 *_stdItemModel,
@@ -1394,7 +1394,7 @@ void YerothTableView::lister_LIFO(YerothSqlTableModel &tableModel,
     _stdItemModel->setRowCount(rows);
     _stdItemModel->setColumnCount(columns);
 
-    QStringList	tableModelRawHeaders;
+    YerothQStringList	tableModelRawHeaders;
 
     YerothUtils::createTableModelHeaders(tableModel,
     									 *_stdItemModel,
@@ -1606,7 +1606,7 @@ void YerothTableView::lister_FEFO(YerothSqlTableModel &tableModel,
     _stdItemModel->setRowCount(rows);
     _stdItemModel->setColumnCount(columns);
 
-    QStringList	tableModelRawHeaders;
+    YerothQStringList	tableModelRawHeaders;
 
     YerothUtils::createTableModelHeaders(tableModel,
     									 *_stdItemModel,
@@ -1893,7 +1893,7 @@ void YerothTableView::lister_codebar_ALL(YerothSqlTableModel &tableModel,
     _stdItemModel->setRowCount(rows);
     _stdItemModel->setColumnCount(columns);
 
-    QStringList	tableModelRawHeaders;
+    YerothQStringList	tableModelRawHeaders;
 
     YerothUtils::createTableModelHeaders(tableModel,
     									 *_stdItemModel,
@@ -2053,7 +2053,7 @@ void YerothTableView::lister_codebar_FIFO(YerothSqlTableModel &tableModel,
     _stdItemModel->setRowCount(rows);
     _stdItemModel->setColumnCount(columns);
 
-    QStringList	tableModelRawHeaders;
+    YerothQStringList	tableModelRawHeaders;
 
     YerothUtils::createTableModelHeaders(tableModel,
     									 *_stdItemModel,
@@ -2234,7 +2234,7 @@ void YerothTableView::lister_codebar_LIFO(YerothSqlTableModel &tableModel,
     _stdItemModel->setRowCount(rows);
     _stdItemModel->setColumnCount(columns);
 
-    QStringList	tableModelRawHeaders;
+    YerothQStringList	tableModelRawHeaders;
 
     YerothUtils::createTableModelHeaders(tableModel,
     									 *_stdItemModel,
@@ -2420,7 +2420,7 @@ void YerothTableView::lister_codebar_FEFO(YerothSqlTableModel &tableModel,
     _stdItemModel->setRowCount(rows);
     _stdItemModel->setColumnCount(columns);
 
-    QStringList	tableModelRawHeaders;
+    YerothQStringList	tableModelRawHeaders;
 
     YerothUtils::createTableModelHeaders(tableModel,
     									 *_stdItemModel,

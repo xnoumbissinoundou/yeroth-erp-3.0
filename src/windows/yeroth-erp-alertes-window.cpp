@@ -423,26 +423,26 @@ void YerothAlertesWindow::populateComboBoxes()
 	comboBox_alertes_resolue_oui_OU_non->addItem(YerothUtils::STRING_NON);
 
 
-	QStringList aQStringList;
+	YerothQStringList aYerothQStringList;
 
-	aQStringList.append(_varchar_dbtable_column_name_list.values());
+	aYerothQStringList.append(_varchar_dbtable_column_name_list.values());
 
-	aQStringList.removeAll(YerothDatabaseTableColumn::ID);
-	aQStringList.removeAll(YerothDatabaseTableColumn::ID_ALERTE);
-	aQStringList.removeAll(YerothDatabaseTableColumn::DATE_DEBUT);
-	aQStringList.removeAll(YerothDatabaseTableColumn::DATE_FIN);
-	aQStringList.removeAll(YerothDatabaseTableColumn::MESSAGE_ALERTE);
-	aQStringList.removeAll(YerothDatabaseTableColumn::ALERTE_RESOLUE);
-	aQStringList.removeAll(YerothDatabaseTableColumn::DESTINATAIRE);
-	aQStringList.removeAll(YerothDatabaseTableColumn::CONDITION_ALERTE);
+	aYerothQStringList.removeAll(YerothDatabaseTableColumn::ID);
+	aYerothQStringList.removeAll(YerothDatabaseTableColumn::ID_ALERTE);
+	aYerothQStringList.removeAll(YerothDatabaseTableColumn::DATE_DEBUT);
+	aYerothQStringList.removeAll(YerothDatabaseTableColumn::DATE_FIN);
+	aYerothQStringList.removeAll(YerothDatabaseTableColumn::MESSAGE_ALERTE);
+	aYerothQStringList.removeAll(YerothDatabaseTableColumn::ALERTE_RESOLUE);
+	aYerothQStringList.removeAll(YerothDatabaseTableColumn::DESTINATAIRE);
+	aYerothQStringList.removeAll(YerothDatabaseTableColumn::CONDITION_ALERTE);
 
-//	qDebug() << "++ test: " << aQStringList;
+//	qDebug() << "++ test: " << aYerothQStringList;
 
 	QString aDBColumnElementString;
 
-	for (int k = 0; k < aQStringList.size(); ++k)
+	for (int k = 0; k < aYerothQStringList.size(); ++k)
 	{
-		aDBColumnElementString = aQStringList.at(k);
+		aDBColumnElementString = aYerothQStringList.at(k);
 
 		comboBox_element_string_db
 			->addItem(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(aDBColumnElementString));
@@ -516,7 +516,7 @@ void YerothAlertesWindow::textChangedSearchLineEditsQCompleters()
 
     if (!searchTerm.isEmpty())
     {
-        QStringList searchTermList = searchTerm.split(QRegExp("\\s+"));
+        YerothQStringList searchTermList = searchTerm.split(QRegExp("\\s+"));
 
         QString partSearchTerm;
 

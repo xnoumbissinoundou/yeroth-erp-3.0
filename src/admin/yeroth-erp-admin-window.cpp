@@ -44,9 +44,9 @@ const int YerothAdminWindow::MAX_IMPORT_CSV_HEADER_SIZE(16);
 const QString YerothAdminWindow::DATABASE_YEROTH_ERP_3_0_KEYWORD("* database * ");
 
 
-QStringList YerothAdminWindow::comboBox_impression_sur_CHOICE_list;
+YerothQStringList YerothAdminWindow::comboBox_impression_sur_CHOICE_list;
 
-QStringList YerothAdminWindow::comboBox_format_de_facture_CHOICE_list;
+YerothQStringList YerothAdminWindow::comboBox_format_de_facture_CHOICE_list;
 
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
@@ -698,7 +698,7 @@ void YerothAdminWindow::EXECUTER_COMMANDE_MAINTENANCE()
 
 	if (progArgsString.contains("--execute"))
 	{
-		QStringList splitted_cmd_string(progArgsString.split("--execute"));
+		YerothQStringList splitted_cmd_string(progArgsString.split("--execute"));
 
 		progArgString_TO_SPLIT = splitted_cmd_string.at(0).trimmed();
 
@@ -709,7 +709,7 @@ void YerothAdminWindow::EXECUTER_COMMANDE_MAINTENANCE()
 //		QDEBUG_STRING_OUTPUT_2("progArgString_TO_SPLIT", progArgString_TO_SPLIT);
 	}
 
-	QStringList progArguments(progArgString_TO_SPLIT.split(YerothUtils::EMPTY_SPACE_REGEXP));
+	YerothQStringList progArguments(progArgString_TO_SPLIT.split(YerothUtils::EMPTY_SPACE_REGEXP));
 
 	QString yeroth_erp_3_0_restore_backup_sql_file(QString("%1.sql")
 					.arg(FILE_NAME_USERID_CURRENT_TIME("yeroth_erp_3_0_BACKUP_RESTORE")));
@@ -970,7 +970,7 @@ void YerothAdminWindow::import_current_selected_csv_file()
 		return ;
 	}
 
-	QStringList csvHeaderContent = _curCsvFileToImportContentWordList.at(0)
+	YerothQStringList csvHeaderContent = _curCsvFileToImportContentWordList.at(0)
 			.split(YerothUtils::CSV_FILE_SEPARATION_SEMI_COLON_STRING_CHAR);
 
 	int curCsvFileLineSize = csvHeaderContent.size();
@@ -1061,7 +1061,7 @@ bool YerothAdminWindow::generate_table_header_mapping_entries_for_csv_import()
 		return false;
 	}
 
-	QStringList csvHeaderContent = _curCsvFileToImportContentWordList.at(0)
+	YerothQStringList csvHeaderContent = _curCsvFileToImportContentWordList.at(0)
 			.split(YerothUtils::CSV_FILE_SEPARATION_SEMI_COLON_STRING_CHAR);
 
 	bool csvFileHasVisibleContentToImport = false;
@@ -1433,7 +1433,7 @@ void YerothAdminWindow::disableAllOperationsTabPushButtons()
 
 void YerothAdminWindow::setCurrentAdminWindowTitle(enum YerothAdminWindowTabPositionsTypes tabPosition)
 {
-    QStringList adminWindowTitleParts = _yerothAdminWindowTitleStart.split('~');
+    YerothQStringList adminWindowTitleParts = _yerothAdminWindowTitleStart.split('~');
     //adminWindowTitleParts.at(0) contient le string 'Yeroth-erp-3.0'.
 
     if (2 <= adminWindowTitleParts.size())

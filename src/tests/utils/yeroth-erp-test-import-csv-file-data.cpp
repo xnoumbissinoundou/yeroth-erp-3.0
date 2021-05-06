@@ -43,7 +43,7 @@ void Test_YerothERPTestImportCSVFileData::test_TABLE_VIEW_lister_import_test_dat
 
     YerothERPDatabaseTableColumnInfo *curDatabaseTableColumnInfo = 0;
 
-	QStringList csvHeader = _curCsvFileToImportContentWordList.at(0)
+	YerothQStringList csvHeader = _curCsvFileToImportContentWordList.at(0)
 					.split(YerothUtils::CSV_FILE_SEPARATION_SEMI_COLON_STRING_CHAR);
 
     int curCsvFileColumnSize = csvHeader.size();

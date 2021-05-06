@@ -91,7 +91,7 @@ void YerothERPMarchandisesTableView::lister_les_elements_du_tableau(YerothSqlTab
     QString designation_str;
     QString categorie_str;
 
-    QStringList aStringList;
+    YerothQStringList aStringList;
 
     QString sqlSearchStockTableQueryStr;
     QSqlQuery sqlSearchStockTableQuery;
@@ -414,7 +414,7 @@ void YerothERPMarchandisesTableView::dataChanged(const QModelIndex &index,
     		YerothUtils::isEqualCaseInsensitive(columnHeaderText_NATIVE,
     				YerothDatabaseTableColumn::REFERENCE))
     {
-    	QStringList allToUpdateTables;
+    	YerothQStringList allToUpdateTables;
 
     	allToUpdateTables << YerothDatabase::PAIEMENTS
     			<< YerothDatabase::STOCKS
