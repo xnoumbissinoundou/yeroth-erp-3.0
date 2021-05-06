@@ -657,27 +657,15 @@ void YerothERPClientsWindow::populateClientsComboBoxes()
 
 	aYerothQStringList.append(_varchar_dbtable_column_name_list.values());
 
+	aYerothQStringList.remove_list(_NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME);
+
 	aYerothQStringList.removeAll(YerothDatabaseTableColumn::DESCRIPTION_CLIENT);
 	aYerothQStringList.removeAll(YerothDatabaseTableColumn::NUMERO_TELEPHONE_1);
 	aYerothQStringList.removeAll(YerothDatabaseTableColumn::NUMERO_TELEPHONE_2);
 
-//	qDebug() << "++ test: " << aYerothQStringList;
 
-	QString aDBColumnElementString;
-
-	for (int k = 0; k < aYerothQStringList.size(); ++k)
-	{
-		aDBColumnElementString = aYerothQStringList.at(k);
-
-		if (!YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::NOM_ENTREPRISE, aDBColumnElementString))
-		{
-			comboBox_element_string_db
-				->addItem(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(aDBColumnElementString));
-		}
-	}
-
-	comboBox_element_string_db
-		->insertItem(0, YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::NOM_ENTREPRISE));
+	comboBox_element_string_db->addItems(aYerothQStringList,
+			YerothDatabaseTableColumn::_tableColumnToUserViewString);
 
 	comboBox_element_string_db->setCurrentIndex(0);
 

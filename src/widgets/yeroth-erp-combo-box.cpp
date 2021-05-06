@@ -162,6 +162,22 @@ void YerothComboBox::addItems(const YerothQStringList &texts)
 }
 
 
+void YerothComboBox::addItems(const YerothQStringList &texts,
+							  const QMap<QString, QString> &tableColumnToUserViewString)
+{
+	YerothQStringList new_texts;
+
+	for (uint i = 0; i < texts.size(); ++i)
+	{
+		new_texts.append(tableColumnToUserViewString.value(texts.at(i)));
+	}
+
+	new_texts.sort();
+
+	QComboBox::addItems(new_texts);
+}
+
+
 bool YerothComboBox::populateComboBoxRawString(QString aDBTableViewStringName,
 		   	   	   	   	   	   	   	   	   	   QString aDBFieldColumn,
 											   QString aConditionStr /* = YerothUtils::EMPTY_STRING */)

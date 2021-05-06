@@ -112,6 +112,9 @@ public:
 
 	virtual void addItems(const YerothQStringList &texts);
 
+	virtual void addItems(const YerothQStringList &texts,
+						  const QMap<QString, QString> &tableColumnToUserViewString);
+
 	bool populateComboBoxRawString(QString aDBTableViewStringName,
 								   QString aDBFieldColumn,
 								   QString aConditionStr = "");
