@@ -127,11 +127,24 @@ protected slots:
 
 private slots:
 
+	void handle_change_tab(int);
+
 	void set_filtrer_font();
+
+	bool creer_le_compte_doperation_comptable();
+
+	void clear_creer_le_compte_doperation_comptable();
+
+	inline void annuler_creer_le_compte_doperation_comptable()
+	{
+		clear_creer_le_compte_doperation_comptable();
+	}
 
 	void refineYerothLineEdits();
 
 private:
+
+	bool creer_COMPTE_DOPERATION_CHECK_FIELDS();
 
 	void setupLineEdits();
 

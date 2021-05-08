@@ -1,0 +1,3 @@
+alter table comptes_doperations_comptables change column `numero_du_compte_doperation_comptable` numero_du_compte_doperation_comptable varchar(256) NOT NULL;
+alter table comptes_doperations_comptables change column `raison_doperation_comptable` raison_doperation_comptable varchar(256) NOT NULL;
+alter table comptes_doperations_comptables change column `description_du_type_doperation_comptable` description_du_compte_doperation_comptable varchar(256);

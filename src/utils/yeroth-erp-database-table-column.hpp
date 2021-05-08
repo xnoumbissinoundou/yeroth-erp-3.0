@@ -333,7 +333,7 @@ public:
 
 	static const QString RAISON_DOPERATION_COMPTABLE;
 
-	static const QString DESCRIPTION_DU_TYPE_DOPERATION_COMPTABLE;
+	static const QString DESCRIPTION_DU_COMPTE_DOPERATION_COMPTABLE;
 
 	static const QString TYPE_DE_PAIEMENT;
 
