@@ -172,7 +172,7 @@ const QString YerothDatabaseTableColumn::NOM_COMPLET_DESTINATAIRE		("nom_complet
 const QString YerothDatabaseTableColumn::REMISE_NOTES					("remise_notes");
 const QString YerothDatabaseTableColumn::MESSAGE_ALERTE					("message_alerte");
 const QString YerothDatabaseTableColumn::DATE_CREATION					("date_creation");
-const QString YerothDatabaseTableColumn::TYPE_DOPERATION_COMPTABLE					("type_doperation_comptable");
+const QString YerothDatabaseTableColumn::TYPE_DOPERATION_FINANCIERE					("type_doperation_financiere");
 const QString YerothDatabaseTableColumn::NUMERO_DU_COMPTE_DOPERATION_COMPTABLE		("numero_du_compte_doperation_comptable");
 const QString YerothDatabaseTableColumn::RAISON_DOPERATION_COMPTABLE				("raison_doperation_comptable");
 const QString YerothDatabaseTableColumn::DESCRIPTION_DU_COMPTE_DOPERATION_COMPTABLE	("description_du_compte_doperation_comptable");
@@ -492,7 +492,7 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::DATE_CREATION	,		QObject::trUtf8("Date de création"));
 
-	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::TYPE_DOPERATION_COMPTABLE,	QObject::trUtf8("Type d'opération comptable"));
+	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::TYPE_DOPERATION_FINANCIERE,	QObject::trUtf8("Type d'opération comptable"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::NUMERO_DU_COMPTE_DOPERATION_COMPTABLE,
 			QObject::trUtf8("numéro compte d'opération comptable"));

@@ -1038,6 +1038,15 @@ public:
 	};
 
 
+	enum TYPE_DOPERATIONS_FINANCIERES
+	{
+		OPERATION_FINANCIERE_VENTE 					= 1002,
+		OPERATION_FINANCIERE_CHARGE_FINANCIERE		= 1014,
+		OPERATION_FINANCIERE_ACHAT_DE_MARCHANDISES 	= 1026,
+		OPERATION_FINANCIERE_INDEFINI 				= 1038
+	};
+
+
 	enum TYPEDEVENTE
 	{
 		VENTE_COMPTANT 			= 350,
@@ -1086,6 +1095,8 @@ public:
 	static QMap<int, QString> _titreToUserViewString;
 
 	static QMap<int, QString> _roleToUserViewString;
+
+	static QMap<int, QString> _typedoperationfinancieresToUserViewString;
 
 	static QMap<int, QString> _typedeventeToUserViewString;
 

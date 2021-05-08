@@ -158,6 +158,7 @@ public:
 	static const QString MARCHANDISES;
 	static const QString CONFIGURATIONS;
 	static const QString INIT_CONFIGURATIONS;
+	static const QString TYPE_DOPERATIONS_FINANCIERES;
 	static const QString TYPE_DE_VENTE;
 	static const QString TYPE_DE_PAIEMENT;
 	static const QString ROLES;

@@ -327,7 +327,7 @@ public:
 
 	static const QString DATE_CREATION;
 
-	static const QString TYPE_DOPERATION_COMPTABLE;
+	static const QString TYPE_DOPERATION_FINANCIERE;
 
 	static const QString NUMERO_DU_COMPTE_DOPERATION_COMPTABLE;
 

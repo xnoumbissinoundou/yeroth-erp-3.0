@@ -77,6 +77,8 @@ YerothComptabiliteWindow::YerothComptabiliteWindow()
 
     setupDateTimeEdits();
 
+    populateComboBoxes();
+
     _pushButton_comptabilite_filtrer_font = new QFont(pushButton_comptabilite_filtrer->font());
 
     tableView_comptes_doperations_comptables->setSqlTableName(&YerothDatabase::COMPTES_DOPERATIONS_COMPTABLES);
@@ -147,7 +149,7 @@ void YerothComptabiliteWindow::reinitialiser_colones_db_visibles()
 	_visibleDBColumnNameStrList.clear();
 
     _visibleDBColumnNameStrList
-		<< YerothDatabaseTableColumn::TYPE_DOPERATION_COMPTABLE
+		<< YerothDatabaseTableColumn::TYPE_DOPERATION_FINANCIERE
 		<< YerothDatabaseTableColumn::NUMERO_DU_COMPTE_DOPERATION_COMPTABLE
 		<< YerothDatabaseTableColumn::RAISON_DOPERATION_COMPTABLE
 		<< YerothDatabaseTableColumn::DESCRIPTION_DU_COMPTE_DOPERATION_COMPTABLE;
@@ -280,6 +282,10 @@ void YerothComptabiliteWindow::handle_change_tab(int current_tab_index)
 {
 	switch (current_tab_index)
 	{
+	case 1:
+		updateComboBoxes();
+		break;
+
 	case 2:
 		creer_COMPTE_DOPERATION_CHECK_FIELDS();
 		break;
@@ -388,7 +394,7 @@ void YerothComptabiliteWindow::refineYerothLineEdits()
 
 bool YerothComptabiliteWindow::creer_COMPTE_DOPERATION_CHECK_FIELDS()
 {
-    bool result;
+    bool result = false;
 
     bool numero_de_compte_doperation_comptable = lineEdit_comptabilite_numero_de_compte->checkField();
 
@@ -398,6 +404,38 @@ bool YerothComptabiliteWindow::creer_COMPTE_DOPERATION_CHECK_FIELDS()
     		 raison_de_loperation_comptable;
 
     return result;
+}
+
+
+void YerothComptabiliteWindow::updateComboBoxes()
+{
+	comboBox_comptes_doperations_comptables->clear();
+
+	comboBox_types_doperations_comptables->clear();
+
+	comboBox_comptes_doperations_comptables->
+		populateComboBoxMissingRawString(YerothDatabaseTableColumn::NUMERO_DU_COMPTE_DOPERATION_COMPTABLE,
+										 YerothDatabase::COMPTES_DOPERATIONS_COMPTABLES,
+										 YerothUtils::EMPTY_STRING);
+
+	comboBox_types_doperations_comptables->populateComboBox();
+}
+
+
+void YerothComptabiliteWindow::populateComboBoxes()
+{
+	comboBox_comptes_doperations_comptables->
+		populateComboBoxMissingRawString(YerothDatabaseTableColumn::NUMERO_DU_COMPTE_DOPERATION_COMPTABLE,
+										 YerothDatabase::COMPTES_DOPERATIONS_COMPTABLES,
+										 YerothUtils::EMPTY_STRING);
+
+
+	comboBox_types_doperations_comptables->
+		setupPopulateNORawString(YerothDatabase::TYPE_DOPERATIONS_FINANCIERES,
+								 YerothDatabaseTableColumn::TYPE_DOPERATION_FINANCIERE,
+								 &YerothUtils::_typedoperationfinancieresToUserViewString);
+
+	comboBox_types_doperations_comptables->populateComboBox();
 }
 
 
@@ -497,6 +535,8 @@ void YerothComptabiliteWindow::rendreVisible(YerothSqlTableModel *stocksTableMod
 
     setYerothSqlTableModel(_curCompte_DOPERATIONS_COMPTABLES_SqlTableModel);
 
+    updateComboBoxes();
+
 	setVisible(true);
 
 	APPLY_USER_LOCAL_SETTINGS_PARAMETERS();
@@ -545,13 +585,7 @@ QString YerothComptabiliteWindow::get_latex_template_print_pdf_content()
 
 void YerothComptabiliteWindow::deconnecter_utilisateur()
 {
-    _allWindows->definirPasDeRole();
-
-	YerothPOSUser *currentUser = _allWindows->getUser();
-
-	if (0 != currentUser)
-	{
-		currentUser->setRole(YerothUtils::ROLE_INDEFINI);
-	}
+	clear_creer_le_compte_doperation_comptable();
+    YerothWindowsCommons::deconnecter_utilisateur();
 }
 

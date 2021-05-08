@@ -146,6 +146,10 @@ private:
 
 	bool creer_COMPTE_DOPERATION_CHECK_FIELDS();
 
+	void updateComboBoxes();
+
+	void populateComboBoxes();
+
 	void setupLineEdits();
 
 	void setupDateTimeEdits();

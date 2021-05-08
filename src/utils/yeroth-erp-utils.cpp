@@ -186,6 +186,12 @@ QMap<int, QString> YerothUtils::_roleToUserViewString;
 /*
  * All valid key values must be >= 0.
  */
+QMap<int, QString> YerothUtils::_typedoperationfinancieresToUserViewString;
+
+
+/*
+ * All valid key values must be >= 0.
+ */
 QMap<int, QString> YerothUtils::_typedeventeToUserViewString;
 
 
@@ -573,6 +579,19 @@ YerothUtils::YerothUtils()
 
     YerothUtils::_roleToUserViewString.insert(YerothUtils::ROLE_INDEFINI,
 			QObject::tr("role indéfini"));
+
+
+    YerothUtils::_typedoperationfinancieresToUserViewString.insert(YerothUtils::OPERATION_FINANCIERE_VENTE,
+			QObject::trUtf8("vente"));
+
+    YerothUtils::_typedoperationfinancieresToUserViewString.insert(YerothUtils::OPERATION_FINANCIERE_CHARGE_FINANCIERE,
+			QObject::trUtf8("charge financière"));
+
+    YerothUtils::_typedoperationfinancieresToUserViewString.insert(YerothUtils::OPERATION_FINANCIERE_ACHAT_DE_MARCHANDISES,
+			QObject::trUtf8("achat de marchandises"));
+
+    YerothUtils::_typedoperationfinancieresToUserViewString.insert(YerothUtils::OPERATION_FINANCIERE_INDEFINI,
+			QObject::trUtf8("indéfini"));
 
 
     YerothUtils::_typedeventeToUserViewString.insert(YerothUtils::VENTE_COMPTANT,

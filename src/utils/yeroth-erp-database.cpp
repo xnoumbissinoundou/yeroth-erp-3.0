@@ -67,6 +67,8 @@ const QString YerothDatabase::CONFIGURATIONS				("configurations");
 
 const QString YerothDatabase::INIT_CONFIGURATIONS			("init_configurations");
 
+const QString YerothDatabase::TYPE_DOPERATIONS_FINANCIERES	("type_doperations_financieres");
+
 const QString YerothDatabase::TYPE_DE_VENTE				("type_de_vente");
 
 const QString YerothDatabase::TYPE_DE_PAIEMENT			("type_de_paiement");
