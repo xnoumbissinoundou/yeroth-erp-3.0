@@ -18886,7 +18886,7 @@ background-color: rgb(0, 0, 0); </string>
        <string notr="true"/>
       </property>
      </widget>
-     <widget class="YerothPushButton" name="pushButton_selectionner_image">
+     <widget class="YerothPushButton" name="pushButton_annuler_creer_le_compte">
       <property name="geometry">
        <rect>
         <x>193</x>
@@ -19324,7 +19324,7 @@ background-color: rgb(0, 0, 0); </string>
        <string>annuler</string>
       </property>
      </widget>
-     <widget class="YerothPushButton" name="pushButton_supprimer_limage_du_stock">
+     <widget class="YerothPushButton" name="pushButton_creer_le_compte">
       <property name="geometry">
        <rect>
         <x>7</x>
