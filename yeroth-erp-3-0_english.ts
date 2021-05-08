@@ -8896,8 +8896,8 @@ Client Account</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-comptabilite-window.ui" line="19324"/>
-        <source>annuler la création du compte</source>
-        <translation>cancel account creation</translation>
+        <source>annuler</source>
+        <translation>cancel</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-comptabilite-window.ui" line="19762"/>
