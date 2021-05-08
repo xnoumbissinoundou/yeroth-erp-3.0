@@ -8869,134 +8869,129 @@ Client Account</translation>
         <translation>create an operation account</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="16099"/>
-        <source>type d&apos;opération</source>
-        <translation>operation type</translation>
-    </message>
-    <message>
-        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="16540"/>
+        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="15612"/>
         <source>numéro de compte</source>
         <translation>account number</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="16981"/>
+        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="16053"/>
         <source>RAISON de l&apos;opération</source>
         <translation>REASON</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="17422"/>
+        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="16494"/>
         <source>DESCRIPTION</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="19321"/>
-        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="19759"/>
+        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="18393"/>
+        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="18831"/>
         <source>Poursuivre avec la vente</source>
         <translation>Continue checkout</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="19324"/>
+        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="18396"/>
         <source>annuler</source>
         <translation>cancel</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="19762"/>
+        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="18834"/>
         <source>créer le compte</source>
         <translation>create account</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="20205"/>
+        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="19277"/>
         <source>Aide</source>
         <translation>Help</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="20636"/>
+        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="19708"/>
         <source>Actions</source>
         <translation>Functions</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="21071"/>
+        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="20143"/>
         <source>Outils</source>
         <translation>Tools</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="21541"/>
+        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="20613"/>
         <source>toolBar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="21567"/>
+        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="20639"/>
         <source>À propos</source>
         <translation>About Yeroth-erp-3.0</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="21583"/>
+        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="20655"/>
         <source>Changer d&apos;utilisateur</source>
         <translation>Sign in</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="21595"/>
+        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="20667"/>
         <source>Fermeture</source>
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="21607"/>
-        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="21610"/>
+        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="20679"/>
+        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="20682"/>
         <source>Menu principal</source>
         <translation>Main menu</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="21626"/>
+        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="20698"/>
         <source>Déconnecter l&apos;utilisateur</source>
         <translation>Sign out</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="21642"/>
+        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="20714"/>
         <source>Message d&apos;aide</source>
         <translation>User tip</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="21654"/>
+        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="20726"/>
         <source>Informations sur l&apos;entreprise</source>
         <translation>Company info</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="21666"/>
+        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="20738"/>
         <source>Qui suis je ?</source>
         <translation>Who am I ?</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="21682"/>
-        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="21685"/>
+        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="20754"/>
+        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="20757"/>
         <source>Imprimer les comptes bancaires affichés</source>
         <oldsource>Imprimer la fiche des stocks</oldsource>
         <translation>Print all visible bank accounts</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="21702"/>
+        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="20774"/>
         <source>Exporter au format csv</source>
         <translation>Export as csv file</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="21717"/>
-        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="21720"/>
+        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="20789"/>
+        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="20792"/>
         <source>Sélectionner les  champs (base de données) visible</source>
         <translation>Select &apos;visible&apos; database table fields</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="21735"/>
-        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="21738"/>
+        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="20807"/>
+        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="20810"/>
         <source>Réinitialiser les  champs (base de données) visible</source>
         <translation>Reset &apos;visible&apos; database table fields</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="21753"/>
+        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="20825"/>
         <source>Administration</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="21770"/>
-        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="21773"/>
+        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="20842"/>
+        <location filename="ui/yeroth-erp-comptabilite-window.ui" line="20845"/>
         <source>Paramétrer les impressions PDF</source>
         <translation>Parameterize PDF printing</translation>
     </message>
