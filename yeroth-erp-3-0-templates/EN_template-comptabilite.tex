@@ -1,0 +1,122 @@
+\documentclass[16pt,YEROTHPAPERSPEC]{article} % use larger type; default would be 10pt
+\NeedsTeXFormat{LaTeX2e}
+\makeindex
+
+%---------------------------- PACKAGE INCLUSION -------------------------------
+% This group renders characters clearer and more precise
+
+\RequirePackage[bitstream-charter,cal,expert]{mathdesign}
+\RequirePackage{charter}
+\RequirePackage{helvet}
+\RequirePackage{makeidx}
+\RequirePackage{latexsym}
+
+\usepackage{geometry}
+\geometry{YEROTHPAPERSPEC,
+		  top=3.5em,
+		  left=3em,
+		  right=3em,
+		  bottom=3.39em
+		  }
+\usepackage{graphicx}
+\usepackage{adjustbox}
+\usepackage{xspace}
+\usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{listings} % for lstset definitions
+\usepackage{url}
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+\usepackage{epsfig}
+\usepackage{gensymb}
+\usepackage{textcomp}
+\usepackage{booktabs}
+
+\usepackage{amsmath}
+\newcommand{\mathbold}[1]{\text{\textbf{#1}}}
+
+\usepackage[table]{xcolor}
+\definecolor{yerothColorOrange}{RGB}{242, 161, 0}   
+\definecolor{yerothColorBlue}{RGB}{77 , 93 , 254}
+\definecolor{yerothColorRed}{RGB}{254, 48 , 48}
+\definecolor{yerothColorGray}{RGB}{198, 198, 198}
+\definecolor{yerothColorDarkgray}{RGB}{60, 60 , 60}
+\definecolor{yerothColorIndigo}{RGB}{83, 0, 125}
+\definecolor{yerothColorGreen}{RGB}{2  , 160, 70}
+\definecolor{forestgreen}{RGB}{2,160,70}    
+\definecolor{mediumblue}{RGB}{7,43,205}    
+\definecolor{firebrickred}{RGB}{178,34,34}
+\definecolor{listingray}{gray}{0.9}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+\definecolor{darkgreen}{rgb}{0,0.35,0}
+\definecolor{medgreen}{rgb}{0,0.5,0}
+\definecolor{lightgreen}{rgb}{0.5,0.7,0.5}
+\definecolor{pmcolour}{rgb}{0.5,0.7,0.5}
+\definecolor{medgrey}{rgb}{0.6,0.6,0.6}
+\definecolor{purplish}{rgb}{0.4,0,0.6}
+\definecolor{brightred}{rgb}{1,0.2,0.2}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    pagebackref,
+    citecolor=medgreen,
+    linkcolor=purplish,
+    breaklinks,
+    pdftex,
+    bookmarks,
+    plainpages=false,
+    pdftitle={FINANCIAL ACCOUNTING OPERATION ACCOUNT LISTING printed by YEROTHNOMUTILISATEUR
+     (YEROTHENTREPRISE, YEROTHDATE)},
+    pdfauthor={YEROTHENTREPRISE (YEROTHNOMUTILISATEUR)}
+}
+
+% format two pieces of text, one left aligned and one right aligned
+\newcommand{\headerrow}[2]
+{\begin{tabular*}{\linewidth}{l@{\extracolsep{\fill}}r}
+	#1 &
+	#2 \\
+\end{tabular*}}
+
+\newcommand{\emphbold}[1]{\textbf{\emph{#1}}\xspace}
+
+
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\headrulewidth}{0pt}
+
+\cfoot{\thepage\ OF \pageref{LastPage}}
+
+
+\begin{document}
+\bigskip
+
+\headerrow
+	{\emphbold{YEROTHENTREPRISE}}
+	{\emph{\textbf{Tax payer registration number:} YEROTHCONTRIBUABLENR}}
+\headerrow
+	{\emphbold{YEROTHACTIVITESENTREPRISE}}
+	{\emph{\textbf{Bank account number:} YEROTHCOMPTEBANCAIRENR,}}
+\headerrow
+	{\emphbold{Email: YEROTHEMAIL}}
+	{\emph{YEROTHAGENCECOMPTEBANCAIRE}}
+\headerrow
+	{\emphbold{Tel.: YEROTHTELEPHONE}}
+	{}
+\headerrow
+	{\emphbold{PO Box: YEROTHBOITEPOSTALE, YEROTHVILLE}}
+	{}
+	
+\hrule
+
+\headerrow
+	{}
+	{\textbf{YEROTHDATE}}
+
+\section*{FINANCIAL ACCOUNTING OPERATION ACCOUNT LISTING}
+
+\textbf{Printed by:} YEROTHNOMUTILISATEUR\\
+\textbf{Time of print:} YEROTHHEUREDIMPRESSION
+
+\vspace{0.3cm}

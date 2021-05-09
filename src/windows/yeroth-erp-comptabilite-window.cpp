@@ -577,7 +577,7 @@ bool YerothComptabiliteWindow::export_csv_file()
 
 QString YerothComptabiliteWindow::get_latex_template_print_pdf_content()
 {
-//	_latex_template_print_pdf_content = YerothUtils::template_lister_stock_tex;
+	_latex_template_print_pdf_content = YerothUtils::template_comptabilite_tex;
 
 	return _latex_template_print_pdf_content;
 }

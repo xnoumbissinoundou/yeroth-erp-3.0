@@ -964,6 +964,8 @@ public:
 
 	static QString template_lister_achats_tex;
 
+	static QString template_comptabilite_tex;
+
 	static QString template_lister_stock_tex;
 
 	static QString FR_template_facture_grand_tex;

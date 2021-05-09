@@ -25,9 +25,10 @@
     <file>yeroth-erp-3-0-templates/FR_template-marchandises.tex</file>	   
     <file>yeroth-erp-3-0-templates/FR_template-lister-alertes.tex</file>	   
     <file>yeroth-erp-3-0-templates/FR_template-lister-achats.tex</file>	   
-    <file>yeroth-erp-3-0-templates/FR_template-lister-stock.tex</file>	   
+    <file>yeroth-erp-3-0-templates/FR_template-comptabilite.tex</file>   
+    <file>yeroth-erp-3-0-templates/FR_template-lister-stock.tex</file>
     <file>yeroth-erp-3-0-templates/FR_bar-diag.tex</file>
-    <file>yeroth-erp-3-0-templates/FR_pie-chart.tex</file>                         
+    <file>yeroth-erp-3-0-templates/FR_pie-chart.tex</file> 
     <file>yeroth-erp-3-0-templates/FR_bar-chart.tex</file>
     <file>yeroth-erp-3-0-templates/FR_ZERO_ventes.tex</file>
     

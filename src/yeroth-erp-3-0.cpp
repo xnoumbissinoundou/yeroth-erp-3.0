@@ -377,6 +377,18 @@ void readTexTemplateFiles(YerothLogger &logger)
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
+    QFile file_comptes_doperation_comptables_Fr(FILE_YEROTH_ERP_3_0_TEMPLATE_COMPTABILITE_FR);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(file_comptes_doperation_comptables_Fr, YerothUtils::template_comptabilite_tex);
+
+#else //YEROTH_ENGLISH_LANGUAGE
+
+    QFile file_comptes_doperation_comptables_En(FILE_YEROTH_ERP_3_0_TEMPLATE_COMPTABILITE_EN);
+    YerothUtils::YEROTH_READ_FILE_CONTENT(file_comptes_doperation_comptables_En, YerothUtils::template_comptabilite_tex);
+
+#endif
+
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+
     QFile fileStockDeSecuriteFr(FILE_YEROTH_ERP_3_0_TEMPLATE_FICHE_STOCKS_FR);
     YerothUtils::YEROTH_READ_FILE_CONTENT(fileStockDeSecuriteFr, YerothUtils::template_lister_stock_tex);
 

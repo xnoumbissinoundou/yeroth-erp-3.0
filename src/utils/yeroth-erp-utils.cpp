@@ -132,6 +132,8 @@ QString YerothUtils::template_CHARGES_FINANCIERES_tex("");
 
 QString YerothUtils::template_lister_achats_tex("");
 
+QString YerothUtils::template_comptabilite_tex("");
+
 QString YerothUtils::template_lister_stock_tex("");
 
 QString YerothUtils::FR_template_facture_grand_tex("");
