@@ -501,7 +501,7 @@ YerothDatabaseTableColumn::YerothDatabaseTableColumn()
 			QObject::trUtf8("raison d'opération comptable"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::DESCRIPTION_DU_COMPTE_DOPERATION_COMPTABLE,
-			QObject::trUtf8("description du type d'opération comptable"));
+			QObject::trUtf8("description du compte d'opération comptable"));
 
 	_tableColumnToUserViewString.insert(YerothDatabaseTableColumn::TYPE_DE_PAIEMENT,		QObject::tr("Type de paiement"));
 
