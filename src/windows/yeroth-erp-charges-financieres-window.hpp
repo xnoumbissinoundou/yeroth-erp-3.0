@@ -1,13 +1,13 @@
 /*
- * yeroth-erp-charges-window.hpp
+ * yeroth-erp-charges-financieres-window.hpp
  *
  *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
-#ifndef YEROTH_ERP_ACHATS_DE_SERVICES_WINDOW_HPP_
-#define YEROTH_ERP_ACHATS_DE_SERVICES_WINDOW_HPP_
+#ifndef YEROTH_ERP_CHARGES_FINANCIERES_WINDOW_HPP_
+#define YEROTH_ERP_CHARGES_FINANCIERES_WINDOW_HPP_
 
-#include "../../ui_yeroth-erp-charges-window.h"
+#include "../../ui_yeroth-erp-charges-financieres-window.h"
 
 
 #include <QtCore/QDebug>
@@ -26,9 +26,9 @@ class QProcess;
 
 class YerothSqlTableModel;
 
-class YerothAchatsDEServicesWindow : public YerothWindowsCommons,
-						   	   	   	 private Ui_YerothAchatsDEServicesWindow,
-									 public YerothAbstractClassYerothSearchWindow
+class YerothChargesFinancieresWindow : public YerothWindowsCommons,
+						   	   	   	   private Ui_YerothChargesFinancieresWindow,
+									   public YerothAbstractClassYerothSearchWindow
 {
     Q_OBJECT
 
@@ -36,9 +36,9 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-    YerothAchatsDEServicesWindow();
+    YerothChargesFinancieresWindow();
 
-    virtual ~YerothAchatsDEServicesWindow();
+    virtual ~YerothChargesFinancieresWindow();
 
     inline virtual QToolBar * getQMainWindowToolBar()
     {
@@ -168,4 +168,4 @@ private:
     YerothSqlTableModel 	*_curAchatsDEServicesSqlTableModel;
 };
 
-#endif /* YEROTH_ERP_ACHATS_DE_SERVICES_WINDOW_HPP_ */
+#endif /* YEROTH_ERP_CHARGES_FINANCIERES_WINDOW_HPP_ */

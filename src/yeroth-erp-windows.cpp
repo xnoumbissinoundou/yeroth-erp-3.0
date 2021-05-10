@@ -307,7 +307,7 @@ void YerothERPWindows::createAllYerothPosUserWindows()
     _groupesDeClientsWindow			= new YerothGroupesDeClientsWindow;
     _groupesDunClientWindow			= new YerothGroupesDunClientWindow;
     _clientsDetailWindow 			= new YerothClientsDetailWindow;
-    _achats_de_servicesWindow 	= new YerothAchatsDEServicesWindow;
+    _achats_de_servicesWindow 	= new YerothChargesFinancieresWindow;
     _achatsDetailWindow 			= new YerothAchatsDetailWindow;
     _detailWindow 					= new YerothStockDetailWindow;
     _modifierWindow 				= new YerothModifierWindow;

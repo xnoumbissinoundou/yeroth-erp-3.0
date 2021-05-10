@@ -20,7 +20,7 @@ src/windows/supplier/yeroth-erp-modifier-fournisseur-window.cpp
 src/windows/supplier/yeroth-erp-tableau-des-transactions-du-fournisseur-window.cpp
 src/windows/yeroth-erp-tableaux-de-bord-window.cpp
 src/windows/yeroth-erp-ventes-window.cpp
-src/windows/yeroth-erp-charges-window.cpp
+src/windows/yeroth-erp-charges-financieres-window.cpp
 src/windows/yeroth-erp-alertes-window.cpp
 src/windows/yeroth-erp-window-commons.cpp
 src/windows/pos/yeroth-erp-pointdevente-window.cpp

@@ -1,10 +1,10 @@
 /*
- * yeroth-erp-charges-window.cpp
+ * yeroth-erp-charges-financieres-window.cpp
  *
  *      Author: PR. XAVIER NOUMBISSI NOUNDOU
  */
 
-#include "yeroth-erp-charges-window.hpp"
+#include "yeroth-erp-charges-financieres-window.hpp"
 
 
 #include "src/yeroth-erp-windows.hpp"
@@ -47,16 +47,16 @@
  */
 
 
-unsigned int YerothAchatsDEServicesWindow::PDF_LISTING_COLUMN_STOCKS_ID(1);
+unsigned int YerothChargesFinancieresWindow::PDF_LISTING_COLUMN_STOCKS_ID(1);
 
-unsigned int YerothAchatsDEServicesWindow::PDF_LISTING_COLUMN_REFERENCE(3);
+unsigned int YerothChargesFinancieresWindow::PDF_LISTING_COLUMN_REFERENCE(3);
 
-unsigned int YerothAchatsDEServicesWindow::PDF_LISTING_COLUMN_DESIGNATION(2);
+unsigned int YerothChargesFinancieresWindow::PDF_LISTING_COLUMN_DESIGNATION(2);
 
-unsigned int YerothAchatsDEServicesWindow::PDF_LISTING_COLUMN_CATEGORIE(4);
+unsigned int YerothChargesFinancieresWindow::PDF_LISTING_COLUMN_CATEGORIE(4);
 
 
-YerothAchatsDEServicesWindow::YerothAchatsDEServicesWindow()
+YerothChargesFinancieresWindow::YerothChargesFinancieresWindow()
 :YerothWindowsCommons("yeroth-erp-achats-de-services"),
  YerothAbstractClassYerothSearchWindow(YerothDatabase::ACHATS_DE_SERVICES),
  _logger(new YerothLogger("YerothAchatsDEServicesWindow")),
@@ -183,7 +183,7 @@ YerothAchatsDEServicesWindow::YerothAchatsDEServicesWindow()
     setupShortcuts();
 }
 
-YerothAchatsDEServicesWindow::~YerothAchatsDEServicesWindow()
+YerothChargesFinancieresWindow::~YerothChargesFinancieresWindow()
 {
 	MACRO_TO_DELETE_PAGINATION_INTEGER_VALIDATOR
 
@@ -191,7 +191,7 @@ YerothAchatsDEServicesWindow::~YerothAchatsDEServicesWindow()
 }
 
 
-bool YerothAchatsDEServicesWindow::filtrer_achats()
+bool YerothChargesFinancieresWindow::filtrer_achats()
 {
 	QString achatsTableColumnValue(comboBox_element_achats_de_services_condition->currentText());
 
@@ -249,7 +249,7 @@ bool YerothAchatsDEServicesWindow::filtrer_achats()
 }
 
 
-void YerothAchatsDEServicesWindow::populateComboBoxes()
+void YerothChargesFinancieresWindow::populateComboBoxes()
 {
 	YerothQStringList aYerothQStringList;
 
@@ -313,7 +313,7 @@ void YerothAchatsDEServicesWindow::populateComboBoxes()
 }
 
 
-void YerothAchatsDEServicesWindow::setupLineEdits()
+void YerothChargesFinancieresWindow::setupLineEdits()
 {
 	_QLINEEDIT_nombre_de_lignes_par_page = lineEdit_achats_de_services_nombre_de_lignes_par_page;
 
@@ -331,7 +331,7 @@ void YerothAchatsDEServicesWindow::setupLineEdits()
 }
 
 
-void YerothAchatsDEServicesWindow::setupDateTimeEdits()
+void YerothChargesFinancieresWindow::setupDateTimeEdits()
 {
     dateEdit_achats_de_services_debut->setStartDate(YerothERPConfig::GET_YEROTH_PAGING_DEFAULT_START_DATE());
 
@@ -357,7 +357,7 @@ void YerothAchatsDEServicesWindow::setupDateTimeEdits()
 }
 
 
-void YerothAchatsDEServicesWindow::setupShortcuts()
+void YerothChargesFinancieresWindow::setupShortcuts()
 {
     setupShortcutActionMessageDaide 		(*actionAppeler_aide);
     setupShortcutActionExporterAuFormatCsv	(*actionExporter_au_format_csv);
@@ -369,7 +369,7 @@ void YerothAchatsDEServicesWindow::setupShortcuts()
 }
 
 
-void YerothAchatsDEServicesWindow::resetFilter(YerothSqlTableModel * achatsTableModel)
+void YerothChargesFinancieresWindow::resetFilter(YerothSqlTableModel * achatsTableModel)
 {
 	_curAchatsDEServicesSqlTableModel = achatsTableModel;
 
@@ -385,7 +385,7 @@ void YerothAchatsDEServicesWindow::resetFilter(YerothSqlTableModel * achatsTable
 }
 
 
-void YerothAchatsDEServicesWindow::slot_reinitialiser_colones_db_visibles()
+void YerothChargesFinancieresWindow::slot_reinitialiser_colones_db_visibles()
 {
 	reinitialiser_colones_db_visibles();
 	resetTableViewHorizontalHeader_DEFAULT_ORDERING();
@@ -397,7 +397,7 @@ void YerothAchatsDEServicesWindow::slot_reinitialiser_colones_db_visibles()
 }
 
 
-void YerothAchatsDEServicesWindow::textChangedSearchLineEditsQCompleters()
+void YerothChargesFinancieresWindow::textChangedSearchLineEditsQCompleters()
 {
 	lineEdit_element_achats_de_services_resultat->clear();
 
@@ -495,7 +495,7 @@ void YerothAchatsDEServicesWindow::textChangedSearchLineEditsQCompleters()
 }
 
 
-void YerothAchatsDEServicesWindow::reinitialiser_colones_db_visibles()
+void YerothChargesFinancieresWindow::reinitialiser_colones_db_visibles()
 {
 	_visibleDBColumnNameStrList.clear();
 
@@ -511,7 +511,7 @@ void YerothAchatsDEServicesWindow::reinitialiser_colones_db_visibles()
 }
 
 
-void YerothAchatsDEServicesWindow::contextMenuEvent(QContextMenuEvent * event)
+void YerothChargesFinancieresWindow::contextMenuEvent(QContextMenuEvent * event)
 {
     if (tableView_achats_de_services->rowCount() > 0)
     {
@@ -523,7 +523,7 @@ void YerothAchatsDEServicesWindow::contextMenuEvent(QContextMenuEvent * event)
 }
 
 
-void YerothAchatsDEServicesWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
+void YerothChargesFinancieresWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 {
     _logger->log("rendreVisible");
 
@@ -545,7 +545,7 @@ void YerothAchatsDEServicesWindow::rendreVisible(YerothSqlTableModel * stocksTab
 }
 
 
-void YerothAchatsDEServicesWindow::definirManager()
+void YerothChargesFinancieresWindow::definirManager()
 {
     _logger->log("definirManager");
 
@@ -580,7 +580,7 @@ YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
 }
 
 
-void YerothAchatsDEServicesWindow::definirPasDeRole()
+void YerothChargesFinancieresWindow::definirPasDeRole()
 {
     _logger->log("definirPasDeRole");
 
@@ -608,7 +608,7 @@ void YerothAchatsDEServicesWindow::definirPasDeRole()
     pushButton_menu_principal->disable(this);
 }
 
-void YerothAchatsDEServicesWindow::afficher_au_detail()
+void YerothChargesFinancieresWindow::afficher_au_detail()
 {
     _logger->log("afficher_au_detail");
 
@@ -628,7 +628,7 @@ void YerothAchatsDEServicesWindow::afficher_au_detail()
 }
 
 
-void YerothAchatsDEServicesWindow::afficher_au_detail(const QModelIndex & modelIndex)
+void YerothChargesFinancieresWindow::afficher_au_detail(const QModelIndex & modelIndex)
 {
     _logger->log("afficher_au_detail(const QModelIndex &)");
 
@@ -650,7 +650,7 @@ void YerothAchatsDEServicesWindow::afficher_au_detail(const QModelIndex & modelI
 }
 
 
-void YerothAchatsDEServicesWindow::refineYerothLineEdits()
+void YerothChargesFinancieresWindow::refineYerothLineEdits()
 {
 	_achats_de_servicesDateFilter.clear();
 
@@ -666,7 +666,7 @@ void YerothAchatsDEServicesWindow::refineYerothLineEdits()
 }
 
 
-void YerothAchatsDEServicesWindow::reinitialiser_elements_filtrage()
+void YerothChargesFinancieresWindow::reinitialiser_elements_filtrage()
 {
     _logger->log("reinitialiser_elements_filtrage");
 
@@ -678,7 +678,7 @@ void YerothAchatsDEServicesWindow::reinitialiser_elements_filtrage()
 }
 
 
-void YerothAchatsDEServicesWindow::reinitialiser_recherche()
+void YerothChargesFinancieresWindow::reinitialiser_recherche()
 {
     _logger->log("reinitialiser_recherche");
 
@@ -696,7 +696,7 @@ void YerothAchatsDEServicesWindow::reinitialiser_recherche()
 }
 
 
-void YerothAchatsDEServicesWindow::lister_les_elements_du_tableau(YerothSqlTableModel &achatSqlTableModel)
+void YerothChargesFinancieresWindow::lister_les_elements_du_tableau(YerothSqlTableModel &achatSqlTableModel)
 {
     int curAchatsTableModelRowCount = achatSqlTableModel.easySelect();
 
@@ -730,7 +730,7 @@ void YerothAchatsDEServicesWindow::lister_les_elements_du_tableau(YerothSqlTable
 }
 
 
-void YerothAchatsDEServicesWindow::afficher_stock_selectioner(const QString & stockName)
+void YerothChargesFinancieresWindow::afficher_stock_selectioner(const QString & stockName)
 {
     _logger->log("afficher_stock_selectioner(const QString &)");
 
@@ -749,7 +749,7 @@ void YerothAchatsDEServicesWindow::afficher_stock_selectioner(const QString & st
 }
 
 
-void YerothAchatsDEServicesWindow::set_filtrer_font()
+void YerothChargesFinancieresWindow::set_filtrer_font()
 {
     if (isCurrentlyFiltered())
     {
@@ -764,7 +764,7 @@ void YerothAchatsDEServicesWindow::set_filtrer_font()
 }
 
 
-bool YerothAchatsDEServicesWindow::supprimer_un_achat_au_fournisseur()
+bool YerothChargesFinancieresWindow::supprimer_un_achat_au_fournisseur()
 {
     if (getLastListerSelectedRow__ID_AS_INTEGER() <= -1 ||
     	_curAchatsDEServicesSqlTableModel->rowCount() <= 0)
@@ -779,7 +779,7 @@ bool YerothAchatsDEServicesWindow::supprimer_un_achat_au_fournisseur()
 }
 
 
-bool YerothAchatsDEServicesWindow::export_csv_file()
+bool YerothChargesFinancieresWindow::export_csv_file()
 {
     _logger->log("export_csv_file");
 
@@ -809,7 +809,7 @@ bool YerothAchatsDEServicesWindow::export_csv_file()
 }
 
 
-QString YerothAchatsDEServicesWindow::get_latex_template_print_pdf_content()
+QString YerothChargesFinancieresWindow::get_latex_template_print_pdf_content()
 {
 	_latex_template_print_pdf_content = YerothUtils::template_CHARGES_FINANCIERES_tex;
 

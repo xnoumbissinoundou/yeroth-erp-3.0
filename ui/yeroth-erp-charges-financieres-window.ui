@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>YerothAchatsDEServicesWindow</class>
- <widget class="QMainWindow" name="YerothAchatsDEServicesWindow">
+ <class>YerothChargesFinancieresWindow</class>
+ <widget class="QMainWindow" name="YerothChargesFinancieresWindow">
   <property name="geometry">
    <rect>
     <x>0</x>

@@ -44,7 +44,7 @@
 
 //** PURCHASE
 #include "src/windows/purchase/yeroth-erp-achats-window.hpp"
-#include "src/windows/yeroth-erp-charges-window.hpp"
+#include "src/windows/yeroth-erp-charges-financieres-window.hpp"
 #include "src/windows/purchase/yeroth-erp-achats-detail-window.hpp"
 
 
@@ -131,7 +131,7 @@ class YerothPOSVenteMethodePaiementDialog;
 class YerothFournisseurDetailsWindow;
 class YerothGroupesDunClientWindow;
 class YerothClientsDetailWindow;
-class YerothAchatsDEServicesWindow;
+class YerothChargesFinancieresWindow;
 class YerothAchatsDetailWindow;
 class YerothStockDetailWindow;
 class YerothEntrerWindow;
@@ -480,7 +480,7 @@ public:
 	YerothGroupesDeClientsWindow						*_groupesDeClientsWindow;
 	YerothGroupesDunClientWindow						*_groupesDunClientWindow;
 	YerothClientsDetailWindow 							*_clientsDetailWindow;
-	YerothAchatsDEServicesWindow 					*_achats_de_servicesWindow;
+	YerothChargesFinancieresWindow 					*_achats_de_servicesWindow;
 	YerothAchatsDetailWindow 							*_achatsDetailWindow;
 	YerothStockDetailWindow 							*_detailWindow;
 	YerothEntrerWindow 									*_entrerWindow;
