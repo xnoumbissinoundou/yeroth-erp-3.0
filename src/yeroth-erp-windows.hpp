@@ -220,7 +220,7 @@ public:
 
 	YerothSqlTableModel &getSqlTableModel_fournisseurs();
 
-	YerothSqlTableModel &getSqlTableModel_achats_de_services();
+	YerothSqlTableModel &getSqlTableModel_charges_financieres();
 
 	YerothSqlTableModel &getSqlTableModel_achats();
 
@@ -347,9 +347,9 @@ public:
 		return YerothERPWindows::getNextIdFromTable(YerothDatabase::COMPTES_DOPERATIONS_COMPTABLES);
 	}
 
-	static inline int getNextIdSqlTableModel_achats_de_services()
+	static inline int getNextIdSqlTableModel_charges_financieres()
 	{
-		return YerothERPWindows::getNextIdFromTable(YerothDatabase::ACHATS_DE_SERVICES);
+		return YerothERPWindows::getNextIdFromTable(YerothDatabase::CHARGES_FINANCIERES);
 	}
 
 	static inline int getNextIdSqlTableModel_achats()
@@ -480,7 +480,7 @@ public:
 	YerothGroupesDeClientsWindow						*_groupesDeClientsWindow;
 	YerothGroupesDunClientWindow						*_groupesDunClientWindow;
 	YerothClientsDetailWindow 							*_clientsDetailWindow;
-	YerothChargesFinancieresWindow 					*_achats_de_servicesWindow;
+	YerothChargesFinancieresWindow 					*_charges_financieresWindow;
 	YerothAchatsDetailWindow 							*_achatsDetailWindow;
 	YerothStockDetailWindow 							*_detailWindow;
 	YerothEntrerWindow 									*_entrerWindow;
@@ -528,7 +528,7 @@ private:
 	YerothSqlTableModel 	*_tableModel_remises;
 	YerothSqlTableModel 	*_tableModel_conditions_alertes;
 	YerothSqlTableModel 	*_tableModel_courriers_alertes;
-	YerothSqlTableModel 	*_tableModel_achats_de_services;
+	YerothSqlTableModel 	*_tableModel_charges_financieres;
 	YerothSqlTableModel 	*_tableModel_achats;
 	YerothSqlTableModel 	*_tableModel_stocks;
 	YerothSqlTableModel 	*_tableModel_services_completes;

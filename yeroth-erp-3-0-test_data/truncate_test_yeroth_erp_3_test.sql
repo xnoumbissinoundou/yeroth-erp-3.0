@@ -1,5 +1,5 @@
 truncate table achats;
-truncate table achats_de_services;
+truncate table charges_financieres;
 truncate table alertes;
 truncate table categories;
 truncate table clients;

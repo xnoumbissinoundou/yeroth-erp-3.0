@@ -1801,11 +1801,11 @@ bool YerothEntrerWindow::executer_enregistrer_achat_de_service()
 	bool successAchatDeServiceInsert = false;
 
     {
-    	YerothSqlTableModel & achats_de_servicesSqlTableModel = _allWindows->getSqlTableModel_achats_de_services();
+    	YerothSqlTableModel & charges_financieresSqlTableModel = _allWindows->getSqlTableModel_charges_financieres();
 
-    	QSqlRecord achatRecord = achats_de_servicesSqlTableModel.record();
+    	QSqlRecord achatRecord = charges_financieresSqlTableModel.record();
 
-    	int achat_de_service_id_to_save = YerothERPWindows::getNextIdSqlTableModel_achats_de_services();
+    	int achat_de_service_id_to_save = YerothERPWindows::getNextIdSqlTableModel_charges_financieres();
 
     	achatRecord.setValue(YerothDatabaseTableColumn::ID, achat_de_service_id_to_save);
     	achatRecord.setValue(YerothDatabaseTableColumn::REFERENCE, lineEdit_reference_produit->text());
@@ -1824,7 +1824,7 @@ bool YerothEntrerWindow::executer_enregistrer_achat_de_service()
     	achatRecord.setValue(YerothDatabaseTableColumn::LOCALISATION_STOCK, lineEdit_localisation_produit->text());
     	achatRecord.setValue(YerothDatabaseTableColumn::DATE_DE_COMMANDE, GET_CURRENT_DATE);
 
-    	successAchatDeServiceInsert = achats_de_servicesSqlTableModel.insertNewRecord(achatRecord);
+    	successAchatDeServiceInsert = charges_financieresSqlTableModel.insertNewRecord(achatRecord);
     }
 
     bool successPaiementsInsert = false;
@@ -1899,7 +1899,7 @@ bool YerothEntrerWindow::executer_enregistrer_achat_de_service()
     rendreInvisible();
 
 
-    _allWindows->_achats_de_servicesWindow->rendreVisible(_curStocksTableModel);
+    _allWindows->_charges_financieresWindow->rendreVisible(_curStocksTableModel);
 
     return true;
 }

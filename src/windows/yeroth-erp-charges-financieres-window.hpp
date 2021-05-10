@@ -42,7 +42,7 @@ public:
 
     inline virtual QToolBar * getQMainWindowToolBar()
     {
-    	return toolBar_achats_de_servicesWindow;
+    	return toolBar_charges_financieresWindow;
     }
 
     inline virtual void definirCaissier()
@@ -69,14 +69,14 @@ public:
 
     virtual void definirPasDeRole();
 
-    MACRO_TO_DEFINE_VIEWING_PAGE_NUMBER_FOR_TABLEVIEW(label_achats_de_services_numero_page_derniere,
-    												  label_achats_de_services_numero_page_courante)
+    MACRO_TO_DEFINE_VIEWING_PAGE_NUMBER_FOR_TABLEVIEW(label_charges_financieres_numero_page_derniere,
+    												  label_charges_financieres_numero_page_courante)
 
     virtual void rendreVisible(YerothSqlTableModel *stocksTableModel);
 
 public slots:
 
-	MACRO_TO_DEFINE_VIEWING_POINTERS_PAGE_SLOTS(tableView_achats_de_services)
+	MACRO_TO_DEFINE_VIEWING_POINTERS_PAGE_SLOTS(tableView_charges_financieres)
 
 	inline virtual void apropos()
 	{
@@ -163,7 +163,7 @@ private:
 
     QFont 					*_pushButton_charges_financieres_filtrer_font;
 
-    QString 				_achats_de_servicesDateFilter;
+    QString 				_charges_financieresDateFilter;
 
     YerothSqlTableModel 	*_curAchatsDEServicesSqlTableModel;
 };

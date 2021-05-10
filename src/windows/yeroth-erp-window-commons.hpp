@@ -292,7 +292,7 @@ public slots:
 
 	virtual void infosEntreprise();
 
-	virtual void achats_de_services();
+	virtual void charges_financieres();
 
 	virtual void achats_de_stocks();
 

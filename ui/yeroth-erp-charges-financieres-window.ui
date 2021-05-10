@@ -1770,7 +1770,7 @@
      <string>Paiements</string>
     </property>
    </widget>
-   <widget class="YerothERPAchatsAUXFournisseursTableView" name="tableView_achats_de_services">
+   <widget class="YerothERPAchatsAUXFournisseursTableView" name="tableView_charges_financieres">
     <property name="geometry">
      <rect>
       <x>11</x>
@@ -3107,7 +3107,7 @@
      <string>réinitialiser</string>
     </property>
    </widget>
-   <widget class="YerothLineEdit" name="lineEdit_element_achats_de_services_resultat">
+   <widget class="YerothLineEdit" name="lineEdit_element_charges_financieres_resultat">
     <property name="geometry">
      <rect>
       <x>245</x>
@@ -4019,7 +4019,7 @@ background-color: rgb(0, 0, 0); </string>
      <string>filtrer</string>
     </property>
    </widget>
-   <widget class="YerothComboBox" name="comboBox_element_achats_de_services_condition">
+   <widget class="YerothComboBox" name="comboBox_element_charges_financieres_condition">
     <property name="geometry">
      <rect>
       <x>166</x>
@@ -4451,7 +4451,7 @@ background-color: rgb(0, 0, 0); </string>
      </font>
     </property>
    </widget>
-   <widget class="YerothComboBox" name="comboBox_element_achats_de_services">
+   <widget class="YerothComboBox" name="comboBox_element_charges_financieres">
     <property name="geometry">
      <rect>
       <x>12</x>
@@ -5752,7 +5752,7 @@ background-color: rgb(0, 0, 0); </string>
      <string>Stocks</string>
     </property>
    </widget>
-   <widget class="YerothLineEdit" name="lineEdit_achats_de_services_terme_recherche">
+   <widget class="YerothLineEdit" name="lineEdit_charges_financieres_terme_recherche">
     <property name="geometry">
      <rect>
       <x>11</x>
@@ -6100,7 +6100,7 @@ background-color: rgb(0, 0, 0); </string>
 background-color: rgb(0, 0, 0);</string>
     </property>
    </widget>
-   <widget class="YerothLineEdit" name="lineEdit_achats_de_services_nombre_dachats">
+   <widget class="YerothLineEdit" name="lineEdit_charges_financieres_nombre_dachats">
     <property name="geometry">
      <rect>
       <x>591</x>
@@ -6597,7 +6597,7 @@ background-color: rgb(0, 0, 0); </string>
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="label_nombre_dachats_de_services">
+   <widget class="QLabel" name="label_nombre_dcharges_financieres">
     <property name="geometry">
      <rect>
       <x>486</x>
@@ -6955,7 +6955,7 @@ background-color: rgb(0, 0, 0); </string>
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="label_achats_de_services_numero_page_derniere">
+   <widget class="QLabel" name="label_charges_financieres_numero_page_derniere">
     <property name="geometry">
      <rect>
       <x>319</x>
@@ -8220,7 +8220,7 @@ border: none;</string>
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="label_achats_de_services_separation_page_precedente_ou_suivante">
+   <widget class="QLabel" name="label_charges_financieres_separation_page_precedente_ou_suivante">
     <property name="geometry">
      <rect>
       <x>302</x>
@@ -8939,7 +8939,7 @@ border: none;</string>
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="YerothLineEdit" name="lineEdit_achats_de_services_nombre_de_lignes_par_page">
+   <widget class="YerothLineEdit" name="lineEdit_charges_financieres_nombre_de_lignes_par_page">
     <property name="geometry">
      <rect>
       <x>203</x>
@@ -9852,7 +9852,7 @@ border: 0px rgb(255, 255, 255);</string>
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="label_achats_de_services_numero_page_courante">
+   <widget class="QLabel" name="label_charges_financieres_numero_page_courante">
     <property name="geometry">
      <rect>
       <x>245</x>
@@ -11577,7 +11577,7 @@ background-color: rgb(0, 0, 0); </string>
      <enum>Qt::LogicalMoveStyle</enum>
     </property>
    </widget>
-   <widget class="YerothLineEdit" name="lineEdit_achats_de_services_total_achats">
+   <widget class="YerothLineEdit" name="lineEdit_charges_financieres_total_achats">
     <property name="geometry">
      <rect>
       <x>591</x>
@@ -12074,7 +12074,7 @@ background-color: rgb(0, 0, 0); </string>
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="label_achats_de_services_total">
+   <widget class="QLabel" name="label_charges_financieres_total">
     <property name="geometry">
      <rect>
       <x>486</x>
@@ -12432,7 +12432,7 @@ background-color: rgb(0, 0, 0); </string>
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="YerothDateTimeEdit" name="dateEdit_achats_de_services_debut">
+   <widget class="YerothDateTimeEdit" name="dateEdit_charges_financieres_debut">
     <property name="geometry">
      <rect>
       <x>132</x>
@@ -12875,7 +12875,7 @@ background-color: rgb(0, 0, 0); </string>
      </date>
     </property>
    </widget>
-   <widget class="YerothDateTimeEdit" name="dateEdit_achats_de_services_fin">
+   <widget class="YerothDateTimeEdit" name="dateEdit_charges_financieres_fin">
     <property name="geometry">
      <rect>
       <x>132</x>
@@ -13318,7 +13318,7 @@ background-color: rgb(0, 0, 0); </string>
      </date>
     </property>
    </widget>
-   <widget class="QLabel" name="label_achats_de_services_date_end">
+   <widget class="QLabel" name="label_charges_financieres_date_end">
     <property name="geometry">
      <rect>
       <x>12</x>
@@ -13756,7 +13756,7 @@ background-color: rgb(0, 0, 0); </string>
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="label_achats_de_services_date_begin">
+   <widget class="QLabel" name="label_charges_financieres_date_begin">
     <property name="geometry">
      <rect>
       <x>12</x>
@@ -15934,7 +15934,7 @@ background-color: rgb(0, 0, 0); </string>
     </font>
    </property>
   </widget>
-  <widget class="QToolBar" name="toolBar_achats_de_servicesWindow">
+  <widget class="QToolBar" name="toolBar_charges_financieresWindow">
    <property name="sizePolicy">
     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
      <horstretch>0</horstretch>
@@ -16729,10 +16729,10 @@ background-color: rgb(0, 0, 0); </string>
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>lineEdit_achats_de_services_terme_recherche</tabstop>
-  <tabstop>lineEdit_element_achats_de_services_resultat</tabstop>
-  <tabstop>comboBox_element_achats_de_services_condition</tabstop>
-  <tabstop>comboBox_element_achats_de_services</tabstop>
+  <tabstop>lineEdit_charges_financieres_terme_recherche</tabstop>
+  <tabstop>lineEdit_element_charges_financieres_resultat</tabstop>
+  <tabstop>comboBox_element_charges_financieres_condition</tabstop>
+  <tabstop>comboBox_element_charges_financieres</tabstop>
   <tabstop>pushButton_charges_financieres_filtrer</tabstop>
   <tabstop>pushButton_charges_financieres_reinitialiser_filtre</tabstop>
   <tabstop>pushButton_reinitialiser</tabstop>
@@ -16741,7 +16741,7 @@ background-color: rgb(0, 0, 0); </string>
   <tabstop>pushButton_menu_principal</tabstop>
   <tabstop>pushButton_stocks</tabstop>
   <tabstop>pushButton_paiements</tabstop>
-  <tabstop>tableView_achats_de_services</tabstop>
+  <tabstop>tableView_charges_financieres</tabstop>
  </tabstops>
  <resources>
   <include location="../yeroth-erp-3-0.qrc"/>

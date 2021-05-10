@@ -49,7 +49,7 @@ YerothCreerFournisseurWindow::YerothCreerFournisseurWindow()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_principal, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchatsAUXFournisseurs, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCHARGES_FINANCIERES, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionFournisseurs, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
@@ -70,7 +70,7 @@ YerothCreerFournisseurWindow::YerothCreerFournisseurWindow()
     connect(actionAppeler_aide, SIGNAL(triggered()), this, SLOT(help()));
     connect(actionDeconnecter_utilisateur, SIGNAL(triggered()), this, SLOT(deconnecter_utilisateur()));
     connect(actionMenu_principal, SIGNAL(triggered()), this, SLOT(menu()));
-    connect(actionAchatsAUXFournisseurs, SIGNAL(triggered()), this, SLOT(achats_de_services()));
+    connect(actionCHARGES_FINANCIERES, SIGNAL(triggered()), this, SLOT(charges_financieres()));
     connect(actionFournisseurs, SIGNAL(triggered()), this, SLOT(fournisseurs()));
     connect(actionAnnuler, SIGNAL(triggered()), this, SLOT(menu()));
     connect(actionSupprimerImage, SIGNAL(triggered()), this, SLOT(supprimer_image_fournisseur()));
@@ -119,7 +119,7 @@ void YerothCreerFournisseurWindow::definirPasDeRole()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_principal, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchatsAUXFournisseurs, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCHARGES_FINANCIERES, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionFournisseurs, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
@@ -145,7 +145,7 @@ void YerothCreerFournisseurWindow::definirCaissier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_principal, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchatsAUXFournisseurs, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCHARGES_FINANCIERES, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionFournisseurs, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
@@ -181,7 +181,7 @@ void YerothCreerFournisseurWindow::definirManager()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_principal, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchatsAUXFournisseurs, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCHARGES_FINANCIERES, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionFournisseurs, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
@@ -199,7 +199,7 @@ void YerothCreerFournisseurWindow::definirManager()
 
 #endif
 
-    pushButton_charges_financieres->enable(this, SLOT(achats_de_services()));
+    pushButton_charges_financieres->enable(this, SLOT(charges_financieres()));
     pushButton_fournisseurs->enable(this, SLOT(fournisseurs()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_annuler->enable(this, SLOT(fournisseurs()));
@@ -218,7 +218,7 @@ void YerothCreerFournisseurWindow::definirVendeur()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_principal, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchatsAUXFournisseurs, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCHARGES_FINANCIERES, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionFournisseurs, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
@@ -236,7 +236,7 @@ void YerothCreerFournisseurWindow::definirVendeur()
 
 #endif
 
-    pushButton_charges_financieres->enable(this, SLOT(achats_de_services()));
+    pushButton_charges_financieres->enable(this, SLOT(charges_financieres()));
     pushButton_fournisseurs->enable(this, SLOT(fournisseurs()));
     pushButton_menu_principal->enable(this, SLOT(menu()));
     pushButton_annuler->enable(this, SLOT(fournisseurs()));
@@ -255,7 +255,7 @@ void YerothCreerFournisseurWindow::definirGestionaireDesStocks()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_principal, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchatsAUXFournisseurs, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCHARGES_FINANCIERES, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionFournisseurs, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
@@ -292,7 +292,7 @@ void YerothCreerFournisseurWindow::definirMagasinier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionChanger_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMenu_principal, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchatsAUXFournisseurs, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCHARGES_FINANCIERES, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionFournisseurs, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);

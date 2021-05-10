@@ -58,7 +58,7 @@ unsigned int YerothChargesFinancieresWindow::PDF_LISTING_COLUMN_CATEGORIE(4);
 
 YerothChargesFinancieresWindow::YerothChargesFinancieresWindow()
 :YerothWindowsCommons("yeroth-erp-achats-de-services"),
- YerothAbstractClassYerothSearchWindow(YerothDatabase::ACHATS_DE_SERVICES),
+ YerothAbstractClassYerothSearchWindow(YerothDatabase::CHARGES_FINANCIERES),
  _logger(new YerothLogger("YerothAchatsDEServicesWindow")),
  _pushButton_charges_financieres_filtrer_font(0),
  _curAchatsDEServicesSqlTableModel(0)
@@ -71,7 +71,7 @@ YerothChargesFinancieresWindow::YerothChargesFinancieresWindow()
 
     mySetupUi(this);
 
-    setYerothTableView_FROM_WINDOWS_COMMONS(tableView_achats_de_services);
+    setYerothTableView_FROM_WINDOWS_COMMONS(tableView_charges_financieres);
 
 
     _list_yeroth_pushbutton_to_enable_on_positive_tableview_ROW_COUNT
@@ -87,26 +87,26 @@ YerothChargesFinancieresWindow::YerothChargesFinancieresWindow()
 		<< actionAfficher_achat_au_detail;
 
 
-    MACRO_TO_DEFINE_CURRENT_VIEW_WINDOW_FOR_TABLE_PAGINATION(tableView_achats_de_services)
+    MACRO_TO_DEFINE_CURRENT_VIEW_WINDOW_FOR_TABLE_PAGINATION(tableView_charges_financieres)
 
     QMESSAGE_BOX_STYLE_SHEET = QString("QMessageBox {background-color: rgb(%1);}"
                                        "QMessageBox QLabel {color: rgb(%2);}").
                                arg(COLOUR_RGB_STRING_YEROTH_GREEN_2_160_170, COLOUR_RGB_STRING_YEROTH_WHITE_255_255_255);
 
-    setup_select_configure_dbcolumn(YerothDatabase::ACHATS_DE_SERVICES);
+    setup_select_configure_dbcolumn(YerothDatabase::CHARGES_FINANCIERES);
 
 
-    _lineEditsToANDContentForSearch.insert(&lineEdit_achats_de_services_terme_recherche,
+    _lineEditsToANDContentForSearch.insert(&lineEdit_charges_financieres_terme_recherche,
     		YerothUtils::EMPTY_STRING);
 
     _yeroth_WINDOW_references_dbColumnString.insert(YerothDatabaseTableColumn::REFERENCE);
     _yeroth_WINDOW_references_dbColumnString.insert(YerothDatabaseTableColumn::REFERENCE_RECU_DACHAT);
 
-    YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(YerothDatabase::ACHATS_DE_SERVICES);
+    YEROTH_TABLE_VIEW_AND_SEARCH_CONTENT_CONFIGURATION(YerothDatabase::CHARGES_FINANCIERES);
 
     reinitialiser_colones_db_visibles();
 
-    _curAchatsDEServicesSqlTableModel = &_allWindows->getSqlTableModel_achats_de_services();
+    _curAchatsDEServicesSqlTableModel = &_allWindows->getSqlTableModel_charges_financieres();
 
     populateComboBoxes();
 
@@ -118,7 +118,7 @@ YerothChargesFinancieresWindow::YerothChargesFinancieresWindow()
 
     _pushButton_charges_financieres_filtrer_font = new QFont(pushButton_charges_financieres_filtrer->font());
 
-    tableView_achats_de_services->setSqlTableName(&YerothDatabase::ACHATS_DE_SERVICES);
+    tableView_charges_financieres->setSqlTableName(&YerothDatabase::CHARGES_FINANCIERES);
 
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAfficher_achat_au_detail, false);
@@ -175,7 +175,7 @@ YerothChargesFinancieresWindow::YerothChargesFinancieresWindow()
 	connect(actionAfficher_achat_au_detail, SIGNAL(triggered()),
 			this, SLOT(afficher_au_detail()));
 
-    connect(tableView_achats_de_services, SIGNAL(doubleClicked(const QModelIndex &)), this,
+    connect(tableView_charges_financieres, SIGNAL(doubleClicked(const QModelIndex &)), this,
             SLOT(afficher_au_detail(const QModelIndex &)));
 
     setCenterAligned_FOR_YEROTH_PDF_LATEX_PRINTING(YerothDatabaseTableColumn::STOCKS_ID);
@@ -193,7 +193,7 @@ YerothChargesFinancieresWindow::~YerothChargesFinancieresWindow()
 
 bool YerothChargesFinancieresWindow::filtrer_achats()
 {
-	QString achatsTableColumnValue(comboBox_element_achats_de_services_condition->currentText());
+	QString achatsTableColumnValue(comboBox_element_charges_financieres_condition->currentText());
 
 	if (achatsTableColumnValue.isEmpty())
 	{
@@ -208,9 +208,9 @@ bool YerothChargesFinancieresWindow::filtrer_achats()
 
 	reinitialiser_recherche();
 
-	QString achatsTableColumnProperty(comboBox_element_achats_de_services->currentText());
+	QString achatsTableColumnProperty(comboBox_element_charges_financieres->currentText());
 
-	QString mathOperator(comboBox_element_achats_de_services_condition->currentText());
+	QString mathOperator(comboBox_element_charges_financieres_condition->currentText());
 
 	QString REAL_DB_ID_NAME_achatsTableColumnProperty(
 			YerothDatabaseTableColumn::_tableColumnToUserViewString.key(achatsTableColumnProperty));
@@ -294,7 +294,7 @@ void YerothChargesFinancieresWindow::populateComboBoxes()
 
 	aYerothQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::QUANTITE_TOTALE));
 
-    comboBox_element_achats_de_services->addItems(aYerothQStringList);
+    comboBox_element_charges_financieres->addItems(aYerothQStringList);
 
 
 	aYerothQStringList.clear();
@@ -309,48 +309,48 @@ void YerothChargesFinancieresWindow::populateComboBoxes()
 
 	aYerothQStringList.append("=");
 
-    comboBox_element_achats_de_services_condition->addItems(aYerothQStringList);
+    comboBox_element_charges_financieres_condition->addItems(aYerothQStringList);
 }
 
 
 void YerothChargesFinancieresWindow::setupLineEdits()
 {
-	_QLINEEDIT_nombre_de_lignes_par_page = lineEdit_achats_de_services_nombre_de_lignes_par_page;
+	_QLINEEDIT_nombre_de_lignes_par_page = lineEdit_charges_financieres_nombre_de_lignes_par_page;
 
-	lineEdit_achats_de_services_terme_recherche->enableForSearch(QObject::trUtf8("terme à rechercher (désignation de l'article)"));
+	lineEdit_charges_financieres_terme_recherche->enableForSearch(QObject::trUtf8("terme à rechercher (désignation de l'article)"));
 
 	lineEdit_nom_element_string_db->enableForSearch(QObject::trUtf8("valeur à rechercher"));
 
-	lineEdit_achats_de_services_nombre_dachats->setYerothEnabled(false);
+	lineEdit_charges_financieres_nombre_dachats->setYerothEnabled(false);
 
-	lineEdit_achats_de_services_total_achats->setYerothEnabled(false);
+	lineEdit_charges_financieres_total_achats->setYerothEnabled(false);
 
-	comboBox_element_achats_de_services_condition->setValidator(&YerothUtils::POSITIVE_DoubleValidator);
+	comboBox_element_charges_financieres_condition->setValidator(&YerothUtils::POSITIVE_DoubleValidator);
 
-	MACRO_TO_BIND_PAGING_WITH_QLINEEDIT(lineEdit_achats_de_services_nombre_de_lignes_par_page, tableView_achats_de_services);
+	MACRO_TO_BIND_PAGING_WITH_QLINEEDIT(lineEdit_charges_financieres_nombre_de_lignes_par_page, tableView_charges_financieres);
 }
 
 
 void YerothChargesFinancieresWindow::setupDateTimeEdits()
 {
-    dateEdit_achats_de_services_debut->setStartDate(YerothERPConfig::GET_YEROTH_PAGING_DEFAULT_START_DATE());
+    dateEdit_charges_financieres_debut->setStartDate(YerothERPConfig::GET_YEROTH_PAGING_DEFAULT_START_DATE());
 
-    dateEdit_achats_de_services_fin->setStartDate(GET_CURRENT_DATE);
+    dateEdit_charges_financieres_fin->setStartDate(GET_CURRENT_DATE);
 
-    _achats_de_servicesDateFilter.clear();
+    _charges_financieresDateFilter.clear();
 
-    _achats_de_servicesDateFilter.append(QString(" ( %1 >= '%2' AND %3 <= '%4' ) ")
+    _charges_financieresDateFilter.append(QString(" ( %1 >= '%2' AND %3 <= '%4' ) ")
     					.arg(YerothDatabaseTableColumn::DATE_DE_COMMANDE,
-    						 DATE_TO_DB_FORMAT_STRING(dateEdit_achats_de_services_debut->date()),
+    						 DATE_TO_DB_FORMAT_STRING(dateEdit_charges_financieres_debut->date()),
 							 YerothDatabaseTableColumn::DATE_DE_COMMANDE,
-							 DATE_TO_DB_FORMAT_STRING(dateEdit_achats_de_services_fin->date())));
+							 DATE_TO_DB_FORMAT_STRING(dateEdit_charges_financieres_fin->date())));
 
-    connect(dateEdit_achats_de_services_debut,
+    connect(dateEdit_charges_financieres_debut,
     		SIGNAL(dateChanged(const QDate &)),
 			this,
 			SLOT(refineYerothLineEdits()));
 
-    connect(dateEdit_achats_de_services_fin,
+    connect(dateEdit_charges_financieres_fin,
     		SIGNAL(dateChanged(const QDate &)),
 			this,
 			SLOT(refineYerothLineEdits()));
@@ -378,10 +378,10 @@ void YerothChargesFinancieresWindow::resetFilter(YerothSqlTableModel * achatsTab
     	_curAchatsDEServicesSqlTableModel->resetFilter();
     }
 
-    lineEdit_achats_de_services_terme_recherche->myClear();
+    lineEdit_charges_financieres_terme_recherche->myClear();
 
-    dateEdit_achats_de_services_debut->reset();
-    dateEdit_achats_de_services_fin->reset();
+    dateEdit_charges_financieres_debut->reset();
+    dateEdit_charges_financieres_fin->reset();
 }
 
 
@@ -399,13 +399,13 @@ void YerothChargesFinancieresWindow::slot_reinitialiser_colones_db_visibles()
 
 void YerothChargesFinancieresWindow::textChangedSearchLineEditsQCompleters()
 {
-	lineEdit_element_achats_de_services_resultat->clear();
+	lineEdit_element_charges_financieres_resultat->clear();
 
     setCurrentlyFiltered(false);
 
     clearSearchFilter();
 
-    QString searchTerm(lineEdit_achats_de_services_terme_recherche->text());
+    QString searchTerm(lineEdit_charges_financieres_terme_recherche->text());
 
     if (!searchTerm.isEmpty())
     {
@@ -468,12 +468,12 @@ void YerothChargesFinancieresWindow::textChangedSearchLineEditsQCompleters()
     	}
     }
 
-    QString finalSearchFilter(_achats_de_servicesDateFilter);
+    QString finalSearchFilter(_charges_financieresDateFilter);
 
     if (!_searchFilter.isEmpty())
     {
     	QString searchFilterWithDate(QString("%1 AND (%2)")
-    									.arg(_achats_de_servicesDateFilter,
+    									.arg(_charges_financieresDateFilter,
     										 _searchFilter));
 
     	finalSearchFilter = searchFilterWithDate;
@@ -513,10 +513,10 @@ void YerothChargesFinancieresWindow::reinitialiser_colones_db_visibles()
 
 void YerothChargesFinancieresWindow::contextMenuEvent(QContextMenuEvent * event)
 {
-    if (tableView_achats_de_services->rowCount() > 0)
+    if (tableView_charges_financieres->rowCount() > 0)
     {
         QMenu menu(this);
-        menu.setPalette(toolBar_achats_de_servicesWindow->palette());
+        menu.setPalette(toolBar_charges_financieresWindow->palette());
         menu.addAction(actionAfficher_achat_au_detail);
         menu.exec(event->globalPos());
     }
@@ -535,7 +535,7 @@ void YerothChargesFinancieresWindow::rendreVisible(YerothSqlTableModel * stocksT
 
     _curStocksTableModel = stocksTableModel;
 
-    lineEdit_achats_de_services_terme_recherche->setFocus();
+    lineEdit_charges_financieres_terme_recherche->setFocus();
 
     setVisible(true);
 
@@ -652,13 +652,13 @@ void YerothChargesFinancieresWindow::afficher_au_detail(const QModelIndex & mode
 
 void YerothChargesFinancieresWindow::refineYerothLineEdits()
 {
-	_achats_de_servicesDateFilter.clear();
+	_charges_financieresDateFilter.clear();
 
-	_achats_de_servicesDateFilter.append(QString(" ( %1 >= '%2' AND %3 <= '%4' ) ")
+	_charges_financieresDateFilter.append(QString(" ( %1 >= '%2' AND %3 <= '%4' ) ")
     					.arg(YerothDatabaseTableColumn::DATE_DE_COMMANDE,
-    						 DATE_TO_DB_FORMAT_STRING(dateEdit_achats_de_services_debut->date()),
+    						 DATE_TO_DB_FORMAT_STRING(dateEdit_charges_financieres_debut->date()),
 							 YerothDatabaseTableColumn::DATE_DE_COMMANDE,
-							 DATE_TO_DB_FORMAT_STRING(dateEdit_achats_de_services_fin->date())));
+							 DATE_TO_DB_FORMAT_STRING(dateEdit_charges_financieres_fin->date())));
 
 	setupLineEditsQCompleters((QObject *)this);
 
@@ -670,7 +670,7 @@ void YerothChargesFinancieresWindow::reinitialiser_elements_filtrage()
 {
     _logger->log("reinitialiser_elements_filtrage");
 
-    comboBox_element_achats_de_services_condition->clear();
+    comboBox_element_charges_financieres_condition->clear();
 
     setCurrentlyFiltered(false);
 
@@ -684,11 +684,11 @@ void YerothChargesFinancieresWindow::reinitialiser_recherche()
 
     lineEdit_nom_element_string_db->clear();
 
-    comboBox_element_achats_de_services_condition->clear();
+    comboBox_element_charges_financieres_condition->clear();
 
     setCurrentlyFiltered(false);
 
-    resetFilter(&_allWindows->getSqlTableModel_achats_de_services());
+    resetFilter(&_allWindows->getSqlTableModel_charges_financieres());
 
     resetLineEditsQCompleters((QObject *)this);
 
@@ -717,16 +717,16 @@ void YerothChargesFinancieresWindow::lister_les_elements_du_tableau(YerothSqlTab
         montant_total += prix_dachat;
     }
 
-    lineEdit_achats_de_services_total_achats->setText(GET_CURRENCY_STRING_NUM(montant_total));
+    lineEdit_charges_financieres_total_achats->setText(GET_CURRENCY_STRING_NUM(montant_total));
 
 
-	tableView_achats_de_services->queryYerothTableViewCurrentPageContentRow(achatSqlTableModel);
+	tableView_charges_financieres->queryYerothTableViewCurrentPageContentRow(achatSqlTableModel);
 
-    tableView_show_or_hide_columns(*tableView_achats_de_services);
+    tableView_show_or_hide_columns(*tableView_charges_financieres);
 
-    int rowCount = tableView_achats_de_services->rowCount();
+    int rowCount = tableView_charges_financieres->rowCount();
 
-    lineEdit_achats_de_services_nombre_dachats->setText(GET_NUM_STRING(rowCount));
+    lineEdit_charges_financieres_nombre_dachats->setText(GET_NUM_STRING(rowCount));
 }
 
 
@@ -791,7 +791,7 @@ bool YerothChargesFinancieresWindow::export_csv_file()
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 	success = YerothUtils::export_csv_file(*this,
-										   *tableView_achats_de_services,
+										   *tableView_charges_financieres,
 										   tableColumnsToIgnore,
 										   "yeroth-erp-charges-financieres",
 										   "fiche des charges financières");
@@ -799,7 +799,7 @@ bool YerothChargesFinancieresWindow::export_csv_file()
 
 #ifdef YEROTH_ENGLISH_LANGUAGE
 	success = YerothUtils::export_csv_file(*this,
-										   *tableView_achats_de_services,
+										   *tableView_charges_financieres,
 										   tableColumnsToIgnore,
 										   "yeroth-erp-FINANCIAL-EXPENSES-listing",
 										   "financial expenses file");

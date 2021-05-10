@@ -7615,7 +7615,7 @@ Vente</string>
     <addaction name="actionVendre"/>
     <addaction name="actionTableauxDeBords"/>
     <addaction name="actionEntrer"/>
-    <addaction name="actionAchatsAUXFournisseurs"/>
+    <addaction name="actionCHARGES_FINANCIERES"/>
     <addaction name="actionClients"/>
     <addaction name="actionFournisseurs"/>
     <addaction name="actionMarchandises"/>
@@ -8781,7 +8781,7 @@ Vente</string>
     </font>
    </property>
   </action>
-  <action name="actionAchatsAUXFournisseurs">
+  <action name="actionCHARGES_FINANCIERES">
    <property name="text">
     <string>Lister les charges financières</string>
    </property>

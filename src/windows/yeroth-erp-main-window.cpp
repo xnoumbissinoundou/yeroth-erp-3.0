@@ -56,7 +56,7 @@ YerothMainWindow::YerothMainWindow()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVente, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMouvementsDeStocks, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionPaiements, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchatsAUXFournisseurs, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCHARGES_FINANCIERES, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMarchandises, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, false);
@@ -91,7 +91,7 @@ YerothMainWindow::YerothMainWindow()
     connect(actionEntrer, SIGNAL(triggered()), this, SLOT(entrer()));
     connect(actionStocks, SIGNAL(triggered()), this, SLOT(stocks()));
     connect(actionMarchandises, SIGNAL(triggered()), this, SLOT(afficherMarchandises()));
-    connect(actionAchatsAUXFournisseurs, SIGNAL(triggered()), this, SLOT(achats_de_services()));
+    connect(actionCHARGES_FINANCIERES, SIGNAL(triggered()), this, SLOT(charges_financieres()));
     connect(actionSortir, SIGNAL(triggered()), this, SLOT(sortir()));
     connect(actionTableauxDeBords, SIGNAL(triggered()), this, SLOT(tableaux_de_bords()));
     connect(actionVente, SIGNAL(triggered()), this, SLOT(ventes()));
@@ -133,7 +133,7 @@ void YerothMainWindow::definirCaissier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMouvementsDeStocks, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionFournisseurs, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(action_acceder_aux_comptes_de_lentreprise, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchatsAUXFournisseurs, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCHARGES_FINANCIERES, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMarchandises, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, false);
@@ -171,7 +171,7 @@ void YerothMainWindow::definirManager()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMouvementsDeStocks, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionFournisseurs, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchatsAUXFournisseurs, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCHARGES_FINANCIERES, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMarchandises, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, true);
@@ -200,7 +200,7 @@ void YerothMainWindow::definirManager()
     pushButton_fournisseurs->enable(this, SLOT(fournisseurs()));
     pushButton_clients->enable(this, SLOT(clients()));
     pushButton_paiements->enable(this, SLOT(paiements()));
-    pushButton_charges_financieres->enable(this, SLOT(achats_de_services()));
+    pushButton_charges_financieres->enable(this, SLOT(charges_financieres()));
     pushButton_entrer->enable(this, SLOT(entrer()));
     pushButton_afficher_stocks->enable(this, SLOT(stocks()));
     pushButton_marchandises->enable(this, SLOT(afficherMarchandises()));
@@ -226,7 +226,7 @@ void YerothMainWindow::definirVendeur()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionFournisseurs, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(action_acceder_aux_comptes_de_lentreprise, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchatsAUXFournisseurs, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCHARGES_FINANCIERES, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMarchandises, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, false);
@@ -276,7 +276,7 @@ void YerothMainWindow::definirGestionaireDesStocks()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionFournisseurs, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(action_acceder_aux_comptes_de_lentreprise, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchatsAUXFournisseurs, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCHARGES_FINANCIERES, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMarchandises, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, true);
@@ -328,7 +328,7 @@ void YerothMainWindow::definirAdministrateur()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionFournisseurs, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(action_acceder_aux_comptes_de_lentreprise, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchatsAUXFournisseurs, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCHARGES_FINANCIERES, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMarchandises, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, false);
@@ -365,7 +365,7 @@ void YerothMainWindow::definirMagasinier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionFournisseurs, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(action_acceder_aux_comptes_de_lentreprise, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchatsAUXFournisseurs, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCHARGES_FINANCIERES, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMarchandises, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, true);
@@ -404,7 +404,7 @@ void YerothMainWindow::definirPasDeRole()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionFournisseurs, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionClients, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(action_acceder_aux_comptes_de_lentreprise, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAchatsAUXFournisseurs, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionCHARGES_FINANCIERES, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionStocks, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionMarchandises, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionSortir, false);

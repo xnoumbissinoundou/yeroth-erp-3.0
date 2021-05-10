@@ -14349,7 +14349,7 @@
     <addaction name="actionEnregistrer"/>
     <addaction name="actionSupprimerImage"/>
     <addaction name="separator"/>
-    <addaction name="actionAchatsAUXFournisseurs"/>
+    <addaction name="actionCHARGES_FINANCIERES"/>
     <addaction name="actionClients"/>
     <addaction name="separator"/>
     <addaction name="actionMenu_principal"/>
@@ -15390,7 +15390,7 @@
     </font>
    </property>
   </action>
-  <action name="actionAchatsAUXFournisseurs">
+  <action name="actionCHARGES_FINANCIERES">
    <property name="text">
     <string>Lister les charges financières</string>
    </property>

@@ -657,10 +657,10 @@ void YerothWindowsCommons::infosEntreprise()
 }
 
 
-void YerothWindowsCommons::achats_de_services()
+void YerothWindowsCommons::charges_financieres()
 {
     rendreInvisible();
-    _allWindows->_achats_de_servicesWindow->rendreVisible(_curStocksTableModel);
+    _allWindows->_charges_financieresWindow->rendreVisible(_curStocksTableModel);
 }
 
 
