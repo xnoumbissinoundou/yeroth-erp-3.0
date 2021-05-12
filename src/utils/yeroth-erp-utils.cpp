@@ -473,6 +473,8 @@ const QChar YerothUtils::STAR_CHAR('*');
 
 const QChar YerothUtils::DASH_CHAR('_');
 
+const QChar YerothUtils::PERCENT_CHAR('%');
+
 const QChar YerothUtils::SLASH_CHAR('/');
 
 const QRegExp YerothUtils::PasswordRegExp("");
@@ -2256,8 +2258,23 @@ void YerothUtils::createTableModelHeaders(YerothSqlTableModel 	&tableModel,
 }
 
 
+QString YerothUtils::generateSqlLike__AS_IS(QString sqlTableColumn,
+                                    	    QString searchStr)
+{
+    QString result;
+
+    searchStr.replace("'", "''");
+
+    result.append(sqlTableColumn)
+    	  .append(QString(" LIKE '%1'")
+    			  	  .arg(searchStr));
+
+    return result;
+}
+
+
 QString YerothUtils::generateSqlLike(QString sqlTableColumn,
-                                    QString searchStr)
+                                     QString searchStr)
 {
     QString result;
 

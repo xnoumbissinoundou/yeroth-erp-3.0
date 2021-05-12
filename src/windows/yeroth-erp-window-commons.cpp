@@ -990,15 +990,25 @@ void YerothWindowsCommons::setYerothLineEditQCompleterSearchFilter(QString &aYer
 		.append(_yeroth_QLineEdit_SearchDBFieldColumnString->text());
 
 	if (!correspondingDBFieldKeyValue.isEmpty() 	  &&
-			!aTableColumnFieldContentForANDSearch.isEmpty()	)
+		!aTableColumnFieldContentForANDSearch.isEmpty()	)
 	{
 		if (!aYerothLineEditQCompleterSearchFilter_IN_OUT.isEmpty())
 		{
 			aYerothLineEditQCompleterSearchFilter_IN_OUT.append(" AND ");
 		}
 
-		aYerothLineEditQCompleterSearchFilter_IN_OUT.append(GENERATE_SQL_IS_STMT(correspondingDBFieldKeyValue,
-				aTableColumnFieldContentForANDSearch));
+		if (aTableColumnFieldContentForANDSearch.contains(YerothUtils::YerothUtils::PERCENT_CHAR))
+		{
+			aYerothLineEditQCompleterSearchFilter_IN_OUT.append(
+					GENERATE_SQL_LIKE_STMT_AS_IS(correspondingDBFieldKeyValue,
+										   	     aTableColumnFieldContentForANDSearch));
+		}
+		else
+		{
+			aYerothLineEditQCompleterSearchFilter_IN_OUT.append(
+					GENERATE_SQL_IS_STMT(correspondingDBFieldKeyValue,
+										 aTableColumnFieldContentForANDSearch));
+		}
 	}
 }
 

@@ -348,7 +348,11 @@ public:
 		return QString::fromUtf8(str.toStdString().c_str());
 	}
 
-	static QString generateSqlLike(QString sqlTableColumn, QString searchStr);
+	static QString generateSqlLike__AS_IS(QString sqlTableColumn,
+	                                    		QString searchStr);
+
+	static QString generateSqlLike(QString sqlTableColumn,
+								   QString searchStr);
 
 	inline static QString generateSqlLike(const char *sqlTableColumn, QString searchStr)
 	{
@@ -882,6 +886,8 @@ public:
 
 	static const QChar DASH_CHAR;
 
+	static const QChar PERCENT_CHAR;
+
 	static const QChar SLASH_CHAR;
 
 	static const int YEROTH_PAGINATION_INT_VALIDATOR_MAXIMAL_VALUE;
@@ -1264,6 +1270,9 @@ YerothQMessageBox::information(this, QObject::trUtf8(DIALOG_BOX_TITLE), msg); }
 
 //Get the MD5 hash of value X
 #define MD5_HASH(X) YerothUtils::md5Hash(X)
+
+#define GENERATE_SQL_LIKE_STMT_AS_IS(COLUMN, SEARCH_STR) \
+	YerothUtils::generateSqlLike__AS_IS(COLUMN, SEARCH_STR)
 
 #define GENERATE_SQL_LIKE_STMT(COLUMN, SEARCH_STR) \
 	YerothUtils::generateSqlLike(COLUMN, SEARCH_STR)
