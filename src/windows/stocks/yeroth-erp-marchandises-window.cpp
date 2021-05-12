@@ -45,7 +45,7 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
 {
     _windowName = QString("%1 - %2")
     				.arg(YEROTH_ERP_WINDOW_TITLE,
-    					 QObject::tr("les marchandisestest"));
+    					 QObject::tr("les marchandises"));
 
     setupUi(this);
 
@@ -454,7 +454,8 @@ bool YerothMarchandisesWindow::slot_filtrer_non_empty_product_stock()
 	{
 		textChangedSearchLineEditsQCompleters();
 
-		setWindowTitle(QObject::trUtf8("les marchandises NON TERMINÉES"));
+		setWindowTitle(QObject::trUtf8("%1 - les marchandises NON TERMINÉES")
+							.arg(YEROTH_ERP_WINDOW_TITLE));
 
 		MACRO_TO_DISABLE_PAGE_FIRST_NEXT_PREVIOUS_LAST_PUSH_BUTTONS;
 
@@ -471,7 +472,8 @@ bool YerothMarchandisesWindow::slot_filtrer_non_empty_product_stock()
 	}
 	else
 	{
-		setWindowTitle(QObject::tr("les marchandises"));
+		setWindowTitle(QObject::tr("%1 - les marchandises")
+							.arg(YEROTH_ERP_WINDOW_TITLE));
 
 		YEROTH_QMESSAGE_BOX_AUCUN_RESULTAT_FILTRE(this, "non terminées");
 	}
@@ -1122,7 +1124,8 @@ void YerothMarchandisesWindow::reinitialiser__FILTRE__MARCHANDISES__NON__TERMINE
 
 	_NON_TERMINEES_MARCHANDISE_RE_ENTRANT = false;
 
-	setWindowTitle(QObject::tr("les marchandises"));
+	setWindowTitle(QObject::tr("%1 - les marchandises")
+						.arg(YEROTH_ERP_WINDOW_TITLE));
 
 	_current_filtering_non_empty_stock_SQL_QUERY.clear();
 }
