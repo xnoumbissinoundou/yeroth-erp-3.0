@@ -26,7 +26,7 @@ bool YerothAdminCreateWindow::creer_alerte()
             				.arg(duplicateAlerte));
 
             YerothQMessageBox::warning(this,
-                                 QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ créer ~ alerte"),
+                                 QObject::trUtf8("Yeroth-pgi-3.0 ~ administration ~ créer ~ alerte"),
                                  retMsg);
 
             alertesTableModel.resetFilter();
@@ -49,7 +49,7 @@ bool YerothAdminCreateWindow::creer_alerte()
         if (stocksTableModelRowCount <= 0)
         {
             YerothQMessageBox::warning(this,
-                                 QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ créer ~ alerte"),
+                                 QObject::trUtf8("Yeroth-pgi-3.0 ~ administration ~ créer ~ alerte"),
                                  QObject::trUtf8("Il n'est pas possible de créer une alerte "
                                                  "sur un stock déjà écoulé !"));
 
@@ -94,7 +94,7 @@ bool YerothAdminCreateWindow::creer_alerte()
         					.arg(lineEdit_creer_alerte_nom->text()));
 
             YerothQMessageBox::warning(this,
-                                 QObject::trUtf8("Yeroth-erp-3.0 - créer"),
+                                 QObject::trUtf8("Yeroth-pgi-3.0 - créer"),
                                  retMsg);
             return false;
         }
@@ -103,7 +103,7 @@ bool YerothAdminCreateWindow::creer_alerte()
     					.arg(lineEdit_creer_alerte_nom->text()));
 
         YerothQMessageBox::information(this,
-        							   QObject::trUtf8("Yeroth-erp-3.0 - créer"),
+        							   QObject::trUtf8("Yeroth-pgi-3.0 - créer"),
                                  	   retMsg);
 
          clear_alerte_all_fields();
@@ -212,7 +212,7 @@ bool YerothAdminCreateWindow::creer_alerte_check_fields()
         							 "soit la 'quantité', soit la 'période de temps' !"));
 
         YerothQMessageBox::information(this,
-                                 QObject::trUtf8("Yeroth-erp-3.0 - créer ~ alerte"),
+                                 QObject::trUtf8("Yeroth-pgi-3.0 - créer ~ alerte"),
                                  aMsg);
 
         comboBox_creer_alerte_condition->checkField();
@@ -245,7 +245,7 @@ bool YerothAdminCreateWindow::creer_alerte_check_fields()
                 QString qMsg(QObject::trUtf8("La quantité doit être supérieure à 0 !"));
 
                 YerothQMessageBox::information(this,
-                                         QObject::trUtf8("Yeroth-erp-3.0 - créer-alerte"),
+                                         QObject::trUtf8("Yeroth-pgi-3.0 - créer-alerte"),
                                          qMsg);
                 return false;
             }
@@ -270,7 +270,7 @@ bool YerothAdminCreateWindow::creer_alerte_check_fields()
             QString pMsg(QObject::trUtf8("Le paramètre 'début' de l'alerte ne doit pas être dans le passé !"));
 
             YerothQMessageBox::information(this,
-                                     QObject::trUtf8("Yeroth-erp-3.0 - créer ~ alerte"),
+                                     QObject::trUtf8("Yeroth-pgi-3.0 - créer ~ alerte"),
                                      pMsg);
             return false;
         }
@@ -286,7 +286,7 @@ bool YerothAdminCreateWindow::creer_alerte_check_fields()
             QString pMsg(QObject::trUtf8("Le paramètre 'début' de l'alerte doit être avant le paramètre 'fin' !"));
 
             YerothQMessageBox::information(this,
-                                     QObject::trUtf8("Yeroth-erp-3.0 - créer ~ alerte"),
+                                     QObject::trUtf8("Yeroth-pgi-3.0 - créer ~ alerte"),
                                      pMsg);
             return false;
         }

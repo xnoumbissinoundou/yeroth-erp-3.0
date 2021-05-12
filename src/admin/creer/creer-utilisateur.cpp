@@ -32,7 +32,7 @@ bool YerothAdminCreateWindow::creer_utilisateur()
             lineEdit_creer_utilisateur_id->setPalette(YerothUtils::YEROTH_RED_PALETTE);
 
             YerothQMessageBox::warning(this,
-                                 QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ créer ~ utilisateur"),
+                                 QObject::trUtf8("Yeroth-pgi-3.0 ~ administration ~ créer ~ utilisateur"),
                                  retMsg);
 
             usersTableModel.resetFilter();
@@ -49,7 +49,7 @@ bool YerothAdminCreateWindow::creer_utilisateur()
             QString msg(QObject::trUtf8("Choisissez un mot de passe différent de votre id !"));
 
             YerothQMessageBox::warning(this,
-            						   QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ créer ~ utilisateur"),
+            						   QObject::trUtf8("Yeroth-pgi-3.0 ~ administration ~ créer ~ utilisateur"),
 									   msg,
 									   QMessageBox::Ok);
             return false;
@@ -101,7 +101,7 @@ bool YerothAdminCreateWindow::creer_utilisateur()
             retMsg.append(QObject::trUtf8("' n'a pas pu être créer!"));
 
             YerothQMessageBox::warning(this,
-                                 QObject::trUtf8("Yeroth-erp-3.0 - créer"),
+                                 QObject::trUtf8("Yeroth-pgi-3.0 - créer"),
                                  retMsg);
             return false;
         }
@@ -109,7 +109,7 @@ bool YerothAdminCreateWindow::creer_utilisateur()
         retMsg.append(QObject::trUtf8("' a été créer !"));
 
         YerothQMessageBox::information(this,
-        							   QObject::trUtf8("Yeroth-erp-3.0 - créer"),
+        							   QObject::trUtf8("Yeroth-pgi-3.0 - créer"),
                                  	   retMsg);
 
          clear_utilisateur_all_fields();
@@ -184,7 +184,7 @@ bool YerothAdminCreateWindow::creer_utilisateur_check_fields()
             QString msg(QObject::trUtf8("Les deux mot de passe sont différents !"));
 
             YerothQMessageBox::warning(this,
-            						   QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ créer ~ utilisateur"),
+            						   QObject::trUtf8("Yeroth-pgi-3.0 ~ administration ~ créer ~ utilisateur"),
 									   msg, QMessageBox::Ok);
 
             lineEdit_creer_utilisateur_mot_passe_1->setPalette(YerothUtils::YEROTH_RED_PALETTE);

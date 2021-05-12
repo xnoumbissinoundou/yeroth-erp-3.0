@@ -426,7 +426,7 @@
    </palette>
   </property>
   <property name="windowTitle">
-   <string>Yeroth-erp-3.0 - rechercher</string>
+   <string>Yeroth-pgi-3.0 - rechercher</string>
   </property>
   <widget class="QLabel" name="label_rechercher">
    <property name="geometry">

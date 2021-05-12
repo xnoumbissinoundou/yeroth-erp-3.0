@@ -147,7 +147,7 @@ void YerothAdminModifierWindow::modifier_departements_de_produits_main()
         retMsg.append(QObject::trUtf8(" ont été modifiées avec succès !"));
 
         YerothQMessageBox::information(this,
-                                 QObject::trUtf8("Yeroth-erp-3.0 ~ admin-modifier-département_de_produits"),
+                                 QObject::trUtf8("Yeroth-pgi-3.0 ~ admin-modifier-département_de_produits"),
                                  retMsg);
 
         _allWindows->_adminListerWindow->rendreVisible(SUJET_ACTION_DEPARTEMENTS_DE_PRODUITS);
@@ -161,7 +161,7 @@ void YerothAdminModifierWindow::modifier_departements_de_produits_main()
         retMsg.append(QObject::trUtf8(" n'ont pas pu être modifiées !"));
 
         YerothQMessageBox::warning(this,
-                             QObject::trUtf8("Yeroth-erp-3.0 ~ admin-modifier-département_de_produits"),
+                             QObject::trUtf8("Yeroth-pgi-3.0 ~ admin-modifier-département_de_produits"),
                              retMsg);
     }
 }

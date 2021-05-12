@@ -440,7 +440,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>Yeroth-erp-3.0 - IMPRESSION DE DOCUMENT</string>
+   <string>Yeroth-pgi-3.0 - IMPRESSION DE DOCUMENT</string>
   </property>
   <property name="locale">
    <locale language="French" country="France"/>

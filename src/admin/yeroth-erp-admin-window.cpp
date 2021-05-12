@@ -1434,7 +1434,7 @@ void YerothAdminWindow::disableAllOperationsTabPushButtons()
 void YerothAdminWindow::setCurrentAdminWindowTitle(enum YerothAdminWindowTabPositionsTypes tabPosition)
 {
     YerothQStringList adminWindowTitleParts = _yerothAdminWindowTitleStart.split('~');
-    //adminWindowTitleParts.at(0) contient le string 'Yeroth-erp-3.0'.
+    //adminWindowTitleParts.at(0) contient le string 'Yeroth-pgi-3.0'.
 
     if (2 <= adminWindowTitleParts.size())
     {

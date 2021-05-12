@@ -14,7 +14,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Yeroth-erp-3.0 - fiche des stocks - vendre</string>
+   <string>Yeroth-pgi-3.0 - fiche des stocks - vendre</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="YerothERPStocksTableView" name="tableView_PDV_list_stocks">

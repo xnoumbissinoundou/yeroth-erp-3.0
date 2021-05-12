@@ -431,7 +431,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>Yeroth-erp-3.0 ~ administration ~ rechercher</string>
+   <string>Yeroth-pgi-3.0 ~ administration ~ rechercher</string>
   </property>
   <widget class="YerothLineEdit" name="lineEdit_terme_recherche">
    <property name="geometry">

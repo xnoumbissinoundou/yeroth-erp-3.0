@@ -440,7 +440,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>Yeroth-erp-3.0 - changer d'utilisateur</string>
+   <string>Yeroth-pgi-3.0 - changer d'utilisateur</string>
   </property>
   <property name="locale">
    <locale language="French" country="France"/>

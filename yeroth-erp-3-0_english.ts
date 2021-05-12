@@ -3570,8 +3570,8 @@ Please contact an administrator</translation>
         <location filename="src/admin/creer/creer-utilisateur.cpp" line="35"/>
         <location filename="src/admin/creer/creer-utilisateur.cpp" line="52"/>
         <location filename="src/admin/creer/creer-utilisateur.cpp" line="187"/>
-        <source>Yeroth-erp-3.0 ~ administration ~ créer ~ utilisateur</source>
-        <oldsource>Yeroth-pos-7.0 ~ administration ~ créer ~ utilisateur</oldsource>
+        <source>Yeroth-pgi-3.0 ~ administration ~ créer ~ utilisateur</source>
+        <oldsource>Yeroth-erp-3.0 ~ administration ~ créer ~ utilisateur</oldsource>
         <translation>Yeroth-erp-3.0 ~ administration ~ create ~ user</translation>
     </message>
     <message>
@@ -3591,8 +3591,8 @@ Please contact an administrator</translation>
         <location filename="src/admin/creer/creer-alerte.cpp" line="106"/>
         <location filename="src/admin/creer/creer-remise.cpp" line="145"/>
         <location filename="src/admin/creer/creer-remise.cpp" line="154"/>
-        <source>Yeroth-erp-3.0 - créer</source>
-        <oldsource>Yeroth-pos-7.0 - créer</oldsource>
+        <source>Yeroth-pgi-3.0 - créer</source>
+        <oldsource>Yeroth-erp-3.0 - créer</oldsource>
         <translation>Yeroth-erp-3.0 - create</translation>
     </message>
     <message>
@@ -3609,8 +3609,8 @@ Please contact an administrator</translation>
         <location filename="src/admin/creer/creer-localisation.cpp" line="29"/>
         <location filename="src/admin/creer/creer-localisation.cpp" line="64"/>
         <location filename="src/admin/creer/creer-localisation.cpp" line="72"/>
-        <source>Yeroth-erp-3.0 ~ administration ~ créer ~ localisation</source>
-        <oldsource>Yeroth-pos-7.0 ~ administration ~ créer ~ localisation</oldsource>
+        <source>Yeroth-pgi-3.0 ~ administration ~ créer ~ localisation</source>
+        <oldsource>Yeroth-erp-3.0 ~ administration ~ créer ~ localisation</oldsource>
         <translation>Yeroth-erp-3.0 ~ administration ~ create ~ location</translation>
     </message>
     <message>
@@ -3648,19 +3648,21 @@ Please contact an administrator</translation>
     </message>
     <message>
         <location filename="src/admin/creer/creer-departements-de-produits.cpp" line="34"/>
-        <source>Yeroth-erp-3.0 ~ administration ~ créer ~ département de produits</source>
+        <source>Yeroth-pgi-3.0 ~ administration ~ créer ~ département de produits</source>
+        <oldsource>Yeroth-erp-3.0 ~ administration ~ créer ~ département de produits</oldsource>
         <translation>Yeroth-erp-3.0 ~ administration ~ create ~ product department</translation>
     </message>
     <message>
         <location filename="src/admin/creer/creer-departements-de-produits.cpp" line="58"/>
         <location filename="src/admin/creer/creer-departements-de-produits.cpp" line="67"/>
-        <source>Yeroth-erp-3.0 ~ admin-créer-département de produits</source>
+        <source>Yeroth-pgi-3.0 ~ admin-créer-département de produits</source>
+        <oldsource>Yeroth-erp-3.0 ~ admin-créer-département de produits</oldsource>
         <translation>Yeroth-erp-3.0 ~ admin-create-product department</translation>
     </message>
     <message>
         <location filename="src/admin/creer/creer-categorie.cpp" line="30"/>
-        <source>Yeroth-erp-3.0 ~ administration ~ créer ~ catégorie</source>
-        <oldsource>Yeroth-pos-7.0 ~ administration ~ créer ~ catégorie</oldsource>
+        <source>Yeroth-pgi-3.0 ~ administration ~ créer ~ catégorie</source>
+        <oldsource>Yeroth-erp-3.0 ~ administration ~ créer ~ catégorie</oldsource>
         <translation>Yeroth-erp-3.0 ~ administration ~ create ~ category</translation>
     </message>
     <message>
@@ -3673,8 +3675,8 @@ Please contact an administrator</translation>
     <message>
         <location filename="src/admin/creer/creer-categorie.cpp" line="54"/>
         <location filename="src/admin/creer/creer-categorie.cpp" line="63"/>
-        <source>Yeroth-erp-3.0 ~ admin-créer-catégorie</source>
-        <oldsource>Yeroth-pos-7.0 ~ admin-créer-catégorie</oldsource>
+        <source>Yeroth-pgi-3.0 ~ admin-créer-catégorie</source>
+        <oldsource>Yeroth-erp-3.0 ~ admin-créer-catégorie</oldsource>
         <translation>Yeroth-erp-3.0 ~ admin-create-category</translation>
     </message>
     <message>
@@ -3687,8 +3689,8 @@ Please contact an administrator</translation>
     <message>
         <location filename="src/windows/supplier/yeroth-erp-creer-fournisseur-window.cpp" line="478"/>
         <location filename="src/windows/supplier/yeroth-erp-creer-fournisseur-window.cpp" line="488"/>
-        <source>Yeroth-erp-3.0 ~ administration ~ créer ~ fournisseur</source>
-        <oldsource>Yeroth-pos-7.0 ~ administration ~ créer ~ fournisseur</oldsource>
+        <source>Yeroth-pgi-3.0 ~ administration ~ créer ~ fournisseur</source>
+        <oldsource>Yeroth-erp-3.0 ~ administration ~ créer ~ fournisseur</oldsource>
         <translation>Yeroth-erp-3.0 ~ administration ~ create ~ supplier</translation>
     </message>
     <message>
@@ -3699,8 +3701,8 @@ Please contact an administrator</translation>
     <message>
         <location filename="src/admin/creer/creer-alerte.cpp" line="29"/>
         <location filename="src/admin/creer/creer-alerte.cpp" line="52"/>
-        <source>Yeroth-erp-3.0 ~ administration ~ créer ~ alerte</source>
-        <oldsource>Yeroth-pos-7.0 ~ administration ~ créer ~ alerte</oldsource>
+        <source>Yeroth-pgi-3.0 ~ administration ~ créer ~ alerte</source>
+        <oldsource>Yeroth-erp-3.0 ~ administration ~ créer ~ alerte</oldsource>
         <translation>Yeroth-erp-3.0 ~ administration ~ create ~ alert</translation>
     </message>
     <message>
@@ -3729,8 +3731,8 @@ Please contact an administrator</translation>
         <location filename="src/admin/creer/creer-alerte.cpp" line="215"/>
         <location filename="src/admin/creer/creer-alerte.cpp" line="273"/>
         <location filename="src/admin/creer/creer-alerte.cpp" line="289"/>
-        <source>Yeroth-erp-3.0 - créer ~ alerte</source>
-        <oldsource>Yeroth-pos-7.0 - créer ~ alerte</oldsource>
+        <source>Yeroth-pgi-3.0 - créer ~ alerte</source>
+        <oldsource>Yeroth-erp-3.0 - créer ~ alerte</oldsource>
         <translation>Yeroth-erp-3.0 - create - alert</translation>
     </message>
     <message>
@@ -3741,8 +3743,8 @@ Please contact an administrator</translation>
     </message>
     <message>
         <location filename="src/admin/creer/creer-alerte.cpp" line="248"/>
-        <source>Yeroth-erp-3.0 - créer-alerte</source>
-        <oldsource>Yeroth-pos-7.0 - créer-alerte</oldsource>
+        <source>Yeroth-pgi-3.0 - créer-alerte</source>
+        <oldsource>Yeroth-erp-3.0 - créer-alerte</oldsource>
         <translation>Yeroth-erp-3.0 - create - alert</translation>
     </message>
     <message>
@@ -3760,8 +3762,8 @@ Please contact an administrator</translation>
     <message>
         <location filename="src/admin/creer/yeroth-erp-admin-create-window.hpp" line="83"/>
         <location filename="src/admin/modifier/yeroth-erp-admin-modifier-window.hpp" line="107"/>
-        <source>Yeroth-erp-3.0 ~ admin-créer</source>
-        <oldsource>Yeroth-pos-7.0 ~ admin-créer</oldsource>
+        <source>Yeroth-pgi-3.0 ~ admin-créer</source>
+        <oldsource>Yeroth-erp-3.0 ~ admin-créer</oldsource>
         <translation>Yeroth-erp-3.0 ~ admin-create</translation>
     </message>
     <message>
@@ -3793,8 +3795,8 @@ Press &apos;Cancel&apos; if you wish to stop this process!</translation>
     <message>
         <location filename="src/admin/modifier/modifier-utilisateur.cpp" line="140"/>
         <location filename="src/admin/modifier/modifier-utilisateur.cpp" line="154"/>
-        <source>Yeroth-erp-3.0 ~ admin-modifier-utilisateur</source>
-        <oldsource>Yeroth-pos-7.0 ~ admin-modifier-utilisateur</oldsource>
+        <source>Yeroth-pgi-3.0 ~ admin-modifier-utilisateur</source>
+        <oldsource>Yeroth-erp-3.0 ~ admin-modifier-utilisateur</oldsource>
         <translation>Yeroth-erp-3.0 ~ admin-modify-user</translation>
     </message>
     <message>
@@ -3816,8 +3818,8 @@ Press &apos;Cancel&apos; if you wish to stop this process!</translation>
     </message>
     <message>
         <location filename="src/admin/modifier/modifier-utilisateur.cpp" line="172"/>
-        <source>Yeroth-erp-3.0 -  administration ~ modifier ~ utilisateur</source>
-        <oldsource>Yeroth-pos-7.0 -  administration ~ modifier ~ utilisateur</oldsource>
+        <source>Yeroth-pgi-3.0 -  administration ~ modifier ~ utilisateur</source>
+        <oldsource>Yeroth-erp-3.0 -  administration ~ modifier ~ utilisateur</oldsource>
         <translation>Yeroth-erp-3.0 -  administration ~ modify ~ user</translation>
     </message>
     <message>
@@ -3828,8 +3830,8 @@ Press &apos;Cancel&apos; if you wish to stop this process!</translation>
     <message>
         <location filename="src/admin/modifier/modifier-localisation.cpp" line="88"/>
         <location filename="src/admin/modifier/modifier-localisation.cpp" line="102"/>
-        <source>Yeroth-erp-3.0 ~ admin-modifier-localisation</source>
-        <oldsource>Yeroth-pos-7.0 ~ admin-modifier-localisation</oldsource>
+        <source>Yeroth-pgi-3.0 ~ admin-modifier-localisation</source>
+        <oldsource>Yeroth-erp-3.0 ~ admin-modifier-localisation</oldsource>
         <translation>Yeroth-erp-3.0 ~ admin-modify-location</translation>
     </message>
     <message>
@@ -3840,8 +3842,8 @@ Press &apos;Cancel&apos; if you wish to stop this process!</translation>
     <message>
         <location filename="src/admin/modifier/modifier-categorie.cpp" line="118"/>
         <location filename="src/admin/modifier/modifier-categorie.cpp" line="131"/>
-        <source>Yeroth-erp-3.0 ~ admin-modifier-catégorie</source>
-        <oldsource>Yeroth-pos-7.0 ~ admin-modifier-catégorie</oldsource>
+        <source>Yeroth-pgi-3.0 ~ admin-modifier-catégorie</source>
+        <oldsource>Yeroth-erp-3.0 ~ admin-modifier-catégorie</oldsource>
         <translation>Yeroth-erp-3.0 ~ admin-modify-catégory</translation>
     </message>
     <message>
@@ -3863,8 +3865,8 @@ Press &apos;Cancel&apos; if you wish to stop this process!</translation>
         <location filename="src/admin/modifier/modifier-alerte.cpp" line="90"/>
         <location filename="src/admin/modifier/modifier-alerte.cpp" line="103"/>
         <location filename="src/admin/modifier/modifier-alerte.cpp" line="118"/>
-        <source>Yeroth-erp-3.0 ~ administration ~ modifier ~ alerte</source>
-        <oldsource>Yeroth-pos-7.0 ~ administration ~ modifier ~ alerte</oldsource>
+        <source>Yeroth-pgi-3.0 ~ administration ~ modifier ~ alerte</source>
+        <oldsource>Yeroth-erp-3.0 ~ administration ~ modifier ~ alerte</oldsource>
         <translation>Yeroth-erp-3.0 ~ administration ~ modify ~ alert</translation>
     </message>
     <message>
@@ -3888,7 +3890,8 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-sqltable-model.cpp" line="228"/>
-        <source>Contactez l&apos;administrateur de Yeroth-erp-3.0 !</source>
+        <source>Contactez l&apos;administrateur de Yeroth-pgi-3.0 !</source>
+        <oldsource>Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>Contact Yeroth-erp-3.0 application administrator !</translation>
     </message>
     <message>
@@ -4434,7 +4437,8 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     <message>
         <location filename="src/admin/creer/creer-remise.cpp" line="32"/>
         <location filename="src/admin/creer/creer-remise.cpp" line="48"/>
-        <source>Yeroth-erp-3.0 - créer ~ remise</source>
+        <source>Yeroth-pgi-3.0 - créer ~ remise</source>
+        <oldsource>Yeroth-erp-3.0 - créer ~ remise</oldsource>
         <translation></translation>
     </message>
     <message>
@@ -4450,7 +4454,8 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     <message>
         <location filename="src/admin/creer/creer-remise.cpp" line="87"/>
         <location filename="src/admin/creer/creer-remise.cpp" line="107"/>
-        <source>Yeroth-erp-3.0 ~ administration ~ créer ~ remise</source>
+        <source>Yeroth-pgi-3.0 ~ administration ~ créer ~ remise</source>
+        <oldsource>Yeroth-erp-3.0 ~ administration ~ créer ~ remise</oldsource>
         <translation>Yeroth-erp-3.0 ~ administration ~ create ~ discount</translation>
     </message>
     <message>
@@ -4490,13 +4495,15 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     </message>
     <message>
         <location filename="src/admin/creer/creer-compte-bancaire.cpp" line="25"/>
-        <source>Yeroth-erp-3.0 ~ administration ~ créer ~ compte bancaire</source>
+        <source>Yeroth-pgi-3.0 ~ administration ~ créer ~ compte bancaire</source>
+        <oldsource>Yeroth-erp-3.0 ~ administration ~ créer ~ compte bancaire</oldsource>
         <translation>Yeroth-erp-3.0 ~ administration ~ create ~ bank account</translation>
     </message>
     <message>
         <location filename="src/admin/creer/creer-compte-bancaire.cpp" line="51"/>
         <location filename="src/admin/creer/creer-compte-bancaire.cpp" line="60"/>
-        <source>Yeroth-erp-3.0 ~ admin-créer-compte bancaire</source>
+        <source>Yeroth-pgi-3.0 ~ admin-créer-compte bancaire</source>
+        <oldsource>Yeroth-erp-3.0 ~ admin-créer-compte bancaire</oldsource>
         <translation>Yeroth-erp-3.0 ~ admin-create-bank account</translation>
     </message>
     <message>
@@ -5104,7 +5111,8 @@ Please, change the maximum member of this CLIENT LOYALTY group to &apos;%3&apos;
     <message>
         <location filename="src/admin/modifier/modifier-departements_de_produits.cpp" line="150"/>
         <location filename="src/admin/modifier/modifier-departements_de_produits.cpp" line="164"/>
-        <source>Yeroth-erp-3.0 ~ admin-modifier-département_de_produits</source>
+        <source>Yeroth-pgi-3.0 ~ admin-modifier-département_de_produits</source>
+        <oldsource>Yeroth-erp-3.0 ~ admin-modifier-département_de_produits</oldsource>
         <translation>Yeroth-erp-3.0 ~ admin-modify-product_department</translation>
     </message>
     <message>
@@ -5167,7 +5175,8 @@ Please, change the maximum member of this CLIENT LOYALTY group to &apos;%3&apos;
     <name>YerothAchatsDetailWindow</name>
     <message>
         <location filename="ui/purchase/yeroth-erp-achats-detail-window.ui" line="434"/>
-        <source>Yeroth-erp-3.0 - afficher au détail</source>
+        <source>Yeroth-pgi-3.0 - afficher au détail</source>
+        <oldsource>Yeroth-erp-3.0 - afficher au détail</oldsource>
         <translation>Yeroth-erp-3.0 - detailled view</translation>
     </message>
     <message>
@@ -5361,7 +5370,8 @@ stock (service)</translation>
     <message>
         <location filename="ui/purchase/yeroth-erp-achats-window.ui" line="434"/>
         <location filename="ui/purchase/yeroth-erp-achats-window.ui" line="16362"/>
-        <source>Yeroth-erp-3.0 - fiche des achats</source>
+        <source>Yeroth-pgi-3.0 - fiche des achats</source>
+        <oldsource>Yeroth-erp-3.0 - fiche des achats</oldsource>
         <translation>Yeroth-erp-3.0 - purchase listing</translation>
     </message>
     <message>
@@ -5619,7 +5629,7 @@ stock (service)</translation>
     <name>YerothAdminCreateWindow</name>
     <message>
         <location filename="ui/yeroth-erp-admin-create-window.ui" line="435"/>
-        <source>Yeroth-erp-3.0 ~ administration ~ créer</source>
+        <source>Yeroth-pgi-3.0 ~ administration ~ créer</source>
         <oldsource>Yeroth-erp-3.0 ~ administration ~ créer</oldsource>
         <translation>Yeroth-erp-3.0 ~ administration ~ create</translation>
     </message>
@@ -6120,7 +6130,7 @@ stock (service)</translation>
     <name>YerothAdminDetailWindow</name>
     <message>
         <location filename="ui/yeroth-erp-admin-detail-window.ui" line="435"/>
-        <source>Yeroth-erp-3.0 ~ administration ~ détail</source>
+        <source>Yeroth-pgi-3.0 ~ administration ~ détail</source>
         <oldsource>Yeroth-erp-3.0 ~ administration ~ détail</oldsource>
         <translation>Yeroth-erp-3.0 ~ administration ~ detail</translation>
     </message>
@@ -6587,7 +6597,7 @@ stock (service)</translation>
     <name>YerothAdminListerWindow</name>
     <message>
         <location filename="ui/yeroth-erp-admin-lister-window.ui" line="435"/>
-        <source>Yeroth-erp-3.0 ~ administration ~ lister</source>
+        <source>Yeroth-pgi-3.0 ~ administration ~ lister</source>
         <oldsource>Yeroth-erp-3.0 ~ administration ~ lister</oldsource>
         <translation>Yeroth-erp-3.0 ~ administration ~ list</translation>
     </message>
@@ -6749,7 +6759,7 @@ stock (service)</translation>
     <name>YerothAdminModifierWindow</name>
     <message>
         <location filename="ui/yeroth-erp-admin-modifier-window.ui" line="435"/>
-        <source>Yeroth-erp-3.0 ~ administration ~ modifier</source>
+        <source>Yeroth-pgi-3.0 ~ administration ~ modifier</source>
         <oldsource>Yeroth-erp-3.0 ~ administration ~ modifier</oldsource>
         <translation>Yeroth-erp-3.0 ~ administration ~ modify</translation>
     </message>
@@ -7241,7 +7251,8 @@ stock (service)</translation>
     <name>YerothAdminSearchForm</name>
     <message>
         <location filename="ui/yeroth-erp-admin-search-form.ui" line="434"/>
-        <source>Yeroth-erp-3.0 ~ administration ~ rechercher</source>
+        <source>Yeroth-pgi-3.0 ~ administration ~ rechercher</source>
+        <oldsource>Yeroth-erp-3.0 ~ administration ~ rechercher</oldsource>
         <translation>Yeroth-erp-3.0 ~ administration ~ search</translation>
     </message>
     <message>
@@ -7254,8 +7265,8 @@ stock (service)</translation>
     <name>YerothAdminWindow</name>
     <message>
         <location filename="ui/yeroth-erp-admin-window.ui" line="435"/>
-        <source>Yeroth-erp-3.0 ~ fenêtre de l&apos;administrateur</source>
-        <oldsource>Yeroth-erp-3.0 ~ fenêtre de l&apos;adminisrateur</oldsource>
+        <source>Yeroth-pgi-3.0 ~ fenêtre de l&apos;administrateur</source>
+        <oldsource>Yeroth-erp-3.0 ~ fenêtre de l&apos;administrateur</oldsource>
         <translation>Yeroth-erp-3.0 ~ administration window</translation>
     </message>
     <message>
@@ -7969,7 +7980,7 @@ stock (service)</translation>
     <name>YerothAlertesWindow</name>
     <message>
         <location filename="ui/yeroth-erp-alertes-window.ui" line="435"/>
-        <source>Yeroth-erp-3.0 - alertes</source>
+        <source>Yeroth-pgi-3.0 - alertes</source>
         <oldsource>Yeroth-erp-3.0 - alertes</oldsource>
         <translation>Yeroth-erp-3.0 - alert messages</translation>
     </message>
@@ -8306,7 +8317,8 @@ alert messages</translation>
     <message>
         <location filename="ui/yeroth-erp-charges-financieres-window.ui" line="434"/>
         <location filename="ui/yeroth-erp-charges-financieres-window.ui" line="16360"/>
-        <source>Yeroth-erp-3.0 - fiche des charges financières</source>
+        <source>Yeroth-pgi-3.0 - fiche des charges financières</source>
+        <oldsource>Yeroth-erp-3.0 - fiche des charges financières</oldsource>
         <translation>Yeroth-erp-3.0 - FINANCIAL EXPENSES LISTING</translation>
     </message>
     <message>
@@ -8545,7 +8557,8 @@ alert messages</translation>
     <name>YerothClientsDetailWindow</name>
     <message>
         <location filename="ui/crm/details/yeroth-erp-clients-detail-window.ui" line="434"/>
-        <source>Yeroth-erp-3.0 - détail d&apos;un compte client</source>
+        <source>Yeroth-pgi-3.0 - détail d&apos;un compte client</source>
+        <oldsource>Yeroth-erp-3.0 - détail d&apos;un compte client</oldsource>
         <translation>Yeroth-erp-3.0 - client details</translation>
     </message>
     <message>
@@ -8789,8 +8802,8 @@ Client Account</translation>
     <name>YerothComptabiliteWindow</name>
     <message>
         <location filename="ui/yeroth-erp-comptabilite-window.ui" line="437"/>
-        <source>Yeroth-erp-3.0 - comptabilite</source>
-        <oldsource>Yeroth-erp-3.0 - comptes d&apos;opérations comptables</oldsource>
+        <source>Yeroth-pgi-3.0 - comptabilite</source>
+        <oldsource>Yeroth-erp-3.0 - comptabilite</oldsource>
         <translation>Yeroth-erp-3.0 -financial accounting</translation>
     </message>
     <message>
@@ -9032,7 +9045,8 @@ Client Account</translation>
     <name>YerothCreerCompteClientWindow</name>
     <message>
         <location filename="ui/crm/creer/yeroth-erp-creer-compte-client-window.ui" line="437"/>
-        <source>Yeroth-erp-3.0 - créer un compte client</source>
+        <source>Yeroth-pgi-3.0 - créer un compte client</source>
+        <oldsource>Yeroth-erp-3.0 - créer un compte client</oldsource>
         <translation>Yeroth-erp-3.0 - create a client</translation>
     </message>
     <message>
@@ -9282,7 +9296,8 @@ Client Account</translation>
     <name>YerothCreerFournisseurWindow</name>
     <message>
         <location filename="ui/supplier/yeroth-erp-creer-fournisseur-window.ui" line="437"/>
-        <source>Yeroth-erp-3.0 - créer un fournisseur</source>
+        <source>Yeroth-pgi-3.0 - créer un fournisseur</source>
+        <oldsource>Yeroth-erp-3.0 - créer un fournisseur</oldsource>
         <translation>Yeroth-erp-3.0 - create a supplier</translation>
     </message>
     <message>
@@ -9526,7 +9541,8 @@ Client Account</translation>
     <name>YerothCreerGroupeDeClientsWindow</name>
     <message>
         <location filename="ui/crm/creer/yeroth-erp-creer-groupe-de-clients-window.ui" line="437"/>
-        <source>Yeroth-erp-3.0 - créer un groupe de clients</source>
+        <source>Yeroth-pgi-3.0 - créer un groupe de clients</source>
+        <oldsource>Yeroth-erp-3.0 - créer un groupe de clients</oldsource>
         <translation>Yeroth-erp-3.0 - create a client group</translation>
     </message>
     <message>
@@ -9706,7 +9722,8 @@ Client Account</translation>
     <name>YerothCreerUnProgrammeDeFideliteClientsWindow</name>
     <message>
         <location filename="ui/crm/creer/yeroth-erp-creer-un-programme-de-fidelite-clients-window.ui" line="437"/>
-        <source>Yeroth-erp-3.0 - créer un programme de fidélité de clients</source>
+        <source>Yeroth-pgi-3.0 - créer un programme de fidélité de clients</source>
+        <oldsource>Yeroth-erp-3.0 - créer un programme de fidélité de clients</oldsource>
         <translation>Yeroth-erp-3.0 - create a client loyalty program</translation>
     </message>
     <message>
@@ -9850,7 +9867,8 @@ Client Account</translation>
     <name>YerothDetailsDunGroupeDeClientsWindow</name>
     <message>
         <location filename="ui/crm/details/yeroth-erp-details-dun-groupe-de-clients-window.ui" line="437"/>
-        <source>Yeroth-erp-3.0 - détails d&apos;un groupe de clients</source>
+        <source>Yeroth-pgi-3.0 - détails d&apos;un groupe de clients</source>
+        <oldsource>Yeroth-erp-3.0 - détails d&apos;un groupe de clients</oldsource>
         <translation>Yeroth-erp-3.0 - client group details</translation>
     </message>
     <message>
@@ -10006,7 +10024,8 @@ PROGRAM</translation>
     <name>YerothDetailsDunProgrammeDeFideliteClientsWindow</name>
     <message>
         <location filename="ui/crm/details/yeroth-erp-details-dun-programme-de-fidelite-clients-window.ui" line="437"/>
-        <source>Yeroth-erp-3.0 - détails d&apos;un programme de fidélité clients</source>
+        <source>Yeroth-pgi-3.0 - détails d&apos;un programme de fidélité clients</source>
+        <oldsource>Yeroth-erp-3.0 - détails d&apos;un programme de fidélité clients</oldsource>
         <translation>Yeroth-erp-3.0 - client loyalty program details</translation>
     </message>
     <message>
@@ -10172,7 +10191,8 @@ PROGRAM</translation>
     <name>YerothERPClientsWindow</name>
     <message>
         <location filename="ui/crm/yeroth-erp-clients-window.ui" line="434"/>
-        <source>Yeroth-erp-3.0 - clients</source>
+        <source>Yeroth-pgi-3.0 - clients</source>
+        <oldsource>Yeroth-erp-3.0 - clients</oldsource>
         <translation>Yeroth-erp-3.0 - clients</translation>
     </message>
     <message>
@@ -10261,7 +10281,8 @@ PROGRAM</translation>
     </message>
     <message>
         <location filename="ui/crm/yeroth-erp-clients-window.ui" line="13746"/>
-        <source>Yeroth-erp-3.0 - effectuer un paiment comptant.</source>
+        <source>Yeroth-pgi-3.0 - effectuer un paiment comptant.</source>
+        <oldsource>Yeroth-erp-3.0 - effectuer un paiment comptant.</oldsource>
         <translation>Yeroth-erp-3.0 - make a cash payment.</translation>
     </message>
     <message>
@@ -10415,7 +10436,8 @@ PROGRAM</translation>
     <name>YerothERPFournisseursWindow</name>
     <message>
         <location filename="ui/supplier/yeroth-erp-fournisseurs-window.ui" line="434"/>
-        <source>Yeroth-erp-3.0 - fournisseurs</source>
+        <source>Yeroth-pgi-3.0 - fournisseurs</source>
+        <oldsource>Yeroth-erp-3.0 - fournisseurs</oldsource>
         <translation>Yeroth-erp-3.0 - suppliers</translation>
     </message>
     <message>
@@ -10509,7 +10531,8 @@ Supplier</translation>
     </message>
     <message>
         <location filename="ui/supplier/yeroth-erp-fournisseurs-window.ui" line="13688"/>
-        <source>Yeroth-erp-3.0 - effectuer un paiment comptant.</source>
+        <source>Yeroth-pgi-3.0 - effectuer un paiment comptant.</source>
+        <oldsource>Yeroth-erp-3.0 - effectuer un paiment comptant.</oldsource>
         <translation>Yeroth-erp-3.0 - make a cash payment.</translation>
     </message>
     <message>
@@ -10643,7 +10666,8 @@ Supplier</translation>
     <name>YerothERPGroupesDeClientsWindow</name>
     <message>
         <location filename="ui/crm/yeroth-erp-groupes-de-clients-window.ui" line="434"/>
-        <source>Yeroth-erp-3.0 - groupes de clients</source>
+        <source>Yeroth-pgi-3.0 - groupes de clients</source>
+        <oldsource>Yeroth-erp-3.0 - groupes de clients</oldsource>
         <translation>Yeroth-erp-3.0 - client group</translation>
     </message>
     <message>
@@ -10872,8 +10896,9 @@ PROGRAM</translation>
     <name>YerothERPMarchandisesWindow</name>
     <message>
         <location filename="ui/stocks/yeroth-erp-marchandises-window.ui" line="434"/>
-        <source>Yeroth-erp-3.0 - les marchandises</source>
-        <translation>Yeroth--erp--3.0 - merchandises</translation>
+        <source>Yeroth-pgi-3.0 - les marchandises</source>
+        <oldsource>Yeroth-erp-3.0 - les marchandises</oldsource>
+        <translation>Yeroth-erp-3.0 - merchandises</translation>
     </message>
     <message>
         <location filename="ui/stocks/yeroth-erp-marchandises-window.ui" line="872"/>
@@ -11136,7 +11161,8 @@ Transférer</source>
     <name>YerothERPProgrammesDeFideliteClientsWindow</name>
     <message>
         <location filename="ui/crm/yeroth-erp-programmes-de-fidelite-clients-window.ui" line="434"/>
-        <source>Yeroth-erp-3.0 - programmes de fidélité clients</source>
+        <source>Yeroth-pgi-3.0 - programmes de fidélité clients</source>
+        <oldsource>Yeroth-erp-3.0 - programmes de fidélité clients</oldsource>
         <translation>Yeroth-erp-3.0 - client loyalty program</translation>
     </message>
     <message>
@@ -11361,8 +11387,8 @@ PROGRAM</translation>
     <name>YerothEntrerWindow</name>
     <message>
         <location filename="ui/yeroth-erp-entrer-window.ui" line="437"/>
-        <source>Yeroth-erp-3.0 - entrer un stock (service)</source>
-        <oldsource>Yeroth-erp-3.0 - entrer un stock</oldsource>
+        <source>Yeroth-pgi-3.0 - entrer un stock (service)</source>
+        <oldsource>Yeroth-erp-3.0 - entrer un stock (service)</oldsource>
         <translation>Yeroth-erp-3.0 - check in stock (service)</translation>
     </message>
     <message>
@@ -11675,8 +11701,8 @@ Transférer</source>
     <name>YerothFournisseurDetailsWindow</name>
     <message>
         <location filename="ui/supplier/yeroth-erp-fournisseur-details-window.ui" line="434"/>
-        <source>Yeroth-erp-3.0 - détails d&apos;un fournisseur</source>
-        <oldsource>Yeroth-erp-3.0 - détail d&apos;un fournisseur</oldsource>
+        <source>Yeroth-pgi-3.0 - détails d&apos;un fournisseur</source>
+        <oldsource>Yeroth-erp-3.0 - détails d&apos;un fournisseur</oldsource>
         <translation>Yeroth-erp-3.0 - supplier details</translation>
     </message>
     <message>
@@ -11896,7 +11922,8 @@ Transférer</source>
     <name>YerothGroupesDunClientWindow</name>
     <message>
         <location filename="ui/crm/yeroth-erp-groupes-dun-client-window.ui" line="434"/>
-        <source>Yeroth-erp-3.0 - groupes de d&apos;un client</source>
+        <source>Yeroth-pgi-3.0 - groupes de d&apos;un client</source>
+        <oldsource>Yeroth-erp-3.0 - groupes de d&apos;un client</oldsource>
         <translation>Yeroth-erp-3.0 - client group</translation>
     </message>
     <message>
@@ -12038,7 +12065,8 @@ Transférer</source>
     <name>YerothHistoriqueDuStockWindow</name>
     <message>
         <location filename="ui/stocks/yeroth-erp-historique-du-stock-window.ui" line="437"/>
-        <source>Yeroth-erp-3.0 - fiche des stocks - historique d&apos;un stock</source>
+        <source>Yeroth-pgi-3.0 - fiche des stocks - historique d&apos;un stock</source>
+        <oldsource>Yeroth-erp-3.0 - fiche des stocks - historique d&apos;un stock</oldsource>
         <translation>Yeroth-erp-3.0 - stocks listing - stock history</translation>
     </message>
     <message>
@@ -12073,7 +12101,8 @@ Transférer</source>
     <name>YerothIMPRESSION_DE_DOCUMENT_Dialog</name>
     <message>
         <location filename="ui/yeroth-erp-imprimer-dialog.ui" line="443"/>
-        <source>Yeroth-erp-3.0 - IMPRESSION DE DOCUMENT</source>
+        <source>Yeroth-pgi-3.0 - IMPRESSION DE DOCUMENT</source>
+        <oldsource>Yeroth-erp-3.0 - IMPRESSION DE DOCUMENT</oldsource>
         <translation>Yeroth-erp-3.0 - DOCUMENT PRINTING</translation>
     </message>
     <message>
@@ -12127,7 +12156,7 @@ Transférer</source>
     <name>YerothMainWindow</name>
     <message>
         <location filename="ui/yeroth-erp-main-window.ui" line="437"/>
-        <source>Yeroth-erp-3.0 - fenêtre de l&apos;utilisateur</source>
+        <source>Yeroth-pgi-3.0 - fenêtre de l&apos;utilisateur</source>
         <oldsource>Yeroth-erp-3.0 - fenêtre de l&apos;utilisateur</oldsource>
         <translation>Yeroth-erp-3.0 - user window</translation>
     </message>
@@ -12162,6 +12191,11 @@ de
 Bords</source>
         <translation>Business
 Dashboard</translation>
+    </message>
+    <message>
+        <location filename="ui/yeroth-erp-main-window.ui" line="4932"/>
+        <source>YEROTH-PGI-3.0</source>
+        <translation>YEROTH-ERP-3.0</translation>
     </message>
     <message>
         <location filename="ui/yeroth-erp-main-window.ui" line="5377"/>
@@ -12386,7 +12420,6 @@ Of
 Sale</translation>
     </message>
     <message>
-        <location filename="ui/yeroth-erp-main-window.ui" line="4932"/>
         <location filename="ui/yeroth-erp-main-window.ui" line="6734"/>
         <source>YEROTH-ERP-3.0</source>
         <translation></translation>
@@ -12396,8 +12429,8 @@ Sale</translation>
     <name>YerothModifierCompteClientWindow</name>
     <message>
         <location filename="ui/crm/modifier/yeroth-erp-modifier-compte-client-window.ui" line="434"/>
-        <source>Yeroth-erp-3.0 - modifier un compte client</source>
-        <oldsource>Yeroth-erp-3.0 - détail d&apos;un compte client</oldsource>
+        <source>Yeroth-pgi-3.0 - modifier un compte client</source>
+        <oldsource>Yeroth-erp-3.0 - modifier un compte client</oldsource>
         <translation>Yeroth-erp-3.0 - modify client</translation>
     </message>
     <message>
@@ -12634,7 +12667,8 @@ Sale</translation>
     <name>YerothModifierFournisseurWindow</name>
     <message>
         <location filename="ui/supplier/yeroth-erp-modifier-fournisseur-window.ui" line="434"/>
-        <source>Yeroth-erp-3.0 - modifier un fournisseur</source>
+        <source>Yeroth-pgi-3.0 - modifier un fournisseur</source>
+        <oldsource>Yeroth-erp-3.0 - modifier un fournisseur</oldsource>
         <translation>Yeroth-erp-3.0 - modify a supplier</translation>
     </message>
     <message>
@@ -12869,7 +12903,8 @@ Sale</translation>
     <name>YerothModifierGroupeDeClientsWindow</name>
     <message>
         <location filename="ui/crm/modifier/yeroth-erp-modifier-groupe-de-clients-window.ui" line="437"/>
-        <source>Yeroth-erp-3.0 - modifier un groupe de clients</source>
+        <source>Yeroth-pgi-3.0 - modifier un groupe de clients</source>
+        <oldsource>Yeroth-erp-3.0 - modifier un groupe de clients</oldsource>
         <translation>Yeroth-erp-3.0 - modify client group</translation>
     </message>
     <message>
@@ -13050,8 +13085,8 @@ Sale</translation>
     <name>YerothModifierUnProgrammeDeFideliteClientsWindow</name>
     <message>
         <location filename="ui/crm/modifier/yeroth-erp-modifier-un-programme-de-fidelite-clients-window.ui" line="437"/>
-        <source>Yeroth-erp-3.0 - modifier un programme de fidélité de clients</source>
-        <oldsource>Yeroth-erp-3.0 - créer un programme de fidélité de clients</oldsource>
+        <source>Yeroth-pgi-3.0 - modifier un programme de fidélité de clients</source>
+        <oldsource>Yeroth-erp-3.0 - modifier un programme de fidélité de clients</oldsource>
         <translation>Yeroth-erp-3.0 - modify a client loyalty program</translation>
     </message>
     <message>
@@ -13209,7 +13244,7 @@ Sale</translation>
     <name>YerothModifierWindow</name>
     <message>
         <location filename="ui/stocks/yeroth-erp-modifier-window.ui" line="434"/>
-        <source>Yeroth-erp-3.0 - modifier ce stock</source>
+        <source>Yeroth-pgi-3.0 - modifier ce stock</source>
         <oldsource>Yeroth-erp-3.0 - modifier ce stock</oldsource>
         <translation>Yeroth-erp-3.0 - modify this stock</translation>
     </message>
@@ -13481,8 +13516,8 @@ stock item (service)</translation>
     <name>YerothMouvementsDeStocksWindow</name>
     <message>
         <location filename="ui/stocks/yeroth-erp-mouvements_de_stocks-window.ui" line="435"/>
-        <source>Yeroth-erp-3.0 - mouvements de stocks</source>
-        <oldsource>Yeroth-erp-3.0 - transactions</oldsource>
+        <source>Yeroth-pgi-3.0 - mouvements de stocks</source>
+        <oldsource>Yeroth-erp-3.0 - mouvements de stocks</oldsource>
         <translation>Yeroth-erp-3.0 - stock transfer</translation>
     </message>
     <message>
@@ -13688,7 +13723,7 @@ stock item (service)</translation>
     <name>YerothPOSChangerUtilisateurDialog</name>
     <message>
         <location filename="ui/yeroth-erp-changer-utilisateur-dialog.ui" line="443"/>
-        <source>Yeroth-erp-3.0 - changer d&apos;utilisateur</source>
+        <source>Yeroth-pgi-3.0 - changer d&apos;utilisateur</source>
         <oldsource>Yeroth-erp-3.0 - changer d&apos;utilisateur</oldsource>
         <translation>Yeroth-erp-3.0 - sign in</translation>
     </message>
@@ -13852,8 +13887,8 @@ stock item (service)</translation>
     <name>YerothPaiementsWindow</name>
     <message>
         <location filename="ui/yeroth-erp-paiements-window.ui" line="435"/>
-        <source>Yeroth-erp-3.0 - paiements clients et fournisseurs</source>
-        <oldsource>Yeroth-erp-3.0 - paiements clients et fournisseurs </oldsource>
+        <source>Yeroth-pgi-3.0 - paiements clients et fournisseurs</source>
+        <oldsource>Yeroth-erp-3.0 - paiements clients et fournisseurs</oldsource>
         <translation>Yeroth-erp-3.0 - clients and suppliers payments</translation>
     </message>
     <message>
@@ -14146,7 +14181,8 @@ stock item (service)</translation>
     <name>YerothPayerCompteClientWindow</name>
     <message>
         <location filename="ui/crm/yeroth-erp-payer-compte-client-window.ui" line="437"/>
-        <source>Yeroth-erp-3.0 - payer au compte du client</source>
+        <source>Yeroth-pgi-3.0 - payer au compte du client</source>
+        <oldsource>Yeroth-erp-3.0 - payer au compte du client</oldsource>
         <translation>Yeroth-erp-3.0 - pay to client</translation>
     </message>
     <message>
@@ -14359,7 +14395,7 @@ Account
     <name>YerothPointDeVenteWindow</name>
     <message>
         <location filename="ui/pos/yeroth-erp-pointdevente-window.ui" line="435"/>
-        <source>Yeroth-erp-3.0 - point de vente</source>
+        <source>Yeroth-pgi-3.0 - point de vente</source>
         <oldsource>Yeroth-erp-3.0 - point de vente</oldsource>
         <translation>Yeroth-erp-3.0 - point of sale</translation>
     </message>
@@ -14961,7 +14997,7 @@ Account
     <name>YerothSortirListStocksWindow</name>
     <message>
         <location filename="ui/stocks/yeroth-erp-sortir-liststocks-window.ui" line="14"/>
-        <source>Yeroth-erp-3.0 - fiche des stocks - sortir</source>
+        <source>Yeroth-pgi-3.0 - fiche des stocks - sortir</source>
         <oldsource>Yeroth-erp-3.0 - fiche des stocks - sortir</oldsource>
         <translation>Yeroth-erp-3.0 - stock listing - check out</translation>
     </message>
@@ -14976,7 +15012,7 @@ Account
     <name>YerothSortirWindow</name>
     <message>
         <location filename="ui/stocks/yeroth-erp-sortir-window.ui" line="430"/>
-        <source>Yeroth-erp-3.0 - sortie des stocks</source>
+        <source>Yeroth-pgi-3.0 - sortie des stocks</source>
         <oldsource>Yeroth-erp-3.0 - sortie des stocks</oldsource>
         <translation>Yeroth-erp-3.0 - check out</translation>
     </message>
@@ -15324,7 +15360,8 @@ Account
     <name>YerothStockDetailWindow</name>
     <message>
         <location filename="ui/stocks/yeroth-erp-stock-detail-window.ui" line="434"/>
-        <source>Yeroth-erp-3.0 - afficher au détail</source>
+        <source>Yeroth-pgi-3.0 - afficher au détail</source>
+        <oldsource>Yeroth-erp-3.0 - afficher au détail</oldsource>
         <translation>Yeroth-erp-3.0 - stock details</translation>
     </message>
     <message>
@@ -15562,7 +15599,7 @@ stock (service)</translation>
     <name>YerothStocksWindow</name>
     <message>
         <location filename="ui/stocks/yeroth-erp-stocks-window.ui" line="434"/>
-        <source>Yeroth-erp-3.0 - fiche des stocks</source>
+        <source>Yeroth-pgi-3.0 - fiche des stocks</source>
         <oldsource>Yeroth-erp-3.0 - fiche des stocks</oldsource>
         <translation>Yeroth-erp-3.0 - inventory stock listing</translation>
     </message>
@@ -15847,7 +15884,8 @@ stock (service)</translation>
     <name>YerothTableauDesTransactionsDuClientWindow</name>
     <message>
         <location filename="ui/crm/yeroth-erp-tableau-des-transactions-du-client-window.ui" line="437"/>
-        <source>Yeroth-erp-3.0 - tableau des transactions du client</source>
+        <source>Yeroth-pgi-3.0 - tableau des transactions du client</source>
+        <oldsource>Yeroth-erp-3.0 - tableau des transactions du client</oldsource>
         <translation>Yeroth-erp-3.0 - financial transactions table of a client</translation>
     </message>
     <message>
@@ -15882,7 +15920,8 @@ stock (service)</translation>
     <name>YerothTableauDesTransactionsDuFournisseurWindow</name>
     <message>
         <location filename="ui/supplier/yeroth-erp-tableau-des-transactions-du-fournisseur-window.ui" line="437"/>
-        <source>Yeroth-erp-3.0 - tableau des transactions du fournisseur</source>
+        <source>Yeroth-pgi-3.0 - tableau des transactions du fournisseur</source>
+        <oldsource>Yeroth-erp-3.0 - tableau des transactions du fournisseur</oldsource>
         <translation>Yeroth-erp-3.0 - financial transactions table of a supplier</translation>
     </message>
     <message>
@@ -15917,7 +15956,7 @@ stock (service)</translation>
     <name>YerothVenteListStocksWindow</name>
     <message>
         <location filename="ui/pos/yeroth-erp-pointdevente-liststocks-window.ui" line="17"/>
-        <source>Yeroth-erp-3.0 - fiche des stocks - vendre</source>
+        <source>Yeroth-pgi-3.0 - fiche des stocks - vendre</source>
         <oldsource>Yeroth-erp-3.0 - fiche des stocks - vendre</oldsource>
         <translation>Yeroth-erp-3.0 - stock listing - check out</translation>
     </message>
@@ -15932,7 +15971,8 @@ stock (service)</translation>
     <name>YerothVentesWindow</name>
     <message>
         <location filename="ui/yeroth-erp-ventes-window.ui" line="435"/>
-        <source>Yeroth-erp-3.0 - ventes</source>
+        <source>Yeroth-pgi-3.0 - ventes</source>
+        <oldsource>Yeroth-erp-3.0 - ventes</oldsource>
         <translation>Yeroth-erp-3.0 - sales</translation>
     </message>
     <message>

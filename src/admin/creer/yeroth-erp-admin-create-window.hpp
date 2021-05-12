@@ -80,7 +80,7 @@ public slots:
 
 	inline virtual void help()
 	{
-		YerothQMessageBox::information(this, QObject::trUtf8("Yeroth-erp-3.0 ~ admin-créer"),
+		YerothQMessageBox::information(this, QObject::trUtf8("Yeroth-pgi-3.0 ~ admin-créer"),
 				 QObject::trUtf8("Remplissez les informations nécessaire, et "
 						 	 	   "ensuite cliquer sur 'Valider'.\n"
 						 	 	   "Cliquez sur 'Annuler' si vous souhaiter annuler "

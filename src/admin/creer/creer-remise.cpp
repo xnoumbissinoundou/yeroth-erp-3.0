@@ -29,7 +29,7 @@ bool YerothAdminCreateWindow::creer_remise_check_fields()
     	QString pMsg(QObject::trUtf8("Le paramètre 'début' de la remise ne doit pas être dans le passé !"));
 
     	YerothQMessageBox::information(this,
-    								   QObject::trUtf8("Yeroth-erp-3.0 - créer ~ remise"),
+    								   QObject::trUtf8("Yeroth-pgi-3.0 - créer ~ remise"),
 									   pMsg);
     	return false;
     }
@@ -45,7 +45,7 @@ bool YerothAdminCreateWindow::creer_remise_check_fields()
     	QString pMsg(QObject::trUtf8("Le paramètre 'début' de la remise doit être avant le paramètre 'fin' !"));
 
     	YerothQMessageBox::information(this,
-    								   QObject::trUtf8("Yeroth-erp-3.0 - créer ~ remise"),
+    								   QObject::trUtf8("Yeroth-pgi-3.0 - créer ~ remise"),
 									   pMsg);
     	return false;
     }
@@ -84,7 +84,7 @@ bool YerothAdminCreateWindow::creer_remise()
             				.arg(duplicateRemise));
 
             YerothQMessageBox::warning(this,
-                                 QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ créer ~ remise"),
+                                 QObject::trUtf8("Yeroth-pgi-3.0 ~ administration ~ créer ~ remise"),
                                  retMsg);
 
             remiseTableModel.resetFilter();
@@ -104,7 +104,7 @@ bool YerothAdminCreateWindow::creer_remise()
         if (stocksTableModelRowCount <= 0)
         {
             YerothQMessageBox::warning(this,
-                                 QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ créer ~ remise"),
+                                 QObject::trUtf8("Yeroth-pgi-3.0 ~ administration ~ créer ~ remise"),
                                  QObject::trUtf8("Il n'est pas possible de créer une remise "
                                                  "sur un stock déjà écoulé !"));
 
@@ -142,7 +142,7 @@ bool YerothAdminCreateWindow::creer_remise()
         					.arg(lineEdit_creer_remise_nom->text()));
 
             YerothQMessageBox::warning(this,
-                                 QObject::trUtf8("Yeroth-erp-3.0 - créer"),
+                                 QObject::trUtf8("Yeroth-pgi-3.0 - créer"),
                                  retMsg);
             return false;
         }
@@ -151,7 +151,7 @@ bool YerothAdminCreateWindow::creer_remise()
     					.arg(lineEdit_creer_remise_nom->text()));
 
         YerothQMessageBox::information(this,
-        							   QObject::trUtf8("Yeroth-erp-3.0 - créer"),
+        							   QObject::trUtf8("Yeroth-pgi-3.0 - créer"),
                                  	   retMsg);
 
          clear_remise_all_fields();

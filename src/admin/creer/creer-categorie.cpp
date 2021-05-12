@@ -27,7 +27,7 @@ bool YerothAdminCreateWindow::creer_categorie()
             				.arg(duplicateCategorie));
 
             YerothQMessageBox::warning(this,
-                                 QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ créer ~ catégorie"),
+                                 QObject::trUtf8("Yeroth-pgi-3.0 ~ administration ~ créer ~ catégorie"),
                                  retMsg);
 
             categoriesTableModel.resetFilter();
@@ -51,7 +51,7 @@ bool YerothAdminCreateWindow::creer_categorie()
             				.arg(lineEdit_creer_categorie_nom->text()));
 
             YerothQMessageBox::warning(this,
-                                 QObject::trUtf8("Yeroth-erp-3.0 ~ admin-créer-catégorie"),
+                                 QObject::trUtf8("Yeroth-pgi-3.0 ~ admin-créer-catégorie"),
                                  retMsg);
             return false;
         }
@@ -60,7 +60,7 @@ bool YerothAdminCreateWindow::creer_categorie()
         				.arg(lineEdit_creer_categorie_nom->text()));
 
         YerothQMessageBox::information(this,
-                                 QObject::trUtf8("Yeroth-erp-3.0 ~ admin-créer-catégorie"),
+                                 QObject::trUtf8("Yeroth-pgi-3.0 ~ admin-créer-catégorie"),
                                  retMsg);
 
         clear_categorie_all_fields();

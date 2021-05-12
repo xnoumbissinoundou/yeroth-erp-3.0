@@ -431,7 +431,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>Yeroth-erp-3.0 - fiche des achats</string>
+   <string>Yeroth-pgi-3.0 - fiche des achats</string>
   </property>
   <property name="locale">
    <locale language="French" country="France"/>
@@ -16359,7 +16359,7 @@ background-color: rgb(0, 0, 0); </string>
     </palette>
    </property>
    <property name="windowTitle">
-    <string>Yeroth-erp-3.0 - fiche des achats</string>
+    <string>Yeroth-pgi-3.0 - fiche des achats</string>
    </property>
    <property name="autoFillBackground">
     <bool>true</bool>

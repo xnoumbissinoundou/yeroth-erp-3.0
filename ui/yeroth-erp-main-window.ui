@@ -434,7 +434,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>Yeroth-erp-3.0 - fenêtre de l'utilisateur</string>
+   <string>Yeroth-pgi-3.0 - fenêtre de l'utilisateur</string>
   </property>
   <property name="autoFillBackground">
    <bool>true</bool>
@@ -4929,7 +4929,7 @@ Vente</string>
      </font>
     </property>
     <property name="text">
-     <string>YEROTH-ERP-3.0</string>
+     <string>YEROTH-PGI-3.0</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>

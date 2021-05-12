@@ -1220,6 +1220,17 @@ YerothQMessageBox::information(this, QObject::trUtf8(DIALOG_BOX_TITLE), msg); }
 	TS.append(QString::number(DB_ID));								 	   \
 	_map_dbID_TO_yeroth_table_view_ROW_NUMBER.insert(TS, ROW);
 
+#ifdef YEROTH_FRANCAIS_LANGUAGE
+
+	#define YEROTH_ERP_WINDOW_TITLE "Yeroth-pgi-3.0"
+
+#else //
+
+	#define YEROTH_ERP_WINDOW_TITLE "Yeroth-pgi-3.0"
+
+#endif
+
+
 #define YEROTH_QSTRING_CONTAINS(S, V) S.contains(V, Qt::CaseInsensitive)
 
 #define QDEBUG_STRINGS_OUTPUT_Q_CONTAINER(X, Y) qDebug() << QString("++ %1: ").arg(X) << Y

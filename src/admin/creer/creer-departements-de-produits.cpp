@@ -31,7 +31,7 @@ bool YerothAdminCreateWindow::creer_departements_de_produits()
             				.arg(duplicateDepartement_de_produits));
 
             YerothQMessageBox::warning(this,
-                                 QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ créer ~ département de produits"),
+                                 QObject::trUtf8("Yeroth-pgi-3.0 ~ administration ~ créer ~ département de produits"),
                                  retMsg);
 
             departements_produitsTableModel.resetFilter();
@@ -55,7 +55,7 @@ bool YerothAdminCreateWindow::creer_departements_de_produits()
             				.arg(lineEdit_creer_departements_de_produits_nom->text()));
 
             YerothQMessageBox::warning(this,
-                                 QObject::trUtf8("Yeroth-erp-3.0 ~ admin-créer-département de produits"),
+                                 QObject::trUtf8("Yeroth-pgi-3.0 ~ admin-créer-département de produits"),
                                  retMsg);
             return false;
         }
@@ -64,7 +64,7 @@ bool YerothAdminCreateWindow::creer_departements_de_produits()
         				.arg(lineEdit_creer_departements_de_produits_nom->text()));
 
         YerothQMessageBox::information(this,
-                                 QObject::trUtf8("Yeroth-erp-3.0 ~ admin-créer-département de produits"),
+                                 QObject::trUtf8("Yeroth-pgi-3.0 ~ admin-créer-département de produits"),
                                  retMsg);
 
         clear_departements_de_produits_all_fields();

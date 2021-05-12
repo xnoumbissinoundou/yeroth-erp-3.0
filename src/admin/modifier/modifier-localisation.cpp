@@ -85,7 +85,7 @@ void YerothAdminModifierWindow::modifier_localisation()
             retMsg.append(QObject::trUtf8(" ont été modifiées avec succès !"));
 
             YerothQMessageBox::information(this,
-                                     QObject::tr("Yeroth-erp-3.0 ~ admin-modifier-localisation"),
+                                     QObject::tr("Yeroth-pgi-3.0 ~ admin-modifier-localisation"),
                                      retMsg);
 
             _allWindows->_adminListerWindow->rendreVisible(SUJET_ACTION_LOCALISATION);
@@ -99,7 +99,7 @@ void YerothAdminModifierWindow::modifier_localisation()
             retMsg.append(QObject::trUtf8(" n'ont pas pu être modifiées !"));
 
             YerothQMessageBox::warning(this,
-                                 QObject::tr("Yeroth-erp-3.0 ~ admin-modifier-localisation"),
+                                 QObject::tr("Yeroth-pgi-3.0 ~ admin-modifier-localisation"),
                                  retMsg);
         }
     }

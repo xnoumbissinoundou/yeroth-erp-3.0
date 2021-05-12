@@ -137,7 +137,7 @@ void YerothAdminModifierWindow::modifier_utilisateur_main()
             retMsg.append(QObject::trUtf8(" ont été modifiées avec succès !"));
 
             YerothQMessageBox::information(this,
-                                     QObject::tr("Yeroth-erp-3.0 ~ admin-modifier-utilisateur"),
+                                     QObject::tr("Yeroth-pgi-3.0 ~ admin-modifier-utilisateur"),
                                      retMsg);
 
             _allWindows->_adminListerWindow->rendreVisible(SUJET_ACTION_COMPTE_UTILISATEUR);
@@ -151,7 +151,7 @@ void YerothAdminModifierWindow::modifier_utilisateur_main()
             retMsg.append(QObject::trUtf8(" n'ont pas pu être modifiées !"));
 
             YerothQMessageBox::warning(this,
-                                 	   QObject::tr("Yeroth-erp-3.0 ~ admin-modifier-utilisateur"),
+                                 	   QObject::tr("Yeroth-pgi-3.0 ~ admin-modifier-utilisateur"),
 									   retMsg);
         }
     }
@@ -169,7 +169,7 @@ bool YerothAdminModifierWindow::modifier_utilisateur_check_fields()
             QString msg(QObject::trUtf8("Les deux mot de passe sont différents !"));
 
             YerothQMessageBox::warning(this,
-            						   QObject::trUtf8("Yeroth-erp-3.0 -  administration ~ modifier ~ utilisateur"),
+            						   QObject::trUtf8("Yeroth-pgi-3.0 -  administration ~ modifier ~ utilisateur"),
 									   msg,
 									   QMessageBox::Ok);
 

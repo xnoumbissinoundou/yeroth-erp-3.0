@@ -434,7 +434,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>Yeroth-erp-3.0 - fiche des stocks - historique d'un stock</string>
+   <string>Yeroth-pgi-3.0 - fiche des stocks - historique d'un stock</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="YerothTableView" name="tableView_historique_du_stock">

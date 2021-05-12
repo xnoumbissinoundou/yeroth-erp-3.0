@@ -434,7 +434,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>Yeroth-erp-3.0 - tableau des transactions du client</string>
+   <string>Yeroth-pgi-3.0 - tableau des transactions du client</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="YerothTableView" name="tableView_tableau_des_transactions_du_client">

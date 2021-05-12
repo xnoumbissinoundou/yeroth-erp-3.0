@@ -14,11 +14,6 @@
 
 #define YEROTH_ERP_3_0_CONFIGURATION_FILE_SEPARATION_OPERATOR 		"="
 
-#define VERSION_WITH_DOT 						"3.0"
-#define VERSION_WITH_DASH 						"3-0"
-
-#define YEROTH_ERP_WINDOW_TITLE						"Yeroth-erp-" VERSION_WITH_DOT
-
 #define BUSINESS_REPORT_TURNOVER_EVOLUTION_TEX_COMPILATION_SCRIPT 	"compile-bar-diag.sh"
 
 #define TRANSLATION_FILE_ENGLISH 					"yeroth-erp-3-0_english"

@@ -22,7 +22,7 @@ bool YerothAdminCreateWindow::creer_compte_bancaire()
             				.arg(duplicateCompteBancaire));
 
             YerothQMessageBox::warning(this,
-                                 QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ créer ~ compte bancaire"),
+                                 QObject::trUtf8("Yeroth-pgi-3.0 ~ administration ~ créer ~ compte bancaire"),
                                  retMsg);
 
             compteBancaireSqlTableModel.resetFilter();
@@ -48,7 +48,7 @@ bool YerothAdminCreateWindow::creer_compte_bancaire()
             				.arg(lineEdit_creer_compte_bancaire_reference_du_compte_bancaire->text()));
 
             YerothQMessageBox::warning(this,
-                                 QObject::trUtf8("Yeroth-erp-3.0 ~ admin-créer-compte bancaire"),
+                                 QObject::trUtf8("Yeroth-pgi-3.0 ~ admin-créer-compte bancaire"),
                                  retMsg);
             return false;
         }
@@ -57,7 +57,7 @@ bool YerothAdminCreateWindow::creer_compte_bancaire()
         				.arg(lineEdit_creer_compte_bancaire_reference_du_compte_bancaire->text()));
 
         YerothQMessageBox::information(this,
-                                 QObject::trUtf8("Yeroth-erp-3.0 ~ admin-créer-compte bancaire"),
+                                 QObject::trUtf8("Yeroth-pgi-3.0 ~ admin-créer-compte bancaire"),
                                  retMsg);
 
         clear_compte_bancaire_all_fields();

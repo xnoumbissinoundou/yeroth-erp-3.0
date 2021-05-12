@@ -26,7 +26,7 @@ bool YerothAdminCreateWindow::creer_localisation()
             				.arg(duplicateLocalisation));
 
             YerothQMessageBox::warning(this,
-                                 QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ créer ~ localisation"),
+                                 QObject::trUtf8("Yeroth-pgi-3.0 ~ administration ~ créer ~ localisation"),
                                  retMsg);
 
             localisationsTableModel.resetFilter();
@@ -61,7 +61,7 @@ bool YerothAdminCreateWindow::creer_localisation()
             retMsg.append(QObject::trUtf8("' n'a pas pu être créer !"));
 
             YerothQMessageBox::warning(this,
-                                 QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ créer ~ localisation"),
+                                 QObject::trUtf8("Yeroth-pgi-3.0 ~ administration ~ créer ~ localisation"),
                                  retMsg);
             return false;
         }
@@ -69,7 +69,7 @@ bool YerothAdminCreateWindow::creer_localisation()
         retMsg.append(QObject::trUtf8(" a été créer avec succès !"));
 
         YerothQMessageBox::information(this,
-                                 QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ créer ~ localisation"),
+                                 QObject::trUtf8("Yeroth-pgi-3.0 ~ administration ~ créer ~ localisation"),
                                  retMsg);
 
         clear_localisation_all_fields();

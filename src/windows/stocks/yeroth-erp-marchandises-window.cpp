@@ -45,7 +45,7 @@ YerothMarchandisesWindow::YerothMarchandisesWindow()
 {
     _windowName = QString("%1 - %2")
     				.arg(YEROTH_ERP_WINDOW_TITLE,
-    					 QObject::tr("les marchandises"));
+    					 QObject::tr("les marchandisestest"));
 
     setupUi(this);
 

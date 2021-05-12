@@ -475,7 +475,7 @@ bool YerothCreerFournisseurWindow::creerEnregistrerFournisseur()
             retMsg.append(QObject::trUtf8("' n'a pas pu être créer !"));
 
             YerothQMessageBox::warning(this,
-                                 QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ créer ~ fournisseur"),
+                                 QObject::trUtf8("Yeroth-pgi-3.0 ~ administration ~ créer ~ fournisseur"),
                                  retMsg);
             return false;
         }
@@ -485,7 +485,7 @@ bool YerothCreerFournisseurWindow::creerEnregistrerFournisseur()
         retMsg.append(QObject::trUtf8("' a été créer avec succès !"));
 
         YerothQMessageBox::information(this,
-                                 QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ créer ~ fournisseur"),
+                                 QObject::trUtf8("Yeroth-pgi-3.0 ~ administration ~ créer ~ fournisseur"),
                                  retMsg);
 
         clear_all_fields();

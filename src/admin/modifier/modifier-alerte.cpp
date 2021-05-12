@@ -87,7 +87,7 @@ void YerothAdminModifierWindow::modifier_alerte()
             retMsg.append(QObject::trUtf8("a été modifiées avec succès !"));
 
             YerothQMessageBox::information(this,
-                                     QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ modifier ~ alerte"),
+                                     QObject::trUtf8("Yeroth-pgi-3.0 ~ administration ~ modifier ~ alerte"),
                                      retMsg);
 
             _allWindows->_adminListerWindow->rendreVisible(SUJET_ACTION_ALERTE);
@@ -100,7 +100,7 @@ void YerothAdminModifierWindow::modifier_alerte()
             retMsg.append(QObject::trUtf8(" n'a pas pu être modifiées !"));
 
             YerothQMessageBox::warning(this,
-                                 QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ modifier ~ alerte"),
+                                 QObject::trUtf8("Yeroth-pgi-3.0 ~ administration ~ modifier ~ alerte"),
                                  retMsg);
         }
     }
@@ -115,7 +115,7 @@ bool YerothAdminModifierWindow::modifier_alerte_check_fields(QString previousAle
     if (!modified)
     {
         YerothQMessageBox::information(this,
-                                 QObject::trUtf8("Yeroth-erp-3.0 ~ administration ~ modifier ~ alerte"),
+                                 QObject::trUtf8("Yeroth-pgi-3.0 ~ administration ~ modifier ~ alerte"),
                                  QObject::trUtf8("Le message de l'alerte n'a pas changé!"));
         return false;
     }

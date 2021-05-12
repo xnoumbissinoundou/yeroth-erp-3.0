@@ -115,7 +115,7 @@ void YerothAdminModifierWindow::modifier_categorie_main()
         retMsg.append(QObject::trUtf8(" ont été modifiées avec succès !"));
 
         YerothQMessageBox::information(this,
-                                 QObject::trUtf8("Yeroth-erp-3.0 ~ admin-modifier-catégorie"),
+                                 QObject::trUtf8("Yeroth-pgi-3.0 ~ admin-modifier-catégorie"),
                                  retMsg);
 
         _allWindows->_adminListerWindow->rendreVisible(SUJET_ACTION_CATEGORIE);
@@ -128,7 +128,7 @@ void YerothAdminModifierWindow::modifier_categorie_main()
         retMsg.append(QObject::trUtf8(" n'ont pas pu être modifiées !"));
 
         YerothQMessageBox::warning(this,
-                             QObject::trUtf8("Yeroth-erp-3.0 ~ admin-modifier-catégorie"),
+                             QObject::trUtf8("Yeroth-pgi-3.0 ~ admin-modifier-catégorie"),
                              retMsg);
     }
 }

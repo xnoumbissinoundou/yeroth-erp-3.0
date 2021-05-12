@@ -431,7 +431,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>Yeroth-erp-3.0 - détails d'un fournisseur</string>
+   <string>Yeroth-pgi-3.0 - détails d'un fournisseur</string>
   </property>
   <property name="locale">
    <locale language="French" country="France"/>
