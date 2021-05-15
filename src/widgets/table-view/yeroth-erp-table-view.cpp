@@ -52,17 +52,17 @@ YerothTableView::YerothTableView()
     setupSelectionOptions();
     setBackgroundRole(QPalette::Window);
 
-    QHeaderView *qHeaderView = horizontalHeader();
+    _q_header_view = horizontalHeader();
 
-    if (0 != qHeaderView)
+    if (0 != _q_header_view)
     {
-    	qHeaderView->setSectionsMovable(true);
-    }
+    	_q_header_view->setSectionsMovable(true);
 
-    connect(qHeaderView,
-    		SIGNAL(sectionMoved(int, int, int)),
-			this,
-			SLOT(handle_yeroth_header_view_position_changed(int, int, int)));
+        connect(_q_header_view,
+        		SIGNAL(sectionMoved(int, int, int)),
+    			this,
+    			SLOT(handle_yeroth_header_view_position_changed(int, int, int)));
+    }
 }
 
 
@@ -78,17 +78,17 @@ YerothTableView::YerothTableView(QWidget * parent)
     setupSelectionOptions();
     setBackgroundRole(QPalette::Window);
 
-    QHeaderView *qHeaderView = horizontalHeader();
+    _q_header_view = horizontalHeader();
 
-    if (0 != qHeaderView)
+    if (0 != _q_header_view)
     {
-    	qHeaderView->setSectionsMovable(true);
-    }
+    	_q_header_view->setSectionsMovable(true);
 
-    connect(qHeaderView,
-    		SIGNAL(sectionMoved(int, int, int)),
-			this,
-			SLOT(handle_yeroth_header_view_position_changed(int, int, int)));
+        connect(_q_header_view,
+        		SIGNAL(sectionMoved(int, int, int)),
+    			this,
+    			SLOT(handle_yeroth_header_view_position_changed(int, int, int)));
+    }
 }
 
 
@@ -129,48 +129,45 @@ void YerothTableView::handle_yeroth_header_view_position_changed(int logicalInde
 	{
 		a_yeroth_window = (YerothWindowsCommons *) parent()->parent();
 
-		if (0 != a_yeroth_window)
+		if (0 != _q_header_view && 0 != a_yeroth_window)
 		{
-			QHeaderView *header_view = horizontalHeader();
+			YerothQStringList yerothTableView_model_raw_visible_headers(_tableModelRawHeaders_IN_OUT);
 
-			if (0 != header_view)
+			YerothQStringList a_visible_DB_columnname_string_List(a_yeroth_window->get_visible_DB_column_name_str_list());
+
+			QString pageTableColumnOrder_STRING;
+
+			QString headerColumnData;
+
+			if (!a_visible_DB_columnname_string_List.isEmpty())
 			{
-				QString pageTableColumnOrder_STRING;
-
-				YerothQStringList yerothTableView_model_raw_visible_headers = _tableModelRawHeaders_IN_OUT;
-
-				YerothQStringList a_visible_DB_columnname_string_List = a_yeroth_window->get_visible_DB_column_name_str_list();
-
-				QString headerColumnData;
-
 				for (uint i = 0; i < yerothTableView_model_raw_visible_headers.size(); ++i)
 				{
 					headerColumnData = yerothTableView_model_raw_visible_headers.at(i);
 
 					if (!headerColumnData.isEmpty())
 					{
-//						QDEBUG_STRING_OUTPUT_2("headerColumnData", headerColumnData);
 						if (a_visible_DB_columnname_string_List.contains(headerColumnData))
 						{
 							pageTableColumnOrder_STRING.append(QString("%1:%2;")
-									.arg(headerColumnData,
-											QString::number(header_view->visualIndex(i))));
+																 .arg(headerColumnData,
+																	  QString::number(_q_header_view->visualIndex(i))));
 						}
 					}
 				}
+			}
 
-				a_yeroth_window->set_PARAMETER_TABLE_COLUMN_ORDER(pageTableColumnOrder_STRING);
+			a_yeroth_window->set_PARAMETER_TABLE_COLUMN_ORDER(pageTableColumnOrder_STRING);
 
-				YerothERPWindows *allWindows = YerothUtils::getAllWindows();
+			YerothERPWindows *allWindows = YerothUtils::getAllWindows();
 
-				if (0 != allWindows)
+			if (0 != allWindows)
+			{
+				YerothPOSUser *aUser = allWindows->getUser();
+
+				if (0 != aUser)
 				{
-					YerothPOSUser *aUser = allWindows->getUser();
-
-					if (0 != aUser)
-					{
-						aUser->save_user_personal_PRINTING_PARAMETER_settings();
-					}
+					aUser->save_user_personal_PRINTING_PARAMETER_settings();
 				}
 			}
 		}

@@ -191,11 +191,13 @@ protected:
 
 	const QString 				*_tableName;
 
+	QHeaderView 				*_q_header_view;
+
 	YerothPOSQStandardItemModel *_stdItemModel;
 
-	YerothQStringList					_tableModelRawHeaders_IN_OUT;
+	YerothQStringList			_tableModelRawHeaders_IN_OUT;
 
-	YerothQStringList 				_tableModelHeaders;
+	YerothQStringList 			_tableModelHeaders;
 };
 
 
