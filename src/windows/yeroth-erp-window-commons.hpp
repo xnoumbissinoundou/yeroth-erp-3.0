@@ -177,9 +177,9 @@ public:
 		_visibleDBColumnNameStrList = a_visible_column_str_list;
 	}
 
-	inline QStringList get_visible_DB_column_name_str_list()
+	inline const QStringList *get_visible_DB_column_name_str_list() const
 	{
-		return _visibleDBColumnNameStrList;
+		return &_visibleDBColumnNameStrList;
 	}
 
 

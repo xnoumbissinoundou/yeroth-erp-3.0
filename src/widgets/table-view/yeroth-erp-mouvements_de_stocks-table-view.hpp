@@ -12,7 +12,7 @@
 
 #include "src/widgets/yeroth-erp-qstandard-item-model.hpp"
 
-#include "src/widgets/table-view/yeroth-erp-table-view-with-pagination.hpp"
+#include "src/widgets/table-view/yeroth-erp-table-view_WITH_TABWIDGET_AS_DIRECT_PARENT_movable_section.hpp"
 
 
 #include <QtSql/QSqlTableModel>
@@ -21,7 +21,8 @@ class YerothSqlTableModel;
 
 class YerothPOSQStandardItemModel;
 
-class YerothERPMouvementsDeStocksTableView : public YerothTableViewWITHpagination
+class YerothERPMouvementsDeStocksTableView :
+		public YerothERP_TABLE_VIEW_WITH_TABWIDGET_AS_DIRECT_PARENT_MOVABLE_SECTION
 {
 	Q_OBJECT
 
@@ -30,14 +31,14 @@ public:
 	YEROTH_CLASS_OPERATORS
 
 	inline YerothERPMouvementsDeStocksTableView()
-	:YerothTableViewWITHpagination()
+	:YerothERP_TABLE_VIEW_WITH_TABWIDGET_AS_DIRECT_PARENT_MOVABLE_SECTION()
 	{
 		_stdItemModel->_curTableView = this;
 	}
 
 
 	inline YerothERPMouvementsDeStocksTableView(QWidget * parent)
-	:YerothTableViewWITHpagination(parent)
+	:YerothERP_TABLE_VIEW_WITH_TABWIDGET_AS_DIRECT_PARENT_MOVABLE_SECTION(parent)
 	{
 		_stdItemModel->_curTableView = this;
 	}

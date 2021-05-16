@@ -133,21 +133,20 @@ void YerothTableView::handle_yeroth_header_view_position_changed(int logicalInde
 		{
 			QStringList yerothTableView_model_raw_visible_headers(_tableModelRawHeaders_IN_OUT);
 
-			QStringList a_visible_DB_columnname_string_List(a_yeroth_window->get_visible_DB_column_name_str_list());
+			const QStringList *a_visible_DB_columnname_string_List =
+					a_yeroth_window->get_visible_DB_column_name_str_list();
 
 			QString pageTableColumnOrder_STRING;
 
-			QString headerColumnData;
-
-			if (!a_visible_DB_columnname_string_List.isEmpty())
+			if (0 != a_visible_DB_columnname_string_List)
 			{
 				for (uint i = 0; i < yerothTableView_model_raw_visible_headers.size(); ++i)
 				{
-					headerColumnData = yerothTableView_model_raw_visible_headers.at(i);
+					const QString &headerColumnData = yerothTableView_model_raw_visible_headers.at(i);
 
 					if (!headerColumnData.isEmpty())
 					{
-						if (a_visible_DB_columnname_string_List.contains(headerColumnData))
+						if (a_visible_DB_columnname_string_List->contains(headerColumnData))
 						{
 							pageTableColumnOrder_STRING.append(QString("%1:%2;")
 																 .arg(headerColumnData,
