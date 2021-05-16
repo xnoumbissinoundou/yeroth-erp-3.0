@@ -246,9 +246,9 @@ private:
 	static const QString TABLEAU;
 
 
-	static YerothQStringList comboBox_impression_sur_CHOICE_list;
+	static QStringList comboBox_impression_sur_CHOICE_list;
 
-	static YerothQStringList comboBox_format_de_facture_CHOICE_list;
+	static QStringList comboBox_format_de_facture_CHOICE_list;
 
 	QString _currentWindowTitle;
 	QString _yerothAdminWindowTitleStart;
@@ -265,7 +265,7 @@ private:
 
     YerothLogger						*_logger;
 
-    YerothQStringList 						_curCsvFileToImportContentWordList;
+    QStringList 						_curCsvFileToImportContentWordList;
 
     QList<YerothERPDatabaseTableColumnInfo *>	_allDatabaseTableColumnInfo;
 

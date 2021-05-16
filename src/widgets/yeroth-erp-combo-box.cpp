@@ -91,7 +91,7 @@ void YerothComboBox::saveCurrentValueToDatabase(const QString &aDBFieldColumn,
 
 void YerothComboBox::addItems_AS_INITIALIZATION(const QString &current_configured_item,
 											    const QString &first_item_to_add,
-											    const YerothQStringList &items_to_add_as_CHOICE)
+											    const QStringList &items_to_add_as_CHOICE)
 {
     clear();
 
@@ -118,7 +118,7 @@ void YerothComboBox::addItems_AS_INITIALIZATION(const QString &current_configure
 
 //    QDEBUG_QSTRINGLIST_OUTPUT("items_to_add_as_CHOICE", items_to_add_as_CHOICE);
 
-    YerothQStringList items_to_add_as_CHOICE_without_ALLREADY_ADDED_ITEM(items_to_add_as_CHOICE);
+    QStringList items_to_add_as_CHOICE_without_ALLREADY_ADDED_ITEM(items_to_add_as_CHOICE);
 
     items_to_add_as_CHOICE_without_ALLREADY_ADDED_ITEM.removeAll(first_item_to_add);
 
@@ -128,7 +128,7 @@ void YerothComboBox::addItems_AS_INITIALIZATION(const QString &current_configure
 }
 
 
-void YerothComboBox::addItem_AFTER_POPULATE(const YerothQStringList &texts)
+void YerothComboBox::addItem_AFTER_POPULATE(const QStringList &texts)
 {
 	QSet<QString> cur_items;
 
@@ -142,7 +142,7 @@ void YerothComboBox::addItem_AFTER_POPULATE(const YerothQStringList &texts)
 		cur_items.insert(texts.at(j));
 	}
 
-	YerothQStringList result_items_sorted = cur_items.toList();
+	QStringList result_items_sorted = cur_items.toList();
 
 	result_items_sorted.sort(Qt::CaseSensitive);
 
@@ -152,9 +152,9 @@ void YerothComboBox::addItem_AFTER_POPULATE(const YerothQStringList &texts)
 }
 
 
-void YerothComboBox::addItems(const YerothQStringList &texts)
+void YerothComboBox::addItems(const QStringList &texts)
 {
-	YerothQStringList new_texts(texts);
+	QStringList new_texts(texts);
 
 	new_texts.sort();
 
@@ -162,10 +162,10 @@ void YerothComboBox::addItems(const YerothQStringList &texts)
 }
 
 
-void YerothComboBox::addItems(const YerothQStringList &texts,
+void YerothComboBox::addItems(const QStringList &texts,
 							  const QMap<QString, QString> &tableColumnToUserViewString)
 {
-	YerothQStringList new_texts;
+	QStringList new_texts;
 
 	for (uint i = 0; i < texts.size(); ++i)
 	{
@@ -187,7 +187,7 @@ bool YerothComboBox::populateComboBoxRawString(QString aDBTableViewStringName,
 		return false;
 	}
 
-    static YerothQStringList curItems;
+    static QStringList curItems;
 
     clear();
 
@@ -257,7 +257,7 @@ bool YerothComboBox::populateComboBoxMissingRawString(const QString aDBFieldColu
 		return false;
 	}
 
-    static YerothQStringList curItems;
+    static QStringList curItems;
 
     QString strQuery(QString("select %1 from %2")
     					.arg(aDBFieldColumn, aDBTableViewString));
@@ -307,7 +307,7 @@ bool YerothComboBox::populateComboBox()
 		return false;
 	}
 
-    static YerothQStringList curItems;
+    static QStringList curItems;
 
     clear();
 
@@ -361,7 +361,7 @@ bool YerothComboBox::populateComboBoxMissing(const int aContentINTValue)
 		return false;
 	}
 
-    static YerothQStringList curItems;
+    static QStringList curItems;
 
     QString strQuery(QString("select %1 from %2")
     					.arg(_dbFieldColumn, _dbTableViewStringName));
@@ -415,7 +415,7 @@ bool YerothComboBox::populateComboBoxWithout(const QList<int> &content_to_delete
 		return false;
 	}
 
-    static YerothQStringList curItems;
+    static QStringList curItems;
 
     QString strQuery(QString("select %1 from %2")
     					.arg(_dbFieldColumn, _dbTableViewStringName));
@@ -427,7 +427,7 @@ bool YerothComboBox::populateComboBoxWithout(const QList<int> &content_to_delete
 
     if (success)
     {
-    	YerothQStringList content_to_delete_from_user_view_string_values;
+    	QStringList content_to_delete_from_user_view_string_values;
 
     	for (uint i = 0; i < content_to_delete_from_user_view_int_values_IN_OUT.size(); ++i)
     	{
@@ -475,7 +475,7 @@ bool YerothComboBox::populateComboBoxWithout(const int aContentINTValue)
 		return false;
 	}
 
-    static YerothQStringList curItems;
+    static QStringList curItems;
 
     QString strQuery(QString("select %1 from %2")
     					.arg(_dbFieldColumn, _dbTableViewStringName));

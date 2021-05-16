@@ -26,7 +26,7 @@ bool YerothProcessInfo::checkYerothERPAlertDaemonRunning(YerothLogger *logger /*
         logger->log("yeroth-erp-3-0 | YerothProcessInfo::checkYerothERPAlertDaemonRunning");
     }
 
-    YerothQStringList progArguments;
+    QStringList progArguments;
 
     progArguments << "-a"
     		      << YerothERPConfig::YEROTH_ERP_3_0_SYSTEM_DAEMON_ID_STR;

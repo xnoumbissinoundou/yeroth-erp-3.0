@@ -373,7 +373,7 @@ void YerothPaiementsWindow::prepare__OUT__for_export_and_printing()
 
 void YerothPaiementsWindow::update_clients_specific_payments_type()
 {
-	YerothQStringList clients_payment_types;
+	QStringList clients_payment_types;
 
 	clients_payment_types
 		<< YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::ENCAISSEMENT_COMPTANT)
@@ -416,7 +416,7 @@ void YerothPaiementsWindow::update_clients_specific_payments_type()
 
 void YerothPaiementsWindow::update_suppliers_specific_payments_type()
 {
-	YerothQStringList suppliers_payment_types;
+	QStringList suppliers_payment_types;
 
 	suppliers_payment_types
 		<< YerothUtils::_typedepaiementToUserViewString.value(YerothUtils::DECAISSEMENT_COMPTANT)
@@ -500,25 +500,25 @@ void YerothPaiementsWindow::populateComboBoxes()
 	comboBox_paiements_type_de_paiement->addItem(YerothUtils::EMPTY_STRING);
 
 
-	YerothQStringList aYerothQStringList;
+	QStringList aQStringList;
 
-	aYerothQStringList.append(YerothPaiementsWindow::CLIENT_TEXT_STRING);
+	aQStringList.append(YerothPaiementsWindow::CLIENT_TEXT_STRING);
 
 #ifdef YEROTH_FRANCAIS_LANGUAGE
 
 	_curSupplierText = YerothPaiementsWindow::FOURNISSEUR_TEXT_STRING_FRENCH;
 
-	aYerothQStringList.append(YerothPaiementsWindow::FOURNISSEUR_TEXT_STRING_FRENCH);
+	aQStringList.append(YerothPaiementsWindow::FOURNISSEUR_TEXT_STRING_FRENCH);
 
 #else //YEROTH_ENGLISH_LANGUAGE
 
 	_curSupplierText = YerothPaiementsWindow::FOURNISSEUR_TEXT_STRING_ENGLISH;
 
-	aYerothQStringList.append(YerothPaiementsWindow::FOURNISSEUR_TEXT_STRING_ENGLISH);
+	aQStringList.append(YerothPaiementsWindow::FOURNISSEUR_TEXT_STRING_ENGLISH);
 
 #endif
 
-	comboBox_paiements_type_dentreprise->addItems(aYerothQStringList);
+	comboBox_paiements_type_dentreprise->addItems(aQStringList);
 
 
 	comboBox_paiements_intitule_du_compte_bancaire->setYerothEnabled(false);
@@ -526,42 +526,42 @@ void YerothPaiementsWindow::populateComboBoxes()
 	comboBox_paiements_intitule_du_compte_bancaire->populateComboBoxRawString(YerothDatabase::COMPTES_BANCAIRES,
 																			  YerothDatabaseTableColumn::INTITULE_DU_COMPTE_BANCAIRE);
 
-	aYerothQStringList.clear();
+	aQStringList.clear();
 
-	aYerothQStringList.append(_varchar_dbtable_column_name_list.values());
+	aQStringList.append(_varchar_dbtable_column_name_list.values());
 
-	aYerothQStringList.removeAll(YerothDatabaseTableColumn::NOTES);
-	aYerothQStringList.removeAll(YerothDatabaseTableColumn::INTITULE_DU_COMPTE_BANCAIRE);
+	aQStringList.removeAll(YerothDatabaseTableColumn::NOTES);
+	aQStringList.removeAll(YerothDatabaseTableColumn::INTITULE_DU_COMPTE_BANCAIRE);
 
-	comboBox_element_string_db->addItems(aYerothQStringList,
+	comboBox_element_string_db->addItems(aQStringList,
 			YerothDatabaseTableColumn::_tableColumnToUserViewString);
 
 	comboBox_element_string_db->setCurrentIndex(0);
 
-	aYerothQStringList.clear();
+	aQStringList.clear();
 
-	aYerothQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::MONTANT_PAYE));
+	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::MONTANT_PAYE));
 
-	aYerothQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::COMPTE_CLIENT));
+	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::COMPTE_CLIENT));
 
-	aYerothQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::COMPTE_FOURNISSEUR));
+	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::COMPTE_FOURNISSEUR));
 
-	comboBox_paiements_element_de_paiements->addItems(aYerothQStringList);
+	comboBox_paiements_element_de_paiements->addItems(aQStringList);
 
 
-	aYerothQStringList.clear();
+	aQStringList.clear();
 
-	aYerothQStringList.append(">=");
+	aQStringList.append(">=");
 
-	aYerothQStringList.append("<=");
+	aQStringList.append("<=");
 
-	aYerothQStringList.append(">");
+	aQStringList.append(">");
 
-	aYerothQStringList.append("<");
+	aQStringList.append("<");
 
-	aYerothQStringList.append("=");
+	aQStringList.append("=");
 
-    comboBox_paiements_element_de_paiements_condition->addItems(aYerothQStringList);
+    comboBox_paiements_element_de_paiements_condition->addItems(aQStringList);
 }
 
 
@@ -655,7 +655,7 @@ void YerothPaiementsWindow::textChangedSearchLineEditsQCompleters()
 
     if (!searchTerm.isEmpty())
     {
-        YerothQStringList searchTermList = searchTerm.split(QRegExp("\\s+"));
+        QStringList searchTermList = searchTerm.split(QRegExp("\\s+"));
 
         QString partSearchTerm;
 

@@ -51,7 +51,7 @@ public:
 
 	static QString get_mouvement_stock(QString aMouvementStock_in_out);
 
-	//static void get_mouvements_stocks(YerothQStringList &aMouvementStockList, int aStockId);
+	//static void get_mouvements_stocks(QStringList &aMouvementStockList, int aStockId);
 
 
 	static QString creer_mouvement_stock(enum  	TypeMouvementStock aTypeMouvementStock,

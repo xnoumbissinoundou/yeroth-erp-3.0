@@ -119,7 +119,7 @@ private:
 
     YerothLogger			*_logger;
 
-    YerothQStringList				_curClientGroups;
+    QStringList				_curClientGroups;
 
     YerothSqlTableModel 	*_curClientTableModel;
 };

@@ -248,7 +248,7 @@ void YerothERPFournisseursWindow::textChangedSearchLineEditsQCompleters()
 
     if (!searchTerm.isEmpty())
     {
-        YerothQStringList searchTermList = searchTerm.split(QRegExp("\\s+"));
+        QStringList searchTermList = searchTerm.split(QRegExp("\\s+"));
 
         QString partSearchTerm;
 
@@ -578,36 +578,36 @@ void YerothERPFournisseursWindow::populateFournisseursComboBoxes()
 {
     _logger->log("populateFournisseursComboBoxes");
 
-	YerothQStringList aYerothQStringList;
+	QStringList aQStringList;
 
-	aYerothQStringList.append(_varchar_dbtable_column_name_list.values());
+	aQStringList.append(_varchar_dbtable_column_name_list.values());
 
-	aYerothQStringList.removeAll(YerothDatabaseTableColumn::DESCRIPTION_FOURNISSEUR);
+	aQStringList.removeAll(YerothDatabaseTableColumn::DESCRIPTION_FOURNISSEUR);
 
-	comboBox_element_string_db->addItems(aYerothQStringList,
+	comboBox_element_string_db->addItems(aQStringList,
 			YerothDatabaseTableColumn::_tableColumnToUserViewString);
 
 	comboBox_element_string_db->setCurrentIndex(0);
 
-	aYerothQStringList.clear();
+	aQStringList.clear();
 
-	aYerothQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::COMPTE_FOURNISSEUR));
+	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::COMPTE_FOURNISSEUR));
 
-    comboBox_element->addItems(aYerothQStringList);
+    comboBox_element->addItems(aQStringList);
 
-	aYerothQStringList.clear();
+	aQStringList.clear();
 
-	aYerothQStringList.append(">=");
+	aQStringList.append(">=");
 
-	aYerothQStringList.append("<=");
+	aQStringList.append("<=");
 
-	aYerothQStringList.append(">");
+	aQStringList.append(">");
 
-	aYerothQStringList.append("<");
+	aQStringList.append("<");
 
-	aYerothQStringList.append("=");
+	aQStringList.append("=");
 
-    comboBox_condition->addItems(aYerothQStringList);
+    comboBox_condition->addItems(aQStringList);
 }
 
 

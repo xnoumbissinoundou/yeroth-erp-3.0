@@ -10,7 +10,7 @@
 
 #include "src/include/yeroth-erp-3-0-software.text-configuration.hpp"
 
-#include "src/widgets/yeroth-erp-qstring-list.hpp"
+#include <QtCore/QStringList>
 
 #include "src/widgets/yeroth-erp-qstandard-item-model.hpp"
 
@@ -56,7 +56,7 @@ public:
 		return _writeEnabled;
 	}
 
-	const YerothQStringList &get_NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME();
+	const QStringList &get_NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME();
 
 	void setupSelectionOptions();
 
@@ -74,7 +74,7 @@ public:
 
 	void lister_les_transactions_dun_client(QSqlQuery &sqlClientTransactionsUnionQuery);
 
-	void lister_lhistorique_du_stock(const YerothQStringList &aMouvementStockList);
+	void lister_lhistorique_du_stock(const QStringList &aMouvementStockList);
 
 	void lister(YerothSqlTableModel &sqlTableModel,
 				bool truncateString = true);
@@ -142,7 +142,7 @@ public:
 		_lastSelected_Row__ID = aLastSelectedRow__ID;
 	}
 
-	inline const YerothQStringList &getTableModelRawHeaders()
+	inline const QStringList &getTableModelRawHeaders()
 	{
 		return _tableModelRawHeaders_IN_OUT;
 	}
@@ -195,9 +195,9 @@ protected:
 
 	YerothPOSQStandardItemModel *_stdItemModel;
 
-	YerothQStringList			_tableModelRawHeaders_IN_OUT;
+	QStringList			_tableModelRawHeaders_IN_OUT;
 
-	YerothQStringList 			_tableModelHeaders;
+	QStringList 			_tableModelHeaders;
 };
 
 

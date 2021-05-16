@@ -208,7 +208,7 @@ void YerothWindowsCommons::YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED_AUTOMATIC_CONS
 
 void YerothWindowsCommons::APPLY_USER_LOCAL_SETTINGS_PARAMETERS_TABLE_COLUMN_ORDER_from_settings_parameters(const QString &pageTableColumnOrder_STRING)
 {
-	YerothQStringList print_table_column_order = pageTableColumnOrder_STRING.split(";");
+	QStringList print_table_column_order = pageTableColumnOrder_STRING.split(";");
 
 	if (print_table_column_order.size() > 0)
 	{
@@ -224,7 +224,7 @@ void YerothWindowsCommons::APPLY_USER_LOCAL_SETTINGS_PARAMETERS_TABLE_COLUMN_ORD
 
 				int a_logical_index = 0;
 
-				YerothQStringList a_tmp_list;
+				QStringList a_tmp_list;
 
 				int saved_VISUAL_INDEX;
 
@@ -545,7 +545,7 @@ void YerothWindowsCommons::set_PARAMETER_TABLE_COLUMN_ORDER()
 	_table_COLUMN_ORDER.clear();
 
 
-	YerothQStringList yerothTableView_model_raw_visible_headers =
+	QStringList yerothTableView_model_raw_visible_headers =
 			_yerothTableView_FROM_WINDOWS_COMMONS->getTableModelRawHeaders();
 
 //	QDEBUG_QSTRINGLIST_OUTPUT("_yerothTableView_model_raw_visible_headers",
@@ -639,7 +639,7 @@ void YerothWindowsCommons::getManuelUtilisateurPDF()
     YerothPOSUser *user = _allWindows->getUser();
     if (user)
     {
-        YerothQStringList progArguments;
+        QStringList progArguments;
         QProcess aProcess;
 
         if (user->isManager())
@@ -1015,10 +1015,10 @@ void YerothWindowsCommons::setYerothLineEditQCompleterSearchFilter(QString &aYer
 
 void YerothWindowsCommons::tableView_show_or_hide_columns(YerothTableView &tableView_in_out)
 {
-	const YerothQStringList &NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME =
+	const QStringList &NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME =
 			get_NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME();
 
-	const YerothQStringList &tableView_in_out_RAW_HEADERS =
+	const QStringList &tableView_in_out_RAW_HEADERS =
 			tableView_in_out.getTableModelRawHeaders();
 
     QMapIterator<QString, int> it(_dbtablecolumnNameToDBColumnIndex);
@@ -1117,7 +1117,7 @@ void YerothWindowsCommons::selectionner_champs_db_visibles()
 	}
 
 
-	YerothQStringList all_dbfieldColumnName_IN_ALPHABETIC_ORDER(
+	QStringList all_dbfieldColumnName_IN_ALPHABETIC_ORDER(
 			_db_VIEW_STRING_ALPHABETIC_ORDER_To_dbtablecolumnName.keys());
 
 	all_dbfieldColumnName_IN_ALPHABETIC_ORDER.sort();

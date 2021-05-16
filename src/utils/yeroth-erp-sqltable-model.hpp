@@ -9,7 +9,7 @@
 
 #include "src/include/yeroth-erp-3-0-software.text-configuration.hpp"
 
-#include "src/widgets/yeroth-erp-qstring-list.hpp"
+#include <QtCore/QStringList>
 
 
 #include <QtSql/QSqlRelationalTableModel>
@@ -67,14 +67,14 @@ public:
 
 	int _Is_SearchQSqlTable(enum YerothSqlQueryType,
 							QString tableColumn,
-							YerothQStringList &searchTermsList);
+							QStringList &searchTermsList);
 
-	inline int OR_Is_SearchQSqlTable(QString tableColumn, YerothQStringList &searchTermsList)
+	inline int OR_Is_SearchQSqlTable(QString tableColumn, QStringList &searchTermsList)
 	{
 		return _Is_SearchQSqlTable(OR, tableColumn, searchTermsList);
 	}
 
-	inline int AND_Is_SearchQSqlTable(QString tableColumn, YerothQStringList &searchTermsList)
+	inline int AND_Is_SearchQSqlTable(QString tableColumn, QStringList &searchTermsList)
 	{
 		return _Is_SearchQSqlTable(AND, tableColumn, searchTermsList);
 	}
@@ -84,14 +84,14 @@ public:
 
 	int _Like_SearchQSqlTable(enum YerothSqlQueryType,
 							  QString tableColumn,
-							  YerothQStringList &searchTermsList);
+							  QStringList &searchTermsList);
 
-	inline int OR_Like_SearchQSqlTable(QString tableColumn, YerothQStringList &searchTermsList)
+	inline int OR_Like_SearchQSqlTable(QString tableColumn, QStringList &searchTermsList)
 	{
 		return _Like_SearchQSqlTable(OR, tableColumn, searchTermsList);
 	}
 
-	inline int AND_Like_SearchQSqlTable(QString tableColumn, YerothQStringList &searchTermsList)
+	inline int AND_Like_SearchQSqlTable(QString tableColumn, QStringList &searchTermsList)
 	{
 		return _Like_SearchQSqlTable(AND, tableColumn, searchTermsList);
 	}

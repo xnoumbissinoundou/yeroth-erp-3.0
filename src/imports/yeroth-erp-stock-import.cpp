@@ -24,7 +24,7 @@ QString 				YerothERPStockImport::_allMissingMandatoryColumnValue;
 QMap<QString, bool>		*YerothERPStockImport::_dbTableColumnToIsNotNULL;
 
 
-YerothERPStockImport::YerothERPStockImport(YerothQStringList 				  						&aCurCsvFileToImportContentWordList,
+YerothERPStockImport::YerothERPStockImport(QStringList 				  						&aCurCsvFileToImportContentWordList,
 										   QMap<int, YerothERPDatabaseTableColumnInfo *> 	&aCsvContentIdxToDatabaseTableColumnInfo)
 :_curCsvFileToImportContentWordList(&aCurCsvFileToImportContentWordList),
  _csvContentIdxToDatabaseTableColumnInfo(&aCsvContentIdxToDatabaseTableColumnInfo),
@@ -43,7 +43,7 @@ YerothERPStockImport::YerothERPStockImport(YerothQStringList 				  						&aCurCs
 
 
 YerothERPStockImport::YerothERPStockImport(YerothPOSAdminWindowsCommons 					&aCallingWindow,
-		 	 	 	 	 	 	 	 	   YerothQStringList 				  						&aCurCsvFileToImportContentWordList,
+		 	 	 	 	 	 	 	 	   QStringList 				  						&aCurCsvFileToImportContentWordList,
 										   QMap<int, YerothERPDatabaseTableColumnInfo *> 	&anIndexToDatabaseTableColumnInfo)
 :_curCsvFileToImportContentWordList(&aCurCsvFileToImportContentWordList),
  _csvContentIdxToDatabaseTableColumnInfo(&anIndexToDatabaseTableColumnInfo),
@@ -81,7 +81,7 @@ int YerothERPStockImport::import(bool importerParlant /* = false */)
 		return 0;
 	}
 
-	YerothQStringList csvHeader = _curCsvFileToImportContentWordList->at(0)
+	QStringList csvHeader = _curCsvFileToImportContentWordList->at(0)
 					.split(YerothUtils::CSV_FILE_SEPARATION_SEMI_COLON_STRING_CHAR);
 
 	QString curSqlTableImportHeaderStr;
@@ -141,7 +141,7 @@ int YerothERPStockImport::import(bool importerParlant /* = false */)
 
 	enum import_csv_entry_row_return_status insertionReturnStatusValue = IMPORT_DATA_CSV_UNDEFINED;
 
-	YerothQStringList curCsvFileImportRow;
+	QStringList curCsvFileImportRow;
 
 	YEROTH_ERP_3_0_START_DATABASE_TRANSACTION;
 
@@ -232,7 +232,7 @@ bool YerothERPStockImport::check_mandatory_item_field()
 
 
 enum import_csv_entry_row_return_status
-	YerothERPStockImport::import_csv_entry_row(bool importerParlant, YerothQStringList &aCsvFileEntryLine)
+	YerothERPStockImport::import_csv_entry_row(bool importerParlant, QStringList &aCsvFileEntryLine)
 {
 	enum import_csv_entry_row_return_status insertionReturnStatus = IMPORT_DATA_CSV_INSERTION_FAILED;
 
@@ -278,7 +278,7 @@ enum import_csv_entry_row_return_status
 
     int querySize = -1;
 
-	YerothQStringList allImportedTableColumns;
+	QStringList allImportedTableColumns;
 
 	QString curTableColumnType;
 	QString curTableColumnName;
@@ -640,7 +640,7 @@ enum import_csv_entry_row_return_status
 	{
 		QString aCurSqlTableImportColumn;
 
-		YerothQStringList allSqltableColumns = _dbTableColumnToIsNotNULL->keys();
+		QStringList allSqltableColumns = _dbTableColumnToIsNotNULL->keys();
 
 		allSqltableColumns.removeAll(YerothDatabaseTableColumn::ID);
 		allSqltableColumns.removeAll(YerothDatabaseTableColumn::PRIX_UNITAIRE_EN_GROS);

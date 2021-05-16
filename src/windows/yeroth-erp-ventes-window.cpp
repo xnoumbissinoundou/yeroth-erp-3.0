@@ -1222,54 +1222,54 @@ void YerothVentesWindow::populateComboBoxes()
 
 	comboBox_ventes_type_de_vente->populateComboBox();
 
-	YerothQStringList aYerothQStringList;
+	QStringList aQStringList;
 
-	aYerothQStringList.append(_varchar_dbtable_column_name_list.values());
+	aQStringList.append(_varchar_dbtable_column_name_list.values());
 
-	aYerothQStringList.removeAll(YerothDatabaseTableColumn::REFERENCE);
-	aYerothQStringList.removeAll(YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR);
-	aYerothQStringList.removeAll(YerothDatabaseTableColumn::DATE_PEREMPTION);
-	aYerothQStringList.removeAll(YerothDatabaseTableColumn::HISTORIQUE_STOCK);
-	aYerothQStringList.removeAll(YerothDatabaseTableColumn::LOCALISATION);
-	aYerothQStringList.removeAll(YerothDatabaseTableColumn::NOM_UTILISATEUR_CAISSIER);
-	aYerothQStringList.removeAll(YerothDatabaseTableColumn::NOM_CAISSIER);
+	aQStringList.removeAll(YerothDatabaseTableColumn::REFERENCE);
+	aQStringList.removeAll(YerothDatabaseTableColumn::NOM_ENTREPRISE_FOURNISSEUR);
+	aQStringList.removeAll(YerothDatabaseTableColumn::DATE_PEREMPTION);
+	aQStringList.removeAll(YerothDatabaseTableColumn::HISTORIQUE_STOCK);
+	aQStringList.removeAll(YerothDatabaseTableColumn::LOCALISATION);
+	aQStringList.removeAll(YerothDatabaseTableColumn::NOM_UTILISATEUR_CAISSIER);
+	aQStringList.removeAll(YerothDatabaseTableColumn::NOM_CAISSIER);
 
-	comboBox_element_string_db->addItems(aYerothQStringList,
+	comboBox_element_string_db->addItems(aQStringList,
 			YerothDatabaseTableColumn::_tableColumnToUserViewString);
 
 	comboBox_element_string_db->setCurrentIndex(0);
 
 
-	aYerothQStringList.clear();
+	aQStringList.clear();
 
-	aYerothQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::MARGE_BENEFICIAIRE));
+	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::MARGE_BENEFICIAIRE));
 
-	aYerothQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::QUANTITE_VENDUE));
+	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::QUANTITE_VENDUE));
 
-	aYerothQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::PRIX_VENTE));
+	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::PRIX_VENTE));
 
-	aYerothQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE));
+	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::MONTANT_TOTAL_VENTE));
 
-	aYerothQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::PRIX_UNITAIRE));
+	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::PRIX_UNITAIRE));
 
-	aYerothQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::MONTANT_TVA));
+	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::MONTANT_TVA));
 
-	comboBox_ventes_element_de_vente->addItems(aYerothQStringList);
+	comboBox_ventes_element_de_vente->addItems(aQStringList);
 
 
-	aYerothQStringList.clear();
+	aQStringList.clear();
 
-	aYerothQStringList.append(">=");
+	aQStringList.append(">=");
 
-	aYerothQStringList.append("<=");
+	aQStringList.append("<=");
 
-	aYerothQStringList.append(">");
+	aQStringList.append(">");
 
-	aYerothQStringList.append("<");
+	aQStringList.append("<");
 
-	aYerothQStringList.append("=");
+	aQStringList.append("=");
 
-    comboBox_ventes_element_de_vente_condition->addItems(aYerothQStringList);
+    comboBox_ventes_element_de_vente_condition->addItems(aQStringList);
 }
 
 
@@ -1386,7 +1386,7 @@ void YerothVentesWindow::textChangedSearchLineEditsQCompleters()
 
     if (!searchTerm.isEmpty())
     {
-        YerothQStringList searchTermList = searchTerm.split(QRegExp("\\s+"));
+        QStringList searchTermList = searchTerm.split(QRegExp("\\s+"));
 
         QString partSearchTerm;
 

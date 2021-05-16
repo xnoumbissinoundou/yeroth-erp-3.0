@@ -1025,7 +1025,7 @@ bool YerothUtils::creerNouvelleCategorie(QString 				&proposedCategorieName_IN_O
 bool YerothUtils::GREP_YEROTH_FILE_CONTENT(const QString &file_full_path,
 									 	   const QString &keyword_IN)
 {
-    YerothQStringList progArguments;
+    QStringList progArguments;
 
     progArguments << keyword_IN
     			  << file_full_path;
@@ -1114,7 +1114,7 @@ bool YerothUtils::YEROTH_CREATE_FOLDER(const QString &aFullPathDir,
 bool YerothUtils::GZIP_YEROTH_FILE(const QString &program_working_directory_full_path,
 								   const QString &file_full_path)
 {
-	YerothQStringList gzipPROG_ARGS;
+	QStringList gzipPROG_ARGS;
 
 	gzipPROG_ARGS.append(file_full_path);
 
@@ -1131,7 +1131,7 @@ bool YerothUtils::GZIP_YEROTH_FILE(const QString &program_working_directory_full
 void YerothUtils::REMOVE_STRING_FROM_SPLIT_STAR_SEPARATED_DB_STRING(QString &SEPARATED_RESULTING_QSTRING_IN_OUT,
 												  	  	  	  	  	const QString &aCur_db_STRING)
 {
-	YerothQStringList separated_resulting_qstringlist;
+	QStringList separated_resulting_qstringlist;
 
 	YerothUtils::SPLIT_STAR_SEPARATED_DB_STRING(separated_resulting_qstringlist,
 												SEPARATED_RESULTING_QSTRING_IN_OUT);
@@ -1664,6 +1664,21 @@ double YerothUtils::get_prix_dachat_wheter_exists(const QString &stocksID)
 }
 
 
+bool YerothUtils::REMOVE_QSTRING_LIST(QStringList &a_qstring_list_to_remove_elements,
+									  QStringList &a_qstring_list)
+{
+	bool ret_value = false;
+
+	for(uint i = 0; i < a_qstring_list.size(); ++i)
+	{
+		ret_value = ret_value ||
+				    a_qstring_list_to_remove_elements.removeOne(a_qstring_list.at(i));
+	}
+
+	return ret_value;
+}
+
+
 bool YerothUtils::start_db_transaction()
 {
     QSqlDriver *driver = _allWindows->getDatabase().driver();
@@ -1927,7 +1942,7 @@ int YerothUtils::execQueryRowCount(const QString &strQuery, YerothLogger *logger
 
 
 void YerothUtils::qDebugStrings(const QString 	 &firstString,
-								const YerothQStringList &aStringList)
+								const QStringList &aStringList)
 {
 		qDebug() << QString("++ %1: ")
 						.arg(firstString)
@@ -2231,8 +2246,8 @@ void YerothUtils::getCenterPosition(unsigned desktopWidth,
 
 void YerothUtils::createTableModelHeaders(YerothSqlTableModel 	&tableModel,
         								  QStandardItemModel 	&stdItemModel,
-										  YerothQStringList 			&tableModelHeaders,
-										  YerothQStringList			&tableModelRawHeaders_IN_OUT)
+										  QStringList 			&tableModelHeaders,
+										  QStringList			&tableModelRawHeaders_IN_OUT)
 {
 	tableModelRawHeaders_IN_OUT.clear();
 
@@ -2378,7 +2393,7 @@ int YerothUtils::STOCK_PURCHASE_RECORDS_QUANTITY(int stockId)
 }
 
 
-void YerothUtils::getColumnListString(YerothQStringList &columnStringList,
+void YerothUtils::getColumnListString(QStringList &columnStringList,
                                       const QString &tableName,
                                       const QString &fieldName,
 									  QString conditionStr /* = YerothUtils::EMPTY_STRING */)
@@ -3709,7 +3724,7 @@ bool YerothUtils::export_csv_file(YerothWindowsCommons &aCallingWindow,
 
 
 bool YerothUtils::import_csv_file_content(QString aCsvFileFullPath,
-										  YerothQStringList &wordList_IN_OUT)
+										  QStringList &wordList_IN_OUT)
 {
 	wordList_IN_OUT.clear();
 

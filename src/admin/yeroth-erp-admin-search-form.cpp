@@ -17,7 +17,7 @@
 
 #include <QtCore/QRegExp>
 
-#include <src/widgets/yeroth-erp-qstring-list.hpp>
+#include <QtCore/QStringList>
 
 #include <QtSql/QSqlError>
 

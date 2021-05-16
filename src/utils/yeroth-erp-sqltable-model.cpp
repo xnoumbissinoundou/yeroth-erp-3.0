@@ -120,7 +120,7 @@ int YerothSqlTableModel::Is_SearchQSqlTable(QString tableColumn,
 
 int YerothSqlTableModel::_Is_SearchQSqlTable(enum YerothSqlQueryType,
                                              QString tableColumn,
-                                             YerothQStringList &searchTermsList)
+                                             QStringList &searchTermsList)
 {
     QString queryTerm;
 
@@ -179,7 +179,7 @@ int YerothSqlTableModel::Like_SearchQSqlTable(QString tableColumn,
 
 int YerothSqlTableModel::_Like_SearchQSqlTable(enum YerothSqlQueryType,
                                                QString tableColumn,
-                                               YerothQStringList &searchTermsList)
+                                               QStringList &searchTermsList)
 {
     QString queryTerm;
 

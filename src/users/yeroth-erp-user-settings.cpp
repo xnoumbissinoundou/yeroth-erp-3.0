@@ -77,7 +77,7 @@ RESULT_PRINTING_PARAMETER YerothERPUserSettings::lire_les_parametres_locaux(cons
 	QTextStream init_cfg(&file);
 	QString aValue;
 	QString line;
-	YerothQStringList list;
+	QStringList list;
 
 	do
 	{

@@ -251,23 +251,23 @@ bool YerothChargesFinancieresWindow::filtrer_achats()
 
 void YerothChargesFinancieresWindow::populateComboBoxes()
 {
-	YerothQStringList aYerothQStringList;
+	QStringList aQStringList;
 
-	aYerothQStringList.append(_varchar_dbtable_column_name_list.values());
+	aQStringList.append(_varchar_dbtable_column_name_list.values());
 
-	aYerothQStringList.removeAll(YerothDatabaseTableColumn::STATUT_DE_LACHAT_AU_FOURNISSEUR);
-	aYerothQStringList.removeAll(YerothDatabaseTableColumn::NOM_UTILISATEUR_DU_COMMANDEUR_DE_LACHAT);
-	aYerothQStringList.removeAll(YerothDatabaseTableColumn::ENREGISTREUR_STOCK);
-	aYerothQStringList.removeAll(YerothDatabaseTableColumn::LOCALISATION);
-	aYerothQStringList.removeAll(YerothDatabaseTableColumn::LOCALISATION_STOCK);
+	aQStringList.removeAll(YerothDatabaseTableColumn::STATUT_DE_LACHAT_AU_FOURNISSEUR);
+	aQStringList.removeAll(YerothDatabaseTableColumn::NOM_UTILISATEUR_DU_COMMANDEUR_DE_LACHAT);
+	aQStringList.removeAll(YerothDatabaseTableColumn::ENREGISTREUR_STOCK);
+	aQStringList.removeAll(YerothDatabaseTableColumn::LOCALISATION);
+	aQStringList.removeAll(YerothDatabaseTableColumn::LOCALISATION_STOCK);
 
-//	qDebug() << "++ test: " << aYerothQStringList;
+//	qDebug() << "++ test: " << aQStringList;
 
 	QString aDBColumnElementString;
 
-	for (int k = 0; k < aYerothQStringList.size(); ++k)
+	for (int k = 0; k < aQStringList.size(); ++k)
 	{
-		aDBColumnElementString = aYerothQStringList.at(k);
+		aDBColumnElementString = aQStringList.at(k);
 
 		if (!YerothUtils::isEqualCaseInsensitive(YerothDatabaseTableColumn::REFERENCE, aDBColumnElementString))
 		{
@@ -282,34 +282,34 @@ void YerothChargesFinancieresWindow::populateComboBoxes()
 	comboBox_element_string_db->setCurrentIndex(0);
 
 
-	aYerothQStringList.clear();
+	aQStringList.clear();
 
-	aYerothQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::MARGE_BENEFICIAIRE));
+	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::MARGE_BENEFICIAIRE));
 
-	aYerothQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::MONTANT_TVA));
+	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::MONTANT_TVA));
 
-	aYerothQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::PRIX_VENTE));
+	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::PRIX_VENTE));
 
-	aYerothQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::PRIX_UNITAIRE));
+	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::PRIX_UNITAIRE));
 
-	aYerothQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::QUANTITE_TOTALE));
+	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::QUANTITE_TOTALE));
 
-    comboBox_element_charges_financieres->addItems(aYerothQStringList);
+    comboBox_element_charges_financieres->addItems(aQStringList);
 
 
-	aYerothQStringList.clear();
+	aQStringList.clear();
 
-	aYerothQStringList.append(">=");
+	aQStringList.append(">=");
 
-	aYerothQStringList.append("<=");
+	aQStringList.append("<=");
 
-	aYerothQStringList.append(">");
+	aQStringList.append(">");
 
-	aYerothQStringList.append("<");
+	aQStringList.append("<");
 
-	aYerothQStringList.append("=");
+	aQStringList.append("=");
 
-    comboBox_element_charges_financieres_condition->addItems(aYerothQStringList);
+    comboBox_element_charges_financieres_condition->addItems(aQStringList);
 }
 
 
@@ -409,7 +409,7 @@ void YerothChargesFinancieresWindow::textChangedSearchLineEditsQCompleters()
 
     if (!searchTerm.isEmpty())
     {
-        YerothQStringList searchTermList = searchTerm.split(QRegExp("\\s+"));
+        QStringList searchTermList = searchTerm.split(QRegExp("\\s+"));
 
         QString partSearchTerm;
 

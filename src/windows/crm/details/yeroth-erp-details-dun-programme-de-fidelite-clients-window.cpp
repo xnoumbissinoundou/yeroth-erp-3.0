@@ -190,7 +190,7 @@ void YerothDetailsDunProgrammeDeFideliteClientsWindow::showClientLOYALTY_PROGRAM
 	QString client_group_db_ID;
 	QString designation;
 	QString reference_groupe;
-	YerothQStringList client_group_member_db_ID;
+	QStringList client_group_member_db_ID;
 
 	while (aQSqlQuery.next())
 	{

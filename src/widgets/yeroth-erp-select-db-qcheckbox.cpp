@@ -12,7 +12,7 @@
 
 
 YerothSelectDBQCheckBox::YerothSelectDBQCheckBox(QWidget 		*parent,
-												 YerothQStringList	*visibleDBFieldColumnStrList)
+												 QStringList	*visibleDBFieldColumnStrList)
 :YerothERPQCheckBox(parent),
  _visibleDBFieldColumnStrList(visibleDBFieldColumnStrList)
 {

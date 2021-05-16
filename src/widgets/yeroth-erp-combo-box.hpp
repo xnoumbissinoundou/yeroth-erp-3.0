@@ -106,13 +106,13 @@ public:
 
 	void addItems_AS_INITIALIZATION(const QString &current_configured_item,
 								    const QString &first_item_to_add,
-								    const YerothQStringList &items_to_add_as_CHOICE);
+								    const QStringList &items_to_add_as_CHOICE);
 
-	virtual void addItem_AFTER_POPULATE(const YerothQStringList &texts);
+	virtual void addItem_AFTER_POPULATE(const QStringList &texts);
 
-	virtual void addItems(const YerothQStringList &texts);
+	virtual void addItems(const QStringList &texts);
 
-	virtual void addItems(const YerothQStringList &texts,
+	virtual void addItems(const QStringList &texts,
 						  const QMap<QString, QString> &tableColumnToUserViewString);
 
 	bool populateComboBoxRawString(QString aDBTableViewStringName,

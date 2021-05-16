@@ -40,7 +40,7 @@ void YerothHistoriqueStock::listHistoriqueDuStock(const QString &historiqueDuSto
 	//qDebug() << QString("YerothHistoriqueStock::listHistoriqueDuStock | %1")
 	//				.arg(QString::number(aStockId));
 
-	YerothQStringList aMouvementStockList;
+	QStringList aMouvementStockList;
 
 	aMouvementStockList.append(historiqueDuStock.split(YerothHistoriqueStock::SEPARATION_EXTERNE));
 
@@ -54,7 +54,7 @@ QString YerothHistoriqueStock::get_mouvement_stock(QString aMouvementStock_in_ou
 {
     QString aMouvementStock;
 
-    YerothQStringList aComplexMouvementStock(
+    QStringList aComplexMouvementStock(
     		aMouvementStock_in_out.split(YerothHistoriqueStock::SEPARATION_INTERNE));
 
 	return aMouvementStock;

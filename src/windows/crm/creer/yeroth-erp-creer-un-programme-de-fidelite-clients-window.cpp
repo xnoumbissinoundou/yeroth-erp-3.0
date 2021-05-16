@@ -105,7 +105,7 @@ void YerothCreerUnProgrammeDeFideliteClientsWindow::deconnecter_utilisateur()
 
 void YerothCreerUnProgrammeDeFideliteClientsWindow::updatePopulateComboBoxes()
 {
-	YerothQStringList new_items;
+	QStringList new_items;
 
 	new_items.append(YerothUtils::EMPTY_STRING);
 

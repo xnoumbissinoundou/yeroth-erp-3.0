@@ -40,7 +40,7 @@ protected:
 
 	QMap<int, YerothERPDatabaseTableColumnInfo *> _TEST_csvContentIdxToDatabaseTableColumnInfo;
 
-	YerothQStringList 			_curCsvFileToImportContentWordList;
+	QStringList 			_curCsvFileToImportContentWordList;
 
     QMap<QString, bool>		_dbTableColumnToIsNotNULL;
 

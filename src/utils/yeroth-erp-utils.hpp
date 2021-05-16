@@ -155,7 +155,7 @@ public:
 	static void REMOVE_STRING_FROM_SPLIT_STAR_SEPARATED_DB_STRING(QString &SEPARATED_RESULTING_QSTRING_IN_OUT,
 													  	  	  	  const QString &aCur_db_STRING);
 
-	inline static void SPLIT_STAR_SEPARATED_DB_STRING(YerothQStringList &SEPARATED_RESULTING_QSTRINGLIST_IN_OUT,
+	inline static void SPLIT_STAR_SEPARATED_DB_STRING(QStringList &SEPARATED_RESULTING_QSTRINGLIST_IN_OUT,
 													  const QString &aCur_db_STRING_STAR_SEPARATED_VALUE)
 	{
 		SEPARATED_RESULTING_QSTRINGLIST_IN_OUT.append(
@@ -221,6 +221,9 @@ public:
     	return YerothUtils::getMargeBeneficiaire(prix_vente, prix_dachat, montantTva) >= 0;
     }
 
+    static bool REMOVE_QSTRING_LIST(QStringList &a_qstring_list_to_remove_elements,
+    								QStringList &a_qstring_list);
+
 	static bool start_db_transaction();
 
 	static bool rollback_db_transaction();
@@ -268,7 +271,7 @@ public:
 
 	static int execQueryRowCount(const QString &strQuery, YerothLogger *logger = 0);
 
-	static void qDebugStrings(const QString &firstString, const YerothQStringList &aStringList);
+	static void qDebugStrings(const QString &firstString, const QStringList &aStringList);
 
 	static void qDebugStrings(const QString &firstString, const QString &secondString = YerothUtils::EMPTY_STRING);
 
@@ -332,7 +335,7 @@ public:
 		return QCryptographicHash::hash(data.toLatin1(), QCryptographicHash::Md5);
 	}
 
-	inline static int get_index_of_table_raw_column(const YerothQStringList &tableModelRawHeaders,
+	inline static int get_index_of_table_raw_column(const QStringList &tableModelRawHeaders,
 											 	 	const QString &databaseTableColumnRAW_NAME)
 	{
 		return tableModelRawHeaders.indexOf(databaseTableColumnRAW_NAME);
@@ -340,8 +343,8 @@ public:
 
 	static void createTableModelHeaders(YerothSqlTableModel &tableModel,
 			   	   	   	   	   	   	    QStandardItemModel 	&stdItemModel,
-			   	   	   	   	   	   	    YerothQStringList			&tableModelHeaders,
-										YerothQStringList			&tableModelRawHeaders_IN_OUT);
+			   	   	   	   	   	   	    QStringList			&tableModelHeaders,
+										QStringList			&tableModelRawHeaders_IN_OUT);
 
 	inline static QString toUtf8String(QString &str)
 	{
@@ -435,7 +438,7 @@ public:
 		return YerothUtils::STOCK_PURCHASE_RECORDS_QUANTITY(stockId.toInt());
 	}
 
-	static void getColumnListString(YerothQStringList   &columnStringList,
+	static void getColumnListString(QStringList   &columnStringList,
 									const QString &tableName,
 									const QString &fieldName,
 									QString conditionStr = YerothUtils::EMPTY_STRING);
@@ -491,7 +494,7 @@ public:
     }
 
     static bool import_csv_file_content(QString aCsvFileFullPath,
-    									YerothQStringList &wordList_IN_OUT);
+    									QStringList &wordList_IN_OUT);
 
     static void getLatexCLIENT_LOYALTY_CARD_template(QString &texDocumentString_in_out);
 

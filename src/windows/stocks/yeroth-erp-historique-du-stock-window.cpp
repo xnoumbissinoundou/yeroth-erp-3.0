@@ -55,7 +55,7 @@ YerothHistoriqueDuStockWindow::YerothHistoriqueDuStockWindow()
 }
 
 
-void YerothHistoriqueDuStockWindow::listHistoriqueDuStock(const YerothQStringList &aMouvementStockList,
+void YerothHistoriqueDuStockWindow::listHistoriqueDuStock(const QStringList &aMouvementStockList,
 														  const QString	    stockReference,
 														  const QString 	stockDesignation)
 {

@@ -11,7 +11,7 @@
 #include <QtCore/QProcess>
 
 
-#include "src/widgets/yeroth-erp-qstring-list.hpp"
+#include <QtCore/QStringList>
 
 #include "src/utils/yeroth-erp-config.hpp"
 
@@ -44,7 +44,7 @@ public:
 	inline static int start_PROCESS_AND_READ_PROCESS_output_INTO_FILE(const QString &program_executable_location_full_path,
 													   	   	   	      const QString &program_working_directory_full_path,
 																	  const QString &output_file_name,
-																	  const YerothQStringList &program_executable_args)
+																	  const QStringList &program_executable_args)
 	{
 	    return YerothERPProcess::
 					start_PROCESS_AND_READ_PROCESS_output_INTO_FILE(program_executable_location_full_path,
@@ -60,7 +60,7 @@ public:
 	 */
 	static int start_PROCESS_AND_READ_PROCESS_output_INTO_FILE(const QString &program_executable_location_full_path,
 													   	   	   const QString &output_file_full_path,
-															   const YerothQStringList &program_executable_args);
+															   const QStringList &program_executable_args);
 
 	/**
 	 * @return: the full file path name of the
@@ -75,15 +75,15 @@ public:
 
 	static bool startDetached(QProcess &aProcess,
 					   	   	  QString programFileAbsolutePath,
-							  YerothQStringList programArguments);
+							  QStringList programArguments);
 
 	static bool startAndWaitForFinished(QProcess &aProcess,
 										QString programFileAbsolutePath,
-										YerothQStringList programArguments,
+										QStringList programArguments,
 										int waitForFinished);
 
 	static bool startAndWaitForFinished(QString programFileAbsolutePath,
-									    YerothQStringList programArguments,
+									    QStringList programArguments,
 									    int waitForFinished);
 
 

@@ -1743,7 +1743,7 @@ void YerothTableauxDeBordWindow::rechercher()
 
     int size = lineEdit_quantite->text().toInt();
 
-    YerothQStringList progArguments;
+    QStringList progArguments;
     QString tmpFilePrefix;
 
     QDir tempDir(YerothERPConfig::temporaryFilesDir);
@@ -3550,7 +3550,7 @@ tmpFile.close();
 
 //qDebug() << "++ tmpFile: " << tmpFile.fileName();
 
-YerothQStringList progArguments;
+QStringList progArguments;
 QString texRm(tmpFile.fileName().remove(".tex"));
 progArguments << texRm;
 
@@ -4128,7 +4128,7 @@ void YerothTableauxDeBordWindow::analyse_comparee_mensuelle()
 
     //qDebug() << "++ tmpFile: " << tmpFile.fileName();
 
-    YerothQStringList progArguments;
+    QStringList progArguments;
     QString texRm(tmpFile.fileName().remove(".tex"));
     progArguments << texRm;
 
@@ -4166,7 +4166,7 @@ void YerothTableauxDeBordWindow::compterLesArticlesVendusParQuantite()
 
 	int size = lineEdit_quantite->text().toInt();
 
-	YerothQStringList progArguments;
+	QStringList progArguments;
 	QString tmpFilePrefix;
 
 	QDir tempDir(YerothERPConfig::temporaryFilesDir);
@@ -5083,7 +5083,7 @@ void YerothTableauxDeBordWindow::calculer_chiffre_daffaire_jour_semaine()
 
 	    //qDebug() << "++ tmpFile: " << tmpFile.fileName();
 
-	    YerothQStringList progArguments;
+	    QStringList progArguments;
 	    QString texRm(tmpFile.fileName().remove(".tex"));
 	    progArguments << texRm;
 
@@ -5572,7 +5572,7 @@ void YerothTableauxDeBordWindow::calculer_chiffre_daffaire_mois()
 
     //qDebug() << "++ tmpFile: " << tmpFile.fileName();
 
-    YerothQStringList progArguments;
+    QStringList progArguments;
     QString texRm(tmpFile.fileName().remove(".tex"));
     progArguments << texRm;
 

@@ -423,20 +423,20 @@ void YerothAlertesWindow::populateComboBoxes()
 	comboBox_alertes_resolue_oui_OU_non->addItem(YerothUtils::STRING_NON);
 
 
-	YerothQStringList aYerothQStringList;
+	QStringList aQStringList;
 
-	aYerothQStringList.append(_varchar_dbtable_column_name_list.values());
+	aQStringList.append(_varchar_dbtable_column_name_list.values());
 
-	aYerothQStringList.removeAll(YerothDatabaseTableColumn::ID);
-	aYerothQStringList.removeAll(YerothDatabaseTableColumn::ID_ALERTE);
-	aYerothQStringList.removeAll(YerothDatabaseTableColumn::DATE_DEBUT);
-	aYerothQStringList.removeAll(YerothDatabaseTableColumn::DATE_FIN);
-	aYerothQStringList.removeAll(YerothDatabaseTableColumn::MESSAGE_ALERTE);
-	aYerothQStringList.removeAll(YerothDatabaseTableColumn::ALERTE_RESOLUE);
-	aYerothQStringList.removeAll(YerothDatabaseTableColumn::DESTINATAIRE);
-	aYerothQStringList.removeAll(YerothDatabaseTableColumn::CONDITION_ALERTE);
+	aQStringList.removeAll(YerothDatabaseTableColumn::ID);
+	aQStringList.removeAll(YerothDatabaseTableColumn::ID_ALERTE);
+	aQStringList.removeAll(YerothDatabaseTableColumn::DATE_DEBUT);
+	aQStringList.removeAll(YerothDatabaseTableColumn::DATE_FIN);
+	aQStringList.removeAll(YerothDatabaseTableColumn::MESSAGE_ALERTE);
+	aQStringList.removeAll(YerothDatabaseTableColumn::ALERTE_RESOLUE);
+	aQStringList.removeAll(YerothDatabaseTableColumn::DESTINATAIRE);
+	aQStringList.removeAll(YerothDatabaseTableColumn::CONDITION_ALERTE);
 
-	comboBox_element_string_db->addItems(aYerothQStringList,
+	comboBox_element_string_db->addItems(aQStringList,
 			YerothDatabaseTableColumn::_tableColumnToUserViewString);
 
 	comboBox_element_string_db->setCurrentIndex(0);
@@ -507,7 +507,7 @@ void YerothAlertesWindow::textChangedSearchLineEditsQCompleters()
 
     if (!searchTerm.isEmpty())
     {
-        YerothQStringList searchTermList = searchTerm.split(QRegExp("\\s+"));
+        QStringList searchTermList = searchTerm.split(QRegExp("\\s+"));
 
         QString partSearchTerm;
 

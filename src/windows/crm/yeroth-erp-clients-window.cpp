@@ -262,7 +262,7 @@ void YerothERPClientsWindow::textChangedSearchLineEditsQCompleters()
 
     if (!searchTerm.isEmpty())
     {
-        YerothQStringList searchTermList = searchTerm.split(QRegExp("\\s+"));
+        QStringList searchTermList = searchTerm.split(QRegExp("\\s+"));
 
         QString partSearchTerm;
 
@@ -653,46 +653,46 @@ void YerothERPClientsWindow::populateClientsComboBoxes()
 {
     _logger->log("populateClientsComboBoxes");
 
-	YerothQStringList aYerothQStringList;
+	QStringList aQStringList;
 
-	aYerothQStringList.append(_varchar_dbtable_column_name_list.values());
+	aQStringList.append(_varchar_dbtable_column_name_list.values());
 
-	aYerothQStringList.remove_list(_NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME);
+	YerothUtils::REMOVE_QSTRING_LIST(aQStringList, _NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME);
 
-	aYerothQStringList.removeAll(YerothDatabaseTableColumn::DESCRIPTION_CLIENT);
-	aYerothQStringList.removeAll(YerothDatabaseTableColumn::NUMERO_TELEPHONE_1);
-	aYerothQStringList.removeAll(YerothDatabaseTableColumn::NUMERO_TELEPHONE_2);
+	aQStringList.removeAll(YerothDatabaseTableColumn::DESCRIPTION_CLIENT);
+	aQStringList.removeAll(YerothDatabaseTableColumn::NUMERO_TELEPHONE_1);
+	aQStringList.removeAll(YerothDatabaseTableColumn::NUMERO_TELEPHONE_2);
 
 
-	comboBox_element_string_db->addItems(aYerothQStringList,
+	comboBox_element_string_db->addItems(aQStringList,
 			YerothDatabaseTableColumn::_tableColumnToUserViewString);
 
 	comboBox_element_string_db->setCurrentIndex(0);
 
 
-	aYerothQStringList.clear();
+	aQStringList.clear();
 
-	aYerothQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::COMPTE_CLIENT));
+	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::COMPTE_CLIENT));
 
-	aYerothQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS));
+	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::COMPTE_CLIENT_PROGRAMME_DE_FIDELITE_CLIENTS));
 
-	aYerothQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT));
+	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::DETTE_MAXIMALE_COMPTE_CLIENT));
 
-    comboBox_element->addItems(aYerothQStringList);
+    comboBox_element->addItems(aQStringList);
 
-	aYerothQStringList.clear();
+	aQStringList.clear();
 
-	aYerothQStringList.append(">=");
+	aQStringList.append(">=");
 
-	aYerothQStringList.append("<=");
+	aQStringList.append("<=");
 
-	aYerothQStringList.append(">");
+	aQStringList.append(">");
 
-	aYerothQStringList.append("<");
+	aQStringList.append("<");
 
-	aYerothQStringList.append("=");
+	aQStringList.append("=");
 
-    comboBox_condition->addItems(aYerothQStringList);
+    comboBox_condition->addItems(aQStringList);
 }
 
 

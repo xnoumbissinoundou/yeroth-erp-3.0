@@ -438,53 +438,53 @@ void YerothStocksWindow::enableValeurDinventaire_ONLY_MANAGER()
 
 void YerothStocksWindow::populateComboBoxes()
 {
-	YerothQStringList aYerothQStringList;
+	QStringList aQStringList;
 
-	aYerothQStringList.append(_varchar_dbtable_column_name_list.values());
+	aQStringList.append(_varchar_dbtable_column_name_list.values());
 
-	aYerothQStringList.remove_list(_NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME);
+	YerothUtils::REMOVE_QSTRING_LIST(aQStringList, _NOT_VISIBLE_FOR_USER_DB_TABLE_COLUMN_NAME);
 
-	aYerothQStringList.removeAll(YerothDatabaseTableColumn::DESCRIPTION_PRODUIT);
-	aYerothQStringList.removeAll(YerothDatabaseTableColumn::ENREGISTREUR_STOCK);
-	aYerothQStringList.removeAll(YerothDatabaseTableColumn::HISTORIQUE_STOCK);
-	aYerothQStringList.removeAll(YerothDatabaseTableColumn::LOCALISATION);
-	aYerothQStringList.removeAll(YerothDatabaseTableColumn::LOCALISATION_STOCK);
-	aYerothQStringList.removeAll(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT);
+	aQStringList.removeAll(YerothDatabaseTableColumn::DESCRIPTION_PRODUIT);
+	aQStringList.removeAll(YerothDatabaseTableColumn::ENREGISTREUR_STOCK);
+	aQStringList.removeAll(YerothDatabaseTableColumn::HISTORIQUE_STOCK);
+	aQStringList.removeAll(YerothDatabaseTableColumn::LOCALISATION);
+	aQStringList.removeAll(YerothDatabaseTableColumn::LOCALISATION_STOCK);
+	aQStringList.removeAll(YerothDatabaseTableColumn::NOM_ENTREPRISE_CLIENT);
 
-//	qDebug() << "++ test: " << aYerothQStringList;
+//	qDebug() << "++ test: " << aQStringList;
 
-	comboBox_element_string_db->addItems(aYerothQStringList,
+	comboBox_element_string_db->addItems(aQStringList,
 			YerothDatabaseTableColumn::_tableColumnToUserViewString);
 
 	comboBox_element_string_db->setCurrentIndex(0);
 
 
-	aYerothQStringList.clear();
+	aQStringList.clear();
 
-	aYerothQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::MONTANT_TVA));
+	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::MONTANT_TVA));
 
-	aYerothQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::PRIX_VENTE));
+	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::PRIX_VENTE));
 
-	aYerothQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::PRIX_UNITAIRE));
+	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::PRIX_UNITAIRE));
 
-	aYerothQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::QUANTITE_TOTALE));
+	aQStringList.append(YEROTH_DATABASE_TABLE_COLUMN_TO_USER_VIEW_STRING(YerothDatabaseTableColumn::QUANTITE_TOTALE));
 
-	comboBox_stocks_element_de_stock->addItems(aYerothQStringList);
+	comboBox_stocks_element_de_stock->addItems(aQStringList);
 
 
-	aYerothQStringList.clear();
+	aQStringList.clear();
 
-	aYerothQStringList.append(">=");
+	aQStringList.append(">=");
 
-	aYerothQStringList.append("<=");
+	aQStringList.append("<=");
 
-	aYerothQStringList.append(">");
+	aQStringList.append(">");
 
-	aYerothQStringList.append("<");
+	aQStringList.append("<");
 
-	aYerothQStringList.append("=");
+	aQStringList.append("=");
 
-    comboBox_stocks_element_de_stock_condition->addItems(aYerothQStringList);
+    comboBox_stocks_element_de_stock_condition->addItems(aQStringList);
 
     comboBox_strategie_de_stocks->clear();
     comboBox_strategie_de_stocks->addItem(YerothERPConfig::STRATEGIE_VENTE_SORTIE_ALL);
@@ -567,7 +567,7 @@ void YerothStocksWindow::textChangedSearchLineEditsQCompleters()
 
     if (!searchTerm.isEmpty())
     {
-        YerothQStringList searchTermList = searchTerm.split(QRegExp("\\s+"));
+        QStringList searchTermList = searchTerm.split(QRegExp("\\s+"));
 
         QString partSearchTerm;
 

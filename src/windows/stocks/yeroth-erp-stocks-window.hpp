@@ -179,7 +179,7 @@ private:
 
     YerothLogger			*_logger;
 
-    YerothQStringList				_historiqueStock;
+    QStringList				_historiqueStock;
 
     QString 				_stocksDateEntreeFilter;
 

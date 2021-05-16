@@ -603,7 +603,7 @@ QString YerothSortirWindow::imprimer_facture(QString referenceRecuSORTIE /* = QS
     			.arg(pdfReceiptFileName,
     					thermalPrinterTxtFileEnding));
 
-    	YerothQStringList progOptions;
+    	QStringList progOptions;
 
     	progOptions << "-layout";
     	progOptions << pdfReceiptFileName;

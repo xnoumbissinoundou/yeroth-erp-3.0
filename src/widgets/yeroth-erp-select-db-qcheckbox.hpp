@@ -20,7 +20,7 @@ public:
 	YEROTH_CLASS_OPERATORS
 
 	YerothSelectDBQCheckBox(QWidget 		*parent,
-							YerothQStringList		*visibleDBFieldColumnStrList);
+							QStringList		*visibleDBFieldColumnStrList);
 
 	virtual ~YerothSelectDBQCheckBox(){}
 
@@ -32,7 +32,7 @@ public slots:
 
 private:
 
-	YerothQStringList			*_visibleDBFieldColumnStrList;
+	QStringList			*_visibleDBFieldColumnStrList;
 
 };
 

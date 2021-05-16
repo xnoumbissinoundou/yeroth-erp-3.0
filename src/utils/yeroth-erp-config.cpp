@@ -147,7 +147,7 @@ void YerothERPConfig::initYerothConfig(QString initCfg)
 
 	QTextStream init_cfg(&file);
 	QString line;
-	YerothQStringList list;
+	QStringList list;
 
 	do
 	{
