@@ -38,8 +38,9 @@ void YerothERP_TABLE_VIEW_WITH_TABWIDGET_AS_DIRECT_PARENT_MOVABLE_SECTION::
 		(0 != parent()->parent()->parent()) &&
 		(0 != parent()->parent()->parent()->parent()))
 	{
+
 		QTabWidget* a_q_tab_widget =
-				dynamic_cast<QTabWidget *>(parent()->parent()->parent()->parent()->parent());
+				dynamic_cast<QTabWidget *>(parent()->parent()->parent());
 
 		if (0 == a_q_tab_widget)
 		{
@@ -48,7 +49,7 @@ void YerothERP_TABLE_VIEW_WITH_TABWIDGET_AS_DIRECT_PARENT_MOVABLE_SECTION::
 		}
 
 		YerothWindowsCommons* a_yeroth_window =
-				dynamic_cast<YerothWindowsCommons *>(a_q_tab_widget->parent());
+				dynamic_cast<YerothWindowsCommons *>(a_q_tab_widget->parent()->parent());
 
 		if (0 == a_yeroth_window)
 		{

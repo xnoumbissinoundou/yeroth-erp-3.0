@@ -406,18 +406,6 @@ Program executing directory: &quot;%2&quot;.</translation>
     <message>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="412"/>
         <source>YEROTH-ERP-3.0-SERVER
-(VERSION du 16-05-2021 à 14:57:50-1621191470)
-
- par 
-
-(c) (2015 - ...) PR. XAVIER NOUMBISSI NOUNDOU.
-
-LAST BUILD ID: &apos;d8eea780c29d9cb3b7e329f3a09c841d6eff79fa&apos;.
-
-ON BUILD_COMPUTER: &apos;Linux 4.19.0-5-amd64 x86_64&apos;.
-
-CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;YEROTH_RD_TEST_NOW&apos;.</source>
-        <oldsource>YEROTH-ERP-3.0-SERVER
 (VERSION du YEROTH_BUILD_DATE à YEROTH_BUILD_DATE_TIMESTAMP)
 
  par 
@@ -430,24 +418,24 @@ ON BUILD_COMPUTER: &apos;&apos;.
 
 CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;&apos;.
 
-</oldsource>
+</source>
+        <oldsource>YEROTH-ERP-3.0-SERVER
+(VERSION du 16-05-2021 à 14:57:50-1621191470)
+
+ par 
+
+(c) (2015 - ...) PR. XAVIER NOUMBISSI NOUNDOU.
+
+LAST BUILD ID: &apos;d8eea780c29d9cb3b7e329f3a09c841d6eff79fa&apos;.
+
+ON BUILD_COMPUTER: &apos;Linux 4.19.0-5-amd64 x86_64&apos;.
+
+CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;YEROTH_RD_TEST_NOW&apos;.</oldsource>
         <translation></translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="423"/>
         <source>YEROTH-ERP-3.0-CLIENT
-(VERSION du 16-05-2021 à 14:57:50-1621191470)
-
- par 
-
-(c) (2015 - ...) PR. XAVIER NOUMBISSI NOUNDOU.
-
-LAST BUILD ID: &apos;d8eea780c29d9cb3b7e329f3a09c841d6eff79fa&apos;.
-
-ON BUILD_COMPUTER: &apos;Linux 4.19.0-5-amd64 x86_64&apos;.
-
-CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;YEROTH_RD_TEST_NOW&apos;.</source>
-        <oldsource>YEROTH-ERP-3.0-CLIENT
 (VERSION du YEROTH_BUILD_DATE à YEROTH_BUILD_DATE_TIMESTAMP)
 
  par 
@@ -460,24 +448,24 @@ ON BUILD_COMPUTER: &apos;&apos;.
 
 CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;&apos;.
 
-</oldsource>
+</source>
+        <oldsource>YEROTH-ERP-3.0-CLIENT
+(VERSION du 16-05-2021 à 14:57:50-1621191470)
+
+ par 
+
+(c) (2015 - ...) PR. XAVIER NOUMBISSI NOUNDOU.
+
+LAST BUILD ID: &apos;d8eea780c29d9cb3b7e329f3a09c841d6eff79fa&apos;.
+
+ON BUILD_COMPUTER: &apos;Linux 4.19.0-5-amd64 x86_64&apos;.
+
+CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;YEROTH_RD_TEST_NOW&apos;.</oldsource>
         <translation></translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="434"/>
         <source>YEROTH-ERP-3.0-STANDALONE
-(VERSION du 16-05-2021 à 14:57:50-1621191470)
-
- par 
-
-(c) (2015 - ...) PR. XAVIER NOUMBISSI NOUNDOU.
-
-LAST BUILD ID: &apos;d8eea780c29d9cb3b7e329f3a09c841d6eff79fa&apos;.
-
-ON BUILD_COMPUTER: &apos;Linux 4.19.0-5-amd64 x86_64&apos;.
-
-CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;YEROTH_RD_TEST_NOW&apos;.</source>
-        <oldsource>YEROTH-ERP-3.0-STANDALONE
 (VERSION du YEROTH_BUILD_DATE à YEROTH_BUILD_DATE_TIMESTAMP)
 
  par 
@@ -490,24 +478,24 @@ ON BUILD_COMPUTER: &apos;&apos;.
 
 CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;&apos;.
 
-</oldsource>
+</source>
+        <oldsource>YEROTH-ERP-3.0-STANDALONE
+(VERSION du 16-05-2021 à 14:57:50-1621191470)
+
+ par 
+
+(c) (2015 - ...) PR. XAVIER NOUMBISSI NOUNDOU.
+
+LAST BUILD ID: &apos;d8eea780c29d9cb3b7e329f3a09c841d6eff79fa&apos;.
+
+ON BUILD_COMPUTER: &apos;Linux 4.19.0-5-amd64 x86_64&apos;.
+
+CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;YEROTH_RD_TEST_NOW&apos;.</oldsource>
         <translation></translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="445"/>
         <source>YEROTH-ERP-3.0-ACADEMIC_EVALUATION
-(VERSION du 16-05-2021 à 14:57:50-1621191470)
-
- par 
-
-(c) (2015 - ...) PR. XAVIER NOUMBISSI NOUNDOU.
-
-LAST BUILD ID: &apos;d8eea780c29d9cb3b7e329f3a09c841d6eff79fa&apos;.
-
-ON BUILD_COMPUTER: &apos;Linux 4.19.0-5-amd64 x86_64&apos;.
-
-CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;YEROTH_RD_TEST_NOW&apos;.</source>
-        <oldsource>YEROTH-ERP-3.0-ACADEMIC_EVALUATION
 (VERSION du YEROTH_BUILD_DATE à YEROTH_BUILD_DATE_TIMESTAMP)
 
  par 
@@ -519,7 +507,19 @@ LAST BUILD ID: &apos;&apos;.
 ON BUILD_COMPUTER: &apos;&apos;.
 
 CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;&apos;.
-</oldsource>
+</source>
+        <oldsource>YEROTH-ERP-3.0-ACADEMIC_EVALUATION
+(VERSION du 16-05-2021 à 14:57:50-1621191470)
+
+ par 
+
+(c) (2015 - ...) PR. XAVIER NOUMBISSI NOUNDOU.
+
+LAST BUILD ID: &apos;d8eea780c29d9cb3b7e329f3a09c841d6eff79fa&apos;.
+
+ON BUILD_COMPUTER: &apos;Linux 4.19.0-5-amd64 x86_64&apos;.
+
+CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;YEROTH_RD_TEST_NOW&apos;.</oldsource>
         <translation></translation>
     </message>
     <message>
@@ -4430,7 +4430,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
     </message>
     <message>
         <location filename="src/admin/yeroth-erp-admin-windows-commons.cpp" line="65"/>
-        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="1173"/>
+        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="1175"/>
         <source>qui suis je ?</source>
         <translation>who am I ?</translation>
     </message>
@@ -4616,7 +4616,7 @@ Contactez l&apos;administrateur de Yeroth-erp-3.0 !</oldsource>
         <translation>missing MANDATORY column</translation>
     </message>
     <message>
-        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="1160"/>
+        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="1162"/>
         <source>%1 - sélectionner les colones visibles (&apos;%2&apos; colones)</source>
         <translation>%1 - select visible columns (&apos;%2&apos; columns)</translation>
     </message>
@@ -5164,14 +5164,14 @@ Please, change the maximum member of this CLIENT LOYALTY group to &apos;%3&apos;
     <message>
         <location filename="src/dialogs/yeroth-erp-IMPRESSION_DE_DOCUMENT-dialog.cpp" line="238"/>
         <location filename="src/dialogs/yeroth-erp-IMPRESSION_DE_DOCUMENT-dialog.cpp" line="337"/>
-        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="958"/>
+        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="960"/>
         <source>IMPRESSION, NUMÉRO DE PAGES</source>
         <translation>PRINTING, PAGE NUMBERING</translation>
     </message>
     <message>
         <location filename="src/dialogs/yeroth-erp-IMPRESSION_DE_DOCUMENT-dialog.cpp" line="239"/>
         <location filename="src/dialogs/yeroth-erp-IMPRESSION_DE_DOCUMENT-dialog.cpp" line="338"/>
-        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="959"/>
+        <location filename="src/windows/yeroth-erp-window-commons.cpp" line="961"/>
         <source>La numéro de la page de départ doit être inférieur au numéro de la page terminale</source>
         <translation>starting page number  must be inferior to ending PAGE NUMBER</translation>
     </message>
