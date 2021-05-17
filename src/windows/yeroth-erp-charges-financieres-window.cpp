@@ -539,9 +539,9 @@ void YerothChargesFinancieresWindow::rendreVisible(YerothSqlTableModel * stocksT
 
     setVisible(true);
 
-    APPLY_USER_LOCAL_SETTINGS_PARAMETERS();
-
     afficher_achats();
+
+    APPLY_USER_LOCAL_SETTINGS_PARAMETERS();
 }
 
 

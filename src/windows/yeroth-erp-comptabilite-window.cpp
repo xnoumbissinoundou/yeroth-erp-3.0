@@ -539,9 +539,9 @@ void YerothComptabiliteWindow::rendreVisible(YerothSqlTableModel *stocksTableMod
 
 	setVisible(true);
 
-	APPLY_USER_LOCAL_SETTINGS_PARAMETERS();
-
 	afficher_comptes_bancaires();
+
+	APPLY_USER_LOCAL_SETTINGS_PARAMETERS();
 
 	lineEdit_comptabilite_terme_recherche->setFocus();
 }
