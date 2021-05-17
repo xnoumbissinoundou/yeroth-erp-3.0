@@ -515,9 +515,9 @@ void YerothAchatsWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 
     setVisible(true);
 
-    afficher_achats();
-
     APPLY_USER_LOCAL_SETTINGS_PARAMETERS();
+
+    afficher_achats();
 }
 
 

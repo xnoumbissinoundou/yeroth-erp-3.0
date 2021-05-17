@@ -768,9 +768,9 @@ void YerothStocksWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 
     setVisible(true);
 
-    afficher_stocks();
-
     APPLY_USER_LOCAL_SETTINGS_PARAMETERS();
+
+    afficher_stocks();
 }
 
 

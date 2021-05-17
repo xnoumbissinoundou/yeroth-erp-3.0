@@ -641,9 +641,9 @@ void YerothERPFournisseursWindow::rendreVisible(YerothSqlTableModel * stocksTabl
 
 	setVisible(true);
 
-	afficherFournisseurs(*_curFournisseursTableModel);
-
 	APPLY_USER_LOCAL_SETTINGS_PARAMETERS();
+
+	afficherFournisseurs(*_curFournisseursTableModel);
 
 	lineEdit_fournisseurs_terme_recherche->setFocus();
 }
