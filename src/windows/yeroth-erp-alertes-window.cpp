@@ -716,9 +716,9 @@ void YerothAlertesWindow::rendreVisible(YerothSqlTableModel * stocksTableModel)
 
     setVisible(true);
 
-    APPLY_USER_LOCAL_SETTINGS_PARAMETERS();
-
     afficher_alertes();
+
+    APPLY_USER_LOCAL_SETTINGS_PARAMETERS();
 
     lineEdit_alertes_terme_recherche->setFocus();
 }

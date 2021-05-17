@@ -659,9 +659,9 @@ void YerothERPProgrammesDeFideliteClientsWindow::rendreVisible(YerothSqlTableMod
 
 	setVisible(true);
 
-	APPLY_USER_LOCAL_SETTINGS_PARAMETERS();
-
     afficher_programmes_de_fidelite_clients(*_curClient_LOYALTY_PROGRAM_TableModel);
+
+    APPLY_USER_LOCAL_SETTINGS_PARAMETERS();
 }
 
 

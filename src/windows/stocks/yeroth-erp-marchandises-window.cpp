@@ -778,8 +778,6 @@ void YerothMarchandisesWindow::rendreVisible(YerothSqlTableModel * stocksTableMo
 
 	setVisible(true);
 
-	APPLY_USER_LOCAL_SETTINGS_PARAMETERS();
-
 	if (!IS__CURRENTLY__CHECKING__NON__EMPTY__STOCKS())
 	{
 		reinitialiser__FILTRE__MARCHANDISES__NON__TERMINEES();
@@ -818,6 +816,8 @@ void YerothMarchandisesWindow::rendreVisible(YerothSqlTableModel * stocksTableMo
 
 		slot_filtrer_non_empty_product_stock();
 	}
+
+	APPLY_USER_LOCAL_SETTINGS_PARAMETERS();
 }
 
 

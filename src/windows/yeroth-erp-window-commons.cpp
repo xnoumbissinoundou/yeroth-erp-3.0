@@ -208,8 +208,6 @@ void YerothWindowsCommons::YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED_AUTOMATIC_CONS
 
 void YerothWindowsCommons::APPLY_USER_LOCAL_SETTINGS_PARAMETERS_TABLE_COLUMN_ORDER_from_settings_parameters(const QString &pageTableColumnOrder_STRING)
 {
-	set_PARAMETER_TABLE_COLUMN_ORDER(pageTableColumnOrder_STRING);
-
 	QStringList print_table_column_order = pageTableColumnOrder_STRING.split(";");
 
 	if (print_table_column_order.size() > 0)
@@ -218,6 +216,8 @@ void YerothWindowsCommons::APPLY_USER_LOCAL_SETTINGS_PARAMETERS_TABLE_COLUMN_ORD
 
 		if (0 != a_yeroth_table_view)
 		{
+			set_PARAMETER_TABLE_COLUMN_ORDER(pageTableColumnOrder_STRING);
+
 			QHeaderView *header_view = a_yeroth_table_view->horizontalHeader();
 
 			if (0 != header_view)
