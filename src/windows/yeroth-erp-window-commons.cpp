@@ -249,12 +249,12 @@ void YerothWindowsCommons::APPLY_USER_LOCAL_SETTINGS_PARAMETERS_TABLE_COLUMN_ORD
 						a_logical_index = _dbtablecolumnNameToDBColumnIndex.value(headerColumnData);
 
 //						QDEBUG_STRING_OUTPUT_1(QString("a_logical_index: %1, headerColumnData: %2, "
-//								"current visualIndex: %3, "
-//								"save_VISUAL_INDEX: %4")
-//								.arg(QString::number(a_logical_index),
-//									 headerColumnData,
-//									 QString::number(header_view->visualIndex(a_logical_index)),
-//									 QString::number(saved_VISUAL_INDEX)));
+//													   "current visualIndex: %3, "
+//													   "saved_VISUAL_INDEX: %4")
+//													.arg(QString::number(a_logical_index),
+//														 headerColumnData,
+//														 QString::number(header_view->visualIndex(a_logical_index)),
+//														 QString::number(saved_VISUAL_INDEX)));
 
 						header_view->moveSection(header_view->visualIndex(a_logical_index),
 								saved_VISUAL_INDEX);
@@ -328,6 +328,8 @@ void YerothWindowsCommons::APPLY_USER_LOCAL_SETTINGS_PARAMETERS()
 			{
 				_a4paper_printing_position = pagePagePrinting_STRING;
 			}
+
+			tableView_show_or_hide_columns(*_yerothTableView_FROM_WINDOWS_COMMONS);
 		}
 	}
 }
