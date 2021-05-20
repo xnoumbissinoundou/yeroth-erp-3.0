@@ -11,12 +11,22 @@
 
 #include "src/dialogs/yeroth-erp-IMPRESSION_DE_DOCUMENT-dialog.hpp"
 
+#include "src/utils/yeroth-erp-logger.hpp"
+
 #include "src/utils/yeroth-erp-utils.hpp"
 
 
 #include <QtCore/QTextStream>
 
 #include <QtCore/QFile>
+
+
+YerothERPUserSettings::~YerothERPUserSettings()
+{
+	cleanup_user_settings();
+
+	delete _logger;
+}
 
 
 RESULT_PRINTING_PARAMETER YerothERPUserSettings::lire_les_parametres_locaux(const QString &user_local_personal_setting_full_file_path,
@@ -26,7 +36,7 @@ RESULT_PRINTING_PARAMETER YerothERPUserSettings::lire_les_parametres_locaux(cons
 
 	if (0 == allWindows)
 	{
-//		QDEBUG_STRING_OUTPUT_1("YEROTH-PP-0-failed");
+		//		QDEBUG_STRING_OUTPUT_1("YEROTH-PP-0-failed");
 		return READ_PRINTING_PARAMETER_FAILED;
 	}
 
@@ -35,7 +45,7 @@ RESULT_PRINTING_PARAMETER YerothERPUserSettings::lire_les_parametres_locaux(cons
 
 	if (0 == impressionDeDocumentDialog)
 	{
-//		QDEBUG_STRING_OUTPUT_1("YEROTH-PP-1-failed");
+		//		QDEBUG_STRING_OUTPUT_1("YEROTH-PP-1-failed");
 		return READ_PRINTING_PARAMETER_FAILED;
 	}
 
@@ -46,12 +56,12 @@ RESULT_PRINTING_PARAMETER YerothERPUserSettings::lire_les_parametres_locaux(cons
 	{
 		if (0 != a_current_window_to_table_print_as_parameter)
 		{
-//			QDEBUG_STRING_OUTPUT_1("YEROTH-PP-2-success-initialization");
+			//			QDEBUG_STRING_OUTPUT_1("YEROTH-PP-2-success-initialization");
 			a_current_window_to_print_table = a_current_window_to_table_print_as_parameter;
 		}
 		else
 		{
-//			QDEBUG_STRING_OUTPUT_1("YEROTH-PP-2-failed");
+			//			QDEBUG_STRING_OUTPUT_1("YEROTH-PP-2-failed");
 			return PRINTING_PRAMATER_WINDOW_NOT_YET_DEFINED;
 		}
 	}
@@ -87,7 +97,7 @@ RESULT_PRINTING_PARAMETER YerothERPUserSettings::lire_les_parametres_locaux(cons
 		{
 			list = line.split(YEROTH_ERP_3_0_CONFIGURATION_FILE_SEPARATION_OPERATOR);
 
-//			QDEBUG_STRING_OUTPUT_2("line", line);
+			//			QDEBUG_STRING_OUTPUT_2("line", line);
 
 			_window_printing_parameter_key__TO__its_value.insert(
 					list.at(0).trimmed(),
@@ -97,6 +107,13 @@ RESULT_PRINTING_PARAMETER YerothERPUserSettings::lire_les_parametres_locaux(cons
 	while(!line.isNull());
 
 
+	_logger->log("lire_les_parametres_locaux",
+			QString("%1: %2")
+			.arg(GET_WINDOWS_TABLE_COLUMN_ORDER_KEY_TO_STORE(a_current_window_object_name),
+					_window_printing_parameter_key__TO__its_value.
+					value(GET_WINDOWS_TABLE_COLUMN_ORDER_KEY_TO_STORE(a_current_window_object_name))));
+
+
 	return READ_PRINTING_PARAMETER_SUCCESSFUL;
 }
 
@@ -104,7 +121,8 @@ RESULT_PRINTING_PARAMETER YerothERPUserSettings::lire_les_parametres_locaux(cons
 bool YerothERPUserSettings::enregistrer_les_parametres_locaux(const QString &user_local_personal_setting_full_file_path,
 															  enum RESULT_PRINTING_PARAMETER a_result_printing_parameter/* = READ_PRINTING_PARAMETER_SUCCESSFUL*/)
 {
-//	QDEBUG_STRING_OUTPUT_2("user_local_personal_setting_full_file_path", user_local_personal_setting_full_file_path);
+	//	_logger->log("enregistrer_les_parametres_locaux");
+	//	QDEBUG_STRING_OUTPUT_2("user_local_personal_setting_full_file_path", user_local_personal_setting_full_file_path);
 
 	QFile file(user_local_personal_setting_full_file_path);
 
@@ -150,7 +168,7 @@ bool YerothERPUserSettings::enregistrer_les_parametres_locaux(const QString &use
 					aUserSQLTableRowCount_STRING = a_yeroth_line_edit_nombre_de_pages->text();
 
 					a_current_window_to_print_table->
-						set_PRINTING_PARAMETER_USERSQL_table_row_count(a_user_sql_table_row_count);
+					set_PRINTING_PARAMETER_USERSQL_table_row_count(a_user_sql_table_row_count);
 				}
 
 				QString a_current_window_object_name =
@@ -170,6 +188,13 @@ bool YerothERPUserSettings::enregistrer_les_parametres_locaux(const QString &use
 
 				QString aPrintTableRowCount_STRING =
 						QString::number(a_current_window_to_print_table->get_PRINTING_PARAMETER_print_table_row_count());
+
+
+				_logger->log("enregistrer_les_parametres_locaux",
+						QString("%1: %2")
+						.arg(GET_WINDOWS_TABLE_COLUMN_ORDER_KEY_TO_STORE(a_current_window_object_name),
+								aTableColumnOrder_STRING));
+
 
 				_window_printing_parameter_key__TO__its_value.insert(
 						GET_WINDOWS_USERSQL_TABLE_ROW_COUNT_KEY_TO_STORE(a_current_window_object_name),
@@ -202,8 +227,10 @@ bool YerothERPUserSettings::enregistrer_les_parametres_locaux(const QString &use
 		}
 
 
-//		qDebug() << _window_printing_parameter_key__TO__its_value;
+		//		qDebug() << _window_printing_parameter_key__TO__its_value;
 
+
+		QString all_local_parameters;
 
 		QMapIterator<QString, QString> it(_window_printing_parameter_key__TO__its_value);
 
@@ -211,11 +238,12 @@ bool YerothERPUserSettings::enregistrer_les_parametres_locaux(const QString &use
 		{
 			it.next();
 
-			textStream
-			<< QString("%1=%2\n")
-				.arg(it.key(),
-					 it.value());
+			all_local_parameters.append(QString("%1=%2\n")
+					.arg(it.key(),
+							it.value()));
 		}
+
+		textStream << all_local_parameters;
 	}
 
 	file.close();

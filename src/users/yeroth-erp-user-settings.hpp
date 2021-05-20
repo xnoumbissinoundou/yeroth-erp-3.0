@@ -27,6 +27,9 @@ enum RESULT_PRINTING_PARAMETER
 };
 
 
+class YerothLogger;
+
+
 class YerothERPUserSettings
 {
 
@@ -40,14 +43,13 @@ public:
 	 _page_to(-1),
 	 _print_table_row_count(YerothTableViewPRINT_UTILITIES_TEX_TABLE::_STANDARD_INITIAL_MAX_TABLE_ROW_COUNT_A4LANDSCAPE),
 	 _print_table_column_order(""),
+	 _logger(0),
 	 _a4paper_printing_position(YerothTableViewPRINT_UTILITIES_TEX_TABLE::_A4PAGE_LANDSCAPE_SPECIFICATION)
 	{
+		_logger = new YerothLogger(QString("YerothERPUserSettings"));
 	}
 
-	inline virtual ~YerothERPUserSettings()
-	{
-		cleanup_user_settings();
-	}
+	virtual ~YerothERPUserSettings();
 
 	inline void cleanup_user_settings()
 	{
@@ -128,8 +130,11 @@ protected:
     int						_page_from;
     int 					_page_to;
     uint					_print_table_row_count;
+
     QString					_print_table_column_order;
     QString					_a4paper_printing_position;
+
+	YerothLogger			*_logger;
 
     QMap<QString, QString> 	_window_printing_parameter_key__TO__its_value;
 };
