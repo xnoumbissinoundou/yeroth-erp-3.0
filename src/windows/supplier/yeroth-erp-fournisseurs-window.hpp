@@ -95,11 +95,11 @@ public slots:
 
 	virtual QString get_latex_template_print_pdf_content();
 
-    virtual void afficherFournisseurs(YerothSqlTableModel &fournisseurSqlTableModel);
+    virtual void lister_les_elements_du_tableau(YerothSqlTableModel &fournisseurSqlTableModel);
 
     inline void afficherFournisseurs()
     {
-    	afficherFournisseurs(*_curFournisseursTableModel);
+    	textChangedSearchLineEditsQCompleters();
     }
 
     void afficher_nom_entreprise_selectioner(const QString &nomEntreprise);

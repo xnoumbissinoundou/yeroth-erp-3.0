@@ -313,7 +313,7 @@ void YerothERPFournisseursWindow::textChangedSearchLineEditsQCompleters()
 
     if (_yerothSqlTableModel->select())
     {
-    	afficherFournisseurs(*_yerothSqlTableModel);
+    	lister_les_elements_du_tableau(*_yerothSqlTableModel);
     }
     else
     {
@@ -534,7 +534,7 @@ bool YerothERPFournisseursWindow::filtrer()
 	{
 		setCurrentlyFiltered(true);
 
-		afficherFournisseurs(*_curFournisseursTableModel);
+		lister_les_elements_du_tableau(*_curFournisseursTableModel);
 
 		YEROTH_QMESSAGE_BOX_QUELQUE_RESULTAT_FILTRE(this, resultRows, "filtrer");
 
@@ -642,7 +642,7 @@ void YerothERPFournisseursWindow::rendreVisible(YerothSqlTableModel * stocksTabl
 
 	setVisible(true);
 
-	afficherFournisseurs(*_curFournisseursTableModel);
+	lister_les_elements_du_tableau(*_curFournisseursTableModel);
 
 	APPLY_USER_LOCAL_SETTINGS_PARAMETERS();
 
@@ -732,12 +732,12 @@ void YerothERPFournisseursWindow::afficher_nom_entreprise_selectioner(const QStr
 
     if (_curFournisseursTableModel->easySelect() > 0)
     {
-        afficherFournisseurs(*_curFournisseursTableModel);
+        lister_les_elements_du_tableau(*_curFournisseursTableModel);
     }
 }
 
 
-void YerothERPFournisseursWindow::afficherFournisseurs(YerothSqlTableModel &fournisseurSqlTableModel)
+void YerothERPFournisseursWindow::lister_les_elements_du_tableau(YerothSqlTableModel &fournisseurSqlTableModel)
 {
 	tableView_fournisseurs->queryYerothTableViewCurrentPageContentRow(fournisseurSqlTableModel);
 
