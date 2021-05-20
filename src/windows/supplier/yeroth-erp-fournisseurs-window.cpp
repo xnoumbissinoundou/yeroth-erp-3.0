@@ -548,6 +548,7 @@ bool YerothERPFournisseursWindow::filtrer()
 	return false;
 }
 
+
 void YerothERPFournisseursWindow::reinitialiser_elements_filtrage()
 {
     _logger->log("reinitialiser_elements_filtrage");
