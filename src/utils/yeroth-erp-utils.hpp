@@ -837,6 +837,8 @@ public:
 
 	static const QString DATE_FORMAT;
 
+	static const QString TIME_FORMAT_WITH_MILLISECONDS;
+
 	static const QString TIME_FORMAT;
 
 	static const QString DB_DATE_FORMAT;
@@ -1303,6 +1305,8 @@ YerothQMessageBox::information(this, QObject::trUtf8(DIALOG_BOX_TITLE), msg); }
 #define GET_CURRENT_DATE_YEAR QString::number((QDate::currentDate().year() != 0) ? QDate::currentDate().year() : 2020)
 
 #define GET_CURRENT_STRING_DATE QDate::currentDate().toString(YerothUtils::DATE_FORMAT)
+
+#define CURRENT_TIME_WITH_MILLISECONDS QTime::currentTime().toString(YerothUtils::TIME_FORMAT_WITH_MILLISECONDS)
 
 #define CURRENT_TIME QTime::currentTime().toString(YerothUtils::TIME_FORMAT)
 

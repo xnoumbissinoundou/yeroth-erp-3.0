@@ -370,6 +370,8 @@ const QString YerothUtils::TVA_0_STRING(STRING_TVA_0_PERCENT);
 
 const QString YerothUtils::DATE_FORMAT(FORMAT_DATE);
 
+const QString YerothUtils::TIME_FORMAT_WITH_MILLISECONDS(FORMAT_TIME_WITH_MS);
+
 const QString YerothUtils::TIME_FORMAT(FORMAT_TIME);
 
 const QString YerothUtils::DB_DATE_FORMAT(FORMAT_DATE_DATABASE);

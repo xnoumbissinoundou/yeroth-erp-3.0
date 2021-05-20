@@ -97,7 +97,7 @@ void YerothLogger::debug(const char *cppMethodName, const char *msg)
              .arg(_curUserNomComplet,
             	  _curUserUtilisateur,
             	  GET_CURRENT_STRING_DATE,
-                  CURRENT_TIME,
+                  CURRENT_TIME_WITH_MILLISECONDS,
                   _cppClassName,
                   cppMethodName).toStdString().c_str()
              << msg << "\n";
@@ -107,7 +107,7 @@ void YerothLogger::debug(const char *cppMethodName, const char *msg)
              .arg(_curUserNomComplet,
                	  _curUserUtilisateur,
             	  GET_CURRENT_STRING_DATE,
-                  CURRENT_TIME,
+                  CURRENT_TIME_WITH_MILLISECONDS,
                   _cppClassName,
                   cppMethodName).toStdString().c_str()
              << msg;
@@ -123,7 +123,7 @@ void YerothLogger::debug(const char *cppMethodName, QString msg)
              .arg(_curUserNomComplet,
                	  _curUserUtilisateur,
             	  GET_CURRENT_STRING_DATE,
-                  CURRENT_TIME,
+                  CURRENT_TIME_WITH_MILLISECONDS,
                   _cppClassName,
                   cppMethodName).toStdString().c_str()
              << msg << "\n";
@@ -133,7 +133,7 @@ void YerothLogger::debug(const char *cppMethodName, QString msg)
              .arg(_curUserNomComplet,
                	  _curUserUtilisateur,
             	  GET_CURRENT_STRING_DATE,
-                  CURRENT_TIME,
+                  CURRENT_TIME_WITH_MILLISECONDS,
                   _cppClassName,
                   cppMethodName).toStdString().c_str()
              << msg;
@@ -149,7 +149,7 @@ void YerothLogger::log(const char *cppMethodName, const char *msg)
              .arg(_curUserNomComplet,
                	  _curUserUtilisateur,
             	  GET_CURRENT_STRING_DATE,
-                  CURRENT_TIME,
+                  CURRENT_TIME_WITH_MILLISECONDS,
                   _cppClassName,
                   cppMethodName).toStdString().c_str()
              << msg << "\n";
@@ -159,7 +159,7 @@ void YerothLogger::log(const char *cppMethodName, const char *msg)
              .arg(_curUserNomComplet,
                	  _curUserUtilisateur,
             	  GET_CURRENT_STRING_DATE,
-                  CURRENT_TIME,
+                  CURRENT_TIME_WITH_MILLISECONDS,
                   _cppClassName,
                   cppMethodName).toStdString().c_str()
              << msg;
@@ -175,7 +175,7 @@ void YerothLogger::log(const char *cppMethodName, const QString msg)
              .arg(_curUserNomComplet,
                	  _curUserUtilisateur,
             	  GET_CURRENT_STRING_DATE,
-                  CURRENT_TIME,
+                  CURRENT_TIME_WITH_MILLISECONDS,
                   _cppClassName,
                   cppMethodName).toStdString().c_str()
              << msg << "\n";
@@ -185,7 +185,7 @@ void YerothLogger::log(const char *cppMethodName, const QString msg)
              .arg(_curUserNomComplet,
                	  _curUserUtilisateur,
             	  GET_CURRENT_STRING_DATE,
-                  CURRENT_TIME,
+                  CURRENT_TIME_WITH_MILLISECONDS,
                   _cppClassName,
                   cppMethodName).toStdString().c_str()
              << msg;
