@@ -13,6 +13,8 @@
 #include "src/utils/yeroth-erp-utils.hpp"
 
 
+#include <QtCore/QSemaphore>
+
 #include <QtCore/QString>
 
 #include <QtCore/QDate>
@@ -42,18 +44,9 @@ public:
 
 	YEROTH_CLASS_OPERATORS
 
-	inline YerothPOSUser(YerothERPWindows *allWindows)
-	:_role(YerothUtils::ROLE_INDEFINI),
-	 _user_personal_settings(0),
-	 _allWindows(allWindows)
-	{
-		_user_personal_settings = new YerothERPUserSettings;
-	}
+	YerothPOSUser(YerothERPWindows *allWindows);
 
-	inline virtual ~YerothPOSUser()
-	{
-		YEROTH_DELETE_FREE_POINTER_NOW(_user_personal_settings);
-	}
+	virtual ~YerothPOSUser();
 
 	enum YerothUtils::USER_ROLE role(){ return _role; }
 
@@ -347,7 +340,10 @@ protected:
 
 	QString _user_setting_disk_saving_file_name_FROM_MD5_HEX_USER_ID;
 
-	YerothERPUserSettings *_user_personal_settings;
+
+	QSemaphore				*_write_read_user_setting_file_YEROTH_SEMAPHORE;
+
+	YerothERPUserSettings 	*_user_personal_settings;
 
 private:
 

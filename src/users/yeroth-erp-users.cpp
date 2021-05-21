@@ -24,6 +24,27 @@
 #include <QtCore/QString>
 
 
+YerothPOSUser::YerothPOSUser(YerothERPWindows *allWindows)
+:_role(YerothUtils::ROLE_INDEFINI),
+ _write_read_user_setting_file_YEROTH_SEMAPHORE(0),
+ _user_personal_settings(0),
+ _allWindows(allWindows)
+{
+	_write_read_user_setting_file_YEROTH_SEMAPHORE =
+			new QSemaphore(1);
+
+	_user_personal_settings = new YerothERPUserSettings;
+}
+
+
+YerothPOSUser::~YerothPOSUser()
+{
+	YEROTH_DELETE_FREE_POINTER_NOW(_write_read_user_setting_file_YEROTH_SEMAPHORE);
+
+	YEROTH_DELETE_FREE_POINTER_NOW(_user_personal_settings);
+}
+
+
 QString YerothPOSUser::toString()
 {
     QString userInfo;
@@ -141,15 +162,21 @@ void YerothPOSUser::PRINT_PARAMETERS_TO_STRING()
 
 void YerothPOSUser::cleanup_user_personal_PRINTING_PARAMETER_settings()
 {
+	_write_read_user_setting_file_YEROTH_SEMAPHORE->acquire(1);
+
 	if (0 != _user_personal_settings)
 	{
 		_user_personal_settings->cleanup_user_settings();
 	}
+
+	_write_read_user_setting_file_YEROTH_SEMAPHORE->release(1);
 }
 
 
 void YerothPOSUser::read_user_personal_PRINTING_PARAMETER_settings(YerothWindowsCommons *a_current_window_to_table_print_as_parameter /* = 0 */)
 {
+	_write_read_user_setting_file_YEROTH_SEMAPHORE->acquire(1);
+
 	if (0 != _user_personal_settings)
 	{
 		enum RESULT_PRINTING_PARAMETER resultat_lecture_des_parametres_locaux =
@@ -157,39 +184,47 @@ void YerothPOSUser::read_user_personal_PRINTING_PARAMETER_settings(YerothWindows
 						_user_setting_disk_saving_file_name_FROM_MD5_HEX_USER_ID,
 						a_current_window_to_table_print_as_parameter);
 
-//		if (READ_PRINTING_PARAMETER_SUCCESSFUL == resultat_lecture_des_parametres_locaux)
-//		{
-//			QDEBUG_STRING_OUTPUT_2("read_user_personal_PRINTING_PARAMETER_settings", "READ_PRINTING_PARAMETER_SUCCESSFUL");
-//		}
-//		else
-//		{
-//			QDEBUG_STRING_OUTPUT_2("read_user_personal_PRINTING_PARAMETER_settings", "! READ_PRINTING_PARAMETER_SUCCESSFUL");
-//		}
+		//		if (READ_PRINTING_PARAMETER_SUCCESSFUL == resultat_lecture_des_parametres_locaux)
+		//		{
+		//			QDEBUG_STRING_OUTPUT_2("read_user_personal_PRINTING_PARAMETER_settings", "READ_PRINTING_PARAMETER_SUCCESSFUL");
+		//		}
+		//		else
+		//		{
+		//			QDEBUG_STRING_OUTPUT_2("read_user_personal_PRINTING_PARAMETER_settings", "! READ_PRINTING_PARAMETER_SUCCESSFUL");
+		//		}
 	}
+
+	_write_read_user_setting_file_YEROTH_SEMAPHORE->release(1);
 }
 
 
 void YerothPOSUser::save_user_personal_PRINTING_PARAMETER_settings()
 {
+	_write_read_user_setting_file_YEROTH_SEMAPHORE->acquire(1);
+
 	if (0 != _user_personal_settings)
 	{
 		_user_personal_settings->enregistrer_les_parametres_locaux(
 				_user_setting_disk_saving_file_name_FROM_MD5_HEX_USER_ID);
 	}
+
+	_write_read_user_setting_file_YEROTH_SEMAPHORE->release(1);
 }
 
 
 void YerothPOSUser::create_user_personal_settings_file()
 {
+	_write_read_user_setting_file_YEROTH_SEMAPHORE->acquire(1);
+
 	QByteArray md5Hash_mot_passe(MD5_HASH(_nom_utilisateur));
 
 	_user_setting_disk_saving_file_name_FROM_MD5_HEX_USER_ID
-		= QString("%1/%2")
-			.arg(YerothERPConfig::YEROTH_ERP_3_0_USER_LOCAL_SETTINGS_FOLDER,
-				 QString(md5Hash_mot_passe.toHex()));
+	= QString("%1/%2")
+	.arg(YerothERPConfig::YEROTH_ERP_3_0_USER_LOCAL_SETTINGS_FOLDER,
+			QString(md5Hash_mot_passe.toHex()));
 
-//	QDEBUG_STRING_OUTPUT_2("_user_setting_disk_saving_file_name_FROM_MD5_HEX_USER_ID",
-//						   _user_setting_disk_saving_file_name_FROM_MD5_HEX_USER_ID);
+	//	QDEBUG_STRING_OUTPUT_2("_user_setting_disk_saving_file_name_FROM_MD5_HEX_USER_ID",
+	//						   _user_setting_disk_saving_file_name_FROM_MD5_HEX_USER_ID);
 
 	if (0 != _user_personal_settings)
 	{
@@ -200,15 +235,17 @@ void YerothPOSUser::create_user_personal_settings_file()
 						_user_setting_disk_saving_file_name_FROM_MD5_HEX_USER_ID);
 
 		if (PRINTING_PRAMATER_WINDOW_NOT_YET_DEFINED == resultat_lecture_des_parametres_locaux ||
-			PRINTING_PARAMETER_FILE_DOESNT_EXIT == resultat_lecture_des_parametres_locaux)
+				PRINTING_PARAMETER_FILE_DOESNT_EXIT == resultat_lecture_des_parametres_locaux)
 		{
 			_user_personal_settings->enregistrer_les_parametres_locaux(
-				_user_setting_disk_saving_file_name_FROM_MD5_HEX_USER_ID,
-				PRINTING_PRAMATER_WINDOW_NOT_YET_DEFINED);
+					_user_setting_disk_saving_file_name_FROM_MD5_HEX_USER_ID,
+					PRINTING_PRAMATER_WINDOW_NOT_YET_DEFINED);
 		}
 		//	QDEBUG_STRING_OUTPUT_2("_user_setting_disk_saving_file_name_FROM_MD5_HEX_USER_ID",
 		//						   _user_setting_disk_saving_file_name_FROM_MD5_HEX_USER_ID);
 	}
+
+	_write_read_user_setting_file_YEROTH_SEMAPHORE->release(1);
 }
 
 

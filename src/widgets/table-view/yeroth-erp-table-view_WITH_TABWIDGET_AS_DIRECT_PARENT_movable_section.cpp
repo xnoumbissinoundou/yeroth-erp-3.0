@@ -57,7 +57,8 @@ void YerothERP_TABLE_VIEW_WITH_TABWIDGET_AS_DIRECT_PARENT_MOVABLE_SECTION::
 			return ;
 		}
 
-		if (0 != _q_header_view)
+		if (0 != _q_header_view &&
+			!a_yeroth_window->GET_CURRENTLY_APPLYING_USER_FILE_SETTING_TABLE_COLUMN_ORDER())
 		{
 			QStringList yerothTableView_model_raw_visible_headers(_tableModelRawHeaders_IN_OUT);
 

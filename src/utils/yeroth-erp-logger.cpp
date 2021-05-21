@@ -53,7 +53,9 @@ YerothLogger::~YerothLogger()
 	{
 		_logFile->close();
 
-	    delete _qDebug;
+	    YEROTH_DELETE_FREE_POINTER_NOW(_qDebug);
+
+	    YEROTH_DELETE_FREE_POINTER_NOW(_logFile);
 
 	    alreadyDestroyed = true;
 	}

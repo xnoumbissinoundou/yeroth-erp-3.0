@@ -129,7 +129,9 @@ void YerothTableView::handle_yeroth_header_view_position_changed(int logicalInde
 	{
 		a_yeroth_window = (YerothWindowsCommons *) parent()->parent();
 
-		if (0 != _q_header_view && 0 != a_yeroth_window)
+		if (0 != _q_header_view 	&&
+			0 != a_yeroth_window 	&&
+			!a_yeroth_window->GET_CURRENTLY_APPLYING_USER_FILE_SETTING_TABLE_COLUMN_ORDER())
 		{
 			QStringList yerothTableView_model_raw_visible_headers(_tableModelRawHeaders_IN_OUT);
 

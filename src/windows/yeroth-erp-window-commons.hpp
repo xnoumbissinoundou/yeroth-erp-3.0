@@ -20,6 +20,8 @@
 #include "src/utils/windows/yeroth-erp-abstract-class-yerothsearch-window.hpp"
 
 
+#include <QtCore/QSemaphore>
+
 #include <QtCore/QSet>
 
 #include <QtWidgets/QAction>
@@ -43,7 +45,9 @@ public:
 	YEROTH_CLASS_OPERATORS
 
 	inline YerothWindowsCommons(const QString &anOutput_print_pdf_latexFileNamePrefix = "")
-	:_selectExportDBQDialog(0),
+	:_CURRENTLY_APPLYING_USER_FILE_SETTING_TABLE_COLUMN_ORDER(false),
+	 _WRITE_READ_YEROTH_SEMAPHORE_APPLY_USER_SETTING_FILE_PROPERTIES(0),
+	 _selectExportDBQDialog(0),
 	 _is_pdf_printing_initialized(false),
 	 _yeroth_PRINT_UTILITIES_TEX_TABLE(0),
 	 _output_print_pdf_latexFileNamePrefix(anOutput_print_pdf_latexFileNamePrefix),
@@ -64,6 +68,8 @@ public:
 								.arg(COLOUR_RGB_STRING_YEROTH_ORANGE_243_162_0)),
 	 _windowName(YerothUtils::EMPTY_STRING)
 	{
+		_WRITE_READ_YEROTH_SEMAPHORE_APPLY_USER_SETTING_FILE_PROPERTIES =
+				new QSemaphore(1);
 	}
 
 	virtual ~YerothWindowsCommons();
@@ -279,6 +285,11 @@ public:
 	{
 		_page_to = a_page_to;
 	}
+
+    inline bool GET_CURRENTLY_APPLYING_USER_FILE_SETTING_TABLE_COLUMN_ORDER()
+    {
+    	return _CURRENTLY_APPLYING_USER_FILE_SETTING_TABLE_COLUMN_ORDER;
+    }
 
 signals:
 
@@ -540,6 +551,9 @@ protected:
     	anAction.setShortcut(YerothUtils::REINITIALISER_QUI_SUI_JE_QKEYSEQUENCE);
     }
 
+    bool 		_CURRENTLY_APPLYING_USER_FILE_SETTING_TABLE_COLUMN_ORDER;
+
+    QSemaphore	*_WRITE_READ_YEROTH_SEMAPHORE_APPLY_USER_SETTING_FILE_PROPERTIES;
 
     /**
      * Ces membres (les 3 suivants) de la classe sont utilises afin d'executer

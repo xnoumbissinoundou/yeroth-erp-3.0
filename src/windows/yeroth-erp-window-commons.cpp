@@ -67,6 +67,8 @@ YerothWindowsCommons::~YerothWindowsCommons()
 	_visibleDBColumnNameStrList.clear();
 
 	_visibleQCheckboxs.clear();
+
+	YEROTH_DELETE_FREE_POINTER_NOW(_WRITE_READ_YEROTH_SEMAPHORE_APPLY_USER_SETTING_FILE_PROPERTIES);
 }
 
 
@@ -208,6 +210,8 @@ void YerothWindowsCommons::YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED_AUTOMATIC_CONS
 
 void YerothWindowsCommons::APPLY_USER_LOCAL_SETTINGS_PARAMETERS_TABLE_COLUMN_ORDER_from_settings_parameters(const QString &pageTableColumnOrder_STRING)
 {
+	_CURRENTLY_APPLYING_USER_FILE_SETTING_TABLE_COLUMN_ORDER = true;
+
 	set_PARAMETER_TABLE_COLUMN_ORDER(pageTableColumnOrder_STRING);
 
 	QStringList print_table_column_order = pageTableColumnOrder_STRING.split(";");
@@ -263,11 +267,15 @@ void YerothWindowsCommons::APPLY_USER_LOCAL_SETTINGS_PARAMETERS_TABLE_COLUMN_ORD
 			}
 		}
 	}
+
+	_CURRENTLY_APPLYING_USER_FILE_SETTING_TABLE_COLUMN_ORDER = false;
 }
 
 
 void YerothWindowsCommons::APPLY_USER_LOCAL_SETTINGS_PARAMETERS()
 {
+	_WRITE_READ_YEROTH_SEMAPHORE_APPLY_USER_SETTING_FILE_PROPERTIES->acquire(1);
+
 	YerothERPWindows *allWindows = YerothUtils::getAllWindows();
 
 	if (0 != allWindows)
@@ -332,6 +340,8 @@ void YerothWindowsCommons::APPLY_USER_LOCAL_SETTINGS_PARAMETERS()
 			tableView_show_or_hide_columns(*_yerothTableView_FROM_WINDOWS_COMMONS);
 		}
 	}
+
+	_WRITE_READ_YEROTH_SEMAPHORE_APPLY_USER_SETTING_FILE_PROPERTIES->release(1);
 }
 
 
