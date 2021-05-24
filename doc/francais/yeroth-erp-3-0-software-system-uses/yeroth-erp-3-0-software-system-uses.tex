@@ -15,6 +15,7 @@
 \RequirePackage{latexsym}
 
 \usepackage[french]{babel}
+\addto\captionsfrench{\def\tablename{Tableau}}
 
 \usepackage[numbib]{tocbibind}
 
@@ -178,26 +179,28 @@
 \pagenumbering{arabic}
 
 %%%%%%%%%%%%%%%%%%%%SETTING HEADER AND FOOTER FOR 'REPORT CLASS'.%%%%%%%%%%%%%%%%%%%%%
+\usepackage{lastpage}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \renewcommand{\headrulewidth}{0pt}
 \fancyhf{}
 
 \fancypagestyle{plain}{% copies "fancy" over "plain"
-  \fancyfoot[C]{\thepage}% you can add edits that won't affect "fancy" but only "plain"
+  \fancyfoot[C]{\thepage\ DE \pageref{LastPage}}% you can add edits that won't affect "fancy" but only "plain"
 }
 
 \fancypagestyle{OnlyFirstPage}{%
 	\lhead{}
 	\rhead{}
     \lfoot{}
+    \cfoot{\thepage\ DE \pageref{LastPage}}
 }
 
 \rhead{\yerothpgiblack | UTILISATIONS RECOMMANDÉS}
 \lhead{\textbf{\yerothrd}}
 \lfoot{}
 \rfoot{}
-\cfoot{\thepage}
+\cfoot{\thepage\ DE \pageref{LastPage}}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
