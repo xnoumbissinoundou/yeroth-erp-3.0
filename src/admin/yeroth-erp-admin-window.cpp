@@ -318,7 +318,7 @@ YerothAdminWindow::YerothAdminWindow()
     connect(actionChanger_utilisateur, SIGNAL(triggered()), this, SLOT(changer_utilisateur()));
     connect(actionDeconnecter_utilisateur, SIGNAL(triggered()), this, SLOT(deconnecter_utilisateur()));
     connect(actionAppeler_aide, SIGNAL(triggered()), this, SLOT(apropos()));
-    connect(actionGuideUtilisateur, SIGNAL(triggered()), this, SLOT(getManuelUtilisateurPDF()));
+    connect(actionGuide_PRATIQUE_DE_LUTILISATEUR, SIGNAL(triggered()), this, SLOT(getManuelUtilisateurPDF()));
     connect(actionFermeture, SIGNAL(triggered()), this, SLOT(fermeture()));
     connect(actionA_propos, SIGNAL(triggered()), this, SLOT(apropos()));
     connect(actionRetournerMenuPrincipal, SIGNAL(triggered()), this, SLOT(retour_menu_principal()));

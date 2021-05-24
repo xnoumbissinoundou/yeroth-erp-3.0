@@ -7179,7 +7179,7 @@ Vente</string>
     </property>
     <addaction name="actionInformationEntreprise"/>
     <addaction name="separator"/>
-    <addaction name="actionGuideUtilisateur"/>
+    <addaction name="actionGuide_PRATIQUE_DE_LUTILISATEUR"/>
     <addaction name="actionAppeler_aide"/>
     <addaction name="separator"/>
     <addaction name="actionA_propos"/>
@@ -8736,12 +8736,12 @@ Vente</string>
     </font>
    </property>
   </action>
-  <action name="actionGuideUtilisateur">
+  <action name="actionGuide_PRATIQUE_DE_LUTILISATEUR">
    <property name="text">
-    <string>Guide de l'utilisateur (PDF)</string>
+    <string>Guide PRATIQUE de l'utilisateur (PDF)</string>
    </property>
    <property name="toolTip">
-    <string>Guide de l'utilisateur (PDF)</string>
+    <string>Guide PRATIQUE de l'utilisateur (PDF)</string>
    </property>
    <property name="font">
     <font>

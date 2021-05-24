@@ -132,7 +132,7 @@ YerothPointDeVenteWindow::YerothPointDeVenteWindow()
     // Menu actions
     connect(actionChanger_utilisateur, SIGNAL(triggered()), this, SLOT(changer_utilisateur()));
     connect(actionAppeler_aide, SIGNAL(triggered()), this, SLOT(help()));
-    connect(actionGuideUtilisateur, SIGNAL(triggered()), this, SLOT(getManuelUtilisateurPDF()));
+    connect(actionGuide_PRATIQUE_DE_LUTILISATEUR, SIGNAL(triggered()), this, SLOT(getManuelUtilisateurPDF()));
     connect(actionDeconnecter_utilisateur, SIGNAL(triggered()), this, SLOT(deconnecter_utilisateur()));
     connect(actionMenu, SIGNAL(triggered()), this, SLOT(menu()));
     connect(actionStocks, SIGNAL(triggered()), this, SLOT(lister()));

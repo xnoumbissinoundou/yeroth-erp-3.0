@@ -22625,7 +22625,7 @@ background-color: rgb(0, 0, 0); </string>
     </property>
     <addaction name="actionInformationEntreprise"/>
     <addaction name="separator"/>
-    <addaction name="actionGuideUtilisateur"/>
+    <addaction name="actionGuide_PRATIQUE_DE_LUTILISATEUR"/>
     <addaction name="separator"/>
     <addaction name="actionAppeler_aide"/>
     <addaction name="separator"/>
@@ -24146,7 +24146,7 @@ background-color: rgb(0, 0, 0); </string>
     </font>
    </property>
   </action>
-  <action name="actionGuideUtilisateur">
+  <action name="actionGuide_PRATIQUE_DE_LUTILISATEUR">
    <property name="text">
     <string>Guide de l'utilisateur (PDF)</string>
    </property>

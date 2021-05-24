@@ -65,7 +65,7 @@ YerothMainWindow::YerothMainWindow()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionDeconnecter_utilisateur, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionGuideUtilisateur, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionGuide_PRATIQUE_DE_LUTILISATEUR, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionInformationEntreprise, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(action_acceder_aux_comptes_de_lentreprise, false);
@@ -85,7 +85,7 @@ YerothMainWindow::YerothMainWindow()
 
     connect(actionChanger_utilisateur, SIGNAL(triggered()), this, SLOT(changer_utilisateur()));
     connect(actionAppeler_aide, SIGNAL(triggered()), this, SLOT(help()));
-    connect(actionGuideUtilisateur, SIGNAL(triggered()), this, SLOT(getManuelUtilisateurPDF()));
+    connect(actionGuide_PRATIQUE_DE_LUTILISATEUR, SIGNAL(triggered()), this, SLOT(getManuelUtilisateurPDF()));
     connect(actionDeconnecter_utilisateur, SIGNAL(triggered()), this, SLOT(deconnecter_utilisateur()));
     connect(actionAdministration, SIGNAL(triggered()), this, SLOT(administration()));
     connect(actionEntrer, SIGNAL(triggered()), this, SLOT(entrer()));
@@ -140,7 +140,7 @@ void YerothMainWindow::definirCaissier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionTableauxDeBords, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionGuideUtilisateur, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionGuide_PRATIQUE_DE_LUTILISATEUR, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionInformationEntreprise, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
@@ -178,7 +178,7 @@ void YerothMainWindow::definirManager()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionTableauxDeBords, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionGuideUtilisateur, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionGuide_PRATIQUE_DE_LUTILISATEUR, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionInformationEntreprise, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(action_acceder_aux_comptes_de_lentreprise, false);
@@ -233,7 +233,7 @@ void YerothMainWindow::definirVendeur()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionTableauxDeBords, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionGuideUtilisateur, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionGuide_PRATIQUE_DE_LUTILISATEUR, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionInformationEntreprise, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
@@ -283,7 +283,7 @@ void YerothMainWindow::definirGestionaireDesStocks()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionTableauxDeBords, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionGuideUtilisateur, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionGuide_PRATIQUE_DE_LUTILISATEUR, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionInformationEntreprise, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
@@ -335,7 +335,7 @@ void YerothMainWindow::definirAdministrateur()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionTableauxDeBords, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionGuideUtilisateur, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionGuide_PRATIQUE_DE_LUTILISATEUR, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionInformationEntreprise, false);
 
 
@@ -372,7 +372,7 @@ void YerothMainWindow::definirMagasinier()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionTableauxDeBords, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, true);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionGuideUtilisateur, true);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionGuide_PRATIQUE_DE_LUTILISATEUR, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionInformationEntreprise, true);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, true);
 
@@ -412,7 +412,7 @@ void YerothMainWindow::definirPasDeRole()
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionVendre, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAlertes, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionAdministration, false);
-    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionGuideUtilisateur, false);
+    YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionGuide_PRATIQUE_DE_LUTILISATEUR, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionInformationEntreprise, false);
     YEROTH_ERP_WRAPPER_QACTION_SET_ENABLED(actionQui_suis_je, false);
 
