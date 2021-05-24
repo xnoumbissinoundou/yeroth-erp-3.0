@@ -411,7 +411,7 @@ const QString YerothUtils::MYSQL_DUMP("mysqldump");
 
 
 #ifdef YEROTH_SERVER
-const QString YerothUtils::APROPOS_MSG(QObject::trUtf8("YEROTH-ERP-3.0-SERVER"
+const QString YerothUtils::APROPOS_MSG(QObject::trUtf8("YEROTH-PGI-3.0-SERVER"
 													   "\n(VERSION du YEROTH_BUILD_DATE à YEROTH_BUILD_DATE_TIMESTAMP)"
 													   "\n\n par \n\n"
 		   	   	   	   	   	   	   	   	   	   	   	   "(c) (2015 - ...) PR. XAVIER NOUMBISSI NOUNDOU.\n\n"													   
@@ -422,7 +422,7 @@ const QString YerothUtils::APPLICATION_NAME(QObject::trUtf8("YEROTH-ERP-3.0-SERV
 #endif
 
 #ifdef YEROTH_CLIENT
-const QString YerothUtils::APROPOS_MSG(QObject::trUtf8("YEROTH-ERP-3.0-CLIENT"
+const QString YerothUtils::APROPOS_MSG(QObject::trUtf8("YEROTH-PGI-3.0-CLIENT"
 													   "\n(VERSION du YEROTH_BUILD_DATE à YEROTH_BUILD_DATE_TIMESTAMP)"
 													   "\n\n par \n\n"
 													   "(c) (2015 - ...) PR. XAVIER NOUMBISSI NOUNDOU.\n\n"													   
@@ -433,7 +433,7 @@ const QString YerothUtils::APPLICATION_NAME(QObject::trUtf8("YEROTH-ERP-3.0-CLIE
 #endif
 
 #ifdef YEROTH_STANDALONE
-const QString YerothUtils::APROPOS_MSG(QObject::trUtf8("YEROTH-ERP-3.0-STANDALONE"
+const QString YerothUtils::APROPOS_MSG(QObject::trUtf8("YEROTH-PGI-3.0-STANDALONE"
 													   "\n(VERSION du YEROTH_BUILD_DATE à YEROTH_BUILD_DATE_TIMESTAMP)"
 													   "\n\n par \n\n"
 		   	   	   	   	   	   	   	   	   	   	   	   "(c) (2015 - ...) PR. XAVIER NOUMBISSI NOUNDOU.\n\n"													   
@@ -444,7 +444,7 @@ const QString YerothUtils::APPLICATION_NAME(QObject::trUtf8("YEROTH-ERP-3.0-STAN
 #endif
 
 #ifdef YEROTH_ACADEMIC_EVALUATION_VERSION
-const QString YerothUtils::APROPOS_MSG(QObject::trUtf8("YEROTH-ERP-3.0-ACADEMIC_EVALUATION"
+const QString YerothUtils::APROPOS_MSG(QObject::trUtf8("YEROTH-PGI-3.0-ACADEMIC_EVALUATION"
 													   "\n(VERSION du YEROTH_BUILD_DATE à YEROTH_BUILD_DATE_TIMESTAMP)"
 													   "\n\n par \n\n"
 		   	   	   	   	   	   	   	   	   	   	   	   "(c) (2015 - ...) PR. XAVIER NOUMBISSI NOUNDOU.\n\n"													   

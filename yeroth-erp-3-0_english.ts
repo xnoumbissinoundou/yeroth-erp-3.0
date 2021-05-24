@@ -405,7 +405,7 @@ Program executing directory: &quot;%2&quot;.</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="414"/>
-        <source>YEROTH-ERP-3.0-SERVER
+        <source>YEROTH-PGI-3.0-SERVER
 (VERSION du YEROTH_BUILD_DATE à YEROTH_BUILD_DATE_TIMESTAMP)
 
  par 
@@ -420,22 +420,37 @@ CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;&apos;.
 
 </source>
         <oldsource>YEROTH-ERP-3.0-SERVER
-(VERSION du 16-05-2021 à 14:57:50-1621191470)
+(VERSION du YEROTH_BUILD_DATE à YEROTH_BUILD_DATE_TIMESTAMP)
 
  par 
 
 (c) (2015 - ...) PR. XAVIER NOUMBISSI NOUNDOU.
 
-LAST BUILD ID: &apos;d8eea780c29d9cb3b7e329f3a09c841d6eff79fa&apos;.
+LAST BUILD ID: &apos;&apos;.
 
-ON BUILD_COMPUTER: &apos;Linux 4.19.0-5-amd64 x86_64&apos;.
+ON BUILD_COMPUTER: &apos;&apos;.
 
-CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;YEROTH_RD_TEST_NOW&apos;.</oldsource>
-        <translation></translation>
+CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;&apos;.
+
+</oldsource>
+        <translation>YEROTH-ERP-3.0-SERVER
+(VERSION du YEROTH_BUILD_DATE à YEROTH_BUILD_DATE_TIMESTAMP)
+
+ par 
+
+(c) (2015 - ...) PR. XAVIER NOUMBISSI NOUNDOU.
+
+LAST BUILD ID: &apos;&apos;.
+
+ON BUILD_COMPUTER: &apos;&apos;.
+
+CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;&apos;.
+
+</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="425"/>
-        <source>YEROTH-ERP-3.0-CLIENT
+        <source>YEROTH-PGI-3.0-CLIENT
 (VERSION du YEROTH_BUILD_DATE à YEROTH_BUILD_DATE_TIMESTAMP)
 
  par 
@@ -450,22 +465,37 @@ CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;&apos;.
 
 </source>
         <oldsource>YEROTH-ERP-3.0-CLIENT
-(VERSION du 16-05-2021 à 14:57:50-1621191470)
+(VERSION du YEROTH_BUILD_DATE à YEROTH_BUILD_DATE_TIMESTAMP)
 
  par 
 
 (c) (2015 - ...) PR. XAVIER NOUMBISSI NOUNDOU.
 
-LAST BUILD ID: &apos;d8eea780c29d9cb3b7e329f3a09c841d6eff79fa&apos;.
+LAST BUILD ID: &apos;&apos;.
 
-ON BUILD_COMPUTER: &apos;Linux 4.19.0-5-amd64 x86_64&apos;.
+ON BUILD_COMPUTER: &apos;&apos;.
 
-CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;YEROTH_RD_TEST_NOW&apos;.</oldsource>
-        <translation></translation>
+CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;&apos;.
+
+</oldsource>
+        <translation>YEROTH-ERP-3.0-CLIENT
+(VERSION du YEROTH_BUILD_DATE à YEROTH_BUILD_DATE_TIMESTAMP)
+
+ par 
+
+(c) (2015 - ...) PR. XAVIER NOUMBISSI NOUNDOU.
+
+LAST BUILD ID: &apos;&apos;.
+
+ON BUILD_COMPUTER: &apos;&apos;.
+
+CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;&apos;.
+
+</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="436"/>
-        <source>YEROTH-ERP-3.0-STANDALONE
+        <source>YEROTH-PGI-3.0-STANDALONE
 (VERSION du YEROTH_BUILD_DATE à YEROTH_BUILD_DATE_TIMESTAMP)
 
  par 
@@ -480,22 +510,37 @@ CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;&apos;.
 
 </source>
         <oldsource>YEROTH-ERP-3.0-STANDALONE
-(VERSION du 16-05-2021 à 14:57:50-1621191470)
+(VERSION du YEROTH_BUILD_DATE à YEROTH_BUILD_DATE_TIMESTAMP)
 
  par 
 
 (c) (2015 - ...) PR. XAVIER NOUMBISSI NOUNDOU.
 
-LAST BUILD ID: &apos;d8eea780c29d9cb3b7e329f3a09c841d6eff79fa&apos;.
+LAST BUILD ID: &apos;&apos;.
 
-ON BUILD_COMPUTER: &apos;Linux 4.19.0-5-amd64 x86_64&apos;.
+ON BUILD_COMPUTER: &apos;&apos;.
 
-CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;YEROTH_RD_TEST_NOW&apos;.</oldsource>
-        <translation></translation>
+CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;&apos;.
+
+</oldsource>
+        <translation>YEROTH-ERP-3.0-STANDALONE
+(VERSION du YEROTH_BUILD_DATE à YEROTH_BUILD_DATE_TIMESTAMP)
+
+ par 
+
+(c) (2015 - ...) PR. XAVIER NOUMBISSI NOUNDOU.
+
+LAST BUILD ID: &apos;&apos;.
+
+ON BUILD_COMPUTER: &apos;&apos;.
+
+CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;&apos;.
+
+</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="447"/>
-        <source>YEROTH-ERP-3.0-ACADEMIC_EVALUATION
+        <source>YEROTH-PGI-3.0-ACADEMIC_EVALUATION
 (VERSION du YEROTH_BUILD_DATE à YEROTH_BUILD_DATE_TIMESTAMP)
 
  par 
@@ -509,18 +554,31 @@ ON BUILD_COMPUTER: &apos;&apos;.
 CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;&apos;.
 </source>
         <oldsource>YEROTH-ERP-3.0-ACADEMIC_EVALUATION
-(VERSION du 16-05-2021 à 14:57:50-1621191470)
+(VERSION du YEROTH_BUILD_DATE à YEROTH_BUILD_DATE_TIMESTAMP)
 
  par 
 
 (c) (2015 - ...) PR. XAVIER NOUMBISSI NOUNDOU.
 
-LAST BUILD ID: &apos;d8eea780c29d9cb3b7e329f3a09c841d6eff79fa&apos;.
+LAST BUILD ID: &apos;&apos;.
 
-ON BUILD_COMPUTER: &apos;Linux 4.19.0-5-amd64 x86_64&apos;.
+ON BUILD_COMPUTER: &apos;&apos;.
 
-CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;YEROTH_RD_TEST_NOW&apos;.</oldsource>
-        <translation></translation>
+CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;&apos;.
+</oldsource>
+        <translation>YEROTH-ERP-3.0-ACADEMIC_EVALUATION
+(VERSION du YEROTH_BUILD_DATE à YEROTH_BUILD_DATE_TIMESTAMP)
+
+ par 
+
+(c) (2015 - ...) PR. XAVIER NOUMBISSI NOUNDOU.
+
+LAST BUILD ID: &apos;&apos;.
+
+ON BUILD_COMPUTER: &apos;&apos;.
+
+CLIENT DEDICATED COMPANY LOCALISATION SITE: &apos;&apos;.
+</translation>
     </message>
     <message>
         <location filename="src/utils/yeroth-erp-utils.cpp" line="632"/>

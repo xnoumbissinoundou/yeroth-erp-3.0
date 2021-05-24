@@ -1,7 +1,7 @@
 [Desktop Entry]
-Name=yeroth-erp-3.0-standalone
+Name=yeroth-pgi-3.0-standalone
 Exec=/opt/yeroth-erp-3-0-standalone/bin/yeroth-erp-3-0-standalone.sh
-Icon=yeroth-erp-3-0
+Icon=yeroth-pgi-3-0
 Terminal=false
 Type=Application
 StartupNotify=true
