@@ -9,7 +9,7 @@
 
 #include "yeroth-erp-3-0-software.text-configuration.hpp"
 
-#define FOLDER_YEROTH_ERP_3_0_USER_DOC 										"../../usr/share/doc/yeroth-erp-3.0"
+#define FOLDER_YEROTH_ERP_3_0_USER_DOC 										"../../usr/share/doc/yeroth-erp-3-0"
 
 #define FOLDER_YEROTH_ERP_3_0_USER_DOC_EN 									FOLDER_YEROTH_ERP_3_0_USER_DOC"/english"
 #define FOLDER_YEROTH_ERP_3_0_USER_DOC_FR 									FOLDER_YEROTH_ERP_3_0_USER_DOC"/francais"
